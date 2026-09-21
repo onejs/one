@@ -1,8 +1,9 @@
 // semantic recipes for bounded SwiftUI controls; the SDK supplies signatures and style cases.
-export type ScalarType = 'string' | 'boolean' | 'Double'
+export type ScalarType = 'string' | 'boolean' | 'Double' | 'color'
 export type ControlField = {
   type: ScalarType | 'objects'
-  default: string | boolean | number
+  // a color is unset on both sides: undefined in JS (jsDefault), nil in Swift.
+  default: string | boolean | number | null
   enum?: string
   publicType?: string
   jsDefault?: string

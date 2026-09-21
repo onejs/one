@@ -50,6 +50,17 @@ export interface OneNativeStyle {
   glassEffectTint?: ColorValue
   glassEffectShape?: GlassEffectShape
   material?: Material
+  listRowSeparator?: string
+  listRowSeparatorEdges?: string
+  listRowInsetsTop?: number
+  listRowInsetsLeading?: number
+  listRowInsetsBottom?: number
+  listRowInsetsTrailing?: number
+  listSectionSpacing?: string
+  listSectionSpacingValue?: number
+  listSectionMarginsLength?: number
+  listSectionMarginsEdges?: string
+  headerProminence?: string
 }
 
 // the React Native props a One Native control honors. a composed control renders inside its
@@ -90,6 +101,7 @@ export interface PickerProps extends OneNativeViewProps {
   disabled?: boolean
   options: readonly PickerOption[]
   pickerStyle?: Styles.PickerStyle
+  controlSize?: Styles.ControlSize | ''
 }
 export interface DatePickerProps extends OneNativeViewProps {
   selection: Date
@@ -117,6 +129,7 @@ export interface ToggleProps extends OneNativeViewProps {
   label?: string
   disabled?: boolean
   toggleStyle?: Styles.ToggleStyle
+  controlSize?: Styles.ControlSize | ''
 }
 export interface SliderProps extends OneNativeViewProps {
   value: number
@@ -131,6 +144,7 @@ export interface SliderProps extends OneNativeViewProps {
   maximumValueLabel?: string
   minimumValueImage?: string
   maximumValueImage?: string
+  controlSize?: Styles.ControlSize | ''
 }
 export interface StepperProps extends OneNativeViewProps {
   value: number
@@ -141,6 +155,7 @@ export interface StepperProps extends OneNativeViewProps {
   minimumValue?: number
   maximumValue?: number
   step?: number
+  controlSize?: Styles.ControlSize | ''
 }
 export interface TextProps extends OneNativeViewProps {
   text?: string
@@ -159,6 +174,7 @@ export interface ButtonProps extends OneNativeViewProps {
   buttonRole?: Styles.ButtonRole | ''
   buttonStyle?: Styles.PrimitiveButtonStyle
   disclosureIndicator?: boolean
+  controlSize?: Styles.ControlSize | ''
 }
 export interface ProgressViewProps extends OneNativeViewProps {
   label?: string
@@ -166,6 +182,7 @@ export interface ProgressViewProps extends OneNativeViewProps {
   value?: number
   total?: number
   progressViewStyle?: Styles.ProgressViewStyle
+  controlSize?: Styles.ControlSize | ''
 }
 export interface GaugeProps extends OneNativeViewProps {
   label?: string
@@ -177,6 +194,7 @@ export interface GaugeProps extends OneNativeViewProps {
   minimumValueLabel?: string
   maximumValueLabel?: string
   gaugeStyle?: Styles.GaugeStyle
+  controlSize?: Styles.ControlSize | ''
 }
 export interface ImageProps extends OneNativeViewProps {
   systemName?: string
@@ -201,6 +219,32 @@ export interface ContentUnavailableViewProps extends OneNativeViewProps {
   systemImage?: string
   description?: string
   actions: readonly DialogAction[]
+}
+export interface CircleProps extends OneNativeViewProps {
+  fill?: ColorValue
+  stroke?: ColorValue
+  lineWidth?: number
+}
+export interface CapsuleProps extends OneNativeViewProps {
+  fill?: ColorValue
+  stroke?: ColorValue
+  lineWidth?: number
+}
+export interface RectangleProps extends OneNativeViewProps {
+  fill?: ColorValue
+  stroke?: ColorValue
+  lineWidth?: number
+}
+export interface RoundedRectangleProps extends OneNativeViewProps {
+  fill?: ColorValue
+  stroke?: ColorValue
+  lineWidth?: number
+  cornerRadius?: number
+}
+export interface EllipseProps extends OneNativeViewProps {
+  fill?: ColorValue
+  stroke?: ColorValue
+  lineWidth?: number
 }
 export interface VideoPlayerProps extends OneNativeViewProps {
   url?: string

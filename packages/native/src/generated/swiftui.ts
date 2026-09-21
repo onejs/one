@@ -93,6 +93,9 @@ export type ListStyle =
   | 'grouped'
   | 'insetGrouped'
   | 'plain'
+export type ControlSize = 'mini' | 'small' | 'regular' | 'large' | 'extraLarge'
+export type Prominence = 'standard' | 'increased'
+export type ListSectionSpacing = 'default' | 'compact'
 export const swiftUIValues = {
   MenuOrder: {
     automatic: 16,
@@ -292,6 +295,21 @@ export const swiftUIValues = {
     grouped: 13,
     insetGrouped: 14,
     plain: 13,
+  },
+  ControlSize: {
+    mini: 15,
+    small: 15,
+    regular: 15,
+    large: 15,
+    extraLarge: 17,
+  },
+  Prominence: {
+    standard: 15,
+    increased: 15,
+  },
+  ListSectionSpacing: {
+    default: 17,
+    compact: 17,
   },
 } as const
 export function assertSwiftUIValue(

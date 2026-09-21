@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 import type { ColorValue, ViewProps } from 'react-native'
 import type { GlassEffect, GlassEffectShape, Material } from './controlTypes'
 import type { ColorScheme, DynamicTypeSize } from './swiftui'
+import type { ListModifierProps } from '../listTypes'
 export type HostAxis = 'vertical' | 'horizontal'
 export type HostAlignment = 'leading' | 'center' | 'trailing'
 export type ZStackAlignment =
@@ -42,7 +43,7 @@ export interface FormProps extends ViewProps, EnvironmentProps {
   sizing?: FormSizing
   children: ReactNode
 }
-export interface SectionProps extends ViewProps {
+export interface SectionProps extends ViewProps, ListModifierProps {
   title?: string
   footer?: string
   children: ReactNode

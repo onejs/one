@@ -16,6 +16,7 @@ export function Picker({
   disabled = false,
   options,
   pickerStyle = 'automatic',
+  controlSize = '',
   swiftStyle,
   style,
   ...props
@@ -43,6 +44,12 @@ export function Picker({
     pickerStyle,
     Number.parseFloat(String(Platform.Version))
   )
+  if (controlSize)
+    assertSwiftUIValue(
+      'ControlSize',
+      controlSize,
+      Number.parseFloat(String(Platform.Version))
+    )
   const controlled = useControlled<{
     value: string
     eventCount: number
@@ -60,6 +67,7 @@ export function Picker({
       disabled={disabled}
       options={options}
       pickerStyle={pickerStyle}
+      controlSize={controlSize}
       onNativePickerValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
@@ -174,6 +182,7 @@ export function Toggle({
   label = '',
   disabled = false,
   toggleStyle = 'automatic',
+  controlSize = '',
   swiftStyle,
   style,
   ...props
@@ -184,6 +193,12 @@ export function Toggle({
     toggleStyle,
     Number.parseFloat(String(Platform.Version))
   )
+  if (controlSize)
+    assertSwiftUIValue(
+      'ControlSize',
+      controlSize,
+      Number.parseFloat(String(Platform.Version))
+    )
   const controlled = useControlled<{
     value: boolean
     eventCount: number
@@ -200,6 +215,7 @@ export function Toggle({
       label={label}
       disabled={disabled}
       toggleStyle={toggleStyle}
+      controlSize={controlSize}
       onNativeToggleValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
@@ -220,6 +236,7 @@ export function Slider({
   maximumValueLabel = '',
   minimumValueImage = '',
   maximumValueImage = '',
+  controlSize = '',
   swiftStyle,
   style,
   ...props
@@ -233,7 +250,12 @@ export function Slider({
   if (step <= 0) throw new Error('Slider step must be greater than 0')
   if (value < minimumValue || value > maximumValue)
     throw new Error('Slider value must be within minimumValue and maximumValue')
-
+  if (controlSize)
+    assertSwiftUIValue(
+      'ControlSize',
+      controlSize,
+      Number.parseFloat(String(Platform.Version))
+    )
   const controlled = useControlled<{
     value: number
     eventCount: number
@@ -256,6 +278,7 @@ export function Slider({
       maximumValueLabel={maximumValueLabel}
       minimumValueImage={minimumValueImage}
       maximumValueImage={maximumValueImage}
+      controlSize={controlSize}
       onNativeSliderValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
@@ -272,6 +295,7 @@ export function Stepper({
   minimumValue = 0,
   maximumValue = 100,
   step = 1,
+  controlSize = '',
   swiftStyle,
   style,
   ...props
@@ -285,7 +309,12 @@ export function Stepper({
   if (step <= 0) throw new Error('Stepper step must be greater than 0')
   if (value < minimumValue || value > maximumValue)
     throw new Error('Stepper value must be within minimumValue and maximumValue')
-
+  if (controlSize)
+    assertSwiftUIValue(
+      'ControlSize',
+      controlSize,
+      Number.parseFloat(String(Platform.Version))
+    )
   const controlled = useControlled<{
     value: number
     eventCount: number
@@ -304,6 +333,7 @@ export function Stepper({
       minimumValue={minimumValue}
       maximumValue={maximumValue}
       step={step}
+      controlSize={controlSize}
       onNativeStepperValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
@@ -351,6 +381,7 @@ export function Button({
   buttonRole = '',
   buttonStyle = 'automatic',
   disclosureIndicator = false,
+  controlSize = '',
   swiftStyle,
   style,
   ...props
@@ -369,6 +400,12 @@ export function Button({
     buttonStyle,
     Number.parseFloat(String(Platform.Version))
   )
+  if (controlSize)
+    assertSwiftUIValue(
+      'ControlSize',
+      controlSize,
+      Number.parseFloat(String(Platform.Version))
+    )
   return (
     <NativeButton
       {...props}
@@ -381,6 +418,7 @@ export function Button({
       buttonRole={buttonRole}
       buttonStyle={buttonStyle}
       disclosureIndicator={disclosureIndicator}
+      controlSize={controlSize}
       onNativeButtonPress={({ nativeEvent }) => onPress?.()}
     />
   )
@@ -392,6 +430,7 @@ export function ProgressView({
   value = undefined,
   total = 1,
   progressViewStyle = 'automatic',
+  controlSize = '',
   swiftStyle,
   style,
   ...props
@@ -407,6 +446,12 @@ export function ProgressView({
     progressViewStyle,
     Number.parseFloat(String(Platform.Version))
   )
+  if (controlSize)
+    assertSwiftUIValue(
+      'ControlSize',
+      controlSize,
+      Number.parseFloat(String(Platform.Version))
+    )
   return (
     <NativeProgressView
       {...props}
@@ -418,6 +463,7 @@ export function ProgressView({
       total={total}
       indeterminate={value === undefined}
       progressViewStyle={progressViewStyle}
+      controlSize={controlSize}
     />
   )
 }
@@ -432,6 +478,7 @@ export function Gauge({
   minimumValueLabel = '',
   maximumValueLabel = '',
   gaugeStyle = 'automatic',
+  controlSize = '',
   swiftStyle,
   style,
   ...props
@@ -447,6 +494,12 @@ export function Gauge({
     gaugeStyle,
     Number.parseFloat(String(Platform.Version))
   )
+  if (controlSize)
+    assertSwiftUIValue(
+      'ControlSize',
+      controlSize,
+      Number.parseFloat(String(Platform.Version))
+    )
   return (
     <NativeGauge
       {...props}
@@ -461,6 +514,7 @@ export function Gauge({
       minimumValueLabel={minimumValueLabel}
       maximumValueLabel={maximumValueLabel}
       gaugeStyle={gaugeStyle}
+      controlSize={controlSize}
     />
   )
 }
@@ -595,6 +649,140 @@ export function ContentUnavailableView({
       onNativeContentUnavailableViewAction={({ nativeEvent }) =>
         onAction?.(nativeEvent.id)
       }
+    />
+  )
+}
+import NativeCircle from '../specs/OneNativeCircleNativeComponent'
+export function Circle({
+  fill = undefined,
+  stroke = undefined,
+  lineWidth = 1,
+  swiftStyle,
+  style,
+  ...props
+}: Types.CircleProps) {
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('Circle lineWidth must be a non-negative number')
+
+  return (
+    <NativeCircle
+      {...props}
+      style={style}
+      accessible={Boolean(props.accessibilityLabel)}
+      accessibilityElementsHidden={!props.accessibilityLabel}
+      accessibilityRole="image"
+      swiftStyle={swiftStyle}
+      fill={fill}
+      stroke={stroke}
+      lineWidth={lineWidth}
+    />
+  )
+}
+import NativeCapsule from '../specs/OneNativeCapsuleNativeComponent'
+export function Capsule({
+  fill = undefined,
+  stroke = undefined,
+  lineWidth = 1,
+  swiftStyle,
+  style,
+  ...props
+}: Types.CapsuleProps) {
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('Capsule lineWidth must be a non-negative number')
+
+  return (
+    <NativeCapsule
+      {...props}
+      style={style}
+      accessible={Boolean(props.accessibilityLabel)}
+      accessibilityElementsHidden={!props.accessibilityLabel}
+      accessibilityRole="image"
+      swiftStyle={swiftStyle}
+      fill={fill}
+      stroke={stroke}
+      lineWidth={lineWidth}
+    />
+  )
+}
+import NativeRectangle from '../specs/OneNativeRectangleNativeComponent'
+export function Rectangle({
+  fill = undefined,
+  stroke = undefined,
+  lineWidth = 1,
+  swiftStyle,
+  style,
+  ...props
+}: Types.RectangleProps) {
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('Rectangle lineWidth must be a non-negative number')
+
+  return (
+    <NativeRectangle
+      {...props}
+      style={style}
+      accessible={Boolean(props.accessibilityLabel)}
+      accessibilityElementsHidden={!props.accessibilityLabel}
+      accessibilityRole="image"
+      swiftStyle={swiftStyle}
+      fill={fill}
+      stroke={stroke}
+      lineWidth={lineWidth}
+    />
+  )
+}
+import NativeRoundedRectangle from '../specs/OneNativeRoundedRectangleNativeComponent'
+export function RoundedRectangle({
+  fill = undefined,
+  stroke = undefined,
+  lineWidth = 1,
+  cornerRadius = 0,
+  swiftStyle,
+  style,
+  ...props
+}: Types.RoundedRectangleProps) {
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('RoundedRectangle lineWidth must be a non-negative number')
+  if (!Number.isFinite(cornerRadius) || cornerRadius < 0)
+    throw new Error('RoundedRectangle cornerRadius must be a non-negative number')
+
+  return (
+    <NativeRoundedRectangle
+      {...props}
+      style={style}
+      accessible={Boolean(props.accessibilityLabel)}
+      accessibilityElementsHidden={!props.accessibilityLabel}
+      accessibilityRole="image"
+      swiftStyle={swiftStyle}
+      fill={fill}
+      stroke={stroke}
+      lineWidth={lineWidth}
+      cornerRadius={cornerRadius}
+    />
+  )
+}
+import NativeEllipse from '../specs/OneNativeEllipseNativeComponent'
+export function Ellipse({
+  fill = undefined,
+  stroke = undefined,
+  lineWidth = 1,
+  swiftStyle,
+  style,
+  ...props
+}: Types.EllipseProps) {
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('Ellipse lineWidth must be a non-negative number')
+
+  return (
+    <NativeEllipse
+      {...props}
+      style={style}
+      accessible={Boolean(props.accessibilityLabel)}
+      accessibilityElementsHidden={!props.accessibilityLabel}
+      accessibilityRole="image"
+      swiftStyle={swiftStyle}
+      fill={fill}
+      stroke={stroke}
+      lineWidth={lineWidth}
     />
   )
 }

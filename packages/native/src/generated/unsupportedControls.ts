@@ -55,6 +55,29 @@ function ContentUnavailableView(_props: Types.ContentUnavailableViewProps): neve
     'Swift.ContentUnavailableView requires an iOS native build with @vxrn/native installed'
   )
 }
+function Circle(_props: Types.CircleProps): never {
+  throw new Error('Swift.Circle requires an iOS native build with @vxrn/native installed')
+}
+function Capsule(_props: Types.CapsuleProps): never {
+  throw new Error(
+    'Swift.Capsule requires an iOS native build with @vxrn/native installed'
+  )
+}
+function Rectangle(_props: Types.RectangleProps): never {
+  throw new Error(
+    'Swift.Rectangle requires an iOS native build with @vxrn/native installed'
+  )
+}
+function RoundedRectangle(_props: Types.RoundedRectangleProps): never {
+  throw new Error(
+    'Swift.RoundedRectangle requires an iOS native build with @vxrn/native installed'
+  )
+}
+function Ellipse(_props: Types.EllipseProps): never {
+  throw new Error(
+    'Swift.Ellipse requires an iOS native build with @vxrn/native installed'
+  )
+}
 function VideoPlayer(_props: Types.VideoPlayerProps): never {
   throw new Error(
     'Swift.VideoPlayer requires an iOS native build with @vxrn/native installed'
@@ -111,6 +134,11 @@ export const unsupportedControls = {
   Image,
   ShareLink,
   ContentUnavailableView,
+  Circle,
+  Capsule,
+  Rectangle,
+  RoundedRectangle,
+  Ellipse,
   VideoPlayer,
   PhotosPicker,
   WebView,

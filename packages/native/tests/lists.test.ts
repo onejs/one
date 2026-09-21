@@ -17,14 +17,14 @@ vi.mock('react-native', () => ({
   TextInput: () => null,
   // later entries win, like the real flatten; registered ids never appear here.
   StyleSheet: {
-    flatten: (function flatten(
+    flatten: function flatten(
       style: unknown,
       into: Record<string, unknown> = {}
     ): Record<string, unknown> {
       if (Array.isArray(style)) style.forEach((entry) => flatten(entry, into))
       else if (style && typeof style === 'object') Object.assign(into, style)
       return into
-    }) as (style: unknown) => Record<string, unknown>,
+    } as (style: unknown) => Record<string, unknown>,
   },
 }))
 vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
@@ -134,15 +134,11 @@ describe('lazy stacks', () => {
   })
 
   it('sends -1 for omitted spacing and passes spacing it is given', () => {
-    expect(render(Containers.LazyVStack, { children: null }).props.spacing).toBe(
-      -1
-    )
+    expect(render(Containers.LazyVStack, { children: null }).props.spacing).toBe(-1)
     expect(
       render(Containers.LazyVStack, { children: null, spacing: 12 }).props.spacing
     ).toBe(12)
-    expect(render(Containers.LazyHStack, { children: null }).props.spacing).toBe(
-      -1
-    )
+    expect(render(Containers.LazyHStack, { children: null }).props.spacing).toBe(-1)
     expect(
       render(Containers.LazyHStack, { children: null, spacing: 8 }).props.spacing
     ).toBe(8)
@@ -264,6 +260,129 @@ describe('list schema', () => {
     expect(Object.keys(swiftUIValues.ListStyle).sort()).toEqual(
       ['automatic', 'grouped', 'inset', 'insetGrouped', 'plain', 'sidebar'].sort()
     )
+  })
+})
+
+describe('list modifiers', () => {
+  const unset = {
+    listRowSeparator: '',
+    listRowSeparatorEdges: '',
+    listRowInsetsTop: -1,
+    listRowInsetsLeading: -1,
+    listRowInsetsBottom: -1,
+    listRowInsetsTrailing: -1,
+    listSectionSpacing: '',
+    listSectionSpacingValue: -1,
+    listSectionMarginsLength: -1,
+    listSectionMarginsEdges: '',
+    headerProminence: '',
+  }
+
+  it('sends unset modifiers as empty strings and -1', () => {
+    for (const C of [Containers.List, Containers.Section]) {
+      expect(render(C, { children: null }).props).toMatchObject(unset)
+    }
+  })
+
+  it('passes the modifiers it is given, splitting the spacing overloads', () => {
+    const props = {
+      children: null,
+      listRowSeparator: 'hidden',
+      listRowSeparatorEdges: 'top',
+      listRowInsetsTop: 0,
+      listRowInsetsLeading: 8,
+      listRowInsetsBottom: 0,
+      listRowInsetsTrailing: 8,
+      listSectionSpacing: 'compact',
+      listSectionMarginsLength: 12,
+      listSectionMarginsEdges: 'horizontal',
+      headerProminence: 'increased',
+    }
+    for (const C of [Containers.List, Containers.Section]) {
+      expect(render(C, props).props).toMatchObject({
+        listRowSeparator: 'hidden',
+        listRowSeparatorEdges: 'top',
+        listRowInsetsTop: 0,
+        listRowInsetsLeading: 8,
+        listRowInsetsBottom: 0,
+        listRowInsetsTrailing: 8,
+        listSectionSpacing: 'compact',
+        listSectionSpacingValue: -1,
+        listSectionMarginsLength: 12,
+        listSectionMarginsEdges: 'horizontal',
+        headerProminence: 'increased',
+      })
+    }
+    // a number takes the CGFloat overload instead of the named form.
+    expect(
+      render(Containers.List, { children: null, listSectionSpacing: 8 }).props
+    ).toMatchObject({ listSectionSpacing: '', listSectionSpacingValue: 8 })
+  })
+
+  it('rejects unknown members, bad numbers, and partial insets', () => {
+    expect(() =>
+      render(Containers.List, { children: null, listRowSeparator: 'sometimes' })
+    ).toThrow('Unknown SwiftUI Visibility: sometimes')
+    expect(() =>
+      render(Containers.Section, { children: null, listRowSeparatorEdges: 'left' })
+    ).toThrow('Swift.Section listRowSeparatorEdges must be one of all, top, bottom')
+    expect(() =>
+      render(Containers.List, { children: null, listRowInsetsTop: -2 })
+    ).toThrow('Swift.List listRowInsetsTop must be a non-negative number')
+    expect(() =>
+      render(Containers.List, { children: null, listRowInsetsTop: 4 })
+    ).toThrow('Swift.List listRowInsets needs all four edges or none')
+    expect(() =>
+      render(Containers.List, { children: null, listSectionSpacing: 'roomy' })
+    ).toThrow('Unknown SwiftUI ListSectionSpacing: roomy')
+    expect(() =>
+      render(Containers.List, { children: null, listSectionSpacing: -1 })
+    ).toThrow('Swift.List listSectionSpacing must be a non-negative number')
+    expect(() =>
+      render(Containers.List, { children: null, headerProminence: 'shouty' })
+    ).toThrow('Unknown SwiftUI Prominence: shouty')
+    expect(() =>
+      render(Containers.Section, {
+        children: null,
+        listSectionMarginsEdges: 'diagonal',
+      })
+    ).toThrow(
+      'Swift.Section listSectionMarginsEdges must be one of all, top, leading, bottom, trailing, horizontal, vertical'
+    )
+  })
+
+  it('rejects section margins below iOS 26', async () => {
+    const { Platform } = await import('react-native')
+    const version = Platform.Version
+    try {
+      Platform.Version = '17.0'
+      expect(() =>
+        render(Containers.List, { children: null, listSectionMarginsLength: 8 })
+      ).toThrow('listSectionMargins requires iOS 26')
+      expect(() =>
+        render(Containers.Section, { children: null, listSectionMarginsEdges: 'all' })
+      ).toThrow('listSectionMargins requires iOS 26')
+    } finally {
+      Platform.Version = version
+    }
+  })
+
+  it('carries the modifiers in the List and Section schema', () => {
+    for (const name of ['List', 'Section']) {
+      expect(component(name).props).toMatchObject({
+        listRowSeparator: { type: 'string', enum: 'Visibility' },
+        listRowSeparatorEdges: { type: 'string' },
+        listRowInsetsTop: { type: 'Double' },
+        listRowInsetsLeading: { type: 'Double' },
+        listRowInsetsBottom: { type: 'Double' },
+        listRowInsetsTrailing: { type: 'Double' },
+        listSectionSpacing: { type: 'string', enum: 'ListSectionSpacing' },
+        listSectionSpacingValue: { type: 'Double' },
+        listSectionMarginsLength: { type: 'Double' },
+        listSectionMarginsEdges: { type: 'string' },
+        headerProminence: { type: 'string', enum: 'Prominence' },
+      })
+    }
   })
 })
 

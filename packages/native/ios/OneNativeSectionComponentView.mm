@@ -27,7 +27,18 @@ using namespace facebook::react;
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeSectionProps>(props);
   [_sectionView configureWithTitle:RCTNSStringFromString(next.title)
-                            footer:RCTNSStringFromString(next.footer)];
+                            footer:RCTNSStringFromString(next.footer)
+                listRowSeparator:RCTNSStringFromString(next.listRowSeparator)
+           listRowSeparatorEdges:RCTNSStringFromString(next.listRowSeparatorEdges)
+                listRowInsetsTop:next.listRowInsetsTop
+            listRowInsetsLeading:next.listRowInsetsLeading
+             listRowInsetsBottom:next.listRowInsetsBottom
+           listRowInsetsTrailing:next.listRowInsetsTrailing
+              listSectionSpacing:RCTNSStringFromString(next.listSectionSpacing)
+         listSectionSpacingValue:next.listSectionSpacingValue
+        listSectionMarginsLength:next.listSectionMarginsLength
+         listSectionMarginsEdges:RCTNSStringFromString(next.listSectionMarginsEdges)
+                headerProminence:RCTNSStringFromString(next.headerProminence)];
   [super updateProps:props oldProps:oldProps];
 }
 

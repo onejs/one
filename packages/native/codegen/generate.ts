@@ -1,4 +1,9 @@
-import { containerComponents, emitContainers, environmentMethods } from './emitContainers'
+import {
+  containerComponents,
+  emitContainers,
+  environmentMethods,
+  listMethods,
+} from './emitContainers'
 import { emitPopover, popoverComponents, popoverMethods } from './emitPopover'
 import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
 import { controls } from './controlCatalog'
@@ -157,6 +162,7 @@ for (const method of [
   ...sheetMethods,
   ...popoverMethods,
   ...environmentMethods,
+  ...listMethods,
   ...menuMethods,
   ...styleModifiers,
 ]) {
@@ -286,7 +292,9 @@ for (const component of components) {
       Object.values(fields as Record<string, string>)
     ),
   ].join(' ')
-  const numeric = ['Double', 'Float'].filter((type) => new RegExp(`\\b${type}\\b`).test(usedTypes))
+  const numeric = ['Double', 'Float'].filter((type) =>
+    new RegExp(`\\b${type}\\b`).test(usedTypes)
+  )
   outputs.set(
     `src/specs/${component.name}NativeComponent.ts`,
     header +
@@ -644,7 +652,9 @@ for (const [path, source] of outputs) {
         console.error(
           'SwiftUI manifest fields differ: ' +
             [...new Set([...Object.keys(previous), ...Object.keys(next)])]
-              .filter((key) => JSON.stringify(previous[key]) !== JSON.stringify(next[key]))
+              .filter(
+                (key) => JSON.stringify(previous[key]) !== JSON.stringify(next[key])
+              )
               .join(', ')
         )
       }

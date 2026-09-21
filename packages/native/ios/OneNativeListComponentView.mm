@@ -26,7 +26,18 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeListProps>(props);
-  [_listView configureWithListStyle:RCTNSStringFromString(next.listStyle)];
+  [_listView configureWithListStyle:RCTNSStringFromString(next.listStyle)
+                 listRowSeparator:RCTNSStringFromString(next.listRowSeparator)
+            listRowSeparatorEdges:RCTNSStringFromString(next.listRowSeparatorEdges)
+                 listRowInsetsTop:next.listRowInsetsTop
+             listRowInsetsLeading:next.listRowInsetsLeading
+              listRowInsetsBottom:next.listRowInsetsBottom
+            listRowInsetsTrailing:next.listRowInsetsTrailing
+               listSectionSpacing:RCTNSStringFromString(next.listSectionSpacing)
+          listSectionSpacingValue:next.listSectionSpacingValue
+         listSectionMarginsLength:next.listSectionMarginsLength
+          listSectionMarginsEdges:RCTNSStringFromString(next.listSectionMarginsEdges)
+                 headerProminence:RCTNSStringFromString(next.headerProminence)];
   [super updateProps:props oldProps:oldProps];
 }
 

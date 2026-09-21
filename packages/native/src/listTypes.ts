@@ -1,6 +1,11 @@
 import type { ReactNode } from 'react'
 import type { ViewProps } from 'react-native'
-import type { ListStyle } from './generated/swiftui'
+import type {
+  ListSectionSpacing,
+  ListStyle,
+  Prominence,
+  Visibility,
+} from './generated/swiftui'
 
 // hand-written until the container emitter carries these views, when these merge into
 // src/generated/containerTypes.ts and this file goes away.
@@ -19,7 +24,37 @@ export const lazyHStackAlignments = [
 ] as const
 export type LazyHStackAlignment = (typeof lazyHStackAlignments)[number]
 
-export interface ListProps extends ViewProps {
+export const listRowSeparatorEdges = ['all', 'top', 'bottom'] as const
+export type ListRowSeparatorEdges = (typeof listRowSeparatorEdges)[number]
+
+export const listSectionMarginsEdges = [
+  'all',
+  'top',
+  'leading',
+  'bottom',
+  'trailing',
+  'horizontal',
+  'vertical',
+] as const
+export type ListSectionMarginsEdges = (typeof listSectionMarginsEdges)[number]
+
+// the list row and section modifiers, shared by List and Section and spelled the same
+// in swiftStyle for rows. SwiftUI takes EdgeInsets and edge sets, which cross the
+// bridge decomposed: one prop per argument, one prop per inset edge.
+export interface ListModifierProps {
+  listRowSeparator?: Visibility
+  listRowSeparatorEdges?: ListRowSeparatorEdges
+  listRowInsetsTop?: number
+  listRowInsetsLeading?: number
+  listRowInsetsBottom?: number
+  listRowInsetsTrailing?: number
+  listSectionSpacing?: ListSectionSpacing | number
+  listSectionMarginsLength?: number
+  listSectionMarginsEdges?: ListSectionMarginsEdges
+  headerProminence?: Prominence
+}
+
+export interface ListProps extends ViewProps, ListModifierProps {
   listStyle?: ListStyle
   children: ReactNode
 }

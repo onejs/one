@@ -39,6 +39,17 @@ type OneNativeStyleNative = Readonly<{
   glassEffectTint?: ColorValue
   glassEffectShape?: string
   material?: string
+  listRowSeparator?: string
+  listRowSeparatorEdges?: string
+  listRowInsetsTop?: WithDefault<Double, -1>
+  listRowInsetsLeading?: WithDefault<Double, -1>
+  listRowInsetsBottom?: WithDefault<Double, -1>
+  listRowInsetsTrailing?: WithDefault<Double, -1>
+  listSectionSpacing?: string
+  listSectionSpacingValue?: WithDefault<Double, -1>
+  listSectionMarginsLength?: WithDefault<Double, -1>
+  listSectionMarginsEdges?: string
+  headerProminence?: string
 }>
 interface NativeProps extends ViewProps {
   value: string
@@ -48,6 +59,7 @@ interface NativeProps extends ViewProps {
   disabled: boolean
   options: ReadonlyArray<PickerOption>
   pickerStyle: string
+  controlSize: string
   swiftStyle?: OneNativeStyleNative
   onNativePickerValueChange?: DirectEventHandler<
     Readonly<{ value: string; eventCount: Int32; revision: Int32 }>

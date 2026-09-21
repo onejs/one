@@ -34,6 +34,17 @@ type OneNativeStyleNative = Readonly<{
   glassEffectTint?: ColorValue
   glassEffectShape?: string
   material?: string
+  listRowSeparator?: string
+  listRowSeparatorEdges?: string
+  listRowInsetsTop?: WithDefault<Double, -1>
+  listRowInsetsLeading?: WithDefault<Double, -1>
+  listRowInsetsBottom?: WithDefault<Double, -1>
+  listRowInsetsTrailing?: WithDefault<Double, -1>
+  listSectionSpacing?: string
+  listSectionSpacingValue?: WithDefault<Double, -1>
+  listSectionMarginsLength?: WithDefault<Double, -1>
+  listSectionMarginsEdges?: string
+  headerProminence?: string
 }>
 interface NativeProps extends ViewProps {
   label: string
@@ -45,6 +56,7 @@ interface NativeProps extends ViewProps {
   minimumValueLabel: string
   maximumValueLabel: string
   gaugeStyle: string
+  controlSize: string
   swiftStyle?: OneNativeStyleNative
 }
 export default codegenNativeComponent<NativeProps>('OneNativeGauge', {

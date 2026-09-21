@@ -10,6 +10,7 @@ private final class StepperModel: ObservableObject {
   @Published var minimumValue: Double = 0
   @Published var maximumValue: Double = 100
   @Published var step: Double = 1
+  @Published var controlSize: String = ""
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -35,13 +36,14 @@ private final class StepperModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, minimumValue: Double, maximumValue: Double, step: Double) {
+  public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, minimumValue: Double, maximumValue: Double, step: Double, controlSize: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
     if model.minimumValue != minimumValue { model.minimumValue = minimumValue }
     if model.maximumValue != maximumValue { model.maximumValue = maximumValue }
     if model.step != step { model.step = step }
+    if model.controlSize != controlSize { model.controlSize = controlSize }
   }
 
 
@@ -88,6 +90,7 @@ private struct StepperContent: View {
       ), in: model.minimumValue...model.maximumValue, step: model.step) {
         Text(model.label)
       } onEditingChanged: { _ in }
+      .oneNativeControlSize(model.controlSize)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle)

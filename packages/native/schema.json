@@ -191,6 +191,42 @@
         "listStyle": {
           "type": "string",
           "enum": "ListStyle"
+        },
+        "listRowSeparator": {
+          "type": "string",
+          "enum": "Visibility"
+        },
+        "listRowSeparatorEdges": {
+          "type": "string"
+        },
+        "listRowInsetsTop": {
+          "type": "Double"
+        },
+        "listRowInsetsLeading": {
+          "type": "Double"
+        },
+        "listRowInsetsBottom": {
+          "type": "Double"
+        },
+        "listRowInsetsTrailing": {
+          "type": "Double"
+        },
+        "listSectionSpacing": {
+          "type": "string",
+          "enum": "ListSectionSpacing"
+        },
+        "listSectionSpacingValue": {
+          "type": "Double"
+        },
+        "listSectionMarginsLength": {
+          "type": "Double"
+        },
+        "listSectionMarginsEdges": {
+          "type": "string"
+        },
+        "headerProminence": {
+          "type": "string",
+          "enum": "Prominence"
         }
       },
       "events": {},
@@ -729,6 +765,10 @@
         "pickerStyle": {
           "type": "string",
           "enum": "PickerStyle"
+        },
+        "controlSize": {
+          "type": "string",
+          "enum": "ControlSize"
         }
       },
       "events": {
@@ -881,6 +921,10 @@
         "toggleStyle": {
           "type": "string",
           "enum": "ToggleStyle"
+        },
+        "controlSize": {
+          "type": "string",
+          "enum": "ControlSize"
         }
       },
       "events": {
@@ -946,6 +990,10 @@
         },
         "maximumValueImage": {
           "type": "string"
+        },
+        "controlSize": {
+          "type": "string",
+          "enum": "ControlSize"
         }
       },
       "events": {
@@ -999,6 +1047,10 @@
         },
         "step": {
           "type": "Double"
+        },
+        "controlSize": {
+          "type": "string",
+          "enum": "ControlSize"
         }
       },
       "events": {
@@ -1089,6 +1141,10 @@
         },
         "disclosureIndicator": {
           "type": "boolean"
+        },
+        "controlSize": {
+          "type": "string",
+          "enum": "ControlSize"
         }
       },
       "events": {
@@ -1132,6 +1188,10 @@
         "progressViewStyle": {
           "type": "string",
           "enum": "ProgressViewStyle"
+        },
+        "controlSize": {
+          "type": "string",
+          "enum": "ControlSize"
         }
       },
       "events": {},
@@ -1173,6 +1233,10 @@
         "gaugeStyle": {
           "type": "string",
           "enum": "GaugeStyle"
+        },
+        "controlSize": {
+          "type": "string",
+          "enum": "ControlSize"
         }
       },
       "events": {},
@@ -1292,6 +1356,119 @@
       },
       "slots": [],
       "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeCircle",
+      "publicName": "Circle",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        },
+        "stroke": {
+          "type": "ColorValue"
+        },
+        "lineWidth": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeCapsule",
+      "publicName": "Capsule",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        },
+        "stroke": {
+          "type": "ColorValue"
+        },
+        "lineWidth": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeRectangle",
+      "publicName": "Rectangle",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        },
+        "stroke": {
+          "type": "ColorValue"
+        },
+        "lineWidth": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeRoundedRectangle",
+      "publicName": "RoundedRectangle",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        },
+        "stroke": {
+          "type": "ColorValue"
+        },
+        "lineWidth": {
+          "type": "Double"
+        },
+        "cornerRadius": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeEllipse",
+      "publicName": "Ellipse",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        },
+        "stroke": {
+          "type": "ColorValue"
+        },
+        "lineWidth": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeVideoPlayer",
@@ -2156,6 +2333,42 @@
         },
         "footer": {
           "type": "string"
+        },
+        "listRowSeparator": {
+          "type": "string",
+          "enum": "Visibility"
+        },
+        "listRowSeparatorEdges": {
+          "type": "string"
+        },
+        "listRowInsetsTop": {
+          "type": "Double"
+        },
+        "listRowInsetsLeading": {
+          "type": "Double"
+        },
+        "listRowInsetsBottom": {
+          "type": "Double"
+        },
+        "listRowInsetsTrailing": {
+          "type": "Double"
+        },
+        "listSectionSpacing": {
+          "type": "string",
+          "enum": "ListSectionSpacing"
+        },
+        "listSectionSpacingValue": {
+          "type": "Double"
+        },
+        "listSectionMarginsLength": {
+          "type": "Double"
+        },
+        "listSectionMarginsEdges": {
+          "type": "string"
+        },
+        "headerProminence": {
+          "type": "string",
+          "enum": "Prominence"
         }
       },
       "events": {},
@@ -2762,6 +2975,21 @@
       "grouped": 13,
       "insetGrouped": 14,
       "plain": 13
+    },
+    "ControlSize": {
+      "mini": 15,
+      "small": 15,
+      "regular": 15,
+      "large": 15,
+      "extraLarge": 17
+    },
+    "Prominence": {
+      "standard": 15,
+      "increased": 15
+    },
+    "ListSectionSpacing": {
+      "default": 17,
+      "compact": 17
     }
   }
 }

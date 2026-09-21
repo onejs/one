@@ -212,6 +212,21 @@
       "grouped": 13,
       "insetGrouped": 14,
       "plain": 13
+    },
+    "ControlSize": {
+      "mini": 15,
+      "small": 15,
+      "regular": 15,
+      "large": 15,
+      "extraLarge": 17
+    },
+    "Prominence": {
+      "standard": 15,
+      "increased": 15
+    },
+    "ListSectionSpacing": {
+      "default": 17,
+      "compact": 17
     }
   },
   "modifiers": [
@@ -560,6 +575,47 @@
         }
       ],
       "requirements": []
+    },
+    {
+      "name": "controlSize",
+      "type": "ControlSize",
+      "module": "SwiftUICore",
+      "ios": 15,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "controlSize",
+          "type": "SwiftUICore.ControlSize"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "headerProminence",
+      "type": "Prominence",
+      "module": "SwiftUICore",
+      "ios": 15,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "prominence",
+          "type": "SwiftUICore.Prominence"
+        }
+      ],
+      "requirements": []
+    },
+    {
+      "name": "listSectionSpacing",
+      "type": "ListSectionSpacing",
+      "ios": 17,
+      "parameters": [
+        {
+          "label": "_",
+          "name": "spacing",
+          "type": "SwiftUI.ListSectionSpacing"
+        }
+      ],
+      "requirements": []
     }
   ],
   "coverage": {
@@ -586,7 +642,12 @@
         "Toggle"
       ],
       "SwiftUICore": [
+        "Capsule",
+        "Circle",
+        "Ellipse",
         "Image",
+        "Rectangle",
+        "RoundedRectangle",
         "Text"
       ],
       "_AVKit_SwiftUI": [
@@ -615,6 +676,10 @@
         "fullScreenCover",
         "gaugeStyle",
         "interactiveDismissDisabled",
+        "listRowInsets",
+        "listRowSeparator",
+        "listSectionMargins",
+        "listSectionSpacing",
         "listStyle",
         "menuActionDismissBehavior",
         "menuOrder",
@@ -640,10 +705,12 @@
         "background",
         "border",
         "clipShape",
+        "controlSize",
         "environment",
         "font",
         "foregroundStyle",
         "frame",
+        "headerProminence",
         "imageScale",
         "opacity",
         "padding",
@@ -1231,6 +1298,55 @@
         }
       ],
       "ios": 17
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "Circle",
+      "parameters": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "Capsule",
+      "parameters": [
+        {
+          "defaultValue": ".continuous",
+          "label": "style",
+          "name": "style",
+          "type": "SwiftUICore.RoundedCornerStyle"
+        }
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "Rectangle",
+      "parameters": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "RoundedRectangle",
+      "parameters": [
+        {
+          "label": "cornerRadius",
+          "name": "cornerRadius",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "defaultValue": ".continuous",
+          "label": "style",
+          "name": "style",
+          "type": "SwiftUICore.RoundedCornerStyle"
+        }
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "Ellipse",
+      "parameters": [],
+      "ios": 13
     },
     {
       "module": "_AVKit_SwiftUI",

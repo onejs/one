@@ -44,9 +44,12 @@ import { viewportStyle } from './viewportStyle'
 import {
   lazyHStackAlignments,
   lazyVStackAlignments,
+  listRowSeparatorEdges,
+  listSectionMarginsEdges,
   scrollViewAxes,
   type LazyHStackProps,
   type LazyVStackProps,
+  type ListModifierProps,
   type ListProps,
   type ScrollViewProps,
 } from './listTypes'
@@ -270,11 +273,92 @@ export function Form({
         isEnabled,
       })}
       sizing={sizing}
-      style={sizing === 'content' ? [{ alignSelf: 'stretch' }, style] : [{ flex: 1 }, style]}
+      style={
+        sizing === 'content' ? [{ alignSelf: 'stretch' }, style] : [{ flex: 1 }, style]
+      }
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeForm>
   )
+}
+
+// the list row and section modifiers List and Section share, validated once. strings
+// cross as '' when unset and numbers as -1, which native reads as "not set".
+function nativeListModifierProps(name: string, props: ListModifierProps) {
+  const {
+    listRowSeparator,
+    listRowSeparatorEdges: separatorEdges,
+    listRowInsetsTop,
+    listRowInsetsLeading,
+    listRowInsetsBottom,
+    listRowInsetsTrailing,
+    listSectionSpacing,
+    listSectionMarginsLength,
+    listSectionMarginsEdges: marginsEdges,
+    headerProminence,
+  } = props
+  const iosVersion = Number.parseFloat(String(Platform.Version))
+  if (listRowSeparator !== undefined)
+    assertSwiftUIValue('Visibility', listRowSeparator, iosVersion)
+  if (separatorEdges !== undefined && !listRowSeparatorEdges.includes(separatorEdges))
+    throw new Error(
+      `${name} listRowSeparatorEdges must be one of ${listRowSeparatorEdges.join(', ')}`
+    )
+  const insets = {
+    listRowInsetsTop,
+    listRowInsetsLeading,
+    listRowInsetsBottom,
+    listRowInsetsTrailing,
+  }
+  for (const [key, value] of Object.entries(insets)) {
+    if (value !== undefined && (!Number.isFinite(value) || value < 0))
+      throw new Error(`${name} ${key} must be a non-negative number`)
+  }
+  const insetValues = Object.values(insets)
+  if (
+    insetValues.some((value) => value !== undefined) &&
+    insetValues.some((value) => value === undefined)
+  )
+    throw new Error(`${name} listRowInsets needs all four edges or none`)
+  let spacing = ''
+  let spacingValue = -1
+  if (typeof listSectionSpacing === 'number') {
+    if (!Number.isFinite(listSectionSpacing) || listSectionSpacing < 0)
+      throw new Error(`${name} listSectionSpacing must be a non-negative number`)
+    spacingValue = listSectionSpacing
+  } else if (listSectionSpacing !== undefined) {
+    assertSwiftUIValue('ListSectionSpacing', listSectionSpacing, iosVersion)
+    spacing = listSectionSpacing
+  }
+  if (
+    (listSectionMarginsLength !== undefined || marginsEdges !== undefined) &&
+    iosVersion < 26
+  )
+    throw new Error('listSectionMargins requires iOS 26')
+  if (
+    listSectionMarginsLength !== undefined &&
+    (!Number.isFinite(listSectionMarginsLength) || listSectionMarginsLength < 0)
+  )
+    throw new Error(`${name} listSectionMarginsLength must be a non-negative number`)
+  if (marginsEdges !== undefined && !listSectionMarginsEdges.includes(marginsEdges))
+    throw new Error(
+      `${name} listSectionMarginsEdges must be one of ${listSectionMarginsEdges.join(', ')}`
+    )
+  if (headerProminence !== undefined)
+    assertSwiftUIValue('Prominence', headerProminence, iosVersion)
+  return {
+    listRowSeparator: listRowSeparator ?? '',
+    listRowSeparatorEdges: separatorEdges ?? '',
+    listRowInsetsTop: listRowInsetsTop ?? -1,
+    listRowInsetsLeading: listRowInsetsLeading ?? -1,
+    listRowInsetsBottom: listRowInsetsBottom ?? -1,
+    listRowInsetsTrailing: listRowInsetsTrailing ?? -1,
+    listSectionSpacing: spacing,
+    listSectionSpacingValue: spacingValue,
+    listSectionMarginsLength: listSectionMarginsLength ?? -1,
+    listSectionMarginsEdges: marginsEdges ?? '',
+    headerProminence: headerProminence ?? '',
+  }
 }
 
 export function Section({
@@ -288,21 +372,28 @@ export function Section({
     throw new Error('Swift.Section title and footer must be strings')
   assertOneNativeChildren(children, 'Swift.Section')
   return (
-    <NativeSection {...props} style={[{ flex: 1 }, style]} title={title} footer={footer}>
+    <NativeSection
+      {...props}
+      style={[{ flex: 1 }, style]}
+      title={title}
+      footer={footer}
+      {...nativeListModifierProps('Swift.Section', props)}
+    >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeSection>
   )
 }
 
 export function List({ listStyle = 'automatic', children, style, ...props }: ListProps) {
-  assertSwiftUIValue(
-    'ListStyle',
-    listStyle,
-    Number.parseFloat(String(Platform.Version))
-  )
+  assertSwiftUIValue('ListStyle', listStyle, Number.parseFloat(String(Platform.Version)))
   assertOneNativeChildren(children, 'Swift.List')
   return (
-    <NativeList {...props} style={viewportStyle(style)} listStyle={listStyle}>
+    <NativeList
+      {...props}
+      style={viewportStyle(style)}
+      listStyle={listStyle}
+      {...nativeListModifierProps('Swift.List', props)}
+    >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeList>
   )
@@ -316,9 +407,7 @@ export function ScrollView({
   ...props
 }: ScrollViewProps) {
   if (!scrollViewAxes.includes(axes))
-    throw new Error(
-      `Swift.ScrollView axes must be one of ${scrollViewAxes.join(', ')}`
-    )
+    throw new Error(`Swift.ScrollView axes must be one of ${scrollViewAxes.join(', ')}`)
   assertOneNativeChildren(children, 'Swift.ScrollView')
   return (
     <NativeScrollView
@@ -523,13 +612,7 @@ export function Divider({ children, style, ...props }: DividerProps) {
   return <NativeDivider {...props} style={style} />
 }
 
-export function Link({
-  destination,
-  label = '',
-  children,
-  style,
-  ...props
-}: LinkProps) {
+export function Link({ destination, label = '', children, style, ...props }: LinkProps) {
   if (typeof destination !== 'string' || !destination)
     throw new Error('Swift.Link destination must be a non-empty string')
   try {
@@ -584,7 +667,11 @@ function OverlayFn({ alignment = 'center', children, style, ...props }: OverlayP
     throw new Error('Swift.Overlay takes a single Overlay.Content child')
   assertOneNativeChildren(children, 'Swift.Overlay')
   return (
-    <NativeOverlay {...props} style={[{ alignSelf: 'stretch' }, style]} alignment={alignment}>
+    <NativeOverlay
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      alignment={alignment}
+    >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeOverlay>
   )
@@ -618,8 +705,7 @@ export function SwipeActionsActions({
 
 function SwipeActionsFn({ children, style, ...props }: SwipeActionsProps) {
   const edges = Children.toArray(children).flatMap((child) =>
-    isValidElement<SwipeActionsActionsProps>(child) &&
-    child.type === SwipeActionsActions
+    isValidElement<SwipeActionsActionsProps>(child) && child.type === SwipeActionsActions
       ? [child.props.edge ?? 'trailing']
       : []
   )

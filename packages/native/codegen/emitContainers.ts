@@ -27,6 +27,39 @@ export const environmentMethods = [
   },
 ]
 
+// the list row and section modifiers List, Section and the style chain apply by hand.
+// single-enum modifiers go through the catalog's modifiers array instead; these take
+// edge sets, insets, or a second overload, so the generator only verifies the SDK
+// still spells them this way and the Swift below does the applying.
+export const listMethods = [
+  {
+    name: 'listRowSeparator',
+    parameters: [
+      { label: '_', type: 'SwiftUICore.Visibility' },
+      { label: 'edges', type: 'SwiftUICore.VerticalEdge.Set' },
+    ],
+    requirements: [],
+  },
+  {
+    name: 'listRowInsets',
+    parameters: [{ label: '_', type: 'SwiftUICore.EdgeInsets?' }],
+    requirements: [],
+  },
+  {
+    name: 'listSectionSpacing',
+    parameters: [{ label: '_', type: 'CoreFoundation.CGFloat' }],
+    requirements: [],
+  },
+  {
+    name: 'listSectionMargins',
+    parameters: [
+      { label: '_', type: 'SwiftUICore.Edge.Set' },
+      { label: '_', type: 'CoreFoundation.CGFloat?' },
+    ],
+    requirements: [],
+  },
+]
+
 export const containerComponents = [
   {
     name: 'OneNativeHost',
@@ -82,9 +115,27 @@ export const containerComponents = [
   {
     name: 'OneNativeSection',
     publicName: 'Section',
-    props: { title: 'string', footer: 'string' },
+    props: {
+      title: 'string',
+      footer: 'string',
+      listRowSeparator: 'string',
+      listRowSeparatorEdges: 'string',
+      listRowInsetsTop: 'Double',
+      listRowInsetsLeading: 'Double',
+      listRowInsetsBottom: 'Double',
+      listRowInsetsTrailing: 'Double',
+      listSectionSpacing: 'string',
+      listSectionSpacingValue: 'Double',
+      listSectionMarginsLength: 'Double',
+      listSectionMarginsEdges: 'string',
+      headerProminence: 'string',
+    },
     events: {},
-    enumProps: {},
+    enumProps: {
+      listRowSeparator: 'Visibility',
+      listSectionSpacing: 'ListSectionSpacing',
+      headerProminence: 'Prominence',
+    },
     layout: { kind: 'container' },
     slots: [composedContent],
     interfaceOnly: false,
@@ -183,6 +234,7 @@ export default codegenNativeComponent<NativeProps>('${component.name}'${componen
 import type { ColorValue, ViewProps } from 'react-native'
 import type { GlassEffect, GlassEffectShape, Material } from './controlTypes'
 import type { ColorScheme, DynamicTypeSize } from './swiftui'
+import type { ListModifierProps } from '../listTypes'
 export type HostAxis = ${hostAxes.map((axis) => JSON.stringify(axis)).join(' | ')}
 export type HostAlignment = ${hostAlignments.map((value) => JSON.stringify(value)).join(' | ')}
 export type ZStackAlignment = ${zStackAlignments.map((value) => JSON.stringify(value)).join(' | ')}
@@ -212,7 +264,7 @@ export interface FormProps extends ViewProps, EnvironmentProps {
   sizing?: FormSizing
   children: ReactNode
 }
-export interface SectionProps extends ViewProps {
+export interface SectionProps extends ViewProps, ListModifierProps {
   title?: string
   footer?: string
   children: ReactNode

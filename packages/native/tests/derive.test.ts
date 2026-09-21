@@ -59,20 +59,37 @@ describe('generic leaf emitter', () => {
   it.each([
     ['Text', leafControls, []],
     ['Label', leafControls, []],
-    ['Gauge', leafControls, [styleModifier('gaugeStyle', 'GaugeStyle')]],
-    ['Toggle', formControls, [styleModifier('toggleStyle', 'ToggleStyle')]],
-    ['Stepper', formControls, []],
-  ] as const)('reproduces the hand-written %s body byte for byte', (name, catalog, modifiers) => {
-    const control = byName([...catalog], name)
-    if (!control.leaf) throw new Error(`missing leaf recipe for ${name}`)
-    expect(
-      deriveLeafSwift(
-        inventoryFor(control, [...modifiers]),
-        control.leaf,
-        enumFieldsOf(control)
-      )
-    ).toBe(control.swift)
-  })
+    [
+      'Gauge',
+      leafControls,
+      [
+        styleModifier('gaugeStyle', 'GaugeStyle'),
+        valueModifier('controlSize', 'SwiftUICore.ControlSize'),
+      ],
+    ],
+    [
+      'Toggle',
+      formControls,
+      [
+        styleModifier('toggleStyle', 'ToggleStyle'),
+        valueModifier('controlSize', 'SwiftUICore.ControlSize'),
+      ],
+    ],
+    ['Stepper', formControls, [valueModifier('controlSize', 'SwiftUICore.ControlSize')]],
+  ] as const)(
+    'reproduces the hand-written %s body byte for byte',
+    (name, catalog, modifiers) => {
+      const control = byName([...catalog], name)
+      if (!control.leaf) throw new Error(`missing leaf recipe for ${name}`)
+      expect(
+        deriveLeafSwift(
+          inventoryFor(control, [...modifiers]),
+          control.leaf,
+          enumFieldsOf(control)
+        )
+      ).toBe(control.swift)
+    }
+  )
 
   it('consumes an enum constructor arg instead of chaining it as a modifier', () => {
     const parameters = [{ label: 'axis', type: 'SwiftUICore.Axis' }]
@@ -86,7 +103,10 @@ describe('generic leaf emitter', () => {
           parameters: parameters.map((p) => ({ ...p, name: p.label })),
         }),
       ],
-      { constructor: { type: 'FakeView', parameters }, args: [{ label: 'axis', enum: 'Axis', field: 'axis' }] },
+      {
+        constructor: { type: 'FakeView', parameters },
+        args: [{ label: 'axis', enum: 'Axis', field: 'axis' }],
+      },
       [{ field: 'axis', enum: 'Axis' }]
     )
     expect(body).toBe('FakeView(axis: OneNativeGenerated.axis(model.axis))')
@@ -179,12 +199,15 @@ describe('selectEnumModifier', () => {
 
   it('resolves a value enum through its single parameter', () => {
     expect(
-      selectEnumModifier([valueModifier('menuOrder', 'SwiftUI.MenuOrder')], 'MenuOrder').name
+      selectEnumModifier([valueModifier('menuOrder', 'SwiftUI.MenuOrder')], 'MenuOrder')
+        .name
     ).toBe('menuOrder')
     expect(selectEnumModifier([valueModifier('axis', 'Axis?')], 'Axis').name).toBe('axis')
     expect(
-      selectEnumModifier([valueModifier('imageScale', 'SwiftUI.Image.Scale')], 'ImageScale')
-        .name
+      selectEnumModifier(
+        [valueModifier('imageScale', 'SwiftUI.Image.Scale')],
+        'ImageScale'
+      ).name
     ).toBe('imageScale')
   })
 
@@ -201,9 +224,7 @@ describe('selectEnumModifier', () => {
         'Duo'
       )
     ).toThrow('expected one name, found 2 (first, second)')
-    expect(() => selectEnumModifier([], 'Missing')).toThrow(
-      'expected one name, found 0'
-    )
+    expect(() => selectEnumModifier([], 'Missing')).toThrow('expected one name, found 0')
   })
 
   it('ignores overloads that do not qualify', () => {

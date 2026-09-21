@@ -11,6 +11,7 @@ private final class ButtonModel: ObservableObject {
   @Published var buttonRole: String = ""
   @Published var buttonStyle: String = "automatic"
   @Published var disclosureIndicator: Bool = false
+  @Published var controlSize: String = ""
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -37,7 +38,7 @@ private final class ButtonModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ label: String, disabled: Bool, subtitle: String, systemImage: String, buttonRole: String, buttonStyle: String, disclosureIndicator: Bool) {
+  public func configure(_ label: String, disabled: Bool, subtitle: String, systemImage: String, buttonRole: String, buttonStyle: String, disclosureIndicator: Bool, controlSize: String) {
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
     if model.subtitle != subtitle { model.subtitle = subtitle }
@@ -45,6 +46,7 @@ private final class ButtonModel: ObservableObject {
     if model.buttonRole != buttonRole { model.buttonRole = buttonRole }
     if model.buttonStyle != buttonStyle { model.buttonStyle = buttonStyle }
     if model.disclosureIndicator != disclosureIndicator { model.disclosureIndicator = disclosureIndicator }
+    if model.controlSize != controlSize { model.controlSize = controlSize }
   }
 
 
@@ -96,6 +98,7 @@ private struct ButtonContent: View {
         }
       }
       .oneNativeButtonStyle(model.buttonStyle)
+      .oneNativeControlSize(model.controlSize)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle)

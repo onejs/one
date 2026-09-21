@@ -12,6 +12,7 @@ export const pickerControls: Control[] = [
         payload: { name: 'PickerOption', element: { value: 'string', label: 'string' } },
       },
       pickerStyle: { type: 'string', default: 'automatic', enum: 'PickerStyle' },
+      controlSize: { type: 'string', default: '', enum: 'ControlSize' },
     },
     constructors: [
       {
@@ -34,7 +35,8 @@ export const pickerControls: Control[] = [
         Text(model.label)
       }
       .oneNativePickerStyle(model.pickerStyle)
-      .oneNativeSegmentedFill(model.pickerStyle)`,
+      .oneNativeSegmentedFill(model.pickerStyle)
+      .oneNativeControlSize(model.controlSize)`,
     extraSwift: `private extension View {
   // a segmented picker spans its row the way Settings does instead of hugging its
   // segments, so callers never have to encode the fill themselves.

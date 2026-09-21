@@ -55,6 +55,17 @@ using namespace facebook::react;
   if (next.swiftStyle.glassEffectTint) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.glassEffectTint); if (c) style[@"glassEffectTint"] = c; }
   if (!next.swiftStyle.glassEffectShape.empty()) style[@"glassEffectShape"] = RCTNSStringFromString(next.swiftStyle.glassEffectShape);
   if (!next.swiftStyle.material.empty()) style[@"material"] = RCTNSStringFromString(next.swiftStyle.material);
+  if (!next.swiftStyle.listRowSeparator.empty()) style[@"listRowSeparator"] = RCTNSStringFromString(next.swiftStyle.listRowSeparator);
+  if (!next.swiftStyle.listRowSeparatorEdges.empty()) style[@"listRowSeparatorEdges"] = RCTNSStringFromString(next.swiftStyle.listRowSeparatorEdges);
+  if (next.swiftStyle.listRowInsetsTop >= 0) style[@"listRowInsetsTop"] = @(next.swiftStyle.listRowInsetsTop);
+  if (next.swiftStyle.listRowInsetsLeading >= 0) style[@"listRowInsetsLeading"] = @(next.swiftStyle.listRowInsetsLeading);
+  if (next.swiftStyle.listRowInsetsBottom >= 0) style[@"listRowInsetsBottom"] = @(next.swiftStyle.listRowInsetsBottom);
+  if (next.swiftStyle.listRowInsetsTrailing >= 0) style[@"listRowInsetsTrailing"] = @(next.swiftStyle.listRowInsetsTrailing);
+  if (!next.swiftStyle.listSectionSpacing.empty()) style[@"listSectionSpacing"] = RCTNSStringFromString(next.swiftStyle.listSectionSpacing);
+  if (next.swiftStyle.listSectionSpacingValue >= 0) style[@"listSectionSpacingValue"] = @(next.swiftStyle.listSectionSpacingValue);
+  if (next.swiftStyle.listSectionMarginsLength >= 0) style[@"listSectionMarginsLength"] = @(next.swiftStyle.listSectionMarginsLength);
+  if (!next.swiftStyle.listSectionMarginsEdges.empty()) style[@"listSectionMarginsEdges"] = RCTNSStringFromString(next.swiftStyle.listSectionMarginsEdges);
+  if (!next.swiftStyle.headerProminence.empty()) style[@"headerProminence"] = RCTNSStringFromString(next.swiftStyle.headerProminence);
   [_nativeView configureStyle:style];
   [_nativeView configure:RCTNSStringFromString(next.url)
     autoplay:next.autoplay];

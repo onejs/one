@@ -74,6 +74,7 @@ export const leafControls: Control[] = [
       // turns the row into the "Change flight >" shape a form uses for a row that opens
       // something, by pushing a secondary chevron to the trailing edge.
       disclosureIndicator: { type: 'boolean', default: false },
+      controlSize: { type: 'string', default: '', enum: 'ControlSize' },
     },
     constructors: [
       {
@@ -98,7 +99,8 @@ export const leafControls: Control[] = [
           }
         }
       }
-      .oneNativeButtonStyle(model.buttonStyle)`,
+      .oneNativeButtonStyle(model.buttonStyle)
+      .oneNativeControlSize(model.controlSize)`,
     validate: `  if (typeof label !== 'string') throw new Error('Button label must be a string')
   if (!label && !systemImage) throw new Error('Button needs a label, a systemImage, or both')`,
     extraSwift: `private extension ButtonModel {
@@ -148,6 +150,7 @@ export const leafControls: Control[] = [
         default: 'automatic',
         enum: 'ProgressViewStyle',
       },
+      controlSize: { type: 'string', default: '', enum: 'ControlSize' },
     },
     constructors: [
       {
@@ -170,7 +173,8 @@ export const leafControls: Control[] = [
           ProgressView(value: model.value, total: model.total) { Text(model.label) }
         }
       }
-      .oneNativeProgressViewStyle(model.progressViewStyle)`,
+      .oneNativeProgressViewStyle(model.progressViewStyle)
+      .oneNativeControlSize(model.controlSize)`,
     validate: `  if (value !== undefined && !Number.isFinite(value)) throw new Error('ProgressView value must be a finite number or undefined')
   if (!Number.isFinite(total) || total <= 0) throw new Error('ProgressView total must be a finite number greater than 0')
   if (value !== undefined && (value < 0 || value > total)) throw new Error('ProgressView value must be between 0 and total')`,
@@ -186,6 +190,7 @@ export const leafControls: Control[] = [
       minimumValueLabel: { type: 'string', default: '' },
       maximumValueLabel: { type: 'string', default: '' },
       gaugeStyle: { type: 'string', default: 'automatic', enum: 'GaugeStyle' },
+      controlSize: { type: 'string', default: '', enum: 'ControlSize' },
     },
     constructors: [
       {
@@ -230,7 +235,8 @@ export const leafControls: Control[] = [
       } maximumValueLabel: {
         Text(model.maximumValueLabel)
       }
-      .oneNativeGaugeStyle(model.gaugeStyle)`,
+      .oneNativeGaugeStyle(model.gaugeStyle)
+      .oneNativeControlSize(model.controlSize)`,
     validate: `  if (![value, minimumValue, maximumValue].every(Number.isFinite)) throw new Error('Gauge value, minimumValue, and maximumValue must be finite numbers')
   if (minimumValue >= maximumValue) throw new Error('Gauge minimumValue must be less than maximumValue')
   if (value < minimumValue || value > maximumValue) throw new Error('Gauge value must be within minimumValue and maximumValue')`,
@@ -392,5 +398,140 @@ ${actionButtons('        ')}
       }`,
     validate: `  if (typeof title !== 'string' || !title) throw new Error('ContentUnavailableView title must be a non-empty string')
 ${actionsValidate('ContentUnavailableView')}`,
+  },
+  {
+    // status dots and swatches. a shape with neither fill nor stroke renders the SDK
+    // default, which is the foreground style; setting one paints it instead, and
+    // setting both overlays the stroke on the fill the way SwiftUI composes them.
+    name: 'Circle',
+    decorativeWhenUnlabeled: true,
+    fields: {
+      fill: { type: 'color', default: null, jsDefault: 'undefined' },
+      stroke: { type: 'color', default: null, jsDefault: 'undefined' },
+      lineWidth: { type: 'Double', default: 1 },
+    },
+    constructors: [{ type: 'Circle', parameters: [] }],
+    swift: `Group {
+        if let fill = model.fill, let stroke = model.stroke {
+          Circle().fill(Color(uiColor: fill))
+            .overlay(Circle().stroke(Color(uiColor: stroke), lineWidth: model.lineWidth))
+        } else if let fill = model.fill {
+          Circle().fill(Color(uiColor: fill))
+        } else if let stroke = model.stroke {
+          Circle().stroke(Color(uiColor: stroke), lineWidth: model.lineWidth)
+        } else {
+          Circle()
+        }
+      }`,
+    validate: `  if (!Number.isFinite(lineWidth) || lineWidth < 0) throw new Error('Circle lineWidth must be a non-negative number')`,
+  },
+  {
+    name: 'Capsule',
+    decorativeWhenUnlabeled: true,
+    fields: {
+      fill: { type: 'color', default: null, jsDefault: 'undefined' },
+      stroke: { type: 'color', default: null, jsDefault: 'undefined' },
+      lineWidth: { type: 'Double', default: 1 },
+    },
+    constructors: [
+      {
+        type: 'Capsule',
+        parameters: [{ label: 'style', type: 'SwiftUICore.RoundedCornerStyle' }],
+      },
+    ],
+    swift: `Group {
+        if let fill = model.fill, let stroke = model.stroke {
+          Capsule().fill(Color(uiColor: fill))
+            .overlay(Capsule().stroke(Color(uiColor: stroke), lineWidth: model.lineWidth))
+        } else if let fill = model.fill {
+          Capsule().fill(Color(uiColor: fill))
+        } else if let stroke = model.stroke {
+          Capsule().stroke(Color(uiColor: stroke), lineWidth: model.lineWidth)
+        } else {
+          Capsule()
+        }
+      }`,
+    validate: `  if (!Number.isFinite(lineWidth) || lineWidth < 0) throw new Error('Capsule lineWidth must be a non-negative number')`,
+  },
+  {
+    name: 'Rectangle',
+    decorativeWhenUnlabeled: true,
+    fields: {
+      fill: { type: 'color', default: null, jsDefault: 'undefined' },
+      stroke: { type: 'color', default: null, jsDefault: 'undefined' },
+      lineWidth: { type: 'Double', default: 1 },
+    },
+    constructors: [{ type: 'Rectangle', parameters: [] }],
+    swift: `Group {
+        if let fill = model.fill, let stroke = model.stroke {
+          Rectangle().fill(Color(uiColor: fill))
+            .overlay(Rectangle().stroke(Color(uiColor: stroke), lineWidth: model.lineWidth))
+        } else if let fill = model.fill {
+          Rectangle().fill(Color(uiColor: fill))
+        } else if let stroke = model.stroke {
+          Rectangle().stroke(Color(uiColor: stroke), lineWidth: model.lineWidth)
+        } else {
+          Rectangle()
+        }
+      }`,
+    validate: `  if (!Number.isFinite(lineWidth) || lineWidth < 0) throw new Error('Rectangle lineWidth must be a non-negative number')`,
+  },
+  {
+    // the corner radius is the SDK's own initializer argument; a zero radius is a
+    // rectangle, which is why the default is 0 rather than a style.
+    name: 'RoundedRectangle',
+    decorativeWhenUnlabeled: true,
+    fields: {
+      fill: { type: 'color', default: null, jsDefault: 'undefined' },
+      stroke: { type: 'color', default: null, jsDefault: 'undefined' },
+      lineWidth: { type: 'Double', default: 1 },
+      cornerRadius: { type: 'Double', default: 0 },
+    },
+    constructors: [
+      {
+        type: 'RoundedRectangle',
+        parameters: [
+          { label: 'cornerRadius', type: 'CoreFoundation.CGFloat' },
+          { label: 'style', type: 'SwiftUICore.RoundedCornerStyle' },
+        ],
+      },
+    ],
+    swift: `Group {
+        if let fill = model.fill, let stroke = model.stroke {
+          RoundedRectangle(cornerRadius: model.cornerRadius).fill(Color(uiColor: fill))
+            .overlay(RoundedRectangle(cornerRadius: model.cornerRadius).stroke(Color(uiColor: stroke), lineWidth: model.lineWidth))
+        } else if let fill = model.fill {
+          RoundedRectangle(cornerRadius: model.cornerRadius).fill(Color(uiColor: fill))
+        } else if let stroke = model.stroke {
+          RoundedRectangle(cornerRadius: model.cornerRadius).stroke(Color(uiColor: stroke), lineWidth: model.lineWidth)
+        } else {
+          RoundedRectangle(cornerRadius: model.cornerRadius)
+        }
+      }`,
+    validate: `  if (!Number.isFinite(lineWidth) || lineWidth < 0) throw new Error('RoundedRectangle lineWidth must be a non-negative number')
+  if (!Number.isFinite(cornerRadius) || cornerRadius < 0) throw new Error('RoundedRectangle cornerRadius must be a non-negative number')`,
+  },
+  {
+    name: 'Ellipse',
+    decorativeWhenUnlabeled: true,
+    fields: {
+      fill: { type: 'color', default: null, jsDefault: 'undefined' },
+      stroke: { type: 'color', default: null, jsDefault: 'undefined' },
+      lineWidth: { type: 'Double', default: 1 },
+    },
+    constructors: [{ type: 'Ellipse', parameters: [] }],
+    swift: `Group {
+        if let fill = model.fill, let stroke = model.stroke {
+          Ellipse().fill(Color(uiColor: fill))
+            .overlay(Ellipse().stroke(Color(uiColor: stroke), lineWidth: model.lineWidth))
+        } else if let fill = model.fill {
+          Ellipse().fill(Color(uiColor: fill))
+        } else if let stroke = model.stroke {
+          Ellipse().stroke(Color(uiColor: stroke), lineWidth: model.lineWidth)
+        } else {
+          Ellipse()
+        }
+      }`,
+    validate: `  if (!Number.isFinite(lineWidth) || lineWidth < 0) throw new Error('Ellipse lineWidth must be a non-negative number')`,
   },
 ]

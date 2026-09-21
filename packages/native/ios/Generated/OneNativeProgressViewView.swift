@@ -10,6 +10,7 @@ private final class ProgressViewModel: ObservableObject {
   @Published var total: Double = 1
   @Published var indeterminate: Bool = false
   @Published var progressViewStyle: String = "automatic"
+  @Published var controlSize: String = ""
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -28,13 +29,14 @@ private final class ProgressViewModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ label: String, disabled: Bool, value: Double, total: Double, indeterminate: Bool, progressViewStyle: String) {
+  public func configure(_ label: String, disabled: Bool, value: Double, total: Double, indeterminate: Bool, progressViewStyle: String, controlSize: String) {
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
     if model.value != value { model.value = value }
     if model.total != total { model.total = total }
     if model.indeterminate != indeterminate { model.indeterminate = indeterminate }
     if model.progressViewStyle != progressViewStyle { model.progressViewStyle = progressViewStyle }
+    if model.controlSize != controlSize { model.controlSize = controlSize }
   }
 
 
@@ -82,6 +84,7 @@ private struct ProgressViewContent: View {
         }
       }
       .oneNativeProgressViewStyle(model.progressViewStyle)
+      .oneNativeControlSize(model.controlSize)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle)

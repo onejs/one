@@ -71,6 +71,9 @@ export const modifiers = [
     module: '_WebKit_SwiftUI',
   },
   { name: 'webViewContentBackground', type: 'Visibility', module: 'SwiftUICore' },
+  { name: 'controlSize', type: 'ControlSize', module: 'SwiftUICore' },
+  { name: 'headerProminence', type: 'Prominence', module: 'SwiftUICore' },
+  { name: 'listSectionSpacing', type: 'ListSectionSpacing' },
 ] as const
 
 // a context menu is the same menu content on a different presentation, so Swift.Menu and
@@ -203,6 +206,22 @@ export const styleFields: readonly StyleField[] = [
     kind: 'string',
     values: ['ultraThin', 'thin', 'regular', 'thick', 'ultraThick'],
   },
+  // the list row and section modifiers, decomposed the way padding is: SwiftUI takes
+  // EdgeInsets and edge sets, which a scalar style field cannot spell. every control is
+  // a potential list row, so rows take these through swiftStyle while List and Section
+  // carry the same names as explicit props. strings stay free-form like fontWeight;
+  // Swift rejects what it cannot resolve.
+  { name: 'listRowSeparator', kind: 'string' },
+  { name: 'listRowSeparatorEdges', kind: 'string' },
+  { name: 'listRowInsetsTop', kind: 'number' },
+  { name: 'listRowInsetsLeading', kind: 'number' },
+  { name: 'listRowInsetsBottom', kind: 'number' },
+  { name: 'listRowInsetsTrailing', kind: 'number' },
+  { name: 'listSectionSpacing', kind: 'string' },
+  { name: 'listSectionSpacingValue', kind: 'number' },
+  { name: 'listSectionMarginsLength', kind: 'number' },
+  { name: 'listSectionMarginsEdges', kind: 'string' },
+  { name: 'headerProminence', kind: 'string' },
 ] as const
 export const enumTypes = [
   'MenuOrder',
@@ -237,6 +256,9 @@ export const enumTypes = [
   'LinkPreviewBehavior',
   'ElementFullscreenBehavior',
   'ListStyle',
+  'ControlSize',
+  'Prominence',
+  'ListSectionSpacing',
 ]
 export const fields = {
   id: { type: 'string', default: '' },
@@ -507,9 +529,25 @@ export const components = [
     publicName: 'List',
     props: {
       listStyle: 'string',
+      listRowSeparator: 'string',
+      listRowSeparatorEdges: 'string',
+      listRowInsetsTop: 'Double',
+      listRowInsetsLeading: 'Double',
+      listRowInsetsBottom: 'Double',
+      listRowInsetsTrailing: 'Double',
+      listSectionSpacing: 'string',
+      listSectionSpacingValue: 'Double',
+      listSectionMarginsLength: 'Double',
+      listSectionMarginsEdges: 'string',
+      headerProminence: 'string',
     },
     events: {},
-    enumProps: { listStyle: 'ListStyle' },
+    enumProps: {
+      listStyle: 'ListStyle',
+      listRowSeparator: 'Visibility',
+      listSectionSpacing: 'ListSectionSpacing',
+      headerProminence: 'Prominence',
+    },
     layout: { kind: 'container' },
     slots: [
       {

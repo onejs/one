@@ -14,6 +14,7 @@ private final class SliderModel: ObservableObject {
   @Published var maximumValueLabel: String = ""
   @Published var minimumValueImage: String = ""
   @Published var maximumValueImage: String = ""
+  @Published var controlSize: String = ""
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -39,7 +40,7 @@ private final class SliderModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, minimumValue: Double, maximumValue: Double, step: Double, minimumValueLabel: String, maximumValueLabel: String, minimumValueImage: String, maximumValueImage: String) {
+  public func configure(_ value: Double, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, minimumValue: Double, maximumValue: Double, step: Double, minimumValueLabel: String, maximumValueLabel: String, minimumValueImage: String, maximumValueImage: String, controlSize: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
@@ -50,6 +51,7 @@ private final class SliderModel: ObservableObject {
     if model.maximumValueLabel != maximumValueLabel { model.maximumValueLabel = maximumValueLabel }
     if model.minimumValueImage != minimumValueImage { model.minimumValueImage = minimumValueImage }
     if model.maximumValueImage != maximumValueImage { model.maximumValueImage = maximumValueImage }
+    if model.controlSize != controlSize { model.controlSize = controlSize }
   }
 
 
@@ -106,6 +108,7 @@ private struct SliderContent: View {
           } onEditingChanged: { _ in }
         }
       }
+      .oneNativeControlSize(model.controlSize)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle)

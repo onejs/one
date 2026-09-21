@@ -313,6 +313,39 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid ElementFullscreenBehavior: \(value)")
     }
   }
+  static func controlSize(_ value: String) -> ControlSize {
+    switch value {
+    case "mini":
+      return .mini
+    case "small":
+      return .small
+    case "regular":
+      return .regular
+    case "large":
+      return .large
+    case "extraLarge":
+      return .extraLarge
+    default: preconditionFailure("invalid ControlSize: \(value)")
+    }
+  }
+  static func prominence(_ value: String) -> Prominence {
+    switch value {
+    case "standard":
+      return .standard
+    case "increased":
+      return .increased
+    default: preconditionFailure("invalid Prominence: \(value)")
+    }
+  }
+  static func listSectionSpacing(_ value: String) -> ListSectionSpacing {
+    switch value {
+    case "default":
+      return .default
+    case "compact":
+      return .compact
+    default: preconditionFailure("invalid ListSectionSpacing: \(value)")
+    }
+  }
   @available(iOS 18.0, *)
   @MainActor @TabContentBuilder<String> static func tab<Content: View>(id: String, title: String, systemImage: String, badge: String, role: String, @ViewBuilder content: () -> Content) -> some TabContent<String> {
     Tab(value: id, role: tabRole(role)) { content() } label: {
@@ -530,5 +563,14 @@ extension View {
       let _ = precondition(value.isEmpty, "webViewContentBackground requires iOS 26")
       self
     }
+  }
+  @ViewBuilder func oneNativeControlSize(_ value: String) -> some View {
+    if value.isEmpty { self } else { self.controlSize(OneNativeGenerated.controlSize(value)) }
+  }
+  @ViewBuilder func oneNativeHeaderProminence(_ value: String) -> some View {
+    if value.isEmpty { self } else { self.headerProminence(OneNativeGenerated.prominence(value)) }
+  }
+  @ViewBuilder func oneNativeListSectionSpacing(_ value: String) -> some View {
+    if value.isEmpty { self } else { self.listSectionSpacing(OneNativeGenerated.listSectionSpacing(value)) }
   }
 }

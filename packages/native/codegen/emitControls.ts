@@ -6,9 +6,9 @@ import { deriveLeafSwift } from './derive'
 import type { Declaration } from './inventory'
 
 const swiftScalar = (type: ScalarType) =>
-  ({ string: 'String', boolean: 'Bool', Double: 'Double' })[type]
+  ({ string: 'String', boolean: 'Bool', Double: 'Double', color: 'UIColor?' })[type]
 const tsScalar = (type: ScalarType) =>
-  ({ string: 'string', boolean: 'boolean', Double: 'number' })[type]
+  ({ string: 'string', boolean: 'boolean', Double: 'number', color: 'ColorValue' })[type]
 const payloadOf = (field: ControlField) => {
   if (!field.payload) throw new Error('an objects field needs a payload shape')
   return field.payload
@@ -20,8 +20,15 @@ const swiftType = (field: ControlField) =>
 const tsType = (field: ControlField) =>
   field.type === 'objects' ? `readonly ${payloadOf(field).name}[]` : tsScalar(field.type)
 const nativeType = (field: ControlField) =>
-  field.type === 'objects' ? `ReadonlyArray<${payloadOf(field).name}>` : field.type
-const literal = (value: string | boolean | number) => JSON.stringify(value)
+  field.type === 'objects'
+    ? `ReadonlyArray<${payloadOf(field).name}>`
+    : field.type === 'color'
+      ? 'ColorValue'
+      : field.type
+const literal = (value: string | boolean | number | null) => JSON.stringify(value)
+// a color default is always nil in Swift; the catalog spells it null.
+const swiftDefault = (field: ControlField) =>
+  field.type === 'color' ? 'nil' : literal(field.default)
 const lower = (name: string) => name[0].toLowerCase() + name.slice(1)
 const upper = (name: string) => name[0].toUpperCase() + name.slice(1)
 // a sync value resolves its handle to a plain scalar before reaching native.
@@ -89,9 +96,7 @@ export type ${styleAlias(field)} = (typeof ${field.name}s)[number]`
   .join('\n')}
 
 export interface OneNativeStyle {
-${styleFields
-  .map((field) => `  ${field.name}?: ${styleFieldType(field)}`)
-  .join('\n')}
+${styleFields.map((field) => `  ${field.name}?: ${styleFieldType(field)}`).join('\n')}
 }
 
 // the React Native props a One Native control honors. a composed control renders inside its
@@ -127,6 +132,9 @@ export type OneNativeViewProps = Pick<
     const publicFields = fieldEntries.filter(([, field]) => !field.derived)
     const plainFields = fieldEntries.filter(([, field]) => field.type !== 'objects')
     const objectFields = fieldEntries.filter(([, field]) => field.type === 'objects')
+    const colorProps = new Set(
+      fieldEntries.filter(([, field]) => field.type === 'color').map(([key]) => key)
+    )
     const enumFields = publicFields.filter(([, field]) => field.enum)
     const disabled = Object.hasOwn(fields, 'disabled')
     // a measured control reports the height SwiftUI measured, so it supplies its own shadow
@@ -147,7 +155,9 @@ export type OneNativeViewProps = Pick<
         enumFields.map(([key, field]) => ({ field: key, enum: field.enum! }))
       )
       if (derived !== control.swift)
-        throw new Error(`OneNative ${name}: derived Swift differs from the hand-written body`)
+        throw new Error(
+          `OneNative ${name}: derived Swift differs from the hand-written body`
+        )
       swiftBody = derived
     }
     const publicValueType = value && (value.publicType ?? tsScalar(value.type))
@@ -273,7 +283,7 @@ ${styleFields
 }>
 interface NativeProps extends ViewProps {
 ${Object.entries(props)
-  .map(([key, type]) => `  ${key}: ${type}`)
+  .map(([key, type]) => `  ${key}${colorProps.has(key) ? '?' : ''}: ${type}`)
   .join('\n')}
   swiftStyle?: OneNativeStyleNative
 ${Object.entries(events)
@@ -316,10 +326,10 @@ ${
     ? `  const syncHandle = syncHandleOf<${publicValueType}>(${value.prop})\n  const synced${upper(value.prop)} = useSyncValue<${publicValueType}>(${value.prop})\n`
     : ''
 }${
-  value
-    ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.sync ? `{ syncHandle?.set(${value.eventValue ?? 'event.value'}); ${value.event}(${value.eventValue ?? 'event.value'}) }` : `${value.event}(${value.eventValue ?? 'event.value'})`}, revision)\n`
-    : ''
-}${
+      value
+        ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.sync ? `{ syncHandle?.set(${value.eventValue ?? 'event.value'}); ${value.event}(${value.eventValue ?? 'event.value'}) }` : `${value.event}(${value.eventValue ?? 'event.value'})`}, revision)\n`
+        : ''
+    }${
       control.focus
         ? `  const controlledFocus = useControlled<{ value: boolean; eventCount: number; revision: number }>(event => onFocusChange?.(event.value), focusRevision)\n`
         : ''
@@ -349,7 +359,7 @@ ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNat
     const swiftFields = fieldEntries
       .map(
         ([key, field]) =>
-          `  @Published var ${key}: ${swiftType(field)} = ${field.type === 'objects' ? '[]' : literal(field.default)}`
+          `  @Published var ${key}: ${swiftType(field)} = ${field.type === 'objects' ? '[]' : swiftDefault(field)}`
       )
       .join('\n')
     const configure = [
@@ -410,10 +420,10 @@ ${
 `
     : ''
 }${
-  value
-    ? `  var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Void)?\n  func change(_ value: ${swiftScalar(value.type)}) {\n    guard ${[...guards, 'controlled.value != value'].join(', ')} else { return }\n    controlled.change(value)\n${value.sync ? `    if syncStateId != 0 { OneNativeSyncRegistry.set(Int32(syncStateId), value: value as NSObject) }\n` : ''}    onChange?(value, controlled.eventCount, controlled.revision)\n  }\n`
-    : ''
-}${
+          value
+            ? `  var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Void)?\n  func change(_ value: ${swiftScalar(value.type)}) {\n    guard ${[...guards, 'controlled.value != value'].join(', ')} else { return }\n    controlled.change(value)\n${value.sync ? `    if syncStateId != 0 { OneNativeSyncRegistry.set(Int32(syncStateId), value: value as NSObject) }\n` : ''}    onChange?(value, controlled.eventCount, controlled.revision)\n  }\n`
+            : ''
+        }${
           control.focus
             ? `  var onFocusChange: ((Bool, Int, Int) -> Void)?
   func changeFocus(_ value: Bool) {
@@ -593,8 +603,13 @@ extern const char ${nativeName}ComponentName[] = "${nativeName}";
         boolean: `(bool)${name}`,
         Double: `(double)${name}`,
       })[type]
+    // an omitted color prop arrives as the null shared color, which converts to nil.
     const convert = (key: string, type: string) =>
-      type === 'string' ? `RCTNSStringFromString(next.${key})` : `next.${key}`
+      colorProps.has(key)
+        ? `(next.${key} ? RCTUIColorFromSharedColor(next.${key}) : nil)`
+        : type === 'string'
+          ? `RCTNSStringFromString(next.${key})`
+          : `next.${key}`
     const call = [
       ...(value
         ? [
@@ -603,9 +618,7 @@ extern const char ${nativeName}ComponentName[] = "${nativeName}";
             { label: 'revision', expression: 'next.revision' },
           ]
         : []),
-      ...(value?.sync
-        ? [{ label: 'syncStateId', expression: 'next.syncStateId' }]
-        : []),
+      ...(value?.sync ? [{ label: 'syncStateId', expression: 'next.syncStateId' }] : []),
       ...(control.focus
         ? [
             { label: 'focused', expression: 'next.focused' },

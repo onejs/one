@@ -7,6 +7,7 @@ export const formControls: Control[] = [
     fields: {
       ...commonFields,
       toggleStyle: { type: 'string', default: 'automatic', enum: 'ToggleStyle' },
+      controlSize: { type: 'string', default: '', enum: 'ControlSize' },
     },
     constructors: [
       {
@@ -36,7 +37,8 @@ export const formControls: Control[] = [
       )) {
         Text(model.label)
       }
-      .oneNativeToggleStyle(model.toggleStyle)`,
+      .oneNativeToggleStyle(model.toggleStyle)
+      .oneNativeControlSize(model.controlSize)`,
     validate: `  if (typeof isOn !== 'boolean') throw new Error('Toggle isOn must be a boolean')`,
   },
   {
@@ -51,6 +53,7 @@ export const formControls: Control[] = [
       maximumValueLabel: { type: 'string', default: '' },
       minimumValueImage: { type: 'string', default: '' },
       maximumValueImage: { type: 'string', default: '' },
+      controlSize: { type: 'string', default: '', enum: 'ControlSize' },
     },
     constructors: [
       {
@@ -93,7 +96,8 @@ export const formControls: Control[] = [
             oneNativeSliderValueLabel(image: model.maximumValueImage, label: model.maximumValueLabel)
           } onEditingChanged: { _ in }
         }
-      }`,
+      }
+      .oneNativeControlSize(model.controlSize)`,
     extraSwift: `private func oneNativeSliderBinding(_ model: SliderModel) -> Binding<Double> {
   Binding(get: { model.controlled.value }, set: { value in model.change(value) })
 }
@@ -117,6 +121,7 @@ export const formControls: Control[] = [
       minimumValue: { type: 'Double', default: 0 },
       maximumValue: { type: 'Double', default: 100 },
       step: { type: 'Double', default: 1 },
+      controlSize: { type: 'string', default: '', enum: 'ControlSize' },
     },
     constructors: [
       {
@@ -154,7 +159,8 @@ export const formControls: Control[] = [
         set: { value in model.change(value) }
       ), in: model.minimumValue...model.maximumValue, step: model.step) {
         Text(model.label)
-      } onEditingChanged: { _ in }`,
+      } onEditingChanged: { _ in }
+      .oneNativeControlSize(model.controlSize)`,
     validate: `  if (![value, minimumValue, maximumValue, step].every(Number.isFinite)) throw new Error('Stepper value, minimumValue, maximumValue, and step must be finite numbers')
   if (minimumValue >= maximumValue) throw new Error('Stepper minimumValue must be less than maximumValue')
   if (step <= 0) throw new Error('Stepper step must be greater than 0')

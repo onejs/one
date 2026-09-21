@@ -9,6 +9,7 @@ private final class PickerModel: ObservableObject {
   @Published var disabled: Bool = false
   @Published var options: [OneNativePickerOption] = []
   @Published var pickerStyle: String = "automatic"
+  @Published var controlSize: String = ""
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -34,11 +35,12 @@ private final class PickerModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, pickerStyle: String) {
+  public func configure(_ value: String, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, pickerStyle: String, controlSize: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
     if model.pickerStyle != pickerStyle { model.pickerStyle = pickerStyle }
+    if model.controlSize != controlSize { model.controlSize = controlSize }
   }
   public func setOptions(_ items: [[String: Any]]) { model.options = items.map { OneNativePickerOption(value: $0["value"] as! String, label: $0["label"] as! String) } }
 
@@ -91,6 +93,7 @@ private struct PickerContent: View {
       }
       .oneNativePickerStyle(model.pickerStyle)
       .oneNativeSegmentedFill(model.pickerStyle)
+      .oneNativeControlSize(model.controlSize)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle)

@@ -13,6 +13,7 @@ private final class GaugeModel: ObservableObject {
   @Published var minimumValueLabel: String = ""
   @Published var maximumValueLabel: String = ""
   @Published var gaugeStyle: String = "automatic"
+  @Published var controlSize: String = ""
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -31,7 +32,7 @@ private final class GaugeModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ label: String, disabled: Bool, value: Double, minimumValue: Double, maximumValue: Double, currentValueLabel: String, minimumValueLabel: String, maximumValueLabel: String, gaugeStyle: String) {
+  public func configure(_ label: String, disabled: Bool, value: Double, minimumValue: Double, maximumValue: Double, currentValueLabel: String, minimumValueLabel: String, maximumValueLabel: String, gaugeStyle: String, controlSize: String) {
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
     if model.value != value { model.value = value }
@@ -41,6 +42,7 @@ private final class GaugeModel: ObservableObject {
     if model.minimumValueLabel != minimumValueLabel { model.minimumValueLabel = minimumValueLabel }
     if model.maximumValueLabel != maximumValueLabel { model.maximumValueLabel = maximumValueLabel }
     if model.gaugeStyle != gaugeStyle { model.gaugeStyle = gaugeStyle }
+    if model.controlSize != controlSize { model.controlSize = controlSize }
   }
 
 
@@ -90,6 +92,7 @@ private struct GaugeContent: View {
         Text(model.maximumValueLabel)
       }
       .oneNativeGaugeStyle(model.gaugeStyle)
+      .oneNativeControlSize(model.controlSize)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle)

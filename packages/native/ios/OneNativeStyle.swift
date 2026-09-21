@@ -33,6 +33,17 @@ public struct OneNativeStyle: Equatable {
   public var glassEffectTint: UIColor?
   public var glassEffectShape: String?
   public var material: String?
+  public var listRowSeparator: String?
+  public var listRowSeparatorEdges: String?
+  public var listRowInsetsTop: CGFloat?
+  public var listRowInsetsLeading: CGFloat?
+  public var listRowInsetsBottom: CGFloat?
+  public var listRowInsetsTrailing: CGFloat?
+  public var listSectionSpacing: String?
+  public var listSectionSpacingValue: CGFloat?
+  public var listSectionMarginsLength: CGFloat?
+  public var listSectionMarginsEdges: String?
+  public var headerProminence: String?
 
   public init() {}
 
@@ -66,6 +77,17 @@ public struct OneNativeStyle: Equatable {
     if let v = dictionary["glassEffectTint"] as? UIColor { self.glassEffectTint = v }
     if let v = dictionary["glassEffectShape"] as? String, !v.isEmpty { self.glassEffectShape = v }
     if let v = dictionary["material"] as? String, !v.isEmpty { self.material = v }
+    if let v = dictionary["listRowSeparator"] as? String, !v.isEmpty { self.listRowSeparator = v }
+    if let v = dictionary["listRowSeparatorEdges"] as? String, !v.isEmpty { self.listRowSeparatorEdges = v }
+    if let v = dictionary["listRowInsetsTop"] as? Double { self.listRowInsetsTop = CGFloat(v) }
+    if let v = dictionary["listRowInsetsLeading"] as? Double { self.listRowInsetsLeading = CGFloat(v) }
+    if let v = dictionary["listRowInsetsBottom"] as? Double { self.listRowInsetsBottom = CGFloat(v) }
+    if let v = dictionary["listRowInsetsTrailing"] as? Double { self.listRowInsetsTrailing = CGFloat(v) }
+    if let v = dictionary["listSectionSpacing"] as? String, !v.isEmpty { self.listSectionSpacing = v }
+    if let v = dictionary["listSectionSpacingValue"] as? Double { self.listSectionSpacingValue = CGFloat(v) }
+    if let v = dictionary["listSectionMarginsLength"] as? Double { self.listSectionMarginsLength = CGFloat(v) }
+    if let v = dictionary["listSectionMarginsEdges"] as? String, !v.isEmpty { self.listSectionMarginsEdges = v }
+    if let v = dictionary["headerProminence"] as? String, !v.isEmpty { self.headerProminence = v }
   }
 }
 
@@ -82,6 +104,82 @@ extension View {
       .oneNativeCornerRadius(style.cornerRadius)
       .oneNativeOpacity(style.opacity)
       .oneNativeBorder(color: style.borderColor, width: style.borderWidth)
+      .oneNativeListRowSeparator(style)
+      .oneNativeListRowInsets(style)
+      .oneNativeListSectionSpacing(style)
+      .oneNativeListSectionMargins(style)
+      .oneNativeHeaderProminence(style)
+  }
+
+  // the list row and section modifiers. List and Section assemble this same struct from
+  // their explicit props and call these directly, so one function draws each modifier
+  // at all three levels. unlike the helpers above these are module-visible for that.
+  @ViewBuilder func oneNativeListRowSeparator(_ style: OneNativeStyle) -> some View {
+    if let visibility = style.listRowSeparator {
+      self.listRowSeparator(
+        OneNativeGenerated.visibility(visibility),
+        edges: OneNativeStyle.resolveSeparatorEdges(style.listRowSeparatorEdges)
+      )
+    } else {
+      self
+    }
+  }
+
+  @ViewBuilder func oneNativeListRowInsets(_ style: OneNativeStyle) -> some View {
+    if style.listRowInsetsTop == nil, style.listRowInsetsLeading == nil,
+      style.listRowInsetsBottom == nil, style.listRowInsetsTrailing == nil {
+      self
+    } else if let top = style.listRowInsetsTop, let leading = style.listRowInsetsLeading,
+      let bottom = style.listRowInsetsBottom, let trailing = style.listRowInsetsTrailing {
+      if top < 0 || leading < 0 || bottom < 0 || trailing < 0 {
+        preconditionFailure("invalid listRowInsets: (\(top), \(leading), \(bottom), \(trailing))")
+      }
+      self.listRowInsets(EdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing))
+    } else {
+      let _ = preconditionFailure("listRowInsets needs all four edges or none")
+      self
+    }
+  }
+
+  // a custom value wins over the named form when both are set: it is the more specific
+  // spelling of the same modifier.
+  @ViewBuilder func oneNativeListSectionSpacing(_ style: OneNativeStyle) -> some View {
+    if let value = style.listSectionSpacingValue {
+      if value < 0 {
+        preconditionFailure("invalid listSectionSpacingValue: \(value)")
+      }
+      self.listSectionSpacing(value)
+    } else if let spacing = style.listSectionSpacing {
+      self.oneNativeListSectionSpacing(spacing)
+    } else {
+      self
+    }
+  }
+
+  // iOS 26 only, like glass: below it the modifier is silently skipped. the List and
+  // Section wrappers throw in JS first, where a version check can run.
+  @ViewBuilder func oneNativeListSectionMargins(_ style: OneNativeStyle) -> some View {
+    if style.listSectionMarginsLength == nil, style.listSectionMarginsEdges == nil {
+      self
+    } else if #available(iOS 26.0, *) {
+      if let length = style.listSectionMarginsLength, length < 0 {
+        preconditionFailure("invalid listSectionMarginsLength: \(length)")
+      }
+      self.listSectionMargins(
+        OneNativeStyle.resolveMarginsEdges(style.listSectionMarginsEdges),
+        style.listSectionMarginsLength
+      )
+    } else {
+      self
+    }
+  }
+
+  @ViewBuilder func oneNativeHeaderProminence(_ style: OneNativeStyle) -> some View {
+    if let prominence = style.headerProminence {
+      self.oneNativeHeaderProminence(prominence)
+    } else {
+      self
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeFont(_ style: OneNativeStyle) -> some View {
@@ -248,6 +346,28 @@ extension OneNativeStyle {
     case "rounded": return .rounded
     case "monospaced": return .monospaced
     default: preconditionFailure("invalid FontDesign: \(string)")
+    }
+  }
+
+  static func resolveSeparatorEdges(_ value: String?) -> VerticalEdge.Set {
+    switch value {
+    case nil, "all": return .all
+    case "top": return .top
+    case "bottom": return .bottom
+    default: preconditionFailure("invalid listRowSeparatorEdges: \(value ?? "")")
+    }
+  }
+
+  static func resolveMarginsEdges(_ value: String?) -> Edge.Set {
+    switch value {
+    case nil, "all": return .all
+    case "top": return .top
+    case "leading": return .leading
+    case "bottom": return .bottom
+    case "trailing": return .trailing
+    case "horizontal": return .horizontal
+    case "vertical": return .vertical
+    default: preconditionFailure("invalid listSectionMarginsEdges: \(value ?? "")")
     }
   }
 
