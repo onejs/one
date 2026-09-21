@@ -14,6 +14,8 @@ import {
   transformReactNativeCodegen,
 } from '@vxrn/compiler'
 import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
+
+import { substituteExpoVirtualEnvSource } from './expoVirtualEnv'
 import { getPlatformEnv, metroPlatformToViteEnvironment } from '../env/platformEnv'
 
 /**
@@ -1895,6 +1897,17 @@ export async function transform(
   assertNoUnportedBabelPlugins(options)
 
   let sourceCode = typeof data === 'string' ? data : data.toString('utf8')
+
+  // narrow optional Expo compatibility, shared with the babel
+  // transformer: only expo/virtual/env.js and .env files are special, and
+  // apps without Expo installed never resolve or load any Expo module.
+  sourceCode = substituteExpoVirtualEnvSource({
+    filename,
+    src: sourceCode,
+    projectRoot,
+    dev: options.dev,
+    environment: options.customTransformOptions?.environment,
+  })
 
   checkReservedStrings(sourceCode, config, options)
 

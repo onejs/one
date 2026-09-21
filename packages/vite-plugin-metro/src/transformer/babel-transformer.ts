@@ -13,6 +13,7 @@ import type { BabelTransformer, BabelTransformerArgs } from 'metro-babel-transfo
 import assert from 'node:assert'
 
 import type { TransformOptions } from './babel-core'
+import { substituteExpoVirtualEnvSource } from './expoVirtualEnv'
 import { loadBabelConfig } from './loadBabelConfig'
 import { transformSync } from './transformSync'
 import type { ViteCustomTransformOptions } from './types'
@@ -145,11 +146,22 @@ function stringOrUndefined(value: unknown): string | undefined {
 
 const transform: BabelTransformer['transform'] = ({
   filename,
-  src,
+  src: originalSrc,
   options,
   // `plugins` is used for `functionMapBabelPlugin` from `metro-source-map`.
   plugins,
 }: BabelTransformerArgs): ReturnType<BabelTransformer['transform']> => {
+  // narrow optional Expo compatibility (expo/virtual/env.js and .env files
+  // only), shared with the native worker. no-Expo apps pass through byte
+  // for byte without resolving any Expo module.
+  const src = substituteExpoVirtualEnvSource({
+    filename,
+    src: originalSrc,
+    projectRoot: options.projectRoot,
+    dev: options.dev,
+    environment: options.customTransformOptions?.environment,
+  })
+
   const viteCustomTransformOptions = options.customTransformOptions?.vite
 
   const customOptionsFromVite: ViteCustomTransformOptions = (() => {
