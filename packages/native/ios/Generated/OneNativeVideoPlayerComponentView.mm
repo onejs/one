@@ -9,6 +9,7 @@
 using namespace facebook::react;
 @implementation OneNativeVideoPlayerComponentView { OneNativeVideoPlayerView *_nativeView; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeVideoPlayerComponentDescriptor>(); }
++- (NSObject *)accessibilityElement { return _nativeView; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeVideoPlayerProps>();

@@ -8,6 +8,8 @@ import type { BlurProps, EdgeFadeProps, MaskProps } from './types'
 // published declarations are built from this file and serve both platforms.
 export { sampleCurve, serializeCurve } from './curves'
 export type * from './types'
+export { Icon } from '../ui/Icon'
+export type { IconColorRole, IconElements, IconProps } from '../ui/Icon'
 
 // renders nothing on web: rendering throws, but the declarations return an
 // element so native consumers typecheck against the component shape.

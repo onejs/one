@@ -72,6 +72,8 @@ export type LeafRecipe = {
 }
 export type Control = {
   name: string
+  // images with no explicit label are decoration; a label turns them into one image element.
+  decorativeWhenUnlabeled?: true
   value?: ControlValue
   focus?: boolean
   actions?: readonly ControlAction[]

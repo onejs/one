@@ -5,6 +5,7 @@ import { Popover } from './Popover.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
 import { Tab, Tabs } from './Tabs.native';
 import { Compose } from './compose';
+import * as UI from './effects';
 export * from './extras';
 export declare const Swift: {
     Picker({ selection, onSelectionChange, revision, label, disabled, options, pickerStyle, swiftStyle, style, ...props }: import("./types").PickerProps): import("react/jsx-runtime").JSX.Element;
@@ -18,7 +19,7 @@ export declare const Swift: {
     Button({ onPress, label, disabled, subtitle, systemImage, buttonRole, buttonStyle, disclosureIndicator, swiftStyle, style, ...props }: import("./types").ButtonProps): import("react/jsx-runtime").JSX.Element;
     ProgressView({ label, disabled, value, total, progressViewStyle, swiftStyle, style, ...props }: import("./types").ProgressViewProps): import("react/jsx-runtime").JSX.Element;
     Gauge({ label, disabled, value, minimumValue, maximumValue, currentValueLabel, minimumValueLabel, maximumValueLabel, gaugeStyle, swiftStyle, style, ...props }: import("./types").GaugeProps): import("react/jsx-runtime").JSX.Element;
-    Image({ systemName, symbolRenderingMode, symbolVariant, imageScale, variableValue, swiftStyle, style, ...props }: import("./types").ImageProps): import("react/jsx-runtime").JSX.Element;
+    Image({ systemName, symbolRenderingMode, symbolVariant, imageScale, variableValue, colorRole, swiftStyle, style, ...props }: import("./types").ImageProps): import("react/jsx-runtime").JSX.Element;
     ShareLink({ label, disabled, systemImage, item, itemType, subject, message, swiftStyle, style, ...props }: import("./types").ShareLinkProps): import("react/jsx-runtime").JSX.Element;
     ContentUnavailableView({ onAction, title, systemImage, description, actions, swiftStyle, style, ...props }: import("./types").ContentUnavailableViewProps): import("react/jsx-runtime").JSX.Element;
     VideoPlayer({ url, autoplay, swiftStyle, style, ...props }: import("./types").VideoPlayerProps): import("react/jsx-runtime").JSX.Element;
@@ -71,5 +72,5 @@ export { TextInput } from './universal/TextInput/index';
 export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';
 export type * from './types';
 export type * from './composeTypes';
-export * as UI from './effects';
+export { UI };
 //# sourceMappingURL=index.native.d.ts.map

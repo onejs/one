@@ -3,7 +3,8 @@ declare function Column({ children, horizontalAlignment, verticalArrangement, sp
 declare function Row({ children, verticalAlignment, horizontalArrangement, spacing, ...props }: ComposeRowProps): import("react/jsx-runtime").JSX.Element;
 declare function Box({ children, contentAlignment, ...props }: ComposeBoxProps): import("react/jsx-runtime").JSX.Element;
 declare function Text({ text, fontSize, fontWeight, textAlign, maxLines, ...props }: ComposeTextProps): import("react/jsx-runtime").JSX.Element;
-declare function Icon({ name, size, filled, ...props }: ComposeIconProps): import("react/jsx-runtime").JSX.Element;
+export declare function renderIcon({ name, size, filled, ...props }: ComposeIconProps, colorRole?: string): import("react/jsx-runtime").JSX.Element;
+declare function Icon(props: ComposeIconProps): import("react/jsx-runtime").JSX.Element;
 declare function Button({ label, disabled, variant, tone, icon, iconFilled, onPress, ...props }: ComposeButtonProps): import("react/jsx-runtime").JSX.Element;
 declare function Switch({ isOn, disabled, label, onIsOnChange, revision, ...props }: ComposeSwitchProps): import("react/jsx-runtime").JSX.Element;
 declare function TextField({ text, onTextChange, revision, label, placeholder, disabled, variant, keyboardType, secureText, focused, focusRevision, onFocusChange, imeAction, onSubmit, maxLength, multiline, capitalization, autoCorrect, textAlign, ...props }: ComposeTextFieldProps): import("react/jsx-runtime").JSX.Element;

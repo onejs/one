@@ -19,7 +19,24 @@ public struct OneNativeAccessibility: Equatable {
 }
 
 extension View {
-  public func oneNativeAccessibility(_ accessibility: OneNativeAccessibility) -> some View {
+  @ViewBuilder public func oneNativeAccessibility(
+    _ accessibility: OneNativeAccessibility,
+    decorativeWhenUnlabeled: Bool = false
+  ) -> some View {
+    if decorativeWhenUnlabeled {
+      self
+        .accessibilityElement(children: .ignore)
+        .oneNativeAccessibilityFields(accessibility)
+        .accessibilityAddTraits(.isImage)
+        .accessibilityHidden(accessibility.label.isEmpty)
+    } else {
+      self.oneNativeAccessibilityFields(accessibility)
+    }
+  }
+
+  fileprivate func oneNativeAccessibilityFields(
+    _ accessibility: OneNativeAccessibility
+  ) -> some View {
     self
       .oneNativeAccessibilityIdentifier(accessibility.identifier)
       .oneNativeAccessibilityLabel(accessibility.label)

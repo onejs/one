@@ -11,6 +11,7 @@
 using namespace facebook::react;
 @implementation OneNativeTextFieldComponentView { OneNativeTextFieldView *_nativeView; OneNativeMeasuredHeight *_measured; int32_t _syncStateId; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeTextFieldComponentDescriptor>(); }
++- (NSObject *)accessibilityElement { return _nativeView; }
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {

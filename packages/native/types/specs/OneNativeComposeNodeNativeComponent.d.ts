@@ -30,6 +30,7 @@ interface NativeProps extends ViewProps {
     tone?: string;
     icon?: string;
     iconFilled?: boolean;
+    colorRole?: string;
     value?: boolean;
     acknowledgedEvent?: Int32;
     revision?: Int32;

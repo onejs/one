@@ -1,7 +1,9 @@
 package dev.onejs.onenative
 
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Color as AndroidColor
+import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.BorderStroke
@@ -28,6 +30,10 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
@@ -59,6 +65,8 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.ViewCompositionStrategy
@@ -177,6 +185,7 @@ internal data class OneNativeComposeNodeProps(
     val tone: String? = null,
     val icon: String? = null,
     val iconFilled: Boolean = false,
+    val colorRole: String? = null,
     val value: Boolean = false,
     val acknowledgedEvent: Int = 0,
     val revision: Int = 0,
@@ -284,7 +293,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         clipChildren = false
         super.addView(composeView)
         composeView.setContent {
-            MaterialTheme {
+            OneNativeMaterialTheme {
                 Box(modifier = Modifier.fillMaxSize()) {
                     RenderComposeNode(
                         this@OneNativeComposeNodeView,
@@ -437,6 +446,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageIconFilled(value: Boolean) {
         pendingProps = pendingProps.copy(iconFilled = value)
+    }
+
+    internal fun stageColorRole(value: String?) {
+        pendingProps = pendingProps.copy(colorRole = value)
     }
 
     internal fun stageValue(value: Boolean) {
@@ -767,7 +780,7 @@ private fun RenderComposeNode(
     val props = node.renderedProps
     val style = props.composeStyle
     val modifier = outerModifier.applyComposeStyle(style).applyReactSemantics(node, props)
-    val foregroundColor = style.foregroundColor?.let(::Color)
+    val foregroundColor = style.foregroundColor?.let(::Color) ?: resolveColorRole(props.colorRole)
 
     if (foregroundColor != null) {
         androidx.compose.runtime.CompositionLocalProvider(LocalContentColor provides foregroundColor) {
@@ -844,6 +857,36 @@ private fun RenderComposeNodeBody(
             Box(modifier = modifier) {
                 RenderComposeChildren(node)
             }
+    }
+}
+
+@Composable
+private fun OneNativeMaterialTheme(content: @Composable () -> Unit) {
+    val context = LocalContext.current
+    val configuration = LocalConfiguration.current
+    val dark = configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+    val colorScheme =
+        remember(context, configuration.uiMode) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                if (dark) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            } else {
+                if (dark) darkColorScheme() else lightColorScheme()
+            }
+        }
+    MaterialTheme(colorScheme = colorScheme, content = content)
+}
+
+@Composable
+private fun resolveColorRole(role: String?): Color? {
+    val colors = MaterialTheme.colorScheme
+    return when (role) {
+        null, "" -> null
+        "accent" -> colors.primary
+        "primary" -> colors.onSurface
+        "secondary" -> colors.onSurfaceVariant
+        "tertiary" -> colors.onSurfaceVariant.copy(alpha = 0.60f)
+        "danger" -> colors.error
+        else -> error("unknown One.UI color role: $role")
     }
 }
 

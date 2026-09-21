@@ -1,5 +1,6 @@
 import { Children, createContext, useContext } from 'react'
 import NativeComposeNode from './specs/OneNativeComposeNodeNativeComponent'
+import { iconColorRoles } from './ui/iconRoles'
 import { useControlled } from './controlled'
 import { getSyncStateId } from './syncStore'
 import { syncHandleOf, useSyncValue } from './syncNativeState'
@@ -82,6 +83,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   tone?: ComposeButtonTone
   icon?: string
   iconFilled?: boolean
+  colorRole?: string
   value?: boolean
   acknowledgedEvent?: number
   revision?: number
@@ -240,8 +242,13 @@ function Text({
   )
 }
 
-function Icon({ name, size = 24, filled = false, ...props }: ComposeIconProps) {
+export function renderIcon(
+  { name, size = 24, filled = false, ...props }: ComposeIconProps,
+  colorRole?: string
+) {
   validateIconProps({ name, size, filled })
+  if (colorRole && !iconColorRoles.some((role) => role === colorRole))
+    throw new Error('Icon colorRole must be a One.UI icon color role')
   return (
     <ComposeNode
       {...props}
@@ -249,8 +256,13 @@ function Icon({ name, size = 24, filled = false, ...props }: ComposeIconProps) {
       text={composeIconGlyph('Icon name', name)}
       fontSize={size}
       iconFilled={filled}
+      colorRole={colorRole}
     />
   )
+}
+
+function Icon(props: ComposeIconProps) {
+  return renderIcon(props)
 }
 
 function Button({
@@ -358,13 +370,10 @@ function TextField({
     text: string
     eventCount: number
     revision: number
-  }>(
-    (event) => {
-      syncHandle?.set(event.text)
-      onTextChange(event.text)
-    },
-    revision
-  )
+  }>((event) => {
+    syncHandle?.set(event.text)
+    onTextChange(event.text)
+  }, revision)
   const controlledFocus = useControlled<{
     value: boolean
     eventCount: number
@@ -375,7 +384,7 @@ function TextField({
       {...props}
       nodeType="textfield"
       textValue={syncedText}
-      syncStateId={syncHandle ? getSyncStateId(syncHandle) ?? 0 : 0}
+      syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
       label={label}

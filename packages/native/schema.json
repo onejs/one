@@ -1207,6 +1207,9 @@
         },
         "hasVariableValue": {
           "type": "boolean"
+        },
+        "colorRole": {
+          "type": "string"
         }
       },
       "events": {},

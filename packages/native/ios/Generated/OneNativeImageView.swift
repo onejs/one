@@ -10,6 +10,7 @@ private final class ImageModel: ObservableObject {
   @Published var imageScale: String = ""
   @Published var variableValue: Double = 0
   @Published var hasVariableValue: Bool = false
+  @Published var colorRole: String = ""
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -28,13 +29,14 @@ private final class ImageModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ systemName: String, symbolRenderingMode: String, symbolVariant: String, imageScale: String, variableValue: Double, hasVariableValue: Bool) {
+  public func configure(_ systemName: String, symbolRenderingMode: String, symbolVariant: String, imageScale: String, variableValue: Double, hasVariableValue: Bool, colorRole: String) {
     if model.systemName != systemName { model.systemName = systemName }
     if model.symbolRenderingMode != symbolRenderingMode { model.symbolRenderingMode = symbolRenderingMode }
     if model.symbolVariant != symbolVariant { model.symbolVariant = symbolVariant }
     if model.imageScale != imageScale { model.imageScale = imageScale }
     if model.variableValue != variableValue { model.variableValue = variableValue }
     if model.hasVariableValue != hasVariableValue { model.hasVariableValue = hasVariableValue }
+    if model.colorRole != colorRole { model.colorRole = colorRole }
   }
 
 
@@ -84,7 +86,8 @@ private struct ImageContent: View {
       .oneNativeSymbolRenderingMode(model.symbolRenderingMode)
       .oneNativeSymbolVariant(model.symbolVariant)
       .oneNativeImageScale(model.imageScale)
-      .oneNativeAccessibility(model.accessibility)
+      .oneNativeColorRole(model.colorRole)
+      .oneNativeAccessibility(model.accessibility, decorativeWhenUnlabeled: true)
       .oneNativeStyle(model.swiftStyle)
   }
 }
