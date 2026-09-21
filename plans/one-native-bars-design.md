@@ -1,8 +1,12 @@
 # One native bars: tinted glass buttons, bottom toolbars, double bars
 
 **Recommendation (INFERRED):** no new bar system. Every bar One draws on iOS goes through
-the two containers Apple manages, the navigation controller and the tab bar controller,
-because those are the only bars iPhone Duo moves into its trailing column. One already
+a system navigation container, because those are the only bars iPhone Duo moves into its
+side column. That means `UINavigationController` and `UITabBarController` in UIKit, and
+equally `NavigationStack`, `NavigationSplitView` and `TabView` in SwiftUI: SwiftUI bars
+do adapt on Duo, and Apple's guidance names the SwiftUI API beside the UIKit one at
+every step. What does not adapt is a bar built outside a container (a bare `UIToolbar`,
+`UINavigationBar` or `UITabBar`) or a floating view drawn to look like one. One already
 does this underneath. What is missing is small: `Stack.Toolbar` does not expose the
 prominent (tinted glass) style, spacers or badges that its own native layer has, and
 none of the three bar patterns has a conformance fixture. Keep Expo's `Stack.Toolbar`
@@ -76,6 +80,53 @@ Scope: a written design against One `origin/v2-next` at `7767a3d31` and Contrast
   chosen with `toolbarCompressionBehavior`, a 27.1 SDK symbol
   (`~/contrast/plans/sootsim/duo-control-mapping.md:100-163,238`).
 
+## What Apple's Duo page changes (RAN: page data fetched and read in full)
+
+Source: `designing-for-iphone-duo`, new on September 9, 2026. Six of its rules land on
+this API directly, and two of them are places where Expo's shape is not enough.
+
+1. **"Group related toolbar items instead of spacing them manually."** Groups made with
+   `ToolbarItemGroup` or `UIBarButtonItemGroup` get their spacing from the system and
+   adapt as space changes, "so avoid adding fixed spacing yourself". Expo has `Spacer`
+   and no group. One adds `Stack.Toolbar.Group` as the primary way to cluster items and
+   keeps `Spacer` for Expo code and for the flexible gap between a leading and a
+   trailing cluster. **GUESSED:** `UIBarButtonItemGroup` applies to the bottom toolbar
+   in the 27.1 SDK as it does to the navigation item; B1 reads the 27.1 headers on
+   pro-64 before choosing the native mapping.
+2. **"Provide both a title and a symbol for each toolbar item that isn't text-only."**
+   The system uses the title in overflow menus and expanded forms. `Button` and `Menu`
+   types require a title whenever `icon` is set (Expo's children text is the title). An
+   icon with no title is a type error and a dev-time throw, since it breaks only on
+   Duo, where nobody will notice until it ships.
+3. **"Keep text-based buttons to a minimum."** Items with text stay in a horizontal bar
+   and do not move to the side. Documented, not enforced.
+4. **Overflow order.** Items overflow bottom to top by default; each item or group can
+   take a visibility priority (`ToolbarItemVisibilityPriority`,
+   `UIBarButtonItemVisibilityPriority`). The primary action (Compose, New Note) and
+   badged items stay longest. One adds `visibilityPriority` on `Button`, `Menu` and
+   `Group`, with Apple's values.
+5. **Which bar gives way.** Navigation-focused views push toolbar items into overflow
+   and keep the tab bar, the default; task-focused views minimize the tab bar instead
+   (`ToolbarVerticalCompressionBehavior`, `UIVerticalBarCompressionBehavior`). One adds
+   it as a prop on `Stack.Toolbar`, named after Apple's type once B1 reads the exact
+   spelling from the SDK. This document earlier called it `toolbarCompressionBehavior`
+   from Contrast's notes; the page's names win.
+6. **"Use the system overflow menu"** and "reserve the ellipsis symbol for overflow".
+   One does not draw its own overflow. Extra overflow-only actions go through
+   `ToolbarOverflowMenu` / `additionalOverflowItems` as `Stack.Toolbar.Overflow`. The
+   docs tell people not to use `ellipsis` as a menu icon.
+
+Also from the page, for the docs: do not override the default bar placement; controls
+that belong to a leading pane stay with that pane; a full-width layout with no bars is
+fine for immersive screens; the side bar stays on the same physical side in
+right-to-left languages, which is one more reason `leading` and `trailing` describe the
+navigation bar only.
+
+Items 1, 4, 5 and 6 are 27.1 SDK symbols and One's CI builds with Xcode 26.4. They go
+in behind a Swift compiler version check so the 26.4 build is unchanged, and the JS
+props are accepted and ignored below iOS 27. B1 takes the compiler version from
+pro-64's Xcode 27.1. **GUESSED** until that build runs.
+
 ## The one rule
 
 A control that should adapt to Duo is declared as a bar item or a tab, never drawn as a
@@ -91,7 +142,7 @@ Keep Expo's names so a move from expo-router is an import change. Two correction
 ```tsx
 <Stack.Toolbar placement="bottom">          // 'leading' | 'trailing' | 'bottom'
   <Stack.Toolbar.Button icon="square.and.arrow.up" onPress={share} />
-  <Stack.Toolbar.Menu icon="ellipsis">
+  <Stack.Toolbar.Menu icon="slider.horizontal.3" title="Filter">
     <Stack.Toolbar.MenuAction icon="trash" destructive onPress={remove}>Delete</Stack.Toolbar.MenuAction>
   </Stack.Toolbar.Menu>
   <Stack.Toolbar.Spacer />                   // flexible; width={n} makes it fixed
@@ -122,9 +173,7 @@ Additions, each a pass-through to a prop the native item already has:
 | `selected`, `hidden`, `disabled` | same | same |
 
 Excluded for now: `Stack.Toolbar.View` (arbitrary React Native content in a bar item;
-it does not go vertical on Duo, so it waits for a real need), `Label` styling, and
-`toolbarCompressionBehavior`, which cannot compile until One's CI Xcode has the 27.1
-SDK (the superset track pins the SDK ceiling at 26).
+it does not go vertical on Duo, so it waits for a real need) and `Label` styling.
 
 ### Tabs
 
@@ -178,6 +227,14 @@ simulator captures; Contrast owns the peach case.
   already uses and a button inside `bottomAccessory`, and neither needs new API either.
 
 ## Duo
+
+**Open question the Duo run must answer (GUESSED either way):** SwiftUI bars adapt when
+the SwiftUI container is the app's navigation structure. `One.iOS.Tabs` is a SwiftUI
+`TabView` hosted inside a React Native view, and nobody has checked whether the system
+still treats an embedded `TabView` as a participating container. B3 runs a
+`One.iOS.Tabs` fixture on the Duo simulator beside the three tracks. If it does not
+move to the side, `One.iOS.Tabs` is documented as not Duo-ready and `Tabs` from `one`
+is the recommended path.
 
 **INFERRED:** because all three tracks use container-managed bars, Duo's column comes
 from rebuilding against the 27.1 SDK, with no One code. Apple states the opt-in is the
