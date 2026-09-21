@@ -241,12 +241,15 @@ const mapLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-map-place-ferry')) &&
   has(nodes, 'Place: ')
-// a presented photo picker covers the fixture, so the screen counts as
-// loaded from either side of the presentation.
+// a presented photo picker covers the fixture and publishes no accessibility
+// tree of its own, so the screen counts as loaded from the fixture side, the
+// camera prompt, or the bare application node.
 const imagePickerLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-image-picker-library')) && has(nodes, 'Result: ')) ||
-    labels(nodes).includes('Cancel'))
+    labels(nodes).includes('Cancel') ||
+    labels(nodes).includes('Don’t Allow') ||
+    nodes.every((n) => n.type === 'Application'))
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -3163,8 +3166,21 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       }
       return { width: num('Width'), height: num('Height') }
     }
-    const cancelButton = (nodes: Node[]) =>
-      nodes.find((node) => node.AXLabel === 'Cancel' && node.type === 'Button')
+    // the picker publishes no accessibility tree, so its two taps are
+    // calibrated points on the 17 Pro display, guarded by the observed
+    // application frame. the waits after each tap prove they landed.
+    const pickerPoint = (name: string, x: number, y: number) => {
+      const app = snapshot(config.simulatorId).find(
+        (node) => node.type === 'Application'
+      )?.frame
+      if (app?.width !== 402 || app?.height !== 874)
+        throw new Error(
+          `Expected a 402x874 display for the ${name} tap, got ${JSON.stringify(app)}`
+        )
+      point(x, y)
+    }
+    const pickerCovers = (nodes: Node[]) =>
+      nodes.every((node) => node.type === 'Application')
 
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
@@ -3185,9 +3201,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     tap({ id: 'one-native-image-picker-library' })
-    await wait('the system picker presents', (n) => Boolean(cancelButton(n)))
+    await wait('the system picker presents', (n) => pickerCovers(n))
     screenshot('image-picker-open.png')
-    tap({ label: 'Cancel' })
+    pickerPoint('picker close', 45, 98)
     await wait('cancel resolves through the bridge', (n) =>
       Boolean(id(n, 'one-native-image-picker-library'))
     )
@@ -3200,19 +3216,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'addmedia',
       config.simulatorId,
       fileURLToPath(
-        new URL('../../assets/one-native-picker-portrait.heic', import.meta.url)
+        new URL('../assets/one-native-picker-portrait.heic', import.meta.url)
       ),
     ])
     tap({ id: 'one-native-image-picker-library' })
-    const grid = await wait(
-      'photo grid lists the seeded photo',
-      (n) => n.some((node) => node.AXLabel === 'Photo' && node.type === 'Image')
-    )
-    // a single pick dismisses on tap, with no trailing add button.
-    const cell = grid
-      .filter((node) => node.AXLabel === 'Photo' && node.type === 'Image')
-      .sort((a, b) => a.frame!.y - b.frame!.y || a.frame!.x - b.frame!.x)[0].frame!
-    point(cell.x + cell.width / 2, cell.y + cell.height / 2)
+    await wait('photo grid lists the seeded photo', (n) => pickerCovers(n))
+    // a single pick dismisses on tap, with no trailing add button. recency
+    // sorts the seeded photo first; the metadata below proves this tap took it.
+    pickerPoint('seeded photo', 66, 378)
     // compatible mode transcodes the heic to jpeg, and the orientation 6
     // swap reports the display size, portrait.
     await wait('picked asset resolves with its metadata', (n) =>
@@ -3225,8 +3236,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           status(n, 'Mime', 'image/jpeg') &&
           labels(n).some(
             (label) =>
-              label.startsWith('File: IMG_') &&
-              (label.endsWith('.jpg') || label.endsWith('.jpeg'))
+              label.startsWith('File: IMG_') && label.endsWith('.jpeg')
           ) &&
           labels(n).some((label) => {
             const match = /^Size: (\d+)$/.exec(label)

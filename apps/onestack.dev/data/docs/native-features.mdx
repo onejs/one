@@ -345,7 +345,7 @@ const next = await One.ImagePicker.requestCameraPermissions()
 Picked assets are copied into the app cache and returned as file URIs with `width`, `height`,
 and, when the platform provides them, `mimeType`, `fileName`, and `fileSize`. On web the
 library opens a file dialog and the camera opens a capture input on mobile browsers, and
-both permission calls read denied.
+both permission calls read granted.
 
 Migrating from `expo-image-picker` is an import change plus this rename:
 

@@ -170,6 +170,29 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
     expect(androidManifest.content).not.toContain('android.permission.CAMERA')
   })
 
+  it('throws instead of silently skipping a missing camera anchor', () => {
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld/Info.plist',
+        content: '<dict>\n</dict>',
+        platform: 'ios',
+        app,
+      })
+    ).toThrow(
+      '[vxrn] cannot stamp NSCameraUsageDescription: expected LSRequiresIPhoneOS in Info.plist'
+    )
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'app/src/main/AndroidManifest.xml',
+        content: '<manifest>\n</manifest>',
+        platform: 'android',
+        app,
+      })
+    ).toThrow(
+      '[vxrn] cannot stamp the camera permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
+    )
+  })
+
   it('resolves the gradle plugin from the react-native package without hoisting', () => {
     const root = mkdtempSync(join(tmpdir(), 'vxrn-gradle-plugin-'))
     const settingsDir = join(root, 'android')
