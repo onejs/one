@@ -93,6 +93,24 @@ static NSDictionary *NotificationPayload(UNNotification *notification)
 
 @implementation OneNativeNotificationsDelegate
 
+// installed before didFinishLaunching returns, so the delegate is in place
+// when a cold-start tap response arrives. slice n3 proves the timing on
+// device with a terminated-app tap. this lives on the delegate class
+// because RCT_EXPORT_MODULE already defines +load on the module.
++ (void)load
+{
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(didFinishLaunching:)
+                                               name:UIApplicationDidFinishLaunchingNotification
+                                             object:nil];
+}
+
++ (void)didFinishLaunching:(NSNotification *)note
+{
+  [UNUserNotificationCenter currentNotificationCenter].delegate =
+      [OneNativeNotificationsDelegate shared];
+}
+
 + (instancetype)shared
 {
   static OneNativeNotificationsDelegate *shared;
@@ -194,23 +212,6 @@ static NSDictionary *NotificationPayload(UNNotification *notification)
 @implementation OneNativeNotifications
 
 RCT_EXPORT_MODULE()
-
-// installed before didFinishLaunching returns, so the delegate is in place
-// when a cold-start tap response arrives. slice n3 proves the timing on
-// device with a terminated-app tap.
-+ (void)load
-{
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(didFinishLaunching:)
-                                               name:UIApplicationDidFinishLaunchingNotification
-                                             object:nil];
-}
-
-+ (void)didFinishLaunching:(NSNotification *)note
-{
-  [UNUserNotificationCenter currentNotificationCenter].delegate =
-      [OneNativeNotificationsDelegate shared];
-}
 
 - (instancetype)init
 {
@@ -332,6 +333,7 @@ RCT_EXPORT_METHOD(requestPermissions:(NSDictionary *)options
   [[UNUserNotificationCenter currentNotificationCenter]
       requestAuthorizationWithOptions:authOptions
                     completionHandler:^(BOOL granted, NSError *_Nullable error) {
+                      (void)granted;
                       if (error) {
                         reject(@"E_NOTIFICATIONS_PERMISSION", @"notification authorization failed",
                                error);
