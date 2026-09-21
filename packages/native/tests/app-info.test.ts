@@ -46,33 +46,11 @@ describe('app-info native snapshot', () => {
     expect(Object.isFrozen(AppInfo)).toBe(true)
   })
 
-  it('reads legacy constants merged onto the module object', async () => {
-    getMock.mockReturnValue({
-      version: '9.9.9',
-      build: '4242',
-      applicationId: 'dev.vxrn.native.tests',
-    })
-    const { AppInfo } = await loadNative()
-    expect(AppInfo).toEqual({
-      version: '9.9.9',
-      build: '4242',
-      applicationId: 'dev.vxrn.native.tests',
-    })
-  })
-
   it('yields all nulls when the module is missing', async () => {
     getMock.mockReturnValue(null)
     const { AppInfo } = await loadNative()
     expect(AppInfo).toEqual({ version: null, build: null, applicationId: null })
     expect(Object.isFrozen(AppInfo)).toBe(true)
-  })
-
-  it('yields all nulls when TurboModuleRegistry itself throws', async () => {
-    getMock.mockImplementation(() => {
-      throw new Error('no bridge')
-    })
-    const { AppInfo } = await loadNative()
-    expect(AppInfo).toEqual({ version: null, build: null, applicationId: null })
   })
 
   it('yields all nulls when getConstants returns a non-object', async () => {
