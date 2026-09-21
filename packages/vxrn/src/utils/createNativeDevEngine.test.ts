@@ -1118,7 +1118,7 @@ describe('getNativeTransformConfig platform env defines', () => {
     }
   })
 
-  it('accepts Expo public input and creates the One alias', () => {
+  it('accepts Expo public input without creating a One alias', () => {
     const key = 'EXPO_PUBLIC_VXRN_NATIVE_ENV_PROBE'
     const previous = process.env[key]
     process.env[key] = 'native-env-value'
@@ -1126,9 +1126,7 @@ describe('getNativeTransformConfig platform env defines', () => {
     try {
       const { define } = getNativeTransformConfig('ios', false, root)
       expect(define[`process.env.${key}`]).toBe('"native-env-value"')
-      expect(define['process.env.ONE_PUBLIC_VXRN_NATIVE_ENV_PROBE']).toBe(
-        '"native-env-value"'
-      )
+      expect(define['process.env.ONE_PUBLIC_VXRN_NATIVE_ENV_PROBE']).toBeUndefined()
     } finally {
       if (previous === undefined) delete process.env[key]
       else process.env[key] = previous

@@ -35,11 +35,13 @@ describe('metro babel env contract', () => {
     )
   })
 
-  it('aliases Expo keys from the loaded env', () => {
+  it('accepts Expo keys without creating One names', () => {
     expect(pluginEnv(viteConfig({ env: { EXPO_PUBLIC_API: 'x' } }))).toMatchObject({
       EXPO_PUBLIC_API: 'x',
-      ONE_PUBLIC_API: 'x',
     })
+    expect(
+      pluginEnv(viteConfig({ env: { EXPO_PUBLIC_API: 'x' } }))
+    ).not.toHaveProperty('ONE_PUBLIC_API')
   })
 
   it('accepts Expo platform defines for the platform plugin to override', () => {

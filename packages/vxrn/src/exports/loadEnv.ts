@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import { parse } from 'dotenv'
 import { type DotenvPopulateInput, expand } from 'dotenv-expand'
 import { normalizePath } from 'vite'
-import { withPublicEnvAliases } from '@vxrn/utils'
+import { withExpoPublicEnvAliases } from '@vxrn/utils'
 
 type Mode = 'development' | 'production' | string
 
@@ -30,7 +30,7 @@ export async function loadEnv(
     process.env[key] = val
   }
 
-  const clientEnv = withPublicEnvAliases(
+  const clientEnv = withExpoPublicEnvAliases(
     Object.fromEntries(
       Object.entries({
         ...process.env,

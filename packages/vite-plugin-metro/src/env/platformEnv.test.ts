@@ -13,8 +13,8 @@ describe('one platform env contract', () => {
     expect(getPlatformEnv('ssr').ONE_PLATFORM).toBe('web')
   })
 
-  it('defines matching One and Expo platform values', () => {
-    for (const environment of ['client', 'ssr', 'ios', 'android'] as const) {
+  it('defines the Expo platform alias only on native', () => {
+    for (const environment of ['ios', 'android'] as const) {
       expect(getPlatformEnv(environment).EXPO_OS).toBe(
         getPlatformEnv(environment).ONE_PLATFORM
       )
@@ -23,6 +23,12 @@ describe('one platform env contract', () => {
       expect(define['import.meta.env.EXPO_OS']).toBe(
         define['import.meta.env.ONE_PLATFORM']
       )
+    }
+    for (const environment of ['client', 'ssr'] as const) {
+      expect(getPlatformEnv(environment)).not.toHaveProperty('EXPO_OS')
+      const define = getPlatformEnvDefine(environment)
+      expect(define).not.toHaveProperty('process.env.EXPO_OS')
+      expect(define).not.toHaveProperty('import.meta.env.EXPO_OS')
     }
     const define = getPlatformEnvDefine('ios')
     expect(define['process.env.ONE_PLATFORM']).toBe('"ios"')

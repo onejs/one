@@ -1,6 +1,6 @@
 import type { ResolvedConfig } from 'vite'
 import type { TransformOptions } from '@babel/core'
-import { withPublicEnvAliases } from '@vxrn/utils'
+import { withExpoPublicEnvAliases } from '@vxrn/utils'
 
 /**
  * Creates babel config for Metro transforms from Vite config.
@@ -53,7 +53,7 @@ export function getMetroBabelConfigFromViteConfig(
     plugins: [
       [
         '@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin',
-        { env: withPublicEnvAliases(importMetaEnv) },
+        { env: withExpoPublicEnvAliases(importMetaEnv) },
       ],
     ],
   }

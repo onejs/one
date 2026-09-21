@@ -226,6 +226,12 @@ export function buildOneBabelPlugins({
  */
 function buildStandaloneImportMetaEnv(): Record<string, unknown> {
   const isProduction = process.env.NODE_ENV !== 'development'
+  const expoPlatform =
+    process.env.ONE_PLATFORM === 'ios' || process.env.ONE_PLATFORM === 'android'
+      ? process.env.ONE_PLATFORM
+      : process.env.EXPO_OS === 'ios' || process.env.EXPO_OS === 'android'
+        ? process.env.EXPO_OS
+        : undefined
   const env: Record<string, unknown> = {
     ...pickOnePublicEnv(process.env),
     MODE: isProduction ? 'production' : 'development',
@@ -234,7 +240,7 @@ function buildStandaloneImportMetaEnv(): Record<string, unknown> {
     DEV: !isProduction,
     SSR: false,
     ONE_PLATFORM: process.env.ONE_PLATFORM ?? 'web',
-    EXPO_OS: process.env.ONE_PLATFORM ?? process.env.EXPO_OS ?? 'web',
+    ...(expoPlatform ? { EXPO_OS: expoPlatform } : {}),
   }
   for (const [key, value] of Object.entries(process.env)) {
     if (key.startsWith('ONE_') || key.startsWith('VITE_')) {
