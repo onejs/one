@@ -1,8 +1,10 @@
+import { execFileSync } from 'node:child_process'
 import {
   mkdtempSync,
   mkdirSync,
   readdirSync,
   readFileSync,
+  realpathSync,
   statSync,
   writeFileSync,
 } from 'node:fs'
@@ -166,9 +168,63 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
       app,
     })
     expect(androidSettings.content).toContain(
-      "require.resolve('@react-native/gradle-plugin/package.json')"
+      ".resolve('@react-native/gradle-plugin/package.json')"
+    )
+    expect(androidSettings.content).toContain(
+      "createRequire(require.resolve('react-native/package.json'))"
     )
     expect(androidSettings.content).not.toContain('../node_modules')
+  })
+
+  it('resolves the gradle plugin from the react-native package without hoisting', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-gradle-plugin-'))
+    const settingsDir = join(root, 'android')
+    mkdirSync(settingsDir, { recursive: true })
+    // strict layout: the plugin lives under react-native, nothing hoisted
+    const nested = join(
+      root,
+      'node_modules',
+      'react-native',
+      'node_modules',
+      '@react-native',
+      'gradle-plugin'
+    )
+    mkdirSync(nested, { recursive: true })
+    writeFileSync(
+      join(root, 'node_modules', 'react-native', 'package.json'),
+      JSON.stringify({ name: 'react-native', version: '0.0.0' })
+    )
+    writeFileSync(
+      join(nested, 'package.json'),
+      JSON.stringify({ name: '@react-native/gradle-plugin', version: '0.0.0' })
+    )
+
+    const rendered = renderPrebuildFile({
+      relativePath: 'settings.gradle',
+      content: `pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
+includeBuild('../node_modules/@react-native/gradle-plugin')`,
+      platform: 'android',
+      app,
+    })
+    const script = (rendered.content ?? '').match(/"--print", "([^"]+)"\]/)?.[1]
+    if (!script) throw new Error('expected generated node resolution script')
+    // execute the generated node resolution the way gradle would, from the
+    // settings directory so lookup walks up to the app root
+    const resolved = execFileSync(process.execPath, ['--print', script], {
+      cwd: settingsDir,
+      encoding: 'utf8',
+    }).trim()
+    expect(resolved).toBe(realpathSync(join(nested, 'package.json')))
+
+    // negative control: a bare top-level resolution fails here, proving the
+    // fixture is genuinely non-hoisted and the old snippet would break
+    expect(() =>
+      execFileSync(
+        process.execPath,
+        ['--print', "require.resolve('@react-native/gradle-plugin/package.json')"],
+        { cwd: settingsDir, stdio: 'pipe' }
+      )
+    ).toThrow()
   })
 
   it('passes binaries through untouched', () => {
@@ -338,21 +394,31 @@ describe('generateForPlatform determinism', () => {
     expect(
       readFileSync(join(output, 'ios', 'MyApp', 'LaunchScreen.storyboard'), 'utf8')
     ).toContain('image="Splash"')
+    const androidRes = join(output, 'android', 'app', 'src', 'main', 'res')
+    // legacy android keeps the previous contain behavior: centered, not stretched
+    const launchScreen = readFileSync(
+      join(androidRes, 'drawable', 'launch_screen.xml'),
+      'utf8'
+    )
+    expect(launchScreen).toContain('@drawable/splash')
+    expect(launchScreen).toContain('android:gravity="center"')
+    expect(launchScreen).not.toContain('android:gravity="fill"')
     expect(
-      readFileSync(
-        join(
-          output,
-          'android',
-          'app',
-          'src',
-          'main',
-          'res',
-          'drawable',
-          'launch_screen.xml'
-        ),
-        'utf8'
-      )
-    ).toContain('@drawable/splash')
+      readFileSync(join(androidRes, 'values', 'colors.xml'), 'utf8')
+    ).toContain('<color name="splash_background">#000000</color>')
+    expect(
+      readFileSync(join(androidRes, 'values', 'styles.xml'), 'utf8')
+    ).toContain('@drawable/launch_screen')
+    // android 12+ uses the configured splash image, never the launcher icon
+    const stylesV31 = readFileSync(
+      join(androidRes, 'values-v31', 'styles.xml'),
+      'utf8'
+    )
+    expect(stylesV31).toContain('@color/splash_background')
+    expect(stylesV31).toContain(
+      'android:windowSplashScreenAnimatedIcon">@drawable/splash'
+    )
+    expect(stylesV31).not.toContain('ic_launcher')
   }, 180000)
 
   it('regenerates byte-identical projects from the same manifest', async () => {

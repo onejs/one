@@ -1,5 +1,6 @@
 import { Children, createContext, useContext } from 'react'
 import NativeComposeNode from './specs/OneNativeComposeNodeNativeComponent'
+import { iconColorRoles } from './ui/iconRoles'
 import { useControlled } from './controlled'
 import { getSyncStateId } from './syncStore'
 import { syncHandleOf, useSyncValue } from './syncNativeState'
@@ -246,6 +247,8 @@ export function renderIcon(
   colorRole?: string
 ) {
   validateIconProps({ name, size, filled })
+  if (colorRole && !iconColorRoles.some((role) => role === colorRole))
+    throw new Error('Icon colorRole must be a One.UI icon color role')
   return (
     <ComposeNode
       {...props}

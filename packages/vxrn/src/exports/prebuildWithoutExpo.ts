@@ -331,7 +331,7 @@ async function generateSplashScreen(args: {
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/splash_background" />
     <item>
-        <bitmap android:gravity="fill" android:src="@drawable/splash" />
+        <bitmap android:gravity="center" android:src="@drawable/splash" />
     </item>
 </layer-list>
 `
@@ -358,7 +358,7 @@ async function generateSplashScreen(args: {
 <resources>
     <style name="AppTheme">
         <item name="android:windowSplashScreenBackground">@color/splash_background</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash</item>
     </style>
 </resources>
 `
@@ -522,7 +522,7 @@ end`
       }
       rendered = rendered.replace(
         hardcodedGradlePlugin,
-        `includeBuild(new File(["node", "--print", "require.resolve('@react-native/gradle-plugin/package.json')"].execute(null, settingsDir).text.trim()).parentFile.canonicalPath)`
+        `includeBuild(new File(["node", "--print", "require('module').createRequire(require.resolve('react-native/package.json')).resolve('@react-native/gradle-plugin/package.json')"].execute(null, settingsDir).text.trim()).parentFile.canonicalPath)`
       )
     }
     if (platform === 'android' && relativePath.endsWith('/MainActivity.kt')) {

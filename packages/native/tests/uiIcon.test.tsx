@@ -124,6 +124,12 @@ describe('One.UI.Icon', () => {
     ).toThrow(/colorRole/)
   })
 
+  test('rejects an invalid Android role before it reaches Kotlin', () => {
+    expect(() =>
+      Reflect.apply(AndroidIcon, null, [{ icons: elements, colorRole: 'not-a-role' }])
+    ).toThrow(/colorRole/)
+  })
+
   test('exposes labeled iOS images and hides unlabeled decoration', () => {
     const labeled = Image({ systemName: 'star', accessibilityLabel: 'Favorite' })
     const decorative = Image({ systemName: 'star' })
