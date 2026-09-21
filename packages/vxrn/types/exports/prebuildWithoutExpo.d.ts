@@ -11,6 +11,9 @@ export interface PrebuildAppConfig {
         backgroundColor: string;
         width?: number;
     };
+    notifications?: {
+        push?: boolean;
+    };
     ios?: {
         bundleId: string;
         tablet?: boolean;

@@ -12,6 +12,9 @@ export interface NativeAppManifest {
         backgroundColor: string;
         width?: number;
     };
+    notifications?: {
+        push?: boolean;
+    };
     ios?: {
         bundleId: string;
         tablet?: boolean;
