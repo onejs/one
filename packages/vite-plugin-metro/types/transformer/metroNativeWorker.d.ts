@@ -133,8 +133,8 @@ export declare function applyModuleResolverAliases(code: string, filename: strin
  * `process.env.ONE_SERVER_URL` is inlined in both modes, matching one's plugin:
  * it is how a native bundle knows where to fetch loader data from.
  *
- * `process.env.EXPO_PUBLIC_*` reads fail with a migration error instead of
- * being copied, ignored, or aliased.
+ * expo package reads keep working: an explicit `EXPO_PUBLIC_*` value wins,
+ * then an exact same-suffix `ONE_PUBLIC_*` value shadows it.
  *
  * Both live in one pass because they are the same rewrite over the same walk,
  * and a second parse of every file is the cost this transformer exists to avoid.
