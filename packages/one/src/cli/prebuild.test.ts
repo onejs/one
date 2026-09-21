@@ -80,18 +80,37 @@ describe('one prebuild', () => {
     expect(prebuildMock).not.toHaveBeenCalled()
   })
 
-  it('directs Expo module apps to Expo prebuild before loading One config', async () => {
+  it('ignores an undeclared expo-modules-core hoisted into node_modules', async () => {
     const expoModulesCore = join(projectRoot, 'node_modules', 'expo-modules-core')
     mkdirSync(expoModulesCore, { recursive: true })
     writeFileSync(
       join(expoModulesCore, 'package.json'),
       '{"name":"expo-modules-core","version":"1.0.0"}'
     )
+    loadUserOneOptionsMock.mockResolvedValueOnce({ oneOptions: { native: { app } } })
 
-    await expect(run({ platform: 'ios' })).rejects.toThrow(
-      'run Expo prebuild and list "vxrn/expo-plugin" in the Expo config'
-    )
-    expect(loadUserOneOptionsMock).not.toHaveBeenCalled()
-    expect(prebuildMock).not.toHaveBeenCalled()
+    await run({ platform: 'ios' })
+
+    expect(prebuildMock).toHaveBeenCalledWith({
+      root: process.cwd(),
+      platform: 'ios',
+      app,
+    })
   })
+
+  it.each(['dependencies', 'devDependencies'])(
+    'directs apps declaring Expo in %s to Expo prebuild before loading One config',
+    async (dependencyType) => {
+      writeFileSync(
+        join(projectRoot, 'package.json'),
+        JSON.stringify({ private: true, [dependencyType]: { expo: '^54.0.0' } })
+      )
+
+      await expect(run({ platform: 'ios' })).rejects.toThrow(
+        'run Expo prebuild and list "vxrn/expo-plugin" in the Expo config'
+      )
+      expect(loadUserOneOptionsMock).not.toHaveBeenCalled()
+      expect(prebuildMock).not.toHaveBeenCalled()
+    }
+  )
 })
