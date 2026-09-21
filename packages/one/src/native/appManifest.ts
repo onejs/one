@@ -79,7 +79,7 @@ export function validateNativeApp(manifest: NativeAppManifest): NativeAppManifes
       !HEX_COLOR.test(manifest.splash.backgroundColor) ||
       (manifest.splash.width !== undefined &&
         (!Number.isFinite(manifest.splash.width) ||
-          manifest.splash.width <= 0 ||
+          manifest.splash.width < 1 ||
           manifest.splash.width > 288)))
   ) {
     fail(

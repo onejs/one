@@ -147,7 +147,7 @@ export function validatePrebuildApp(
       !HEX_COLOR.test(app.splash.backgroundColor) ||
       (app.splash.width !== undefined &&
         (!Number.isFinite(app.splash.width) ||
-          app.splash.width <= 0 ||
+          app.splash.width < 1 ||
           app.splash.width > 288)))
   ) {
     fail(

@@ -85,6 +85,12 @@ describe('native.app prebuild validation', () => {
     expect(() =>
       validatePrebuildApp({
         ...app,
+        splash: { source: './splash.png', backgroundColor: '#000000', width: 0.99 },
+      })
+    ).toThrow(/splash/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
         splash: { source: './splash.png', backgroundColor: '#000000', width: 289 },
       })
     ).toThrow(/splash/)
@@ -398,9 +404,18 @@ describe('generateForPlatform determinism', () => {
       )
     ).metadata()
     expect(androidIcon).toMatchObject({ width: 192, height: 192 })
+    const iosApp = join(output, 'ios', 'MyApp')
     expect(
-      readFileSync(join(output, 'ios', 'MyApp', 'LaunchScreen.storyboard'), 'utf8')
-    ).toContain('image="Splash"')
+      await sharp(
+        join(iosApp, 'Images.xcassets', 'Splash.imageset', 'splash.png')
+      ).metadata()
+    ).toMatchObject({ width: 710, height: 209 })
+    const launchStoryboard = readFileSync(join(iosApp, 'LaunchScreen.storyboard'), 'utf8')
+    expect(launchStoryboard).toContain('image="Splash"')
+    expect(launchStoryboard).toContain('firstAttribute="centerX"')
+    expect(launchStoryboard).toContain('firstAttribute="centerY"')
+    expect(launchStoryboard).toContain('firstAttribute="width" constant="200"')
+    expect(launchStoryboard).toContain('firstAttribute="height" constant="58.873"')
     const androidRes = join(output, 'android', 'app', 'src', 'main', 'res')
     const splashMdpiPath = join(androidRes, 'drawable-mdpi', 'splash.png')
     const splashMdpi = await sharp(splashMdpiPath).metadata()

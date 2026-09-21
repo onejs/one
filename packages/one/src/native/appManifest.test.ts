@@ -43,7 +43,7 @@ describe('native.app manifest', () => {
     expect(() =>
       validateNativeApp({
         name: 'MyApp',
-        splash: { source: './splash.png', backgroundColor: '#000000', width: 0 },
+        splash: { source: './splash.png', backgroundColor: '#000000', width: 0.99 },
         ios: { bundleId: 'dev.one.myapp' },
         android: { applicationId: 'dev.one.myapp' },
       })
