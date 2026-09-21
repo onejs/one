@@ -40,6 +40,15 @@ class OneNativeNetworkModule(reactContext: ReactApplicationContext) :
         synchronized(this) {
             listenerCount += 1
             if (listenerCount > 1 || callback != null) return
+            // the library declares no permissions, so the app must declare
+            // ACCESS_NETWORK_STATE; without it monitoring is unavailable and
+            // the effect does nothing instead of raising a SecurityException.
+            if (reactApplicationContext.checkSelfPermission(
+                    android.Manifest.permission.ACCESS_NETWORK_STATE
+                ) != android.content.pm.PackageManager.PERMISSION_GRANTED
+            ) {
+                return
+            }
             val manager = connectivity() ?: return
             val next =
                 object : ConnectivityManager.NetworkCallback() {

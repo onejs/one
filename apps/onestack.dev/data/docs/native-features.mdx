@@ -331,6 +331,8 @@ const live = One.useNetworkState()
 
 `type` is one of `none`, `unknown`, `cellular`, `wifi`, `bluetooth`, `ethernet`, `wimax`, `vpn`, or `other`. On web a live connection reports `unknown`, since browser connection types are unreliable.
 
+Android apps must declare `ACCESS_NETWORK_STATE` in their manifest; without it the listener stays silent and `getState` rejects with `E_NETWORK_STATE`.
+
 ### Migration from expo-network
 
 | expo-network | One |

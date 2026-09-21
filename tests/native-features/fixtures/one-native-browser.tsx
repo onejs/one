@@ -56,8 +56,9 @@ export default function OneNativeBrowser() {
         testID="one-native-browser-auth-dismiss"
         style={styles.chip}
         onPress={async () => {
+          // same tick, no sleep: opening backgrounds the app on android,
+          // which pauses js timers until the tab closes.
           const pending = Browser.openAuthSession(page, redirect)
-          await new Promise((resolve) => setTimeout(resolve, 750))
           Browser.dismissAuthSession()
           const next = await pending
           setAuth(next.type === 'success' ? `success ${next.url}` : next.type)
