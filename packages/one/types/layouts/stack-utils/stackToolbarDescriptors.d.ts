@@ -30,6 +30,12 @@ export interface StackToolbarItemProps {
     tintColor?: ColorValue;
     disabled?: boolean;
     /**
+     * Liquid-glass background sharing (iOS 26+). Passed to header items and
+     * bottom toolbar items alike.
+     */
+    sharesBackground?: boolean;
+    hidesSharedBackground?: boolean;
+    /**
      * Top-level header items have no hidden slot in react-navigation, so hidden
      * leading/trailing items are omitted. Bottom items pass hidden through to
      * the toolbar item.
@@ -61,6 +67,9 @@ export interface StackToolbarMenuProps {
     systemImageName?: string;
     tintColor?: ColorValue;
     disabled?: boolean;
+    /** Liquid-glass background sharing (iOS 26+). */
+    sharesBackground?: boolean;
+    hidesSharedBackground?: boolean;
     hidden?: boolean;
     accessibilityLabel?: string;
     accessibilityHint?: string;
@@ -104,6 +113,8 @@ export interface BottomToolbarItemData {
     systemImageName?: string;
     tintColor?: ColorValue;
     disabled?: boolean;
+    sharesBackground?: boolean;
+    hidesSharedBackground?: boolean;
     hidden?: boolean;
     selected?: boolean;
     /** Carried for menu children; maps to the MenuAction destructive flag. */
@@ -120,6 +131,8 @@ export interface BottomToolbarMenuData {
     icon?: string;
     tintColor?: ColorValue;
     disabled?: boolean;
+    sharesBackground?: boolean;
+    hidesSharedBackground?: boolean;
     hidden?: boolean;
     accessibilityLabel?: string;
     accessibilityHint?: string;
@@ -135,10 +148,12 @@ export declare function slotChildrenToBottomData(children: ReactNode): BottomToo
 /**
  * Map Stack.Toolbar children to native-stack screen options. Leading maps to
  * unstable_headerLeftItems and trailing to unstable_headerRightItems, the
- * genuine iOS header-item path in react-navigation 8 alpha. Bottom has no
- * options equivalent (the toolbar is owned by the screen view controller, so
- * Stack.Toolbar.Bottom must mount in screen content); a bottom slot in layout
- * config warns and is ignored.
+ * genuine iOS header-item path in react-navigation 8 alpha. An explicitly
+ * declared slot always wins over incoming options: an empty slot (for
+ * example, all items hidden) clears inherited items, while an absent slot
+ * preserves them. Bottom has no options equivalent (the toolbar is owned by
+ * the screen view controller, so Stack.Toolbar.Bottom must mount in screen
+ * content); a bottom slot in layout config warns and is ignored.
  */
 export declare function appendStackToolbarPropsToOptions(options: NativeStackNavigationOptions, props: StackToolbarProps): NativeStackNavigationOptions;
 export { isKind as isToolbarKind };
