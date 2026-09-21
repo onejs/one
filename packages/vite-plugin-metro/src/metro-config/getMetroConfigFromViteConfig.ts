@@ -52,6 +52,40 @@ function rewriteMainModuleBundleUrl(
   return url.replace(rootIndexBundleRequestPattern, `$1/${resolvedMainModulePath}.bundle`)
 }
 
+function isBareSpecifier(name: string) {
+  return name !== '' && !name.startsWith('.') && !name.startsWith('/')
+}
+
+// metro parses `/one/metro-entry.bundle` to the entry `./one/metro-entry`
+// relative to the server root, which misses node_modules package lookup.
+function bareMainModuleForRequest(
+  moduleName: string,
+  mainModuleName: string | undefined
+) {
+  if (!mainModuleName || !isBareSpecifier(mainModuleName)) return undefined
+  if (moduleName === `./${mainModuleName}`) return mainModuleName
+  return undefined
+}
+
+// defaultConfigOverrides and Metro config loading can replace the resolver.
+// enforce package semantics on the final config while leaving every other
+// request on the resolver selected by that composition.
+function enforceBareMainModuleEntry(config: any, mainModuleName: string | undefined) {
+  if (!mainModuleName || !isBareSpecifier(mainModuleName)) return config
+  const innerResolveRequest = config?.resolver?.resolveRequest
+  return {
+    ...config,
+    resolver: {
+      ...config?.resolver,
+      resolveRequest: (context: any, moduleName: string, platform: string) => {
+        const bareMain = bareMainModuleForRequest(moduleName, mainModuleName)
+        const resolveRequest = innerResolveRequest || context.resolveRequest
+        return resolveRequest(context, bareMain ?? moduleName, platform)
+      },
+    },
+  }
+}
+
 async function isWatchmanResponsive(projectRoot: string) {
   let probe = watchmanResponsivePromises.get(projectRoot)
   if (probe) {
@@ -287,7 +321,11 @@ export async function buildMetroConfigInputFromViteConfig(
       : defaultConfigOverrides),
   }
 
-  return { defaultConfig: merged, projectRoot, extraConfig }
+  return {
+    defaultConfig: enforceBareMainModuleEntry(merged, mainModuleName),
+    projectRoot,
+    extraConfig,
+  }
 }
 
 export async function getMetroConfigFromViteConfig(
@@ -468,7 +506,7 @@ export async function getMetroConfigFromViteConfig(
   )
 
   return {
-    ...metroConfig,
+    ...enforceBareMainModuleEntry(metroConfig, mainModuleName),
     ...extraConfig,
   } as MetroConfigExtended
 }
