@@ -127,4 +127,48 @@ describe('withOne', () => {
       rewriteRequestUrl('/index.bundle?platform=ios&dev=true&hot=true&minify=false')
     ).toMatch(/\/one\/metro-entry\.bundle\?platform=ios&dev=true&hot=true&minify=false$/)
   })
+
+  it('resolves the rewritten bare entry via package lookup, not app-relative', async () => {
+    // metro parses /one/metro-entry.bundle to ./one/metro-entry relative to
+    // the server root, which misses node_modules. the resolver keeps the bare
+    // specifier so package lookup finds node_modules/one/metro-entry.js.
+    const workspaceRoot = path.resolve(__dirname, '../../../../')
+    const fixtureRoot = fs.mkdtempSync(path.join(workspaceRoot, '.tmp-with-one-entry-'))
+    tmpDirs.push(fixtureRoot)
+
+    fs.writeFileSync(
+      path.join(fixtureRoot, 'package.json'),
+      JSON.stringify({ name: 'tmp-with-one-entry', private: true, main: 'one/metro-entry' })
+    )
+    fs.writeFileSync(
+      path.join(fixtureRoot, 'tsconfig.json'),
+      JSON.stringify({ compilerOptions: { paths: {} } })
+    )
+    const pkgDir = path.join(fixtureRoot, 'node_modules', 'one')
+    fs.mkdirSync(pkgDir, { recursive: true })
+    fs.writeFileSync(
+      path.join(pkgDir, 'package.json'),
+      JSON.stringify({ name: 'one', version: '0.0.0' })
+    )
+    fs.writeFileSync(path.join(pkgDir, 'metro-entry.js'), 'module.exports = null\n')
+
+    const config = (await withOne(fixtureRoot, { loadViteConfig: false })) as any
+    expect(config.server.rewriteRequestUrl('/index.bundle?platform=ios&dev=true')).toMatch(
+      /\/one\/metro-entry\.bundle\?platform=ios&dev=true$/
+    )
+
+    const seen: string[] = []
+    await config.resolver.resolveRequest(
+      {
+        originModulePath: `${fixtureRoot}/.`,
+        resolveRequest: (_ctx: any, name: string) => {
+          seen.push(name)
+          return { type: 'sourceFile', filePath: name }
+        },
+      },
+      './one/metro-entry',
+      'ios'
+    )
+    expect(seen).toEqual(['one/metro-entry'])
+  })
 })

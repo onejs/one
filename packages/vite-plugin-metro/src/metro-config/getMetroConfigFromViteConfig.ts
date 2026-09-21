@@ -46,6 +46,20 @@ function rewriteMainModuleBundleUrl(
   return url.replace(rootIndexBundleRequestPattern, `$1/${resolvedMainModulePath}.bundle`)
 }
 
+function isBareSpecifier(name: string) {
+  return name !== '' && !name.startsWith('.') && !name.startsWith('/')
+}
+
+// metro parses `/one/metro-entry.bundle` to the entry `./one/metro-entry`
+// relative to the server root, which misses node_modules package lookup.
+// keep a bare mainModuleName as its package specifier so metro resolves
+// node_modules/one/metro-entry.js instead of <root>/one/metro-entry.
+function bareMainModuleForRequest(moduleName: string, mainModuleName: string | undefined) {
+  if (!mainModuleName || !isBareSpecifier(mainModuleName)) return undefined
+  if (moduleName === `./${mainModuleName}`) return mainModuleName
+  return undefined
+}
+
 async function isWatchmanResponsive(projectRoot: string) {
   let probe = watchmanResponsivePromises.get(projectRoot)
   if (probe) {
@@ -203,6 +217,11 @@ export async function buildMetroConfigInputFromViteConfig(
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
 
+        const bareMain = bareMainModuleForRequest(moduleName, mainModuleName)
+        if (bareMain) {
+          return origResolveRequestFn(context, bareMain, platform)
+        }
+
         if (excludeModules && excludeModules.length > 0) {
           if (micromatch.isMatch(moduleName, excludeModules)) {
             return origResolveRequestFn(
@@ -327,6 +346,11 @@ export async function getMetroConfigFromViteConfig(
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
+
+        const bareMain = bareMainModuleForRequest(moduleName, mainModuleName)
+        if (bareMain) {
+          return origResolveRequestFn(context, bareMain, platform)
+        }
 
         // Handle excludeModules - resolve excluded modules to empty module using glob patterns
         if (excludeModules && excludeModules.length > 0) {
