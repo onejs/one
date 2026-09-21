@@ -39,6 +39,10 @@ async function loadUserViteMetroOptions(projectRoot: string) {
   }
 }
 
+// the native entry configured for every One project. kept as a bare package
+// specifier so metro resolves node_modules/one/metro-entry.js.
+const oneMetroEntry = 'one/metro-entry'
+
 /**
  * Produce a Metro config that invokes the same `getMetroConfigFromViteConfig`
  * pipeline that One's native production builds use.
@@ -95,8 +99,26 @@ export async function withOne(
 
   const { defaultConfig } = await buildMetroConfigInputFromViteConfig(viteConfig, {
     ...metroPluginOptions,
-    mainModuleName: 'one/metro-entry',
+    mainModuleName: oneMetroEntry,
   })
+
+  // metro parses /one/metro-entry.bundle to ./one/metro-entry relative to the
+  // server root, which misses node_modules package lookup. enforce the bare
+  // specifier on the final composed resolver so no inner override chain can
+  // leave it app-relative: package lookup finds node_modules/one/metro-entry.js.
+  const composedResolver = (defaultConfig as any)?.resolver
+  const innerResolveRequest = composedResolver?.resolveRequest
+  if (typeof innerResolveRequest === 'function') {
+    ;(defaultConfig as any).resolver = {
+      ...composedResolver,
+      resolveRequest: (context: any, moduleName: string, platform: string) => {
+        if (moduleName === `./${oneMetroEntry}`) {
+          return innerResolveRequest(context, oneMetroEntry, platform)
+        }
+        return innerResolveRequest(context, moduleName, platform)
+      },
+    }
+  }
 
   return defaultConfig
 }
