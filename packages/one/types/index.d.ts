@@ -52,6 +52,7 @@ export { Stack } from './layouts/Stack';
 export { Tabs } from './layouts/Tabs';
 export { Protected, type ProtectedProps } from './views/Protected';
 export type { StackHeaderBackButtonProps, StackHeaderLeftProps, StackHeaderProps, StackHeaderRightProps, StackHeaderSearchBarProps, StackHeaderTitleProps, StackScreenOptions, StackScreenProps, } from './layouts/stack-utils';
+export type { BottomToolbarData, BottomToolbarItemData, BottomToolbarMenuData, StackToolbarBottomProps, StackToolbarItemProps, StackToolbarMenuProps, StackToolbarPlacement, StackToolbarProps, StackToolbarSlotProps, } from './layouts/stack-utils';
 export { useTabs } from './headless/useTabs';
 export { useDrawer } from './headless/useDrawer';
 export type { UseTabsResult, UseDrawerResult } from './headless/types';

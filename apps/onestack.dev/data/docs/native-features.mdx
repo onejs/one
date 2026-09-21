@@ -3,47 +3,34 @@ title: Native Features (Alpha)
 description: Experimental native navigation features for iOS and Android
 ---
 
-One ships `@vxrn/native`, a package of native primitives for capabilities outside React Navigation. These are experimental and the API may change.
+One exposes its native primitives through `One.iOS`, `One.Android`, and `One.UI`.
+The platform namespaces follow the names and prop contracts of their native frameworks.
+Shared primitives live under `One.UI`.
 
 <Notice theme="yellow">
-  These features are experimental. Install the package and try them out, but expect API changes.
+  These features are experimental. Try them out, but expect API changes.
 </Notice>
 
-## Install
-
-```bash
-npm install @vxrn/native
-```
-
-`@vxrn/native` links automatically during the native build.
+The native implementation ships with One and links during the native build. No separate
+JavaScript package is required.
 
 ---
 
-## Color API
+## iOS Color API
 
-Type-safe platform colors for iOS and Android. Works with `PlatformColor` under the hood.
+Type-safe UIKit semantic colors. These stay as native color values and respond to trait
+changes without a React appearance subscription.
 
 ```tsx
-import { Color } from '@vxrn/native'
+import { One } from 'one'
 
-// iOS system colors
-<View style={{ backgroundColor: Color.ios.systemBlue }} />
-<Text style={{ color: Color.ios.label }} />
-
-// Android Material Design 3
-<View style={{ backgroundColor: Color.android.dynamic.primary }} />
-<View style={{ backgroundColor: Color.android.material.surface }} />
+<View style={{ backgroundColor: One.iOS.Color.systemBlue }} />
+<Text style={{ color: One.iOS.Color.label }} />
 ```
 
 ### iOS Colors
 
 All UIKit semantic colors: `systemBlue`, `systemRed`, `systemGreen`, `label`, `secondaryLabel`, `systemBackground`, `separator`, `systemFill`, `systemGray` through `systemGray6`, and more.
-
-### Android Colors
-
-- `Color.android.black`, `Color.android.white` — system colors via `PlatformColor`
-- `Color.android.material.primary` — static Material Design 3 baseline colors
-- `Color.android.dynamic.primary` — dynamic colors that adapt to the user's wallpaper (Android 12+)
 
 ---
 
@@ -56,17 +43,17 @@ Native iOS 18+ zoom transitions. The destination screen expands from a source el
 </Notice>
 
 ```tsx
-import { ZoomTransitionSource, ZoomTransitionEnabler } from '@vxrn/native'
+import { One } from 'one'
 
 // source screen — wrap the tappable element
 function ListScreen() {
   const router = useRouter()
   return (
-    <ZoomTransitionSource identifier="item-1">
+    <One.iOS.ZoomTransitionSource identifier="item-1">
       <Pressable onPress={() => router.push('/detail?id=item-1')}>
         <Text>Mountain View</Text>
       </Pressable>
-    </ZoomTransitionSource>
+    </One.iOS.ZoomTransitionSource>
   )
 }
 
@@ -76,7 +63,7 @@ function DetailScreen() {
   return (
     <View>
       <Stack.Screen options={{ headerShown: false }} />
-      <ZoomTransitionEnabler zoomTransitionSourceIdentifier={id} />
+      <One.iOS.ZoomTransitionEnabler zoomTransitionSourceIdentifier={id} />
       <Text>Detail for {id}</Text>
     </View>
   )
@@ -87,51 +74,49 @@ function DetailScreen() {
 
 - Set `headerShown: false` on the detail screen to avoid the header overlapping during the zoom animation
 - The `identifier` must match between `ZoomTransitionSource` and `ZoomTransitionEnabler`
-- Use `ZoomTransitionAlignmentRectDetector` on the destination to align the zoom to a specific element
+- Use `One.iOS.ZoomTransitionAlignmentRectDetector` on the destination to align the zoom to a specific element
 
 ---
 
 ## Toolbar
 
-Native iOS `UIToolbar` rendered at the bottom of the screen. Supports SF Symbols, badges, and Liquid Glass on iOS 26.
-
-Use React Navigation's `unstable_headerLeftItems` and `unstable_headerRightItems` screen options for header actions. Use `ToolbarHost` directly for a bottom `UIToolbar`; One does not add a second toolbar abstraction.
+Declarative native toolbar items through `Stack.Toolbar`, in the same compound style as `Stack.Header`. iOS only: leading/trailing slots compile to native header items, and `Stack.Toolbar.Bottom` renders a native `UIToolbar` at the bottom of the screen.
 
 ```tsx
-import { ToolbarHost, ToolbarItem, Color } from '@vxrn/native'
+import { Stack } from 'one'
 
-function MyScreen() {
-  return (
-    <View style={{ flex: 1 }}>
-      <Text>Content</Text>
-
-      <ToolbarHost>
-        <ToolbarItem
-          identifier="add"
-          title="Add"
-          systemImageName="plus"
-          tintColor={Color.ios.systemBlue}
-          onSelected={() => console.log('add tapped')}
-        />
-        <ToolbarItem identifier="spacer" type="fluidSpacer" />
-        <ToolbarItem
-          identifier="share"
-          title="Share"
-          systemImageName="square.and.arrow.up"
-          barButtonItemStyle="prominent"
-          onSelected={() => console.log('share tapped')}
-        />
-        <ToolbarItem
-          identifier="settings"
-          systemImageName="gearshape"
-          badgeConfiguration={{ value: '3' }}
-          onSelected={() => console.log('settings tapped')}
-        />
-      </ToolbarHost>
-    </View>
-  )
-}
+<Stack.Screen name="index">
+  <Stack.Toolbar>
+    <Stack.Toolbar.Leading>
+      <Stack.Toolbar.Item title="Edit" systemImageName="pencil" onPress={edit} />
+    </Stack.Toolbar.Leading>
+    <Stack.Toolbar.Trailing>
+      <Stack.Toolbar.Menu title="More" systemImageName="ellipsis.circle">
+        <Stack.Toolbar.Item title="Share" onPress={share} />
+      </Stack.Toolbar.Menu>
+    </Stack.Toolbar.Trailing>
+  </Stack.Toolbar>
+</Stack.Screen>
 ```
+
+`Leading`/`Trailing` are the primary direction-aware names (`Left`/`Right` are aliases). Items take `title`, `systemImageName` (SF Symbol), `tintColor` (including dynamic iOS values), `disabled`, `hidden`, `selected`, and the `onPress`/`onSelected` aliases. `sharesBackground` and `hidesSharedBackground` pass through to header items for iOS 26 Liquid Glass.
+
+Options are route-local and dynamic: render a nameless `Stack.Screen` with a `Stack.Toolbar` in route content and its options apply to the current route through `setOptions`, so screen state can drive items without a new API. An explicit slot always wins over incoming options: a slot whose items are all hidden writes an empty array and clears inherited items, while an absent slot preserves them.
+
+### Bottom toolbar
+
+```tsx
+// inside screen content, iOS only
+<Stack.Toolbar.Bottom hidden={hidden} animated>
+  <Stack.Toolbar.Item title="Add" systemImageName="plus" onPress={add} />
+</Stack.Toolbar.Bottom>
+```
+
+`Stack.Toolbar.Bottom` must mount in screen content where the responder chain reaches the screen view controller; in layout config it warns and is ignored. Bottom items take the same props, including `sharesBackground` and `hidesSharedBackground`.
+
+### Lower-level primitive
+
+`One.iOS.ToolbarHost` with `One.iOS.ToolbarItem` children is the lower-level bottom-`UIToolbar` renderer that `Stack.Toolbar.Bottom` builds on. Reach for it directly only when you need item types the declarative API does not expose (fixed/fluid spacers, search bar, badges).
 
 ### ToolbarItem Props
 
@@ -154,16 +139,16 @@ function MyScreen() {
 Native iOS `UIMenu` and `UIAction` for context menus in toolbars.
 
 ```tsx
-import { MenuAction } from '@vxrn/native'
+import { One } from 'one'
 
-<MenuAction
+<One.iOS.MenuAction
   identifier="edit"
   title="Edit"
   icon="pencil"
   onSelected={() => console.log('edit')}
 />
 
-<MenuAction
+<One.iOS.MenuAction
   identifier="delete"
   title="Delete"
   icon="trash"
@@ -179,27 +164,40 @@ import { MenuAction } from '@vxrn/native'
 Native `UISplitViewController` for iPad multi-column layouts.
 
 <Notice theme="yellow">
-  SplitView requires `react-native-screens` gamma mode. Add this to the top of your Podfile:
+  SplitView requires `react-native-screens` gamma mode. Enable it in the One native app manifest:
 
-  ```ruby
-  ENV['RNS_GAMMA_ENABLED'] ||= '1'
+  ```ts
+  one({
+    native: {
+      app: {
+        name: 'MyApp',
+        ios: {
+          bundleId: 'com.example.myapp',
+          screensGamma: true,
+        },
+        android: { applicationId: 'com.example.myapp' },
+      },
+    },
+  })
   ```
 
-  Then run `pod install`. The `SplitView.Column` markers must be direct children of
+  `one prebuild` adds the Podfile setting before CocoaPods runs. For an existing
+  native project that One did not generate, add `ENV['RNS_GAMMA_ENABLED'] ||= '1'`
+  to the top of its Podfile. The `SplitView.Column` markers must be direct children of
   `SplitView`; One maps them to the native screen columns and supplies the routed
   detail through `slot`.
 </Notice>
 
 ```tsx
-import { SplitView } from '@vxrn/native'
+import { One } from 'one'
 
 function Layout() {
   return (
-    <SplitView slot={Detail}>
-      <SplitView.Column>
+    <One.iOS.SplitView slot={Detail}>
+      <One.iOS.SplitView.Column>
         <SidebarContent />
-      </SplitView.Column>
-    </SplitView>
+      </One.iOS.SplitView.Column>
+    </One.iOS.SplitView>
   )
 }
 ```
@@ -208,29 +206,78 @@ On iPhone, SplitView collapses to a single column automatically.
 
 ---
 
+## Shared Icons
+
+`One.UI.Icon` selects the icon element your app provides for the current platform
+and applies a responsive native system color on iOS and Android. Pass a
+`One.iOS.Image` and a `One.Android.Icon`; this ensures both native elements can
+consume the shared color contract. Your app owns the glyph mapping, availability,
+size, variant, directionality, and accessibility label. An icon without a label is
+treated as decoration.
+
+```tsx
+import { One } from 'one'
+
+const shareIcons = {
+  ios: (
+    <One.iOS.Image
+      systemName="square.and.arrow.up"
+      accessibilityLabel="Share"
+      swiftStyle={{ fontSize: 20 }}
+    />
+  ),
+  android: <One.Android.Icon name="share" size={20} accessibilityLabel="Share" />,
+  web: <ShareIcon color="$color" size={20} />,
+}
+
+<One.UI.Icon icons={shareIcons} colorRole="accent" />
+<One.UI.Icon icons={shareIcons} color="#E5484D" />
+```
+
+`colorRole` accepts `primary`, `secondary`, `tertiary`, `accent`, or `danger`.
+The role reaches SwiftUI or Compose unchanged and resolves from the active native
+color scheme. A light or dark mode change updates the mounted native icon without a
+React appearance subscription. If neither color prop is present, `primary` is the
+default. Use `color` for a React Native `ColorValue`, including an iOS dynamic color
+in iOS code or a regular color string. `color` and `colorRole` are mutually exclusive.
+
+One does not map these roles on web. When `icons.web` is present, One returns that
+React element unchanged so Tamagui or the app can style it. When it is absent, the
+component renders nothing on web.
+
+### One.UI.Icon Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `icons` | `{ ios: ReactElement<ImageProps>; android: ReactElement<ComposeIconProps>; web?: ReactElement }` | App-owned platform icons using `One.iOS.Image` and `One.Android.Icon` |
+| `colorRole` | `'primary' \| 'secondary' \| 'tertiary' \| 'accent' \| 'danger'` | Responsive native system color |
+| `color` | `ColorValue` | Custom color, mutually exclusive with `colorRole` |
+
+---
+
 ## Compose Icons (Android)
 
 Native Material Symbols icons for the Android Compose surface.
 
 ```tsx
-import { Compose } from '@vxrn/native'
+import { One } from 'one'
 
-<Compose.Column>
-  <Compose.Icon
+<One.Android.Column>
+  <One.Android.Icon
     name="star"
     size={24}
     filled
     composeStyle={{ foregroundColor: '#FFC107' }}
   />
-  <Compose.Button label="Next" icon="arrow_forward" iconFilled onPress={() => {}} />
-</Compose.Column>
+  <One.Android.Button label="Next" icon="arrow_forward" iconFilled onPress={() => {}} />
+</One.Android.Column>
 ```
 
-Names are Material Symbols snake_case names from fonts.google.com/icons, such as `star` or `arrow_forward`. There is no mapping to SF Symbols: iOS keeps `systemImage`/`systemName`. Web renders nothing, and unlike the null-returning toolbar and zoom components, the `Compose` components throw when rendered off Android.
+Names are Material Symbols snake_case names from fonts.google.com/icons, such as `star` or `arrow_forward`. There is no mapping to SF Symbols: iOS keeps `systemImage`/`systemName`. Web renders nothing, and unlike the null-returning toolbar and zoom components, the `One.Android` components throw when rendered off Android.
 
-`size` defaults to 24. `filled` picks the bundled filled font instead of outlined. `Compose.Button` takes a leading icon with `icon` and `iconFilled`; a standalone icon tints with `composeStyle.foregroundColor`, while a Button icon follows the button's content color. Fonts are bundled, so rendering is offline and synchronous. Unknown names throw when the icon renders, and an icon with no `accessibilityLabel` is decorative.
+`size` defaults to 24. `filled` picks the bundled filled font instead of outlined. `One.Android.Button` takes a leading icon with `icon` and `iconFilled`; a standalone icon tints with `composeStyle.foregroundColor`, while a Button icon follows the button's content color. Fonts are bundled, so rendering is offline and synchronous. Unknown names throw when the icon renders, and an icon with no `accessibilityLabel` is decorative.
 
-### Compose.Icon Props
+### One.Android.Icon Props
 
 | Prop | Type | Description |
 |------|------|-------------|
@@ -244,12 +291,13 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 
 | Feature | iOS | Android | Web |
 |---------|-----|---------|-----|
-| Color API | system colors via PlatformColor | Material 3 dynamic/static | returns null |
+| Responsive icon colors | One.UI.Icon + UIKit semantic colors | One.UI.Icon + adaptive Material color scheme | app-provided element |
 | Zoom Transitions | iOS 18+ | unsupported | unsupported |
 | Toolbar | UIToolbar + SF Symbols | unsupported | unsupported |
 | Menu Actions | UIMenu / UIAction | unsupported | unsupported |
 | SplitView | iPad (gamma required) | routed slot fallback | routed slot fallback |
-| Icons | SF Symbols via systemImage/systemName | Material Symbols via Compose.Icon | unsupported |
+| Icons | SF Symbols via One.iOS.Image | Material Symbols via One.Android.Icon | unsupported |
+| Shared icon selection | One.UI.Icon | One.UI.Icon | app-provided React element |
 
 Unsupported toolbar and zoom components return `null`, so they are safe to keep in
 cross-platform component trees. SplitView renders its routed `slot` without native

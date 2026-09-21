@@ -1,10 +1,6 @@
 #import <React/RCTViewManager.h>
 
-#if __has_include("VxrnNative-Swift.h")
 #import "VxrnNative-Swift.h"
-#else
-#import <VxrnNative/VxrnNative-Swift.h>
-#endif
 
 @interface VxrnToolbarHostManager : RCTViewManager
 @end
@@ -16,5 +12,8 @@ RCT_EXPORT_MODULE(VxrnToolbarHost)
 - (UIView *)view {
   return [ToolbarHostView new];
 }
+
+RCT_REMAP_VIEW_PROPERTY(hidden, toolbarHidden, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(animated, BOOL)
 
 @end
