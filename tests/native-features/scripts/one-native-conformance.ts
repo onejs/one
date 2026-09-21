@@ -40,6 +40,9 @@ const suites = [
   'accessibility',
   'media',
   'map',
+  'clipboard',
+  'network',
+  'web-browser',
 ] as const
 type Suite = (typeof suites)[number]
 type Config = {
@@ -239,6 +242,22 @@ const mapLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-map-place-ferry')) &&
   has(nodes, 'Place: ')
+const clipboardLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-clipboard-set')) &&
+  has(nodes, 'Written: ')
+const networkLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-network-refresh')) &&
+  has(nodes, 'State: ')
+// a presented safari sheet or auth prompt takes the whole accessibility tree,
+// leaving the fixture behind it out, so the suite counts as loaded from
+// either side of the presentation.
+const browserLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  ((Boolean(id(nodes, 'one-native-browser-open')) && has(nodes, 'Result: ')) ||
+    labels(nodes).includes('Done') ||
+    labels(nodes).includes('Cancel'))
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -265,6 +284,9 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
   map: mapLoaded,
+  clipboard: clipboardLoaded,
+  network: networkLoaded,
+  'web-browser': browserLoaded,
 }
 const suiteHome: Record<Suite, string> = {
   'tabs-menu': 'nav-one-native',
@@ -284,6 +306,9 @@ const suiteHome: Record<Suite, string> = {
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
   map: 'nav-one-native-map',
+  clipboard: 'nav-one-native-clipboard',
+  network: 'nav-one-native-network',
+  'web-browser': 'nav-one-native-browser',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
 const firstState = (nodes: Node[]) =>
@@ -3132,6 +3157,146 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => value(n, 'gamma') && request(n, 'gamma') && Boolean(wheel(n, 2))
     )
 
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'clipboard') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-clipboard')
+    await wait('clipboard fixture mounted', (n) =>
+      labels(n).includes('Written: none')
+    )
+    tap({ id: 'one-native-clipboard-set' })
+    await wait('setStringAsync reports true', (n) =>
+      labels(n).includes('Written: true')
+    )
+    tap({ id: 'one-native-clipboard-get' })
+    await wait('getStringAsync reads the write back', (n) =>
+      labels(n).includes('Read: one-native-clipboard-probe')
+    )
+    tap({ id: 'one-native-clipboard-has' })
+    await wait('hasStringAsync sees the string', (n) =>
+      labels(n).includes('Has: true')
+    )
+    screenshot('clipboard-roundtrip.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`clipboard recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-clipboard')
+      await wait(`clipboard recycle ${cycle}: a fresh fixture mounts`, (n) =>
+        labels(n).includes('Written: none')
+      )
+      tap({ id: 'one-native-clipboard-get' })
+      await wait(
+        `clipboard recycle ${cycle}: the pasteboard outlives the fixture`,
+        (n) => labels(n).includes('Read: one-native-clipboard-probe')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'network') {
+    const stateOf = (nodes: Node[]) => {
+      const label = labels(nodes).find((text) => text.startsWith('State: '))
+      if (!label) return null
+      const [, type, connected, reachable] = label.split(' ')
+      return { type, connected, reachable }
+    }
+    const eventsOf = (nodes: Node[]) => {
+      const label = labels(nodes).find((text) => text.startsWith('Events: '))
+      return label ? Number(label.slice('Events: '.length)) : NaN
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-network')
+
+    // the simulator has a live host route, so the correct reading is a named
+    // type with both flags true. NONE would prove the monitor never started.
+    await wait('the one-shot read publishes live state', (n) => {
+      const state = stateOf(n)
+      return Boolean(
+        state &&
+          state.type &&
+          state.type !== 'NONE' &&
+          state.type !== 'none' &&
+          state.connected === 'true' &&
+          state.reachable === 'true'
+      )
+    })
+    await wait('the listener fires at least once', (n) => eventsOf(n) >= 1)
+    tap({ id: 'one-native-network-refresh' })
+    await wait('a refresh re-reads live state', (n) => {
+      const state = stateOf(n)
+      return Boolean(
+        state && state.connected === 'true' && state.reachable === 'true'
+      )
+    })
+    screenshot('network-state.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`network recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-network')
+      await wait(`network recycle ${cycle}: state publishes again`, (n) => {
+        const state = stateOf(n)
+        return (
+          Boolean(state && state.type !== 'none' && state.connected === 'true') &&
+          eventsOf(n) >= 1
+        )
+      })
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'web-browser') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-browser')
+    await wait('browser fixture mounted', (n) => labels(n).includes('Result: none'))
+
+    // a user dismiss resolves cancel: the safari Done button is the only
+    // control the suite touches while the sheet owns the tree.
+    tap({ id: 'one-native-browser-open' })
+    await wait('the safari sheet presents with its Done button', (n) =>
+      labels(n).includes('Done')
+    )
+    screenshot('browser-open.png')
+    tap({ label: 'Done' })
+    await wait('a user dismiss resolves cancel', (n) =>
+      labels(n).includes('Result: cancel')
+    )
+
+    // a programmatic dismiss resolves dismiss on both promises.
+    tap({ id: 'one-native-browser-open-dismiss' })
+    await wait('dismissBrowser resolves dismiss', (n) =>
+      labels(n).includes('Opened: dismiss') &&
+      labels(n).includes('Dismissed: dismiss')
+    )
+    screenshot('browser-dismiss.png')
+
+    // the auth session ends in cancel: the consent alert and the session
+    // sheet both offer Cancel, whichever one is showing.
+    tap({ id: 'one-native-browser-auth' })
+    await wait('the auth prompt offers Cancel', (n) =>
+      labels(n).includes('Cancel')
+    )
+    tap({ label: 'Cancel' })
+    await wait('the auth session resolves cancel', (n) =>
+      labels(n).includes('Auth: cancel')
+    )
+    screenshot('browser-auth.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`browser recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-browser')
+      await wait(`browser recycle ${cycle}: a fresh fixture mounts`, (n) =>
+        labels(n).includes('Result: none')
+      )
+    }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

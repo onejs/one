@@ -287,6 +287,72 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 
 ---
 
+## Clipboard
+
+String clipboard through `One.Clipboard`, matching `expo-clipboard`'s string API so migration is a mechanical import swap. Backed by `UIPasteboard` on iOS, `ClipboardManager` on Android, and `navigator.clipboard` on web.
+
+```tsx
+import { One } from 'one'
+
+await One.Clipboard.setStringAsync('hello')
+const text = await One.Clipboard.getStringAsync()
+const has = await One.Clipboard.hasStringAsync()
+```
+
+`setStringAsync` resolves `true` once the string is on the pasteboard. On web, reads resolve `''` and writes resolve `false` when the browser denies access.
+
+---
+
+## Network
+
+Connection state through `One.Network`, matching `expo-network`. Backed by `NWPathMonitor` on iOS, `ConnectivityManager` with a `NetworkCallback` on Android, and `navigator.onLine` with `online`/`offline` events on web.
+
+```tsx
+import { One } from 'one'
+
+const state = await One.Network.getNetworkStateAsync()
+// { type: 'WIFI', isConnected: true, isInternetReachable: true }
+
+const subscription = One.Network.addNetworkStateListener((next) => {
+  console.log(next.type)
+})
+subscription.remove()
+```
+
+`type` is one of `NONE`, `UNKNOWN`, `CELLULAR`, `WIFI`, `BLUETOOTH`, `ETHERNET`, `WIMAX`, `VPN`, or `OTHER`. `One.Network.useNetworkState()` returns the same state as a hook. On web a live connection reports `UNKNOWN`, since browser connection types are unreliable.
+
+Android merges `ACCESS_NETWORK_STATE` from the library manifest, so no app change is needed.
+
+---
+
+## Web Browser
+
+In-app browser through `One.WebBrowser`, matching `expo-web-browser`'s result shapes. Pages open in `SFSafariViewController` on iOS and Custom Tabs on Android; auth sessions use `ASWebAuthenticationSession` on iOS and Custom Tabs with an app redirect on Android.
+
+```tsx
+import { One } from 'one'
+
+const page = await One.WebBrowser.openBrowserAsync('https://example.com')
+// { type: 'cancel' } once the user closes the sheet
+// { type: 'opened' } on Android, which reports no close event
+
+await One.WebBrowser.dismissBrowser()
+// { type: 'dismiss' }
+
+const auth = await One.WebBrowser.openAuthSessionAsync(
+  'https://example.com/login',
+  'myapp://auth'
+)
+// { type: 'success', url: 'myapp://auth?code=…' } on redirect
+// { type: 'cancel' } when the user backs out
+```
+
+`openBrowserAsync` takes `{ presentationStyle, toolbarColor, controlsColor }` on iOS and `{ browserPackage, toolbarColor, showTitle }` on Android. `openAuthSessionAsync` adds `preferEphemeralSession` on iOS. On Android the auth promise settles when the redirect returns to the app (the standard single-task activity delivers it) or with `cancel` when the user closes the tab. The `locked` type reports a second session opened while one is already up.
+
+On web, `openBrowserAsync` opens a blank-target tab and `openAuthSessionAsync` resolves `cancel` when its popup closes; redirect capture is not implemented there.
+
+---
+
 ## Platform Support
 
 | Feature | iOS | Android | Web |
@@ -298,6 +364,9 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 | SplitView | iPad (gamma required) | routed slot fallback | routed slot fallback |
 | Icons | SF Symbols via One.iOS.Image | Material Symbols via One.Android.Icon | unsupported |
 | Shared icon selection | One.UI.Icon | One.UI.Icon | app-provided React element |
+| Clipboard | UIPasteboard | ClipboardManager | navigator.clipboard |
+| Network | NWPathMonitor | ConnectivityManager | navigator.onLine |
+| Web Browser | SFSafariViewController + ASWebAuthenticationSession | Custom Tabs | window.open |
 
 Unsupported toolbar and zoom components return `null`, so they are safe to keep in
 cross-platform component trees. SplitView renders its routed `slot` without native
