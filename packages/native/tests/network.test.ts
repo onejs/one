@@ -1,6 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { Network } from '../src/network/index'
-import { normalizeState } from '../src/network/state'
 
 vi.mock('react-native', () => ({
   TurboModuleRegistry: { get: vi.fn() },
@@ -104,15 +103,19 @@ describe('network web', () => {
 })
 
 describe('network native entry', () => {
-  it('delegates the one-shot read and normalizes it', async () => {
+  it('delegates the one-shot read', async () => {
     const nativeModule = {
-      getState: vi.fn(async () => ({ type: 'wifi', isConnected: 1 })),
+      getState: vi.fn(async () => ({
+        type: 'wifi',
+        isConnected: true,
+        isInternetReachable: true,
+      })),
     }
     const { Network: native } = await loadNativeEntry(nativeModule)
     expect(await native.getState()).toEqual({
       type: 'wifi',
-      isConnected: false,
-      isInternetReachable: false,
+      isConnected: true,
+      isInternetReachable: true,
     })
     expect(nativeModule.getState).toHaveBeenCalledTimes(1)
   })
@@ -124,18 +127,15 @@ describe('network native entry', () => {
     )
   })
 
-  it('subscribes through one event emitter and stops on remove', async () => {
-    const nativeModule = {
-      startMonitoring: vi.fn(),
-      stopMonitoring: vi.fn(),
-    }
+  it('subscribes through one event emitter wrapping the module', async () => {
+    const nativeModule = {}
     const { Network: native } = await loadNativeEntry(nativeModule)
     const { NativeEventEmitter } = await import('react-native')
     const seen: unknown[] = []
     const subscription = native.addStateListener((state) => {
       seen.push(state)
     })
-    expect(nativeModule.startMonitoring).toHaveBeenCalledTimes(1)
+    expect(vi.mocked(NativeEventEmitter).mock.calls[0]?.[0]).toBe(nativeModule)
     const emitter = vi.mocked(NativeEventEmitter).mock.results[0]?.value as {
       addListener: ReturnType<typeof vi.fn>
     }
@@ -151,7 +151,6 @@ describe('network native entry', () => {
       { type: 'cellular', isConnected: true, isInternetReachable: true },
     ])
     subscription.remove()
-    expect(nativeModule.stopMonitoring).toHaveBeenCalledTimes(1)
   })
 
   it('returns a no-op subscription without a native module', async () => {
@@ -171,26 +170,3 @@ describe('network native entry', () => {
   })
 })
 
-describe('normalizeState', () => {
-  it('passes a valid native payload through', () => {
-    expect(
-      normalizeState({ type: 'wifi', isConnected: true, isInternetReachable: true })
-    ).toEqual({ type: 'wifi', isConnected: true, isInternetReachable: true })
-  })
-
-  it('falls back to unknown for garbage', () => {
-    expect(normalizeState(null)).toEqual({
-      type: 'unknown',
-      isConnected: false,
-      isInternetReachable: false,
-    })
-    expect(normalizeState({ type: 'wifi', isConnected: 1 })).toEqual({
-      type: 'wifi',
-      isConnected: false,
-      isInternetReachable: false,
-    })
-    expect(
-      normalizeState({ type: 'WIFI', isConnected: true, isInternetReachable: true })
-    ).toEqual({ type: 'unknown', isConnected: true, isInternetReachable: true })
-  })
-})

@@ -3293,6 +3293,23 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('browser-auth.png')
 
+    // a redirect to the app scheme completes the session with the url.
+    // the runner serves the 302 locally; ephemeral mode skips the
+    // consent alert, which lives outside the app tree.
+    const redirectServer = Bun.serve({
+      port: 8123,
+      fetch: () => Response.redirect('nativefeatures://auth?code=ios1', 302),
+    })
+    try {
+      tap({ id: 'one-native-browser-auth-redirect' })
+      await wait('the redirect completes the auth session', (n) =>
+        labels(n).includes('Auth: success nativefeatures://auth?code=ios1')
+      )
+    } finally {
+      redirectServer.stop()
+    }
+    screenshot('browser-auth-redirect.png')
+
     for (const cycle of [1, 2]) {
       tap({ label: 'index' })
       await wait(`browser recycle ${cycle}: home mounted`, () => true, true)

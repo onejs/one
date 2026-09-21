@@ -7,7 +7,6 @@
 // class (NWPathMonitor is Swift-only), so this uses the C path api.
 @implementation OneNativeNetwork {
   nw_path_monitor_t _monitor;
-  NSUInteger _listenerCount;
 }
 
 RCT_EXPORT_MODULE()
@@ -25,8 +24,8 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_METHOD(addListener:(NSString *)eventName)
 {
   // super keeps the emitter's listener count; without it every event warns
-  // and never reaches js. the monitor lifecycle flows through
-  // startMonitoring instead.
+  // and never reaches js. the first add runs startObserving, which starts
+  // the monitor, so the first path can never race the subscription.
   [super addListener:eventName];
 }
 
@@ -90,36 +89,29 @@ RCT_EXPORT_METHOD(getState:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseR
   resolve(state);
 }
 
-RCT_EXPORT_METHOD(startMonitoring)
+- (void)startObserving
 {
-  @synchronized(self) {
-    _listenerCount += 1;
-    if (_listenerCount > 1 || _monitor != NULL) {
-      return;
-    }
-    nw_path_monitor_t monitor = nw_path_monitor_create();
-    _monitor = monitor;
-    __weak typeof(self) weakSelf = self;
-    nw_path_monitor_set_update_handler(monitor, ^(nw_path_t path) {
-      [weakSelf sendEventWithName:@"oneNativeNetworkStateChanged"
-                             body:[OneNativeNetwork stateForPath:path]];
-    });
-    nw_path_monitor_set_queue(monitor, dispatch_get_main_queue());
-    nw_path_monitor_start(monitor);
+  // the emitter calls this on the first listener, so the monitor starts
+  // behind the subscription and its first path is never dropped.
+  if (_monitor != NULL) {
+    return;
   }
+  nw_path_monitor_t monitor = nw_path_monitor_create();
+  _monitor = monitor;
+  __weak typeof(self) weakSelf = self;
+  nw_path_monitor_set_update_handler(monitor, ^(nw_path_t path) {
+    [weakSelf sendEventWithName:@"oneNativeNetworkStateChanged"
+                           body:[OneNativeNetwork stateForPath:path]];
+  });
+  nw_path_monitor_set_queue(monitor, dispatch_get_main_queue());
+  nw_path_monitor_start(monitor);
 }
 
-RCT_EXPORT_METHOD(stopMonitoring)
+- (void)stopObserving
 {
-  @synchronized(self) {
-    if (_listenerCount == 0) {
-      return;
-    }
-    _listenerCount -= 1;
-    if (_listenerCount == 0 && _monitor != NULL) {
-      nw_path_monitor_cancel(_monitor);
-      _monitor = NULL;
-    }
+  if (_monitor != NULL) {
+    nw_path_monitor_cancel(_monitor);
+    _monitor = NULL;
   }
 }
 

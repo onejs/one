@@ -1,6 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { Browser } from '../src/browser/index'
-import { normalizeAuthResult, normalizeResult } from '../src/browser/result'
 
 vi.mock('react-native', () => ({
   TurboModuleRegistry: { get: vi.fn() },
@@ -19,10 +18,12 @@ async function loadNativeEntry(nativeModule: unknown) {
 
 describe('browser web', () => {
   it('opens a blank-target popup and reports opened', async () => {
-    const open = vi.fn(() => ({ closed: false }))
+    const popup = { closed: false, opener: {} }
+    const open = vi.fn(() => popup)
     vi.stubGlobal('window', { open })
     expect(await Browser.open('https://example.com')).toEqual({ type: 'opened' })
-    expect(open).toHaveBeenCalledWith('https://example.com', '_blank', 'noopener')
+    expect(open).toHaveBeenCalledWith('https://example.com', '_blank')
+    expect(popup.opener).toBe(null)
   })
 
   it('rejects with a stable code when the browser blocks the popup', async () => {
@@ -33,34 +34,23 @@ describe('browser web', () => {
       'Browser.open: the browser blocked the popup. Open it from a user gesture.'
     )
     expect(openError.code).toBe('E_BROWSER_BLOCKED')
-    const authError = await Browser.openAuthSession('https://example.com').catch(
-      (error) => error
-    )
-    expect(authError.message).toBe(
-      'Browser.openAuthSession: the browser blocked the popup. Open it from a user gesture.'
-    )
-    expect(authError.code).toBe('E_BROWSER_BLOCKED')
   })
 
   it('resolves dismiss without native work', async () => {
     expect(await Browser.dismiss()).toEqual({ type: 'dismiss' })
   })
 
-  it('resolves cancel when the auth popup is already closed', async () => {
-    vi.stubGlobal('window', { open: () => ({ closed: true }) })
-    expect(await Browser.openAuthSession('https://example.com')).toEqual({
-      type: 'cancel',
-    })
+  it('rejects the auth session on web without opening a popup', async () => {
+    const open = vi.fn(() => ({ closed: false }))
+    vi.stubGlobal('window', { open })
+    await expect(Browser.openAuthSession('https://example.com')).rejects.toThrow(
+      'Browser.openAuthSession needs an iOS or Android build'
+    )
+    expect(open).not.toHaveBeenCalled()
   })
 
-  it('dismissAuthSession closes the pending auth popup', async () => {
-    const popup = { closed: false, close: vi.fn() }
-    vi.stubGlobal('window', { open: () => popup })
-    const pending = Browser.openAuthSession('https://example.com')
+  it('dismissAuthSession is a no-op on web', () => {
     Browser.dismissAuthSession()
-    expect(popup.close).toHaveBeenCalledTimes(1)
-    popup.closed = true
-    await expect(pending).resolves.toEqual({ type: 'cancel' })
   })
 
   it('throws synchronously for invalid arguments', () => {
@@ -96,7 +86,7 @@ describe('browser web', () => {
 })
 
 describe('browser native entry', () => {
-  it('delegates and normalizes every call', async () => {
+  it('delegates every call', async () => {
     const nativeModule = {
       open: vi.fn(async () => ({ type: 'opened' })),
       dismiss: vi.fn(async () => ({ type: 'dismiss' })),
@@ -150,29 +140,3 @@ describe('browser native entry', () => {
   })
 })
 
-describe('normalizeResult', () => {
-  it('passes every expo result type through', () => {
-    for (const type of ['cancel', 'dismiss', 'opened', 'locked'] as const) {
-      expect(normalizeResult({ type })).toEqual({ type })
-    }
-  })
-
-  it('falls back to cancel for garbage', () => {
-    expect(normalizeResult(null)).toEqual({ type: 'cancel' })
-    expect(normalizeResult({ type: 'success' })).toEqual({ type: 'cancel' })
-  })
-})
-
-describe('normalizeAuthResult', () => {
-  it('passes a redirect result through', () => {
-    expect(normalizeAuthResult({ type: 'success', url: 'nativefeatures://auth?code=1' })).toEqual(
-      { type: 'success', url: 'nativefeatures://auth?code=1' }
-    )
-  })
-
-  it('drops a redirect without a url to cancel', () => {
-    expect(normalizeAuthResult({ type: 'success' })).toEqual({ type: 'cancel' })
-    expect(normalizeAuthResult({ type: 'dismiss' })).toEqual({ type: 'dismiss' })
-    expect(normalizeAuthResult(null)).toEqual({ type: 'cancel' })
-  })
-})

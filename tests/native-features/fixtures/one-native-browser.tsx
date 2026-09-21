@@ -3,13 +3,14 @@ import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 // exercises the browser api against the real safari sheet: a user dismiss
-// resolving cancel, a programmatic dismiss resolving dismiss, and an auth
-// session ended by dismissAuthSession. a presented sheet exposes no
-// accessibility children, so the suite detects the collapsed tree and taps
-// the measured close point. the redirect success path needs a live
-// identity provider, so the plain auth button exists for manual runs and
-// the suite covers cancel only.
+// resolving cancel, a programmatic dismiss resolving dismiss, and auth
+// sessions ended by dismissAuthSession or by a redirect. a presented sheet
+// exposes no accessibility children, so the suite detects the collapsed
+// tree and taps the measured close point. the redirect leg points at a
+// local 302 the suite serves (127.0.0.1:8123/start), so no live identity
+// provider is needed, and ephemeral mode skips the consent alert.
 const page = 'https://example.com'
+const redirectStart = 'http://127.0.0.1:8123/start'
 const redirect = 'nativefeatures://auth'
 
 export default function OneNativeBrowser() {
@@ -65,6 +66,18 @@ export default function OneNativeBrowser() {
         }}
       >
         <Text>Open auth then dismiss</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-browser-auth-redirect"
+        style={styles.chip}
+        onPress={async () => {
+          const next = await Browser.openAuthSession(redirectStart, redirect, {
+            preferEphemeralSession: true,
+          })
+          setAuth(next.type === 'success' ? `success ${next.url}` : next.type)
+        }}
+      >
+        <Text>Open auth with redirect</Text>
       </Pressable>
     </View>
   )

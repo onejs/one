@@ -39,16 +39,15 @@ function open(url: string, options: BrowserOpenOptions = {}): Promise<BrowserRes
 
 async function openPage(url: string): Promise<BrowserResult> {
   if (typeof window === 'undefined') return { type: 'opened' }
-  const opened = window.open(url, '_blank', 'noopener')
+  const opened = window.open(url, '_blank')
   if (!opened) throw blocked('Browser.open')
+  opened.opener = null
   return { type: 'opened' }
 }
 
 async function dismiss(): Promise<BrowserResult> {
   return { type: 'dismiss' }
 }
-
-let authPopup: { closed: boolean; close?: () => void } | null = null
 
 function openAuthSession(
   url: string,
@@ -58,32 +57,9 @@ function openAuthSession(
   assertBrowserUrl(url, 'Browser.openAuthSession')
   assertRedirectUrl(redirectUrl, 'Browser.openAuthSession')
   assertAuthOptions(options, 'Browser.openAuthSession')
-  return openAuthPage(url)
+  return Promise.reject(new Error('Browser.openAuthSession needs an iOS or Android build'))
 }
 
-async function openAuthPage(url: string): Promise<BrowserAuthSessionResult> {
-  // web has no auth session equivalent here: open a popup and resolve cancel
-  // when the user closes it. redirect capture is out of scope for this
-  // small api; native returns the redirect url on success.
-  if (typeof window === 'undefined') return { type: 'cancel' }
-  const opened = window.open(url, '_blank', 'noopener')
-  if (!opened) throw blocked('Browser.openAuthSession')
-  if (opened.closed) return { type: 'cancel' }
-  authPopup = opened
-  return new Promise((resolve) => {
-    const timer = setInterval(() => {
-      if (opened.closed) {
-        clearInterval(timer)
-        if (authPopup === opened) authPopup = null
-        resolve({ type: 'cancel' })
-      }
-    }, 250)
-  })
-}
-
-function dismissAuthSession(): void {
-  authPopup?.close?.()
-  authPopup = null
-}
+function dismissAuthSession(): void {}
 
 export const Browser = Object.freeze({ open, dismiss, openAuthSession, dismissAuthSession })

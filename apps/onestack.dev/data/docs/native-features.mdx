@@ -331,7 +331,7 @@ const live = One.useNetworkState()
 
 `type` is one of `none`, `unknown`, `cellular`, `wifi`, `bluetooth`, `ethernet`, `wimax`, `vpn`, or `other`. On web a live connection reports `unknown`, since browser connection types are unreliable.
 
-Android apps must declare `ACCESS_NETWORK_STATE` in their manifest; without it the listener stays silent and `getState` rejects with `E_NETWORK_STATE`.
+The library manifest declares `ACCESS_NETWORK_STATE` (a normal install-time permission, merged into the app automatically).
 
 ### Migration from expo-network
 
@@ -370,7 +370,7 @@ One.Browser.dismissAuthSession()
 
 `open` takes `{ presentationStyle, toolbarColor, controlsColor }` on iOS and `{ browserPackage, toolbarColor, showTitle }` on Android. `openAuthSession` adds `preferEphemeralSession` on iOS. On Android the auth promise settles when the redirect returns to the app (the standard single-task activity delivers it) or with `cancel` when the user closes the tab. The `locked` type reports a second session opened while one is already up. `dismissAuthSession` cancels a pending auth session, whose promise then resolves `dismiss`.
 
-On web, `open` opens a blank-target tab and `openAuthSession` resolves `cancel` when its popup closes; redirect capture is not implemented there. A blocked popup rejects with code `E_BROWSER_BLOCKED`.
+On web, `open` opens a blank-target tab and a blocked popup rejects with code `E_BROWSER_BLOCKED`; `openAuthSession` rejects with `Browser.openAuthSession needs an iOS or Android build`.
 
 ### Migration from expo-web-browser
 
