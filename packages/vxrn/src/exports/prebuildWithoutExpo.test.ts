@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import sharp from 'sharp'
 import {
+  applyAndroidDependencyPatches,
   generateForPlatform,
   getNativeDependencyInventory,
   renderPrebuildFile,
@@ -347,6 +348,41 @@ describe('community autolink inventory', () => {
   }, 180000)
 })
 
+describe('native dependency patches', () => {
+  it('adds the screens activity patch only when Android autolinking finds screens', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-native-patches-'))
+    const activityPath = join(
+      root,
+      'android',
+      'app',
+      'src',
+      'main',
+      'java',
+      'dev',
+      'one',
+      'myapp',
+      'MainActivity.kt'
+    )
+    mkdirSync(join(activityPath, '..'), { recursive: true })
+    writeFileSync(
+      activityPath,
+      'package dev.one.myapp\n\nimport com.facebook.react.ReactActivity\n\nclass MainActivity : ReactActivity() {}\n'
+    )
+
+    applyAndroidDependencyPatches({ root, app, inventory: [] })
+    expect(readFileSync(activityPath, 'utf8')).not.toContain('RNScreensFragmentFactory')
+
+    applyAndroidDependencyPatches({
+      root,
+      app,
+      inventory: [
+        { name: 'react-native-screens', version: '4.27.0', platforms: ['android'] },
+      ],
+    })
+    expect(readFileSync(activityPath, 'utf8')).toContain('RNScreensFragmentFactory')
+  })
+})
+
 describe('generateForPlatform determinism', () => {
   it('generates complete native launch assets', async () => {
     const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
@@ -375,6 +411,24 @@ describe('generateForPlatform determinism', () => {
       appWithIcon,
       join(output, 'android')
     )
+
+    expect(
+      readFileSync(
+        join(
+          output,
+          'android',
+          'app',
+          'src',
+          'main',
+          'java',
+          'dev',
+          'one',
+          'myapp',
+          'MainActivity.kt'
+        ),
+        'utf8'
+      )
+    ).not.toContain('RNScreensFragmentFactory')
 
     const iosIconDir = join(
       output,
@@ -476,6 +530,19 @@ describe('generateForPlatform determinism', () => {
     await generateForPlatform(workspaceRoot, 'ios', app, join(second, 'ios'))
     await generateForPlatform(workspaceRoot, 'android', app, join(first, 'android'))
     await generateForPlatform(workspaceRoot, 'android', app, join(second, 'android'))
+    const screensInventory = [
+      { name: 'react-native-screens', version: '4.27.0', platforms: ['android'] },
+    ]
+    applyAndroidDependencyPatches({
+      root: first,
+      app,
+      inventory: screensInventory,
+    })
+    applyAndroidDependencyPatches({
+      root: second,
+      app,
+      inventory: screensInventory,
+    })
     expect(snapshot(first)).toEqual(snapshot(second))
 
     const pbxproj = readFileSync(
@@ -497,6 +564,9 @@ describe('generateForPlatform determinism', () => {
     const gradle = readFileSync(join(first, 'android', 'app', 'build.gradle'), 'utf8')
     expect(gradle).toContain('applicationId "dev.one.myapp"')
     expect(gradle).toContain('entryFile = file("../../package.json")')
+    expect(gradle).toContain(
+      'hermesCommand = new File(file(resolveReactNativeDependency("hermes-compiler/package.json")).parentFile, "hermesc/%OS-BIN%/hermesc").absolutePath'
+    )
     expect(gradle).toContain('[vxrn/one] ensure patches are applied')
     const rootGradle = readFileSync(join(first, 'android', 'build.gradle'), 'utf8')
     expect(rootGradle).toContain('minSdkVersion = 28')

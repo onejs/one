@@ -75,7 +75,6 @@
       "name": "example-bare",
       "version": "1.27.1",
       "dependencies": {
-        "expo-constants": "58.0.0-canary-20260909-ea7a89a",
         "react": "19.2.3",
         "react-dom": "19.2.3",
         "react-native": "0.87.1",
@@ -707,6 +706,7 @@
         "pkg-types": "^1.0.3",
         "rolldown": "^1.2.8",
         "semver": "^7.6.3",
+        "sharp": "^0.35.4",
         "vite": "^8.2.2",
         "ws": "^8.21.0",
       },

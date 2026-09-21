@@ -42,6 +42,11 @@ export interface NativeDependencyInventory {
     version: string;
     platforms: string[];
 }
+export declare function applyAndroidDependencyPatches(args: {
+    root: string;
+    app: PrebuildAppConfig;
+    inventory: readonly NativeDependencyInventory[];
+}): void;
 export declare function getNativeDependencyInventory(root: string): Promise<NativeDependencyInventory[]>;
 export declare function installNativeDependencies(args: {
     root: string;

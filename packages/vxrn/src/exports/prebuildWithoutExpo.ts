@@ -569,12 +569,6 @@ end`
         `includeBuild(new File(["node", "--print", "require('module').createRequire(require.resolve('react-native/package.json')).resolve('@react-native/gradle-plugin/package.json')"].execute(null, settingsDir).text.trim()).parentFile.canonicalPath)`
       )
     }
-    if (platform === 'android' && relativePath.endsWith('/MainActivity.kt')) {
-      rendered = nativeProjectPatches.addReactNativeScreensFix(rendered)
-      if (!rendered.includes('RNScreensFragmentFactory')) {
-        throw new Error('[vxrn] failed to apply the react-native-screens activity patch')
-      }
-    }
     if (platform === 'android' && app.android?.minSdk !== undefined) {
       rendered = rendered.replace(
         /minSdkVersion = \d+/g,
@@ -656,6 +650,42 @@ export interface NativeDependencyInventory {
   name: string
   version: string
   platforms: string[]
+}
+
+export function applyAndroidDependencyPatches(args: {
+  root: string
+  app: PrebuildAppConfig
+  inventory: readonly NativeDependencyInventory[]
+}): void {
+  const { root, app, inventory } = args
+  if (
+    !app.android ||
+    !inventory.some(
+      (dependency) =>
+        dependency.name === 'react-native-screens' &&
+        dependency.platforms.includes('android')
+    )
+  ) {
+    return
+  }
+
+  const activityPath = path.join(
+    root,
+    'android',
+    'app',
+    'src',
+    'main',
+    'java',
+    ...app.android.applicationId.split('.'),
+    'MainActivity.kt'
+  )
+  const rendered = nativeProjectPatches.addReactNativeScreensFix(
+    FSExtra.readFileSync(activityPath, 'utf8')
+  )
+  if (!rendered.includes('RNScreensFragmentFactory')) {
+    throw new Error('[vxrn] failed to apply the react-native-screens activity patch')
+  }
+  FSExtra.writeFileSync(activityPath, rendered)
 }
 
 // use the community cli's final configuration so project-owned dependency

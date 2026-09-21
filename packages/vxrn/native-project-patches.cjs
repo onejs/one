@@ -153,6 +153,13 @@ def resolveNodePackage = { packageName ->
     }.standardOutput.asText.get().trim()
 }
 
+def resolveReactNativeDependency = { packageName ->
+    providers.exec {
+        workingDir(rootDir)
+        commandLine("node", "--print", "require('module').createRequire(require.resolve('react-native/package.json')).resolve('" + packageName + "')")
+    }.standardOutput.asText.get().trim()
+}
+
 react {
     // [vxrn/one] the bundle command should find the entry file automatically,
     // we are setting this to a file that will definitely exist to avoid
@@ -168,10 +175,12 @@ react {
     // [vxrn/one] resolve hoisted packages from the generated project instead of assuming
     // the application has its own node_modules directory.
     reactNativeDir = file(resolveNodePackage("react-native/package.json")).parentFile
-    codegenDir = file(resolveNodePackage("@react-native/codegen/package.json")).parentFile
+    codegenDir = file(resolveReactNativeDependency("@react-native/codegen/package.json")).parentFile
     // [vxrn/one] cli.js is not in react-native's exports map since 0.87, so
     // resolve the exported package.json and step to the sibling cli.js on disk
     cliFile = new File(file(resolveNodePackage("react-native/package.json")).parentFile, "cli.js")
+    // [vxrn/one] resolve hermesc from the same react-native installation
+    hermesCommand = new File(file(resolveReactNativeDependency("hermes-compiler/package.json")).parentFile, "hermesc/%OS-BIN%/hermesc").absolutePath
 
     /* Variants */
     //   The list of variants to that are debuggable. For those we're going to
