@@ -1,19 +1,8 @@
-import {
-  assertByteCount,
-  fillRandomValues,
-  formatUuidV4,
-  installCryptoPolyfill,
-  MAX_RANDOM_BYTES,
-  type RandomBytesSource,
-} from './random'
-
-export { fillRandomValues, formatUuidV4, installCryptoPolyfill, MAX_RANDOM_BYTES }
-export type { RandomBytesSource }
+import { assertByteCount, installCryptoPolyfill, type RandomBytesSource } from './random'
 
 // web entry. same shape as the native entry, but the byte source is the
-// platform crypto itself: every browser One targets already implements
-// getRandomValues, so installCrypto below is a no-op in practice and only
-// fills genuinely missing pieces.
+// platform crypto itself: installCrypto only fills genuinely missing
+// pieces, so a browser's crypto is never replaced.
 export function isSecureRandomAvailable(): boolean {
   return typeof globalThis.crypto?.getRandomValues === 'function'
 }
