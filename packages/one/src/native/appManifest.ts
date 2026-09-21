@@ -17,6 +17,7 @@ export interface NativeAppManifest {
   }
   ios?: {
     bundleId: string
+    buildNumber?: string
     tablet?: boolean
     deploymentTarget?: string
     screensGamma?: boolean
@@ -26,6 +27,7 @@ export interface NativeAppManifest {
   }
   android?: {
     applicationId: string
+    versionCode?: number
     minSdk?: number
     adaptiveIcon?: {
       foreground?: string
@@ -37,6 +39,7 @@ export interface NativeAppManifest {
 const TARGET_NAME = /^[A-Za-z][A-Za-z0-9_]*$/
 const SCHEME = /^[a-z][a-z0-9+.-]*$/i
 const VERSION = /^\d+\.\d+\.\d+/
+const BUILD_NUMBER = /^[A-Za-z0-9.]+$/
 const REVERSE_DNS = /^[A-Za-z][A-Za-z0-9-]*(\.[A-Za-z][A-Za-z0-9-]*)+$/
 const DEPLOYMENT_TARGET = /^\d+\.\d+$/
 const HEX_COLOR = /^#[\da-f]{6}$/i
@@ -98,6 +101,14 @@ export function validateNativeApp(manifest: NativeAppManifest): NativeAppManifes
         `ios.deploymentTarget "${manifest.ios.deploymentTarget}" must look like "17.0"`
       )
     }
+    if (
+      manifest.ios.buildNumber !== undefined &&
+      !BUILD_NUMBER.test(manifest.ios.buildNumber)
+    ) {
+      fail(
+        `ios.buildNumber "${manifest.ios.buildNumber}" must contain only letters, digits, and dots`
+      )
+    }
   }
   if (manifest.android !== undefined) {
     if (
@@ -115,6 +126,15 @@ export function validateNativeApp(manifest: NativeAppManifest): NativeAppManifes
         manifest.android.minSdk > 36)
     ) {
       fail(`android.minSdk "${manifest.android.minSdk}" must be an integer from 21 to 36`)
+    }
+    if (
+      manifest.android.versionCode !== undefined &&
+      (!Number.isInteger(manifest.android.versionCode) ||
+        manifest.android.versionCode < 1)
+    ) {
+      fail(
+        `android.versionCode "${manifest.android.versionCode}" must be a positive integer`
+      )
     }
   }
   return manifest

@@ -14,6 +14,7 @@ export interface NativeAppManifest {
     };
     ios?: {
         bundleId: string;
+        buildNumber?: string;
         tablet?: boolean;
         deploymentTarget?: string;
         screensGamma?: boolean;
@@ -23,6 +24,7 @@ export interface NativeAppManifest {
     };
     android?: {
         applicationId: string;
+        versionCode?: number;
         minSdk?: number;
         adaptiveIcon?: {
             foreground?: string;

@@ -68,6 +68,22 @@ describe('native.app prebuild validation', () => {
         ios: { bundleId: 'dev.one.myapp', deploymentTarget: 'latest' },
       } as any)
     ).toThrow(/deploymentTarget/)
+    expect(() => validatePrebuildApp({ ...app, version: '1.0' })).toThrow(/version/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        ios: { ...app.ios, buildNumber: '1 2' },
+      } as any)
+    ).toThrow(/buildNumber/)
+    expect(() =>
+      validatePrebuildApp({ ...app, android: { ...app.android, versionCode: 0 } } as any)
+    ).toThrow(/versionCode/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        android: { ...app.android, versionCode: 1.5 },
+      } as any)
+    ).toThrow(/versionCode/)
     expect(() =>
       validatePrebuildApp({ ...app, android: { ...app.android, minSdk: 20 } } as any)
     ).toThrow(/minSdk/)
@@ -187,6 +203,60 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
       "createRequire(require.resolve('react-native/package.json'))"
     )
     expect(androidSettings.content).not.toContain('../node_modules')
+  })
+
+  it('stamps marketing and build versions from the manifest', () => {
+    const stamped = {
+      ...app,
+      version: '9.9.9',
+      ios: { ...app.ios, buildNumber: '4242' },
+      android: { ...app.android, versionCode: 4242 },
+    } satisfies PrebuildAppConfig
+    const ios = renderPrebuildFile({
+      relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
+      content: `\t\t\t\tCURRENT_PROJECT_VERSION = 1;\n\t\t\t\tMARKETING_VERSION = 1.0;\n\t\t\t\tCURRENT_PROJECT_VERSION = 1;\n\t\t\t\tMARKETING_VERSION = 1.0;\nshellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};`,
+      platform: 'ios',
+      app: stamped,
+    })
+    expect(ios.content).toContain('MARKETING_VERSION = 9.9.9;')
+    expect(ios.content).toContain('CURRENT_PROJECT_VERSION = 4242;')
+    expect(ios.content).not.toContain('MARKETING_VERSION = 1.0;')
+    expect(ios.content).not.toContain('CURRENT_PROJECT_VERSION = 1;')
+
+    const android = renderPrebuildFile({
+      relativePath: 'app/build.gradle',
+      content:
+        'react {\n    autolinkLibrariesWithApp()\n}\nversionCode 1\nversionName "1.0"',
+      platform: 'android',
+      app: stamped,
+    })
+    expect(android.content).toContain('versionCode 4242')
+    expect(android.content).toContain('versionName "9.9.9"')
+    expect(android.content).not.toContain('versionCode 1')
+    expect(android.content).not.toContain('versionName "1.0"')
+  })
+
+  it('keeps template defaults when version fields are absent', () => {
+    // the shared app fixture sets no version fields: stamping is a no-op and
+    // the template defaults survive, documenting the store-build requirement.
+    const ios = renderPrebuildFile({
+      relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
+      content: `\t\t\t\tCURRENT_PROJECT_VERSION = 1;\n\t\t\t\tMARKETING_VERSION = 1.0;\nshellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};`,
+      platform: 'ios',
+      app,
+    })
+    expect(ios.content).toContain('MARKETING_VERSION = 1.0;')
+    expect(ios.content).toContain('CURRENT_PROJECT_VERSION = 1;')
+
+    const android = renderPrebuildFile({
+      relativePath: 'app/build.gradle',
+      content:
+        'react {\n    autolinkLibrariesWithApp()\n}\nversionCode 1\nversionName "1.0"',
+      platform: 'android',
+      app,
+    })
+    expect(android.content).toContain('versionCode 1')
+    expect(android.content).toContain('versionName "1.0"')
   })
 
   it('resolves the gradle plugin from the react-native package without hoisting', () => {
@@ -427,6 +497,9 @@ describe('generateForPlatform determinism', () => {
     const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-icons-'))
     const appWithIcon = {
       ...app,
+      version: '9.9.9',
+      ios: { ...app.ios, buildNumber: '4242' },
+      android: { ...app.android, versionCode: 4242 },
       icon: {
         source: fileURLToPath(
           new URL('../../../../examples/one-basic/public/app-icon.png', import.meta.url)
@@ -467,6 +540,23 @@ describe('generateForPlatform determinism', () => {
         'utf8'
       )
     ).not.toContain('RNScreensFragmentFactory')
+
+    // stamping against the real community template anchors, not just fixture
+    // snippets: the manifest versions must land in the generated projects.
+    const generatedPbxproj = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    expect(generatedPbxproj).toContain('MARKETING_VERSION = 9.9.9;')
+    expect(generatedPbxproj).toContain('CURRENT_PROJECT_VERSION = 4242;')
+    expect(generatedPbxproj).not.toContain('MARKETING_VERSION = 1.0;')
+    expect(generatedPbxproj).not.toContain('CURRENT_PROJECT_VERSION = 1;')
+    const generatedGradle = readFileSync(
+      join(output, 'android', 'app', 'build.gradle'),
+      'utf8'
+    )
+    expect(generatedGradle).toContain('versionCode 4242')
+    expect(generatedGradle).toContain('versionName "9.9.9"')
 
     const iosIconDir = join(
       output,

@@ -2,6 +2,7 @@
 // contracts of their native frameworks; shared components live under UI.
 
 import {
+  AppInfo,
   Color,
   Compose,
   MenuAction,
@@ -56,6 +57,7 @@ export type OneUI = typeof NativeUI & {
 
 export type OneAPI = {
   readonly platform: OnePlatform
+  readonly AppInfo: typeof AppInfo
   readonly iOS: Readonly<OneIOS>
   readonly Android: Readonly<OneAndroid>
   readonly UI: Readonly<OneUI>
@@ -103,6 +105,7 @@ export const One: OneAPI = Object.freeze({
   get platform(): OnePlatform {
     return currentPlatform()
   },
+  AppInfo,
   iOS,
   Android,
   UI,
