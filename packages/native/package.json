@@ -81,6 +81,12 @@
       "import": "./dist/esm/haptics/index.mjs",
       "require": "./dist/cjs/haptics/index.cjs"
     },
+    "./crypto": {
+      "types": "./types/crypto/index.d.ts",
+      "react-native": "./src/crypto/index.native.ts",
+      "import": "./dist/esm/crypto/index.mjs",
+      "require": "./dist/cjs/crypto/index.cjs"
+    },
     "./package.json": "./package.json",
     "./schema.json": "./schema.json"
   },
