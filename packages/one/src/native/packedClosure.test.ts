@@ -255,11 +255,10 @@ console.log('one/native ok ' + url);
     )
     writeFileSync(
       join(appDir, 'babel.config.cjs'),
-      `module.exports = {
-  presets: [
-    '@react-native/babel-preset',
-    ['one/babel-preset', { projectRoot: __dirname }],
-  ],
+      `const oneBabelPreset = require('one/babel-preset')
+const preset = oneBabelPreset.default || oneBabelPreset
+module.exports = function (api) {
+  return preset(api, { projectRoot: __dirname })
 }\n`
     )
     writeFileSync(
