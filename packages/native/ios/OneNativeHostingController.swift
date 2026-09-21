@@ -6,7 +6,11 @@ final class OneNativeHostingController<Content: View>: UIHostingController<Conte
     guard host.window != nil else { detach(); return }
     var responder: UIResponder? = host.next
     while responder != nil && !(responder is UIViewController) { responder = responder?.next }
-    guard let parent = responder as? UIViewController else { return }
+    var parent = responder as? UIViewController
+    if let tabController = parent as? UITabBarController {
+      parent = tabController.selectedViewController
+    }
+    guard let parent else { return }
     if self.parent !== parent {
       detach()
       parent.addChild(self)
