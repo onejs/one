@@ -528,6 +528,19 @@ function pressBack(config: Config) {
   adbText(config, ['shell', 'input', 'keyevent', '4'])
 }
 
+// a back press with the keyboard up dismisses the keyboard; with it down it
+// leaves the screen. only the first is wanted after the ime probe, so gate
+// on the input method's own shown flag.
+function dismissKeyboardIfShown(config: Config) {
+  // grep on-device: the full dumpsys exceeds execFileSync's buffer. the
+  // trailing true keeps a missing line (rather than a missing adb) quiet.
+  const shown = adbText(config, [
+    'shell',
+    'dumpsys input_method | grep -m1 mInputShown || true',
+  ])
+  if (/mInputShown\s*=\s*true/.test(shown)) pressBack(config)
+}
+
 function swipeFresh(config: Config, name: string) {
   const current = snapshot(config)
   const scrollables = current.nodes.filter((node) => node.scrollable === true)
@@ -706,23 +719,6 @@ const inputsIds = [
   'one-native-android-inputs-progress-status',
   'one-native-android-inputs-progress-linear',
   'one-native-android-inputs-progress-circular',
-]
-
-const proofIdsVisibleLandscape = [
-  'one-native-android-mounted',
-  'one-native-android-prop-status',
-  'one-native-android-bounds-box',
-  'one-native-android-prop-value',
-  'one-native-android-prop-mutate',
-  'one-native-android-button-status',
-  'one-native-android-real-button',
-  'one-native-android-reorder',
-  'one-native-android-icon-row',
-  'one-native-android-icon',
-  'one-native-android-icon-filled',
-  'one-native-android-icon-button',
-  'one-native-android-switch-status',
-  'one-native-android-switch-policy-status',
 ]
 
 function nodeWidth(node: Node) {
@@ -1253,9 +1249,13 @@ async function run(config: Config) {
             ['prop kept', (n) => textIncludes(n, 'Prop: expanded')],
             ['window is landscape', () => window.right - window.left > window.bottom - window.top],
             ['row widened', () => width > portraitRowWidth * 1.2],
+            // the short edge clips a device-specific row count, so exact-once
+            // over a fixed visible list fails on viewports whose fold sits
+            // higher. assert true duplicates over the full list instead, the
+            // same shape the inputs screen already uses.
             [
               'no landscape duplicates',
-              (n) => duplicateIdsIn(n, proofIdsVisibleLandscape).length === 0,
+              (n) => hasDuplicates(n, proofIds).length === 0,
             ],
           ])
         },
@@ -1266,7 +1266,7 @@ async function run(config: Config) {
             nodeById(nodes, 'one-native-android-button-row')
           ),
           window: applicationBounds(nodes),
-          duplicates: duplicateIdsIn(nodes, proofIdsVisibleLandscape),
+          duplicates: hasDuplicates(nodes, proofIds),
         })
       )
       tapFresh(config, 'Landscape real button tap', {
@@ -1281,11 +1281,11 @@ async function run(config: Config) {
             ['button tap landed', (n) => textIncludes(n, 'Button taps: 4')],
             [
               'no landscape duplicates',
-              (n) => duplicateIdsIn(n, proofIdsVisibleLandscape).length === 0,
+              (n) => hasDuplicates(n, proofIds).length === 0,
             ],
           ]),
         'one-native-android-mounted',
-        (nodes) => ({ duplicates: duplicateIdsIn(nodes, proofIdsVisibleLandscape) })
+        (nodes) => ({ duplicates: hasDuplicates(nodes, proofIds) })
       )
     } finally {
       freeRotation(config)
@@ -1692,6 +1692,9 @@ async function run(config: Config) {
       'one-native-safe-area-edges'
     )
 
+    // the ime probe leaves the keyboard over the edges toggle; clear it so
+    // the toggle tap lands on the button instead of the keys.
+    dismissKeyboardIfShown(config)
     tapFresh(config, 'Safe-area edges toggle', {
       id: 'one-native-safe-area-edges',
       role: 'button',
