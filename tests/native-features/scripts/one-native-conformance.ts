@@ -42,7 +42,7 @@ const suites = [
   'map',
   'clipboard',
   'network',
-  'web-browser',
+  'browser',
 ] as const
 type Suite = (typeof suites)[number]
 type Config = {
@@ -290,7 +290,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   map: mapLoaded,
   clipboard: clipboardLoaded,
   network: networkLoaded,
-  'web-browser': browserLoaded,
+  browser: browserLoaded,
 }
 const suiteHome: Record<Suite, string> = {
   'tabs-menu': 'nav-one-native',
@@ -312,7 +312,7 @@ const suiteHome: Record<Suite, string> = {
   map: 'nav-one-native-map',
   clipboard: 'nav-one-native-clipboard',
   network: 'nav-one-native-network',
-  'web-browser': 'nav-one-native-browser',
+  browser: 'nav-one-native-browser',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
 const firstState = (nodes: Node[]) =>
@@ -3172,15 +3172,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Written: none')
     )
     tap({ id: 'one-native-clipboard-set' })
-    await wait('setStringAsync reports true', (n) =>
+    await wait('setString reports true', (n) =>
       labels(n).includes('Written: true')
     )
     tap({ id: 'one-native-clipboard-get' })
-    await wait('getStringAsync reads the write back', (n) =>
+    await wait('getString reads the write back', (n) =>
       labels(n).includes('Read: one-native-clipboard-probe')
     )
     tap({ id: 'one-native-clipboard-has' })
-    await wait('hasStringAsync sees the string', (n) =>
+    await wait('hasString sees the string', (n) =>
       labels(n).includes('Has: true')
     )
     screenshot('clipboard-roundtrip.png')
@@ -3218,13 +3218,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-network')
 
     // the simulator has a live host route, so the correct reading is a named
-    // type with both flags true. NONE would prove the monitor never started.
+    // type with both flags true. none would prove the monitor never started.
     await wait('the one-shot read publishes live state', (n) => {
       const state = stateOf(n)
       return Boolean(
         state &&
           state.type &&
-          state.type !== 'NONE' &&
           state.type !== 'none' &&
           state.connected === 'true' &&
           state.reachable === 'true'
@@ -3255,7 +3254,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
-  if (config.suite === 'web-browser') {
+  if (config.suite === 'browser') {
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-browser')
@@ -3279,7 +3278,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
 
     // a programmatic dismiss resolves dismiss on both promises.
     tap({ id: 'one-native-browser-open-dismiss' })
-    await wait('dismissBrowser resolves dismiss', (n) =>
+    await wait('dismiss resolves dismiss', (n) =>
       labels(n).includes('Opened: dismiss') &&
       labels(n).includes('Dismissed: dismiss')
     )
@@ -3289,9 +3288,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // the consent alert lives outside the app tree, so no tap can reach
     // it; the session is canceled and settled programmatically.
     tap({ id: 'one-native-browser-auth-dismiss' })
-    await wait('dismissBrowser dismisses the auth session', (n) =>
-      labels(n).includes('Auth: dismiss') &&
-      labels(n).includes('AuthDismissed: dismiss')
+    await wait('dismissAuthSession dismisses the auth session', (n) =>
+      labels(n).includes('Auth: dismiss')
     )
     screenshot('browser-auth.png')
 

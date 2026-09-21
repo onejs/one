@@ -34,7 +34,7 @@ evidence only. Machine-readable artifacts and the aggregate outcome are written 
 All waits are selector or state conditions in the Maestro flows. Keep the app source unchanged for
 the repeated run because Fast Refresh invalidates remount and flake evidence.
 
-Runs a named One Native fixture against an installed simulator app. Each run stops and launches the named app. `--suite` selects `tabs-menu` (default), `pickers`, `forms`, `sheets`, `leaves`, `dialogs`, `host`, `containers`, `popover`, `accessibility`, `media`, `map`, `clipboard`, `network`, or `web-browser`.
+Runs a named One Native fixture against an installed simulator app. Each run stops and launches the named app. `--suite` selects `tabs-menu` (default), `pickers`, `forms`, `sheets`, `leaves`, `dialogs`, `host`, `containers`, `popover`, `accessibility`, `media`, `map`, `clipboard`, `network`, or `browser`.
 
 ```bash
 bun tests/native-features/scripts/one-native-conformance.ts \
@@ -73,7 +73,7 @@ That fixture must be on an iPhone 16 size simulator. Native tabs expose no acces
 
 `network` covers `One.Network`: the one-shot read publishes a live state with a named type and both flags true, the listener fires at least once, and a refresh re-reads. State republishes across two leave/reenter cycles.
 
-`web-browser` covers `One.WebBrowser`: a user close-tap on the measured button point resolves cancel, a programmatic dismiss resolves dismiss on both the open and dismiss promises, and dismissing a pending auth session resolves dismiss on its promise too. The sheet exposes no accessibility children, so presentation is the collapsed tree. The redirect success path needs a live identity provider, so the suite covers cancel only.
+`browser` covers `One.Browser`: a user close-tap on the measured button point resolves cancel, a programmatic dismiss resolves dismiss on both the open and dismiss promises, and dismissing a pending auth session resolves dismiss on its promise too. The sheet exposes no accessibility children, so presentation is the collapsed tree. The redirect success path needs a live identity provider, so the suite covers cancel only.
 
 `map` covers `Swift.Map` from the `_MapKit_SwiftUI` overlay module. Like the player it asserts the fill layout by number: 373 by 220, following the style to 320 and back. MapKit publishes each annotation as an accessibility element carrying the marker's title, so the markers React sent are readable without a screenshot; the runner asserts the two it sent are present and the third is not, which is what separates "the object array arrived" from "some annotation rendered", then adds the third and empties the array. Every pin has to sit inside the seeded camera's region, because MapKit publishes nothing for an annotation well outside it and a distant pin would read as a lost prop. The camera is asserted through `onRegionChange` rather than assumed: the fixture reports the centre MapKit settled on to four decimal places, and re-centring to a second place must both change that centre and raise the region count.
 

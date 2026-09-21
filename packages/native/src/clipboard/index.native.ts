@@ -1,7 +1,8 @@
 import { TurboModuleRegistry, type TurboModule } from 'react-native'
+import { assertSetStringText } from './validate'
 
-// string-only clipboard matching expo-clipboard's string api. the native
-// module is resolved once and lazily; native owns all behavior.
+// string clipboard matching expo-clipboard's string api. the native module
+// is resolved once and lazily; native owns all behavior.
 interface ClipboardSpec extends TurboModule {
   getString(): Promise<string>
   setString(text: string): Promise<boolean>
@@ -10,24 +11,36 @@ interface ClipboardSpec extends TurboModule {
 
 let nativeModule: ClipboardSpec | null | undefined
 
-function native(): ClipboardSpec {
+function native(): ClipboardSpec | null {
   if (nativeModule === undefined) {
     nativeModule = TurboModuleRegistry.get<ClipboardSpec>('OneNativeClipboard')
-  }
-  if (!nativeModule) {
-    throw new Error('OneNativeClipboard requires a native build with @vxrn/native installed')
   }
   return nativeModule
 }
 
-export async function getStringAsync(): Promise<string> {
-  return native().getString()
+function needNative(): Promise<never> {
+  return Promise.reject(
+    new Error('Clipboard needs a native build that includes @vxrn/native')
+  )
 }
 
-export async function setStringAsync(text: string): Promise<boolean> {
-  return native().setString(text)
+function getString(): Promise<string> {
+  const resolved = native()
+  if (!resolved) return needNative()
+  return resolved.getString()
 }
 
-export async function hasStringAsync(): Promise<boolean> {
-  return native().hasString()
+function setString(text: string): Promise<boolean> {
+  assertSetStringText(text)
+  const resolved = native()
+  if (!resolved) return needNative()
+  return resolved.setString(text)
 }
+
+function hasString(): Promise<boolean> {
+  const resolved = native()
+  if (!resolved) return needNative()
+  return resolved.hasString()
+}
+
+export const Clipboard = Object.freeze({ getString, setString, hasString })

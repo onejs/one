@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react'
-import {
-  NetworkStateType,
-  type NetworkState,
-  type NetworkStateSubscription,
-} from './types'
+import type { NetworkState, NetworkStateSubscription } from './types'
+import { assertStateListener } from './validate'
 
-export { NetworkStateType }
-export type { NetworkState, NetworkStateSubscription }
+export type { NetworkState, NetworkStateSubscription, NetworkStateType } from './types'
 
 // web entry. same signatures as the native entry: the published
 // declarations are built from this file and serve both platforms.
@@ -16,19 +12,20 @@ function currentState(): NetworkState {
   const isConnected =
     typeof navigator === 'undefined' ? false : navigator.onLine !== false
   return {
-    type: isConnected ? NetworkStateType.UNKNOWN : NetworkStateType.NONE,
+    type: isConnected ? 'unknown' : 'none',
     isConnected,
     isInternetReachable: isConnected,
   }
 }
 
-export async function getNetworkStateAsync(): Promise<NetworkState> {
+async function getState(): Promise<NetworkState> {
   return currentState()
 }
 
-export function addNetworkStateListener(
+function addStateListener(
   listener: (state: NetworkState) => void
 ): NetworkStateSubscription {
+  assertStateListener(listener)
   if (typeof window === 'undefined') return { remove: () => {} }
   const onChange = () => listener(currentState())
   window.addEventListener('online', onChange)
@@ -41,11 +38,14 @@ export function addNetworkStateListener(
   }
 }
 
-export function useNetworkState(): NetworkState {
+function useNetworkState(): NetworkState {
   const [state, setState] = useState<NetworkState>(currentState)
   useEffect(() => {
     setState(currentState())
-    return addNetworkStateListener(setState).remove
+    return addStateListener(setState).remove
   }, [])
   return state
 }
+
+export const Network = Object.freeze({ getState, addStateListener })
+export { useNetworkState }

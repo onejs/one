@@ -21,21 +21,21 @@ export default function OneNativeClipboard() {
       <Pressable
         testID="one-native-clipboard-set"
         style={styles.chip}
-        onPress={async () => setWritten(String(await Clipboard.setStringAsync(probe)))}
+        onPress={async () => setWritten(String(await Clipboard.setString(probe)))}
       >
         <Text>Set probe string</Text>
       </Pressable>
       <Pressable
         testID="one-native-clipboard-get"
         style={styles.chip}
-        onPress={async () => setRead(await Clipboard.getStringAsync())}
+        onPress={async () => setRead(await Clipboard.getString())}
       >
         <Text>Get string</Text>
       </Pressable>
       <Pressable
         testID="one-native-clipboard-has"
         style={styles.chip}
-        onPress={async () => setHas(String(await Clipboard.hasStringAsync()))}
+        onPress={async () => setHas(String(await Clipboard.hasString()))}
       >
         <Text>Has string</Text>
       </Pressable>

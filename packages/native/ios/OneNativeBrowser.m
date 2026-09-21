@@ -1,4 +1,4 @@
-#import "OneNativeWebBrowser.h"
+#import "OneNativeBrowser.h"
 
 #import <React/RCTUtils.h>
 
@@ -7,11 +7,11 @@
 
 // in-app browser matching expo-web-browser's result shapes: plain pages in
 // SFSafariViewController, auth in ASWebAuthenticationSession.
-@interface OneNativeWebBrowser () <SFSafariViewControllerDelegate,
-                                   ASWebAuthenticationPresentationContextProviding>
+@interface OneNativeBrowser () <SFSafariViewControllerDelegate,
+                                ASWebAuthenticationPresentationContextProviding>
 @end
 
-@implementation OneNativeWebBrowser {
+@implementation OneNativeBrowser {
   SFSafariViewController *_safari;
   RCTPromiseResolveBlock _browserResolve;
   ASWebAuthenticationSession *_authSession;
@@ -95,18 +95,18 @@ RCT_EXPORT_MODULE()
   return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
-RCT_EXPORT_METHOD(openBrowser:(NSString *)urlString
+RCT_EXPORT_METHOD(open:(NSString *)urlString
                   options:(NSDictionary *)options
                   resolve:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
   NSURL *url = [NSURL URLWithString:urlString ?: @""];
   if (url == nil || url.scheme == nil) {
-    reject(@"ERR_WEB_BROWSER_URL", @"openBrowser requires a url.", nil);
+    reject(@"E_BROWSER_URL", @"Browser.open: requires a url.", nil);
     return;
   }
   dispatch_async(dispatch_get_main_queue(), ^{
-    if (_safari != nil) {
+    if (self->_safari != nil) {
       resolve(@{@"type" : @"locked"});
       return;
     }
@@ -114,48 +114,36 @@ RCT_EXPORT_METHOD(openBrowser:(NSString *)urlString
         [[SFSafariViewController alloc] initWithURL:url
                                      configuration:[[SFSafariViewControllerConfiguration alloc] init]];
     safari.delegate = self;
-    UIColor *barTint = [OneNativeWebBrowser colorForHex:options[@"toolbarColor"]];
+    UIColor *barTint = [OneNativeBrowser colorForHex:options[@"toolbarColor"]];
     if (barTint != nil) {
       safari.preferredBarTintColor = barTint;
     }
-    UIColor *controlTint = [OneNativeWebBrowser colorForHex:options[@"controlsColor"]];
+    UIColor *controlTint = [OneNativeBrowser colorForHex:options[@"controlsColor"]];
     if (controlTint != nil) {
       safari.preferredControlTintColor = controlTint;
     }
     safari.modalPresentationStyle =
-        [OneNativeWebBrowser presentationStyleForName:options[@"presentationStyle"]];
-    _safari = safari;
-    _browserResolve = resolve;
+        [OneNativeBrowser presentationStyleForName:options[@"presentationStyle"]];
+    self->_safari = safari;
+    self->_browserResolve = resolve;
     [[self presentingViewController] presentViewController:safari animated:YES completion:nil];
   });
 }
 
-RCT_EXPORT_METHOD(dismissBrowser:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(dismiss:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
   dispatch_async(dispatch_get_main_queue(), ^{
-    SFSafariViewController *safari = _safari;
-    RCTPromiseResolveBlock browserResolve = _browserResolve;
-    _safari = nil;
-    _browserResolve = nil;
+    SFSafariViewController *safari = self->_safari;
+    RCTPromiseResolveBlock browserResolve = self->_browserResolve;
+    self->_safari = nil;
+    self->_browserResolve = nil;
     if (safari != nil) {
       // programmatic dismissal skips the delegate, so the pending
-      // openBrowser promise resolves here.
+      // open promise resolves here.
       [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
       if (browserResolve != nil) {
         browserResolve(@{@"type" : @"dismiss"});
       }
-    }
-    if (self->_authSession != nil) {
-      [self->_authSession cancel];
-      self->_authSession = nil;
-    }
-    if (self->_authResolve != nil) {
-      // canceling while the consent alert is up does not reliably run
-      // the completion handler, so the pending auth promise settles
-      // here. dismiss, not cancel: the close was programmatic.
-      RCTPromiseResolveBlock authResolve = self->_authResolve;
-      self->_authResolve = nil;
-      authResolve(@{@"type" : @"dismiss"});
     }
     resolve(@{@"type" : @"dismiss"});
   });
@@ -169,7 +157,7 @@ RCT_EXPORT_METHOD(openAuthSession:(NSString *)urlString
 {
   NSURL *url = [NSURL URLWithString:urlString ?: @""];
   if (url == nil || url.scheme == nil) {
-    reject(@"ERR_WEB_BROWSER_URL", @"openAuthSession requires a url.", nil);
+    reject(@"E_BROWSER_URL", @"Browser.openAuthSession: requires a url.", nil);
     return;
   }
   NSString *scheme = nil;
@@ -177,7 +165,7 @@ RCT_EXPORT_METHOD(openAuthSession:(NSString *)urlString
     scheme = [NSURL URLWithString:(NSString *)redirectUrl].scheme;
   }
   dispatch_async(dispatch_get_main_queue(), ^{
-    if (_authSession != nil) {
+    if (self->_authSession != nil) {
       resolve(@{@"type" : @"locked"});
       return;
     }
@@ -206,7 +194,25 @@ RCT_EXPORT_METHOD(openAuthSession:(NSString *)urlString
     if (![session start]) {
       self->_authSession = nil;
       self->_authResolve = nil;
-      reject(@"ERR_WEB_BROWSER_START", @"The auth session could not start.", nil);
+      reject(@"E_BROWSER_START", @"Browser.openAuthSession: the auth session could not start.", nil);
+    }
+  });
+}
+
+RCT_EXPORT_METHOD(dismissAuthSession)
+{
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if (self->_authSession != nil) {
+      [self->_authSession cancel];
+      self->_authSession = nil;
+    }
+    if (self->_authResolve != nil) {
+      // canceling while the consent alert is up does not reliably run
+      // the completion handler, so the pending auth promise settles
+      // here. dismiss, not cancel: the close was programmatic.
+      RCTPromiseResolveBlock authResolve = self->_authResolve;
+      self->_authResolve = nil;
+      authResolve(@{@"type" : @"dismiss"});
     }
   });
 }

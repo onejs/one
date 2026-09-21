@@ -1,15 +1,4 @@
-export declare const NetworkStateType: {
-    readonly NONE: 'NONE';
-    readonly UNKNOWN: 'UNKNOWN';
-    readonly CELLULAR: 'CELLULAR';
-    readonly WIFI: 'WIFI';
-    readonly BLUETOOTH: 'BLUETOOTH';
-    readonly ETHERNET: 'ETHERNET';
-    readonly WIMAX: 'WIMAX';
-    readonly VPN: 'VPN';
-    readonly OTHER: 'OTHER';
-};
-export type NetworkStateType = (typeof NetworkStateType)[keyof typeof NetworkStateType];
+export type NetworkStateType = 'none' | 'unknown' | 'cellular' | 'wifi' | 'bluetooth' | 'ethernet' | 'wimax' | 'vpn' | 'other';
 export interface NetworkState {
     type: NetworkStateType;
     isConnected: boolean;

@@ -24,6 +24,20 @@ export type { SplitViewProps, SplitViewColumnProps } from './split-view'
 
 // small uniform device apis matching their expo module shapes, so migration
 // is a mechanical import swap. surfaced top-level on One, never under One.UI.
-export * as Clipboard from './clipboard'
-export * as Network from './network'
-export * as WebBrowser from './web-browser'
+export { Clipboard } from './clipboard'
+export { Browser } from './browser'
+export type {
+  BrowserAuthSessionOptions,
+  BrowserAuthSessionResult,
+  BrowserOpenOptions,
+  BrowserPresentationStyle,
+  BrowserRedirectResult,
+  BrowserResult,
+  BrowserResultType,
+} from './browser'
+export { Network, useNetworkState } from './network'
+export type {
+  NetworkState,
+  NetworkStateSubscription,
+  NetworkStateType,
+} from './network'

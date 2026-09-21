@@ -10,10 +10,10 @@ export default function OneNativeNetwork() {
   const [state, setState] = useState('none')
   const [events, setEvents] = useState(0)
   useEffect(() => {
-    Network.getNetworkStateAsync().then((next) =>
+    Network.getState().then((next) =>
       setState(`${next.type} ${next.isConnected} ${next.isInternetReachable}`)
     )
-    const subscription = Network.addNetworkStateListener((next) => {
+    const subscription = Network.addStateListener((next) => {
       setEvents((count) => count + 1)
       setState(`${next.type} ${next.isConnected} ${next.isInternetReachable}`)
     })
@@ -27,7 +27,7 @@ export default function OneNativeNetwork() {
         testID="one-native-network-refresh"
         style={styles.chip}
         onPress={async () => {
-          const next = await Network.getNetworkStateAsync()
+          const next = await Network.getState()
           setState(`${next.type} ${next.isConnected} ${next.isInternetReachable}`)
         }}
       >

@@ -28,7 +28,7 @@ class OneNativeClipboardModule(reactContext: ReactApplicationContext) :
         try {
             promise.resolve(primaryText())
         } catch (e: Exception) {
-            promise.reject("ERR_CLIPBOARD_GET", e)
+            promise.reject("E_CLIPBOARD_GET", "Clipboard.getString: ${e.message}", e)
         }
     }
 
@@ -38,7 +38,7 @@ class OneNativeClipboardModule(reactContext: ReactApplicationContext) :
             clipboard()?.setPrimaryClip(ClipData.newPlainText("text", text))
             promise.resolve(true)
         } catch (e: Exception) {
-            promise.reject("ERR_CLIPBOARD_SET", e)
+            promise.reject("E_CLIPBOARD_SET", "Clipboard.setString: ${e.message}", e)
         }
     }
 
@@ -47,7 +47,7 @@ class OneNativeClipboardModule(reactContext: ReactApplicationContext) :
         try {
             promise.resolve(primaryText().isNotEmpty())
         } catch (e: Exception) {
-            promise.reject("ERR_CLIPBOARD_HAS", e)
+            promise.reject("E_CLIPBOARD_HAS", "Clipboard.hasString: ${e.message}", e)
         }
     }
 

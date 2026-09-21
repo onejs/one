@@ -87,11 +87,11 @@
       "import": "./dist/esm/network/index.mjs",
       "require": "./dist/cjs/network/index.cjs"
     },
-    "./web-browser": {
-      "types": "./types/web-browser/index.d.ts",
-      "react-native": "./src/web-browser/index.native.ts",
-      "import": "./dist/esm/web-browser/index.mjs",
-      "require": "./dist/cjs/web-browser/index.cjs"
+    "./browser": {
+      "types": "./types/browser/index.d.ts",
+      "react-native": "./src/browser/index.native.ts",
+      "import": "./dist/esm/browser/index.mjs",
+      "require": "./dist/cjs/browser/index.cjs"
     },
     "./package.json": "./package.json",
     "./schema.json": "./schema.json"
