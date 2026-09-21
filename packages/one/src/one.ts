@@ -2,6 +2,7 @@
 // contracts of their native frameworks; shared components live under UI.
 
 import {
+  Clipboard as NativeClipboard,
   Color,
   Compose,
   MenuAction,
@@ -59,6 +60,7 @@ export type OneAPI = {
   readonly iOS: Readonly<OneIOS>
   readonly Android: Readonly<OneAndroid>
   readonly UI: Readonly<OneUI>
+  readonly Clipboard: typeof NativeClipboard
 }
 
 function currentPlatform(): OnePlatform {
@@ -106,4 +108,5 @@ export const One: OneAPI = Object.freeze({
   iOS,
   Android,
   UI,
+  Clipboard: NativeClipboard,
 })

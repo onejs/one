@@ -7,6 +7,7 @@ import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
 import dev.onejs.onenative.OneNativeBlurManager
+import dev.onejs.onenative.OneNativeClipboardModule
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
 import dev.onejs.onenative.OneNativeMaskManager
@@ -20,6 +21,7 @@ class VxrnNativePackage : BaseReactPackage() {
             VxrnNativeModule.NAME -> VxrnNativeModule(reactContext)
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
+            OneNativeClipboardModule.NAME -> OneNativeClipboardModule(reactContext)
             else -> null
         }
     }
@@ -45,6 +47,14 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeSyncModule.NAME to ReactModuleInfo(
                 name = OneNativeSyncModule.NAME,
                 className = OneNativeSyncModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeClipboardModule.NAME to ReactModuleInfo(
+                name = OneNativeClipboardModule.NAME,
+                className = OneNativeClipboardModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,
