@@ -287,6 +287,25 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 
 ---
 
+## Crypto
+
+Hermes ships no WebCrypto, so One installs `crypto.getRandomValues` and
+`crypto.randomUUID` (RFC 4122 v4) on native at startup, backed by
+`SecRandomCopyBytes` on iOS and `java.security.SecureRandom` on Android
+(synchronous, importable as `getSecureRandomBytes` from
+`@vxrn/native/crypto`).
+
+```tsx
+const id = crypto.randomUUID()
+const bytes = crypto.getRandomValues(new Uint8Array(16))
+```
+
+Only missing pieces are installed: a runtime that already implements them
+keeps its own. There is no fallback to `Math.random`: a missing native
+module throws instead of returning weak bytes.
+
+---
+
 ## Platform Support
 
 | Feature | iOS | Android | Web |
@@ -298,6 +317,7 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 | SplitView | iPad (gamma required) | routed slot fallback | routed slot fallback |
 | Icons | SF Symbols via One.iOS.Image | Material Symbols via One.Android.Icon | unsupported |
 | Shared icon selection | One.UI.Icon | One.UI.Icon | app-provided React element |
+| Crypto | SecRandomCopyBytes | SecureRandom | platform crypto |
 
 Unsupported toolbar and zoom components return `null`, so they are safe to keep in
 cross-platform component trees. SplitView renders its routed `slot` without native

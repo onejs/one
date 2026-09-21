@@ -36,6 +36,7 @@ const suites = [
   'groups',
   'state',
   'safe-area',
+  'crypto',
   'popover',
   'accessibility',
   'media',
@@ -223,6 +224,10 @@ const safeAreaLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-safe-area-edges')) &&
   has(nodes, 'Insets: ')
+const cryptoLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-crypto-regenerate')) &&
+  has(nodes, 'UUID1: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -261,6 +266,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   groups: groupsLoaded,
   state: stateLoaded,
   'safe-area': safeAreaLoaded,
+  crypto: cryptoLoaded,
   popover: popoverLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
@@ -280,6 +286,7 @@ const suiteHome: Record<Suite, string> = {
   groups: 'nav-one-native-groups',
   state: 'nav-one-native-state',
   'safe-area': 'nav-one-native-safe-area',
+  crypto: 'nav-one-native-crypto',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -1994,6 +2001,62 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
             insets && insets[0] === 0 && insets[2] === 34 && frame && frame[0] === 393
           ) && labels(n).includes('Initial: set')
         )
+      })
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'crypto') {
+    // presence: the native module resolved. validity: two uuids off the
+    // device match rfc 4122 v4 and differ, and the getRandomValues fill is
+    // 16 bytes of hex. no-redbox comes from the shared wait, which throws
+    // on a RedBox before any predicate can pass, and the Error: none wait
+    // is the js-throw sweep: any crypto failure lands in the error label.
+    const uuidV4 =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
+    const hex32 = /^[0-9a-f]{32}$/
+    const valueOf = (nodes: Node[], prefix: string) =>
+      labels(nodes)
+        .find((label) => label.startsWith(prefix))
+        ?.slice(prefix.length)
+    const cryptoValid = (nodes: Node[]) => {
+      const first = valueOf(nodes, 'UUID1: ')
+      const second = valueOf(nodes, 'UUID2: ')
+      const random = valueOf(nodes, 'Random: ')
+      return Boolean(
+        first &&
+          second &&
+          random &&
+          uuidV4.test(first) &&
+          uuidV4.test(second) &&
+          first !== second &&
+          hex32.test(random)
+      )
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-crypto')
+    await wait('the crypto module is present', (n) =>
+      labels(n).includes('Module: available')
+    )
+    await wait('two distinct valid uuids render on device', cryptoValid)
+    await wait('no crypto call raised a js error', (n) =>
+      labels(n).includes('Error: none')
+    )
+    tap({ id: 'one-native-crypto-regenerate' })
+    await wait('regenerated uuids stay valid and distinct', cryptoValid)
+    await wait('regeneration raised no js error', (n) =>
+      labels(n).includes('Error: none')
+    )
+    screenshot('crypto-uuids.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`crypto recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-crypto')
+      await wait(`crypto recycle ${cycle}: uuids render again`, (n) => {
+        const valid = cryptoValid(n)
+        return valid && labels(n).includes('Error: none')
       })
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
