@@ -2,9 +2,12 @@
 // contracts of their native frameworks; shared components live under UI.
 
 import {
+  Browser as NativeBrowser,
+  Clipboard as NativeClipboard,
   Color,
   Compose,
   MenuAction,
+  Network as NativeNetwork,
   SplitView,
   Swift,
   TextInput,
@@ -16,6 +19,7 @@ import {
   ZoomTransitionSource,
   type ColorType,
   useNativeState,
+  useNetworkState,
 } from '@vxrn/native'
 import {
   SafeAreaProvider,
@@ -59,6 +63,10 @@ export type OneAPI = {
   readonly iOS: Readonly<OneIOS>
   readonly Android: Readonly<OneAndroid>
   readonly UI: Readonly<OneUI>
+  readonly Clipboard: typeof NativeClipboard
+  readonly Network: typeof NativeNetwork
+  readonly Browser: typeof NativeBrowser
+  readonly useNetworkState: typeof useNetworkState
 }
 
 function currentPlatform(): OnePlatform {
@@ -106,4 +114,8 @@ export const One: OneAPI = Object.freeze({
   iOS,
   Android,
   UI,
+  Clipboard: NativeClipboard,
+  Network: NativeNetwork,
+  Browser: NativeBrowser,
+  useNetworkState,
 })

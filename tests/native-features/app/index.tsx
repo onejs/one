@@ -103,6 +103,21 @@ const testScreens = [
     label: 'One Native System',
     testID: 'nav-one-native-system',
   },
+  {
+    href: '/one-native-clipboard',
+    label: 'One Native Clipboard',
+    testID: 'nav-one-native-clipboard',
+  },
+  {
+    href: '/one-native-network',
+    label: 'One Native Network',
+    testID: 'nav-one-native-network',
+  },
+  {
+    href: '/one-native-browser',
+    label: 'One Native Browser',
+    testID: 'nav-one-native-browser',
+  },
 ] as const
 
 export default function HomeScreen() {
