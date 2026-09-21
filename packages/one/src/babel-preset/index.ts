@@ -1,5 +1,5 @@
-import module from 'node:module'
 import path from 'node:path'
+import { createRequire } from 'node:module'
 import type { PluginItem, TransformOptions } from '@babel/core'
 import mm from 'micromatch'
 import tsconfigPaths from 'tsconfig-paths'
@@ -41,25 +41,25 @@ export type OneBabelPresetOptions = {
   linking?: unknown
   /** Path to a native setup file, relative to the project root. */
   setupFile?: string | { native?: string; ios?: string; android?: string }
-  /** Whether to include `babel-preset-expo` as the base preset. Defaults to true. */
-  includeExpoPreset?: boolean
   /**
    * Whether to include `@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin`.
    * Defaults to true. The Vite-driven Metro server injects this separately via
    * `patchMetroServerWithViteConfigAndMetroPluginOptions` using the user's Vite
-   * `define` config — so the Vite path passes `false`. Re-applying is idempotent.
+   * `define` config, so the Vite path passes `false`. Re-applying is idempotent.
    */
   includeImportMetaEnv?: boolean
 }
 
 /**
- * Standalone babel preset that drops the same plugin chain that the
- * Vite-driven Metro path applies into any `babel.config.{cjs,js,mjs}` file.
+ * one's semantic plugin chain for babel-based Metro transforms. compose it
+ * after `@react-native/babel-preset`; one's default Rolldown path does not use babel.
  *
  * @example
  * ```js
  * // babel.config.cjs
- * module.exports = require('one/babel-preset')
+ * module.exports = {
+ *   presets: ['@react-native/babel-preset', 'one/babel-preset'],
+ * }
  * ```
  */
 export default function oneBabelPreset(
@@ -72,7 +72,7 @@ export default function oneBabelPreset(
       : false
 
   // @vxrn/compiler applies a user babel config inside the vite and rolldown
-  // pipeline, which already runs the One chain and handles what babel-preset-expo does for metro
+  // pipeline, which already runs the One chain and React Native transforms
   const isVxrnCompiler =
     typeof api?.caller === 'function'
       ? api.caller((caller) => (caller as { name?: string } | undefined)?.name === 'vxrn')
@@ -89,24 +89,7 @@ export default function oneBabelPreset(
     options.projectRoot ?? (typeof api?.cwd === 'function' ? api.cwd() : process.cwd())
   )
 
-  const presets: PluginItem[] = []
-
-  if (options.includeExpoPreset !== false) {
-    const require = module.createRequire(projectRoot + '/')
-    try {
-      const expoPresetPath = require.resolve('babel-preset-expo')
-      presets.push(require(expoPresetPath))
-    } catch (e) {
-      throw new Error(
-        `[one/babel-preset] Could not resolve 'babel-preset-expo' from ${projectRoot}. ` +
-          `Install it as a project dependency (it ships with the Expo SDK). ` +
-          `If you don't want the Expo base preset, pass { includeExpoPreset: false }.`
-      )
-    }
-  }
-
   return {
-    presets,
     plugins: hasViteInjectedOnePlugins
       ? []
       : buildOneBabelPlugins({
@@ -146,7 +129,7 @@ export function buildOneBabelPlugins({
     throw new Error('[one/babel-preset] tsconfig.json paths could not be loaded')
   }
 
-  const require = module.createRequire(projectRoot + '/')
+  const require = createRequire(projectRoot + '/')
   const metroEntryPath = require.resolve('one/metro-entry', {
     paths: [projectRoot],
   })
@@ -158,7 +141,7 @@ export function buildOneBabelPlugins({
         ? setupFile
         : setupFile.native || setupFile.ios || setupFile.android
     if (!file) return undefined
-    // posix-only — embedded as a JS import specifier in `one-router-metro` (becomes
+    // posix-only, embedded as a JS import specifier in `one-router-metro` (becomes
     // literal `import "..."`); backslashes on Windows produce platform-conditional AST
     // and silently break rolldown/Vite POSIX module-graph keys for source-map / snapshot
     // consumers downstream.
@@ -168,7 +151,7 @@ export function buildOneBabelPlugins({
   })()
 
   return [
-    // standalone Metro CLI (expo export, eas update) needs `import.meta.env.*` /
+    // standalone Metro CLI needs `import.meta.env.*` /
     // `process.env.*` baked in. The Vite path passes `false` here and injects
     // its own version with the user's `define` env via the server hook.
     ...(includeImportMetaEnv
@@ -199,7 +182,7 @@ export function buildOneBabelPlugins({
     [
       'one/babel-plugin-one-router-metro',
       {
-        // posix-only — becomes the first arg of `require.context()` in `one-router-metro`;
+        // posix-only, becomes the first arg of `require.context()` in `one-router-metro`;
         // backslashes on Windows drift the babel-emitted AST per platform.
         ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY: toPosixRelativePath(
           path.relative(

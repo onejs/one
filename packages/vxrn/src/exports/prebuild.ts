@@ -6,6 +6,7 @@ import colors from 'picocolors'
 import { fillOptions } from '../config/getOptionsFilled'
 import { applyBuiltInPatches } from '../utils/patches'
 import {
+  applyAndroidDependencyPatches,
   generateForPlatform,
   getNativeDependencyInventory,
   installNativeDependencies,
@@ -68,12 +69,16 @@ export const prebuild = async ({
     await generateForPlatform(root, 'android', app)
   }
 
-  // prove discovery sees the installed set before any install runs, so
-  // `--no-install` skips installation without faking a complete project.
+  // community config reads the generated projects, so discover after generation
+  // and before installation. `--no-install` never fakes the linked package set.
   const inventory = await getNativeDependencyInventory(root)
   console.info(
     `[vxrn] native dependencies discovered through community autolinking: ${inventory.map((entry) => entry.name).join(', ') || '(none)'}`
   )
+
+  if (platform == 'android' || !platform) {
+    applyAndroidDependencyPatches({ root, app, inventory })
+  }
 
   if (!noInstall) {
     installNativeDependencies({ root, platform })

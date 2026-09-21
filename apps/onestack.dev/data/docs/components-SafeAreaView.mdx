@@ -4,25 +4,26 @@ title: "<SafeAreaView />"
 
 `SafeAreaView` renders content within the safe area boundaries of a device, avoiding notches, status bars, and home indicators.
 
-One provides safe area support via a lightweight implementation for web (`@vxrn/safe-area`) and uses [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context) on native. The web implementation is optimized for bundle size and doesn't require native module dependencies.
+`One.UI.SafeArea` is One's shared safe area API. It uses One's native host on iOS and
+Android and CSS environment insets on web, with no separate safe area package in your app.
 
 ## Usage
 
 ```tsx fileName=app/_layout.tsx
-import { SafeAreaView, Slot } from 'one'
+import { One, Slot } from 'one'
 
 export default function Layout() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <One.UI.SafeArea.View style={{ flex: 1 }}>
       <Slot />
-    </SafeAreaView>
+    </One.UI.SafeArea.View>
   )
 }
 ```
 
 ## Props
 
-`SafeAreaView` extends all standard `View` props and adds:
+`One.UI.SafeArea.View` extends all standard `View` props and adds:
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
@@ -34,25 +35,25 @@ export default function Layout() {
 ### Apply to Specific Edges
 
 ```tsx
-import { SafeAreaView } from 'one'
+import { One } from 'one'
 
 // Only apply to top (useful for screens with bottom tabs)
-<SafeAreaView edges={['top']}>
+<One.UI.SafeArea.View edges={['top']}>
   {/* Content */}
-</SafeAreaView>
+</One.UI.SafeArea.View>
 
 // Only apply to top and bottom
-<SafeAreaView edges={['top', 'bottom']}>
+<One.UI.SafeArea.View edges={['top', 'bottom']}>
   {/* Content */}
-</SafeAreaView>
+</One.UI.SafeArea.View>
 ```
 
 ### Use Margin Instead of Padding
 
 ```tsx
-<SafeAreaView mode="margin" style={{ flex: 1 }}>
+<One.UI.SafeArea.View mode="margin" style={{ flex: 1 }}>
   {/* Content */}
-</SafeAreaView>
+</One.UI.SafeArea.View>
 ```
 
 ## Hooks
@@ -62,10 +63,10 @@ import { SafeAreaView } from 'one'
 Get the current safe area insets for custom layouts:
 
 ```tsx
-import { useSafeAreaInsets } from 'one'
+import { One } from 'one'
 
 function MyComponent() {
-  const insets = useSafeAreaInsets()
+  const insets = One.UI.SafeArea.useInsets()
 
   return (
     <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
@@ -79,9 +80,9 @@ Returns `{ top, right, bottom, left }` in pixels.
 
 ## Platform Behavior
 
-- **Web**: Uses a lightweight custom implementation (`@vxrn/safe-area`) that reads CSS `env(safe-area-inset-*)` values. This is automatically aliased from `react-native-safe-area-context` on web, reducing bundle size while maintaining full API compatibility.
-- **iOS**: Uses native safe area APIs via `react-native-safe-area-context`, accounting for status bar, notch/Dynamic Island, and home indicator
-- **Android**: Uses native safe area APIs, accounting for status bar, navigation bar, and display cutouts
+- **Web**: Reads CSS `env(safe-area-inset-*)` values.
+- **iOS**: Reads native safe area APIs for the status bar, notch or Dynamic Island, and home indicator.
+- **Android**: Reads native window insets for status bars, navigation bars, and display cutouts.
 
 One automatically sets up `SafeAreaProvider` - no additional setup needed.
 

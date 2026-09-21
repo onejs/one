@@ -512,7 +512,7 @@ describe('metroNativeWorker', () => {
     expect(configDefault.defaultConfig.transformerPath).toContain('metroNativeWorker')
     expect(configDefault.defaultConfig.transformer.transformerPath).toBeUndefined()
 
-    // Opting back into babel via metroPluginOptions leaves expo's default
+    // Opting back into babel via metroPluginOptions leaves Metro's default
     // worker in the key, which is itself proof that top level is where metro
     // reads it from.
     const configOptOff = await buildMetroConfigInputFromViteConfig(mockViteConfig, {

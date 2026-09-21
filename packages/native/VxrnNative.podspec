@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
     'SWIFT_COMPILATION_MODE' => 'incremental',
     'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
     'OTHER_SWIFT_FLAGS' => '$(inherited) -Xcc -Wno-non-modular-include-in-framework-module',
-    'HEADER_SEARCH_PATHS' => '"$(PODS_TARGET_SRCROOT)/cpp"',
+    'HEADER_SEARCH_PATHS' => '"$(PODS_TARGET_SRCROOT)/cpp" "$(OBJECT_FILE_DIR_normal)/$(CURRENT_ARCH)"',
   }
 
   s.exclude_files = 'ios/Tests/**/*'

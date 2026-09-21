@@ -179,10 +179,7 @@ async function ensureReactNativeBundleConfig(root: string) {
 
   await fs.promises.writeFile(
     generatedConfigPath,
-    `module.exports = {
-  // allow test bundling to route through vxrn without per-app scaffolding.
-  commands: [...require('one/react-native-commands')],
-}
+    `module.exports = require('one/react-native-config')
 `
   )
 

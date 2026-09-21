@@ -5,11 +5,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-// A fork of the upstream babel-transformer that uses Expo-specific babel defaults
-// and adds support for web and Node.js environments via `isServer` on the Babel caller.
+// a fork of the upstream babel-transformer that adds support for web and node
+// environments via `isServer` on the babel caller.
 // See:
 // * https://github.com/facebook/metro/blob/main/packages/metro-babel-transformer/src/index.js
-// * https://github.com/expo/expo/blob/main/packages/%40expo/metro-config/src/babel-transformer.ts
 import type { BabelTransformer, BabelTransformerArgs } from 'metro-babel-transformer'
 import assert from 'node:assert'
 
@@ -18,7 +17,7 @@ import { loadBabelConfig } from './loadBabelConfig'
 import { transformSync } from './transformSync'
 import type { ViteCustomTransformOptions } from './types'
 
-export type ExpoBabelCaller = TransformOptions['caller'] & {
+export type MetroBabelCaller = TransformOptions['caller'] & {
   supportsReactCompiler?: boolean
   isReactServer?: boolean
   isHMREnabled?: boolean
@@ -37,7 +36,7 @@ export type ExpoBabelCaller = TransformOptions['caller'] & {
 }
 
 const debug = require('debug')(
-  'expo:metro-config:babel-transformer'
+  'vxrn:metro-config:babel-transformer'
 ) as typeof console.log
 
 function isCustomTruthy(value: any): boolean {
@@ -67,7 +66,7 @@ function getBabelCaller({
   oneViteMetroBabelConfig,
 }: Pick<BabelTransformerArgs, 'filename' | 'options'> & {
   oneViteMetroBabelConfig: boolean
-}): ExpoBabelCaller {
+}): MetroBabelCaller {
   const isNodeModule = filename.includes('node_modules')
   const isReactServer = options.customTransformOptions?.environment === 'react-server'
   const isGenericServer = options.customTransformOptions?.environment === 'node'
@@ -80,7 +79,7 @@ function getBabelCaller({
 
   if (routerRoot == null) {
     memoizeWarning(
-      'Warning: Missing transform.routerRoot option in Metro bundling request, falling back to `app` as routes directory. This can occur if you bundle without Expo CLI or expo/metro-config.'
+      'Warning: Missing transform.routerRoot option in Metro bundling request, falling back to `app` as routes directory.'
     )
   }
 
@@ -119,7 +118,7 @@ function getBabelCaller({
     // target environment.
     engine: stringOrUndefined(options.customTransformOptions?.engine),
 
-    // Provide the project root for accurately reading the Expo config.
+    // provide the project root for reading the app babel config
     projectRoot: options.projectRoot,
     oneViteMetroBabelConfig,
 
@@ -148,15 +147,15 @@ const transform: BabelTransformer['transform'] = ({
   filename,
   src,
   options,
-  // `plugins` is used for `functionMapBabelPlugin` from `metro-source-map`. Could make sense to move this to `babel-preset-expo` too.
+  // `plugins` is used for `functionMapBabelPlugin` from `metro-source-map`.
   plugins,
 }: BabelTransformerArgs): ReturnType<BabelTransformer['transform']> => {
   const viteCustomTransformOptions = options.customTransformOptions?.vite
 
   const customOptionsFromVite: ViteCustomTransformOptions = (() => {
     const c: any = viteCustomTransformOptions
-    // Standalone Metro invocations (expo export, eas update) don't set
-    // customTransformOptions.vite — the plugins flow entirely through the
+    // standalone Metro invocations don't set
+    // customTransformOptions.vite. the plugins flow entirely through the
     // project's babel.config.cjs in that case. Tolerate the missing field
     // rather than throwing so a single Metro config can serve both the
     // Vite-driven and standalone paths.
@@ -210,8 +209,8 @@ const transform: BabelTransformer['transform'] = ({
       // all (most) of the transforms in their local Babel config.
       // This also helps us keep the transform layers small and focused on a single task. We can also use this to
       // ensure the Babel config caching is more accurate.
-      // Additionally, by moving everything Babel-related to the Babel preset, it makes it easier for users to reason
-      // about the requirements of an Expo project, making it easier to migrate to other transpilers in the future.
+      // moving everything babel-related to the preset also keeps the transform
+      // requirements explicit for users who opt into babel.
       caller: getBabelCaller({
         filename,
         options,

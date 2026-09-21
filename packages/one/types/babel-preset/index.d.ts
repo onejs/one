@@ -25,24 +25,24 @@ export type OneBabelPresetOptions = {
         ios?: string;
         android?: string;
     };
-    /** Whether to include `babel-preset-expo` as the base preset. Defaults to true. */
-    includeExpoPreset?: boolean;
     /**
      * Whether to include `@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin`.
      * Defaults to true. The Vite-driven Metro server injects this separately via
      * `patchMetroServerWithViteConfigAndMetroPluginOptions` using the user's Vite
-     * `define` config — so the Vite path passes `false`. Re-applying is idempotent.
+     * `define` config, so the Vite path passes `false`. Re-applying is idempotent.
      */
     includeImportMetaEnv?: boolean;
 };
 /**
- * Standalone babel preset that drops the same plugin chain that the
- * Vite-driven Metro path applies into any `babel.config.{cjs,js,mjs}` file.
+ * one's semantic plugin chain for babel-based Metro transforms. compose it
+ * after `@react-native/babel-preset`; one's default Rolldown path does not use babel.
  *
  * @example
  * ```js
  * // babel.config.cjs
- * module.exports = require('one/babel-preset')
+ * module.exports = {
+ *   presets: ['@react-native/babel-preset', 'one/babel-preset'],
+ * }
  * ```
  */
 export default function oneBabelPreset(api: BabelConfigAPI, options?: OneBabelPresetOptions): TransformOptions;

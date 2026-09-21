@@ -16,10 +16,7 @@ const projectRoot = path.resolve(__dirname, '../../')
  * verifies that the preset wires them up correctly.
  */
 describe('one/babel-preset integration', () => {
-  const presetWithOpts = [
-    oneBabelPreset,
-    { projectRoot, includeExpoPreset: false },
-  ] as const
+  const presetWithOpts = [oneBabelPreset, { projectRoot }] as const
 
   it('runs against a route file without throwing', () => {
     const code = `

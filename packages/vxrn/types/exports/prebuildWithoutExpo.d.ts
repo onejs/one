@@ -2,9 +2,23 @@ export interface PrebuildAppConfig {
     name: string;
     displayName?: string;
     scheme?: string | string[];
+    icon?: {
+        source: string;
+        backgroundColor: string;
+    };
+    splash?: {
+        source: string;
+        backgroundColor: string;
+        width?: number;
+    };
     ios?: {
         bundleId: string;
+        tablet?: boolean;
         deploymentTarget?: string;
+        screensGamma?: boolean;
+        useFrameworks?: 'static' | 'dynamic';
+        ccache?: boolean;
+        usesNonExemptEncryption?: boolean;
     };
     android?: {
         applicationId: string;
@@ -28,6 +42,11 @@ export interface NativeDependencyInventory {
     version: string;
     platforms: string[];
 }
+export declare function applyAndroidDependencyPatches(args: {
+    root: string;
+    app: PrebuildAppConfig;
+    inventory: readonly NativeDependencyInventory[];
+}): void;
 export declare function getNativeDependencyInventory(root: string): Promise<NativeDependencyInventory[]>;
 export declare function installNativeDependencies(args: {
     root: string;

@@ -1,10 +1,6 @@
 import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
-import {
-  type ExpoManifestRequestHandlerPluginPluginOptions,
-  type MetroPluginOptions,
-  getPlatformEnvDefine,
-} from '@vxrn/vite-plugin-metro'
+import { type MetroPluginOptions, getPlatformEnvDefine } from '@vxrn/vite-plugin-metro'
 import events from 'node:events'
 import { existsSync, readFileSync } from 'node:fs'
 import path from 'node:path'
@@ -85,9 +81,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   /**
    * A non-null value means that we are going to use Metro.
    */
-  const metroOptions:
-    | (MetroOptions & ExpoManifestRequestHandlerPluginPluginOptions)
-    | null = (() => {
+  const metroOptions: MetroOptions | null = (() => {
     if (nativeDisabled) return null
     if (resolveNativeBundler({ bundler: nativeOptions?.bundler }) !== 'metro') {
       // the vite native bundler runs no babel and has nowhere to put a babel
@@ -145,7 +139,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             : []),
         ],
       },
-      mainModuleName: 'one/metro-entry', // So users won't need to write `"main": "one/metro-entry"` in their `package.json` like ordinary Expo apps.
+      mainModuleName: 'one/metro-entry',
       // allow env var to enable lazy startup
       startup: process.env.ONE_METRO_LAZY ? 'lazy' : userMetroOptions?.startup,
     }

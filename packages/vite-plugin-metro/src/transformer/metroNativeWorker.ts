@@ -1896,40 +1896,6 @@ export async function transform(
 
   let sourceCode = typeof data === 'string' ? data : data.toString('utf8')
 
-  // expo's own transform worker substitutes the source of two virtual files
-  // before transforming them. this worker replaces that worker outright, so
-  // without the same substitution `expo/virtual/env` stays a bare
-  // `process.env` re-export and no .env file ever reaches the bundle.
-  const environment = options.customTransformOptions?.environment
-  const isClientEnvironment = environment !== 'node' && environment !== 'react-server'
-
-  if (isClientEnvironment && /[\\/]expo[\\/]virtual[\\/]env\.js$/.test(filename)) {
-    if (options.dev) {
-      const rel = path
-        .relative(path.dirname(filename), projectRoot)
-        .split(path.sep)
-        .join('/')
-      sourceCode = `const dotEnvModules = require.context(${JSON.stringify(rel)},false,/^\\.\\/\\.env/);
-export const env = !dotEnvModules.keys().length ? process.env : { ...process.env, ...['.env', '.env.development', '.env.local', '.env.development.local'].reduce((acc, file) => {
-  return { ...acc, ...(dotEnvModules(file)?.default ?? {}) };
-}, {}) };`
-    } else {
-      // production inlines every value at its use site, so reaching this module
-      // at all is a bug worth naming rather than silently returning undefined.
-      sourceCode = `export const env = new Proxy({}, {
-  get(target, key) {
-    throw new Error(\`Attempting to access internal environment variable "\${String(key)}" is not supported in production bundles.\`);
-  },
-});`
-    }
-  } else if (
-    /(^|[\\/])\.env(\.(local|(development|production)(\.local)?))?$/.test(filename)
-  ) {
-    const { parseEnvFile } =
-      await import('@expo/metro-config/build/transform-worker/dot-env-development')
-    sourceCode = `export default ${JSON.stringify(parseEnvFile(sourceCode, isClientEnvironment))};`
-  }
-
   checkReservedStrings(sourceCode, config, options)
 
   // 1. JSON files

@@ -1,3 +1,4 @@
+import * as UI from './effects';
 export * from './extras';
 export * from './unsupported';
 export { Compose } from './compose';
@@ -6,5 +7,5 @@ export { TextInput } from './universal/TextInput/index';
 export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';
 export type * from './composeTypes';
 export type * from './types';
-export * as UI from './effects';
+export { UI };
 //# sourceMappingURL=index.d.ts.map

@@ -30,6 +30,7 @@ import { FullScreenCover, Sheet } from './Sheet.native'
 import * as Controls from './generated/Controls.native'
 import { Tab, Tabs } from './Tabs.native'
 import { Compose } from './compose'
+import * as UI from './effects'
 
 export * from './extras'
 
@@ -81,4 +82,4 @@ export type * from './types'
 export type * from './composeTypes'
 // One.UI components live here physically: UI.EdgeFade, UI.Blur, UI.Mask.
 // the One package re-exports this namespace as One.UI.
-export * as UI from './effects'
+export { UI }

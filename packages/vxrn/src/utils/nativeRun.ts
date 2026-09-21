@@ -59,9 +59,7 @@ export async function nativeRun({
   const { applyBuiltInPatches } = await import('../utils/patches')
   const options = await fillOptions({ root })
 
-  applyBuiltInPatches(options).catch((err) => {
-    console.error(`\n 🥺 error applying built-in patches`, err)
-  })
+  await applyBuiltInPatches(options)
 
   const { command, argv, port: resolvedPort } = buildNativeRunCommand({ platform, port })
   if (!(await devServerRunning(resolvedPort))) {

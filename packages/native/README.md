@@ -119,19 +119,18 @@ and optional `progress` from 0 to 1. Omit `progress` for an indeterminate spinne
 
 | Artifact | Pinned | Resolved in `:app:assembleDebug` |
 | --- | --- | --- |
-| Compose UI / foundation | 1.11.4 | 1.11.4 (RN 0.86 transitives at 1.8.x/1.7.x/1.0.1 all resolve up to the pin) |
+| Compose UI / foundation | 1.11.4 | 1.11.4 |
 | Material 3 | 1.4.0 | 1.4.0 (`material3-android`) |
-| Kotlin Gradle plugin | 2.1.20 | 2.1.20 (stdlib floats to 2.2.20 via RN alignment) |
-| AGP | expo SDK 57 template | 8.12.0 |
-| Gradle | wrapper | 9.3.1 on Java 17 |
-| compileSdk / targetSdk / minSdk | expo and RN 0.86 defaults | 36 / 36 / 24 (target and min read from the built APK) |
-| react-native / react | workspace | 0.86.2 / 19.2.3 |
+| Kotlin Gradle plugin | host React Native project | 2.2.0 |
+| AGP | React Native community template | 9.2.1 |
+| Gradle | community template wrapper | 9.4.1 on Java 17 |
+| compileSdk / targetSdk / minSdk | React Native community template | 37 / 36 / 24 |
+| react-native / react | workspace | 0.87.1 / 19.2.3 |
 
-Compose UI 1.12.x stays rejected until compileSdk 37 and AGP 9.1 are adopted:
-1.12 requires the newer SDK and build toolchain, and the pins above are exact
-strings, so Gradle cannot silently select 1.12.1 through a transitive range.
-The `:app:dependencies` output above is the gate: every `androidx.compose`
-line must resolve to the pinned version.
+The Compose versions above remain exact strings, so Gradle cannot silently
+select a newer Compose release through a transitive range. The
+`:app:dependencies` output is the gate: every `androidx.compose` line must
+resolve to the pinned version.
 
 To reproduce, from a clean checkout in `tests/native-features`:
 

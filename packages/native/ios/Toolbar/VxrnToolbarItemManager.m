@@ -1,10 +1,6 @@
 #import <React/RCTViewManager.h>
 
-#if __has_include("VxrnNative-Swift.h")
 #import "VxrnNative-Swift.h"
-#else
-#import <VxrnNative/VxrnNative-Swift.h>
-#endif
 
 @interface VxrnToolbarItemManager : RCTViewManager
 @end

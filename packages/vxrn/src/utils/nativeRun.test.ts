@@ -3,6 +3,7 @@ import { createServer } from 'node:http'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it, vi } from 'vitest'
+import { applyBuiltInPatches } from '../utils/patches'
 import { buildNativeRunCommand, nativeRun } from './nativeRun'
 
 vi.mock('../config/getOptionsFilled', () => ({
@@ -59,13 +60,42 @@ describe('expo-free run commands', () => {
       expect(calls[0].executable).toBe(process.execPath)
       expect(calls[0].argv[1]).toBe('run-ios')
       expect(calls[0].argv).toContain('--no-packager')
-      expect(calls[0].argv).toEqual(
-        expect.arrayContaining(['--port', String(port)])
-      )
+      expect(calls[0].argv).toEqual(expect.arrayContaining(['--port', String(port)]))
       expect(process.env.RCT_METRO_PORT).toBe(String(port))
     } finally {
       if (previousMetroPort === undefined) delete process.env.RCT_METRO_PORT
       else process.env.RCT_METRO_PORT = previousMetroPort
+      server.close()
+    }
+  })
+
+  it('waits for dependency patches before starting the native build', async () => {
+    const server = createServer((req, res) => {
+      res.end(req.url === '/status' ? 'packager-status:running' : 'ok')
+    })
+    await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve))
+    const address = server.address()
+    const port = typeof address === 'object' && address ? address.port : 0
+    const calls: string[][] = []
+    let finishPatches: (() => void) | undefined
+    vi.mocked(applyBuiltInPatches).mockImplementationOnce(
+      () => new Promise<void>((resolve) => (finishPatches = resolve))
+    )
+
+    try {
+      const launch = nativeRun({
+        root: workspaceRoot,
+        platform: 'android',
+        port,
+        spawn: (_executable, argv) => calls.push(argv),
+      })
+      await new Promise<void>((resolve) => setImmediate(resolve))
+      expect(calls).toHaveLength(0)
+
+      finishPatches?.()
+      await launch
+      expect(calls).toHaveLength(1)
+    } finally {
       server.close()
     }
   })
