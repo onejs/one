@@ -548,7 +548,36 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('notifications fixture mounted', (n) =>
       has(n, 'Notifications: mounted')
     )
-    tap({ id: 'one-native-notifications-permission-refresh' })
+    // the fixture scrolls; bring each button fully on screen like tapNav does.
+    const tapFixture = async (testID: string) => {
+      for (let attempt = 0; attempt < 8; attempt++) {
+        const nodes = snapshot(config.simulatorId)
+        const app = nodes.find((node) => node.type === 'Application')?.frame
+        const row = id(nodes, testID)?.frame
+        if (!app || !row) throw new Error(`Fixture row ${testID} disappeared while scrolling`)
+        if (row.y >= 0 && row.y + row.height <= app.height) return tap({ id: testID })
+        command(
+          [
+            'ui-automation',
+            'swipe',
+            '--x1',
+            String(Math.round(app.width / 2)),
+            '--y1',
+            String(Math.round(app.height * 0.75)),
+            '--x2',
+            String(Math.round(app.width / 2)),
+            '--y2',
+            String(Math.round(app.height * 0.35)),
+            '--duration',
+            '0.3',
+          ],
+          config.simulatorId
+        )
+        await new Promise((resolve) => setTimeout(resolve, 400))
+      }
+      throw new Error(`Could not bring ${testID} into view on the fixture`)
+    }
+    await tapFixture('one-native-notifications-permission-refresh')
     await wait('permission starts undetermined', (n) =>
       has(n, 'Permission: undetermined')
     )
@@ -557,16 +586,21 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       ['simctl', 'privacy', config.simulatorId, 'grant', 'notifications', config.bundleId],
       { stdio: 'ignore', timeout: 30_000 }
     )
-    tap({ id: 'one-native-notifications-permission-refresh' })
+    await tapFixture('one-native-notifications-permission-refresh')
     await wait('simctl grant reads back granted', (n) => has(n, 'Permission: granted'))
-    tap({ id: 'one-native-notifications-badge-set' })
+    await tapFixture('one-native-notifications-badge-set')
     await wait('badge set resolves', (n) => has(n, 'Badge: set:yes'))
-    tap({ id: 'one-native-notifications-badge-get' })
+    await tapFixture('one-native-notifications-badge-get')
     await wait('badge round-trips', (n) => has(n, 'Badge: 5'))
-    tap({ id: 'one-native-notifications-badge-clear' })
+    await tapFixture('one-native-notifications-badge-clear')
     await wait('badge clear resolves', (n) => has(n, 'Badge: set:yes'))
-    tap({ id: 'one-native-notifications-badge-get' })
+    await tapFixture('one-native-notifications-badge-get')
     await wait('badge clears', (n) => has(n, 'Badge: 0'))
+    // ios has no channels: create resolves null and the list stays empty.
+    await tapFixture('one-native-notifications-channel-create')
+    await wait('channel create resolves null on ios', (n) => has(n, 'Channel: null'))
+    await tapFixture('one-native-notifications-channel-list')
+    await wait('channel list is empty on ios', (n) => has(n, 'Channels: 0'))
 
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return

@@ -1722,9 +1722,34 @@ async function run(config: Config) {
       (nodes) => textIncludes(nodes, 'Notifications: mounted'),
       'one-native-notifications-permission-refresh'
     )
-    tapFresh(config, 'Notifications permission refresh', {
-      id: 'one-native-notifications-permission-refresh',
-    })
+    // the fixture scrolls; bring each button into the viewport like
+    // tapNavigation does before tapping its center.
+    const tapNotif = (name: string, testID: string) => {
+      for (let attempt = 0; attempt < 8; attempt++) {
+        const current = snapshot(config)
+        const rows = matching(current.nodes, { id: testID })
+        const viewport = applicationBounds(current.nodes)
+        const bounds = rows.length === 1 ? rows[0].bounds : undefined
+        const x = bounds ? Math.round((bounds.left + bounds.right) / 2) : 0
+        const y = bounds ? Math.round((bounds.top + bounds.bottom) / 2) : 0
+        if (
+          bounds &&
+          x > viewport.left &&
+          x < viewport.right &&
+          y > viewport.top &&
+          y < viewport.bottom
+        ) {
+          adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+          return
+        }
+        swipeFresh(config, name)
+      }
+      throw new Error(`Could not bring ${testID} into view on the fixture`)
+    }
+    tapNotif(
+      'Notifications permission refresh',
+      'one-native-notifications-permission-refresh'
+    )
     await expect(
       'notifications-permission-undetermined',
       (nodes) => textIncludes(nodes, 'Permission: undetermined'),
@@ -1737,29 +1762,57 @@ async function run(config: Config) {
       config.packageId,
       'android.permission.POST_NOTIFICATIONS',
     ])
-    tapFresh(config, 'Notifications permission refresh granted', {
-      id: 'one-native-notifications-permission-refresh',
-    })
+    tapNotif(
+      'Notifications permission refresh granted',
+      'one-native-notifications-permission-refresh'
+    )
     await expect(
       'notifications-permission-granted',
       (nodes) => textIncludes(nodes, 'Permission: granted'),
       'one-native-notifications-permission-refresh'
     )
-    tapFresh(config, 'Notifications badge set', {
-      id: 'one-native-notifications-badge-set',
-    })
+    tapNotif('Notifications badge set', 'one-native-notifications-badge-set')
     await expect(
       'notifications-badge-set-resolves-false',
       (nodes) => textIncludes(nodes, 'Badge: set:no'),
       'one-native-notifications-badge-set'
     )
-    tapFresh(config, 'Notifications badge get', {
-      id: 'one-native-notifications-badge-get',
-    })
+    tapNotif('Notifications badge get', 'one-native-notifications-badge-get')
     await expect(
       'notifications-badge-is-zero',
       (nodes) => textIncludes(nodes, 'Badge: 0'),
       'one-native-notifications-badge-get'
+    )
+    // slice n2: create, read back, list, delete.
+    tapNotif('Notifications channel create', 'one-native-notifications-channel-create')
+    await expect(
+      'notifications-channel-created',
+      (nodes) => textIncludes(nodes, 'Channel: Test Channel/3'),
+      'one-native-notifications-channel-create'
+    )
+    tapNotif('Notifications channel get', 'one-native-notifications-channel-get')
+    await expect(
+      'notifications-channel-read-back',
+      (nodes) => textIncludes(nodes, 'Channel: Test Channel/3'),
+      'one-native-notifications-channel-get'
+    )
+    tapNotif('Notifications channel list', 'one-native-notifications-channel-list')
+    await expect(
+      'notifications-channel-listed',
+      (nodes) => textIncludes(nodes, 'Channels: 1'),
+      'one-native-notifications-channel-list'
+    )
+    tapNotif('Notifications channel delete', 'one-native-notifications-channel-delete')
+    await expect(
+      'notifications-channel-deleted',
+      (nodes) => textIncludes(nodes, 'Channel: deleted'),
+      'one-native-notifications-channel-delete'
+    )
+    tapNotif('Notifications channel get after delete', 'one-native-notifications-channel-get')
+    await expect(
+      'notifications-channel-gone',
+      (nodes) => textIncludes(nodes, 'Channel: null'),
+      'one-native-notifications-channel-get'
     )
 
     writeFileSync(

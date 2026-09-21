@@ -2,17 +2,20 @@ package dev.onejs.onenative
 
 import android.Manifest
 import android.app.Activity
+import android.app.NotificationChannel
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.BaseActivityEventListener
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.bridge.WritableMap
 
 // local notifications, android half: permission, badge stubs, channels,
@@ -83,7 +86,7 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
                     )
                 } ?: true
             }
-        return com.facebook.react.bridge.Arguments.createMap().apply {
+        return Arguments.createMap().apply {
             putString("status", if (granted) "granted" else if (!asked) "undetermined" else "denied")
             putBoolean("granted", granted)
             putBoolean("canAskAgain", canAskAgain)
@@ -96,7 +99,7 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
     }
 
     @ReactMethod
-    fun requestPermissions(options: com.facebook.react.bridge.ReadableMap, promise: Promise) {
+    fun requestPermissions(options: ReadableMap, promise: Promise) {
         // options carry ios-only fields; android prompts unconditionally.
         if (Build.VERSION.SDK_INT < 33) {
             promise.resolve(permissionPayload(null))
@@ -140,6 +143,95 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
     @ReactMethod
     fun setBadgeCount(count: Double, promise: Promise) {
         promise.resolve(false)
+    }
+
+    private fun channelPayload(channel: NotificationChannel?): WritableMap? {
+        if (channel == null) return null
+        return Arguments.createMap().apply {
+            putString("id", channel.id)
+            putString("name", channel.name?.toString())
+            putInt("importance", channel.importance)
+            putString("description", channel.description)
+            putBoolean("sound", channel.sound != null)
+            val pattern = channel.vibrationPattern
+            if (pattern != null) {
+                putArray(
+                    "vibrationPattern",
+                    Arguments.createArray().apply {
+                        for (value in pattern) pushInt(value.toInt())
+                    }
+                )
+            }
+            putBoolean("showBadge", channel.canShowBadge())
+        }
+    }
+
+    @ReactMethod
+    fun setNotificationChannel(channelId: String, channel: ReadableMap, promise: Promise) {
+        if (Build.VERSION.SDK_INT < 26) {
+            promise.resolve(null)
+            return
+        }
+        val manager = NotificationManagerCompat.from(reactApplicationContext)
+        val nativeChannel =
+            NotificationChannel(
+                channelId,
+                channel.getString("name") ?: channelId,
+                channel.getInt("importance")
+            )
+        if (channel.hasKey("description") && !channel.isNull("description")) {
+            nativeChannel.description = channel.getString("description")
+        }
+        if (channel.hasKey("sound") && !channel.getBoolean("sound")) {
+            nativeChannel.setSound(null, null)
+        }
+        if (channel.hasKey("vibrationPattern") && !channel.isNull("vibrationPattern")) {
+            val pattern = channel.getArray("vibrationPattern")
+            if (pattern != null) {
+                nativeChannel.vibrationPattern =
+                    LongArray(pattern.size()) { index -> pattern.getDouble(index).toLong() }
+            }
+        }
+        if (channel.hasKey("showBadge")) {
+            nativeChannel.setShowBadge(channel.getBoolean("showBadge"))
+        }
+        manager.createNotificationChannel(nativeChannel)
+        promise.resolve(channelPayload(manager.getNotificationChannel(channelId)))
+    }
+
+    @ReactMethod
+    fun getNotificationChannel(channelId: String, promise: Promise) {
+        if (Build.VERSION.SDK_INT < 26) {
+            promise.resolve(null)
+            return
+        }
+        val manager = NotificationManagerCompat.from(reactApplicationContext)
+        promise.resolve(channelPayload(manager.getNotificationChannel(channelId)))
+    }
+
+    @ReactMethod
+    fun getNotificationChannels(promise: Promise) {
+        if (Build.VERSION.SDK_INT < 26) {
+            promise.resolve(Arguments.createArray())
+            return
+        }
+        val manager = NotificationManagerCompat.from(reactApplicationContext)
+        promise.resolve(
+            Arguments.createArray().apply {
+                for (channel in manager.notificationChannels) {
+                    pushMap(channelPayload(channel))
+                }
+            }
+        )
+    }
+
+    @ReactMethod
+    fun deleteNotificationChannel(channelId: String, promise: Promise) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            NotificationManagerCompat.from(reactApplicationContext)
+                .deleteNotificationChannel(channelId)
+        }
+        promise.resolve(null)
     }
 
     companion object {

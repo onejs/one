@@ -571,6 +571,26 @@ no runtime prompt, so requesting resolves the current status. `setBadgeCountAsyn
 resolves `false` and `getBadgeCountAsync` resolves `0` on Android: the launcher
 owns badges there.
 
+Android delivery targets notification channels. Create one before
+scheduling onto it; settings apply on first create, afterwards the user owns
+them in system settings.
+
+```tsx
+import {
+  AndroidImportance,
+  setNotificationChannelAsync,
+} from '@vxrn/native/notifications'
+
+await setNotificationChannelAsync('reminders', {
+  name: 'Reminders',
+  importance: AndroidImportance.DEFAULT,
+})
+```
+
+`getNotificationChannelAsync`, `getNotificationChannelsAsync`, and
+`deleteNotificationChannelAsync` round out the set. On iOS they resolve
+`null`, `[]`, and nothing: there are no channels there.
+
 Declare the capability in `native.app` so prebuild stamps the Android
 `POST_NOTIFICATIONS` permission. iOS needs nothing for local notifications.
 
@@ -604,7 +624,7 @@ one({
 | TextInput, native state | One.UI.* | One.UI.* | One.UI.* (web behavior) |
 | Safe area | One.UI.SafeArea | One.UI.SafeArea | One.UI.SafeArea (css env) |
 | Colors | One.iOS.Color | Color.android | null |
-| Notifications | permission, badge | permission | denied, inert |
+| Notifications | permission, badge | permission, channels | denied, inert |
 
 Unsupported toolbar, menu, and zoom components return `null`, so they are safe
 to keep in cross-platform component trees. SplitView renders its routed `slot`
