@@ -18,7 +18,7 @@ import com.facebook.react.bridge.WritableMap
 
 // in-app browser matching expo-web-browser's result shapes: pages and auth
 // both open in Custom Tabs; an app redirect back completes the auth session.
-class OneNativeWebBrowserModule(reactContext: ReactApplicationContext) :
+class OneNativeBrowserModule(reactContext: ReactApplicationContext) :
     ReactContextBaseJavaModule(reactContext), ActivityEventListener, LifecycleEventListener {
 
     private var authPromise: Promise? = null
@@ -37,10 +37,10 @@ class OneNativeWebBrowserModule(reactContext: ReactApplicationContext) :
     }
 
     @ReactMethod
-    fun openBrowser(url: String, options: ReadableMap, promise: Promise) {
+    fun open(url: String, options: ReadableMap, promise: Promise) {
         val activity = reactApplicationContext.currentActivity
         if (activity == null) {
-            promise.reject("ERR_WEB_BROWSER_ACTIVITY", "No foreground activity to present the browser.")
+            promise.reject("E_BROWSER_ACTIVITY", "Browser.open: no foreground activity to present the browser.")
             return
         }
         try {
@@ -49,21 +49,14 @@ class OneNativeWebBrowserModule(reactContext: ReactApplicationContext) :
             // immediately, matching expo-web-browser on Android.
             promise.resolve(resultMap("opened"))
         } catch (e: Exception) {
-            promise.reject("ERR_WEB_BROWSER_OPEN", e)
+            promise.reject("E_BROWSER_OPEN", "Browser.open: ${e.message}", e)
         }
     }
 
     @ReactMethod
-    fun dismissBrowser(promise: Promise) {
+    fun dismiss(promise: Promise) {
         // Custom Tabs live in the browser app and cannot be closed
-        // programmatically; report dismissed for shape parity with ios. a
-        // pending auth session settles as dismiss too, the close was
-        // programmatic on both platforms.
-        authPromise?.let {
-            authPromise = null
-            authScheme = null
-            it.resolve(resultMap("dismiss"))
-        }
+        // programmatically; report dismissed for shape parity with ios.
         promise.resolve(resultMap("dismiss"))
     }
 
@@ -75,19 +68,30 @@ class OneNativeWebBrowserModule(reactContext: ReactApplicationContext) :
         }
         val activity = reactApplicationContext.currentActivity
         if (activity == null) {
-            promise.reject("ERR_WEB_BROWSER_ACTIVITY", "No foreground activity to present the browser.")
+            promise.reject("E_BROWSER_ACTIVITY", "Browser.openAuthSession: no foreground activity to present the browser.")
             return
         }
         try {
             authScheme = redirectUrl?.let { Uri.parse(it)?.scheme }
             authPromise = promise
             launchCustomTab(activity, url, options)
-            // the promise settles on redirect (onNewIntent) or when the user
-            // returns without one (onHostResume).
+            // the promise settles on redirect (onNewIntent), on programmatic
+            // dismiss, or when the user returns without one (onHostResume).
         } catch (e: Exception) {
             authPromise = null
             authScheme = null
-            promise.reject("ERR_WEB_BROWSER_OPEN", e)
+            promise.reject("E_BROWSER_OPEN", "Browser.openAuthSession: ${e.message}", e)
+        }
+    }
+
+    @ReactMethod
+    fun dismissAuthSession() {
+        // the tab itself stays open, like dismiss; the pending session
+        // settles as dismiss on both platforms.
+        authPromise?.let {
+            authPromise = null
+            authScheme = null
+            it.resolve(resultMap("dismiss"))
         }
     }
 
@@ -170,6 +174,6 @@ class OneNativeWebBrowserModule(reactContext: ReactApplicationContext) :
         Arguments.createMap().apply { putString("type", type) }
 
     companion object {
-        const val NAME = "OneNativeWebBrowser"
+        const val NAME = "OneNativeBrowser"
     }
 }

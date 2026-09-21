@@ -1,4 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- merged into the app manifest for the network state module -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-</manifest>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" />

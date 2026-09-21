@@ -19,7 +19,7 @@ RCT_EXPORT_MODULE()
 
 - (NSArray<NSString *> *)supportedEvents
 {
-  return @[ @"OneNativeNetworkStateChanged" ];
+  return @[ @"oneNativeNetworkStateChanged" ];
 }
 
 RCT_EXPORT_METHOD(addListener:(NSString *)eventName)
@@ -39,22 +39,23 @@ RCT_EXPORT_METHOD(removeListeners:(double)count)
 {
   // expo-network mapping: only a satisfied path is connected, anything
   // else is none, and reachability follows connected. ios never reports
-  // the android-only other, vpn, or wimax types.
+  // the android-only other, vpn, or wimax types. enums are lowercase
+  // string unions, so expo's screaming values become lowercase.
   BOOL connected = nw_path_get_status(path) == nw_path_status_satisfied;
   if (!connected) {
     return @{
-      @"type" : @"NONE",
+      @"type" : @"none",
       @"isConnected" : @NO,
       @"isInternetReachable" : @NO,
     };
   }
-  NSString *type = @"UNKNOWN";
+  NSString *type = @"unknown";
   if (nw_path_uses_interface_type(path, nw_interface_type_cellular)) {
-    type = @"CELLULAR";
+    type = @"cellular";
   } else if (nw_path_uses_interface_type(path, nw_interface_type_wifi)) {
-    type = @"WIFI";
+    type = @"wifi";
   } else if (nw_path_uses_interface_type(path, nw_interface_type_wired)) {
-    type = @"ETHERNET";
+    type = @"ethernet";
   }
   return @{
     @"type" : type,
@@ -63,7 +64,7 @@ RCT_EXPORT_METHOD(removeListeners:(double)count)
   };
 }
 
-RCT_EXPORT_METHOD(getNetworkState:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(getState:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
   nw_path_monitor_t monitor = nw_path_monitor_create();
   dispatch_queue_t queue = dispatch_queue_create("dev.onejs.network", DISPATCH_QUEUE_SERIAL);
@@ -81,7 +82,7 @@ RCT_EXPORT_METHOD(getNetworkState:(RCTPromiseResolveBlock)resolve rejecter:(RCTP
   // path keeps the read synchronous without blocking ui.
   if (dispatch_semaphore_wait(ready, dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC)) != 0) {
     nw_path_monitor_cancel(monitor);
-    reject(@"ERR_NETWORK_TIMEOUT", @"Timed out waiting for the network path.", nil);
+    reject(@"E_NETWORK_TIMEOUT", @"Network.getState: timed out waiting for the network path.", nil);
     return;
   }
   nw_path_monitor_cancel(monitor);
@@ -100,7 +101,7 @@ RCT_EXPORT_METHOD(startMonitoring)
     _monitor = monitor;
     __weak typeof(self) weakSelf = self;
     nw_path_monitor_set_update_handler(monitor, ^(nw_path_t path) {
-      [weakSelf sendEventWithName:@"OneNativeNetworkStateChanged"
+      [weakSelf sendEventWithName:@"oneNativeNetworkStateChanged"
                              body:[OneNativeNetwork stateForPath:path]];
     });
     nw_path_monitor_set_queue(monitor, dispatch_get_main_queue());

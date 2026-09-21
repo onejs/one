@@ -1,79 +1,86 @@
 import { NativeEventEmitter, TurboModuleRegistry, type TurboModule } from 'react-native'
 import { useEffect, useState } from 'react'
 import { normalizeState } from './state'
-import {
-  NetworkStateType,
-  type NetworkState,
-  type NetworkStateSubscription,
-} from './types'
+import type { NetworkState, NetworkStateSubscription } from './types'
+import { assertStateListener } from './validate'
 
-export { NetworkStateType }
-export type { NetworkState, NetworkStateSubscription }
+export type { NetworkState, NetworkStateSubscription, NetworkStateType } from './types'
 
-// connection state matching expo-network: one-shot read plus a change
+// connection state matching expo-network: a one-shot read plus a change
 // listener. the native module is resolved once and lazily; native owns the
 // monitor and the subscription refcount.
 interface NetworkSpec extends TurboModule {
-  getNetworkState(): Promise<NetworkState>
+  getState(): Promise<NetworkState>
   startMonitoring(): void
   stopMonitoring(): void
   addListener(eventName: string): void
   removeListeners(count: number): void
 }
 
-const networkStateChangedEvent = 'OneNativeNetworkStateChanged'
+const networkStateChangedEvent = 'oneNativeNetworkStateChanged'
 
 let nativeModule: NetworkSpec | null | undefined
 let emitter: NativeEventEmitter | null = null
 
-function native(): NetworkSpec {
+function native(): NetworkSpec | null {
   if (nativeModule === undefined) {
     nativeModule = TurboModuleRegistry.get<NetworkSpec>('OneNativeNetwork')
-  }
-  if (!nativeModule) {
-    throw new Error('OneNativeNetwork requires a native build with @vxrn/native installed')
   }
   return nativeModule
 }
 
-function events(): NativeEventEmitter {
-  if (!emitter) emitter = new NativeEventEmitter(native())
+function needNative(): Promise<never> {
+  return Promise.reject(
+    new Error('Network needs a native build that includes @vxrn/native')
+  )
+}
+
+function events(): NativeEventEmitter | null {
+  const resolved = native()
+  if (!resolved) return null
+  if (!emitter) emitter = new NativeEventEmitter(resolved)
   return emitter
 }
 
-export async function getNetworkStateAsync(): Promise<NetworkState> {
-  return normalizeState(await native().getNetworkState())
+function getState(): Promise<NetworkState> {
+  const resolved = native()
+  if (!resolved) return needNative()
+  return resolved.getState().then(normalizeState)
 }
 
-export function addNetworkStateListener(
+function addStateListener(
   listener: (state: NetworkState) => void
 ): NetworkStateSubscription {
-  native().startMonitoring()
-  const subscription = events().addListener(networkStateChangedEvent, (state) => {
+  assertStateListener(listener)
+  const resolved = native()
+  const observed = events()
+  if (!resolved || !observed) return { remove: () => {} }
+  resolved.startMonitoring()
+  const subscription = observed.addListener(networkStateChangedEvent, (state) => {
     listener(normalizeState(state))
   })
   return {
     remove: () => {
       subscription.remove()
-      native().stopMonitoring()
+      resolved.stopMonitoring()
     },
   }
 }
 
-export function useNetworkState(): NetworkState {
+function useNetworkState(): NetworkState {
   const [state, setState] = useState<NetworkState>({
-    type: NetworkStateType.UNKNOWN,
+    type: 'unknown',
     isConnected: false,
     isInternetReachable: false,
   })
   useEffect(() => {
     let active = true
-    getNetworkStateAsync()
+    getState()
       .then((next) => {
         if (active) setState(next)
       })
       .catch(() => {})
-    const subscription = addNetworkStateListener((next) => {
+    const subscription = addStateListener((next) => {
       if (active) setState(next)
     })
     return () => {
@@ -83,3 +90,6 @@ export function useNetworkState(): NetworkState {
   }, [])
   return state
 }
+
+export const Network = Object.freeze({ getState, addStateListener })
+export { useNetworkState }

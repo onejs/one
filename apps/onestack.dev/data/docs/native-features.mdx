@@ -289,17 +289,25 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 
 ## Clipboard
 
-String clipboard through `One.Clipboard`, matching `expo-clipboard`'s string API so migration is a mechanical import swap. Backed by `UIPasteboard` on iOS, `ClipboardManager` on Android, and `navigator.clipboard` on web.
+String clipboard through `One.Clipboard`, matching `expo-clipboard`'s string API. Backed by `UIPasteboard` on iOS, `ClipboardManager` on Android, and `navigator.clipboard` on web.
 
 ```tsx
 import { One } from 'one'
 
-await One.Clipboard.setStringAsync('hello')
-const text = await One.Clipboard.getStringAsync()
-const has = await One.Clipboard.hasStringAsync()
+await One.Clipboard.setString('hello')
+const text = await One.Clipboard.getString()
+const has = await One.Clipboard.hasString()
 ```
 
-`setStringAsync` resolves `true` once the string is on the pasteboard. On web, reads resolve `''` and writes resolve `false` when the browser denies access.
+`setString` resolves `true` once the string is on the pasteboard. On web, reads resolve `''` and writes resolve `false` when the browser denies access.
+
+### Migration from expo-clipboard
+
+| expo-clipboard | One |
+|---|---|
+| `getStringAsync()` | `One.Clipboard.getString()` |
+| `setStringAsync(text)` | `One.Clipboard.setString(text)` |
+| `hasStringAsync()` | `One.Clipboard.hasString()` |
 
 ---
 
@@ -310,46 +318,70 @@ Connection state through `One.Network`, matching `expo-network`. Backed by `NWPa
 ```tsx
 import { One } from 'one'
 
-const state = await One.Network.getNetworkStateAsync()
-// { type: 'WIFI', isConnected: true, isInternetReachable: true }
+const state = await One.Network.getState()
+// { type: 'wifi', isConnected: true, isInternetReachable: true }
 
-const subscription = One.Network.addNetworkStateListener((next) => {
+const subscription = One.Network.addStateListener((next) => {
   console.log(next.type)
 })
 subscription.remove()
+
+const live = One.useNetworkState()
 ```
 
-`type` is one of `NONE`, `UNKNOWN`, `CELLULAR`, `WIFI`, `BLUETOOTH`, `ETHERNET`, `WIMAX`, `VPN`, or `OTHER`. `One.Network.useNetworkState()` returns the same state as a hook. On web a live connection reports `UNKNOWN`, since browser connection types are unreliable.
+`type` is one of `none`, `unknown`, `cellular`, `wifi`, `bluetooth`, `ethernet`, `wimax`, `vpn`, or `other`. On web a live connection reports `unknown`, since browser connection types are unreliable.
 
-Android merges `ACCESS_NETWORK_STATE` from the library manifest, so no app change is needed.
+### Migration from expo-network
+
+| expo-network | One |
+|---|---|
+| `getNetworkStateAsync()` | `One.Network.getState()` |
+| `addNetworkStateListener(fn)` | `One.Network.addStateListener(fn)` |
+| `useNetworkState()` | `One.useNetworkState()` |
+| `NetworkStateType.WIFI` | `'wifi'` (and likewise for every member) |
 
 ---
 
-## Web Browser
+## Browser
 
-In-app browser through `One.WebBrowser`, matching `expo-web-browser`'s result shapes. Pages open in `SFSafariViewController` on iOS and Custom Tabs on Android; auth sessions use `ASWebAuthenticationSession` on iOS and Custom Tabs with an app redirect on Android.
+In-app browser through `One.Browser`, matching `expo-web-browser`'s result shapes. Pages open in `SFSafariViewController` on iOS and Custom Tabs on Android; auth sessions use `ASWebAuthenticationSession` on iOS and Custom Tabs with an app redirect on Android.
 
 ```tsx
 import { One } from 'one'
 
-const page = await One.WebBrowser.openBrowserAsync('https://example.com')
+const page = await One.Browser.open('https://example.com')
 // { type: 'cancel' } once the user closes the sheet
 // { type: 'opened' } on Android, which reports no close event
 
-await One.WebBrowser.dismissBrowser()
+await One.Browser.dismiss()
 // { type: 'dismiss' }
 
-const auth = await One.WebBrowser.openAuthSessionAsync(
+const auth = await One.Browser.openAuthSession(
   'https://example.com/login',
   'myapp://auth'
 )
 // { type: 'success', url: 'myapp://auth?code=…' } on redirect
 // { type: 'cancel' } when the user backs out
+
+One.Browser.dismissAuthSession()
 ```
 
-`openBrowserAsync` takes `{ presentationStyle, toolbarColor, controlsColor }` on iOS and `{ browserPackage, toolbarColor, showTitle }` on Android. `openAuthSessionAsync` adds `preferEphemeralSession` on iOS. On Android the auth promise settles when the redirect returns to the app (the standard single-task activity delivers it) or with `cancel` when the user closes the tab. The `locked` type reports a second session opened while one is already up. `dismissBrowser` also cancels a pending auth session, whose promise then resolves `dismiss`.
+`open` takes `{ presentationStyle, toolbarColor, controlsColor }` on iOS and `{ browserPackage, toolbarColor, showTitle }` on Android. `openAuthSession` adds `preferEphemeralSession` on iOS. On Android the auth promise settles when the redirect returns to the app (the standard single-task activity delivers it) or with `cancel` when the user closes the tab. The `locked` type reports a second session opened while one is already up. `dismissAuthSession` cancels a pending auth session, whose promise then resolves `dismiss`.
 
-On web, `openBrowserAsync` opens a blank-target tab and `openAuthSessionAsync` resolves `cancel` when its popup closes; redirect capture is not implemented there.
+On web, `open` opens a blank-target tab and `openAuthSession` resolves `cancel` when its popup closes; redirect capture is not implemented there. A blocked popup rejects with code `E_BROWSER_BLOCKED`.
+
+### Migration from expo-web-browser
+
+| expo-web-browser | One |
+|---|---|
+| `openBrowserAsync(url, options?)` | `One.Browser.open(url, options?)` |
+| `dismissBrowser()` | `One.Browser.dismiss()` |
+| `openAuthSessionAsync(url, redirectUrl?, options?)` | `One.Browser.openAuthSession(url, redirectUrl?, options?)` |
+| `dismissAuthSession()` | `One.Browser.dismissAuthSession()` |
+| `WebBrowserResult` | `BrowserResult` |
+| `WebBrowserResultType` | `BrowserResultType` |
+| `WebBrowserPresentationStyle` | `BrowserPresentationStyle` |
+| `ERR_WEB_BROWSER_BLOCKED` | `E_BROWSER_BLOCKED` |
 
 ---
 
@@ -366,7 +398,7 @@ On web, `openBrowserAsync` opens a blank-target tab and `openAuthSessionAsync` r
 | Shared icon selection | One.UI.Icon | One.UI.Icon | app-provided React element |
 | Clipboard | UIPasteboard | ClipboardManager | navigator.clipboard |
 | Network | NWPathMonitor | ConnectivityManager | navigator.onLine |
-| Web Browser | SFSafariViewController + ASWebAuthenticationSession | Custom Tabs | window.open |
+| Browser | SFSafariViewController + ASWebAuthenticationSession | Custom Tabs | window.open |
 
 Unsupported toolbar and zoom components return `null`, so they are safe to keep in
 cross-platform component trees. SplitView renders its routed `slot` without native

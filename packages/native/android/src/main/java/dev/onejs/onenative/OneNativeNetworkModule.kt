@@ -27,11 +27,11 @@ class OneNativeNetworkModule(reactContext: ReactApplicationContext) :
         reactApplicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
 
     @ReactMethod
-    fun getNetworkState(promise: Promise) {
+    fun getState(promise: Promise) {
         try {
             promise.resolve(stateMap())
         } catch (e: Exception) {
-            promise.reject("ERR_NETWORK_STATE", e)
+            promise.reject("E_NETWORK_STATE", "Network.getState: ${e.message}", e)
         }
     }
 
@@ -100,7 +100,7 @@ class OneNativeNetworkModule(reactContext: ReactApplicationContext) :
     private fun stateMap(): WritableMap {
         val manager = connectivity()
         val capabilities = manager?.getNetworkCapabilities(manager.activeNetwork)
-        var type = "NONE"
+        var type = "none"
         var connected = false
         var reachable = false
         if (capabilities != null) {
@@ -108,13 +108,13 @@ class OneNativeNetworkModule(reactContext: ReactApplicationContext) :
             reachable = capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
             type =
                 when {
-                    !connected -> "NONE"
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> "CELLULAR"
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> "WIFI"
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> "BLUETOOTH"
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> "ETHERNET"
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN) -> "VPN"
-                    else -> "OTHER"
+                    !connected -> "none"
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> "cellular"
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> "wifi"
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> "bluetooth"
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> "ethernet"
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN) -> "vpn"
+                    else -> "other"
                 }
         }
         return Arguments.createMap().apply {
@@ -126,6 +126,6 @@ class OneNativeNetworkModule(reactContext: ReactApplicationContext) :
 
     companion object {
         const val NAME = "OneNativeNetwork"
-        const val STATE_CHANGED_EVENT = "OneNativeNetworkStateChanged"
+        const val STATE_CHANGED_EVENT = "oneNativeNetworkStateChanged"
     }
 }

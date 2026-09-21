@@ -1,18 +1,15 @@
-// network state shapes matching expo-network.
-export const NetworkStateType = {
-  NONE: 'NONE',
-  UNKNOWN: 'UNKNOWN',
-  CELLULAR: 'CELLULAR',
-  WIFI: 'WIFI',
-  BLUETOOTH: 'BLUETOOTH',
-  ETHERNET: 'ETHERNET',
-  WIMAX: 'WIMAX',
-  VPN: 'VPN',
-  OTHER: 'OTHER',
-} as const
-
+// network state shapes matching expo-network. enums are string unions of
+// their lowercase member names; expo's screaming values become lowercase.
 export type NetworkStateType =
-  (typeof NetworkStateType)[keyof typeof NetworkStateType]
+  | 'none'
+  | 'unknown'
+  | 'cellular'
+  | 'wifi'
+  | 'bluetooth'
+  | 'ethernet'
+  | 'wimax'
+  | 'vpn'
+  | 'other'
 
 export interface NetworkState {
   type: NetworkStateType
