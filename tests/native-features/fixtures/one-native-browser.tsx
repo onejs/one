@@ -4,11 +4,11 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 // exercises the browser api against the real safari sheet: a user dismiss
 // resolving cancel, a programmatic dismiss resolving dismiss, and an auth
-// session whose cancel path resolves cancel. a presented sheet takes the
-// whole accessibility tree, so the suite reads safari's own Done button
-// while it is up and the result labels once it is gone. the redirect
-// success path needs a live identity provider, so the fixture exposes the
-// button for manual runs and the suite covers cancel only.
+// session canceled by dismissBrowser. a presented sheet exposes no
+// accessibility children, so the suite detects the collapsed tree and taps
+// the measured close point. the redirect success path needs a live
+// identity provider, so the plain auth button exists for manual runs and
+// the suite covers cancel only.
 const page = 'https://example.com'
 const redirect = 'nativefeatures://auth'
 
@@ -17,12 +17,14 @@ export default function OneNativeBrowser() {
   const [opened, setOpened] = useState('none')
   const [dismissed, setDismissed] = useState('none')
   const [auth, setAuth] = useState('none')
+  const [authDismissed, setAuthDismissed] = useState('none')
   return (
     <View style={styles.screen}>
       <Text>{`Result: ${result}`}</Text>
       <Text>{`Opened: ${opened}`}</Text>
       <Text>{`Dismissed: ${dismissed}`}</Text>
       <Text>{`Auth: ${auth}`}</Text>
+      <Text>{`AuthDismissed: ${authDismissed}`}</Text>
       <Pressable
         testID="one-native-browser-open"
         style={styles.chip}
@@ -51,6 +53,19 @@ export default function OneNativeBrowser() {
         }}
       >
         <Text>Open auth session</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-browser-auth-dismiss"
+        style={styles.chip}
+        onPress={async () => {
+          const pending = WebBrowser.openAuthSessionAsync(page, redirect)
+          await new Promise((resolve) => setTimeout(resolve, 750))
+          setAuthDismissed((await WebBrowser.dismissBrowser()).type)
+          const next = await pending
+          setAuth(next.type === 'success' ? `success ${next.url}` : next.type)
+        }}
+      >
+        <Text>Open auth then dismiss</Text>
       </Pressable>
     </View>
   )

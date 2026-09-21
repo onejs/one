@@ -15,6 +15,7 @@
   SFSafariViewController *_safari;
   RCTPromiseResolveBlock _browserResolve;
   ASWebAuthenticationSession *_authSession;
+  RCTPromiseResolveBlock _authResolve;
 }
 
 RCT_EXPORT_MODULE()
@@ -144,6 +145,18 @@ RCT_EXPORT_METHOD(dismissBrowser:(RCTPromiseResolveBlock)resolve rejecter:(RCTPr
         browserResolve(@{@"type" : @"dismiss"});
       }
     }
+    if (self->_authSession != nil) {
+      [self->_authSession cancel];
+      self->_authSession = nil;
+    }
+    if (self->_authResolve != nil) {
+      // canceling while the consent alert is up does not reliably run
+      // the completion handler, so the pending auth promise settles
+      // here. dismiss, not cancel: the close was programmatic.
+      RCTPromiseResolveBlock authResolve = self->_authResolve;
+      self->_authResolve = nil;
+      authResolve(@{@"type" : @"dismiss"});
+    }
     resolve(@{@"type" : @"dismiss"});
   });
 }
@@ -172,20 +185,27 @@ RCT_EXPORT_METHOD(openAuthSession:(NSString *)urlString
         initWithURL:url
         callbackURLScheme:scheme
         completionHandler:^(NSURL *_Nullable callbackURL, NSError *_Nullable error) {
-          _authSession = nil;
+          RCTPromiseResolveBlock authResolve = self->_authResolve;
+          self->_authSession = nil;
+          self->_authResolve = nil;
+          if (authResolve == nil) {
+            return;
+          }
           if (callbackURL != nil) {
-            resolve(@{@"type" : @"success", @"url" : callbackURL.absoluteString});
+            authResolve(@{@"type" : @"success", @"url" : callbackURL.absoluteString});
           } else {
-            resolve(@{@"type" : @"cancel"});
+            authResolve(@{@"type" : @"cancel"});
           }
         }];
     if ([options[@"preferEphemeralSession"] isEqual:@YES]) {
       session.prefersEphemeralWebBrowserSession = YES;
     }
     session.presentationContextProvider = self;
-    _authSession = session;
+    self->_authSession = session;
+    self->_authResolve = resolve;
     if (![session start]) {
-      _authSession = nil;
+      self->_authSession = nil;
+      self->_authResolve = nil;
       reject(@"ERR_WEB_BROWSER_START", @"The auth session could not start.", nil);
     }
   });

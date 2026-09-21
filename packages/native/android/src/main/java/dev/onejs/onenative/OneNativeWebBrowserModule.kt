@@ -56,7 +56,14 @@ class OneNativeWebBrowserModule(reactContext: ReactApplicationContext) :
     @ReactMethod
     fun dismissBrowser(promise: Promise) {
         // Custom Tabs live in the browser app and cannot be closed
-        // programmatically; report dismissed for shape parity with ios.
+        // programmatically; report dismissed for shape parity with ios. a
+        // pending auth session settles as dismiss too, the close was
+        // programmatic on both platforms.
+        authPromise?.let {
+            authPromise = null
+            authScheme = null
+            it.resolve(resultMap("dismiss"))
+        }
         promise.resolve(resultMap("dismiss"))
     }
 

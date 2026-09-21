@@ -250,14 +250,18 @@ const networkLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-network-refresh')) &&
   has(nodes, 'State: ')
-// a presented safari sheet or auth prompt takes the whole accessibility tree,
-// leaving the fixture behind it out, so the suite counts as loaded from
-// either side of the presentation.
+// a presented safari sheet takes the whole accessibility tree and exposes no
+// children through this snapshot api, so the suite counts a collapsed tree
+// as the presented side of loaded. home rows carry nav ids, which keeps a
+// mid-navigation tree from counting.
+const browserPresented = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  !labels(nodes).some((label) => label.includes('Result: ')) &&
+  !nodes.some((node) => node.AXUniqueId?.startsWith('nav-'))
 const browserLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-browser-open')) && has(nodes, 'Result: ')) ||
-    labels(nodes).includes('Done') ||
-    labels(nodes).includes('Cancel'))
+    browserPresented(nodes))
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -3257,14 +3261,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-browser')
     await wait('browser fixture mounted', (n) => labels(n).includes('Result: none'))
 
-    // a user dismiss resolves cancel: the safari Done button is the only
-    // control the suite touches while the sheet owns the tree.
+    // a user dismiss resolves cancel. the sheet exposes no accessibility
+    // children, so presentation is the collapsed tree and the close tap
+    // lands on the measured button point, guarded by the pinned display.
     tap({ id: 'one-native-browser-open' })
-    await wait('the safari sheet presents with its Done button', (n) =>
-      labels(n).includes('Done')
-    )
+    const presented = await wait('the safari sheet presents', browserPresented)
+    const app = presented.find((n) => n.type === 'Application')?.frame
+    if (!app || app.width !== 393 || app.height !== 852)
+      throw new Error(
+        `Expected a 393x852 iPhone 16 display, got ${JSON.stringify(app)}`
+      )
     screenshot('browser-open.png')
-    tap({ label: 'Done' })
+    point(38, 81)
     await wait('a user dismiss resolves cancel', (n) =>
       labels(n).includes('Result: cancel')
     )
@@ -3277,15 +3285,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('browser-dismiss.png')
 
-    // the auth session ends in cancel: the consent alert and the session
-    // sheet both offer Cancel, whichever one is showing.
-    tap({ id: 'one-native-browser-auth' })
-    await wait('the auth prompt offers Cancel', (n) =>
-      labels(n).includes('Cancel')
-    )
-    tap({ label: 'Cancel' })
-    await wait('the auth session resolves cancel', (n) =>
-      labels(n).includes('Auth: cancel')
+    // dismissing a pending auth session resolves its promise as dismiss.
+    // the consent alert lives outside the app tree, so no tap can reach
+    // it; the session is canceled and settled programmatically.
+    tap({ id: 'one-native-browser-auth-dismiss' })
+    await wait('dismissBrowser dismisses the auth session', (n) =>
+      labels(n).includes('Auth: dismiss') &&
+      labels(n).includes('AuthDismissed: dismiss')
     )
     screenshot('browser-auth.png')
 
