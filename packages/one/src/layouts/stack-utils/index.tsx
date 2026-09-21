@@ -47,3 +47,21 @@ export {
   type StackScreenProps,
   type StackScreenOptions,
 } from './StackScreen'
+
+export {
+  StackToolbarComponent,
+  StackToolbarItem,
+  StackToolbarLeading,
+  StackToolbarMenu,
+  StackToolbarTrailing,
+  appendStackToolbarPropsToOptions,
+  type BottomToolbarData,
+  type BottomToolbarItemData,
+  type BottomToolbarMenuData,
+  type StackToolbarBottomProps,
+  type StackToolbarItemProps,
+  type StackToolbarMenuProps,
+  type StackToolbarPlacement,
+  type StackToolbarProps,
+  type StackToolbarSlotProps,
+} from './StackToolbar'

@@ -7,6 +7,15 @@ export interface BasicTextStyle {
 }
 export interface ToolbarHostProps {
     children?: React.ReactNode;
+    /**
+     * Hides the navigation controller toolbar. Toggled with animation when
+     * animated is true.
+     */
+    hidden?: boolean;
+    /**
+     * Animate toolbar show/hide. Defaults to true.
+     */
+    animated?: boolean;
 }
 export interface ToolbarItemProps {
     children?: React.ReactNode;

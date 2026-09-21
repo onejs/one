@@ -209,3 +209,42 @@ Accepts all props from `react-native-screens` SearchBarProps.
 ```
 
 Both approaches work, choose based on your preference. The composition API can be more readable for complex configurations.
+
+## Stack Toolbar Composition API
+
+Declarative native toolbar items in the same compound style as the header.
+Leading/trailing slots compile to react-navigation 8 alpha iOS header items
+(`unstable_headerLeftItems` / `unstable_headerRightItems`); there is no
+bottom-toolbar option in react-navigation or screens, so the bottom toolbar
+stays on the retained `ToolbarHost` capability and must mount in screen
+content where the responder chain reaches the screen view controller.
+
+```tsx
+<Stack.Screen name="index">
+  <Stack.Toolbar>
+    <Stack.Toolbar.Leading>
+      <Stack.Toolbar.Item title="Edit" systemImageName="pencil" onPress={edit} />
+    </Stack.Toolbar.Leading>
+    <Stack.Toolbar.Trailing>
+      <Stack.Toolbar.Menu title="More" systemImageName="ellipsis.circle">
+        <Stack.Toolbar.Item title="Share" onPress={share} />
+      </Stack.Toolbar.Menu>
+    </Stack.Toolbar.Trailing>
+  </Stack.Toolbar>
+</Stack.Screen>
+```
+
+```tsx
+// inside screen content
+<Stack.Toolbar.Bottom hidden={hidden} animated>
+  <Stack.Toolbar.Item title="Add" systemImageName="plus" onSelected={add} />
+</Stack.Toolbar.Bottom>
+```
+
+Naming: `Leading`/`Trailing` are primary (native cross-direction contract);
+`Left`/`Right` are aliases matching `Stack.Header` conventions. `Item`
+accepts `onPress`/`onSelected` aliases and passes `tintColor` through as a
+platform `ColorValue`, including dynamic iOS values. Hidden leading/trailing
+items are omitted (header buttons have no hidden slot); hidden bottom items
+pass through to the toolbar item. `Stack.Toolbar.Bottom` in layout config
+warns and is ignored; it renders only in screen content and only on iOS.
