@@ -72,6 +72,19 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const nativeDisabled = options.native === false
   const nativeOptions = options.native === false ? undefined : options.native
   const nativeAppName = nativeOptions?.app?.name || nativeOptions?.key
+  // build-time manifest values for One.AppInfo on web, where no installed
+  // binary exists. build prefers the ios build number, then the stringified
+  // android version code; application id prefers the android id, matching
+  // the field name, then the ios bundle id.
+  const nativeApp = nativeOptions?.app
+  const nativeAppVersion = nativeApp?.version
+  const nativeAppBuild =
+    nativeApp?.ios?.buildNumber ??
+    (nativeApp?.android?.versionCode != null
+      ? String(nativeApp.android.versionCode)
+      : undefined)
+  const nativeAppApplicationId =
+    nativeApp?.android?.applicationId ?? nativeApp?.ios?.bundleId
 
   if (nativeDisabled) {
     // tamagui compiler reads this to decide whether to process the native env
@@ -936,6 +949,20 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             ...(nativeAppName && {
               'process.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
               'import.meta.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
+            }),
+            ...(nativeAppVersion && {
+              'process.env.ONE_APP_VERSION': JSON.stringify(nativeAppVersion),
+              'import.meta.env.ONE_APP_VERSION': JSON.stringify(nativeAppVersion),
+            }),
+            ...(nativeAppBuild && {
+              'process.env.ONE_APP_BUILD': JSON.stringify(nativeAppBuild),
+              'import.meta.env.ONE_APP_BUILD': JSON.stringify(nativeAppBuild),
+            }),
+            ...(nativeAppApplicationId && {
+              'process.env.ONE_APP_APPLICATION_ID': JSON.stringify(nativeAppApplicationId),
+              'import.meta.env.ONE_APP_APPLICATION_ID': JSON.stringify(
+                nativeAppApplicationId
+              ),
             }),
 
             'process.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),

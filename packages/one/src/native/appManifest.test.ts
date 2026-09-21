@@ -9,10 +9,43 @@ describe('native.app manifest', () => {
         displayName: 'My App',
         scheme: 'myapp',
         version: '1.0.0',
-        ios: { bundleId: 'dev.one.myapp' },
-        android: { applicationId: 'dev.one.myapp' },
+        ios: { bundleId: 'dev.one.myapp', buildNumber: '42' },
+        android: { applicationId: 'dev.one.myapp', versionCode: 42 },
       })
     ).not.toThrow()
+  })
+
+  test('rejects invalid version, buildNumber, and versionCode', () => {
+    const base = {
+      name: 'MyApp',
+      ios: { bundleId: 'dev.one.myapp', buildNumber: '42' },
+      android: { applicationId: 'dev.one.myapp', versionCode: 42 },
+    }
+    expect(() => validateNativeApp({ ...base, version: '1.0' })).toThrow(/version/)
+    expect(() =>
+      validateNativeApp({
+        ...base,
+        ios: { bundleId: 'dev.one.myapp', buildNumber: '1 2' },
+      })
+    ).toThrow(/buildNumber/)
+    expect(() =>
+      validateNativeApp({
+        ...base,
+        ios: { bundleId: 'dev.one.myapp', buildNumber: '' },
+      })
+    ).toThrow(/buildNumber/)
+    expect(() =>
+      validateNativeApp({
+        ...base,
+        android: { applicationId: 'dev.one.myapp', versionCode: 0 },
+      })
+    ).toThrow(/versionCode/)
+    expect(() =>
+      validateNativeApp({
+        ...base,
+        android: { applicationId: 'dev.one.myapp', versionCode: 1.5 },
+      })
+    ).toThrow(/versionCode/)
   })
 
   test('rejects missing platform ids and invalid target names', () => {

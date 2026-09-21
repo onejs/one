@@ -22,6 +22,15 @@ describe('root One export', () => {
     expect(One.UI.Haptics.selection).toBeTypeOf('function')
     expect(One.UI.Haptics.impact).toBeTypeOf('function')
     expect(One.UI.Haptics.notification).toBeTypeOf('function')
+    // top-level One.AppInfo, not One.UI: application metadata is data, not UI
+    expect(Object.hasOwn(One, 'AppInfo')).toBe(true)
+    expect(Object.hasOwn(One.UI, 'AppInfo')).toBe(false)
+    expect(Object.keys(One.AppInfo).sort()).toEqual([
+      'applicationId',
+      'build',
+      'version',
+    ])
+    expect(Object.isFrozen(One.AppInfo)).toBe(true)
   })
 
   test('reports the build-time platform without reshaping the API', () => {

@@ -38,6 +38,7 @@ const suites = [
   'safe-area',
   'haptics',
   'crypto',
+  'app-info',
   'popover',
   'accessibility',
   'media',
@@ -233,6 +234,10 @@ const cryptoLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-crypto-regenerate')) &&
   has(nodes, 'UUID1: ')
+const appInfoLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-app-info-refresh')) &&
+  has(nodes, 'Version: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -273,6 +278,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'safe-area': safeAreaLoaded,
   haptics: hapticsLoaded,
   crypto: cryptoLoaded,
+  'app-info': appInfoLoaded,
   popover: popoverLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
@@ -294,6 +300,7 @@ const suiteHome: Record<Suite, string> = {
   'safe-area': 'nav-one-native-safe-area',
   haptics: 'nav-one-native-haptics',
   crypto: 'nav-one-native-crypto',
+  'app-info': 'nav-one-native-app-info',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -2051,6 +2058,40 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await tapNav('nav-one-native-haptics')
       await wait(`haptics recycle ${cycle}: the module is present again`, (n) =>
         labels(n).includes('Module: available')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'app-info') {
+    // exact stamped values from the fixture manifest (9.9.9/4242), proving
+    // prebuild-to-runtime plumbing rather than template defaults. the
+    // refresh tap proves the screen is live; no-redbox rides in the shared
+    // wait, which throws on a RedBox before any predicate can pass.
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-app-info')
+    await wait('version matches the stamped manifest', (n) =>
+      labels(n).includes('Version: 9.9.9')
+    )
+    await wait('build matches the stamped manifest', (n) =>
+      labels(n).includes('Build: 4242')
+    )
+    await wait('application id matches the ios bundle id', (n) =>
+      labels(n).includes('ApplicationId: dev.vxrn.native.tests')
+    )
+    tap({ id: 'one-native-app-info-refresh' })
+    await wait('the screen answers taps', (n) => labels(n).includes('Taps: 1'))
+    screenshot('app-info-values.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`app-info recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-app-info')
+      await wait(`app-info recycle ${cycle}: stamped values return`, (n) =>
+        labels(n).includes('Version: 9.9.9') &&
+        labels(n).includes('Build: 4242') &&
+        labels(n).includes('ApplicationId: dev.vxrn.native.tests')
       )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
