@@ -5,8 +5,19 @@ import type * as Styles from './swiftui'
 import type { KeyboardType, TextContentType } from '../textTypes'
 import type { NativeState } from '../syncNativeState'
 
-export type GlassEffect = 'regular' | 'clear' | 'interactive'
-export type Material = 'ultraThin' | 'thin' | 'regular' | 'thick' | 'ultraThick'
+export const glassEffects = ['regular', 'clear', 'identity'] as const
+export type GlassEffect = (typeof glassEffects)[number]
+export const glassEffectShapes = [
+  'capsule',
+  'circle',
+  'containerRelativeShape',
+  'ellipse',
+  'rectangle',
+  'roundedRectangle',
+] as const
+export type GlassEffectShape = (typeof glassEffectShapes)[number]
+export const materials = ['ultraThin', 'thin', 'regular', 'thick', 'ultraThick'] as const
+export type Material = (typeof materials)[number]
 
 export interface OneNativeStyle {
   fontSize?: number
@@ -34,6 +45,9 @@ export interface OneNativeStyle {
   borderColor?: ColorValue
   borderWidth?: number
   glassEffect?: GlassEffect
+  glassEffectInteractive?: boolean
+  glassEffectTint?: ColorValue
+  glassEffectShape?: GlassEffectShape
   material?: Material
 }
 

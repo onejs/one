@@ -1128,22 +1128,32 @@ it. It composes children the way a host does, and it takes the box React Native 
 so give it a height or a flex parent.
 
 ```tsx
-<Swift.Glass style={{ margin: 16, height: 180 }} glassEffect="regular" cornerRadius={24}>
+<Swift.Glass
+  style={{ margin: 16, height: 180 }}
+  glassEffect="clear"
+  interactive
+  shape="roundedRectangle"
+  cornerRadius={24}
+>
   <Swift.Toggle label="Notifications" isOn={on} onIsOnChange={setOn} />
   <Swift.Button label="Save" onPress={save} />
 </Swift.Glass>
 ```
 
-`glassEffect` is the iOS 26 Liquid Glass surface: `regular`, `clear`, or `interactive`,
-where `interactive` is the one that reacts to touch. `material` is the iOS 15 material
-surface: `ultraThin`, `thin`, `regular`, `thick`, or `ultraThick`. Glass wins when both
-are set. Below iOS 26 glass falls back to the `material` surface, or to no surface when
-none is set. Every value is drawn with the matching SwiftUI API, so the surface is the
-real one rather than an approximation.
+`glassEffect` names the same iOS 26 Liquid Glass variants as SwiftUI: `regular`, `clear`,
+or `identity`. A `Swift.Glass` with no surface props uses SwiftUI's default `regular`
+glass; setting `material` alone instead draws that material. `interactive` is independent
+of the variant, matching `Glass.interactive(_:)`, so clear and regular glass can both
+react to touch. `tint` maps only to `Glass.tint(_:)`; it does not change the accent color
+of controls inside the container.
 
-`cornerRadius` shapes the surface. Left out, glass keeps the shape SwiftUI picks for the
-size it was given, and a material fills the box squarely. `tint` colors the glass and
-sets the accent color for the controls inside it.
+`shape` accepts `capsule`, `circle`, `containerRelativeShape`, `ellipse`, `rectangle`,
+or `roundedRectangle`. Leaving it out keeps SwiftUI's default glass shape. A
+`cornerRadius` with no shape selects a rounded rectangle for convenience; with
+`shape="roundedRectangle"`, it supplies that shape's radius. `material` is the iOS 15
+surface vocabulary: `ultraThin`, `thin`, `regular`, `thick`, or `ultraThick`. Glass wins
+when both surfaces are named. Every value is drawn with the corresponding SwiftUI API,
+so the surface is native rather than an approximation.
 
 The same two names work on any control through `swiftStyle`, where they apply to that
 control alone:
@@ -1152,9 +1162,17 @@ control alone:
 <Swift.Button
   label="Save"
   onPress={save}
-  swiftStyle={{ glassEffect: 'interactive', tint: '#0A84FF' }}
+  swiftStyle={{
+    glassEffect: 'clear',
+    glassEffectInteractive: true,
+    glassEffectShape: 'capsule',
+    glassEffectTint: '#0A84FF',
+  }}
 />
 ```
+
+On a control, `swiftStyle.glassEffectTint` maps to `Glass.tint(_:)`, while
+`swiftStyle.tint` remains SwiftUI's separate `View.tint(_:)` environment modifier.
 
 ### Popovers
 

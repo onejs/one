@@ -6,6 +6,8 @@ import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNati
 interface NativeProps extends ViewProps {
   material?: string
   glassEffect?: string
+  interactive?: boolean
+  shape?: string
   cornerRadius?: Double
   tint?: ColorValue
 }

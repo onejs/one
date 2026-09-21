@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { ColorValue, ViewProps } from 'react-native';
-import type { GlassEffect, Material } from './controlTypes';
+import type { GlassEffect, GlassEffectShape, Material } from './controlTypes';
 import type { ColorScheme, DynamicTypeSize } from './swiftui';
 export type HostAxis = 'vertical' | 'horizontal';
 export type HostAlignment = 'leading' | 'center' | 'trailing';
@@ -45,6 +45,8 @@ export interface LabeledContentProps extends ViewProps {
 export interface GlassProps extends ViewProps {
     material?: Material;
     glassEffect?: GlassEffect;
+    interactive?: boolean;
+    shape?: GlassEffectShape;
     cornerRadius?: number;
     tint?: ColorValue;
     children: ReactNode;

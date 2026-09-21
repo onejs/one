@@ -2,8 +2,12 @@ import type { ColorValue, ViewProps } from 'react-native';
 import type * as Styles from './swiftui';
 import type { KeyboardType, TextContentType } from '../textTypes';
 import type { NativeState } from '../syncNativeState';
-export type GlassEffect = 'regular' | 'clear' | 'interactive';
-export type Material = 'ultraThin' | 'thin' | 'regular' | 'thick' | 'ultraThick';
+export declare const glassEffects: readonly ['regular', 'clear', 'identity'];
+export type GlassEffect = (typeof glassEffects)[number];
+export declare const glassEffectShapes: readonly ['capsule', 'circle', 'containerRelativeShape', 'ellipse', 'rectangle', 'roundedRectangle'];
+export type GlassEffectShape = (typeof glassEffectShapes)[number];
+export declare const materials: readonly ['ultraThin', 'thin', 'regular', 'thick', 'ultraThick'];
+export type Material = (typeof materials)[number];
 export interface OneNativeStyle {
     fontSize?: number;
     fontWeight?: string;
@@ -30,6 +34,9 @@ export interface OneNativeStyle {
     borderColor?: ColorValue;
     borderWidth?: number;
     glassEffect?: GlassEffect;
+    glassEffectInteractive?: boolean;
+    glassEffectTint?: ColorValue;
+    glassEffectShape?: GlassEffectShape;
     material?: Material;
 }
 export type OneNativeViewProps = Pick<ViewProps, 'accessibilityLabel' | 'accessibilityHint' | 'accessibilityValue' | 'testID' | 'style' | 'onLayout'> & {

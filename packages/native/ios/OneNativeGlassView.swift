@@ -37,15 +37,18 @@ public final class OneNativeGlassView: OneNativeContainerView {
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
   public func configure(
-    material: String, glassEffect: String, cornerRadius: Double, tint: UIColor?
+    material: String, glassEffect: String, interactive: Bool, shape: String,
+    cornerRadius: Double, tint: UIColor?
   ) {
     var next = OneNativeStyle()
     if !material.isEmpty { next.material = material }
     if !glassEffect.isEmpty { next.glassEffect = glassEffect }
+    next.glassEffectInteractive = interactive
+    if !shape.isEmpty { next.glassEffectShape = shape }
     // negative is how React Native says the caller left the radius out, which keeps the
     // glass on the shape SwiftUI picks for its size.
     if cornerRadius >= 0 { next.cornerRadius = CGFloat(cornerRadius) }
-    next.tint = tint
+    next.glassEffectTint = tint
     if model.style != next { model.style = next }
   }
 }
@@ -56,11 +59,26 @@ extension View {
   @ViewBuilder func oneNativeGlassEffect(_ style: OneNativeStyle) -> some View {
     #if os(iOS)
     if #available(iOS 26.0, *), let name = style.glassEffect {
-      let glass = OneNativeStyle.resolveGlassEffect(name).tint(style.tint.map { Color(uiColor: $0) })
-      if let radius = style.cornerRadius {
-        self.glassEffect(glass, in: RoundedRectangle(cornerRadius: radius))
-      } else {
-        self.glassEffect(glass)
+      let glass = OneNativeStyle.resolveGlassEffect(name)
+        .interactive(style.glassEffectInteractive ?? false)
+        .tint(style.glassEffectTint.map { Color(uiColor: $0) })
+      switch style.glassEffectShape?.lowercased() {
+      case "capsule": self.glassEffect(glass, in: Capsule())
+      case "circle": self.glassEffect(glass, in: Circle())
+      case "containerrelativeshape": self.glassEffect(glass, in: ContainerRelativeShape())
+      case "ellipse": self.glassEffect(glass, in: Ellipse())
+      case "rectangle": self.glassEffect(glass, in: Rectangle())
+      case "roundedrectangle":
+        self.glassEffect(glass, in: RoundedRectangle(cornerRadius: style.cornerRadius ?? 0))
+      case nil:
+        if let radius = style.cornerRadius {
+          self.glassEffect(glass, in: RoundedRectangle(cornerRadius: radius))
+        } else {
+          self.glassEffect(glass)
+        }
+      default:
+        let _ = preconditionFailure("invalid GlassEffectShape: \(style.glassEffectShape ?? "")")
+        self
       }
     } else if let material = style.material {
       self.background(OneNativeStyle.resolveMaterial(material))
@@ -79,7 +97,7 @@ extension OneNativeStyle {
     switch string.lowercased() {
     case "regular": return .regular
     case "clear": return .clear
-    case "interactive": return .regular.interactive()
+    case "identity": return .identity
     default: preconditionFailure("invalid GlassEffect: \(string)")
     }
   }

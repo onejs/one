@@ -8,6 +8,8 @@ export function emitStyle(header: string, outputs: Map<string, string>) {
           return `  public var ${field.name}: CGFloat?`
         case 'string':
           return `  public var ${field.name}: String?`
+        case 'boolean':
+          return `  public var ${field.name}: Bool?`
         case 'color':
           return `  public var ${field.name}: UIColor?`
       }
@@ -21,6 +23,8 @@ export function emitStyle(header: string, outputs: Map<string, string>) {
           return `    if let v = dictionary["${field.name}"] as? Double { self.${field.name} = CGFloat(v) }`
         case 'string':
           return `    if let v = dictionary["${field.name}"] as? String, !v.isEmpty { self.${field.name} = v }`
+        case 'boolean':
+          return `    if let v = dictionary["${field.name}"] as? Bool { self.${field.name} = v }`
         case 'color':
           return `    if let v = dictionary["${field.name}"] as? UIColor { self.${field.name} = v }`
       }
