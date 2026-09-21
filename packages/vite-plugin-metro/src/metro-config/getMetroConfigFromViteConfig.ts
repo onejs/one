@@ -66,17 +66,14 @@ function bareMainModuleForRequest(moduleName: string, mainModuleName: string | u
 function enforceBareMainModuleEntry(config: any, mainModuleName: string | undefined) {
   if (!mainModuleName || !isBareSpecifier(mainModuleName)) return config
   const innerResolveRequest = config?.resolver?.resolveRequest
-  if (typeof innerResolveRequest !== 'function') return config
   return {
     ...config,
     resolver: {
-      ...config.resolver,
+      ...config?.resolver,
       resolveRequest: (context: any, moduleName: string, platform: string) => {
         const bareMain = bareMainModuleForRequest(moduleName, mainModuleName)
-        if (bareMain) {
-          return innerResolveRequest(context, bareMain, platform)
-        }
-        return innerResolveRequest(context, moduleName, platform)
+        const resolveRequest = innerResolveRequest || context.resolveRequest
+        return resolveRequest(context, bareMain ?? moduleName, platform)
       },
     },
   }

@@ -28,24 +28,33 @@ describe('bare main module entry', () => {
         watchman: false,
         defaultConfigOverrides: {
           resolver: {
-            resolveRequest: (_ctx: any, name: string) => {
-              seen.push(name)
-              return { type: 'sourceFile', filePath: name }
-            },
+            sourceExts: ['js'],
           },
         },
       } as any
     )
 
     await (defaultConfig as any).resolver.resolveRequest(
-      { originModulePath: `${fixtureRoot}/.` },
+      {
+        originModulePath: `${fixtureRoot}/.`,
+        resolveRequest: (_ctx: any, name: string) => {
+          seen.push(name)
+          return { type: 'sourceFile', filePath: name }
+        },
+      },
       './one/metro-entry',
       'ios'
     )
     expect(seen).toEqual(['one/metro-entry'])
 
     await (defaultConfig as any).resolver.resolveRequest(
-      { originModulePath: `${fixtureRoot}/.` },
+      {
+        originModulePath: `${fixtureRoot}/.`,
+        resolveRequest: (_ctx: any, name: string) => {
+          seen.push(name)
+          return { type: 'sourceFile', filePath: name }
+        },
+      },
       'react-native',
       'ios'
     )
