@@ -19,6 +19,9 @@ describe('root One export', () => {
     expect(One.UI.SafeArea.Provider).toBeTypeOf('function')
     expect(One.UI.SafeArea.View).toBeTypeOf('object')
     expect(One.UI.SafeArea.useInsets).toBeTypeOf('function')
+    expect(One.Clipboard.getStringAsync).toBeTypeOf('function')
+    expect(One.Clipboard.setStringAsync).toBeTypeOf('function')
+    expect(One.Clipboard.hasStringAsync).toBeTypeOf('function')
   })
 
   test('reports the build-time platform without reshaping the API', () => {

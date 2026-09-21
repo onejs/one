@@ -75,6 +75,12 @@
       "import": "./dist/esm/safe-area/index.mjs",
       "require": "./dist/cjs/safe-area/index.cjs"
     },
+    "./clipboard": {
+      "types": "./types/clipboard/index.d.ts",
+      "react-native": "./src/clipboard/index.native.ts",
+      "import": "./dist/esm/clipboard/index.mjs",
+      "require": "./dist/cjs/clipboard/index.cjs"
+    },
     "./package.json": "./package.json",
     "./schema.json": "./schema.json"
   },
