@@ -21,6 +21,8 @@ describe('one/babel-preset', () => {
     expect(Array.isArray(result.plugins)).toBe(true)
     // 5 One plugins + import-meta-env-plugin baked in for standalone Metro
     expect(result.plugins).toHaveLength(6)
+    // @react-native/babel-preset base for TS/Flow syntax + platform transforms
+    expect(result.presets).toHaveLength(1)
   })
 
   it('orders the plugin chain so server code is removed before router transforms', () => {
@@ -80,6 +82,9 @@ describe('one/babel-preset', () => {
     )
 
     expect(result.plugins).toEqual([])
+    // the one dev path still needs the RN base: the Vite plugin only
+    // injected the One chain, not syntax transforms
+    expect(result.presets).toHaveLength(1)
   })
 
   it('adds nothing when @vxrn/compiler applies it inside the vite and rolldown pipeline', () => {

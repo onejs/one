@@ -118,6 +118,17 @@ function injectReactNativeScreensGammaIntoPodfile(podfile) {
 }
 
 /**
+ * Expo's bundle phase defaults to Expo CLI's export:embed command. One routes
+ * the React Native bundle command through react-native.config.cjs instead.
+ */
+function removeExpoDefaultsFromBundleReactNativeShellScript(input) {
+  const cliPath = /if \[\[ -z "\$CLI_PATH" \]\]; then[\s\S]*?fi\n?/g
+  const bundleCommand = /if \[\[ -z "\$BUNDLE_COMMAND" \]\]; then[\s\S]*?fi\n?/g
+
+  return input.replace(cliPath, '').replace(bundleCommand, '')
+}
+
+/**
  * replace android/app/build.gradle's react block with one's generated settings.
  */
 function replaceAppBuildGradleReactBlock(appBuildGradleContents) {
@@ -130,9 +141,7 @@ function replaceAppBuildGradleReactBlock(appBuildGradleContents) {
     reactBlockStartIndex
 
   if (reactBlockStartIndex === -1 || reactBlockEndIndex === -1) {
-    console.warn(
-      '[vxrn] failed to patch Android app/build.gradle: react block not found'
-    )
+    console.warn('[vxrn] failed to patch Android app/build.gradle: react block not found')
     return appBuildGradleContents
   }
 
@@ -514,4 +523,15 @@ function addReactNativeScreensFix(input) {
   return input
 }
 
-module.exports = { addSetCliPathToBundleReactNativeShellScript, addPodHermescToBundleReactNativeShellScript, addDepsPatchToBundleReactNativeShellScript, injectFmtCxx17FixIntoPodfile, injectHermesMinificationPatchIntoPodfile, injectReactNativeScreensGammaIntoPodfile, replaceAppBuildGradleReactBlock, addDepsPatchToAppBuildGradle, addReactNativeScreensFix }
+module.exports = {
+  addSetCliPathToBundleReactNativeShellScript,
+  addPodHermescToBundleReactNativeShellScript,
+  addDepsPatchToBundleReactNativeShellScript,
+  injectFmtCxx17FixIntoPodfile,
+  injectHermesMinificationPatchIntoPodfile,
+  injectReactNativeScreensGammaIntoPodfile,
+  removeExpoDefaultsFromBundleReactNativeShellScript,
+  replaceAppBuildGradleReactBlock,
+  addDepsPatchToAppBuildGradle,
+  addReactNativeScreensFix,
+}
