@@ -1,35 +1,30 @@
-import { TurboModuleRegistry } from 'react-native'
+import { TurboModuleRegistry, type TurboModule } from 'react-native'
 
 import {
   assertByteCount,
   decodeHexBytes,
-  fillRandomValues,
-  formatUuidV4,
   installCryptoPolyfill,
-  MAX_RANDOM_BYTES,
   type RandomBytesSource,
 } from './random'
 
-export { fillRandomValues, formatUuidV4, installCryptoPolyfill, MAX_RANDOM_BYTES }
-export type { RandomBytesSource }
-
-type NativeCryptoModule = {
-  getRandomBytesHex?: (count: number) => string | null
-} | null
+interface NativeCryptoSpec extends TurboModule {
+  getRandomBytesHex(count: number): string | null
+}
 
 // the OneNativeCrypto legacy module, which TurboModuleRegistry.get falls
-// back to. null on an old build (or any bundle without the native side),
-// where every call below throws rather than returning weak bytes.
-function nativeModule(): NativeCryptoModule {
-  try {
-    return TurboModuleRegistry.get('OneNativeCrypto') as NativeCryptoModule
-  } catch {
-    return null
+// back to. resolved once: the module set is static on device, so a null
+// stays null and every call below throws rather than returning weak bytes.
+let cachedModule: NativeCryptoSpec | null | undefined
+
+function nativeModule(): NativeCryptoSpec | null {
+  if (cachedModule === undefined) {
+    cachedModule = TurboModuleRegistry.get<NativeCryptoSpec>('OneNativeCrypto') ?? null
   }
+  return cachedModule
 }
 
 export function isSecureRandomAvailable(): boolean {
-  return typeof nativeModule()?.getRandomBytesHex === 'function'
+  return nativeModule() !== null
 }
 
 // count cryptographically secure bytes from SecRandomCopyBytes /
@@ -40,7 +35,7 @@ export function getSecureRandomBytes(count: number): Uint8Array {
   if (count === 0) {
     return new Uint8Array(0)
   }
-  const hex = nativeModule()?.getRandomBytesHex?.(count)
+  const hex = nativeModule()?.getRandomBytesHex(count)
   if (typeof hex !== 'string') {
     throw new Error(
       'secure random: the OneNativeCrypto native module is missing or failed.'
