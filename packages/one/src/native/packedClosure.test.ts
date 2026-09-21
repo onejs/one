@@ -10,7 +10,7 @@ import {
   mkdtempSync,
   readFileSync,
   realpathSync,
-  symlinkSync,
+  renameSync,
 } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
@@ -21,6 +21,7 @@ import { auditUnpackedManifest } from './closure'
 const here = dirname(fileURLToPath(import.meta.url))
 const oneDir = resolve(here, '../..')
 const vxrnDir = resolve(here, '../../../vxrn')
+const utilsDir = resolve(here, '../../../utils')
 const workspaceRoot = resolve(here, '../../..')
 
 const KNOWN_ONE_BLOCKERS = ['babel-preset-expo']
@@ -90,13 +91,20 @@ describe('packed-artifact closure oracle', () => {
 
   it('imports one/native in a tarball-only consumer with no workspace path', () => {
     const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-consumer-')))
-    const extracted = unpack(packToDir(oneDir, tmp), join(tmp, 'one'))
     const consumerModules = join(tmp, 'consumer', 'node_modules')
     mkdirSync(consumerModules, { recursive: true })
-    symlinkSync(extracted, join(consumerModules, 'one'))
+    const extracted = join(consumerModules, 'one')
+    renameSync(unpack(packToDir(oneDir, tmp), join(tmp, 'one')), extracted)
+    mkdirSync(join(consumerModules, '@vxrn'), { recursive: true })
+    renameSync(
+      unpack(packToDir(utilsDir, tmp), join(tmp, 'utils')),
+      join(consumerModules, '@vxrn', 'utils')
+    )
     const script = `
 const url = await import.meta.resolve('one/native');
 if (url.includes(${JSON.stringify(workspaceRoot)})) throw new Error('resolved into the workspace: ' + url);
+const utilsUrl = await import.meta.resolve('@vxrn/utils/publicEnv');
+if (utilsUrl.includes(${JSON.stringify(workspaceRoot)})) throw new Error('utils resolved into the workspace: ' + utilsUrl);
 const m = await import('one/native');
 m.validateNativeApp({ name: 'T', ios: { bundleId: 'a.b' }, android: { applicationId: 'a.b' } });
 if (m.selectOneNativePlatform('ios').name !== 'ios') throw new Error('adapter selection broken');

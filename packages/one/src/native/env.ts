@@ -1,4 +1,4 @@
-import { withExpoPublicEnvAliases } from '@vxrn/utils'
+import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
 
 // one-owned public environment and platform names. bundlers also expose exact
 // expo aliases where upstream expo packages require them.

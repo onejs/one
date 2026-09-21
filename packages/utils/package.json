@@ -13,6 +13,11 @@
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.cjs"
+    },
+    "./publicEnv": {
+      "types": "./types/publicEnv.d.ts",
+      "import": "./dist/esm/publicEnv.mjs",
+      "require": "./dist/cjs/publicEnv.cjs"
     }
   },
   "files": [

@@ -412,6 +412,7 @@
         "@vxrn/safe-area": "workspace:*",
         "@vxrn/tslib-lite": "workspace:*",
         "@vxrn/use-isomorphic-layout-effect": "workspace:*",
+        "@vxrn/utils": "workspace:*",
         "@vxrn/vite-plugin-metro": "workspace:*",
         "babel-dead-code-elimination": "1.0.10",
         "babel-plugin-module-resolver": "^5.0.2",
