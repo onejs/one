@@ -35,20 +35,13 @@ class OneNativeNetworkModule(reactContext: ReactApplicationContext) :
         }
     }
 
+    // registering only while js listens keeps the first callback behind
+    // the subscription, so it can never race the listener.
     @ReactMethod
-    fun startMonitoring() {
+    fun addListener(eventName: String) {
         synchronized(this) {
             listenerCount += 1
             if (listenerCount > 1 || callback != null) return
-            // the library declares no permissions, so the app must declare
-            // ACCESS_NETWORK_STATE; without it monitoring is unavailable and
-            // the effect does nothing instead of raising a SecurityException.
-            if (reactApplicationContext.checkSelfPermission(
-                    android.Manifest.permission.ACCESS_NETWORK_STATE
-                ) != android.content.pm.PackageManager.PERMISSION_GRANTED
-            ) {
-                return
-            }
             val manager = connectivity() ?: return
             val next =
                 object : ConnectivityManager.NetworkCallback() {
@@ -71,30 +64,19 @@ class OneNativeNetworkModule(reactContext: ReactApplicationContext) :
     }
 
     @ReactMethod
-    fun stopMonitoring() {
-        synchronized(this) {
-            if (listenerCount == 0) return
-            listenerCount -= 1
-            if (listenerCount == 0) {
-                callback?.let {
-                    try {
-                        connectivity()?.unregisterNetworkCallback(it)
-                    } catch (_: Exception) {
-                    }
-                }
-                callback = null
-            }
-        }
-    }
-
-    @ReactMethod
-    fun addListener(eventName: String) {
-        // the emitter requires this; the callback lifecycle flows through
-        // startMonitoring instead.
-    }
-
-    @ReactMethod
     fun removeListeners(count: Int) {
+        synchronized(this) {
+            listenerCount -= count
+            if (listenerCount > 0) return
+            listenerCount = 0
+            callback?.let {
+                try {
+                    connectivity()?.unregisterNetworkCallback(it)
+                } catch (_: Exception) {
+                }
+            }
+            callback = null
+        }
     }
 
     private fun emit() {

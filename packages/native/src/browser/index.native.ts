@@ -1,5 +1,4 @@
 import { TurboModuleRegistry, type TurboModule } from 'react-native'
-import { normalizeAuthResult, normalizeResult } from './result'
 import type {
   BrowserAuthSessionOptions,
   BrowserAuthSessionResult,
@@ -27,13 +26,13 @@ export type {
 // custom tab, auth sessions with a redirect result. the native module is
 // resolved once and lazily; native owns presentation and the session.
 interface BrowserSpec extends TurboModule {
-  open(url: string, options: BrowserOpenOptions): Promise<{ type: string }>
-  dismiss(): Promise<{ type: string }>
+  open(url: string, options: BrowserOpenOptions): Promise<BrowserResult>
+  dismiss(): Promise<BrowserResult>
   openAuthSession(
     url: string,
     redirectUrl: string | null,
     options: BrowserAuthSessionOptions
-  ): Promise<{ type: string; url?: string }>
+  ): Promise<BrowserAuthSessionResult>
   dismissAuthSession(): void
 }
 
@@ -57,13 +56,13 @@ function open(url: string, options: BrowserOpenOptions = {}): Promise<BrowserRes
   assertOpenOptions(options, 'Browser.open')
   const resolved = native()
   if (!resolved) return needNative()
-  return resolved.open(url, options).then(normalizeResult)
+  return resolved.open(url, options)
 }
 
 function dismiss(): Promise<BrowserResult> {
   const resolved = native()
   if (!resolved) return needNative()
-  return resolved.dismiss().then(normalizeResult)
+  return resolved.dismiss()
 }
 
 function openAuthSession(
@@ -76,7 +75,7 @@ function openAuthSession(
   assertAuthOptions(options, 'Browser.openAuthSession')
   const resolved = native()
   if (!resolved) return needNative()
-  return resolved.openAuthSession(url, redirectUrl ?? null, options).then(normalizeAuthResult)
+  return resolved.openAuthSession(url, redirectUrl ?? null, options)
 }
 
 function dismissAuthSession(): void {

@@ -126,7 +126,15 @@ RCT_EXPORT_METHOD(open:(NSString *)urlString
         [OneNativeBrowser presentationStyleForName:options[@"presentationStyle"]];
     self->_safari = safari;
     self->_browserResolve = resolve;
-    [[self presentingViewController] presentViewController:safari animated:YES completion:nil];
+    UIViewController *presenting = [self presentingViewController];
+    if (safari.modalPresentationStyle == UIModalPresentationPopover) {
+      // a popover with no anchor raises on ipad; center it.
+      safari.popoverPresentationController.sourceView = presenting.view;
+      CGFloat midX = CGRectGetMidX(presenting.view.bounds);
+      CGFloat midY = CGRectGetMidY(presenting.view.bounds);
+      safari.popoverPresentationController.sourceRect = CGRectMake(midX, midY, 1, 1);
+    }
+    [presenting presentViewController:safari animated:YES completion:nil];
   });
 }
 

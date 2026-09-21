@@ -1,18 +1,16 @@
 import { NativeEventEmitter, TurboModuleRegistry, type TurboModule } from 'react-native'
 import { useEffect, useState } from 'react'
-import { normalizeState } from './state'
 import type { NetworkState, NetworkStateSubscription } from './types'
 import { assertStateListener } from './validate'
 
 export type { NetworkState, NetworkStateSubscription, NetworkStateType } from './types'
 
 // connection state matching expo-network: a one-shot read plus a change
-// listener. the native module is resolved once and lazily; native owns the
-// monitor and the subscription refcount.
+// listener. the native module is resolved once and lazily; subscribing
+// through the event emitter starts the native monitor, so the first
+// event can never race the subscription.
 interface NetworkSpec extends TurboModule {
   getState(): Promise<NetworkState>
-  startMonitoring(): void
-  stopMonitoring(): void
   addListener(eventName: string): void
   removeListeners(count: number): void
 }
@@ -45,24 +43,19 @@ function events(): NativeEventEmitter | null {
 function getState(): Promise<NetworkState> {
   const resolved = native()
   if (!resolved) return needNative()
-  return resolved.getState().then(normalizeState)
+  return resolved.getState()
 }
 
 function addStateListener(
   listener: (state: NetworkState) => void
 ): NetworkStateSubscription {
   assertStateListener(listener)
-  const resolved = native()
   const observed = events()
-  if (!resolved || !observed) return { remove: () => {} }
-  resolved.startMonitoring()
-  const subscription = observed.addListener(networkStateChangedEvent, (state) => {
-    listener(normalizeState(state))
-  })
+  if (!observed) return { remove: () => {} }
+  const subscription = observed.addListener(networkStateChangedEvent, listener)
   return {
     remove: () => {
       subscription.remove()
-      resolved.stopMonitoring()
     },
   }
 }
