@@ -3,8 +3,15 @@
 The uniform APIs (haptics, crypto, app info, fonts, clipboard, network, browser, image
 picker, notifications, map) are written by different workers from different Expo modules.
 This file is the single set of rules that makes them read as one library. A new uniform
-API follows it; a review checks against it. It does not cover `One.iOS` and
-`One.Android`, which keep the names and prop contracts of SwiftUI and Compose.
+API follows it; a review checks against it.
+
+Decided by the owner: a uniform API is a proper-noun domain namespace with clean One
+names, taking the best existing shape for each call (Expo's, Swift's, or what One
+already does), and consistency between the uniform APIs is the hard rule. Where a
+cleaner name and an Expo-verbatim name disagree, consistency with the other One
+namespaces wins. The platform APIs are the opposite: `One.iOS` and `One.Android` map
+exactly to SwiftUI and Compose names and prop contracts, and nothing in this file
+renames them.
 
 Status of the evidence: the three landed APIs were read on `one-native-assembled`
 (`f0082dcb4`) and `origin/one-native-app-info` (`f525dcdf1`); notifications and map were
