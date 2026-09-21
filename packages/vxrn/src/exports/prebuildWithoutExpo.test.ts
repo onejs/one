@@ -240,6 +240,44 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
     ).toThrow()
   })
 
+  it('resolves codegen and hermes from react-native without hoisting', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-react-native-dependencies-'))
+    const androidDir = join(root, 'android')
+    const reactNativeDir = join(root, 'node_modules', 'react-native')
+    mkdirSync(androidDir, { recursive: true })
+    mkdirSync(reactNativeDir, { recursive: true })
+    writeFileSync(
+      join(reactNativeDir, 'package.json'),
+      JSON.stringify({ name: 'react-native', version: '0.0.0' })
+    )
+
+    for (const packageName of ['@react-native/codegen', 'hermes-compiler']) {
+      const nested = join(reactNativeDir, 'node_modules', packageName)
+      mkdirSync(nested, { recursive: true })
+      writeFileSync(
+        join(nested, 'package.json'),
+        JSON.stringify({ name: packageName, version: '0.0.0' })
+      )
+
+      const generatedResolver = `require('module').createRequire(require.resolve('react-native/package.json')).resolve('${packageName}/package.json')`
+      const resolved = execFileSync(process.execPath, ['--print', generatedResolver], {
+        cwd: androidDir,
+        encoding: 'utf8',
+      }).trim()
+      expect(resolved).toBe(realpathSync(join(nested, 'package.json')))
+
+      // the former top-level lookup must fail or this fixture cannot prove the
+      // strict dependency layout used by package managers without hoisting
+      expect(() =>
+        execFileSync(
+          process.execPath,
+          ['--print', `require.resolve('${packageName}/package.json')`],
+          { cwd: androidDir, stdio: 'pipe' }
+        )
+      ).toThrow()
+    }
+  })
+
   it('passes binaries through untouched', () => {
     const rendered = renderPrebuildFile({
       relativePath: 'res/icon.png',
