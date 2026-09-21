@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { ImagePicker as WebImagePicker } from '../src/image-picker/index'
 import {
-  createRequestGuard,
   resolveCameraOptions,
   resolveImagePickerOptions,
 } from '../src/image-picker/options'
@@ -93,33 +93,6 @@ describe('resolveCameraOptions', () => {
   })
 })
 
-describe('createRequestGuard', () => {
-  it('runs sequential calls and resets after a rejection', async () => {
-    const guarded = createRequestGuard()
-    expect(await guarded('launchLibrary', async () => 'first')).toBe('first')
-    await expect(
-      guarded('launchLibrary', async () => {
-        throw new Error('boom')
-      })
-    ).rejects.toThrow('boom')
-    expect(await guarded('launchLibrary', async () => 'third')).toBe('third')
-  })
-
-  it('throws synchronously on an overlapping call', async () => {
-    const guarded = createRequestGuard()
-    let release!: () => void
-    const gate = new Promise<void>((resolve) => {
-      release = resolve
-    })
-    const first = guarded('launchLibrary', () => gate.then(() => 'done'))
-    await expect(guarded('launchCamera', async () => 'late')).rejects.toThrow(
-      /launchCamera.*already in flight/
-    )
-    release()
-    expect(await first).toBe('done')
-  })
-})
-
 describe('ImagePicker without its native module', () => {
   beforeEach(() => {
     getMock.mockReset()
@@ -127,12 +100,12 @@ describe('ImagePicker without its native module', () => {
     vi.resetModules()
   })
 
-  it('rejects every call with the verb in the message', async () => {
+  it('throws synchronously from the launches, rejects from the permission reads', async () => {
     const ImagePicker = await loadImagePicker()
-    await expect(ImagePicker.launchLibrary()).rejects.toThrow(
+    expect(() => ImagePicker.launchLibrary()).toThrow(
       'ImagePicker.launchLibrary needs a native build that includes @vxrn/native'
     )
-    await expect(ImagePicker.launchCamera()).rejects.toThrow(
+    expect(() => ImagePicker.launchCamera()).toThrow(
       'ImagePicker.launchCamera needs a native build that includes @vxrn/native'
     )
     await expect(ImagePicker.getCameraPermissions()).rejects.toThrow(
@@ -141,6 +114,29 @@ describe('ImagePicker without its native module', () => {
     await expect(ImagePicker.requestCameraPermissions()).rejects.toThrow(
       'ImagePicker.requestCameraPermissions needs a native build that includes @vxrn/native'
     )
+  })
+
+  it('validates arguments synchronously through the namespace', async () => {
+    const ImagePicker = await loadImagePicker()
+    expect(() =>
+      ImagePicker.launchLibrary({ mediaTypes: 'gifs' as never })
+    ).toThrow(/mediaTypes/)
+    expect(() => ImagePicker.launchLibrary({ selectionLimit: -1 })).toThrow(
+      /selectionLimit/
+    )
+    expect(() => ImagePicker.launchCamera({ mediaTypes: 'videos' })).toThrow(
+      /launchCamera.*video/
+    )
+  })
+
+  it('validates before reaching the native module', async () => {
+    getMock.mockReturnValue({ launchLibrary: vi.fn(), launchCamera: vi.fn() })
+    const ImagePicker = await loadImagePicker()
+    expect(() => ImagePicker.launchLibrary({ mediaTypes: [] })).toThrow(/mediaTypes/)
+    expect(() =>
+      ImagePicker.launchCamera({ mediaTypes: ['images', 'videos'] })
+    ).toThrow(/launchCamera.*video/)
+    expect(getMock).not.toHaveBeenCalled()
   })
 
   it('passes options and results through the module untouched', async () => {
@@ -156,5 +152,41 @@ describe('ImagePicker without its native module', () => {
       mediaTypes: ['images', 'videos'],
       selectionLimit: 3,
     })
+  })
+})
+
+describe('ImagePicker on web', () => {
+  it('validates arguments synchronously through the namespace', () => {
+    expect(() =>
+      WebImagePicker.launchLibrary({ mediaTypes: 'gifs' as never })
+    ).toThrow(/mediaTypes/)
+    expect(() => WebImagePicker.launchLibrary({ selectionLimit: 1.5 })).toThrow(
+      /selectionLimit/
+    )
+    expect(() => WebImagePicker.launchCamera({ mediaTypes: 'videos' })).toThrow(
+      /launchCamera.*video/
+    )
+  })
+
+  it('reads granted from both permission calls', async () => {
+    await expect(WebImagePicker.getCameraPermissions()).resolves.toEqual({
+      status: 'granted',
+      granted: true,
+      canAskAgain: true,
+    })
+    await expect(WebImagePicker.requestCameraPermissions()).resolves.toEqual({
+      status: 'granted',
+      granted: true,
+      canAskAgain: true,
+    })
+  })
+
+  it('rejects launches on the server as no native side', async () => {
+    await expect(WebImagePicker.launchLibrary()).rejects.toThrow(
+      'ImagePicker.launchLibrary needs an iOS or Android build'
+    )
+    await expect(WebImagePicker.launchCamera()).rejects.toThrow(
+      'ImagePicker.launchCamera needs an iOS or Android build'
+    )
   })
 })
