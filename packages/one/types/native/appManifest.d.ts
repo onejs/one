@@ -10,6 +10,7 @@ export interface NativeAppManifest {
     splash?: {
         source: string;
         backgroundColor: string;
+        width?: number;
     };
     ios?: {
         bundleId: string;

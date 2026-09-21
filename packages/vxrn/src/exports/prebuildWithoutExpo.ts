@@ -40,6 +40,7 @@ export interface PrebuildAppConfig {
   splash?: {
     source: string
     backgroundColor: string
+    width?: number
   }
   ios?: {
     bundleId: string
@@ -61,6 +62,13 @@ const SCHEME = /^[a-z][a-z0-9+.-]*$/i
 const REVERSE_DNS = /^[A-Za-z][A-Za-z0-9-]*(\.[A-Za-z][A-Za-z0-9-]*)+$/
 const DEPLOYMENT_TARGET = /^\d+\.\d+$/
 const HEX_COLOR = /^#[\da-f]{6}$/i
+const ANDROID_DENSITIES = {
+  mdpi: 1,
+  hdpi: 1.5,
+  xhdpi: 2,
+  xxhdpi: 3,
+  xxxhdpi: 4,
+} as const
 
 const IOS_BUNDLE_PLACEHOLDER =
   'org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)'
@@ -135,9 +143,16 @@ export function validatePrebuildApp(
   }
   if (
     app.splash !== undefined &&
-    (!app.splash.source || !HEX_COLOR.test(app.splash.backgroundColor))
+    (!app.splash.source ||
+      !HEX_COLOR.test(app.splash.backgroundColor) ||
+      (app.splash.width !== undefined &&
+        (!Number.isFinite(app.splash.width) ||
+          app.splash.width <= 0 ||
+          app.splash.width > 288)))
   ) {
-    fail('splash requires source and a six-digit hex backgroundColor')
+    fail(
+      'splash requires source, a six-digit hex backgroundColor, and width from 1 to 288'
+    )
   }
   if (!platform || platform === 'ios') {
     if (!app.ios?.bundleId || !REVERSE_DNS.test(app.ios.bundleId)) {
@@ -222,14 +237,8 @@ async function generateAppIcons(args: {
     return
   }
 
-  const androidSizes = {
-    mdpi: 48,
-    hdpi: 72,
-    xhdpi: 96,
-    xxhdpi: 144,
-    xxxhdpi: 192,
-  } as const
-  for (const [density, pixels] of Object.entries(androidSizes)) {
+  for (const [density, multiplier] of Object.entries(ANDROID_DENSITIES)) {
+    const pixels = 48 * multiplier
     const iconDir = path.join(dest, 'app', 'src', 'main', 'res', `mipmap-${density}`)
     for (const filename of ['ic_launcher.png', 'ic_launcher_round.png']) {
       await sharp(source)
@@ -255,16 +264,24 @@ async function generateSplashScreen(args: {
   if (!FSExtra.existsSync(source)) {
     throw new Error(`[vxrn] native.app.splash source does not exist: ${source}`)
   }
-  const metadata = await sharp(source).metadata()
-  if (metadata.width === undefined || metadata.height === undefined) {
+  const { data: artwork, info: metadata } = await sharp(source)
+    .rotate()
+    .trim({ background: app.splash.backgroundColor })
+    .png()
+    .toBuffer({ resolveWithObject: true })
+  if (!metadata.width || !metadata.height) {
     throw new Error('[vxrn] native.app.splash source must be an image')
   }
+  const artworkWidth = app.splash.width ?? 200
+  const artworkHeight = Number(
+    (artworkWidth * (metadata.height / metadata.width)).toFixed(3)
+  )
 
   if (platform === 'ios') {
     const appDir = path.join(dest, app.name)
     const splashDir = path.join(appDir, 'Images.xcassets', 'Splash.imageset')
     FSExtra.mkdirSync(splashDir, { recursive: true })
-    await sharp(source).rotate().png().toFile(path.join(splashDir, 'splash.png'))
+    await sharp(artwork).toFile(path.join(splashDir, 'splash.png'))
     FSExtra.writeFileSync(
       path.join(splashDir, 'Contents.json'),
       `${JSON.stringify(
@@ -300,10 +317,10 @@ async function generateSplashScreen(args: {
             </subviews>
             <color key="backgroundColor" red="${red}" green="${green}" blue="${blue}" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-              <constraint firstItem="splash-image" firstAttribute="leading" secondItem="launch-view" secondAttribute="leading" id="splash-leading"/>
-              <constraint firstAttribute="trailing" secondItem="splash-image" secondAttribute="trailing" id="splash-trailing"/>
-              <constraint firstItem="splash-image" firstAttribute="top" secondItem="launch-view" secondAttribute="top" id="splash-top"/>
-              <constraint firstAttribute="bottom" secondItem="splash-image" secondAttribute="bottom" id="splash-bottom"/>
+              <constraint firstItem="splash-image" firstAttribute="centerX" secondItem="launch-view" secondAttribute="centerX" id="splash-center-x"/>
+              <constraint firstItem="splash-image" firstAttribute="centerY" secondItem="launch-view" secondAttribute="centerY" id="splash-center-y"/>
+              <constraint firstItem="splash-image" firstAttribute="width" constant="${artworkWidth}" id="splash-width"/>
+              <constraint firstItem="splash-image" firstAttribute="height" constant="${artworkHeight}" id="splash-height"/>
             </constraints>
           </view>
         </viewController>
@@ -322,9 +339,36 @@ async function generateSplashScreen(args: {
 
   const mainRes = path.join(dest, 'app', 'src', 'main', 'res')
   const drawable = path.join(mainRes, 'drawable')
-  const drawableNoDpi = path.join(mainRes, 'drawable-nodpi')
-  FSExtra.mkdirSync(drawableNoDpi, { recursive: true })
-  await sharp(source).rotate().png().toFile(path.join(drawableNoDpi, 'splash.png'))
+  for (const [density, multiplier] of Object.entries(ANDROID_DENSITIES)) {
+    const canvasSize = 288 * multiplier
+    const imageSize = Math.round(artworkWidth * multiplier)
+    const contained = await sharp(artwork)
+      .resize(imageSize, imageSize, {
+        fit: 'contain',
+        background: { r: 0, g: 0, b: 0, alpha: 0 },
+      })
+      .png()
+      .toBuffer()
+    const drawableDensity = path.join(mainRes, `drawable-${density}`)
+    FSExtra.mkdirSync(drawableDensity, { recursive: true })
+    await sharp({
+      create: {
+        width: canvasSize,
+        height: canvasSize,
+        channels: 4,
+        background: { r: 0, g: 0, b: 0, alpha: 0 },
+      },
+    })
+      .composite([
+        {
+          input: contained,
+          left: Math.round((canvasSize - imageSize) / 2),
+          top: Math.round((canvasSize - imageSize) / 2),
+        },
+      ])
+      .png()
+      .toFile(path.join(drawableDensity, 'splash.png'))
+  }
   FSExtra.writeFileSync(
     path.join(drawable, 'launch_screen.xml'),
     `<?xml version="1.0" encoding="utf-8"?>

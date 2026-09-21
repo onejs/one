@@ -21,6 +21,7 @@ export default {
           splash: {
             source: './assets/splash.png',
             backgroundColor: '#000000',
+            width: 200,
           },
           ios: {
             bundleId: 'dev.onestack.demo.social',

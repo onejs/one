@@ -9,6 +9,7 @@ export interface PrebuildAppConfig {
     splash?: {
         source: string;
         backgroundColor: string;
+        width?: number;
     };
     ios?: {
         bundleId: string;

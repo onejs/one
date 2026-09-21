@@ -13,6 +13,7 @@ export interface NativeAppManifest {
   splash?: {
     source: string
     backgroundColor: string
+    width?: number
   }
   ios?: {
     bundleId: string
@@ -74,9 +75,16 @@ export function validateNativeApp(manifest: NativeAppManifest): NativeAppManifes
   }
   if (
     manifest.splash !== undefined &&
-    (!manifest.splash.source || !HEX_COLOR.test(manifest.splash.backgroundColor))
+    (!manifest.splash.source ||
+      !HEX_COLOR.test(manifest.splash.backgroundColor) ||
+      (manifest.splash.width !== undefined &&
+        (!Number.isFinite(manifest.splash.width) ||
+          manifest.splash.width <= 0 ||
+          manifest.splash.width > 288)))
   ) {
-    fail('splash requires source and a six-digit hex backgroundColor')
+    fail(
+      'splash requires source, a six-digit hex backgroundColor, and width from 1 to 288'
+    )
   }
   if (manifest.ios !== undefined) {
     if (!manifest.ios.bundleId || !REVERSE_DNS.test(manifest.ios.bundleId)) {

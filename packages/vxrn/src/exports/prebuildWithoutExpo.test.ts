@@ -82,6 +82,12 @@ describe('native.app prebuild validation', () => {
         splash: { source: './splash.png', backgroundColor: 'black' },
       })
     ).toThrow(/splash/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        splash: { source: './splash.png', backgroundColor: '#000000', width: 289 },
+      })
+    ).toThrow(/splash/)
     // platform-scoped: android-only skips the ios requirement and vice versa
     expect(() =>
       validatePrebuildApp({ name: 'MyApp', android: app.android } as any, 'android')
@@ -352,6 +358,7 @@ describe('generateForPlatform determinism', () => {
           new URL('../../../../examples/one-basic/public/splash.png', import.meta.url)
         ),
         backgroundColor: '#000000',
+        width: 200,
       },
     }
 
@@ -395,7 +402,17 @@ describe('generateForPlatform determinism', () => {
       readFileSync(join(output, 'ios', 'MyApp', 'LaunchScreen.storyboard'), 'utf8')
     ).toContain('image="Splash"')
     const androidRes = join(output, 'android', 'app', 'src', 'main', 'res')
-    // legacy android keeps the previous contain behavior: centered, not stretched
+    const splashMdpiPath = join(androidRes, 'drawable-mdpi', 'splash.png')
+    const splashMdpi = await sharp(splashMdpiPath).metadata()
+    expect(splashMdpi).toMatchObject({ width: 288, height: 288, hasAlpha: true })
+    const { info: containedArtwork } = await sharp(splashMdpiPath)
+      .trim({ background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .toBuffer({ resolveWithObject: true })
+    expect(containedArtwork).toMatchObject({ width: 200, height: 59 })
+    expect(
+      await sharp(join(androidRes, 'drawable-xxxhdpi', 'splash.png')).metadata()
+    ).toMatchObject({ width: 1152, height: 1152, hasAlpha: true })
+    // legacy android centers a density-aware square whose artwork was aspect-fit at generation
     const launchScreen = readFileSync(
       join(androidRes, 'drawable', 'launch_screen.xml'),
       'utf8'
@@ -403,17 +420,15 @@ describe('generateForPlatform determinism', () => {
     expect(launchScreen).toContain('@drawable/splash')
     expect(launchScreen).toContain('android:gravity="center"')
     expect(launchScreen).not.toContain('android:gravity="fill"')
-    expect(
-      readFileSync(join(androidRes, 'values', 'colors.xml'), 'utf8')
-    ).toContain('<color name="splash_background">#000000</color>')
-    expect(
-      readFileSync(join(androidRes, 'values', 'styles.xml'), 'utf8')
-    ).toContain('@drawable/launch_screen')
-    // android 12+ uses the configured splash image, never the launcher icon
-    const stylesV31 = readFileSync(
-      join(androidRes, 'values-v31', 'styles.xml'),
-      'utf8'
+    expect(() => statSync(join(androidRes, 'drawable-nodpi', 'splash.png'))).toThrow()
+    expect(readFileSync(join(androidRes, 'values', 'colors.xml'), 'utf8')).toContain(
+      '<color name="splash_background">#000000</color>'
     )
+    expect(readFileSync(join(androidRes, 'values', 'styles.xml'), 'utf8')).toContain(
+      '@drawable/launch_screen'
+    )
+    // android 12+ uses the configured splash image, never the launcher icon
+    const stylesV31 = readFileSync(join(androidRes, 'values-v31', 'styles.xml'), 'utf8')
     expect(stylesV31).toContain('@color/splash_background')
     expect(stylesV31).toContain(
       'android:windowSplashScreenAnimatedIcon">@drawable/splash'

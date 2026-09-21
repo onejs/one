@@ -30,6 +30,7 @@ export default defineConfig({
           splash: {
             source: './public/splash.png',
             backgroundColor: '#000000',
+            width: 200,
           },
           ios: { bundleId: 'com.natew.oneexample', deploymentTarget: '17.0' },
           android: { applicationId: 'com.natew.oneexample' },

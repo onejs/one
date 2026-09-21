@@ -149,6 +149,7 @@ one({
       splash: {
         source: './public/splash.png',
         backgroundColor: '#000000',
+        width: 200,
       },
       ios: {
         bundleId: 'com.example.myapp',
@@ -162,7 +163,10 @@ one({
 
 One reads this manifest directly. It generates the iOS and Android app icons and
 launch screens from the shared sources, and it does not require an Expo app config
-or config plugin. The icon must be a square image at least 1024 pixels wide.
+or config plugin. The icon must be a square image at least 1024 pixels wide. Splash
+artwork is centered at `width` points on iOS and density-independent pixels on
+Android. One removes a solid outer border matching `backgroundColor` before sizing
+the artwork, then generates density-specific Android assets inside a 288 dp square.
 
 ### iOS Project Setup
 
