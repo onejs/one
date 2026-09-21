@@ -2209,6 +2209,12 @@
         "glassEffect": {
           "type": "string"
         },
+        "interactive": {
+          "type": "boolean"
+        },
+        "shape": {
+          "type": "string"
+        },
         "cornerRadius": {
           "type": "Double"
         },

@@ -192,9 +192,11 @@ cannot cover 130 heterogeneous modifiers (EdgeInsets, UnitPoint,
 Animation shapes are not scalars), and gestures/lifecycle/scroll-position
 cannot cross as struct scalars at all.
 
-Option B (recommended): an ordered `modifiers` array prop on controls AND
-containers, Expo-compatible builder names and `$type` strings where the
-SDK shape matches. Wire shape: `objects` payload, one row per modifier
+Option B (selected): an ordered `modifiers` array prop on controls AND
+containers, with builder names generated from the SwiftUI modifier names.
+Keep Expo-compatible names and `$type` strings where they are already the same;
+do not rename SwiftUI concepts to fit an Expo wrapper. Wire shape: `objects`
+payload, one row per modifier
 (`$type` + params + optional event slot), applied IN ORDER by a generated
 Swift applier that folds the chain (AnyView per link, the standard
 data-driven-chain shape) calling the REAL SDK modifier per branch.
@@ -217,10 +219,11 @@ How generation drives it from the inventory (all existing machinery):
 - Marginal cost per modifier after the applier exists: one catalog
   entry. That is the end state the track wants.
 
-swiftStyle: freeze (no new fields), array is canonical. Two paddings with
-different order semantics is two ways to do a thing; removal needs a
-major bump, so: freeze now, deprecate in docs, removal tracked separately
-(coordinator call, not this milestone).
+`swiftStyle` is frozen after correcting its existing glass surface to keep
+variant, interactivity, glass tint, view tint, and shape separate. The ordered
+array is canonical for new modifiers. Two paddings with different order
+semantics is two ways to do a thing; removal needs a major bump, so deprecation
+and removal stay tracked separately.
 
 Phasing: (0) array transport + applier + value/enum modifiers; text
 styling proves it. (1) modifier events unlock gestures: one generic
@@ -231,13 +234,13 @@ scrollPosition waits on useNativeState identity (M3); refreshable's
 async completion is a protocol addition, phases last. Presentation
 detents ride the sheet fixture, not the array.
 
-Open questions for the codegen worker (emitStyle theirs; coordinator to
-sequence): (a) payload column shape — fixed scalar columns (menu-nodes
+Implementation questions for the codegen worker (emitStyle theirs; coordinator
+to sequence): (a) payload column shape — fixed scalar columns (menu-nodes
 precedent) vs `$type` + params-JSON with per-`$type` Codable decode;
 (b) containers need the `modifiers` prop + applier call too
 (emitContainers + hand-written views I own); (c) generic modifier event
 on every spec vs narrower gesture surface; (d) modifier-versions table
-shape. No implementation until the shape is agreed.
+shape. Resolve the transport shape before implementation.
 
 ## Emitter features needed (codegen worker)
 

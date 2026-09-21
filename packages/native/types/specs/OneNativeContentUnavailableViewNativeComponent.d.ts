@@ -31,6 +31,9 @@ type OneNativeStyleNative = Readonly<{
     borderColor?: ColorValue;
     borderWidth?: WithDefault<Double, -1>;
     glassEffect?: string;
+    glassEffectInteractive?: boolean;
+    glassEffectTint?: ColorValue;
+    glassEffectShape?: string;
     material?: string;
 }>;
 interface NativeProps extends ViewProps {

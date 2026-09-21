@@ -78,6 +78,7 @@ import {
   type StackProps,
   type ZStackProps,
 } from './generated/containerTypes'
+import { glassEffects, glassEffectShapes, materials } from './generated/controlTypes'
 
 // a slot only works where SwiftUI proposes its box, so containers mark their children
 // and a slot marks its own React Native subtree as outside again.
@@ -414,19 +415,33 @@ export function LabeledContent({
 export function Glass({
   material,
   glassEffect,
+  interactive = false,
+  shape,
   cornerRadius,
   tint,
   children,
   style,
   ...props
 }: GlassProps) {
+  if (glassEffect !== undefined && !glassEffects.includes(glassEffect))
+    throw new Error(`Swift.Glass glassEffect must be one of ${glassEffects.join(', ')}`)
+  if (material !== undefined && !materials.includes(material))
+    throw new Error(`Swift.Glass material must be one of ${materials.join(', ')}`)
+  if (shape !== undefined && !glassEffectShapes.includes(shape))
+    throw new Error(`Swift.Glass shape must be one of ${glassEffectShapes.join(', ')}`)
+  if (cornerRadius !== undefined && (!Number.isFinite(cornerRadius) || cornerRadius < 0))
+    throw new Error('Swift.Glass cornerRadius must be a non-negative number')
+  if (shape !== undefined && shape !== 'roundedRectangle' && cornerRadius !== undefined)
+    throw new Error('Swift.Glass cornerRadius requires shape="roundedRectangle"')
   assertOneNativeChildren(children, 'Swift.Glass')
   return (
     <NativeGlass
       {...props}
       style={[{ alignSelf: 'stretch' }, style]}
       material={material ?? ''}
-      glassEffect={glassEffect ?? ''}
+      glassEffect={glassEffect ?? (material ? '' : 'regular')}
+      interactive={interactive}
+      shape={shape ?? ''}
       cornerRadius={cornerRadius ?? -1}
       tint={tint}
     >

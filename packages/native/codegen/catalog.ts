@@ -146,7 +146,7 @@ export const styleModifiers = [
     requirements: ['S : SwiftUICore.ShapeStyle'],
   },
 ] as const
-export type StyleFieldKind = 'number' | 'string' | 'color'
+export type StyleFieldKind = 'number' | 'string' | 'boolean' | 'color'
 
 export interface StyleField {
   name: string
@@ -181,9 +181,23 @@ export const styleFields: readonly StyleField[] = [
   { name: 'opacity', kind: 'number' },
   { name: 'borderColor', kind: 'color' },
   { name: 'borderWidth', kind: 'number' },
-  // liquid glass and the material surfaces underneath it. these names are the wire values
-  // Swift.Glass takes too, so a glass surface reads the same in a style and in a container.
-  { name: 'glassEffect', kind: 'string', values: ['regular', 'clear', 'interactive'] },
+  // liquid glass and the material surfaces underneath it. glass variants and behavior are
+  // separate in SwiftUI, so interactivity stays orthogonal to the selected material.
+  { name: 'glassEffect', kind: 'string', values: ['regular', 'clear', 'identity'] },
+  { name: 'glassEffectInteractive', kind: 'boolean' },
+  { name: 'glassEffectTint', kind: 'color' },
+  {
+    name: 'glassEffectShape',
+    kind: 'string',
+    values: [
+      'capsule',
+      'circle',
+      'containerRelativeShape',
+      'ellipse',
+      'rectangle',
+      'roundedRectangle',
+    ],
+  },
   {
     name: 'material',
     kind: 'string',

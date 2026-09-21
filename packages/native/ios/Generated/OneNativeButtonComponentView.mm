@@ -64,6 +64,9 @@ using namespace facebook::react;
   if (next.swiftStyle.borderColor) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.borderColor); if (c) style[@"borderColor"] = c; }
   if (next.swiftStyle.borderWidth >= 0) style[@"borderWidth"] = @(next.swiftStyle.borderWidth);
   if (!next.swiftStyle.glassEffect.empty()) style[@"glassEffect"] = RCTNSStringFromString(next.swiftStyle.glassEffect);
+  if (next.swiftStyle.glassEffectInteractive) style[@"glassEffectInteractive"] = @YES;
+  if (next.swiftStyle.glassEffectTint) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.glassEffectTint); if (c) style[@"glassEffectTint"] = c; }
+  if (!next.swiftStyle.glassEffectShape.empty()) style[@"glassEffectShape"] = RCTNSStringFromString(next.swiftStyle.glassEffectShape);
   if (!next.swiftStyle.material.empty()) style[@"material"] = RCTNSStringFromString(next.swiftStyle.material);
   [_nativeView configureStyle:style];
   [_nativeView configure:RCTNSStringFromString(next.label)

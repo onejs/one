@@ -108,6 +108,8 @@ export const containerComponents = [
     props: {
       material: 'string?',
       glassEffect: 'string?',
+      interactive: 'boolean?',
+      shape: 'string?',
       cornerRadius: 'Double?',
       tint: 'ColorValue?',
     },
@@ -179,7 +181,7 @@ export default codegenNativeComponent<NativeProps>('${component.name}'${componen
     header +
       `import type { ReactNode } from 'react'
 import type { ColorValue, ViewProps } from 'react-native'
-import type { GlassEffect, Material } from './controlTypes'
+import type { GlassEffect, GlassEffectShape, Material } from './controlTypes'
 import type { ColorScheme, DynamicTypeSize } from './swiftui'
 export type HostAxis = ${hostAxes.map((axis) => JSON.stringify(axis)).join(' | ')}
 export type HostAlignment = ${hostAlignments.map((value) => JSON.stringify(value)).join(' | ')}
@@ -224,6 +226,8 @@ export interface LabeledContentProps extends ViewProps {
 export interface GlassProps extends ViewProps {
   material?: Material
   glassEffect?: GlassEffect
+  interactive?: boolean
+  shape?: GlassEffectShape
   cornerRadius?: number
   tint?: ColorValue
   children: ReactNode

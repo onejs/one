@@ -41,11 +41,13 @@ const styleAlias = (field: StyleField) => upper(field.name)
 const styleFieldType = (field: StyleField) =>
   field.kind === 'number'
     ? 'number'
-    : field.kind === 'color'
-      ? 'ColorValue'
-      : field.values
-        ? styleAlias(field)
-        : 'string'
+    : field.kind === 'boolean'
+      ? 'boolean'
+      : field.kind === 'color'
+        ? 'ColorValue'
+        : field.values
+          ? styleAlias(field)
+          : 'string'
 
 export function emitControls(
   header: string,
@@ -78,8 +80,10 @@ ${hasSync ? `import type { NativeState } from '../syncNativeState'\n` : ''}
 ${styleFields
   .filter((field) => field.values)
   .map(
-    (field) =>
-      `export type ${styleAlias(field)} = ${field.values!.map((value) => JSON.stringify(value)).join(' | ')}`
+    (field) => `export const ${field.name}s = [${field
+      .values!.map((value) => JSON.stringify(value))
+      .join(', ')}] as const
+export type ${styleAlias(field)} = (typeof ${field.name}s)[number]`
   )
   .join('\n')}
 
@@ -261,7 +265,7 @@ type OneNativeStyleNative = Readonly<{
 ${styleFields
   .map(
     (field) =>
-      `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'color' ? 'ColorValue' : 'string'}`
+      `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'boolean' ? 'boolean' : field.kind === 'color' ? 'ColorValue' : 'string'}`
   )
   .join('\n')}
 }>
@@ -714,6 +718,8 @@ ${styleFields
         return `  if (next.swiftStyle.${field.name} >= 0) style[@"${field.name}"] = @(next.swiftStyle.${field.name});`
       case 'string':
         return `  if (!next.swiftStyle.${field.name}.empty()) style[@"${field.name}"] = RCTNSStringFromString(next.swiftStyle.${field.name});`
+      case 'boolean':
+        return `  if (next.swiftStyle.${field.name}) style[@"${field.name}"] = @YES;`
       case 'color':
         return `  if (next.swiftStyle.${field.name}) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.${field.name}); if (c) style[@"${field.name}"] = c; }`
     }

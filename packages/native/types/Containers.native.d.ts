@@ -16,7 +16,7 @@ export declare function ScrollView({ axes, showsIndicators, children, style, ...
 export declare function LazyVStack({ alignment, spacing, children, style, ...props }: LazyVStackProps): import("react/jsx-runtime").JSX.Element;
 export declare function LazyHStack({ alignment, spacing, children, style, ...props }: LazyHStackProps): import("react/jsx-runtime").JSX.Element;
 export declare function LabeledContent({ label, value, systemImage, children, style, ...props }: LabeledContentProps): import("react/jsx-runtime").JSX.Element;
-export declare function Glass({ material, glassEffect, cornerRadius, tint, children, style, ...props }: GlassProps): import("react/jsx-runtime").JSX.Element;
+export declare function Glass({ material, glassEffect, interactive, shape, cornerRadius, tint, children, style, ...props }: GlassProps): import("react/jsx-runtime").JSX.Element;
 export declare function ControlGroup({ label, systemImage, controlGroupStyle, children, style, ...props }: ControlGroupProps): import("react/jsx-runtime").JSX.Element;
 export declare function DisclosureGroup({ label, isExpanded, onIsExpandedChange, revision, children, style, ...props }: DisclosureGroupProps): import("react/jsx-runtime").JSX.Element;
 export declare function Divider({ children, style, ...props }: DividerProps): import("react/jsx-runtime").JSX.Element;

@@ -169,6 +169,61 @@ describe('form', () => {
   })
 })
 
+describe('glass', () => {
+  it('uses SwiftUI regular glass and its default shape when no surface is named', () => {
+    expect(render(Containers.Glass, { children: null }).props).toMatchObject({
+      glassEffect: 'regular',
+      interactive: false,
+      shape: '',
+      cornerRadius: -1,
+    })
+  })
+
+  it('keeps material-only surfaces separate from Liquid Glass', () => {
+    expect(
+      render(Containers.Glass, { children: null, material: 'thin' }).props
+    ).toMatchObject({
+      material: 'thin',
+      glassEffect: '',
+    })
+  })
+
+  it('passes the complete Liquid Glass configuration to native', () => {
+    expect(
+      render(Containers.Glass, {
+        children: null,
+        glassEffect: 'clear',
+        interactive: true,
+        shape: 'roundedRectangle',
+        cornerRadius: 24,
+        tint: '#0A84FF',
+      }).props
+    ).toMatchObject({
+      glassEffect: 'clear',
+      interactive: true,
+      shape: 'roundedRectangle',
+      cornerRadius: 24,
+      tint: '#0A84FF',
+    })
+  })
+
+  it('rejects configurations SwiftUI cannot map', () => {
+    expect(() =>
+      render(Containers.Glass, {
+        children: null,
+        glassEffect: 'frosted',
+      })
+    ).toThrow('Swift.Glass glassEffect must be one of regular, clear, identity')
+    expect(() =>
+      render(Containers.Glass, {
+        children: null,
+        shape: 'circle',
+        cornerRadius: 20,
+      })
+    ).toThrow('Swift.Glass cornerRadius requires shape="roundedRectangle"')
+  })
+})
+
 describe('one-native children', () => {
   it('rejects a React Native view in every SwiftUI-composed wrapper', () => {
     // every wrapper whose children compose into SwiftUI rejects a React Native view

@@ -30,6 +30,8 @@ using namespace facebook::react;
   UIColor *tint = next.tint ? RCTUIColorFromSharedColor(next.tint) : nil;
   [_glassView configureWithMaterial:RCTNSStringFromString(next.material)
                         glassEffect:RCTNSStringFromString(next.glassEffect)
+                         interactive:next.interactive
+                               shape:RCTNSStringFromString(next.shape)
                        cornerRadius:next.cornerRadius
                                tint:tint];
   [super updateProps:props oldProps:oldProps];
