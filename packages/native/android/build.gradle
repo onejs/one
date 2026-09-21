@@ -30,6 +30,9 @@ android {
         externalNativeBuild {
             cmake {
                 arguments "-DANDROID_STL=c++_shared"
+                // the prefab dependencies (worklets) build only these abis,
+                // so building more would link against nothing.
+                abiFilters(*reactNativeArchitectures())
             }
         }
     }
@@ -63,6 +66,14 @@ react {
 
 def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+def reactNativeArchitectures() {
+    def value = project.findProperty("reactNativeArchitectures")
+    def parsed = value?.toString()?.split(",")?.collect { it.trim() }?.findAll { !it.isEmpty() }
+    return (parsed == null || parsed.isEmpty()) ?
+        ["armeabi-v7a", "x86", "x86_64", "arm64-v8a"] :
+        parsed
 }
 
 repositories {
