@@ -106,6 +106,12 @@ export interface NotificationResponse {
   actionIdentifier: string
 }
 
+export interface ScheduledNotification {
+  identifier: string
+  content: NotificationContent
+  trigger: NotificationTrigger
+}
+
 export interface NotificationBehavior {
   shouldShowBanner: boolean
   shouldShowList: boolean

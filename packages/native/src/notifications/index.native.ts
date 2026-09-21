@@ -12,6 +12,7 @@ import type {
   NotificationResponse,
   NotificationScheduleInput,
   NotificationSubscription,
+  ScheduledNotification,
 } from './types'
 
 export type * from './types'
@@ -161,13 +162,47 @@ export function clearLastNotificationResponse(): void {
   native().clearLastNotificationResponse()
 }
 
-// schedule a local notification. this slice delivers trigger null
-// immediately; interval and date triggers land in n4.
+// schedule a local notification. trigger null delivers immediately,
+// a timeInterval waits seconds, a date fires at the timestamp. a past date
+// delivers immediately on both platforms.
 export async function scheduleNotificationAsync(
   request: NotificationScheduleInput
 ): Promise<string> {
-  if (request.trigger !== null) {
-    throw new Error('only trigger null is supported: interval and date triggers land in n4')
+  const trigger = request.trigger
+  if (
+    trigger !== null &&
+    typeof trigger === 'object' &&
+    trigger.type === 'date' &&
+    trigger.date instanceof Date
+  ) {
+    return native().scheduleNotification({
+      ...request,
+      trigger: { ...trigger, date: trigger.date.getTime() },
+    })
   }
   return native().scheduleNotification(request)
+}
+
+export async function cancelScheduledNotificationAsync(identifier: string): Promise<void> {
+  return native().cancelScheduledNotification(identifier)
+}
+
+export async function cancelAllScheduledNotificationsAsync(): Promise<void> {
+  return native().cancelAllScheduledNotifications()
+}
+
+export async function getAllScheduledNotificationsAsync(): Promise<ScheduledNotification[]> {
+  return native().getAllScheduledNotifications()
+}
+
+export async function getPresentedNotificationsAsync(): Promise<Notification[]> {
+  return native().getPresentedNotifications()
+}
+
+export async function dismissNotificationAsync(identifier: string): Promise<void> {
+  return native().dismissNotification(identifier)
+}
+
+export async function dismissAllNotificationsAsync(): Promise<void> {
+  return native().dismissAllNotifications()
 }

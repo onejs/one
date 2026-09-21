@@ -24,6 +24,10 @@ static const NSTimeInterval OneNativeNotificationsPresentTimeout = 3.0;
 
 static NSDictionary *TriggerPayload(UNNotificationTrigger *trigger)
 {
+  if (trigger == nil) {
+    // an immediate request, matching the android immediate trigger.
+    return @{@"type" : @"timeInterval", @"seconds" : @0, @"repeats" : @NO};
+  }
   if ([trigger isKindOfClass:[UNTimeIntervalNotificationTrigger class]]) {
     UNTimeIntervalNotificationTrigger *timed = (UNTimeIntervalNotificationTrigger *)trigger;
     return @{
@@ -34,9 +38,10 @@ static NSDictionary *TriggerPayload(UNNotificationTrigger *trigger)
   }
   if ([trigger isKindOfClass:[UNCalendarNotificationTrigger class]]) {
     UNCalendarNotificationTrigger *dated = (UNCalendarNotificationTrigger *)trigger;
+    NSDate *next = dated.nextTriggerDate ?: [NSDate date];
     return @{
       @"type" : @"date",
-      @"date" : @([dated.nextTriggerDate timeIntervalSince1970] * 1000.0),
+      @"date" : @([next timeIntervalSince1970] * 1000.0),
     };
   }
   if ([trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
@@ -395,17 +400,12 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(clearLastNotificationResponse)
   return @YES;
 }
 
-#pragma mark - immediate scheduling
+#pragma mark - scheduling
 
 RCT_EXPORT_METHOD(scheduleNotification:(NSDictionary *)request
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-  id trigger = request[@"trigger"];
-  if (trigger != nil && ![trigger isKindOfClass:[NSNull class]]) {
-    reject(@"E_NOTIFICATIONS_TRIGGER", @"only trigger null is supported in this slice", nil);
-    return;
-  }
   NSDictionary *content = request[@"content"];
   if (![content isKindOfClass:[NSDictionary class]]) {
     content = @{};
@@ -433,8 +433,47 @@ RCT_EXPORT_METHOD(scheduleNotification:(NSDictionary *)request
   if (![identifier isKindOfClass:[NSString class]]) {
     identifier = [[NSUUID UUID] UUIDString];
   }
-  UNNotificationRequest *nativeRequest =
-      [UNNotificationRequest requestWithIdentifier:identifier content:nativeContent trigger:nil];
+  UNNotificationTrigger *nativeTrigger = nil;
+  id trigger = request[@"trigger"];
+  if ([trigger isKindOfClass:[NSDictionary class]]) {
+    // channelId is android-only; ios ignores it.
+    NSString *type = trigger[@"type"];
+    if ([type isEqualToString:@"timeInterval"]) {
+      NSTimeInterval seconds = [trigger[@"seconds"] doubleValue];
+      BOOL repeats = [trigger[@"repeats"] boolValue];
+      if (seconds <= 0) {
+        reject(@"E_NOTIFICATIONS_TRIGGER", @"timeInterval seconds must be positive", nil);
+        return;
+      }
+      if (repeats && seconds < 60) {
+        reject(@"E_NOTIFICATIONS_TRIGGER",
+               @"a repeating timeInterval must be at least 60 seconds", nil);
+        return;
+      }
+      nativeTrigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:seconds
+                                                                          repeats:repeats];
+    } else if ([type isEqualToString:@"date"]) {
+      NSTimeInterval fireMs = [trigger[@"date"] doubleValue];
+      NSDate *fireDate = [NSDate dateWithTimeIntervalSince1970:fireMs / 1000.0];
+      if ([fireDate timeIntervalSinceNow] > 0) {
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSDateComponents *components = [calendar
+            components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay |
+                        NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond)
+              fromDate:fireDate];
+        nativeTrigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components
+                                                                                 repeats:NO];
+      }
+      // a past date keeps the nil trigger and delivers immediately.
+    } else {
+      reject(@"E_NOTIFICATIONS_TRIGGER",
+             [NSString stringWithFormat:@"unknown trigger type %@", type], nil);
+      return;
+    }
+  }
+  UNNotificationRequest *nativeRequest = [UNNotificationRequest requestWithIdentifier:identifier
+                                                                               content:nativeContent
+                                                                               trigger:nativeTrigger];
   [[UNUserNotificationCenter currentNotificationCenter]
       addNotificationRequest:nativeRequest
       withCompletionHandler:^(NSError *_Nullable error) {
@@ -444,6 +483,68 @@ RCT_EXPORT_METHOD(scheduleNotification:(NSDictionary *)request
         }
         resolve(identifier);
       }];
+}
+
+RCT_EXPORT_METHOD(cancelScheduledNotification:(NSString *)identifier
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+{
+  [[UNUserNotificationCenter currentNotificationCenter]
+      removePendingNotificationRequestsWithIdentifiers:@[ identifier ]];
+  resolve(nil);
+}
+
+RCT_EXPORT_METHOD(cancelAllScheduledNotifications:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+{
+  [[UNUserNotificationCenter currentNotificationCenter] removeAllPendingNotificationRequests];
+  resolve(nil);
+}
+
+RCT_EXPORT_METHOD(getAllScheduledNotifications:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+{
+  [[UNUserNotificationCenter currentNotificationCenter]
+      getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> *requests) {
+        NSMutableArray *payload = [NSMutableArray arrayWithCapacity:requests.count];
+        for (UNNotificationRequest *request in requests) {
+          [payload addObject:@{
+            @"identifier" : request.identifier,
+            @"content" : ContentPayload(request.content),
+            @"trigger" : TriggerPayload(request.trigger),
+          }];
+        }
+        resolve(payload);
+      }];
+}
+
+RCT_EXPORT_METHOD(getPresentedNotifications:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+{
+  [[UNUserNotificationCenter currentNotificationCenter]
+      getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> *notifications) {
+        NSMutableArray *payload = [NSMutableArray arrayWithCapacity:notifications.count];
+        for (UNNotification *notification in notifications) {
+          [payload addObject:NotificationPayload(notification)];
+        }
+        resolve(payload);
+      }];
+}
+
+RCT_EXPORT_METHOD(dismissNotification:(NSString *)identifier
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+{
+  [[UNUserNotificationCenter currentNotificationCenter]
+      removeDeliveredNotificationsWithIdentifiers:@[ identifier ]];
+  resolve(nil);
+}
+
+RCT_EXPORT_METHOD(dismissAllNotifications:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+{
+  [[UNUserNotificationCenter currentNotificationCenter] removeAllDeliveredNotifications];
+  resolve(nil);
 }
 
 @end

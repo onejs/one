@@ -2,13 +2,19 @@ import {
   addNotificationReceivedListener,
   addNotificationResponseReceivedListener,
   AndroidImportance,
+  cancelAllScheduledNotificationsAsync,
+  cancelScheduledNotificationAsync,
   clearLastNotificationResponse,
   deleteNotificationChannelAsync,
+  dismissAllNotificationsAsync,
+  dismissNotificationAsync,
+  getAllScheduledNotificationsAsync,
   getBadgeCountAsync,
   getLastNotificationResponse,
   getNotificationChannelAsync,
   getNotificationChannelsAsync,
   getPermissionsAsync,
+  getPresentedNotificationsAsync,
   requestPermissionsAsync,
   scheduleNotificationAsync,
   setBadgeCountAsync,
@@ -44,6 +50,8 @@ export default function OneNativeNotifications() {
   const [last, setLast] = useState('Last: none')
   const [handler, setHandlerName] = useState('Handler: default')
   const [scheduled, setScheduled] = useState('Scheduled: none')
+  const [pending, setPending] = useState('Pending: none')
+  const [presented, setPresented] = useState('Presented: none')
   const [count, setCount] = useState(0)
 
   useEffect(() => {
@@ -274,6 +282,138 @@ export default function OneNativeNotifications() {
         }}
       >
         <Text>Clear last response</Text>
+      </Pressable>
+      <Text>{pending}</Text>
+      <Text>{presented}</Text>
+      <Pressable
+        testID="one-native-notifications-schedule-interval"
+        style={styles.chip}
+        onPress={() =>
+          scheduleNotificationAsync({
+            identifier: 'n4-interval',
+            content: { title: 'N4 interval' },
+            trigger: { type: 'timeInterval', seconds: 5 },
+          }).then(
+            (id) => setScheduled(`Scheduled: ${id}`),
+            (error) => setScheduled(`Scheduled: error ${show(error)}`)
+          )
+        }
+      >
+        <Text>Schedule 5s interval</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-notifications-schedule-date"
+        style={styles.chip}
+        onPress={() =>
+          scheduleNotificationAsync({
+            identifier: 'n4-date',
+            content: { title: 'N4 date' },
+            trigger: { type: 'date', date: Date.now() + 5000 },
+          }).then(
+            (id) => setScheduled(`Scheduled: ${id}`),
+            (error) => setScheduled(`Scheduled: error ${show(error)}`)
+          )
+        }
+      >
+        <Text>Schedule date +5s</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-notifications-schedule-cold"
+        style={styles.chip}
+        onPress={() =>
+          scheduleNotificationAsync({
+            identifier: 'n4-cold',
+            content: { title: 'N4 cold' },
+            trigger: { type: 'date', date: Date.now() + 15000 },
+          }).then(
+            (id) => setScheduled(`Scheduled: ${id}`),
+            (error) => setScheduled(`Scheduled: error ${show(error)}`)
+          )
+        }
+      >
+        <Text>Schedule date +15s</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-notifications-scheduled-list"
+        style={styles.chip}
+        onPress={() =>
+          getAllScheduledNotificationsAsync().then(
+            (list) =>
+              setPending(
+                list.length
+                  ? `Pending: ${list.map((item) => item.identifier).sort().join(',')}`
+                  : 'Pending: none'
+              ),
+            (error) => setPending(`Pending: error ${show(error)}`)
+          )
+        }
+      >
+        <Text>List scheduled</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-notifications-cancel-interval"
+        style={styles.chip}
+        onPress={() =>
+          cancelScheduledNotificationAsync('n4-interval').then(
+            () => setPending('Pending: cancelled'),
+            (error) => setPending(`Pending: error ${show(error)}`)
+          )
+        }
+      >
+        <Text>Cancel interval</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-notifications-presented-list"
+        style={styles.chip}
+        onPress={() =>
+          getPresentedNotificationsAsync().then(
+            (list) =>
+              setPresented(
+                list.length
+                  ? `Presented: ${list.map((item) => item.request.identifier).sort().join(',')}`
+                  : 'Presented: none'
+              ),
+            (error) => setPresented(`Presented: error ${show(error)}`)
+          )
+        }
+      >
+        <Text>List presented</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-notifications-dismiss-date"
+        style={styles.chip}
+        onPress={() =>
+          dismissNotificationAsync('n4-date').then(
+            () => setPresented('Presented: dismissed'),
+            (error) => setPresented(`Presented: error ${show(error)}`)
+          )
+        }
+      >
+        <Text>Dismiss date</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-notifications-cancel-all"
+        style={styles.chip}
+        onPress={() =>
+          cancelAllScheduledNotificationsAsync().then(
+            () => setPending('Pending: cancelled'),
+            (error) => setPending(`Pending: error ${show(error)}`)
+          )
+        }
+      >
+        <Text>Cancel all</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-notifications-dismiss-all"
+        style={styles.chip}
+        onPress={() =>
+          dismissAllNotificationsAsync().then(
+            () => setPresented('Presented: dismissed'),
+            (error) => setPresented(`Presented: error ${show(error)}`)
+          )
+        }
+      >
+        <Text>Dismiss all</Text>
       </Pressable>
     </ScrollView>
   )

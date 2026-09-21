@@ -1,4 +1,4 @@
-import type { Notification, NotificationChannel, NotificationChannelInput, NotificationHandlerInput, NotificationPermissionRequest, NotificationPermissionResponse, NotificationResponse, NotificationScheduleInput, NotificationSubscription } from './types';
+import type { Notification, NotificationChannel, NotificationChannelInput, NotificationHandlerInput, NotificationPermissionRequest, NotificationPermissionResponse, NotificationResponse, NotificationScheduleInput, NotificationSubscription, ScheduledNotification } from './types';
 export type * from './types';
 export { AndroidImportance, DEFAULT_ACTION_IDENTIFIER } from './types';
 export declare function getPermissionsAsync(): Promise<NotificationPermissionResponse>;
@@ -15,4 +15,10 @@ export declare function setNotificationHandler(handler: NotificationHandlerInput
 export declare function getLastNotificationResponse(): NotificationResponse | null;
 export declare function clearLastNotificationResponse(): void;
 export declare function scheduleNotificationAsync(request: NotificationScheduleInput): Promise<string>;
+export declare function cancelScheduledNotificationAsync(identifier: string): Promise<void>;
+export declare function cancelAllScheduledNotificationsAsync(): Promise<void>;
+export declare function getAllScheduledNotificationsAsync(): Promise<ScheduledNotification[]>;
+export declare function getPresentedNotificationsAsync(): Promise<Notification[]>;
+export declare function dismissNotificationAsync(identifier: string): Promise<void>;
+export declare function dismissAllNotificationsAsync(): Promise<void>;
 //# sourceMappingURL=index.native.d.ts.map

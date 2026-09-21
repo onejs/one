@@ -8,6 +8,7 @@ import type {
   NotificationResponse,
   NotificationScheduleInput,
   NotificationSubscription,
+  ScheduledNotification,
 } from './types'
 
 export type * from './types'
@@ -85,3 +86,23 @@ export async function scheduleNotificationAsync(
 ): Promise<string> {
   throw new Error('Notifications.schedule needs an iOS or Android build')
 }
+
+export async function cancelScheduledNotificationAsync(
+  _identifier: string
+): Promise<void> {}
+
+export async function cancelAllScheduledNotificationsAsync(): Promise<void> {}
+
+export async function getAllScheduledNotificationsAsync(): Promise<
+  ScheduledNotification[]
+> {
+  return []
+}
+
+export async function getPresentedNotificationsAsync(): Promise<Notification[]> {
+  return []
+}
+
+export async function dismissNotificationAsync(_identifier: string): Promise<void> {}
+
+export async function dismissAllNotificationsAsync(): Promise<void> {}

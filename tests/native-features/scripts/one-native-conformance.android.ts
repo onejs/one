@@ -1916,6 +1916,110 @@ async function run(config: Config) {
       (nodes) => textIncludes(nodes, 'Received: n3-3'),
       'one-native-notifications-schedule-now'
     )
+    // slice n4: clear leftovers, schedule two, cancel one, observe the other.
+    tapNotif('Notifications cancel all', 'one-native-notifications-cancel-all')
+    await expect(
+      'notifications-cancel-all',
+      (nodes) => textIncludes(nodes, 'Pending: cancelled'),
+      'one-native-notifications-cancel-all'
+    )
+    tapNotif('Notifications dismiss all', 'one-native-notifications-dismiss-all')
+    await expect(
+      'notifications-dismiss-all',
+      (nodes) => textIncludes(nodes, 'Presented: dismissed'),
+      'one-native-notifications-dismiss-all'
+    )
+    tapNotif('Notifications schedule interval', 'one-native-notifications-schedule-interval')
+    await expect(
+      'notifications-interval-scheduled',
+      (nodes) => textIncludes(nodes, 'Scheduled: n4-interval'),
+      'one-native-notifications-schedule-interval'
+    )
+    tapNotif('Notifications schedule date', 'one-native-notifications-schedule-date')
+    await expect(
+      'notifications-date-scheduled',
+      (nodes) => textIncludes(nodes, 'Scheduled: n4-date'),
+      'one-native-notifications-schedule-date'
+    )
+    tapNotif('Notifications scheduled list', 'one-native-notifications-scheduled-list')
+    await expect(
+      'notifications-both-pending',
+      (nodes) => textIncludes(nodes, 'Pending: n4-date,n4-interval'),
+      'one-native-notifications-scheduled-list'
+    )
+    tapNotif('Notifications cancel interval', 'one-native-notifications-cancel-interval')
+    await expect(
+      'notifications-interval-cancelled',
+      (nodes) => textIncludes(nodes, 'Pending: cancelled'),
+      'one-native-notifications-cancel-interval'
+    )
+    tapNotif('Notifications scheduled list again', 'one-native-notifications-scheduled-list')
+    await expect(
+      'notifications-cancel-removes-pending',
+      (nodes) => textIncludes(nodes, 'Pending: n4-date'),
+      'one-native-notifications-scheduled-list'
+    )
+    await expect(
+      'notifications-date-received',
+      (nodes) => textIncludes(nodes, 'Received: n4-date'),
+      'one-native-notifications-schedule-now'
+    )
+    tapNotif('Notifications presented list', 'one-native-notifications-presented-list')
+    await expect(
+      'notifications-date-presented',
+      (nodes) => textIncludes(nodes, 'Presented: n4-date'),
+      'one-native-notifications-presented-list'
+    )
+    tapNotif('Notifications dismiss date', 'one-native-notifications-dismiss-date')
+    await expect(
+      'notifications-dismiss-resolves',
+      (nodes) => textIncludes(nodes, 'Presented: dismissed'),
+      'one-native-notifications-dismiss-date'
+    )
+    tapNotif('Notifications presented list again', 'one-native-notifications-presented-list')
+    await expect(
+      'notifications-dismiss-removes-presented',
+      (nodes) => textIncludes(nodes, 'Presented: none'),
+      'one-native-notifications-presented-list'
+    )
+    // cold start through a dead process: schedule, background, kill (never
+    // force-stop: it cancels alarms), let the alarm post, tap the shade.
+    tapNotif('Notifications schedule cold', 'one-native-notifications-schedule-cold')
+    await expect(
+      'notifications-cold-scheduled',
+      (nodes) => textIncludes(nodes, 'Scheduled: n4-cold'),
+      'one-native-notifications-schedule-cold'
+    )
+    adbText(config, ['shell', 'input', 'keyevent', '3'])
+    adbText(config, ['shell', 'am', 'kill', config.packageId])
+    await new Promise((resolve) => setTimeout(resolve, 17_000))
+    adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+    {
+      const current = snapshot(config)
+      const target = current.nodes.find(
+        (node) => node.text === 'N4 cold' || node.contentDescription === 'N4 cold'
+      )
+      if (!target) throw new Error('Notifications cold tap: no shade node with text N4 cold.')
+      const bounds = validBounds(clickableTarget(current.nodes, target) ?? target, 'cold tap')
+      const x = Math.round((bounds.left + bounds.right) / 2)
+      const y = Math.round((bounds.top + bounds.bottom) / 2)
+      adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+    }
+    await expect(
+      'notifications-cold-home',
+      (nodes) =>
+        diagnose(nodes, [
+          ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+          ['nav list row', (n) => n.some((node) => node.resourceId.includes('nav-'))],
+        ]),
+      'home-screen'
+    )
+    await tapNavigation(config, 'nav-one-native-notifications')
+    await expect(
+      'notifications-cold-last-response',
+      (nodes) => textIncludes(nodes, 'Last: n4-cold/N4 cold'),
+      'one-native-notifications-last-refresh'
+    )
 
     writeFileSync(
       path.join(config.artifactDir, 'status.json'),

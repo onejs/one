@@ -636,6 +636,33 @@ instead, which the app reads on launch; `clearLastNotificationResponse`
 dismisses it. The iOS delegate installs at launch, before the bridge loads,
 so the cold-start tap is cached no matter how early it arrives.
 
+Two more triggers schedule into the future: `{ type: 'timeInterval', seconds,
+repeats? }` and `{ type: 'date', date }`, where the date is a timestamp or a
+`Date`. A past date delivers immediately. Both take an Android `channelId`;
+unknown ids fall back to an owned Default channel rather than posting
+nowhere. Rescheduling an identifier replaces it.
+
+```tsx
+await scheduleNotificationAsync({
+  identifier: 'tea',
+  content: { title: 'Tea', body: 'ready' },
+  trigger: { type: 'timeInterval', seconds: 300 },
+})
+```
+
+`cancelScheduledNotificationAsync`, `cancelAllScheduledNotificationsAsync`,
+and `getAllScheduledNotificationsAsync` manage the pending list;
+`getPresentedNotificationsAsync`, `dismissNotificationAsync`, and
+`dismissAllNotificationsAsync` manage what is on screen.
+
+On Android the triggers ride `AlarmManager.setAndAllowWhileIdle`: one inexact
+path, no `SCHEDULE_EXACT_ALARM`, so a delivery deferred by doze is expected,
+not a bug. Schedules persist across restarts and a boot receiver re-arms
+them; one-shots that expired while the device was off are dropped and repeats
+restart from boot. iOS has two platform rules worth knowing: a repeating
+interval must be at least 60 seconds, and the calendar trigger resolves to
+whole seconds.
+
 Declare the capability in `native.app` so prebuild stamps the Android
 `POST_NOTIFICATIONS` permission. iOS needs nothing for local notifications.
 
@@ -669,7 +696,7 @@ one({
 | TextInput, native state | One.UI.* | One.UI.* | One.UI.* (web behavior) |
 | Safe area | One.UI.SafeArea | One.UI.SafeArea | One.UI.SafeArea (css env) |
 | Colors | One.iOS.Color | Color.android | null |
-| Notifications | permission, badge, events, handler, immediate schedule | permission, channels, events, handler, immediate schedule | denied, inert |
+| Notifications | permission, badge, channels (no-op), events, handler, scheduling | permission, badge (no-op), channels, events, handler, scheduling | denied, inert |
 
 Unsupported toolbar, menu, and zoom components return `null`, so they are safe
 to keep in cross-platform component trees. SplitView renders its routed `slot`

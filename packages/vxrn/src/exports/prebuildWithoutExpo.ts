@@ -504,7 +504,14 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
     ) {
       rendered = rendered.replace(
         '    <uses-permission android:name="android.permission.INTERNET" />',
-        '    <uses-permission android:name="android.permission.INTERNET" />\n    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />'
+        '    <uses-permission android:name="android.permission.INTERNET" />\n    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />\n    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />'
+      )
+      // the alarm and boot receiver lives in the app manifest, never the
+      // library one, so apps without notifications gain nothing. alarms
+      // arrive as explicit intents; only boot needs the filter.
+      rendered = rendered.replace(
+        '      </activity>\n    </application>',
+        '      </activity>\n      <receiver android:name="dev.onejs.onenative.OneNativeNotificationsReceiver" android:exported="false">\n          <intent-filter>\n              <action android:name="android.intent.action.BOOT_COMPLETED" />\n          </intent-filter>\n      </receiver>\n    </application>'
       )
     }
     if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {

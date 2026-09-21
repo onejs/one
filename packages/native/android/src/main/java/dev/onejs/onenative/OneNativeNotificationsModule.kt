@@ -2,7 +2,10 @@ package dev.onejs.onenative
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlarmManager
 import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -46,9 +49,10 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
         val subtitle: String?,
         val body: String?,
         val dataJson: String,
-        val channelId: String?,
         val sound: Boolean,
         val badge: Int?,
+        val channelId: String?,
+        val triggerJson: String,
         val dateMs: Long,
         val timeout: Runnable
     )
@@ -61,6 +65,7 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
         val dataJson: String,
         val sound: Boolean,
         val badge: Int?,
+        val triggerJson: String,
         val dateMs: Long
     )
 
@@ -89,11 +94,16 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
         reactContext.addLifecycleEventListener(this)
     }
 
+    override fun initialize() {
+        bridgeContext = reactApplicationContext
+    }
+
     override fun getName(): String = NAME
 
     override fun invalidate() {
         reactApplicationContext.removeActivityEventListener(activityListener)
         reactApplicationContext.removeLifecycleEventListener(this)
+        if (bridgeContext === reactApplicationContext) bridgeContext = null
         permissionPromise?.reject(E_PERMISSIONS, "notification authorization was cancelled")
         permissionPromise = null
         synchronized(pending) {
@@ -305,24 +315,6 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
             .emit(name, params)
     }
 
-    private fun isForeground(): Boolean {
-        val manager =
-            reactApplicationContext.getSystemService(Context.ACTIVITY_SERVICE)
-                as android.app.ActivityManager
-        return manager.runningAppProcesses?.any {
-            it.pid == android.os.Process.myPid() &&
-                it.importance ==
-                android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND
-        } == true
-    }
-
-    private fun immediateTrigger(): WritableMap =
-        Arguments.createMap().apply {
-            putString("type", "timeInterval")
-            putDouble("seconds", 0.0)
-            putBoolean("repeats", false)
-        }
-
     private fun notificationPayload(
         identifier: String,
         title: String?,
@@ -331,6 +323,7 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
         data: WritableMap?,
         sound: Boolean,
         badge: Int?,
+        trigger: WritableMap?,
         dateMs: Long
     ): WritableMap =
         Arguments.createMap().apply {
@@ -349,89 +342,97 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
                             if (badge != null) putInt("badge", badge) else putNull("badge")
                         }
                     )
-                    putMap("trigger", immediateTrigger())
+                    putMap("trigger", trigger ?: Arguments.createMap().apply {
+                        putString("type", "unknown")
+                    })
                 }
             )
             putDouble("date", dateMs.toDouble())
         }
 
-    // posting without the runtime permission throws on 13+, so the schedule
-    // and present paths translate that into a rejection or a quiet drop.
-    private fun effectiveChannelId(channelId: String?): String {
-        if (Build.VERSION.SDK_INT < 26) return channelId ?: DEFAULT_CHANNEL_ID
-        val manager = NotificationManagerCompat.from(reactApplicationContext)
-        if (channelId != null && manager.getNotificationChannel(channelId) != null) {
-            return channelId
-        }
-        // unknown ids fall back to an owned default channel rather than
-        // posting nowhere: android drops channel-less notifications.
-        if (manager.getNotificationChannel(DEFAULT_CHANNEL_ID) == null) {
-            manager.createNotificationChannel(
-                NotificationChannel(
-                    DEFAULT_CHANNEL_ID,
-                    "Default",
-                    android.app.NotificationManager.IMPORTANCE_DEFAULT
-                )
+    // one delivery path for immediate posts and alarm fires: foreground with
+    // a live bridge goes through the js handler round trip, everything else
+    // posts straight to the shade.
+    private fun deliverNow(delivery: StoredSchedule, dateMs: Long) {
+        if (isForeground(reactApplicationContext) &&
+            reactApplicationContext.hasActiveCatalystInstance()
+        ) {
+            val requestId = UUID.randomUUID().toString()
+            val timeout = Runnable {
+                // js stalled: show everything, like expo, rather than drop.
+                synchronized(pending) {
+                    val stalled = pending.remove(requestId) ?: return@Runnable
+                    try {
+                        postStatic(
+                            reactApplicationContext,
+                            stalled.identifier,
+                            stalled.title,
+                            stalled.subtitle,
+                            stalled.body,
+                            stalled.dataJson,
+                            stalled.sound,
+                            stalled.badge,
+                            stalled.channelId,
+                            stalled.triggerJson,
+                            true
+                        )
+                    } catch (error: SecurityException) {
+                        // permission revoked between arrival and timeout.
+                    }
+                }
+            }
+            synchronized(pending) {
+                pending[requestId] =
+                    PendingDelivery(
+                        delivery.identifier,
+                        delivery.title,
+                        delivery.subtitle,
+                        delivery.body,
+                        delivery.dataJson,
+                        delivery.sound,
+                        delivery.badge,
+                        delivery.channelId,
+                        delivery.triggerJson,
+                        dateMs,
+                        timeout
+                    )
+            }
+            mainHandler.postDelayed(timeout, PRESENT_TIMEOUT_MS)
+            emit(
+                EVENT_RECEIVED,
+                Arguments.createMap().apply {
+                    putString("requestId", requestId)
+                    putMap(
+                        "notification",
+                        notificationPayload(
+                            delivery.identifier,
+                            delivery.title,
+                            delivery.subtitle,
+                            delivery.body,
+                            jsonToMap(JSONObject(delivery.dataJson)),
+                            delivery.sound,
+                            delivery.badge,
+                            jsonToMap(JSONObject(delivery.triggerJson)),
+                            dateMs
+                        )
+                    )
+                }
             )
+            return
         }
-        return DEFAULT_CHANNEL_ID
-    }
-
-    private fun optString(map: ReadableMap?, key: String): String? =
-        if (map != null && map.hasKey(key) && !map.isNull(key)) map.getString(key) else null
-
-    private fun postNotification(
-        identifier: String,
-        title: String?,
-        subtitle: String?,
-        body: String?,
-        dataJson: String,
-        sound: Boolean,
-        badge: Int?,
-        channelId: String?,
-        highPriority: Boolean
-    ) {
-        val context = reactApplicationContext
-        val launch = context.packageManager.getLaunchIntentForPackage(context.packageName)
-        val icon = context.applicationInfo.icon
-        val builder =
-            NotificationCompat.Builder(context, effectiveChannelId(channelId))
-                .setContentTitle(title)
-                .setContentText(body)
-                .setSubText(subtitle)
-                .setSmallIcon(if (icon != 0) icon else android.R.drawable.ic_dialog_info)
-                .setAutoCancel(true)
-                .setPriority(
-                    if (highPriority) NotificationCompat.PRIORITY_HIGH
-                    else NotificationCompat.PRIORITY_DEFAULT
-                )
-        if (launch != null) {
-            val target = Intent(launch)
-            target.action = ACTION_TAP
-            target.putExtra(EXTRA_TAP, true)
-            target.putExtra(EXTRA_IDENTIFIER, identifier)
-            target.putExtra(EXTRA_TITLE, title)
-            target.putExtra(EXTRA_SUBTITLE, subtitle)
-            target.putExtra(EXTRA_BODY, body)
-            target.putExtra(EXTRA_DATA, dataJson)
-            target.putExtra(EXTRA_SOUND, sound)
-            if (badge != null) target.putExtra(EXTRA_BADGE, badge)
-            target.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            builder.setContentIntent(
-                android.app.PendingIntent.getActivity(
-                    context,
-                    identifier.hashCode(),
-                    target,
-                    android.app.PendingIntent.FLAG_UPDATE_CURRENT or
-                        android.app.PendingIntent.FLAG_IMMUTABLE
-                )
-            )
-        }
-        val extras = android.os.Bundle()
-        extras.putString(EXTRA_IDENTIFIER, identifier)
-        extras.putString(EXTRA_DATA, dataJson)
-        builder.addExtras(extras)
-        NotificationManagerCompat.from(context).notify(identifier, 0, builder.build())
+        postStatic(
+            reactApplicationContext,
+            delivery.identifier,
+            delivery.title,
+            delivery.subtitle,
+            delivery.body,
+            delivery.dataJson,
+            delivery.sound,
+            delivery.badge,
+            delivery.channelId,
+            delivery.triggerJson,
+            false
+        )
     }
 
     @ReactMethod
@@ -447,7 +448,8 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
             (behavior.getBoolean("shouldShowBanner") || behavior.getBoolean("shouldShowList"))
         ) {
             try {
-                postNotification(
+                postStatic(
+                    reactApplicationContext,
                     delivery.identifier,
                     delivery.title,
                     delivery.subtitle,
@@ -456,6 +458,7 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
                     delivery.sound,
                     delivery.badge,
                     delivery.channelId,
+                    delivery.triggerJson,
                     behavior.getBoolean("shouldShowBanner")
                 )
             } catch (error: SecurityException) {
@@ -467,10 +470,6 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
 
     @ReactMethod
     fun scheduleNotification(request: ReadableMap, promise: Promise) {
-        if (request.hasKey("trigger") && !request.isNull("trigger")) {
-            promise.reject(E_TRIGGER, "only trigger null is supported in this slice")
-            return
-        }
         val content = request.getMap("content")
         val title = optString(content, "title")
         val subtitle = optString(content, "subtitle")
@@ -488,79 +487,236 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
             }
         val data = content?.takeIf { it.hasKey("data") && !it.isNull("data") }?.getMap("data")
         val identifier = optString(request, "identifier") ?: UUID.randomUUID().toString()
-        val dateMs = System.currentTimeMillis()
-        val dataJson = readableToJson(data ?: Arguments.createMap()).toString()
-        if (isForeground() && reactApplicationContext.hasActiveCatalystInstance()) {
-            val requestId = UUID.randomUUID().toString()
-            val timeout = Runnable {
-                // js stalled: show everything, like expo, rather than drop.
-                synchronized(pending) {
-                    val delivery = pending.remove(requestId) ?: return@Runnable
-                    try {
-                        postNotification(
-                            delivery.identifier,
-                            delivery.title,
-                            delivery.subtitle,
-                            delivery.body,
-                            delivery.dataJson,
-                            delivery.sound,
-                            delivery.badge,
-                            delivery.channelId,
-                            true
-                        )
-                    } catch (error: SecurityException) {
-                        // permission revoked between arrival and timeout.
-                    }
-                }
+        val trigger =
+            if (request.hasKey("trigger") && !request.isNull("trigger")) {
+                request.getMap("trigger")
+            } else {
+                null
             }
-            synchronized(pending) {
-                pending[requestId] =
-                    PendingDelivery(
+        val channelId = optString(trigger, "channelId")
+        val dataJson = readableToJson(data ?: Arguments.createMap()).toString()
+        val now = System.currentTimeMillis()
+        if (trigger == null) {
+            val delivery =
+                StoredSchedule(
+                    identifier,
+                    title,
+                    subtitle,
+                    body,
+                    dataJson,
+                    sound,
+                    badge,
+                    channelId,
+                    IMMEDIATE_TRIGGER_JSON,
+                    "immediate",
+                    0.0,
+                    false,
+                    now
+                )
+            try {
+                deliverNow(delivery, now)
+            } catch (error: SecurityException) {
+                promise.reject(
+                    E_SCHEDULE,
+                    "posting the notification failed: request permission first"
+                )
+                return
+            }
+            promise.resolve(identifier)
+            return
+        }
+        val fireAtMs: Long
+        val triggerJson: String
+        val kind: String
+        val seconds: Double
+        val repeats: Boolean
+        when (trigger.getString("type")) {
+            "timeInterval" -> {
+                if (!trigger.hasKey("seconds") || trigger.isNull("seconds")) {
+                    promise.reject(E_TRIGGER, "timeInterval seconds must be positive")
+                    return
+                }
+                seconds = trigger.getDouble("seconds")
+                if (seconds <= 0) {
+                    promise.reject(E_TRIGGER, "timeInterval seconds must be positive")
+                    return
+                }
+                repeats =
+                    trigger.hasKey("repeats") &&
+                        !trigger.isNull("repeats") &&
+                        trigger.getBoolean("repeats")
+                fireAtMs = now + (seconds * 1000).toLong()
+                triggerJson =
+                    JSONObject()
+                        .put("type", "timeInterval")
+                        .put("seconds", seconds)
+                        .put("repeats", repeats)
+                        .toString()
+                kind = "interval"
+            }
+            "date" -> {
+                if (!trigger.hasKey("date") || trigger.isNull("date")) {
+                    promise.reject(E_TRIGGER, "date triggers need a date timestamp")
+                    return
+                }
+                fireAtMs = trigger.getDouble("date").toLong()
+                seconds = 0.0
+                repeats = false
+                triggerJson = JSONObject().put("type", "date").put("date", fireAtMs).toString()
+                kind = "date"
+            }
+            else -> {
+                promise.reject(
+                    E_TRIGGER,
+                    "unknown trigger type ${trigger.getString("type")}"
+                )
+                return
+            }
+        }
+        // a past date delivers immediately, like ios.
+        if (fireAtMs <= now) {
+            try {
+                deliverNow(
+                    StoredSchedule(
                         identifier,
                         title,
                         subtitle,
                         body,
                         dataJson,
-                        null,
                         sound,
                         badge,
-                        dateMs,
-                        timeout
-                    )
+                        channelId,
+                        triggerJson,
+                        kind,
+                        seconds,
+                        repeats,
+                        now
+                    ),
+                    now
+                )
+            } catch (error: SecurityException) {
+                promise.reject(
+                    E_SCHEDULE,
+                    "posting the notification failed: request permission first"
+                )
+                return
             }
-            mainHandler.postDelayed(timeout, PRESENT_TIMEOUT_MS)
-            emit(
-                EVENT_RECEIVED,
-                Arguments.createMap().apply {
-                    putString("requestId", requestId)
-                    putMap(
-                        "notification",
-                        notificationPayload(
-                            identifier,
-                            title,
-                            subtitle,
-                            body,
-                            data?.let { jsonToMap(JSONObject(dataJson)) },
-                            sound,
-                            badge,
-                            dateMs
-                        )
-                    )
-                }
-            )
             promise.resolve(identifier)
             return
         }
-        try {
-            postNotification(identifier, title, subtitle, body, dataJson, sound, badge, null, false)
-        } catch (error: SecurityException) {
-            promise.reject(
-                E_SCHEDULE,
-                "posting the notification failed: request permission first"
+        val schedule =
+            StoredSchedule(
+                identifier,
+                title,
+                subtitle,
+                body,
+                dataJson,
+                sound,
+                badge,
+                channelId,
+                triggerJson,
+                kind,
+                seconds,
+                repeats,
+                fireAtMs
             )
+        // rescheduling an identifier replaces it, like ios.
+        saveSchedule(reactApplicationContext, schedule)
+        setAlarm(reactApplicationContext, identifier, fireAtMs)
+        promise.resolve(identifier)
+    }
+
+    @ReactMethod
+    fun cancelScheduledNotification(identifier: String, promise: Promise) {
+        cancelAlarm(reactApplicationContext, identifier)
+        removeSchedule(reactApplicationContext, identifier)
+        promise.resolve(null)
+    }
+
+    @ReactMethod
+    fun cancelAllScheduledNotifications(promise: Promise) {
+        for (schedule in loadSchedules(reactApplicationContext)) {
+            cancelAlarm(reactApplicationContext, schedule.identifier)
+        }
+        clearSchedules(reactApplicationContext)
+        promise.resolve(null)
+    }
+
+    @ReactMethod
+    fun getAllScheduledNotifications(promise: Promise) {
+        promise.resolve(
+            Arguments.createArray().apply {
+                for (schedule in loadSchedules(reactApplicationContext)) {
+                    pushMap(
+                        Arguments.createMap().apply {
+                            putString("identifier", schedule.identifier)
+                            putMap(
+                                "content",
+                                Arguments.createMap().apply {
+                                    putString("title", schedule.title)
+                                    putString("subtitle", schedule.subtitle)
+                                    putString("body", schedule.body)
+                                    putMap("data", jsonToMap(JSONObject(schedule.dataJson)))
+                                    putBoolean("sound", schedule.sound)
+                                    if (schedule.badge != null) {
+                                        putInt("badge", schedule.badge)
+                                    } else {
+                                        putNull("badge")
+                                    }
+                                }
+                            )
+                            putMap("trigger", jsonToMap(JSONObject(schedule.triggerJson)))
+                        }
+                    )
+                }
+            }
+        )
+    }
+
+    @ReactMethod
+    fun getPresentedNotifications(promise: Promise) {
+        if (Build.VERSION.SDK_INT < 23) {
+            promise.resolve(Arguments.createArray())
             return
         }
-        promise.resolve(identifier)
+        val manager =
+            reactApplicationContext.getSystemService(Context.NOTIFICATION_SERVICE)
+                as NotificationManager
+        promise.resolve(
+            Arguments.createArray().apply {
+                for (exposed in manager.activeNotifications) {
+                    val extras = exposed.notification.extras ?: android.os.Bundle()
+                    val identifier = extras.getString(EXTRA_IDENTIFIER) ?: exposed.tag ?: continue
+                    val dataJson = extras.getString(EXTRA_DATA) ?: "{}"
+                    val triggerJson = extras.getString(EXTRA_TRIGGER)
+                    pushMap(
+                        notificationPayload(
+                            identifier,
+                            extras.getCharSequence(android.app.Notification.EXTRA_TITLE)?.toString(),
+                            extras.getCharSequence(android.app.Notification.EXTRA_SUB_TEXT)?.toString(),
+                            extras.getCharSequence(android.app.Notification.EXTRA_TEXT)?.toString(),
+                            jsonToMap(JSONObject(dataJson)),
+                            extras.getBoolean(EXTRA_SOUND, false),
+                            if (extras.containsKey(EXTRA_BADGE)) extras.getInt(EXTRA_BADGE) else null,
+                            triggerJson?.let { jsonToMap(JSONObject(it)) },
+                            exposed.postTime
+                        )
+                    )
+                }
+            }
+        )
+    }
+
+    @ReactMethod
+    fun dismissNotification(identifier: String, promise: Promise) {
+        NotificationManagerCompat.from(reactApplicationContext).cancel(identifier, 0)
+        promise.resolve(null)
+    }
+
+    @ReactMethod
+    fun dismissAllNotifications(promise: Promise) {
+        NotificationManagerCompat.from(reactApplicationContext).cancelAll()
+        promise.resolve(null)
     }
 
     private fun harvestTap(intent: Intent?) {
@@ -576,6 +732,7 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
                 intent.getStringExtra(EXTRA_DATA) ?: "{}",
                 intent.getBooleanExtra(EXTRA_SOUND, false),
                 if (intent.hasExtra(EXTRA_BADGE)) intent.getIntExtra(EXTRA_BADGE, 0) else null,
+                intent.getStringExtra(EXTRA_TRIGGER) ?: IMMEDIATE_TRIGGER_JSON,
                 System.currentTimeMillis()
             )
         lastResponse = response
@@ -594,6 +751,7 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
                     jsonToMap(JSONObject(response.dataJson)),
                     response.sound,
                     response.badge,
+                    jsonToMap(JSONObject(response.triggerJson)),
                     response.dateMs
                 )
             )
@@ -704,7 +862,13 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
         const val NAME = "OneNativeNotifications"
         const val EVENT_RECEIVED = "oneNativeNotificationsReceived"
         const val EVENT_RESPONSE = "oneNativeNotificationsResponse"
+        const val ACTION_ALARM = "dev.onejs.onenative.NOTIFICATION_ALARM"
+        const val EXTRA_IDENTIFIER = "dev.onejs.onenative.EXTRA_IDENTIFIER"
+
+        @Volatile
+        private var bridgeContext: ReactApplicationContext? = null
         private const val PREFS = "one_native_notifications"
+        private const val PREFS_SCHEDULES = "one_native_notifications_schedules"
         private const val KEY_ASKED = "permission_asked"
         private const val PERMISSION_REQUEST_CODE = 7401
         private const val E_PERMISSIONS = "E_NOTIFICATIONS_PERMISSION"
@@ -714,13 +878,276 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
         private const val DEFAULT_ACTION_IDENTIFIER = "expo.modules.notifications.actions.DEFAULT"
         private const val ACTION_TAP = "dev.onejs.onenative.NOTIFICATION_TAP"
         private const val EXTRA_TAP = "dev.onejs.onenative.EXTRA_TAP"
-        private const val EXTRA_IDENTIFIER = "dev.onejs.onenative.EXTRA_IDENTIFIER"
         private const val EXTRA_TITLE = "dev.onejs.onenative.EXTRA_TITLE"
         private const val EXTRA_SUBTITLE = "dev.onejs.onenative.EXTRA_SUBTITLE"
         private const val EXTRA_BODY = "dev.onejs.onenative.EXTRA_BODY"
         private const val EXTRA_DATA = "dev.onejs.onenative.EXTRA_DATA"
         private const val EXTRA_SOUND = "dev.onejs.onenative.EXTRA_SOUND"
         private const val EXTRA_BADGE = "dev.onejs.onenative.EXTRA_BADGE"
+        private const val EXTRA_TRIGGER = "dev.onejs.onenative.EXTRA_TRIGGER"
         private const val PRESENT_TIMEOUT_MS = 3000L
+        private const val IMMEDIATE_TRIGGER_JSON =
+            "{\"type\":\"timeInterval\",\"seconds\":0,\"repeats\":false}"
+
+        private fun optString(map: ReadableMap?, key: String): String? =
+            if (map != null && map.hasKey(key) && !map.isNull(key)) map.getString(key) else null
+
+        private data class StoredSchedule(
+            val identifier: String,
+            val title: String?,
+            val subtitle: String?,
+            val body: String?,
+            val dataJson: String,
+            val sound: Boolean,
+            val badge: Int?,
+            val channelId: String?,
+            val triggerJson: String,
+            val kind: String,
+            val seconds: Double,
+            val repeats: Boolean,
+            val fireAtMs: Long
+        ) {
+            fun toJson(): String =
+                JSONObject()
+                    .put("identifier", identifier)
+                    .put("title", title ?: JSONObject.NULL)
+                    .put("subtitle", subtitle ?: JSONObject.NULL)
+                    .put("body", body ?: JSONObject.NULL)
+                    .put("dataJson", dataJson)
+                    .put("sound", sound)
+                    .put("badge", badge ?: JSONObject.NULL)
+                    .put("channelId", channelId ?: JSONObject.NULL)
+                    .put("triggerJson", triggerJson)
+                    .put("kind", kind)
+                    .put("seconds", seconds)
+                    .put("repeats", repeats)
+                    .put("fireAtMs", fireAtMs)
+                    .toString()
+
+            companion object {
+                fun fromJson(raw: String): StoredSchedule? =
+                    try {
+                        val json = JSONObject(raw)
+                        StoredSchedule(
+                            json.getString("identifier"),
+                            json.optString("title", null).takeUnless { json.isNull("title") },
+                            json.optString("subtitle", null).takeUnless { json.isNull("subtitle") },
+                            json.optString("body", null).takeUnless { json.isNull("body") },
+                            json.getString("dataJson"),
+                            json.getBoolean("sound"),
+                            if (json.isNull("badge")) null else json.getInt("badge"),
+                            json.optString("channelId", null).takeUnless {
+                                json.isNull("channelId")
+                            },
+                            json.getString("triggerJson"),
+                            json.getString("kind"),
+                            json.getDouble("seconds"),
+                            json.getBoolean("repeats"),
+                            json.getLong("fireAtMs")
+                        )
+                    } catch (error: Exception) {
+                        null
+                    }
+            }
+        }
+
+        private fun schedulePrefs(context: Context) =
+            context.getSharedPreferences(PREFS_SCHEDULES, Context.MODE_PRIVATE)
+
+        private fun saveSchedule(context: Context, schedule: StoredSchedule) {
+            schedulePrefs(context).edit().putString(schedule.identifier, schedule.toJson()).apply()
+        }
+
+        private fun removeSchedule(context: Context, identifier: String) {
+            schedulePrefs(context).edit().remove(identifier).apply()
+        }
+
+        private fun clearSchedules(context: Context) {
+            schedulePrefs(context).edit().clear().apply()
+        }
+
+        private fun loadSchedules(context: Context): List<StoredSchedule> =
+            schedulePrefs(context).all.mapNotNull { (_, raw) ->
+                (raw as? String)?.let { StoredSchedule.fromJson(it) }
+            }
+
+        private fun alarmIntent(context: Context, identifier: String): PendingIntent {
+            val intent =
+                Intent(context, OneNativeNotificationsReceiver::class.java).apply {
+                    action = ACTION_ALARM
+                    putExtra(EXTRA_IDENTIFIER, identifier)
+                }
+            return PendingIntent.getBroadcast(
+                context,
+                identifier.hashCode(),
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+        }
+
+        // inexact by design: exact alarms need schedule_exact_alarm, and a
+        // single doze-deferrable path is simpler. a late delivery under doze
+        // is documented, not a bug.
+        private fun setAlarm(context: Context, identifier: String, fireAtMs: Long) {
+            val manager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            manager.setAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                fireAtMs,
+                alarmIntent(context, identifier)
+            )
+        }
+
+        private fun cancelAlarm(context: Context, identifier: String) {
+            val manager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            manager.cancel(alarmIntent(context, identifier))
+        }
+
+        private fun isForeground(context: Context): Boolean {
+            val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as android.app.ActivityManager
+            return manager.runningAppProcesses?.any {
+                it.pid == android.os.Process.myPid() &&
+                    it.importance ==
+                    android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND
+            } == true
+        }
+
+        private fun effectiveChannelId(context: Context, channelId: String?): String {
+            if (Build.VERSION.SDK_INT < 26) return channelId ?: DEFAULT_CHANNEL_ID
+            val manager = NotificationManagerCompat.from(context)
+            if (channelId != null && manager.getNotificationChannel(channelId) != null) {
+                return channelId
+            }
+            // unknown ids fall back to an owned default channel rather than
+            // posting nowhere: android drops channel-less notifications.
+            if (manager.getNotificationChannel(DEFAULT_CHANNEL_ID) == null) {
+                manager.createNotificationChannel(
+                    NotificationChannel(
+                        DEFAULT_CHANNEL_ID,
+                        "Default",
+                        NotificationManager.IMPORTANCE_DEFAULT
+                    )
+                )
+            }
+            return DEFAULT_CHANNEL_ID
+        }
+
+        private fun postStatic(
+            context: Context,
+            identifier: String,
+            title: String?,
+            subtitle: String?,
+            body: String?,
+            dataJson: String,
+            sound: Boolean,
+            badge: Int?,
+            channelId: String?,
+            triggerJson: String,
+            highPriority: Boolean
+        ) {
+            val launch = context.packageManager.getLaunchIntentForPackage(context.packageName)
+            val icon = context.applicationInfo.icon
+            val builder =
+                NotificationCompat.Builder(context, effectiveChannelId(context, channelId))
+                    .setContentTitle(title)
+                    .setContentText(body)
+                    .setSubText(subtitle)
+                    .setSmallIcon(if (icon != 0) icon else android.R.drawable.ic_dialog_info)
+                    .setAutoCancel(true)
+                    .setPriority(
+                        if (highPriority) NotificationCompat.PRIORITY_HIGH
+                        else NotificationCompat.PRIORITY_DEFAULT
+                    )
+            if (launch != null) {
+                val target = Intent(launch)
+                target.action = ACTION_TAP
+                target.putExtra(EXTRA_TAP, true)
+                target.putExtra(EXTRA_IDENTIFIER, identifier)
+                target.putExtra(EXTRA_TITLE, title)
+                target.putExtra(EXTRA_SUBTITLE, subtitle)
+                target.putExtra(EXTRA_BODY, body)
+                target.putExtra(EXTRA_DATA, dataJson)
+                target.putExtra(EXTRA_SOUND, sound)
+                if (badge != null) target.putExtra(EXTRA_BADGE, badge)
+                target.putExtra(EXTRA_TRIGGER, triggerJson)
+                target.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                builder.setContentIntent(
+                    PendingIntent.getActivity(
+                        context,
+                        identifier.hashCode(),
+                        target,
+                        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                    )
+                )
+            }
+            val extras = android.os.Bundle()
+            extras.putString(EXTRA_IDENTIFIER, identifier)
+            extras.putString(EXTRA_DATA, dataJson)
+            extras.putBoolean(EXTRA_SOUND, sound)
+            if (badge != null) extras.putInt(EXTRA_BADGE, badge)
+            extras.putString(EXTRA_TRIGGER, triggerJson)
+            builder.addExtras(extras)
+            NotificationManagerCompat.from(context).notify(identifier, 0, builder.build())
+        }
+
+        // alarm entry: re-arms a repeat, drops a fired one-shot, then
+        // delivers through the module when the bridge is up or straight to
+        // the shade when the process started for this broadcast.
+        fun fireAlarm(context: Context, identifier: String) {
+            val schedule =
+                loadSchedules(context).firstOrNull { it.identifier == identifier } ?: return
+            val now = System.currentTimeMillis()
+            if (schedule.repeats) {
+                val rearmed = schedule.copy(fireAtMs = now + (schedule.seconds * 1000).toLong())
+                saveSchedule(context, rearmed)
+                setAlarm(context, identifier, rearmed.fireAtMs)
+            } else {
+                removeSchedule(context, identifier)
+            }
+            val bridge = bridgeContext
+            val module =
+                if (bridge != null && bridge.hasActiveCatalystInstance()) {
+                    bridge.getNativeModule(OneNativeNotificationsModule::class.java)
+                } else {
+                    null
+                }
+            if (module != null && isForeground(context)) {
+                module.deliverNow(schedule, now)
+                return
+            }
+            try {
+                postStatic(
+                    context,
+                    schedule.identifier,
+                    schedule.title,
+                    schedule.subtitle,
+                    schedule.body,
+                    schedule.dataJson,
+                    schedule.sound,
+                    schedule.badge,
+                    schedule.channelId,
+                    schedule.triggerJson,
+                    false
+                )
+            } catch (error: SecurityException) {
+                // permission revoked after scheduling: nothing to deliver to.
+            }
+        }
+
+        // boot entry: future schedules re-arm, repeats restart from now, and
+        // one-shots that expired while the device was off are dropped.
+        fun rearmAll(context: Context) {
+            val now = System.currentTimeMillis()
+            for (schedule in loadSchedules(context)) {
+                if (schedule.repeats) {
+                    val rearmed = schedule.copy(fireAtMs = now + (schedule.seconds * 1000).toLong())
+                    saveSchedule(context, rearmed)
+                    setAlarm(context, schedule.identifier, rearmed.fireAtMs)
+                } else if (schedule.fireAtMs > now) {
+                    setAlarm(context, schedule.identifier, schedule.fireAtMs)
+                } else {
+                    removeSchedule(context, schedule.identifier)
+                }
+            }
+        }
     }
 }
