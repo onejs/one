@@ -7,7 +7,10 @@ This guide explains how to build and upload your iOS app to the App Store or Tes
 
 You'll use the `prebuild` command to generate the native code and Xcode project for iOS, open it with Xcode, and either run the app or archive it for distribution.
 
-**Note**: If you just want to run your iOS app in development mode without any custom native dependencies, you don't need this guide. All you need is an iOS device with [Expo Go](https://apps.apple.com/us/app/expo-go/id982107779) installed. It should auto-detect from your simulator, or press <kbd>q</kbd>, <kbd>r</kbd> in your terminal which is running the One dev server and follow the instructions to open the app in Expo Go.
+**Note**: One builds and runs the native app directly: `one prebuild` generates
+the Xcode project from your `native.app` manifest, and `one run:ios` launches
+it on a simulator. While the dev server runs, press <kbd>o</kbd> <kbd>i</kbd>
+in its terminal to open the app in the iOS simulator.
 
 <Notice>
   **Prerequisites**: To build and run the iOS app, you'll need a Mac with Xcode installed. To upload the app to the App Store or TestFlight, you'll additionally need a paid Apple Developer account.
