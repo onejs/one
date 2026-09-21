@@ -96,7 +96,7 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
     return buildBundle(
       [],
-      { root: options.root },
+      { root: options.root, vxrnEntries: options.entries },
       {
         platform: buildArgs.platform,
         bundleOutput: `${outDir}${sep}${buildArgs.platform}.js`,

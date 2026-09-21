@@ -348,132 +348,6 @@ ${contents}
   },
 
   {
-    module: 'expo',
-    patchFiles: {
-      'build/**/*.js': ['jsx'],
-    },
-  },
-
-  {
-    module: 'expo',
-    patchFiles: {
-      version: '>=52.0.0 <56.0.0',
-      'src/winter/runtime.native.ts': (contents) => {
-        assertString(contents)
-
-        return contents.replace(
-          `
-// https://encoding.spec.whatwg.org/#textdecoder
-install('TextDecoder', () => require('./TextDecoder').TextDecoder);
-// https://url.spec.whatwg.org/#url
-install('URL', () => require('./url').URL);
-// https://url.spec.whatwg.org/#urlsearchparams
-install('URLSearchParams', () => require('./url').URLSearchParams);
-            `.trim(),
-          `
-import { TextDecoder } from './TextDecoder';
-import { URL } from './url';
-import { URLSearchParams } from './url';
-
-// https://encoding.spec.whatwg.org/#textdecoder
-install('TextDecoder', () => TextDecoder);
-// https://url.spec.whatwg.org/#url
-install('URL', () => URL);
-// https://url.spec.whatwg.org/#urlsearchparams
-install('URLSearchParams', () => URLSearchParams);
-            `.trim()
-        )
-      },
-    },
-  },
-
-  {
-    module: 'expo-modules-core',
-    patchFiles: {
-      version: '<=55.*',
-      'src/**/*.ts': addNoCheck,
-      'src/**/*.tsx': addNoCheck,
-    },
-  },
-
-  {
-    module: '@expo/cli',
-    patchFiles: {
-      version: '<=55',
-
-      'build/src/export/embed/exportEmbedAsync.js': (contents) => {
-        return contents?.replace(
-          'exportEmbedAsync(projectRoot, options) {',
-          'exportEmbedAsync(projectRoot, options) { console.warn("[one] skipping expo export:embed since it will not work properly, we just let the JS bundle build during the native build process where VxRN has control"); return;'
-        )
-      },
-    },
-  },
-
-  {
-    module: 'expo-liquid-glass-view',
-    patchFiles: {
-      'build/**/*.js': ['jsx'],
-    },
-  },
-
-  {
-    module: 'expo-ios-popover-tip',
-    patchFiles: {
-      'build/**/*.js': ['jsx'],
-    },
-  },
-
-  {
-    module: 'expo-ios-text-animations',
-    patchFiles: {
-      'build/**/*.js': ['jsx'],
-    },
-  },
-
-  {
-    module: 'expo-ios-mesh-gradient',
-    patchFiles: {
-      'build/**/*.js': ['jsx'],
-    },
-  },
-
-  {
-    module: 'expo-glass-effect',
-    patchFiles: {
-      'build/**/*.js': ['jsx'],
-    },
-  },
-
-  {
-    module: '@expo/ui',
-    patchFiles: {
-      'build/**/*.js': ['jsx'],
-    },
-  },
-
-  {
-    module: 'expo-image',
-    patchFiles: {
-      'build/**/*.js': ['jsx'],
-    },
-  },
-
-  {
-    module: 'expo-linear-gradient',
-    patchFiles: {
-      'build/**/*.js': ['jsx'],
-    },
-  },
-
-  {
-    module: 'expo-apple-authentication',
-    patchFiles: {
-      'build/**/*.js': ['jsx'],
-    },
-  },
-
-  {
     module: 'react-native-css-interop',
     patchFiles: {
       // 2 of 53 dist files genuinely need JSX parsing, so this one is real.
@@ -491,27 +365,6 @@ install('URLSearchParams', () => URLSearchParams);
       // patch. Anyone deciding whether to keep the CSS-on-native path should
       // start from that, not from the assumption that it works today.
       'dist/**/*.js': ['jsx'],
-    },
-  },
-
-  {
-    module: 'expo-video',
-    patchFiles: {
-      'build/**/*.js': ['jsx'],
-    },
-  },
-
-  {
-    module: 'expo-clipboard',
-    patchFiles: {
-      'build/**/*.js': ['jsx'],
-    },
-  },
-
-  {
-    module: '@expo/vector-icons',
-    patchFiles: {
-      'build/**/*.js': ['jsx'],
     },
   },
 
@@ -550,37 +403,6 @@ install('URLSearchParams', () => URLSearchParams);
         return contents.replace(
           `const TerminalRenderer = require('./renderer/terminal')`,
           `const TerminalRenderer = require('./renderer/terminal.js')`
-        )
-      },
-    },
-  },
-
-  {
-    module: 'expo-camera',
-    patchFiles: {
-      '**/*.js': ['jsx'],
-    },
-  },
-
-  {
-    module: 'expo-blur',
-    patchFiles: {
-      '**/*.js': ['jsx'],
-    },
-  },
-
-  {
-    module: 'expo-asset',
-    patchFiles: {
-      // Fix: expo-asset re-exports from react-native but RN uses properties on default export, not named exports
-      // This patch explicitly re-exports the functions so they're available as named exports
-      'build/resolveAssetSource.native.js': (contents) => {
-        assertString(contents)
-        return contents.replace(
-          `export * from 'react-native/Libraries/Image/resolveAssetSource';`,
-          `export const pickScale = resolveAssetSource.pickScale;
-export const setCustomSourceTransformer = resolveAssetSource.setCustomSourceTransformer;
-export const addCustomSourceTransformer = resolveAssetSource.addCustomSourceTransformer;`
         )
       },
     },
@@ -669,9 +491,3 @@ export const addCustomSourceTransformer = resolveAssetSource.addCustomSourceTran
     },
   },
 ]
-
-function addNoCheck(contents?: string) {
-  if (!contents?.includes('// @ts-nocheck')) {
-    return `// @ts-nocheck\n${contents}`
-  }
-}

@@ -25,7 +25,7 @@ export function transformSync(
   ) as babel.TransformOptions | null
   if (!loadedBabelConfig) return null
 
-  // expo adds worklets automatically. keep the app's earlier configured pass so a
+  // presets can add worklets automatically. keep the app's earlier configured pass so a
   // later preset pass cannot serialize the closure with different options.
   let hasWorkletsPlugin = false
   loadedBabelConfig.plugins = loadedBabelConfig.plugins?.filter((plugin) => {
@@ -60,14 +60,14 @@ export function transformSync(
     // We can try to quickly detect if the file uses flow syntax by checking for the @flow pragma which is present in every React Native file.
     (hermesParser || src.includes(' @flow'))
   ) {
-    return parseWithHermes(src, loadedBabelConfig)
+    return parseWithFlow(src, loadedBabelConfig)
   }
 
   return parseWithBabel(src, loadedBabelConfig)
 }
 
-function parseWithHermes(src: string, babelConfig: babel.TransformOptions) {
-  const sourceAst = require('hermes-parser').parse(src, {
+function parseWithFlow(src: string, babelConfig: babel.TransformOptions) {
+  const sourceAst = require('flow-parser').parse(src, {
     babel: true,
     sourceType: babelConfig.sourceType,
   })

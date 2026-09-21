@@ -123,33 +123,55 @@ After the archive process completes, Xcode will automatically open the Organizer
 You should add a `react-native.config.cjs` file in your project root to configure React Native to use Vite as the JS bundler during the native build process:
 
 ```js
-module.exports = {
-  commands: [...require('one/react-native-commands')]
-}
+module.exports = require('one/react-native-config')
 ```
 
-By doing so, the `react-native build` command will be overwritten to use Vite as the JS bundler instead of Metro.
+This routes native build bundling through One and links One's native SwiftUI,
+Compose, effects, and safe area implementation through community autolinking.
 
 <Notice>
   If you are using React Native 0.74.x or below, we rely on a patch to the `@react-native-community/cli` package to make this work. For the patch to apply, you'll need to start the dev server at least once.
 </Notice>
 
-### Expo Prebuild
+### One Prebuild
 
-If you're using [Expo Prebuild](https://docs.expo.dev/workflow/prebuild), you should also add `"one/expo-plugin"` in your app config (app.json/app.config.js/app.config.ts):
+Configure the native application in `vite.config.ts`, then generate the React Native community projects with `one prebuild`:
 
-```json
-{
-  "expo": {
-    "plugins": ["one/expo-plugin"]
-  }
-}
+```ts
+one({
+  native: {
+    app: {
+      name: 'MyApp',
+      icon: {
+        source: './public/app-icon.png',
+        backgroundColor: '#000000',
+      },
+      splash: {
+        source: './public/splash.png',
+        backgroundColor: '#000000',
+        width: 200,
+      },
+      ios: {
+        bundleId: 'com.example.myapp',
+        usesNonExemptEncryption: false,
+      },
+      android: { applicationId: 'com.example.myapp' },
+    },
+  },
+})
 ```
+
+One reads this manifest directly. It generates the iOS and Android app icons and
+launch screens from the shared sources, and it does not require an Expo app config
+or config plugin. The icon must be a square image at least 1024 pixels wide. Splash
+artwork is centered at `width` points on iOS and density-independent pixels on
+Android. One removes a solid outer border matching `backgroundColor` before sizing
+the artwork, then generates density-specific Android assets inside a 288 dp square.
 
 ### iOS Project Setup
 
 <Notice>
-  This isn't necessary if you're using Expo Prebuild, as `one/expo-plugin` already takes care of this.
+  `one prebuild` applies this configuration to generated projects. Follow the manual step only for an existing native project that One did not generate.
 </Notice>
 
 In the "Bundle React Native code and images" phase, make the following change in the shell script:
@@ -182,17 +204,7 @@ Try to delete `ios/.xcode.env.local`.
 1. Make sure there's a `react-native.config.cjs` in your project which contains something like this:
 
     ```js
-    module.exports = {
-      commands: [...require('one/react-native-commands')]
-    }
+    module.exports = require('one/react-native-config')
     ```
-2. Make sure you have `one/expo-plugin` included in your `app.json` (or .js, etc.):
-
-    ```json
-    {
-      "expo": {
-        "plugins": ["one/expo-plugin"]
-      }
-    }
-    ```
-3. Try to delete the `ios` directory and run `prebuild` again.
+2. Confirm `native.app.ios.bundleId` is set in `vite.config.ts`.
+3. Delete the generated `ios` directory and run `one prebuild` again.

@@ -25,7 +25,6 @@ export const dedupe = [
   '@tamagui/react-native-web-lite',
   'tamagui',
   'react-native-reanimated',
-  'expo-modules-core',
   'escape-string-regexp',
 ]
 

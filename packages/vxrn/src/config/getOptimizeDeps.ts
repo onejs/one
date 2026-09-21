@@ -44,8 +44,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'parse-numeric-range',
     'use-sync-external-store',
     'use-sync-external-store/shim',
-    'expo-constants',
-    'expo-linking',
     'inline-style-prefixer',
     '@docsearch/react',
     '@algolia/autocomplete-core',
@@ -92,7 +90,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'querystringify',
     'compare-versions',
     'strict-uri-encode',
-    'expo-document-picker',
     'decode-uri-component',
     'split-on-first',
     'filter-obj',
@@ -100,7 +97,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'warn-once',
     '@radix-ui/react-compose-refs',
     '@radix-ui/react-slot',
-    'expo-splash-screen',
     'nanoid',
     'swr',
     'swr/mutation',
@@ -110,8 +106,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'invariant',
     'tamagui/linear-gradient',
     '@react-native/normalize-color',
-    'expo-modules-core',
-    'expo-status-bar',
     'react-native',
     '@floating-ui/react',
     '@floating-ui/react-dom',
@@ -134,8 +128,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
         '@swc/wasm',
         '@swc/core-darwin-arm64',
         'moti/author',
-        '@expo/log-box',
-        'qrcode-terminal',
         '@hot-updater/cli-tools',
       ],
       needsInterop,
@@ -149,9 +141,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
         // some packages ship JSX in .js files (e.g., react-native-css-interop/dist/doctor.js).
         // .ts/.tsx must be declared too. when es-module-lexer can't read a dep entry,
         // vite's extractExportsData retries it as `moduleTypes[extname] || 'jsx'`, and
-        // lexer always fails on TS syntax — so an undeclared .ts entry gets re-parsed as
-        // JSX and dies on the first inline type specifier (`import { type Foo }`), which
-        // is how expo 57 packages are written.
+        // lexer always fails on TS syntax, so an undeclared .ts entry gets re-parsed as
+        // JSX and dies on the first inline type specifier (`import { type Foo }`).
         moduleTypes: { '.js': 'jsx', '.ts': 'ts', '.tsx': 'tsx' },
         // react-native packages import native-only exports (TurboModuleRegistry etc.)
         // from react-native, which is aliased to react-native-web on web. react-native-web

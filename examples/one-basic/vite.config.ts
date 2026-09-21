@@ -20,11 +20,25 @@ export default defineConfig({
         server: { unified: true },
       },
 
-      ...(process.env.TEST_METRO && {
-        native: {
-          bundler: 'metro',
+      native: {
+        app: {
+          name: 'OneBasic',
+          icon: {
+            source: './public/app-icon.png',
+            backgroundColor: '#000000',
+          },
+          splash: {
+            source: './public/splash.png',
+            backgroundColor: '#000000',
+            width: 200,
+          },
+          ios: { bundleId: 'com.natew.oneexample', deploymentTarget: '17.0' },
+          android: { applicationId: 'com.natew.oneexample' },
         },
-      }),
+        ...(process.env.TEST_METRO && {
+          bundler: 'metro',
+        }),
+      },
     }),
   ],
 })

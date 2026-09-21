@@ -36,10 +36,6 @@ export const EXCLUDE_LIST = [
 
   '@sentry/react-native',
 
-  // not ever to be used in app
-  '@expo/cli',
-  'expo-structured-headers',
-
   // not used by web anyway
   // Could not read from file: /Users/n8/one/node_modules/react-native-web/dist/cjs/index.js/Libraries/Image/AssetRegistry
   // /lib/module/Platform/Platform.web.js:132:20
@@ -71,9 +67,6 @@ export const EXCLUDE_LIST = [
   'react-native-fast-squircle',
   'react-native-device-info',
 
-  // dev server UI only, lazy-imported at runtime
-  'qrcode-terminal',
-
   // CLI/scripts shouldn't be used in SSR runtime
   '@tamagui/cli',
   // only used by static/plugin
@@ -91,12 +84,10 @@ export const EXCLUDE_LIST = [
 
   // native-only or not needed in SSR
   '@nandorojo/galeria',
-  'expo-video',
   'react-native-pager-view',
   '@react-native/debugger-shell',
   '@hot-updater/react-native',
   '@hot-updater/plugin-core',
-  'expo/internal/unstable-autolinking-exports',
   'validator',
   'zlib',
 ]
@@ -224,11 +215,7 @@ export async function scanDepsToOptimize(
           // entrypoints (e.g. better-auth/react). left external, those load a
           // second react copy in SSR and crash hooks with a null dispatcher.
           !!depPkgJson.peerDependencies?.react ||
-          hasRequiredDep(depPkgJson, 'react-native') ||
-          hasRequiredDep(depPkgJson, 'expo-modules-core') ||
-          // Expo deps are often ESM but without including file extensions in import paths, making it not able to run directly by Node.js, so we need to pre-bundle them.
-          dep.startsWith('@expo/') ||
-          dep.startsWith('expo-')
+          hasRequiredDep(depPkgJson, 'react-native')
 
         debug?.(`${dep} shouldPreBundle? ${shouldPreBundle}`)
 

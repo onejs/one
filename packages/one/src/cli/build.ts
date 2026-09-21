@@ -129,9 +129,7 @@ installPrepareStackTraceGuard()
 
 // these handlers must only attach when `build` is actually invoked. attaching
 // them at module load leaks into `one dev`, because `one/vite` re-exports from
-// this file — and dev intentionally does NOT exit on unhandled rejection (see
-// dev.ts). a stray rejection from expo's manifest middleware (client closing
-// the connection mid-stream) was killing the dev server.
+// this file and dev intentionally does not exit on unhandled rejection.
 let buildErrorHandlersInstalled = false
 function installBuildErrorHandlers() {
   if (buildErrorHandlersInstalled) return
