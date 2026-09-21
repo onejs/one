@@ -602,6 +602,15 @@ export async function createNativeDevEngine(
     return result
   }
 
+  // TEMP-LOCAL: timing instrumentation for route-HMR latency. revert before push.
+  const hmrT0 = Date.now()
+  const hmrLog = (...args: unknown[]) => {
+    console.info(
+      `[hmr-timing +${Date.now() - hmrT0}ms wall=${new Date().toISOString().slice(11, 23)}]`,
+      ...args
+    )
+  }
+
   const inputOptions: InputOptions = {
     input: VIRTUAL_NATIVE_ENTRY,
     cwd: root,
@@ -680,22 +689,27 @@ try {
   let engine: Awaited<ReturnType<typeof dev>>
   let routeWatcher: FSWatcher | undefined
 
-  const rebuildIfRouteGraphChanged = (): Promise<boolean> =>
+  const rebuildIfRouteGraphChanged = (why = 'unknown'): Promise<boolean> =>
     queueEngineWork(async () => {
       // decide from the complete route set after all earlier engine work. a
       // watcher can report a directory, a rename, or several events for one
       // write, and none of those event shapes are the source of truth.
       const { files: knownRoutes, scanFiles, updateFiles } = virtualEntry.routes
+      const scanStart = Date.now()
       const currentRoutes = scanFiles()
       const routeSetChanged =
         currentRoutes.size !== knownRoutes.size ||
         [...currentRoutes].some((route) => !knownRoutes.has(route))
-      if (!routeSetChanged) return false
+      if (!routeSetChanged) {
+        hmrLog(`rebuildIfRouteGraphChanged(${why}) scan=${Date.now() - scanStart}ms changed=false`)
+        return false
+      }
 
       // changing this small imported module lets Rolldown compile only the new
       // route and the registry delta. rebuilding a multi-megabyte native bundle
       // makes route creation scale with the entire app.
       updateFiles(currentRoutes)
+      hmrLog(`rebuildIfRouteGraphChanged(${why}) scan=${Date.now() - scanStart}ms changed=true routes=${currentRoutes.size}`)
       return true
     })
 
@@ -719,10 +733,21 @@ try {
         return
       }
 
+      hmrLog(
+        `onHmrUpdates updates=${result.updates.length}`,
+        result.updates.map(({ clientId, update }: any) =>
+          update.type === 'Patch'
+            ? `Patch seq=${update.seq} ids=${JSON.stringify(update.changedIds)} codeLen=${update.code?.length}`
+            : `${update.type}`
+        )
+      )
       // adding or deleting a route changes a route map that was expanded when
       // the entry transformed. only a full build re-expands it, and rolldown
       // tells no client that happened, so the reload is sent from here.
-      if (await rebuildIfRouteGraphChanged()) return
+      if (await rebuildIfRouteGraphChanged('onHmrUpdates')) {
+        hmrLog(`onHmrUpdates swallowed ${result.updates.length} update(s) (route graph changed)`)
+        return
+      }
 
       for (const { clientId, update } of result.updates) {
         if (update.type === 'Patch' && update.code) {
@@ -733,8 +758,10 @@ try {
             changedIds: update.changedIds,
             seq: update.seq,
           })
+          hmrLog(`sent hmr:update seq=${update.seq} to=${clientId}`)
         } else if (update.type === 'FullReload') {
           onHmrUpdate?.({ type: 'hmr:reload', clientId })
+          hmrLog(`sent hmr:reload to=${clientId}`)
         }
       }
     },
@@ -828,7 +855,8 @@ try {
     ) {
       return
     }
-    rebuildIfRouteGraphChanged().catch((error) => {
+    hmrLog(`fs.watch event=${_eventType} file=${file.toString()}`)
+    rebuildIfRouteGraphChanged('fs.watch').catch((error) => {
       console.error(`[vxrn] rebuilding the native route map failed`, error)
     })
   })
@@ -1161,6 +1189,7 @@ Object.keys(_routes).forEach(function(key) {
   const routeHmr = useDynamicRouteRegistry
     ? `if (import.meta.hot) {
   import.meta.hot.accept(${JSON.stringify(registrySpecifier)}, function(next) {
+    console.info('[vxrn HMR]: route registry accept, routes=' + Object.keys(next.routes).length);
     if (globalThis.__VXRN_UPDATE_NATIVE_ROUTES__) {
       globalThis.__VXRN_UPDATE_NATIVE_ROUTES__(next.routes);
     }
@@ -2236,11 +2265,17 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
       }
       try {
         if (message.type === 'hmr:update') {
+          // TEMP-LOCAL: client HMR tracing. revert before push.
+          console.info('[vxrn HMR]: received update seq=' + message.seq + ' ids=' + JSON.stringify(message.changedIds));
           // a patch that cannot be applied in place is the reload signal
           if (!runtime.applyHmrUpdate(message.code, message.changedIds, message.seq)) {
+            console.info('[vxrn HMR]: update seq=' + message.seq + ' NOT applied, reloading');
             runtime.reload('native HMR update could not be applied');
+          } else {
+            console.info('[vxrn HMR]: update seq=' + message.seq + ' applied in place');
           }
         } else if (message.type === 'hmr:reload') {
+          console.info('[vxrn HMR]: received hmr:reload, reloading');
           runtime.reload('native route map changed');
         }
       } catch (error) {

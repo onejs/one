@@ -138,6 +138,25 @@ function installPreparedAppToSimulator({
   execFileSync('xcrun', ['simctl', 'install', udid, appPath], {
     stdio: 'inherit',
   })
+
+  // TEMP-LOCAL: point the prebuilt container (baked 8081) at this run's DEV_PORT. revert before push.
+  if (process.env.DEV_PORT && process.env.DEV_PORT !== '8081') {
+    execFileSync(
+      'xcrun',
+      [
+        'simctl',
+        'spawn',
+        udid,
+        'defaults',
+        'write',
+        bundleId,
+        'RCT_jsLocation',
+        '-string',
+        `127.0.0.1:${process.env.DEV_PORT}`,
+      ],
+      { stdio: 'inherit' }
+    )
+  }
 }
 
 async function getAvailablePort() {
@@ -242,7 +261,9 @@ async function prepareTestApp() {
     // the container requests the community template's `index` bundle root, which
     // the dev server maps to the app entry in both bundler modes. the first build
     // can take a while, so wait for it before appium starts.
-    const bundleUrl = `http://127.0.0.1:8081/index.bundle?platform=ios&dev=true&minify=false`
+    // TEMP-LOCAL: respect DEV_PORT for local runs alongside a co-tenant on 8081. revert before push.
+    const devPort = process.env.DEV_PORT || '8081'
+    const bundleUrl = `http://127.0.0.1:${devPort}/index.bundle?platform=ios&dev=true&minify=false`
     const startedAt = performance.now()
     console.info(`Waiting for the initial RN bundle to be ready from ${bundleUrl}...`)
     await new Promise<void>((resolve, reject) => {
