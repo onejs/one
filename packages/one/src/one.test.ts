@@ -11,6 +11,7 @@ describe('root One export', () => {
     expect(One.iOS.Button).toBeTypeOf('function')
     expect(One.Android.Button).toBeTypeOf('function')
     expect(Object.hasOwn(One.Android, 'Color')).toBe(false)
+    expect(One.UI.AdaptivePanel).toBeTypeOf('function')
     expect(One.UI.Blur).toBeTypeOf('function')
     expect(One.UI.EdgeFade).toBeTypeOf('function')
     expect(One.UI.Icon).toBeTypeOf('function')

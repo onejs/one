@@ -11,6 +11,7 @@ declare module 'one' {
         | `/_sitemap`
         | `/action`
         | `/action/`
+        | `/adaptive-panel`
         | `/native`
         | `/notifications`
         | `/notifications/`

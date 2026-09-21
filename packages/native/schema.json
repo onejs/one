@@ -2344,6 +2344,120 @@
         }
       ],
       "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeAdaptivePanel",
+      "publicName": "AdaptivePanel",
+      "props": {
+        "open": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "compactDetents": {
+          "type": "ReadonlyArray<NativeAdaptivePanelDetent>"
+        },
+        "selectedDetentType": {
+          "type": "string"
+        },
+        "selectedDetentValue": {
+          "type": "Double"
+        },
+        "acknowledgedDetentEvent": {
+          "type": "Int32"
+        },
+        "detentRevision": {
+          "type": "Int32"
+        },
+        "regularWidth": {
+          "type": "Double"
+        }
+      },
+      "events": {
+        "onNativeAdaptivePanelOpenChange": {
+          "open": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeAdaptivePanelDetentChange": {
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "Double"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeAdaptivePanelLayoutChange": {
+          "placement": {
+            "type": "string"
+          },
+          "frameX": {
+            "type": "Double"
+          },
+          "frameY": {
+            "type": "Double"
+          },
+          "frameWidth": {
+            "type": "Double"
+          },
+          "frameHeight": {
+            "type": "Double"
+          }
+        }
+      },
+      "controlled": {
+        "value": "open",
+        "event": "onNativeAdaptivePanelOpenChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "presentation"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "OneNativeAdaptivePanelContent",
+          "cardinality": "one",
+          "layout": "presented"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeAdaptivePanelContent",
+      "publicName": null,
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "swiftui-proposal-to-yoga",
+          "origin": "local"
+        }
+      ],
+      "interfaceOnly": true
     }
   ],
   "payloads": {
@@ -2387,6 +2501,16 @@
       }
     },
     "NativeSheetDetent": {
+      "fields": {
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "Double"
+        }
+      }
+    },
+    "NativeAdaptivePanelDetent": {
       "fields": {
         "type": {
           "type": "string"
