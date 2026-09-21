@@ -20,6 +20,7 @@ const suites = [
   'accessibility',
   'media',
   'map',
+  'ui-map',
 ] as const
 
 const args = process.argv.slice(2)

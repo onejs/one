@@ -40,6 +40,7 @@ const suites = [
   'accessibility',
   'media',
   'map',
+  'ui-map',
 ] as const
 type Suite = (typeof suites)[number]
 type Config = {
@@ -239,6 +240,10 @@ const mapLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-map-place-ferry')) &&
   has(nodes, 'Place: ')
+const uiMapLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-ui-map-place-ferry')) &&
+  has(nodes, 'Zoom: ')
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -265,6 +270,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
   map: mapLoaded,
+  'ui-map': uiMapLoaded,
 }
 const suiteHome: Record<Suite, string> = {
   'tabs-menu': 'nav-one-native',
@@ -284,6 +290,7 @@ const suiteHome: Record<Suite, string> = {
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
   map: 'nav-one-native-map',
+  'ui-map': 'nav-one-native-ui-map',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
 const firstState = (nodes: Node[]) =>
@@ -2451,10 +2458,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'map') {
     const status = (nodes: Node[], label: string, expected: string | number) =>
       labels(nodes).includes(`${label}: ${expected}`)
-    // MapKit labels its own view 'Map' and publishes each annotation as an element carrying
-    // the marker's title, so the markers React sent are readable without a screenshot.
-    const surface = (nodes: Node[]) =>
-      nodes.find((node) => node.AXLabel === 'Map' && node.frame?.height)
+    // MapKit publishes each annotation as an element carrying the marker's
+    // title, so the markers React sent are readable without a screenshot. the
+    // surface itself is the test-id box: this tree exposes no 'Map' label.
+    const surface = (nodes: Node[]) => id(nodes, 'one-native-map-view')
     const regions = (nodes: Node[]) =>
       Number(
         labels(nodes)
@@ -2525,6 +2532,165 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => status(n, 'Center', '37.7989,-122.4662') && regions(n) > before
     )
     screenshot('map-presidio.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'ui-map') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    // the surface is the test-id box: this tree exposes no 'Map' label,
+    // while each pin is an element carrying the marker's title.
+    const surface = (nodes: Node[]) => id(nodes, 'one-native-ui-map-view')
+    const camera = (nodes: Node[]) =>
+      labels(nodes).find((label) => label.startsWith('Camera: '))?.slice('Camera: '.length) ??
+      'none'
+    const reportedZoom = (nodes: Node[]) => Number(camera(nodes).split(',')[2])
+    const moves = (nodes: Node[]) =>
+      Number(
+        labels(nodes)
+          .find((label) => label.startsWith('Moves: '))
+          ?.slice('Moves: '.length) ?? -1
+      )
+    // the zoom probe: the seed writes a google-zoom span and the report
+    // inverts it, so the round trip has to land within one level. the
+    // measured value is logged with every assertion for the record.
+    const zoomNear = (nodes: Node[], expected: number) => {
+      const measured = reportedZoom(nodes)
+      return Number.isFinite(measured) && Math.abs(measured - expected) <= 1
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-ui-map')
+    await wait(
+      'fresh ui map mounted',
+      (n) =>
+        status(n, 'Place', 'Ferry') &&
+        status(n, 'Zoom', 12) &&
+        status(n, 'Pins', 2) &&
+        status(n, 'Overlays', 'on') &&
+        status(n, 'Height', 220)
+    )
+    await wait(
+      'UiMap fills the box React Native gave it',
+      (n) => surface(n)?.frame?.height === 220 && surface(n)?.frame?.width === 373
+    )
+    await wait(
+      'the markers React sent are on the map',
+      (n) =>
+        has(n, 'Coit Tower') &&
+        has(n, 'Ballpark') &&
+        !has(n, 'Pyramid') &&
+        !has(n, 'Ferry Landing')
+    )
+    tap({ id: 'one-native-ui-map-height' })
+    await wait(
+      'the map follows the box when the style changes',
+      (n) => status(n, 'Height', 320) && surface(n)?.frame?.height === 320
+    )
+    tap({ id: 'one-native-ui-map-height' })
+    await wait(
+      'the map follows the box back',
+      (n) => status(n, 'Height', 220) && surface(n)?.frame?.height === 220
+    )
+    // tapping the pin reports through marker selection; the map-tap gesture
+    // stays silent for taps inside a pin's touch target.
+    tap({ label: 'Coit Tower' })
+    await wait(
+      'tapping a pin reports its id and no map tap',
+      (n) => status(n, 'MarkerTap', 'coit') && status(n, 'MapTap', 'none')
+    )
+    // the pin capture runs with overlays off so the magenta gate reads the
+    // tinted pin alone; the bare capture below is its negative.
+    tap({ id: 'one-native-ui-map-overlays' })
+    await wait('overlays toggle off', (n) => status(n, 'Overlays', 'off'))
+    await visualScreenshot('ui-map-pins.png', 'ui-map-pins')
+    tap({ id: 'one-native-ui-map-pins' })
+    await wait(
+      'adding a marker adds it to the map',
+      (n) => status(n, 'Pins', 3) && has(n, 'Pyramid') && has(n, 'Coit Tower')
+    )
+    tap({ id: 'one-native-ui-map-pins' })
+    await wait(
+      'the fourth pin lands on the camera centre',
+      (n) => status(n, 'Pins', 4) && has(n, 'Ferry Landing')
+    )
+    tap({ id: 'one-native-ui-map-pins' })
+    await wait(
+      'emptying the array removes every marker',
+      (n) =>
+        status(n, 'Pins', 0) &&
+        !has(n, 'Pyramid') &&
+        !has(n, 'Coit Tower') &&
+        !has(n, 'Ballpark') &&
+        !has(n, 'Ferry Landing')
+    )
+    screenshot('ui-map-bare.png')
+    // with no pins left, a tap on open water can only be a map tap, and it
+    // must not disturb the marker tap the pin reported earlier. the point is
+    // water, not the centre: MapKit consumes taps on POIs the way Google
+    // routes them to onPoiClick instead of onMapClick, and the seeded
+    // centre sits under the Ferry Building POI.
+    const frame = surface(snapshot(config.simulatorId))?.frame
+    if (!frame) throw new Error('ui-map surface disappeared before the map tap')
+    point(frame.x + (frame.width * 0.85), frame.y + frame.height / 2)
+    await wait(
+      'tapping the map reports the tap point and keeps the marker tap',
+      (n) => {
+        if (!status(n, 'MarkerTap', 'coit')) return false
+        const tap = labels(n).find((label) => label.startsWith('MapTap: '))
+        if (!tap) return false
+        const [lat, lng] = tap.slice('MapTap: '.length).split(',').map(Number)
+        return (
+          Number.isFinite(lat) &&
+          Number.isFinite(lng) &&
+          Math.abs(lat - 37.7955) < 0.005 &&
+          lng > -122.36 &&
+          lng < -122.33
+        )
+      }
+    )
+    tap({ id: 'one-native-ui-map-overlays' })
+    await wait('overlays toggle back on', (n) => status(n, 'Overlays', 'on'))
+    await visualScreenshot('ui-map-overlays.png', 'ui-map-overlays')
+    await visualScreenshot('ui-map-polyline.png', 'ui-map-polyline')
+    await wait(
+      'the camera reports the place it was seeded with',
+      (n) =>
+        labels(n).some((label) => label.startsWith('Camera: 37.7955,-122.3937,')) &&
+        zoomNear(n, 12)
+    )
+    console.log(`ui-map probe: seeded zoom 12 reads back ${camera(snapshot(config.simulatorId))}`)
+    const movesBeforeZoom = moves(snapshot(config.simulatorId))
+    tap({ id: 'one-native-ui-map-zoom' })
+    await wait(
+      'zooming out moves the camera and reports it',
+      (n) =>
+        status(n, 'Zoom', 10) &&
+        zoomNear(n, 10) &&
+        moves(n) > movesBeforeZoom
+    )
+    console.log(`ui-map probe: seeded zoom 10 reads back ${camera(snapshot(config.simulatorId))}`)
+    const movesBeforeZoomIn = moves(snapshot(config.simulatorId))
+    tap({ id: 'one-native-ui-map-zoom' })
+    await wait(
+      'zooming in moves the camera and reports it',
+      (n) =>
+        status(n, 'Zoom', 14) &&
+        zoomNear(n, 14) &&
+        moves(n) > movesBeforeZoomIn
+    )
+    console.log(`ui-map probe: seeded zoom 14 reads back ${camera(snapshot(config.simulatorId))}`)
+    const movesBeforePlace = moves(snapshot(config.simulatorId))
+    tap({ id: 'one-native-ui-map-place-presidio' })
+    await wait(
+      're-centering moves the camera and reports it',
+      (n) =>
+        labels(n).some((label) => label.startsWith('Camera: 37.7989,-122.4662,')) &&
+        zoomNear(n, 14) &&
+        moves(n) > movesBeforePlace
+    )
+    screenshot('ui-map-presidio.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

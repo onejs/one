@@ -130,6 +130,7 @@
         "OneNativeEdgeFade": "OneNativeEdgeFadeComponentView",
         "OneNativeBlur": "OneNativeBlurComponentView",
         "OneNativeMask": "OneNativeMaskComponentView",
+        "OneNativeUiMap": "OneNativeUiMapComponentView",
         "OneNativePicker": "OneNativePickerComponentView",
         "OneNativeDatePicker": "OneNativeDatePickerComponentView",
         "OneNativeColorPicker": "OneNativeColorPickerComponentView",
