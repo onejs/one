@@ -35,6 +35,11 @@ describe('bare main module entry', () => {
       } as any
     )
 
+    expect((defaultConfig as any).watchFolders).toContain(workspaceRoot)
+    expect((defaultConfig as any).resolver.nodeModulesPaths).toContain(
+      path.join(workspaceRoot, 'node_modules')
+    )
+
     const context = {
       originModulePath: `${fixtureRoot}/.`,
       resolveRequest: (_ctx: any, name: string) => {

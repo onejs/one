@@ -1,4 +1,4 @@
-import type { ResolvedConfig } from 'vite'
+import { searchForWorkspaceRoot, type ResolvedConfig } from 'vite'
 import { spawn } from 'node:child_process'
 import { resolve } from 'node:path'
 import micromatch from 'micromatch'
@@ -14,7 +14,7 @@ import { getTerminalReporter } from '../utils/getTerminalReporter'
 import type { MetroPluginOptions } from '../plugins/metroPlugin'
 import type { ExtraConfig, MetroConfigExtended } from './types'
 
-type MetroInputConfig = Parameters<typeof loadConfigT>[1]
+type MetroInputConfig = NonNullable<Parameters<typeof loadConfigT>[1]>
 
 const WATCHMAN_PROBE_TIMEOUT_MS = 2000
 const watchmanResponsivePromises = new Map<string, Promise<boolean>>()
@@ -29,6 +29,36 @@ const metroWatchExclusions = [
   /[/\\]\.vite(?:[/\\]|$)/,
   /[/\\]node_modules[/\\]\.vxrn(?:[/\\]|$)/,
 ]
+
+function enforceWorkspaceVisibility(
+  config: MetroInputConfig,
+  projectRoot: string
+): MetroInputConfig {
+  const workspaceRoot = searchForWorkspaceRoot(projectRoot)
+  if (workspaceRoot === projectRoot) return config
+
+  return {
+    ...config,
+    watchFolders: [...new Set([...(config.watchFolders ?? []), workspaceRoot])],
+    resolver: {
+      ...config.resolver,
+      nodeModulesPaths: [
+        ...new Set([
+          ...(config.resolver?.nodeModulesPaths ?? []),
+          resolve(projectRoot, 'node_modules'),
+          resolve(workspaceRoot, 'node_modules'),
+        ]),
+      ],
+    },
+  }
+}
+
+function getReactNativeDefaultConfig(projectRoot: string): MetroInputConfig {
+  return enforceWorkspaceVisibility(
+    getDefaultConfig(projectRoot) as MetroInputConfig,
+    projectRoot
+  )
+}
 
 function getPlatformFromBundleUrl(url: string): 'ios' | 'android' {
   const platform = url.match(/[?&]platform=(ios|android)(?:&|$)/)?.[1]
@@ -184,7 +214,7 @@ export async function buildMetroConfigInputFromViteConfig(
     )
   }
 
-  const _defaultConfig: MetroInputConfig = getDefaultConfig(projectRoot) as any
+  const _defaultConfig = getReactNativeDefaultConfig(projectRoot)
 
   if (mainModuleName) {
     const origRewriteRequestUrl = _defaultConfig!.server?.rewriteRequestUrl
@@ -283,7 +313,10 @@ export async function buildMetroConfigInputFromViteConfig(
   }
 
   return {
-    defaultConfig: enforceBareMainModuleEntry(merged, mainModuleName),
+    defaultConfig: enforceBareMainModuleEntry(
+      enforceWorkspaceVisibility(merged, projectRoot),
+      mainModuleName
+    ),
     projectRoot,
     extraConfig,
   }
@@ -312,7 +345,7 @@ export async function getMetroConfigFromViteConfig(
   const { loadConfig } = await projectImport<{
     loadConfig: typeof loadConfigT
   }>(projectRoot, 'metro')
-  const _defaultConfig: MetroInputConfig = getDefaultConfig(projectRoot) as any
+  const _defaultConfig = getReactNativeDefaultConfig(projectRoot)
 
   if (mainModuleName) {
     const origRewriteRequestUrl = _defaultConfig!.server?.rewriteRequestUrl
@@ -428,7 +461,10 @@ export async function getMetroConfigFromViteConfig(
   )
 
   return {
-    ...enforceBareMainModuleEntry(metroConfig, mainModuleName),
+    ...enforceBareMainModuleEntry(
+      enforceWorkspaceVisibility(metroConfig, projectRoot),
+      mainModuleName
+    ),
     ...extraConfig,
   } as MetroConfigExtended
 }
