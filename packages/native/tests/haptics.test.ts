@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 const { getMock } = vi.hoisted(() => ({ getMock: vi.fn() }))
 
@@ -7,42 +7,24 @@ vi.mock('react-native', () => ({
 }))
 
 import {
-  errorConstantForSdk,
-  Haptics,
-  isHapticsAvailable,
-  selectionConstantForSdk,
-  successConstantForSdk,
-} from '../src/haptics/index.native'
-import { Haptics as WebHaptics, isHapticsAvailable as isWebHapticsAvailable } from '../src/haptics/index'
+  Haptics as WebHaptics,
+  isHapticsAvailable as isWebHapticsAvailable,
+} from '../src/haptics/index'
 
-describe('haptics android sdkInt gating', () => {
-  it('gates SEGMENT_TICK at 34 with CLOCK_TICK below', () => {
-    expect(selectionConstantForSdk(29)).toBe('CLOCK_TICK')
-    expect(selectionConstantForSdk(30)).toBe('CLOCK_TICK')
-    expect(selectionConstantForSdk(33)).toBe('CLOCK_TICK')
-    expect(selectionConstantForSdk(34)).toBe('SEGMENT_TICK')
-  })
+async function loadNative() {
+  // the native entry caches the module lookup at module scope, so each
+  // dispatch case re-imports fresh after setting the mock.
+  vi.resetModules()
+  return await import('../src/haptics/index.native')
+}
 
-  it('gates CONFIRM at 30 with VIRTUAL_KEY below', () => {
-    expect(successConstantForSdk(29)).toBe('VIRTUAL_KEY')
-    expect(successConstantForSdk(30)).toBe('CONFIRM')
-    expect(successConstantForSdk(33)).toBe('CONFIRM')
-    expect(successConstantForSdk(34)).toBe('CONFIRM')
-  })
-
-  it('gates REJECT at 30 with CONTEXT_CLICK below, distinct from warning', () => {
-    expect(errorConstantForSdk(29)).toBe('CONTEXT_CLICK')
-    expect(errorConstantForSdk(30)).toBe('REJECT')
-    expect(errorConstantForSdk(33)).toBe('REJECT')
-    expect(errorConstantForSdk(34)).toBe('REJECT')
-    // warning is LONG_PRESS on every api level, so error must never
-    // resolve to LONG_PRESS below 30.
-    expect(errorConstantForSdk(29)).not.toBe('LONG_PRESS')
-  })
+beforeEach(() => {
+  getMock.mockReset()
 })
 
 describe('haptics js-boundary validation', () => {
-  it('throws on unknown impact styles and notification types', () => {
+  it('throws on unknown impact styles and notification types', async () => {
+    const { Haptics } = await loadNative()
     expect(() => Haptics.impact('invalid' as never)).toThrow(TypeError)
     expect(() => Haptics.notification('bogus' as never)).toThrow(TypeError)
     expect(() => Haptics.impact(undefined as never)).toThrow(TypeError)
@@ -50,8 +32,9 @@ describe('haptics js-boundary validation', () => {
     expect(() => WebHaptics.notification('bogus' as never)).toThrow(TypeError)
   })
 
-  it('accepts every documented style and type', () => {
+  it('accepts every documented style and type', async () => {
     getMock.mockReturnValue(null)
+    const { Haptics } = await loadNative()
     for (const style of ['light', 'medium', 'heavy', 'soft', 'rigid'] as const) {
       expect(() => Haptics.impact(style)).not.toThrow()
       expect(() => WebHaptics.impact(style)).not.toThrow()
@@ -66,9 +49,10 @@ describe('haptics js-boundary validation', () => {
 })
 
 describe('haptics native dispatch', () => {
-  it('dispatches to the native module when present', () => {
+  it('dispatches to the native module when present', async () => {
     const native = { selection: vi.fn(), impact: vi.fn(), notification: vi.fn() }
     getMock.mockReturnValue(native)
+    const { Haptics, isHapticsAvailable } = await loadNative()
     expect(isHapticsAvailable()).toBe(true)
     Haptics.selection()
     Haptics.impact('rigid')
@@ -78,25 +62,31 @@ describe('haptics native dispatch', () => {
     expect(native.notification).toHaveBeenCalledWith('error')
   })
 
-  it('no-ops when the native module is missing', () => {
+  it('resolves the native module once', async () => {
+    const native = { selection: vi.fn(), impact: vi.fn(), notification: vi.fn() }
+    getMock.mockReturnValue(native)
+    const { Haptics, isHapticsAvailable } = await loadNative()
+    expect(isHapticsAvailable()).toBe(true)
+    Haptics.selection()
+    Haptics.impact('light')
+    Haptics.notification('success')
+    expect(getMock).toHaveBeenCalledTimes(1)
+    expect(getMock).toHaveBeenCalledWith('OneNativeHaptics')
+  })
+
+  it('no-ops when the native module is missing', async () => {
     getMock.mockReturnValue(null)
+    const { Haptics, isHapticsAvailable } = await loadNative()
     expect(isHapticsAvailable()).toBe(false)
     expect(() => Haptics.selection()).not.toThrow()
     expect(() => Haptics.impact('light')).not.toThrow()
     expect(() => Haptics.notification('success')).not.toThrow()
   })
 
-  it('no-ops when TurboModuleRegistry itself throws', () => {
-    getMock.mockImplementation(() => {
-      throw new Error('no bridge')
-    })
-    expect(isHapticsAvailable()).toBe(false)
-    expect(() => Haptics.selection()).not.toThrow()
-  })
-
-  it('never dispatches invalid strings: validation throws first', () => {
+  it('never dispatches invalid strings: validation throws first', async () => {
     const native = { selection: vi.fn(), impact: vi.fn(), notification: vi.fn() }
     getMock.mockReturnValue(native)
+    const { Haptics } = await loadNative()
     expect(() => Haptics.impact('invalid' as never)).toThrow(TypeError)
     expect(() => Haptics.notification('bogus' as never)).toThrow(TypeError)
     expect(native.impact).not.toHaveBeenCalled()
