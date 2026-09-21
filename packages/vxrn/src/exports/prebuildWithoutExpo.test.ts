@@ -218,7 +218,7 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
       platform: 'ios',
       app: stamped,
     })
-    expect(ios.content).toContain('MARKETING_VERSION = 9.9.9;')
+    expect(ios.content).toContain('MARKETING_VERSION = "9.9.9";')
     expect(ios.content).toContain('CURRENT_PROJECT_VERSION = 4242;')
     expect(ios.content).not.toContain('MARKETING_VERSION = 1.0;')
     expect(ios.content).not.toContain('CURRENT_PROJECT_VERSION = 1;')
@@ -547,7 +547,7 @@ describe('generateForPlatform determinism', () => {
       join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
       'utf8'
     )
-    expect(generatedPbxproj).toContain('MARKETING_VERSION = 9.9.9;')
+    expect(generatedPbxproj).toContain('MARKETING_VERSION = "9.9.9";')
     expect(generatedPbxproj).toContain('CURRENT_PROJECT_VERSION = 4242;')
     expect(generatedPbxproj).not.toContain('MARKETING_VERSION = 1.0;')
     expect(generatedPbxproj).not.toContain('CURRENT_PROJECT_VERSION = 1;')

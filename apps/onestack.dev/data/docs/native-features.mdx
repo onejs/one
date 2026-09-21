@@ -582,9 +582,8 @@ state. Both platforms honor the system haptics settings without extra code.
 
 Hermes ships no WebCrypto, so One installs `crypto.getRandomValues` and
 `crypto.randomUUID` (RFC 4122 v4) on native at startup, backed by
-`SecRandomCopyBytes` on iOS and `java.security.SecureRandom` on Android
-(synchronous, importable as `getSecureRandomBytes` from
-`@vxrn/native/crypto`).
+`SecRandomCopyBytes` on iOS and `java.security.SecureRandom` on Android,
+both synchronous over the bridge.
 
 ```tsx
 const id = crypto.randomUUID()

@@ -29,8 +29,9 @@ function isSecureRandomAvailable(): boolean {
 
 // count cryptographically secure bytes from SecRandomCopyBytes /
 // SecureRandom, carried over the bridge as lowercase hex. never
-// Math.random: a missing module or a failed native call throws.
-export function getSecureRandomBytes(count: number): Uint8Array {
+// Math.random: a missing module or a failed native call throws. private:
+// installCrypto is the only consumer, and the global is the api.
+function getSecureRandomBytes(count: number): Uint8Array {
   assertByteCount(count)
   if (count === 0) {
     return new Uint8Array(0)

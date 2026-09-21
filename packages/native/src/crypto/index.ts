@@ -16,10 +16,6 @@ function webSource(count: number): Uint8Array {
 
 const source: RandomBytesSource = (count: number) => webSource(count)
 
-export function getSecureRandomBytes(count: number): Uint8Array {
-  return source(count)
-}
-
 export function installCrypto(): void {
   installCryptoPolyfill(source)
 }
