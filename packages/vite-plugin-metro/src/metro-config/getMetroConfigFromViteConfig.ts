@@ -60,6 +60,28 @@ function bareMainModuleForRequest(moduleName: string, mainModuleName: string | u
   return undefined
 }
 
+// defaultConfigOverrides can replace the resolver wholesale, dropping the
+// entry handling installed above. enforce the bare specifier on the final
+// merged config so the entry survives any override composition.
+function enforceBareMainModuleEntry(config: any, mainModuleName: string | undefined) {
+  if (!mainModuleName || !isBareSpecifier(mainModuleName)) return config
+  const innerResolveRequest = config?.resolver?.resolveRequest
+  if (typeof innerResolveRequest !== 'function') return config
+  return {
+    ...config,
+    resolver: {
+      ...config.resolver,
+      resolveRequest: (context: any, moduleName: string, platform: string) => {
+        const bareMain = bareMainModuleForRequest(moduleName, mainModuleName)
+        if (bareMain) {
+          return innerResolveRequest(context, bareMain, platform)
+        }
+        return innerResolveRequest(context, moduleName, platform)
+      },
+    },
+  }
+}
+
 async function isWatchmanResponsive(projectRoot: string) {
   let probe = watchmanResponsivePromises.get(projectRoot)
   if (probe) {
@@ -217,11 +239,6 @@ export async function buildMetroConfigInputFromViteConfig(
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
 
-        const bareMain = bareMainModuleForRequest(moduleName, mainModuleName)
-        if (bareMain) {
-          return origResolveRequestFn(context, bareMain, platform)
-        }
-
         if (excludeModules && excludeModules.length > 0) {
           if (micromatch.isMatch(moduleName, excludeModules)) {
             return origResolveRequestFn(
@@ -267,7 +284,11 @@ export async function buildMetroConfigInputFromViteConfig(
       : defaultConfigOverrides),
   }
 
-  return { defaultConfig: merged, projectRoot, extraConfig }
+  return {
+    defaultConfig: enforceBareMainModuleEntry(merged, mainModuleName),
+    projectRoot,
+    extraConfig,
+  }
 }
 
 export async function getMetroConfigFromViteConfig(
@@ -347,11 +368,6 @@ export async function getMetroConfigFromViteConfig(
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
 
-        const bareMain = bareMainModuleForRequest(moduleName, mainModuleName)
-        if (bareMain) {
-          return origResolveRequestFn(context, bareMain, platform)
-        }
-
         // Handle excludeModules - resolve excluded modules to empty module using glob patterns
         if (excludeModules && excludeModules.length > 0) {
           if (micromatch.isMatch(moduleName, excludeModules)) {
@@ -414,7 +430,7 @@ export async function getMetroConfigFromViteConfig(
   )
 
   return {
-    ...metroConfig,
+    ...enforceBareMainModuleEntry(metroConfig, mainModuleName),
     ...extraConfig,
   } as MetroConfigExtended
 }
