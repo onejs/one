@@ -3161,16 +3161,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Boolean(id(n, 'one-native-image-picker-library')) &&
         Boolean(id(n, 'one-native-image-picker-camera'))
     )
-    // every run starts undecided no matter what ran before, including the
-    // revoke leg at the end of this suite.
-    execFileSync('xcrun', [
-      'simctl',
-      'privacy',
-      config.simulatorId,
-      'reset',
-      'camera',
-      config.bundleId,
-    ])
+    // the camera permission must be undecided: a fresh simulator, or this
+    // suite's own trailing reset after a passing run. reset it by hand
+    // before rerunning a failed run or a manual prompt probe.
     tap({ id: 'one-native-image-picker-permissions' })
     await wait('camera permission reads undecided', (n) =>
       Boolean(
@@ -3222,22 +3215,30 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           labels(n).some((label) => label.startsWith('Uri: file://'))
       )
     )
-    // revoke without prompting: refusing and missing hardware are
-    // ordinary outcomes, so the camera call resolves canceled rather than
-    // hang, present, or reject. older simulators without a camera take the
-    // same path through the missing-hardware outcome.
+    // newer simulators report a camera and prompt; older ones have none.
+    // denying, like missing hardware, resolves canceled.
+    tap({ id: 'one-native-image-picker-camera' })
+    const cameraEnd = await wait(
+      'camera settles to canceled or a permission prompt',
+      (n) => status(n, 'Result', 'canceled') || has(n, 'Don’t Allow')
+    )
+    if (!status(cameraEnd, 'Result', 'canceled')) {
+      tap({ label: 'Don’t Allow' })
+      await wait('denied camera resolves canceled', (n) =>
+        status(n, 'Result', 'canceled')
+      )
+    }
+    // the deny above taints the permission, so restore undecided for the
+    // next run. reset terminates the app, which is why it trails the pass
+    // instead of leading it.
     execFileSync('xcrun', [
       'simctl',
       'privacy',
       config.simulatorId,
-      'revoke',
+      'reset',
       'camera',
       config.bundleId,
     ])
-    tap({ id: 'one-native-image-picker-camera' })
-    await wait('denied camera resolves canceled', (n) =>
-      status(n, 'Result', 'canceled')
-    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

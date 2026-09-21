@@ -45,6 +45,7 @@ class OneNativeImagePickerModule(
     ActivityEventListener,
     PermissionListener {
     private var pendingPickerPromise: Promise? = null
+    private var pendingPickerVerb: String = "launchLibrary"
     private var pendingPermissionPromise: Promise? = null
     private var pendingLimit: Int = 1
     private var pendingSingle: PickVisualMedia? = null
@@ -62,11 +63,11 @@ class OneNativeImagePickerModule(
         reactApplicationContext.removeActivityEventListener(this)
         pendingPickerPromise?.reject(
             E_FAILED,
-            "ImagePicker: torn down mid-request"
+            "ImagePicker.$pendingPickerVerb: torn down mid-request"
         )
         pendingPermissionPromise?.reject(
             E_FAILED,
-            "ImagePicker: torn down mid-request"
+            "ImagePicker.requestCameraPermissions: torn down mid-request"
         )
         clearPickerPending()
         pendingPermissionPromise = null
@@ -363,39 +364,37 @@ class OneNativeImagePickerModule(
     @Suppress("DEPRECATION")
     private fun startCamera(activity: Activity) {
         val context = reactApplicationContext
-        val file = cacheFile("IMG", "jpg")
-        val uri =
-            FileProvider.getUriForFile(
-                context,
-                "${context.packageName}.one-native.fileprovider",
-                file
-            )
-        val intent =
-            Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply {
-                putExtra(MediaStore.EXTRA_OUTPUT, uri)
-                addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-            }
-        for (resolved in
-            context.packageManager.queryIntentActivities(
-                intent,
-                PackageManager.MATCH_DEFAULT_ONLY
-            )) {
-            context.grantUriPermission(
-                resolved.activityInfo.packageName,
-                uri,
-                Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-            )
-        }
-        pendingCameraFile = file
         try {
+            val file = cacheFile("IMG", "jpg")
+            val uri =
+                FileProvider.getUriForFile(
+                    context,
+                    "${context.packageName}.one-native.fileprovider",
+                    file
+                )
+            val intent =
+                Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply {
+                    putExtra(MediaStore.EXTRA_OUTPUT, uri)
+                    addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+                }
+            for (resolved in
+                context.packageManager.queryIntentActivities(
+                    intent,
+                    PackageManager.MATCH_DEFAULT_ONLY
+                )) {
+                context.grantUriPermission(
+                    resolved.activityInfo.packageName,
+                    uri,
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                )
+            }
+            pendingCameraFile = file
             activity.startActivityForResult(intent, REQUEST_CAMERA, null)
         } catch (e: ActivityNotFoundException) {
             pendingCameraFile = null
-            file.delete()
             resolvePickerCanceled()
         } catch (e: Exception) {
             pendingCameraFile = null
-            file.delete()
             rejectPickerPending("launchCamera", e.message ?: "could not open the camera")
         }
     }
@@ -593,6 +592,7 @@ class OneNativeImagePickerModule(
             return false
         }
         pendingPickerPromise = promise
+        pendingPickerVerb = verb
         return true
     }
 
