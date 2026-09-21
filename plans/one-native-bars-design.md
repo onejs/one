@@ -126,8 +126,32 @@ it does not go vertical on Duo, so it waits for a real need), `Label` styling, a
 `toolbarCompressionBehavior`, which cannot compile until One's CI Xcode has the 27.1
 SDK (the superset track pins the SDK ceiling at 26).
 
-`Tabs`: document and type `bottomAccessory` and `tabBarMinimizeBehavior` as they already
-pass through. No new code; the gap is that nobody can find them.
+### Tabs
+
+One `Tabs` is React Navigation 8's bottom tabs on react-native-screens
+(`packages/one/src/layouts/Tabs.tsx:19`), and Expo's `NativeTabs` is a JSX trigger form
+over the same react-native-screens primitives (**RAN:** Expo's page fetched and read).
+The pixels are the same either way, so `Tabs` keeps React Navigation's option names and
+gains no second spelling. The owner's direction holds: nothing here replaces React
+Navigation or react-native-screens.
+
+| need | One `Tabs` today (React Navigation 8 option) | Expo `NativeTabs` |
+| --- | --- | --- |
+| minimize on scroll | `tabBarMinimizeBehavior: 'onScrollDown'` | `minimizeBehavior` |
+| bar above the tabs | `bottomAccessory: ({ placement }) => node` | `NativeTabs.BottomAccessory`, `usePlacement()` |
+| detached trailing tab | the search system item; the team's pattern swaps its icon for a plus | `role="search"` |
+| badge, tint, SF Symbol icon | `tabBarBadge`, `tabBarActiveTintColor`, `tabBarIcon` | `Badge`, `tintColor`, `Icon sf` |
+
+The work is documenting and typing these in One's docs, where none of them appears
+today, plus the Track B fixture. Two things Expo documents apply to One as well and go
+in the docs: the accessory renders twice (regular and inline), so its state lives
+outside it, and a `FlatList` does not drive minimize on scroll.
+
+The optional road away from React Navigation already exists as the platform-direct
+`One.iOS.Tabs` (SwiftUI `TabView`, with `role` and `tabBarMinimizeBehavior`,
+`packages/native/src/Tabs.native.tsx:27-114`). It lacks `tabViewBottomAccessory`. Adding
+that is a later catalog item and is what would make `One.iOS.Tabs` able to carry the
+double bar without React Navigation; it is not part of today's work.
 
 ## The three tracks
 
