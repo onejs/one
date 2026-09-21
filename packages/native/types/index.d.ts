@@ -7,5 +7,7 @@ export { TextInput } from './universal/TextInput/index';
 export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';
 export type * from './composeTypes';
 export type * from './types';
+export { AppInfo } from './app-info/index';
+export type { AppInfoApi } from './app-info/index';
 export { UI };
 //# sourceMappingURL=index.d.ts.map

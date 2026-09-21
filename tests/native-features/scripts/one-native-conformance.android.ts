@@ -1703,6 +1703,36 @@ async function run(config: Config) {
       'one-native-safe-area-edges'
     )
 
+    // app info on Android: the exact stamped fixture-manifest values reach
+    // runtime through the native constants module, not template defaults.
+    // redbox detection rides in waitFor via assertNoRedBox on every snapshot.
+    pressBack(config)
+    await tapNavigation(config, 'nav-one-native-app-info')
+    await expect(
+      'app-info-stamped-values',
+      (nodes) =>
+        diagnose(nodes, [
+          ['refresh control', (n) => exactlyOneId(n, 'one-native-app-info-refresh')],
+          ['version marker', (n) => textIncludes(n, 'Version: 9.9.9')],
+          ['build marker', (n) => textIncludes(n, 'Build: 4242')],
+          [
+            'application id marker',
+            (n) => textIncludes(n, 'ApplicationId: dev.vxrn.nativefeatures.tests'),
+          ],
+        ]),
+      'one-native-app-info-refresh'
+    )
+    tapFresh(config, 'App info refresh tap', {
+      id: 'one-native-app-info-refresh',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'app-info-tap',
+      (nodes) => textIncludes(nodes, 'Taps: 1'),
+      'one-native-app-info-refresh'
+    )
+
     writeFileSync(
       path.join(config.artifactDir, 'status.json'),
       JSON.stringify(

@@ -19,6 +19,15 @@ describe('root One export', () => {
     expect(One.UI.SafeArea.Provider).toBeTypeOf('function')
     expect(One.UI.SafeArea.View).toBeTypeOf('object')
     expect(One.UI.SafeArea.useInsets).toBeTypeOf('function')
+    // top-level One.AppInfo, not One.UI: application metadata is data, not UI
+    expect(Object.hasOwn(One, 'AppInfo')).toBe(true)
+    expect(Object.hasOwn(One.UI, 'AppInfo')).toBe(false)
+    expect(Object.keys(One.AppInfo).sort()).toEqual([
+      'applicationId',
+      'build',
+      'version',
+    ])
+    expect(Object.isFrozen(One.AppInfo)).toBe(true)
   })
 
   test('reports the build-time platform without reshaping the API', () => {

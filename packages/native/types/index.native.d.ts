@@ -72,5 +72,7 @@ export { TextInput } from './universal/TextInput/index';
 export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';
 export type * from './types';
 export type * from './composeTypes';
+export { AppInfo } from './app-info/index.native';
+export type { AppInfoApi } from './app-info/index.native';
 export { UI };
 //# sourceMappingURL=index.native.d.ts.map

@@ -6,6 +6,7 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
+import dev.onejs.onenative.OneNativeAppInfoModule
 import dev.onejs.onenative.OneNativeBlurManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
@@ -18,6 +19,7 @@ class VxrnNativePackage : BaseReactPackage() {
     override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
         return when (name) {
             VxrnNativeModule.NAME -> VxrnNativeModule(reactContext)
+            OneNativeAppInfoModule.NAME -> OneNativeAppInfoModule(reactContext)
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
             else -> null
@@ -29,6 +31,14 @@ class VxrnNativePackage : BaseReactPackage() {
             VxrnNativeModule.NAME to ReactModuleInfo(
                 name = VxrnNativeModule.NAME,
                 className = VxrnNativeModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeAppInfoModule.NAME to ReactModuleInfo(
+                name = OneNativeAppInfoModule.NAME,
+                className = OneNativeAppInfoModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,
