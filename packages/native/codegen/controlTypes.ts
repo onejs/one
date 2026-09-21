@@ -1,8 +1,10 @@
 // semantic recipes for bounded SwiftUI controls; the SDK supplies signatures and style cases.
 export type ScalarType = 'string' | 'boolean' | 'Double'
 export type ControlField = {
-  type: ScalarType | 'objects'
-  default: string | boolean | number
+  // `strings` is an array of plain strings, for open or SDK-external sets like
+  // ASAuthorization.Scope and UTType identifiers. `objects` stays for payloads.
+  type: ScalarType | 'objects' | 'strings'
+  default: string | boolean | number | readonly string[]
   enum?: string
   publicType?: string
   jsDefault?: string

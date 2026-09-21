@@ -25,12 +25,14 @@ export declare const Swift: {
     VideoPlayer({ url, autoplay, swiftStyle, style, ...props }: import("./types").VideoPlayerProps): import("react/jsx-runtime").JSX.Element;
     PhotosPicker({ onPick, onPickError, label, disabled, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: import("./types").PhotosPickerProps): import("react/jsx-runtime").JSX.Element;
     WebView({ onNavigate, onTitleChange, onLoadingChange, url, html, backForwardNavigationGestures, magnificationGestures, linkPreviews, elementFullscreen, contentBackground, swiftStyle, style, ...props }: import("./types").WebViewProps): import("react/jsx-runtime").JSX.Element;
+    SignInWithAppleButton({ onCompletion, requestedScopes, nonce, swiftStyle, style, ...props }: import("./types").SignInWithAppleButtonProps): import("react/jsx-runtime").JSX.Element;
     Map({ onRegionChange, latitude, longitude, distance, markers, swiftStyle, style, ...props }: import("./types").MapProps): import("react/jsx-runtime").JSX.Element;
     TextField({ text, onTextChange, revision, focused, onFocusChange, focusRevision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, keyboardType, textContentType, axis, swiftStyle, style, ...props }: import("./types").TextFieldProps): import("react/jsx-runtime").JSX.Element;
     SecureField({ text, onTextChange, revision, focused, onFocusChange, focusRevision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, keyboardType, textContentType, swiftStyle, style, ...props }: import("./types").SecureFieldProps): import("react/jsx-runtime").JSX.Element;
     Alert({ isPresented, onIsPresentedChange, revision, onAction, title, message, presenting, actions, swiftStyle, style, ...props }: import("./types").AlertProps): import("react/jsx-runtime").JSX.Element;
     ConfirmationDialog({ isPresented, onIsPresentedChange, revision, onAction, title, message, presenting, actions, titleVisibility, swiftStyle, style, ...props }: import("./types").ConfirmationDialogProps): import("react/jsx-runtime").JSX.Element;
     QuickLook({ isPresented, onIsPresentedChange, revision, url, swiftStyle, style, ...props }: import("./types").QuickLookProps): import("react/jsx-runtime").JSX.Element;
+    FileImporter({ isPresented, onIsPresentedChange, revision, onCompletion, allowedContentTypes, allowsMultipleSelection, swiftStyle, style, ...props }: import("./types").FileImporterProps): import("react/jsx-runtime").JSX.Element;
     Tabs: typeof Tabs;
     Tab: typeof Tab;
     Menu: typeof Menu;
