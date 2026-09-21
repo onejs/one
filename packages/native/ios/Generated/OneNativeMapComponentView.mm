@@ -9,6 +9,7 @@
 using namespace facebook::react;
 @implementation OneNativeMapComponentView { OneNativeMapView *_nativeView; BOOL _markersDirty; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeMapComponentDescriptor>(); }
++- (NSObject *)accessibilityElement { return _nativeView; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeMapProps>();

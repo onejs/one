@@ -237,6 +237,7 @@ export const leafControls: Control[] = [
   },
   {
     name: 'Image',
+    decorativeWhenUnlabeled: true,
     fields: {
       systemName: { type: 'string', default: '' },
       symbolRenderingMode: {
@@ -266,6 +267,7 @@ export const leafControls: Control[] = [
         derived: true,
         nativeValue: 'variableValue !== undefined',
       },
+      colorRole: { type: 'string', default: '', publicType: 'IconColorRole' },
     },
     constructors: [
       {
@@ -289,10 +291,12 @@ export const leafControls: Control[] = [
       }
       .oneNativeSymbolRenderingMode(model.symbolRenderingMode)
       .oneNativeSymbolVariant(model.symbolVariant)
-      .oneNativeImageScale(model.imageScale)`,
+      .oneNativeImageScale(model.imageScale)
+      .oneNativeColorRole(model.colorRole)`,
     validate: `  if (typeof systemName !== 'string' || !systemName) throw new Error('Image systemName must be a non-empty SF Symbol name')
   if (variableValue !== undefined && !Number.isFinite(variableValue)) throw new Error('Image variableValue must be a finite number or undefined')
-  if (variableValue !== undefined && (variableValue < 0 || variableValue > 1)) throw new Error('Image variableValue must be between 0 and 1')`,
+  if (variableValue !== undefined && (variableValue < 0 || variableValue > 1)) throw new Error('Image variableValue must be between 0 and 1')
+  if (colorRole && !iconColorRoles.includes(colorRole)) throw new Error('Image colorRole must be a One.UI icon color role')`,
   },
   {
     // the share sheet is UIActivityViewController, which React Native has no equivalent for.

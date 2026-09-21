@@ -10,6 +10,7 @@
 using namespace facebook::react;
 @implementation OneNativeImageComponentView { OneNativeImageView *_nativeView; OneNativeMeasuredHeight *_measured; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeImageComponentDescriptor>(); }
++- (NSObject *)accessibilityElement { return _nativeView; }
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
@@ -64,7 +65,7 @@ using namespace facebook::react;
   if (!next.swiftStyle.material.empty()) style[@"material"] = RCTNSStringFromString(next.swiftStyle.material);
   [_nativeView configureStyle:style];
   [_nativeView configure:RCTNSStringFromString(next.systemName)
-    symbolRenderingMode:RCTNSStringFromString(next.symbolRenderingMode) symbolVariant:RCTNSStringFromString(next.symbolVariant) imageScale:RCTNSStringFromString(next.imageScale) variableValue:next.variableValue hasVariableValue:next.hasVariableValue];
+    symbolRenderingMode:RCTNSStringFromString(next.symbolRenderingMode) symbolVariant:RCTNSStringFromString(next.symbolVariant) imageScale:RCTNSStringFromString(next.imageScale) variableValue:next.variableValue hasVariableValue:next.hasVariableValue colorRole:RCTNSStringFromString(next.colorRole)];
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }

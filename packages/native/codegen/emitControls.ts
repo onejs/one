@@ -75,6 +75,7 @@ export function emitControls(
     `import type { ColorValue, ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
 import type { KeyboardType, TextContentType } from '../textTypes'
+import type { IconColorRole } from '../ui/iconRoles'
 ${hasSync ? `import type { NativeState } from '../syncNativeState'\n` : ''}
 
 ${styleFields
@@ -113,6 +114,7 @@ export type OneNativeViewProps = Pick<
   let adapters =
     header +
     "import { Platform } from 'react-native'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport type * as Types from './controlTypes'\n" +
+    "import { iconColorRoles } from '../ui/iconRoles'\n" +
     (hasSync
       ? "import { getSyncStateId, isSyncState } from '../syncStore'\nimport { syncHandleOf, useSyncValue } from '../syncNativeState'\n"
       : '')
@@ -321,7 +323,7 @@ ${
       control.focus
         ? `  const controlledFocus = useControlled<{ value: boolean; eventCount: number; revision: number }>(event => onFocusChange?.(event.value), focusRevision)\n`
         : ''
-    }  return <Native${name} {...props} ${styleProp}
+    }  return <Native${name} {...props} ${styleProp}${control.decorativeWhenUnlabeled ? ' accessible={Boolean(props.accessibilityLabel)} accessibilityElementsHidden={!props.accessibilityLabel} accessibilityRole="image"' : ''}
     swiftStyle={swiftStyle}
 ${value ? `    value={${value.sync ? syncNativeValue(value, `synced${upper(value.prop)}`) : (value.nativeValue ?? value.prop)}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${value?.sync ? `    syncStateId={syncHandle ? getSyncStateId(syncHandle) ?? 0 : 0}\n` : ''}${
       control.focus
@@ -538,7 +540,7 @@ ${
       }
 `
     : ''
-}${disabled ? '      .disabled(model.disabled)\n' : ''}      .oneNativeAccessibility(model.accessibility)
+}${disabled ? '      .disabled(model.disabled)\n' : ''}      .oneNativeAccessibility(model.accessibility${control.decorativeWhenUnlabeled ? ', decorativeWhenUnlabeled: true' : ''})
       .oneNativeStyle(model.swiftStyle)
   }
 }
@@ -630,7 +632,8 @@ ${value?.sync ? `#import "OneNativeSyncBridge.h"\n` : ''}${measured ? `#import "
 #import <React/RCTConversions.h>
 using namespace facebook::react;
 @implementation ${nativeName}ComponentView { ${nativeName}View *_nativeView;${measured ? ' OneNativeMeasuredHeight *_measured;' : ''}${objectFields.map(([key]) => ` BOOL _${key}Dirty;`).join('')}${value?.sync ? ' int32_t _syncStateId;' : ''} }
-+ (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<${nativeName}ComponentDescriptor>(); }${
++ (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<${nativeName}ComponentDescriptor>(); }
++- (NSObject *)accessibilityElement { return _nativeView; }${
           measured
             ? `
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }`
