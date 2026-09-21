@@ -133,6 +133,10 @@ type PermissionResponse = Readonly<{
 - The library's own `AndroidManifest.xml` and podspec declare no permission and no usage
   string. Prebuild stamps them from `native.app` when the app turns the feature on, so an
   app that does not use a feature gains nothing in its manifest or its store review.
+  The one exception is an Android normal permission: granted at install, never prompted,
+  and absent from the Play data safety form. `ACCESS_NETWORK_STATE` for `One.Network` is
+  the case. The library manifest declares it, so the manifest merger covers every app
+  however its android folder was made, and native code never branches on it being missing.
 
 ## 7. Events, config, optional native code
 
@@ -149,7 +153,11 @@ type PermissionResponse = Readonly<{
   spec class carries the emitter). The one transport is therefore the legacy one: iOS
   subclasses `RCTEventEmitter`, Android emits through `RCTDeviceEventEmitter`, the spec
   declares `addListener(eventName: string): void` and `removeListeners(count: number): void`,
-  and JS holds one `NativeEventEmitter(module)` per namespace. Event names are
+  and JS holds one `NativeEventEmitter(module)` per namespace. A native observer starts
+  and stops from the emitter's own listener count (`startObserving` and `stopObserving`
+  on iOS, the `addListener` and `removeListeners` count on Android), never from extra
+  start and stop methods in the spec: a second count can start the source before the
+  listener is registered and drop its first event. Event names are
   `oneNative<Name><Event>`. The first module that lands events proves this on both
   platforms; moving `codegenConfig` to `all` is a broad engine change and is not part of
   any uniform API slice.
