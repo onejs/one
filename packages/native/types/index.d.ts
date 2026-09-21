@@ -7,5 +7,7 @@ export { TextInput } from './universal/TextInput/index';
 export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';
 export type * from './composeTypes';
 export type * from './types';
+export { ImagePicker } from './image-picker/index';
+export type { ImagePickerAsset, ImagePickerCanceledResult, ImagePickerMediaType, ImagePickerOptions, ImagePickerPermissionResponse, ImagePickerResult, ImagePickerSuccessResult, } from './image-picker/index';
 export { UI };
 //# sourceMappingURL=index.d.ts.map

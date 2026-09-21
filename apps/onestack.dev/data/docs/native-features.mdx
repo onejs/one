@@ -287,6 +287,80 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 
 ---
 
+## ImagePicker
+
+Uniform imperative image picker. The `expo-image-picker` module API is the reference shape,
+so migration is mechanical; this is the small subset One supports.
+
+```tsx
+import { One } from 'one'
+
+const picked = await One.ImagePicker.launchLibrary({
+  mediaTypes: 'images',
+  selectionLimit: 1,
+})
+if (!picked.canceled) {
+  const [first] = picked.assets
+  console.log(first.uri, first.width, first.height)
+}
+
+const photo = await One.ImagePicker.launchCamera()
+```
+
+`launchLibrary` presents the system photo picker: `PHPickerViewController` on iOS,
+which needs no permission prompt, and the system photo picker on Android with a documents
+fallback on devices without it. `mediaTypes` is `'images'`, `'videos'`, or both, defaulting
+to `'images'`. `selectionLimit` is the maximum number of assets, defaulting to `1`; `0` is
+unlimited (the system maximum).
+
+`launchCamera` captures one still photo with the system camera. It needs the camera
+permission declared in `native.app`:
+
+```ts
+one({
+  native: {
+    app: {
+      imagePicker: { camera: 'Take profile photos.' },
+      // ...
+    },
+  },
+})
+```
+
+`one prebuild` writes the string to `NSCameraUsageDescription` on iOS and declares the
+`CAMERA` permission on Android. Without it the call rejects instead of crashing. A denied
+permission, a missing camera, and backing out of either call all resolve
+`{ canceled: true, assets: null }`; check the permission first when the distinction
+matters. Only runtime failures reject, with `E_IMAGE_PICKER_FAILED`.
+
+The camera permission reads without prompting and prompts on request. Neither system
+picker needs a grant, so no media library permission calls exist:
+
+```tsx
+const current = await One.ImagePicker.getCameraPermissions()
+// { status: 'undetermined', granted: false, canAskAgain: true }
+const next = await One.ImagePicker.requestCameraPermissions()
+```
+
+Picked assets are copied into the app cache and returned as file URIs with `width`, `height`,
+and, when the platform provides them, `mimeType`, `fileName`, and `fileSize`. On web the
+library opens a file dialog and the camera opens a capture input on mobile browsers, and
+both permission calls read denied.
+
+Migrating from `expo-image-picker` is an import change plus this rename:
+
+| Expo | One |
+|------|-----|
+| `launchImageLibraryAsync` | `launchLibrary` |
+| `launchCameraAsync` | `launchCamera` |
+| `getCameraPermissionsAsync` | `getCameraPermissions` |
+| `requestCameraPermissionsAsync` | `requestCameraPermissions` |
+
+`allowsEditing`, `quality`, `aspect`, and the other Expo options have no equivalent:
+`mediaTypes` and `selectionLimit` are the whole options surface.
+
+---
+
 ## Platform Support
 
 | Feature | iOS | Android | Web |
@@ -298,6 +372,7 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 | SplitView | iPad (gamma required) | routed slot fallback | routed slot fallback |
 | Icons | SF Symbols via One.iOS.Image | Material Symbols via One.Android.Icon | unsupported |
 | Shared icon selection | One.UI.Icon | One.UI.Icon | app-provided React element |
+| ImagePicker | PHPickerViewController + camera | system photo picker + camera intent | file dialog + capture input |
 
 Unsupported toolbar and zoom components return `null`, so they are safe to keep in
 cross-platform component trees. SplitView renders its routed `slot` without native

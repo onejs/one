@@ -72,5 +72,7 @@ export { TextInput } from './universal/TextInput/index';
 export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';
 export type * from './types';
 export type * from './composeTypes';
+export { ImagePicker } from './image-picker/index.native';
+export type { ImagePickerAsset, ImagePickerCanceledResult, ImagePickerMediaType, ImagePickerOptions, ImagePickerPermissionResponse, ImagePickerResult, ImagePickerSuccessResult, } from './image-picker/index.native';
 export { UI };
 //# sourceMappingURL=index.native.d.ts.map

@@ -2,6 +2,7 @@ import { execFileSync } from 'node:child_process'
 import module from 'node:module'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
+import { validateNativeApp, type NativeAppManifest } from '@vxrn/utils/nativeAppManifest'
 import FSExtra from 'fs-extra'
 import sharp from 'sharp'
 
@@ -26,42 +27,14 @@ This code block is partially copied from meta owned repos.
 Copyright (c) Facebook, Inc. and its affiliates.
 */
 
-// structural mirror of one({ native: { app } }). the one cli validates the
-// full manifest before passing it here; vxrn re-validates the fields it
-// writes so direct callers fail before touching either project.
-export interface PrebuildAppConfig {
-  name: string
-  displayName?: string
-  scheme?: string | string[]
-  icon?: {
-    source: string
-    backgroundColor: string
-  }
-  splash?: {
-    source: string
-    backgroundColor: string
-    width?: number
-  }
-  ios?: {
-    bundleId: string
-    tablet?: boolean
-    deploymentTarget?: string
-    screensGamma?: boolean
-    useFrameworks?: 'static' | 'dynamic'
-    ccache?: boolean
-    usesNonExemptEncryption?: boolean
-  }
-  android?: {
-    applicationId: string
-    minSdk?: number
-  }
-}
+// the manifest is one({ native: { app } }), defined once in @vxrn/utils. the
+// one cli validates the full manifest before passing it here; vxrn
+// re-validates through the same definition so direct callers fail before
+// touching either project.
+export type { NativeAppManifest as PrebuildAppConfig } from '@vxrn/utils/nativeAppManifest'
 
-const TARGET_NAME = /^[A-Za-z][A-Za-z0-9_]*$/
-const SCHEME = /^[a-z][a-z0-9+.-]*$/i
-const REVERSE_DNS = /^[A-Za-z][A-Za-z0-9-]*(\.[A-Za-z][A-Za-z0-9-]*)+$/
-const DEPLOYMENT_TARGET = /^\d+\.\d+$/
-const HEX_COLOR = /^#[\da-f]{6}$/i
+export const validatePrebuildApp = validateNativeApp
+
 const ANDROID_DENSITIES = {
   mdpi: 1,
   hdpi: 1.5,
@@ -114,70 +87,8 @@ function patchIosBundlePhase(project: string): string {
   return patchedProject
 }
 
-function fail(message: string): never {
-  throw new Error(`[vxrn] invalid native.app: ${message}`)
-}
-
-export function validatePrebuildApp(
-  app: PrebuildAppConfig,
-  platform?: 'ios' | 'android' | string
-): void {
-  if (!app || typeof app !== 'object') fail('manifest must be an object')
-  if (!app.name || !TARGET_NAME.test(app.name)) {
-    fail(
-      `name "${app?.name}" must start with a letter and contain only letters, digits, and underscore`
-    )
-  }
-  const schemes =
-    app.scheme === undefined ? [] : Array.isArray(app.scheme) ? app.scheme : [app.scheme]
-  for (const scheme of schemes) {
-    if (typeof scheme !== 'string' || !SCHEME.test(scheme)) {
-      fail(`scheme "${scheme}" must be a valid uri scheme`)
-    }
-  }
-  if (
-    app.icon !== undefined &&
-    (!app.icon.source || !HEX_COLOR.test(app.icon.backgroundColor))
-  ) {
-    fail('icon requires source and a six-digit hex backgroundColor')
-  }
-  if (
-    app.splash !== undefined &&
-    (!app.splash.source ||
-      !HEX_COLOR.test(app.splash.backgroundColor) ||
-      (app.splash.width !== undefined &&
-        (!Number.isFinite(app.splash.width) ||
-          app.splash.width < 1 ||
-          app.splash.width > 288)))
-  ) {
-    fail(
-      'splash requires source, a six-digit hex backgroundColor, and width from 1 to 288'
-    )
-  }
-  if (!platform || platform === 'ios') {
-    if (!app.ios?.bundleId || !REVERSE_DNS.test(app.ios.bundleId)) {
-      fail(`ios.bundleId "${app.ios?.bundleId}" must be reverse-dns`)
-    }
-    if (
-      app.ios.deploymentTarget !== undefined &&
-      !DEPLOYMENT_TARGET.test(app.ios.deploymentTarget)
-    ) {
-      fail(`ios.deploymentTarget "${app.ios.deploymentTarget}" must look like "17.0"`)
-    }
-  }
-  if (!platform || platform === 'android') {
-    if (!app.android?.applicationId || !REVERSE_DNS.test(app.android.applicationId)) {
-      fail(`android.applicationId "${app.android?.applicationId}" must be reverse-dns`)
-    }
-    if (
-      app.android.minSdk !== undefined &&
-      (!Number.isInteger(app.android.minSdk) ||
-        app.android.minSdk < 21 ||
-        app.android.minSdk > 36)
-    ) {
-      fail(`android.minSdk "${app.android.minSdk}" must be an integer from 21 to 36`)
-    }
-  }
+function escapeXml(value: string): string {
+  return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
 export interface RenderedPrebuildFile {
@@ -189,7 +100,7 @@ async function generateAppIcons(args: {
   root: string
   dest: string
   platform: 'ios' | 'android'
-  app: PrebuildAppConfig
+  app: NativeAppManifest
 }): Promise<void> {
   const { root, dest, platform, app } = args
   if (!app.icon) return
@@ -255,7 +166,7 @@ async function generateSplashScreen(args: {
   root: string
   dest: string
   platform: 'ios' | 'android'
-  app: PrebuildAppConfig
+  app: NativeAppManifest
 }): Promise<void> {
   const { root, dest, platform, app } = args
   if (!app.splash) return
@@ -415,7 +326,7 @@ export function renderPrebuildFile(args: {
   relativePath: string
   content: string | null
   platform: 'ios' | 'android'
-  app: PrebuildAppConfig
+  app: NativeAppManifest
 }): RenderedPrebuildFile {
   const { relativePath, content, platform, app } = args
   const appName = app.name
@@ -473,6 +384,16 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.imagePicker?.camera !== undefined
+    ) {
+      rendered = rendered.replace(
+        '<uses-permission android:name="android.permission.INTERNET" />',
+        '<uses-permission android:name="android.permission.INTERNET" />\n    <uses-permission android:name="android.permission.CAMERA" />'
+      )
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
       schemes.length
     ) {
       rendered = rendered.replace(
@@ -497,6 +418,12 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         rendered = rendered.replace(
           '\t<key>LSRequiresIPhoneOS</key>',
           `\t<key>ITSAppUsesNonExemptEncryption</key>\n\t<${app.ios.usesNonExemptEncryption ? 'true' : 'false'}/>\n\t<key>LSRequiresIPhoneOS</key>`
+        )
+      }
+      if (app.imagePicker?.camera !== undefined) {
+        rendered = rendered.replace(
+          '\t<key>LSRequiresIPhoneOS</key>',
+          `\t<key>NSCameraUsageDescription</key>\n\t<string>${escapeXml(app.imagePicker.camera)}</string>\n\t<key>LSRequiresIPhoneOS</key>`
         )
       }
     }
@@ -583,7 +510,7 @@ end`
 export const generateForPlatform = async (
   root: string,
   platform: 'ios' | 'android',
-  app: PrebuildAppConfig,
+  app: NativeAppManifest,
   outDir: string = path.resolve(root, platform)
 ) => {
   validatePrebuildApp(app, platform)
@@ -654,7 +581,7 @@ export interface NativeDependencyInventory {
 
 export function applyAndroidDependencyPatches(args: {
   root: string
-  app: PrebuildAppConfig
+  app: NativeAppManifest
   inventory: readonly NativeDependencyInventory[]
 }): void {
   const { root, app, inventory } = args

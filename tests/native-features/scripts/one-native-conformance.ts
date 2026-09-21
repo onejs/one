@@ -2,6 +2,7 @@
 import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { resolveVisualRegion, VISUAL_CHECKS } from './visual-declarations'
 import {
   countChangedPixels,
@@ -40,6 +41,7 @@ const suites = [
   'accessibility',
   'media',
   'map',
+  'image-picker',
 ] as const
 type Suite = (typeof suites)[number]
 type Config = {
@@ -239,6 +241,12 @@ const mapLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-map-place-ferry')) &&
   has(nodes, 'Place: ')
+// a presented photo picker covers the fixture, so the screen counts as
+// loaded from either side of the presentation.
+const imagePickerLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  ((Boolean(id(nodes, 'one-native-image-picker-library')) && has(nodes, 'Result: ')) ||
+    labels(nodes).includes('Cancel'))
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -265,6 +273,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
   map: mapLoaded,
+  'image-picker': imagePickerLoaded,
 }
 const suiteHome: Record<Suite, string> = {
   'tabs-menu': 'nav-one-native',
@@ -284,6 +293,7 @@ const suiteHome: Record<Suite, string> = {
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
   map: 'nav-one-native-map',
+  'image-picker': 'nav-one-native-image-picker',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
 const firstState = (nodes: Node[]) =>
@@ -3132,6 +3142,102 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => value(n, 'gamma') && request(n, 'gamma') && Boolean(wheel(n, 2))
     )
 
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'image-picker') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const cancelButton = (nodes: Node[]) =>
+      nodes.find((node) => node.AXLabel === 'Cancel' && node.type === 'Button')
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-image-picker')
+    await wait(
+      'fixture mounted',
+      (n) =>
+        status(n, 'Result', 'idle') &&
+        Boolean(id(n, 'one-native-image-picker-library')) &&
+        Boolean(id(n, 'one-native-image-picker-camera'))
+    )
+    // every run starts undecided no matter what ran before, including the
+    // revoke leg at the end of this suite.
+    execFileSync('xcrun', [
+      'simctl',
+      'privacy',
+      config.simulatorId,
+      'reset',
+      'camera',
+      config.bundleId,
+    ])
+    tap({ id: 'one-native-image-picker-permissions' })
+    await wait('camera permission reads undecided', (n) =>
+      Boolean(
+        status(n, 'PermStatus', 'undetermined') &&
+          status(n, 'PermGranted', 'false') &&
+          status(n, 'PermCanAsk', 'true')
+      )
+    )
+    tap({ id: 'one-native-image-picker-library' })
+    await wait('the system picker presents', (n) => Boolean(cancelButton(n)))
+    screenshot('image-picker-open.png')
+    tap({ label: 'Cancel' })
+    await wait('cancel resolves through the bridge', (n) =>
+      Boolean(id(n, 'one-native-image-picker-library'))
+    )
+    await wait('cancel reports canceled', (n) => status(n, 'Result', 'canceled'))
+    // seed a known photo: recency sorts it first, and every copy is
+    // identical, so reruns that seed again stay deterministic.
+    execFileSync('xcrun', [
+      'simctl',
+      'addmedia',
+      config.simulatorId,
+      fileURLToPath(new URL('../../assets/one-native-picker.png', import.meta.url)),
+    ])
+    tap({ id: 'one-native-image-picker-library' })
+    const grid = await wait(
+      'photo grid lists the seeded photo',
+      (n) => n.some((node) => node.AXLabel === 'Photo' && node.type === 'Image')
+    )
+    // a single pick dismisses on tap, with no trailing add button.
+    const cell = grid
+      .filter((node) => node.AXLabel === 'Photo' && node.type === 'Image')
+      .sort((a, b) => a.frame!.y - b.frame!.y || a.frame!.x - b.frame!.x)[0].frame!
+    point(cell.x + cell.width / 2, cell.y + cell.height / 2)
+    await wait('picked asset resolves with its metadata', (n) =>
+      Boolean(
+        status(n, 'Result', 'ok') &&
+          status(n, 'Assets', 1) &&
+          status(n, 'Width', 120) &&
+          status(n, 'Height', 80) &&
+          status(n, 'Mime', 'image/png') &&
+          labels(n).some(
+            (label) => label.startsWith('File: IMG_') && label.endsWith('.png')
+          ) &&
+          labels(n).some((label) => {
+            const match = /^Size: (\d+)$/.exec(label)
+            return match !== null && Number(match[1]) > 0
+          }) &&
+          labels(n).some((label) => label.startsWith('Uri: file://'))
+      )
+    )
+    // revoke without prompting: refusing and missing hardware are
+    // ordinary outcomes, so the camera call resolves canceled rather than
+    // hang, present, or reject. older simulators without a camera take the
+    // same path through the missing-hardware outcome.
+    execFileSync('xcrun', [
+      'simctl',
+      'privacy',
+      config.simulatorId,
+      'revoke',
+      'camera',
+      config.bundleId,
+    ])
+    tap({ id: 'one-native-image-picker-camera' })
+    await wait('denied camera resolves canceled', (n) =>
+      status(n, 'Result', 'canceled')
+    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -156,6 +156,9 @@ one({
         usesNonExemptEncryption: false,
       },
       android: { applicationId: 'com.example.myapp' },
+      imagePicker: {
+        camera: 'Take profile photos.',
+      },
     },
   },
 })
@@ -163,7 +166,9 @@ one({
 
 One reads this manifest directly. It generates the iOS and Android app icons and
 launch screens from the shared sources, and it does not require an Expo app config
-or config plugin. The icon must be a square image at least 1024 pixels wide. Splash
+or config plugin. `imagePicker.camera` is the iOS camera usage description; prebuild
+writes it to `NSCameraUsageDescription` and declares the Android camera permission,
+both required for `One.ImagePicker.launchCamera`. The icon must be a square image at least 1024 pixels wide. Splash
 artwork is centered at `width` points on iOS and density-independent pixels on
 Android. One removes a solid outer border matching `backgroundColor` before sizing
 the artwork, then generates density-specific Android assets inside a 288 dp square.
