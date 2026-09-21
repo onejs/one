@@ -80,7 +80,7 @@ export type {
 } from './universal/TextInput/textInputTypes'
 export type * from './types'
 export type * from './composeTypes'
-export { Haptics, isHapticsAvailable } from './haptics/index.native'
+export { Haptics } from './haptics/index.native'
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native'
 export { AppInfo } from './app-info/index.native'
 export type { AppInfoApi } from './app-info/index.native'

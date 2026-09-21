@@ -15,8 +15,10 @@ declare module 'one' {
         | `/one-native-accessibility`
         | `/one-native-android`
         | `/one-native-android-inputs`
+        | `/one-native-app-info`
         | `/one-native-containers`
         | `/one-native-controls`
+        | `/one-native-crypto`
         | `/one-native-dialogs`
         | `/one-native-effects`
         | `/one-native-groups`

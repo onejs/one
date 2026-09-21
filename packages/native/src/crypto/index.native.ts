@@ -23,7 +23,7 @@ function nativeModule(): NativeCryptoSpec | null {
   return cachedModule
 }
 
-export function isSecureRandomAvailable(): boolean {
+function isSecureRandomAvailable(): boolean {
   return nativeModule() !== null
 }
 
