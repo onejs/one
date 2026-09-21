@@ -1,8 +1,4 @@
-import {
-  createRequestGuard,
-  resolveCameraOptions,
-  resolveImagePickerOptions,
-} from './options'
+import { resolveCameraOptions, resolveImagePickerOptions } from './options'
 import type {
   ImagePickerAsset,
   ImagePickerOptions,
@@ -17,12 +13,10 @@ export type * from './types'
 // this file and serve both platforms. no browser global is touched at
 // import, and on the server every launch behaves as no native side.
 
-const guarded = createRequestGuard()
-
-const denied: ImagePickerPermissionResponse = Object.freeze({
-  status: 'denied',
-  granted: false,
-  canAskAgain: false,
+const granted: ImagePickerPermissionResponse = Object.freeze({
+  status: 'granted',
+  granted: true,
+  canAskAgain: true,
 })
 
 function acceptFor(mediaTypes: string[]): string {
@@ -32,9 +26,8 @@ function acceptFor(mediaTypes: string[]): string {
   return accept.join(',')
 }
 
-// a file dialog has no promise: change resolves with files, the cancel
-// event resolves with null, and a window refocus with no selection covers
-// browsers without the cancel event.
+// a file dialog has no promise: change resolves with files and the cancel
+// event resolves with null.
 function pickFiles(
   accept: string,
   multiple: boolean,
@@ -46,21 +39,8 @@ function pickFiles(
     input.accept = accept
     input.multiple = multiple
     if (capture) input.capture = capture
-    let done = false
-    const finish = (files: File[] | null) => {
-      if (done) return
-      done = true
-      window.removeEventListener('focus', onFocus)
-      resolve(files)
-    }
-    const onFocus = () => {
-      setTimeout(() => {
-        if ((input.files?.length ?? 0) === 0) finish(null)
-      }, 300)
-    }
-    input.onchange = () => finish(input.files ? [...input.files] : [])
-    input.addEventListener('cancel', () => finish(null))
-    window.addEventListener('focus', onFocus, { once: true })
+    input.onchange = () => resolve(input.files ? [...input.files] : [])
+    input.addEventListener('cancel', () => resolve(null))
     input.click()
   })
 }
@@ -125,34 +105,31 @@ async function pick(
   return { canceled: false, assets }
 }
 
-async function launchLibrary(
+// plain, not async, so bad options throw synchronously like the native entry.
+function launchLibrary(
   options: ImagePickerOptions = {}
 ): Promise<ImagePickerResult> {
   const resolved = resolveImagePickerOptions(options)
-  return guarded('launchLibrary', () =>
-    pick('launchLibrary', resolved.selectionLimit, resolved.mediaTypes)
-  )
+  return pick('launchLibrary', resolved.selectionLimit, resolved.mediaTypes)
 }
 
 // mobile browsers open the camera for a capture input; desktop browsers
 // show the file dialog, the same fallback every expo web app ships.
-async function launchCamera(
+function launchCamera(
   options: ImagePickerOptions = {}
 ): Promise<ImagePickerResult> {
   const resolved = resolveCameraOptions(options)
   // selectionLimit is validated but ignored: the camera captures one photo.
-  return guarded('launchCamera', () =>
-    pick('launchCamera', 1, resolved.mediaTypes, 'environment')
-  )
+  return pick('launchCamera', 1, resolved.mediaTypes, 'environment')
 }
 
-// the web picker needs no grant, so both permission calls read denied.
+// the web picker needs no grant, so both permission calls read granted.
 async function getCameraPermissions(): Promise<ImagePickerPermissionResponse> {
-  return denied
+  return granted
 }
 
 async function requestCameraPermissions(): Promise<ImagePickerPermissionResponse> {
-  return denied
+  return granted
 }
 
 export const ImagePicker = Object.freeze({

@@ -537,6 +537,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (!/not running|nothing to terminate/i.test(message)) throw error
     console.log('App was not running.')
   }
+  if (config.suite === 'image-picker') {
+    // reset first so reruns start undetermined like a fresh install.
+    execFileSync(
+      'xcrun',
+      ['simctl', 'privacy', config.simulatorId, 'reset', 'camera', config.bundleId],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
+  }
   command(['simulator', 'launch-app', '--bundle-id', config.bundleId], config.simulatorId)
   if (config.suite === 'sheets') {
     let expectedCount = 1
@@ -3148,6 +3156,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'image-picker') {
     const status = (nodes: Node[], label: string, expected: string | number) =>
       labels(nodes).includes(`${label}: ${expected}`)
+    const dims = (nodes: Node[]) => {
+      const num = (prefix: string) => {
+        const label = labels(nodes).find((line) => line.startsWith(`${prefix}: `))
+        return label === undefined ? NaN : Number(label.slice(prefix.length + 2))
+      }
+      return { width: num('Width'), height: num('Height') }
+    }
     const cancelButton = (nodes: Node[]) =>
       nodes.find((node) => node.AXLabel === 'Cancel' && node.type === 'Button')
 
@@ -3161,9 +3176,6 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Boolean(id(n, 'one-native-image-picker-library')) &&
         Boolean(id(n, 'one-native-image-picker-camera'))
     )
-    // the camera permission must be undecided: a fresh simulator, or this
-    // suite's own trailing reset after a passing run. reset it by hand
-    // before rerunning a failed run or a manual prompt probe.
     tap({ id: 'one-native-image-picker-permissions' })
     await wait('camera permission reads undecided', (n) =>
       Boolean(
@@ -3180,13 +3192,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       Boolean(id(n, 'one-native-image-picker-library'))
     )
     await wait('cancel reports canceled', (n) => status(n, 'Result', 'canceled'))
-    // seed a known photo: recency sorts it first, and every copy is
-    // identical, so reruns that seed again stay deterministic.
+    // seed a known portrait photo: a heic stored 120x80 with exif
+    // orientation 6, so it displays 80x120. recency sorts it first, and
+    // every copy is identical, so reruns that seed again stay deterministic.
     execFileSync('xcrun', [
       'simctl',
       'addmedia',
       config.simulatorId,
-      fileURLToPath(new URL('../../assets/one-native-picker.png', import.meta.url)),
+      fileURLToPath(
+        new URL('../../assets/one-native-picker-portrait.heic', import.meta.url)
+      ),
     ])
     tap({ id: 'one-native-image-picker-library' })
     const grid = await wait(
@@ -3198,15 +3213,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       .filter((node) => node.AXLabel === 'Photo' && node.type === 'Image')
       .sort((a, b) => a.frame!.y - b.frame!.y || a.frame!.x - b.frame!.x)[0].frame!
     point(cell.x + cell.width / 2, cell.y + cell.height / 2)
+    // compatible mode transcodes the heic to jpeg, and the orientation 6
+    // swap reports the display size, portrait.
     await wait('picked asset resolves with its metadata', (n) =>
       Boolean(
         status(n, 'Result', 'ok') &&
           status(n, 'Assets', 1) &&
-          status(n, 'Width', 120) &&
-          status(n, 'Height', 80) &&
-          status(n, 'Mime', 'image/png') &&
+          status(n, 'Width', 80) &&
+          status(n, 'Height', 120) &&
+          dims(n).height > dims(n).width &&
+          status(n, 'Mime', 'image/jpeg') &&
           labels(n).some(
-            (label) => label.startsWith('File: IMG_') && label.endsWith('.png')
+            (label) =>
+              label.startsWith('File: IMG_') &&
+              (label.endsWith('.jpg') || label.endsWith('.jpeg'))
           ) &&
           labels(n).some((label) => {
             const match = /^Size: (\d+)$/.exec(label)
@@ -3228,17 +3248,6 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'Result', 'canceled')
       )
     }
-    // the deny above taints the permission, so restore undecided for the
-    // next run. reset terminates the app, which is why it trails the pass
-    // instead of leading it.
-    execFileSync('xcrun', [
-      'simctl',
-      'privacy',
-      config.simulatorId,
-      'reset',
-      'camera',
-      config.bundleId,
-    ])
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
