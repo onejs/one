@@ -7,10 +7,11 @@ This guide explains how to build and upload your iOS app to the App Store or Tes
 
 You'll use the `prebuild` command to generate the native code and Xcode project for iOS, open it with Xcode, and either run the app or archive it for distribution.
 
-**Note**: One builds and runs the native app directly: `one prebuild` generates
-the Xcode project from your `native.app` manifest, and `one run:ios` launches
-it on a simulator. While the dev server runs, press <kbd>o</kbd> <kbd>i</kbd>
-in its terminal to open the app in the iOS simulator.
+**Note**: The app's dependencies select one prebuild path. Apps with `expo` use
+Expo prebuild and `vxrn/expo-plugin`, so Expo modules and config plugins keep
+working. Expo-free apps use `one prebuild`, which generates the Xcode project
+from `native.app`. `one run:ios` launches either generated project on a
+simulator.
 
 <Notice>
   **Prerequisites**: To build and run the iOS app, you'll need a Mac with Xcode installed. To upload the app to the App Store or TestFlight, you'll additionally need a paid Apple Developer account.
@@ -25,7 +26,24 @@ in its terminal to open the app in the iOS simulator.
 
 Before you can run or build your iOS app, you'll need to generate the native code and Xcode project for iOS.
 
-First, ensure the `prebuild:native` script is defined in your `package.json`:
+For an Expo app, list the One adapter after the app's other Expo config plugins:
+
+```json
+{
+  "expo": {
+    "plugins": ["expo-font", "vxrn/expo-plugin"]
+  }
+}
+```
+
+Run Expo prebuild:
+
+```bash
+npx expo prebuild
+```
+
+For an Expo-free app, ensure the `prebuild:native` script is defined in your
+`package.json`:
 
 ```json
 {
@@ -35,7 +53,7 @@ First, ensure the `prebuild:native` script is defined in your `package.json`:
  }
 ```
 
-Next, run the following command in your terminal:
+Then run:
 
 ```bash
 yarn prebuild:native
@@ -164,7 +182,8 @@ one({
 })
 ```
 
-One reads this manifest directly. It generates the iOS and Android app icons and
+This path is only for apps without `expo` in their dependencies. One reads this
+manifest directly. It generates the iOS and Android app icons and
 launch screens from the shared sources, and it does not require an Expo app config
 or config plugin. The icon must be a square image at least 1024 pixels wide. Splash
 artwork is centered at `width` points on iOS and density-independent pixels on
