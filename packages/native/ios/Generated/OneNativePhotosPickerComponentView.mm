@@ -10,7 +10,7 @@
 using namespace facebook::react;
 @implementation OneNativePhotosPickerComponentView { OneNativePhotosPickerView *_nativeView; OneNativeMeasuredHeight *_measured; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativePhotosPickerComponentDescriptor>(); }
-+- (NSObject *)accessibilityElement { return _nativeView; }
+- (NSObject *)accessibilityElement { return _nativeView; }
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {

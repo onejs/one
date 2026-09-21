@@ -633,7 +633,7 @@ ${value?.sync ? `#import "OneNativeSyncBridge.h"\n` : ''}${measured ? `#import "
 using namespace facebook::react;
 @implementation ${nativeName}ComponentView { ${nativeName}View *_nativeView;${measured ? ' OneNativeMeasuredHeight *_measured;' : ''}${objectFields.map(([key]) => ` BOOL _${key}Dirty;`).join('')}${value?.sync ? ' int32_t _syncStateId;' : ''} }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<${nativeName}ComponentDescriptor>(); }
-+- (NSObject *)accessibilityElement { return _nativeView; }${
+- (NSObject *)accessibilityElement { return _nativeView; }${
           measured
             ? `
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }`
