@@ -9,8 +9,8 @@ every step. What does not adapt is a bar built outside a container (a bare `UITo
 `UINavigationBar` or `UITabBar`) or a floating view drawn to look like one. One already
 does this underneath. What is missing is small: `Stack.Toolbar` does not expose the
 prominent (tinted glass) style, spacers or badges that its own native layer has, and
-none of the three bar patterns has a conformance fixture. Keep Expo's `Stack.Toolbar`
-shape, which is mostly right, and fix the two places it is not.
+none of the three bar patterns has a conformance fixture. Follow Expo's `Stack.Toolbar`
+exactly, and add the four things Apple's iPhone Duo guidance asks for that Expo lacks.
 
 Scope: a written design against One `origin/v2-next` at `7767a3d31` and Contrast main at
 `f613cc2abd`. Nothing was built or run on a device.
@@ -119,8 +119,7 @@ this API directly, and two of them are places where Expo's shape is not enough.
 Also from the page, for the docs: do not override the default bar placement; controls
 that belong to a leading pane stay with that pane; a full-width layout with no bars is
 fine for immersive screens; the side bar stays on the same physical side in
-right-to-left languages, which is one more reason `leading` and `trailing` describe the
-navigation bar only.
+right-to-left languages.
 
 Items 1, 4, 5 and 6 are 27.1 SDK symbols and One's CI builds with Xcode 26.4. They go
 in behind a Swift compiler version check so the 26.4 build is unchanged, and the JS
