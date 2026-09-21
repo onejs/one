@@ -137,40 +137,67 @@ the new phone.
 
 ## API
 
-Keep Expo's names so a move from expo-router is an import change. Two corrections:
+`Stack.Toolbar` follows Expo's `Stack.Toolbar` exactly, so a move from expo-router is an
+import change. Decided at review from the owner's "keep Expo compat where Expo is
+right": `placement` is Expo's `'left' | 'right' | 'bottom'`, default `'bottom'`, with no
+`leading` or `trailing` spelling. The Expo facts below come from the design review
+(a5330), which read Expo's types; the `expo-router` package is not installed on this
+machine, so B1 re-reads them before copying a name.
 
 ```tsx
-<Stack.Toolbar placement="bottom">          // 'leading' | 'trailing' | 'bottom'
-  <Stack.Toolbar.Button icon="square.and.arrow.up" onPress={share} />
+<Stack.Toolbar>                               // placement defaults to 'bottom'
+  <Stack.Toolbar.Button icon="square.and.arrow.up" onPress={share}>Share</Stack.Toolbar.Button>
   <Stack.Toolbar.Menu icon="slider.horizontal.3" title="Filter">
     <Stack.Toolbar.MenuAction icon="trash" destructive onPress={remove}>Delete</Stack.Toolbar.MenuAction>
   </Stack.Toolbar.Menu>
-  <Stack.Toolbar.Spacer />                   // flexible; width={n} makes it fixed
+  <Stack.Toolbar.Spacer />                    // flexible; width={n} makes it fixed
   <Stack.Toolbar.Button icon="plus" variant="prominent" tintColor="#ff2d55" onPress={add}>
-    <Stack.Toolbar.Badge>3</Stack.Toolbar.Badge>
+    New
   </Stack.Toolbar.Button>
 </Stack.Toolbar>
 ```
 
-1. **`placement` is `'leading' | 'trailing' | 'bottom'`.** Apple names bar positions by
-   reading direction, and One's current slots already do. Expo's `'left'` and `'right'`
-   are accepted as spellings of the same two values so Expo code runs unchanged; the
-   docs and types show only the direction-aware names.
-2. **One form.** The slot components landed in `76d75d742`
-   (`Stack.Toolbar.Leading`, `.Trailing`, `.Bottom`, `.Item`) are replaced by
-   `placement` and `Button`. They shipped only to the beta line. Two ways to declare
-   the same bar is the thing to avoid.
+**One form.** The slot components from `76d75d742` (`Stack.Toolbar.Leading`,
+`.Trailing`, `.Left`, `.Right`, `.Bottom`, `.Item`) are removed. They shipped only to
+the beta line. `systemImageName` is renamed to `icon` on `Stack.Toolbar`, with no alias;
+it stays on the low-level `One.iOS.ToolbarItem`, which keeps UIKit's vocabulary.
 
-Additions, each a pass-through to a prop the native item already has:
+**Where each placement goes in One's code.** `bottom` goes through One's `ToolbarHost`,
+which sets the screen controller's `toolbarItems`. `left` and `right` go through
+react-native-screens header items (`unstable_headerLeftItems`,
+`unstable_headerRightItems`, `stackToolbarDescriptors.ts:494,503`). **INFERRED:** both
+end up as items of a real `UINavigationController`, which is what Apple's rule asks
+for, but only the bottom path is One's own native code; the header path is
+react-native-screens' and its Duo behaviour is theirs to get right. B3 checks both.
 
-| JSX | native prop | Apple API |
+**Mapping, Expo prop to native prop:**
+
+| Expo (`Stack.Toolbar.*`) | native | note |
 | --- | --- | --- |
-| `variant="prominent"` | `barButtonItemStyle` | `UIBarButtonItem.Style.prominent` |
-| `tintColor` | `tintColor` | `UIBarButtonItem.tintColor` |
-| `Spacer`, `Spacer width` | `type: 'fluidSpacer' \| 'fixedSpacer'` | `.flexibleSpace()`, `.fixedSpace(_:)` |
-| `Badge` | `badgeConfiguration` | `UIBarButtonItem.badge` |
-| `sharesBackground`, `hidesSharedBackground` | same | same |
-| `selected`, `hidden`, `disabled` | same | same |
+| `Button icon` (SF Symbol string or image source) | `systemImageName` or `image` | an `Icon` child is the same thing |
+| `Button` text children, or a `Label` child | `title` | required whenever `icon` is set, per Apple's Duo rule 2 above |
+| `Button variant`: `'plain'` (default), `'done'`, `'prominent'` | `barButtonItemStyle` | native enum gains `done` (`UIBarButtonItem.Style.done`); `prominent` is iOS 26 |
+| `Button tintColor`, `hidden`, `disabled`, `selected` | same | |
+| `Button hidesSharedBackground` | `hidesSharedBackground` | |
+| `Button separateBackground` (default false) | `sharesBackground = !separateBackground` | Expo's name wins on `Button` |
+| `Spacer sharesBackground` | `sharesBackground` on the spacer item | Spacer only, as in Expo |
+| `Spacer`, `Spacer width` | `type: 'fluidSpacer'`, `'fixedSpacer'` | |
+| `Badge` child | `badgeConfiguration` | see below |
+| `MenuAction isOn` | `selected` | |
+| `MenuAction destructive`, `subtitle` | `destructive`, the existing `description` field renamed `subtitle` | |
+| `Menu inline`, `MenuAction keepsMenuPresented` | the matching `UIMenu.Options.displayInline` and `UIMenuElement.Attributes.keepsMenuPresented` | the menu layer already keeps menus open for toggles (`plans/one-native-coverage.md`) |
+| `SearchBarSlot` | `type: 'searchBar'` | kept, bottom only, since the native item type exists |
+
+**Badge.** Expo allows `Badge` in `left` and `right` only and calls bottom an iOS
+limitation. One's native item sets `UIBarButtonItem.badge` wherever the item is. B2
+proves on the iOS 26.4 simulator whether a badge renders on a bottom `toolbarItems`
+item. If it does, One allows it and the docs mark it as an intended difference from
+Expo. If it does not, `Badge` under `bottom` throws in dev, and Track A asserts its
+badge on a `right` item instead.
+
+Beyond Expo, from Apple's Duo page: `Stack.Toolbar.Group`, `visibilityPriority`,
+`Stack.Toolbar.Overflow`, and the compression prop on `Stack.Toolbar`. These are
+additions and change nothing Expo code relies on.
 
 Excluded for now: `Stack.Toolbar.View` (arbitrary React Native content in a bar item;
 it does not go vertical on Duo, so it waits for a real need) and `Label` styling.
@@ -186,10 +213,14 @@ Navigation or react-native-screens.
 
 | need | One `Tabs` today (React Navigation 8 option) | Expo `NativeTabs` |
 | --- | --- | --- |
-| minimize on scroll | `tabBarMinimizeBehavior: 'onScrollDown'` | `minimizeBehavior` |
+| minimize on scroll | `tabBarMinimizeBehavior: 'auto' \| 'none' \| 'onScrollDown' \| 'onScrollUp'` | `minimizeBehavior` |
 | bar above the tabs | `bottomAccessory: ({ placement }) => node` | `NativeTabs.BottomAccessory`, `usePlacement()` |
-| detached trailing tab | the search system item; the team's pattern swaps its icon for a plus | `role="search"` |
+| detached trailing tab | `tabBarSystemItem: 'search'`; the team's pattern overrides its icon with a plus | `role="search"` |
 | badge, tint, SF Symbol icon | `tabBarBadge`, `tabBarActiveTintColor`, `tabBarIcon` | `Badge`, `tintColor`, `Icon sf` |
+
+**RAN:** the three option names and the accessory's `placement` of `regular` or `inline`
+are read from the installed `@react-navigation/bottom-tabs` `8.0.0-alpha.50` types
+(`lib/typescript/src/types.d.ts:191,234,256-267`), not from Expo's page.
 
 The work is documenting and typing these in One's docs, where none of them appears
 today, plus the Track B fixture. Two things Expo documents apply to One as well and go
@@ -218,13 +249,20 @@ simulator captures; Contrast owns the peach case.
   `tabBarMinimizeBehavior="onScrollDown"`. Asserts: the accessory is above the tab bar
   at rest, reports `placement` `regular`, then `inline` after a scroll, and the tab bar
   minimizes. This is the Apple Music shape and only needs the fixture and docs.
-- **Track C, button above the bar.** A stack screen inside a tab, with a bottom toolbar
-  of one flexible spacer and one prominent tinted item. **This is a probe first:**
-  capture it on the iOS 26.4 simulator and look at it. If it reads as a floating
-  tinted button above the tab bar, it becomes a documented recipe with no new API. If
-  it does not (the toolbar draws a full-width capsule, or pushes the tab bar), report
-  the capture and stop; the fallback candidates are the search-role tab swap the team
-  already uses and a button inside `bottomAccessory`, and neither needs new API either.
+- **Track C, button above the bar.** A probe first, on the iOS 26.4 simulator in light
+  and dark, kept apart from Track B (no accessory, no minimize). The screen is a stack
+  inside a tab with a bottom toolbar of one flexible spacer and one prominent tinted
+  item. Two controls are captured beside it: the same toolbar on a stack outside any
+  tab, and the same screen with the spacer removed. Measured from the captures and
+  quoted in the hand-off: the glass capsule's width and height in points, its gap to
+  the tab bar's top edge, and whether the tab bar's frame moved compared with a tab
+  that has no toolbar. **Stop rule:** it is a recipe only if the capsule is one
+  item wide (under 80pt), sits above the tab bar with a visible gap, and the tab bar's
+  frame is unchanged. Anything else is reported with the numbers and the work stops;
+  the fallbacks are the `tabBarSystemItem: 'search'` swap the team already uses and a
+  button inside `bottomAccessory`, and neither needs new API. On Duo a flexible spacer
+  collapses to zero size, so what remains is the single prominent item, which Apple's
+  ordering puts at the bottom of the column as the primary action.
 
 ## Duo
 
@@ -249,10 +287,15 @@ pro-64 and not a CI suite until the pin moves.
 
 ## Slices
 
-1. **B1 `Stack.Toolbar` surface.** `placement`, `Button`, `Spacer`, `Badge`, `variant`,
-   the pass-through props, removal of the slot components and their docs, the
-   descriptor tests in `stack-utils/__tests__/toolbar.test.tsx` updated. Confirms
-   Expo's prop names against installed types first.
+1. **B1 `Stack.Toolbar` surface.** Everything in the mapping table, plus `Group`,
+   `visibilityPriority`, `Overflow` and the compression prop behind the compiler check.
+   What breaks, all in the same change: `stack-utils/__tests__/toolbar.test.tsx` is
+   rewritten for the new components; the slot components and their types are deleted
+   (`StackToolbarLeading`, `StackToolbarTrailing`, `StackToolbarItem`,
+   `StackToolbarBottom` and the `Left`/`Right` aliases in `Stack.tsx:147-150`); the
+   "Toolbar Composition API" section of `components-Stack.mdx:184-202` and the toolbar
+   reference in `native-features.mdx` are rewritten; `systemImageName` becomes `icon`.
+   Confirms Expo's prop names against installed types first.
 2. **B2 fixtures.** Tracks A and B with suites and negative controls, and the Track C
    probe with its capture in the hand-off.
 3. **B3 Duo run.** The three fixtures on the Duo simulator on pro-64, closed and open,
