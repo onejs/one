@@ -4,6 +4,7 @@ export type PlatformEnv = {
     VITE_ENVIRONMENT: ViteEnvironment;
     VITE_NATIVE: '' | '1';
     ONE_PLATFORM: 'web' | 'ios' | 'android';
+    EXPO_OS?: 'ios' | 'android';
     TAMAGUI_TARGET: 'web' | 'native';
     TAMAGUI_ENVIRONMENT: ViteEnvironment;
 };
@@ -13,6 +14,7 @@ export declare function metroPlatformToViteEnvironment(platform: Platform | stri
  * Format platform env for Vite's define config.
  * Returns both process.env.* and import.meta.env.* definitions.
  * VITE_NATIVE is "1" or "" (truthy/falsy string) to avoid polluting process.env types.
+ * EXPO_OS shadows ONE_PLATFORM only on native for expo package compatibility.
  */
 export declare function getPlatformEnvDefine(environment: ViteEnvironment): Record<string, string>;
 //# sourceMappingURL=platformEnv.d.ts.map

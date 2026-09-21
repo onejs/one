@@ -13,16 +13,19 @@ describe('one platform env contract', () => {
     expect(getPlatformEnv('ssr').ONE_PLATFORM).toBe('web')
   })
 
-  it('never defines EXPO_OS', () => {
-    for (const environment of ['client', 'ssr', 'ios', 'android'] as const) {
+  it('defines EXPO_OS as the exact native platform alias', () => {
+    for (const environment of ['client', 'ssr'] as const) {
       expect(getPlatformEnv(environment)).not.toHaveProperty('EXPO_OS')
-      const define = getPlatformEnvDefine(environment)
-      expect(define).not.toHaveProperty('process.env.EXPO_OS')
-      expect(define).not.toHaveProperty('import.meta.env.EXPO_OS')
+      expect(getPlatformEnvDefine(environment)).not.toHaveProperty('process.env.EXPO_OS')
     }
-    const define = getPlatformEnvDefine('ios')
-    expect(define['process.env.ONE_PLATFORM']).toBe('"ios"')
-    expect(define['import.meta.env.ONE_PLATFORM']).toBe('"ios"')
+
+    for (const platform of ['ios', 'android'] as const) {
+      const define = getPlatformEnvDefine(platform)
+      expect(getPlatformEnv(platform).EXPO_OS).toBe(platform)
+      expect(define['process.env.EXPO_OS']).toBe(JSON.stringify(platform))
+      expect(define['import.meta.env.EXPO_OS']).toBe(JSON.stringify(platform))
+      expect(define['process.env.ONE_PLATFORM']).toBe(JSON.stringify(platform))
+    }
   })
 
   it('maps metro platforms to vite environments without probing', () => {

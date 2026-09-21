@@ -524,8 +524,8 @@ export function applyModuleResolverAliases(
  * `process.env.ONE_SERVER_URL` is inlined in both modes, matching one's plugin:
  * it is how a native bundle knows where to fetch loader data from.
  *
- * `process.env.EXPO_PUBLIC_*` reads fail with a migration error instead of
- * being copied, ignored, or aliased.
+ * expo package reads keep working: an explicit `EXPO_PUBLIC_*` value wins,
+ * then an exact same-suffix `ONE_PUBLIC_*` value shadows it.
  *
  * Both live in one pass because they are the same rewrite over the same walk,
  * and a second parse of every file is the cost this transformer exists to avoid.
@@ -598,9 +598,12 @@ export function applyInlineEnvVars(
       }
 
       if (isProcessEnv && !isAssignmentTarget && key?.startsWith('EXPO_PUBLIC_')) {
-        throw new Error(
-          `[vxrn/metro] ${key} uses the removed expo prefix. rename it to ONE_PUBLIC_*`
+        const oneKey = `ONE_PUBLIC_${key.slice('EXPO_PUBLIC_'.length)}`
+        replace(
+          node,
+          env[key] ?? process.env[key] ?? env[oneKey] ?? process.env[oneKey] ?? undefined
         )
+        return
       }
 
       if (isProcessEnv && !isAssignmentTarget && key?.startsWith('ONE_PUBLIC_')) {
@@ -628,8 +631,8 @@ export function applyInlineEnvVars(
       }
 
       // `process.env.X` for anything the vite env map defines. runs after the
-      // branches above so ONE_SERVER_URL and ONE_PUBLIC_* keep their own
-      // handling.
+      // branches above so ONE_SERVER_URL and both public prefixes keep their
+      // own handling.
       if (isProcessEnv && !isAssignmentTarget && key !== undefined && key in env) {
         replace(node, env[key])
         return

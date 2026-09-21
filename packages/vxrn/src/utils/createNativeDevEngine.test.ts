@@ -1074,7 +1074,7 @@ describe('getNativeTransformConfig platform env defines', () => {
         expect(define['import.meta.env.ONE_PLATFORM']).toBe(JSON.stringify(platform))
         expect(define['process.env.ONE_PLATFORM']).toBe(JSON.stringify(platform))
         expect(define).not.toHaveProperty('import.meta.env.EXPO_OS')
-        expect(define).not.toHaveProperty('process.env.EXPO_OS')
+        expect(define['process.env.EXPO_OS']).toBe(JSON.stringify(platform))
 
         // the whole import.meta.env object (used by JSON.stringify(import.meta.env)) must carry it too
         const envObject = JSON.parse(define['import.meta.env'] as string)
@@ -1102,18 +1102,43 @@ describe('getNativeTransformConfig platform env defines', () => {
     }
   })
 
-  it('fails on EXPO_PUBLIC input with a migration error', () => {
+  it('accepts EXPO_PUBLIC input for Expo package compatibility', () => {
     const key = 'EXPO_PUBLIC_VXRN_NATIVE_ENV_PROBE'
     const previous = process.env[key]
     process.env[key] = 'native-env-value'
 
     try {
-      expect(() => getNativeTransformConfig('ios', false, root)).toThrow(
-        /rename it to ONE_PUBLIC_\*/
-      )
+      const { define } = getNativeTransformConfig('ios', false, root)
+      expect(define[`process.env.${key}`]).toBe('"native-env-value"')
+      expect(define[`import.meta.env.${key}`]).toBe('"native-env-value"')
     } finally {
       if (previous === undefined) delete process.env[key]
       else process.env[key] = previous
+    }
+  })
+
+  it('shadows a missing exact Expo public key without replacing an explicit value', () => {
+    const oneKey = 'ONE_PUBLIC_VXRN_EXACT_ALIAS'
+    const expoKey = 'EXPO_PUBLIC_VXRN_EXACT_ALIAS'
+    const previousOne = process.env[oneKey]
+    const previousExpo = process.env[expoKey]
+
+    try {
+      process.env[oneKey] = 'one-value'
+      delete process.env[expoKey]
+      expect(
+        getNativeTransformConfig('android', false, root).define[`process.env.${expoKey}`]
+      ).toBe('"one-value"')
+
+      process.env[expoKey] = 'expo-value'
+      expect(
+        getNativeTransformConfig('android', false, root).define[`process.env.${expoKey}`]
+      ).toBe('"expo-value"')
+    } finally {
+      if (previousOne === undefined) delete process.env[oneKey]
+      else process.env[oneKey] = previousOne
+      if (previousExpo === undefined) delete process.env[expoKey]
+      else process.env[expoKey] = previousExpo
     }
   })
 

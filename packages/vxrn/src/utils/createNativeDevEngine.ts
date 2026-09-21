@@ -171,16 +171,12 @@ export function getNativeTransformConfig(
 
   const mode = dev ? 'development' : 'production'
 
-  // one-owned public contract: ONE_PUBLIC_* only. expo-prefixed input
-  // fails with a migration error instead of being copied or ignored.
-  for (const key of Object.keys(process.env)) {
-    if (key.startsWith('EXPO_PUBLIC_')) {
-      throw new Error(
-        `[one] ${key} uses the removed expo prefix. rename it to ONE_PUBLIC_*`
-      )
-    }
+  const publicEnv = loadViteEnv(mode, root, ['VITE_', 'ONE_PUBLIC_', 'EXPO_PUBLIC_'])
+  for (const [key, value] of Object.entries(publicEnv)) {
+    if (!key.startsWith('ONE_PUBLIC_')) continue
+    const expoKey = `EXPO_PUBLIC_${key.slice('ONE_PUBLIC_'.length)}`
+    publicEnv[expoKey] ??= value
   }
-  const publicEnv = loadViteEnv(mode, root, ['VITE_', 'ONE_PUBLIC_'])
   const envDefines: Record<string, string> = {}
   for (const [key, value] of Object.entries(publicEnv)) {
     envDefines[`import.meta.env.${key}`] = JSON.stringify(value)
@@ -223,6 +219,8 @@ export function getNativeTransformConfig(
       'process.env.VITE_ENVIRONMENT': JSON.stringify(platform),
       'process.env.VITE_NATIVE': '"1"',
       'process.env.ONE_PLATFORM': JSON.stringify(platform),
+      // expo packages use this exact native platform alias internally.
+      'process.env.EXPO_OS': JSON.stringify(platform),
       'process.env.TAMAGUI_TARGET': '"native"',
       'process.env.TAMAGUI_ENVIRONMENT': JSON.stringify(platform),
       __DEV__: dev ? 'true' : 'false',

@@ -4,7 +4,6 @@ export { validateNativeApp, type NativeAppManifest } from './appManifest'
 export {
   ONE_PLATFORM_ENV,
   ONE_PUBLIC_PREFIX,
-  assertNoExpoPublicEnv,
   pickOnePublicEnv,
   type OnePlatformKey,
 } from './env'
