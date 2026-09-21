@@ -241,7 +241,10 @@ function Text({
   )
 }
 
-function Icon({ name, size = 24, filled = false, ...props }: ComposeIconProps) {
+export function renderIcon(
+  { name, size = 24, filled = false, ...props }: ComposeIconProps,
+  colorRole?: string
+) {
   validateIconProps({ name, size, filled })
   return (
     <ComposeNode
@@ -250,8 +253,13 @@ function Icon({ name, size = 24, filled = false, ...props }: ComposeIconProps) {
       text={composeIconGlyph('Icon name', name)}
       fontSize={size}
       iconFilled={filled}
+      colorRole={colorRole}
     />
   )
+}
+
+function Icon(props: ComposeIconProps) {
+  return renderIcon(props)
 }
 
 function Button({
@@ -359,13 +367,10 @@ function TextField({
     text: string
     eventCount: number
     revision: number
-  }>(
-    (event) => {
-      syncHandle?.set(event.text)
-      onTextChange(event.text)
-    },
-    revision
-  )
+  }>((event) => {
+    syncHandle?.set(event.text)
+    onTextChange(event.text)
+  }, revision)
   const controlledFocus = useControlled<{
     value: boolean
     eventCount: number
@@ -376,7 +381,7 @@ function TextField({
       {...props}
       nodeType="textfield"
       textValue={syncedText}
-      syncStateId={syncHandle ? getSyncStateId(syncHandle) ?? 0 : 0}
+      syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
       label={label}

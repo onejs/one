@@ -10,10 +10,12 @@ import { tmpdir } from 'node:os'
 import { join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
+import sharp from 'sharp'
 import {
   generateForPlatform,
   getNativeDependencyInventory,
   renderPrebuildFile,
+  type PrebuildAppConfig,
   validatePrebuildApp,
 } from './prebuildWithoutExpo'
 
@@ -21,9 +23,17 @@ const app = {
   name: 'MyApp',
   displayName: 'My App',
   scheme: ['myapp', 'myapp-dev'],
-  ios: { bundleId: 'dev.one.myapp', deploymentTarget: '17.0', screensGamma: true },
+  ios: {
+    bundleId: 'dev.one.myapp',
+    tablet: true,
+    deploymentTarget: '17.0',
+    screensGamma: true,
+    useFrameworks: 'static',
+    ccache: true,
+    usesNonExemptEncryption: false,
+  },
   android: { applicationId: 'dev.one.myapp', minSdk: 28 },
-}
+} satisfies PrebuildAppConfig
 
 describe('native.app prebuild validation', () => {
   it('accepts a valid manifest', () => {
@@ -58,6 +68,18 @@ describe('native.app prebuild validation', () => {
     expect(() =>
       validatePrebuildApp({ ...app, android: { ...app.android, minSdk: 20 } } as any)
     ).toThrow(/minSdk/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        icon: { source: '', backgroundColor: '#000000' },
+      })
+    ).toThrow(/icon/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        splash: { source: './splash.png', backgroundColor: 'black' },
+      })
+    ).toThrow(/splash/)
     // platform-scoped: android-only skips the ios requirement and vice versa
     expect(() =>
       validatePrebuildApp({ name: 'MyApp', android: app.android } as any, 'android')
@@ -72,7 +94,7 @@ describe('template rendering', () => {
   it('applies names, ids, and platform versions', () => {
     const ios = renderPrebuildFile({
       relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
-      content: `PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)"; IPHONEOS_DEPLOYMENT_TARGET = 15.1; target HelloWorld
+      content: `PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)"; IPHONEOS_DEPLOYMENT_TARGET = 15.1; TARGETED_DEVICE_FAMILY = "1,2"; target HelloWorld
 shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};`,
       platform: 'ios',
       app,
@@ -80,6 +102,7 @@ shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/r
     expect(ios.destRelativePath).toBe('MyApp.xcodeproj/project.pbxproj')
     expect(ios.content).toContain('PRODUCT_BUNDLE_IDENTIFIER = "dev.one.myapp"')
     expect(ios.content).toContain('IPHONEOS_DEPLOYMENT_TARGET = 17.0;')
+    expect(ios.content).toContain('TARGETED_DEVICE_FAMILY = "1,2";')
     expect(ios.content).not.toContain('HelloWorld')
 
     const podfile = renderPrebuildFile({
@@ -94,6 +117,8 @@ shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/r
       "config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'"
     )
     expect(podfile.content).toContain("ENV['RNS_GAMMA_ENABLED'] ||= '1'")
+    expect(podfile.content).toContain("ENV['USE_CCACHE'] ||= '1'")
+    expect(podfile.content).toContain('use_frameworks! :linkage => :static')
 
     const infoPlist = renderPrebuildFile({
       relativePath: 'HelloWorld/Info.plist',
@@ -104,6 +129,8 @@ shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/r
     expect(infoPlist.content).toContain('<key>CFBundleURLSchemes</key>')
     expect(infoPlist.content).toContain('<string>myapp</string>')
     expect(infoPlist.content).toContain('<string>myapp-dev</string>')
+    expect(infoPlist.content).toContain('<key>ITSAppUsesNonExemptEncryption</key>')
+    expect(infoPlist.content).toContain('<false/>')
 
     const androidManifest = renderPrebuildFile({
       relativePath: 'app/src/main/AndroidManifest.xml',
@@ -130,6 +157,18 @@ shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/r
     expect(android.content).toContain('package dev.one.myapp')
     expect(android.content).toContain('minSdkVersion = 28')
     expect(android.content).toContain('My App')
+
+    const androidSettings = renderPrebuildFile({
+      relativePath: 'settings.gradle',
+      content: `pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
+includeBuild('../node_modules/@react-native/gradle-plugin')`,
+      platform: 'android',
+      app,
+    })
+    expect(androidSettings.content).toContain(
+      "require.resolve('@react-native/gradle-plugin/package.json')"
+    )
+    expect(androidSettings.content).not.toContain('../node_modules')
   })
 
   it('passes binaries through untouched', () => {
@@ -241,6 +280,81 @@ describe('community autolink inventory', () => {
 })
 
 describe('generateForPlatform determinism', () => {
+  it('generates complete native launch assets', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-icons-'))
+    const appWithIcon = {
+      ...app,
+      icon: {
+        source: fileURLToPath(
+          new URL('../../../../examples/one-basic/public/app-icon.png', import.meta.url)
+        ),
+        backgroundColor: '#000000',
+      },
+      splash: {
+        source: fileURLToPath(
+          new URL('../../../../examples/one-basic/public/splash.png', import.meta.url)
+        ),
+        backgroundColor: '#000000',
+      },
+    }
+
+    await generateForPlatform(workspaceRoot, 'ios', appWithIcon, join(output, 'ios'))
+    await generateForPlatform(
+      workspaceRoot,
+      'android',
+      appWithIcon,
+      join(output, 'android')
+    )
+
+    const iosIconDir = join(
+      output,
+      'ios',
+      'MyApp',
+      'Images.xcassets',
+      'AppIcon.appiconset'
+    )
+    const iosContents: { images: Array<{ filename?: string }> } = JSON.parse(
+      readFileSync(join(iosIconDir, 'Contents.json'), 'utf8')
+    )
+    expect(iosContents.images).toHaveLength(9)
+    expect(iosContents.images.every((image) => image.filename)).toBe(true)
+    const iosMarketing = await sharp(join(iosIconDir, 'icon-1024.png')).metadata()
+    expect(iosMarketing).toMatchObject({ width: 1024, height: 1024, hasAlpha: false })
+
+    const androidIcon = await sharp(
+      join(
+        output,
+        'android',
+        'app',
+        'src',
+        'main',
+        'res',
+        'mipmap-xxxhdpi',
+        'ic_launcher.png'
+      )
+    ).metadata()
+    expect(androidIcon).toMatchObject({ width: 192, height: 192 })
+    expect(
+      readFileSync(join(output, 'ios', 'MyApp', 'LaunchScreen.storyboard'), 'utf8')
+    ).toContain('image="Splash"')
+    expect(
+      readFileSync(
+        join(
+          output,
+          'android',
+          'app',
+          'src',
+          'main',
+          'res',
+          'drawable',
+          'launch_screen.xml'
+        ),
+        'utf8'
+      )
+    ).toContain('@drawable/splash')
+  }, 180000)
+
   it('regenerates byte-identical projects from the same manifest', async () => {
     // root stays the workspace so the installed community template resolves;
     // output goes to isolated temp dirs, never the repo.

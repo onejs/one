@@ -73,6 +73,7 @@ export function emitControls(
     `import type { ColorValue, ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
 import type { KeyboardType, TextContentType } from '../textTypes'
+import type { IconColorRole } from '../ui/iconRoles'
 ${hasSync ? `import type { NativeState } from '../syncNativeState'\n` : ''}
 
 ${styleFields
@@ -84,9 +85,7 @@ ${styleFields
   .join('\n')}
 
 export interface OneNativeStyle {
-${styleFields
-  .map((field) => `  ${field.name}?: ${styleFieldType(field)}`)
-  .join('\n')}
+${styleFields.map((field) => `  ${field.name}?: ${styleFieldType(field)}`).join('\n')}
 }
 
 // the React Native props a One Native control honors. a composed control renders inside its
@@ -109,6 +108,7 @@ export type OneNativeViewProps = Pick<
   let adapters =
     header +
     "import { Platform } from 'react-native'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport type * as Types from './controlTypes'\n" +
+    "import { iconColorRoles } from '../ui/iconRoles'\n" +
     (hasSync
       ? "import { getSyncStateId, isSyncState } from '../syncStore'\nimport { syncHandleOf, useSyncValue } from '../syncNativeState'\n"
       : '')
@@ -141,7 +141,9 @@ export type OneNativeViewProps = Pick<
         enumFields.map(([key, field]) => ({ field: key, enum: field.enum! }))
       )
       if (derived !== control.swift)
-        throw new Error(`OneNative ${name}: derived Swift differs from the hand-written body`)
+        throw new Error(
+          `OneNative ${name}: derived Swift differs from the hand-written body`
+        )
       swiftBody = derived
     }
     const publicValueType = value && (value.publicType ?? tsScalar(value.type))
@@ -310,14 +312,14 @@ ${
     ? `  const syncHandle = syncHandleOf<${publicValueType}>(${value.prop})\n  const synced${upper(value.prop)} = useSyncValue<${publicValueType}>(${value.prop})\n`
     : ''
 }${
-  value
-    ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.sync ? `{ syncHandle?.set(${value.eventValue ?? 'event.value'}); ${value.event}(${value.eventValue ?? 'event.value'}) }` : `${value.event}(${value.eventValue ?? 'event.value'})`}, revision)\n`
-    : ''
-}${
+      value
+        ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.sync ? `{ syncHandle?.set(${value.eventValue ?? 'event.value'}); ${value.event}(${value.eventValue ?? 'event.value'}) }` : `${value.event}(${value.eventValue ?? 'event.value'})`}, revision)\n`
+        : ''
+    }${
       control.focus
         ? `  const controlledFocus = useControlled<{ value: boolean; eventCount: number; revision: number }>(event => onFocusChange?.(event.value), focusRevision)\n`
         : ''
-    }  return <Native${name} {...props} ${styleProp}
+    }  return <Native${name} {...props} ${styleProp}${control.decorativeWhenUnlabeled ? ' accessible={Boolean(props.accessibilityLabel)} accessibilityElementsHidden={!props.accessibilityLabel} accessibilityRole="image"' : ''}
     swiftStyle={swiftStyle}
 ${value ? `    value={${value.sync ? syncNativeValue(value, `synced${upper(value.prop)}`) : (value.nativeValue ?? value.prop)}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${value?.sync ? `    syncStateId={syncHandle ? getSyncStateId(syncHandle) ?? 0 : 0}\n` : ''}${
       control.focus
@@ -404,10 +406,10 @@ ${
 `
     : ''
 }${
-  value
-    ? `  var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Void)?\n  func change(_ value: ${swiftScalar(value.type)}) {\n    guard ${[...guards, 'controlled.value != value'].join(', ')} else { return }\n    controlled.change(value)\n${value.sync ? `    if syncStateId != 0 { OneNativeSyncRegistry.set(Int32(syncStateId), value: value as NSObject) }\n` : ''}    onChange?(value, controlled.eventCount, controlled.revision)\n  }\n`
-    : ''
-}${
+          value
+            ? `  var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Void)?\n  func change(_ value: ${swiftScalar(value.type)}) {\n    guard ${[...guards, 'controlled.value != value'].join(', ')} else { return }\n    controlled.change(value)\n${value.sync ? `    if syncStateId != 0 { OneNativeSyncRegistry.set(Int32(syncStateId), value: value as NSObject) }\n` : ''}    onChange?(value, controlled.eventCount, controlled.revision)\n  }\n`
+            : ''
+        }${
           control.focus
             ? `  var onFocusChange: ((Bool, Int, Int) -> Void)?
   func changeFocus(_ value: Bool) {
@@ -534,7 +536,7 @@ ${
       }
 `
     : ''
-}${disabled ? '      .disabled(model.disabled)\n' : ''}      .oneNativeAccessibility(model.accessibility)
+}${disabled ? '      .disabled(model.disabled)\n' : ''}      .oneNativeAccessibility(model.accessibility${control.decorativeWhenUnlabeled ? ', decorativeWhenUnlabeled: true' : ''})
       .oneNativeStyle(model.swiftStyle)
   }
 }
@@ -597,9 +599,7 @@ extern const char ${nativeName}ComponentName[] = "${nativeName}";
             { label: 'revision', expression: 'next.revision' },
           ]
         : []),
-      ...(value?.sync
-        ? [{ label: 'syncStateId', expression: 'next.syncStateId' }]
-        : []),
+      ...(value?.sync ? [{ label: 'syncStateId', expression: 'next.syncStateId' }] : []),
       ...(control.focus
         ? [
             { label: 'focused', expression: 'next.focused' },
@@ -626,7 +626,8 @@ ${value?.sync ? `#import "OneNativeSyncBridge.h"\n` : ''}${measured ? `#import "
 #import <React/RCTConversions.h>
 using namespace facebook::react;
 @implementation ${nativeName}ComponentView { ${nativeName}View *_nativeView;${measured ? ' OneNativeMeasuredHeight *_measured;' : ''}${objectFields.map(([key]) => ` BOOL _${key}Dirty;`).join('')}${value?.sync ? ' int32_t _syncStateId;' : ''} }
-+ (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<${nativeName}ComponentDescriptor>(); }${
++ (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<${nativeName}ComponentDescriptor>(); }
+- (NSObject *)accessibilityElement { return _nativeView; }${
           measured
             ? `
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }`

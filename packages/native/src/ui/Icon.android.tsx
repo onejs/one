@@ -1,22 +1,29 @@
-import { cloneElement, isValidElement } from 'react'
-import type { ColorValue } from 'react-native'
+import { isValidElement } from 'react'
+import { Compose, renderIcon } from '../compose.android'
+import type { ComposeIconProps } from '../composeTypes'
 import type { IconProps } from './iconTypes'
 
-type ResponsiveIconProps = {
-  colorRole?: string
-  composeStyle?: Readonly<Record<string, unknown>> & {
-    foregroundColor?: ColorValue
-  }
-}
-
 export function Icon({ icons, colorRole, color }: IconProps) {
-  if (!isValidElement<ResponsiveIconProps>(icons.android))
-    throw new Error('One.UI.Icon icons.android must be a React element')
+  if (
+    !isValidElement<ComposeIconProps>(icons.android) ||
+    icons.android.type !== Compose.Icon
+  )
+    throw new Error('One.UI.Icon icons.android must be a One.Android.Icon element')
 
-  return cloneElement(icons.android, {
-    colorRole: color === undefined ? (colorRole ?? 'primary') : undefined,
-    composeStyle: { ...icons.android.props.composeStyle, foregroundColor: color },
-  })
+  const size = icons.android.props.size ?? 24
+  return renderIcon(
+    {
+      ...icons.android.props,
+      style: [{ width: size, height: size }, icons.android.props.style],
+      composeStyle: {
+        ...icons.android.props.composeStyle,
+        width: icons.android.props.composeStyle?.width ?? size,
+        height: icons.android.props.composeStyle?.height ?? size,
+        foregroundColor: color,
+      },
+    },
+    color === undefined ? (colorRole ?? 'primary') : undefined
+  )
 }
 
 export type { IconColorRole, IconElements, IconProps } from './iconTypes'

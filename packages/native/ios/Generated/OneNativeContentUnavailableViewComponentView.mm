@@ -9,6 +9,7 @@
 using namespace facebook::react;
 @implementation OneNativeContentUnavailableViewComponentView { OneNativeContentUnavailableViewView *_nativeView; BOOL _actionsDirty; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeContentUnavailableViewComponentDescriptor>(); }
+- (NSObject *)accessibilityElement { return _nativeView; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeContentUnavailableViewProps>();

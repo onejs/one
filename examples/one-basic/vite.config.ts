@@ -23,6 +23,14 @@ export default defineConfig({
       native: {
         app: {
           name: 'OneBasic',
+          icon: {
+            source: './public/app-icon.png',
+            backgroundColor: '#000000',
+          },
+          splash: {
+            source: './public/splash.png',
+            backgroundColor: '#000000',
+          },
           ios: { bundleId: 'com.natew.oneexample', deploymentTarget: '17.0' },
           android: { applicationId: 'com.natew.oneexample' },
         },

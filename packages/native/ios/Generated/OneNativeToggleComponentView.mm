@@ -10,6 +10,7 @@
 using namespace facebook::react;
 @implementation OneNativeToggleComponentView { OneNativeToggleView *_nativeView; OneNativeMeasuredHeight *_measured; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeToggleComponentDescriptor>(); }
+- (NSObject *)accessibilityElement { return _nativeView; }
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {

@@ -4,6 +4,7 @@ import { Platform } from 'react-native'
 import { useControlled } from '../controlled'
 import { assertSwiftUIValue } from './swiftui'
 import type * as Types from './controlTypes'
+import { iconColorRoles } from '../ui/iconRoles'
 import { getSyncStateId, isSyncState } from '../syncStore'
 import { syncHandleOf, useSyncValue } from '../syncNativeState'
 import NativePicker from '../specs/OneNativePickerNativeComponent'
@@ -481,6 +482,8 @@ export function Image({
     throw new Error('Image variableValue must be a finite number or undefined')
   if (variableValue !== undefined && (variableValue < 0 || variableValue > 1))
     throw new Error('Image variableValue must be between 0 and 1')
+  if (colorRole && !iconColorRoles.includes(colorRole))
+    throw new Error('Image colorRole must be a One.UI icon color role')
   if (symbolRenderingMode)
     assertSwiftUIValue(
       'SymbolRenderingMode',
@@ -503,6 +506,9 @@ export function Image({
     <NativeImage
       {...props}
       style={style}
+      accessible={Boolean(props.accessibilityLabel)}
+      accessibilityElementsHidden={!props.accessibilityLabel}
+      accessibilityRole="image"
       swiftStyle={swiftStyle}
       systemName={systemName}
       symbolRenderingMode={symbolRenderingMode}

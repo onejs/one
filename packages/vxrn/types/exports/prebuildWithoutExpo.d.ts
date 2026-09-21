@@ -2,10 +2,22 @@ export interface PrebuildAppConfig {
     name: string;
     displayName?: string;
     scheme?: string | string[];
+    icon?: {
+        source: string;
+        backgroundColor: string;
+    };
+    splash?: {
+        source: string;
+        backgroundColor: string;
+    };
     ios?: {
         bundleId: string;
+        tablet?: boolean;
         deploymentTarget?: string;
         screensGamma?: boolean;
+        useFrameworks?: 'static' | 'dynamic';
+        ccache?: boolean;
+        usesNonExemptEncryption?: boolean;
     };
     android?: {
         applicationId: string;

@@ -24,5 +24,21 @@ describe('native.app manifest', () => {
     expect(() =>
       validateNativeApp({ name: 'MyApp', android: { applicationId: '' } } as any)
     ).toThrow()
+    expect(() =>
+      validateNativeApp({
+        name: 'MyApp',
+        icon: { source: '', backgroundColor: '#000000' },
+        ios: { bundleId: 'dev.one.myapp' },
+        android: { applicationId: 'dev.one.myapp' },
+      })
+    ).toThrow(/icon/)
+    expect(() =>
+      validateNativeApp({
+        name: 'MyApp',
+        splash: { source: './splash.png', backgroundColor: 'black' },
+        ios: { bundleId: 'dev.one.myapp' },
+        android: { applicationId: 'dev.one.myapp' },
+      })
+    ).toThrow(/splash/)
   })
 })

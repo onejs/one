@@ -1,10 +1,12 @@
 import type { ReactElement } from 'react';
 import type { ColorValue } from 'react-native';
-export declare const iconColorRoles: readonly ['primary', 'secondary', 'tertiary', 'accent', 'danger'];
-export type IconColorRole = (typeof iconColorRoles)[number];
+import type { ComposeIconProps } from '../composeTypes';
+import type { ImageProps } from '../generated/controlTypes';
+import type { IconColorRole } from './iconRoles';
+export { iconColorRoles, type IconColorRole } from './iconRoles';
 export type IconElements = Readonly<{
-    ios: ReactElement;
-    android: ReactElement;
+    ios: ReactElement<ImageProps>;
+    android: ReactElement<ComposeIconProps>;
     web?: ReactElement;
 }>;
 type IconColor = {
@@ -17,5 +19,4 @@ type IconColor = {
 export type IconProps = IconColor & {
     icons: IconElements;
 };
-export {};
 //# sourceMappingURL=iconTypes.d.ts.map

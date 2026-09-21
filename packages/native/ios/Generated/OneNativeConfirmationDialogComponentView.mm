@@ -9,6 +9,7 @@
 using namespace facebook::react;
 @implementation OneNativeConfirmationDialogComponentView { OneNativeConfirmationDialogView *_nativeView; BOOL _actionsDirty; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeConfirmationDialogComponentDescriptor>(); }
+- (NSObject *)accessibilityElement { return _nativeView; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeConfirmationDialogProps>();

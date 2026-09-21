@@ -142,14 +142,27 @@ one({
   native: {
     app: {
       name: 'MyApp',
-      ios: { bundleId: 'com.example.myapp' },
+      icon: {
+        source: './public/app-icon.png',
+        backgroundColor: '#000000',
+      },
+      splash: {
+        source: './public/splash.png',
+        backgroundColor: '#000000',
+      },
+      ios: {
+        bundleId: 'com.example.myapp',
+        usesNonExemptEncryption: false,
+      },
       android: { applicationId: 'com.example.myapp' },
     },
   },
 })
 ```
 
-One reads this manifest directly. It does not require an Expo app config or config plugin.
+One reads this manifest directly. It generates the iOS and Android app icons and
+launch screens from the shared sources, and it does not require an Expo app config
+or config plugin. The icon must be a square image at least 1024 pixels wide.
 
 ### iOS Project Setup
 

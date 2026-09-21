@@ -211,8 +211,11 @@ On iPhone, SplitView collapses to a single column automatically.
 ## Shared Icons
 
 `One.UI.Icon` selects the icon element your app provides for the current platform
-and applies a responsive native system color on iOS and Android. Your app owns the
-glyph mapping, availability, size, variant, directionality, and accessibility.
+and applies a responsive native system color on iOS and Android. Pass a
+`One.iOS.Image` and a `One.Android.Icon`; this ensures both native elements can
+consume the shared color contract. Your app owns the glyph mapping, availability,
+size, variant, directionality, and accessibility label. An icon without a label is
+treated as decoration.
 
 ```tsx
 import { One } from 'one'
@@ -248,7 +251,7 @@ component renders nothing on web.
 
 | Prop | Type | Description |
 |------|------|-------------|
-| `icons` | `{ ios: ReactElement; android: ReactElement; web?: ReactElement }` | App-owned platform icons |
+| `icons` | `{ ios: ReactElement<ImageProps>; android: ReactElement<ComposeIconProps>; web?: ReactElement }` | App-owned platform icons using `One.iOS.Image` and `One.Android.Icon` |
 | `colorRole` | `'primary' \| 'secondary' \| 'tertiary' \| 'accent' \| 'danger'` | Responsive native system color |
 | `color` | `ColorValue` | Custom color, mutually exclusive with `colorRole` |
 

@@ -87,7 +87,7 @@ private struct ImageContent: View {
       .oneNativeSymbolVariant(model.symbolVariant)
       .oneNativeImageScale(model.imageScale)
       .oneNativeColorRole(model.colorRole)
-      .oneNativeAccessibility(model.accessibility)
+      .oneNativeAccessibility(model.accessibility, decorativeWhenUnlabeled: true)
       .oneNativeStyle(model.swiftStyle)
   }
 }

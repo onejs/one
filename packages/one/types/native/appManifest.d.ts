@@ -3,16 +3,22 @@ export interface NativeAppManifest {
     displayName?: string;
     scheme?: string | string[];
     version?: string;
-    icon?: string;
+    icon?: {
+        source: string;
+        backgroundColor: string;
+    };
     splash?: {
-        image?: string;
-        backgroundColor?: string;
+        source: string;
+        backgroundColor: string;
     };
     ios?: {
         bundleId: string;
         tablet?: boolean;
         deploymentTarget?: string;
         screensGamma?: boolean;
+        useFrameworks?: 'static' | 'dynamic';
+        ccache?: boolean;
+        usesNonExemptEncryption?: boolean;
     };
     android?: {
         applicationId: string;

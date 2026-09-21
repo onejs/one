@@ -3,6 +3,7 @@
 import type { ColorValue, ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
 import type { KeyboardType, TextContentType } from '../textTypes'
+import type { IconColorRole } from '../ui/iconRoles'
 import type { NativeState } from '../syncNativeState'
 
 export type GlassEffect = 'regular' | 'clear' | 'interactive'
@@ -169,7 +170,7 @@ export interface ImageProps extends OneNativeViewProps {
   symbolVariant?: Styles.SymbolVariants | ''
   imageScale?: Styles.ImageScale | ''
   variableValue?: number
-  colorRole?: string
+  colorRole?: IconColorRole | ''
 }
 export interface ShareLinkProps extends OneNativeViewProps {
   label?: string

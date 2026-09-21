@@ -9,6 +9,7 @@
 using namespace facebook::react;
 @implementation OneNativeWebViewComponentView { OneNativeWebViewView *_nativeView; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeWebViewComponentDescriptor>(); }
+- (NSObject *)accessibilityElement { return _nativeView; }
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeWebViewProps>();
