@@ -27,6 +27,7 @@ import type { DevEngine } from 'rolldown/experimental'
 import { loadEnv as loadViteEnv, normalizePath } from 'vite'
 import { shouldStripFlow, transformHermesAsync } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
+import { withExpoPublicEnvAliases } from '@vxrn/utils'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
 import { rnCodegenPlugin } from '../plugins/rnCodegenPlugin'
@@ -171,12 +172,9 @@ export function getNativeTransformConfig(
 
   const mode = dev ? 'development' : 'production'
 
-  const publicEnv = loadViteEnv(mode, root, ['VITE_', 'ONE_PUBLIC_', 'EXPO_PUBLIC_'])
-  for (const [key, value] of Object.entries(publicEnv)) {
-    if (!key.startsWith('ONE_PUBLIC_')) continue
-    const expoKey = `EXPO_PUBLIC_${key.slice('ONE_PUBLIC_'.length)}`
-    publicEnv[expoKey] ??= value
-  }
+  const publicEnv = withExpoPublicEnvAliases(
+    loadViteEnv(mode, root, ['VITE_', 'ONE_PUBLIC_', 'EXPO_PUBLIC_'])
+  )
   const envDefines: Record<string, string> = {}
   for (const [key, value] of Object.entries(publicEnv)) {
     envDefines[`import.meta.env.${key}`] = JSON.stringify(value)

@@ -1,5 +1,6 @@
 import type { ResolvedConfig } from 'vite'
 import type { TransformOptions } from '@babel/core'
+import { withExpoPublicEnvAliases } from '@vxrn/utils'
 
 /**
  * Creates babel config for Metro transforms from Vite config.
@@ -56,19 +57,11 @@ export function getMetroBabelConfigFromViteConfig(
     }
   }
 
-  // expo libraries often use the same public switch under expo's prefix.
-  // shadow only an absent same-suffix key; explicit expo values win.
-  for (const [key, value] of Object.entries(importMetaEnv)) {
-    if (!key.startsWith('ONE_PUBLIC_')) continue
-    const expoKey = `EXPO_PUBLIC_${key.slice('ONE_PUBLIC_'.length)}`
-    importMetaEnv[expoKey] ??= value
-  }
-
   return {
     plugins: [
       [
         '@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin',
-        { env: importMetaEnv },
+        { env: withExpoPublicEnvAliases(importMetaEnv) },
       ],
     ],
   }

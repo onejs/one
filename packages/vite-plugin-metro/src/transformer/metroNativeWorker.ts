@@ -13,6 +13,7 @@ import {
   transformHermesLoops,
   transformReactNativeCodegen,
 } from '@vxrn/compiler'
+import { withExpoPublicEnvAliases } from '@vxrn/utils'
 import { getPlatformEnv, metroPlatformToViteEnvironment } from '../env/platformEnv'
 
 /**
@@ -544,6 +545,13 @@ export function applyInlineEnvVars(
   }
   if (!parsed?.program) return code
 
+  const processPublicEnv = Object.fromEntries(
+    Object.entries(process.env).filter(
+      ([key]) => key.startsWith('ONE_PUBLIC_') || key.startsWith('EXPO_PUBLIC_')
+    )
+  )
+  const effectiveEnv = withExpoPublicEnvAliases({ ...processPublicEnv, ...env })
+
   const ms = new MagicString(code)
 
   // edits are collected rather than written straight through, because a folded
@@ -598,16 +606,12 @@ export function applyInlineEnvVars(
       }
 
       if (isProcessEnv && !isAssignmentTarget && key?.startsWith('EXPO_PUBLIC_')) {
-        const oneKey = `ONE_PUBLIC_${key.slice('EXPO_PUBLIC_'.length)}`
-        replace(
-          node,
-          env[key] ?? process.env[key] ?? env[oneKey] ?? process.env[oneKey] ?? undefined
-        )
+        replace(node, effectiveEnv[key] ?? undefined)
         return
       }
 
       if (isProcessEnv && !isAssignmentTarget && key?.startsWith('ONE_PUBLIC_')) {
-        replace(node, env[key] ?? process.env[key] ?? undefined)
+        replace(node, effectiveEnv[key] ?? undefined)
         return
       }
 
@@ -620,21 +624,30 @@ export function applyInlineEnvVars(
         keyOf(obj.property, obj.computed) === 'env' &&
         key !== undefined
       ) {
-        replace(node, env[key])
+        replace(node, effectiveEnv[key])
         return
       }
 
       // bare `import.meta.env`, spread or passed around whole.
       if (!isAssignmentTarget && isImportMeta(obj) && key === 'env') {
-        edits.push({ start: node.start, end: node.end, text: JSON.stringify(env) })
+        edits.push({
+          start: node.start,
+          end: node.end,
+          text: JSON.stringify(effectiveEnv),
+        })
         return
       }
 
       // `process.env.X` for anything the vite env map defines. runs after the
       // branches above so ONE_SERVER_URL and both public prefixes keep their
       // own handling.
-      if (isProcessEnv && !isAssignmentTarget && key !== undefined && key in env) {
-        replace(node, env[key])
+      if (
+        isProcessEnv &&
+        !isAssignmentTarget &&
+        key !== undefined &&
+        key in effectiveEnv
+      ) {
+        replace(node, effectiveEnv[key])
         return
       }
     }

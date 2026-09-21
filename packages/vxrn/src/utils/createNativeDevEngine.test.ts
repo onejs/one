@@ -1126,9 +1126,12 @@ describe('getNativeTransformConfig platform env defines', () => {
     try {
       process.env[oneKey] = 'one-value'
       delete process.env[expoKey]
-      expect(
-        getNativeTransformConfig('android', false, root).define[`process.env.${expoKey}`]
-      ).toBe('"one-value"')
+      const aliased = getNativeTransformConfig('android', false, root).define
+      expect(aliased[`process.env.${expoKey}`]).toBe('"one-value"')
+      expect(aliased[`import.meta.env.${expoKey}`]).toBe('"one-value"')
+      const wholeEnv = aliased['import.meta.env']
+      if (typeof wholeEnv !== 'string') throw new Error('missing import.meta.env define')
+      expect(JSON.parse(wholeEnv)[expoKey]).toBe('one-value')
 
       process.env[expoKey] = 'expo-value'
       expect(

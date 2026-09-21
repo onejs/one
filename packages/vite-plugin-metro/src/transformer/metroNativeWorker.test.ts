@@ -1535,12 +1535,16 @@ describe('one public env contract in the metro worker', () => {
   it('shadows exact One values into Expo package reads in dev and prod', () => {
     for (const isProduction of [false, true]) {
       const out = applyInlineEnvVars(
-        `export const useRnFetch = process.env.EXPO_PUBLIC_USE_RN_FETCH === '1';`,
+        `export const processValue = process.env.EXPO_PUBLIC_USE_RN_FETCH;
+export const importValue = import.meta.env.EXPO_PUBLIC_USE_RN_FETCH;
+export const all = { ...import.meta.env };`,
         'node_modules/expo/build/winter/runtime.native.js',
         isProduction,
         { ONE_PUBLIC_USE_RN_FETCH: '1' }
       )
-      expect(out).toBe(`export const useRnFetch = "1" === '1';`)
+      expect(out).toContain('export const processValue = "1";')
+      expect(out).toContain('export const importValue = "1";')
+      expect(out).toContain('"EXPO_PUBLIC_USE_RN_FETCH":"1"')
     }
   })
 
