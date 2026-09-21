@@ -3,9 +3,7 @@ export declare function loadEnv(mode: Mode, root?: string, userPrefix?: string |
     serverEnv: {
         [k: string]: string;
     };
-    clientEnv: {
-        [k: string]: string | undefined;
-    };
+    clientEnv: Record<string, string | undefined>;
     clientEnvDefine: {
         [k: string]: string;
     };

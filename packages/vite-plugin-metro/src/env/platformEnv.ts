@@ -5,6 +5,7 @@ export type PlatformEnv = {
   VITE_ENVIRONMENT: ViteEnvironment
   VITE_NATIVE: '' | '1'
   ONE_PLATFORM: 'web' | 'ios' | 'android'
+  EXPO_OS: 'web' | 'ios' | 'android'
   TAMAGUI_TARGET: 'web' | 'native'
   TAMAGUI_ENVIRONMENT: ViteEnvironment
 }
@@ -14,6 +15,7 @@ const platformEnvMap: Record<ViteEnvironment, PlatformEnv> = {
     VITE_ENVIRONMENT: 'client',
     VITE_NATIVE: '',
     ONE_PLATFORM: 'web',
+    EXPO_OS: 'web',
     TAMAGUI_TARGET: 'web',
     TAMAGUI_ENVIRONMENT: 'client',
   },
@@ -21,6 +23,7 @@ const platformEnvMap: Record<ViteEnvironment, PlatformEnv> = {
     VITE_ENVIRONMENT: 'ssr',
     VITE_NATIVE: '',
     ONE_PLATFORM: 'web',
+    EXPO_OS: 'web',
     TAMAGUI_TARGET: 'web',
     TAMAGUI_ENVIRONMENT: 'ssr',
   },
@@ -28,6 +31,7 @@ const platformEnvMap: Record<ViteEnvironment, PlatformEnv> = {
     VITE_ENVIRONMENT: 'ios',
     VITE_NATIVE: '1',
     ONE_PLATFORM: 'ios',
+    EXPO_OS: 'ios',
     TAMAGUI_TARGET: 'native',
     TAMAGUI_ENVIRONMENT: 'ios',
   },
@@ -35,6 +39,7 @@ const platformEnvMap: Record<ViteEnvironment, PlatformEnv> = {
     VITE_ENVIRONMENT: 'android',
     VITE_NATIVE: '1',
     ONE_PLATFORM: 'android',
+    EXPO_OS: 'android',
     TAMAGUI_TARGET: 'native',
     TAMAGUI_ENVIRONMENT: 'android',
   },

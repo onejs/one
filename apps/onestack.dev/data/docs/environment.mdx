@@ -14,6 +14,8 @@ Second, One ensures that all environment variables loaded are only available to 
 
 So, for example `ONE_PUBLIC_DAYTIME=false one dev` would set both `process.env.ONE_PUBLIC_DAYTIME` and `import.meta.env.ONE_PUBLIC_DAYTIME` to be the string "false" on both server and client.
 
+`ONE_PUBLIC_` is One's default naming convention, while `EXPO_PUBLIC_` remains fully supported. When only one form is defined, One also exposes the matching form with the same suffix and value. If both forms are explicitly defined, their values remain independent.
+
 But, `SOME_RANDOM_VAR=2` would *not* be exposed to the client side, because it lacks the appropriate prefix.
 
 ### Preset environment variables
@@ -43,7 +45,7 @@ Port priority (highest wins):
 
 - `VITE_ENVIRONMENT` is set to `"client"` for client-side web, `"ssr"` for server-side web, or `"ios"` / `"android"` for native platforms.
 - `VITE_NATIVE` is `"1"` for native platforms (iOS and Android), or `""` for web (client and SSR). Uses truthy/falsy strings to avoid polluting `process.env` types. Useful for tree-shaking native-only code.
-- `EXPO_OS` is set to `"web"` for web builds (both client and SSR), or `"ios"` / `"android"` for native platforms. This matches the Expo convention for platform detection.
+- `ONE_PLATFORM` and its Expo-compatible alias `EXPO_OS` are set to `"web"` for web builds (both client and SSR), or `"ios"` / `"android"` for native platforms.
 
 #### React Native
 
