@@ -49,7 +49,7 @@ export default function OneNativeNotifications() {
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <Text>Notifications: mounted</Text>
       <Text>{permission}</Text>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-permission-refresh"
         style={styles.chip}
         onPress={() =>
@@ -64,7 +64,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Refresh permission</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-permission-request"
         style={styles.chip}
         onPress={() =>
@@ -80,7 +80,7 @@ export default function OneNativeNotifications() {
         <Text>Request permission</Text>
       </Pressable>
       <Text>{badge}</Text>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-badge-get"
         style={styles.chip}
         onPress={() =>
@@ -92,7 +92,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Get badge</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-badge-set"
         style={styles.chip}
         onPress={() =>
@@ -104,7 +104,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Set badge to 5</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-badge-clear"
         style={styles.chip}
         onPress={() =>
@@ -117,7 +117,7 @@ export default function OneNativeNotifications() {
         <Text>Clear badge</Text>
       </Pressable>
       <Text>{channel}</Text>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-channel-create"
         style={styles.chip}
         onPress={() =>
@@ -135,7 +135,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Create channel</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-channel-get"
         style={styles.chip}
         onPress={() =>
@@ -150,7 +150,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Get channel</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-channel-delete"
         style={styles.chip}
         onPress={() =>
@@ -163,7 +163,7 @@ export default function OneNativeNotifications() {
         <Text>Delete channel</Text>
       </Pressable>
       <Text>{channels}</Text>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-channel-list"
         style={styles.chip}
         onPress={() =>
@@ -177,7 +177,7 @@ export default function OneNativeNotifications() {
       </Pressable>
       <Text>{subscribed}</Text>
       <Text>{unobserved}</Text>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-schedule-unobserved"
         style={styles.chip}
         onPress={async () => {
@@ -205,7 +205,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Schedule unobserved</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-subscribe"
         style={styles.chip}
         onPress={() => {
@@ -230,7 +230,7 @@ export default function OneNativeNotifications() {
       <Text>{last}</Text>
       <Text>{handler}</Text>
       <Text>{scheduled}</Text>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-handler-show"
         style={styles.chip}
         onPress={() => {
@@ -247,7 +247,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Handler shows all</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-handler-suppress"
         style={styles.chip}
         onPress={() => {
@@ -264,7 +264,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Handler suppresses</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-handler-null"
         style={styles.chip}
         onPress={() => {
@@ -274,7 +274,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Handler null</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-schedule-now"
         style={styles.chip}
         onPress={() => {
@@ -292,14 +292,14 @@ export default function OneNativeNotifications() {
       >
         <Text>Schedule now</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-last-refresh"
         style={styles.chip}
         onPress={() => setLast(lastLabel())}
       >
         <Text>Refresh last response</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-last-clear"
         style={styles.chip}
         onPress={() => {
@@ -311,7 +311,7 @@ export default function OneNativeNotifications() {
       </Pressable>
       <Text>{pending}</Text>
       <Text>{presented}</Text>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-schedule-interval"
         style={styles.chip}
         onPress={() =>
@@ -327,7 +327,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Schedule 5s interval</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-schedule-date"
         style={styles.chip}
         onPress={() =>
@@ -343,7 +343,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Schedule date +5s</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-schedule-cold"
         style={styles.chip}
         onPress={() =>
@@ -359,7 +359,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Schedule date +15s</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-scheduled-list"
         style={styles.chip}
         onPress={() =>
@@ -376,7 +376,7 @@ export default function OneNativeNotifications() {
       >
         <Text>List scheduled</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-cancel-interval"
         style={styles.chip}
         onPress={() =>
@@ -388,7 +388,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Cancel interval</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-presented-list"
         style={styles.chip}
         onPress={() =>
@@ -405,7 +405,7 @@ export default function OneNativeNotifications() {
       >
         <Text>List presented</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-dismiss-date"
         style={styles.chip}
         onPress={() =>
@@ -417,7 +417,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Dismiss date</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-cancel-all"
         style={styles.chip}
         onPress={() =>
@@ -429,7 +429,7 @@ export default function OneNativeNotifications() {
       >
         <Text>Cancel all</Text>
       </Pressable>
-      <Pressable
+      <Pressable accessibilityRole="button"
         testID="one-native-notifications-dismiss-all"
         style={styles.chip}
         onPress={() =>

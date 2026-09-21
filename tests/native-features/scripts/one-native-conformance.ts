@@ -49,11 +49,12 @@ type Config = {
   artifactDir: string
   timeout: number
   suite: Suite
+  appPath: string
 }
 
 function usage() {
   console.log(
-    `Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite ${suites.join('|')}] [--artifact-dir <PATH>] [--timeout <MS>]`
+    `Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite ${suites.join('|')}] [--artifact-dir <PATH>] [--timeout <MS>] [--app-path <PATH>]`
   )
 }
 
@@ -63,6 +64,7 @@ function parse(args: string[]): Config {
   let artifactDir = '/tmp/one-native-conformance'
   let timeout = 15_000
   let suite: Suite = 'tabs-menu'
+  let appPath = ''
   for (let i = 0; i < args.length; i++) {
     const arg = args[i]
     if (arg === '--help' || arg === '-h') {
@@ -74,6 +76,7 @@ function parse(args: string[]): Config {
     else if (arg === '--bundle-id') bundleId = args[++i] || ''
     else if (arg === '--artifact-dir') artifactDir = args[++i] || ''
     else if (arg === '--timeout') timeout = Number(args[++i])
+    else if (arg === '--app-path') appPath = args[++i] || ''
     else if (arg === '--suite') {
       const value = args[++i] || ''
       if (!(suites as readonly string[]).includes(value))
@@ -92,7 +95,7 @@ function parse(args: string[]): Config {
       'A simulator id, bundle id, artifact directory, and positive integer timeout are required.'
     )
   }
-  return { simulatorId, bundleId, artifactDir, timeout, suite }
+  return { simulatorId, bundleId, artifactDir, timeout, suite, appPath }
 }
 
 function command(args: string[], simulatorId: string) {
@@ -536,12 +539,19 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   command(['simulator', 'launch-app', '--bundle-id', config.bundleId], config.simulatorId)
   if (config.suite === 'notifications') {
-    // reset first so reruns start undetermined like a fresh install.
-    execFileSync(
-      'xcrun',
-      ['simctl', 'privacy', config.simulatorId, 'reset', 'notifications', config.bundleId],
-      { stdio: 'ignore', timeout: 30_000 }
-    )
+    // simctl privacy has no notifications service on this xcode, so a
+    // reinstall stands in for reset: it returns permission to undetermined.
+    if (!config.appPath)
+      throw new Error('The notifications suite requires --app-path for a fresh install.')
+    execFileSync('xcrun', ['simctl', 'uninstall', config.simulatorId, config.bundleId], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    execFileSync('xcrun', ['simctl', 'install', config.simulatorId, config.appPath], {
+      stdio: 'ignore',
+      timeout: 60_000,
+    })
+    command(['simulator', 'launch-app', '--bundle-id', config.bundleId], config.simulatorId)
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-notifications')
@@ -581,13 +591,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('permission starts undetermined', (n) =>
       has(n, 'Permission: undetermined')
     )
-    execFileSync(
-      'xcrun',
-      ['simctl', 'privacy', config.simulatorId, 'grant', 'notifications', config.bundleId],
-      { stdio: 'ignore', timeout: 30_000 }
-    )
+    // no simctl grant exists for notifications either, so the suite taps
+    // through the real system prompt instead.
+    await tapFixture('one-native-notifications-permission-request')
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+    screenshot('notifications-permission-prompt.png')
+    await tap({ label: 'Allow' })
     await tapFixture('one-native-notifications-permission-refresh')
-    await wait('simctl grant reads back granted', (n) => has(n, 'Permission: granted'))
+    await wait('prompt allow reads back granted', (n) => has(n, 'Permission: granted'))
     await tapFixture('one-native-notifications-badge-set')
     await wait('badge set resolves', (n) => has(n, 'Badge: set:yes'))
     await tapFixture('one-native-notifications-badge-get')

@@ -138,7 +138,7 @@ export default function HomeScreen() {
       </Text>
 
       {testScreens.map((screen) => (
-        <TouchableOpacity
+        <TouchableOpacity accessibilityRole="button"
           key={screen.href}
           testID={screen.testID}
           style={styles.card}
