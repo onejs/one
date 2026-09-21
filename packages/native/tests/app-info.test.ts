@@ -73,23 +73,19 @@ describe('app-info native snapshot', () => {
 })
 
 describe('app-info web entry', () => {
-  it('reads the build-time manifest defines', async () => {
+  it('reads the version define and nulls what has no web value', async () => {
     vi.stubEnv('ONE_APP_VERSION', '9.9.9')
-    vi.stubEnv('ONE_APP_BUILD', '4242')
-    vi.stubEnv('ONE_APP_APPLICATION_ID', 'dev.vxrn.native.tests')
     const { AppInfo } = await loadWeb()
     expect(AppInfo).toEqual({
       version: '9.9.9',
-      build: '4242',
-      applicationId: 'dev.vxrn.native.tests',
+      build: null,
+      applicationId: null,
     })
     expect(Object.isFrozen(AppInfo)).toBe(true)
   })
 
   it('yields all nulls outside a one web build', async () => {
     vi.stubEnv('ONE_APP_VERSION', '')
-    vi.stubEnv('ONE_APP_BUILD', '')
-    vi.stubEnv('ONE_APP_APPLICATION_ID', '')
     const { AppInfo } = await loadWeb()
     expect(AppInfo).toEqual({ version: null, build: null, applicationId: null })
   })

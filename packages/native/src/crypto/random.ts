@@ -128,15 +128,20 @@ export function fillRandomValues<T extends ArrayBufferView>(
 
 // installs getRandomValues and randomUUID onto target.crypto, but only the
 // pieces that are missing: an existing native implementation always wins,
-// and each method is checked independently.
+// and each method is checked independently. the target shape is structural
+// so both the real global and plain test objects fit without a cast.
+export type CryptoPolyfillTarget = {
+  crypto?: {
+    getRandomValues?: unknown
+    randomUUID?: unknown
+  } | null
+}
+
 export function installCryptoPolyfill(
   source: RandomBytesSource,
-  target: Record<string, any> = globalThis as Record<string, any>
+  target: CryptoPolyfillTarget = globalThis
 ): void {
-  const existing = target['crypto'] as
-    | { getRandomValues?: unknown; randomUUID?: unknown }
-    | null
-    | undefined
+  const existing = target.crypto
   if (
     existing != null &&
     typeof existing.getRandomValues === 'function' &&
@@ -148,7 +153,7 @@ export function installCryptoPolyfill(
     fillRandomValues(view, source)
   const randomUUID = (): string => formatUuidV4(source(16))
   if (existing == null) {
-    target['crypto'] = { getRandomValues, randomUUID }
+    target.crypto = { getRandomValues, randomUUID }
     return
   }
   if (typeof existing.getRandomValues !== 'function') {

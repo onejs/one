@@ -21,7 +21,7 @@ async function defineFor(app: NativeAppManifest) {
 }
 
 describe('one-define-environment app info', () => {
-  test('injects ONE_APP_* from the manifest', async () => {
+  test('injects ONE_APP_VERSION from the manifest', async () => {
     const define = await defineFor({
       name: 'ProbeApp',
       version: '9.9.9',
@@ -30,32 +30,23 @@ describe('one-define-environment app info', () => {
     })
     expect(define['process.env.ONE_APP_VERSION']).toBe('"9.9.9"')
     expect(define['import.meta.env.ONE_APP_VERSION']).toBe('"9.9.9"')
-    // build prefers the ios build number; application id prefers android's
-    expect(define['process.env.ONE_APP_BUILD']).toBe('"4242"')
-    expect(define['import.meta.env.ONE_APP_BUILD']).toBe('"4242"')
-    expect(define['process.env.ONE_APP_APPLICATION_ID']).toBe('"dev.probe.android"')
-    expect(define['import.meta.env.ONE_APP_APPLICATION_ID']).toBe('"dev.probe.android"')
+    // build and application id have no honest web value: never injected,
+    // so the web entry reads null instead of a cross-platform guess.
+    expect(define['process.env.ONE_APP_BUILD']).toBeUndefined()
+    expect(define['import.meta.env.ONE_APP_BUILD']).toBeUndefined()
+    expect(define['process.env.ONE_APP_APPLICATION_ID']).toBeUndefined()
+    expect(define['import.meta.env.ONE_APP_APPLICATION_ID']).toBeUndefined()
   })
 
-  test('falls back across platforms when one side is missing', async () => {
+  test('defines nothing without a version', async () => {
     const define = await defineFor({
       name: 'ProbeApp',
+      ios: { bundleId: 'dev.probe.ios', buildNumber: '4242' },
       android: { applicationId: 'dev.probe.android', versionCode: 4243 },
     })
     expect(define['process.env.ONE_APP_VERSION']).toBeUndefined()
-    expect(define['process.env.ONE_APP_BUILD']).toBe('"4243"')
-    expect(define['process.env.ONE_APP_APPLICATION_ID']).toBe('"dev.probe.android"')
-  })
-
-  test('defines nothing without version fields', async () => {
-    const define = await defineFor({
-      name: 'ProbeApp',
-      ios: { bundleId: 'dev.probe.ios' },
-      android: { applicationId: 'dev.probe.android' },
-    })
-    expect(define['process.env.ONE_APP_VERSION']).toBeUndefined()
+    expect(define['import.meta.env.ONE_APP_VERSION']).toBeUndefined()
     expect(define['process.env.ONE_APP_BUILD']).toBeUndefined()
-    // application ids are always present when the platforms are configured
-    expect(define['process.env.ONE_APP_APPLICATION_ID']).toBe('"dev.probe.android"')
+    expect(define['process.env.ONE_APP_APPLICATION_ID']).toBeUndefined()
   })
 })

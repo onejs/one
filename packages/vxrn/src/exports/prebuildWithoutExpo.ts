@@ -524,7 +524,7 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       if (app.version !== undefined) {
         rendered = rendered.replace(
           /MARKETING_VERSION = [^;]+;/g,
-          `MARKETING_VERSION = ${app.version};`
+          `MARKETING_VERSION = "${app.version}";`
         )
       }
       if (app.ios?.buildNumber !== undefined) {
