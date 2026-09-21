@@ -97,11 +97,6 @@ function parse(args: string[]): Config {
   return { simulatorId, bundleId, artifactDir, timeout, suite }
 }
 
-// FBSimulator tapAt reports success but delivers nothing on hosts without
-// Simulator.app; the physical touch path delivers there. opt in per run,
-// default unchanged, so hosts where tapAt works keep working.
-const physicalTaps = process.env.ONE_CONFORMANCE_TAP_STYLE === 'physical'
-
 function command(args: string[], simulatorId: string) {
   try {
     return execFileSync('xcodebuildmcp', [...args, '--simulator-id', simulatorId], {
@@ -373,63 +368,43 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       `${name} timed out after ${config.timeout}ms${detail ? `; ${detail}` : ''}; snapshot: ${snapshotPath}`
     )
   }
+  // the only tap path: touch down/up delivers on headless hosts, where the
+  // simulator tapAt call reports success without delivering anything.
   const touch = (x: number, y: number) => {
-    // axe reports success with exit 0 but buries "could not establish
-    // simulator input" in the details text when its input connection drops.
-    // that drop is transient, so retry rather than tapping once into the void.
-    for (let attempt = 0; attempt < 4; attempt++) {
-      const output = command(
-        [
-          'ui-automation',
-          'touch',
-          '-x',
-          String(Math.round(x)),
-          '-y',
-          String(Math.round(y)),
-          '--down',
-          '--up',
-        ],
-        config.simulatorId
-      )
-      if (!output.includes('could not establish simulator input')) return output
-      Bun.sleepSync(2000)
-    }
-    throw new Error(
-      `touch at (${Math.round(x)}, ${Math.round(y)}) failed: axe could not establish simulator input after 4 attempts`
+    const output = command(
+      [
+        'ui-automation',
+        'touch',
+        '-x',
+        String(Math.round(x)),
+        '-y',
+        String(Math.round(y)),
+        '--down',
+        '--up',
+      ],
+      config.simulatorId
     )
+    // axe exits 0 with the dropped input connection buried in the details
+    // text; surface it as the failure instead of tapping into the void.
+    if (output.includes('could not establish simulator input'))
+      throw new Error(
+        `touch at (${Math.round(x)}, ${Math.round(y)}) failed: axe could not establish simulator input`
+      )
+    return output
   }
   const tap = (target: { id?: string; label?: string }) => {
-    if (physicalTaps) {
-      const nodes = snapshot(config.simulatorId)
-      const frame = target.id
-        ? id(nodes, target.id)?.frame
-        : nodes.find((node) => node.AXLabel === target.label)?.frame
-      if (!frame)
-        throw new Error(
-          `No accessibility element matched ${target.id ? `--id '${target.id}'` : `--label '${target.label}'`}.`
-        )
-      return touch(frame.x + frame.width / 2, frame.y + frame.height / 2)
-    }
-    if (target.id)
-      command(['ui-automation', 'tap', '--id', target.id], config.simulatorId)
-    else if (target.label)
-      command(['ui-automation', 'tap', '--label', target.label], config.simulatorId)
-    else throw new Error('A tap target is required.')
+    if (!target.id && !target.label) throw new Error('A tap target is required.')
+    const nodes = snapshot(config.simulatorId)
+    const frame = target.id
+      ? id(nodes, target.id)?.frame
+      : nodes.find((node) => node.AXLabel === target.label)?.frame
+    if (!frame)
+      throw new Error(
+        `No accessibility element matched ${target.id ? `--id '${target.id}'` : `--label '${target.label}'`}.`
+      )
+    return touch(frame.x + frame.width / 2, frame.y + frame.height / 2)
   }
-  const point = (x: number, y: number) =>
-    physicalTaps
-      ? touch(x, y)
-      : command(
-          [
-            'ui-automation',
-            'tap',
-            '-x',
-            String(Math.round(x)),
-            '-y',
-            String(Math.round(y)),
-          ],
-          config.simulatorId
-        )
+  const point = (x: number, y: number) => touch(x, y)
   // a field does not become first responder the moment the tap returns, the snapshot carries
   // no focus flag, and the attached hardware keyboard leaves no software keyboard to wait on.
   // firing the whole string blind drops the leading characters, and iOS then autocorrects what
