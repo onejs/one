@@ -561,7 +561,7 @@ await One.Notifications.setBadgeCount(3)
 Permission reads resolve
 `{ status: 'granted' | 'denied' | 'undetermined', granted, canAskAgain }`,
 with an `ios.status` carrying the authorization as
-`'not-determined' | 'denied' | 'authorized' | 'provisional' | 'ephemeral'`
+`'notDetermined' | 'denied' | 'authorized' | 'provisional' | 'ephemeral'`
 on iOS. `requestPermissions` accepts
 `{ ios: { allowAlert, allowBadge, allowSound, allowProvisional } }`; unset
 fields default to true except `allowProvisional`. On Android below 13 there is

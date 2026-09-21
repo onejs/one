@@ -4,7 +4,7 @@
 export type NotificationPermissionStatus = 'granted' | 'denied' | 'undetermined'
 
 export type IosAuthorizationStatus =
-  | 'not-determined'
+  | 'notDetermined'
   | 'denied'
   | 'authorized'
   | 'provisional'
@@ -35,7 +35,7 @@ export function fromNativeAuthorizationStatus(
   if (typeof status === 'string') return status
   switch (status) {
     case 0:
-      return 'not-determined'
+      return 'notDetermined'
     case 1:
       return 'denied'
     case 2:
@@ -45,7 +45,7 @@ export function fromNativeAuthorizationStatus(
     case 4:
       return 'ephemeral'
     default:
-      return 'not-determined'
+      return 'notDetermined'
   }
 }
 

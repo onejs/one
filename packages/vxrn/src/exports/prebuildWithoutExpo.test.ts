@@ -26,6 +26,7 @@ const app = {
   name: 'MyApp',
   displayName: 'My App',
   scheme: ['myapp', 'myapp-dev'],
+  notifications: {},
   ios: {
     bundleId: 'dev.one.myapp',
     tablet: true,
@@ -39,62 +40,17 @@ const app = {
 } satisfies PrebuildAppConfig
 
 describe('native.app prebuild validation', () => {
-  it('accepts a valid manifest', () => {
+  // smoke for the shared definition re-export; the full cases live beside
+  // the canonical definition in @vxrn/utils.
+  it('accepts a valid manifest and rejects invalid ones before writing', () => {
     expect(() => validatePrebuildApp(app)).not.toThrow()
     expect(() => validatePrebuildApp(app, 'ios')).not.toThrow()
     expect(() => validatePrebuildApp(app, 'android')).not.toThrow()
-  })
-
-  it('rejects invalid target names and missing platform ids before writing', () => {
     expect(() => validatePrebuildApp({} as any)).toThrow(/name/)
-    expect(() => validatePrebuildApp({ name: 'my-app' } as any)).toThrow(/name/)
-    expect(() => validatePrebuildApp({ ...app, scheme: 'not a scheme' })).toThrow(
-      /scheme/
-    )
     expect(() => validatePrebuildApp({ name: 'MyApp' } as any)).toThrow(/bundleId/)
     expect(() =>
-      validatePrebuildApp({ name: 'MyApp', android: app.android } as any)
-    ).toThrow(/bundleId/)
-    expect(() =>
-      validatePrebuildApp({
-        name: 'MyApp',
-        ios: { bundleId: 'not-an-id' },
-        android: app.android,
-      } as any)
-    ).toThrow(/bundleId/)
-    expect(() =>
-      validatePrebuildApp({
-        ...app,
-        ios: { bundleId: 'dev.one.myapp', deploymentTarget: 'latest' },
-      } as any)
-    ).toThrow(/deploymentTarget/)
-    expect(() =>
-      validatePrebuildApp({ ...app, android: { ...app.android, minSdk: 20 } } as any)
-    ).toThrow(/minSdk/)
-    expect(() =>
-      validatePrebuildApp({
-        ...app,
-        icon: { source: '', backgroundColor: '#000000' },
-      })
-    ).toThrow(/icon/)
-    expect(() =>
-      validatePrebuildApp({
-        ...app,
-        splash: { source: './splash.png', backgroundColor: 'black' },
-      })
-    ).toThrow(/splash/)
-    expect(() =>
-      validatePrebuildApp({
-        ...app,
-        splash: { source: './splash.png', backgroundColor: '#000000', width: 0.99 },
-      })
-    ).toThrow(/splash/)
-    expect(() =>
-      validatePrebuildApp({
-        ...app,
-        splash: { source: './splash.png', backgroundColor: '#000000', width: 289 },
-      })
-    ).toThrow(/splash/)
+      validatePrebuildApp({ ...app, notifications: { push: 'yes' } } as any)
+    ).toThrow(/notifications\.push/)
     // platform-scoped: android-only skips the ios requirement and vice versa
     expect(() =>
       validatePrebuildApp({ name: 'MyApp', android: app.android } as any, 'android')
@@ -146,10 +102,12 @@ shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/r
     expect(infoPlist.content).toContain('<string>myapp-dev</string>')
     expect(infoPlist.content).toContain('<key>ITSAppUsesNonExemptEncryption</key>')
     expect(infoPlist.content).toContain('<false/>')
+    expect(infoPlist.content).toContain('<key>OneNativeNotificationsEnabled</key>')
 
     const androidManifest = renderPrebuildFile({
       relativePath: 'app/src/main/AndroidManifest.xml',
-      content: '<activity>\n      </activity>',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
       platform: 'android',
       app,
     })
@@ -158,6 +116,14 @@ shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/r
     )
     expect(androidManifest.content).toContain('<data android:scheme="myapp" />')
     expect(androidManifest.content).toContain('<data android:scheme="myapp-dev" />')
+    expect(androidManifest.content).toContain(
+      '<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />'
+    )
+    expect(androidManifest.content).toContain(
+      '<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />'
+    )
+    expect(androidManifest.content).toContain('OneNativeNotificationsReceiver')
+    expect(androidManifest.content).toContain('android.intent.action.BOOT_COMPLETED')
 
     const android = renderPrebuildFile({
       relativePath: 'app/src/main/java/com/helloworld/MainActivity.kt',
@@ -187,6 +153,54 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
       "createRequire(require.resolve('react-native/package.json'))"
     )
     expect(androidSettings.content).not.toContain('../node_modules')
+  })
+
+  it('omits notification entries when notifications is unset', () => {
+    const bare = { ...app, notifications: undefined }
+    const infoPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: bare,
+    })
+    expect(infoPlist.content).not.toContain('OneNativeNotificationsEnabled')
+    const androidManifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
+      platform: 'android',
+      app: bare,
+    })
+    expect(androidManifest.content).not.toContain('POST_NOTIFICATIONS')
+    expect(androidManifest.content).not.toContain('OneNativeNotificationsReceiver')
+  })
+
+  it('fails loudly when a notification anchor is missing', () => {
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'app/src/main/AndroidManifest.xml',
+        content: '<manifest>\n    <activity>\n      </activity>\n    </application>',
+        platform: 'android',
+        app,
+      })
+    ).toThrow(/failed to stamp notification permissions/)
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'app/src/main/AndroidManifest.xml',
+        content:
+          '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>',
+        platform: 'android',
+        app,
+      })
+    ).toThrow(/failed to stamp the notification receiver/)
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld/Info.plist',
+        content: '<dict>\n</dict>',
+        platform: 'ios',
+        app,
+      })
+    ).toThrow(/failed to stamp the notifications key/)
   })
 
   it('resolves the gradle plugin from the react-native package without hoisting', () => {

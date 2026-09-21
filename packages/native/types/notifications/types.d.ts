@@ -1,5 +1,5 @@
 export type NotificationPermissionStatus = 'granted' | 'denied' | 'undetermined';
-export type IosAuthorizationStatus = 'not-determined' | 'denied' | 'authorized' | 'provisional' | 'ephemeral';
+export type IosAuthorizationStatus = 'notDetermined' | 'denied' | 'authorized' | 'provisional' | 'ephemeral';
 export interface NotificationPermissionRequest {
     ios?: {
         allowAlert?: boolean;

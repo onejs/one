@@ -167,6 +167,26 @@ describe('Notifications boundary mapping', () => {
       web.Notifications.setChannel('c', { name: 'n', importance: 'bogus' as never })
     ).rejects.toThrow(message)
   })
+
+  it('resolves channel reads empty on ios without touching the module', async () => {
+    // the ios native module implements no channel methods; shared code must
+    // not need a Platform.OS check to call them.
+    const { getNotificationChannel: _gc, ...rest } = fakeModule()
+    void _gc
+    const { getNotificationChannels: _gcs, ...rest2 } = rest
+    void _gcs
+    const { deleteNotificationChannel: _dc, ...iosModule } = rest2
+    void _dc
+    const { setNotificationChannel: _sc, ...iosModuleNoChannels } = iosModule
+    void _sc
+    const Notifications = await loadNamespace(() => iosModuleNoChannels, 'ios')
+    await expect(Notifications.getChannel('x')).resolves.toBeNull()
+    await expect(Notifications.getChannels()).resolves.toEqual([])
+    await expect(Notifications.deleteChannel('x')).resolves.toBeUndefined()
+    await expect(
+      Notifications.setChannel('x', { name: 'n', importance: 'default' })
+    ).resolves.toBeNull()
+  })
 })
 
 describe('Notifications boundary mappers', () => {
@@ -178,7 +198,7 @@ describe('Notifications boundary mappers', () => {
       fromNativeAuthorizationStatus(2),
       fromNativeAuthorizationStatus(3),
       fromNativeAuthorizationStatus(4),
-    ]).toEqual(['not-determined', 'denied', 'authorized', 'provisional', 'ephemeral'])
+    ]).toEqual(['notDetermined', 'denied', 'authorized', 'provisional', 'ephemeral'])
   })
 
   it('maps every importance both ways', async () => {

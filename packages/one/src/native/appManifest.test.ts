@@ -1,52 +1,35 @@
 import { describe, expect, test } from 'vitest'
 import { validateNativeApp } from './appManifest'
 
-describe('native.app manifest', () => {
-  test('accepts a valid manifest', () => {
+// smoke for the one/native re-export; the full cases live beside the
+// canonical definition in @vxrn/utils.
+describe('native.app manifest re-export', () => {
+  test('validates through the shared definition', () => {
     expect(() =>
       validateNativeApp({
         name: 'MyApp',
-        displayName: 'My App',
-        scheme: 'myapp',
-        version: '1.0.0',
+        imagePicker: { camera: 'Take profile photos.' },
+        notifications: {},
         ios: { bundleId: 'dev.one.myapp' },
         android: { applicationId: 'dev.one.myapp' },
       })
     ).not.toThrow()
-  })
-
-  test('rejects missing platform ids and invalid target names', () => {
-    expect(() => validateNativeApp({} as any)).toThrow()
-    expect(() => validateNativeApp({ name: 'my-app' } as any)).toThrow()
-    expect(() =>
-      validateNativeApp({ name: 'MyApp', ios: { bundleId: 'not-an-id' } } as any)
-    ).toThrow()
-    expect(() =>
-      validateNativeApp({ name: 'MyApp', android: { applicationId: '' } } as any)
-    ).toThrow()
+    expect(() => validateNativeApp({} as any)).toThrow(/name/)
     expect(() =>
       validateNativeApp({
         name: 'MyApp',
-        icon: { source: '', backgroundColor: '#000000' },
+        imagePicker: { camera: '' },
         ios: { bundleId: 'dev.one.myapp' },
         android: { applicationId: 'dev.one.myapp' },
       })
-    ).toThrow(/icon/)
+    ).toThrow(/imagePicker\.camera/)
     expect(() =>
       validateNativeApp({
         name: 'MyApp',
-        splash: { source: './splash.png', backgroundColor: 'black' },
+        notifications: { push: 'yes' },
         ios: { bundleId: 'dev.one.myapp' },
         android: { applicationId: 'dev.one.myapp' },
-      })
-    ).toThrow(/splash/)
-    expect(() =>
-      validateNativeApp({
-        name: 'MyApp',
-        splash: { source: './splash.png', backgroundColor: '#000000', width: 0.99 },
-        ios: { bundleId: 'dev.one.myapp' },
-        android: { applicationId: 'dev.one.myapp' },
-      })
-    ).toThrow(/splash/)
+      } as any)
+    ).toThrow(/notifications\.push/)
   })
 })

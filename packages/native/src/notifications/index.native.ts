@@ -116,16 +116,19 @@ async function setChannel(
 }
 
 async function getChannel(channelId: string): Promise<NotificationChannel | null> {
+  if (Platform.OS !== 'android') return null
   const found = await native()?.getNotificationChannel(channelId)
   return found ? mapChannel(found) : null
 }
 
 async function getChannels(): Promise<NotificationChannel[]> {
+  if (Platform.OS !== 'android') return []
   const channels = await native()?.getNotificationChannels()
   return channels ? channels.map(mapChannel) : []
 }
 
 async function deleteChannel(channelId: string): Promise<void> {
+  if (Platform.OS !== 'android') return
   await native()?.deleteNotificationChannel(channelId)
 }
 
