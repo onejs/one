@@ -2,6 +2,7 @@ export interface PrebuildAppConfig {
     name: string;
     displayName?: string;
     scheme?: string | string[];
+    version?: string;
     icon?: {
         source: string;
         backgroundColor: string;
@@ -13,6 +14,7 @@ export interface PrebuildAppConfig {
     };
     ios?: {
         bundleId: string;
+        buildNumber?: string;
         tablet?: boolean;
         deploymentTarget?: string;
         screensGamma?: boolean;
@@ -22,6 +24,7 @@ export interface PrebuildAppConfig {
     };
     android?: {
         applicationId: string;
+        versionCode?: number;
         minSdk?: number;
     };
 }

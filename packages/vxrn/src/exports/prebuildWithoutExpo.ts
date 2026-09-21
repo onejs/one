@@ -33,6 +33,7 @@ export interface PrebuildAppConfig {
   name: string
   displayName?: string
   scheme?: string | string[]
+  version?: string
   icon?: {
     source: string
     backgroundColor: string
@@ -44,6 +45,7 @@ export interface PrebuildAppConfig {
   }
   ios?: {
     bundleId: string
+    buildNumber?: string
     tablet?: boolean
     deploymentTarget?: string
     screensGamma?: boolean
@@ -53,12 +55,15 @@ export interface PrebuildAppConfig {
   }
   android?: {
     applicationId: string
+    versionCode?: number
     minSdk?: number
   }
 }
 
 const TARGET_NAME = /^[A-Za-z][A-Za-z0-9_]*$/
 const SCHEME = /^[a-z][a-z0-9+.-]*$/i
+const VERSION = /^\d+\.\d+\.\d+/
+const BUILD_NUMBER = /^[A-Za-z0-9.]+$/
 const REVERSE_DNS = /^[A-Za-z][A-Za-z0-9-]*(\.[A-Za-z][A-Za-z0-9-]*)+$/
 const DEPLOYMENT_TARGET = /^\d+\.\d+$/
 const HEX_COLOR = /^#[\da-f]{6}$/i
@@ -363,6 +368,9 @@ export function validatePrebuildApp(
       'splash requires source, a six-digit hex backgroundColor, and width from 1 to 288'
     )
   }
+  if (app.version !== undefined && !VERSION.test(app.version)) {
+    fail(`version "${app.version}" must start with major.minor.patch`)
+  }
   if (!platform || platform === 'ios') {
     if (!app.ios?.bundleId || !REVERSE_DNS.test(app.ios.bundleId)) {
       fail(`ios.bundleId "${app.ios?.bundleId}" must be reverse-dns`)
@@ -372,6 +380,14 @@ export function validatePrebuildApp(
       !DEPLOYMENT_TARGET.test(app.ios.deploymentTarget)
     ) {
       fail(`ios.deploymentTarget "${app.ios.deploymentTarget}" must look like "17.0"`)
+    }
+    if (
+      app.ios.buildNumber !== undefined &&
+      !BUILD_NUMBER.test(app.ios.buildNumber)
+    ) {
+      fail(
+        `ios.buildNumber "${app.ios.buildNumber}" must contain only letters, digits, and dots`
+      )
     }
   }
   if (!platform || platform === 'android') {
@@ -385,6 +401,14 @@ export function validatePrebuildApp(
         app.android.minSdk > 36)
     ) {
       fail(`android.minSdk "${app.android.minSdk}" must be an integer from 21 to 36`)
+    }
+    if (
+      app.android.versionCode !== undefined &&
+      (!Number.isInteger(app.android.versionCode) || app.android.versionCode < 1)
+    ) {
+      fail(
+        `android.versionCode "${app.android.versionCode}" must be a positive integer`
+      )
     }
   }
 }
@@ -701,6 +725,24 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         `TARGETED_DEVICE_FAMILY = "${app.ios?.tablet ? '1,2' : '1'}";`
       )
     }
+    // version stamping for One.AppInfo: without it generated projects keep
+    // the template defaults (1.0/1) forever. missing manifest fields keep
+    // those defaults; a store build must set version, ios.buildNumber, and
+    // android.versionCode.
+    if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {
+      if (app.version !== undefined) {
+        rendered = rendered.replace(
+          /MARKETING_VERSION = [^;]+;/g,
+          `MARKETING_VERSION = "${app.version}";`
+        )
+      }
+      if (app.ios?.buildNumber !== undefined) {
+        rendered = rendered.replace(
+          /CURRENT_PROJECT_VERSION = [^;]+;/g,
+          `CURRENT_PROJECT_VERSION = ${app.ios.buildNumber};`
+        )
+      }
+    }
     if (platform === 'ios' && relativePath.endsWith('/Info.plist')) {
       if (app.ios?.usesNonExemptEncryption !== undefined) {
         rendered = rendered.replace(
@@ -770,6 +812,18 @@ end`
         !rendered.includes('[vxrn/one] ensure patches are applied')
       ) {
         throw new Error('[vxrn] failed to apply required Android Gradle patches')
+      }
+      if (app.version !== undefined) {
+        rendered = rendered.replace(
+          /versionName "[^"]*"/g,
+          `versionName "${app.version}"`
+        )
+      }
+      if (app.android?.versionCode !== undefined) {
+        rendered = rendered.replace(
+          /versionCode \d+/g,
+          `versionCode ${app.android.versionCode}`
+        )
       }
     }
     if (platform === 'android' && relativePath === 'settings.gradle') {

@@ -528,6 +528,18 @@ function pressBack(config: Config) {
   adbText(config, ['shell', 'input', 'keyevent', '4'])
 }
 
+// the ime leg is vacuous unless the keyboard is actually raised, so fail
+// loudly when it is not. grep runs on-device: the full dumpsys exceeds
+// execFileSync's buffer.
+function requireKeyboardShown(config: Config) {
+  const shown = adbText(config, [
+    'shell',
+    'dumpsys input_method | grep -m1 mInputShown || true',
+  ])
+  if (!/mInputShown\s*=\s*true/.test(shown))
+    throw new Error('safe-area-ime-excluded: the soft keyboard never raised')
+}
+
 function swipeFresh(config: Config, name: string) {
   const current = snapshot(config)
   const scrollables = current.nodes.filter((node) => node.scrollable === true)
@@ -706,23 +718,6 @@ const inputsIds = [
   'one-native-android-inputs-progress-status',
   'one-native-android-inputs-progress-linear',
   'one-native-android-inputs-progress-circular',
-]
-
-const proofIdsVisibleLandscape = [
-  'one-native-android-mounted',
-  'one-native-android-prop-status',
-  'one-native-android-bounds-box',
-  'one-native-android-prop-value',
-  'one-native-android-prop-mutate',
-  'one-native-android-button-status',
-  'one-native-android-real-button',
-  'one-native-android-reorder',
-  'one-native-android-icon-row',
-  'one-native-android-icon',
-  'one-native-android-icon-filled',
-  'one-native-android-icon-button',
-  'one-native-android-switch-status',
-  'one-native-android-switch-policy-status',
 ]
 
 function nodeWidth(node: Node) {
@@ -1253,9 +1248,13 @@ async function run(config: Config) {
             ['prop kept', (n) => textIncludes(n, 'Prop: expanded')],
             ['window is landscape', () => window.right - window.left > window.bottom - window.top],
             ['row widened', () => width > portraitRowWidth * 1.2],
+            // the short edge clips a device-specific row count, so exact-once
+            // over a fixed visible list fails on viewports whose fold sits
+            // higher. assert true duplicates over the full list instead, the
+            // same shape the inputs screen already uses.
             [
               'no landscape duplicates',
-              (n) => duplicateIdsIn(n, proofIdsVisibleLandscape).length === 0,
+              (n) => hasDuplicates(n, proofIds).length === 0,
             ],
           ])
         },
@@ -1266,7 +1265,7 @@ async function run(config: Config) {
             nodeById(nodes, 'one-native-android-button-row')
           ),
           window: applicationBounds(nodes),
-          duplicates: duplicateIdsIn(nodes, proofIdsVisibleLandscape),
+          duplicates: hasDuplicates(nodes, proofIds),
         })
       )
       tapFresh(config, 'Landscape real button tap', {
@@ -1281,11 +1280,11 @@ async function run(config: Config) {
             ['button tap landed', (n) => textIncludes(n, 'Button taps: 4')],
             [
               'no landscape duplicates',
-              (n) => duplicateIdsIn(n, proofIdsVisibleLandscape).length === 0,
+              (n) => hasDuplicates(n, proofIds).length === 0,
             ],
           ]),
         'one-native-android-mounted',
-        (nodes) => ({ duplicates: duplicateIdsIn(nodes, proofIdsVisibleLandscape) })
+        (nodes) => ({ duplicates: hasDuplicates(nodes, proofIds) })
       )
     } finally {
       freeRotation(config)
@@ -1664,12 +1663,22 @@ async function run(config: Config) {
     )
 
     // focusing the input and typing must not move the bottom inset: the
-    // keyboard is capped by the stable inset. if this emulator shows no
-    // soft keyboard the bottom is trivially stable and the typed text
-    // still proves the input round-tripped.
+    // keyboard is capped by the stable inset. the leg forces the soft
+    // keyboard on for itself only: forcing it suite-wide breaks the inputs
+    // textfield legs, whose typed text stops reaching the field. the leg
+    // fails unless the keyboard actually raised.
+    adbText(config, [
+      'shell',
+      'settings',
+      'put',
+      'secure',
+      'show_ime_with_hard_keyboard',
+      '1',
+    ])
     const beforeIme = safeAreaNumbers(snapshot(config).nodes, 'Insets: ')
     tapFresh(config, 'Safe-area input focus', { id: 'one-native-safe-area-input' })
     adbType(config, 'ada')
+    requireKeyboardShown(config)
     await expect(
       'safe-area-ime-excluded',
       (nodes) =>
@@ -1692,6 +1701,9 @@ async function run(config: Config) {
       'one-native-safe-area-edges'
     )
 
+    // the ime probe leaves the keyboard over the edges toggle; it is proven
+    // up, so one back press can only dismiss it, never leave the screen.
+    pressBack(config)
     tapFresh(config, 'Safe-area edges toggle', {
       id: 'one-native-safe-area-edges',
       role: 'button',
@@ -1701,6 +1713,145 @@ async function run(config: Config) {
       'safe-area-edges-toggle',
       (nodes) => textIncludes(nodes, 'Edges: top'),
       'one-native-safe-area-edges'
+    )
+    // restore the emulator default so later legs run unmodified.
+    adbText(config, ['shell', 'settings', 'delete', 'secure', 'show_ime_with_hard_keyboard'])
+
+    // haptics on Android: presence (the native module resolved), tap-through
+    // of every verb with the Last label proving each call returned, and an
+    // Error: none sweep proving no js throw escaped. redbox detection rides
+    // in waitFor via assertNoRedBox on every snapshot.
+    pressBack(config)
+    await tapNavigation(config, 'nav-one-native-haptics')
+    await expect(
+      'haptics-module-present',
+      (nodes) =>
+        diagnose(nodes, [
+          ['selection control', (n) => exactlyOneId(n, 'one-native-haptics-selection')],
+          ['module marker', (n) => textIncludes(n, 'Module: available')],
+        ]),
+      'one-native-haptics-selection'
+    )
+    const hapticsVerbs = [
+      'selection',
+      'impact-light',
+      'impact-medium',
+      'impact-heavy',
+      'impact-soft',
+      'impact-rigid',
+      'notification-success',
+      'notification-warning',
+      'notification-error',
+    ]
+    for (const verb of hapticsVerbs) {
+      tapFresh(config, `Haptics ${verb}`, {
+        id: `one-native-haptics-${verb}`,
+        role: 'button',
+        clickable: true,
+      })
+      await expect(
+        `haptics-tap-${verb}`,
+        (nodes) => textIncludes(nodes, `Last: ${verb}`),
+        `one-native-haptics-${verb}`
+      )
+    }
+    await expect(
+      'haptics-error-clean',
+      (nodes) => textIncludes(nodes, 'Error: none'),
+      'one-native-haptics-selection'
+    )
+    // crypto on Android: presence (the native module resolved), two uuids
+    // off the device that match rfc 4122 v4 and differ, a 16-byte
+    // getRandomValues fill, regeneration keeping all of it valid, and an
+    // Error: none sweep proving no js throw escaped. redbox detection
+    // rides in waitFor via assertNoRedBox on every snapshot.
+    pressBack(config)
+    await tapNavigation(config, 'nav-one-native-crypto')
+    const uuidV4 =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
+    const hex32 = /^[0-9a-f]{32}$/
+    const cryptoValue = (nodes: Node[], prefix: string) =>
+      nodes
+        .flatMap(nodeValues)
+        .find((value) => value.startsWith(prefix))
+        ?.slice(prefix.length)
+    const cryptoValid = (nodes: Node[]) => {
+      const first = cryptoValue(nodes, 'UUID1: ')
+      const second = cryptoValue(nodes, 'UUID2: ')
+      const random = cryptoValue(nodes, 'Random: ')
+      return Boolean(
+        first &&
+          second &&
+          random &&
+          uuidV4.test(first) &&
+          uuidV4.test(second) &&
+          first !== second &&
+          hex32.test(random)
+      )
+    }
+    await expect(
+      'crypto-module-present',
+      (nodes) =>
+        diagnose(nodes, [
+          [
+            'regenerate control',
+            (n) => exactlyOneId(n, 'one-native-crypto-regenerate'),
+          ],
+          ['module marker', (n) => textIncludes(n, 'Module: available')],
+        ]),
+      'one-native-crypto-regenerate'
+    )
+    await expect(
+      'crypto-uuids-valid',
+      (nodes) =>
+        diagnose(nodes, [
+          ['two distinct v4 uuids plus a 16-byte fill', cryptoValid],
+          ['no js error', (n) => textIncludes(n, 'Error: none')],
+        ]),
+      'one-native-crypto-regenerate'
+    )
+    tapFresh(config, 'Crypto regenerate', {
+      id: 'one-native-crypto-regenerate',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'crypto-regenerate-valid',
+      (nodes) =>
+        diagnose(nodes, [
+          ['regenerated values stay valid', cryptoValid],
+          ['no js error after regenerate', (n) => textIncludes(n, 'Error: none')],
+        ]),
+      'one-native-crypto-regenerate'
+    )
+    // app info on Android: the exact stamped fixture-manifest values reach
+    // runtime through the native constants module, not template defaults.
+    // redbox detection rides in waitFor via assertNoRedBox on every snapshot.
+    pressBack(config)
+    await tapNavigation(config, 'nav-one-native-app-info')
+    await expect(
+      'app-info-stamped-values',
+      (nodes) =>
+        diagnose(nodes, [
+          ['refresh control', (n) => exactlyOneId(n, 'one-native-app-info-refresh')],
+          ['version marker', (n) => textIncludes(n, 'Version: 9.9.9')],
+          ['build marker', (n) => textIncludes(n, 'Build: 4242')],
+          [
+            'application id marker',
+            (n) => textIncludes(n, 'ApplicationId: dev.vxrn.nativefeatures.tests'),
+          ],
+        ]),
+      'one-native-app-info-refresh'
+    )
+    tapFresh(config, 'App info refresh tap', {
+      id: 'one-native-app-info-refresh',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'app-info-tap',
+      (nodes) => textIncludes(nodes, 'Taps: 1'),
+      'one-native-app-info-refresh'
     )
 
     writeFileSync(
