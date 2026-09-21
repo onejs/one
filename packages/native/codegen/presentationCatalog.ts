@@ -233,4 +233,112 @@ private func oneNativeRemoveQuickLookURL(_ url: URL?) {
   if (!url.startsWith('file://') && !url.startsWith('http://') && !url.startsWith('https://')) throw new Error('QuickLook url must use file, http, or https')`,
     layout: 'presentation',
   },
+  {
+    // fileImporter as a zero-size host like Alert: React flips isPresented, the picker
+    // reports each pick through onCompletion and dismissal through the binding. every
+    // pick is copied into Caches before reporting, since the security-scoped url dies
+    // with the picker and was never readable from JS.
+    name: 'FileImporter',
+    imports: ['UniformTypeIdentifiers', 'Foundation'],
+    value: {
+      type: 'boolean',
+      prop: 'isPresented',
+      event: 'onIsPresentedChange',
+      initial: false,
+    },
+    actions: [
+      {
+        prop: 'onCompletion',
+        event: 'Completion',
+        payload: { url: 'string', index: 'Double', count: 'Double', message: 'string' },
+      },
+    ],
+    fields: {
+      allowedContentTypes: { type: 'strings', default: [] },
+      allowsMultipleSelection: { type: 'boolean', default: false },
+    },
+    constructors: [],
+    methods: [
+      {
+        name: 'fileImporter',
+        parameters: [
+          { label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+          { label: 'allowedContentTypes', type: '[UniformTypeIdentifiers.UTType]' },
+          { label: 'allowsMultipleSelection', type: 'Swift.Bool' },
+          {
+            label: 'onCompletion',
+            type: '@escaping (_ result: Swift.Result<[Foundation.URL], any Swift.Error>) -> Swift.Void',
+          },
+        ],
+        requirements: [],
+      },
+    ],
+    swift: `FileImporterSurface(model: model)`,
+    extraSwift: `// UTType identifiers are an open set, so they travel as strings and resolve here.
+// identifiers the registry does not know are dropped; an empty resolution is the
+ // unrestricted import, which is UTType.item, the base of every pickable type.
+private func oneNativeContentTypes(_ identifiers: [String]) -> [UTType] {
+  let resolved = identifiers.compactMap { UTType($0) }
+  return resolved.isEmpty ? [.item] : resolved
+}
+
+// the picker hands out security-scoped urls, which stop working once the picker goes
+// away and were never readable from JS. each pick is copied under a fresh folder in
+// Caches, keeping its filename, and the copy is what the event reports. Caches is the
+// system's to purge; nothing here deletes the file.
+private func oneNativeCopyToCaches(_ url: URL) throws -> URL {
+  let accessing = url.startAccessingSecurityScopedResource()
+  defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+  let folder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+    .appendingPathComponent("one-native-file-importer", isDirectory: true)
+    .appendingPathComponent(UUID().uuidString, isDirectory: true)
+  try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+  let name = url.lastPathComponent.isEmpty ? "file" : url.lastPathComponent
+  let destination = folder.appendingPathComponent(name)
+  try FileManager.default.copyItem(at: url, to: destination)
+  return destination
+}
+
+private struct FileImporterSurface: View {
+  @ObservedObject var model: FileImporterModel
+  var body: some View {
+    Color.clear
+      .fileImporter(
+        isPresented: Binding(
+          get: { model.controlled.value },
+          set: { value in model.change(value) }
+        ),
+        allowedContentTypes: oneNativeContentTypes(model.allowedContentTypes),
+        allowsMultipleSelection: model.allowsMultipleSelection
+      ) { result in
+        switch result {
+        case .success(let urls):
+          let count = urls.count
+          for (index, url) in urls.enumerated() {
+            do {
+              let copy = try oneNativeCopyToCaches(url)
+              model.completion(copy.absoluteString, Double(index), Double(count), "")
+            } catch {
+              model.completion("", Double(index), Double(count), error.localizedDescription)
+            }
+          }
+        case .failure(let error):
+          let nsError = error as NSError
+          if nsError.domain == NSCocoaErrorDomain, nsError.code == NSUserCancelledError {
+            model.completion("", 0, 0, "cancelled")
+          } else {
+            model.completion("", 0, 0, error.localizedDescription)
+          }
+        }
+      }
+  }
+}
+`,
+    validate: `  if (!Array.isArray(allowedContentTypes)) throw new Error('FileImporter allowedContentTypes must be an array')
+  for (const identifier of allowedContentTypes) {
+    if (typeof identifier !== 'string' || !identifier) throw new Error('FileImporter content types must be non-empty UTType identifier strings')
+  }
+  if (typeof allowsMultipleSelection !== 'boolean') throw new Error('FileImporter allowsMultipleSelection must be a boolean')`,
+    layout: 'presentation',
+  },
 ]

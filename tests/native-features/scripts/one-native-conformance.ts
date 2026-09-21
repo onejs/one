@@ -40,6 +40,7 @@ const suites = [
   'accessibility',
   'media',
   'map',
+  'apple-file',
 ] as const
 type Suite = (typeof suites)[number]
 type Config = {
@@ -239,6 +240,13 @@ const mapLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-map-place-ferry')) &&
   has(nodes, 'Place: ')
+// a presented document picker takes the whole accessibility tree like QuickLook,
+// leaving the fixture behind it out, so the fixture counts as loaded from either
+// side of the presentation.
+const appleFileLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  (Boolean(id(nodes, 'one-native-apple-file-category-signin')) ||
+    nodes.some((n) => n.type === 'Button' && n.AXLabel === 'Cancel'))
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -265,6 +273,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
   map: mapLoaded,
+  'apple-file': appleFileLoaded,
 }
 const suiteHome: Record<Suite, string> = {
   'tabs-menu': 'nav-one-native',
@@ -284,6 +293,7 @@ const suiteHome: Record<Suite, string> = {
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
   map: 'nav-one-native-map',
+  'apple-file': 'nav-one-native-apple-file',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
 const firstState = (nodes: Node[]) =>
@@ -3132,6 +3142,73 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => value(n, 'gamma') && request(n, 'gamma') && Boolean(wheel(n, 2))
     )
 
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'apple-file') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    // the black Apple button publishes its title; the tap goes to the native node.
+    const signInButton = (nodes: Node[]) =>
+      nodes.find(
+        (node) => node.type === 'Button' && node.AXLabel === 'Sign in with Apple'
+      )
+    // the document picker takes the whole accessibility tree like QuickLook, so the
+    // fixture behind it is unreadable while it is up; its Cancel button is the stable
+    // chrome to assert on.
+    const pickerCancel = (nodes: Node[]) =>
+      nodes.find((node) => node.type === 'Button' && node.AXLabel === 'Cancel')
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-apple-file')
+    await wait(
+      'fresh SignIn mounted',
+      (n) =>
+        status(n, 'Category', 'SignIn') &&
+        status(n, 'Completions', 0) &&
+        status(n, 'User', 'none') &&
+        status(n, 'Message', 'none')
+    )
+    await wait('SignInWithAppleButton renders', (n) => {
+      const button = signInButton(n)
+      return Boolean(button?.frame && button.frame.width > 0 && button.frame.height > 0)
+    })
+    screenshot('apple-file-signin.png')
+    tap({ label: 'Sign in with Apple' })
+    await wait(
+      'tapping starts the request and reports its completion',
+      (n) => status(n, 'Completions', 1) && !status(n, 'Message', 'none'),
+      false,
+      () =>
+        `completion rows: ${labels(snapshot(config.simulatorId)).filter((label) => /Completions|Message|User/.test(label)).join(' | ')}`
+    )
+    screenshot('apple-file-signin-completion.png')
+
+    tap({ id: 'one-native-apple-file-category-files' })
+    await wait(
+      'fresh FileImporter mounted',
+      (n) =>
+        status(n, 'Category', 'Files') &&
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 0) &&
+        status(n, 'Completions', 0) &&
+        !pickerCancel(n)
+    )
+    tap({ id: 'one-native-apple-file-open' })
+    await wait('fileImporter presents the document picker', (n) =>
+      Boolean(pickerCancel(n))
+    )
+    screenshot('apple-file-picker-open.png')
+    tap({ label: 'Cancel' })
+    await wait(
+      'cancel reports dismissal and a cancelled completion',
+      (n) =>
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 2) &&
+        status(n, 'Completions', 1) &&
+        status(n, 'Message', 'cancelled')
+    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

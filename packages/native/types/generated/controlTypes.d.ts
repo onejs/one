@@ -205,6 +205,11 @@ export interface WebViewProps extends OneNativeViewProps {
     elementFullscreen?: Styles.ElementFullscreenBehavior | '';
     contentBackground?: Styles.Visibility | '';
 }
+export interface SignInWithAppleButtonProps extends OneNativeViewProps {
+    onCompletion?: (user: string, email: string, givenName: string, familyName: string, identityToken: string, authorizationCode: string, message: string) => void;
+    requestedScopes?: readonly ('fullName' | 'email')[];
+    nonce?: string;
+}
 export interface MapProps extends OneNativeViewProps {
     onRegionChange?: (latitude: number, longitude: number, distance: number) => void;
     latitude?: number;
@@ -275,5 +280,13 @@ export interface QuickLookProps extends OneNativeViewProps {
     onIsPresentedChange: (value: boolean) => void;
     revision?: number;
     url?: string;
+}
+export interface FileImporterProps extends OneNativeViewProps {
+    isPresented: boolean;
+    onIsPresentedChange: (value: boolean) => void;
+    revision?: number;
+    onCompletion?: (url: string, index: number, count: number, message: string) => void;
+    allowedContentTypes?: readonly string[];
+    allowsMultipleSelection?: boolean;
 }
 //# sourceMappingURL=controlTypes.d.ts.map
