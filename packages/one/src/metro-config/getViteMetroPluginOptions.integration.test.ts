@@ -1,4 +1,5 @@
 import fs from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { getViteMetroPluginOptions } from './getViteMetroPluginOptions'
@@ -26,6 +27,20 @@ describe('getViteMetroPluginOptions babel-config coexistence', () => {
 
   afterAll(() => {
     fs.rmSync(tmpDir, { recursive: true, force: true })
+  })
+
+  it('explains the missing Metro preset in an isolated app', () => {
+    const isolatedApp = fs.mkdtempSync(path.join(os.tmpdir(), 'one-metro-no-preset-'))
+    try {
+      expect(() =>
+        getViteMetroPluginOptions({
+          projectRoot: isolatedApp,
+          relativeRouterRoot: 'app',
+        })
+      ).toThrow(/Metro requires babel-preset-expo.*Install it/)
+    } finally {
+      fs.rmSync(isolatedApp, { recursive: true, force: true })
+    }
   })
 
   it('injects plugins when there is no user babel.config', () => {
