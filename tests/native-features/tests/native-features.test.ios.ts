@@ -366,7 +366,7 @@ describe('@vxrn/native integration tests', () => {
     })
   })
 
-  // -- bars action bar (track A) --
+  // -- bars action bar (track A): WRITTEN, interaction legs not RAN (static screenshots proven on iOS 27 sim) --
 
   describe('Bars Action Bar', () => {
     test('action bar renders clustered toolbar with status', sharedTestOptions, async () => {
@@ -412,7 +412,7 @@ describe('@vxrn/native integration tests', () => {
     })
   })
 
-  // -- bars double bar (track B) --
+  // -- bars double bar (track B): WRITTEN, interaction legs not RAN (static screenshots proven on iOS 27 sim) --
 
   describe('Bars Double Bar', () => {
     test(
@@ -455,7 +455,7 @@ describe('@vxrn/native integration tests', () => {
     })
   })
 
-  // -- bars button probe (track C) --
+  // -- bars button probe (track C): WRITTEN, interaction legs not RAN (static screenshots proven on iOS 27 sim) --
 
   describe('Bars Button Probe', () => {
     test('probe toolbar reads above the tab bar', sharedTestOptions, async () => {

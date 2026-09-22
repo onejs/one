@@ -342,11 +342,9 @@ function headerIconFromResolution(
 }
 
 function buttonPropsToHeaderButton(
-  props: StackToolbarButtonProps,
-  placement: 'left' | 'right'
+  props: StackToolbarButtonProps
 ): NativeStackHeaderItem | null {
   if (props.hidden) return null
-  void placement
   checkButtonChildren(props.children)
   const label = labelFromChildren(props.children)
   const icon = headerIconFromResolution(
@@ -556,10 +554,7 @@ export function toolbarChildrenToHeaderItems(
   Children.forEach(children, (child) => {
     if (!isValidElement(child)) return
     if (isKind(child, 'button')) {
-      const item = buttonPropsToHeaderButton(
-        child.props as StackToolbarButtonProps,
-        placement
-      )
+      const item = buttonPropsToHeaderButton(child.props as StackToolbarButtonProps)
       if (item) items.push(item)
     } else if (isKind(child, 'menu')) {
       const menu = menuPropsToHeaderMenu(child, placement)
@@ -695,24 +690,6 @@ export type BottomToolbarData =
   | BottomToolbarSpacerData
   | BottomToolbarSearchBarSlotData
 
-/**
- * Whether a badge under bottom placement renders. The B2 probe proved on the
- * iOS 27 simulator that UIBarButtonItem.badge renders on bottom toolbarItems
- * items, so One allows it. Intentional divergence from Expo, which calls
- * bottom badges an iOS limitation; the docs say so.
- */
-export const BOTTOM_BADGE_SUPPORTED = true
-
-function checkBottomBadge(children: ReactNode, component: string): BadgeData | undefined {
-  const badge = badgeFromChildren(children)
-  if (badge && !BOTTOM_BADGE_SUPPORTED && process.env.NODE_ENV !== 'production') {
-    throw new Error(
-      `Stack.Toolbar.Badge is not supported in bottom placement. The badge on this Stack.Toolbar.${component} will not render.`
-    )
-  }
-  return badge
-}
-
 interface BottomIconFields {
   sfName?: string
   xcassetName?: string
@@ -777,7 +754,10 @@ function bottomButtonData(
     hidden: props.hidden,
     selected: props.selected,
     disabled: props.disabled,
-    badgeConfiguration: checkBottomBadge(props.children, 'Button'),
+    // Badges render on bottom toolbarItems items (proven on the iOS 27
+    // simulator by the B2 probe), so One passes them through. Intentional
+    // divergence from Expo, which calls bottom badges an iOS limitation.
+    badgeConfiguration: badgeFromChildren(props.children),
     ...(labelStyleFromStyle(props.style) && { titleStyle: labelStyleFromStyle(props.style) }),
     accessibilityLabel: props.accessibilityLabel,
     accessibilityHint: props.accessibilityHint,
