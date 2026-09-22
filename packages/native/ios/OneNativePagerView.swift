@@ -71,7 +71,7 @@ public final class OneNativePagerView: UIView {
       controller = OneNativeHostingController(rootView: PagerContent(model: model, host: self, bridge: bridge))
     }
     controller?.attach(to: self)
-    model.active = controller?.parent != nil
+    model.active = controller?.isAttached == true
   }
 
   private func detachController() {

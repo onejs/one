@@ -57,7 +57,7 @@ private final class LabelModel: ObservableObject {
       controller = OneNativeHostingController(rootView: OneNativeMeasuredStandalone(content: LabelContent(model: model), onHeight: { [weak self] height in self?.onHeight?(height) }))
     }
     controller?.attach(to: self)
-    model.active = controller?.parent != nil
+    model.active = controller?.isAttached == true
   }
   public func reset() {
     compositionParent = nil

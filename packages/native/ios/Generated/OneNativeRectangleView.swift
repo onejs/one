@@ -52,7 +52,7 @@ private final class RectangleModel: ObservableObject {
       controller = OneNativeHostingController(rootView: OneNativeStandalone(content: RectangleContent(model: model)))
     }
     controller?.attach(to: self)
-    model.active = controller?.parent != nil
+    model.active = controller?.isAttached == true
   }
   public func reset() {
     compositionParent = nil

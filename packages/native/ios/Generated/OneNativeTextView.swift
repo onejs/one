@@ -53,7 +53,7 @@ private final class TextModel: ObservableObject {
       controller = OneNativeHostingController(rootView: OneNativeMeasuredStandalone(content: TextContent(model: model), onHeight: { [weak self] height in self?.onHeight?(height) }))
     }
     controller?.attach(to: self)
-    model.active = controller?.parent != nil
+    model.active = controller?.isAttached == true
   }
   public func reset() {
     compositionParent = nil
