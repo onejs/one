@@ -89,7 +89,7 @@ export class NativeBridgeManager {
     return count
   }
 
-  // Called directly from native Main Thread via JSI / JSContext:
+  // Called directly from native Main Thread via JSContext:
   dispatchNativeEvent(nodeId: number, eventName: string, payload: any) {
     const handler = this.eventHandlers.get(nodeId)?.get(eventName)
     if (handler) {
