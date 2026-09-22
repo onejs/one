@@ -56,11 +56,13 @@ const inventoryFor = (control: Control, modifiers: Declaration[] = []) => [
 ]
 
 describe('generic leaf emitter', () => {
+  // Toggle is not listed: its systemImage branch takes the SDK's
+  // Toggle(_:systemImage:isOn:) instead of the label closure, so its body is
+  // hand-written like Button's rather than derived from one constructor.
   it.each([
     ['Text', leafControls, []],
     ['Label', leafControls, []],
     ['Gauge', leafControls, [styleModifier('gaugeStyle', 'GaugeStyle')]],
-    ['Toggle', formControls, [styleModifier('toggleStyle', 'ToggleStyle')]],
     ['Stepper', formControls, []],
   ] as const)('reproduces the hand-written %s body byte for byte', (name, catalog, modifiers) => {
     const control = byName([...catalog], name)

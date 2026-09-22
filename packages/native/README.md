@@ -418,6 +418,8 @@ that range, and `minimumDate` must not be after `maximumDate`.
 to true.
 
 `Toggle` `isOn` is a boolean. `toggleStyle` is `automatic`, `button`, or `switch`.
+`systemImage` is an optional SF Symbol shown beside the label through SwiftUI's
+`Toggle(_:systemImage:isOn:)`; an omitted image keeps the text-only toggle.
 
 `Slider` and `Stepper` take finite `value`, `minimumValue`, `maximumValue`, and
 `step` numbers. `minimumValue` must be less than `maximumValue`, `step` must be
@@ -490,9 +492,11 @@ SwiftUI does. `Image` renders an SF Symbol with `systemName`, optional `symbolRe
 `symbolVariant`, `imageScale`, and `variableValue`. All three are display only: they have no events
 and no controlled value, and they are most useful as rows inside a container.
 
-`Button` needs a `label`, a `systemImage`, or both. With only a `systemImage` it
+`Button` needs a `label`, a `systemImage`, or children. With only a `systemImage` it
 renders the bare symbol with no title spacing reserved, centered in the button
-frame. `buttonRole`
+frame. With children, the children are the label view (`Button(action:) { label }`)
+and the `label`, `systemImage`, and `subtitle` props must be omitted; passing both
+is a validation error. `Text` stays text-only and never takes children. `buttonRole`
 is `destructive`, `cancel`, `confirm`, `close`, or empty for none; it is named
 `buttonRole` because React Native's `ViewProps` already owns `role` for the
 accessibility role. `confirm` and `close` need iOS 26. `buttonStyle` is
@@ -528,6 +532,31 @@ Programmatic focus is controlled through `focused` and `onFocusChange` using the
 controlled protocol, mapped to SwiftUI's `@FocusState`. `keyboardType` sets UIKit's
 `UIKeyboardType` (`default`, `numberPad`, `decimalPad`, `emailAddress`, etc.) and `textContentType`
 configures semantic text content.
+
+## Shapes
+
+`Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, and `Ellipse` are SwiftUI's
+shapes, one control each, named as SwiftUI names them. A shape has no ideal size
+of its own, so it takes the `width` and `height` React Native gives it, and `fill`
+paints it with a color. An omitted `fill` keeps SwiftUI's own default rendering.
+`RoundedRectangle` also takes `cornerRadius`, which must be a non-negative number.
+The set matches the `shape` values `Swift.Glass` accepts, lowercased
+(`circle`, `capsule`, `rectangle`, `roundedRectangle`, `ellipse`).
+
+```tsx
+function Dots() {
+  return (
+    <View style={{ flexDirection: 'row' }}>
+      <Swift.Circle fill="red" style={{ width: 12, height: 12 }} />
+      <Swift.RoundedRectangle
+        fill="blue"
+        cornerRadius={4}
+        style={{ width: 24, height: 12 }}
+      />
+    </View>
+  )
+}
+```
 
 ## Video
 
@@ -906,8 +935,11 @@ Children are One Native controls, One Native containers, and `Swift.Slot`, which
 a React Native subtree gets into the SwiftUI tree.
 
 `Swift.Host` and `Swift.Form` can override the SwiftUI environment for their entire
-composed subtree with `colorScheme`, `dynamicTypeSize`, `locale`, `tint`, and
-`isEnabled`. Omitted props preserve values inherited from an outer SwiftUI container.
+composed subtree with `colorScheme`, `dynamicTypeSize`, `controlSize`, `locale`,
+`tint`, and `isEnabled`. `controlSize` is `mini`, `small`, `regular`, `large`, or
+`extraLarge`, and sizes the controls in the subtree the way SwiftUI's
+`.controlSize(_:)` does. Omitted props preserve values inherited from an outer
+SwiftUI container.
 This set covers the environment values React Native can express as stable scalar or
 color props and that directly affect appearance, text layout, localization, and
 interaction. Arbitrary environment keys are intentionally excluded because their
