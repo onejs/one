@@ -10,7 +10,6 @@ declare module 'one' {
         | `/`
         | `/_sitemap`
         | `/color-test`
-        | `/font-probe`
         | `/menu-test`
         | `/one-native`
         | `/one-native-accessibility`

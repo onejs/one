@@ -11,11 +11,13 @@ import java.net.URL
 import java.security.MessageDigest
 
 // runtime font loading for One.UI.Fonts. one path: make the uri a local
-// file, then ReactFontManager.addCustomFont. only the observed schemes ship:
-// file:// is used as is, http(s):// is downloaded to
-// cacheDir/one-fonts/<sha256 of url>.<ext>. Typeface exposes no name query,
-// so a wrong key registers silently; isLoaded answers from the manager's
-// own registry plus assets/fonts for embedded files.
+// file, then ReactFontManager.addCustomFont. only the observed references
+// ship: file:// is used as is, http(s):// is downloaded to
+// cacheDir/one-fonts/<sha256 of url>.<ext>, and a bare release resource
+// name (assets_foo) is copied out of res/raw to the same cache dir.
+// Typeface exposes no name query, so a wrong key registers silently;
+// isLoaded answers from the manager's own registry plus assets/fonts for
+// embedded files.
 class OneNativeFontsModule(
     reactContext: ReactApplicationContext,
 ) : ReactContextBaseJavaModule(reactContext) {
@@ -84,6 +86,9 @@ class OneNativeFontsModule(
     }
 
     private fun resolveFontFile(name: String, uri: String): File {
+        if (!uri.contains("://")) {
+            return copyResourceFontFile(name, uri)
+        }
         val url =
             try {
                 URL(uri)
@@ -104,6 +109,37 @@ class OneNativeFontsModule(
                     "Fonts.load: \"$name\" uses an unsupported uri scheme \"${url.protocol}\""
                 )
         }
+    }
+
+    private fun copyResourceFontFile(name: String, resourceName: String): File {
+        val resources = reactApplicationContext.resources
+        val id =
+            resources.getIdentifier(
+                resourceName,
+                "raw",
+                reactApplicationContext.packageName
+            )
+        if (id == 0) {
+            throw FontsUriException("Fonts.load: \"$name\" is not a packaged font resource")
+        }
+        val bytes =
+            try {
+                resources.openRawResource(id).use { it.readBytes() }
+            } catch (_: Exception) {
+                throw FontsUriException("Fonts.load: \"$name\" could not be read")
+            }
+        if (bytes.isEmpty()) {
+            throw FontsUriException("Fonts.load: \"$name\" packaged zero bytes")
+        }
+        // the resource name carries no extension; createFromFile sniffs
+        // the content, so the suffix is only a label.
+        val directory = File(reactApplicationContext.cacheDir, "one-fonts")
+        val file = File(directory, "$resourceName.ttf")
+        if (!file.isFile) {
+            directory.mkdirs()
+            file.writeBytes(bytes)
+        }
+        return file
     }
 
     private fun downloadFontFile(name: String, url: URL): File {
