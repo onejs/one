@@ -27,6 +27,7 @@ const app = {
   name: 'MyApp',
   displayName: 'My App',
   scheme: ['myapp', 'myapp-dev'],
+  imagePicker: { camera: 'Capture photos & videos' },
   ios: {
     bundleId: 'dev.one.myapp',
     tablet: true,
@@ -40,18 +41,13 @@ const app = {
 } satisfies PrebuildAppConfig
 
 describe('native.app prebuild validation', () => {
-  it('accepts a valid manifest', () => {
+  // smoke for the shared definition re-export; the full cases live beside
+  // the canonical definition in @vxrn/utils.
+  it('accepts a valid manifest and rejects invalid ones before writing', () => {
     expect(() => validatePrebuildApp(app)).not.toThrow()
     expect(() => validatePrebuildApp(app, 'ios')).not.toThrow()
     expect(() => validatePrebuildApp(app, 'android')).not.toThrow()
-  })
-
-  it('rejects invalid target names and missing platform ids before writing', () => {
     expect(() => validatePrebuildApp({} as any)).toThrow(/name/)
-    expect(() => validatePrebuildApp({ name: 'my-app' } as any)).toThrow(/name/)
-    expect(() => validatePrebuildApp({ ...app, scheme: 'not a scheme' })).toThrow(
-      /scheme/
-    )
     expect(() => validatePrebuildApp({ name: 'MyApp' } as any)).toThrow(/bundleId/)
     expect(() =>
       validatePrebuildApp({ name: 'MyApp', android: app.android } as any)
@@ -112,6 +108,9 @@ describe('native.app prebuild validation', () => {
         splash: { source: './splash.png', backgroundColor: '#000000', width: 289 },
       })
     ).toThrow(/splash/)
+    expect(() =>
+      validatePrebuildApp({ ...app, imagePicker: { camera: '' } })
+    ).toThrow(/imagePicker\.camera/)
     // platform-scoped: android-only skips the ios requirement and vice versa
     expect(() =>
       validatePrebuildApp({ name: 'MyApp', android: app.android } as any, 'android')
@@ -176,13 +175,19 @@ ${APP_DELEGATE_PBXPROJ}`,
     expect(infoPlist.content).toContain('<string>myapp-dev</string>')
     expect(infoPlist.content).toContain('<key>ITSAppUsesNonExemptEncryption</key>')
     expect(infoPlist.content).toContain('<false/>')
+    expect(infoPlist.content).toContain('<key>NSCameraUsageDescription</key>')
+    expect(infoPlist.content).toContain('<string>Capture photos &amp; videos</string>')
 
     const androidManifest = renderPrebuildFile({
       relativePath: 'app/src/main/AndroidManifest.xml',
-      content: '<activity>\n      </activity>',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>',
       platform: 'android',
       app,
     })
+    expect(androidManifest.content).toContain(
+      '<uses-permission android:name="android.permission.CAMERA" />'
+    )
     expect(androidManifest.content).toContain(
       '<action android:name="android.intent.action.VIEW" />'
     )
@@ -271,6 +276,48 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
     })
     expect(android.content).toContain('versionCode 1')
     expect(android.content).toContain('versionName "1.0"')
+  })
+
+  it('omits camera entries when imagePicker.camera is unset', () => {
+    const bare = { ...app, imagePicker: undefined }
+    const infoPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: bare,
+    })
+    expect(infoPlist.content).not.toContain('NSCameraUsageDescription')
+    const androidManifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />',
+      platform: 'android',
+      app: bare,
+    })
+    expect(androidManifest.content).not.toContain('android.permission.CAMERA')
+  })
+
+  it('throws instead of silently skipping a missing camera anchor', () => {
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld/Info.plist',
+        content: '<dict>\n</dict>',
+        platform: 'ios',
+        app,
+      })
+    ).toThrow(
+      '[vxrn] cannot stamp NSCameraUsageDescription: expected LSRequiresIPhoneOS in Info.plist'
+    )
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'app/src/main/AndroidManifest.xml',
+        content: '<manifest>\n</manifest>',
+        platform: 'android',
+        app,
+      })
+    ).toThrow(
+      '[vxrn] cannot stamp the camera permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
+    )
   })
 
   it('resolves the gradle plugin from the react-native package without hoisting', () => {

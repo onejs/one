@@ -2,6 +2,7 @@
 import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { resolveVisualRegion, VISUAL_CHECKS } from './visual-declarations'
 import {
   countChangedPixels,
@@ -46,6 +47,7 @@ const suites = [
   'clipboard',
   'network',
   'browser',
+  'image-picker',
 ] as const
 type Suite = (typeof suites)[number]
 type Config = {
@@ -277,6 +279,15 @@ const browserLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-browser-open')) && has(nodes, 'Result: ')) ||
     browserPresented(nodes))
+// a presented photo picker covers the fixture and publishes no accessibility
+// tree of its own, so the screen counts as loaded from the fixture side, the
+// camera prompt, or the bare application node.
+const imagePickerLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  ((Boolean(id(nodes, 'one-native-image-picker-library')) && has(nodes, 'Result: ')) ||
+    labels(nodes).includes('Cancel') ||
+    labels(nodes).includes('Don’t Allow') ||
+    nodes.every((n) => n.type === 'Application'))
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -309,6 +320,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   clipboard: clipboardLoaded,
   network: networkLoaded,
   browser: browserLoaded,
+  'image-picker': imagePickerLoaded,
 }
 const suiteHome: Record<Suite, string> = {
   'tabs-menu': 'nav-one-native',
@@ -334,6 +346,7 @@ const suiteHome: Record<Suite, string> = {
   clipboard: 'nav-one-native-clipboard',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
+  'image-picker': 'nav-one-native-image-picker',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
 const firstState = (nodes: Node[]) =>
@@ -601,6 +614,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // a freshly booted device has never run the app, and simctl words that differently
     if (!/not running|nothing to terminate/i.test(message)) throw error
     console.log('App was not running.')
+  }
+  if (config.suite === 'image-picker') {
+    // reset first so reruns start undetermined like a fresh install.
+    execFileSync(
+      'xcrun',
+      ['simctl', 'privacy', config.simulatorId, 'reset', 'camera', config.bundleId],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
   }
   command(['simulator', 'launch-app', '--bundle-id', config.bundleId], config.simulatorId)
   if (config.suite === 'sheets') {
@@ -3495,6 +3516,111 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await tapNav('nav-one-native-browser')
       await wait(`browser recycle ${cycle}: a fresh fixture mounts`, (n) =>
         labels(n).includes('Result: none')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'image-picker') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const dims = (nodes: Node[]) => {
+      const num = (prefix: string) => {
+        const label = labels(nodes).find((line) => line.startsWith(`${prefix}: `))
+        return label === undefined ? NaN : Number(label.slice(prefix.length + 2))
+      }
+      return { width: num('Width'), height: num('Height') }
+    }
+    // the picker publishes no accessibility tree, so its two taps are
+    // calibrated points on the 17 Pro display, guarded by the observed
+    // application frame. the waits after each tap prove they landed.
+    const pickerPoint = (name: string, x: number, y: number) => {
+      const app = snapshot(config.simulatorId).find(
+        (node) => node.type === 'Application'
+      )?.frame
+      if (app?.width !== 402 || app?.height !== 874)
+        throw new Error(
+          `Expected a 402x874 display for the ${name} tap, got ${JSON.stringify(app)}`
+        )
+      point(x, y)
+    }
+    const pickerCovers = (nodes: Node[]) =>
+      nodes.every((node) => node.type === 'Application')
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-image-picker')
+    await wait(
+      'fixture mounted',
+      (n) =>
+        status(n, 'Result', 'idle') &&
+        Boolean(id(n, 'one-native-image-picker-library')) &&
+        Boolean(id(n, 'one-native-image-picker-camera'))
+    )
+    tap({ id: 'one-native-image-picker-permissions' })
+    await wait('camera permission reads undecided', (n) =>
+      Boolean(
+        status(n, 'PermStatus', 'undetermined') &&
+          status(n, 'PermGranted', 'false') &&
+          status(n, 'PermCanAsk', 'true')
+      )
+    )
+    tap({ id: 'one-native-image-picker-library' })
+    await wait('the system picker presents', (n) => pickerCovers(n))
+    screenshot('image-picker-open.png')
+    pickerPoint('picker close', 45, 98)
+    await wait('cancel resolves through the bridge', (n) =>
+      Boolean(id(n, 'one-native-image-picker-library'))
+    )
+    await wait('cancel reports canceled', (n) => status(n, 'Result', 'canceled'))
+    // seed a known portrait photo: a heic stored 120x80 with exif
+    // orientation 6, so it displays 80x120. recency sorts it first, and
+    // every copy is identical, so reruns that seed again stay deterministic.
+    execFileSync('xcrun', [
+      'simctl',
+      'addmedia',
+      config.simulatorId,
+      fileURLToPath(
+        new URL('../assets/one-native-picker-portrait.heic', import.meta.url)
+      ),
+    ])
+    tap({ id: 'one-native-image-picker-library' })
+    await wait('photo grid lists the seeded photo', (n) => pickerCovers(n))
+    // a single pick dismisses on tap, with no trailing add button. recency
+    // sorts the seeded photo first; the metadata below proves this tap took it.
+    pickerPoint('seeded photo', 66, 378)
+    // compatible mode transcodes the heic to jpeg, and the orientation 6
+    // swap reports the display size, portrait.
+    await wait('picked asset resolves with its metadata', (n) =>
+      Boolean(
+        status(n, 'Result', 'ok') &&
+          status(n, 'Assets', 1) &&
+          status(n, 'Width', 80) &&
+          status(n, 'Height', 120) &&
+          dims(n).height > dims(n).width &&
+          status(n, 'Mime', 'image/jpeg') &&
+          labels(n).some(
+            (label) =>
+              label.startsWith('File: IMG_') && label.endsWith('.jpeg')
+          ) &&
+          labels(n).some((label) => {
+            const match = /^Size: (\d+)$/.exec(label)
+            return match !== null && Number(match[1]) > 0
+          }) &&
+          labels(n).some((label) => label.startsWith('Uri: file://'))
+      )
+    )
+    // newer simulators report a camera and prompt; older ones have none.
+    // denying, like missing hardware, resolves canceled.
+    tap({ id: 'one-native-image-picker-camera' })
+    const cameraEnd = await wait(
+      'camera settles to canceled or a permission prompt',
+      (n) => status(n, 'Result', 'canceled') || has(n, 'Don’t Allow')
+    )
+    if (!status(cameraEnd, 'Result', 'canceled')) {
+      tap({ label: 'Don’t Allow' })
+      await wait('denied camera resolves canceled', (n) =>
+        status(n, 'Result', 'canceled')
       )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
