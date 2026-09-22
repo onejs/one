@@ -37,6 +37,9 @@ const suites = [
   'groups',
   'state',
   'safe-area',
+  'haptics',
+  'crypto',
+  'app-info',
   'popover',
   'accessibility',
   'media',
@@ -228,6 +231,18 @@ const safeAreaLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-safe-area-edges')) &&
   has(nodes, 'Insets: ')
+const hapticsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-haptics-selection')) &&
+  has(nodes, 'Module: ')
+const cryptoLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-crypto-regenerate')) &&
+  has(nodes, 'UUID1: ')
+const appInfoLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-app-info-refresh')) &&
+  has(nodes, 'Version: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -295,6 +310,9 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   groups: groupsLoaded,
   state: stateLoaded,
   'safe-area': safeAreaLoaded,
+  haptics: hapticsLoaded,
+  crypto: cryptoLoaded,
+  'app-info': appInfoLoaded,
   popover: popoverLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
@@ -318,6 +336,9 @@ const suiteHome: Record<Suite, string> = {
   groups: 'nav-one-native-groups',
   state: 'nav-one-native-state',
   'safe-area': 'nav-one-native-safe-area',
+  haptics: 'nav-one-native-haptics',
+  crypto: 'nav-one-native-crypto',
+  'app-info': 'nav-one-native-app-info',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -389,18 +410,43 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       `${name} timed out after ${config.timeout}ms${detail ? `; ${detail}` : ''}; snapshot: ${snapshotPath}`
     )
   }
-  const tap = (target: { id?: string; label?: string }) => {
-    if (target.id)
-      command(['ui-automation', 'tap', '--id', target.id], config.simulatorId)
-    else if (target.label)
-      command(['ui-automation', 'tap', '--label', target.label], config.simulatorId)
-    else throw new Error('A tap target is required.')
-  }
-  const point = (x: number, y: number) =>
-    command(
-      ['ui-automation', 'tap', '-x', String(Math.round(x)), '-y', String(Math.round(y))],
+  // the only tap path: touch down/up delivers on headless hosts, where the
+  // simulator tapAt call reports success without delivering anything.
+  const touch = (x: number, y: number) => {
+    const output = command(
+      [
+        'ui-automation',
+        'touch',
+        '-x',
+        String(Math.round(x)),
+        '-y',
+        String(Math.round(y)),
+        '--down',
+        '--up',
+      ],
       config.simulatorId
     )
+    // axe exits 0 with the dropped input connection buried in the details
+    // text; surface it as the failure instead of tapping into the void.
+    if (output.includes('could not establish simulator input'))
+      throw new Error(
+        `touch at (${Math.round(x)}, ${Math.round(y)}) failed: axe could not establish simulator input`
+      )
+    return output
+  }
+  const tap = (target: { id?: string; label?: string }) => {
+    if (!target.id && !target.label) throw new Error('A tap target is required.')
+    const nodes = snapshot(config.simulatorId)
+    const frame = target.id
+      ? id(nodes, target.id)?.frame
+      : nodes.find((node) => node.AXLabel === target.label)?.frame
+    if (!frame)
+      throw new Error(
+        `No accessibility element matched ${target.id ? `--id '${target.id}'` : `--label '${target.label}'`}.`
+      )
+    return touch(frame.x + frame.width / 2, frame.y + frame.height / 2)
+  }
+  const point = (x: number, y: number) => touch(x, y)
   // a field does not become first responder the moment the tap returns, the snapshot carries
   // no focus flag, and the attached hardware keyboard leaves no software keyboard to wait on.
   // firing the whole string blind drops the leading characters, and iOS then autocorrects what
@@ -2044,6 +2090,139 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
             insets && insets[0] === 0 && insets[2] === 34 && frame && frame[0] === 393
           ) && labels(n).includes('Initial: set')
         )
+      })
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'haptics') {
+    // presence: the native module resolved. tap-through: every verb crosses
+    // the bridge and records into Last. no-redbox comes from the shared wait,
+    // which throws on a RedBox before any predicate can pass. the Error: none
+    // wait is the console-error sweep: any js throw during the taps lands in
+    // the fixture's error label instead of passing silently.
+    const verbs = [
+      'selection',
+      'impact-light',
+      'impact-medium',
+      'impact-heavy',
+      'impact-soft',
+      'impact-rigid',
+      'notification-success',
+      'notification-warning',
+      'notification-error',
+    ]
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-haptics')
+    await wait('the haptics module is present', (n) =>
+      labels(n).includes('Module: available')
+    )
+    for (const verb of verbs) {
+      tap({ id: `one-native-haptics-${verb}` })
+      await wait(`tapping ${verb} reaches the native module`, (n) =>
+        labels(n).includes(`Last: ${verb}`)
+      )
+    }
+    await wait('no tap raised a js error', (n) => labels(n).includes('Error: none'))
+    screenshot('haptics-verbs.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`haptics recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-haptics')
+      await wait(`haptics recycle ${cycle}: the module is present again`, (n) =>
+        labels(n).includes('Module: available')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'app-info') {
+    // exact stamped values from the fixture manifest (9.9.9/4242), proving
+    // prebuild-to-runtime plumbing rather than template defaults. the
+    // refresh tap proves the screen is live; no-redbox rides in the shared
+    // wait, which throws on a RedBox before any predicate can pass.
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-app-info')
+    await wait('version matches the stamped manifest', (n) =>
+      labels(n).includes('Version: 9.9.9')
+    )
+    await wait('build matches the stamped manifest', (n) =>
+      labels(n).includes('Build: 4242')
+    )
+    await wait('application id matches the ios bundle id', (n) =>
+      labels(n).includes('ApplicationId: dev.vxrn.native.tests')
+    )
+    tap({ id: 'one-native-app-info-refresh' })
+    await wait('the screen answers taps', (n) => labels(n).includes('Taps: 1'))
+    screenshot('app-info-values.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`app-info recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-app-info')
+      await wait(`app-info recycle ${cycle}: stamped values return`, (n) =>
+        labels(n).includes('Version: 9.9.9') &&
+        labels(n).includes('Build: 4242') &&
+        labels(n).includes('ApplicationId: dev.vxrn.native.tests')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'crypto') {
+    // presence: the native module resolved. validity: two uuids off the
+    // device match rfc 4122 v4 and differ, and the getRandomValues fill is
+    // 16 bytes of hex. no-redbox comes from the shared wait, which throws
+    // on a RedBox before any predicate can pass, and the Error: none wait
+    // is the js-throw sweep: any crypto failure lands in the error label.
+    const uuidV4 =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
+    const hex32 = /^[0-9a-f]{32}$/
+    const valueOf = (nodes: Node[], prefix: string) =>
+      labels(nodes)
+        .find((label) => label.startsWith(prefix))
+        ?.slice(prefix.length)
+    const cryptoValid = (nodes: Node[]) => {
+      const first = valueOf(nodes, 'UUID1: ')
+      const second = valueOf(nodes, 'UUID2: ')
+      const random = valueOf(nodes, 'Random: ')
+      return Boolean(
+        first &&
+          second &&
+          random &&
+          uuidV4.test(first) &&
+          uuidV4.test(second) &&
+          first !== second &&
+          hex32.test(random)
+      )
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-crypto')
+    await wait('the crypto module is present', (n) =>
+      labels(n).includes('Module: available')
+    )
+    await wait('two distinct valid uuids render on device', cryptoValid)
+    await wait('no crypto call raised a js error', (n) =>
+      labels(n).includes('Error: none')
+    )
+    tap({ id: 'one-native-crypto-regenerate' })
+    await wait('regenerated uuids stay valid and distinct', cryptoValid)
+    await wait('regeneration raised no js error', (n) =>
+      labels(n).includes('Error: none')
+    )
+    screenshot('crypto-uuids.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`crypto recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-crypto')
+      await wait(`crypto recycle ${cycle}: uuids render again`, (n) => {
+        const valid = cryptoValid(n)
+        return valid && labels(n).includes('Error: none')
       })
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')

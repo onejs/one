@@ -9,6 +9,7 @@ const app = {
   imagePicker: { camera: 'Take profile photos.' },
   ios: {
     bundleId: 'dev.one.myapp',
+    buildNumber: '42',
     tablet: true,
     deploymentTarget: '17.0',
     screensGamma: true,
@@ -16,7 +17,7 @@ const app = {
     ccache: true,
     usesNonExemptEncryption: false,
   },
-  android: { applicationId: 'dev.one.myapp', minSdk: 28 },
+  android: { applicationId: 'dev.one.myapp', versionCode: 42, minSdk: 28 },
 } satisfies NativeAppManifest
 
 describe('native.app manifest', () => {
@@ -90,6 +91,13 @@ describe('native.app manifest', () => {
     ).toThrow(/applicationId/)
     expect(() =>
       validateNativeApp({
+        name: 'MyApp',
+        ios: app.ios,
+        android: { applicationId: '' },
+      } as any)
+    ).toThrow(/applicationId/)
+    expect(() =>
+      validateNativeApp({
         ...app,
         ios: { bundleId: 'dev.one.myapp', deploymentTarget: 'latest' },
       } as any)
@@ -97,6 +105,30 @@ describe('native.app manifest', () => {
     expect(() =>
       validateNativeApp({ ...app, android: { ...app.android, minSdk: 20 } } as any)
     ).toThrow(/minSdk/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: { bundleId: 'dev.one.myapp', buildNumber: '1 2' },
+      })
+    ).toThrow(/buildNumber/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: { bundleId: 'dev.one.myapp', buildNumber: '' },
+      })
+    ).toThrow(/buildNumber/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        android: { applicationId: 'dev.one.myapp', versionCode: 0 },
+      })
+    ).toThrow(/versionCode/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        android: { applicationId: 'dev.one.myapp', versionCode: 1.5 },
+      })
+    ).toThrow(/versionCode/)
   })
 
   test('platform scope skips the other platform requirement', () => {

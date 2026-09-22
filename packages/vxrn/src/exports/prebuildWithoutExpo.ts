@@ -91,6 +91,215 @@ function escapeXml(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
+// uiscene adoption for the xcode 27 sdk: an app built with sdk 27 must
+// declare a scene manifest or it fails to launch on ios 27 ("UIScene life
+// cycle is required for apps built with this SDK"). prebuild therefore
+// always renders the scene manifest, a SceneDelegate that owns the window
+// and the RN root, and a trimmed AppDelegate. no toggle: the scene path is
+// the only path, on every ios version prebuild supports.
+const SCENE_DELEGATE_FILE_REF_ID = '1A2B3C4D5E6F7A8B9C0D1E2F'
+const SCENE_DELEGATE_BUILD_FILE_ID = '2B3C4D5E6F7A8B9C0D1E2F1A'
+
+export function renderSceneDelegateSwift(appName: string): string {
+  return `import UIKit
+import React
+import React_RCTAppDelegate
+import ReactAppDependencyProvider
+
+// owns the window and the react native root. with a scene manifest the
+// system creates this delegate per foreground scene instead of asking the
+// app delegate for a window, which is what the xcode 27 sdk requires.
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+  var window: UIWindow?
+
+  var reactNativeDelegate: ReactNativeDelegate?
+  var reactNativeFactory: RCTReactNativeFactory?
+
+  func scene(
+    _ scene: UIScene,
+    willConnectTo session: UISceneSession,
+    options connectionOptions: UIScene.ConnectionOptions
+  ) {
+    guard let windowScene = scene as? UIWindowScene else { return }
+    let delegate = ReactNativeDelegate()
+    let factory = RCTReactNativeFactory(delegate: delegate)
+    delegate.dependencyProvider = RCTAppDependencyProvider()
+
+    reactNativeDelegate = delegate
+    reactNativeFactory = factory
+
+    let window = UIWindow(windowScene: windowScene)
+    self.window = window
+
+    // cold-start links arrive in connectionOptions under scenes, never in
+    // the app launchOptions, so they are translated into the launchOptions
+    // shape RCTLinkingManager.getInitialURL reads.
+    var launchOptions: [UIApplication.LaunchOptionsKey: Any] = [:]
+    if let url = connectionOptions.urlContexts.first?.url {
+      launchOptions[.url] = url
+    }
+    if let activity = connectionOptions.userActivities.first(where: {
+      $0.activityType == NSUserActivityTypeBrowsingWeb
+    }) {
+      launchOptions[.userActivityDictionary] = [
+        "UIApplicationLaunchOptionsUserActivityTypeKey": activity.activityType,
+        "UIApplicationLaunchOptionsUserActivityKey": activity,
+      ]
+    }
+
+    factory.startReactNative(
+      withModuleName: "${appName}",
+      in: window,
+      launchOptions: launchOptions
+    )
+  }
+
+  func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+    guard let url = URLContexts.first?.url else { return }
+    RCTLinkingManager.application(UIApplication.shared, open: url, options: [:])
+  }
+
+  func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+    RCTLinkingManager.application(
+      UIApplication.shared,
+      continue: userActivity,
+      restorationHandler: { _ in }
+    )
+  }
+}
+`
+}
+
+function insertAfterLine(haystack: string, anchor: string, insertion: string): string {
+  const anchorIndex = haystack.indexOf(anchor)
+  if (anchorIndex === -1) return haystack
+  const lineEnd = haystack.indexOf('\n', anchorIndex)
+  if (lineEnd === -1) return `${haystack}\n${insertion}`
+  return `${haystack.slice(0, lineEnd + 1)}${insertion}\n${haystack.slice(lineEnd + 1)}`
+}
+
+function patchIosInfoPlistSceneManifest(rendered: string): string {
+  const anchor = '\t<key>LSRequiresIPhoneOS</key>'
+  if (!rendered.includes(anchor)) {
+    throw new Error('[vxrn] prebuild template Info.plist lost its LSRequiresIPhoneOS anchor')
+  }
+  return rendered.replace(
+    anchor,
+    `\t<key>UIApplicationSceneManifest</key>
+\t<dict>
+\t\t<key>UIApplicationSupportsMultipleScenes</key>
+\t\t<false/>
+\t\t<key>UISceneConfigurations</key>
+\t\t<dict>
+\t\t\t<key>UIWindowSceneSessionRoleApplication</key>
+\t\t\t<array>
+\t\t\t\t<dict>
+\t\t\t\t\t<key>UISceneConfigurationName</key>
+\t\t\t\t\t<string>Default Configuration</string>
+\t\t\t\t\t<key>UISceneDelegateClassName</key>
+\t\t\t\t\t<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+\t\t\t\t</dict>
+\t\t\t</array>
+\t\t</dict>
+\t</dict>
+${anchor}`
+  )
+}
+
+function patchIosAppDelegateSceneLifecycle(rendered: string, appName: string): string {
+  const anchor = `@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+  var window: UIWindow?
+
+  var reactNativeDelegate: ReactNativeDelegate?
+  var reactNativeFactory: RCTReactNativeFactory?
+
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+  ) -> Bool {
+    let delegate = ReactNativeDelegate()
+    let factory = RCTReactNativeFactory(delegate: delegate)
+    delegate.dependencyProvider = RCTAppDependencyProvider()
+
+    reactNativeDelegate = delegate
+    reactNativeFactory = factory
+
+    window = UIWindow(frame: UIScreen.main.bounds)
+
+    factory.startReactNative(
+      withModuleName: "${appName}",
+      in: window,
+      launchOptions: launchOptions
+    )
+
+    return true
+  }
+}`
+  if (!rendered.includes(anchor)) {
+    throw new Error(
+      '[vxrn] prebuild template AppDelegate.swift changed shape: cannot move the RN root to the scene delegate'
+    )
+  }
+  return rendered.replace(
+    anchor,
+    `@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+  ) -> Bool {
+    true
+  }
+}`
+  )
+}
+
+function patchIosPbxprojSceneDelegate(rendered: string, appName: string): string {
+  const edits: Array<[string, string]> = [
+    [
+      '/* AppDelegate.swift in Sources */ = {isa = PBXBuildFile;',
+      `\t\t${SCENE_DELEGATE_BUILD_FILE_ID} /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ${SCENE_DELEGATE_FILE_REF_ID} /* SceneDelegate.swift */; };`,
+    ],
+    [
+      '/* AppDelegate.swift */ = {isa = PBXFileReference;',
+      `\t\t${SCENE_DELEGATE_FILE_REF_ID} /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = ${appName}/SceneDelegate.swift; sourceTree = "<group>"; };`,
+    ],
+    [
+      '/* AppDelegate.swift */,',
+      `\t\t\t\t${SCENE_DELEGATE_FILE_REF_ID} /* SceneDelegate.swift */,`,
+    ],
+    [
+      '/* AppDelegate.swift in Sources */,',
+      `\t\t\t\t${SCENE_DELEGATE_BUILD_FILE_ID} /* SceneDelegate.swift in Sources */,`,
+    ],
+  ]
+  let patched = rendered
+  for (const [anchor, insertion] of edits) {
+    const next = insertAfterLine(patched, anchor, insertion)
+    if (next === patched) {
+      throw new Error(
+        `[vxrn] prebuild template project.pbxproj lost its AppDelegate.swift anchor (${anchor})`
+      )
+    }
+    patched = next
+  }
+  return patched
+}
+
+function generateSceneDelegate(args: {
+  dest: string
+  platform: 'ios' | 'android'
+  app: NativeAppManifest
+}): void {
+  const { dest, platform, app } = args
+  if (platform !== 'ios') return
+  FSExtra.writeFileSync(
+    path.join(dest, app.name, 'SceneDelegate.swift'),
+    renderSceneDelegateSwift(app.name)
+  )
+}
+
 export interface RenderedPrebuildFile {
   destRelativePath: string
   content: string | null
@@ -419,6 +628,24 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         `TARGETED_DEVICE_FAMILY = "${app.ios?.tablet ? '1,2' : '1'}";`
       )
     }
+    // version stamping for One.AppInfo: without it generated projects keep
+    // the template defaults (1.0/1) forever. missing manifest fields keep
+    // those defaults; a store build must set version, ios.buildNumber, and
+    // android.versionCode.
+    if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {
+      if (app.version !== undefined) {
+        rendered = rendered.replace(
+          /MARKETING_VERSION = [^;]+;/g,
+          `MARKETING_VERSION = "${app.version}";`
+        )
+      }
+      if (app.ios?.buildNumber !== undefined) {
+        rendered = rendered.replace(
+          /CURRENT_PROJECT_VERSION = [^;]+;/g,
+          `CURRENT_PROJECT_VERSION = ${app.ios.buildNumber};`
+        )
+      }
+    }
     if (platform === 'ios' && relativePath.endsWith('/Info.plist')) {
       if (app.ios?.usesNonExemptEncryption !== undefined) {
         rendered = rendered.replace(
@@ -438,6 +665,10 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
           `\t<key>NSCameraUsageDescription</key>\n\t<string>${escapeXml(app.imagePicker.camera)}</string>\n${anchor}`
         )
       }
+      rendered = patchIosInfoPlistSceneManifest(rendered)
+    }
+    if (platform === 'ios' && relativePath.endsWith('/AppDelegate.swift')) {
+      rendered = patchIosAppDelegateSceneLifecycle(rendered, appName)
     }
     if (platform === 'ios' && app.ios?.deploymentTarget) {
       rendered = rendered
@@ -466,6 +697,7 @@ end`
     }
     if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {
       rendered = patchIosBundlePhase(rendered)
+      rendered = patchIosPbxprojSceneDelegate(rendered, appName)
     }
     if (platform === 'ios' && relativePath === 'Podfile') {
       if (app.ios?.ccache) rendered = `ENV['USE_CCACHE'] ||= '1'\n${rendered}`
@@ -495,6 +727,18 @@ end`
         !rendered.includes('[vxrn/one] ensure patches are applied')
       ) {
         throw new Error('[vxrn] failed to apply required Android Gradle patches')
+      }
+      if (app.version !== undefined) {
+        rendered = rendered.replace(
+          /versionName "[^"]*"/g,
+          `versionName "${app.version}"`
+        )
+      }
+      if (app.android?.versionCode !== undefined) {
+        rendered = rendered.replace(
+          /versionCode \d+/g,
+          `versionCode ${app.android.versionCode}`
+        )
       }
     }
     if (platform === 'android' && relativePath === 'settings.gradle') {
@@ -583,6 +827,7 @@ export const generateForPlatform = async (
 
   await generateAppIcons({ root, dest, platform, app })
   await generateSplashScreen({ root, dest, platform, app })
+  generateSceneDelegate({ dest, platform, app })
 }
 
 export interface NativeDependencyInventory {

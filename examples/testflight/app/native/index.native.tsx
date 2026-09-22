@@ -72,6 +72,44 @@ function NativeCapabilitiesScreen({
           <Text style={styles.colorLabel}>iOS systemBlue</Text>
         </View>
 
+        <Text style={styles.title}>One.UI haptics</Text>
+
+        <Pressable
+          accessibilityRole="button"
+          testID="testflight-haptics-selection"
+          style={styles.action}
+          onPress={() => {
+            One.UI.Haptics.selection()
+            recordAction('haptics-selection')
+          }}
+        >
+          <Text style={styles.actionText}>Selection tick</Text>
+        </Pressable>
+
+        <Pressable
+          accessibilityRole="button"
+          testID="testflight-haptics-impact"
+          style={styles.action}
+          onPress={() => {
+            One.UI.Haptics.impact('medium')
+            recordAction('haptics-impact')
+          }}
+        >
+          <Text style={styles.actionText}>Medium impact</Text>
+        </Pressable>
+
+        <Pressable
+          accessibilityRole="button"
+          testID="testflight-haptics-notification"
+          style={styles.action}
+          onPress={() => {
+            One.UI.Haptics.notification('success')
+            recordAction('haptics-notification')
+          }}
+        >
+          <Text style={styles.actionText}>Success notification</Text>
+        </Pressable>
+
         <One.iOS.ZoomTransitionSource identifier="testflight-native-capability">
           <Pressable
             accessibilityRole="button"
