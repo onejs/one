@@ -9,6 +9,15 @@ declare module 'one' {
       StaticRoutes:
         | `/`
         | `/_sitemap`
+        | `/bars-action-bar`
+        | `/bars-double-bar`
+        | `/bars-double-bar/`
+        | `/bars-double-bar/saved`
+        | `/bars-probe`
+        | `/bars-probe-control`
+        | `/bars-probe/main`
+        | `/bars-probe/main/`
+        | `/bars-probe/plain`
         | `/color-test`
         | `/menu-test`
         | `/one-native`
@@ -24,6 +33,7 @@ declare module 'one' {
         | `/one-native-crypto`
         | `/one-native-dialogs`
         | `/one-native-effects`
+        | `/one-native-fonts`
         | `/one-native-groups`
         | `/one-native-haptics`
         | `/one-native-host`

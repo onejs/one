@@ -7,6 +7,7 @@ import {
   AppInfo,
   Color,
   Compose,
+  Fonts,
   Haptics,
   ImagePicker,
   MenuAction,
@@ -22,6 +23,7 @@ import {
   ZoomTransitionEnabler,
   ZoomTransitionSource,
   type ColorType,
+  useFonts,
   useNativeState,
   useNetworkState,
 } from '@vxrn/native'
@@ -57,9 +59,11 @@ export type OneSafeArea = {
 }
 
 export type OneUI = typeof NativeUI & {
+  readonly Fonts: typeof Fonts
   readonly SafeArea: Readonly<OneSafeArea>
   readonly Haptics: typeof Haptics
   readonly TextInput: typeof TextInput
+  readonly useFonts: typeof useFonts
   readonly useNativeState: typeof useNativeState
 }
 
@@ -112,9 +116,11 @@ const SafeArea: Readonly<OneSafeArea> = Object.freeze({
 
 const UI: Readonly<OneUI> = Object.freeze({
   ...NativeUI,
+  Fonts,
   SafeArea,
   Haptics,
   TextInput,
+  useFonts,
   useNativeState,
 })
 

@@ -1,47 +1,34 @@
 import { MenuAction, ToolbarHost, ToolbarItem } from '@vxrn/native'
+import type { ReactNode } from 'react'
 
-import { NAVIGATOR_CONFIG } from '../../headless/children'
-import { PLATFORM } from '../../utils/platform'
 import {
-  TOOLBAR_KIND,
-  slotChildrenToBottomData,
-  type BottomToolbarItemData,
+  toolbarChildrenToBottomData,
+  type BottomToolbarButtonData,
+  type BottomToolbarMenuActionData,
   type BottomToolbarMenuData,
-  type StackToolbarBottomProps,
+  type BottomToolbarSpacerData,
+  type BottomToolbarSearchBarSlotData,
+  type BottomToolbarSubmenuData,
 } from './stackToolbarDescriptors'
 
-function BottomItemElement({ data }: { data: BottomToolbarItemData }) {
+function BottomButtonElement({ data }: { data: BottomToolbarButtonData }) {
   return (
     <ToolbarItem
       identifier={data.identifier}
       title={data.title}
       systemImageName={data.systemImageName}
+      xcassetName={data.xcassetName}
+      image={data.image}
+      imageRenderingMode={data.imageRenderingMode}
       tintColor={data.tintColor}
-      disabled={data.disabled}
+      barButtonItemStyle={data.barButtonItemStyle}
       sharesBackground={data.sharesBackground}
       hidesSharedBackground={data.hidesSharedBackground}
       hidden={data.hidden}
       selected={data.selected}
-      accessibilityLabel={data.accessibilityLabel}
-      accessibilityHint={data.accessibilityHint}
-      onSelected={data.handler}
-    />
-  )
-}
-
-function BottomMenuChild({ data }: { data: BottomToolbarItemData | BottomToolbarMenuData }) {
-  if (data.kind === 'menu') {
-    return <BottomMenuElement data={data} />
-  }
-  return (
-    <MenuAction
-      identifier={data.identifier}
-      title={data.title ?? data.accessibilityLabel ?? data.identifier}
-      icon={data.systemImageName}
       disabled={data.disabled}
-      destructive={data.destructive}
-      hidden={data.hidden}
-      isOn={data.selected}
+      badgeConfiguration={data.badgeConfiguration}
+      titleStyle={data.titleStyle}
       accessibilityLabel={data.accessibilityLabel}
       accessibilityHint={data.accessibilityHint}
       onSelected={data.handler}
@@ -49,18 +36,53 @@ function BottomMenuChild({ data }: { data: BottomToolbarItemData | BottomToolbar
   )
 }
 
-function BottomMenuElement({ data }: { data: BottomToolbarMenuData }) {
+function BottomMenuActionElement({ data }: { data: BottomToolbarMenuActionData }) {
   return (
     <MenuAction
       identifier={data.identifier}
       title={data.title}
-      label={data.label ?? data.title}
       icon={data.icon}
-      tintColor={data.tintColor}
+      xcassetName={data.xcassetName}
+      image={data.image}
+      imageRenderingMode={data.imageRenderingMode}
       disabled={data.disabled}
-      sharesBackground={data.sharesBackground}
-      hidesSharedBackground={data.hidesSharedBackground}
+      destructive={data.destructive}
       hidden={data.hidden}
+      isOn={data.isOn}
+      keepPresented={data.keepPresented}
+      discoverabilityLabel={data.discoverabilityLabel}
+      subtitle={data.subtitle}
+      accessibilityLabel={data.accessibilityLabel}
+      accessibilityHint={data.accessibilityHint}
+      onSelected={data.handler}
+    />
+  )
+}
+
+function BottomMenuChild({
+  data,
+}: {
+  data: BottomToolbarMenuActionData | BottomToolbarSubmenuData
+}) {
+  if (data.kind === 'submenu') {
+    return <BottomSubmenuElement data={data} />
+  }
+  return <BottomMenuActionElement data={data} />
+}
+
+function BottomSubmenuElement({ data }: { data: BottomToolbarSubmenuData }) {
+  return (
+    <MenuAction
+      identifier={data.identifier}
+      title={data.title}
+      icon={data.icon}
+      xcassetName={data.xcassetName}
+      image={data.image}
+      imageRenderingMode={data.imageRenderingMode}
+      destructive={data.destructive}
+      hidden={data.hidden}
+      displayInline={data.inline}
+      displayAsPalette={data.palette}
       accessibilityLabel={data.accessibilityLabel}
       accessibilityHint={data.accessibilityHint}
     >
@@ -71,28 +93,95 @@ function BottomMenuElement({ data }: { data: BottomToolbarMenuData }) {
   )
 }
 
-/**
- * In-screen bottom toolbar. Mount inside screen content so the toolbar host
- * sits under the screen view controller in the responder chain; the host
- * writes the controller toolbar items and drives animated visibility.
- * iOS only: there is no Android toolbar host, so this renders null elsewhere.
- */
-export function StackToolbarBottom({ children, hidden, animated = true }: StackToolbarBottomProps) {
-  // no Android toolbar host exists, so this is iOS only by contract.
-  if (PLATFORM !== 'ios') return null
-  const data = slotChildrenToBottomData(children)
-  if (!data.length) return null
+function BottomMenuElement({ data }: { data: BottomToolbarMenuData }) {
   return (
-    <ToolbarHost hidden={hidden} animated={animated}>
-      {data.map((entry) =>
-        entry.kind === 'menu' ? (
-          <BottomMenuElement key={entry.identifier} data={entry} />
-        ) : (
-          <BottomItemElement key={entry.identifier} data={entry} />
-        )
-      )}
-    </ToolbarHost>
+    <MenuAction
+      identifier={data.identifier}
+      title={data.title}
+      label={data.label}
+      icon={data.systemImageName}
+      xcassetName={data.xcassetName}
+      image={data.image}
+      imageRenderingMode={data.imageRenderingMode}
+      tintColor={data.tintColor}
+      barButtonItemStyle={data.barButtonItemStyle}
+      sharesBackground={data.sharesBackground}
+      hidesSharedBackground={data.hidesSharedBackground}
+      disabled={data.disabled}
+      destructive={data.destructive}
+      hidden={data.hidden}
+      displayInline={data.inline}
+      displayAsPalette={data.palette}
+      preferredElementSize={data.elementSize}
+      accessibilityLabel={data.accessibilityLabel}
+      accessibilityHint={data.accessibilityHint}
+    >
+      {data.children.map((child) => (
+        <BottomMenuChild key={child.identifier} data={child} />
+      ))}
+    </MenuAction>
   )
 }
 
-Object.assign(StackToolbarBottom, { [NAVIGATOR_CONFIG]: true, [TOOLBAR_KIND]: 'bottom' })
+function BottomSpacerElement({ data }: { data: BottomToolbarSpacerData }) {
+  return (
+    <ToolbarItem
+      identifier={data.identifier}
+      type={data.width === undefined ? 'fluidSpacer' : 'fixedSpacer'}
+      width={data.width}
+      sharesBackground={data.sharesBackground}
+      hidden={data.hidden}
+    />
+  )
+}
+
+function BottomSearchBarSlotElement({ data }: { data: BottomToolbarSearchBarSlotData }) {
+  return (
+    <ToolbarItem
+      identifier={data.identifier}
+      type="searchBar"
+      sharesBackground={data.sharesBackground}
+      hidesSharedBackground={data.hidesSharedBackground}
+      hidden={data.hidden}
+    />
+  )
+}
+
+export interface BottomToolbarHostProps {
+  children?: ReactNode
+  hidden?: boolean
+  animated?: boolean
+}
+
+/**
+ * In-screen bottom toolbar, rendered by Stack.Toolbar with bottom placement.
+ * Mounts inside screen content so the host sits under the screen view
+ * controller; the host writes the controller toolbar items. iOS only.
+ */
+export function BottomToolbarHost({
+  children,
+  hidden,
+  animated = true,
+}: BottomToolbarHostProps) {
+  const data = toolbarChildrenToBottomData(children)
+  if (!data.length) return null
+  return (
+    <ToolbarHost hidden={hidden} animated={animated}>
+      {data.map((entry) => {
+        switch (entry.kind) {
+          case 'button':
+            return <BottomButtonElement key={entry.identifier} data={entry} />
+          case 'menu':
+            return <BottomMenuElement key={entry.identifier} data={entry} />
+          case 'spacer':
+            return <BottomSpacerElement key={entry.identifier} data={entry} />
+          case 'searchBar':
+            return <BottomSearchBarSlotElement key={entry.identifier} data={entry} />
+          default:
+            // actions and submenus only occur nested inside menus.
+            return null
+        }
+      })}
+    </ToolbarHost>
+  )
+}

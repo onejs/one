@@ -7,6 +7,14 @@ const testScreens = [
   { href: '/toolbar-test', label: 'Toolbar', testID: 'nav-toolbar-test' },
   { href: '/menu-test', label: 'Menu Actions', testID: 'nav-menu-test' },
   { href: '/split-view-test', label: 'Split View', testID: 'nav-split-view-test' },
+  { href: '/bars-action-bar', label: 'Bars Action Bar', testID: 'nav-bars-action-bar' },
+  { href: '/bars-double-bar', label: 'Bars Double Bar', testID: 'nav-bars-double-bar' },
+  { href: '/bars-probe/main', label: 'Bars Button Probe', testID: 'nav-bars-probe' },
+  {
+    href: '/bars-probe-control',
+    label: 'Bars Probe Control',
+    testID: 'nav-bars-probe-control',
+  },
   {
     href: '/one-native-controls',
     label: 'One Native Controls',
@@ -86,6 +94,11 @@ const testScreens = [
     href: '/one-native-safe-area',
     label: 'One Native Safe Area',
     testID: 'nav-one-native-safe-area',
+  },
+  {
+    href: '/one-native-fonts',
+    label: 'One Native Fonts',
+    testID: 'nav-one-native-fonts',
   },
   {
     href: '/one-native-haptics',

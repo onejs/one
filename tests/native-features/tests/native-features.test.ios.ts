@@ -366,6 +366,133 @@ describe('@vxrn/native integration tests', () => {
     })
   })
 
+  // -- bars action bar (track A): WRITTEN, interaction legs not RAN (static screenshots proven on iOS 27 sim) --
+
+  describe('Bars Action Bar', () => {
+    test('action bar renders clustered toolbar with status', sharedTestOptions, async () => {
+      await navigateTo(driver, '/bars-action-bar')
+      const title = await waitForElement(driver, 'bars-action-title', {
+        timeout: 30_000,
+      })
+      expect(await title.getText()).toBe('Action Bar')
+
+      const lastAction = await waitForElement(driver, 'bars-action-last-action')
+      expect(await lastAction.getText()).toBe('none')
+
+      await captureScreenshot(driver, 'bars-action-initial')
+    })
+
+    test('each cluster button reports its onPress', sharedTestOptions, async () => {
+      const buttons: [string, string][] = [
+        ['Save item', 'save'],
+        ['Tag item', 'tag'],
+        ['Share item', 'share'],
+      ]
+      for (const [label, action] of buttons) {
+        const button = await waitForElement(driver, label)
+        await button.click()
+        const lastAction = await waitForElement(driver, 'bars-action-last-action')
+        expect(await lastAction.getText()).toBe(action)
+      }
+
+      const actionCount = await waitForElement(driver, 'bars-action-count')
+      expect(await actionCount.getText()).toBe('3')
+
+      await captureScreenshot(driver, 'bars-action-pressed')
+    })
+
+    test('spacer toggle collapses the clusters', sharedTestOptions, async () => {
+      const toggle = await waitForElement(driver, 'bars-action-spacer-toggle')
+      await toggle.click()
+
+      const state = await waitForElement(driver, 'bars-action-spacer-state')
+      expect(await state.getText()).toBe('spacer-off')
+
+      await captureScreenshot(driver, 'bars-action-no-spacer')
+    })
+  })
+
+  // -- bars double bar (track B): WRITTEN, interaction legs not RAN (static screenshots proven on iOS 27 sim) --
+
+  describe('Bars Double Bar', () => {
+    test(
+      'accessory renders above the tab bar with regular placement',
+      sharedTestOptions,
+      async () => {
+        await navigateTo(driver, '/bars-double-bar')
+        const title = await waitForElement(driver, 'bars-double-title', {
+          timeout: 30_000,
+        })
+        expect(await title.getText()).toBe('Double Bar')
+
+        const placement = await waitForElement(
+          driver,
+          'bars-double-accessory-placement-regular'
+        )
+        expect(await placement.getText()).toBe('regular')
+
+        await captureScreenshot(driver, 'bars-double-rest')
+      }
+    )
+
+    test('tab bar minimizes on scroll with inline accessory', sharedTestOptions, async () => {
+      for (let index = 0; index < 4; index++) {
+        await driver.execute('mobile: scroll', { direction: 'down' })
+      }
+
+      const placement = await waitForElement(
+        driver,
+        'bars-double-accessory-placement-inline',
+        { timeout: 10_000 }
+      )
+      expect(await placement.getText()).toBe('inline')
+
+      await captureScreenshot(driver, 'bars-double-minimized')
+
+      for (let index = 0; index < 4; index++) {
+        await driver.execute('mobile: scroll', { direction: 'up' })
+      }
+    })
+  })
+
+  // -- bars button probe (track C): WRITTEN, interaction legs not RAN (static screenshots proven on iOS 27 sim) --
+
+  describe('Bars Button Probe', () => {
+    test('probe toolbar reads above the tab bar', sharedTestOptions, async () => {
+      await navigateTo(driver, '/bars-probe/main')
+      const title = await waitForElement(driver, 'bars-probe-title', {
+        timeout: 30_000,
+      })
+      expect(await title.getText()).toBe('Button Probe')
+
+      const action = await waitForElement(driver, 'Probe action')
+      await action.click()
+
+      const lastAction = await waitForElement(driver, 'bars-probe-last-action')
+      expect(await lastAction.getText()).toBe('probe')
+
+      await captureScreenshot(driver, 'bars-probe-in-tab')
+    })
+
+    test('probe spacer toggle and control route', sharedTestOptions, async () => {
+      const toggle = await waitForElement(driver, 'bars-probe-spacer-toggle')
+      await toggle.click()
+
+      const state = await waitForElement(driver, 'bars-probe-spacer-state')
+      expect(await state.getText()).toBe('spacer-off')
+
+      await captureScreenshot(driver, 'bars-probe-no-spacer')
+
+      await navigateTo(driver, '/bars-probe-control')
+      const controlTitle = await waitForElement(driver, 'bars-probe-control-title', {
+        timeout: 30_000,
+      })
+      expect(await controlTitle.getText()).toBe('Probe Control')
+
+      await captureScreenshot(driver, 'bars-probe-control')
+    })
+  })
+
   // -- menu actions --
 
   describe('Menu Actions', () => {
