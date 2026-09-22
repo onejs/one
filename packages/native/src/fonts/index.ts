@@ -35,7 +35,15 @@ function isLoaded(name: string): boolean {
   if (typeof document === 'undefined') {
     return false
   }
-  return document.fonts.check(`16px "${name}"`)
+  // document.fonts.check answers true for unknown families, so read the
+  // set directly: the name counts only when a face finished loading.
+  let found = false
+  document.fonts.forEach((face) => {
+    if (face.family === name && face.status === 'loaded') {
+      found = true
+    }
+  })
+  return found
 }
 
 export const Fonts: FontsApi = {
@@ -44,12 +52,18 @@ export const Fonts: FontsApi = {
 }
 
 export function useFonts(fonts: FontMap): UseFontsResult {
-  const [loaded, setLoaded] = useState(false)
+  // seeded from the platform so a map that is already usable never
+  // flashes unloaded. the effect runs once on mount, like expo-font: a
+  // literal map is a new object every render, so [fonts] would reload
+  // forever.
+  const [loaded, setLoaded] = useState(() => Object.keys(fonts).every(isLoaded))
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
+    if (loaded) {
+      return
+    }
     let cancelled = false
-    setLoaded(false)
     setError(null)
     load(fonts).then(
       () => {
@@ -66,7 +80,8 @@ export function useFonts(fonts: FontMap): UseFontsResult {
     return () => {
       cancelled = true
     }
-  }, [fonts])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return [loaded, error]
 }

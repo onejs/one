@@ -1,4 +1,7 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { act, createElement } from 'react'
+import TestRenderer from 'react-test-renderer'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import type { FontMap, UseFontsResult } from '../src/fonts/types'
 
 const { mockGet, mockResolveAssetSource, mockLoad, mockIsLoaded } = vi.hoisted(() => ({
   mockGet: vi.fn(),
@@ -87,5 +90,92 @@ describe('Fonts.isLoaded', () => {
     const { Fonts } = await loadEntry()
 
     expect(Fonts.isLoaded('Body')).toBe(false)
+  })
+})
+
+describe('web Fonts.isLoaded', () => {
+  async function loadWebEntry() {
+    return import('../src/fonts/index')
+  }
+
+  function stubDocumentFonts(faces: { family: string; status: string }[]) {
+    ;(globalThis as Record<string, unknown>).document = {
+      fonts: { forEach: (cb: (face: unknown) => void) => faces.forEach(cb) },
+    }
+  }
+
+  afterEach(() => {
+    delete (globalThis as Record<string, unknown>).document
+  })
+
+  it('is false with no document', async () => {
+    const { Fonts } = await loadWebEntry()
+
+    expect(Fonts.isLoaded('Body')).toBe(false)
+  })
+
+  it('is true only for a face with the exact family and loaded status', async () => {
+    stubDocumentFonts([
+      { family: 'Body', status: 'loaded' },
+      { family: 'Head', status: 'loading' },
+    ])
+    const { Fonts } = await loadWebEntry()
+
+    expect(Fonts.isLoaded('Body')).toBe(true)
+    expect(Fonts.isLoaded('Head')).toBe(false)
+    expect(Fonts.isLoaded('Nope')).toBe(false)
+  })
+})
+
+describe('useFonts', () => {
+  function Probe({
+    fonts,
+    hook,
+    seen,
+  }: {
+    fonts: FontMap
+    hook: (fonts: FontMap) => UseFontsResult
+    seen: UseFontsResult[]
+  }) {
+    const result = hook(fonts)
+    seen.push(result)
+    return null
+  }
+
+  it('seeds loaded from the platform without calling load', async () => {
+    mockGet.mockReturnValue({ load: mockLoad, isLoaded: mockIsLoaded })
+    mockIsLoaded.mockReturnValue(true)
+    const { useFonts } = await loadEntry()
+    const seen: UseFontsResult[] = []
+
+    await act(async () => {
+      TestRenderer.create(createElement(Probe, { fonts: { Body: 'file:///b.ttf' }, hook: useFonts, seen }))
+    })
+
+    expect(seen[0]).toEqual([true, null])
+    expect(mockLoad).not.toHaveBeenCalled()
+  })
+
+  it('loads once across rerenders with a fresh literal', async () => {
+    mockGet.mockReturnValue({ load: mockLoad, isLoaded: mockIsLoaded })
+    mockIsLoaded.mockReturnValue(false)
+    mockLoad.mockResolvedValue(undefined)
+    const { useFonts } = await loadEntry()
+    const seen: UseFontsResult[] = []
+    let renderer: TestRenderer.ReactTestRenderer | undefined
+
+    await act(async () => {
+      renderer = TestRenderer.create(
+        createElement(Probe, { fonts: { Body: 'file:///b.ttf' }, hook: useFonts, seen })
+      )
+    })
+    await act(async () => {
+      renderer!.update(
+        createElement(Probe, { fonts: { Body: 'file:///b.ttf' }, hook: useFonts, seen })
+      )
+    })
+
+    expect(mockLoad).toHaveBeenCalledTimes(1)
+    expect(seen[seen.length - 1]).toEqual([true, null])
   })
 })

@@ -51,12 +51,18 @@ export const Fonts: FontsApi = {
 }
 
 export function useFonts(fonts: FontMap): UseFontsResult {
-  const [loaded, setLoaded] = useState(false)
+  // seeded from the platform so a map that is already usable never
+  // flashes unloaded. the effect runs once on mount, like expo-font: a
+  // literal map is a new object every render, so [fonts] would reload
+  // forever.
+  const [loaded, setLoaded] = useState(() => Object.keys(fonts).every(isLoaded))
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
+    if (loaded) {
+      return
+    }
     let cancelled = false
-    setLoaded(false)
     setError(null)
     load(fonts).then(
       () => {
@@ -73,7 +79,8 @@ export function useFonts(fonts: FontMap): UseFontsResult {
     return () => {
       cancelled = true
     }
-  }, [fonts])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return [loaded, error]
 }
