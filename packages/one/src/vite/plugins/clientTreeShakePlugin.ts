@@ -32,7 +32,10 @@ export const clientTreeShakePlugin = (opts?: {
         if (runtime === 'vite' && this.environment?.name === 'ssr') {
           return
         }
-        if (!/\.(js|jsx|ts|tsx)/.test(extname(id))) {
+        // anchored: unanchored, `.json` matches the `js` alternative and a JSON
+        // module reaches the JS parser below, where a large enough one is
+        // certain to contain `loader` somewhere and fail the prod build.
+        if (!/\.(js|jsx|ts|tsx)$/.test(extname(id))) {
           return
         }
         if (/node_modules/.test(id)) {
