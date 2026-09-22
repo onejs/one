@@ -6,16 +6,18 @@ import UIKit
 final class OneNativeEnvironmentModel: ObservableObject {
   @Published var colorScheme = ""
   @Published var dynamicTypeSize = ""
+  @Published var controlSize = ""
   @Published var locale = ""
   @Published var tint: UIColor?
   @Published var isEnabled = ""
 
   func configure(
-    colorScheme: String, dynamicTypeSize: String, locale: String, tint: UIColor?,
-    isEnabled: String
+    colorScheme: String, dynamicTypeSize: String, controlSize: String, locale: String,
+    tint: UIColor?, isEnabled: String
   ) {
     if self.colorScheme != colorScheme { self.colorScheme = colorScheme }
     if self.dynamicTypeSize != dynamicTypeSize { self.dynamicTypeSize = dynamicTypeSize }
+    if self.controlSize != controlSize { self.controlSize = controlSize }
     if self.locale != locale { self.locale = locale }
     if self.tint != tint { self.tint = tint }
     if self.isEnabled != isEnabled { self.isEnabled = isEnabled }
@@ -24,6 +26,7 @@ final class OneNativeEnvironmentModel: ObservableObject {
   func reset() {
     colorScheme = ""
     dynamicTypeSize = ""
+    controlSize = ""
     locale = ""
     tint = nil
     isEnabled = ""
@@ -38,6 +41,7 @@ struct OneNativeEnvironment<Content: View>: View {
     content
       .oneNativeColorScheme(model.colorScheme)
       .oneNativeDynamicTypeSize(model.dynamicTypeSize)
+      .oneNativeControlSize(model.controlSize)
       .oneNativeLocale(model.locale)
       .oneNativeEnvironmentTint(model.tint)
       .oneNativeIsEnabled(model.isEnabled)
@@ -53,6 +57,11 @@ extension View {
   @ViewBuilder func oneNativeDynamicTypeSize(_ value: String) -> some View {
     if value.isEmpty { self }
     else { self.environment(\.dynamicTypeSize, OneNativeGenerated.dynamicTypeSize(value)) }
+  }
+
+  @ViewBuilder func oneNativeControlSize(_ value: String) -> some View {
+    if value.isEmpty { self }
+    else { self.environment(\.controlSize, OneNativeGenerated.controlSize(value)) }
   }
 
   @ViewBuilder func oneNativeLocale(_ value: String) -> some View {

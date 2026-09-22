@@ -33,3 +33,28 @@ describe('button subtitle', () => {
     })
   })
 })
+
+describe('button children', () => {
+  it('takes composed children as the label view', () => {
+    expect(component('Button').slots).toEqual([
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ])
+  })
+
+  it('keeps the press action and the measured layout', () => {
+    expect(component('Button')).toMatchObject({
+      actions: [{ publicProp: 'onPress', event: 'onNativeButtonPress' }],
+      layout: { kind: 'measured' },
+      interfaceOnly: true,
+    })
+  })
+
+  it('leaves Text text-only', () => {
+    expect(component('Text').slots).toEqual([])
+  })
+})

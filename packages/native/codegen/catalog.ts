@@ -227,6 +227,7 @@ export const enumTypes = [
   'PresentationContentInteraction',
   'ColorScheme',
   'DynamicTypeSize',
+  'ControlSize',
   'SymbolRenderingMode',
   'SymbolVariants',
   'ImageScale',

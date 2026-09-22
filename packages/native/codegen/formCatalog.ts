@@ -6,6 +6,7 @@ export const formControls: Control[] = [
     value: { type: 'boolean', prop: 'isOn', event: 'onIsOnChange', initial: false },
     fields: {
       ...commonFields,
+      systemImage: { type: 'string', default: '' },
       toggleStyle: { type: 'string', default: 'automatic', enum: 'ToggleStyle' },
     },
     constructors: [
@@ -16,28 +17,36 @@ export const formControls: Control[] = [
           { label: 'label', type: '() -> Label' },
         ],
       },
-    ],
-    leaf: {
-      constructor: {
+      {
         type: 'Toggle',
         parameters: [
+          { label: '_', type: 'SwiftUICore.LocalizedStringKey' },
+          { label: 'systemImage', type: 'Swift.String' },
           { label: 'isOn', type: 'SwiftUICore.Binding<Swift.Bool>' },
-          { label: 'label', type: '() -> Label' },
         ],
       },
-      args: [
-        { label: 'isOn', binding: 'controlled' },
-        { label: 'label', text: 'label' },
-      ],
-    },
-    swift: `Toggle(isOn: Binding(
-        get: { model.controlled.value },
-        set: { value in model.change(value) }
-      )) {
-        Text(model.label)
+    ],
+    // a systemImage takes the SDK's Toggle(_:systemImage:isOn:) instead of the label
+    // closure, so the body branches and the leaf recipe (one constructor) no longer
+    // applies. an empty image keeps the text-only initializer byte for byte.
+    swift: `Group {
+        if model.systemImage.isEmpty {
+          Toggle(isOn: Binding(
+            get: { model.controlled.value },
+            set: { value in model.change(value) }
+          )) {
+            Text(model.label)
+          }
+        } else {
+          Toggle(LocalizedStringKey(model.label), systemImage: model.systemImage, isOn: Binding(
+            get: { model.controlled.value },
+            set: { value in model.change(value) }
+          ))
+        }
       }
       .oneNativeToggleStyle(model.toggleStyle)`,
-    validate: `  if (typeof isOn !== 'boolean') throw new Error('Toggle isOn must be a boolean')`,
+    validate: `  if (typeof isOn !== 'boolean') throw new Error('Toggle isOn must be a boolean')
+  if (typeof systemImage !== 'string') throw new Error('Toggle systemImage must be a string')`,
   },
   {
     name: 'Slider',

@@ -46,6 +46,7 @@ interface NativeProps extends ViewProps {
   revision: Int32
   label: string
   disabled: boolean
+  systemImage: string
   toggleStyle: string
   swiftStyle?: OneNativeStyleNative
   onNativeToggleValueChange?: DirectEventHandler<

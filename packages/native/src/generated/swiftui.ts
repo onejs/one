@@ -73,6 +73,7 @@ export type DynamicTypeSize =
   | 'accessibility3'
   | 'accessibility4'
   | 'accessibility5'
+export type ControlSize = 'mini' | 'small' | 'regular' | 'large' | 'extraLarge'
 export type SymbolRenderingMode = 'monochrome' | 'multicolor' | 'hierarchical' | 'palette'
 export type SymbolVariants = 'none' | 'circle' | 'square' | 'rectangle' | 'fill' | 'slash'
 export type ImageScale = 'small' | 'medium' | 'large'
@@ -234,6 +235,13 @@ export const swiftUIValues = {
     accessibility3: 15,
     accessibility4: 15,
     accessibility5: 15,
+  },
+  ControlSize: {
+    mini: 15,
+    small: 15,
+    regular: 15,
+    large: 15,
+    extraLarge: 17,
   },
   SymbolRenderingMode: {
     monochrome: 15,
