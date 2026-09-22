@@ -44,6 +44,7 @@ interface NativeProps extends ViewProps {
         revision: Int32;
     }>>;
     onNativeFileImporterCompletion?: DirectEventHandler<Readonly<{
+        type: string;
         url: string;
         index: Double;
         count: Double;
