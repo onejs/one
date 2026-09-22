@@ -30,6 +30,9 @@ android {
         externalNativeBuild {
             cmake {
                 arguments "-DANDROID_STL=c++_shared"
+                // the prefab dependencies (worklets) build only these abis,
+                // so building more would link against nothing.
+                abiFilters(*reactNativeArchitectures())
             }
         }
     }
@@ -65,6 +68,14 @@ def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
 
+def reactNativeArchitectures() {
+    def value = project.findProperty("reactNativeArchitectures")
+    def parsed = value?.toString()?.split(",")?.collect { it.trim() }?.findAll { !it.isEmpty() }
+    return (parsed == null || parsed.isEmpty()) ?
+        ["armeabi-v7a", "x86", "x86_64", "arm64-v8a"] :
+        parsed
+}
+
 repositories {
     google()
     mavenCentral()
@@ -76,7 +87,10 @@ def kotlinVersion = safeExtGet("kotlinVersion", "2.1.20")
 
 dependencies {
     implementation "com.facebook.react:react-android"
+    implementation "androidx.browser:browser:1.8.0"
     implementation "com.google.android.material:material:1.13.0"
+    implementation "androidx.activity:activity:1.9.3"
+    implementation "androidx.core:core:1.13.1"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     implementation "androidx.compose.ui:ui:$composeUiVersion"
     implementation "androidx.compose.foundation:foundation:$composeUiVersion"

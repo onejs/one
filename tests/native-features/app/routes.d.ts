@@ -16,16 +16,23 @@ declare module 'one' {
         | `/one-native-android`
         | `/one-native-android-inputs`
         | `/one-native-apple-file`
+        | `/one-native-browser`
+        | `/one-native-clipboard`
+        | `/one-native-app-info`
         | `/one-native-containers`
         | `/one-native-controls`
+        | `/one-native-crypto`
         | `/one-native-dialogs`
         | `/one-native-effects`
         | `/one-native-groups`
+        | `/one-native-haptics`
         | `/one-native-host`
+        | `/one-native-image-picker`
         | `/one-native-leaves`
         | `/one-native-lists`
         | `/one-native-map`
         | `/one-native-media`
+        | `/one-native-network`
         | `/one-native-popover`
         | `/one-native-safe-area`
         | `/one-native-sheet`

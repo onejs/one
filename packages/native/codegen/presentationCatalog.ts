@@ -337,6 +337,8 @@ private struct FileImporterSurface: View {
       ) { result in
         switch result {
         case .success(let urls):
+          // backing out routes to onCancellation, never here, so an empty
+          // success cannot arrive; the guard only satisfies the type.
           guard !urls.isEmpty else { return }
           let count = urls.count
           DispatchQueue.global(qos: .utility).async {

@@ -116,13 +116,12 @@ describe('packed-artifact closure oracle', () => {
         )
       }
     }
-    const vxrnPkg = JSON.parse(
-      readFileSync(
-        join(unpack(packToDir(vxrnDir, tmp), join(tmp, 'vxrn')), 'package.json'),
-        'utf8'
-      )
-    )
+    const vxrnExtracted = unpack(packToDir(vxrnDir, tmp), join(tmp, 'vxrn'))
+    const vxrnPkg = JSON.parse(readFileSync(join(vxrnExtracted, 'package.json'), 'utf8'))
     expect(auditUnpackedManifest(vxrnPkg)).toEqual(KNOWN_VXRN_BLOCKERS)
+    expect(vxrnPkg.exports['./expo-plugin']).toBe('./expo-plugin.cjs')
+    expect(existsSync(join(vxrnExtracted, 'expo-plugin.cjs'))).toBe(true)
+    expect(existsSync(join(vxrnExtracted, 'native-project-patches.cjs'))).toBe(true)
     const vitePluginMetroPkg = JSON.parse(
       readFileSync(
         join(
@@ -255,11 +254,10 @@ console.log('one/native ok ' + url);
     )
     writeFileSync(
       join(appDir, 'babel.config.cjs'),
-      `module.exports = {
-  presets: [
-    '@react-native/babel-preset',
-    ['one/babel-preset', { projectRoot: __dirname }],
-  ],
+      `const oneBabelPreset = require('one/babel-preset')
+const preset = oneBabelPreset.default || oneBabelPreset
+module.exports = function (api) {
+  return preset(api, { projectRoot: __dirname })
 }\n`
     )
     writeFileSync(
