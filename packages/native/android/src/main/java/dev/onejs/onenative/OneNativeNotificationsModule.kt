@@ -77,6 +77,7 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
     private val activityListener =
         object : BaseActivityEventListener() {
             override fun onNewIntent(intent: Intent) {
+                reactApplicationContext.currentActivity?.intent = intent
                 harvestTap(intent)
             }
         }
@@ -1078,9 +1079,14 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
                         if (highPriority) NotificationCompat.PRIORITY_HIGH
                         else NotificationCompat.PRIORITY_DEFAULT
                     )
-            if (launch != null) {
-                val target = Intent(launch)
-                target.action = ACTION_TAP
+            val component = launch?.component
+            if (component != null) {
+                val target = Intent(ACTION_TAP)
+                target.component = component
+                target.flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                        Intent.FLAG_ACTIVITY_SINGLE_TOP
                 target.putExtra(EXTRA_TAP, true)
                 target.putExtra(EXTRA_IDENTIFIER, identifier)
                 target.putExtra(EXTRA_TITLE, title)
@@ -1090,7 +1096,6 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
                 target.putExtra(EXTRA_SOUND, sound)
                 if (badge != null) target.putExtra(EXTRA_BADGE, badge)
                 target.putExtra(EXTRA_TRIGGER, triggerJson)
-                target.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 builder.setContentIntent(
                     PendingIntent.getActivity(
                         context,

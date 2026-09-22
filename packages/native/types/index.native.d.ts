@@ -4,7 +4,6 @@ import { Page, Pager } from './Pager.native';
 import { Popover } from './Popover.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
 import { Tab, Tabs } from './Tabs.native';
-import { Compose } from './compose';
 import * as UI from './effects';
 export * from './extras';
 export declare const Swift: {
@@ -73,7 +72,20 @@ export declare const Swift: {
     Spacer: typeof Spacer;
     Slot: typeof Slot;
 };
-export { Compose };
+export declare const Compose: {
+    Column: ({ children, horizontalAlignment, verticalArrangement, spacing, ...props }: import("./composeTypes").ComposeColumnProps) => import("react/jsx-runtime").JSX.Element;
+    Row: ({ children, verticalAlignment, horizontalArrangement, spacing, ...props }: import("./composeTypes").ComposeRowProps) => import("react/jsx-runtime").JSX.Element;
+    Box: ({ children, contentAlignment, ...props }: import("./composeTypes").ComposeBoxProps) => import("react/jsx-runtime").JSX.Element;
+    Text: ({ text, fontSize, fontWeight, textAlign, maxLines, ...props }: import("./composeTypes").ComposeTextProps) => import("react/jsx-runtime").JSX.Element;
+    Icon: (props: import("./composeTypes").ComposeIconProps) => import("react/jsx-runtime").JSX.Element;
+    Button: ({ label, disabled, variant, tone, icon, iconFilled, onPress, ...props }: import("./composeTypes").ComposeButtonProps) => import("react/jsx-runtime").JSX.Element;
+    Switch: ({ isOn, disabled, label, onIsOnChange, revision, ...props }: import("./composeTypes").ComposeSwitchProps) => import("react/jsx-runtime").JSX.Element;
+    TextField: ({ text, onTextChange, revision, label, placeholder, disabled, variant, keyboardType, secureText, focused, focusRevision, onFocusChange, imeAction, onSubmit, maxLength, multiline, capitalization, autoCorrect, textAlign, ...props }: import("./composeTypes").ComposeTextFieldProps) => import("react/jsx-runtime").JSX.Element;
+    Slider: ({ value, onValueChange, revision, minimumValue, maximumValue, step, disabled, ...props }: import("./composeTypes").ComposeSliderProps) => import("react/jsx-runtime").JSX.Element;
+    AlertDialog: ({ visible, title, message, confirmLabel, dismissLabel, onConfirm, onDismiss, ...props }: import("./composeTypes").ComposeAlertDialogProps) => import("react/jsx-runtime").JSX.Element;
+    Dialog: ({ children, visible, onDismiss, ...props }: import("./composeTypes").ComposeDialogProps) => import("react/jsx-runtime").JSX.Element;
+    ProgressIndicator: ({ variant, progress, ...props }: import("./composeTypes").ComposeProgressIndicatorProps) => import("react/jsx-runtime").JSX.Element;
+};
 export { Notifications } from './notifications';
 export { useNativeState, type NativeState } from './nativeState';
 export { TextInput } from './universal/TextInput/index';
