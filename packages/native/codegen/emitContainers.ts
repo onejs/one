@@ -200,7 +200,8 @@ export function emitContainers(header: string, outputs: Map<string, string>) {
     // prop; every other container styles through its children or not at all.
     const styled = 'swiftStyle' in component && component.swiftStyle === true
     const reactNativeTypes = [
-      ...(props.some(({ type }) => type === 'ColorValue') || styled ? ['ColorValue'] : []),
+      ...(props.some(({ type }) => type === 'ColorValue') ? ['ColorValue'] : []),
+      ...(styled ? ['ProcessedColorValue'] : []),
       'ViewProps',
     ]
     const codegenTypes = [
@@ -215,7 +216,7 @@ export function emitContainers(header: string, outputs: Map<string, string>) {
       header +
         `import type { ${reactNativeTypes.join(', ')} } from 'react-native'
 ${codegenTypes.length ? `import type { ${codegenTypes.join(', ')} } from 'react-native/Libraries/Types/CodegenTypes'\n` : ''}import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
-${styled ? `type OneNativeStyleNative = Readonly<{\n${styleFields.map((field) => `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'boolean' ? 'boolean' : field.kind === 'color' ? 'ColorValue' : 'string'}`).join('\n')}\n}>\n` : ''}interface NativeProps extends ViewProps {
+${styled ? `type OneNativeStyleNative = Readonly<{\n${styleFields.map((field) => `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'boolean' ? 'boolean' : field.kind === 'color' ? 'ProcessedColorValue' : 'string'}`).join('\n')}\n}>\n` : ''}interface NativeProps extends ViewProps {
 ${props.map(({ key, optional, type }) => `  ${key}${optional ? '?' : ''}: ${type}`).join('\n')}
 ${styled ? '  swiftStyle?: OneNativeStyleNative\n' : ''}${eventEntries.map(([name, fields]) => `  ${name}?: DirectEventHandler<\n    Readonly<{ ${Object.entries(fields as Record<string, string>).map(([field, type]) => `${field}: ${type}`).join('; ')} }>\n  >`).join('\n')}
 }
