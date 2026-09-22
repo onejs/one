@@ -45,7 +45,7 @@ Native iOS 18+ zoom transitions. The destination screen expands from a source el
 ```tsx
 import { One } from 'one'
 
-// source screen — wrap the tappable element
+// source screen: wrap the tappable element
 function ListScreen() {
   const router = useRouter()
   return (
@@ -57,7 +57,7 @@ function ListScreen() {
   )
 }
 
-// destination screen — place the enabler anywhere
+// destination screen: place the enabler anywhere
 function DetailScreen() {
   const { id } = useParams()
   return (
@@ -136,7 +136,8 @@ Options are route-local and dynamic: render a nameless `Stack.Screen` with a `St
 
 ## Menu Actions
 
-Native iOS `UIMenu` and `UIAction` for context menus in toolbars.
+Native iOS `UIMenu` and `UIAction` for context menus in toolbars. `icon`
+takes an SF Symbol name.
 
 ```tsx
 import { One } from 'one'
@@ -203,6 +204,8 @@ function Layout() {
 ```
 
 On iPhone, SplitView collapses to a single column automatically.
+`SplitView.Inspector` marks an inspector column the same way `SplitView.Column`
+marks a sidebar column.
 
 ---
 
@@ -287,6 +290,522 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 
 ---
 
+## iOS Controls
+
+Generated SwiftUI controls under `One.iOS`. Interactive controls follow one
+pattern: a controlled value, an `onXChange` callback, and a `revision` number
+for external resets. Every control accepts `accessibilityLabel`,
+`accessibilityHint`, `accessibilityValue`, `testID`, `style`, `onLayout`, and
+`swiftStyle`. A control composed inside a SwiftUI parent is measured by that
+parent; `style` describes the outer box only when the control stands alone.
+
+| Component | Key props |
+|-----------|-----------|
+| `Picker` | `selection`, `onSelectionChange`, `options` (`{ value, label }`), `pickerStyle` |
+| `DatePicker` | `selection` (Date), `onSelectionChange`, `minimumDate`, `maximumDate`, `displayedComponents`, `datePickerStyle` |
+| `ColorPicker` | `selection` (`#RRGGBB` or `#RRGGBBAA`), `onSelectionChange`, `supportsOpacity` |
+| `Toggle` | `isOn`, `onIsOnChange`, `toggleStyle` |
+| `Slider` | `value`, `onValueChange`, `minimumValue`, `maximumValue`, `step`, `minimumValueLabel`, `maximumValueLabel`, `minimumValueImage`, `maximumValueImage` |
+| `Stepper` | `value`, `onValueChange`, `minimumValue`, `maximumValue`, `step` |
+| `Text` | `text` |
+| `Label` | `label`, `systemImage` |
+| `Button` | `label`, `systemImage`, `subtitle`, `buttonRole`, `buttonStyle`, `disclosureIndicator`, `onPress` |
+| `ProgressView` | `value` (undefined renders indeterminate), `total`, `progressViewStyle` |
+| `Gauge` | `value`, `minimumValue`, `maximumValue`, `currentValueLabel`, `minimumValueLabel`, `maximumValueLabel`, `gaugeStyle` |
+| `Image` | `systemName`, `symbolRenderingMode`, `symbolVariant`, `imageScale`, `variableValue`, `colorRole` |
+| `ShareLink` | `label`, `systemImage`, `item`, `itemType` (`text` or `url`), `subject`, `message` |
+| `ContentUnavailableView` | `title`, `systemImage`, `description`, `actions`, `onAction` |
+| `VideoPlayer` | `url`, `autoplay` |
+| `PhotosPicker` | `onPick`, `onPickError`, `maxSelectionCount`, `selectionBehavior`, `filter`, `preferredItemEncoding` |
+| `WebView` | `url` or `html`, `onNavigate`, `onTitleChange`, `onLoadingChange` |
+| `Map` | `latitude`, `longitude`, `distance`, `markers` (`{ id, label, latitude, longitude }`), `onRegionChange` |
+| `TextField` | `text` (string or native state), `onTextChange`, `prompt`, `keyboardType`, `focused`, `onFocusChange`, `onSubmit` |
+| `SecureField` | same as `TextField`, for passwords |
+| `Alert` | `isPresented`, `onIsPresentedChange`, `title`, `message`, `actions`, `onAction` |
+| `ConfirmationDialog` | same as `Alert`, plus `titleVisibility` |
+| `QuickLook` | `isPresented`, `onIsPresentedChange`, `url` |
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Toggle label="Airplane mode" isOn={on} onIsOnChange={setOn} />
+<One.iOS.Slider
+  label="Volume"
+  value={volume}
+  onValueChange={setVolume}
+  minimumValue={0}
+  maximumValue={100}
+/>
+```
+
+---
+
+## iOS Containers
+
+Layout and grouping views under `One.iOS`. `HStack`, `VStack`, `Form`, and
+`Host` also take environment values: `colorScheme`, `dynamicTypeSize`,
+`locale`, `tint`, and `isEnabled`.
+
+| Component | Key props |
+|-----------|-----------|
+| `HStack`, `VStack` | `spacing`, `alignment` |
+| `ZStack` | `alignment` |
+| `Form` | `sizing` (`fill` or `content`) |
+| `Section` | `title`, `footer` |
+| `Glass` | `material`, `glassEffect`, `interactive`, `shape`, `cornerRadius`, `tint` |
+| `LabeledContent` | `label`, `value`, `systemImage` |
+| `List` | `listStyle` |
+| `ScrollView` | `axes` (`vertical`, `horizontal`, `both`), `showsIndicators` |
+| `LazyVStack`, `LazyHStack` | `alignment`, `spacing` |
+| `ControlGroup` | `label`, `systemImage`, `controlGroupStyle` |
+| `DisclosureGroup` | `label`, `isExpanded`, `onIsExpandedChange` |
+| `Divider` | view props only |
+| `Link` | `destination`, `label` |
+| `Group` | view props only |
+| `Overlay`, `Overlay.Content` | `alignment` |
+| `SwipeActions`, `SwipeActions.Actions` | `edge` (`leading` or `trailing`), `allowsFullSwipe` |
+| `Pager`, `Page` | `selection`, `onSelectionChange`; pages carry `id` |
+| `Spacer` | `minLength` |
+| `Slot` | `height`, `width` |
+| `Host` | `axis`, `spacing`, `alignment`; carries a React Native subtree into a SwiftUI container |
+
+---
+
+## iOS Presentation and Tabs
+
+Sheets, popovers, menus, and tabs under `One.iOS`.
+
+| Component | Key props |
+|-----------|-----------|
+| `Sheet` | `isPresented`, `onIsPresentedChange`, `presentationDetents`, `selectedDetent`, `onSelectedDetentChange`, `fitToContents`, `presentationDragIndicator`, `interactiveDismissDisabled`, `presentationBackground` |
+| `FullScreenCover` | `isPresented`, `onIsPresentedChange`, `onDismiss` |
+| `Popover` | `isPresented`, `onIsPresentedChange`, `arrowEdge`, `contentWidth`, `contentHeight`, `content` |
+| `Menu` | `items`, `onAction`, `accessibilityLabel`; children render the trigger |
+| `ContextMenu` | same as `Menu`; the trigger keeps its own touches |
+| `Tabs`, `Tab` | `selection`, `onSelectionChange`, `sidebarAdaptable`, `tabBarMinimizeBehavior`; tabs carry `id`, `title`, `systemImage`, `badge`, `role` |
+
+A `Tab` carries either `onPress` or children, never both. An action tab runs
+its handler and never becomes the selection. `selection` must identify a
+mounted page tab.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
+  <One.iOS.Tab id="feed" title="Feed" systemImage="house">
+    <FeedScreen />
+  </One.iOS.Tab>
+  <One.iOS.Tab id="new" title="New" systemImage="plus" onPress={openComposer} />
+</One.iOS.Tabs>
+```
+
+---
+
+## Android Compose
+
+Jetpack Compose views under `One.Android`. Containers take children;
+`Text`, `Icon`, `Button`, `Switch`, `TextField`, `Slider`, `AlertDialog`,
+and `ProgressIndicator` are leaves and reject children. A node nested in a
+Compose tree styles through `composeStyle`; `style` applies only at the root
+of the tree.
+
+| Component | Key props |
+|-----------|-----------|
+| `Column` | `horizontalAlignment`, `verticalArrangement`, `spacing` |
+| `Row` | `verticalAlignment`, `horizontalArrangement`, `spacing` |
+| `Box` | `contentAlignment` |
+| `Text` | `text`, `fontSize`, `fontWeight`, `textAlign`, `maxLines` |
+| `Icon` | `name`, `size` (default 24), `filled` |
+| `Button` | `label`, `variant` (`filled`, `outlined`, `text`), `tone` (`default`, `danger`), `icon`, `iconFilled`, `onPress` |
+| `Switch` | `isOn`, `onIsOnChange`, `label` |
+| `TextField` | `text` (string or native state), `onTextChange`, `label`, `placeholder`, `variant` (`filled`, `outlined`), `keyboardType`, `secureText`, `focused`, `onFocusChange`, `imeAction`, `onSubmit`, `maxLength`, `multiline`, `capitalization`, `autoCorrect`, `textAlign` |
+| `Slider` | `value`, `onValueChange`, `minimumValue`, `maximumValue`, `step` |
+| `AlertDialog` | `visible`, `title`, `message`, `confirmLabel`, `dismissLabel`, `onConfirm`, `onDismiss` |
+| `Dialog` | `visible`, `onDismiss` |
+| `ProgressIndicator` | `variant` (`linear` or `circular`), `progress` |
+
+```tsx
+import { One } from 'one'
+
+<One.Android.Column spacing={12}>
+  <One.Android.Text text="Airplane mode" />
+  <One.Android.Switch isOn={on} onIsOnChange={setOn} />
+</One.Android.Column>
+```
+
+---
+
+## Shared Effects
+
+Cross-platform effects under `One.UI`. They render through the native
+primitives on iOS and Android and throw on web.
+
+`EdgeFade` fades children toward the enabled edges. Each edge takes `true`,
+a size in dp, or `{ size, curve, color }`. `curve` is a preset (`smooth`,
+`smoother`, `sharp`, `gentle`, `soft`, `linear`), a cubic bezier, or an
+alpha stop list. `mode` is `mask` (alpha fade, no color), `overlay` (color
+gradient over the children), or `blur` (progressive blur); the mode follows
+`color` when omitted, except `blur` which stays explicit. `radius` sets the
+corner radius; `style.borderRadius` is ignored.
+
+`Blur` takes `intensity` (0 to 100, default 50) and `tint`. `Mask` takes a
+`maskElement` subtree whose opaque pixels show the content.
+
+```tsx
+import { One } from 'one'
+
+<One.UI.EdgeFade bottom={64} curve="smooth">
+  <LongList />
+</One.UI.EdgeFade>
+
+<One.UI.Blur intensity={60} tint="systemMaterial">
+  <OverlayCard />
+</One.UI.Blur>
+```
+
+---
+
+## Text Input and Native State
+
+`One.UI.useNativeState` creates one observable handle shared between
+JavaScript and the bound native views. Pass the handle as `value` to
+`One.UI.TextInput`: keystrokes land in every bound view without a React
+render. The ref carries `focus`, `blur`, `clear`, `isFocused`, and
+`setSelection`.
+
+```tsx
+import { One } from 'one'
+
+function NameField() {
+  const name = One.UI.useNativeState('')
+
+  return (
+    <One.UI.TextInput
+      value={name}
+      placeholder="Name"
+      onSubmitEditing={(text) => save(text)}
+    />
+  )
+}
+```
+
+`One.UI.SafeArea` is documented under
+[SafeAreaView](/docs/components-SafeAreaView).
+
+---
+
+## Gradients
+
+Gradients use the React Native 0.87 `backgroundImage` style prop with linear
+gradients. No extra component is needed.
+
+```tsx
+import { View } from 'react-native'
+
+<View
+  style={{
+    backgroundImage: [
+      {
+        type: 'linear-gradient',
+        direction: 'to bottom',
+        colorStops: [
+          { color: 'rgba(0,0,0,1)', positions: ['0%'] },
+          { color: 'rgba(0,0,0,0)', positions: ['100%'] },
+        ],
+      },
+    ],
+  }}
+/>
+```
+
+One's own `EdgeFade` overlay mode paints this exact shape, sampling its edge
+curve into gradient stops. See `packages/native/src/effects/EdgeFade.native.tsx`
+for the prior art. The stable `backgroundImage` key needs React Native 0.87;
+0.86 only processes the experimental alias.
+
+---
+
+## Android Color
+
+Adaptive Material colors through `Color.android` from `@vxrn/native`:
+
+```tsx
+import { Color } from '@vxrn/native'
+
+<View style={{ backgroundColor: Color.android.material.primary }} />
+<Text style={{ color: Color.android.dynamic.onSurface }} />
+```
+
+`material` carries the static Material 3 palette, `dynamic` follows the
+system wallpaper colors on Android 12 and later. Like the iOS colors, these
+stay native values and follow theme changes without a React subscription.
+
+---
+
+## Clipboard
+
+String clipboard through `One.Clipboard`, matching `expo-clipboard`'s string API. Backed by `UIPasteboard` on iOS, `ClipboardManager` on Android, and `navigator.clipboard` on web.
+
+```tsx
+import { One } from 'one'
+
+await One.Clipboard.setString('hello')
+const text = await One.Clipboard.getString()
+const has = await One.Clipboard.hasString()
+```
+
+`setString` resolves `true` once the string is on the pasteboard. On web, reads resolve `''` and writes resolve `false` when the browser denies access.
+
+### Migration from expo-clipboard
+
+| expo-clipboard | One |
+|---|---|
+| `getStringAsync()` | `One.Clipboard.getString()` |
+| `setStringAsync(text)` | `One.Clipboard.setString(text)` |
+| `hasStringAsync()` | `One.Clipboard.hasString()` |
+
+---
+
+## Network
+
+Connection state through `One.Network`, matching `expo-network`. Backed by `NWPathMonitor` on iOS, `ConnectivityManager` with a `NetworkCallback` on Android, and `navigator.onLine` with `online`/`offline` events on web.
+
+```tsx
+import { One } from 'one'
+
+const state = await One.Network.getState()
+// { type: 'wifi', isConnected: true, isInternetReachable: true }
+
+const subscription = One.Network.addStateListener((next) => {
+  console.log(next.type)
+})
+subscription.remove()
+
+const live = One.useNetworkState()
+```
+
+`type` is one of `none`, `unknown`, `cellular`, `wifi`, `bluetooth`, `ethernet`, `wimax`, `vpn`, or `other`. On web a live connection reports `unknown`, since browser connection types are unreliable.
+
+The library manifest declares `ACCESS_NETWORK_STATE` (a normal install-time permission, merged into the app automatically).
+
+### Migration from expo-network
+
+| expo-network | One |
+|---|---|
+| `getNetworkStateAsync()` | `One.Network.getState()` |
+| `addNetworkStateListener(fn)` | `One.Network.addStateListener(fn)` |
+| `useNetworkState()` | `One.useNetworkState()` |
+| `NetworkStateType.WIFI` | `'wifi'` (and likewise for every member) |
+
+---
+
+## Browser
+
+In-app browser through `One.Browser`, matching `expo-web-browser`'s result shapes. Pages open in `SFSafariViewController` on iOS and Custom Tabs on Android; auth sessions use `ASWebAuthenticationSession` on iOS and Custom Tabs with an app redirect on Android.
+
+```tsx
+import { One } from 'one'
+
+const page = await One.Browser.open('https://example.com')
+// { type: 'cancel' } once the user closes the sheet
+// { type: 'opened' } on Android, which reports no close event
+
+await One.Browser.dismiss()
+// { type: 'dismiss' }
+
+const auth = await One.Browser.openAuthSession(
+  'https://example.com/login',
+  'myapp://auth'
+)
+// { type: 'success', url: 'myapp://auth?code=…' } on redirect
+// { type: 'cancel' } when the user backs out
+
+One.Browser.dismissAuthSession()
+```
+
+`open` takes `{ presentationStyle, toolbarColor, controlsColor }` on iOS and `{ browserPackage, toolbarColor, showTitle }` on Android. `openAuthSession` adds `preferEphemeralSession` on iOS. On Android the auth promise settles when the redirect returns to the app (the standard single-task activity delivers it) or with `cancel` when the user closes the tab. The `locked` type reports a second session opened while one is already up. `dismissAuthSession` cancels a pending auth session, whose promise then resolves `dismiss`.
+
+On web, `open` opens a blank-target tab and a blocked popup rejects with code `E_BROWSER_BLOCKED`; `openAuthSession` rejects with `Browser.openAuthSession needs an iOS or Android build`.
+
+### Migration from expo-web-browser
+
+| expo-web-browser | One |
+|---|---|
+| `openBrowserAsync(url, options?)` | `One.Browser.open(url, options?)` |
+| `dismissBrowser()` | `One.Browser.dismiss()` |
+| `openAuthSessionAsync(url, redirectUrl?, options?)` | `One.Browser.openAuthSession(url, redirectUrl?, options?)` |
+| `dismissAuthSession()` | `One.Browser.dismissAuthSession()` |
+| `WebBrowserResult` | `BrowserResult` |
+| `WebBrowserResultType` | `BrowserResultType` |
+| `WebBrowserPresentationStyle` | `BrowserPresentationStyle` |
+| `ERR_WEB_BROWSER_BLOCKED` | `E_BROWSER_BLOCKED` |
+
+---
+
+## Haptics
+
+Fire-and-forget tactile feedback, exposed as `One.UI.Haptics` (importable from
+`@vxrn/native/haptics`). The names follow Apple's feedback generators, not a
+hardware spec: `selection` for picking among options, `impact` for physical
+commits, `notification` for completion and failure the user cares about.
+
+```tsx
+import { One } from 'one'
+
+One.UI.Haptics.selection()
+One.UI.Haptics.impact('medium')
+One.UI.Haptics.notification('success')
+```
+
+The calls are synchronous `void`, not promises: haptics have no meaningful
+completion, so awaiting them would only serialize feedback behind bridge
+latency. Unknown style or type strings throw a `TypeError` at the JS boundary.
+A missing module (old build, web bundler resolving the native file) degrades
+to a silent no-op. Web is always a no-op: `navigator.vibrate()` cannot produce
+selection/impact/notification feedback.
+
+`impact` accepts `light`, `medium`, `heavy`, `soft`, or `rigid`.
+`notification` accepts `success`, `warning`, or `error`. On iOS each maps to
+its `UIFeedbackGenerator` directly. On Android the mapping uses
+`performHapticFeedback` with no `VIBRATE` permission, so `soft`/`rigid` fold
+onto the nearest grade and pre-30 devices fall back: selection uses
+`CLOCK_TICK` below API 34, success uses `VIRTUAL_KEY` and error uses
+`CONTEXT_CLICK` below API 30 (warning stays `LONG_PRESS`, so warning and
+error feel distinct on API 24-29).
+
+Feedback is never the sole success/error signal: pair every call with visual
+state. Both platforms honor the system haptics settings without extra code.
+
+---
+
+## Crypto
+
+Hermes ships no WebCrypto, so One installs `crypto.getRandomValues` and
+`crypto.randomUUID` (RFC 4122 v4) on native at startup, backed by
+`SecRandomCopyBytes` on iOS and `java.security.SecureRandom` on Android,
+both synchronous over the bridge.
+
+```tsx
+const id = crypto.randomUUID()
+const bytes = crypto.getRandomValues(new Uint8Array(16))
+```
+
+Only missing pieces are installed: a runtime that already implements them
+keeps its own. There is no fallback to `Math.random`: a missing native
+module throws instead of returning weak bytes.
+
+---
+
+## App info
+
+Installed-binary identity, exposed as `One.AppInfo` (importable from
+`@vxrn/native/app-info`). Three fields, read synchronously from the native
+constants: `version` is the user-visible marketing version
+(`CFBundleShortVersionString` / `versionName`), `build` the binary build
+(`CFBundleVersion` / `versionCode`, stringified on both platforms so display
+and comparison code stays platform-blind), and `applicationId` the install
+identity (`CFBundleIdentifier` / `applicationId`).
+
+```tsx
+import { One } from 'one'
+
+One.AppInfo.version // '2.4.6' | null
+One.AppInfo.build // '891' | null
+One.AppInfo.applicationId // 'dev.app.id' | null
+```
+
+The values are a snapshot read once at import and frozen: the binary cannot
+change under a running process. `null` means unknown (a host that failed to
+stamp, or an old build without the native module), never guessed. On native
+the snapshot always describes the installed binary, never bundle-time values:
+after an over-the-air update the JavaScript bundle and the binary disagree,
+which is exactly when a build comparison must read the binary. On web there
+is no installed binary, so the fields come from the build-time manifest
+values One injects (`version`, `ios.buildNumber` then `android.versionCode`,
+`android.applicationId` then `ios.bundleId`).
+
+Prebuild stamps the binary values from `native.app`: `version` becomes
+`MARKETING_VERSION` / `versionName`, `ios.buildNumber` becomes
+`CURRENT_PROJECT_VERSION`, and `android.versionCode` becomes `versionCode`.
+Missing fields keep the template defaults (`1.0` / `1`), so a store build
+must set all three.
+
+---
+
+## ImagePicker
+
+Uniform imperative image picker. The `expo-image-picker` module API is the reference shape,
+so migration is mechanical; this is the small subset One supports.
+
+```tsx
+import { One } from 'one'
+
+const picked = await One.ImagePicker.launchLibrary({
+  mediaTypes: 'images',
+  selectionLimit: 1,
+})
+if (!picked.canceled) {
+  const [first] = picked.assets
+  console.log(first.uri, first.width, first.height)
+}
+
+const photo = await One.ImagePicker.launchCamera()
+```
+
+`launchLibrary` presents the system photo picker: `PHPickerViewController` on iOS,
+which needs no permission prompt, and the system photo picker on Android with a documents
+fallback on devices without it. `mediaTypes` is `'images'`, `'videos'`, or both, defaulting
+to `'images'`. `selectionLimit` is the maximum number of assets, defaulting to `1`; `0` is
+unlimited (the system maximum).
+
+`launchCamera` captures one still photo with the system camera. It needs the camera
+permission declared in `native.app`:
+
+```ts
+one({
+  native: {
+    app: {
+      imagePicker: { camera: 'Take profile photos.' },
+      // ...
+    },
+  },
+})
+```
+
+`one prebuild` writes the string to `NSCameraUsageDescription` on iOS and declares the
+`CAMERA` permission on Android. Without it the call rejects instead of crashing. A denied
+permission, a missing camera, and backing out of either call all resolve
+`{ canceled: true, assets: null }`; check the permission first when the distinction
+matters. Only runtime failures reject, with `E_IMAGE_PICKER_FAILED`.
+
+The camera permission reads without prompting and prompts on request. Neither system
+picker needs a grant, so no media library permission calls exist:
+
+```tsx
+const current = await One.ImagePicker.getCameraPermissions()
+// { status: 'undetermined', granted: false, canAskAgain: true }
+const next = await One.ImagePicker.requestCameraPermissions()
+```
+
+Picked assets are copied into the app cache and returned as file URIs with `width`, `height`,
+and, when the platform provides them, `mimeType`, `fileName`, and `fileSize`. On web the
+library opens a file dialog and the camera opens a capture input on mobile browsers, and
+both permission calls read granted.
+
+Migrating from `expo-image-picker` is an import change plus this rename:
+
+| Expo | One |
+|------|-----|
+| `launchImageLibraryAsync` | `launchLibrary` |
+| `launchCameraAsync` | `launchCamera` |
+| `getCameraPermissionsAsync` | `getCameraPermissions` |
+| `requestCameraPermissionsAsync` | `requestCameraPermissions` |
+
+`allowsEditing`, `quality`, `aspect`, and the other Expo options have no equivalent:
+`mediaTypes` and `selectionLimit` are the whole options surface.
+
+---
+
 ## Platform Support
 
 | Feature | iOS | Android | Web |
@@ -298,7 +817,22 @@ Names are Material Symbols snake_case names from fonts.google.com/icons, such as
 | SplitView | iPad (gamma required) | routed slot fallback | routed slot fallback |
 | Icons | SF Symbols via One.iOS.Image | Material Symbols via One.Android.Icon | unsupported |
 | Shared icon selection | One.UI.Icon | One.UI.Icon | app-provided React element |
+| SwiftUI controls and containers | One.iOS.* | unsupported (throws) | unsupported (throws) |
+| Compose views | unsupported (throws) | One.Android.* | unsupported (throws) |
+| EdgeFade, Blur, Mask | native primitive | native primitive | throws |
+| Gradients | RN 0.87 `backgroundImage` (see Gradients) | RN 0.87 `backgroundImage` (see Gradients) | see Gradients |
+| TextInput, native state | One.UI.* | One.UI.* | One.UI.* (web behavior) |
+| Safe area | One.UI.SafeArea | One.UI.SafeArea | One.UI.SafeArea (css env) |
+| Colors | One.iOS.Color | Color.android | null |
+| Clipboard | UIPasteboard | ClipboardManager | navigator.clipboard |
+| Network | NWPathMonitor | ConnectivityManager | navigator.onLine |
+| Browser | SFSafariViewController + ASWebAuthenticationSession | Custom Tabs | window.open |
+| Haptics | UIFeedbackGenerator trio | performHapticFeedback mapping | no-op |
+| Crypto | SecRandomCopyBytes | SecureRandom | platform crypto |
+| ImagePicker | PHPickerViewController + camera | system photo picker + camera intent | file dialog + capture input |
 
-Unsupported toolbar and zoom components return `null`, so they are safe to keep in
-cross-platform component trees. SplitView renders its routed `slot` without native
-columns on Android and web.
+Unsupported toolbar, menu, and zoom components return `null`, so they are safe
+to keep in cross-platform component trees. SplitView renders its routed `slot`
+without native columns on Android and web. SwiftUI components throw outside
+iOS builds and Compose components throw outside Android builds, so keep those
+branches behind platform checks.

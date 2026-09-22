@@ -23,8 +23,12 @@ describe('generateBundlerConfig', () => {
 
     const babel = fs.readFileSync(path.join(tmpDir, 'babel.config.cjs'), 'utf8')
     expect(babel).toContain(ONE_GENERATED_MARKER)
-    expect(babel).toContain("'one/babel-preset'")
-    expect(babel).toContain("'@react-native/babel-preset'")
+    // delegating form: the base preset lives in one/babel-preset, so the
+    // generated file must not list @react-native/babel-preset itself or
+    // every transform would run the RN chain twice
+    expect(babel).toContain("require('one/babel-preset')")
+    expect(babel).toContain('preset(api, oneBundlerOptions)')
+    expect(babel).not.toContain('@react-native/babel-preset')
     expect(babel).toContain('oneBundlerOptions')
 
     const metro = fs.readFileSync(path.join(tmpDir, 'metro.config.cjs'), 'utf8')

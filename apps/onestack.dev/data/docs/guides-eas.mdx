@@ -4,7 +4,7 @@ title: Build and Deliver Native Apps with EAS
 
 [Expo Application Services (EAS)](https://expo.dev/eas) is a service that helps you build and deploy your React Native apps without the hassle of managing code signing, provisioning profiles, and other complexities of native development by yourself.
 
-Native apps built with One can be deployed using EAS as existing React Native projects. Generate the native projects with `one prebuild` before configuring EAS.
+Native apps built with One can be deployed using EAS as existing React Native projects. The app's dependencies select the prebuild path: Expo apps use Expo prebuild with `vxrn/expo-plugin`, while Expo-free apps use `one prebuild`.
 
 After the initial EAS setup (`eas build:configure`), you will be able to run `eas build` to build your app, and `eas submit` to submit it to the App Store or Google Play directly in your One project.
 
@@ -49,7 +49,11 @@ This is because EAS defaults to a relatively old version of Node.js. To fix this
 
 ## Setup Your One App for EAS
 
-EAS Build supports existing React Native projects without the Expo package. One generates those projects directly, so no One Expo config plugin is involved.
+EAS Build supports existing React Native projects with or without the Expo package.
+
+If `expo` is in the app's dependencies, list `vxrn/expo-plugin` in the Expo config and run Expo prebuild. The plugin preserves One's native bundling patches while Expo runs the app's Expo module and config plugins.
+
+If `expo` is absent, One generates the project directly and no Expo config plugin is involved:
 
 1. Configure `native.app` in `vite.config.ts` with the app name, iOS bundle ID, and Android application ID.
 

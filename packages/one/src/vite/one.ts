@@ -72,6 +72,11 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   const nativeDisabled = options.native === false
   const nativeOptions = options.native === false ? undefined : options.native
   const nativeAppName = nativeOptions?.app?.name || nativeOptions?.key
+  // build-time manifest version for One.AppInfo on web, where no installed
+  // binary exists. build and application id have no honest web value, so no
+  // defines are injected for them and the web entry reads null.
+  const nativeApp = nativeOptions?.app
+  const nativeAppVersion = nativeApp?.version
 
   if (nativeDisabled) {
     // tamagui compiler reads this to decide whether to process the native env
@@ -936,6 +941,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             ...(nativeAppName && {
               'process.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
               'import.meta.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
+            }),
+            ...(nativeAppVersion && {
+              'process.env.ONE_APP_VERSION': JSON.stringify(nativeAppVersion),
+              'import.meta.env.ONE_APP_VERSION': JSON.stringify(nativeAppVersion),
             }),
 
             'process.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),
