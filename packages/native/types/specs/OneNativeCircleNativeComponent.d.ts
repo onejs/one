@@ -1,5 +1,5 @@
 import type { ColorValue, ViewProps } from 'react-native';
-import type { DirectEventHandler, Int32, Double, WithDefault } from 'react-native/Libraries/Types/CodegenTypes';
+import type { Double, WithDefault } from 'react-native/Libraries/Types/CodegenTypes';
 type OneNativeStyleNative = Readonly<{
     fontSize?: WithDefault<Double, -1>;
     fontWeight?: string;
@@ -32,20 +32,9 @@ type OneNativeStyleNative = Readonly<{
     material?: string;
 }>;
 interface NativeProps extends ViewProps {
-    value: boolean;
-    acknowledgedEvent: Int32;
-    revision: Int32;
-    label: string;
-    disabled: boolean;
-    systemImage: string;
-    toggleStyle: string;
+    fill?: ColorValue;
     swiftStyle?: OneNativeStyleNative;
-    onNativeToggleValueChange?: DirectEventHandler<Readonly<{
-        value: boolean;
-        eventCount: Int32;
-        revision: Int32;
-    }>>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
 export default _default;
-//# sourceMappingURL=OneNativeToggleNativeComponent.d.ts.map
+//# sourceMappingURL=OneNativeCircleNativeComponent.d.ts.map

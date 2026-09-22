@@ -36,6 +36,7 @@ interface NativeProps extends ViewProps {
     nonce: string;
     swiftStyle?: OneNativeStyleNative;
     onNativeSignInWithAppleButtonCompletion?: DirectEventHandler<Readonly<{
+        type: string;
         user: string;
         email: string;
         givenName: string;
