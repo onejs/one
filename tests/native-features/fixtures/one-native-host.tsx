@@ -4,10 +4,14 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 const axes = ['vertical', 'horizontal'] as const
 const spacings = [0, 20] as const
+const controlSizes = ['mini', 'small', 'regular', 'large', 'extraLarge'] as const
 
 export default function OneNativeHost() {
   const [axis, setAxis] = useState<(typeof axes)[number]>('vertical')
   const [spacing, setSpacing] = useState<number>(0)
+  const [controlSize, setControlSize] = useState<(typeof controlSizes)[number] | null>(
+    null
+  )
   const [expanded, setExpanded] = useState(false)
   const [isOn, setIsOn] = useState(false)
   const [changes, setChanges] = useState(0)
@@ -40,6 +44,16 @@ export default function OneNativeHost() {
             <Text>{`gap ${value}`}</Text>
           </Pressable>
         ))}
+        {controlSizes.map((value) => (
+          <Pressable
+            key={value}
+            testID={`one-native-host-control-size-${value}`}
+            style={[styles.chip, controlSize === value && styles.chipOn]}
+            onPress={() => setControlSize((current) => (current === value ? null : value))}
+          >
+            <Text>{value}</Text>
+          </Pressable>
+        ))}
       </View>
       <View style={styles.row}>
         <Pressable
@@ -69,6 +83,7 @@ export default function OneNativeHost() {
         axis={axis}
         spacing={spacing}
         alignment="leading"
+        controlSize={controlSize ?? undefined}
         style={styles.host}
         onLayout={({ nativeEvent }) => {
           setHeight(Math.round(nativeEvent.layout.height))
@@ -111,6 +126,9 @@ export default function OneNativeHost() {
       >{`Changes: ${changes}`}</Text>
       <Text testID="one-native-host-taps" style={styles.line}>{`Taps: ${taps}`}</Text>
       <Text testID="one-native-host-step" style={styles.line}>{`Step: ${step}`}</Text>
+      <Text testID="one-native-host-control-size" style={styles.line}>
+        {`ControlSize: ${controlSize ?? 'inherited'}`}
+      </Text>
     </View>
   )
 }

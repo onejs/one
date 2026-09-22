@@ -200,6 +200,21 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid DynamicTypeSize: \(value)")
     }
   }
+  static func controlSize(_ value: String) -> ControlSize {
+    switch value {
+    case "mini":
+      return .mini
+    case "small":
+      return .small
+    case "regular":
+      return .regular
+    case "large":
+      return .large
+    case "extraLarge":
+      return .extraLarge
+    default: preconditionFailure("invalid ControlSize: \(value)")
+    }
+  }
   static func symbolRenderingMode(_ value: String) -> SymbolRenderingMode {
     switch value {
     case "monochrome":

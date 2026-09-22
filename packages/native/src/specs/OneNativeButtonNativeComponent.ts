@@ -8,7 +8,6 @@ import type {
   WithDefault,
 } from 'react-native/Libraries/Types/CodegenTypes'
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
-
 type OneNativeStyleNative = Readonly<{
   fontSize?: WithDefault<Double, -1>
   fontWeight?: string

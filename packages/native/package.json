@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
-  "react-native": "./src/index",
+  "react-native": "./dist/esm/index.native.js",
   "types": "types/index.d.ts",
   "sideEffects": false,
   "files": [
@@ -35,45 +35,87 @@
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
-      "react-native": "./src/index.native.ts",
+      "react-native": "./dist/esm/index.native.js",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.cjs"
     },
     "./color": {
       "types": "./types/color/index.d.ts",
-      "react-native": "./src/color/index.native.ts",
+      "react-native": "./dist/esm/color/index.native.js",
       "import": "./dist/esm/color/index.mjs",
       "require": "./dist/cjs/color/index.cjs"
     },
     "./zoom": {
       "types": "./types/zoom/index.d.ts",
-      "react-native": "./src/zoom/index.native.tsx",
+      "react-native": "./dist/esm/zoom/index.native.js",
       "import": "./dist/esm/zoom/index.mjs",
       "require": "./dist/cjs/zoom/index.cjs"
     },
     "./toolbar": {
       "types": "./types/toolbar/index.d.ts",
-      "react-native": "./src/toolbar/index.native.tsx",
+      "react-native": "./dist/esm/toolbar/index.native.js",
       "import": "./dist/esm/toolbar/index.mjs",
       "require": "./dist/cjs/toolbar/index.cjs"
     },
     "./menu": {
       "types": "./types/menu/index.d.ts",
-      "react-native": "./src/menu/index.native.tsx",
+      "react-native": "./dist/esm/menu/index.native.js",
       "import": "./dist/esm/menu/index.mjs",
       "require": "./dist/cjs/menu/index.cjs"
     },
     "./split-view": {
       "types": "./types/split-view/index.d.ts",
-      "react-native": "./src/split-view/index.ts",
+      "react-native": "./dist/esm/split-view/index.native.js",
       "import": "./dist/esm/split-view/index.mjs",
       "require": "./dist/cjs/split-view/index.cjs"
     },
     "./safe-area": {
       "types": "./types/safe-area/index.d.ts",
-      "react-native": "./src/safe-area/index.native.ts",
+      "react-native": "./dist/esm/safe-area/index.native.js",
       "import": "./dist/esm/safe-area/index.mjs",
       "require": "./dist/cjs/safe-area/index.cjs"
+    },
+    "./clipboard": {
+      "types": "./types/clipboard/index.d.ts",
+      "react-native": "./dist/esm/clipboard/index.native.js",
+      "import": "./dist/esm/clipboard/index.mjs",
+      "require": "./dist/cjs/clipboard/index.cjs"
+    },
+    "./network": {
+      "types": "./types/network/index.d.ts",
+      "react-native": "./dist/esm/network/index.native.js",
+      "import": "./dist/esm/network/index.mjs",
+      "require": "./dist/cjs/network/index.cjs"
+    },
+    "./browser": {
+      "types": "./types/browser/index.d.ts",
+      "react-native": "./dist/esm/browser/index.native.js",
+      "import": "./dist/esm/browser/index.mjs",
+      "require": "./dist/cjs/browser/index.cjs"
+    },
+    "./haptics": {
+      "types": "./types/haptics/index.d.ts",
+      "react-native": "./dist/esm/haptics/index.native.js",
+      "import": "./dist/esm/haptics/index.mjs",
+      "require": "./dist/cjs/haptics/index.cjs"
+    },
+    "./crypto": {
+      "types": "./types/crypto/index.d.ts",
+      "react-native": "./dist/esm/crypto/index.native.js",
+      "import": "./dist/esm/crypto/index.mjs",
+      "require": "./dist/cjs/crypto/index.cjs"
+    },
+    "./app-info": {
+      "types": "./types/app-info/index.d.ts",
+      "react-native": "./dist/esm/app-info/index.native.js",
+      "import": "./dist/esm/app-info/index.mjs",
+      "require": "./dist/cjs/app-info/index.cjs"
+    },
+    "./image-picker": {
+      "types": "./types/image-picker/index.d.ts",
+      "react-native": "./dist/esm/image-picker/index.native.js",
+      "import": "./dist/esm/image-picker/index.mjs",
+      "require": "./dist/cjs/image-picker/index.cjs"
     },
     "./package.json": "./package.json",
     "./schema.json": "./schema.json"
@@ -138,21 +180,27 @@
         "OneNativeStepper": "OneNativeStepperComponentView",
         "OneNativeText": "OneNativeTextComponentView",
         "OneNativeLabel": "OneNativeLabelComponentView",
-        "OneNativeButton": "OneNativeButtonComponentView",
         "OneNativeProgressView": "OneNativeProgressViewComponentView",
         "OneNativeGauge": "OneNativeGaugeComponentView",
         "OneNativeImage": "OneNativeImageComponentView",
         "OneNativeShareLink": "OneNativeShareLinkComponentView",
         "OneNativeContentUnavailableView": "OneNativeContentUnavailableViewComponentView",
+        "OneNativeCircle": "OneNativeCircleComponentView",
+        "OneNativeCapsule": "OneNativeCapsuleComponentView",
+        "OneNativeRectangle": "OneNativeRectangleComponentView",
+        "OneNativeRoundedRectangle": "OneNativeRoundedRectangleComponentView",
+        "OneNativeEllipse": "OneNativeEllipseComponentView",
         "OneNativeVideoPlayer": "OneNativeVideoPlayerComponentView",
         "OneNativePhotosPicker": "OneNativePhotosPickerComponentView",
         "OneNativeWebView": "OneNativeWebViewComponentView",
+        "OneNativeSignInWithAppleButton": "OneNativeSignInWithAppleButtonComponentView",
         "OneNativeMap": "OneNativeMapComponentView",
         "OneNativeTextField": "OneNativeTextFieldComponentView",
         "OneNativeSecureField": "OneNativeSecureFieldComponentView",
         "OneNativeAlert": "OneNativeAlertComponentView",
         "OneNativeConfirmationDialog": "OneNativeConfirmationDialogComponentView",
         "OneNativeQuickLook": "OneNativeQuickLookComponentView",
+        "OneNativeFileImporter": "OneNativeFileImporterComponentView",
         "OneNativeSheet": "OneNativeSheetComponentView",
         "OneNativeSheetContent": "OneNativeSheetContentComponentView",
         "OneNativeHost": "OneNativeHostComponentView",
@@ -161,6 +209,7 @@
         "OneNativeForm": "OneNativeFormComponentView",
         "OneNativeSection": "OneNativeSectionComponentView",
         "OneNativeLabeledContent": "OneNativeLabeledContentComponentView",
+        "OneNativeButton": "OneNativeButtonComponentView",
         "OneNativeGlass": "OneNativeGlassComponentView",
         "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
