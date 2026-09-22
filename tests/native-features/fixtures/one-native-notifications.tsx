@@ -318,14 +318,14 @@ export default function OneNativeNotifications() {
           Notifications.schedule({
             identifier: 'n4-interval',
             content: { title: 'N4 interval' },
-            trigger: { type: 'timeInterval', seconds: 5 },
+            trigger: { type: 'timeInterval', seconds: 25 },
           }).then(
             (id) => setScheduled(`Scheduled: ${id}`),
             (error) => setScheduled(`Scheduled: error ${show(error)}`)
           )
         }
       >
-        <Text>Schedule 5s interval</Text>
+        <Text>Schedule 25s interval</Text>
       </Pressable>
       <Pressable accessibilityRole="button"
         testID="one-native-notifications-schedule-date"
@@ -334,14 +334,14 @@ export default function OneNativeNotifications() {
           Notifications.schedule({
             identifier: 'n4-date',
             content: { title: 'N4 date' },
-            trigger: { type: 'date', date: Date.now() + 5000 },
+            trigger: { type: 'date', date: Date.now() + 25000 },
           }).then(
             (id) => setScheduled(`Scheduled: ${id}`),
             (error) => setScheduled(`Scheduled: error ${show(error)}`)
           )
         }
       >
-        <Text>Schedule date +5s</Text>
+        <Text>Schedule date +25s</Text>
       </Pressable>
       <Pressable accessibilityRole="button"
         testID="one-native-notifications-schedule-cold"

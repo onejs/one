@@ -812,9 +812,10 @@ async function run(config: Config) {
     name: string,
     predicate: (nodes: Node[]) => boolean,
     missingMarker?: string,
-    detail?: (nodes: Node[]) => Record<string, unknown>
+    detail?: (nodes: Node[]) => Record<string, unknown>,
+    timeoutMs = config.timeout
   ) => {
-    const result = await waitFor(config, name, predicate, missingMarker)
+    const result = await waitFor(config, name, predicate, missingMarker, timeoutMs)
     const observed = detail?.(result.snapshot.nodes)
     const artifacts = capture(name, result.snapshot, 'passed', undefined, observed)
     const check: Check = {
@@ -1976,10 +1977,14 @@ async function run(config: Config) {
       (nodes) => textIncludes(nodes, 'Pending: n4-date'),
       'one-native-notifications-scheduled-list'
     )
+    // the date trigger fires 25s after scheduling; the pending-list reads
+    // above already spent part of that, so this check gets its own budget.
     await expect(
       'notifications-date-received',
       (nodes) => textIncludes(nodes, 'Received: n4-date'),
-      'one-native-notifications-schedule-now'
+      'one-native-notifications-schedule-now',
+      undefined,
+      45_000
     )
     tapNotif('Notifications presented list', 'one-native-notifications-presented-list')
     await expect(

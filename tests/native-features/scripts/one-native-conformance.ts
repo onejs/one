@@ -329,10 +329,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     home = false,
     // extra context for the timeout message, so a check that folds several steps into one
     // predicate can still say which step it was stuck on
-    diagnose?: () => string
+    diagnose?: () => string,
+    timeoutMs = config.timeout
   ) => {
     const started = Date.now()
-    const deadline = started + config.timeout
+    const deadline = started + timeoutMs
     let nodes: Node[] = []
     do {
       nodes = snapshot(config.simulatorId)
@@ -357,7 +358,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     screenshot(`fail-${stem}.png`)
     const detail = diagnose?.()
     throw new Error(
-      `${name} timed out after ${config.timeout}ms${detail ? `; ${detail}` : ''}; snapshot: ${snapshotPath}`
+      `${name} timed out after ${timeoutMs}ms${detail ? `; ${detail}` : ''}; snapshot: ${snapshotPath}`
     )
   }
   const tap = (target: { id?: string; label?: string }) => {
@@ -420,12 +421,31 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   // wrong route, so bring it fully on screen before tapping it.
   const tapNav = async (testID: string) => {
     await wait(`home lists ${testID}`, (nodes) => Boolean(id(nodes, testID)), true)
-    for (let attempt = 0; attempt < 6; attempt++) {
+    let last: { x: number; y: number } | undefined
+    let swiped = false
+    for (let attempt = 0; attempt < 8; attempt++) {
       const nodes = snapshot(config.simulatorId)
       const app = nodes.find((node) => node.type === 'Application')?.frame
       const row = id(nodes, testID)?.frame
-      if (!app || !row) throw new Error(`Home row ${testID} disappeared while scrolling`)
-      if (row.y >= 0 && row.y + row.height <= app.height) return tap({ id: testID })
+      // axe can sample mid-commit while the list settles, so a missing frame
+      // retries like the scroll below instead of failing the whole suite.
+      if (!app || !row) {
+        last = undefined
+        await new Promise((resolve) => setTimeout(resolve, 250))
+        continue
+      }
+      if (row.y >= 0 && row.y + row.height <= app.height) {
+        // a row scratching in on swipe momentum swallows the tap or takes it
+        // stale, so after a swipe tap only once the frame repeats. a row
+        // that was already still takes the tap at once.
+        if (!swiped || (last && last.x === row.x && last.y === row.y))
+          return tap({ id: testID })
+        last = { x: row.x, y: row.y }
+        await new Promise((resolve) => setTimeout(resolve, 250))
+        continue
+      }
+      last = undefined
+      swiped = true
       command(
         [
           'ui-automation',
@@ -585,12 +605,31 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     // the fixture scrolls; bring each button fully on screen like tapNav does.
     const tapFixture = async (testID: string) => {
-      for (let attempt = 0; attempt < 8; attempt++) {
+      let last: { x: number; y: number } | undefined
+      let swiped = false
+      for (let attempt = 0; attempt < 10; attempt++) {
         const nodes = snapshot(config.simulatorId)
         const app = nodes.find((node) => node.type === 'Application')?.frame
         const row = id(nodes, testID)?.frame
-        if (!app || !row) throw new Error(`Fixture row ${testID} disappeared while scrolling`)
-        if (row.y >= 0 && row.y + row.height <= app.height) return tap({ id: testID })
+        // axe can sample mid-commit while the fixture settles, so a missing
+        // frame retries like the scroll below instead of failing the suite.
+        if (!app || !row) {
+          last = undefined
+          await new Promise((resolve) => setTimeout(resolve, 250))
+          continue
+        }
+        if (row.y >= 0 && row.y + row.height <= app.height) {
+          // a row scratching in on swipe momentum swallows the tap or takes
+          // it stale, so after a swipe tap only once the frame repeats. a
+          // row that was already still takes the tap at once.
+          if (!swiped || (last && last.x === row.x && last.y === row.y))
+            return tap({ id: testID })
+          last = { x: row.x, y: row.y }
+          await new Promise((resolve) => setTimeout(resolve, 250))
+          continue
+        }
+        last = undefined
+        swiped = true
         command(
           [
             'ui-automation',
@@ -702,6 +741,46 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await new Promise((resolve) => setTimeout(resolve, 2000))
     if (has(snapshot(config.simulatorId), 'Response: n3-3'))
       throw new Error('a nulled handler produced a response on tap')
+    // the banner's screen position varies by device and os (on the 402-wide
+    // sim it ends 3pt above the old calibrated point), so tap its observed
+    // accessibility frame rather than a fixed coordinate. springboard owns
+    // the tree while the app is down, so this polls raw snapshots. the proof
+    // shot rides along: a separate screenshot round-trip first would push the
+    // tap past the banner's few seconds of life.
+    const tapColdBanner = async (pngName: string, text: string) => {
+      const started = Date.now()
+      for (;;) {
+        const nodes = snapshot(config.simulatorId)
+        const found = nodes.find(
+          (node) => node.AXLabel?.includes(text) && node.frame
+        )?.frame
+        if (found) {
+          const target = path.join(config.artifactDir, pngName)
+          fs.writeFileSync(
+            target.replace(/\.png$/i, '.ax.json'),
+            JSON.stringify(nodes, null, 2)
+          )
+          execFileSync(
+            'xcrun',
+            ['simctl', 'io', config.simulatorId, 'screenshot', target],
+            { stdio: 'inherit', timeout: 30_000 }
+          )
+          point(
+            Math.round(found.x + found.width / 2),
+            Math.round(found.y + found.height / 2)
+          )
+          checks.push({
+            name: `banner tap lands on ${text}`,
+            durationMs: Date.now() - started,
+          })
+          console.log(`PASS banner tap lands on ${text}`)
+          return
+        }
+        if (Date.now() - started > config.timeout)
+          throw new Error(`banner for ${text} never appeared`)
+        await new Promise((resolve) => setTimeout(resolve, 250))
+      }
+    }
     // cold start: terminate, push a banner onto the home screen, tap it.
     // the simctl push is the probe vehicle for the launch-timing question;
     // the delegate path it exercises is the same one local taps take.
@@ -716,9 +795,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       ['simctl', 'push', config.simulatorId, config.bundleId, pushPayload],
       { stdio: 'ignore', timeout: 30_000 }
     )
-    await new Promise((resolve) => setTimeout(resolve, 3000))
-    screenshot('notifications-cold-banner.png')
-    point(196, 130)
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await tapColdBanner('notifications-cold-banner.png', 'N3 cold')
     await wait('cold start shows home', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-notifications')
@@ -740,7 +818,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('interval cancelled', (n) => has(n, 'Pending: cancelled'))
     await tapFixture('one-native-notifications-scheduled-list')
     await wait('cancel removes it from pending', (n) => has(n, 'Pending: n4-date'))
-    await wait('date trigger delivers to received', (n) => has(n, 'Received: n4-date'))
+    // the date trigger fires 25s after scheduling; the pending-list reads above
+    // already spent part of that, so this check gets its own budget.
+    await wait(
+      'date trigger delivers to received',
+      (n) => has(n, 'Received: n4-date'),
+      false,
+      undefined,
+      45_000
+    )
     await tapFixture('one-native-notifications-presented-list')
     await wait('delivered notification is presented', (n) => has(n, 'Presented: n4-date'))
     await tapFixture('one-native-notifications-dismiss-date')
@@ -752,8 +838,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('cold schedule set', (n) => has(n, 'Scheduled: n4-cold'))
     command(['simulator', 'stop', '--bundle-id', config.bundleId], config.simulatorId)
     await new Promise((resolve) => setTimeout(resolve, 14000))
-    screenshot('notifications-local-cold-banner.png')
-    point(196, 130)
+    await tapColdBanner('notifications-local-cold-banner.png', 'N4 cold')
     await wait('local cold start shows home', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-notifications')
