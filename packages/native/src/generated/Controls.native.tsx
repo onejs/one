@@ -173,12 +173,15 @@ export function Toggle({
   revision = 0,
   label = '',
   disabled = false,
+  systemImage = '',
   toggleStyle = 'automatic',
   swiftStyle,
   style,
   ...props
 }: Types.ToggleProps) {
   if (typeof isOn !== 'boolean') throw new Error('Toggle isOn must be a boolean')
+  if (typeof systemImage !== 'string')
+    throw new Error('Toggle systemImage must be a string')
   assertSwiftUIValue(
     'ToggleStyle',
     toggleStyle,
@@ -199,6 +202,7 @@ export function Toggle({
       revision={revision}
       label={label}
       disabled={disabled}
+      systemImage={systemImage}
       toggleStyle={toggleStyle}
       onNativeToggleValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
@@ -338,50 +342,6 @@ export function Label({
       label={label}
       disabled={disabled}
       systemImage={systemImage}
-    />
-  )
-}
-import NativeButton from '../specs/OneNativeButtonNativeComponent'
-export function Button({
-  onPress,
-  label = '',
-  disabled = false,
-  subtitle = '',
-  systemImage = '',
-  buttonRole = '',
-  buttonStyle = 'automatic',
-  disclosureIndicator = false,
-  swiftStyle,
-  style,
-  ...props
-}: Types.ButtonProps) {
-  if (typeof label !== 'string') throw new Error('Button label must be a string')
-  if (!label && !systemImage)
-    throw new Error('Button needs a label, a systemImage, or both')
-  if (buttonRole)
-    assertSwiftUIValue(
-      'ButtonRole',
-      buttonRole,
-      Number.parseFloat(String(Platform.Version))
-    )
-  assertSwiftUIValue(
-    'PrimitiveButtonStyle',
-    buttonStyle,
-    Number.parseFloat(String(Platform.Version))
-  )
-  return (
-    <NativeButton
-      {...props}
-      style={style}
-      swiftStyle={swiftStyle}
-      label={label}
-      disabled={disabled}
-      subtitle={subtitle}
-      systemImage={systemImage}
-      buttonRole={buttonRole}
-      buttonStyle={buttonStyle}
-      disclosureIndicator={disclosureIndicator}
-      onNativeButtonPress={({ nativeEvent }) => onPress?.()}
     />
   )
 }
@@ -597,6 +557,63 @@ export function ContentUnavailableView({
       }
     />
   )
+}
+import NativeCircle from '../specs/OneNativeCircleNativeComponent'
+export function Circle({
+  fill = undefined,
+  swiftStyle,
+  style,
+  ...props
+}: Types.CircleProps) {
+  return <NativeCircle {...props} style={style} swiftStyle={swiftStyle} fill={fill} />
+}
+import NativeCapsule from '../specs/OneNativeCapsuleNativeComponent'
+export function Capsule({
+  fill = undefined,
+  swiftStyle,
+  style,
+  ...props
+}: Types.CapsuleProps) {
+  return <NativeCapsule {...props} style={style} swiftStyle={swiftStyle} fill={fill} />
+}
+import NativeRectangle from '../specs/OneNativeRectangleNativeComponent'
+export function Rectangle({
+  fill = undefined,
+  swiftStyle,
+  style,
+  ...props
+}: Types.RectangleProps) {
+  return <NativeRectangle {...props} style={style} swiftStyle={swiftStyle} fill={fill} />
+}
+import NativeRoundedRectangle from '../specs/OneNativeRoundedRectangleNativeComponent'
+export function RoundedRectangle({
+  fill = undefined,
+  cornerRadius = 0,
+  swiftStyle,
+  style,
+  ...props
+}: Types.RoundedRectangleProps) {
+  if (!Number.isFinite(cornerRadius) || cornerRadius < 0)
+    throw new Error('RoundedRectangle cornerRadius must be a non-negative number')
+
+  return (
+    <NativeRoundedRectangle
+      {...props}
+      style={style}
+      swiftStyle={swiftStyle}
+      fill={fill}
+      cornerRadius={cornerRadius}
+    />
+  )
+}
+import NativeEllipse from '../specs/OneNativeEllipseNativeComponent'
+export function Ellipse({
+  fill = undefined,
+  swiftStyle,
+  style,
+  ...props
+}: Types.EllipseProps) {
+  return <NativeEllipse {...props} style={style} swiftStyle={swiftStyle} fill={fill} />
 }
 import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
 export function VideoPlayer({

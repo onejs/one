@@ -9,6 +9,7 @@ interface NativeProps extends ViewProps {
   alignment: string
   colorScheme: string
   dynamicTypeSize: string
+  controlSize: string
   locale: string
   tint?: ColorValue
   isEnabled: string

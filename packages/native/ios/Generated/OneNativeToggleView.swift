@@ -7,6 +7,7 @@ private final class ToggleModel: ObservableObject {
   @Published var controlled = OneNativeControlled<Bool>(false)
   @Published var label: String = ""
   @Published var disabled: Bool = false
+  @Published var systemImage: String = ""
   @Published var toggleStyle: String = "automatic"
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
@@ -33,10 +34,11 @@ private final class ToggleModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, toggleStyle: String) {
+  public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, systemImage: String, toggleStyle: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
+    if model.systemImage != systemImage { model.systemImage = systemImage }
     if model.toggleStyle != toggleStyle { model.toggleStyle = toggleStyle }
   }
 
@@ -78,11 +80,20 @@ private final class ToggleModel: ObservableObject {
 private struct ToggleContent: View {
   @ObservedObject var model: ToggleModel
   var body: some View {
-    Toggle(isOn: Binding(
-        get: { model.controlled.value },
-        set: { value in model.change(value) }
-      )) {
-        Text(model.label)
+    Group {
+        if model.systemImage.isEmpty {
+          Toggle(isOn: Binding(
+            get: { model.controlled.value },
+            set: { value in model.change(value) }
+          )) {
+            Text(model.label)
+          }
+        } else {
+          Toggle(LocalizedStringKey(model.label), systemImage: model.systemImage, isOn: Binding(
+            get: { model.controlled.value },
+            set: { value in model.change(value) }
+          ))
+        }
       }
       .oneNativeToggleStyle(model.toggleStyle)
       .disabled(model.disabled)

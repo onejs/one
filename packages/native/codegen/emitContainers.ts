@@ -1,6 +1,8 @@
 // containers are structural rather than SDK bindings: they compose already-generated
 // controls into one SwiftUI tree. a host reports the height SwiftUI measured back to
 // Yoga; a form and a section lay out inside whatever box React Native gives them.
+import { styleFields } from './catalog'
+
 const composedContent = {
   name: 'content',
   content: 'one-native',
@@ -11,6 +13,7 @@ const composedContent = {
 const environmentProps = {
   colorScheme: 'string',
   dynamicTypeSize: 'string',
+  controlSize: 'string',
   locale: 'string',
   tint: 'ColorValue?',
   isEnabled: 'string',
@@ -102,6 +105,38 @@ export const containerComponents = [
     interfaceOnly: true,
   },
   {
+    name: 'OneNativeButton',
+    publicName: 'Button',
+    // a button is a measured container: with children they are the label view, without
+    // them the label props render text the way the leaf control did. the view and the
+    // adapter are hand-written like every other container; the spec and schema stay
+    // generated so the Fabric contract cannot drift.
+    props: {
+      label: 'string',
+      disabled: 'boolean',
+      subtitle: 'string',
+      systemImage: 'string',
+      buttonRole: 'string',
+      buttonStyle: 'string',
+      disclosureIndicator: 'boolean',
+    },
+    events: {
+      onNativeButtonPress: { eventCount: 'Int32' },
+    },
+    enumProps: {
+      buttonRole: 'ButtonRole',
+      buttonStyle: 'PrimitiveButtonStyle',
+    },
+    actions: [{ publicProp: 'onPress', event: 'onNativeButtonPress' }],
+    layout: { kind: 'measured' },
+    slots: [composedContent],
+    // swiftStyle travels as its own struct prop like a generated control's, so a
+    // standalone button keeps the fonts, colors, frame and chrome it always had.
+    swiftStyle: true,
+    // the measured height needs a hand-written shadow node, state and descriptor.
+    interfaceOnly: true,
+  },
+  {
     name: 'OneNativeGlass',
     publicName: 'Glass',
     // a glass surface takes the box React Native gave it.
@@ -160,17 +195,29 @@ export function emitContainers(header: string, outputs: Map<string, string>) {
       optional: declared.endsWith('?'),
       type: declared.replace('?', ''),
     }))
+    const eventEntries = Object.entries(component.events)
+    // only a container that keeps control chrome carries swiftStyle as its own struct
+    // prop; every other container styles through its children or not at all.
+    const styled = 'swiftStyle' in component && component.swiftStyle === true
     const reactNativeTypes = [
-      ...(props.some(({ type }) => type === 'ColorValue') ? ['ColorValue'] : []),
+      ...(props.some(({ type }) => type === 'ColorValue') || styled ? ['ColorValue'] : []),
       'ViewProps',
+    ]
+    const codegenTypes = [
+      ...new Set([
+        ...(eventEntries.length ? ['DirectEventHandler', 'Int32'] : []),
+        ...(props.some(({ type }) => type === 'Double') || styled ? ['Double'] : []),
+        ...(styled ? ['WithDefault'] : []),
+      ]),
     ]
     outputs.set(
       `src/specs/${component.name}NativeComponent.ts`,
       header +
         `import type { ${reactNativeTypes.join(', ')} } from 'react-native'
-${props.some(({ type }) => type === 'Double') ? `import type { Double } from 'react-native/Libraries/Types/CodegenTypes'\n` : ''}import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
-interface NativeProps extends ViewProps {
+${codegenTypes.length ? `import type { ${codegenTypes.join(', ')} } from 'react-native/Libraries/Types/CodegenTypes'\n` : ''}import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
+${styled ? `type OneNativeStyleNative = Readonly<{\n${styleFields.map((field) => `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'boolean' ? 'boolean' : field.kind === 'color' ? 'ColorValue' : 'string'}`).join('\n')}\n}>\n` : ''}interface NativeProps extends ViewProps {
 ${props.map(({ key, optional, type }) => `  ${key}${optional ? '?' : ''}: ${type}`).join('\n')}
+${styled ? '  swiftStyle?: OneNativeStyleNative\n' : ''}${eventEntries.map(([name, fields]) => `  ${name}?: DirectEventHandler<\n    Readonly<{ ${Object.entries(fields as Record<string, string>).map(([field, type]) => `${field}: ${type}`).join('; ')} }>\n  >`).join('\n')}
 }
 export default codegenNativeComponent<NativeProps>('${component.name}'${component.interfaceOnly ? ', { interfaceOnly: true }' : ''})
 `
@@ -181,14 +228,16 @@ export default codegenNativeComponent<NativeProps>('${component.name}'${componen
     header +
       `import type { ReactNode } from 'react'
 import type { ColorValue, ViewProps } from 'react-native'
-import type { GlassEffect, GlassEffectShape, Material } from './controlTypes'
-import type { ColorScheme, DynamicTypeSize } from './swiftui'
+import type { GlassEffect, GlassEffectShape, Material, OneNativeViewProps } from './controlTypes'
+import type * as Styles from './swiftui'
+import type { ColorScheme, ControlSize, DynamicTypeSize } from './swiftui'
 export type HostAxis = ${hostAxes.map((axis) => JSON.stringify(axis)).join(' | ')}
 export type HostAlignment = ${hostAlignments.map((value) => JSON.stringify(value)).join(' | ')}
 export type ZStackAlignment = ${zStackAlignments.map((value) => JSON.stringify(value)).join(' | ')}
 export interface EnvironmentProps {
   colorScheme?: ColorScheme
   dynamicTypeSize?: DynamicTypeSize
+  controlSize?: ControlSize
   locale?: string
   tint?: ColorValue
   isEnabled?: boolean
@@ -223,6 +272,17 @@ export interface LabeledContentProps extends ViewProps {
   systemImage?: string
   children?: ReactNode
 }
+export interface ButtonProps extends OneNativeViewProps {
+  onPress?: () => void
+  label?: string
+  disabled?: boolean
+  subtitle?: string
+  systemImage?: string
+  buttonRole?: Styles.ButtonRole | ''
+  buttonStyle?: Styles.PrimitiveButtonStyle
+  disclosureIndicator?: boolean
+  children?: ReactNode
+}
 export interface GlassProps extends ViewProps {
   material?: Material
   glassEffect?: GlassEffect
@@ -251,16 +311,18 @@ import UIKit
 final class OneNativeEnvironmentModel: ObservableObject {
   @Published var colorScheme = ""
   @Published var dynamicTypeSize = ""
+  @Published var controlSize = ""
   @Published var locale = ""
   @Published var tint: UIColor?
   @Published var isEnabled = ""
 
   func configure(
-    colorScheme: String, dynamicTypeSize: String, locale: String, tint: UIColor?,
-    isEnabled: String
+    colorScheme: String, dynamicTypeSize: String, controlSize: String, locale: String,
+    tint: UIColor?, isEnabled: String
   ) {
     if self.colorScheme != colorScheme { self.colorScheme = colorScheme }
     if self.dynamicTypeSize != dynamicTypeSize { self.dynamicTypeSize = dynamicTypeSize }
+    if self.controlSize != controlSize { self.controlSize = controlSize }
     if self.locale != locale { self.locale = locale }
     if self.tint != tint { self.tint = tint }
     if self.isEnabled != isEnabled { self.isEnabled = isEnabled }
@@ -269,6 +331,7 @@ final class OneNativeEnvironmentModel: ObservableObject {
   func reset() {
     colorScheme = ""
     dynamicTypeSize = ""
+    controlSize = ""
     locale = ""
     tint = nil
     isEnabled = ""
@@ -283,6 +346,7 @@ struct OneNativeEnvironment<Content: View>: View {
     content
       .oneNativeColorScheme(model.colorScheme)
       .oneNativeDynamicTypeSize(model.dynamicTypeSize)
+      .oneNativeControlSize(model.controlSize)
       .oneNativeLocale(model.locale)
       .oneNativeEnvironmentTint(model.tint)
       .oneNativeIsEnabled(model.isEnabled)
@@ -298,6 +362,11 @@ extension View {
   @ViewBuilder func oneNativeDynamicTypeSize(_ value: String) -> some View {
     if value.isEmpty { self }
     else { self.environment(\\.dynamicTypeSize, OneNativeGenerated.dynamicTypeSize(value)) }
+  }
+
+  @ViewBuilder func oneNativeControlSize(_ value: String) -> some View {
+    if value.isEmpty { self }
+    else { self.environment(\\.controlSize, OneNativeGenerated.controlSize(value)) }
   }
 
   @ViewBuilder func oneNativeLocale(_ value: String) -> some View {

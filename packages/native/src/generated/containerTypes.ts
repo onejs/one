@@ -2,8 +2,14 @@
 // edit the generator or catalog, then regenerate.
 import type { ReactNode } from 'react'
 import type { ColorValue, ViewProps } from 'react-native'
-import type { GlassEffect, GlassEffectShape, Material } from './controlTypes'
-import type { ColorScheme, DynamicTypeSize } from './swiftui'
+import type {
+  GlassEffect,
+  GlassEffectShape,
+  Material,
+  OneNativeViewProps,
+} from './controlTypes'
+import type * as Styles from './swiftui'
+import type { ColorScheme, ControlSize, DynamicTypeSize } from './swiftui'
 export type HostAxis = 'vertical' | 'horizontal'
 export type HostAlignment = 'leading' | 'center' | 'trailing'
 export type ZStackAlignment =
@@ -19,6 +25,7 @@ export type ZStackAlignment =
 export interface EnvironmentProps {
   colorScheme?: ColorScheme
   dynamicTypeSize?: DynamicTypeSize
+  controlSize?: ControlSize
   locale?: string
   tint?: ColorValue
   isEnabled?: boolean
@@ -51,6 +58,17 @@ export interface LabeledContentProps extends ViewProps {
   label: string
   value?: string
   systemImage?: string
+  children?: ReactNode
+}
+export interface ButtonProps extends OneNativeViewProps {
+  onPress?: () => void
+  label?: string
+  disabled?: boolean
+  subtitle?: string
+  systemImage?: string
+  buttonRole?: Styles.ButtonRole | ''
+  buttonStyle?: Styles.PrimitiveButtonStyle
+  disclosureIndicator?: boolean
   children?: ReactNode
 }
 export interface GlassProps extends ViewProps {

@@ -2,6 +2,6 @@
 // edit the generator or catalog, then regenerate.
 #ifdef __cplusplus
 #import <React/RCTViewComponentView.h>
-@interface OneNativeButtonComponentView : RCTViewComponentView
+@interface OneNativeRectangleComponentView : RCTViewComponentView
 @end
 #endif

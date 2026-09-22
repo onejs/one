@@ -3,7 +3,9 @@ export type ScalarType = 'string' | 'boolean' | 'Double'
 export type ControlField = {
   // `strings` is an array of plain strings, for open or SDK-external sets like
   // ASAuthorization.Scope and UTType identifiers. `objects` stays for payloads.
-  type: ScalarType | 'objects' | 'strings'
+  // `color` is a React Native color: ColorValue in the spec and the public types,
+  // SharedColor through Fabric, UIColor on the Swift side.
+  type: ScalarType | 'color' | 'objects' | 'strings'
   default: string | boolean | number | readonly string[]
   enum?: string
   publicType?: string

@@ -37,12 +37,12 @@ vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
 }))
 
 let Containers: typeof import('../src/Containers.native')
-let Button: typeof import('../src/generated/Controls.native').Button
+let Button: typeof import('../src/Containers.native').Button
 let Popover: typeof import('../src/Popover.native').Popover
 
 beforeAll(async () => {
   Containers = await import('../src/Containers.native')
-  Button = (await import('../src/generated/Controls.native')).Button
+  Button = Containers.Button
   Popover = (await import('../src/Popover.native')).Popover
 })
 
