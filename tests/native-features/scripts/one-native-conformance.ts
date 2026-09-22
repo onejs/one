@@ -36,6 +36,7 @@ const suites = [
   'groups',
   'state',
   'safe-area',
+  'fonts',
   'popover',
   'accessibility',
   'media',
@@ -223,6 +224,10 @@ const safeAreaLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-safe-area-edges')) &&
   has(nodes, 'Insets: ')
+const fontsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-fonts-load')) &&
+  has(nodes, 'Loaded: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -261,6 +266,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   groups: groupsLoaded,
   state: stateLoaded,
   'safe-area': safeAreaLoaded,
+  fonts: fontsLoaded,
   popover: popoverLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
@@ -280,6 +286,7 @@ const suiteHome: Record<Suite, string> = {
   groups: 'nav-one-native-groups',
   state: 'nav-one-native-state',
   'safe-area': 'nav-one-native-safe-area',
+  fonts: 'nav-one-native-fonts',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -1996,6 +2003,47 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         )
       })
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'fonts') {
+    const labelStarting = (nodes: Node[], prefix: string) =>
+      labels(nodes).find((label) => label.startsWith(prefix))
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-fonts')
+
+    // the name is unknown until load runs: false before is the money
+    // assertion, because a JS mirror or a stale registry would read true.
+    await wait('the font starts unloaded', (n) => labels(n).includes('Loaded: false'))
+    await wait('dev fonts resolve over http', (n) =>
+      Boolean(labelStarting(n, 'Uri: http'))
+    )
+
+    tap({ id: 'one-native-fonts-load' })
+    await wait('load flips isLoaded and the hook follows', (n) =>
+      Boolean(
+        labels(n).includes('Loaded: true') &&
+          labels(n).includes('Status: loaded') &&
+          labels(n).includes('Hook: loaded')
+      )
+    )
+    // the sample A is a solid block no system font has; the pixels prove
+    // the PostScript name resolves after load.
+    screenshot('fonts-loaded.png')
+
+    // negative control: the same file under a wrong key. iOS rejects
+    // because the name never becomes usable; Android registers silently
+    // (Typeface has no name query) and its flow asserts that instead.
+    tap({ id: 'one-native-fonts-negative' })
+    await wait('a wrong key rejects without becoming usable', (n) =>
+      Boolean(
+        labels(n).includes('Negative: rejected') &&
+          labels(n).includes('NegativeLoaded: false') &&
+          labelStarting(n, 'NegativeError: Fonts.load: "OneNativeTestFont-Nope"')
+      )
+    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

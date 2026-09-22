@@ -9,6 +9,7 @@ import com.facebook.react.uimanager.ViewManager
 import dev.onejs.onenative.OneNativeBlurManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
+import dev.onejs.onenative.OneNativeFontsModule
 import dev.onejs.onenative.OneNativeMaskManager
 import dev.onejs.onenative.OneNativeSafeAreaModule
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
@@ -20,6 +21,7 @@ class VxrnNativePackage : BaseReactPackage() {
             VxrnNativeModule.NAME -> VxrnNativeModule(reactContext)
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
+            OneNativeFontsModule.NAME -> OneNativeFontsModule(reactContext)
             else -> null
         }
     }
@@ -45,6 +47,14 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeSyncModule.NAME to ReactModuleInfo(
                 name = OneNativeSyncModule.NAME,
                 className = OneNativeSyncModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeFontsModule.NAME to ReactModuleInfo(
+                name = OneNativeFontsModule.NAME,
+                className = OneNativeFontsModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,

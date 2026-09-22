@@ -10,6 +10,7 @@ declare module 'one' {
         | `/`
         | `/_sitemap`
         | `/color-test`
+        | `/font-probe`
         | `/menu-test`
         | `/one-native`
         | `/one-native-accessibility`
@@ -19,6 +20,7 @@ declare module 'one' {
         | `/one-native-controls`
         | `/one-native-dialogs`
         | `/one-native-effects`
+        | `/one-native-fonts`
         | `/one-native-groups`
         | `/one-native-host`
         | `/one-native-leaves`

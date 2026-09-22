@@ -4,6 +4,9 @@
 export { Color } from './color'
 export type { ColorType } from './color'
 
+export { Fonts, useFonts } from './fonts'
+export type { FontMap, FontSource, UseFontsResult } from './fonts'
+
 export {
   ZoomTransitionSource,
   ZoomTransitionEnabler,

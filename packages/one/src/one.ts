@@ -4,6 +4,7 @@
 import {
   Color,
   Compose,
+  Fonts,
   MenuAction,
   SplitView,
   Swift,
@@ -15,6 +16,7 @@ import {
   ZoomTransitionEnabler,
   ZoomTransitionSource,
   type ColorType,
+  useFonts,
   useNativeState,
 } from '@vxrn/native'
 import {
@@ -49,8 +51,10 @@ export type OneSafeArea = {
 }
 
 export type OneUI = typeof NativeUI & {
+  readonly Fonts: typeof Fonts
   readonly SafeArea: Readonly<OneSafeArea>
   readonly TextInput: typeof TextInput
+  readonly useFonts: typeof useFonts
   readonly useNativeState: typeof useNativeState
 }
 
@@ -94,8 +98,10 @@ const SafeArea: Readonly<OneSafeArea> = Object.freeze({
 
 const UI: Readonly<OneUI> = Object.freeze({
   ...NativeUI,
+  Fonts,
   SafeArea,
   TextInput,
+  useFonts,
   useNativeState,
 })
 

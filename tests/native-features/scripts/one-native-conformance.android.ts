@@ -1703,6 +1703,62 @@ async function run(config: Config) {
       'one-native-safe-area-edges'
     )
 
+    pressBack(config)
+    await expect(
+      'fonts-navigate-home',
+      (nodes) =>
+        diagnose(nodes, [
+          ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+          ['nav list row', (n) => n.some((node) => node.resourceId.includes('nav-'))],
+        ]),
+      'home-screen'
+    )
+    await tapNavigation(config, 'nav-one-native-fonts')
+    await expect(
+      'fonts-proof-mounted',
+      (nodes) =>
+        diagnose(nodes, [
+          ['load button', (n) => exactlyOneId(n, 'one-native-fonts-load')],
+          ['starts unloaded', (n) => textIncludes(n, 'Loaded: false')],
+          ['dev uri over http', (n) => textIncludes(n, 'Uri: http')],
+        ]),
+      'one-native-fonts-load'
+    )
+
+    tapFresh(config, 'Fonts load button', {
+      id: 'one-native-fonts-load',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'fonts-load-flips-isLoaded',
+      (nodes) =>
+        diagnose(nodes, [
+          ['isLoaded true', (n) => textIncludes(n, 'Loaded: true')],
+          ['status loaded', (n) => textIncludes(n, 'Status: loaded')],
+          ['hook loaded', (n) => textIncludes(n, 'Hook: loaded')],
+        ]),
+      'one-native-fonts-load'
+    )
+
+    // negative control: the same file under a wrong key. Android registers
+    // silently because Typeface exposes no name query, so it resolves and
+    // the wrong key reads loaded; the iOS flow asserts a reject instead.
+    tapFresh(config, 'Fonts negative button', {
+      id: 'one-native-fonts-negative',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'fonts-wrong-key-registers-silently',
+      (nodes) =>
+        diagnose(nodes, [
+          ['negative resolved', (n) => textIncludes(n, 'Negative: resolved')],
+          ['wrong key reads loaded', (n) => textIncludes(n, 'NegativeLoaded: true')],
+        ]),
+      'one-native-fonts-negative'
+    )
+
     writeFileSync(
       path.join(config.artifactDir, 'status.json'),
       JSON.stringify(
