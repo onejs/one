@@ -2,6 +2,7 @@
 import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { resolveVisualRegion, VISUAL_CHECKS } from './visual-declarations'
 import {
   countChangedPixels,
@@ -37,10 +38,18 @@ const suites = [
   'state',
   'safe-area',
   'fonts',
+  'haptics',
+  'crypto',
+  'app-info',
   'popover',
   'accessibility',
   'media',
   'map',
+  'apple-file',
+  'clipboard',
+  'network',
+  'browser',
+  'image-picker',
 ] as const
 type Suite = (typeof suites)[number]
 type Config = {
@@ -228,6 +237,18 @@ const fontsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-fonts-load')) &&
   has(nodes, 'Loaded: ')
+const hapticsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-haptics-selection')) &&
+  has(nodes, 'Module: ')
+const cryptoLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-crypto-regenerate')) &&
+  has(nodes, 'UUID1: ')
+const appInfoLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-app-info-refresh')) &&
+  has(nodes, 'Version: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -244,6 +265,42 @@ const mapLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-map-place-ferry')) &&
   has(nodes, 'Place: ')
+// a presented document picker runs out of process: the snapshot carries only the
+// application node on both snapshot paths, leaving the fixture behind it out,
+// so the fixture counts as loaded from either side of the presentation.
+const appleFileLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  (Boolean(id(nodes, 'one-native-apple-file-category-signin')) ||
+    nodes.every((n) => n.type === 'Application'))
+const clipboardLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-clipboard-set')) &&
+  has(nodes, 'Written: ')
+const networkLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-network-refresh')) &&
+  has(nodes, 'State: ')
+// a presented safari sheet takes the whole accessibility tree and exposes no
+// children through this snapshot api, so the suite counts a collapsed tree
+// as the presented side of loaded. home rows carry nav ids, which keeps a
+// mid-navigation tree from counting.
+const browserPresented = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  !labels(nodes).some((label) => label.includes('Result: ')) &&
+  !nodes.some((node) => node.AXUniqueId?.startsWith('nav-'))
+const browserLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  ((Boolean(id(nodes, 'one-native-browser-open')) && has(nodes, 'Result: ')) ||
+    browserPresented(nodes))
+// a presented photo picker covers the fixture and publishes no accessibility
+// tree of its own, so the screen counts as loaded from the fixture side, the
+// camera prompt, or the bare application node.
+const imagePickerLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  ((Boolean(id(nodes, 'one-native-image-picker-library')) && has(nodes, 'Result: ')) ||
+    labels(nodes).includes('Cancel') ||
+    labels(nodes).includes('Don’t Allow') ||
+    nodes.every((n) => n.type === 'Application'))
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -267,10 +324,18 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   state: stateLoaded,
   'safe-area': safeAreaLoaded,
   fonts: fontsLoaded,
+  haptics: hapticsLoaded,
+  crypto: cryptoLoaded,
+  'app-info': appInfoLoaded,
   popover: popoverLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
   map: mapLoaded,
+  'apple-file': appleFileLoaded,
+  clipboard: clipboardLoaded,
+  network: networkLoaded,
+  browser: browserLoaded,
+  'image-picker': imagePickerLoaded,
 }
 const suiteHome: Record<Suite, string> = {
   'tabs-menu': 'nav-one-native',
@@ -287,10 +352,18 @@ const suiteHome: Record<Suite, string> = {
   state: 'nav-one-native-state',
   'safe-area': 'nav-one-native-safe-area',
   fonts: 'nav-one-native-fonts',
+  haptics: 'nav-one-native-haptics',
+  crypto: 'nav-one-native-crypto',
+  'app-info': 'nav-one-native-app-info',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
   map: 'nav-one-native-map',
+  'apple-file': 'nav-one-native-apple-file',
+  clipboard: 'nav-one-native-clipboard',
+  network: 'nav-one-native-network',
+  browser: 'nav-one-native-browser',
+  'image-picker': 'nav-one-native-image-picker',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
 const firstState = (nodes: Node[]) =>
@@ -354,18 +427,43 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       `${name} timed out after ${config.timeout}ms${detail ? `; ${detail}` : ''}; snapshot: ${snapshotPath}`
     )
   }
-  const tap = (target: { id?: string; label?: string }) => {
-    if (target.id)
-      command(['ui-automation', 'tap', '--id', target.id], config.simulatorId)
-    else if (target.label)
-      command(['ui-automation', 'tap', '--label', target.label], config.simulatorId)
-    else throw new Error('A tap target is required.')
-  }
-  const point = (x: number, y: number) =>
-    command(
-      ['ui-automation', 'tap', '-x', String(Math.round(x)), '-y', String(Math.round(y))],
+  // the only tap path: touch down/up delivers on headless hosts, where the
+  // simulator tapAt call reports success without delivering anything.
+  const touch = (x: number, y: number) => {
+    const output = command(
+      [
+        'ui-automation',
+        'touch',
+        '-x',
+        String(Math.round(x)),
+        '-y',
+        String(Math.round(y)),
+        '--down',
+        '--up',
+      ],
       config.simulatorId
     )
+    // axe exits 0 with the dropped input connection buried in the details
+    // text; surface it as the failure instead of tapping into the void.
+    if (output.includes('could not establish simulator input'))
+      throw new Error(
+        `touch at (${Math.round(x)}, ${Math.round(y)}) failed: axe could not establish simulator input`
+      )
+    return output
+  }
+  const tap = (target: { id?: string; label?: string }) => {
+    if (!target.id && !target.label) throw new Error('A tap target is required.')
+    const nodes = snapshot(config.simulatorId)
+    const frame = target.id
+      ? id(nodes, target.id)?.frame
+      : nodes.find((node) => node.AXLabel === target.label)?.frame
+    if (!frame)
+      throw new Error(
+        `No accessibility element matched ${target.id ? `--id '${target.id}'` : `--label '${target.label}'`}.`
+      )
+    return touch(frame.x + frame.width / 2, frame.y + frame.height / 2)
+  }
+  const point = (x: number, y: number) => touch(x, y)
   // a field does not become first responder the moment the tap returns, the snapshot carries
   // no focus flag, and the attached hardware keyboard leaves no software keyboard to wait on.
   // firing the whole string blind drops the leading characters, and iOS then autocorrects what
@@ -533,6 +631,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // a freshly booted device has never run the app, and simctl words that differently
     if (!/not running|nothing to terminate/i.test(message)) throw error
     console.log('App was not running.')
+  }
+  if (config.suite === 'image-picker') {
+    // reset first so reruns start undetermined like a fresh install.
+    execFileSync(
+      'xcrun',
+      ['simctl', 'privacy', config.simulatorId, 'reset', 'camera', config.bundleId],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
   }
   command(['simulator', 'launch-app', '--bundle-id', config.bundleId], config.simulatorId)
   if (config.suite === 'sheets') {
@@ -2084,6 +2190,139 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
+  if (config.suite === 'haptics') {
+    // presence: the native module resolved. tap-through: every verb crosses
+    // the bridge and records into Last. no-redbox comes from the shared wait,
+    // which throws on a RedBox before any predicate can pass. the Error: none
+    // wait is the console-error sweep: any js throw during the taps lands in
+    // the fixture's error label instead of passing silently.
+    const verbs = [
+      'selection',
+      'impact-light',
+      'impact-medium',
+      'impact-heavy',
+      'impact-soft',
+      'impact-rigid',
+      'notification-success',
+      'notification-warning',
+      'notification-error',
+    ]
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-haptics')
+    await wait('the haptics module is present', (n) =>
+      labels(n).includes('Module: available')
+    )
+    for (const verb of verbs) {
+      tap({ id: `one-native-haptics-${verb}` })
+      await wait(`tapping ${verb} reaches the native module`, (n) =>
+        labels(n).includes(`Last: ${verb}`)
+      )
+    }
+    await wait('no tap raised a js error', (n) => labels(n).includes('Error: none'))
+    screenshot('haptics-verbs.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`haptics recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-haptics')
+      await wait(`haptics recycle ${cycle}: the module is present again`, (n) =>
+        labels(n).includes('Module: available')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'app-info') {
+    // exact stamped values from the fixture manifest (9.9.9/4242), proving
+    // prebuild-to-runtime plumbing rather than template defaults. the
+    // refresh tap proves the screen is live; no-redbox rides in the shared
+    // wait, which throws on a RedBox before any predicate can pass.
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-app-info')
+    await wait('version matches the stamped manifest', (n) =>
+      labels(n).includes('Version: 9.9.9')
+    )
+    await wait('build matches the stamped manifest', (n) =>
+      labels(n).includes('Build: 4242')
+    )
+    await wait('application id matches the ios bundle id', (n) =>
+      labels(n).includes('ApplicationId: dev.vxrn.native.tests')
+    )
+    tap({ id: 'one-native-app-info-refresh' })
+    await wait('the screen answers taps', (n) => labels(n).includes('Taps: 1'))
+    screenshot('app-info-values.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`app-info recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-app-info')
+      await wait(`app-info recycle ${cycle}: stamped values return`, (n) =>
+        labels(n).includes('Version: 9.9.9') &&
+        labels(n).includes('Build: 4242') &&
+        labels(n).includes('ApplicationId: dev.vxrn.native.tests')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'crypto') {
+    // presence: the native module resolved. validity: two uuids off the
+    // device match rfc 4122 v4 and differ, and the getRandomValues fill is
+    // 16 bytes of hex. no-redbox comes from the shared wait, which throws
+    // on a RedBox before any predicate can pass, and the Error: none wait
+    // is the js-throw sweep: any crypto failure lands in the error label.
+    const uuidV4 =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
+    const hex32 = /^[0-9a-f]{32}$/
+    const valueOf = (nodes: Node[], prefix: string) =>
+      labels(nodes)
+        .find((label) => label.startsWith(prefix))
+        ?.slice(prefix.length)
+    const cryptoValid = (nodes: Node[]) => {
+      const first = valueOf(nodes, 'UUID1: ')
+      const second = valueOf(nodes, 'UUID2: ')
+      const random = valueOf(nodes, 'Random: ')
+      return Boolean(
+        first &&
+          second &&
+          random &&
+          uuidV4.test(first) &&
+          uuidV4.test(second) &&
+          first !== second &&
+          hex32.test(random)
+      )
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-crypto')
+    await wait('the crypto module is present', (n) =>
+      labels(n).includes('Module: available')
+    )
+    await wait('two distinct valid uuids render on device', cryptoValid)
+    await wait('no crypto call raised a js error', (n) =>
+      labels(n).includes('Error: none')
+    )
+    tap({ id: 'one-native-crypto-regenerate' })
+    await wait('regenerated uuids stay valid and distinct', cryptoValid)
+    await wait('regeneration raised no js error', (n) =>
+      labels(n).includes('Error: none')
+    )
+    screenshot('crypto-uuids.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`crypto recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-crypto')
+      await wait(`crypto recycle ${cycle}: uuids render again`, (n) => {
+        const valid = cryptoValid(n)
+        return valid && labels(n).includes('Error: none')
+      })
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
   if (config.suite === 'popover') {
     const status = (nodes: Node[], label: string, expected: string | number) =>
       labels(nodes).includes(`${label}: ${expected}`)
@@ -3217,6 +3456,517 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => value(n, 'gamma') && request(n, 'gamma') && Boolean(wheel(n, 2))
     )
 
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'apple-file') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    // the black Apple button publishes its title; the tap goes to the native node.
+    const signInButton = (nodes: Node[]) =>
+      nodes.find(
+        (node) => node.type === 'Button' && node.AXLabel === 'Sign in with Apple'
+      )
+    // the picker answers no accessibility query while it is up, so presentation
+    // is the bare tree and dismissal is the fixture coming back.
+    const pickerUp = (nodes: Node[]) =>
+      nodes.length > 0 && nodes.every((node) => node.type === 'Application')
+    // calibrated on a 402x874 iPhone 17 Pro (asserted from the app frame below).
+    // rows only answer on content, so every point lands on text or an icon: the
+    // close button top-right in Recents and folder views (top-left only on the
+    // Browse root, which a fresh presentation never opens on), the Browse tab,
+    // the expandable Locations header, the On My iPhone row text, the app
+    // folder icon, and the seeded file thumbnail. Browse restores its last
+    // location, so it lands in the folder or on the root; the taps converge
+    // either way, since the root path drills down to the same file.
+    const closePoint = { x: 328, y: 100 }
+    const browsePoint = { x: 307, y: 835 }
+    const locationsPoint = { x: 150, y: 230 }
+    const onMyIPhonePoint = { x: 120, y: 344 }
+    const folderPoint = { x: 79, y: 243 }
+    const filePoint = { x: 77, y: 231 }
+    const seedName = 'one-native-seed.txt'
+    const seedContent = 'one-native fileImporter seed\n'
+    const seedPickerFile = () => {
+      const container = execFileSync(
+        'xcrun',
+        ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data'],
+        { encoding: 'utf8' }
+      ).trim()
+      const documents = path.join(container, 'Documents')
+      fs.mkdirSync(documents, { recursive: true })
+      fs.writeFileSync(path.join(documents, seedName), seedContent)
+      return container
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-apple-file')
+    await wait(
+      'fresh SignIn mounted',
+      (n) =>
+        status(n, 'Category', 'SignIn') &&
+        status(n, 'Completions', 0) &&
+        status(n, 'Type', 'none') &&
+        status(n, 'User', 'none') &&
+        status(n, 'Message', 'none')
+    )
+    await wait('SignInWithAppleButton renders', (n) => {
+      const button = signInButton(n)
+      return Boolean(button?.frame && button.frame.width > 0 && button.frame.height > 0)
+    })
+    screenshot('apple-file-signin.png')
+    tap({ label: 'Sign in with Apple' })
+    await wait(
+      'tapping starts the request and reports its completion',
+      (n) =>
+        status(n, 'Completions', 1) &&
+        status(n, 'Type', 'failed') &&
+        !status(n, 'Message', 'none'),
+      false,
+      () =>
+        `completion rows: ${labels(snapshot(config.simulatorId)).filter((label) => /Completions|Type|Message|User/.test(label)).join(' | ')}`
+    )
+    screenshot('apple-file-signin-completion.png')
+
+    tap({ id: 'one-native-apple-file-category-files' })
+    const filesNodes = await wait(
+      'fresh FileImporter mounted',
+      (n) =>
+        status(n, 'Category', 'Files') &&
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 0) &&
+        status(n, 'Completions', 0) &&
+        status(n, 'Type', 'none') &&
+        !pickerUp(n)
+    )
+    const appFrame = filesNodes.find((n) => n.type === 'Application')?.frame
+    if (appFrame?.width !== 402 || appFrame?.height !== 874)
+      throw new Error(
+        `Expected a 402x874 iPhone 17 Pro display, got ${JSON.stringify(appFrame)}`
+      )
+    const container = seedPickerFile()
+    tap({ id: 'one-native-apple-file-open' })
+    await wait('fileImporter presents the document picker', (n) => pickerUp(n))
+    screenshot('apple-file-picker-open.png')
+    point(closePoint.x, closePoint.y)
+    // a previous run that died mid-navigation restores the Browse root, whose
+    // close button sits top-left; the second tap only fires when the first
+    // missed, which the bare tree proves.
+    await Bun.sleep(2000)
+    if (pickerUp(snapshot(config.simulatorId))) point(28, 100)
+    await wait(
+      'cancel reports dismissal and a cancelled completion',
+      (n) =>
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 2) &&
+        status(n, 'Completions', 1) &&
+        status(n, 'Type', 'cancelled') &&
+        status(n, 'Message', 'none')
+    )
+    screenshot('apple-file-picker-cancelled.png')
+
+    // the picker is AX-blind but its states read off pixels: the folder title
+    // spans the left nav area only in the folder view, the Locations header
+    // text only on the Browse root, and the On My iPhone phone icon only
+    // when Locations is expanded. calibrated off device captures with at
+    // least 3x margin on every probe. Browse restores its last location and
+    // the sections keep their expansion across presentations, so the pick
+    // drives closed-loop: classify, tap, re-shot, and fail loud instead of
+    // tapping blind into the wrong state.
+    const pickerShot = (name: string) => readPng(screenshot(name))
+    const countWhere = (
+      image: ReturnType<typeof readPng>,
+      x0: number,
+      y0: number,
+      x1: number,
+      y1: number,
+      match: (r: number, g: number, b: number) => boolean
+    ) => {
+      const scale = image.width / 402
+      let found = 0
+      for (let y = Math.floor(y0 * scale); y <= Math.ceil(y1 * scale); y++)
+        for (let x = Math.floor(x0 * scale); x <= Math.ceil(x1 * scale); x++) {
+          const i = (y * image.width + x) * 4
+          if (match(image.data[i], image.data[i + 1], image.data[i + 2])) found++
+        }
+      return found
+    }
+    const isDark = (r: number, g: number, b: number) => r < 100 && g < 100 && b < 100
+    const isBlue = (r: number, g: number, b: number) =>
+      b > 180 && b > r + 60 && b > g + 40
+    const isRed = (r: number, g: number, b: number) =>
+      r > 180 && r > g + 60 && r > b + 60
+    const pickerState = (image: ReturnType<typeof readPng>) => {
+      if (countWhere(image, 70, 90, 130, 110, isDark) > 200) return 'folder' as const
+      if (countWhere(image, 34, 229, 46, 241, isDark) > 50) return 'root' as const
+      return 'elsewhere' as const
+    }
+    // both the pick and the swipe-down cancel start from the app folder: the
+    // single file sits top-left there on every visit.
+    const gotoPickerFolder = async (leg: string) => {
+      // reach the Browse root or the folder from wherever the presentation
+      // restored: Recents enters Browse, a pushed view pops back to the root.
+      let state: 'folder' | 'root' | 'elsewhere' = 'elsewhere'
+      for (let attempt = 0; attempt < 4 && state === 'elsewhere'; attempt++) {
+        point(browsePoint.x, browsePoint.y)
+        await Bun.sleep(1500)
+        state = pickerState(pickerShot(`apple-file-nav-${leg}-browse-${attempt}.png`))
+        if (state !== 'elsewhere') break
+        point(30, 100)
+        await Bun.sleep(1500)
+        state = pickerState(pickerShot(`apple-file-nav-${leg}-back-${attempt}.png`))
+      }
+      if (state === 'elsewhere')
+        throw new Error(`${leg} navigation never reached the Browse tree`)
+      if (state === 'root') {
+        // expand Locations from either state: the phone icon proves expanded,
+        // the tag dot proves collapsed, anything else is a collapsed Tags
+        // section hiding the rows below it.
+        for (let attempt = 0; ; attempt++) {
+          const image = pickerShot(`apple-file-nav-${leg}-sections-${attempt}.png`)
+          if (countWhere(image, 34, 314, 46, 326, isBlue) > 40) break
+          if (attempt === 4) throw new Error(`${leg} navigation never expanded Locations`)
+          if (countWhere(image, 32, 332, 48, 348, isRed) > 40)
+            point(locationsPoint.x, locationsPoint.y)
+          else point(200, 280)
+          await Bun.sleep(1500)
+        }
+        point(onMyIPhonePoint.x, onMyIPhonePoint.y)
+        await Bun.sleep(1500)
+        point(folderPoint.x, folderPoint.y)
+        await Bun.sleep(1500)
+      }
+    }
+    tap({ id: 'one-native-apple-file-open' })
+    await wait('fileImporter presents for the pick', (n) => pickerUp(n))
+    await gotoPickerFolder('pick')
+    screenshot('apple-file-picker-file.png')
+    point(filePoint.x, filePoint.y)
+    const picked = await wait(
+      'picking reports the copied file',
+      (n) =>
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 4) &&
+        status(n, 'Completions', 2) &&
+        status(n, 'Type', 'success') &&
+        status(n, 'Index', 0) &&
+        status(n, 'Count', 1) &&
+        status(n, 'Message', 'none') &&
+        labels(n).some(
+          (label) =>
+            label.startsWith('Url: file://') &&
+            label.includes('one-native-file-importer') &&
+            label.endsWith(`/${seedName}`)
+        )
+    )
+    screenshot('apple-file-pick-completion.png')
+    const url = labels(picked)
+      .find((label) => label.startsWith('Url: file://'))!
+      .slice('Url: file://'.length)
+    if (!url.startsWith(`${container}/Library/Caches/one-native-file-importer/`))
+      throw new Error(`Pick reported a url outside the importer copies: ${url}`)
+    const copied = fs.readFileSync(decodeURIComponent(url), 'utf8')
+    if (copied !== seedContent)
+      throw new Error(`Pick copy holds ${JSON.stringify(copied)} instead of the seed`)
+    checks.push({ name: 'pick copy is readable on disk', durationMs: 0 })
+    console.log('PASS pick copy is readable on disk')
+
+    tap({ id: 'one-native-apple-file-open' })
+    await wait('fileImporter presents for the swipe-down', (n) => pickerUp(n))
+    await gotoPickerFolder('swipe')
+    screenshot('apple-file-picker-swipe.png')
+    // the drag starts on the sheet title bar: a mid-sheet drag scrolls the
+    // file grid instead of dismissing the sheet (proven on device).
+    command(
+      [
+        'ui-automation',
+        'swipe',
+        '--x1',
+        '201',
+        '--y1',
+        '225',
+        '--x2',
+        '201',
+        '--y2',
+        '750',
+        '--duration',
+        '1.0',
+      ],
+      config.simulatorId
+    )
+    await wait(
+      'swipe-down reports dismissal and a cancelled completion',
+      (n) =>
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 6) &&
+        status(n, 'Completions', 3) &&
+        status(n, 'Type', 'cancelled') &&
+        status(n, 'Message', 'none')
+    )
+    screenshot('apple-file-picker-swiped.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'clipboard') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-clipboard')
+    await wait('clipboard fixture mounted', (n) =>
+      labels(n).includes('Written: none')
+    )
+    tap({ id: 'one-native-clipboard-set' })
+    await wait('setString reports true', (n) =>
+      labels(n).includes('Written: true')
+    )
+    tap({ id: 'one-native-clipboard-get' })
+    await wait('getString reads the write back', (n) =>
+      labels(n).includes('Read: one-native-clipboard-probe')
+    )
+    tap({ id: 'one-native-clipboard-has' })
+    await wait('hasString sees the string', (n) =>
+      labels(n).includes('Has: true')
+    )
+    screenshot('clipboard-roundtrip.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`clipboard recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-clipboard')
+      await wait(`clipboard recycle ${cycle}: a fresh fixture mounts`, (n) =>
+        labels(n).includes('Written: none')
+      )
+      tap({ id: 'one-native-clipboard-get' })
+      await wait(
+        `clipboard recycle ${cycle}: the pasteboard outlives the fixture`,
+        (n) => labels(n).includes('Read: one-native-clipboard-probe')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'network') {
+    const stateOf = (nodes: Node[]) => {
+      const label = labels(nodes).find((text) => text.startsWith('State: '))
+      if (!label) return null
+      const [, type, connected, reachable] = label.split(' ')
+      return { type, connected, reachable }
+    }
+    const eventsOf = (nodes: Node[]) => {
+      const label = labels(nodes).find((text) => text.startsWith('Events: '))
+      return label ? Number(label.slice('Events: '.length)) : NaN
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-network')
+
+    // the simulator has a live host route, so the correct reading is a named
+    // type with both flags true. none would prove the monitor never started.
+    await wait('the one-shot read publishes live state', (n) => {
+      const state = stateOf(n)
+      return Boolean(
+        state &&
+          state.type &&
+          state.type !== 'none' &&
+          state.connected === 'true' &&
+          state.reachable === 'true'
+      )
+    })
+    await wait('the listener fires at least once', (n) => eventsOf(n) >= 1)
+    tap({ id: 'one-native-network-refresh' })
+    await wait('a refresh re-reads live state', (n) => {
+      const state = stateOf(n)
+      return Boolean(
+        state && state.connected === 'true' && state.reachable === 'true'
+      )
+    })
+    screenshot('network-state.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`network recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-network')
+      await wait(`network recycle ${cycle}: state publishes again`, (n) => {
+        const state = stateOf(n)
+        return (
+          Boolean(state && state.type !== 'none' && state.connected === 'true') &&
+          eventsOf(n) >= 1
+        )
+      })
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'browser') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-browser')
+    await wait('browser fixture mounted', (n) => labels(n).includes('Result: none'))
+
+    // a user dismiss resolves cancel. the sheet exposes no accessibility
+    // children, so presentation is the collapsed tree and the close tap
+    // lands on the measured button point, guarded by the pinned display.
+    tap({ id: 'one-native-browser-open' })
+    const presented = await wait('the safari sheet presents', browserPresented)
+    const app = presented.find((n) => n.type === 'Application')?.frame
+    if (!app || app.width !== 393 || app.height !== 852)
+      throw new Error(
+        `Expected a 393x852 iPhone 16 display, got ${JSON.stringify(app)}`
+      )
+    screenshot('browser-open.png')
+    point(38, 81)
+    await wait('a user dismiss resolves cancel', (n) =>
+      labels(n).includes('Result: cancel')
+    )
+
+    // a programmatic dismiss resolves dismiss on both promises.
+    tap({ id: 'one-native-browser-open-dismiss' })
+    await wait('dismiss resolves dismiss', (n) =>
+      labels(n).includes('Opened: dismiss') &&
+      labels(n).includes('Dismissed: dismiss')
+    )
+    screenshot('browser-dismiss.png')
+
+    // dismissing a pending auth session resolves its promise as dismiss.
+    // the consent alert lives outside the app tree, so no tap can reach
+    // it; the session is canceled and settled programmatically.
+    tap({ id: 'one-native-browser-auth-dismiss' })
+    await wait('dismissAuthSession dismisses the auth session', (n) =>
+      labels(n).includes('Auth: dismiss')
+    )
+    screenshot('browser-auth.png')
+
+    // a redirect to the app scheme completes the session with the url.
+    // the runner serves the 302 locally; ephemeral mode skips the
+    // consent alert, which lives outside the app tree.
+    const redirectServer = Bun.serve({
+      port: 8123,
+      fetch: () => Response.redirect('nativefeatures://auth?code=ios1', 302),
+    })
+    try {
+      tap({ id: 'one-native-browser-auth-redirect' })
+      await wait('the redirect completes the auth session', (n) =>
+        labels(n).includes('Auth: success nativefeatures://auth?code=ios1')
+      )
+    } finally {
+      redirectServer.stop()
+    }
+    screenshot('browser-auth-redirect.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`browser recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-browser')
+      await wait(`browser recycle ${cycle}: a fresh fixture mounts`, (n) =>
+        labels(n).includes('Result: none')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'image-picker') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const dims = (nodes: Node[]) => {
+      const num = (prefix: string) => {
+        const label = labels(nodes).find((line) => line.startsWith(`${prefix}: `))
+        return label === undefined ? NaN : Number(label.slice(prefix.length + 2))
+      }
+      return { width: num('Width'), height: num('Height') }
+    }
+    // the picker publishes no accessibility tree, so its two taps are
+    // calibrated points on the 17 Pro display, guarded by the observed
+    // application frame. the waits after each tap prove they landed.
+    const pickerPoint = (name: string, x: number, y: number) => {
+      const app = snapshot(config.simulatorId).find(
+        (node) => node.type === 'Application'
+      )?.frame
+      if (app?.width !== 402 || app?.height !== 874)
+        throw new Error(
+          `Expected a 402x874 display for the ${name} tap, got ${JSON.stringify(app)}`
+        )
+      point(x, y)
+    }
+    const pickerCovers = (nodes: Node[]) =>
+      nodes.every((node) => node.type === 'Application')
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-image-picker')
+    await wait(
+      'fixture mounted',
+      (n) =>
+        status(n, 'Result', 'idle') &&
+        Boolean(id(n, 'one-native-image-picker-library')) &&
+        Boolean(id(n, 'one-native-image-picker-camera'))
+    )
+    tap({ id: 'one-native-image-picker-permissions' })
+    await wait('camera permission reads undecided', (n) =>
+      Boolean(
+        status(n, 'PermStatus', 'undetermined') &&
+          status(n, 'PermGranted', 'false') &&
+          status(n, 'PermCanAsk', 'true')
+      )
+    )
+    tap({ id: 'one-native-image-picker-library' })
+    await wait('the system picker presents', (n) => pickerCovers(n))
+    screenshot('image-picker-open.png')
+    pickerPoint('picker close', 45, 98)
+    await wait('cancel resolves through the bridge', (n) =>
+      Boolean(id(n, 'one-native-image-picker-library'))
+    )
+    await wait('cancel reports canceled', (n) => status(n, 'Result', 'canceled'))
+    // seed a known portrait photo: a heic stored 120x80 with exif
+    // orientation 6, so it displays 80x120. recency sorts it first, and
+    // every copy is identical, so reruns that seed again stay deterministic.
+    execFileSync('xcrun', [
+      'simctl',
+      'addmedia',
+      config.simulatorId,
+      fileURLToPath(
+        new URL('../assets/one-native-picker-portrait.heic', import.meta.url)
+      ),
+    ])
+    tap({ id: 'one-native-image-picker-library' })
+    await wait('photo grid lists the seeded photo', (n) => pickerCovers(n))
+    // a single pick dismisses on tap, with no trailing add button. recency
+    // sorts the seeded photo first; the metadata below proves this tap took it.
+    pickerPoint('seeded photo', 66, 378)
+    // compatible mode transcodes the heic to jpeg, and the orientation 6
+    // swap reports the display size, portrait.
+    await wait('picked asset resolves with its metadata', (n) =>
+      Boolean(
+        status(n, 'Result', 'ok') &&
+          status(n, 'Assets', 1) &&
+          status(n, 'Width', 80) &&
+          status(n, 'Height', 120) &&
+          dims(n).height > dims(n).width &&
+          status(n, 'Mime', 'image/jpeg') &&
+          labels(n).some(
+            (label) =>
+              label.startsWith('File: IMG_') && label.endsWith('.jpeg')
+          ) &&
+          labels(n).some((label) => {
+            const match = /^Size: (\d+)$/.exec(label)
+            return match !== null && Number(match[1]) > 0
+          }) &&
+          labels(n).some((label) => label.startsWith('Uri: file://'))
+      )
+    )
+    // newer simulators report a camera and prompt; older ones have none.
+    // denying, like missing hardware, resolves canceled.
+    tap({ id: 'one-native-image-picker-camera' })
+    const cameraEnd = await wait(
+      'camera settles to canceled or a permission prompt',
+      (n) => status(n, 'Result', 'canceled') || has(n, 'Don’t Allow')
+    )
+    if (!status(cameraEnd, 'Result', 'canceled')) {
+      tap({ label: 'Don’t Allow' })
+      await wait('denied camera resolves canceled', (n) =>
+        status(n, 'Result', 'canceled')
+      )
+    }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

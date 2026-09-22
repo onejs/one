@@ -16,12 +16,14 @@ declare function ContentUnavailableView(_props: Types.ContentUnavailableViewProp
 declare function VideoPlayer(_props: Types.VideoPlayerProps): never;
 declare function PhotosPicker(_props: Types.PhotosPickerProps): never;
 declare function WebView(_props: Types.WebViewProps): never;
+declare function SignInWithAppleButton(_props: Types.SignInWithAppleButtonProps): never;
 declare function Map(_props: Types.MapProps): never;
 declare function TextField(_props: Types.TextFieldProps): never;
 declare function SecureField(_props: Types.SecureFieldProps): never;
 declare function Alert(_props: Types.AlertProps): never;
 declare function ConfirmationDialog(_props: Types.ConfirmationDialogProps): never;
 declare function QuickLook(_props: Types.QuickLookProps): never;
+declare function FileImporter(_props: Types.FileImporterProps): never;
 export declare const unsupportedControls: {
     Picker: typeof Picker;
     DatePicker: typeof DatePicker;
@@ -40,12 +42,14 @@ export declare const unsupportedControls: {
     VideoPlayer: typeof VideoPlayer;
     PhotosPicker: typeof PhotosPicker;
     WebView: typeof WebView;
+    SignInWithAppleButton: typeof SignInWithAppleButton;
     Map: typeof Map;
     TextField: typeof TextField;
     SecureField: typeof SecureField;
     Alert: typeof Alert;
     ConfirmationDialog: typeof ConfirmationDialog;
     QuickLook: typeof QuickLook;
+    FileImporter: typeof FileImporter;
 };
 export {};
 //# sourceMappingURL=unsupportedControls.d.ts.map
