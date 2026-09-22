@@ -1,7 +1,15 @@
-import { readFileSync } from 'node:fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { validateNativeApp } from '../native/appManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
+
+// owned output: every `one prebuild` app Release-builds through this config.
+// xcodebuild's bundle phase and gradle's react block both invoke
+// `react-native bundle` via react-native/cli.js, which loads its `bundle`
+// command override from here. without it the stock bundle command runs: it
+// rejects the --config-cmd xcode passes and needs a metro.config.js One apps
+// do not have. constant bytes, no per-app inputs.
+const REACT_NATIVE_CONFIG = `module.exports = require('one/react-native-config')\n`
 
 export async function run(args: { platform?: string; 'no-install'?: boolean }) {
   const root = process.cwd()
@@ -23,6 +31,7 @@ export async function run(args: { platform?: string; 'no-install'?: boolean }) {
     )
   }
   validateNativeApp(app)
+  writeFileSync(join(root, 'react-native.config.cjs'), REACT_NATIVE_CONFIG)
   const { prebuild } = await import('vxrn')
 
   await prebuild({

@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -55,6 +55,16 @@ describe('one prebuild', () => {
       'no-install': true,
       app,
     })
+  })
+
+  it('writes the release-bundle react-native config', async () => {
+    loadUserOneOptionsMock.mockResolvedValueOnce({ oneOptions: { native: { app } } })
+
+    await run({ platform: 'ios', 'no-install': true })
+
+    expect(readFileSync(join(projectRoot, 'react-native.config.cjs'), 'utf8')).toBe(
+      `module.exports = require('one/react-native-config')\n`
+    )
   })
 
   it('rejects a missing native.app before calling vxrn', async () => {
