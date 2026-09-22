@@ -71,7 +71,7 @@ using namespace facebook::react;
   if (!next.swiftStyle.material.empty()) style[@"material"] = RCTNSStringFromString(next.swiftStyle.material);
   [_nativeView configureStyle:style];
   [_nativeView configure:next.value
-    acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled toggleStyle:RCTNSStringFromString(next.toggleStyle)];
+    acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled systemImage:RCTNSStringFromString(next.systemImage) toggleStyle:RCTNSStringFromString(next.toggleStyle)];
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }

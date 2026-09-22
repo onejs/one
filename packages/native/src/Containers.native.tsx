@@ -14,6 +14,7 @@ import {
   TextInput,
   View,
 } from 'react-native'
+import NativeButton from './specs/OneNativeButtonNativeComponent'
 import NativeContainerSlot from './specs/OneNativeContainerSlotNativeComponent'
 import NativeControlGroup from './specs/OneNativeControlGroupNativeComponent'
 import NativeDisclosureGroup from './specs/OneNativeDisclosureGroupNativeComponent'
@@ -66,6 +67,7 @@ import {
   hostAlignments,
   hostAxes,
   zStackAlignments,
+  type ButtonProps,
   type EnvironmentProps,
   type FormProps,
   type GlassProps,
@@ -90,6 +92,7 @@ const containers =
 function nativeEnvironmentProps({
   colorScheme,
   dynamicTypeSize,
+  controlSize,
   locale,
   tint,
   isEnabled,
@@ -97,11 +100,13 @@ function nativeEnvironmentProps({
   const iosVersion = Number.parseFloat(String(Platform.Version))
   if (colorScheme) assertSwiftUIValue('ColorScheme', colorScheme, iosVersion)
   if (dynamicTypeSize) assertSwiftUIValue('DynamicTypeSize', dynamicTypeSize, iosVersion)
+  if (controlSize) assertSwiftUIValue('ControlSize', controlSize, iosVersion)
   if (locale !== undefined && (typeof locale !== 'string' || !locale.trim()))
     throw new Error('Swift.Host and Swift.Form locale must be a non-empty identifier')
   return {
     colorScheme: colorScheme ?? '',
     dynamicTypeSize: dynamicTypeSize ?? '',
+    controlSize: controlSize ?? '',
     locale: locale ?? '',
     tint,
     isEnabled: isEnabled === undefined ? '' : isEnabled ? 'enabled' : 'disabled',
@@ -167,6 +172,7 @@ function HostStack({
   alignment = 'leading',
   colorScheme,
   dynamicTypeSize,
+  controlSize,
   locale,
   tint,
   isEnabled,
@@ -192,6 +198,7 @@ function HostStack({
       {...nativeEnvironmentProps({
         colorScheme,
         dynamicTypeSize,
+        controlSize,
         locale,
         tint,
         isEnabled,
@@ -248,6 +255,7 @@ export function Form({
   sizing = 'fill',
   colorScheme,
   dynamicTypeSize,
+  controlSize,
   locale,
   tint,
   isEnabled,
@@ -265,6 +273,7 @@ export function Form({
       {...nativeEnvironmentProps({
         colorScheme,
         dynamicTypeSize,
+        controlSize,
         locale,
         tint,
         isEnabled,
@@ -409,6 +418,60 @@ export function LabeledContent({
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeLabeledContent>
+  )
+}
+
+// a button renders text from its label props or a custom label view from its
+// children, never both: children are the whole Button(action:) label, so any text
+// label content alongside them is ambiguous and fails here instead of in SwiftUI.
+export function Button({
+  onPress,
+  label = '',
+  disabled = false,
+  subtitle = '',
+  systemImage = '',
+  buttonRole = '',
+  buttonStyle = 'automatic',
+  disclosureIndicator = false,
+  children,
+  swiftStyle,
+  style,
+  ...props
+}: ButtonProps) {
+  if (typeof label !== 'string') throw new Error('Button label must be a string')
+  const hasChildren = Children.toArray(children).length > 0
+  if (hasChildren && (label !== '' || systemImage !== '' || subtitle !== ''))
+    throw new Error('Swift.Button takes either a label or children')
+  if (!label && !systemImage && !hasChildren)
+    throw new Error('Button needs a label, a systemImage, or both')
+  if (buttonRole)
+    assertSwiftUIValue(
+      'ButtonRole',
+      buttonRole,
+      Number.parseFloat(String(Platform.Version))
+    )
+  assertSwiftUIValue(
+    'PrimitiveButtonStyle',
+    buttonStyle,
+    Number.parseFloat(String(Platform.Version))
+  )
+  assertOneNativeChildren(children, 'Swift.Button')
+  return (
+    <NativeButton
+      {...props}
+      style={style}
+      swiftStyle={swiftStyle}
+      label={label}
+      disabled={disabled}
+      subtitle={subtitle}
+      systemImage={systemImage}
+      buttonRole={buttonRole}
+      buttonStyle={buttonStyle}
+      disclosureIndicator={disclosureIndicator}
+      onNativeButtonPress={({ nativeEvent }) => onPress?.()}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeButton>
   )
 }
 

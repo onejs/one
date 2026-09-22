@@ -31,9 +31,6 @@ function Text(_props: Types.TextProps): never {
 function Label(_props: Types.LabelProps): never {
   throw new Error('Swift.Label requires an iOS native build with @vxrn/native installed')
 }
-function Button(_props: Types.ButtonProps): never {
-  throw new Error('Swift.Button requires an iOS native build with @vxrn/native installed')
-}
 function ProgressView(_props: Types.ProgressViewProps): never {
   throw new Error(
     'Swift.ProgressView requires an iOS native build with @vxrn/native installed'
@@ -55,6 +52,29 @@ function ContentUnavailableView(_props: Types.ContentUnavailableViewProps): neve
     'Swift.ContentUnavailableView requires an iOS native build with @vxrn/native installed'
   )
 }
+function Circle(_props: Types.CircleProps): never {
+  throw new Error('Swift.Circle requires an iOS native build with @vxrn/native installed')
+}
+function Capsule(_props: Types.CapsuleProps): never {
+  throw new Error(
+    'Swift.Capsule requires an iOS native build with @vxrn/native installed'
+  )
+}
+function Rectangle(_props: Types.RectangleProps): never {
+  throw new Error(
+    'Swift.Rectangle requires an iOS native build with @vxrn/native installed'
+  )
+}
+function RoundedRectangle(_props: Types.RoundedRectangleProps): never {
+  throw new Error(
+    'Swift.RoundedRectangle requires an iOS native build with @vxrn/native installed'
+  )
+}
+function Ellipse(_props: Types.EllipseProps): never {
+  throw new Error(
+    'Swift.Ellipse requires an iOS native build with @vxrn/native installed'
+  )
+}
 function VideoPlayer(_props: Types.VideoPlayerProps): never {
   throw new Error(
     'Swift.VideoPlayer requires an iOS native build with @vxrn/native installed'
@@ -68,6 +88,11 @@ function PhotosPicker(_props: Types.PhotosPickerProps): never {
 function WebView(_props: Types.WebViewProps): never {
   throw new Error(
     'Swift.WebView requires an iOS native build with @vxrn/native installed'
+  )
+}
+function SignInWithAppleButton(_props: Types.SignInWithAppleButtonProps): never {
+  throw new Error(
+    'Swift.SignInWithAppleButton requires an iOS native build with @vxrn/native installed'
   )
 }
 function Map(_props: Types.MapProps): never {
@@ -96,6 +121,11 @@ function QuickLook(_props: Types.QuickLookProps): never {
     'Swift.QuickLook requires an iOS native build with @vxrn/native installed'
   )
 }
+function FileImporter(_props: Types.FileImporterProps): never {
+  throw new Error(
+    'Swift.FileImporter requires an iOS native build with @vxrn/native installed'
+  )
+}
 export const unsupportedControls = {
   Picker,
   DatePicker,
@@ -105,19 +135,25 @@ export const unsupportedControls = {
   Stepper,
   Text,
   Label,
-  Button,
   ProgressView,
   Gauge,
   Image,
   ShareLink,
   ContentUnavailableView,
+  Circle,
+  Capsule,
+  Rectangle,
+  RoundedRectangle,
+  Ellipse,
   VideoPlayer,
   PhotosPicker,
   WebView,
+  SignInWithAppleButton,
   Map,
   TextField,
   SecureField,
   Alert,
   ConfirmationDialog,
   QuickLook,
+  FileImporter,
 }

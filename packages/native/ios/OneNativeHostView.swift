@@ -87,12 +87,12 @@ public final class OneNativeHostView: OneNativeContainerView {
   }
 
   public func configureEnvironment(
-    colorScheme: String, dynamicTypeSize: String, locale: String, tint: UIColor?,
-    isEnabled: String
+    colorScheme: String, dynamicTypeSize: String, controlSize: String, locale: String,
+    tint: UIColor?, isEnabled: String
   ) {
     environment.configure(
-      colorScheme: colorScheme, dynamicTypeSize: dynamicTypeSize, locale: locale,
-      tint: tint, isEnabled: isEnabled)
+      colorScheme: colorScheme, dynamicTypeSize: dynamicTypeSize, controlSize: controlSize,
+      locale: locale, tint: tint, isEnabled: isEnabled)
   }
 
   public override func reset() {

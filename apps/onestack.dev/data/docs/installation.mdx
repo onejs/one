@@ -218,8 +218,9 @@ configuration and generate its explicit config:
 bunx one metro-eject
 ```
 
-The generated Metro project uses `@react-native/babel-preset` and `one/babel-preset`.
-Those Babel settings belong to the Metro path and are not part of One's default bundler.
+The generated `babel.config.cjs` delegates to the preset (`module.exports = require('one/babel-preset')`),
+which builds on React Native's preset. Those Babel settings belong to the Metro path and are not
+part of One's default bundler.
 
 Metro provides:
 

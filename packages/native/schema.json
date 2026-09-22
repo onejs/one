@@ -878,6 +878,9 @@
         "disabled": {
           "type": "boolean"
         },
+        "systemImage": {
+          "type": "string"
+        },
         "toggleStyle": {
           "type": "string",
           "enum": "ToggleStyle"
@@ -1057,53 +1060,6 @@
       },
       "events": {},
       "actions": [],
-      "layout": {
-        "kind": "measured"
-      },
-      "slots": [],
-      "interfaceOnly": true
-    },
-    {
-      "name": "OneNativeButton",
-      "publicName": "Button",
-      "props": {
-        "label": {
-          "type": "string"
-        },
-        "disabled": {
-          "type": "boolean"
-        },
-        "subtitle": {
-          "type": "string"
-        },
-        "systemImage": {
-          "type": "string"
-        },
-        "buttonRole": {
-          "type": "string",
-          "enum": "ButtonRole"
-        },
-        "buttonStyle": {
-          "type": "string",
-          "enum": "PrimitiveButtonStyle"
-        },
-        "disclosureIndicator": {
-          "type": "boolean"
-        }
-      },
-      "events": {
-        "onNativeButtonPress": {
-          "eventCount": {
-            "type": "Int32"
-          }
-        }
-      },
-      "actions": [
-        {
-          "publicProp": "onPress",
-          "event": "onNativeButtonPress"
-        }
-      ],
       "layout": {
         "kind": "measured"
       },
@@ -1294,6 +1250,89 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeCircle",
+      "publicName": "Circle",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeCapsule",
+      "publicName": "Capsule",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeRectangle",
+      "publicName": "Rectangle",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeRoundedRectangle",
+      "publicName": "RoundedRectangle",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        },
+        "cornerRadius": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeEllipse",
+      "publicName": "Ellipse",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeVideoPlayer",
       "publicName": "VideoPlayer",
       "props": {
@@ -1459,6 +1498,60 @@
       },
       "slots": [],
       "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeSignInWithAppleButton",
+      "publicName": "SignInWithAppleButton",
+      "props": {
+        "requestedScopes": {
+          "type": "ReadonlyArray<string>"
+        },
+        "nonce": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeSignInWithAppleButtonCompletion": {
+          "type": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "givenName": {
+            "type": "string"
+          },
+          "familyName": {
+            "type": "string"
+          },
+          "identityToken": {
+            "type": "string"
+          },
+          "authorizationCode": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onCompletion",
+          "event": "onNativeSignInWithAppleButtonCompletion"
+        }
+      ],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeMap",
@@ -1897,6 +1990,75 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeFileImporter",
+      "publicName": "FileImporter",
+      "props": {
+        "value": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "allowedContentTypes": {
+          "type": "ReadonlyArray<string>"
+        },
+        "allowsMultipleSelection": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativeFileImporterValueChange": {
+          "value": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeFileImporterCompletion": {
+          "type": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "index": {
+            "type": "Double"
+          },
+          "count": {
+            "type": "Double"
+          },
+          "message": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeFileImporterValueChange"
+      },
+      "actions": [
+        {
+          "publicProp": "onCompletion",
+          "event": "onNativeFileImporterCompletion"
+        }
+      ],
+      "layout": {
+        "kind": "presentation"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeSheet",
       "publicName": "Sheet",
       "props": {
@@ -2045,6 +2207,9 @@
         "dynamicTypeSize": {
           "type": "string"
         },
+        "controlSize": {
+          "type": "string"
+        },
         "locale": {
           "type": "string"
         },
@@ -2122,6 +2287,9 @@
         "dynamicTypeSize": {
           "type": "string"
         },
+        "controlSize": {
+          "type": "string"
+        },
         "locale": {
           "type": "string"
         },
@@ -2189,6 +2357,60 @@
       },
       "events": {},
       "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeButton",
+      "publicName": "Button",
+      "props": {
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "systemImage": {
+          "type": "string"
+        },
+        "buttonRole": {
+          "type": "string",
+          "enum": "ButtonRole"
+        },
+        "buttonStyle": {
+          "type": "string",
+          "enum": "PrimitiveButtonStyle"
+        },
+        "disclosureIndicator": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativeButtonPress": {
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onPress",
+          "event": "onNativeButtonPress"
+        }
+      ],
       "layout": {
         "kind": "measured"
       },
@@ -2704,6 +2926,13 @@
       "accessibility3": 15,
       "accessibility4": 15,
       "accessibility5": 15
+    },
+    "ControlSize": {
+      "mini": 15,
+      "small": 15,
+      "regular": 15,
+      "large": 15,
+      "extraLarge": 17
     },
     "SymbolRenderingMode": {
       "monochrome": 15,

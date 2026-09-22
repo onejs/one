@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { transformSync } from '@babel/core'
 import { describe, expect, it } from 'vitest'
-import oneBabelPreset from './index'
+import oneBabelPreset, { buildOneBabelPlugins } from './index'
 
 const projectRoot = path.resolve(__dirname, '../../')
 
@@ -16,7 +16,20 @@ const projectRoot = path.resolve(__dirname, '../../')
  * verifies that the preset wires them up correctly.
  */
 describe('one/babel-preset integration', () => {
-  const presetWithOpts = [oneBabelPreset, { projectRoot }] as const
+  // wiring tests run the One chain directly so assertions see untransformed
+  // modules; syntax tests below run the full preset with its RN base.
+  const onePlugins = buildOneBabelPlugins({ projectRoot, relativeRouterRoot: 'app' })
+  const presetWithBase = [oneBabelPreset, { projectRoot }] as const
+
+  // caller the Metro babel transformer sets on the `one dev` path, where the
+  // Vite plugin already injected the One chain via customTransformOptions.
+  const metroViteCaller = {
+    name: 'metro',
+    bundler: 'metro',
+    platform: 'ios',
+    projectRoot,
+    oneViteMetroBabelConfig: true,
+  }
 
   it('runs against a route file without throwing', () => {
     const code = `
@@ -28,7 +41,7 @@ describe('one/babel-preset integration', () => {
     const result = transformSync(code, {
       filename: path.join(projectRoot, 'app/index.tsx'),
       cwd: projectRoot,
-      presets: [presetWithOpts],
+      plugins: onePlugins,
       parserOpts: { sourceType: 'module', plugins: ['jsx'] },
     })
 
@@ -54,7 +67,7 @@ describe('one/babel-preset integration', () => {
     const result = transformSync(code, {
       filename: path.join(projectRoot, 'metro-entry-ctx.js'),
       cwd: projectRoot,
-      presets: [presetWithOpts],
+      plugins: onePlugins,
       parserOpts: { sourceType: 'module' },
     })
 
@@ -81,10 +94,51 @@ describe('one/babel-preset integration', () => {
     const result = transformSync(code, {
       filename: path.join(projectRoot, 'src/utils/x.ts'),
       cwd: projectRoot,
-      presets: [presetWithOpts],
+      plugins: onePlugins,
       parserOpts: { sourceType: 'module' },
     })
 
     expect(result?.code).toContain('const x = 1')
+  })
+
+  it('strips `import type` on the one dev Metro path', () => {
+    // every route file is TS. with no base preset Metro dies with
+    // `TransformError: Unexpected token, expected "from"` on this line.
+    const code = `
+      import { Tabs } from 'one'
+      import type { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs'
+      export default function Layout() {
+        return null
+      }
+    `
+    const result = transformSync(code, {
+      filename: path.join(projectRoot, 'app/(tabs)/_layout.tsx'),
+      cwd: projectRoot,
+      presets: [presetWithBase],
+      caller: metroViteCaller,
+    })
+
+    expect(result?.code).toBeTruthy()
+    expect(result?.code).not.toContain('import type')
+    expect(result?.code).toContain('Layout')
+  })
+
+  it('strips flow `import typeof` on the one dev Metro path', () => {
+    // react-native/index.js ships `import typeof ... from './index.js.flow'`.
+    // unstripped, Metro tries to resolve the .flow file and the iOS bundle
+    // 500s with UnableToResolveError.
+    const code = `import typeof * as ReactNativePublicAPI from './index.js.flow'
+const x = 1
+module.exports = x
+`
+    const result = transformSync(code, {
+      filename: path.join(projectRoot, 'node_modules/react-native/index.js'),
+      cwd: projectRoot,
+      presets: [presetWithBase],
+      caller: metroViteCaller,
+    })
+
+    expect(result?.code).toBeTruthy()
+    expect(result?.code).not.toContain('index.js.flow')
   })
 })

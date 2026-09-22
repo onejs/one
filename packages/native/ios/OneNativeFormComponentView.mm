@@ -34,6 +34,7 @@ using namespace facebook::react;
   [_formView configureWithSizing:RCTNSStringFromString(next.sizing)];
   [_formView configureEnvironmentWithColorScheme:RCTNSStringFromString(next.colorScheme)
                                  dynamicTypeSize:RCTNSStringFromString(next.dynamicTypeSize)
+                                     controlSize:RCTNSStringFromString(next.controlSize)
                                           locale:RCTNSStringFromString(next.locale)
                                             tint:next.tint ? RCTUIColorFromSharedColor(next.tint) : nil
                                        isEnabled:RCTNSStringFromString(next.isEnabled)];

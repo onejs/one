@@ -21,6 +21,14 @@ const expoEnvAdditionalExts = ['env', 'local', 'development']
 const watchmanResponsivePromises = new Map<string, Promise<boolean>>()
 let didWarnAboutWatchmanFallback = false
 const rootIndexBundleRequestPattern = /^(https?:\/\/[^/]+)?\/index\.bundle(?=$|[?#])/
+// expo prebuild writes an AppDelegate (ios) and MainApplication (android) whose
+// debug bundle url is `.expo/.virtual-metro-entry`. expo maps it to the main
+// entry through server.rewriteRequestUrl (see @expo/metro-config
+// src/rewriteRequestUrl.ts: `url.includes('/.expo/.virtual-metro-entry.bundle?')`
+// rewrites to the resolved entry, preserving relative vs absolute shape and
+// query). match that path to the same main entry as index.
+const expoVirtualEntryBundleRequestPattern =
+  /^(https?:\/\/[^/]+)?\/\.expo\/\.virtual-metro-entry\.bundle(?=$|[?#])/
 // keep app build output and volatile caches out of Metro's fallback watcher.
 // package dist directories remain visible because Metro resolves modules from them.
 const metroWatchExclusions = [
@@ -74,7 +82,20 @@ function rewriteMainModuleBundleUrl(
     platform: getPlatformFromBundleUrl(url),
   })
 
-  return url.replace(rootIndexBundleRequestPattern, `$1/${resolvedMainModulePath}.bundle`)
+  if (rootIndexBundleRequestPattern.test(url)) {
+    return url.replace(rootIndexBundleRequestPattern, `$1/${resolvedMainModulePath}.bundle`)
+  }
+  return url.replace(
+    expoVirtualEntryBundleRequestPattern,
+    `$1/${resolvedMainModulePath}.bundle`
+  )
+}
+
+function isMainModuleBundleRequest(url: string) {
+  return (
+    rootIndexBundleRequestPattern.test(url) ||
+    expoVirtualEntryBundleRequestPattern.test(url)
+  )
 }
 
 function isBareSpecifier(name: string) {
@@ -225,7 +246,7 @@ export async function buildMetroConfigInputFromViteConfig(
 
     // @ts-expect-error Metro 0.83 made this read-only in types but we need to patch it
     _defaultConfig!.server!.rewriteRequestUrl = (url) => {
-      if (rootIndexBundleRequestPattern.test(url)) {
+      if (isMainModuleBundleRequest(url)) {
         return rewriteMainModuleBundleUrl(url, resolveMainModuleName)
       }
       return origRewriteRequestUrl?.(url) ?? url
@@ -369,7 +390,7 @@ export async function getMetroConfigFromViteConfig(
 
     // @ts-expect-error Metro 0.83 made this read-only in types but we need to patch it
     _defaultConfig!.server!.rewriteRequestUrl = (url) => {
-      if (rootIndexBundleRequestPattern.test(url)) {
+      if (isMainModuleBundleRequest(url)) {
         return rewriteMainModuleBundleUrl(url, resolveMainModuleName)
       }
 
