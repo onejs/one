@@ -2074,7 +2074,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       Boolean(
         labels(n).includes('Negative: rejected') &&
           labels(n).includes('NegativeLoaded: false') &&
-          labelStarting(n, 'NegativeError: Fonts.load: "OneNativeTestFont-Nope"')
+          labelStarting(
+            n,
+            'NegativeError: Fonts.load: "OneNativeTestFont-Nope" is not usable after ' +
+              'registration (expected the PostScript name, file provides OneNativeTestFont-Regular)'
+          )
       )
     )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
