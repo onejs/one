@@ -22,6 +22,19 @@ declare module 'one' {
         | `/post/[id]`
         | `/profile/post/[id]`
       IsTyped: true
+      RouteTypes: {
+        '/notifications/post/[id]': RouteInfo<{ id: string }>
+        '/post/[id]': RouteInfo<{ id: string }>
+        '/profile/post/[id]': RouteInfo<{ id: string }>
+      }
     }
   }
+}
+
+/**
+ * Helper type for route information
+ */
+type RouteInfo<Params = Record<string, never>> = {
+  Params: Params
+  LoaderProps: { path: string; search?: string; subdomain?: string; params: Params; request?: Request }
 }
