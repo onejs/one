@@ -36,6 +36,7 @@ const app = {
     useFrameworks: 'static',
     ccache: true,
     usesNonExemptEncryption: false,
+    fileSharing: true,
   },
   android: { applicationId: 'dev.one.myapp', minSdk: 28 },
 } satisfies PrebuildAppConfig
@@ -175,6 +176,16 @@ ${APP_DELEGATE_PBXPROJ}`,
     expect(infoPlist.content).toContain('<string>myapp-dev</string>')
     expect(infoPlist.content).toContain('<key>ITSAppUsesNonExemptEncryption</key>')
     expect(infoPlist.content).toContain('<false/>')
+    expect(infoPlist.content).toContain('<key>UIFileSharingEnabled</key>')
+    expect(infoPlist.content).toContain('<key>LSSupportsOpeningDocumentsInPlace</key>')
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld/Info.plist',
+        content: '<dict>\n</dict>',
+        platform: 'ios',
+        app,
+      })
+    ).toThrow('lost its LSRequiresIPhoneOS anchor')
     expect(infoPlist.content).toContain('<key>NSCameraUsageDescription</key>')
     expect(infoPlist.content).toContain('<string>Capture photos &amp; videos</string>')
 
@@ -298,12 +309,20 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
   })
 
   it('throws instead of silently skipping a missing camera anchor', () => {
+    // camera-only manifest: with schemes set the shared schemes stamper
+    // reports the missing anchor first, so the camera error needs the
+    // camera stamper to be the one reaching for it.
+    const cameraOnly = {
+      name: 'MyApp',
+      imagePicker: { camera: 'Capture photos' },
+      ios: { bundleId: 'dev.one.myapp' },
+    } satisfies PrebuildAppConfig
     expect(() =>
       renderPrebuildFile({
         relativePath: 'HelloWorld/Info.plist',
         content: '<dict>\n</dict>',
         platform: 'ios',
-        app,
+        app: cameraOnly,
       })
     ).toThrow(
       '[vxrn] cannot stamp NSCameraUsageDescription: expected LSRequiresIPhoneOS in Info.plist'

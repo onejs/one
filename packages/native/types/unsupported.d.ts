@@ -49,12 +49,14 @@ export declare const Swift: {
     VideoPlayer: (_props: import("./types").VideoPlayerProps) => never;
     PhotosPicker: (_props: import("./types").PhotosPickerProps) => never;
     WebView: (_props: import("./types").WebViewProps) => never;
+    SignInWithAppleButton: (_props: import("./types").SignInWithAppleButtonProps) => never;
     Map: (_props: import("./types").MapProps) => never;
     TextField: (_props: import("./types").TextFieldProps) => never;
     SecureField: (_props: import("./types").SecureFieldProps) => never;
     Alert: (_props: import("./types").AlertProps) => never;
     ConfirmationDialog: (_props: import("./types").ConfirmationDialogProps) => never;
     QuickLook: (_props: import("./types").QuickLookProps) => never;
+    FileImporter: (_props: import("./types").FileImporterProps) => never;
     Tabs: typeof Tabs;
     Tab: typeof Tab;
     Menu: typeof Menu;
