@@ -21,18 +21,33 @@ class OneNativeFontsModule(
 ) : ReactContextBaseJavaModule(reactContext) {
     override fun getName(): String = NAME
 
+    @Volatile private var embeddedFontNames: Set<String>? = null
+
+    // isLoaded is synchronous and runs every render, so the asset
+    // listing is read once and kept; embedded fonts never change at
+    // runtime.
+    private fun embeddedNames(): Set<String> {
+        embeddedFontNames?.let {
+            return it
+        }
+        val names =
+            try {
+                reactApplicationContext.assets.list("fonts").orEmpty().map {
+                    it.substringBeforeLast('.')
+                }.toSet()
+            } catch (_: Exception) {
+                emptySet()
+            }
+        embeddedFontNames = names
+        return names
+    }
+
     @ReactMethod(isBlockingSynchronousMethod = true)
     fun isLoaded(name: String): Boolean {
         if (ReactFontManager.getInstance().customFontFamilies.contains(name)) {
             return true
         }
-        return try {
-            reactApplicationContext.assets.list("fonts").orEmpty().any {
-                it.substringBeforeLast('.') == name
-            }
-        } catch (_: Exception) {
-            false
-        }
+        return embeddedNames().contains(name)
     }
 
     @ReactMethod
@@ -41,27 +56,31 @@ class OneNativeFontsModule(
             promise.resolve(null)
             return
         }
-        try {
-            val file = resolveFontFile(name, uri)
-            val typeface =
-                try {
-                    Typeface.createFromFile(file)
-                } catch (_: Exception) {
-                    null
+        // the download and the registration run off the NativeModules
+        // thread; the bridge accepts resolve/reject from any thread.
+        Thread {
+            try {
+                val file = resolveFontFile(name, uri)
+                val typeface =
+                    try {
+                        Typeface.createFromFile(file)
+                    } catch (_: Exception) {
+                        null
+                    }
+                if (typeface == null) {
+                    promise.reject("E_FONTS_REGISTER", "Fonts.load: \"$name\" could not be registered")
+                    return@Thread
                 }
-            if (typeface == null) {
-                promise.reject("E_FONTS_REGISTER", "Fonts.load: \"$name\" could not be registered")
-                return
+                ReactFontManager.getInstance().addCustomFont(name, typeface)
+                promise.resolve(null)
+            } catch (e: FontsUriException) {
+                promise.reject("E_FONTS_URI", e.message)
+            } catch (e: FontsDownloadException) {
+                promise.reject("E_FONTS_DOWNLOAD", e.message)
+            } catch (e: Exception) {
+                promise.reject("E_FONTS_DOWNLOAD", "Fonts.load: \"$name\" could not be downloaded", e)
             }
-            ReactFontManager.getInstance().addCustomFont(name, typeface)
-            promise.resolve(null)
-        } catch (e: FontsUriException) {
-            promise.reject("E_FONTS_URI", e.message)
-        } catch (e: FontsDownloadException) {
-            promise.reject("E_FONTS_DOWNLOAD", e.message)
-        } catch (e: Exception) {
-            promise.reject("E_FONTS_DOWNLOAD", "Fonts.load: \"$name\" could not be downloaded", e)
-        }
+        }.start()
     }
 
     private fun resolveFontFile(name: String, uri: String): File {
