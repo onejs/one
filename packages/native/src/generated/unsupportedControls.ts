@@ -70,6 +70,11 @@ function WebView(_props: Types.WebViewProps): never {
     'Swift.WebView requires an iOS native build with @vxrn/native installed'
   )
 }
+function SignInWithAppleButton(_props: Types.SignInWithAppleButtonProps): never {
+  throw new Error(
+    'Swift.SignInWithAppleButton requires an iOS native build with @vxrn/native installed'
+  )
+}
 function Map(_props: Types.MapProps): never {
   throw new Error('Swift.Map requires an iOS native build with @vxrn/native installed')
 }
@@ -96,6 +101,11 @@ function QuickLook(_props: Types.QuickLookProps): never {
     'Swift.QuickLook requires an iOS native build with @vxrn/native installed'
   )
 }
+function FileImporter(_props: Types.FileImporterProps): never {
+  throw new Error(
+    'Swift.FileImporter requires an iOS native build with @vxrn/native installed'
+  )
+}
 export const unsupportedControls = {
   Picker,
   DatePicker,
@@ -114,10 +124,12 @@ export const unsupportedControls = {
   VideoPlayer,
   PhotosPicker,
   WebView,
+  SignInWithAppleButton,
   Map,
   TextField,
   SecureField,
   Alert,
   ConfirmationDialog,
   QuickLook,
+  FileImporter,
 }

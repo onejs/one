@@ -1,7 +1,13 @@
 import { controls } from './controlCatalog'
 import { styleFields } from './catalog'
 import type { StyleField } from './catalog'
-import type { Control, ControlField, ControlValue, ScalarType } from './controlTypes'
+import type {
+  Control,
+  ControlAction,
+  ControlField,
+  ControlValue,
+  ScalarType,
+} from './controlTypes'
 import { deriveLeafSwift } from './derive'
 import type { Declaration } from './inventory'
 
@@ -16,12 +22,23 @@ const payloadOf = (field: ControlField) => {
 const swiftType = (field: ControlField) =>
   field.type === 'objects'
     ? `[OneNative${payloadOf(field).name}]`
-    : swiftScalar(field.type)
+    : field.type === 'strings'
+      ? '[String]'
+      : swiftScalar(field.type)
 const tsType = (field: ControlField) =>
-  field.type === 'objects' ? `readonly ${payloadOf(field).name}[]` : tsScalar(field.type)
+  field.type === 'objects'
+    ? `readonly ${payloadOf(field).name}[]`
+    : field.type === 'strings'
+      ? 'readonly string[]'
+      : tsScalar(field.type)
 const nativeType = (field: ControlField) =>
-  field.type === 'objects' ? `ReadonlyArray<${payloadOf(field).name}>` : field.type
-const literal = (value: string | boolean | number) => JSON.stringify(value)
+  field.type === 'objects'
+    ? `ReadonlyArray<${payloadOf(field).name}>`
+    : field.type === 'strings'
+      ? 'ReadonlyArray<string>'
+      : field.type
+const literal = (value: string | boolean | number | readonly string[]) =>
+  JSON.stringify(value)
 const lower = (name: string) => name[0].toLowerCase() + name.slice(1)
 const upper = (name: string) => name[0].toUpperCase() + name.slice(1)
 // a sync value resolves its handle to a plain scalar before reaching native.
@@ -125,8 +142,15 @@ export type OneNativeViewProps = Pick<
     const fieldEntries = Object.entries(fields)
     // derived fields are native-only; object arrays travel through their own setter.
     const publicFields = fieldEntries.filter(([, field]) => !field.derived)
-    const plainFields = fieldEntries.filter(([, field]) => field.type !== 'objects')
+    const plainFields = fieldEntries.filter(
+      ([, field]) => field.type !== 'objects' && field.type !== 'strings'
+    )
     const objectFields = fieldEntries.filter(([, field]) => field.type === 'objects')
+    // string arrays travel through their own setter like object arrays: the bridge diffs
+    // before sending and the model owns the [String].
+    const arrayFields = fieldEntries.filter(
+      ([, field]) => field.type === 'objects' || field.type === 'strings'
+    )
     const enumFields = publicFields.filter(([, field]) => field.enum)
     const disabled = Object.hasOwn(fields, 'disabled')
     // a measured control reports the height SwiftUI measured, so it supplies its own shadow
@@ -137,6 +161,9 @@ export type OneNativeViewProps = Pick<
     // weakSelf only exists for the blocks below it, so a control with none would declare it
     // and never read it.
     const callbacks = measured || !!value || actions.length > 0 || !!control.focus
+    for (const key of Object.keys(control.setBody ?? {}))
+      if (fields[key]?.type !== 'strings')
+        throw new Error(`OneNative ${name}: setBody names non-strings field ${key}`)
     // adopted leaves derive their body from the SDK signature; the hand-written body
     // stays as the byte-equality oracle until migration deletes it.
     let swiftBody = control.swift
@@ -151,10 +178,38 @@ export type OneNativeViewProps = Pick<
       swiftBody = derived
     }
     const publicValueType = value && (value.publicType ?? tsScalar(value.type))
-    const callbackType = (action: { payload?: Record<string, ScalarType> }) =>
-      `(${Object.entries(action.payload ?? {})
-        .map(([key, type]) => `${key}: ${tsScalar(type)}`)
-        .join(', ')}) => void`
+    const objectName = (action: { event: string }) => `${name}${action.event}`
+    const objectVariants = (action: ControlAction) => {
+      const variants = action.object?.variants ?? []
+      if (!action.object || !variants.length)
+        throw new Error(`OneNative ${name}: object action needs at least one variant`)
+      if (action.payload?.type !== 'string')
+        throw new Error(`OneNative ${name}: object action payload needs a string type first`)
+      for (const variant of variants)
+        for (const field of variant.fields)
+          if (!(field in (action.payload ?? {})))
+            throw new Error(
+              `OneNative ${name}: object variant ${variant.type} names unknown payload field ${field}`
+            )
+      return variants
+    }
+    const callbackType = (action: ControlAction) =>
+      action.object
+        ? `(${lower(action.event)}: ${objectName(action)}) => void`
+        : `(${Object.entries(action.payload ?? {})
+            .map(([key, type]) => `${key}: ${tsScalar(type)}`)
+            .join(', ')}) => void`
+    for (const action of actions.filter((action) => action.object)) {
+      const variants = objectVariants(action)
+      types += `export type ${objectName(action)} =\n${variants
+        .map(
+          (variant) =>
+            `  | Readonly<{ type: '${variant.type}'${variant.fields
+              .map((field) => `; ${field}: ${tsScalar(action.payload![field])}`)
+              .join('')} }>`
+        )
+        .join('\n')}\n`
+    }
     types += `export interface ${name}Props extends OneNativeViewProps {
 ${
   value
@@ -335,14 +390,24 @@ ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNat
         ? `    onNative${name}FocusChange={({ nativeEvent }) => controlledFocus.onNativeChange(nativeEvent)}\n`
         : ''
     }${actions
-      .map(
-        (action) =>
-          `    onNative${name}${action.event}={({ nativeEvent }) => ${action.prop}?.(${Object.keys(
+      .map((action) => {
+        if (!action.object)
+          return `    onNative${name}${action.event}={({ nativeEvent }) => ${action.prop}?.(${Object.keys(
             action.payload ?? {}
           )
             .map((key) => `nativeEvent.${key}`)
             .join(', ')})}\n`
-      )
+        // the last variant is the default when the native type matches none.
+        const variants = objectVariants(action)
+        const literal = (variant: { type: string; fields: readonly string[] }) =>
+          `{ type: '${variant.type}'${variant.fields
+            .map((field) => `, ${field}: nativeEvent.${field}`)
+            .join('')} }`
+        let mapped = literal(variants[variants.length - 1])
+        for (let index = variants.length - 2; index >= 0; index--)
+          mapped = `nativeEvent.type === '${variants[index].type}' ? ${literal(variants[index])} : ${mapped}`
+        return `    onNative${name}${action.event}={({ nativeEvent }) => ${action.prop}?.(${mapped})}\n`
+      })
       .join('')}  />
 }
 `
@@ -466,8 +531,14 @@ ${value ? '    if let next = model.controlled.applying(value, acknowledged: ackn
           .map(([key]) => `    if model.${key} != ${key} { model.${key} = ${key} }`)
           .join('\n')}
   }
-${objectFields
+${arrayFields
   .map(([key, field]) => {
+    if (field.type === 'strings') {
+      const custom = control.setBody?.[key]
+      if (custom !== undefined)
+        return `  public func set${upper(key)}(_ items: [String]) {\n    ${custom}\n  }`
+      return `  public func set${upper(key)}(_ items: [String]) { if model.${key} != items { model.${key} = items } }`
+    }
     const payload = payloadOf(field)
     return `  public func set${upper(key)}(_ items: [[String: Any]]) { model.${key} = items.map { OneNative${payload.name}(${Object.entries(
       payload.element
@@ -631,7 +702,7 @@ ${value?.sync ? `#import "OneNativeSyncBridge.h"\n` : ''}${measured ? `#import "
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 using namespace facebook::react;
-@implementation ${nativeName}ComponentView { ${nativeName}View *_nativeView;${measured ? ' OneNativeMeasuredHeight *_measured;' : ''}${objectFields.map(([key]) => ` BOOL _${key}Dirty;`).join('')}${value?.sync ? ' int32_t _syncStateId;' : ''} }
+@implementation ${nativeName}ComponentView { ${nativeName}View *_nativeView;${measured ? ' OneNativeMeasuredHeight *_measured;' : ''}${arrayFields.map(([key]) => ` BOOL _${key}Dirty;`).join('')}${value?.sync ? ' int32_t _syncStateId;' : ''} }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<${nativeName}ComponentDescriptor>(); }
 - (NSObject *)accessibilityElement { return _nativeView; }${
           measured
@@ -642,7 +713,7 @@ using namespace facebook::react;
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const ${nativeName}Props>();
-${objectFields.map(([key]) => `    _${key}Dirty = YES;\n`).join('')}${measured ? '    _measured = [OneNativeMeasuredHeight new];\n' : ''}    _nativeView = [${nativeName}View new]; self.contentView = _nativeView;
+${arrayFields.map(([key]) => `    _${key}Dirty = YES;\n`).join('')}${measured ? '    _measured = [OneNativeMeasuredHeight new];\n' : ''}    _nativeView = [${nativeName}View new]; self.contentView = _nativeView;
 ${callbacks ? `    __weak ${nativeName}ComponentView *weakSelf = self;\n` : ''}${
           measured
             ? `    _nativeView.onHeight = ^(CGFloat height) {
@@ -686,8 +757,19 @@ ${value.sync ? `      if (strongSelf && strongSelf->_syncStateId != 0) { OneNati
 }
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const ${nativeName}Props>(props);
-${objectFields.length ? `  const auto &previous = *std::static_pointer_cast<const ${nativeName}Props>(_props);\n` : ''}${objectFields
+${arrayFields.length ? `  const auto &previous = *std::static_pointer_cast<const ${nativeName}Props>(_props);\n` : ''}${arrayFields
           .map(([key, field]) => {
+            if (field.type === 'strings')
+              return `  bool ${key}Changed = _${key}Dirty || previous.${key}.size() != next.${key}.size();
+  if (!${key}Changed) for (size_t i = 0; i < next.${key}.size(); i++) {
+    if (previous.${key}[i] != next.${key}[i]) { ${key}Changed = true; break; }
+  }
+  if (${key}Changed) {
+    NSMutableArray *${key} = [NSMutableArray new];
+    for (const auto &item : next.${key}) [${key} addObject:RCTNSStringFromString(item)];
+    [_nativeView set${upper(key)}:${key}];
+    _${key}Dirty = NO;
+  }`
             const element = Object.keys(payloadOf(field).element)
             return `  bool ${key}Changed = _${key}Dirty || previous.${key}.size() != next.${key}.size();
   if (!${key}Changed) for (size_t i = 0; i < next.${key}.size(); i++) {
@@ -736,7 +818,7 @@ ${value?.sync ? `  _syncStateId = next.syncStateId;\n` : ''}  [_nativeView confi
       .join(' ')}];
   [super updateProps:props oldProps:oldProps];
 }
-- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset];${measured ? ' [_measured reset];' : ''}${objectFields.map(([key]) => ` _${key}Dirty = YES;`).join('')} }
+- (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset];${measured ? ' [_measured reset];' : ''}${arrayFields.map(([key]) => ` _${key}Dirty = YES;`).join('')} }
 @end
 `
     )

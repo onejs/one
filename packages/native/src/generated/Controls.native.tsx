@@ -755,6 +755,51 @@ export function WebView({
     />
   )
 }
+import NativeSignInWithAppleButton from '../specs/OneNativeSignInWithAppleButtonNativeComponent'
+export function SignInWithAppleButton({
+  onCompletion,
+  requestedScopes = [],
+  nonce = '',
+  swiftStyle,
+  style,
+  ...props
+}: Types.SignInWithAppleButtonProps) {
+  if (!Array.isArray(requestedScopes))
+    throw new Error('SignInWithAppleButton requestedScopes must be an array')
+  for (const scope of requestedScopes) {
+    if (scope !== 'fullName' && scope !== 'email')
+      throw new Error("SignInWithAppleButton scope must be 'fullName' or 'email'")
+  }
+  if (typeof nonce !== 'string')
+    throw new Error('SignInWithAppleButton nonce must be a string')
+
+  return (
+    <NativeSignInWithAppleButton
+      {...props}
+      style={style}
+      swiftStyle={swiftStyle}
+      requestedScopes={requestedScopes}
+      nonce={nonce}
+      onNativeSignInWithAppleButtonCompletion={({ nativeEvent }) =>
+        onCompletion?.(
+          nativeEvent.type === 'success'
+            ? {
+                type: 'success',
+                user: nativeEvent.user,
+                email: nativeEvent.email,
+                givenName: nativeEvent.givenName,
+                familyName: nativeEvent.familyName,
+                identityToken: nativeEvent.identityToken,
+                authorizationCode: nativeEvent.authorizationCode,
+              }
+            : nativeEvent.type === 'failed'
+              ? { type: 'failed', message: nativeEvent.message }
+              : { type: 'cancelled' }
+        )
+      }
+    />
+  )
+}
 import NativeMap from '../specs/OneNativeMapNativeComponent'
 export function Map({
   onRegionChange,
@@ -1145,6 +1190,64 @@ export function QuickLook({
       url={url}
       onNativeQuickLookValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
+      }
+    />
+  )
+}
+import NativeFileImporter from '../specs/OneNativeFileImporterNativeComponent'
+export function FileImporter({
+  isPresented,
+  onIsPresentedChange,
+  revision = 0,
+  onCompletion,
+  allowedContentTypes = [],
+  allowsMultipleSelection = false,
+  swiftStyle,
+  style,
+  ...props
+}: Types.FileImporterProps) {
+  if (!Array.isArray(allowedContentTypes))
+    throw new Error('FileImporter allowedContentTypes must be an array')
+  for (const identifier of allowedContentTypes) {
+    if (typeof identifier !== 'string' || !identifier)
+      throw new Error(
+        'FileImporter content types must be non-empty UTType identifier strings'
+      )
+  }
+  if (typeof allowsMultipleSelection !== 'boolean')
+    throw new Error('FileImporter allowsMultipleSelection must be a boolean')
+
+  const controlled = useControlled<{
+    value: boolean
+    eventCount: number
+    revision: number
+  }>((event) => onIsPresentedChange(event.value), revision)
+  return (
+    <NativeFileImporter
+      {...props}
+      style={[{ position: 'absolute', width: 0, height: 0 }, style]}
+      swiftStyle={swiftStyle}
+      value={isPresented}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      allowedContentTypes={allowedContentTypes}
+      allowsMultipleSelection={allowsMultipleSelection}
+      onNativeFileImporterValueChange={({ nativeEvent }) =>
+        controlled.onNativeChange(nativeEvent)
+      }
+      onNativeFileImporterCompletion={({ nativeEvent }) =>
+        onCompletion?.(
+          nativeEvent.type === 'success'
+            ? {
+                type: 'success',
+                url: nativeEvent.url,
+                index: nativeEvent.index,
+                count: nativeEvent.count,
+              }
+            : nativeEvent.type === 'failed'
+              ? { type: 'failed', message: nativeEvent.message }
+              : { type: 'cancelled' }
+        )
       }
     />
   )
