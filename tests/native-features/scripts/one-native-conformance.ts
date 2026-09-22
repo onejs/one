@@ -793,60 +793,67 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // no handler was set yet, so the first observed arrival shows by default.
     await tapFixture('one-native-notifications-schedule-now')
     await wait('foreground arrival fires received', (n) => has(n, 'Received: n3-1'))
-    // the banner covers the top center below the island; tapping it while
-    // the app is foregrounded delivers the response without leaving the
-    // screen. coordinates are calibrated for the 393x852 display.
-    point(196, 110)
+    // the banner's screen position varies by device and os, so tap its
+    // observed accessibility frame rather than a fixed coordinate, the same
+    // lookup the cold-start tap uses below.
+    {
+      const started = Date.now()
+      for (;;) {
+        const nodes = snapshot(config.simulatorId)
+        const frame = nodes.find(
+          (node) => node.AXLabel?.includes('N3 ping') && node.frame
+        )?.frame
+        if (frame) {
+          point(
+            Math.round(frame.x + frame.width / 2),
+            Math.round(frame.y + frame.height / 2)
+          )
+          break
+        }
+        if (Date.now() - started > config.timeout)
+          throw new Error('warm banner for N3 ping never appeared')
+        await new Promise((resolve) => setTimeout(resolve, 250))
+      }
+    }
     await wait('banner tap fires response', (n) => has(n, 'Response: n3-1/'))
     await tapFixture('one-native-notifications-last-refresh')
     await wait('tap is cached as last response', (n) => has(n, 'Last: n3-1/N3 ping'))
     screenshot('notifications-warm-tap.png')
-    // suppression taps must land on bare app chrome, never on a
-    // fixture button the earlier scrolling left under the point, so the
-    // fixture goes back to the top before each one.
-    const scrollTop = async () => {
-      for (let i = 0; i < 3; i++) {
-        command(
-          [
-            'ui-automation',
-            'swipe',
-            '--x1',
-            '196',
-            '--y1',
-            '300',
-            '--x2',
-            '196',
-            '--y2',
-            '700',
-            '--duration',
-            '0.3',
-          ],
-          config.simulatorId
+    // a suppressing handler still fires received but shows no banner: poll
+    // raw snapshots for 3s and fail on any node carrying the title, the
+    // same lookup the banner tap uses. a fixed-coordinate tap cannot fail
+    // here: it lands on app chrome either way.
+    const assertNoBanner = async (name: string) => {
+      const started = Date.now()
+      for (;;) {
+        const nodes = snapshot(config.simulatorId)
+        if (
+          nodes.some((node) => node.AXLabel?.includes('N3 ping') && node.frame)
         )
-        await new Promise((resolve) => setTimeout(resolve, 300))
+          throw new Error(`${name} showed a banner`)
+        if (Date.now() - started > 3000) break
+        await new Promise((resolve) => setTimeout(resolve, 250))
       }
     }
-    // a suppressing handler still fires received but shows no banner: the
-    // same tap lands in the app and no second response arrives.
     await tapFixture('one-native-notifications-handler-suppress')
     await wait('suppressing handler set', (n) => has(n, 'Handler: suppress'))
     await tapFixture('one-native-notifications-schedule-now')
     await wait('suppressed arrival still fires received', (n) => has(n, 'Received: n3-2'))
-    await scrollTop()
-    point(196, 110)
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    if (has(snapshot(config.simulatorId), 'Response: n3-2'))
-      throw new Error('a suppressed notification produced a response on tap')
+    await assertNoBanner('a suppressed notification')
+    if (!has(snapshot(config.simulatorId), 'Received: n3-2'))
+      throw new Error('the suppressed arrival never reached received')
+    checks.push({ name: 'suppressed n3-2 shows no banner', durationMs: 3000 })
+    console.log('PASS suppressed n3-2 shows no banner')
     // a nulled handler behaves the same way.
     await tapFixture('one-native-notifications-handler-null')
     await wait('nulled handler set', (n) => has(n, 'Handler: null'))
     await tapFixture('one-native-notifications-schedule-now')
     await wait('nulled arrival still fires received', (n) => has(n, 'Received: n3-3'))
-    await scrollTop()
-    point(196, 110)
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    if (has(snapshot(config.simulatorId), 'Response: n3-3'))
-      throw new Error('a nulled handler produced a response on tap')
+    await assertNoBanner('a nulled handler notification')
+    if (!has(snapshot(config.simulatorId), 'Received: n3-3'))
+      throw new Error('the nulled arrival never reached received')
+    checks.push({ name: 'nulled n3-3 shows no banner', durationMs: 3000 })
+    console.log('PASS nulled n3-3 shows no banner')
     // the banner's screen position varies by device and os (on the 402-wide
     // sim it ends 3pt above the old calibrated point), so tap its observed
     // accessibility frame rather than a fixed coordinate. springboard owns

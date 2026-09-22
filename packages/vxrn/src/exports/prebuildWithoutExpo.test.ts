@@ -270,6 +270,14 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
 
   it('fails loudly when a notification anchor is missing', () => {
     const noCamera = { ...app, imagePicker: undefined }
+    // notifications-only manifest: with schemes or fileSharing set the
+    // shared anchored block reports the missing anchor first, so the
+    // notifications error needs its own stamper to be the one reaching.
+    const notificationsOnly = {
+      name: 'MyApp',
+      notifications: {},
+      ios: { bundleId: 'dev.one.myapp' },
+    } satisfies PrebuildAppConfig
     expect(() =>
       renderPrebuildFile({
         relativePath: 'app/src/main/AndroidManifest.xml',
@@ -292,7 +300,7 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
         relativePath: 'HelloWorld/Info.plist',
         content: '<dict>\n</dict>',
         platform: 'ios',
-        app: noCamera,
+        app: notificationsOnly,
       })
     ).toThrow(/failed to stamp the notifications key/)
   })

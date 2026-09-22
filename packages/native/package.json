@@ -77,7 +77,7 @@
     },
     "./notifications": {
       "types": "./types/notifications/index.d.ts",
-      "react-native": "./src/notifications/index.native.ts",
+      "react-native": "./dist/esm/notifications/index.native.js",
       "import": "./dist/esm/notifications/index.mjs",
       "require": "./dist/cjs/notifications/index.cjs"
     },

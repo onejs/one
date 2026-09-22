@@ -2,7 +2,6 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import {
   ForegroundHandler,
-  HANDLER_TIMEOUT_MS,
   normalizeBehavior,
   showAllBehavior,
   suppressBehavior,
@@ -96,7 +95,7 @@ describe('ForegroundHandler', () => {
     expect(present).toHaveBeenCalledWith('a', showAllBehavior)
   })
 
-  it('shows everything when the handler times out, and settles once', async () => {
+  it('waits for the handler without timing out, and settles once', async () => {
     const present = vi.fn()
     const runner = new ForegroundHandler(present)
     let answer!: (behavior: typeof showAllBehavior) => void
@@ -104,15 +103,16 @@ describe('ForegroundHandler', () => {
       handleNotification: () => new Promise((resolve) => void (answer = resolve)),
     })
     runner.receive('a', notification)
+    // a duplicate of the in-flight id delivers nothing new.
+    expect(runner.receive('a', notification)).toBe(false)
     await settled()
+    // native owns the 3s backstop: js presents nothing on its own.
     expect(present).not.toHaveBeenCalled()
-    await vi.advanceTimersByTimeAsync(HANDLER_TIMEOUT_MS)
-    expect(present).toHaveBeenCalledTimes(1)
-    expect(present).toHaveBeenCalledWith('a', showAllBehavior)
-    // a late answer after the timeout presents nothing more.
+    // the late answer still presents exactly once.
     answer({ ...suppressBehavior })
     await settled()
     expect(present).toHaveBeenCalledTimes(1)
+    expect(present).toHaveBeenCalledWith('a', suppressBehavior)
   })
 
   it('ignores duplicates of an in-flight request id', async () => {
