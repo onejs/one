@@ -6,7 +6,12 @@ import { existsSync, readFileSync } from 'node:fs'
 import path from 'node:path'
 import { exactRegex } from 'rolldown/filter'
 import { normalizePath, type Plugin, type PluginOption } from 'vite'
-import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from 'vxrn'
+import {
+  autoDepOptimizePlugin,
+  getOptionsFilled,
+  loadEnv,
+  nearestPackageJson,
+} from 'vxrn'
 import vxrnVitePlugin from 'vxrn/vite-plugin'
 import { CACHE_KEY } from '../constants'
 import { getViteMetroPluginOptions } from '../metro-config/getViteMetroPluginOptions'
@@ -452,6 +457,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               resolveId: {
                 filter: { id: tsconfigPathsFilter },
                 handler(source: string) {
+                  const resolved = (id: string) => ({
+                    id,
+                    packageJsonPath: nearestPackageJson(id),
+                  })
                   const jsExts = [
                     '.ts',
                     '.tsx',
@@ -473,17 +482,18 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                     }
                     if (!candidate) continue
                     // already has a js/ts extension
-                    if (jsExts.includes(path.extname(candidate))) return candidate
+                    if (jsExts.includes(path.extname(candidate)))
+                      return resolved(candidate)
                     // try appending extensions
                     for (const e of jsExts) {
-                      if (existsSync(candidate + e)) return candidate + e
+                      if (existsSync(candidate + e)) return resolved(candidate + e)
                     }
                     // try /index
                     for (const e of jsExts) {
                       if (existsSync(candidate + '/index' + e))
-                        return candidate + '/index' + e
+                        return resolved(candidate + '/index' + e)
                     }
-                    return candidate
+                    return resolved(candidate)
                   }
                 },
               },
@@ -543,14 +553,24 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                   // specific env wins over general
                   const specific = env ? resolved[env as keyof typeof resolved] : null
                   if (specific && source in specific) {
-                    return { id: specific[source], external: false }
+                    const id = specific[source]
+                    return {
+                      id,
+                      external: false,
+                      packageJsonPath: nearestPackageJson(id),
+                    }
                   }
 
                   // fall back to general (web/native)
                   const isWeb = !env || env === 'client' || env === 'ssr'
                   const general = isWeb ? resolved.web : resolved.native
                   if (general && source in general) {
-                    return { id: general[source], external: false }
+                    const id = general[source]
+                    return {
+                      id,
+                      external: false,
+                      packageJsonPath: nearestPackageJson(id),
+                    }
                   }
                 },
               },
