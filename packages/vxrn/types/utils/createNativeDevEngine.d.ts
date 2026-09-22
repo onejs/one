@@ -8,7 +8,7 @@
 import type { Plugin } from 'rolldown';
 import type { DevEngine } from 'rolldown/experimental';
 /** SWC `env.include` for Hermes-compatible downleveling; see HERMES_CLASS_TRANSFORMS. */
-export declare function getHermesSWCIncludes(dev: boolean): string[];
+export declare function getHermesSWCIncludes(dev: boolean, hasAsyncGenerator?: boolean, hasLexicalLoop?: boolean): string[];
 interface NativeDevEngineOptions {
     root: string;
     port: number;
@@ -37,6 +37,31 @@ interface NativeDevEngineResult {
     }>;
     close: () => Promise<void>;
 }
+export declare function getNativeViteResolveConfig(root: string, platform: 'ios' | 'android', dev: boolean): {
+    resolveOptions: {
+        isBuild: boolean;
+        isProduction: boolean;
+        asSrc: boolean;
+        preferRelative: boolean;
+        root: string;
+        scan: boolean;
+        mainFields: string[];
+        conditions: string[];
+        externalConditions: never[];
+        extensions: string[];
+        tryIndex: boolean;
+        preserveSymlinks: boolean;
+        tsconfigPaths: boolean;
+    };
+    environmentConsumer: string;
+    environmentName: "ios" | "android";
+    builtins: never[];
+    external: never[];
+    noExternal: never[];
+    dedupe: never[];
+    legacyInconsistentCjsInterop: boolean;
+    resolveSubpathImports(): void;
+};
 export declare function getNativeTransformConfig(platform: 'ios' | 'android', dev: boolean, root: string): {
     jsx: {
         runtime: "classic";
@@ -113,6 +138,21 @@ export declare function hmrClientNoopPlugin(): Plugin;
  * same pipeline as metro, single babel pass per file.
  */
 export declare function vxrnCompilerPlugin(platform: string, dev: boolean, projectRoot?: string): Plugin;
+/**
+ * Handle asset imports (.png, .jpg, .ttf, etc.)
+ * Returns JS code that registers the asset with RN's AssetRegistry.
+ */
+export declare function assetPlugin(opts: {
+    root: string;
+    platform: string;
+    assetsDest?: string;
+}): Plugin;
+/**
+ * SWC transform for Hermes compatibility.
+ * Transforms class properties and private fields that Hermes doesn't support.
+ * Inspired by rollipop's swc-plugin.ts.
+ */
+export declare function hermesCompatSWCPlugin(dev: boolean): Plugin;
 export declare function getHmrRuntimeSource(): string;
 export {};
 //# sourceMappingURL=createNativeDevEngine.d.ts.map
