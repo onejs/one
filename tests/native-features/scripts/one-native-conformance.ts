@@ -37,6 +37,7 @@ const suites = [
   'groups',
   'state',
   'safe-area',
+  'fonts',
   'haptics',
   'crypto',
   'app-info',
@@ -232,6 +233,10 @@ const safeAreaLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-safe-area-edges')) &&
   has(nodes, 'Insets: ')
+const fontsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-fonts-load')) &&
+  has(nodes, 'Loaded: ')
 const hapticsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-haptics-selection')) &&
@@ -318,6 +323,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   groups: groupsLoaded,
   state: stateLoaded,
   'safe-area': safeAreaLoaded,
+  fonts: fontsLoaded,
   haptics: hapticsLoaded,
   crypto: cryptoLoaded,
   'app-info': appInfoLoaded,
@@ -345,6 +351,7 @@ const suiteHome: Record<Suite, string> = {
   groups: 'nav-one-native-groups',
   state: 'nav-one-native-state',
   'safe-area': 'nav-one-native-safe-area',
+  fonts: 'nav-one-native-fonts',
   haptics: 'nav-one-native-haptics',
   crypto: 'nav-one-native-crypto',
   'app-info': 'nav-one-native-app-info',
@@ -2102,6 +2109,84 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         )
       })
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'fonts') {
+    const labelStarting = (nodes: Node[], prefix: string) =>
+      labels(nodes).find((label) => label.startsWith(prefix))
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-fonts')
+
+    // the name is unknown until load runs: false before is the money
+    // assertion, because a JS mirror or a stale registry would read true.
+    await wait('the font starts unloaded', (n) => labels(n).includes('Loaded: false'))
+    await wait('dev fonts resolve over http', (n) =>
+      Boolean(labelStarting(n, 'Uri: http'))
+    )
+    // the hook loads its own font on mount; the baseline captures wait
+    // for it so no in-flight paint can move pixels between them.
+    await wait('hook settles before pixel baseline', (n) =>
+      labels(n).includes('Hook: loaded')
+    )
+
+    // the A sample carries no testID (RN Text IDs vanish from the
+    // snapshot), so the pixel region anchors on its exact label. the same
+    // region grades every capture, so the negative cannot choose a more
+    // convenient crop.
+    const sampleNodes = snapshot(config.simulatorId).filter(
+      (node) => node.AXLabel === 'A' && node.frame
+    )
+    if (sampleNodes.length !== 1 || !sampleNodes[0].frame) {
+      throw new Error(
+        `fonts pixel gate: expected exactly one framed A sample, found ${sampleNodes.length}`
+      )
+    }
+    const sampleFrame = sampleNodes[0].frame
+    const beforeLoad = screenshot('fonts-sample-before.png')
+    const skippedLoad = screenshot('fonts-sample-noload.png')
+    const negativePixels = countChangedPixels(beforeLoad, skippedLoad, sampleFrame, 8)
+    if (negativePixels.changed !== 0) {
+      throw new Error(
+        `fonts pixel gate: skipped load moved ${negativePixels.changed} sample pixels, expected 0`
+      )
+    }
+
+    tap({ id: 'one-native-fonts-load' })
+    await wait('load flips isLoaded and the hook follows', (n) =>
+      Boolean(
+        labels(n).includes('Loaded: true') &&
+          labels(n).includes('Status: loaded') &&
+          labels(n).includes('Hook: loaded')
+      )
+    )
+    // the sample A is a solid block no system font has; the pixels prove
+    // the PostScript name resolves after load.
+    const afterLoad = screenshot('fonts-loaded.png')
+    const positivePixels = countChangedPixels(beforeLoad, afterLoad, sampleFrame, 8)
+    if (positivePixels.changed === 0) {
+      throw new Error(
+        'fonts pixel gate: load flipped isLoaded without changing sample pixels'
+      )
+    }
+
+    // negative control: the same file under a wrong key. iOS rejects
+    // because the name never becomes usable; Android registers silently
+    // (Typeface has no name query) and its flow asserts that instead.
+    tap({ id: 'one-native-fonts-negative' })
+    await wait('a wrong key rejects without becoming usable', (n) =>
+      Boolean(
+        labels(n).includes('Negative: rejected') &&
+          labels(n).includes('NegativeLoaded: false') &&
+          labelStarting(
+            n,
+            'NegativeError: Fonts.load: "OneNativeTestFont-Nope" is not usable after ' +
+              'registration (expected the PostScript name, file provides OneNativeTestFont-Regular)'
+          )
+      )
+    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

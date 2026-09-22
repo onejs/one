@@ -96,6 +96,11 @@ const testScreens = [
     testID: 'nav-one-native-safe-area',
   },
   {
+    href: '/one-native-fonts',
+    label: 'One Native Fonts',
+    testID: 'nav-one-native-fonts',
+  },
+  {
     href: '/one-native-haptics',
     label: 'One Native Haptics',
     testID: 'nav-one-native-haptics',
