@@ -37,6 +37,8 @@ export interface NativeAppManifest {
     useFrameworks?: 'static' | 'dynamic'
     ccache?: boolean
     usesNonExemptEncryption?: boolean
+    // exposes the app's Documents in the Files app and document pickers.
+    fileSharing?: boolean
   }
   android?: {
     applicationId: string

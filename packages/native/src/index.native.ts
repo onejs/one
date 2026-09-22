@@ -1,6 +1,7 @@
 import { Platform } from 'react-native'
 import { Swift as UnsupportedSwift } from './unsupported'
 import {
+  Button,
   ControlGroup,
   DisclosureGroup,
   Divider,
@@ -52,6 +53,7 @@ export const Swift =
         Section,
         Glass,
         LabeledContent,
+        Button,
         List,
         ScrollView,
         LazyVStack,

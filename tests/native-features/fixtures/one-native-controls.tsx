@@ -236,6 +236,7 @@ export default function OneNativeControls() {
             disabled={false}
             isOn={controls.Toggle.value as boolean}
             label="Enable notifications"
+            systemImage="bell.fill"
             onIsOnChange={(value) => recordChange('Toggle', value)}
             revision={controls.Toggle.revision}
             style={styles.nativeControl}

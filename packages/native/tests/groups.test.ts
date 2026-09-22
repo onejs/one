@@ -35,13 +35,13 @@ vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
 let Containers: typeof import('../src/Containers.native')
 let PagerModule: typeof import('../src/Pager.native')
 let TabsModule: typeof import('../src/Tabs.native')
-let Button: typeof import('../src/generated/Controls.native').Button
+let Button: typeof import('../src/Containers.native').Button
 
 beforeAll(async () => {
   Containers = await import('../src/Containers.native')
   PagerModule = await import('../src/Pager.native')
   TabsModule = await import('../src/Tabs.native')
-  Button = (await import('../src/generated/Controls.native')).Button
+  Button = Containers.Button
 })
 
 const render = (component: (props: never) => any, props: object): any =>
@@ -202,6 +202,30 @@ describe('button icon', () => {
     expect(() => render(Button, {})).toThrow(
       'Button needs a label, a systemImage, or both'
     )
+  })
+
+  it('renders children as the label view', () => {
+    function LabelView() {
+      return null
+    }
+    const child = createElement(LabelView, { key: 'label' })
+    const element = render(Button, { onPress: () => {}, children: child })
+    expect(element.props.label).toBe('')
+    expect(element.props.children.props.value).toBe(true)
+    expect(element.props.children.props.children).toBe(child)
+  })
+
+  it('rejects a label together with children', () => {
+    function LabelView() {
+      return null
+    }
+    const child = createElement(LabelView, { key: 'label' })
+    expect(() => render(Button, { label: 'Save', children: child })).toThrow(
+      'Swift.Button takes either a label or children'
+    )
+    expect(() =>
+      render(Button, { systemImage: 'star.fill', children: child })
+    ).toThrow('Swift.Button takes either a label or children')
   })
 })
 

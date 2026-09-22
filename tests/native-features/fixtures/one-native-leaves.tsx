@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
-const categories = ['Button', 'Progress', 'Gauge', 'Text', 'Secure', 'Image'] as const
+const categories = ['Button', 'Progress', 'Gauge', 'Text', 'Secure', 'Image', 'Shapes'] as const
 const buttonStyles = [
   'automatic',
   'bordered',
@@ -170,6 +170,13 @@ export default function OneNativeLeaves() {
               style={styles.nativeControl}
               testID="one-native-leaf-image-button"
             />
+            <Swift.Button
+              onPress={() => setPresses((count) => count + 1)}
+              style={styles.nativeControl}
+              testID="one-native-leaf-custom-button"
+            >
+              <Swift.Label label="Custom leaf" systemImage="star.fill" />
+            </Swift.Button>
           </>
         ) : null}
         {category === 'Progress' ? (
@@ -222,6 +229,36 @@ export default function OneNativeLeaves() {
             style={styles.nativeControl}
             testID="one-native-leaf-image"
           />
+        ) : null}
+        {category === 'Shapes' ? (
+          <View style={styles.shapeRow}>
+            <Swift.Circle
+              fill="#FF3B30"
+              style={styles.shape}
+              testID="one-native-leaf-circle"
+            />
+            <Swift.Capsule
+              fill="#FF9500"
+              style={styles.shapeWide}
+              testID="one-native-leaf-capsule"
+            />
+            <Swift.Rectangle
+              fill="#FFCC00"
+              style={styles.shape}
+              testID="one-native-leaf-rectangle"
+            />
+            <Swift.RoundedRectangle
+              fill="#34C759"
+              cornerRadius={8}
+              style={styles.shape}
+              testID="one-native-leaf-rounded-rectangle"
+            />
+            <Swift.Ellipse
+              fill="#007AFF"
+              style={styles.shapeWide}
+              testID="one-native-leaf-ellipse"
+            />
+          </View>
         ) : null}
       </View>
       <View style={styles.row}>
@@ -437,4 +474,7 @@ const styles = StyleSheet.create({
   statusText: { color: '#17233A', fontSize: 11, fontVariant: ['tabular-nums'] },
   nativeArea: { height: 110, width: '100%', justifyContent: 'center', gap: 8 },
   nativeControl: { width: '100%' },
+  shapeRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  shape: { width: 44, height: 44 },
+  shapeWide: { width: 64, height: 44 },
 })

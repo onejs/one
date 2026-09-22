@@ -573,10 +573,10 @@ export function renderPrebuildFile(args: {
     for (const [find, value] of replacements) {
       rendered = rendered.split(find).join(value)
     }
-    if (platform === 'ios' && relativePath.endsWith('/Info.plist') && schemes.length) {
-      rendered = rendered.replace(
-        '\t<key>LSRequiresIPhoneOS</key>',
-        `\t<key>CFBundleURLTypes</key>
+    if (platform === 'ios' && relativePath.endsWith('/Info.plist')) {
+      const stamps: string[] = []
+      if (schemes.length) {
+        stamps.push(`\t<key>CFBundleURLTypes</key>
 \t<array>
 \t\t<dict>
 \t\t\t<key>CFBundleTypeRole</key>
@@ -586,9 +586,26 @@ export function renderPrebuildFile(args: {
 ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
 \t\t\t</array>
 \t\t</dict>
-\t</array>
-\t<key>LSRequiresIPhoneOS</key>`
-      )
+\t</array>`)
+      }
+      if (app.ios?.usesNonExemptEncryption !== undefined) {
+        stamps.push(
+          `\t<key>ITSAppUsesNonExemptEncryption</key>\n\t<${app.ios.usesNonExemptEncryption ? 'true' : 'false'}/>`
+        )
+      }
+      if (app.ios?.fileSharing) {
+        stamps.push(
+          `\t<key>UIFileSharingEnabled</key>\n\t<true/>\n\t<key>LSSupportsOpeningDocumentsInPlace</key>\n\t<true/>`
+        )
+      }
+      if (stamps.length) {
+        const anchor = '\t<key>LSRequiresIPhoneOS</key>'
+        if (!rendered.includes(anchor))
+          throw new Error(
+            `[vxrn] prebuild template ${relativePath} lost its LSRequiresIPhoneOS anchor`
+          )
+        rendered = rendered.replace(anchor, `${stamps.join('\n')}\n${anchor}`)
+      }
     }
     if (
       platform === 'android' &&
@@ -686,12 +703,8 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       }
     }
     if (platform === 'ios' && relativePath.endsWith('/Info.plist')) {
-      if (app.ios?.usesNonExemptEncryption !== undefined) {
-        rendered = rendered.replace(
-          '\t<key>LSRequiresIPhoneOS</key>',
-          `\t<key>ITSAppUsesNonExemptEncryption</key>\n\t<${app.ios.usesNonExemptEncryption ? 'true' : 'false'}/>\n\t<key>LSRequiresIPhoneOS</key>`
-        )
-      }
+      // schemes, usesNonExemptEncryption, and fileSharing stamp above in one
+      // anchored block; only the camera description stamps here.
       if (app.imagePicker?.camera !== undefined) {
         const anchor = '\t<key>LSRequiresIPhoneOS</key>'
         if (!rendered.includes(anchor)) {
