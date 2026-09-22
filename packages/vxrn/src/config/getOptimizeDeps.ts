@@ -138,6 +138,21 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
         resolve: {
           extensions: webExtensions,
         },
+        // expo reads its platform from this constant, which babel-preset-expo
+        // inlines during transform. a pre-bundled dep never goes through babel,
+        // so the constant has to be defined here or it reads as undefined and
+        // every expo module in a client chunk takes its native branch. expo's
+        // dev HMR client is the one that bites: setupHMR calls
+        // HMRClient.setup({ isEnabled: true }), the web form, and the native
+        // branch asserts a string platform, so the whole client fails to
+        // initialize and every route renders blank. rolldown takes define under
+        // `transform`, and vite's dep optimizer merges that one key into its own
+        // define; a top-level `define` is typed `never` and is rejected outright.
+        transform: {
+          define: {
+            'process.env.EXPO_OS': '"web"',
+          },
+        },
         // some packages ship JSX in .js files (e.g., react-native-css-interop/dist/doctor.js).
         // .ts/.tsx must be declared too. when es-module-lexer can't read a dep entry,
         // vite's extractExportsData retries it as `moduleTypes[extname] || 'jsx'`, and
