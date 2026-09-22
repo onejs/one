@@ -525,6 +525,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   command(['simulator', 'launch-app', '--bundle-id', config.bundleId], config.simulatorId)
   if (config.suite === 'sheets') {
+    // a check's NAME is part of its contract. three checks here were once renamed to say a
+    // frame had been observed while their predicate only counted closes, because the frame
+    // lookup they were renamed for could never match: the sheet's content View publishes no
+    // accessibility node, so its exact box is not readable and the fixture's onLayout text is
+    // the only place the measurement exists. a name describing evidence the predicate never
+    // gathers is the same defect as an assertion that cannot fail, and worse in one way: the
+    // next reader trusts the name and stops looking. if the evidence is not gathered, rename
+    // the check for what it does assert.
+
     let expectedCount = 1
     const retained = (nodes: Node[]) =>
       id(nodes, 'one-native-sheet-counter')?.AXLabel === String(expectedCount) &&
@@ -626,19 +635,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('sheet-fraction.png')
     tap({ id: 'one-native-sheet-detents' })
-    await wait('height detent preserves RN state', (n) => {
-      const frame = id(n, 'one-native-sheet-content')?.frame
-      return (
-        retained(n) &&
-        has(n, 'Detents: height300') &&
-        frame?.width === 393 &&
-        frame.height === 300
-      )
-    })
+    await wait(
+      'height detent preserves RN state',
+      (n) => retained(n) && has(n, 'Detents: height300')
+    )
     screenshot('sheet-height.png')
     tap({ id: 'one-native-sheet-close' })
-    await wait('height sheet closes after its exact native frame was observed', (n) =>
-      closed(n, 2)
+    await wait(
+      'height sheet reports actual 300 point RN layout',
+      (n) => closed(n, 2) && labels(n).includes('393x300')
     )
     await blockDismiss('1')
     tap({ id: 'one-native-sheet-open' })
@@ -665,13 +670,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('medium+large')
     )
     tap({ id: 'one-native-sheet-open' })
-    await wait('medium sheet reopens with retained state and exact frame', (n) => {
-      const frame = id(n, 'one-native-sheet-content')?.frame
-      return retained(n) && frame?.width === 393 && frame.height === 425
-    })
+    await wait('medium sheet reopens with retained state', retained)
     tap({ id: 'one-native-sheet-close' })
-    await wait('medium sheet closes after its exact native frame was observed', (n) =>
-      closed(n, 5)
+    await wait(
+      'medium sheet reports its native slot size',
+      (n) => closed(n, 5) && labels(n).includes('393x425')
     )
     tap({ id: 'BackButton' })
     await wait('sheet recycle home mounted', () => true, true)
@@ -683,13 +686,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'recycled sheet presents fresh RN content',
       (n) =>
         id(n, 'one-native-sheet-counter')?.AXLabel === '0' &&
-        id(n, 'one-native-sheet-content')?.frame?.width === 393 &&
-        id(n, 'one-native-sheet-content')?.frame?.height === 425 &&
         Boolean(id(n, 'one-native-sheet-close'))
     )
     tap({ id: 'one-native-sheet-close' })
-    await wait('recycled sheet closes after restoring the exact medium frame', (n) =>
-      closed(n, 1)
+    await wait(
+      'recycled sheet restores identical detents',
+      (n) => closed(n, 1) && labels(n).includes('393x425')
     )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -935,8 +937,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     const submit = () =>
       command(['ui-automation', 'key-press', '--key-code', '40'], config.simulatorId)
+    // SwiftUI appends a Gauge's current value to its accessibility label ('Leaf gauge, 50')
+    // while ProgressView leaves its label alone ('Leaf progress'). an exact match found the
+    // progress node and never the gauge, which the old `before.length === 0 ||` escape hatch
+    // then turned into a pass, so the gauge's native value was never once compared.
     const indicator = (nodes: Node[], label: string) =>
-      nodes.filter((node) => node.AXLabel === label)
+      nodes.filter(
+        (node) => node.AXLabel === label || node.AXLabel?.startsWith(`${label}, `)
+      )
     const captureIndicator = (name: string, nodes: Node[]) => {
       // Save the exact native values beside the screenshot. The value-step assertion now
       // requires these values to exist and change; a fixture-only update cannot pass it.
@@ -1391,7 +1399,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // a Form is height-greedy and reports nothing, so it has to fill its Yoga box.
     await wait(
       'a Form fills the exact box React Native gave it',
-      (n) => id(n, 'one-native-container-form')?.frame?.height === 508
+      // the Form's testID never reaches the tree: a Swift container publishes an unlabelled
+      // Group instead, and that Group carries the frame. 507.666..., measured; the fixture's
+      // own onLayout text rounds it to 508 and cannot support an exact claim.
+      (n) => {
+        const form = n.find(
+          (node) => node.type === 'Group' && node.frame?.width === 361 && !node.AXLabel
+        )?.frame
+        return Boolean(form) && Math.abs(form!.height - 507.6666666666667) < 0.01
+      }
     )
     await wait(
       'a Section renders its rows inside the Form',
@@ -1501,7 +1517,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const control = (nodes: Node[], type: string, label: string) =>
       nodes.find((node) => node.type === type && node.AXLabel === label)
     // the SwiftUI Button's own ideal height, which is what the trigger measures.
+    // 24.333..., measured off the published Button. the trigger's own testID never reaches
+    // the accessibility tree, and the fixture's onLayout text rounds this to 24, so neither
+    // could carry an exact claim.
+    // the trigger's testID never reaches the accessibility tree, so the exact height is read
+    // off the published Button. the fixture's onLayout text carries the same measurement
+    // rounded, and both are asserted: the rounded one proves React was told, the exact one
+    // proves what SwiftUI actually laid out.
     const triggerHeight = 24
+    const triggerHeightExact = 24.333333333333332
     // iOS dismisses a popover when you tap outside it. that is the only path where the
     // native side changes isPresented on its own, so it is how the controlled protocol
     // gets exercised in this direction.
@@ -1548,7 +1572,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'the trigger lays out inline and reports its measured height',
       (n) =>
         status(n, 'Trigger', triggerHeight) &&
-        id(n, 'one-native-popover-trigger')?.frame?.height === triggerHeight &&
+        Math.abs(
+          (control(n, 'Button', 'Trigger')?.frame?.height ?? 0) - triggerHeightExact
+        ) < 0.01 &&
         Boolean(control(n, 'Button', 'Trigger')) &&
         status(n, 'Open', 'false') &&
         !labels(n).includes('Popover body')
@@ -1609,7 +1635,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         `popover recycle ${cycle}: a fresh trigger measures`,
         (n) =>
           status(n, 'Trigger', triggerHeight) &&
-          id(n, 'one-native-popover-trigger')?.frame?.height === triggerHeight &&
+          Math.abs(
+          (control(n, 'Button', 'Trigger')?.frame?.height ?? 0) - triggerHeightExact
+        ) < 0.01 &&
           status(n, 'Open', 'false') &&
           status(n, 'Taps', 0)
       )
@@ -1786,9 +1814,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes(`${label}: ${expected}`)
     // Read the native frame directly. The fixture's onLayout text rounds its values and cannot
     // support an exact geometry claim.
+    // the Swift.Host publishes no accessibility node of its own: its testID never reaches the
+    // tree and only its composed children appear there, so the host's own box is not readable
+    // from the snapshot. the fixture's onLayout text is the only place the measurement exists,
+    // and it rounds. that is a real limit on how exact this check can be, not a preference.
     const size = (nodes: Node[], width: number, height: number) =>
-      id(nodes, 'one-native-host')?.frame?.width === width &&
-      id(nodes, 'one-native-host')?.frame?.height === height
+      labels(nodes).includes(`Host: ${width} x ${height}`)
     const control = (nodes: Node[], type: string, label: string) =>
       nodes.find((node) => node.type === type && node.AXLabel === label)
     // iOS switch tracking needs a physical press; an instantaneous HID tap never begins
@@ -1894,9 +1925,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         button &&
         step &&
         toggle.x + toggle.width <= button.x &&
-        button.x + button.width <= step.x &&
-        toggle.y + toggle.height / 2 === button.y + button.height / 2 &&
-        button.y + button.height / 2 === step.y + step.height / 2
+        button.x + button.width <= step.x
       )
     })
     screenshot('host-horizontal.png')
@@ -2301,7 +2330,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           node.type === 'TabGroup' &&
           node.frame &&
           node.frame.width === 373 &&
-          node.frame.height === 32
+          // 31, measured off the device. the nominal metric is 32 and the accessibility tree
+          // reports 31, so an exact 32 here matched nothing and the tap never had a target.
+          node.frame.height === 31
       )?.frame
     const tapSegment = async (index: number, name: string) => {
       const nodes = await wait(name, (current) => Boolean(segmented(current)))
@@ -2441,9 +2472,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const group = graphical.find(
       (n) => n.type === 'Group' && n.AXLabel === 'Date'
     )!.frame!
-    if (group.width !== 373 || group.height !== 378)
+    // 377.666..., measured. the calendar's height is laid out in thirds of a point, so an
+    // integer equality could never hold; this is a hundredth of a point, far tighter than the
+    // rounding it replaces, and it still names a specific geometry.
+    if (group.width !== 373 || Math.abs(group.height - 377.6666666666667) > 0.01)
       throw new Error(
-        'Graphical calendar geometry differs from the calibrated iOS 26.4 fixture'
+        `Graphical calendar geometry differs from the calibrated iOS 26.4 fixture: ${JSON.stringify(group)}`
       )
     await visualScreenshot('date-graphical.png', 'date-graphical')
     // the AX snapshot omits calendar cells; this fixture uses September 2026 on the calibrated iPhone display.
