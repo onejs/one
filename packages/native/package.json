@@ -45,6 +45,12 @@
       "import": "./dist/esm/color/index.mjs",
       "require": "./dist/cjs/color/index.cjs"
     },
+    "./fonts": {
+      "types": "./types/fonts/index.d.ts",
+      "react-native": "./src/fonts/index.native.ts",
+      "import": "./dist/esm/fonts/index.mjs",
+      "require": "./dist/cjs/fonts/index.cjs"
+    },
     "./zoom": {
       "types": "./types/zoom/index.d.ts",
       "react-native": "./dist/esm/zoom/index.native.js",
