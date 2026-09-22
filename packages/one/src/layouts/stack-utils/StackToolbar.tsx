@@ -1,4 +1,4 @@
-import { Children, isValidElement, useEffect, useMemo, type ReactNode } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 import { NAVIGATOR_CONFIG } from '../../headless/children'
@@ -48,32 +48,6 @@ function mark<ComponentT extends (...args: never[]) => unknown>(
   return Object.assign(component, { [NAVIGATOR_CONFIG]: true, [TOOLBAR_KIND]: kind })
 }
 
-function checkInvalidChildren(component: 'Button' | 'Menu', children: ReactNode) {
-  if (process.env.NODE_ENV === 'production') return
-  const allowed =
-    component === 'Button'
-      ? 'a single string or Stack.Toolbar.Label, Stack.Toolbar.Icon, and Stack.Toolbar.Badge'
-      : 'Stack.Toolbar.Menu, Stack.Toolbar.MenuAction, Stack.Toolbar.Label, Stack.Toolbar.Icon, and Stack.Toolbar.Badge'
-  const kinds =
-    component === 'Button'
-      ? ['label', 'icon', 'badge']
-      : ['menu', 'menuAction', 'label', 'icon', 'badge']
-  if (typeof children === 'string') return
-  const all = Children.toArray(children)
-  const valid = all.filter(
-    (child) =>
-      typeof child === 'string' ||
-      typeof child === 'number' ||
-      (isValidElement(child) &&
-        kinds.includes(
-          (child.type as { [TOOLBAR_KIND]?: string })?.[TOOLBAR_KIND] as string
-        ))
-  )
-  if (all.length !== valid.length) {
-    throw new Error(`Stack.Toolbar.${component} only accepts ${allowed} as its children.`)
-  }
-}
-
 /**
  * Declarative toolbar. Bottom (the default) renders the navigation-controller
  * toolbar in place and must mount in screen content; left/right set header
@@ -87,17 +61,11 @@ export function StackToolbarComponent(props: StackToolbarProps) {
     if (PLATFORM !== 'ios') return null
     return <BottomToolbarHost>{props.children}</BottomToolbarHost>
   }
-  return <StackToolbarHeaderOptions placement={placement} props={props} />
+  return <StackToolbarHeaderOptions props={props} />
 }
 mark(StackToolbarComponent, 'toolbar')
 
-function StackToolbarHeaderOptions({
-  placement,
-  props,
-}: {
-  placement: 'left' | 'right'
-  props: StackToolbarProps
-}) {
+function StackToolbarHeaderOptions({ props }: { props: StackToolbarProps }) {
   const navigation = useNavigation()
   const options = useMemo(
     () => appendStackToolbarPropsToOptions({}, props),
@@ -107,7 +75,6 @@ function StackToolbarHeaderOptions({
   useEffect(() => {
     navigation.setOptions(options as Record<string, unknown>)
   }, [navigation, options])
-  void placement
   return null
 }
 
@@ -115,8 +82,7 @@ function StackToolbarHeaderOptions({
  * Leaf toolbar button descriptor. Placement comes from the enclosing
  * Stack.Toolbar.
  */
-export function StackToolbarButton(props: StackToolbarButtonProps) {
-  checkInvalidChildren('Button', props.children)
+export function StackToolbarButton(_props: StackToolbarButtonProps) {
   return null
 }
 mark(StackToolbarButton, 'button')
@@ -126,8 +92,7 @@ mark(StackToolbarButton, 'button')
  * Menu descriptors become submenus. Label/Icon children configure the bar
  * item; title is the menu title.
  */
-export function StackToolbarMenu(props: StackToolbarMenuProps) {
-  checkInvalidChildren('Menu', props.children)
+export function StackToolbarMenu(_props: StackToolbarMenuProps) {
   return null
 }
 mark(StackToolbarMenu, 'menu')

@@ -243,13 +243,6 @@ export interface BottomToolbarSearchBarSlotData {
 }
 export type BottomToolbarData = BottomToolbarButtonData | BottomToolbarMenuData | BottomToolbarMenuActionData | BottomToolbarSubmenuData | BottomToolbarSpacerData | BottomToolbarSearchBarSlotData;
 /**
- * Whether a badge under bottom placement renders. The B2 probe proved on the
- * iOS 27 simulator that UIBarButtonItem.badge renders on bottom toolbarItems
- * items, so One allows it. Intentional divergence from Expo, which calls
- * bottom badges an iOS limitation; the docs say so.
- */
-export declare const BOTTOM_BADGE_SUPPORTED = true;
-/**
  * Convert bottom toolbar children to plain descriptors rendered by the
  * toolbar host. Unlike header items, hidden is preserved because the native
  * items own a hidden slot.
