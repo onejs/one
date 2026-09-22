@@ -149,10 +149,23 @@ RCT_EXPORT_METHOD(load:(NSString *)name
       CFRelease(registerError);
     }
     if (![self fontIsLoaded:name]) {
+      NSArray *descriptors = (__bridge_transfer NSArray *)CTFontManagerCreateFontDescriptorsFromURL(
+          (__bridge CFURLRef)fileURL);
+      NSMutableArray *realNames = [NSMutableArray array];
+      for (UIFontDescriptor *descriptor in descriptors) {
+        NSString *postScript = [descriptor objectForKey:(__bridge NSString *)kCTFontNameAttribute];
+        if (postScript.length > 0) {
+          [realNames addObject:postScript];
+        }
+      }
+      NSString *provided = realNames.count > 0
+          ? [NSString stringWithFormat:@", file provides %@",
+                                       [realNames componentsJoinedByString:@", "]]
+          : @"";
       reject(@"E_FONTS_NAME",
              [NSString stringWithFormat:@"Fonts.load: \"%@\" is not usable after registration "
-                                        @"(expected the PostScript name)",
-                                        name],
+                                        @"(expected the PostScript name%@)",
+                                        name, provided],
              nil);
       return;
     }
