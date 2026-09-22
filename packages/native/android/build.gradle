@@ -27,6 +27,13 @@ android {
         minSdkVersion safeExtGet("minSdkVersion", 23)
         targetSdkVersion safeExtGet("targetSdkVersion", 35)
 
+        // worklets only builds the ABIs in reactNativeArchitectures. this
+        // library has to match, or a narrower app ABI still configures the
+        // other ABIs and links them against a worklets prefab that has no
+        // library for that ABI.
+        ndk {
+            abiFilters(*reactNativeArchitectures())
+        }
         externalNativeBuild {
             cmake {
                 arguments "-DANDROID_STL=c++_shared"
@@ -69,11 +76,11 @@ def safeExtGet(prop, fallback) {
 }
 
 def reactNativeArchitectures() {
-    def value = project.findProperty("reactNativeArchitectures")
-    def parsed = value?.toString()?.split(",")?.collect { it.trim() }?.findAll { !it.isEmpty() }
-    return (parsed == null || parsed.isEmpty()) ?
-        ["armeabi-v7a", "x86", "x86_64", "arm64-v8a"] :
-        parsed
+    def value = findProperty("reactNativeArchitectures")
+    if (!value) {
+        return ["armeabi-v7a", "x86", "x86_64", "arm64-v8a"]
+    }
+    return value.toString().split(",").collect { it.trim() }.findAll { it }
 }
 
 repositories {
