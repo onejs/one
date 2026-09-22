@@ -30,7 +30,8 @@ import { Popover } from './Popover.native'
 import { FullScreenCover, Sheet } from './Sheet.native'
 import * as Controls from './generated/Controls.native'
 import { Tab, Tabs } from './Tabs.native'
-import { Compose } from './compose'
+import { Compose as UnsupportedCompose } from './compose'
+import { Compose as AndroidCompose } from './compose.android'
 import * as UI from './effects'
 
 export * from './extras'
@@ -72,7 +73,8 @@ export const Swift =
         ...Controls,
       }
     : UnsupportedSwift
-export { Compose }
+export const Compose =
+  Platform.OS === 'android' ? AndroidCompose : UnsupportedCompose
 export { Notifications } from './notifications'
 export { useNativeState, type NativeState } from './nativeState'
 export { TextInput } from './universal/TextInput/index'
