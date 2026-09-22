@@ -1473,6 +1473,9 @@
       },
       "events": {
         "onNativeSignInWithAppleButtonCompletion": {
+          "type": {
+            "type": "string"
+          },
           "user": {
             "type": "string"
           },
@@ -1980,6 +1983,9 @@
           }
         },
         "onNativeFileImporterCompletion": {
+          "type": {
+            "type": "string"
+          },
           "url": {
             "type": "string"
           },

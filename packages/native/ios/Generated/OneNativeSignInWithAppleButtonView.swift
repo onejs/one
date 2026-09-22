@@ -10,16 +10,16 @@ private final class SignInWithAppleButtonModel: ObservableObject {
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
-  var onCompletion: ((String, String, String, String, String, String, String, Int) -> Void)?
+  var onCompletion: ((String, String, String, String, String, String, String, String, Int) -> Void)?
   private var completionCount = 0
-  func completion(_ user: String, _ email: String, _ givenName: String, _ familyName: String, _ identityToken: String, _ authorizationCode: String, _ message: String) {
+  func completion(_ type: String, _ user: String, _ email: String, _ givenName: String, _ familyName: String, _ identityToken: String, _ authorizationCode: String, _ message: String) {
     guard active else { return }
     completionCount += 1
-    onCompletion?(user, email, givenName, familyName, identityToken, authorizationCode, message, completionCount)
+    onCompletion?(type, user, email, givenName, familyName, identityToken, authorizationCode, message, completionCount)
   }
 }
 @objcMembers public final class OneNativeSignInWithAppleButtonView: UIView, OneNativeComposable {
-  public var onCompletion: ((String, String, String, String, String, String, String, Int) -> Void)?
+  public var onCompletion: ((String, String, String, String, String, String, String, String, Int) -> Void)?
   private var model = SignInWithAppleButtonModel()
   public var onHeight: ((CGFloat) -> Void)?
   private var controller: OneNativeHostingController<OneNativeMeasuredStandalone<SignInWithAppleButtonContent>>?
@@ -36,7 +36,13 @@ private final class SignInWithAppleButtonModel: ObservableObject {
   public func configure(_ nonce: String) {
     if model.nonce != nonce { model.nonce = nonce }
   }
-  public func setRequestedScopes(_ items: [String]) { if model.requestedScopes != items { model.requestedScopes = items } }
+  public func setRequestedScopes(_ items: [String]) {
+    if let unknown = items.first(where: { $0 != "fullName" && $0 != "email" }) {
+    model.completion("failed", "", "", "", "", "", "", "unknown requested scope: \(unknown)")
+    return
+  }
+  if model.requestedScopes != items { model.requestedScopes = items }
+  }
 
   private weak var compositionParent: OneNativeCompositionParent?
   public func compositionContent() -> AnyView { AnyView(SignInWithAppleButtonContent(model: model)) }
@@ -53,7 +59,7 @@ private final class SignInWithAppleButtonModel: ObservableObject {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
-    model.onCompletion = { [weak self] user, email, givenName, familyName, identityToken, authorizationCode, message, completionCount in self?.onCompletion?(user, email, givenName, familyName, identityToken, authorizationCode, message, completionCount) }
+    model.onCompletion = { [weak self] type, user, email, givenName, familyName, identityToken, authorizationCode, message, completionCount in self?.onCompletion?(type, user, email, givenName, familyName, identityToken, authorizationCode, message, completionCount) }
   }
   private func updateHost() {
     guard compositionParent == nil else { return }
@@ -84,11 +90,13 @@ private struct SignInWithAppleButtonContent: View {
 // overlay's, so the generator does not read it and cannot select these cases.
 // swiftc -typecheck against the SDK is what proves each one still exists.
 private func oneNativeAppleScopes(_ values: [String]) -> [ASAuthorization.Scope] {
-  values.map { value in
+  // unknown strings never reach here: the setter rejects them with a failed
+  // completion, so the default only drops what validation already refused.
+  values.compactMap { value in
     switch value {
     case "fullName": return .fullName
     case "email": return .email
-    default: preconditionFailure("invalid ASAuthorization.Scope: \(value)")
+    default: return nil
     }
   }
 }
@@ -111,10 +119,11 @@ private struct SignInWithAppleButtonSurface: View {
       switch result {
       case .success(let authorization):
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {
-          model.completion("", "", "", "", "", "", "unexpected credential type")
+          model.completion("failed", "", "", "", "", "", "", "unexpected credential type")
           return
         }
         model.completion(
+          "success",
           credential.user,
           credential.email ?? "",
           credential.fullName?.givenName ?? "",
@@ -127,9 +136,9 @@ private struct SignInWithAppleButtonSurface: View {
         let nsError = error as NSError
         if nsError.domain == ASAuthorizationErrorDomain,
           nsError.code == ASAuthorizationError.Code.canceled.rawValue {
-          model.completion("", "", "", "", "", "", "cancelled")
+          model.completion("cancelled", "", "", "", "", "", "", "")
         } else {
-          model.completion("", "", "", "", "", "", error.localizedDescription)
+          model.completion("failed", "", "", "", "", "", "", error.localizedDescription)
         }
       }
     })

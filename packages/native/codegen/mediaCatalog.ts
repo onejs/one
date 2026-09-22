@@ -290,6 +290,7 @@ private struct PhotosPickerSurface: View {
         prop: 'onCompletion',
         event: 'Completion',
         payload: {
+          type: 'string',
           user: 'string',
           email: 'string',
           givenName: 'string',
@@ -297,6 +298,16 @@ private struct PhotosPickerSurface: View {
           identityToken: 'string',
           authorizationCode: 'string',
           message: 'string',
+        },
+        object: {
+          variants: [
+            {
+              type: 'success',
+              fields: ['user', 'email', 'givenName', 'familyName', 'identityToken', 'authorizationCode'],
+            },
+            { type: 'failed', fields: ['message'] },
+            { type: 'cancelled', fields: [] },
+          ],
         },
       },
     ],
@@ -307,6 +318,13 @@ private struct PhotosPickerSurface: View {
         publicType: "readonly ('fullName' | 'email')[]",
       },
       nonce: { type: 'string', default: '' },
+    },
+    setBody: {
+      requestedScopes: `if let unknown = items.first(where: { $0 != "fullName" && $0 != "email" }) {
+    model.completion("failed", "", "", "", "", "", "", "unknown requested scope: \\(unknown)")
+    return
+  }
+  if model.requestedScopes != items { model.requestedScopes = items }`,
     },
     constructors: [
       {
@@ -332,11 +350,13 @@ private struct PhotosPickerSurface: View {
 // overlay's, so the generator does not read it and cannot select these cases.
 // swiftc -typecheck against the SDK is what proves each one still exists.
 private func oneNativeAppleScopes(_ values: [String]) -> [ASAuthorization.Scope] {
-  values.map { value in
+  // unknown strings never reach here: the setter rejects them with a failed
+  // completion, so the default only drops what validation already refused.
+  values.compactMap { value in
     switch value {
     case "fullName": return .fullName
     case "email": return .email
-    default: preconditionFailure("invalid ASAuthorization.Scope: \\(value)")
+    default: return nil
     }
   }
 }
@@ -359,10 +379,11 @@ private struct SignInWithAppleButtonSurface: View {
       switch result {
       case .success(let authorization):
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {
-          model.completion("", "", "", "", "", "", "unexpected credential type")
+          model.completion("failed", "", "", "", "", "", "", "unexpected credential type")
           return
         }
         model.completion(
+          "success",
           credential.user,
           credential.email ?? "",
           credential.fullName?.givenName ?? "",
@@ -375,9 +396,9 @@ private struct SignInWithAppleButtonSurface: View {
         let nsError = error as NSError
         if nsError.domain == ASAuthorizationErrorDomain,
           nsError.code == ASAuthorizationError.Code.canceled.rawValue {
-          model.completion("", "", "", "", "", "", "cancelled")
+          model.completion("cancelled", "", "", "", "", "", "", "")
         } else {
-          model.completion("", "", "", "", "", "", error.localizedDescription)
+          model.completion("failed", "", "", "", "", "", "", error.localizedDescription)
         }
       }
     })
