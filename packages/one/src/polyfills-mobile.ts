@@ -46,3 +46,12 @@ import 'core-js/actual/url-search-params'
 import { promiseWithResolvers } from './utils/promiseWithResolvers'
 
 Promise.withResolvers || (Promise.withResolvers = promiseWithResolvers)
+
+// --------------- crypto -------------------
+// Hermes ships no WebCrypto. install getRandomValues + randomUUID backed
+// by the OneNativeCrypto module (SecRandomCopyBytes / SecureRandom), only
+// filling the pieces the runtime lacks.
+
+import { installCrypto } from '@vxrn/native/crypto'
+
+installCrypto()

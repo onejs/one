@@ -10,8 +10,8 @@ describe('native.app manifest re-export', () => {
         name: 'MyApp',
         imagePicker: { camera: 'Take profile photos.' },
         notifications: {},
-        ios: { bundleId: 'dev.one.myapp' },
-        android: { applicationId: 'dev.one.myapp' },
+        ios: { bundleId: 'dev.one.myapp', buildNumber: '42' },
+        android: { applicationId: 'dev.one.myapp', versionCode: 42 },
       })
     ).not.toThrow()
     expect(() => validateNativeApp({} as any)).toThrow(/name/)

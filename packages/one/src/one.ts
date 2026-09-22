@@ -2,10 +2,16 @@
 // contracts of their native frameworks; shared components live under UI.
 
 import {
+  Browser as NativeBrowser,
+  Clipboard as NativeClipboard,
+  AppInfo,
   Color,
   Compose,
+  Haptics,
+  ImagePicker,
   MenuAction,
   Notifications,
+  Network as NativeNetwork,
   SplitView,
   Swift,
   TextInput,
@@ -17,6 +23,7 @@ import {
   ZoomTransitionSource,
   type ColorType,
   useNativeState,
+  useNetworkState,
 } from '@vxrn/native'
 import {
   SafeAreaProvider,
@@ -51,6 +58,7 @@ export type OneSafeArea = {
 
 export type OneUI = typeof NativeUI & {
   readonly SafeArea: Readonly<OneSafeArea>
+  readonly Haptics: typeof Haptics
   readonly TextInput: typeof TextInput
   readonly useNativeState: typeof useNativeState
 }
@@ -59,10 +67,16 @@ export type OneNotifications = typeof Notifications
 
 export type OneAPI = {
   readonly platform: OnePlatform
+  readonly AppInfo: typeof AppInfo
   readonly iOS: Readonly<OneIOS>
   readonly Android: Readonly<OneAndroid>
   readonly UI: Readonly<OneUI>
   readonly Notifications: Readonly<OneNotifications>
+  readonly Clipboard: typeof NativeClipboard
+  readonly Network: typeof NativeNetwork
+  readonly Browser: typeof NativeBrowser
+  readonly ImagePicker: typeof ImagePicker
+  readonly useNetworkState: typeof useNetworkState
 }
 
 function currentPlatform(): OnePlatform {
@@ -99,6 +113,7 @@ const SafeArea: Readonly<OneSafeArea> = Object.freeze({
 const UI: Readonly<OneUI> = Object.freeze({
   ...NativeUI,
   SafeArea,
+  Haptics,
   TextInput,
   useNativeState,
 })
@@ -107,8 +122,14 @@ export const One: OneAPI = Object.freeze({
   get platform(): OnePlatform {
     return currentPlatform()
   },
+  AppInfo,
   iOS,
   Android,
   UI,
   Notifications,
+  Clipboard: NativeClipboard,
+  Network: NativeNetwork,
+  Browser: NativeBrowser,
+  ImagePicker,
+  useNetworkState,
 })

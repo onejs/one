@@ -2,6 +2,7 @@
 import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { resolveVisualRegion, VISUAL_CHECKS } from './visual-declarations'
 import {
   countChangedPixels,
@@ -36,11 +37,18 @@ const suites = [
   'groups',
   'state',
   'safe-area',
+  'haptics',
+  'crypto',
+  'app-info',
   'popover',
   'accessibility',
   'media',
   'map',
   'notifications',
+  'clipboard',
+  'network',
+  'browser',
+  'image-picker',
 ] as const
 type Suite = (typeof suites)[number]
 type Config = {
@@ -230,6 +238,18 @@ const safeAreaLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-safe-area-edges')) &&
   has(nodes, 'Insets: ')
+const hapticsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-haptics-selection')) &&
+  has(nodes, 'Module: ')
+const cryptoLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-crypto-regenerate')) &&
+  has(nodes, 'UUID1: ')
+const appInfoLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-app-info-refresh')) &&
+  has(nodes, 'Version: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -250,6 +270,35 @@ const notificationsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-notifications-permission-refresh')) &&
   has(nodes, 'Notifications: mounted')
+const clipboardLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-clipboard-set')) &&
+  has(nodes, 'Written: ')
+const networkLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-network-refresh')) &&
+  has(nodes, 'State: ')
+// a presented safari sheet takes the whole accessibility tree and exposes no
+// children through this snapshot api, so the suite counts a collapsed tree
+// as the presented side of loaded. home rows carry nav ids, which keeps a
+// mid-navigation tree from counting.
+const browserPresented = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  !labels(nodes).some((label) => label.includes('Result: ')) &&
+  !nodes.some((node) => node.AXUniqueId?.startsWith('nav-'))
+const browserLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  ((Boolean(id(nodes, 'one-native-browser-open')) && has(nodes, 'Result: ')) ||
+    browserPresented(nodes))
+// a presented photo picker covers the fixture and publishes no accessibility
+// tree of its own, so the screen counts as loaded from the fixture side, the
+// camera prompt, or the bare application node.
+const imagePickerLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  ((Boolean(id(nodes, 'one-native-image-picker-library')) && has(nodes, 'Result: ')) ||
+    labels(nodes).includes('Cancel') ||
+    labels(nodes).includes('Don’t Allow') ||
+    nodes.every((n) => n.type === 'Application'))
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -272,11 +321,18 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   groups: groupsLoaded,
   state: stateLoaded,
   'safe-area': safeAreaLoaded,
+  haptics: hapticsLoaded,
+  crypto: cryptoLoaded,
+  'app-info': appInfoLoaded,
   popover: popoverLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
   map: mapLoaded,
   notifications: notificationsLoaded,
+  clipboard: clipboardLoaded,
+  network: networkLoaded,
+  browser: browserLoaded,
+  'image-picker': imagePickerLoaded,
 }
 const suiteHome: Record<Suite, string> = {
   'tabs-menu': 'nav-one-native',
@@ -292,11 +348,18 @@ const suiteHome: Record<Suite, string> = {
   groups: 'nav-one-native-groups',
   state: 'nav-one-native-state',
   'safe-area': 'nav-one-native-safe-area',
+  haptics: 'nav-one-native-haptics',
+  crypto: 'nav-one-native-crypto',
+  'app-info': 'nav-one-native-app-info',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
   map: 'nav-one-native-map',
   notifications: 'nav-one-native-notifications',
+  clipboard: 'nav-one-native-clipboard',
+  network: 'nav-one-native-network',
+  browser: 'nav-one-native-browser',
+  'image-picker': 'nav-one-native-image-picker',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
 const firstState = (nodes: Node[]) =>
@@ -361,18 +424,43 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       `${name} timed out after ${timeoutMs}ms${detail ? `; ${detail}` : ''}; snapshot: ${snapshotPath}`
     )
   }
-  const tap = (target: { id?: string; label?: string }) => {
-    if (target.id)
-      command(['ui-automation', 'tap', '--id', target.id], config.simulatorId)
-    else if (target.label)
-      command(['ui-automation', 'tap', '--label', target.label], config.simulatorId)
-    else throw new Error('A tap target is required.')
-  }
-  const point = (x: number, y: number) =>
-    command(
-      ['ui-automation', 'tap', '-x', String(Math.round(x)), '-y', String(Math.round(y))],
+  // the only tap path: touch down/up delivers on headless hosts, where the
+  // simulator tapAt call reports success without delivering anything.
+  const touch = (x: number, y: number) => {
+    const output = command(
+      [
+        'ui-automation',
+        'touch',
+        '-x',
+        String(Math.round(x)),
+        '-y',
+        String(Math.round(y)),
+        '--down',
+        '--up',
+      ],
       config.simulatorId
     )
+    // axe exits 0 with the dropped input connection buried in the details
+    // text; surface it as the failure instead of tapping into the void.
+    if (output.includes('could not establish simulator input'))
+      throw new Error(
+        `touch at (${Math.round(x)}, ${Math.round(y)}) failed: axe could not establish simulator input`
+      )
+    return output
+  }
+  const tap = (target: { id?: string; label?: string }) => {
+    if (!target.id && !target.label) throw new Error('A tap target is required.')
+    const nodes = snapshot(config.simulatorId)
+    const frame = target.id
+      ? id(nodes, target.id)?.frame
+      : nodes.find((node) => node.AXLabel === target.label)?.frame
+    if (!frame)
+      throw new Error(
+        `No accessibility element matched ${target.id ? `--id '${target.id}'` : `--label '${target.label}'`}.`
+      )
+    return touch(frame.x + frame.width / 2, frame.y + frame.height / 2)
+  }
+  const point = (x: number, y: number) => touch(x, y)
   // launch-app drops --args, so a non-default packager port launches through
   // simctl, which forwards -RCT_jsLocation into nsuserdefaults. without the
   // flag the app keeps the baked localhost:8081.
@@ -581,6 +669,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // a freshly booted device has never run the app, and simctl words that differently
     if (!/not running|nothing to terminate/i.test(message)) throw error
     console.log('App was not running.')
+  }
+  if (config.suite === 'image-picker') {
+    // reset first so reruns start undetermined like a fresh install.
+    execFileSync(
+      'xcrun',
+      ['simctl', 'privacy', config.simulatorId, 'reset', 'camera', config.bundleId],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
   }
   launchApp()
   if (config.suite === 'notifications') {
@@ -2320,6 +2416,139 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
+  if (config.suite === 'haptics') {
+    // presence: the native module resolved. tap-through: every verb crosses
+    // the bridge and records into Last. no-redbox comes from the shared wait,
+    // which throws on a RedBox before any predicate can pass. the Error: none
+    // wait is the console-error sweep: any js throw during the taps lands in
+    // the fixture's error label instead of passing silently.
+    const verbs = [
+      'selection',
+      'impact-light',
+      'impact-medium',
+      'impact-heavy',
+      'impact-soft',
+      'impact-rigid',
+      'notification-success',
+      'notification-warning',
+      'notification-error',
+    ]
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-haptics')
+    await wait('the haptics module is present', (n) =>
+      labels(n).includes('Module: available')
+    )
+    for (const verb of verbs) {
+      tap({ id: `one-native-haptics-${verb}` })
+      await wait(`tapping ${verb} reaches the native module`, (n) =>
+        labels(n).includes(`Last: ${verb}`)
+      )
+    }
+    await wait('no tap raised a js error', (n) => labels(n).includes('Error: none'))
+    screenshot('haptics-verbs.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`haptics recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-haptics')
+      await wait(`haptics recycle ${cycle}: the module is present again`, (n) =>
+        labels(n).includes('Module: available')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'app-info') {
+    // exact stamped values from the fixture manifest (9.9.9/4242), proving
+    // prebuild-to-runtime plumbing rather than template defaults. the
+    // refresh tap proves the screen is live; no-redbox rides in the shared
+    // wait, which throws on a RedBox before any predicate can pass.
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-app-info')
+    await wait('version matches the stamped manifest', (n) =>
+      labels(n).includes('Version: 9.9.9')
+    )
+    await wait('build matches the stamped manifest', (n) =>
+      labels(n).includes('Build: 4242')
+    )
+    await wait('application id matches the ios bundle id', (n) =>
+      labels(n).includes('ApplicationId: dev.vxrn.native.tests')
+    )
+    tap({ id: 'one-native-app-info-refresh' })
+    await wait('the screen answers taps', (n) => labels(n).includes('Taps: 1'))
+    screenshot('app-info-values.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`app-info recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-app-info')
+      await wait(`app-info recycle ${cycle}: stamped values return`, (n) =>
+        labels(n).includes('Version: 9.9.9') &&
+        labels(n).includes('Build: 4242') &&
+        labels(n).includes('ApplicationId: dev.vxrn.native.tests')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'crypto') {
+    // presence: the native module resolved. validity: two uuids off the
+    // device match rfc 4122 v4 and differ, and the getRandomValues fill is
+    // 16 bytes of hex. no-redbox comes from the shared wait, which throws
+    // on a RedBox before any predicate can pass, and the Error: none wait
+    // is the js-throw sweep: any crypto failure lands in the error label.
+    const uuidV4 =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
+    const hex32 = /^[0-9a-f]{32}$/
+    const valueOf = (nodes: Node[], prefix: string) =>
+      labels(nodes)
+        .find((label) => label.startsWith(prefix))
+        ?.slice(prefix.length)
+    const cryptoValid = (nodes: Node[]) => {
+      const first = valueOf(nodes, 'UUID1: ')
+      const second = valueOf(nodes, 'UUID2: ')
+      const random = valueOf(nodes, 'Random: ')
+      return Boolean(
+        first &&
+          second &&
+          random &&
+          uuidV4.test(first) &&
+          uuidV4.test(second) &&
+          first !== second &&
+          hex32.test(random)
+      )
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-crypto')
+    await wait('the crypto module is present', (n) =>
+      labels(n).includes('Module: available')
+    )
+    await wait('two distinct valid uuids render on device', cryptoValid)
+    await wait('no crypto call raised a js error', (n) =>
+      labels(n).includes('Error: none')
+    )
+    tap({ id: 'one-native-crypto-regenerate' })
+    await wait('regenerated uuids stay valid and distinct', cryptoValid)
+    await wait('regeneration raised no js error', (n) =>
+      labels(n).includes('Error: none')
+    )
+    screenshot('crypto-uuids.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`crypto recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-crypto')
+      await wait(`crypto recycle ${cycle}: uuids render again`, (n) => {
+        const valid = cryptoValid(n)
+        return valid && labels(n).includes('Error: none')
+      })
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
   if (config.suite === 'popover') {
     const status = (nodes: Node[], label: string, expected: string | number) =>
       labels(nodes).includes(`${label}: ${expected}`)
@@ -3453,6 +3682,268 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => value(n, 'gamma') && request(n, 'gamma') && Boolean(wheel(n, 2))
     )
 
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'clipboard') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-clipboard')
+    await wait('clipboard fixture mounted', (n) =>
+      labels(n).includes('Written: none')
+    )
+    tap({ id: 'one-native-clipboard-set' })
+    await wait('setString reports true', (n) =>
+      labels(n).includes('Written: true')
+    )
+    tap({ id: 'one-native-clipboard-get' })
+    await wait('getString reads the write back', (n) =>
+      labels(n).includes('Read: one-native-clipboard-probe')
+    )
+    tap({ id: 'one-native-clipboard-has' })
+    await wait('hasString sees the string', (n) =>
+      labels(n).includes('Has: true')
+    )
+    screenshot('clipboard-roundtrip.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`clipboard recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-clipboard')
+      await wait(`clipboard recycle ${cycle}: a fresh fixture mounts`, (n) =>
+        labels(n).includes('Written: none')
+      )
+      tap({ id: 'one-native-clipboard-get' })
+      await wait(
+        `clipboard recycle ${cycle}: the pasteboard outlives the fixture`,
+        (n) => labels(n).includes('Read: one-native-clipboard-probe')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'network') {
+    const stateOf = (nodes: Node[]) => {
+      const label = labels(nodes).find((text) => text.startsWith('State: '))
+      if (!label) return null
+      const [, type, connected, reachable] = label.split(' ')
+      return { type, connected, reachable }
+    }
+    const eventsOf = (nodes: Node[]) => {
+      const label = labels(nodes).find((text) => text.startsWith('Events: '))
+      return label ? Number(label.slice('Events: '.length)) : NaN
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-network')
+
+    // the simulator has a live host route, so the correct reading is a named
+    // type with both flags true. none would prove the monitor never started.
+    await wait('the one-shot read publishes live state', (n) => {
+      const state = stateOf(n)
+      return Boolean(
+        state &&
+          state.type &&
+          state.type !== 'none' &&
+          state.connected === 'true' &&
+          state.reachable === 'true'
+      )
+    })
+    await wait('the listener fires at least once', (n) => eventsOf(n) >= 1)
+    tap({ id: 'one-native-network-refresh' })
+    await wait('a refresh re-reads live state', (n) => {
+      const state = stateOf(n)
+      return Boolean(
+        state && state.connected === 'true' && state.reachable === 'true'
+      )
+    })
+    screenshot('network-state.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`network recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-network')
+      await wait(`network recycle ${cycle}: state publishes again`, (n) => {
+        const state = stateOf(n)
+        return (
+          Boolean(state && state.type !== 'none' && state.connected === 'true') &&
+          eventsOf(n) >= 1
+        )
+      })
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'browser') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-browser')
+    await wait('browser fixture mounted', (n) => labels(n).includes('Result: none'))
+
+    // a user dismiss resolves cancel. the sheet exposes no accessibility
+    // children, so presentation is the collapsed tree and the close tap
+    // lands on the measured button point, guarded by the pinned display.
+    tap({ id: 'one-native-browser-open' })
+    const presented = await wait('the safari sheet presents', browserPresented)
+    const app = presented.find((n) => n.type === 'Application')?.frame
+    if (!app || app.width !== 393 || app.height !== 852)
+      throw new Error(
+        `Expected a 393x852 iPhone 16 display, got ${JSON.stringify(app)}`
+      )
+    screenshot('browser-open.png')
+    point(38, 81)
+    await wait('a user dismiss resolves cancel', (n) =>
+      labels(n).includes('Result: cancel')
+    )
+
+    // a programmatic dismiss resolves dismiss on both promises.
+    tap({ id: 'one-native-browser-open-dismiss' })
+    await wait('dismiss resolves dismiss', (n) =>
+      labels(n).includes('Opened: dismiss') &&
+      labels(n).includes('Dismissed: dismiss')
+    )
+    screenshot('browser-dismiss.png')
+
+    // dismissing a pending auth session resolves its promise as dismiss.
+    // the consent alert lives outside the app tree, so no tap can reach
+    // it; the session is canceled and settled programmatically.
+    tap({ id: 'one-native-browser-auth-dismiss' })
+    await wait('dismissAuthSession dismisses the auth session', (n) =>
+      labels(n).includes('Auth: dismiss')
+    )
+    screenshot('browser-auth.png')
+
+    // a redirect to the app scheme completes the session with the url.
+    // the runner serves the 302 locally; ephemeral mode skips the
+    // consent alert, which lives outside the app tree.
+    const redirectServer = Bun.serve({
+      port: 8123,
+      fetch: () => Response.redirect('nativefeatures://auth?code=ios1', 302),
+    })
+    try {
+      tap({ id: 'one-native-browser-auth-redirect' })
+      await wait('the redirect completes the auth session', (n) =>
+        labels(n).includes('Auth: success nativefeatures://auth?code=ios1')
+      )
+    } finally {
+      redirectServer.stop()
+    }
+    screenshot('browser-auth-redirect.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`browser recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-browser')
+      await wait(`browser recycle ${cycle}: a fresh fixture mounts`, (n) =>
+        labels(n).includes('Result: none')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'image-picker') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const dims = (nodes: Node[]) => {
+      const num = (prefix: string) => {
+        const label = labels(nodes).find((line) => line.startsWith(`${prefix}: `))
+        return label === undefined ? NaN : Number(label.slice(prefix.length + 2))
+      }
+      return { width: num('Width'), height: num('Height') }
+    }
+    // the picker publishes no accessibility tree, so its two taps are
+    // calibrated points on the 17 Pro display, guarded by the observed
+    // application frame. the waits after each tap prove they landed.
+    const pickerPoint = (name: string, x: number, y: number) => {
+      const app = snapshot(config.simulatorId).find(
+        (node) => node.type === 'Application'
+      )?.frame
+      if (app?.width !== 402 || app?.height !== 874)
+        throw new Error(
+          `Expected a 402x874 display for the ${name} tap, got ${JSON.stringify(app)}`
+        )
+      point(x, y)
+    }
+    const pickerCovers = (nodes: Node[]) =>
+      nodes.every((node) => node.type === 'Application')
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-image-picker')
+    await wait(
+      'fixture mounted',
+      (n) =>
+        status(n, 'Result', 'idle') &&
+        Boolean(id(n, 'one-native-image-picker-library')) &&
+        Boolean(id(n, 'one-native-image-picker-camera'))
+    )
+    tap({ id: 'one-native-image-picker-permissions' })
+    await wait('camera permission reads undecided', (n) =>
+      Boolean(
+        status(n, 'PermStatus', 'undetermined') &&
+          status(n, 'PermGranted', 'false') &&
+          status(n, 'PermCanAsk', 'true')
+      )
+    )
+    tap({ id: 'one-native-image-picker-library' })
+    await wait('the system picker presents', (n) => pickerCovers(n))
+    screenshot('image-picker-open.png')
+    pickerPoint('picker close', 45, 98)
+    await wait('cancel resolves through the bridge', (n) =>
+      Boolean(id(n, 'one-native-image-picker-library'))
+    )
+    await wait('cancel reports canceled', (n) => status(n, 'Result', 'canceled'))
+    // seed a known portrait photo: a heic stored 120x80 with exif
+    // orientation 6, so it displays 80x120. recency sorts it first, and
+    // every copy is identical, so reruns that seed again stay deterministic.
+    execFileSync('xcrun', [
+      'simctl',
+      'addmedia',
+      config.simulatorId,
+      fileURLToPath(
+        new URL('../assets/one-native-picker-portrait.heic', import.meta.url)
+      ),
+    ])
+    tap({ id: 'one-native-image-picker-library' })
+    await wait('photo grid lists the seeded photo', (n) => pickerCovers(n))
+    // a single pick dismisses on tap, with no trailing add button. recency
+    // sorts the seeded photo first; the metadata below proves this tap took it.
+    pickerPoint('seeded photo', 66, 378)
+    // compatible mode transcodes the heic to jpeg, and the orientation 6
+    // swap reports the display size, portrait.
+    await wait('picked asset resolves with its metadata', (n) =>
+      Boolean(
+        status(n, 'Result', 'ok') &&
+          status(n, 'Assets', 1) &&
+          status(n, 'Width', 80) &&
+          status(n, 'Height', 120) &&
+          dims(n).height > dims(n).width &&
+          status(n, 'Mime', 'image/jpeg') &&
+          labels(n).some(
+            (label) =>
+              label.startsWith('File: IMG_') && label.endsWith('.jpeg')
+          ) &&
+          labels(n).some((label) => {
+            const match = /^Size: (\d+)$/.exec(label)
+            return match !== null && Number(match[1]) > 0
+          }) &&
+          labels(n).some((label) => label.startsWith('Uri: file://'))
+      )
+    )
+    // newer simulators report a camera and prompt; older ones have none.
+    // denying, like missing hardware, resolves canceled.
+    tap({ id: 'one-native-image-picker-camera' })
+    const cameraEnd = await wait(
+      'camera settles to canceled or a permission prompt',
+      (n) => status(n, 'Result', 'canceled') || has(n, 'Don’t Allow')
+    )
+    if (!status(cameraEnd, 'Result', 'canceled')) {
+      tap({ label: 'Don’t Allow' })
+      await wait('denied camera resolves canceled', (n) =>
+        status(n, 'Result', 'canceled')
+      )
+    }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

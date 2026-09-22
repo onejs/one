@@ -654,15 +654,270 @@ permissions and receiver plus the iOS delegate gate. Without it the iOS
 delegate never installs, so apps linking `@vxrn/native` for other modules
 keep whatever delegate their own push library sets.
 
+---
+
+## Clipboard
+
+String clipboard through `One.Clipboard`, matching `expo-clipboard`'s string API. Backed by `UIPasteboard` on iOS, `ClipboardManager` on Android, and `navigator.clipboard` on web.
+
+```tsx
+import { One } from 'one'
+
+await One.Clipboard.setString('hello')
+const text = await One.Clipboard.getString()
+const has = await One.Clipboard.hasString()
+```
+
+`setString` resolves `true` once the string is on the pasteboard. On web, reads resolve `''` and writes resolve `false` when the browser denies access.
+
+### Migration from expo-clipboard
+
+| expo-clipboard | One |
+|---|---|
+| `getStringAsync()` | `One.Clipboard.getString()` |
+| `setStringAsync(text)` | `One.Clipboard.setString(text)` |
+| `hasStringAsync()` | `One.Clipboard.hasString()` |
+
+---
+
+## Network
+
+Connection state through `One.Network`, matching `expo-network`. Backed by `NWPathMonitor` on iOS, `ConnectivityManager` with a `NetworkCallback` on Android, and `navigator.onLine` with `online`/`offline` events on web.
+
+```tsx
+import { One } from 'one'
+
+const state = await One.Network.getState()
+// { type: 'wifi', isConnected: true, isInternetReachable: true }
+
+const subscription = One.Network.addStateListener((next) => {
+  console.log(next.type)
+})
+subscription.remove()
+
+const live = One.useNetworkState()
+```
+
+`type` is one of `none`, `unknown`, `cellular`, `wifi`, `bluetooth`, `ethernet`, `wimax`, `vpn`, or `other`. On web a live connection reports `unknown`, since browser connection types are unreliable.
+
+The library manifest declares `ACCESS_NETWORK_STATE` (a normal install-time permission, merged into the app automatically).
+
+### Migration from expo-network
+
+| expo-network | One |
+|---|---|
+| `getNetworkStateAsync()` | `One.Network.getState()` |
+| `addNetworkStateListener(fn)` | `One.Network.addStateListener(fn)` |
+| `useNetworkState()` | `One.useNetworkState()` |
+| `NetworkStateType.WIFI` | `'wifi'` (and likewise for every member) |
+
+---
+
+## Browser
+
+In-app browser through `One.Browser`, matching `expo-web-browser`'s result shapes. Pages open in `SFSafariViewController` on iOS and Custom Tabs on Android; auth sessions use `ASWebAuthenticationSession` on iOS and Custom Tabs with an app redirect on Android.
+
+```tsx
+import { One } from 'one'
+
+const page = await One.Browser.open('https://example.com')
+// { type: 'cancel' } once the user closes the sheet
+// { type: 'opened' } on Android, which reports no close event
+
+await One.Browser.dismiss()
+// { type: 'dismiss' }
+
+const auth = await One.Browser.openAuthSession(
+  'https://example.com/login',
+  'myapp://auth'
+)
+// { type: 'success', url: 'myapp://auth?code=…' } on redirect
+// { type: 'cancel' } when the user backs out
+
+One.Browser.dismissAuthSession()
+```
+
+`open` takes `{ presentationStyle, toolbarColor, controlsColor }` on iOS and `{ browserPackage, toolbarColor, showTitle }` on Android. `openAuthSession` adds `preferEphemeralSession` on iOS. On Android the auth promise settles when the redirect returns to the app (the standard single-task activity delivers it) or with `cancel` when the user closes the tab. The `locked` type reports a second session opened while one is already up. `dismissAuthSession` cancels a pending auth session, whose promise then resolves `dismiss`.
+
+On web, `open` opens a blank-target tab and a blocked popup rejects with code `E_BROWSER_BLOCKED`; `openAuthSession` rejects with `Browser.openAuthSession needs an iOS or Android build`.
+
+### Migration from expo-web-browser
+
+| expo-web-browser | One |
+|---|---|
+| `openBrowserAsync(url, options?)` | `One.Browser.open(url, options?)` |
+| `dismissBrowser()` | `One.Browser.dismiss()` |
+| `openAuthSessionAsync(url, redirectUrl?, options?)` | `One.Browser.openAuthSession(url, redirectUrl?, options?)` |
+| `dismissAuthSession()` | `One.Browser.dismissAuthSession()` |
+| `WebBrowserResult` | `BrowserResult` |
+| `WebBrowserResultType` | `BrowserResultType` |
+| `WebBrowserPresentationStyle` | `BrowserPresentationStyle` |
+| `ERR_WEB_BROWSER_BLOCKED` | `E_BROWSER_BLOCKED` |
+
+---
+
+## Haptics
+
+Fire-and-forget tactile feedback, exposed as `One.UI.Haptics` (importable from
+`@vxrn/native/haptics`). The names follow Apple's feedback generators, not a
+hardware spec: `selection` for picking among options, `impact` for physical
+commits, `notification` for completion and failure the user cares about.
+
+```tsx
+import { One } from 'one'
+
+One.UI.Haptics.selection()
+One.UI.Haptics.impact('medium')
+One.UI.Haptics.notification('success')
+```
+
+The calls are synchronous `void`, not promises: haptics have no meaningful
+completion, so awaiting them would only serialize feedback behind bridge
+latency. Unknown style or type strings throw a `TypeError` at the JS boundary.
+A missing module (old build, web bundler resolving the native file) degrades
+to a silent no-op. Web is always a no-op: `navigator.vibrate()` cannot produce
+selection/impact/notification feedback.
+
+`impact` accepts `light`, `medium`, `heavy`, `soft`, or `rigid`.
+`notification` accepts `success`, `warning`, or `error`. On iOS each maps to
+its `UIFeedbackGenerator` directly. On Android the mapping uses
+`performHapticFeedback` with no `VIBRATE` permission, so `soft`/`rigid` fold
+onto the nearest grade and pre-30 devices fall back: selection uses
+`CLOCK_TICK` below API 34, success uses `VIRTUAL_KEY` and error uses
+`CONTEXT_CLICK` below API 30 (warning stays `LONG_PRESS`, so warning and
+error feel distinct on API 24-29).
+
+Feedback is never the sole success/error signal: pair every call with visual
+state. Both platforms honor the system haptics settings without extra code.
+
+---
+
+## Crypto
+
+Hermes ships no WebCrypto, so One installs `crypto.getRandomValues` and
+`crypto.randomUUID` (RFC 4122 v4) on native at startup, backed by
+`SecRandomCopyBytes` on iOS and `java.security.SecureRandom` on Android,
+both synchronous over the bridge.
+
+```tsx
+const id = crypto.randomUUID()
+const bytes = crypto.getRandomValues(new Uint8Array(16))
+```
+
+Only missing pieces are installed: a runtime that already implements them
+keeps its own. There is no fallback to `Math.random`: a missing native
+module throws instead of returning weak bytes.
+
+---
+
+## App info
+
+Installed-binary identity, exposed as `One.AppInfo` (importable from
+`@vxrn/native/app-info`). Three fields, read synchronously from the native
+constants: `version` is the user-visible marketing version
+(`CFBundleShortVersionString` / `versionName`), `build` the binary build
+(`CFBundleVersion` / `versionCode`, stringified on both platforms so display
+and comparison code stays platform-blind), and `applicationId` the install
+identity (`CFBundleIdentifier` / `applicationId`).
+
+```tsx
+import { One } from 'one'
+
+One.AppInfo.version // '2.4.6' | null
+One.AppInfo.build // '891' | null
+One.AppInfo.applicationId // 'dev.app.id' | null
+```
+
+The values are a snapshot read once at import and frozen: the binary cannot
+change under a running process. `null` means unknown (a host that failed to
+stamp, or an old build without the native module), never guessed. On native
+the snapshot always describes the installed binary, never bundle-time values:
+after an over-the-air update the JavaScript bundle and the binary disagree,
+which is exactly when a build comparison must read the binary. On web there
+is no installed binary, so the fields come from the build-time manifest
+values One injects (`version`, `ios.buildNumber` then `android.versionCode`,
+`android.applicationId` then `ios.bundleId`).
+
+Prebuild stamps the binary values from `native.app`: `version` becomes
+`MARKETING_VERSION` / `versionName`, `ios.buildNumber` becomes
+`CURRENT_PROJECT_VERSION`, and `android.versionCode` becomes `versionCode`.
+Missing fields keep the template defaults (`1.0` / `1`), so a store build
+must set all three.
+
+---
+
+## ImagePicker
+
+Uniform imperative image picker. The `expo-image-picker` module API is the reference shape,
+so migration is mechanical; this is the small subset One supports.
+
+```tsx
+import { One } from 'one'
+
+const picked = await One.ImagePicker.launchLibrary({
+  mediaTypes: 'images',
+  selectionLimit: 1,
+})
+if (!picked.canceled) {
+  const [first] = picked.assets
+  console.log(first.uri, first.width, first.height)
+}
+
+const photo = await One.ImagePicker.launchCamera()
+```
+
+`launchLibrary` presents the system photo picker: `PHPickerViewController` on iOS,
+which needs no permission prompt, and the system photo picker on Android with a documents
+fallback on devices without it. `mediaTypes` is `'images'`, `'videos'`, or both, defaulting
+to `'images'`. `selectionLimit` is the maximum number of assets, defaulting to `1`; `0` is
+unlimited (the system maximum).
+
+`launchCamera` captures one still photo with the system camera. It needs the camera
+permission declared in `native.app`:
+
 ```ts
 one({
   native: {
     app: {
       notifications: {},
+      imagePicker: { camera: 'Take profile photos.' },
+      // ...
     },
   },
 })
 ```
+
+`one prebuild` writes the string to `NSCameraUsageDescription` on iOS and declares the
+`CAMERA` permission on Android. Without it the call rejects instead of crashing. A denied
+permission, a missing camera, and backing out of either call all resolve
+`{ canceled: true, assets: null }`; check the permission first when the distinction
+matters. Only runtime failures reject, with `E_IMAGE_PICKER_FAILED`.
+
+The camera permission reads without prompting and prompts on request. Neither system
+picker needs a grant, so no media library permission calls exist:
+
+```tsx
+const current = await One.ImagePicker.getCameraPermissions()
+// { status: 'undetermined', granted: false, canAskAgain: true }
+const next = await One.ImagePicker.requestCameraPermissions()
+```
+
+Picked assets are copied into the app cache and returned as file URIs with `width`, `height`,
+and, when the platform provides them, `mimeType`, `fileName`, and `fileSize`. On web the
+library opens a file dialog and the camera opens a capture input on mobile browsers, and
+both permission calls read granted.
+
+Migrating from `expo-image-picker` is an import change plus this rename:
+
+| Expo | One |
+|------|-----|
+| `launchImageLibraryAsync` | `launchLibrary` |
+| `launchCameraAsync` | `launchCamera` |
+| `getCameraPermissionsAsync` | `getCameraPermissions` |
+| `requestCameraPermissionsAsync` | `requestCameraPermissions` |
+
+`allowsEditing`, `quality`, `aspect`, and the other Expo options have no equivalent:
+`mediaTypes` and `selectionLimit` are the whole options surface.
 
 ---
 
@@ -685,6 +940,12 @@ one({
 | Safe area | One.UI.SafeArea | One.UI.SafeArea | One.UI.SafeArea (css env) |
 | Colors | One.iOS.Color | Color.android | null |
 | Notifications | permission, badge, channels (no-op), events, handler, scheduling | permission, badge (no-op), channels, events, handler, scheduling | denied, inert |
+| Clipboard | UIPasteboard | ClipboardManager | navigator.clipboard |
+| Network | NWPathMonitor | ConnectivityManager | navigator.onLine |
+| Browser | SFSafariViewController + ASWebAuthenticationSession | Custom Tabs | window.open |
+| Haptics | UIFeedbackGenerator trio | performHapticFeedback mapping | no-op |
+| Crypto | SecRandomCopyBytes | SecureRandom | platform crypto |
+| ImagePicker | PHPickerViewController + camera | system photo picker + camera intent | file dialog + capture input |
 
 Unsupported toolbar, menu, and zoom components return `null`, so they are safe
 to keep in cross-platform component trees. SplitView renders its routed `slot`
