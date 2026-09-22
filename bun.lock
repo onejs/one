@@ -429,6 +429,7 @@
       },
       "peerDependencies": {
         "@callstack/liquid-glass": ">=0.6.0",
+        "@react-native/babel-preset": "^0.87.1",
         "@react-navigation/drawer": "~8.0.0-alpha.51",
         "@react-navigation/native": "8.0.0-alpha.44",
         "react": "^19.2.3",
@@ -441,6 +442,7 @@
         "sharp": "^0.35.4",
       },
       "optionalPeers": [
+        "@react-native/babel-preset",
         "@react-navigation/drawer",
         "react-native",
         "react-native-gesture-handler",
