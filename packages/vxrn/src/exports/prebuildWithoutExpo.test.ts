@@ -37,6 +37,7 @@ const app = {
     useFrameworks: 'static',
     ccache: true,
     usesNonExemptEncryption: false,
+    fileSharing: true,
   },
   android: { applicationId: 'dev.one.myapp', minSdk: 28 },
 } satisfies PrebuildAppConfig
@@ -180,6 +181,16 @@ ${APP_DELEGATE_PBXPROJ}`,
     expect(infoPlist.content).toContain('<key>ITSAppUsesNonExemptEncryption</key>')
     expect(infoPlist.content).toContain('<false/>')
     expect(infoPlist.content).toContain('<key>OneNativeNotificationsEnabled</key>')
+    expect(infoPlist.content).toContain('<key>UIFileSharingEnabled</key>')
+    expect(infoPlist.content).toContain('<key>LSSupportsOpeningDocumentsInPlace</key>')
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld/Info.plist',
+        content: '<dict>\n</dict>',
+        platform: 'ios',
+        app: { ...app, notifications: undefined, imagePicker: undefined },
+      })
+    ).toThrow('lost its LSRequiresIPhoneOS anchor')
     expect(infoPlist.content).toContain('<key>NSCameraUsageDescription</key>')
     expect(infoPlist.content).toContain('<string>Capture photos &amp; videos</string>')
 
@@ -258,13 +269,18 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
   })
 
   it('fails loudly when a notification anchor is missing', () => {
-    const noCamera = { ...app, imagePicker: undefined }
+    const notificationsOnly = {
+      name: 'MyApp',
+      notifications: {},
+      ios: { bundleId: 'dev.one.myapp' },
+      android: { applicationId: 'dev.one.myapp' },
+    } satisfies PrebuildAppConfig
     expect(() =>
       renderPrebuildFile({
         relativePath: 'app/src/main/AndroidManifest.xml',
         content: '<manifest>\n    <activity>\n      </activity>\n    </application>',
         platform: 'android',
-        app: noCamera,
+        app: notificationsOnly,
       })
     ).toThrow(/failed to stamp notification permissions/)
     expect(() =>
@@ -273,7 +289,7 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
         content:
           '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>',
         platform: 'android',
-        app: noCamera,
+        app: notificationsOnly,
       })
     ).toThrow(/failed to stamp the notification receiver/)
     expect(() =>
@@ -281,7 +297,7 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
         relativePath: 'HelloWorld/Info.plist',
         content: '<dict>\n</dict>',
         platform: 'ios',
-        app: noCamera,
+        app: notificationsOnly,
       })
     ).toThrow(/failed to stamp the notifications key/)
   })
@@ -361,12 +377,20 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
 
   it('throws instead of silently skipping a missing camera anchor', () => {
     const noNotifications = { ...app, notifications: undefined }
+    // camera-only manifest: with schemes set the shared schemes stamper
+    // reports the missing anchor first, so the camera error needs the
+    // camera stamper to be the one reaching for it.
+    const cameraOnly = {
+      name: 'MyApp',
+      imagePicker: { camera: 'Capture photos' },
+      ios: { bundleId: 'dev.one.myapp' },
+    } satisfies PrebuildAppConfig
     expect(() =>
       renderPrebuildFile({
         relativePath: 'HelloWorld/Info.plist',
         content: '<dict>\n</dict>',
         platform: 'ios',
-        app: noNotifications,
+        app: cameraOnly,
       })
     ).toThrow(
       '[vxrn] cannot stamp NSCameraUsageDescription: expected LSRequiresIPhoneOS in Info.plist'
