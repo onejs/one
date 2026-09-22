@@ -29,6 +29,8 @@ import com.facebook.react.bridge.ReadableType
 import com.facebook.react.bridge.WritableArray
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.modules.core.DeviceEventManagerModule
+import com.facebook.react.modules.core.PermissionAwareActivity
+import com.facebook.react.modules.core.PermissionListener
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.UUID
@@ -37,7 +39,9 @@ import java.util.UUID
 // foreground presentation, received and response events, scheduling with
 // alarmmanager. the ios half is OneNativeNotifications.m.
 class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
-    ReactContextBaseJavaModule(reactContext), LifecycleEventListener {
+    ReactContextBaseJavaModule(reactContext),
+    LifecycleEventListener,
+    PermissionListener {
     private var permissionPromise: Promise? = null
     private var lastResponse: TapResponse? = null
     private val pending = mutableMapOf<String, PendingDelivery>()
@@ -72,23 +76,23 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
 
     private val activityListener =
         object : BaseActivityEventListener() {
-            override fun onRequestPermissionsResult(
-                activity: Activity?,
-                requestCode: Int,
-                permissions: Array<String>,
-                grantResults: IntArray
-            ) {
-                if (requestCode != PERMISSION_REQUEST_CODE) return
-                val promise = permissionPromise ?: return
-                permissionPromise = null
-                markAsked()
-                promise.resolve(permissionPayload(activity))
-            }
-
             override fun onNewIntent(intent: Intent) {
                 harvestTap(intent)
             }
         }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ): Boolean {
+        if (requestCode != PERMISSION_REQUEST_CODE) return false
+        val promise = permissionPromise ?: return false
+        permissionPromise = null
+        markAsked()
+        promise.resolve(permissionPayload(reactApplicationContext.currentActivity))
+        return true
+    }
 
     init {
         reactContext.addActivityEventListener(activityListener)
@@ -195,11 +199,20 @@ class OneNativeNotificationsModule(reactContext: ReactApplicationContext) :
             return
         }
         permissionPromise = promise
-        ActivityCompat.requestPermissions(
-            activity,
-            arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-            PERMISSION_REQUEST_CODE
-        )
+        val aware = activity as? PermissionAwareActivity
+        if (aware != null) {
+            aware.requestPermissions(
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                PERMISSION_REQUEST_CODE,
+                this
+            )
+        } else {
+            ActivityCompat.requestPermissions(
+                activity,
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                PERMISSION_REQUEST_CODE
+            )
+        }
     }
 
     @ReactMethod
