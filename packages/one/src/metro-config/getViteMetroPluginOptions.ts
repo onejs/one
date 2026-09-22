@@ -1,4 +1,5 @@
 import type { metroPlugin } from '@vxrn/vite-plugin-metro'
+import { createRequire } from 'node:module'
 import { buildOneBabelPlugins } from '../babel-preset'
 import { buildOneMetroResolverOverrides } from './buildOneMetroResolverOverrides'
 
@@ -19,6 +20,15 @@ export function getViteMetroPluginOptions({
   >['defaultConfigOverrides']
   setupFile?: string | { native?: string; ios?: string; android?: string }
 }): Parameters<typeof metroPlugin>[0] {
+  const require = createRequire(projectRoot + '/')
+  try {
+    require.resolve('babel-preset-expo')
+  } catch {
+    throw new Error(
+      `[one] Metro requires babel-preset-expo in the app at ${projectRoot}. Install it with your package manager, or remove native.bundler: 'metro' to use One's default native bundler.`
+    )
+  }
+
   const applyOneResolverOverrides = buildOneMetroResolverOverrides({ projectRoot })
 
   return {

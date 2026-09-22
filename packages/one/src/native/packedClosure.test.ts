@@ -206,7 +206,7 @@ console.log('one/native ok ' + url);
     expect(out).not.toContain(workspaceRoot)
   })
 
-  it('installs and bundles the packed framework closure without Expo', () => {
+  it('keeps the default packed closure Expo-free and bundles Metro after its preset is installed', () => {
     const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-metro-')))
     const tarballs = join(tmp, 'tarballs')
     mkdirSync(tarballs)
@@ -324,6 +324,24 @@ if (require(nativeRoot + '/package.json').name !== '@vxrn/native') {
       cwd: appDir,
       encoding: 'utf8',
     })
+
+    expect(() =>
+      execFileSync(
+        process.execPath,
+        ['-e', "require('./metro.config.cjs').catch((error) => { console.error(error.message); process.exitCode = 1 })"],
+        { cwd: appDir, encoding: 'utf8' }
+      )
+    ).toThrow(/Metro requires babel-preset-expo.*Install it/)
+
+    const expoPresetVersion = JSON.parse(
+      readFileSync(join(workspaceRoot, '../node_modules/babel-preset-expo/package.json'), 'utf8')
+    ).version
+    execFileSync('bun', ['add', '-d', `babel-preset-expo@${expoPresetVersion}`], {
+      cwd: appDir,
+      encoding: 'utf8',
+      timeout: 180_000,
+    })
+    expect(getInstalledPackageNames(join(appDir, 'node_modules'))).toContain('babel-preset-expo')
 
     for (const dev of ['true', 'false']) {
       const bundlePath = join(appDir, `bundle.${dev}.js`)
