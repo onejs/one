@@ -1725,6 +1725,9 @@ async function run(config: Config) {
       'one-native-fonts-load'
     )
 
+    // android has no pixel-diff tooling (every expect captures a PNG,
+    // but nothing compares them), so the block-glyph proof here is the
+    // label flip; the iOS flow carries the pixel gate.
     tapFresh(config, 'Fonts load button', {
       id: 'one-native-fonts-load',
       role: 'button',
