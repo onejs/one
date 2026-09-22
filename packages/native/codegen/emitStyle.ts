@@ -1,6 +1,41 @@
 import { styleFields } from './catalog'
 
 export function emitStyle(header: string, outputs: Map<string, string>) {
+  // fabric runs processColor only on a top-level ColorValue prop, through the view
+  // config; a color inside a struct prop reaches the native parser raw, and it reads an
+  // unprocessed string as clear. every swiftStyle color is processed on the way out.
+  const colorFields = styleFields.filter((field) => field.kind === 'color')
+  outputs.set(
+    'src/generated/swiftStyleNative.ts',
+    header +
+      `import { processColor, type ProcessedColorValue } from 'react-native'
+import type { OneNativeStyle } from './controlTypes'
+
+export type OneNativeStyleNative = Readonly<{
+${styleFields
+  .map(
+    (field) =>
+      `  ${field.name}?: ${field.kind === 'number' ? 'number' : field.kind === 'color' ? 'ProcessedColorValue' : 'string'}`
+  )
+  .join('\n')}
+}>
+
+const colorFields = [${colorFields.map((field) => `'${field.name}'`).join(', ')}] as const
+
+export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeStyleNative | undefined {
+  if (!style) return undefined
+  const native: { -readonly [K in keyof OneNativeStyleNative]: OneNativeStyleNative[K] } = {
+    ...style,
+${colorFields.map((field) => `    ${field.name}: undefined,`).join('\n')}
+  }
+  for (const field of colorFields) {
+    const color = style[field]
+    if (color !== undefined) native[field] = processColor(color) ?? undefined
+  }
+  return native
+}
+`
+  )
   const properties = styleFields
     .map((field) => {
       switch (field.kind) {

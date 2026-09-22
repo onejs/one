@@ -1,0 +1,32 @@
+import { type ProcessedColorValue } from 'react-native';
+import type { OneNativeStyle } from './controlTypes';
+export type OneNativeStyleNative = Readonly<{
+    fontSize?: number;
+    fontWeight?: string;
+    fontDesign?: string;
+    textStyle?: string;
+    foregroundStyle?: ProcessedColorValue;
+    tint?: ProcessedColorValue;
+    background?: ProcessedColorValue;
+    padding?: number;
+    paddingTop?: number;
+    paddingLeading?: number;
+    paddingBottom?: number;
+    paddingTrailing?: number;
+    width?: number;
+    height?: number;
+    minWidth?: number;
+    idealWidth?: number;
+    maxWidth?: number;
+    minHeight?: number;
+    idealHeight?: number;
+    maxHeight?: number;
+    cornerRadius?: number;
+    opacity?: number;
+    borderColor?: ProcessedColorValue;
+    borderWidth?: number;
+    glassEffect?: string;
+    material?: string;
+}>;
+export declare function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeStyleNative | undefined;
+//# sourceMappingURL=swiftStyleNative.d.ts.map
