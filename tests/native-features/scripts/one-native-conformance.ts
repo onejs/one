@@ -2020,6 +2020,33 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('dev fonts resolve over http', (n) =>
       Boolean(labelStarting(n, 'Uri: http'))
     )
+    // the hook loads its own font on mount; the baseline captures wait
+    // for it so no in-flight paint can move pixels between them.
+    await wait('hook settles before pixel baseline', (n) =>
+      labels(n).includes('Hook: loaded')
+    )
+
+    // the A sample carries no testID (RN Text IDs vanish from the
+    // snapshot), so the pixel region anchors on its exact label. the same
+    // region grades every capture, so the negative cannot choose a more
+    // convenient crop.
+    const sampleNodes = snapshot(config.simulatorId).filter(
+      (node) => node.AXLabel === 'A' && node.frame
+    )
+    if (sampleNodes.length !== 1 || !sampleNodes[0].frame) {
+      throw new Error(
+        `fonts pixel gate: expected exactly one framed A sample, found ${sampleNodes.length}`
+      )
+    }
+    const sampleFrame = sampleNodes[0].frame
+    const beforeLoad = screenshot('fonts-sample-before.png')
+    const skippedLoad = screenshot('fonts-sample-noload.png')
+    const negativePixels = countChangedPixels(beforeLoad, skippedLoad, sampleFrame, 8)
+    if (negativePixels.changed !== 0) {
+      throw new Error(
+        `fonts pixel gate: skipped load moved ${negativePixels.changed} sample pixels, expected 0`
+      )
+    }
 
     tap({ id: 'one-native-fonts-load' })
     await wait('load flips isLoaded and the hook follows', (n) =>
@@ -2031,7 +2058,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     // the sample A is a solid block no system font has; the pixels prove
     // the PostScript name resolves after load.
-    screenshot('fonts-loaded.png')
+    const afterLoad = screenshot('fonts-loaded.png')
+    const positivePixels = countChangedPixels(beforeLoad, afterLoad, sampleFrame, 8)
+    if (positivePixels.changed === 0) {
+      throw new Error(
+        'fonts pixel gate: load flipped isLoaded without changing sample pixels'
+      )
+    }
 
     // negative control: the same file under a wrong key. iOS rejects
     // because the name never becomes usable; Android registers silently
