@@ -109,15 +109,25 @@ export type {
 } from './layouts/stack-utils'
 // Stack toolbar compositional API types
 export type {
+  BottomToolbarButtonData,
   BottomToolbarData,
-  BottomToolbarItemData,
+  BottomToolbarHostProps,
+  BottomToolbarMenuActionData,
   BottomToolbarMenuData,
-  StackToolbarBottomProps,
-  StackToolbarItemProps,
+  BottomToolbarSearchBarSlotData,
+  BottomToolbarSpacerData,
+  BottomToolbarSubmenuData,
+  StackToolbarBadgeProps,
+  StackToolbarButtonProps,
+  StackToolbarIconProps,
+  StackToolbarLabelProps,
+  StackToolbarMenuActionProps,
   StackToolbarMenuProps,
   StackToolbarPlacement,
   StackToolbarProps,
-  StackToolbarSlotProps,
+  StackToolbarSearchBarSlotProps,
+  StackToolbarSpacerProps,
+  StackToolbarVariant,
 } from './layouts/stack-utils'
 export { useTabs } from './headless/useTabs'
 export { useDrawer } from './headless/useDrawer'

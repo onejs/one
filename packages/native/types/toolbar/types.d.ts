@@ -29,7 +29,7 @@ export interface ToolbarItemProps {
     tintColor?: ColorValue;
     hidesSharedBackground?: boolean;
     sharesBackground?: boolean;
-    barButtonItemStyle?: 'plain' | 'prominent';
+    barButtonItemStyle?: 'plain' | 'done' | 'prominent';
     width?: number;
     hidden?: boolean;
     selected?: boolean;

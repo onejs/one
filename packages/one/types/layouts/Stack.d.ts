@@ -1,17 +1,15 @@
 import { Protected } from '../views/Protected';
-import { StackHeader, StackHeaderSearchBar, StackScreen, StackToolbarComponent, StackToolbarItem, StackToolbarLeading, StackToolbarMenu, StackToolbarTrailing } from './stack-utils';
-import { StackToolbarBottom } from './stack-utils/StackToolbarBottomHost';
+import { StackHeader, StackHeaderSearchBar, StackScreen, StackToolbarBadge, StackToolbarButton, StackToolbarComponent, StackToolbarIcon, StackToolbarLabel, StackToolbarMenu, StackToolbarMenuAction, StackToolbarSearchBarSlot, StackToolbarSpacer } from './stack-utils';
 import { withLayoutContext } from './withLayoutContext';
 type StackToolbarCompound = typeof StackToolbarComponent & {
-    Leading: typeof StackToolbarLeading;
-    /** One Header-convention alias of Leading. */
-    Left: typeof StackToolbarLeading;
-    Trailing: typeof StackToolbarTrailing;
-    /** One Header-convention alias of Trailing. */
-    Right: typeof StackToolbarTrailing;
-    Bottom: typeof StackToolbarBottom;
-    Item: typeof StackToolbarItem;
+    Button: typeof StackToolbarButton;
     Menu: typeof StackToolbarMenu;
+    MenuAction: typeof StackToolbarMenuAction;
+    Spacer: typeof StackToolbarSpacer;
+    SearchBarSlot: typeof StackToolbarSearchBarSlot;
+    Label: typeof StackToolbarLabel;
+    Icon: typeof StackToolbarIcon;
+    Badge: typeof StackToolbarBadge;
 };
 type StackType = ReturnType<typeof withLayoutContext> & {
     Screen: typeof StackScreen;
