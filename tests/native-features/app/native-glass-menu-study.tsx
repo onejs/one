@@ -5,6 +5,7 @@ import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 
 const WALLPAPER_URL =
   'http://127.0.0.1:8127/att-03fde25274cf0f84103fe989168c0cef.jpg'
+const PLACEMENT_PROBE = { name: 'showcase', top: 604 }
 
 const menuItems: readonly MenuItem[] = [
   {
@@ -81,36 +82,41 @@ export default function NativeGlassMenuStudyScreen() {
             <Text style={styles.receipt} testID="native-glass-menu-selection-count">
               Callback count: {selectionCount}
             </Text>
+            <Text style={styles.receipt} testID="native-glass-menu-placement-probe">
+              Placement probe: {PLACEMENT_PROBE.name}
+            </Text>
           </View>
 
-          <Swift.Menu
-            accessibilityLabel="Customize style"
-            items={menuItems}
-            menuOrder="fixed"
-            onAction={(id) => {
-              setSelection(labels[id])
-              setSelectionCount((count) => count + 1)
-            }}
-          >
-            <View style={styles.menuTrigger} testID="native-glass-menu-trigger">
-              <Swift.Button
-                accessibilityLabel="Customize style"
-                buttonStyle="glassProminent"
-                label={'\u200B'}
-                onPress={() => undefined}
-                style={styles.glassButton}
-                swiftStyle={{
-                  fontWeight: 'semibold',
-                  height: 48,
-                  padding: 8,
-                  tint: '#AAB8FF',
-                  width: 48,
-                }}
-                systemImage="wand.and.sparkles"
-                testID="native-glass-menu-button"
-              />
-            </View>
-          </Swift.Menu>
+          <View style={[styles.menuPlacement, { top: PLACEMENT_PROBE.top }]}>
+            <Swift.Menu
+              accessibilityLabel="Customize style"
+              items={menuItems}
+              menuOrder="fixed"
+              onAction={(id) => {
+                setSelection(labels[id])
+                setSelectionCount((count) => count + 1)
+              }}
+            >
+              <View style={styles.menuTrigger} testID="native-glass-menu-trigger">
+                <Swift.Button
+                  accessibilityLabel="Customize style"
+                  buttonStyle="glassProminent"
+                  label={'\u200B'}
+                  onPress={() => undefined}
+                  style={styles.glassButton}
+                  swiftStyle={{
+                    fontWeight: 'semibold',
+                    height: 48,
+                    padding: 8,
+                    tint: '#AAB8FF',
+                    width: 48,
+                  }}
+                  systemImage="wand.and.sparkles"
+                  testID="native-glass-menu-button"
+                />
+              </View>
+            </Swift.Menu>
+          </View>
         </View>
       ) : null}
     </ImageBackground>
@@ -128,9 +134,6 @@ const styles = StyleSheet.create({
   },
   scene: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    paddingBottom: 184,
   },
   receiptGroup: {
     height: 2,
@@ -143,6 +146,11 @@ const styles = StyleSheet.create({
     color: 'transparent',
     fontSize: 1,
     height: 1,
+  },
+  menuPlacement: {
+    left: '50%',
+    marginLeft: -32,
+    position: 'absolute',
   },
   menuTrigger: {
     alignItems: 'center',
