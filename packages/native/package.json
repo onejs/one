@@ -47,7 +47,7 @@
     },
     "./fonts": {
       "types": "./types/fonts/index.d.ts",
-      "react-native": "./src/fonts/index.native.ts",
+      "react-native": "./dist/esm/fonts/index.native.js",
       "import": "./dist/esm/fonts/index.mjs",
       "require": "./dist/cjs/fonts/index.cjs"
     },
