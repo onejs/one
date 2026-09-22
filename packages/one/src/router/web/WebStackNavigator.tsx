@@ -7,6 +7,7 @@ import {
   type ParamListBase,
 } from '@react-navigation/core'
 import {
+  CommonActions,
   StackActions,
   StackRouter,
   type StackActionHelpers,
@@ -19,6 +20,7 @@ import type {
 } from '@react-navigation/native-stack'
 import { useEffect, type ReactNode } from 'react'
 
+import { findLastNonOverlayIndex } from './stackStateUtils'
 import { WebStackView } from './WebStackView'
 
 type WebStackNavigatorProps = {
@@ -57,6 +59,36 @@ function WebStackNavigator({
     screenOptions,
     initialRouteName,
   })
+
+  // a deep link to a sheet or modal route lands on a stack holding only that
+  // overlay: the linking state carries no base route, and StackRouter seats
+  // initialRouteName only into an empty stack. seat it beneath the overlay so
+  // the presenting screen renders under it and dismissing pops back to it,
+  // as a native deep link into a formSheet does.
+  useEffect(() => {
+    if (!initialRouteName) return
+    if (!state.routeNames.includes(initialRouteName)) return
+    if (findLastNonOverlayIndex(state, descriptors) !== -1) return
+    // the navigator persists its initial state to its parent in an effect of
+    // its own; a reset dispatched in the same pass is overwritten by it, and
+    // the state can be re-keyed by then, so the reset reads the live state
+    const timer = setTimeout(() => {
+      const current = navigation.getState()
+      if (findLastNonOverlayIndex(current, descriptors) !== -1) return
+      navigation.dispatch({
+        ...CommonActions.reset({
+          stale: true,
+          routes: [
+            { name: initialRouteName, params: undefined },
+            ...current.routes.map(({ key, name, params, path }) => ({ key, name, params, path })),
+          ],
+          index: current.routes.length,
+        }),
+        target: current.key,
+      })
+    }, 0)
+    return () => clearTimeout(timer)
+  }, [initialRouteName, state, descriptors, navigation])
 
   // Mirror native-stack tabPress popToTop behavior
   useEffect(() => {
