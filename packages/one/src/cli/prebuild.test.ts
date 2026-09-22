@@ -1,4 +1,11 @@
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -65,6 +72,47 @@ describe('one prebuild', () => {
     expect(readFileSync(join(projectRoot, 'react-native.config.cjs'), 'utf8')).toBe(
       `module.exports = require('one/react-native-config')\n`
     )
+  })
+
+  it('keeps an app-owned config that already loads one/react-native-config', async () => {
+    writeFileSync(
+      join(projectRoot, 'react-native.config.js'),
+      `module.exports = {...require('one/react-native-config'), assets: ['./assets']}\n`
+    )
+    loadUserOneOptionsMock.mockResolvedValueOnce({ oneOptions: { native: { app } } })
+
+    await run({ platform: 'ios', 'no-install': true })
+
+    expect(prebuildMock).toHaveBeenCalled()
+    expect(existsSync(join(projectRoot, 'react-native.config.cjs'))).toBe(false)
+    expect(readFileSync(join(projectRoot, 'react-native.config.js'), 'utf8')).toContain(
+      `assets: ['./assets']`
+    )
+  })
+
+  it('leaves a byte-equal generated config in place', async () => {
+    writeFileSync(
+      join(projectRoot, 'react-native.config.cjs'),
+      `module.exports = require('one/react-native-config')\n`
+    )
+    loadUserOneOptionsMock.mockResolvedValueOnce({ oneOptions: { native: { app } } })
+
+    await run({ platform: 'ios', 'no-install': true })
+
+    expect(prebuildMock).toHaveBeenCalled()
+    expect(readFileSync(join(projectRoot, 'react-native.config.cjs'), 'utf8')).toBe(
+      `module.exports = require('one/react-native-config')\n`
+    )
+  })
+
+  it('fails when an app-owned config drops one/react-native-config', async () => {
+    writeFileSync(join(projectRoot, 'react-native.config.cjs'), `module.exports = {}\n`)
+    loadUserOneOptionsMock.mockResolvedValueOnce({ oneOptions: { native: { app } } })
+
+    await expect(run({ platform: 'ios', 'no-install': true })).rejects.toThrow(
+      'one/react-native-config'
+    )
+    expect(prebuildMock).not.toHaveBeenCalled()
   })
 
   it('rejects a missing native.app before calling vxrn', async () => {
