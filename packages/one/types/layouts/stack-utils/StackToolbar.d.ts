@@ -1,30 +1,35 @@
-import { type StackToolbarItemProps, type StackToolbarMenuProps, type StackToolbarProps, type StackToolbarSlotProps } from './stackToolbarDescriptors';
-export type { BottomToolbarData, BottomToolbarItemData, BottomToolbarMenuData, StackToolbarBottomProps, StackToolbarItemProps, StackToolbarMenuProps, StackToolbarPlacement, StackToolbarProps, StackToolbarSlotProps, } from './stackToolbarDescriptors';
+import { isToolbarKind, type StackToolbarBadgeProps, type StackToolbarButtonProps, type StackToolbarIconProps, type StackToolbarLabelProps, type StackToolbarMenuActionProps, type StackToolbarMenuProps, type StackToolbarProps, type StackToolbarSearchBarSlotProps, type StackToolbarSpacerProps } from './stackToolbarDescriptors';
+export type { BottomToolbarButtonData, BottomToolbarData, BottomToolbarMenuActionData, BottomToolbarMenuData, BottomToolbarSearchBarSlotData, BottomToolbarSpacerData, BottomToolbarSubmenuData, StackToolbarBadgeProps, StackToolbarButtonProps, StackToolbarIconProps, StackToolbarLabelProps, StackToolbarMenuActionProps, StackToolbarMenuProps, StackToolbarPlacement, StackToolbarProps, StackToolbarSearchBarSlotProps, StackToolbarSpacerProps, StackToolbarVariant, } from './stackToolbarDescriptors';
 export { appendStackToolbarPropsToOptions } from './stackToolbarDescriptors';
 /**
- * Grouping container for toolbar slots. Use in Stack.Screen or stack-level
- * children, mirroring Stack.Header. Leading/trailing slots compile to native
- * header items; Bottom in layout config warns because the toolbar host must
- * mount inside screen content.
+ * Declarative toolbar. Bottom (the default) renders the navigation-controller
+ * toolbar in place and must mount in screen content; left/right set header
+ * items, from layout config or, when rendered in a page, through the
+ * screen's navigation options, as in Expo.
  */
-export declare function StackToolbarComponent(_props: StackToolbarProps): null;
+export declare function StackToolbarComponent(props: StackToolbarProps): import("react/jsx-runtime").JSX.Element | null;
 /**
- * Navigation-bar leading items. Primary direction-aware name; Left is the
- * One Header-convention alias.
+ * Leaf toolbar button descriptor. Placement comes from the enclosing
+ * Stack.Toolbar.
  */
-export declare function StackToolbarLeading(_props: StackToolbarSlotProps): null;
+export declare function StackToolbarButton(props: StackToolbarButtonProps): null;
 /**
- * Navigation-bar trailing items. Primary direction-aware name; Right is the
- * One Header-convention alias.
+ * Interactive menu descriptor. Children are MenuAction descriptors, nested
+ * Menu descriptors become submenus. Label/Icon children configure the bar
+ * item; title is the menu title.
  */
-export declare function StackToolbarTrailing(_props: StackToolbarSlotProps): null;
-/**
- * Leaf toolbar button descriptor. Placement comes from the enclosing slot.
- */
-export declare function StackToolbarItem(_props: StackToolbarItemProps): null;
-/**
- * Interactive menu descriptor. Children are Item descriptors, nested Menu
- * descriptors become submenus on both header and bottom paths.
- */
-export declare function StackToolbarMenu(_props: StackToolbarMenuProps): null;
+export declare function StackToolbarMenu(props: StackToolbarMenuProps): null;
+/** Leaf menu action descriptor. */
+export declare function StackToolbarMenuAction(_props: StackToolbarMenuActionProps): null;
+/** Flexible spacer, or fixed when width is set. */
+export declare function StackToolbarSpacer(_props: StackToolbarSpacerProps): null;
+/** Bottom-only slot for the screen's search bar. */
+export declare function StackToolbarSearchBarSlot(_props: StackToolbarSearchBarSlotProps): null;
+/** Text label primitive for Button and Menu children. */
+export declare function StackToolbarLabel(_props: StackToolbarLabelProps): null;
+/** Icon primitive for Button, Menu, and MenuAction children. */
+export declare function StackToolbarIcon(_props: StackToolbarIconProps): null;
+/** Badge primitive. Left/right only; bottom throws in dev. */
+export declare function StackToolbarBadge(_props: StackToolbarBadgeProps): null;
+export { isToolbarKind };
 //# sourceMappingURL=StackToolbar.d.ts.map

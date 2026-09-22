@@ -81,8 +81,15 @@ class ToolbarItemView: RCTView {
     didSet { performUpdate() }
   }
 
-  @objc var sharesBackground: Bool = true {
-    didSet { performUpdate() }
+  // Optional-backed: spacers leave the UIKit default unless set explicitly,
+  // so a fluid spacer splits the glass into separate capsules. Buttons
+  // default to sharing, as before.
+  private var _sharesBackground: Bool?
+  @objc var sharesBackground: NSNumber? {
+    didSet {
+      _sharesBackground = sharesBackground?.boolValue
+      performUpdate()
+    }
   }
 
   private var _barButtonItemStyle: UIBarButtonItem.Style?
@@ -217,7 +224,11 @@ class ToolbarItemView: RCTView {
   private func applyCommonProperties(to item: UIBarButtonItem) {
     if #available(iOS 26.0, *) {
       item.hidesSharedBackground = hidesSharedBackground
-      item.sharesBackground = sharesBackground
+      if _type == .normal || _type == nil {
+        item.sharesBackground = _sharesBackground ?? true
+      } else if let shares = _sharesBackground {
+        item.sharesBackground = shares
+      }
     }
     item.style = _barButtonItemStyle ?? .plain
     item.width = width.map { CGFloat($0.doubleValue) } ?? 0
@@ -261,11 +272,13 @@ enum ItemType: String {
 
 enum BarItemStyle: String {
   case plain
+  case done
   case prominent
 
   func toUIBarButtonItemStyle() -> UIBarButtonItem.Style {
     switch self {
     case .plain: return .plain
+    case .done: return .done
     case .prominent:
       if #available(iOS 26.0, *) { return .prominent }
       else { return .done }

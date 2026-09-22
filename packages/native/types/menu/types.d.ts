@@ -22,7 +22,7 @@ export interface MenuActionProps {
     keepPresented?: boolean;
     hidden?: boolean;
     tintColor?: ColorValue;
-    barButtonItemStyle?: 'plain' | 'prominent';
+    barButtonItemStyle?: 'plain' | 'done' | 'prominent';
     sharesBackground?: boolean;
     hidesSharedBackground?: boolean;
     onSelected?: () => void;

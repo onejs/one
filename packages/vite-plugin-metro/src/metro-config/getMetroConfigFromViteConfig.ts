@@ -272,7 +272,23 @@ export async function buildMetroConfigInputFromViteConfig(
       ..._defaultConfig?.resolver,
       useWatchman,
       blockList,
-      sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs'], // `one` related packages are using `.mjs` extensions. This fixes `.native` files not being resolved correctly when `.mjs` files are present.
+      // `.native.*` first: without multi-dot platform entries Metro tries
+      // `ts` before `tsx`, so a web `index.ts` shadows the native
+      // `index.native.tsx` and native views resolve to their web stubs.
+      // `.mjs`/`.cjs` last because `one` packages ship ESM that way.
+      sourceExts: [
+        'native.tsx',
+        'native.ts',
+        'native.jsx',
+        'native.js',
+        'js',
+        'jsx',
+        'json',
+        'ts',
+        'tsx',
+        'mjs',
+        'cjs',
+      ],
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
@@ -417,7 +433,23 @@ export async function getMetroConfigFromViteConfig(
       ..._defaultConfig?.resolver,
       useWatchman,
       blockList,
-      sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs'], // `one` related packages are using `.mjs` extensions. This somehow fixes `.native` files not being resolved correctly when `.mjs` files are present.
+      // `.native.*` first: without multi-dot platform entries Metro tries
+      // `ts` before `tsx`, so a web `index.ts` shadows the native
+      // `index.native.tsx` and native views resolve to their web stubs.
+      // `.mjs`/`.cjs` last because `one` packages ship ESM that way.
+      sourceExts: [
+        'native.tsx',
+        'native.ts',
+        'native.jsx',
+        'native.js',
+        'js',
+        'jsx',
+        'json',
+        'ts',
+        'tsx',
+        'mjs',
+        'cjs',
+      ],
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest

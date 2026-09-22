@@ -1,160 +1,271 @@
-import type { ColorValue } from 'react-native';
+import type { ColorValue, ImageSourcePropType, StyleProp, TextStyle } from 'react-native';
 import type { NativeStackHeaderItem, NativeStackNavigationOptions } from '@react-navigation/native-stack';
-import { type ReactElement, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 /**
- * Declarative toolbar placement. Leading/trailing are direction-aware and
- * follow the native cross-direction contract (SwiftUI topBarLeading /
- * topBarTrailing, UIKit mirrored left/right). Bottom is the retained
- * navigation-controller toolbar capability.
+ * Expo-exact toolbar placement. Bottom is the navigation-controller toolbar
+ * owned by the screen; left/right are header items owned by
+ * react-native-screens. Default is bottom, as in Expo.
  */
-export type StackToolbarPlacement = 'leading' | 'trailing' | 'bottom';
-export interface StackToolbarItemProps {
+export type StackToolbarPlacement = 'left' | 'right' | 'bottom';
+export type StackToolbarVariant = 'plain' | 'done' | 'prominent';
+export interface StackToolbarProps {
     children?: ReactNode;
-    identifier?: string;
-    title?: string;
+    placement?: StackToolbarPlacement;
     /**
-     * Secondary text for menu actions. Maps to the header menu action
-     * description and has no slot on top-level buttons.
+     * Left/right only. Renders children as a custom header element instead of
+     * header items, as in Expo.
      */
-    description?: string;
+    asChild?: boolean;
+}
+export interface StackToolbarLabelProps {
+    children?: string;
+}
+export type StackToolbarIconProps = {
+    src: ImageSourcePropType;
+    renderingMode?: 'template' | 'original';
+} | {
+    /** SF Symbol name. The only icon form the bottom bar takes. */
+    sf: string;
+} | {
+    /** Xcode asset catalog image name. */
+    xcasset: string;
+    renderingMode?: 'template' | 'original';
+};
+export interface StackToolbarBadgeProps {
+    children?: string;
+    style?: StyleProp<Pick<TextStyle, 'fontFamily' | 'fontSize' | 'color' | 'fontWeight' | 'backgroundColor'>>;
+}
+export interface StackToolbarButtonProps {
     /**
-     * iOS SF Symbol name. Header items map this to `{ type: 'sfSymbol', name }`;
-     * bottom items map it to the toolbar item system image. No new Icon
-     * contract is introduced here on purpose.
+     * Plain text, or Icon/Label/Badge primitives. Anything else throws in dev,
+     * as in Expo.
      */
-    systemImageName?: string;
-    /**
-     * Passed through untouched wherever the underlying item accepts it,
-     * including platform dynamic iOS values.
-     */
+    children?: ReactNode;
+    /** SF Symbol name or image source. Bottom takes SF strings only. */
+    icon?: string | ImageSourcePropType;
+    /** Custom image for bottom placement. */
+    image?: ImageSourcePropType;
+    iconRenderingMode?: 'template' | 'original';
+    variant?: StackToolbarVariant;
     tintColor?: ColorValue;
+    /** Label text style. Maps to labelStyle/titleStyle. */
+    style?: StyleProp<TextStyle>;
     disabled?: boolean;
-    /**
-     * Liquid-glass background sharing (iOS 26+). Passed to header items and
-     * bottom toolbar items alike.
-     */
-    sharesBackground?: boolean;
+    hidden?: boolean;
+    selected?: boolean;
     hidesSharedBackground?: boolean;
     /**
-     * Top-level header items have no hidden slot in react-navigation, so hidden
-     * leading/trailing items are omitted. Bottom items pass hidden through to
-     * the toolbar item.
+     * Separate this item's background from its neighbors. Default false, as in
+     * Expo. Maps to sharesBackground = !separateBackground.
      */
-    hidden?: boolean;
-    /**
-     * Selected state. Maps to the header button/menu-action state and the
-     * toolbar item selected flag.
-     */
-    selected?: boolean;
-    /**
-     * Menu-only. There is no destructive slot on top-level bar buttons, so a
-     * top-level destructive item keeps its button behavior without destructive
-     * styling.
-     */
-    destructive?: boolean;
+    separateBackground?: boolean;
     accessibilityLabel?: string;
     accessibilityHint?: string;
     onPress?: () => void;
-    /** Alias of onPress, matching the ToolbarItem/MenuAction naming. */
-    onSelected?: () => void;
 }
 export interface StackToolbarMenuProps {
+    /** Menu/MenuAction/Label/Icon/Badge. Anything else throws in dev. */
     children?: ReactNode;
-    identifier?: string;
-    title: string;
-    /** Bar-button label. Defaults to title when the menu sits in a bar. */
-    label?: string;
-    systemImageName?: string;
+    /** Title shown on top of the menu. Optional, as in Expo. */
+    title?: string;
+    icon?: string | ImageSourcePropType;
+    image?: ImageSourcePropType;
+    iconRenderingMode?: 'template' | 'original';
+    variant?: StackToolbarVariant;
     tintColor?: ColorValue;
+    style?: StyleProp<TextStyle>;
     disabled?: boolean;
-    /** Liquid-glass background sharing (iOS 26+). */
-    sharesBackground?: boolean;
-    hidesSharedBackground?: boolean;
+    destructive?: boolean;
     hidden?: boolean;
+    hidesSharedBackground?: boolean;
+    separateBackground?: boolean;
+    /** Submenus only. Maps to UIMenu.Options.displayInline. */
+    inline?: boolean;
+    /** Submenus only. Maps to UIMenu.Options.displayAsPalette. */
+    palette?: boolean;
+    /** Bottom only. Preferred size of the menu elements (iOS 16+). */
+    elementSize?: 'auto' | 'small' | 'medium' | 'large';
     accessibilityLabel?: string;
     accessibilityHint?: string;
 }
-export interface StackToolbarProps {
+export interface StackToolbarMenuActionProps {
+    /** Icon, Label, or string title. */
     children?: ReactNode;
-}
-export interface StackToolbarSlotProps {
-    children?: ReactNode;
-}
-export interface StackToolbarBottomProps {
-    children?: ReactNode;
+    icon?: string | ImageSourcePropType;
+    image?: ImageSourcePropType;
+    iconRenderingMode?: 'template' | 'original';
+    disabled?: boolean;
+    destructive?: boolean;
     hidden?: boolean;
-    animated?: boolean;
+    /** Expo-exact name. Maps to keepsMenuPresented. */
+    unstable_keepPresented?: boolean;
+    isOn?: boolean;
+    onPress?: () => void;
+    discoverabilityLabel?: string;
+    /** Maps to header action description, bottom action subtitle. */
+    subtitle?: string;
+    accessibilityLabel?: string;
+    accessibilityHint?: string;
+}
+export interface StackToolbarSpacerProps {
+    hidden?: boolean;
+    /**
+     * Fixed width. Required in left/right; without it the spacer is flexible
+     * (bottom only).
+     */
+    width?: number;
+    /** Bottom only. Whether the spacer joins the shared glass background. */
+    sharesBackground?: boolean;
+}
+export interface StackToolbarSearchBarSlotProps {
+    hidden?: boolean;
+    hidesSharedBackground?: boolean;
+    separateBackground?: boolean;
 }
 /** Marker set on toolbar compound components to identify slots/leaf nodes. */
 export declare const TOOLBAR_KIND: '__oneStackToolbarKind';
-export type StackToolbarKind = 'toolbar' | 'leading' | 'trailing' | 'bottom' | 'item' | 'menu';
+export type StackToolbarKind = 'toolbar' | 'button' | 'menu' | 'menuAction' | 'spacer' | 'searchBarSlot' | 'label' | 'icon' | 'badge';
 declare function isKind(element: ReactNode, kind: StackToolbarKind): boolean;
-export declare function resolveToolbarHandler(props: StackToolbarItemProps): () => void;
+/** Joined string/number children, as in Expo's convertChildrenToString. */
+export declare function toolbarChildrenToString(children: ReactNode): string;
+interface BadgeData {
+    value: string;
+    backgroundColor?: ColorValue;
+    color?: ColorValue;
+    fontFamily?: string;
+    fontSize?: number;
+    fontWeight?: TextStyle['fontWeight'];
+}
 /**
- * Convert one Item descriptor to a header button. Returns null for hidden
- * items (no hidden slot on header buttons) and for items with neither title
- * nor icon (nothing renderable).
+ * Convert toolbar children to native header items. Warns on children that do
+ * not belong in left/right (search slots, primitives), as in Expo.
  */
-export declare function itemPropsToHeaderButton(props: StackToolbarItemProps, index: number, slot: 'leading' | 'trailing'): NativeStackHeaderItem | null;
-/**
- * Convert one Menu descriptor to a header menu item. Returns null for hidden
- * or empty menus.
- */
-export declare function menuPropsToHeaderMenu(element: ReactElement, index: number, slot: 'leading' | 'trailing'): NativeStackHeaderItem | null;
-/**
- * Convert slot children to native header items. Hidden and empty descriptors
- * are omitted because header buttons have no hidden slot.
- */
-export declare function slotChildrenToHeaderItems(children: ReactNode, slot: 'leading' | 'trailing'): NativeStackHeaderItem[];
-export interface BottomToolbarItemData {
-    kind: 'item';
+export declare function toolbarChildrenToHeaderItems(children: ReactNode, placement: 'left' | 'right'): NativeStackHeaderItem[];
+export interface BottomToolbarButtonData {
+    kind: 'button';
     identifier: string;
     title?: string;
     systemImageName?: string;
+    xcassetName?: string;
+    image?: ImageSourcePropType;
+    imageRenderingMode?: 'template' | 'original';
     tintColor?: ColorValue;
-    disabled?: boolean;
-    sharesBackground?: boolean;
+    barButtonItemStyle?: 'plain' | 'done' | 'prominent';
+    sharesBackground: boolean;
     hidesSharedBackground?: boolean;
     hidden?: boolean;
     selected?: boolean;
-    /** Carried for menu children; maps to the MenuAction destructive flag. */
-    destructive?: boolean;
+    disabled?: boolean;
+    badgeConfiguration?: BadgeData;
+    titleStyle?: {
+        fontFamily?: string;
+        fontSize?: number;
+        fontWeight?: TextStyle['fontWeight'];
+        color?: ColorValue;
+    };
     accessibilityLabel?: string;
     accessibilityHint?: string;
     handler: () => void;
 }
+export interface BottomToolbarMenuActionData {
+    kind: 'action';
+    identifier: string;
+    title: string;
+    icon?: string;
+    xcassetName?: string;
+    image?: ImageSourcePropType;
+    imageRenderingMode?: 'template' | 'original';
+    disabled?: boolean;
+    destructive?: boolean;
+    hidden?: boolean;
+    isOn?: boolean;
+    keepPresented?: boolean;
+    discoverabilityLabel?: string;
+    subtitle?: string;
+    accessibilityLabel?: string;
+    accessibilityHint?: string;
+    handler: () => void;
+}
+export interface BottomToolbarSubmenuData {
+    kind: 'submenu';
+    identifier: string;
+    title: string;
+    icon?: string;
+    xcassetName?: string;
+    image?: ImageSourcePropType;
+    imageRenderingMode?: 'template' | 'original';
+    destructive?: boolean;
+    hidden?: boolean;
+    inline?: boolean;
+    palette?: boolean;
+    accessibilityLabel?: string;
+    accessibilityHint?: string;
+    children: (BottomToolbarMenuActionData | BottomToolbarSubmenuData)[];
+}
 export interface BottomToolbarMenuData {
     kind: 'menu';
     identifier: string;
+    /** Title shown on top of the menu. */
     title: string;
-    label?: string;
-    icon?: string;
+    /** Bar-button label. */
+    label: string;
+    systemImageName?: string;
+    xcassetName?: string;
+    image?: ImageSourcePropType;
+    imageRenderingMode?: 'template' | 'original';
     tintColor?: ColorValue;
-    disabled?: boolean;
-    sharesBackground?: boolean;
+    barButtonItemStyle?: 'plain' | 'done' | 'prominent';
+    sharesBackground: boolean;
     hidesSharedBackground?: boolean;
+    disabled?: boolean;
+    destructive?: boolean;
     hidden?: boolean;
+    inline?: boolean;
+    palette?: boolean;
+    elementSize?: 'auto' | 'small' | 'medium' | 'large';
     accessibilityLabel?: string;
     accessibilityHint?: string;
-    children: (BottomToolbarItemData | BottomToolbarMenuData)[];
+    children: (BottomToolbarMenuActionData | BottomToolbarSubmenuData)[];
 }
-export type BottomToolbarData = BottomToolbarItemData | BottomToolbarMenuData;
+export interface BottomToolbarSpacerData {
+    kind: 'spacer';
+    identifier: string;
+    width?: number;
+    sharesBackground?: boolean;
+    hidden?: boolean;
+}
+export interface BottomToolbarSearchBarSlotData {
+    kind: 'searchBar';
+    identifier: string;
+    sharesBackground: boolean;
+    hidesSharedBackground?: boolean;
+    hidden?: boolean;
+}
+export type BottomToolbarData = BottomToolbarButtonData | BottomToolbarMenuData | BottomToolbarMenuActionData | BottomToolbarSubmenuData | BottomToolbarSpacerData | BottomToolbarSearchBarSlotData;
 /**
- * Convert bottom slot children to plain toolbar descriptors. Unlike header
- * items, hidden is preserved because ToolbarItem/MenuAction own a hidden slot.
- * Nested menus are preserved as submenu descriptors.
+ * Whether a badge under bottom placement renders. The B2 probe proved on the
+ * iOS 27 simulator that UIBarButtonItem.badge renders on bottom toolbarItems
+ * items, so One allows it. Intentional divergence from Expo, which calls
+ * bottom badges an iOS limitation; the docs say so.
  */
-export declare function slotChildrenToBottomData(children: ReactNode): BottomToolbarData[];
+export declare const BOTTOM_BADGE_SUPPORTED = true;
 /**
- * Map Stack.Toolbar children to native-stack screen options. Leading maps to
- * unstable_headerLeftItems and trailing to unstable_headerRightItems, the
- * genuine iOS header-item path in react-navigation 8 alpha. An explicitly
- * declared slot always wins over incoming options: an empty slot (for
- * example, all items hidden) clears inherited items, while an absent slot
- * preserves them. Bottom has no options equivalent (the toolbar is owned by
- * the screen view controller, so Stack.Toolbar.Bottom must mount in screen
- * content); a bottom slot in layout config warns and is ignored.
+ * Convert bottom toolbar children to plain descriptors rendered by the
+ * toolbar host. Unlike header items, hidden is preserved because the native
+ * items own a hidden slot.
+ */
+export declare function toolbarChildrenToBottomData(children: ReactNode): BottomToolbarData[];
+/**
+ * Map one Stack.Toolbar to native-stack screen options. Left maps to
+ * unstable_headerLeftItems and right to unstable_headerRightItems, the
+ * genuine iOS header-item path in react-navigation 8 alpha, and forces the
+ * header visible, as in Expo. An explicitly declared toolbar always wins
+ * over incoming options: an empty conversion clears inherited items. Bottom
+ * has no options equivalent (the toolbar is owned by the screen view
+ * controller, so a bottom toolbar must mount in screen content); a bottom
+ * toolbar in layout config warns and is ignored.
  */
 export declare function appendStackToolbarPropsToOptions(options: NativeStackNavigationOptions, props: StackToolbarProps): NativeStackNavigationOptions;
 export { isKind as isToolbarKind };
+export type { NativeStackHeaderItem };
 //# sourceMappingURL=stackToolbarDescriptors.d.ts.map
