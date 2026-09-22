@@ -82,6 +82,11 @@ const testScreens = [
     label: 'One Native Safe Area',
     testID: 'nav-one-native-safe-area',
   },
+  {
+    href: '/one-native-fonts',
+    label: 'One Native Fonts',
+    testID: 'nav-one-native-fonts',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
   {
     href: '/one-native-android',
