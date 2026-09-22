@@ -90,7 +90,7 @@ private final class WebViewModel: ObservableObject {
       controller = OneNativeHostingController(rootView: OneNativeStandalone(content: WebViewContent(model: model)))
     }
     controller?.attach(to: self)
-    model.active = controller?.parent != nil
+    model.active = controller?.isAttached == true
   }
   public func reset() {
     compositionParent = nil

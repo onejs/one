@@ -76,7 +76,7 @@ private final class AlertModel: ObservableObject {
       controller = OneNativeHostingController(rootView: OneNativeStandalone(content: AlertContent(model: model)))
     }
     controller?.attach(to: self)
-    model.active = controller?.parent != nil
+    model.active = controller?.isAttached == true
   }
   public func reset() {
     compositionParent = nil
