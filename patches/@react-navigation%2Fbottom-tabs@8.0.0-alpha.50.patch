@@ -39,3 +39,94 @@ index a5cf142..25c292c 100644
                    tabBarItemActiveIndicatorColor: activeIndicatorColor,
                    tabBarItemActiveIndicatorEnabled:
                      currentOptions?.tabBarActiveIndicatorEnabled,
+diff --git a/lib/module/views/BottomTabViewNativeImpl.js b/lib/module/views/BottomTabViewNativeImpl.js
+index bc22c00..83c21e5 100644
+--- a/lib/module/views/BottomTabViewNativeImpl.js
++++ b/lib/module/views/BottomTabViewNativeImpl.js
+@@ -317,6 +317,7 @@ export function BottomTabViewNative({
+           tabBarIcon,
+           tabBarBadge,
+           tabBarSystemItem,
++          tabBarProminent,
+           tabBarBlurEffect = dark ? 'systemMaterialDark' : 'systemMaterial',
+           tabBarStyle,
+           tabBarAccessibilityLabel,
+@@ -428,6 +429,7 @@ export function BottomTabViewNative({
+             icon: icon?.ios ?? icon?.shared,
+             selectedIcon: selectedIcon?.ios ?? selectedIcon?.shared,
+             systemItem: tabBarSystemItem,
++            prominent: tabBarProminent,
+             scrollEdgeAppearance: {
+               tabBarBackgroundColor,
+               tabBarShadowColor,
+diff --git a/lib/typescript/src/types.d.ts b/lib/typescript/src/types.d.ts
+index 5d4d79d..5bc2669 100644
+--- a/lib/typescript/src/types.d.ts
++++ b/lib/typescript/src/types.d.ts
+@@ -189,6 +189,20 @@ type BottomTabNativeOptions = {
+      * @platform ios
+      */
+     tabBarSystemItem?: TabsScreenSystemItem;
++    /**
++     * Marks this tab as the prominent tab, detached from the tab pill on iOS 27 and above.
++     *
++     * The prominent tab renders as its own tinted circle beside the tab pill instead of
++     * an ordinary tab inside it. Only one tab can be prominent; when several screens
++     * opt in, the first one wins. Any tab can be prominent, not only a search tab.
++     *
++     * Inert on older iOS, where the tab renders inline as usual.
++     *
++     * One fork: not yet part of upstream react-navigation or react-native-screens.
++     *
++     * @platform ios
++     */
++    tabBarProminent?: boolean;
+     /**
+      * Blur effect applied to the tab bar when tab screen is selected.
+      *
+diff --git a/src/types.tsx b/src/types.tsx
+index cd42dff..8ac9f1b 100644
+--- a/src/types.tsx
++++ b/src/types.tsx
+@@ -263,6 +263,21 @@ type BottomTabNativeOptions = {
+    */
+   tabBarSystemItem?: TabsScreenSystemItem;
+ 
++  /**
++   * Marks this tab as the prominent tab, detached from the tab pill on iOS 27 and above.
++   *
++   * The prominent tab renders as its own tinted circle beside the tab pill instead of
++   * an ordinary tab inside it. Only one tab can be prominent; when several screens
++   * opt in, the first one wins. Any tab can be prominent, not only a search tab.
++   *
++   * Inert on older iOS, where the tab renders inline as usual.
++   *
++   * One fork: not yet part of upstream react-navigation or react-native-screens.
++   *
++   * @platform ios
++   */
++  tabBarProminent?: boolean;
++
+   /**
+    * Blur effect applied to the tab bar when tab screen is selected.
+    *
+diff --git a/src/views/BottomTabViewNativeImpl.tsx b/src/views/BottomTabViewNativeImpl.tsx
+index 2f86c96..9881b45 100644
+--- a/src/views/BottomTabViewNativeImpl.tsx
++++ b/src/views/BottomTabViewNativeImpl.tsx
+@@ -486,6 +486,7 @@ export function BottomTabViewNative({
+             tabBarIcon,
+             tabBarBadge,
+             tabBarSystemItem,
++            tabBarProminent,
+             tabBarBlurEffect = dark ? 'systemMaterialDark' : 'systemMaterial',
+             tabBarStyle,
+             tabBarAccessibilityLabel,
+@@ -622,6 +623,7 @@ export function BottomTabViewNative({
+                 icon: icon?.ios ?? icon?.shared,
+                 selectedIcon: selectedIcon?.ios ?? selectedIcon?.shared,
+                 systemItem: tabBarSystemItem,
++                prominent: tabBarProminent,
+                 scrollEdgeAppearance: {
+                   tabBarBackgroundColor,
+                   tabBarShadowColor,
