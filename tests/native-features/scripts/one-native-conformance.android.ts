@@ -751,6 +751,15 @@ function freeRotation(config: Config) {
 }
 
 function relaunchApp(config: Config) {
+  try {
+    adbText(config, [
+      'shell',
+      'pm',
+      'grant',
+      config.packageId,
+      'android.permission.ACCESS_LOCAL_NETWORK',
+    ])
+  } catch {}
   adbText(config, ['shell', 'am', 'force-stop', config.packageId])
   const launcherComponent = adbText(config, [
     'shell',
