@@ -32,7 +32,7 @@ export default function Layout() {
 
 ### Native tabs
 
-React Navigation owns the native tab bar on iOS and Android. Use its native tab options directly, including `tabBarIcon`, `tabBarSystemItem`, `tabBarMinimizeBehavior`, and `tabBarSelectionEnabled`. One adds `tabBarProminent`: on iOS 27 the prominent tab detaches from the pill into its own tinted circle beside it (any tab can be prominent; first opt-in wins), and below iOS 27 it renders inline. An action tab listens for `tabPress` and disables route selection:
+React Navigation owns the native tab bar on iOS and Android. Use its native tab options directly, including `tabBarIcon`, `tabBarSystemItem`, `tabBarMinimizeBehavior`, and `tabBarSelectionEnabled`. An action tab listens for `tabPress` and disables route selection:
 
 ```tsx
 <Tabs.Screen
