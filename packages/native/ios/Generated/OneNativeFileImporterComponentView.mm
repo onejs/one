@@ -22,11 +22,11 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativeFileImporterEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeFileImporterValueChange({.value = (bool)value, .eventCount = (int)eventCount, .revision = (int)revision});
     };
-    _nativeView.onCompletion = ^(NSString *url, double index, double count, NSString *message, NSInteger eventCount) {
+    _nativeView.onCompletion = ^(NSString *type, NSString *url, double index, double count, NSString *message, NSInteger eventCount) {
       OneNativeFileImporterComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const OneNativeFileImporterEventEmitter>(strongSelf->_eventEmitter);
-      emitter->onNativeFileImporterCompletion({.url = std::string(url.UTF8String), .index = (double)index, .count = (double)count, .message = std::string(message.UTF8String), .eventCount = (int)eventCount});
+      emitter->onNativeFileImporterCompletion({.type = std::string(type.UTF8String), .url = std::string(url.UTF8String), .index = (double)index, .count = (double)count, .message = std::string(message.UTF8String), .eventCount = (int)eventCount});
     };
   }
   return self;

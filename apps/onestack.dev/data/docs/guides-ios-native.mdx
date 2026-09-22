@@ -157,6 +157,7 @@ one({
       ios: {
         bundleId: 'com.example.myapp',
         usesNonExemptEncryption: false,
+        fileSharing: true,
       },
       android: { applicationId: 'com.example.myapp' },
     },
@@ -170,6 +171,11 @@ or config plugin. The icon must be a square image at least 1024 pixels wide. Spl
 artwork is centered at `width` points on iOS and density-independent pixels on
 Android. One removes a solid outer border matching `backgroundColor` before sizing
 the artwork, then generates density-specific Android assets inside a 288 dp square.
+
+`ios.fileSharing` sets `UIFileSharingEnabled` plus
+`LSSupportsOpeningDocumentsInPlace` in the generated Info.plist. The user sees
+the app's Documents as a folder in the Files app and in document pickers under
+On My iPhone, and files the app saves there can be opened in place.
 
 ### iOS Project Setup
 

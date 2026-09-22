@@ -3193,6 +3193,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) =>
         status(n, 'Category', 'SignIn') &&
         status(n, 'Completions', 0) &&
+        status(n, 'Type', 'none') &&
         status(n, 'User', 'none') &&
         status(n, 'Message', 'none')
     )
@@ -3204,10 +3205,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ label: 'Sign in with Apple' })
     await wait(
       'tapping starts the request and reports its completion',
-      (n) => status(n, 'Completions', 1) && !status(n, 'Message', 'none'),
+      (n) =>
+        status(n, 'Completions', 1) &&
+        status(n, 'Type', 'failed') &&
+        !status(n, 'Message', 'none'),
       false,
       () =>
-        `completion rows: ${labels(snapshot(config.simulatorId)).filter((label) => /Completions|Message|User/.test(label)).join(' | ')}`
+        `completion rows: ${labels(snapshot(config.simulatorId)).filter((label) => /Completions|Type|Message|User/.test(label)).join(' | ')}`
     )
     screenshot('apple-file-signin-completion.png')
 
@@ -3219,6 +3223,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'Presented', 'false') &&
         status(n, 'Changes', 0) &&
         status(n, 'Completions', 0) &&
+        status(n, 'Type', 'none') &&
         !pickerUp(n)
     )
     const appFrame = filesNodes.find((n) => n.type === 'Application')?.frame
@@ -3242,7 +3247,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'Presented', 'false') &&
         status(n, 'Changes', 2) &&
         status(n, 'Completions', 1) &&
-        status(n, 'Message', 'cancelled')
+        status(n, 'Type', 'cancelled') &&
+        status(n, 'Message', 'none')
     )
     screenshot('apple-file-picker-cancelled.png')
 
@@ -3282,40 +3288,45 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       if (countWhere(image, 34, 229, 46, 241, isDark) > 50) return 'root' as const
       return 'elsewhere' as const
     }
-    tap({ id: 'one-native-apple-file-open' })
-    await wait('fileImporter presents for the pick', (n) => pickerUp(n))
-    // reach the Browse root or the folder from wherever the presentation
-    // restored: Recents enters Browse, a pushed view pops back to the root.
-    let state: 'folder' | 'root' | 'elsewhere' = 'elsewhere'
-    for (let attempt = 0; attempt < 4 && state === 'elsewhere'; attempt++) {
-      point(browsePoint.x, browsePoint.y)
-      await Bun.sleep(1500)
-      state = pickerState(pickerShot(`apple-file-nav-browse-${attempt}.png`))
-      if (state !== 'elsewhere') break
-      point(30, 100)
-      await Bun.sleep(1500)
-      state = pickerState(pickerShot(`apple-file-nav-back-${attempt}.png`))
-    }
-    if (state === 'elsewhere')
-      throw new Error('Pick navigation never reached the Browse tree')
-    if (state === 'root') {
-      // expand Locations from either state: the phone icon proves expanded,
-      // the tag dot proves collapsed, anything else is a collapsed Tags
-      // section hiding the rows below it.
-      for (let attempt = 0; ; attempt++) {
-        const image = pickerShot(`apple-file-nav-sections-${attempt}.png`)
-        if (countWhere(image, 34, 314, 46, 326, isBlue) > 40) break
-        if (attempt === 4) throw new Error('Pick navigation never expanded Locations')
-        if (countWhere(image, 32, 332, 48, 348, isRed) > 40)
-          point(locationsPoint.x, locationsPoint.y)
-        else point(200, 280)
+    // both the pick and the swipe-down cancel start from the app folder: the
+    // single file sits top-left there on every visit.
+    const gotoPickerFolder = async (leg: string) => {
+      // reach the Browse root or the folder from wherever the presentation
+      // restored: Recents enters Browse, a pushed view pops back to the root.
+      let state: 'folder' | 'root' | 'elsewhere' = 'elsewhere'
+      for (let attempt = 0; attempt < 4 && state === 'elsewhere'; attempt++) {
+        point(browsePoint.x, browsePoint.y)
+        await Bun.sleep(1500)
+        state = pickerState(pickerShot(`apple-file-nav-${leg}-browse-${attempt}.png`))
+        if (state !== 'elsewhere') break
+        point(30, 100)
+        await Bun.sleep(1500)
+        state = pickerState(pickerShot(`apple-file-nav-${leg}-back-${attempt}.png`))
+      }
+      if (state === 'elsewhere')
+        throw new Error(`${leg} navigation never reached the Browse tree`)
+      if (state === 'root') {
+        // expand Locations from either state: the phone icon proves expanded,
+        // the tag dot proves collapsed, anything else is a collapsed Tags
+        // section hiding the rows below it.
+        for (let attempt = 0; ; attempt++) {
+          const image = pickerShot(`apple-file-nav-${leg}-sections-${attempt}.png`)
+          if (countWhere(image, 34, 314, 46, 326, isBlue) > 40) break
+          if (attempt === 4) throw new Error(`${leg} navigation never expanded Locations`)
+          if (countWhere(image, 32, 332, 48, 348, isRed) > 40)
+            point(locationsPoint.x, locationsPoint.y)
+          else point(200, 280)
+          await Bun.sleep(1500)
+        }
+        point(onMyIPhonePoint.x, onMyIPhonePoint.y)
+        await Bun.sleep(1500)
+        point(folderPoint.x, folderPoint.y)
         await Bun.sleep(1500)
       }
-      point(onMyIPhonePoint.x, onMyIPhonePoint.y)
-      await Bun.sleep(1500)
-      point(folderPoint.x, folderPoint.y)
-      await Bun.sleep(1500)
     }
+    tap({ id: 'one-native-apple-file-open' })
+    await wait('fileImporter presents for the pick', (n) => pickerUp(n))
+    await gotoPickerFolder('pick')
     screenshot('apple-file-picker-file.png')
     point(filePoint.x, filePoint.y)
     const picked = await wait(
@@ -3324,6 +3335,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'Presented', 'false') &&
         status(n, 'Changes', 4) &&
         status(n, 'Completions', 2) &&
+        status(n, 'Type', 'success') &&
         status(n, 'Index', 0) &&
         status(n, 'Count', 1) &&
         status(n, 'Message', 'none') &&
@@ -3345,6 +3357,40 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       throw new Error(`Pick copy holds ${JSON.stringify(copied)} instead of the seed`)
     checks.push({ name: 'pick copy is readable on disk', durationMs: 0 })
     console.log('PASS pick copy is readable on disk')
+
+    tap({ id: 'one-native-apple-file-open' })
+    await wait('fileImporter presents for the swipe-down', (n) => pickerUp(n))
+    await gotoPickerFolder('swipe')
+    screenshot('apple-file-picker-swipe.png')
+    // the drag starts on the sheet title bar: a mid-sheet drag scrolls the
+    // file grid instead of dismissing the sheet (proven on device).
+    command(
+      [
+        'ui-automation',
+        'swipe',
+        '--x1',
+        '201',
+        '--y1',
+        '225',
+        '--x2',
+        '201',
+        '--y2',
+        '750',
+        '--duration',
+        '1.0',
+      ],
+      config.simulatorId
+    )
+    await wait(
+      'swipe-down reports dismissal and a cancelled completion',
+      (n) =>
+        status(n, 'Presented', 'false') &&
+        status(n, 'Changes', 6) &&
+        status(n, 'Completions', 3) &&
+        status(n, 'Type', 'cancelled') &&
+        status(n, 'Message', 'none')
+    )
+    screenshot('apple-file-picker-swiped.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

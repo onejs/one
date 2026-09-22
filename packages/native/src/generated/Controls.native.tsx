@@ -782,13 +782,19 @@ export function SignInWithAppleButton({
       nonce={nonce}
       onNativeSignInWithAppleButtonCompletion={({ nativeEvent }) =>
         onCompletion?.(
-          nativeEvent.user,
-          nativeEvent.email,
-          nativeEvent.givenName,
-          nativeEvent.familyName,
-          nativeEvent.identityToken,
-          nativeEvent.authorizationCode,
-          nativeEvent.message
+          nativeEvent.type === 'success'
+            ? {
+                type: 'success',
+                user: nativeEvent.user,
+                email: nativeEvent.email,
+                givenName: nativeEvent.givenName,
+                familyName: nativeEvent.familyName,
+                identityToken: nativeEvent.identityToken,
+                authorizationCode: nativeEvent.authorizationCode,
+              }
+            : nativeEvent.type === 'failed'
+              ? { type: 'failed', message: nativeEvent.message }
+              : { type: 'cancelled' }
         )
       }
     />
@@ -1231,10 +1237,16 @@ export function FileImporter({
       }
       onNativeFileImporterCompletion={({ nativeEvent }) =>
         onCompletion?.(
-          nativeEvent.url,
-          nativeEvent.index,
-          nativeEvent.count,
-          nativeEvent.message
+          nativeEvent.type === 'success'
+            ? {
+                type: 'success',
+                url: nativeEvent.url,
+                index: nativeEvent.index,
+                count: nativeEvent.count,
+              }
+            : nativeEvent.type === 'failed'
+              ? { type: 'failed', message: nativeEvent.message }
+              : { type: 'cancelled' }
         )
       }
     />

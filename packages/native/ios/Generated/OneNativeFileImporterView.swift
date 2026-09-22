@@ -18,17 +18,17 @@ private final class FileImporterModel: ObservableObject {
     controlled.change(value)
     onChange?(value, controlled.eventCount, controlled.revision)
   }
-  var onCompletion: ((String, Double, Double, String, Int) -> Void)?
+  var onCompletion: ((String, String, Double, Double, String, Int) -> Void)?
   private var completionCount = 0
-  func completion(_ url: String, _ index: Double, _ count: Double, _ message: String) {
+  func completion(_ type: String, _ url: String, _ index: Double, _ count: Double, _ message: String) {
     guard active else { return }
     completionCount += 1
-    onCompletion?(url, index, count, message, completionCount)
+    onCompletion?(type, url, index, count, message, completionCount)
   }
 }
 @objcMembers public final class OneNativeFileImporterView: UIView, OneNativeComposable {
   public var onChange: ((Bool, Int, Int) -> Void)?
-  public var onCompletion: ((String, Double, Double, String, Int) -> Void)?
+  public var onCompletion: ((String, String, Double, Double, String, Int) -> Void)?
   private var model = FileImporterModel()
   private var controller: OneNativeHostingController<OneNativeStandalone<FileImporterContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
@@ -45,7 +45,14 @@ private final class FileImporterModel: ObservableObject {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.allowsMultipleSelection != allowsMultipleSelection { model.allowsMultipleSelection = allowsMultipleSelection }
   }
-  public func setAllowedContentTypes(_ items: [String]) { if model.allowedContentTypes != items { model.allowedContentTypes = items } }
+  public func setAllowedContentTypes(_ items: [String]) {
+    let resolved = items.compactMap(UTType.init)
+    if !items.isEmpty && resolved.isEmpty {
+      model.completion("failed", "", 0, 0, "unknown content type identifiers: \(items.joined(separator: ", "))")
+      return
+    }
+    if model.allowedContentTypes != items { model.allowedContentTypes = items }
+  }
 
   private weak var compositionParent: OneNativeCompositionParent?
   public func compositionContent() -> AnyView { AnyView(FileImporterContent(model: model)) }
@@ -63,7 +70,7 @@ private final class FileImporterModel: ObservableObject {
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
     model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
-    model.onCompletion = { [weak self] url, index, count, message, completionCount in self?.onCompletion?(url, index, count, message, completionCount) }
+    model.onCompletion = { [weak self] type, url, index, count, message, completionCount in self?.onCompletion?(type, url, index, count, message, completionCount) }
   }
   private func updateHost() {
     guard compositionParent == nil else { return }
@@ -92,8 +99,9 @@ private struct FileImporterContent: View {
   }
 }
 // UTType identifiers are an open set, so they travel as strings and resolve here.
-// identifiers the registry does not know are dropped; an empty resolution is the
- // unrestricted import, which is UTType.item, the base of every pickable type.
+// only an empty list means the unrestricted import, UTType.item, the base of
+// every pickable type. a non-empty list that resolves to nothing never reaches
+// this fallback: the setter rejects it with a failed completion instead.
 private func oneNativeContentTypes(_ identifiers: [String]) -> [UTType] {
   let resolved = identifiers.compactMap { UTType($0) }
   return resolved.isEmpty ? [.item] : resolved
@@ -102,7 +110,8 @@ private func oneNativeContentTypes(_ identifiers: [String]) -> [UTType] {
 // the picker hands out security-scoped urls, which stop working once the picker goes
 // away and were never readable from JS. each pick is copied under a fresh folder in
 // Caches, keeping its filename, and the copy is what the event reports. Caches is the
-// system's to purge; nothing here deletes the file.
+// system's to purge; nothing here deletes the file. runs on a utility queue; the
+// security-scoped access opens and closes on that same thread.
 private func oneNativeCopyToCaches(_ url: URL) throws -> URL {
   let accessing = url.startAccessingSecurityScopedResource()
   defer { if accessing { url.stopAccessingSecurityScopedResource() } }
@@ -116,70 +125,48 @@ private func oneNativeCopyToCaches(_ url: URL) throws -> URL {
   return destination
 }
 
-// backing out of the picker never calls the result closure on current iOS: the
-// binding flipping to false is the only signal. but on a pick the binding
-// flips ~2ms BEFORE the result arrives, so a dismissal cannot report cancel
-// synchronously. instead it schedules the cancelled completion past a grace
-// window, and a result that lands first disarms it; the generation guards a
-// re-present inside the window. when another iOS does call the closure for a
-// cancel, the arrival flag disarms the timer the same way, so each dismissal
-// reports exactly one cancelled completion either way.
-private final class FileImporterDismissalTracker: ObservableObject {
-  var presentationId = 0
-  var resultArrived = false
-}
-
 private struct FileImporterSurface: View {
   @ObservedObject var model: FileImporterModel
-  @StateObject private var dismissal = FileImporterDismissalTracker()
   var body: some View {
     Color.clear
       .fileImporter(
         isPresented: Binding(
           get: { model.controlled.value },
-          set: { value in
-            model.change(value)
-            if value {
-              dismissal.presentationId += 1
-              dismissal.resultArrived = false
-            } else if !dismissal.resultArrived {
-              let id = dismissal.presentationId
-              DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                guard dismissal.presentationId == id, !dismissal.resultArrived else { return }
-                model.completion("", 0, 0, "cancelled")
-              }
-            }
-          }
+          set: { value in model.change(value) }
         ),
         allowedContentTypes: oneNativeContentTypes(model.allowedContentTypes),
         allowsMultipleSelection: model.allowsMultipleSelection
       ) { result in
-        dismissal.resultArrived = true
         switch result {
         case .success(let urls):
-          // an empty success is the cancelled completion on iOS versions that
-          // report backing out this way; a real pick always carries a url.
-          if urls.isEmpty {
-            model.completion("", 0, 0, "cancelled")
-          } else {
-            let count = urls.count
+          guard !urls.isEmpty else { return }
+          let count = urls.count
+          DispatchQueue.global(qos: .utility).async {
+            var outcomes: [(Int, String, String)] = []
+            outcomes.reserveCapacity(urls.count)
             for (index, url) in urls.enumerated() {
               do {
                 let copy = try oneNativeCopyToCaches(url)
-                model.completion(copy.absoluteString, Double(index), Double(count), "")
+                outcomes.append((index, copy.absoluteString, ""))
               } catch {
-                model.completion("", Double(index), Double(count), error.localizedDescription)
+                outcomes.append((index, "", error.localizedDescription))
+              }
+            }
+            DispatchQueue.main.async {
+              for (index, urlString, message) in outcomes {
+                if message.isEmpty {
+                  model.completion("success", urlString, Double(index), Double(count), "")
+                } else {
+                  model.completion("failed", "", Double(index), Double(count), message)
+                }
               }
             }
           }
         case .failure(let error):
-          let nsError = error as NSError
-          if nsError.domain == NSCocoaErrorDomain, nsError.code == NSUserCancelledError {
-            model.completion("", 0, 0, "cancelled")
-          } else {
-            model.completion("", 0, 0, error.localizedDescription)
-          }
+          model.completion("failed", "", 0, 0, error.localizedDescription)
         }
+      } onCancellation: {
+        model.completion("cancelled", "", 0, 0, "")
       }
   }
 }

@@ -45,6 +45,14 @@ export type ControlAction = {
   event: string
   // extra event fields, passed to the public callback in declaration order.
   payload?: Record<string, ScalarType>
+  // when present, the public callback takes one object instead of the payload
+  // fields as separate arguments. the native event stays flat; the adapter
+  // maps it onto this discriminated union by the payload's `type` field. the
+  // last variant is the default when the native type matches none. fields
+  // name payload entries besides `type`.
+  object?: {
+    variants: readonly { type: string; fields: readonly string[] }[]
+  }
 }
 export type ModifierSelector = {
   name: string
@@ -92,6 +100,10 @@ export type Control = {
   swift: string
   extraSwift?: string
   validate: string
+  // replaces the generated set<Key> body for a strings array field with raw
+  // Swift. the body sees `items: [String]` and the view's `model`, and must
+  // assign model.<field> itself when the items are acceptable.
+  setBody?: Record<string, string>
   // how the control occupies the box React Native gave it. the default is measured:
   // SwiftUI reports its ideal height and Yoga sizes the row, which is why no control
   // declares a height. `fill` is for content with no ideal height, like video, which

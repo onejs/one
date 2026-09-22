@@ -241,16 +241,20 @@ export interface WebViewProps extends OneNativeViewProps {
   elementFullscreen?: Styles.ElementFullscreenBehavior | ''
   contentBackground?: Styles.Visibility | ''
 }
+export type SignInWithAppleButtonCompletion =
+  | Readonly<{
+      type: 'success'
+      user: string
+      email: string
+      givenName: string
+      familyName: string
+      identityToken: string
+      authorizationCode: string
+    }>
+  | Readonly<{ type: 'failed'; message: string }>
+  | Readonly<{ type: 'cancelled' }>
 export interface SignInWithAppleButtonProps extends OneNativeViewProps {
-  onCompletion?: (
-    user: string,
-    email: string,
-    givenName: string,
-    familyName: string,
-    identityToken: string,
-    authorizationCode: string,
-    message: string
-  ) => void
+  onCompletion?: (completion: SignInWithAppleButtonCompletion) => void
   requestedScopes?: readonly ('fullName' | 'email')[]
   nonce?: string
 }
@@ -325,11 +329,15 @@ export interface QuickLookProps extends OneNativeViewProps {
   revision?: number
   url?: string
 }
+export type FileImporterCompletion =
+  | Readonly<{ type: 'success'; url: string; index: number; count: number }>
+  | Readonly<{ type: 'failed'; message: string }>
+  | Readonly<{ type: 'cancelled' }>
 export interface FileImporterProps extends OneNativeViewProps {
   isPresented: boolean
   onIsPresentedChange: (value: boolean) => void
   revision?: number
-  onCompletion?: (url: string, index: number, count: number, message: string) => void
+  onCompletion?: (completion: FileImporterCompletion) => void
   allowedContentTypes?: readonly string[]
   allowsMultipleSelection?: boolean
 }

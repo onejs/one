@@ -11,8 +11,9 @@ const allowedContentTypes: string[] = ['public.text']
 
 export default function OneNativeAppleFile() {
   const [category, setCategory] = useState<(typeof categories)[number]>('SignIn')
-  // sign in state: one completion carries the credential or the failure message.
+  // sign in state: one completion carries the credential, the failure, or the cancel.
   const [signInCompletions, setSignInCompletions] = useState(0)
+  const [signInType, setSignInType] = useState('none')
   const [user, setUser] = useState('none')
   const [email, setEmail] = useState('none')
   const [givenName, setGivenName] = useState('none')
@@ -23,49 +24,22 @@ export default function OneNativeAppleFile() {
   const [isPresented, setIsPresented] = useState(false)
   const [changes, setChanges] = useState(0)
   const [fileCompletions, setFileCompletions] = useState(0)
+  const [fileType, setFileType] = useState('none')
   const [url, setUrl] = useState('none')
   const [index, setIndex] = useState('none')
   const [count, setCount] = useState('none')
   const [fileMessage, setFileMessage] = useState('none')
 
-  const handleSignInCompletion = (
-    nextUser: string,
-    nextEmail: string,
-    nextGivenName: string,
-    nextFamilyName: string,
-    identityToken: string,
-    _authorizationCode: string,
-    message: string
-  ) => {
-    setSignInCompletions((total) => total + 1)
-    setUser(nextUser || 'none')
-    setEmail(nextEmail || 'none')
-    setGivenName(nextGivenName || 'none')
-    setFamilyName(nextFamilyName || 'none')
-    setToken(identityToken ? 'yes' : 'no')
-    setSignInMessage(message || 'none')
-  }
   const handlePresentationChange = (value: boolean) => {
     setChanges((total) => total + 1)
     setIsPresented(value)
-  }
-  const handleFileCompletion = (
-    nextUrl: string,
-    nextIndex: number,
-    nextCount: number,
-    message: string
-  ) => {
-    setFileCompletions((total) => total + 1)
-    setUrl(nextUrl || 'none')
-    setIndex(String(nextIndex))
-    setCount(String(nextCount))
-    setFileMessage(message || 'none')
   }
   const status: [string, string | number][] =
     category === 'SignIn'
       ? [
           ['Category', category],
           ['Completions', signInCompletions],
+          ['Type', signInType],
           ['User', user],
           ['Email', email],
           ['Given', givenName],
@@ -78,6 +52,7 @@ export default function OneNativeAppleFile() {
           ['Presented', String(isPresented)],
           ['Changes', changes],
           ['Completions', fileCompletions],
+          ['Type', fileType],
           ['Url', url],
           ['Index', index],
           ['Count', count],
@@ -97,6 +72,7 @@ export default function OneNativeAppleFile() {
             onPress={() => {
               setCategory(item)
               setSignInCompletions(0)
+              setSignInType('none')
               setUser('none')
               setEmail('none')
               setGivenName('none')
@@ -106,6 +82,7 @@ export default function OneNativeAppleFile() {
               setIsPresented(false)
               setChanges(0)
               setFileCompletions(0)
+              setFileType('none')
               setUrl('none')
               setIndex('none')
               setCount('none')
@@ -130,7 +107,22 @@ export default function OneNativeAppleFile() {
           <Swift.SignInWithAppleButton
             requestedScopes={requestedScopes}
             nonce={nonce}
-            onCompletion={handleSignInCompletion}
+            onCompletion={(completion) => {
+              setSignInCompletions((total) => total + 1)
+              setSignInType(completion.type)
+              if (completion.type === 'success') {
+                setUser(completion.user || 'none')
+                setEmail(completion.email || 'none')
+                setGivenName(completion.givenName || 'none')
+                setFamilyName(completion.familyName || 'none')
+                setToken(completion.identityToken ? 'yes' : 'no')
+                setSignInMessage('none')
+              } else if (completion.type === 'failed') {
+                setSignInMessage(completion.message || 'none')
+              } else {
+                setSignInMessage('none')
+              }
+            }}
             style={styles.nativeControl}
             testID="one-native-apple-file-signin"
           />
@@ -152,7 +144,20 @@ export default function OneNativeAppleFile() {
             allowedContentTypes={allowedContentTypes}
             allowsMultipleSelection={false}
             onIsPresentedChange={handlePresentationChange}
-            onCompletion={handleFileCompletion}
+            onCompletion={(completion) => {
+              setFileCompletions((total) => total + 1)
+              setFileType(completion.type)
+              if (completion.type === 'success') {
+                setUrl(completion.url || 'none')
+                setIndex(String(completion.index))
+                setCount(String(completion.count))
+                setFileMessage('none')
+              } else if (completion.type === 'failed') {
+                setFileMessage(completion.message || 'none')
+              } else {
+                setFileMessage('none')
+              }
+            }}
             testID="one-native-apple-file-importer"
           />
         </>

@@ -23,11 +23,11 @@ using namespace facebook::react;
       OneNativeSignInWithAppleButtonComponentView *strongSelf = weakSelf;
       if (strongSelf) [strongSelf->_measured update:height];
     };
-    _nativeView.onCompletion = ^(NSString *user, NSString *email, NSString *givenName, NSString *familyName, NSString *identityToken, NSString *authorizationCode, NSString *message, NSInteger eventCount) {
+    _nativeView.onCompletion = ^(NSString *type, NSString *user, NSString *email, NSString *givenName, NSString *familyName, NSString *identityToken, NSString *authorizationCode, NSString *message, NSInteger eventCount) {
       OneNativeSignInWithAppleButtonComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const OneNativeSignInWithAppleButtonEventEmitter>(strongSelf->_eventEmitter);
-      emitter->onNativeSignInWithAppleButtonCompletion({.user = std::string(user.UTF8String), .email = std::string(email.UTF8String), .givenName = std::string(givenName.UTF8String), .familyName = std::string(familyName.UTF8String), .identityToken = std::string(identityToken.UTF8String), .authorizationCode = std::string(authorizationCode.UTF8String), .message = std::string(message.UTF8String), .eventCount = (int)eventCount});
+      emitter->onNativeSignInWithAppleButtonCompletion({.type = std::string(type.UTF8String), .user = std::string(user.UTF8String), .email = std::string(email.UTF8String), .givenName = std::string(givenName.UTF8String), .familyName = std::string(familyName.UTF8String), .identityToken = std::string(identityToken.UTF8String), .authorizationCode = std::string(authorizationCode.UTF8String), .message = std::string(message.UTF8String), .eventCount = (int)eventCount});
     };
   }
   return self;
