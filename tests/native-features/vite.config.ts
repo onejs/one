@@ -14,6 +14,9 @@ export default defineConfig({
           // non-default versions the app-info conformance suites assert
           // exactly, proving prebuild stamping reaches runtime.
           version: '9.9.9',
+          imagePicker: {
+            camera: 'NativeFeatureTests verifies photo capture.',
+          },
           ios: {
             bundleId: 'dev.vxrn.native.tests',
             buildNumber: '4242',

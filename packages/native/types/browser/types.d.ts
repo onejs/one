@@ -7,7 +7,7 @@ export interface BrowserRedirectResult {
     url: string;
 }
 export type BrowserAuthSessionResult = BrowserRedirectResult | BrowserResult;
-export type BrowserPresentationStyle = 'automatic' | 'currentContext' | 'formSheet' | 'fullScreen' | 'overCurrentContext' | 'overFullScreen' | 'pageSheet' | 'popover';
+export type BrowserPresentationStyle = 'automatic' | 'currentContext' | 'formSheet' | 'fullScreen' | 'overCurrentContext' | 'overFullScreen' | 'pageSheet';
 export interface BrowserOpenOptions {
     presentationStyle?: BrowserPresentationStyle;
     browserPackage?: string;

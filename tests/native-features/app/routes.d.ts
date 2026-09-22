@@ -26,6 +26,7 @@ declare module 'one' {
         | `/one-native-groups`
         | `/one-native-haptics`
         | `/one-native-host`
+        | `/one-native-image-picker`
         | `/one-native-leaves`
         | `/one-native-lists`
         | `/one-native-map`

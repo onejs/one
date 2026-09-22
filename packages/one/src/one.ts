@@ -8,6 +8,7 @@ import {
   Color,
   Compose,
   Haptics,
+  ImagePicker,
   MenuAction,
   Network as NativeNetwork,
   SplitView,
@@ -70,6 +71,7 @@ export type OneAPI = {
   readonly Clipboard: typeof NativeClipboard
   readonly Network: typeof NativeNetwork
   readonly Browser: typeof NativeBrowser
+  readonly ImagePicker: typeof ImagePicker
   readonly useNetworkState: typeof useNetworkState
 }
 
@@ -123,5 +125,6 @@ export const One: OneAPI = Object.freeze({
   Clipboard: NativeClipboard,
   Network: NativeNetwork,
   Browser: NativeBrowser,
+  ImagePicker,
   useNetworkState,
 })

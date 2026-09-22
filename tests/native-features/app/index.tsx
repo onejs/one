@@ -58,6 +58,11 @@ const testScreens = [
     testID: 'nav-one-native-media',
   },
   {
+    href: '/one-native-image-picker',
+    label: 'One Native Image Picker',
+    testID: 'nav-one-native-image-picker',
+  },
+  {
     href: '/one-native-map',
     label: 'One Native Map',
     testID: 'nav-one-native-map',

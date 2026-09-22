@@ -111,6 +111,12 @@
       "import": "./dist/esm/app-info/index.mjs",
       "require": "./dist/cjs/app-info/index.cjs"
     },
+    "./image-picker": {
+      "types": "./types/image-picker/index.d.ts",
+      "react-native": "./dist/esm/image-picker/index.native.js",
+      "import": "./dist/esm/image-picker/index.mjs",
+      "require": "./dist/cjs/image-picker/index.cjs"
+    },
     "./package.json": "./package.json",
     "./schema.json": "./schema.json"
   },

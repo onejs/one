@@ -14,6 +14,7 @@ import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeCryptoModule
 import dev.onejs.onenative.OneNativeEdgeFadeManager
 import dev.onejs.onenative.OneNativeHapticsModule
+import dev.onejs.onenative.OneNativeImagePickerModule
 import dev.onejs.onenative.OneNativeMaskManager
 import dev.onejs.onenative.OneNativeNetworkModule
 import dev.onejs.onenative.OneNativeSafeAreaModule
@@ -32,6 +33,7 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeClipboardModule.NAME -> OneNativeClipboardModule(reactContext)
             OneNativeNetworkModule.NAME -> OneNativeNetworkModule(reactContext)
             OneNativeBrowserModule.NAME -> OneNativeBrowserModule(reactContext)
+            OneNativeImagePickerModule.NAME -> OneNativeImagePickerModule(reactContext)
             else -> null
         }
     }
@@ -105,6 +107,14 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeBrowserModule.NAME to ReactModuleInfo(
                 name = OneNativeBrowserModule.NAME,
                 className = OneNativeBrowserModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeImagePickerModule.NAME to ReactModuleInfo(
+                name = OneNativeImagePickerModule.NAME,
+                className = OneNativeImagePickerModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,
