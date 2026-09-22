@@ -190,7 +190,7 @@ final class OneNativeSchemeBridge: ObservableObject {
       controller = OneNativeHostingController(rootView: wrap(published, true))
     }
     controller?.attach(to: self)
-    propagateActive(controller?.parent != nil)
+    propagateActive(controller?.isAttached == true)
   }
 
   public func reset() {
