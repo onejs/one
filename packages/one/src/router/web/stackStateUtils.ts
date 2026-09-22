@@ -1,4 +1,4 @@
-import type { ParamListBase, StackNavigationState } from '@react-navigation/native'
+import type { NavigationState, ParamListBase, StackNavigationState } from '@react-navigation/native'
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack'
 
 const OVERLAY_PRESENTATIONS = [
@@ -73,8 +73,10 @@ export function convertStackStateToNonOverlayState(
  * is an overlay. Accepts the same predicate as
  * `convertStackStateToNonOverlayState`.
  */
+// takes the base navigation state: a live `navigation.getState()` read is
+// typed as one, and only the route list and index are consulted
 export function findLastNonOverlayIndex(
-  state: StackNavigationState<ParamListBase>,
+  state: Pick<NavigationState<ParamListBase>, 'index' | 'routes'>,
   descriptors: DescriptorMap,
   isOverlay: (
     options: NativeStackNavigationOptions | undefined | null
