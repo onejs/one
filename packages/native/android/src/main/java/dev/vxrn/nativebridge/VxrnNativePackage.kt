@@ -6,11 +6,14 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
+import dev.onejs.onenative.OneNativeAppInfoModule
 import dev.onejs.onenative.OneNativeBlurManager
 import dev.onejs.onenative.OneNativeBrowserModule
 import dev.onejs.onenative.OneNativeClipboardModule
 import dev.onejs.onenative.OneNativeComposeNodeManager
+import dev.onejs.onenative.OneNativeCryptoModule
 import dev.onejs.onenative.OneNativeEdgeFadeManager
+import dev.onejs.onenative.OneNativeHapticsModule
 import dev.onejs.onenative.OneNativeImagePickerModule
 import dev.onejs.onenative.OneNativeMaskManager
 import dev.onejs.onenative.OneNativeNetworkModule
@@ -22,6 +25,9 @@ class VxrnNativePackage : BaseReactPackage() {
     override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
         return when (name) {
             VxrnNativeModule.NAME -> VxrnNativeModule(reactContext)
+            OneNativeHapticsModule.NAME -> OneNativeHapticsModule(reactContext)
+            OneNativeCryptoModule.NAME -> OneNativeCryptoModule(reactContext)
+            OneNativeAppInfoModule.NAME -> OneNativeAppInfoModule(reactContext)
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
             OneNativeClipboardModule.NAME -> OneNativeClipboardModule(reactContext)
@@ -37,6 +43,30 @@ class VxrnNativePackage : BaseReactPackage() {
             VxrnNativeModule.NAME to ReactModuleInfo(
                 name = VxrnNativeModule.NAME,
                 className = VxrnNativeModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeHapticsModule.NAME to ReactModuleInfo(
+                name = OneNativeHapticsModule.NAME,
+                className = OneNativeHapticsModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeCryptoModule.NAME to ReactModuleInfo(
+                name = OneNativeCryptoModule.NAME,
+                className = OneNativeCryptoModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeAppInfoModule.NAME to ReactModuleInfo(
+                name = OneNativeAppInfoModule.NAME,
+                className = OneNativeAppInfoModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,

@@ -18,6 +18,7 @@ import {
   generateForPlatform,
   getNativeDependencyInventory,
   renderPrebuildFile,
+  renderSceneDelegateSwift,
   type PrebuildAppConfig,
   validatePrebuildApp,
 } from './prebuildWithoutExpo'
@@ -49,6 +50,65 @@ describe('native.app prebuild validation', () => {
     expect(() => validatePrebuildApp({} as any)).toThrow(/name/)
     expect(() => validatePrebuildApp({ name: 'MyApp' } as any)).toThrow(/bundleId/)
     expect(() =>
+      validatePrebuildApp({ name: 'MyApp', android: app.android } as any)
+    ).toThrow(/bundleId/)
+    expect(() =>
+      validatePrebuildApp({
+        name: 'MyApp',
+        ios: { bundleId: 'not-an-id' },
+        android: app.android,
+      } as any)
+    ).toThrow(/bundleId/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        ios: { bundleId: 'dev.one.myapp', deploymentTarget: 'latest' },
+      } as any)
+    ).toThrow(/deploymentTarget/)
+    expect(() => validatePrebuildApp({ ...app, version: '1.0' })).toThrow(/version/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        ios: { ...app.ios, buildNumber: '1 2' },
+      } as any)
+    ).toThrow(/buildNumber/)
+    expect(() =>
+      validatePrebuildApp({ ...app, android: { ...app.android, versionCode: 0 } } as any)
+    ).toThrow(/versionCode/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        android: { ...app.android, versionCode: 1.5 },
+      } as any)
+    ).toThrow(/versionCode/)
+    expect(() =>
+      validatePrebuildApp({ ...app, android: { ...app.android, minSdk: 20 } } as any)
+    ).toThrow(/minSdk/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        icon: { source: '', backgroundColor: '#000000' },
+      })
+    ).toThrow(/icon/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        splash: { source: './splash.png', backgroundColor: 'black' },
+      })
+    ).toThrow(/splash/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        splash: { source: './splash.png', backgroundColor: '#000000', width: 0.99 },
+      })
+    ).toThrow(/splash/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        splash: { source: './splash.png', backgroundColor: '#000000', width: 289 },
+      })
+    ).toThrow(/splash/)
+    expect(() =>
       validatePrebuildApp({ ...app, imagePicker: { camera: '' } })
     ).toThrow(/imagePicker\.camera/)
     // platform-scoped: android-only skips the ios requirement and vice versa
@@ -61,12 +121,19 @@ describe('native.app prebuild validation', () => {
   })
 })
 
+// the template's AppDelegate entries, which the scene delegate patch anchors on
+const APP_DELEGATE_PBXPROJ = `\t\t761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
+\t\t761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = HelloWorld/AppDelegate.swift; sourceTree = "<group>"; };
+\t\t\t\t761780EC2CA45674006654EE /* AppDelegate.swift */,
+\t\t\t\t761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,`
+
 describe('template rendering', () => {
   it('applies names, ids, and platform versions', () => {
     const ios = renderPrebuildFile({
       relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
       content: `PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)"; IPHONEOS_DEPLOYMENT_TARGET = 15.1; TARGETED_DEVICE_FAMILY = "1,2"; target HelloWorld
-shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};`,
+shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};
+${APP_DELEGATE_PBXPROJ}`,
       platform: 'ios',
       app,
     })
@@ -75,6 +142,12 @@ shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/r
     expect(ios.content).toContain('IPHONEOS_DEPLOYMENT_TARGET = 17.0;')
     expect(ios.content).toContain('TARGETED_DEVICE_FAMILY = "1,2";')
     expect(ios.content).not.toContain('HelloWorld')
+    expect(ios.content).toContain(
+      '/* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile;'
+    )
+    expect(ios.content).toContain('path = MyApp/SceneDelegate.swift')
+    expect(ios.content).toContain('/* SceneDelegate.swift */,')
+    expect(ios.content).toContain('/* SceneDelegate.swift in Sources */,')
 
     const podfile = renderPrebuildFile({
       relativePath: 'Podfile',
@@ -149,6 +222,60 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
       "createRequire(require.resolve('react-native/package.json'))"
     )
     expect(androidSettings.content).not.toContain('../node_modules')
+  })
+
+  it('stamps marketing and build versions from the manifest', () => {
+    const stamped = {
+      ...app,
+      version: '9.9.9',
+      ios: { ...app.ios, buildNumber: '4242' },
+      android: { ...app.android, versionCode: 4242 },
+    } satisfies PrebuildAppConfig
+    const ios = renderPrebuildFile({
+      relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
+      content: `\t\t\t\tCURRENT_PROJECT_VERSION = 1;\n\t\t\t\tMARKETING_VERSION = 1.0;\n\t\t\t\tCURRENT_PROJECT_VERSION = 1;\n\t\t\t\tMARKETING_VERSION = 1.0;\nshellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};\n${APP_DELEGATE_PBXPROJ}`,
+      platform: 'ios',
+      app: stamped,
+    })
+    expect(ios.content).toContain('MARKETING_VERSION = "9.9.9";')
+    expect(ios.content).toContain('CURRENT_PROJECT_VERSION = 4242;')
+    expect(ios.content).not.toContain('MARKETING_VERSION = 1.0;')
+    expect(ios.content).not.toContain('CURRENT_PROJECT_VERSION = 1;')
+
+    const android = renderPrebuildFile({
+      relativePath: 'app/build.gradle',
+      content:
+        'react {\n    autolinkLibrariesWithApp()\n}\nversionCode 1\nversionName "1.0"',
+      platform: 'android',
+      app: stamped,
+    })
+    expect(android.content).toContain('versionCode 4242')
+    expect(android.content).toContain('versionName "9.9.9"')
+    expect(android.content).not.toContain('versionCode 1')
+    expect(android.content).not.toContain('versionName "1.0"')
+  })
+
+  it('keeps template defaults when version fields are absent', () => {
+    // the shared app fixture sets no version fields: stamping is a no-op and
+    // the template defaults survive, documenting the store-build requirement.
+    const ios = renderPrebuildFile({
+      relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
+      content: `\t\t\t\tCURRENT_PROJECT_VERSION = 1;\n\t\t\t\tMARKETING_VERSION = 1.0;\nshellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};\n${APP_DELEGATE_PBXPROJ}`,
+      platform: 'ios',
+      app,
+    })
+    expect(ios.content).toContain('MARKETING_VERSION = 1.0;')
+    expect(ios.content).toContain('CURRENT_PROJECT_VERSION = 1;')
+
+    const android = renderPrebuildFile({
+      relativePath: 'app/build.gradle',
+      content:
+        'react {\n    autolinkLibrariesWithApp()\n}\nversionCode 1\nversionName "1.0"',
+      platform: 'android',
+      app,
+    })
+    expect(android.content).toContain('versionCode 1')
+    expect(android.content).toContain('versionName "1.0"')
   })
 
   it('omits camera entries when imagePicker.camera is unset', () => {
@@ -304,6 +431,139 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
   })
 })
 
+describe('ios scene lifecycle', () => {
+  const templateAppDelegate = `@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+  var window: UIWindow?
+
+  var reactNativeDelegate: ReactNativeDelegate?
+  var reactNativeFactory: RCTReactNativeFactory?
+
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+  ) -> Bool {
+    let delegate = ReactNativeDelegate()
+    let factory = RCTReactNativeFactory(delegate: delegate)
+    delegate.dependencyProvider = RCTAppDependencyProvider()
+
+    reactNativeDelegate = delegate
+    reactNativeFactory = factory
+
+    window = UIWindow(frame: UIScreen.main.bounds)
+
+    factory.startReactNative(
+      withModuleName: "HelloWorld",
+      in: window,
+      launchOptions: launchOptions
+    )
+
+    return true
+  }
+}
+`
+
+  it('trims the AppDelegate to app-level work and keeps the RN delegate', () => {
+    const rendered = renderPrebuildFile({
+      relativePath: 'HelloWorld/AppDelegate.swift',
+      content: `${templateAppDelegate}
+class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
+}`,
+      platform: 'ios',
+      app,
+    })
+    expect(rendered.content).toContain('@main')
+    expect(rendered.content).toContain('class ReactNativeDelegate')
+    expect(rendered.content).not.toContain('startReactNative')
+    expect(rendered.content).not.toContain('UIWindow(frame:')
+    expect(rendered.content).not.toContain('var window')
+    expect(rendered.content).not.toContain('var reactNativeFactory')
+  })
+
+  it('throws instead of shipping a non-scene AppDelegate', () => {
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld/AppDelegate.swift',
+        content: '@main\nclass AppDelegate: UIResponder, UIApplicationDelegate {\n}\n',
+        platform: 'ios',
+        app,
+      })
+    ).toThrow('changed shape')
+  })
+
+  it('stamps the scene manifest and delegate into the project', () => {
+    const infoPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app,
+    })
+    expect(infoPlist.content).toContain('<key>UIApplicationSceneManifest</key>')
+    expect(infoPlist.content).toContain(
+      '<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>'
+    )
+    expect(infoPlist.content).toContain('<key>UIWindowSceneSessionRoleApplication</key>')
+
+    const sceneDelegate = renderSceneDelegateSwift('MyApp')
+    expect(sceneDelegate).toContain('class SceneDelegate')
+    expect(sceneDelegate).toContain('UIWindowSceneDelegate')
+    expect(sceneDelegate).toContain('withModuleName: "MyApp"')
+    expect(sceneDelegate).toContain('willConnectTo')
+    expect(sceneDelegate).toContain('openURLContexts')
+    expect(sceneDelegate).toContain('continue userActivity')
+    expect(sceneDelegate).toContain('RCTLinkingManager')
+  })
+
+  it('throws when the template loses a scene anchor', () => {
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld/Info.plist',
+        content: '<dict>\n</dict>',
+        platform: 'ios',
+        app,
+      })
+    ).toThrow('LSRequiresIPhoneOS')
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
+        content: `shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};\nno app delegate here`,
+        platform: 'ios',
+        app,
+      })
+    ).toThrow('AppDelegate.swift anchor')
+  })
+
+  it('generates a scene project from the real template', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-scene-'))
+    await generateForPlatform(workspaceRoot, 'ios', app, join(output, 'ios'))
+
+    const sceneDelegate = readFileSync(
+      join(output, 'ios', 'MyApp', 'SceneDelegate.swift'),
+      'utf8'
+    )
+    expect(sceneDelegate).toContain('withModuleName: "MyApp"')
+    expect(sceneDelegate).not.toContain('HelloWorld')
+
+    const appDelegate = readFileSync(
+      join(output, 'ios', 'MyApp', 'AppDelegate.swift'),
+      'utf8'
+    )
+    expect(appDelegate).not.toContain('startReactNative')
+    expect(appDelegate).toContain('class ReactNativeDelegate')
+
+    const infoPlist = readFileSync(join(output, 'ios', 'MyApp', 'Info.plist'), 'utf8')
+    expect(infoPlist).toContain('<key>UIApplicationSceneManifest</key>')
+
+    const project = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    expect(project).toContain('path = MyApp/SceneDelegate.swift')
+    expect(project).toContain('/* SceneDelegate.swift in Sources */,')
+  }, 180000)
+})
+
 describe('community autolink inventory', () => {
   it('discovers installed packages through community config, sorted', async () => {
     const root = mkdtempSync(join(tmpdir(), 'vxrn-autolink-'))
@@ -431,6 +691,9 @@ describe('generateForPlatform determinism', () => {
     const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-icons-'))
     const appWithIcon = {
       ...app,
+      version: '9.9.9',
+      ios: { ...app.ios, buildNumber: '4242' },
+      android: { ...app.android, versionCode: 4242 },
       icon: {
         source: fileURLToPath(
           new URL('../../../../examples/one-basic/public/app-icon.png', import.meta.url)
@@ -471,6 +734,23 @@ describe('generateForPlatform determinism', () => {
         'utf8'
       )
     ).not.toContain('RNScreensFragmentFactory')
+
+    // stamping against the real community template anchors, not just fixture
+    // snippets: the manifest versions must land in the generated projects.
+    const generatedPbxproj = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    expect(generatedPbxproj).toContain('MARKETING_VERSION = "9.9.9";')
+    expect(generatedPbxproj).toContain('CURRENT_PROJECT_VERSION = 4242;')
+    expect(generatedPbxproj).not.toContain('MARKETING_VERSION = 1.0;')
+    expect(generatedPbxproj).not.toContain('CURRENT_PROJECT_VERSION = 1;')
+    const generatedGradle = readFileSync(
+      join(output, 'android', 'app', 'build.gradle'),
+      'utf8'
+    )
+    expect(generatedGradle).toContain('versionCode 4242')
+    expect(generatedGradle).toContain('versionName "9.9.9"')
 
     const iosIconDir = join(
       output,
