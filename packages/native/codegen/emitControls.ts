@@ -24,19 +24,25 @@ const swiftType = (field: ControlField) =>
     ? `[OneNative${payloadOf(field).name}]`
     : field.type === 'strings'
       ? '[String]'
-      : swiftScalar(field.type)
+      : field.type === 'color'
+        ? 'UIColor?'
+        : swiftScalar(field.type)
 const tsType = (field: ControlField) =>
   field.type === 'objects'
     ? `readonly ${payloadOf(field).name}[]`
     : field.type === 'strings'
       ? 'readonly string[]'
-      : tsScalar(field.type)
+      : field.type === 'color'
+        ? 'ColorValue'
+        : tsScalar(field.type)
 const nativeType = (field: ControlField) =>
   field.type === 'objects'
     ? `ReadonlyArray<${payloadOf(field).name}>`
     : field.type === 'strings'
       ? 'ReadonlyArray<string>'
-      : field.type
+      : field.type === 'color'
+        ? 'ColorValue'
+        : field.type
 const literal = (value: string | boolean | number | readonly string[]) =>
   JSON.stringify(value)
 const lower = (name: string) => name[0].toLowerCase() + name.slice(1)
@@ -146,6 +152,10 @@ export type OneNativeViewProps = Pick<
       ([, field]) => field.type !== 'objects' && field.type !== 'strings'
     )
     const objectFields = fieldEntries.filter(([, field]) => field.type === 'objects')
+    // an omitted color arrives as the null shared color, which has no color to convert.
+    const optionalSpec = new Set(
+      fieldEntries.filter(([, field]) => field.type === 'color').map(([key]) => key)
+    )
     // string arrays travel through their own setter like object arrays: the bridge diffs
     // before sending and the model owns the [String].
     const arrayFields = fieldEntries.filter(
@@ -328,7 +338,7 @@ ${styleFields
 }>
 interface NativeProps extends ViewProps {
 ${Object.entries(props)
-  .map(([key, type]) => `  ${key}: ${type}`)
+  .map(([key, type]) => `  ${key}${optionalSpec.has(key) ? '?' : ''}: ${type}`)
   .join('\n')}
   swiftStyle?: OneNativeStyleNative
 ${Object.entries(events)
@@ -414,7 +424,7 @@ ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNat
     const swiftFields = fieldEntries
       .map(
         ([key, field]) =>
-          `  @Published var ${key}: ${swiftType(field)} = ${field.type === 'objects' ? '[]' : literal(field.default)}`
+          `  @Published var ${key}: ${swiftType(field)} = ${field.type === 'objects' ? '[]' : field.type === 'color' ? 'nil' : literal(field.default)}`
       )
       .join('\n')
     const configure = [
@@ -665,7 +675,11 @@ extern const char ${nativeName}ComponentName[] = "${nativeName}";
         Double: `(double)${name}`,
       })[type]
     const convert = (key: string, type: string) =>
-      type === 'string' ? `RCTNSStringFromString(next.${key})` : `next.${key}`
+      type === 'string'
+        ? `RCTNSStringFromString(next.${key})`
+        : type === 'color'
+          ? `next.${key} ? RCTUIColorFromSharedColor(next.${key}) : nil`
+          : `next.${key}`
     const call = [
       ...(value
         ? [

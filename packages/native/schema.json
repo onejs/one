@@ -878,6 +878,9 @@
         "disabled": {
           "type": "boolean"
         },
+        "systemImage": {
+          "type": "string"
+        },
         "toggleStyle": {
           "type": "string",
           "enum": "ToggleStyle"
@@ -1064,53 +1067,6 @@
       "interfaceOnly": true
     },
     {
-      "name": "OneNativeButton",
-      "publicName": "Button",
-      "props": {
-        "label": {
-          "type": "string"
-        },
-        "disabled": {
-          "type": "boolean"
-        },
-        "subtitle": {
-          "type": "string"
-        },
-        "systemImage": {
-          "type": "string"
-        },
-        "buttonRole": {
-          "type": "string",
-          "enum": "ButtonRole"
-        },
-        "buttonStyle": {
-          "type": "string",
-          "enum": "PrimitiveButtonStyle"
-        },
-        "disclosureIndicator": {
-          "type": "boolean"
-        }
-      },
-      "events": {
-        "onNativeButtonPress": {
-          "eventCount": {
-            "type": "Int32"
-          }
-        }
-      },
-      "actions": [
-        {
-          "publicProp": "onPress",
-          "event": "onNativeButtonPress"
-        }
-      ],
-      "layout": {
-        "kind": "measured"
-      },
-      "slots": [],
-      "interfaceOnly": true
-    },
-    {
       "name": "OneNativeProgressView",
       "publicName": "ProgressView",
       "props": {
@@ -1287,6 +1243,89 @@
           "event": "onNativeContentUnavailableViewAction"
         }
       ],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeCircle",
+      "publicName": "Circle",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeCapsule",
+      "publicName": "Capsule",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeRectangle",
+      "publicName": "Rectangle",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeRoundedRectangle",
+      "publicName": "RoundedRectangle",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        },
+        "cornerRadius": {
+          "type": "Double"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeEllipse",
+      "publicName": "Ellipse",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        }
+      },
+      "events": {},
+      "actions": [],
       "layout": {
         "kind": "fill"
       },
@@ -2168,6 +2207,9 @@
         "dynamicTypeSize": {
           "type": "string"
         },
+        "controlSize": {
+          "type": "string"
+        },
         "locale": {
           "type": "string"
         },
@@ -2245,6 +2287,9 @@
         "dynamicTypeSize": {
           "type": "string"
         },
+        "controlSize": {
+          "type": "string"
+        },
         "locale": {
           "type": "string"
         },
@@ -2312,6 +2357,60 @@
       },
       "events": {},
       "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeButton",
+      "publicName": "Button",
+      "props": {
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "systemImage": {
+          "type": "string"
+        },
+        "buttonRole": {
+          "type": "string",
+          "enum": "ButtonRole"
+        },
+        "buttonStyle": {
+          "type": "string",
+          "enum": "PrimitiveButtonStyle"
+        },
+        "disclosureIndicator": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativeButtonPress": {
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onPress",
+          "event": "onNativeButtonPress"
+        }
+      ],
       "layout": {
         "kind": "measured"
       },
@@ -2827,6 +2926,13 @@
       "accessibility3": 15,
       "accessibility4": 15,
       "accessibility5": 15
+    },
+    "ControlSize": {
+      "mini": 15,
+      "small": 15,
+      "regular": 15,
+      "large": 15,
+      "extraLarge": 17
     },
     "SymbolRenderingMode": {
       "monochrome": 15,

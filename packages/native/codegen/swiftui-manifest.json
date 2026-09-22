@@ -155,6 +155,13 @@
       "accessibility4": 15,
       "accessibility5": 15
     },
+    "ControlSize": {
+      "mini": 15,
+      "small": 15,
+      "regular": 15,
+      "large": 15,
+      "extraLarge": 17
+    },
     "SymbolRenderingMode": {
       "monochrome": 15,
       "multicolor": 15,
@@ -586,7 +593,12 @@
         "Toggle"
       ],
       "SwiftUICore": [
+        "Capsule",
+        "Circle",
+        "Ellipse",
         "Image",
+        "Rectangle",
+        "RoundedRectangle",
         "Text"
       ],
       "_AVKit_SwiftUI": [
@@ -891,6 +903,28 @@
     },
     {
       "module": "SwiftUI",
+      "type": "Toggle",
+      "parameters": [
+        {
+          "label": "_",
+          "name": "titleKey",
+          "type": "SwiftUICore.LocalizedStringKey"
+        },
+        {
+          "label": "systemImage",
+          "name": "systemImage",
+          "type": "Swift.String"
+        },
+        {
+          "label": "isOn",
+          "name": "isOn",
+          "type": "SwiftUICore.Binding<Swift.Bool>"
+        }
+      ],
+      "ios": 14
+    },
+    {
+      "module": "SwiftUI",
       "type": "Slider",
       "parameters": [
         {
@@ -1029,28 +1063,6 @@
         }
       ],
       "ios": 14
-    },
-    {
-      "module": "SwiftUI",
-      "type": "Button",
-      "parameters": [
-        {
-          "label": "role",
-          "name": "role",
-          "type": "SwiftUI.ButtonRole?"
-        },
-        {
-          "label": "action",
-          "name": "action",
-          "type": "@escaping @_Concurrency.MainActor () -> Swift.Void"
-        },
-        {
-          "label": "label",
-          "name": "label",
-          "type": "() -> Label"
-        }
-      ],
-      "ios": 15
     },
     {
       "module": "SwiftUI",
@@ -1235,6 +1247,55 @@
         }
       ],
       "ios": 17
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "Circle",
+      "parameters": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "Capsule",
+      "parameters": [
+        {
+          "defaultValue": ".continuous",
+          "label": "style",
+          "name": "style",
+          "type": "SwiftUICore.RoundedCornerStyle"
+        }
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "Rectangle",
+      "parameters": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "RoundedRectangle",
+      "parameters": [
+        {
+          "label": "cornerRadius",
+          "name": "cornerRadius",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "defaultValue": ".continuous",
+          "label": "style",
+          "name": "style",
+          "type": "SwiftUICore.RoundedCornerStyle"
+        }
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "Ellipse",
+      "parameters": [],
+      "ios": 13
     },
     {
       "module": "_AVKit_SwiftUI",

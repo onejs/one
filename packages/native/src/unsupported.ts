@@ -1,5 +1,6 @@
 import { unsupportedControls } from './generated/unsupportedControls'
 import type {
+  ButtonProps,
   ContextMenuProps,
   ControlGroupProps,
   DisclosureGroupProps,
@@ -83,6 +84,9 @@ function LabeledContent(_props: LabeledContentProps): never {
   throw new Error(
     'Swift.LabeledContent requires an iOS native build with @vxrn/native installed'
   )
+}
+function Button(_props: ButtonProps): never {
+  throw new Error('Swift.Button requires an iOS native build with @vxrn/native installed')
 }
 function Glass(_props: GlassProps): never {
   throw new Error('Swift.Glass requires an iOS native build with @vxrn/native installed')
@@ -169,6 +173,7 @@ export const Swift = {
   Section,
   Glass,
   LabeledContent,
+  Button,
   Spacer,
   Slot,
   List,

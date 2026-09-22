@@ -116,6 +116,7 @@ export interface ToggleProps extends OneNativeViewProps {
   revision?: number
   label?: string
   disabled?: boolean
+  systemImage?: string
   toggleStyle?: Styles.ToggleStyle
 }
 export interface SliderProps extends OneNativeViewProps {
@@ -149,16 +150,6 @@ export interface LabelProps extends OneNativeViewProps {
   label?: string
   disabled?: boolean
   systemImage?: string
-}
-export interface ButtonProps extends OneNativeViewProps {
-  onPress?: () => void
-  label?: string
-  disabled?: boolean
-  subtitle?: string
-  systemImage?: string
-  buttonRole?: Styles.ButtonRole | ''
-  buttonStyle?: Styles.PrimitiveButtonStyle
-  disclosureIndicator?: boolean
 }
 export interface ProgressViewProps extends OneNativeViewProps {
   label?: string
@@ -201,6 +192,22 @@ export interface ContentUnavailableViewProps extends OneNativeViewProps {
   systemImage?: string
   description?: string
   actions: readonly DialogAction[]
+}
+export interface CircleProps extends OneNativeViewProps {
+  fill?: ColorValue
+}
+export interface CapsuleProps extends OneNativeViewProps {
+  fill?: ColorValue
+}
+export interface RectangleProps extends OneNativeViewProps {
+  fill?: ColorValue
+}
+export interface RoundedRectangleProps extends OneNativeViewProps {
+  fill?: ColorValue
+  cornerRadius?: number
+}
+export interface EllipseProps extends OneNativeViewProps {
+  fill?: ColorValue
 }
 export interface VideoPlayerProps extends OneNativeViewProps {
   url?: string

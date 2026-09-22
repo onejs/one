@@ -35,6 +35,7 @@ using namespace facebook::react;
                      alignment:RCTNSStringFromString(next.alignment)];
   [_hostView configureEnvironmentWithColorScheme:RCTNSStringFromString(next.colorScheme)
                                  dynamicTypeSize:RCTNSStringFromString(next.dynamicTypeSize)
+                                     controlSize:RCTNSStringFromString(next.controlSize)
                                           locale:RCTNSStringFromString(next.locale)
                                             tint:next.tint ? RCTUIColorFromSharedColor(next.tint) : nil
                                        isEnabled:RCTNSStringFromString(next.isEnabled)];
