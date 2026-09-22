@@ -58,6 +58,11 @@ const testScreens = [
     testID: 'nav-one-native-media',
   },
   {
+    href: '/one-native-image-picker',
+    label: 'One Native Image Picker',
+    testID: 'nav-one-native-image-picker',
+  },
+  {
     href: '/one-native-map',
     label: 'One Native Map',
     testID: 'nav-one-native-map',
@@ -82,6 +87,21 @@ const testScreens = [
     label: 'One Native Safe Area',
     testID: 'nav-one-native-safe-area',
   },
+  {
+    href: '/one-native-haptics',
+    label: 'One Native Haptics',
+    testID: 'nav-one-native-haptics',
+  },
+  {
+    href: '/one-native-crypto',
+    label: 'One Native Crypto',
+    testID: 'nav-one-native-crypto',
+  },
+  {
+    href: '/one-native-app-info',
+    label: 'One Native App Info',
+    testID: 'nav-one-native-app-info',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
   {
     href: '/one-native-android',
@@ -102,6 +122,21 @@ const testScreens = [
     href: '/one-native-system',
     label: 'One Native System',
     testID: 'nav-one-native-system',
+  },
+  {
+    href: '/one-native-clipboard',
+    label: 'One Native Clipboard',
+    testID: 'nav-one-native-clipboard',
+  },
+  {
+    href: '/one-native-network',
+    label: 'One Native Network',
+    testID: 'nav-one-native-network',
+  },
+  {
+    href: '/one-native-browser',
+    label: 'One Native Browser',
+    testID: 'nav-one-native-browser',
   },
 ] as const
 

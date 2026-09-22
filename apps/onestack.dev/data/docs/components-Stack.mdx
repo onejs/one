@@ -181,6 +181,27 @@ You can set a default header for all screens by placing `Stack.Header` directly 
 </Stack>
 ```
 
+### Toolbar Composition API
+
+Native toolbar items use the same compound style as the header. `Stack.Toolbar`
+with `Leading`/`Trailing` slots (`Left`/`Right` are aliases) compiles to
+native header items on iOS, and `Stack.Toolbar.Bottom` renders a native
+bottom toolbar from screen content:
+
+```tsx
+<Stack.Screen name="index">
+  <Stack.Toolbar>
+    <Stack.Toolbar.Leading>
+      <Stack.Toolbar.Item title="Edit" systemImageName="pencil" onPress={edit} />
+    </Stack.Toolbar.Leading>
+  </Stack.Toolbar>
+</Stack.Screen>
+```
+
+See [native features](/docs/native-features) for the full toolbar reference,
+including menus, the bottom toolbar, and the lower-level `One.iOS.ToolbarHost`
+primitive.
+
 ### On web
 
 <New />
