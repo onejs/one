@@ -899,6 +899,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('cold-start tap delivered last response', (n) =>
       labels(n).some((label) => label.startsWith('Last: ') && label.includes('N3 cold'))
     )
+    // the relaunch dropped the n3 listeners, and without observers native
+    // presents arrivals itself instead of emitting them, so subscribe again
+    // before n4 expects received events.
+    await tapFixture('one-native-notifications-subscribe')
+    await wait('listeners re-subscribed after cold start', (n) =>
+      has(n, 'Subscribed: yes')
+    )
     // slice n4: clear leftovers, schedule two, cancel one, observe the other.
     await tapFixture('one-native-notifications-cancel-all')
     await wait('cancel all resolves', (n) => has(n, 'Pending: cancelled'))
