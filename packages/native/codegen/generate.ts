@@ -251,6 +251,35 @@ ${Object.entries(component.events)
 export default codegenNativeComponent<NativeProps>('${component.name}'${component.interfaceOnly ? ', { interfaceOnly: true }' : ''})
 `
   )
+  const directEventTypes = Object.keys(component.events)
+    .map(
+      (name) =>
+        `    ${JSON.stringify(name.replace(/^on/, 'top'))}: { registrationName: ${JSON.stringify(name)} }`
+    )
+    .join(',\n')
+  outputs.set(
+    `src/specs/${component.name}NativeComponent.native.ts`,
+    header +
+      `import type { ComponentProps } from 'react'
+import { type HostComponent, NativeComponentRegistry } from 'react-native'
+
+type NativeProps = ComponentProps<
+  typeof import('./${component.name}NativeComponent').default
+>
+
+const ${component.publicName}Native: HostComponent<NativeProps> =
+  NativeComponentRegistry.get<NativeProps>('${component.name}', () => ({
+    uiViewClassName: '${component.name}',
+${directEventTypes ? `    directEventTypes: {\n${directEventTypes}\n    },\n` : ''}    validAttributes: {
+${[...Object.keys(component.props), ...Object.keys(component.events)]
+  .map((name) => `      ${name}: true`)
+  .join(',\n')}
+    },
+  }))
+
+export default ${component.publicName}Native
+`
+  )
 }
 outputs.set(
   'schema.json',
