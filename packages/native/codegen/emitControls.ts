@@ -136,7 +136,7 @@ export type OneNativeViewProps = Pick<
       .join('')
   let adapters =
     header +
-    "import { Platform } from 'react-native'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport type * as Types from './controlTypes'\n" +
+    "import { Platform } from 'react-native'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport { swiftStyleNative } from './swiftStyleNative'\nimport type * as Types from './controlTypes'\n" +
     "import { iconColorRoles } from '../ui/iconRoles'\n" +
     (hasSync
       ? "import { getSyncStateId, isSyncState } from '../syncStore'\nimport { syncHandleOf, useSyncValue } from '../syncNativeState'\n"
@@ -324,7 +324,15 @@ ${
     outputs.set(
       `src/specs/${nativeName}NativeComponent.ts`,
       header +
-        `import type { ColorValue, ViewProps } from 'react-native'
+        `import type { ${[
+          ...(/\bColorValue\b/.test(
+            [...Object.values(props), ...usedPayloads.map((payload) => payloadType(payload, 'spec'))].join(' ')
+          )
+            ? ['ColorValue']
+            : []),
+          'ProcessedColorValue',
+          'ViewProps',
+        ].join(', ')} } from 'react-native'
 ${codegenTypes.length ? `import type { ${codegenTypes.join(', ')} } from 'react-native/Libraries/Types/CodegenTypes'` : ''}
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
 ${usedPayloads.map((payload) => `type ${payload} = ${payloadType(payload, 'spec')}`).join('\n')}
@@ -332,7 +340,7 @@ type OneNativeStyleNative = Readonly<{
 ${styleFields
   .map(
     (field) =>
-      `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'boolean' ? 'boolean' : field.kind === 'color' ? 'ColorValue' : 'string'}`
+      `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'boolean' ? 'boolean' : field.kind === 'color' ? 'ProcessedColorValue' : 'string'}`
   )
   .join('\n')}
 }>
@@ -389,7 +397,7 @@ ${
         ? `  const controlledFocus = useControlled<{ value: boolean; eventCount: number; revision: number }>(event => onFocusChange?.(event.value), focusRevision)\n`
         : ''
     }  return <Native${name} {...props} ${styleProp}${control.decorativeWhenUnlabeled ? ' accessible={Boolean(props.accessibilityLabel)} accessibilityElementsHidden={!props.accessibilityLabel} accessibilityRole="image"' : ''}
-    swiftStyle={swiftStyle}
+    swiftStyle={swiftStyleNative(swiftStyle)}
 ${value ? `    value={${value.sync ? syncNativeValue(value, `synced${upper(value.prop)}`) : (value.nativeValue ?? value.prop)}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${value?.sync ? `    syncStateId={syncHandle ? getSyncStateId(syncHandle) ?? 0 : 0}\n` : ''}${
       control.focus
         ? `    focused={focused ?? false} acknowledgedFocusEvent={focused !== undefined ? controlledFocus.acknowledgedEvent : 0} focusRevision={focusRevision}\n`

@@ -1,4 +1,4 @@
-import type { ColorValue, ViewProps } from 'react-native';
+import type { ProcessedColorValue, ViewProps } from 'react-native';
 import type { DirectEventHandler, Int32, Double, WithDefault } from 'react-native/Libraries/Types/CodegenTypes';
 type MapMarker = Readonly<{
     id: string;
@@ -11,9 +11,9 @@ type OneNativeStyleNative = Readonly<{
     fontWeight?: string;
     fontDesign?: string;
     textStyle?: string;
-    foregroundStyle?: ColorValue;
-    tint?: ColorValue;
-    background?: ColorValue;
+    foregroundStyle?: ProcessedColorValue;
+    tint?: ProcessedColorValue;
+    background?: ProcessedColorValue;
     padding?: WithDefault<Double, -1>;
     paddingTop?: WithDefault<Double, -1>;
     paddingLeading?: WithDefault<Double, -1>;
@@ -29,11 +29,11 @@ type OneNativeStyleNative = Readonly<{
     maxHeight?: WithDefault<Double, -1>;
     cornerRadius?: WithDefault<Double, -1>;
     opacity?: WithDefault<Double, -1>;
-    borderColor?: ColorValue;
+    borderColor?: ProcessedColorValue;
     borderWidth?: WithDefault<Double, -1>;
     glassEffect?: string;
     glassEffectInteractive?: boolean;
-    glassEffectTint?: ColorValue;
+    glassEffectTint?: ProcessedColorValue;
     glassEffectShape?: string;
     material?: string;
 }>;

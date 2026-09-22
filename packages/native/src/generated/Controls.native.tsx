@@ -3,6 +3,7 @@
 import { Platform } from 'react-native'
 import { useControlled } from '../controlled'
 import { assertSwiftUIValue } from './swiftui'
+import { swiftStyleNative } from './swiftStyleNative'
 import type * as Types from './controlTypes'
 import { iconColorRoles } from '../ui/iconRoles'
 import { getSyncStateId, isSyncState } from '../syncStore'
@@ -52,7 +53,7 @@ export function Picker({
     <NativePicker
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       value={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -110,7 +111,7 @@ export function DatePicker({
     <NativeDatePicker
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       value={selection.getTime()}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -153,7 +154,7 @@ export function ColorPicker({
     <NativeColorPicker
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       value={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -196,7 +197,7 @@ export function Toggle({
     <NativeToggle
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       value={isOn}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -247,7 +248,7 @@ export function Slider({
     <NativeSlider
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       value={value}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -299,7 +300,7 @@ export function Stepper({
     <NativeStepper
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       value={value}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -318,7 +319,14 @@ import NativeText from '../specs/OneNativeTextNativeComponent'
 export function Text({ text = '', swiftStyle, style, ...props }: Types.TextProps) {
   if (typeof text !== 'string') throw new Error('Text text must be a string')
 
-  return <NativeText {...props} style={style} swiftStyle={swiftStyle} text={text} />
+  return (
+    <NativeText
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      text={text}
+    />
+  )
 }
 import NativeLabel from '../specs/OneNativeLabelNativeComponent'
 export function Label({
@@ -338,7 +346,7 @@ export function Label({
     <NativeLabel
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -371,7 +379,7 @@ export function ProgressView({
     <NativeProgressView
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       label={label}
       disabled={disabled}
       value={value ?? 0}
@@ -411,7 +419,7 @@ export function Gauge({
     <NativeGauge
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       label={label}
       disabled={disabled}
       value={value}
@@ -469,7 +477,7 @@ export function Image({
       accessible={Boolean(props.accessibilityLabel)}
       accessibilityElementsHidden={!props.accessibilityLabel}
       accessibilityRole="image"
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       systemName={systemName}
       symbolRenderingMode={symbolRenderingMode}
       symbolVariant={symbolVariant}
@@ -504,7 +512,7 @@ export function ShareLink({
     <NativeShareLink
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -547,7 +555,7 @@ export function ContentUnavailableView({
     <NativeContentUnavailableView
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       title={title}
       systemImage={systemImage}
       description={description}
@@ -565,7 +573,14 @@ export function Circle({
   style,
   ...props
 }: Types.CircleProps) {
-  return <NativeCircle {...props} style={style} swiftStyle={swiftStyle} fill={fill} />
+  return (
+    <NativeCircle
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      fill={fill}
+    />
+  )
 }
 import NativeCapsule from '../specs/OneNativeCapsuleNativeComponent'
 export function Capsule({
@@ -574,7 +589,14 @@ export function Capsule({
   style,
   ...props
 }: Types.CapsuleProps) {
-  return <NativeCapsule {...props} style={style} swiftStyle={swiftStyle} fill={fill} />
+  return (
+    <NativeCapsule
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      fill={fill}
+    />
+  )
 }
 import NativeRectangle from '../specs/OneNativeRectangleNativeComponent'
 export function Rectangle({
@@ -583,7 +605,14 @@ export function Rectangle({
   style,
   ...props
 }: Types.RectangleProps) {
-  return <NativeRectangle {...props} style={style} swiftStyle={swiftStyle} fill={fill} />
+  return (
+    <NativeRectangle
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      fill={fill}
+    />
+  )
 }
 import NativeRoundedRectangle from '../specs/OneNativeRoundedRectangleNativeComponent'
 export function RoundedRectangle({
@@ -600,7 +629,7 @@ export function RoundedRectangle({
     <NativeRoundedRectangle
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       fill={fill}
       cornerRadius={cornerRadius}
     />
@@ -613,7 +642,14 @@ export function Ellipse({
   style,
   ...props
 }: Types.EllipseProps) {
-  return <NativeEllipse {...props} style={style} swiftStyle={swiftStyle} fill={fill} />
+  return (
+    <NativeEllipse
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      fill={fill}
+    />
+  )
 }
 import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
 export function VideoPlayer({
@@ -630,7 +666,7 @@ export function VideoPlayer({
     <NativeVideoPlayer
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       url={url}
       autoplay={autoplay}
     />
@@ -688,7 +724,7 @@ export function PhotosPicker({
     <NativePhotosPicker
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -756,7 +792,7 @@ export function WebView({
     <NativeWebView
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       url={url}
       html={html}
       backForwardNavigationGestures={backForwardNavigationGestures}
@@ -794,7 +830,7 @@ export function SignInWithAppleButton({
     <NativeSignInWithAppleButton
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       requestedScopes={requestedScopes}
       nonce={nonce}
       onNativeSignInWithAppleButtonCompletion={({ nativeEvent }) =>
@@ -854,7 +890,7 @@ export function Map({
     <NativeMap
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       latitude={latitude}
       longitude={longitude}
       distance={distance}
@@ -931,7 +967,7 @@ export function TextField({
     <NativeTextField
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       value={syncedText}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1021,7 +1057,7 @@ export function SecureField({
     <NativeSecureField
       {...props}
       style={style}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       value={syncedText}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1089,7 +1125,7 @@ export function Alert({
     <NativeAlert
       {...props}
       style={[{ position: 'absolute', width: 0, height: 0 }, style]}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1153,7 +1189,7 @@ export function ConfirmationDialog({
     <NativeConfirmationDialog
       {...props}
       style={[{ position: 'absolute', width: 0, height: 0 }, style]}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1200,7 +1236,7 @@ export function QuickLook({
     <NativeQuickLook
       {...props}
       style={[{ position: 'absolute', width: 0, height: 0 }, style]}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1243,7 +1279,7 @@ export function FileImporter({
     <NativeFileImporter
       {...props}
       style={[{ position: 'absolute', width: 0, height: 0 }, style]}
-      swiftStyle={swiftStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
