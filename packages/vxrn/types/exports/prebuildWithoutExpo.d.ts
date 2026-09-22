@@ -1,32 +1,7 @@
-export interface PrebuildAppConfig {
-    name: string;
-    displayName?: string;
-    scheme?: string | string[];
-    icon?: {
-        source: string;
-        backgroundColor: string;
-    };
-    splash?: {
-        source: string;
-        backgroundColor: string;
-        width?: number;
-    };
-    ios?: {
-        bundleId: string;
-        tablet?: boolean;
-        deploymentTarget?: string;
-        screensGamma?: boolean;
-        useFrameworks?: 'static' | 'dynamic';
-        ccache?: boolean;
-        usesNonExemptEncryption?: boolean;
-        fileSharing?: boolean;
-    };
-    android?: {
-        applicationId: string;
-        minSdk?: number;
-    };
-}
-export declare function validatePrebuildApp(app: PrebuildAppConfig, platform?: 'ios' | 'android' | string): void;
+import { validateNativeApp, type NativeAppManifest } from '@vxrn/utils/nativeAppManifest';
+export type { NativeAppManifest as PrebuildAppConfig } from '@vxrn/utils/nativeAppManifest';
+export declare const validatePrebuildApp: typeof validateNativeApp;
+export declare function renderSceneDelegateSwift(appName: string): string;
 export interface RenderedPrebuildFile {
     destRelativePath: string;
     content: string | null;
@@ -35,9 +10,9 @@ export declare function renderPrebuildFile(args: {
     relativePath: string;
     content: string | null;
     platform: 'ios' | 'android';
-    app: PrebuildAppConfig;
+    app: NativeAppManifest;
 }): RenderedPrebuildFile;
-export declare const generateForPlatform: (root: string, platform: 'ios' | 'android', app: PrebuildAppConfig, outDir?: string) => Promise<void>;
+export declare const generateForPlatform: (root: string, platform: 'ios' | 'android', app: NativeAppManifest, outDir?: string) => Promise<void>;
 export interface NativeDependencyInventory {
     name: string;
     version: string;
@@ -45,7 +20,7 @@ export interface NativeDependencyInventory {
 }
 export declare function applyAndroidDependencyPatches(args: {
     root: string;
-    app: PrebuildAppConfig;
+    app: NativeAppManifest;
     inventory: readonly NativeDependencyInventory[];
 }): void;
 export declare function getNativeDependencyInventory(root: string): Promise<NativeDependencyInventory[]>;

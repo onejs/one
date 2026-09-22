@@ -2,6 +2,7 @@ import { execFileSync } from 'node:child_process'
 import module from 'node:module'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
+import { validateNativeApp, type NativeAppManifest } from '@vxrn/utils/nativeAppManifest'
 import FSExtra from 'fs-extra'
 import sharp from 'sharp'
 
@@ -26,43 +27,14 @@ This code block is partially copied from meta owned repos.
 Copyright (c) Facebook, Inc. and its affiliates.
 */
 
-// structural mirror of one({ native: { app } }). the one cli validates the
-// full manifest before passing it here; vxrn re-validates the fields it
-// writes so direct callers fail before touching either project.
-export interface PrebuildAppConfig {
-  name: string
-  displayName?: string
-  scheme?: string | string[]
-  icon?: {
-    source: string
-    backgroundColor: string
-  }
-  splash?: {
-    source: string
-    backgroundColor: string
-    width?: number
-  }
-  ios?: {
-    bundleId: string
-    tablet?: boolean
-    deploymentTarget?: string
-    screensGamma?: boolean
-    useFrameworks?: 'static' | 'dynamic'
-    ccache?: boolean
-    usesNonExemptEncryption?: boolean
-    fileSharing?: boolean
-  }
-  android?: {
-    applicationId: string
-    minSdk?: number
-  }
-}
+// the manifest is one({ native: { app } }), defined once in @vxrn/utils. the
+// one cli validates the full manifest before passing it here; vxrn
+// re-validates through the same definition so direct callers fail before
+// touching either project.
+export type { NativeAppManifest as PrebuildAppConfig } from '@vxrn/utils/nativeAppManifest'
 
-const TARGET_NAME = /^[A-Za-z][A-Za-z0-9_]*$/
-const SCHEME = /^[a-z][a-z0-9+.-]*$/i
-const REVERSE_DNS = /^[A-Za-z][A-Za-z0-9-]*(\.[A-Za-z][A-Za-z0-9-]*)+$/
-const DEPLOYMENT_TARGET = /^\d+\.\d+$/
-const HEX_COLOR = /^#[\da-f]{6}$/i
+export const validatePrebuildApp = validateNativeApp
+
 const ANDROID_DENSITIES = {
   mdpi: 1,
   hdpi: 1.5,
@@ -115,70 +87,217 @@ function patchIosBundlePhase(project: string): string {
   return patchedProject
 }
 
-function fail(message: string): never {
-  throw new Error(`[vxrn] invalid native.app: ${message}`)
+function escapeXml(value: string): string {
+  return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
-export function validatePrebuildApp(
-  app: PrebuildAppConfig,
-  platform?: 'ios' | 'android' | string
-): void {
-  if (!app || typeof app !== 'object') fail('manifest must be an object')
-  if (!app.name || !TARGET_NAME.test(app.name)) {
-    fail(
-      `name "${app?.name}" must start with a letter and contain only letters, digits, and underscore`
+// uiscene adoption for the xcode 27 sdk: an app built with sdk 27 must
+// declare a scene manifest or it fails to launch on ios 27 ("UIScene life
+// cycle is required for apps built with this SDK"). prebuild therefore
+// always renders the scene manifest, a SceneDelegate that owns the window
+// and the RN root, and a trimmed AppDelegate. no toggle: the scene path is
+// the only path, on every ios version prebuild supports.
+const SCENE_DELEGATE_FILE_REF_ID = '1A2B3C4D5E6F7A8B9C0D1E2F'
+const SCENE_DELEGATE_BUILD_FILE_ID = '2B3C4D5E6F7A8B9C0D1E2F1A'
+
+export function renderSceneDelegateSwift(appName: string): string {
+  return `import UIKit
+import React
+import React_RCTAppDelegate
+import ReactAppDependencyProvider
+
+// owns the window and the react native root. with a scene manifest the
+// system creates this delegate per foreground scene instead of asking the
+// app delegate for a window, which is what the xcode 27 sdk requires.
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+  var window: UIWindow?
+
+  var reactNativeDelegate: ReactNativeDelegate?
+  var reactNativeFactory: RCTReactNativeFactory?
+
+  func scene(
+    _ scene: UIScene,
+    willConnectTo session: UISceneSession,
+    options connectionOptions: UIScene.ConnectionOptions
+  ) {
+    guard let windowScene = scene as? UIWindowScene else { return }
+    let delegate = ReactNativeDelegate()
+    let factory = RCTReactNativeFactory(delegate: delegate)
+    delegate.dependencyProvider = RCTAppDependencyProvider()
+
+    reactNativeDelegate = delegate
+    reactNativeFactory = factory
+
+    let window = UIWindow(windowScene: windowScene)
+    self.window = window
+
+    // cold-start links arrive in connectionOptions under scenes, never in
+    // the app launchOptions, so they are translated into the launchOptions
+    // shape RCTLinkingManager.getInitialURL reads.
+    var launchOptions: [UIApplication.LaunchOptionsKey: Any] = [:]
+    if let url = connectionOptions.urlContexts.first?.url {
+      launchOptions[.url] = url
+    }
+    if let activity = connectionOptions.userActivities.first(where: {
+      $0.activityType == NSUserActivityTypeBrowsingWeb
+    }) {
+      launchOptions[.userActivityDictionary] = [
+        "UIApplicationLaunchOptionsUserActivityTypeKey": activity.activityType,
+        "UIApplicationLaunchOptionsUserActivityKey": activity,
+      ]
+    }
+
+    factory.startReactNative(
+      withModuleName: "${appName}",
+      in: window,
+      launchOptions: launchOptions
     )
   }
-  const schemes =
-    app.scheme === undefined ? [] : Array.isArray(app.scheme) ? app.scheme : [app.scheme]
-  for (const scheme of schemes) {
-    if (typeof scheme !== 'string' || !SCHEME.test(scheme)) {
-      fail(`scheme "${scheme}" must be a valid uri scheme`)
-    }
+
+  func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+    guard let url = URLContexts.first?.url else { return }
+    RCTLinkingManager.application(UIApplication.shared, open: url, options: [:])
   }
-  if (
-    app.icon !== undefined &&
-    (!app.icon.source || !HEX_COLOR.test(app.icon.backgroundColor))
-  ) {
-    fail('icon requires source and a six-digit hex backgroundColor')
-  }
-  if (
-    app.splash !== undefined &&
-    (!app.splash.source ||
-      !HEX_COLOR.test(app.splash.backgroundColor) ||
-      (app.splash.width !== undefined &&
-        (!Number.isFinite(app.splash.width) ||
-          app.splash.width < 1 ||
-          app.splash.width > 288)))
-  ) {
-    fail(
-      'splash requires source, a six-digit hex backgroundColor, and width from 1 to 288'
+
+  func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+    RCTLinkingManager.application(
+      UIApplication.shared,
+      continue: userActivity,
+      restorationHandler: { _ in }
     )
   }
-  if (!platform || platform === 'ios') {
-    if (!app.ios?.bundleId || !REVERSE_DNS.test(app.ios.bundleId)) {
-      fail(`ios.bundleId "${app.ios?.bundleId}" must be reverse-dns`)
-    }
-    if (
-      app.ios.deploymentTarget !== undefined &&
-      !DEPLOYMENT_TARGET.test(app.ios.deploymentTarget)
-    ) {
-      fail(`ios.deploymentTarget "${app.ios.deploymentTarget}" must look like "17.0"`)
-    }
+}
+`
+}
+
+function insertAfterLine(haystack: string, anchor: string, insertion: string): string {
+  const anchorIndex = haystack.indexOf(anchor)
+  if (anchorIndex === -1) return haystack
+  const lineEnd = haystack.indexOf('\n', anchorIndex)
+  if (lineEnd === -1) return `${haystack}\n${insertion}`
+  return `${haystack.slice(0, lineEnd + 1)}${insertion}\n${haystack.slice(lineEnd + 1)}`
+}
+
+function patchIosInfoPlistSceneManifest(rendered: string): string {
+  const anchor = '\t<key>LSRequiresIPhoneOS</key>'
+  if (!rendered.includes(anchor)) {
+    throw new Error('[vxrn] prebuild template Info.plist lost its LSRequiresIPhoneOS anchor')
   }
-  if (!platform || platform === 'android') {
-    if (!app.android?.applicationId || !REVERSE_DNS.test(app.android.applicationId)) {
-      fail(`android.applicationId "${app.android?.applicationId}" must be reverse-dns`)
-    }
-    if (
-      app.android.minSdk !== undefined &&
-      (!Number.isInteger(app.android.minSdk) ||
-        app.android.minSdk < 21 ||
-        app.android.minSdk > 36)
-    ) {
-      fail(`android.minSdk "${app.android.minSdk}" must be an integer from 21 to 36`)
-    }
+  return rendered.replace(
+    anchor,
+    `\t<key>UIApplicationSceneManifest</key>
+\t<dict>
+\t\t<key>UIApplicationSupportsMultipleScenes</key>
+\t\t<false/>
+\t\t<key>UISceneConfigurations</key>
+\t\t<dict>
+\t\t\t<key>UIWindowSceneSessionRoleApplication</key>
+\t\t\t<array>
+\t\t\t\t<dict>
+\t\t\t\t\t<key>UISceneConfigurationName</key>
+\t\t\t\t\t<string>Default Configuration</string>
+\t\t\t\t\t<key>UISceneDelegateClassName</key>
+\t\t\t\t\t<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+\t\t\t\t</dict>
+\t\t\t</array>
+\t\t</dict>
+\t</dict>
+${anchor}`
+  )
+}
+
+function patchIosAppDelegateSceneLifecycle(rendered: string, appName: string): string {
+  const anchor = `@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+  var window: UIWindow?
+
+  var reactNativeDelegate: ReactNativeDelegate?
+  var reactNativeFactory: RCTReactNativeFactory?
+
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+  ) -> Bool {
+    let delegate = ReactNativeDelegate()
+    let factory = RCTReactNativeFactory(delegate: delegate)
+    delegate.dependencyProvider = RCTAppDependencyProvider()
+
+    reactNativeDelegate = delegate
+    reactNativeFactory = factory
+
+    window = UIWindow(frame: UIScreen.main.bounds)
+
+    factory.startReactNative(
+      withModuleName: "${appName}",
+      in: window,
+      launchOptions: launchOptions
+    )
+
+    return true
   }
+}`
+  if (!rendered.includes(anchor)) {
+    throw new Error(
+      '[vxrn] prebuild template AppDelegate.swift changed shape: cannot move the RN root to the scene delegate'
+    )
+  }
+  return rendered.replace(
+    anchor,
+    `@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+  ) -> Bool {
+    true
+  }
+}`
+  )
+}
+
+function patchIosPbxprojSceneDelegate(rendered: string, appName: string): string {
+  const edits: Array<[string, string]> = [
+    [
+      '/* AppDelegate.swift in Sources */ = {isa = PBXBuildFile;',
+      `\t\t${SCENE_DELEGATE_BUILD_FILE_ID} /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ${SCENE_DELEGATE_FILE_REF_ID} /* SceneDelegate.swift */; };`,
+    ],
+    [
+      '/* AppDelegate.swift */ = {isa = PBXFileReference;',
+      `\t\t${SCENE_DELEGATE_FILE_REF_ID} /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = ${appName}/SceneDelegate.swift; sourceTree = "<group>"; };`,
+    ],
+    [
+      '/* AppDelegate.swift */,',
+      `\t\t\t\t${SCENE_DELEGATE_FILE_REF_ID} /* SceneDelegate.swift */,`,
+    ],
+    [
+      '/* AppDelegate.swift in Sources */,',
+      `\t\t\t\t${SCENE_DELEGATE_BUILD_FILE_ID} /* SceneDelegate.swift in Sources */,`,
+    ],
+  ]
+  let patched = rendered
+  for (const [anchor, insertion] of edits) {
+    const next = insertAfterLine(patched, anchor, insertion)
+    if (next === patched) {
+      throw new Error(
+        `[vxrn] prebuild template project.pbxproj lost its AppDelegate.swift anchor (${anchor})`
+      )
+    }
+    patched = next
+  }
+  return patched
+}
+
+function generateSceneDelegate(args: {
+  dest: string
+  platform: 'ios' | 'android'
+  app: NativeAppManifest
+}): void {
+  const { dest, platform, app } = args
+  if (platform !== 'ios') return
+  FSExtra.writeFileSync(
+    path.join(dest, app.name, 'SceneDelegate.swift'),
+    renderSceneDelegateSwift(app.name)
+  )
 }
 
 export interface RenderedPrebuildFile {
@@ -190,7 +309,7 @@ async function generateAppIcons(args: {
   root: string
   dest: string
   platform: 'ios' | 'android'
-  app: PrebuildAppConfig
+  app: NativeAppManifest
 }): Promise<void> {
   const { root, dest, platform, app } = args
   if (!app.icon) return
@@ -256,7 +375,7 @@ async function generateSplashScreen(args: {
   root: string
   dest: string
   platform: 'ios' | 'android'
-  app: PrebuildAppConfig
+  app: NativeAppManifest
 }): Promise<void> {
   const { root, dest, platform, app } = args
   if (!app.splash) return
@@ -416,7 +535,7 @@ export function renderPrebuildFile(args: {
   relativePath: string
   content: string | null
   platform: 'ios' | 'android'
-  app: PrebuildAppConfig
+  app: NativeAppManifest
 }): RenderedPrebuildFile {
   const { relativePath, content, platform, app } = args
   const appName = app.name
@@ -491,6 +610,22 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.imagePicker?.camera !== undefined
+    ) {
+      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
+      if (!rendered.includes(anchor)) {
+        throw new Error(
+          '[vxrn] cannot stamp the camera permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
+        )
+      }
+      rendered = rendered.replace(
+        anchor,
+        `${anchor}\n    <uses-permission android:name="android.permission.CAMERA" />`
+      )
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
       schemes.length
     ) {
       rendered = rendered.replace(
@@ -509,6 +644,44 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         /TARGETED_DEVICE_FAMILY = "1,2";/g,
         `TARGETED_DEVICE_FAMILY = "${app.ios?.tablet ? '1,2' : '1'}";`
       )
+    }
+    // version stamping for One.AppInfo: without it generated projects keep
+    // the template defaults (1.0/1) forever. missing manifest fields keep
+    // those defaults; a store build must set version, ios.buildNumber, and
+    // android.versionCode.
+    if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {
+      if (app.version !== undefined) {
+        rendered = rendered.replace(
+          /MARKETING_VERSION = [^;]+;/g,
+          `MARKETING_VERSION = "${app.version}";`
+        )
+      }
+      if (app.ios?.buildNumber !== undefined) {
+        rendered = rendered.replace(
+          /CURRENT_PROJECT_VERSION = [^;]+;/g,
+          `CURRENT_PROJECT_VERSION = ${app.ios.buildNumber};`
+        )
+      }
+    }
+    if (platform === 'ios' && relativePath.endsWith('/Info.plist')) {
+      // schemes, usesNonExemptEncryption, and fileSharing stamp above in one
+      // anchored block; only the camera description stamps here.
+      if (app.imagePicker?.camera !== undefined) {
+        const anchor = '\t<key>LSRequiresIPhoneOS</key>'
+        if (!rendered.includes(anchor)) {
+          throw new Error(
+            '[vxrn] cannot stamp NSCameraUsageDescription: expected LSRequiresIPhoneOS in Info.plist'
+          )
+        }
+        rendered = rendered.replace(
+          anchor,
+          `\t<key>NSCameraUsageDescription</key>\n\t<string>${escapeXml(app.imagePicker.camera)}</string>\n${anchor}`
+        )
+      }
+      rendered = patchIosInfoPlistSceneManifest(rendered)
+    }
+    if (platform === 'ios' && relativePath.endsWith('/AppDelegate.swift')) {
+      rendered = patchIosAppDelegateSceneLifecycle(rendered, appName)
     }
     if (platform === 'ios' && app.ios?.deploymentTarget) {
       rendered = rendered
@@ -537,6 +710,7 @@ end`
     }
     if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {
       rendered = patchIosBundlePhase(rendered)
+      rendered = patchIosPbxprojSceneDelegate(rendered, appName)
     }
     if (platform === 'ios' && relativePath === 'Podfile') {
       if (app.ios?.ccache) rendered = `ENV['USE_CCACHE'] ||= '1'\n${rendered}`
@@ -567,6 +741,18 @@ end`
       ) {
         throw new Error('[vxrn] failed to apply required Android Gradle patches')
       }
+      if (app.version !== undefined) {
+        rendered = rendered.replace(
+          /versionName "[^"]*"/g,
+          `versionName "${app.version}"`
+        )
+      }
+      if (app.android?.versionCode !== undefined) {
+        rendered = rendered.replace(
+          /versionCode \d+/g,
+          `versionCode ${app.android.versionCode}`
+        )
+      }
     }
     if (platform === 'android' && relativePath === 'settings.gradle') {
       const hardcodedGradlePlugin =
@@ -593,7 +779,7 @@ end`
 export const generateForPlatform = async (
   root: string,
   platform: 'ios' | 'android',
-  app: PrebuildAppConfig,
+  app: NativeAppManifest,
   outDir: string = path.resolve(root, platform)
 ) => {
   validatePrebuildApp(app, platform)
@@ -654,6 +840,7 @@ export const generateForPlatform = async (
 
   await generateAppIcons({ root, dest, platform, app })
   await generateSplashScreen({ root, dest, platform, app })
+  generateSceneDelegate({ dest, platform, app })
 }
 
 export interface NativeDependencyInventory {
@@ -664,7 +851,7 @@ export interface NativeDependencyInventory {
 
 export function applyAndroidDependencyPatches(args: {
   root: string
-  app: PrebuildAppConfig
+  app: NativeAppManifest
   inventory: readonly NativeDependencyInventory[]
 }): void {
   const { root, app, inventory } = args

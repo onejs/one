@@ -102,8 +102,13 @@ export function Root(props: RootProps) {
     routeOptions,
     globalThis['__vxrnVersion']
   )
-  const location =
-    typeof window !== 'undefined' && window.location
+  // native starts with no location: a cold deep link wins through the
+  // async Linking.getInitialURL instead of a '/' initial state that would
+  // override it. a launch with no link still resolves '/' from the same
+  // getter, so home is unchanged.
+  const location = isNative
+    ? undefined
+    : typeof window !== 'undefined' && window.location
       ? new URL(path || window.location.href || '/', window.location.href)
       : getCachedSSRLocation(path || '/')
 
