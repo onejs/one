@@ -34,15 +34,15 @@ export type OneBabelPresetOptions = {
     includeImportMetaEnv?: boolean;
 };
 /**
- * one's semantic plugin chain for babel-based Metro transforms. compose it
- * after `@react-native/babel-preset`; one's default Rolldown path does not use babel.
+ * Standalone babel preset that drops the same plugin chain that the
+ * Vite-driven Metro path applies into any `babel.config.{cjs,js,mjs}` file.
+ * Builds on `@react-native/babel-preset` for syntax and platform transforms;
+ * one's default Rolldown path does not use babel.
  *
  * @example
  * ```js
  * // babel.config.cjs
- * module.exports = {
- *   presets: ['@react-native/babel-preset', 'one/babel-preset'],
- * }
+ * module.exports = require('one/babel-preset')
  * ```
  */
 export default function oneBabelPreset(api: BabelConfigAPI, options?: OneBabelPresetOptions): TransformOptions;

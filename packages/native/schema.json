@@ -1461,6 +1461,60 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeSignInWithAppleButton",
+      "publicName": "SignInWithAppleButton",
+      "props": {
+        "requestedScopes": {
+          "type": "ReadonlyArray<string>"
+        },
+        "nonce": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeSignInWithAppleButtonCompletion": {
+          "type": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "givenName": {
+            "type": "string"
+          },
+          "familyName": {
+            "type": "string"
+          },
+          "identityToken": {
+            "type": "string"
+          },
+          "authorizationCode": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onCompletion",
+          "event": "onNativeSignInWithAppleButtonCompletion"
+        }
+      ],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativeMap",
       "publicName": "Map",
       "props": {
@@ -1890,6 +1944,75 @@
         "event": "onNativeQuickLookValueChange"
       },
       "actions": [],
+      "layout": {
+        "kind": "presentation"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeFileImporter",
+      "publicName": "FileImporter",
+      "props": {
+        "value": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "allowedContentTypes": {
+          "type": "ReadonlyArray<string>"
+        },
+        "allowsMultipleSelection": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativeFileImporterValueChange": {
+          "value": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeFileImporterCompletion": {
+          "type": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "index": {
+            "type": "Double"
+          },
+          "count": {
+            "type": "Double"
+          },
+          "message": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeFileImporterValueChange"
+      },
+      "actions": [
+        {
+          "publicProp": "onCompletion",
+          "event": "onNativeFileImporterCompletion"
+        }
+      ],
       "layout": {
         "kind": "presentation"
       },

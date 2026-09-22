@@ -51,15 +51,15 @@ export type OneBabelPresetOptions = {
 }
 
 /**
- * one's semantic plugin chain for babel-based Metro transforms. compose it
- * after `@react-native/babel-preset`; one's default Rolldown path does not use babel.
+ * Standalone babel preset that drops the same plugin chain that the
+ * Vite-driven Metro path applies into any `babel.config.{cjs,js,mjs}` file.
+ * Builds on `@react-native/babel-preset` for syntax and platform transforms;
+ * one's default Rolldown path does not use babel.
  *
  * @example
  * ```js
  * // babel.config.cjs
- * module.exports = {
- *   presets: ['@react-native/babel-preset', 'one/babel-preset'],
- * }
+ * module.exports = require('one/babel-preset')
  * ```
  */
 export default function oneBabelPreset(
@@ -89,7 +89,22 @@ export default function oneBabelPreset(
     options.projectRoot ?? (typeof api?.cwd === 'function' ? api.cwd() : process.cwd())
   )
 
+  // Babel is the opt-in path, so the RN base resolves from the project, not
+  // from one's own dependencies. only the resolve is guarded: a throw from
+  // inside the preset itself must surface as-is, not as "not installed".
+  const require = createRequire(projectRoot + '/')
+  let reactNativePresetPath: string
+  try {
+    reactNativePresetPath = require.resolve('@react-native/babel-preset')
+  } catch {
+    throw new Error(
+      `[one/babel-preset] Could not resolve '@react-native/babel-preset' from ${projectRoot}. ` +
+        `Install it as a project dependency (it ships with every React Native app template).`
+    )
+  }
+
   return {
+    presets: [require(reactNativePresetPath)],
     plugins: hasViteInjectedOnePlugins
       ? []
       : buildOneBabelPlugins({

@@ -277,4 +277,138 @@ private struct PhotosPickerSurface: View {
 `,
     validate: `  if (!url === !html) throw new Error('WebView takes exactly one of url and html')`,
   },
+  {
+    // one view covers the button and the request: the props set what onRequest would
+    // (scopes, nonce) and the Result arrives as one completion event, so there is no
+    // imperative module. from _AuthenticationServices_SwiftUI, which the generator reads
+    // like every other overlay; ASAuthorization.Scope lives in AuthenticationServices
+    // itself, so the two scopes are mapped by hand like PhotosPicker's filter.
+    name: 'SignInWithAppleButton',
+    imports: ['AuthenticationServices'],
+    actions: [
+      {
+        prop: 'onCompletion',
+        event: 'Completion',
+        payload: {
+          type: 'string',
+          user: 'string',
+          email: 'string',
+          givenName: 'string',
+          familyName: 'string',
+          identityToken: 'string',
+          authorizationCode: 'string',
+          message: 'string',
+        },
+        object: {
+          variants: [
+            {
+              type: 'success',
+              fields: ['user', 'email', 'givenName', 'familyName', 'identityToken', 'authorizationCode'],
+            },
+            { type: 'failed', fields: ['message'] },
+            { type: 'cancelled', fields: [] },
+          ],
+        },
+      },
+    ],
+    fields: {
+      requestedScopes: {
+        type: 'strings',
+        default: [],
+        publicType: "readonly ('fullName' | 'email')[]",
+      },
+      nonce: { type: 'string', default: '' },
+    },
+    setBody: {
+      requestedScopes: `if let unknown = items.first(where: { $0 != "fullName" && $0 != "email" }) {
+    model.completion("failed", "", "", "", "", "", "", "unknown requested scope: \\(unknown)")
+    return
+  }
+  if model.requestedScopes != items { model.requestedScopes = items }`,
+    },
+    constructors: [
+      {
+        type: 'SignInWithAppleButton',
+        parameters: [
+          {
+            label: '_',
+            type: '_AuthenticationServices_SwiftUI.SignInWithAppleButton.Label',
+          },
+          {
+            label: 'onRequest',
+            type: '@escaping (AuthenticationServices.ASAuthorizationAppleIDRequest) -> Swift.Void',
+          },
+          {
+            label: 'onCompletion',
+            type: '@escaping (Swift.Result<AuthenticationServices.ASAuthorization, any Swift.Error>) -> Swift.Void',
+          },
+        ],
+      },
+    ],
+    swift: `SignInWithAppleButtonSurface(model: model)`,
+    extraSwift: `// ASAuthorization.Scope is AuthenticationServices' own type rather than its SwiftUI
+// overlay's, so the generator does not read it and cannot select these cases.
+// swiftc -typecheck against the SDK is what proves each one still exists.
+private func oneNativeAppleScopes(_ values: [String]) -> [ASAuthorization.Scope] {
+  // unknown strings never reach here: the setter rejects them with a failed
+  // completion, so the default only drops what validation already refused.
+  values.compactMap { value in
+    switch value {
+    case "fullName": return .fullName
+    case "email": return .email
+    default: return nil
+    }
+  }
+}
+
+// the tokens arrive as UTF-8 JWT data. the empty string is the missing-token state the
+// caller already handles, so undecodable bytes degrade to it instead of failing the
+// completion that carried them.
+private func oneNativeTokenString(_ data: Data?) -> String {
+  guard let data else { return "" }
+  return String(data: data, encoding: .utf8) ?? ""
+}
+
+private struct SignInWithAppleButtonSurface: View {
+  @ObservedObject var model: SignInWithAppleButtonModel
+  var body: some View {
+    SignInWithAppleButton(.signIn, onRequest: { request in
+      request.requestedScopes = oneNativeAppleScopes(model.requestedScopes)
+      if !model.nonce.isEmpty { request.nonce = model.nonce }
+    }, onCompletion: { result in
+      switch result {
+      case .success(let authorization):
+        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {
+          model.completion("failed", "", "", "", "", "", "", "unexpected credential type")
+          return
+        }
+        model.completion(
+          "success",
+          credential.user,
+          credential.email ?? "",
+          credential.fullName?.givenName ?? "",
+          credential.fullName?.familyName ?? "",
+          oneNativeTokenString(credential.identityToken),
+          oneNativeTokenString(credential.authorizationCode),
+          ""
+        )
+      case .failure(let error):
+        let nsError = error as NSError
+        if nsError.domain == ASAuthorizationErrorDomain,
+          nsError.code == ASAuthorizationError.Code.canceled.rawValue {
+          model.completion("cancelled", "", "", "", "", "", "", "")
+        } else {
+          model.completion("failed", "", "", "", "", "", "", error.localizedDescription)
+        }
+      }
+    })
+  }
+}
+`,
+    validate: `  if (!Array.isArray(requestedScopes)) throw new Error('SignInWithAppleButton requestedScopes must be an array')
+  for (const scope of requestedScopes) {
+    if (scope !== 'fullName' && scope !== 'email') throw new Error("SignInWithAppleButton scope must be 'fullName' or 'email'")
+  }
+  if (typeof nonce !== 'string') throw new Error('SignInWithAppleButton nonce must be a string')`,
+  },
 ]

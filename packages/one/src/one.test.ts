@@ -19,6 +19,28 @@ describe('root One export', () => {
     expect(One.UI.SafeArea.Provider).toBeTypeOf('function')
     expect(One.UI.SafeArea.View).toBeTypeOf('object')
     expect(One.UI.SafeArea.useInsets).toBeTypeOf('function')
+    expect(One.Clipboard.getString).toBeTypeOf('function')
+    expect(One.Clipboard.setString).toBeTypeOf('function')
+    expect(One.Clipboard.hasString).toBeTypeOf('function')
+    expect(One.Network.getState).toBeTypeOf('function')
+    expect(One.Network.addStateListener).toBeTypeOf('function')
+    expect(One.useNetworkState).toBeTypeOf('function')
+    expect(One.Browser.open).toBeTypeOf('function')
+    expect(One.Browser.dismiss).toBeTypeOf('function')
+    expect(One.Browser.openAuthSession).toBeTypeOf('function')
+    expect(One.Browser.dismissAuthSession).toBeTypeOf('function')
+    expect(One.UI.Haptics.selection).toBeTypeOf('function')
+    expect(One.UI.Haptics.impact).toBeTypeOf('function')
+    expect(One.UI.Haptics.notification).toBeTypeOf('function')
+    // top-level One.AppInfo, not One.UI: application metadata is data, not UI
+    expect(Object.hasOwn(One, 'AppInfo')).toBe(true)
+    expect(Object.hasOwn(One.UI, 'AppInfo')).toBe(false)
+    expect(Object.keys(One.AppInfo).sort()).toEqual([
+      'applicationId',
+      'build',
+      'version',
+    ])
+    expect(Object.isFrozen(One.AppInfo)).toBe(true)
   })
 
   test('reports the build-time platform without reshaping the API', () => {

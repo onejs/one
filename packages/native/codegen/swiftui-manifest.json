@@ -598,6 +598,9 @@
       "_WebKit_SwiftUI": [
         "WebView"
       ],
+      "_AuthenticationServices_SwiftUI": [
+        "SignInWithAppleButton"
+      ],
       "_MapKit_SwiftUI": [
         "Map",
         "Marker"
@@ -612,6 +615,7 @@
         "contextMenu",
         "controlGroupStyle",
         "datePickerStyle",
+        "fileImporter",
         "fullScreenCover",
         "gaugeStyle",
         "interactiveDismissDisabled",
@@ -1296,6 +1300,29 @@
         }
       ],
       "ios": 26
+    },
+    {
+      "module": "_AuthenticationServices_SwiftUI",
+      "type": "SignInWithAppleButton",
+      "parameters": [
+        {
+          "defaultValue": ".signIn",
+          "label": "_",
+          "name": "label",
+          "type": "_AuthenticationServices_SwiftUI.SignInWithAppleButton.Label"
+        },
+        {
+          "label": "onRequest",
+          "name": "onRequest",
+          "type": "@escaping (AuthenticationServices.ASAuthorizationAppleIDRequest) -> Swift.Void"
+        },
+        {
+          "label": "onCompletion",
+          "name": "onCompletion",
+          "type": "@escaping (Swift.Result<AuthenticationServices.ASAuthorization, any Swift.Error>) -> Swift.Void"
+        }
+      ],
+      "ios": 14
     },
     {
       "module": "_MapKit_SwiftUI",

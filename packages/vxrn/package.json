@@ -6,6 +6,7 @@
   "exports": {
     "./package.json": "./package.json",
     "./react-native-commands": "./react-native-commands.cjs",
+    "./expo-plugin": "./expo-plugin.cjs",
     ".": {
       "types": "./types/index.d.ts",
       "default": "./dist/index.mjs"
@@ -43,6 +44,7 @@
     "patches",
     "dist",
     "run.mjs",
+    "expo-plugin.cjs",
     "native-project-patches.cjs",
     "react-native-commands.cjs"
   ],

@@ -233,4 +233,149 @@ private func oneNativeRemoveQuickLookURL(_ url: URL?) {
   if (!url.startsWith('file://') && !url.startsWith('http://') && !url.startsWith('https://')) throw new Error('QuickLook url must use file, http, or https')`,
     layout: 'presentation',
   },
+  {
+    // fileImporter as a zero-size host like Alert: React flips isPresented, each
+    // pick reports through onCompletion and backing out through onCancellation.
+    // every pick is copied into Caches before reporting, since the security-scoped
+    // url dies with the picker and was never readable from JS.
+    name: 'FileImporter',
+    imports: ['UniformTypeIdentifiers', 'Foundation'],
+    value: {
+      type: 'boolean',
+      prop: 'isPresented',
+      event: 'onIsPresentedChange',
+      initial: false,
+    },
+    actions: [
+      {
+        prop: 'onCompletion',
+        event: 'Completion',
+        payload: {
+          type: 'string',
+          url: 'string',
+          index: 'Double',
+          count: 'Double',
+          message: 'string',
+        },
+        object: {
+          variants: [
+            { type: 'success', fields: ['url', 'index', 'count'] },
+            { type: 'failed', fields: ['message'] },
+            { type: 'cancelled', fields: [] },
+          ],
+        },
+      },
+    ],
+    fields: {
+      allowedContentTypes: { type: 'strings', default: [] },
+      allowsMultipleSelection: { type: 'boolean', default: false },
+    },
+    constructors: [],
+    methods: [
+      {
+        name: 'fileImporter',
+        parameters: [
+          { label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+          { label: 'allowedContentTypes', type: '[UniformTypeIdentifiers.UTType]' },
+          { label: 'allowsMultipleSelection', type: 'Swift.Bool' },
+          {
+            label: 'onCompletion',
+            type: '@escaping (_ result: Swift.Result<[Foundation.URL], any Swift.Error>) -> Swift.Void',
+          },
+          { label: 'onCancellation', type: '@escaping () -> Swift.Void' },
+        ],
+        requirements: [],
+      },
+    ],
+    setBody: {
+      allowedContentTypes: `let resolved = items.compactMap(UTType.init)
+    if !items.isEmpty && resolved.isEmpty {
+      model.completion("failed", "", 0, 0, "unknown content type identifiers: \\(items.joined(separator: ", "))")
+      return
+    }
+    if model.allowedContentTypes != items { model.allowedContentTypes = items }`,
+    },
+    swift: `FileImporterSurface(model: model)`,
+    extraSwift: `// UTType identifiers are an open set, so they travel as strings and resolve here.
+// only an empty list means the unrestricted import, UTType.item, the base of
+// every pickable type. a non-empty list that resolves to nothing never reaches
+// this fallback: the setter rejects it with a failed completion instead.
+private func oneNativeContentTypes(_ identifiers: [String]) -> [UTType] {
+  let resolved = identifiers.compactMap { UTType($0) }
+  return resolved.isEmpty ? [.item] : resolved
+}
+
+// the picker hands out security-scoped urls, which stop working once the picker goes
+// away and were never readable from JS. each pick is copied under a fresh folder in
+// Caches, keeping its filename, and the copy is what the event reports. Caches is the
+// system's to purge; nothing here deletes the file. runs on a utility queue; the
+// security-scoped access opens and closes on that same thread.
+private func oneNativeCopyToCaches(_ url: URL) throws -> URL {
+  let accessing = url.startAccessingSecurityScopedResource()
+  defer { if accessing { url.stopAccessingSecurityScopedResource() } }
+  let folder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+    .appendingPathComponent("one-native-file-importer", isDirectory: true)
+    .appendingPathComponent(UUID().uuidString, isDirectory: true)
+  try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+  let name = url.lastPathComponent.isEmpty ? "file" : url.lastPathComponent
+  let destination = folder.appendingPathComponent(name)
+  try FileManager.default.copyItem(at: url, to: destination)
+  return destination
+}
+
+private struct FileImporterSurface: View {
+  @ObservedObject var model: FileImporterModel
+  var body: some View {
+    Color.clear
+      .fileImporter(
+        isPresented: Binding(
+          get: { model.controlled.value },
+          set: { value in model.change(value) }
+        ),
+        allowedContentTypes: oneNativeContentTypes(model.allowedContentTypes),
+        allowsMultipleSelection: model.allowsMultipleSelection
+      ) { result in
+        switch result {
+        case .success(let urls):
+          // backing out routes to onCancellation, never here, so an empty
+          // success cannot arrive; the guard only satisfies the type.
+          guard !urls.isEmpty else { return }
+          let count = urls.count
+          DispatchQueue.global(qos: .utility).async {
+            var outcomes: [(Int, String, String)] = []
+            outcomes.reserveCapacity(urls.count)
+            for (index, url) in urls.enumerated() {
+              do {
+                let copy = try oneNativeCopyToCaches(url)
+                outcomes.append((index, copy.absoluteString, ""))
+              } catch {
+                outcomes.append((index, "", error.localizedDescription))
+              }
+            }
+            DispatchQueue.main.async {
+              for (index, urlString, message) in outcomes {
+                if message.isEmpty {
+                  model.completion("success", urlString, Double(index), Double(count), "")
+                } else {
+                  model.completion("failed", "", Double(index), Double(count), message)
+                }
+              }
+            }
+          }
+        case .failure(let error):
+          model.completion("failed", "", 0, 0, error.localizedDescription)
+        }
+      } onCancellation: {
+        model.completion("cancelled", "", 0, 0, "")
+      }
+  }
+}
+`,
+    validate: `  if (!Array.isArray(allowedContentTypes)) throw new Error('FileImporter allowedContentTypes must be an array')
+  for (const identifier of allowedContentTypes) {
+    if (typeof identifier !== 'string' || !identifier) throw new Error('FileImporter content types must be non-empty UTType identifier strings')
+  }
+  if (typeof allowsMultipleSelection !== 'boolean') throw new Error('FileImporter allowsMultipleSelection must be a boolean')`,
+    layout: 'presentation',
+  },
 ]
