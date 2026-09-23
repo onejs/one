@@ -1,0 +1,61 @@
+diff --git a/cpp/rnwgpu/async/AsyncTaskHandle.cpp b/cpp/rnwgpu/async/AsyncTaskHandle.cpp
+index 6b26200..54e2540 100644
+--- a/cpp/rnwgpu/async/AsyncTaskHandle.cpp
++++ b/cpp/rnwgpu/async/AsyncTaskHandle.cpp
+@@ -3,7 +3,7 @@
+ #include <string>
+ #include <utility>
+ 
+-#include "Promise.h"
++#include "../../jsi/Promise.h"
+ 
+ #include "AsyncRunner.h"
+ 
+diff --git a/cpp/rnwgpu/api/RNWebGPU.h b/cpp/rnwgpu/api/RNWebGPU.h
+index 4d90b19..cb14ed4 100644
+--- a/cpp/rnwgpu/api/RNWebGPU.h
++++ b/cpp/rnwgpu/api/RNWebGPU.h
+@@ -5,7 +5,7 @@
+ 
+ #include "NativeObject.h"
+ 
+-#include "ArrayBuffer.h"
++#include "../ArrayBuffer.h"
+ #include "Canvas.h"
+ #include "GPU.h"
+ #include "GPUCanvasContext.h"
+@@ -17,7 +17,7 @@
+ #include <ReactCommon/CallInvoker.h>
+ 
+ #include "JSIConverter.h"
+-#include "Promise.h"
++#include "../../jsi/Promise.h"
+ 
+ namespace rnwgpu {
+ 
+diff --git a/cpp/rnwgpu/api/GPUQueue.h b/cpp/rnwgpu/api/GPUQueue.h
+index be824e7..27de94a 100644
+--- a/cpp/rnwgpu/api/GPUQueue.h
++++ b/cpp/rnwgpu/api/GPUQueue.h
+@@ -13,7 +13,7 @@
+ 
+ #include "webgpu/webgpu_cpp.h"
+ 
+-#include "ArrayBuffer.h"
++#include "../ArrayBuffer.h"
+ #include "GPUBuffer.h"
+ #include "GPUCommandBuffer.h"
+ #include "GPUImageCopyExternalImage.h"
+diff --git a/cpp/rnwgpu/api/GPUBuffer.h b/cpp/rnwgpu/api/GPUBuffer.h
+index edfc8e4..0f9d1dd 100644
+--- a/cpp/rnwgpu/api/GPUBuffer.h
++++ b/cpp/rnwgpu/api/GPUBuffer.h
+@@ -14,7 +14,7 @@
+ 
+ #include "webgpu/webgpu_cpp.h"
+ 
+-#include "ArrayBuffer.h"
++#include "../ArrayBuffer.h"
+ 
+ namespace rnwgpu {
+ 

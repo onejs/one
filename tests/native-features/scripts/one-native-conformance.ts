@@ -51,6 +51,7 @@ const suites = [
   'browser',
   'image-picker',
   'ui-map',
+  'gpu',
 ] as const
 type Suite = (typeof suites)[number]
 type Config = {
@@ -306,6 +307,10 @@ const uiMapLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-ui-map-place-ferry')) &&
   has(nodes, 'Zoom: ')
+const gpuLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-gpu-screen')) &&
+  has(nodes, 'Triangle: ')
 const popoverLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-popover-open')) && has(nodes, 'Trigger: ')) ||
@@ -342,6 +347,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   browser: browserLoaded,
   'image-picker': imagePickerLoaded,
   'ui-map': uiMapLoaded,
+  gpu: gpuLoaded,
 }
 const suiteHome: Record<Suite, string> = {
   'tabs-menu': 'nav-one-native',
@@ -371,6 +377,7 @@ const suiteHome: Record<Suite, string> = {
   browser: 'nav-one-native-browser',
   'image-picker': 'nav-one-native-image-picker',
   'ui-map': 'nav-one-native-ui-map',
+  gpu: 'nav-one-native-gpu',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
 const firstState = (nodes: Node[]) =>
@@ -1704,9 +1711,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Boolean(control(n, 'CheckBox', 'Ripe'))
     )
     tap({ label: 'List button' })
-    await wait('a Button composed into a List emits', (n) =>
-      status(n, 'List taps', 1)
-    )
+    await wait('a Button composed into a List emits', (n) => status(n, 'List taps', 1))
     await pressSwitch('Ripe')
     await wait('a Toggle composed into a List emits', (n) => status(n, 'IsOn', 'true'))
 
@@ -1735,9 +1740,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
 
     // the first lazy rows mount; the last ones must not, because a LazyVStack that
     // built all thirty up front would be a VStack with extra steps.
-    await wait('a LazyVStack mounts its first rows', (n) =>
-      labels(n).includes('Row 1')
-    )
+    await wait('a LazyVStack mounts its first rows', (n) => labels(n).includes('Row 1'))
     if (labels(snapshot(config.simulatorId)).includes('Row 30'))
       throw new Error('a LazyVStack mounted rows it cannot show yet')
     await swipeBand(rowsBand, 'Row 30')
@@ -1745,9 +1748,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Row 30')
     )
 
-    await wait('a LazyHStack mounts its first chips', (n) =>
-      labels(n).includes('Chip 1')
-    )
+    await wait('a LazyHStack mounts its first chips', (n) => labels(n).includes('Chip 1'))
     if (labels(snapshot(config.simulatorId)).includes('Chip 20'))
       throw new Error('a LazyHStack mounted chips it cannot show yet')
     await swipeBand(chipsBand, 'Chip 20')
@@ -1820,10 +1821,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
               other.frame &&
               node.frame!.x >= other.frame.x &&
               node.frame!.y >= other.frame.y &&
-              node.frame!.x + node.frame!.width <=
-                other.frame.x + other.frame.width &&
-              node.frame!.y + node.frame!.height <=
-                other.frame.y + other.frame.height
+              node.frame!.x + node.frame!.width <= other.frame.x + other.frame.width &&
+              node.frame!.y + node.frame!.height <= other.frame.y + other.frame.height
           )
       )
       const button = nodes.find(
@@ -1834,8 +1833,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           image.frame.x >= node.frame.x &&
           image.frame.y >= node.frame.y &&
           image.frame.x + image.frame.width <= node.frame.x + node.frame.width &&
-          image.frame.y + image.frame.height <=
-            node.frame.y + node.frame.height
+          image.frame.y + image.frame.height <= node.frame.y + node.frame.height
       )
       if (!image?.frame || !button?.frame) return undefined
       return { image: image.frame, button: button.frame }
@@ -1862,24 +1860,28 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
 
     tap({ label: 'Details' })
-    await wait('a DisclosureGroup expands and emits', (n) =>
-      status(n, 'Expanded', 'true') && labels(n).includes('Hidden detail')
+    await wait(
+      'a DisclosureGroup expands and emits',
+      (n) => status(n, 'Expanded', 'true') && labels(n).includes('Hidden detail')
     )
     // refusing the collapse in React rolls the native value back and keeps the
     // content disclosed, the container case of the controlled protocol.
     tap({ id: 'one-native-groups-refuse' })
     tap({ label: 'Details' })
-    await wait('a refused collapse rolls back to expanded', (n) =>
-      status(n, 'Expanded', 'true') && labels(n).includes('Hidden detail')
+    await wait(
+      'a refused collapse rolls back to expanded',
+      (n) => status(n, 'Expanded', 'true') && labels(n).includes('Hidden detail')
     )
     tap({ id: 'one-native-groups-refuse' })
     tap({ label: 'Details' })
-    await wait('an accepted collapse hides the content', (n) =>
-      status(n, 'Expanded', 'false') && !labels(n).includes('Hidden detail')
+    await wait(
+      'an accepted collapse hides the content',
+      (n) => status(n, 'Expanded', 'false') && !labels(n).includes('Hidden detail')
     )
 
-    await wait('a Pager mounts on its selection', (n) =>
-      status(n, 'Pager', 'a') && Boolean(id(n, 'one-native-pager-a')?.frame)
+    await wait(
+      'a Pager mounts on its selection',
+      (n) => status(n, 'Pager', 'a') && Boolean(id(n, 'one-native-pager-a')?.frame)
     )
     {
       const nodes = await wait('a pager page is ready to swipe', (n) =>
@@ -1887,8 +1889,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
       swipeOver(id(nodes, 'one-native-pager-a')!.frame!, true)
     }
-    await wait('swiping a Pager selects the next page', (n) =>
-      status(n, 'Pager', 'b') && Boolean(id(n, 'one-native-pager-b')?.frame)
+    await wait(
+      'swiping a Pager selects the next page',
+      (n) => status(n, 'Pager', 'b') && Boolean(id(n, 'one-native-pager-b')?.frame)
     )
     {
       const nodes = await wait('the second pager page is ready', (n) =>
@@ -1901,9 +1904,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
 
     {
-      const nodes = await wait('a swipe row is ready', (n) =>
-        Boolean(box(n, 'Swipe me'))
-      )
+      const nodes = await wait('a swipe row is ready', (n) => Boolean(box(n, 'Swipe me')))
       swipeOver(box(nodes, 'Swipe me')!, true)
     }
     await wait('swiping a row reveals its trailing actions', (n) =>
@@ -1984,8 +1985,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         config.simulatorId
       )
     }
-    const fieldValue = (nodes: Node[]) =>
-      id(nodes, 'one-native-state-field')?.AXValue
+    const fieldValue = (nodes: Node[]) => id(nodes, 'one-native-state-field')?.AXValue
 
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
@@ -2009,16 +2009,19 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       point(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
     }
     await typeInto('shared TextField', 'ada', fieldValue)
-    await wait('field edits reach every view on the handle', (n) =>
-      fieldValue(n) === 'ada' && labels(n).includes('Mirror: ada')
+    await wait(
+      'field edits reach every view on the handle',
+      (n) => fieldValue(n) === 'ada' && labels(n).includes('Mirror: ada')
     )
 
     // writing from JavaScript lands in the native field and the mirror together.
     tap({ id: 'one-native-state-set' })
-    await wait('a handle write reaches the native field', (n) =>
-      fieldValue(n) === 'grace' &&
-      labels(n).includes('Mirror: grace') &&
-      status(n, 'Flag', 'true')
+    await wait(
+      'a handle write reaches the native field',
+      (n) =>
+        fieldValue(n) === 'grace' &&
+        labels(n).includes('Mirror: grace') &&
+        status(n, 'Flag', 'true')
     )
 
     // each flip proves the tapped toggle had converged on the shared value: turning
@@ -2165,8 +2168,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('load flips isLoaded and the hook follows', (n) =>
       Boolean(
         labels(n).includes('Loaded: true') &&
-          labels(n).includes('Status: loaded') &&
-          labels(n).includes('Hook: loaded')
+        labels(n).includes('Status: loaded') &&
+        labels(n).includes('Hook: loaded')
       )
     )
     // the sample A is a solid block no system font has; the pixels prove
@@ -2186,12 +2189,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('a wrong key rejects without becoming usable', (n) =>
       Boolean(
         labels(n).includes('Negative: rejected') &&
-          labels(n).includes('NegativeLoaded: false') &&
-          labelStarting(
-            n,
-            'NegativeError: Fonts.load: "OneNativeTestFont-Nope" is not usable after ' +
-              'registration (expected the PostScript name, file provides OneNativeTestFont-Regular)'
-          )
+        labels(n).includes('NegativeLoaded: false') &&
+        labelStarting(
+          n,
+          'NegativeError: Fonts.load: "OneNativeTestFont-Nope" is not usable after ' +
+            'registration (expected the PostScript name, file provides OneNativeTestFont-Regular)'
+        )
       )
     )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -2265,10 +2268,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       tap({ label: 'index' })
       await wait(`app-info recycle ${cycle}: home mounted`, () => true, true)
       await tapNav('nav-one-native-app-info')
-      await wait(`app-info recycle ${cycle}: stamped values return`, (n) =>
-        labels(n).includes('Version: 9.9.9') &&
-        labels(n).includes('Build: 4242') &&
-        labels(n).includes('ApplicationId: dev.vxrn.native.tests')
+      await wait(
+        `app-info recycle ${cycle}: stamped values return`,
+        (n) =>
+          labels(n).includes('Version: 9.9.9') &&
+          labels(n).includes('Build: 4242') &&
+          labels(n).includes('ApplicationId: dev.vxrn.native.tests')
       )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -2280,8 +2285,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // 16 bytes of hex. no-redbox comes from the shared wait, which throws
     // on a RedBox before any predicate can pass, and the Error: none wait
     // is the js-throw sweep: any crypto failure lands in the error label.
-    const uuidV4 =
-      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
+    const uuidV4 = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
     const hex32 = /^[0-9a-f]{32}$/
     const valueOf = (nodes: Node[], prefix: string) =>
       labels(nodes)
@@ -2293,12 +2297,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const random = valueOf(nodes, 'Random: ')
       return Boolean(
         first &&
-          second &&
-          random &&
-          uuidV4.test(first) &&
-          uuidV4.test(second) &&
-          first !== second &&
-          hex32.test(random)
+        second &&
+        random &&
+        uuidV4.test(first) &&
+        uuidV4.test(second) &&
+        first !== second &&
+        hex32.test(random)
       )
     }
     await wait('home screen mounted', () => true, true)
@@ -2866,8 +2870,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // while each pin is an element carrying the marker's title.
     const surface = (nodes: Node[]) => id(nodes, 'one-native-ui-map-view')
     const camera = (nodes: Node[]) =>
-      labels(nodes).find((label) => label.startsWith('Camera: '))?.slice('Camera: '.length) ??
-      'none'
+      labels(nodes)
+        .find((label) => label.startsWith('Camera: '))
+        ?.slice('Camera: '.length) ?? 'none'
     const reportedZoom = (nodes: Node[]) => Number(camera(nodes).split(',')[2])
     const moves = (nodes: Node[]) =>
       Number(
@@ -2957,23 +2962,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // centre sits under the Ferry Building POI.
     const frame = surface(snapshot(config.simulatorId))?.frame
     if (!frame) throw new Error('ui-map surface disappeared before the map tap')
-    point(frame.x + (frame.width * 0.85), frame.y + frame.height / 2)
-    await wait(
-      'tapping the map reports the tap point and keeps the marker tap',
-      (n) => {
-        if (!status(n, 'MarkerTap', 'coit')) return false
-        const tap = labels(n).find((label) => label.startsWith('MapTap: '))
-        if (!tap) return false
-        const [lat, lng] = tap.slice('MapTap: '.length).split(',').map(Number)
-        return (
-          Number.isFinite(lat) &&
-          Number.isFinite(lng) &&
-          Math.abs(lat - 37.7955) < 0.005 &&
-          lng > -122.36 &&
-          lng < -122.33
-        )
-      }
-    )
+    point(frame.x + frame.width * 0.85, frame.y + frame.height / 2)
+    await wait('tapping the map reports the tap point and keeps the marker tap', (n) => {
+      if (!status(n, 'MarkerTap', 'coit')) return false
+      const tap = labels(n).find((label) => label.startsWith('MapTap: '))
+      if (!tap) return false
+      const [lat, lng] = tap.slice('MapTap: '.length).split(',').map(Number)
+      return (
+        Number.isFinite(lat) &&
+        Number.isFinite(lng) &&
+        Math.abs(lat - 37.7955) < 0.005 &&
+        lng > -122.36 &&
+        lng < -122.33
+      )
+    })
     tap({ id: 'one-native-ui-map-overlays' })
     await wait('overlays toggle back on', (n) => status(n, 'Overlays', 'on'))
     await visualScreenshot('ui-map-overlays.png', 'ui-map-overlays')
@@ -2984,27 +2986,27 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         labels(n).some((label) => label.startsWith('Camera: 37.7955,-122.3937,')) &&
         zoomNear(n, 12)
     )
-    console.log(`ui-map probe: seeded zoom 12 reads back ${camera(snapshot(config.simulatorId))}`)
+    console.log(
+      `ui-map probe: seeded zoom 12 reads back ${camera(snapshot(config.simulatorId))}`
+    )
     const movesBeforeZoom = moves(snapshot(config.simulatorId))
     tap({ id: 'one-native-ui-map-zoom' })
     await wait(
       'zooming out moves the camera and reports it',
-      (n) =>
-        status(n, 'Zoom', 10) &&
-        zoomNear(n, 10) &&
-        moves(n) > movesBeforeZoom
+      (n) => status(n, 'Zoom', 10) && zoomNear(n, 10) && moves(n) > movesBeforeZoom
     )
-    console.log(`ui-map probe: seeded zoom 10 reads back ${camera(snapshot(config.simulatorId))}`)
+    console.log(
+      `ui-map probe: seeded zoom 10 reads back ${camera(snapshot(config.simulatorId))}`
+    )
     const movesBeforeZoomIn = moves(snapshot(config.simulatorId))
     tap({ id: 'one-native-ui-map-zoom' })
     await wait(
       'zooming in moves the camera and reports it',
-      (n) =>
-        status(n, 'Zoom', 14) &&
-        zoomNear(n, 14) &&
-        moves(n) > movesBeforeZoomIn
+      (n) => status(n, 'Zoom', 14) && zoomNear(n, 14) && moves(n) > movesBeforeZoomIn
     )
-    console.log(`ui-map probe: seeded zoom 14 reads back ${camera(snapshot(config.simulatorId))}`)
+    console.log(
+      `ui-map probe: seeded zoom 14 reads back ${camera(snapshot(config.simulatorId))}`
+    )
     const movesBeforePlace = moves(snapshot(config.simulatorId))
     tap({ id: 'one-native-ui-map-place-presidio' })
     await wait(
@@ -3015,6 +3017,51 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         moves(n) > movesBeforePlace
     )
     screenshot('ui-map-presidio.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'gpu') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    // the canvases publish no accessibility content of their own; the pane
+    // wrappers carry the test ids and the fixture reports paint through its
+    // status labels, one per pane plus the frame tick and shader verdict.
+    const triangle = (nodes: Node[]) => id(nodes, 'one-native-gpu-triangle')
+    const fiber = (nodes: Node[]) => id(nodes, 'one-native-gpu-fiber')
+    const ticks = (nodes: Node[]) =>
+      Number(
+        labels(nodes)
+          .find((label) => label.startsWith('Ticks: '))
+          ?.slice('Ticks: '.length) ?? -1
+      )
+    const shader = (nodes: Node[]) =>
+      labels(nodes)
+        .find((label) => label.startsWith('Shader: '))
+        ?.slice('Shader: '.length) ?? 'pending'
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-gpu')
+    await wait(
+      'fresh gpu fixture mounted',
+      (n) => Boolean(id(n, 'one-native-gpu-screen')) && status(n, 'Triangle', 'pending')
+    )
+    await wait(
+      'both canvases took layout',
+      (n) =>
+        triangle(n)?.frame?.height === 220 &&
+        fiber(n)?.frame?.height === 220 &&
+        (triangle(n)?.frame?.width ?? 0) > 0
+    )
+    await wait('raw webgpu triangle painted its first frame', (n) =>
+      status(n, 'Triangle', 'ready')
+    )
+    await wait('r3f scene painted its first frame', (n) => status(n, 'Fiber', 'ready'))
+    screenshot('gpu-painted.png')
+    const before = ticks(snapshot(config.simulatorId))
+    await wait('the fiber loop keeps rendering', (n) => ticks(n) > before)
+    await wait('shader probe reached a verdict', (n) => shader(n) !== 'pending')
+    console.log(`gpu probe: shader verdict ${shader(snapshot(config.simulatorId))}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -3377,8 +3424,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-dialog-lifecycle-toggle' })
     await wait(
       'root detaches while nothing presents',
-      (n) =>
-        labels(n).includes('Attach root') && status(n, 'Nested presented', 'false')
+      (n) => labels(n).includes('Attach root') && status(n, 'Nested presented', 'false')
     )
     tap({ id: 'one-native-dialog-lifecycle-open' })
     // a presenter mounted before root attachment stays silent: no dialog may appear
@@ -3387,7 +3433,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const silent = snapshot(config.simulatorId)
     if (dialogButton(silent, 'Cancel nested'))
       throw new Error('a nested presenter presented while its root was detached')
-    if (!status(silent, 'Nested presented', 'true') || !status(silent, 'Nested changes', 1))
+    if (
+      !status(silent, 'Nested presented', 'true') ||
+      !status(silent, 'Nested changes', 1)
+    )
       throw new Error('a detached root must hold React state without native events')
     tap({ id: 'one-native-dialog-lifecycle-toggle' })
     await wait('pending presentation appears on attach', nestedPresented)
@@ -3691,7 +3740,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         !status(n, 'Message', 'none'),
       false,
       () =>
-        `completion rows: ${labels(snapshot(config.simulatorId)).filter((label) => /Completions|Type|Message|User/.test(label)).join(' | ')}`
+        `completion rows: ${labels(snapshot(config.simulatorId))
+          .filter((label) => /Completions|Type|Message|User/.test(label))
+          .join(' | ')}`
     )
     screenshot('apple-file-signin-completion.png')
 
@@ -3761,8 +3812,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const isDark = (r: number, g: number, b: number) => r < 100 && g < 100 && b < 100
     const isBlue = (r: number, g: number, b: number) =>
       b > 180 && b > r + 60 && b > g + 40
-    const isRed = (r: number, g: number, b: number) =>
-      r > 180 && r > g + 60 && r > b + 60
+    const isRed = (r: number, g: number, b: number) => r > 180 && r > g + 60 && r > b + 60
     const pickerState = (image: ReturnType<typeof readPng>) => {
       if (countWhere(image, 70, 90, 130, 110, isDark) > 200) return 'folder' as const
       if (countWhere(image, 34, 229, 46, 241, isDark) > 50) return 'root' as const
@@ -3878,21 +3928,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-clipboard')
-    await wait('clipboard fixture mounted', (n) =>
-      labels(n).includes('Written: none')
-    )
+    await wait('clipboard fixture mounted', (n) => labels(n).includes('Written: none'))
     tap({ id: 'one-native-clipboard-set' })
-    await wait('setString reports true', (n) =>
-      labels(n).includes('Written: true')
-    )
+    await wait('setString reports true', (n) => labels(n).includes('Written: true'))
     tap({ id: 'one-native-clipboard-get' })
     await wait('getString reads the write back', (n) =>
       labels(n).includes('Read: one-native-clipboard-probe')
     )
     tap({ id: 'one-native-clipboard-has' })
-    await wait('hasString sees the string', (n) =>
-      labels(n).includes('Has: true')
-    )
+    await wait('hasString sees the string', (n) => labels(n).includes('Has: true'))
     screenshot('clipboard-roundtrip.png')
 
     for (const cycle of [1, 2]) {
@@ -3903,9 +3947,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         labels(n).includes('Written: none')
       )
       tap({ id: 'one-native-clipboard-get' })
-      await wait(
-        `clipboard recycle ${cycle}: the pasteboard outlives the fixture`,
-        (n) => labels(n).includes('Read: one-native-clipboard-probe')
+      await wait(`clipboard recycle ${cycle}: the pasteboard outlives the fixture`, (n) =>
+        labels(n).includes('Read: one-native-clipboard-probe')
       )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -3933,19 +3976,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const state = stateOf(n)
       return Boolean(
         state &&
-          state.type &&
-          state.type !== 'none' &&
-          state.connected === 'true' &&
-          state.reachable === 'true'
+        state.type &&
+        state.type !== 'none' &&
+        state.connected === 'true' &&
+        state.reachable === 'true'
       )
     })
     await wait('the listener fires at least once', (n) => eventsOf(n) >= 1)
     tap({ id: 'one-native-network-refresh' })
     await wait('a refresh re-reads live state', (n) => {
       const state = stateOf(n)
-      return Boolean(
-        state && state.connected === 'true' && state.reachable === 'true'
-      )
+      return Boolean(state && state.connected === 'true' && state.reachable === 'true')
     })
     screenshot('network-state.png')
 
@@ -3977,9 +4018,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const presented = await wait('the safari sheet presents', browserPresented)
     const app = presented.find((n) => n.type === 'Application')?.frame
     if (!app || app.width !== 393 || app.height !== 852)
-      throw new Error(
-        `Expected a 393x852 iPhone 16 display, got ${JSON.stringify(app)}`
-      )
+      throw new Error(`Expected a 393x852 iPhone 16 display, got ${JSON.stringify(app)}`)
     screenshot('browser-open.png')
     point(38, 81)
     await wait('a user dismiss resolves cancel', (n) =>
@@ -3988,9 +4027,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
 
     // a programmatic dismiss resolves dismiss on both promises.
     tap({ id: 'one-native-browser-open-dismiss' })
-    await wait('dismiss resolves dismiss', (n) =>
-      labels(n).includes('Opened: dismiss') &&
-      labels(n).includes('Dismissed: dismiss')
+    await wait(
+      'dismiss resolves dismiss',
+      (n) =>
+        labels(n).includes('Opened: dismiss') && labels(n).includes('Dismissed: dismiss')
     )
     screenshot('browser-dismiss.png')
 
@@ -4071,8 +4111,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('camera permission reads undecided', (n) =>
       Boolean(
         status(n, 'PermStatus', 'undetermined') &&
-          status(n, 'PermGranted', 'false') &&
-          status(n, 'PermCanAsk', 'true')
+        status(n, 'PermGranted', 'false') &&
+        status(n, 'PermCanAsk', 'true')
       )
     )
     tap({ id: 'one-native-image-picker-library' })
@@ -4104,20 +4144,19 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('picked asset resolves with its metadata', (n) =>
       Boolean(
         status(n, 'Result', 'ok') &&
-          status(n, 'Assets', 1) &&
-          status(n, 'Width', 80) &&
-          status(n, 'Height', 120) &&
-          dims(n).height > dims(n).width &&
-          status(n, 'Mime', 'image/jpeg') &&
-          labels(n).some(
-            (label) =>
-              label.startsWith('File: IMG_') && label.endsWith('.jpeg')
-          ) &&
-          labels(n).some((label) => {
-            const match = /^Size: (\d+)$/.exec(label)
-            return match !== null && Number(match[1]) > 0
-          }) &&
-          labels(n).some((label) => label.startsWith('Uri: file://'))
+        status(n, 'Assets', 1) &&
+        status(n, 'Width', 80) &&
+        status(n, 'Height', 120) &&
+        dims(n).height > dims(n).width &&
+        status(n, 'Mime', 'image/jpeg') &&
+        labels(n).some(
+          (label) => label.startsWith('File: IMG_') && label.endsWith('.jpeg')
+        ) &&
+        labels(n).some((label) => {
+          const match = /^Size: (\d+)$/.exec(label)
+          return match !== null && Number(match[1]) > 0
+        }) &&
+        labels(n).some((label) => label.startsWith('Uri: file://'))
       )
     )
     // newer simulators report a camera and prompt; older ones have none.

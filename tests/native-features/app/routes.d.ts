@@ -37,6 +37,7 @@ declare module 'one' {
         | `/one-native-fonts`
         | `/one-native-groups`
         | `/one-native-haptics`
+        | `/one-native-gpu`
         | `/one-native-host`
         | `/one-native-image-picker`
         | `/one-native-leaves`
@@ -70,5 +71,11 @@ declare module 'one' {
  */
 type RouteInfo<Params = Record<string, never>> = {
   Params: Params
-  LoaderProps: { path: string; search?: string; subdomain?: string; params: Params; request?: Request }
+  LoaderProps: {
+    path: string
+    search?: string
+    subdomain?: string
+    params: Params
+    request?: Request
+  }
 }

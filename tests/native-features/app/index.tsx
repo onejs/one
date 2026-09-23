@@ -81,6 +81,11 @@ const testScreens = [
     testID: 'nav-one-native-ui-map',
   },
   {
+    href: '/one-native-gpu',
+    label: 'One Native GPU',
+    testID: 'nav-one-native-gpu',
+  },
+  {
     href: '/one-native-lists',
     label: 'One Native Lists',
     testID: 'nav-one-native-lists',
@@ -121,7 +126,11 @@ const testScreens = [
     testID: 'nav-one-native-app-info',
   },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
-  { href: '/one-native-autogen', label: 'One Native SDK Generation', testID: 'nav-one-native-autogen' },
+  {
+    href: '/one-native-autogen',
+    label: 'One Native SDK Generation',
+    testID: 'nav-one-native-autogen',
+  },
   {
     href: '/one-native-android',
     label: 'One Native Android Proof',
