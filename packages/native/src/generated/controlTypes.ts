@@ -1740,6 +1740,7 @@ export interface OneNativeStyle {
   interactiveDismissDisabled?: boolean
   invalidatableContent?: boolean
   italic?: boolean
+  itemProvider?: string
   kerning?: number
   keyboardShortcutWithKeyAndModifiers?: Readonly<{
     key:
@@ -1986,6 +1987,7 @@ export interface OneNativeStyle {
       | { case: 'ended'; values: readonly [] }
   ) => void
   onDisappear?: () => void
+  onDrag?: string
   onDragSessionUpdated?: (value: { location: { x: number; y: number } }) => void
   onDropSessionUpdated?: (value: {
     itemsCount: number

@@ -5203,6 +5203,13 @@
       "ios": 16
     },
     {
+      "name": "itemProvider",
+      "kind": "string",
+      "type": "Swift.Optional<() -> Foundation.NSItemProvider?>",
+      "swiftExpression": "{ Foundation.NSItemProvider(object: $value as NSString) }",
+      "ios": 13
+    },
+    {
       "name": "kerning",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
@@ -7276,6 +7283,13 @@
       "type": "(() -> Swift.Void)?",
       "label": "perform",
       "ios": 13
+    },
+    {
+      "name": "onDrag",
+      "kind": "string",
+      "type": "@escaping () -> Foundation.NSItemProvider",
+      "swiftExpression": "{ Foundation.NSItemProvider(object: $value as NSString) }",
+      "ios": 13.4
     },
     {
       "name": "onDragSessionUpdated",
@@ -13385,6 +13399,7 @@
         "interactionActivityTrackingTag",
         "interactiveDismissDisabled",
         "invalidatableContent",
+        "itemProvider",
         "keyboardShortcut",
         "keyboardType",
         "labelIconToTitleSpacing",
@@ -13426,6 +13441,7 @@
         "navigationViewStyle",
         "onContinueUserActivity",
         "onContinuousHover",
+        "onDrag",
         "onDragSessionUpdated",
         "onDropSessionUpdated",
         "onHover",

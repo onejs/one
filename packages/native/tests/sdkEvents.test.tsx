@@ -291,6 +291,20 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('invalid struct value')
   })
 
+  it('configures drag item providers from strings', () => {
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      itemProvider: 'shared text',
+      onDrag: 'dragged text',
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['itemProvider', 'shared text'],
+      ['onDrag', 'dragged text'],
+    ])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      onDrag: 3 as unknown as string,
+    } })).toThrow('must be a string')
+  })
+
   it('round trips a Codable customization binding through native JSON', () => {
     const onChange = vi.fn()
     const current = '{"perTabState":[],"identifier":"D9754350-75EE-4390-AC54-159710381977","perSectionState":[]}'

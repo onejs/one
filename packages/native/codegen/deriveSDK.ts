@@ -549,6 +549,13 @@ export function deriveModifiers(
         return [{ name, module: method.module, kind: 'boolean', type: method.parameters[0].type,
           predicateInput: predicateValue, ios: ios(method), ...framework,
           ...(method.parameters[0].label === '_' ? {} : { label: method.parameters[0].label }) }]
+      if (method.parameters.length === 1 &&
+        (method.parameters[0].type === '@escaping () -> Foundation.NSItemProvider' ||
+          method.parameters[0].type === 'Swift.Optional<() -> Foundation.NSItemProvider?>'))
+        return [{ name, module: method.module, kind: 'string', type: method.parameters[0].type,
+          swiftExpression: '{ Foundation.NSItemProvider(object: $value as NSString) }',
+          ios: ios(method), ...framework,
+          ...(method.parameters[0].label === '_' ? {} : { label: method.parameters[0].label }) }]
       const resultCallback = method.parameters.filter((parameter) =>
         /^@escaping \(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> ([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)$/.test(parameter.type))
       if (resultCallback.length === 1 && method.parameters.every((parameter) =>
