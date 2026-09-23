@@ -9,9 +9,14 @@ import type {
   DatePickerStyle,
   ToggleStyle,
   MenuActionDismissBehavior,
-  TabBarMinimizeBehavior,
+  TabViewStyle,
   ButtonRole,
   TabRole,
+  TabPlacement,
+  AdaptableTabBarPlacement,
+  TabCustomizationBehavior,
+  TabSectionExpansion,
+  SpringLoadingBehavior,
   ControlGroupStyle,
   PrimitiveButtonStyle,
   ProgressViewStyle,
@@ -44,9 +49,14 @@ export type {
   DatePickerStyle,
   ToggleStyle,
   MenuActionDismissBehavior,
-  TabBarMinimizeBehavior,
+  TabViewStyle,
   ButtonRole,
   TabRole,
+  TabPlacement,
+  AdaptableTabBarPlacement,
+  TabCustomizationBehavior,
+  TabSectionExpansion,
+  SpringLoadingBehavior,
   ControlGroupStyle,
   PrimitiveButtonStyle,
   ProgressViewStyle,
@@ -155,22 +165,4 @@ export interface MenuProps extends ViewProps {
 // Native's own label on that subtree stands and the menu takes none of its own.
 export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel'> & {
   accessibilityLabel?: string
-}
-export interface TabProps {
-  id: string
-  title: string
-  systemImage?: string
-  badge?: string
-  role?: TabRole
-  testID?: string
-  // an action tab carries onPress instead of a page. Swift.Tabs requires exactly one of them.
-  onPress?: () => void
-  children?: ReactNode
-}
-export interface TabsProps extends ViewProps {
-  selection: string
-  onSelectionChange: (id: string) => void
-  revision?: number
-  sidebarAdaptable?: boolean
-  tabBarMinimizeBehavior?: TabBarMinimizeBehavior
 }

@@ -233,7 +233,7 @@ export function App() {
 React Navigation dependency. Each keyed page hosts ordinary RN views through
 `UIViewRepresentable`, preserving the React tree and its providers. SwiftUI's
 bounded page allocation updates Fabric state directly; Yoga lays out the RN
-subtree inside those bounds. `sidebarAdaptable` uses Apple's adaptive tab style.
+subtree inside those bounds.
 
 Native taps update the visible tab immediately and emit a numbered selection
 request. After `onSelectionChange` returns, the adapter acknowledges that request
@@ -253,13 +253,9 @@ optimistic selection to undo and no flash of an empty page. Every tab needs exac
 `onPress` and `children`, and the selection may not name an action tab.
 
 Add `role="search"` to detach it from the main tab bar pill. On iOS 18+ the search role is
-what moves a tab into its own capsule on the trailing side, which is the placement an action
-like Compose usually wants; without it the tab sits inside the pill alongside the pages.
-`search` is the only role the bindings carry (SDK symbols above iOS 26 are
-excluded until CI moves to a newer Xcode), so a non-search action borrows its
-placement, and only one tab can hold it. A role below its runtime version throws
-from the adapter; on iOS 17 tabs render through the legacy `TabView`, which has
-no roles.
+what moves a tab into its own capsule on the trailing side; iOS 27 adds `role="prominent"`.
+A role below its runtime version throws from the adapter; on iOS 17 tabs render through the
+legacy `TabView`, which has no roles.
 
 ```tsx
 <Swift.Tab
@@ -288,10 +284,53 @@ for mixed source values. Provide `onValueChange(id, value, sourceIndex)` and upd
 that source in React state. SwiftUI may update each source separately; use a
 functional state update to preserve every change. Button actions call `onAction`.
 
-`Swift.Tab` accepts `role="search"` (iOS 18+).
-`Swift.Tabs` accepts the SDK-derived `tabBarMinimizeBehavior` values (iOS 26+).
-Unsupported enum values, and values above the runtime iOS version, are rejected
-before submitting native props.
+`Swift.Tabs` covers SwiftUI's TabView surface. Every prop mirrors the SwiftUI name and
+takes the SDK's own values; unsupported values, and values above the runtime iOS version,
+are rejected before submitting native props.
+
+| SwiftUI | One |
+| --- | --- |
+| `TabView(selection:)` | `selection`, `onSelectionChange` |
+| `tabViewStyle` | `tabViewStyle`: `automatic`, `tabBarOnly`, `sidebarAdaptable`, `page` |
+| `Tab(_:systemImage:/image:value:role:)` | `Swift.Tab` `title`, `systemImage` or `image`, `role` |
+| `badge` | `badge` (string or number) |
+| `TabSection`, `sectionActions`, `defaultSectionExpansion` | `Swift.TabSection` `title`, `sectionActions` (`{ id, title, systemImage, onPress }[]`), `defaultSectionExpansion` |
+| TabContent `disabled`, `hidden`, `customizationID`, `customizationBehavior(_:for:)`, `defaultVisibility(_:for:)`, `tabPlacement`, `springLoadingBehavior`, `accessibilityLabel/Hint/Value/Identifier`, `help` | same-named props on `Swift.Tab` and `Swift.TabSection`; the placement forms take `{ behavior or visibility, for: [...] }` |
+| `tabViewCustomization(_:)` | `customization` (the `TabViewCustomization` JSON) and `onCustomizationChange` |
+| `tabViewBottomAccessory(isEnabled:)` and its placement | `Swift.TabViewBottomAccessory` `isEnabled`, `inline`, `expanded` |
+| `tabViewSidebarHeader`, `Footer`, `BottomBar` | `Swift.TabViewSlot` |
+| `toolbarVisibility(_:for: .tabBar)` | `tabBarVisibility` |
+| `tabBarMinimizeBehavior`, `tabViewSearchActivation`, `defaultTabBarPlacement`, `tint` and every other scalar View modifier | `swiftStyle` |
+
+```tsx
+<Swift.Tabs
+  selection={selection}
+  onSelectionChange={setSelection}
+  tabViewStyle="sidebarAdaptable"
+  swiftStyle={{ tabBarMinimizeBehavior: 'onScrollDown' }}
+>
+  <Swift.Tab id="home" title="Home" systemImage="house">...</Swift.Tab>
+  <Swift.TabSection id="library" title="Library" sectionActions={[{ id: 'add', title: 'Add', systemImage: 'plus', onPress: add }]}>
+    <Swift.Tab id="songs" title="Songs" systemImage="music.note" customizationID="songs">...</Swift.Tab>
+  </Swift.TabSection>
+  <Swift.Tab id="search" title="Search" systemImage="magnifyingglass" role="search">...</Swift.Tab>
+  <Swift.TabViewBottomAccessory>...</Swift.TabViewBottomAccessory>
+</Swift.Tabs>
+```
+
+On a foldable (measured on the iOS 27.1 iPhone Duo simulator with
+`tests/native-features/app/one-native-tabview.tsx`), SwiftUI places the bar
+and the app has nothing to decide:
+
+- Closed, Open landscape and Book show a vertical bar on the trailing edge; Open
+  portrait shows the horizontal bar. `sidebarAdaptable` never becomes a sidebar
+  there, so a two-pane layout on the open device is the app's own split.
+- The bottom accessory stays horizontal at the bottom beside a vertical bar, and
+  in Book it keeps to the leading half, clear of the fold.
+- `tabBarMinimizeBehavior` minimizes the horizontal bar when a React Native
+  `ScrollView` page scrolls, with no extra wiring; the vertical bar does not
+  minimize.
+- A page's React Native content already sits inside the vertical bar's inset.
 
 `Swift.Pager` is a tab bar without the bar: keyed React Native pages under the
 same controlled `selection`, swiped rather than tapped, with the page dots

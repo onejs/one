@@ -171,7 +171,6 @@
       "componentProvider": {
         "OneSwiftHost": "OneSwiftHostComponentView",
         "OneNativeMenu": "OneNativeMenuComponentView",
-        "OneNativeTabs": "OneNativeTabsComponentView",
         "OneNativeTab": "OneNativeTabComponentView",
         "OneNativeList": "OneNativeListComponentView",
         "OneNativeScrollView": "OneNativeScrollViewComponentView",
@@ -233,6 +232,7 @@
         "OneNativeLabeledContent": "OneNativeLabeledContentComponentView",
         "OneNativeButton": "OneNativeButtonComponentView",
         "OneNativeGlass": "OneNativeGlassComponentView",
+        "OneNativeTabs": "OneNativeTabsComponentView",
         "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
         "OneNativePopoverContent": "OneNativePopoverContentComponentView"

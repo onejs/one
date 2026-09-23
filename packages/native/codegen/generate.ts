@@ -299,24 +299,6 @@ export interface MenuProps extends ViewProps {
 export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel'> & {
   accessibilityLabel?: string
 }
-export interface TabProps {
-  id: string
-  title: string
-  systemImage?: string
-  badge?: string
-  role?: TabRole
-  testID?: string
-  // an action tab carries onPress instead of a page. Swift.Tabs requires exactly one of them.
-  onPress?: () => void
-  children?: ReactNode
-}
-export interface TabsProps extends ViewProps {
-  selection: string
-  onSelectionChange: (id: string) => void
-  revision?: number
-  sidebarAdaptable?: boolean
-  tabBarMinimizeBehavior?: TabBarMinimizeBehavior
-}
 `
 )
 const nativeFields = { parentId: { type: 'string' }, type: { type: 'string' }, ...fields }
@@ -485,14 +467,6 @@ for (const [type, cases] of Object.entries(enums)) {
   }
   swift += `    default: preconditionFailure("invalid ${type}: \\(value)")\n    }\n  }\n`
 }
-swift += `  @available(iOS 18.0, *)
-  @MainActor @TabContentBuilder<String> static func tab<Content: View>(id: String, title: String, systemImage: String, badge: String, role: String, @ViewBuilder content: () -> Content) -> some TabContent<String> {
-    Tab(value: id, role: tabRole(role)) { content() } label: {
-      if systemImage.isEmpty { Text(title) } else { Label(title, systemImage: systemImage) }
-    }
-    .badge(badge.isEmpty ? nil : Text(badge))
-  }
-`
 swift += '}\n\nextension View {\n'
 for (const method of methods) {
   if (method.type.endsWith('Style')) {
