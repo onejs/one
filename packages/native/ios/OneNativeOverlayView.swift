@@ -4,6 +4,7 @@ import UIKit
 private final class OverlayModel: ObservableObject {
   @Published var alignment = "center"
   @Published var slotName = ""
+  @Published var slotValues = "[]"
   @Published var overlay: AnyView?
 }
 
@@ -23,7 +24,7 @@ private struct OverlayRoot: View {
           if let overlay = model.overlay { overlay }
         }
       } else {
-        base.oneNativeViewSlot(model.slotName) {
+        base.oneNativeViewSlot(model.slotName, values: model.slotValues) {
           model.overlay ?? AnyView(EmptyView())
         }
       }
@@ -95,9 +96,10 @@ public final class OneNativeOverlayView: OneNativeContainerView {
     super.didMoveToWindow()
   }
 
-  public func configure(alignment: String, slotName: String) {
+  public func configure(alignment: String, slotName: String, slotValues: String) {
     if model.alignment != alignment { model.alignment = alignment }
     if model.slotName != slotName { model.slotName = slotName }
+    if model.slotValues != slotValues { model.slotValues = slotValues }
   }
 
   // an overlay-content marker carries the overlay subtree, so it is captured rather

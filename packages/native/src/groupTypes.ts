@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import type { ViewProps } from 'react-native'
 import type { ZStackAlignment } from './generated/containerTypes'
 import type { ControlGroupStyle } from './generated/swiftui'
-import type { ViewSlotName } from './generated/viewSlots'
+import type { ViewSlotConfiguration } from './generated/viewSlots'
 
 // hand-written round-2 container types, pending the container emitter (see
 // listTypes.ts for round 1). they merge into src/generated/containerTypes.ts
@@ -46,10 +46,7 @@ export interface OverlayContentProps extends ViewProps {
   children: ReactNode
 }
 
-export interface ViewSlotProps extends ViewProps {
-  name: ViewSlotName
-  children: ReactNode
-}
+export type ViewSlotProps = ViewProps & ViewSlotConfiguration & { children: ReactNode }
 
 export interface SwipeActionsProps extends ViewProps {
   children: ReactNode

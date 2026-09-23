@@ -378,6 +378,9 @@
         },
         "slotName": {
           "type": "string"
+        },
+        "slotValues": {
+          "type": "string"
         }
       },
       "events": {},

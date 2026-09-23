@@ -250,12 +250,17 @@ describe('SDK view slots', () => {
         { label: 'allowsFullSwipe', name: 'allowsFullSwipe', type: 'Swift.Bool', defaultValue: 'true' },
         content,
       ]), requirements: requirement },
+      { ...method('contentToolbar', 'SwiftUI', [
+        { label: 'for', name: 'placement', type: 'SwiftUI.ContentToolbarPlacement' }, content,
+      ]), requirements: requirement },
+      { ...method('placement', 'SwiftUI'), kind: 'static', owner: 'ContentToolbarPlacement', type: 'SwiftUI.ContentToolbarPlacement' },
     ], 27)).toEqual([
-      { name: 'accessibilityChildren', module: 'SwiftUI', label: 'children', ios: 0 },
-      { name: 'searchSuggestions', module: 'SwiftUI', label: '_', ios: 0 },
-      { name: 'swipeActions', module: 'SwiftUI', label: 'content', ios: 0 },
-      { name: 'tabViewBottomAccessory', module: 'SwiftUI', label: 'content', ios: 0 },
-      { name: 'tabViewSidebarHeader', module: 'SwiftUI', label: 'content', ios: 0 },
+      { name: 'accessibilityChildren', module: 'SwiftUI', label: 'children', ios: 0, arguments: [] },
+      { name: 'contentToolbar', module: 'SwiftUI', label: 'content', ios: 0, arguments: [{ field: 'placement', label: 'for', type: 'SwiftUI.ContentToolbarPlacement', kind: 'enum', optional: false, cases: [{ name: 'placement', ios: 0 }] }] },
+      { name: 'searchSuggestions', module: 'SwiftUI', label: '_', ios: 0, arguments: [] },
+      { name: 'swipeActions', module: 'SwiftUI', label: 'content', ios: 0, arguments: [] },
+      { name: 'tabViewBottomAccessory', module: 'SwiftUI', label: 'content', ios: 0, arguments: [] },
+      { name: 'tabViewSidebarHeader', module: 'SwiftUI', label: 'content', ios: 0, arguments: [] },
     ])
   })
 })
