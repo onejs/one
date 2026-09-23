@@ -244,7 +244,7 @@ describe('native menu payload', () => {
     ).toEqual([false])
   })
 
-  it('gates ButtonRole.confirm and tabBarMinimizeBehavior by OS via assertSwiftUIValue', () => {
+  it('gates ButtonRole.confirm and TabRole.prominent by OS via assertSwiftUIValue', () => {
     // the default version is the package floor, so a case introduced at the floor passes with no
     // explicit version. anything above the floor still throws, which is what keeps the generated
     // version data honest once the SDK starts carrying cases above it.
@@ -265,12 +265,12 @@ describe('native menu payload', () => {
       'ButtonRole.confirm requires iOS 26'
     )
     expect(() => assertSwiftUIValue('ButtonRole', 'confirm', 26)).not.toThrow()
-    expect(() => assertSwiftUIValue('TabBarMinimizeBehavior', 'never', 18)).toThrow(
-      'TabBarMinimizeBehavior.never requires iOS 26'
+    expect(() => assertSwiftUIValue('TabRole', 'prominent', 26)).toThrow(
+      'TabRole.prominent requires iOS 27'
     )
-    expect(() => assertSwiftUIValue('TabBarMinimizeBehavior', 'never', 26)).not.toThrow()
-    expect(() => assertSwiftUIValue('TabBarMinimizeBehavior', 'always', 26)).toThrow(
-      'Unknown SwiftUI TabBarMinimizeBehavior: always'
+    expect(() => assertSwiftUIValue('TabRole', 'prominent', 27)).not.toThrow()
+    expect(() => assertSwiftUIValue('TabRole', 'always', 27)).toThrow(
+      'Unknown SwiftUI TabRole: always'
     )
   })
 })

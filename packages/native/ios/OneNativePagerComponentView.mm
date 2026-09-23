@@ -64,8 +64,8 @@ using namespace facebook::react;
   for (OneNativeTabComponentView *page in _pages) {
     __weak OneNativeTabComponentView *weakPage = page;
     OneNativeTabItem *item = [[OneNativeTabItem alloc]
-      initWithId:page.tabId title:@"" systemImage:@"" badge:@"" role:@""
-      action:NO slotHeight:0 view:page onLayout:^(CGRect frame) {
+      initWithId:page.tabId kind:@"page" title:@"" systemImage:@"" badge:@"" role:@""
+      slotHeight:0 tabModifiers:@"{}" view:page onLayout:^(CGRect frame) {
         OneNativeTabComponentView *strongPage = weakPage;
         if (strongPage.tabs) [strongPage updateNativeFrame:frame];
       }];

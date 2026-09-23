@@ -6,6 +6,7 @@
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
+#import "OneNativeStyleDictionary.h"
 
 using namespace facebook::react;
 
@@ -37,6 +38,18 @@ using namespace facebook::react;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const OneNativeTabsEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeTabsAction({.tabId = std::string(tabId.UTF8String)});
+    };
+    _tabsView.onCustomization = ^(NSString *customization) {
+      OneNativeTabsComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeTabsEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeTabsCustomizationChange({.customization = std::string(customization.UTF8String)});
+    };
+    _tabsView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeTabsComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeTabsEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
     };
   }
   return self;
@@ -71,8 +84,8 @@ using namespace facebook::react;
   for (OneNativeTabComponentView *page in _pages) {
     __weak OneNativeTabComponentView *weakPage = page;
     OneNativeTabItem *item = [[OneNativeTabItem alloc]
-      initWithId:page.tabId title:page.title systemImage:page.systemImage badge:page.badge role:page.role
-      action:page.action slotHeight:page.slotHeight view:page onLayout:^(CGRect frame) {
+      initWithId:page.tabId kind:page.kind title:page.title systemImage:page.systemImage badge:page.badge
+      role:page.role slotHeight:page.slotHeight tabModifiers:page.tabModifiers view:page onLayout:^(CGRect frame) {
         OneNativeTabComponentView *strongPage = weakPage;
         if (strongPage.tabs) [strongPage updateNativeFrame:frame];
       }];
@@ -83,8 +96,13 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeTabsProps>(props);
-  [_tabsView setSelection:RCTNSStringFromString(next.selection) acknowledgedEvent:next.acknowledgedEvent revision:next.revision
-         sidebarAdaptable:next.sidebarAdaptable tabBarMinimizeBehavior:RCTNSStringFromString(next.tabBarMinimizeBehavior)];
+  [_tabsView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
+  [_tabsView configureWithTabViewStyle:RCTNSStringFromString(next.tabViewStyle)
+    tabBarVisibility:RCTNSStringFromString(next.tabBarVisibility)
+    customization:RCTNSStringFromString(next.customization)
+    customizable:next.customizable
+    bottomAccessoryEnabled:next.bottomAccessoryEnabled];
+  [_tabsView setSelection:RCTNSStringFromString(next.selection) acknowledgedEvent:next.acknowledgedEvent revision:next.revision];
   [super updateProps:props oldProps:oldProps];
 }
 
@@ -110,12 +128,13 @@ using namespace facebook::react;
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeTabProps>();
     _tabId = @"";
+    _kind = @"page";
     _title = @"";
     _systemImage = @"";
     _badge = @"";
     _role = @"";
-    _action = NO;
     _slotHeight = 0;
+    _tabModifiers = @"{}";
   }
   return self;
 }
@@ -127,16 +146,20 @@ using namespace facebook::react;
   NSString *systemImage = RCTNSStringFromString(next.systemImage);
   NSString *badge = RCTNSStringFromString(next.badge);
   NSString *role = RCTNSStringFromString(next.tabRole);
-  BOOL changed = ![self.tabId isEqualToString:tabId] || ![self.title isEqualToString:title] ||
-    ![self.systemImage isEqualToString:systemImage] || ![self.badge isEqualToString:badge] ||
-    ![self.role isEqualToString:role] || self.action != next.action || self.slotHeight != next.slotHeight;
+  NSString *kind = RCTNSStringFromString(next.kind);
+  NSString *tabModifiers = RCTNSStringFromString(next.tabModifiers);
+  BOOL changed = ![self.tabId isEqualToString:tabId] || ![self.kind isEqualToString:kind] ||
+    ![self.title isEqualToString:title] || ![self.systemImage isEqualToString:systemImage] ||
+    ![self.badge isEqualToString:badge] || ![self.role isEqualToString:role] ||
+    self.slotHeight != next.slotHeight || ![self.tabModifiers isEqualToString:tabModifiers];
   self.tabId = tabId;
+  self.kind = kind;
   self.title = title;
   self.systemImage = systemImage;
   self.badge = badge;
   self.role = role;
-  self.action = next.action;
   self.slotHeight = next.slotHeight;
+  self.tabModifiers = tabModifiers;
   if (changed) [self.tabs invalidatePages];
   [super updateProps:props oldProps:oldProps];
 }
@@ -168,7 +191,7 @@ using namespace facebook::react;
   [super prepareForRecycle];
   self.tabs = nil;
   _tabState.reset();
-  _tabId = @""; _title = @""; _systemImage = @""; _badge = @""; _role = @"";
+  _tabId = @""; _kind = @"page"; _title = @""; _systemImage = @""; _badge = @""; _role = @""; _tabModifiers = @"{}";
 }
 
 @end

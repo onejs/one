@@ -3,7 +3,7 @@ import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './Androi
 import { Page, Pager } from './Pager.native';
 import { Popover } from './Popover.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
-import { Tab, Tabs, TabViewBottomAccessory, TabViewSlot } from './Tabs.native';
+import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native';
 import { Compose } from './compose';
 import * as UI from './effects';
 export * from './extras';
@@ -43,6 +43,7 @@ export declare const Swift: {
     EmptyView({ swiftStyle, style, ...props }: import("./types").EmptyViewProps): import("react/jsx-runtime").JSX.Element;
     Tabs: typeof Tabs;
     Tab: typeof Tab;
+    TabSection: typeof TabSection;
     TabViewBottomAccessory: typeof TabViewBottomAccessory;
     TabViewSlot: typeof TabViewSlot;
     Menu: typeof AndroidMenu;

@@ -20,7 +20,7 @@ export const modifiers = [
     type: 'MenuActionDismissBehavior',
   },
   { name: 'controlGroupStyle', type: 'ControlGroupStyle' },
-  { name: 'tabBarMinimizeBehavior', type: 'TabBarMinimizeBehavior' },
+  { name: 'tabViewStyle', type: 'TabViewStyle' },
   { name: 'buttonStyle', type: 'PrimitiveButtonStyle' },
   { name: 'progressViewStyle', type: 'ProgressViewStyle' },
   { name: 'gaugeStyle', type: 'GaugeStyle' },
@@ -218,9 +218,14 @@ export const enumTypes = [
   'DatePickerStyle',
   'ToggleStyle',
   'MenuActionDismissBehavior',
-  'TabBarMinimizeBehavior',
+  'TabViewStyle',
   'ButtonRole',
   'TabRole',
+  'TabPlacement',
+  'AdaptableTabBarPlacement',
+  'TabCustomizationBehavior',
+  'TabSectionExpansion',
+  'SpringLoadingBehavior',
   'ControlGroupStyle',
   'PrimitiveButtonStyle',
   'ProgressViewStyle',
@@ -458,45 +463,22 @@ export const components = [
     interfaceOnly: false,
   },
   {
-    name: 'OneNativeTabs',
-    publicName: 'Tabs',
-    props: {
-      selection: 'string',
-      sidebarAdaptable: 'boolean',
-      tabBarMinimizeBehavior: 'string',
-      ...controlledProps,
-    },
-    events: {
-      onNativeTabsSelectionChange: { selection: 'string', ...controlledEvent },
-      // pressing an action tab is not a state change, so it carries no controlled event.
-      onNativeTabsAction: { tabId: 'string' },
-    },
-    enumProps: { tabBarMinimizeBehavior: 'TabBarMinimizeBehavior' },
-    controlled: { value: 'selection', event: 'onNativeTabsSelectionChange' },
-    layout: { kind: 'container' },
-    slots: [
-      {
-        name: 'pages',
-        content: 'OneNativeTab',
-        cardinality: 'many',
-        key: 'tabId',
-        layout: 'swiftui',
-      },
-    ],
-    interfaceOnly: false,
-  },
-  {
     name: 'OneNativeTab',
     publicName: 'Tab',
     props: {
       tabId: 'string',
+      // page, action, section, accessoryInline, accessoryExpanded or slot: what the entry
+      // becomes inside the TabView. an action tab reports presses and never becomes the
+      // selection; a section groups the tabs naming it and hosts its sectionActions.
+      kind: 'string',
       title: 'string',
       systemImage: 'string',
       badge: 'string',
       tabRole: 'string',
       slotHeight: 'Double',
-      // an action tab reports presses and never becomes the selection.
-      action: 'boolean',
+      // the TabContent modifiers, as JSON the way swiftStyle carries sdkModifiers, so a new
+      // SDK TabContent modifier adds a field here rather than a Fabric prop on every page.
+      tabModifiers: 'string',
     },
     events: {},
     enumProps: { tabRole: 'TabRole' },

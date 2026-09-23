@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
-import type { MenuOrder, MenuActionDismissBehavior, TabBarMinimizeBehavior, ButtonRole, TabRole, ControlGroupStyle } from './swiftui';
-export type { MenuOrder, Visibility, PickerStyle, DatePickerStyle, ToggleStyle, MenuActionDismissBehavior, TabBarMinimizeBehavior, ButtonRole, TabRole, ControlGroupStyle, PrimitiveButtonStyle, ProgressViewStyle, GaugeStyle, TextFieldStyle, SubmitLabel, TextInputAutocapitalization, Axis, Edge, PresentationAdaptation, PresentationContentInteraction, ColorScheme, DynamicTypeSize, ControlSize, SymbolRenderingMode, SymbolVariants, ImageScale, PhotosPickerSelectionBehavior, EncodingDisambiguationPolicy, BackForwardNavigationGesturesBehavior, MagnificationGesturesBehavior, LinkPreviewBehavior, ElementFullscreenBehavior, ListStyle, } from './swiftui';
+import type { MenuOrder, MenuActionDismissBehavior, ButtonRole, ControlGroupStyle } from './swiftui';
+export type { MenuOrder, Visibility, PickerStyle, DatePickerStyle, ToggleStyle, MenuActionDismissBehavior, TabViewStyle, ButtonRole, TabRole, TabPlacement, AdaptableTabBarPlacement, TabCustomizationBehavior, TabSectionExpansion, SpringLoadingBehavior, ControlGroupStyle, PrimitiveButtonStyle, ProgressViewStyle, GaugeStyle, TextFieldStyle, SubmitLabel, TextInputAutocapitalization, Axis, Edge, PresentationAdaptation, PresentationContentInteraction, ColorScheme, DynamicTypeSize, ControlSize, SymbolRenderingMode, SymbolVariants, ImageScale, PhotosPickerSelectionBehavior, EncodingDisambiguationPolicy, BackForwardNavigationGesturesBehavior, MagnificationGesturesBehavior, LinkPreviewBehavior, ElementFullscreenBehavior, ListStyle, } from './swiftui';
 export interface SwiftMenuAction {
     type: 'action';
     id: string;
@@ -72,21 +72,4 @@ export interface MenuProps extends ViewProps {
 export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel'> & {
     accessibilityLabel?: string;
 };
-export interface TabProps {
-    id: string;
-    title: string;
-    systemImage?: string;
-    badge?: string;
-    role?: TabRole;
-    testID?: string;
-    onPress?: () => void;
-    children?: ReactNode;
-}
-export interface TabsProps extends ViewProps {
-    selection: string;
-    onSelectionChange: (id: string) => void;
-    revision?: number;
-    sidebarAdaptable?: boolean;
-    tabBarMinimizeBehavior?: TabBarMinimizeBehavior;
-}
 //# sourceMappingURL=types.d.ts.map

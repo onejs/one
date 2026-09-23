@@ -85,6 +85,41 @@ export function emitControls(
   controls: readonly Control[]
 ) {
   if (!controls.length) return
+  // every Fabric host with a swiftStyle struct converts it through this one template, so a
+  // new style field reaches handwritten hosts (Button, Tabs) and generated ones alike.
+  outputs.set(
+    'ios/Generated/OneNativeStyleDictionary.h',
+    header +
+      `#pragma once
+// C++ only: the Swift module umbrella imports every public header, so the guard keeps
+// this template out of Swift's clang module.
+#ifdef __cplusplus
+#import <Foundation/Foundation.h>
+#import <React/RCTConversions.h>
+
+template <typename SwiftStyle>
+static NSDictionary *OneNativeStyleDictionary(const SwiftStyle &swiftStyle) {
+  NSMutableDictionary *style = [NSMutableDictionary new];
+${styleFields
+  .map((field) => {
+    switch (field.kind) {
+      case 'number':
+        return `  if (swiftStyle.${field.name} >= 0) style[@"${field.name}"] = @(swiftStyle.${field.name});`
+      case 'string':
+        return `  if (!swiftStyle.${field.name}.empty()) style[@"${field.name}"] = RCTNSStringFromString(swiftStyle.${field.name});`
+      case 'boolean':
+        return `  if (swiftStyle.${field.name}) style[@"${field.name}"] = @YES;`
+      case 'color':
+        return `  if (swiftStyle.${field.name}) { UIColor *c = RCTUIColorFromSharedColor(swiftStyle.${field.name}); if (c) style[@"${field.name}"] = c; }`
+    }
+  })
+  .join('\n')}
+  if (!swiftStyle.sdkModifiers.empty()) style[@"sdkModifiers"] = RCTNSStringFromString(swiftStyle.sdkModifiers);
+  return style;
+}
+#endif
+`
+  )
   const hasSDKEvents = derivedModifiers.some((modifier) => modifier.kind === 'event' || modifier.kind.startsWith('binding'))
   const publicStyleFields: readonly StyleField[] = [
     ...styleFields,
@@ -757,6 +792,7 @@ extern const char ${nativeName}ComponentName[] = "${nativeName}";
 ${value?.sync ? `#import "OneNativeSyncBridge.h"\n` : ''}${measured ? `#import "${nativeName}ShadowNode.h"\n#import "OneNativeMeasuredHeight.h"` : '#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>'}
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
+#import "OneNativeStyleDictionary.h"
 using namespace facebook::react;
 @implementation ${nativeName}ComponentView { ${nativeName}View *_nativeView;${measured ? ' OneNativeMeasuredHeight *_measured;' : ''}${arrayFields.map(([key]) => ` BOOL _${key}Dirty;`).join('')}${value?.sync ? ' int32_t _syncStateId;' : ''} }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<${nativeName}ComponentDescriptor>(); }
@@ -858,23 +894,7 @@ ${arrayFields.length ? `  const auto &previous = *std::static_pointer_cast<const
     hint:RCTNSStringFromString(next.accessibilityHint)
     value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
     identifier:RCTNSStringFromString(next.testId)];
-  NSMutableDictionary *style = [NSMutableDictionary new];
-${styleFields
-  .map((field) => {
-    switch (field.kind) {
-      case 'number':
-        return `  if (next.swiftStyle.${field.name} >= 0) style[@"${field.name}"] = @(next.swiftStyle.${field.name});`
-      case 'string':
-        return `  if (!next.swiftStyle.${field.name}.empty()) style[@"${field.name}"] = RCTNSStringFromString(next.swiftStyle.${field.name});`
-      case 'boolean':
-        return `  if (next.swiftStyle.${field.name}) style[@"${field.name}"] = @YES;`
-      case 'color':
-        return `  if (next.swiftStyle.${field.name}) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.${field.name}); if (c) style[@"${field.name}"] = c; }`
-    }
-  })
-  .join('\n')}
-  if (!next.swiftStyle.sdkModifiers.empty()) style[@"sdkModifiers"] = RCTNSStringFromString(next.swiftStyle.sdkModifiers);
-  [_nativeView configureStyle:style];
+  [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
 ${value?.sync ? `  _syncStateId = next.syncStateId;\n` : ''}${call.length ? `  [_nativeView configure:${call[0].expression}
     ${call
       .slice(1)

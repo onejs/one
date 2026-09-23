@@ -6,8 +6,7 @@
     "tabViewCustomization",
     "tabViewSidebarBottomBar",
     "tabViewSidebarFooter",
-    "tabViewSidebarHeader",
-    "tabViewStyle"
+    "tabViewSidebarHeader"
   ],
   "enums": {
     "MenuOrder": {
@@ -46,11 +45,11 @@
       "enabled": 16.4,
       "disabled": 16.4
     },
-    "TabBarMinimizeBehavior": {
-      "automatic": 26,
-      "onScrollDown": 26,
-      "onScrollUp": 26,
-      "never": 26
+    "TabViewStyle": {
+      "sidebarAdaptable": 18,
+      "page": 14,
+      "tabBarOnly": 18,
+      "automatic": 14
     },
     "ButtonRole": {
       "destructive": 15,
@@ -61,6 +60,31 @@
     "TabRole": {
       "search": 18,
       "prominent": 27
+    },
+    "TabPlacement": {
+      "automatic": 18,
+      "pinned": 18,
+      "sidebarOnly": 18
+    },
+    "AdaptableTabBarPlacement": {
+      "automatic": 18,
+      "tabBar": 18,
+      "sidebar": 18
+    },
+    "TabCustomizationBehavior": {
+      "automatic": 18,
+      "reorderable": 18,
+      "disabled": 18
+    },
+    "TabSectionExpansion": {
+      "automatic": 27,
+      "expanded": 27,
+      "collapsed": 27
+    },
+    "SpringLoadingBehavior": {
+      "automatic": 17,
+      "enabled": 17,
+      "disabled": 17
     },
     "ControlGroupStyle": {
       "palette": 17,
@@ -335,17 +359,19 @@
       ]
     },
     {
-      "name": "tabBarMinimizeBehavior",
-      "type": "TabBarMinimizeBehavior",
-      "ios": 26,
+      "name": "tabViewStyle",
+      "type": "TabViewStyle",
+      "ios": 14,
       "parameters": [
         {
           "label": "_",
-          "name": "behavior",
-          "type": "SwiftUI.TabBarMinimizeBehavior"
+          "name": "style",
+          "type": "S"
         }
       ],
-      "requirements": []
+      "requirements": [
+        "S : SwiftUI.TabViewStyle"
+      ]
     },
     {
       "name": "buttonStyle",
@@ -2755,6 +2781,7 @@
         "tabViewSidebarBottomBar",
         "tabViewSidebarFooter",
         "tabViewSidebarHeader",
+        "tabViewStyle",
         "tableColumnHeaders",
         "textFieldStyle",
         "textInputAutocapitalization",

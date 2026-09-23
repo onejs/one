@@ -10,12 +10,13 @@ import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNati
 
 interface NativeProps extends ViewProps {
   tabId: string
+  kind: string
   title: string
   systemImage: string
   badge: string
   tabRole: string
   slotHeight: Double
-  action: boolean
+  tabModifiers: string
 }
 export default codegenNativeComponent<NativeProps>('OneNativeTab', {
   interfaceOnly: true,

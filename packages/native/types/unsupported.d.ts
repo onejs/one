@@ -1,6 +1,7 @@
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GroupProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LinkProps, ListProps, MenuProps, OverlayContentProps, OverlayProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ZStackProps } from './types';
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GroupProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LinkProps, ListProps, MenuProps, OverlayContentProps, OverlayProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ZStackProps } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
+declare function TabSection(_props: TabSectionProps): never;
 declare function TabViewBottomAccessory(_props: TabViewBottomAccessoryProps): never;
 declare function TabViewSlot(_props: TabViewSlotProps): never;
 declare function Menu(_props: MenuProps): never;
@@ -68,6 +69,7 @@ export declare const Swift: {
     EmptyView: (_props: import("./types").EmptyViewProps) => never;
     Tabs: typeof Tabs;
     Tab: typeof Tab;
+    TabSection: typeof TabSection;
     TabViewBottomAccessory: typeof TabViewBottomAccessory;
     TabViewSlot: typeof TabViewSlot;
     Menu: typeof Menu;
