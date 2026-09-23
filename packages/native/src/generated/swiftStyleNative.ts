@@ -46,21 +46,35 @@ const colorFields = [
 const sdkKinds = {
   accentColor: 'optionalEnum',
   accessibilityAction: 'event',
-  accessibilityActivationPoint: 'string',
+  accessibilityActivationPointWithActivationPointAndIsEnabled: 'record',
+  accessibilityActivationPointWithUnitPoint: 'string',
   accessibilityAddTraits: 'string',
+  accessibilityDirectTouch: 'record',
+  accessibilityDragPointWithPointAndDescription: 'record',
+  accessibilityDragPointWithPointAndDescriptionAndIsEnabled: 'record',
+  accessibilityDropPointWithPointAndDescription: 'record',
+  accessibilityDropPointWithPointAndDescriptionAndIsEnabled: 'record',
   accessibilityElement: 'string',
   accessibilityHeading: 'string',
-  accessibilityHidden: 'boolean',
-  accessibilityHint: 'string',
-  accessibilityIdentifier: 'string',
+  accessibilityHiddenWithBool: 'boolean',
+  accessibilityHiddenWithHiddenAndIsEnabled: 'record',
+  accessibilityHintWithHintAndIsEnabled: 'record',
+  accessibilityHintWithText: 'string',
+  accessibilityIdentifierWithIdentifierAndIsEnabled: 'record',
+  accessibilityIdentifierWithString: 'string',
   accessibilityIgnoresInvertColors: 'boolean',
-  accessibilityLabel: 'string',
+  accessibilityLabelWithLabelAndIsEnabled: 'record',
+  accessibilityLabelWithText: 'string',
   accessibilityRemoveTraits: 'string',
-  accessibilityRespondsToUserInteraction: 'boolean',
+  accessibilityRespondsToUserInteractionWithBool: 'boolean',
+  accessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled:
+    'record',
+  accessibilityScrollStatus: 'record',
   accessibilityShowsLargeContentViewer: 'boolean',
   accessibilitySortPriority: 'number',
   accessibilityTextContentType: 'string',
-  accessibilityValue: 'string',
+  accessibilityValueWithText: 'string',
+  accessibilityValueWithValueDescriptionAndIsEnabled: 'record',
   accessibilityWithActivationPoint: 'string',
   accessibilityWithAddTraits: 'string',
   accessibilityWithHidden: 'boolean',
@@ -77,6 +91,7 @@ const sdkKinds = {
   allowsWindowActivationEventsWithNoArguments: 'boolean',
   allowsWindowActivationEventsWithOptionalBool: 'optionalBoolean',
   animation: 'optionalEnum',
+  aspectRatio: 'record',
   assistiveAccessNavigationIcon: 'string',
   autocorrectionDisabled: 'boolean',
   backgroundExtensionEffectWithIsEnabled: 'boolean',
@@ -86,6 +101,7 @@ const sdkKinds = {
   badgeWithOptionalText: 'optionalString',
   baselineOffset: 'number',
   blendMode: 'string',
+  blur: 'record',
   bold: 'boolean',
   brightness: 'number',
   buttonBorderShape: 'string',
@@ -96,12 +112,18 @@ const sdkKinds = {
   colorMultiply: 'string',
   colorScheme: 'string',
   compositingGroup: 'boolean',
+  containerCornerOffset: 'record',
+  containerRelativeFrameWithAxesAndAlignment: 'record',
+  containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment: 'record',
+  contentMarginsWithEdgesAndLengthAndPlacement: 'record',
+  contentMarginsWithLengthAndPlacement: 'record',
   contentTransition: 'string',
   contrast: 'number',
   controlSize: 'string',
   defaultAdaptableTabBarPlacement: 'string',
   defaultHoverEffect: 'optionalEnum',
-  defaultScrollAnchor: 'optionalEnum',
+  defaultScrollAnchorWithAnchorAndRole: 'record',
+  defaultScrollAnchorWithOptionalUnitPoint: 'optionalEnum',
   defaultTabBarPlacement: 'string',
   defersSystemGestures: 'string',
   deleteDisabled: 'boolean',
@@ -110,6 +132,7 @@ const sdkKinds = {
   disabled: 'boolean',
   documentLaunchSubtitle: 'string',
   documentLaunchTitle: 'string',
+  drawingGroup: 'record',
   dynamicTypeSize: 'string',
   edgesIgnoringSafeArea: 'string',
   fileDialogBrowserOptions: 'string',
@@ -120,9 +143,11 @@ const sdkKinds = {
   fileExporterFilenameLabel: 'optionalString',
   findDisabled: 'boolean',
   findNavigator: 'bindingBoolean',
-  fixedSize: 'boolean',
+  fixedSizeWithHorizontalAndVertical: 'record',
+  fixedSizeWithNoArguments: 'boolean',
   flipsForRightToLeftLayoutDirection: 'boolean',
-  focusable: 'boolean',
+  focusableWithBool: 'boolean',
+  focusableWithIsFocusableAndInteractions: 'record',
   focusEffectDisabled: 'boolean',
   fontWidth: 'optionalEnum',
   foregroundColor: 'optionalEnum',
@@ -133,18 +158,25 @@ const sdkKinds = {
   gridCellColumns: 'number',
   gridCellUnsizedAxes: 'string',
   gridColumnAlignment: 'string',
+  handGestureShortcut: 'record',
   headerProminence: 'string',
   help: 'string',
   hidden: 'boolean',
-  hoverEffect: 'string',
   hoverEffectDisabled: 'boolean',
+  hoverEffectWithEffectAndIsEnabled: 'record',
+  hoverEffectWithHoverEffect: 'string',
   hueRotation: 'string',
-  inspectorColumnWidth: 'number',
+  ignoresSafeAreaWithRegionsAndEdges: 'record',
+  ignoresSafeAreaWithRegionsAndEdgesAndAlignment: 'record',
+  inspectorColumnWidthWithCGFloat: 'number',
+  inspectorColumnWidthWithMinAndIdealAndMax: 'record',
   interactionActivityTrackingTag: 'string',
   interactiveDismissDisabled: 'boolean',
   invalidatableContent: 'boolean',
   italic: 'boolean',
   kerning: 'number',
+  keyboardShortcutWithKeyAndModifiers: 'record',
+  keyboardShortcutWithKeyAndModifiersAndLocalization: 'record',
   keyboardShortcutWithKeyboardShortcut: 'string',
   keyboardShortcutWithOptionalKeyboardShortcut: 'optionalEnum',
   labelIconToTitleSpacing: 'number',
@@ -153,12 +185,19 @@ const sdkKinds = {
   labelsVisibility: 'string',
   layoutDirectionBehavior: 'string',
   layoutPriority: 'number',
-  lineLimit: 'optionalNumber',
+  lineLimitWithLimitAndReservesSpace: 'record',
+  lineLimitWithOptionalInt: 'optionalNumber',
   lineSpacing: 'number',
   listItemTintWithOptionalColor: 'optionalEnum',
   listItemTintWithOptionalListItemTint: 'optionalEnum',
+  listRowInsets: 'record',
+  listRowSeparator: 'record',
+  listRowSeparatorTint: 'record',
   listRowSpacing: 'optionalNumber',
   listSectionIndexVisibility: 'string',
+  listSectionMargins: 'record',
+  listSectionSeparator: 'record',
+  listSectionSeparatorTint: 'record',
   listSectionSpacingWithCGFloat: 'number',
   listSectionSpacingWithListSectionSpacing: 'string',
   luminanceToAlpha: 'boolean',
@@ -181,11 +220,13 @@ const sdkKinds = {
   navigationBarHidden: 'boolean',
   navigationBarTitle: 'string',
   navigationLinkIndicatorVisibility: 'string',
-  navigationSplitViewColumnWidth: 'number',
+  navigationSplitViewColumnWidthWithCGFloat: 'number',
+  navigationSplitViewColumnWidthWithMinAndIdealAndMax: 'record',
   navigationSubtitle: 'string',
   navigationTitleWithBindingString: 'bindingString',
   navigationTitleWithText: 'string',
   offerCodeRedemption: 'bindingBoolean',
+  offset: 'record',
   onAppear: 'event',
   onDisappear: 'event',
   onHover: 'eventBoolean',
@@ -205,11 +246,14 @@ const sdkKinds = {
   payWithApplePayButtonDisableCardArt: 'boolean',
   payWithApplePayButtonStyle: 'string',
   persistentSystemOverlays: 'string',
+  photosPickerAccessoryVisibility: 'record',
   photosPickerSearchText: 'optionalString',
   photosPickerStyle: 'string',
+  position: 'record',
   preferredColorScheme: 'optionalEnum',
   presentationBackgroundInteraction: 'string',
-  presentationCompactAdaptation: 'string',
+  presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation: 'record',
+  presentationCompactAdaptationWithPresentationAdaptation: 'string',
   presentationContentInteraction: 'string',
   presentationCornerRadius: 'optionalNumber',
   presentationDragIndicator: 'string',
@@ -223,24 +267,35 @@ const sdkKinds = {
   redacted: 'string',
   renameAction: 'event',
   replaceDisabled: 'boolean',
-  safeAreaPadding: 'number',
+  rotationEffect: 'record',
+  safeAreaPaddingWithCGFloat: 'number',
+  safeAreaPaddingWithEdgesAndLength: 'record',
   saturation: 'number',
   scaledToFill: 'boolean',
   scaledToFit: 'boolean',
-  scenePadding: 'string',
+  scaleEffectWithSAndAnchor: 'record',
+  scaleEffectWithXAndYAndAnchor: 'record',
+  scenePaddingWithPaddingAndEdges: 'record',
+  scenePaddingWithSet: 'string',
+  scrollBounceBehavior: 'record',
   scrollClipDisabled: 'boolean',
   scrollContentBackground: 'string',
   scrollDisabled: 'boolean',
   scrollDismissesKeyboard: 'string',
+  scrollEdgeEffectHidden: 'record',
+  scrollEdgeEffectStyle: 'record',
+  scrollIndicators: 'record',
   scrollIndicatorsFlash: 'boolean',
   scrollTargetLayout: 'boolean',
   searchable: 'bindingString',
   searchCompletion: 'string',
   searchDictationBehavior: 'string',
   searchPresentationToolbarBehavior: 'string',
+  searchSuggestions: 'record',
   searchToolbarBehavior: 'string',
   sectionIndexLabel: 'optionalString',
   selectionDisabled: 'boolean',
+  shadow: 'record',
   shortcutsLinkStyle: 'string',
   signInWithAppleButtonStyle: 'string',
   siriTipViewStyle: 'string',
@@ -252,8 +307,11 @@ const sdkKinds = {
   springLoadingBehavior: 'string',
   statusBar: 'boolean',
   statusBarHidden: 'boolean',
+  storeButton: 'record',
+  strikethrough: 'record',
   submitLabel: 'string',
   submitScope: 'boolean',
+  subscriptionOfferViewButtonVisibility: 'record',
   subscriptionStoreButtonLabel: 'string',
   subscriptionStoreControlBackground: 'string',
   swipeActionsContainer: 'boolean',
@@ -267,13 +325,25 @@ const sdkKinds = {
   tabViewSearchActivation: 'string',
   textInputAutocapitalization: 'optionalEnum',
   textInputBorderShape: 'string',
+  textInputFormattingControlVisibility: 'record',
+  textScale: 'record',
   textSelectionAffinity: 'string',
-  toolbar: 'optionalEnum',
+  toolbarBackground: 'record',
+  toolbarBackgroundVisibility: 'record',
+  toolbarColorScheme: 'record',
+  toolbarMinimizationBehavior: 'record',
+  toolbarMinimizationRestoration: 'record',
+  toolbarMinimizationSafeAreaAdjustment: 'record',
   toolbarRole: 'string',
   toolbarTitleDisplayMode: 'string',
+  toolbarVisibility: 'record',
+  toolbarWithRemoving: 'optionalEnum',
+  toolbarWithVisibilityAndBars: 'record',
   tracking: 'number',
   transition: 'string',
   typeSelectEquivalent: 'optionalString',
+  typesettingLanguage: 'record',
+  underline: 'record',
   unredacted: 'boolean',
   verifyIdentityWithWalletButtonStyle: 'string',
   webViewBackForwardNavigationGestures: 'string',
@@ -287,6 +357,302 @@ const sdkKinds = {
   writingToolsBehavior: 'string',
   zIndex: 'number',
 } as const
+const sdkRecords: Record<
+  string,
+  readonly { field: string; kind: string; optional: boolean }[]
+> = {
+  accessibilityActivationPointWithActivationPointAndIsEnabled: [
+    { field: 'activationPoint', kind: 'enum', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  accessibilityDirectTouch: [
+    { field: 'isDirectTouchArea', kind: 'boolean', optional: false },
+    { field: 'options', kind: 'enum', optional: false },
+  ],
+  accessibilityDragPointWithPointAndDescription: [
+    { field: 'point', kind: 'enum', optional: false },
+    { field: 'description', kind: 'string', optional: false },
+  ],
+  accessibilityDragPointWithPointAndDescriptionAndIsEnabled: [
+    { field: 'point', kind: 'enum', optional: false },
+    { field: 'description', kind: 'string', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  accessibilityDropPointWithPointAndDescription: [
+    { field: 'point', kind: 'enum', optional: false },
+    { field: 'description', kind: 'string', optional: false },
+  ],
+  accessibilityDropPointWithPointAndDescriptionAndIsEnabled: [
+    { field: 'point', kind: 'enum', optional: false },
+    { field: 'description', kind: 'string', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  accessibilityHiddenWithHiddenAndIsEnabled: [
+    { field: 'hidden', kind: 'boolean', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  accessibilityHintWithHintAndIsEnabled: [
+    { field: 'hint', kind: 'string', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  accessibilityIdentifierWithIdentifierAndIsEnabled: [
+    { field: 'identifier', kind: 'string', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  accessibilityLabelWithLabelAndIsEnabled: [
+    { field: 'label', kind: 'string', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  accessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled: [
+    { field: 'respondsToUserInteraction', kind: 'boolean', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  accessibilityScrollStatus: [
+    { field: 'status', kind: 'string', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  accessibilityValueWithValueDescriptionAndIsEnabled: [
+    { field: 'valueDescription', kind: 'string', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  aspectRatio: [
+    { field: 'aspectRatio', kind: 'number', optional: true },
+    { field: 'contentMode', kind: 'enum', optional: false },
+  ],
+  blur: [
+    { field: 'radius', kind: 'number', optional: false },
+    { field: 'opaque', kind: 'boolean', optional: false },
+  ],
+  containerCornerOffset: [
+    { field: 'edges', kind: 'enum', optional: false },
+    { field: 'sizeToFit', kind: 'boolean', optional: false },
+  ],
+  containerRelativeFrameWithAxesAndAlignment: [
+    { field: 'axes', kind: 'enum', optional: false },
+    { field: 'alignment', kind: 'enum', optional: false },
+  ],
+  containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment: [
+    { field: 'axes', kind: 'enum', optional: false },
+    { field: 'count', kind: 'number', optional: false },
+    { field: 'span', kind: 'number', optional: false },
+    { field: 'spacing', kind: 'number', optional: false },
+    { field: 'alignment', kind: 'enum', optional: false },
+  ],
+  contentMarginsWithEdgesAndLengthAndPlacement: [
+    { field: 'edges', kind: 'enum', optional: false },
+    { field: 'length', kind: 'number', optional: true },
+    { field: 'placement', kind: 'enum', optional: false },
+  ],
+  contentMarginsWithLengthAndPlacement: [
+    { field: 'length', kind: 'number', optional: false },
+    { field: 'placement', kind: 'enum', optional: false },
+  ],
+  defaultScrollAnchorWithAnchorAndRole: [
+    { field: 'anchor', kind: 'enum', optional: true },
+    { field: 'role', kind: 'enum', optional: false },
+  ],
+  drawingGroup: [
+    { field: 'opaque', kind: 'boolean', optional: false },
+    { field: 'colorMode', kind: 'enum', optional: false },
+  ],
+  fixedSizeWithHorizontalAndVertical: [
+    { field: 'horizontal', kind: 'boolean', optional: false },
+    { field: 'vertical', kind: 'boolean', optional: false },
+  ],
+  focusableWithIsFocusableAndInteractions: [
+    { field: 'isFocusable', kind: 'boolean', optional: false },
+    { field: 'interactions', kind: 'enum', optional: false },
+  ],
+  handGestureShortcut: [
+    { field: 'shortcut', kind: 'enum', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  hoverEffectWithEffectAndIsEnabled: [
+    { field: 'effect', kind: 'enum', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  ignoresSafeAreaWithRegionsAndEdges: [
+    { field: 'regions', kind: 'enum', optional: false },
+    { field: 'edges', kind: 'enum', optional: false },
+  ],
+  ignoresSafeAreaWithRegionsAndEdgesAndAlignment: [
+    { field: 'regions', kind: 'enum', optional: false },
+    { field: 'edges', kind: 'enum', optional: false },
+    { field: 'alignment', kind: 'enum', optional: true },
+  ],
+  inspectorColumnWidthWithMinAndIdealAndMax: [
+    { field: 'min', kind: 'number', optional: true },
+    { field: 'ideal', kind: 'number', optional: false },
+    { field: 'max', kind: 'number', optional: true },
+  ],
+  keyboardShortcutWithKeyAndModifiers: [
+    { field: 'key', kind: 'enum', optional: false },
+    { field: 'modifiers', kind: 'enum', optional: false },
+  ],
+  keyboardShortcutWithKeyAndModifiersAndLocalization: [
+    { field: 'key', kind: 'enum', optional: false },
+    { field: 'modifiers', kind: 'enum', optional: false },
+    { field: 'localization', kind: 'enum', optional: false },
+  ],
+  lineLimitWithLimitAndReservesSpace: [
+    { field: 'limit', kind: 'number', optional: false },
+    { field: 'reservesSpace', kind: 'boolean', optional: false },
+  ],
+  listRowInsets: [
+    { field: 'edges', kind: 'enum', optional: false },
+    { field: 'length', kind: 'number', optional: true },
+  ],
+  listRowSeparator: [
+    { field: 'visibility', kind: 'enum', optional: false },
+    { field: 'edges', kind: 'enum', optional: false },
+  ],
+  listRowSeparatorTint: [
+    { field: 'color', kind: 'enum', optional: true },
+    { field: 'edges', kind: 'enum', optional: false },
+  ],
+  listSectionMargins: [
+    { field: 'edges', kind: 'enum', optional: false },
+    { field: 'length', kind: 'number', optional: true },
+  ],
+  listSectionSeparator: [
+    { field: 'visibility', kind: 'enum', optional: false },
+    { field: 'edges', kind: 'enum', optional: false },
+  ],
+  listSectionSeparatorTint: [
+    { field: 'color', kind: 'enum', optional: true },
+    { field: 'edges', kind: 'enum', optional: false },
+  ],
+  navigationSplitViewColumnWidthWithMinAndIdealAndMax: [
+    { field: 'min', kind: 'number', optional: true },
+    { field: 'ideal', kind: 'number', optional: false },
+    { field: 'max', kind: 'number', optional: true },
+  ],
+  offset: [
+    { field: 'x', kind: 'number', optional: false },
+    { field: 'y', kind: 'number', optional: false },
+  ],
+  photosPickerAccessoryVisibility: [
+    { field: 'visibility', kind: 'enum', optional: false },
+    { field: 'edges', kind: 'enum', optional: false },
+  ],
+  position: [
+    { field: 'x', kind: 'number', optional: false },
+    { field: 'y', kind: 'number', optional: false },
+  ],
+  presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation: [
+    { field: 'horizontalAdaptation', kind: 'enum', optional: false },
+    { field: 'verticalAdaptation', kind: 'enum', optional: false },
+  ],
+  rotationEffect: [
+    { field: 'angle', kind: 'enum', optional: false },
+    { field: 'anchor', kind: 'enum', optional: false },
+  ],
+  safeAreaPaddingWithEdgesAndLength: [
+    { field: 'edges', kind: 'enum', optional: false },
+    { field: 'length', kind: 'number', optional: true },
+  ],
+  scaleEffectWithSAndAnchor: [
+    { field: 's', kind: 'number', optional: false },
+    { field: 'anchor', kind: 'enum', optional: false },
+  ],
+  scaleEffectWithXAndYAndAnchor: [
+    { field: 'x', kind: 'number', optional: false },
+    { field: 'y', kind: 'number', optional: false },
+    { field: 'anchor', kind: 'enum', optional: false },
+  ],
+  scenePaddingWithPaddingAndEdges: [
+    { field: 'padding', kind: 'enum', optional: false },
+    { field: 'edges', kind: 'enum', optional: false },
+  ],
+  scrollBounceBehavior: [
+    { field: 'behavior', kind: 'enum', optional: false },
+    { field: 'axes', kind: 'enum', optional: false },
+  ],
+  scrollEdgeEffectHidden: [
+    { field: 'hidden', kind: 'boolean', optional: false },
+    { field: 'edges', kind: 'enum', optional: false },
+  ],
+  scrollEdgeEffectStyle: [
+    { field: 'style', kind: 'enum', optional: true },
+    { field: 'edges', kind: 'enum', optional: false },
+  ],
+  scrollIndicators: [
+    { field: 'visibility', kind: 'enum', optional: false },
+    { field: 'axes', kind: 'enum', optional: false },
+  ],
+  searchSuggestions: [
+    { field: 'visibility', kind: 'enum', optional: false },
+    { field: 'placements', kind: 'enum', optional: false },
+  ],
+  shadow: [
+    { field: 'color', kind: 'enum', optional: false },
+    { field: 'radius', kind: 'number', optional: false },
+    { field: 'x', kind: 'number', optional: false },
+    { field: 'y', kind: 'number', optional: false },
+  ],
+  storeButton: [
+    { field: 'visibility', kind: 'enum', optional: false },
+    { field: 'buttonKinds', kind: 'enum', optional: false },
+  ],
+  strikethrough: [
+    { field: 'isActive', kind: 'boolean', optional: false },
+    { field: 'pattern', kind: 'enum', optional: false },
+    { field: 'color', kind: 'enum', optional: true },
+  ],
+  subscriptionOfferViewButtonVisibility: [
+    { field: 'visibility', kind: 'enum', optional: false },
+    { field: 'buttonKinds', kind: 'enum', optional: false },
+  ],
+  textInputFormattingControlVisibility: [
+    { field: 'visibility', kind: 'enum', optional: false },
+    { field: 'placement', kind: 'enum', optional: false },
+  ],
+  textScale: [
+    { field: 'scale', kind: 'enum', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  toolbarBackground: [
+    { field: 'visibility', kind: 'enum', optional: false },
+    { field: 'bars', kind: 'enum', optional: false },
+  ],
+  toolbarBackgroundVisibility: [
+    { field: 'visibility', kind: 'enum', optional: false },
+    { field: 'bars', kind: 'enum', optional: false },
+  ],
+  toolbarColorScheme: [
+    { field: 'colorScheme', kind: 'enum', optional: true },
+    { field: 'bars', kind: 'enum', optional: false },
+  ],
+  toolbarMinimizationBehavior: [
+    { field: 'behavior', kind: 'enum', optional: false },
+    { field: 'bars', kind: 'enum', optional: false },
+  ],
+  toolbarMinimizationRestoration: [
+    { field: 'restoration', kind: 'enum', optional: false },
+    { field: 'bars', kind: 'enum', optional: false },
+  ],
+  toolbarMinimizationSafeAreaAdjustment: [
+    { field: 'adjustment', kind: 'enum', optional: false },
+    { field: 'bars', kind: 'enum', optional: false },
+  ],
+  toolbarVisibility: [
+    { field: 'visibility', kind: 'enum', optional: false },
+    { field: 'bars', kind: 'enum', optional: false },
+  ],
+  toolbarWithVisibilityAndBars: [
+    { field: 'visibility', kind: 'enum', optional: false },
+    { field: 'bars', kind: 'enum', optional: false },
+  ],
+  typesettingLanguage: [
+    { field: 'language', kind: 'enum', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  underline: [
+    { field: 'isActive', kind: 'boolean', optional: false },
+    { field: 'pattern', kind: 'enum', optional: false },
+    { field: 'color', kind: 'enum', optional: true },
+  ],
+}
 
 export function swiftStyleNative(
   style: OneNativeStyle | undefined
@@ -298,6 +664,30 @@ export function swiftStyleNative(
     if (value === undefined) continue
     if (Object.hasOwn(sdkKinds, name)) {
       const kind = sdkKinds[name as keyof typeof sdkKinds]
+      if (kind === 'record') {
+        if (typeof value !== 'object' || value === null || Array.isArray(value))
+          throw new Error(name + ' must be a record')
+        const record = value as Record<string, unknown>
+        const values = sdkRecords[name].map((argument) => {
+          const item = record[argument.field]
+          if (argument.optional && item === null) return null
+          if (
+            argument.kind === 'number' &&
+            (typeof item !== 'number' || !Number.isFinite(item))
+          )
+            throw new Error(name + '.' + argument.field + ' must be finite')
+          if (argument.kind === 'boolean' && typeof item !== 'boolean')
+            throw new Error(name + '.' + argument.field + ' must be a boolean')
+          if (
+            (argument.kind === 'string' || argument.kind === 'enum') &&
+            typeof item !== 'string'
+          )
+            throw new Error(name + '.' + argument.field + ' must be a string')
+          return String(item)
+        })
+        sdkModifiers.push([name, JSON.stringify(values)])
+        continue
+      }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value)))
         throw new Error(name + ' must be finite')
       if (
