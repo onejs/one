@@ -6817,7 +6817,34 @@
       ]
     },
     {
-      "name": "onTapGesture",
+      "name": "onTapGestureWithPerform",
+      "module": "SwiftUI",
+      "kind": "eventStruct",
+      "type": "@escaping (CoreFoundation.CGPoint) -> Swift.Void",
+      "label": "perform",
+      "ios": 16,
+      "eventValue": {
+        "kind": "point"
+      },
+      "callArguments": [
+        {
+          "label": "count",
+          "defaultValue": "1"
+        },
+        {
+          "label": "coordinateSpace",
+          "defaultValue": ".local"
+        },
+        {
+          "label": "perform",
+          "bridge": true
+        }
+      ],
+      "sdkName": "onTapGesture"
+    },
+    {
+      "name": "onTapGestureWithPerformFromSwiftUICore",
+      "module": "SwiftUICore",
       "kind": "event",
       "type": "@escaping () -> Swift.Void",
       "label": "perform",
@@ -6831,7 +6858,8 @@
           "label": "perform",
           "bridge": true
         }
-      ]
+      ],
+      "sdkName": "onTapGesture"
     },
     {
       "name": "paletteSelectionEffect",
@@ -8566,6 +8594,23 @@
       "type": "Swift.Bool",
       "ios": 17,
       "label": "onAppear"
+    },
+    {
+      "name": "scrollPosition",
+      "kind": "bindingOptionalString",
+      "type": "SwiftUICore.Binding<(some Hashable)?>",
+      "label": "id",
+      "ios": 17,
+      "callArguments": [
+        {
+          "label": "id",
+          "bridge": true
+        },
+        {
+          "label": "anchor",
+          "defaultValue": "nil"
+        }
+      ]
     },
     {
       "name": "scrollTargetBehavior",
@@ -11501,6 +11546,7 @@
         "onScrollPhaseChange",
         "onScrollVisibilityChange",
         "onSubmit",
+        "onTapGesture",
         "paletteSelectionEffect",
         "persistentSystemOverlays",
         "pickerStyle",
@@ -11533,6 +11579,7 @@
         "scrollEdgeEffectStyle",
         "scrollIndicators",
         "scrollIndicatorsFlash",
+        "scrollPosition",
         "scrollTargetBehavior",
         "scrollTargetLayout",
         "searchCompletion",

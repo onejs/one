@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
 import type { ListStyle } from './generated/swiftui';
+import type { OneNativeStyle } from './generated/controlTypes';
 export declare const scrollViewAxes: readonly ['vertical', 'horizontal', 'both'];
 export type ScrollViewAxes = (typeof scrollViewAxes)[number];
 export declare const lazyVStackAlignments: readonly ['leading', 'center', 'trailing'];
@@ -14,6 +15,7 @@ export interface ListProps extends ViewProps {
 export interface ScrollViewProps extends ViewProps {
     axes?: ScrollViewAxes;
     showsIndicators?: boolean;
+    swiftStyle?: OneNativeStyle;
     children: ReactNode;
 }
 export interface LazyVStackProps extends ViewProps {

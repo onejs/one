@@ -280,7 +280,8 @@ const sdkKinds = {
   onScrollPhaseChange: 'eventEnumPair',
   onScrollVisibilityChange: 'eventBoolean',
   onSubmit: 'event',
-  onTapGesture: 'event',
+  onTapGestureWithPerform: 'eventStruct',
+  onTapGestureWithPerformFromSwiftUICore: 'event',
   paletteSelectionEffect: 'string',
   payLaterViewAction: 'string',
   payLaterViewDisplayStyle: 'string',
@@ -339,6 +340,7 @@ const sdkKinds = {
   scrollEdgeEffectStyle: 'record',
   scrollIndicators: 'record',
   scrollIndicatorsFlash: 'boolean',
+  scrollPosition: 'bindingOptionalString',
   scrollTargetBehavior: 'style',
   scrollTargetLayout: 'boolean',
   searchable: 'bindingString',
@@ -623,6 +625,7 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
       },
     ],
   },
+  onTapGestureWithPerform: { kind: 'point' },
 }
 const sdkRecords: Record<
   string,
@@ -1126,14 +1129,18 @@ export function swiftStyleNative(
       if (
         (kind === 'bindingBoolean' ||
           kind === 'bindingFocusBoolean' ||
-          kind === 'bindingString') &&
+          kind === 'bindingString' ||
+          kind === 'bindingOptionalString') &&
         (typeof value !== 'object' ||
           value === null ||
           typeof (value as { onChange?: unknown }).onChange !== 'function' ||
-          typeof (value as { value?: unknown }).value !==
-            (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean'
-              ? 'boolean'
-              : 'string'))
+          (kind === 'bindingOptionalString'
+            ? (value as { value?: unknown }).value !== null &&
+              typeof (value as { value?: unknown }).value !== 'string'
+            : typeof (value as { value?: unknown }).value !==
+              (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean'
+                ? 'boolean'
+                : 'string')))
       )
         throw new Error(name + ' must be a binding')
       sdkModifiers.push([
@@ -1142,11 +1149,13 @@ export function swiftStyleNative(
           ? (value as { value: string }).value
           : kind.startsWith('event')
             ? ''
-            : kind.startsWith('binding')
-              ? String((value as { value: unknown }).value)
-              : kind === 'optionalString' || kind === 'optionalURL'
-                ? (JSON.stringify(value) as string)
-                : String(value),
+            : kind === 'bindingOptionalString'
+              ? JSON.stringify((value as { value: string | null }).value)
+              : kind.startsWith('binding')
+                ? String((value as { value: unknown }).value)
+                : kind === 'optionalString' || kind === 'optionalURL'
+                  ? (JSON.stringify(value) as string)
+                  : String(value),
       ])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
@@ -1219,6 +1228,13 @@ export function dispatchSDKEvent(
     )
   } else if (kind === 'bindingString')
     (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
-  else if (kind === 'eventValueString')
+  else if (kind === 'bindingOptionalString') {
+    const decoded: unknown = JSON.parse(value)
+    if (decoded !== null && typeof decoded !== 'string')
+      throw new Error(name + ' emitted an invalid optional string')
+    ;(modifier as { onChange: (value: string | null) => void } | undefined)?.onChange(
+      decoded
+    )
+  } else if (kind === 'eventValueString')
     (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
 }

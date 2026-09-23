@@ -528,7 +528,8 @@ export const components = [
       axes: 'string',
       showsIndicators: 'boolean',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [

@@ -216,7 +216,17 @@ ${modifier.associatedCases!.map((item) => `      case .${item.name}${item.values
         let payload = String(data: data, encoding: .utf8) { emit(${JSON.stringify(modifier.name)}, payload) }
     }`
             : `{ value in emit(${JSON.stringify(modifier.name)}, ${modifier.type.includes('Foundation.URL') ? 'value.absoluteString' : 'String(value)'}) }`
-          : `Binding(get: { ${modifier.kind === 'bindingBoolean' ? 'value == "true"' : 'value'} }, set: { emit(${JSON.stringify(modifier.name)}, String($0)) })`
+          : modifier.kind === 'bindingOptionalString'
+            ? `Binding<String?>(get: {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
+        decoded is NSNull || decoded is String else { preconditionFailure("invalid ${modifier.name}: \\(value)") }
+      return decoded as? String
+    }, set: { changed in
+      guard let data = try? JSONEncoder().encode(changed), let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} binding event") }
+      emit(${JSON.stringify(modifier.name)}, encoded)
+    })`
+            : `Binding(get: { ${modifier.kind === 'bindingBoolean' ? 'value == "true"' : 'value'} }, set: { emit(${JSON.stringify(modifier.name)}, String($0)) })`
         const validation = modifier.kind === 'bindingBoolean'
           ? `    let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")\n`
           : ''
@@ -403,11 +413,12 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
       if (kind === 'optionalString' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')
       if (kind.startsWith('event') && kind !== 'eventValueString' && typeof value !== 'function') throw new Error(name + ' must be a callback')
       if (kind === 'eventValueString' && (typeof value !== 'object' || value === null || typeof (value as { value?: unknown }).value !== 'string' || typeof (value as { onChange?: unknown }).onChange !== 'function')) throw new Error(name + ' must be a string value and callback')
-      if ((kind === 'bindingBoolean' || kind === 'bindingFocusBoolean' || kind === 'bindingString') &&
+      if ((kind === 'bindingBoolean' || kind === 'bindingFocusBoolean' || kind === 'bindingString' || kind === 'bindingOptionalString') &&
         (typeof value !== 'object' || value === null || typeof (value as { onChange?: unknown }).onChange !== 'function' ||
-        typeof (value as { value?: unknown }).value !== (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean' ? 'boolean' : 'string')))
+        (kind === 'bindingOptionalString' ? (value as { value?: unknown }).value !== null && typeof (value as { value?: unknown }).value !== 'string' :
+          typeof (value as { value?: unknown }).value !== (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean' ? 'boolean' : 'string'))))
         throw new Error(name + ' must be a binding')
-      sdkModifiers.push([name, kind === 'eventValueString' ? (value as { value: string }).value : kind.startsWith('event') ? '' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : kind === 'optionalString' || kind === 'optionalURL' ? JSON.stringify(value) as string : String(value)])
+      sdkModifiers.push([name, kind === 'eventValueString' ? (value as { value: string }).value : kind.startsWith('event') ? '' : kind === 'bindingOptionalString' ? JSON.stringify((value as { value: string | null }).value) : kind.startsWith('binding') ? String((value as { value: unknown }).value) : kind === 'optionalString' || kind === 'optionalURL' ? JSON.stringify(value) as string : String(value)])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
     } else {
@@ -466,6 +477,11 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
     ;(modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(value === 'true')
   }
   else if (kind === 'bindingString') (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
+  else if (kind === 'bindingOptionalString') {
+    const decoded: unknown = JSON.parse(value)
+    if (decoded !== null && typeof decoded !== 'string') throw new Error(name + ' emitted an invalid optional string')
+    ;(modifier as { onChange: (value: string | null) => void } | undefined)?.onChange(decoded)
+  }
   else if (kind === 'eventValueString') (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
 }
 `

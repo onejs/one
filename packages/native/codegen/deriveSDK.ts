@@ -28,7 +28,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'bindingBoolean' | 'bindingString' | 'bindingFocusBoolean'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean'
   ios: number
   type: string
   rawString?: true
@@ -250,7 +250,7 @@ export function deriveModifiers(
   const structCallbackOf = (type: string, version: number) => {
     const baseType = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> Swift\.Void$/.exec(type)?.[1]
     const value = baseType && eventValueOf(baseType, version)
-    return value?.kind === 'object' ? value : undefined
+    return value?.kind === 'object' || value?.kind === 'point' ? value : undefined
   }
   const styleCases = (style: string) => {
     const cases = inventory.filter((d) =>
@@ -329,7 +329,7 @@ export function deriveModifiers(
             ...framework,
           },
         ]
-      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type) || focusBindingType.test(p.type) || enumCallbackOf(p.type) || associatedCallbackOf(p.type, ios(method)) || structCallbackOf(p.type, ios(method)))
+      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type) || p.type === 'SwiftUICore.Binding<(some Hashable)?>' || focusBindingType.test(p.type) || enumCallbackOf(p.type) || associatedCallbackOf(p.type, ios(method)) || structCallbackOf(p.type, ios(method)))
       if (bridged.length === 1 && method.parameters.every((p) => p === bridged[0] || p.defaultValue !== undefined)) {
         const parameter = bridged[0]
         const callbackValue = scalarCallbackType.exec(parameter.type)?.[1]
@@ -348,6 +348,8 @@ export function deriveModifiers(
           ? 'bindingBoolean'
           : parameter.type.includes('Binding<Swift.String>')
             ? 'bindingString'
+            : parameter.type === 'SwiftUICore.Binding<(some Hashable)?>'
+              ? 'bindingOptionalString'
             : callbackValue === 'Swift.Bool'
               ? 'eventBoolean'
               : callbackValue === 'Swift.String' || callbackValue === 'Foundation.URL'

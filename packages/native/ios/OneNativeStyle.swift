@@ -341,7 +341,8 @@ extension View {
       case "onScrollPhaseChange": view = AnyView(view.oneNativeSDKOnScrollPhaseChange(value, emit: emit))
       case "onScrollVisibilityChange": view = AnyView(view.oneNativeSDKOnScrollVisibilityChange(value, emit: emit))
       case "onSubmit": view = AnyView(view.oneNativeSDKOnSubmit(value, emit: emit))
-      case "onTapGesture": view = AnyView(view.oneNativeSDKOnTapGesture(value, emit: emit))
+      case "onTapGestureWithPerform": view = AnyView(view.oneNativeSDKOnTapGestureWithPerform(value, emit: emit))
+      case "onTapGestureWithPerformFromSwiftUICore": view = AnyView(view.oneNativeSDKOnTapGestureWithPerformFromSwiftUICore(value, emit: emit))
       case "paletteSelectionEffect": view = AnyView(view.oneNativeSDKPaletteSelectionEffect(value, emit: emit))
       case "payLaterViewAction": view = AnyView(view.oneNativeSDKPayLaterViewAction(value, emit: emit))
       case "payLaterViewDisplayStyle": view = AnyView(view.oneNativeSDKPayLaterViewDisplayStyle(value, emit: emit))
@@ -400,6 +401,7 @@ extension View {
       case "scrollEdgeEffectStyle": view = AnyView(view.oneNativeSDKScrollEdgeEffectStyle(value, emit: emit))
       case "scrollIndicators": view = AnyView(view.oneNativeSDKScrollIndicators(value, emit: emit))
       case "scrollIndicatorsFlash": view = AnyView(view.oneNativeSDKScrollIndicatorsFlash(value, emit: emit))
+      case "scrollPosition": view = AnyView(view.oneNativeSDKScrollPosition(value, emit: emit))
       case "scrollTargetBehavior": view = AnyView(view.oneNativeSDKScrollTargetBehavior(value, emit: emit))
       case "scrollTargetLayout": view = AnyView(view.oneNativeSDKScrollTargetLayout(value, emit: emit))
       case "searchable": view = AnyView(view.oneNativeSDKSearchable(value, emit: emit))
@@ -3589,8 +3591,17 @@ extension View {
     self.onSubmit(of: .text, { emit("onSubmit", "") })
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKOnTapGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    self.onTapGesture(count: 1, perform: { emit("onTapGesture", "") })
+  @ViewBuilder fileprivate func oneNativeSDKOnTapGestureWithPerform(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onTapGesture(count: 1, coordinateSpace: .local, perform: { item in
+      let payload = (["x": Double(item.x), "y": Double(item.y)] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onTapGestureWithPerform event") }
+      emit("onTapGestureWithPerform", encoded)
+    })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnTapGestureWithPerformFromSwiftUICore(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onTapGesture(count: 1, perform: { emit("onTapGestureWithPerformFromSwiftUICore", "") })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPaletteSelectionEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4444,6 +4455,18 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKScrollIndicatorsFlash(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid scrollIndicatorsFlash: \(value)")
       self.scrollIndicatorsFlash(onAppear: value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKScrollPosition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.scrollPosition(id: Binding<String?>(get: {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
+        decoded is NSNull || decoded is String else { preconditionFailure("invalid scrollPosition: \(value)") }
+      return decoded as? String
+    }, set: { changed in
+      guard let data = try? JSONEncoder().encode(changed), let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid scrollPosition binding event") }
+      emit("scrollPosition", encoded)
+    }), anchor: nil)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKScrollTargetBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
