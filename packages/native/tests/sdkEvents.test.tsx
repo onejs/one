@@ -13,6 +13,24 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('encodes URL values and dispatches optional StoreKit actions', () => {
+    const onSignIn = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      fileDialogDefaultDirectory: null,
+      navigationDocument: 'file:///tmp/document.txt',
+      subscriptionStorePolicyDestination: { url: 'https://example.com/privacy', button: 'privacyPolicy' },
+      subscriptionStoreSignInAction: onSignIn,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['fileDialogDefaultDirectory', 'null'],
+      ['navigationDocument', 'file:///tmp/document.txt'],
+      ['subscriptionStorePolicyDestination', '["https://example.com/privacy","privacyPolicy"]'],
+      ['subscriptionStoreSignInAction', ''],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'subscriptionStoreSignInAction', value: '' } })
+    expect(onSignIn).toHaveBeenCalledOnce()
+  })
+
   it('encodes labeled scalar and enum arguments for the Swift modifier calls', () => {
     const element = Controls.Text({ text: 'example', swiftStyle: {
       offset: { x: 12, y: -4 },
