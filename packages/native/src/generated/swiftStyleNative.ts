@@ -171,6 +171,7 @@ const sdkKinds = {
   fileDialogImportsUnresolvedAliases: 'boolean',
   fileDialogMessage: 'optionalString',
   fileDialogURLEnabled: 'boolean',
+  fileExporter: 'record',
   fileExporterFilenameLabel: 'optionalString',
   fileMover: 'record',
   findDisabled: 'boolean',
@@ -318,6 +319,7 @@ const sdkKinds = {
   photosPickerMetadataOptions: 'string',
   photosPickerSearchText: 'optionalString',
   photosPickerStyle: 'string',
+  photosReferenceImageViewer: 'record',
   pickerStyle: 'style',
   position: 'record',
   preferredColorScheme: 'optionalEnum',
@@ -853,6 +855,11 @@ const sdkRecords: Record<
     { field: 'opaque', kind: 'boolean', optional: false },
     { field: 'colorMode', kind: 'enum', optional: false },
   ],
+  fileExporter: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'item', kind: 'string', optional: true },
+    { field: 'onCompletion', kind: 'resultURL', optional: false },
+  ],
   fileMover: [
     { field: 'isPresented', kind: 'bindingBoolean', optional: false },
     { field: 'file', kind: 'url', optional: true },
@@ -962,6 +969,10 @@ const sdkRecords: Record<
   photosPickerAccessoryVisibility: [
     { field: 'visibility', kind: 'enum', optional: false },
     { field: 'edges', kind: 'enum', optional: false },
+  ],
+  photosReferenceImageViewer: [
+    { field: 'fileURL', kind: 'bindingOptionalURL', optional: false },
+    { field: 'onProcessingCompletion', kind: 'resultURL', optional: false },
   ],
   position: [
     { field: 'x', kind: 'number', optional: false },
@@ -1208,6 +1219,17 @@ export function swiftStyleNative(
               throw new Error(name + '.' + argument.field + ' must be a boolean binding')
             return String((item as { value: boolean }).value)
           }
+          if (argument.kind === 'bindingOptionalURL') {
+            if (
+              !item ||
+              typeof item !== 'object' ||
+              ((item as { value?: unknown }).value !== null &&
+                typeof (item as { value?: unknown }).value !== 'string') ||
+              typeof (item as { onChange?: unknown }).onChange !== 'function'
+            )
+              throw new Error(name + '.' + argument.field + ' must be a URL binding')
+            return JSON.stringify((item as { value: string | null }).value)
+          }
           if (argument.kind === 'resultURL' || argument.kind === 'resultURLArray') {
             if (typeof item !== 'function')
               throw new Error(name + '.' + argument.field + ' must be a callback')
@@ -1377,6 +1399,22 @@ export function dispatchSDKEvent(
       ;(record?.[field] as { onChange: (value: boolean) => void } | undefined)?.onChange(
         value === 'true'
       )
+      return
+    }
+    if (
+      sdkRecords[parent]?.some(
+        (argument) => argument.field === field && argument.kind === 'bindingOptionalURL'
+      )
+    ) {
+      const decoded: unknown = JSON.parse(value)
+      if (decoded !== null && typeof decoded !== 'string')
+        throw new Error(name + ' emitted an invalid URL')
+      const record = (style as Record<string, unknown> | undefined)?.[parent] as
+        | Record<string, unknown>
+        | undefined
+      ;(
+        record?.[field] as { onChange: (value: string | null) => void } | undefined
+      )?.onChange(decoded)
       return
     }
     const result = sdkRecords[parent]?.find(

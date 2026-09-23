@@ -90,6 +90,48 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('invalid result')
   })
 
+  it('routes an optional URL binding beside a completion result', () => {
+    const onChange = vi.fn()
+    const onProcessingCompletion = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      photosReferenceImageViewer: {
+        fileURL: { value: null, onChange },
+        onProcessingCompletion,
+      },
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(modifiers.photosReferenceImageViewer)).toEqual(['null', ''])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosReferenceImageViewer.fileURL', value: '"file:///tmp/photo.jpg"',
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosReferenceImageViewer.onProcessingCompletion', value: '{"failure":"unavailable"}',
+    } })
+    expect(onChange).toHaveBeenCalledWith('file:///tmp/photo.jpg')
+    expect(onProcessingCompletion).toHaveBeenCalledWith({ failure: 'unavailable' })
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosReferenceImageViewer.fileURL', value: '3',
+    } })).toThrow('invalid URL')
+  })
+
+  it('specializes a transferable file export to a string item', () => {
+    const onChange = vi.fn()
+    const onCompletion = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      fileExporter: {
+        isPresented: { value: true, onChange },
+        item: 'exported text',
+        onCompletion,
+      },
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(modifiers.fileExporter)).toEqual(['true', 'exported text', ''])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'fileExporter.onCompletion', value: '{"success":"file:///tmp/export.txt"}',
+    } })
+    expect(onCompletion).toHaveBeenCalledWith({ success: 'file:///tmp/export.txt' })
+  })
+
   it('round trips a Codable customization binding through native JSON', () => {
     const onChange = vi.fn()
     const current = '{"perTabState":[],"identifier":"D9754350-75EE-4390-AC54-159710381977","perSectionState":[]}'

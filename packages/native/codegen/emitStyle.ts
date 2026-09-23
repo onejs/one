@@ -129,6 +129,22 @@ ${cases}
       guard let raw = ${raw}, raw == "true" || raw == "false" else { preconditionFailure("invalid ${modifier.name}.${argument.field}") }
       return Binding<Bool>(get: { raw == "true" }, set: { emit(${JSON.stringify(`${modifier.name}.${argument.field}`)}, String($0)) })
     }()`
+          if (argument.kind === 'bindingOptionalURL')
+            return `    let ${variable}: ${argument.type} = {
+      guard let raw = ${raw}, let data = raw.data(using: .utf8),
+        let decoded = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
+        decoded is NSNull || decoded is String else { preconditionFailure("invalid ${modifier.name}.${argument.field}") }
+      let current: Foundation.URL?
+      if let text = decoded as? String {
+        guard let url = Foundation.URL(string: text) else { preconditionFailure("invalid ${modifier.name}.${argument.field} URL") }
+        current = url
+      } else { current = nil }
+      return Binding<Foundation.URL?>(get: { current }, set: { changed in
+        guard let data = try? JSONEncoder().encode(changed?.absoluteString),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name}.${argument.field} event") }
+        emit(${JSON.stringify(`${modifier.name}.${argument.field}`)}, encoded)
+      })
+    }()`
           if (argument.kind === 'resultURL' || argument.kind === 'resultURLArray')
             return `    let ${variable}: (Swift.Result<${argument.kind === 'resultURL' ? 'Foundation.URL' : '[Foundation.URL]'}, any Swift.Error>) -> Swift.Void = { result in
       let payload: [String: Any]
@@ -475,6 +491,13 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
               throw new Error(name + '.' + argument.field + ' must be a boolean binding')
             return String((item as { value: boolean }).value)
           }
+          if (argument.kind === 'bindingOptionalURL') {
+            if (!item || typeof item !== 'object' ||
+              ((item as { value?: unknown }).value !== null && typeof (item as { value?: unknown }).value !== 'string') ||
+              typeof (item as { onChange?: unknown }).onChange !== 'function')
+              throw new Error(name + '.' + argument.field + ' must be a URL binding')
+            return JSON.stringify((item as { value: string | null }).value)
+          }
           if (argument.kind === 'resultURL' || argument.kind === 'resultURLArray') {
             if (typeof item !== 'function') throw new Error(name + '.' + argument.field + ' must be a callback')
             return ''
@@ -537,6 +560,13 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
       if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid boolean')
       const record = (style as Record<string, unknown> | undefined)?.[parent] as Record<string, unknown> | undefined
       ;(record?.[field] as { onChange: (value: boolean) => void } | undefined)?.onChange(value === 'true')
+      return
+    }
+    if (sdkRecords[parent]?.some((argument) => argument.field === field && argument.kind === 'bindingOptionalURL')) {
+      const decoded: unknown = JSON.parse(value)
+      if (decoded !== null && typeof decoded !== 'string') throw new Error(name + ' emitted an invalid URL')
+      const record = (style as Record<string, unknown> | undefined)?.[parent] as Record<string, unknown> | undefined
+      ;(record?.[field] as { onChange: (value: string | null) => void } | undefined)?.onChange(decoded)
       return
     }
     const result = sdkRecords[parent]?.find((argument) => argument.field === field &&
