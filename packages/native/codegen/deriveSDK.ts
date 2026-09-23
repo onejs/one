@@ -11,13 +11,14 @@ export type DerivedArgument = {
   label: string
   type: string
   sdkType?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'bindingBoolean'
   optional: boolean
   cases?: readonly { name: string; ios: number }[]
   fields?: readonly { name: string; label: string; type: string }[]
   wrappedType?: string
   scalarConstructor?: { label: string; type: string }
   swiftExpression?: string
+  closureInput?: string
 }
 
 export type EventValueSchema =
@@ -49,6 +50,7 @@ export type DerivedModifier = {
   bindingType?: string
   bindingDefault?: true
   predicateInput?: string
+  aliasSuffix?: string
   callArguments?: readonly { label: string; defaultValue?: string; bridge?: true }[]
   arguments?: readonly DerivedArgument[]
 }
@@ -542,9 +544,24 @@ export function deriveModifiers(
         }]
       }
       if (method.parameters.length > 1) {
+        const [first, callback] = method.parameters
+        const constantNumber = method.parameters.length === 2 &&
+          /^@escaping (?:@Sendable )?\(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (CoreFoundation\.CGFloat|Swift\.(?:Double|Float|Int))$/.exec(callback.type)
+        const firstValue = constantNumber && valueOf(first.type)
+        if (firstValue && constantNumber)
+          return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+            aliasSuffix: first.type.split('.').at(-1),
+            arguments: [
+              { ...firstValue, field: first.name, label: first.label },
+              { field: callback.name, label: callback.label, type: constantNumber[2],
+                sdkType: callback.type, kind: 'number', optional: false,
+                closureInput: constantNumber[1] },
+            ], ...framework }]
         const preferNumeric = method.parameters.some((parameter) => valueOf(parameter.type)?.kind === 'numericTuple')
         const bridgeArguments = (parameters: Declaration['parameters']) => parameters.map((parameter, index) => {
-          const value = valueOf(parameter.type, preferNumeric)
+          const value = parameter.type === 'SwiftUICore.Binding<Swift.Bool>'
+            ? { kind: 'bindingBoolean' as const, type: parameter.type, optional: false }
+            : valueOf(parameter.type, preferNumeric)
           return value && { ...value, field: parameter.name || `argument${index + 1}`, label: parameter.label }
         })
         let argumentsFromSDK = bridgeArguments(method.parameters)
@@ -618,11 +635,18 @@ export function deriveModifiers(
       result.push(modifier)
       continue
     }
-    for (const candidate of selected.sort((a, b) =>
+    const baseBinding = selected.filter((candidate) => candidate.kind === 'bindingBoolean')
+    const keepBaseBinding = baseBinding.length === 1 && selected.some((candidate) => candidate.kind === 'record')
+      ? baseBinding[0] : undefined
+    if (keepBaseBinding) {
+      const { module, ...modifier } = keepBaseBinding
+      result.push(modifier)
+    }
+    for (const candidate of selected.filter((item) => item !== keepBaseBinding).sort((a, b) =>
       `${a.module}|${a.label}|${a.type}`.localeCompare(`${b.module}|${b.label}|${b.type}`)
     )) {
       const typeName = candidate.type.replace(/\?$/, '').split('.').at(-1)?.replace(/[^A-Za-z0-9]/g, '') ?? 'Value'
-      const suffix = candidate.label && candidate.label !== '_'
+      const suffix = candidate.aliasSuffix ?? (candidate.label && candidate.label !== '_'
         ? candidate.label[0].toUpperCase() + candidate.label.slice(1)
         : candidate.zeroArgument
           ? 'NoArguments'
@@ -632,7 +656,7 @@ export function deriveModifiers(
             ? `Event${candidate.kind.slice('event'.length) || 'Action'}`
             : candidate.kind.startsWith('binding')
               ? `Binding${candidate.kind.slice('binding'.length)}`
-              : `${candidate.type.endsWith('?') ? 'Optional' : ''}${typeName}`
+              : `${candidate.type.endsWith('?') ? 'Optional' : ''}${typeName}`)
       let alias = `${name}With${suffix}`
       if (publicNames.has(alias)) alias += `From${candidate.module?.replace(/[^A-Za-z0-9]/g, '')}`
       while (publicNames.has(alias)) alias += 'Variant'

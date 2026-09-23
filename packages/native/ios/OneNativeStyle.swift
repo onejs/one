@@ -12,6 +12,7 @@ import PhotosUI
 import RealityKit
 import AppIntents
 import AuthenticationServices
+import Translation
 import WebKit
 
 public struct OneNativeStyle: Equatable {
@@ -152,6 +153,8 @@ extension View {
       case "accessibilityWithValue": view = AnyView(view.oneNativeSDKAccessibilityWithValue(value, emit: emit))
       case "accessibilityZoomAction": view = AnyView(view.oneNativeSDKAccessibilityZoomAction(value, emit: emit))
       case "addPassToWalletButtonStyle": view = AnyView(view.oneNativeSDKAddPassToWalletButtonStyle(value, emit: emit))
+      case "alignmentGuideWithHorizontalAlignment": view = AnyView(view.oneNativeSDKAlignmentGuideWithHorizontalAlignment(value, emit: emit))
+      case "alignmentGuideWithVerticalAlignment": view = AnyView(view.oneNativeSDKAlignmentGuideWithVerticalAlignment(value, emit: emit))
       case "allowedDynamicRange": view = AnyView(view.oneNativeSDKAllowedDynamicRange(value, emit: emit))
       case "allowsHitTesting": view = AnyView(view.oneNativeSDKAllowsHitTesting(value, emit: emit))
       case "allowsTightening": view = AnyView(view.oneNativeSDKAllowsTightening(value, emit: emit))
@@ -211,6 +214,7 @@ extension View {
       case "deleteDisabled": view = AnyView(view.oneNativeSDKDeleteDisabled(value, emit: emit))
       case "dialogIcon": view = AnyView(view.oneNativeSDKDialogIcon(value, emit: emit))
       case "dialogSuppressionToggle": view = AnyView(view.oneNativeSDKDialogSuppressionToggle(value, emit: emit))
+      case "dialogSuppressionToggleWithLabelAndIsSuppressed": view = AnyView(view.oneNativeSDKDialogSuppressionToggleWithLabelAndIsSuppressed(value, emit: emit))
       case "disableAutocorrection": view = AnyView(view.oneNativeSDKDisableAutocorrection(value, emit: emit))
       case "disabled": view = AnyView(view.oneNativeSDKDisabled(value, emit: emit))
       case "disclosureGroupStyle": view = AnyView(view.oneNativeSDKDisclosureGroupStyle(value, emit: emit))
@@ -305,6 +309,7 @@ extension View {
       case "listStyle": view = AnyView(view.oneNativeSDKListStyle(value, emit: emit))
       case "luminanceToAlpha": view = AnyView(view.oneNativeSDKLuminanceToAlpha(value, emit: emit))
       case "manageSubscriptionsSheet": view = AnyView(view.oneNativeSDKManageSubscriptionsSheet(value, emit: emit))
+      case "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID": view = AnyView(view.oneNativeSDKManageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID(value, emit: emit))
       case "mapControlVisibility": view = AnyView(view.oneNativeSDKMapControlVisibility(value, emit: emit))
       case "mapFeatureSelectionAccessory": view = AnyView(view.oneNativeSDKMapFeatureSelectionAccessory(value, emit: emit))
       case "mapFeatureSelectionDisabled": view = AnyView(view.oneNativeSDKMapFeatureSelectionDisabled(value, emit: emit))
@@ -498,6 +503,7 @@ extension View {
       case "tracking": view = AnyView(view.oneNativeSDKTracking(value, emit: emit))
       case "transformEffect": view = AnyView(view.oneNativeSDKTransformEffect(value, emit: emit))
       case "transition": view = AnyView(view.oneNativeSDKTransition(value, emit: emit))
+      case "translationPresentation": view = AnyView(view.oneNativeSDKTranslationPresentation(value, emit: emit))
       case "truncationMode": view = AnyView(view.oneNativeSDKTruncationMode(value, emit: emit))
       case "typeSelectEquivalent": view = AnyView(view.oneNativeSDKTypeSelectEquivalent(value, emit: emit))
       case "typesettingLanguage": view = AnyView(view.oneNativeSDKTypesettingLanguage(value, emit: emit))
@@ -1388,6 +1394,58 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKAlignmentGuideWithHorizontalAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid alignmentGuideWithHorizontalAlignment: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.HorizontalAlignment = {
+      guard let raw = values[0] else { preconditionFailure("missing alignmentGuideWithHorizontalAlignment.g") }
+      switch raw {
+      case "leading": return SwiftUICore.HorizontalAlignment.leading
+      case "center": return SwiftUICore.HorizontalAlignment.center
+      case "trailing": return SwiftUICore.HorizontalAlignment.trailing
+      case "listRowSeparatorLeading": return SwiftUICore.HorizontalAlignment.listRowSeparatorLeading
+      case "listRowSeparatorTrailing": return SwiftUICore.HorizontalAlignment.listRowSeparatorTrailing
+      default: preconditionFailure("invalid alignmentGuideWithHorizontalAlignment.g: \(raw)")
+      }
+    }()
+    let argument1: CoreFoundation.CGFloat = {
+      guard let raw = values[1] else { preconditionFailure("missing alignmentGuideWithHorizontalAlignment.computeValue") }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid alignmentGuideWithHorizontalAlignment.computeValue: \(raw)") }
+      return CGFloat(number)
+    }()
+    self.alignmentGuide(argument0, computeValue: { (_: SwiftUICore.ViewDimensions) in argument1 })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAlignmentGuideWithVerticalAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid alignmentGuideWithVerticalAlignment: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.VerticalAlignment = {
+      guard let raw = values[0] else { preconditionFailure("missing alignmentGuideWithVerticalAlignment.g") }
+      switch raw {
+      case "top": return SwiftUICore.VerticalAlignment.top
+      case "center": return SwiftUICore.VerticalAlignment.center
+      case "bottom": return SwiftUICore.VerticalAlignment.bottom
+      case "firstTextBaseline": return SwiftUICore.VerticalAlignment.firstTextBaseline
+      case "lastTextBaseline": return SwiftUICore.VerticalAlignment.lastTextBaseline
+      default: preconditionFailure("invalid alignmentGuideWithVerticalAlignment.g: \(raw)")
+      }
+    }()
+    let argument1: CoreFoundation.CGFloat = {
+      guard let raw = values[1] else { preconditionFailure("missing alignmentGuideWithVerticalAlignment.computeValue") }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid alignmentGuideWithVerticalAlignment.computeValue: \(raw)") }
+      return CGFloat(number)
+    }()
+    self.alignmentGuide(argument0, computeValue: { (_: SwiftUICore.ViewDimensions) in argument1 })
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKAllowedDynamicRange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.allowedDynamicRange(nil as SwiftUICore.Image.DynamicRange?)
@@ -2172,6 +2230,24 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKDialogSuppressionToggle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid dialogSuppressionToggle: \(value)")
     self.dialogSuppressionToggle(isSuppressed: Binding(get: { value == "true" }, set: { emit("dialogSuppressionToggle", String($0)) }))
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDialogSuppressionToggleWithLabelAndIsSuppressed(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid dialogSuppressionToggleWithLabelAndIsSuppressed: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Text = {
+      guard let raw = values[0] else { preconditionFailure("missing dialogSuppressionToggleWithLabelAndIsSuppressed.label") }
+      return Text(raw)
+    }()
+    let argument1: SwiftUICore.Binding<Swift.Bool> = {
+      guard let raw = values[1], raw == "true" || raw == "false" else { preconditionFailure("invalid dialogSuppressionToggleWithLabelAndIsSuppressed.isSuppressed") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("dialogSuppressionToggleWithLabelAndIsSuppressed.isSuppressed", String($0)) })
+    }()
+    self.dialogSuppressionToggle(argument0, isSuppressed: argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDisableAutocorrection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -3400,6 +3476,24 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKManageSubscriptionsSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid manageSubscriptionsSheet: \(value)")
     self.manageSubscriptionsSheet(isPresented: Binding(get: { value == "true" }, set: { emit("manageSubscriptionsSheet", String($0)) }))
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKManageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID.isPresented", String($0)) })
+    }()
+    let argument1: Swift.String = {
+      guard let raw = values[1] else { preconditionFailure("missing manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID.subscriptionGroupID") }
+      return raw
+    }()
+    self.manageSubscriptionsSheet(isPresented: argument0, subscriptionGroupID: argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKMapControlVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -5942,6 +6036,26 @@ extension View {
       case "scale": self.transition(SwiftUICore.AnyTransition.scale)
     default: preconditionFailure("invalid transition: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTranslationPresentation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 17.4, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid translationPresentation: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid translationPresentation.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("translationPresentation.isPresented", String($0)) })
+    }()
+    let argument1: Swift.String = {
+      guard let raw = values[1] else { preconditionFailure("missing translationPresentation.text") }
+      return raw
+    }()
+    self.translationPresentation(isPresented: argument0, text: argument1)
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTruncationMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

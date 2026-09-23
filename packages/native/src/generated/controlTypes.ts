@@ -1459,6 +1459,19 @@ export interface OneNativeStyle {
     point: { x: number; y: number }
   }) => void
   addPassToWalletButtonStyle?: SDKAddPassToWalletButtonStyle
+  alignmentGuideWithHorizontalAlignment?: Readonly<{
+    g:
+      | 'leading'
+      | 'center'
+      | 'trailing'
+      | 'listRowSeparatorLeading'
+      | 'listRowSeparatorTrailing'
+    computeValue: number
+  }>
+  alignmentGuideWithVerticalAlignment?: Readonly<{
+    g: 'top' | 'center' | 'bottom' | 'firstTextBaseline' | 'lastTextBaseline'
+    computeValue: number
+  }>
   allowedDynamicRange?: SDKAllowedDynamicRange | null
   allowsHitTesting?: boolean
   allowsTightening?: boolean
@@ -1583,6 +1596,10 @@ export interface OneNativeStyle {
   dialogSuppressionToggle?: Readonly<{
     value: boolean
     onChange: (value: boolean) => void
+  }>
+  dialogSuppressionToggleWithLabelAndIsSuppressed?: Readonly<{
+    label: string
+    isSuppressed: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   }>
   disableAutocorrection?: boolean | null
   disabled?: boolean
@@ -1841,6 +1858,10 @@ export interface OneNativeStyle {
   manageSubscriptionsSheet?: Readonly<{
     value: boolean
     onChange: (value: boolean) => void
+  }>
+  manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    subscriptionGroupID: string
   }>
   mapControlVisibility?: SDKMapControlVisibility
   mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null
@@ -2320,6 +2341,10 @@ export interface OneNativeStyle {
     }>
   }>
   transition?: SDKTransition
+  translationPresentation?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    text: string
+  }>
   truncationMode?: SDKTruncationMode
   typeSelectEquivalent?: string | null
   typesettingLanguage?: Readonly<{ language: 'automatic'; isEnabled: boolean }>

@@ -2050,6 +2050,104 @@
       ]
     },
     {
+      "name": "alignmentGuideWithHorizontalAlignment",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "aliasSuffix": "HorizontalAlignment",
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.HorizontalAlignment",
+          "optional": false,
+          "cases": [
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "listRowSeparatorLeading",
+              "ios": 16
+            },
+            {
+              "name": "listRowSeparatorTrailing",
+              "ios": 16
+            }
+          ],
+          "field": "g",
+          "label": "_"
+        },
+        {
+          "field": "computeValue",
+          "label": "computeValue",
+          "type": "CoreFoundation.CGFloat",
+          "sdkType": "@escaping @Sendable (SwiftUICore.ViewDimensions) -> CoreFoundation.CGFloat",
+          "kind": "number",
+          "optional": false,
+          "closureInput": "SwiftUICore.ViewDimensions"
+        }
+      ],
+      "sdkName": "alignmentGuide"
+    },
+    {
+      "name": "alignmentGuideWithVerticalAlignment",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "aliasSuffix": "VerticalAlignment",
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.VerticalAlignment",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "firstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "lastTextBaseline",
+              "ios": 13
+            }
+          ],
+          "field": "g",
+          "label": "_"
+        },
+        {
+          "field": "computeValue",
+          "label": "computeValue",
+          "type": "CoreFoundation.CGFloat",
+          "sdkType": "@escaping @Sendable (SwiftUICore.ViewDimensions) -> CoreFoundation.CGFloat",
+          "kind": "number",
+          "optional": false,
+          "closureInput": "SwiftUICore.ViewDimensions"
+        }
+      ],
+      "sdkName": "alignmentGuide"
+    },
+    {
       "name": "allowedDynamicRange",
       "kind": "optionalEnum",
       "type": "SwiftUICore.Image.DynamicRange?",
@@ -3687,6 +3785,30 @@
       "type": "SwiftUICore.Binding<Swift.Bool>",
       "label": "isSuppressed",
       "ios": 17
+    },
+    {
+      "name": "dialogSuppressionToggleWithLabelAndIsSuppressed",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "label",
+          "label": "_"
+        },
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isSuppressed",
+          "label": "isSuppressed"
+        }
+      ],
+      "sdkName": "dialogSuppressionToggle"
     },
     {
       "name": "disableAutocorrection",
@@ -6061,6 +6183,31 @@
       "label": "isPresented",
       "ios": 15,
       "framework": "StoreKit"
+    },
+    {
+      "name": "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID",
+      "module": "_StoreKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "optional": false,
+          "field": "subscriptionGroupID",
+          "label": "subscriptionGroupID"
+        }
+      ],
+      "framework": "StoreKit",
+      "sdkName": "manageSubscriptionsSheet"
     },
     {
       "name": "mapControlVisibility",
@@ -11650,6 +11797,29 @@
       ]
     },
     {
+      "name": "translationPresentation",
+      "kind": "record",
+      "type": "",
+      "ios": 17.4,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "optional": false,
+          "field": "text",
+          "label": "text"
+        }
+      ],
+      "framework": "Translation"
+    },
+    {
       "name": "truncationMode",
       "kind": "string",
       "type": "SwiftUICore.Text.TruncationMode",
@@ -12247,6 +12417,7 @@
         "accentColor",
         "accessibilityIgnoresInvertColors",
         "accessibilityShowsLargeContentViewer",
+        "alignmentGuide",
         "allowedDynamicRange",
         "allowsHitTesting",
         "allowsTightening",
@@ -12668,6 +12839,9 @@
       ],
       "_AuthenticationServices_SwiftUI": [
         "signInWithAppleButtonStyle"
+      ],
+      "_Translation_SwiftUI": [
+        "translationPresentation"
       ],
       "_WebKit_SwiftUI": [
         "webViewBackForwardNavigationGestures",
