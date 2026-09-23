@@ -915,7 +915,8 @@ function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
     const sources: string[] = []
     const collect = (dir: string) => {
       for (const entry of FSExtra.readdirSync(dir, { withFileTypes: true })) {
-        if (entry.name.startsWith('.') || entry.name === 'node_modules') continue
+        // a package at the app root holds the generated native projects too
+        if (entry.name.startsWith('.') || skip.has(entry.name)) continue
         const full = path.join(dir, entry.name)
         if (entry.isDirectory()) collect(full)
         else if (entry.name.endsWith('.swift') && entry.name !== 'Package.swift') sources.push(full)
