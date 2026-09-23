@@ -149,6 +149,7 @@ extension View {
       case "accessibilityWithRemoveTraits": view = AnyView(view.oneNativeSDKAccessibilityWithRemoveTraits(value, emit: emit))
       case "accessibilityWithSortPriority": view = AnyView(view.oneNativeSDKAccessibilityWithSortPriority(value, emit: emit))
       case "accessibilityWithValue": view = AnyView(view.oneNativeSDKAccessibilityWithValue(value, emit: emit))
+      case "accessibilityZoomAction": view = AnyView(view.oneNativeSDKAccessibilityZoomAction(value, emit: emit))
       case "addPassToWalletButtonStyle": view = AnyView(view.oneNativeSDKAddPassToWalletButtonStyle(value, emit: emit))
       case "allowedDynamicRange": view = AnyView(view.oneNativeSDKAllowedDynamicRange(value, emit: emit))
       case "allowsHitTesting": view = AnyView(view.oneNativeSDKAllowsHitTesting(value, emit: emit))
@@ -1329,6 +1330,15 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityWithValue(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       self.accessibility(value: Text(value))
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityZoomAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.accessibilityZoomAction({ item in
+      let payload = (["direction": ({ () -> String in switch item.direction { case .zoomIn: return "zoomIn" case .zoomOut: return "zoomOut" } })(), "location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "point": (["x": Double(item.point.x), "y": Double(item.point.y)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid accessibilityZoomAction event") }
+      emit("accessibilityZoomAction", encoded)
+    })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAddPassToWalletButtonStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

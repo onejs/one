@@ -6,6 +6,8 @@ const eventValueSwift = (value: EventValueSchema, expression: string): string =>
   if (value.kind === 'string' || value.kind === 'boolean') return expression
   if (value.kind === 'point')
     return `(["x": Double(${expression}.x), "y": Double(${expression}.y)] as [String: Any])`
+  if (value.kind === 'enum')
+    return `({ () -> String in switch ${expression} { ${value.cases.map((item) => `case .${item}: return ${JSON.stringify(item)}`).join(' ')} } })()`
   if (value.kind === 'optional')
     return `(${expression}.map { inner -> Any in ${eventValueSwift(value.value, 'inner')} } ?? NSNull())`
   return `([${value.fields.map((field) => `${JSON.stringify(field.name)}: ${eventValueSwift(field.value, `${expression}.${field.name}`)}`).join(', ')}] as [String: Any])`
@@ -291,6 +293,7 @@ const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [
 const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
 type SDKEventValueShape =
   | { kind: 'number' | 'string' | 'boolean' | 'point' }
+  | { kind: 'enum'; cases: readonly string[] }
   | { kind: 'optional'; value: SDKEventValueShape }
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
 const sdkAssociatedCases: Record<string, Record<string, readonly SDKEventValueShape[]>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAssociatedEnum').map((modifier) => [modifier.name, Object.fromEntries(modifier.associatedCases!.map((item) => [item.name, item.values]))])))}
@@ -301,6 +304,7 @@ function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean 
   if (shape.kind === 'optional') return value === null || validSDKEventValue(value, shape.value)
   if (shape.kind === 'number') return typeof value === 'number' && Number.isFinite(value)
   if (shape.kind === 'string' || shape.kind === 'boolean') return typeof value === shape.kind
+  if (shape.kind === 'enum') return typeof value === 'string' && shape.cases.includes(value)
   if (!value || typeof value !== 'object') return false
   const record = value as Record<string, unknown>
   if (shape.kind === 'point')

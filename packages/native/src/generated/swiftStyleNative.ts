@@ -88,6 +88,7 @@ const sdkKinds = {
   accessibilityWithRemoveTraits: 'string',
   accessibilityWithSortPriority: 'number',
   accessibilityWithValue: 'string',
+  accessibilityZoomAction: 'eventStruct',
   addPassToWalletButtonStyle: 'string',
   allowedDynamicRange: 'optionalEnum',
   allowsHitTesting: 'boolean',
@@ -431,6 +432,7 @@ const sdkEventCases: Record<string, readonly string[]> = {
 }
 type SDKEventValueShape =
   | { kind: 'number' | 'string' | 'boolean' | 'point' }
+  | { kind: 'enum'; cases: readonly string[] }
   | { kind: 'optional'; value: SDKEventValueShape }
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
 const sdkAssociatedCases: Record<
@@ -545,6 +547,23 @@ const sdkAssociatedCases: Record<
   },
 }
 const sdkEventStructs: Record<string, SDKEventValueShape> = {
+  accessibilityZoomAction: {
+    kind: 'object',
+    fields: [
+      { name: 'direction', value: { kind: 'enum', cases: ['zoomIn', 'zoomOut'] } },
+      {
+        name: 'location',
+        value: {
+          kind: 'object',
+          fields: [
+            { name: 'x', value: { kind: 'number' } },
+            { name: 'y', value: { kind: 'number' } },
+          ],
+        },
+      },
+      { name: 'point', value: { kind: 'point' } },
+    ],
+  },
   onDragSessionUpdated: {
     kind: 'object',
     fields: [{ name: 'location', value: { kind: 'point' } }],
@@ -926,6 +945,8 @@ function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean 
   if (shape.kind === 'number') return typeof value === 'number' && Number.isFinite(value)
   if (shape.kind === 'string' || shape.kind === 'boolean')
     return typeof value === shape.kind
+  if (shape.kind === 'enum')
+    return typeof value === 'string' && shape.cases.includes(value)
   if (!value || typeof value !== 'object') return false
   const record = value as Record<string, unknown>
   if (shape.kind === 'point')

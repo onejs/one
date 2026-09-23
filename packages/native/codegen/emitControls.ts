@@ -81,6 +81,7 @@ const eventValueType = (value: EventValueSchema): string => {
   if (value.kind === 'string') return 'string'
   if (value.kind === 'boolean') return 'boolean'
   if (value.kind === 'point') return '{ x: number; y: number }'
+  if (value.kind === 'enum') return value.cases.map((item) => JSON.stringify(item)).join(' | ')
   if (value.kind === 'optional') return `${eventValueType(value.value)} | null`
   return `{ ${value.fields.map((field) => `${field.name}: ${eventValueType(field.value)}`).join('; ')} }`
 }

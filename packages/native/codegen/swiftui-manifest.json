@@ -1979,6 +1979,54 @@
       "sdkName": "accessibility"
     },
     {
+      "name": "accessibilityZoomAction",
+      "kind": "eventStruct",
+      "type": "@escaping (SwiftUICore.AccessibilityZoomGestureAction) -> Swift.Void",
+      "label": "_",
+      "ios": 16,
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "direction",
+            "value": {
+              "kind": "enum",
+              "cases": [
+                "zoomIn",
+                "zoomOut"
+              ]
+            }
+          },
+          {
+            "name": "location",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "x",
+                  "value": {
+                    "kind": "number"
+                  }
+                },
+                {
+                  "name": "y",
+                  "value": {
+                    "kind": "number"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "point",
+            "value": {
+              "kind": "point"
+            }
+          }
+        ]
+      }
+    },
+    {
       "name": "addPassToWalletButtonStyle",
       "kind": "string",
       "type": "_PassKit_SwiftUI.AddPassToWalletButtonStyle",
@@ -11111,6 +11159,7 @@
         "accessibilitySortPriority",
         "accessibilityTextContentType",
         "accessibilityValue",
+        "accessibilityZoomAction",
         "alert",
         "allowsWindowActivationEvents",
         "assistiveAccessNavigationIcon",
