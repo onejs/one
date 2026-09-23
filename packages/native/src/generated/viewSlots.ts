@@ -10,8 +10,10 @@ export const viewSlotAvailability = {
   containerBackground: 17,
   contentToolbar: 18.4,
   contextMenu: 13,
+  inspector: 17,
   mapControls: 17,
   mask: 15,
+  navigationDestination: 16,
   overlay: 15,
   presentationBackground: 16.4,
   safeAreaBarWithHorizontalEdge: 26,
@@ -35,33 +37,43 @@ export type ViewSlotName = keyof typeof viewSlotAvailability
 export const viewSlotArguments = {
   accessibilityActions: [],
   accessibilityActionsWithAccessibilityActionCategory: [
-    { field: 'category', cases: { default: 18, edit: 18 } },
+    { field: 'category', kind: 'enum', cases: { default: 18, edit: 18 } },
   ],
   accessibilityChildren: [],
   accessibilityRepresentation: [],
   accessibilityShowsLargeContentViewer: [],
   background: [],
   containerBackground: [
-    { field: 'container', cases: { navigation: 18, navigationSplitView: 18 } },
+    {
+      field: 'container',
+      kind: 'enum',
+      cases: { navigation: 18, navigationSplitView: 18 },
+    },
   ],
-  contentToolbar: [{ field: 'placement', cases: { tabViewSidebar: 18.4 } }],
+  contentToolbar: [{ field: 'placement', kind: 'enum', cases: { tabViewSidebar: 18.4 } }],
   contextMenu: [],
+  inspector: [{ field: 'isPresented', kind: 'bindingBoolean' }],
   mapControls: [],
   mask: [],
+  navigationDestination: [{ field: 'isPresented', kind: 'bindingBoolean' }],
   overlay: [],
   presentationBackground: [],
   safeAreaBarWithHorizontalEdge: [
-    { field: 'edge', cases: { leading: 15, trailing: 15 } },
+    { field: 'edge', kind: 'enum', cases: { leading: 15, trailing: 15 } },
   ],
-  safeAreaBarWithVerticalEdge: [{ field: 'edge', cases: { top: 15, bottom: 15 } }],
+  safeAreaBarWithVerticalEdge: [
+    { field: 'edge', kind: 'enum', cases: { top: 15, bottom: 15 } },
+  ],
   safeAreaInsetWithHorizontalEdge: [
-    { field: 'edge', cases: { leading: 15, trailing: 15 } },
+    { field: 'edge', kind: 'enum', cases: { leading: 15, trailing: 15 } },
   ],
-  safeAreaInsetWithVerticalEdge: [{ field: 'edge', cases: { top: 15, bottom: 15 } }],
+  safeAreaInsetWithVerticalEdge: [
+    { field: 'edge', kind: 'enum', cases: { top: 15, bottom: 15 } },
+  ],
   searchSuggestions: [],
   sectionActions: [],
   subscriptionStorePolicyDestination: [
-    { field: 'button', cases: { termsOfService: 17, privacyPolicy: 17 } },
+    { field: 'button', kind: 'enum', cases: { termsOfService: 17, privacyPolicy: 17 } },
   ],
   swipeActions: [],
   tabItem: [],
@@ -89,8 +101,16 @@ export type ViewSlotConfiguration =
     }
   | { name: 'contentToolbar'; options: { placement: 'tabViewSidebar' } }
   | { name: 'contextMenu'; options?: never }
+  | {
+      name: 'inspector'
+      options: { isPresented: { value: boolean; onChange: (value: boolean) => void } }
+    }
   | { name: 'mapControls'; options?: never }
   | { name: 'mask'; options?: never }
+  | {
+      name: 'navigationDestination'
+      options: { isPresented: { value: boolean; onChange: (value: boolean) => void } }
+    }
   | { name: 'overlay'; options?: never }
   | { name: 'presentationBackground'; options?: never }
   | { name: 'safeAreaBarWithHorizontalEdge'; options: { edge: 'leading' | 'trailing' } }

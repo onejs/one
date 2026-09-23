@@ -640,15 +640,36 @@ function ViewSlotFn({ name, options, children, style, ...props }: ViewSlotProps)
     throw new Error('Swift.ViewSlot takes one ViewSlot.Content child')
   assertOneNativeChildren(children, 'Swift.ViewSlot')
   const values = viewSlotArguments[name].map((argument) => {
-    const value = (options as Record<string, string> | undefined)?.[argument.field]
-    if (!value || !Object.hasOwn(argument.cases, value))
+    const value = (options as Record<string, unknown> | undefined)?.[argument.field]
+    if (argument.kind === 'bindingBoolean') {
+      if (typeof value !== 'object' || value === null ||
+        typeof (value as { value?: unknown }).value !== 'boolean' ||
+        typeof (value as { onChange?: unknown }).onChange !== 'function')
+        throw new Error(`Swift.ViewSlot ${name}.${argument.field} must be a boolean binding`)
+      return String((value as { value: boolean }).value)
+    }
+    if (typeof value !== 'string' || !Object.hasOwn(argument.cases, value))
       throw new Error(`Swift.ViewSlot ${name}.${argument.field} must be a declared SDK case`)
     if (Number.parseFloat(String(Platform.Version)) < (argument.cases as Record<string, number>)[value])
       throw new Error(`Swift.ViewSlot ${name}.${argument.field}=${value} is unavailable on this iOS version`)
     return value
   })
   return (
-    <NativeOverlay {...props} style={[{ alignSelf: 'stretch' }, style]} alignment="center" slotName={name} slotValues={JSON.stringify(values)}>
+    <NativeOverlay
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      alignment="center"
+      slotName={name}
+      slotValues={JSON.stringify(values)}
+      onNativeSDKEvent={({ nativeEvent }) => {
+        if (nativeEvent.name !== name || (nativeEvent.value !== 'true' && nativeEvent.value !== 'false'))
+          throw new Error(`Swift.ViewSlot ${name} emitted an invalid binding event`)
+        const argument = viewSlotArguments[name].find((item) => item.kind === 'bindingBoolean')
+        if (!argument) throw new Error(`Swift.ViewSlot ${name} emitted an unexpected event`)
+        const binding = (options as Record<string, { onChange: (value: boolean) => void }>)[argument.field]
+        binding.onChange(nativeEvent.value === 'true')
+      }}
+    >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeOverlay>
   )
