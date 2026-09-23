@@ -274,6 +274,7 @@ export function deriveModifiers(
     if (type === 'Swift.String') return { kind: 'string' }
     if (type === 'Swift.Bool') return { kind: 'boolean' }
     if (type === 'CoreFoundation.CGPoint') return { kind: 'point' }
+    if (type === 'CoreFoundation.CGSize') return { kind: 'size' }
     const [module, ...parts] = type.split('.')
     const owner = parts.join('.')
     if (inventory.some((d) => d.module === module && d.kind === 'enum' &&
@@ -291,10 +292,11 @@ export function deriveModifiers(
       d.kind === 'var' && d.stored && present(d) && ios(d) <= version)
     if (!fields.length || new Set(fields.map((field) => field.name)).size !== fields.length) return
     const next = new Set([...seen, type])
-    const mapped = fields.map((field) => ({ name: field.name, value: eventValueOf(field.type ?? '', version, next) }))
-    return mapped.every((field) => field.value)
-      ? { kind: 'object', fields: mapped as { name: string; value: EventValueSchema }[] }
-      : undefined
+    const mapped = fields.flatMap((field) => {
+      const value = eventValueOf(field.type ?? '', version, next)
+      return value ? [{ name: field.name, value }] : []
+    })
+    return mapped.length ? { kind: 'object', fields: mapped } : undefined
   }
   const enumCallbackOf = (type: string) => {
     const single = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> Swift\.Void$/.exec(type)
@@ -687,11 +689,16 @@ export function deriveModifiers(
     const baseBinding = selected.filter((candidate) => candidate.kind === 'bindingBoolean')
     const keepBaseBinding = baseBinding.length === 1 && selected.some((candidate) => candidate.kind === 'record')
       ? baseBinding[0] : undefined
-    if (keepBaseBinding) {
-      const { module, ...modifier } = keepBaseBinding
+    const baseEvent = selected.filter((candidate) => candidate.kind === 'event')
+    const keepBaseEvent = baseEvent.length === 1 && selected.some((candidate) =>
+      candidate.kind === 'eventStruct' && candidate.module === baseEvent[0].module)
+      ? baseEvent[0] : undefined
+    const keepBase = keepBaseBinding ?? keepBaseEvent
+    if (keepBase) {
+      const { module, ...modifier } = keepBase
       result.push(modifier)
     }
-    for (const candidate of selected.filter((item) => item !== keepBaseBinding).sort((a, b) =>
+    for (const candidate of selected.filter((item) => item !== keepBase).sort((a, b) =>
       `${a.module}|${a.label}|${a.type}`.localeCompare(`${b.module}|${b.label}|${b.type}`)
     )) {
       const typeName = candidate.type.replace(/\?$/, '').split('.').at(-1)?.replace(/[^A-Za-z0-9]/g, '') ?? 'Value'
