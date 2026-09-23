@@ -223,8 +223,10 @@ extension View {
       case "offerCodeRedemption": view = AnyView(view.oneNativeSDKOfferCodeRedemption(value, emit: emit))
       case "onAppear": view = AnyView(view.oneNativeSDKOnAppear(value, emit: emit))
       case "onDisappear": view = AnyView(view.oneNativeSDKOnDisappear(value, emit: emit))
+      case "onHover": view = AnyView(view.oneNativeSDKOnHover(value, emit: emit))
+      case "onInteractiveResizeChange": view = AnyView(view.oneNativeSDKOnInteractiveResizeChange(value, emit: emit))
       case "onMapCameraChange": view = AnyView(view.oneNativeSDKOnMapCameraChange(value, emit: emit))
-      case "onOpenURL": view = AnyView(view.oneNativeSDKOnOpenURL(value, emit: emit))
+      case "onScrollVisibilityChange": view = AnyView(view.oneNativeSDKOnScrollVisibilityChange(value, emit: emit))
       case "onSubmit": view = AnyView(view.oneNativeSDKOnSubmit(value, emit: emit))
       case "onTapGesture": view = AnyView(view.oneNativeSDKOnTapGesture(value, emit: emit))
       case "paletteSelectionEffect": view = AnyView(view.oneNativeSDKPaletteSelectionEffect(value, emit: emit))
@@ -1489,13 +1491,20 @@ extension View {
     self.onDisappear(perform: { emit("onDisappear", "") })
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKOnHover(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onHover(perform: { value in emit("onHover", String(value)) })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnInteractiveResizeChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) { self.onInteractiveResizeChange({ value in emit("onInteractiveResizeChange", String(value)) }) } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKOnMapCameraChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onMapCameraChange(frequency: .onEnd, { emit("onMapCameraChange", "") })
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKOnOpenURL(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      let _ = precondition(value == "true" || value == "false", "invalid onOpenURL: \(value)")
-      if #available(iOS 26, *) { self.onOpenURL(prefersInApp: value == "true") } else { self }
+  @ViewBuilder fileprivate func oneNativeSDKOnScrollVisibilityChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) { self.onScrollVisibilityChange(threshold: 0.5, { value in emit("onScrollVisibilityChange", String(value)) }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnSubmit(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

@@ -163,8 +163,10 @@ const sdkKinds = {
   offerCodeRedemption: 'bindingBoolean',
   onAppear: 'event',
   onDisappear: 'event',
+  onHover: 'eventBoolean',
+  onInteractiveResizeChange: 'eventBoolean',
   onMapCameraChange: 'event',
-  onOpenURL: 'boolean',
+  onScrollVisibilityChange: 'eventBoolean',
   onSubmit: 'event',
   onTapGesture: 'event',
   paletteSelectionEffect: 'string',
@@ -284,7 +286,7 @@ export function swiftStyleNative(
         throw new Error(name + ' must be a string or null')
       if (kind === 'optionalString' && value !== null && typeof value !== 'string')
         throw new Error(name + ' must be a string or null')
-      if (kind === 'event' && typeof value !== 'function')
+      if (kind.startsWith('event') && typeof value !== 'function')
         throw new Error(name + ' must be a callback')
       if (
         (kind === 'bindingBoolean' || kind === 'bindingString') &&
@@ -297,7 +299,7 @@ export function swiftStyleNative(
         throw new Error(name + ' must be a binding')
       sdkModifiers.push([
         name,
-        kind === 'event'
+        kind.startsWith('event')
           ? ''
           : kind.startsWith('binding')
             ? String((value as { value: unknown }).value)
@@ -321,8 +323,18 @@ export function dispatchSDKEvent(
   value: string
 ): void {
   const modifier = (style as Record<string, unknown> | undefined)?.[name]
-  const kind = sdkKinds[name as keyof typeof sdkKinds]
+  const kind = sdkKinds[name as keyof typeof sdkKinds] as string | undefined
   if (kind === 'event') (modifier as (() => void) | undefined)?.()
+  else if (kind === 'eventBoolean') {
+    if (value !== 'true' && value !== 'false')
+      throw new Error(name + ' emitted an invalid boolean')
+    ;(modifier as ((value: boolean) => void) | undefined)?.(value === 'true')
+  } else if (kind === 'eventNumber') {
+    const number = Number(value)
+    if (!Number.isFinite(number)) throw new Error(name + ' emitted an invalid number')
+    ;(modifier as ((value: number) => void) | undefined)?.(number)
+  } else if (kind === 'eventString')
+    (modifier as ((value: string) => void) | undefined)?.(value)
   else if (kind === 'bindingBoolean')
     (modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(
       value === 'true'
