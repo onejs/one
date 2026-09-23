@@ -277,6 +277,21 @@ describe('SDK modifier derivation', () => {
 })
 
 describe('SDK view slots', () => {
+  it('derives a direct generic View argument as a child slot', () => {
+    expect(deriveViewSlots([
+      { ...method('listRowBackground', 'SwiftUI', [{ label: '_', name: 'view', type: 'V?' }]), requirements: ['V : SwiftUICore.View'] },
+      { ...method('navigationBarItems', 'SwiftUI', [{ label: 'leading', name: 'leading', type: 'L' }]), requirements: ['L : SwiftUICore.View'] },
+      { ...method('navigationBarItems', 'SwiftUI', [{ label: 'trailing', name: 'trailing', type: 'T' }]), requirements: ['T : SwiftUICore.View'] },
+      { ...method('background', 'SwiftUICore', [{ label: '_', name: 'view', type: 'V' }]), requirements: ['V : SwiftUICore.View'] },
+      { ...method('background', 'SwiftUICore', [{ label: 'content', name: 'content', type: '() -> V' }]), requirements: ['V : SwiftUICore.View'] },
+    ], 27)).toEqual([
+      { name: 'background', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [] },
+      { name: 'listRowBackground', module: 'SwiftUI', label: '_', ios: 0, directValue: true, arguments: [] },
+      { name: 'navigationBarItemsWithLeading', sdkName: 'navigationBarItems', module: 'SwiftUI', label: 'leading', ios: 0, directValue: true, arguments: [] },
+      { name: 'navigationBarItemsWithTrailing', sdkName: 'navigationBarItems', module: 'SwiftUI', label: 'trailing', ios: 0, directValue: true, arguments: [] },
+    ])
+  })
+
   it('selects one child ViewBuilder overload with its parameter label', () => {
     const content = { label: 'content', name: 'content', type: '() -> Content' }
     const requirement = ['Content : SwiftUICore.View']

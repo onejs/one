@@ -67,17 +67,17 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) =>
   }
 
 export type DerivedSlotArgument = DerivedArgument | { field: string; label: string; type: string; kind: 'bindingBoolean'; optional: false }
-export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; arguments: readonly DerivedSlotArgument[] }
+export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; directValue?: true; arguments: readonly DerivedSlotArgument[] }
 
 export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
   const valueOf = bridgeValueOf(inventory, ceiling)
+  const isContent = (d: Declaration, parameter: Declaration['parameters'][number]) => {
+    if (parameter.type === '() -> some View') return true
+    const generic = /^\(\) -> ([A-Za-z_]\w*)$|^([A-Za-z_]\w*)\??$/.exec(parameter.type)
+    return Boolean(generic && d.requirements?.includes(`${generic[1] ?? generic[2]} : SwiftUICore.View`))
+  }
   const slots = inventory.filter((d) => {
-    const builders = d.parameters.filter((parameter) =>
-      parameter.type === '() -> some View' ||
-      (/^\(\) -> [A-Za-z_]\w*$/.test(parameter.type) &&
-        d.requirements?.length === 1 &&
-        d.requirements[0] === `${parameter.type.slice(6)} : SwiftUICore.View`)
-    )
+    const builders = d.parameters.filter((parameter) => isContent(d, parameter))
     return (
       d.kind === 'func' && (d.module === 'SwiftUI' || d.module === 'SwiftUICore' ||
         /^_[A-Za-z]+_SwiftUI$/.test(d.module)) &&
@@ -88,22 +88,29 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
         parameter.type === 'SwiftUICore.Binding<Swift.Bool>') &&
       present(d) && ios(d) <= ceiling
     )
-  })
+  }).filter((slot, _, candidates) =>
+    slot.parameters.at(-1)!.type.startsWith('() ->') ||
+    !candidates.some((other) => other.module === slot.module && other.name === slot.name &&
+      other.parameters.at(-1)!.type.startsWith('() ->')))
   const byName = new Map<string, Declaration[]>()
   for (const slot of slots) {
     const key = `${slot.module}.${slot.name}`
     byName.set(key, [...(byName.get(key) ?? []), slot])
   }
   return [...byName].flatMap(([, declarations]) => declarations.map((slot) => {
+    const content = slot.parameters.at(-1)!
+    const directValue = !content.type.startsWith('() ->')
     const required = slot.parameters.filter((parameter) =>
-      !parameter.type.startsWith('() ->') && parameter.defaultValue === undefined)
+      parameter !== content && parameter.defaultValue === undefined)
     const suffix = declarations.length === 1 || required.length === 0 ? ''
       : `With${required.map((parameter) => parameter.type.split('.').at(-1)!).join('And')}`
-    return { name: `${slot.name}${suffix}`, ...(suffix ? { sdkName: slot.name } : {}), module: slot.module,
-      label: slot.parameters.find((parameter) =>
-        parameter.type.startsWith('() ->'))!.label, ios: ios(slot),
+    const directSuffix = declarations.length > 1 && directValue
+      ? `With${content.label === '_' ? content.type.replace(/\?$/, '') : content.label[0].toUpperCase() + content.label.slice(1)}`
+      : suffix
+    return { name: `${slot.name}${directSuffix}`, ...(directSuffix ? { sdkName: slot.name } : {}), module: slot.module,
+      label: content.label, ios: ios(slot), ...(directValue ? { directValue: true as const } : {}),
       arguments: slot.parameters.filter((parameter) =>
-        !parameter.type.startsWith('() ->') && parameter.defaultValue === undefined)
+        parameter !== content && parameter.defaultValue === undefined)
         .map((parameter) => parameter.type === 'SwiftUICore.Binding<Swift.Bool>'
           ? { field: parameter.name, label: parameter.label, type: parameter.type, kind: 'bindingBoolean' as const, optional: false as const }
           : { ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label }) }

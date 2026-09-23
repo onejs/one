@@ -11,8 +11,11 @@ export const viewSlotAvailability = {
   contentToolbar: 18.4,
   contextMenu: 13,
   inspector: 17,
+  listRowBackground: 13,
   mapControls: 17,
   mask: 15,
+  navigationBarItemsWithLeading: 13,
+  navigationBarItemsWithTrailing: 13,
   navigationDestination: 16,
   overlay: 15,
   presentationBackground: 16.4,
@@ -53,8 +56,11 @@ export const viewSlotArguments = {
   contentToolbar: [{ field: 'placement', kind: 'enum', cases: { tabViewSidebar: 18.4 } }],
   contextMenu: [],
   inspector: [{ field: 'isPresented', kind: 'bindingBoolean' }],
+  listRowBackground: [],
   mapControls: [],
   mask: [],
+  navigationBarItemsWithLeading: [],
+  navigationBarItemsWithTrailing: [],
   navigationDestination: [{ field: 'isPresented', kind: 'bindingBoolean' }],
   overlay: [],
   presentationBackground: [],
@@ -105,8 +111,11 @@ export type ViewSlotConfiguration =
       name: 'inspector'
       options: { isPresented: { value: boolean; onChange: (value: boolean) => void } }
     }
+  | { name: 'listRowBackground'; options?: never }
   | { name: 'mapControls'; options?: never }
   | { name: 'mask'; options?: never }
+  | { name: 'navigationBarItemsWithLeading'; options?: never }
+  | { name: 'navigationBarItemsWithTrailing'; options?: never }
   | {
       name: 'navigationDestination'
       options: { isPresented: { value: boolean; onChange: (value: boolean) => void } }
