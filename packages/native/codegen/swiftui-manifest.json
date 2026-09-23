@@ -888,6 +888,23 @@
       ]
     },
     {
+      "name": "accessibilityAdjustableAction",
+      "kind": "eventEnum",
+      "type": "@escaping (SwiftUICore.AccessibilityAdjustmentDirection) -> Swift.Void",
+      "label": "_",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "increment",
+          "ios": 13
+        },
+        {
+          "name": "decrement",
+          "ios": 13
+        }
+      ]
+    },
+    {
       "name": "accessibilityDirectTouch",
       "kind": "record",
       "type": "",
@@ -1495,6 +1512,31 @@
         }
       ],
       "sdkName": "accessibilityRespondsToUserInteraction"
+    },
+    {
+      "name": "accessibilityScrollAction",
+      "kind": "eventEnum",
+      "type": "@escaping (SwiftUICore.Edge) -> Swift.Void",
+      "label": "_",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "top",
+          "ios": 13
+        },
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "bottom",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        }
+      ]
     },
     {
       "name": "accessibilityScrollStatus",
@@ -6115,6 +6157,35 @@
       "sdkName": "onOpenURL"
     },
     {
+      "name": "onScrollPhaseChange",
+      "kind": "eventEnumPair",
+      "type": "@escaping (_ oldPhase: SwiftUICore.ScrollPhase, _ newPhase: SwiftUICore.ScrollPhase) -> Swift.Void",
+      "label": "_",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "idle",
+          "ios": 18
+        },
+        {
+          "name": "tracking",
+          "ios": 18
+        },
+        {
+          "name": "interacting",
+          "ios": 18
+        },
+        {
+          "name": "decelerating",
+          "ios": 18
+        },
+        {
+          "name": "animating",
+          "ios": 18
+        }
+      ]
+    },
+    {
       "name": "onScrollVisibilityChange",
       "kind": "eventBoolean",
       "type": "@escaping (Swift.Bool) -> Swift.Void",
@@ -9952,6 +10023,7 @@
         "accessibilityAction",
         "accessibilityActivationPoint",
         "accessibilityAddTraits",
+        "accessibilityAdjustableAction",
         "accessibilityDirectTouch",
         "accessibilityDragPoint",
         "accessibilityDropPoint",
@@ -9963,6 +10035,7 @@
         "accessibilityLabel",
         "accessibilityRemoveTraits",
         "accessibilityRespondsToUserInteraction",
+        "accessibilityScrollAction",
         "accessibilityScrollStatus",
         "accessibilitySortPriority",
         "accessibilityTextContentType",
@@ -10059,6 +10132,7 @@
         "onInteractiveResizeChange",
         "onLongPressGesture",
         "onOpenURL",
+        "onScrollPhaseChange",
         "onScrollVisibilityChange",
         "onSubmit",
         "paletteSelectionEffect",

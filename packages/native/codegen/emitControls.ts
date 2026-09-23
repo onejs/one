@@ -134,8 +134,12 @@ ${styleFields
             ? '(value: boolean) => void'
             : modifier.kind === 'eventNumber'
               ? '(value: number) => void'
-              : modifier.kind === 'eventString'
-                ? '(value: string) => void'
+            : modifier.kind === 'eventString'
+              ? '(value: string) => void'
+              : modifier.kind === 'eventEnum'
+                ? `(value: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}) => void`
+                : modifier.kind === 'eventEnumPair'
+                  ? `(oldValue: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}, newValue: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}) => void`
           : modifier.kind === 'bindingBoolean'
             ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>'
             : modifier.kind === 'bindingString'
