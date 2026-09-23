@@ -59,10 +59,7 @@ function parse(args: string[]): Config {
   let artifactDir = '/tmp/one-native-android-proof'
   let timeout = 15_000
   let metroPort = 8081
-  if (
-    process.env.RCT_METRO_PORT !== undefined &&
-    process.env.RCT_METRO_PORT !== ''
-  )
+  if (process.env.RCT_METRO_PORT !== undefined && process.env.RCT_METRO_PORT !== '')
     metroPort = Number(process.env.RCT_METRO_PORT)
 
   for (let index = 0; index < args.length; index++) {
@@ -483,8 +480,7 @@ function tapByText(config: Config, name: string, text: string) {
       `${name} resolved ${labeled.length} nodes with text "${text}"; exactly one is required.`
     )
   const target = clickableTarget(current.nodes, labeled[0])
-  if (!target)
-    throw new Error(`${name} found text "${text}" with no clickable ancestor.`)
+  if (!target) throw new Error(`${name} found text "${text}" with no clickable ancestor.`)
   const bounds = validBounds(labeled[0], name)
   const x = Math.round((bounds.left + bounds.right) / 2)
   const y = Math.round((bounds.top + bounds.bottom) / 2)
@@ -767,14 +763,7 @@ function relaunchApp(config: Config) {
     .findLast((line) => line.includes('/'))
   if (!launcherComponent)
     throw new Error(`No launcher activity resolved for ${config.packageId}.`)
-  adbText(config, [
-    'shell',
-    'am',
-    'start',
-    '-W',
-    '-n',
-    launcherComponent,
-  ])
+  adbText(config, ['shell', 'am', 'start', '-W', '-n', launcherComponent])
 }
 
 async function run(config: Config) {
@@ -1002,7 +991,11 @@ async function run(config: Config) {
           clickable: true,
         })
         const status = matching(nodes, { id: 'one-native-android-switch-policy-status' })
-        return policy.length === 1 && status.length === 1 && status[0].text === 'Policy: accept'
+        return (
+          policy.length === 1 &&
+          status.length === 1 &&
+          status[0].text === 'Policy: accept'
+        )
       },
       'one-native-android-mounted'
     )
@@ -1152,7 +1145,10 @@ async function run(config: Config) {
         runDetail(nodes, ['one-native-android-icon', 'one-native-android-icon-filled'])
     )
     const iconButtonSnapshot = snapshot(config)
-    const iconButton = nodeById(iconButtonSnapshot.nodes, 'one-native-android-icon-button')
+    const iconButton = nodeById(
+      iconButtonSnapshot.nodes,
+      'one-native-android-icon-button'
+    )
     const iconButtonBounds = validBounds(iconButton, 'Icon button')
     const addGlyph = String.fromCodePoint(0xe145)
     const glyphNodes = iconButtonSnapshot.nodes.filter(
@@ -1261,26 +1257,27 @@ async function run(config: Config) {
           return diagnose(nodes, [
             ['mounted marker', (n) => exactlyOneId(n, 'one-native-android-mounted')],
             ['button taps kept', (n) => textIncludes(n, 'Button taps: 3')],
-            ['switch kept', (n) => textIncludes(n, 'Switch: on · Request: on · Revision: 1')],
+            [
+              'switch kept',
+              (n) => textIncludes(n, 'Switch: on · Request: on · Revision: 1'),
+            ],
             ['prop kept', (n) => textIncludes(n, 'Prop: expanded')],
-            ['window is landscape', () => window.right - window.left > window.bottom - window.top],
+            [
+              'window is landscape',
+              () => window.right - window.left > window.bottom - window.top,
+            ],
             ['row widened', () => width > portraitRowWidth * 1.2],
             // the short edge clips a device-specific row count, so exact-once
             // over a fixed visible list fails on viewports whose fold sits
             // higher. assert true duplicates over the full list instead, the
             // same shape the inputs screen already uses.
-            [
-              'no landscape duplicates',
-              (n) => hasDuplicates(n, proofIds).length === 0,
-            ],
+            ['no landscape duplicates', (n) => hasDuplicates(n, proofIds).length === 0],
           ])
         },
         'one-native-android-mounted',
         (nodes) => ({
           portraitRowWidth,
-          landscapeRowWidth: nodeWidth(
-            nodeById(nodes, 'one-native-android-button-row')
-          ),
+          landscapeRowWidth: nodeWidth(nodeById(nodes, 'one-native-android-button-row')),
           window: applicationBounds(nodes),
           duplicates: hasDuplicates(nodes, proofIds),
         })
@@ -1295,10 +1292,7 @@ async function run(config: Config) {
         (nodes) =>
           diagnose(nodes, [
             ['button tap landed', (n) => textIncludes(n, 'Button taps: 4')],
-            [
-              'no landscape duplicates',
-              (n) => hasDuplicates(n, proofIds).length === 0,
-            ],
+            ['no landscape duplicates', (n) => hasDuplicates(n, proofIds).length === 0],
           ]),
         'one-native-android-mounted',
         (nodes) => ({ duplicates: hasDuplicates(nodes, proofIds) })
@@ -1315,7 +1309,10 @@ async function run(config: Config) {
         return diagnose(nodes, [
           ['mounted marker', (n) => exactlyOneId(n, 'one-native-android-mounted')],
           ['button taps kept', (n) => textIncludes(n, 'Button taps: 4')],
-          ['switch kept', (n) => textIncludes(n, 'Switch: on · Request: on · Revision: 1')],
+          [
+            'switch kept',
+            (n) => textIncludes(n, 'Switch: on · Request: on · Revision: 1'),
+          ],
           ['optional kept', (n) => textIncludes(n, 'Optional: mounted')],
           ['prop kept', (n) => textIncludes(n, 'Prop: expanded')],
           ['row width reverted', () => ratio > 0.9 && ratio < 1.1],
@@ -1325,9 +1322,7 @@ async function run(config: Config) {
       'one-native-android-mounted',
       (nodes) => ({
         portraitRowWidth,
-        revertedRowWidth: nodeWidth(
-          nodeById(nodes, 'one-native-android-button-row')
-        ),
+        revertedRowWidth: nodeWidth(nodeById(nodes, 'one-native-android-button-row')),
         duplicates: duplicateIds(nodes),
       })
     )
@@ -1394,12 +1389,7 @@ async function run(config: Config) {
     )
 
     pressBack(config)
-    if (
-      !exactlyOneId(
-        snapshot(config).nodes,
-        'one-native-android-inputs-mounted'
-      )
-    ) {
+    if (!exactlyOneId(snapshot(config).nodes, 'one-native-android-inputs-mounted')) {
       await expect(
         'inputs-renavigate-home',
         (nodes) =>
@@ -1414,7 +1404,10 @@ async function run(config: Config) {
         'inputs-proof-remounted',
         (nodes) =>
           diagnose(nodes, [
-            ['inputs marker', (n) => exactlyOneId(n, 'one-native-android-inputs-mounted')],
+            [
+              'inputs marker',
+              (n) => exactlyOneId(n, 'one-native-android-inputs-mounted'),
+            ],
             ['mounted text', (n) => textIncludes(n, 'Android inputs proof mounted')],
           ]),
         'one-native-android-inputs-mounted'
@@ -1445,8 +1438,8 @@ async function run(config: Config) {
       'inputs-slider-drag',
       (nodes) => {
         const status =
-          matching(nodes, { id: 'one-native-android-inputs-slider-status' })[0]
-            ?.text ?? ''
+          matching(nodes, { id: 'one-native-android-inputs-slider-status' })[0]?.text ??
+          ''
         const match = /Slider: (-?\d+) · Request: (-?\d+)/.exec(status)
         const value = match ? Number(match[1]) : null
         const request = match ? Number(match[2]) : null
@@ -1544,7 +1537,10 @@ async function run(config: Config) {
       'inputs-custom-dialog-shown',
       (nodes) =>
         diagnose(nodes, [
-          ['custom body id', (n) => exactlyOneId(n, 'one-native-android-inputs-custom-body')],
+          [
+            'custom body id',
+            (n) => exactlyOneId(n, 'one-native-android-inputs-custom-body'),
+          ],
           ['custom body text', (n) => textIncludes(n, 'Custom dialog body')],
         ]),
       'one-native-android-inputs-mounted'
@@ -1590,8 +1586,14 @@ async function run(config: Config) {
       'inputs-progress-and-duplicate-sweep',
       (nodes) =>
         diagnose(nodes, [
-          ['linear indicator', (n) => exactlyOneId(n, 'one-native-android-inputs-progress-linear')],
-          ['circular indicator', (n) => exactlyOneId(n, 'one-native-android-inputs-progress-circular')],
+          [
+            'linear indicator',
+            (n) => exactlyOneId(n, 'one-native-android-inputs-progress-linear'),
+          ],
+          [
+            'circular indicator',
+            (n) => exactlyOneId(n, 'one-native-android-inputs-progress-circular'),
+          ],
           ['progress text', (n) => textIncludes(n, 'Progress mounted')],
           ['screen root', (n) => exactlyOneId(n, 'one-native-android-inputs-screen')],
           ['no duplicates', (n) => hasDuplicates(n, inputsIds).length === 0],
@@ -1617,9 +1619,7 @@ async function run(config: Config) {
     )
     await tapNavigation(config, 'nav-one-native-safe-area')
     const safeAreaNumbers = (nodes: Node[], prefix: string) => {
-      const label = nodes
-        .flatMap(nodeValues)
-        .find((value) => value.startsWith(prefix))
+      const label = nodes.flatMap(nodeValues).find((value) => value.startsWith(prefix))
       if (!label) return null
       const values = label
         .slice(prefix.length)
@@ -1732,7 +1732,13 @@ async function run(config: Config) {
       'one-native-safe-area-edges'
     )
     // restore the emulator default so later legs run unmodified.
-    adbText(config, ['shell', 'settings', 'delete', 'secure', 'show_ime_with_hard_keyboard'])
+    adbText(config, [
+      'shell',
+      'settings',
+      'delete',
+      'secure',
+      'show_ime_with_hard_keyboard',
+    ])
 
     // haptics on Android: presence (the native module resolved), tap-through
     // of every verb with the Last label proving each call returned, and an
@@ -1784,8 +1790,7 @@ async function run(config: Config) {
     // rides in waitFor via assertNoRedBox on every snapshot.
     pressBack(config)
     await tapNavigation(config, 'nav-one-native-crypto')
-    const uuidV4 =
-      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
+    const uuidV4 = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
     const hex32 = /^[0-9a-f]{32}$/
     const cryptoValue = (nodes: Node[], prefix: string) =>
       nodes
@@ -1798,22 +1803,19 @@ async function run(config: Config) {
       const random = cryptoValue(nodes, 'Random: ')
       return Boolean(
         first &&
-          second &&
-          random &&
-          uuidV4.test(first) &&
-          uuidV4.test(second) &&
-          first !== second &&
-          hex32.test(random)
+        second &&
+        random &&
+        uuidV4.test(first) &&
+        uuidV4.test(second) &&
+        first !== second &&
+        hex32.test(random)
       )
     }
     await expect(
       'crypto-module-present',
       (nodes) =>
         diagnose(nodes, [
-          [
-            'regenerate control',
-            (n) => exactlyOneId(n, 'one-native-crypto-regenerate'),
-          ],
+          ['regenerate control', (n) => exactlyOneId(n, 'one-native-crypto-regenerate')],
           ['module marker', (n) => textIncludes(n, 'Module: available')],
         ]),
       'one-native-crypto-regenerate'
@@ -1891,10 +1893,7 @@ async function run(config: Config) {
       'image-picker-mounted',
       (nodes) =>
         diagnose(nodes, [
-          [
-            'library button',
-            (n) => exactlyOneId(n, 'one-native-image-picker-library'),
-          ],
+          ['library button', (n) => exactlyOneId(n, 'one-native-image-picker-library')],
           ['idle result', (n) => textIncludes(n, 'Result: idle')],
         ]),
       'one-native-image-picker-library'
@@ -1999,6 +1998,82 @@ async function run(config: Config) {
           ['wrong key reads loaded', (n) => textIncludes(n, 'NegativeLoaded: true')],
         ]),
       'one-native-fonts-negative'
+    )
+
+    // One.UI.Map on android (google maps compose). runs against a maps
+    // build (GOOGLE_MAPS_API_KEY set at prebuild): marker titles are not in
+    // the android accessibility tree the way MapKit publishes them, so this
+    // leg proves mount, the camera and marker prop path, and the tap and
+    // gesture events through the fixture status labels. marker rendering
+    // itself is the ios ui-map suite's pixel gate.
+    pressBack(config)
+    await tapNavigation(config, 'nav-one-native-ui-map')
+    const uiMapLabel = (nodes: Node[], id: string) =>
+      matching(nodes, { id: `one-native-ui-map-${id}` })[0]?.text ?? ''
+    await expect(
+      'ui-map-mounted',
+      (nodes) =>
+        diagnose(nodes, [
+          ['screen mounted', (n) => exactlyOneId(n, 'one-native-ui-map-screen')],
+          ['seed zoom label', (n) => textIncludes(n, 'Zoom: 12')],
+          [
+            'map view sized',
+            (n) => {
+              const bounds = matching(n, { id: 'one-native-ui-map-view' })[0]?.bounds
+              return (
+                !!bounds &&
+                bounds.right - bounds.left > 0 &&
+                bounds.bottom - bounds.top > 0
+              )
+            },
+          ],
+        ]),
+      'one-native-ui-map-screen'
+    )
+    tapFresh(config, 'UiMap surface tap', { id: 'one-native-ui-map-view' })
+    await expect(
+      'ui-map-tap',
+      (nodes) =>
+        diagnose(nodes, [
+          [
+            'map tap reported',
+            (n) => /MapTap: 3\d\.\d+,-1\d\d\.\d+/.test(uiMapLabel(n, 'maptap')),
+          ],
+        ]),
+      'one-native-ui-map-maptap'
+    )
+    swipeOnNode(config, 'UiMap pan', { id: 'one-native-ui-map-view' }, 0.7, 0.3)
+    await expect(
+      'ui-map-gesture',
+      (nodes) =>
+        diagnose(nodes, [
+          ['move counted', (n) => /Moves: [1-9]\d*/.test(uiMapLabel(n, 'moves'))],
+          [
+            'camera reported',
+            (n) => /Camera: 3\d\.\d+,-1\d\d\.\d+,\d+\.\d/.test(uiMapLabel(n, 'camera')),
+          ],
+        ]),
+      'one-native-ui-map-moves'
+    )
+    tapFresh(config, 'UiMap zoom button', {
+      id: 'one-native-ui-map-zoom',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'ui-map-zoom-prop',
+      (nodes) => textIncludes(nodes, 'Zoom: 10'),
+      'one-native-ui-map-zoom'
+    )
+    tapFresh(config, 'UiMap pins button', {
+      id: 'one-native-ui-map-pins',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'ui-map-pins-prop',
+      (nodes) => textIncludes(nodes, 'Pins: 3'),
+      'one-native-ui-map-pins'
     )
 
     writeFileSync(

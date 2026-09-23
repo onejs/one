@@ -42,6 +42,10 @@ export interface NativeAppManifest {
       foreground?: string
       background?: string
     }
+    // google maps api key for One.UI.Map. setting it compiles the maps sdk
+    // into the app and stamps the key meta-data; without it the maps source
+    // set stays out and mounting One.UI.Map throws.
+    googleMapsApiKey?: string
   }
 }
 
@@ -157,6 +161,13 @@ export function validateNativeApp(
       fail(
         `android.versionCode "${manifest.android.versionCode}" must be a positive integer`
       )
+    }
+    if (
+      manifest.android.googleMapsApiKey !== undefined &&
+      (typeof manifest.android.googleMapsApiKey !== 'string' ||
+        manifest.android.googleMapsApiKey.trim() === '')
+    ) {
+      fail('android.googleMapsApiKey must be a non-empty string')
     }
   }
   return manifest

@@ -109,9 +109,9 @@ describe('native.app prebuild validation', () => {
         splash: { source: './splash.png', backgroundColor: '#000000', width: 289 },
       })
     ).toThrow(/splash/)
-    expect(() =>
-      validatePrebuildApp({ ...app, imagePicker: { camera: '' } })
-    ).toThrow(/imagePicker\.camera/)
+    expect(() => validatePrebuildApp({ ...app, imagePicker: { camera: '' } })).toThrow(
+      /imagePicker\.camera/
+    )
     // platform-scoped: android-only skips the ios requirement and vice versa
     expect(() =>
       validatePrebuildApp({ name: 'MyApp', android: app.android } as any, 'android')
@@ -306,6 +306,62 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
       app: bare,
     })
     expect(androidManifest.content).not.toContain('android.permission.CAMERA')
+  })
+
+  it('stamps the maps key and flag only when googleMapsApiKey is set', () => {
+    const maps = {
+      ...app,
+      android: { ...app.android, googleMapsApiKey: 'AIza-test&key' },
+    } satisfies PrebuildAppConfig
+    const manifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <application>\n    </application>',
+      platform: 'android',
+      app: maps,
+    })
+    expect(manifest.content).toContain('com.google.android.geo.API_KEY')
+    expect(manifest.content).toContain('android:value="AIza-test&amp;key"')
+    const props = renderPrebuildFile({
+      relativePath: 'gradle.properties',
+      content: 'hermesEnabled=true',
+      platform: 'android',
+      app: maps,
+    })
+    expect(props.content).toContain('oneNativeMaps=true')
+
+    const bare = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <application>\n    </application>',
+      platform: 'android',
+      app,
+    })
+    expect(bare.content).not.toContain('com.google.android.geo.API_KEY')
+    const bareProps = renderPrebuildFile({
+      relativePath: 'gradle.properties',
+      content: 'hermesEnabled=true',
+      platform: 'android',
+      app,
+    })
+    expect(bareProps.content).not.toContain('oneNativeMaps=true')
+
+    // maps-only manifest: the shared fixture also sets imagePicker.camera,
+    // whose stamper would report the missing anchor first.
+    const mapsOnly = {
+      name: 'MyApp',
+      android: { applicationId: 'dev.one.myapp', googleMapsApiKey: 'AIza-test' },
+    } satisfies PrebuildAppConfig
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'app/src/main/AndroidManifest.xml',
+        content: '<manifest>\n</manifest>',
+        platform: 'android',
+        app: mapsOnly,
+      })
+    ).toThrow(
+      '[vxrn] cannot stamp the maps api key: expected </application> in app/src/main/AndroidManifest.xml'
+    )
   })
 
   it('throws instead of silently skipping a missing camera anchor', () => {

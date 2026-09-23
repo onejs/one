@@ -21,6 +21,7 @@ import dev.onejs.onenative.OneNativeNetworkModule
 import dev.onejs.onenative.OneNativeSafeAreaModule
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
 import dev.onejs.onenative.OneNativeSyncModule
+import dev.onejs.onenative.OneNativeUiMapManager
 
 class VxrnNativePackage : BaseReactPackage() {
     override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
@@ -142,5 +143,6 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeEdgeFadeManager(),
             OneNativeBlurManager(),
             OneNativeMaskManager(),
+            OneNativeUiMapManager(),
         )
 }

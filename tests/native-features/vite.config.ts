@@ -26,6 +26,10 @@ export default defineConfig({
           android: {
             applicationId: 'dev.vxrn.nativefeatures.tests',
             versionCode: 4242,
+            // maps builds set GOOGLE_MAPS_API_KEY at prebuild time (a
+            // placeholder compiles the maps source set in; tiles stay blank
+            // without a restricted key). unset keeps the nomaps flavor.
+            googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
           },
         },
         bundler: process.env.ONE_NATIVE_BUNDLER === 'rolldown' ? 'vite' : 'metro',
