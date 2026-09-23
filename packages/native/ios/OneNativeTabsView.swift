@@ -330,7 +330,14 @@ private struct TabsContent: View {
   @TabContentBuilder<String>
   private func tab(_ page: OneNativeTabItem) -> some TabContent<String> {
     Tab(value: page.id, role: OneNativeGenerated.tabRole(page.role)) {
-      slot(page).toolbarVisibility(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
+      if page.role == "search" {
+        NavigationStack {
+          slot(page)
+        }
+        .toolbarVisibility(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
+      } else {
+        slot(page).toolbarVisibility(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
+      }
     } label: {
       if let image = page.modifiers.image { Label(page.title, image: image) }
       else if page.systemImage.isEmpty { Text(page.title) }
@@ -468,7 +475,9 @@ private struct AccessoryContent: View {
   var body: some View {
     if let page = placement == .expanded ? (expanded ?? inline) : (inline ?? expanded) {
       OneNativeSlot(content: page.view, mode: .fill, layoutHost: host, onLayout: page.onLayout)
-        .frame(height: 52)
+        .frame(maxWidth: .infinity, minHeight: 52, maxHeight: 52)
+        .labelStyle(.titleAndIcon)
+        .contentShape(Rectangle())
     }
   }
 }

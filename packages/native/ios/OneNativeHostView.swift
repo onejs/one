@@ -18,6 +18,7 @@ private struct HostContent: View {
 
   var body: some View {
     OneNativeEnvironment(model: environment, content: stack)
+      .labelStyle(.titleAndIcon)
       .oneNativeMeasured(standalone, model.onHeight)
   }
 

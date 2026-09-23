@@ -35,6 +35,7 @@ export default function OneNativeTabView() {
   const [tabBarHidden, setTabBarHidden] = useState(false)
   const [accessoryEnabled, setAccessoryEnabled] = useState(true)
   const [customization, setCustomization] = useState('')
+  const [query, setQuery] = useState('')
   const [events, setEvents] = useState<string[]>([])
   const log = (event: string) => setEvents((current) => [event, ...current].slice(0, 4))
 
@@ -66,6 +67,10 @@ export default function OneNativeTabView() {
       <Pressable testID="tabview-reset-customization" style={styles.button} onPress={() => setCustomization('')}>
         <Text style={styles.buttonText}>Reset customization</Text>
       </Pressable>
+      <Swift.HStack>
+        <Swift.Button testID="test-glass" label="/" buttonStyle="glass" onPress={() => log('test-glass')} />
+        <Swift.Button testID="test-plain" label="iOS" systemImage="iphone" buttonStyle="plain" onPress={() => log('test-plain')} />
+      </Swift.HStack>
     </View>
   )
 
@@ -80,7 +85,7 @@ export default function OneNativeTabView() {
         setCustomization(value)
         log('customized')
       }}
-      swiftStyle={{ tabBarMinimizeBehavior: 'onScrollDown' }}
+      swiftStyle={{ tabBarMinimizeBehavior: 'onScrollDown', searchable: { value: query, onChange: setQuery } }}
     >
       <Swift.Tab id="build" title="Build" systemImage="hammer" badge={3} customizationID="build">
         <Page id="build" title="Build" controls={controls} />
@@ -113,12 +118,18 @@ export default function OneNativeTabView() {
         </Swift.Tab>
       </Swift.TabSection>
       <Swift.Tab id="search" title="Search" systemImage="magnifyingglass" role="search">
-        <Page id="search" title="Search" />
+        <Page id="search" title={`Search ${query}`} />
       </Swift.Tab>
       <Swift.TabViewBottomAccessory isEnabled={accessoryEnabled}>
-        <Pressable testID="tabview-accessory" style={styles.accessory} onPress={() => log('accessory')}>
-          <Text style={styles.accessoryText}>Preview · {selection}</Text>
-        </Pressable>
+        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16 }}>
+          <Pressable testID="tabview-accessory" onPress={() => log('accessory')}>
+            <Text style={styles.accessoryText}>Preview · {selection}</Text>
+          </Pressable>
+          <Swift.HStack style={{ minWidth: 120 }}>
+            <Swift.Button testID="test-acc-glass" label="/" buttonStyle="glass" onPress={() => log('acc-glass')} />
+            <Swift.Button testID="test-acc-plain" label="iOS" systemImage="iphone" buttonStyle="plain" onPress={() => log('acc-plain')} />
+          </Swift.HStack>
+        </View>
       </Swift.TabViewBottomAccessory>
     </Swift.Tabs>
   )

@@ -44,6 +44,7 @@ private struct ButtonContent: View {
     .oneNativeButtonStyle(model.buttonStyle)
     .disabled(model.disabled)
     .oneNativeAccessibility(model.accessibility)
+    .labelStyle(.titleAndIcon)
     .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
     .frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)
     .oneNativeMeasured(standalone, model.onHeight)
@@ -83,7 +84,7 @@ private extension ButtonModel {
   // the image-or-text rule is written once. an icon-only button renders the image
   // alone rather than a label with an empty title, so no title spacing is reserved.
   @ViewBuilder var oneNativeLabel: some View {
-    if !label.isEmpty, !systemImage.isEmpty { Label(label, systemImage: systemImage) }
+    if !label.isEmpty, !systemImage.isEmpty { Label(label, systemImage: systemImage).labelStyle(.titleAndIcon) }
     else if !systemImage.isEmpty { Image(systemName: systemImage) }
     else { Text(label) }
   }
