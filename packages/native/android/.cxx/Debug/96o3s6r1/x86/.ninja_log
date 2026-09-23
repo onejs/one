@@ -1,0 +1,7 @@
+# ninja log v5
+0	956	1790056083214830230	CMakeFiles/onenativesync.dir/src/main/cpp/OneNativeSyncJni.cpp.o	3127a623b02ac4b6
+0	1721	1790056083971279724	CMakeFiles/onenativesync.dir/Users/n8/.worktrees/one-native-notifications-3/packages/native/cpp/OneNativeSyncHost.cpp.o	eaff2e3a6ba88162
+1721	1797	1790056084056763094	../../../../build/intermediates/cxx/Debug/96o3s6r1/obj/x86/libonenativesync.so	e1a812deaf01b699
+3	992	1790073783315249143	CMakeFiles/onenativesync.dir/src/main/cpp/OneNativeSyncJni.cpp.o	3127a623b02ac4b6
+4	1430	1790073783747196479	CMakeFiles/onenativesync.dir/Users/n8/.worktrees/one-native-notifications-3/packages/native/cpp/OneNativeSyncHost.cpp.o	eaff2e3a6ba88162
+1430	1504	1790073783828878132	../../../../build/intermediates/cxx/Debug/96o3s6r1/obj/x86/libonenativesync.so	e1a812deaf01b699

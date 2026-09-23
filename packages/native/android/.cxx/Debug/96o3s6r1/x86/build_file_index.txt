@@ -1,0 +1,7 @@
+/Users/n8/.worktrees/one-native-notifications-3/packages/native/android/.cxx/Debug/96o3s6r1/prefab/x86/prefab/lib/i686-linux-android/cmake/ReactAndroid/ReactAndroidConfig.cmake
+/Users/n8/.worktrees/one-native-notifications-3/packages/native/android/.cxx/Debug/96o3s6r1/prefab/x86/prefab/lib/i686-linux-android/cmake/ReactAndroid/ReactAndroidConfigVersion.cmake
+/Users/n8/.worktrees/one-native-notifications-3/packages/native/android/.cxx/Debug/96o3s6r1/prefab/x86/prefab/lib/i686-linux-android/cmake/fbjni/fbjniConfig.cmake
+/Users/n8/.worktrees/one-native-notifications-3/packages/native/android/.cxx/Debug/96o3s6r1/prefab/x86/prefab/lib/i686-linux-android/cmake/fbjni/fbjniConfigVersion.cmake
+/Users/n8/.worktrees/one-native-notifications-3/packages/native/android/.cxx/Debug/96o3s6r1/prefab/x86/prefab/lib/i686-linux-android/cmake/react-native-worklets/react-native-workletsConfig.cmake
+/Users/n8/.worktrees/one-native-notifications-3/packages/native/android/.cxx/Debug/96o3s6r1/prefab/x86/prefab/lib/i686-linux-android/cmake/react-native-worklets/react-native-workletsConfigVersion.cmake
+/Users/n8/.worktrees/one-native-notifications-3/packages/native/android/CMakeLists.txt

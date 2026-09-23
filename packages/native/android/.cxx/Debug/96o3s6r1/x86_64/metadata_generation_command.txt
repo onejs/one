@@ -1,0 +1,20 @@
+                        -H/Users/n8/.worktrees/one-native-notifications-3/packages/native/android
+-DCMAKE_SYSTEM_NAME=Android
+-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+-DCMAKE_SYSTEM_VERSION=24
+-DANDROID_PLATFORM=android-24
+-DANDROID_ABI=x86_64
+-DCMAKE_ANDROID_ARCH_ABI=x86_64
+-DANDROID_NDK=/Users/n8/Library/Android/sdk/ndk/28.2.13676358
+-DCMAKE_ANDROID_NDK=/Users/n8/Library/Android/sdk/ndk/28.2.13676358
+-DCMAKE_TOOLCHAIN_FILE=/Users/n8/Library/Android/sdk/ndk/28.2.13676358/build/cmake/android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=/Users/n8/Library/Android/sdk/cmake/3.22.1/bin/ninja
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/Users/n8/.worktrees/one-native-notifications-3/packages/native/android/build/intermediates/cxx/Debug/96o3s6r1/obj/x86_64
+-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=/Users/n8/.worktrees/one-native-notifications-3/packages/native/android/build/intermediates/cxx/Debug/96o3s6r1/obj/x86_64
+-DCMAKE_BUILD_TYPE=Debug
+-DCMAKE_FIND_ROOT_PATH=/Users/n8/.worktrees/one-native-notifications-3/packages/native/android/.cxx/Debug/96o3s6r1/prefab/x86_64/prefab
+-B/Users/n8/.worktrees/one-native-notifications-3/packages/native/android/.cxx/Debug/96o3s6r1/x86_64
+-GNinja
+-DANDROID_STL=c++_shared
+                        Build command args: []
+                        Version: 2

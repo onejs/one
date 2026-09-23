@@ -1,0 +1,3 @@
+/Users/n8/.worktrees/one-native-notifications-3/packages/native/android/.cxx/Debug/96o3s6r1/x86_64/CMakeFiles/onenativesync.dir
+/Users/n8/.worktrees/one-native-notifications-3/packages/native/android/.cxx/Debug/96o3s6r1/x86_64/CMakeFiles/edit_cache.dir
+/Users/n8/.worktrees/one-native-notifications-3/packages/native/android/.cxx/Debug/96o3s6r1/x86_64/CMakeFiles/rebuild_cache.dir
