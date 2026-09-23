@@ -7,9 +7,14 @@ enum OneNativeViewSlotName {
   static let accessibilityChildren = "accessibilityChildren"
   static let accessibilityRepresentation = "accessibilityRepresentation"
   static let accessibilityShowsLargeContentViewer = "accessibilityShowsLargeContentViewer"
+  static let background = "background"
   static let contextMenu = "contextMenu"
+  static let mask = "mask"
+  static let overlay = "overlay"
+  static let presentationBackground = "presentationBackground"
   static let searchSuggestions = "searchSuggestions"
   static let sectionActions = "sectionActions"
+  static let swipeActions = "swipeActions"
   static let tabItem = "tabItem"
   static let tabViewBottomAccessory = "tabViewBottomAccessory"
   static let tabViewSidebarBottomBar = "tabViewSidebarBottomBar"
@@ -18,7 +23,7 @@ enum OneNativeViewSlotName {
   static let toolbar = "toolbar"
   static let toolbarOverflowMenu = "toolbarOverflowMenu"
   static let toolbarTitleMenu = "toolbarTitleMenu"
-  static let names = [accessibilityActions, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, contextMenu, searchSuggestions, sectionActions, tabItem, tabViewBottomAccessory, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
+  static let names = [accessibilityActions, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, background, contextMenu, mask, overlay, presentationBackground, searchSuggestions, sectionActions, swipeActions, tabItem, tabViewBottomAccessory, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
 }
 
 extension View {
@@ -36,14 +41,29 @@ extension View {
     case OneNativeViewSlotName.accessibilityShowsLargeContentViewer:
       if #available(iOS 15, *) { return AnyView(self.accessibilityShowsLargeContentViewer(content)) }
       return AnyView(self)
+    case OneNativeViewSlotName.background:
+      if #available(iOS 15, *) { return AnyView(self.background(content: content)) }
+      return AnyView(self)
     case OneNativeViewSlotName.contextMenu:
       if #available(iOS 13, *) { return AnyView(self.contextMenu(menuItems: content)) }
+      return AnyView(self)
+    case OneNativeViewSlotName.mask:
+      if #available(iOS 15, *) { return AnyView(self.mask(content)) }
+      return AnyView(self)
+    case OneNativeViewSlotName.overlay:
+      if #available(iOS 15, *) { return AnyView(self.overlay(content: content)) }
+      return AnyView(self)
+    case OneNativeViewSlotName.presentationBackground:
+      if #available(iOS 16.4, *) { return AnyView(self.presentationBackground(content: content)) }
       return AnyView(self)
     case OneNativeViewSlotName.searchSuggestions:
       if #available(iOS 16, *) { return AnyView(self.searchSuggestions(content)) }
       return AnyView(self)
     case OneNativeViewSlotName.sectionActions:
       if #available(iOS 18, *) { return AnyView(self.sectionActions(content: content)) }
+      return AnyView(self)
+    case OneNativeViewSlotName.swipeActions:
+      if #available(iOS 15, *) { return AnyView(self.swipeActions(content: content)) }
       return AnyView(self)
     case OneNativeViewSlotName.tabItem:
       if #available(iOS 13, *) { return AnyView(self.tabItem(content)) }
