@@ -266,6 +266,27 @@ ${parsedArguments}
     } else { self }` : body}
   }`
       }
+      if (modifier.kind === 'eventReturnEnum') {
+        const body = `let selected: ${modifier.resultType} = {
+      switch value {
+${modifier.cases!.map((item) => `      case ${JSON.stringify(item.name)}: return ${modifier.resultConstructor ? `${modifier.resultType}(${modifier.resultConstructor.label === '_' ? '' : `${modifier.resultConstructor.label}: `}${modifier.resultConstructor.type}.${item.name})` : `${modifier.resultType}.${item.name}`}`).join('\n')}
+      default: preconditionFailure("invalid ${modifier.name}: \\(value)")
+      }
+    }()
+    let action: (${modifier.eventInputType}) -> ${modifier.resultType} = { item in
+      let payload = ${eventValueSwift(modifier.eventValue!, 'item')}
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} event") }
+      emit(${JSON.stringify(modifier.name)}, encoded)
+      return selected
+    }
+    ${apply(`${modifier.label && modifier.label !== '_' ? `${modifier.label}: ` : ''}action`, 17, true)}`
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    ${modifier.ios > 17 ? `if #available(iOS ${modifier.ios}, *) {
+      ${body}
+    } else { self }` : body}
+  }`
+      }
       if (modifier.kind === 'eventValueString')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     ${apply(`${modifier.label === '_' ? '' : `${modifier.label}: `}value, ${modifier.callbackLabel === '_' ? '' : `${modifier.callbackLabel}: `}{ changed in emit(${JSON.stringify(modifier.name)}, changed) }`, modifier.ios, true)}
@@ -465,14 +486,14 @@ ${styleFields
 
 const colorFields = [${colorFields.map((field) => `'${field.name}'`).join(', ')}] as const
 const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [modifier.name, modifier.kind])))} as const
-const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
+const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
 type SDKEventValueShape =
   | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' }
   | { kind: 'enum'; cases: readonly string[] }
   | { kind: 'optional' | 'array'; value: SDKEventValueShape }
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
 const sdkAssociatedCases: Record<string, Record<string, readonly SDKEventValueShape[]>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAssociatedEnum').map((modifier) => [modifier.name, Object.fromEntries(modifier.associatedCases!.map((item) => [item.name, item.values]))])))}
-const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct').map((modifier) => [modifier.name, modifier.eventValue])))}
+const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.eventValue])))}
 const sdkCodableOptional: Record<string, boolean> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'bindingCodable').map((modifier) => [modifier.name, modifier.type.endsWith('?')]))) }
 const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; fields?: readonly { name: string; integer: boolean }[] }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, fields }) => ({ field, kind, optional, ...(fields ? { fields: fields.map((item) => ({ name: item.name, integer: item.type === 'Swift.Int' })) } : {}) }))])))}
 
@@ -553,11 +574,16 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
       if (kind === 'optionalURL' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a URL string or null')
       if (kind === 'optionalEnum' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')
       if (kind === 'optionalString' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')
-      if (kind.startsWith('event') && kind !== 'eventValueString' && kind !== 'eventReturnArray' && typeof value !== 'function') throw new Error(name + ' must be a callback')
+      if (kind.startsWith('event') && kind !== 'eventValueString' && kind !== 'eventReturnArray' && kind !== 'eventReturnEnum' && typeof value !== 'function') throw new Error(name + ' must be a callback')
       if (kind === 'eventValueString' && (typeof value !== 'object' || value === null || typeof (value as { value?: unknown }).value !== 'string' || typeof (value as { onChange?: unknown }).onChange !== 'function')) throw new Error(name + ' must be a string value and callback')
       if (kind === 'eventReturnArray' && (typeof value !== 'object' || value === null || !Array.isArray((value as { items?: unknown }).items) ||
         !(value as { items: unknown[] }).items.every((item) => typeof item === 'string') || typeof (value as { onAction?: unknown }).onAction !== 'function'))
         throw new Error(name + ' must be a string array and callback')
+      if (kind === 'eventReturnEnum' && (typeof value !== 'object' || value === null ||
+        typeof (value as { result?: unknown }).result !== 'string' ||
+        !sdkEventCases[name].includes((value as { result: string }).result) ||
+        typeof (value as { onAction?: unknown }).onAction !== 'function'))
+        throw new Error(name + ' must be an SDK result and callback')
       if ((kind === 'bindingBoolean' || kind === 'bindingFocusBoolean' || kind === 'bindingString' || kind === 'bindingOptionalString' || kind === 'bindingCodable') &&
         (typeof value !== 'object' || value === null || typeof (value as { onChange?: unknown }).onChange !== 'function' ||
         (kind === 'bindingOptionalString' || kind === 'bindingCodable' && sdkCodableOptional[name] ? (value as { value?: unknown }).value !== null && typeof (value as { value?: unknown }).value !== 'string' :
@@ -569,7 +595,7 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
           ((value as { value?: unknown }).value !== null &&
             !validSDKEventValue((value as { value?: unknown }).value, { kind: 'point' }))))
         throw new Error(name + ' must be a point binding')
-      sdkModifiers.push([name, kind === 'eventValueString' ? (value as { value: string }).value : kind === 'eventReturnArray' ? JSON.stringify((value as { items: string[] }).items) : kind.startsWith('event') ? '' : kind === 'bindingOptionalString' || kind === 'bindingPoint' ? JSON.stringify((value as { value: unknown }).value) : kind === 'bindingCodable' && (value as { value: string | null }).value === null ? 'null' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : kind === 'optionalString' || kind === 'optionalURL' ? JSON.stringify(value) as string : String(value)])
+      sdkModifiers.push([name, kind === 'eventValueString' ? (value as { value: string }).value : kind === 'eventReturnArray' ? JSON.stringify((value as { items: string[] }).items) : kind === 'eventReturnEnum' ? (value as { result: string }).result : kind.startsWith('event') ? '' : kind === 'bindingOptionalString' || kind === 'bindingPoint' ? JSON.stringify((value as { value: unknown }).value) : kind === 'bindingCodable' && (value as { value: string | null }).value === null ? 'null' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : kind === 'optionalString' || kind === 'optionalURL' ? JSON.stringify(value) as string : String(value)])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
     } else {
@@ -619,6 +645,12 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
   const kind = sdkKinds[name as keyof typeof sdkKinds] as string | undefined
   if (kind === 'event') (modifier as (() => void) | undefined)?.()
   else if (kind === 'eventReturnArray') (modifier as { onAction: () => void } | undefined)?.onAction()
+  else if (kind === 'eventReturnEnum') {
+    const payload: unknown = JSON.parse(value)
+    if (!validSDKEventValue(payload, sdkEventStructs[name]))
+      throw new Error(name + ' emitted an invalid result event')
+    ;(modifier as { onAction: (value: unknown) => void } | undefined)?.onAction(payload)
+  }
   else if (kind === 'eventBoolean') {
     if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid boolean')
     ;(modifier as ((value: boolean) => void) | undefined)?.(value === 'true')

@@ -3951,6 +3951,74 @@
       ]
     },
     {
+      "name": "dropConfiguration",
+      "kind": "eventReturnEnum",
+      "type": "@escaping (SwiftUI.DropSession) -> SwiftUI.DropConfiguration",
+      "label": "_",
+      "eventInputType": "SwiftUI.DropSession",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "itemsCount",
+            "value": {
+              "kind": "number"
+            }
+          },
+          {
+            "name": "suggestedOperations",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "rawValue",
+                  "value": {
+                    "kind": "number"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "size",
+            "value": {
+              "kind": "size"
+            }
+          },
+          {
+            "name": "location",
+            "value": {
+              "kind": "point"
+            }
+          }
+        ]
+      },
+      "resultType": "SwiftUI.DropConfiguration",
+      "resultConstructor": {
+        "type": "SwiftUI.DropOperation",
+        "label": "operation"
+      },
+      "cases": [
+        {
+          "name": "cancel",
+          "ios": 13.4
+        },
+        {
+          "name": "forbidden",
+          "ios": 13.4
+        },
+        {
+          "name": "copy",
+          "ios": 13.4
+        },
+        {
+          "name": "move",
+          "ios": 13.4
+        }
+      ],
+      "ios": 27
+    },
+    {
       "name": "dynamicTypeSize",
       "kind": "string",
       "type": "SwiftUICore.DynamicTypeSize",
@@ -6974,6 +7042,50 @@
       "type": "@escaping (_ isResizing: Swift.Bool) -> Swift.Void",
       "label": "_",
       "ios": 26
+    },
+    {
+      "name": "onKeyPress",
+      "kind": "eventReturnEnum",
+      "type": "@escaping (SwiftUI.KeyPress) -> SwiftUI.KeyPress.Result",
+      "label": "action",
+      "eventInputType": "SwiftUI.KeyPress",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "characters",
+            "value": {
+              "kind": "string"
+            }
+          },
+          {
+            "name": "modifiers",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "rawValue",
+                  "value": {
+                    "kind": "number"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "resultType": "SwiftUI.KeyPress.Result",
+      "cases": [
+        {
+          "name": "handled",
+          "ios": 17
+        },
+        {
+          "name": "ignored",
+          "ios": 17
+        }
+      ],
+      "ios": 17
     },
     {
       "name": "onLongPressGesture",
@@ -12813,6 +12925,7 @@
         "documentLaunchTitle",
         "dragConfiguration",
         "draggable",
+        "dropConfiguration",
         "fileDialogBrowserOptions",
         "fileDialogConfirmationLabel",
         "fileDialogCustomizationID",
@@ -12892,6 +13005,7 @@
         "onDropSessionUpdated",
         "onHover",
         "onInteractiveResizeChange",
+        "onKeyPress",
         "onLongPressGesture",
         "onOpenURL",
         "onPencilDoubleTap",

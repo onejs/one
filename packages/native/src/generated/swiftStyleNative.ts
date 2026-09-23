@@ -162,6 +162,7 @@ const sdkKinds = {
   dragConfiguration: 'boolean',
   draggable: 'record',
   drawingGroup: 'record',
+  dropConfiguration: 'eventReturnEnum',
   dynamicTypeSize: 'string',
   edgesIgnoringSafeArea: 'string',
   fileDialogBrowserOptions: 'string',
@@ -293,6 +294,7 @@ const sdkKinds = {
   onGeometryChangeWithSize: 'eventStruct',
   onHover: 'eventBoolean',
   onInteractiveResizeChange: 'eventBoolean',
+  onKeyPress: 'eventReturnEnum',
   onLongPressGesture: 'event',
   onMapCameraChange: 'event',
   onMapCameraChangeWithEventStruct: 'eventStruct',
@@ -474,6 +476,8 @@ const sdkKinds = {
 const sdkEventCases: Record<string, readonly string[]> = {
   accessibilityAdjustableAction: ['increment', 'decrement'],
   accessibilityScrollAction: ['top', 'leading', 'bottom', 'trailing'],
+  dropConfiguration: ['cancel', 'forbidden', 'copy', 'move'],
+  onKeyPress: ['handled', 'ignored'],
   onScrollPhaseChange: ['idle', 'tracking', 'interacting', 'decelerating', 'animating'],
 }
 type SDKEventValueShape =
@@ -610,6 +614,21 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
       { name: 'point', value: { kind: 'point' } },
     ],
   },
+  dropConfiguration: {
+    kind: 'object',
+    fields: [
+      { name: 'itemsCount', value: { kind: 'number' } },
+      {
+        name: 'suggestedOperations',
+        value: {
+          kind: 'object',
+          fields: [{ name: 'rawValue', value: { kind: 'number' } }],
+        },
+      },
+      { name: 'size', value: { kind: 'size' } },
+      { name: 'location', value: { kind: 'point' } },
+    ],
+  },
   onDragSessionUpdated: {
     kind: 'object',
     fields: [{ name: 'location', value: { kind: 'point' } }],
@@ -634,6 +653,19 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
     fields: [
       { name: 'oldValue', value: { kind: 'size' } },
       { name: 'newValue', value: { kind: 'size' } },
+    ],
+  },
+  onKeyPress: {
+    kind: 'object',
+    fields: [
+      { name: 'characters', value: { kind: 'string' } },
+      {
+        name: 'modifiers',
+        value: {
+          kind: 'object',
+          fields: [{ name: 'rawValue', value: { kind: 'number' } }],
+        },
+      },
     ],
   },
   onMapCameraChangeWithEventStruct: {
@@ -1340,6 +1372,7 @@ export function swiftStyleNative(
         kind.startsWith('event') &&
         kind !== 'eventValueString' &&
         kind !== 'eventReturnArray' &&
+        kind !== 'eventReturnEnum' &&
         typeof value !== 'function'
       )
         throw new Error(name + ' must be a callback')
@@ -1362,6 +1395,15 @@ export function swiftStyleNative(
           typeof (value as { onAction?: unknown }).onAction !== 'function')
       )
         throw new Error(name + ' must be a string array and callback')
+      if (
+        kind === 'eventReturnEnum' &&
+        (typeof value !== 'object' ||
+          value === null ||
+          typeof (value as { result?: unknown }).result !== 'string' ||
+          !sdkEventCases[name].includes((value as { result: string }).result) ||
+          typeof (value as { onAction?: unknown }).onAction !== 'function')
+      )
+        throw new Error(name + ' must be an SDK result and callback')
       if (
         (kind === 'bindingBoolean' ||
           kind === 'bindingFocusBoolean' ||
@@ -1398,18 +1440,20 @@ export function swiftStyleNative(
           ? (value as { value: string }).value
           : kind === 'eventReturnArray'
             ? JSON.stringify((value as { items: string[] }).items)
-            : kind.startsWith('event')
-              ? ''
-              : kind === 'bindingOptionalString' || kind === 'bindingPoint'
-                ? JSON.stringify((value as { value: unknown }).value)
-                : kind === 'bindingCodable' &&
-                    (value as { value: string | null }).value === null
-                  ? 'null'
-                  : kind.startsWith('binding')
-                    ? String((value as { value: unknown }).value)
-                    : kind === 'optionalString' || kind === 'optionalURL'
-                      ? (JSON.stringify(value) as string)
-                      : String(value),
+            : kind === 'eventReturnEnum'
+              ? (value as { result: string }).result
+              : kind.startsWith('event')
+                ? ''
+                : kind === 'bindingOptionalString' || kind === 'bindingPoint'
+                  ? JSON.stringify((value as { value: unknown }).value)
+                  : kind === 'bindingCodable' &&
+                      (value as { value: string | null }).value === null
+                    ? 'null'
+                    : kind.startsWith('binding')
+                      ? String((value as { value: unknown }).value)
+                      : kind === 'optionalString' || kind === 'optionalURL'
+                        ? (JSON.stringify(value) as string)
+                        : String(value),
       ])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
@@ -1497,7 +1541,12 @@ export function dispatchSDKEvent(
   if (kind === 'event') (modifier as (() => void) | undefined)?.()
   else if (kind === 'eventReturnArray')
     (modifier as { onAction: () => void } | undefined)?.onAction()
-  else if (kind === 'eventBoolean') {
+  else if (kind === 'eventReturnEnum') {
+    const payload: unknown = JSON.parse(value)
+    if (!validSDKEventValue(payload, sdkEventStructs[name]))
+      throw new Error(name + ' emitted an invalid result event')
+    ;(modifier as { onAction: (value: unknown) => void } | undefined)?.onAction(payload)
+  } else if (kind === 'eventBoolean') {
     if (value !== 'true' && value !== 'false')
       throw new Error(name + ' emitted an invalid boolean')
     ;(modifier as ((value: boolean) => void) | undefined)?.(value === 'true')

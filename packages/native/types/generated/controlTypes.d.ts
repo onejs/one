@@ -87,6 +87,8 @@ export declare const sdkDefersSystemGesturesValues: readonly ['top', 'leading', 
 export type SDKDefersSystemGestures = (typeof sdkDefersSystemGesturesValues)[number];
 export declare const sdkDisclosureGroupStyleValues: readonly ['automatic'];
 export type SDKDisclosureGroupStyle = (typeof sdkDisclosureGroupStyleValues)[number];
+export declare const sdkDropConfigurationValues: readonly ['cancel', 'forbidden', 'copy', 'move'];
+export type SDKDropConfiguration = (typeof sdkDropConfigurationValues)[number];
 export declare const sdkDynamicTypeSizeValues: readonly ['xSmall', 'small', 'medium', 'large', 'xLarge', 'xxLarge', 'xxxLarge', 'accessibility1', 'accessibility2', 'accessibility3', 'accessibility4', 'accessibility5'];
 export type SDKDynamicTypeSize = (typeof sdkDynamicTypeSizeValues)[number];
 export declare const sdkEdgesIgnoringSafeAreaValues: readonly ['top', 'leading', 'bottom', 'trailing', 'all', 'horizontal', 'vertical'];
@@ -179,6 +181,8 @@ export declare const sdkNavigationTransitionValues: readonly ['automatic', 'cros
 export type SDKNavigationTransition = (typeof sdkNavigationTransitionValues)[number];
 export declare const sdkNavigationViewStyleValues: readonly ['columns', 'automatic', 'stack'];
 export type SDKNavigationViewStyle = (typeof sdkNavigationViewStyleValues)[number];
+export declare const sdkOnKeyPressValues: readonly ['handled', 'ignored'];
+export type SDKOnKeyPress = (typeof sdkOnKeyPressValues)[number];
 export declare const sdkOnScrollPhaseChangeValues: readonly ['idle', 'tracking', 'interacting', 'decelerating', 'animating'];
 export type SDKOnScrollPhaseChange = (typeof sdkOnScrollPhaseChangeValues)[number];
 export declare const sdkPaletteSelectionEffectValues: readonly ['automatic', 'custom'];
@@ -475,6 +479,14 @@ export interface OneNativeStyle {
         };
     }) => void;
     addPassToWalletButtonStyle?: SDKAddPassToWalletButtonStyle;
+    alignmentGuideWithHorizontalAlignment?: Readonly<{
+        g: 'leading' | 'center' | 'trailing' | 'listRowSeparatorLeading' | 'listRowSeparatorTrailing';
+        computeValue: number;
+    }>;
+    alignmentGuideWithVerticalAlignment?: Readonly<{
+        g: 'top' | 'center' | 'bottom' | 'firstTextBaseline' | 'lastTextBaseline';
+        computeValue: number;
+    }>;
     allowedDynamicRange?: SDKAllowedDynamicRange | null;
     allowsHitTesting?: boolean;
     allowsTightening?: boolean;
@@ -509,6 +521,10 @@ export interface OneNativeStyle {
     buttonSizing?: SDKButtonSizing;
     buttonStyle?: SDKButtonStyle;
     clipped?: boolean;
+    colorEffect?: Readonly<{
+        shader: string;
+        isEnabled: boolean;
+    }>;
     colorInvert?: boolean;
     colorMultiply?: SDKColorMultiply;
     colorScheme?: SDKColorScheme;
@@ -544,6 +560,13 @@ export interface OneNativeStyle {
     controlGroupStyle?: SDKControlGroupStyle;
     controlSize?: SDKControlSize;
     coordinateSpace?: string;
+    copyable?: Readonly<{
+        payload: readonly string[];
+    }>;
+    cuttable?: Readonly<{
+        items: readonly string[];
+        onAction: () => void;
+    }>;
     dataDetection?: boolean;
     datePickerStyle?: SDKDatePickerStyle;
     defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement;
@@ -562,15 +585,50 @@ export interface OneNativeStyle {
         value: boolean;
         onChange: (value: boolean) => void;
     }>;
+    dialogSuppressionToggleWithLabelAndIsSuppressed?: Readonly<{
+        label: string;
+        isSuppressed: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+    }>;
     disableAutocorrection?: boolean | null;
     disabled?: boolean;
     disclosureGroupStyle?: SDKDisclosureGroupStyle;
+    distortionEffect?: Readonly<{
+        shader: string;
+        maxSampleOffset: Readonly<{
+            width: number;
+            height: number;
+        }>;
+        isEnabled: boolean;
+    }>;
     documentLaunchSubtitle?: string;
     documentLaunchTitle?: string;
     dragConfiguration?: boolean;
+    draggable?: Readonly<{
+        payload: string;
+    }>;
     drawingGroup?: Readonly<{
         opaque: boolean;
         colorMode: 'nonLinear' | 'linear' | 'extendedLinear';
+    }>;
+    dropConfiguration?: Readonly<{
+        result: 'cancel' | 'forbidden' | 'copy' | 'move';
+        onAction: (value: {
+            itemsCount: number;
+            suggestedOperations: {
+                rawValue: number;
+            };
+            size: {
+                width: number;
+                height: number;
+            };
+            location: {
+                x: number;
+                y: number;
+            };
+        }) => void;
     }>;
     dynamicTypeSize?: SDKDynamicTypeSize;
     edgesIgnoringSafeArea?: SDKEdgesIgnoringSafeArea;
@@ -580,7 +638,32 @@ export interface OneNativeStyle {
     fileDialogDefaultDirectory?: string | null;
     fileDialogImportsUnresolvedAliases?: boolean;
     fileDialogMessage?: string | null;
+    fileDialogURLEnabled?: boolean;
+    fileExporter?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        item: string | null;
+        onCompletion: (result: Readonly<{
+            success: string;
+        } | {
+            failure: string;
+        }>) => void;
+    }>;
     fileExporterFilenameLabel?: string | null;
+    fileMover?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        file: string | null;
+        onCompletion: (result: Readonly<{
+            success: string;
+        } | {
+            failure: string;
+        }>) => void;
+    }>;
     findDisabled?: boolean;
     findNavigator?: Readonly<{
         value: boolean;
@@ -674,6 +757,14 @@ export interface OneNativeStyle {
     labelsHidden?: boolean;
     labelStyle?: SDKLabelStyle;
     labelsVisibility?: SDKLabelsVisibility;
+    layerEffect?: Readonly<{
+        shader: string;
+        maxSampleOffset: Readonly<{
+            width: number;
+            height: number;
+        }>;
+        isEnabled: boolean;
+    }>;
     layoutDirectionBehavior?: SDKLayoutDirectionBehavior;
     layoutPriority?: number;
     lineHeight?: SDKLineHeight | null;
@@ -719,8 +810,16 @@ export interface OneNativeStyle {
         value: boolean;
         onChange: (value: boolean) => void;
     }>;
+    manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        subscriptionGroupID: string;
+    }>;
     mapControlVisibility?: SDKMapControlVisibility;
     mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null;
+    mapFeatureSelectionDisabled?: boolean;
     mapStyle?: SDKMapStyle;
     materialActiveAppearance?: SDKMaterialActiveAppearance;
     menuActionDismissBehavior?: SDKMenuActionDismissBehavior;
@@ -792,6 +891,20 @@ export interface OneNativeStyle {
             y: number;
         };
     }) => void;
+    onDropSessionUpdated?: (value: {
+        itemsCount: number;
+        suggestedOperations: {
+            rawValue: number;
+        };
+        size: {
+            width: number;
+            height: number;
+        };
+        location: {
+            x: number;
+            y: number;
+        };
+    }) => void;
     onGeometryChangeWithSize?: (value: {
         oldValue: {
             width: number;
@@ -804,8 +917,24 @@ export interface OneNativeStyle {
     }) => void;
     onHover?: (value: boolean) => void;
     onInteractiveResizeChange?: (value: boolean) => void;
+    onKeyPress?: Readonly<{
+        result: 'handled' | 'ignored';
+        onAction: (value: {
+            characters: string;
+            modifiers: {
+                rawValue: number;
+            };
+        }) => void;
+    }>;
     onLongPressGesture?: () => void;
     onMapCameraChange?: () => void;
+    onMapCameraChangeWithEventStruct?: (value: {
+        camera: {
+            distance: number;
+            heading: number;
+            pitch: number;
+        };
+    }) => void;
     onOpenURLWithPerform?: (value: string) => void;
     onOpenURLWithPrefersInApp?: boolean;
     onPencilDoubleTap?: (value: {
@@ -926,6 +1055,7 @@ export interface OneNativeStyle {
     }) => void;
     onTapGestureWithPerformFromSwiftUICore?: () => void;
     paletteSelectionEffect?: SDKPaletteSelectionEffect;
+    pasteDestination?: (value: readonly string[]) => void;
     payLaterViewAction?: SDKPayLaterViewAction;
     payLaterViewDisplayStyle?: SDKPayLaterViewDisplayStyle;
     payWithApplePayButtonDisableCardArt?: boolean;
@@ -939,6 +1069,17 @@ export interface OneNativeStyle {
     photosPickerMetadataOptions?: SDKPhotosPickerMetadataOptions;
     photosPickerSearchText?: string | null;
     photosPickerStyle?: SDKPhotosPickerStyle;
+    photosReferenceImageViewer?: Readonly<{
+        fileURL: Readonly<{
+            value: string | null;
+            onChange: (value: string | null) => void;
+        }>;
+        onProcessingCompletion: (result: Readonly<{
+            success: string;
+        } | {
+            failure: string;
+        }>) => void;
+    }>;
     pickerStyle?: SDKPickerStyle;
     position?: Readonly<{
         x: number;
@@ -1041,7 +1182,17 @@ export interface OneNativeStyle {
         axes: 'horizontal' | 'vertical';
     }>;
     scrollIndicatorsFlash?: boolean;
-    scrollPosition?: Readonly<{
+    scrollPositionWithBindingPoint?: Readonly<{
+        value: Readonly<{
+            x: number;
+            y: number;
+        }> | null;
+        onChange: (value: Readonly<{
+            x: number;
+            y: number;
+        }> | null) => void;
+    }>;
+    scrollPositionWithId?: Readonly<{
         value: string | null;
         onChange: (value: string | null) => void;
     }>;
@@ -1123,6 +1274,10 @@ export interface OneNativeStyle {
     tabBarMinimizeBehavior?: SDKTabBarMinimizeBehavior;
     tableColumnHeaders?: SDKTableColumnHeaders;
     tableStyle?: SDKTableStyle;
+    tabViewCustomization?: Readonly<{
+        value: string | null;
+        onChange: (value: string) => void;
+    }>;
     tabViewSearchActivation?: SDKTabViewSearchActivation;
     tabViewStyle?: SDKTabViewStyle;
     tag?: string;
@@ -1190,6 +1345,13 @@ export interface OneNativeStyle {
         }>;
     }>;
     transition?: SDKTransition;
+    translationPresentation?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        text: string;
+    }>;
     truncationMode?: SDKTruncationMode;
     typeSelectEquivalent?: string | null;
     typesettingLanguage?: Readonly<{
@@ -1238,6 +1400,16 @@ export interface OneNativeStyle {
             height: number;
         };
     }) => void;
+    webViewScrollPosition?: Readonly<{
+        value: Readonly<{
+            x: number;
+            y: number;
+        }> | null;
+        onChange: (value: Readonly<{
+            x: number;
+            y: number;
+        }> | null) => void;
+    }>;
     webViewTextSelection?: SDKWebViewTextSelection;
     windowToolbarFullScreenVisibility?: SDKWindowToolbarFullScreenVisibility;
     writingDirection?: SDKWritingDirection;
