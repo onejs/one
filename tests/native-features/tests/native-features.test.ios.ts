@@ -601,4 +601,53 @@ describe('@vxrn/native integration tests', () => {
       await captureScreenshot(driver, 'split-view-drafts-selected')
     })
   })
+
+  // -- tab view parity --
+
+  describe('One Native TabView Parity', () => {
+    test('bottom accessory takes touches in expanded and inline modes', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-tabview')
+      const accessory = await waitForElement(driver, 'tabview-accessory', { timeout: 30_000 })
+      expect(await accessory.isDisplayed()).toBe(true)
+
+      await accessory.click()
+
+      const events = await waitForElement(driver, 'tabview-events')
+      await events.waitUntil(
+        async () => (await events.getText()).includes('accessory'),
+        { timeout: 5000, timeoutMsg: 'accessory press event was not received in expanded mode' }
+      )
+      expect(await events.getText()).toContain('accessory')
+
+      const accBtn = await waitForElement(driver, 'test-acc-plain')
+      await accBtn.click()
+      await events.waitUntil(
+        async () => (await events.getText()).includes('acc-plain'),
+        { timeout: 5000, timeoutMsg: 'native accessory button press event was not received' }
+      )
+      expect(await events.getText()).toContain('acc-plain')
+
+      await captureScreenshot(driver, 'tabview-accessory-expanded')
+
+      // minimize tab bar on scroll to test inline mode
+      for (let index = 0; index < 4; index++) {
+        await driver.execute('mobile: scroll', { direction: 'down' })
+      }
+
+      const inlineAccessory = await waitForElement(driver, 'tabview-accessory', { timeout: 10_000 })
+      await inlineAccessory.click()
+
+      await events.waitUntil(
+        async () => (await events.getText()).includes('accessory'),
+        { timeout: 5000, timeoutMsg: 'accessory press event was not received in inline mode' }
+      )
+      expect(await events.getText()).toContain('accessory')
+
+      await captureScreenshot(driver, 'tabview-accessory-inline')
+
+      for (let index = 0; index < 4; index++) {
+        await driver.execute('mobile: scroll', { direction: 'up' })
+      }
+    })
+  })
 })
