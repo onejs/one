@@ -92,6 +92,16 @@ describe('SDK modifier derivation', () => {
     ])
   })
 
+  it('derives a string backed SDK value from its public raw value initializer', () => {
+    expect(deriveModifiers([
+      method('previewDevice', 'SwiftUI', [{ label: '_', name: 'device', type: 'SwiftUI.PreviewDevice?' }]),
+      { ...method('PreviewDevice', 'SwiftUI'), kind: 'struct', owner: '', inheritedTypes: ['Swift.RawRepresentable'] },
+      { ...method('init', 'SwiftUI', [{ label: 'rawValue', name: 'rawValue', type: 'Swift.String' }]), kind: 'init', owner: 'PreviewDevice' },
+    ], 27, [])).toEqual([
+      { name: 'previewDevice', kind: 'optionalString', type: 'SwiftUI.PreviewDevice?', rawString: true, ios: 0 },
+    ])
+  })
+
   it('derives optional SDK cases and framework overlay modifiers', () => {
     expect(deriveModifiers([
       method('textCase', 'SwiftUICore', [{ label: '_', name: 'textCase', type: 'SwiftUICore.Text.Case?' }]),
@@ -170,12 +180,17 @@ describe('SDK modifier derivation', () => {
     ])
   })
 
-  it('derives opaque style parameters from their protocol cases', () => {
+  it('derives opaque style and behavior parameters from their protocol cases', () => {
     expect(deriveModifiers([
       method('textEditorStyle', 'SwiftUI', [{ label: '_', name: 'style', type: 'some TextEditorStyle' }]),
       { ...method('automatic', 'SwiftUI'), kind: 'static', owner: 'SwiftUI.TextEditorStyle', type: 'SwiftUI.AutomaticTextEditorStyle', requirements: ['Self == SwiftUI.AutomaticTextEditorStyle'] },
       { ...method('plain', 'SwiftUI'), kind: 'static', owner: 'SwiftUI.TextEditorStyle', type: 'SwiftUI.PlainTextEditorStyle', requirements: ['Self == SwiftUI.PlainTextEditorStyle'] },
+      method('scrollTargetBehavior', 'SwiftUI', [{ label: '_', name: 'behavior', type: 'some ScrollTargetBehavior' }]),
+      { ...method('paging', 'SwiftUI'), kind: 'static', owner: 'SwiftUI.ScrollTargetBehavior', type: 'SwiftUI.PagingScrollTargetBehavior', requirements: ['Self == SwiftUI.PagingScrollTargetBehavior'] },
     ], 27, [])).toEqual([
+      { name: 'scrollTargetBehavior', kind: 'style', type: 'some ScrollTargetBehavior', ios: 0, cases: [
+        { name: 'paging', ios: 0 },
+      ] },
       { name: 'textEditorStyle', kind: 'style', type: 'some TextEditorStyle', ios: 0, cases: [
         { name: 'automatic', ios: 0 }, { name: 'plain', ios: 0 },
       ] },

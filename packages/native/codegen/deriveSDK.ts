@@ -22,6 +22,7 @@ export type DerivedModifier = {
   kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventValueString' | 'bindingBoolean' | 'bindingString'
   ios: number
   type: string
+  rawString?: true
   cases?: readonly { name: string; ios: number }[]
   zeroArgument?: true
   framework?: string
@@ -241,13 +242,26 @@ export function deriveModifiers(
         return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method), arguments: args, ...framework }]
       }
       const { type, label } = method.parameters[0]
-      const opaqueStyle = /^some ((?:[A-Za-z_]\w*\.)?[A-Za-z]\w*Style)$/.exec(type)?.[1]
+      const opaqueStyle = /^some ((?:[A-Za-z_]\w*\.)?[A-Za-z]\w*(?:Style|Behavior))$/.exec(type)?.[1]
       if (opaqueStyle) {
         const cases = styleCases(opaqueStyle.includes('.') ? opaqueStyle : `${method.module}.${opaqueStyle}`)
         if (cases) return [{ name, module: method.module, kind: 'style', type, ios: ios(method), cases, ...framework,
           ...(label === '_' ? {} : { label }) }]
       }
       const value = valueOf(type)
+      if (!value && /^[A-Za-z_]\w*\.[A-Za-z]\w*\??$/.test(type)) {
+        const baseType = type.replace(/\?$/, '')
+        const [module, owner] = baseType.split('.')
+        if (inventory.some((declaration) => declaration.module === module && declaration.owner === '' &&
+          declaration.kind === 'struct' && declaration.name === owner &&
+          declaration.inheritedTypes?.includes('Swift.RawRepresentable') && present(declaration) && ios(declaration) <= ceiling) &&
+          inventory.some((declaration) => declaration.module === module && declaration.owner === owner &&
+            declaration.kind === 'init' && declaration.parameters.length === 1 &&
+            declaration.parameters[0].label === 'rawValue' && declaration.parameters[0].type === 'Swift.String' &&
+            present(declaration) && ios(declaration) <= ceiling))
+          return [{ name, module: method.module, kind: type.endsWith('?') ? 'optionalString' : 'string',
+            type, rawString: true, ios: ios(method), ...framework, ...(label === '_' ? {} : { label }) }]
+      }
       if (!value || value.kind === 'stringArray' || value.kind === 'stringSet') return []
       const kind = value.kind === 'enum'
         ? value.optional ? 'optionalEnum' : 'string'

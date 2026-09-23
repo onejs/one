@@ -353,6 +353,7 @@ extension View {
       case "presentationCornerRadius": view = AnyView(view.oneNativeSDKPresentationCornerRadius(value, emit: emit))
       case "presentationDragIndicator": view = AnyView(view.oneNativeSDKPresentationDragIndicator(value, emit: emit))
       case "presentationPlacement": view = AnyView(view.oneNativeSDKPresentationPlacement(value, emit: emit))
+      case "previewDevice": view = AnyView(view.oneNativeSDKPreviewDevice(value, emit: emit))
       case "previewDisplayName": view = AnyView(view.oneNativeSDKPreviewDisplayName(value, emit: emit))
       case "previewInterfaceOrientation": view = AnyView(view.oneNativeSDKPreviewInterfaceOrientation(value, emit: emit))
       case "previewLayout": view = AnyView(view.oneNativeSDKPreviewLayout(value, emit: emit))
@@ -385,6 +386,7 @@ extension View {
       case "scrollEdgeEffectStyle": view = AnyView(view.oneNativeSDKScrollEdgeEffectStyle(value, emit: emit))
       case "scrollIndicators": view = AnyView(view.oneNativeSDKScrollIndicators(value, emit: emit))
       case "scrollIndicatorsFlash": view = AnyView(view.oneNativeSDKScrollIndicatorsFlash(value, emit: emit))
+      case "scrollTargetBehavior": view = AnyView(view.oneNativeSDKScrollTargetBehavior(value, emit: emit))
       case "scrollTargetLayout": view = AnyView(view.oneNativeSDKScrollTargetLayout(value, emit: emit))
       case "searchable": view = AnyView(view.oneNativeSDKSearchable(value, emit: emit))
       case "searchCompletion": view = AnyView(view.oneNativeSDKSearchCompletion(value, emit: emit))
@@ -3768,6 +3770,12 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKPreviewDevice(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if value == "null" { self.previewDevice(nil as SwiftUI.PreviewDevice?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+      self.previewDevice(SwiftUI.PreviewDevice(rawValue: decoded))
+    } else { preconditionFailure("invalid previewDevice: \(value)") } }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKPreviewDisplayName(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if value == "null" { self.previewDisplayName(nil as Swift.String?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       self.previewDisplayName(decoded)
@@ -4226,6 +4234,15 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKScrollIndicatorsFlash(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid scrollIndicatorsFlash: \(value)")
       self.scrollIndicatorsFlash(onAppear: value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKScrollTargetBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "paging": self.scrollTargetBehavior(.paging)
+      case "viewAligned": self.scrollTargetBehavior(.viewAligned)
+    default: preconditionFailure("invalid scrollTargetBehavior: \(value)")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKScrollTargetLayout(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

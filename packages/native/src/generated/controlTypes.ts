@@ -876,6 +876,8 @@ export const sdkScrollDismissesKeyboardValues = [
   'never',
 ] as const
 export type SDKScrollDismissesKeyboard = (typeof sdkScrollDismissesKeyboardValues)[number]
+export const sdkScrollTargetBehaviorValues = ['paging', 'viewAligned'] as const
+export type SDKScrollTargetBehavior = (typeof sdkScrollTargetBehaviorValues)[number]
 export const sdkSearchDictationBehaviorValues = ['automatic'] as const
 export type SDKSearchDictationBehavior = (typeof sdkSearchDictationBehaviorValues)[number]
 export const sdkSearchPresentationToolbarBehaviorValues = [
@@ -1784,6 +1786,7 @@ export interface OneNativeStyle {
   presentationCornerRadius?: number | null
   presentationDragIndicator?: SDKPresentationDragIndicator
   presentationPlacement?: SDKPresentationPlacement
+  previewDevice?: string | null
   previewDisplayName?: string | null
   previewInterfaceOrientation?: SDKPreviewInterfaceOrientation
   previewLayout?: SDKPreviewLayout
@@ -1874,6 +1877,7 @@ export interface OneNativeStyle {
     axes: 'horizontal' | 'vertical'
   }>
   scrollIndicatorsFlash?: boolean
+  scrollTargetBehavior?: SDKScrollTargetBehavior
   scrollTargetLayout?: boolean
   searchable?: Readonly<{ value: string; onChange: (value: string) => void }>
   searchCompletion?: string
