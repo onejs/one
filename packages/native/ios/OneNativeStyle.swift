@@ -115,6 +115,7 @@ extension View {
       case "accessibilityAddTraits": view = AnyView(view.oneNativeSDKAccessibilityAddTraits(value, emit: emit))
       case "accessibilityAdjustableAction": view = AnyView(view.oneNativeSDKAccessibilityAdjustableAction(value, emit: emit))
       case "accessibilityCustomContent": view = AnyView(view.oneNativeSDKAccessibilityCustomContent(value, emit: emit))
+      case "accessibilityDefaultFocus": view = AnyView(view.oneNativeSDKAccessibilityDefaultFocus(value, emit: emit))
       case "accessibilityDirectTouch": view = AnyView(view.oneNativeSDKAccessibilityDirectTouch(value, emit: emit))
       case "accessibilityDragPointWithPointAndDescription": view = AnyView(view.oneNativeSDKAccessibilityDragPointWithPointAndDescription(value, emit: emit))
       case "accessibilityDragPointWithPointAndDescriptionAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityDragPointWithPointAndDescriptionAndIsEnabled(value, emit: emit))
@@ -207,6 +208,7 @@ extension View {
       case "datePickerStyle": view = AnyView(view.oneNativeSDKDatePickerStyle(value, emit: emit))
       case "defaultAdaptableTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultAdaptableTabBarPlacement(value, emit: emit))
       case "defaultAppStorage": view = AnyView(view.oneNativeSDKDefaultAppStorage(value, emit: emit))
+      case "defaultFocus": view = AnyView(view.oneNativeSDKDefaultFocus(value, emit: emit))
       case "defaultHoverEffect": view = AnyView(view.oneNativeSDKDefaultHoverEffect(value, emit: emit))
       case "defaultScrollAnchorWithAnchorAndRole": view = AnyView(view.oneNativeSDKDefaultScrollAnchorWithAnchorAndRole(value, emit: emit))
       case "defaultScrollAnchorWithOptionalUnitPoint": view = AnyView(view.oneNativeSDKDefaultScrollAnchorWithOptionalUnitPoint(value, emit: emit))
@@ -862,6 +864,13 @@ extension View {
       return Text(raw)
     }()
     self.accessibilityCustomContent(argument0, argument1)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityDefaultFocus(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid accessibilityDefaultFocus: \(value)")
+    if value == "true" {
+      if #available(iOS 26, *) { self.modifier(OneNativeSDKAccessibilityDefaultFocusFocusBinding()) } else { self }
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityDirectTouch(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2145,6 +2154,13 @@ extension View {
       case "standard": self.defaultAppStorage(Foundation.UserDefaults.standard)
     default: preconditionFailure("invalid defaultAppStorage: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDefaultFocus(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid defaultFocus: \(value)")
+    if value == "true" {
+      self.modifier(OneNativeSDKDefaultFocusFocusBinding())
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDefaultHoverEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -6813,6 +6829,16 @@ extension View {
       } else { preconditionFailure("invalid zIndex: \(value)") }
   }
 }
+@available(iOS 26, *)
+private struct OneNativeSDKAccessibilityDefaultFocusFocusBinding: ViewModifier {
+  @AccessibilityFocusState private var focused: Bool
+
+  func body(content: Content) -> some View {
+    content.accessibilityFocused($focused)
+      .accessibilityDefaultFocus($focused, true)
+  }
+}
+
 private struct OneNativeSDKAccessibilityFocusedFocusBinding: ViewModifier {
   @AccessibilityFocusState private var focused: Bool
   let value: Bool
@@ -6829,6 +6855,15 @@ private struct OneNativeSDKAccessibilityFocusedFocusBinding: ViewModifier {
       .onAppear {
         if focused != value { focused = value }
       }
+  }
+}
+
+private struct OneNativeSDKDefaultFocusFocusBinding: ViewModifier {
+  @FocusState private var focused: Bool
+
+  func body(content: Content) -> some View {
+    content.focused($focused)
+      .defaultFocus($focused, true)
   }
 }
 

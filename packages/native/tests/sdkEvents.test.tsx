@@ -648,4 +648,18 @@ describe('SDK callback and binding transport', () => {
     expect(accessibilityFocused).toHaveBeenCalledWith(true)
     expect(() => emit('focused', 'maybe')).toThrow('focused emitted an invalid boolean')
   })
+
+  it('enables SDK default focus through self-owned Boolean focus state', () => {
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      defaultFocus: true,
+      accessibilityDefaultFocus: false,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['defaultFocus', 'true'],
+      ['accessibilityDefaultFocus', 'false'],
+    ])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      defaultFocus: 'yes' as unknown as boolean,
+    } })).toThrow('defaultFocus must be a boolean')
+  })
 })

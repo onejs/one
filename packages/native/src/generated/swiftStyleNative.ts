@@ -51,6 +51,7 @@ const sdkKinds = {
   accessibilityAddTraits: 'string',
   accessibilityAdjustableAction: 'eventEnum',
   accessibilityCustomContent: 'record',
+  accessibilityDefaultFocus: 'defaultFocusBoolean',
   accessibilityDirectTouch: 'record',
   accessibilityDragPointWithPointAndDescription: 'record',
   accessibilityDragPointWithPointAndDescriptionAndIsEnabled: 'record',
@@ -144,6 +145,7 @@ const sdkKinds = {
   datePickerStyle: 'style',
   defaultAdaptableTabBarPlacement: 'string',
   defaultAppStorage: 'string',
+  defaultFocus: 'defaultFocusBoolean',
   defaultHoverEffect: 'optionalEnum',
   defaultScrollAnchorWithAnchorAndRole: 'record',
   defaultScrollAnchorWithOptionalUnitPoint: 'optionalEnum',
@@ -1744,7 +1746,10 @@ export function swiftStyleNative(
         (typeof value !== 'number' || !Number.isFinite(value))
       )
         throw new Error(name + ' must be finite or null')
-      if (kind === 'boolean' && typeof value !== 'boolean')
+      if (
+        (kind === 'boolean' || kind === 'defaultFocusBoolean') &&
+        typeof value !== 'boolean'
+      )
         throw new Error(name + ' must be a boolean')
       if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean')
         throw new Error(name + ' must be a boolean or null')
