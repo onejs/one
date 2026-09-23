@@ -119,6 +119,7 @@ const sdkKinds = {
   buttonSizing: 'string',
   buttonStyle: 'style',
   clipped: 'boolean',
+  colorEffect: 'record',
   colorInvert: 'boolean',
   colorMultiply: 'string',
   colorScheme: 'string',
@@ -150,6 +151,7 @@ const sdkKinds = {
   disableAutocorrection: 'optionalBoolean',
   disabled: 'boolean',
   disclosureGroupStyle: 'style',
+  distortionEffect: 'record',
   documentLaunchSubtitle: 'string',
   documentLaunchTitle: 'string',
   dragConfiguration: 'boolean',
@@ -217,6 +219,7 @@ const sdkKinds = {
   labelsHidden: 'boolean',
   labelStyle: 'style',
   labelsVisibility: 'string',
+  layerEffect: 'record',
   layoutDirectionBehavior: 'string',
   layoutPriority: 'number',
   lineHeight: 'optionalEnum',
@@ -772,6 +775,10 @@ const sdkRecords: Record<
     { field: 'radius', kind: 'number', optional: false },
     { field: 'opaque', kind: 'boolean', optional: false },
   ],
+  colorEffect: [
+    { field: 'shader', kind: 'string', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
   containerCornerOffset: [
     { field: 'edges', kind: 'enum', optional: false },
     { field: 'sizeToFit', kind: 'boolean', optional: false },
@@ -799,6 +806,19 @@ const sdkRecords: Record<
   defaultScrollAnchorWithAnchorAndRole: [
     { field: 'anchor', kind: 'enum', optional: true },
     { field: 'role', kind: 'enum', optional: false },
+  ],
+  distortionEffect: [
+    { field: 'shader', kind: 'string', optional: false },
+    {
+      field: 'maxSampleOffset',
+      kind: 'numericStruct',
+      optional: false,
+      fields: [
+        { name: 'width', integer: false },
+        { name: 'height', integer: false },
+      ],
+    },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
   ],
   drawingGroup: [
     { field: 'opaque', kind: 'boolean', optional: false },
@@ -846,6 +866,19 @@ const sdkRecords: Record<
     { field: 'key', kind: 'enum', optional: false },
     { field: 'modifiers', kind: 'enum', optional: false },
     { field: 'localization', kind: 'enum', optional: false },
+  ],
+  layerEffect: [
+    { field: 'shader', kind: 'string', optional: false },
+    {
+      field: 'maxSampleOffset',
+      kind: 'numericStruct',
+      optional: false,
+      fields: [
+        { name: 'width', integer: false },
+        { name: 'height', integer: false },
+      ],
+    },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
   ],
   lineLimitWithLimitAndReservesSpace: [
     { field: 'limit', kind: 'number', optional: false },

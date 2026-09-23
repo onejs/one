@@ -180,6 +180,7 @@ extension View {
       case "buttonSizing": view = AnyView(view.oneNativeSDKButtonSizing(value, emit: emit))
       case "buttonStyle": view = AnyView(view.oneNativeSDKButtonStyle(value, emit: emit))
       case "clipped": view = AnyView(view.oneNativeSDKClipped(value, emit: emit))
+      case "colorEffect": view = AnyView(view.oneNativeSDKColorEffect(value, emit: emit))
       case "colorInvert": view = AnyView(view.oneNativeSDKColorInvert(value, emit: emit))
       case "colorMultiply": view = AnyView(view.oneNativeSDKColorMultiply(value, emit: emit))
       case "colorScheme": view = AnyView(view.oneNativeSDKColorScheme(value, emit: emit))
@@ -211,6 +212,7 @@ extension View {
       case "disableAutocorrection": view = AnyView(view.oneNativeSDKDisableAutocorrection(value, emit: emit))
       case "disabled": view = AnyView(view.oneNativeSDKDisabled(value, emit: emit))
       case "disclosureGroupStyle": view = AnyView(view.oneNativeSDKDisclosureGroupStyle(value, emit: emit))
+      case "distortionEffect": view = AnyView(view.oneNativeSDKDistortionEffect(value, emit: emit))
       case "documentLaunchSubtitle": view = AnyView(view.oneNativeSDKDocumentLaunchSubtitle(value, emit: emit))
       case "documentLaunchTitle": view = AnyView(view.oneNativeSDKDocumentLaunchTitle(value, emit: emit))
       case "dragConfiguration": view = AnyView(view.oneNativeSDKDragConfiguration(value, emit: emit))
@@ -278,6 +280,7 @@ extension View {
       case "labelsHidden": view = AnyView(view.oneNativeSDKLabelsHidden(value, emit: emit))
       case "labelStyle": view = AnyView(view.oneNativeSDKLabelStyle(value, emit: emit))
       case "labelsVisibility": view = AnyView(view.oneNativeSDKLabelsVisibility(value, emit: emit))
+      case "layerEffect": view = AnyView(view.oneNativeSDKLayerEffect(value, emit: emit))
       case "layoutDirectionBehavior": view = AnyView(view.oneNativeSDKLayoutDirectionBehavior(value, emit: emit))
       case "layoutPriority": view = AnyView(view.oneNativeSDKLayoutPriority(value, emit: emit))
       case "lineHeight": view = AnyView(view.oneNativeSDKLineHeight(value, emit: emit))
@@ -1671,6 +1674,25 @@ extension View {
       self.clipped(antialiased: value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKColorEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid colorEffect: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Shader = {
+      guard let raw = values[0] else { preconditionFailure("missing colorEffect.shader") }
+      return SwiftUICore.Shader(function: SwiftUICore.ShaderFunction(library: SwiftUICore.ShaderLibrary.default, name: raw), arguments: [])
+    }()
+    let argument1: Swift.Bool = {
+      guard let raw = values[1] else { preconditionFailure("missing colorEffect.isEnabled") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid colorEffect.isEnabled: \(raw)") }
+      return raw == "true"
+    }()
+    self.colorEffect(argument0, isEnabled: argument1)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKColorInvert(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid colorInvert: \(value)")
     if value == "true" { self.colorInvert() } else { self }
@@ -2129,6 +2151,33 @@ extension View {
       case "automatic": self.disclosureGroupStyle(.automatic)
     default: preconditionFailure("invalid disclosureGroupStyle: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDistortionEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid distortionEffect: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Shader = {
+      guard let raw = values[0] else { preconditionFailure("missing distortionEffect.shader") }
+      return SwiftUICore.Shader(function: SwiftUICore.ShaderFunction(library: SwiftUICore.ShaderLibrary.default, name: raw), arguments: [])
+    }()
+    let argument1: CoreFoundation.CGSize = {
+      guard let raw = values[1] else { preconditionFailure("missing distortionEffect.maxSampleOffset") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["width"], field0.isFinite,
+        let field1 = decoded["height"], field1.isFinite else { preconditionFailure("invalid distortionEffect.maxSampleOffset: \(raw)") }
+      return CoreFoundation.CGSize(width: CGFloat(field0), height: CGFloat(field1))
+    }()
+    let argument2: Swift.Bool = {
+      guard let raw = values[2] else { preconditionFailure("missing distortionEffect.isEnabled") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid distortionEffect.isEnabled: \(raw)") }
+      return raw == "true"
+    }()
+    self.distortionEffect(argument0, maxSampleOffset: argument1, isEnabled: argument2)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDocumentLaunchSubtitle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2922,6 +2971,33 @@ extension View {
       case "hidden": if #available(iOS 18, *) { self.labelsVisibility(SwiftUICore.Visibility.hidden) } else { self }
     default: preconditionFailure("invalid labelsVisibility: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKLayerEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid layerEffect: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Shader = {
+      guard let raw = values[0] else { preconditionFailure("missing layerEffect.shader") }
+      return SwiftUICore.Shader(function: SwiftUICore.ShaderFunction(library: SwiftUICore.ShaderLibrary.default, name: raw), arguments: [])
+    }()
+    let argument1: CoreFoundation.CGSize = {
+      guard let raw = values[1] else { preconditionFailure("missing layerEffect.maxSampleOffset") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["width"], field0.isFinite,
+        let field1 = decoded["height"], field1.isFinite else { preconditionFailure("invalid layerEffect.maxSampleOffset: \(raw)") }
+      return CoreFoundation.CGSize(width: CGFloat(field0), height: CGFloat(field1))
+    }()
+    let argument2: Swift.Bool = {
+      guard let raw = values[2] else { preconditionFailure("missing layerEffect.isEnabled") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid layerEffect.isEnabled: \(raw)") }
+      return raw == "true"
+    }()
+    self.layerEffect(argument0, maxSampleOffset: argument1, isEnabled: argument2)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKLayoutDirectionBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

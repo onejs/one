@@ -17,6 +17,7 @@ export type DerivedArgument = {
   fields?: readonly { name: string; label: string; type: string }[]
   wrappedType?: string
   scalarConstructor?: { label: string; type: string }
+  swiftExpression?: string
 }
 
 export type EventValueSchema =
@@ -35,6 +36,7 @@ export type DerivedModifier = {
   type: string
   rawString?: true
   scalarConstructor?: { label: string; type: string }
+  swiftExpression?: string
   cases?: readonly { name: string; ios: number }[]
   associatedCases?: readonly { name: string; values: readonly EventValueSchema[] }[]
   eventValue?: EventValueSchema
@@ -56,6 +58,9 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
     const baseType = type.replace(/\?$/, '')
     if (baseType === 'CoreFoundation.CGAffineTransform')
       return { kind: 'numericStruct', type, optional, fields: affineFields }
+    if (baseType === 'CoreFoundation.CGSize')
+      return { kind: 'numericStruct', type, optional, fields: ['width', 'height'].map((name) =>
+        ({ name, label: name, type: 'CoreFoundation.CGFloat' })) }
     const kind = baseType === 'Swift.Bool'
       ? 'boolean'
       : ['Swift.Double', 'Swift.Float', 'Swift.Int', 'CoreFoundation.CGFloat'].includes(baseType)
@@ -142,6 +147,37 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
           return { kind: parameter.type === 'Swift.Bool' ? 'boolean' : parameter.type === 'Swift.String' ? 'string' : 'number',
             type, optional, scalarConstructor: { label: parameter.label, type: parameter.type } }
         }
+        const expressionFor = (valueType: string, seen: ReadonlySet<string>): { expression: string; inputs: number } | undefined => {
+          if (valueType === 'Swift.String') return { expression: '$value', inputs: 1 }
+          if (/^\[[A-Za-z_]\w*\.[A-Za-z][\w.]*\]$/.test(valueType)) return { expression: '[]', inputs: 0 }
+          if (seen.has(valueType) || seen.size > 3) return
+          const [valueModule, ...valueOwner] = valueType.split('.')
+          const valueName = valueOwner.join('.')
+          if (!inventory.some((d) => d.module === valueModule && d.kind === 'struct' &&
+            d.owner === valueOwner.slice(0, -1).join('.') && d.name === valueOwner.at(-1) &&
+            !d.generic && present(d) && ios(d) <= ceiling)) return
+          const statics = inventory.filter((d) => d.module === valueModule &&
+            (d.owner === valueName || d.owner === valueType) && d.kind === 'static' &&
+            d.name === 'default' && d.parameters.length === 0 &&
+            (d.type === valueType || d.type === valueName) && present(d) && ios(d) <= ceiling)
+          if (statics.length === 1) return { expression: `${valueType}.default`, inputs: 0 }
+          const next = new Set([...seen, valueType])
+          const expressions = inventory.filter((d) => d.module === valueModule &&
+            (d.owner === valueName || d.owner === valueType) && d.kind === 'init' &&
+            d.parameters.length > 0 && !d.requirements?.length && present(d) && ios(d) <= ceiling)
+            .map((d) => {
+              const argumentsOf = d.parameters.map((parameter) => expressionFor(parameter.type, next))
+              if (argumentsOf.some((argument) => !argument)) return
+              const inputs = argumentsOf.reduce((count, argument) => count + argument!.inputs, 0)
+              if (inputs !== 1) return
+              return { inputs, expression: `${valueType}(${d.parameters.map((parameter, index) =>
+                `${parameter.label === '_' ? '' : `${parameter.label}: `}${argumentsOf[index]!.expression}`).join(', ')})` }
+            }).filter((value) => value !== undefined)
+          return expressions.length === 1 ? expressions[0] : undefined
+        }
+        const expression = expressionFor(baseType, new Set())
+        if (expression?.inputs === 1)
+          return { kind: 'string', type, optional, swiftExpression: expression.expression }
       }
       return
     }
@@ -498,6 +534,7 @@ export function deriveModifiers(
           : value.kind
       return [{ name, module: method.module, kind, type, ios: ios(method), ...framework,
         ...(value.scalarConstructor ? { scalarConstructor: value.scalarConstructor } : {}),
+        ...(value.swiftExpression ? { swiftExpression: value.swiftExpression } : {}),
         ...(value.cases ? { cases: value.cases } : {}), ...(label === '_' ? {} : { label }) }]
     })
     if (candidates.some((candidate) => candidate.transformMember)) {
