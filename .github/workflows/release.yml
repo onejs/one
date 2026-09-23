@@ -6,7 +6,7 @@ on:
       release:
         description: Version to publish
         required: true
-        default: canary
+        default: beta
         type: choice
         options:
           - canary
@@ -61,6 +61,12 @@ jobs:
             [[ "$GITHUB_REF" == "refs/heads/v2-beta" ]]
           elif [[ "$RELEASE_KIND" != "canary" ]]; then
             [[ "$GITHUB_REF" == "refs/heads/main" ]]
+          fi
+          # v2-beta ships as 2.0.0-beta only. a canary from it looked like a 1.x
+          # main build and left consumers unsure which line they were on.
+          if [[ "$GITHUB_REF" == "refs/heads/v2-beta" && "$RELEASE_KIND" != "beta" ]]; then
+            echo "v2-beta publishes betas only: dispatch with -f release=beta" >&2
+            exit 1
           fi
 
           source_sha=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/$TARGET_REF" --jq .object.sha)
