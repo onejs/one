@@ -99,6 +99,7 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
       }
       const construct = (value: string, constructor = modifier.scalarConstructor, type = modifier.type) =>
         constructor ? `${type.replace(/\?$/, '')}(${constructor.label}: ${value})` : value
+      const expression = (template: string | undefined, value: string) => template?.replace('$value', value)
       if (modifier.kind === 'record') {
         const argumentsFromSDK = modifier.arguments!
         const parsedArguments = argumentsFromSDK.map((argument, index) => {
@@ -160,7 +161,7 @@ ${cases}
           }
           return `    let ${variable}: ${argument.type} = {
       guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
-      return ${baseType === 'SwiftUICore.Text' ? 'Text(raw)' : baseType === 'SwiftUICore.Image' ? 'Image(systemName: raw)' : construct('raw', argument.scalarConstructor, argument.type)}
+      return ${expression(argument.swiftExpression, 'raw') ?? (baseType === 'SwiftUICore.Text' ? 'Text(raw)' : baseType === 'SwiftUICore.Image' ? 'Image(systemName: raw)' : construct('raw', argument.scalarConstructor, argument.type))}
     }()`
         }).join('\n')
         const call = argumentsFromSDK.map((argument, index) =>
@@ -276,7 +277,7 @@ ${validation}    ${apply(argumentsFromSDK ?? bridge, modifier.ios, argumentsFrom
       ${apply(construct((modifier.scalarConstructor?.type ?? modifier.type) === 'CoreFoundation.CGFloat' || modifier.type === 'CoreFoundation.CGFloat?' ? 'CGFloat(number)' : modifier.type === 'Swift.Float?' ? 'Float(number)' : modifier.type === 'Swift.Int?' ? 'Int(number)' : 'number'), modifier.ios)}
     } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
             : `if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
-      ${apply(modifier.rawString ? `${modifier.type.replace(/\?$/, '')}(rawValue: decoded)` : modifier.type === 'SwiftUICore.Text?' ? 'Text(decoded)' : modifier.type === 'SwiftUICore.Image?' ? 'Image(systemName: decoded)' : construct('decoded'), modifier.ios)}
+      ${apply(modifier.rawString ? `${modifier.type.replace(/\?$/, '')}(rawValue: decoded)` : expression(modifier.swiftExpression, 'decoded') ?? (modifier.type === 'SwiftUICore.Text?' ? 'Text(decoded)' : modifier.type === 'SwiftUICore.Image?' ? 'Image(systemName: decoded)' : construct('decoded')), modifier.ios)}
     } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if value == "null" { ${apply(nil, modifier.ios)} } else { ${parsed} }
@@ -313,7 +314,7 @@ ${modifier.cases
           modifier.ios
         )}
       } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
-            : `      ${apply(modifier.rawString ? `${modifier.type}(rawValue: value)` : modifier.type === 'SwiftUICore.Text' ? 'Text(value)' : modifier.type === 'SwiftUICore.Image' ? 'Image(systemName: value)' : construct('value'), modifier.ios)}`
+            : `      ${apply(modifier.rawString ? `${modifier.type}(rawValue: value)` : expression(modifier.swiftExpression, 'value') ?? (modifier.type === 'SwiftUICore.Text' ? 'Text(value)' : modifier.type === 'SwiftUICore.Image' ? 'Image(systemName: value)' : construct('value')), modifier.ios)}`
       return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
 ${parsed}
   }`

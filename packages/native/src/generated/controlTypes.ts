@@ -1487,6 +1487,7 @@ export interface OneNativeStyle {
   buttonSizing?: SDKButtonSizing
   buttonStyle?: SDKButtonStyle
   clipped?: boolean
+  colorEffect?: Readonly<{ shader: string; isEnabled: boolean }>
   colorInvert?: boolean
   colorMultiply?: SDKColorMultiply
   colorScheme?: SDKColorScheme
@@ -1584,6 +1585,11 @@ export interface OneNativeStyle {
   disableAutocorrection?: boolean | null
   disabled?: boolean
   disclosureGroupStyle?: SDKDisclosureGroupStyle
+  distortionEffect?: Readonly<{
+    shader: string
+    maxSampleOffset: Readonly<{ width: number; height: number }>
+    isEnabled: boolean
+  }>
   documentLaunchSubtitle?: string
   documentLaunchTitle?: string
   dragConfiguration?: boolean
@@ -1746,6 +1752,11 @@ export interface OneNativeStyle {
   labelsHidden?: boolean
   labelStyle?: SDKLabelStyle
   labelsVisibility?: SDKLabelsVisibility
+  layerEffect?: Readonly<{
+    shader: string
+    maxSampleOffset: Readonly<{ width: number; height: number }>
+    isEnabled: boolean
+  }>
   layoutDirectionBehavior?: SDKLayoutDirectionBehavior
   layoutPriority?: number
   lineHeight?: SDKLineHeight | null

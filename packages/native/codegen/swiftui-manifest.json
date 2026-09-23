@@ -2688,6 +2688,29 @@
       "label": "antialiased"
     },
     {
+      "name": "colorEffect",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Shader",
+          "optional": false,
+          "swiftExpression": "SwiftUICore.Shader(function: SwiftUICore.ShaderFunction(library: SwiftUICore.ShaderLibrary.default, name: $value), arguments: [])",
+          "field": "shader",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ]
+    },
+    {
       "name": "colorInvert",
       "kind": "boolean",
       "type": "",
@@ -3655,6 +3678,48 @@
         {
           "name": "automatic",
           "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "distortionEffect",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Shader",
+          "optional": false,
+          "swiftExpression": "SwiftUICore.Shader(function: SwiftUICore.ShaderFunction(library: SwiftUICore.ShaderLibrary.default, name: $value), arguments: [])",
+          "field": "shader",
+          "label": "_"
+        },
+        {
+          "kind": "numericStruct",
+          "type": "CoreFoundation.CGSize",
+          "optional": false,
+          "fields": [
+            {
+              "name": "width",
+              "label": "width",
+              "type": "CoreFoundation.CGFloat"
+            },
+            {
+              "name": "height",
+              "label": "height",
+              "type": "CoreFoundation.CGFloat"
+            }
+          ],
+          "field": "maxSampleOffset",
+          "label": "maxSampleOffset"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
         }
       ]
     },
@@ -5190,6 +5255,48 @@
         {
           "name": "hidden",
           "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "layerEffect",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Shader",
+          "optional": false,
+          "swiftExpression": "SwiftUICore.Shader(function: SwiftUICore.ShaderFunction(library: SwiftUICore.ShaderLibrary.default, name: $value), arguments: [])",
+          "field": "shader",
+          "label": "_"
+        },
+        {
+          "kind": "numericStruct",
+          "type": "CoreFoundation.CGSize",
+          "optional": false,
+          "fields": [
+            {
+              "name": "width",
+              "label": "width",
+              "type": "CoreFoundation.CGFloat"
+            },
+            {
+              "name": "height",
+              "label": "height",
+              "type": "CoreFoundation.CGFloat"
+            }
+          ],
+          "field": "maxSampleOffset",
+          "label": "maxSampleOffset"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
         }
       ]
     },
@@ -12065,6 +12172,7 @@
         "buttonSizing",
         "clipShape",
         "clipped",
+        "colorEffect",
         "colorInvert",
         "colorMultiply",
         "colorScheme",
@@ -12079,6 +12187,7 @@
         "coordinateSpace",
         "defaultHoverEffect",
         "disabled",
+        "distortionEffect",
         "drawingGroup",
         "dynamicTypeSize",
         "edgesIgnoringSafeArea",
@@ -12101,6 +12210,7 @@
         "imageScale",
         "italic",
         "kerning",
+        "layerEffect",
         "layoutDirectionBehavior",
         "layoutPriority",
         "lineHeight",
