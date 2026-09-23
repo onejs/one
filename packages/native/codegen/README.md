@@ -12,16 +12,19 @@
 
 ## Semantic overrides
 
-- `controlCatalog.ts`, `leafCatalog.ts`, `controlTypes.ts`: controlled values, actions, binding closures, and constructors with label or content closures.
-- `emitContainers.ts`, `emitSheet.ts`, `emitPopover.ts`: SwiftUI child slots, measured layout, presentation and dismissal behavior.
-- `catalog.ts`: menu tree payloads, special style conversions, and framework imports.
-- `catalog.ts`: handwritten Fabric hosts such as `OneSwiftHost`, which have no SwiftUI SDK view declaration.
-- `Tabs.native.tsx` and `OneNativeTabsView.swift`: tab selection, page hosting, and accessory content placement.
+- Closures and bindings: `controlCatalog.ts`, `leafCatalog.ts`, and `controlTypes.ts` choose React events, controlled values, actions, and constructors with label or content closures. A Swift closure signature does not say which state React owns or when an event fires.
+- View builders: `emitContainers.ts`, `emitSheet.ts`, and `emitPopover.ts` map React children to SwiftUI slots and own layout, presentation, and dismissal. `Tabs.native.tsx` and `OneNativeTabsView.swift` map tab pages and `tabViewBottomAccessory` content to slots; the accessory reads its placement environment there.
+- Generics and non-scalar values: `catalog.ts` supplies menu tree payloads, style conversions such as `Color` and `ShapeStyle`, and framework imports. Generic constraints do not identify the concrete React value or native conversion.
+- Handwritten native hosts: `catalog.ts` retains `OneSwiftHost` in the Fabric component provider map because it has no SwiftUI SDK view declaration.
 
 SDK signatures cannot choose a React event contract, ownership of a binding, a React Native layout model, or what React children feed a `@ViewBuilder`. These stay explicit. Scalar and enum modifier names and argument types should not.
+
+The next cheapest class to derive is public zero-argument `View` methods without generic requirements. The iOS 27 inventory has 17 unmapped method names in that class, including `hidden`, `labelsHidden`, and `compositingGroup`. They need a generated boolean enable prop and a Swift call when true, with overload and availability checks; they do not need argument conversion or a React event contract.
 
 ## Result
 
 The iOS 27 SDK inventory now supplies parameterless public views and unambiguous one-argument scalar or enum `View` modifiers. The generator emits their React props, native transport, Swift calls, and availability metadata. Derived modifiers use one JSON field in the existing `swiftStyle` Fabric struct, so adding an SDK modifier does not add a C++ prop to every generated host. Swift applies only modifiers present in that field, in prop order.
 
-Modifier coverage rose from 51 names to 149 names; 109 are SDK-derived. View coverage rose from 32 to 34 with `EditButton` and `EmptyView`. `bold` and `tracking` are two previously unmapped modifiers exercised by `tests/native-features/app/one-native-autogen.tsx`. `tabViewBottomAccessory` is a `@ViewBuilder` slot on `TabView`, so its slot mapping and placement environment remain the explicit Tabs override listed above. The iOS 27 simulator proof shows expanded and inline placements. The generated bindings retain an iOS 26 symbol ceiling while native CI uses Xcode 26.4; the inventory is read from the installed iOS 27 SDK, and a future CI SDK bump can raise the ceiling in `generate.ts`.
+`bun run coverage` reports 152 bound/generated modifier names out of 522 public `View` modifier names in the iOS 27 SDK (29%). It counts module/name pairs rather than overloads, across SwiftUI, SwiftUICore, and every installed SwiftUI overlay. Of the 152 bound names, 112 are selected from SDK signatures without a per-name catalog entry; the rest have semantic mappings. Coverage was 51 bound names before this work, then 149 with the iOS 26 ceiling, and is 152 at the iOS 27 ceiling. The three newly included iOS 27 modifiers are `defaultTabBarPlacement`, `presentationPlacement`, and `textInputBorderShape`. View coverage rose from 32 to 34 with `EditButton` and `EmptyView`.
+
+`bold` and `tracking` are two previously unmapped modifiers exercised by `tests/native-features/app/one-native-autogen.tsx`. `tabViewBottomAccessory` is a `@ViewBuilder` slot on `TabView`, so its slot mapping and placement environment remain the explicit Tabs override listed above. The iOS 27 simulator proof shows expanded and inline placements. Native iOS CI now uses the Xcode 27 runner image, and `generate.ts` accepts iOS 27 symbols into checked-in bindings.

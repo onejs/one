@@ -1,9 +1,9 @@
 name: iOS Native Tests
 env:
   # Specify an iOS version to test on.
-  simulator_ios_version: 26.4
+  simulator_ios_version: 27.0
   # Name of the simulator device to use.
-  simulator_device_name: iPhone 17 Pro
+  simulator_device_name: iPhone 18 Pro
   # Pinned so a run never picks up an incompatible appium/driver pair.
   appium_version: 3.6.0
   appium_xcuitest_version: 12.5.0
@@ -53,11 +53,11 @@ concurrency:
 jobs:
   generated-swiftui:
     name: Generated SwiftUI bindings
-    runs-on: macos-26
+    runs-on: xcode-27
     steps:
       - uses: actions/checkout@v6
       - name: Set Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_26.4.app
+        run: sudo xcode-select -s /Applications/Xcode_27.0.app
       - uses: ./.github/actions/install
         with:
           install-playwright: 'false'
@@ -107,7 +107,7 @@ jobs:
     needs:
       - build-ios-test-container-dev
       - build-ios-test-container-prod
-    runs-on: macos-26
+    runs-on: xcode-27
     # a slow runner roughly doubles this job: dev/metro ran 24m48s on 2026-08-15
     # and 45m51s on 2026-08-18, where the metro dev bundle alone went 22s -> 56s.
     # 45 killed that job 10 seconds after its tests had all passed.
@@ -137,7 +137,7 @@ jobs:
             test-script: test-ios:rolldown:prod
     steps:
       - name: Set Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_26.4.app
+        run: sudo xcode-select -s /Applications/Xcode_27.0.app
 
       - name: Checkout
         uses: actions/checkout@v6
@@ -181,7 +181,7 @@ jobs:
           AVAILABLE_SIMULATORS=$(xcrun simctl list devices available --json | jq -r '[.devices | to_entries[] | select(.key | contains("SimRuntime.iOS")) | .key as $runtime | .value[] | { runtime: $runtime, name: .name, udid: .udid }]')
           echo "Available simulators: $AVAILABLE_SIMULATORS"
 
-          # runtime ids spell the version with dashes, e.g. iOS 26.4 -> ...SimRuntime.iOS-26-4
+          # runtime ids spell the version with dashes, e.g. iOS 27.0 -> ...SimRuntime.iOS-27-0
           RUNTIME_ID="com.apple.CoreSimulator.SimRuntime.iOS-${SIMULATOR_IOS_VERSION//./-}"
           SELECTED_SIMULATOR=$(echo $AVAILABLE_SIMULATORS | jq -r "[.[] | select(.runtime == \"$RUNTIME_ID\") | select(.name == \"$SIMULATOR_DEVICE_NAME\")] | first")
           if [ -z "$SELECTED_SIMULATOR" ] || [ "$SELECTED_SIMULATOR" = "null" ]; then
@@ -205,7 +205,7 @@ jobs:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
         run: |
           xcrun simctl boot "$SIMULATOR_UDID"
-          open -Fn /Applications/Xcode_26.4.app/Contents/Developer/Applications/Simulator.app \
+          open -Fn /Applications/Xcode_27.0.app/Contents/Developer/Applications/Simulator.app \
             --args -CurrentDeviceUDID "$SIMULATOR_UDID"
           xcrun simctl bootstatus "$SIMULATOR_UDID" -b
 
