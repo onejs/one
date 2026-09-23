@@ -4100,6 +4100,36 @@
       "ios": 17
     },
     {
+      "name": "fileExporter",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "field": "isPresented",
+          "label": "isPresented",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "kind": "bindingBoolean",
+          "optional": false
+        },
+        {
+          "field": "item",
+          "label": "item",
+          "type": "Swift.String?",
+          "sdkType": "T?",
+          "kind": "string",
+          "optional": true
+        },
+        {
+          "field": "onCompletion",
+          "label": "onCompletion",
+          "type": "@escaping (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void",
+          "kind": "resultURL",
+          "optional": false
+        }
+      ]
+    },
+    {
       "name": "fileExporterFilenameLabel",
       "kind": "optionalString",
       "type": "SwiftUICore.Text?",
@@ -7801,6 +7831,29 @@
           "ios": 17
         }
       ]
+    },
+    {
+      "name": "photosReferenceImageViewer",
+      "kind": "record",
+      "type": "",
+      "ios": 27,
+      "arguments": [
+        {
+          "kind": "bindingOptionalURL",
+          "type": "SwiftUICore.Binding<Foundation.URL?>",
+          "optional": false,
+          "field": "fileURL",
+          "label": "fileURL"
+        },
+        {
+          "kind": "resultURL",
+          "type": "((Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void)?",
+          "optional": false,
+          "field": "onProcessingCompletion",
+          "label": "onProcessingCompletion"
+        }
+      ],
+      "framework": "PhotosUI"
     },
     {
       "name": "pickerStyle",
@@ -12641,6 +12694,7 @@
         "fileDialogImportsUnresolvedAliases",
         "fileDialogMessage",
         "fileDialogURLEnabled",
+        "fileExporter",
         "fileExporterFilenameLabel",
         "fileImporter",
         "fileMover",
@@ -12865,7 +12919,8 @@
         "photosPickerDisabledCapabilities",
         "photosPickerMetadataOptions",
         "photosPickerSearchText",
-        "photosPickerStyle"
+        "photosPickerStyle",
+        "photosReferenceImageViewer"
       ],
       "_RealityKit_SwiftUI": [
         "realityViewCameraControls",

@@ -1626,6 +1626,11 @@ export interface OneNativeStyle {
   fileDialogImportsUnresolvedAliases?: boolean
   fileDialogMessage?: string | null
   fileDialogURLEnabled?: boolean
+  fileExporter?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    item: string | null
+    onCompletion: (result: Readonly<{ success: string } | { failure: string }>) => void
+  }>
   fileExporterFilenameLabel?: string | null
   fileMover?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
@@ -2014,6 +2019,12 @@ export interface OneNativeStyle {
   photosPickerMetadataOptions?: SDKPhotosPickerMetadataOptions
   photosPickerSearchText?: string | null
   photosPickerStyle?: SDKPhotosPickerStyle
+  photosReferenceImageViewer?: Readonly<{
+    fileURL: Readonly<{ value: string | null; onChange: (value: string | null) => void }>
+    onProcessingCompletion: (
+      result: Readonly<{ success: string } | { failure: string }>
+    ) => void
+  }>
   pickerStyle?: SDKPickerStyle
   position?: Readonly<{ x: number; y: number }>
   preferredColorScheme?: SDKPreferredColorScheme | null

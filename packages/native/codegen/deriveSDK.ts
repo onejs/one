@@ -11,7 +11,7 @@ export type DerivedArgument = {
   label: string
   type: string
   sdkType?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'bindingBoolean' | 'resultURL' | 'resultURLArray'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'bindingBoolean' | 'bindingOptionalURL' | 'resultURL' | 'resultURLArray'
   optional: boolean
   cases?: readonly { name: string; ios: number }[]
   fields?: readonly { name: string; label: string; type: string }[]
@@ -262,6 +262,9 @@ export function deriveModifiers(
 ): DerivedModifier[] {
   const reservedNames = new Set(reserved.map((field) => field.name))
   const valueOf = bridgeValueOf(inventory, ceiling)
+  const urlResultOf = (type: string) =>
+    (/^@escaping \((?:_ [A-Za-z]\w*: )?Swift\.Result<(\[Foundation\.URL\]|Foundation\.URL), any Swift\.Error>\) -> Swift\.Void$/.exec(type) ??
+      /^\(\(Swift\.Result<(\[Foundation\.URL\]|Foundation\.URL), any Swift\.Error>\) -> Swift\.Void\)\?$/.exec(type))?.[1]
   const eventValueOf = (type: string, version: number, seen = new Set<string>()): EventValueSchema | undefined => {
     if (type.endsWith('?')) {
       const value = eventValueOf(type.slice(0, -1), version, seen)
@@ -394,6 +397,18 @@ export function deriveModifiers(
           const [first, action, ...defaults] = method.parameters
           const arrayType = `@autoclosure @escaping () -> [${transferable}]`
           const valueType = `@autoclosure @escaping () -> ${transferable}`
+          const required = method.parameters.filter((parameter) => parameter.defaultValue === undefined)
+          if (required.length === 3 && required[0].type === 'SwiftUICore.Binding<Swift.Bool>' &&
+            required[1].type === `${transferable}?` && urlResultOf(required[2].type) === 'Foundation.URL')
+            return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+              arguments: [
+                { field: required[0].name, label: required[0].label, type: required[0].type,
+                  kind: 'bindingBoolean', optional: false },
+                { field: required[1].name, label: required[1].label, type: 'Swift.String?',
+                  sdkType: required[1].type, kind: 'string', optional: true },
+                { field: required[2].name, label: required[2].label, type: required[2].type,
+                  kind: 'resultURL', optional: false },
+              ], ...framework }]
           if (method.parameters.length === 1 && (first.type === arrayType || first.type === valueType))
             return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
               arguments: [{ field: first.name || 'value', label: first.label,
@@ -565,12 +580,14 @@ export function deriveModifiers(
             ], ...framework }]
         const preferNumeric = method.parameters.some((parameter) => valueOf(parameter.type)?.kind === 'numericTuple')
         const bridgeArguments = (parameters: Declaration['parameters']) => parameters.map((parameter, index) => {
-          const resultURL = /^@escaping \((?:_ [A-Za-z]\w*: )?Swift\.Result<(\[Foundation\.URL\]|Foundation\.URL), any Swift\.Error>\) -> Swift\.Void$/.exec(parameter.type)
+          const resultURL = urlResultOf(parameter.type)
           const value = resultURL
-            ? { kind: resultURL[1].startsWith('[') ? 'resultURLArray' as const : 'resultURL' as const,
+            ? { kind: resultURL.startsWith('[') ? 'resultURLArray' as const : 'resultURL' as const,
                 type: parameter.type, optional: false }
             : parameter.type === 'SwiftUICore.Binding<Swift.Bool>'
             ? { kind: 'bindingBoolean' as const, type: parameter.type, optional: false }
+            : parameter.type === 'SwiftUICore.Binding<Foundation.URL?>'
+              ? { kind: 'bindingOptionalURL' as const, type: parameter.type, optional: false }
             : valueOf(parameter.type, preferNumeric)
           return value && { ...value, field: parameter.name || `argument${index + 1}`, label: parameter.label }
         })

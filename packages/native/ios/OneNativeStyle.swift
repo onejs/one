@@ -233,6 +233,7 @@ extension View {
       case "fileDialogImportsUnresolvedAliases": view = AnyView(view.oneNativeSDKFileDialogImportsUnresolvedAliases(value, emit: emit))
       case "fileDialogMessage": view = AnyView(view.oneNativeSDKFileDialogMessage(value, emit: emit))
       case "fileDialogURLEnabled": view = AnyView(view.oneNativeSDKFileDialogURLEnabled(value, emit: emit))
+      case "fileExporter": view = AnyView(view.oneNativeSDKFileExporter(value, emit: emit))
       case "fileExporterFilenameLabel": view = AnyView(view.oneNativeSDKFileExporterFilenameLabel(value, emit: emit))
       case "fileMover": view = AnyView(view.oneNativeSDKFileMover(value, emit: emit))
       case "findDisabled": view = AnyView(view.oneNativeSDKFindDisabled(value, emit: emit))
@@ -380,6 +381,7 @@ extension View {
       case "photosPickerMetadataOptions": view = AnyView(view.oneNativeSDKPhotosPickerMetadataOptions(value, emit: emit))
       case "photosPickerSearchText": view = AnyView(view.oneNativeSDKPhotosPickerSearchText(value, emit: emit))
       case "photosPickerStyle": view = AnyView(view.oneNativeSDKPhotosPickerStyle(value, emit: emit))
+      case "photosReferenceImageViewer": view = AnyView(view.oneNativeSDKPhotosReferenceImageViewer(value, emit: emit))
       case "pickerStyle": view = AnyView(view.oneNativeSDKPickerStyle(value, emit: emit))
       case "position": view = AnyView(view.oneNativeSDKPosition(value, emit: emit))
       case "preferredColorScheme": view = AnyView(view.oneNativeSDKPreferredColorScheme(value, emit: emit))
@@ -2424,6 +2426,34 @@ extension View {
       self.fileDialogURLEnabled(#Predicate<Foundation.URL> { _ in value == "true" })
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKFileExporter(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid fileExporter: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid fileExporter.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("fileExporter.isPresented", String($0)) })
+    }()
+    let argument1: Swift.String? = {
+      guard let raw = values[1] else { return nil }
+      return raw
+    }()
+    let argument2: (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void = { result in
+      let payload: [String: Any]
+      switch result {
+      case .success(let urls): payload = ["success": urls.absoluteString]
+      case .failure(let error): payload = ["failure": String(describing: error)]
+      }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid fileExporter.onCompletion result") }
+      emit("fileExporter.onCompletion", encoded)
+    }
+    self.fileExporter(isPresented: argument0, item: argument1, onCompletion: argument2)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKFileExporterFilenameLabel(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if value == "null" { self.fileExporterFilenameLabel(nil as SwiftUICore.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       self.fileExporterFilenameLabel(Text(decoded))
@@ -4113,6 +4143,43 @@ extension View {
       case "compact": self.photosPickerStyle(_PhotosUI_SwiftUI.PhotosPickerStyle.compact)
     default: preconditionFailure("invalid photosPickerStyle: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPhotosReferenceImageViewer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 27, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid photosReferenceImageViewer: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Binding<Foundation.URL?> = {
+      guard let raw = values[0], let data = raw.data(using: .utf8),
+        let decoded = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
+        decoded is NSNull || decoded is String else { preconditionFailure("invalid photosReferenceImageViewer.fileURL") }
+      let current: Foundation.URL?
+      if let text = decoded as? String {
+        guard let url = Foundation.URL(string: text) else { preconditionFailure("invalid photosReferenceImageViewer.fileURL URL") }
+        current = url
+      } else { current = nil }
+      return Binding<Foundation.URL?>(get: { current }, set: { changed in
+        guard let data = try? JSONEncoder().encode(changed?.absoluteString),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid photosReferenceImageViewer.fileURL event") }
+        emit("photosReferenceImageViewer.fileURL", encoded)
+      })
+    }()
+    let argument1: (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void = { result in
+      let payload: [String: Any]
+      switch result {
+      case .success(let urls): payload = ["success": urls.absoluteString]
+      case .failure(let error): payload = ["failure": String(describing: error)]
+      }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid photosReferenceImageViewer.onProcessingCompletion result") }
+      emit("photosReferenceImageViewer.onProcessingCompletion", encoded)
+    }
+    self.photosReferenceImageViewer(fileURL: argument0, onProcessingCompletion: argument1)
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPickerStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
