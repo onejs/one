@@ -10133,6 +10133,7 @@
         "privacySensitive",
         "redacted",
         "rotationEffect",
+        "safeAreaInset",
         "safeAreaPadding",
         "saturation",
         "scaleEffect",
@@ -10165,6 +10166,7 @@
       "SwiftUI": [
         "accessibility",
         "accessibilityAction",
+        "accessibilityActions",
         "accessibilityActivationPoint",
         "accessibilityAddTraits",
         "accessibilityAdjustableAction",
@@ -10301,6 +10303,7 @@
         "progressViewStyle",
         "renameAction",
         "replaceDisabled",
+        "safeAreaBar",
         "scenePadding",
         "scrollBounceBehavior",
         "scrollClipDisabled",
@@ -10392,6 +10395,7 @@
       ],
       "_MapKit_SwiftUI": [
         "mapControlVisibility",
+        "mapControls",
         "mapFeatureSelectionAccessory",
         "mapStyle",
         "onMapCameraChange"

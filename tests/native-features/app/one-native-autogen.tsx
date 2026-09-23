@@ -35,6 +35,12 @@ export default function NativeAutogenProof() {
                 <Swift.Text text="Native background content" />
               </Swift.ViewSlot.Content>
             </Swift.ViewSlot>
+            <Swift.ViewSlot name="safeAreaInsetWithVerticalEdge" options={{ edge: 'bottom' }}>
+              <Swift.Text text="Generated safe area base" />
+              <Swift.ViewSlot.Content>
+                <Swift.Text text="Generated bottom inset" />
+              </Swift.ViewSlot.Content>
+            </Swift.ViewSlot>
             <Text>Scroll to collapse the tab bar accessory.</Text>
             <View style={{ height: 900 }} />
           </View>
