@@ -899,7 +899,6 @@ function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
   s.license = 'MIT'
   s.author = 'one'
   s.source = { :path => '.' }
-  s.platforms = { :ios => '17.0' }
   s.swift_version = '6.0'
   s.source_files = 'Sources/**/*.swift', 'Register.m'
   s.dependency 'VxrnNative'

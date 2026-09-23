@@ -73,6 +73,44 @@ extension RNXPackage {
   }
 }
 
+// a whole swift app (`@main struct X: App`) mounts as the view its scene
+// shows. this main outranks SwiftUI's App.main because the constrained
+// extension is more specific, and every App is Sendable (App is @MainActor),
+// so the app's @main files its root here instead of starting UIApplicationMain.
+extension App where Self: Sendable {
+  @MainActor public static func main() {
+    let root = sceneRoot(Self().body)
+    OneSwiftPackages.pending = { _ in root ?? AnyView(Text("\(Self.self): no view in its scene").foregroundStyle(.red)) }
+  }
+}
+
+// the view a scene shows: scene modifiers wrap the WindowGroup, so a
+// depth-first walk reaches it, and the group keeps its view builder as
+// `content.lazy: () -> Content` (RAN on iOS 27). the extension on the public
+// WindowGroup<Content> knows Content, so that closure casts statically.
+private protocol SceneRoot {
+  @MainActor var rootView: AnyView? { get }
+}
+
+extension WindowGroup: SceneRoot {
+  @MainActor var rootView: AnyView? {
+    for field in Mirror(reflecting: self).children where field.label == "content" {
+      for inner in Mirror(reflecting: field.value).children {
+        if let build = inner.value as? () -> Content { return AnyView(build()) }
+      }
+    }
+    return nil
+  }
+}
+
+@MainActor private func sceneRoot(_ value: Any) -> AnyView? {
+  if let group = value as? any SceneRoot { return group.rootView }
+  for child in Mirror(reflecting: value).children {
+    if let root = sceneRoot(child.value) { return root }
+  }
+  return nil
+}
+
 public typealias OneSwiftPackageEntry =
   @convention(c) (Int32, UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>?) -> Int32
 
@@ -96,3 +134,4 @@ enum OneSwiftPackages {
 public func oneSwiftRegisterPackage(_ name: UnsafePointer<CChar>, _ entry: OneSwiftPackageEntry) {
   OneSwiftPackages.entries[String(cString: name)] = entry
 }
+
