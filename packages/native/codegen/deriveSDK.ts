@@ -133,12 +133,15 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
 }
 
 export type DerivedSlotArgument = DerivedArgument | { field: string; label: string; type: string; kind: 'bindingBoolean' | 'bindingString'; optional: false }
-export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; directValue?: true; arguments: readonly DerivedSlotArgument[] }
+export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; directValue?: true; closureInputs?: readonly string[]; arguments: readonly DerivedSlotArgument[] }
 
 export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
   const valueOf = bridgeValueOf(inventory, ceiling)
+  const closureInputsOf = (type: string) =>
+    /^@escaping \(([^,<>()]+(?:, [^,<>()]+)*)\) -> some View$/.exec(type)?.[1].split(', ')
   const isContent = (d: Declaration, parameter: Declaration['parameters'][number]) => {
     if (parameter.type === '() -> some View') return true
+    if (closureInputsOf(parameter.type)) return true
     const generic = /^\(\) -> ([A-Za-z_]\w*)$|^([A-Za-z_]\w*)\??$/.exec(parameter.type)
     return Boolean(generic && d.requirements?.includes(`${generic[1] ?? generic[2]} : SwiftUICore.View`))
   }
@@ -170,7 +173,8 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
   }
   return [...byName].flatMap(([, declarations]) => declarations.map((slot) => {
     const content = slot.parameters.at(-1)!
-    const directValue = !content.type.startsWith('() ->')
+    const closureInputs = closureInputsOf(content.type)
+    const directValue = !content.type.startsWith('() ->') && !closureInputs
     const required = slot.parameters.filter((parameter) =>
       parameter !== content && parameter.defaultValue === undefined)
     const suffix = declarations.length === 1 || required.length === 0 ? ''
@@ -181,6 +185,7 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
       : suffix
     return { name: `${slot.name}${directSuffix}`, ...(directSuffix ? { sdkName: slot.name } : {}), module: slot.module,
       label: content.label, ios: ios(slot), ...(directValue ? { directValue: true as const } : {}),
+      ...(closureInputs ? { closureInputs } : {}),
       arguments: slot.parameters.filter((parameter) =>
         parameter !== content && parameter.defaultValue === undefined)
         .map((parameter) => parameter.type === 'SwiftUICore.Binding<Swift.Bool>' || isStringBinding(slot, parameter.type)

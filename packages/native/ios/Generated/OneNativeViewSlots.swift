@@ -17,6 +17,7 @@ enum OneNativeViewSlotName {
   static let contentToolbar = "contentToolbar"
   static let contextMenu = "contextMenu"
   static let dismissalConfirmationDialog = "dismissalConfirmationDialog"
+  static let documentBrowserContextMenu = "documentBrowserContextMenu"
   static let inspector = "inspector"
   static let listRowBackground = "listRowBackground"
   static let mapControls = "mapControls"
@@ -34,6 +35,7 @@ enum OneNativeViewSlotName {
   static let searchScopesWithBindingStringAndSearchScopeActivation = "searchScopesWithBindingStringAndSearchScopeActivation"
   static let searchSuggestions = "searchSuggestions"
   static let sectionActions = "sectionActions"
+  static let subscriptionStoreControlIcon = "subscriptionStoreControlIcon"
   static let subscriptionStorePolicyDestination = "subscriptionStorePolicyDestination"
   static let swipeActions = "swipeActions"
   static let tabItem = "tabItem"
@@ -45,7 +47,7 @@ enum OneNativeViewSlotName {
   static let toolbar = "toolbar"
   static let toolbarOverflowMenu = "toolbarOverflowMenu"
   static let toolbarTitleMenu = "toolbarTitleMenu"
-  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, alert, background, confirmationDialog, containerBackground, contentToolbar, contextMenu, dismissalConfirmationDialog, inspector, listRowBackground, mapControls, mask, navigationBarItemsWithLeading, navigationBarItemsWithTrailing, navigationDestination, overlay, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchScopesWithBindingString, searchScopesWithBindingStringAndSearchScopeActivation, searchSuggestions, sectionActions, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewBottomAccessoryWithBool, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
+  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, alert, background, confirmationDialog, containerBackground, contentToolbar, contextMenu, dismissalConfirmationDialog, documentBrowserContextMenu, inspector, listRowBackground, mapControls, mask, navigationBarItemsWithLeading, navigationBarItemsWithTrailing, navigationDestination, overlay, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchScopesWithBindingString, searchScopesWithBindingStringAndSearchScopeActivation, searchSuggestions, sectionActions, subscriptionStoreControlIcon, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewBottomAccessoryWithBool, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
 }
 
 extension View {
@@ -158,6 +160,11 @@ extension View {
         guard decoded[1] == "true" || decoded[1] == "false" else { preconditionFailure("invalid dismissalConfirmationDialog.shouldPresent") }
         let argument1 = decoded[1] == "true"
         return AnyView(self.dismissalConfirmationDialog(argument0, shouldPresent: argument1, actions: content))
+      }
+      return AnyView(self)
+    case OneNativeViewSlotName.documentBrowserContextMenu:
+      if #available(iOS 18.1, *) {
+        return AnyView(self.documentBrowserContextMenu({ _ in content() }))
       }
       return AnyView(self)
     case OneNativeViewSlotName.inspector:
@@ -309,6 +316,11 @@ extension View {
     case OneNativeViewSlotName.sectionActions:
       if #available(iOS 18, *) {
         return AnyView(self.sectionActions(content: content))
+      }
+      return AnyView(self)
+    case OneNativeViewSlotName.subscriptionStoreControlIcon:
+      if #available(iOS 17, *) {
+        return AnyView(self.subscriptionStoreControlIcon(icon: { _, _ in content() }))
       }
       return AnyView(self)
     case OneNativeViewSlotName.subscriptionStorePolicyDestination:

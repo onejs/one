@@ -11,6 +11,7 @@ export declare const viewSlotAvailability: {
     readonly contentToolbar: 18.4;
     readonly contextMenu: 13;
     readonly dismissalConfirmationDialog: 27;
+    readonly documentBrowserContextMenu: 18.1;
     readonly inspector: 17;
     readonly listRowBackground: 13;
     readonly mapControls: 17;
@@ -28,6 +29,7 @@ export declare const viewSlotAvailability: {
     readonly searchScopesWithBindingStringAndSearchScopeActivation: 16.4;
     readonly searchSuggestions: 16;
     readonly sectionActions: 18;
+    readonly subscriptionStoreControlIcon: 17;
     readonly subscriptionStorePolicyDestination: 17;
     readonly swipeActions: 15;
     readonly tabItem: 13;
@@ -92,6 +94,7 @@ export declare const viewSlotArguments: {
         readonly field: 'shouldPresent';
         readonly kind: 'boolean';
     }];
+    readonly documentBrowserContextMenu: readonly [];
     readonly inspector: readonly [{
         readonly field: 'isPresented';
         readonly kind: 'bindingBoolean';
@@ -157,6 +160,7 @@ export declare const viewSlotArguments: {
     }];
     readonly searchSuggestions: readonly [];
     readonly sectionActions: readonly [];
+    readonly subscriptionStoreControlIcon: readonly [];
     readonly subscriptionStorePolicyDestination: readonly [{
         readonly field: 'button';
         readonly kind: 'enum';
@@ -237,6 +241,9 @@ export type ViewSlotConfiguration = {
         shouldPresent: boolean;
     };
 } | {
+    name: 'documentBrowserContextMenu';
+    options?: never;
+} | {
     name: 'inspector';
     options: {
         isPresented: {
@@ -315,6 +322,9 @@ export type ViewSlotConfiguration = {
     options?: never;
 } | {
     name: 'sectionActions';
+    options?: never;
+} | {
+    name: 'subscriptionStoreControlIcon';
     options?: never;
 } | {
     name: 'subscriptionStorePolicyDestination';
