@@ -172,6 +172,7 @@ const sdkKinds = {
   fileDialogMessage: 'optionalString',
   fileDialogURLEnabled: 'boolean',
   fileExporterFilenameLabel: 'optionalString',
+  fileMover: 'record',
   findDisabled: 'boolean',
   findNavigator: 'bindingBoolean',
   fixedSizeWithHorizontalAndVertical: 'record',
@@ -852,6 +853,11 @@ const sdkRecords: Record<
     { field: 'opaque', kind: 'boolean', optional: false },
     { field: 'colorMode', kind: 'enum', optional: false },
   ],
+  fileMover: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'file', kind: 'url', optional: true },
+    { field: 'onCompletion', kind: 'resultURL', optional: false },
+  ],
   fixedSizeWithHorizontalAndVertical: [
     { field: 'horizontal', kind: 'boolean', optional: false },
     { field: 'vertical', kind: 'boolean', optional: false },
@@ -1202,6 +1208,11 @@ export function swiftStyleNative(
               throw new Error(name + '.' + argument.field + ' must be a boolean binding')
             return String((item as { value: boolean }).value)
           }
+          if (argument.kind === 'resultURL' || argument.kind === 'resultURLArray') {
+            if (typeof item !== 'function')
+              throw new Error(name + '.' + argument.field + ' must be a callback')
+            return ''
+          }
           if (
             argument.kind === 'number' &&
             (typeof item !== 'number' || !Number.isFinite(item))
@@ -1366,6 +1377,36 @@ export function dispatchSDKEvent(
       ;(record?.[field] as { onChange: (value: boolean) => void } | undefined)?.onChange(
         value === 'true'
       )
+      return
+    }
+    const result = sdkRecords[parent]?.find(
+      (argument) =>
+        argument.field === field &&
+        (argument.kind === 'resultURL' || argument.kind === 'resultURLArray')
+    )
+    if (result) {
+      const decoded: unknown = JSON.parse(value)
+      if (!decoded || typeof decoded !== 'object' || Array.isArray(decoded))
+        throw new Error(name + ' emitted an invalid result')
+      const payload = decoded as Record<string, unknown>
+      const success = payload.success
+      const failure = payload.failure
+      const validSuccess =
+        result.kind === 'resultURL'
+          ? typeof success === 'string'
+          : Array.isArray(success) && success.every((item) => typeof item === 'string')
+      if (
+        !(
+          (validSuccess && failure === undefined) ||
+          (success === undefined && typeof failure === 'string')
+        ) ||
+        Object.keys(payload).length !== 1
+      )
+        throw new Error(name + ' emitted an invalid result')
+      const record = (style as Record<string, unknown> | undefined)?.[parent] as
+        | Record<string, unknown>
+        | undefined
+      ;(record?.[field] as ((result: unknown) => void) | undefined)?.(payload)
       return
     }
   }

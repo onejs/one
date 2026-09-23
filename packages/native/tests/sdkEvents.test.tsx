@@ -65,6 +65,31 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('invalid boolean')
   })
 
+  it('routes a file mover completion result from a generated record', () => {
+    const onChange = vi.fn()
+    const onCompletion = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      fileMover: {
+        isPresented: { value: true, onChange },
+        file: 'file:///tmp/source.txt',
+        onCompletion,
+      },
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(modifiers.fileMover)).toEqual(['true', 'file:///tmp/source.txt', ''])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'fileMover.isPresented', value: 'false',
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'fileMover.onCompletion', value: '{"success":"file:///tmp/target.txt"}',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+    expect(onCompletion).toHaveBeenCalledWith({ success: 'file:///tmp/target.txt' })
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'fileMover.onCompletion', value: '{"success":12}',
+    } })).toThrow('invalid result')
+  })
+
   it('round trips a Codable customization binding through native JSON', () => {
     const onChange = vi.fn()
     const current = '{"perTabState":[],"identifier":"D9754350-75EE-4390-AC54-159710381977","perSectionState":[]}'

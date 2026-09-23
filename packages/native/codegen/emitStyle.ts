@@ -129,6 +129,17 @@ ${cases}
       guard let raw = ${raw}, raw == "true" || raw == "false" else { preconditionFailure("invalid ${modifier.name}.${argument.field}") }
       return Binding<Bool>(get: { raw == "true" }, set: { emit(${JSON.stringify(`${modifier.name}.${argument.field}`)}, String($0)) })
     }()`
+          if (argument.kind === 'resultURL' || argument.kind === 'resultURLArray')
+            return `    let ${variable}: (Swift.Result<${argument.kind === 'resultURL' ? 'Foundation.URL' : '[Foundation.URL]'}, any Swift.Error>) -> Swift.Void = { result in
+      let payload: [String: Any]
+      switch result {
+      case .success(let urls): payload = ["success": ${argument.kind === 'resultURL' ? 'urls.absoluteString' : 'urls.map(\\.absoluteString)'}]
+      case .failure(let error): payload = ["failure": String(describing: error)]
+      }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name}.${argument.field} result") }
+      emit(${JSON.stringify(`${modifier.name}.${argument.field}`)}, encoded)
+    }`
           if (argument.kind === 'number') {
             const scalarType = argument.scalarConstructor?.type ?? baseType
             const value = scalarType === 'CoreFoundation.CGFloat' ? 'CGFloat(number)' : scalarType === 'Swift.Float' ? 'Float(number)' : scalarType === 'Swift.Int' ? 'Int(number)' : 'number'
@@ -464,6 +475,10 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
               throw new Error(name + '.' + argument.field + ' must be a boolean binding')
             return String((item as { value: boolean }).value)
           }
+          if (argument.kind === 'resultURL' || argument.kind === 'resultURLArray') {
+            if (typeof item !== 'function') throw new Error(name + '.' + argument.field + ' must be a callback')
+            return ''
+          }
           if (argument.kind === 'number' && (typeof item !== 'number' || !Number.isFinite(item))) throw new Error(name + '.' + argument.field + ' must be finite')
           if (argument.kind === 'boolean' && typeof item !== 'boolean') throw new Error(name + '.' + argument.field + ' must be a boolean')
           if ((argument.kind === 'string' || argument.kind === 'url' || argument.kind === 'enum') && typeof item !== 'string') throw new Error(name + '.' + argument.field + ' must be a string')
@@ -522,6 +537,22 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
       if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid boolean')
       const record = (style as Record<string, unknown> | undefined)?.[parent] as Record<string, unknown> | undefined
       ;(record?.[field] as { onChange: (value: boolean) => void } | undefined)?.onChange(value === 'true')
+      return
+    }
+    const result = sdkRecords[parent]?.find((argument) => argument.field === field &&
+      (argument.kind === 'resultURL' || argument.kind === 'resultURLArray'))
+    if (result) {
+      const decoded: unknown = JSON.parse(value)
+      if (!decoded || typeof decoded !== 'object' || Array.isArray(decoded)) throw new Error(name + ' emitted an invalid result')
+      const payload = decoded as Record<string, unknown>
+      const success = payload.success
+      const failure = payload.failure
+      const validSuccess = result.kind === 'resultURL' ? typeof success === 'string' :
+        Array.isArray(success) && success.every((item) => typeof item === 'string')
+      if (!(validSuccess && failure === undefined || success === undefined && typeof failure === 'string') ||
+        Object.keys(payload).length !== 1) throw new Error(name + ' emitted an invalid result')
+      const record = (style as Record<string, unknown> | undefined)?.[parent] as Record<string, unknown> | undefined
+      ;(record?.[field] as ((result: unknown) => void) | undefined)?.(payload)
       return
     }
   }

@@ -234,6 +234,7 @@ extension View {
       case "fileDialogMessage": view = AnyView(view.oneNativeSDKFileDialogMessage(value, emit: emit))
       case "fileDialogURLEnabled": view = AnyView(view.oneNativeSDKFileDialogURLEnabled(value, emit: emit))
       case "fileExporterFilenameLabel": view = AnyView(view.oneNativeSDKFileExporterFilenameLabel(value, emit: emit))
+      case "fileMover": view = AnyView(view.oneNativeSDKFileMover(value, emit: emit))
       case "findDisabled": view = AnyView(view.oneNativeSDKFindDisabled(value, emit: emit))
       case "findNavigator": view = AnyView(view.oneNativeSDKFindNavigator(value, emit: emit))
       case "fixedSizeWithHorizontalAndVertical": view = AnyView(view.oneNativeSDKFixedSizeWithHorizontalAndVertical(value, emit: emit))
@@ -2427,6 +2428,35 @@ extension View {
     if value == "null" { self.fileExporterFilenameLabel(nil as SwiftUICore.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       self.fileExporterFilenameLabel(Text(decoded))
     } else { preconditionFailure("invalid fileExporterFilenameLabel: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFileMover(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid fileMover: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid fileMover.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("fileMover.isPresented", String($0)) })
+    }()
+    let argument1: Foundation.URL? = {
+      guard let raw = values[1] else { return nil }
+      guard let url = Foundation.URL(string: raw) else { preconditionFailure("invalid fileMover.file: \(raw)") }
+      return url
+    }()
+    let argument2: (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void = { result in
+      let payload: [String: Any]
+      switch result {
+      case .success(let urls): payload = ["success": urls.absoluteString]
+      case .failure(let error): payload = ["failure": String(describing: error)]
+      }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid fileMover.onCompletion result") }
+      emit("fileMover.onCompletion", encoded)
+    }
+    self.fileMover(isPresented: argument0, file: argument1, onCompletion: argument2)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKFindDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
