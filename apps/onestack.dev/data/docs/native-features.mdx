@@ -493,6 +493,80 @@ import { One } from 'one'
 
 ---
 
+## Shared Map
+
+`One.UI.Map` is one map on both platforms: MapKit on iOS, Google Maps
+on Android. It takes a Google-style camera, a marker array, and overlay
+arrays; the camera seeds from `cameraPosition` and re-seeds only when its
+value changes, while the user pans and zooms freely in between.
+
+```tsx
+import { One } from 'one'
+
+<One.UI.Map
+  style={{ flex: 1 }}
+  cameraPosition={{
+    coordinates: { latitude: 37.7955, longitude: -122.3937 },
+    zoom: 12,
+  }}
+  markers={[
+    {
+      id: 'ferry',
+      coordinates: { latitude: 37.7955, longitude: -122.3937 },
+      title: 'Ferry Building',
+      tintColor: '#ff3b30',
+    },
+  ]}
+  onCameraMove={({ coordinates, zoom }) => recordCamera(coordinates, zoom)}
+  onMarkerClick={(marker) => selectPlace(marker.id)}
+  onMapClick={({ coordinates }) => dropPin(coordinates)}
+/>
+```
+
+Props, all optional (an empty map renders the default camera over San
+Francisco): `cameraPosition` (`coordinates` plus Google `zoom`),
+`markers` (`id`, `coordinates`, `title`, `tintColor`), `polylines`
+(`id`, `coordinates`, `color`, `width`), `polygons` (`id`,
+`coordinates`, `color`, `lineColor`, `lineWidth`), and `circles` (`id`,
+`center`, `radius` in metres, `color`, `lineColor`, `lineWidth`).
+Colours are `#rrggbb` or `#rrggbbaa` strings; marker ids must be unique.
+`onCameraMove` fires once, when a gesture ends — never feed it back into
+`cameraPosition`, which would re-seed on every move end and fight the
+pan. `onMarkerClick` returns the marker object from props, matched by
+id. Marker taps never also report as map taps.
+
+Excluded on purpose: custom marker views and callouts, user location,
+map type and styling, tilt and bearing, gesture toggles, and imperative
+camera refs. Web renders nothing; pair with a web map library there.
+
+Android needs a maps key in the app manifest, or mounting throws:
+
+```ts
+one({
+  native: {
+    app: {
+      android: {
+        googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+      },
+    },
+  },
+})
+```
+
+The Maps SDK compiles into Android builds only when the key is set;
+without it the dependency stays out of the APK entirely. iOS needs no
+key.
+
+### Migration from react-native-maps
+
+Convert the region to a camera: `zoom = log2(360 / longitudeDelta)`,
+center coordinates as-is. Marker children become the `markers` array;
+`onRegionChangeComplete` becomes `onCameraMove`. Designs that need
+custom pin views, callouts, or camera refs have no equivalent — say so
+instead of reaching for another map library.
+
+---
+
 ## Text Input and Native State
 
 `One.UI.useNativeState` creates one observable handle shared between
@@ -834,6 +908,83 @@ Migrating from `expo-image-picker` is an import change plus this rename:
 
 ---
 
+## WebGPU
+
+One ships no GL view. The blessed GPU surface on native is
+`react-native-webgpu`, which vendors Dawn on iOS and Android and exposes
+the web `navigator.gpu` API plus a `Canvas` component: raw WebGPU,
+TypeGPU, or three.js all build on it, and nothing else is needed.
+
+Three.js runs through `three/webgpu` with `WebGPURenderer`, including
+under React Three Fiber. R3F mounts through `createRoot` on the webgpu
+canvas — never `@react-three/fiber/native`, which hard-requires
+`expo-gl`:
+
+```tsx
+import { Canvas as GpuCanvas, useCanvasRef } from 'react-native-webgpu'
+import * as THREE from 'three/webgpu'
+import { createRoot, events, extend } from '@react-three/fiber'
+
+// inside a component, after layout with nonzero size:
+extend(THREE)
+const context = ref.current?.getContext('webgpu')
+const renderer = new THREE.WebGPURenderer({
+  canvas: context.canvas,
+  context,
+})
+await renderer.init()
+const renderFrame = renderer.render.bind(renderer)
+renderer.render = (scene, camera) => {
+  renderFrame(scene, camera)
+  context.present()
+}
+const root = createRoot(context.canvas)
+root.configure({ size, events, gl: renderer, frameloop: 'always', dpr: 1 })
+root.render(<Scene />)
+```
+
+Every frame ends with `context.present()`, and unmount calls
+`setAnimationLoop(null)` plus `dispose()` — R3F's unmount alone never
+stops three's internal frame loop.
+
+One three instance must serve the whole graph: bare `three` resolves to
+the `three/webgpu` build and `@react-three/fiber` to its web entry on
+the native environments only, so web keeps WebGL three. Vite has no
+per-environment `resolve.alias`, so this is a small `resolveId` plugin
+in the app's `vite.config.ts`:
+
+```ts
+import type { Plugin } from 'vite'
+
+function nativeWebgpuAliases(): Plugin {
+  return {
+    name: 'native-webgpu-aliases',
+    applyToEnvironment: (environment) =>
+      environment.name === 'ios' || environment.name === 'android',
+    async resolveId(source, _importer, options) {
+      if (source === 'three' || source === '@react-three/fiber') {
+        const target =
+          source === 'three'
+            ? 'three/webgpu'
+            : '@react-three/fiber/dist/react-three-fiber.esm.js'
+        return await this.resolve(target, undefined, {
+          ...options,
+          skipSelf: true,
+        })
+      }
+      return null
+    },
+  }
+}
+```
+
+Metro mode has no resolver hook for this rewrite: R3F on WebGPU needs
+the default bundler. WebGPURenderer runs no GLSL — `ShaderMaterial`,
+`onBeforeCompile`, and `PMREMGenerator` do not work under it — so shared
+scene code bakes static gradients into `DataTexture`s instead.
+
+---
+
 ## Platform Support
 
 | Feature | iOS | Android | Web |
@@ -858,6 +1009,8 @@ Migrating from `expo-image-picker` is an import change plus this rename:
 | Haptics | UIFeedbackGenerator trio | performHapticFeedback mapping | no-op |
 | Crypto | SecRandomCopyBytes | SecureRandom | platform crypto |
 | ImagePicker | PHPickerViewController + camera | system photo picker + camera intent | file dialog + capture input |
+| Map | One.UI.Map (MapKit) | One.UI.Map (Google Maps, key required) | renders nothing |
+| WebGPU | react-native-webgpu (Dawn) | react-native-webgpu (Dawn) | navigator.gpu |
 
 Unsupported toolbar, menu, and zoom components return `null`, so they are safe
 to keep in cross-platform component trees. SplitView renders its routed `slot`
