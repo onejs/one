@@ -24,7 +24,8 @@ import {
   VStack,
   ZStack,
 } from './Containers.native'
-import { ContextMenu, Menu } from './Menu.native'
+import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './AndroidMenu'
+import { ContextMenu as IOSContextMenu, Menu as IOSMenu } from './Menu.native'
 import { Page, Pager } from './Pager.native'
 import { Popover } from './Popover.native'
 import { FullScreenCover, Sheet } from './Sheet.native'
@@ -34,6 +35,9 @@ import { Compose } from './compose'
 import * as UI from './effects'
 
 export * from './extras'
+
+const Menu = Platform.OS === 'android' ? AndroidMenu : IOSMenu
+const ContextMenu = Platform.OS === 'android' ? AndroidContextMenu : IOSContextMenu
 
 export const Swift =
   Platform.OS === 'ios'
@@ -75,6 +79,7 @@ export const Swift =
       }
     : UnsupportedSwift
 export { Compose }
+export { Menu, ContextMenu }
 export { useNativeState, type NativeState } from './nativeState'
 export { TextInput } from './universal/TextInput/index'
 export type {
