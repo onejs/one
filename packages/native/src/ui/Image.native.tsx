@@ -1,4 +1,6 @@
-import { NitroImage } from 'react-native-nitro-image'
+// the published module build resolves nitrogen from lib/module instead of the package root.
+// use the shipped source entry so vite and metro resolve the generated view config.
+import { NitroImage } from 'react-native-nitro-image/src/NitroImage'
 import type { ImageProps as RNImageProps } from 'react-native'
 
 export type ImageProps = Omit<RNImageProps, 'source' | 'resizeMode'> & {
