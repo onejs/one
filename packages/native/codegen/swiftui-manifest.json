@@ -596,11 +596,373 @@
   ],
   "derivedModifiers": [
     {
+      "name": "accessibilityAction",
+      "kind": "event",
+      "type": "@escaping () -> Swift.Void",
+      "label": "_",
+      "ios": 13,
+      "callArguments": [
+        {
+          "label": "_",
+          "defaultValue": ".default"
+        },
+        {
+          "label": "_",
+          "bridge": true
+        }
+      ]
+    },
+    {
+      "name": "accessibilityActivationPoint",
+      "kind": "string",
+      "type": "SwiftUICore.UnitPoint",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "zero",
+          "ios": 13
+        },
+        {
+          "name": "center",
+          "ios": 13
+        },
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        },
+        {
+          "name": "top",
+          "ios": 13
+        },
+        {
+          "name": "bottom",
+          "ios": 13
+        },
+        {
+          "name": "topLeading",
+          "ios": 13
+        },
+        {
+          "name": "topTrailing",
+          "ios": 13
+        },
+        {
+          "name": "bottomLeading",
+          "ios": 13
+        },
+        {
+          "name": "bottomTrailing",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "accessibilityAddTraits",
+      "kind": "string",
+      "type": "SwiftUICore.AccessibilityTraits",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "isButton",
+          "ios": 13
+        },
+        {
+          "name": "isHeader",
+          "ios": 13
+        },
+        {
+          "name": "isSelected",
+          "ios": 13
+        },
+        {
+          "name": "isLink",
+          "ios": 13
+        },
+        {
+          "name": "isSearchField",
+          "ios": 13
+        },
+        {
+          "name": "isImage",
+          "ios": 13
+        },
+        {
+          "name": "playsSound",
+          "ios": 13
+        },
+        {
+          "name": "isKeyboardKey",
+          "ios": 13
+        },
+        {
+          "name": "isStaticText",
+          "ios": 13
+        },
+        {
+          "name": "isSummaryElement",
+          "ios": 13
+        },
+        {
+          "name": "updatesFrequently",
+          "ios": 13
+        },
+        {
+          "name": "startsMediaSession",
+          "ios": 13
+        },
+        {
+          "name": "allowsDirectInteraction",
+          "ios": 13
+        },
+        {
+          "name": "causesPageTurn",
+          "ios": 13
+        },
+        {
+          "name": "isModal",
+          "ios": 13
+        },
+        {
+          "name": "isToggle",
+          "ios": 17
+        },
+        {
+          "name": "isTabBar",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "accessibilityElement",
+      "kind": "string",
+      "type": "SwiftUI.AccessibilityChildBehavior",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "ignore",
+          "ios": 13
+        },
+        {
+          "name": "contain",
+          "ios": 13
+        },
+        {
+          "name": "combine",
+          "ios": 13
+        }
+      ],
+      "label": "children"
+    },
+    {
+      "name": "accessibilityHeading",
+      "kind": "string",
+      "type": "SwiftUICore.AccessibilityHeadingLevel",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "unspecified",
+          "ios": 15
+        },
+        {
+          "name": "h1",
+          "ios": 15
+        },
+        {
+          "name": "h2",
+          "ios": 15
+        },
+        {
+          "name": "h3",
+          "ios": 15
+        },
+        {
+          "name": "h4",
+          "ios": 15
+        },
+        {
+          "name": "h5",
+          "ios": 15
+        },
+        {
+          "name": "h6",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "accessibilityHidden",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 14
+    },
+    {
+      "name": "accessibilityHint",
+      "kind": "string",
+      "type": "SwiftUICore.Text",
+      "ios": 14
+    },
+    {
+      "name": "accessibilityIdentifier",
+      "kind": "string",
+      "type": "Swift.String",
+      "ios": 14
+    },
+    {
+      "name": "accessibilityIgnoresInvertColors",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 14
+    },
+    {
+      "name": "accessibilityLabel",
+      "kind": "string",
+      "type": "SwiftUICore.Text",
+      "ios": 14
+    },
+    {
+      "name": "accessibilityRemoveTraits",
+      "kind": "string",
+      "type": "SwiftUICore.AccessibilityTraits",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "isButton",
+          "ios": 13
+        },
+        {
+          "name": "isHeader",
+          "ios": 13
+        },
+        {
+          "name": "isSelected",
+          "ios": 13
+        },
+        {
+          "name": "isLink",
+          "ios": 13
+        },
+        {
+          "name": "isSearchField",
+          "ios": 13
+        },
+        {
+          "name": "isImage",
+          "ios": 13
+        },
+        {
+          "name": "playsSound",
+          "ios": 13
+        },
+        {
+          "name": "isKeyboardKey",
+          "ios": 13
+        },
+        {
+          "name": "isStaticText",
+          "ios": 13
+        },
+        {
+          "name": "isSummaryElement",
+          "ios": 13
+        },
+        {
+          "name": "updatesFrequently",
+          "ios": 13
+        },
+        {
+          "name": "startsMediaSession",
+          "ios": 13
+        },
+        {
+          "name": "allowsDirectInteraction",
+          "ios": 13
+        },
+        {
+          "name": "causesPageTurn",
+          "ios": 13
+        },
+        {
+          "name": "isModal",
+          "ios": 13
+        },
+        {
+          "name": "isToggle",
+          "ios": 17
+        },
+        {
+          "name": "isTabBar",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "accessibilityRespondsToUserInteraction",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 15
+    },
+    {
       "name": "accessibilityShowsLargeContentViewer",
       "kind": "boolean",
       "type": "",
       "ios": 15,
       "zeroArgument": true
+    },
+    {
+      "name": "accessibilitySortPriority",
+      "kind": "number",
+      "type": "Swift.Double",
+      "ios": 14
+    },
+    {
+      "name": "accessibilityTextContentType",
+      "kind": "string",
+      "type": "SwiftUICore.AccessibilityTextContentType",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "plain",
+          "ios": 15
+        },
+        {
+          "name": "console",
+          "ios": 15
+        },
+        {
+          "name": "fileSystem",
+          "ios": 15
+        },
+        {
+          "name": "messaging",
+          "ios": 15
+        },
+        {
+          "name": "narrative",
+          "ios": 15
+        },
+        {
+          "name": "sourceCode",
+          "ios": 15
+        },
+        {
+          "name": "spreadsheet",
+          "ios": 15
+        },
+        {
+          "name": "wordProcessing",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "accessibilityValue",
+      "kind": "string",
+      "type": "SwiftUICore.Text",
+      "ios": 14
     },
     {
       "name": "allowsHitTesting",
@@ -615,30 +977,17 @@
       "ios": 13
     },
     {
-      "name": "allowsWindowActivationEvents",
-      "kind": "boolean",
-      "type": "",
-      "ios": 18,
-      "zeroArgument": true
+      "name": "assistiveAccessNavigationIcon",
+      "kind": "string",
+      "type": "Swift.String",
+      "ios": 26,
+      "label": "systemImage"
     },
     {
       "name": "autocorrectionDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 13
-    },
-    {
-      "name": "backgroundExtensionEffect",
-      "kind": "boolean",
-      "type": "",
-      "ios": 26,
-      "zeroArgument": true
-    },
-    {
-      "name": "badge",
-      "kind": "number",
-      "type": "Swift.Int",
-      "ios": 15
     },
     {
       "name": "badgeProminence",
@@ -833,6 +1182,13 @@
           "ios": 26
         }
       ]
+    },
+    {
+      "name": "clipped",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13,
+      "label": "antialiased"
     },
     {
       "name": "colorInvert",
@@ -1047,6 +1403,43 @@
       ]
     },
     {
+      "name": "defersSystemGestures",
+      "kind": "string",
+      "type": "SwiftUICore.Edge.Set",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "top",
+          "ios": 13
+        },
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "bottom",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        },
+        {
+          "name": "all",
+          "ios": 13
+        },
+        {
+          "name": "horizontal",
+          "ios": 13
+        },
+        {
+          "name": "vertical",
+          "ios": 13
+        }
+      ],
+      "label": "on"
+    },
+    {
       "name": "deleteDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
@@ -1060,10 +1453,28 @@
       "ios": 17
     },
     {
+      "name": "disableAutocorrection",
+      "kind": "optionalBoolean",
+      "type": "Swift.Bool?",
+      "ios": 13
+    },
+    {
       "name": "disabled",
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 13
+    },
+    {
+      "name": "documentLaunchSubtitle",
+      "kind": "string",
+      "type": "SwiftUICore.Text",
+      "ios": 27
+    },
+    {
+      "name": "documentLaunchTitle",
+      "kind": "string",
+      "type": "SwiftUICore.Text",
+      "ios": 27
     },
     {
       "name": "dynamicTypeSize",
@@ -1178,6 +1589,12 @@
       ]
     },
     {
+      "name": "fileDialogConfirmationLabel",
+      "kind": "optionalString",
+      "type": "SwiftUICore.Text?",
+      "ios": 17
+    },
+    {
       "name": "fileDialogCustomizationID",
       "kind": "string",
       "type": "Swift.String",
@@ -1187,6 +1604,18 @@
       "name": "fileDialogImportsUnresolvedAliases",
       "kind": "boolean",
       "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "fileDialogMessage",
+      "kind": "optionalString",
+      "type": "SwiftUICore.Text?",
+      "ios": 17
+    },
+    {
+      "name": "fileExporterFilenameLabel",
+      "kind": "optionalString",
+      "type": "SwiftUICore.Text?",
       "ios": 17
     },
     {
@@ -1375,6 +1804,12 @@
       ]
     },
     {
+      "name": "help",
+      "kind": "string",
+      "type": "SwiftUICore.Text",
+      "ios": 14
+    },
+    {
       "name": "hidden",
       "kind": "boolean",
       "type": "",
@@ -1533,10 +1968,22 @@
       "ios": 13
     },
     {
+      "name": "lineLimit",
+      "kind": "optionalNumber",
+      "type": "Swift.Int?",
+      "ios": 13
+    },
+    {
       "name": "lineSpacing",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
       "ios": 13
+    },
+    {
+      "name": "listRowSpacing",
+      "kind": "optionalNumber",
+      "type": "CoreFoundation.CGFloat?",
+      "ios": 15
     },
     {
       "name": "listSectionIndexVisibility",
@@ -1671,26 +2118,6 @@
       "ios": 13
     },
     {
-      "name": "multilineTextAlignment",
-      "kind": "string",
-      "type": "SwiftUICore.TextAlignment",
-      "ios": 13,
-      "cases": [
-        {
-          "name": "leading",
-          "ios": 13
-        },
-        {
-          "name": "center",
-          "ios": 13
-        },
-        {
-          "name": "trailing",
-          "ios": 13
-        }
-      ]
-    },
-    {
       "name": "navigationBarBackButtonHidden",
       "kind": "boolean",
       "type": "Swift.Bool",
@@ -1700,6 +2127,12 @@
       "name": "navigationBarHidden",
       "kind": "boolean",
       "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "navigationBarTitle",
+      "kind": "string",
+      "type": "SwiftUICore.Text",
       "ios": 13
     },
     {
@@ -1729,11 +2162,10 @@
       "ios": 16
     },
     {
-      "name": "navigationTitle",
-      "kind": "bindingString",
-      "type": "SwiftUICore.Binding<Swift.String>",
-      "label": "_",
-      "ios": 16
+      "name": "navigationSubtitle",
+      "kind": "string",
+      "type": "SwiftUICore.Text",
+      "ios": 26
     },
     {
       "name": "onAppear",
@@ -1750,18 +2182,45 @@
       "ios": 13
     },
     {
+      "name": "onOpenURL",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 26,
+      "label": "prefersInApp"
+    },
+    {
       "name": "onSubmit",
       "kind": "event",
       "type": "@escaping () -> Swift.Void",
       "label": "_",
-      "ios": 15
+      "ios": 15,
+      "callArguments": [
+        {
+          "label": "of",
+          "defaultValue": ".text"
+        },
+        {
+          "label": "_",
+          "bridge": true
+        }
+      ]
     },
     {
       "name": "onTapGesture",
       "kind": "event",
       "type": "@escaping () -> Swift.Void",
       "label": "perform",
-      "ios": 13
+      "ios": 13,
+      "callArguments": [
+        {
+          "label": "count",
+          "defaultValue": "1"
+        },
+        {
+          "label": "perform",
+          "bridge": true
+        }
+      ]
     },
     {
       "name": "paletteSelectionEffect",
@@ -1876,6 +2335,12 @@
       ]
     },
     {
+      "name": "presentationCornerRadius",
+      "kind": "optionalNumber",
+      "type": "CoreFoundation.CGFloat?",
+      "ios": 16.4
+    },
+    {
       "name": "presentationDragIndicator",
       "kind": "string",
       "type": "SwiftUICore.Visibility",
@@ -1920,6 +2385,12 @@
       ]
     },
     {
+      "name": "previewDisplayName",
+      "kind": "optionalString",
+      "type": "Swift.String?",
+      "ios": 13
+    },
+    {
       "name": "previewInterfaceOrientation",
       "kind": "string",
       "type": "SwiftUI.InterfaceOrientation",
@@ -1956,6 +2427,27 @@
       "ios": 17,
       "zeroArgument": true,
       "framework": "StoreKit"
+    },
+    {
+      "name": "redacted",
+      "kind": "string",
+      "type": "SwiftUICore.RedactionReasons",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "placeholder",
+          "ios": 14
+        },
+        {
+          "name": "privacy",
+          "ios": 15
+        },
+        {
+          "name": "invalidated",
+          "ios": 17
+        }
+      ],
+      "label": "reason"
     },
     {
       "name": "renameAction",
@@ -2089,11 +2581,39 @@
       ]
     },
     {
+      "name": "scrollIndicatorsFlash",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17,
+      "label": "onAppear"
+    },
+    {
+      "name": "scrollTargetLayout",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17,
+      "label": "isEnabled"
+    },
+    {
       "name": "searchable",
       "kind": "bindingString",
       "type": "SwiftUICore.Binding<Swift.String>",
       "label": "text",
-      "ios": 15
+      "ios": 15,
+      "callArguments": [
+        {
+          "label": "text",
+          "bridge": true
+        },
+        {
+          "label": "placement",
+          "defaultValue": ".automatic"
+        },
+        {
+          "label": "prompt",
+          "defaultValue": "nil"
+        }
+      ]
     },
     {
       "name": "searchCompletion",
@@ -2144,6 +2664,12 @@
           "ios": 26
         }
       ]
+    },
+    {
+      "name": "sectionIndexLabel",
+      "kind": "optionalString",
+      "type": "SwiftUICore.Text?",
+      "ios": 26
     },
     {
       "name": "selectionDisabled",
@@ -2214,6 +2740,13 @@
           "ios": 17
         }
       ]
+    },
+    {
+      "name": "statusBar",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13,
+      "label": "hidden"
     },
     {
       "name": "statusBarHidden",
@@ -2495,6 +3028,12 @@
       ]
     },
     {
+      "name": "typeSelectEquivalent",
+      "kind": "optionalString",
+      "type": "SwiftUICore.Text?",
+      "ios": 16
+    },
+    {
       "name": "unredacted",
       "kind": "boolean",
       "type": "",
@@ -2512,6 +3051,27 @@
           "ios": 18
         }
       ]
+    },
+    {
+      "name": "writingDirection",
+      "kind": "string",
+      "type": "SwiftUICore.Text.WritingDirectionStrategy",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "layoutBased",
+          "ios": 26
+        },
+        {
+          "name": "contentBased",
+          "ios": 26
+        },
+        {
+          "name": "default",
+          "ios": 26
+        }
+      ],
+      "label": "strategy"
     },
     {
       "name": "writingToolsAffordanceVisibility",
@@ -2616,7 +3176,145 @@
       ]
     },
     "modifiers": {
+      "SwiftUI": [
+        "accessibilityAction",
+        "accessibilityActivationPoint",
+        "accessibilityAddTraits",
+        "accessibilityElement",
+        "accessibilityHeading",
+        "accessibilityHidden",
+        "accessibilityHint",
+        "accessibilityIdentifier",
+        "accessibilityLabel",
+        "accessibilityRemoveTraits",
+        "accessibilityRespondsToUserInteraction",
+        "accessibilitySortPriority",
+        "accessibilityTextContentType",
+        "accessibilityValue",
+        "alert",
+        "assistiveAccessNavigationIcon",
+        "autocorrectionDisabled",
+        "badgeProminence",
+        "buttonBorderShape",
+        "buttonRepeatBehavior",
+        "buttonStyle",
+        "confirmationDialog",
+        "contextMenu",
+        "controlGroupStyle",
+        "datePickerStyle",
+        "defaultAdaptableTabBarPlacement",
+        "defaultTabBarPlacement",
+        "defersSystemGestures",
+        "deleteDisabled",
+        "dialogSuppressionToggle",
+        "disableAutocorrection",
+        "documentLaunchSubtitle",
+        "documentLaunchTitle",
+        "fileDialogBrowserOptions",
+        "fileDialogConfirmationLabel",
+        "fileDialogCustomizationID",
+        "fileDialogImportsUnresolvedAliases",
+        "fileDialogMessage",
+        "fileExporterFilenameLabel",
+        "fileImporter",
+        "findDisabled",
+        "findNavigator",
+        "flipsForRightToLeftLayoutDirection",
+        "focusEffectDisabled",
+        "focusable",
+        "fullScreenCover",
+        "gaugeStyle",
+        "gridCellAnchor",
+        "gridCellColumns",
+        "gridCellUnsizedAxes",
+        "gridColumnAlignment",
+        "help",
+        "hidden",
+        "inspectorColumnWidth",
+        "interactionActivityTrackingTag",
+        "interactiveDismissDisabled",
+        "invalidatableContent",
+        "keyboardShortcut",
+        "labelIconToTitleSpacing",
+        "labelReservedIconWidth",
+        "labelsHidden",
+        "labelsVisibility",
+        "listRowSpacing",
+        "listSectionIndexVisibility",
+        "listStyle",
+        "menuActionDismissBehavior",
+        "menuIndicator",
+        "menuOrder",
+        "moveDisabled",
+        "navigationBarBackButtonHidden",
+        "navigationBarHidden",
+        "navigationBarTitle",
+        "navigationLinkIndicatorVisibility",
+        "navigationSplitViewColumnWidth",
+        "navigationSubtitle",
+        "onSubmit",
+        "paletteSelectionEffect",
+        "persistentSystemOverlays",
+        "pickerStyle",
+        "popover",
+        "presentationBackground",
+        "presentationBackgroundInteraction",
+        "presentationCompactAdaptation",
+        "presentationContentInteraction",
+        "presentationCornerRadius",
+        "presentationDetents",
+        "presentationDragIndicator",
+        "presentationPlacement",
+        "presentationSizing",
+        "previewDisplayName",
+        "previewInterfaceOrientation",
+        "progressViewStyle",
+        "renameAction",
+        "replaceDisabled",
+        "scenePadding",
+        "scrollClipDisabled",
+        "scrollContentBackground",
+        "scrollDisabled",
+        "scrollDismissesKeyboard",
+        "scrollIndicatorsFlash",
+        "scrollTargetLayout",
+        "searchCompletion",
+        "searchDictationBehavior",
+        "searchPresentationToolbarBehavior",
+        "searchToolbarBehavior",
+        "searchable",
+        "sectionIndexLabel",
+        "selectionDisabled",
+        "sheet",
+        "sliderThumbVisibility",
+        "springLoadingBehavior",
+        "statusBar",
+        "statusBarHidden",
+        "submitLabel",
+        "submitScope",
+        "swipeActionsContainer",
+        "symbolEffectsRemoved",
+        "tabBarMinimizeBehavior",
+        "tabViewBottomAccessory",
+        "tabViewSearchActivation",
+        "tabViewSidebarBottomBar",
+        "tabViewSidebarFooter",
+        "tabViewSidebarHeader",
+        "tabViewStyle",
+        "tableColumnHeaders",
+        "textFieldStyle",
+        "textInputAutocapitalization",
+        "textSelectionAffinity",
+        "toggleStyle",
+        "toolbarRole",
+        "toolbarTitleDisplayMode",
+        "typeSelectEquivalent",
+        "windowToolbarFullScreenVisibility",
+        "writingToolsAffordanceVisibility",
+        "writingToolsBehavior"
+      ],
       "SwiftUICore": [
+        "accessibilityIgnoresInvertColors",
         "accessibilityShowsLargeContentViewer",
         "allowsHitTesting",
         "allowsTightening",
@@ -2628,6 +3326,7 @@
         "brightness",
         "buttonSizing",
         "clipShape",
+        "clipped",
         "colorInvert",
         "colorMultiply",
         "colorScheme",
@@ -2655,19 +3354,21 @@
         "kerning",
         "layoutDirectionBehavior",
         "layoutPriority",
+        "lineLimit",
         "lineSpacing",
         "luminanceToAlpha",
         "materialActiveAppearance",
         "minimumScaleFactor",
         "monospaced",
         "monospacedDigit",
-        "multilineTextAlignment",
         "onAppear",
         "onDisappear",
+        "onOpenURL",
         "onTapGesture",
         "opacity",
         "padding",
         "privacySensitive",
+        "redacted",
         "safeAreaPadding",
         "saturation",
         "scaledToFill",
@@ -2683,115 +3384,8 @@
         "tracking",
         "transition",
         "unredacted",
+        "writingDirection",
         "zIndex"
-      ],
-      "SwiftUI": [
-        "alert",
-        "allowsWindowActivationEvents",
-        "autocorrectionDisabled",
-        "backgroundExtensionEffect",
-        "badge",
-        "badgeProminence",
-        "buttonBorderShape",
-        "buttonRepeatBehavior",
-        "buttonStyle",
-        "confirmationDialog",
-        "contextMenu",
-        "controlGroupStyle",
-        "datePickerStyle",
-        "defaultAdaptableTabBarPlacement",
-        "defaultTabBarPlacement",
-        "deleteDisabled",
-        "dialogSuppressionToggle",
-        "fileDialogBrowserOptions",
-        "fileDialogCustomizationID",
-        "fileDialogImportsUnresolvedAliases",
-        "fileImporter",
-        "findDisabled",
-        "findNavigator",
-        "flipsForRightToLeftLayoutDirection",
-        "focusEffectDisabled",
-        "focusable",
-        "fullScreenCover",
-        "gaugeStyle",
-        "gridCellAnchor",
-        "gridCellColumns",
-        "gridCellUnsizedAxes",
-        "gridColumnAlignment",
-        "hidden",
-        "inspectorColumnWidth",
-        "interactionActivityTrackingTag",
-        "interactiveDismissDisabled",
-        "invalidatableContent",
-        "keyboardShortcut",
-        "labelIconToTitleSpacing",
-        "labelReservedIconWidth",
-        "labelsHidden",
-        "labelsVisibility",
-        "listSectionIndexVisibility",
-        "listStyle",
-        "menuActionDismissBehavior",
-        "menuIndicator",
-        "menuOrder",
-        "moveDisabled",
-        "navigationBarBackButtonHidden",
-        "navigationBarHidden",
-        "navigationLinkIndicatorVisibility",
-        "navigationSplitViewColumnWidth",
-        "navigationTitle",
-        "onSubmit",
-        "paletteSelectionEffect",
-        "persistentSystemOverlays",
-        "pickerStyle",
-        "popover",
-        "presentationBackground",
-        "presentationBackgroundInteraction",
-        "presentationCompactAdaptation",
-        "presentationContentInteraction",
-        "presentationDetents",
-        "presentationDragIndicator",
-        "presentationPlacement",
-        "presentationSizing",
-        "previewInterfaceOrientation",
-        "progressViewStyle",
-        "renameAction",
-        "replaceDisabled",
-        "scenePadding",
-        "scrollClipDisabled",
-        "scrollContentBackground",
-        "scrollDisabled",
-        "scrollDismissesKeyboard",
-        "searchCompletion",
-        "searchDictationBehavior",
-        "searchPresentationToolbarBehavior",
-        "searchToolbarBehavior",
-        "searchable",
-        "selectionDisabled",
-        "sheet",
-        "sliderThumbVisibility",
-        "springLoadingBehavior",
-        "statusBarHidden",
-        "submitLabel",
-        "submitScope",
-        "swipeActionsContainer",
-        "symbolEffectsRemoved",
-        "tabBarMinimizeBehavior",
-        "tabViewBottomAccessory",
-        "tabViewSearchActivation",
-        "tabViewSidebarBottomBar",
-        "tabViewSidebarFooter",
-        "tabViewSidebarHeader",
-        "tabViewStyle",
-        "tableColumnHeaders",
-        "textFieldStyle",
-        "textInputAutocapitalization",
-        "textSelectionAffinity",
-        "toggleStyle",
-        "toolbarRole",
-        "toolbarTitleDisplayMode",
-        "windowToolbarFullScreenVisibility",
-        "writingToolsAffordanceVisibility",
-        "writingToolsBehavior"
       ],
       "_PassKit_SwiftUI": [
         "payWithApplePayButtonDisableCardArt"

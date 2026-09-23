@@ -47,20 +47,24 @@ ${slots.map((slot) => `    case OneNativeViewSlotName.${slot.name}:
   const generatedMethods = derived
     .map((modifier) => {
       const helper = `oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}`
-      const apply = (value: string, version: number) =>
-        version > 17
-          ? `if #available(iOS ${version}, *) { self.${modifier.name}(${value}) } else { self }`
-          : `self.${modifier.name}(${value})`
+      const apply = (value: string, version: number, fullArguments = false) => {
+        const argument = !fullArguments && modifier.label && modifier.label !== '_' ? `${modifier.label}: ${value}` : value
+        return version > 17
+          ? `if #available(iOS ${version}, *) { self.${modifier.name}(${argument}) } else { self }`
+          : `self.${modifier.name}(${argument})`
+      }
       if (modifier.kind === 'event' || modifier.kind.startsWith('binding')) {
         const bridge = modifier.kind === 'event'
           ? `{ emit(${JSON.stringify(modifier.name)}, "") }`
           : `Binding(get: { ${modifier.kind === 'bindingBoolean' ? 'value == "true"' : 'value'} }, set: { emit(${JSON.stringify(modifier.name)}, String($0)) })`
-        const argument = `${modifier.label === '_' ? '' : `${modifier.label}: `}${bridge}`
         const validation = modifier.kind === 'bindingBoolean'
           ? `    let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")\n`
           : ''
+        const argumentsFromSDK = modifier.callArguments?.map((parameter) =>
+          `${parameter.label === '_' ? '' : `${parameter.label}: `}${parameter.bridge ? bridge : parameter.defaultValue}`
+        ).join(', ')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-${validation}    ${apply(argument, modifier.ios)}
+${validation}    ${apply(argumentsFromSDK ?? bridge, modifier.ios, argumentsFromSDK !== undefined)}
   }`
       }
       if (modifier.zeroArgument) {
@@ -69,13 +73,28 @@ ${validation}    ${apply(argument, modifier.ios)}
     if value == "true" { ${apply('', modifier.ios)} } else { self }
   }`
       }
+      if (modifier.kind.startsWith('optional')) {
+        const nil = `nil as ${modifier.type}`
+        const parsed = modifier.kind === 'optionalBoolean'
+          ? `if value == "true" || value == "false" { ${apply('value == "true"', modifier.ios)} } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
+          : modifier.kind === 'optionalNumber'
+            ? `if let number = Double(value), number.isFinite {
+      ${apply(modifier.type === 'CoreFoundation.CGFloat?' ? 'CGFloat(number)' : modifier.type === 'Swift.Float?' ? 'Float(number)' : modifier.type === 'Swift.Int?' ? 'Int(number)' : 'number', modifier.ios)}
+    } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
+            : `if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+      ${apply(modifier.type === 'SwiftUICore.Text?' ? 'Text(decoded)' : 'decoded', modifier.ios)}
+    } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if value == "null" { ${apply(nil, modifier.ios)} } else { ${parsed} }
+  }`
+      }
       if (modifier.cases) {
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 ${modifier.cases
   .map(
     (item) =>
-      `      case ${JSON.stringify(item.name)}: ${apply(`.${item.name}`, Math.max(modifier.ios, item.ios))}`
+      `      case ${JSON.stringify(item.name)}: ${apply(`${modifier.type}.${item.name}`, Math.max(modifier.ios, item.ios))}`
   )
   .join('\n')}
     default: preconditionFailure("invalid ${modifier.name}: \\(value)")
@@ -99,7 +118,7 @@ ${modifier.cases
           modifier.ios
         )}
       } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
-            : `      ${apply('value', modifier.ios)}`
+            : `      ${apply(modifier.type === 'SwiftUICore.Text' ? 'Text(value)' : 'value', modifier.ios)}`
       return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
 ${parsed}
   }`
@@ -133,14 +152,17 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
     if (Object.hasOwn(sdkKinds, name)) {
       const kind = sdkKinds[name as keyof typeof sdkKinds]
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite')
+      if (kind === 'optionalNumber' && value !== null && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite or null')
       if (kind === 'boolean' && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
+      if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean') throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string') throw new Error(name + ' must be a string')
+      if (kind === 'optionalString' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')
       if (kind === 'event' && typeof value !== 'function') throw new Error(name + ' must be a callback')
       if ((kind === 'bindingBoolean' || kind === 'bindingString') &&
         (typeof value !== 'object' || value === null || typeof (value as { onChange?: unknown }).onChange !== 'function' ||
         typeof (value as { value?: unknown }).value !== (kind === 'bindingBoolean' ? 'boolean' : 'string')))
         throw new Error(name + ' must be a binding')
-      sdkModifiers.push([name, kind === 'event' ? '' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : String(value)])
+      sdkModifiers.push([name, kind === 'event' ? '' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : kind === 'optionalString' ? JSON.stringify(value) as string : String(value)])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
     } else {
