@@ -27,6 +27,17 @@ describe('SDK callback and binding transport', () => {
     expect(() => element.props.onNativeSDKEvent({ nativeEvent: { name: 'accessibilityAdjustableAction', value: 'unknown' } })).toThrow('invalid enum value')
   })
 
+  it('dispatches a frozen enum callback with its associated point', () => {
+    const onContinuousHover = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: { onContinuousHover } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([['onContinuousHover', '']])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'onContinuousHover', value: '{"case":"active","values":[{"x":12,"y":-3}]}' } })
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'onContinuousHover', value: '{"case":"ended","values":[]}' } })
+    expect(onContinuousHover).toHaveBeenNthCalledWith(1, { case: 'active', values: [{ x: 12, y: -3 }] })
+    expect(onContinuousHover).toHaveBeenNthCalledWith(2, { case: 'ended', values: [] })
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: { name: 'onContinuousHover', value: '{"case":"active","values":[{"x":"bad","y":0}]}' } })).toThrow('invalid point')
+  })
+
   it('encodes URL values and dispatches optional StoreKit actions', () => {
     const onSignIn = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {

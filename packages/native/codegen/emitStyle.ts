@@ -157,6 +157,17 @@ ${parsedArguments}
             ? `{ emit(${JSON.stringify(modifier.name)}, "") }`
             : modifier.kind === 'eventEnum'
               ? `{ value in emit(${JSON.stringify(modifier.name)}, String(describing: value)) }`
+              : modifier.kind === 'eventAssociatedEnum'
+                ? `{ item in
+      let payload: [String: Any]
+      switch item {
+${modifier.associatedCases!.map((item) => `      case .${item.name}${item.values.length ? `(${item.values.map((_, index) => `let value${index}`).join(', ')})` : ''}:
+        payload = ["case": ${JSON.stringify(item.name)}, "values": [${item.values.map((kind, index) => kind === 'point' ? `["x": Double(value${index}.x), "y": Double(value${index}.y)]` : kind === 'number' ? `Double(value${index})` : `value${index}`).join(', ')}]]`).join('\n')}
+      }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} event") }
+      emit(${JSON.stringify(modifier.name)}, encoded)
+    }`
               : modifier.kind === 'eventEnumPair'
                 ? `{ oldValue, newValue in
       if let data = try? JSONEncoder().encode([String(describing: oldValue), String(describing: newValue)]),
@@ -261,6 +272,7 @@ ${styleFields
 const colorFields = [${colorFields.map((field) => `'${field.name}'`).join(', ')}] as const
 const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [modifier.name, modifier.kind])))} as const
 const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
+const sdkAssociatedCases: Record<string, Record<string, readonly string[]>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAssociatedEnum').map((modifier) => [modifier.name, Object.fromEntries(modifier.associatedCases!.map((item) => [item.name, item.values]))])))}
 const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional }) => ({ field, kind, optional }))])))}
 
 export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeStyleNative | undefined {
@@ -335,6 +347,25 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
     if (!Array.isArray(pair) || pair.length !== 2 || pair.some((item) => typeof item !== 'string' || !sdkEventCases[name].includes(item)))
       throw new Error(name + ' emitted invalid enum values')
     ;(modifier as ((oldValue: string, newValue: string) => void) | undefined)?.(pair[0], pair[1])
+  }
+  else if (kind === 'eventAssociatedEnum') {
+    const payload: unknown = JSON.parse(value)
+    if (!payload || typeof payload !== 'object') throw new Error(name + ' emitted an invalid enum payload')
+    const event = payload as { case?: unknown; values?: unknown }
+    const kinds = typeof event.case === 'string' ? sdkAssociatedCases[name]?.[event.case] : undefined
+    if (!kinds || !Array.isArray(event.values) || event.values.length !== kinds.length)
+      throw new Error(name + ' emitted an invalid enum case')
+    for (const [index, item] of event.values.entries()) {
+      const kind = kinds[index]
+      if (kind === 'point') {
+        if (!item || typeof item !== 'object' ||
+          typeof (item as { x?: unknown }).x !== 'number' || !Number.isFinite((item as { x: number }).x) ||
+          typeof (item as { y?: unknown }).y !== 'number' || !Number.isFinite((item as { y: number }).y))
+          throw new Error(name + ' emitted an invalid point')
+      } else if (typeof item !== kind || (kind === 'number' && !Number.isFinite(item)))
+        throw new Error(name + ' emitted an invalid enum value')
+    }
+    ;(modifier as ((value: unknown) => void) | undefined)?.(event)
   }
   else if (kind === 'bindingBoolean') (modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(value === 'true')
   else if (kind === 'bindingString') (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)

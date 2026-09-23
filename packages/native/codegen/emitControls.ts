@@ -140,6 +140,8 @@ ${styleFields
                 ? `(value: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}) => void`
                 : modifier.kind === 'eventEnumPair'
                   ? `(oldValue: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}, newValue: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}) => void`
+                  : modifier.kind === 'eventAssociatedEnum'
+                    ? `(value: ${modifier.associatedCases!.map((item) => `{ case: ${JSON.stringify(item.name)}; values: readonly [${item.values.map((kind) => kind === 'point' ? '{ x: number; y: number }' : kind === 'number' ? 'number' : kind === 'boolean' ? 'boolean' : 'string').join(', ')}] }`).join(' | ')}) => void`
                   : modifier.kind === 'eventValueString'
                     ? 'Readonly<{ value: string; onChange: (value: string) => void }>'
           : modifier.kind === 'bindingBoolean'

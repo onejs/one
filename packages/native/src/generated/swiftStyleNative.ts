@@ -263,12 +263,11 @@ const sdkKinds = {
   offset: 'record',
   onAppear: 'event',
   onChange: 'eventValueString',
+  onContinuousHover: 'eventAssociatedEnum',
   onDisappear: 'event',
   onHover: 'eventBoolean',
   onInteractiveResizeChange: 'eventBoolean',
-  onLongPressGestureWithPerform: 'event',
-  onLongPressGestureWithPerformFromSwiftUI: 'event',
-  onLongPressGestureWithPerformFromSwiftUIVariant: 'event',
+  onLongPressGesture: 'event',
   onMapCameraChange: 'event',
   onOpenURLWithPerform: 'eventString',
   onOpenURLWithPrefersInApp: 'boolean',
@@ -426,6 +425,9 @@ const sdkEventCases: Record<string, readonly string[]> = {
   accessibilityAdjustableAction: ['increment', 'decrement'],
   accessibilityScrollAction: ['top', 'leading', 'bottom', 'trailing'],
   onScrollPhaseChange: ['idle', 'tracking', 'interacting', 'decelerating', 'animating'],
+}
+const sdkAssociatedCases: Record<string, Record<string, readonly string[]>> = {
+  onContinuousHover: { active: ['point'], ended: [] },
 }
 const sdkRecords: Record<
   string,
@@ -892,6 +894,31 @@ export function dispatchSDKEvent(
       pair[0],
       pair[1]
     )
+  } else if (kind === 'eventAssociatedEnum') {
+    const payload: unknown = JSON.parse(value)
+    if (!payload || typeof payload !== 'object')
+      throw new Error(name + ' emitted an invalid enum payload')
+    const event = payload as { case?: unknown; values?: unknown }
+    const kinds =
+      typeof event.case === 'string' ? sdkAssociatedCases[name]?.[event.case] : undefined
+    if (!kinds || !Array.isArray(event.values) || event.values.length !== kinds.length)
+      throw new Error(name + ' emitted an invalid enum case')
+    for (const [index, item] of event.values.entries()) {
+      const kind = kinds[index]
+      if (kind === 'point') {
+        if (
+          !item ||
+          typeof item !== 'object' ||
+          typeof (item as { x?: unknown }).x !== 'number' ||
+          !Number.isFinite((item as { x: number }).x) ||
+          typeof (item as { y?: unknown }).y !== 'number' ||
+          !Number.isFinite((item as { y: number }).y)
+        )
+          throw new Error(name + ' emitted an invalid point')
+      } else if (typeof item !== kind || (kind === 'number' && !Number.isFinite(item)))
+        throw new Error(name + ' emitted an invalid enum value')
+    }
+    ;(modifier as ((value: unknown) => void) | undefined)?.(event)
   } else if (kind === 'bindingBoolean')
     (modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(
       value === 'true'

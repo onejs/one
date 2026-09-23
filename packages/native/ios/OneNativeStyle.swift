@@ -324,12 +324,11 @@ extension View {
       case "offset": view = AnyView(view.oneNativeSDKOffset(value, emit: emit))
       case "onAppear": view = AnyView(view.oneNativeSDKOnAppear(value, emit: emit))
       case "onChange": view = AnyView(view.oneNativeSDKOnChange(value, emit: emit))
+      case "onContinuousHover": view = AnyView(view.oneNativeSDKOnContinuousHover(value, emit: emit))
       case "onDisappear": view = AnyView(view.oneNativeSDKOnDisappear(value, emit: emit))
       case "onHover": view = AnyView(view.oneNativeSDKOnHover(value, emit: emit))
       case "onInteractiveResizeChange": view = AnyView(view.oneNativeSDKOnInteractiveResizeChange(value, emit: emit))
-      case "onLongPressGestureWithPerform": view = AnyView(view.oneNativeSDKOnLongPressGestureWithPerform(value, emit: emit))
-      case "onLongPressGestureWithPerformFromSwiftUI": view = AnyView(view.oneNativeSDKOnLongPressGestureWithPerformFromSwiftUI(value, emit: emit))
-      case "onLongPressGestureWithPerformFromSwiftUIVariant": view = AnyView(view.oneNativeSDKOnLongPressGestureWithPerformFromSwiftUIVariant(value, emit: emit))
+      case "onLongPressGesture": view = AnyView(view.oneNativeSDKOnLongPressGesture(value, emit: emit))
       case "onMapCameraChange": view = AnyView(view.oneNativeSDKOnMapCameraChange(value, emit: emit))
       case "onOpenURLWithPerform": view = AnyView(view.oneNativeSDKOnOpenURLWithPerform(value, emit: emit))
       case "onOpenURLWithPrefersInApp": view = AnyView(view.oneNativeSDKOnOpenURLWithPrefersInApp(value, emit: emit))
@@ -3467,6 +3466,21 @@ extension View {
     self.onChange(of: value, perform: { changed in emit("onChange", changed) })
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKOnContinuousHover(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onContinuousHover(coordinateSpace: .local, perform: { item in
+      let payload: [String: Any]
+      switch item {
+      case .active(let value0):
+        payload = ["case": "active", "values": [["x": Double(value0.x), "y": Double(value0.y)]]]
+      case .ended:
+        payload = ["case": "ended", "values": []]
+      }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onContinuousHover event") }
+      emit("onContinuousHover", encoded)
+    })
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKOnDisappear(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onDisappear(perform: { emit("onDisappear", "") })
   }
@@ -3479,16 +3493,8 @@ extension View {
     if #available(iOS 26, *) { self.onInteractiveResizeChange({ value in emit("onInteractiveResizeChange", String(value)) }) } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKOnLongPressGestureWithPerform(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    self.onLongPressGesture(minimumDuration: 0.5, maximumDistance: 10, perform: { emit("onLongPressGestureWithPerform", "") }, onPressingChanged: nil)
-  }
-
-  @ViewBuilder fileprivate func oneNativeSDKOnLongPressGestureWithPerformFromSwiftUI(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) { self.onLongPressGesture(minimumDuration: 0.5, maximumDistance: 10, inputKinds: .all, perform: { emit("onLongPressGestureWithPerformFromSwiftUI", "") }, onPressingChanged: nil) } else { self }
-  }
-
-  @ViewBuilder fileprivate func oneNativeSDKOnLongPressGestureWithPerformFromSwiftUIVariant(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    self.onLongPressGesture(minimumDuration: 0.5, maximumDistance: 10, pressing: nil, perform: { emit("onLongPressGestureWithPerformFromSwiftUIVariant", "") })
+  @ViewBuilder fileprivate func oneNativeSDKOnLongPressGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onLongPressGesture(minimumDuration: 0.5, maximumDistance: 10, perform: { emit("onLongPressGesture", "") }, onPressingChanged: nil)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnMapCameraChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

@@ -14,6 +14,7 @@ export type Declaration = {
   line: number
   inheritedTypes?: string[]
   generic?: boolean
+  enumCase?: boolean
 }
 
 const run = (file: string, args: string[]) =>
