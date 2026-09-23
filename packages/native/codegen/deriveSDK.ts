@@ -33,7 +33,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -47,6 +47,7 @@ export type DerivedModifier = {
   resultConstructor?: { type: string; label: string }
   eventPair?: true
   eventInputs?: readonly string[]
+  gestureOptions?: readonly { name: string; type: string; ios: number; eventValue?: EventValueSchema }[]
   transformMember?: string
   zeroArgument?: true
   framework?: string
@@ -363,6 +364,26 @@ export function deriveModifiers(
       ? cases
       : undefined
   }
+  const gestureOptions = inventory.filter((d) => d.kind === 'struct' && d.owner === '' &&
+    !d.generic && /^[A-Z]/.test(d.name) &&
+    d.inheritedTypes?.includes('SwiftUICore.Gesture') && present(d) && ios(d) <= ceiling)
+    .flatMap((gesture) => {
+      const constructor = inventory.find((d) => d.module === gesture.module &&
+        (d.owner === gesture.name || d.owner === `${gesture.module}.${gesture.name}`) &&
+        d.kind === 'init' && d.parameters.every((parameter) => parameter.defaultValue !== undefined) &&
+        present(d) && ios(d) <= ceiling)
+      if (!constructor) return []
+      const eventValue = gesture.name === 'LongPressGesture'
+        ? { kind: 'boolean' as const }
+        : gesture.name === 'TapGesture'
+          ? undefined
+          : eventValueOf(`${gesture.module}.${gesture.name}.Value`, Math.max(ios(gesture), ios(constructor)))
+      if (!eventValue && gesture.name !== 'TapGesture') return []
+      return [{ name: gesture.name[0].toLowerCase() + gesture.name.slice(1).replace(/Gesture$/, ''),
+        type: `${gesture.module}.${gesture.name}`, ios: Math.max(ios(gesture), ios(constructor)),
+        ...(eventValue ? { eventValue } : {}) }]
+    })
+    .sort((a, b) => a.name.localeCompare(b.name))
   const methods = inventory.filter(
     (d) =>
       d.kind === 'func' &&
@@ -418,6 +439,21 @@ export function deriveModifiers(
       }
       if (method.requirements?.length) {
         if (method.requirements.length !== 1) return []
+        const focusValue = /^([A-Za-z_]\w*) : Swift\.Hashable$/.exec(method.requirements[0])?.[1]
+        if (focusValue && method.parameters.length >= 2 &&
+          new RegExp(`^SwiftUI\\.(?:Accessibility)?FocusState<${focusValue}>\\.Binding$`).test(method.parameters[0].type) &&
+          method.parameters[1].type === focusValue && method.parameters[1].label === '_' &&
+          method.parameters.slice(2).every((parameter) => parameter.defaultValue !== undefined))
+          return [{ name, module: method.module, kind: 'defaultFocusBoolean',
+            type: method.parameters[0].type, ios: ios(method), ...framework }]
+        const gestureType = /^([A-Za-z_]\w*) : SwiftUICore\.Gesture$/.exec(method.requirements[0])?.[1]
+        if (gestureType && gestureOptions.length && method.parameters[0]?.type === gestureType &&
+          method.parameters.slice(1).every((parameter) => parameter.defaultValue !== undefined) &&
+          inventory.some((d) => d.module === 'SwiftUICore' && d.owner.split('.').at(-1) === 'Gesture' &&
+            d.kind === 'func' && d.name === 'onEnded' && present(d)))
+          return [{ name, module: method.module, kind: 'gesture', type: gestureType,
+            label: method.parameters[0].label, gestureOptions,
+            ios: ios(method), ...framework }]
         const transferable = /^([A-Za-z_]\w*) : CoreTransferable\.Transferable$/.exec(method.requirements[0])?.[1]
         if (transferable) {
           const [first, action, ...defaults] = method.parameters

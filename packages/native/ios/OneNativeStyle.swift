@@ -115,6 +115,7 @@ extension View {
       case "accessibilityAddTraits": view = AnyView(view.oneNativeSDKAccessibilityAddTraits(value, emit: emit))
       case "accessibilityAdjustableAction": view = AnyView(view.oneNativeSDKAccessibilityAdjustableAction(value, emit: emit))
       case "accessibilityCustomContent": view = AnyView(view.oneNativeSDKAccessibilityCustomContent(value, emit: emit))
+      case "accessibilityDefaultFocus": view = AnyView(view.oneNativeSDKAccessibilityDefaultFocus(value, emit: emit))
       case "accessibilityDirectTouch": view = AnyView(view.oneNativeSDKAccessibilityDirectTouch(value, emit: emit))
       case "accessibilityDragPointWithPointAndDescription": view = AnyView(view.oneNativeSDKAccessibilityDragPointWithPointAndDescription(value, emit: emit))
       case "accessibilityDragPointWithPointAndDescriptionAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityDragPointWithPointAndDescriptionAndIsEnabled(value, emit: emit))
@@ -207,6 +208,7 @@ extension View {
       case "datePickerStyle": view = AnyView(view.oneNativeSDKDatePickerStyle(value, emit: emit))
       case "defaultAdaptableTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultAdaptableTabBarPlacement(value, emit: emit))
       case "defaultAppStorage": view = AnyView(view.oneNativeSDKDefaultAppStorage(value, emit: emit))
+      case "defaultFocus": view = AnyView(view.oneNativeSDKDefaultFocus(value, emit: emit))
       case "defaultHoverEffect": view = AnyView(view.oneNativeSDKDefaultHoverEffect(value, emit: emit))
       case "defaultScrollAnchorWithAnchorAndRole": view = AnyView(view.oneNativeSDKDefaultScrollAnchorWithAnchorAndRole(value, emit: emit))
       case "defaultScrollAnchorWithOptionalUnitPoint": view = AnyView(view.oneNativeSDKDefaultScrollAnchorWithOptionalUnitPoint(value, emit: emit))
@@ -253,6 +255,7 @@ extension View {
       case "formStyle": view = AnyView(view.oneNativeSDKFormStyle(value, emit: emit))
       case "gaugeStyle": view = AnyView(view.oneNativeSDKGaugeStyle(value, emit: emit))
       case "geometryGroup": view = AnyView(view.oneNativeSDKGeometryGroup(value, emit: emit))
+      case "gesture": view = AnyView(view.oneNativeSDKGesture(value, emit: emit))
       case "glassEffectTransition": view = AnyView(view.oneNativeSDKGlassEffectTransition(value, emit: emit))
       case "grayscale": view = AnyView(view.oneNativeSDKGrayscale(value, emit: emit))
       case "gridCellAnchor": view = AnyView(view.oneNativeSDKGridCellAnchor(value, emit: emit))
@@ -266,6 +269,7 @@ extension View {
       case "headerProminence": view = AnyView(view.oneNativeSDKHeaderProminence(value, emit: emit))
       case "help": view = AnyView(view.oneNativeSDKHelp(value, emit: emit))
       case "hidden": view = AnyView(view.oneNativeSDKHidden(value, emit: emit))
+      case "highPriorityGesture": view = AnyView(view.oneNativeSDKHighPriorityGesture(value, emit: emit))
       case "hoverEffectDisabled": view = AnyView(view.oneNativeSDKHoverEffectDisabled(value, emit: emit))
       case "hoverEffectWithEffectAndIsEnabled": view = AnyView(view.oneNativeSDKHoverEffectWithEffectAndIsEnabled(value, emit: emit))
       case "hoverEffectWithHoverEffect": view = AnyView(view.oneNativeSDKHoverEffectWithHoverEffect(value, emit: emit))
@@ -458,6 +462,7 @@ extension View {
       case "shadow": view = AnyView(view.oneNativeSDKShadow(value, emit: emit))
       case "shortcutsLinkStyle": view = AnyView(view.oneNativeSDKShortcutsLinkStyle(value, emit: emit))
       case "signInWithAppleButtonStyle": view = AnyView(view.oneNativeSDKSignInWithAppleButtonStyle(value, emit: emit))
+      case "simultaneousGesture": view = AnyView(view.oneNativeSDKSimultaneousGesture(value, emit: emit))
       case "siriTipViewStyle": view = AnyView(view.oneNativeSDKSiriTipViewStyle(value, emit: emit))
       case "sliderThumbVisibility": view = AnyView(view.oneNativeSDKSliderThumbVisibility(value, emit: emit))
       case "speechAdjustedPitch": view = AnyView(view.oneNativeSDKSpeechAdjustedPitch(value, emit: emit))
@@ -859,6 +864,13 @@ extension View {
       return Text(raw)
     }()
     self.accessibilityCustomContent(argument0, argument1)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityDefaultFocus(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid accessibilityDefaultFocus: \(value)")
+    if value == "true" {
+      if #available(iOS 26, *) { self.modifier(OneNativeSDKAccessibilityDefaultFocusFocusBinding()) } else { self }
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityDirectTouch(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2144,6 +2156,13 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKDefaultFocus(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid defaultFocus: \(value)")
+    if value == "true" {
+      self.modifier(OneNativeSDKDefaultFocusFocusBinding())
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKDefaultHoverEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.defaultHoverEffect(nil as SwiftUICore.HoverEffect?)
@@ -2679,6 +2698,49 @@ extension View {
     if value == "true" { self.geometryGroup() } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+    case "drag":
+      self.gesture(SwiftUI.DragGesture().onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.drag event") }
+        emit("gesture", encoded)
+      }))
+    case "longPress":
+      self.gesture(SwiftUI.LongPressGesture().onEnded({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.longPress event") }
+        emit("gesture", encoded)
+      }))
+    case "magnify":
+      self.gesture(SwiftUI.MagnifyGesture().onEnded({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.magnify event") }
+        emit("gesture", encoded)
+      }))
+    case "rotate":
+      self.gesture(SwiftUI.RotateGesture().onEnded({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.rotate event") }
+        emit("gesture", encoded)
+      }))
+    case "spatialTap":
+      self.gesture(SwiftUI.SpatialTapGesture().onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.spatialTap event") }
+        emit("gesture", encoded)
+      }))
+    case "tap":
+      self.gesture(SwiftUICore.TapGesture().onEnded({ _ in emit("gesture", "") }))
+    default: preconditionFailure("invalid gesture: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKGlassEffectTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -2816,6 +2878,49 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKHidden(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid hidden: \(value)")
     if value == "true" { self.hidden() } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKHighPriorityGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+    case "drag":
+      self.highPriorityGesture(SwiftUI.DragGesture().onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.drag event") }
+        emit("highPriorityGesture", encoded)
+      }))
+    case "longPress":
+      self.highPriorityGesture(SwiftUI.LongPressGesture().onEnded({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.longPress event") }
+        emit("highPriorityGesture", encoded)
+      }))
+    case "magnify":
+      self.highPriorityGesture(SwiftUI.MagnifyGesture().onEnded({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.magnify event") }
+        emit("highPriorityGesture", encoded)
+      }))
+    case "rotate":
+      self.highPriorityGesture(SwiftUI.RotateGesture().onEnded({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.rotate event") }
+        emit("highPriorityGesture", encoded)
+      }))
+    case "spatialTap":
+      self.highPriorityGesture(SwiftUI.SpatialTapGesture().onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.spatialTap event") }
+        emit("highPriorityGesture", encoded)
+      }))
+    case "tap":
+      self.highPriorityGesture(SwiftUICore.TapGesture().onEnded({ _ in emit("highPriorityGesture", "") }))
+    default: preconditionFailure("invalid highPriorityGesture: \(value)")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKHoverEffectDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -5326,6 +5431,49 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKSimultaneousGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+    case "drag":
+      self.simultaneousGesture(SwiftUI.DragGesture().onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.drag event") }
+        emit("simultaneousGesture", encoded)
+      }))
+    case "longPress":
+      self.simultaneousGesture(SwiftUI.LongPressGesture().onEnded({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.longPress event") }
+        emit("simultaneousGesture", encoded)
+      }))
+    case "magnify":
+      self.simultaneousGesture(SwiftUI.MagnifyGesture().onEnded({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.magnify event") }
+        emit("simultaneousGesture", encoded)
+      }))
+    case "rotate":
+      self.simultaneousGesture(SwiftUI.RotateGesture().onEnded({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.rotate event") }
+        emit("simultaneousGesture", encoded)
+      }))
+    case "spatialTap":
+      self.simultaneousGesture(SwiftUI.SpatialTapGesture().onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.spatialTap event") }
+        emit("simultaneousGesture", encoded)
+      }))
+    case "tap":
+      self.simultaneousGesture(SwiftUICore.TapGesture().onEnded({ _ in emit("simultaneousGesture", "") }))
+    default: preconditionFailure("invalid simultaneousGesture: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKSiriTipViewStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -6681,6 +6829,16 @@ extension View {
       } else { preconditionFailure("invalid zIndex: \(value)") }
   }
 }
+@available(iOS 26, *)
+private struct OneNativeSDKAccessibilityDefaultFocusFocusBinding: ViewModifier {
+  @AccessibilityFocusState private var focused: Bool
+
+  func body(content: Content) -> some View {
+    content.accessibilityFocused($focused)
+      .accessibilityDefaultFocus($focused, true)
+  }
+}
+
 private struct OneNativeSDKAccessibilityFocusedFocusBinding: ViewModifier {
   @AccessibilityFocusState private var focused: Bool
   let value: Bool
@@ -6697,6 +6855,15 @@ private struct OneNativeSDKAccessibilityFocusedFocusBinding: ViewModifier {
       .onAppear {
         if focused != value { focused = value }
       }
+  }
+}
+
+private struct OneNativeSDKDefaultFocusFocusBinding: ViewModifier {
+  @FocusState private var focused: Bool
+
+  func body(content: Content) -> some View {
+    content.focused($focused)
+      .defaultFocus($focused, true)
   }
 }
 
