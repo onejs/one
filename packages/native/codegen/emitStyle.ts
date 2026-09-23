@@ -192,7 +192,7 @@ ${validation}    ${apply(argumentsFromSDK ?? bridge, modifier.ios, argumentsFrom
       ${apply(modifier.type === 'CoreFoundation.CGFloat?' ? 'CGFloat(number)' : modifier.type === 'Swift.Float?' ? 'Float(number)' : modifier.type === 'Swift.Int?' ? 'Int(number)' : 'number', modifier.ios)}
     } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
             : `if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
-      ${apply(modifier.type === 'SwiftUICore.Text?' ? 'Text(decoded)' : 'decoded', modifier.ios)}
+      ${apply(modifier.rawString ? `${modifier.type.replace(/\?$/, '')}(rawValue: decoded)` : modifier.type === 'SwiftUICore.Text?' ? 'Text(decoded)' : 'decoded', modifier.ios)}
     } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if value == "null" { ${apply(nil, modifier.ios)} } else { ${parsed} }
@@ -229,7 +229,7 @@ ${modifier.cases
           modifier.ios
         )}
       } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
-            : `      ${apply(modifier.type === 'SwiftUICore.Text' ? 'Text(value)' : 'value', modifier.ios)}`
+            : `      ${apply(modifier.rawString ? `${modifier.type}(rawValue: value)` : modifier.type === 'SwiftUICore.Text' ? 'Text(value)' : 'value', modifier.ios)}`
       return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
 ${parsed}
   }`

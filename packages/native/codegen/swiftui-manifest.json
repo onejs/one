@@ -7083,6 +7083,13 @@
       ]
     },
     {
+      "name": "previewDevice",
+      "kind": "optionalString",
+      "type": "SwiftUI.PreviewDevice?",
+      "rawString": true,
+      "ios": 13
+    },
+    {
       "name": "previewDisplayName",
       "kind": "optionalString",
       "type": "Swift.String?",
@@ -7957,6 +7964,22 @@
       "type": "Swift.Bool",
       "ios": 17,
       "label": "onAppear"
+    },
+    {
+      "name": "scrollTargetBehavior",
+      "kind": "style",
+      "type": "some ScrollTargetBehavior",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "paging",
+          "ios": 17
+        },
+        {
+          "name": "viewAligned",
+          "ios": 17
+        }
+      ]
     },
     {
       "name": "scrollTargetLayout",
@@ -10819,6 +10842,7 @@
         "presentationDragIndicator",
         "presentationPlacement",
         "presentationSizing",
+        "previewDevice",
         "previewDisplayName",
         "previewInterfaceOrientation",
         "previewLayout",
@@ -10836,6 +10860,7 @@
         "scrollEdgeEffectStyle",
         "scrollIndicators",
         "scrollIndicatorsFlash",
+        "scrollTargetBehavior",
         "scrollTargetLayout",
         "searchCompletion",
         "searchDictationBehavior",
