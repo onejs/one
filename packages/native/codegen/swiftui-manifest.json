@@ -1400,6 +1400,28 @@
       "ios": 14
     },
     {
+      "name": "accessibilityInputLabels",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "stringArray",
+          "type": "[SwiftUICore.Text]",
+          "optional": false,
+          "field": "inputLabels",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ]
+    },
+    {
       "name": "accessibilityLabelWithLabelAndIsEnabled",
       "module": "SwiftUI",
       "kind": "record",
@@ -4043,6 +4065,28 @@
           "optional": false,
           "field": "isEnabled",
           "label": "isEnabled"
+        }
+      ]
+    },
+    {
+      "name": "handlesExternalEvents",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "stringSet",
+          "type": "Swift.Set<Swift.String>",
+          "optional": false,
+          "field": "preferring",
+          "label": "preferring"
+        },
+        {
+          "kind": "stringSet",
+          "type": "Swift.Set<Swift.String>",
+          "optional": false,
+          "field": "allowing",
+          "label": "allowing"
         }
       ]
     },
@@ -10179,6 +10223,7 @@
         "accessibilityHidden",
         "accessibilityHint",
         "accessibilityIdentifier",
+        "accessibilityInputLabels",
         "accessibilityLabel",
         "accessibilityRemoveTraits",
         "accessibilityRepresentation",
@@ -10237,6 +10282,7 @@
         "gridColumnAlignment",
         "groupBoxStyle",
         "handGestureShortcut",
+        "handlesExternalEvents",
         "help",
         "hidden",
         "indexViewStyle",

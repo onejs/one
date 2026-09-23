@@ -1197,6 +1197,10 @@ export interface OneNativeStyle {
   }>
   accessibilityIdentifierWithString?: string
   accessibilityIgnoresInvertColors?: boolean
+  accessibilityInputLabels?: Readonly<{
+    inputLabels: readonly string[]
+    isEnabled: boolean
+  }>
   accessibilityLabelWithLabelAndIsEnabled?: Readonly<{
     label: string
     isEnabled: boolean
@@ -1387,6 +1391,10 @@ export interface OneNativeStyle {
   gridColumnAlignment?: SDKGridColumnAlignment
   groupBoxStyle?: SDKGroupBoxStyle
   handGestureShortcut?: Readonly<{ shortcut: 'primaryAction'; isEnabled: boolean }>
+  handlesExternalEvents?: Readonly<{
+    preferring: readonly string[]
+    allowing: readonly string[]
+  }>
   headerProminence?: SDKHeaderProminence
   help?: string
   hidden?: boolean

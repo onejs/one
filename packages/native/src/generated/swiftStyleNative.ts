@@ -64,6 +64,7 @@ const sdkKinds = {
   accessibilityIdentifierWithIdentifierAndIsEnabled: 'record',
   accessibilityIdentifierWithString: 'string',
   accessibilityIgnoresInvertColors: 'boolean',
+  accessibilityInputLabels: 'record',
   accessibilityLabelWithLabelAndIsEnabled: 'record',
   accessibilityLabelWithText: 'string',
   accessibilityRemoveTraits: 'string',
@@ -171,6 +172,7 @@ const sdkKinds = {
   gridColumnAlignment: 'string',
   groupBoxStyle: 'style',
   handGestureShortcut: 'record',
+  handlesExternalEvents: 'record',
   headerProminence: 'string',
   help: 'string',
   hidden: 'boolean',
@@ -449,6 +451,10 @@ const sdkRecords: Record<
     { field: 'identifier', kind: 'string', optional: false },
     { field: 'isEnabled', kind: 'boolean', optional: false },
   ],
+  accessibilityInputLabels: [
+    { field: 'inputLabels', kind: 'stringArray', optional: false },
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
   accessibilityLabelWithLabelAndIsEnabled: [
     { field: 'label', kind: 'string', optional: false },
     { field: 'isEnabled', kind: 'boolean', optional: false },
@@ -516,6 +522,10 @@ const sdkRecords: Record<
   handGestureShortcut: [
     { field: 'shortcut', kind: 'enum', optional: false },
     { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  handlesExternalEvents: [
+    { field: 'preferring', kind: 'stringSet', optional: false },
+    { field: 'allowing', kind: 'stringSet', optional: false },
   ],
   hoverEffectWithEffectAndIsEnabled: [
     { field: 'effect', kind: 'enum', optional: false },
@@ -743,7 +753,14 @@ export function swiftStyleNative(
             typeof item !== 'string'
           )
             throw new Error(name + '.' + argument.field + ' must be a string')
-          return String(item)
+          if (
+            (argument.kind === 'stringArray' || argument.kind === 'stringSet') &&
+            (!Array.isArray(item) || item.some((element) => typeof element !== 'string'))
+          )
+            throw new Error(name + '.' + argument.field + ' must be a string array')
+          return argument.kind === 'stringArray' || argument.kind === 'stringSet'
+            ? JSON.stringify(item)
+            : String(item)
         })
         sdkModifiers.push([name, JSON.stringify(values)])
         continue

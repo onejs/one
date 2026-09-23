@@ -155,7 +155,7 @@ ${styleFields
                   : modifier.kind === 'optionalEnum'
                     ? `SDK${upper(modifier.name)} | null`
                     : modifier.kind === 'record'
-                      ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ') : argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
+                      ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ') : argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'stringArray' || argument.kind === 'stringSet' ? 'readonly string[]' : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
                       : modifier.kind === 'style' ? undefined
                       : modifier.kind === 'url' ? 'string'
               : modifier.kind === 'string' ? undefined : modifier.kind,
