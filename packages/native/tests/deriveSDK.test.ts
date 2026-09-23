@@ -154,6 +154,18 @@ describe('SDK modifier derivation', () => {
       ] },
     ])
   })
+
+  it('derives generic style cases through their protocol Self constraints', () => {
+    expect(deriveModifiers([
+      { ...method('menuStyle', 'SwiftUI', [{ label: '_', name: 'style', type: 'S' }]), requirements: ['S : SwiftUI.MenuStyle'] },
+      { ...method('automatic', 'SwiftUI'), kind: 'static', owner: 'SwiftUI.MenuStyle', type: 'SwiftUI.DefaultMenuStyle', requirements: ['Self == SwiftUI.DefaultMenuStyle'] },
+      { ...method('button', 'SwiftUI'), kind: 'static', owner: 'SwiftUI.MenuStyle', type: 'SwiftUI.ButtonMenuStyle', requirements: ['Self == SwiftUI.ButtonMenuStyle'] },
+    ], 27, [])).toEqual([
+      { name: 'menuStyle', kind: 'style', type: 'S', ios: 0, cases: [
+        { name: 'automatic', ios: 0 }, { name: 'button', ios: 0 },
+      ] },
+    ])
+  })
 })
 
 describe('SDK tab view slots', () => {

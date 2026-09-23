@@ -1,7 +1,6 @@
 {
   "sdk": "27",
   "unmappedModifiers": [
-    "menuStyle",
     "tabViewBottomAccessory",
     "tabViewCustomization",
     "tabViewSidebarBottomBar",
@@ -2049,6 +2048,158 @@
       "sdkName": "backgroundExtensionEffect"
     },
     {
+      "name": "backgroundStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "placeholder",
+          "ios": 17
+        },
+        {
+          "name": "link",
+          "ios": 17
+        },
+        {
+          "name": "selection",
+          "ios": 15
+        },
+        {
+          "name": "windowBackground",
+          "ios": 17
+        },
+        {
+          "name": "fill",
+          "ios": 17
+        },
+        {
+          "name": "regularMaterial",
+          "ios": 15
+        },
+        {
+          "name": "thickMaterial",
+          "ios": 15
+        },
+        {
+          "name": "thinMaterial",
+          "ios": 15
+        },
+        {
+          "name": "ultraThinMaterial",
+          "ios": 15
+        },
+        {
+          "name": "ultraThickMaterial",
+          "ios": 15
+        },
+        {
+          "name": "bar",
+          "ios": 15
+        },
+        {
+          "name": "primary",
+          "ios": 15
+        },
+        {
+          "name": "secondary",
+          "ios": 15
+        },
+        {
+          "name": "tertiary",
+          "ios": 15
+        },
+        {
+          "name": "quaternary",
+          "ios": 15
+        },
+        {
+          "name": "quinary",
+          "ios": 16
+        },
+        {
+          "name": "red",
+          "ios": 13
+        },
+        {
+          "name": "orange",
+          "ios": 13
+        },
+        {
+          "name": "yellow",
+          "ios": 13
+        },
+        {
+          "name": "green",
+          "ios": 13
+        },
+        {
+          "name": "mint",
+          "ios": 15
+        },
+        {
+          "name": "teal",
+          "ios": 15
+        },
+        {
+          "name": "cyan",
+          "ios": 15
+        },
+        {
+          "name": "blue",
+          "ios": 13
+        },
+        {
+          "name": "indigo",
+          "ios": 15
+        },
+        {
+          "name": "purple",
+          "ios": 13
+        },
+        {
+          "name": "pink",
+          "ios": 13
+        },
+        {
+          "name": "brown",
+          "ios": 15
+        },
+        {
+          "name": "white",
+          "ios": 13
+        },
+        {
+          "name": "gray",
+          "ios": 13
+        },
+        {
+          "name": "black",
+          "ios": 13
+        },
+        {
+          "name": "clear",
+          "ios": 13
+        },
+        {
+          "name": "separator",
+          "ios": 17
+        },
+        {
+          "name": "background",
+          "ios": 14
+        },
+        {
+          "name": "foreground",
+          "ios": 13
+        },
+        {
+          "name": "tint",
+          "ios": 15
+        }
+      ]
+    },
+    {
       "name": "badgeProminence",
       "kind": "string",
       "type": "SwiftUI.BadgeProminence",
@@ -2277,6 +2428,42 @@
         {
           "name": "fitted",
           "ios": 26
+        }
+      ]
+    },
+    {
+      "name": "buttonStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 13
+        },
+        {
+          "name": "glass",
+          "ios": 26
+        },
+        {
+          "name": "borderless",
+          "ios": 13
+        },
+        {
+          "name": "glassProminent",
+          "ios": 26
+        },
+        {
+          "name": "plain",
+          "ios": 13
+        },
+        {
+          "name": "bordered",
+          "ios": 15
+        },
+        {
+          "name": "borderedProminent",
+          "ios": 15
         }
       ]
     },
@@ -2810,6 +2997,34 @@
       "ios": 13
     },
     {
+      "name": "controlGroupStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "palette",
+          "ios": 17
+        },
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "navigation",
+          "ios": 15
+        },
+        {
+          "name": "menu",
+          "ios": 16.4
+        },
+        {
+          "name": "compactMenu",
+          "ios": 16.4
+        }
+      ]
+    },
+    {
       "name": "controlSize",
       "kind": "string",
       "type": "SwiftUICore.ControlSize",
@@ -2834,6 +3049,30 @@
         {
           "name": "extraLarge",
           "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "datePickerStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "wheel",
+          "ios": 13
+        },
+        {
+          "name": "automatic",
+          "ios": 13
+        },
+        {
+          "name": "graphical",
+          "ios": 14
+        },
+        {
+          "name": "compact",
+          "ios": 14
         }
       ]
     },
@@ -3088,6 +3327,18 @@
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 13
+    },
+    {
+      "name": "disclosureGroupStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16
+        }
+      ]
     },
     {
       "name": "documentLaunchSubtitle",
@@ -3492,6 +3743,58 @@
       ]
     },
     {
+      "name": "formStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "columns",
+          "ios": 16
+        },
+        {
+          "name": "grouped",
+          "ios": 16
+        },
+        {
+          "name": "automatic",
+          "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "gaugeStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "accessoryCircularCapacity",
+          "ios": 16
+        },
+        {
+          "name": "linearCapacity",
+          "ios": 16
+        },
+        {
+          "name": "accessoryLinear",
+          "ios": 16
+        },
+        {
+          "name": "accessoryLinearCapacity",
+          "ios": 16
+        },
+        {
+          "name": "automatic",
+          "ios": 16
+        },
+        {
+          "name": "accessoryCircular",
+          "ios": 16
+        }
+      ]
+    },
+    {
       "name": "geometryGroup",
       "kind": "boolean",
       "type": "",
@@ -3619,6 +3922,18 @@
         {
           "name": "listRowSeparatorTrailing",
           "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "groupBoxStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 14
         }
       ]
     },
@@ -3961,6 +4276,18 @@
         }
       ],
       "sdkName": "ignoresSafeArea"
+    },
+    {
+      "name": "indexViewStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "page",
+          "ios": 14
+        }
+      ]
     },
     {
       "name": "inspectorColumnWidthWithCGFloat",
@@ -4329,6 +4656,18 @@
       "sdkName": "keyboardShortcut"
     },
     {
+      "name": "labeledContentStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16
+        }
+      ]
+    },
+    {
       "name": "labelIconToTitleSpacing",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
@@ -4346,6 +4685,30 @@
       "type": "",
       "ios": 13,
       "zeroArgument": true
+    },
+    {
+      "name": "labelStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 14
+        },
+        {
+          "name": "iconOnly",
+          "ios": 14
+        },
+        {
+          "name": "titleAndIcon",
+          "ios": 14.5
+        },
+        {
+          "name": "titleOnly",
+          "ios": 14
+        }
+      ]
     },
     {
       "name": "labelsVisibility",
@@ -5012,6 +5375,38 @@
       "sdkName": "listSectionSpacing"
     },
     {
+      "name": "listStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 13
+        },
+        {
+          "name": "sidebar",
+          "ios": 14
+        },
+        {
+          "name": "inset",
+          "ios": 14
+        },
+        {
+          "name": "grouped",
+          "ios": 13
+        },
+        {
+          "name": "insetGrouped",
+          "ios": 14
+        },
+        {
+          "name": "plain",
+          "ios": 13
+        }
+      ]
+    },
+    {
       "name": "luminanceToAlpha",
       "kind": "boolean",
       "type": "",
@@ -5170,6 +5565,26 @@
         {
           "name": "fixed",
           "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "menuStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "button",
+          "ios": 16
+        },
+        {
+          "name": "automatic",
+          "ios": 14
+        },
+        {
+          "name": "borderlessButton",
+          "ios": 14
         }
       ]
     },
@@ -5343,6 +5758,26 @@
       "sdkName": "navigationSplitViewColumnWidth"
     },
     {
+      "name": "navigationSplitViewStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "balanced",
+          "ios": 16
+        },
+        {
+          "name": "prominentDetail",
+          "ios": 16
+        },
+        {
+          "name": "automatic",
+          "ios": 16
+        }
+      ]
+    },
+    {
       "name": "navigationSubtitle",
       "kind": "string",
       "type": "SwiftUICore.Text",
@@ -5364,6 +5799,26 @@
       "type": "SwiftUICore.Text",
       "ios": 14,
       "sdkName": "navigationTitle"
+    },
+    {
+      "name": "navigationViewStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "columns",
+          "ios": 15
+        },
+        {
+          "name": "automatic",
+          "ios": 13
+        },
+        {
+          "name": "stack",
+          "ios": 13
+        }
+      ]
     },
     {
       "name": "offerCodeRedemption",
@@ -5812,6 +6267,46 @@
       ]
     },
     {
+      "name": "pickerStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "wheel",
+          "ios": 13
+        },
+        {
+          "name": "inline",
+          "ios": 14
+        },
+        {
+          "name": "automatic",
+          "ios": 13
+        },
+        {
+          "name": "segmented",
+          "ios": 13
+        },
+        {
+          "name": "tabs",
+          "ios": 27
+        },
+        {
+          "name": "palette",
+          "ios": 17
+        },
+        {
+          "name": "navigationLink",
+          "ios": 16
+        },
+        {
+          "name": "menu",
+          "ios": 14
+        }
+      ]
+    },
+    {
       "name": "position",
       "kind": "record",
       "type": "",
@@ -5846,6 +6341,158 @@
         {
           "name": "dark",
           "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "presentationBackground",
+      "kind": "style",
+      "type": "S",
+      "ios": 16.4,
+      "cases": [
+        {
+          "name": "placeholder",
+          "ios": 17
+        },
+        {
+          "name": "link",
+          "ios": 17
+        },
+        {
+          "name": "selection",
+          "ios": 15
+        },
+        {
+          "name": "windowBackground",
+          "ios": 17
+        },
+        {
+          "name": "fill",
+          "ios": 17
+        },
+        {
+          "name": "regularMaterial",
+          "ios": 15
+        },
+        {
+          "name": "thickMaterial",
+          "ios": 15
+        },
+        {
+          "name": "thinMaterial",
+          "ios": 15
+        },
+        {
+          "name": "ultraThinMaterial",
+          "ios": 15
+        },
+        {
+          "name": "ultraThickMaterial",
+          "ios": 15
+        },
+        {
+          "name": "bar",
+          "ios": 15
+        },
+        {
+          "name": "primary",
+          "ios": 15
+        },
+        {
+          "name": "secondary",
+          "ios": 15
+        },
+        {
+          "name": "tertiary",
+          "ios": 15
+        },
+        {
+          "name": "quaternary",
+          "ios": 15
+        },
+        {
+          "name": "quinary",
+          "ios": 16
+        },
+        {
+          "name": "red",
+          "ios": 13
+        },
+        {
+          "name": "orange",
+          "ios": 13
+        },
+        {
+          "name": "yellow",
+          "ios": 13
+        },
+        {
+          "name": "green",
+          "ios": 13
+        },
+        {
+          "name": "mint",
+          "ios": 15
+        },
+        {
+          "name": "teal",
+          "ios": 15
+        },
+        {
+          "name": "cyan",
+          "ios": 15
+        },
+        {
+          "name": "blue",
+          "ios": 13
+        },
+        {
+          "name": "indigo",
+          "ios": 15
+        },
+        {
+          "name": "purple",
+          "ios": 13
+        },
+        {
+          "name": "pink",
+          "ios": 13
+        },
+        {
+          "name": "brown",
+          "ios": 15
+        },
+        {
+          "name": "white",
+          "ios": 13
+        },
+        {
+          "name": "gray",
+          "ios": 13
+        },
+        {
+          "name": "black",
+          "ios": 13
+        },
+        {
+          "name": "clear",
+          "ios": 13
+        },
+        {
+          "name": "separator",
+          "ios": 17
+        },
+        {
+          "name": "background",
+          "ios": 14
+        },
+        {
+          "name": "foreground",
+          "ios": 13
+        },
+        {
+          "name": "tint",
+          "ios": 15
         }
       ]
     },
@@ -6101,6 +6748,26 @@
       "ios": 17,
       "zeroArgument": true,
       "framework": "StoreKit"
+    },
+    {
+      "name": "progressViewStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "linear",
+          "ios": 14
+        },
+        {
+          "name": "circular",
+          "ios": 14
+        },
+        {
+          "name": "automatic",
+          "ios": 14
+        }
+      ]
     },
     {
       "name": "realityViewLayoutBehavior",
@@ -7706,6 +8373,22 @@
       ]
     },
     {
+      "name": "tableStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "inset",
+          "ios": 16
+        },
+        {
+          "name": "automatic",
+          "ios": 16
+        }
+      ]
+    },
+    {
       "name": "tabViewSearchActivation",
       "kind": "string",
       "type": "SwiftUI.TabSearchActivation",
@@ -7718,6 +8401,54 @@
         {
           "name": "searchTabSelection",
           "ios": 26
+        }
+      ]
+    },
+    {
+      "name": "tabViewStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "sidebarAdaptable",
+          "ios": 18
+        },
+        {
+          "name": "page",
+          "ios": 14
+        },
+        {
+          "name": "tabBarOnly",
+          "ios": 18
+        },
+        {
+          "name": "automatic",
+          "ios": 14
+        }
+      ]
+    },
+    {
+      "name": "textFieldStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 13
+        },
+        {
+          "name": "roundedBorder",
+          "ios": 13
+        },
+        {
+          "name": "bordered",
+          "ios": 27
+        },
+        {
+          "name": "plain",
+          "ios": 13
         }
       ]
     },
@@ -7852,6 +8583,22 @@
       ]
     },
     {
+      "name": "textSelection",
+      "kind": "style",
+      "type": "S",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "enabled",
+          "ios": 15
+        },
+        {
+          "name": "disabled",
+          "ios": 15
+        }
+      ]
+    },
+    {
       "name": "textSelectionAffinity",
       "kind": "string",
       "type": "SwiftUI.TextSelectionAffinity",
@@ -7868,6 +8615,26 @@
         {
           "name": "downstream",
           "ios": 18
+        }
+      ]
+    },
+    {
+      "name": "toggleStyle",
+      "kind": "style",
+      "type": "S",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "button",
+          "ios": 15
+        },
+        {
+          "name": "automatic",
+          "ios": 13
+        },
+        {
+          "name": "switch",
+          "ios": 13
         }
       ]
     },
@@ -8727,6 +9494,23 @@
       ]
     },
     {
+      "name": "webViewTextSelection",
+      "kind": "style",
+      "type": "S",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "enabled",
+          "ios": 15
+        },
+        {
+          "name": "disabled",
+          "ios": 15
+        }
+      ],
+      "framework": "WebKit"
+    },
+    {
       "name": "windowToolbarFullScreenVisibility",
       "kind": "string",
       "type": "SwiftUI.WindowToolbarFullScreenVisibility",
@@ -8872,6 +9656,7 @@
         "animation",
         "aspectRatio",
         "background",
+        "backgroundStyle",
         "baselineOffset",
         "blendMode",
         "blur",
@@ -9003,6 +9788,7 @@
         "deleteDisabled",
         "dialogSuppressionToggle",
         "disableAutocorrection",
+        "disclosureGroupStyle",
         "documentLaunchSubtitle",
         "documentLaunchTitle",
         "fileDialogBrowserOptions",
@@ -9017,15 +9803,18 @@
         "flipsForRightToLeftLayoutDirection",
         "focusEffectDisabled",
         "focusable",
+        "formStyle",
         "fullScreenCover",
         "gaugeStyle",
         "gridCellAnchor",
         "gridCellColumns",
         "gridCellUnsizedAxes",
         "gridColumnAlignment",
+        "groupBoxStyle",
         "handGestureShortcut",
         "help",
         "hidden",
+        "indexViewStyle",
         "inspectorColumnWidth",
         "interactionActivityTrackingTag",
         "interactiveDismissDisabled",
@@ -9033,6 +9822,8 @@
         "keyboardShortcut",
         "labelIconToTitleSpacing",
         "labelReservedIconWidth",
+        "labelStyle",
+        "labeledContentStyle",
         "labelsHidden",
         "labelsVisibility",
         "listItemTint",
@@ -9049,14 +9840,17 @@
         "menuActionDismissBehavior",
         "menuIndicator",
         "menuOrder",
+        "menuStyle",
         "moveDisabled",
         "navigationBarBackButtonHidden",
         "navigationBarHidden",
         "navigationBarTitle",
         "navigationLinkIndicatorVisibility",
         "navigationSplitViewColumnWidth",
+        "navigationSplitViewStyle",
         "navigationSubtitle",
         "navigationTitle",
+        "navigationViewStyle",
         "onHover",
         "onInteractiveResizeChange",
         "onLongPressGesture",
@@ -9117,9 +9911,11 @@
         "tabViewSidebarHeader",
         "tabViewStyle",
         "tableColumnHeaders",
+        "tableStyle",
         "textFieldStyle",
         "textInputAutocapitalization",
         "textInputFormattingControlVisibility",
+        "textSelection",
         "textSelectionAffinity",
         "toggleStyle",
         "toolbar",
@@ -9184,7 +9980,8 @@
         "webViewContentBackground",
         "webViewElementFullscreenBehavior",
         "webViewLinkPreviews",
-        "webViewMagnificationGestures"
+        "webViewMagnificationGestures",
+        "webViewTextSelection"
       ],
       "_QuickLook_SwiftUI": [
         "quickLookPreview"
