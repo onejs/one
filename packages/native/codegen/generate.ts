@@ -96,7 +96,8 @@ for (const modifier of derivedModifiers) {
   const declaration = inventory.find(
     (d) =>
       d.kind === 'func' &&
-      d.name === modifier.name &&
+      d.name === (modifier.sdkName ?? modifier.name) &&
+      (!modifier.module || d.module === modifier.module) &&
       (modifier.zeroArgument
         ? d.parameters.length === 0
         : d.parameters.some((parameter) => parameter.type === modifier.type &&

@@ -1049,6 +1049,269 @@
       "ios": 14
     },
     {
+      "name": "accessibilityWithActivationPoint",
+      "module": "SwiftUI",
+      "kind": "string",
+      "type": "SwiftUICore.UnitPoint",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "zero",
+          "ios": 13
+        },
+        {
+          "name": "center",
+          "ios": 13
+        },
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        },
+        {
+          "name": "top",
+          "ios": 13
+        },
+        {
+          "name": "bottom",
+          "ios": 13
+        },
+        {
+          "name": "topLeading",
+          "ios": 13
+        },
+        {
+          "name": "topTrailing",
+          "ios": 13
+        },
+        {
+          "name": "bottomLeading",
+          "ios": 13
+        },
+        {
+          "name": "bottomTrailing",
+          "ios": 13
+        }
+      ],
+      "label": "activationPoint",
+      "sdkName": "accessibility"
+    },
+    {
+      "name": "accessibilityWithAddTraits",
+      "module": "SwiftUI",
+      "kind": "string",
+      "type": "SwiftUICore.AccessibilityTraits",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "isButton",
+          "ios": 13
+        },
+        {
+          "name": "isHeader",
+          "ios": 13
+        },
+        {
+          "name": "isSelected",
+          "ios": 13
+        },
+        {
+          "name": "isLink",
+          "ios": 13
+        },
+        {
+          "name": "isSearchField",
+          "ios": 13
+        },
+        {
+          "name": "isImage",
+          "ios": 13
+        },
+        {
+          "name": "playsSound",
+          "ios": 13
+        },
+        {
+          "name": "isKeyboardKey",
+          "ios": 13
+        },
+        {
+          "name": "isStaticText",
+          "ios": 13
+        },
+        {
+          "name": "isSummaryElement",
+          "ios": 13
+        },
+        {
+          "name": "updatesFrequently",
+          "ios": 13
+        },
+        {
+          "name": "startsMediaSession",
+          "ios": 13
+        },
+        {
+          "name": "allowsDirectInteraction",
+          "ios": 13
+        },
+        {
+          "name": "causesPageTurn",
+          "ios": 13
+        },
+        {
+          "name": "isModal",
+          "ios": 13
+        },
+        {
+          "name": "isToggle",
+          "ios": 17
+        },
+        {
+          "name": "isTabBar",
+          "ios": 17
+        }
+      ],
+      "label": "addTraits",
+      "sdkName": "accessibility"
+    },
+    {
+      "name": "accessibilityWithHidden",
+      "module": "SwiftUI",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13,
+      "label": "hidden",
+      "sdkName": "accessibility"
+    },
+    {
+      "name": "accessibilityWithHint",
+      "module": "SwiftUI",
+      "kind": "string",
+      "type": "SwiftUICore.Text",
+      "ios": 13,
+      "label": "hint",
+      "sdkName": "accessibility"
+    },
+    {
+      "name": "accessibilityWithIdentifier",
+      "module": "SwiftUI",
+      "kind": "string",
+      "type": "Swift.String",
+      "ios": 13,
+      "label": "identifier",
+      "sdkName": "accessibility"
+    },
+    {
+      "name": "accessibilityWithLabel",
+      "module": "SwiftUI",
+      "kind": "string",
+      "type": "SwiftUICore.Text",
+      "ios": 13,
+      "label": "label",
+      "sdkName": "accessibility"
+    },
+    {
+      "name": "accessibilityWithRemoveTraits",
+      "module": "SwiftUI",
+      "kind": "string",
+      "type": "SwiftUICore.AccessibilityTraits",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "isButton",
+          "ios": 13
+        },
+        {
+          "name": "isHeader",
+          "ios": 13
+        },
+        {
+          "name": "isSelected",
+          "ios": 13
+        },
+        {
+          "name": "isLink",
+          "ios": 13
+        },
+        {
+          "name": "isSearchField",
+          "ios": 13
+        },
+        {
+          "name": "isImage",
+          "ios": 13
+        },
+        {
+          "name": "playsSound",
+          "ios": 13
+        },
+        {
+          "name": "isKeyboardKey",
+          "ios": 13
+        },
+        {
+          "name": "isStaticText",
+          "ios": 13
+        },
+        {
+          "name": "isSummaryElement",
+          "ios": 13
+        },
+        {
+          "name": "updatesFrequently",
+          "ios": 13
+        },
+        {
+          "name": "startsMediaSession",
+          "ios": 13
+        },
+        {
+          "name": "allowsDirectInteraction",
+          "ios": 13
+        },
+        {
+          "name": "causesPageTurn",
+          "ios": 13
+        },
+        {
+          "name": "isModal",
+          "ios": 13
+        },
+        {
+          "name": "isToggle",
+          "ios": 17
+        },
+        {
+          "name": "isTabBar",
+          "ios": 17
+        }
+      ],
+      "label": "removeTraits",
+      "sdkName": "accessibility"
+    },
+    {
+      "name": "accessibilityWithSortPriority",
+      "module": "SwiftUI",
+      "kind": "number",
+      "type": "Swift.Double",
+      "ios": 13,
+      "label": "sortPriority",
+      "sdkName": "accessibility"
+    },
+    {
+      "name": "accessibilityWithValue",
+      "module": "SwiftUI",
+      "kind": "string",
+      "type": "SwiftUICore.Text",
+      "ios": 13,
+      "label": "value",
+      "sdkName": "accessibility"
+    },
+    {
       "name": "addPassToWalletButtonStyle",
       "kind": "string",
       "type": "_PassKit_SwiftUI.AddPassToWalletButtonStyle",
@@ -1096,6 +1359,23 @@
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 13
+    },
+    {
+      "name": "allowsWindowActivationEventsWithNoArguments",
+      "module": "SwiftUI",
+      "kind": "boolean",
+      "type": "",
+      "ios": 18,
+      "zeroArgument": true,
+      "sdkName": "allowsWindowActivationEvents"
+    },
+    {
+      "name": "allowsWindowActivationEventsWithOptionalBool",
+      "module": "SwiftUI",
+      "kind": "optionalBoolean",
+      "type": "Swift.Bool?",
+      "ios": 18,
+      "sdkName": "allowsWindowActivationEvents"
     },
     {
       "name": "animation",
@@ -1163,6 +1443,24 @@
       "ios": 13
     },
     {
+      "name": "backgroundExtensionEffectWithIsEnabled",
+      "module": "SwiftUI",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 26,
+      "label": "isEnabled",
+      "sdkName": "backgroundExtensionEffect"
+    },
+    {
+      "name": "backgroundExtensionEffectWithNoArguments",
+      "module": "SwiftUI",
+      "kind": "boolean",
+      "type": "",
+      "ios": 26,
+      "zeroArgument": true,
+      "sdkName": "backgroundExtensionEffect"
+    },
+    {
       "name": "badgeProminence",
       "kind": "string",
       "type": "SwiftUI.BadgeProminence",
@@ -1181,6 +1479,22 @@
           "ios": 17
         }
       ]
+    },
+    {
+      "name": "badgeWithInt",
+      "module": "SwiftUI",
+      "kind": "number",
+      "type": "Swift.Int",
+      "ios": 15,
+      "sdkName": "badge"
+    },
+    {
+      "name": "badgeWithOptionalText",
+      "module": "SwiftUI",
+      "kind": "optionalString",
+      "type": "SwiftUICore.Text?",
+      "ios": 15,
+      "sdkName": "badge"
     },
     {
       "name": "baselineOffset",
@@ -2240,6 +2554,42 @@
       "ios": 16
     },
     {
+      "name": "keyboardShortcutWithKeyboardShortcut",
+      "module": "SwiftUI",
+      "kind": "string",
+      "type": "SwiftUI.KeyboardShortcut",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "defaultAction",
+          "ios": 14
+        },
+        {
+          "name": "cancelAction",
+          "ios": 14
+        }
+      ],
+      "sdkName": "keyboardShortcut"
+    },
+    {
+      "name": "keyboardShortcutWithOptionalKeyboardShortcut",
+      "module": "SwiftUI",
+      "kind": "optionalEnum",
+      "type": "SwiftUI.KeyboardShortcut?",
+      "ios": 15.4,
+      "cases": [
+        {
+          "name": "defaultAction",
+          "ios": 14
+        },
+        {
+          "name": "cancelAction",
+          "ios": 14
+        }
+      ],
+      "sdkName": "keyboardShortcut"
+    },
+    {
       "name": "labelIconToTitleSpacing",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
@@ -2313,6 +2663,106 @@
       "ios": 13
     },
     {
+      "name": "listItemTintWithOptionalColor",
+      "module": "SwiftUI",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.Color?",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "accentColor",
+          "ios": 13
+        },
+        {
+          "name": "red",
+          "ios": 13
+        },
+        {
+          "name": "orange",
+          "ios": 13
+        },
+        {
+          "name": "yellow",
+          "ios": 13
+        },
+        {
+          "name": "green",
+          "ios": 13
+        },
+        {
+          "name": "mint",
+          "ios": 15
+        },
+        {
+          "name": "teal",
+          "ios": 15
+        },
+        {
+          "name": "cyan",
+          "ios": 15
+        },
+        {
+          "name": "blue",
+          "ios": 13
+        },
+        {
+          "name": "indigo",
+          "ios": 15
+        },
+        {
+          "name": "purple",
+          "ios": 13
+        },
+        {
+          "name": "pink",
+          "ios": 13
+        },
+        {
+          "name": "brown",
+          "ios": 15
+        },
+        {
+          "name": "white",
+          "ios": 13
+        },
+        {
+          "name": "gray",
+          "ios": 13
+        },
+        {
+          "name": "black",
+          "ios": 13
+        },
+        {
+          "name": "clear",
+          "ios": 13
+        },
+        {
+          "name": "primary",
+          "ios": 13
+        },
+        {
+          "name": "secondary",
+          "ios": 13
+        }
+      ],
+      "sdkName": "listItemTint"
+    },
+    {
+      "name": "listItemTintWithOptionalListItemTint",
+      "module": "SwiftUI",
+      "kind": "optionalEnum",
+      "type": "SwiftUI.ListItemTint?",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "monochrome",
+          "ios": 14
+        }
+      ],
+      "sdkName": "listItemTint"
+    },
+    {
       "name": "listRowSpacing",
       "kind": "optionalNumber",
       "type": "CoreFoundation.CGFloat?",
@@ -2337,6 +2787,32 @@
           "ios": 15
         }
       ]
+    },
+    {
+      "name": "listSectionSpacingWithCGFloat",
+      "module": "SwiftUI",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 17,
+      "sdkName": "listSectionSpacing"
+    },
+    {
+      "name": "listSectionSpacingWithListSectionSpacing",
+      "module": "SwiftUI",
+      "kind": "string",
+      "type": "SwiftUI.ListSectionSpacing",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "default",
+          "ios": 17
+        },
+        {
+          "name": "compact",
+          "ios": 17
+        }
+      ],
+      "sdkName": "listSectionSpacing"
     },
     {
       "name": "luminanceToAlpha",
@@ -2526,6 +3002,51 @@
       "ios": 13
     },
     {
+      "name": "multilineTextAlignmentWithStrategy",
+      "module": "SwiftUICore",
+      "kind": "string",
+      "type": "SwiftUICore.Text.AlignmentStrategy",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "layoutBased",
+          "ios": 26
+        },
+        {
+          "name": "writingDirectionBased",
+          "ios": 26
+        },
+        {
+          "name": "default",
+          "ios": 26
+        }
+      ],
+      "label": "strategy",
+      "sdkName": "multilineTextAlignment"
+    },
+    {
+      "name": "multilineTextAlignmentWithTextAlignment",
+      "module": "SwiftUICore",
+      "kind": "string",
+      "type": "SwiftUICore.TextAlignment",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "center",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        }
+      ],
+      "sdkName": "multilineTextAlignment"
+    },
+    {
       "name": "musicSubscriptionOffer",
       "kind": "bindingBoolean",
       "type": "SwiftUICore.Binding<Swift.Bool>",
@@ -2598,6 +3119,23 @@
       "ios": 26
     },
     {
+      "name": "navigationTitleWithBindingString",
+      "module": "SwiftUI",
+      "kind": "bindingString",
+      "type": "SwiftUICore.Binding<Swift.String>",
+      "label": "_",
+      "ios": 16,
+      "sdkName": "navigationTitle"
+    },
+    {
+      "name": "navigationTitleWithText",
+      "module": "SwiftUI",
+      "kind": "string",
+      "type": "SwiftUICore.Text",
+      "ios": 14,
+      "sdkName": "navigationTitle"
+    },
+    {
       "name": "offerCodeRedemption",
       "kind": "bindingBoolean",
       "type": "SwiftUICore.Binding<Swift.Bool>",
@@ -2644,6 +3182,91 @@
       "ios": 26
     },
     {
+      "name": "onLongPressGestureWithPerform",
+      "module": "SwiftUI",
+      "kind": "event",
+      "type": "@escaping () -> Swift.Void",
+      "label": "perform",
+      "ios": 13,
+      "callArguments": [
+        {
+          "label": "minimumDuration",
+          "defaultValue": "0.5"
+        },
+        {
+          "label": "maximumDistance",
+          "defaultValue": "10"
+        },
+        {
+          "label": "perform",
+          "bridge": true
+        },
+        {
+          "label": "onPressingChanged",
+          "defaultValue": "nil"
+        }
+      ],
+      "sdkName": "onLongPressGesture"
+    },
+    {
+      "name": "onLongPressGestureWithPerformFromSwiftUI",
+      "module": "SwiftUI",
+      "kind": "event",
+      "type": "@escaping () -> Swift.Void",
+      "label": "perform",
+      "ios": 27,
+      "callArguments": [
+        {
+          "label": "minimumDuration",
+          "defaultValue": "0.5"
+        },
+        {
+          "label": "maximumDistance",
+          "defaultValue": "10"
+        },
+        {
+          "label": "inputKinds",
+          "defaultValue": ".all"
+        },
+        {
+          "label": "perform",
+          "bridge": true
+        },
+        {
+          "label": "onPressingChanged",
+          "defaultValue": "nil"
+        }
+      ],
+      "sdkName": "onLongPressGesture"
+    },
+    {
+      "name": "onLongPressGestureWithPerformFromSwiftUIVariant",
+      "module": "SwiftUI",
+      "kind": "event",
+      "type": "@escaping () -> Swift.Void",
+      "label": "perform",
+      "ios": 13,
+      "callArguments": [
+        {
+          "label": "minimumDuration",
+          "defaultValue": "0.5"
+        },
+        {
+          "label": "maximumDistance",
+          "defaultValue": "10"
+        },
+        {
+          "label": "pressing",
+          "defaultValue": "nil"
+        },
+        {
+          "label": "perform",
+          "bridge": true
+        }
+      ],
+      "sdkName": "onLongPressGesture"
+    },
+    {
       "name": "onMapCameraChange",
       "kind": "event",
       "type": "@escaping () -> Swift.Void",
@@ -2660,6 +3283,24 @@
           "bridge": true
         }
       ]
+    },
+    {
+      "name": "onOpenURLWithPerform",
+      "module": "SwiftUI",
+      "kind": "eventString",
+      "type": "@escaping (Foundation.URL) -> ()",
+      "label": "perform",
+      "ios": 14,
+      "sdkName": "onOpenURL"
+    },
+    {
+      "name": "onOpenURLWithPrefersInApp",
+      "module": "SwiftUICore",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 26,
+      "label": "prefersInApp",
+      "sdkName": "onOpenURL"
     },
     {
       "name": "onScrollVisibilityChange",
@@ -4225,8 +4866,10 @@
         "minimumScaleFactor",
         "monospaced",
         "monospacedDigit",
+        "multilineTextAlignment",
         "onAppear",
         "onDisappear",
+        "onOpenURL",
         "onTapGesture",
         "opacity",
         "padding",
@@ -4254,6 +4897,7 @@
         "zIndex"
       ],
       "SwiftUI": [
+        "accessibility",
         "accessibilityAction",
         "accessibilityActivationPoint",
         "accessibilityAddTraits",
@@ -4269,8 +4913,11 @@
         "accessibilityTextContentType",
         "accessibilityValue",
         "alert",
+        "allowsWindowActivationEvents",
         "assistiveAccessNavigationIcon",
         "autocorrectionDisabled",
+        "backgroundExtensionEffect",
+        "badge",
         "badgeProminence",
         "buttonBorderShape",
         "buttonRepeatBehavior",
@@ -4312,12 +4959,15 @@
         "interactionActivityTrackingTag",
         "interactiveDismissDisabled",
         "invalidatableContent",
+        "keyboardShortcut",
         "labelIconToTitleSpacing",
         "labelReservedIconWidth",
         "labelsHidden",
         "labelsVisibility",
+        "listItemTint",
         "listRowSpacing",
         "listSectionIndexVisibility",
+        "listSectionSpacing",
         "listStyle",
         "menuActionDismissBehavior",
         "menuIndicator",
@@ -4329,8 +4979,11 @@
         "navigationLinkIndicatorVisibility",
         "navigationSplitViewColumnWidth",
         "navigationSubtitle",
+        "navigationTitle",
         "onHover",
         "onInteractiveResizeChange",
+        "onLongPressGesture",
+        "onOpenURL",
         "onScrollVisibilityChange",
         "onSubmit",
         "paletteSelectionEffect",
