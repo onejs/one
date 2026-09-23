@@ -151,7 +151,7 @@ ${modifier.kind === 'optionalEnum' ? `      case "null": ${apply(`nil as ${modif
 ${modifier.cases
   .map(
     (item) =>
-      `      case ${JSON.stringify(item.name)}: ${apply(`${modifier.type.replace(/\?$/, '')}.${item.name}`, Math.max(modifier.ios, item.ios))}`
+      `      case ${JSON.stringify(item.name)}: ${apply(modifier.kind === 'style' ? `.${item.name}` : `${modifier.type.replace(/\?$/, '')}.${item.name}`, Math.max(modifier.ios, item.ios))}`
   )
   .join('\n')}
     default: preconditionFailure("invalid ${modifier.name}: \\(value)")
