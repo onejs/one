@@ -31,6 +31,7 @@ import type {
   SwipeActionsProps,
   TabProps,
   TabsProps,
+  TabViewBottomAccessoryProps,
   ZStackProps,
 } from './types'
 
@@ -39,6 +40,9 @@ function Tabs(_props: TabsProps): never {
 }
 function Tab(_props: TabProps): never {
   throw new Error('Swift.Tab requires an iOS native build with @vxrn/native installed')
+}
+function TabViewBottomAccessory(_props: TabViewBottomAccessoryProps): never {
+  throw new Error('Swift.TabViewBottomAccessory requires an iOS native build with @vxrn/native installed')
 }
 function Menu(_props: MenuProps): never {
   throw new Error('Swift.Menu requires an iOS native build with @vxrn/native installed')
@@ -160,6 +164,7 @@ function Pager(_props: PagerProps): never {
 export const Swift = {
   Tabs,
   Tab,
+  TabViewBottomAccessory,
   Menu,
   ContextMenu,
   Sheet,

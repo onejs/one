@@ -138,13 +138,29 @@ private struct TabsContent: View {
 
   var body: some View {
     Group {
-      if #available(iOS 18.0, *) {
+      if #available(iOS 26.0, *), accessoryInline != nil {
+        modernTabs.tabViewBottomAccessory {
+          AccessoryContent(inline: accessoryInline, expanded: accessoryExpanded, host: host)
+        }
+      } else if #available(iOS 18.0, *) {
         modernTabs
       } else {
         legacyTabs
       }
     }
     .oneNativeTabBarMinimizeBehavior(model.tabBarMinimizeBehavior)
+  }
+
+  private var tabPages: [OneNativeTabItem] {
+    model.pages.filter { !$0.id.hasPrefix("__one_native_accessory_") }
+  }
+
+  private var accessoryInline: OneNativeTabItem? {
+    model.pages.first { $0.id == "__one_native_accessory_inline__" }
+  }
+
+  private var accessoryExpanded: OneNativeTabItem? {
+    model.pages.first { $0.id == "__one_native_accessory_expanded__" }
   }
 
   @available(iOS 18.0, *)
@@ -158,7 +174,7 @@ private struct TabsContent: View {
   @available(iOS 18.0, *)
   private var tabs: some View {
     TabView(selection: Binding(get: { model.controlled.value }, set: { model.select($0) })) {
-      ForEach(model.pages) { page in
+      ForEach(tabPages) { page in
         OneNativeGenerated.tab(id: page.id, title: page.title, systemImage: page.systemImage, badge: page.badge, role: page.role) {
           OneNativeSlot(content: page.view, mode: .fill, layoutHost: host, onLayout: page.onLayout)
         }
@@ -170,7 +186,7 @@ private struct TabsContent: View {
 
   private var legacyTabs: some View {
     TabView(selection: Binding(get: { model.controlled.value }, set: { model.select($0) })) {
-      ForEach(model.pages) { page in
+      ForEach(tabPages) { page in
         OneNativeSlot(content: page.view, mode: .fill, layoutHost: host, onLayout: page.onLayout)
           .tabItem {
             if page.systemImage.isEmpty {
@@ -185,5 +201,20 @@ private struct TabsContent: View {
     }
     .onAppear { model.publishPendingAction() }
     .id(model.tabViewRevision)
+  }
+}
+
+@available(iOS 26.0, *)
+private struct AccessoryContent: View {
+  @Environment(\.tabViewBottomAccessoryPlacement) private var placement
+  let inline: OneNativeTabItem?
+  let expanded: OneNativeTabItem?
+  weak var host: OneNativeTabsView?
+
+  var body: some View {
+    if let page = placement == .expanded ? (expanded ?? inline) : (inline ?? expanded) {
+      OneNativeSlot(content: page.view, mode: .fill, layoutHost: host, onLayout: page.onLayout)
+        .frame(height: 52)
+    }
   }
 }

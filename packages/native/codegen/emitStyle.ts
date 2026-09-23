@@ -1,14 +1,69 @@
-import { styleFields } from './catalog'
+import type { StyleField } from './catalog'
+import type { DerivedModifier } from './deriveSDK'
 
-export function emitStyle(header: string, outputs: Map<string, string>) {
+export function emitStyle(
+  header: string,
+  outputs: Map<string, string>,
+  styleFields: readonly StyleField[],
+  derived: readonly DerivedModifier[]
+) {
   // fabric runs processColor only on a top-level ColorValue prop, through the view
   // config; a color inside a struct prop reaches the native parser raw, and it reads an
   // unprocessed string as clear. every swiftStyle color is processed on the way out.
   const colorFields = styleFields.filter((field) => field.kind === 'color')
+  const generatedCalls = derived
+    .map(
+      (modifier) =>
+        `      case ${JSON.stringify(modifier.name)}: view = AnyView(view.oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}(value))`
+    )
+    .join('\n')
+  const generatedMethods = derived
+    .map((modifier) => {
+      const helper = `oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}`
+      const apply = (value: string, version: number) =>
+        version > 17
+          ? `if #available(iOS ${version}, *) { self.${modifier.name}(${value}) } else { self }`
+          : `self.${modifier.name}(${value})`
+      if (modifier.cases) {
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String) -> some View {
+    switch value {
+${modifier.cases
+  .map(
+    (item) =>
+      `      case ${JSON.stringify(item.name)}: ${apply(`.${item.name}`, Math.max(modifier.ios, item.ios))}`
+  )
+  .join('\n')}
+    default: preconditionFailure("invalid ${modifier.name}: \\(value)")
+    }
+  }`
+      }
+      const parsed =
+        modifier.kind === 'boolean'
+          ? `      let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")
+      ${apply('value == "true"', modifier.ios)}`
+          : modifier.kind === 'number'
+            ? `      if let number = Double(value), number.isFinite {
+        ${apply(
+          modifier.type === 'CoreFoundation.CGFloat'
+            ? 'CGFloat(number)'
+            : modifier.type === 'Swift.Float'
+              ? 'Float(number)'
+              : modifier.type === 'Swift.Int'
+                ? 'Int(number)'
+                : 'number',
+          modifier.ios
+        )}
+      } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
+            : `      ${apply('value', modifier.ios)}`
+      return `  @ViewBuilder fileprivate func ${helper}(_ value: String) -> some View {
+${parsed}
+  }`
+    })
+    .join('\n\n')
   outputs.set(
     'src/generated/swiftStyleNative.ts',
     header +
-      `import { processColor, type ProcessedColorValue } from 'react-native'
+      `import { processColor, type ColorValue, type ProcessedColorValue } from 'react-native'
 import type { OneNativeStyle } from './controlTypes'
 
 export type OneNativeStyleNative = Readonly<{
@@ -18,21 +73,32 @@ ${styleFields
       `  ${field.name}?: ${field.kind === 'number' ? 'number' : field.kind === 'boolean' ? 'boolean' : field.kind === 'color' ? 'ProcessedColorValue' : 'string'}`
   )
   .join('\n')}
+  sdkModifiers?: string
 }>
 
 const colorFields = [${colorFields.map((field) => `'${field.name}'`).join(', ')}] as const
+const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [modifier.name, modifier.kind])))} as const
 
 export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeStyleNative | undefined {
   if (!style) return undefined
-  const native: { -readonly [K in keyof OneNativeStyleNative]: OneNativeStyleNative[K] } = {
-    ...style,
-${colorFields.map((field) => `    ${field.name}: undefined,`).join('\n')}
+  const native: Record<string, unknown> = {}
+  const sdkModifiers: [string, string][] = []
+  for (const [name, value] of Object.entries(style)) {
+    if (value === undefined) continue
+    if (Object.hasOwn(sdkKinds, name)) {
+      const kind = sdkKinds[name as keyof typeof sdkKinds]
+      if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite')
+      if (kind === 'boolean' && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
+      if (kind === 'string' && typeof value !== 'string') throw new Error(name + ' must be a string')
+      sdkModifiers.push([name, String(value)])
+    } else if (colorFields.includes(name as (typeof colorFields)[number])) {
+      native[name] = processColor(value as ColorValue) ?? undefined
+    } else {
+      native[name] = value
+    }
   }
-  for (const field of colorFields) {
-    const color = style[field]
-    if (color !== undefined) native[field] = processColor(color) ?? undefined
-  }
-  return native
+  if (sdkModifiers.length) native.sdkModifiers = JSON.stringify(sdkModifiers)
+  return native as OneNativeStyleNative
 }
 `
   )
@@ -74,17 +140,26 @@ import UIKit
 
 public struct OneNativeStyle: Equatable {
 ${properties}
+  public var sdkModifiers: [[String]] = []
 
   public init() {}
 
   public init(dictionary: [String: Any]) {
 ${dictionaryParsers}
+    if let json = dictionary["sdkModifiers"] as? String {
+      guard let data = json.data(using: .utf8),
+        let pairs = try? JSONDecoder().decode([[String]].self, from: data),
+        pairs.allSatisfy({ $0.count == 2 }) else {
+        preconditionFailure("invalid sdk modifiers")
+      }
+      sdkModifiers = pairs
+    }
   }
 }
 
 extension View {
   public func oneNativeStyle(_ style: OneNativeStyle) -> some View {
-    self
+    var view = AnyView(self
       .oneNativeFont(style)
       .oneNativeForegroundStyle(style.foregroundStyle)
       .oneNativeTint(style.tint)
@@ -94,7 +169,16 @@ extension View {
       .oneNativeGlassEffect(style)
       .oneNativeCornerRadius(style.cornerRadius)
       .oneNativeOpacity(style.opacity)
-      .oneNativeBorder(color: style.borderColor, width: style.borderWidth)
+      .oneNativeBorder(color: style.borderColor, width: style.borderWidth))
+    for pair in style.sdkModifiers {
+      let name = pair[0]
+      let value = pair[1]
+      switch name {
+${generatedCalls}
+      default: preconditionFailure("unknown sdk modifier: \\(name)")
+      }
+    }
+    return view
   }
 
   @ViewBuilder fileprivate func oneNativeFont(_ style: OneNativeStyle) -> some View {
@@ -280,6 +364,10 @@ extension OneNativeStyle {
     default: preconditionFailure("invalid TextStyle: \\(string)")
     }
   }
+}
+
+extension View {
+${generatedMethods}
 }
 `
   )

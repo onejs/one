@@ -9,6 +9,120 @@ export declare const glassEffectShapes: readonly ['capsule', 'circle', 'containe
 export type GlassEffectShape = (typeof glassEffectShapes)[number];
 export declare const materials: readonly ['ultraThin', 'thin', 'regular', 'thick', 'ultraThick'];
 export type Material = (typeof materials)[number];
+export declare const sdkBadgeProminenceValues: readonly ['decreased', 'standard', 'increased'];
+export type SDKBadgeProminence = (typeof sdkBadgeProminenceValues)[number];
+export declare const sdkBlendModeValues: readonly ['normal', 'multiply', 'screen', 'overlay', 'darken', 'lighten', 'colorDodge', 'colorBurn', 'softLight', 'hardLight', 'difference', 'exclusion', 'hue', 'saturation', 'color', 'luminosity', 'sourceAtop', 'destinationOver', 'destinationOut', 'plusDarker', 'plusLighter'];
+export type SDKBlendMode = (typeof sdkBlendModeValues)[number];
+export declare const sdkButtonBorderShapeValues: readonly ['automatic', 'capsule', 'roundedRectangle', 'circle'];
+export type SDKButtonBorderShape = (typeof sdkButtonBorderShapeValues)[number];
+export declare const sdkButtonRepeatBehaviorValues: readonly ['automatic', 'enabled', 'disabled'];
+export type SDKButtonRepeatBehavior = (typeof sdkButtonRepeatBehaviorValues)[number];
+export declare const sdkButtonSizingValues: readonly ['automatic', 'flexible', 'fitted'];
+export type SDKButtonSizing = (typeof sdkButtonSizingValues)[number];
+export declare const sdkColorMultiplyValues: readonly ['accentColor', 'red', 'orange', 'yellow', 'green', 'mint', 'teal', 'cyan', 'blue', 'indigo', 'purple', 'pink', 'brown', 'white', 'gray', 'black', 'clear', 'primary', 'secondary'];
+export type SDKColorMultiply = (typeof sdkColorMultiplyValues)[number];
+export declare const sdkColorSchemeValues: readonly ['light', 'dark'];
+export type SDKColorScheme = (typeof sdkColorSchemeValues)[number];
+export declare const sdkContentTransitionValues: readonly ['symbolEffect', 'identity', 'opacity', 'interpolate'];
+export type SDKContentTransition = (typeof sdkContentTransitionValues)[number];
+export declare const sdkControlSizeValues: readonly ['mini', 'small', 'regular', 'large', 'extraLarge'];
+export type SDKControlSize = (typeof sdkControlSizeValues)[number];
+export declare const sdkDefaultAdaptableTabBarPlacementValues: readonly ['automatic', 'tabBar', 'sidebar'];
+export type SDKDefaultAdaptableTabBarPlacement = (typeof sdkDefaultAdaptableTabBarPlacementValues)[number];
+export declare const sdkDynamicTypeSizeValues: readonly ['xSmall', 'small', 'medium', 'large', 'xLarge', 'xxLarge', 'xxxLarge', 'accessibility1', 'accessibility2', 'accessibility3', 'accessibility4', 'accessibility5'];
+export type SDKDynamicTypeSize = (typeof sdkDynamicTypeSizeValues)[number];
+export declare const sdkEdgesIgnoringSafeAreaValues: readonly ['top', 'leading', 'bottom', 'trailing', 'all', 'horizontal', 'vertical'];
+export type SDKEdgesIgnoringSafeArea = (typeof sdkEdgesIgnoringSafeAreaValues)[number];
+export declare const sdkFileDialogBrowserOptionsValues: readonly ['enumeratePackages', 'includeHiddenFiles', 'displayFileExtensions'];
+export type SDKFileDialogBrowserOptions = (typeof sdkFileDialogBrowserOptionsValues)[number];
+export declare const sdkGlassEffectTransitionValues: readonly ['matchedGeometry', 'materialize', 'identity'];
+export type SDKGlassEffectTransition = (typeof sdkGlassEffectTransitionValues)[number];
+export declare const sdkGridCellAnchorValues: readonly ['zero', 'center', 'leading', 'trailing', 'top', 'bottom', 'topLeading', 'topTrailing', 'bottomLeading', 'bottomTrailing'];
+export type SDKGridCellAnchor = (typeof sdkGridCellAnchorValues)[number];
+export declare const sdkGridCellUnsizedAxesValues: readonly ['horizontal', 'vertical'];
+export type SDKGridCellUnsizedAxes = (typeof sdkGridCellUnsizedAxesValues)[number];
+export declare const sdkGridColumnAlignmentValues: readonly ['leading', 'center', 'trailing', 'listRowSeparatorLeading', 'listRowSeparatorTrailing'];
+export type SDKGridColumnAlignment = (typeof sdkGridColumnAlignmentValues)[number];
+export declare const sdkHeaderProminenceValues: readonly ['standard', 'increased'];
+export type SDKHeaderProminence = (typeof sdkHeaderProminenceValues)[number];
+export declare const sdkHoverEffectValues: readonly ['automatic', 'highlight', 'lift'];
+export type SDKHoverEffect = (typeof sdkHoverEffectValues)[number];
+export declare const sdkHueRotationValues: readonly ['zero'];
+export type SDKHueRotation = (typeof sdkHueRotationValues)[number];
+export declare const sdkKeyboardShortcutValues: readonly ['defaultAction', 'cancelAction'];
+export type SDKKeyboardShortcut = (typeof sdkKeyboardShortcutValues)[number];
+export declare const sdkLabelsVisibilityValues: readonly ['automatic', 'visible', 'hidden'];
+export type SDKLabelsVisibility = (typeof sdkLabelsVisibilityValues)[number];
+export declare const sdkLayoutDirectionBehaviorValues: readonly ['fixed', 'mirrors'];
+export type SDKLayoutDirectionBehavior = (typeof sdkLayoutDirectionBehaviorValues)[number];
+export declare const sdkListSectionIndexVisibilityValues: readonly ['automatic', 'visible', 'hidden'];
+export type SDKListSectionIndexVisibility = (typeof sdkListSectionIndexVisibilityValues)[number];
+export declare const sdkMaterialActiveAppearanceValues: readonly ['automatic', 'active', 'matchWindow'];
+export type SDKMaterialActiveAppearance = (typeof sdkMaterialActiveAppearanceValues)[number];
+export declare const sdkMenuActionDismissBehaviorValues: readonly ['automatic', 'enabled', 'disabled'];
+export type SDKMenuActionDismissBehavior = (typeof sdkMenuActionDismissBehaviorValues)[number];
+export declare const sdkMenuIndicatorValues: readonly ['automatic', 'visible', 'hidden'];
+export type SDKMenuIndicator = (typeof sdkMenuIndicatorValues)[number];
+export declare const sdkMenuOrderValues: readonly ['automatic', 'priority', 'fixed'];
+export type SDKMenuOrder = (typeof sdkMenuOrderValues)[number];
+export declare const sdkMultilineTextAlignmentValues: readonly ['leading', 'center', 'trailing'];
+export type SDKMultilineTextAlignment = (typeof sdkMultilineTextAlignmentValues)[number];
+export declare const sdkNavigationLinkIndicatorVisibilityValues: readonly ['automatic', 'visible', 'hidden'];
+export type SDKNavigationLinkIndicatorVisibility = (typeof sdkNavigationLinkIndicatorVisibilityValues)[number];
+export declare const sdkPaletteSelectionEffectValues: readonly ['automatic', 'custom'];
+export type SDKPaletteSelectionEffect = (typeof sdkPaletteSelectionEffectValues)[number];
+export declare const sdkPersistentSystemOverlaysValues: readonly ['automatic', 'visible', 'hidden'];
+export type SDKPersistentSystemOverlays = (typeof sdkPersistentSystemOverlaysValues)[number];
+export declare const sdkPresentationBackgroundInteractionValues: readonly ['automatic', 'enabled', 'disabled'];
+export type SDKPresentationBackgroundInteraction = (typeof sdkPresentationBackgroundInteractionValues)[number];
+export declare const sdkPresentationCompactAdaptationValues: readonly ['automatic', 'none', 'popover', 'sheet', 'fullScreenCover'];
+export type SDKPresentationCompactAdaptation = (typeof sdkPresentationCompactAdaptationValues)[number];
+export declare const sdkPresentationContentInteractionValues: readonly ['automatic', 'resizes', 'scrolls'];
+export type SDKPresentationContentInteraction = (typeof sdkPresentationContentInteractionValues)[number];
+export declare const sdkPresentationDragIndicatorValues: readonly ['automatic', 'visible', 'hidden'];
+export type SDKPresentationDragIndicator = (typeof sdkPresentationDragIndicatorValues)[number];
+export declare const sdkPreviewInterfaceOrientationValues: readonly ['portrait', 'portraitUpsideDown', 'landscapeLeft', 'landscapeRight'];
+export type SDKPreviewInterfaceOrientation = (typeof sdkPreviewInterfaceOrientationValues)[number];
+export declare const sdkScenePaddingValues: readonly ['top', 'leading', 'bottom', 'trailing', 'all', 'horizontal', 'vertical'];
+export type SDKScenePadding = (typeof sdkScenePaddingValues)[number];
+export declare const sdkScrollContentBackgroundValues: readonly ['automatic', 'visible', 'hidden'];
+export type SDKScrollContentBackground = (typeof sdkScrollContentBackgroundValues)[number];
+export declare const sdkScrollDismissesKeyboardValues: readonly ['automatic', 'immediately', 'interactively', 'never'];
+export type SDKScrollDismissesKeyboard = (typeof sdkScrollDismissesKeyboardValues)[number];
+export declare const sdkSearchDictationBehaviorValues: readonly ['automatic'];
+export type SDKSearchDictationBehavior = (typeof sdkSearchDictationBehaviorValues)[number];
+export declare const sdkSearchPresentationToolbarBehaviorValues: readonly ['automatic', 'avoidHidingContent'];
+export type SDKSearchPresentationToolbarBehavior = (typeof sdkSearchPresentationToolbarBehaviorValues)[number];
+export declare const sdkSearchToolbarBehaviorValues: readonly ['automatic', 'minimize'];
+export type SDKSearchToolbarBehavior = (typeof sdkSearchToolbarBehaviorValues)[number];
+export declare const sdkSliderThumbVisibilityValues: readonly ['automatic', 'visible', 'hidden'];
+export type SDKSliderThumbVisibility = (typeof sdkSliderThumbVisibilityValues)[number];
+export declare const sdkSpringLoadingBehaviorValues: readonly ['automatic', 'enabled', 'disabled'];
+export type SDKSpringLoadingBehavior = (typeof sdkSpringLoadingBehaviorValues)[number];
+export declare const sdkSubmitLabelValues: readonly ['done', 'go', 'send', 'join', 'route', 'search', 'return', 'next', 'continue'];
+export type SDKSubmitLabel = (typeof sdkSubmitLabelValues)[number];
+export declare const sdkSymbolVariantValues: readonly ['none', 'circle', 'square', 'rectangle', 'fill', 'slash'];
+export type SDKSymbolVariant = (typeof sdkSymbolVariantValues)[number];
+export declare const sdkTabBarMinimizeBehaviorValues: readonly ['automatic', 'onScrollDown', 'onScrollUp', 'never'];
+export type SDKTabBarMinimizeBehavior = (typeof sdkTabBarMinimizeBehaviorValues)[number];
+export declare const sdkTableColumnHeadersValues: readonly ['automatic', 'visible', 'hidden'];
+export type SDKTableColumnHeaders = (typeof sdkTableColumnHeadersValues)[number];
+export declare const sdkTabViewSearchActivationValues: readonly ['automatic', 'searchTabSelection'];
+export type SDKTabViewSearchActivation = (typeof sdkTabViewSearchActivationValues)[number];
+export declare const sdkTextSelectionAffinityValues: readonly ['automatic', 'upstream', 'downstream'];
+export type SDKTextSelectionAffinity = (typeof sdkTextSelectionAffinityValues)[number];
+export declare const sdkToolbarRoleValues: readonly ['automatic', 'navigationStack', 'browser', 'editor'];
+export type SDKToolbarRole = (typeof sdkToolbarRoleValues)[number];
+export declare const sdkToolbarTitleDisplayModeValues: readonly ['automatic', 'large', 'inlineLarge', 'inline'];
+export type SDKToolbarTitleDisplayMode = (typeof sdkToolbarTitleDisplayModeValues)[number];
+export declare const sdkTransitionValues: readonly ['opacity', 'slide', 'identity', 'scale'];
+export type SDKTransition = (typeof sdkTransitionValues)[number];
+export declare const sdkWindowToolbarFullScreenVisibilityValues: readonly ['automatic'];
+export type SDKWindowToolbarFullScreenVisibility = (typeof sdkWindowToolbarFullScreenVisibilityValues)[number];
+export declare const sdkWritingToolsAffordanceVisibilityValues: readonly ['automatic', 'visible', 'hidden'];
+export type SDKWritingToolsAffordanceVisibility = (typeof sdkWritingToolsAffordanceVisibilityValues)[number];
+export declare const sdkWritingToolsBehaviorValues: readonly ['automatic', 'complete', 'limited', 'disabled'];
+export type SDKWritingToolsBehavior = (typeof sdkWritingToolsBehaviorValues)[number];
 export interface OneNativeStyle {
     fontSize?: number;
     fontWeight?: string;
@@ -39,6 +153,115 @@ export interface OneNativeStyle {
     glassEffectTint?: ColorValue;
     glassEffectShape?: GlassEffectShape;
     material?: Material;
+    allowsHitTesting?: boolean;
+    allowsTightening?: boolean;
+    autocorrectionDisabled?: boolean;
+    badge?: number;
+    badgeProminence?: SDKBadgeProminence;
+    baselineOffset?: number;
+    blendMode?: SDKBlendMode;
+    bold?: boolean;
+    brightness?: number;
+    buttonBorderShape?: SDKButtonBorderShape;
+    buttonRepeatBehavior?: SDKButtonRepeatBehavior;
+    buttonSizing?: SDKButtonSizing;
+    colorMultiply?: SDKColorMultiply;
+    colorScheme?: SDKColorScheme;
+    contentTransition?: SDKContentTransition;
+    contrast?: number;
+    controlSize?: SDKControlSize;
+    defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement;
+    deleteDisabled?: boolean;
+    disabled?: boolean;
+    dynamicTypeSize?: SDKDynamicTypeSize;
+    edgesIgnoringSafeArea?: SDKEdgesIgnoringSafeArea;
+    fileDialogBrowserOptions?: SDKFileDialogBrowserOptions;
+    fileDialogCustomizationID?: string;
+    fileDialogImportsUnresolvedAliases?: boolean;
+    findDisabled?: boolean;
+    flipsForRightToLeftLayoutDirection?: boolean;
+    focusable?: boolean;
+    focusEffectDisabled?: boolean;
+    glassEffectTransition?: SDKGlassEffectTransition;
+    grayscale?: number;
+    gridCellAnchor?: SDKGridCellAnchor;
+    gridCellColumns?: number;
+    gridCellUnsizedAxes?: SDKGridCellUnsizedAxes;
+    gridColumnAlignment?: SDKGridColumnAlignment;
+    headerProminence?: SDKHeaderProminence;
+    hoverEffect?: SDKHoverEffect;
+    hoverEffectDisabled?: boolean;
+    hueRotation?: SDKHueRotation;
+    inspectorColumnWidth?: number;
+    interactionActivityTrackingTag?: string;
+    interactiveDismissDisabled?: boolean;
+    invalidatableContent?: boolean;
+    italic?: boolean;
+    kerning?: number;
+    keyboardShortcut?: SDKKeyboardShortcut;
+    labelIconToTitleSpacing?: number;
+    labelReservedIconWidth?: number;
+    labelsVisibility?: SDKLabelsVisibility;
+    layoutDirectionBehavior?: SDKLayoutDirectionBehavior;
+    layoutPriority?: number;
+    lineSpacing?: number;
+    listSectionIndexVisibility?: SDKListSectionIndexVisibility;
+    materialActiveAppearance?: SDKMaterialActiveAppearance;
+    menuActionDismissBehavior?: SDKMenuActionDismissBehavior;
+    menuIndicator?: SDKMenuIndicator;
+    menuOrder?: SDKMenuOrder;
+    minimumScaleFactor?: number;
+    monospaced?: boolean;
+    moveDisabled?: boolean;
+    multilineTextAlignment?: SDKMultilineTextAlignment;
+    navigationBarBackButtonHidden?: boolean;
+    navigationBarHidden?: boolean;
+    navigationLinkIndicatorVisibility?: SDKNavigationLinkIndicatorVisibility;
+    navigationSplitViewColumnWidth?: number;
+    paletteSelectionEffect?: SDKPaletteSelectionEffect;
+    persistentSystemOverlays?: SDKPersistentSystemOverlays;
+    presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction;
+    presentationCompactAdaptation?: SDKPresentationCompactAdaptation;
+    presentationContentInteraction?: SDKPresentationContentInteraction;
+    presentationDragIndicator?: SDKPresentationDragIndicator;
+    previewInterfaceOrientation?: SDKPreviewInterfaceOrientation;
+    privacySensitive?: boolean;
+    replaceDisabled?: boolean;
+    safeAreaPadding?: number;
+    saturation?: number;
+    scenePadding?: SDKScenePadding;
+    scrollClipDisabled?: boolean;
+    scrollContentBackground?: SDKScrollContentBackground;
+    scrollDisabled?: boolean;
+    scrollDismissesKeyboard?: SDKScrollDismissesKeyboard;
+    searchCompletion?: string;
+    searchDictationBehavior?: SDKSearchDictationBehavior;
+    searchPresentationToolbarBehavior?: SDKSearchPresentationToolbarBehavior;
+    searchToolbarBehavior?: SDKSearchToolbarBehavior;
+    selectionDisabled?: boolean;
+    sliderThumbVisibility?: SDKSliderThumbVisibility;
+    speechAdjustedPitch?: number;
+    speechAlwaysIncludesPunctuation?: boolean;
+    speechAnnouncementsQueued?: boolean;
+    speechSpellsOutCharacters?: boolean;
+    springLoadingBehavior?: SDKSpringLoadingBehavior;
+    statusBarHidden?: boolean;
+    submitLabel?: SDKSubmitLabel;
+    submitScope?: boolean;
+    symbolEffectsRemoved?: boolean;
+    symbolVariant?: SDKSymbolVariant;
+    tabBarMinimizeBehavior?: SDKTabBarMinimizeBehavior;
+    tableColumnHeaders?: SDKTableColumnHeaders;
+    tabViewSearchActivation?: SDKTabViewSearchActivation;
+    textSelectionAffinity?: SDKTextSelectionAffinity;
+    toolbarRole?: SDKToolbarRole;
+    toolbarTitleDisplayMode?: SDKToolbarTitleDisplayMode;
+    tracking?: number;
+    transition?: SDKTransition;
+    windowToolbarFullScreenVisibility?: SDKWindowToolbarFullScreenVisibility;
+    writingToolsAffordanceVisibility?: SDKWritingToolsAffordanceVisibility;
+    writingToolsBehavior?: SDKWritingToolsBehavior;
+    zIndex?: number;
 }
 export type OneNativeViewProps = Pick<ViewProps, 'accessibilityLabel' | 'accessibilityHint' | 'accessibilityValue' | 'testID' | 'style' | 'onLayout'> & {
     swiftStyle?: OneNativeStyle;
@@ -92,6 +315,7 @@ export interface ToggleProps extends OneNativeViewProps {
     revision?: number;
     label?: string;
     disabled?: boolean;
+    systemImage?: string;
     toggleStyle?: Styles.ToggleStyle;
 }
 export interface SliderProps extends OneNativeViewProps {
@@ -125,16 +349,6 @@ export interface LabelProps extends OneNativeViewProps {
     label?: string;
     disabled?: boolean;
     systemImage?: string;
-}
-export interface ButtonProps extends OneNativeViewProps {
-    onPress?: () => void;
-    label?: string;
-    disabled?: boolean;
-    subtitle?: string;
-    systemImage?: string;
-    buttonRole?: Styles.ButtonRole | '';
-    buttonStyle?: Styles.PrimitiveButtonStyle;
-    disclosureIndicator?: boolean;
 }
 export interface ProgressViewProps extends OneNativeViewProps {
     label?: string;
@@ -177,6 +391,22 @@ export interface ContentUnavailableViewProps extends OneNativeViewProps {
     systemImage?: string;
     description?: string;
     actions: readonly DialogAction[];
+}
+export interface CircleProps extends OneNativeViewProps {
+    fill?: ColorValue;
+}
+export interface CapsuleProps extends OneNativeViewProps {
+    fill?: ColorValue;
+}
+export interface RectangleProps extends OneNativeViewProps {
+    fill?: ColorValue;
+}
+export interface RoundedRectangleProps extends OneNativeViewProps {
+    fill?: ColorValue;
+    cornerRadius?: number;
+}
+export interface EllipseProps extends OneNativeViewProps {
+    fill?: ColorValue;
 }
 export interface VideoPlayerProps extends OneNativeViewProps {
     url?: string;
@@ -313,5 +543,9 @@ export interface FileImporterProps extends OneNativeViewProps {
     onCompletion?: (completion: FileImporterCompletion) => void;
     allowedContentTypes?: readonly string[];
     allowsMultipleSelection?: boolean;
+}
+export interface EditButtonProps extends OneNativeViewProps {
+}
+export interface EmptyViewProps extends OneNativeViewProps {
 }
 //# sourceMappingURL=controlTypes.d.ts.map
