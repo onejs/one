@@ -1,7 +1,10 @@
 import * as UI from './effects'
+import { Swift } from './unsupported'
 
 export * from './extras'
 export * from './unsupported'
+export const Menu = Swift.Menu
+export const ContextMenu = Swift.ContextMenu
 export { Compose } from './compose'
 export { useNativeState, type NativeState } from './nativeState'
 export { TextInput } from './universal/TextInput/index'

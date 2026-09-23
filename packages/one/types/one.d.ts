@@ -1,4 +1,4 @@
-import { Browser as NativeBrowser, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, Haptics, ImagePicker, MenuAction, Network as NativeNetwork, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from '@vxrn/native';
+import { Browser as NativeBrowser, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Network as NativeNetwork, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from '@vxrn/native';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaFrame, useSafeAreaInsets } from '@vxrn/safe-area';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
 export type OneIOS = typeof Swift & {
@@ -11,7 +11,10 @@ export type OneIOS = typeof Swift & {
     readonly ZoomTransitionEnabler: typeof ZoomTransitionEnabler;
     readonly ZoomTransitionSource: typeof ZoomTransitionSource;
 };
-export type OneAndroid = typeof Compose;
+export type OneAndroid = typeof Compose & {
+    readonly Menu: typeof NativeMenu;
+    readonly ContextMenu: typeof NativeContextMenu;
+};
 export type OneSafeArea = {
     readonly Provider: typeof SafeAreaProvider;
     readonly View: typeof SafeAreaView;
