@@ -76,6 +76,7 @@ export function Pager({
             badge=""
             tabRole=""
             action={false}
+            slotHeight={0}
             testID={page.testID}
             style={PAGE_STYLE}
             collapsable={false}

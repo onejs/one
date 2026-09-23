@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *badge;
 @property (nonatomic, copy) NSString *role;
 @property (nonatomic, assign) BOOL action;
+@property (nonatomic, assign) CGFloat slotHeight;
 - (void)updateNativeFrame:(CGRect)frame;
 @end
 

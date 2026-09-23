@@ -1,10 +1,12 @@
 import type { ViewProps } from 'react-native';
+import type { Double } from 'react-native/Libraries/Types/CodegenTypes';
 interface NativeProps extends ViewProps {
     tabId: string;
     title: string;
     systemImage: string;
     badge: string;
     tabRole: string;
+    slotHeight: Double;
     action: boolean;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
