@@ -2,6 +2,9 @@ import * as UI from './effects'
 import { Swift } from './unsupported'
 
 export * from './extras'
+// the package root keeps the navigation toolbar's props under the plain name; the SwiftUI
+// toolbar item's props are the generated ToolbarItemProps, reachable through Swift.ToolbarItem.
+export type { ToolbarHostProps, ToolbarItemProps } from './extras'
 export * from './unsupported'
 export const Menu = Swift.Menu
 export const ContextMenu = Swift.ContextMenu

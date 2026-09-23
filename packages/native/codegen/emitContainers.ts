@@ -211,6 +211,113 @@ export const containerComponents = [
     // SwiftUI proposes the box and the shared slot shadow node writes it back to Yoga.
     interfaceOnly: true,
   },
+  {
+    name: 'OneNativeNavigationStack',
+    publicName: 'NavigationStack',
+    // the stack takes the box React Native gave it. its React Native children are the
+    // stack's root, and the toolbar markers beside them fill the navigation bar.
+    props: {},
+    events: {
+      onNativeSDKEvent: { name: 'string', value: 'string' },
+    },
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'toolbar',
+        content: 'OneNativeToolbar',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+      {
+        name: 'content',
+        content: 'OneNativeNavigationStackContent',
+        cardinality: 'one',
+        layout: 'swiftui-proposal-to-yoga',
+        origin: 'local',
+      },
+    ],
+    // navigationTitle, navigationBarTitleDisplayMode, toolbarBackground and every other
+    // scalar navigation or toolbar modifier reach the stack through swiftStyle.
+    swiftStyle: true,
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeToolbar',
+    publicName: 'Toolbar',
+    // a marker: its ToolbarItem children publish into the navigation bar of the
+    // NavigationStack that hosts it, and nothing renders where it sits.
+    props: {},
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [composedContent],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeToolbarItem',
+    publicName: 'ToolbarItem',
+    props: { placement: 'string' },
+    events: {
+      onNativeSDKEvent: { name: 'string', value: 'string' },
+    },
+    enumProps: { placement: 'ToolbarItemPlacement' },
+    layout: { kind: 'container' },
+    slots: [composedContent],
+    // the item's content is a SwiftUI view, so it takes every scalar modifier too.
+    swiftStyle: true,
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeToolbarItemGroup',
+    publicName: 'ToolbarItemGroup',
+    // a labelled group is the SDK's own labelled ToolbarItemGroup initializer, so the
+    // label renders the way SwiftUI renders it rather than a row of the item's views.
+    props: { placement: 'string', label: 'string', systemImage: 'string' },
+    events: {
+      onNativeSDKEvent: { name: 'string', value: 'string' },
+    },
+    enumProps: { placement: 'ToolbarItemPlacement' },
+    layout: { kind: 'container' },
+    slots: [composedContent],
+    swiftStyle: true,
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeToolbarSpacer',
+    publicName: 'ToolbarSpacer',
+    // a spacer holds nothing; it takes the space SwiftUI gives it between toolbar items.
+    props: { sizing: 'string', placement: 'string' },
+    events: {},
+    enumProps: { sizing: 'SpacerSizing', placement: 'ToolbarItemPlacement' },
+    layout: { kind: 'container' },
+    slots: [],
+    interfaceOnly: false,
+  },
+] as const
+
+// a container whose only job is to carry a React Native subtree into a SwiftUI box the
+// parent proposes. it has no public entry point, so it stays off the container surface.
+export const contentComponents = [
+  {
+    name: 'OneNativeNavigationStackContent',
+    publicName: null,
+    props: {},
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'swiftui-proposal-to-yoga',
+        origin: 'local',
+      },
+    ],
+    // SwiftUI proposes the root box and the hand-written slot shadow node writes it back.
+    interfaceOnly: true,
+  },
 ] as const
 
 export const hostAxes = ['vertical', 'horizontal'] as const
@@ -232,7 +339,7 @@ export function emitContainers(
   outputs: Map<string, string>,
   styleFields: readonly StyleField[]
 ) {
-  for (const component of containerComponents) {
+  for (const component of [...containerComponents, ...contentComponents]) {
     const props = Object.entries(component.props).map(([key, declared]) => ({
       key,
       optional: declared.endsWith('?'),
@@ -274,7 +381,7 @@ export default codegenNativeComponent<NativeProps>('${component.name}'${componen
 import type { ColorValue, ViewProps } from 'react-native'
 import type { GlassEffect, GlassEffectShape, Material, OneNativeViewProps } from './controlTypes'
 import type * as Styles from './swiftui'
-import type { ColorScheme, ControlSize, DynamicTypeSize } from './swiftui'
+import type { ColorScheme, ControlSize, DynamicTypeSize, SpacerSizing, ToolbarItemPlacement } from './swiftui'
 export type HostAxis = ${hostAxes.map((axis) => JSON.stringify(axis)).join(' | ')}
 export type HostAlignment = ${hostAlignments.map((value) => JSON.stringify(value)).join(' | ')}
 export type ZStackAlignment = ${zStackAlignments.map((value) => JSON.stringify(value)).join(' | ')}
@@ -340,6 +447,26 @@ export interface SlotProps extends ViewProps {
   height: number
   width?: number
   children: ReactNode
+}
+export interface NavigationStackProps extends OneNativeViewProps {
+  children: ReactNode
+}
+export interface ToolbarProps extends ViewProps {
+  children: ReactNode
+}
+export interface ToolbarItemProps extends OneNativeViewProps {
+  placement?: ToolbarItemPlacement
+  children: ReactNode
+}
+export interface ToolbarItemGroupProps extends OneNativeViewProps {
+  placement?: ToolbarItemPlacement
+  label?: string
+  systemImage?: string
+  children: ReactNode
+}
+export interface ToolbarSpacerProps extends ViewProps {
+  sizing?: SpacerSizing
+  placement?: ToolbarItemPlacement
 }
 export const hostAxes = [${hostAxes.map((axis) => JSON.stringify(axis)).join(', ')}] as const
 export const hostAlignments = [${hostAlignments.map((value) => JSON.stringify(value)).join(', ')}] as const

@@ -1,4 +1,4 @@
-import { containerComponents, emitContainers, environmentMethods } from './emitContainers'
+import { containerComponents, contentComponents, emitContainers, environmentMethods } from './emitContainers'
 import { emitPopover, popoverComponents, popoverMethods } from './emitPopover'
 import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
 import { controls as curatedControls } from './controlCatalog'
@@ -57,6 +57,7 @@ const controls = [
       ...curatedControls.map((control) => control.name),
       ...components.map((component) => component.publicName),
       ...containerComponents.map((component) => component.publicName),
+      ...contentComponents.map((component) => component.publicName),
       ...sheetComponents.map((component) => component.publicName),
       ...popoverComponents.map((component) => component.publicName),
     ])
@@ -381,6 +382,7 @@ outputs.set(
         ...controlComponents,
         ...sheetComponents,
         ...containerComponents,
+        ...contentComponents,
         ...popoverComponents,
       ].map((component) => {
         const enumProps: Record<string, string> =
@@ -641,6 +643,7 @@ packageMetadata.codegenConfig.ios.componentProvider = Object.fromEntries(
     ...controlComponents,
     ...sheetComponents,
     ...containerComponents,
+    ...contentComponents,
     ...popoverComponents,
   ].map((component) => [component.name, component.name + 'ComponentView'])
 )

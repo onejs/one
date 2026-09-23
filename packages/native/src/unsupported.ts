@@ -16,6 +16,7 @@ import type {
   LinkProps,
   ListProps,
   MenuProps,
+  NavigationStackProps,
   OverlayContentProps,
   OverlayProps,
   PageProps,
@@ -34,6 +35,10 @@ import type {
   TabsProps,
   TabViewBottomAccessoryProps,
   TabViewSlotProps,
+  ToolbarItemGroupProps,
+  ToolbarItemProps,
+  ToolbarProps,
+  ToolbarSpacerProps,
   ZStackProps,
 } from './types'
 
@@ -169,6 +174,29 @@ function Page(_props: PageProps): never {
 function Pager(_props: PagerProps): never {
   throw new Error('Swift.Pager requires an iOS native build with @vxrn/native installed')
 }
+function NavigationStack(_props: NavigationStackProps): never {
+  throw new Error(
+    'Swift.NavigationStack requires an iOS native build with @vxrn/native installed'
+  )
+}
+function Toolbar(_props: ToolbarProps): never {
+  throw new Error('Swift.Toolbar requires an iOS native build with @vxrn/native installed')
+}
+function ToolbarItem(_props: ToolbarItemProps): never {
+  throw new Error(
+    'Swift.ToolbarItem requires an iOS native build with @vxrn/native installed'
+  )
+}
+function ToolbarItemGroup(_props: ToolbarItemGroupProps): never {
+  throw new Error(
+    'Swift.ToolbarItemGroup requires an iOS native build with @vxrn/native installed'
+  )
+}
+function ToolbarSpacer(_props: ToolbarSpacerProps): never {
+  throw new Error(
+    'Swift.ToolbarSpacer requires an iOS native build with @vxrn/native installed'
+  )
+}
 export const Swift = {
   Tabs,
   Tab,
@@ -204,6 +232,11 @@ export const Swift = {
   SwipeActions,
   Pager,
   Page,
+  NavigationStack,
+  Toolbar,
+  ToolbarItem,
+  ToolbarItemGroup,
+  ToolbarSpacer,
   ...unsupportedControls,
 }
 export type * from './types'

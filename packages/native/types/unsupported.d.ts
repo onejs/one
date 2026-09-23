@@ -1,4 +1,4 @@
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GroupProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LinkProps, ListProps, MenuProps, OverlayContentProps, OverlayProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ZStackProps } from './types';
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GroupProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LinkProps, ListProps, MenuProps, NavigationStackProps, OverlayContentProps, OverlayProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarSpacerProps, ZStackProps } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function TabSection(_props: TabSectionProps): never;
@@ -35,6 +35,11 @@ declare function SwipeActionsActions(_props: SwipeActionsActionsProps): never;
 declare function SwipeActionsFn(_props: SwipeActionsProps): never;
 declare function Page(_props: PageProps): never;
 declare function Pager(_props: PagerProps): never;
+declare function NavigationStack(_props: NavigationStackProps): never;
+declare function Toolbar(_props: ToolbarProps): never;
+declare function ToolbarItem(_props: ToolbarItemProps): never;
+declare function ToolbarItemGroup(_props: ToolbarItemGroupProps): never;
+declare function ToolbarSpacer(_props: ToolbarSpacerProps): never;
 export declare const Swift: {
     Picker: (_props: import("./types").PickerProps) => never;
     DatePicker: (_props: import("./types").DatePickerProps) => never;
@@ -105,6 +110,11 @@ export declare const Swift: {
     };
     Pager: typeof Pager;
     Page: typeof Page;
+    NavigationStack: typeof NavigationStack;
+    Toolbar: typeof Toolbar;
+    ToolbarItem: typeof ToolbarItem;
+    ToolbarItemGroup: typeof ToolbarItemGroup;
+    ToolbarSpacer: typeof ToolbarSpacer;
 };
 export type * from './types';
 //# sourceMappingURL=unsupported.d.ts.map

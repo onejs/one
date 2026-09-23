@@ -3,11 +3,11 @@
 Native SwiftUI, Jetpack Compose, UIKit, and Android interfaces for React Native.
 The One Native iOS surface
 exposes generated tabs, menus, pickers, form controls, sheets, full screen covers,
-containers, popovers, video, maps, web views, sharing, the photo library, empty states,
-and Quick Look through `Swift`. The package also retains its platform colors, zoom,
-toolbar, menu action, and split view exports. The Swift surface requires an iOS 17+
-native build, and the Swift and Compose surfaces require React Native's New
-Architecture. Beta releases are published to npm on the `beta` dist-tag.
+navigation stacks and toolbars, containers, popovers, video, maps, web views, sharing,
+the photo library, empty states, and Quick Look through `Swift`. The package also retains
+its platform colors, zoom, toolbar, menu action, and split view exports. The Swift surface
+requires an iOS 17+ native build, and the Swift and Compose surfaces require React
+Native's New Architecture. Beta releases are published to npm on the `beta` dist-tag.
 
 Packaging: `src/specs` stays raw (pod-install codegen reads it), and the build
 rewrites every dist spec mirror into a static view config identical to the
@@ -922,14 +922,115 @@ and `onDismiss` behave identically; only the presenting modifier differs.
 Because nothing dismisses a cover from the outside, the presented content must supply its
 own way out, or React must set `isPresented` back to false.
 
+## Navigation stacks and toolbars
+
+`Swift.NavigationStack` is a real SwiftUI `NavigationStack` whose root is the React Native
+content beside it, and `Swift.Toolbar` fills its navigation bar with real SwiftUI toolbar
+content. This is the shape that puts a native top bar with a title and controls over
+ordinary React Native pages.
+
+```tsx
+function Mailbox() {
+  const [page, setPage] = useState('inbox')
+  const [open, setOpen] = useState(false)
+  return (
+    <Swift.Sheet isPresented={open} onIsPresentedChange={setOpen}>
+      <Swift.NavigationStack
+        style={{ flex: 1 }}
+        swiftStyle={{
+          navigationTitleWithText: 'Mailbox',
+          navigationBarTitleDisplayMode: 'inline',
+        }}
+      >
+        <Swift.Toolbar>
+          <Swift.ToolbarItem placement="principal">
+            <Swift.Picker
+              label="Mailbox"
+              pickerStyle="segmented"
+              selection={page}
+              onSelectionChange={setPage}
+              options={[
+                { value: 'inbox', label: 'Inbox' },
+                { value: 'archive', label: 'Archive' },
+              ]}
+            />
+          </Swift.ToolbarItem>
+          <Swift.ToolbarItem placement="topBarTrailing">
+            <Swift.Button
+              label="Close"
+              systemImage="xmark"
+              buttonRole="close"
+              onPress={() => setOpen(false)}
+            />
+          </Swift.ToolbarItem>
+        </Swift.Toolbar>
+        <View style={{ flex: 1, padding: 24 }}>
+          <Text>{page === 'inbox' ? 'Inbox' : 'Archive'}</Text>
+        </View>
+      </Swift.NavigationStack>
+    </Swift.Sheet>
+  )
+}
+```
+
+A stack takes the box React Native gives it, so give it a height or a flex parent. Its
+React Native children are the stack's root: SwiftUI proposes that box and Yoga lays the
+subtree out inside it, the same contract a `Swift.Tab` page follows. `Swift.Toolbar`
+elements are read by the stack and never render where they are written, so they are
+direct children beside the content rather than inside it, and a `Swift.Toolbar` written
+anywhere else is an error rather than a silent no-op. More than one toolbar merges, in
+the order the toolbars are written.
+
+Toolbar items are SwiftUI content: a `Swift.ToolbarItem` holds One Native controls,
+containers, or a `Swift.Slot` for a React Native subtree, exactly like any other
+container. A composed control keeps its controlled protocol there, so the segmented
+`Picker` above reports its selection the same way it does standalone.
+
+`placement` is `ToolbarItemPlacement`, and every case the SDK ships on iOS is accepted:
+`automatic`, `principal`, `navigation`, `primaryAction`, `secondaryAction`, `status`,
+`confirmationAction`, `cancellationAction`, `destructiveAction`, `keyboard`,
+`topBarLeading`, `topBarTrailing`, `topBarPinnedTrailing`, the soft-deprecated
+`navigationBarLeading` and `navigationBarTrailing`, `title`, `largeTitle`, `subtitle`,
+`largeSubtitle`, and `bottomBar`. A placement the running iOS version does not have
+throws before a native prop carries it, which is `topBarPinnedTrailing` below iOS 27 and
+`largeTitle`, `subtitle`, and `largeSubtitle` below iOS 26.
+
+`Swift.ToolbarItemGroup` is SwiftUI's `ToolbarItemGroup`, with the same `placement` and
+composed children. Add `label` and an optional `systemImage` for the SDK's labelled group
+initializer, which renders the label the way a menu-style group does.
+
+`Swift.ToolbarSpacer` is SwiftUI's `ToolbarSpacer`, which is iOS 26 and later. `sizing` is
+`flexible` (the default) or `fixed`, and it takes the same `placement`. It holds no
+children.
+
+The bar itself is configured through `swiftStyle`, because every navigation and toolbar
+modifier SwiftUI declares as a scalar is derived into it: `navigationTitleWithText`
+(`navigationTitle(_: Text)`), `navigationTitleWithBindingString` for the `Binding<String>`
+overload, `navigationBarTitleDisplayMode`, `navigationSubtitle`, `toolbarRole`,
+`toolbarTitleDisplayMode`, `toolbarVisibility`, `toolbarBackground`,
+`toolbarBackgroundVisibility`, `toolbarColorScheme`, `toolbarMinimizationBehavior`,
+`toolbarMinimizationRestoration`, `toolbarMinimizationSafeAreaAdjustment`,
+`toolbarWithRemoving`, `navigationBarHidden`, `navigationBarBackButtonHidden`, and the
+rest of the generated modifier set. `ToolbarItem` and `ToolbarItemGroup` take
+`swiftStyle` too, applied to their content.
+
+The stack is the bar and the content, not a navigation path: `path`, `navigationDestination`
+and `NavigationLink` are not bound, so pushing and popping screens is still React's.
+Customizable toolbars are not bound either: `ToolbarItem(id:)`, `toolbar(id:)`,
+`defaultCustomization`, and `toolbarCustomizationBehavior` need a toolbar customization
+protocol the way `Swift.Tabs` carries `TabViewCustomization`.
+
 Add `"@vxrn/native": "workspace:*"` to the native application's dependencies and rebuild
 the app after installing pods. `tests/native-features/app/one-native.tsx` exercises
 selection, reordered pages with local state, and nested menus. Control, sheet, and
-container fixtures live under `tests/native-features`. All nine simulator suites pass on
-iOS 26.4, including rejected native changes, retained RN state in presented content,
-and composed controls two containers deep. The package's build, typecheck, and test
-scripts run from `packages/native`. See `tests/native-features/scripts/README.md`
-for the conformance commands and their device/automation constraints.
+container fixtures live under `tests/native-features`, and
+`tests/native-features/app/one-native-navigation.tsx` is the navigation stack fixture: a
+sheet whose `Swift.NavigationStack` puts a segmented principal `Picker` and a trailing
+close in the bar over two React Native pages. Its `navigation` conformance suite passes on
+an iPhone 17 Pro with iOS 27, alongside the simulator suites that pass on iOS 26.4. The
+package's build, typecheck, and test scripts run from `packages/native`. See
+`tests/native-features/scripts/README.md` for the conformance commands and their
+device/automation constraints.
 
 ## Native composition
 
@@ -1376,7 +1477,8 @@ Fabric children carry RN subtrees. Pure native content uses typed data props;
 a host can support both. Menu nodes flatten to `parentId` records because RN
 codegen cannot express recursive object arrays. Tabs use keyed Fabric children
 because each page contains a live React subtree. Leaf controls use data props.
-Sheets host RN children in a presented slot.
+Sheets host RN children in a presented slot. A NavigationStack hosts RN children
+in an inline slot and reads Toolbar markers as toolbar content.
 
 Tabs, menu toggles, pickers, form controls, and sheets share optimistic native
 state and numbered acknowledgments. Update React state synchronously in the

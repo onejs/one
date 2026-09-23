@@ -250,6 +250,11 @@ export const enumTypes = [
   'LinkPreviewBehavior',
   'ElementFullscreenBehavior',
   'ListStyle',
+  // every ToolbarItemPlacement the SDK ships on iOS, including the two soft-deprecated
+  // navigationBar aliases of topBarLeading and topBarTrailing; present() keeps them
+  // because deprecation lands in newer SDKs first.
+  'ToolbarItemPlacement',
+  'SpacerSizing',
 ]
 export const fields = {
   id: { type: 'string', default: '' },

@@ -376,6 +376,65 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid ElementFullscreenBehavior: \(value)")
     }
   }
+  static func toolbarItemPlacement(_ value: String) -> ToolbarItemPlacement {
+    switch value {
+    case "automatic":
+      return .automatic
+    case "principal":
+      return .principal
+    case "navigation":
+      return .navigation
+    case "primaryAction":
+      return .primaryAction
+    case "secondaryAction":
+      return .secondaryAction
+    case "status":
+      return .status
+    case "confirmationAction":
+      return .confirmationAction
+    case "cancellationAction":
+      return .cancellationAction
+    case "destructiveAction":
+      return .destructiveAction
+    case "keyboard":
+      return .keyboard
+    case "topBarLeading":
+      return .topBarLeading
+    case "topBarTrailing":
+      return .topBarTrailing
+    case "topBarPinnedTrailing":
+      if #available(iOS 27, *) { return .topBarPinnedTrailing }
+      preconditionFailure("ToolbarItemPlacement.topBarPinnedTrailing requires iOS 27")
+    case "navigationBarLeading":
+      return .navigationBarLeading
+    case "navigationBarTrailing":
+      return .navigationBarTrailing
+    case "title":
+      return .title
+    case "largeTitle":
+      if #available(iOS 26, *) { return .largeTitle }
+      preconditionFailure("ToolbarItemPlacement.largeTitle requires iOS 26")
+    case "bottomBar":
+      return .bottomBar
+    case "subtitle":
+      if #available(iOS 26, *) { return .subtitle }
+      preconditionFailure("ToolbarItemPlacement.subtitle requires iOS 26")
+    case "largeSubtitle":
+      if #available(iOS 26, *) { return .largeSubtitle }
+      preconditionFailure("ToolbarItemPlacement.largeSubtitle requires iOS 26")
+    default: preconditionFailure("invalid ToolbarItemPlacement: \(value)")
+    }
+  }
+  @available(iOS 26, *)
+  static func spacerSizing(_ value: String) -> SpacerSizing {
+    switch value {
+    case "flexible":
+      return .flexible
+    case "fixed":
+      return .fixed
+    default: preconditionFailure("invalid SpacerSizing: \(value)")
+    }
+  }
 }
 
 extension View {
