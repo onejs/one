@@ -351,11 +351,13 @@ extension View {
       case "onContinuousHover": view = AnyView(view.oneNativeSDKOnContinuousHover(value, emit: emit))
       case "onDisappear": view = AnyView(view.oneNativeSDKOnDisappear(value, emit: emit))
       case "onDragSessionUpdated": view = AnyView(view.oneNativeSDKOnDragSessionUpdated(value, emit: emit))
+      case "onDropSessionUpdated": view = AnyView(view.oneNativeSDKOnDropSessionUpdated(value, emit: emit))
       case "onGeometryChangeWithSize": view = AnyView(view.oneNativeSDKOnGeometryChangeWithSize(value, emit: emit))
       case "onHover": view = AnyView(view.oneNativeSDKOnHover(value, emit: emit))
       case "onInteractiveResizeChange": view = AnyView(view.oneNativeSDKOnInteractiveResizeChange(value, emit: emit))
       case "onLongPressGesture": view = AnyView(view.oneNativeSDKOnLongPressGesture(value, emit: emit))
       case "onMapCameraChange": view = AnyView(view.oneNativeSDKOnMapCameraChange(value, emit: emit))
+      case "onMapCameraChangeWithEventStruct": view = AnyView(view.oneNativeSDKOnMapCameraChangeWithEventStruct(value, emit: emit))
       case "onOpenURLWithPerform": view = AnyView(view.oneNativeSDKOnOpenURLWithPerform(value, emit: emit))
       case "onOpenURLWithPrefersInApp": view = AnyView(view.oneNativeSDKOnOpenURLWithPrefersInApp(value, emit: emit))
       case "onPencilDoubleTap": view = AnyView(view.oneNativeSDKOnPencilDoubleTap(value, emit: emit))
@@ -3890,6 +3892,15 @@ extension View {
     }) } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKOnDropSessionUpdated(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 27, *) { self.onDropSessionUpdated({ item in
+      let payload = (["itemsCount": Double(item.itemsCount), "suggestedOperations": (["rawValue": Double(item.suggestedOperations.rawValue)] as [String: Any]), "size": (["width": Double(item.size.width), "height": Double(item.size.height)] as [String: Any]), "location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onDropSessionUpdated event") }
+      emit("onDropSessionUpdated", encoded)
+    }) } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKOnGeometryChangeWithSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) { self.onGeometryChange(for: CoreFoundation.CGSize.self, of: { $0.size }, action: { oldValue, newValue in
       let payload = (["oldValue": (["width": Double(oldValue.width), "height": Double(oldValue.height)] as [String: Any]), "newValue": (["width": Double(newValue.width), "height": Double(newValue.height)] as [String: Any])] as [String: Any])
@@ -3913,6 +3924,15 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKOnMapCameraChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onMapCameraChange(frequency: .onEnd, { emit("onMapCameraChange", "") })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnMapCameraChangeWithEventStruct(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onMapCameraChange(frequency: .onEnd, { item in
+      let payload = (["camera": (["distance": Double(item.camera.distance), "heading": Double(item.camera.heading), "pitch": Double(item.camera.pitch)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onMapCameraChangeWithEventStruct event") }
+      emit("onMapCameraChangeWithEventStruct", encoded)
+    })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnOpenURLWithPerform(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

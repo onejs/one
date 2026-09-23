@@ -289,11 +289,13 @@ const sdkKinds = {
   onContinuousHover: 'eventAssociatedEnum',
   onDisappear: 'event',
   onDragSessionUpdated: 'eventStruct',
+  onDropSessionUpdated: 'eventStruct',
   onGeometryChangeWithSize: 'eventStruct',
   onHover: 'eventBoolean',
   onInteractiveResizeChange: 'eventBoolean',
   onLongPressGesture: 'event',
   onMapCameraChange: 'event',
+  onMapCameraChangeWithEventStruct: 'eventStruct',
   onOpenURLWithPerform: 'eventString',
   onOpenURLWithPrefersInApp: 'boolean',
   onPencilDoubleTap: 'eventStruct',
@@ -612,11 +614,42 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
     kind: 'object',
     fields: [{ name: 'location', value: { kind: 'point' } }],
   },
+  onDropSessionUpdated: {
+    kind: 'object',
+    fields: [
+      { name: 'itemsCount', value: { kind: 'number' } },
+      {
+        name: 'suggestedOperations',
+        value: {
+          kind: 'object',
+          fields: [{ name: 'rawValue', value: { kind: 'number' } }],
+        },
+      },
+      { name: 'size', value: { kind: 'size' } },
+      { name: 'location', value: { kind: 'point' } },
+    ],
+  },
   onGeometryChangeWithSize: {
     kind: 'object',
     fields: [
       { name: 'oldValue', value: { kind: 'size' } },
       { name: 'newValue', value: { kind: 'size' } },
+    ],
+  },
+  onMapCameraChangeWithEventStruct: {
+    kind: 'object',
+    fields: [
+      {
+        name: 'camera',
+        value: {
+          kind: 'object',
+          fields: [
+            { name: 'distance', value: { kind: 'number' } },
+            { name: 'heading', value: { kind: 'number' } },
+            { name: 'pitch', value: { kind: 'number' } },
+          ],
+        },
+      },
     ],
   },
   onPencilDoubleTap: {

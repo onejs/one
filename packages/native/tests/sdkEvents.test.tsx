@@ -151,6 +151,38 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('point binding')
   })
 
+  it('projects public drop-session fields without changing an existing callback', () => {
+    const onDropSessionUpdated = vi.fn()
+    const onMapCameraChange = vi.fn()
+    const onMapCameraChangeWithEventStruct = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      onDropSessionUpdated,
+      onMapCameraChange,
+      onMapCameraChangeWithEventStruct,
+    } })
+    const drop = {
+      itemsCount: 2,
+      suggestedOperations: { rawValue: 3 },
+      size: { width: 80, height: 40 },
+      location: { x: 10, y: 5 },
+    }
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onDropSessionUpdated', value: JSON.stringify(drop),
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onMapCameraChange', value: '',
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onMapCameraChangeWithEventStruct',
+      value: '{"camera":{"distance":100,"heading":90,"pitch":20}}',
+    } })
+    expect(onDropSessionUpdated).toHaveBeenCalledWith(drop)
+    expect(onMapCameraChange).toHaveBeenCalledOnce()
+    expect(onMapCameraChangeWithEventStruct).toHaveBeenCalledWith({
+      camera: { distance: 100, heading: 90, pitch: 20 },
+    })
+  })
+
   it('round trips a Codable customization binding through native JSON', () => {
     const onChange = vi.fn()
     const current = '{"perTabState":[],"identifier":"D9754350-75EE-4390-AC54-159710381977","perSectionState":[]}'

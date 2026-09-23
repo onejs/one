@@ -1929,6 +1929,12 @@ export interface OneNativeStyle {
   ) => void
   onDisappear?: () => void
   onDragSessionUpdated?: (value: { location: { x: number; y: number } }) => void
+  onDropSessionUpdated?: (value: {
+    itemsCount: number
+    suggestedOperations: { rawValue: number }
+    size: { width: number; height: number }
+    location: { x: number; y: number }
+  }) => void
   onGeometryChangeWithSize?: (value: {
     oldValue: { width: number; height: number }
     newValue: { width: number; height: number }
@@ -1937,6 +1943,9 @@ export interface OneNativeStyle {
   onInteractiveResizeChange?: (value: boolean) => void
   onLongPressGesture?: () => void
   onMapCameraChange?: () => void
+  onMapCameraChangeWithEventStruct?: (value: {
+    camera: { distance: number; heading: number; pitch: number }
+  }) => void
   onOpenURLWithPerform?: (value: string) => void
   onOpenURLWithPrefersInApp?: boolean
   onPencilDoubleTap?: (value: {

@@ -6876,6 +6876,50 @@
       }
     },
     {
+      "name": "onDropSessionUpdated",
+      "kind": "eventStruct",
+      "type": "@escaping (SwiftUI.DropSession) -> Swift.Void",
+      "label": "_",
+      "ios": 27,
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "itemsCount",
+            "value": {
+              "kind": "number"
+            }
+          },
+          {
+            "name": "suggestedOperations",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "rawValue",
+                  "value": {
+                    "kind": "number"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "size",
+            "value": {
+              "kind": "size"
+            }
+          },
+          {
+            "name": "location",
+            "value": {
+              "kind": "point"
+            }
+          }
+        ]
+      }
+    },
+    {
       "name": "onGeometryChangeWithSize",
       "sdkName": "onGeometryChange",
       "module": "SwiftUICore",
@@ -6973,6 +7017,57 @@
           "bridge": true
         }
       ]
+    },
+    {
+      "name": "onMapCameraChangeWithEventStruct",
+      "module": "_MapKit_SwiftUI",
+      "kind": "eventStruct",
+      "type": "@escaping (_MapKit_SwiftUI.MapCameraUpdateContext) -> Swift.Void",
+      "label": "_",
+      "ios": 17,
+      "framework": "MapKit",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "camera",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "distance",
+                  "value": {
+                    "kind": "number"
+                  }
+                },
+                {
+                  "name": "heading",
+                  "value": {
+                    "kind": "number"
+                  }
+                },
+                {
+                  "name": "pitch",
+                  "value": {
+                    "kind": "number"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "callArguments": [
+        {
+          "label": "frequency",
+          "defaultValue": ".onEnd"
+        },
+        {
+          "label": "_",
+          "bridge": true
+        }
+      ],
+      "sdkName": "onMapCameraChange"
     },
     {
       "name": "onOpenURLWithPerform",
@@ -12794,6 +12889,7 @@
         "navigationViewStyle",
         "onContinuousHover",
         "onDragSessionUpdated",
+        "onDropSessionUpdated",
         "onHover",
         "onInteractiveResizeChange",
         "onLongPressGesture",
