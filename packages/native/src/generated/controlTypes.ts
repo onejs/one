@@ -1264,6 +1264,7 @@ export interface OneNativeStyle {
   contrast?: number
   controlGroupStyle?: SDKControlGroupStyle
   controlSize?: SDKControlSize
+  coordinateSpace?: string
   datePickerStyle?: SDKDatePickerStyle
   defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement
   defaultHoverEffect?: SDKDefaultHoverEffect | null
@@ -1344,6 +1345,7 @@ export interface OneNativeStyle {
   }>
   hoverEffectWithHoverEffect?: SDKHoverEffectWithHoverEffect
   hueRotation?: SDKHueRotation
+  id?: string
   ignoresSafeAreaWithRegionsAndEdges?: Readonly<{
     regions: 'container' | 'keyboard' | 'all'
     edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
@@ -1796,6 +1798,7 @@ export interface OneNativeStyle {
   tableStyle?: SDKTableStyle
   tabViewSearchActivation?: SDKTabViewSearchActivation
   tabViewStyle?: SDKTabViewStyle
+  tag?: string
   textCase?: SDKTextCase | null
   textFieldStyle?: SDKTextFieldStyle
   textInputAutocapitalization?: SDKTextInputAutocapitalization | null

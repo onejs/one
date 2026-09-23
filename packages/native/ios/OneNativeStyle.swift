@@ -182,6 +182,7 @@ extension View {
       case "contrast": view = AnyView(view.oneNativeSDKContrast(value, emit: emit))
       case "controlGroupStyle": view = AnyView(view.oneNativeSDKControlGroupStyle(value, emit: emit))
       case "controlSize": view = AnyView(view.oneNativeSDKControlSize(value, emit: emit))
+      case "coordinateSpace": view = AnyView(view.oneNativeSDKCoordinateSpace(value, emit: emit))
       case "datePickerStyle": view = AnyView(view.oneNativeSDKDatePickerStyle(value, emit: emit))
       case "defaultAdaptableTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultAdaptableTabBarPlacement(value, emit: emit))
       case "defaultHoverEffect": view = AnyView(view.oneNativeSDKDefaultHoverEffect(value, emit: emit))
@@ -233,6 +234,7 @@ extension View {
       case "hoverEffectWithEffectAndIsEnabled": view = AnyView(view.oneNativeSDKHoverEffectWithEffectAndIsEnabled(value, emit: emit))
       case "hoverEffectWithHoverEffect": view = AnyView(view.oneNativeSDKHoverEffectWithHoverEffect(value, emit: emit))
       case "hueRotation": view = AnyView(view.oneNativeSDKHueRotation(value, emit: emit))
+      case "id": view = AnyView(view.oneNativeSDKId(value, emit: emit))
       case "ignoresSafeAreaWithRegionsAndEdges": view = AnyView(view.oneNativeSDKIgnoresSafeAreaWithRegionsAndEdges(value, emit: emit))
       case "ignoresSafeAreaWithRegionsAndEdgesAndAlignment": view = AnyView(view.oneNativeSDKIgnoresSafeAreaWithRegionsAndEdgesAndAlignment(value, emit: emit))
       case "imageScale": view = AnyView(view.oneNativeSDKImageScale(value, emit: emit))
@@ -405,6 +407,7 @@ extension View {
       case "tableStyle": view = AnyView(view.oneNativeSDKTableStyle(value, emit: emit))
       case "tabViewSearchActivation": view = AnyView(view.oneNativeSDKTabViewSearchActivation(value, emit: emit))
       case "tabViewStyle": view = AnyView(view.oneNativeSDKTabViewStyle(value, emit: emit))
+      case "tag": view = AnyView(view.oneNativeSDKTag(value, emit: emit))
       case "textCase": view = AnyView(view.oneNativeSDKTextCase(value, emit: emit))
       case "textFieldStyle": view = AnyView(view.oneNativeSDKTextFieldStyle(value, emit: emit))
       case "textInputAutocapitalization": view = AnyView(view.oneNativeSDKTextInputAutocapitalization(value, emit: emit))
@@ -1791,6 +1794,10 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKCoordinateSpace(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      self.coordinateSpace(name: value)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKDatePickerStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -2327,6 +2334,10 @@ extension View {
       case "zero": self.hueRotation(SwiftUICore.Angle.zero)
     default: preconditionFailure("invalid hueRotation: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKId(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      self.id(value)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKIgnoresSafeAreaWithRegionsAndEdges(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4491,6 +4502,10 @@ extension View {
       case "automatic": self.tabViewStyle(.automatic)
     default: preconditionFailure("invalid tabViewStyle: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTag(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      self.tag(value)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTextCase(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
