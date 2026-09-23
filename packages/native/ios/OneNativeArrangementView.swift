@@ -204,6 +204,7 @@ private struct ArrangementContent: View {
 
   var body: some View {
     Group {
+      #if ONE_IOS_27_1_SDK
       if #available(iOS 27.1, *) {
         ArrangementView(
           primary: {
@@ -226,19 +227,29 @@ private struct ArrangementContent: View {
         .oneNativeArrangementStyle(model.style, splitAxes: model.splitAxes, overlayAxes: model.overlayAxes)
         .oneNativeArrangementModifiers(model.modifiers)
       } else {
-        HStack(spacing: 0) {
-          if let primary = model.primary {
-            OneNativeSlot(content: primary.view, mode: .fill, layoutHost: host, onLayout: primary.onLayout)
-          }
-          if let secondary = model.secondary {
-            OneNativeSlot(content: secondary.view, mode: .fill, layoutHost: host, onLayout: secondary.onLayout)
-          }
-        }
+        panes
       }
+      #else
+      panes
+      #endif
     }
     .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }
+
+  // before iOS 27.1 there is no ArrangementView: the panes sit side by side.
+  private var panes: some View {
+    HStack(spacing: 0) {
+      if let primary = model.primary {
+        OneNativeSlot(content: primary.view, mode: .fill, layoutHost: host, onLayout: primary.onLayout)
+      }
+      if let secondary = model.secondary {
+        OneNativeSlot(content: secondary.view, mode: .fill, layoutHost: host, onLayout: secondary.onLayout)
+      }
+    }
+  }
 }
+
+#if ONE_IOS_27_1_SDK
 
 @available(iOS 27.1, *)
 extension View {
@@ -299,3 +310,4 @@ extension View {
     return view
   }
 }
+#endif
