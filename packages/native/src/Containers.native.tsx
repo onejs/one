@@ -648,6 +648,16 @@ function ViewSlotFn({ name, options, children, style, ...props }: ViewSlotProps)
         throw new Error(`Swift.ViewSlot ${name}.${argument.field} must be a boolean binding`)
       return String((value as { value: boolean }).value)
     }
+    if (argument.kind === 'boolean') {
+      if (typeof value !== 'boolean')
+        throw new Error(`Swift.ViewSlot ${name}.${argument.field} must be a boolean`)
+      return String(value)
+    }
+    if (argument.kind === 'string') {
+      if (typeof value !== 'string')
+        throw new Error(`Swift.ViewSlot ${name}.${argument.field} must be a string`)
+      return value
+    }
     if (typeof value !== 'string' || !Object.hasOwn(argument.cases, value))
       throw new Error(`Swift.ViewSlot ${name}.${argument.field} must be a declared SDK case`)
     if (Number.parseFloat(String(Platform.Version)) < (argument.cases as Record<string, number>)[value])

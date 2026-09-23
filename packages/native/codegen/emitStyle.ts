@@ -12,7 +12,7 @@ export function emitStyle(
 export type ViewSlotName = keyof typeof viewSlotAvailability
 export const viewSlotArguments = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.arguments.map((argument) => ({ field: argument.field, kind: argument.kind, ...(argument.cases ? { cases: Object.fromEntries(argument.cases.map((item) => [item.name, item.ios])) } : {}) }))])))} as const
 export type ViewSlotConfiguration =
-${slots.map((slot) => `  | { name: ${JSON.stringify(slot.name)}; ${slot.arguments.length ? `options: { ${slot.arguments.map((argument) => `${argument.field}: ${argument.kind === 'bindingBoolean' ? '{ value: boolean; onChange: (value: boolean) => void }' : argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}`).join('; ')} }` : 'options?: never'} }`).join('\n')}
+${slots.map((slot) => `  | { name: ${JSON.stringify(slot.name)}; ${slot.arguments.length ? `options: { ${slot.arguments.map((argument) => `${argument.field}: ${argument.kind === 'bindingBoolean' ? '{ value: boolean; onChange: (value: boolean) => void }' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'string' ? 'string' : argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}`).join('; ')} }` : 'options?: never'} }`).join('\n')}
 export const tabViewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.filter((slot) => /^tabView[A-Z]/.test(slot.name)).map((slot) => [slot.name, slot.ios])))} as const
 export type TabViewSlotName = keyof typeof tabViewSlotAvailability
 `)
@@ -35,6 +35,11 @@ ${slot.arguments.length ? `        guard let data = values.data(using: .utf8),
 ${slot.arguments.map((argument, index) => argument.kind === 'bindingBoolean'
   ? `        guard decoded[${index}] == "true" || decoded[${index}] == "false" else { preconditionFailure("invalid ${slot.name}.${argument.field}") }
         let argument${index} = Binding<Bool>(get: { decoded[${index}] == "true" }, set: { emit(${JSON.stringify(slot.name)}, String($0)) })`
+  : argument.kind === 'boolean'
+    ? `        guard decoded[${index}] == "true" || decoded[${index}] == "false" else { preconditionFailure("invalid ${slot.name}.${argument.field}") }
+        let argument${index} = decoded[${index}] == "true"`
+  : argument.kind === 'string'
+    ? `        let argument${index} = ${argument.type === 'SwiftUICore.Text' ? `Text(decoded[${index}])` : `decoded[${index}]`}`
   : `        let argument${index}: ${argument.type} = {
           switch decoded[${index}] {
 ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${item.ios > slot.ios ? `if #available(iOS ${item.ios}, *) { return ${argument.type}.${item.name} }

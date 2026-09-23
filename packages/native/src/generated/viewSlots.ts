@@ -6,10 +6,13 @@ export const viewSlotAvailability = {
   accessibilityChildren: 15,
   accessibilityRepresentation: 15,
   accessibilityShowsLargeContentViewer: 15,
+  alert: 15,
   background: 15,
+  confirmationDialog: 15,
   containerBackground: 17,
   contentToolbar: 18.4,
   contextMenu: 13,
+  dismissalConfirmationDialog: 27,
   inspector: 17,
   listRowBackground: 13,
   mapControls: 17,
@@ -29,6 +32,7 @@ export const viewSlotAvailability = {
   swipeActions: 15,
   tabItem: 13,
   tabViewBottomAccessory: 26,
+  tabViewBottomAccessoryWithBool: 26.1,
   tabViewSidebarBottomBar: 18,
   tabViewSidebarFooter: 18,
   tabViewSidebarHeader: 18,
@@ -45,7 +49,15 @@ export const viewSlotArguments = {
   accessibilityChildren: [],
   accessibilityRepresentation: [],
   accessibilityShowsLargeContentViewer: [],
+  alert: [
+    { field: 'title', kind: 'string' },
+    { field: 'isPresented', kind: 'bindingBoolean' },
+  ],
   background: [],
+  confirmationDialog: [
+    { field: 'title', kind: 'string' },
+    { field: 'isPresented', kind: 'bindingBoolean' },
+  ],
   containerBackground: [
     {
       field: 'container',
@@ -55,6 +67,10 @@ export const viewSlotArguments = {
   ],
   contentToolbar: [{ field: 'placement', kind: 'enum', cases: { tabViewSidebar: 18.4 } }],
   contextMenu: [],
+  dismissalConfirmationDialog: [
+    { field: 'title', kind: 'string' },
+    { field: 'shouldPresent', kind: 'boolean' },
+  ],
   inspector: [{ field: 'isPresented', kind: 'bindingBoolean' }],
   listRowBackground: [],
   mapControls: [],
@@ -84,6 +100,7 @@ export const viewSlotArguments = {
   swipeActions: [],
   tabItem: [],
   tabViewBottomAccessory: [],
+  tabViewBottomAccessoryWithBool: [{ field: 'isEnabled', kind: 'boolean' }],
   tabViewSidebarBottomBar: [],
   tabViewSidebarFooter: [],
   tabViewSidebarHeader: [],
@@ -100,13 +117,31 @@ export type ViewSlotConfiguration =
   | { name: 'accessibilityChildren'; options?: never }
   | { name: 'accessibilityRepresentation'; options?: never }
   | { name: 'accessibilityShowsLargeContentViewer'; options?: never }
+  | {
+      name: 'alert'
+      options: {
+        title: string
+        isPresented: { value: boolean; onChange: (value: boolean) => void }
+      }
+    }
   | { name: 'background'; options?: never }
+  | {
+      name: 'confirmationDialog'
+      options: {
+        title: string
+        isPresented: { value: boolean; onChange: (value: boolean) => void }
+      }
+    }
   | {
       name: 'containerBackground'
       options: { container: 'navigation' | 'navigationSplitView' }
     }
   | { name: 'contentToolbar'; options: { placement: 'tabViewSidebar' } }
   | { name: 'contextMenu'; options?: never }
+  | {
+      name: 'dismissalConfirmationDialog'
+      options: { title: string; shouldPresent: boolean }
+    }
   | {
       name: 'inspector'
       options: { isPresented: { value: boolean; onChange: (value: boolean) => void } }
@@ -135,6 +170,7 @@ export type ViewSlotConfiguration =
   | { name: 'swipeActions'; options?: never }
   | { name: 'tabItem'; options?: never }
   | { name: 'tabViewBottomAccessory'; options?: never }
+  | { name: 'tabViewBottomAccessoryWithBool'; options: { isEnabled: boolean } }
   | { name: 'tabViewSidebarBottomBar'; options?: never }
   | { name: 'tabViewSidebarFooter'; options?: never }
   | { name: 'tabViewSidebarHeader'; options?: never }
@@ -143,6 +179,7 @@ export type ViewSlotConfiguration =
   | { name: 'toolbarTitleMenu'; options?: never }
 export const tabViewSlotAvailability = {
   tabViewBottomAccessory: 26,
+  tabViewBottomAccessoryWithBool: 26.1,
   tabViewSidebarBottomBar: 18,
   tabViewSidebarFooter: 18,
   tabViewSidebarHeader: 18,
