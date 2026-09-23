@@ -281,6 +281,7 @@ extension View {
       case "interactiveDismissDisabled": view = AnyView(view.oneNativeSDKInteractiveDismissDisabled(value, emit: emit))
       case "invalidatableContent": view = AnyView(view.oneNativeSDKInvalidatableContent(value, emit: emit))
       case "italic": view = AnyView(view.oneNativeSDKItalic(value, emit: emit))
+      case "itemProvider": view = AnyView(view.oneNativeSDKItemProvider(value, emit: emit))
       case "kerning": view = AnyView(view.oneNativeSDKKerning(value, emit: emit))
       case "keyboardShortcutWithKeyAndModifiers": view = AnyView(view.oneNativeSDKKeyboardShortcutWithKeyAndModifiers(value, emit: emit))
       case "keyboardShortcutWithKeyAndModifiersAndLocalization": view = AnyView(view.oneNativeSDKKeyboardShortcutWithKeyAndModifiersAndLocalization(value, emit: emit))
@@ -357,6 +358,7 @@ extension View {
       case "onContinueUserActivity": view = AnyView(view.oneNativeSDKOnContinueUserActivity(value, emit: emit))
       case "onContinuousHover": view = AnyView(view.oneNativeSDKOnContinuousHover(value, emit: emit))
       case "onDisappear": view = AnyView(view.oneNativeSDKOnDisappear(value, emit: emit))
+      case "onDrag": view = AnyView(view.oneNativeSDKOnDrag(value, emit: emit))
       case "onDragSessionUpdated": view = AnyView(view.oneNativeSDKOnDragSessionUpdated(value, emit: emit))
       case "onDropSessionUpdated": view = AnyView(view.oneNativeSDKOnDropSessionUpdated(value, emit: emit))
       case "onGeometryChangeWithSize": view = AnyView(view.oneNativeSDKOnGeometryChangeWithSize(value, emit: emit))
@@ -3022,6 +3024,10 @@ extension View {
       self.italic(value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKItemProvider(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      self.itemProvider({ Foundation.NSItemProvider(object: value as NSString) })
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKKerning(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.kerning(CGFloat(number))
@@ -4013,6 +4019,10 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKOnDisappear(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onDisappear(perform: { emit("onDisappear", "") })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnDrag(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      self.onDrag({ Foundation.NSItemProvider(object: value as NSString) })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnDragSessionUpdated(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

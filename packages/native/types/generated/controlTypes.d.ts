@@ -755,6 +755,7 @@ export interface OneNativeStyle {
     interactiveDismissDisabled?: boolean;
     invalidatableContent?: boolean;
     italic?: boolean;
+    itemProvider?: string;
     kerning?: number;
     keyboardShortcutWithKeyAndModifiers?: Readonly<{
         key: 'upArrow' | 'downArrow' | 'leftArrow' | 'rightArrow' | 'escape' | 'delete' | 'deleteForward' | 'home' | 'end' | 'pageUp' | 'pageDown' | 'clear' | 'tab' | 'space' | 'return';
@@ -940,6 +941,7 @@ export interface OneNativeStyle {
         values: readonly [];
     }) => void;
     onDisappear?: () => void;
+    onDrag?: string;
     onDragSessionUpdated?: (value: {
         location: {
             x: number;
