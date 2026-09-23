@@ -11,7 +11,7 @@ export type DerivedArgument = {
   label: string
   type: string
   sdkType?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'bindingBoolean'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'bindingBoolean' | 'resultURL' | 'resultURLArray'
   optional: boolean
   cases?: readonly { name: string; ios: number }[]
   fields?: readonly { name: string; label: string; type: string }[]
@@ -565,7 +565,11 @@ export function deriveModifiers(
             ], ...framework }]
         const preferNumeric = method.parameters.some((parameter) => valueOf(parameter.type)?.kind === 'numericTuple')
         const bridgeArguments = (parameters: Declaration['parameters']) => parameters.map((parameter, index) => {
-          const value = parameter.type === 'SwiftUICore.Binding<Swift.Bool>'
+          const resultURL = /^@escaping \((?:_ [A-Za-z]\w*: )?Swift\.Result<(\[Foundation\.URL\]|Foundation\.URL), any Swift\.Error>\) -> Swift\.Void$/.exec(parameter.type)
+          const value = resultURL
+            ? { kind: resultURL[1].startsWith('[') ? 'resultURLArray' as const : 'resultURL' as const,
+                type: parameter.type, optional: false }
+            : parameter.type === 'SwiftUICore.Binding<Swift.Bool>'
             ? { kind: 'bindingBoolean' as const, type: parameter.type, optional: false }
             : valueOf(parameter.type, preferNumeric)
           return value && { ...value, field: parameter.name || `argument${index + 1}`, label: parameter.label }

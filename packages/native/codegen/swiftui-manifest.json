@@ -4106,6 +4106,35 @@
       "ios": 17
     },
     {
+      "name": "fileMover",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "url",
+          "type": "Foundation.URL?",
+          "optional": true,
+          "field": "file",
+          "label": "file"
+        },
+        {
+          "kind": "resultURL",
+          "type": "@escaping (_ result: Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void",
+          "optional": false,
+          "field": "onCompletion",
+          "label": "onCompletion"
+        }
+      ]
+    },
+    {
       "name": "findDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
@@ -12614,6 +12643,7 @@
         "fileDialogURLEnabled",
         "fileExporterFilenameLabel",
         "fileImporter",
+        "fileMover",
         "findDisabled",
         "findNavigator",
         "flipsForRightToLeftLayoutDirection",

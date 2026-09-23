@@ -1627,6 +1627,11 @@ export interface OneNativeStyle {
   fileDialogMessage?: string | null
   fileDialogURLEnabled?: boolean
   fileExporterFilenameLabel?: string | null
+  fileMover?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    file: string | null
+    onCompletion: (result: Readonly<{ success: string } | { failure: string }>) => void
+  }>
   findDisabled?: boolean
   findNavigator?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   fixedSizeWithHorizontalAndVertical?: Readonly<{
