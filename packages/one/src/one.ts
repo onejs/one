@@ -21,6 +21,13 @@ import {
   ToolbarHost,
   ToolbarItem,
   UI as NativeUI,
+  getHinge,
+  getReservedRegions,
+  getSizeClass,
+  onHingeChange,
+  useHinge,
+  useReservedRegions,
+  useSizeClass,
   ZoomTransitionAlignmentRectDetector,
   ZoomTransitionEnabler,
   ZoomTransitionSource,
@@ -72,6 +79,15 @@ export type OneUI = typeof NativeUI & {
   readonly TextInput: typeof TextInput
   readonly useFonts: typeof useFonts
   readonly useNativeState: typeof useNativeState
+  // the window scene's size classes, the hinge, and the display's reserved
+  // regions (a foldable's fold, a camera occlusion): what adaptive layout reads.
+  readonly useSizeClass: typeof useSizeClass
+  readonly getSizeClass: typeof getSizeClass
+  readonly useHinge: typeof useHinge
+  readonly getHinge: typeof getHinge
+  readonly onHingeChange: typeof onHingeChange
+  readonly useReservedRegions: typeof useReservedRegions
+  readonly getReservedRegions: typeof getReservedRegions
 }
 
 export type OneAPI = {
@@ -129,6 +145,13 @@ const UI: Readonly<OneUI> = Object.freeze({
   TextInput,
   useFonts,
   useNativeState,
+  useSizeClass,
+  getSizeClass,
+  useHinge,
+  getHinge,
+  onHingeChange,
+  useReservedRegions,
+  getReservedRegions,
 })
 
 export const One: OneAPI = Object.freeze({
