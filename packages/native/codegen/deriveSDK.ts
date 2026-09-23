@@ -32,18 +32,25 @@ export type DerivedModifier = {
 export type DerivedViewSlot = { name: string; module: string; label: string; ios: number }
 
 export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
-  const slots = inventory.filter((d) =>
-    d.kind === 'func' && (d.module === 'SwiftUI' || d.module === 'SwiftUICore') &&
-    d.owner.split('.').at(-1) === 'View' && d.parameters.length === 1 &&
-    /^\(\) -> [A-Za-z_]\w*$/.test(d.parameters[0].type) &&
-    d.requirements?.length === 1 &&
-    d.requirements[0] === `${d.parameters[0].type.slice(6)} : SwiftUICore.View` &&
-    present(d) && ios(d) <= ceiling
-  )
+  const slots = inventory.filter((d) => {
+    const builders = d.parameters.filter((parameter) =>
+      /^\(\) -> [A-Za-z_]\w*$/.test(parameter.type) &&
+      d.requirements?.length === 1 &&
+      d.requirements[0] === `${parameter.type.slice(6)} : SwiftUICore.View`
+    )
+    return (
+      d.kind === 'func' && (d.module === 'SwiftUI' || d.module === 'SwiftUICore') &&
+      d.owner.split('.').at(-1) === 'View' && builders.length === 1 &&
+      d.parameters.every((parameter) => parameter === builders[0] || parameter.defaultValue !== undefined) &&
+      present(d) && ios(d) <= ceiling
+    )
+  })
   const byName = new Map<string, Declaration[]>()
   for (const slot of slots) byName.set(slot.name, [...(byName.get(slot.name) ?? []), slot])
   return [...byName].filter(([, declarations]) => declarations.length === 1)
-    .map(([, [slot]]) => ({ name: slot.name, module: slot.module, label: slot.parameters[0].label, ios: ios(slot) }))
+    .map(([, [slot]]) => ({ name: slot.name, module: slot.module,
+      label: slot.parameters.find((parameter) =>
+        /^\(\) -> [A-Za-z_]\w*$/.test(parameter.type))!.label, ios: ios(slot) }))
     .sort((a, b) => a.name.localeCompare(b.name))
 }
 
