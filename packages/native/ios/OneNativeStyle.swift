@@ -235,6 +235,7 @@ extension View {
       case "hueRotation": view = AnyView(view.oneNativeSDKHueRotation(value, emit: emit))
       case "ignoresSafeAreaWithRegionsAndEdges": view = AnyView(view.oneNativeSDKIgnoresSafeAreaWithRegionsAndEdges(value, emit: emit))
       case "ignoresSafeAreaWithRegionsAndEdgesAndAlignment": view = AnyView(view.oneNativeSDKIgnoresSafeAreaWithRegionsAndEdgesAndAlignment(value, emit: emit))
+      case "imageScale": view = AnyView(view.oneNativeSDKImageScale(value, emit: emit))
       case "indexViewStyle": view = AnyView(view.oneNativeSDKIndexViewStyle(value, emit: emit))
       case "inspectorColumnWidthWithCGFloat": view = AnyView(view.oneNativeSDKInspectorColumnWidthWithCGFloat(value, emit: emit))
       case "inspectorColumnWidthWithMinAndIdealAndMax": view = AnyView(view.oneNativeSDKInspectorColumnWidthWithMinAndIdealAndMax(value, emit: emit))
@@ -290,7 +291,9 @@ extension View {
       case "musicSubscriptionOffer": view = AnyView(view.oneNativeSDKMusicSubscriptionOffer(value, emit: emit))
       case "navigationBarBackButtonHidden": view = AnyView(view.oneNativeSDKNavigationBarBackButtonHidden(value, emit: emit))
       case "navigationBarHidden": view = AnyView(view.oneNativeSDKNavigationBarHidden(value, emit: emit))
-      case "navigationBarTitle": view = AnyView(view.oneNativeSDKNavigationBarTitle(value, emit: emit))
+      case "navigationBarTitleDisplayMode": view = AnyView(view.oneNativeSDKNavigationBarTitleDisplayMode(value, emit: emit))
+      case "navigationBarTitleWithText": view = AnyView(view.oneNativeSDKNavigationBarTitleWithText(value, emit: emit))
+      case "navigationBarTitleWithTitleAndDisplayMode": view = AnyView(view.oneNativeSDKNavigationBarTitleWithTitleAndDisplayMode(value, emit: emit))
       case "navigationLinkIndicatorVisibility": view = AnyView(view.oneNativeSDKNavigationLinkIndicatorVisibility(value, emit: emit))
       case "navigationSplitViewColumnWidthWithCGFloat": view = AnyView(view.oneNativeSDKNavigationSplitViewColumnWidthWithCGFloat(value, emit: emit))
       case "navigationSplitViewColumnWidthWithMinAndIdealAndMax": view = AnyView(view.oneNativeSDKNavigationSplitViewColumnWidthWithMinAndIdealAndMax(value, emit: emit))
@@ -402,6 +405,7 @@ extension View {
       case "tableStyle": view = AnyView(view.oneNativeSDKTableStyle(value, emit: emit))
       case "tabViewSearchActivation": view = AnyView(view.oneNativeSDKTabViewSearchActivation(value, emit: emit))
       case "tabViewStyle": view = AnyView(view.oneNativeSDKTabViewStyle(value, emit: emit))
+      case "textCase": view = AnyView(view.oneNativeSDKTextCase(value, emit: emit))
       case "textFieldStyle": view = AnyView(view.oneNativeSDKTextFieldStyle(value, emit: emit))
       case "textInputAutocapitalization": view = AnyView(view.oneNativeSDKTextInputAutocapitalization(value, emit: emit))
       case "textInputBorderShape": view = AnyView(view.oneNativeSDKTextInputBorderShape(value, emit: emit))
@@ -423,6 +427,7 @@ extension View {
       case "toolbarWithVisibilityAndBars": view = AnyView(view.oneNativeSDKToolbarWithVisibilityAndBars(value, emit: emit))
       case "tracking": view = AnyView(view.oneNativeSDKTracking(value, emit: emit))
       case "transition": view = AnyView(view.oneNativeSDKTransition(value, emit: emit))
+      case "truncationMode": view = AnyView(view.oneNativeSDKTruncationMode(value, emit: emit))
       case "typeSelectEquivalent": view = AnyView(view.oneNativeSDKTypeSelectEquivalent(value, emit: emit))
       case "typesettingLanguage": view = AnyView(view.oneNativeSDKTypesettingLanguage(value, emit: emit))
       case "underline": view = AnyView(view.oneNativeSDKUnderline(value, emit: emit))
@@ -2411,6 +2416,16 @@ extension View {
     } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKImageScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "small": self.imageScale(SwiftUICore.Image.Scale.small)
+      case "medium": self.imageScale(SwiftUICore.Image.Scale.medium)
+      case "large": self.imageScale(SwiftUICore.Image.Scale.large)
+    default: preconditionFailure("invalid imageScale: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKIndexViewStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -3114,8 +3129,41 @@ extension View {
       self.navigationBarHidden(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKNavigationBarTitle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKNavigationBarTitleDisplayMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.navigationBarTitleDisplayMode(SwiftUI.NavigationBarItem.TitleDisplayMode.automatic)
+      case "inline": self.navigationBarTitleDisplayMode(SwiftUI.NavigationBarItem.TitleDisplayMode.inline)
+      case "large": self.navigationBarTitleDisplayMode(SwiftUI.NavigationBarItem.TitleDisplayMode.large)
+    default: preconditionFailure("invalid navigationBarTitleDisplayMode: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKNavigationBarTitleWithText(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       self.navigationBarTitle(Text(value))
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKNavigationBarTitleWithTitleAndDisplayMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid navigationBarTitleWithTitleAndDisplayMode: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Text = {
+      guard let raw = values[0] else { preconditionFailure("missing navigationBarTitleWithTitleAndDisplayMode.title") }
+      return Text(raw)
+    }()
+    let argument1: SwiftUI.NavigationBarItem.TitleDisplayMode = {
+      guard let raw = values[1] else { preconditionFailure("missing navigationBarTitleWithTitleAndDisplayMode.displayMode") }
+      switch raw {
+      case "automatic": return SwiftUI.NavigationBarItem.TitleDisplayMode.automatic
+      case "inline": return SwiftUI.NavigationBarItem.TitleDisplayMode.inline
+      case "large": return SwiftUI.NavigationBarItem.TitleDisplayMode.large
+      default: preconditionFailure("invalid navigationBarTitleWithTitleAndDisplayMode.displayMode: \(raw)")
+      }
+    }()
+    self.navigationBarTitle(argument0, displayMode: argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKNavigationLinkIndicatorVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4445,6 +4493,15 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKTextCase(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.textCase(nil as SwiftUICore.Text.Case?)
+      case "uppercase": self.textCase(SwiftUICore.Text.Case.uppercase)
+      case "lowercase": self.textCase(SwiftUICore.Text.Case.lowercase)
+    default: preconditionFailure("invalid textCase: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKTextFieldStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -4876,6 +4933,16 @@ extension View {
       case "identity": self.transition(SwiftUICore.AnyTransition.identity)
       case "scale": self.transition(SwiftUICore.AnyTransition.scale)
     default: preconditionFailure("invalid transition: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTruncationMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "head": self.truncationMode(SwiftUICore.Text.TruncationMode.head)
+      case "tail": self.truncationMode(SwiftUICore.Text.TruncationMode.tail)
+      case "middle": self.truncationMode(SwiftUICore.Text.TruncationMode.middle)
+    default: preconditionFailure("invalid truncationMode: \(value)")
     }
   }
 
