@@ -105,7 +105,7 @@ for (const modifier of derivedModifiers) {
           ? d.parameters.length === modifier.arguments?.length &&
             d.parameters.every((parameter, index) =>
               parameter.label === modifier.arguments?.[index].label &&
-              parameter.type === modifier.arguments?.[index].type)
+              parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))
         : d.parameters.some((parameter) => parameter.type === modifier.type &&
             (modifier.label === undefined || parameter.label === modifier.label))) &&
       d.owner.split('.').at(-1) === 'View'

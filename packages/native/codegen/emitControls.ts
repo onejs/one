@@ -140,6 +140,8 @@ ${styleFields
                 ? `(value: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}) => void`
                 : modifier.kind === 'eventEnumPair'
                   ? `(oldValue: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}, newValue: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}) => void`
+                  : modifier.kind === 'eventValueString'
+                    ? 'Readonly<{ value: string; onChange: (value: string) => void }>'
           : modifier.kind === 'bindingBoolean'
             ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>'
             : modifier.kind === 'bindingString'
