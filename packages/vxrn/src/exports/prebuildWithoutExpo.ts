@@ -181,7 +181,9 @@ function insertAfterLine(haystack: string, anchor: string, insertion: string): s
 function patchIosInfoPlistSceneManifest(rendered: string): string {
   const anchor = '\t<key>LSRequiresIPhoneOS</key>'
   if (!rendered.includes(anchor)) {
-    throw new Error('[vxrn] prebuild template Info.plist lost its LSRequiresIPhoneOS anchor')
+    throw new Error(
+      '[vxrn] prebuild template Info.plist lost its LSRequiresIPhoneOS anchor'
+    )
   }
   return rendered.replace(
     anchor,
@@ -622,6 +624,37 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         anchor,
         `${anchor}\n    <uses-permission android:name="android.permission.CAMERA" />`
       )
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.android?.googleMapsApiKey !== undefined
+    ) {
+      const anchor = '    </application>'
+      if (!rendered.includes(anchor)) {
+        throw new Error(
+          '[vxrn] cannot stamp the maps api key: expected </application> in app/src/main/AndroidManifest.xml'
+        )
+      }
+      rendered = rendered.replace(
+        anchor,
+        `      <meta-data android:name="com.google.android.geo.API_KEY" android:value="${escapeXml(app.android.googleMapsApiKey)}" />\n${anchor}`
+      )
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'gradle.properties' &&
+      app.android?.googleMapsApiKey !== undefined
+    ) {
+      // the flag @vxrn/native reads to compile the maps source set in. it
+      // lives in the root gradle.properties so library builds see it through
+      // the root project; without the key the file is untouched and maps
+      // stays out of the app.
+      const line = 'oneNativeMaps=true'
+      if (!rendered.includes(line)) {
+        const trailed = rendered.endsWith('\n') ? rendered : `${rendered}\n`
+        rendered = `${trailed}\n# One.UI.Map: set by native.app.android.googleMapsApiKey.\n${line}\n`
+      }
     }
     if (
       platform === 'android' &&

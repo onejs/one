@@ -31,9 +31,7 @@ describe('native.app manifest', () => {
   test('rejects invalid target names and schemes', () => {
     expect(() => validateNativeApp({} as any)).toThrow(/name/)
     expect(() => validateNativeApp({ name: 'my-app' } as any)).toThrow(/name/)
-    expect(() => validateNativeApp({ ...app, scheme: 'not a scheme' })).toThrow(
-      /scheme/
-    )
+    expect(() => validateNativeApp({ ...app, scheme: 'not a scheme' })).toThrow(/scheme/)
   })
 
   test('rejects bad versions, icons, and splashes', () => {
@@ -66,12 +64,12 @@ describe('native.app manifest', () => {
 
   test('accepts a camera permission string and rejects empty ones', () => {
     expect(() => validateNativeApp({ ...app, imagePicker: undefined })).not.toThrow()
-    expect(() =>
-      validateNativeApp({ ...app, imagePicker: { camera: '' } })
-    ).toThrow(/imagePicker\.camera/)
-    expect(() =>
-      validateNativeApp({ ...app, imagePicker: { camera: '   ' } })
-    ).toThrow(/imagePicker\.camera/)
+    expect(() => validateNativeApp({ ...app, imagePicker: { camera: '' } })).toThrow(
+      /imagePicker\.camera/
+    )
+    expect(() => validateNativeApp({ ...app, imagePicker: { camera: '   ' } })).toThrow(
+      /imagePicker\.camera/
+    )
   })
 
   test('rejects missing platform ids and out-of-range platform values', () => {
@@ -86,9 +84,9 @@ describe('native.app manifest', () => {
         android: app.android,
       } as any)
     ).toThrow(/bundleId/)
-    expect(() =>
-      validateNativeApp({ name: 'MyApp', ios: app.ios } as any)
-    ).toThrow(/applicationId/)
+    expect(() => validateNativeApp({ name: 'MyApp', ios: app.ios } as any)).toThrow(
+      /applicationId/
+    )
     expect(() =>
       validateNativeApp({
         name: 'MyApp',
@@ -129,6 +127,27 @@ describe('native.app manifest', () => {
         android: { applicationId: 'dev.one.myapp', versionCode: 1.5 },
       })
     ).toThrow(/versionCode/)
+  })
+
+  test('accepts a maps key and rejects empty ones', () => {
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        android: { ...app.android, googleMapsApiKey: 'AIza-test' },
+      })
+    ).not.toThrow()
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        android: { ...app.android, googleMapsApiKey: '' },
+      })
+    ).toThrow(/googleMapsApiKey/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        android: { ...app.android, googleMapsApiKey: '   ' },
+      })
+    ).toThrow(/googleMapsApiKey/)
   })
 
   test('platform scope skips the other platform requirement', () => {

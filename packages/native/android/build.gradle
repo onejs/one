@@ -19,6 +19,17 @@ apply plugin: 'com.facebook.react'
 
 group = 'dev.vxrn'
 
+// One.UI.Map on android compiles only when the app sets
+// native.app.android.googleMapsApiKey: prebuild writes oneNativeMaps=true
+// to the root gradle.properties, and without it the nomaps source set (whose
+// manager throws on mount) compiles instead, keeping the maps sdk out of the
+// app entirely. read through the root project first: the flag lives in the
+// app's gradle.properties, not this library's.
+def oneNativeMapsEnabled() {
+    def value = rootProject.findProperty("oneNativeMaps") ?: findProperty("oneNativeMaps")
+    return value != null && value.toString() == "true"
+}
+
 android {
     namespace "dev.vxrn.nativebridge"
     compileSdkVersion safeExtGet("compileSdkVersion", 35)
@@ -47,6 +58,13 @@ android {
     buildFeatures {
         compose true
         prefab true
+    }
+
+    sourceSets {
+        named("main") {
+            // exactly one of these defines dev.onejs.onenative.OneNativeUiMapManager.
+            java.srcDir(oneNativeMapsEnabled() ? "src/maps/java" : "src/nomaps/java")
+        }
     }
 
     externalNativeBuild {
@@ -102,6 +120,13 @@ dependencies {
     implementation "androidx.compose.ui:ui:$composeUiVersion"
     implementation "androidx.compose.foundation:foundation:$composeUiVersion"
     implementation "androidx.compose.material3:material3:$material3Version"
+    // maps sdk only when the app opted in via the manifest key; without the
+    // flag nothing here references it, which is what keeps it out of the apk.
+    // play-services-maps arrives transitively through maps-compose.
+    if (oneNativeMapsEnabled()) {
+        implementation "com.google.maps.android:maps-compose:6.10.0"
+        implementation "androidx.lifecycle:lifecycle-runtime:2.9.3"
+    }
     if (rootProject.subprojects.find { it.name == "react-native-worklets" } != null) {
         implementation project(":react-native-worklets")
     } else {
