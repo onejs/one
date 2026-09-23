@@ -783,6 +783,13 @@ export type SDKPreviewInterfaceOrientation =
   (typeof sdkPreviewInterfaceOrientationValues)[number]
 export const sdkProductDescriptionValues = ['automatic', 'visible', 'hidden'] as const
 export type SDKProductDescription = (typeof sdkProductDescriptionValues)[number]
+export const sdkProductViewStyleValues = [
+  'automatic',
+  'regular',
+  'large',
+  'compact',
+] as const
+export type SDKProductViewStyle = (typeof sdkProductViewStyleValues)[number]
 export const sdkProgressViewStyleValues = ['linear', 'circular', 'automatic'] as const
 export type SDKProgressViewStyle = (typeof sdkProgressViewStyleValues)[number]
 export const sdkRealityViewLayoutBehaviorValues = [
@@ -865,6 +872,9 @@ export const sdkSubmitLabelValues = [
   'continue',
 ] as const
 export type SDKSubmitLabel = (typeof sdkSubmitLabelValues)[number]
+export const sdkSubscriptionOfferViewStyleValues = ['automatic', 'compact'] as const
+export type SDKSubscriptionOfferViewStyle =
+  (typeof sdkSubscriptionOfferViewStyleValues)[number]
 export const sdkSubscriptionStoreButtonLabelValues = [
   'automatic',
   'singleLine',
@@ -882,6 +892,24 @@ export const sdkSubscriptionStoreControlBackgroundValues = [
 ] as const
 export type SDKSubscriptionStoreControlBackground =
   (typeof sdkSubscriptionStoreControlBackgroundValues)[number]
+export const sdkSubscriptionStoreControlStyleValues = [
+  'pagedProminentPicker',
+  'pagedPicker',
+  'automatic',
+  'compactPicker',
+  'prominentPicker',
+  'picker',
+  'buttons',
+] as const
+export type SDKSubscriptionStoreControlStyle =
+  (typeof sdkSubscriptionStoreControlStyleValues)[number]
+export const sdkSubscriptionStoreOptionGroupStyleValues = [
+  'automatic',
+  'tabs',
+  'links',
+] as const
+export type SDKSubscriptionStoreOptionGroupStyle =
+  (typeof sdkSubscriptionStoreOptionGroupStyleValues)[number]
 export const sdkSymbolColorRenderingModeValues = ['flat', 'gradient'] as const
 export type SDKSymbolColorRenderingMode =
   (typeof sdkSymbolColorRenderingModeValues)[number]
@@ -928,6 +956,8 @@ export const sdkTabViewStyleValues = [
 export type SDKTabViewStyle = (typeof sdkTabViewStyleValues)[number]
 export const sdkTextCaseValues = ['uppercase', 'lowercase'] as const
 export type SDKTextCase = (typeof sdkTextCaseValues)[number]
+export const sdkTextEditorStyleValues = ['automatic', 'plain'] as const
+export type SDKTextEditorStyle = (typeof sdkTextEditorStyleValues)[number]
 export const sdkTextFieldStyleValues = [
   'automatic',
   'roundedBorder',
@@ -1642,6 +1672,7 @@ export interface OneNativeStyle {
   privacySensitive?: boolean
   productDescription?: SDKProductDescription
   productIconBorder?: boolean
+  productViewStyle?: SDKProductViewStyle
   progressViewStyle?: SDKProgressViewStyle
   realityViewLayoutBehavior?: SDKRealityViewLayoutBehavior
   redacted?: SDKRedacted
@@ -1813,8 +1844,11 @@ export interface OneNativeStyle {
     buttonKinds: 'detailLink'
   }>
   subscriptionOfferViewDetailAction?: () => void
+  subscriptionOfferViewStyle?: SDKSubscriptionOfferViewStyle
   subscriptionStoreButtonLabel?: SDKSubscriptionStoreButtonLabel
   subscriptionStoreControlBackground?: SDKSubscriptionStoreControlBackground
+  subscriptionStoreControlStyle?: SDKSubscriptionStoreControlStyle
+  subscriptionStoreOptionGroupStyle?: SDKSubscriptionStoreOptionGroupStyle
   subscriptionStorePolicyDestination?: Readonly<{
     url: string
     button: 'termsOfService' | 'privacyPolicy'
@@ -1833,6 +1867,7 @@ export interface OneNativeStyle {
   tabViewStyle?: SDKTabViewStyle
   tag?: string
   textCase?: SDKTextCase | null
+  textEditorStyle?: SDKTextEditorStyle
   textFieldStyle?: SDKTextFieldStyle
   textInputAutocapitalization?: SDKTextInputAutocapitalization | null
   textInputBorderShape?: SDKTextInputBorderShape

@@ -349,6 +349,7 @@ extension View {
       case "privacySensitive": view = AnyView(view.oneNativeSDKPrivacySensitive(value, emit: emit))
       case "productDescription": view = AnyView(view.oneNativeSDKProductDescription(value, emit: emit))
       case "productIconBorder": view = AnyView(view.oneNativeSDKProductIconBorder(value, emit: emit))
+      case "productViewStyle": view = AnyView(view.oneNativeSDKProductViewStyle(value, emit: emit))
       case "progressViewStyle": view = AnyView(view.oneNativeSDKProgressViewStyle(value, emit: emit))
       case "realityViewLayoutBehavior": view = AnyView(view.oneNativeSDKRealityViewLayoutBehavior(value, emit: emit))
       case "redacted": view = AnyView(view.oneNativeSDKRedacted(value, emit: emit))
@@ -400,8 +401,11 @@ extension View {
       case "submitScope": view = AnyView(view.oneNativeSDKSubmitScope(value, emit: emit))
       case "subscriptionOfferViewButtonVisibility": view = AnyView(view.oneNativeSDKSubscriptionOfferViewButtonVisibility(value, emit: emit))
       case "subscriptionOfferViewDetailAction": view = AnyView(view.oneNativeSDKSubscriptionOfferViewDetailAction(value, emit: emit))
+      case "subscriptionOfferViewStyle": view = AnyView(view.oneNativeSDKSubscriptionOfferViewStyle(value, emit: emit))
       case "subscriptionStoreButtonLabel": view = AnyView(view.oneNativeSDKSubscriptionStoreButtonLabel(value, emit: emit))
       case "subscriptionStoreControlBackground": view = AnyView(view.oneNativeSDKSubscriptionStoreControlBackground(value, emit: emit))
+      case "subscriptionStoreControlStyle": view = AnyView(view.oneNativeSDKSubscriptionStoreControlStyle(value, emit: emit))
+      case "subscriptionStoreOptionGroupStyle": view = AnyView(view.oneNativeSDKSubscriptionStoreOptionGroupStyle(value, emit: emit))
       case "subscriptionStorePolicyDestination": view = AnyView(view.oneNativeSDKSubscriptionStorePolicyDestination(value, emit: emit))
       case "subscriptionStoreSignInAction": view = AnyView(view.oneNativeSDKSubscriptionStoreSignInAction(value, emit: emit))
       case "swipeActionsContainer": view = AnyView(view.oneNativeSDKSwipeActionsContainer(value, emit: emit))
@@ -417,6 +421,7 @@ extension View {
       case "tabViewStyle": view = AnyView(view.oneNativeSDKTabViewStyle(value, emit: emit))
       case "tag": view = AnyView(view.oneNativeSDKTag(value, emit: emit))
       case "textCase": view = AnyView(view.oneNativeSDKTextCase(value, emit: emit))
+      case "textEditorStyle": view = AnyView(view.oneNativeSDKTextEditorStyle(value, emit: emit))
       case "textFieldStyle": view = AnyView(view.oneNativeSDKTextFieldStyle(value, emit: emit))
       case "textInputAutocapitalization": view = AnyView(view.oneNativeSDKTextInputAutocapitalization(value, emit: emit))
       case "textInputBorderShape": view = AnyView(view.oneNativeSDKTextInputBorderShape(value, emit: emit))
@@ -3681,6 +3686,17 @@ extension View {
     if value == "true" { self.productIconBorder() } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKProductViewStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.productViewStyle(.automatic)
+      case "regular": self.productViewStyle(.regular)
+      case "large": self.productViewStyle(.large)
+      case "compact": self.productViewStyle(.compact)
+    default: preconditionFailure("invalid productViewStyle: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKProgressViewStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -4418,6 +4434,15 @@ extension View {
     if #available(iOS 26, *) { self.subscriptionOfferViewDetailAction({ emit("subscriptionOfferViewDetailAction", "") }) } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKSubscriptionOfferViewStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": if #available(iOS 26, *) { self.subscriptionOfferViewStyle(.automatic) } else { self }
+      case "compact": if #available(iOS 26, *) { self.subscriptionOfferViewStyle(.compact) } else { self }
+    default: preconditionFailure("invalid subscriptionOfferViewStyle: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStoreButtonLabel(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -4438,6 +4463,30 @@ extension View {
       case "gradientMaterial": self.subscriptionStoreControlBackground(_StoreKit_SwiftUI.SubscriptionStoreControlBackground.gradientMaterial)
       case "gradientMaterialOnScroll": self.subscriptionStoreControlBackground(_StoreKit_SwiftUI.SubscriptionStoreControlBackground.gradientMaterialOnScroll)
     default: preconditionFailure("invalid subscriptionStoreControlBackground: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSubscriptionStoreControlStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "pagedProminentPicker": if #available(iOS 18, *) { self.subscriptionStoreControlStyle(.pagedProminentPicker) } else { self }
+      case "pagedPicker": if #available(iOS 18, *) { self.subscriptionStoreControlStyle(.pagedPicker) } else { self }
+      case "automatic": self.subscriptionStoreControlStyle(.automatic)
+      case "compactPicker": if #available(iOS 18, *) { self.subscriptionStoreControlStyle(.compactPicker) } else { self }
+      case "prominentPicker": self.subscriptionStoreControlStyle(.prominentPicker)
+      case "picker": self.subscriptionStoreControlStyle(.picker)
+      case "buttons": self.subscriptionStoreControlStyle(.buttons)
+    default: preconditionFailure("invalid subscriptionStoreControlStyle: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSubscriptionStoreOptionGroupStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": if #available(iOS 18, *) { self.subscriptionStoreOptionGroupStyle(.automatic) } else { self }
+      case "tabs": if #available(iOS 18, *) { self.subscriptionStoreOptionGroupStyle(.tabs) } else { self }
+      case "links": if #available(iOS 18, *) { self.subscriptionStoreOptionGroupStyle(.links) } else { self }
+    default: preconditionFailure("invalid subscriptionStoreOptionGroupStyle: \(value)")
     }
   }
 
@@ -4580,6 +4629,15 @@ extension View {
       case "uppercase": self.textCase(SwiftUICore.Text.Case.uppercase)
       case "lowercase": self.textCase(SwiftUICore.Text.Case.lowercase)
     default: preconditionFailure("invalid textCase: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTextEditorStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.textEditorStyle(.automatic)
+      case "plain": self.textEditorStyle(.plain)
+    default: preconditionFailure("invalid textEditorStyle: \(value)")
     }
   }
 

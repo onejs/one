@@ -6952,6 +6952,31 @@
       "framework": "StoreKit"
     },
     {
+      "name": "productViewStyle",
+      "kind": "style",
+      "type": "some ProductViewStyle",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 17
+        },
+        {
+          "name": "regular",
+          "ios": 17
+        },
+        {
+          "name": "large",
+          "ios": 17
+        },
+        {
+          "name": "compact",
+          "ios": 17
+        }
+      ],
+      "framework": "StoreKit"
+    },
+    {
       "name": "progressViewStyle",
       "kind": "style",
       "type": "S",
@@ -8384,6 +8409,23 @@
       "framework": "StoreKit"
     },
     {
+      "name": "subscriptionOfferViewStyle",
+      "kind": "style",
+      "type": "some SubscriptionOfferViewStyle",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 26
+        },
+        {
+          "name": "compact",
+          "ios": 26
+        }
+      ],
+      "framework": "StoreKit"
+    },
+    {
       "name": "subscriptionStoreButtonLabel",
       "kind": "string",
       "type": "_StoreKit_SwiftUI.SubscriptionStoreButtonLabel",
@@ -8436,6 +8478,64 @@
           "ios": 17
         }
       ]
+    },
+    {
+      "name": "subscriptionStoreControlStyle",
+      "kind": "style",
+      "type": "some SubscriptionStoreControlStyle",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "pagedProminentPicker",
+          "ios": 18
+        },
+        {
+          "name": "pagedPicker",
+          "ios": 18
+        },
+        {
+          "name": "automatic",
+          "ios": 17
+        },
+        {
+          "name": "compactPicker",
+          "ios": 18
+        },
+        {
+          "name": "prominentPicker",
+          "ios": 17
+        },
+        {
+          "name": "picker",
+          "ios": 17
+        },
+        {
+          "name": "buttons",
+          "ios": 17
+        }
+      ],
+      "framework": "StoreKit"
+    },
+    {
+      "name": "subscriptionStoreOptionGroupStyle",
+      "kind": "style",
+      "type": "some SubscriptionOptionGroupStyle",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 18
+        },
+        {
+          "name": "tabs",
+          "ios": 18
+        },
+        {
+          "name": "links",
+          "ios": 18
+        }
+      ],
+      "framework": "StoreKit"
     },
     {
       "name": "subscriptionStorePolicyDestination",
@@ -8698,6 +8798,22 @@
         {
           "name": "lowercase",
           "ios": 14
+        }
+      ]
+    },
+    {
+      "name": "textEditorStyle",
+      "kind": "style",
+      "type": "some TextEditorStyle",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 17
+        },
+        {
+          "name": "plain",
+          "ios": 17
         }
       ]
     },
@@ -10216,6 +10332,7 @@
         "tabViewStyle",
         "tableColumnHeaders",
         "tableStyle",
+        "textEditorStyle",
         "textFieldStyle",
         "textInputAutocapitalization",
         "textInputFormattingControlVisibility",
@@ -10250,11 +10367,15 @@
         "offerCodeRedemption",
         "productDescription",
         "productIconBorder",
+        "productViewStyle",
         "storeButton",
         "subscriptionOfferViewButtonVisibility",
         "subscriptionOfferViewDetailAction",
+        "subscriptionOfferViewStyle",
         "subscriptionStoreButtonLabel",
         "subscriptionStoreControlBackground",
+        "subscriptionStoreControlStyle",
+        "subscriptionStoreOptionGroupStyle",
         "subscriptionStorePolicyDestination",
         "subscriptionStoreSignInAction"
       ],

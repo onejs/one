@@ -86,6 +86,16 @@ export function deriveModifiers(
       ? { pair: Boolean(pair), cases: value.cases! }
       : undefined
   }
+  const styleCases = (style: string) => {
+    const cases = inventory.filter((d) =>
+      d.kind === 'static' && d.owner === style && d.parameters.length === 0 &&
+      d.requirements?.length === 1 && d.requirements[0] === `Self == ${d.type}` &&
+      /^[a-z]/.test(d.name) && present(d) && ios(d) <= ceiling
+    ).map((d) => ({ name: d.name, ios: ios(d) }))
+    return cases.length && new Set(cases.map((item) => item.name)).size === cases.length
+      ? cases
+      : undefined
+  }
   const methods = inventory.filter(
     (d) =>
       d.kind === 'func' &&
@@ -112,12 +122,8 @@ export function deriveModifiers(
         if (method.requirements.length !== 1) return []
         const style = /^S : ([A-Za-z_]\w*\.[A-Za-z][\w.]*)$/.exec(method.requirements[0])?.[1]
         if (style && method.parameters.length === 1 && method.parameters[0].type === 'S') {
-          const cases = inventory.filter((d) =>
-            d.kind === 'static' && d.owner === style && d.parameters.length === 0 &&
-            d.requirements?.length === 1 && d.requirements[0] === `Self == ${d.type}` &&
-            /^[a-z]/.test(d.name) && present(d) && ios(d) <= ceiling
-          ).map((d) => ({ name: d.name, ios: ios(d) }))
-          if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length) return []
+          const cases = styleCases(style)
+          if (!cases) return []
           return [{ name, module: method.module, kind: 'style', type: 'S', ios: ios(method), cases, ...framework }]
         }
         const hashable = /^([A-Za-z_]\w*) : Swift.Hashable$/.exec(method.requirements[0])?.[1]
@@ -178,6 +184,12 @@ export function deriveModifiers(
         return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method), arguments: args, ...framework }]
       }
       const { type, label } = method.parameters[0]
+      const opaqueStyle = /^some ((?:[A-Za-z_]\w*\.)?[A-Za-z]\w*Style)$/.exec(type)?.[1]
+      if (opaqueStyle) {
+        const cases = styleCases(opaqueStyle.includes('.') ? opaqueStyle : `${method.module}.${opaqueStyle}`)
+        if (cases) return [{ name, module: method.module, kind: 'style', type, ios: ios(method), cases, ...framework,
+          ...(label === '_' ? {} : { label }) }]
+      }
       const value = valueOf(type)
       if (!value) return []
       const kind = value.kind === 'enum'
