@@ -11,7 +11,7 @@ export declare function Spacer({ minLength, style, ...props }: SpacerProps): imp
 export declare function Form({ children, style, sizing, colorScheme, dynamicTypeSize, controlSize, locale, tint, isEnabled, ...props }: FormProps): import("react/jsx-runtime").JSX.Element;
 export declare function Section({ title, footer, children, style, ...props }: SectionProps): import("react/jsx-runtime").JSX.Element;
 export declare function List({ listStyle, children, style, ...props }: ListProps): import("react/jsx-runtime").JSX.Element;
-export declare function ScrollView({ axes, showsIndicators, children, style, ...props }: ScrollViewProps): import("react/jsx-runtime").JSX.Element;
+export declare function ScrollView({ axes, showsIndicators, children, swiftStyle, style, ...props }: ScrollViewProps): import("react/jsx-runtime").JSX.Element;
 export declare function LazyVStack({ alignment, spacing, children, style, ...props }: LazyVStackProps): import("react/jsx-runtime").JSX.Element;
 export declare function LazyHStack({ alignment, spacing, children, style, ...props }: LazyHStackProps): import("react/jsx-runtime").JSX.Element;
 export declare function LabeledContent({ label, value, systemImage, children, style, ...props }: LabeledContentProps): import("react/jsx-runtime").JSX.Element;

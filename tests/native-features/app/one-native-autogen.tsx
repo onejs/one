@@ -8,6 +8,8 @@ export default function NativeAutogenProof() {
   const [inspectorVisible, setInspectorVisible] = useState(false)
   const [fieldFocused, setFieldFocused] = useState(false)
   const [fieldText, setFieldText] = useState('')
+  const [tapPoint, setTapPoint] = useState<{ x: number; y: number } | null>(null)
+  const [scrollPosition, setScrollPosition] = useState<string | null>(null)
   return (
     <Swift.Tabs
       selection={selection}
@@ -25,6 +27,24 @@ export default function NativeAutogenProof() {
               text="Bold and tracked native text"
               swiftStyle={{ fontSize: 24, bold: true, tracking: 3 }}
             />
+            <Swift.Text
+              text="Tap for a generated point event"
+              swiftStyle={{ onTapGestureWithPerform: setTapPoint }}
+            />
+            <Swift.Text text={tapPoint ? `Generated tap at ${Math.round(tapPoint.x)}, ${Math.round(tapPoint.y)}` : 'Generated tap ready'} />
+            <Swift.Button label="Scroll generated position" onPress={() => setScrollPosition('row-12')} />
+            <Swift.ScrollView
+              style={{ height: 100 }}
+              swiftStyle={{ scrollPosition: { value: scrollPosition, onChange: setScrollPosition } }}
+            >
+              {Array.from({ length: 12 }, (_, index) => (
+                <Swift.Text
+                  key={index}
+                  text={`Scroll target ${index + 1}`}
+                  swiftStyle={{ id: `row-${index + 1}`, fontSize: 30 }}
+                />
+              ))}
+            </Swift.ScrollView>
             <Swift.ViewSlot name="contextMenu">
               <Swift.Text text="Hold for a generated context menu" />
               <Swift.ViewSlot.Content>

@@ -863,7 +863,11 @@ export interface OneNativeStyle {
     onScrollPhaseChange?: (oldValue: 'idle' | 'tracking' | 'interacting' | 'decelerating' | 'animating', newValue: 'idle' | 'tracking' | 'interacting' | 'decelerating' | 'animating') => void;
     onScrollVisibilityChange?: (value: boolean) => void;
     onSubmit?: () => void;
-    onTapGesture?: () => void;
+    onTapGestureWithPerform?: (value: {
+        x: number;
+        y: number;
+    }) => void;
+    onTapGestureWithPerformFromSwiftUICore?: () => void;
     paletteSelectionEffect?: SDKPaletteSelectionEffect;
     payLaterViewAction?: SDKPayLaterViewAction;
     payLaterViewDisplayStyle?: SDKPayLaterViewDisplayStyle;
@@ -980,6 +984,10 @@ export interface OneNativeStyle {
         axes: 'horizontal' | 'vertical';
     }>;
     scrollIndicatorsFlash?: boolean;
+    scrollPosition?: Readonly<{
+        value: string | null;
+        onChange: (value: string | null) => void;
+    }>;
     scrollTargetBehavior?: SDKScrollTargetBehavior;
     scrollTargetLayout?: boolean;
     searchable?: Readonly<{

@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import type { ViewProps } from 'react-native'
 import type { ListStyle } from './generated/swiftui'
+import type { OneNativeStyle } from './generated/controlTypes'
 
 // hand-written until the container emitter carries these views, when these merge into
 // src/generated/containerTypes.ts and this file goes away.
@@ -27,6 +28,7 @@ export interface ListProps extends ViewProps {
 export interface ScrollViewProps extends ViewProps {
   axes?: ScrollViewAxes
   showsIndicators?: boolean
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 

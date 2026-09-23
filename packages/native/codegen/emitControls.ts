@@ -160,6 +160,8 @@ ${styleFields
             ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>'
             : modifier.kind === 'bindingString'
               ? 'Readonly<{ value: string; onChange: (value: string) => void }>'
+              : modifier.kind === 'bindingOptionalString'
+                ? 'Readonly<{ value: string | null; onChange: (value: string | null) => void }>'
               : modifier.kind === 'optionalBoolean'
                 ? 'boolean | null'
                 : modifier.kind === 'optionalNumber'

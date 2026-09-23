@@ -293,6 +293,7 @@ export function ScrollView({
   axes = 'vertical',
   showsIndicators = true,
   children,
+  swiftStyle,
   style,
   ...props
 }: ScrollViewProps) {
@@ -307,6 +308,8 @@ export function ScrollView({
       style={viewportStyle(style)}
       axes={axes}
       showsIndicators={showsIndicators}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeScrollView>

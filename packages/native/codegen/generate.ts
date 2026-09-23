@@ -363,6 +363,7 @@ const nativeItem = `export type NativeMenuItem = Readonly<{\n${Object.entries(
   .map(([name, field]) => `  ${name}: ${fieldType(field.type)}`)
   .join('\n')}\n}>`
 for (const component of components) {
+  const styled = 'swiftStyle' in component && component.swiftStyle === true
   // a static object-array prop needs its element shape declared in the spec,
   // the way the menu hard-codes NativeMenuItem. payloadTypes generalizes that
   // one-off: name to shape, emitted verbatim above the props interface.
@@ -386,15 +387,19 @@ for (const component of components) {
   outputs.set(
     `src/specs/${component.name}NativeComponent.ts`,
     header +
-      `import type { ViewProps } from 'react-native'
-import type { ${['DirectEventHandler', 'Int32', ...numeric].join(', ')} } from 'react-native/Libraries/Types/CodegenTypes'
+      `import type { ${styled ? 'ProcessedColorValue, ' : ''}ViewProps } from 'react-native'
+import type { ${['DirectEventHandler', 'Int32', ...numeric, ...(styled ? ['Double', 'WithDefault'] : [])].filter((type, index, types) => types.indexOf(type) === index).join(', ')} } from 'react-native/Libraries/Types/CodegenTypes'
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
-${component.name === 'OneNativeMenu' ? nativeItem : ''}${payloadDeclarations}
+${component.name === 'OneNativeMenu' ? nativeItem : ''}${payloadDeclarations}${styled ? `type OneNativeStyleNative = Readonly<{
+${styleFields.map((field) => `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'boolean' ? 'boolean' : field.kind === 'color' ? 'ProcessedColorValue' : 'string'}`).join('\n')}
+  sdkModifiers?: string
+}>
+` : ''}
 interface NativeProps extends ViewProps {
 ${Object.entries(component.props)
   .map(([name, type]) => `  ${name}: ${type}`)
   .join('\n')}
-${Object.entries(component.events)
+${styled ? '  swiftStyle?: OneNativeStyleNative\n' : ''}${Object.entries(component.events)
   .map(
     ([name, fields]) =>
       `  ${name}?: DirectEventHandler<Readonly<{ ${Object.entries(fields)
