@@ -464,6 +464,7 @@ extension View {
       case "tabBarMinimizeBehavior": view = AnyView(view.oneNativeSDKTabBarMinimizeBehavior(value, emit: emit))
       case "tableColumnHeaders": view = AnyView(view.oneNativeSDKTableColumnHeaders(value, emit: emit))
       case "tableStyle": view = AnyView(view.oneNativeSDKTableStyle(value, emit: emit))
+      case "tabViewCustomization": view = AnyView(view.oneNativeSDKTabViewCustomization(value, emit: emit))
       case "tabViewSearchActivation": view = AnyView(view.oneNativeSDKTabViewSearchActivation(value, emit: emit))
       case "tabViewStyle": view = AnyView(view.oneNativeSDKTabViewStyle(value, emit: emit))
       case "tag": view = AnyView(view.oneNativeSDKTag(value, emit: emit))
@@ -5304,6 +5305,25 @@ extension View {
       case "automatic": self.tableStyle(.automatic)
     default: preconditionFailure("invalid tableStyle: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTabViewCustomization(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let binding: Binding<SwiftUI.TabViewCustomization> = {
+      let decoded: SwiftUI.TabViewCustomization = {
+        if value == "null" { return SwiftUI.TabViewCustomization() }
+        guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode(SwiftUI.TabViewCustomization.self, from: data) else { preconditionFailure("invalid tabViewCustomization: \(value)") }
+        return decoded
+      }()
+      return Binding<SwiftUI.TabViewCustomization>(get: { decoded }, set: { changed in
+        guard let data = try? JSONEncoder().encode(changed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid tabViewCustomization binding event") }
+        emit("tabViewCustomization", encoded)
+      })
+    }()
+    self.tabViewCustomization(binding)
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTabViewSearchActivation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

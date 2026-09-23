@@ -13,6 +13,30 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('round trips a Codable customization binding through native JSON', () => {
+    const onChange = vi.fn()
+    const current = '{"perTabState":[],"identifier":"D9754350-75EE-4390-AC54-159710381977","perSectionState":[]}'
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      tabViewCustomization: { value: current, onChange },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['tabViewCustomization', current],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'tabViewCustomization', value: current,
+    } })
+    expect(onChange).toHaveBeenCalledWith(current)
+    const unset = Controls.Text({ text: 'example', swiftStyle: {
+      tabViewCustomization: { value: null, onChange },
+    } })
+    expect(JSON.parse(unset.props.swiftStyle.sdkModifiers)).toEqual([
+      ['tabViewCustomization', 'null'],
+    ])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      tabViewCustomization: { value: '{broken', onChange },
+    } })).toThrow()
+  })
+
   it('dispatches SDK enum callbacks with their typed case values', () => {
     const adjust = vi.fn()
     const scroll = vi.fn()
