@@ -17,6 +17,7 @@ export type DerivedArgument = {
 
 export type EventValueSchema =
   | { kind: 'number' | 'string' | 'boolean' | 'point' }
+  | { kind: 'enum'; cases: readonly string[] }
   | { kind: 'optional'; value: EventValueSchema }
   | { kind: 'object'; fields: readonly { name: string; value: EventValueSchema }[] }
 
@@ -151,6 +152,15 @@ export function deriveModifiers(
     if (type === 'CoreFoundation.CGPoint') return { kind: 'point' }
     const [module, ...parts] = type.split('.')
     const owner = parts.join('.')
+    if (inventory.some((d) => d.module === module && d.kind === 'enum' &&
+      d.owner === parts.slice(0, -1).join('.') && d.name === parts.at(-1) &&
+      d.attributes.includes('@frozen') && present(d) && ios(d) <= version)) {
+      const cases = inventory.filter((d) => d.module === module &&
+        (d.owner === owner || d.owner === type) && d.enumCase && present(d) && ios(d) <= ceiling)
+      if (cases.length && cases.every((item) => item.parameters.length === 0) &&
+        new Set(cases.map((item) => item.name)).size === cases.length)
+        return { kind: 'enum', cases: cases.map((item) => item.name) }
+    }
     if (!owner || seen.has(type) || !inventory.some((d) => d.module === module && d.kind === 'struct' &&
       d.owner === parts.slice(0, -1).join('.') && d.name === parts.at(-1) && !d.generic && present(d) && ios(d) <= version)) return
     const fields = inventory.filter((d) => d.module === module && (d.owner === owner || d.owner === type) &&

@@ -317,11 +317,16 @@ describe('SDK modifier derivation', () => {
       ]),
       { ...method('GestureValue', 'SwiftUI'), kind: 'struct', owner: '' },
       { ...method('location', 'SwiftUI'), kind: 'var', owner: 'GestureValue', type: 'CoreFoundation.CGPoint?', stored: true },
+      { ...method('direction', 'SwiftUI'), kind: 'var', owner: 'GestureValue', type: 'SwiftUI.GestureValue.Direction', stored: true },
       { ...method('hashValue', 'SwiftUI'), kind: 'var', owner: 'GestureValue', type: 'Swift.Int', stored: false },
+      { ...method('Direction', 'SwiftUI'), kind: 'enum', owner: 'GestureValue', attributes: ['@frozen'] },
+      { ...method('zoomIn', 'SwiftUI'), kind: 'static', owner: 'GestureValue.Direction', type: 'SwiftUI.GestureValue.Direction', enumCase: true },
+      { ...method('zoomOut', 'SwiftUI'), kind: 'static', owner: 'GestureValue.Direction', type: 'SwiftUI.GestureValue.Direction', enumCase: true },
     ], 27, [])).toEqual([
       { name: 'onPencilDoubleTap', kind: 'eventStruct', type: '@escaping (_ value: SwiftUI.GestureValue) -> Swift.Void',
         ios: 0, label: 'perform', eventValue: { kind: 'object', fields: [
           { name: 'location', value: { kind: 'optional', value: { kind: 'point' } } },
+          { name: 'direction', value: { kind: 'enum', cases: ['zoomIn', 'zoomOut'] } },
         ] } },
     ])
   })

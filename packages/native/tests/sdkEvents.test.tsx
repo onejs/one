@@ -77,6 +77,19 @@ describe('SDK callback and binding transport', () => {
     expect(() => emit('onPencilSqueeze', { case: 'active', values: [{ hoverPose: { ...hoverPose, location: { x: 'bad', y: 0 } } }] })).toThrow('invalid object')
   })
 
+  it('dispatches stored SDK enum fields in callback objects', () => {
+    const accessibilityZoomAction = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: { accessibilityZoomAction } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([['accessibilityZoomAction', '']])
+    const payload = { direction: 'zoomIn', location: { x: 0.5, y: 0.25 }, point: { x: 80, y: 120 } }
+    const emit = (value: unknown) => element.props.onNativeSDKEvent({
+      nativeEvent: { name: 'accessibilityZoomAction', value: JSON.stringify(value) },
+    })
+    emit(payload)
+    expect(accessibilityZoomAction).toHaveBeenCalledWith(payload)
+    expect(() => emit({ ...payload, direction: 'sideways' })).toThrow('invalid struct value')
+  })
+
   it('encodes URL values and dispatches optional StoreKit actions', () => {
     const onSignIn = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {

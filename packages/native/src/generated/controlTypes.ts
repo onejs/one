@@ -1350,6 +1350,11 @@ export interface OneNativeStyle {
   accessibilityWithRemoveTraits?: SDKAccessibilityWithRemoveTraits
   accessibilityWithSortPriority?: number
   accessibilityWithValue?: string
+  accessibilityZoomAction?: (value: {
+    direction: 'zoomIn' | 'zoomOut'
+    location: { x: number; y: number }
+    point: { x: number; y: number }
+  }) => void
   addPassToWalletButtonStyle?: SDKAddPassToWalletButtonStyle
   allowedDynamicRange?: SDKAllowedDynamicRange | null
   allowsHitTesting?: boolean
