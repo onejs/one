@@ -176,6 +176,8 @@
     "ios": {
       "componentProvider": {
         "OneSwiftHost": "OneSwiftHostComponentView",
+        "OneNativeArrangementView": "OneNativeArrangementViewComponentView",
+        "OneNativeArrangementSlot": "OneNativeArrangementSlotComponentView",
         "OneNativeMenu": "OneNativeMenuComponentView",
         "OneNativeTab": "OneNativeTabComponentView",
         "OneNativeList": "OneNativeListComponentView",
@@ -247,9 +249,7 @@
         "OneNativeToolbarSpacer": "OneNativeToolbarSpacerComponentView",
         "OneNativeNavigationStackContent": "OneNativeNavigationStackContentComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
-        "OneNativePopoverContent": "OneNativePopoverContentComponentView",
-        "OneNativeArrangementView": "OneNativeArrangementViewComponentView",
-        "OneNativeArrangementSlot": "OneNativeArrangementSlotComponentView"
+        "OneNativePopoverContent": "OneNativePopoverContentComponentView"
       }
     }
   }
