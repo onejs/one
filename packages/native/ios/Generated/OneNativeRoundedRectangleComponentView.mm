@@ -14,6 +14,13 @@ using namespace facebook::react;
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeRoundedRectangleProps>();
     _nativeView = [OneNativeRoundedRectangleView new]; self.contentView = _nativeView;
+    __weak OneNativeRoundedRectangleComponentView *weakSelf = self;
+    _nativeView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeRoundedRectangleComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeRoundedRectangleEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
   }
   return self;
 }

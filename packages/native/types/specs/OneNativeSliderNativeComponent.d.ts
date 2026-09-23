@@ -46,6 +46,10 @@ interface NativeProps extends ViewProps {
     minimumValueImage: string;
     maximumValueImage: string;
     swiftStyle?: OneNativeStyleNative;
+    onNativeSDKEvent?: DirectEventHandler<Readonly<{
+        name: string;
+        value: string;
+    }>>;
     onNativeSliderValueChange?: DirectEventHandler<Readonly<{
         value: Double;
         eventCount: Int32;

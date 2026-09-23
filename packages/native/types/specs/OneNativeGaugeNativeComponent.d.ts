@@ -1,5 +1,5 @@
 import type { ProcessedColorValue, ViewProps } from 'react-native';
-import type { Double, WithDefault } from 'react-native/Libraries/Types/CodegenTypes';
+import type { DirectEventHandler, Double, WithDefault } from 'react-native/Libraries/Types/CodegenTypes';
 type OneNativeStyleNative = Readonly<{
     fontSize?: WithDefault<Double, -1>;
     fontWeight?: string;
@@ -43,6 +43,10 @@ interface NativeProps extends ViewProps {
     maximumValueLabel: string;
     gaugeStyle: string;
     swiftStyle?: OneNativeStyleNative;
+    onNativeSDKEvent?: DirectEventHandler<Readonly<{
+        name: string;
+        value: string;
+    }>>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
 export default _default;

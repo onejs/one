@@ -16,6 +16,12 @@ using namespace facebook::react;
     _actionsDirty = YES;
     _nativeView = [OneNativeAlertView new]; self.contentView = _nativeView;
     __weak OneNativeAlertComponentView *weakSelf = self;
+    _nativeView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeAlertComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeAlertEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
     _nativeView.onChange = ^(BOOL value, NSInteger eventCount, NSInteger revision) {
       OneNativeAlertComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;

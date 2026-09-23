@@ -18,6 +18,9 @@ private final class SecureFieldModel: ObservableObject {
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
+  var onSDKEvent: ((String, String) -> Void)?
+  func emitSDKEvent(_ name: String, _ value: String) { if active { onSDKEvent?(name, value) } }
+
   var syncStateId: Int = 0
   private var syncToken: Int = 0
   func bindSyncState(_ id: Int) {
@@ -57,6 +60,8 @@ private final class SecureFieldModel: ObservableObject {
   }
 }
 @objcMembers public final class OneNativeSecureFieldView: UIView, OneNativeComposable {
+  public var onSDKEvent: ((String, String) -> Void)?
+
   public var onChange: ((String, Int, Int) -> Void)?
   public var onFocusChange: ((Bool, Int, Int) -> Void)?
   public var onSubmit: ((Int) -> Void)?
@@ -104,6 +109,8 @@ private final class SecureFieldModel: ObservableObject {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
+    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
+
     model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
     model.onFocusChange = { [weak self] value, count, revision in self?.onFocusChange?(value, count, revision) }
     model.onSubmit = { [weak self] submitCount in self?.onSubmit?(submitCount) }
@@ -121,7 +128,7 @@ private final class SecureFieldModel: ObservableObject {
   }
   public func reset() {
     compositionParent = nil
-    model.active = false; model.onChange = nil; model.onFocusChange = nil; model.onSubmit = nil
+    model.active = false; model.onSDKEvent = nil; model.onChange = nil; model.onFocusChange = nil; model.onSubmit = nil
     controller?.detach(); controller = nil; model = SecureFieldModel()
   }
 }
@@ -154,6 +161,6 @@ private struct SecureFieldContent: View {
       }
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
-      .oneNativeStyle(model.swiftStyle)
+      .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }
 }

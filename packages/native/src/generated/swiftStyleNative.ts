@@ -44,9 +44,12 @@ const colorFields = [
   'glassEffectTint',
 ] as const
 const sdkKinds = {
+  accessibilityShowsLargeContentViewer: 'boolean',
   allowsHitTesting: 'boolean',
   allowsTightening: 'boolean',
+  allowsWindowActivationEvents: 'boolean',
   autocorrectionDisabled: 'boolean',
+  backgroundExtensionEffect: 'boolean',
   badge: 'number',
   badgeProminence: 'string',
   baselineOffset: 'number',
@@ -56,14 +59,17 @@ const sdkKinds = {
   buttonBorderShape: 'string',
   buttonRepeatBehavior: 'string',
   buttonSizing: 'string',
+  colorInvert: 'boolean',
   colorMultiply: 'string',
   colorScheme: 'string',
+  compositingGroup: 'boolean',
   contentTransition: 'string',
   contrast: 'number',
   controlSize: 'string',
   defaultAdaptableTabBarPlacement: 'string',
   defaultTabBarPlacement: 'string',
   deleteDisabled: 'boolean',
+  dialogSuppressionToggle: 'bindingBoolean',
   disabled: 'boolean',
   dynamicTypeSize: 'string',
   edgesIgnoringSafeArea: 'string',
@@ -71,9 +77,12 @@ const sdkKinds = {
   fileDialogCustomizationID: 'string',
   fileDialogImportsUnresolvedAliases: 'boolean',
   findDisabled: 'boolean',
+  findNavigator: 'bindingBoolean',
+  fixedSize: 'boolean',
   flipsForRightToLeftLayoutDirection: 'boolean',
   focusable: 'boolean',
   focusEffectDisabled: 'boolean',
+  geometryGroup: 'boolean',
   glassEffectTransition: 'string',
   grayscale: 'number',
   gridCellAnchor: 'string',
@@ -81,6 +90,7 @@ const sdkKinds = {
   gridCellUnsizedAxes: 'string',
   gridColumnAlignment: 'string',
   headerProminence: 'string',
+  hidden: 'boolean',
   hoverEffect: 'string',
   hoverEffectDisabled: 'boolean',
   hueRotation: 'string',
@@ -93,24 +103,33 @@ const sdkKinds = {
   keyboardShortcut: 'string',
   labelIconToTitleSpacing: 'number',
   labelReservedIconWidth: 'number',
+  labelsHidden: 'boolean',
   labelsVisibility: 'string',
   layoutDirectionBehavior: 'string',
   layoutPriority: 'number',
   lineSpacing: 'number',
   listSectionIndexVisibility: 'string',
+  luminanceToAlpha: 'boolean',
   materialActiveAppearance: 'string',
   menuActionDismissBehavior: 'string',
   menuIndicator: 'string',
   menuOrder: 'string',
   minimumScaleFactor: 'number',
   monospaced: 'boolean',
+  monospacedDigit: 'boolean',
   moveDisabled: 'boolean',
   multilineTextAlignment: 'string',
   navigationBarBackButtonHidden: 'boolean',
   navigationBarHidden: 'boolean',
   navigationLinkIndicatorVisibility: 'string',
   navigationSplitViewColumnWidth: 'number',
+  navigationTitle: 'bindingString',
+  onAppear: 'event',
+  onDisappear: 'event',
+  onSubmit: 'event',
+  onTapGesture: 'event',
   paletteSelectionEffect: 'string',
+  payWithApplePayButtonDisableCardArt: 'boolean',
   persistentSystemOverlays: 'string',
   presentationBackgroundInteraction: 'string',
   presentationCompactAdaptation: 'string',
@@ -119,14 +138,19 @@ const sdkKinds = {
   presentationPlacement: 'string',
   previewInterfaceOrientation: 'string',
   privacySensitive: 'boolean',
+  productIconBorder: 'boolean',
+  renameAction: 'event',
   replaceDisabled: 'boolean',
   safeAreaPadding: 'number',
   saturation: 'number',
+  scaledToFill: 'boolean',
+  scaledToFit: 'boolean',
   scenePadding: 'string',
   scrollClipDisabled: 'boolean',
   scrollContentBackground: 'string',
   scrollDisabled: 'boolean',
   scrollDismissesKeyboard: 'string',
+  searchable: 'bindingString',
   searchCompletion: 'string',
   searchDictationBehavior: 'string',
   searchPresentationToolbarBehavior: 'string',
@@ -141,6 +165,7 @@ const sdkKinds = {
   statusBarHidden: 'boolean',
   submitLabel: 'string',
   submitScope: 'boolean',
+  swipeActionsContainer: 'boolean',
   symbolEffectsRemoved: 'boolean',
   symbolVariant: 'string',
   tabBarMinimizeBehavior: 'string',
@@ -152,6 +177,7 @@ const sdkKinds = {
   toolbarTitleDisplayMode: 'string',
   tracking: 'number',
   transition: 'string',
+  unredacted: 'boolean',
   windowToolbarFullScreenVisibility: 'string',
   writingToolsAffordanceVisibility: 'string',
   writingToolsBehavior: 'string',
@@ -174,7 +200,25 @@ export function swiftStyleNative(
         throw new Error(name + ' must be a boolean')
       if (kind === 'string' && typeof value !== 'string')
         throw new Error(name + ' must be a string')
-      sdkModifiers.push([name, String(value)])
+      if (kind === 'event' && typeof value !== 'function')
+        throw new Error(name + ' must be a callback')
+      if (
+        (kind === 'bindingBoolean' || kind === 'bindingString') &&
+        (typeof value !== 'object' ||
+          value === null ||
+          typeof (value as { onChange?: unknown }).onChange !== 'function' ||
+          typeof (value as { value?: unknown }).value !==
+            (kind === 'bindingBoolean' ? 'boolean' : 'string'))
+      )
+        throw new Error(name + ' must be a binding')
+      sdkModifiers.push([
+        name,
+        kind === 'event'
+          ? ''
+          : kind.startsWith('binding')
+            ? String((value as { value: unknown }).value)
+            : String(value),
+      ])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
     } else {
@@ -183,4 +227,20 @@ export function swiftStyleNative(
   }
   if (sdkModifiers.length) native.sdkModifiers = JSON.stringify(sdkModifiers)
   return native as OneNativeStyleNative
+}
+
+export function dispatchSDKEvent(
+  style: OneNativeStyle | undefined,
+  name: string,
+  value: string
+): void {
+  const modifier = (style as Record<string, unknown> | undefined)?.[name]
+  const kind = sdkKinds[name as keyof typeof sdkKinds]
+  if (kind === 'event') (modifier as (() => void) | undefined)?.()
+  else if (kind === 'bindingBoolean')
+    (modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(
+      value === 'true'
+    )
+  else if (kind === 'bindingString')
+    (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
 }

@@ -32,6 +32,7 @@ import type {
   TabProps,
   TabsProps,
   TabViewBottomAccessoryProps,
+  TabViewSlotProps,
   ZStackProps,
 } from './types'
 
@@ -43,6 +44,9 @@ function Tab(_props: TabProps): never {
 }
 function TabViewBottomAccessory(_props: TabViewBottomAccessoryProps): never {
   throw new Error('Swift.TabViewBottomAccessory requires an iOS native build with @vxrn/native installed')
+}
+function TabViewSlot(_props: TabViewSlotProps): never {
+  throw new Error('Swift.TabViewSlot requires an iOS native build with @vxrn/native installed')
 }
 function Menu(_props: MenuProps): never {
   throw new Error('Swift.Menu requires an iOS native build with @vxrn/native installed')
@@ -165,6 +169,7 @@ export const Swift = {
   Tabs,
   Tab,
   TabViewBottomAccessory,
+  TabViewSlot,
   Menu,
   ContextMenu,
   Sheet,

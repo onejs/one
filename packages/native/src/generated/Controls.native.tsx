@@ -3,7 +3,7 @@
 import { Platform } from 'react-native'
 import { useControlled } from '../controlled'
 import { assertSwiftUIValue } from './swiftui'
-import { swiftStyleNative } from './swiftStyleNative'
+import { swiftStyleNative, dispatchSDKEvent } from './swiftStyleNative'
 import type * as Types from './controlTypes'
 import { iconColorRoles } from '../ui/iconRoles'
 import { getSyncStateId, isSyncState } from '../syncStore'
@@ -54,6 +54,9 @@ export function Picker({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       value={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -112,6 +115,9 @@ export function DatePicker({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       value={selection.getTime()}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -155,6 +161,9 @@ export function ColorPicker({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       value={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -198,6 +207,9 @@ export function Toggle({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       value={isOn}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -249,6 +261,9 @@ export function Slider({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       value={value}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -301,6 +316,9 @@ export function Stepper({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       value={value}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -324,6 +342,9 @@ export function Text({ text = '', swiftStyle, style, ...props }: Types.TextProps
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       text={text}
     />
   )
@@ -347,6 +368,9 @@ export function Label({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -380,6 +404,9 @@ export function ProgressView({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       label={label}
       disabled={disabled}
       value={value ?? 0}
@@ -420,6 +447,9 @@ export function Gauge({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       label={label}
       disabled={disabled}
       value={value}
@@ -478,6 +508,9 @@ export function Image({
       accessibilityElementsHidden={!props.accessibilityLabel}
       accessibilityRole="image"
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       systemName={systemName}
       symbolRenderingMode={symbolRenderingMode}
       symbolVariant={symbolVariant}
@@ -513,6 +546,9 @@ export function ShareLink({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -556,6 +592,9 @@ export function ContentUnavailableView({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       title={title}
       systemImage={systemImage}
       description={description}
@@ -578,6 +617,9 @@ export function Circle({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       fill={fill}
     />
   )
@@ -594,6 +636,9 @@ export function Capsule({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       fill={fill}
     />
   )
@@ -610,6 +655,9 @@ export function Rectangle({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       fill={fill}
     />
   )
@@ -630,6 +678,9 @@ export function RoundedRectangle({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       fill={fill}
       cornerRadius={cornerRadius}
     />
@@ -647,6 +698,9 @@ export function Ellipse({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       fill={fill}
     />
   )
@@ -667,6 +721,9 @@ export function VideoPlayer({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       url={url}
       autoplay={autoplay}
     />
@@ -725,6 +782,9 @@ export function PhotosPicker({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -793,6 +853,9 @@ export function WebView({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       url={url}
       html={html}
       backForwardNavigationGestures={backForwardNavigationGestures}
@@ -831,6 +894,9 @@ export function SignInWithAppleButton({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       requestedScopes={requestedScopes}
       nonce={nonce}
       onNativeSignInWithAppleButtonCompletion={({ nativeEvent }) =>
@@ -891,6 +957,9 @@ export function Map({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       latitude={latitude}
       longitude={longitude}
       distance={distance}
@@ -968,6 +1037,9 @@ export function TextField({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       value={syncedText}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1058,6 +1130,9 @@ export function SecureField({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       value={syncedText}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1126,6 +1201,9 @@ export function Alert({
       {...props}
       style={[{ position: 'absolute', width: 0, height: 0 }, style]}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1190,6 +1268,9 @@ export function ConfirmationDialog({
       {...props}
       style={[{ position: 'absolute', width: 0, height: 0 }, style]}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1237,6 +1318,9 @@ export function QuickLook({
       {...props}
       style={[{ position: 'absolute', width: 0, height: 0 }, style]}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1280,6 +1364,9 @@ export function FileImporter({
       {...props}
       style={[{ position: 'absolute', width: 0, height: 0 }, style]}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1312,12 +1399,22 @@ export function EditButton({ swiftStyle, style, ...props }: Types.EditButtonProp
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
     />
   )
 }
 import NativeEmptyView from '../specs/OneNativeEmptyViewNativeComponent'
 export function EmptyView({ swiftStyle, style, ...props }: Types.EmptyViewProps) {
   return (
-    <NativeEmptyView {...props} style={style} swiftStyle={swiftStyleNative(swiftStyle)} />
+    <NativeEmptyView
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+    />
   )
 }

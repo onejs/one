@@ -51,6 +51,7 @@ interface NativeProps extends ViewProps {
   maximumValue: Double
   step: Double
   swiftStyle?: OneNativeStyleNative
+  onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativeStepperValueChange?: DirectEventHandler<
     Readonly<{ value: Double; eventCount: Int32; revision: Int32 }>
   >

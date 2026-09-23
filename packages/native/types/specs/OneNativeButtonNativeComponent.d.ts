@@ -44,6 +44,10 @@ interface NativeProps extends ViewProps {
     onNativeButtonPress?: DirectEventHandler<Readonly<{
         eventCount: Int32;
     }>>;
+    onNativeSDKEvent?: DirectEventHandler<Readonly<{
+        name: string;
+        value: string;
+    }>>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
 export default _default;

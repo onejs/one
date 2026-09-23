@@ -12,6 +12,9 @@ private final class MapModel: ObservableObject {
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
+  var onSDKEvent: ((String, String) -> Void)?
+  func emitSDKEvent(_ name: String, _ value: String) { if active { onSDKEvent?(name, value) } }
+
   var onRegionChange: ((Double, Double, Double, Int) -> Void)?
   private var regionChangeCount = 0
   func regionChange(_ latitude: Double, _ longitude: Double, _ distance: Double) {
@@ -21,6 +24,8 @@ private final class MapModel: ObservableObject {
   }
 }
 @objcMembers public final class OneNativeMapView: UIView, OneNativeComposable {
+  public var onSDKEvent: ((String, String) -> Void)?
+
   public var onRegionChange: ((Double, Double, Double, Int) -> Void)?
   private var model = MapModel()
   private var controller: OneNativeHostingController<OneNativeStandalone<MapContent>>?
@@ -56,6 +61,8 @@ private final class MapModel: ObservableObject {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
+    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
+
     model.onRegionChange = { [weak self] latitude, longitude, distance, regionChangeCount in self?.onRegionChange?(latitude, longitude, distance, regionChangeCount) }
   }
   private func updateHost() {
@@ -71,7 +78,7 @@ private final class MapModel: ObservableObject {
   }
   public func reset() {
     compositionParent = nil
-    model.active = false; model.onRegionChange = nil
+    model.active = false; model.onSDKEvent = nil; model.onRegionChange = nil
     controller?.detach(); controller = nil; model = MapModel()
   }
 }
@@ -88,7 +95,7 @@ private struct MapContent: View {
         }
       )
       .oneNativeAccessibility(model.accessibility)
-      .oneNativeStyle(model.swiftStyle)
+      .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }
 }
 // the camera is SwiftUI state so a pan is not fought by the next render, and it is

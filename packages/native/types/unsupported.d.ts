@@ -1,7 +1,8 @@
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GroupProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LinkProps, ListProps, MenuProps, OverlayContentProps, OverlayProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabsProps, TabViewBottomAccessoryProps, ZStackProps } from './types';
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GroupProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LinkProps, ListProps, MenuProps, OverlayContentProps, OverlayProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ZStackProps } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function TabViewBottomAccessory(_props: TabViewBottomAccessoryProps): never;
+declare function TabViewSlot(_props: TabViewSlotProps): never;
 declare function Menu(_props: MenuProps): never;
 declare function ContextMenu(_props: ContextMenuProps): never;
 declare function Sheet(_props: SheetProps): never;
@@ -68,6 +69,7 @@ export declare const Swift: {
     Tabs: typeof Tabs;
     Tab: typeof Tab;
     TabViewBottomAccessory: typeof TabViewBottomAccessory;
+    TabViewSlot: typeof TabViewSlot;
     Menu: typeof Menu;
     ContextMenu: typeof ContextMenu;
     Sheet: typeof Sheet;

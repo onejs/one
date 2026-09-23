@@ -18,6 +18,12 @@ using namespace facebook::react;
     _measured = [OneNativeMeasuredHeight new];
     _nativeView = [OneNativeColorPickerView new]; self.contentView = _nativeView;
     __weak OneNativeColorPickerComponentView *weakSelf = self;
+    _nativeView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeColorPickerComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeColorPickerEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
     _nativeView.onHeight = ^(CGFloat height) {
       OneNativeColorPickerComponentView *strongSelf = weakSelf;
       if (strongSelf) [strongSelf->_measured update:height];

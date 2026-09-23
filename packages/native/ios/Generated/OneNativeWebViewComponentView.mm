@@ -15,6 +15,12 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeWebViewProps>();
     _nativeView = [OneNativeWebViewView new]; self.contentView = _nativeView;
     __weak OneNativeWebViewComponentView *weakSelf = self;
+    _nativeView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeWebViewComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeWebViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
     _nativeView.onNavigate = ^(NSString *url, NSInteger eventCount) {
       OneNativeWebViewComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;

@@ -14,6 +14,13 @@ using namespace facebook::react;
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeVideoPlayerProps>();
     _nativeView = [OneNativeVideoPlayerView new]; self.contentView = _nativeView;
+    __weak OneNativeVideoPlayerComponentView *weakSelf = self;
+    _nativeView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeVideoPlayerComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeVideoPlayerEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
   }
   return self;
 }

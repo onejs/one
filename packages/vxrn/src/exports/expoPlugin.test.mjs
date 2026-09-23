@@ -27,6 +27,7 @@ const expoBundlePhase = [
 
 const podfile = `
 target 'TestApp' do
+  config = use_native_modules!
   post_install do |installer|
     react_native_post_install(installer)
   end
@@ -65,14 +66,17 @@ describe('vxrn Expo project patches', () => {
     let once = patches.injectFmtCxx17FixIntoPodfile(podfile)
     once = patches.injectHermesMinificationPatchIntoPodfile(once)
     once = patches.injectReactNativeScreensGammaIntoPodfile(once)
+    once = patches.injectNitroWebImageModularHeaderIntoPodfile(once)
     let twice = patches.injectFmtCxx17FixIntoPodfile(once)
     twice = patches.injectHermesMinificationPatchIntoPodfile(twice)
     twice = patches.injectReactNativeScreensGammaIntoPodfile(twice)
+    twice = patches.injectNitroWebImageModularHeaderIntoPodfile(twice)
 
     expect(twice).toBe(once)
     expect(once).toContain('[vxrn/one] fmt c++17 fix')
     expect(once).toContain('[vxrn/one] minify iOS Hermes Release bundle input')
     expect(once).toContain("ENV['RNS_GAMMA_ENABLED'] ||= '1'")
+    expect(once).toContain("pod 'SDWebImage', :modular_headers => true")
   })
 
   it('applies the shared Android screens fix', () => {

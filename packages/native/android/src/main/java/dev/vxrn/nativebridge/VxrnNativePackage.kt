@@ -17,6 +17,7 @@ import dev.onejs.onenative.OneNativeFontsModule
 import dev.onejs.onenative.OneNativeHapticsModule
 import dev.onejs.onenative.OneNativeImagePickerModule
 import dev.onejs.onenative.OneNativeMaskManager
+import dev.onejs.onenative.OneNativeMenuPopupModule
 import dev.onejs.onenative.OneNativeNetworkModule
 import dev.onejs.onenative.OneNativeSafeAreaModule
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
@@ -37,6 +38,7 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeNetworkModule.NAME -> OneNativeNetworkModule(reactContext)
             OneNativeBrowserModule.NAME -> OneNativeBrowserModule(reactContext)
             OneNativeImagePickerModule.NAME -> OneNativeImagePickerModule(reactContext)
+            OneNativeMenuPopupModule.NAME -> OneNativeMenuPopupModule(reactContext)
             else -> null
         }
     }
@@ -126,6 +128,14 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeImagePickerModule.NAME to ReactModuleInfo(
                 name = OneNativeImagePickerModule.NAME,
                 className = OneNativeImagePickerModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeMenuPopupModule.NAME to ReactModuleInfo(
+                name = OneNativeMenuPopupModule.NAME,
+                className = OneNativeMenuPopupModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,

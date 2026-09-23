@@ -49,6 +49,7 @@ interface NativeProps extends ViewProps {
   disabled: boolean
   supportsOpacity: boolean
   swiftStyle?: OneNativeStyleNative
+  onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativeColorPickerValueChange?: DirectEventHandler<
     Readonly<{ value: string; eventCount: Int32; revision: Int32 }>
   >

@@ -15,6 +15,9 @@ private final class WebViewModel: ObservableObject {
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
+  var onSDKEvent: ((String, String) -> Void)?
+  func emitSDKEvent(_ name: String, _ value: String) { if active { onSDKEvent?(name, value) } }
+
   var onNavigate: ((String, Int) -> Void)?
   private var navigateCount = 0
   func navigate(_ url: String) {
@@ -38,6 +41,8 @@ private final class WebViewModel: ObservableObject {
   }
 }
 @objcMembers public final class OneNativeWebViewView: UIView, OneNativeComposable {
+  public var onSDKEvent: ((String, String) -> Void)?
+
   public var onNavigate: ((String, Int) -> Void)?
   public var onTitleChange: ((String, Int) -> Void)?
   public var onLoadingChange: ((Bool, Double, Int) -> Void)?
@@ -79,6 +84,8 @@ private final class WebViewModel: ObservableObject {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
+    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
+
     model.onNavigate = { [weak self] url, navigateCount in self?.onNavigate?(url, navigateCount) }
     model.onTitleChange = { [weak self] title, titleChangeCount in self?.onTitleChange?(title, titleChangeCount) }
     model.onLoadingChange = { [weak self] loading, progress, loadingChangeCount in self?.onLoadingChange?(loading, progress, loadingChangeCount) }
@@ -96,7 +103,7 @@ private final class WebViewModel: ObservableObject {
   }
   public func reset() {
     compositionParent = nil
-    model.active = false; model.onNavigate = nil; model.onTitleChange = nil; model.onLoadingChange = nil
+    model.active = false; model.onSDKEvent = nil; model.onNavigate = nil; model.onTitleChange = nil; model.onLoadingChange = nil
     controller?.detach(); controller = nil; model = WebViewModel()
   }
 }
@@ -116,7 +123,7 @@ private struct WebViewContent: View {
       }
     }
       .oneNativeAccessibility(model.accessibility)
-      .oneNativeStyle(model.swiftStyle)
+      .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }
 }
 // webpage owns the loaded page and its back-forward list. state preserves this
