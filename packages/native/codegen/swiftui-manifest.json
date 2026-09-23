@@ -4278,6 +4278,26 @@
       "sdkName": "ignoresSafeArea"
     },
     {
+      "name": "imageScale",
+      "kind": "string",
+      "type": "SwiftUICore.Image.Scale",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "small",
+          "ios": 13
+        },
+        {
+          "name": "medium",
+          "ios": 13
+        },
+        {
+          "name": "large",
+          "ios": 13
+        }
+      ]
+    },
+    {
       "name": "indexViewStyle",
       "kind": "style",
       "type": "S",
@@ -5693,10 +5713,70 @@
       "ios": 13
     },
     {
-      "name": "navigationBarTitle",
+      "name": "navigationBarTitleDisplayMode",
+      "kind": "string",
+      "type": "SwiftUI.NavigationBarItem.TitleDisplayMode",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 13
+        },
+        {
+          "name": "inline",
+          "ios": 13
+        },
+        {
+          "name": "large",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "navigationBarTitleWithText",
+      "module": "SwiftUI",
       "kind": "string",
       "type": "SwiftUICore.Text",
-      "ios": 13
+      "ios": 13,
+      "sdkName": "navigationBarTitle"
+    },
+    {
+      "name": "navigationBarTitleWithTitleAndDisplayMode",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "title",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.NavigationBarItem.TitleDisplayMode",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 13
+            },
+            {
+              "name": "inline",
+              "ios": 13
+            },
+            {
+              "name": "large",
+              "ios": 13
+            }
+          ],
+          "field": "displayMode",
+          "label": "displayMode"
+        }
+      ],
+      "sdkName": "navigationBarTitle"
     },
     {
       "name": "navigationLinkIndicatorVisibility",
@@ -8429,6 +8509,22 @@
       ]
     },
     {
+      "name": "textCase",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.Text.Case?",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "uppercase",
+          "ios": 14
+        },
+        {
+          "name": "lowercase",
+          "ios": 14
+        }
+      ]
+    },
+    {
       "name": "textFieldStyle",
       "kind": "style",
       "type": "S",
@@ -9202,6 +9298,26 @@
       ]
     },
     {
+      "name": "truncationMode",
+      "kind": "string",
+      "type": "SwiftUICore.Text.TruncationMode",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "head",
+          "ios": 13
+        },
+        {
+          "name": "tail",
+          "ios": 13
+        },
+        {
+          "name": "middle",
+          "ios": 13
+        }
+      ]
+    },
+    {
       "name": "typeSelectEquivalent",
       "kind": "optionalString",
       "type": "SwiftUICore.Text?",
@@ -9735,11 +9851,13 @@
         "symbolRenderingMode",
         "symbolVariableValueMode",
         "symbolVariant",
+        "textCase",
         "textInputBorderShape",
         "textScale",
         "tint",
         "tracking",
         "transition",
+        "truncationMode",
         "typesettingLanguage",
         "underline",
         "unredacted",
@@ -9845,6 +9963,7 @@
         "navigationBarBackButtonHidden",
         "navigationBarHidden",
         "navigationBarTitle",
+        "navigationBarTitleDisplayMode",
         "navigationLinkIndicatorVisibility",
         "navigationSplitViewColumnWidth",
         "navigationSplitViewStyle",
