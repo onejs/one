@@ -124,6 +124,7 @@ extension View {
       case "accessibilityIdentifierWithIdentifierAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityIdentifierWithIdentifierAndIsEnabled(value, emit: emit))
       case "accessibilityIdentifierWithString": view = AnyView(view.oneNativeSDKAccessibilityIdentifierWithString(value, emit: emit))
       case "accessibilityIgnoresInvertColors": view = AnyView(view.oneNativeSDKAccessibilityIgnoresInvertColors(value, emit: emit))
+      case "accessibilityInputLabels": view = AnyView(view.oneNativeSDKAccessibilityInputLabels(value, emit: emit))
       case "accessibilityLabelWithLabelAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityLabelWithLabelAndIsEnabled(value, emit: emit))
       case "accessibilityLabelWithText": view = AnyView(view.oneNativeSDKAccessibilityLabelWithText(value, emit: emit))
       case "accessibilityRemoveTraits": view = AnyView(view.oneNativeSDKAccessibilityRemoveTraits(value, emit: emit))
@@ -230,6 +231,7 @@ extension View {
       case "gridColumnAlignment": view = AnyView(view.oneNativeSDKGridColumnAlignment(value, emit: emit))
       case "groupBoxStyle": view = AnyView(view.oneNativeSDKGroupBoxStyle(value, emit: emit))
       case "handGestureShortcut": view = AnyView(view.oneNativeSDKHandGestureShortcut(value, emit: emit))
+      case "handlesExternalEvents": view = AnyView(view.oneNativeSDKHandlesExternalEvents(value, emit: emit))
       case "headerProminence": view = AnyView(view.oneNativeSDKHeaderProminence(value, emit: emit))
       case "help": view = AnyView(view.oneNativeSDKHelp(value, emit: emit))
       case "hidden": view = AnyView(view.oneNativeSDKHidden(value, emit: emit))
@@ -1021,6 +1023,28 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityIgnoresInvertColors(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid accessibilityIgnoresInvertColors: \(value)")
       self.accessibilityIgnoresInvertColors(value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityInputLabels(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid accessibilityInputLabels: \(value)") }
+      return decoded
+    }()
+    let argument0: [SwiftUICore.Text] = {
+      guard let raw = values[0] else { preconditionFailure("missing accessibilityInputLabels.inputLabels") }
+      guard let data = raw.data(using: .utf8), let strings = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid accessibilityInputLabels.inputLabels: \(raw)") }
+      return strings.map { Text($0) }
+    }()
+    let argument1: Swift.Bool = {
+      guard let raw = values[1] else { preconditionFailure("missing accessibilityInputLabels.isEnabled") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid accessibilityInputLabels.isEnabled: \(raw)") }
+      return raw == "true"
+    }()
+    self.accessibilityInputLabels(argument0, isEnabled: argument1)
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityLabelWithLabelAndIsEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2298,6 +2322,26 @@ extension View {
     }()
     self.handGestureShortcut(argument0, isEnabled: argument1)
     } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKHandlesExternalEvents(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid handlesExternalEvents: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.Set<Swift.String> = {
+      guard let raw = values[0] else { preconditionFailure("missing handlesExternalEvents.preferring") }
+      guard let data = raw.data(using: .utf8), let strings = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid handlesExternalEvents.preferring: \(raw)") }
+      return Set(strings)
+    }()
+    let argument1: Swift.Set<Swift.String> = {
+      guard let raw = values[1] else { preconditionFailure("missing handlesExternalEvents.allowing") }
+      guard let data = raw.data(using: .utf8), let strings = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid handlesExternalEvents.allowing: \(raw)") }
+      return Set(strings)
+    }()
+    self.handlesExternalEvents(preferring: argument0, allowing: argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKHeaderProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

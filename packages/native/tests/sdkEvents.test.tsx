@@ -73,6 +73,20 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('offset.x must be finite')
   })
 
+  it('encodes text lists and string sets through generated record modifiers', () => {
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      accessibilityInputLabels: { inputLabels: ['Save, draft', 'Quote "text"'], isEnabled: true },
+      handlesExternalEvents: { preferring: ['open*', 'tag,one'], allowing: ['*'] },
+    } })
+    const records = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(JSON.parse(records.accessibilityInputLabels)[0])).toEqual(['Save, draft', 'Quote "text"'])
+    expect(JSON.parse(JSON.parse(records.handlesExternalEvents)[0])).toEqual(['open*', 'tag,one'])
+    expect(JSON.parse(JSON.parse(records.handlesExternalEvents)[1])).toEqual(['*'])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      handlesExternalEvents: { preferring: [4], allowing: [] },
+    } as never })).toThrow('handlesExternalEvents.preferring must be a string array')
+  })
+
   it('passes values to Swift and dispatches native events to the current callbacks', () => {
     const appeared = vi.fn()
     const onChange = vi.fn()

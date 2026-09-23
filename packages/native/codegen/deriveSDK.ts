@@ -9,7 +9,7 @@ export type DerivedArgument = {
   field: string
   label: string
   type: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet'
   optional: boolean
   cases?: readonly { name: string; ios: number }[]
 }
@@ -43,6 +43,10 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) =>
             ? 'url'
             : undefined
     if (kind) return { kind, type, optional }
+    if (baseType === '[Swift.String]' || baseType === '[SwiftUICore.Text]')
+      return { kind: 'stringArray', type, optional }
+    if (baseType === 'Swift.Set<Swift.String>')
+      return { kind: 'stringSet', type, optional }
     if (!/^[A-Za-z_]\w*\.[A-Za-z][\w.]*$/.test(baseType)) return
     const [module, ...owner] = baseType.split('.')
     const cases = inventory
@@ -226,7 +230,7 @@ export function deriveModifiers(
           ...(label === '_' ? {} : { label }) }]
       }
       const value = valueOf(type)
-      if (!value) return []
+      if (!value || value.kind === 'stringArray' || value.kind === 'stringSet') return []
       const kind = value.kind === 'enum'
         ? value.optional ? 'optionalEnum' : 'string'
         : value.kind === 'url'
