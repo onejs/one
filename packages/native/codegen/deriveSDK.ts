@@ -9,6 +9,7 @@ export type DerivedArgument = {
   field: string
   label: string
   type: string
+  sdkType?: string
   kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet'
   optional: boolean
   cases?: readonly { name: string; ios: number }[]
@@ -18,13 +19,14 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'bindingBoolean' | 'bindingString'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventValueString' | 'bindingBoolean' | 'bindingString'
   ios: number
   type: string
   cases?: readonly { name: string; ios: number }[]
   zeroArgument?: true
   framework?: string
   label?: string
+  callbackLabel?: string
   callArguments?: readonly { label: string; defaultValue?: string; bridge?: true }[]
   arguments?: readonly DerivedArgument[]
 }
@@ -166,10 +168,26 @@ export function deriveModifiers(
           return [{ name, module: method.module, kind: 'style', type: 'S', ios: ios(method), cases, ...framework }]
         }
         const hashable = /^([A-Za-z_]\w*) : Swift.Hashable$/.exec(method.requirements[0])?.[1]
+        const equatable = /^([A-Za-z_]\w*) : Swift.Equatable$/.exec(method.requirements[0])?.[1]
         const [value, ...defaults] = method.parameters
         if (hashable && value?.type === hashable && defaults.every((parameter) => parameter.defaultValue !== undefined))
           return [{ name, module: method.module, kind: 'string', type: hashable, ios: ios(method), ...framework,
             ...(value.label === '_' ? {} : { label: value.label }) }]
+        if (equatable && method.parameters.length === 2 && value?.type === equatable &&
+          method.parameters[1].type === `@escaping (_ newValue: ${equatable}) -> Swift.Void`)
+          return [{ name, module: method.module, kind: 'eventValueString', type: equatable,
+            label: value.label, callbackLabel: method.parameters[1].label, ios: ios(method), ...framework }]
+        if (equatable && method.parameters.length === 2 && method.parameters.some((parameter) => parameter.type === equatable)) {
+          const argumentsFromSDK = method.parameters.map((parameter, index) => {
+            const bridged = parameter.type === equatable
+              ? { kind: 'string' as const, type: 'Swift.String', sdkType: equatable, optional: false }
+              : valueOf(parameter.type)
+            return bridged && { ...bridged, field: parameter.name || `argument${index + 1}`, label: parameter.label }
+          })
+          if (argumentsFromSDK.every(Boolean))
+            return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+              arguments: argumentsFromSDK as DerivedArgument[], ...framework }]
+        }
         return []
       }
       if (method.parameters.length === 0)
@@ -241,12 +259,15 @@ export function deriveModifiers(
       return [{ name, module: method.module, kind, type, ios: ios(method), ...framework,
         ...(value.cases ? { cases: value.cases } : {}), ...(label === '_' ? {} : { label }) }]
     })
-    if (candidates.length === 1) {
-      const { module, ...modifier } = candidates[0]
+    const established = candidates.filter((candidate) =>
+      candidate.kind !== 'record' || !candidate.arguments?.some((argument) => argument.sdkType))
+    const selected = established.length ? established : candidates
+    if (selected.length === 1) {
+      const { module, ...modifier } = selected[0]
       result.push(modifier)
       continue
     }
-    for (const candidate of candidates.sort((a, b) =>
+    for (const candidate of selected.sort((a, b) =>
       `${a.module}|${a.label}|${a.type}`.localeCompare(`${b.module}|${b.label}|${b.type}`)
     )) {
       const typeName = candidate.type.replace(/\?$/, '').split('.').at(-1)?.replace(/[^A-Za-z0-9]/g, '') ?? 'Value'

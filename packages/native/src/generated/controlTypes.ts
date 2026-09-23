@@ -1633,6 +1633,7 @@ export interface OneNativeStyle {
   offerCodeRedemption?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   offset?: Readonly<{ x: number; y: number }>
   onAppear?: () => void
+  onChange?: Readonly<{ value: string; onChange: (value: string) => void }>
   onDisappear?: () => void
   onHover?: (value: boolean) => void
   onInteractiveResizeChange?: (value: boolean) => void
@@ -1775,6 +1776,22 @@ export interface OneNativeStyle {
   searchToolbarBehavior?: SDKSearchToolbarBehavior
   sectionIndexLabel?: string | null
   selectionDisabled?: boolean
+  sensoryFeedback?: Readonly<{
+    feedback:
+      | 'success'
+      | 'warning'
+      | 'error'
+      | 'selection'
+      | 'increase'
+      | 'decrease'
+      | 'start'
+      | 'stop'
+      | 'alignment'
+      | 'levelChange'
+      | 'pathComplete'
+      | 'impact'
+    trigger: string
+  }>
   shadow?: Readonly<{
     color:
       | 'accentColor'

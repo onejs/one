@@ -6085,6 +6085,14 @@
       "ios": 13
     },
     {
+      "name": "onChange",
+      "kind": "eventValueString",
+      "type": "V",
+      "label": "of",
+      "callbackLabel": "perform",
+      "ios": 14
+    },
+    {
       "name": "onDisappear",
       "kind": "event",
       "type": "(() -> Swift.Void)?",
@@ -7896,6 +7904,79 @@
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 17
+    },
+    {
+      "name": "sensoryFeedback",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUI.SensoryFeedback",
+          "optional": false,
+          "cases": [
+            {
+              "name": "success",
+              "ios": 17
+            },
+            {
+              "name": "warning",
+              "ios": 17
+            },
+            {
+              "name": "error",
+              "ios": 17
+            },
+            {
+              "name": "selection",
+              "ios": 17
+            },
+            {
+              "name": "increase",
+              "ios": 17
+            },
+            {
+              "name": "decrease",
+              "ios": 17
+            },
+            {
+              "name": "start",
+              "ios": 17
+            },
+            {
+              "name": "stop",
+              "ios": 17
+            },
+            {
+              "name": "alignment",
+              "ios": 17
+            },
+            {
+              "name": "levelChange",
+              "ios": 17
+            },
+            {
+              "name": "pathComplete",
+              "ios": 17.5
+            },
+            {
+              "name": "impact",
+              "ios": 17
+            }
+          ],
+          "field": "feedback",
+          "label": "_"
+        },
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "sdkType": "T",
+          "optional": false,
+          "field": "trigger",
+          "label": "trigger"
+        }
+      ]
     },
     {
       "name": "shadow",
@@ -10166,6 +10247,7 @@
         "multilineTextAlignment",
         "offset",
         "onAppear",
+        "onChange",
         "onDisappear",
         "onOpenURL",
         "onTapGesture",
@@ -10372,6 +10454,7 @@
         "sectionActions",
         "sectionIndexLabel",
         "selectionDisabled",
+        "sensoryFeedback",
         "sheet",
         "sliderThumbVisibility",
         "springLoadingBehavior",

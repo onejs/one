@@ -313,6 +313,7 @@ extension View {
       case "offerCodeRedemption": view = AnyView(view.oneNativeSDKOfferCodeRedemption(value, emit: emit))
       case "offset": view = AnyView(view.oneNativeSDKOffset(value, emit: emit))
       case "onAppear": view = AnyView(view.oneNativeSDKOnAppear(value, emit: emit))
+      case "onChange": view = AnyView(view.oneNativeSDKOnChange(value, emit: emit))
       case "onDisappear": view = AnyView(view.oneNativeSDKOnDisappear(value, emit: emit))
       case "onHover": view = AnyView(view.oneNativeSDKOnHover(value, emit: emit))
       case "onInteractiveResizeChange": view = AnyView(view.oneNativeSDKOnInteractiveResizeChange(value, emit: emit))
@@ -385,6 +386,7 @@ extension View {
       case "searchToolbarBehavior": view = AnyView(view.oneNativeSDKSearchToolbarBehavior(value, emit: emit))
       case "sectionIndexLabel": view = AnyView(view.oneNativeSDKSectionIndexLabel(value, emit: emit))
       case "selectionDisabled": view = AnyView(view.oneNativeSDKSelectionDisabled(value, emit: emit))
+      case "sensoryFeedback": view = AnyView(view.oneNativeSDKSensoryFeedback(value, emit: emit))
       case "shadow": view = AnyView(view.oneNativeSDKShadow(value, emit: emit))
       case "shortcutsLinkStyle": view = AnyView(view.oneNativeSDKShortcutsLinkStyle(value, emit: emit))
       case "signInWithAppleButtonStyle": view = AnyView(view.oneNativeSDKSignInWithAppleButtonStyle(value, emit: emit))
@@ -3356,6 +3358,10 @@ extension View {
     self.onAppear(perform: { emit("onAppear", "") })
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKOnChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onChange(of: value, perform: { changed in emit("onChange", changed) })
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKOnDisappear(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onDisappear(perform: { emit("onDisappear", "") })
   }
@@ -4207,6 +4213,39 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKSelectionDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid selectionDisabled: \(value)")
       self.selectionDisabled(value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSensoryFeedback(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid sensoryFeedback: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.SensoryFeedback = {
+      guard let raw = values[0] else { preconditionFailure("missing sensoryFeedback.feedback") }
+      switch raw {
+      case "success": return SwiftUI.SensoryFeedback.success
+      case "warning": return SwiftUI.SensoryFeedback.warning
+      case "error": return SwiftUI.SensoryFeedback.error
+      case "selection": return SwiftUI.SensoryFeedback.selection
+      case "increase": return SwiftUI.SensoryFeedback.increase
+      case "decrease": return SwiftUI.SensoryFeedback.decrease
+      case "start": return SwiftUI.SensoryFeedback.start
+      case "stop": return SwiftUI.SensoryFeedback.stop
+      case "alignment": return SwiftUI.SensoryFeedback.alignment
+      case "levelChange": return SwiftUI.SensoryFeedback.levelChange
+      case "pathComplete": if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
+        preconditionFailure("unavailable sensoryFeedback.feedback: \(raw)")
+      case "impact": return SwiftUI.SensoryFeedback.impact
+      default: preconditionFailure("invalid sensoryFeedback.feedback: \(raw)")
+      }
+    }()
+    let argument1: Swift.String = {
+      guard let raw = values[1] else { preconditionFailure("missing sensoryFeedback.trigger") }
+      return raw
+    }()
+    self.sensoryFeedback(argument0, trigger: argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKShadow(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

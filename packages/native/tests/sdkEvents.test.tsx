@@ -87,6 +87,23 @@ describe('SDK callback and binding transport', () => {
     } as never })).toThrow('handlesExternalEvents.preferring must be a string array')
   })
 
+  it('specializes Equatable triggers to strings and dispatches their callbacks', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      onChange: { value: 'first', onChange },
+      sensoryFeedback: { feedback: 'success', trigger: 'first' },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['onChange', 'first'],
+      ['sensoryFeedback', '["success","first"]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'onChange', value: 'second' } })
+    expect(onChange).toHaveBeenCalledWith('second')
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      onChange: { value: 42, onChange },
+    } as never })).toThrow('onChange must be a string value and callback')
+  })
+
   it('passes values to Swift and dispatches native events to the current callbacks', () => {
     const appeared = vi.fn()
     const onChange = vi.fn()

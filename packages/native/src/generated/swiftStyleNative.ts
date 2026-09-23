@@ -254,6 +254,7 @@ const sdkKinds = {
   offerCodeRedemption: 'bindingBoolean',
   offset: 'record',
   onAppear: 'event',
+  onChange: 'eventValueString',
   onDisappear: 'event',
   onHover: 'eventBoolean',
   onInteractiveResizeChange: 'eventBoolean',
@@ -326,6 +327,7 @@ const sdkKinds = {
   searchToolbarBehavior: 'string',
   sectionIndexLabel: 'optionalString',
   selectionDisabled: 'boolean',
+  sensoryFeedback: 'record',
   shadow: 'record',
   shortcutsLinkStyle: 'string',
   signInWithAppleButtonStyle: 'string',
@@ -648,6 +650,10 @@ const sdkRecords: Record<
     { field: 'visibility', kind: 'enum', optional: false },
     { field: 'placements', kind: 'enum', optional: false },
   ],
+  sensoryFeedback: [
+    { field: 'feedback', kind: 'enum', optional: false },
+    { field: 'trigger', kind: 'string', optional: false },
+  ],
   shadow: [
     { field: 'color', kind: 'enum', optional: false },
     { field: 'radius', kind: 'number', optional: false },
@@ -787,8 +793,20 @@ export function swiftStyleNative(
         throw new Error(name + ' must be a string or null')
       if (kind === 'optionalString' && value !== null && typeof value !== 'string')
         throw new Error(name + ' must be a string or null')
-      if (kind.startsWith('event') && typeof value !== 'function')
+      if (
+        kind.startsWith('event') &&
+        kind !== 'eventValueString' &&
+        typeof value !== 'function'
+      )
         throw new Error(name + ' must be a callback')
+      if (
+        kind === 'eventValueString' &&
+        (typeof value !== 'object' ||
+          value === null ||
+          typeof (value as { value?: unknown }).value !== 'string' ||
+          typeof (value as { onChange?: unknown }).onChange !== 'function')
+      )
+        throw new Error(name + ' must be a string value and callback')
       if (
         (kind === 'bindingBoolean' || kind === 'bindingString') &&
         (typeof value !== 'object' ||
@@ -800,13 +818,15 @@ export function swiftStyleNative(
         throw new Error(name + ' must be a binding')
       sdkModifiers.push([
         name,
-        kind.startsWith('event')
-          ? ''
-          : kind.startsWith('binding')
-            ? String((value as { value: unknown }).value)
-            : kind === 'optionalString' || kind === 'optionalURL'
-              ? (JSON.stringify(value) as string)
-              : String(value),
+        kind === 'eventValueString'
+          ? (value as { value: string }).value
+          : kind.startsWith('event')
+            ? ''
+            : kind.startsWith('binding')
+              ? String((value as { value: unknown }).value)
+              : kind === 'optionalString' || kind === 'optionalURL'
+                ? (JSON.stringify(value) as string)
+                : String(value),
       ])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
@@ -857,5 +877,7 @@ export function dispatchSDKEvent(
       value === 'true'
     )
   else if (kind === 'bindingString')
+    (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
+  else if (kind === 'eventValueString')
     (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
 }
