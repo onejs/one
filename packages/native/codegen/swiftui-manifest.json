@@ -1,13 +1,9 @@
 {
   "sdk": "26",
   "unmappedModifiers": [
-    "menuIndicator",
     "menuStyle",
-    "paletteSelectionEffect",
-    "sliderThumbVisibility",
     "tabViewBottomAccessory",
     "tabViewCustomization",
-    "tabViewSearchActivation",
     "tabViewSidebarBottomBar",
     "tabViewSidebarFooter",
     "tabViewSidebarHeader",
@@ -569,6 +565,1728 @@
       "requirements": []
     }
   ],
+  "derivedModifiers": [
+    {
+      "name": "allowsHitTesting",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "allowsTightening",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "autocorrectionDisabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "badge",
+      "kind": "number",
+      "type": "Swift.Int",
+      "ios": 15
+    },
+    {
+      "name": "badgeProminence",
+      "kind": "string",
+      "type": "SwiftUI.BadgeProminence",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "decreased",
+          "ios": 17
+        },
+        {
+          "name": "standard",
+          "ios": 17
+        },
+        {
+          "name": "increased",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "baselineOffset",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 16
+    },
+    {
+      "name": "blendMode",
+      "kind": "string",
+      "type": "SwiftUICore.BlendMode",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "normal",
+          "ios": 13
+        },
+        {
+          "name": "multiply",
+          "ios": 13
+        },
+        {
+          "name": "screen",
+          "ios": 13
+        },
+        {
+          "name": "overlay",
+          "ios": 13
+        },
+        {
+          "name": "darken",
+          "ios": 13
+        },
+        {
+          "name": "lighten",
+          "ios": 13
+        },
+        {
+          "name": "colorDodge",
+          "ios": 13
+        },
+        {
+          "name": "colorBurn",
+          "ios": 13
+        },
+        {
+          "name": "softLight",
+          "ios": 13
+        },
+        {
+          "name": "hardLight",
+          "ios": 13
+        },
+        {
+          "name": "difference",
+          "ios": 13
+        },
+        {
+          "name": "exclusion",
+          "ios": 13
+        },
+        {
+          "name": "hue",
+          "ios": 13
+        },
+        {
+          "name": "saturation",
+          "ios": 13
+        },
+        {
+          "name": "color",
+          "ios": 13
+        },
+        {
+          "name": "luminosity",
+          "ios": 13
+        },
+        {
+          "name": "sourceAtop",
+          "ios": 13
+        },
+        {
+          "name": "destinationOver",
+          "ios": 13
+        },
+        {
+          "name": "destinationOut",
+          "ios": 13
+        },
+        {
+          "name": "plusDarker",
+          "ios": 13
+        },
+        {
+          "name": "plusLighter",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "bold",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "brightness",
+      "kind": "number",
+      "type": "Swift.Double",
+      "ios": 13
+    },
+    {
+      "name": "buttonBorderShape",
+      "kind": "string",
+      "type": "SwiftUI.ButtonBorderShape",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "capsule",
+          "ios": 15
+        },
+        {
+          "name": "roundedRectangle",
+          "ios": 15
+        },
+        {
+          "name": "circle",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "buttonRepeatBehavior",
+      "kind": "string",
+      "type": "SwiftUI.ButtonRepeatBehavior",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 17
+        },
+        {
+          "name": "enabled",
+          "ios": 17
+        },
+        {
+          "name": "disabled",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "buttonSizing",
+      "kind": "string",
+      "type": "SwiftUICore.ButtonSizing",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 26
+        },
+        {
+          "name": "flexible",
+          "ios": 26
+        },
+        {
+          "name": "fitted",
+          "ios": 26
+        }
+      ]
+    },
+    {
+      "name": "colorMultiply",
+      "kind": "string",
+      "type": "SwiftUICore.Color",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "accentColor",
+          "ios": 13
+        },
+        {
+          "name": "red",
+          "ios": 13
+        },
+        {
+          "name": "orange",
+          "ios": 13
+        },
+        {
+          "name": "yellow",
+          "ios": 13
+        },
+        {
+          "name": "green",
+          "ios": 13
+        },
+        {
+          "name": "mint",
+          "ios": 15
+        },
+        {
+          "name": "teal",
+          "ios": 15
+        },
+        {
+          "name": "cyan",
+          "ios": 15
+        },
+        {
+          "name": "blue",
+          "ios": 13
+        },
+        {
+          "name": "indigo",
+          "ios": 15
+        },
+        {
+          "name": "purple",
+          "ios": 13
+        },
+        {
+          "name": "pink",
+          "ios": 13
+        },
+        {
+          "name": "brown",
+          "ios": 15
+        },
+        {
+          "name": "white",
+          "ios": 13
+        },
+        {
+          "name": "gray",
+          "ios": 13
+        },
+        {
+          "name": "black",
+          "ios": 13
+        },
+        {
+          "name": "clear",
+          "ios": 13
+        },
+        {
+          "name": "primary",
+          "ios": 13
+        },
+        {
+          "name": "secondary",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "colorScheme",
+      "kind": "string",
+      "type": "SwiftUICore.ColorScheme",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "light",
+          "ios": 13
+        },
+        {
+          "name": "dark",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "contentTransition",
+      "kind": "string",
+      "type": "SwiftUICore.ContentTransition",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "symbolEffect",
+          "ios": 17
+        },
+        {
+          "name": "identity",
+          "ios": 16
+        },
+        {
+          "name": "opacity",
+          "ios": 16
+        },
+        {
+          "name": "interpolate",
+          "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "contrast",
+      "kind": "number",
+      "type": "Swift.Double",
+      "ios": 13
+    },
+    {
+      "name": "controlSize",
+      "kind": "string",
+      "type": "SwiftUICore.ControlSize",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "mini",
+          "ios": 15
+        },
+        {
+          "name": "small",
+          "ios": 15
+        },
+        {
+          "name": "regular",
+          "ios": 15
+        },
+        {
+          "name": "large",
+          "ios": 15
+        },
+        {
+          "name": "extraLarge",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "defaultAdaptableTabBarPlacement",
+      "kind": "string",
+      "type": "SwiftUI.AdaptableTabBarPlacement",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 18
+        },
+        {
+          "name": "tabBar",
+          "ios": 18
+        },
+        {
+          "name": "sidebar",
+          "ios": 18
+        }
+      ]
+    },
+    {
+      "name": "deleteDisabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "disabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "dynamicTypeSize",
+      "kind": "string",
+      "type": "SwiftUICore.DynamicTypeSize",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "xSmall",
+          "ios": 15
+        },
+        {
+          "name": "small",
+          "ios": 15
+        },
+        {
+          "name": "medium",
+          "ios": 15
+        },
+        {
+          "name": "large",
+          "ios": 15
+        },
+        {
+          "name": "xLarge",
+          "ios": 15
+        },
+        {
+          "name": "xxLarge",
+          "ios": 15
+        },
+        {
+          "name": "xxxLarge",
+          "ios": 15
+        },
+        {
+          "name": "accessibility1",
+          "ios": 15
+        },
+        {
+          "name": "accessibility2",
+          "ios": 15
+        },
+        {
+          "name": "accessibility3",
+          "ios": 15
+        },
+        {
+          "name": "accessibility4",
+          "ios": 15
+        },
+        {
+          "name": "accessibility5",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "edgesIgnoringSafeArea",
+      "kind": "string",
+      "type": "SwiftUICore.Edge.Set",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "top",
+          "ios": 13
+        },
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "bottom",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        },
+        {
+          "name": "all",
+          "ios": 13
+        },
+        {
+          "name": "horizontal",
+          "ios": 13
+        },
+        {
+          "name": "vertical",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "fileDialogBrowserOptions",
+      "kind": "string",
+      "type": "SwiftUI.FileDialogBrowserOptions",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "enumeratePackages",
+          "ios": 17
+        },
+        {
+          "name": "includeHiddenFiles",
+          "ios": 17
+        },
+        {
+          "name": "displayFileExtensions",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "fileDialogCustomizationID",
+      "kind": "string",
+      "type": "Swift.String",
+      "ios": 17
+    },
+    {
+      "name": "fileDialogImportsUnresolvedAliases",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "findDisabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "flipsForRightToLeftLayoutDirection",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "focusable",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "focusEffectDisabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "glassEffectTransition",
+      "kind": "string",
+      "type": "SwiftUICore.GlassEffectTransition",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "matchedGeometry",
+          "ios": 26
+        },
+        {
+          "name": "materialize",
+          "ios": 26
+        },
+        {
+          "name": "identity",
+          "ios": 26
+        }
+      ]
+    },
+    {
+      "name": "grayscale",
+      "kind": "number",
+      "type": "Swift.Double",
+      "ios": 13
+    },
+    {
+      "name": "gridCellAnchor",
+      "kind": "string",
+      "type": "SwiftUICore.UnitPoint",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "zero",
+          "ios": 13
+        },
+        {
+          "name": "center",
+          "ios": 13
+        },
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        },
+        {
+          "name": "top",
+          "ios": 13
+        },
+        {
+          "name": "bottom",
+          "ios": 13
+        },
+        {
+          "name": "topLeading",
+          "ios": 13
+        },
+        {
+          "name": "topTrailing",
+          "ios": 13
+        },
+        {
+          "name": "bottomLeading",
+          "ios": 13
+        },
+        {
+          "name": "bottomTrailing",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "gridCellColumns",
+      "kind": "number",
+      "type": "Swift.Int",
+      "ios": 16
+    },
+    {
+      "name": "gridCellUnsizedAxes",
+      "kind": "string",
+      "type": "SwiftUICore.Axis.Set",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "horizontal",
+          "ios": 13
+        },
+        {
+          "name": "vertical",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "gridColumnAlignment",
+      "kind": "string",
+      "type": "SwiftUICore.HorizontalAlignment",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "center",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        },
+        {
+          "name": "listRowSeparatorLeading",
+          "ios": 16
+        },
+        {
+          "name": "listRowSeparatorTrailing",
+          "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "headerProminence",
+      "kind": "string",
+      "type": "SwiftUICore.Prominence",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "standard",
+          "ios": 15
+        },
+        {
+          "name": "increased",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "hoverEffect",
+      "kind": "string",
+      "type": "SwiftUICore.HoverEffect",
+      "ios": 13.4,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 13.4
+        },
+        {
+          "name": "highlight",
+          "ios": 13.4
+        },
+        {
+          "name": "lift",
+          "ios": 13.4
+        }
+      ]
+    },
+    {
+      "name": "hoverEffectDisabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "hueRotation",
+      "kind": "string",
+      "type": "SwiftUICore.Angle",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "zero",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "inspectorColumnWidth",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 17
+    },
+    {
+      "name": "interactionActivityTrackingTag",
+      "kind": "string",
+      "type": "Swift.String",
+      "ios": 16
+    },
+    {
+      "name": "interactiveDismissDisabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 15
+    },
+    {
+      "name": "invalidatableContent",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "italic",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "kerning",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 16
+    },
+    {
+      "name": "keyboardShortcut",
+      "kind": "string",
+      "type": "SwiftUI.KeyboardShortcut",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "defaultAction",
+          "ios": 14
+        },
+        {
+          "name": "cancelAction",
+          "ios": 14
+        }
+      ]
+    },
+    {
+      "name": "labelIconToTitleSpacing",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 26
+    },
+    {
+      "name": "labelReservedIconWidth",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 26
+    },
+    {
+      "name": "labelsVisibility",
+      "kind": "string",
+      "type": "SwiftUICore.Visibility",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "visible",
+          "ios": 15
+        },
+        {
+          "name": "hidden",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "layoutDirectionBehavior",
+      "kind": "string",
+      "type": "SwiftUICore.LayoutDirectionBehavior",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "fixed",
+          "ios": 17
+        },
+        {
+          "name": "mirrors",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "layoutPriority",
+      "kind": "number",
+      "type": "Swift.Double",
+      "ios": 13
+    },
+    {
+      "name": "lineSpacing",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "listSectionIndexVisibility",
+      "kind": "string",
+      "type": "SwiftUICore.Visibility",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "visible",
+          "ios": 15
+        },
+        {
+          "name": "hidden",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "materialActiveAppearance",
+      "kind": "string",
+      "type": "SwiftUICore.MaterialActiveAppearance",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 18
+        },
+        {
+          "name": "active",
+          "ios": 18
+        },
+        {
+          "name": "matchWindow",
+          "ios": 18
+        }
+      ]
+    },
+    {
+      "name": "menuActionDismissBehavior",
+      "kind": "string",
+      "type": "SwiftUI.MenuActionDismissBehavior",
+      "ios": 16.4,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16.4
+        },
+        {
+          "name": "enabled",
+          "ios": 16.4
+        },
+        {
+          "name": "disabled",
+          "ios": 16.4
+        }
+      ]
+    },
+    {
+      "name": "menuIndicator",
+      "kind": "string",
+      "type": "SwiftUICore.Visibility",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "visible",
+          "ios": 15
+        },
+        {
+          "name": "hidden",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "menuOrder",
+      "kind": "string",
+      "type": "SwiftUI.MenuOrder",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16
+        },
+        {
+          "name": "priority",
+          "ios": 16
+        },
+        {
+          "name": "fixed",
+          "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "minimumScaleFactor",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "monospaced",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "moveDisabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "multilineTextAlignment",
+      "kind": "string",
+      "type": "SwiftUICore.TextAlignment",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "center",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "navigationBarBackButtonHidden",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "navigationBarHidden",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "navigationLinkIndicatorVisibility",
+      "kind": "string",
+      "type": "SwiftUICore.Visibility",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "visible",
+          "ios": 15
+        },
+        {
+          "name": "hidden",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "navigationSplitViewColumnWidth",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 16
+    },
+    {
+      "name": "paletteSelectionEffect",
+      "kind": "string",
+      "type": "SwiftUI.PaletteSelectionEffect",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 17
+        },
+        {
+          "name": "custom",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "persistentSystemOverlays",
+      "kind": "string",
+      "type": "SwiftUICore.Visibility",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "visible",
+          "ios": 15
+        },
+        {
+          "name": "hidden",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "presentationBackgroundInteraction",
+      "kind": "string",
+      "type": "SwiftUI.PresentationBackgroundInteraction",
+      "ios": 16.4,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16.4
+        },
+        {
+          "name": "enabled",
+          "ios": 16.4
+        },
+        {
+          "name": "disabled",
+          "ios": 16.4
+        }
+      ]
+    },
+    {
+      "name": "presentationCompactAdaptation",
+      "kind": "string",
+      "type": "SwiftUI.PresentationAdaptation",
+      "ios": 16.4,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16.4
+        },
+        {
+          "name": "none",
+          "ios": 16.4
+        },
+        {
+          "name": "popover",
+          "ios": 16.4
+        },
+        {
+          "name": "sheet",
+          "ios": 16.4
+        },
+        {
+          "name": "fullScreenCover",
+          "ios": 16.4
+        }
+      ]
+    },
+    {
+      "name": "presentationContentInteraction",
+      "kind": "string",
+      "type": "SwiftUI.PresentationContentInteraction",
+      "ios": 16.4,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16.4
+        },
+        {
+          "name": "resizes",
+          "ios": 16.4
+        },
+        {
+          "name": "scrolls",
+          "ios": 16.4
+        }
+      ]
+    },
+    {
+      "name": "presentationDragIndicator",
+      "kind": "string",
+      "type": "SwiftUICore.Visibility",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "visible",
+          "ios": 15
+        },
+        {
+          "name": "hidden",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "previewInterfaceOrientation",
+      "kind": "string",
+      "type": "SwiftUI.InterfaceOrientation",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "portrait",
+          "ios": 15
+        },
+        {
+          "name": "portraitUpsideDown",
+          "ios": 15
+        },
+        {
+          "name": "landscapeLeft",
+          "ios": 15
+        },
+        {
+          "name": "landscapeRight",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "privacySensitive",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 15
+    },
+    {
+      "name": "replaceDisabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "safeAreaPadding",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 17
+    },
+    {
+      "name": "saturation",
+      "kind": "number",
+      "type": "Swift.Double",
+      "ios": 13
+    },
+    {
+      "name": "scenePadding",
+      "kind": "string",
+      "type": "SwiftUICore.Edge.Set",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "top",
+          "ios": 13
+        },
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "bottom",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        },
+        {
+          "name": "all",
+          "ios": 13
+        },
+        {
+          "name": "horizontal",
+          "ios": 13
+        },
+        {
+          "name": "vertical",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "scrollClipDisabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "scrollContentBackground",
+      "kind": "string",
+      "type": "SwiftUICore.Visibility",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "visible",
+          "ios": 15
+        },
+        {
+          "name": "hidden",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "scrollDisabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "scrollDismissesKeyboard",
+      "kind": "string",
+      "type": "SwiftUI.ScrollDismissesKeyboardMode",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16
+        },
+        {
+          "name": "immediately",
+          "ios": 16
+        },
+        {
+          "name": "interactively",
+          "ios": 16
+        },
+        {
+          "name": "never",
+          "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "searchCompletion",
+      "kind": "string",
+      "type": "Swift.String",
+      "ios": 15
+    },
+    {
+      "name": "searchDictationBehavior",
+      "kind": "string",
+      "type": "SwiftUI.TextInputDictationBehavior",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "searchPresentationToolbarBehavior",
+      "kind": "string",
+      "type": "SwiftUI.SearchPresentationToolbarBehavior",
+      "ios": 17.1,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 17.1
+        },
+        {
+          "name": "avoidHidingContent",
+          "ios": 17.1
+        }
+      ]
+    },
+    {
+      "name": "searchToolbarBehavior",
+      "kind": "string",
+      "type": "SwiftUI.SearchToolbarBehavior",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 26
+        },
+        {
+          "name": "minimize",
+          "ios": 26
+        }
+      ]
+    },
+    {
+      "name": "selectionDisabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "sliderThumbVisibility",
+      "kind": "string",
+      "type": "SwiftUICore.Visibility",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "visible",
+          "ios": 15
+        },
+        {
+          "name": "hidden",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "speechAdjustedPitch",
+      "kind": "number",
+      "type": "Swift.Double",
+      "ios": 15
+    },
+    {
+      "name": "speechAlwaysIncludesPunctuation",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 15
+    },
+    {
+      "name": "speechAnnouncementsQueued",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 15
+    },
+    {
+      "name": "speechSpellsOutCharacters",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 15
+    },
+    {
+      "name": "springLoadingBehavior",
+      "kind": "string",
+      "type": "SwiftUI.SpringLoadingBehavior",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 17
+        },
+        {
+          "name": "enabled",
+          "ios": 17
+        },
+        {
+          "name": "disabled",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "statusBarHidden",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "submitLabel",
+      "kind": "string",
+      "type": "SwiftUI.SubmitLabel",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "done",
+          "ios": 15
+        },
+        {
+          "name": "go",
+          "ios": 15
+        },
+        {
+          "name": "send",
+          "ios": 15
+        },
+        {
+          "name": "join",
+          "ios": 15
+        },
+        {
+          "name": "route",
+          "ios": 15
+        },
+        {
+          "name": "search",
+          "ios": 15
+        },
+        {
+          "name": "return",
+          "ios": 15
+        },
+        {
+          "name": "next",
+          "ios": 15
+        },
+        {
+          "name": "continue",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "submitScope",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 15
+    },
+    {
+      "name": "symbolEffectsRemoved",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "symbolVariant",
+      "kind": "string",
+      "type": "SwiftUICore.SymbolVariants",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "none",
+          "ios": 15
+        },
+        {
+          "name": "circle",
+          "ios": 15
+        },
+        {
+          "name": "square",
+          "ios": 15
+        },
+        {
+          "name": "rectangle",
+          "ios": 15
+        },
+        {
+          "name": "fill",
+          "ios": 15
+        },
+        {
+          "name": "slash",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "tabBarMinimizeBehavior",
+      "kind": "string",
+      "type": "SwiftUI.TabBarMinimizeBehavior",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 26
+        },
+        {
+          "name": "onScrollDown",
+          "ios": 26
+        },
+        {
+          "name": "onScrollUp",
+          "ios": 26
+        },
+        {
+          "name": "never",
+          "ios": 26
+        }
+      ]
+    },
+    {
+      "name": "tableColumnHeaders",
+      "kind": "string",
+      "type": "SwiftUICore.Visibility",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "visible",
+          "ios": 15
+        },
+        {
+          "name": "hidden",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "tabViewSearchActivation",
+      "kind": "string",
+      "type": "SwiftUI.TabSearchActivation",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 26
+        },
+        {
+          "name": "searchTabSelection",
+          "ios": 26
+        }
+      ]
+    },
+    {
+      "name": "textSelectionAffinity",
+      "kind": "string",
+      "type": "SwiftUI.TextSelectionAffinity",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 18
+        },
+        {
+          "name": "upstream",
+          "ios": 18
+        },
+        {
+          "name": "downstream",
+          "ios": 18
+        }
+      ]
+    },
+    {
+      "name": "toolbarRole",
+      "kind": "string",
+      "type": "SwiftUI.ToolbarRole",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16
+        },
+        {
+          "name": "navigationStack",
+          "ios": 16
+        },
+        {
+          "name": "browser",
+          "ios": 16
+        },
+        {
+          "name": "editor",
+          "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "toolbarTitleDisplayMode",
+      "kind": "string",
+      "type": "SwiftUI.ToolbarTitleDisplayMode",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 17
+        },
+        {
+          "name": "large",
+          "ios": 17
+        },
+        {
+          "name": "inlineLarge",
+          "ios": 17
+        },
+        {
+          "name": "inline",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "tracking",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 16
+    },
+    {
+      "name": "transition",
+      "kind": "string",
+      "type": "SwiftUICore.AnyTransition",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "opacity",
+          "ios": 13
+        },
+        {
+          "name": "slide",
+          "ios": 13
+        },
+        {
+          "name": "identity",
+          "ios": 13
+        },
+        {
+          "name": "scale",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "windowToolbarFullScreenVisibility",
+      "kind": "string",
+      "type": "SwiftUI.WindowToolbarFullScreenVisibility",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 18
+        }
+      ]
+    },
+    {
+      "name": "writingToolsAffordanceVisibility",
+      "kind": "string",
+      "type": "SwiftUICore.Visibility",
+      "ios": 18.4,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "visible",
+          "ios": 15
+        },
+        {
+          "name": "hidden",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "writingToolsBehavior",
+      "kind": "string",
+      "type": "SwiftUI.WritingToolsBehavior",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 18
+        },
+        {
+          "name": "complete",
+          "ios": 18
+        },
+        {
+          "name": "limited",
+          "ios": 18
+        },
+        {
+          "name": "disabled",
+          "ios": 18
+        }
+      ]
+    },
+    {
+      "name": "zIndex",
+      "kind": "number",
+      "type": "Swift.Double",
+      "ios": 13
+    }
+  ],
   "coverage": {
     "views": {
       "SwiftUI": [
@@ -578,6 +2296,7 @@
         "ControlGroup",
         "DatePicker",
         "Divider",
+        "EditButton",
         "Gauge",
         "Label",
         "Menu",
@@ -596,6 +2315,7 @@
         "Capsule",
         "Circle",
         "Ellipse",
+        "EmptyView",
         "Image",
         "Rectangle",
         "RoundedRectangle",
@@ -619,22 +2339,110 @@
       ]
     },
     "modifiers": {
+      "SwiftUICore": [
+        "allowsHitTesting",
+        "allowsTightening",
+        "background",
+        "baselineOffset",
+        "blendMode",
+        "bold",
+        "border",
+        "brightness",
+        "buttonSizing",
+        "clipShape",
+        "colorMultiply",
+        "colorScheme",
+        "contentTransition",
+        "contrast",
+        "controlSize",
+        "disabled",
+        "dynamicTypeSize",
+        "edgesIgnoringSafeArea",
+        "environment",
+        "font",
+        "foregroundStyle",
+        "frame",
+        "glassEffectTransition",
+        "grayscale",
+        "headerProminence",
+        "hoverEffect",
+        "hoverEffectDisabled",
+        "hueRotation",
+        "imageScale",
+        "italic",
+        "kerning",
+        "layoutDirectionBehavior",
+        "layoutPriority",
+        "lineSpacing",
+        "materialActiveAppearance",
+        "minimumScaleFactor",
+        "monospaced",
+        "multilineTextAlignment",
+        "opacity",
+        "padding",
+        "privacySensitive",
+        "safeAreaPadding",
+        "saturation",
+        "speechAdjustedPitch",
+        "speechAlwaysIncludesPunctuation",
+        "speechAnnouncementsQueued",
+        "speechSpellsOutCharacters",
+        "symbolRenderingMode",
+        "symbolVariant",
+        "tint",
+        "tracking",
+        "transition",
+        "zIndex"
+      ],
       "SwiftUI": [
         "alert",
         "autocorrectionDisabled",
+        "badge",
+        "badgeProminence",
+        "buttonBorderShape",
+        "buttonRepeatBehavior",
         "buttonStyle",
         "confirmationDialog",
         "contextMenu",
         "controlGroupStyle",
         "datePickerStyle",
+        "defaultAdaptableTabBarPlacement",
+        "deleteDisabled",
+        "fileDialogBrowserOptions",
+        "fileDialogCustomizationID",
+        "fileDialogImportsUnresolvedAliases",
         "fileImporter",
+        "findDisabled",
+        "flipsForRightToLeftLayoutDirection",
+        "focusEffectDisabled",
+        "focusable",
         "fullScreenCover",
         "gaugeStyle",
+        "gridCellAnchor",
+        "gridCellColumns",
+        "gridCellUnsizedAxes",
+        "gridColumnAlignment",
+        "inspectorColumnWidth",
+        "interactionActivityTrackingTag",
         "interactiveDismissDisabled",
+        "invalidatableContent",
+        "keyboardShortcut",
+        "labelIconToTitleSpacing",
+        "labelReservedIconWidth",
+        "labelsVisibility",
+        "listSectionIndexVisibility",
         "listStyle",
         "menuActionDismissBehavior",
+        "menuIndicator",
         "menuOrder",
+        "moveDisabled",
+        "navigationBarBackButtonHidden",
+        "navigationBarHidden",
+        "navigationLinkIndicatorVisibility",
+        "navigationSplitViewColumnWidth",
         "onSubmit",
+        "paletteSelectionEffect",
+        "persistentSystemOverlays",
         "pickerStyle",
         "popover",
         "presentationBackground",
@@ -644,28 +2452,38 @@
         "presentationDetents",
         "presentationDragIndicator",
         "presentationSizing",
+        "previewInterfaceOrientation",
         "progressViewStyle",
+        "replaceDisabled",
+        "scenePadding",
+        "scrollClipDisabled",
+        "scrollContentBackground",
+        "scrollDisabled",
+        "scrollDismissesKeyboard",
+        "searchCompletion",
+        "searchDictationBehavior",
+        "searchPresentationToolbarBehavior",
+        "searchToolbarBehavior",
+        "selectionDisabled",
         "sheet",
+        "sliderThumbVisibility",
+        "springLoadingBehavior",
+        "statusBarHidden",
         "submitLabel",
+        "submitScope",
+        "symbolEffectsRemoved",
         "tabBarMinimizeBehavior",
+        "tabViewSearchActivation",
+        "tableColumnHeaders",
         "textFieldStyle",
         "textInputAutocapitalization",
-        "toggleStyle"
-      ],
-      "SwiftUICore": [
-        "background",
-        "border",
-        "clipShape",
-        "environment",
-        "font",
-        "foregroundStyle",
-        "frame",
-        "imageScale",
-        "opacity",
-        "padding",
-        "symbolRenderingMode",
-        "symbolVariant",
-        "tint"
+        "textSelectionAffinity",
+        "toggleStyle",
+        "toolbarRole",
+        "toolbarTitleDisplayMode",
+        "windowToolbarFullScreenVisibility",
+        "writingToolsAffordanceVisibility",
+        "writingToolsBehavior"
       ],
       "_WebKit_SwiftUI": [
         "webViewBackForwardNavigationGestures",
@@ -1487,6 +3305,18 @@
         }
       ],
       "ios": 15
+    },
+    {
+      "module": "SwiftUI",
+      "type": "EditButton",
+      "parameters": [],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "EmptyView",
+      "parameters": [],
+      "ios": 13
     },
     {
       "module": "SwiftUICore",
