@@ -4093,6 +4093,13 @@
       "ios": 17
     },
     {
+      "name": "fileDialogURLEnabled",
+      "kind": "boolean",
+      "type": "Foundation.Predicate<Foundation.URL>",
+      "predicateInput": "Foundation.URL",
+      "ios": 17
+    },
+    {
       "name": "fileExporterFilenameLabel",
       "kind": "optionalString",
       "type": "SwiftUICore.Text?",
@@ -12604,6 +12611,7 @@
         "fileDialogDefaultDirectory",
         "fileDialogImportsUnresolvedAliases",
         "fileDialogMessage",
+        "fileDialogURLEnabled",
         "fileExporterFilenameLabel",
         "fileImporter",
         "findDisabled",
