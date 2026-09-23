@@ -84,7 +84,7 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
       d.owner.split('.').at(-1) === 'View' && builders.length === 1 &&
       d.parameters.at(-1) === builders[0] &&
       d.parameters.every((parameter) => parameter === builders[0] || parameter.defaultValue !== undefined ||
-        valueOf(parameter.type)?.kind === 'enum' ||
+        ['enum', 'string', 'boolean'].includes(valueOf(parameter.type)?.kind ?? '') ||
         parameter.type === 'SwiftUICore.Binding<Swift.Bool>') &&
       present(d) && ios(d) <= ceiling
     )

@@ -333,6 +333,9 @@ describe('SDK view slots', () => {
       { name: 'searchSuggestions', module: 'SwiftUI', label: '_', ios: 0, arguments: [] },
       { name: 'swipeActions', module: 'SwiftUI', label: 'content', ios: 0, arguments: [] },
       { name: 'tabViewBottomAccessory', module: 'SwiftUI', label: 'content', ios: 0, arguments: [] },
+      { name: 'tabViewBottomAccessoryWithBool', sdkName: 'tabViewBottomAccessory', module: 'SwiftUI', label: 'content', ios: 0, arguments: [
+        { field: 'isEnabled', label: 'isEnabled', type: 'Swift.Bool', kind: 'boolean', optional: false },
+      ] },
       { name: 'tabViewSidebarHeader', module: 'SwiftUI', label: 'content', ios: 0, arguments: [] },
     ])
   })
@@ -365,6 +368,23 @@ describe('SDK view slots', () => {
     }], 27)).toEqual([{
       name: 'inspector', module: 'SwiftUI', label: 'content', ios: 0,
       arguments: [{ field: 'isPresented', label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>', kind: 'bindingBoolean', optional: false }],
+    }])
+  })
+
+  it('derives string and boolean options beside a view builder', () => {
+    expect(deriveViewSlots([{
+      ...method('dismissalConfirmationDialog', 'SwiftUI', [
+        { label: '_', name: 'title', type: 'SwiftUICore.Text' },
+        { label: 'shouldPresent', name: 'shouldPresent', type: 'Swift.Bool' },
+        { label: 'actions', name: 'actions', type: '() -> A' },
+      ]),
+      requirements: ['A : SwiftUICore.View'],
+    }], 27)).toEqual([{
+      name: 'dismissalConfirmationDialog', module: 'SwiftUI', label: 'actions', ios: 0,
+      arguments: [
+        { field: 'title', label: '_', type: 'SwiftUICore.Text', kind: 'string', optional: false },
+        { field: 'shouldPresent', label: 'shouldPresent', type: 'Swift.Bool', kind: 'boolean', optional: false },
+      ],
     }])
   })
 })

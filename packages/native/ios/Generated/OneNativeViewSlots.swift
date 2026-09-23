@@ -10,10 +10,13 @@ enum OneNativeViewSlotName {
   static let accessibilityChildren = "accessibilityChildren"
   static let accessibilityRepresentation = "accessibilityRepresentation"
   static let accessibilityShowsLargeContentViewer = "accessibilityShowsLargeContentViewer"
+  static let alert = "alert"
   static let background = "background"
+  static let confirmationDialog = "confirmationDialog"
   static let containerBackground = "containerBackground"
   static let contentToolbar = "contentToolbar"
   static let contextMenu = "contextMenu"
+  static let dismissalConfirmationDialog = "dismissalConfirmationDialog"
   static let inspector = "inspector"
   static let listRowBackground = "listRowBackground"
   static let mapControls = "mapControls"
@@ -33,13 +36,14 @@ enum OneNativeViewSlotName {
   static let swipeActions = "swipeActions"
   static let tabItem = "tabItem"
   static let tabViewBottomAccessory = "tabViewBottomAccessory"
+  static let tabViewBottomAccessoryWithBool = "tabViewBottomAccessoryWithBool"
   static let tabViewSidebarBottomBar = "tabViewSidebarBottomBar"
   static let tabViewSidebarFooter = "tabViewSidebarFooter"
   static let tabViewSidebarHeader = "tabViewSidebarHeader"
   static let toolbar = "toolbar"
   static let toolbarOverflowMenu = "toolbarOverflowMenu"
   static let toolbarTitleMenu = "toolbarTitleMenu"
-  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, background, containerBackground, contentToolbar, contextMenu, inspector, listRowBackground, mapControls, mask, navigationBarItemsWithLeading, navigationBarItemsWithTrailing, navigationDestination, overlay, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchSuggestions, sectionActions, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
+  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, alert, background, confirmationDialog, containerBackground, contentToolbar, contextMenu, dismissalConfirmationDialog, inspector, listRowBackground, mapControls, mask, navigationBarItemsWithLeading, navigationBarItemsWithTrailing, navigationDestination, overlay, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchSuggestions, sectionActions, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewBottomAccessoryWithBool, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
 }
 
 extension View {
@@ -80,9 +84,31 @@ extension View {
         return AnyView(self.accessibilityShowsLargeContentViewer(content))
       }
       return AnyView(self)
+    case OneNativeViewSlotName.alert:
+      if #available(iOS 15, *) {
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          decoded.count == 2 else { preconditionFailure("invalid alert slot values") }
+        let argument0 = Text(decoded[0])
+        guard decoded[1] == "true" || decoded[1] == "false" else { preconditionFailure("invalid alert.isPresented") }
+        let argument1 = Binding<Bool>(get: { decoded[1] == "true" }, set: { emit("alert", String($0)) })
+        return AnyView(self.alert(argument0, isPresented: argument1, actions: content))
+      }
+      return AnyView(self)
     case OneNativeViewSlotName.background:
       if #available(iOS 15, *) {
         return AnyView(self.background(content: content))
+      }
+      return AnyView(self)
+    case OneNativeViewSlotName.confirmationDialog:
+      if #available(iOS 15, *) {
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          decoded.count == 2 else { preconditionFailure("invalid confirmationDialog slot values") }
+        let argument0 = Text(decoded[0])
+        guard decoded[1] == "true" || decoded[1] == "false" else { preconditionFailure("invalid confirmationDialog.isPresented") }
+        let argument1 = Binding<Bool>(get: { decoded[1] == "true" }, set: { emit("confirmationDialog", String($0)) })
+        return AnyView(self.confirmationDialog(argument0, isPresented: argument1, actions: content))
       }
       return AnyView(self)
     case OneNativeViewSlotName.containerBackground:
@@ -119,6 +145,17 @@ extension View {
     case OneNativeViewSlotName.contextMenu:
       if #available(iOS 13, *) {
         return AnyView(self.contextMenu(menuItems: content))
+      }
+      return AnyView(self)
+    case OneNativeViewSlotName.dismissalConfirmationDialog:
+      if #available(iOS 27, *) {
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          decoded.count == 2 else { preconditionFailure("invalid dismissalConfirmationDialog slot values") }
+        let argument0 = Text(decoded[0])
+        guard decoded[1] == "true" || decoded[1] == "false" else { preconditionFailure("invalid dismissalConfirmationDialog.shouldPresent") }
+        let argument1 = decoded[1] == "true"
+        return AnyView(self.dismissalConfirmationDialog(argument0, shouldPresent: argument1, actions: content))
       }
       return AnyView(self)
     case OneNativeViewSlotName.inspector:
@@ -274,6 +311,16 @@ extension View {
     case OneNativeViewSlotName.tabViewBottomAccessory:
       if #available(iOS 26, *) {
         return AnyView(self.tabViewBottomAccessory(content: content))
+      }
+      return AnyView(self)
+    case OneNativeViewSlotName.tabViewBottomAccessoryWithBool:
+      if #available(iOS 26.1, *) {
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          decoded.count == 1 else { preconditionFailure("invalid tabViewBottomAccessoryWithBool slot values") }
+        guard decoded[0] == "true" || decoded[0] == "false" else { preconditionFailure("invalid tabViewBottomAccessoryWithBool.isEnabled") }
+        let argument0 = decoded[0] == "true"
+        return AnyView(self.tabViewBottomAccessory(isEnabled: argument0, content: content))
       }
       return AnyView(self)
     case OneNativeViewSlotName.tabViewSidebarBottomBar:
