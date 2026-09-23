@@ -157,6 +157,7 @@ extension View {
       case "animation": view = AnyView(view.oneNativeSDKAnimation(value, emit: emit))
       case "aspectRatio": view = AnyView(view.oneNativeSDKAspectRatio(value, emit: emit))
       case "assistiveAccessNavigationIcon": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIcon(value, emit: emit))
+      case "asyncImageURLSession": view = AnyView(view.oneNativeSDKAsyncImageURLSession(value, emit: emit))
       case "autocapitalization": view = AnyView(view.oneNativeSDKAutocapitalization(value, emit: emit))
       case "autocorrectionDisabled": view = AnyView(view.oneNativeSDKAutocorrectionDisabled(value, emit: emit))
       case "backgroundExtensionEffectWithIsEnabled": view = AnyView(view.oneNativeSDKBackgroundExtensionEffectWithIsEnabled(value, emit: emit))
@@ -192,6 +193,7 @@ extension View {
       case "dataDetection": view = AnyView(view.oneNativeSDKDataDetection(value, emit: emit))
       case "datePickerStyle": view = AnyView(view.oneNativeSDKDatePickerStyle(value, emit: emit))
       case "defaultAdaptableTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultAdaptableTabBarPlacement(value, emit: emit))
+      case "defaultAppStorage": view = AnyView(view.oneNativeSDKDefaultAppStorage(value, emit: emit))
       case "defaultHoverEffect": view = AnyView(view.oneNativeSDKDefaultHoverEffect(value, emit: emit))
       case "defaultScrollAnchorWithAnchorAndRole": view = AnyView(view.oneNativeSDKDefaultScrollAnchorWithAnchorAndRole(value, emit: emit))
       case "defaultScrollAnchorWithOptionalUnitPoint": view = AnyView(view.oneNativeSDKDefaultScrollAnchorWithOptionalUnitPoint(value, emit: emit))
@@ -1391,6 +1393,14 @@ extension View {
       if #available(iOS 26, *) { self.assistiveAccessNavigationIcon(systemImage: value) } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKAsyncImageURLSession(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "shared": if #available(iOS 27, *) { self.asyncImageURLSession(Foundation.URLSession.shared) } else { self }
+    default: preconditionFailure("invalid asyncImageURLSession: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKAutocapitalization(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -1894,6 +1904,14 @@ extension View {
       case "tabBar": if #available(iOS 18, *) { self.defaultAdaptableTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.tabBar) } else { self }
       case "sidebar": if #available(iOS 18, *) { self.defaultAdaptableTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.sidebar) } else { self }
     default: preconditionFailure("invalid defaultAdaptableTabBarPlacement: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDefaultAppStorage(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "standard": self.defaultAppStorage(Foundation.UserDefaults.standard)
+    default: preconditionFailure("invalid defaultAppStorage: \(value)")
     }
   }
 

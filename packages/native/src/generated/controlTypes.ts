@@ -210,6 +210,8 @@ export const sdkAnimationValues = [
   'linear',
 ] as const
 export type SDKAnimation = (typeof sdkAnimationValues)[number]
+export const sdkAsyncImageURLSessionValues = ['shared'] as const
+export type SDKAsyncImageURLSession = (typeof sdkAsyncImageURLSessionValues)[number]
 export const sdkAutocapitalizationValues = [
   'allCharacters',
   'none',
@@ -364,6 +366,8 @@ export const sdkDefaultAdaptableTabBarPlacementValues = [
 ] as const
 export type SDKDefaultAdaptableTabBarPlacement =
   (typeof sdkDefaultAdaptableTabBarPlacementValues)[number]
+export const sdkDefaultAppStorageValues = ['standard'] as const
+export type SDKDefaultAppStorage = (typeof sdkDefaultAppStorageValues)[number]
 export const sdkDefaultHoverEffectValues = ['automatic', 'highlight', 'lift'] as const
 export type SDKDefaultHoverEffect = (typeof sdkDefaultHoverEffectValues)[number]
 export const sdkDefaultScrollAnchorWithOptionalUnitPointValues = [
@@ -1354,6 +1358,7 @@ export interface OneNativeStyle {
   animation?: SDKAnimation | null
   aspectRatio?: Readonly<{ aspectRatio: number | null; contentMode: 'fit' | 'fill' }>
   assistiveAccessNavigationIcon?: string
+  asyncImageURLSession?: SDKAsyncImageURLSession
   autocapitalization?: SDKAutocapitalization
   autocorrectionDisabled?: boolean
   backgroundExtensionEffectWithIsEnabled?: boolean
@@ -1438,6 +1443,7 @@ export interface OneNativeStyle {
   dataDetection?: boolean
   datePickerStyle?: SDKDatePickerStyle
   defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement
+  defaultAppStorage?: SDKDefaultAppStorage
   defaultHoverEffect?: SDKDefaultHoverEffect | null
   defaultScrollAnchorWithAnchorAndRole?: Readonly<{
     anchor:
