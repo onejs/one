@@ -5,13 +5,14 @@ const eventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> S
 
 export type DerivedModifier = {
   name: string
-  kind: 'boolean' | 'number' | 'string' | 'event' | 'bindingBoolean' | 'bindingString'
+  kind: 'boolean' | 'number' | 'string' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'event' | 'bindingBoolean' | 'bindingString'
   ios: number
   type: string
   cases?: readonly { name: string; ios: number }[]
   zeroArgument?: true
   framework?: string
   label?: string
+  callArguments?: readonly { label: string; defaultValue?: string; bridge?: true }[]
 }
 
 export type DerivedViewSlot = { name: string; ios: number }
@@ -43,9 +44,8 @@ export function deriveModifiers(
         (d.parameters.length === 0 && /^_[A-Za-z]+_SwiftUI$/.test(d.module))) &&
       d.owner.split('.').at(-1) === 'View' &&
       /^[a-z]/.test(d.name) &&
-      (d.parameters.length === 0 || !d.name.startsWith('accessibility')) &&
       (d.parameters.length === 0 ||
-        (d.parameters.length === 1 && d.parameters[0].label === '_') ||
+        d.parameters.length === 1 ||
         (d.parameters.length > 0 && d.parameters.every((p) => p.defaultValue !== undefined ||
           eventOrBindingType.test(p.type)))) &&
       !d.requirements?.length &&
@@ -80,24 +80,35 @@ export function deriveModifiers(
           : parameter.type.includes('Binding<Swift.String>')
             ? 'bindingString'
             : 'event'
-        return [{ name, kind, type: parameter.type, label: parameter.label, ios: ios(method) }]
+        return [{
+          name, kind, type: parameter.type, label: parameter.label, ios: ios(method),
+          ...(method.parameters.length > 1 ? {
+            callArguments: method.parameters.map((p) =>
+              p === parameter ? { label: p.label, bridge: true as const } : { label: p.label, defaultValue: p.defaultValue }
+            ),
+          } : {}),
+        }]
       }
-      if (method.parameters.length !== 1 || method.parameters[0].label !== '_') return []
-      const type = method.parameters[0].type
-      const kind =
-        type === 'Swift.Bool'
+      if (method.parameters.length !== 1) return []
+      const { type, label } = method.parameters[0]
+      const baseType = type.replace(/\?$/, '')
+      const baseKind =
+        baseType === 'Swift.Bool'
           ? 'boolean'
           : [
                 'Swift.Double',
                 'Swift.Float',
                 'Swift.Int',
                 'CoreFoundation.CGFloat',
-              ].includes(type)
+              ].includes(baseType)
             ? 'number'
-            : type === 'Swift.String'
+            : baseType === 'Swift.String' || baseType === 'SwiftUICore.Text'
               ? 'string'
               : undefined
-      if (kind) return [{ name, kind, type, ios: ios(method) }]
+      if (baseKind) {
+        const kind = type.endsWith('?') ? `optional${baseKind[0].toUpperCase()}${baseKind.slice(1)}` as DerivedModifier['kind'] : baseKind
+        return [{ name, kind, type, ios: ios(method), ...(label === '_' ? {} : { label }) }]
+      }
       if (!/^(SwiftUI|SwiftUICore)\.[A-Za-z][\w.]*$/.test(type)) return []
       const [module, ...owner] = type.split('.')
       const cases = inventory
@@ -115,7 +126,7 @@ export function deriveModifiers(
         .map((d) => ({ name: d.name, ios: ios(d) }))
       if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length)
         return []
-      return [{ name, kind: 'string', type, ios: ios(method), cases }]
+      return [{ name, kind: 'string', type, ios: ios(method), cases, ...(label === '_' ? {} : { label }) }]
     })
     // overloads with the same public name need a semantic choice. neither their
     // order in the SDK nor a guessed preferred type is a sound contract.

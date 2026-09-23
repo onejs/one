@@ -134,6 +134,12 @@ ${styleFields
             ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>'
             : modifier.kind === 'bindingString'
               ? 'Readonly<{ value: string; onChange: (value: string) => void }>'
+              : modifier.kind === 'optionalBoolean'
+                ? 'boolean | null'
+                : modifier.kind === 'optionalNumber'
+                  ? 'number | null'
+                  : modifier.kind === 'optionalString'
+                    ? 'string | null'
               : modifier.kind === 'string' ? undefined : modifier.kind,
       values: modifier.cases?.map((item) => item.name),
     })),

@@ -44,13 +44,26 @@ const colorFields = [
   'glassEffectTint',
 ] as const
 const sdkKinds = {
+  accessibilityAction: 'event',
+  accessibilityActivationPoint: 'string',
+  accessibilityAddTraits: 'string',
+  accessibilityElement: 'string',
+  accessibilityHeading: 'string',
+  accessibilityHidden: 'boolean',
+  accessibilityHint: 'string',
+  accessibilityIdentifier: 'string',
+  accessibilityIgnoresInvertColors: 'boolean',
+  accessibilityLabel: 'string',
+  accessibilityRemoveTraits: 'string',
+  accessibilityRespondsToUserInteraction: 'boolean',
   accessibilityShowsLargeContentViewer: 'boolean',
+  accessibilitySortPriority: 'number',
+  accessibilityTextContentType: 'string',
+  accessibilityValue: 'string',
   allowsHitTesting: 'boolean',
   allowsTightening: 'boolean',
-  allowsWindowActivationEvents: 'boolean',
+  assistiveAccessNavigationIcon: 'string',
   autocorrectionDisabled: 'boolean',
-  backgroundExtensionEffect: 'boolean',
-  badge: 'number',
   badgeProminence: 'string',
   baselineOffset: 'number',
   blendMode: 'string',
@@ -59,6 +72,7 @@ const sdkKinds = {
   buttonBorderShape: 'string',
   buttonRepeatBehavior: 'string',
   buttonSizing: 'string',
+  clipped: 'boolean',
   colorInvert: 'boolean',
   colorMultiply: 'string',
   colorScheme: 'string',
@@ -68,14 +82,21 @@ const sdkKinds = {
   controlSize: 'string',
   defaultAdaptableTabBarPlacement: 'string',
   defaultTabBarPlacement: 'string',
+  defersSystemGestures: 'string',
   deleteDisabled: 'boolean',
   dialogSuppressionToggle: 'bindingBoolean',
+  disableAutocorrection: 'optionalBoolean',
   disabled: 'boolean',
+  documentLaunchSubtitle: 'string',
+  documentLaunchTitle: 'string',
   dynamicTypeSize: 'string',
   edgesIgnoringSafeArea: 'string',
   fileDialogBrowserOptions: 'string',
+  fileDialogConfirmationLabel: 'optionalString',
   fileDialogCustomizationID: 'string',
   fileDialogImportsUnresolvedAliases: 'boolean',
+  fileDialogMessage: 'optionalString',
+  fileExporterFilenameLabel: 'optionalString',
   findDisabled: 'boolean',
   findNavigator: 'bindingBoolean',
   fixedSize: 'boolean',
@@ -90,6 +111,7 @@ const sdkKinds = {
   gridCellUnsizedAxes: 'string',
   gridColumnAlignment: 'string',
   headerProminence: 'string',
+  help: 'string',
   hidden: 'boolean',
   hoverEffect: 'string',
   hoverEffectDisabled: 'boolean',
@@ -107,7 +129,9 @@ const sdkKinds = {
   labelsVisibility: 'string',
   layoutDirectionBehavior: 'string',
   layoutPriority: 'number',
+  lineLimit: 'optionalNumber',
   lineSpacing: 'number',
+  listRowSpacing: 'optionalNumber',
   listSectionIndexVisibility: 'string',
   luminanceToAlpha: 'boolean',
   materialActiveAppearance: 'string',
@@ -118,14 +142,15 @@ const sdkKinds = {
   monospaced: 'boolean',
   monospacedDigit: 'boolean',
   moveDisabled: 'boolean',
-  multilineTextAlignment: 'string',
   navigationBarBackButtonHidden: 'boolean',
   navigationBarHidden: 'boolean',
+  navigationBarTitle: 'string',
   navigationLinkIndicatorVisibility: 'string',
   navigationSplitViewColumnWidth: 'number',
-  navigationTitle: 'bindingString',
+  navigationSubtitle: 'string',
   onAppear: 'event',
   onDisappear: 'event',
+  onOpenURL: 'boolean',
   onSubmit: 'event',
   onTapGesture: 'event',
   paletteSelectionEffect: 'string',
@@ -134,11 +159,14 @@ const sdkKinds = {
   presentationBackgroundInteraction: 'string',
   presentationCompactAdaptation: 'string',
   presentationContentInteraction: 'string',
+  presentationCornerRadius: 'optionalNumber',
   presentationDragIndicator: 'string',
   presentationPlacement: 'string',
+  previewDisplayName: 'optionalString',
   previewInterfaceOrientation: 'string',
   privacySensitive: 'boolean',
   productIconBorder: 'boolean',
+  redacted: 'string',
   renameAction: 'event',
   replaceDisabled: 'boolean',
   safeAreaPadding: 'number',
@@ -150,11 +178,14 @@ const sdkKinds = {
   scrollContentBackground: 'string',
   scrollDisabled: 'boolean',
   scrollDismissesKeyboard: 'string',
+  scrollIndicatorsFlash: 'boolean',
+  scrollTargetLayout: 'boolean',
   searchable: 'bindingString',
   searchCompletion: 'string',
   searchDictationBehavior: 'string',
   searchPresentationToolbarBehavior: 'string',
   searchToolbarBehavior: 'string',
+  sectionIndexLabel: 'optionalString',
   selectionDisabled: 'boolean',
   sliderThumbVisibility: 'string',
   speechAdjustedPitch: 'number',
@@ -162,6 +193,7 @@ const sdkKinds = {
   speechAnnouncementsQueued: 'boolean',
   speechSpellsOutCharacters: 'boolean',
   springLoadingBehavior: 'string',
+  statusBar: 'boolean',
   statusBarHidden: 'boolean',
   submitLabel: 'string',
   submitScope: 'boolean',
@@ -177,8 +209,10 @@ const sdkKinds = {
   toolbarTitleDisplayMode: 'string',
   tracking: 'number',
   transition: 'string',
+  typeSelectEquivalent: 'optionalString',
   unredacted: 'boolean',
   windowToolbarFullScreenVisibility: 'string',
+  writingDirection: 'string',
   writingToolsAffordanceVisibility: 'string',
   writingToolsBehavior: 'string',
   zIndex: 'number',
@@ -196,10 +230,20 @@ export function swiftStyleNative(
       const kind = sdkKinds[name as keyof typeof sdkKinds]
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value)))
         throw new Error(name + ' must be finite')
+      if (
+        kind === 'optionalNumber' &&
+        value !== null &&
+        (typeof value !== 'number' || !Number.isFinite(value))
+      )
+        throw new Error(name + ' must be finite or null')
       if (kind === 'boolean' && typeof value !== 'boolean')
         throw new Error(name + ' must be a boolean')
+      if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean')
+        throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string')
         throw new Error(name + ' must be a string')
+      if (kind === 'optionalString' && value !== null && typeof value !== 'string')
+        throw new Error(name + ' must be a string or null')
       if (kind === 'event' && typeof value !== 'function')
         throw new Error(name + ' must be a callback')
       if (
@@ -217,7 +261,9 @@ export function swiftStyleNative(
           ? ''
           : kind.startsWith('binding')
             ? String((value as { value: unknown }).value)
-            : String(value),
+            : kind === 'optionalString'
+              ? (JSON.stringify(value) as string)
+              : String(value),
       ])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
