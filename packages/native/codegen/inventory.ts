@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process'
-import { mkdirSync, readdirSync } from 'node:fs'
+import { mkdirSync, readdirSync, rmSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 
 export type Declaration = {
@@ -27,22 +27,7 @@ export function readInventory(root: string) {
   const sdk = run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-path'])
   const swiftc = run('xcrun', ['--find', 'swiftc'])
   const host = resolve(dirname(swiftc), '../lib/swift/host')
-  const binary = join(cache, 'extract')
-  run(swiftc, [
-    '-sdk',
-    run('xcrun', ['--sdk', 'macosx', '--show-sdk-path']),
-    '-I',
-    host,
-    '-L',
-    host,
-    '-Xlinker',
-    '-rpath',
-    '-Xlinker',
-    host,
-    join(root, 'codegen/Extract.swift'),
-    '-o',
-    binary,
-  ])
+  const binary = join(cache, `extract-${process.pid}`)
   // swiftui is not one module. it extends other frameworks through an overlay module each
   // (_WebKit_SwiftUI, _AVKit_SwiftUI, and so on), and those hold real swiftui api: WebView,
   // VideoPlayer, PhotosPicker, Map, quickLookPreview. read every one, not just the core two.
@@ -58,7 +43,27 @@ export function readInventory(root: string) {
       `System/Library/Frameworks/${module}.framework/Modules/${module}.swiftmodule/arm64-apple-ios-simulator.swiftinterface`
     )
   )
-  const rawInventory: Declaration[] = JSON.parse(run(binary, paths))
+  let rawInventory: Declaration[]
+  try {
+    run(swiftc, [
+      '-sdk',
+      run('xcrun', ['--sdk', 'macosx', '--show-sdk-path']),
+      '-I',
+      host,
+      '-L',
+      host,
+      '-Xlinker',
+      '-rpath',
+      '-Xlinker',
+      host,
+      join(root, 'codegen/Extract.swift'),
+      '-o',
+      binary,
+    ])
+    rawInventory = JSON.parse(run(binary, paths))
+  } finally {
+    rmSync(binary, { force: true })
+  }
   const norm = (str?: string) =>
     str ? str.replace(/\.\w+::/g, '.').replaceAll('::', '.') : str
   const signature = (parameters: readonly { label: string; type: string }[]) =>

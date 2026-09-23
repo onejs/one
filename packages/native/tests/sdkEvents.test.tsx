@@ -49,6 +49,22 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('string array and callback')
   })
 
+  it('routes a Boolean binding nested in an SDK record', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      translationPresentation: { isPresented: { value: true, onChange }, text: 'hello' },
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(modifiers.translationPresentation)).toEqual(['true', 'hello'])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'translationPresentation.isPresented', value: 'false',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'translationPresentation.isPresented', value: 'invalid',
+    } })).toThrow('invalid boolean')
+  })
+
   it('round trips a Codable customization binding through native JSON', () => {
     const onChange = vi.fn()
     const current = '{"perTabState":[],"identifier":"D9754350-75EE-4390-AC54-159710381977","perSectionState":[]}'

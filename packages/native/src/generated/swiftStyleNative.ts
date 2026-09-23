@@ -91,6 +91,8 @@ const sdkKinds = {
   accessibilityWithValue: 'string',
   accessibilityZoomAction: 'eventStruct',
   addPassToWalletButtonStyle: 'string',
+  alignmentGuideWithHorizontalAlignment: 'record',
+  alignmentGuideWithVerticalAlignment: 'record',
   allowedDynamicRange: 'optionalEnum',
   allowsHitTesting: 'boolean',
   allowsTightening: 'boolean',
@@ -150,6 +152,7 @@ const sdkKinds = {
   deleteDisabled: 'boolean',
   dialogIcon: 'optionalString',
   dialogSuppressionToggle: 'bindingBoolean',
+  dialogSuppressionToggleWithLabelAndIsSuppressed: 'record',
   disableAutocorrection: 'optionalBoolean',
   disabled: 'boolean',
   disclosureGroupStyle: 'style',
@@ -244,6 +247,7 @@ const sdkKinds = {
   listStyle: 'style',
   luminanceToAlpha: 'boolean',
   manageSubscriptionsSheet: 'bindingBoolean',
+  manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID: 'record',
   mapControlVisibility: 'string',
   mapFeatureSelectionAccessory: 'optionalEnum',
   mapFeatureSelectionDisabled: 'boolean',
@@ -437,6 +441,7 @@ const sdkKinds = {
   tracking: 'number',
   transformEffect: 'record',
   transition: 'string',
+  translationPresentation: 'record',
   truncationMode: 'string',
   typeSelectEquivalent: 'optionalString',
   typesettingLanguage: 'record',
@@ -775,6 +780,14 @@ const sdkRecords: Record<
     { field: 'valueDescription', kind: 'string', optional: false },
     { field: 'isEnabled', kind: 'boolean', optional: false },
   ],
+  alignmentGuideWithHorizontalAlignment: [
+    { field: 'g', kind: 'enum', optional: false },
+    { field: 'computeValue', kind: 'number', optional: false },
+  ],
+  alignmentGuideWithVerticalAlignment: [
+    { field: 'g', kind: 'enum', optional: false },
+    { field: 'computeValue', kind: 'number', optional: false },
+  ],
   aspectRatio: [
     { field: 'aspectRatio', kind: 'number', optional: true },
     { field: 'contentMode', kind: 'enum', optional: false },
@@ -815,6 +828,10 @@ const sdkRecords: Record<
   defaultScrollAnchorWithAnchorAndRole: [
     { field: 'anchor', kind: 'enum', optional: true },
     { field: 'role', kind: 'enum', optional: false },
+  ],
+  dialogSuppressionToggleWithLabelAndIsSuppressed: [
+    { field: 'label', kind: 'string', optional: false },
+    { field: 'isSuppressed', kind: 'bindingBoolean', optional: false },
   ],
   distortionEffect: [
     { field: 'shader', kind: 'string', optional: false },
@@ -917,6 +934,10 @@ const sdkRecords: Record<
   listSectionSeparatorTint: [
     { field: 'color', kind: 'enum', optional: true },
     { field: 'edges', kind: 'enum', optional: false },
+  ],
+  manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'subscriptionGroupID', kind: 'string', optional: false },
   ],
   navigationBarTitleWithTitleAndDisplayMode: [
     { field: 'title', kind: 'string', optional: false },
@@ -1102,6 +1123,10 @@ const sdkRecords: Record<
       ],
     },
   ],
+  translationPresentation: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'text', kind: 'string', optional: false },
+  ],
   typesettingLanguage: [
     { field: 'language', kind: 'enum', optional: false },
     { field: 'isEnabled', kind: 'boolean', optional: false },
@@ -1166,6 +1191,16 @@ export function swiftStyleNative(
         const values = sdkRecords[name].map((argument) => {
           const item = record[argument.field]
           if (argument.optional && item === null) return null
+          if (argument.kind === 'bindingBoolean') {
+            if (
+              !item ||
+              typeof item !== 'object' ||
+              typeof (item as { value?: unknown }).value !== 'boolean' ||
+              typeof (item as { onChange?: unknown }).onChange !== 'function'
+            )
+              throw new Error(name + '.' + argument.field + ' must be a boolean binding')
+            return String((item as { value: boolean }).value)
+          }
           if (
             argument.kind === 'number' &&
             (typeof item !== 'number' || !Number.isFinite(item))
@@ -1313,6 +1348,26 @@ export function dispatchSDKEvent(
   name: string,
   value: string
 ): void {
+  const separator = name.indexOf('.')
+  if (separator !== -1) {
+    const parent = name.slice(0, separator)
+    const field = name.slice(separator + 1)
+    if (
+      sdkRecords[parent]?.some(
+        (argument) => argument.field === field && argument.kind === 'bindingBoolean'
+      )
+    ) {
+      if (value !== 'true' && value !== 'false')
+        throw new Error(name + ' emitted an invalid boolean')
+      const record = (style as Record<string, unknown> | undefined)?.[parent] as
+        | Record<string, unknown>
+        | undefined
+      ;(record?.[field] as { onChange: (value: boolean) => void } | undefined)?.onChange(
+        value === 'true'
+      )
+      return
+    }
+  }
   const modifier = (style as Record<string, unknown> | undefined)?.[name]
   const kind = sdkKinds[name as keyof typeof sdkKinds] as string | undefined
   if (kind === 'event') (modifier as (() => void) | undefined)?.()

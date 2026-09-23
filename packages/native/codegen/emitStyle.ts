@@ -124,6 +124,11 @@ ${cases}
       guard raw == "true" || raw == "false" else { preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)") }
       return ${construct('raw == "true"', argument.scalarConstructor, argument.type)}
     }()`
+          if (argument.kind === 'bindingBoolean')
+            return `    let ${variable}: ${argument.type} = {
+      guard let raw = ${raw}, raw == "true" || raw == "false" else { preconditionFailure("invalid ${modifier.name}.${argument.field}") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit(${JSON.stringify(`${modifier.name}.${argument.field}`)}, String($0)) })
+    }()`
           if (argument.kind === 'number') {
             const scalarType = argument.scalarConstructor?.type ?? baseType
             const value = scalarType === 'CoreFoundation.CGFloat' ? 'CGFloat(number)' : scalarType === 'Swift.Float' ? 'Float(number)' : scalarType === 'Swift.Int' ? 'Int(number)' : 'number'
@@ -165,7 +170,7 @@ ${cases}
     }()`
         }).join('\n')
         const call = argumentsFromSDK.map((argument, index) =>
-          `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`
+          `${argument.label === '_' ? '' : `${argument.label}: `}${argument.closureInput ? `{ (_: ${argument.closureInput}) in argument${index} }` : `argument${index}`}`
         ).join(', ')
         const body = `let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -453,6 +458,12 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
         const values = sdkRecords[name].map((argument) => {
           const item = record[argument.field]
           if (argument.optional && item === null) return null
+          if (argument.kind === 'bindingBoolean') {
+            if (!item || typeof item !== 'object' || typeof (item as { value?: unknown }).value !== 'boolean' ||
+              typeof (item as { onChange?: unknown }).onChange !== 'function')
+              throw new Error(name + '.' + argument.field + ' must be a boolean binding')
+            return String((item as { value: boolean }).value)
+          }
           if (argument.kind === 'number' && (typeof item !== 'number' || !Number.isFinite(item))) throw new Error(name + '.' + argument.field + ' must be finite')
           if (argument.kind === 'boolean' && typeof item !== 'boolean') throw new Error(name + '.' + argument.field + ' must be a boolean')
           if ((argument.kind === 'string' || argument.kind === 'url' || argument.kind === 'enum') && typeof item !== 'string') throw new Error(name + '.' + argument.field + ' must be a string')
@@ -503,6 +514,17 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
 }
 
 export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string, value: string): void {
+  const separator = name.indexOf('.')
+  if (separator !== -1) {
+    const parent = name.slice(0, separator)
+    const field = name.slice(separator + 1)
+    if (sdkRecords[parent]?.some((argument) => argument.field === field && argument.kind === 'bindingBoolean')) {
+      if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid boolean')
+      const record = (style as Record<string, unknown> | undefined)?.[parent] as Record<string, unknown> | undefined
+      ;(record?.[field] as { onChange: (value: boolean) => void } | undefined)?.onChange(value === 'true')
+      return
+    }
+  }
   const modifier = (style as Record<string, unknown> | undefined)?.[name]
   const kind = sdkKinds[name as keyof typeof sdkKinds] as string | undefined
   if (kind === 'event') (modifier as (() => void) | undefined)?.()
