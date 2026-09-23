@@ -30,6 +30,12 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativeButtonEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeButtonPress({.eventCount = (int)pressCount});
     };
+    _buttonView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeButtonComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeButtonEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
   }
   return self;
 }

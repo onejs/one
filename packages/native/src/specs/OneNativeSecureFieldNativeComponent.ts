@@ -59,6 +59,7 @@ interface NativeProps extends ViewProps {
   keyboardType: string
   textContentType: string
   swiftStyle?: OneNativeStyleNative
+  onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativeSecureFieldValueChange?: DirectEventHandler<
     Readonly<{ value: string; eventCount: Int32; revision: Int32 }>
   >

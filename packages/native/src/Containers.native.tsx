@@ -14,7 +14,7 @@ import {
   TextInput,
   View,
 } from 'react-native'
-import { swiftStyleNative } from './generated/swiftStyleNative'
+import { dispatchSDKEvent, swiftStyleNative } from './generated/swiftStyleNative'
 import NativeButton from './specs/OneNativeButtonNativeComponent'
 import NativeContainerSlot from './specs/OneNativeContainerSlotNativeComponent'
 import NativeControlGroup from './specs/OneNativeControlGroupNativeComponent'
@@ -462,6 +462,7 @@ export function Button({
       {...props}
       style={style}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}
       label={label}
       disabled={disabled}
       subtitle={subtitle}

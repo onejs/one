@@ -122,6 +122,7 @@ export const containerComponents = [
     },
     events: {
       onNativeButtonPress: { eventCount: 'Int32' },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
     },
     enumProps: {
       buttonRole: 'ButtonRole',

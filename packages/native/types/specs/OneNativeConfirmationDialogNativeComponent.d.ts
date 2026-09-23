@@ -48,6 +48,10 @@ interface NativeProps extends ViewProps {
     actions: ReadonlyArray<DialogAction>;
     titleVisibility: string;
     swiftStyle?: OneNativeStyleNative;
+    onNativeSDKEvent?: DirectEventHandler<Readonly<{
+        name: string;
+        value: string;
+    }>>;
     onNativeConfirmationDialogValueChange?: DirectEventHandler<Readonly<{
         value: boolean;
         eventCount: Int32;

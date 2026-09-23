@@ -33,4 +33,5 @@ export type OneNativeStyleNative = Readonly<{
     sdkModifiers?: string;
 }>;
 export declare function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeStyleNative | undefined;
+export declare function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string, value: string): void;
 //# sourceMappingURL=swiftStyleNative.d.ts.map

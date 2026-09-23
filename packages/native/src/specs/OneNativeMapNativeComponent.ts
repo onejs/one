@@ -52,6 +52,7 @@ interface NativeProps extends ViewProps {
   distance: Double
   markers: ReadonlyArray<MapMarker>
   swiftStyle?: OneNativeStyleNative
+  onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativeMapRegionChange?: DirectEventHandler<
     Readonly<{ latitude: Double; longitude: Double; distance: Double; eventCount: Int32 }>
   >

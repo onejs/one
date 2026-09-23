@@ -45,6 +45,7 @@ interface NativeProps extends ViewProps {
   requestedScopes: ReadonlyArray<string>
   nonce: string
   swiftStyle?: OneNativeStyleNative
+  onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativeSignInWithAppleButtonCompletion?: DirectEventHandler<
     Readonly<{
       type: string

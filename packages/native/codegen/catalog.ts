@@ -156,7 +156,7 @@ export interface StyleField {
   kind: StyleFieldKind
   // a derived numeric or boolean modifier crosses Fabric as a string so its
   // absence, false, zero, and negative values stay distinct.
-  publicType?: 'number' | 'boolean'
+  publicType?: string
   derived?: true
   // the accepted values of a string field. the generated TypeScript alias and the Swift
   // resolver are built from this one list, so a value cannot exist in one and not the other.

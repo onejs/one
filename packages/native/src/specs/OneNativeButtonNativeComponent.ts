@@ -50,6 +50,7 @@ interface NativeProps extends ViewProps {
   disclosureIndicator: boolean
   swiftStyle?: OneNativeStyleNative
   onNativeButtonPress?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
+  onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
 }
 export default codegenNativeComponent<NativeProps>('OneNativeButton', {
   interfaceOnly: true,

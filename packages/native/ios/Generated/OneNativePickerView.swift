@@ -12,6 +12,9 @@ private final class PickerModel: ObservableObject {
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
+  var onSDKEvent: ((String, String) -> Void)?
+  func emitSDKEvent(_ name: String, _ value: String) { if active { onSDKEvent?(name, value) } }
+
   var onChange: ((String, Int, Int) -> Void)?
   func change(_ value: String) {
     guard active, !disabled, controlled.value != value else { return }
@@ -20,6 +23,8 @@ private final class PickerModel: ObservableObject {
   }
 }
 @objcMembers public final class OneNativePickerView: UIView, OneNativeComposable {
+  public var onSDKEvent: ((String, String) -> Void)?
+
   public var onChange: ((String, Int, Int) -> Void)?
   private var model = PickerModel()
   public var onHeight: ((CGFloat) -> Void)?
@@ -57,6 +62,8 @@ private final class PickerModel: ObservableObject {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
+    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
+
     model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
   }
   private func updateHost() {
@@ -72,7 +79,7 @@ private final class PickerModel: ObservableObject {
   }
   public func reset() {
     compositionParent = nil
-    model.active = false; model.onChange = nil
+    model.active = false; model.onSDKEvent = nil; model.onChange = nil
     controller?.detach(); controller = nil; model = PickerModel()
   }
 }
@@ -93,7 +100,7 @@ private struct PickerContent: View {
       .oneNativeSegmentedFill(model.pickerStyle)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
-      .oneNativeStyle(model.swiftStyle)
+      .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }
 }
 private extension View {

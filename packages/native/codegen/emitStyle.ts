@@ -19,7 +19,7 @@ export function emitStyle(
   const generatedCalls = derived
     .map(
       (modifier) =>
-        `      case ${JSON.stringify(modifier.name)}: view = AnyView(view.oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}(value))`
+        `      case ${JSON.stringify(modifier.name)}: view = AnyView(view.oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}(value, emit: emit))`
     )
     .join('\n')
   const generatedMethods = derived
@@ -29,14 +29,26 @@ export function emitStyle(
         version > 17
           ? `if #available(iOS ${version}, *) { self.${modifier.name}(${value}) } else { self }`
           : `self.${modifier.name}(${value})`
+      if (modifier.kind === 'event' || modifier.kind.startsWith('binding')) {
+        const bridge = modifier.kind === 'event'
+          ? `{ emit(${JSON.stringify(modifier.name)}, "") }`
+          : `Binding(get: { ${modifier.kind === 'bindingBoolean' ? 'value == "true"' : 'value'} }, set: { emit(${JSON.stringify(modifier.name)}, String($0)) })`
+        const argument = `${modifier.label === '_' ? '' : `${modifier.label}: `}${bridge}`
+        const validation = modifier.kind === 'bindingBoolean'
+          ? `    let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")\n`
+          : ''
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+${validation}    ${apply(argument, modifier.ios)}
+  }`
+      }
       if (modifier.zeroArgument) {
-        return `  @ViewBuilder fileprivate func ${helper}(_ value: String) -> some View {
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")
     if value == "true" { ${apply('', modifier.ios)} } else { self }
   }`
       }
       if (modifier.cases) {
-        return `  @ViewBuilder fileprivate func ${helper}(_ value: String) -> some View {
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 ${modifier.cases
   .map(
@@ -66,7 +78,7 @@ ${modifier.cases
         )}
       } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
             : `      ${apply('value', modifier.ios)}`
-      return `  @ViewBuilder fileprivate func ${helper}(_ value: String) -> some View {
+      return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
 ${parsed}
   }`
     })
@@ -101,7 +113,12 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite')
       if (kind === 'boolean' && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
       if (kind === 'string' && typeof value !== 'string') throw new Error(name + ' must be a string')
-      sdkModifiers.push([name, String(value)])
+      if (kind === 'event' && typeof value !== 'function') throw new Error(name + ' must be a callback')
+      if ((kind === 'bindingBoolean' || kind === 'bindingString') &&
+        (typeof value !== 'object' || value === null || typeof (value as { onChange?: unknown }).onChange !== 'function' ||
+        typeof (value as { value?: unknown }).value !== (kind === 'bindingBoolean' ? 'boolean' : 'string')))
+        throw new Error(name + ' must be a binding')
+      sdkModifiers.push([name, kind === 'event' ? '' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : String(value)])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
     } else {
@@ -110,6 +127,14 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
   }
   if (sdkModifiers.length) native.sdkModifiers = JSON.stringify(sdkModifiers)
   return native as OneNativeStyleNative
+}
+
+export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string, value: string): void {
+  const modifier = (style as Record<string, unknown> | undefined)?.[name]
+  const kind = sdkKinds[name as keyof typeof sdkKinds]
+  if (kind === 'event') (modifier as (() => void) | undefined)?.()
+  else if (kind === 'bindingBoolean') (modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(value === 'true')
+  else if (kind === 'bindingString') (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
 }
 `
   )
@@ -170,7 +195,7 @@ ${dictionaryParsers}
 }
 
 extension View {
-  public func oneNativeStyle(_ style: OneNativeStyle) -> some View {
+  public func oneNativeStyle(_ style: OneNativeStyle, emit: @escaping (String, String) -> Void = { _, _ in }) -> some View {
     var view = AnyView(self
       .oneNativeFont(style)
       .oneNativeForegroundStyle(style.foregroundStyle)
