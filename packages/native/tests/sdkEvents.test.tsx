@@ -18,11 +18,15 @@ describe('SDK callback and binding transport', () => {
       offset: { x: 12, y: -4 },
       toolbarVisibility: { visibility: 'hidden', bars: 'navigationBar' },
       menuStyle: 'automatic',
+      textCase: 'uppercase',
+      truncationMode: 'tail',
     } })
     expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
       ['offset', '["12","-4"]'],
       ['toolbarVisibility', '["hidden","navigationBar"]'],
       ['menuStyle', 'automatic'],
+      ['textCase', 'uppercase'],
+      ['truncationMode', 'tail'],
     ])
     expect(() => Controls.Text({ text: 'example', swiftStyle: {
       offset: { x: Number.POSITIVE_INFINITY, y: 0 },

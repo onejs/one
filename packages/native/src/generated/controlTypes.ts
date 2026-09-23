@@ -490,6 +490,8 @@ export type SDKHoverEffectWithHoverEffect =
   (typeof sdkHoverEffectWithHoverEffectValues)[number]
 export const sdkHueRotationValues = ['zero'] as const
 export type SDKHueRotation = (typeof sdkHueRotationValues)[number]
+export const sdkImageScaleValues = ['small', 'medium', 'large'] as const
+export type SDKImageScale = (typeof sdkImageScaleValues)[number]
 export const sdkIndexViewStyleValues = ['page'] as const
 export type SDKIndexViewStyle = (typeof sdkIndexViewStyleValues)[number]
 export const sdkKeyboardShortcutWithKeyboardShortcutValues = [
@@ -611,6 +613,13 @@ export const sdkMultilineTextAlignmentWithTextAlignmentValues = [
 ] as const
 export type SDKMultilineTextAlignmentWithTextAlignment =
   (typeof sdkMultilineTextAlignmentWithTextAlignmentValues)[number]
+export const sdkNavigationBarTitleDisplayModeValues = [
+  'automatic',
+  'inline',
+  'large',
+] as const
+export type SDKNavigationBarTitleDisplayMode =
+  (typeof sdkNavigationBarTitleDisplayModeValues)[number]
 export const sdkNavigationLinkIndicatorVisibilityValues = [
   'automatic',
   'visible',
@@ -898,6 +907,8 @@ export const sdkTabViewStyleValues = [
   'automatic',
 ] as const
 export type SDKTabViewStyle = (typeof sdkTabViewStyleValues)[number]
+export const sdkTextCaseValues = ['uppercase', 'lowercase'] as const
+export type SDKTextCase = (typeof sdkTextCaseValues)[number]
 export const sdkTextFieldStyleValues = [
   'automatic',
   'roundedBorder',
@@ -947,6 +958,8 @@ export const sdkToolbarWithRemovingValues = ['sidebarToggle', 'title', 'search']
 export type SDKToolbarWithRemoving = (typeof sdkToolbarWithRemovingValues)[number]
 export const sdkTransitionValues = ['opacity', 'slide', 'identity', 'scale'] as const
 export type SDKTransition = (typeof sdkTransitionValues)[number]
+export const sdkTruncationModeValues = ['head', 'tail', 'middle'] as const
+export type SDKTruncationMode = (typeof sdkTruncationModeValues)[number]
 export const sdkVerifyIdentityWithWalletButtonStyleValues = [
   'black',
   'blackOutline',
@@ -1356,6 +1369,7 @@ export interface OneNativeStyle {
       | 'trailingLastTextBaseline'
       | null
   }>
+  imageScale?: SDKImageScale
   indexViewStyle?: SDKIndexViewStyle
   inspectorColumnWidthWithCGFloat?: number
   inspectorColumnWidthWithMinAndIdealAndMax?: Readonly<{
@@ -1532,7 +1546,12 @@ export interface OneNativeStyle {
   }>
   navigationBarBackButtonHidden?: boolean
   navigationBarHidden?: boolean
-  navigationBarTitle?: string
+  navigationBarTitleDisplayMode?: SDKNavigationBarTitleDisplayMode
+  navigationBarTitleWithText?: string
+  navigationBarTitleWithTitleAndDisplayMode?: Readonly<{
+    title: string
+    displayMode: 'automatic' | 'inline' | 'large'
+  }>
   navigationLinkIndicatorVisibility?: SDKNavigationLinkIndicatorVisibility
   navigationSplitViewColumnWidthWithCGFloat?: number
   navigationSplitViewColumnWidthWithMinAndIdealAndMax?: Readonly<{
@@ -1777,6 +1796,7 @@ export interface OneNativeStyle {
   tableStyle?: SDKTableStyle
   tabViewSearchActivation?: SDKTabViewSearchActivation
   tabViewStyle?: SDKTabViewStyle
+  textCase?: SDKTextCase | null
   textFieldStyle?: SDKTextFieldStyle
   textInputAutocapitalization?: SDKTextInputAutocapitalization | null
   textInputBorderShape?: SDKTextInputBorderShape
@@ -1825,6 +1845,7 @@ export interface OneNativeStyle {
   }>
   tracking?: number
   transition?: SDKTransition
+  truncationMode?: SDKTruncationMode
   typeSelectEquivalent?: string | null
   typesettingLanguage?: Readonly<{ language: 'automatic'; isEnabled: boolean }>
   underline?: Readonly<{
