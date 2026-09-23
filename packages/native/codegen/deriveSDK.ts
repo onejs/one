@@ -18,7 +18,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'bindingBoolean' | 'bindingString'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'bindingBoolean' | 'bindingString'
   ios: number
   type: string
   cases?: readonly { name: string; ios: number }[]
@@ -78,6 +78,14 @@ export function deriveModifiers(
     if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length) return
     return { kind: 'enum', type, optional, cases }
   }
+  const enumCallbackOf = (type: string) => {
+    const single = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> Swift\.Void$/.exec(type)
+    const pair = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+), (?:_ [A-Za-z]\w*: )?\1\) -> Swift\.Void$/.exec(type)
+    const value = valueOf((single ?? pair)?.[1] ?? '')
+    return value?.kind === 'enum' && (value.cases?.length ?? 0) >= 2
+      ? { pair: Boolean(pair), cases: value.cases! }
+      : undefined
+  }
   const methods = inventory.filter(
     (d) =>
       d.kind === 'func' &&
@@ -131,11 +139,14 @@ export function deriveModifiers(
             ...framework,
           },
         ]
-      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type))
+      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type) || enumCallbackOf(p.type))
       if (bridged.length === 1 && method.parameters.every((p) => p === bridged[0] || p.defaultValue !== undefined)) {
         const parameter = bridged[0]
         const callbackValue = scalarCallbackType.exec(parameter.type)?.[1]
-        const kind = parameter.type.includes('Binding<Swift.Bool>')
+        const enumCallback = enumCallbackOf(parameter.type)
+        const kind = enumCallback
+          ? enumCallback.pair ? 'eventEnumPair' : 'eventEnum'
+          : parameter.type.includes('Binding<Swift.Bool>')
           ? 'bindingBoolean'
           : parameter.type.includes('Binding<Swift.String>')
             ? 'bindingString'
@@ -148,6 +159,7 @@ export function deriveModifiers(
                   : 'event'
         return [{
           name, module: method.module, kind, type: parameter.type, label: parameter.label, ios: ios(method), ...framework,
+          ...(enumCallback ? { cases: enumCallback.cases } : {}),
           ...(method.parameters.length > 1 ? {
             callArguments: method.parameters.map((p) =>
               p === parameter ? { label: p.label, bridge: true as const } : { label: p.label, defaultValue: p.defaultValue }

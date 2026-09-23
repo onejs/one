@@ -13,6 +13,20 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('dispatches SDK enum callbacks with their typed case values', () => {
+    const adjust = vi.fn()
+    const scroll = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      accessibilityAdjustableAction: adjust,
+      onScrollPhaseChange: scroll,
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'accessibilityAdjustableAction', value: 'increment' } })
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'onScrollPhaseChange', value: '["tracking","idle"]' } })
+    expect(adjust).toHaveBeenCalledWith('increment')
+    expect(scroll).toHaveBeenCalledWith('tracking', 'idle')
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: { name: 'accessibilityAdjustableAction', value: 'unknown' } })).toThrow('invalid enum value')
+  })
+
   it('encodes URL values and dispatches optional StoreKit actions', () => {
     const onSignIn = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {
