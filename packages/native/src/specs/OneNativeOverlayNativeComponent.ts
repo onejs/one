@@ -8,5 +8,6 @@ interface NativeProps extends ViewProps {
   alignment: string
   slotName: string
   slotValues: string
+  onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
 }
 export default codegenNativeComponent<NativeProps>('OneNativeOverlay')
