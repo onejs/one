@@ -267,6 +267,15 @@ ${modifier.gestureOptions!.map((option) => {
     } else { self }` : `self.modifier(${holder}(value: value == "true", emit: emit))`}
   }`
       }
+      if (modifier.kind === 'defaultFocusBoolean') {
+        const holder = `OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}FocusBinding`
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")
+    if value == "true" {
+      ${modifier.ios > 17 ? `if #available(iOS ${modifier.ios}, *) { self.modifier(${holder}()) } else { self }` : `self.modifier(${holder}())`}
+    } else { self }
+  }`
+      }
       if (modifier.kind === 'bindingPoint') {
         const type = modifier.bindingType!
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -498,9 +507,18 @@ ${parsed}
   }`
     })
     .join('\n\n')
-  const focusBindings = derived.filter((modifier) => modifier.kind === 'bindingFocusBoolean').map((modifier) => {
+  const focusBindings = derived.filter((modifier) => modifier.kind === 'bindingFocusBoolean' || modifier.kind === 'defaultFocusBoolean').map((modifier) => {
     const holder = `OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}FocusBinding`
     const accessibility = modifier.type.includes('AccessibilityFocusState')
+    if (modifier.kind === 'defaultFocusBoolean')
+      return `${modifier.ios > 17 ? `@available(iOS ${modifier.ios}, *)\n` : ''}private struct ${holder}: ViewModifier {
+  @${accessibility ? 'AccessibilityFocusState' : 'FocusState'} private var focused: Bool
+
+  func body(content: Content) -> some View {
+    content.${accessibility ? 'accessibilityFocused' : 'focused'}($focused)
+      .${modifier.sdkName ?? modifier.name}($focused, true)
+  }
+}`
     return `${modifier.ios > 17 ? `@available(iOS ${modifier.ios}, *)\n` : ''}private struct ${holder}: ViewModifier {
   @${accessibility ? 'AccessibilityFocusState' : 'FocusState'} private var focused: Bool
   let value: Bool
@@ -639,7 +657,7 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
       }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite')
       if (kind === 'optionalNumber' && value !== null && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite or null')
-      if (kind === 'boolean' && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
+      if ((kind === 'boolean' || kind === 'defaultFocusBoolean') && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
       if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean') throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string') throw new Error(name + ' must be a string')
       if (kind === 'url' && typeof value !== 'string') throw new Error(name + ' must be a URL string')

@@ -952,6 +952,12 @@
       ]
     },
     {
+      "name": "accessibilityDefaultFocus",
+      "kind": "defaultFocusBoolean",
+      "type": "SwiftUI.AccessibilityFocusState<Value>.Binding",
+      "ios": 26
+    },
+    {
       "name": "accessibilityDirectTouch",
       "kind": "record",
       "type": "",
@@ -3559,6 +3565,12 @@
           "ios": 0
         }
       ]
+    },
+    {
+      "name": "defaultFocus",
+      "kind": "defaultFocusBoolean",
+      "type": "SwiftUI.FocusState<V>.Binding",
+      "ios": 17
     },
     {
       "name": "defaultHoverEffect",
@@ -13824,6 +13836,7 @@
         "accessibilityAdjustableAction",
         "accessibilityChildren",
         "accessibilityCustomContent",
+        "accessibilityDefaultFocus",
         "accessibilityDirectTouch",
         "accessibilityDragPoint",
         "accessibilityDropPoint",
@@ -13867,6 +13880,7 @@
         "datePickerStyle",
         "defaultAdaptableTabBarPlacement",
         "defaultAppStorage",
+        "defaultFocus",
         "defaultScrollAnchor",
         "defaultTabBarPlacement",
         "defersSystemGestures",

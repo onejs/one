@@ -33,7 +33,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'gesture' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -439,6 +439,13 @@ export function deriveModifiers(
       }
       if (method.requirements?.length) {
         if (method.requirements.length !== 1) return []
+        const focusValue = /^([A-Za-z_]\w*) : Swift\.Hashable$/.exec(method.requirements[0])?.[1]
+        if (focusValue && method.parameters.length >= 2 &&
+          new RegExp(`^SwiftUI\\.(?:Accessibility)?FocusState<${focusValue}>\\.Binding$`).test(method.parameters[0].type) &&
+          method.parameters[1].type === focusValue && method.parameters[1].label === '_' &&
+          method.parameters.slice(2).every((parameter) => parameter.defaultValue !== undefined))
+          return [{ name, module: method.module, kind: 'defaultFocusBoolean',
+            type: method.parameters[0].type, ios: ios(method), ...framework }]
         const gestureType = /^([A-Za-z_]\w*) : SwiftUICore\.Gesture$/.exec(method.requirements[0])?.[1]
         if (gestureType && gestureOptions.length && method.parameters[0]?.type === gestureType &&
           method.parameters.slice(1).every((parameter) => parameter.defaultValue !== undefined) &&

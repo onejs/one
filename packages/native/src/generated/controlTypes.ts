@@ -1345,6 +1345,7 @@ export interface OneNativeStyle {
   accessibilityAddTraits?: SDKAccessibilityAddTraits
   accessibilityAdjustableAction?: (value: 'increment' | 'decrement') => void
   accessibilityCustomContent?: Readonly<{ label: string; value: string }>
+  accessibilityDefaultFocus?: boolean
   accessibilityDirectTouch?: Readonly<{
     isDirectTouchArea: boolean
     options: 'silentOnTouch' | 'requiresActivation'
@@ -1576,6 +1577,7 @@ export interface OneNativeStyle {
   datePickerStyle?: SDKDatePickerStyle
   defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement
   defaultAppStorage?: SDKDefaultAppStorage
+  defaultFocus?: boolean
   defaultHoverEffect?: SDKDefaultHoverEffect | null
   defaultScrollAnchorWithAnchorAndRole?: Readonly<{
     anchor:

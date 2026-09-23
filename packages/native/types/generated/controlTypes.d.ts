@@ -386,6 +386,7 @@ export interface OneNativeStyle {
         label: string;
         value: string;
     }>;
+    accessibilityDefaultFocus?: boolean;
     accessibilityDirectTouch?: Readonly<{
         isDirectTouchArea: boolean;
         options: 'silentOnTouch' | 'requiresActivation';
@@ -571,6 +572,7 @@ export interface OneNativeStyle {
     datePickerStyle?: SDKDatePickerStyle;
     defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement;
     defaultAppStorage?: SDKDefaultAppStorage;
+    defaultFocus?: boolean;
     defaultHoverEffect?: SDKDefaultHoverEffect | null;
     defaultScrollAnchorWithAnchorAndRole?: Readonly<{
         anchor: 'zero' | 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing' | null;
