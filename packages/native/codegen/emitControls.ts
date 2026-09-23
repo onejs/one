@@ -150,6 +150,7 @@ ${styleFields
                     ? `SDK${upper(modifier.name)} | null`
                     : modifier.kind === 'record'
                       ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ') : argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
+                      : modifier.kind === 'style' ? undefined
               : modifier.kind === 'string' ? undefined : modifier.kind,
       values: modifier.cases?.map((item) => item.name),
     })),

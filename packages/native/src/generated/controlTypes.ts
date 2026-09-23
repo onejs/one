@@ -199,6 +199,45 @@ export const sdkAnimationValues = [
   'linear',
 ] as const
 export type SDKAnimation = (typeof sdkAnimationValues)[number]
+export const sdkBackgroundStyleValues = [
+  'placeholder',
+  'link',
+  'selection',
+  'windowBackground',
+  'fill',
+  'regularMaterial',
+  'thickMaterial',
+  'thinMaterial',
+  'ultraThinMaterial',
+  'ultraThickMaterial',
+  'bar',
+  'primary',
+  'secondary',
+  'tertiary',
+  'quaternary',
+  'quinary',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'mint',
+  'teal',
+  'cyan',
+  'blue',
+  'indigo',
+  'purple',
+  'pink',
+  'brown',
+  'white',
+  'gray',
+  'black',
+  'clear',
+  'separator',
+  'background',
+  'foreground',
+  'tint',
+] as const
+export type SDKBackgroundStyle = (typeof sdkBackgroundStyleValues)[number]
 export const sdkBadgeProminenceValues = ['decreased', 'standard', 'increased'] as const
 export type SDKBadgeProminence = (typeof sdkBadgeProminenceValues)[number]
 export const sdkBlendModeValues = [
@@ -236,6 +275,16 @@ export const sdkButtonRepeatBehaviorValues = ['automatic', 'enabled', 'disabled'
 export type SDKButtonRepeatBehavior = (typeof sdkButtonRepeatBehaviorValues)[number]
 export const sdkButtonSizingValues = ['automatic', 'flexible', 'fitted'] as const
 export type SDKButtonSizing = (typeof sdkButtonSizingValues)[number]
+export const sdkButtonStyleValues = [
+  'automatic',
+  'glass',
+  'borderless',
+  'glassProminent',
+  'plain',
+  'bordered',
+  'borderedProminent',
+] as const
+export type SDKButtonStyle = (typeof sdkButtonStyleValues)[number]
 export const sdkColorMultiplyValues = [
   'accentColor',
   'red',
@@ -267,6 +316,14 @@ export const sdkContentTransitionValues = [
   'interpolate',
 ] as const
 export type SDKContentTransition = (typeof sdkContentTransitionValues)[number]
+export const sdkControlGroupStyleValues = [
+  'palette',
+  'automatic',
+  'navigation',
+  'menu',
+  'compactMenu',
+] as const
+export type SDKControlGroupStyle = (typeof sdkControlGroupStyleValues)[number]
 export const sdkControlSizeValues = [
   'mini',
   'small',
@@ -275,6 +332,13 @@ export const sdkControlSizeValues = [
   'extraLarge',
 ] as const
 export type SDKControlSize = (typeof sdkControlSizeValues)[number]
+export const sdkDatePickerStyleValues = [
+  'wheel',
+  'automatic',
+  'graphical',
+  'compact',
+] as const
+export type SDKDatePickerStyle = (typeof sdkDatePickerStyleValues)[number]
 export const sdkDefaultAdaptableTabBarPlacementValues = [
   'automatic',
   'tabBar',
@@ -310,6 +374,8 @@ export const sdkDefersSystemGesturesValues = [
   'vertical',
 ] as const
 export type SDKDefersSystemGestures = (typeof sdkDefersSystemGesturesValues)[number]
+export const sdkDisclosureGroupStyleValues = ['automatic'] as const
+export type SDKDisclosureGroupStyle = (typeof sdkDisclosureGroupStyleValues)[number]
 export const sdkDynamicTypeSizeValues = [
   'xSmall',
   'small',
@@ -371,6 +437,17 @@ export const sdkForegroundColorValues = [
   'secondary',
 ] as const
 export type SDKForegroundColor = (typeof sdkForegroundColorValues)[number]
+export const sdkFormStyleValues = ['columns', 'grouped', 'automatic'] as const
+export type SDKFormStyle = (typeof sdkFormStyleValues)[number]
+export const sdkGaugeStyleValues = [
+  'accessoryCircularCapacity',
+  'linearCapacity',
+  'accessoryLinear',
+  'accessoryLinearCapacity',
+  'automatic',
+  'accessoryCircular',
+] as const
+export type SDKGaugeStyle = (typeof sdkGaugeStyleValues)[number]
 export const sdkGlassEffectTransitionValues = [
   'matchedGeometry',
   'materialize',
@@ -400,6 +477,8 @@ export const sdkGridColumnAlignmentValues = [
   'listRowSeparatorTrailing',
 ] as const
 export type SDKGridColumnAlignment = (typeof sdkGridColumnAlignmentValues)[number]
+export const sdkGroupBoxStyleValues = ['automatic'] as const
+export type SDKGroupBoxStyle = (typeof sdkGroupBoxStyleValues)[number]
 export const sdkHeaderProminenceValues = ['standard', 'increased'] as const
 export type SDKHeaderProminence = (typeof sdkHeaderProminenceValues)[number]
 export const sdkHoverEffectWithHoverEffectValues = [
@@ -411,6 +490,8 @@ export type SDKHoverEffectWithHoverEffect =
   (typeof sdkHoverEffectWithHoverEffectValues)[number]
 export const sdkHueRotationValues = ['zero'] as const
 export type SDKHueRotation = (typeof sdkHueRotationValues)[number]
+export const sdkIndexViewStyleValues = ['page'] as const
+export type SDKIndexViewStyle = (typeof sdkIndexViewStyleValues)[number]
 export const sdkKeyboardShortcutWithKeyboardShortcutValues = [
   'defaultAction',
   'cancelAction',
@@ -423,6 +504,15 @@ export const sdkKeyboardShortcutWithOptionalKeyboardShortcutValues = [
 ] as const
 export type SDKKeyboardShortcutWithOptionalKeyboardShortcut =
   (typeof sdkKeyboardShortcutWithOptionalKeyboardShortcutValues)[number]
+export const sdkLabeledContentStyleValues = ['automatic'] as const
+export type SDKLabeledContentStyle = (typeof sdkLabeledContentStyleValues)[number]
+export const sdkLabelStyleValues = [
+  'automatic',
+  'iconOnly',
+  'titleAndIcon',
+  'titleOnly',
+] as const
+export type SDKLabelStyle = (typeof sdkLabelStyleValues)[number]
 export const sdkLabelsVisibilityValues = ['automatic', 'visible', 'hidden'] as const
 export type SDKLabelsVisibility = (typeof sdkLabelsVisibilityValues)[number]
 export const sdkLayoutDirectionBehaviorValues = ['fixed', 'mirrors'] as const
@@ -466,6 +556,15 @@ export const sdkListSectionSpacingWithListSectionSpacingValues = [
 ] as const
 export type SDKListSectionSpacingWithListSectionSpacing =
   (typeof sdkListSectionSpacingWithListSectionSpacingValues)[number]
+export const sdkListStyleValues = [
+  'automatic',
+  'sidebar',
+  'inset',
+  'grouped',
+  'insetGrouped',
+  'plain',
+] as const
+export type SDKListStyle = (typeof sdkListStyleValues)[number]
 export const sdkMapControlVisibilityValues = ['automatic', 'visible', 'hidden'] as const
 export type SDKMapControlVisibility = (typeof sdkMapControlVisibilityValues)[number]
 export const sdkMapFeatureSelectionAccessoryValues = [
@@ -496,6 +595,8 @@ export const sdkMenuIndicatorValues = ['automatic', 'visible', 'hidden'] as cons
 export type SDKMenuIndicator = (typeof sdkMenuIndicatorValues)[number]
 export const sdkMenuOrderValues = ['automatic', 'priority', 'fixed'] as const
 export type SDKMenuOrder = (typeof sdkMenuOrderValues)[number]
+export const sdkMenuStyleValues = ['button', 'automatic', 'borderlessButton'] as const
+export type SDKMenuStyle = (typeof sdkMenuStyleValues)[number]
 export const sdkMultilineTextAlignmentWithStrategyValues = [
   'layoutBased',
   'writingDirectionBased',
@@ -517,6 +618,15 @@ export const sdkNavigationLinkIndicatorVisibilityValues = [
 ] as const
 export type SDKNavigationLinkIndicatorVisibility =
   (typeof sdkNavigationLinkIndicatorVisibilityValues)[number]
+export const sdkNavigationSplitViewStyleValues = [
+  'balanced',
+  'prominentDetail',
+  'automatic',
+] as const
+export type SDKNavigationSplitViewStyle =
+  (typeof sdkNavigationSplitViewStyleValues)[number]
+export const sdkNavigationViewStyleValues = ['columns', 'automatic', 'stack'] as const
+export type SDKNavigationViewStyle = (typeof sdkNavigationViewStyleValues)[number]
 export const sdkPaletteSelectionEffectValues = ['automatic', 'custom'] as const
 export type SDKPaletteSelectionEffect = (typeof sdkPaletteSelectionEffectValues)[number]
 export const sdkPayLaterViewActionValues = ['learnMore', 'calculator'] as const
@@ -546,8 +656,58 @@ export type SDKPersistentSystemOverlays =
   (typeof sdkPersistentSystemOverlaysValues)[number]
 export const sdkPhotosPickerStyleValues = ['presentation', 'inline', 'compact'] as const
 export type SDKPhotosPickerStyle = (typeof sdkPhotosPickerStyleValues)[number]
+export const sdkPickerStyleValues = [
+  'wheel',
+  'inline',
+  'automatic',
+  'segmented',
+  'tabs',
+  'palette',
+  'navigationLink',
+  'menu',
+] as const
+export type SDKPickerStyle = (typeof sdkPickerStyleValues)[number]
 export const sdkPreferredColorSchemeValues = ['light', 'dark'] as const
 export type SDKPreferredColorScheme = (typeof sdkPreferredColorSchemeValues)[number]
+export const sdkPresentationBackgroundValues = [
+  'placeholder',
+  'link',
+  'selection',
+  'windowBackground',
+  'fill',
+  'regularMaterial',
+  'thickMaterial',
+  'thinMaterial',
+  'ultraThinMaterial',
+  'ultraThickMaterial',
+  'bar',
+  'primary',
+  'secondary',
+  'tertiary',
+  'quaternary',
+  'quinary',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'mint',
+  'teal',
+  'cyan',
+  'blue',
+  'indigo',
+  'purple',
+  'pink',
+  'brown',
+  'white',
+  'gray',
+  'black',
+  'clear',
+  'separator',
+  'background',
+  'foreground',
+  'tint',
+] as const
+export type SDKPresentationBackground = (typeof sdkPresentationBackgroundValues)[number]
 export const sdkPresentationBackgroundInteractionValues = [
   'automatic',
   'enabled',
@@ -595,6 +755,8 @@ export type SDKPreviewInterfaceOrientation =
   (typeof sdkPreviewInterfaceOrientationValues)[number]
 export const sdkProductDescriptionValues = ['automatic', 'visible', 'hidden'] as const
 export type SDKProductDescription = (typeof sdkProductDescriptionValues)[number]
+export const sdkProgressViewStyleValues = ['linear', 'circular', 'automatic'] as const
+export type SDKProgressViewStyle = (typeof sdkProgressViewStyleValues)[number]
 export const sdkRealityViewLayoutBehaviorValues = [
   'flexible',
   'centered',
@@ -722,11 +884,27 @@ export const sdkTabBarMinimizeBehaviorValues = [
 export type SDKTabBarMinimizeBehavior = (typeof sdkTabBarMinimizeBehaviorValues)[number]
 export const sdkTableColumnHeadersValues = ['automatic', 'visible', 'hidden'] as const
 export type SDKTableColumnHeaders = (typeof sdkTableColumnHeadersValues)[number]
+export const sdkTableStyleValues = ['inset', 'automatic'] as const
+export type SDKTableStyle = (typeof sdkTableStyleValues)[number]
 export const sdkTabViewSearchActivationValues = [
   'automatic',
   'searchTabSelection',
 ] as const
 export type SDKTabViewSearchActivation = (typeof sdkTabViewSearchActivationValues)[number]
+export const sdkTabViewStyleValues = [
+  'sidebarAdaptable',
+  'page',
+  'tabBarOnly',
+  'automatic',
+] as const
+export type SDKTabViewStyle = (typeof sdkTabViewStyleValues)[number]
+export const sdkTextFieldStyleValues = [
+  'automatic',
+  'roundedBorder',
+  'bordered',
+  'plain',
+] as const
+export type SDKTextFieldStyle = (typeof sdkTextFieldStyleValues)[number]
 export const sdkTextInputAutocapitalizationValues = [
   'never',
   'words',
@@ -741,12 +919,16 @@ export const sdkTextInputBorderShapeValues = [
   'roundedRectangle',
 ] as const
 export type SDKTextInputBorderShape = (typeof sdkTextInputBorderShapeValues)[number]
+export const sdkTextSelectionValues = ['enabled', 'disabled'] as const
+export type SDKTextSelection = (typeof sdkTextSelectionValues)[number]
 export const sdkTextSelectionAffinityValues = [
   'automatic',
   'upstream',
   'downstream',
 ] as const
 export type SDKTextSelectionAffinity = (typeof sdkTextSelectionAffinityValues)[number]
+export const sdkToggleStyleValues = ['button', 'automatic', 'switch'] as const
+export type SDKToggleStyle = (typeof sdkToggleStyleValues)[number]
 export const sdkToolbarRoleValues = [
   'automatic',
   'navigationStack',
@@ -801,6 +983,8 @@ export const sdkWebViewMagnificationGesturesValues = [
 ] as const
 export type SDKWebViewMagnificationGestures =
   (typeof sdkWebViewMagnificationGesturesValues)[number]
+export const sdkWebViewTextSelectionValues = ['enabled', 'disabled'] as const
+export type SDKWebViewTextSelection = (typeof sdkWebViewTextSelectionValues)[number]
 export const sdkWindowToolbarFullScreenVisibilityValues = ['automatic'] as const
 export type SDKWindowToolbarFullScreenVisibility =
   (typeof sdkWindowToolbarFullScreenVisibilityValues)[number]
@@ -991,6 +1175,7 @@ export interface OneNativeStyle {
   autocorrectionDisabled?: boolean
   backgroundExtensionEffectWithIsEnabled?: boolean
   backgroundExtensionEffectWithNoArguments?: boolean
+  backgroundStyle?: SDKBackgroundStyle
   badgeProminence?: SDKBadgeProminence
   badgeWithInt?: number
   badgeWithOptionalText?: string | null
@@ -1002,6 +1187,7 @@ export interface OneNativeStyle {
   buttonBorderShape?: SDKButtonBorderShape
   buttonRepeatBehavior?: SDKButtonRepeatBehavior
   buttonSizing?: SDKButtonSizing
+  buttonStyle?: SDKButtonStyle
   clipped?: boolean
   colorInvert?: boolean
   colorMultiply?: SDKColorMultiply
@@ -1063,7 +1249,9 @@ export interface OneNativeStyle {
   }>
   contentTransition?: SDKContentTransition
   contrast?: number
+  controlGroupStyle?: SDKControlGroupStyle
   controlSize?: SDKControlSize
+  datePickerStyle?: SDKDatePickerStyle
   defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement
   defaultHoverEffect?: SDKDefaultHoverEffect | null
   defaultScrollAnchorWithAnchorAndRole?: Readonly<{
@@ -1091,6 +1279,7 @@ export interface OneNativeStyle {
   }>
   disableAutocorrection?: boolean | null
   disabled?: boolean
+  disclosureGroupStyle?: SDKDisclosureGroupStyle
   documentLaunchSubtitle?: string
   documentLaunchTitle?: string
   drawingGroup?: Readonly<{
@@ -1121,6 +1310,8 @@ export interface OneNativeStyle {
   focusEffectDisabled?: boolean
   fontWidth?: SDKFontWidth | null
   foregroundColor?: SDKForegroundColor | null
+  formStyle?: SDKFormStyle
+  gaugeStyle?: SDKGaugeStyle
   geometryGroup?: boolean
   glassEffectTransition?: SDKGlassEffectTransition
   grayscale?: number
@@ -1128,6 +1319,7 @@ export interface OneNativeStyle {
   gridCellColumns?: number
   gridCellUnsizedAxes?: SDKGridCellUnsizedAxes
   gridColumnAlignment?: SDKGridColumnAlignment
+  groupBoxStyle?: SDKGroupBoxStyle
   handGestureShortcut?: Readonly<{ shortcut: 'primaryAction'; isEnabled: boolean }>
   headerProminence?: SDKHeaderProminence
   help?: string
@@ -1164,6 +1356,7 @@ export interface OneNativeStyle {
       | 'trailingLastTextBaseline'
       | null
   }>
+  indexViewStyle?: SDKIndexViewStyle
   inspectorColumnWidthWithCGFloat?: number
   inspectorColumnWidthWithMinAndIdealAndMax?: Readonly<{
     min: number | null
@@ -1232,9 +1425,11 @@ export interface OneNativeStyle {
   }>
   keyboardShortcutWithKeyboardShortcut?: SDKKeyboardShortcutWithKeyboardShortcut
   keyboardShortcutWithOptionalKeyboardShortcut?: SDKKeyboardShortcutWithOptionalKeyboardShortcut | null
+  labeledContentStyle?: SDKLabeledContentStyle
   labelIconToTitleSpacing?: number
   labelReservedIconWidth?: number
   labelsHidden?: boolean
+  labelStyle?: SDKLabelStyle
   labelsVisibility?: SDKLabelsVisibility
   layoutDirectionBehavior?: SDKLayoutDirectionBehavior
   layoutPriority?: number
@@ -1311,6 +1506,7 @@ export interface OneNativeStyle {
   }>
   listSectionSpacingWithCGFloat?: number
   listSectionSpacingWithListSectionSpacing?: SDKListSectionSpacingWithListSectionSpacing
+  listStyle?: SDKListStyle
   luminanceToAlpha?: boolean
   manageSubscriptionsSheet?: Readonly<{
     value: boolean
@@ -1323,6 +1519,7 @@ export interface OneNativeStyle {
   menuActionDismissBehavior?: SDKMenuActionDismissBehavior
   menuIndicator?: SDKMenuIndicator
   menuOrder?: SDKMenuOrder
+  menuStyle?: SDKMenuStyle
   minimumScaleFactor?: number
   monospaced?: boolean
   monospacedDigit?: boolean
@@ -1343,12 +1540,14 @@ export interface OneNativeStyle {
     ideal: number
     max: number | null
   }>
+  navigationSplitViewStyle?: SDKNavigationSplitViewStyle
   navigationSubtitle?: string
   navigationTitleWithBindingString?: Readonly<{
     value: string
     onChange: (value: string) => void
   }>
   navigationTitleWithText?: string
+  navigationViewStyle?: SDKNavigationViewStyle
   offerCodeRedemption?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   offset?: Readonly<{ x: number; y: number }>
   onAppear?: () => void
@@ -1376,8 +1575,10 @@ export interface OneNativeStyle {
   }>
   photosPickerSearchText?: string | null
   photosPickerStyle?: SDKPhotosPickerStyle
+  pickerStyle?: SDKPickerStyle
   position?: Readonly<{ x: number; y: number }>
   preferredColorScheme?: SDKPreferredColorScheme | null
+  presentationBackground?: SDKPresentationBackground
   presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction
   presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation?: Readonly<{
     horizontalAdaptation: 'automatic' | 'none' | 'popover' | 'sheet' | 'fullScreenCover'
@@ -1393,6 +1594,7 @@ export interface OneNativeStyle {
   privacySensitive?: boolean
   productDescription?: SDKProductDescription
   productIconBorder?: boolean
+  progressViewStyle?: SDKProgressViewStyle
   realityViewLayoutBehavior?: SDKRealityViewLayoutBehavior
   redacted?: SDKRedacted
   renameAction?: () => void
@@ -1572,7 +1774,10 @@ export interface OneNativeStyle {
   symbolVariant?: SDKSymbolVariant
   tabBarMinimizeBehavior?: SDKTabBarMinimizeBehavior
   tableColumnHeaders?: SDKTableColumnHeaders
+  tableStyle?: SDKTableStyle
   tabViewSearchActivation?: SDKTabViewSearchActivation
+  tabViewStyle?: SDKTabViewStyle
+  textFieldStyle?: SDKTextFieldStyle
   textInputAutocapitalization?: SDKTextInputAutocapitalization | null
   textInputBorderShape?: SDKTextInputBorderShape
   textInputFormattingControlVisibility?: Readonly<{
@@ -1580,7 +1785,9 @@ export interface OneNativeStyle {
     placement: 'contextMenu' | 'inputAssistant' | 'all' | 'default'
   }>
   textScale?: Readonly<{ scale: 'default' | 'secondary'; isEnabled: boolean }>
+  textSelection?: SDKTextSelection
   textSelectionAffinity?: SDKTextSelectionAffinity
+  toggleStyle?: SDKToggleStyle
   toolbarBackground?: Readonly<{
     visibility: 'automatic' | 'visible' | 'hidden'
     bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar'
@@ -1652,6 +1859,7 @@ export interface OneNativeStyle {
   webViewElementFullscreenBehavior?: SDKWebViewElementFullscreenBehavior
   webViewLinkPreviews?: SDKWebViewLinkPreviews
   webViewMagnificationGestures?: SDKWebViewMagnificationGestures
+  webViewTextSelection?: SDKWebViewTextSelection
   windowToolbarFullScreenVisibility?: SDKWindowToolbarFullScreenVisibility
   writingDirection?: SDKWritingDirection
   writingToolsAffordanceVisibility?: SDKWritingToolsAffordanceVisibility
