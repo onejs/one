@@ -31,7 +31,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable'
   ios: number
   type: string
   rawString?: true
@@ -48,6 +48,7 @@ export type DerivedModifier = {
   callbackLabel?: string
   bindingType?: string
   bindingDefault?: true
+  predicateInput?: string
   callArguments?: readonly { label: string; defaultValue?: string; bridge?: true }[]
   arguments?: readonly DerivedArgument[]
 }
@@ -398,6 +399,15 @@ export function deriveModifiers(
                 sdkType: first.type, kind: first.type === arrayType ? 'stringArray' : 'string', optional: false }],
               ...framework }]
           if (first?.type === `${transferable}.Type` && first.defaultValue !== undefined &&
+            action?.type === `@escaping () -> [${transferable}]` &&
+            defaults.every((parameter) => parameter.defaultValue !== undefined))
+            return [{ name, module: method.module, kind: 'eventReturnArray', type: action.type,
+              callArguments: method.parameters.map((parameter) =>
+                parameter === first ? { label: parameter.label, defaultValue: 'String.self' } :
+                  parameter === action ? { label: parameter.label, bridge: true as const } :
+                    { label: parameter.label, defaultValue: parameter.defaultValue }),
+              ios: ios(method), ...framework }]
+          if (first?.type === `${transferable}.Type` && first.defaultValue !== undefined &&
             new RegExp(`^@escaping \\((?:_ [A-Za-z]\\w*: )?\\[${transferable}\\]\\) -> Swift\\.Void$`).test(action?.type ?? '') &&
             defaults.every((parameter) => parameter.defaultValue !== undefined))
             return [{ name, module: method.module, kind: 'eventStruct', type: action.type,
@@ -466,6 +476,12 @@ export function deriveModifiers(
             ...framework,
           },
         ]
+      const predicateInput = method.parameters.length === 1 &&
+        /^@escaping \(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> Swift\.Bool$/.exec(method.parameters[0].type)?.[1]
+      if (predicateInput)
+        return [{ name, module: method.module, kind: 'boolean', type: method.parameters[0].type,
+          predicateInput, ios: ios(method), ...framework,
+          ...(method.parameters[0].label === '_' ? {} : { label: method.parameters[0].label }) }]
       const codableBinding = (type: string) => {
         const valueType = /^SwiftUICore\.Binding<([A-Za-z_]\w*\.[A-Za-z][\w.]*)>\??$/.exec(type)?.[1]
         if (!valueType) return

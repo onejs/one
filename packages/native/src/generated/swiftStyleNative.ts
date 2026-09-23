@@ -137,6 +137,7 @@ const sdkKinds = {
   controlSize: 'string',
   coordinateSpace: 'string',
   copyable: 'record',
+  cuttable: 'eventReturnArray',
   dataDetection: 'boolean',
   datePickerStyle: 'style',
   defaultAdaptableTabBarPlacement: 'string',
@@ -245,6 +246,7 @@ const sdkKinds = {
   manageSubscriptionsSheet: 'bindingBoolean',
   mapControlVisibility: 'string',
   mapFeatureSelectionAccessory: 'optionalEnum',
+  mapFeatureSelectionDisabled: 'boolean',
   mapStyle: 'string',
   materialActiveAppearance: 'string',
   menuActionDismissBehavior: 'string',
@@ -1233,6 +1235,7 @@ export function swiftStyleNative(
       if (
         kind.startsWith('event') &&
         kind !== 'eventValueString' &&
+        kind !== 'eventReturnArray' &&
         typeof value !== 'function'
       )
         throw new Error(name + ' must be a callback')
@@ -1244,6 +1247,17 @@ export function swiftStyleNative(
           typeof (value as { onChange?: unknown }).onChange !== 'function')
       )
         throw new Error(name + ' must be a string value and callback')
+      if (
+        kind === 'eventReturnArray' &&
+        (typeof value !== 'object' ||
+          value === null ||
+          !Array.isArray((value as { items?: unknown }).items) ||
+          !(value as { items: unknown[] }).items.every(
+            (item) => typeof item === 'string'
+          ) ||
+          typeof (value as { onAction?: unknown }).onAction !== 'function')
+      )
+        throw new Error(name + ' must be a string array and callback')
       if (
         (kind === 'bindingBoolean' ||
           kind === 'bindingFocusBoolean' ||
@@ -1269,18 +1283,20 @@ export function swiftStyleNative(
         name,
         kind === 'eventValueString'
           ? (value as { value: string }).value
-          : kind.startsWith('event')
-            ? ''
-            : kind === 'bindingOptionalString'
-              ? JSON.stringify((value as { value: string | null }).value)
-              : kind === 'bindingCodable' &&
-                  (value as { value: string | null }).value === null
-                ? 'null'
-                : kind.startsWith('binding')
-                  ? String((value as { value: unknown }).value)
-                  : kind === 'optionalString' || kind === 'optionalURL'
-                    ? (JSON.stringify(value) as string)
-                    : String(value),
+          : kind === 'eventReturnArray'
+            ? JSON.stringify((value as { items: string[] }).items)
+            : kind.startsWith('event')
+              ? ''
+              : kind === 'bindingOptionalString'
+                ? JSON.stringify((value as { value: string | null }).value)
+                : kind === 'bindingCodable' &&
+                    (value as { value: string | null }).value === null
+                  ? 'null'
+                  : kind.startsWith('binding')
+                    ? String((value as { value: unknown }).value)
+                    : kind === 'optionalString' || kind === 'optionalURL'
+                      ? (JSON.stringify(value) as string)
+                      : String(value),
       ])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
@@ -1300,6 +1316,8 @@ export function dispatchSDKEvent(
   const modifier = (style as Record<string, unknown> | undefined)?.[name]
   const kind = sdkKinds[name as keyof typeof sdkKinds] as string | undefined
   if (kind === 'event') (modifier as (() => void) | undefined)?.()
+  else if (kind === 'eventReturnArray')
+    (modifier as { onAction: () => void } | undefined)?.onAction()
   else if (kind === 'eventBoolean') {
     if (value !== 'true' && value !== 'false')
       throw new Error(name + ' emitted an invalid boolean')

@@ -33,6 +33,22 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('invalid struct value')
   })
 
+  it('returns configured cut items and sends the cut action to React', () => {
+    const onAction = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      cuttable: { items: ['first', 'second'], onAction },
+      mapFeatureSelectionDisabled: true,
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(modifiers.cuttable)).toEqual(['first', 'second'])
+    expect(modifiers.mapFeatureSelectionDisabled).toBe('true')
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'cuttable', value: '' } })
+    expect(onAction).toHaveBeenCalledOnce()
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      cuttable: { items: ['first', 2 as unknown as string], onAction },
+    } })).toThrow('string array and callback')
+  })
+
   it('round trips a Codable customization binding through native JSON', () => {
     const onChange = vi.fn()
     const current = '{"perTabState":[],"identifier":"D9754350-75EE-4390-AC54-159710381977","perSectionState":[]}'

@@ -1554,6 +1554,7 @@ export interface OneNativeStyle {
   controlSize?: SDKControlSize
   coordinateSpace?: string
   copyable?: Readonly<{ payload: readonly string[] }>
+  cuttable?: Readonly<{ items: readonly string[]; onAction: () => void }>
   dataDetection?: boolean
   datePickerStyle?: SDKDatePickerStyle
   defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement
@@ -1843,6 +1844,7 @@ export interface OneNativeStyle {
   }>
   mapControlVisibility?: SDKMapControlVisibility
   mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null
+  mapFeatureSelectionDisabled?: boolean
   mapStyle?: SDKMapStyle
   materialActiveAppearance?: SDKMaterialActiveAppearance
   menuActionDismissBehavior?: SDKMenuActionDismissBehavior

@@ -198,6 +198,7 @@ extension View {
       case "controlSize": view = AnyView(view.oneNativeSDKControlSize(value, emit: emit))
       case "coordinateSpace": view = AnyView(view.oneNativeSDKCoordinateSpace(value, emit: emit))
       case "copyable": view = AnyView(view.oneNativeSDKCopyable(value, emit: emit))
+      case "cuttable": view = AnyView(view.oneNativeSDKCuttable(value, emit: emit))
       case "dataDetection": view = AnyView(view.oneNativeSDKDataDetection(value, emit: emit))
       case "datePickerStyle": view = AnyView(view.oneNativeSDKDatePickerStyle(value, emit: emit))
       case "defaultAdaptableTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultAdaptableTabBarPlacement(value, emit: emit))
@@ -306,6 +307,7 @@ extension View {
       case "manageSubscriptionsSheet": view = AnyView(view.oneNativeSDKManageSubscriptionsSheet(value, emit: emit))
       case "mapControlVisibility": view = AnyView(view.oneNativeSDKMapControlVisibility(value, emit: emit))
       case "mapFeatureSelectionAccessory": view = AnyView(view.oneNativeSDKMapFeatureSelectionAccessory(value, emit: emit))
+      case "mapFeatureSelectionDisabled": view = AnyView(view.oneNativeSDKMapFeatureSelectionDisabled(value, emit: emit))
       case "mapStyle": view = AnyView(view.oneNativeSDKMapStyle(value, emit: emit))
       case "materialActiveAppearance": view = AnyView(view.oneNativeSDKMaterialActiveAppearance(value, emit: emit))
       case "menuActionDismissBehavior": view = AnyView(view.oneNativeSDKMenuActionDismissBehavior(value, emit: emit))
@@ -2016,6 +2018,21 @@ extension View {
     } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKCuttable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 27, *) {
+      let items: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid cuttable: \(value)") }
+      return decoded
+    }()
+    let action: () -> [String] = {
+      emit("cuttable", "")
+      return items
+    }
+    self.cuttable(for: String.self, action: action)
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKDataDetection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid dataDetection: \(value)")
     if value == "true" { if #available(iOS 27, *) { self.dataDetection() } else { self } } else { self }
@@ -3404,6 +3421,11 @@ extension View {
       case "caption": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.caption) } else { self }
     default: preconditionFailure("invalid mapFeatureSelectionAccessory: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKMapFeatureSelectionDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid mapFeatureSelectionDisabled: \(value)")
+      self.mapFeatureSelectionDisabled({ (_: _MapKit_SwiftUI.MapFeature) in value == "true" })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKMapStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
