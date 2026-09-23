@@ -3,6 +3,7 @@ import UIKit
 
 private final class OverlayModel: ObservableObject {
   @Published var alignment = "center"
+  @Published var slotName = ""
   @Published var overlay: AnyView?
 }
 
@@ -13,13 +14,20 @@ private struct OverlayRoot: View {
   @ObservedObject var bridge: OneNativeSchemeBridge
 
   var body: some View {
-    Group {
+    let base = Group {
       ForEach(children.items) { child in child.content }
     }
-    .overlay(alignment: alignment) {
-      if let overlay = model.overlay { overlay }
-    }
-    .oneNativeScheme(standalone, bridge.scheme)
+    Group {
+      if model.slotName.isEmpty {
+        base.overlay(alignment: alignment) {
+          if let overlay = model.overlay { overlay }
+        }
+      } else {
+        base.oneNativeViewSlot(model.slotName) {
+          model.overlay ?? AnyView(EmptyView())
+        }
+      }
+    }.oneNativeScheme(standalone, bridge.scheme)
   }
 
   // every value the TypeScript side accepts has a case here, so an unknown one cannot
@@ -87,8 +95,9 @@ public final class OneNativeOverlayView: OneNativeContainerView {
     super.didMoveToWindow()
   }
 
-  public func configure(alignment: String) {
+  public func configure(alignment: String, slotName: String) {
     if model.alignment != alignment { model.alignment = alignment }
+    if model.slotName != slotName { model.slotName = slotName }
   }
 
   // an overlay-content marker carries the overlay subtree, so it is captured rather

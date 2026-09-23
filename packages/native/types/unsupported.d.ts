@@ -1,4 +1,4 @@
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GroupProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LinkProps, ListProps, MenuProps, NavigationStackProps, OverlayContentProps, OverlayProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarSpacerProps, ZStackProps } from './types';
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GroupProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LinkProps, ListProps, MenuProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarSpacerProps, ZStackProps } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function TabSection(_props: TabSectionProps): never;
@@ -31,6 +31,7 @@ declare function Link(_props: LinkProps): never;
 declare function Group(_props: GroupProps): never;
 declare function OverlayContent(_props: OverlayContentProps): never;
 declare function OverlayFn(_props: OverlayProps): never;
+declare function ViewSlotFn(_props: ViewSlotProps): never;
 declare function SwipeActionsActions(_props: SwipeActionsActionsProps): never;
 declare function SwipeActionsFn(_props: SwipeActionsProps): never;
 declare function Page(_props: PageProps): never;
@@ -103,6 +104,9 @@ export declare const Swift: {
     Link: typeof Link;
     Group: typeof Group;
     Overlay: typeof OverlayFn & {
+        Content: typeof OverlayContent;
+    };
+    ViewSlot: typeof ViewSlotFn & {
         Content: typeof OverlayContent;
     };
     SwipeActions: typeof SwipeActionsFn & {
