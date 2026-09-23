@@ -18,6 +18,12 @@ using namespace facebook::react;
     _measured = [OneNativeMeasuredHeight new];
     _nativeView = [OneNativeTextView new]; self.contentView = _nativeView;
     __weak OneNativeTextComponentView *weakSelf = self;
+    _nativeView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeTextComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeTextEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
     _nativeView.onHeight = ^(CGFloat height) {
       OneNativeTextComponentView *strongSelf = weakSelf;
       if (strongSelf) [strongSelf->_measured update:height];

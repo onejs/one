@@ -48,6 +48,7 @@ interface NativeProps extends ViewProps {
   allowedContentTypes: ReadonlyArray<string>
   allowsMultipleSelection: boolean
   swiftStyle?: OneNativeStyleNative
+  onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativeFileImporterValueChange?: DirectEventHandler<
     Readonly<{ value: boolean; eventCount: Int32; revision: Int32 }>
   >

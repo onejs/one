@@ -50,6 +50,7 @@ interface NativeProps extends ViewProps {
   elementFullscreen: string
   contentBackground: string
   swiftStyle?: OneNativeStyleNative
+  onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativeWebViewNavigate?: DirectEventHandler<
     Readonly<{ url: string; eventCount: Int32 }>
   >

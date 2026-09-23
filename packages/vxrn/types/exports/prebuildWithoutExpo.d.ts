@@ -11,6 +11,7 @@ export declare function renderPrebuildFile(args: {
     content: string | null;
     platform: 'ios' | 'android';
     app: NativeAppManifest;
+    nitroWebImage?: boolean;
 }): RenderedPrebuildFile;
 export declare const generateForPlatform: (root: string, platform: 'ios' | 'android', app: NativeAppManifest, outDir?: string) => Promise<void>;
 export interface NativeDependencyInventory {

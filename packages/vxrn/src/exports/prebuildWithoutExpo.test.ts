@@ -156,10 +156,11 @@ ${APP_DELEGATE_PBXPROJ}`,
         "platform :ios, min_ios_version_supported\ntarget 'HelloWorld' do\n  config = use_native_modules!\n  post_install do |installer|\n    react_native_post_install(\n      installer\n    )\n  end\nend",
       platform: 'ios',
       app,
+      nitroWebImage: true,
     })
     expect(podfile.content).toContain("platform :ios, '17.0'")
     expect(podfile.content).toContain(
-      "  config = use_native_modules!\n  # [vxrn/one] swift packages\n  Dir[File.join(__dir__, 'OneSwiftPackages'"
+      "  config = use_native_modules!\n  # [vxrn/one] nitro web image modular header\n  pod 'SDWebImage', :modular_headers => true\n  # [vxrn/one] swift packages\n  Dir[File.join(__dir__, 'OneSwiftPackages'"
     )
     expect(podfile.content).toContain(
       "config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'"
@@ -167,6 +168,7 @@ ${APP_DELEGATE_PBXPROJ}`,
     expect(podfile.content).toContain("ENV['RNS_GAMMA_ENABLED'] ||= '1'")
     expect(podfile.content).toContain("ENV['USE_CCACHE'] ||= '1'")
     expect(podfile.content).toContain('use_frameworks! :linkage => :static')
+    expect(podfile.content).toContain("pod 'SDWebImage', :modular_headers => true")
 
     const infoPlist = renderPrebuildFile({
       relativePath: 'HelloWorld/Info.plist',

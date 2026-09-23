@@ -12,6 +12,8 @@ import {
   Haptics,
   ImagePicker,
   MenuAction,
+  Menu as NativeMenu,
+  ContextMenu as NativeContextMenu,
   Network as NativeNetwork,
   SplitView,
   Swift,
@@ -48,7 +50,10 @@ export type OneIOS = typeof Swift & {
   readonly ZoomTransitionSource: typeof ZoomTransitionSource
 }
 
-export type OneAndroid = typeof Compose
+export type OneAndroid = typeof Compose & {
+  readonly Menu: typeof NativeMenu
+  readonly ContextMenu: typeof NativeContextMenu
+}
 
 export type OneSafeArea = {
   readonly Provider: typeof SafeAreaProvider
@@ -102,6 +107,8 @@ const iOS: Readonly<OneIOS> = Object.freeze({
 
 const Android: Readonly<OneAndroid> = Object.freeze({
   ...Compose,
+  Menu: NativeMenu,
+  ContextMenu: NativeContextMenu,
 })
 
 const SafeArea: Readonly<OneSafeArea> = Object.freeze({

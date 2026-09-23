@@ -1,8 +1,9 @@
 import { useControlled } from './controlled'
 import { Platform } from 'react-native'
 import { assertSwiftUIValue } from './generated/swiftui'
+import { tabViewSlotAvailability } from './generated/viewSlots'
 import { Children, isValidElement, useMemo } from 'react'
-import type { TabProps, TabsProps, TabViewBottomAccessoryProps } from './types'
+import type { TabProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps } from './types'
 import NativeTab from './specs/OneNativeTabNativeComponent'
 import NativeTabs from './specs/OneNativeTabsNativeComponent'
 
@@ -15,9 +16,14 @@ const PAGE_STYLE = {
 } as const
 const INLINE_ACCESSORY_ID = '__one_native_accessory_inline__'
 const EXPANDED_ACCESSORY_ID = '__one_native_accessory_expanded__'
+const SLOT_ID_PREFIX = '__one_native_slot_'
 
 export function TabViewBottomAccessory(_props: TabViewBottomAccessoryProps): never {
   throw new Error('Swift.TabViewBottomAccessory must be a direct child of Swift.Tabs')
+}
+
+export function TabViewSlot(_props: TabViewSlotProps): never {
+  throw new Error('Swift.TabViewSlot must be a direct child of Swift.Tabs')
 }
 
 export function Tab(_props: TabProps): never {
@@ -42,17 +48,32 @@ export function Tabs({
     eventCount: number
     revision: number
   }>((event) => onSelectionChange(event.selection), revision)
-  const { pages, accessory } = useMemo(() => {
+  const { pages, accessory, slots } = useMemo(() => {
     const ids = new Set<string>()
     let accessory: TabViewBottomAccessoryProps | undefined
+    const slots: TabViewSlotProps[] = []
     const pages = Children.toArray(children).flatMap((child) => {
       if (isValidElement<TabViewBottomAccessoryProps>(child) && child.type === TabViewBottomAccessory) {
         if (accessory) throw new Error('Swift.Tabs accepts one TabViewBottomAccessory')
         accessory = child.props
         return []
       }
+      if (isValidElement<TabViewSlotProps>(child) && child.type === TabViewSlot) {
+        if (!Object.hasOwn(tabViewSlotAvailability, child.props.name))
+          throw new Error(`Swift.TabViewSlot has no SDK modifier ${child.props.name}`)
+        if (iosVersion < tabViewSlotAvailability[child.props.name])
+          throw new Error(`Swift.TabViewSlot ${child.props.name} requires iOS ${tabViewSlotAvailability[child.props.name]} or later`)
+        if (!Number.isFinite(child.props.height) || child.props.height <= 0)
+          throw new Error('Swift.TabViewSlot height must be a positive number')
+        if (child.props.children === undefined)
+          throw new Error('Swift.TabViewSlot needs children')
+        if (slots.some((slot) => slot.name === child.props.name))
+          throw new Error(`Swift.Tabs accepts one ${child.props.name} slot`)
+        slots.push(child.props)
+        return []
+      }
       if (!isValidElement<TabProps>(child) || child.type !== Tab) {
-        throw new Error('Swift.Tabs accepts Swift.Tab and Swift.TabViewBottomAccessory elements as direct children')
+        throw new Error('Swift.Tabs accepts Swift.Tab, Swift.TabViewSlot, and Swift.TabViewBottomAccessory elements as direct children')
       }
       const {
         id,
@@ -64,7 +85,7 @@ export function Tabs({
         onPress,
         children: page,
       } = child.props
-      if (!id || id === INLINE_ACCESSORY_ID || id === EXPANDED_ACCESSORY_ID || ids.has(id)) {
+      if (!id || id.startsWith(SLOT_ID_PREFIX) || id === INLINE_ACCESSORY_ID || id === EXPANDED_ACCESSORY_ID || ids.has(id)) {
         throw new Error(`Swift.Tabs requires unique, nonempty tab ids: "${id}"`)
       }
       if (Boolean(onPress) === (page !== undefined)) {
@@ -85,8 +106,10 @@ export function Tabs({
         children: page,
       }]
     })
-    return { pages, accessory }
+    return { pages, accessory, slots }
   }, [children, iosVersion])
+  if (accessory && slots.some((slot) => slot.name === 'tabViewBottomAccessory'))
+    throw new Error('Swift.Tabs accepts one tabViewBottomAccessory slot')
   if (accessory && iosVersion < 26)
     throw new Error('Swift.TabViewBottomAccessory requires iOS 26 or later')
   if (accessory && accessory.children === undefined && accessory.inline === undefined && accessory.expanded === undefined)
@@ -130,6 +153,7 @@ export function Tabs({
             badge={page.badge}
             tabRole={page.role}
             action={Boolean(page.onPress)}
+            slotHeight={0}
             testID={page.testID}
             style={PAGE_STYLE}
             collapsable={false}
@@ -153,10 +177,27 @@ export function Tabs({
           badge=""
           tabRole=""
           action={false}
+          slotHeight={0}
           style={PAGE_STYLE}
           collapsable={false}
         >
           {content}
+        </NativeTab>
+      ))}
+      {slots.map((slot) => (
+        <NativeTab
+          key={slot.name}
+          tabId={`${SLOT_ID_PREFIX}${slot.name}__`}
+          title=""
+          systemImage=""
+          badge=""
+          tabRole=""
+          action={false}
+          slotHeight={slot.height}
+          style={PAGE_STYLE}
+          collapsable={false}
+        >
+          {slot.children}
         </NativeTab>
       ))}
     </NativeTabs>

@@ -16,6 +16,12 @@ using namespace facebook::react;
     _markersDirty = YES;
     _nativeView = [OneNativeMapView new]; self.contentView = _nativeView;
     __weak OneNativeMapComponentView *weakSelf = self;
+    _nativeView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeMapComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeMapEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
     _nativeView.onRegionChange = ^(double latitude, double longitude, double distance, NSInteger eventCount) {
       OneNativeMapComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;

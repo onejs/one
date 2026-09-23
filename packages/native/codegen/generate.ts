@@ -4,7 +4,7 @@ import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
 import { controls as curatedControls } from './controlCatalog'
 import { emitControls } from './emitControls'
 import { emitStyle } from './emitStyle'
-import { deriveModifiers, deriveViews } from './deriveSDK'
+import { deriveModifiers, deriveTabViewSlots, deriveViews } from './deriveSDK'
 import { emitMenuValidator } from './menuValidator'
 import {
   readInventory,
@@ -62,7 +62,11 @@ const controls = [
     ])
   ),
 ]
-const derivedModifiers = deriveModifiers(inventory, MAXIMUM_IOS, styleFields)
+const derivedModifiers = deriveModifiers(inventory, MAXIMUM_IOS, [
+  ...styleFields,
+  ...styleModifiers,
+])
+const derivedTabViewSlots = deriveTabViewSlots(inventory, MAXIMUM_IOS)
 const sdkVersion = run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version'])
 if (Number(sdkVersion.split('.')[0]) < MAXIMUM_IOS)
   throw new Error(
@@ -93,11 +97,22 @@ for (const modifier of derivedModifiers) {
     (d) =>
       d.kind === 'func' &&
       d.name === modifier.name &&
-      d.parameters.length === 1 &&
-      d.parameters[0].type === modifier.type &&
+      (modifier.zeroArgument
+        ? d.parameters.length === 0
+        : d.parameters.some((parameter) => parameter.type === modifier.type &&
+            (modifier.label === undefined || parameter.label === modifier.label))) &&
       d.owner.split('.').at(-1) === 'View'
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${modifier.name}`)
+  coverModifier(declaration)
+}
+for (const slot of derivedTabViewSlots) {
+  const declaration = inventory.find((d) =>
+    d.kind === 'func' && d.module === 'SwiftUI' && d.owner.split('.').at(-1) === 'View' &&
+    d.name === slot.name && d.parameters.length === 1 &&
+    d.parameters[0].type === '() -> Content'
+  )
+  if (!declaration) throw new Error(`lost SDK declaration for ${slot.name} slot`)
   coverModifier(declaration)
 }
 const enums = Object.fromEntries(
@@ -170,7 +185,7 @@ const { schema: controlComponents, payloads: controlPayloads } = emitControls(
 emitSheet(header, outputs)
 emitContainers(header, outputs, styleFields)
 emitPopover(header, outputs)
-emitStyle(header, outputs, styleFields, derivedModifiers)
+emitStyle(header, outputs, styleFields, derivedModifiers, derivedTabViewSlots)
 // the sync-state TurboModule spec: pod-install and gradle codegen read it from
 // src/specs alongside the view specs. emitted here so --check guards the JSI
 // contract byte for byte. it carries no view config (see isViewSpecFile).
@@ -325,7 +340,9 @@ for (const component of components) {
       Object.values(fields as Record<string, string>)
     ),
   ].join(' ')
-  const numeric = ['Double', 'Float'].filter((type) => new RegExp(`\\b${type}\\b`).test(usedTypes))
+  const numeric = ['Double', 'Float'].filter((type) =>
+    new RegExp(`\\b${type}\\b`).test(usedTypes)
+  )
   const payloadDeclarations = payloadEntries
     .map(([name, shape]) => `type ${name} = ${shape}\n`)
     .join('')
@@ -689,7 +706,9 @@ for (const [path, source] of outputs) {
         console.error(
           'SwiftUI manifest fields differ: ' +
             [...new Set([...Object.keys(previous), ...Object.keys(next)])]
-              .filter((key) => JSON.stringify(previous[key]) !== JSON.stringify(next[key]))
+              .filter(
+                (key) => JSON.stringify(previous[key]) !== JSON.stringify(next[key])
+              )
               .join(', ')
         )
       }

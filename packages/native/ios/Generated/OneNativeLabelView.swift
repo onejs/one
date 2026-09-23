@@ -10,8 +10,13 @@ private final class LabelModel: ObservableObject {
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
+  var onSDKEvent: ((String, String) -> Void)?
+  func emitSDKEvent(_ name: String, _ value: String) { if active { onSDKEvent?(name, value) } }
+
 }
 @objcMembers public final class OneNativeLabelView: UIView, OneNativeComposable {
+  public var onSDKEvent: ((String, String) -> Void)?
+
   private var model = LabelModel()
   public var onHeight: ((CGFloat) -> Void)?
   private var controller: OneNativeHostingController<OneNativeMeasuredStandalone<LabelContent>>?
@@ -47,6 +52,8 @@ private final class LabelModel: ObservableObject {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
+    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
+
   }
   private func updateHost() {
     guard compositionParent == nil else { return }
@@ -61,7 +68,7 @@ private final class LabelModel: ObservableObject {
   }
   public func reset() {
     compositionParent = nil
-    model.active = false
+    model.active = false; model.onSDKEvent = nil
     controller?.detach(); controller = nil; model = LabelModel()
   }
 }
@@ -71,6 +78,6 @@ private struct LabelContent: View {
     Label(LocalizedStringKey(model.label), systemImage: model.systemImage)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
-      .oneNativeStyle(model.swiftStyle)
+      .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }
 }

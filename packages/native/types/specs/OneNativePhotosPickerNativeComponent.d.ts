@@ -41,6 +41,10 @@ interface NativeProps extends ViewProps {
     filter: string;
     preferredItemEncoding: string;
     swiftStyle?: OneNativeStyleNative;
+    onNativeSDKEvent?: DirectEventHandler<Readonly<{
+        name: string;
+        value: string;
+    }>>;
     onNativePhotosPickerPick?: DirectEventHandler<Readonly<{
         url: string;
         index: Double;

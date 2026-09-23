@@ -570,6 +570,13 @@
   ],
   "derivedModifiers": [
     {
+      "name": "accessibilityShowsLargeContentViewer",
+      "kind": "boolean",
+      "type": "",
+      "ios": 15,
+      "zeroArgument": true
+    },
+    {
       "name": "allowsHitTesting",
       "kind": "boolean",
       "type": "Swift.Bool",
@@ -582,10 +589,24 @@
       "ios": 13
     },
     {
+      "name": "allowsWindowActivationEvents",
+      "kind": "boolean",
+      "type": "",
+      "ios": 18,
+      "zeroArgument": true
+    },
+    {
       "name": "autocorrectionDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 13
+    },
+    {
+      "name": "backgroundExtensionEffect",
+      "kind": "boolean",
+      "type": "",
+      "ios": 26,
+      "zeroArgument": true
     },
     {
       "name": "badge",
@@ -788,6 +809,13 @@
       ]
     },
     {
+      "name": "colorInvert",
+      "kind": "boolean",
+      "type": "",
+      "ios": 13,
+      "zeroArgument": true
+    },
+    {
       "name": "colorMultiply",
       "kind": "string",
       "type": "SwiftUICore.Color",
@@ -886,6 +914,13 @@
           "ios": 13
         }
       ]
+    },
+    {
+      "name": "compositingGroup",
+      "kind": "boolean",
+      "type": "",
+      "ios": 13,
+      "zeroArgument": true
     },
     {
       "name": "contentTransition",
@@ -990,6 +1025,13 @@
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 13
+    },
+    {
+      "name": "dialogSuppressionToggle",
+      "kind": "bindingBoolean",
+      "type": "SwiftUICore.Binding<Swift.Bool>",
+      "label": "isSuppressed",
+      "ios": 17
     },
     {
       "name": "disabled",
@@ -1128,6 +1170,20 @@
       "ios": 16
     },
     {
+      "name": "findNavigator",
+      "kind": "bindingBoolean",
+      "type": "SwiftUICore.Binding<Swift.Bool>",
+      "label": "isPresented",
+      "ios": 16
+    },
+    {
+      "name": "fixedSize",
+      "kind": "boolean",
+      "type": "",
+      "ios": 13,
+      "zeroArgument": true
+    },
+    {
       "name": "flipsForRightToLeftLayoutDirection",
       "kind": "boolean",
       "type": "Swift.Bool",
@@ -1144,6 +1200,13 @@
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 17
+    },
+    {
+      "name": "geometryGroup",
+      "kind": "boolean",
+      "type": "",
+      "ios": 17,
+      "zeroArgument": true
     },
     {
       "name": "glassEffectTransition",
@@ -1286,6 +1349,13 @@
       ]
     },
     {
+      "name": "hidden",
+      "kind": "boolean",
+      "type": "",
+      "ios": 13,
+      "zeroArgument": true
+    },
+    {
       "name": "hoverEffect",
       "kind": "string",
       "type": "SwiftUICore.HoverEffect",
@@ -1388,6 +1458,13 @@
       "ios": 26
     },
     {
+      "name": "labelsHidden",
+      "kind": "boolean",
+      "type": "",
+      "ios": 13,
+      "zeroArgument": true
+    },
+    {
       "name": "labelsVisibility",
       "kind": "string",
       "type": "SwiftUICore.Visibility",
@@ -1454,6 +1531,13 @@
           "ios": 15
         }
       ]
+    },
+    {
+      "name": "luminanceToAlpha",
+      "kind": "boolean",
+      "type": "",
+      "ios": 13,
+      "zeroArgument": true
     },
     {
       "name": "materialActiveAppearance",
@@ -1548,6 +1632,13 @@
       "ios": 16
     },
     {
+      "name": "monospacedDigit",
+      "kind": "boolean",
+      "type": "",
+      "ios": 15,
+      "zeroArgument": true
+    },
+    {
       "name": "moveDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
@@ -1612,6 +1703,41 @@
       "ios": 16
     },
     {
+      "name": "navigationTitle",
+      "kind": "bindingString",
+      "type": "SwiftUICore.Binding<Swift.String>",
+      "label": "_",
+      "ios": 16
+    },
+    {
+      "name": "onAppear",
+      "kind": "event",
+      "type": "(() -> Swift.Void)?",
+      "label": "perform",
+      "ios": 13
+    },
+    {
+      "name": "onDisappear",
+      "kind": "event",
+      "type": "(() -> Swift.Void)?",
+      "label": "perform",
+      "ios": 13
+    },
+    {
+      "name": "onSubmit",
+      "kind": "event",
+      "type": "@escaping () -> Swift.Void",
+      "label": "_",
+      "ios": 15
+    },
+    {
+      "name": "onTapGesture",
+      "kind": "event",
+      "type": "@escaping () -> Swift.Void",
+      "label": "perform",
+      "ios": 13
+    },
+    {
       "name": "paletteSelectionEffect",
       "kind": "string",
       "type": "SwiftUI.PaletteSelectionEffect",
@@ -1626,6 +1752,14 @@
           "ios": 17
         }
       ]
+    },
+    {
+      "name": "payWithApplePayButtonDisableCardArt",
+      "kind": "boolean",
+      "type": "",
+      "ios": 26,
+      "zeroArgument": true,
+      "framework": "PassKit"
     },
     {
       "name": "persistentSystemOverlays",
@@ -1790,6 +1924,21 @@
       "ios": 15
     },
     {
+      "name": "productIconBorder",
+      "kind": "boolean",
+      "type": "",
+      "ios": 17,
+      "zeroArgument": true,
+      "framework": "StoreKit"
+    },
+    {
+      "name": "renameAction",
+      "kind": "event",
+      "type": "@escaping () -> Swift.Void",
+      "label": "_",
+      "ios": 16
+    },
+    {
       "name": "replaceDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
@@ -1806,6 +1955,20 @@
       "kind": "number",
       "type": "Swift.Double",
       "ios": 13
+    },
+    {
+      "name": "scaledToFill",
+      "kind": "boolean",
+      "type": "",
+      "ios": 13,
+      "zeroArgument": true
+    },
+    {
+      "name": "scaledToFit",
+      "kind": "boolean",
+      "type": "",
+      "ios": 13,
+      "zeroArgument": true
     },
     {
       "name": "scenePadding",
@@ -1898,6 +2061,13 @@
           "ios": 16
         }
       ]
+    },
+    {
+      "name": "searchable",
+      "kind": "bindingString",
+      "type": "SwiftUICore.Binding<Swift.String>",
+      "label": "text",
+      "ios": 15
     },
     {
       "name": "searchCompletion",
@@ -2074,6 +2244,13 @@
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 15
+    },
+    {
+      "name": "swipeActionsContainer",
+      "kind": "boolean",
+      "type": "",
+      "ios": 27,
+      "zeroArgument": true
     },
     {
       "name": "symbolEffectsRemoved",
@@ -2292,6 +2469,13 @@
       ]
     },
     {
+      "name": "unredacted",
+      "kind": "boolean",
+      "type": "",
+      "ios": 14,
+      "zeroArgument": true
+    },
+    {
       "name": "windowToolbarFullScreenVisibility",
       "kind": "string",
       "type": "SwiftUI.WindowToolbarFullScreenVisibility",
@@ -2407,6 +2591,7 @@
     },
     "modifiers": {
       "SwiftUICore": [
+        "accessibilityShowsLargeContentViewer",
         "allowsHitTesting",
         "allowsTightening",
         "background",
@@ -2417,8 +2602,10 @@
         "brightness",
         "buttonSizing",
         "clipShape",
+        "colorInvert",
         "colorMultiply",
         "colorScheme",
+        "compositingGroup",
         "contentTransition",
         "contrast",
         "controlSize",
@@ -2426,9 +2613,11 @@
         "dynamicTypeSize",
         "edgesIgnoringSafeArea",
         "environment",
+        "fixedSize",
         "font",
         "foregroundStyle",
         "frame",
+        "geometryGroup",
         "glassEffectTransition",
         "grayscale",
         "headerProminence",
@@ -2441,15 +2630,22 @@
         "layoutDirectionBehavior",
         "layoutPriority",
         "lineSpacing",
+        "luminanceToAlpha",
         "materialActiveAppearance",
         "minimumScaleFactor",
         "monospaced",
+        "monospacedDigit",
         "multilineTextAlignment",
+        "onAppear",
+        "onDisappear",
+        "onTapGesture",
         "opacity",
         "padding",
         "privacySensitive",
         "safeAreaPadding",
         "saturation",
+        "scaledToFill",
+        "scaledToFit",
         "speechAdjustedPitch",
         "speechAlwaysIncludesPunctuation",
         "speechAnnouncementsQueued",
@@ -2460,11 +2656,14 @@
         "tint",
         "tracking",
         "transition",
+        "unredacted",
         "zIndex"
       ],
       "SwiftUI": [
         "alert",
+        "allowsWindowActivationEvents",
         "autocorrectionDisabled",
+        "backgroundExtensionEffect",
         "badge",
         "badgeProminence",
         "buttonBorderShape",
@@ -2477,11 +2676,13 @@
         "defaultAdaptableTabBarPlacement",
         "defaultTabBarPlacement",
         "deleteDisabled",
+        "dialogSuppressionToggle",
         "fileDialogBrowserOptions",
         "fileDialogCustomizationID",
         "fileDialogImportsUnresolvedAliases",
         "fileImporter",
         "findDisabled",
+        "findNavigator",
         "flipsForRightToLeftLayoutDirection",
         "focusEffectDisabled",
         "focusable",
@@ -2491,6 +2692,7 @@
         "gridCellColumns",
         "gridCellUnsizedAxes",
         "gridColumnAlignment",
+        "hidden",
         "inspectorColumnWidth",
         "interactionActivityTrackingTag",
         "interactiveDismissDisabled",
@@ -2498,6 +2700,7 @@
         "keyboardShortcut",
         "labelIconToTitleSpacing",
         "labelReservedIconWidth",
+        "labelsHidden",
         "labelsVisibility",
         "listSectionIndexVisibility",
         "listStyle",
@@ -2509,6 +2712,7 @@
         "navigationBarHidden",
         "navigationLinkIndicatorVisibility",
         "navigationSplitViewColumnWidth",
+        "navigationTitle",
         "onSubmit",
         "paletteSelectionEffect",
         "persistentSystemOverlays",
@@ -2524,6 +2728,7 @@
         "presentationSizing",
         "previewInterfaceOrientation",
         "progressViewStyle",
+        "renameAction",
         "replaceDisabled",
         "scenePadding",
         "scrollClipDisabled",
@@ -2534,6 +2739,7 @@
         "searchDictationBehavior",
         "searchPresentationToolbarBehavior",
         "searchToolbarBehavior",
+        "searchable",
         "selectionDisabled",
         "sheet",
         "sliderThumbVisibility",
@@ -2541,9 +2747,14 @@
         "statusBarHidden",
         "submitLabel",
         "submitScope",
+        "swipeActionsContainer",
         "symbolEffectsRemoved",
         "tabBarMinimizeBehavior",
+        "tabViewBottomAccessory",
         "tabViewSearchActivation",
+        "tabViewSidebarBottomBar",
+        "tabViewSidebarFooter",
+        "tabViewSidebarHeader",
         "tableColumnHeaders",
         "textFieldStyle",
         "textInputAutocapitalization",
@@ -2554,6 +2765,12 @@
         "windowToolbarFullScreenVisibility",
         "writingToolsAffordanceVisibility",
         "writingToolsBehavior"
+      ],
+      "_PassKit_SwiftUI": [
+        "payWithApplePayButtonDisableCardArt"
+      ],
+      "_StoreKit_SwiftUI": [
+        "productIconBorder"
       ],
       "_WebKit_SwiftUI": [
         "webViewBackForwardNavigationGestures",

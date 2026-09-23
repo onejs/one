@@ -15,6 +15,8 @@ type NativeProjectPatches = {
   injectOneSwiftPackagesIntoPodfile(input: string): string
   injectHermesMinificationPatchIntoPodfile(input: string): string
   injectReactNativeScreensGammaIntoPodfile(input: string): string
+  hasNitroWebImage(root: string): boolean
+  injectNitroWebImageModularHeaderIntoPodfile(input: string): string
   replaceAppBuildGradleReactBlock(input: string): string
   addDepsPatchToAppBuildGradle(input: string): string
   addReactNativeScreensFix(input: string): string
@@ -540,8 +542,9 @@ export function renderPrebuildFile(args: {
   content: string | null
   platform: 'ios' | 'android'
   app: NativeAppManifest
+  nitroWebImage?: boolean
 }): RenderedPrebuildFile {
-  const { relativePath, content, platform, app } = args
+  const { relativePath, content, platform, app, nitroWebImage } = args
   const appName = app.name
   const schemes =
     app.scheme === undefined ? [] : Array.isArray(app.scheme) ? app.scheme : [app.scheme]
@@ -760,6 +763,8 @@ end`
       }
       rendered = nativeProjectPatches.injectFmtCxx17FixIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectOneSwiftPackagesIntoPodfile(rendered)
+      if (nitroWebImage)
+        rendered = nativeProjectPatches.injectNitroWebImageModularHeaderIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(rendered)
       if (
         !rendered.includes('[vxrn/one] fmt c++17 fix') ||
@@ -840,6 +845,7 @@ export const generateForPlatform = async (
     throw new Error('[vxrn] could not resolve the community template walker')
   }
   const files: string[] = [...walkFn(src)].sort()
+  const nitroWebImage = platform === 'ios' && nativeProjectPatches.hasNitroWebImage(root)
 
   // owned output: regenerate from the manifest so reruns reproduce bytes.
   FSExtra.removeSync(dest)
@@ -858,6 +864,7 @@ export const generateForPlatform = async (
       content: raw,
       platform,
       app,
+      nitroWebImage,
     })
     const destPath = path.resolve(dest, destRelativePath)
     FSExtra.mkdirSync(path.dirname(destPath), { recursive: true })
@@ -932,7 +939,6 @@ function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
   s.license = 'MIT'
   s.author = 'one'
   s.source = { :path => '.' }
-  s.platforms = { :ios => '17.0' }
   s.swift_version = '6.0'
   s.source_files = 'Sources/**/*.swift', 'Register.m'
   s.dependency 'VxrnNative'

@@ -17,6 +17,9 @@ private final class PhotosPickerModel: ObservableObject {
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
+  var onSDKEvent: ((String, String) -> Void)?
+  func emitSDKEvent(_ name: String, _ value: String) { if active { onSDKEvent?(name, value) } }
+
   var onPick: ((String, Double, Double, Int) -> Void)?
   private var pickCount = 0
   func pick(_ url: String, _ index: Double, _ count: Double) {
@@ -33,6 +36,8 @@ private final class PhotosPickerModel: ObservableObject {
   }
 }
 @objcMembers public final class OneNativePhotosPickerView: UIView, OneNativeComposable {
+  public var onSDKEvent: ((String, String) -> Void)?
+
   public var onPick: ((String, Double, Double, Int) -> Void)?
   public var onPickError: ((String, Int) -> Void)?
   private var model = PhotosPickerModel()
@@ -74,6 +79,8 @@ private final class PhotosPickerModel: ObservableObject {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
+    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
+
     model.onPick = { [weak self] url, index, count, pickCount in self?.onPick?(url, index, count, pickCount) }
     model.onPickError = { [weak self] message, pickErrorCount in self?.onPickError?(message, pickErrorCount) }
   }
@@ -90,7 +97,7 @@ private final class PhotosPickerModel: ObservableObject {
   }
   public func reset() {
     compositionParent = nil
-    model.active = false; model.onPick = nil; model.onPickError = nil
+    model.active = false; model.onSDKEvent = nil; model.onPick = nil; model.onPickError = nil
     controller?.detach(); controller = nil; model = PhotosPickerModel()
   }
 }
@@ -100,7 +107,7 @@ private struct PhotosPickerContent: View {
     PhotosPickerSurface(model: model)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
-      .oneNativeStyle(model.swiftStyle)
+      .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }
 }
 // PHPickerFilter is PhotosUI's own type rather than its SwiftUI overlay's, so the generator

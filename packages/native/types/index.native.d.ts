@@ -1,12 +1,14 @@
 import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, Group, HStack, Host, LabeledContent, LazyHStack, LazyVStack, Link, List, ScrollView, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
-import { ContextMenu, Menu } from './Menu.native';
+import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './AndroidMenu';
 import { Page, Pager } from './Pager.native';
 import { Popover } from './Popover.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
-import { Tab, Tabs, TabViewBottomAccessory } from './Tabs.native';
+import { Tab, Tabs, TabViewBottomAccessory, TabViewSlot } from './Tabs.native';
 import { Compose } from './compose';
 import * as UI from './effects';
 export * from './extras';
+declare const Menu: typeof AndroidMenu;
+declare const ContextMenu: typeof AndroidContextMenu;
 export declare const Swift: {
     Picker({ selection, onSelectionChange, revision, label, disabled, options, pickerStyle, swiftStyle, style, ...props }: import("./types").PickerProps): import("react/jsx-runtime").JSX.Element;
     DatePicker({ selection, onSelectionChange, revision, label, disabled, minimumDate, maximumDate, displayedComponents, datePickerStyle, swiftStyle, style, ...props }: import("./types").DatePickerProps): import("react/jsx-runtime").JSX.Element;
@@ -42,8 +44,9 @@ export declare const Swift: {
     Tabs: typeof Tabs;
     Tab: typeof Tab;
     TabViewBottomAccessory: typeof TabViewBottomAccessory;
-    Menu: typeof Menu;
-    ContextMenu: typeof ContextMenu;
+    TabViewSlot: typeof TabViewSlot;
+    Menu: typeof AndroidMenu;
+    ContextMenu: typeof AndroidContextMenu;
     Sheet: typeof Sheet;
     FullScreenCover: typeof FullScreenCover;
     Popover: typeof Popover;
@@ -77,6 +80,7 @@ export declare const Swift: {
     Slot: typeof Slot;
 };
 export { Compose };
+export { Menu, ContextMenu };
 export { useNativeState, type NativeState } from './nativeState';
 export { TextInput } from './universal/TextInput/index';
 export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';

@@ -41,6 +41,10 @@ interface NativeProps extends ViewProps {
     systemImage: string;
     toggleStyle: string;
     swiftStyle?: OneNativeStyleNative;
+    onNativeSDKEvent?: DirectEventHandler<Readonly<{
+        name: string;
+        value: string;
+    }>>;
     onNativeToggleValueChange?: DirectEventHandler<Readonly<{
         value: boolean;
         eventCount: Int32;

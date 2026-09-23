@@ -1,32 +1,53 @@
 import { ios, present, type Declaration } from './inventory'
-import type { StyleField } from './catalog'
 import type { Control } from './controlTypes'
+
+const eventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> Swift\.Void\)\?$|^SwiftUICore\.Binding<Swift\.(?:Bool|String)>$/
 
 export type DerivedModifier = {
   name: string
-  kind: 'boolean' | 'number' | 'string'
+  kind: 'boolean' | 'number' | 'string' | 'event' | 'bindingBoolean' | 'bindingString'
   ios: number
   type: string
   cases?: readonly { name: string; ios: number }[]
+  zeroArgument?: true
+  framework?: string
+  label?: string
 }
 
-// a one-argument View method with a bridge scalar or a static-case value has
-// enough information in the SDK to generate its prop and its Swift call.
+export type DerivedViewSlot = { name: string; ios: number }
+
+export function deriveTabViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
+  const slots = inventory.filter((d) =>
+    d.kind === 'func' && d.module === 'SwiftUI' && d.owner.split('.').at(-1) === 'View' &&
+    /^tabView[A-Z]/.test(d.name) && d.parameters.length === 1 &&
+    d.parameters[0].label === 'content' && d.parameters[0].type === '() -> Content' &&
+    d.requirements?.length === 1 && d.requirements[0] === 'Content : SwiftUICore.View' &&
+    present(d) && ios(d) <= ceiling
+  )
+  return slots.map((slot) => ({ name: slot.name, ios: ios(slot) })).sort((a, b) => a.name.localeCompare(b.name))
+}
+
+// parameterless methods and one-argument methods with a bridge scalar or a
+// static-case value have enough information to generate a prop and Swift call.
 export function deriveModifiers(
   inventory: readonly Declaration[],
   ceiling: number,
-  reserved: readonly StyleField[]
+  reserved: readonly { name: string }[]
 ): DerivedModifier[] {
   const reservedNames = new Set(reserved.map((field) => field.name))
   const methods = inventory.filter(
     (d) =>
       d.kind === 'func' &&
-      (d.module === 'SwiftUI' || d.module === 'SwiftUICore') &&
+      (d.module === 'SwiftUI' ||
+        d.module === 'SwiftUICore' ||
+        (d.parameters.length === 0 && /^_[A-Za-z]+_SwiftUI$/.test(d.module))) &&
       d.owner.split('.').at(-1) === 'View' &&
       /^[a-z]/.test(d.name) &&
-      !d.name.startsWith('accessibility') &&
-      d.parameters.length === 1 &&
-      d.parameters[0].label === '_' &&
+      (d.parameters.length === 0 || !d.name.startsWith('accessibility')) &&
+      (d.parameters.length === 0 ||
+        (d.parameters.length === 1 && d.parameters[0].label === '_') ||
+        (d.parameters.length > 0 && d.parameters.every((p) => p.defaultValue !== undefined ||
+          eventOrBindingType.test(p.type)))) &&
       !d.requirements?.length &&
       present(d) &&
       ios(d) <= ceiling &&
@@ -38,11 +59,40 @@ export function deriveModifiers(
   const result: DerivedModifier[] = []
   for (const [name, overloads] of byName) {
     const candidates = overloads.flatMap((method): DerivedModifier[] => {
+      if (method.parameters.length === 0)
+        return [
+          {
+            name,
+            kind: 'boolean',
+            type: '',
+            ios: ios(method),
+            zeroArgument: true,
+            ...(method.module.startsWith('_')
+              ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
+              : {}),
+          },
+        ]
+      const bridged = method.parameters.filter((p) => eventOrBindingType.test(p.type))
+      if (bridged.length === 1 && method.parameters.every((p) => p === bridged[0] || p.defaultValue !== undefined)) {
+        const parameter = bridged[0]
+        const kind = parameter.type.includes('Binding<Swift.Bool>')
+          ? 'bindingBoolean'
+          : parameter.type.includes('Binding<Swift.String>')
+            ? 'bindingString'
+            : 'event'
+        return [{ name, kind, type: parameter.type, label: parameter.label, ios: ios(method) }]
+      }
+      if (method.parameters.length !== 1 || method.parameters[0].label !== '_') return []
       const type = method.parameters[0].type
       const kind =
         type === 'Swift.Bool'
           ? 'boolean'
-          : ['Swift.Double', 'Swift.Float', 'Swift.Int', 'CoreFoundation.CGFloat'].includes(type)
+          : [
+                'Swift.Double',
+                'Swift.Float',
+                'Swift.Int',
+                'CoreFoundation.CGFloat',
+              ].includes(type)
             ? 'number'
             : type === 'Swift.String'
               ? 'string'
@@ -89,7 +139,9 @@ export function deriveViews(
         !d.generic &&
         /^[A-Z]/.test(d.name) &&
         !d.name.startsWith('Default') &&
-        d.inheritedTypes?.some((type) => type === 'SwiftUICore.View' || type === 'SwiftUI.View') &&
+        d.inheritedTypes?.some(
+          (type) => type === 'SwiftUICore.View' || type === 'SwiftUI.View'
+        ) &&
         present(d) &&
         ios(d) <= floor &&
         !existingNames.has(d.name)

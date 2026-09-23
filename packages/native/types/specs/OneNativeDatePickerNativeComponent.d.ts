@@ -43,6 +43,10 @@ interface NativeProps extends ViewProps {
     displayedComponents: string;
     datePickerStyle: string;
     swiftStyle?: OneNativeStyleNative;
+    onNativeSDKEvent?: DirectEventHandler<Readonly<{
+        name: string;
+        value: string;
+    }>>;
     onNativeDatePickerValueChange?: DirectEventHandler<Readonly<{
         value: Double;
         eventCount: Int32;
