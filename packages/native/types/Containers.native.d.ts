@@ -1,5 +1,5 @@
 import { type LazyHStackProps, type LazyVStackProps, type ListProps, type ScrollViewProps } from './listTypes';
-import { type ControlGroupProps, type DisclosureGroupProps, type DividerProps, type GroupProps, type LinkProps, type OverlayContentProps, type OverlayProps, type SwipeActionsActionsProps, type SwipeActionsProps } from './groupTypes';
+import { type ControlGroupProps, type DisclosureGroupProps, type DividerProps, type GroupProps, type LinkProps, type OverlayContentProps, type OverlayProps, type ViewSlotProps, type SwipeActionsActionsProps, type SwipeActionsProps } from './groupTypes';
 import { type ButtonProps, type FormProps, type GlassProps, type HostProps, type LabeledContentProps, type SectionProps, type SlotProps, type SpacerProps, type StackProps, type ZStackProps } from './generated/containerTypes';
 import { InsideContainer, assertOneNativeChildren } from './containerChildren';
 export { InsideContainer, assertOneNativeChildren };
@@ -25,6 +25,10 @@ export declare function Group({ children, style, ...props }: GroupProps): import
 export declare function OverlayContent({ children, style, ...props }: OverlayContentProps): import("react/jsx-runtime").JSX.Element;
 declare function OverlayFn({ alignment, children, style, ...props }: OverlayProps): import("react/jsx-runtime").JSX.Element;
 export declare const Overlay: typeof OverlayFn & {
+    Content: typeof OverlayContent;
+};
+declare function ViewSlotFn({ name, children, style, ...props }: ViewSlotProps): import("react/jsx-runtime").JSX.Element;
+export declare const ViewSlot: typeof ViewSlotFn & {
     Content: typeof OverlayContent;
 };
 export declare function SwipeActionsActions({ edge, allowsFullSwipe, children, style, ...props }: SwipeActionsActionsProps): import("react/jsx-runtime").JSX.Element;

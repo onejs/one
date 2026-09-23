@@ -8,7 +8,9 @@ export function emitStyle(
   derived: readonly DerivedModifier[],
   slots: readonly DerivedViewSlot[]
 ) {
-  outputs.set('src/generated/viewSlots.ts', header + `export const tabViewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.ios])))} as const
+  outputs.set('src/generated/viewSlots.ts', header + `export const viewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.ios])))} as const
+export type ViewSlotName = keyof typeof viewSlotAvailability
+export const tabViewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.filter((slot) => /^tabView[A-Z]/.test(slot.name)).map((slot) => [slot.name, slot.ios])))} as const
 export type TabViewSlotName = keyof typeof tabViewSlotAvailability
 `)
   outputs.set('ios/Generated/OneNativeViewSlots.swift', header + `import SwiftUI
@@ -22,7 +24,7 @@ extension View {
   func oneNativeViewSlot(_ name: String, content: @escaping () -> AnyView) -> AnyView {
     switch name {
 ${slots.map((slot) => `    case OneNativeViewSlotName.${slot.name}:
-      if #available(iOS ${slot.ios}, *) { return AnyView(self.${slot.name}(content: content)) }
+      if #available(iOS ${slot.ios}, *) { return AnyView(self.${slot.name}(${slot.label === '_' ? '' : `${slot.label}: `}content)) }
       return AnyView(self)`).join('\n')}
     default: preconditionFailure("unknown view slot: \\(name)")
     }

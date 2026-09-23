@@ -375,6 +375,9 @@
       "props": {
         "alignment": {
           "type": "string"
+        },
+        "slotName": {
+          "type": "string"
         }
       },
       "events": {},
