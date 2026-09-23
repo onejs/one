@@ -417,9 +417,12 @@ export interface OneNativeStyle {
   glassEffectTint?: ColorValue
   glassEffectShape?: GlassEffectShape
   material?: Material
+  accessibilityShowsLargeContentViewer?: boolean
   allowsHitTesting?: boolean
   allowsTightening?: boolean
+  allowsWindowActivationEvents?: boolean
   autocorrectionDisabled?: boolean
+  backgroundExtensionEffect?: boolean
   badge?: number
   badgeProminence?: SDKBadgeProminence
   baselineOffset?: number
@@ -429,8 +432,10 @@ export interface OneNativeStyle {
   buttonBorderShape?: SDKButtonBorderShape
   buttonRepeatBehavior?: SDKButtonRepeatBehavior
   buttonSizing?: SDKButtonSizing
+  colorInvert?: boolean
   colorMultiply?: SDKColorMultiply
   colorScheme?: SDKColorScheme
+  compositingGroup?: boolean
   contentTransition?: SDKContentTransition
   contrast?: number
   controlSize?: SDKControlSize
@@ -444,9 +449,11 @@ export interface OneNativeStyle {
   fileDialogCustomizationID?: string
   fileDialogImportsUnresolvedAliases?: boolean
   findDisabled?: boolean
+  fixedSize?: boolean
   flipsForRightToLeftLayoutDirection?: boolean
   focusable?: boolean
   focusEffectDisabled?: boolean
+  geometryGroup?: boolean
   glassEffectTransition?: SDKGlassEffectTransition
   grayscale?: number
   gridCellAnchor?: SDKGridCellAnchor
@@ -454,6 +461,7 @@ export interface OneNativeStyle {
   gridCellUnsizedAxes?: SDKGridCellUnsizedAxes
   gridColumnAlignment?: SDKGridColumnAlignment
   headerProminence?: SDKHeaderProminence
+  hidden?: boolean
   hoverEffect?: SDKHoverEffect
   hoverEffectDisabled?: boolean
   hueRotation?: SDKHueRotation
@@ -466,17 +474,20 @@ export interface OneNativeStyle {
   keyboardShortcut?: SDKKeyboardShortcut
   labelIconToTitleSpacing?: number
   labelReservedIconWidth?: number
+  labelsHidden?: boolean
   labelsVisibility?: SDKLabelsVisibility
   layoutDirectionBehavior?: SDKLayoutDirectionBehavior
   layoutPriority?: number
   lineSpacing?: number
   listSectionIndexVisibility?: SDKListSectionIndexVisibility
+  luminanceToAlpha?: boolean
   materialActiveAppearance?: SDKMaterialActiveAppearance
   menuActionDismissBehavior?: SDKMenuActionDismissBehavior
   menuIndicator?: SDKMenuIndicator
   menuOrder?: SDKMenuOrder
   minimumScaleFactor?: number
   monospaced?: boolean
+  monospacedDigit?: boolean
   moveDisabled?: boolean
   multilineTextAlignment?: SDKMultilineTextAlignment
   navigationBarBackButtonHidden?: boolean
@@ -484,6 +495,7 @@ export interface OneNativeStyle {
   navigationLinkIndicatorVisibility?: SDKNavigationLinkIndicatorVisibility
   navigationSplitViewColumnWidth?: number
   paletteSelectionEffect?: SDKPaletteSelectionEffect
+  payWithApplePayButtonDisableCardArt?: boolean
   persistentSystemOverlays?: SDKPersistentSystemOverlays
   presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction
   presentationCompactAdaptation?: SDKPresentationCompactAdaptation
@@ -492,9 +504,12 @@ export interface OneNativeStyle {
   presentationPlacement?: SDKPresentationPlacement
   previewInterfaceOrientation?: SDKPreviewInterfaceOrientation
   privacySensitive?: boolean
+  productIconBorder?: boolean
   replaceDisabled?: boolean
   safeAreaPadding?: number
   saturation?: number
+  scaledToFill?: boolean
+  scaledToFit?: boolean
   scenePadding?: SDKScenePadding
   scrollClipDisabled?: boolean
   scrollContentBackground?: SDKScrollContentBackground
@@ -514,6 +529,7 @@ export interface OneNativeStyle {
   statusBarHidden?: boolean
   submitLabel?: SDKSubmitLabel
   submitScope?: boolean
+  swipeActionsContainer?: boolean
   symbolEffectsRemoved?: boolean
   symbolVariant?: SDKSymbolVariant
   tabBarMinimizeBehavior?: SDKTabBarMinimizeBehavior
@@ -525,6 +541,7 @@ export interface OneNativeStyle {
   toolbarTitleDisplayMode?: SDKToolbarTitleDisplayMode
   tracking?: number
   transition?: SDKTransition
+  unredacted?: boolean
   windowToolbarFullScreenVisibility?: SDKWindowToolbarFullScreenVisibility
   writingToolsAffordanceVisibility?: SDKWritingToolsAffordanceVisibility
   writingToolsBehavior?: SDKWritingToolsBehavior

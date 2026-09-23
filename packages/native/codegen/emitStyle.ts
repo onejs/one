@@ -11,6 +11,11 @@ export function emitStyle(
   // config; a color inside a struct prop reaches the native parser raw, and it reads an
   // unprocessed string as clear. every swiftStyle color is processed on the way out.
   const colorFields = styleFields.filter((field) => field.kind === 'color')
+  const frameworkImports = [
+    ...new Set(
+      derived.flatMap((modifier) => (modifier.framework ? [modifier.framework] : []))
+    ),
+  ]
   const generatedCalls = derived
     .map(
       (modifier) =>
@@ -24,6 +29,12 @@ export function emitStyle(
         version > 17
           ? `if #available(iOS ${version}, *) { self.${modifier.name}(${value}) } else { self }`
           : `self.${modifier.name}(${value})`
+      if (modifier.zeroArgument) {
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")
+    if value == "true" { ${apply('', modifier.ios)} } else { self }
+  }`
+      }
       if (modifier.cases) {
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String) -> some View {
     switch value {
@@ -137,6 +148,7 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
     header +
       `import SwiftUI
 import UIKit
+${frameworkImports.map((framework) => `import ${framework}`).join('\n')}
 
 public struct OneNativeStyle: Equatable {
 ${properties}

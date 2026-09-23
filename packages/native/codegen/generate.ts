@@ -62,7 +62,10 @@ const controls = [
     ])
   ),
 ]
-const derivedModifiers = deriveModifiers(inventory, MAXIMUM_IOS, styleFields)
+const derivedModifiers = deriveModifiers(inventory, MAXIMUM_IOS, [
+  ...styleFields,
+  ...styleModifiers,
+])
 const sdkVersion = run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version'])
 if (Number(sdkVersion.split('.')[0]) < MAXIMUM_IOS)
   throw new Error(
@@ -93,8 +96,8 @@ for (const modifier of derivedModifiers) {
     (d) =>
       d.kind === 'func' &&
       d.name === modifier.name &&
-      d.parameters.length === 1 &&
-      d.parameters[0].type === modifier.type &&
+      d.parameters.length === (modifier.zeroArgument ? 0 : 1) &&
+      (modifier.zeroArgument || d.parameters[0].type === modifier.type) &&
       d.owner.split('.').at(-1) === 'View'
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${modifier.name}`)
@@ -319,7 +322,9 @@ for (const component of components) {
       Object.values(fields as Record<string, string>)
     ),
   ].join(' ')
-  const numeric = ['Double', 'Float'].filter((type) => new RegExp(`\\b${type}\\b`).test(usedTypes))
+  const numeric = ['Double', 'Float'].filter((type) =>
+    new RegExp(`\\b${type}\\b`).test(usedTypes)
+  )
   outputs.set(
     `src/specs/${component.name}NativeComponent.ts`,
     header +
@@ -680,7 +685,9 @@ for (const [path, source] of outputs) {
         console.error(
           'SwiftUI manifest fields differ: ' +
             [...new Set([...Object.keys(previous), ...Object.keys(next)])]
-              .filter((key) => JSON.stringify(previous[key]) !== JSON.stringify(next[key]))
+              .filter(
+                (key) => JSON.stringify(previous[key]) !== JSON.stringify(next[key])
+              )
               .join(', ')
         )
       }
