@@ -10,6 +10,7 @@ export default function NativeAutogenProof() {
   const [fieldText, setFieldText] = useState('')
   const [tapPoint, setTapPoint] = useState<{ x: number; y: number } | null>(null)
   const [scrollPosition, setScrollPosition] = useState<string | null>(null)
+  const [visibleTargets, setVisibleTargets] = useState<readonly string[]>([])
   return (
     <Swift.Tabs
       selection={selection}
@@ -35,7 +36,10 @@ export default function NativeAutogenProof() {
             <Swift.Button label="Scroll generated position" onPress={() => setScrollPosition('row-12')} />
             <Swift.ScrollView
               style={{ height: 100 }}
-              swiftStyle={{ scrollPosition: { value: scrollPosition, onChange: setScrollPosition } }}
+              swiftStyle={{
+                scrollPosition: { value: scrollPosition, onChange: setScrollPosition },
+                onScrollTargetVisibilityChange: setVisibleTargets,
+              }}
             >
               {Array.from({ length: 12 }, (_, index) => (
                 <Swift.Text
@@ -45,6 +49,7 @@ export default function NativeAutogenProof() {
                 />
               ))}
             </Swift.ScrollView>
+            <Swift.Text text={visibleTargets.includes('row-12') ? 'Generated last target visible' : 'Generated last target hidden'} />
             <Swift.ViewSlot name="contextMenu">
               <Swift.Text text="Hold for a generated context menu" />
               <Swift.ViewSlot.Content>

@@ -278,6 +278,7 @@ const sdkKinds = {
   onPencilDoubleTap: 'eventStruct',
   onPencilSqueeze: 'eventAssociatedEnum',
   onScrollPhaseChange: 'eventEnumPair',
+  onScrollTargetVisibilityChange: 'eventStruct',
   onScrollVisibilityChange: 'eventBoolean',
   onSubmit: 'event',
   onTapGestureWithPerform: 'eventStruct',
@@ -441,7 +442,7 @@ const sdkEventCases: Record<string, readonly string[]> = {
 type SDKEventValueShape =
   | { kind: 'number' | 'string' | 'boolean' | 'point' }
   | { kind: 'enum'; cases: readonly string[] }
-  | { kind: 'optional'; value: SDKEventValueShape }
+  | { kind: 'optional' | 'array'; value: SDKEventValueShape }
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
 const sdkAssociatedCases: Record<
   string,
@@ -625,6 +626,7 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
       },
     ],
   },
+  onScrollTargetVisibilityChange: { kind: 'array', value: { kind: 'string' } },
   onTapGestureWithPerform: { kind: 'point' },
 }
 const sdkRecords: Record<
@@ -1007,6 +1009,10 @@ const sdkRecords: Record<
 function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
   if (shape.kind === 'optional')
     return value === null || validSDKEventValue(value, shape.value)
+  if (shape.kind === 'array')
+    return (
+      Array.isArray(value) && value.every((item) => validSDKEventValue(item, shape.value))
+    )
   if (shape.kind === 'number') return typeof value === 'number' && Number.isFinite(value)
   if (shape.kind === 'string' || shape.kind === 'boolean')
     return typeof value === shape.kind

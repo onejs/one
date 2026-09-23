@@ -861,6 +861,7 @@ export interface OneNativeStyle {
         values: readonly [];
     }) => void;
     onScrollPhaseChange?: (oldValue: 'idle' | 'tracking' | 'interacting' | 'decelerating' | 'animating', newValue: 'idle' | 'tracking' | 'interacting' | 'decelerating' | 'animating') => void;
+    onScrollTargetVisibilityChange?: (value: readonly string[]) => void;
     onScrollVisibilityChange?: (value: boolean) => void;
     onSubmit?: () => void;
     onTapGestureWithPerform?: (value: {

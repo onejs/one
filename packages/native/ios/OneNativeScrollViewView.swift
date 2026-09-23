@@ -21,6 +21,7 @@ private struct ScrollViewContent: View {
   var body: some View {
     ScrollView(axes, showsIndicators: model.showsIndicators) {
       ForEach(children.items) { child in child.content }
+        .scrollTargetLayout()
     }
     .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
     .oneNativeScheme(standalone, bridge.scheme)
