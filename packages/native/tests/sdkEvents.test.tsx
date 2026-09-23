@@ -16,18 +16,23 @@ describe('SDK callback and binding transport', () => {
   it('passes values to Swift and dispatches native events to the current callbacks', () => {
     const appeared = vi.fn()
     const onChange = vi.fn()
+    const onHover = vi.fn()
     const swiftStyle = {
       onAppear: appeared,
+      onHover,
       findNavigator: { value: false, onChange },
     }
     const element = Controls.Text({ text: 'example', swiftStyle })
     expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
       ['onAppear', ''],
+      ['onHover', ''],
       ['findNavigator', 'false'],
     ])
     element.props.onNativeSDKEvent({ nativeEvent: { name: 'onAppear', value: '' } })
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'onHover', value: 'true' } })
     element.props.onNativeSDKEvent({ nativeEvent: { name: 'findNavigator', value: 'true' } })
     expect(appeared).toHaveBeenCalledOnce()
+    expect(onHover).toHaveBeenCalledWith(true)
     expect(onChange).toHaveBeenCalledWith(true)
   })
 })

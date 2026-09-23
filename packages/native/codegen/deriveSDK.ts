@@ -1,11 +1,13 @@
 import { ios, present, type Declaration } from './inventory'
 import type { Control } from './controlTypes'
 
-const eventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> Swift\.Void\)\?$|^SwiftUICore\.Binding<Swift\.(?:Bool|String)>$/
+const emptyEventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> Swift\.Void\)\?$|^SwiftUICore\.Binding<Swift\.(?:Bool|String)>$/
+const scalarCallbackType = /^(?:@escaping )?\((?:_ [A-Za-z]\w*: )?(Swift\.(?:Bool|String|Int|Float|Double)|CoreFoundation\.CGFloat|Foundation\.URL)\) -> (?:Swift\.Void|\(\))$/
+const eventOrBindingType = (type: string) => emptyEventOrBindingType.test(type) || scalarCallbackType.test(type)
 
 export type DerivedModifier = {
   name: string
-  kind: 'boolean' | 'number' | 'string' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalEnum' | 'event' | 'bindingBoolean' | 'bindingString'
+  kind: 'boolean' | 'number' | 'string' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalEnum' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'bindingBoolean' | 'bindingString'
   ios: number
   type: string
   cases?: readonly { name: string; ios: number }[]
@@ -47,7 +49,7 @@ export function deriveModifiers(
       (d.parameters.length === 0 ||
         d.parameters.length === 1 ||
         (d.parameters.length > 0 && d.parameters.every((p) => p.defaultValue !== undefined ||
-          eventOrBindingType.test(p.type)))) &&
+          eventOrBindingType(p.type)))) &&
       !d.requirements?.length &&
       present(d) &&
       ios(d) <= ceiling &&
@@ -73,14 +75,21 @@ export function deriveModifiers(
             ...framework,
           },
         ]
-      const bridged = method.parameters.filter((p) => eventOrBindingType.test(p.type))
+      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type))
       if (bridged.length === 1 && method.parameters.every((p) => p === bridged[0] || p.defaultValue !== undefined)) {
         const parameter = bridged[0]
+        const callbackValue = scalarCallbackType.exec(parameter.type)?.[1]
         const kind = parameter.type.includes('Binding<Swift.Bool>')
           ? 'bindingBoolean'
           : parameter.type.includes('Binding<Swift.String>')
             ? 'bindingString'
-            : 'event'
+            : callbackValue === 'Swift.Bool'
+              ? 'eventBoolean'
+              : callbackValue === 'Swift.String' || callbackValue === 'Foundation.URL'
+                ? 'eventString'
+                : callbackValue
+                  ? 'eventNumber'
+                  : 'event'
         return [{
           name, kind, type: parameter.type, label: parameter.label, ios: ios(method), ...framework,
           ...(method.parameters.length > 1 ? {
