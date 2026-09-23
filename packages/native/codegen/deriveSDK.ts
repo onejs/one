@@ -5,7 +5,7 @@ const eventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> S
 
 export type DerivedModifier = {
   name: string
-  kind: 'boolean' | 'number' | 'string' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'event' | 'bindingBoolean' | 'bindingString'
+  kind: 'boolean' | 'number' | 'string' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalEnum' | 'event' | 'bindingBoolean' | 'bindingString'
   ios: number
   type: string
   cases?: readonly { name: string; ios: number }[]
@@ -41,7 +41,7 @@ export function deriveModifiers(
       d.kind === 'func' &&
       (d.module === 'SwiftUI' ||
         d.module === 'SwiftUICore' ||
-        (d.parameters.length === 0 && /^_[A-Za-z]+_SwiftUI$/.test(d.module))) &&
+        /^_[A-Za-z]+_SwiftUI$/.test(d.module)) &&
       d.owner.split('.').at(-1) === 'View' &&
       /^[a-z]/.test(d.name) &&
       (d.parameters.length === 0 ||
@@ -59,6 +59,9 @@ export function deriveModifiers(
   const result: DerivedModifier[] = []
   for (const [name, overloads] of byName) {
     const candidates = overloads.flatMap((method): DerivedModifier[] => {
+      const framework = method.module.startsWith('_')
+        ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
+        : {}
       if (method.parameters.length === 0)
         return [
           {
@@ -67,9 +70,7 @@ export function deriveModifiers(
             type: '',
             ios: ios(method),
             zeroArgument: true,
-            ...(method.module.startsWith('_')
-              ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
-              : {}),
+            ...framework,
           },
         ]
       const bridged = method.parameters.filter((p) => eventOrBindingType.test(p.type))
@@ -81,7 +82,7 @@ export function deriveModifiers(
             ? 'bindingString'
             : 'event'
         return [{
-          name, kind, type: parameter.type, label: parameter.label, ios: ios(method),
+          name, kind, type: parameter.type, label: parameter.label, ios: ios(method), ...framework,
           ...(method.parameters.length > 1 ? {
             callArguments: method.parameters.map((p) =>
               p === parameter ? { label: p.label, bridge: true as const } : { label: p.label, defaultValue: p.defaultValue }
@@ -107,18 +108,20 @@ export function deriveModifiers(
               : undefined
       if (baseKind) {
         const kind = type.endsWith('?') ? `optional${baseKind[0].toUpperCase()}${baseKind.slice(1)}` as DerivedModifier['kind'] : baseKind
-        return [{ name, kind, type, ios: ios(method), ...(label === '_' ? {} : { label }) }]
+        return [{ name, kind, type, ios: ios(method), ...framework, ...(label === '_' ? {} : { label }) }]
       }
-      if (!/^(SwiftUI|SwiftUICore)\.[A-Za-z][\w.]*$/.test(type)) return []
-      const [module, ...owner] = type.split('.')
+      const enumType = type.replace(/\?$/, '')
+      if (!/^[A-Za-z_][\w]*\.[A-Za-z][\w.]*$/.test(enumType)) return []
+      const [module, ...owner] = enumType.split('.')
       const cases = inventory
         .filter(
           (d) =>
             d.module === module &&
-            (d.owner === owner.join('.') || d.owner === type) &&
+            (d.owner === owner.join('.') || d.owner === enumType) &&
             d.kind === 'static' &&
+            d.parameters.length === 0 &&
             (d.type?.replace('?', '') === owner.join('.') ||
-              d.type?.replace('?', '') === type) &&
+              d.type?.replace('?', '') === enumType) &&
             /^[a-z]/.test(d.name) &&
             present(d) &&
             ios(d) <= ceiling
@@ -126,7 +129,7 @@ export function deriveModifiers(
         .map((d) => ({ name: d.name, ios: ios(d) }))
       if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length)
         return []
-      return [{ name, kind: 'string', type, ios: ios(method), cases, ...(label === '_' ? {} : { label }) }]
+      return [{ name, kind: type.endsWith('?') ? 'optionalEnum' : 'string', type, ios: ios(method), cases, ...framework, ...(label === '_' ? {} : { label }) }]
     })
     // overloads with the same public name need a semantic choice. neither their
     // order in the SDK nor a guessed preferred type is a sound contract.
