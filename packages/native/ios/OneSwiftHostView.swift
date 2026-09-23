@@ -4,6 +4,7 @@ import UIKit
 private final class SwiftHostModel: ObservableObject {
   @Published var packageName = ""
   @Published var props: JSON = .null
+  @Published var fill = false
   var onHeight: ((CGFloat) -> Void)?
 }
 
@@ -22,7 +23,8 @@ private struct SwiftHostContent: View {
           .foregroundStyle(.red)
       }
     }
-    .oneNativeMeasured(standalone, model.onHeight)
+    .frame(maxWidth: model.fill ? .infinity : nil, maxHeight: model.fill ? .infinity : nil)
+    .oneNativeMeasured(standalone && !model.fill, model.onHeight)
   }
 }
 
@@ -43,8 +45,9 @@ public final class OneSwiftHostView: OneNativeContainerView {
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
-  public func configure(packageName: String, props: String) {
+  public func configure(packageName: String, props: String, fill: Bool) {
     if model.packageName != packageName { model.packageName = packageName }
+    if model.fill != fill { model.fill = fill }
     if propsText != props {
       propsText = props
       model.props = JSON(parsing: props)
