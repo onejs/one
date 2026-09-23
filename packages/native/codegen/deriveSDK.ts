@@ -68,7 +68,8 @@ export function deriveModifiers(
         d.module === module &&
         (d.owner === owner.join('.') || d.owner === baseType) &&
         d.kind === 'static' && d.parameters.length === 0 &&
-        (d.type?.replace('?', '') === owner.join('.') || d.type?.replace('?', '') === baseType) &&
+        (d.type?.replace('?', '') === owner.join('.') || d.type?.replace('?', '') === baseType ||
+          d.type?.replace('?', '') === owner.at(-1)) &&
         /^[a-z]/.test(d.name) && present(d) && ios(d) <= ceiling
       )
       .map((d) => ({ name: d.name, ios: ios(d) }))
