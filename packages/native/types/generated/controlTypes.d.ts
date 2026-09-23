@@ -15,12 +15,16 @@ export declare const sdkAccessibilityActivationPointWithUnitPointValues: readonl
 export type SDKAccessibilityActivationPointWithUnitPoint = (typeof sdkAccessibilityActivationPointWithUnitPointValues)[number];
 export declare const sdkAccessibilityAddTraitsValues: readonly ['isButton', 'isHeader', 'isSelected', 'isLink', 'isSearchField', 'isImage', 'playsSound', 'isKeyboardKey', 'isStaticText', 'isSummaryElement', 'updatesFrequently', 'startsMediaSession', 'allowsDirectInteraction', 'causesPageTurn', 'isModal', 'isToggle', 'isTabBar'];
 export type SDKAccessibilityAddTraits = (typeof sdkAccessibilityAddTraitsValues)[number];
+export declare const sdkAccessibilityAdjustableActionValues: readonly ['increment', 'decrement'];
+export type SDKAccessibilityAdjustableAction = (typeof sdkAccessibilityAdjustableActionValues)[number];
 export declare const sdkAccessibilityElementValues: readonly ['ignore', 'contain', 'combine'];
 export type SDKAccessibilityElement = (typeof sdkAccessibilityElementValues)[number];
 export declare const sdkAccessibilityHeadingValues: readonly ['unspecified', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 export type SDKAccessibilityHeading = (typeof sdkAccessibilityHeadingValues)[number];
 export declare const sdkAccessibilityRemoveTraitsValues: readonly ['isButton', 'isHeader', 'isSelected', 'isLink', 'isSearchField', 'isImage', 'playsSound', 'isKeyboardKey', 'isStaticText', 'isSummaryElement', 'updatesFrequently', 'startsMediaSession', 'allowsDirectInteraction', 'causesPageTurn', 'isModal', 'isToggle', 'isTabBar'];
 export type SDKAccessibilityRemoveTraits = (typeof sdkAccessibilityRemoveTraitsValues)[number];
+export declare const sdkAccessibilityScrollActionValues: readonly ['top', 'leading', 'bottom', 'trailing'];
+export type SDKAccessibilityScrollAction = (typeof sdkAccessibilityScrollActionValues)[number];
 export declare const sdkAccessibilityTextContentTypeValues: readonly ['plain', 'console', 'fileSystem', 'messaging', 'narrative', 'sourceCode', 'spreadsheet', 'wordProcessing'];
 export type SDKAccessibilityTextContentType = (typeof sdkAccessibilityTextContentTypeValues)[number];
 export declare const sdkAccessibilityWithActivationPointValues: readonly ['zero', 'center', 'leading', 'trailing', 'top', 'bottom', 'topLeading', 'topTrailing', 'bottomLeading', 'bottomTrailing'];
@@ -157,6 +161,8 @@ export declare const sdkNavigationSplitViewStyleValues: readonly ['balanced', 'p
 export type SDKNavigationSplitViewStyle = (typeof sdkNavigationSplitViewStyleValues)[number];
 export declare const sdkNavigationViewStyleValues: readonly ['columns', 'automatic', 'stack'];
 export type SDKNavigationViewStyle = (typeof sdkNavigationViewStyleValues)[number];
+export declare const sdkOnScrollPhaseChangeValues: readonly ['idle', 'tracking', 'interacting', 'decelerating', 'animating'];
+export type SDKOnScrollPhaseChange = (typeof sdkOnScrollPhaseChangeValues)[number];
 export declare const sdkPaletteSelectionEffectValues: readonly ['automatic', 'custom'];
 export type SDKPaletteSelectionEffect = (typeof sdkPaletteSelectionEffectValues)[number];
 export declare const sdkPayLaterViewActionValues: readonly ['learnMore', 'calculator'];
@@ -325,6 +331,7 @@ export interface OneNativeStyle {
     }>;
     accessibilityActivationPointWithUnitPoint?: SDKAccessibilityActivationPointWithUnitPoint;
     accessibilityAddTraits?: SDKAccessibilityAddTraits;
+    accessibilityAdjustableAction?: (value: 'increment' | 'decrement') => void;
     accessibilityDirectTouch?: Readonly<{
         isDirectTouchArea: boolean;
         options: 'silentOnTouch' | 'requiresActivation';
@@ -376,6 +383,7 @@ export interface OneNativeStyle {
         respondsToUserInteraction: boolean;
         isEnabled: boolean;
     }>;
+    accessibilityScrollAction?: (value: 'top' | 'leading' | 'bottom' | 'trailing') => void;
     accessibilityScrollStatus?: Readonly<{
         status: string;
         isEnabled: boolean;
@@ -682,6 +690,7 @@ export interface OneNativeStyle {
     onMapCameraChange?: () => void;
     onOpenURLWithPerform?: (value: string) => void;
     onOpenURLWithPrefersInApp?: boolean;
+    onScrollPhaseChange?: (oldValue: 'idle' | 'tracking' | 'interacting' | 'decelerating' | 'animating', newValue: 'idle' | 'tracking' | 'interacting' | 'decelerating' | 'animating') => void;
     onScrollVisibilityChange?: (value: boolean) => void;
     onSubmit?: () => void;
     onTapGesture?: () => void;

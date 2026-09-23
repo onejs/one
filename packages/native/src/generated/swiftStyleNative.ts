@@ -49,6 +49,7 @@ const sdkKinds = {
   accessibilityActivationPointWithActivationPointAndIsEnabled: 'record',
   accessibilityActivationPointWithUnitPoint: 'string',
   accessibilityAddTraits: 'string',
+  accessibilityAdjustableAction: 'eventEnum',
   accessibilityDirectTouch: 'record',
   accessibilityDragPointWithPointAndDescription: 'record',
   accessibilityDragPointWithPointAndDescriptionAndIsEnabled: 'record',
@@ -69,6 +70,7 @@ const sdkKinds = {
   accessibilityRespondsToUserInteractionWithBool: 'boolean',
   accessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled:
     'record',
+  accessibilityScrollAction: 'eventEnum',
   accessibilityScrollStatus: 'record',
   accessibilityShowsLargeContentViewer: 'boolean',
   accessibilitySortPriority: 'number',
@@ -259,6 +261,7 @@ const sdkKinds = {
   onMapCameraChange: 'event',
   onOpenURLWithPerform: 'eventString',
   onOpenURLWithPrefersInApp: 'boolean',
+  onScrollPhaseChange: 'eventEnumPair',
   onScrollVisibilityChange: 'eventBoolean',
   onSubmit: 'event',
   onTapGesture: 'event',
@@ -394,6 +397,11 @@ const sdkKinds = {
   writingToolsBehavior: 'string',
   zIndex: 'number',
 } as const
+const sdkEventCases: Record<string, readonly string[]> = {
+  accessibilityAdjustableAction: ['increment', 'decrement'],
+  accessibilityScrollAction: ['top', 'leading', 'bottom', 'trailing'],
+  onScrollPhaseChange: ['idle', 'tracking', 'interacting', 'decelerating', 'animating'],
+}
 const sdkRecords: Record<
   string,
   readonly { field: string; kind: string; optional: boolean }[]
@@ -806,7 +814,23 @@ export function dispatchSDKEvent(
     ;(modifier as ((value: number) => void) | undefined)?.(number)
   } else if (kind === 'eventString')
     (modifier as ((value: string) => void) | undefined)?.(value)
-  else if (kind === 'bindingBoolean')
+  else if (kind === 'eventEnum') {
+    if (!sdkEventCases[name].includes(value))
+      throw new Error(name + ' emitted an invalid enum value')
+    ;(modifier as ((value: string) => void) | undefined)?.(value)
+  } else if (kind === 'eventEnumPair') {
+    const pair: unknown = JSON.parse(value)
+    if (
+      !Array.isArray(pair) ||
+      pair.length !== 2 ||
+      pair.some((item) => typeof item !== 'string' || !sdkEventCases[name].includes(item))
+    )
+      throw new Error(name + ' emitted invalid enum values')
+    ;(modifier as ((oldValue: string, newValue: string) => void) | undefined)?.(
+      pair[0],
+      pair[1]
+    )
+  } else if (kind === 'bindingBoolean')
     (modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(
       value === 'true'
     )

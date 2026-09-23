@@ -75,6 +75,9 @@ export const sdkAccessibilityAddTraitsValues = [
   'isTabBar',
 ] as const
 export type SDKAccessibilityAddTraits = (typeof sdkAccessibilityAddTraitsValues)[number]
+export const sdkAccessibilityAdjustableActionValues = ['increment', 'decrement'] as const
+export type SDKAccessibilityAdjustableAction =
+  (typeof sdkAccessibilityAdjustableActionValues)[number]
 export const sdkAccessibilityElementValues = ['ignore', 'contain', 'combine'] as const
 export type SDKAccessibilityElement = (typeof sdkAccessibilityElementValues)[number]
 export const sdkAccessibilityHeadingValues = [
@@ -108,6 +111,14 @@ export const sdkAccessibilityRemoveTraitsValues = [
 ] as const
 export type SDKAccessibilityRemoveTraits =
   (typeof sdkAccessibilityRemoveTraitsValues)[number]
+export const sdkAccessibilityScrollActionValues = [
+  'top',
+  'leading',
+  'bottom',
+  'trailing',
+] as const
+export type SDKAccessibilityScrollAction =
+  (typeof sdkAccessibilityScrollActionValues)[number]
 export const sdkAccessibilityTextContentTypeValues = [
   'plain',
   'console',
@@ -636,6 +647,14 @@ export type SDKNavigationSplitViewStyle =
   (typeof sdkNavigationSplitViewStyleValues)[number]
 export const sdkNavigationViewStyleValues = ['columns', 'automatic', 'stack'] as const
 export type SDKNavigationViewStyle = (typeof sdkNavigationViewStyleValues)[number]
+export const sdkOnScrollPhaseChangeValues = [
+  'idle',
+  'tracking',
+  'interacting',
+  'decelerating',
+  'animating',
+] as const
+export type SDKOnScrollPhaseChange = (typeof sdkOnScrollPhaseChangeValues)[number]
 export const sdkPaletteSelectionEffectValues = ['automatic', 'custom'] as const
 export type SDKPaletteSelectionEffect = (typeof sdkPaletteSelectionEffectValues)[number]
 export const sdkPayLaterViewActionValues = ['learnMore', 'calculator'] as const
@@ -1070,6 +1089,7 @@ export interface OneNativeStyle {
   }>
   accessibilityActivationPointWithUnitPoint?: SDKAccessibilityActivationPointWithUnitPoint
   accessibilityAddTraits?: SDKAccessibilityAddTraits
+  accessibilityAdjustableAction?: (value: 'increment' | 'decrement') => void
   accessibilityDirectTouch?: Readonly<{
     isDirectTouchArea: boolean
     options: 'silentOnTouch' | 'requiresActivation'
@@ -1158,6 +1178,7 @@ export interface OneNativeStyle {
     respondsToUserInteraction: boolean
     isEnabled: boolean
   }>
+  accessibilityScrollAction?: (value: 'top' | 'leading' | 'bottom' | 'trailing') => void
   accessibilityScrollStatus?: Readonly<{ status: string; isEnabled: boolean }>
   accessibilityShowsLargeContentViewer?: boolean
   accessibilitySortPriority?: number
@@ -1583,6 +1604,10 @@ export interface OneNativeStyle {
   onMapCameraChange?: () => void
   onOpenURLWithPerform?: (value: string) => void
   onOpenURLWithPrefersInApp?: boolean
+  onScrollPhaseChange?: (
+    oldValue: 'idle' | 'tracking' | 'interacting' | 'decelerating' | 'animating',
+    newValue: 'idle' | 'tracking' | 'interacting' | 'decelerating' | 'animating'
+  ) => void
   onScrollVisibilityChange?: (value: boolean) => void
   onSubmit?: () => void
   onTapGesture?: () => void

@@ -205,6 +205,20 @@ describe('SDK modifier derivation', () => {
       { name: 'subscriptionStoreSignInAction', kind: 'event', type: '(() -> ())?', label: '_', ios: 0, framework: 'StoreKit' },
     ])
   })
+
+  it('derives enum callback payloads from SDK cases', () => {
+    expect(deriveModifiers([
+      method('accessibilityAdjustableAction', 'SwiftUI', [{ label: '_', name: 'handler', type: '@escaping (SwiftUICore.AccessibilityAdjustmentDirection) -> Swift.Void' }]),
+      method('onScrollPhaseChange', 'SwiftUI', [{ label: '_', name: 'action', type: '@escaping (_ oldPhase: SwiftUICore.ScrollPhase, _ newPhase: SwiftUICore.ScrollPhase) -> Swift.Void' }]),
+      { ...method('increment', 'SwiftUICore'), kind: 'static', owner: 'AccessibilityAdjustmentDirection', type: 'AccessibilityAdjustmentDirection' },
+      { ...method('decrement', 'SwiftUICore'), kind: 'static', owner: 'AccessibilityAdjustmentDirection', type: 'AccessibilityAdjustmentDirection' },
+      { ...method('idle', 'SwiftUICore'), kind: 'static', owner: 'ScrollPhase', type: 'ScrollPhase' },
+      { ...method('tracking', 'SwiftUICore'), kind: 'static', owner: 'ScrollPhase', type: 'ScrollPhase' },
+    ], 27, [])).toEqual([
+      { name: 'accessibilityAdjustableAction', kind: 'eventEnum', type: '@escaping (SwiftUICore.AccessibilityAdjustmentDirection) -> Swift.Void', ios: 0, label: '_', cases: [{ name: 'increment', ios: 0 }, { name: 'decrement', ios: 0 }] },
+      { name: 'onScrollPhaseChange', kind: 'eventEnumPair', type: '@escaping (_ oldPhase: SwiftUICore.ScrollPhase, _ newPhase: SwiftUICore.ScrollPhase) -> Swift.Void', ios: 0, label: '_', cases: [{ name: 'idle', ios: 0 }, { name: 'tracking', ios: 0 }] },
+    ])
+  })
 })
 
 describe('SDK tab view slots', () => {

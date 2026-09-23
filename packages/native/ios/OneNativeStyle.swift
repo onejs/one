@@ -109,6 +109,7 @@ extension View {
       case "accessibilityActivationPointWithActivationPointAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityActivationPointWithActivationPointAndIsEnabled(value, emit: emit))
       case "accessibilityActivationPointWithUnitPoint": view = AnyView(view.oneNativeSDKAccessibilityActivationPointWithUnitPoint(value, emit: emit))
       case "accessibilityAddTraits": view = AnyView(view.oneNativeSDKAccessibilityAddTraits(value, emit: emit))
+      case "accessibilityAdjustableAction": view = AnyView(view.oneNativeSDKAccessibilityAdjustableAction(value, emit: emit))
       case "accessibilityDirectTouch": view = AnyView(view.oneNativeSDKAccessibilityDirectTouch(value, emit: emit))
       case "accessibilityDragPointWithPointAndDescription": view = AnyView(view.oneNativeSDKAccessibilityDragPointWithPointAndDescription(value, emit: emit))
       case "accessibilityDragPointWithPointAndDescriptionAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityDragPointWithPointAndDescriptionAndIsEnabled(value, emit: emit))
@@ -128,6 +129,7 @@ extension View {
       case "accessibilityRemoveTraits": view = AnyView(view.oneNativeSDKAccessibilityRemoveTraits(value, emit: emit))
       case "accessibilityRespondsToUserInteractionWithBool": view = AnyView(view.oneNativeSDKAccessibilityRespondsToUserInteractionWithBool(value, emit: emit))
       case "accessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled(value, emit: emit))
+      case "accessibilityScrollAction": view = AnyView(view.oneNativeSDKAccessibilityScrollAction(value, emit: emit))
       case "accessibilityScrollStatus": view = AnyView(view.oneNativeSDKAccessibilityScrollStatus(value, emit: emit))
       case "accessibilityShowsLargeContentViewer": view = AnyView(view.oneNativeSDKAccessibilityShowsLargeContentViewer(value, emit: emit))
       case "accessibilitySortPriority": view = AnyView(view.oneNativeSDKAccessibilitySortPriority(value, emit: emit))
@@ -318,6 +320,7 @@ extension View {
       case "onMapCameraChange": view = AnyView(view.oneNativeSDKOnMapCameraChange(value, emit: emit))
       case "onOpenURLWithPerform": view = AnyView(view.oneNativeSDKOnOpenURLWithPerform(value, emit: emit))
       case "onOpenURLWithPrefersInApp": view = AnyView(view.oneNativeSDKOnOpenURLWithPrefersInApp(value, emit: emit))
+      case "onScrollPhaseChange": view = AnyView(view.oneNativeSDKOnScrollPhaseChange(value, emit: emit))
       case "onScrollVisibilityChange": view = AnyView(view.oneNativeSDKOnScrollVisibilityChange(value, emit: emit))
       case "onSubmit": view = AnyView(view.oneNativeSDKOnSubmit(value, emit: emit))
       case "onTapGesture": view = AnyView(view.oneNativeSDKOnTapGesture(value, emit: emit))
@@ -748,6 +751,10 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityAdjustableAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.accessibilityAdjustableAction({ value in emit("accessibilityAdjustableAction", String(describing: value)) })
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityDirectTouch(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -1085,6 +1092,10 @@ extension View {
     }()
     self.accessibilityRespondsToUserInteraction(argument0, isEnabled: argument1)
     } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityScrollAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.accessibilityScrollAction({ value in emit("accessibilityScrollAction", String(describing: value)) })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityScrollStatus(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -3331,6 +3342,13 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKOnOpenURLWithPrefersInApp(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid onOpenURLWithPrefersInApp: \(value)")
       if #available(iOS 26, *) { self.onOpenURL(prefersInApp: value == "true") } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnScrollPhaseChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) { self.onScrollPhaseChange({ oldValue, newValue in
+      if let data = try? JSONEncoder().encode([String(describing: oldValue), String(describing: newValue)]),
+        let payload = String(data: data, encoding: .utf8) { emit("onScrollPhaseChange", payload) }
+    }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnScrollVisibilityChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

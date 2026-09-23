@@ -117,6 +117,13 @@ ${parsedArguments}
         const bridge = modifier.kind.startsWith('event')
           ? modifier.kind === 'event'
             ? `{ emit(${JSON.stringify(modifier.name)}, "") }`
+            : modifier.kind === 'eventEnum'
+              ? `{ value in emit(${JSON.stringify(modifier.name)}, String(describing: value)) }`
+              : modifier.kind === 'eventEnumPair'
+                ? `{ oldValue, newValue in
+      if let data = try? JSONEncoder().encode([String(describing: oldValue), String(describing: newValue)]),
+        let payload = String(data: data, encoding: .utf8) { emit(${JSON.stringify(modifier.name)}, payload) }
+    }`
             : `{ value in emit(${JSON.stringify(modifier.name)}, ${modifier.type.includes('Foundation.URL') ? 'value.absoluteString' : 'String(value)'}) }`
           : `Binding(get: { ${modifier.kind === 'bindingBoolean' ? 'value == "true"' : 'value'} }, set: { emit(${JSON.stringify(modifier.name)}, String($0)) })`
         const validation = modifier.kind === 'bindingBoolean'
@@ -215,6 +222,7 @@ ${styleFields
 
 const colorFields = [${colorFields.map((field) => `'${field.name}'`).join(', ')}] as const
 const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [modifier.name, modifier.kind])))} as const
+const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
 const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional }) => ({ field, kind, optional }))])))}
 
 export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeStyleNative | undefined {
@@ -278,6 +286,16 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
     ;(modifier as ((value: number) => void) | undefined)?.(number)
   }
   else if (kind === 'eventString') (modifier as ((value: string) => void) | undefined)?.(value)
+  else if (kind === 'eventEnum') {
+    if (!sdkEventCases[name].includes(value)) throw new Error(name + ' emitted an invalid enum value')
+    ;(modifier as ((value: string) => void) | undefined)?.(value)
+  }
+  else if (kind === 'eventEnumPair') {
+    const pair: unknown = JSON.parse(value)
+    if (!Array.isArray(pair) || pair.length !== 2 || pair.some((item) => typeof item !== 'string' || !sdkEventCases[name].includes(item)))
+      throw new Error(name + ' emitted invalid enum values')
+    ;(modifier as ((oldValue: string, newValue: string) => void) | undefined)?.(pair[0], pair[1])
+  }
   else if (kind === 'bindingBoolean') (modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(value === 'true')
   else if (kind === 'bindingString') (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
 }
