@@ -188,6 +188,7 @@ extension View {
       case "containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment": view = AnyView(view.oneNativeSDKContainerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment(value, emit: emit))
       case "contentMarginsWithEdgesAndLengthAndPlacement": view = AnyView(view.oneNativeSDKContentMarginsWithEdgesAndLengthAndPlacement(value, emit: emit))
       case "contentMarginsWithLengthAndPlacement": view = AnyView(view.oneNativeSDKContentMarginsWithLengthAndPlacement(value, emit: emit))
+      case "contentShape": view = AnyView(view.oneNativeSDKContentShape(value, emit: emit))
       case "contentTransition": view = AnyView(view.oneNativeSDKContentTransition(value, emit: emit))
       case "contrast": view = AnyView(view.oneNativeSDKContrast(value, emit: emit))
       case "controlGroupStyle": view = AnyView(view.oneNativeSDKControlGroupStyle(value, emit: emit))
@@ -442,7 +443,9 @@ extension View {
       case "subscriptionStoreControlBackground": view = AnyView(view.oneNativeSDKSubscriptionStoreControlBackground(value, emit: emit))
       case "subscriptionStoreControlStyle": view = AnyView(view.oneNativeSDKSubscriptionStoreControlStyle(value, emit: emit))
       case "subscriptionStoreOptionGroupStyle": view = AnyView(view.oneNativeSDKSubscriptionStoreOptionGroupStyle(value, emit: emit))
+      case "subscriptionStorePickerItemBackground": view = AnyView(view.oneNativeSDKSubscriptionStorePickerItemBackground(value, emit: emit))
       case "subscriptionStorePolicyDestination": view = AnyView(view.oneNativeSDKSubscriptionStorePolicyDestination(value, emit: emit))
+      case "subscriptionStorePolicyForegroundStyle": view = AnyView(view.oneNativeSDKSubscriptionStorePolicyForegroundStyle(value, emit: emit))
       case "subscriptionStoreSignInAction": view = AnyView(view.oneNativeSDKSubscriptionStoreSignInAction(value, emit: emit))
       case "swipeActionsContainer": view = AnyView(view.oneNativeSDKSwipeActionsContainer(value, emit: emit))
       case "symbolColorRenderingMode": view = AnyView(view.oneNativeSDKSymbolColorRenderingMode(value, emit: emit))
@@ -1886,6 +1889,20 @@ extension View {
       }
     }()
     self.contentMargins(argument0, for: argument1)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKContentShape(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "buttonBorder": self.contentShape(.buttonBorder)
+      case "rect": self.contentShape(.rect)
+      case "capsule": self.contentShape(.capsule)
+      case "ellipse": self.contentShape(.ellipse)
+      case "circle": self.contentShape(.circle)
+      case "containerRelative": self.contentShape(.containerRelative)
+      case "textInputBorder": if #available(iOS 27, *) { self.contentShape(.textInputBorder) } else { self }
+    default: preconditionFailure("invalid contentShape: \(value)")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKContentTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4973,6 +4990,49 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKSubscriptionStorePickerItemBackground(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "placeholder": self.subscriptionStorePickerItemBackground(.placeholder)
+      case "link": self.subscriptionStorePickerItemBackground(.link)
+      case "selection": self.subscriptionStorePickerItemBackground(.selection)
+      case "windowBackground": self.subscriptionStorePickerItemBackground(.windowBackground)
+      case "fill": self.subscriptionStorePickerItemBackground(.fill)
+      case "regularMaterial": self.subscriptionStorePickerItemBackground(.regularMaterial)
+      case "thickMaterial": self.subscriptionStorePickerItemBackground(.thickMaterial)
+      case "thinMaterial": self.subscriptionStorePickerItemBackground(.thinMaterial)
+      case "ultraThinMaterial": self.subscriptionStorePickerItemBackground(.ultraThinMaterial)
+      case "ultraThickMaterial": self.subscriptionStorePickerItemBackground(.ultraThickMaterial)
+      case "bar": self.subscriptionStorePickerItemBackground(.bar)
+      case "primary": self.subscriptionStorePickerItemBackground(.primary)
+      case "secondary": self.subscriptionStorePickerItemBackground(.secondary)
+      case "tertiary": self.subscriptionStorePickerItemBackground(.tertiary)
+      case "quaternary": self.subscriptionStorePickerItemBackground(.quaternary)
+      case "quinary": self.subscriptionStorePickerItemBackground(.quinary)
+      case "red": self.subscriptionStorePickerItemBackground(.red)
+      case "orange": self.subscriptionStorePickerItemBackground(.orange)
+      case "yellow": self.subscriptionStorePickerItemBackground(.yellow)
+      case "green": self.subscriptionStorePickerItemBackground(.green)
+      case "mint": self.subscriptionStorePickerItemBackground(.mint)
+      case "teal": self.subscriptionStorePickerItemBackground(.teal)
+      case "cyan": self.subscriptionStorePickerItemBackground(.cyan)
+      case "blue": self.subscriptionStorePickerItemBackground(.blue)
+      case "indigo": self.subscriptionStorePickerItemBackground(.indigo)
+      case "purple": self.subscriptionStorePickerItemBackground(.purple)
+      case "pink": self.subscriptionStorePickerItemBackground(.pink)
+      case "brown": self.subscriptionStorePickerItemBackground(.brown)
+      case "white": self.subscriptionStorePickerItemBackground(.white)
+      case "gray": self.subscriptionStorePickerItemBackground(.gray)
+      case "black": self.subscriptionStorePickerItemBackground(.black)
+      case "clear": self.subscriptionStorePickerItemBackground(.clear)
+      case "separator": self.subscriptionStorePickerItemBackground(.separator)
+      case "background": self.subscriptionStorePickerItemBackground(.background)
+      case "foreground": self.subscriptionStorePickerItemBackground(.foreground)
+      case "tint": self.subscriptionStorePickerItemBackground(.tint)
+    default: preconditionFailure("invalid subscriptionStorePickerItemBackground: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStorePolicyDestination(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -4994,6 +5054,49 @@ extension View {
       }
     }()
     self.subscriptionStorePolicyDestination(url: argument0, for: argument1)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSubscriptionStorePolicyForegroundStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "placeholder": self.subscriptionStorePolicyForegroundStyle(.placeholder)
+      case "link": self.subscriptionStorePolicyForegroundStyle(.link)
+      case "selection": self.subscriptionStorePolicyForegroundStyle(.selection)
+      case "windowBackground": self.subscriptionStorePolicyForegroundStyle(.windowBackground)
+      case "fill": self.subscriptionStorePolicyForegroundStyle(.fill)
+      case "regularMaterial": self.subscriptionStorePolicyForegroundStyle(.regularMaterial)
+      case "thickMaterial": self.subscriptionStorePolicyForegroundStyle(.thickMaterial)
+      case "thinMaterial": self.subscriptionStorePolicyForegroundStyle(.thinMaterial)
+      case "ultraThinMaterial": self.subscriptionStorePolicyForegroundStyle(.ultraThinMaterial)
+      case "ultraThickMaterial": self.subscriptionStorePolicyForegroundStyle(.ultraThickMaterial)
+      case "bar": self.subscriptionStorePolicyForegroundStyle(.bar)
+      case "primary": self.subscriptionStorePolicyForegroundStyle(.primary)
+      case "secondary": self.subscriptionStorePolicyForegroundStyle(.secondary)
+      case "tertiary": self.subscriptionStorePolicyForegroundStyle(.tertiary)
+      case "quaternary": self.subscriptionStorePolicyForegroundStyle(.quaternary)
+      case "quinary": self.subscriptionStorePolicyForegroundStyle(.quinary)
+      case "red": self.subscriptionStorePolicyForegroundStyle(.red)
+      case "orange": self.subscriptionStorePolicyForegroundStyle(.orange)
+      case "yellow": self.subscriptionStorePolicyForegroundStyle(.yellow)
+      case "green": self.subscriptionStorePolicyForegroundStyle(.green)
+      case "mint": self.subscriptionStorePolicyForegroundStyle(.mint)
+      case "teal": self.subscriptionStorePolicyForegroundStyle(.teal)
+      case "cyan": self.subscriptionStorePolicyForegroundStyle(.cyan)
+      case "blue": self.subscriptionStorePolicyForegroundStyle(.blue)
+      case "indigo": self.subscriptionStorePolicyForegroundStyle(.indigo)
+      case "purple": self.subscriptionStorePolicyForegroundStyle(.purple)
+      case "pink": self.subscriptionStorePolicyForegroundStyle(.pink)
+      case "brown": self.subscriptionStorePolicyForegroundStyle(.brown)
+      case "white": self.subscriptionStorePolicyForegroundStyle(.white)
+      case "gray": self.subscriptionStorePolicyForegroundStyle(.gray)
+      case "black": self.subscriptionStorePolicyForegroundStyle(.black)
+      case "clear": self.subscriptionStorePolicyForegroundStyle(.clear)
+      case "separator": self.subscriptionStorePolicyForegroundStyle(.separator)
+      case "background": self.subscriptionStorePolicyForegroundStyle(.background)
+      case "foreground": self.subscriptionStorePolicyForegroundStyle(.foreground)
+      case "tint": self.subscriptionStorePolicyForegroundStyle(.tint)
+    default: preconditionFailure("invalid subscriptionStorePolicyForegroundStyle: \(value)")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStoreSignInAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

@@ -3170,6 +3170,42 @@
       "sdkName": "contentMargins"
     },
     {
+      "name": "contentShape",
+      "kind": "style",
+      "type": "S",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "buttonBorder",
+          "ios": 17
+        },
+        {
+          "name": "rect",
+          "ios": 13
+        },
+        {
+          "name": "capsule",
+          "ios": 13
+        },
+        {
+          "name": "ellipse",
+          "ios": 13
+        },
+        {
+          "name": "circle",
+          "ios": 13
+        },
+        {
+          "name": "containerRelative",
+          "ios": 14
+        },
+        {
+          "name": "textInputBorder",
+          "ios": 27
+        }
+      ]
+    },
+    {
       "name": "contentTransition",
       "kind": "string",
       "type": "SwiftUICore.ContentTransition",
@@ -9724,6 +9760,159 @@
       "framework": "StoreKit"
     },
     {
+      "name": "subscriptionStorePickerItemBackground",
+      "kind": "style",
+      "type": "some ShapeStyle",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "placeholder",
+          "ios": 17
+        },
+        {
+          "name": "link",
+          "ios": 17
+        },
+        {
+          "name": "selection",
+          "ios": 15
+        },
+        {
+          "name": "windowBackground",
+          "ios": 17
+        },
+        {
+          "name": "fill",
+          "ios": 17
+        },
+        {
+          "name": "regularMaterial",
+          "ios": 15
+        },
+        {
+          "name": "thickMaterial",
+          "ios": 15
+        },
+        {
+          "name": "thinMaterial",
+          "ios": 15
+        },
+        {
+          "name": "ultraThinMaterial",
+          "ios": 15
+        },
+        {
+          "name": "ultraThickMaterial",
+          "ios": 15
+        },
+        {
+          "name": "bar",
+          "ios": 15
+        },
+        {
+          "name": "primary",
+          "ios": 15
+        },
+        {
+          "name": "secondary",
+          "ios": 15
+        },
+        {
+          "name": "tertiary",
+          "ios": 15
+        },
+        {
+          "name": "quaternary",
+          "ios": 15
+        },
+        {
+          "name": "quinary",
+          "ios": 16
+        },
+        {
+          "name": "red",
+          "ios": 13
+        },
+        {
+          "name": "orange",
+          "ios": 13
+        },
+        {
+          "name": "yellow",
+          "ios": 13
+        },
+        {
+          "name": "green",
+          "ios": 13
+        },
+        {
+          "name": "mint",
+          "ios": 15
+        },
+        {
+          "name": "teal",
+          "ios": 15
+        },
+        {
+          "name": "cyan",
+          "ios": 15
+        },
+        {
+          "name": "blue",
+          "ios": 13
+        },
+        {
+          "name": "indigo",
+          "ios": 15
+        },
+        {
+          "name": "purple",
+          "ios": 13
+        },
+        {
+          "name": "pink",
+          "ios": 13
+        },
+        {
+          "name": "brown",
+          "ios": 15
+        },
+        {
+          "name": "white",
+          "ios": 13
+        },
+        {
+          "name": "gray",
+          "ios": 13
+        },
+        {
+          "name": "black",
+          "ios": 13
+        },
+        {
+          "name": "clear",
+          "ios": 13
+        },
+        {
+          "name": "separator",
+          "ios": 17
+        },
+        {
+          "name": "background",
+          "ios": 14
+        },
+        {
+          "name": "foreground",
+          "ios": 13
+        },
+        {
+          "name": "tint",
+          "ios": 15
+        }
+      ],
+      "framework": "StoreKit"
+    },
+    {
       "name": "subscriptionStorePolicyDestination",
       "kind": "record",
       "type": "",
@@ -9752,6 +9941,159 @@
           ],
           "field": "button",
           "label": "for"
+        }
+      ],
+      "framework": "StoreKit"
+    },
+    {
+      "name": "subscriptionStorePolicyForegroundStyle",
+      "kind": "style",
+      "type": "some ShapeStyle",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "placeholder",
+          "ios": 17
+        },
+        {
+          "name": "link",
+          "ios": 17
+        },
+        {
+          "name": "selection",
+          "ios": 15
+        },
+        {
+          "name": "windowBackground",
+          "ios": 17
+        },
+        {
+          "name": "fill",
+          "ios": 17
+        },
+        {
+          "name": "regularMaterial",
+          "ios": 15
+        },
+        {
+          "name": "thickMaterial",
+          "ios": 15
+        },
+        {
+          "name": "thinMaterial",
+          "ios": 15
+        },
+        {
+          "name": "ultraThinMaterial",
+          "ios": 15
+        },
+        {
+          "name": "ultraThickMaterial",
+          "ios": 15
+        },
+        {
+          "name": "bar",
+          "ios": 15
+        },
+        {
+          "name": "primary",
+          "ios": 15
+        },
+        {
+          "name": "secondary",
+          "ios": 15
+        },
+        {
+          "name": "tertiary",
+          "ios": 15
+        },
+        {
+          "name": "quaternary",
+          "ios": 15
+        },
+        {
+          "name": "quinary",
+          "ios": 16
+        },
+        {
+          "name": "red",
+          "ios": 13
+        },
+        {
+          "name": "orange",
+          "ios": 13
+        },
+        {
+          "name": "yellow",
+          "ios": 13
+        },
+        {
+          "name": "green",
+          "ios": 13
+        },
+        {
+          "name": "mint",
+          "ios": 15
+        },
+        {
+          "name": "teal",
+          "ios": 15
+        },
+        {
+          "name": "cyan",
+          "ios": 15
+        },
+        {
+          "name": "blue",
+          "ios": 13
+        },
+        {
+          "name": "indigo",
+          "ios": 15
+        },
+        {
+          "name": "purple",
+          "ios": 13
+        },
+        {
+          "name": "pink",
+          "ios": 13
+        },
+        {
+          "name": "brown",
+          "ios": 15
+        },
+        {
+          "name": "white",
+          "ios": 13
+        },
+        {
+          "name": "gray",
+          "ios": 13
+        },
+        {
+          "name": "black",
+          "ios": 13
+        },
+        {
+          "name": "clear",
+          "ios": 13
+        },
+        {
+          "name": "separator",
+          "ios": 17
+        },
+        {
+          "name": "background",
+          "ios": 14
+        },
+        {
+          "name": "foreground",
+          "ios": 13
+        },
+        {
+          "name": "tint",
+          "ios": 15
         }
       ],
       "framework": "StoreKit"
@@ -11643,6 +11985,7 @@
         "compositingGroup",
         "containerCornerOffset",
         "containerRelativeFrame",
+        "contentShape",
         "contentTransition",
         "contrast",
         "controlSize",
@@ -11994,7 +12337,9 @@
         "subscriptionStoreControlBackground",
         "subscriptionStoreControlStyle",
         "subscriptionStoreOptionGroupStyle",
+        "subscriptionStorePickerItemBackground",
         "subscriptionStorePolicyDestination",
+        "subscriptionStorePolicyForegroundStyle",
         "subscriptionStoreSignInAction"
       ],
       "_MapKit_SwiftUI": [
