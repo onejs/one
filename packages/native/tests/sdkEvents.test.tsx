@@ -104,6 +104,23 @@ describe('SDK callback and binding transport', () => {
     } as never })).toThrow('onChange must be a string value and callback')
   })
 
+  it('encodes cases imported from UIKit and PhotosUI symbol graphs', () => {
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      keyboardType: 'URL',
+      autocapitalization: 'sentences',
+      textContentType: 'emailAddress',
+      photosPickerDisabledCapabilities: 'search',
+      photosPickerMetadataOptions: 'removeLocation',
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['keyboardType', 'URL'],
+      ['autocapitalization', 'sentences'],
+      ['textContentType', 'emailAddress'],
+      ['photosPickerDisabledCapabilities', 'search'],
+      ['photosPickerMetadataOptions', 'removeLocation'],
+    ])
+  })
+
   it('passes values to Swift and dispatches native events to the current callbacks', () => {
     const appeared = vi.fn()
     const onChange = vi.fn()

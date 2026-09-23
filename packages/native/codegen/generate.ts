@@ -15,7 +15,7 @@ import {
   type Declaration,
 } from './inventory'
 import { execFileSync } from 'node:child_process'
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
@@ -48,6 +48,48 @@ mkdirSync(cache, { recursive: true })
 const run = (file: string, args: string[]) =>
   execFileSync(file, args, { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }).trim()
 const { sdk, swiftc, inventory } = readInventory(root)
+const sdkVersion = run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version'])
+if (Number(sdkVersion.split('.')[0]) < MAXIMUM_IOS)
+  throw new Error(
+    `SwiftUI bindings target SDK ${MAXIMUM_IOS}, selected toolchain provides ${sdkVersion}`
+  )
+const importedCases: Declaration[] = []
+for (const module of ['UIKit', 'PhotosUI']) {
+  const outputDir = join(cache, `symbols-${module}-${sdkVersion}`)
+  const graphPath = join(outputDir, `${module}.symbols.json`)
+  if (!existsSync(graphPath)) {
+    mkdirSync(outputDir, { recursive: true })
+    run('xcrun', ['swift-symbolgraph-extract', '-module-name', module,
+      '-target', `arm64-apple-ios${MINIMUM_IOS}.0-simulator`, '-sdk', sdk,
+      '-output-dir', outputDir, '-minimum-access-level', 'public'])
+  }
+  const graph = JSON.parse(readFileSync(graphPath, 'utf8')) as { symbols: {
+    kind: { identifier: string }
+    pathComponents: string[]
+    declarationFragments?: { spelling: string }[]
+    availability?: { domain: string; introduced?: { major: number; minor?: number }; isUnconditionallyUnavailable?: boolean }[]
+  }[] }
+  for (const symbol of graph.symbols) {
+    const [owner, name] = symbol.pathComponents
+    if (symbol.pathComponents.length !== 2 || !/^[A-Za-z]/.test(name)) continue
+    const declaration = symbol.declarationFragments?.map((part) => part.spelling).join('') ?? ''
+    if (symbol.kind.identifier !== 'swift.enum.case' &&
+      !(symbol.kind.identifier === 'swift.type.property' &&
+        /\bstatic (?:let|var)\b/.test(declaration) &&
+        declaration.includes(`: ${owner}`))) continue
+    const iosAvailability = symbol.availability?.find((entry) => entry.domain === 'iOS')
+    if (iosAvailability?.isUnconditionallyUnavailable) continue
+    const introduced = iosAvailability?.introduced
+    importedCases.push({ module, owner, name, kind: 'static', parameters: [],
+      type: `${module}.${owner}`, line: 0,
+      attributes: introduced ? [`@available(iOS ${introduced.major}.${introduced.minor ?? 0}, *)`] : [] })
+  }
+}
+importedCases.sort((a, b) => {
+  const left = `${a.module}.${a.owner}.${a.name}`
+  const right = `${b.module}.${b.owner}.${b.name}`
+  return left < right ? -1 : left > right ? 1 : 0
+})
 const controls = [
   ...curatedControls,
   ...deriveViews(
@@ -63,16 +105,11 @@ const controls = [
     ])
   ),
 ]
-const derivedModifiers = deriveModifiers(inventory, MAXIMUM_IOS, [
+const derivedModifiers = deriveModifiers([...inventory, ...importedCases], MAXIMUM_IOS, [
   ...styleFields,
   ...styleModifiers,
 ])
 const derivedViewSlots = deriveViewSlots(inventory, MAXIMUM_IOS)
-const sdkVersion = run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version'])
-if (Number(sdkVersion.split('.')[0]) < MAXIMUM_IOS)
-  throw new Error(
-    `SwiftUI bindings target SDK ${MAXIMUM_IOS}, selected toolchain provides ${sdkVersion}`
-  )
 const shortOwner = (d: Declaration) => d.owner.split('.').at(-1)
 const ownerMatches = (d: Declaration, type: string) => {
   const parts = d.owner.split('.')

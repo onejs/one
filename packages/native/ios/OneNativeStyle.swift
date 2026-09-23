@@ -155,6 +155,7 @@ extension View {
       case "animation": view = AnyView(view.oneNativeSDKAnimation(value, emit: emit))
       case "aspectRatio": view = AnyView(view.oneNativeSDKAspectRatio(value, emit: emit))
       case "assistiveAccessNavigationIcon": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIcon(value, emit: emit))
+      case "autocapitalization": view = AnyView(view.oneNativeSDKAutocapitalization(value, emit: emit))
       case "autocorrectionDisabled": view = AnyView(view.oneNativeSDKAutocorrectionDisabled(value, emit: emit))
       case "backgroundExtensionEffectWithIsEnabled": view = AnyView(view.oneNativeSDKBackgroundExtensionEffectWithIsEnabled(value, emit: emit))
       case "backgroundExtensionEffectWithNoArguments": view = AnyView(view.oneNativeSDKBackgroundExtensionEffectWithNoArguments(value, emit: emit))
@@ -255,6 +256,7 @@ extension View {
       case "keyboardShortcutWithKeyAndModifiersAndLocalization": view = AnyView(view.oneNativeSDKKeyboardShortcutWithKeyAndModifiersAndLocalization(value, emit: emit))
       case "keyboardShortcutWithKeyboardShortcut": view = AnyView(view.oneNativeSDKKeyboardShortcutWithKeyboardShortcut(value, emit: emit))
       case "keyboardShortcutWithOptionalKeyboardShortcut": view = AnyView(view.oneNativeSDKKeyboardShortcutWithOptionalKeyboardShortcut(value, emit: emit))
+      case "keyboardType": view = AnyView(view.oneNativeSDKKeyboardType(value, emit: emit))
       case "labeledContentStyle": view = AnyView(view.oneNativeSDKLabeledContentStyle(value, emit: emit))
       case "labelIconToTitleSpacing": view = AnyView(view.oneNativeSDKLabelIconToTitleSpacing(value, emit: emit))
       case "labelReservedIconWidth": view = AnyView(view.oneNativeSDKLabelReservedIconWidth(value, emit: emit))
@@ -334,6 +336,8 @@ extension View {
       case "payWithApplePayButtonStyle": view = AnyView(view.oneNativeSDKPayWithApplePayButtonStyle(value, emit: emit))
       case "persistentSystemOverlays": view = AnyView(view.oneNativeSDKPersistentSystemOverlays(value, emit: emit))
       case "photosPickerAccessoryVisibility": view = AnyView(view.oneNativeSDKPhotosPickerAccessoryVisibility(value, emit: emit))
+      case "photosPickerDisabledCapabilities": view = AnyView(view.oneNativeSDKPhotosPickerDisabledCapabilities(value, emit: emit))
+      case "photosPickerMetadataOptions": view = AnyView(view.oneNativeSDKPhotosPickerMetadataOptions(value, emit: emit))
       case "photosPickerSearchText": view = AnyView(view.oneNativeSDKPhotosPickerSearchText(value, emit: emit))
       case "photosPickerStyle": view = AnyView(view.oneNativeSDKPhotosPickerStyle(value, emit: emit))
       case "pickerStyle": view = AnyView(view.oneNativeSDKPickerStyle(value, emit: emit))
@@ -425,6 +429,7 @@ extension View {
       case "tabViewStyle": view = AnyView(view.oneNativeSDKTabViewStyle(value, emit: emit))
       case "tag": view = AnyView(view.oneNativeSDKTag(value, emit: emit))
       case "textCase": view = AnyView(view.oneNativeSDKTextCase(value, emit: emit))
+      case "textContentType": view = AnyView(view.oneNativeSDKTextContentType(value, emit: emit))
       case "textEditorStyle": view = AnyView(view.oneNativeSDKTextEditorStyle(value, emit: emit))
       case "textFieldStyle": view = AnyView(view.oneNativeSDKTextFieldStyle(value, emit: emit))
       case "textInputAutocapitalization": view = AnyView(view.oneNativeSDKTextInputAutocapitalization(value, emit: emit))
@@ -1374,6 +1379,17 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKAssistiveAccessNavigationIcon(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if #available(iOS 26, *) { self.assistiveAccessNavigationIcon(systemImage: value) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAutocapitalization(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "allCharacters": self.autocapitalization(UIKit.UITextAutocapitalizationType.allCharacters)
+      case "none": self.autocapitalization(UIKit.UITextAutocapitalizationType.none)
+      case "sentences": self.autocapitalization(UIKit.UITextAutocapitalizationType.sentences)
+      case "words": self.autocapitalization(UIKit.UITextAutocapitalizationType.words)
+    default: preconditionFailure("invalid autocapitalization: \(value)")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAutocorrectionDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2693,6 +2709,26 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKKeyboardType(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "URL": self.keyboardType(UIKit.UIKeyboardType.URL)
+      case "alphabet": self.keyboardType(UIKit.UIKeyboardType.alphabet)
+      case "asciiCapable": self.keyboardType(UIKit.UIKeyboardType.asciiCapable)
+      case "asciiCapableNumberPad": self.keyboardType(UIKit.UIKeyboardType.asciiCapableNumberPad)
+      case "decimalPad": self.keyboardType(UIKit.UIKeyboardType.decimalPad)
+      case "default": self.keyboardType(UIKit.UIKeyboardType.default)
+      case "emailAddress": self.keyboardType(UIKit.UIKeyboardType.emailAddress)
+      case "namePhonePad": self.keyboardType(UIKit.UIKeyboardType.namePhonePad)
+      case "numberPad": self.keyboardType(UIKit.UIKeyboardType.numberPad)
+      case "numbersAndPunctuation": self.keyboardType(UIKit.UIKeyboardType.numbersAndPunctuation)
+      case "phonePad": self.keyboardType(UIKit.UIKeyboardType.phonePad)
+      case "twitter": self.keyboardType(UIKit.UIKeyboardType.twitter)
+      case "webSearch": self.keyboardType(UIKit.UIKeyboardType.webSearch)
+    default: preconditionFailure("invalid keyboardType: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKLabeledContentStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -3503,6 +3539,27 @@ extension View {
       }
     }()
     self.photosPickerAccessoryVisibility(argument0, edges: argument1)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPhotosPickerDisabledCapabilities(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "collectionNavigation": self.photosPickerDisabledCapabilities(PhotosUI.PHPickerCapabilities.collectionNavigation)
+      case "search": self.photosPickerDisabledCapabilities(PhotosUI.PHPickerCapabilities.search)
+      case "selectionActions": self.photosPickerDisabledCapabilities(PhotosUI.PHPickerCapabilities.selectionActions)
+      case "sensitivityAnalysisIntervention": self.photosPickerDisabledCapabilities(PhotosUI.PHPickerCapabilities.sensitivityAnalysisIntervention)
+      case "stagingArea": self.photosPickerDisabledCapabilities(PhotosUI.PHPickerCapabilities.stagingArea)
+    default: preconditionFailure("invalid photosPickerDisabledCapabilities: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPhotosPickerMetadataOptions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "removeCaptions": if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeCaptions) } else { self }
+      case "removeLocation": if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeLocation) } else { self }
+    default: preconditionFailure("invalid photosPickerMetadataOptions: \(value)")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPhotosPickerSearchText(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4712,6 +4769,61 @@ extension View {
       case "uppercase": self.textCase(SwiftUICore.Text.Case.uppercase)
       case "lowercase": self.textCase(SwiftUICore.Text.Case.lowercase)
     default: preconditionFailure("invalid textCase: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTextContentType(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.textContentType(nil as UIKit.UITextContentType?)
+      case "URL": self.textContentType(UIKit.UITextContentType.URL)
+      case "addressCity": self.textContentType(UIKit.UITextContentType.addressCity)
+      case "addressCityAndState": self.textContentType(UIKit.UITextContentType.addressCityAndState)
+      case "addressState": self.textContentType(UIKit.UITextContentType.addressState)
+      case "birthdate": self.textContentType(UIKit.UITextContentType.birthdate)
+      case "birthdateDay": self.textContentType(UIKit.UITextContentType.birthdateDay)
+      case "birthdateMonth": self.textContentType(UIKit.UITextContentType.birthdateMonth)
+      case "birthdateYear": self.textContentType(UIKit.UITextContentType.birthdateYear)
+      case "cellularEID": if #available(iOS 17.4, *) { self.textContentType(UIKit.UITextContentType.cellularEID) } else { self }
+      case "cellularIMEI": if #available(iOS 17.4, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI) } else { self }
+      case "cellularIMEI1": if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI1) } else { self }
+      case "cellularIMEI2": if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI2) } else { self }
+      case "cellularNAL": if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularNAL) } else { self }
+      case "countryName": self.textContentType(UIKit.UITextContentType.countryName)
+      case "creditCardExpiration": self.textContentType(UIKit.UITextContentType.creditCardExpiration)
+      case "creditCardExpirationMonth": self.textContentType(UIKit.UITextContentType.creditCardExpirationMonth)
+      case "creditCardExpirationYear": self.textContentType(UIKit.UITextContentType.creditCardExpirationYear)
+      case "creditCardFamilyName": self.textContentType(UIKit.UITextContentType.creditCardFamilyName)
+      case "creditCardGivenName": self.textContentType(UIKit.UITextContentType.creditCardGivenName)
+      case "creditCardMiddleName": self.textContentType(UIKit.UITextContentType.creditCardMiddleName)
+      case "creditCardName": self.textContentType(UIKit.UITextContentType.creditCardName)
+      case "creditCardNumber": self.textContentType(UIKit.UITextContentType.creditCardNumber)
+      case "creditCardSecurityCode": self.textContentType(UIKit.UITextContentType.creditCardSecurityCode)
+      case "creditCardType": self.textContentType(UIKit.UITextContentType.creditCardType)
+      case "dateTime": self.textContentType(UIKit.UITextContentType.dateTime)
+      case "emailAddress": self.textContentType(UIKit.UITextContentType.emailAddress)
+      case "familyName": self.textContentType(UIKit.UITextContentType.familyName)
+      case "flightNumber": self.textContentType(UIKit.UITextContentType.flightNumber)
+      case "fullStreetAddress": self.textContentType(UIKit.UITextContentType.fullStreetAddress)
+      case "givenName": self.textContentType(UIKit.UITextContentType.givenName)
+      case "jobTitle": self.textContentType(UIKit.UITextContentType.jobTitle)
+      case "location": self.textContentType(UIKit.UITextContentType.location)
+      case "middleName": self.textContentType(UIKit.UITextContentType.middleName)
+      case "name": self.textContentType(UIKit.UITextContentType.name)
+      case "namePrefix": self.textContentType(UIKit.UITextContentType.namePrefix)
+      case "nameSuffix": self.textContentType(UIKit.UITextContentType.nameSuffix)
+      case "newPassword": self.textContentType(UIKit.UITextContentType.newPassword)
+      case "nickname": self.textContentType(UIKit.UITextContentType.nickname)
+      case "oneTimeCode": self.textContentType(UIKit.UITextContentType.oneTimeCode)
+      case "organizationName": self.textContentType(UIKit.UITextContentType.organizationName)
+      case "password": self.textContentType(UIKit.UITextContentType.password)
+      case "postalCode": self.textContentType(UIKit.UITextContentType.postalCode)
+      case "shipmentTrackingNumber": self.textContentType(UIKit.UITextContentType.shipmentTrackingNumber)
+      case "streetAddressLine1": self.textContentType(UIKit.UITextContentType.streetAddressLine1)
+      case "streetAddressLine2": self.textContentType(UIKit.UITextContentType.streetAddressLine2)
+      case "sublocality": self.textContentType(UIKit.UITextContentType.sublocality)
+      case "telephoneNumber": self.textContentType(UIKit.UITextContentType.telephoneNumber)
+      case "username": self.textContentType(UIKit.UITextContentType.username)
+    default: preconditionFailure("invalid textContentType: \(value)")
     }
   }
 
