@@ -6,4 +6,10 @@ export type * from './generated/containerTypes';
 export type * from './listTypes';
 export type * from './groupTypes';
 export type * from './textTypes';
+import type { ReactNode } from 'react';
+export interface TabViewBottomAccessoryProps {
+    children?: ReactNode;
+    inline?: ReactNode;
+    expanded?: ReactNode;
+}
 //# sourceMappingURL=types.d.ts.map
