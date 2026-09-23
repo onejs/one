@@ -137,6 +137,20 @@ ${cases}
       guard let data = raw.data(using: .utf8), let strings = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)") }
       return ${argument.kind === 'stringSet' ? 'Set(strings)' : baseType === '[SwiftUICore.Text]' ? 'strings.map { Text($0) }' : 'strings'}
     }()`
+          if (argument.kind === 'numericStruct' || argument.kind === 'numericTuple') {
+            const fields = argument.fields!
+            const validated = fields.map((field, fieldIndex) =>
+              `let field${fieldIndex} = decoded[${JSON.stringify(field.name)}], field${fieldIndex}.isFinite${field.type === 'Swift.Int' ? `, Int(exactly: field${fieldIndex}) != nil` : field.type === 'Swift.Float' ? `, Float(field${fieldIndex}).isFinite` : ''}`).join(',\n        ')
+            const converted = fields.map((field, fieldIndex) =>
+              `${field.label}: ${field.type === 'CoreFoundation.CGFloat' ? `CGFloat(field${fieldIndex})` : field.type === 'Swift.Float' ? `Float(field${fieldIndex})` : field.type === 'Swift.Int' ? `Int(field${fieldIndex})` : `field${fieldIndex}`}`).join(', ')
+            return `    let ${variable}: ${argument.type} = {
+      guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        ${validated} else { preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)") }
+      return ${argument.kind === 'numericStruct' ? `${baseType}(${converted})` : `(${converted})`}
+    }()`
+          }
           return `    let ${variable}: ${argument.type} = {
       guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
       return ${baseType === 'SwiftUICore.Text' ? 'Text(raw)' : 'raw'}
@@ -298,7 +312,7 @@ type SDKEventValueShape =
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
 const sdkAssociatedCases: Record<string, Record<string, readonly SDKEventValueShape[]>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAssociatedEnum').map((modifier) => [modifier.name, Object.fromEntries(modifier.associatedCases!.map((item) => [item.name, item.values]))])))}
 const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct').map((modifier) => [modifier.name, modifier.eventValue])))}
-const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional }) => ({ field, kind, optional }))])))}
+const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; fields?: readonly { name: string; integer: boolean }[] }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, fields }) => ({ field, kind, optional, ...(fields ? { fields: fields.map((item) => ({ name: item.name, integer: item.type === 'Swift.Int' })) } : {}) }))])))}
 
 function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
   if (shape.kind === 'optional') return value === null || validSDKEventValue(value, shape.value)
@@ -333,6 +347,15 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
           if (argument.kind === 'boolean' && typeof item !== 'boolean') throw new Error(name + '.' + argument.field + ' must be a boolean')
           if ((argument.kind === 'string' || argument.kind === 'url' || argument.kind === 'enum') && typeof item !== 'string') throw new Error(name + '.' + argument.field + ' must be a string')
           if ((argument.kind === 'stringArray' || argument.kind === 'stringSet') && (!Array.isArray(item) || item.some((element) => typeof element !== 'string'))) throw new Error(name + '.' + argument.field + ' must be a string array')
+          if (argument.kind === 'numericStruct' || argument.kind === 'numericTuple') {
+            if (!item || typeof item !== 'object' || Array.isArray(item) ||
+              Object.keys(item).length !== argument.fields!.length ||
+              argument.fields!.some((field) => {
+                const number = (item as Record<string, unknown>)[field.name]
+                return typeof number !== 'number' || !Number.isFinite(number) || (field.integer && !Number.isSafeInteger(number))
+              })) throw new Error(name + '.' + argument.field + ' must be a numeric object')
+            return JSON.stringify(item)
+          }
           return argument.kind === 'stringArray' || argument.kind === 'stringSet' ? JSON.stringify(item) : String(item)
         })
         sdkModifiers.push([name, JSON.stringify(values)])

@@ -316,6 +316,7 @@ const sdkKinds = {
   redacted: 'string',
   renameAction: 'event',
   replaceDisabled: 'boolean',
+  rotation3DEffect: 'record',
   rotationEffect: 'record',
   safeAreaPaddingWithCGFloat: 'number',
   safeAreaPaddingWithEdgesAndLength: 'record',
@@ -620,7 +621,12 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
 }
 const sdkRecords: Record<
   string,
-  readonly { field: string; kind: string; optional: boolean }[]
+  readonly {
+    field: string
+    kind: string
+    optional: boolean
+    fields?: readonly { name: string; integer: boolean }[]
+  }[]
 > = {
   accessibilityActivationPointWithActivationPointAndIsEnabled: [
     { field: 'activationPoint', kind: 'enum', optional: false },
@@ -820,6 +826,27 @@ const sdkRecords: Record<
     { field: 'horizontalAdaptation', kind: 'enum', optional: false },
     { field: 'verticalAdaptation', kind: 'enum', optional: false },
   ],
+  rotation3DEffect: [
+    {
+      field: 'angle',
+      kind: 'numericStruct',
+      optional: false,
+      fields: [{ name: 'radians', integer: false }],
+    },
+    {
+      field: 'axis',
+      kind: 'numericTuple',
+      optional: false,
+      fields: [
+        { name: 'x', integer: false },
+        { name: 'y', integer: false },
+        { name: 'z', integer: false },
+      ],
+    },
+    { field: 'anchor', kind: 'enum', optional: false },
+    { field: 'anchorZ', kind: 'number', optional: false },
+    { field: 'perspective', kind: 'number', optional: false },
+  ],
   rotationEffect: [
     { field: 'angle', kind: 'enum', optional: false },
     { field: 'anchor', kind: 'enum', optional: false },
@@ -1000,6 +1027,24 @@ export function swiftStyleNative(
             (!Array.isArray(item) || item.some((element) => typeof element !== 'string'))
           )
             throw new Error(name + '.' + argument.field + ' must be a string array')
+          if (argument.kind === 'numericStruct' || argument.kind === 'numericTuple') {
+            if (
+              !item ||
+              typeof item !== 'object' ||
+              Array.isArray(item) ||
+              Object.keys(item).length !== argument.fields!.length ||
+              argument.fields!.some((field) => {
+                const number = (item as Record<string, unknown>)[field.name]
+                return (
+                  typeof number !== 'number' ||
+                  !Number.isFinite(number) ||
+                  (field.integer && !Number.isSafeInteger(number))
+                )
+              })
+            )
+              throw new Error(name + '.' + argument.field + ' must be a numeric object')
+            return JSON.stringify(item)
+          }
           return argument.kind === 'stringArray' || argument.kind === 'stringSet'
             ? JSON.stringify(item)
             : String(item)

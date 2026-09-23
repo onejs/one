@@ -7731,6 +7731,115 @@
       "ios": 16
     },
     {
+      "name": "rotation3DEffect",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "numericStruct",
+          "type": "SwiftUICore.Angle",
+          "optional": false,
+          "fields": [
+            {
+              "name": "radians",
+              "label": "radians",
+              "type": "Swift.Double"
+            }
+          ],
+          "field": "angle",
+          "label": "_"
+        },
+        {
+          "kind": "numericTuple",
+          "type": "(x: CoreFoundation.CGFloat, y: CoreFoundation.CGFloat, z: CoreFoundation.CGFloat)",
+          "optional": false,
+          "fields": [
+            {
+              "name": "x",
+              "label": "x",
+              "type": "CoreFoundation.CGFloat"
+            },
+            {
+              "name": "y",
+              "label": "y",
+              "type": "CoreFoundation.CGFloat"
+            },
+            {
+              "name": "z",
+              "label": "z",
+              "type": "CoreFoundation.CGFloat"
+            }
+          ],
+          "field": "axis",
+          "label": "axis"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.UnitPoint",
+          "optional": false,
+          "cases": [
+            {
+              "name": "zero",
+              "ios": 13
+            },
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            }
+          ],
+          "field": "anchor",
+          "label": "anchor"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "anchorZ",
+          "label": "anchorZ"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "perspective",
+          "label": "perspective"
+        }
+      ]
+    },
+    {
       "name": "rotationEffect",
       "kind": "record",
       "type": "",
@@ -11101,6 +11210,7 @@
         "preferredColorScheme",
         "privacySensitive",
         "redacted",
+        "rotation3DEffect",
         "rotationEffect",
         "safeAreaInset",
         "safeAreaPadding",

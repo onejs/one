@@ -1872,6 +1872,23 @@ export interface OneNativeStyle {
   redacted?: SDKRedacted
   renameAction?: () => void
   replaceDisabled?: boolean
+  rotation3DEffect?: Readonly<{
+    angle: Readonly<{ radians: number }>
+    axis: Readonly<{ x: number; y: number; z: number }>
+    anchor:
+      | 'zero'
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+    anchorZ: number
+    perspective: number
+  }>
   rotationEffect?: Readonly<{
     angle: 'zero'
     anchor:
