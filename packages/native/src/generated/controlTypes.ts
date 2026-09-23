@@ -1679,6 +1679,38 @@ export interface OneNativeStyle {
   formStyle?: SDKFormStyle
   gaugeStyle?: SDKGaugeStyle
   geometryGroup?: boolean
+  gesture?:
+    | Readonly<{
+        kind: 'drag'
+        onEnded: (value: {
+          location: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
+      }>
+    | Readonly<{ kind: 'longPress'; onEnded: (value: boolean) => void }>
+    | Readonly<{
+        kind: 'magnify'
+        onEnded: (value: {
+          magnification: number
+          velocity: number
+          startAnchor: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
+      }>
+    | Readonly<{
+        kind: 'rotate'
+        onEnded: (value: {
+          rotation: { radians: number }
+          velocity: { radians: number }
+          startAnchor: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
+      }>
+    | Readonly<{
+        kind: 'spatialTap'
+        onEnded: (value: { location: { x: number; y: number } }) => void
+      }>
+    | Readonly<{ kind: 'tap'; onEnded: () => void }>
   glassEffectTransition?: SDKGlassEffectTransition
   grayscale?: number
   gridCellAnchor?: SDKGridCellAnchor
@@ -1695,6 +1727,38 @@ export interface OneNativeStyle {
   headerProminence?: SDKHeaderProminence
   help?: string
   hidden?: boolean
+  highPriorityGesture?:
+    | Readonly<{
+        kind: 'drag'
+        onEnded: (value: {
+          location: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
+      }>
+    | Readonly<{ kind: 'longPress'; onEnded: (value: boolean) => void }>
+    | Readonly<{
+        kind: 'magnify'
+        onEnded: (value: {
+          magnification: number
+          velocity: number
+          startAnchor: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
+      }>
+    | Readonly<{
+        kind: 'rotate'
+        onEnded: (value: {
+          rotation: { radians: number }
+          velocity: { radians: number }
+          startAnchor: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
+      }>
+    | Readonly<{
+        kind: 'spatialTap'
+        onEnded: (value: { location: { x: number; y: number } }) => void
+      }>
+    | Readonly<{ kind: 'tap'; onEnded: () => void }>
   hoverEffectDisabled?: boolean
   hoverEffectWithEffectAndIsEnabled?: Readonly<{
     effect: 'automatic' | 'highlight' | 'lift'
@@ -2296,6 +2360,38 @@ export interface OneNativeStyle {
   }>
   shortcutsLinkStyle?: SDKShortcutsLinkStyle
   signInWithAppleButtonStyle?: SDKSignInWithAppleButtonStyle
+  simultaneousGesture?:
+    | Readonly<{
+        kind: 'drag'
+        onEnded: (value: {
+          location: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
+      }>
+    | Readonly<{ kind: 'longPress'; onEnded: (value: boolean) => void }>
+    | Readonly<{
+        kind: 'magnify'
+        onEnded: (value: {
+          magnification: number
+          velocity: number
+          startAnchor: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
+      }>
+    | Readonly<{
+        kind: 'rotate'
+        onEnded: (value: {
+          rotation: { radians: number }
+          velocity: { radians: number }
+          startAnchor: { x: number; y: number }
+          startLocation: { x: number; y: number }
+        }) => void
+      }>
+    | Readonly<{
+        kind: 'spatialTap'
+        onEnded: (value: { location: { x: number; y: number } }) => void
+      }>
+    | Readonly<{ kind: 'tap'; onEnded: () => void }>
   siriTipViewStyle?: SDKSiriTipViewStyle
   sliderThumbVisibility?: SDKSliderThumbVisibility
   speechAdjustedPitch?: number

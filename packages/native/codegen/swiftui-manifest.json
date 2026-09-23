@@ -4590,6 +4590,178 @@
       "zeroArgument": true
     },
     {
+      "name": "gesture",
+      "kind": "gesture",
+      "type": "T",
+      "label": "_",
+      "gestureOptions": [
+        {
+          "name": "drag",
+          "type": "SwiftUI.DragGesture",
+          "ios": 13,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "location",
+                "value": {
+                  "kind": "point"
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "longPress",
+          "type": "SwiftUI.LongPressGesture",
+          "ios": 13,
+          "eventValue": {
+            "kind": "boolean"
+          }
+        },
+        {
+          "name": "magnify",
+          "type": "SwiftUI.MagnifyGesture",
+          "ios": 17,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "magnification",
+                "value": {
+                  "kind": "number"
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "number"
+                }
+              },
+              {
+                "name": "startAnchor",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "x",
+                      "value": {
+                        "kind": "number"
+                      }
+                    },
+                    {
+                      "name": "y",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "rotate",
+          "type": "SwiftUI.RotateGesture",
+          "ios": 17,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "rotation",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "radians",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "radians",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startAnchor",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "x",
+                      "value": {
+                        "kind": "number"
+                      }
+                    },
+                    {
+                      "name": "y",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "spatialTap",
+          "type": "SwiftUI.SpatialTapGesture",
+          "ios": 16,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "location",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "tap",
+          "type": "SwiftUICore.TapGesture",
+          "ios": 13
+        }
+      ],
+      "ios": 13
+    },
+    {
       "name": "glassEffectTransition",
       "kind": "string",
       "type": "SwiftUICore.GlassEffectTransition",
@@ -4817,6 +4989,178 @@
       "type": "",
       "ios": 13,
       "zeroArgument": true
+    },
+    {
+      "name": "highPriorityGesture",
+      "kind": "gesture",
+      "type": "T",
+      "label": "_",
+      "gestureOptions": [
+        {
+          "name": "drag",
+          "type": "SwiftUI.DragGesture",
+          "ios": 13,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "location",
+                "value": {
+                  "kind": "point"
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "longPress",
+          "type": "SwiftUI.LongPressGesture",
+          "ios": 13,
+          "eventValue": {
+            "kind": "boolean"
+          }
+        },
+        {
+          "name": "magnify",
+          "type": "SwiftUI.MagnifyGesture",
+          "ios": 17,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "magnification",
+                "value": {
+                  "kind": "number"
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "number"
+                }
+              },
+              {
+                "name": "startAnchor",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "x",
+                      "value": {
+                        "kind": "number"
+                      }
+                    },
+                    {
+                      "name": "y",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "rotate",
+          "type": "SwiftUI.RotateGesture",
+          "ios": 17,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "rotation",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "radians",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "radians",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startAnchor",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "x",
+                      "value": {
+                        "kind": "number"
+                      }
+                    },
+                    {
+                      "name": "y",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "spatialTap",
+          "type": "SwiftUI.SpatialTapGesture",
+          "ios": 16,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "location",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "tap",
+          "type": "SwiftUICore.TapGesture",
+          "ios": 13
+        }
+      ],
+      "ios": 13
     },
     {
       "name": "hoverEffectDisabled",
@@ -10350,6 +10694,178 @@
       ]
     },
     {
+      "name": "simultaneousGesture",
+      "kind": "gesture",
+      "type": "T",
+      "label": "_",
+      "gestureOptions": [
+        {
+          "name": "drag",
+          "type": "SwiftUI.DragGesture",
+          "ios": 13,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "location",
+                "value": {
+                  "kind": "point"
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "longPress",
+          "type": "SwiftUI.LongPressGesture",
+          "ios": 13,
+          "eventValue": {
+            "kind": "boolean"
+          }
+        },
+        {
+          "name": "magnify",
+          "type": "SwiftUI.MagnifyGesture",
+          "ios": 17,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "magnification",
+                "value": {
+                  "kind": "number"
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "number"
+                }
+              },
+              {
+                "name": "startAnchor",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "x",
+                      "value": {
+                        "kind": "number"
+                      }
+                    },
+                    {
+                      "name": "y",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "rotate",
+          "type": "SwiftUI.RotateGesture",
+          "ios": 17,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "rotation",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "radians",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "radians",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startAnchor",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "x",
+                      "value": {
+                        "kind": "number"
+                      }
+                    },
+                    {
+                      "name": "y",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "spatialTap",
+          "type": "SwiftUI.SpatialTapGesture",
+          "ios": 16,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "location",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "tap",
+          "type": "SwiftUICore.TapGesture",
+          "ios": 13
+        }
+      ],
+      "ios": 13
+    },
+    {
       "name": "siriTipViewStyle",
       "kind": "string",
       "type": "_AppIntents_SwiftUI.SiriTipViewStyle",
@@ -13225,9 +13741,11 @@
         "foregroundStyle",
         "frame",
         "geometryGroup",
+        "gesture",
         "glassEffectTransition",
         "grayscale",
         "headerProminence",
+        "highPriorityGesture",
         "hoverEffect",
         "hoverEffectDisabled",
         "hueRotation",
@@ -13272,6 +13790,7 @@
         "scaledToFill",
         "scaledToFit",
         "shadow",
+        "simultaneousGesture",
         "speechAdjustedPitch",
         "speechAlwaysIncludesPunctuation",
         "speechAnnouncementsQueued",
