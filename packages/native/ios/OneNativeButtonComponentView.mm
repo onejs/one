@@ -70,6 +70,7 @@ using namespace facebook::react;
   if (next.swiftStyle.glassEffectTint) { UIColor *c = RCTUIColorFromSharedColor(next.swiftStyle.glassEffectTint); if (c) style[@"glassEffectTint"] = c; }
   if (!next.swiftStyle.glassEffectShape.empty()) style[@"glassEffectShape"] = RCTNSStringFromString(next.swiftStyle.glassEffectShape);
   if (!next.swiftStyle.material.empty()) style[@"material"] = RCTNSStringFromString(next.swiftStyle.material);
+  if (!next.swiftStyle.sdkModifiers.empty()) style[@"sdkModifiers"] = RCTNSStringFromString(next.swiftStyle.sdkModifiers);
   [_buttonView configureStyle:style];
   [_buttonView configureWithLabel:RCTNSStringFromString(next.label)
     disabled:next.disabled

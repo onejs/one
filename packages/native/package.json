@@ -157,6 +157,7 @@
     },
     "ios": {
       "componentProvider": {
+        "OneSwiftHost": "OneSwiftHostComponentView",
         "OneNativeMenu": "OneNativeMenuComponentView",
         "OneNativeTabs": "OneNativeTabsComponentView",
         "OneNativeTab": "OneNativeTabComponentView",
@@ -208,6 +209,8 @@
         "OneNativeConfirmationDialog": "OneNativeConfirmationDialogComponentView",
         "OneNativeQuickLook": "OneNativeQuickLookComponentView",
         "OneNativeFileImporter": "OneNativeFileImporterComponentView",
+        "OneNativeEditButton": "OneNativeEditButtonComponentView",
+        "OneNativeEmptyView": "OneNativeEmptyViewComponentView",
         "OneNativeSheet": "OneNativeSheetComponentView",
         "OneNativeSheetContent": "OneNativeSheetContentComponentView",
         "OneNativeHost": "OneNativeHostComponentView",

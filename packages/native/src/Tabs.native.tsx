@@ -2,7 +2,7 @@ import { useControlled } from './controlled'
 import { Platform } from 'react-native'
 import { assertSwiftUIValue } from './generated/swiftui'
 import { Children, isValidElement, useMemo } from 'react'
-import type { TabProps, TabsProps } from './types'
+import type { TabProps, TabsProps, TabViewBottomAccessoryProps } from './types'
 import NativeTab from './specs/OneNativeTabNativeComponent'
 import NativeTabs from './specs/OneNativeTabsNativeComponent'
 
@@ -13,6 +13,12 @@ const PAGE_STYLE = {
   width: '100%',
   height: '100%',
 } as const
+const INLINE_ACCESSORY_ID = '__one_native_accessory_inline__'
+const EXPANDED_ACCESSORY_ID = '__one_native_accessory_expanded__'
+
+export function TabViewBottomAccessory(_props: TabViewBottomAccessoryProps): never {
+  throw new Error('Swift.TabViewBottomAccessory must be a direct child of Swift.Tabs')
+}
 
 export function Tab(_props: TabProps): never {
   throw new Error('Swift.Tab must be a direct child of Swift.Tabs')
@@ -36,11 +42,17 @@ export function Tabs({
     eventCount: number
     revision: number
   }>((event) => onSelectionChange(event.selection), revision)
-  const pages = useMemo(() => {
+  const { pages, accessory } = useMemo(() => {
     const ids = new Set<string>()
-    return Children.toArray(children).map((child) => {
+    let accessory: TabViewBottomAccessoryProps | undefined
+    const pages = Children.toArray(children).flatMap((child) => {
+      if (isValidElement<TabViewBottomAccessoryProps>(child) && child.type === TabViewBottomAccessory) {
+        if (accessory) throw new Error('Swift.Tabs accepts one TabViewBottomAccessory')
+        accessory = child.props
+        return []
+      }
       if (!isValidElement<TabProps>(child) || child.type !== Tab) {
-        throw new Error('Swift.Tabs accepts Swift.Tab elements as direct children')
+        throw new Error('Swift.Tabs accepts Swift.Tab and Swift.TabViewBottomAccessory elements as direct children')
       }
       const {
         id,
@@ -52,7 +64,7 @@ export function Tabs({
         onPress,
         children: page,
       } = child.props
-      if (!id || ids.has(id)) {
+      if (!id || id === INLINE_ACCESSORY_ID || id === EXPANDED_ACCESSORY_ID || ids.has(id)) {
         throw new Error(`Swift.Tabs requires unique, nonempty tab ids: "${id}"`)
       }
       if (Boolean(onPress) === (page !== undefined)) {
@@ -62,7 +74,7 @@ export function Tabs({
       }
       if (role) assertSwiftUIValue('TabRole', role, iosVersion)
       ids.add(id)
-      return {
+      return [{
         id,
         title,
         systemImage: systemImage ?? '',
@@ -71,9 +83,14 @@ export function Tabs({
         testID,
         onPress,
         children: page,
-      }
+      }]
     })
+    return { pages, accessory }
   }, [children, iosVersion])
+  if (accessory && iosVersion < 26)
+    throw new Error('Swift.TabViewBottomAccessory requires iOS 26 or later')
+  if (accessory && accessory.children === undefined && accessory.inline === undefined && accessory.expanded === undefined)
+    throw new Error('Swift.TabViewBottomAccessory needs children, inline, or expanded content')
   const selected = pages.find((page) => page.id === selection)
   if (!selected) {
     throw new Error(
@@ -124,6 +141,24 @@ export function Tabs({
           </NativeTab>
         )
       })}
+      {accessory && [
+        { id: INLINE_ACCESSORY_ID, content: accessory.inline ?? accessory.children ?? accessory.expanded },
+        { id: EXPANDED_ACCESSORY_ID, content: accessory.expanded ?? accessory.children ?? accessory.inline },
+      ].map(({ id, content }) => (
+        <NativeTab
+          key={id}
+          tabId={id}
+          title=""
+          systemImage=""
+          badge=""
+          tabRole=""
+          action={false}
+          style={PAGE_STYLE}
+          collapsable={false}
+        >
+          {content}
+        </NativeTab>
+      ))}
     </NativeTabs>
   )
 }

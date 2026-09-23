@@ -38,6 +38,7 @@ type OneNativeStyleNative = Readonly<{
   glassEffectTint?: ProcessedColorValue
   glassEffectShape?: string
   material?: string
+  sdkModifiers?: string
 }>
 interface NativeProps extends ViewProps {
   label: string

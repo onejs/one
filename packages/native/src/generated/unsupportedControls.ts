@@ -126,6 +126,16 @@ function FileImporter(_props: Types.FileImporterProps): never {
     'Swift.FileImporter requires an iOS native build with @vxrn/native installed'
   )
 }
+function EditButton(_props: Types.EditButtonProps): never {
+  throw new Error(
+    'Swift.EditButton requires an iOS native build with @vxrn/native installed'
+  )
+}
+function EmptyView(_props: Types.EmptyViewProps): never {
+  throw new Error(
+    'Swift.EmptyView requires an iOS native build with @vxrn/native installed'
+  )
+}
 export const unsupportedControls = {
   Picker,
   DatePicker,
@@ -156,4 +166,6 @@ export const unsupportedControls = {
   ConfirmationDialog,
   QuickLook,
   FileImporter,
+  EditButton,
+  EmptyView,
 }

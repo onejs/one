@@ -30,6 +30,7 @@ export type OneNativeStyleNative = Readonly<{
     glassEffectTint?: ProcessedColorValue;
     glassEffectShape?: string;
     material?: string;
+    sdkModifiers?: string;
 }>;
 export declare function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeStyleNative | undefined;
 //# sourceMappingURL=swiftStyleNative.d.ts.map

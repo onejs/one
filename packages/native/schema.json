@@ -2112,6 +2112,30 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeEditButton",
+      "publicName": "EditButton",
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeEmptyView",
+      "publicName": "EmptyView",
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativeSheet",
       "publicName": "Sheet",
       "props": {
