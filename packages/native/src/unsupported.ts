@@ -169,7 +169,24 @@ function Page(_props: PageProps): never {
 function Pager(_props: PagerProps): never {
   throw new Error('Swift.Pager requires an iOS native build with @vxrn/native installed')
 }
+function ArrangementViewComponent(_props: any): never {
+  throw new Error(
+    'Swift.ArrangementView requires an iOS native build with @vxrn/native installed'
+  )
+}
+function ArrangementPane(_props: any): never {
+  throw new Error(
+    'Swift.ArrangementView pane requires an iOS native build with @vxrn/native installed'
+  )
+}
+const ArrangementView = Object.assign(ArrangementViewComponent, {
+  Primary: ArrangementPane,
+  Secondary: ArrangementPane,
+  Leading: ArrangementPane,
+  Detail: ArrangementPane,
+})
 export const Swift = {
+  ArrangementView,
   Tabs,
   Tab,
   TabSection,

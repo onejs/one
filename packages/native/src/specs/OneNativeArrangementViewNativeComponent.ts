@@ -1,0 +1,66 @@
+import type { ProcessedColorValue, ViewProps } from 'react-native'
+import type {
+  DirectEventHandler,
+  Double,
+  WithDefault,
+} from 'react-native/Libraries/Types/CodegenTypes'
+import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
+
+type OneNativeStyleNative = Readonly<{
+  fontSize?: WithDefault<Double, -1>
+  fontWeight?: string
+  fontDesign?: string
+  textStyle?: string
+  foregroundStyle?: ProcessedColorValue
+  tint?: ProcessedColorValue
+  background?: ProcessedColorValue
+  padding?: WithDefault<Double, -1>
+  paddingTop?: WithDefault<Double, -1>
+  paddingLeading?: WithDefault<Double, -1>
+  paddingBottom?: WithDefault<Double, -1>
+  paddingTrailing?: WithDefault<Double, -1>
+  width?: WithDefault<Double, -1>
+  height?: WithDefault<Double, -1>
+  minWidth?: WithDefault<Double, -1>
+  idealWidth?: WithDefault<Double, -1>
+  maxWidth?: WithDefault<Double, -1>
+  minHeight?: WithDefault<Double, -1>
+  idealHeight?: WithDefault<Double, -1>
+  maxHeight?: WithDefault<Double, -1>
+  cornerRadius?: WithDefault<Double, -1>
+  opacity?: WithDefault<Double, -1>
+  borderColor?: ProcessedColorValue
+  borderWidth?: WithDefault<Double, -1>
+  glassEffect?: string
+  glassEffectInteractive?: boolean
+  glassEffectTint?: ProcessedColorValue
+  glassEffectShape?: string
+  material?: string
+  sdkModifiers?: string
+}>
+
+interface NativeProps extends ViewProps {
+  arrangementViewStyle?: string
+  splitAxes?: string
+  overlayAxes?: string
+  splitRatio?: WithDefault<Double, -1>
+  splitMinHorizontal?: WithDefault<Double, -1>
+  splitIdealHorizontal?: WithDefault<Double, -1>
+  splitMaxHorizontal?: WithDefault<Double, -1>
+  splitMinVertical?: WithDefault<Double, -1>
+  splitIdealVertical?: WithDefault<Double, -1>
+  splitMaxVertical?: WithDefault<Double, -1>
+  splitMinWidth?: WithDefault<Double, -1>
+  splitIdealWidth?: WithDefault<Double, -1>
+  splitMaxWidth?: WithDefault<Double, -1>
+  splitMinHeight?: WithDefault<Double, -1>
+  splitIdealHeight?: WithDefault<Double, -1>
+  splitMaxHeight?: WithDefault<Double, -1>
+  splitFixedHorizontal?: boolean
+  splitFixedVertical?: boolean
+  overlayEdge?: string
+  swiftStyle?: OneNativeStyleNative
+  onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
+}
+
+export default codegenNativeComponent<NativeProps>('OneNativeArrangementView')

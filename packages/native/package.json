@@ -129,6 +129,12 @@
       "import": "./dist/esm/image-picker/index.mjs",
       "require": "./dist/cjs/image-picker/index.cjs"
     },
+    "./adaptive": {
+      "types": "./types/adaptive/index.d.ts",
+      "react-native": "./dist/esm/adaptive/index.native.js",
+      "import": "./dist/esm/adaptive/index.mjs",
+      "require": "./dist/cjs/adaptive/index.cjs"
+    },
     "./package.json": "./package.json",
     "./schema.json": "./schema.json"
   },
@@ -235,7 +241,9 @@
         "OneNativeTabs": "OneNativeTabsComponentView",
         "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
-        "OneNativePopoverContent": "OneNativePopoverContentComponentView"
+        "OneNativePopoverContent": "OneNativePopoverContentComponentView",
+        "OneNativeArrangementView": "OneNativeArrangementViewComponentView",
+        "OneNativeArrangementSlot": "OneNativeArrangementSlotComponentView"
       }
     }
   }

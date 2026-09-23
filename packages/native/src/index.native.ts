@@ -29,12 +29,40 @@ import { ContextMenu as IOSContextMenu, Menu as IOSMenu } from './Menu.native'
 import { Page, Pager } from './Pager.native'
 import { Popover } from './Popover.native'
 import { FullScreenCover, Sheet } from './Sheet.native'
+import { ArrangementView } from './ArrangementView.native'
 import * as Controls from './generated/Controls.native'
 import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native'
 import { Compose } from './compose'
 import * as UI from './effects'
 
 export * from './extras'
+export {
+  useSizeClass,
+  getSizeClass,
+  useHinge,
+  getHinge,
+  onHingeChange,
+  useReservedRegions,
+  getReservedRegions,
+} from './adaptive/index.native'
+export type {
+  UserInterfaceSizeClass,
+  SizeClass,
+  HingeStatus,
+  HingeState,
+  ReservedRegionKind,
+  ReservedRegion,
+  ReservedRegionOptions,
+} from './adaptive/types'
+export type {
+  ArrangementViewProps,
+  ArrangementPaneProps,
+  ArrangementViewStyle,
+  SplitLayoutRatio,
+  SplitLayoutSize,
+  SplitFixedLayoutSize,
+  OverlayArrangementEdge,
+} from './ArrangementView.native'
 
 const Menu = Platform.OS === 'android' ? AndroidMenu : IOSMenu
 const ContextMenu = Platform.OS === 'android' ? AndroidContextMenu : IOSContextMenu
@@ -42,6 +70,7 @@ const ContextMenu = Platform.OS === 'android' ? AndroidContextMenu : IOSContextM
 export const Swift =
   Platform.OS === 'ios'
     ? {
+        ArrangementView,
         Tabs,
         Tab,
         TabSection,
