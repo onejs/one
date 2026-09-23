@@ -7,7 +7,7 @@ index 6b26200..54e2540 100644
  #include <utility>
  
 -#include "Promise.h"
-+#include "../../jsi/Promise.h"
++#include "jsi/Promise.h"
  
  #include "AsyncRunner.h"
  
@@ -20,7 +20,7 @@ index 4d90b19..cb14ed4 100644
  #include "NativeObject.h"
  
 -#include "ArrayBuffer.h"
-+#include "../ArrayBuffer.h"
++#include "rnwgpu/ArrayBuffer.h"
  #include "Canvas.h"
  #include "GPU.h"
  #include "GPUCanvasContext.h"
@@ -29,7 +29,7 @@ index 4d90b19..cb14ed4 100644
  
  #include "JSIConverter.h"
 -#include "Promise.h"
-+#include "../../jsi/Promise.h"
++#include "jsi/Promise.h"
  
  namespace rnwgpu {
  
@@ -42,7 +42,7 @@ index be824e7..27de94a 100644
  #include "webgpu/webgpu_cpp.h"
  
 -#include "ArrayBuffer.h"
-+#include "../ArrayBuffer.h"
++#include "rnwgpu/ArrayBuffer.h"
  #include "GPUBuffer.h"
  #include "GPUCommandBuffer.h"
  #include "GPUImageCopyExternalImage.h"
@@ -55,7 +55,7 @@ index edfc8e4..0f9d1dd 100644
  #include "webgpu/webgpu_cpp.h"
  
 -#include "ArrayBuffer.h"
-+#include "../ArrayBuffer.h"
++#include "rnwgpu/ArrayBuffer.h"
  
  namespace rnwgpu {
  
