@@ -305,8 +305,24 @@ describe('SDK modifier derivation', () => {
     ], 27, [])).toEqual([
       { name: 'onContinuousHover', kind: 'eventAssociatedEnum', type: '@escaping (SwiftUI.HoverPhase) -> Swift.Void',
         ios: 0, label: 'perform', associatedCases: [
-          { name: 'active', values: ['point'] }, { name: 'ended', values: [] },
+          { name: 'active', values: [{ kind: 'point' }] }, { name: 'ended', values: [] },
         ] },
+    ])
+  })
+
+  it('derives stored SDK fields in a struct callback', () => {
+    expect(deriveModifiers([
+      method('onPencilDoubleTap', 'SwiftUI', [
+        { label: 'perform', name: 'action', type: '@escaping (_ value: SwiftUI.GestureValue) -> Swift.Void' },
+      ]),
+      { ...method('GestureValue', 'SwiftUI'), kind: 'struct', owner: '' },
+      { ...method('location', 'SwiftUI'), kind: 'var', owner: 'GestureValue', type: 'CoreFoundation.CGPoint?', stored: true },
+      { ...method('hashValue', 'SwiftUI'), kind: 'var', owner: 'GestureValue', type: 'Swift.Int', stored: false },
+    ], 27, [])).toEqual([
+      { name: 'onPencilDoubleTap', kind: 'eventStruct', type: '@escaping (_ value: SwiftUI.GestureValue) -> Swift.Void',
+        ios: 0, label: 'perform', eventValue: { kind: 'object', fields: [
+          { name: 'location', value: { kind: 'optional', value: { kind: 'point' } } },
+        ] } },
     ])
   })
 })

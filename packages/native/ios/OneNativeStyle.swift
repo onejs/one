@@ -326,12 +326,15 @@ extension View {
       case "onChange": view = AnyView(view.oneNativeSDKOnChange(value, emit: emit))
       case "onContinuousHover": view = AnyView(view.oneNativeSDKOnContinuousHover(value, emit: emit))
       case "onDisappear": view = AnyView(view.oneNativeSDKOnDisappear(value, emit: emit))
+      case "onDragSessionUpdated": view = AnyView(view.oneNativeSDKOnDragSessionUpdated(value, emit: emit))
       case "onHover": view = AnyView(view.oneNativeSDKOnHover(value, emit: emit))
       case "onInteractiveResizeChange": view = AnyView(view.oneNativeSDKOnInteractiveResizeChange(value, emit: emit))
       case "onLongPressGesture": view = AnyView(view.oneNativeSDKOnLongPressGesture(value, emit: emit))
       case "onMapCameraChange": view = AnyView(view.oneNativeSDKOnMapCameraChange(value, emit: emit))
       case "onOpenURLWithPerform": view = AnyView(view.oneNativeSDKOnOpenURLWithPerform(value, emit: emit))
       case "onOpenURLWithPrefersInApp": view = AnyView(view.oneNativeSDKOnOpenURLWithPrefersInApp(value, emit: emit))
+      case "onPencilDoubleTap": view = AnyView(view.oneNativeSDKOnPencilDoubleTap(value, emit: emit))
+      case "onPencilSqueeze": view = AnyView(view.oneNativeSDKOnPencilSqueeze(value, emit: emit))
       case "onScrollPhaseChange": view = AnyView(view.oneNativeSDKOnScrollPhaseChange(value, emit: emit))
       case "onScrollVisibilityChange": view = AnyView(view.oneNativeSDKOnScrollVisibilityChange(value, emit: emit))
       case "onSubmit": view = AnyView(view.oneNativeSDKOnSubmit(value, emit: emit))
@@ -3471,7 +3474,7 @@ extension View {
       let payload: [String: Any]
       switch item {
       case .active(let value0):
-        payload = ["case": "active", "values": [["x": Double(value0.x), "y": Double(value0.y)]]]
+        payload = ["case": "active", "values": [(["x": Double(value0.x), "y": Double(value0.y)] as [String: Any])]]
       case .ended:
         payload = ["case": "ended", "values": []]
       }
@@ -3483,6 +3486,15 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKOnDisappear(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onDisappear(perform: { emit("onDisappear", "") })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnDragSessionUpdated(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 27, *) { self.onDragSessionUpdated({ item in
+      let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onDragSessionUpdated event") }
+      emit("onDragSessionUpdated", encoded)
+    }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnHover(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -3508,6 +3520,32 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKOnOpenURLWithPrefersInApp(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid onOpenURLWithPrefersInApp: \(value)")
       if #available(iOS 26, *) { self.onOpenURL(prefersInApp: value == "true") } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnPencilDoubleTap(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 17.5, *) { self.onPencilDoubleTap(perform: { item in
+      let payload = (["hoverPose": (item.hoverPose.map { inner -> Any in (["location": (["x": Double(inner.location.x), "y": Double(inner.location.y)] as [String: Any]), "anchor": (["x": Double(inner.anchor.x), "y": Double(inner.anchor.y)] as [String: Any]), "zDistance": Double(inner.zDistance), "altitude": (["radians": Double(inner.altitude.radians)] as [String: Any]), "azimuth": (["radians": Double(inner.azimuth.radians)] as [String: Any]), "roll": (["radians": Double(inner.roll.radians)] as [String: Any])] as [String: Any]) } ?? NSNull())] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onPencilDoubleTap event") }
+      emit("onPencilDoubleTap", encoded)
+    }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnPencilSqueeze(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 17.5, *) { self.onPencilSqueeze(perform: { item in
+      let payload: [String: Any]
+      switch item {
+      case .active(let value0):
+        payload = ["case": "active", "values": [(["hoverPose": (value0.hoverPose.map { inner -> Any in (["location": (["x": Double(inner.location.x), "y": Double(inner.location.y)] as [String: Any]), "anchor": (["x": Double(inner.anchor.x), "y": Double(inner.anchor.y)] as [String: Any]), "zDistance": Double(inner.zDistance), "altitude": (["radians": Double(inner.altitude.radians)] as [String: Any]), "azimuth": (["radians": Double(inner.azimuth.radians)] as [String: Any]), "roll": (["radians": Double(inner.roll.radians)] as [String: Any])] as [String: Any]) } ?? NSNull())] as [String: Any])]]
+      case .ended(let value0):
+        payload = ["case": "ended", "values": [(["hoverPose": (value0.hoverPose.map { inner -> Any in (["location": (["x": Double(inner.location.x), "y": Double(inner.location.y)] as [String: Any]), "anchor": (["x": Double(inner.anchor.x), "y": Double(inner.anchor.y)] as [String: Any]), "zDistance": Double(inner.zDistance), "altitude": (["radians": Double(inner.altitude.radians)] as [String: Any]), "azimuth": (["radians": Double(inner.azimuth.radians)] as [String: Any]), "roll": (["radians": Double(inner.roll.radians)] as [String: Any])] as [String: Any]) } ?? NSNull())] as [String: Any])]]
+      case .failed:
+        payload = ["case": "failed", "values": []]
+      }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onPencilSqueeze event") }
+      emit("onPencilSqueeze", encoded)
+    }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnScrollPhaseChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

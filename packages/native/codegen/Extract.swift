@@ -21,6 +21,7 @@ struct Declaration: Codable {
   let inheritedTypes: [String]?
   let generic: Bool?
   let enumCase: Bool?
+  let stored: Bool?
 }
 // generic requirement elements carry their trailing comma; selectors compare on the text alone.
 func requirementText(_ requirement: GenericRequirementSyntax) -> String {
@@ -43,13 +44,13 @@ final class Inventory: SyntaxVisitor {
   func attributes(_ attrs: AttributeListSyntax) -> [String] {
     attrs.compactMap { $0.as(AttributeSyntax.self)?.trimmedDescription }
   }
-  func record(_ node: some SyntaxProtocol, kind: String, name: String, attrs: AttributeListSyntax, parameters: FunctionParameterListSyntax? = nil, type: String? = nil, whereClause: GenericWhereClauseSyntax? = nil, inheritedTypes: [String]? = nil, generic: Bool? = nil, enumCase: Bool? = nil) {
+  func record(_ node: some SyntaxProtocol, kind: String, name: String, attrs: AttributeListSyntax, parameters: FunctionParameterListSyntax? = nil, type: String? = nil, whereClause: GenericWhereClauseSyntax? = nil, inheritedTypes: [String]? = nil, generic: Bool? = nil, enumCase: Bool? = nil, stored: Bool? = nil) {
     declarations.append(Declaration(module: module, owner: owners.joined(separator: "."), kind: kind, name: name.replacingOccurrences(of: "`", with: ""),
       attributes: availability.flatMap { $0 } + attributes(attrs),
       requirements: requirements.flatMap { $0 } + (whereClause?.requirements.map(requirementText) ?? []),
       parameters: parameters?.map { Parameter(label: $0.firstName.text, name: $0.secondName?.text ?? $0.firstName.text, type: $0.type.trimmedDescription, defaultValue: $0.defaultValue?.value.trimmedDescription) } ?? [],
       type: type, line: location.location(for: node.positionAfterSkippingLeadingTrivia).line,
-      inheritedTypes: inheritedTypes, generic: generic, enumCase: enumCase))
+      inheritedTypes: inheritedTypes, generic: generic, enumCase: enumCase, stored: stored))
   }
   override func visit(_ node: StructDeclSyntax) -> SyntaxVisitorContinueKind {
     record(node, kind: "struct", name: node.name.text, attrs: node.attributes,
@@ -78,7 +79,7 @@ final class Inventory: SyntaxVisitor {
               type: $0.type.trimmedDescription, defaultValue: nil)
           },
           type: owners.last, line: location.location(for: element.positionAfterSkippingLeadingTrivia).line,
-          inheritedTypes: nil, generic: nil, enumCase: true))
+          inheritedTypes: nil, generic: nil, enumCase: true, stored: nil))
       } else {
         record(element, kind: "static", name: element.name.text, attrs: node.attributes, type: owners.last, enumCase: true)
       }
@@ -101,7 +102,8 @@ final class Inventory: SyntaxVisitor {
     if node.modifiers.contains(where: { $0.name.text == "public" }) {
       for binding in node.bindings {
         record(node, kind: node.modifiers.contains(where: { $0.name.text == "static" }) ? "static" : "var",
-          name: binding.pattern.trimmedDescription, attrs: node.attributes, type: binding.typeAnnotation?.type.trimmedDescription)
+          name: binding.pattern.trimmedDescription, attrs: node.attributes, type: binding.typeAnnotation?.type.trimmedDescription,
+          stored: binding.accessorBlock == nil)
       }
     }
     return .skipChildren

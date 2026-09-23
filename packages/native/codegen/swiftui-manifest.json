@@ -6270,7 +6270,9 @@
         {
           "name": "active",
           "values": [
-            "point"
+            {
+              "kind": "point"
+            }
           ]
         },
         {
@@ -6295,6 +6297,24 @@
       "type": "(() -> Swift.Void)?",
       "label": "perform",
       "ios": 13
+    },
+    {
+      "name": "onDragSessionUpdated",
+      "kind": "eventStruct",
+      "type": "@escaping (SwiftUI.DragSession) -> Swift.Void",
+      "label": "_",
+      "ios": 27,
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "location",
+            "value": {
+              "kind": "point"
+            }
+          }
+        ]
+      }
     },
     {
       "name": "onHover",
@@ -6370,6 +6390,306 @@
       "ios": 26,
       "label": "prefersInApp",
       "sdkName": "onOpenURL"
+    },
+    {
+      "name": "onPencilDoubleTap",
+      "kind": "eventStruct",
+      "type": "@escaping (_ value: SwiftUI.PencilDoubleTapGestureValue) -> Swift.Void",
+      "label": "perform",
+      "ios": 17.5,
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "hoverPose",
+            "value": {
+              "kind": "optional",
+              "value": {
+                "kind": "object",
+                "fields": [
+                  {
+                    "name": "location",
+                    "value": {
+                      "kind": "point"
+                    }
+                  },
+                  {
+                    "name": "anchor",
+                    "value": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "name": "x",
+                          "value": {
+                            "kind": "number"
+                          }
+                        },
+                        {
+                          "name": "y",
+                          "value": {
+                            "kind": "number"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "zDistance",
+                    "value": {
+                      "kind": "number"
+                    }
+                  },
+                  {
+                    "name": "altitude",
+                    "value": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "name": "radians",
+                          "value": {
+                            "kind": "number"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "azimuth",
+                    "value": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "name": "radians",
+                          "value": {
+                            "kind": "number"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "roll",
+                    "value": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "name": "radians",
+                          "value": {
+                            "kind": "number"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "onPencilSqueeze",
+      "kind": "eventAssociatedEnum",
+      "type": "@escaping (_ phase: SwiftUI.PencilSqueezeGesturePhase) -> Swift.Void",
+      "label": "perform",
+      "ios": 17.5,
+      "associatedCases": [
+        {
+          "name": "active",
+          "values": [
+            {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "hoverPose",
+                  "value": {
+                    "kind": "optional",
+                    "value": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "name": "location",
+                          "value": {
+                            "kind": "point"
+                          }
+                        },
+                        {
+                          "name": "anchor",
+                          "value": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "name": "x",
+                                "value": {
+                                  "kind": "number"
+                                }
+                              },
+                              {
+                                "name": "y",
+                                "value": {
+                                  "kind": "number"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "name": "zDistance",
+                          "value": {
+                            "kind": "number"
+                          }
+                        },
+                        {
+                          "name": "altitude",
+                          "value": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "name": "radians",
+                                "value": {
+                                  "kind": "number"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "name": "azimuth",
+                          "value": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "name": "radians",
+                                "value": {
+                                  "kind": "number"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "name": "roll",
+                          "value": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "name": "radians",
+                                "value": {
+                                  "kind": "number"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ended",
+          "values": [
+            {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "hoverPose",
+                  "value": {
+                    "kind": "optional",
+                    "value": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "name": "location",
+                          "value": {
+                            "kind": "point"
+                          }
+                        },
+                        {
+                          "name": "anchor",
+                          "value": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "name": "x",
+                                "value": {
+                                  "kind": "number"
+                                }
+                              },
+                              {
+                                "name": "y",
+                                "value": {
+                                  "kind": "number"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "name": "zDistance",
+                          "value": {
+                            "kind": "number"
+                          }
+                        },
+                        {
+                          "name": "altitude",
+                          "value": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "name": "radians",
+                                "value": {
+                                  "kind": "number"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "name": "azimuth",
+                          "value": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "name": "radians",
+                                "value": {
+                                  "kind": "number"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "name": "roll",
+                          "value": {
+                            "kind": "object",
+                            "fields": [
+                              {
+                                "name": "radians",
+                                "value": {
+                                  "kind": "number"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "failed",
+          "values": []
+        }
+      ]
     },
     {
       "name": "onScrollPhaseChange",
@@ -10893,10 +11213,13 @@
         "navigationTransition",
         "navigationViewStyle",
         "onContinuousHover",
+        "onDragSessionUpdated",
         "onHover",
         "onInteractiveResizeChange",
         "onLongPressGesture",
         "onOpenURL",
+        "onPencilDoubleTap",
+        "onPencilSqueeze",
         "onScrollPhaseChange",
         "onScrollVisibilityChange",
         "onSubmit",

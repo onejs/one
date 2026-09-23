@@ -7,7 +7,7 @@ import type {
   ScalarType,
 } from './controlTypes'
 import { deriveLeafSwift } from './derive'
-import type { DerivedModifier } from './deriveSDK'
+import type { DerivedModifier, EventValueSchema } from './deriveSDK'
 import type { Declaration } from './inventory'
 
 const swiftScalar = (type: ScalarType) =>
@@ -76,6 +76,15 @@ const styleFieldType = (field: StyleField) =>
           ? styleAlias(field)
           : 'string'
 
+const eventValueType = (value: EventValueSchema): string => {
+  if (value.kind === 'number') return 'number'
+  if (value.kind === 'string') return 'string'
+  if (value.kind === 'boolean') return 'boolean'
+  if (value.kind === 'point') return '{ x: number; y: number }'
+  if (value.kind === 'optional') return `${eventValueType(value.value)} | null`
+  return `{ ${value.fields.map((field) => `${field.name}: ${eventValueType(field.value)}`).join('; ')} }`
+}
+
 export function emitControls(
   header: string,
   outputs: Map<string, string>,
@@ -141,7 +150,9 @@ ${styleFields
                 : modifier.kind === 'eventEnumPair'
                   ? `(oldValue: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}, newValue: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}) => void`
                   : modifier.kind === 'eventAssociatedEnum'
-                    ? `(value: ${modifier.associatedCases!.map((item) => `{ case: ${JSON.stringify(item.name)}; values: readonly [${item.values.map((kind) => kind === 'point' ? '{ x: number; y: number }' : kind === 'number' ? 'number' : kind === 'boolean' ? 'boolean' : 'string').join(', ')}] }`).join(' | ')}) => void`
+                    ? `(value: ${modifier.associatedCases!.map((item) => `{ case: ${JSON.stringify(item.name)}; values: readonly [${item.values.map(eventValueType).join(', ')}] }`).join(' | ')}) => void`
+                    : modifier.kind === 'eventStruct'
+                      ? `(value: ${eventValueType(modifier.eventValue!)}) => void`
                   : modifier.kind === 'eventValueString'
                     ? 'Readonly<{ value: string; onChange: (value: string) => void }>'
           : modifier.kind === 'bindingBoolean'

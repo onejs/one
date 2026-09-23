@@ -38,6 +38,45 @@ describe('SDK callback and binding transport', () => {
     expect(() => element.props.onNativeSDKEvent({ nativeEvent: { name: 'onContinuousHover', value: '{"case":"active","values":[{"x":"bad","y":0}]}' } })).toThrow('invalid point')
   })
 
+  it('dispatches SDK structs with nested optional fields', () => {
+    const onDragSessionUpdated = vi.fn()
+    const onPencilDoubleTap = vi.fn()
+    const onPencilSqueeze = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      onDragSessionUpdated,
+      onPencilDoubleTap,
+      onPencilSqueeze,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['onDragSessionUpdated', ''],
+      ['onPencilDoubleTap', ''],
+      ['onPencilSqueeze', ''],
+    ])
+    const hoverPose = {
+      location: { x: 12, y: -3 },
+      anchor: { x: 0.5, y: 0.25 },
+      zDistance: 4,
+      altitude: { radians: 1 },
+      azimuth: { radians: 2 },
+      roll: { radians: 3 },
+    }
+    const emit = (name: string, value: unknown) => element.props.onNativeSDKEvent({
+      nativeEvent: { name, value: JSON.stringify(value) },
+    })
+    emit('onDragSessionUpdated', { location: { x: 5, y: 7 } })
+    emit('onPencilDoubleTap', { hoverPose: null })
+    emit('onPencilDoubleTap', { hoverPose })
+    emit('onPencilSqueeze', { case: 'active', values: [{ hoverPose }] })
+    emit('onPencilSqueeze', { case: 'failed', values: [] })
+    expect(onDragSessionUpdated).toHaveBeenCalledWith({ location: { x: 5, y: 7 } })
+    expect(onPencilDoubleTap).toHaveBeenNthCalledWith(1, { hoverPose: null })
+    expect(onPencilDoubleTap).toHaveBeenNthCalledWith(2, { hoverPose })
+    expect(onPencilSqueeze).toHaveBeenNthCalledWith(1, { case: 'active', values: [{ hoverPose }] })
+    expect(onPencilSqueeze).toHaveBeenNthCalledWith(2, { case: 'failed', values: [] })
+    expect(() => emit('onPencilDoubleTap', { hoverPose: { ...hoverPose, roll: { radians: 'bad' } } })).toThrow('invalid struct value')
+    expect(() => emit('onPencilSqueeze', { case: 'active', values: [{ hoverPose: { ...hoverPose, location: { x: 'bad', y: 0 } } }] })).toThrow('invalid object')
+  })
+
   it('encodes URL values and dispatches optional StoreKit actions', () => {
     const onSignIn = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {
