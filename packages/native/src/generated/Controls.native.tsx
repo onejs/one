@@ -1305,3 +1305,19 @@ export function FileImporter({
     />
   )
 }
+import NativeEditButton from '../specs/OneNativeEditButtonNativeComponent'
+export function EditButton({ swiftStyle, style, ...props }: Types.EditButtonProps) {
+  return (
+    <NativeEditButton
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+    />
+  )
+}
+import NativeEmptyView from '../specs/OneNativeEmptyViewNativeComponent'
+export function EmptyView({ swiftStyle, style, ...props }: Types.EmptyViewProps) {
+  return (
+    <NativeEmptyView {...props} style={style} swiftStyle={swiftStyleNative(swiftStyle)} />
+  )
+}

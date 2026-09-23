@@ -3,6 +3,7 @@ interface NativeProps extends ViewProps {
     sizing: string;
     colorScheme: string;
     dynamicTypeSize: string;
+    controlSize: string;
     locale: string;
     tint?: ColorValue;
     isEnabled: string;
