@@ -17,6 +17,7 @@ export const tabViewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots
 export type TabViewSlotName = keyof typeof tabViewSlotAvailability
 `)
   outputs.set('ios/Generated/OneNativeViewSlots.swift', header + `import SwiftUI
+${[...new Set(slots.filter((slot) => slot.module.startsWith('_')).map((slot) => slot.module.slice(1, -'_SwiftUI'.length)))].map((framework) => `import ${framework}`).join('\n')}
 
 enum OneNativeViewSlotName {
 ${slots.map((slot) => `  static let ${slot.name} = ${JSON.stringify(slot.name)}`).join('\n')}
@@ -38,7 +39,7 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
           default: preconditionFailure("invalid ${slot.name}.${argument.field}")
           }
         }()`).join('\n')}
-` : ''}        return AnyView(self.${slot.name}(${[...slot.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`), `${slot.label === '_' ? '' : `${slot.label}: `}content`].join(', ')}))
+` : ''}        return AnyView(self.${slot.sdkName ?? slot.name}(${[...slot.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`), `${slot.label === '_' ? '' : `${slot.label}: `}content`].join(', ')}))
       }
       return AnyView(self)`).join('\n')}
     default: preconditionFailure("unknown view slot: \\(name)")

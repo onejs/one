@@ -1,4 +1,6 @@
 export declare const viewSlotAvailability: {
+    readonly accessibilityActions: 16;
+    readonly accessibilityActionsWithAccessibilityActionCategory: 18;
     readonly accessibilityChildren: 15;
     readonly accessibilityRepresentation: 15;
     readonly accessibilityShowsLargeContentViewer: 15;
@@ -6,11 +8,17 @@ export declare const viewSlotAvailability: {
     readonly containerBackground: 17;
     readonly contentToolbar: 18.4;
     readonly contextMenu: 13;
+    readonly mapControls: 17;
     readonly mask: 15;
     readonly overlay: 15;
     readonly presentationBackground: 16.4;
+    readonly safeAreaBarWithHorizontalEdge: 26;
+    readonly safeAreaBarWithVerticalEdge: 26;
+    readonly safeAreaInsetWithHorizontalEdge: 15;
+    readonly safeAreaInsetWithVerticalEdge: 15;
     readonly searchSuggestions: 16;
     readonly sectionActions: 18;
+    readonly subscriptionStorePolicyDestination: 17;
     readonly swipeActions: 15;
     readonly tabItem: 13;
     readonly tabViewBottomAccessory: 26;
@@ -23,6 +31,14 @@ export declare const viewSlotAvailability: {
 };
 export type ViewSlotName = keyof typeof viewSlotAvailability;
 export declare const viewSlotArguments: {
+    readonly accessibilityActions: readonly [];
+    readonly accessibilityActionsWithAccessibilityActionCategory: readonly [{
+        readonly field: 'category';
+        readonly cases: {
+            readonly default: 18;
+            readonly edit: 18;
+        };
+    }];
     readonly accessibilityChildren: readonly [];
     readonly accessibilityRepresentation: readonly [];
     readonly accessibilityShowsLargeContentViewer: readonly [];
@@ -41,11 +57,47 @@ export declare const viewSlotArguments: {
         };
     }];
     readonly contextMenu: readonly [];
+    readonly mapControls: readonly [];
     readonly mask: readonly [];
     readonly overlay: readonly [];
     readonly presentationBackground: readonly [];
+    readonly safeAreaBarWithHorizontalEdge: readonly [{
+        readonly field: 'edge';
+        readonly cases: {
+            readonly leading: 15;
+            readonly trailing: 15;
+        };
+    }];
+    readonly safeAreaBarWithVerticalEdge: readonly [{
+        readonly field: 'edge';
+        readonly cases: {
+            readonly top: 15;
+            readonly bottom: 15;
+        };
+    }];
+    readonly safeAreaInsetWithHorizontalEdge: readonly [{
+        readonly field: 'edge';
+        readonly cases: {
+            readonly leading: 15;
+            readonly trailing: 15;
+        };
+    }];
+    readonly safeAreaInsetWithVerticalEdge: readonly [{
+        readonly field: 'edge';
+        readonly cases: {
+            readonly top: 15;
+            readonly bottom: 15;
+        };
+    }];
     readonly searchSuggestions: readonly [];
     readonly sectionActions: readonly [];
+    readonly subscriptionStorePolicyDestination: readonly [{
+        readonly field: 'button';
+        readonly cases: {
+            readonly termsOfService: 17;
+            readonly privacyPolicy: 17;
+        };
+    }];
     readonly swipeActions: readonly [];
     readonly tabItem: readonly [];
     readonly tabViewBottomAccessory: readonly [];
@@ -57,6 +109,14 @@ export declare const viewSlotArguments: {
     readonly toolbarTitleMenu: readonly [];
 };
 export type ViewSlotConfiguration = {
+    name: 'accessibilityActions';
+    options?: never;
+} | {
+    name: 'accessibilityActionsWithAccessibilityActionCategory';
+    options: {
+        category: 'default' | 'edit';
+    };
+} | {
     name: 'accessibilityChildren';
     options?: never;
 } | {
@@ -82,6 +142,9 @@ export type ViewSlotConfiguration = {
     name: 'contextMenu';
     options?: never;
 } | {
+    name: 'mapControls';
+    options?: never;
+} | {
     name: 'mask';
     options?: never;
 } | {
@@ -91,11 +154,36 @@ export type ViewSlotConfiguration = {
     name: 'presentationBackground';
     options?: never;
 } | {
+    name: 'safeAreaBarWithHorizontalEdge';
+    options: {
+        edge: 'leading' | 'trailing';
+    };
+} | {
+    name: 'safeAreaBarWithVerticalEdge';
+    options: {
+        edge: 'top' | 'bottom';
+    };
+} | {
+    name: 'safeAreaInsetWithHorizontalEdge';
+    options: {
+        edge: 'leading' | 'trailing';
+    };
+} | {
+    name: 'safeAreaInsetWithVerticalEdge';
+    options: {
+        edge: 'top' | 'bottom';
+    };
+} | {
     name: 'searchSuggestions';
     options?: never;
 } | {
     name: 'sectionActions';
     options?: never;
+} | {
+    name: 'subscriptionStorePolicyDestination';
+    options: {
+        button: 'termsOfService' | 'privacyPolicy';
+    };
 } | {
     name: 'swipeActions';
     options?: never;

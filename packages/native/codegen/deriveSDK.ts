@@ -59,18 +59,20 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) =>
     return { kind: 'enum', type, optional, cases }
   }
 
-export type DerivedViewSlot = { name: string; module: string; label: string; ios: number; arguments: readonly DerivedArgument[] }
+export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; arguments: readonly DerivedArgument[] }
 
 export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
   const valueOf = bridgeValueOf(inventory, ceiling)
   const slots = inventory.filter((d) => {
     const builders = d.parameters.filter((parameter) =>
-      /^\(\) -> [A-Za-z_]\w*$/.test(parameter.type) &&
-      d.requirements?.length === 1 &&
-      d.requirements[0] === `${parameter.type.slice(6)} : SwiftUICore.View`
+      parameter.type === '() -> some View' ||
+      (/^\(\) -> [A-Za-z_]\w*$/.test(parameter.type) &&
+        d.requirements?.length === 1 &&
+        d.requirements[0] === `${parameter.type.slice(6)} : SwiftUICore.View`)
     )
     return (
-      d.kind === 'func' && (d.module === 'SwiftUI' || d.module === 'SwiftUICore') &&
+      d.kind === 'func' && (d.module === 'SwiftUI' || d.module === 'SwiftUICore' ||
+        /^_[A-Za-z]+_SwiftUI$/.test(d.module)) &&
       d.owner.split('.').at(-1) === 'View' && builders.length === 1 &&
       d.parameters.at(-1) === builders[0] &&
       d.parameters.every((parameter) => parameter === builders[0] || parameter.defaultValue !== undefined ||
@@ -79,14 +81,22 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
     )
   })
   const byName = new Map<string, Declaration[]>()
-  for (const slot of slots) byName.set(slot.name, [...(byName.get(slot.name) ?? []), slot])
-  return [...byName].filter(([, declarations]) => declarations.length === 1)
-    .map(([, [slot]]) => ({ name: slot.name, module: slot.module,
+  for (const slot of slots) {
+    const key = `${slot.module}.${slot.name}`
+    byName.set(key, [...(byName.get(key) ?? []), slot])
+  }
+  return [...byName].flatMap(([, declarations]) => declarations.map((slot) => {
+    const required = slot.parameters.filter((parameter) =>
+      !parameter.type.startsWith('() ->') && parameter.defaultValue === undefined)
+    const suffix = declarations.length === 1 || required.length === 0 ? ''
+      : `With${required.map((parameter) => parameter.type.split('.').at(-1)!).join('And')}`
+    return { name: `${slot.name}${suffix}`, ...(suffix ? { sdkName: slot.name } : {}), module: slot.module,
       label: slot.parameters.find((parameter) =>
-        /^\(\) -> [A-Za-z_]\w*$/.test(parameter.type))!.label, ios: ios(slot),
+        parameter.type.startsWith('() ->'))!.label, ios: ios(slot),
       arguments: slot.parameters.filter((parameter) =>
-        !/^\(\) -> [A-Za-z_]\w*$/.test(parameter.type) && parameter.defaultValue === undefined)
-        .map((parameter) => ({ ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label })) }))
+        !parameter.type.startsWith('() ->') && parameter.defaultValue === undefined)
+        .map((parameter) => ({ ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label })) }
+  }))
     .sort((a, b) => a.name.localeCompare(b.name))
 }
 
