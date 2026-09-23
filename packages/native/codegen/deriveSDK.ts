@@ -18,7 +18,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalEnum' | 'record' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'bindingBoolean' | 'bindingString'
+  kind: 'boolean' | 'number' | 'string' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'bindingBoolean' | 'bindingString'
   ios: number
   type: string
   cases?: readonly { name: string; ios: number }[]
@@ -83,7 +83,6 @@ export function deriveModifiers(
         /^_[A-Za-z]+_SwiftUI$/.test(d.module)) &&
       d.owner.split('.').at(-1) === 'View' &&
       /^[a-z]/.test(d.name) &&
-      !d.requirements?.length &&
       present(d) &&
       ios(d) <= ceiling &&
       !reservedNames.has(d.name)
@@ -98,6 +97,17 @@ export function deriveModifiers(
       const framework = method.module.startsWith('_')
         ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
         : {}
+      if (method.requirements?.length) {
+        const style = /^S : ([A-Za-z_]\w*\.[A-Za-z][\w.]*)$/.exec(method.requirements[0] ?? '')?.[1]
+        if (method.requirements.length !== 1 || !style || method.parameters.length !== 1 || method.parameters[0].type !== 'S') return []
+        const cases = inventory.filter((d) =>
+          d.kind === 'static' && d.owner === style && d.parameters.length === 0 &&
+          d.requirements?.length === 1 && d.requirements[0] === `Self == ${d.type}` &&
+          /^[a-z]/.test(d.name) && present(d) && ios(d) <= ceiling
+        ).map((d) => ({ name: d.name, ios: ios(d) }))
+        if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length) return []
+        return [{ name, module: method.module, kind: 'style', type: 'S', ios: ios(method), cases, ...framework }]
+      }
       if (method.parameters.length === 0)
         return [
           {
