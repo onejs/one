@@ -102,6 +102,8 @@ export const sdkDefaultAdaptableTabBarPlacementValues = [
 ] as const
 export type SDKDefaultAdaptableTabBarPlacement =
   (typeof sdkDefaultAdaptableTabBarPlacementValues)[number]
+export const sdkDefaultTabBarPlacementValues = ['automatic', 'tabBar', 'sidebar'] as const
+export type SDKDefaultTabBarPlacement = (typeof sdkDefaultTabBarPlacementValues)[number]
 export const sdkDynamicTypeSizeValues = [
   'xSmall',
   'small',
@@ -248,6 +250,13 @@ export const sdkPresentationDragIndicatorValues = [
 ] as const
 export type SDKPresentationDragIndicator =
   (typeof sdkPresentationDragIndicatorValues)[number]
+export const sdkPresentationPlacementValues = [
+  'automatic',
+  'leading',
+  'center',
+  'trailing',
+] as const
+export type SDKPresentationPlacement = (typeof sdkPresentationPlacementValues)[number]
 export const sdkPreviewInterfaceOrientationValues = [
   'portrait',
   'portraitUpsideDown',
@@ -332,6 +341,12 @@ export const sdkTabViewSearchActivationValues = [
   'searchTabSelection',
 ] as const
 export type SDKTabViewSearchActivation = (typeof sdkTabViewSearchActivationValues)[number]
+export const sdkTextInputBorderShapeValues = [
+  'automatic',
+  'capsule',
+  'roundedRectangle',
+] as const
+export type SDKTextInputBorderShape = (typeof sdkTextInputBorderShapeValues)[number]
 export const sdkTextSelectionAffinityValues = [
   'automatic',
   'upstream',
@@ -420,6 +435,7 @@ export interface OneNativeStyle {
   contrast?: number
   controlSize?: SDKControlSize
   defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement
+  defaultTabBarPlacement?: SDKDefaultTabBarPlacement
   deleteDisabled?: boolean
   disabled?: boolean
   dynamicTypeSize?: SDKDynamicTypeSize
@@ -473,6 +489,7 @@ export interface OneNativeStyle {
   presentationCompactAdaptation?: SDKPresentationCompactAdaptation
   presentationContentInteraction?: SDKPresentationContentInteraction
   presentationDragIndicator?: SDKPresentationDragIndicator
+  presentationPlacement?: SDKPresentationPlacement
   previewInterfaceOrientation?: SDKPreviewInterfaceOrientation
   privacySensitive?: boolean
   replaceDisabled?: boolean
@@ -502,6 +519,7 @@ export interface OneNativeStyle {
   tabBarMinimizeBehavior?: SDKTabBarMinimizeBehavior
   tableColumnHeaders?: SDKTableColumnHeaders
   tabViewSearchActivation?: SDKTabViewSearchActivation
+  textInputBorderShape?: SDKTextInputBorderShape
   textSelectionAffinity?: SDKTextSelectionAffinity
   toolbarRole?: SDKToolbarRole
   toolbarTitleDisplayMode?: SDKToolbarTitleDisplayMode
