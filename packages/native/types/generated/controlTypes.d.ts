@@ -29,6 +29,8 @@ export declare const sdkControlSizeValues: readonly ['mini', 'small', 'regular',
 export type SDKControlSize = (typeof sdkControlSizeValues)[number];
 export declare const sdkDefaultAdaptableTabBarPlacementValues: readonly ['automatic', 'tabBar', 'sidebar'];
 export type SDKDefaultAdaptableTabBarPlacement = (typeof sdkDefaultAdaptableTabBarPlacementValues)[number];
+export declare const sdkDefaultTabBarPlacementValues: readonly ['automatic', 'tabBar', 'sidebar'];
+export type SDKDefaultTabBarPlacement = (typeof sdkDefaultTabBarPlacementValues)[number];
 export declare const sdkDynamicTypeSizeValues: readonly ['xSmall', 'small', 'medium', 'large', 'xLarge', 'xxLarge', 'xxxLarge', 'accessibility1', 'accessibility2', 'accessibility3', 'accessibility4', 'accessibility5'];
 export type SDKDynamicTypeSize = (typeof sdkDynamicTypeSizeValues)[number];
 export declare const sdkEdgesIgnoringSafeAreaValues: readonly ['top', 'leading', 'bottom', 'trailing', 'all', 'horizontal', 'vertical'];
@@ -81,6 +83,8 @@ export declare const sdkPresentationContentInteractionValues: readonly ['automat
 export type SDKPresentationContentInteraction = (typeof sdkPresentationContentInteractionValues)[number];
 export declare const sdkPresentationDragIndicatorValues: readonly ['automatic', 'visible', 'hidden'];
 export type SDKPresentationDragIndicator = (typeof sdkPresentationDragIndicatorValues)[number];
+export declare const sdkPresentationPlacementValues: readonly ['automatic', 'leading', 'center', 'trailing'];
+export type SDKPresentationPlacement = (typeof sdkPresentationPlacementValues)[number];
 export declare const sdkPreviewInterfaceOrientationValues: readonly ['portrait', 'portraitUpsideDown', 'landscapeLeft', 'landscapeRight'];
 export type SDKPreviewInterfaceOrientation = (typeof sdkPreviewInterfaceOrientationValues)[number];
 export declare const sdkScenePaddingValues: readonly ['top', 'leading', 'bottom', 'trailing', 'all', 'horizontal', 'vertical'];
@@ -109,6 +113,8 @@ export declare const sdkTableColumnHeadersValues: readonly ['automatic', 'visibl
 export type SDKTableColumnHeaders = (typeof sdkTableColumnHeadersValues)[number];
 export declare const sdkTabViewSearchActivationValues: readonly ['automatic', 'searchTabSelection'];
 export type SDKTabViewSearchActivation = (typeof sdkTabViewSearchActivationValues)[number];
+export declare const sdkTextInputBorderShapeValues: readonly ['automatic', 'capsule', 'roundedRectangle'];
+export type SDKTextInputBorderShape = (typeof sdkTextInputBorderShapeValues)[number];
 export declare const sdkTextSelectionAffinityValues: readonly ['automatic', 'upstream', 'downstream'];
 export type SDKTextSelectionAffinity = (typeof sdkTextSelectionAffinityValues)[number];
 export declare const sdkToolbarRoleValues: readonly ['automatic', 'navigationStack', 'browser', 'editor'];
@@ -171,6 +177,7 @@ export interface OneNativeStyle {
     contrast?: number;
     controlSize?: SDKControlSize;
     defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement;
+    defaultTabBarPlacement?: SDKDefaultTabBarPlacement;
     deleteDisabled?: boolean;
     disabled?: boolean;
     dynamicTypeSize?: SDKDynamicTypeSize;
@@ -224,6 +231,7 @@ export interface OneNativeStyle {
     presentationCompactAdaptation?: SDKPresentationCompactAdaptation;
     presentationContentInteraction?: SDKPresentationContentInteraction;
     presentationDragIndicator?: SDKPresentationDragIndicator;
+    presentationPlacement?: SDKPresentationPlacement;
     previewInterfaceOrientation?: SDKPreviewInterfaceOrientation;
     privacySensitive?: boolean;
     replaceDisabled?: boolean;
@@ -253,6 +261,7 @@ export interface OneNativeStyle {
     tabBarMinimizeBehavior?: SDKTabBarMinimizeBehavior;
     tableColumnHeaders?: SDKTableColumnHeaders;
     tabViewSearchActivation?: SDKTabViewSearchActivation;
+    textInputBorderShape?: SDKTextInputBorderShape;
     textSelectionAffinity?: SDKTextSelectionAffinity;
     toolbarRole?: SDKToolbarRole;
     toolbarTitleDisplayMode?: SDKToolbarTitleDisplayMode;
