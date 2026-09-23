@@ -1,0 +1,1 @@
+/Users/n8/.worktrees/one-native-cnb/node_modules/@vxrn/native/android/build/intermediates/cxx/Debug/0722j3sk/obj/arm64-v8a
