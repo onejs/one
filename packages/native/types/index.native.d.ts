@@ -2,11 +2,13 @@ import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, Group, HSt
 import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './AndroidMenu';
 import { Page, Pager } from './Pager.native';
 import { Popover } from './Popover.native';
+import { NavigationStack, Toolbar, ToolbarItem, ToolbarItemGroup, ToolbarSpacer } from './NavigationStack.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
 import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native';
 import { Compose } from './compose';
 import * as UI from './effects';
 export * from './extras';
+export type { ToolbarHostProps, ToolbarItemProps } from './extras';
 declare const Menu: typeof AndroidMenu;
 declare const ContextMenu: typeof AndroidContextMenu;
 export declare const Swift: {
@@ -77,6 +79,11 @@ export declare const Swift: {
     };
     Pager: typeof Pager;
     Page: typeof Page;
+    NavigationStack: typeof NavigationStack;
+    Toolbar: typeof Toolbar;
+    ToolbarItem: typeof ToolbarItem;
+    ToolbarItemGroup: typeof ToolbarItemGroup;
+    ToolbarSpacer: typeof ToolbarSpacer;
     Spacer: typeof Spacer;
     Slot: typeof Slot;
 };

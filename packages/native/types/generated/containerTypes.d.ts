@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type { ColorValue, ViewProps } from 'react-native';
 import type { GlassEffect, GlassEffectShape, Material, OneNativeViewProps } from './controlTypes';
 import type * as Styles from './swiftui';
-import type { ColorScheme, ControlSize, DynamicTypeSize } from './swiftui';
+import type { ColorScheme, ControlSize, DynamicTypeSize, SpacerSizing, ToolbarItemPlacement } from './swiftui';
 export type HostAxis = 'vertical' | 'horizontal';
 export type HostAlignment = 'leading' | 'center' | 'trailing';
 export type ZStackAlignment = 'topLeading' | 'top' | 'topTrailing' | 'leading' | 'center' | 'trailing' | 'bottomLeading' | 'bottom' | 'bottomTrailing';
@@ -68,6 +68,26 @@ export interface SlotProps extends ViewProps {
     height: number;
     width?: number;
     children: ReactNode;
+}
+export interface NavigationStackProps extends OneNativeViewProps {
+    children: ReactNode;
+}
+export interface ToolbarProps extends ViewProps {
+    children: ReactNode;
+}
+export interface ToolbarItemProps extends OneNativeViewProps {
+    placement?: ToolbarItemPlacement;
+    children: ReactNode;
+}
+export interface ToolbarItemGroupProps extends OneNativeViewProps {
+    placement?: ToolbarItemPlacement;
+    label?: string;
+    systemImage?: string;
+    children: ReactNode;
+}
+export interface ToolbarSpacerProps extends ViewProps {
+    sizing?: SpacerSizing;
+    placement?: ToolbarItemPlacement;
 }
 export declare const hostAxes: readonly ['vertical', 'horizontal'];
 export declare const hostAlignments: readonly ['leading', 'center', 'trailing'];

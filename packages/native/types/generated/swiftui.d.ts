@@ -36,6 +36,8 @@ export type MagnificationGesturesBehavior = 'automatic' | 'enabled' | 'disabled'
 export type LinkPreviewBehavior = 'automatic' | 'enabled' | 'disabled';
 export type ElementFullscreenBehavior = 'automatic' | 'enabled' | 'disabled';
 export type ListStyle = 'automatic' | 'sidebar' | 'inset' | 'grouped' | 'insetGrouped' | 'plain';
+export type ToolbarItemPlacement = 'automatic' | 'principal' | 'navigation' | 'primaryAction' | 'secondaryAction' | 'status' | 'confirmationAction' | 'cancellationAction' | 'destructiveAction' | 'keyboard' | 'topBarLeading' | 'topBarTrailing' | 'topBarPinnedTrailing' | 'navigationBarLeading' | 'navigationBarTrailing' | 'title' | 'largeTitle' | 'bottomBar' | 'subtitle' | 'largeSubtitle';
+export type SpacerSizing = 'flexible' | 'fixed';
 export declare const swiftUIValues: {
     readonly MenuOrder: {
         readonly automatic: 16;
@@ -270,6 +272,32 @@ export declare const swiftUIValues: {
         readonly grouped: 13;
         readonly insetGrouped: 14;
         readonly plain: 13;
+    };
+    readonly ToolbarItemPlacement: {
+        readonly automatic: 14;
+        readonly principal: 14;
+        readonly navigation: 14;
+        readonly primaryAction: 14;
+        readonly secondaryAction: 16;
+        readonly status: 14;
+        readonly confirmationAction: 14;
+        readonly cancellationAction: 14;
+        readonly destructiveAction: 14;
+        readonly keyboard: 15;
+        readonly topBarLeading: 14;
+        readonly topBarTrailing: 14;
+        readonly topBarPinnedTrailing: 27;
+        readonly navigationBarLeading: 14;
+        readonly navigationBarTrailing: 14;
+        readonly title: 14;
+        readonly largeTitle: 26;
+        readonly bottomBar: 14;
+        readonly subtitle: 26;
+        readonly largeSubtitle: 26;
+    };
+    readonly SpacerSizing: {
+        readonly flexible: 26;
+        readonly fixed: 26;
     };
 };
 export declare function assertSwiftUIValue(type: keyof typeof swiftUIValues, value: string, iosVersion: number): void;

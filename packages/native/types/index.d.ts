@@ -1,5 +1,6 @@
 import * as UI from './effects';
 export * from './extras';
+export type { ToolbarHostProps, ToolbarItemProps } from './extras';
 export * from './unsupported';
 export declare const Menu: (_props: import("./types").MenuProps) => never;
 export declare const ContextMenu: (_props: import("./types").ContextMenuProps) => never;

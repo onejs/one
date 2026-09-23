@@ -39,11 +39,13 @@ import {
 
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx'
 
-export type OneIOS = typeof Swift & {
+export type OneIOS = Omit<typeof Swift, 'ToolbarItem'> & {
   readonly Color: ColorType['ios']
   readonly MenuAction: typeof MenuAction
   readonly SplitView: typeof SplitView
   readonly ToolbarHost: typeof ToolbarHost
+  // One.iOS.ToolbarItem is the navigation toolbar item, as it always was. the SwiftUI
+  // toolbar item is Swift.ToolbarItem, which is where the SwiftUI toolbar lives.
   readonly ToolbarItem: typeof ToolbarItem
   readonly ZoomTransitionAlignmentRectDetector: typeof ZoomTransitionAlignmentRectDetector
   readonly ZoomTransitionEnabler: typeof ZoomTransitionEnabler
