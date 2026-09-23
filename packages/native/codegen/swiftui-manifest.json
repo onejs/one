@@ -6880,12 +6880,285 @@
       "ios": 13
     },
     {
+      "name": "onCameraCaptureEvent",
+      "kind": "eventStruct",
+      "type": "@escaping (AVKit.AVCaptureEvent) -> Swift.Void",
+      "label": "action",
+      "ios": 18,
+      "framework": "AVKit",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "phase",
+            "value": {
+              "kind": "enum",
+              "cases": [
+                "began",
+                "cancelled",
+                "ended"
+              ],
+              "open": true
+            }
+          }
+        ]
+      },
+      "callArguments": [
+        {
+          "label": "isEnabled",
+          "defaultValue": "true"
+        },
+        {
+          "label": "action",
+          "bridge": true
+        }
+      ]
+    },
+    {
+      "name": "onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction",
+      "module": "_AVKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "defaultSoundDisabled",
+          "label": "defaultSoundDisabled"
+        },
+        {
+          "kind": "eventStruct",
+          "type": "@escaping (AVKit.AVCaptureEvent) -> Swift.Void",
+          "optional": false,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "phase",
+                "value": {
+                  "kind": "enum",
+                  "cases": [
+                    "began",
+                    "cancelled",
+                    "ended"
+                  ],
+                  "open": true
+                }
+              },
+              {
+                "name": "shouldPlaySound",
+                "value": {
+                  "kind": "boolean"
+                }
+              }
+            ]
+          },
+          "field": "primaryAction",
+          "label": "primaryAction"
+        },
+        {
+          "kind": "eventStruct",
+          "type": "@escaping (AVKit.AVCaptureEvent) -> Swift.Void",
+          "optional": false,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "phase",
+                "value": {
+                  "kind": "enum",
+                  "cases": [
+                    "began",
+                    "cancelled",
+                    "ended"
+                  ],
+                  "open": true
+                }
+              },
+              {
+                "name": "shouldPlaySound",
+                "value": {
+                  "kind": "boolean"
+                }
+              }
+            ]
+          },
+          "field": "secondaryAction",
+          "label": "secondaryAction"
+        }
+      ],
+      "framework": "AVKit",
+      "sdkName": "onCameraCaptureEvent"
+    },
+    {
+      "name": "onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction",
+      "module": "_AVKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        },
+        {
+          "kind": "eventStruct",
+          "type": "@escaping (AVKit.AVCaptureEvent) -> Swift.Void",
+          "optional": false,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "phase",
+                "value": {
+                  "kind": "enum",
+                  "cases": [
+                    "began",
+                    "cancelled",
+                    "ended"
+                  ],
+                  "open": true
+                }
+              }
+            ]
+          },
+          "field": "primaryAction",
+          "label": "primaryAction"
+        },
+        {
+          "kind": "eventStruct",
+          "type": "@escaping (AVKit.AVCaptureEvent) -> Swift.Void",
+          "optional": false,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "phase",
+                "value": {
+                  "kind": "enum",
+                  "cases": [
+                    "began",
+                    "cancelled",
+                    "ended"
+                  ],
+                  "open": true
+                }
+              }
+            ]
+          },
+          "field": "secondaryAction",
+          "label": "secondaryAction"
+        }
+      ],
+      "framework": "AVKit",
+      "sdkName": "onCameraCaptureEvent"
+    },
+    {
       "name": "onChange",
       "kind": "eventValueString",
       "type": "V",
       "label": "of",
       "callbackLabel": "perform",
       "ios": 14
+    },
+    {
+      "name": "onContinueUserActivity",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "optional": false,
+          "field": "activityType",
+          "label": "_"
+        },
+        {
+          "kind": "eventStruct",
+          "type": "@escaping (Foundation.NSUserActivity) -> ()",
+          "optional": false,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "activityType",
+                "value": {
+                  "kind": "string"
+                }
+              },
+              {
+                "name": "isEligibleForHandoff",
+                "value": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "name": "isEligibleForPrediction",
+                "value": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "name": "isEligibleForPublicIndexing",
+                "value": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "name": "isEligibleForSearch",
+                "value": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "name": "needsSave",
+                "value": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "name": "supportsContinuationStreams",
+                "value": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "name": "targetContentIdentifier",
+                "value": {
+                  "kind": "optional",
+                  "value": {
+                    "kind": "string"
+                  }
+                }
+              },
+              {
+                "name": "title",
+                "value": {
+                  "kind": "optional",
+                  "value": {
+                    "kind": "string"
+                  }
+                }
+              }
+            ]
+          },
+          "field": "action",
+          "label": "perform"
+        }
+      ]
     },
     {
       "name": "onContinuousHover",
@@ -12328,6 +12601,77 @@
       "zeroArgument": true
     },
     {
+      "name": "userActivity",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "optional": false,
+          "field": "activityType",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isActive",
+          "label": "isActive"
+        },
+        {
+          "kind": "classUpdate",
+          "type": "@escaping (Foundation.NSUserActivity) -> ()",
+          "optional": false,
+          "fields": [
+            {
+              "name": "isEligibleForHandoff",
+              "label": "isEligibleForHandoff",
+              "type": "Swift.Bool"
+            },
+            {
+              "name": "isEligibleForPrediction",
+              "label": "isEligibleForPrediction",
+              "type": "Swift.Bool"
+            },
+            {
+              "name": "isEligibleForPublicIndexing",
+              "label": "isEligibleForPublicIndexing",
+              "type": "Swift.Bool"
+            },
+            {
+              "name": "isEligibleForSearch",
+              "label": "isEligibleForSearch",
+              "type": "Swift.Bool"
+            },
+            {
+              "name": "needsSave",
+              "label": "needsSave",
+              "type": "Swift.Bool"
+            },
+            {
+              "name": "supportsContinuationStreams",
+              "label": "supportsContinuationStreams",
+              "type": "Swift.Bool"
+            },
+            {
+              "name": "targetContentIdentifier",
+              "label": "targetContentIdentifier",
+              "type": "Swift.String?"
+            },
+            {
+              "name": "title",
+              "label": "title",
+              "type": "Swift.String?"
+            }
+          ],
+          "field": "update",
+          "label": "_"
+        }
+      ]
+    },
+    {
       "name": "verifyIdentityWithWalletButtonStyle",
       "kind": "string",
       "type": "_PassKit_SwiftUI.VerifyIdentityWithWalletButtonStyle",
@@ -13000,6 +13344,7 @@
         "navigationTitle",
         "navigationTransition",
         "navigationViewStyle",
+        "onContinueUserActivity",
         "onContinuousHover",
         "onDragSessionUpdated",
         "onDropSessionUpdated",
@@ -13106,6 +13451,7 @@
         "toolbarTitleMenu",
         "toolbarVisibility",
         "typeSelectEquivalent",
+        "userActivity",
         "windowToolbarFullScreenVisibility",
         "writingToolsAffordanceVisibility",
         "writingToolsBehavior"
@@ -13154,6 +13500,9 @@
       ],
       "_MusicKit_SwiftUI": [
         "musicSubscriptionOffer"
+      ],
+      "_AVKit_SwiftUI": [
+        "onCameraCaptureEvent"
       ],
       "_PhotosUI_SwiftUI": [
         "photosPickerAccessoryVisibility",

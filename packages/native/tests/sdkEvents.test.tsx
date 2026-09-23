@@ -183,6 +183,57 @@ describe('SDK callback and binding transport', () => {
     })
   })
 
+  it('projects a public framework class event and its enum phase', () => {
+    const onCameraCaptureEvent = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: { onCameraCaptureEvent } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['onCameraCaptureEvent', ''],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onCameraCaptureEvent', value: '{"phase":"began"}',
+    } })
+    expect(onCameraCaptureEvent).toHaveBeenCalledWith({ phase: 'began' })
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onCameraCaptureEvent', value: '{"phase":"invalid"}',
+    } })).toThrow('invalid struct value')
+  })
+
+  it('routes a class event and configures writable class fields', () => {
+    const onContinue = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      onContinueUserActivity: { activityType: 'example.edit', action: onContinue },
+      userActivity: {
+        activityType: 'example.edit', isActive: true,
+        update: { title: 'Draft', isEligibleForHandoff: true },
+      },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['onContinueUserActivity', '["example.edit",""]'],
+      ['userActivity', '["example.edit","true","{\\"title\\":\\"Draft\\",\\"isEligibleForHandoff\\":true}"]'],
+    ])
+    const activity = {
+      activityType: 'example.edit',
+      isEligibleForHandoff: true,
+      isEligibleForPrediction: false,
+      isEligibleForPublicIndexing: false,
+      isEligibleForSearch: false,
+      needsSave: false,
+      supportsContinuationStreams: false,
+      targetContentIdentifier: null,
+      title: 'Draft',
+    }
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onContinueUserActivity.action', value: JSON.stringify(activity),
+    } })
+    expect(onContinue).toHaveBeenCalledWith(activity)
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      userActivity: {
+        activityType: 'example.edit', isActive: true,
+        update: { title: 42 as unknown as string },
+      },
+    } })).toThrow('SDK class update')
+  })
+
   it('returns configured SDK results and dispatches structured callback inputs', () => {
     const onDrop = vi.fn()
     const onKey = vi.fn()

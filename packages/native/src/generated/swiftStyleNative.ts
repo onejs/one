@@ -286,7 +286,12 @@ const sdkKinds = {
   offerCodeRedemption: 'bindingBoolean',
   offset: 'record',
   onAppear: 'event',
+  onCameraCaptureEvent: 'eventStruct',
+  onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction:
+    'record',
+  onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction: 'record',
   onChange: 'eventValueString',
+  onContinueUserActivity: 'record',
   onContinuousHover: 'eventAssociatedEnum',
   onDisappear: 'event',
   onDragSessionUpdated: 'eventStruct',
@@ -456,6 +461,7 @@ const sdkKinds = {
   typesettingLanguage: 'record',
   underline: 'record',
   unredacted: 'boolean',
+  userActivity: 'record',
   verifyIdentityWithWalletButtonStyle: 'string',
   webViewBackForwardNavigationGestures: 'string',
   webViewContentBackground: 'string',
@@ -482,7 +488,7 @@ const sdkEventCases: Record<string, readonly string[]> = {
 }
 type SDKEventValueShape =
   | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' }
-  | { kind: 'enum'; cases: readonly string[] }
+  | { kind: 'enum'; cases: readonly string[]; open?: true }
   | { kind: 'optional' | 'array'; value: SDKEventValueShape }
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
 const sdkAssociatedCases: Record<
@@ -627,6 +633,15 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
       },
       { name: 'size', value: { kind: 'size' } },
       { name: 'location', value: { kind: 'point' } },
+    ],
+  },
+  onCameraCaptureEvent: {
+    kind: 'object',
+    fields: [
+      {
+        name: 'phase',
+        value: { kind: 'enum', cases: ['began', 'cancelled', 'ended'], open: true },
+      },
     ],
   },
   onDragSessionUpdated: {
@@ -786,7 +801,8 @@ const sdkRecords: Record<
     field: string
     kind: string
     optional: boolean
-    fields?: readonly { name: string; integer: boolean }[]
+    fields?: readonly { name: string; type: string; integer: boolean }[]
+    eventValue?: SDKEventValueShape
   }[]
 > = {
   accessibilityActivationPointWithActivationPointAndIsEnabled: [
@@ -911,8 +927,8 @@ const sdkRecords: Record<
       kind: 'numericStruct',
       optional: false,
       fields: [
-        { name: 'width', integer: false },
-        { name: 'height', integer: false },
+        { name: 'width', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'height', type: 'CoreFoundation.CGFloat', integer: false },
       ],
     },
     { field: 'isEnabled', kind: 'boolean', optional: false },
@@ -982,8 +998,8 @@ const sdkRecords: Record<
       kind: 'numericStruct',
       optional: false,
       fields: [
-        { name: 'width', integer: false },
-        { name: 'height', integer: false },
+        { name: 'width', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'height', type: 'CoreFoundation.CGFloat', integer: false },
       ],
     },
     { field: 'isEnabled', kind: 'boolean', optional: false },
@@ -1033,6 +1049,97 @@ const sdkRecords: Record<
     { field: 'x', kind: 'number', optional: false },
     { field: 'y', kind: 'number', optional: false },
   ],
+  onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction:
+    [
+      { field: 'isEnabled', kind: 'boolean', optional: false },
+      { field: 'defaultSoundDisabled', kind: 'boolean', optional: false },
+      {
+        field: 'primaryAction',
+        kind: 'eventStruct',
+        optional: false,
+        eventValue: {
+          kind: 'object',
+          fields: [
+            {
+              name: 'phase',
+              value: { kind: 'enum', cases: ['began', 'cancelled', 'ended'], open: true },
+            },
+            { name: 'shouldPlaySound', value: { kind: 'boolean' } },
+          ],
+        },
+      },
+      {
+        field: 'secondaryAction',
+        kind: 'eventStruct',
+        optional: false,
+        eventValue: {
+          kind: 'object',
+          fields: [
+            {
+              name: 'phase',
+              value: { kind: 'enum', cases: ['began', 'cancelled', 'ended'], open: true },
+            },
+            { name: 'shouldPlaySound', value: { kind: 'boolean' } },
+          ],
+        },
+      },
+    ],
+  onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction: [
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+    {
+      field: 'primaryAction',
+      kind: 'eventStruct',
+      optional: false,
+      eventValue: {
+        kind: 'object',
+        fields: [
+          {
+            name: 'phase',
+            value: { kind: 'enum', cases: ['began', 'cancelled', 'ended'], open: true },
+          },
+        ],
+      },
+    },
+    {
+      field: 'secondaryAction',
+      kind: 'eventStruct',
+      optional: false,
+      eventValue: {
+        kind: 'object',
+        fields: [
+          {
+            name: 'phase',
+            value: { kind: 'enum', cases: ['began', 'cancelled', 'ended'], open: true },
+          },
+        ],
+      },
+    },
+  ],
+  onContinueUserActivity: [
+    { field: 'activityType', kind: 'string', optional: false },
+    {
+      field: 'action',
+      kind: 'eventStruct',
+      optional: false,
+      eventValue: {
+        kind: 'object',
+        fields: [
+          { name: 'activityType', value: { kind: 'string' } },
+          { name: 'isEligibleForHandoff', value: { kind: 'boolean' } },
+          { name: 'isEligibleForPrediction', value: { kind: 'boolean' } },
+          { name: 'isEligibleForPublicIndexing', value: { kind: 'boolean' } },
+          { name: 'isEligibleForSearch', value: { kind: 'boolean' } },
+          { name: 'needsSave', value: { kind: 'boolean' } },
+          { name: 'supportsContinuationStreams', value: { kind: 'boolean' } },
+          {
+            name: 'targetContentIdentifier',
+            value: { kind: 'optional', value: { kind: 'string' } },
+          },
+          { name: 'title', value: { kind: 'optional', value: { kind: 'string' } } },
+        ],
+      },
+    },
+  ],
   photosPickerAccessoryVisibility: [
     { field: 'visibility', kind: 'enum', optional: false },
     { field: 'edges', kind: 'enum', optional: false },
@@ -1055,12 +1162,12 @@ const sdkRecords: Record<
       kind: 'numericStruct',
       optional: false,
       fields: [
-        { name: 'a', integer: false },
-        { name: 'b', integer: false },
-        { name: 'c', integer: false },
-        { name: 'd', integer: false },
-        { name: 'tx', integer: false },
-        { name: 'ty', integer: false },
+        { name: 'a', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'b', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'c', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'd', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'tx', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'ty', type: 'CoreFoundation.CGFloat', integer: false },
       ],
     },
   ],
@@ -1069,16 +1176,16 @@ const sdkRecords: Record<
       field: 'angle',
       kind: 'numericStruct',
       optional: false,
-      fields: [{ name: 'radians', integer: false }],
+      fields: [{ name: 'radians', type: 'Swift.Double', integer: false }],
     },
     {
       field: 'axis',
       kind: 'numericTuple',
       optional: false,
       fields: [
-        { name: 'x', integer: false },
-        { name: 'y', integer: false },
-        { name: 'z', integer: false },
+        { name: 'x', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'y', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'z', type: 'CoreFoundation.CGFloat', integer: false },
       ],
     },
     { field: 'anchor', kind: 'enum', optional: false },
@@ -1199,12 +1306,12 @@ const sdkRecords: Record<
       kind: 'numericStruct',
       optional: false,
       fields: [
-        { name: 'a', integer: false },
-        { name: 'b', integer: false },
-        { name: 'c', integer: false },
-        { name: 'd', integer: false },
-        { name: 'tx', integer: false },
-        { name: 'ty', integer: false },
+        { name: 'a', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'b', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'c', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'd', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'tx', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'ty', type: 'CoreFoundation.CGFloat', integer: false },
       ],
     },
   ],
@@ -1221,6 +1328,25 @@ const sdkRecords: Record<
     { field: 'pattern', kind: 'enum', optional: false },
     { field: 'color', kind: 'enum', optional: true },
   ],
+  userActivity: [
+    { field: 'activityType', kind: 'string', optional: false },
+    { field: 'isActive', kind: 'boolean', optional: false },
+    {
+      field: 'update',
+      kind: 'classUpdate',
+      optional: false,
+      fields: [
+        { name: 'isEligibleForHandoff', type: 'Swift.Bool', integer: false },
+        { name: 'isEligibleForPrediction', type: 'Swift.Bool', integer: false },
+        { name: 'isEligibleForPublicIndexing', type: 'Swift.Bool', integer: false },
+        { name: 'isEligibleForSearch', type: 'Swift.Bool', integer: false },
+        { name: 'needsSave', type: 'Swift.Bool', integer: false },
+        { name: 'supportsContinuationStreams', type: 'Swift.Bool', integer: false },
+        { name: 'targetContentIdentifier', type: 'Swift.String?', integer: false },
+        { name: 'title', type: 'Swift.String?', integer: false },
+      ],
+    },
+  ],
 }
 
 function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
@@ -1234,7 +1360,10 @@ function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean 
   if (shape.kind === 'string' || shape.kind === 'boolean')
     return typeof value === shape.kind
   if (shape.kind === 'enum')
-    return typeof value === 'string' && shape.cases.includes(value)
+    return (
+      typeof value === 'string' &&
+      (shape.cases.includes(value) || (shape.open === true && value === 'unknown'))
+    )
   if (!value || typeof value !== 'object') return false
   const record = value as Record<string, unknown>
   if (shape.kind === 'point')
@@ -1297,10 +1426,37 @@ export function swiftStyleNative(
               throw new Error(name + '.' + argument.field + ' must be a URL binding')
             return JSON.stringify((item as { value: string | null }).value)
           }
-          if (argument.kind === 'resultURL' || argument.kind === 'resultURLArray') {
+          if (
+            argument.kind === 'resultURL' ||
+            argument.kind === 'resultURLArray' ||
+            argument.kind === 'eventStruct'
+          ) {
             if (typeof item !== 'function')
               throw new Error(name + '.' + argument.field + ' must be a callback')
             return ''
+          }
+          if (argument.kind === 'classUpdate') {
+            if (
+              !item ||
+              typeof item !== 'object' ||
+              Array.isArray(item) ||
+              Object.keys(item).length === 0 ||
+              Object.entries(item).some(([key, fieldValue]) => {
+                const field = argument.fields?.find((entry) => entry.name === key)
+                return (
+                  !field ||
+                  (field.type === 'Swift.Bool'
+                    ? typeof fieldValue !== 'boolean'
+                    : field.type.endsWith('?') && fieldValue === null
+                      ? false
+                      : typeof fieldValue !== 'string')
+                )
+              })
+            )
+              throw new Error(
+                name + '.' + argument.field + ' must be an SDK class update'
+              )
+            return JSON.stringify(item)
           }
           if (
             argument.kind === 'number' &&
@@ -1533,6 +1689,19 @@ export function dispatchSDKEvent(
         | Record<string, unknown>
         | undefined
       ;(record?.[field] as ((result: unknown) => void) | undefined)?.(payload)
+      return
+    }
+    const event = sdkRecords[parent]?.find(
+      (argument) => argument.field === field && argument.kind === 'eventStruct'
+    )
+    if (event) {
+      const payload: unknown = JSON.parse(value)
+      if (!validSDKEventValue(payload, event.eventValue!))
+        throw new Error(name + ' emitted an invalid struct value')
+      const record = (style as Record<string, unknown> | undefined)?.[parent] as
+        | Record<string, unknown>
+        | undefined
+      ;(record?.[field] as ((value: unknown) => void) | undefined)?.(payload)
       return
     }
   }

@@ -9,7 +9,7 @@ const eventValueSwift = (value: EventValueSchema, expression: string): string =>
   if (value.kind === 'size')
     return `(["width": Double(${expression}.width), "height": Double(${expression}.height)] as [String: Any])`
   if (value.kind === 'enum')
-    return `({ () -> String in switch ${expression} { ${value.cases.map((item) => `case .${item}: return ${JSON.stringify(item)}`).join(' ')} } })()`
+    return `({ () -> String in switch ${expression} { ${value.cases.map((item) => `case .${item}: return ${JSON.stringify(item)}`).join(' ')}${value.open ? ' @unknown default: return "unknown"' : ''} } })()`
   if (value.kind === 'optional')
     return `(${expression}.map { inner -> Any in ${eventValueSwift(value.value, 'inner')} } ?? NSNull())`
   if (value.kind === 'array')
@@ -156,6 +156,32 @@ ${cases}
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name}.${argument.field} result") }
       emit(${JSON.stringify(`${modifier.name}.${argument.field}`)}, encoded)
     }`
+          if (argument.kind === 'eventStruct') {
+            const input = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (?:Swift\.Void|\(\))$/.exec(argument.type)![1]
+            return `    let ${variable}: (${input}) -> Void = { item in
+      let payload = ${eventValueSwift(argument.eventValue!, 'item')}
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name}.${argument.field} event") }
+      emit(${JSON.stringify(`${modifier.name}.${argument.field}`)}, encoded)
+    }`
+          }
+          if (argument.kind === 'classUpdate') {
+            const input = /^@escaping \(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (?:Swift\.Void|\(\))$/.exec(argument.type)![1]
+            const assignments = argument.fields!.map((field) => `      if let raw = updated[${JSON.stringify(field.name)}] {
+        ${field.type === 'Swift.String?' ? `if raw is NSNull { item.${field.name} = nil }
+        else if let string = raw as? String { item.${field.name} = string }
+        else { preconditionFailure("invalid ${modifier.name}.${argument.field}.${field.name}") }` : `guard let value = raw as? ${field.type === 'Swift.Bool' ? 'Bool' : 'String'} else { preconditionFailure("invalid ${modifier.name}.${argument.field}.${field.name}") }
+        item.${field.name} = value`}
+      }`).join('\n')
+            return `    let ${variable}: (${input}) -> Void = {
+      guard let raw = ${raw}, let data = raw.data(using: .utf8),
+        let updated = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+        !updated.isEmpty else { preconditionFailure("invalid ${modifier.name}.${argument.field}") }
+      return { item in
+${assignments}
+      }
+    }()`
+          }
           if (argument.kind === 'number') {
             const scalarType = argument.scalarConstructor?.type ?? baseType
             const value = scalarType === 'CoreFoundation.CGFloat' ? 'CGFloat(number)' : scalarType === 'Swift.Float' ? 'Float(number)' : scalarType === 'Swift.Int' ? 'Int(number)' : 'number'
@@ -489,20 +515,21 @@ const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [
 const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
 type SDKEventValueShape =
   | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' }
-  | { kind: 'enum'; cases: readonly string[] }
+  | { kind: 'enum'; cases: readonly string[]; open?: true }
   | { kind: 'optional' | 'array'; value: SDKEventValueShape }
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
 const sdkAssociatedCases: Record<string, Record<string, readonly SDKEventValueShape[]>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAssociatedEnum').map((modifier) => [modifier.name, Object.fromEntries(modifier.associatedCases!.map((item) => [item.name, item.values]))])))}
 const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.eventValue])))}
 const sdkCodableOptional: Record<string, boolean> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'bindingCodable').map((modifier) => [modifier.name, modifier.type.endsWith('?')]))) }
-const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; fields?: readonly { name: string; integer: boolean }[] }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, fields }) => ({ field, kind, optional, ...(fields ? { fields: fields.map((item) => ({ name: item.name, integer: item.type === 'Swift.Int' })) } : {}) }))])))}
+const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, fields, eventValue }) => ({ field, kind, optional, ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
 
 function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
   if (shape.kind === 'optional') return value === null || validSDKEventValue(value, shape.value)
   if (shape.kind === 'array') return Array.isArray(value) && value.every((item) => validSDKEventValue(item, shape.value))
   if (shape.kind === 'number') return typeof value === 'number' && Number.isFinite(value)
   if (shape.kind === 'string' || shape.kind === 'boolean') return typeof value === shape.kind
-  if (shape.kind === 'enum') return typeof value === 'string' && shape.cases.includes(value)
+  if (shape.kind === 'enum') return typeof value === 'string' &&
+    (shape.cases.includes(value) || shape.open === true && value === 'unknown')
   if (!value || typeof value !== 'object') return false
   const record = value as Record<string, unknown>
   if (shape.kind === 'point')
@@ -543,9 +570,18 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
               throw new Error(name + '.' + argument.field + ' must be a URL binding')
             return JSON.stringify((item as { value: string | null }).value)
           }
-          if (argument.kind === 'resultURL' || argument.kind === 'resultURLArray') {
+          if (argument.kind === 'resultURL' || argument.kind === 'resultURLArray' || argument.kind === 'eventStruct') {
             if (typeof item !== 'function') throw new Error(name + '.' + argument.field + ' must be a callback')
             return ''
+          }
+          if (argument.kind === 'classUpdate') {
+            if (!item || typeof item !== 'object' || Array.isArray(item) ||
+              Object.keys(item).length === 0 || Object.entries(item).some(([key, fieldValue]) => {
+                const field = argument.fields?.find((entry) => entry.name === key)
+                return !field || (field.type === 'Swift.Bool' ? typeof fieldValue !== 'boolean' :
+                  field.type.endsWith('?') && fieldValue === null ? false : typeof fieldValue !== 'string')
+              })) throw new Error(name + '.' + argument.field + ' must be an SDK class update')
+            return JSON.stringify(item)
           }
           if (argument.kind === 'number' && (typeof item !== 'number' || !Number.isFinite(item))) throw new Error(name + '.' + argument.field + ' must be finite')
           if (argument.kind === 'boolean' && typeof item !== 'boolean') throw new Error(name + '.' + argument.field + ' must be a boolean')
@@ -638,6 +674,15 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
         Object.keys(payload).length !== 1) throw new Error(name + ' emitted an invalid result')
       const record = (style as Record<string, unknown> | undefined)?.[parent] as Record<string, unknown> | undefined
       ;(record?.[field] as ((result: unknown) => void) | undefined)?.(payload)
+      return
+    }
+    const event = sdkRecords[parent]?.find((argument) => argument.field === field && argument.kind === 'eventStruct')
+    if (event) {
+      const payload: unknown = JSON.parse(value)
+      if (!validSDKEventValue(payload, event.eventValue!))
+        throw new Error(name + ' emitted an invalid struct value')
+      const record = (style as Record<string, unknown> | undefined)?.[parent] as Record<string, unknown> | undefined
+      ;(record?.[field] as ((value: unknown) => void) | undefined)?.(payload)
       return
     }
   }
