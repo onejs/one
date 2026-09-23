@@ -28,7 +28,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeOverlayProps>(props);
-  [_overlayView configureWithAlignment:RCTNSStringFromString(next.alignment) slotName:RCTNSStringFromString(next.slotName)];
+  [_overlayView configureWithAlignment:RCTNSStringFromString(next.alignment) slotName:RCTNSStringFromString(next.slotName) slotValues:RCTNSStringFromString(next.slotValues)];
   [super updateProps:props oldProps:oldProps];
 }
 

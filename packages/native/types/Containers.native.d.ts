@@ -27,7 +27,7 @@ declare function OverlayFn({ alignment, children, style, ...props }: OverlayProp
 export declare const Overlay: typeof OverlayFn & {
     Content: typeof OverlayContent;
 };
-declare function ViewSlotFn({ name, children, style, ...props }: ViewSlotProps): import("react/jsx-runtime").JSX.Element;
+declare function ViewSlotFn({ name, options, children, style, ...props }: ViewSlotProps): import("react/jsx-runtime").JSX.Element;
 export declare const ViewSlot: typeof ViewSlotFn & {
     Content: typeof OverlayContent;
 };

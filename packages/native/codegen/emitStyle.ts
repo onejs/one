@@ -10,6 +10,9 @@ export function emitStyle(
 ) {
   outputs.set('src/generated/viewSlots.ts', header + `export const viewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.ios])))} as const
 export type ViewSlotName = keyof typeof viewSlotAvailability
+export const viewSlotArguments = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.arguments.map((argument) => ({ field: argument.field, cases: Object.fromEntries(argument.cases!.map((item) => [item.name, item.ios])) }))])))} as const
+export type ViewSlotConfiguration =
+${slots.map((slot) => `  | { name: ${JSON.stringify(slot.name)}; ${slot.arguments.length ? `options: { ${slot.arguments.map((argument) => `${argument.field}: ${argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}`).join('; ')} }` : 'options?: never'} }`).join('\n')}
 export const tabViewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.filter((slot) => /^tabView[A-Z]/.test(slot.name)).map((slot) => [slot.name, slot.ios])))} as const
 export type TabViewSlotName = keyof typeof tabViewSlotAvailability
 `)
@@ -21,10 +24,22 @@ ${slots.map((slot) => `  static let ${slot.name} = ${JSON.stringify(slot.name)}`
 }
 
 extension View {
-  func oneNativeViewSlot(_ name: String, content: @escaping () -> AnyView) -> AnyView {
+  func oneNativeViewSlot(_ name: String, values: String = "[]", content: @escaping () -> AnyView) -> AnyView {
     switch name {
 ${slots.map((slot) => `    case OneNativeViewSlotName.${slot.name}:
-      if #available(iOS ${slot.ios}, *) { return AnyView(self.${slot.name}(${slot.label === '_' ? '' : `${slot.label}: `}content)) }
+      if #available(iOS ${slot.ios}, *) {
+${slot.arguments.length ? `        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          decoded.count == ${slot.arguments.length} else { preconditionFailure("invalid ${slot.name} slot values") }
+${slot.arguments.map((argument, index) => `        let argument${index}: ${argument.type} = {
+          switch decoded[${index}] {
+${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${item.ios > slot.ios ? `if #available(iOS ${item.ios}, *) { return ${argument.type}.${item.name} }
+            preconditionFailure("unavailable ${slot.name}.${argument.field}")` : `return ${argument.type}.${item.name}`}`).join('\n')}
+          default: preconditionFailure("invalid ${slot.name}.${argument.field}")
+          }
+        }()`).join('\n')}
+` : ''}        return AnyView(self.${slot.name}(${[...slot.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`), `${slot.label === '_' ? '' : `${slot.label}: `}content`].join(', ')}))
+      }
       return AnyView(self)`).join('\n')}
     default: preconditionFailure("unknown view slot: \\(name)")
     }

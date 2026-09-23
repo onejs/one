@@ -683,6 +683,7 @@ export const components = [
     props: {
       alignment: 'string',
       slotName: 'string',
+      slotValues: 'string',
     },
     events: {},
     enumProps: {},

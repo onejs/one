@@ -29,6 +29,12 @@ export default function NativeAutogenProof() {
               </Swift.ViewSlot.Content>
             </Swift.ViewSlot>
             <Swift.Text text={menuSelected ? 'Generated menu selected' : 'Generated menu ready'} />
+            <Swift.ViewSlot name="containerBackground" options={{ container: 'navigation' }}>
+              <Swift.Text text="Generated container background" />
+              <Swift.ViewSlot.Content>
+                <Swift.Text text="Native background content" />
+              </Swift.ViewSlot.Content>
+            </Swift.ViewSlot>
             <Text>Scroll to collapse the tab bar accessory.</Text>
             <View style={{ height: 900 }} />
           </View>

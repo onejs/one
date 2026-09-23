@@ -10165,7 +10165,6 @@
       "SwiftUI": [
         "accessibility",
         "accessibilityAction",
-        "accessibilityActions",
         "accessibilityActivationPoint",
         "accessibilityAddTraits",
         "accessibilityAdjustableAction",
@@ -10198,7 +10197,9 @@
         "buttonRepeatBehavior",
         "buttonStyle",
         "confirmationDialog",
+        "containerBackground",
         "contentMargins",
+        "contentToolbar",
         "contextMenu",
         "controlGroupStyle",
         "datePickerStyle",
