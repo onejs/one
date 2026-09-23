@@ -3,8 +3,8 @@
 set -euo pipefail
 
 events_file="/Users/n8/.team-machine/scopes/contrast/logs/r44963.events.jsonl"
-start_line=3899
-deadline=${1:-2400}
+start_line=4112
+deadline=${1:-2700}
 interval=10
 started=$(date +%s)
 
