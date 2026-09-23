@@ -6379,6 +6379,48 @@
       }
     },
     {
+      "name": "onGeometryChangeWithSize",
+      "sdkName": "onGeometryChange",
+      "module": "SwiftUICore",
+      "kind": "eventStruct",
+      "type": "@escaping (_ oldValue: T, _ newValue: T) -> Swift.Void",
+      "label": "action",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "oldValue",
+            "value": {
+              "kind": "size"
+            }
+          },
+          {
+            "name": "newValue",
+            "value": {
+              "kind": "size"
+            }
+          }
+        ]
+      },
+      "eventPair": true,
+      "transformMember": "size",
+      "callArguments": [
+        {
+          "label": "for",
+          "defaultValue": "CoreFoundation.CGSize.self"
+        },
+        {
+          "label": "of",
+          "defaultValue": "{ $0.size }"
+        },
+        {
+          "label": "action",
+          "bridge": true
+        }
+      ],
+      "ios": 18
+    },
+    {
       "name": "onHover",
       "kind": "eventBoolean",
       "type": "@escaping (Swift.Bool) -> Swift.Void",
@@ -6752,6 +6794,132 @@
           "values": []
         }
       ]
+    },
+    {
+      "name": "onScrollGeometryChangeWithContainerSize",
+      "sdkName": "onScrollGeometryChange",
+      "module": "SwiftUI",
+      "kind": "eventStruct",
+      "type": "@escaping (_ oldValue: T, _ newValue: T) -> Swift.Void",
+      "label": "action",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "oldValue",
+            "value": {
+              "kind": "size"
+            }
+          },
+          {
+            "name": "newValue",
+            "value": {
+              "kind": "size"
+            }
+          }
+        ]
+      },
+      "eventPair": true,
+      "transformMember": "containerSize",
+      "callArguments": [
+        {
+          "label": "for",
+          "defaultValue": "CoreFoundation.CGSize.self"
+        },
+        {
+          "label": "of",
+          "defaultValue": "{ $0.containerSize }"
+        },
+        {
+          "label": "action",
+          "bridge": true
+        }
+      ],
+      "ios": 18
+    },
+    {
+      "name": "onScrollGeometryChangeWithContentOffset",
+      "sdkName": "onScrollGeometryChange",
+      "module": "SwiftUI",
+      "kind": "eventStruct",
+      "type": "@escaping (_ oldValue: T, _ newValue: T) -> Swift.Void",
+      "label": "action",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "oldValue",
+            "value": {
+              "kind": "point"
+            }
+          },
+          {
+            "name": "newValue",
+            "value": {
+              "kind": "point"
+            }
+          }
+        ]
+      },
+      "eventPair": true,
+      "transformMember": "contentOffset",
+      "callArguments": [
+        {
+          "label": "for",
+          "defaultValue": "CoreFoundation.CGPoint.self"
+        },
+        {
+          "label": "of",
+          "defaultValue": "{ $0.contentOffset }"
+        },
+        {
+          "label": "action",
+          "bridge": true
+        }
+      ],
+      "ios": 18
+    },
+    {
+      "name": "onScrollGeometryChangeWithContentSize",
+      "sdkName": "onScrollGeometryChange",
+      "module": "SwiftUI",
+      "kind": "eventStruct",
+      "type": "@escaping (_ oldValue: T, _ newValue: T) -> Swift.Void",
+      "label": "action",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "oldValue",
+            "value": {
+              "kind": "size"
+            }
+          },
+          {
+            "name": "newValue",
+            "value": {
+              "kind": "size"
+            }
+          }
+        ]
+      },
+      "eventPair": true,
+      "transformMember": "contentSize",
+      "callArguments": [
+        {
+          "label": "for",
+          "defaultValue": "CoreFoundation.CGSize.self"
+        },
+        {
+          "label": "of",
+          "defaultValue": "{ $0.contentSize }"
+        },
+        {
+          "label": "action",
+          "bridge": true
+        }
+      ],
+      "ios": 18
     },
     {
       "name": "onScrollPhaseChange",
@@ -11168,6 +11336,135 @@
       ]
     },
     {
+      "name": "webViewOnScrollGeometryChangeWithContainerSize",
+      "sdkName": "webViewOnScrollGeometryChange",
+      "module": "_WebKit_SwiftUI",
+      "kind": "eventStruct",
+      "type": "@escaping (T, T) -> Swift.Void",
+      "label": "action",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "oldValue",
+            "value": {
+              "kind": "size"
+            }
+          },
+          {
+            "name": "newValue",
+            "value": {
+              "kind": "size"
+            }
+          }
+        ]
+      },
+      "eventPair": true,
+      "transformMember": "containerSize",
+      "callArguments": [
+        {
+          "label": "for",
+          "defaultValue": "CoreFoundation.CGSize.self"
+        },
+        {
+          "label": "of",
+          "defaultValue": "{ $0.containerSize }"
+        },
+        {
+          "label": "action",
+          "bridge": true
+        }
+      ],
+      "ios": 26,
+      "framework": "WebKit"
+    },
+    {
+      "name": "webViewOnScrollGeometryChangeWithContentOffset",
+      "sdkName": "webViewOnScrollGeometryChange",
+      "module": "_WebKit_SwiftUI",
+      "kind": "eventStruct",
+      "type": "@escaping (T, T) -> Swift.Void",
+      "label": "action",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "oldValue",
+            "value": {
+              "kind": "point"
+            }
+          },
+          {
+            "name": "newValue",
+            "value": {
+              "kind": "point"
+            }
+          }
+        ]
+      },
+      "eventPair": true,
+      "transformMember": "contentOffset",
+      "callArguments": [
+        {
+          "label": "for",
+          "defaultValue": "CoreFoundation.CGPoint.self"
+        },
+        {
+          "label": "of",
+          "defaultValue": "{ $0.contentOffset }"
+        },
+        {
+          "label": "action",
+          "bridge": true
+        }
+      ],
+      "ios": 26,
+      "framework": "WebKit"
+    },
+    {
+      "name": "webViewOnScrollGeometryChangeWithContentSize",
+      "sdkName": "webViewOnScrollGeometryChange",
+      "module": "_WebKit_SwiftUI",
+      "kind": "eventStruct",
+      "type": "@escaping (T, T) -> Swift.Void",
+      "label": "action",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "oldValue",
+            "value": {
+              "kind": "size"
+            }
+          },
+          {
+            "name": "newValue",
+            "value": {
+              "kind": "size"
+            }
+          }
+        ]
+      },
+      "eventPair": true,
+      "transformMember": "contentSize",
+      "callArguments": [
+        {
+          "label": "for",
+          "defaultValue": "CoreFoundation.CGSize.self"
+        },
+        {
+          "label": "of",
+          "defaultValue": "{ $0.contentSize }"
+        },
+        {
+          "label": "action",
+          "bridge": true
+        }
+      ],
+      "ios": 26,
+      "framework": "WebKit"
+    },
+    {
       "name": "webViewTextSelection",
       "kind": "style",
       "type": "S",
@@ -11389,6 +11686,7 @@
         "onAppear",
         "onChange",
         "onDisappear",
+        "onGeometryChange",
         "onOpenURL",
         "onTapGesture",
         "opacity",
@@ -11570,6 +11868,7 @@
         "onOpenURL",
         "onPencilDoubleTap",
         "onPencilSqueeze",
+        "onScrollGeometryChange",
         "onScrollPhaseChange",
         "onScrollTargetVisibilityChange",
         "onScrollVisibilityChange",
@@ -11732,6 +12031,7 @@
         "webViewElementFullscreenBehavior",
         "webViewLinkPreviews",
         "webViewMagnificationGestures",
+        "webViewOnScrollGeometryChange",
         "webViewTextSelection"
       ],
       "_QuickLook_SwiftUI": [

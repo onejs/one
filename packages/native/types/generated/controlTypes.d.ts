@@ -776,6 +776,16 @@ export interface OneNativeStyle {
             y: number;
         };
     }) => void;
+    onGeometryChangeWithSize?: (value: {
+        oldValue: {
+            width: number;
+            height: number;
+        };
+        newValue: {
+            width: number;
+            height: number;
+        };
+    }) => void;
     onHover?: (value: boolean) => void;
     onInteractiveResizeChange?: (value: boolean) => void;
     onLongPressGesture?: () => void;
@@ -859,6 +869,36 @@ export interface OneNativeStyle {
     } | {
         case: 'failed';
         values: readonly [];
+    }) => void;
+    onScrollGeometryChangeWithContainerSize?: (value: {
+        oldValue: {
+            width: number;
+            height: number;
+        };
+        newValue: {
+            width: number;
+            height: number;
+        };
+    }) => void;
+    onScrollGeometryChangeWithContentOffset?: (value: {
+        oldValue: {
+            x: number;
+            y: number;
+        };
+        newValue: {
+            x: number;
+            y: number;
+        };
+    }) => void;
+    onScrollGeometryChangeWithContentSize?: (value: {
+        oldValue: {
+            width: number;
+            height: number;
+        };
+        newValue: {
+            width: number;
+            height: number;
+        };
     }) => void;
     onScrollPhaseChange?: (oldValue: 'idle' | 'tracking' | 'interacting' | 'decelerating' | 'animating', newValue: 'idle' | 'tracking' | 'interacting' | 'decelerating' | 'animating') => void;
     onScrollTargetVisibilityChange?: (value: readonly string[]) => void;
@@ -1150,6 +1190,36 @@ export interface OneNativeStyle {
     webViewElementFullscreenBehavior?: SDKWebViewElementFullscreenBehavior;
     webViewLinkPreviews?: SDKWebViewLinkPreviews;
     webViewMagnificationGestures?: SDKWebViewMagnificationGestures;
+    webViewOnScrollGeometryChangeWithContainerSize?: (value: {
+        oldValue: {
+            width: number;
+            height: number;
+        };
+        newValue: {
+            width: number;
+            height: number;
+        };
+    }) => void;
+    webViewOnScrollGeometryChangeWithContentOffset?: (value: {
+        oldValue: {
+            x: number;
+            y: number;
+        };
+        newValue: {
+            x: number;
+            y: number;
+        };
+    }) => void;
+    webViewOnScrollGeometryChangeWithContentSize?: (value: {
+        oldValue: {
+            width: number;
+            height: number;
+        };
+        newValue: {
+            width: number;
+            height: number;
+        };
+    }) => void;
     webViewTextSelection?: SDKWebViewTextSelection;
     windowToolbarFullScreenVisibility?: SDKWindowToolbarFullScreenVisibility;
     writingDirection?: SDKWritingDirection;
