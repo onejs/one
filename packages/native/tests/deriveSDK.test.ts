@@ -352,6 +352,33 @@ describe('SDK modifier derivation', () => {
         ] },
     ] }])
   })
+
+  it('wraps an imported affine struct through a public SDK initializer', () => {
+    expect(deriveModifiers([
+      method('transformEffect', 'SwiftUICore', [
+        { label: '_', name: 'transform', type: 'CoreFoundation.CGAffineTransform' },
+      ]),
+      method('projectionEffect', 'SwiftUI', [
+        { label: '_', name: 'transform', type: 'SwiftUICore.ProjectionTransform' },
+      ]),
+      { ...method('ProjectionTransform', 'SwiftUICore'), kind: 'struct', owner: '' },
+      { ...method('init', 'SwiftUICore', [
+        { label: '_', name: 'm', type: 'CoreFoundation.CGAffineTransform' },
+      ]), kind: 'init', owner: 'ProjectionTransform' },
+    ], 27, [])).toEqual([
+      { name: 'projectionEffect', kind: 'record', type: '', ios: 0, arguments: [{
+        field: 'transform', label: '_', kind: 'numericStruct', type: 'SwiftUICore.ProjectionTransform',
+        optional: false, wrappedType: 'CoreFoundation.CGAffineTransform',
+        fields: ['a', 'b', 'c', 'd', 'tx', 'ty'].map((name) =>
+          ({ name, label: name, type: 'CoreFoundation.CGFloat' })),
+      }] },
+      { name: 'transformEffect', kind: 'record', type: '', ios: 0, arguments: [{
+        field: 'transform', label: '_', kind: 'numericStruct', type: 'CoreFoundation.CGAffineTransform',
+        optional: false, fields: ['a', 'b', 'c', 'd', 'tx', 'ty'].map((name) =>
+          ({ name, label: name, type: 'CoreFoundation.CGFloat' })),
+      }] },
+    ])
+  })
 })
 
 describe('SDK view slots', () => {

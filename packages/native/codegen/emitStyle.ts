@@ -148,7 +148,7 @@ ${cases}
       guard let data = raw.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
         ${validated} else { preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)") }
-      return ${argument.kind === 'numericStruct' ? `${baseType}(${converted})` : `(${converted})`}
+      return ${argument.kind === 'numericStruct' ? `${baseType}(${argument.wrappedType ? `${argument.wrappedType}(${converted})` : converted})` : `(${converted})`}
     }()`
           }
           return `    let ${variable}: ${argument.type} = {

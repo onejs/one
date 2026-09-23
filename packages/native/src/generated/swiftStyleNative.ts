@@ -311,6 +311,7 @@ const sdkKinds = {
   productIconBorder: 'boolean',
   productViewStyle: 'style',
   progressViewStyle: 'style',
+  projectionEffect: 'record',
   realityViewCameraControls: 'string',
   realityViewLayoutBehavior: 'string',
   redacted: 'string',
@@ -407,6 +408,7 @@ const sdkKinds = {
   toolbarWithRemoving: 'optionalEnum',
   toolbarWithVisibilityAndBars: 'record',
   tracking: 'number',
+  transformEffect: 'record',
   transition: 'string',
   truncationMode: 'string',
   typeSelectEquivalent: 'optionalString',
@@ -826,6 +828,21 @@ const sdkRecords: Record<
     { field: 'horizontalAdaptation', kind: 'enum', optional: false },
     { field: 'verticalAdaptation', kind: 'enum', optional: false },
   ],
+  projectionEffect: [
+    {
+      field: 'transform',
+      kind: 'numericStruct',
+      optional: false,
+      fields: [
+        { name: 'a', integer: false },
+        { name: 'b', integer: false },
+        { name: 'c', integer: false },
+        { name: 'd', integer: false },
+        { name: 'tx', integer: false },
+        { name: 'ty', integer: false },
+      ],
+    },
+  ],
   rotation3DEffect: [
     {
       field: 'angle',
@@ -954,6 +971,21 @@ const sdkRecords: Record<
   toolbarWithVisibilityAndBars: [
     { field: 'visibility', kind: 'enum', optional: false },
     { field: 'bars', kind: 'enum', optional: false },
+  ],
+  transformEffect: [
+    {
+      field: 'transform',
+      kind: 'numericStruct',
+      optional: false,
+      fields: [
+        { name: 'a', integer: false },
+        { name: 'b', integer: false },
+        { name: 'c', integer: false },
+        { name: 'd', integer: false },
+        { name: 'tx', integer: false },
+        { name: 'ty', integer: false },
+      ],
+    },
   ],
   typesettingLanguage: [
     { field: 'language', kind: 'enum', optional: false },

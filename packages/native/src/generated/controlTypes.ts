@@ -1867,6 +1867,16 @@ export interface OneNativeStyle {
   productIconBorder?: boolean
   productViewStyle?: SDKProductViewStyle
   progressViewStyle?: SDKProgressViewStyle
+  projectionEffect?: Readonly<{
+    transform: Readonly<{
+      a: number
+      b: number
+      c: number
+      d: number
+      tx: number
+      ty: number
+    }>
+  }>
   realityViewCameraControls?: SDKRealityViewCameraControls
   realityViewLayoutBehavior?: SDKRealityViewLayoutBehavior
   redacted?: SDKRedacted
@@ -2144,6 +2154,16 @@ export interface OneNativeStyle {
     bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar'
   }>
   tracking?: number
+  transformEffect?: Readonly<{
+    transform: Readonly<{
+      a: number
+      b: number
+      c: number
+      d: number
+      tx: number
+      ty: number
+    }>
+  }>
   transition?: SDKTransition
   truncationMode?: SDKTruncationMode
   typeSelectEquivalent?: string | null

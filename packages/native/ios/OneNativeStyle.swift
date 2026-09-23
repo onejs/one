@@ -372,6 +372,7 @@ extension View {
       case "productIconBorder": view = AnyView(view.oneNativeSDKProductIconBorder(value, emit: emit))
       case "productViewStyle": view = AnyView(view.oneNativeSDKProductViewStyle(value, emit: emit))
       case "progressViewStyle": view = AnyView(view.oneNativeSDKProgressViewStyle(value, emit: emit))
+      case "projectionEffect": view = AnyView(view.oneNativeSDKProjectionEffect(value, emit: emit))
       case "realityViewCameraControls": view = AnyView(view.oneNativeSDKRealityViewCameraControls(value, emit: emit))
       case "realityViewLayoutBehavior": view = AnyView(view.oneNativeSDKRealityViewLayoutBehavior(value, emit: emit))
       case "redacted": view = AnyView(view.oneNativeSDKRedacted(value, emit: emit))
@@ -468,6 +469,7 @@ extension View {
       case "toolbarWithRemoving": view = AnyView(view.oneNativeSDKToolbarWithRemoving(value, emit: emit))
       case "toolbarWithVisibilityAndBars": view = AnyView(view.oneNativeSDKToolbarWithVisibilityAndBars(value, emit: emit))
       case "tracking": view = AnyView(view.oneNativeSDKTracking(value, emit: emit))
+      case "transformEffect": view = AnyView(view.oneNativeSDKTransformEffect(value, emit: emit))
       case "transition": view = AnyView(view.oneNativeSDKTransition(value, emit: emit))
       case "truncationMode": view = AnyView(view.oneNativeSDKTruncationMode(value, emit: emit))
       case "typeSelectEquivalent": view = AnyView(view.oneNativeSDKTypeSelectEquivalent(value, emit: emit))
@@ -3964,6 +3966,28 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKProjectionEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid projectionEffect: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.ProjectionTransform = {
+      guard let raw = values[0] else { preconditionFailure("missing projectionEffect.transform") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["a"], field0.isFinite,
+        let field1 = decoded["b"], field1.isFinite,
+        let field2 = decoded["c"], field2.isFinite,
+        let field3 = decoded["d"], field3.isFinite,
+        let field4 = decoded["tx"], field4.isFinite,
+        let field5 = decoded["ty"], field5.isFinite else { preconditionFailure("invalid projectionEffect.transform: \(raw)") }
+      return SwiftUICore.ProjectionTransform(CoreFoundation.CGAffineTransform(a: CGFloat(field0), b: CGFloat(field1), c: CGFloat(field2), d: CGFloat(field3), tx: CGFloat(field4), ty: CGFloat(field5)))
+    }()
+    self.projectionEffect(argument0)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKRealityViewCameraControls(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -5480,6 +5504,28 @@ extension View {
       if let number = Double(value), number.isFinite {
         self.tracking(CGFloat(number))
       } else { preconditionFailure("invalid tracking: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid transformEffect: \(value)") }
+      return decoded
+    }()
+    let argument0: CoreFoundation.CGAffineTransform = {
+      guard let raw = values[0] else { preconditionFailure("missing transformEffect.transform") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["a"], field0.isFinite,
+        let field1 = decoded["b"], field1.isFinite,
+        let field2 = decoded["c"], field2.isFinite,
+        let field3 = decoded["d"], field3.isFinite,
+        let field4 = decoded["tx"], field4.isFinite,
+        let field5 = decoded["ty"], field5.isFinite else { preconditionFailure("invalid transformEffect.transform: \(raw)") }
+      return CoreFoundation.CGAffineTransform(a: CGFloat(field0), b: CGFloat(field1), c: CGFloat(field2), d: CGFloat(field3), tx: CGFloat(field4), ty: CGFloat(field5))
+    }()
+    self.transformEffect(argument0)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
