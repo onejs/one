@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { deriveModifiers, deriveTabViewSlots } from '../codegen/deriveSDK'
+import { deriveModifiers, deriveViewSlots } from '../codegen/deriveSDK'
 import type { Declaration } from '../codegen/inventory'
 
 const method = (
@@ -233,19 +233,23 @@ describe('SDK modifier derivation', () => {
   })
 })
 
-describe('SDK tab view slots', () => {
-  it('selects one child ViewBuilder overload and leaves multi-argument semantics explicit', () => {
+describe('SDK view slots', () => {
+  it('selects one child ViewBuilder overload with its parameter label', () => {
     const content = { label: 'content', name: 'content', type: '() -> Content' }
     const requirement = ['Content : SwiftUICore.View']
-    expect(deriveTabViewSlots([
+    expect(deriveViewSlots([
       { ...method('tabViewBottomAccessory', 'SwiftUI', [content]), requirements: requirement },
       { ...method('tabViewBottomAccessory', 'SwiftUI', [
         { label: 'isEnabled', name: 'isEnabled', type: 'Swift.Bool' }, content,
       ]), requirements: requirement },
       { ...method('tabViewSidebarHeader', 'SwiftUI', [content]), requirements: requirement },
+      { ...method('searchSuggestions', 'SwiftUI', [{ label: '_', name: 'content', type: '() -> Content' }]), requirements: requirement },
+      { ...method('accessibilityChildren', 'SwiftUI', [{ label: 'children', name: 'children', type: '() -> Content' }]), requirements: requirement },
     ], 27)).toEqual([
-      { name: 'tabViewBottomAccessory', ios: 0 },
-      { name: 'tabViewSidebarHeader', ios: 0 },
+      { name: 'accessibilityChildren', module: 'SwiftUI', label: 'children', ios: 0 },
+      { name: 'searchSuggestions', module: 'SwiftUI', label: '_', ios: 0 },
+      { name: 'tabViewBottomAccessory', module: 'SwiftUI', label: 'content', ios: 0 },
+      { name: 'tabViewSidebarHeader', module: 'SwiftUI', label: 'content', ios: 0 },
     ])
   })
 })

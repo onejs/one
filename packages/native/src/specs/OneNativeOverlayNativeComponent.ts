@@ -6,5 +6,6 @@ import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNati
 
 interface NativeProps extends ViewProps {
   alignment: string
+  slotName: string
 }
 export default codegenNativeComponent<NativeProps>('OneNativeOverlay')

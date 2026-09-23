@@ -6,6 +6,7 @@ import {
 } from 'react'
 import { Platform } from 'react-native'
 import { dispatchSDKEvent, swiftStyleNative } from './generated/swiftStyleNative'
+import { viewSlotAvailability } from './generated/viewSlots'
 import NativeButton from './specs/OneNativeButtonNativeComponent'
 import NativeContainerSlot from './specs/OneNativeContainerSlotNativeComponent'
 import NativeControlGroup from './specs/OneNativeControlGroupNativeComponent'
@@ -52,6 +53,7 @@ import {
   type LinkProps,
   type OverlayContentProps,
   type OverlayProps,
+  type ViewSlotProps,
   type SwipeActionsActionsProps,
   type SwipeActionsProps,
 } from './groupTypes'
@@ -618,13 +620,33 @@ function OverlayFn({ alignment = 'center', children, style, ...props }: OverlayP
     throw new Error('Swift.Overlay takes a single Overlay.Content child')
   assertOneNativeChildren(children, 'Swift.Overlay')
   return (
-    <NativeOverlay {...props} style={[{ alignSelf: 'stretch' }, style]} alignment={alignment}>
+    <NativeOverlay {...props} style={[{ alignSelf: 'stretch' }, style]} alignment={alignment} slotName="">
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeOverlay>
   )
 }
 
 export const Overlay = Object.assign(OverlayFn, { Content: OverlayContent })
+
+function ViewSlotFn({ name, children, style, ...props }: ViewSlotProps) {
+  if (!Object.hasOwn(viewSlotAvailability, name))
+    throw new Error(`unknown Swift.ViewSlot: ${name}`)
+  if (Number.parseFloat(String(Platform.Version)) < viewSlotAvailability[name])
+    throw new Error(`Swift.ViewSlot ${name} requires iOS ${viewSlotAvailability[name]} or later`)
+  const markers = Children.toArray(children).filter(
+    (child) => isValidElement(child) && child.type === OverlayContent
+  )
+  if (markers.length !== 1)
+    throw new Error('Swift.ViewSlot takes one ViewSlot.Content child')
+  assertOneNativeChildren(children, 'Swift.ViewSlot')
+  return (
+    <NativeOverlay {...props} style={[{ alignSelf: 'stretch' }, style]} alignment="center" slotName={name}>
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeOverlay>
+  )
+}
+
+export const ViewSlot = Object.assign(ViewSlotFn, { Content: OverlayContent })
 
 export function SwipeActionsActions({
   edge = 'trailing',

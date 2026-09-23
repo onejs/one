@@ -19,6 +19,7 @@ import type {
   NavigationStackProps,
   OverlayContentProps,
   OverlayProps,
+  ViewSlotProps,
   PageProps,
   PagerProps,
   PopoverProps,
@@ -157,6 +158,10 @@ function OverlayFn(_props: OverlayProps): never {
   throw new Error('Swift.Overlay requires an iOS native build with @vxrn/native installed')
 }
 const Overlay = Object.assign(OverlayFn, { Content: OverlayContent })
+function ViewSlotFn(_props: ViewSlotProps): never {
+  throw new Error('Swift.ViewSlot requires an iOS native build with @vxrn/native installed')
+}
+const ViewSlot = Object.assign(ViewSlotFn, { Content: OverlayContent })
 function SwipeActionsActions(_props: SwipeActionsActionsProps): never {
   throw new Error(
     'Swift.SwipeActions.Actions requires an iOS native build with @vxrn/native installed'
@@ -229,6 +234,7 @@ export const Swift = {
   Link,
   Group,
   Overlay,
+  ViewSlot,
   SwipeActions,
   Pager,
   Page,
