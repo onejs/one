@@ -63,6 +63,12 @@
       "import": "./dist/esm/toolbar/index.mjs",
       "require": "./dist/cjs/toolbar/index.cjs"
     },
+    "./swift": {
+      "types": "./types/swift/index.d.ts",
+      "react-native": "./dist/esm/swift/index.native.js",
+      "import": "./dist/esm/swift/index.mjs",
+      "require": "./dist/cjs/swift/index.cjs"
+    },
     "./menu": {
       "types": "./types/menu/index.d.ts",
       "react-native": "./dist/esm/menu/index.native.js",
@@ -134,6 +140,12 @@
     "react-native": "~0.87.1",
     "react-native-screens": ">=4.25.0",
     "react-native-worklets": ">=0.12.2"
+  },
+  "dependencies": {
+    "@op-engineering/op-sqlite": "18.2.5",
+    "react-native-nitro-image": "0.15.2",
+    "react-native-nitro-modules": "0.37.0",
+    "react-native-nitro-web-image": "0.15.2"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",

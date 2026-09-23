@@ -1,18 +1,46 @@
 ---
-title: Native Features (Alpha)
-description: Experimental native navigation features for iOS and Android
+title: Native Features
+description: Native controls and platform APIs for iOS and Android
 ---
 
 One exposes its native primitives through `One.iOS`, `One.Android`, and `One.UI`.
 The platform namespaces follow the names and prop contracts of their native frameworks.
 Shared primitives live under `One.UI`.
 
-<Notice theme="yellow">
-  These features are experimental. Try them out, but expect API changes.
-</Notice>
+The native primitives ship with One and link during the native build. The image
+and SQLite features also need the native packages listed below.
 
-The native implementation ships with One and links during the native build. No separate
-JavaScript package is required.
+---
+
+## Shared images
+
+`One.UI.Image` displays local and remote images through Nitro Image on iOS and Android.
+Use a URL string, a `{ uri }` source, or a bundled React Native image resource.
+
+```tsx
+import { One } from 'one'
+
+<One.UI.Image source={{ uri: photoUrl }} resizeMode="cover" style={{ width: 240, height: 160 }} />
+```
+
+Apps using remote images install `react-native-nitro-image`,
+`react-native-nitro-web-image`, and `react-native-nitro-modules` so the native
+image loader is linked into both platforms.
+
+## SQLite
+
+`One.Database` exposes OP SQLite's synchronous and asynchronous database opens
+on iOS and Android. Zero apps can use its existing `@rocicorp/zero/op-sqlite`
+store provider for the local sync database.
+
+```tsx
+import { One } from 'one'
+
+const db = One.Database.open({ name: 'app.sqlite' })
+const rows = db.executeSync('SELECT * FROM notes').rows
+```
+
+Install `@op-engineering/op-sqlite` in the app's native dependencies.
 
 ---
 

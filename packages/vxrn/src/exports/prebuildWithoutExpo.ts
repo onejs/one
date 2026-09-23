@@ -5,12 +5,14 @@ import { pathToFileURL } from 'node:url'
 import { validateNativeApp, type NativeAppManifest } from '@vxrn/utils/nativeAppManifest'
 import FSExtra from 'fs-extra'
 import sharp from 'sharp'
+import { swiftPackageId } from '../utils/swiftPackageId'
 
 type NativeProjectPatches = {
   addSetCliPathToBundleReactNativeShellScript(input: string): string
   addPodHermescToBundleReactNativeShellScript(input: string): string
   addDepsPatchToBundleReactNativeShellScript(input: string): string
   injectFmtCxx17FixIntoPodfile(input: string): string
+  injectOneSwiftPackagesIntoPodfile(input: string): string
   injectHermesMinificationPatchIntoPodfile(input: string): string
   injectReactNativeScreensGammaIntoPodfile(input: string): string
   replaceAppBuildGradleReactBlock(input: string): string
@@ -757,6 +759,7 @@ end`
         rendered = nativeProjectPatches.injectReactNativeScreensGammaIntoPodfile(rendered)
       }
       rendered = nativeProjectPatches.injectFmtCxx17FixIntoPodfile(rendered)
+      rendered = nativeProjectPatches.injectOneSwiftPackagesIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(rendered)
       if (
         !rendered.includes('[vxrn/one] fmt c++17 fix') ||
@@ -874,6 +877,89 @@ export const generateForPlatform = async (
   await generateAppIcons({ root, dest, platform, app })
   await generateSplashScreen({ root, dest, platform, app })
   generateSceneDelegate({ dest, platform, app })
+  if (platform === 'ios') generateSwiftPackages({ root, dest })
+}
+
+// every directory under the app root holding a Package.swift becomes one local
+// pod: its sources compile as their own module against VxrnNative (which
+// supplies RNXPackage and JSON), the @main entry is renamed so it does not
+// clash with the app's main, and an objc +load files the entry with the
+// registry the OneSwiftHost view reads. the bundler resolves an import of any
+// .swift file in the package to a host view naming the same package id.
+function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
+  const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build'])
+  const packageDirs: string[] = []
+  const walk = (dir: string) => {
+    const entries = FSExtra.readdirSync(dir, { withFileTypes: true })
+    if (entries.some((entry) => entry.isFile() && entry.name === 'Package.swift')) {
+      packageDirs.push(dir)
+      return
+    }
+    for (const entry of entries) {
+      if (!entry.isDirectory() || entry.name.startsWith('.') || skip.has(entry.name)) continue
+      walk(path.join(dir, entry.name))
+    }
+  }
+  walk(root)
+
+  for (const packageDir of packageDirs) {
+    const id = swiftPackageId(packageDir)
+    const podDir = path.join(dest, 'OneSwiftPackages', id)
+    const sources: string[] = []
+    const collect = (dir: string) => {
+      for (const entry of FSExtra.readdirSync(dir, { withFileTypes: true })) {
+        if (entry.name.startsWith('.') || entry.name === 'node_modules') continue
+        const full = path.join(dir, entry.name)
+        if (entry.isDirectory()) collect(full)
+        else if (entry.name.endsWith('.swift') && entry.name !== 'Package.swift') sources.push(full)
+      }
+    }
+    collect(packageDir)
+    // cocoapods globs do not descend into symlinked directories, so mirror the
+    // tree with real directories and link each file.
+    for (const source of sources) {
+      const link = path.join(podDir, 'Sources', path.relative(packageDir, source))
+      FSExtra.mkdirSync(path.dirname(link), { recursive: true })
+      FSExtra.symlinkSync(FSExtra.realpathSync(source), link)
+    }
+    FSExtra.writeFileSync(
+      path.join(podDir, `${id}.podspec`),
+      `Pod::Spec.new do |s|
+  s.name = '${id}'
+  s.version = '0.0.0'
+  s.summary = 'swift package ${path.relative(root, packageDir) || '.'}'
+  s.homepage = 'https://onestack.dev'
+  s.license = 'MIT'
+  s.author = 'one'
+  s.source = { :path => '.' }
+  s.platforms = { :ios => '17.0' }
+  s.swift_version = '6.0'
+  s.source_files = 'Sources/**/*.swift', 'Register.m'
+  s.dependency 'VxrnNative'
+  s.pod_target_xcconfig = {
+    'OTHER_SWIFT_FLAGS' => '$(inherited) -Xfrontend -import-module -Xfrontend VxrnNative -Xfrontend -entry-point-function-name -Xfrontend ${id}_main',
+  }
+end
+`
+    )
+    FSExtra.writeFileSync(
+      path.join(podDir, 'Register.m'),
+      `#import <Foundation/Foundation.h>
+
+extern int ${id}_main(int argc, char **argv);
+extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **));
+
+@interface OneSwiftPackage_${id} : NSObject
+@end
+
+@implementation OneSwiftPackage_${id}
++ (void)load {
+  OneSwiftRegisterPackage("${id}", ${id}_main);
+}
+@end
+`
+    )
+  }
 }
 
 export interface NativeDependencyInventory {

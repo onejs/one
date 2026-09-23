@@ -113,6 +113,7 @@ extension View {
       case "contrast": view = AnyView(view.oneNativeSDKContrast(value))
       case "controlSize": view = AnyView(view.oneNativeSDKControlSize(value))
       case "defaultAdaptableTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultAdaptableTabBarPlacement(value))
+      case "defaultTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultTabBarPlacement(value))
       case "deleteDisabled": view = AnyView(view.oneNativeSDKDeleteDisabled(value))
       case "disabled": view = AnyView(view.oneNativeSDKDisabled(value))
       case "dynamicTypeSize": view = AnyView(view.oneNativeSDKDynamicTypeSize(value))
@@ -166,6 +167,7 @@ extension View {
       case "presentationCompactAdaptation": view = AnyView(view.oneNativeSDKPresentationCompactAdaptation(value))
       case "presentationContentInteraction": view = AnyView(view.oneNativeSDKPresentationContentInteraction(value))
       case "presentationDragIndicator": view = AnyView(view.oneNativeSDKPresentationDragIndicator(value))
+      case "presentationPlacement": view = AnyView(view.oneNativeSDKPresentationPlacement(value))
       case "previewInterfaceOrientation": view = AnyView(view.oneNativeSDKPreviewInterfaceOrientation(value))
       case "privacySensitive": view = AnyView(view.oneNativeSDKPrivacySensitive(value))
       case "replaceDisabled": view = AnyView(view.oneNativeSDKReplaceDisabled(value))
@@ -195,6 +197,7 @@ extension View {
       case "tabBarMinimizeBehavior": view = AnyView(view.oneNativeSDKTabBarMinimizeBehavior(value))
       case "tableColumnHeaders": view = AnyView(view.oneNativeSDKTableColumnHeaders(value))
       case "tabViewSearchActivation": view = AnyView(view.oneNativeSDKTabViewSearchActivation(value))
+      case "textInputBorderShape": view = AnyView(view.oneNativeSDKTextInputBorderShape(value))
       case "textSelectionAffinity": view = AnyView(view.oneNativeSDKTextSelectionAffinity(value))
       case "toolbarRole": view = AnyView(view.oneNativeSDKToolbarRole(value))
       case "toolbarTitleDisplayMode": view = AnyView(view.oneNativeSDKToolbarTitleDisplayMode(value))
@@ -564,6 +567,15 @@ extension View {
       case "tabBar": if #available(iOS 18, *) { self.defaultAdaptableTabBarPlacement(.tabBar) } else { self }
       case "sidebar": if #available(iOS 18, *) { self.defaultAdaptableTabBarPlacement(.sidebar) } else { self }
     default: preconditionFailure("invalid defaultAdaptableTabBarPlacement: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDefaultTabBarPlacement(_ value: String) -> some View {
+    switch value {
+      case "automatic": if #available(iOS 27, *) { self.defaultTabBarPlacement(.automatic) } else { self }
+      case "tabBar": if #available(iOS 27, *) { self.defaultTabBarPlacement(.tabBar) } else { self }
+      case "sidebar": if #available(iOS 27, *) { self.defaultTabBarPlacement(.sidebar) } else { self }
+    default: preconditionFailure("invalid defaultTabBarPlacement: \(value)")
     }
   }
 
@@ -961,6 +973,16 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKPresentationPlacement(_ value: String) -> some View {
+    switch value {
+      case "automatic": if #available(iOS 27, *) { self.presentationPlacement(.automatic) } else { self }
+      case "leading": if #available(iOS 27, *) { self.presentationPlacement(.leading) } else { self }
+      case "center": if #available(iOS 27, *) { self.presentationPlacement(.center) } else { self }
+      case "trailing": if #available(iOS 27, *) { self.presentationPlacement(.trailing) } else { self }
+    default: preconditionFailure("invalid presentationPlacement: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKPreviewInterfaceOrientation(_ value: String) -> some View {
     switch value {
       case "portrait": self.previewInterfaceOrientation(.portrait)
@@ -1172,6 +1194,15 @@ extension View {
       case "automatic": if #available(iOS 26, *) { self.tabViewSearchActivation(.automatic) } else { self }
       case "searchTabSelection": if #available(iOS 26, *) { self.tabViewSearchActivation(.searchTabSelection) } else { self }
     default: preconditionFailure("invalid tabViewSearchActivation: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTextInputBorderShape(_ value: String) -> some View {
+    switch value {
+      case "automatic": if #available(iOS 27, *) { self.textInputBorderShape(.automatic) } else { self }
+      case "capsule": if #available(iOS 27, *) { self.textInputBorderShape(.capsule) } else { self }
+      case "roundedRectangle": if #available(iOS 27, *) { self.textInputBorderShape(.roundedRectangle) } else { self }
+    default: preconditionFailure("invalid textInputBorderShape: \(value)")
     }
   }
 

@@ -32,6 +32,7 @@ import { criticalCSSPlugin } from './plugins/criticalCSSPlugin'
 import { imageDataPlugin } from './plugins/imageDataPlugin'
 import { createRouteModuleHmrPlugin } from './plugins/routeModuleHmrPlugin'
 import { sourceInspectorPlugin } from './plugins/sourceInspectorPlugin'
+import { swiftPackagePlugin } from './plugins/swiftPackagePlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
@@ -888,6 +889,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     globalThis.__vxrnAddNativePlugins = [
       clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),
       ...(viteBundlerOptions?.plugins ?? []),
+      // last, so an app plugin that compiles .swift itself (a simulator) wins
+      swiftPackagePlugin(),
     ]
     ;(globalThis as any).__vxrnNativeUserDefine = {
       ...viteBundlerOptions?.define,

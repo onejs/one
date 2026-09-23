@@ -40,7 +40,7 @@ const MINIMUM_IOS = 17
 // the ceiling the checked-in bindings must compile against. CI pins an Xcode on this SDK
 // major, so symbols introduced above it are skipped and every newer toolchain produces
 // identical output. bump this when CI moves to a newer Xcode, then regenerate.
-const MAXIMUM_IOS = 26
+const MAXIMUM_IOS = 27
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const cache = join(root, '.codegen-cache')
