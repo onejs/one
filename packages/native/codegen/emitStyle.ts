@@ -371,6 +371,13 @@ ${modifier.associatedCases!.map((item) => `      case .${item.name}${item.values
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} event") }
       emit(${JSON.stringify(modifier.name)}, encoded)
     }`
+                  : modifier.eventInputs
+                    ? `{ ${modifier.eventInputs.join(', ')} in
+      let payload = ([${(modifier.eventValue!.kind === 'object' ? modifier.eventValue!.fields : []).map((field) => `${JSON.stringify(field.name)}: ${eventValueSwift(field.value, field.name)}`).join(', ')}] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} event") }
+      emit(${JSON.stringify(modifier.name)}, encoded)
+    }`
                   : `{ item in
       let payload = ${eventValueSwift(modifier.eventValue!, 'item')}
       guard let data = try? JSONSerialization.data(withJSONObject: payload),

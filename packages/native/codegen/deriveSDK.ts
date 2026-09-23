@@ -46,6 +46,7 @@ export type DerivedModifier = {
   resultType?: string
   resultConstructor?: { type: string; label: string }
   eventPair?: true
+  eventInputs?: readonly string[]
   transformMember?: string
   zeroArgument?: true
   framework?: string
@@ -423,6 +424,24 @@ export function deriveModifiers(
           const arrayType = `@autoclosure @escaping () -> [${transferable}]`
           const valueType = `@autoclosure @escaping () -> ${transferable}`
           const required = method.parameters.filter((parameter) => parameter.defaultValue === undefined)
+          const arrayStructCallback = method.parameters.find((parameter) =>
+            new RegExp(`^@escaping \\(_ [A-Za-z]\\w*: \\[${transferable}\\], _ [A-Za-z]\\w*: [A-Za-z_]\\w*(?:\\.[A-Za-z_]\\w*)+\\) -> Swift\\.Void$`).test(parameter.type))
+          const structType = arrayStructCallback && new RegExp(`^@escaping \\(_ [A-Za-z]\\w*: \\[${transferable}\\], _ [A-Za-z]\\w*: ([A-Za-z_]\\w*(?:\\.[A-Za-z_]\\w*)+)\\) -> Swift\\.Void$`).exec(arrayStructCallback.type)?.[1]
+          const structValue = structType && eventValueOf(structType, ios(method))
+          if (first?.type === `${transferable}.Type` && first.defaultValue !== undefined &&
+            arrayStructCallback && structValue && method.parameters.every((parameter) =>
+              parameter === arrayStructCallback || parameter.defaultValue !== undefined))
+            return [{ name, module: method.module, kind: 'eventStruct',
+              type: arrayStructCallback.type, label: arrayStructCallback.label,
+              eventValue: { kind: 'object', fields: [
+                { name: 'items', value: { kind: 'array', value: { kind: 'string' } } },
+                { name: 'session', value: structValue },
+              ] }, eventInputs: ['items', 'session'],
+              callArguments: method.parameters.map((parameter) =>
+                parameter === first ? { label: parameter.label, defaultValue: 'String.self' } :
+                  parameter === arrayStructCallback ? { label: parameter.label, bridge: true as const } :
+                    { label: parameter.label, defaultValue: parameter.defaultValue }),
+              ios: ios(method), ...framework }]
           if (required.length === 3 && required[0].type === 'SwiftUICore.Binding<Swift.Bool>' &&
             required[1].type === `${transferable}?` && urlResultOf(required[2].type) === 'Foundation.URL')
             return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
