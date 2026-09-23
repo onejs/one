@@ -158,6 +158,8 @@ ${styleFields
                       ? `(value: ${eventValueType(modifier.eventValue!)}) => void`
                   : modifier.kind === 'eventValueString'
                     ? 'Readonly<{ value: string; onChange: (value: string) => void }>'
+                  : modifier.kind === 'eventReturnArray'
+                    ? 'Readonly<{ items: readonly string[]; onAction: () => void }>'
           : modifier.kind === 'bindingBoolean' || modifier.kind === 'bindingFocusBoolean'
             ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>'
             : modifier.kind === 'bindingString'

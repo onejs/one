@@ -190,6 +190,26 @@ ${parsedArguments}
     } else { self }` : `self.modifier(${holder}(value: value == "true", emit: emit))`}
   }`
       }
+      if (modifier.kind === 'eventReturnArray') {
+        const call = modifier.callArguments!.map((argument) =>
+          `${argument.label === '_' ? '' : `${argument.label}: `}${argument.bridge ? 'action' : argument.defaultValue}`
+        ).join(', ')
+        const body = `let items: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid ${modifier.name}: \\(value)") }
+      return decoded
+    }()
+    let action: () -> [String] = {
+      emit(${JSON.stringify(modifier.name)}, "")
+      return items
+    }
+    ${apply(call, 17, true)}`
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    ${modifier.ios > 17 ? `if #available(iOS ${modifier.ios}, *) {
+      ${body}
+    } else { self }` : body}
+  }`
+      }
       if (modifier.kind === 'eventValueString')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     ${apply(`${modifier.label === '_' ? '' : `${modifier.label}: `}value, ${modifier.callbackLabel === '_' ? '' : `${modifier.callbackLabel}: `}{ changed in emit(${JSON.stringify(modifier.name)}, changed) }`, modifier.ios, true)}
@@ -329,7 +349,7 @@ ${modifier.cases
       const parsed =
         modifier.kind === 'boolean'
           ? `      let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")
-      ${apply(construct('value == "true"'), modifier.ios)}`
+      ${apply(modifier.predicateInput ? `{ (_: ${modifier.predicateInput}) in value == "true" }` : construct('value == "true"'), modifier.ios)}`
           : modifier.kind === 'number'
             ? `      if let number = Double(value), number.isFinite {
         ${apply(construct(
@@ -460,15 +480,18 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
       if (kind === 'optionalURL' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a URL string or null')
       if (kind === 'optionalEnum' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')
       if (kind === 'optionalString' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')
-      if (kind.startsWith('event') && kind !== 'eventValueString' && typeof value !== 'function') throw new Error(name + ' must be a callback')
+      if (kind.startsWith('event') && kind !== 'eventValueString' && kind !== 'eventReturnArray' && typeof value !== 'function') throw new Error(name + ' must be a callback')
       if (kind === 'eventValueString' && (typeof value !== 'object' || value === null || typeof (value as { value?: unknown }).value !== 'string' || typeof (value as { onChange?: unknown }).onChange !== 'function')) throw new Error(name + ' must be a string value and callback')
+      if (kind === 'eventReturnArray' && (typeof value !== 'object' || value === null || !Array.isArray((value as { items?: unknown }).items) ||
+        !(value as { items: unknown[] }).items.every((item) => typeof item === 'string') || typeof (value as { onAction?: unknown }).onAction !== 'function'))
+        throw new Error(name + ' must be a string array and callback')
       if ((kind === 'bindingBoolean' || kind === 'bindingFocusBoolean' || kind === 'bindingString' || kind === 'bindingOptionalString' || kind === 'bindingCodable') &&
         (typeof value !== 'object' || value === null || typeof (value as { onChange?: unknown }).onChange !== 'function' ||
         (kind === 'bindingOptionalString' || kind === 'bindingCodable' && sdkCodableOptional[name] ? (value as { value?: unknown }).value !== null && typeof (value as { value?: unknown }).value !== 'string' :
           typeof (value as { value?: unknown }).value !== (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean' ? 'boolean' : 'string'))))
         throw new Error(name + ' must be a binding')
       if (kind === 'bindingCodable' && (value as { value: string | null }).value !== null) JSON.parse((value as { value: string }).value)
-      sdkModifiers.push([name, kind === 'eventValueString' ? (value as { value: string }).value : kind.startsWith('event') ? '' : kind === 'bindingOptionalString' ? JSON.stringify((value as { value: string | null }).value) : kind === 'bindingCodable' && (value as { value: string | null }).value === null ? 'null' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : kind === 'optionalString' || kind === 'optionalURL' ? JSON.stringify(value) as string : String(value)])
+      sdkModifiers.push([name, kind === 'eventValueString' ? (value as { value: string }).value : kind === 'eventReturnArray' ? JSON.stringify((value as { items: string[] }).items) : kind.startsWith('event') ? '' : kind === 'bindingOptionalString' ? JSON.stringify((value as { value: string | null }).value) : kind === 'bindingCodable' && (value as { value: string | null }).value === null ? 'null' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : kind === 'optionalString' || kind === 'optionalURL' ? JSON.stringify(value) as string : String(value)])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
     } else {
@@ -483,6 +506,7 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
   const modifier = (style as Record<string, unknown> | undefined)?.[name]
   const kind = sdkKinds[name as keyof typeof sdkKinds] as string | undefined
   if (kind === 'event') (modifier as (() => void) | undefined)?.()
+  else if (kind === 'eventReturnArray') (modifier as { onAction: () => void } | undefined)?.onAction()
   else if (kind === 'eventBoolean') {
     if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid boolean')
     ;(modifier as ((value: boolean) => void) | undefined)?.(value === 'true')

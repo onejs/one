@@ -3383,6 +3383,22 @@
       ]
     },
     {
+      "name": "cuttable",
+      "kind": "eventReturnArray",
+      "type": "@escaping () -> [T]",
+      "callArguments": [
+        {
+          "label": "for",
+          "defaultValue": "String.self"
+        },
+        {
+          "label": "action",
+          "bridge": true
+        }
+      ],
+      "ios": 27
+    },
+    {
       "name": "dataDetection",
       "kind": "boolean",
       "type": "",
@@ -6091,6 +6107,14 @@
           "ios": 18
         }
       ]
+    },
+    {
+      "name": "mapFeatureSelectionDisabled",
+      "kind": "boolean",
+      "type": "@escaping (_MapKit_SwiftUI.MapFeature) -> Swift.Bool",
+      "predicateInput": "_MapKit_SwiftUI.MapFeature",
+      "ios": 17,
+      "framework": "MapKit"
     },
     {
       "name": "mapStyle",
@@ -12385,6 +12409,7 @@
         "contextMenu",
         "controlGroupStyle",
         "copyable",
+        "cuttable",
         "datePickerStyle",
         "defaultAdaptableTabBarPlacement",
         "defaultAppStorage",
@@ -12619,6 +12644,7 @@
         "mapControlVisibility",
         "mapControls",
         "mapFeatureSelectionAccessory",
+        "mapFeatureSelectionDisabled",
         "mapStyle",
         "onMapCameraChange"
       ],
