@@ -15,6 +15,7 @@
 - `controlCatalog.ts`, `leafCatalog.ts`, `controlTypes.ts`: controlled values, actions, binding closures, and constructors with label or content closures.
 - `emitContainers.ts`, `emitSheet.ts`, `emitPopover.ts`: SwiftUI child slots, measured layout, presentation and dismissal behavior.
 - `catalog.ts`: menu tree payloads, special style conversions, and framework imports.
+- `catalog.ts`: handwritten Fabric hosts such as `OneSwiftHost`, which have no SwiftUI SDK view declaration.
 - `Tabs.native.tsx` and `OneNativeTabsView.swift`: tab selection, page hosting, and accessory content placement.
 
 SDK signatures cannot choose a React event contract, ownership of a binding, a React Native layout model, or what React children feed a `@ViewBuilder`. These stay explicit. Scalar and enum modifier names and argument types should not.

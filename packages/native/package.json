@@ -157,6 +157,7 @@
     },
     "ios": {
       "componentProvider": {
+        "OneSwiftHost": "OneSwiftHostComponentView",
         "OneNativeMenu": "OneNativeMenuComponentView",
         "OneNativeTabs": "OneNativeTabsComponentView",
         "OneNativeTab": "OneNativeTabComponentView",
