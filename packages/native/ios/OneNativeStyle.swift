@@ -3,6 +3,7 @@
 import SwiftUI
 import UIKit
 import PassKit
+import DataDetection
 import GameController
 import StoreKit
 import MapKit
@@ -188,6 +189,7 @@ extension View {
       case "controlGroupStyle": view = AnyView(view.oneNativeSDKControlGroupStyle(value, emit: emit))
       case "controlSize": view = AnyView(view.oneNativeSDKControlSize(value, emit: emit))
       case "coordinateSpace": view = AnyView(view.oneNativeSDKCoordinateSpace(value, emit: emit))
+      case "dataDetection": view = AnyView(view.oneNativeSDKDataDetection(value, emit: emit))
       case "datePickerStyle": view = AnyView(view.oneNativeSDKDatePickerStyle(value, emit: emit))
       case "defaultAdaptableTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultAdaptableTabBarPlacement(value, emit: emit))
       case "defaultHoverEffect": view = AnyView(view.oneNativeSDKDefaultHoverEffect(value, emit: emit))
@@ -313,6 +315,7 @@ extension View {
       case "navigationSubtitle": view = AnyView(view.oneNativeSDKNavigationSubtitle(value, emit: emit))
       case "navigationTitleWithBindingString": view = AnyView(view.oneNativeSDKNavigationTitleWithBindingString(value, emit: emit))
       case "navigationTitleWithText": view = AnyView(view.oneNativeSDKNavigationTitleWithText(value, emit: emit))
+      case "navigationTransition": view = AnyView(view.oneNativeSDKNavigationTransition(value, emit: emit))
       case "navigationViewStyle": view = AnyView(view.oneNativeSDKNavigationViewStyle(value, emit: emit))
       case "offerCodeRedemption": view = AnyView(view.oneNativeSDKOfferCodeRedemption(value, emit: emit))
       case "offset": view = AnyView(view.oneNativeSDKOffset(value, emit: emit))
@@ -353,6 +356,7 @@ extension View {
       case "presentationCornerRadius": view = AnyView(view.oneNativeSDKPresentationCornerRadius(value, emit: emit))
       case "presentationDragIndicator": view = AnyView(view.oneNativeSDKPresentationDragIndicator(value, emit: emit))
       case "presentationPlacement": view = AnyView(view.oneNativeSDKPresentationPlacement(value, emit: emit))
+      case "presentationSizing": view = AnyView(view.oneNativeSDKPresentationSizing(value, emit: emit))
       case "previewDevice": view = AnyView(view.oneNativeSDKPreviewDevice(value, emit: emit))
       case "previewDisplayName": view = AnyView(view.oneNativeSDKPreviewDisplayName(value, emit: emit))
       case "previewInterfaceOrientation": view = AnyView(view.oneNativeSDKPreviewInterfaceOrientation(value, emit: emit))
@@ -1867,6 +1871,11 @@ extension View {
       self.coordinateSpace(name: value)
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKDataDetection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid dataDetection: \(value)")
+    if value == "true" { if #available(iOS 27, *) { self.dataDetection() } else { self } } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKDatePickerStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -3369,6 +3378,15 @@ extension View {
       self.navigationTitle(Text(value))
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKNavigationTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": if #available(iOS 18, *) { self.navigationTransition(.automatic) } else { self }
+      case "crossFade": if #available(iOS 27, *) { self.navigationTransition(.crossFade) } else { self }
+    default: preconditionFailure("invalid navigationTransition: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKNavigationViewStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -3767,6 +3785,17 @@ extension View {
       case "center": if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.center) } else { self }
       case "trailing": if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.trailing) } else { self }
     default: preconditionFailure("invalid presentationPlacement: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPresentationSizing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "form": if #available(iOS 18, *) { self.presentationSizing(.form) } else { self }
+      case "page": if #available(iOS 18, *) { self.presentationSizing(.page) } else { self }
+      case "fitted": if #available(iOS 18, *) { self.presentationSizing(.fitted) } else { self }
+      case "automatic": if #available(iOS 18, *) { self.presentationSizing(.automatic) } else { self }
+    default: preconditionFailure("invalid presentationSizing: \(value)")
     }
   }
 

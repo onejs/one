@@ -38,6 +38,17 @@ describe('SDK modifier derivation', () => {
     ])
   })
 
+  it('calls SDK defaults when every modifier argument has a default', () => {
+    expect(deriveModifiers([
+      method('glassEffect', 'SwiftUICore', [
+        { label: '_', name: 'glass', type: 'SwiftUICore.Glass', defaultValue: '.regular' },
+        { label: 'in', name: 'shape', type: 'some Shape', defaultValue: 'DefaultGlassEffectShape()' },
+      ]),
+    ], 27, [])).toEqual([
+      { name: 'glassEffect', kind: 'boolean', type: '', ios: 0, zeroArgument: true },
+    ])
+  })
+
   it('separates zero-argument and value overloads without choosing one', () => {
     expect(
       deriveModifiers(
@@ -180,20 +191,37 @@ describe('SDK modifier derivation', () => {
     ])
   })
 
-  it('derives opaque style and behavior parameters from their protocol cases', () => {
+  it('derives opaque protocol parameters from their concrete cases', () => {
     expect(deriveModifiers([
       method('textEditorStyle', 'SwiftUI', [{ label: '_', name: 'style', type: 'some TextEditorStyle' }]),
       { ...method('automatic', 'SwiftUI'), kind: 'static', owner: 'SwiftUI.TextEditorStyle', type: 'SwiftUI.AutomaticTextEditorStyle', requirements: ['Self == SwiftUI.AutomaticTextEditorStyle'] },
       { ...method('plain', 'SwiftUI'), kind: 'static', owner: 'SwiftUI.TextEditorStyle', type: 'SwiftUI.PlainTextEditorStyle', requirements: ['Self == SwiftUI.PlainTextEditorStyle'] },
       method('scrollTargetBehavior', 'SwiftUI', [{ label: '_', name: 'behavior', type: 'some ScrollTargetBehavior' }]),
       { ...method('paging', 'SwiftUI'), kind: 'static', owner: 'SwiftUI.ScrollTargetBehavior', type: 'SwiftUI.PagingScrollTargetBehavior', requirements: ['Self == SwiftUI.PagingScrollTargetBehavior'] },
+      method('navigationTransition', 'SwiftUI', [{ label: '_', name: 'transition', type: 'some NavigationTransition' }]),
+      { ...method('automatic', 'SwiftUI'), kind: 'static', owner: 'SwiftUI.NavigationTransition', type: 'SwiftUI.AutomaticNavigationTransition', requirements: ['Self == SwiftUI.AutomaticNavigationTransition'] },
     ], 27, [])).toEqual([
+      { name: 'navigationTransition', kind: 'style', type: 'some NavigationTransition', ios: 0, cases: [
+        { name: 'automatic', ios: 0 },
+      ] },
       { name: 'scrollTargetBehavior', kind: 'style', type: 'some ScrollTargetBehavior', ios: 0, cases: [
         { name: 'paging', ios: 0 },
       ] },
       { name: 'textEditorStyle', kind: 'style', type: 'some TextEditorStyle', ios: 0, cases: [
         { name: 'automatic', ios: 0 }, { name: 'plain', ios: 0 },
       ] },
+    ])
+  })
+
+  it('keeps a concrete overload ahead of an opaque protocol overload', () => {
+    expect(deriveModifiers([
+      method('defaultHoverEffect', 'SwiftUI', [{ label: '_', name: 'effect', type: 'SwiftUI.HoverEffect?' }]),
+      { ...method('automatic', 'SwiftUI'), kind: 'static', owner: 'HoverEffect', type: 'SwiftUI.HoverEffect' },
+      method('defaultHoverEffect', 'SwiftUI', [{ label: '_', name: 'effect', type: 'some CustomHoverEffect' }]),
+      { ...method('custom', 'SwiftUI'), kind: 'static', owner: 'SwiftUI.CustomHoverEffect', type: 'SwiftUI.MyHoverEffect', requirements: ['Self == SwiftUI.MyHoverEffect'] },
+    ], 27, [])).toEqual([
+      { name: 'defaultHoverEffect', kind: 'optionalEnum', type: 'SwiftUI.HoverEffect?', ios: 0,
+        cases: [{ name: 'automatic', ios: 0 }] },
     ])
   })
 

@@ -671,6 +671,8 @@ export const sdkNavigationSplitViewStyleValues = [
 ] as const
 export type SDKNavigationSplitViewStyle =
   (typeof sdkNavigationSplitViewStyleValues)[number]
+export const sdkNavigationTransitionValues = ['automatic', 'crossFade'] as const
+export type SDKNavigationTransition = (typeof sdkNavigationTransitionValues)[number]
 export const sdkNavigationViewStyleValues = ['columns', 'automatic', 'stack'] as const
 export type SDKNavigationViewStyle = (typeof sdkNavigationViewStyleValues)[number]
 export const sdkOnScrollPhaseChangeValues = [
@@ -814,6 +816,13 @@ export const sdkPresentationPlacementValues = [
   'trailing',
 ] as const
 export type SDKPresentationPlacement = (typeof sdkPresentationPlacementValues)[number]
+export const sdkPresentationSizingValues = [
+  'form',
+  'page',
+  'fitted',
+  'automatic',
+] as const
+export type SDKPresentationSizing = (typeof sdkPresentationSizingValues)[number]
 export const sdkPreviewInterfaceOrientationValues = [
   'portrait',
   'portraitUpsideDown',
@@ -1426,6 +1435,7 @@ export interface OneNativeStyle {
   controlGroupStyle?: SDKControlGroupStyle
   controlSize?: SDKControlSize
   coordinateSpace?: string
+  dataDetection?: boolean
   datePickerStyle?: SDKDatePickerStyle
   defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement
   defaultHoverEffect?: SDKDefaultHoverEffect | null
@@ -1737,6 +1747,7 @@ export interface OneNativeStyle {
     onChange: (value: string) => void
   }>
   navigationTitleWithText?: string
+  navigationTransition?: SDKNavigationTransition
   navigationViewStyle?: SDKNavigationViewStyle
   offerCodeRedemption?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   offset?: Readonly<{ x: number; y: number }>
@@ -1786,6 +1797,7 @@ export interface OneNativeStyle {
   presentationCornerRadius?: number | null
   presentationDragIndicator?: SDKPresentationDragIndicator
   presentationPlacement?: SDKPresentationPlacement
+  presentationSizing?: SDKPresentationSizing
   previewDevice?: string | null
   previewDisplayName?: string | null
   previewInterfaceOrientation?: SDKPreviewInterfaceOrientation
