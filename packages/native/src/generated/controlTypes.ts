@@ -210,6 +210,13 @@ export const sdkAnimationValues = [
   'linear',
 ] as const
 export type SDKAnimation = (typeof sdkAnimationValues)[number]
+export const sdkAutocapitalizationValues = [
+  'allCharacters',
+  'none',
+  'sentences',
+  'words',
+] as const
+export type SDKAutocapitalization = (typeof sdkAutocapitalizationValues)[number]
 export const sdkBackgroundStyleValues = [
   'placeholder',
   'link',
@@ -517,6 +524,22 @@ export const sdkKeyboardShortcutWithOptionalKeyboardShortcutValues = [
 ] as const
 export type SDKKeyboardShortcutWithOptionalKeyboardShortcut =
   (typeof sdkKeyboardShortcutWithOptionalKeyboardShortcutValues)[number]
+export const sdkKeyboardTypeValues = [
+  'URL',
+  'alphabet',
+  'asciiCapable',
+  'asciiCapableNumberPad',
+  'decimalPad',
+  'default',
+  'emailAddress',
+  'namePhonePad',
+  'numberPad',
+  'numbersAndPunctuation',
+  'phonePad',
+  'twitter',
+  'webSearch',
+] as const
+export type SDKKeyboardType = (typeof sdkKeyboardTypeValues)[number]
 export const sdkLabeledContentStyleValues = ['automatic'] as const
 export type SDKLabeledContentStyle = (typeof sdkLabeledContentStyleValues)[number]
 export const sdkLabelStyleValues = [
@@ -682,6 +705,21 @@ export const sdkPersistentSystemOverlaysValues = [
 ] as const
 export type SDKPersistentSystemOverlays =
   (typeof sdkPersistentSystemOverlaysValues)[number]
+export const sdkPhotosPickerDisabledCapabilitiesValues = [
+  'collectionNavigation',
+  'search',
+  'selectionActions',
+  'sensitivityAnalysisIntervention',
+  'stagingArea',
+] as const
+export type SDKPhotosPickerDisabledCapabilities =
+  (typeof sdkPhotosPickerDisabledCapabilitiesValues)[number]
+export const sdkPhotosPickerMetadataOptionsValues = [
+  'removeCaptions',
+  'removeLocation',
+] as const
+export type SDKPhotosPickerMetadataOptions =
+  (typeof sdkPhotosPickerMetadataOptionsValues)[number]
 export const sdkPhotosPickerStyleValues = ['presentation', 'inline', 'compact'] as const
 export type SDKPhotosPickerStyle = (typeof sdkPhotosPickerStyleValues)[number]
 export const sdkPickerStyleValues = [
@@ -956,6 +994,57 @@ export const sdkTabViewStyleValues = [
 export type SDKTabViewStyle = (typeof sdkTabViewStyleValues)[number]
 export const sdkTextCaseValues = ['uppercase', 'lowercase'] as const
 export type SDKTextCase = (typeof sdkTextCaseValues)[number]
+export const sdkTextContentTypeValues = [
+  'URL',
+  'addressCity',
+  'addressCityAndState',
+  'addressState',
+  'birthdate',
+  'birthdateDay',
+  'birthdateMonth',
+  'birthdateYear',
+  'cellularEID',
+  'cellularIMEI',
+  'cellularIMEI1',
+  'cellularIMEI2',
+  'cellularNAL',
+  'countryName',
+  'creditCardExpiration',
+  'creditCardExpirationMonth',
+  'creditCardExpirationYear',
+  'creditCardFamilyName',
+  'creditCardGivenName',
+  'creditCardMiddleName',
+  'creditCardName',
+  'creditCardNumber',
+  'creditCardSecurityCode',
+  'creditCardType',
+  'dateTime',
+  'emailAddress',
+  'familyName',
+  'flightNumber',
+  'fullStreetAddress',
+  'givenName',
+  'jobTitle',
+  'location',
+  'middleName',
+  'name',
+  'namePrefix',
+  'nameSuffix',
+  'newPassword',
+  'nickname',
+  'oneTimeCode',
+  'organizationName',
+  'password',
+  'postalCode',
+  'shipmentTrackingNumber',
+  'streetAddressLine1',
+  'streetAddressLine2',
+  'sublocality',
+  'telephoneNumber',
+  'username',
+] as const
+export type SDKTextContentType = (typeof sdkTextContentTypeValues)[number]
 export const sdkTextEditorStyleValues = ['automatic', 'plain'] as const
 export type SDKTextEditorStyle = (typeof sdkTextEditorStyleValues)[number]
 export const sdkTextFieldStyleValues = [
@@ -1240,6 +1329,7 @@ export interface OneNativeStyle {
   animation?: SDKAnimation | null
   aspectRatio?: Readonly<{ aspectRatio: number | null; contentMode: 'fit' | 'fill' }>
   assistiveAccessNavigationIcon?: string
+  autocapitalization?: SDKAutocapitalization
   autocorrectionDisabled?: boolean
   backgroundExtensionEffectWithIsEnabled?: boolean
   backgroundExtensionEffectWithNoArguments?: boolean
@@ -1501,6 +1591,7 @@ export interface OneNativeStyle {
   }>
   keyboardShortcutWithKeyboardShortcut?: SDKKeyboardShortcutWithKeyboardShortcut
   keyboardShortcutWithOptionalKeyboardShortcut?: SDKKeyboardShortcutWithOptionalKeyboardShortcut | null
+  keyboardType?: SDKKeyboardType
   labeledContentStyle?: SDKLabeledContentStyle
   labelIconToTitleSpacing?: number
   labelReservedIconWidth?: number
@@ -1660,6 +1751,8 @@ export interface OneNativeStyle {
     visibility: 'automatic' | 'visible' | 'hidden'
     edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
   }>
+  photosPickerDisabledCapabilities?: SDKPhotosPickerDisabledCapabilities
+  photosPickerMetadataOptions?: SDKPhotosPickerMetadataOptions
   photosPickerSearchText?: string | null
   photosPickerStyle?: SDKPhotosPickerStyle
   pickerStyle?: SDKPickerStyle
@@ -1892,6 +1985,7 @@ export interface OneNativeStyle {
   tabViewStyle?: SDKTabViewStyle
   tag?: string
   textCase?: SDKTextCase | null
+  textContentType?: SDKTextContentType | null
   textEditorStyle?: SDKTextEditorStyle
   textFieldStyle?: SDKTextFieldStyle
   textInputAutocapitalization?: SDKTextInputAutocapitalization | null

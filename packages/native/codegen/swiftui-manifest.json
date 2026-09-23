@@ -2114,6 +2114,30 @@
       "label": "systemImage"
     },
     {
+      "name": "autocapitalization",
+      "kind": "string",
+      "type": "UIKit.UITextAutocapitalizationType",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "allCharacters",
+          "ios": 0
+        },
+        {
+          "name": "none",
+          "ios": 0
+        },
+        {
+          "name": "sentences",
+          "ios": 0
+        },
+        {
+          "name": "words",
+          "ios": 0
+        }
+      ]
+    },
+    {
       "name": "autocorrectionDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
@@ -4807,6 +4831,66 @@
       "sdkName": "keyboardShortcut"
     },
     {
+      "name": "keyboardType",
+      "kind": "string",
+      "type": "UIKit.UIKeyboardType",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "URL",
+          "ios": 0
+        },
+        {
+          "name": "alphabet",
+          "ios": 0
+        },
+        {
+          "name": "asciiCapable",
+          "ios": 0
+        },
+        {
+          "name": "asciiCapableNumberPad",
+          "ios": 10
+        },
+        {
+          "name": "decimalPad",
+          "ios": 4.1
+        },
+        {
+          "name": "default",
+          "ios": 0
+        },
+        {
+          "name": "emailAddress",
+          "ios": 0
+        },
+        {
+          "name": "namePhonePad",
+          "ios": 0
+        },
+        {
+          "name": "numberPad",
+          "ios": 0
+        },
+        {
+          "name": "numbersAndPunctuation",
+          "ios": 0
+        },
+        {
+          "name": "phonePad",
+          "ios": 0
+        },
+        {
+          "name": "twitter",
+          "ios": 5
+        },
+        {
+          "name": "webSearch",
+          "ios": 7
+        }
+      ]
+    },
+    {
       "name": "labeledContentStyle",
       "kind": "style",
       "type": "S",
@@ -6491,6 +6575,52 @@
         }
       ],
       "framework": "PhotosUI"
+    },
+    {
+      "name": "photosPickerDisabledCapabilities",
+      "kind": "string",
+      "type": "PhotosUI.PHPickerCapabilities",
+      "ios": 17,
+      "framework": "PhotosUI",
+      "cases": [
+        {
+          "name": "collectionNavigation",
+          "ios": 17
+        },
+        {
+          "name": "search",
+          "ios": 17
+        },
+        {
+          "name": "selectionActions",
+          "ios": 17
+        },
+        {
+          "name": "sensitivityAnalysisIntervention",
+          "ios": 17
+        },
+        {
+          "name": "stagingArea",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "photosPickerMetadataOptions",
+      "kind": "string",
+      "type": "PhotosUI.PHPickerMetadataOptions",
+      "ios": 27,
+      "framework": "PhotosUI",
+      "cases": [
+        {
+          "name": "removeCaptions",
+          "ios": 27
+        },
+        {
+          "name": "removeLocation",
+          "ios": 27
+        }
+      ]
     },
     {
       "name": "photosPickerSearchText",
@@ -8927,6 +9057,206 @@
       ]
     },
     {
+      "name": "textContentType",
+      "kind": "optionalEnum",
+      "type": "UIKit.UITextContentType?",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "URL",
+          "ios": 10
+        },
+        {
+          "name": "addressCity",
+          "ios": 10
+        },
+        {
+          "name": "addressCityAndState",
+          "ios": 10
+        },
+        {
+          "name": "addressState",
+          "ios": 10
+        },
+        {
+          "name": "birthdate",
+          "ios": 17
+        },
+        {
+          "name": "birthdateDay",
+          "ios": 17
+        },
+        {
+          "name": "birthdateMonth",
+          "ios": 17
+        },
+        {
+          "name": "birthdateYear",
+          "ios": 17
+        },
+        {
+          "name": "cellularEID",
+          "ios": 17.4
+        },
+        {
+          "name": "cellularIMEI",
+          "ios": 17.4
+        },
+        {
+          "name": "cellularIMEI1",
+          "ios": 27
+        },
+        {
+          "name": "cellularIMEI2",
+          "ios": 27
+        },
+        {
+          "name": "cellularNAL",
+          "ios": 27
+        },
+        {
+          "name": "countryName",
+          "ios": 10
+        },
+        {
+          "name": "creditCardExpiration",
+          "ios": 17
+        },
+        {
+          "name": "creditCardExpirationMonth",
+          "ios": 17
+        },
+        {
+          "name": "creditCardExpirationYear",
+          "ios": 17
+        },
+        {
+          "name": "creditCardFamilyName",
+          "ios": 17
+        },
+        {
+          "name": "creditCardGivenName",
+          "ios": 17
+        },
+        {
+          "name": "creditCardMiddleName",
+          "ios": 17
+        },
+        {
+          "name": "creditCardName",
+          "ios": 17
+        },
+        {
+          "name": "creditCardNumber",
+          "ios": 10
+        },
+        {
+          "name": "creditCardSecurityCode",
+          "ios": 17
+        },
+        {
+          "name": "creditCardType",
+          "ios": 17
+        },
+        {
+          "name": "dateTime",
+          "ios": 15
+        },
+        {
+          "name": "emailAddress",
+          "ios": 10
+        },
+        {
+          "name": "familyName",
+          "ios": 10
+        },
+        {
+          "name": "flightNumber",
+          "ios": 15
+        },
+        {
+          "name": "fullStreetAddress",
+          "ios": 10
+        },
+        {
+          "name": "givenName",
+          "ios": 10
+        },
+        {
+          "name": "jobTitle",
+          "ios": 10
+        },
+        {
+          "name": "location",
+          "ios": 10
+        },
+        {
+          "name": "middleName",
+          "ios": 10
+        },
+        {
+          "name": "name",
+          "ios": 10
+        },
+        {
+          "name": "namePrefix",
+          "ios": 10
+        },
+        {
+          "name": "nameSuffix",
+          "ios": 10
+        },
+        {
+          "name": "newPassword",
+          "ios": 12
+        },
+        {
+          "name": "nickname",
+          "ios": 10
+        },
+        {
+          "name": "oneTimeCode",
+          "ios": 12
+        },
+        {
+          "name": "organizationName",
+          "ios": 10
+        },
+        {
+          "name": "password",
+          "ios": 11
+        },
+        {
+          "name": "postalCode",
+          "ios": 10
+        },
+        {
+          "name": "shipmentTrackingNumber",
+          "ios": 15
+        },
+        {
+          "name": "streetAddressLine1",
+          "ios": 10
+        },
+        {
+          "name": "streetAddressLine2",
+          "ios": 10
+        },
+        {
+          "name": "sublocality",
+          "ios": 10
+        },
+        {
+          "name": "telephoneNumber",
+          "ios": 10
+        },
+        {
+          "name": "username",
+          "ios": 11
+        }
+      ]
+    },
+    {
       "name": "textEditorStyle",
       "kind": "style",
       "type": "some TextEditorStyle",
@@ -10318,6 +10648,7 @@
         "alert",
         "allowsWindowActivationEvents",
         "assistiveAccessNavigationIcon",
+        "autocapitalization",
         "autocorrectionDisabled",
         "backgroundExtensionEffect",
         "badge",
@@ -10374,6 +10705,7 @@
         "interactiveDismissDisabled",
         "invalidatableContent",
         "keyboardShortcut",
+        "keyboardType",
         "labelIconToTitleSpacing",
         "labelReservedIconWidth",
         "labelStyle",
@@ -10475,6 +10807,7 @@
         "tabViewStyle",
         "tableColumnHeaders",
         "tableStyle",
+        "textContentType",
         "textEditorStyle",
         "textFieldStyle",
         "textInputAutocapitalization",
@@ -10536,6 +10869,8 @@
       ],
       "_PhotosUI_SwiftUI": [
         "photosPickerAccessoryVisibility",
+        "photosPickerDisabledCapabilities",
+        "photosPickerMetadataOptions",
         "photosPickerSearchText",
         "photosPickerStyle"
       ],

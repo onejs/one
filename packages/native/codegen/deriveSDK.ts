@@ -58,7 +58,7 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) =>
         d.kind === 'static' && d.parameters.length === 0 &&
         (d.type?.replace('?', '') === owner.join('.') || d.type?.replace('?', '') === baseType ||
           d.type?.replace('?', '') === owner.at(-1)) &&
-        /^[a-z]/.test(d.name) && present(d) && ios(d) <= ceiling
+        /^[A-Za-z]/.test(d.name) && present(d) && ios(d) <= ceiling
       )
       .map((d) => ({ name: d.name, ios: ios(d) }))
     if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length) return
