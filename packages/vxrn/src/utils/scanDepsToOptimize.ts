@@ -152,7 +152,10 @@ export async function scanDepsToOptimize(
   const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath))
   const deps = Object.keys(pkgJson.dependencies || {})
 
-  let hasReanimated = !!pkgJson.dependencies?.['react-native-reanimated']
+  // worklets without reanimated still needs the worklets transform, as the metro path assumes.
+  const needsWorklets = (json: typeof pkgJson) =>
+    !!(json.dependencies?.['react-native-reanimated'] || json.dependencies?.['react-native-worklets'])
+  let hasReanimated = needsWorklets(pkgJson)
 
   const prebundleDeps = (
     await Promise.all(
@@ -180,7 +183,7 @@ export async function scanDepsToOptimize(
 
         const depPkgJson = await readPackageJsonSafe(depPkgJsonPath)
 
-        if (depPkgJson.dependencies?.['react-native-reanimated']) {
+        if (needsWorklets(depPkgJson)) {
           hasReanimated = true
         }
 
