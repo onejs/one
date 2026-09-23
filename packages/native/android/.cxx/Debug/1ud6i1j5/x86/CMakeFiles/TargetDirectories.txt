@@ -1,0 +1,3 @@
+/Users/n8/.worktrees/one-native-assembled/node_modules/@vxrn/native/android/.cxx/Debug/1ud6i1j5/x86/CMakeFiles/onenativesync.dir
+/Users/n8/.worktrees/one-native-assembled/node_modules/@vxrn/native/android/.cxx/Debug/1ud6i1j5/x86/CMakeFiles/edit_cache.dir
+/Users/n8/.worktrees/one-native-assembled/node_modules/@vxrn/native/android/.cxx/Debug/1ud6i1j5/x86/CMakeFiles/rebuild_cache.dir
