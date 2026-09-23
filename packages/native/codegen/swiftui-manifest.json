@@ -2114,6 +2114,18 @@
       "label": "systemImage"
     },
     {
+      "name": "asyncImageURLSession",
+      "kind": "string",
+      "type": "Foundation.URLSession",
+      "ios": 27,
+      "cases": [
+        {
+          "name": "shared",
+          "ios": 7
+        }
+      ]
+    },
+    {
       "name": "autocapitalization",
       "kind": "string",
       "type": "UIKit.UITextAutocapitalizationType",
@@ -3222,6 +3234,18 @@
         {
           "name": "sidebar",
           "ios": 18
+        }
+      ]
+    },
+    {
+      "name": "defaultAppStorage",
+      "kind": "string",
+      "type": "Foundation.UserDefaults",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "standard",
+          "ios": 0
         }
       ]
     },
@@ -10778,6 +10802,7 @@
         "alert",
         "allowsWindowActivationEvents",
         "assistiveAccessNavigationIcon",
+        "asyncImageURLSession",
         "autocapitalization",
         "autocorrectionDisabled",
         "backgroundExtensionEffect",
@@ -10794,6 +10819,7 @@
         "controlGroupStyle",
         "datePickerStyle",
         "defaultAdaptableTabBarPlacement",
+        "defaultAppStorage",
         "defaultScrollAnchor",
         "defaultTabBarPlacement",
         "defersSystemGestures",

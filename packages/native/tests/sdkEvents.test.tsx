@@ -114,6 +114,8 @@ describe('SDK callback and binding transport', () => {
       handlesGameControllerEvents: 'gamepad',
       previewLayout: 'sizeThatFits',
       realityViewCameraControls: 'orbit',
+      asyncImageURLSession: 'shared',
+      defaultAppStorage: 'standard',
     } })
     expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
       ['keyboardType', 'URL'],
@@ -124,6 +126,8 @@ describe('SDK callback and binding transport', () => {
       ['handlesGameControllerEvents', 'gamepad'],
       ['previewLayout', 'sizeThatFits'],
       ['realityViewCameraControls', 'orbit'],
+      ['asyncImageURLSession', 'shared'],
+      ['defaultAppStorage', 'standard'],
     ])
   })
 

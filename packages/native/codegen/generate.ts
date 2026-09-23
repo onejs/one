@@ -54,7 +54,7 @@ if (Number(sdkVersion.split('.')[0]) < MAXIMUM_IOS)
     `SwiftUI bindings target SDK ${MAXIMUM_IOS}, selected toolchain provides ${sdkVersion}`
   )
 const importedCases: Declaration[] = []
-for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport']) {
+for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport', 'Foundation']) {
   const outputDir = join(cache, `symbols-${module}-${sdkVersion}`)
   const graphPath = join(outputDir, `${module}.symbols.json`)
   if (!existsSync(graphPath)) {
@@ -75,7 +75,7 @@ for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation'
     const declaration = symbol.declarationFragments?.map((part) => part.spelling).join('') ?? ''
     if (symbol.kind.identifier !== 'swift.enum.case' &&
       !(symbol.kind.identifier === 'swift.type.property' &&
-        /\bstatic (?:let|var)\b/.test(declaration) &&
+        /\b(?:static|class) (?:let|var)\b/.test(declaration) &&
         declaration.includes(`: ${owner}`))) continue
     const iosAvailability = symbol.availability?.find((entry) => entry.domain === 'iOS')
     if (iosAvailability?.isUnconditionallyUnavailable) continue
