@@ -387,4 +387,27 @@ describe('SDK view slots', () => {
       ],
     }])
   })
+
+  it('specializes a generic Hashable slot binding to a controlled string', () => {
+    expect(deriveViewSlots([
+      { ...method('searchScopes', 'SwiftUI', [
+        { label: '_', name: 'selection', type: 'SwiftUICore.Binding<V>' },
+        { label: 'scopes', name: 'scopes', type: '() -> S' },
+      ]), requirements: ['V : Swift.Hashable', 'S : SwiftUICore.View'] },
+      { ...method('searchScopes', 'SwiftUI', [
+        { label: '_', name: 'selection', type: 'SwiftUICore.Binding<V>' },
+        { label: 'activation', name: 'activation', type: 'SwiftUI.SearchScopeActivation' },
+        { label: '_', name: 'scopes', type: '() -> S' },
+      ]), requirements: ['V : Swift.Hashable', 'S : SwiftUICore.View'] },
+      { ...method('automatic', 'SwiftUI'), kind: 'static', owner: 'SearchScopeActivation', type: 'SwiftUI.SearchScopeActivation' },
+    ], 27)).toEqual([
+      { name: 'searchScopesWithBindingString', sdkName: 'searchScopes', module: 'SwiftUI', label: 'scopes', ios: 0,
+        arguments: [{ field: 'selection', label: '_', type: 'SwiftUICore.Binding<V>', kind: 'bindingString', optional: false }] },
+      { name: 'searchScopesWithBindingStringAndSearchScopeActivation', sdkName: 'searchScopes', module: 'SwiftUI', label: '_', ios: 0,
+        arguments: [
+          { field: 'selection', label: '_', type: 'SwiftUICore.Binding<V>', kind: 'bindingString', optional: false },
+          { field: 'activation', label: 'activation', type: 'SwiftUI.SearchScopeActivation', kind: 'enum', optional: false, cases: [{ name: 'automatic', ios: 0 }] },
+        ] },
+    ])
+  })
 })

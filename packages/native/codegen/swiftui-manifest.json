@@ -10966,6 +10966,7 @@
         "searchCompletion",
         "searchDictationBehavior",
         "searchPresentationToolbarBehavior",
+        "searchScopes",
         "searchSuggestions",
         "searchToolbarBehavior",
         "searchable",

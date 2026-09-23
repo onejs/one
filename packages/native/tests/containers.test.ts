@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
+import { createElement } from 'react'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 import { controls } from '../codegen/controlCatalog'
 import { containerComponents } from '../codegen/emitContainers'
@@ -38,6 +39,19 @@ const component = (publicName: string) =>
 // the non-iOS entry has to carry every container: a missing one is undefined at the call
 // site, which React reads as a component type it cannot render.
 describe('container surface', () => {
+  it('passes a generated string binding through a View slot and dispatches its update', () => {
+    const onChange = vi.fn()
+    const child = createElement(Containers.ViewSlot.Content, { children: null })
+    const slot = render(Containers.ViewSlot, {
+      name: 'searchScopesWithBindingString',
+      options: { scope: { value: 'all', onChange } },
+      children: child,
+    })
+    expect(JSON.parse(slot.props.slotValues)).toEqual(['all'])
+    slot.props.onNativeSDKEvent({ nativeEvent: { name: 'searchScopesWithBindingString', value: 'favorites' } })
+    expect(onChange).toHaveBeenCalledWith('favorites')
+  })
+
   it('throws for every container without the native build', () => {
     // HStack and VStack are Host with the axis fixed, so they carry no component of their
     // own and the catalog does not list them.
