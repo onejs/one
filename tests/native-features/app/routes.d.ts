@@ -35,9 +35,9 @@ declare module 'one' {
         | `/one-native-dialogs`
         | `/one-native-effects`
         | `/one-native-fonts`
+        | `/one-native-gpu`
         | `/one-native-groups`
         | `/one-native-haptics`
-        | `/one-native-gpu`
         | `/one-native-host`
         | `/one-native-image-picker`
         | `/one-native-leaves`
@@ -51,6 +51,7 @@ declare module 'one' {
         | `/one-native-state`
         | `/one-native-system`
         | `/one-native-tab-oracle`
+        | `/one-native-tabview`
         | `/one-native-ui-map`
         | `/split-view-test`
         | `/toolbar-test`
@@ -71,11 +72,5 @@ declare module 'one' {
  */
 type RouteInfo<Params = Record<string, never>> = {
   Params: Params
-  LoaderProps: {
-    path: string
-    search?: string
-    subdomain?: string
-    params: Params
-    request?: Request
-  }
+  LoaderProps: { path: string; search?: string; subdomain?: string; params: Params; request?: Request }
 }

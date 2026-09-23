@@ -74,8 +74,8 @@ function Cell({
     <Swift.Tabs
       selection={selection}
       onSelectionChange={setSelection}
-      sidebarAdaptable={cell.sidebarAdaptable}
-      tabBarMinimizeBehavior={cell.minimizeBehavior}
+      tabViewStyle={cell.sidebarAdaptable ? 'sidebarAdaptable' : 'tabBarOnly'}
+      swiftStyle={cell.minimizeBehavior ? { tabBarMinimizeBehavior: cell.minimizeBehavior } : undefined}
     >
       {cell.tabs.map((tab) =>
         tab.action ? (

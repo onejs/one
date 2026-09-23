@@ -75,8 +75,9 @@ export function Pager({
             systemImage=""
             badge=""
             tabRole=""
-            action={false}
+            kind="page"
             slotHeight={0}
+            tabModifiers="{}"
             testID={page.testID}
             style={PAGE_STYLE}
             collapsable={false}

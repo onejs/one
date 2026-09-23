@@ -14,9 +14,14 @@ export type PickerStyle =
 export type DatePickerStyle = 'wheel' | 'automatic' | 'graphical' | 'compact'
 export type ToggleStyle = 'button' | 'automatic' | 'switch'
 export type MenuActionDismissBehavior = 'automatic' | 'enabled' | 'disabled'
-export type TabBarMinimizeBehavior = 'automatic' | 'onScrollDown' | 'onScrollUp' | 'never'
+export type TabViewStyle = 'sidebarAdaptable' | 'page' | 'tabBarOnly' | 'automatic'
 export type ButtonRole = 'destructive' | 'cancel' | 'confirm' | 'close'
 export type TabRole = 'search' | 'prominent'
+export type TabPlacement = 'automatic' | 'pinned' | 'sidebarOnly'
+export type AdaptableTabBarPlacement = 'automatic' | 'tabBar' | 'sidebar'
+export type TabCustomizationBehavior = 'automatic' | 'reorderable' | 'disabled'
+export type TabSectionExpansion = 'automatic' | 'expanded' | 'collapsed'
+export type SpringLoadingBehavior = 'automatic' | 'enabled' | 'disabled'
 export type ControlGroupStyle =
   | 'palette'
   | 'automatic'
@@ -132,11 +137,11 @@ export const swiftUIValues = {
     enabled: 16.4,
     disabled: 16.4,
   },
-  TabBarMinimizeBehavior: {
-    automatic: 26,
-    onScrollDown: 26,
-    onScrollUp: 26,
-    never: 26,
+  TabViewStyle: {
+    sidebarAdaptable: 18,
+    page: 14,
+    tabBarOnly: 18,
+    automatic: 14,
   },
   ButtonRole: {
     destructive: 15,
@@ -147,6 +152,31 @@ export const swiftUIValues = {
   TabRole: {
     search: 18,
     prominent: 27,
+  },
+  TabPlacement: {
+    automatic: 18,
+    pinned: 18,
+    sidebarOnly: 18,
+  },
+  AdaptableTabBarPlacement: {
+    automatic: 18,
+    tabBar: 18,
+    sidebar: 18,
+  },
+  TabCustomizationBehavior: {
+    automatic: 18,
+    reorderable: 18,
+    disabled: 18,
+  },
+  TabSectionExpansion: {
+    automatic: 27,
+    expanded: 27,
+    collapsed: 27,
+  },
+  SpringLoadingBehavior: {
+    automatic: 17,
+    enabled: 17,
+    disabled: 17,
   },
   ControlGroupStyle: {
     palette: 17,

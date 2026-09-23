@@ -142,6 +142,11 @@ const testScreens = [
     testID: 'nav-one-native-android-inputs',
   },
   {
+    href: '/one-native-tabview',
+    label: 'One Native TabView Parity',
+    testID: 'nav-one-native-tabview',
+  },
+  {
     href: '/one-native-tab-oracle',
     label: 'One Native Tab Bar Oracle',
     testID: 'nav-one-native-tab-oracle',

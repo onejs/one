@@ -4,9 +4,14 @@ export type PickerStyle = 'wheel' | 'inline' | 'automatic' | 'segmented' | 'tabs
 export type DatePickerStyle = 'wheel' | 'automatic' | 'graphical' | 'compact';
 export type ToggleStyle = 'button' | 'automatic' | 'switch';
 export type MenuActionDismissBehavior = 'automatic' | 'enabled' | 'disabled';
-export type TabBarMinimizeBehavior = 'automatic' | 'onScrollDown' | 'onScrollUp' | 'never';
+export type TabViewStyle = 'sidebarAdaptable' | 'page' | 'tabBarOnly' | 'automatic';
 export type ButtonRole = 'destructive' | 'cancel' | 'confirm' | 'close';
 export type TabRole = 'search' | 'prominent';
+export type TabPlacement = 'automatic' | 'pinned' | 'sidebarOnly';
+export type AdaptableTabBarPlacement = 'automatic' | 'tabBar' | 'sidebar';
+export type TabCustomizationBehavior = 'automatic' | 'reorderable' | 'disabled';
+export type TabSectionExpansion = 'automatic' | 'expanded' | 'collapsed';
+export type SpringLoadingBehavior = 'automatic' | 'enabled' | 'disabled';
 export type ControlGroupStyle = 'palette' | 'automatic' | 'navigation' | 'menu' | 'compactMenu';
 export type PrimitiveButtonStyle = 'automatic' | 'glass' | 'borderless' | 'glassProminent' | 'plain' | 'bordered' | 'borderedProminent';
 export type ProgressViewStyle = 'linear' | 'circular' | 'automatic';
@@ -68,11 +73,11 @@ export declare const swiftUIValues: {
         readonly enabled: 16.4;
         readonly disabled: 16.4;
     };
-    readonly TabBarMinimizeBehavior: {
-        readonly automatic: 26;
-        readonly onScrollDown: 26;
-        readonly onScrollUp: 26;
-        readonly never: 26;
+    readonly TabViewStyle: {
+        readonly sidebarAdaptable: 18;
+        readonly page: 14;
+        readonly tabBarOnly: 18;
+        readonly automatic: 14;
     };
     readonly ButtonRole: {
         readonly destructive: 15;
@@ -83,6 +88,31 @@ export declare const swiftUIValues: {
     readonly TabRole: {
         readonly search: 18;
         readonly prominent: 27;
+    };
+    readonly TabPlacement: {
+        readonly automatic: 18;
+        readonly pinned: 18;
+        readonly sidebarOnly: 18;
+    };
+    readonly AdaptableTabBarPlacement: {
+        readonly automatic: 18;
+        readonly tabBar: 18;
+        readonly sidebar: 18;
+    };
+    readonly TabCustomizationBehavior: {
+        readonly automatic: 18;
+        readonly reorderable: 18;
+        readonly disabled: 18;
+    };
+    readonly TabSectionExpansion: {
+        readonly automatic: 27;
+        readonly expanded: 27;
+        readonly collapsed: 27;
+    };
+    readonly SpringLoadingBehavior: {
+        readonly automatic: 17;
+        readonly enabled: 17;
+        readonly disabled: 17;
     };
     readonly ControlGroupStyle: {
         readonly palette: 17;

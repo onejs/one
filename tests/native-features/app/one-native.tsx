@@ -236,7 +236,7 @@ export default function OneNativeScreen() {
 
       <Swift.Tabs
         selection={selection}
-        tabBarMinimizeBehavior={iosVersion >= 26 ? 'never' : undefined}
+        swiftStyle={iosVersion >= 26 ? { tabBarMinimizeBehavior: 'never' } : undefined}
         onSelectionChange={(id) => {
           setObservedSelection(id)
           if (!ignoreSelectionChange) {
