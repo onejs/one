@@ -20,6 +20,7 @@ export type PresentationAdaptation = 'automatic' | 'none' | 'popover' | 'sheet' 
 export type PresentationContentInteraction = 'automatic' | 'resizes' | 'scrolls';
 export type ColorScheme = 'light' | 'dark';
 export type DynamicTypeSize = 'xSmall' | 'small' | 'medium' | 'large' | 'xLarge' | 'xxLarge' | 'xxxLarge' | 'accessibility1' | 'accessibility2' | 'accessibility3' | 'accessibility4' | 'accessibility5';
+export type ControlSize = 'mini' | 'small' | 'regular' | 'large' | 'extraLarge';
 export type SymbolRenderingMode = 'monochrome' | 'multicolor' | 'hierarchical' | 'palette';
 export type SymbolVariants = 'none' | 'circle' | 'square' | 'rectangle' | 'fill' | 'slash';
 export type ImageScale = 'small' | 'medium' | 'large';
@@ -171,6 +172,13 @@ export declare const swiftUIValues: {
         readonly accessibility3: 15;
         readonly accessibility4: 15;
         readonly accessibility5: 15;
+    };
+    readonly ControlSize: {
+        readonly mini: 15;
+        readonly small: 15;
+        readonly regular: 15;
+        readonly large: 15;
+        readonly extraLarge: 17;
     };
     readonly SymbolRenderingMode: {
         readonly monochrome: 15;

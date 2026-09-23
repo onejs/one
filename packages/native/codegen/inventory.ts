@@ -12,6 +12,8 @@ export type Declaration = {
   parameters: { label: string; name: string; type: string; defaultValue?: string }[]
   type?: string
   line: number
+  inheritedTypes?: string[]
+  generic?: boolean
 }
 
 const run = (file: string, args: string[]) =>
@@ -77,6 +79,7 @@ export function readInventory(root: string) {
         type: normType,
         parameters: normParams,
         requirements: normReqs,
+        inheritedTypes: d.inheritedTypes?.map((type) => norm(type) ?? type),
       })
     }
   }
