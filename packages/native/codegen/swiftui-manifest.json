@@ -3053,6 +3053,13 @@
       ]
     },
     {
+      "name": "coordinateSpace",
+      "kind": "string",
+      "type": "T",
+      "ios": 13,
+      "label": "name"
+    },
+    {
       "name": "datePickerStyle",
       "kind": "style",
       "type": "S",
@@ -4071,6 +4078,12 @@
           "ios": 13
         }
       ]
+    },
+    {
+      "name": "id",
+      "kind": "string",
+      "type": "ID",
+      "ios": 13
     },
     {
       "name": "ignoresSafeAreaWithRegionsAndEdges",
@@ -8509,6 +8522,12 @@
       ]
     },
     {
+      "name": "tag",
+      "kind": "string",
+      "type": "V",
+      "ios": 13
+    },
+    {
       "name": "textCase",
       "kind": "optionalEnum",
       "type": "SwiftUICore.Text.Case?",
@@ -9791,6 +9810,7 @@
         "contentTransition",
         "contrast",
         "controlSize",
+        "coordinateSpace",
         "defaultHoverEffect",
         "disabled",
         "drawingGroup",
@@ -9810,6 +9830,7 @@
         "hoverEffect",
         "hoverEffectDisabled",
         "hueRotation",
+        "id",
         "ignoresSafeArea",
         "imageScale",
         "italic",
@@ -9851,6 +9872,7 @@
         "symbolRenderingMode",
         "symbolVariableValueMode",
         "symbolVariant",
+        "tag",
         "textCase",
         "textInputBorderShape",
         "textScale",
