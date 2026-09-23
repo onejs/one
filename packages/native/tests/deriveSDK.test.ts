@@ -245,9 +245,15 @@ describe('SDK view slots', () => {
       { ...method('tabViewSidebarHeader', 'SwiftUI', [content]), requirements: requirement },
       { ...method('searchSuggestions', 'SwiftUI', [{ label: '_', name: 'content', type: '() -> Content' }]), requirements: requirement },
       { ...method('accessibilityChildren', 'SwiftUI', [{ label: 'children', name: 'children', type: '() -> Content' }]), requirements: requirement },
+      { ...method('swipeActions', 'SwiftUI', [
+        { label: 'edge', name: 'edge', type: 'SwiftUICore.HorizontalEdge', defaultValue: '.trailing' },
+        { label: 'allowsFullSwipe', name: 'allowsFullSwipe', type: 'Swift.Bool', defaultValue: 'true' },
+        content,
+      ]), requirements: requirement },
     ], 27)).toEqual([
       { name: 'accessibilityChildren', module: 'SwiftUI', label: 'children', ios: 0 },
       { name: 'searchSuggestions', module: 'SwiftUI', label: '_', ios: 0 },
+      { name: 'swipeActions', module: 'SwiftUI', label: 'content', ios: 0 },
       { name: 'tabViewBottomAccessory', module: 'SwiftUI', label: 'content', ios: 0 },
       { name: 'tabViewSidebarHeader', module: 'SwiftUI', label: 'content', ios: 0 },
     ])
