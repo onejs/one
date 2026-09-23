@@ -96,7 +96,10 @@ export const build = async (optionsIn: VXRNOptions, buildArgs: BuildArgs = {}) =
 
     return buildBundle(
       [],
-      { root: options.root, vxrnEntries: options.entries },
+      // only an entry the app named: without one the bundle starts at the
+      // generated route entry, as the xcode bundle phase does. the filled
+      // default (./src/entry-native.tsx) exists only in plain vxrn apps.
+      { root: options.root, vxrnEntries: optionsIn.entries },
       {
         platform: buildArgs.platform,
         bundleOutput: `${outDir}${sep}${buildArgs.platform}.js`,
