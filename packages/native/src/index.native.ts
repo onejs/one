@@ -28,6 +28,13 @@ import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './Androi
 import { ContextMenu as IOSContextMenu, Menu as IOSMenu } from './Menu.native'
 import { Page, Pager } from './Pager.native'
 import { Popover } from './Popover.native'
+import {
+  NavigationStack,
+  Toolbar,
+  ToolbarItem,
+  ToolbarItemGroup,
+  ToolbarSpacer,
+} from './NavigationStack.native'
 import { FullScreenCover, Sheet } from './Sheet.native'
 import * as Controls from './generated/Controls.native'
 import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native'
@@ -35,6 +42,9 @@ import { Compose } from './compose'
 import * as UI from './effects'
 
 export * from './extras'
+// the package root keeps the navigation toolbar's props under the plain name; the SwiftUI
+// toolbar item's props are the generated ToolbarItemProps, reachable through Swift.ToolbarItem.
+export type { ToolbarHostProps, ToolbarItemProps } from './extras'
 
 const Menu = Platform.OS === 'android' ? AndroidMenu : IOSMenu
 const ContextMenu = Platform.OS === 'android' ? AndroidContextMenu : IOSContextMenu
@@ -74,6 +84,11 @@ export const Swift =
         SwipeActions,
         Pager,
         Page,
+        NavigationStack,
+        Toolbar,
+        ToolbarItem,
+        ToolbarItemGroup,
+        ToolbarSpacer,
         Spacer,
         Slot,
         ...Controls,

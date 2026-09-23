@@ -234,6 +234,12 @@
         "OneNativeGlass": "OneNativeGlassComponentView",
         "OneNativeTabs": "OneNativeTabsComponentView",
         "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
+        "OneNativeNavigationStack": "OneNativeNavigationStackComponentView",
+        "OneNativeToolbar": "OneNativeToolbarComponentView",
+        "OneNativeToolbarItem": "OneNativeToolbarItemComponentView",
+        "OneNativeToolbarItemGroup": "OneNativeToolbarItemGroupComponentView",
+        "OneNativeToolbarSpacer": "OneNativeToolbarSpacerComponentView",
+        "OneNativeNavigationStackContent": "OneNativeNavigationStackContentComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
         "OneNativePopoverContent": "OneNativePopoverContentComponentView"
       }

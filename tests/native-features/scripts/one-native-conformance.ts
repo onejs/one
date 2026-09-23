@@ -42,6 +42,7 @@ const suites = [
   'crypto',
   'app-info',
   'popover',
+  'navigation',
   'accessibility',
   'media',
   'map',
@@ -317,6 +318,13 @@ const popoverLoaded = (nodes: Node[]) =>
     Boolean(id(nodes, 'PopoverDismissRegion')) ||
     labels(nodes).includes('Popover body') ||
     labels(nodes).includes('Section body'))
+// the sheet's navigation bar carries the title as its identifier, so the bar is what
+// says the stack presented, and the fixture's own rows say the React side is alive.
+const navigationLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  (Boolean(id(nodes, 'one-native-navigation-open')) ||
+    Boolean(id(nodes, 'Mailbox')) ||
+    labels(nodes).includes('Inbox page'))
 // the fixture the suite drives, and the home row that reaches it. pickers and forms share
 // one screen; tabs-menu drives the One Native hub rather than a control fixture.
 const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
@@ -338,6 +346,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   crypto: cryptoLoaded,
   'app-info': appInfoLoaded,
   popover: popoverLoaded,
+  navigation: navigationLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
   map: mapLoaded,
@@ -378,6 +387,7 @@ const suiteHome: Record<Suite, string> = {
   'image-picker': 'nav-one-native-image-picker',
   'ui-map': 'nav-one-native-ui-map',
   gpu: 'nav-one-native-gpu',
+  navigation: 'nav-one-native-navigation',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
 const firstState = (nodes: Node[]) =>
@@ -510,6 +520,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const row = id(nodes, testID)?.frame
       if (!app || !row) throw new Error(`Home row ${testID} disappeared while scrolling`)
       if (row.y >= 0 && row.y + row.height <= app.height) return tap({ id: testID })
+      // a row below the viewport needs the list pushed up, and one the swipe already
+      // carried past the top needs it pulled back down: scrolling one direction only
+      // walks past an overshot row and never comes back to it.
+      const down = row.y < 0
       command(
         [
           'ui-automation',
@@ -517,13 +531,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           '--x1',
           String(Math.round(app.width / 2)),
           '--y1',
-          String(Math.round(app.height * 0.75)),
+          String(Math.round(app.height * (down ? 0.35 : 0.75))),
           '--x2',
           String(Math.round(app.width / 2)),
           '--y2',
-          String(Math.round(app.height * 0.35)),
+          String(Math.round(app.height * (down ? 0.75 : 0.35))),
           '--duration',
-          '0.3',
+          // a fast swipe throws the short home list its whole scrollable range and the
+          // row flies past the viewport, so this scrolls at a speed that stays put.
+          '0.9',
         ],
         config.simulatorId
       )
@@ -2462,6 +2478,75 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'Open', 'false')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'navigation') {
+    const text = (nodes: Node[], expected: string) => labels(nodes).includes(expected)
+    // the bar is a Group whose identifier is the navigationTitle, and the segmented
+    // Picker inside it is a native segmented control: iOS exposes each segment as a
+    // RadioButton, with 1 on the selected one.
+    const segment = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.type === 'RadioButton' && node.AXLabel === label)
+    const tapSegment = (label: string) => {
+      const node = segment(snapshot(config.simulatorId), label)
+      if (!node?.frame) throw new Error(`No segmented control segment ${label}`)
+      touch(node.frame.x + node.frame.width / 2, node.frame.y + node.frame.height / 2)
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-navigation')
+    await wait(
+      'the fixture mounts',
+      (n) => text(n, 'Page: inbox') && text(n, 'Closes: 0')
+    )
+
+    tap({ id: 'one-native-navigation-open' })
+    // the native bar: the title, the principal segmented control, and the trailing close.
+    await wait('the stack presents a real navigation bar with the title', (n) => {
+      return (
+        Boolean(id(n, 'Mailbox')) &&
+        text(n, 'Inbox page') &&
+        String(segment(n, 'Inbox')?.AXValue) === '1' &&
+        String(segment(n, 'Archive')?.AXValue) === '0' &&
+        Boolean(n.find((node) => node.type === 'Button' && node.AXLabel === 'Close'))
+      )
+    })
+    screenshot('navigation-bar.png')
+
+    // the principal Picker is a composed SwiftUI control, so this proves its controlled
+    // selection crosses back into React and re-renders the React Native page under the bar.
+    tapSegment('Archive')
+    await wait('the principal picker drives the React Native page', (n) => {
+      return (
+        text(n, 'Archive page') &&
+        text(n, 'Page: archive') &&
+        String(segment(n, 'Archive')?.AXValue) === '1'
+      )
+    })
+    screenshot('navigation-archive.png')
+
+    // the React Native subtree is the stack's root, laid out in the box SwiftUI proposed,
+    // so a tap has to arrive through the stack to reach it.
+    tap({ id: 'one-native-navigation-tap' })
+    await wait('the React Native root takes a tap', (n) => text(n, 'Taps: 1'))
+
+    // the labelled ToolbarItemGroup's content is a real SwiftUI button too.
+    tap({ label: 'Newest' })
+    await wait('the toolbar group action reaches React', (n) => text(n, 'Sort: 1'))
+
+    tap({ label: 'Close' })
+    await wait('the trailing close dismisses the sheet', (n) => {
+      return text(n, 'Closes: 1') && !text(n, 'Archive page')
+    })
+
+    tap({ id: 'one-native-navigation-open' })
+    await wait('and it presents again with the state React holds', (n) => {
+      return text(n, 'Archive page') && text(n, 'Page: archive')
+    })
+    screenshot('navigation-reopened.png')
+
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

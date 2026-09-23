@@ -2865,6 +2865,173 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeNavigationStack",
+      "publicName": "NavigationStack",
+      "props": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "toolbar",
+          "content": "OneNativeToolbar",
+          "cardinality": "many",
+          "layout": "composed"
+        },
+        {
+          "name": "content",
+          "content": "OneNativeNavigationStackContent",
+          "cardinality": "one",
+          "layout": "swiftui-proposal-to-yoga",
+          "origin": "local"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeToolbar",
+      "publicName": "Toolbar",
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeToolbarItem",
+      "publicName": "ToolbarItem",
+      "props": {
+        "placement": {
+          "type": "string",
+          "enum": "ToolbarItemPlacement"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeToolbarItemGroup",
+      "publicName": "ToolbarItemGroup",
+      "props": {
+        "placement": {
+          "type": "string",
+          "enum": "ToolbarItemPlacement"
+        },
+        "label": {
+          "type": "string"
+        },
+        "systemImage": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeToolbarSpacer",
+      "publicName": "ToolbarSpacer",
+      "props": {
+        "sizing": {
+          "type": "string",
+          "enum": "SpacerSizing"
+        },
+        "placement": {
+          "type": "string",
+          "enum": "ToolbarItemPlacement"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeNavigationStackContent",
+      "publicName": null,
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "swiftui-proposal-to-yoga",
+          "origin": "local"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativePopover",
       "publicName": "Popover",
       "props": {
@@ -3395,6 +3562,32 @@
       "grouped": 13,
       "insetGrouped": 14,
       "plain": 13
+    },
+    "ToolbarItemPlacement": {
+      "automatic": 14,
+      "principal": 14,
+      "navigation": 14,
+      "primaryAction": 14,
+      "secondaryAction": 16,
+      "status": 14,
+      "confirmationAction": 14,
+      "cancellationAction": 14,
+      "destructiveAction": 14,
+      "keyboard": 15,
+      "topBarLeading": 14,
+      "topBarTrailing": 14,
+      "topBarPinnedTrailing": 27,
+      "navigationBarLeading": 14,
+      "navigationBarTrailing": 14,
+      "title": 14,
+      "largeTitle": 26,
+      "bottomBar": 14,
+      "subtitle": 26,
+      "largeSubtitle": 26
+    },
+    "SpacerSizing": {
+      "flexible": 26,
+      "fixed": 26
     }
   }
 }

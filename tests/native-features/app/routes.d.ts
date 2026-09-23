@@ -44,6 +44,7 @@ declare module 'one' {
         | `/one-native-lists`
         | `/one-native-map`
         | `/one-native-media`
+        | `/one-native-navigation`
         | `/one-native-network`
         | `/one-native-popover`
         | `/one-native-safe-area`

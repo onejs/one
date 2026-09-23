@@ -26,6 +26,11 @@ const testScreens = [
     testID: 'nav-one-native-sheet',
   },
   {
+    href: '/one-native-navigation',
+    label: 'One Native Navigation',
+    testID: 'nav-one-native-navigation',
+  },
+  {
     href: '/one-native-leaves',
     label: 'One Native Leaves',
     testID: 'nav-one-native-leaves',

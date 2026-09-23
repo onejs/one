@@ -41,6 +41,8 @@ import type {
   LinkPreviewBehavior,
   ElementFullscreenBehavior,
   ListStyle,
+  ToolbarItemPlacement,
+  SpacerSizing,
 } from './swiftui'
 export type {
   MenuOrder,
@@ -81,6 +83,8 @@ export type {
   LinkPreviewBehavior,
   ElementFullscreenBehavior,
   ListStyle,
+  ToolbarItemPlacement,
+  SpacerSizing,
 } from './swiftui'
 export interface SwiftMenuAction {
   type: 'action'

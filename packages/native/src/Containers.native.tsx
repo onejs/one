@@ -1,19 +1,10 @@
 import {
   Children,
-  Fragment,
-  createContext,
   isValidElement,
   useContext,
   type ReactNode,
 } from 'react'
-import {
-  Image,
-  Platform,
-  ScrollView as RNScrollView,
-  Text as RNText,
-  TextInput,
-  View,
-} from 'react-native'
+import { Platform } from 'react-native'
 import { dispatchSDKEvent, swiftStyleNative } from './generated/swiftStyleNative'
 import NativeButton from './specs/OneNativeButtonNativeComponent'
 import NativeContainerSlot from './specs/OneNativeContainerSlotNativeComponent'
@@ -82,13 +73,15 @@ import {
   type ZStackProps,
 } from './generated/containerTypes'
 import { glassEffects, glassEffectShapes, materials } from './generated/controlTypes'
+import { InsideContainer, assertOneNativeChildren } from './containerChildren'
+import { NavigationStack } from './NavigationStack.native'
 
-// a slot only works where SwiftUI proposes its box, so containers mark their children
-// and a slot marks its own React Native subtree as outside again.
-export const InsideContainer = createContext(false)
+// the shared container child rules live in one module so the navigation stack can use
+// them without importing this file back.
+export { InsideContainer, assertOneNativeChildren }
 
 const containers =
-  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.List, Swift.ScrollView, Swift.LazyVStack, Swift.LazyHStack, Swift.ControlGroup, Swift.DisclosureGroup, Swift.Link, Swift.Group, Swift.Overlay, or Swift.SwipeActions'
+  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.List, Swift.ScrollView, Swift.LazyVStack, Swift.LazyHStack, Swift.ControlGroup, Swift.DisclosureGroup, Swift.Link, Swift.Group, Swift.Overlay, Swift.SwipeActions, Swift.NavigationStack, Swift.Toolbar, or Swift.ToolbarItem'
 
 function nativeEnvironmentProps({
   colorScheme,
@@ -130,37 +123,13 @@ function assertNoGreedyContainer(children: ReactNode, owner: string) {
                 ? 'Swift.Tabs'
                 : child.type === Pager
                   ? 'Swift.Pager'
-                  : null
+                  : child.type === NavigationStack
+                    ? 'Swift.NavigationStack'
+                    : null
     // these all take the box they are given instead of reporting an ideal height,
     // so a measured parent reads zero for one and renders nothing at all.
     if (name)
       throw new Error(`${name} cannot be a child of ${owner}; give it its own box`)
-  }
-}
-
-// the native insertChild preconditions on non-composable children, so the wrappers
-// fail first with a JavaScript stack: a denylist, because a custom component that
-// renders SwiftUI inside is a function too and must stay legal. composite and
-// third-party native views fall through to the native gate.
-const reactNativeChildren = new Set<unknown>(
-  [View, RNText, Image, RNScrollView, TextInput].filter(Boolean)
-)
-
-export function assertOneNativeChildren(children: ReactNode, owner: string) {
-  for (const child of Children.toArray(children)) {
-    if (child === null || child === undefined || typeof child === 'boolean') continue
-    if (typeof child === 'string' || typeof child === 'number')
-      throw new Error(`${owner} takes SwiftUI children, not raw text or numbers`)
-    if (!isValidElement<{ children?: ReactNode }>(child)) continue
-    // a fragment mounts its contents directly, so its children are checked too.
-    if (child.type === Fragment) {
-      assertOneNativeChildren(child.props.children, owner)
-      continue
-    }
-    if (typeof child.type === 'string' || reactNativeChildren.has(child.type))
-      throw new Error(
-        `${owner} takes SwiftUI children; move React Native content into Swift.Slot`
-      )
   }
 }
 
