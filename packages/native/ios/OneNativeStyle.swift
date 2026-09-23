@@ -3,6 +3,7 @@
 import SwiftUI
 import UIKit
 import PassKit
+import GameController
 import StoreKit
 import MapKit
 import MusicKit
@@ -233,6 +234,7 @@ extension View {
       case "groupBoxStyle": view = AnyView(view.oneNativeSDKGroupBoxStyle(value, emit: emit))
       case "handGestureShortcut": view = AnyView(view.oneNativeSDKHandGestureShortcut(value, emit: emit))
       case "handlesExternalEvents": view = AnyView(view.oneNativeSDKHandlesExternalEvents(value, emit: emit))
+      case "handlesGameControllerEvents": view = AnyView(view.oneNativeSDKHandlesGameControllerEvents(value, emit: emit))
       case "headerProminence": view = AnyView(view.oneNativeSDKHeaderProminence(value, emit: emit))
       case "help": view = AnyView(view.oneNativeSDKHelp(value, emit: emit))
       case "hidden": view = AnyView(view.oneNativeSDKHidden(value, emit: emit))
@@ -353,11 +355,13 @@ extension View {
       case "presentationPlacement": view = AnyView(view.oneNativeSDKPresentationPlacement(value, emit: emit))
       case "previewDisplayName": view = AnyView(view.oneNativeSDKPreviewDisplayName(value, emit: emit))
       case "previewInterfaceOrientation": view = AnyView(view.oneNativeSDKPreviewInterfaceOrientation(value, emit: emit))
+      case "previewLayout": view = AnyView(view.oneNativeSDKPreviewLayout(value, emit: emit))
       case "privacySensitive": view = AnyView(view.oneNativeSDKPrivacySensitive(value, emit: emit))
       case "productDescription": view = AnyView(view.oneNativeSDKProductDescription(value, emit: emit))
       case "productIconBorder": view = AnyView(view.oneNativeSDKProductIconBorder(value, emit: emit))
       case "productViewStyle": view = AnyView(view.oneNativeSDKProductViewStyle(value, emit: emit))
       case "progressViewStyle": view = AnyView(view.oneNativeSDKProgressViewStyle(value, emit: emit))
+      case "realityViewCameraControls": view = AnyView(view.oneNativeSDKRealityViewCameraControls(value, emit: emit))
       case "realityViewLayoutBehavior": view = AnyView(view.oneNativeSDKRealityViewLayoutBehavior(value, emit: emit))
       case "redacted": view = AnyView(view.oneNativeSDKRedacted(value, emit: emit))
       case "renameAction": view = AnyView(view.oneNativeSDKRenameAction(value, emit: emit))
@@ -2362,6 +2366,14 @@ extension View {
     self.handlesExternalEvents(preferring: argument0, allowing: argument1)
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKHandlesGameControllerEvents(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "gamepad": if #available(iOS 18, *) { self.handlesGameControllerEvents(matching: GameController.GCUIEventTypes.gamepad) } else { self }
+    default: preconditionFailure("invalid handlesGameControllerEvents: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKHeaderProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -3773,6 +3785,15 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKPreviewLayout(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "device": self.previewLayout(DeveloperToolsSupport.PreviewLayout.device)
+      case "sizeThatFits": self.previewLayout(DeveloperToolsSupport.PreviewLayout.sizeThatFits)
+    default: preconditionFailure("invalid previewLayout: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKPrivacySensitive(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid privacySensitive: \(value)")
       self.privacySensitive(value == "true")
@@ -3811,6 +3832,18 @@ extension View {
       case "circular": self.progressViewStyle(.circular)
       case "automatic": self.progressViewStyle(.automatic)
     default: preconditionFailure("invalid progressViewStyle: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKRealityViewCameraControls(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "dolly": if #available(iOS 18, *) { self.realityViewCameraControls(RealityFoundation.CameraControls.dolly) } else { self }
+      case "none": if #available(iOS 18, *) { self.realityViewCameraControls(RealityFoundation.CameraControls.none) } else { self }
+      case "orbit": if #available(iOS 18, *) { self.realityViewCameraControls(RealityFoundation.CameraControls.orbit) } else { self }
+      case "pan": if #available(iOS 18, *) { self.realityViewCameraControls(RealityFoundation.CameraControls.pan) } else { self }
+      case "tilt": if #available(iOS 18, *) { self.realityViewCameraControls(RealityFoundation.CameraControls.tilt) } else { self }
+    default: preconditionFailure("invalid realityViewCameraControls: \(value)")
     }
   }
 

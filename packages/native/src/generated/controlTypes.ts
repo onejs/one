@@ -497,6 +497,9 @@ export const sdkGridColumnAlignmentValues = [
 export type SDKGridColumnAlignment = (typeof sdkGridColumnAlignmentValues)[number]
 export const sdkGroupBoxStyleValues = ['automatic'] as const
 export type SDKGroupBoxStyle = (typeof sdkGroupBoxStyleValues)[number]
+export const sdkHandlesGameControllerEventsValues = ['gamepad'] as const
+export type SDKHandlesGameControllerEvents =
+  (typeof sdkHandlesGameControllerEventsValues)[number]
 export const sdkHeaderProminenceValues = ['standard', 'increased'] as const
 export type SDKHeaderProminence = (typeof sdkHeaderProminenceValues)[number]
 export const sdkHoverEffectWithHoverEffectValues = [
@@ -819,6 +822,8 @@ export const sdkPreviewInterfaceOrientationValues = [
 ] as const
 export type SDKPreviewInterfaceOrientation =
   (typeof sdkPreviewInterfaceOrientationValues)[number]
+export const sdkPreviewLayoutValues = ['device', 'sizeThatFits'] as const
+export type SDKPreviewLayout = (typeof sdkPreviewLayoutValues)[number]
 export const sdkProductDescriptionValues = ['automatic', 'visible', 'hidden'] as const
 export type SDKProductDescription = (typeof sdkProductDescriptionValues)[number]
 export const sdkProductViewStyleValues = [
@@ -830,6 +835,15 @@ export const sdkProductViewStyleValues = [
 export type SDKProductViewStyle = (typeof sdkProductViewStyleValues)[number]
 export const sdkProgressViewStyleValues = ['linear', 'circular', 'automatic'] as const
 export type SDKProgressViewStyle = (typeof sdkProgressViewStyleValues)[number]
+export const sdkRealityViewCameraControlsValues = [
+  'dolly',
+  'none',
+  'orbit',
+  'pan',
+  'tilt',
+] as const
+export type SDKRealityViewCameraControls =
+  (typeof sdkRealityViewCameraControlsValues)[number]
 export const sdkRealityViewLayoutBehaviorValues = [
   'flexible',
   'centered',
@@ -1485,6 +1499,7 @@ export interface OneNativeStyle {
     preferring: readonly string[]
     allowing: readonly string[]
   }>
+  handlesGameControllerEvents?: SDKHandlesGameControllerEvents
   headerProminence?: SDKHeaderProminence
   help?: string
   hidden?: boolean
@@ -1771,11 +1786,13 @@ export interface OneNativeStyle {
   presentationPlacement?: SDKPresentationPlacement
   previewDisplayName?: string | null
   previewInterfaceOrientation?: SDKPreviewInterfaceOrientation
+  previewLayout?: SDKPreviewLayout
   privacySensitive?: boolean
   productDescription?: SDKProductDescription
   productIconBorder?: boolean
   productViewStyle?: SDKProductViewStyle
   progressViewStyle?: SDKProgressViewStyle
+  realityViewCameraControls?: SDKRealityViewCameraControls
   realityViewLayoutBehavior?: SDKRealityViewLayoutBehavior
   redacted?: SDKRedacted
   renameAction?: () => void

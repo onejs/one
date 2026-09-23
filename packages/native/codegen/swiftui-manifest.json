@@ -4115,6 +4115,20 @@
       ]
     },
     {
+      "name": "handlesGameControllerEvents",
+      "kind": "string",
+      "type": "GameController.GCUIEventTypes",
+      "ios": 18,
+      "framework": "GameController",
+      "cases": [
+        {
+          "name": "gamepad",
+          "ios": 18
+        }
+      ],
+      "label": "matching"
+    },
+    {
       "name": "headerProminence",
       "kind": "string",
       "type": "SwiftUICore.Prominence",
@@ -7099,6 +7113,22 @@
       ]
     },
     {
+      "name": "previewLayout",
+      "kind": "string",
+      "type": "DeveloperToolsSupport.PreviewLayout",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "device",
+          "ios": 13
+        },
+        {
+          "name": "sizeThatFits",
+          "ios": 13
+        }
+      ]
+    },
+    {
       "name": "privacySensitive",
       "kind": "boolean",
       "type": "Swift.Bool",
@@ -7175,6 +7205,35 @@
         {
           "name": "automatic",
           "ios": 14
+        }
+      ]
+    },
+    {
+      "name": "realityViewCameraControls",
+      "kind": "string",
+      "type": "RealityFoundation.CameraControls",
+      "ios": 18,
+      "framework": "RealityKit",
+      "cases": [
+        {
+          "name": "dolly",
+          "ios": 18
+        },
+        {
+          "name": "none",
+          "ios": 18
+        },
+        {
+          "name": "orbit",
+          "ios": 18
+        },
+        {
+          "name": "pan",
+          "ios": 18
+        },
+        {
+          "name": "tilt",
+          "ios": 18
         }
       ]
     },
@@ -10762,6 +10821,7 @@
         "presentationSizing",
         "previewDisplayName",
         "previewInterfaceOrientation",
+        "previewLayout",
         "progressViewStyle",
         "renameAction",
         "replaceDisabled",
@@ -10840,6 +10900,9 @@
         "payWithApplePayButtonStyle",
         "verifyIdentityWithWalletButtonStyle"
       ],
+      "_GameController_SwiftUI": [
+        "handlesGameControllerEvents"
+      ],
       "_StoreKit_SwiftUI": [
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
@@ -10875,6 +10938,7 @@
         "photosPickerStyle"
       ],
       "_RealityKit_SwiftUI": [
+        "realityViewCameraControls",
         "realityViewLayoutBehavior"
       ],
       "_AppIntents_SwiftUI": [

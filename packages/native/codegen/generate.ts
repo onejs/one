@@ -54,7 +54,7 @@ if (Number(sdkVersion.split('.')[0]) < MAXIMUM_IOS)
     `SwiftUI bindings target SDK ${MAXIMUM_IOS}, selected toolchain provides ${sdkVersion}`
   )
 const importedCases: Declaration[] = []
-for (const module of ['UIKit', 'PhotosUI']) {
+for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport']) {
   const outputDir = join(cache, `symbols-${module}-${sdkVersion}`)
   const graphPath = join(outputDir, `${module}.symbols.json`)
   if (!existsSync(graphPath)) {
@@ -71,7 +71,7 @@ for (const module of ['UIKit', 'PhotosUI']) {
   }[] }
   for (const symbol of graph.symbols) {
     const [owner, name] = symbol.pathComponents
-    if (symbol.pathComponents.length !== 2 || !/^[A-Za-z]/.test(name)) continue
+    if (symbol.pathComponents.length !== 2 || !/^[A-Za-z]\w*$/.test(name)) continue
     const declaration = symbol.declarationFragments?.map((part) => part.spelling).join('') ?? ''
     if (symbol.kind.identifier !== 'swift.enum.case' &&
       !(symbol.kind.identifier === 'swift.type.property' &&
