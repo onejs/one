@@ -39,6 +39,10 @@ export declare const sdkAllowedDynamicRangeValues: readonly ['standard', 'constr
 export type SDKAllowedDynamicRange = (typeof sdkAllowedDynamicRangeValues)[number];
 export declare const sdkAnimationValues: readonly ['default', 'interpolatingSpring', 'spring', 'interactiveSpring', 'smooth', 'snappy', 'bouncy', 'easeInOut', 'easeIn', 'easeOut', 'linear'];
 export type SDKAnimation = (typeof sdkAnimationValues)[number];
+export declare const sdkAsyncImageURLSessionValues: readonly ['shared'];
+export type SDKAsyncImageURLSession = (typeof sdkAsyncImageURLSessionValues)[number];
+export declare const sdkAutocapitalizationValues: readonly ['allCharacters', 'none', 'sentences', 'words'];
+export type SDKAutocapitalization = (typeof sdkAutocapitalizationValues)[number];
 export declare const sdkBackgroundStyleValues: readonly ['placeholder', 'link', 'selection', 'windowBackground', 'fill', 'regularMaterial', 'thickMaterial', 'thinMaterial', 'ultraThinMaterial', 'ultraThickMaterial', 'bar', 'primary', 'secondary', 'tertiary', 'quaternary', 'quinary', 'red', 'orange', 'yellow', 'green', 'mint', 'teal', 'cyan', 'blue', 'indigo', 'purple', 'pink', 'brown', 'white', 'gray', 'black', 'clear', 'separator', 'background', 'foreground', 'tint'];
 export type SDKBackgroundStyle = (typeof sdkBackgroundStyleValues)[number];
 export declare const sdkBadgeProminenceValues: readonly ['decreased', 'standard', 'increased'];
@@ -67,6 +71,8 @@ export declare const sdkDatePickerStyleValues: readonly ['wheel', 'automatic', '
 export type SDKDatePickerStyle = (typeof sdkDatePickerStyleValues)[number];
 export declare const sdkDefaultAdaptableTabBarPlacementValues: readonly ['automatic', 'tabBar', 'sidebar'];
 export type SDKDefaultAdaptableTabBarPlacement = (typeof sdkDefaultAdaptableTabBarPlacementValues)[number];
+export declare const sdkDefaultAppStorageValues: readonly ['standard'];
+export type SDKDefaultAppStorage = (typeof sdkDefaultAppStorageValues)[number];
 export declare const sdkDefaultHoverEffectValues: readonly ['automatic', 'highlight', 'lift'];
 export type SDKDefaultHoverEffect = (typeof sdkDefaultHoverEffectValues)[number];
 export declare const sdkDefaultScrollAnchorWithOptionalUnitPointValues: readonly ['zero', 'center', 'leading', 'trailing', 'top', 'bottom', 'topLeading', 'topTrailing', 'bottomLeading', 'bottomTrailing'];
@@ -101,6 +107,8 @@ export declare const sdkGridColumnAlignmentValues: readonly ['leading', 'center'
 export type SDKGridColumnAlignment = (typeof sdkGridColumnAlignmentValues)[number];
 export declare const sdkGroupBoxStyleValues: readonly ['automatic'];
 export type SDKGroupBoxStyle = (typeof sdkGroupBoxStyleValues)[number];
+export declare const sdkHandlesGameControllerEventsValues: readonly ['gamepad'];
+export type SDKHandlesGameControllerEvents = (typeof sdkHandlesGameControllerEventsValues)[number];
 export declare const sdkHeaderProminenceValues: readonly ['standard', 'increased'];
 export type SDKHeaderProminence = (typeof sdkHeaderProminenceValues)[number];
 export declare const sdkHoverEffectWithHoverEffectValues: readonly ['automatic', 'highlight', 'lift'];
@@ -115,6 +123,8 @@ export declare const sdkKeyboardShortcutWithKeyboardShortcutValues: readonly ['d
 export type SDKKeyboardShortcutWithKeyboardShortcut = (typeof sdkKeyboardShortcutWithKeyboardShortcutValues)[number];
 export declare const sdkKeyboardShortcutWithOptionalKeyboardShortcutValues: readonly ['defaultAction', 'cancelAction'];
 export type SDKKeyboardShortcutWithOptionalKeyboardShortcut = (typeof sdkKeyboardShortcutWithOptionalKeyboardShortcutValues)[number];
+export declare const sdkKeyboardTypeValues: readonly ['URL', 'alphabet', 'asciiCapable', 'asciiCapableNumberPad', 'decimalPad', 'default', 'emailAddress', 'namePhonePad', 'numberPad', 'numbersAndPunctuation', 'phonePad', 'twitter', 'webSearch'];
+export type SDKKeyboardType = (typeof sdkKeyboardTypeValues)[number];
 export declare const sdkLabeledContentStyleValues: readonly ['automatic'];
 export type SDKLabeledContentStyle = (typeof sdkLabeledContentStyleValues)[number];
 export declare const sdkLabelStyleValues: readonly ['automatic', 'iconOnly', 'titleAndIcon', 'titleOnly'];
@@ -159,6 +169,8 @@ export declare const sdkNavigationLinkIndicatorVisibilityValues: readonly ['auto
 export type SDKNavigationLinkIndicatorVisibility = (typeof sdkNavigationLinkIndicatorVisibilityValues)[number];
 export declare const sdkNavigationSplitViewStyleValues: readonly ['balanced', 'prominentDetail', 'automatic'];
 export type SDKNavigationSplitViewStyle = (typeof sdkNavigationSplitViewStyleValues)[number];
+export declare const sdkNavigationTransitionValues: readonly ['automatic', 'crossFade'];
+export type SDKNavigationTransition = (typeof sdkNavigationTransitionValues)[number];
 export declare const sdkNavigationViewStyleValues: readonly ['columns', 'automatic', 'stack'];
 export type SDKNavigationViewStyle = (typeof sdkNavigationViewStyleValues)[number];
 export declare const sdkOnScrollPhaseChangeValues: readonly ['idle', 'tracking', 'interacting', 'decelerating', 'animating'];
@@ -173,6 +185,10 @@ export declare const sdkPayWithApplePayButtonStyleValues: readonly ['white', 'wh
 export type SDKPayWithApplePayButtonStyle = (typeof sdkPayWithApplePayButtonStyleValues)[number];
 export declare const sdkPersistentSystemOverlaysValues: readonly ['automatic', 'visible', 'hidden'];
 export type SDKPersistentSystemOverlays = (typeof sdkPersistentSystemOverlaysValues)[number];
+export declare const sdkPhotosPickerDisabledCapabilitiesValues: readonly ['collectionNavigation', 'search', 'selectionActions', 'sensitivityAnalysisIntervention', 'stagingArea'];
+export type SDKPhotosPickerDisabledCapabilities = (typeof sdkPhotosPickerDisabledCapabilitiesValues)[number];
+export declare const sdkPhotosPickerMetadataOptionsValues: readonly ['removeCaptions', 'removeLocation'];
+export type SDKPhotosPickerMetadataOptions = (typeof sdkPhotosPickerMetadataOptionsValues)[number];
 export declare const sdkPhotosPickerStyleValues: readonly ['presentation', 'inline', 'compact'];
 export type SDKPhotosPickerStyle = (typeof sdkPhotosPickerStyleValues)[number];
 export declare const sdkPickerStyleValues: readonly ['wheel', 'inline', 'automatic', 'segmented', 'tabs', 'palette', 'navigationLink', 'menu'];
@@ -191,14 +207,20 @@ export declare const sdkPresentationDragIndicatorValues: readonly ['automatic', 
 export type SDKPresentationDragIndicator = (typeof sdkPresentationDragIndicatorValues)[number];
 export declare const sdkPresentationPlacementValues: readonly ['automatic', 'leading', 'center', 'trailing'];
 export type SDKPresentationPlacement = (typeof sdkPresentationPlacementValues)[number];
+export declare const sdkPresentationSizingValues: readonly ['form', 'page', 'fitted', 'automatic'];
+export type SDKPresentationSizing = (typeof sdkPresentationSizingValues)[number];
 export declare const sdkPreviewInterfaceOrientationValues: readonly ['portrait', 'portraitUpsideDown', 'landscapeLeft', 'landscapeRight'];
 export type SDKPreviewInterfaceOrientation = (typeof sdkPreviewInterfaceOrientationValues)[number];
+export declare const sdkPreviewLayoutValues: readonly ['device', 'sizeThatFits'];
+export type SDKPreviewLayout = (typeof sdkPreviewLayoutValues)[number];
 export declare const sdkProductDescriptionValues: readonly ['automatic', 'visible', 'hidden'];
 export type SDKProductDescription = (typeof sdkProductDescriptionValues)[number];
 export declare const sdkProductViewStyleValues: readonly ['automatic', 'regular', 'large', 'compact'];
 export type SDKProductViewStyle = (typeof sdkProductViewStyleValues)[number];
 export declare const sdkProgressViewStyleValues: readonly ['linear', 'circular', 'automatic'];
 export type SDKProgressViewStyle = (typeof sdkProgressViewStyleValues)[number];
+export declare const sdkRealityViewCameraControlsValues: readonly ['dolly', 'none', 'orbit', 'pan', 'tilt'];
+export type SDKRealityViewCameraControls = (typeof sdkRealityViewCameraControlsValues)[number];
 export declare const sdkRealityViewLayoutBehaviorValues: readonly ['flexible', 'centered', 'fixedSize'];
 export type SDKRealityViewLayoutBehavior = (typeof sdkRealityViewLayoutBehaviorValues)[number];
 export declare const sdkRedactedValues: readonly ['placeholder', 'privacy', 'invalidated'];
@@ -209,6 +231,8 @@ export declare const sdkScrollContentBackgroundValues: readonly ['automatic', 'v
 export type SDKScrollContentBackground = (typeof sdkScrollContentBackgroundValues)[number];
 export declare const sdkScrollDismissesKeyboardValues: readonly ['automatic', 'immediately', 'interactively', 'never'];
 export type SDKScrollDismissesKeyboard = (typeof sdkScrollDismissesKeyboardValues)[number];
+export declare const sdkScrollTargetBehaviorValues: readonly ['paging', 'viewAligned'];
+export type SDKScrollTargetBehavior = (typeof sdkScrollTargetBehaviorValues)[number];
 export declare const sdkSearchDictationBehaviorValues: readonly ['automatic'];
 export type SDKSearchDictationBehavior = (typeof sdkSearchDictationBehaviorValues)[number];
 export declare const sdkSearchPresentationToolbarBehaviorValues: readonly ['automatic', 'avoidHidingContent'];
@@ -257,6 +281,8 @@ export declare const sdkTabViewStyleValues: readonly ['sidebarAdaptable', 'page'
 export type SDKTabViewStyle = (typeof sdkTabViewStyleValues)[number];
 export declare const sdkTextCaseValues: readonly ['uppercase', 'lowercase'];
 export type SDKTextCase = (typeof sdkTextCaseValues)[number];
+export declare const sdkTextContentTypeValues: readonly ['URL', 'addressCity', 'addressCityAndState', 'addressState', 'birthdate', 'birthdateDay', 'birthdateMonth', 'birthdateYear', 'cellularEID', 'cellularIMEI', 'cellularIMEI1', 'cellularIMEI2', 'cellularNAL', 'countryName', 'creditCardExpiration', 'creditCardExpirationMonth', 'creditCardExpirationYear', 'creditCardFamilyName', 'creditCardGivenName', 'creditCardMiddleName', 'creditCardName', 'creditCardNumber', 'creditCardSecurityCode', 'creditCardType', 'dateTime', 'emailAddress', 'familyName', 'flightNumber', 'fullStreetAddress', 'givenName', 'jobTitle', 'location', 'middleName', 'name', 'namePrefix', 'nameSuffix', 'newPassword', 'nickname', 'oneTimeCode', 'organizationName', 'password', 'postalCode', 'shipmentTrackingNumber', 'streetAddressLine1', 'streetAddressLine2', 'sublocality', 'telephoneNumber', 'username'];
+export type SDKTextContentType = (typeof sdkTextContentTypeValues)[number];
 export declare const sdkTextEditorStyleValues: readonly ['automatic', 'plain'];
 export type SDKTextEditorStyle = (typeof sdkTextEditorStyleValues)[number];
 export declare const sdkTextFieldStyleValues: readonly ['automatic', 'roundedBorder', 'bordered', 'plain'];
@@ -342,6 +368,10 @@ export interface OneNativeStyle {
     accessibilityActivationPointWithUnitPoint?: SDKAccessibilityActivationPointWithUnitPoint;
     accessibilityAddTraits?: SDKAccessibilityAddTraits;
     accessibilityAdjustableAction?: (value: 'increment' | 'decrement') => void;
+    accessibilityCustomContent?: Readonly<{
+        label: string;
+        value: string;
+    }>;
     accessibilityDirectTouch?: Readonly<{
         isDirectTouchArea: boolean;
         options: 'silentOnTouch' | 'requiresActivation';
@@ -365,6 +395,10 @@ export interface OneNativeStyle {
         isEnabled: boolean;
     }>;
     accessibilityElement?: SDKAccessibilityElement;
+    accessibilityFocused?: Readonly<{
+        value: boolean;
+        onChange: (value: boolean) => void;
+    }>;
     accessibilityHeading?: SDKAccessibilityHeading;
     accessibilityHiddenWithBool?: boolean;
     accessibilityHiddenWithHiddenAndIsEnabled?: Readonly<{
@@ -382,6 +416,10 @@ export interface OneNativeStyle {
     }>;
     accessibilityIdentifierWithString?: string;
     accessibilityIgnoresInvertColors?: boolean;
+    accessibilityInputLabels?: Readonly<{
+        inputLabels: readonly string[];
+        isEnabled: boolean;
+    }>;
     accessibilityLabelWithLabelAndIsEnabled?: Readonly<{
         label: string;
         isEnabled: boolean;
@@ -415,6 +453,17 @@ export interface OneNativeStyle {
     accessibilityWithRemoveTraits?: SDKAccessibilityWithRemoveTraits;
     accessibilityWithSortPriority?: number;
     accessibilityWithValue?: string;
+    accessibilityZoomAction?: (value: {
+        direction: 'zoomIn' | 'zoomOut';
+        location: {
+            x: number;
+            y: number;
+        };
+        point: {
+            x: number;
+            y: number;
+        };
+    }) => void;
     addPassToWalletButtonStyle?: SDKAddPassToWalletButtonStyle;
     allowedDynamicRange?: SDKAllowedDynamicRange | null;
     allowsHitTesting?: boolean;
@@ -427,6 +476,8 @@ export interface OneNativeStyle {
         contentMode: 'fit' | 'fill';
     }>;
     assistiveAccessNavigationIcon?: string;
+    asyncImageURLSession?: SDKAsyncImageURLSession;
+    autocapitalization?: SDKAutocapitalization;
     autocorrectionDisabled?: boolean;
     backgroundExtensionEffectWithIsEnabled?: boolean;
     backgroundExtensionEffectWithNoArguments?: boolean;
@@ -480,8 +531,10 @@ export interface OneNativeStyle {
     controlGroupStyle?: SDKControlGroupStyle;
     controlSize?: SDKControlSize;
     coordinateSpace?: string;
+    dataDetection?: boolean;
     datePickerStyle?: SDKDatePickerStyle;
     defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement;
+    defaultAppStorage?: SDKDefaultAppStorage;
     defaultHoverEffect?: SDKDefaultHoverEffect | null;
     defaultScrollAnchorWithAnchorAndRole?: Readonly<{
         anchor: 'zero' | 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing' | null;
@@ -529,6 +582,10 @@ export interface OneNativeStyle {
         isFocusable: boolean;
         interactions: 'activate' | 'edit' | 'automatic';
     }>;
+    focused?: Readonly<{
+        value: boolean;
+        onChange: (value: boolean) => void;
+    }>;
     focusEffectDisabled?: boolean;
     fontWidth?: SDKFontWidth | null;
     foregroundColor?: SDKForegroundColor | null;
@@ -546,6 +603,11 @@ export interface OneNativeStyle {
         shortcut: 'primaryAction';
         isEnabled: boolean;
     }>;
+    handlesExternalEvents?: Readonly<{
+        preferring: readonly string[];
+        allowing: readonly string[];
+    }>;
+    handlesGameControllerEvents?: SDKHandlesGameControllerEvents;
     headerProminence?: SDKHeaderProminence;
     help?: string;
     hidden?: boolean;
@@ -590,6 +652,7 @@ export interface OneNativeStyle {
     }>;
     keyboardShortcutWithKeyboardShortcut?: SDKKeyboardShortcutWithKeyboardShortcut;
     keyboardShortcutWithOptionalKeyboardShortcut?: SDKKeyboardShortcutWithOptionalKeyboardShortcut | null;
+    keyboardType?: SDKKeyboardType;
     labeledContentStyle?: SDKLabeledContentStyle;
     labelIconToTitleSpacing?: number;
     labelReservedIconWidth?: number;
@@ -681,6 +744,7 @@ export interface OneNativeStyle {
         onChange: (value: string) => void;
     }>;
     navigationTitleWithText?: string;
+    navigationTransition?: SDKNavigationTransition;
     navigationViewStyle?: SDKNavigationViewStyle;
     offerCodeRedemption?: Readonly<{
         value: boolean;
@@ -691,15 +755,111 @@ export interface OneNativeStyle {
         y: number;
     }>;
     onAppear?: () => void;
+    onChange?: Readonly<{
+        value: string;
+        onChange: (value: string) => void;
+    }>;
+    onContinuousHover?: (value: {
+        case: 'active';
+        values: readonly [{
+            x: number;
+            y: number;
+        }];
+    } | {
+        case: 'ended';
+        values: readonly [];
+    }) => void;
     onDisappear?: () => void;
+    onDragSessionUpdated?: (value: {
+        location: {
+            x: number;
+            y: number;
+        };
+    }) => void;
     onHover?: (value: boolean) => void;
     onInteractiveResizeChange?: (value: boolean) => void;
-    onLongPressGestureWithPerform?: () => void;
-    onLongPressGestureWithPerformFromSwiftUI?: () => void;
-    onLongPressGestureWithPerformFromSwiftUIVariant?: () => void;
+    onLongPressGesture?: () => void;
     onMapCameraChange?: () => void;
     onOpenURLWithPerform?: (value: string) => void;
     onOpenURLWithPrefersInApp?: boolean;
+    onPencilDoubleTap?: (value: {
+        hoverPose: {
+            location: {
+                x: number;
+                y: number;
+            };
+            anchor: {
+                x: number;
+                y: number;
+            };
+            zDistance: number;
+            altitude: {
+                radians: number;
+            };
+            azimuth: {
+                radians: number;
+            };
+            roll: {
+                radians: number;
+            };
+        } | null;
+    }) => void;
+    onPencilSqueeze?: (value: {
+        case: 'active';
+        values: readonly [
+            {
+                hoverPose: {
+                    location: {
+                        x: number;
+                        y: number;
+                    };
+                    anchor: {
+                        x: number;
+                        y: number;
+                    };
+                    zDistance: number;
+                    altitude: {
+                        radians: number;
+                    };
+                    azimuth: {
+                        radians: number;
+                    };
+                    roll: {
+                        radians: number;
+                    };
+                } | null;
+            }
+        ];
+    } | {
+        case: 'ended';
+        values: readonly [
+            {
+                hoverPose: {
+                    location: {
+                        x: number;
+                        y: number;
+                    };
+                    anchor: {
+                        x: number;
+                        y: number;
+                    };
+                    zDistance: number;
+                    altitude: {
+                        radians: number;
+                    };
+                    azimuth: {
+                        radians: number;
+                    };
+                    roll: {
+                        radians: number;
+                    };
+                } | null;
+            }
+        ];
+    } | {
+        case: 'failed';
+        values: readonly [];
+    }) => void;
     onScrollPhaseChange?: (oldValue: 'idle' | 'tracking' | 'interacting' | 'decelerating' | 'animating', newValue: 'idle' | 'tracking' | 'interacting' | 'decelerating' | 'animating') => void;
     onScrollVisibilityChange?: (value: boolean) => void;
     onSubmit?: () => void;
@@ -714,6 +874,8 @@ export interface OneNativeStyle {
         visibility: 'automatic' | 'visible' | 'hidden';
         edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical';
     }>;
+    photosPickerDisabledCapabilities?: SDKPhotosPickerDisabledCapabilities;
+    photosPickerMetadataOptions?: SDKPhotosPickerMetadataOptions;
     photosPickerSearchText?: string | null;
     photosPickerStyle?: SDKPhotosPickerStyle;
     pickerStyle?: SDKPickerStyle;
@@ -733,17 +895,44 @@ export interface OneNativeStyle {
     presentationCornerRadius?: number | null;
     presentationDragIndicator?: SDKPresentationDragIndicator;
     presentationPlacement?: SDKPresentationPlacement;
+    presentationSizing?: SDKPresentationSizing;
+    previewDevice?: string | null;
     previewDisplayName?: string | null;
     previewInterfaceOrientation?: SDKPreviewInterfaceOrientation;
+    previewLayout?: SDKPreviewLayout;
     privacySensitive?: boolean;
     productDescription?: SDKProductDescription;
     productIconBorder?: boolean;
     productViewStyle?: SDKProductViewStyle;
     progressViewStyle?: SDKProgressViewStyle;
+    projectionEffect?: Readonly<{
+        transform: Readonly<{
+            a: number;
+            b: number;
+            c: number;
+            d: number;
+            tx: number;
+            ty: number;
+        }>;
+    }>;
+    realityViewCameraControls?: SDKRealityViewCameraControls;
     realityViewLayoutBehavior?: SDKRealityViewLayoutBehavior;
     redacted?: SDKRedacted;
     renameAction?: () => void;
     replaceDisabled?: boolean;
+    rotation3DEffect?: Readonly<{
+        angle: Readonly<{
+            radians: number;
+        }>;
+        axis: Readonly<{
+            x: number;
+            y: number;
+            z: number;
+        }>;
+        anchor: 'zero' | 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing';
+        anchorZ: number;
+        perspective: number;
+    }>;
     rotationEffect?: Readonly<{
         angle: 'zero';
         anchor: 'zero' | 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing';
@@ -791,6 +980,7 @@ export interface OneNativeStyle {
         axes: 'horizontal' | 'vertical';
     }>;
     scrollIndicatorsFlash?: boolean;
+    scrollTargetBehavior?: SDKScrollTargetBehavior;
     scrollTargetLayout?: boolean;
     searchable?: Readonly<{
         value: string;
@@ -798,6 +988,10 @@ export interface OneNativeStyle {
     }>;
     searchCompletion?: string;
     searchDictationBehavior?: SDKSearchDictationBehavior;
+    searchFocused?: Readonly<{
+        value: boolean;
+        onChange: (value: boolean) => void;
+    }>;
     searchPresentationToolbarBehavior?: SDKSearchPresentationToolbarBehavior;
     searchSuggestions?: Readonly<{
         visibility: 'automatic' | 'visible' | 'hidden';
@@ -806,6 +1000,10 @@ export interface OneNativeStyle {
     searchToolbarBehavior?: SDKSearchToolbarBehavior;
     sectionIndexLabel?: string | null;
     selectionDisabled?: boolean;
+    sensoryFeedback?: Readonly<{
+        feedback: 'success' | 'warning' | 'error' | 'selection' | 'increase' | 'decrease' | 'start' | 'stop' | 'alignment' | 'levelChange' | 'pathComplete' | 'impact';
+        trigger: string;
+    }>;
     shadow?: Readonly<{
         color: 'accentColor' | 'red' | 'orange' | 'yellow' | 'green' | 'mint' | 'teal' | 'cyan' | 'blue' | 'indigo' | 'purple' | 'pink' | 'brown' | 'white' | 'gray' | 'black' | 'clear' | 'primary' | 'secondary';
         radius: number;
@@ -862,6 +1060,7 @@ export interface OneNativeStyle {
     tabViewStyle?: SDKTabViewStyle;
     tag?: string;
     textCase?: SDKTextCase | null;
+    textContentType?: SDKTextContentType | null;
     textEditorStyle?: SDKTextEditorStyle;
     textFieldStyle?: SDKTextFieldStyle;
     textInputAutocapitalization?: SDKTextInputAutocapitalization | null;
@@ -913,6 +1112,16 @@ export interface OneNativeStyle {
         bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar';
     }>;
     tracking?: number;
+    transformEffect?: Readonly<{
+        transform: Readonly<{
+            a: number;
+            b: number;
+            c: number;
+            d: number;
+            tx: number;
+            ty: number;
+        }>;
+    }>;
     transition?: SDKTransition;
     truncationMode?: SDKTruncationMode;
     typeSelectEquivalent?: string | null;

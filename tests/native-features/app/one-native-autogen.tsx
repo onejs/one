@@ -6,6 +6,8 @@ export default function NativeAutogenProof() {
   const [selection, setSelection] = useState('proof')
   const [menuSelected, setMenuSelected] = useState(false)
   const [inspectorVisible, setInspectorVisible] = useState(false)
+  const [fieldFocused, setFieldFocused] = useState(false)
+  const [fieldText, setFieldText] = useState('')
   return (
     <Swift.Tabs
       selection={selection}
@@ -30,6 +32,15 @@ export default function NativeAutogenProof() {
               </Swift.ViewSlot.Content>
             </Swift.ViewSlot>
             <Swift.Text text={menuSelected ? 'Generated menu selected' : 'Generated menu ready'} />
+            <Swift.Button label="Focus generated field" onPress={() => setFieldFocused(true)} testID="autogen-focus-button" />
+            <Swift.TextField
+              label="Generated focus field"
+              text={fieldText}
+              onTextChange={setFieldText}
+              testID="autogen-focus-field"
+              swiftStyle={{ focused: { value: fieldFocused, onChange: setFieldFocused } }}
+            />
+            <Swift.Text text={fieldFocused ? 'Generated focus active' : 'Generated focus idle'} />
             <Swift.ViewSlot name="containerBackground" options={{ container: 'navigation' }}>
               <Swift.Text text="Generated container background" />
               <Swift.ViewSlot.Content>
