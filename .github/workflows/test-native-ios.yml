@@ -1,7 +1,7 @@
 name: iOS Native Tests
 env:
   # Specify an iOS version to test on.
-  simulator_ios_version: 27.0
+  simulator_ios_version: '27.0'
   # Name of the simulator device to use.
   simulator_device_name: iPhone 18 Pro
   # Pinned so a run never picks up an incompatible appium/driver pair.
