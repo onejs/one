@@ -59,6 +59,7 @@ public final class OneNativeAdaptiveBridge: NSObject {
 
   @MainActor
   public func getReservedRegions(includeInactive: Bool = false) -> [[String: Any]] {
+    #if ONE_IOS_27_1_SDK
     guard #available(iOS 27.1, *), let window = currentWindow() else { return [] }
     let opts: UIView.ReservedRegion.QueryOptions = includeInactive ? [.includeInactive] : []
     let division = window.reservedRegions(kind: .division, options: opts)
@@ -82,6 +83,9 @@ public final class OneNativeAdaptiveBridge: NSObject {
         "isActive": region.isActive
       ]
     }
+    #else
+    return []
+    #endif
   }
 
   @MainActor
@@ -119,6 +123,7 @@ public final class OneNativeAdaptiveBridge: NSObject {
         self.emitReservedRegions()
       }
     }
+    #if ONE_IOS_27_1_SDK
     if #available(iOS 27.1, *), hingeInteraction == nil, let window = currentWindow() {
       let interaction = UIHingeInteraction { [weak self] (_, update) in
         guard let self = self else { return }
@@ -142,6 +147,7 @@ public final class OneNativeAdaptiveBridge: NSObject {
       window.addInteraction(interaction)
       hingeInteraction = interaction
     }
+    #endif
   }
 
   @MainActor
