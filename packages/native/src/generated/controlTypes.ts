@@ -1238,6 +1238,7 @@ export interface OneNativeStyle {
   accessibilityActivationPointWithUnitPoint?: SDKAccessibilityActivationPointWithUnitPoint
   accessibilityAddTraits?: SDKAccessibilityAddTraits
   accessibilityAdjustableAction?: (value: 'increment' | 'decrement') => void
+  accessibilityCustomContent?: Readonly<{ label: string; value: string }>
   accessibilityDirectTouch?: Readonly<{
     isDirectTouchArea: boolean
     options: 'silentOnTouch' | 'requiresActivation'

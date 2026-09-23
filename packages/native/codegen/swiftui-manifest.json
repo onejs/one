@@ -931,6 +931,28 @@
       ]
     },
     {
+      "name": "accessibilityCustomContent",
+      "kind": "record",
+      "type": "",
+      "ios": 15,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "label",
+          "label": "_"
+        },
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "value",
+          "label": "_"
+        }
+      ]
+    },
+    {
       "name": "accessibilityDirectTouch",
       "kind": "record",
       "type": "",
@@ -10781,6 +10803,7 @@
         "accessibilityAddTraits",
         "accessibilityAdjustableAction",
         "accessibilityChildren",
+        "accessibilityCustomContent",
         "accessibilityDirectTouch",
         "accessibilityDragPoint",
         "accessibilityDropPoint",
