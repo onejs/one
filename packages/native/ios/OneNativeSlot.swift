@@ -19,6 +19,9 @@ struct OneNativeSlot: UIViewRepresentable {
     view.accessibilityElementsHidden = mode == .passive
     view.setNeedsLayout()
   }
+  func sizeThatFits(_ proposal: ProposedViewSize, uiView: Container, context: Context) -> CGSize? {
+    CGSize(width: proposal.width ?? UIView.noIntrinsicMetric, height: proposal.height ?? UIView.noIntrinsicMetric)
+  }
   static func dismantleUIView(_ view: Container, coordinator: ()) {
     view.onLayout = nil
     if view.content.superview === view { view.content.removeFromSuperview() }
@@ -39,7 +42,17 @@ struct OneNativeSlot: UIViewRepresentable {
       super.layoutSubviews()
       guard mode != .passive, window != nil, bounds.width > 0, bounds.height > 0 else { return }
       if mode == .presented { onLayout?(CGRect(origin: .zero, size: bounds.size)) }
-      else if let layoutHost, layoutHost.window != nil { onLayout?(convert(bounds, to: layoutHost)) }
+      else if let layoutHost, let hostWindow = layoutHost.window, let myWindow = window {
+        let frame: CGRect
+        if myWindow === hostWindow {
+          frame = convert(bounds, to: layoutHost)
+        } else {
+          let inMyWindow = convert(bounds, to: myWindow)
+          let inHostWindow = myWindow.convert(inMyWindow, to: hostWindow)
+          frame = layoutHost.convert(inHostWindow, from: hostWindow)
+        }
+        onLayout?(frame)
+      }
       content.frame = bounds
     }
   }

@@ -16,8 +16,8 @@ final class OneNativeHostingController<Content: View>: UIHostingController<Conte
     guard host.window != nil else { detach(); return }
     var responder: UIResponder? = host.next
     while responder != nil && !(responder is UIViewController) { responder = responder?.next }
-    guard let nearest = responder as? UIViewController else { return }
-    let parent: UIViewController? = nearest is UITabBarController ? nil : nearest
+    let nearest = responder as? UIViewController
+    let parent: UIViewController? = (nearest == nil || nearest is UITabBarController) ? nil : nearest
     if view.superview !== host || self.parent !== parent {
       detach()
       parent?.addChild(self)
