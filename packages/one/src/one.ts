@@ -6,6 +6,7 @@ import {
   Clipboard as NativeClipboard,
   AppInfo,
   Color,
+  Database,
   Compose,
   Fonts,
   Haptics,
@@ -69,6 +70,7 @@ export type OneUI = typeof NativeUI & {
 export type OneAPI = {
   readonly platform: OnePlatform
   readonly AppInfo: typeof AppInfo
+  readonly Database: typeof Database
   readonly iOS: Readonly<OneIOS>
   readonly Android: Readonly<OneAndroid>
   readonly UI: Readonly<OneUI>
@@ -125,6 +127,7 @@ export const One: OneAPI = Object.freeze({
     return currentPlatform()
   },
   AppInfo,
+  Database,
   iOS,
   Android,
   UI,
