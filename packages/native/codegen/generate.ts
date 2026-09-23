@@ -100,6 +100,11 @@ for (const modifier of derivedModifiers) {
       (!modifier.module || d.module === modifier.module) &&
       (modifier.zeroArgument
         ? d.parameters.length === 0
+        : modifier.kind === 'record'
+          ? d.parameters.length === modifier.arguments?.length &&
+            d.parameters.every((parameter, index) =>
+              parameter.label === modifier.arguments?.[index].label &&
+              parameter.type === modifier.arguments?.[index].type)
         : d.parameters.some((parameter) => parameter.type === modifier.type &&
             (modifier.label === undefined || parameter.label === modifier.label))) &&
       d.owner.split('.').at(-1) === 'View'
