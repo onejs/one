@@ -42,7 +42,7 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
           default: preconditionFailure("invalid ${slot.name}.${argument.field}")
           }
         }()`).join('\n')}
-` : ''}        return AnyView(self.${slot.sdkName ?? slot.name}(${[...slot.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`), `${slot.label === '_' ? '' : `${slot.label}: `}content`].join(', ')}))
+` : ''}        return AnyView(self.${slot.sdkName ?? slot.name}(${[...slot.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`), `${slot.label === '_' ? '' : `${slot.label}: `}${slot.directValue ? 'content()' : 'content'}`].join(', ')}))
       }
       return AnyView(self)`).join('\n')}
     default: preconditionFailure("unknown view slot: \\(name)")

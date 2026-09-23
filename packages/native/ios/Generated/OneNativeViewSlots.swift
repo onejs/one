@@ -15,8 +15,11 @@ enum OneNativeViewSlotName {
   static let contentToolbar = "contentToolbar"
   static let contextMenu = "contextMenu"
   static let inspector = "inspector"
+  static let listRowBackground = "listRowBackground"
   static let mapControls = "mapControls"
   static let mask = "mask"
+  static let navigationBarItemsWithLeading = "navigationBarItemsWithLeading"
+  static let navigationBarItemsWithTrailing = "navigationBarItemsWithTrailing"
   static let navigationDestination = "navigationDestination"
   static let overlay = "overlay"
   static let presentationBackground = "presentationBackground"
@@ -36,7 +39,7 @@ enum OneNativeViewSlotName {
   static let toolbar = "toolbar"
   static let toolbarOverflowMenu = "toolbarOverflowMenu"
   static let toolbarTitleMenu = "toolbarTitleMenu"
-  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, background, containerBackground, contentToolbar, contextMenu, inspector, mapControls, mask, navigationDestination, overlay, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchSuggestions, sectionActions, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
+  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, background, containerBackground, contentToolbar, contextMenu, inspector, listRowBackground, mapControls, mask, navigationBarItemsWithLeading, navigationBarItemsWithTrailing, navigationDestination, overlay, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchSuggestions, sectionActions, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
 }
 
 extension View {
@@ -128,6 +131,11 @@ extension View {
         return AnyView(self.inspector(isPresented: argument0, content: content))
       }
       return AnyView(self)
+    case OneNativeViewSlotName.listRowBackground:
+      if #available(iOS 13, *) {
+        return AnyView(self.listRowBackground(content()))
+      }
+      return AnyView(self)
     case OneNativeViewSlotName.mapControls:
       if #available(iOS 17, *) {
         return AnyView(self.mapControls(content))
@@ -136,6 +144,16 @@ extension View {
     case OneNativeViewSlotName.mask:
       if #available(iOS 15, *) {
         return AnyView(self.mask(content))
+      }
+      return AnyView(self)
+    case OneNativeViewSlotName.navigationBarItemsWithLeading:
+      if #available(iOS 13, *) {
+        return AnyView(self.navigationBarItems(leading: content()))
+      }
+      return AnyView(self)
+    case OneNativeViewSlotName.navigationBarItemsWithTrailing:
+      if #available(iOS 13, *) {
+        return AnyView(self.navigationBarItems(trailing: content()))
       }
       return AnyView(self)
     case OneNativeViewSlotName.navigationDestination:

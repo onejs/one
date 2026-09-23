@@ -155,11 +155,14 @@ for (const slot of derivedViewSlots) {
     d.kind === 'func' && d.module === slot.module && d.owner.split('.').at(-1) === 'View' &&
     d.name === (slot.sdkName ?? slot.name) && d.parameters.some((parameter) =>
       parameter.label === slot.label &&
-      (parameter.type === '() -> some View' ||
+      (slot.directValue
+        ? /^([A-Za-z_]\w*)\??$/.test(parameter.type) &&
+          d.requirements?.includes(`${parameter.type.replace(/\?$/, '')} : SwiftUICore.View`)
+        : parameter.type === '() -> some View' ||
         (/^\(\) -> [A-Za-z_]\w*$/.test(parameter.type) &&
-          d.requirements?.[0] === `${parameter.type.slice(6)} : SwiftUICore.View`))) &&
-    d.parameters.filter((parameter) => parameter.defaultValue === undefined &&
-      !parameter.type.startsWith('() ->')).map((parameter) => parameter.type).join('|') ===
+          d.requirements?.includes(`${parameter.type.slice(6)} : SwiftUICore.View`)))) &&
+    d.parameters.filter((parameter, index) => index !== d.parameters.length - 1 &&
+      parameter.defaultValue === undefined).map((parameter) => parameter.type).join('|') ===
       slot.arguments.map((argument) => argument.type).join('|')
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${slot.name} slot`)
