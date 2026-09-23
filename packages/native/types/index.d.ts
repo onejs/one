@@ -1,6 +1,9 @@
 import * as UI from './effects';
 export * from './extras';
 export * from './unsupported';
+export { useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, useReservedRegions, getReservedRegions, } from './adaptive/index';
+export type { UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, ReservedRegionOptions, } from './adaptive/types';
+export type { ArrangementViewProps, ArrangementPaneProps, ArrangementViewStyle, SplitLayoutRatio, SplitLayoutSize, SplitFixedLayoutSize, OverlayArrangementEdge, } from './ArrangementView.native';
 export declare const Menu: (_props: import("./types").MenuProps) => never;
 export declare const ContextMenu: (_props: import("./types").ContextMenuProps) => never;
 export { Compose } from './compose';

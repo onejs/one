@@ -7,6 +7,9 @@ import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Ta
 import { Compose } from './compose';
 import * as UI from './effects';
 export * from './extras';
+export { useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, useReservedRegions, getReservedRegions, } from './adaptive/index.native';
+export type { UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, ReservedRegionOptions, } from './adaptive/types';
+export type { ArrangementViewProps, ArrangementPaneProps, ArrangementViewStyle, SplitLayoutRatio, SplitLayoutSize, SplitFixedLayoutSize, OverlayArrangementEdge, } from './ArrangementView.native';
 declare const Menu: typeof AndroidMenu;
 declare const ContextMenu: typeof AndroidContextMenu;
 export declare const Swift: {
@@ -41,6 +44,12 @@ export declare const Swift: {
     FileImporter({ isPresented, onIsPresentedChange, revision, onCompletion, allowedContentTypes, allowsMultipleSelection, swiftStyle, style, ...props }: import("./types").FileImporterProps): import("react/jsx-runtime").JSX.Element;
     EditButton({ swiftStyle, style, ...props }: import("./types").EditButtonProps): import("react/jsx-runtime").JSX.Element;
     EmptyView({ swiftStyle, style, ...props }: import("./types").EmptyViewProps): import("react/jsx-runtime").JSX.Element;
+    ArrangementView: typeof import("./ArrangementView.native").ArrangementViewComponent & {
+        Primary: typeof import("./ArrangementView.native").ArrangementPrimary;
+        Secondary: typeof import("./ArrangementView.native").ArrangementSecondary;
+        Leading: typeof import("./ArrangementView.native").ArrangementPrimary;
+        Detail: typeof import("./ArrangementView.native").ArrangementSecondary;
+    };
     Tabs: typeof Tabs;
     Tab: typeof Tab;
     TabSection: typeof TabSection;

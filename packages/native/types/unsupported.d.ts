@@ -35,6 +35,8 @@ declare function SwipeActionsActions(_props: SwipeActionsActionsProps): never;
 declare function SwipeActionsFn(_props: SwipeActionsProps): never;
 declare function Page(_props: PageProps): never;
 declare function Pager(_props: PagerProps): never;
+declare function ArrangementViewComponent(_props: any): never;
+declare function ArrangementPane(_props: any): never;
 export declare const Swift: {
     Picker: (_props: import("./types").PickerProps) => never;
     DatePicker: (_props: import("./types").DatePickerProps) => never;
@@ -67,6 +69,12 @@ export declare const Swift: {
     FileImporter: (_props: import("./types").FileImporterProps) => never;
     EditButton: (_props: import("./types").EditButtonProps) => never;
     EmptyView: (_props: import("./types").EmptyViewProps) => never;
+    ArrangementView: typeof ArrangementViewComponent & {
+        Primary: typeof ArrangementPane;
+        Secondary: typeof ArrangementPane;
+        Leading: typeof ArrangementPane;
+        Detail: typeof ArrangementPane;
+    };
     Tabs: typeof Tabs;
     Tab: typeof Tab;
     TabSection: typeof TabSection;
