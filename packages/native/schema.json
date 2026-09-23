@@ -88,68 +88,13 @@
       "interfaceOnly": false
     },
     {
-      "name": "OneNativeTabs",
-      "publicName": "Tabs",
-      "props": {
-        "selection": {
-          "type": "string"
-        },
-        "sidebarAdaptable": {
-          "type": "boolean"
-        },
-        "tabBarMinimizeBehavior": {
-          "type": "string",
-          "enum": "TabBarMinimizeBehavior"
-        },
-        "acknowledgedEvent": {
-          "type": "Int32"
-        },
-        "revision": {
-          "type": "Int32"
-        }
-      },
-      "events": {
-        "onNativeTabsSelectionChange": {
-          "selection": {
-            "type": "string"
-          },
-          "eventCount": {
-            "type": "Int32"
-          },
-          "revision": {
-            "type": "Int32"
-          }
-        },
-        "onNativeTabsAction": {
-          "tabId": {
-            "type": "string"
-          }
-        }
-      },
-      "controlled": {
-        "value": "selection",
-        "event": "onNativeTabsSelectionChange"
-      },
-      "actions": [],
-      "layout": {
-        "kind": "container"
-      },
-      "slots": [
-        {
-          "name": "pages",
-          "content": "OneNativeTab",
-          "cardinality": "many",
-          "key": "tabId",
-          "layout": "swiftui"
-        }
-      ],
-      "interfaceOnly": false
-    },
-    {
       "name": "OneNativeTab",
       "publicName": "Tab",
       "props": {
         "tabId": {
+          "type": "string"
+        },
+        "kind": {
           "type": "string"
         },
         "title": {
@@ -168,8 +113,8 @@
         "slotHeight": {
           "type": "Double"
         },
-        "action": {
-          "type": "boolean"
+        "tabModifiers": {
+          "type": "string"
         }
       },
       "events": {},
@@ -2813,6 +2758,87 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeTabs",
+      "publicName": "Tabs",
+      "props": {
+        "selection": {
+          "type": "string"
+        },
+        "tabViewStyle": {
+          "type": "string",
+          "enum": "TabViewStyle"
+        },
+        "tabBarVisibility": {
+          "type": "string",
+          "enum": "Visibility"
+        },
+        "customization": {
+          "type": "string"
+        },
+        "customizable": {
+          "type": "boolean"
+        },
+        "bottomAccessoryEnabled": {
+          "type": "boolean"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        }
+      },
+      "events": {
+        "onNativeTabsSelectionChange": {
+          "selection": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeTabsAction": {
+          "tabId": {
+            "type": "string"
+          }
+        },
+        "onNativeTabsCustomizationChange": {
+          "customization": {
+            "type": "string"
+          }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "controlled": {
+        "value": "selection",
+        "event": "onNativeTabsSelectionChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "pages",
+          "content": "OneNativeTab",
+          "cardinality": "many",
+          "key": "tabId",
+          "layout": "swiftui"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeContainerSlot",
       "publicName": "Slot",
       "props": {
@@ -3172,11 +3198,11 @@
       "enabled": 16.4,
       "disabled": 16.4
     },
-    "TabBarMinimizeBehavior": {
-      "automatic": 26,
-      "onScrollDown": 26,
-      "onScrollUp": 26,
-      "never": 26
+    "TabViewStyle": {
+      "sidebarAdaptable": 18,
+      "page": 14,
+      "tabBarOnly": 18,
+      "automatic": 14
     },
     "ButtonRole": {
       "destructive": 15,
@@ -3187,6 +3213,31 @@
     "TabRole": {
       "search": 18,
       "prominent": 27
+    },
+    "TabPlacement": {
+      "automatic": 18,
+      "pinned": 18,
+      "sidebarOnly": 18
+    },
+    "AdaptableTabBarPlacement": {
+      "automatic": 18,
+      "tabBar": 18,
+      "sidebar": 18
+    },
+    "TabCustomizationBehavior": {
+      "automatic": 18,
+      "reorderable": 18,
+      "disabled": 18
+    },
+    "TabSectionExpansion": {
+      "automatic": 27,
+      "expanded": 27,
+      "collapsed": 27
+    },
+    "SpringLoadingBehavior": {
+      "automatic": 17,
+      "enabled": 17,
+      "disabled": 17
     },
     "ControlGroupStyle": {
       "palette": 17,

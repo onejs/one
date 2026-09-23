@@ -38,20 +38,6 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid MenuActionDismissBehavior: \(value)")
     }
   }
-  @available(iOS 26, *)
-  static func tabBarMinimizeBehavior(_ value: String) -> TabBarMinimizeBehavior {
-    switch value {
-    case "automatic":
-      return .automatic
-    case "onScrollDown":
-      return .onScrollDown
-    case "onScrollUp":
-      return .onScrollUp
-    case "never":
-      return .never
-    default: preconditionFailure("invalid TabBarMinimizeBehavior: \(value)")
-    }
-  }
   static func buttonRole(_ value: String) -> ButtonRole? {
     switch value {
     case "": return nil
@@ -78,6 +64,65 @@ enum OneNativeGenerated {
       if #available(iOS 27, *) { return .prominent }
       preconditionFailure("TabRole.prominent requires iOS 27")
     default: preconditionFailure("invalid TabRole: \(value)")
+    }
+  }
+  @available(iOS 18, *)
+  static func tabPlacement(_ value: String) -> TabPlacement {
+    switch value {
+    case "automatic":
+      return .automatic
+    case "pinned":
+      return .pinned
+    case "sidebarOnly":
+      return .sidebarOnly
+    default: preconditionFailure("invalid TabPlacement: \(value)")
+    }
+  }
+  @available(iOS 18, *)
+  static func adaptableTabBarPlacement(_ value: String) -> AdaptableTabBarPlacement {
+    switch value {
+    case "automatic":
+      return .automatic
+    case "tabBar":
+      return .tabBar
+    case "sidebar":
+      return .sidebar
+    default: preconditionFailure("invalid AdaptableTabBarPlacement: \(value)")
+    }
+  }
+  @available(iOS 18, *)
+  static func tabCustomizationBehavior(_ value: String) -> TabCustomizationBehavior {
+    switch value {
+    case "automatic":
+      return .automatic
+    case "reorderable":
+      return .reorderable
+    case "disabled":
+      return .disabled
+    default: preconditionFailure("invalid TabCustomizationBehavior: \(value)")
+    }
+  }
+  @available(iOS 27, *)
+  static func tabSectionExpansion(_ value: String) -> TabSectionExpansion {
+    switch value {
+    case "automatic":
+      return .automatic
+    case "expanded":
+      return .expanded
+    case "collapsed":
+      return .collapsed
+    default: preconditionFailure("invalid TabSectionExpansion: \(value)")
+    }
+  }
+  static func springLoadingBehavior(_ value: String) -> SpringLoadingBehavior {
+    switch value {
+    case "automatic":
+      return .automatic
+    case "enabled":
+      return .enabled
+    case "disabled":
+      return .disabled
+    default: preconditionFailure("invalid SpringLoadingBehavior: \(value)")
     }
   }
   static func submitLabel(_ value: String) -> SubmitLabel {
@@ -331,13 +376,6 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid ElementFullscreenBehavior: \(value)")
     }
   }
-  @available(iOS 18.0, *)
-  @MainActor @TabContentBuilder<String> static func tab<Content: View>(id: String, title: String, systemImage: String, badge: String, role: String, @ViewBuilder content: () -> Content) -> some TabContent<String> {
-    Tab(value: id, role: tabRole(role)) { content() } label: {
-      if systemImage.isEmpty { Text(title) } else { Label(title, systemImage: systemImage) }
-    }
-    .badge(badge.isEmpty ? nil : Text(badge))
-  }
 }
 
 extension View {
@@ -413,12 +451,17 @@ extension View {
     default: let _ = preconditionFailure("invalid ControlGroupStyle: \(value)"); self
     }
   }
-  @ViewBuilder func oneNativeTabBarMinimizeBehavior(_ value: String) -> some View {
-    if #available(iOS 26, *) {
-      if value.isEmpty { self } else { self.tabBarMinimizeBehavior(OneNativeGenerated.tabBarMinimizeBehavior(value)) }
-    } else {
-      let _ = precondition(value.isEmpty, "tabBarMinimizeBehavior requires iOS 26")
-      self
+  @ViewBuilder func oneNativeTabViewStyle(_ value: String) -> some View {
+    switch value {
+    case "sidebarAdaptable":
+      if #available(iOS 18, *) { self.tabViewStyle(.sidebarAdaptable) } else { let _ = preconditionFailure("TabViewStyle.sidebarAdaptable requires iOS 18"); self }
+    case "page":
+      self.tabViewStyle(.page)
+    case "tabBarOnly":
+      if #available(iOS 18, *) { self.tabViewStyle(.tabBarOnly) } else { let _ = preconditionFailure("TabViewStyle.tabBarOnly requires iOS 18"); self }
+    case "automatic":
+      self.tabViewStyle(.automatic)
+    default: let _ = preconditionFailure("invalid TabViewStyle: \(value)"); self
     }
   }
   @ViewBuilder func oneNativeButtonStyle(_ value: String) -> some View {

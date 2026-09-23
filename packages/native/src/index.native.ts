@@ -30,7 +30,7 @@ import { Page, Pager } from './Pager.native'
 import { Popover } from './Popover.native'
 import { FullScreenCover, Sheet } from './Sheet.native'
 import * as Controls from './generated/Controls.native'
-import { Tab, Tabs, TabViewBottomAccessory, TabViewSlot } from './Tabs.native'
+import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native'
 import { Compose } from './compose'
 import * as UI from './effects'
 
@@ -44,6 +44,7 @@ export const Swift =
     ? {
         Tabs,
         Tab,
+        TabSection,
         TabViewBottomAccessory,
         TabViewSlot,
         Menu,

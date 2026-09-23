@@ -8,7 +8,7 @@ export default function NativeAutogenProof() {
     <Swift.Tabs
       selection={selection}
       onSelectionChange={setSelection}
-      tabBarMinimizeBehavior="onScrollDown"
+      swiftStyle={{ tabBarMinimizeBehavior: 'onScrollDown' }}
     >
       <Swift.Tab id="proof" title="Proof" systemImage="wand.and.stars">
         <ScrollView style={{ flex: 1, backgroundColor: '#f5f6fa' }}>

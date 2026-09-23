@@ -156,6 +156,44 @@ export const containerComponents = [
     interfaceOnly: false,
   },
   {
+    name: 'OneNativeTabs',
+    publicName: 'Tabs',
+    props: {
+      selection: 'string',
+      tabViewStyle: 'string',
+      tabBarVisibility: 'string',
+      // TabViewCustomization as its Codable JSON; empty leaves customization unbound.
+      customization: 'string',
+      customizable: 'boolean',
+      bottomAccessoryEnabled: 'boolean',
+      acknowledgedEvent: 'Int32',
+      revision: 'Int32',
+    },
+    events: {
+      onNativeTabsSelectionChange: { selection: 'string', eventCount: 'Int32', revision: 'Int32' },
+      // pressing an action tab is not a state change, so it carries no controlled event.
+      onNativeTabsAction: { tabId: 'string' },
+      onNativeTabsCustomizationChange: { customization: 'string' },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
+    },
+    enumProps: { tabViewStyle: 'TabViewStyle', tabBarVisibility: 'Visibility' },
+    controlled: { value: 'selection', event: 'onNativeTabsSelectionChange' },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'pages',
+        content: 'OneNativeTab',
+        cardinality: 'many',
+        key: 'tabId',
+        layout: 'swiftui',
+      },
+    ],
+    // tabBarMinimizeBehavior, tabViewSearchActivation, defaultTabBarPlacement and every
+    // other scalar TabView modifier the SDK declares reach the TabView through swiftStyle.
+    swiftStyle: true,
+    interfaceOnly: false,
+  },
+  {
     name: 'OneNativeContainerSlot',
     publicName: 'Slot',
     props: { height: 'Double', width: 'Double' },
