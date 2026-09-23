@@ -64,6 +64,12 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
             ? 'url'
             : undefined
     if (kind) return { kind, type, optional }
+    if (baseType === 'SwiftUICore.Image' && inventory.some((declaration) =>
+      declaration.module === 'SwiftUICore' && declaration.owner === baseType &&
+      declaration.kind === 'init' && declaration.parameters.length === 1 &&
+      declaration.parameters[0].label === 'systemName' &&
+      declaration.parameters[0].type === 'Swift.String' && present(declaration) && ios(declaration) <= ceiling))
+      return { kind: 'string', type, optional }
     if (baseType === '[Swift.String]' || baseType === '[SwiftUICore.Text]')
       return { kind: 'stringArray', type, optional }
     if (baseType === 'Swift.Set<Swift.String>')
@@ -336,9 +342,9 @@ export function deriveModifiers(
         const styleRequirement = /^([A-Za-z_]\w*) : ([A-Za-z_]\w*\.[A-Za-z][\w.]*)$/.exec(method.requirements[0])
         const style = styleRequirement?.[2]
         if (styleRequirement && style && method.parameters[0]?.type === styleRequirement[1] &&
-          ((styleRequirement[1] === 'S' && method.parameters.length === 1) || (style === 'SwiftUICore.Shape' &&
+          (((styleRequirement[1] === 'S' || style === 'SwiftUICore.InsettableShape') && method.parameters.length === 1) || (style === 'SwiftUICore.Shape' &&
             method.parameters.slice(1).every((parameter) => parameter.defaultValue !== undefined)))) {
-          const cases = styleCases(style)
+          const cases = styleCases(style === 'SwiftUICore.InsettableShape' ? 'SwiftUICore.Shape' : style)
           if (cases) return [{ name, module: method.module, kind: 'style', type: styleRequirement[1], ios: ios(method), cases, ...framework }]
         }
         const hashable = /^([A-Za-z_]\w*) : Swift.Hashable$/.exec(method.requirements[0])?.[1]

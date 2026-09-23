@@ -157,7 +157,7 @@ ${cases}
           }
           return `    let ${variable}: ${argument.type} = {
       guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
-      return ${baseType === 'SwiftUICore.Text' ? 'Text(raw)' : 'raw'}
+      return ${baseType === 'SwiftUICore.Text' ? 'Text(raw)' : baseType === 'SwiftUICore.Image' ? 'Image(systemName: raw)' : 'raw'}
     }()`
         }).join('\n')
         const call = argumentsFromSDK.map((argument, index) =>
@@ -273,7 +273,7 @@ ${validation}    ${apply(argumentsFromSDK ?? bridge, modifier.ios, argumentsFrom
       ${apply(modifier.type === 'CoreFoundation.CGFloat?' ? 'CGFloat(number)' : modifier.type === 'Swift.Float?' ? 'Float(number)' : modifier.type === 'Swift.Int?' ? 'Int(number)' : 'number', modifier.ios)}
     } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
             : `if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
-      ${apply(modifier.rawString ? `${modifier.type.replace(/\?$/, '')}(rawValue: decoded)` : modifier.type === 'SwiftUICore.Text?' ? 'Text(decoded)' : 'decoded', modifier.ios)}
+      ${apply(modifier.rawString ? `${modifier.type.replace(/\?$/, '')}(rawValue: decoded)` : modifier.type === 'SwiftUICore.Text?' ? 'Text(decoded)' : modifier.type === 'SwiftUICore.Image?' ? 'Image(systemName: decoded)' : 'decoded', modifier.ios)}
     } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if value == "null" { ${apply(nil, modifier.ios)} } else { ${parsed} }
@@ -310,7 +310,7 @@ ${modifier.cases
           modifier.ios
         )}
       } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
-            : `      ${apply(modifier.rawString ? `${modifier.type}(rawValue: value)` : modifier.type === 'SwiftUICore.Text' ? 'Text(value)' : 'value', modifier.ios)}`
+            : `      ${apply(modifier.rawString ? `${modifier.type}(rawValue: value)` : modifier.type === 'SwiftUICore.Text' ? 'Text(value)' : modifier.type === 'SwiftUICore.Image' ? 'Image(systemName: value)' : 'value', modifier.ios)}`
       return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
 ${parsed}
   }`
