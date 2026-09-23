@@ -213,6 +213,7 @@ extension View {
       case "disclosureGroupStyle": view = AnyView(view.oneNativeSDKDisclosureGroupStyle(value, emit: emit))
       case "documentLaunchSubtitle": view = AnyView(view.oneNativeSDKDocumentLaunchSubtitle(value, emit: emit))
       case "documentLaunchTitle": view = AnyView(view.oneNativeSDKDocumentLaunchTitle(value, emit: emit))
+      case "dragConfiguration": view = AnyView(view.oneNativeSDKDragConfiguration(value, emit: emit))
       case "drawingGroup": view = AnyView(view.oneNativeSDKDrawingGroup(value, emit: emit))
       case "dynamicTypeSize": view = AnyView(view.oneNativeSDKDynamicTypeSize(value, emit: emit))
       case "edgesIgnoringSafeArea": view = AnyView(view.oneNativeSDKEdgesIgnoringSafeArea(value, emit: emit))
@@ -279,6 +280,7 @@ extension View {
       case "labelsVisibility": view = AnyView(view.oneNativeSDKLabelsVisibility(value, emit: emit))
       case "layoutDirectionBehavior": view = AnyView(view.oneNativeSDKLayoutDirectionBehavior(value, emit: emit))
       case "layoutPriority": view = AnyView(view.oneNativeSDKLayoutPriority(value, emit: emit))
+      case "lineHeight": view = AnyView(view.oneNativeSDKLineHeight(value, emit: emit))
       case "lineLimitWithLimitAndReservesSpace": view = AnyView(view.oneNativeSDKLineLimitWithLimitAndReservesSpace(value, emit: emit))
       case "lineLimitWithOptionalInt": view = AnyView(view.oneNativeSDKLineLimitWithOptionalInt(value, emit: emit))
       case "lineSpacing": view = AnyView(view.oneNativeSDKLineSpacing(value, emit: emit))
@@ -2137,6 +2139,11 @@ extension View {
       if #available(iOS 27, *) { self.documentLaunchTitle(Text(value)) } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKDragConfiguration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid dragConfiguration: \(value)")
+      if #available(iOS 27, *) { self.dragConfiguration(SwiftUI.DragConfiguration(allowMove: value == "true")) } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKDrawingGroup(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -2930,6 +2937,17 @@ extension View {
       if let number = Double(value), number.isFinite {
         self.layoutPriority(number)
       } else { preconditionFailure("invalid layoutPriority: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKLineHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": if #available(iOS 26, *) { self.lineHeight(nil as Foundation.AttributedString.LineHeight?) } else { self }
+      case "variable": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.variable) } else { self }
+      case "normal": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.normal) } else { self }
+      case "tight": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.tight) } else { self }
+      case "loose": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.loose) } else { self }
+    default: preconditionFailure("invalid lineHeight: \(value)")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKLineLimitWithLimitAndReservesSpace(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

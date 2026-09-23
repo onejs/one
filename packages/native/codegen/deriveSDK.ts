@@ -16,6 +16,7 @@ export type DerivedArgument = {
   cases?: readonly { name: string; ios: number }[]
   fields?: readonly { name: string; label: string; type: string }[]
   wrappedType?: string
+  scalarConstructor?: { label: string; type: string }
 }
 
 export type EventValueSchema =
@@ -33,6 +34,7 @@ export type DerivedModifier = {
   ios: number
   type: string
   rawString?: true
+  scalarConstructor?: { label: string; type: string }
   cases?: readonly { name: string; ios: number }[]
   associatedCases?: readonly { name: string; values: readonly EventValueSchema[] }[]
   eventValue?: EventValueSchema
@@ -89,7 +91,7 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
     const [module, ...owner] = baseType.split('.')
     const ownerName = owner.join('.')
     let numericStruct: Omit<DerivedArgument, 'field' | 'label'> | undefined
-    const publicStruct = inventory.some((d) => d.module === module && d.kind === 'struct' &&
+    const publicStruct = inventory.find((d) => d.module === module && d.kind === 'struct' &&
       d.owner === owner.slice(0, -1).join('.') && d.name === owner.at(-1) &&
       !d.generic && present(d) && ios(d) <= ceiling)
     if (publicStruct) {
@@ -118,16 +120,31 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
     }
     const cases = inventory
       .filter((d) =>
-        d.module === module &&
-        (d.owner === owner.join('.') || d.owner === baseType) &&
+        ((d.module === module && d.owner === owner.join('.')) || d.owner === baseType) &&
         d.kind === 'static' && d.parameters.length === 0 &&
         (d.type?.replace('?', '') === owner.join('.') || d.type?.replace('?', '') === baseType ||
-          d.type?.replace('?', '') === owner.at(-1)) &&
+          d.type?.replace('?', '') === owner.at(-1) || d.type?.replace('?', '').endsWith(`.${owner.at(-1)}`)) &&
         /^[A-Za-z]/.test(d.name) && present(d) && ios(d) <= ceiling
       )
       .map((d) => ({ name: d.name, ios: ios(d) }))
     if (preferNumeric && numericStruct && cases.length < 2) return numericStruct
-    if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length) return numericStruct
+    if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length) {
+      if (numericStruct) return numericStruct
+      if (publicStruct && !publicStruct.inheritedTypes?.includes('Swift.RawRepresentable')) {
+        const constructors = inventory.filter((d) => d.module === module &&
+          (d.owner === ownerName || d.owner === baseType) && d.kind === 'init' &&
+          d.parameters.length === 1 && !d.requirements?.length &&
+          d.parameters[0].label !== 'rawValue' &&
+          ['Swift.Bool', 'Swift.String', 'Swift.Double', 'CoreFoundation.CGFloat'].includes(d.parameters[0].type) &&
+          present(d) && ios(d) <= ceiling)
+        if (constructors.length === 1) {
+          const parameter = constructors[0].parameters[0]
+          return { kind: parameter.type === 'Swift.Bool' ? 'boolean' : parameter.type === 'Swift.String' ? 'string' : 'number',
+            type, optional, scalarConstructor: { label: parameter.label, type: parameter.type } }
+        }
+      }
+      return
+    }
     return { kind: 'enum', type, optional, cases }
   }
 }
@@ -480,6 +497,7 @@ export function deriveModifiers(
           ? `optional${value.kind[0].toUpperCase()}${value.kind.slice(1)}` as DerivedModifier['kind']
           : value.kind
       return [{ name, module: method.module, kind, type, ios: ios(method), ...framework,
+        ...(value.scalarConstructor ? { scalarConstructor: value.scalarConstructor } : {}),
         ...(value.cases ? { cases: value.cases } : {}), ...(label === '_' ? {} : { label }) }]
     })
     if (candidates.some((candidate) => candidate.transformMember)) {

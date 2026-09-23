@@ -3671,6 +3671,16 @@
       "ios": 27
     },
     {
+      "name": "dragConfiguration",
+      "kind": "boolean",
+      "type": "SwiftUI.DragConfiguration",
+      "ios": 27,
+      "scalarConstructor": {
+        "label": "allowMove",
+        "type": "Swift.Bool"
+      }
+    },
+    {
       "name": "drawingGroup",
       "kind": "record",
       "type": "",
@@ -5204,6 +5214,30 @@
       "kind": "number",
       "type": "Swift.Double",
       "ios": 13
+    },
+    {
+      "name": "lineHeight",
+      "kind": "optionalEnum",
+      "type": "Foundation.AttributedString.LineHeight?",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "variable",
+          "ios": 26
+        },
+        {
+          "name": "normal",
+          "ios": 26
+        },
+        {
+          "name": "tight",
+          "ios": 26
+        },
+        {
+          "name": "loose",
+          "ios": 26
+        }
+      ]
     },
     {
       "name": "lineLimitWithLimitAndReservesSpace",
@@ -12069,6 +12103,7 @@
         "kerning",
         "layoutDirectionBehavior",
         "layoutPriority",
+        "lineHeight",
         "lineLimit",
         "lineSpacing",
         "luminanceToAlpha",
@@ -12187,6 +12222,7 @@
         "documentBrowserContextMenu",
         "documentLaunchSubtitle",
         "documentLaunchTitle",
+        "dragConfiguration",
         "fileDialogBrowserOptions",
         "fileDialogConfirmationLabel",
         "fileDialogCustomizationID",

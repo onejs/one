@@ -137,6 +137,8 @@ export declare const sdkLabelsVisibilityValues: readonly ['automatic', 'visible'
 export type SDKLabelsVisibility = (typeof sdkLabelsVisibilityValues)[number];
 export declare const sdkLayoutDirectionBehaviorValues: readonly ['fixed', 'mirrors'];
 export type SDKLayoutDirectionBehavior = (typeof sdkLayoutDirectionBehaviorValues)[number];
+export declare const sdkLineHeightValues: readonly ['variable', 'normal', 'tight', 'loose'];
+export type SDKLineHeight = (typeof sdkLineHeightValues)[number];
 export declare const sdkListItemTintWithOptionalColorValues: readonly ['accentColor', 'red', 'orange', 'yellow', 'green', 'mint', 'teal', 'cyan', 'blue', 'indigo', 'purple', 'pink', 'brown', 'white', 'gray', 'black', 'clear', 'primary', 'secondary'];
 export type SDKListItemTintWithOptionalColor = (typeof sdkListItemTintWithOptionalColorValues)[number];
 export declare const sdkListItemTintWithOptionalListItemTintValues: readonly ['monochrome'];
@@ -565,6 +567,7 @@ export interface OneNativeStyle {
     disclosureGroupStyle?: SDKDisclosureGroupStyle;
     documentLaunchSubtitle?: string;
     documentLaunchTitle?: string;
+    dragConfiguration?: boolean;
     drawingGroup?: Readonly<{
         opaque: boolean;
         colorMode: 'nonLinear' | 'linear' | 'extendedLinear';
@@ -673,6 +676,7 @@ export interface OneNativeStyle {
     labelsVisibility?: SDKLabelsVisibility;
     layoutDirectionBehavior?: SDKLayoutDirectionBehavior;
     layoutPriority?: number;
+    lineHeight?: SDKLineHeight | null;
     lineLimitWithLimitAndReservesSpace?: Readonly<{
         limit: number;
         reservesSpace: boolean;
