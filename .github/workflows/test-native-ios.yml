@@ -65,6 +65,8 @@ jobs:
         working-directory: packages/native
         run: |
           bun run generate:check
+          bun run build
+          git diff --exit-code -- types/generated
           bun run typecheck
           bun run test
       - name: Generate the One Native consumer project
@@ -74,7 +76,7 @@ jobs:
         run: bun run prebuild:native --platform ios --no-install
       - name: Install consumer pods
         working-directory: tests/native-features/ios
-        run: pod install
+        run: USE_FRAMEWORKS=static pod install
       - name: Compile One Native and generated Fabric code
         working-directory: tests/native-features/ios
         run: >-

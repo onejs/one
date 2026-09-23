@@ -16,16 +16,15 @@ Pod::Spec.new do |s|
   s.source         = { git: 'https://github.com/onejs/one.git' }
   s.static_framework = true
 
+  sdk_version = Gem::Version.new(`xcrun --sdk iphoneos --show-sdk-version`.strip)
+  swift_flags = '$(inherited) -Xcc -Wno-non-modular-include-in-framework-module'
+  swift_flags += ' -D ONE_IOS_27_1_SDK' if sdk_version >= Gem::Version.new('27.1')
   s.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
     'SWIFT_COMPILATION_MODE' => 'incremental',
     'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
-    # the iPhone Duo APIs (SwiftUI ArrangementView, UIHingeInteraction, reserved
-    # regions) first ship in the iOS 27.1 SDK, and Swift has no compile-time SDK
-    # check, so the 27.0 SDK builds without ONE_IOS_27_1_SDK.
-    'OTHER_SWIFT_FLAGS' => '$(inherited) -Xcc -Wno-non-modular-include-in-framework-module -D ONE_IOS_27_1_SDK',
-    'OTHER_SWIFT_FLAGS[sdk=iphoneos27.0*]' => '$(inherited) -Xcc -Wno-non-modular-include-in-framework-module',
-    'OTHER_SWIFT_FLAGS[sdk=iphonesimulator27.0*]' => '$(inherited) -Xcc -Wno-non-modular-include-in-framework-module',
+    # the iPhone Duo APIs first ship in the iOS 27.1 SDK.
+    'OTHER_SWIFT_FLAGS' => swift_flags,
     'HEADER_SEARCH_PATHS' => '"$(PODS_TARGET_SRCROOT)/cpp" "$(OBJECT_FILE_DIR_normal)/$(CURRENT_ARCH)"',
   }
 
