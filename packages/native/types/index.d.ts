@@ -12,6 +12,7 @@ export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/ind
 export { AppInfo } from './app-info/index';
 export type { AppInfoApi } from './app-info/index';
 export { ImagePicker } from './image-picker/index';
+export { Database } from './database/index';
 export type { ImagePickerAsset, ImagePickerCanceledResult, ImagePickerMediaType, ImagePickerOptions, ImagePickerPermissionResponse, ImagePickerResult, ImagePickerSuccessResult, } from './image-picker/index';
 export { UI };
 //# sourceMappingURL=index.d.ts.map
