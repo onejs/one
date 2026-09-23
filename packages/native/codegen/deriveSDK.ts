@@ -32,7 +32,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -41,6 +41,9 @@ export type DerivedModifier = {
   cases?: readonly { name: string; ios: number }[]
   associatedCases?: readonly { name: string; values: readonly EventValueSchema[] }[]
   eventValue?: EventValueSchema
+  eventInputType?: string
+  resultType?: string
+  resultConstructor?: { type: string; label: string }
   eventPair?: true
   transformMember?: string
   zeroArgument?: true
@@ -507,6 +510,52 @@ export function deriveModifiers(
         return [{ name, module: method.module, kind: 'boolean', type: method.parameters[0].type,
           predicateInput: predicateValue, ios: ios(method), ...framework,
           ...(method.parameters[0].label === '_' ? {} : { label: method.parameters[0].label }) }]
+      const resultCallback = method.parameters.filter((parameter) =>
+        /^@escaping \(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> ([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)$/.test(parameter.type))
+      if (resultCallback.length === 1 && method.parameters.every((parameter) =>
+        parameter === resultCallback[0] || parameter.defaultValue !== undefined)) {
+        const [, inputType, resultType] = /^@escaping \(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> ([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)$/.exec(resultCallback[0].type)!
+        const input = eventValueOf(inputType, ios(method))
+        const casesOf = (enumType: string) => {
+          const [module, ...parts] = enumType.split('.')
+          const owner = parts.join('.')
+          if (!inventory.some((d) => d.module === module && d.kind === 'enum' &&
+            (d.owner === parts.slice(0, -1).join('.') ||
+              d.owner === [module, ...parts.slice(0, -1)].join('.')) && d.name === parts.at(-1) &&
+            present(d) && ios(d) <= ceiling)) return
+          const cases = inventory.filter((d) => d.module === module &&
+            (d.owner === owner || d.owner === enumType) && d.enumCase &&
+            d.parameters.length === 0 && present(d) && ios(d) <= ceiling)
+            .map((d) => ({ name: d.name, ios: ios(d) }))
+          return cases.length && new Set(cases.map((item) => item.name)).size === cases.length
+            ? cases : undefined
+        }
+        let cases = casesOf(resultType)
+        let resultConstructor: DerivedModifier['resultConstructor']
+        if (!cases) {
+          const [module, ...parts] = resultType.split('.')
+          const owner = parts.join('.')
+          if (inventory.some((d) => d.module === module && d.kind === 'struct' &&
+            d.owner === parts.slice(0, -1).join('.') && d.name === parts.at(-1) &&
+            present(d) && ios(d) <= ceiling)) {
+            const constructors = inventory.filter((d) => d.module === module &&
+              (d.owner === owner || d.owner === resultType) && d.kind === 'init' &&
+              d.parameters.length === 1 && present(d) && ios(d) <= ceiling &&
+              casesOf(d.parameters[0].type))
+            if (constructors.length === 1) {
+              resultConstructor = { type: constructors[0].parameters[0].type,
+                label: constructors[0].parameters[0].label }
+              cases = casesOf(resultConstructor.type)
+            }
+          }
+        }
+        if (input && cases)
+          return [{ name, module: method.module, kind: 'eventReturnEnum',
+            type: resultCallback[0].type, label: resultCallback[0].label,
+            eventInputType: inputType, eventValue: input, resultType,
+            ...(resultConstructor ? { resultConstructor } : {}),
+            cases, ios: ios(method), ...framework }]
+      }
       const codableBinding = (type: string) => {
         const valueType = /^SwiftUICore\.Binding<([A-Za-z_]\w*\.[A-Za-z][\w.]*)>\??$/.exec(type)?.[1]
         if (!valueType) return

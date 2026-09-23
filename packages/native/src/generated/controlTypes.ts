@@ -418,6 +418,8 @@ export const sdkDefersSystemGesturesValues = [
 export type SDKDefersSystemGestures = (typeof sdkDefersSystemGesturesValues)[number]
 export const sdkDisclosureGroupStyleValues = ['automatic'] as const
 export type SDKDisclosureGroupStyle = (typeof sdkDisclosureGroupStyleValues)[number]
+export const sdkDropConfigurationValues = ['cancel', 'forbidden', 'copy', 'move'] as const
+export type SDKDropConfiguration = (typeof sdkDropConfigurationValues)[number]
 export const sdkDynamicTypeSizeValues = [
   'xSmall',
   'small',
@@ -701,6 +703,8 @@ export const sdkNavigationTransitionValues = ['automatic', 'crossFade'] as const
 export type SDKNavigationTransition = (typeof sdkNavigationTransitionValues)[number]
 export const sdkNavigationViewStyleValues = ['columns', 'automatic', 'stack'] as const
 export type SDKNavigationViewStyle = (typeof sdkNavigationViewStyleValues)[number]
+export const sdkOnKeyPressValues = ['handled', 'ignored'] as const
+export type SDKOnKeyPress = (typeof sdkOnKeyPressValues)[number]
 export const sdkOnScrollPhaseChangeValues = [
   'idle',
   'tracking',
@@ -1617,6 +1621,15 @@ export interface OneNativeStyle {
     opaque: boolean
     colorMode: 'nonLinear' | 'linear' | 'extendedLinear'
   }>
+  dropConfiguration?: Readonly<{
+    result: 'cancel' | 'forbidden' | 'copy' | 'move'
+    onAction: (value: {
+      itemsCount: number
+      suggestedOperations: { rawValue: number }
+      size: { width: number; height: number }
+      location: { x: number; y: number }
+    }) => void
+  }>
   dynamicTypeSize?: SDKDynamicTypeSize
   edgesIgnoringSafeArea?: SDKEdgesIgnoringSafeArea
   fileDialogBrowserOptions?: SDKFileDialogBrowserOptions
@@ -1941,6 +1954,10 @@ export interface OneNativeStyle {
   }) => void
   onHover?: (value: boolean) => void
   onInteractiveResizeChange?: (value: boolean) => void
+  onKeyPress?: Readonly<{
+    result: 'handled' | 'ignored'
+    onAction: (value: { characters: string; modifiers: { rawValue: number } }) => void
+  }>
   onLongPressGesture?: () => void
   onMapCameraChange?: () => void
   onMapCameraChangeWithEventStruct?: (value: {

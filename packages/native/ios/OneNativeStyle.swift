@@ -224,6 +224,7 @@ extension View {
       case "dragConfiguration": view = AnyView(view.oneNativeSDKDragConfiguration(value, emit: emit))
       case "draggable": view = AnyView(view.oneNativeSDKDraggable(value, emit: emit))
       case "drawingGroup": view = AnyView(view.oneNativeSDKDrawingGroup(value, emit: emit))
+      case "dropConfiguration": view = AnyView(view.oneNativeSDKDropConfiguration(value, emit: emit))
       case "dynamicTypeSize": view = AnyView(view.oneNativeSDKDynamicTypeSize(value, emit: emit))
       case "edgesIgnoringSafeArea": view = AnyView(view.oneNativeSDKEdgesIgnoringSafeArea(value, emit: emit))
       case "fileDialogBrowserOptions": view = AnyView(view.oneNativeSDKFileDialogBrowserOptions(value, emit: emit))
@@ -355,6 +356,7 @@ extension View {
       case "onGeometryChangeWithSize": view = AnyView(view.oneNativeSDKOnGeometryChangeWithSize(value, emit: emit))
       case "onHover": view = AnyView(view.oneNativeSDKOnHover(value, emit: emit))
       case "onInteractiveResizeChange": view = AnyView(view.oneNativeSDKOnInteractiveResizeChange(value, emit: emit))
+      case "onKeyPress": view = AnyView(view.oneNativeSDKOnKeyPress(value, emit: emit))
       case "onLongPressGesture": view = AnyView(view.oneNativeSDKOnLongPressGesture(value, emit: emit))
       case "onMapCameraChange": view = AnyView(view.oneNativeSDKOnMapCameraChange(value, emit: emit))
       case "onMapCameraChangeWithEventStruct": view = AnyView(view.oneNativeSDKOnMapCameraChangeWithEventStruct(value, emit: emit))
@@ -2353,6 +2355,28 @@ extension View {
     self.drawingGroup(opaque: argument0, colorMode: argument1)
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKDropConfiguration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 27, *) {
+      let selected: SwiftUI.DropConfiguration = {
+      switch value {
+      case "cancel": return SwiftUI.DropConfiguration(operation: SwiftUI.DropOperation.cancel)
+      case "forbidden": return SwiftUI.DropConfiguration(operation: SwiftUI.DropOperation.forbidden)
+      case "copy": return SwiftUI.DropConfiguration(operation: SwiftUI.DropOperation.copy)
+      case "move": return SwiftUI.DropConfiguration(operation: SwiftUI.DropOperation.move)
+      default: preconditionFailure("invalid dropConfiguration: \(value)")
+      }
+    }()
+    let action: (SwiftUI.DropSession) -> SwiftUI.DropConfiguration = { item in
+      let payload = (["itemsCount": Double(item.itemsCount), "suggestedOperations": (["rawValue": Double(item.suggestedOperations.rawValue)] as [String: Any]), "size": (["width": Double(item.size.width), "height": Double(item.size.height)] as [String: Any]), "location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid dropConfiguration event") }
+      emit("dropConfiguration", encoded)
+      return selected
+    }
+    self.dropConfiguration(action)
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKDynamicTypeSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -3916,6 +3940,24 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKOnInteractiveResizeChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 26, *) { self.onInteractiveResizeChange({ value in emit("onInteractiveResizeChange", String(value)) }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnKeyPress(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let selected: SwiftUI.KeyPress.Result = {
+      switch value {
+      case "handled": return SwiftUI.KeyPress.Result.handled
+      case "ignored": return SwiftUI.KeyPress.Result.ignored
+      default: preconditionFailure("invalid onKeyPress: \(value)")
+      }
+    }()
+    let action: (SwiftUI.KeyPress) -> SwiftUI.KeyPress.Result = { item in
+      let payload = (["characters": item.characters, "modifiers": (["rawValue": Double(item.modifiers.rawValue)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onKeyPress event") }
+      emit("onKeyPress", encoded)
+      return selected
+    }
+    self.onKeyPress(action: action)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnLongPressGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

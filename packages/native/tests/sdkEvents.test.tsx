@@ -183,6 +183,39 @@ describe('SDK callback and binding transport', () => {
     })
   })
 
+  it('returns configured SDK results and dispatches structured callback inputs', () => {
+    const onDrop = vi.fn()
+    const onKey = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      dropConfiguration: { result: 'copy', onAction: onDrop },
+      onKeyPress: { result: 'handled', onAction: onKey },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['dropConfiguration', 'copy'],
+      ['onKeyPress', 'handled'],
+    ])
+    const drop = {
+      itemsCount: 2,
+      suggestedOperations: { rawValue: 3 },
+      size: { width: 80, height: 40 },
+      location: { x: 10, y: 5 },
+    }
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'dropConfiguration', value: JSON.stringify(drop),
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onKeyPress', value: '{"characters":"a","modifiers":{"rawValue":1}}',
+    } })
+    expect(onDrop).toHaveBeenCalledWith(drop)
+    expect(onKey).toHaveBeenCalledWith({ characters: 'a', modifiers: { rawValue: 1 } })
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      onKeyPress: { result: 'invalid' as 'handled', onAction: onKey },
+    } })).toThrow('SDK result and callback')
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'dropConfiguration', value: '{"itemsCount":"bad"}',
+    } })).toThrow('invalid result event')
+  })
+
   it('round trips a Codable customization binding through native JSON', () => {
     const onChange = vi.fn()
     const current = '{"perTabState":[],"identifier":"D9754350-75EE-4390-AC54-159710381977","perSectionState":[]}'
