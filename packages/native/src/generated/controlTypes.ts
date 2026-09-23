@@ -1760,12 +1760,15 @@ export interface OneNativeStyle {
   offset?: Readonly<{ x: number; y: number }>
   onAppear?: () => void
   onChange?: Readonly<{ value: string; onChange: (value: string) => void }>
+  onContinuousHover?: (
+    value:
+      | { case: 'active'; values: readonly [{ x: number; y: number }] }
+      | { case: 'ended'; values: readonly [] }
+  ) => void
   onDisappear?: () => void
   onHover?: (value: boolean) => void
   onInteractiveResizeChange?: (value: boolean) => void
-  onLongPressGestureWithPerform?: () => void
-  onLongPressGestureWithPerformFromSwiftUI?: () => void
-  onLongPressGestureWithPerformFromSwiftUIVariant?: () => void
+  onLongPressGesture?: () => void
   onMapCameraChange?: () => void
   onOpenURLWithPerform?: (value: string) => void
   onOpenURLWithPrefersInApp?: boolean

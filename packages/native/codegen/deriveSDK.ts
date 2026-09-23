@@ -19,11 +19,12 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventValueString' | 'bindingBoolean' | 'bindingString'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventValueString' | 'bindingBoolean' | 'bindingString'
   ios: number
   type: string
   rawString?: true
   cases?: readonly { name: string; ios: number }[]
+  associatedCases?: readonly { name: string; values: readonly ('point' | 'number' | 'string' | 'boolean')[] }[]
   zeroArgument?: true
   framework?: string
   label?: string
@@ -141,6 +142,28 @@ export function deriveModifiers(
       ? { pair: Boolean(pair), cases: value.cases! }
       : undefined
   }
+  const associatedCallbackOf = (type: string, version: number) => {
+    const baseType = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> Swift\.Void$/.exec(type)?.[1]
+    if (!baseType) return
+    const [module, ...parts] = baseType.split('.')
+    const owner = parts.join('.')
+    if (!inventory.some((d) => d.module === module && d.kind === 'enum' &&
+      d.owner === parts.slice(0, -1).join('.') && d.name === parts.at(-1) &&
+      d.attributes.includes('@frozen') && present(d))) return
+    const cases = inventory.filter((d) => d.module === module && (d.owner === owner || d.owner === baseType) &&
+      d.enumCase && present(d) && ios(d) <= version)
+    if (cases.length < 2 || !cases.some((item) => item.parameters.length) ||
+      new Set(cases.map((item) => item.name)).size !== cases.length) return
+    const values = cases.map((item) => ({ name: item.name, values: item.parameters.map((parameter) =>
+      parameter.type === 'CoreFoundation.CGPoint' ? 'point' as const
+      : ['Swift.Double', 'Swift.Float', 'Swift.Int', 'CoreFoundation.CGFloat'].includes(parameter.type) ? 'number' as const
+      : parameter.type === 'Swift.String' ? 'string' as const
+      : parameter.type === 'Swift.Bool' ? 'boolean' as const
+      : undefined) }))
+    return values.every((item) => item.values.every(Boolean))
+      ? values as { name: string; values: ('point' | 'number' | 'string' | 'boolean')[] }[]
+      : undefined
+  }
   const styleCases = (style: string) => {
     const cases = inventory.filter((d) =>
       d.kind === 'static' && d.owner === style && d.parameters.length === 0 &&
@@ -218,12 +241,15 @@ export function deriveModifiers(
             ...framework,
           },
         ]
-      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type) || enumCallbackOf(p.type))
+      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type) || enumCallbackOf(p.type) || associatedCallbackOf(p.type, ios(method)))
       if (bridged.length === 1 && method.parameters.every((p) => p === bridged[0] || p.defaultValue !== undefined)) {
         const parameter = bridged[0]
         const callbackValue = scalarCallbackType.exec(parameter.type)?.[1]
         const enumCallback = enumCallbackOf(parameter.type)
-        const kind = enumCallback
+        const associatedCallback = associatedCallbackOf(parameter.type, ios(method))
+        const kind = associatedCallback
+          ? 'eventAssociatedEnum'
+          : enumCallback
           ? enumCallback.pair ? 'eventEnumPair' : 'eventEnum'
           : parameter.type.includes('Binding<Swift.Bool>')
           ? 'bindingBoolean'
@@ -239,6 +265,7 @@ export function deriveModifiers(
         return [{
           name, module: method.module, kind, type: parameter.type, label: parameter.label, ios: ios(method), ...framework,
           ...(enumCallback ? { cases: enumCallback.cases } : {}),
+          ...(associatedCallback ? { associatedCases: associatedCallback } : {}),
           ...(method.parameters.length > 1 ? {
             callArguments: method.parameters.map((p) =>
               p === parameter ? { label: p.label, bridge: true as const } : { label: p.label, defaultValue: p.defaultValue }
@@ -291,8 +318,12 @@ export function deriveModifiers(
       return [{ name, module: method.module, kind, type, ios: ios(method), ...framework,
         ...(value.cases ? { cases: value.cases } : {}), ...(label === '_' ? {} : { label }) }]
     })
-    const concrete = candidates.filter((candidate) => !candidate.type.startsWith('some '))
-    const preferred = concrete.length ? concrete : candidates
+    const unique = candidates.filter((candidate, index) => !candidate.kind.startsWith('event') ||
+      !candidates.some((other, otherIndex) => otherIndex !== index && other.kind === candidate.kind &&
+        other.module === candidate.module && other.type === candidate.type && other.label === candidate.label &&
+        (other.ios < candidate.ios || (other.ios === candidate.ios && otherIndex < index))))
+    const concrete = unique.filter((candidate) => !candidate.type.startsWith('some '))
+    const preferred = concrete.length ? concrete : unique
     const established = preferred.filter((candidate) =>
       candidate.kind !== 'record' || !candidate.arguments?.some((argument) => argument.sdkType))
     const selected = established.length ? established : preferred

@@ -20,6 +20,7 @@ struct Declaration: Codable {
   let line: Int
   let inheritedTypes: [String]?
   let generic: Bool?
+  let enumCase: Bool?
 }
 // generic requirement elements carry their trailing comma; selectors compare on the text alone.
 func requirementText(_ requirement: GenericRequirementSyntax) -> String {
@@ -42,13 +43,13 @@ final class Inventory: SyntaxVisitor {
   func attributes(_ attrs: AttributeListSyntax) -> [String] {
     attrs.compactMap { $0.as(AttributeSyntax.self)?.trimmedDescription }
   }
-  func record(_ node: some SyntaxProtocol, kind: String, name: String, attrs: AttributeListSyntax, parameters: FunctionParameterListSyntax? = nil, type: String? = nil, whereClause: GenericWhereClauseSyntax? = nil, inheritedTypes: [String]? = nil, generic: Bool? = nil) {
+  func record(_ node: some SyntaxProtocol, kind: String, name: String, attrs: AttributeListSyntax, parameters: FunctionParameterListSyntax? = nil, type: String? = nil, whereClause: GenericWhereClauseSyntax? = nil, inheritedTypes: [String]? = nil, generic: Bool? = nil, enumCase: Bool? = nil) {
     declarations.append(Declaration(module: module, owner: owners.joined(separator: "."), kind: kind, name: name.replacingOccurrences(of: "`", with: ""),
       attributes: availability.flatMap { $0 } + attributes(attrs),
       requirements: requirements.flatMap { $0 } + (whereClause?.requirements.map(requirementText) ?? []),
       parameters: parameters?.map { Parameter(label: $0.firstName.text, name: $0.secondName?.text ?? $0.firstName.text, type: $0.type.trimmedDescription, defaultValue: $0.defaultValue?.value.trimmedDescription) } ?? [],
       type: type, line: location.location(for: node.positionAfterSkippingLeadingTrivia).line,
-      inheritedTypes: inheritedTypes, generic: generic))
+      inheritedTypes: inheritedTypes, generic: generic, enumCase: enumCase))
   }
   override func visit(_ node: StructDeclSyntax) -> SyntaxVisitorContinueKind {
     record(node, kind: "struct", name: node.name.text, attrs: node.attributes,
@@ -67,8 +68,20 @@ final class Inventory: SyntaxVisitor {
   }
   override func visitPost(_ node: ExtensionDeclSyntax) { owners.removeLast(); availability.removeLast(); requirements.removeLast() }
   override func visit(_ node: EnumCaseDeclSyntax) -> SyntaxVisitorContinueKind {
-    for element in node.elements where element.parameterClause == nil {
-      record(element, kind: "static", name: element.name.text, attrs: node.attributes, type: owners.last)
+    for element in node.elements {
+      if let clause = element.parameterClause {
+        declarations.append(Declaration(module: module, owner: owners.joined(separator: "."), kind: "case", name: element.name.text,
+          attributes: availability.flatMap { $0 } + attributes(node.attributes),
+          requirements: requirements.flatMap { $0 },
+          parameters: clause.parameters.map {
+            Parameter(label: $0.firstName?.text ?? "_", name: $0.secondName?.text ?? $0.firstName?.text ?? "_",
+              type: $0.type.trimmedDescription, defaultValue: nil)
+          },
+          type: owners.last, line: location.location(for: element.positionAfterSkippingLeadingTrivia).line,
+          inheritedTypes: nil, generic: nil, enumCase: true))
+      } else {
+        record(element, kind: "static", name: element.name.text, attrs: node.attributes, type: owners.last, enumCase: true)
+      }
     }
     return .skipChildren
   }

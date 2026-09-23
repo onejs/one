@@ -289,6 +289,26 @@ describe('SDK modifier derivation', () => {
       { name: 'onScrollPhaseChange', kind: 'eventEnumPair', type: '@escaping (_ oldPhase: SwiftUICore.ScrollPhase, _ newPhase: SwiftUICore.ScrollPhase) -> Swift.Void', ios: 0, label: '_', cases: [{ name: 'idle', ios: 0 }, { name: 'tracking', ios: 0 }] },
     ])
   })
+
+  it('derives a frozen enum callback with a point payload', () => {
+    expect(deriveModifiers([
+      method('onContinuousHover', 'SwiftUI', [
+        { label: 'perform', name: 'action', type: '@escaping (SwiftUI.HoverPhase) -> Swift.Void' },
+      ]),
+      { ...method('onContinuousHover', 'SwiftUI', [
+        { label: 'coordinateSpace', name: 'coordinateSpace', type: 'some CoordinateSpaceProtocol', defaultValue: '.local' },
+        { label: 'perform', name: 'action', type: '@escaping (SwiftUI.HoverPhase) -> Swift.Void' },
+      ]), attributes: ['@available(iOS 17.0, *)'] },
+      { ...method('HoverPhase', 'SwiftUI'), kind: 'enum', owner: '', attributes: ['@frozen'] },
+      { ...method('active', 'SwiftUI', [{ label: '_', name: 'point', type: 'CoreFoundation.CGPoint' }]), kind: 'case', owner: 'HoverPhase', enumCase: true },
+      { ...method('ended', 'SwiftUI'), kind: 'static', owner: 'HoverPhase', type: 'HoverPhase', enumCase: true },
+    ], 27, [])).toEqual([
+      { name: 'onContinuousHover', kind: 'eventAssociatedEnum', type: '@escaping (SwiftUI.HoverPhase) -> Swift.Void',
+        ios: 0, label: 'perform', associatedCases: [
+          { name: 'active', values: ['point'] }, { name: 'ended', values: [] },
+        ] },
+    ])
+  })
 })
 
 describe('SDK view slots', () => {

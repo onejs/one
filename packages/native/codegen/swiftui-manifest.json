@@ -6261,6 +6261,35 @@
       "ios": 14
     },
     {
+      "name": "onContinuousHover",
+      "kind": "eventAssociatedEnum",
+      "type": "@escaping (SwiftUI.HoverPhase) -> Swift.Void",
+      "label": "perform",
+      "ios": 16,
+      "associatedCases": [
+        {
+          "name": "active",
+          "values": [
+            "point"
+          ]
+        },
+        {
+          "name": "ended",
+          "values": []
+        }
+      ],
+      "callArguments": [
+        {
+          "label": "coordinateSpace",
+          "defaultValue": ".local"
+        },
+        {
+          "label": "perform",
+          "bridge": true
+        }
+      ]
+    },
+    {
       "name": "onDisappear",
       "kind": "event",
       "type": "(() -> Swift.Void)?",
@@ -6282,8 +6311,7 @@
       "ios": 26
     },
     {
-      "name": "onLongPressGestureWithPerform",
-      "module": "SwiftUI",
+      "name": "onLongPressGesture",
       "kind": "event",
       "type": "@escaping () -> Swift.Void",
       "label": "perform",
@@ -6305,66 +6333,7 @@
           "label": "onPressingChanged",
           "defaultValue": "nil"
         }
-      ],
-      "sdkName": "onLongPressGesture"
-    },
-    {
-      "name": "onLongPressGestureWithPerformFromSwiftUI",
-      "module": "SwiftUI",
-      "kind": "event",
-      "type": "@escaping () -> Swift.Void",
-      "label": "perform",
-      "ios": 27,
-      "callArguments": [
-        {
-          "label": "minimumDuration",
-          "defaultValue": "0.5"
-        },
-        {
-          "label": "maximumDistance",
-          "defaultValue": "10"
-        },
-        {
-          "label": "inputKinds",
-          "defaultValue": ".all"
-        },
-        {
-          "label": "perform",
-          "bridge": true
-        },
-        {
-          "label": "onPressingChanged",
-          "defaultValue": "nil"
-        }
-      ],
-      "sdkName": "onLongPressGesture"
-    },
-    {
-      "name": "onLongPressGestureWithPerformFromSwiftUIVariant",
-      "module": "SwiftUI",
-      "kind": "event",
-      "type": "@escaping () -> Swift.Void",
-      "label": "perform",
-      "ios": 13,
-      "callArguments": [
-        {
-          "label": "minimumDuration",
-          "defaultValue": "0.5"
-        },
-        {
-          "label": "maximumDistance",
-          "defaultValue": "10"
-        },
-        {
-          "label": "pressing",
-          "defaultValue": "nil"
-        },
-        {
-          "label": "perform",
-          "bridge": true
-        }
-      ],
-      "sdkName": "onLongPressGesture"
+      ]
     },
     {
       "name": "onMapCameraChange",
@@ -10923,6 +10892,7 @@
         "navigationTitle",
         "navigationTransition",
         "navigationViewStyle",
+        "onContinuousHover",
         "onHover",
         "onInteractiveResizeChange",
         "onLongPressGesture",
