@@ -25,3 +25,5 @@ ignores:
 
   # Used in metro-entry (can definitely import from self)
   - "one"
+  # metro resolves this from the app; one does not install it
+  - "babel-preset-expo"
