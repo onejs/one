@@ -132,6 +132,25 @@ describe('SDK callback and binding transport', () => {
     expect(onCompletion).toHaveBeenCalledWith({ success: 'file:///tmp/export.txt' })
   })
 
+  it('carries a point binding through the WebView host', () => {
+    const onChange = vi.fn()
+    const element = Controls.WebView({ html: '<p>hello</p>', swiftStyle: {
+      webViewScrollPosition: { value: { x: 12, y: 24 }, onChange },
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(modifiers.webViewScrollPosition).toBe('{"x":12,"y":24}')
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'webViewScrollPosition', value: '{"x":10,"y":5}',
+    } })
+    expect(onChange).toHaveBeenCalledWith({ x: 10, y: 5 })
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'webViewScrollPosition', value: '{"x":"bad","y":5}',
+    } })).toThrow('invalid point')
+    expect(() => Controls.WebView({ html: '<p>hello</p>', swiftStyle: {
+      webViewScrollPosition: { value: { x: Infinity, y: 0 }, onChange },
+    } })).toThrow('point binding')
+  })
+
   it('round trips a Codable customization binding through native JSON', () => {
     const onChange = vi.fn()
     const current = '{"perTabState":[],"identifier":"D9754350-75EE-4390-AC54-159710381977","perSectionState":[]}'

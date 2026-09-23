@@ -9338,7 +9338,28 @@
       "label": "onAppear"
     },
     {
-      "name": "scrollPosition",
+      "name": "scrollPositionWithBindingPoint",
+      "module": "SwiftUI",
+      "kind": "bindingPoint",
+      "type": "SwiftUICore.Binding<SwiftUICore.ScrollPosition>",
+      "label": "_",
+      "ios": 18,
+      "bindingType": "SwiftUICore.ScrollPosition",
+      "callArguments": [
+        {
+          "label": "_",
+          "bridge": true
+        },
+        {
+          "label": "anchor",
+          "defaultValue": "nil"
+        }
+      ],
+      "sdkName": "scrollPosition"
+    },
+    {
+      "name": "scrollPositionWithId",
+      "module": "SwiftUI",
       "kind": "bindingOptionalString",
       "type": "SwiftUICore.Binding<(some Hashable)?>",
       "label": "id",
@@ -9352,7 +9373,8 @@
           "label": "anchor",
           "defaultValue": "nil"
         }
-      ]
+      ],
+      "sdkName": "scrollPosition"
     },
     {
       "name": "scrollTargetBehavior",
@@ -12350,6 +12372,15 @@
       "framework": "WebKit"
     },
     {
+      "name": "webViewScrollPosition",
+      "kind": "bindingPoint",
+      "type": "SwiftUICore.Binding<SwiftUICore.ScrollPosition>",
+      "label": "_",
+      "ios": 26,
+      "framework": "WebKit",
+      "bindingType": "SwiftUICore.ScrollPosition"
+    },
+    {
       "name": "webViewTextSelection",
       "kind": "style",
       "type": "S",
@@ -12943,6 +12974,7 @@
         "webViewLinkPreviews",
         "webViewMagnificationGestures",
         "webViewOnScrollGeometryChange",
+        "webViewScrollPosition",
         "webViewTextSelection"
       ],
       "_QuickLook_SwiftUI": [

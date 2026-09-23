@@ -32,7 +32,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -514,7 +514,25 @@ export function deriveModifiers(
           d.inheritedTypes?.includes('Swift.Codable') && present(d) && ios(d) <= ceiling)
           ? valueType : undefined
       }
-      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type) || p.type === 'SwiftUICore.Binding<(some Hashable)?>' || focusBindingType.test(p.type) || codableBinding(p.type) || enumCallbackOf(p.type) || associatedCallbackOf(p.type, ios(method)) || structCallbackOf(p.type, ios(method)))
+      const pointBinding = (type: string) => {
+        const valueType = /^SwiftUICore\.Binding<([A-Za-z_]\w*\.[A-Za-z][\w.]*)>$/.exec(type)?.[1]
+        if (!valueType) return
+        const [module, ...parts] = valueType.split('.')
+        const owner = parts.join('.')
+        const declarations = inventory.filter((d) => d.module === module &&
+          (d.owner === owner || d.owner === valueType) && present(d) && ios(d) <= ceiling)
+        const constructor = declarations.filter((d) => d.kind === 'init' &&
+          d.parameters.some((parameter) => parameter.label === 'point' && parameter.type === 'CoreFoundation.CGPoint') &&
+          d.parameters.every((parameter) => parameter.label === 'point' || parameter.defaultValue !== undefined))
+        return inventory.some((d) => d.module === module && d.kind === 'struct' &&
+          d.owner === parts.slice(0, -1).join('.') && d.name === parts.at(-1) &&
+          !d.generic && present(d) && ios(d) <= ceiling) &&
+          constructor.length === 1 &&
+          declarations.some((d) => d.kind === 'init' && d.parameters.every((parameter) => parameter.defaultValue !== undefined)) &&
+          declarations.some((d) => d.kind === 'var' && d.name === 'point' && d.type === 'CoreFoundation.CGPoint?')
+          ? valueType : undefined
+      }
+      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type) || p.type === 'SwiftUICore.Binding<(some Hashable)?>' || focusBindingType.test(p.type) || codableBinding(p.type) || pointBinding(p.type) || enumCallbackOf(p.type) || associatedCallbackOf(p.type, ios(method)) || structCallbackOf(p.type, ios(method)))
       if (bridged.length === 1 && method.parameters.every((p) => p === bridged[0] || p.defaultValue !== undefined)) {
         const parameter = bridged[0]
         const callbackValue = scalarCallbackType.exec(parameter.type)?.[1]
@@ -522,6 +540,7 @@ export function deriveModifiers(
         const associatedCallback = associatedCallbackOf(parameter.type, ios(method))
         const structCallback = structCallbackOf(parameter.type, ios(method))
         const codableType = codableBinding(parameter.type)
+        const pointType = pointBinding(parameter.type)
         const kind = associatedCallback
           ? 'eventAssociatedEnum'
           : structCallback
@@ -532,6 +551,8 @@ export function deriveModifiers(
           ? 'bindingFocusBoolean'
           : codableType
           ? 'bindingCodable'
+          : pointType
+          ? 'bindingPoint'
           : parameter.type.includes('Binding<Swift.Bool>')
           ? 'bindingBoolean'
           : parameter.type.includes('Binding<Swift.String>')
@@ -554,6 +575,7 @@ export function deriveModifiers(
               d.kind === 'init' && d.parameters.length === 0 && present(d) && ios(d) <= ceiling)
               ? { bindingDefault: true as const } : {}),
           } : {}),
+          ...(pointType ? { bindingType: pointType } : {}),
           ...(enumCallback ? { cases: enumCallback.cases } : {}),
           ...(associatedCallback ? { associatedCases: associatedCallback } : {}),
           ...(structCallback ? { eventValue: structCallback } : {}),
