@@ -6783,6 +6783,33 @@
       ]
     },
     {
+      "name": "onScrollTargetVisibilityChange",
+      "kind": "eventStruct",
+      "type": "@escaping ([ID]) -> Swift.Void",
+      "label": "_",
+      "eventValue": {
+        "kind": "array",
+        "value": {
+          "kind": "string"
+        }
+      },
+      "callArguments": [
+        {
+          "label": "idType",
+          "defaultValue": "String.self"
+        },
+        {
+          "label": "threshold",
+          "defaultValue": "0.5"
+        },
+        {
+          "label": "_",
+          "bridge": true
+        }
+      ],
+      "ios": 18
+    },
+    {
       "name": "onScrollVisibilityChange",
       "kind": "eventBoolean",
       "type": "@escaping (Swift.Bool) -> Swift.Void",
@@ -11544,6 +11571,7 @@
         "onPencilDoubleTap",
         "onPencilSqueeze",
         "onScrollPhaseChange",
+        "onScrollTargetVisibilityChange",
         "onScrollVisibilityChange",
         "onSubmit",
         "onTapGesture",

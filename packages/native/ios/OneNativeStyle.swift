@@ -339,6 +339,7 @@ extension View {
       case "onPencilDoubleTap": view = AnyView(view.oneNativeSDKOnPencilDoubleTap(value, emit: emit))
       case "onPencilSqueeze": view = AnyView(view.oneNativeSDKOnPencilSqueeze(value, emit: emit))
       case "onScrollPhaseChange": view = AnyView(view.oneNativeSDKOnScrollPhaseChange(value, emit: emit))
+      case "onScrollTargetVisibilityChange": view = AnyView(view.oneNativeSDKOnScrollTargetVisibilityChange(value, emit: emit))
       case "onScrollVisibilityChange": view = AnyView(view.oneNativeSDKOnScrollVisibilityChange(value, emit: emit))
       case "onSubmit": view = AnyView(view.oneNativeSDKOnSubmit(value, emit: emit))
       case "onTapGestureWithPerform": view = AnyView(view.oneNativeSDKOnTapGestureWithPerform(value, emit: emit))
@@ -3580,6 +3581,15 @@ extension View {
     if #available(iOS 18, *) { self.onScrollPhaseChange({ oldValue, newValue in
       if let data = try? JSONEncoder().encode([String(describing: oldValue), String(describing: newValue)]),
         let payload = String(data: data, encoding: .utf8) { emit("onScrollPhaseChange", payload) }
+    }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnScrollTargetVisibilityChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) { self.onScrollTargetVisibilityChange(idType: String.self, threshold: 0.5, { item in
+      let payload = item.map { item -> Any in item }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onScrollTargetVisibilityChange event") }
+      emit("onScrollTargetVisibilityChange", encoded)
     }) } else { self }
   }
 

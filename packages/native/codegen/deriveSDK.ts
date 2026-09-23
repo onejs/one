@@ -22,6 +22,7 @@ export type EventValueSchema =
   | { kind: 'number' | 'string' | 'boolean' | 'point' }
   | { kind: 'enum'; cases: readonly string[] }
   | { kind: 'optional'; value: EventValueSchema }
+  | { kind: 'array'; value: EventValueSchema }
   | { kind: 'object'; fields: readonly { name: string; value: EventValueSchema }[] }
 
 export type DerivedModifier = {
@@ -286,6 +287,19 @@ export function deriveModifiers(
         : {}
       if (method.requirements?.length) {
         if (method.requirements.length !== 1) return []
+        const arrayID = /^([A-Za-z_]\w*) : Swift.Hashable$/.exec(method.requirements[0])?.[1]
+        if (arrayID && method.parameters.length === 3 &&
+          method.parameters[0].type === `${arrayID}.Type` &&
+          method.parameters[1].defaultValue !== undefined &&
+          method.parameters[2].type === `@escaping ([${arrayID}]) -> Swift.Void`)
+          return [{ name, module: method.module, kind: 'eventStruct',
+            type: method.parameters[2].type, label: method.parameters[2].label,
+            eventValue: { kind: 'array', value: { kind: 'string' } },
+            callArguments: [
+              { label: method.parameters[0].label, defaultValue: 'String.self' },
+              { label: method.parameters[1].label, defaultValue: method.parameters[1].defaultValue },
+              { label: method.parameters[2].label, bridge: true },
+            ], ios: ios(method), ...framework }]
         const style = /^S : ([A-Za-z_]\w*\.[A-Za-z][\w.]*)$/.exec(method.requirements[0])?.[1]
         if (style && method.parameters.length === 1 && method.parameters[0].type === 'S') {
           const cases = styleCases(style)
