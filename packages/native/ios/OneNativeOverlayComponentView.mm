@@ -4,6 +4,7 @@
 #import <React/RCTView.h>
 #import "VxrnNative-Swift.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+#import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 
 using namespace facebook::react;
@@ -22,6 +23,13 @@ using namespace facebook::react;
     _overlayView = [OneNativeOverlayView new];
     self.container = _overlayView;
     self.contentView = _overlayView;
+    __weak OneNativeOverlayComponentView *weakSelf = self;
+    _overlayView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeOverlayComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeOverlayEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
   }
   return self;
 }

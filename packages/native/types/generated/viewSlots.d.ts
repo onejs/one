@@ -8,8 +8,10 @@ export declare const viewSlotAvailability: {
     readonly containerBackground: 17;
     readonly contentToolbar: 18.4;
     readonly contextMenu: 13;
+    readonly inspector: 17;
     readonly mapControls: 17;
     readonly mask: 15;
+    readonly navigationDestination: 16;
     readonly overlay: 15;
     readonly presentationBackground: 16.4;
     readonly safeAreaBarWithHorizontalEdge: 26;
@@ -34,6 +36,7 @@ export declare const viewSlotArguments: {
     readonly accessibilityActions: readonly [];
     readonly accessibilityActionsWithAccessibilityActionCategory: readonly [{
         readonly field: 'category';
+        readonly kind: 'enum';
         readonly cases: {
             readonly default: 18;
             readonly edit: 18;
@@ -45,6 +48,7 @@ export declare const viewSlotArguments: {
     readonly background: readonly [];
     readonly containerBackground: readonly [{
         readonly field: 'container';
+        readonly kind: 'enum';
         readonly cases: {
             readonly navigation: 18;
             readonly navigationSplitView: 18;
@@ -52,17 +56,27 @@ export declare const viewSlotArguments: {
     }];
     readonly contentToolbar: readonly [{
         readonly field: 'placement';
+        readonly kind: 'enum';
         readonly cases: {
             readonly tabViewSidebar: 18.4;
         };
     }];
     readonly contextMenu: readonly [];
+    readonly inspector: readonly [{
+        readonly field: 'isPresented';
+        readonly kind: 'bindingBoolean';
+    }];
     readonly mapControls: readonly [];
     readonly mask: readonly [];
+    readonly navigationDestination: readonly [{
+        readonly field: 'isPresented';
+        readonly kind: 'bindingBoolean';
+    }];
     readonly overlay: readonly [];
     readonly presentationBackground: readonly [];
     readonly safeAreaBarWithHorizontalEdge: readonly [{
         readonly field: 'edge';
+        readonly kind: 'enum';
         readonly cases: {
             readonly leading: 15;
             readonly trailing: 15;
@@ -70,6 +84,7 @@ export declare const viewSlotArguments: {
     }];
     readonly safeAreaBarWithVerticalEdge: readonly [{
         readonly field: 'edge';
+        readonly kind: 'enum';
         readonly cases: {
             readonly top: 15;
             readonly bottom: 15;
@@ -77,6 +92,7 @@ export declare const viewSlotArguments: {
     }];
     readonly safeAreaInsetWithHorizontalEdge: readonly [{
         readonly field: 'edge';
+        readonly kind: 'enum';
         readonly cases: {
             readonly leading: 15;
             readonly trailing: 15;
@@ -84,6 +100,7 @@ export declare const viewSlotArguments: {
     }];
     readonly safeAreaInsetWithVerticalEdge: readonly [{
         readonly field: 'edge';
+        readonly kind: 'enum';
         readonly cases: {
             readonly top: 15;
             readonly bottom: 15;
@@ -93,6 +110,7 @@ export declare const viewSlotArguments: {
     readonly sectionActions: readonly [];
     readonly subscriptionStorePolicyDestination: readonly [{
         readonly field: 'button';
+        readonly kind: 'enum';
         readonly cases: {
             readonly termsOfService: 17;
             readonly privacyPolicy: 17;
@@ -142,11 +160,27 @@ export type ViewSlotConfiguration = {
     name: 'contextMenu';
     options?: never;
 } | {
+    name: 'inspector';
+    options: {
+        isPresented: {
+            value: boolean;
+            onChange: (value: boolean) => void;
+        };
+    };
+} | {
     name: 'mapControls';
     options?: never;
 } | {
     name: 'mask';
     options?: never;
+} | {
+    name: 'navigationDestination';
+    options: {
+        isPresented: {
+            value: boolean;
+            onChange: (value: boolean) => void;
+        };
+    };
 } | {
     name: 'overlay';
     options?: never;

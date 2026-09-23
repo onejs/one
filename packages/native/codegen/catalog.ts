@@ -685,7 +685,9 @@ export const components = [
       slotName: 'string',
       slotValues: 'string',
     },
-    events: {},
+    events: {
+      onNativeSDKEvent: { name: 'string', value: 'string' },
+    },
     enumProps: {},
     layout: { kind: 'container' },
     slots: [

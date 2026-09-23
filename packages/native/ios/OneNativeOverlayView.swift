@@ -6,6 +6,11 @@ private final class OverlayModel: ObservableObject {
   @Published var slotName = ""
   @Published var slotValues = "[]"
   @Published var overlay: AnyView?
+  var onSDKEvent: ((String, String) -> Void)?
+
+  func emitSDKEvent(_ name: String, _ value: String) {
+    onSDKEvent?(name, value)
+  }
 }
 
 private struct OverlayRoot: View {
@@ -24,7 +29,7 @@ private struct OverlayRoot: View {
           if let overlay = model.overlay { overlay }
         }
       } else {
-        base.oneNativeViewSlot(model.slotName, values: model.slotValues) {
+        base.oneNativeViewSlot(model.slotName, values: model.slotValues, emit: model.emitSDKEvent) {
           model.overlay ?? AnyView(EmptyView())
         }
       }
@@ -70,6 +75,7 @@ public final class OneNativeOverlayContentView: OneNativeContainerView {
 
 @objcMembers
 public final class OneNativeOverlayView: OneNativeContainerView {
+  public var onSDKEvent: ((String, String) -> Void)?
   private let model: OverlayModel
   private let bridge: OneNativeSchemeBridge
   private var traitRegistration: NSObjectProtocol?
@@ -83,6 +89,7 @@ public final class OneNativeOverlayView: OneNativeContainerView {
     super.init(wrap: { children, standalone in
       AnyView(OverlayRoot(model: model, children: children, standalone: standalone, bridge: bridge))
     })
+    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
       [weak bridge] (view: OneNativeOverlayView, _: UITraitCollection) in
       bridge?.sync(view.traitCollection)

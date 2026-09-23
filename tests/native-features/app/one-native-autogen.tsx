@@ -5,6 +5,7 @@ import { Swift } from '@vxrn/native'
 export default function NativeAutogenProof() {
   const [selection, setSelection] = useState('proof')
   const [menuSelected, setMenuSelected] = useState(false)
+  const [inspectorVisible, setInspectorVisible] = useState(false)
   return (
     <Swift.Tabs
       selection={selection}
@@ -39,6 +40,15 @@ export default function NativeAutogenProof() {
               <Swift.Text text="Generated safe area base" />
               <Swift.ViewSlot.Content>
                 <Swift.Text text="Generated bottom inset" />
+              </Swift.ViewSlot.Content>
+            </Swift.ViewSlot>
+            <Swift.ViewSlot
+              name="inspector"
+              options={{ isPresented: { value: inspectorVisible, onChange: setInspectorVisible } }}
+            >
+              <Swift.Button label="Show generated inspector" onPress={() => setInspectorVisible(true)} />
+              <Swift.ViewSlot.Content>
+                <Swift.Text text="Generated inspector content" />
               </Swift.ViewSlot.Content>
             </Swift.ViewSlot>
             <Text>Scroll to collapse the tab bar accessory.</Text>
