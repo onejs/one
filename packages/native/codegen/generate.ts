@@ -22,6 +22,7 @@ import {
   tabConstructor,
   components,
   frameworks,
+  handwrittenComponents,
   menuMethods,
   modifierFamilies,
   enumTypes,
@@ -629,6 +630,7 @@ const packagePath = join(root, 'package.json')
 const packageMetadata = JSON.parse(readFileSync(packagePath, 'utf8'))
 packageMetadata.codegenConfig.ios.componentProvider = Object.fromEntries(
   [
+    ...handwrittenComponents.map((name) => ({ name })),
     ...components,
     ...controlComponents,
     ...sheetComponents,
