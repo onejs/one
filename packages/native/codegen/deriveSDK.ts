@@ -29,40 +29,8 @@ export type DerivedModifier = {
   arguments?: readonly DerivedArgument[]
 }
 
-export type DerivedViewSlot = { name: string; module: string; label: string; ios: number }
-
-export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
-  const slots = inventory.filter((d) => {
-    const builders = d.parameters.filter((parameter) =>
-      /^\(\) -> [A-Za-z_]\w*$/.test(parameter.type) &&
-      d.requirements?.length === 1 &&
-      d.requirements[0] === `${parameter.type.slice(6)} : SwiftUICore.View`
-    )
-    return (
-      d.kind === 'func' && (d.module === 'SwiftUI' || d.module === 'SwiftUICore') &&
-      d.owner.split('.').at(-1) === 'View' && builders.length === 1 &&
-      d.parameters.every((parameter) => parameter === builders[0] || parameter.defaultValue !== undefined) &&
-      present(d) && ios(d) <= ceiling
-    )
-  })
-  const byName = new Map<string, Declaration[]>()
-  for (const slot of slots) byName.set(slot.name, [...(byName.get(slot.name) ?? []), slot])
-  return [...byName].filter(([, declarations]) => declarations.length === 1)
-    .map(([, [slot]]) => ({ name: slot.name, module: slot.module,
-      label: slot.parameters.find((parameter) =>
-        /^\(\) -> [A-Za-z_]\w*$/.test(parameter.type))!.label, ios: ios(slot) }))
-    .sort((a, b) => a.name.localeCompare(b.name))
-}
-
-// methods with bridgeable scalars and static-case values generate their props
-// and Swift calls from the SDK parameter list.
-export function deriveModifiers(
-  inventory: readonly Declaration[],
-  ceiling: number,
-  reserved: readonly { name: string }[]
-): DerivedModifier[] {
-  const reservedNames = new Set(reserved.map((field) => field.name))
-  const valueOf = (type: string): Omit<DerivedArgument, 'field' | 'label'> | undefined => {
+const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) =>
+  (type: string): Omit<DerivedArgument, 'field' | 'label'> | undefined => {
     const optional = type.endsWith('?')
     const baseType = type.replace(/\?$/, '')
     const kind = baseType === 'Swift.Bool'
@@ -73,7 +41,7 @@ export function deriveModifiers(
           ? 'string'
           : baseType === 'Foundation.URL'
             ? 'url'
-          : undefined
+            : undefined
     if (kind) return { kind, type, optional }
     if (!/^[A-Za-z_]\w*\.[A-Za-z][\w.]*$/.test(baseType)) return
     const [module, ...owner] = baseType.split('.')
@@ -90,6 +58,47 @@ export function deriveModifiers(
     if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length) return
     return { kind: 'enum', type, optional, cases }
   }
+
+export type DerivedViewSlot = { name: string; module: string; label: string; ios: number; arguments: readonly DerivedArgument[] }
+
+export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
+  const valueOf = bridgeValueOf(inventory, ceiling)
+  const slots = inventory.filter((d) => {
+    const builders = d.parameters.filter((parameter) =>
+      /^\(\) -> [A-Za-z_]\w*$/.test(parameter.type) &&
+      d.requirements?.length === 1 &&
+      d.requirements[0] === `${parameter.type.slice(6)} : SwiftUICore.View`
+    )
+    return (
+      d.kind === 'func' && (d.module === 'SwiftUI' || d.module === 'SwiftUICore') &&
+      d.owner.split('.').at(-1) === 'View' && builders.length === 1 &&
+      d.parameters.at(-1) === builders[0] &&
+      d.parameters.every((parameter) => parameter === builders[0] || parameter.defaultValue !== undefined ||
+        valueOf(parameter.type)?.kind === 'enum') &&
+      present(d) && ios(d) <= ceiling
+    )
+  })
+  const byName = new Map<string, Declaration[]>()
+  for (const slot of slots) byName.set(slot.name, [...(byName.get(slot.name) ?? []), slot])
+  return [...byName].filter(([, declarations]) => declarations.length === 1)
+    .map(([, [slot]]) => ({ name: slot.name, module: slot.module,
+      label: slot.parameters.find((parameter) =>
+        /^\(\) -> [A-Za-z_]\w*$/.test(parameter.type))!.label, ios: ios(slot),
+      arguments: slot.parameters.filter((parameter) =>
+        !/^\(\) -> [A-Za-z_]\w*$/.test(parameter.type) && parameter.defaultValue === undefined)
+        .map((parameter) => ({ ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label })) }))
+    .sort((a, b) => a.name.localeCompare(b.name))
+}
+
+// methods with bridgeable scalars and static-case values generate their props
+// and Swift calls from the SDK parameter list.
+export function deriveModifiers(
+  inventory: readonly Declaration[],
+  ceiling: number,
+  reserved: readonly { name: string }[]
+): DerivedModifier[] {
+  const reservedNames = new Set(reserved.map((field) => field.name))
+  const valueOf = bridgeValueOf(inventory, ceiling)
   const enumCallbackOf = (type: string) => {
     const single = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> Swift\.Void$/.exec(type)
     const pair = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+), (?:_ [A-Za-z]\w*: )?\1\) -> Swift\.Void$/.exec(type)

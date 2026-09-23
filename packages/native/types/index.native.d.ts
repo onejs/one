@@ -74,7 +74,7 @@ export declare const Swift: {
     Overlay: (({ alignment, children, style, ...props }: import("./groupTypes").OverlayProps) => import("react/jsx-runtime").JSX.Element) & {
         Content: typeof import("./Containers.native").OverlayContent;
     };
-    ViewSlot: (({ name, children, style, ...props }: import("./groupTypes").ViewSlotProps) => import("react/jsx-runtime").JSX.Element) & {
+    ViewSlot: (({ name, options, children, style, ...props }: import("./groupTypes").ViewSlotProps) => import("react/jsx-runtime").JSX.Element) & {
         Content: typeof import("./Containers.native").OverlayContent;
     };
     SwipeActions: (({ children, style, ...props }: import("./groupTypes").SwipeActionsProps) => import("react/jsx-runtime").JSX.Element) & {
