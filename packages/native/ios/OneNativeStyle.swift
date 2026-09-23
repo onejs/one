@@ -2,6 +2,8 @@
 // edit the generator or catalog, then regenerate.
 import SwiftUI
 import UIKit
+import PassKit
+import StoreKit
 
 public struct OneNativeStyle: Equatable {
   public var fontSize: CGFloat?
@@ -95,9 +97,12 @@ extension View {
       let name = pair[0]
       let value = pair[1]
       switch name {
+      case "accessibilityShowsLargeContentViewer": view = AnyView(view.oneNativeSDKAccessibilityShowsLargeContentViewer(value))
       case "allowsHitTesting": view = AnyView(view.oneNativeSDKAllowsHitTesting(value))
       case "allowsTightening": view = AnyView(view.oneNativeSDKAllowsTightening(value))
+      case "allowsWindowActivationEvents": view = AnyView(view.oneNativeSDKAllowsWindowActivationEvents(value))
       case "autocorrectionDisabled": view = AnyView(view.oneNativeSDKAutocorrectionDisabled(value))
+      case "backgroundExtensionEffect": view = AnyView(view.oneNativeSDKBackgroundExtensionEffect(value))
       case "badge": view = AnyView(view.oneNativeSDKBadge(value))
       case "badgeProminence": view = AnyView(view.oneNativeSDKBadgeProminence(value))
       case "baselineOffset": view = AnyView(view.oneNativeSDKBaselineOffset(value))
@@ -107,8 +112,10 @@ extension View {
       case "buttonBorderShape": view = AnyView(view.oneNativeSDKButtonBorderShape(value))
       case "buttonRepeatBehavior": view = AnyView(view.oneNativeSDKButtonRepeatBehavior(value))
       case "buttonSizing": view = AnyView(view.oneNativeSDKButtonSizing(value))
+      case "colorInvert": view = AnyView(view.oneNativeSDKColorInvert(value))
       case "colorMultiply": view = AnyView(view.oneNativeSDKColorMultiply(value))
       case "colorScheme": view = AnyView(view.oneNativeSDKColorScheme(value))
+      case "compositingGroup": view = AnyView(view.oneNativeSDKCompositingGroup(value))
       case "contentTransition": view = AnyView(view.oneNativeSDKContentTransition(value))
       case "contrast": view = AnyView(view.oneNativeSDKContrast(value))
       case "controlSize": view = AnyView(view.oneNativeSDKControlSize(value))
@@ -122,9 +129,11 @@ extension View {
       case "fileDialogCustomizationID": view = AnyView(view.oneNativeSDKFileDialogCustomizationID(value))
       case "fileDialogImportsUnresolvedAliases": view = AnyView(view.oneNativeSDKFileDialogImportsUnresolvedAliases(value))
       case "findDisabled": view = AnyView(view.oneNativeSDKFindDisabled(value))
+      case "fixedSize": view = AnyView(view.oneNativeSDKFixedSize(value))
       case "flipsForRightToLeftLayoutDirection": view = AnyView(view.oneNativeSDKFlipsForRightToLeftLayoutDirection(value))
       case "focusable": view = AnyView(view.oneNativeSDKFocusable(value))
       case "focusEffectDisabled": view = AnyView(view.oneNativeSDKFocusEffectDisabled(value))
+      case "geometryGroup": view = AnyView(view.oneNativeSDKGeometryGroup(value))
       case "glassEffectTransition": view = AnyView(view.oneNativeSDKGlassEffectTransition(value))
       case "grayscale": view = AnyView(view.oneNativeSDKGrayscale(value))
       case "gridCellAnchor": view = AnyView(view.oneNativeSDKGridCellAnchor(value))
@@ -132,6 +141,7 @@ extension View {
       case "gridCellUnsizedAxes": view = AnyView(view.oneNativeSDKGridCellUnsizedAxes(value))
       case "gridColumnAlignment": view = AnyView(view.oneNativeSDKGridColumnAlignment(value))
       case "headerProminence": view = AnyView(view.oneNativeSDKHeaderProminence(value))
+      case "hidden": view = AnyView(view.oneNativeSDKHidden(value))
       case "hoverEffect": view = AnyView(view.oneNativeSDKHoverEffect(value))
       case "hoverEffectDisabled": view = AnyView(view.oneNativeSDKHoverEffectDisabled(value))
       case "hueRotation": view = AnyView(view.oneNativeSDKHueRotation(value))
@@ -144,17 +154,20 @@ extension View {
       case "keyboardShortcut": view = AnyView(view.oneNativeSDKKeyboardShortcut(value))
       case "labelIconToTitleSpacing": view = AnyView(view.oneNativeSDKLabelIconToTitleSpacing(value))
       case "labelReservedIconWidth": view = AnyView(view.oneNativeSDKLabelReservedIconWidth(value))
+      case "labelsHidden": view = AnyView(view.oneNativeSDKLabelsHidden(value))
       case "labelsVisibility": view = AnyView(view.oneNativeSDKLabelsVisibility(value))
       case "layoutDirectionBehavior": view = AnyView(view.oneNativeSDKLayoutDirectionBehavior(value))
       case "layoutPriority": view = AnyView(view.oneNativeSDKLayoutPriority(value))
       case "lineSpacing": view = AnyView(view.oneNativeSDKLineSpacing(value))
       case "listSectionIndexVisibility": view = AnyView(view.oneNativeSDKListSectionIndexVisibility(value))
+      case "luminanceToAlpha": view = AnyView(view.oneNativeSDKLuminanceToAlpha(value))
       case "materialActiveAppearance": view = AnyView(view.oneNativeSDKMaterialActiveAppearance(value))
       case "menuActionDismissBehavior": view = AnyView(view.oneNativeSDKMenuActionDismissBehavior(value))
       case "menuIndicator": view = AnyView(view.oneNativeSDKMenuIndicator(value))
       case "menuOrder": view = AnyView(view.oneNativeSDKMenuOrder(value))
       case "minimumScaleFactor": view = AnyView(view.oneNativeSDKMinimumScaleFactor(value))
       case "monospaced": view = AnyView(view.oneNativeSDKMonospaced(value))
+      case "monospacedDigit": view = AnyView(view.oneNativeSDKMonospacedDigit(value))
       case "moveDisabled": view = AnyView(view.oneNativeSDKMoveDisabled(value))
       case "multilineTextAlignment": view = AnyView(view.oneNativeSDKMultilineTextAlignment(value))
       case "navigationBarBackButtonHidden": view = AnyView(view.oneNativeSDKNavigationBarBackButtonHidden(value))
@@ -162,6 +175,7 @@ extension View {
       case "navigationLinkIndicatorVisibility": view = AnyView(view.oneNativeSDKNavigationLinkIndicatorVisibility(value))
       case "navigationSplitViewColumnWidth": view = AnyView(view.oneNativeSDKNavigationSplitViewColumnWidth(value))
       case "paletteSelectionEffect": view = AnyView(view.oneNativeSDKPaletteSelectionEffect(value))
+      case "payWithApplePayButtonDisableCardArt": view = AnyView(view.oneNativeSDKPayWithApplePayButtonDisableCardArt(value))
       case "persistentSystemOverlays": view = AnyView(view.oneNativeSDKPersistentSystemOverlays(value))
       case "presentationBackgroundInteraction": view = AnyView(view.oneNativeSDKPresentationBackgroundInteraction(value))
       case "presentationCompactAdaptation": view = AnyView(view.oneNativeSDKPresentationCompactAdaptation(value))
@@ -170,9 +184,12 @@ extension View {
       case "presentationPlacement": view = AnyView(view.oneNativeSDKPresentationPlacement(value))
       case "previewInterfaceOrientation": view = AnyView(view.oneNativeSDKPreviewInterfaceOrientation(value))
       case "privacySensitive": view = AnyView(view.oneNativeSDKPrivacySensitive(value))
+      case "productIconBorder": view = AnyView(view.oneNativeSDKProductIconBorder(value))
       case "replaceDisabled": view = AnyView(view.oneNativeSDKReplaceDisabled(value))
       case "safeAreaPadding": view = AnyView(view.oneNativeSDKSafeAreaPadding(value))
       case "saturation": view = AnyView(view.oneNativeSDKSaturation(value))
+      case "scaledToFill": view = AnyView(view.oneNativeSDKScaledToFill(value))
+      case "scaledToFit": view = AnyView(view.oneNativeSDKScaledToFit(value))
       case "scenePadding": view = AnyView(view.oneNativeSDKScenePadding(value))
       case "scrollClipDisabled": view = AnyView(view.oneNativeSDKScrollClipDisabled(value))
       case "scrollContentBackground": view = AnyView(view.oneNativeSDKScrollContentBackground(value))
@@ -192,6 +209,7 @@ extension View {
       case "statusBarHidden": view = AnyView(view.oneNativeSDKStatusBarHidden(value))
       case "submitLabel": view = AnyView(view.oneNativeSDKSubmitLabel(value))
       case "submitScope": view = AnyView(view.oneNativeSDKSubmitScope(value))
+      case "swipeActionsContainer": view = AnyView(view.oneNativeSDKSwipeActionsContainer(value))
       case "symbolEffectsRemoved": view = AnyView(view.oneNativeSDKSymbolEffectsRemoved(value))
       case "symbolVariant": view = AnyView(view.oneNativeSDKSymbolVariant(value))
       case "tabBarMinimizeBehavior": view = AnyView(view.oneNativeSDKTabBarMinimizeBehavior(value))
@@ -203,6 +221,7 @@ extension View {
       case "toolbarTitleDisplayMode": view = AnyView(view.oneNativeSDKToolbarTitleDisplayMode(value))
       case "tracking": view = AnyView(view.oneNativeSDKTracking(value))
       case "transition": view = AnyView(view.oneNativeSDKTransition(value))
+      case "unredacted": view = AnyView(view.oneNativeSDKUnredacted(value))
       case "windowToolbarFullScreenVisibility": view = AnyView(view.oneNativeSDKWindowToolbarFullScreenVisibility(value))
       case "writingToolsAffordanceVisibility": view = AnyView(view.oneNativeSDKWritingToolsAffordanceVisibility(value))
       case "writingToolsBehavior": view = AnyView(view.oneNativeSDKWritingToolsBehavior(value))
@@ -399,6 +418,11 @@ extension OneNativeStyle {
 }
 
 extension View {
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityShowsLargeContentViewer(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid accessibilityShowsLargeContentViewer: \(value)")
+    if value == "true" { self.accessibilityShowsLargeContentViewer() } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKAllowsHitTesting(_ value: String) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid allowsHitTesting: \(value)")
       self.allowsHitTesting(value == "true")
@@ -409,9 +433,19 @@ extension View {
       self.allowsTightening(value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKAllowsWindowActivationEvents(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid allowsWindowActivationEvents: \(value)")
+    if value == "true" { if #available(iOS 18, *) { self.allowsWindowActivationEvents() } else { self } } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKAutocorrectionDisabled(_ value: String) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid autocorrectionDisabled: \(value)")
       self.autocorrectionDisabled(value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKBackgroundExtensionEffect(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid backgroundExtensionEffect: \(value)")
+    if value == "true" { if #available(iOS 26, *) { self.backgroundExtensionEffect() } else { self } } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKBadge(_ value: String) -> some View {
@@ -501,6 +535,11 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKColorInvert(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid colorInvert: \(value)")
+    if value == "true" { self.colorInvert() } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKColorMultiply(_ value: String) -> some View {
     switch value {
       case "accentColor": self.colorMultiply(.accentColor)
@@ -532,6 +571,11 @@ extension View {
       case "dark": self.colorScheme(.dark)
     default: preconditionFailure("invalid colorScheme: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKCompositingGroup(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid compositingGroup: \(value)")
+    if value == "true" { self.compositingGroup() } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKContentTransition(_ value: String) -> some View {
@@ -643,6 +687,11 @@ extension View {
       self.findDisabled(value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKFixedSize(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid fixedSize: \(value)")
+    if value == "true" { self.fixedSize() } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKFlipsForRightToLeftLayoutDirection(_ value: String) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid flipsForRightToLeftLayoutDirection: \(value)")
       self.flipsForRightToLeftLayoutDirection(value == "true")
@@ -656,6 +705,11 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKFocusEffectDisabled(_ value: String) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid focusEffectDisabled: \(value)")
       self.focusEffectDisabled(value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKGeometryGroup(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid geometryGroup: \(value)")
+    if value == "true" { self.geometryGroup() } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKGlassEffectTransition(_ value: String) -> some View {
@@ -720,6 +774,11 @@ extension View {
       case "increased": self.headerProminence(.increased)
     default: preconditionFailure("invalid headerProminence: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKHidden(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid hidden: \(value)")
+    if value == "true" { self.hidden() } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKHoverEffect(_ value: String) -> some View {
@@ -794,6 +853,11 @@ extension View {
       } else { preconditionFailure("invalid labelReservedIconWidth: \(value)") }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKLabelsHidden(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid labelsHidden: \(value)")
+    if value == "true" { self.labelsHidden() } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKLabelsVisibility(_ value: String) -> some View {
     switch value {
       case "automatic": if #available(iOS 18, *) { self.labelsVisibility(.automatic) } else { self }
@@ -830,6 +894,11 @@ extension View {
       case "hidden": if #available(iOS 26, *) { self.listSectionIndexVisibility(.hidden) } else { self }
     default: preconditionFailure("invalid listSectionIndexVisibility: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKLuminanceToAlpha(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid luminanceToAlpha: \(value)")
+    if value == "true" { self.luminanceToAlpha() } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKMaterialActiveAppearance(_ value: String) -> some View {
@@ -879,6 +948,11 @@ extension View {
       self.monospaced(value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKMonospacedDigit(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid monospacedDigit: \(value)")
+    if value == "true" { self.monospacedDigit() } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKMoveDisabled(_ value: String) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid moveDisabled: \(value)")
       self.moveDisabled(value == "true")
@@ -924,6 +998,11 @@ extension View {
       case "custom": self.paletteSelectionEffect(.custom)
     default: preconditionFailure("invalid paletteSelectionEffect: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPayWithApplePayButtonDisableCardArt(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid payWithApplePayButtonDisableCardArt: \(value)")
+    if value == "true" { if #available(iOS 26, *) { self.payWithApplePayButtonDisableCardArt() } else { self } } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPersistentSystemOverlays(_ value: String) -> some View {
@@ -998,6 +1077,11 @@ extension View {
       self.privacySensitive(value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKProductIconBorder(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid productIconBorder: \(value)")
+    if value == "true" { self.productIconBorder() } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKReplaceDisabled(_ value: String) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid replaceDisabled: \(value)")
       self.replaceDisabled(value == "true")
@@ -1013,6 +1097,16 @@ extension View {
       if let number = Double(value), number.isFinite {
         self.saturation(number)
       } else { preconditionFailure("invalid saturation: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKScaledToFill(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid scaledToFill: \(value)")
+    if value == "true" { self.scaledToFill() } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKScaledToFit(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid scaledToFit: \(value)")
+    if value == "true" { self.scaledToFit() } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKScenePadding(_ value: String) -> some View {
@@ -1153,6 +1247,11 @@ extension View {
       self.submitScope(value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKSwipeActionsContainer(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid swipeActionsContainer: \(value)")
+    if value == "true" { if #available(iOS 27, *) { self.swipeActionsContainer() } else { self } } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKSymbolEffectsRemoved(_ value: String) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid symbolEffectsRemoved: \(value)")
       self.symbolEffectsRemoved(value == "true")
@@ -1249,6 +1348,11 @@ extension View {
       case "scale": self.transition(.scale)
     default: preconditionFailure("invalid transition: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKUnredacted(_ value: String) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid unredacted: \(value)")
+    if value == "true" { self.unredacted() } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKWindowToolbarFullScreenVisibility(_ value: String) -> some View {

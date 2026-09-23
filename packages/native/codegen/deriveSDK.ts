@@ -1,5 +1,4 @@
 import { ios, present, type Declaration } from './inventory'
-import type { StyleField } from './catalog'
 import type { Control } from './controlTypes'
 
 export type DerivedModifier = {
@@ -8,25 +7,29 @@ export type DerivedModifier = {
   ios: number
   type: string
   cases?: readonly { name: string; ios: number }[]
+  zeroArgument?: true
+  framework?: string
 }
 
-// a one-argument View method with a bridge scalar or a static-case value has
-// enough information in the SDK to generate its prop and its Swift call.
+// parameterless methods and one-argument methods with a bridge scalar or a
+// static-case value have enough information to generate a prop and Swift call.
 export function deriveModifiers(
   inventory: readonly Declaration[],
   ceiling: number,
-  reserved: readonly StyleField[]
+  reserved: readonly { name: string }[]
 ): DerivedModifier[] {
   const reservedNames = new Set(reserved.map((field) => field.name))
   const methods = inventory.filter(
     (d) =>
       d.kind === 'func' &&
-      (d.module === 'SwiftUI' || d.module === 'SwiftUICore') &&
+      (d.module === 'SwiftUI' ||
+        d.module === 'SwiftUICore' ||
+        (d.parameters.length === 0 && /^_[A-Za-z]+_SwiftUI$/.test(d.module))) &&
       d.owner.split('.').at(-1) === 'View' &&
       /^[a-z]/.test(d.name) &&
-      !d.name.startsWith('accessibility') &&
-      d.parameters.length === 1 &&
-      d.parameters[0].label === '_' &&
+      (d.parameters.length === 0 || !d.name.startsWith('accessibility')) &&
+      (d.parameters.length === 0 ||
+        (d.parameters.length === 1 && d.parameters[0].label === '_')) &&
       !d.requirements?.length &&
       present(d) &&
       ios(d) <= ceiling &&
@@ -38,11 +41,29 @@ export function deriveModifiers(
   const result: DerivedModifier[] = []
   for (const [name, overloads] of byName) {
     const candidates = overloads.flatMap((method): DerivedModifier[] => {
+      if (method.parameters.length === 0)
+        return [
+          {
+            name,
+            kind: 'boolean',
+            type: '',
+            ios: ios(method),
+            zeroArgument: true,
+            ...(method.module.startsWith('_')
+              ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
+              : {}),
+          },
+        ]
       const type = method.parameters[0].type
       const kind =
         type === 'Swift.Bool'
           ? 'boolean'
-          : ['Swift.Double', 'Swift.Float', 'Swift.Int', 'CoreFoundation.CGFloat'].includes(type)
+          : [
+                'Swift.Double',
+                'Swift.Float',
+                'Swift.Int',
+                'CoreFoundation.CGFloat',
+              ].includes(type)
             ? 'number'
             : type === 'Swift.String'
               ? 'string'
@@ -89,7 +110,9 @@ export function deriveViews(
         !d.generic &&
         /^[A-Z]/.test(d.name) &&
         !d.name.startsWith('Default') &&
-        d.inheritedTypes?.some((type) => type === 'SwiftUICore.View' || type === 'SwiftUI.View') &&
+        d.inheritedTypes?.some(
+          (type) => type === 'SwiftUICore.View' || type === 'SwiftUI.View'
+        ) &&
         present(d) &&
         ios(d) <= floor &&
         !existingNames.has(d.name)
