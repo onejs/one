@@ -18,6 +18,8 @@ struct Declaration: Codable {
   let parameters: [Parameter]
   let type: String?
   let line: Int
+  let inheritedTypes: [String]?
+  let generic: Bool?
 }
 // generic requirement elements carry their trailing comma; selectors compare on the text alone.
 func requirementText(_ requirement: GenericRequirementSyntax) -> String {
@@ -40,15 +42,18 @@ final class Inventory: SyntaxVisitor {
   func attributes(_ attrs: AttributeListSyntax) -> [String] {
     attrs.compactMap { $0.as(AttributeSyntax.self)?.trimmedDescription }
   }
-  func record(_ node: some SyntaxProtocol, kind: String, name: String, attrs: AttributeListSyntax, parameters: FunctionParameterListSyntax? = nil, type: String? = nil, whereClause: GenericWhereClauseSyntax? = nil) {
+  func record(_ node: some SyntaxProtocol, kind: String, name: String, attrs: AttributeListSyntax, parameters: FunctionParameterListSyntax? = nil, type: String? = nil, whereClause: GenericWhereClauseSyntax? = nil, inheritedTypes: [String]? = nil, generic: Bool? = nil) {
     declarations.append(Declaration(module: module, owner: owners.joined(separator: "."), kind: kind, name: name.replacingOccurrences(of: "`", with: ""),
       attributes: availability.flatMap { $0 } + attributes(attrs),
       requirements: requirements.flatMap { $0 } + (whereClause?.requirements.map(requirementText) ?? []),
       parameters: parameters?.map { Parameter(label: $0.firstName.text, name: $0.secondName?.text ?? $0.firstName.text, type: $0.type.trimmedDescription, defaultValue: $0.defaultValue?.value.trimmedDescription) } ?? [],
-      type: type, line: location.location(for: node.positionAfterSkippingLeadingTrivia).line))
+      type: type, line: location.location(for: node.positionAfterSkippingLeadingTrivia).line,
+      inheritedTypes: inheritedTypes, generic: generic))
   }
   override func visit(_ node: StructDeclSyntax) -> SyntaxVisitorContinueKind {
-    record(node, kind: "struct", name: node.name.text, attrs: node.attributes)
+    record(node, kind: "struct", name: node.name.text, attrs: node.attributes,
+      inheritedTypes: node.inheritanceClause?.inheritedTypes.map { $0.type.trimmedDescription },
+      generic: node.genericParameterClause != nil)
     owners.append(node.name.text); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map(requirementText) ?? []); return .visitChildren
   }
   override func visitPost(_ node: StructDeclSyntax) { owners.removeLast(); availability.removeLast(); requirements.removeLast() }

@@ -63,6 +63,12 @@
       "import": "./dist/esm/toolbar/index.mjs",
       "require": "./dist/cjs/toolbar/index.cjs"
     },
+    "./swift": {
+      "types": "./types/swift/index.d.ts",
+      "react-native": "./dist/esm/swift/index.native.js",
+      "import": "./dist/esm/swift/index.mjs",
+      "require": "./dist/cjs/swift/index.cjs"
+    },
     "./menu": {
       "types": "./types/menu/index.d.ts",
       "react-native": "./dist/esm/menu/index.native.js",
@@ -163,6 +169,7 @@
     },
     "ios": {
       "componentProvider": {
+        "OneSwiftHost": "OneSwiftHostComponentView",
         "OneNativeMenu": "OneNativeMenuComponentView",
         "OneNativeTabs": "OneNativeTabsComponentView",
         "OneNativeTab": "OneNativeTabComponentView",
@@ -213,6 +220,8 @@
         "OneNativeConfirmationDialog": "OneNativeConfirmationDialogComponentView",
         "OneNativeQuickLook": "OneNativeQuickLookComponentView",
         "OneNativeFileImporter": "OneNativeFileImporterComponentView",
+        "OneNativeEditButton": "OneNativeEditButtonComponentView",
+        "OneNativeEmptyView": "OneNativeEmptyViewComponentView",
         "OneNativeSheet": "OneNativeSheetComponentView",
         "OneNativeSheetContent": "OneNativeSheetContentComponentView",
         "OneNativeHost": "OneNativeHostComponentView",

@@ -2059,6 +2059,30 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeEditButton",
+      "publicName": "EditButton",
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeEmptyView",
+      "publicName": "EmptyView",
+      "props": {},
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativeSheet",
       "publicName": "Sheet",
       "props": {
@@ -2801,6 +2825,7 @@
       "inline": 14,
       "automatic": 13,
       "segmented": 13,
+      "tabs": 27,
       "palette": 17,
       "navigationLink": 16,
       "menu": 14
@@ -2834,7 +2859,8 @@
       "close": 26
     },
     "TabRole": {
-      "search": 18
+      "search": 18,
+      "prominent": 27
     },
     "ControlGroupStyle": {
       "palette": 17,
@@ -2868,6 +2894,7 @@
     "TextFieldStyle": {
       "automatic": 13,
       "roundedBorder": 13,
+      "bordered": 27,
       "plain": 13
     },
     "SubmitLabel": {

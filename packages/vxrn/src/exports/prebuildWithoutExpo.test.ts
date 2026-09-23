@@ -153,11 +153,14 @@ ${APP_DELEGATE_PBXPROJ}`,
     const podfile = renderPrebuildFile({
       relativePath: 'Podfile',
       content:
-        'platform :ios, min_ios_version_supported\n  post_install do |installer|\n    react_native_post_install(\n      installer\n    )\n  end\nend',
+        "platform :ios, min_ios_version_supported\ntarget 'HelloWorld' do\n  config = use_native_modules!\n  post_install do |installer|\n    react_native_post_install(\n      installer\n    )\n  end\nend",
       platform: 'ios',
       app,
     })
     expect(podfile.content).toContain("platform :ios, '17.0'")
+    expect(podfile.content).toContain(
+      "  config = use_native_modules!\n  # [vxrn/one] swift packages\n  Dir[File.join(__dir__, 'OneSwiftPackages'"
+    )
     expect(podfile.content).toContain(
       "config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'"
     )
