@@ -150,6 +150,7 @@ const selected: Declaration[] = []
 // selected but not covered: they are value plumbing, not bound views or modifiers.
 const coveredViews = new Map<string, Set<string>>()
 const coveredModifiers = new Map<string, Set<string>>()
+const generatedModifiers = new Map<string, Set<string>>()
 const cover = (map: Map<string, Set<string>>, declaration: Declaration, name: string) => {
   const names = map.get(declaration.module) ?? new Set<string>()
   names.add(name)
@@ -159,6 +160,10 @@ const coverView = (declaration: Declaration) =>
   cover(coveredViews, declaration, shortOwner(declaration) ?? declaration.owner)
 const coverModifier = (declaration: Declaration) =>
   cover(coveredModifiers, declaration, declaration.name)
+const coverGeneratedModifier = (declaration: Declaration) => {
+  coverModifier(declaration)
+  cover(generatedModifiers, declaration, declaration.name)
+}
 for (const modifier of derivedModifiers) {
   const declaration = inventory.find(
     (d) =>
@@ -179,7 +184,7 @@ for (const modifier of derivedModifiers) {
       d.owner.split('.').at(-1) === 'View'
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${modifier.name}`)
-  coverModifier(declaration)
+  coverGeneratedModifier(declaration)
 }
 for (const slot of derivedViewSlots) {
   const declaration = inventory.find((d) =>
@@ -199,7 +204,7 @@ for (const slot of derivedViewSlots) {
       slot.arguments.map((argument) => argument.type).join('|')
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${slot.name} slot`)
-  coverModifier(declaration)
+  coverGeneratedModifier(declaration)
 }
 const enums = Object.fromEntries(
   enumTypes.map((type) => {
@@ -704,6 +709,9 @@ const manifest = {
     ),
     modifiers: Object.fromEntries(
       [...coveredModifiers].map(([module, names]) => [module, [...names].sort()])
+    ),
+    generatedModifiers: Object.fromEntries(
+      [...generatedModifiers].map(([module, names]) => [module, [...names].sort()])
     ),
   },
   // constructor requirements omitted: SDK revisions restate equivalent generic
