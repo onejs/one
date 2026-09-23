@@ -1,7 +1,7 @@
 // containers are structural rather than SDK bindings: they compose already-generated
 // controls into one SwiftUI tree. a host reports the height SwiftUI measured back to
 // Yoga; a form and a section lay out inside whatever box React Native gives them.
-import { styleFields } from './catalog'
+import type { StyleField } from './catalog'
 
 const composedContent = {
   name: 'content',
@@ -188,7 +188,11 @@ export const zStackAlignments = [
   'bottomTrailing',
 ] as const
 
-export function emitContainers(header: string, outputs: Map<string, string>) {
+export function emitContainers(
+  header: string,
+  outputs: Map<string, string>,
+  styleFields: readonly StyleField[]
+) {
   for (const component of containerComponents) {
     const props = Object.entries(component.props).map(([key, declared]) => ({
       key,
@@ -216,7 +220,7 @@ export function emitContainers(header: string, outputs: Map<string, string>) {
       header +
         `import type { ${reactNativeTypes.join(', ')} } from 'react-native'
 ${codegenTypes.length ? `import type { ${codegenTypes.join(', ')} } from 'react-native/Libraries/Types/CodegenTypes'\n` : ''}import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
-${styled ? `type OneNativeStyleNative = Readonly<{\n${styleFields.map((field) => `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'boolean' ? 'boolean' : field.kind === 'color' ? 'ProcessedColorValue' : 'string'}`).join('\n')}\n}>\n` : ''}interface NativeProps extends ViewProps {
+${styled ? `type OneNativeStyleNative = Readonly<{\n${styleFields.map((field) => `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'boolean' ? 'boolean' : field.kind === 'color' ? 'ProcessedColorValue' : 'string'}`).join('\n')}\n  sdkModifiers?: string\n}>\n` : ''}interface NativeProps extends ViewProps {
 ${props.map(({ key, optional, type }) => `  ${key}${optional ? '?' : ''}: ${type}`).join('\n')}
 ${styled ? '  swiftStyle?: OneNativeStyleNative\n' : ''}${eventEntries.map(([name, fields]) => `  ${name}?: DirectEventHandler<\n    Readonly<{ ${Object.entries(fields as Record<string, string>).map(([field, type]) => `${field}: ${type}`).join('; ')} }>\n  >`).join('\n')}
 }

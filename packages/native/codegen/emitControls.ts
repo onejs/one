@@ -1,5 +1,3 @@
-import { controls } from './controlCatalog'
-import { styleFields } from './catalog'
 import type { StyleField } from './catalog'
 import type {
   Control,
@@ -9,6 +7,7 @@ import type {
   ScalarType,
 } from './controlTypes'
 import { deriveLeafSwift } from './derive'
+import type { DerivedModifier } from './deriveSDK'
 import type { Declaration } from './inventory'
 
 const swiftScalar = (type: ScalarType) =>
@@ -60,9 +59,14 @@ const optionalEnum = (field: ControlField) => Boolean(field.enum) && field.defau
 // a style field that lists its values gets a named alias, so Swift.Glass can take the same
 // names swiftStyle does. the spec keeps the plain string: React Native's codegen would turn
 // a literal union into a C++ enum, and the Objective-C side reads a string.
-const styleAlias = (field: StyleField) => upper(field.name)
+const styleAlias = (field: StyleField) =>
+  `${field.derived ? 'SDK' : ''}${upper(field.name)}`
+const styleValuesName = (field: StyleField) =>
+  field.derived ? `sdk${upper(field.name)}Values` : `${field.name}s`
 const styleFieldType = (field: StyleField) =>
-  field.kind === 'number'
+  field.publicType
+    ? field.publicType
+    : field.kind === 'number'
     ? 'number'
     : field.kind === 'boolean'
       ? 'boolean'
@@ -75,9 +79,23 @@ const styleFieldType = (field: StyleField) =>
 export function emitControls(
   header: string,
   outputs: Map<string, string>,
-  inventory: readonly Declaration[]
+  inventory: readonly Declaration[],
+  styleFields: readonly StyleField[],
+  derivedModifiers: readonly DerivedModifier[],
+  controls: readonly Control[]
 ) {
   if (!controls.length) return
+  const publicStyleFields: readonly StyleField[] = [
+    ...styleFields,
+    ...derivedModifiers.map((modifier) => ({
+      name: modifier.name,
+      kind: 'string' as const,
+      derived: true as const,
+      publicType:
+        modifier.kind === 'string' ? undefined : modifier.kind,
+      values: modifier.cases?.map((item) => item.name),
+    })),
+  ]
   const hasSync = controls.some((control) => control.value?.sync)
   const payloads: Record<string, NonNullable<ControlField['payload']>> = {}
   for (const control of controls)
@@ -101,18 +119,18 @@ import type { KeyboardType, TextContentType } from '../textTypes'
 import type { IconColorRole } from '../ui/iconRoles'
 ${hasSync ? `import type { NativeState } from '../syncNativeState'\n` : ''}
 
-${styleFields
+${publicStyleFields
   .filter((field) => field.values)
   .map(
-    (field) => `export const ${field.name}s = [${field
+    (field) => `export const ${styleValuesName(field)} = [${field
       .values!.map((value) => JSON.stringify(value))
       .join(', ')}] as const
-export type ${styleAlias(field)} = (typeof ${field.name}s)[number]`
+export type ${styleAlias(field)} = (typeof ${styleValuesName(field)})[number]`
   )
   .join('\n')}
 
 export interface OneNativeStyle {
-${styleFields.map((field) => `  ${field.name}?: ${styleFieldType(field)}`).join('\n')}
+${publicStyleFields.map((field) => `  ${field.name}?: ${styleFieldType(field)}`).join('\n')}
 }
 
 // the React Native props a One Native control honors. a composed control renders inside its
@@ -348,6 +366,7 @@ ${styleFields
       `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'boolean' ? 'boolean' : field.kind === 'color' ? 'ProcessedColorValue' : 'string'}`
   )
   .join('\n')}
+  sdkModifiers?: string
 }>
 interface NativeProps extends ViewProps {
 ${Object.entries(props)
@@ -835,12 +854,13 @@ ${styleFields
     }
   })
   .join('\n')}
+  if (!next.swiftStyle.sdkModifiers.empty()) style[@"sdkModifiers"] = RCTNSStringFromString(next.swiftStyle.sdkModifiers);
   [_nativeView configureStyle:style];
-${value?.sync ? `  _syncStateId = next.syncStateId;\n` : ''}  [_nativeView configure:${call[0].expression}
+${value?.sync ? `  _syncStateId = next.syncStateId;\n` : ''}${call.length ? `  [_nativeView configure:${call[0].expression}
     ${call
       .slice(1)
       .map((argument) => `${argument.label}:${argument.expression}`)
-      .join(' ')}];
+      .join(' ')}];\n` : ''}
   [super updateProps:props oldProps:oldProps];
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset];${measured ? ' [_measured reset];' : ''}${arrayFields.map(([key]) => ` _${key}Dirty = YES;`).join('')} }

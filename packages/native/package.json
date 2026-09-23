@@ -207,6 +207,8 @@
         "OneNativeConfirmationDialog": "OneNativeConfirmationDialogComponentView",
         "OneNativeQuickLook": "OneNativeQuickLookComponentView",
         "OneNativeFileImporter": "OneNativeFileImporterComponentView",
+        "OneNativeEditButton": "OneNativeEditButtonComponentView",
+        "OneNativeEmptyView": "OneNativeEmptyViewComponentView",
         "OneNativeSheet": "OneNativeSheetComponentView",
         "OneNativeSheetContent": "OneNativeSheetContentComponentView",
         "OneNativeHost": "OneNativeHostComponentView",
