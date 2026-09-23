@@ -1302,6 +1302,7 @@ export interface OneNativeStyle {
     isEnabled: boolean
   }>
   accessibilityElement?: SDKAccessibilityElement
+  accessibilityFocused?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   accessibilityHeading?: SDKAccessibilityHeading
   accessibilityHiddenWithBool?: boolean
   accessibilityHiddenWithHiddenAndIsEnabled?: Readonly<{
@@ -1505,6 +1506,7 @@ export interface OneNativeStyle {
     isFocusable: boolean
     interactions: 'activate' | 'edit' | 'automatic'
   }>
+  focused?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   focusEffectDisabled?: boolean
   fontWidth?: SDKFontWidth | null
   foregroundColor?: SDKForegroundColor | null
@@ -1981,6 +1983,7 @@ export interface OneNativeStyle {
   searchable?: Readonly<{ value: string; onChange: (value: string) => void }>
   searchCompletion?: string
   searchDictationBehavior?: SDKSearchDictationBehavior
+  searchFocused?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   searchPresentationToolbarBehavior?: SDKSearchPresentationToolbarBehavior
   searchSuggestions?: Readonly<{
     visibility: 'automatic' | 'visible' | 'hidden'

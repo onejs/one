@@ -275,4 +275,28 @@ describe('SDK callback and binding transport', () => {
     expect(onOpenURL).toHaveBeenCalledWith('https://example.com')
     expect(onChange).toHaveBeenCalledWith(true)
   })
+
+  it('controls SDK focus bindings and dispatches their changes', () => {
+    const focused = vi.fn()
+    const searchFocused = vi.fn()
+    const accessibilityFocused = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      focused: { value: true, onChange: focused },
+      searchFocused: { value: false, onChange: searchFocused },
+      accessibilityFocused: { value: false, onChange: accessibilityFocused },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['focused', 'true'],
+      ['searchFocused', 'false'],
+      ['accessibilityFocused', 'false'],
+    ])
+    const emit = (name: string, value: string) => element.props.onNativeSDKEvent({ nativeEvent: { name, value } })
+    emit('focused', 'false')
+    emit('searchFocused', 'true')
+    emit('accessibilityFocused', 'true')
+    expect(focused).toHaveBeenCalledWith(false)
+    expect(searchFocused).toHaveBeenCalledWith(true)
+    expect(accessibilityFocused).toHaveBeenCalledWith(true)
+    expect(() => emit('focused', 'maybe')).toThrow('focused emitted an invalid boolean')
+  })
 })

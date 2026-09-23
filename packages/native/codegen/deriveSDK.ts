@@ -4,6 +4,7 @@ import type { Control } from './controlTypes'
 const emptyEventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> (?:Swift\.Void|\(\))\)\?$|^SwiftUICore\.Binding<Swift\.(?:Bool|String)>$/
 const scalarCallbackType = /^(?:@escaping )?\((?:_ [A-Za-z]\w*: )?(Swift\.(?:Bool|String|Int|Float|Double)|CoreFoundation\.CGFloat|Foundation\.URL)\) -> (?:Swift\.Void|\(\))$/
 const eventOrBindingType = (type: string) => emptyEventOrBindingType.test(type) || scalarCallbackType.test(type)
+const focusBindingType = /^SwiftUI\.(?:Accessibility)?FocusState<Swift\.Bool>\.Binding$/
 
 export type DerivedArgument = {
   field: string
@@ -27,7 +28,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'bindingBoolean' | 'bindingString'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'bindingBoolean' | 'bindingString' | 'bindingFocusBoolean'
   ios: number
   type: string
   rawString?: true
@@ -328,7 +329,7 @@ export function deriveModifiers(
             ...framework,
           },
         ]
-      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type) || enumCallbackOf(p.type) || associatedCallbackOf(p.type, ios(method)) || structCallbackOf(p.type, ios(method)))
+      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type) || focusBindingType.test(p.type) || enumCallbackOf(p.type) || associatedCallbackOf(p.type, ios(method)) || structCallbackOf(p.type, ios(method)))
       if (bridged.length === 1 && method.parameters.every((p) => p === bridged[0] || p.defaultValue !== undefined)) {
         const parameter = bridged[0]
         const callbackValue = scalarCallbackType.exec(parameter.type)?.[1]
@@ -341,6 +342,8 @@ export function deriveModifiers(
             ? 'eventStruct'
           : enumCallback
           ? enumCallback.pair ? 'eventEnumPair' : 'eventEnum'
+          : focusBindingType.test(parameter.type)
+          ? 'bindingFocusBoolean'
           : parameter.type.includes('Binding<Swift.Bool>')
           ? 'bindingBoolean'
           : parameter.type.includes('Binding<Swift.String>')
@@ -417,8 +420,9 @@ export function deriveModifiers(
       !candidates.some((other, otherIndex) => otherIndex !== index && other.kind === candidate.kind &&
         other.module === candidate.module && other.type === candidate.type && other.label === candidate.label &&
         (other.ios < candidate.ios || (other.ios === candidate.ios && otherIndex < index))))
-    const establishedValues = unique.filter((candidate) => candidate.kind !== 'record' ||
-      !candidate.arguments?.some((argument) => argument.kind === 'numericStruct' || argument.kind === 'numericTuple'))
+    const establishedValues = unique.filter((candidate) => candidate.kind !== 'bindingFocusBoolean' &&
+      (candidate.kind !== 'record' ||
+        !candidate.arguments?.some((argument) => argument.kind === 'numericStruct' || argument.kind === 'numericTuple')))
     const valueCandidates = establishedValues.length ? establishedValues : unique
     const concrete = valueCandidates.filter((candidate) => !candidate.type.startsWith('some '))
     const preferred = concrete.length ? concrete : valueCandidates

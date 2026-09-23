@@ -57,6 +57,7 @@ const sdkKinds = {
   accessibilityDropPointWithPointAndDescription: 'record',
   accessibilityDropPointWithPointAndDescriptionAndIsEnabled: 'record',
   accessibilityElement: 'string',
+  accessibilityFocused: 'bindingFocusBoolean',
   accessibilityHeading: 'string',
   accessibilityHiddenWithBool: 'boolean',
   accessibilityHiddenWithHiddenAndIsEnabled: 'record',
@@ -164,6 +165,7 @@ const sdkKinds = {
   flipsForRightToLeftLayoutDirection: 'boolean',
   focusableWithBool: 'boolean',
   focusableWithIsFocusableAndInteractions: 'record',
+  focused: 'bindingFocusBoolean',
   focusEffectDisabled: 'boolean',
   fontWidth: 'optionalEnum',
   foregroundColor: 'optionalEnum',
@@ -342,6 +344,7 @@ const sdkKinds = {
   searchable: 'bindingString',
   searchCompletion: 'string',
   searchDictationBehavior: 'string',
+  searchFocused: 'bindingFocusBoolean',
   searchPresentationToolbarBehavior: 'string',
   searchSuggestions: 'record',
   searchToolbarBehavior: 'string',
@@ -1121,12 +1124,16 @@ export function swiftStyleNative(
       )
         throw new Error(name + ' must be a string value and callback')
       if (
-        (kind === 'bindingBoolean' || kind === 'bindingString') &&
+        (kind === 'bindingBoolean' ||
+          kind === 'bindingFocusBoolean' ||
+          kind === 'bindingString') &&
         (typeof value !== 'object' ||
           value === null ||
           typeof (value as { onChange?: unknown }).onChange !== 'function' ||
           typeof (value as { value?: unknown }).value !==
-            (kind === 'bindingBoolean' ? 'boolean' : 'string'))
+            (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean'
+              ? 'boolean'
+              : 'string'))
       )
         throw new Error(name + ' must be a binding')
       sdkModifiers.push([
@@ -1204,11 +1211,13 @@ export function dispatchSDKEvent(
     if (!validSDKEventValue(payload, sdkEventStructs[name]))
       throw new Error(name + ' emitted an invalid struct value')
     ;(modifier as ((value: unknown) => void) | undefined)?.(payload)
-  } else if (kind === 'bindingBoolean')
-    (modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(
+  } else if (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean') {
+    if (value !== 'true' && value !== 'false')
+      throw new Error(name + ' emitted an invalid boolean')
+    ;(modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(
       value === 'true'
     )
-  else if (kind === 'bindingString')
+  } else if (kind === 'bindingString')
     (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
   else if (kind === 'eventValueString')
     (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
