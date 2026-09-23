@@ -135,6 +135,11 @@
     "react-native-screens": ">=4.25.0",
     "react-native-worklets": ">=0.12.2"
   },
+  "dependencies": {
+    "react-native-nitro-image": "0.15.2",
+    "react-native-nitro-modules": "0.37.0",
+    "react-native-nitro-web-image": "0.15.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.28.5",
     "@babel/generator": "7.29.7",
