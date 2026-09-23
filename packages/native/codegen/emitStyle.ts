@@ -85,6 +85,12 @@ ${cases}
       return ${value}
     }()`
           }
+          if (argument.kind === 'url')
+            return `    let ${variable}: ${argument.type} = {
+      guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
+      guard let url = Foundation.URL(string: raw) else { preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)") }
+      return url
+    }()`
           return `    let ${variable}: ${argument.type} = {
       guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
       return ${baseType === 'SwiftUICore.Text' ? 'Text(raw)' : 'raw'}
@@ -127,6 +133,16 @@ ${validation}    ${apply(argumentsFromSDK ?? bridge, modifier.ios, argumentsFrom
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")
     if value == "true" { ${apply('', modifier.ios)} } else { self }
+  }`
+      }
+      if (modifier.kind === 'url' || modifier.kind === 'optionalURL') {
+        const parsed = `if let data = value.data(using: .utf8),
+      let decoded = try? JSONDecoder().decode(String.self, from: data),
+      let url = Foundation.URL(string: decoded) {
+      ${apply('url', modifier.ios)}
+    } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    ${modifier.kind === 'optionalURL' ? `if value == "null" { ${apply('nil as Foundation.URL?', modifier.ios)} } else { ${parsed} }` : `if let url = Foundation.URL(string: value) { ${apply('url', modifier.ios)} } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`}
   }`
       }
       if (modifier.kind === 'optionalBoolean' || modifier.kind === 'optionalNumber' || modifier.kind === 'optionalString') {
@@ -217,7 +233,7 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
           if (argument.optional && item === null) return null
           if (argument.kind === 'number' && (typeof item !== 'number' || !Number.isFinite(item))) throw new Error(name + '.' + argument.field + ' must be finite')
           if (argument.kind === 'boolean' && typeof item !== 'boolean') throw new Error(name + '.' + argument.field + ' must be a boolean')
-          if ((argument.kind === 'string' || argument.kind === 'enum') && typeof item !== 'string') throw new Error(name + '.' + argument.field + ' must be a string')
+          if ((argument.kind === 'string' || argument.kind === 'url' || argument.kind === 'enum') && typeof item !== 'string') throw new Error(name + '.' + argument.field + ' must be a string')
           return String(item)
         })
         sdkModifiers.push([name, JSON.stringify(values)])
@@ -228,6 +244,8 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
       if (kind === 'boolean' && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
       if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean') throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string') throw new Error(name + ' must be a string')
+      if (kind === 'url' && typeof value !== 'string') throw new Error(name + ' must be a URL string')
+      if (kind === 'optionalURL' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a URL string or null')
       if (kind === 'optionalEnum' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')
       if (kind === 'optionalString' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')
       if (kind.startsWith('event') && typeof value !== 'function') throw new Error(name + ' must be a callback')
@@ -235,7 +253,7 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
         (typeof value !== 'object' || value === null || typeof (value as { onChange?: unknown }).onChange !== 'function' ||
         typeof (value as { value?: unknown }).value !== (kind === 'bindingBoolean' ? 'boolean' : 'string')))
         throw new Error(name + ' must be a binding')
-      sdkModifiers.push([name, kind.startsWith('event') ? '' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : kind === 'optionalString' ? JSON.stringify(value) as string : String(value)])
+      sdkModifiers.push([name, kind.startsWith('event') ? '' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : kind === 'optionalString' || kind === 'optionalURL' ? JSON.stringify(value) as string : String(value)])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
     } else {
