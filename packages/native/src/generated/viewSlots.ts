@@ -66,7 +66,13 @@ export const viewSlotArguments = {
     {
       field: 'container',
       kind: 'enum',
-      cases: { navigation: 18, navigationSplitView: 18 },
+      cases: {
+        navigation: 18,
+        navigationSplitView: 18,
+        subscriptionStore: 17,
+        subscriptionStoreHeader: 17,
+        subscriptionStoreFullHeight: 17,
+      },
     },
   ],
   contentToolbar: [{ field: 'placement', kind: 'enum', cases: { tabViewSidebar: 18.4 } }],
@@ -149,7 +155,14 @@ export type ViewSlotConfiguration =
     }
   | {
       name: 'containerBackground'
-      options: { container: 'navigation' | 'navigationSplitView' }
+      options: {
+        container:
+          | 'navigation'
+          | 'navigationSplitView'
+          | 'subscriptionStore'
+          | 'subscriptionStoreHeader'
+          | 'subscriptionStoreFullHeight'
+      }
     }
   | { name: 'contentToolbar'; options: { placement: 'tabViewSidebar' } }
   | { name: 'contextMenu'; options?: never }

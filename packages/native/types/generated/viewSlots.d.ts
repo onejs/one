@@ -77,6 +77,9 @@ export declare const viewSlotArguments: {
         readonly cases: {
             readonly navigation: 18;
             readonly navigationSplitView: 18;
+            readonly subscriptionStore: 17;
+            readonly subscriptionStoreHeader: 17;
+            readonly subscriptionStoreFullHeight: 17;
         };
     }];
     readonly contentToolbar: readonly [{
@@ -224,7 +227,7 @@ export type ViewSlotConfiguration = {
 } | {
     name: 'containerBackground';
     options: {
-        container: 'navigation' | 'navigationSplitView';
+        container: 'navigation' | 'navigationSplitView' | 'subscriptionStore' | 'subscriptionStoreHeader' | 'subscriptionStoreFullHeight';
     };
 } | {
     name: 'contentToolbar';

@@ -126,6 +126,9 @@ extension View {
             preconditionFailure("unavailable containerBackground.container")
           case "navigationSplitView": if #available(iOS 18, *) { return SwiftUI.ContainerBackgroundPlacement.navigationSplitView }
             preconditionFailure("unavailable containerBackground.container")
+          case "subscriptionStore": return SwiftUI.ContainerBackgroundPlacement.subscriptionStore
+          case "subscriptionStoreHeader": return SwiftUI.ContainerBackgroundPlacement.subscriptionStoreHeader
+          case "subscriptionStoreFullHeight": return SwiftUI.ContainerBackgroundPlacement.subscriptionStoreFullHeight
           default: preconditionFailure("invalid containerBackground.container")
           }
         }()

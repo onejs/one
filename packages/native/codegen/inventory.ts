@@ -51,7 +51,8 @@ export function readInventory(root: string) {
     .map((entry) => entry.slice(0, -'.framework'.length))
     .sort()
   const modules = ['SwiftUI', 'SwiftUICore', ...overlays]
-  const paths = modules.map((module) =>
+  // supporting modules provide argument values but do not expand the SwiftUI coverage universe.
+  const paths = [...modules, 'CoreText'].map((module) =>
     join(
       sdk,
       `System/Library/Frameworks/${module}.framework/Modules/${module}.swiftmodule/arm64-apple-ios-simulator.swiftinterface`
