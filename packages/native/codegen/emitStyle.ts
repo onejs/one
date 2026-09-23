@@ -354,7 +354,7 @@ ${modifier.cases
       const parsed =
         modifier.kind === 'boolean'
           ? `      let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")
-      ${apply(modifier.predicateInput ? `{ (_: ${modifier.predicateInput}) in value == "true" }` : construct('value == "true"'), modifier.ios)}`
+      ${apply(modifier.type.startsWith('Foundation.Predicate<') ? `#Predicate<${modifier.predicateInput}> { _ in value == "true" }` : modifier.predicateInput ? `{ (_: ${modifier.predicateInput}) in value == "true" }` : construct('value == "true"'), modifier.ios)}`
           : modifier.kind === 'number'
             ? `      if let number = Double(value), number.isFinite {
         ${apply(construct(

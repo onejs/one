@@ -1625,6 +1625,7 @@ export interface OneNativeStyle {
   fileDialogDefaultDirectory?: string | null
   fileDialogImportsUnresolvedAliases?: boolean
   fileDialogMessage?: string | null
+  fileDialogURLEnabled?: boolean
   fileExporterFilenameLabel?: string | null
   findDisabled?: boolean
   findNavigator?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>

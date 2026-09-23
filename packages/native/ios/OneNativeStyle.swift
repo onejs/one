@@ -232,6 +232,7 @@ extension View {
       case "fileDialogDefaultDirectory": view = AnyView(view.oneNativeSDKFileDialogDefaultDirectory(value, emit: emit))
       case "fileDialogImportsUnresolvedAliases": view = AnyView(view.oneNativeSDKFileDialogImportsUnresolvedAliases(value, emit: emit))
       case "fileDialogMessage": view = AnyView(view.oneNativeSDKFileDialogMessage(value, emit: emit))
+      case "fileDialogURLEnabled": view = AnyView(view.oneNativeSDKFileDialogURLEnabled(value, emit: emit))
       case "fileExporterFilenameLabel": view = AnyView(view.oneNativeSDKFileExporterFilenameLabel(value, emit: emit))
       case "findDisabled": view = AnyView(view.oneNativeSDKFindDisabled(value, emit: emit))
       case "findNavigator": view = AnyView(view.oneNativeSDKFindNavigator(value, emit: emit))
@@ -2415,6 +2416,11 @@ extension View {
     if value == "null" { self.fileDialogMessage(nil as SwiftUICore.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       self.fileDialogMessage(Text(decoded))
     } else { preconditionFailure("invalid fileDialogMessage: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFileDialogURLEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid fileDialogURLEnabled: \(value)")
+      self.fileDialogURLEnabled(#Predicate<Foundation.URL> { _ in value == "true" })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKFileExporterFilenameLabel(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

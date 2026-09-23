@@ -170,6 +170,7 @@ const sdkKinds = {
   fileDialogDefaultDirectory: 'optionalURL',
   fileDialogImportsUnresolvedAliases: 'boolean',
   fileDialogMessage: 'optionalString',
+  fileDialogURLEnabled: 'boolean',
   fileExporterFilenameLabel: 'optionalString',
   findDisabled: 'boolean',
   findNavigator: 'bindingBoolean',

@@ -484,6 +484,12 @@ export function deriveModifiers(
         return [{ name, module: method.module, kind: 'boolean', type: method.parameters[0].type,
           predicateInput, ios: ios(method), ...framework,
           ...(method.parameters[0].label === '_' ? {} : { label: method.parameters[0].label }) }]
+      const predicateValue = method.parameters.length === 1 &&
+        /^Foundation\.Predicate<([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)>$/.exec(method.parameters[0].type)?.[1]
+      if (predicateValue)
+        return [{ name, module: method.module, kind: 'boolean', type: method.parameters[0].type,
+          predicateInput: predicateValue, ios: ios(method), ...framework,
+          ...(method.parameters[0].label === '_' ? {} : { label: method.parameters[0].label }) }]
       const codableBinding = (type: string) => {
         const valueType = /^SwiftUICore\.Binding<([A-Za-z_]\w*\.[A-Za-z][\w.]*)>\??$/.exec(type)?.[1]
         if (!valueType) return
