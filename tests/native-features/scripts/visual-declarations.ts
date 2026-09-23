@@ -71,12 +71,19 @@ export function resolveVisualRegion(
       ([key, expected]) => node[key as keyof VisualAccessibilityNode] === expected
     )
   )
-  if (matches.length !== 1 || !matches[0].frame) {
+  // the snapshot tree repeats the live screen once per container path, so one
+  // surface matches many nodes with the identical frame. that duplication is
+  // not ambiguity: only distinct frames are.
+  const framed = matches.filter((node) => node.frame)
+  const regions = new Set(
+    framed.map((node) => JSON.stringify(node.frame, ['height', 'width', 'x', 'y']))
+  )
+  if (framed.length === 0 || regions.size !== 1 || !framed[0].frame) {
     throw new Error(
-      `${declaration.name}: expected exactly one framed accessibility anchor ${JSON.stringify(declaration.anchor.selector)}, found ${matches.filter((node) => node.frame).length}`
+      `${declaration.name}: expected one framed accessibility anchor ${JSON.stringify(declaration.anchor.selector)}, found ${framed.length} in ${regions.size} distinct regions`
     )
   }
-  const region = declaration.anchor.region(matches[0].frame)
+  const region = declaration.anchor.region(framed[0].frame)
   if (
     ![region.x, region.y, region.width, region.height].every(Number.isFinite) ||
     region.width <= 0 ||
@@ -100,7 +107,7 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     negativeCapture: 'map/map-no-pins.png',
     anchor: {
       capture: 'map/map-two-pins.png',
-      selector: { AXLabel: 'Map' },
+      selector: { AXUniqueId: 'one-native-map-view' },
       region: (frame) => frame,
     },
     prompt:
@@ -127,7 +134,7 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     negativeCapture: 'media/media-no-player.png',
     anchor: {
       capture: 'map/map-no-pins.png',
-      selector: { AXLabel: 'Map' },
+      selector: { AXUniqueId: 'one-native-map-view' },
       region: (frame) => frame,
     },
     prompt:
@@ -143,6 +150,95 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       corpusSize: 70,
       nullStateReads:
         'rendered MapKit tiles read 14,893 distinct colors, threshold is 8,000, unrendered screen reads 460 (~32x separation); 4/70 cross matches (all 4 genuine map screens)',
+    },
+  },
+
+  // ==========================================
+  // Suite: ui-map
+  // ==========================================
+  // the fixture tints one pin magenta, fills a polygon orange, and strokes a
+  // polyline cyan: three colours the base map never paints, so each layer
+  // gets its own gate. floors are provisional until the ui-map probe run
+  // measures them; the shared negative is the bare map with pins cycled to
+  // zero and overlays off.
+  {
+    name: 'ui-map-pins',
+    suite: 'ui-map',
+    subject: 'Tinted map marker pin rendered over the map view',
+    positiveCapture: 'ui-map/ui-map-pins.png',
+    negativeCapture: 'ui-map/ui-map-bare.png',
+    anchor: {
+      capture: 'ui-map/ui-map-pins.png',
+      selector: { AXUniqueId: 'one-native-ui-map-view' },
+      region: (frame) => frame,
+    },
+    prompt:
+      'A custom magenta map marker pin is visible on the map, distinct from base Apple Maps POI icons.',
+    measureSubject: (crop) =>
+      countMatchingPixels(crop, (r, g, b) => r > 150 && g < 120 && b > 150),
+    minSubjectFloor: 1_500,
+    calibration: {
+      positiveMeasured: 4_467,
+      negativeMeasured: 0,
+      threshold: 1_500,
+      changedPixelsMeasured: null,
+      crossSubstitutionMatches: null,
+      corpusSize: 1,
+      nullStateReads:
+        'magenta tinted pin reads 4,467, bar is 1,500, bare map reads 0; single-run calibration',
+    },
+  },
+  {
+    name: 'ui-map-overlays',
+    suite: 'ui-map',
+    subject: 'Orange polygon fill and circle outline rendered over the map view',
+    positiveCapture: 'ui-map/ui-map-overlays.png',
+    negativeCapture: 'ui-map/ui-map-bare.png',
+    anchor: {
+      capture: 'ui-map/ui-map-overlays.png',
+      selector: { AXUniqueId: 'one-native-ui-map-view' },
+      region: (frame) => frame,
+    },
+    prompt:
+      'An orange filled polygon and an orange circle outline are visible on the map.',
+    measureSubject: (crop) =>
+      countMatchingPixels(crop, (r, g, b) => r > 200 && g > 100 && g < 170 && b < 100),
+    minSubjectFloor: 8_000,
+    calibration: {
+      positiveMeasured: 17_077,
+      negativeMeasured: 48,
+      threshold: 8_000,
+      changedPixelsMeasured: null,
+      crossSubstitutionMatches: null,
+      corpusSize: 1,
+      nullStateReads:
+        'orange polygon and circle read 17,077, bar is 8,000, bare map reads 48; single-run calibration',
+    },
+  },
+  {
+    name: 'ui-map-polyline',
+    suite: 'ui-map',
+    subject: 'Cyan polyline stroke rendered over the map view',
+    positiveCapture: 'ui-map/ui-map-polyline.png',
+    negativeCapture: 'ui-map/ui-map-bare.png',
+    anchor: {
+      capture: 'ui-map/ui-map-polyline.png',
+      selector: { AXUniqueId: 'one-native-ui-map-view' },
+      region: (frame) => frame,
+    },
+    prompt: 'A cyan polyline stroke is visible on the map.',
+    measureSubject: (crop) =>
+      countMatchingPixels(crop, (r, g, b) => r < 100 && g > 150 && b > 150),
+    minSubjectFloor: 400,
+    calibration: {
+      positiveMeasured: 3_053,
+      negativeMeasured: 3_345,
+      threshold: 400,
+      changedPixelsMeasured: null,
+      crossSubstitutionMatches: null,
+      corpusSize: 1,
+      nullStateReads:
+        'BROKEN DISCRIMINATOR: the bare map reads 3,345 cyan bay-water pixels, above the 3,053 positive, so this gate cannot separate. fix: tint the fixture polyline magenta (its capture runs with pins off) and recalibrate.',
     },
   },
 

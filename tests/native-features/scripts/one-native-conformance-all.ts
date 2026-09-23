@@ -21,6 +21,7 @@ const suites = [
   'media',
   'map',
   'apple-file',
+  'ui-map',
 ] as const
 
 const args = process.argv.slice(2)

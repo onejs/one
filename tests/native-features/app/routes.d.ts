@@ -49,6 +49,7 @@ declare module 'one' {
         | `/one-native-state`
         | `/one-native-system`
         | `/one-native-tab-oracle`
+        | `/one-native-ui-map`
         | `/split-view-test`
         | `/toolbar-test`
         | `/zoom-detail`
