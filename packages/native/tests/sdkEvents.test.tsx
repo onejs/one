@@ -305,6 +305,39 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('must be a string')
   })
 
+  it('routes generated gesture end values through each gesture modifier', () => {
+    const onTap = vi.fn()
+    const onDrag = vi.fn()
+    const onLongPress = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      gesture: { kind: 'tap', onEnded: onTap },
+      highPriorityGesture: { kind: 'drag', onEnded: onDrag },
+      simultaneousGesture: { kind: 'longPress', onEnded: onLongPress },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['gesture', 'tap'],
+      ['highPriorityGesture', 'drag'],
+      ['simultaneousGesture', 'longPress'],
+    ])
+    const drag = { location: { x: 20, y: 30 }, startLocation: { x: 5, y: 10 } }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'gesture', value: '' } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'highPriorityGesture', value: JSON.stringify(drag),
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'simultaneousGesture', value: 'true',
+    } })
+    expect(onTap).toHaveBeenCalledOnce()
+    expect(onDrag).toHaveBeenCalledWith(drag)
+    expect(onLongPress).toHaveBeenCalledWith(true)
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      gesture: { kind: 'unknown' as 'tap', onEnded: onTap },
+    } })).toThrow('SDK gesture and callback')
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'highPriorityGesture', value: '{"location":{"x":20,"y":"bad"}}',
+    } })).toThrow('invalid gesture event')
+  })
+
   it('round trips a Codable customization binding through native JSON', () => {
     const onChange = vi.fn()
     const current = '{"perTabState":[],"identifier":"D9754350-75EE-4390-AC54-159710381977","perSectionState":[]}'
@@ -614,5 +647,19 @@ describe('SDK callback and binding transport', () => {
     expect(searchFocused).toHaveBeenCalledWith(true)
     expect(accessibilityFocused).toHaveBeenCalledWith(true)
     expect(() => emit('focused', 'maybe')).toThrow('focused emitted an invalid boolean')
+  })
+
+  it('enables SDK default focus through self-owned Boolean focus state', () => {
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      defaultFocus: true,
+      accessibilityDefaultFocus: false,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['defaultFocus', 'true'],
+      ['accessibilityDefaultFocus', 'false'],
+    ])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      defaultFocus: 'yes' as unknown as boolean,
+    } })).toThrow('defaultFocus must be a boolean')
   })
 })

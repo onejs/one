@@ -239,6 +239,25 @@ ${parsedArguments}
     } else { self }` : body}
   }`
       }
+      if (modifier.kind === 'gesture')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+${modifier.gestureOptions!.map((option) => {
+          const ended = option.eventValue
+            ? `{ item in
+        let payload = ${eventValueSwift(option.eventValue, 'item')}
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name}.${option.name} event") }
+        emit(${JSON.stringify(modifier.name)}, encoded)
+      }`
+            : `{ _ in emit(${JSON.stringify(modifier.name)}, "") }`
+          const call = `self.${modifier.sdkName ?? modifier.name}(${option.type}().onEnded(${ended}))`
+          return `    case ${JSON.stringify(option.name)}:
+      ${option.ios > 17 ? `if #available(iOS ${option.ios}, *) { ${call} } else { self }` : call}`
+        }).join('\n')}
+    default: preconditionFailure("invalid ${modifier.name}: \\(value)")
+    }
+  }`
       if (modifier.kind === 'bindingFocusBoolean') {
         const holder = `OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}FocusBinding`
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -246,6 +265,15 @@ ${parsedArguments}
     ${modifier.ios > 17 ? `if #available(iOS ${modifier.ios}, *) {
       self.modifier(${holder}(value: value == "true", emit: emit))
     } else { self }` : `self.modifier(${holder}(value: value == "true", emit: emit))`}
+  }`
+      }
+      if (modifier.kind === 'defaultFocusBoolean') {
+        const holder = `OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}FocusBinding`
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")
+    if value == "true" {
+      ${modifier.ios > 17 ? `if #available(iOS ${modifier.ios}, *) { self.modifier(${holder}()) } else { self }` : `self.modifier(${holder}())`}
+    } else { self }
   }`
       }
       if (modifier.kind === 'bindingPoint') {
@@ -479,9 +507,18 @@ ${parsed}
   }`
     })
     .join('\n\n')
-  const focusBindings = derived.filter((modifier) => modifier.kind === 'bindingFocusBoolean').map((modifier) => {
+  const focusBindings = derived.filter((modifier) => modifier.kind === 'bindingFocusBoolean' || modifier.kind === 'defaultFocusBoolean').map((modifier) => {
     const holder = `OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}FocusBinding`
     const accessibility = modifier.type.includes('AccessibilityFocusState')
+    if (modifier.kind === 'defaultFocusBoolean')
+      return `${modifier.ios > 17 ? `@available(iOS ${modifier.ios}, *)\n` : ''}private struct ${holder}: ViewModifier {
+  @${accessibility ? 'AccessibilityFocusState' : 'FocusState'} private var focused: Bool
+
+  func body(content: Content) -> some View {
+    content.${accessibility ? 'accessibilityFocused' : 'focused'}($focused)
+      .${modifier.sdkName ?? modifier.name}($focused, true)
+  }
+}`
     return `${modifier.ios > 17 ? `@available(iOS ${modifier.ios}, *)\n` : ''}private struct ${holder}: ViewModifier {
   @${accessibility ? 'AccessibilityFocusState' : 'FocusState'} private var focused: Bool
   let value: Bool
@@ -527,6 +564,7 @@ type SDKEventValueShape =
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
 const sdkAssociatedCases: Record<string, Record<string, readonly SDKEventValueShape[]>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAssociatedEnum').map((modifier) => [modifier.name, Object.fromEntries(modifier.associatedCases!.map((item) => [item.name, item.values]))])))}
 const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.eventValue])))}
+const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'gesture').map((modifier) => [modifier.name, Object.fromEntries(modifier.gestureOptions!.map((option) => [option.name, option.eventValue ?? null]))])))}
 const sdkCodableOptional: Record<string, boolean> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'bindingCodable').map((modifier) => [modifier.name, modifier.type.endsWith('?')]))) }
 const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, fields, eventValue }) => ({ field, kind, optional, ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
 
@@ -608,9 +646,18 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
         sdkModifiers.push([name, JSON.stringify(values)])
         continue
       }
+      if (kind === 'gesture') {
+        if (!value || typeof value !== 'object' || Array.isArray(value) ||
+          typeof (value as { kind?: unknown }).kind !== 'string' ||
+          !Object.hasOwn(sdkGestureOptions[name], (value as { kind: string }).kind) ||
+          typeof (value as { onEnded?: unknown }).onEnded !== 'function')
+          throw new Error(name + ' must be an SDK gesture and callback')
+        sdkModifiers.push([name, (value as { kind: string }).kind])
+        continue
+      }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite')
       if (kind === 'optionalNumber' && value !== null && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite or null')
-      if (kind === 'boolean' && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
+      if ((kind === 'boolean' || kind === 'defaultFocusBoolean') && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
       if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean') throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string') throw new Error(name + ' must be a string')
       if (kind === 'url' && typeof value !== 'string') throw new Error(name + ' must be a URL string')
@@ -695,7 +742,20 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
   }
   const modifier = (style as Record<string, unknown> | undefined)?.[name]
   const kind = sdkKinds[name as keyof typeof sdkKinds] as string | undefined
-  if (kind === 'event') (modifier as (() => void) | undefined)?.()
+  if (kind === 'gesture') {
+    const config = modifier as { kind: string; onEnded: (value?: unknown) => void } | undefined
+    const shape = config && sdkGestureOptions[name]?.[config.kind]
+    if (shape === undefined) throw new Error(name + ' emitted an invalid gesture')
+    if (shape === null) {
+      if (value !== '') throw new Error(name + ' emitted an invalid gesture event')
+      config?.onEnded()
+    } else {
+      const payload: unknown = JSON.parse(value)
+      if (!validSDKEventValue(payload, shape)) throw new Error(name + ' emitted an invalid gesture event')
+      config?.onEnded(payload)
+    }
+  }
+  else if (kind === 'event') (modifier as (() => void) | undefined)?.()
   else if (kind === 'eventReturnArray') (modifier as { onAction: () => void } | undefined)?.onAction()
   else if (kind === 'eventReturnEnum') {
     const payload: unknown = JSON.parse(value)

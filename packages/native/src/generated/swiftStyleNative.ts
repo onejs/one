@@ -51,6 +51,7 @@ const sdkKinds = {
   accessibilityAddTraits: 'string',
   accessibilityAdjustableAction: 'eventEnum',
   accessibilityCustomContent: 'record',
+  accessibilityDefaultFocus: 'defaultFocusBoolean',
   accessibilityDirectTouch: 'record',
   accessibilityDragPointWithPointAndDescription: 'record',
   accessibilityDragPointWithPointAndDescriptionAndIsEnabled: 'record',
@@ -144,6 +145,7 @@ const sdkKinds = {
   datePickerStyle: 'style',
   defaultAdaptableTabBarPlacement: 'string',
   defaultAppStorage: 'string',
+  defaultFocus: 'defaultFocusBoolean',
   defaultHoverEffect: 'optionalEnum',
   defaultScrollAnchorWithAnchorAndRole: 'record',
   defaultScrollAnchorWithOptionalUnitPoint: 'optionalEnum',
@@ -190,6 +192,7 @@ const sdkKinds = {
   formStyle: 'style',
   gaugeStyle: 'style',
   geometryGroup: 'boolean',
+  gesture: 'gesture',
   glassEffectTransition: 'string',
   grayscale: 'number',
   gridCellAnchor: 'string',
@@ -203,6 +206,7 @@ const sdkKinds = {
   headerProminence: 'string',
   help: 'string',
   hidden: 'boolean',
+  highPriorityGesture: 'gesture',
   hoverEffectDisabled: 'boolean',
   hoverEffectWithEffectAndIsEnabled: 'record',
   hoverEffectWithHoverEffect: 'string',
@@ -396,6 +400,7 @@ const sdkKinds = {
   shadow: 'record',
   shortcutsLinkStyle: 'string',
   signInWithAppleButtonStyle: 'string',
+  simultaneousGesture: 'gesture',
   siriTipViewStyle: 'string',
   sliderThumbVisibility: 'string',
   speechAdjustedPitch: 'number',
@@ -819,6 +824,197 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
       { name: 'oldValue', value: { kind: 'size' } },
       { name: 'newValue', value: { kind: 'size' } },
     ],
+  },
+}
+const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = {
+  gesture: {
+    drag: {
+      kind: 'object',
+      fields: [
+        { name: 'location', value: { kind: 'point' } },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    longPress: { kind: 'boolean' },
+    magnify: {
+      kind: 'object',
+      fields: [
+        { name: 'magnification', value: { kind: 'number' } },
+        { name: 'velocity', value: { kind: 'number' } },
+        {
+          name: 'startAnchor',
+          value: {
+            kind: 'object',
+            fields: [
+              { name: 'x', value: { kind: 'number' } },
+              { name: 'y', value: { kind: 'number' } },
+            ],
+          },
+        },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    rotate: {
+      kind: 'object',
+      fields: [
+        {
+          name: 'rotation',
+          value: {
+            kind: 'object',
+            fields: [{ name: 'radians', value: { kind: 'number' } }],
+          },
+        },
+        {
+          name: 'velocity',
+          value: {
+            kind: 'object',
+            fields: [{ name: 'radians', value: { kind: 'number' } }],
+          },
+        },
+        {
+          name: 'startAnchor',
+          value: {
+            kind: 'object',
+            fields: [
+              { name: 'x', value: { kind: 'number' } },
+              { name: 'y', value: { kind: 'number' } },
+            ],
+          },
+        },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    spatialTap: {
+      kind: 'object',
+      fields: [{ name: 'location', value: { kind: 'point' } }],
+    },
+    tap: null,
+  },
+  highPriorityGesture: {
+    drag: {
+      kind: 'object',
+      fields: [
+        { name: 'location', value: { kind: 'point' } },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    longPress: { kind: 'boolean' },
+    magnify: {
+      kind: 'object',
+      fields: [
+        { name: 'magnification', value: { kind: 'number' } },
+        { name: 'velocity', value: { kind: 'number' } },
+        {
+          name: 'startAnchor',
+          value: {
+            kind: 'object',
+            fields: [
+              { name: 'x', value: { kind: 'number' } },
+              { name: 'y', value: { kind: 'number' } },
+            ],
+          },
+        },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    rotate: {
+      kind: 'object',
+      fields: [
+        {
+          name: 'rotation',
+          value: {
+            kind: 'object',
+            fields: [{ name: 'radians', value: { kind: 'number' } }],
+          },
+        },
+        {
+          name: 'velocity',
+          value: {
+            kind: 'object',
+            fields: [{ name: 'radians', value: { kind: 'number' } }],
+          },
+        },
+        {
+          name: 'startAnchor',
+          value: {
+            kind: 'object',
+            fields: [
+              { name: 'x', value: { kind: 'number' } },
+              { name: 'y', value: { kind: 'number' } },
+            ],
+          },
+        },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    spatialTap: {
+      kind: 'object',
+      fields: [{ name: 'location', value: { kind: 'point' } }],
+    },
+    tap: null,
+  },
+  simultaneousGesture: {
+    drag: {
+      kind: 'object',
+      fields: [
+        { name: 'location', value: { kind: 'point' } },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    longPress: { kind: 'boolean' },
+    magnify: {
+      kind: 'object',
+      fields: [
+        { name: 'magnification', value: { kind: 'number' } },
+        { name: 'velocity', value: { kind: 'number' } },
+        {
+          name: 'startAnchor',
+          value: {
+            kind: 'object',
+            fields: [
+              { name: 'x', value: { kind: 'number' } },
+              { name: 'y', value: { kind: 'number' } },
+            ],
+          },
+        },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    rotate: {
+      kind: 'object',
+      fields: [
+        {
+          name: 'rotation',
+          value: {
+            kind: 'object',
+            fields: [{ name: 'radians', value: { kind: 'number' } }],
+          },
+        },
+        {
+          name: 'velocity',
+          value: {
+            kind: 'object',
+            fields: [{ name: 'radians', value: { kind: 'number' } }],
+          },
+        },
+        {
+          name: 'startAnchor',
+          value: {
+            kind: 'object',
+            fields: [
+              { name: 'x', value: { kind: 'number' } },
+              { name: 'y', value: { kind: 'number' } },
+            ],
+          },
+        },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    spatialTap: {
+      kind: 'object',
+      fields: [{ name: 'location', value: { kind: 'point' } }],
+    },
+    tap: null,
   },
 }
 const sdkCodableOptional: Record<string, boolean> = { tabViewCustomization: true }
@@ -1529,6 +1725,19 @@ export function swiftStyleNative(
         sdkModifiers.push([name, JSON.stringify(values)])
         continue
       }
+      if (kind === 'gesture') {
+        if (
+          !value ||
+          typeof value !== 'object' ||
+          Array.isArray(value) ||
+          typeof (value as { kind?: unknown }).kind !== 'string' ||
+          !Object.hasOwn(sdkGestureOptions[name], (value as { kind: string }).kind) ||
+          typeof (value as { onEnded?: unknown }).onEnded !== 'function'
+        )
+          throw new Error(name + ' must be an SDK gesture and callback')
+        sdkModifiers.push([name, (value as { kind: string }).kind])
+        continue
+      }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value)))
         throw new Error(name + ' must be finite')
       if (
@@ -1537,7 +1746,10 @@ export function swiftStyleNative(
         (typeof value !== 'number' || !Number.isFinite(value))
       )
         throw new Error(name + ' must be finite or null')
-      if (kind === 'boolean' && typeof value !== 'boolean')
+      if (
+        (kind === 'boolean' || kind === 'defaultFocusBoolean') &&
+        typeof value !== 'boolean'
+      )
         throw new Error(name + ' must be a boolean')
       if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean')
         throw new Error(name + ' must be a boolean or null')
@@ -1734,7 +1946,22 @@ export function dispatchSDKEvent(
   }
   const modifier = (style as Record<string, unknown> | undefined)?.[name]
   const kind = sdkKinds[name as keyof typeof sdkKinds] as string | undefined
-  if (kind === 'event') (modifier as (() => void) | undefined)?.()
+  if (kind === 'gesture') {
+    const config = modifier as
+      | { kind: string; onEnded: (value?: unknown) => void }
+      | undefined
+    const shape = config && sdkGestureOptions[name]?.[config.kind]
+    if (shape === undefined) throw new Error(name + ' emitted an invalid gesture')
+    if (shape === null) {
+      if (value !== '') throw new Error(name + ' emitted an invalid gesture event')
+      config?.onEnded()
+    } else {
+      const payload: unknown = JSON.parse(value)
+      if (!validSDKEventValue(payload, shape))
+        throw new Error(name + ' emitted an invalid gesture event')
+      config?.onEnded(payload)
+    }
+  } else if (kind === 'event') (modifier as (() => void) | undefined)?.()
   else if (kind === 'eventReturnArray')
     (modifier as { onAction: () => void } | undefined)?.onAction()
   else if (kind === 'eventReturnEnum') {
