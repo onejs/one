@@ -263,4 +263,22 @@ describe('SDK view slots', () => {
       { name: 'tabViewSidebarHeader', module: 'SwiftUI', label: 'content', ios: 0, arguments: [] },
     ])
   })
+
+  it('keeps overloads with different required enum types', () => {
+    const content = { label: 'content', name: 'content', type: '() -> V' }
+    const requirements = ['V : SwiftUICore.View']
+    expect(deriveViewSlots([
+      { ...method('safeAreaInset', 'SwiftUICore', [
+        { label: 'edge', name: 'edge', type: 'SwiftUICore.VerticalEdge' }, content,
+      ]), requirements },
+      { ...method('safeAreaInset', 'SwiftUICore', [
+        { label: 'edge', name: 'edge', type: 'SwiftUICore.HorizontalEdge' }, content,
+      ]), requirements },
+      { ...method('top', 'SwiftUICore'), kind: 'static', owner: 'VerticalEdge', type: 'VerticalEdge' },
+      { ...method('leading', 'SwiftUICore'), kind: 'static', owner: 'HorizontalEdge', type: 'HorizontalEdge' },
+    ], 27)).toEqual([
+      { name: 'safeAreaInsetWithHorizontalEdge', sdkName: 'safeAreaInset', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [{ field: 'edge', label: 'edge', type: 'SwiftUICore.HorizontalEdge', kind: 'enum', optional: false, cases: [{ name: 'leading', ios: 0 }] }] },
+      { name: 'safeAreaInsetWithVerticalEdge', sdkName: 'safeAreaInset', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [{ field: 'edge', label: 'edge', type: 'SwiftUICore.VerticalEdge', kind: 'enum', optional: false, cases: [{ name: 'top', ios: 0 }] }] },
+    ])
+  })
 })

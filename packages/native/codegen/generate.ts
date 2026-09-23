@@ -116,11 +116,14 @@ for (const modifier of derivedModifiers) {
 for (const slot of derivedViewSlots) {
   const declaration = inventory.find((d) =>
     d.kind === 'func' && d.module === slot.module && d.owner.split('.').at(-1) === 'View' &&
-    d.name === slot.name && d.parameters.some((parameter) =>
+    d.name === (slot.sdkName ?? slot.name) && d.parameters.some((parameter) =>
       parameter.label === slot.label &&
-      /^\(\) -> [A-Za-z_]\w*$/.test(parameter.type) &&
-      d.requirements?.[0] === `${parameter.type.slice(6)} : SwiftUICore.View`) &&
-    d.requirements?.length === 1
+      (parameter.type === '() -> some View' ||
+        (/^\(\) -> [A-Za-z_]\w*$/.test(parameter.type) &&
+          d.requirements?.[0] === `${parameter.type.slice(6)} : SwiftUICore.View`))) &&
+    d.parameters.filter((parameter) => parameter.defaultValue === undefined &&
+      !parameter.type.startsWith('() ->')).map((parameter) => parameter.type).join('|') ===
+      slot.arguments.map((argument) => argument.type).join('|')
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${slot.name} slot`)
   coverModifier(declaration)
