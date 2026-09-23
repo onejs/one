@@ -86,6 +86,18 @@ describe('SDK modifier derivation', () => {
       { name: 'sectionIndexLabel', kind: 'optionalString', type: 'SwiftUICore.Text?', ios: 0 },
     ])
   })
+
+  it('derives optional SDK cases and framework overlay modifiers', () => {
+    expect(deriveModifiers([
+      method('textCase', 'SwiftUICore', [{ label: '_', name: 'textCase', type: 'SwiftUICore.Text.Case?' }]),
+      { ...method('uppercase', 'SwiftUICore'), kind: 'static', owner: 'Text.Case', type: 'Text.Case' },
+      method('payLaterViewAction', '_PassKit_SwiftUI', [{ label: '_', name: 'action', type: '_PassKit_SwiftUI.PayLaterViewAction' }]),
+      { ...method('learnMore', '_PassKit_SwiftUI'), kind: 'static', owner: 'PayLaterViewAction', type: 'PayLaterViewAction' },
+    ], 27, [])).toEqual([
+      { name: 'payLaterViewAction', kind: 'string', type: '_PassKit_SwiftUI.PayLaterViewAction', ios: 0, framework: 'PassKit', cases: [{ name: 'learnMore', ios: 0 }] },
+      { name: 'textCase', kind: 'optionalEnum', type: 'SwiftUICore.Text.Case?', ios: 0, cases: [{ name: 'uppercase', ios: 0 }] },
+    ])
+  })
 })
 
 describe('SDK tab view slots', () => {

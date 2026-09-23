@@ -138,8 +138,10 @@ ${styleFields
                 ? 'boolean | null'
                 : modifier.kind === 'optionalNumber'
                   ? 'number | null'
-                  : modifier.kind === 'optionalString'
-                    ? 'string | null'
+                : modifier.kind === 'optionalString'
+                  ? 'string | null'
+                  : modifier.kind === 'optionalEnum'
+                    ? `SDK${upper(modifier.name)} | null`
               : modifier.kind === 'string' ? undefined : modifier.kind,
       values: modifier.cases?.map((item) => item.name),
     })),

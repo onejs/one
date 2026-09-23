@@ -19,6 +19,28 @@ export const glassEffectShapes = [
 export type GlassEffectShape = (typeof glassEffectShapes)[number]
 export const materials = ['ultraThin', 'thin', 'regular', 'thick', 'ultraThick'] as const
 export type Material = (typeof materials)[number]
+export const sdkAccentColorValues = [
+  'accentColor',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'mint',
+  'teal',
+  'cyan',
+  'blue',
+  'indigo',
+  'purple',
+  'pink',
+  'brown',
+  'white',
+  'gray',
+  'black',
+  'clear',
+  'primary',
+  'secondary',
+] as const
+export type SDKAccentColor = (typeof sdkAccentColorValues)[number]
 export const sdkAccessibilityActivationPointValues = [
   'zero',
   'center',
@@ -98,6 +120,29 @@ export const sdkAccessibilityTextContentTypeValues = [
 ] as const
 export type SDKAccessibilityTextContentType =
   (typeof sdkAccessibilityTextContentTypeValues)[number]
+export const sdkAddPassToWalletButtonStyleValues = ['black', 'blackOutline'] as const
+export type SDKAddPassToWalletButtonStyle =
+  (typeof sdkAddPassToWalletButtonStyleValues)[number]
+export const sdkAllowedDynamicRangeValues = [
+  'standard',
+  'constrainedHigh',
+  'high',
+] as const
+export type SDKAllowedDynamicRange = (typeof sdkAllowedDynamicRangeValues)[number]
+export const sdkAnimationValues = [
+  'default',
+  'interpolatingSpring',
+  'spring',
+  'interactiveSpring',
+  'smooth',
+  'snappy',
+  'bouncy',
+  'easeInOut',
+  'easeIn',
+  'easeOut',
+  'linear',
+] as const
+export type SDKAnimation = (typeof sdkAnimationValues)[number]
 export const sdkBadgeProminenceValues = ['decreased', 'standard', 'increased'] as const
 export type SDKBadgeProminence = (typeof sdkBadgeProminenceValues)[number]
 export const sdkBlendModeValues = [
@@ -181,6 +226,21 @@ export const sdkDefaultAdaptableTabBarPlacementValues = [
 ] as const
 export type SDKDefaultAdaptableTabBarPlacement =
   (typeof sdkDefaultAdaptableTabBarPlacementValues)[number]
+export const sdkDefaultHoverEffectValues = ['automatic', 'highlight', 'lift'] as const
+export type SDKDefaultHoverEffect = (typeof sdkDefaultHoverEffectValues)[number]
+export const sdkDefaultScrollAnchorValues = [
+  'zero',
+  'center',
+  'leading',
+  'trailing',
+  'top',
+  'bottom',
+  'topLeading',
+  'topTrailing',
+  'bottomLeading',
+  'bottomTrailing',
+] as const
+export type SDKDefaultScrollAnchor = (typeof sdkDefaultScrollAnchorValues)[number]
 export const sdkDefaultTabBarPlacementValues = ['automatic', 'tabBar', 'sidebar'] as const
 export type SDKDefaultTabBarPlacement = (typeof sdkDefaultTabBarPlacementValues)[number]
 export const sdkDefersSystemGesturesValues = [
@@ -225,6 +285,35 @@ export const sdkFileDialogBrowserOptionsValues = [
 ] as const
 export type SDKFileDialogBrowserOptions =
   (typeof sdkFileDialogBrowserOptionsValues)[number]
+export const sdkFontWidthValues = [
+  'compressed',
+  'condensed',
+  'standard',
+  'expanded',
+] as const
+export type SDKFontWidth = (typeof sdkFontWidthValues)[number]
+export const sdkForegroundColorValues = [
+  'accentColor',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'mint',
+  'teal',
+  'cyan',
+  'blue',
+  'indigo',
+  'purple',
+  'pink',
+  'brown',
+  'white',
+  'gray',
+  'black',
+  'clear',
+  'primary',
+  'secondary',
+] as const
+export type SDKForegroundColor = (typeof sdkForegroundColorValues)[number]
 export const sdkGlassEffectTransitionValues = [
   'matchedGeometry',
   'materialize',
@@ -260,8 +349,6 @@ export const sdkHoverEffectValues = ['automatic', 'highlight', 'lift'] as const
 export type SDKHoverEffect = (typeof sdkHoverEffectValues)[number]
 export const sdkHueRotationValues = ['zero'] as const
 export type SDKHueRotation = (typeof sdkHueRotationValues)[number]
-export const sdkKeyboardShortcutValues = ['defaultAction', 'cancelAction'] as const
-export type SDKKeyboardShortcut = (typeof sdkKeyboardShortcutValues)[number]
 export const sdkLabelsVisibilityValues = ['automatic', 'visible', 'hidden'] as const
 export type SDKLabelsVisibility = (typeof sdkLabelsVisibilityValues)[number]
 export const sdkLayoutDirectionBehaviorValues = ['fixed', 'mirrors'] as const
@@ -273,6 +360,18 @@ export const sdkListSectionIndexVisibilityValues = [
 ] as const
 export type SDKListSectionIndexVisibility =
   (typeof sdkListSectionIndexVisibilityValues)[number]
+export const sdkMapControlVisibilityValues = ['automatic', 'visible', 'hidden'] as const
+export type SDKMapControlVisibility = (typeof sdkMapControlVisibilityValues)[number]
+export const sdkMapFeatureSelectionAccessoryValues = [
+  'automatic',
+  'callout',
+  'sheet',
+  'caption',
+] as const
+export type SDKMapFeatureSelectionAccessory =
+  (typeof sdkMapFeatureSelectionAccessoryValues)[number]
+export const sdkMapStyleValues = ['standard', 'imagery', 'hybrid'] as const
+export type SDKMapStyle = (typeof sdkMapStyleValues)[number]
 export const sdkMaterialActiveAppearanceValues = [
   'automatic',
   'active',
@@ -300,6 +399,24 @@ export type SDKNavigationLinkIndicatorVisibility =
   (typeof sdkNavigationLinkIndicatorVisibilityValues)[number]
 export const sdkPaletteSelectionEffectValues = ['automatic', 'custom'] as const
 export type SDKPaletteSelectionEffect = (typeof sdkPaletteSelectionEffectValues)[number]
+export const sdkPayLaterViewActionValues = ['learnMore', 'calculator'] as const
+export type SDKPayLaterViewAction = (typeof sdkPayLaterViewActionValues)[number]
+export const sdkPayLaterViewDisplayStyleValues = [
+  'standard',
+  'badge',
+  'checkout',
+  'price',
+] as const
+export type SDKPayLaterViewDisplayStyle =
+  (typeof sdkPayLaterViewDisplayStyleValues)[number]
+export const sdkPayWithApplePayButtonStyleValues = [
+  'white',
+  'whiteOutline',
+  'black',
+  'automatic',
+] as const
+export type SDKPayWithApplePayButtonStyle =
+  (typeof sdkPayWithApplePayButtonStyleValues)[number]
 export const sdkPersistentSystemOverlaysValues = [
   'automatic',
   'visible',
@@ -307,6 +424,10 @@ export const sdkPersistentSystemOverlaysValues = [
 ] as const
 export type SDKPersistentSystemOverlays =
   (typeof sdkPersistentSystemOverlaysValues)[number]
+export const sdkPhotosPickerStyleValues = ['presentation', 'inline', 'compact'] as const
+export type SDKPhotosPickerStyle = (typeof sdkPhotosPickerStyleValues)[number]
+export const sdkPreferredColorSchemeValues = ['light', 'dark'] as const
+export type SDKPreferredColorScheme = (typeof sdkPreferredColorSchemeValues)[number]
 export const sdkPresentationBackgroundInteractionValues = [
   'automatic',
   'enabled',
@@ -352,6 +473,15 @@ export const sdkPreviewInterfaceOrientationValues = [
 ] as const
 export type SDKPreviewInterfaceOrientation =
   (typeof sdkPreviewInterfaceOrientationValues)[number]
+export const sdkProductDescriptionValues = ['automatic', 'visible', 'hidden'] as const
+export type SDKProductDescription = (typeof sdkProductDescriptionValues)[number]
+export const sdkRealityViewLayoutBehaviorValues = [
+  'flexible',
+  'centered',
+  'fixedSize',
+] as const
+export type SDKRealityViewLayoutBehavior =
+  (typeof sdkRealityViewLayoutBehaviorValues)[number]
 export const sdkRedactedValues = ['placeholder', 'privacy', 'invalidated'] as const
 export type SDKRedacted = (typeof sdkRedactedValues)[number]
 export const sdkScenePaddingValues = [
@@ -387,6 +517,24 @@ export type SDKSearchPresentationToolbarBehavior =
   (typeof sdkSearchPresentationToolbarBehaviorValues)[number]
 export const sdkSearchToolbarBehaviorValues = ['automatic', 'minimize'] as const
 export type SDKSearchToolbarBehavior = (typeof sdkSearchToolbarBehaviorValues)[number]
+export const sdkShortcutsLinkStyleValues = [
+  'automatic',
+  'automaticOutline',
+  'light',
+  'lightOutline',
+  'dark',
+  'darkOutline',
+] as const
+export type SDKShortcutsLinkStyle = (typeof sdkShortcutsLinkStyleValues)[number]
+export const sdkSignInWithAppleButtonStyleValues = [
+  'black',
+  'white',
+  'whiteOutline',
+] as const
+export type SDKSignInWithAppleButtonStyle =
+  (typeof sdkSignInWithAppleButtonStyleValues)[number]
+export const sdkSiriTipViewStyleValues = ['automatic', 'light', 'dark'] as const
+export type SDKSiriTipViewStyle = (typeof sdkSiriTipViewStyleValues)[number]
 export const sdkSliderThumbVisibilityValues = ['automatic', 'visible', 'hidden'] as const
 export type SDKSliderThumbVisibility = (typeof sdkSliderThumbVisibilityValues)[number]
 export const sdkSpringLoadingBehaviorValues = [
@@ -407,6 +555,35 @@ export const sdkSubmitLabelValues = [
   'continue',
 ] as const
 export type SDKSubmitLabel = (typeof sdkSubmitLabelValues)[number]
+export const sdkSubscriptionStoreButtonLabelValues = [
+  'automatic',
+  'singleLine',
+  'multiline',
+  'action',
+  'displayName',
+  'price',
+] as const
+export type SDKSubscriptionStoreButtonLabel =
+  (typeof sdkSubscriptionStoreButtonLabelValues)[number]
+export const sdkSubscriptionStoreControlBackgroundValues = [
+  'automatic',
+  'gradientMaterial',
+  'gradientMaterialOnScroll',
+] as const
+export type SDKSubscriptionStoreControlBackground =
+  (typeof sdkSubscriptionStoreControlBackgroundValues)[number]
+export const sdkSymbolColorRenderingModeValues = ['flat', 'gradient'] as const
+export type SDKSymbolColorRenderingMode =
+  (typeof sdkSymbolColorRenderingModeValues)[number]
+export const sdkSymbolRenderingModeValues = [
+  'monochrome',
+  'multicolor',
+  'hierarchical',
+  'palette',
+] as const
+export type SDKSymbolRenderingMode = (typeof sdkSymbolRenderingModeValues)[number]
+export const sdkSymbolVariableValueModeValues = ['color', 'draw'] as const
+export type SDKSymbolVariableValueMode = (typeof sdkSymbolVariableValueModeValues)[number]
 export const sdkSymbolVariantValues = [
   'none',
   'circle',
@@ -430,6 +607,14 @@ export const sdkTabViewSearchActivationValues = [
   'searchTabSelection',
 ] as const
 export type SDKTabViewSearchActivation = (typeof sdkTabViewSearchActivationValues)[number]
+export const sdkTextInputAutocapitalizationValues = [
+  'never',
+  'words',
+  'sentences',
+  'characters',
+] as const
+export type SDKTextInputAutocapitalization =
+  (typeof sdkTextInputAutocapitalizationValues)[number]
 export const sdkTextInputBorderShapeValues = [
   'automatic',
   'capsule',
@@ -442,6 +627,8 @@ export const sdkTextSelectionAffinityValues = [
   'downstream',
 ] as const
 export type SDKTextSelectionAffinity = (typeof sdkTextSelectionAffinityValues)[number]
+export const sdkToolbarValues = ['sidebarToggle', 'title', 'search'] as const
+export type SDKToolbar = (typeof sdkToolbarValues)[number]
 export const sdkToolbarRoleValues = [
   'automatic',
   'navigationStack',
@@ -458,6 +645,42 @@ export const sdkToolbarTitleDisplayModeValues = [
 export type SDKToolbarTitleDisplayMode = (typeof sdkToolbarTitleDisplayModeValues)[number]
 export const sdkTransitionValues = ['opacity', 'slide', 'identity', 'scale'] as const
 export type SDKTransition = (typeof sdkTransitionValues)[number]
+export const sdkVerifyIdentityWithWalletButtonStyleValues = [
+  'black',
+  'blackOutline',
+] as const
+export type SDKVerifyIdentityWithWalletButtonStyle =
+  (typeof sdkVerifyIdentityWithWalletButtonStyleValues)[number]
+export const sdkWebViewBackForwardNavigationGesturesValues = [
+  'automatic',
+  'enabled',
+  'disabled',
+] as const
+export type SDKWebViewBackForwardNavigationGestures =
+  (typeof sdkWebViewBackForwardNavigationGesturesValues)[number]
+export const sdkWebViewContentBackgroundValues = [
+  'automatic',
+  'visible',
+  'hidden',
+] as const
+export type SDKWebViewContentBackground =
+  (typeof sdkWebViewContentBackgroundValues)[number]
+export const sdkWebViewElementFullscreenBehaviorValues = [
+  'automatic',
+  'enabled',
+  'disabled',
+] as const
+export type SDKWebViewElementFullscreenBehavior =
+  (typeof sdkWebViewElementFullscreenBehaviorValues)[number]
+export const sdkWebViewLinkPreviewsValues = ['automatic', 'enabled', 'disabled'] as const
+export type SDKWebViewLinkPreviews = (typeof sdkWebViewLinkPreviewsValues)[number]
+export const sdkWebViewMagnificationGesturesValues = [
+  'automatic',
+  'enabled',
+  'disabled',
+] as const
+export type SDKWebViewMagnificationGestures =
+  (typeof sdkWebViewMagnificationGesturesValues)[number]
 export const sdkWindowToolbarFullScreenVisibilityValues = ['automatic'] as const
 export type SDKWindowToolbarFullScreenVisibility =
   (typeof sdkWindowToolbarFullScreenVisibilityValues)[number]
@@ -512,6 +735,7 @@ export interface OneNativeStyle {
   glassEffectTint?: ColorValue
   glassEffectShape?: GlassEffectShape
   material?: Material
+  accentColor?: SDKAccentColor | null
   accessibilityAction?: () => void
   accessibilityActivationPoint?: SDKAccessibilityActivationPoint
   accessibilityAddTraits?: SDKAccessibilityAddTraits
@@ -528,8 +752,11 @@ export interface OneNativeStyle {
   accessibilitySortPriority?: number
   accessibilityTextContentType?: SDKAccessibilityTextContentType
   accessibilityValue?: string
+  addPassToWalletButtonStyle?: SDKAddPassToWalletButtonStyle
+  allowedDynamicRange?: SDKAllowedDynamicRange | null
   allowsHitTesting?: boolean
   allowsTightening?: boolean
+  animation?: SDKAnimation | null
   assistiveAccessNavigationIcon?: string
   autocorrectionDisabled?: boolean
   badgeProminence?: SDKBadgeProminence
@@ -549,6 +776,8 @@ export interface OneNativeStyle {
   contrast?: number
   controlSize?: SDKControlSize
   defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement
+  defaultHoverEffect?: SDKDefaultHoverEffect | null
+  defaultScrollAnchor?: SDKDefaultScrollAnchor | null
   defaultTabBarPlacement?: SDKDefaultTabBarPlacement
   defersSystemGestures?: SDKDefersSystemGestures
   deleteDisabled?: boolean
@@ -574,6 +803,8 @@ export interface OneNativeStyle {
   flipsForRightToLeftLayoutDirection?: boolean
   focusable?: boolean
   focusEffectDisabled?: boolean
+  fontWidth?: SDKFontWidth | null
+  foregroundColor?: SDKForegroundColor | null
   geometryGroup?: boolean
   glassEffectTransition?: SDKGlassEffectTransition
   grayscale?: number
@@ -593,7 +824,6 @@ export interface OneNativeStyle {
   invalidatableContent?: boolean
   italic?: boolean
   kerning?: number
-  keyboardShortcut?: SDKKeyboardShortcut
   labelIconToTitleSpacing?: number
   labelReservedIconWidth?: number
   labelsHidden?: boolean
@@ -605,6 +835,13 @@ export interface OneNativeStyle {
   listRowSpacing?: number | null
   listSectionIndexVisibility?: SDKListSectionIndexVisibility
   luminanceToAlpha?: boolean
+  manageSubscriptionsSheet?: Readonly<{
+    value: boolean
+    onChange: (value: boolean) => void
+  }>
+  mapControlVisibility?: SDKMapControlVisibility
+  mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null
+  mapStyle?: SDKMapStyle
   materialActiveAppearance?: SDKMaterialActiveAppearance
   menuActionDismissBehavior?: SDKMenuActionDismissBehavior
   menuIndicator?: SDKMenuIndicator
@@ -613,20 +850,32 @@ export interface OneNativeStyle {
   monospaced?: boolean
   monospacedDigit?: boolean
   moveDisabled?: boolean
+  musicSubscriptionOffer?: Readonly<{
+    value: boolean
+    onChange: (value: boolean) => void
+  }>
   navigationBarBackButtonHidden?: boolean
   navigationBarHidden?: boolean
   navigationBarTitle?: string
   navigationLinkIndicatorVisibility?: SDKNavigationLinkIndicatorVisibility
   navigationSplitViewColumnWidth?: number
   navigationSubtitle?: string
+  offerCodeRedemption?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   onAppear?: () => void
   onDisappear?: () => void
+  onMapCameraChange?: () => void
   onOpenURL?: boolean
   onSubmit?: () => void
   onTapGesture?: () => void
   paletteSelectionEffect?: SDKPaletteSelectionEffect
+  payLaterViewAction?: SDKPayLaterViewAction
+  payLaterViewDisplayStyle?: SDKPayLaterViewDisplayStyle
   payWithApplePayButtonDisableCardArt?: boolean
+  payWithApplePayButtonStyle?: SDKPayWithApplePayButtonStyle
   persistentSystemOverlays?: SDKPersistentSystemOverlays
+  photosPickerSearchText?: string | null
+  photosPickerStyle?: SDKPhotosPickerStyle
+  preferredColorScheme?: SDKPreferredColorScheme | null
   presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction
   presentationCompactAdaptation?: SDKPresentationCompactAdaptation
   presentationContentInteraction?: SDKPresentationContentInteraction
@@ -636,7 +885,9 @@ export interface OneNativeStyle {
   previewDisplayName?: string | null
   previewInterfaceOrientation?: SDKPreviewInterfaceOrientation
   privacySensitive?: boolean
+  productDescription?: SDKProductDescription
   productIconBorder?: boolean
+  realityViewLayoutBehavior?: SDKRealityViewLayoutBehavior
   redacted?: SDKRedacted
   renameAction?: () => void
   replaceDisabled?: boolean
@@ -658,6 +909,9 @@ export interface OneNativeStyle {
   searchToolbarBehavior?: SDKSearchToolbarBehavior
   sectionIndexLabel?: string | null
   selectionDisabled?: boolean
+  shortcutsLinkStyle?: SDKShortcutsLinkStyle
+  signInWithAppleButtonStyle?: SDKSignInWithAppleButtonStyle
+  siriTipViewStyle?: SDKSiriTipViewStyle
   sliderThumbVisibility?: SDKSliderThumbVisibility
   speechAdjustedPitch?: number
   speechAlwaysIncludesPunctuation?: boolean
@@ -668,20 +922,33 @@ export interface OneNativeStyle {
   statusBarHidden?: boolean
   submitLabel?: SDKSubmitLabel
   submitScope?: boolean
+  subscriptionStoreButtonLabel?: SDKSubscriptionStoreButtonLabel
+  subscriptionStoreControlBackground?: SDKSubscriptionStoreControlBackground
   swipeActionsContainer?: boolean
+  symbolColorRenderingMode?: SDKSymbolColorRenderingMode | null
   symbolEffectsRemoved?: boolean
+  symbolRenderingMode?: SDKSymbolRenderingMode | null
+  symbolVariableValueMode?: SDKSymbolVariableValueMode | null
   symbolVariant?: SDKSymbolVariant
   tabBarMinimizeBehavior?: SDKTabBarMinimizeBehavior
   tableColumnHeaders?: SDKTableColumnHeaders
   tabViewSearchActivation?: SDKTabViewSearchActivation
+  textInputAutocapitalization?: SDKTextInputAutocapitalization | null
   textInputBorderShape?: SDKTextInputBorderShape
   textSelectionAffinity?: SDKTextSelectionAffinity
+  toolbar?: SDKToolbar | null
   toolbarRole?: SDKToolbarRole
   toolbarTitleDisplayMode?: SDKToolbarTitleDisplayMode
   tracking?: number
   transition?: SDKTransition
   typeSelectEquivalent?: string | null
   unredacted?: boolean
+  verifyIdentityWithWalletButtonStyle?: SDKVerifyIdentityWithWalletButtonStyle
+  webViewBackForwardNavigationGestures?: SDKWebViewBackForwardNavigationGestures
+  webViewContentBackground?: SDKWebViewContentBackground
+  webViewElementFullscreenBehavior?: SDKWebViewElementFullscreenBehavior
+  webViewLinkPreviews?: SDKWebViewLinkPreviews
+  webViewMagnificationGestures?: SDKWebViewMagnificationGestures
   windowToolbarFullScreenVisibility?: SDKWindowToolbarFullScreenVisibility
   writingDirection?: SDKWritingDirection
   writingToolsAffordanceVisibility?: SDKWritingToolsAffordanceVisibility
