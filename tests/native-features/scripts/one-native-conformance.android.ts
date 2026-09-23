@@ -2076,6 +2076,47 @@ async function run(config: Config) {
       'one-native-ui-map-pins'
     )
 
+    // the webgpu path: a raw triangle pane plus an R3F cube on
+    // WebGPURenderer. dawn needs vulkan; if the emulator image cannot
+    // provide it this leg runs on hardware instead (see the suite notes).
+    pressBack(config)
+    await tapNavigation(config, 'nav-one-native-gpu')
+    const gpuTicks = (nodes: Node[]) =>
+      Number(
+        matching(nodes, { id: 'one-native-gpu-ticks' })[0]?.text?.slice(
+          'Ticks: '.length
+        ) ?? -1
+      )
+    await expect(
+      'gpu-panes-painted',
+      (nodes) =>
+        diagnose(nodes, [
+          ['screen mounted', (n) => exactlyOneId(n, 'one-native-gpu-screen')],
+          ['triangle ready', (n) => textIncludes(n, 'Triangle: ready')],
+          ['fiber ready', (n) => textIncludes(n, 'Fiber: ready')],
+        ]),
+      'one-native-gpu-screen'
+    )
+    const gpuBefore = gpuTicks(dumpNodes(config).nodes)
+    await expect(
+      'gpu-fiber-loop-ticks',
+      (nodes) => gpuTicks(nodes) > gpuBefore,
+      'one-native-gpu-ticks'
+    )
+    await expect(
+      'gpu-shader-verdict',
+      (nodes) =>
+        diagnose(nodes, [
+          [
+            'probe decided',
+            (n) =>
+              textIncludes(n, 'Shader: clean') ||
+              n.some((node) => (node.text ?? '').startsWith('Shader: unsupported:')),
+          ],
+        ]),
+      'one-native-gpu-shader'
+    )
+
     writeFileSync(
       path.join(config.artifactDir, 'status.json'),
       JSON.stringify(

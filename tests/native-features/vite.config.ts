@@ -1,5 +1,32 @@
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import { one } from 'one/vite'
+
+// the gpu fixture's three.js path: bare 'three' resolves to the webgpu
+// build and @react-three/fiber to its web entry on the native
+// environments only, so web keeps WebGL three. vite has no per-environment
+// resolve.alias, so this is a resolveId plugin scoped by environment name.
+// exact matches only: a prefix rewrite would also catch 'three/webgpu' and
+// 'three/tsl', which already resolve through three's exports map.
+function nativeWebgpuAliases(): Plugin {
+  return {
+    name: 'native-webgpu-aliases',
+    applyToEnvironment: (environment) =>
+      environment.name === 'ios' || environment.name === 'android',
+    async resolveId(source, _importer, options) {
+      if (source === 'three' || source === '@react-three/fiber') {
+        const target =
+          source === 'three'
+            ? 'three/webgpu'
+            : '@react-three/fiber/dist/react-three-fiber.esm.js'
+        return await this.resolve(target, undefined, {
+          ...options,
+          skipSelf: true,
+        })
+      }
+      return null
+    },
+  }
+}
 
 export default defineConfig({
   plugins: [
@@ -41,5 +68,6 @@ export default defineConfig({
         },
       },
     }),
+    nativeWebgpuAliases(),
   ],
 })
