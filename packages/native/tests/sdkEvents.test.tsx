@@ -13,6 +13,20 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('encodes labeled scalar and enum arguments for the Swift modifier calls', () => {
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      offset: { x: 12, y: -4 },
+      toolbarVisibility: { visibility: 'hidden', bars: 'navigationBar' },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['offset', '["12","-4"]'],
+      ['toolbarVisibility', '["hidden","navigationBar"]'],
+    ])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      offset: { x: Number.POSITIVE_INFINITY, y: 0 },
+    } })).toThrow('offset.x must be finite')
+  })
+
   it('passes values to Swift and dispatches native events to the current callbacks', () => {
     const appeared = vi.fn()
     const onChange = vi.fn()

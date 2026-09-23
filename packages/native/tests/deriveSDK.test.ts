@@ -130,6 +130,30 @@ describe('SDK modifier derivation', () => {
       { name: 'onOpenURLWithPrefersInApp', sdkName: 'onOpenURL', module: 'SwiftUICore', kind: 'boolean', type: 'Swift.Bool', ios: 0, label: 'prefersInApp' },
     ])
   })
+
+  it('derives a typed object for multi-argument scalar and SDK case calls', () => {
+    expect(deriveModifiers([
+      method('offset', 'SwiftUICore', [
+        { label: 'x', name: 'x', type: 'CoreFoundation.CGFloat' },
+        { label: 'y', name: 'y', type: 'CoreFoundation.CGFloat' },
+      ]),
+      method('toolbarVisibility', 'SwiftUI', [
+        { label: '_', name: 'visibility', type: 'SwiftUICore.Visibility' },
+        { label: 'for', name: 'placement', type: 'SwiftUI.ToolbarPlacement' },
+      ]),
+      { ...method('visible', 'SwiftUICore'), kind: 'static', owner: 'Visibility', type: 'Visibility' },
+      { ...method('navigationBar', 'SwiftUI'), kind: 'static', owner: 'ToolbarPlacement', type: 'ToolbarPlacement' },
+    ], 27, [])).toEqual([
+      { name: 'offset', kind: 'record', type: '', ios: 0, arguments: [
+        { field: 'x', label: 'x', kind: 'number', type: 'CoreFoundation.CGFloat', optional: false },
+        { field: 'y', label: 'y', kind: 'number', type: 'CoreFoundation.CGFloat', optional: false },
+      ] },
+      { name: 'toolbarVisibility', kind: 'record', type: '', ios: 0, arguments: [
+        { field: 'visibility', label: '_', kind: 'enum', type: 'SwiftUICore.Visibility', optional: false, cases: [{ name: 'visible', ios: 0 }] },
+        { field: 'placement', label: 'for', kind: 'enum', type: 'SwiftUI.ToolbarPlacement', optional: false, cases: [{ name: 'navigationBar', ios: 0 }] },
+      ] },
+    ])
+  })
 })
 
 describe('SDK tab view slots', () => {

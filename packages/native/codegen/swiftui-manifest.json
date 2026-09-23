@@ -697,7 +697,74 @@
       ]
     },
     {
-      "name": "accessibilityActivationPoint",
+      "name": "accessibilityActivationPointWithActivationPointAndIsEnabled",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.UnitPoint",
+          "optional": false,
+          "cases": [
+            {
+              "name": "zero",
+              "ios": 13
+            },
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            }
+          ],
+          "field": "activationPoint",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ],
+      "sdkName": "accessibilityActivationPoint"
+    },
+    {
+      "name": "accessibilityActivationPointWithUnitPoint",
+      "module": "SwiftUI",
       "kind": "string",
       "type": "SwiftUICore.UnitPoint",
       "ios": 14,
@@ -742,7 +809,8 @@
           "name": "bottomTrailing",
           "ios": 13
         }
-      ]
+      ],
+      "sdkName": "accessibilityActivationPoint"
     },
     {
       "name": "accessibilityAddTraits",
@@ -821,6 +889,316 @@
       ]
     },
     {
+      "name": "accessibilityDirectTouch",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isDirectTouchArea",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.AccessibilityDirectTouchOptions",
+          "optional": false,
+          "cases": [
+            {
+              "name": "silentOnTouch",
+              "ios": 17
+            },
+            {
+              "name": "requiresActivation",
+              "ios": 17
+            }
+          ],
+          "field": "options",
+          "label": "options"
+        }
+      ]
+    },
+    {
+      "name": "accessibilityDragPointWithPointAndDescription",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.UnitPoint",
+          "optional": false,
+          "cases": [
+            {
+              "name": "zero",
+              "ios": 13
+            },
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            }
+          ],
+          "field": "point",
+          "label": "_"
+        },
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "description",
+          "label": "description"
+        }
+      ],
+      "sdkName": "accessibilityDragPoint"
+    },
+    {
+      "name": "accessibilityDragPointWithPointAndDescriptionAndIsEnabled",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.UnitPoint",
+          "optional": false,
+          "cases": [
+            {
+              "name": "zero",
+              "ios": 13
+            },
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            }
+          ],
+          "field": "point",
+          "label": "_"
+        },
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "description",
+          "label": "description"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ],
+      "sdkName": "accessibilityDragPoint"
+    },
+    {
+      "name": "accessibilityDropPointWithPointAndDescription",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.UnitPoint",
+          "optional": false,
+          "cases": [
+            {
+              "name": "zero",
+              "ios": 13
+            },
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            }
+          ],
+          "field": "point",
+          "label": "_"
+        },
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "description",
+          "label": "description"
+        }
+      ],
+      "sdkName": "accessibilityDropPoint"
+    },
+    {
+      "name": "accessibilityDropPointWithPointAndDescriptionAndIsEnabled",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.UnitPoint",
+          "optional": false,
+          "cases": [
+            {
+              "name": "zero",
+              "ios": 13
+            },
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            }
+          ],
+          "field": "point",
+          "label": "_"
+        },
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "description",
+          "label": "description"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ],
+      "sdkName": "accessibilityDropPoint"
+    },
+    {
       "name": "accessibilityElement",
       "kind": "string",
       "type": "SwiftUI.AccessibilityChildBehavior",
@@ -878,22 +1256,100 @@
       ]
     },
     {
-      "name": "accessibilityHidden",
+      "name": "accessibilityHiddenWithBool",
+      "module": "SwiftUI",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 14
+      "ios": 14,
+      "sdkName": "accessibilityHidden"
     },
     {
-      "name": "accessibilityHint",
+      "name": "accessibilityHiddenWithHiddenAndIsEnabled",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "hidden",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ],
+      "sdkName": "accessibilityHidden"
+    },
+    {
+      "name": "accessibilityHintWithHintAndIsEnabled",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "hint",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ],
+      "sdkName": "accessibilityHint"
+    },
+    {
+      "name": "accessibilityHintWithText",
+      "module": "SwiftUI",
       "kind": "string",
       "type": "SwiftUICore.Text",
-      "ios": 14
+      "ios": 14,
+      "sdkName": "accessibilityHint"
     },
     {
-      "name": "accessibilityIdentifier",
+      "name": "accessibilityIdentifierWithIdentifierAndIsEnabled",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "optional": false,
+          "field": "identifier",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ],
+      "sdkName": "accessibilityIdentifier"
+    },
+    {
+      "name": "accessibilityIdentifierWithString",
+      "module": "SwiftUI",
       "kind": "string",
       "type": "Swift.String",
-      "ios": 14
+      "ios": 14,
+      "sdkName": "accessibilityIdentifier"
     },
     {
       "name": "accessibilityIgnoresInvertColors",
@@ -902,10 +1358,36 @@
       "ios": 14
     },
     {
-      "name": "accessibilityLabel",
+      "name": "accessibilityLabelWithLabelAndIsEnabled",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "label",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ],
+      "sdkName": "accessibilityLabel"
+    },
+    {
+      "name": "accessibilityLabelWithText",
+      "module": "SwiftUI",
       "kind": "string",
       "type": "SwiftUICore.Text",
-      "ios": 14
+      "ios": 14,
+      "sdkName": "accessibilityLabel"
     },
     {
       "name": "accessibilityRemoveTraits",
@@ -984,10 +1466,58 @@
       ]
     },
     {
-      "name": "accessibilityRespondsToUserInteraction",
+      "name": "accessibilityRespondsToUserInteractionWithBool",
+      "module": "SwiftUI",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 15
+      "ios": 15,
+      "sdkName": "accessibilityRespondsToUserInteraction"
+    },
+    {
+      "name": "accessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "respondsToUserInteraction",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ],
+      "sdkName": "accessibilityRespondsToUserInteraction"
+    },
+    {
+      "name": "accessibilityScrollStatus",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "status",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ]
     },
     {
       "name": "accessibilityShowsLargeContentViewer",
@@ -1043,10 +1573,36 @@
       ]
     },
     {
-      "name": "accessibilityValue",
+      "name": "accessibilityValueWithText",
+      "module": "SwiftUI",
       "kind": "string",
       "type": "SwiftUICore.Text",
-      "ios": 14
+      "ios": 14,
+      "sdkName": "accessibilityValue"
+    },
+    {
+      "name": "accessibilityValueWithValueDescriptionAndIsEnabled",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "valueDescription",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ],
+      "sdkName": "accessibilityValue"
     },
     {
       "name": "accessibilityWithActivationPoint",
@@ -1316,6 +1872,7 @@
       "kind": "string",
       "type": "_PassKit_SwiftUI.AddPassToWalletButtonStyle",
       "ios": 16,
+      "framework": "PassKit",
       "cases": [
         {
           "name": "black",
@@ -1325,8 +1882,7 @@
           "name": "blackOutline",
           "ios": 16
         }
-      ],
-      "framework": "PassKit"
+      ]
     },
     {
       "name": "allowedDynamicRange",
@@ -1426,6 +1982,38 @@
         {
           "name": "linear",
           "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "aspectRatio",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "aspectRatio",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.ContentMode",
+          "optional": false,
+          "cases": [
+            {
+              "name": "fit",
+              "ios": 13
+            },
+            {
+              "name": "fill",
+              "ios": 13
+            }
+          ],
+          "field": "contentMode",
+          "label": "contentMode"
         }
       ]
     },
@@ -1591,6 +2179,28 @@
         {
           "name": "plusLighter",
           "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "blur",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "radius",
+          "label": "radius"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "opaque",
+          "label": "opaque"
         }
       ]
     },
@@ -1792,6 +2402,384 @@
       "zeroArgument": true
     },
     {
+      "name": "containerCornerOffset",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Edge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "all",
+              "ios": 13
+            },
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "edges",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "sizeToFit",
+          "label": "sizeToFit"
+        }
+      ]
+    },
+    {
+      "name": "containerRelativeFrameWithAxesAndAlignment",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Axis.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "axes",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Alignment",
+          "optional": false,
+          "cases": [
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            },
+            {
+              "name": "centerFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "centerLastTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "leadingFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "leadingLastTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "trailingFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "trailingLastTextBaseline",
+              "ios": 13
+            }
+          ],
+          "field": "alignment",
+          "label": "alignment"
+        }
+      ],
+      "sdkName": "containerRelativeFrame"
+    },
+    {
+      "name": "containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Axis.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "axes",
+          "label": "_"
+        },
+        {
+          "kind": "number",
+          "type": "Swift.Int",
+          "optional": false,
+          "field": "count",
+          "label": "count"
+        },
+        {
+          "kind": "number",
+          "type": "Swift.Int",
+          "optional": false,
+          "field": "span",
+          "label": "span"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "spacing",
+          "label": "spacing"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Alignment",
+          "optional": false,
+          "cases": [
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            },
+            {
+              "name": "centerFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "centerLastTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "leadingFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "leadingLastTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "trailingFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "trailingLastTextBaseline",
+              "ios": 13
+            }
+          ],
+          "field": "alignment",
+          "label": "alignment"
+        }
+      ],
+      "sdkName": "containerRelativeFrame"
+    },
+    {
+      "name": "contentMarginsWithEdgesAndLengthAndPlacement",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Edge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "all",
+              "ios": 13
+            },
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "edges",
+          "label": "_"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "length",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ContentMarginPlacement",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 17
+            },
+            {
+              "name": "scrollContent",
+              "ios": 17
+            },
+            {
+              "name": "scrollIndicators",
+              "ios": 17
+            }
+          ],
+          "field": "placement",
+          "label": "for"
+        }
+      ],
+      "sdkName": "contentMargins"
+    },
+    {
+      "name": "contentMarginsWithLengthAndPlacement",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "length",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ContentMarginPlacement",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 17
+            },
+            {
+              "name": "scrollContent",
+              "ios": 17
+            },
+            {
+              "name": "scrollIndicators",
+              "ios": 17
+            }
+          ],
+          "field": "placement",
+          "label": "for"
+        }
+      ],
+      "sdkName": "contentMargins"
+    },
+    {
       "name": "contentTransition",
       "kind": "string",
       "type": "SwiftUICore.ContentTransition",
@@ -1890,7 +2878,88 @@
       ]
     },
     {
-      "name": "defaultScrollAnchor",
+      "name": "defaultScrollAnchorWithAnchorAndRole",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.UnitPoint?",
+          "optional": true,
+          "cases": [
+            {
+              "name": "zero",
+              "ios": 13
+            },
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            }
+          ],
+          "field": "anchor",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ScrollAnchorRole",
+          "optional": false,
+          "cases": [
+            {
+              "name": "initialOffset",
+              "ios": 18
+            },
+            {
+              "name": "sizeChanges",
+              "ios": 18
+            },
+            {
+              "name": "alignment",
+              "ios": 18
+            }
+          ],
+          "field": "role",
+          "label": "for"
+        }
+      ],
+      "sdkName": "defaultScrollAnchor"
+    },
+    {
+      "name": "defaultScrollAnchorWithOptionalUnitPoint",
+      "module": "SwiftUI",
       "kind": "optionalEnum",
       "type": "SwiftUICore.UnitPoint?",
       "ios": 17,
@@ -1935,7 +3004,8 @@
           "name": "bottomTrailing",
           "ios": 13
         }
-      ]
+      ],
+      "sdkName": "defaultScrollAnchor"
     },
     {
       "name": "defaultTabBarPlacement",
@@ -2030,6 +3100,42 @@
       "kind": "string",
       "type": "SwiftUICore.Text",
       "ios": 27
+    },
+    {
+      "name": "drawingGroup",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "opaque",
+          "label": "opaque"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.ColorRenderingMode",
+          "optional": false,
+          "cases": [
+            {
+              "name": "nonLinear",
+              "ios": 13
+            },
+            {
+              "name": "linear",
+              "ios": 13
+            },
+            {
+              "name": "extendedLinear",
+              "ios": 13
+            }
+          ],
+          "field": "colorMode",
+          "label": "colorMode"
+        }
+      ]
     },
     {
       "name": "dynamicTypeSize",
@@ -2187,11 +3293,37 @@
       "ios": 16
     },
     {
-      "name": "fixedSize",
+      "name": "fixedSizeWithHorizontalAndVertical",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "horizontal",
+          "label": "horizontal"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "vertical",
+          "label": "vertical"
+        }
+      ],
+      "sdkName": "fixedSize"
+    },
+    {
+      "name": "fixedSizeWithNoArguments",
+      "module": "SwiftUICore",
       "kind": "boolean",
       "type": "",
       "ios": 13,
-      "zeroArgument": true
+      "zeroArgument": true,
+      "sdkName": "fixedSize"
     },
     {
       "name": "flipsForRightToLeftLayoutDirection",
@@ -2200,10 +3332,50 @@
       "ios": 13
     },
     {
-      "name": "focusable",
+      "name": "focusableWithBool",
+      "module": "SwiftUI",
       "kind": "boolean",
       "type": "Swift.Bool",
-      "ios": 17
+      "ios": 17,
+      "sdkName": "focusable"
+    },
+    {
+      "name": "focusableWithIsFocusableAndInteractions",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isFocusable",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.FocusInteractions",
+          "optional": false,
+          "cases": [
+            {
+              "name": "activate",
+              "ios": 17
+            },
+            {
+              "name": "edit",
+              "ios": 17
+            },
+            {
+              "name": "automatic",
+              "ios": 17
+            }
+          ],
+          "field": "interactions",
+          "label": "interactions"
+        }
+      ],
+      "sdkName": "focusable"
     },
     {
       "name": "focusEffectDisabled",
@@ -2451,6 +3623,34 @@
       ]
     },
     {
+      "name": "handGestureShortcut",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUI.HandGestureShortcut",
+          "optional": false,
+          "cases": [
+            {
+              "name": "primaryAction",
+              "ios": 18
+            }
+          ],
+          "field": "shortcut",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ]
+    },
+    {
       "name": "headerProminence",
       "kind": "string",
       "type": "SwiftUICore.Prominence",
@@ -2480,7 +3680,52 @@
       "zeroArgument": true
     },
     {
-      "name": "hoverEffect",
+      "name": "hoverEffectDisabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "hoverEffectWithEffectAndIsEnabled",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.HoverEffect",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 13.4
+            },
+            {
+              "name": "highlight",
+              "ios": 13.4
+            },
+            {
+              "name": "lift",
+              "ios": 13.4
+            }
+          ],
+          "field": "effect",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ],
+      "sdkName": "hoverEffect"
+    },
+    {
+      "name": "hoverEffectWithHoverEffect",
+      "module": "SwiftUICore",
       "kind": "string",
       "type": "SwiftUICore.HoverEffect",
       "ios": 13.4,
@@ -2497,13 +3742,8 @@
           "name": "lift",
           "ios": 13.4
         }
-      ]
-    },
-    {
-      "name": "hoverEffectDisabled",
-      "kind": "boolean",
-      "type": "Swift.Bool",
-      "ios": 17
+      ],
+      "sdkName": "hoverEffect"
     },
     {
       "name": "hueRotation",
@@ -2518,10 +3758,248 @@
       ]
     },
     {
-      "name": "inspectorColumnWidth",
+      "name": "ignoresSafeAreaWithRegionsAndEdges",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.SafeAreaRegions",
+          "optional": false,
+          "cases": [
+            {
+              "name": "container",
+              "ios": 14
+            },
+            {
+              "name": "keyboard",
+              "ios": 14
+            },
+            {
+              "name": "all",
+              "ios": 14
+            }
+          ],
+          "field": "regions",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Edge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "all",
+              "ios": 13
+            },
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "edges",
+          "label": "edges"
+        }
+      ],
+      "sdkName": "ignoresSafeArea"
+    },
+    {
+      "name": "ignoresSafeAreaWithRegionsAndEdgesAndAlignment",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 27,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.SafeAreaRegions",
+          "optional": false,
+          "cases": [
+            {
+              "name": "container",
+              "ios": 14
+            },
+            {
+              "name": "keyboard",
+              "ios": 14
+            },
+            {
+              "name": "all",
+              "ios": 14
+            }
+          ],
+          "field": "regions",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Edge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "all",
+              "ios": 13
+            },
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "edges",
+          "label": "edges"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Alignment?",
+          "optional": true,
+          "cases": [
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            },
+            {
+              "name": "centerFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "centerLastTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "leadingFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "leadingLastTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "trailingFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "trailingLastTextBaseline",
+              "ios": 13
+            }
+          ],
+          "field": "alignment",
+          "label": "alignment"
+        }
+      ],
+      "sdkName": "ignoresSafeArea"
+    },
+    {
+      "name": "inspectorColumnWidthWithCGFloat",
+      "module": "SwiftUI",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
-      "ios": 17
+      "ios": 17,
+      "sdkName": "inspectorColumnWidth"
+    },
+    {
+      "name": "inspectorColumnWidthWithMinAndIdealAndMax",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "min",
+          "label": "min"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "ideal",
+          "label": "ideal"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "max",
+          "label": "max"
+        }
+      ],
+      "sdkName": "inspectorColumnWidth"
     },
     {
       "name": "interactionActivityTrackingTag",
@@ -2552,6 +4030,267 @@
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
       "ios": 16
+    },
+    {
+      "name": "keyboardShortcutWithKeyAndModifiers",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUI.KeyEquivalent",
+          "optional": false,
+          "cases": [
+            {
+              "name": "upArrow",
+              "ios": 14
+            },
+            {
+              "name": "downArrow",
+              "ios": 14
+            },
+            {
+              "name": "leftArrow",
+              "ios": 14
+            },
+            {
+              "name": "rightArrow",
+              "ios": 14
+            },
+            {
+              "name": "escape",
+              "ios": 14
+            },
+            {
+              "name": "delete",
+              "ios": 14
+            },
+            {
+              "name": "deleteForward",
+              "ios": 14
+            },
+            {
+              "name": "home",
+              "ios": 14
+            },
+            {
+              "name": "end",
+              "ios": 14
+            },
+            {
+              "name": "pageUp",
+              "ios": 14
+            },
+            {
+              "name": "pageDown",
+              "ios": 14
+            },
+            {
+              "name": "clear",
+              "ios": 14
+            },
+            {
+              "name": "tab",
+              "ios": 14
+            },
+            {
+              "name": "space",
+              "ios": 14
+            },
+            {
+              "name": "return",
+              "ios": 14
+            }
+          ],
+          "field": "key",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.EventModifiers",
+          "optional": false,
+          "cases": [
+            {
+              "name": "capsLock",
+              "ios": 13
+            },
+            {
+              "name": "shift",
+              "ios": 13
+            },
+            {
+              "name": "control",
+              "ios": 13
+            },
+            {
+              "name": "option",
+              "ios": 13
+            },
+            {
+              "name": "command",
+              "ios": 13
+            },
+            {
+              "name": "numericPad",
+              "ios": 13
+            },
+            {
+              "name": "function",
+              "ios": 13
+            },
+            {
+              "name": "all",
+              "ios": 13
+            }
+          ],
+          "field": "modifiers",
+          "label": "modifiers"
+        }
+      ],
+      "sdkName": "keyboardShortcut"
+    },
+    {
+      "name": "keyboardShortcutWithKeyAndModifiersAndLocalization",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 15,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUI.KeyEquivalent",
+          "optional": false,
+          "cases": [
+            {
+              "name": "upArrow",
+              "ios": 14
+            },
+            {
+              "name": "downArrow",
+              "ios": 14
+            },
+            {
+              "name": "leftArrow",
+              "ios": 14
+            },
+            {
+              "name": "rightArrow",
+              "ios": 14
+            },
+            {
+              "name": "escape",
+              "ios": 14
+            },
+            {
+              "name": "delete",
+              "ios": 14
+            },
+            {
+              "name": "deleteForward",
+              "ios": 14
+            },
+            {
+              "name": "home",
+              "ios": 14
+            },
+            {
+              "name": "end",
+              "ios": 14
+            },
+            {
+              "name": "pageUp",
+              "ios": 14
+            },
+            {
+              "name": "pageDown",
+              "ios": 14
+            },
+            {
+              "name": "clear",
+              "ios": 14
+            },
+            {
+              "name": "tab",
+              "ios": 14
+            },
+            {
+              "name": "space",
+              "ios": 14
+            },
+            {
+              "name": "return",
+              "ios": 14
+            }
+          ],
+          "field": "key",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.EventModifiers",
+          "optional": false,
+          "cases": [
+            {
+              "name": "capsLock",
+              "ios": 13
+            },
+            {
+              "name": "shift",
+              "ios": 13
+            },
+            {
+              "name": "control",
+              "ios": 13
+            },
+            {
+              "name": "option",
+              "ios": 13
+            },
+            {
+              "name": "command",
+              "ios": 13
+            },
+            {
+              "name": "numericPad",
+              "ios": 13
+            },
+            {
+              "name": "function",
+              "ios": 13
+            },
+            {
+              "name": "all",
+              "ios": 13
+            }
+          ],
+          "field": "modifiers",
+          "label": "modifiers"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.KeyboardShortcut.Localization",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 15
+            },
+            {
+              "name": "withoutMirroring",
+              "ios": 15
+            },
+            {
+              "name": "custom",
+              "ios": 15
+            }
+          ],
+          "field": "localization",
+          "label": "localization"
+        }
+      ],
+      "sdkName": "keyboardShortcut"
     },
     {
       "name": "keyboardShortcutWithKeyboardShortcut",
@@ -2651,10 +4390,36 @@
       "ios": 13
     },
     {
-      "name": "lineLimit",
+      "name": "lineLimitWithLimitAndReservesSpace",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "Swift.Int",
+          "optional": false,
+          "field": "limit",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "reservesSpace",
+          "label": "reservesSpace"
+        }
+      ],
+      "sdkName": "lineLimit"
+    },
+    {
+      "name": "lineLimitWithOptionalInt",
+      "module": "SwiftUICore",
       "kind": "optionalNumber",
       "type": "Swift.Int?",
-      "ios": 13
+      "ios": 13,
+      "sdkName": "lineLimit"
     },
     {
       "name": "lineSpacing",
@@ -2763,6 +4528,222 @@
       "sdkName": "listItemTint"
     },
     {
+      "name": "listRowInsets",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Edge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "all",
+              "ios": 13
+            },
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "edges",
+          "label": "_"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "length",
+          "label": "_"
+        }
+      ]
+    },
+    {
+      "name": "listRowSeparator",
+      "kind": "record",
+      "type": "",
+      "ios": 15,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Visibility",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 15
+            },
+            {
+              "name": "visible",
+              "ios": 15
+            },
+            {
+              "name": "hidden",
+              "ios": 15
+            }
+          ],
+          "field": "visibility",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.VerticalEdge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 15
+            },
+            {
+              "name": "bottom",
+              "ios": 15
+            },
+            {
+              "name": "all",
+              "ios": 15
+            }
+          ],
+          "field": "edges",
+          "label": "edges"
+        }
+      ]
+    },
+    {
+      "name": "listRowSeparatorTint",
+      "kind": "record",
+      "type": "",
+      "ios": 15,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Color?",
+          "optional": true,
+          "cases": [
+            {
+              "name": "accentColor",
+              "ios": 13
+            },
+            {
+              "name": "red",
+              "ios": 13
+            },
+            {
+              "name": "orange",
+              "ios": 13
+            },
+            {
+              "name": "yellow",
+              "ios": 13
+            },
+            {
+              "name": "green",
+              "ios": 13
+            },
+            {
+              "name": "mint",
+              "ios": 15
+            },
+            {
+              "name": "teal",
+              "ios": 15
+            },
+            {
+              "name": "cyan",
+              "ios": 15
+            },
+            {
+              "name": "blue",
+              "ios": 13
+            },
+            {
+              "name": "indigo",
+              "ios": 15
+            },
+            {
+              "name": "purple",
+              "ios": 13
+            },
+            {
+              "name": "pink",
+              "ios": 13
+            },
+            {
+              "name": "brown",
+              "ios": 15
+            },
+            {
+              "name": "white",
+              "ios": 13
+            },
+            {
+              "name": "gray",
+              "ios": 13
+            },
+            {
+              "name": "black",
+              "ios": 13
+            },
+            {
+              "name": "clear",
+              "ios": 13
+            },
+            {
+              "name": "primary",
+              "ios": 13
+            },
+            {
+              "name": "secondary",
+              "ios": 13
+            }
+          ],
+          "field": "color",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.VerticalEdge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 15
+            },
+            {
+              "name": "bottom",
+              "ios": 15
+            },
+            {
+              "name": "all",
+              "ios": 15
+            }
+          ],
+          "field": "edges",
+          "label": "edges"
+        }
+      ]
+    },
+    {
       "name": "listRowSpacing",
       "kind": "optionalNumber",
       "type": "CoreFoundation.CGFloat?",
@@ -2785,6 +4766,222 @@
         {
           "name": "hidden",
           "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "listSectionMargins",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Edge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "all",
+              "ios": 13
+            },
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "edges",
+          "label": "_"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "length",
+          "label": "_"
+        }
+      ]
+    },
+    {
+      "name": "listSectionSeparator",
+      "kind": "record",
+      "type": "",
+      "ios": 15,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Visibility",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 15
+            },
+            {
+              "name": "visible",
+              "ios": 15
+            },
+            {
+              "name": "hidden",
+              "ios": 15
+            }
+          ],
+          "field": "visibility",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.VerticalEdge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 15
+            },
+            {
+              "name": "bottom",
+              "ios": 15
+            },
+            {
+              "name": "all",
+              "ios": 15
+            }
+          ],
+          "field": "edges",
+          "label": "edges"
+        }
+      ]
+    },
+    {
+      "name": "listSectionSeparatorTint",
+      "kind": "record",
+      "type": "",
+      "ios": 15,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Color?",
+          "optional": true,
+          "cases": [
+            {
+              "name": "accentColor",
+              "ios": 13
+            },
+            {
+              "name": "red",
+              "ios": 13
+            },
+            {
+              "name": "orange",
+              "ios": 13
+            },
+            {
+              "name": "yellow",
+              "ios": 13
+            },
+            {
+              "name": "green",
+              "ios": 13
+            },
+            {
+              "name": "mint",
+              "ios": 15
+            },
+            {
+              "name": "teal",
+              "ios": 15
+            },
+            {
+              "name": "cyan",
+              "ios": 15
+            },
+            {
+              "name": "blue",
+              "ios": 13
+            },
+            {
+              "name": "indigo",
+              "ios": 15
+            },
+            {
+              "name": "purple",
+              "ios": 13
+            },
+            {
+              "name": "pink",
+              "ios": 13
+            },
+            {
+              "name": "brown",
+              "ios": 15
+            },
+            {
+              "name": "white",
+              "ios": 13
+            },
+            {
+              "name": "gray",
+              "ios": 13
+            },
+            {
+              "name": "black",
+              "ios": 13
+            },
+            {
+              "name": "clear",
+              "ios": 13
+            },
+            {
+              "name": "primary",
+              "ios": 13
+            },
+            {
+              "name": "secondary",
+              "ios": 13
+            }
+          ],
+          "field": "color",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.VerticalEdge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 15
+            },
+            {
+              "name": "bottom",
+              "ios": 15
+            },
+            {
+              "name": "all",
+              "ios": 15
+            }
+          ],
+          "field": "edges",
+          "label": "edges"
         }
       ]
     },
@@ -2834,6 +5031,7 @@
       "kind": "string",
       "type": "SwiftUICore.Visibility",
       "ios": 17,
+      "framework": "MapKit",
       "cases": [
         {
           "name": "automatic",
@@ -2847,14 +5045,14 @@
           "name": "hidden",
           "ios": 15
         }
-      ],
-      "framework": "MapKit"
+      ]
     },
     {
       "name": "mapFeatureSelectionAccessory",
       "kind": "optionalEnum",
       "type": "_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?",
       "ios": 18,
+      "framework": "MapKit",
       "cases": [
         {
           "name": "automatic",
@@ -2872,14 +5070,14 @@
           "name": "caption",
           "ios": 18
         }
-      ],
-      "framework": "MapKit"
+      ]
     },
     {
       "name": "mapStyle",
       "kind": "string",
       "type": "_MapKit_SwiftUI.MapStyle",
       "ios": 17,
+      "framework": "MapKit",
       "cases": [
         {
           "name": "standard",
@@ -2893,8 +5091,7 @@
           "name": "hybrid",
           "ios": 17
         }
-      ],
-      "framework": "MapKit"
+      ]
     },
     {
       "name": "materialActiveAppearance",
@@ -3107,10 +5304,43 @@
       ]
     },
     {
-      "name": "navigationSplitViewColumnWidth",
+      "name": "navigationSplitViewColumnWidthWithCGFloat",
+      "module": "SwiftUI",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
-      "ios": 16
+      "ios": 16,
+      "sdkName": "navigationSplitViewColumnWidth"
+    },
+    {
+      "name": "navigationSplitViewColumnWidthWithMinAndIdealAndMax",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "min",
+          "label": "min"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "ideal",
+          "label": "ideal"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "max",
+          "label": "max"
+        }
+      ],
+      "sdkName": "navigationSplitViewColumnWidth"
     },
     {
       "name": "navigationSubtitle",
@@ -3150,6 +5380,28 @@
         {
           "label": "onCompletion",
           "defaultValue": "{ _ in }"
+        }
+      ]
+    },
+    {
+      "name": "offset",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "x",
+          "label": "x"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "y",
+          "label": "y"
         }
       ]
     },
@@ -3374,6 +5626,7 @@
       "kind": "string",
       "type": "_PassKit_SwiftUI.PayLaterViewAction",
       "ios": 17,
+      "framework": "PassKit",
       "cases": [
         {
           "name": "learnMore",
@@ -3383,14 +5636,14 @@
           "name": "calculator",
           "ios": 17
         }
-      ],
-      "framework": "PassKit"
+      ]
     },
     {
       "name": "payLaterViewDisplayStyle",
       "kind": "string",
       "type": "_PassKit_SwiftUI.PayLaterViewDisplayStyle",
       "ios": 17,
+      "framework": "PassKit",
       "cases": [
         {
           "name": "standard",
@@ -3408,8 +5661,7 @@
           "name": "price",
           "ios": 17
         }
-      ],
-      "framework": "PassKit"
+      ]
     },
     {
       "name": "payWithApplePayButtonDisableCardArt",
@@ -3424,6 +5676,7 @@
       "kind": "string",
       "type": "_PassKit_SwiftUI.PayWithApplePayButtonStyle",
       "ios": 16,
+      "framework": "PassKit",
       "cases": [
         {
           "name": "white",
@@ -3441,8 +5694,7 @@
           "name": "automatic",
           "ios": 16
         }
-      ],
-      "framework": "PassKit"
+      ]
     },
     {
       "name": "persistentSystemOverlays",
@@ -3465,6 +5717,73 @@
       ]
     },
     {
+      "name": "photosPickerAccessoryVisibility",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Visibility",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 15
+            },
+            {
+              "name": "visible",
+              "ios": 15
+            },
+            {
+              "name": "hidden",
+              "ios": 15
+            }
+          ],
+          "field": "visibility",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Edge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "all",
+              "ios": 13
+            },
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "edges",
+          "label": "edges"
+        }
+      ],
+      "framework": "PhotosUI"
+    },
+    {
       "name": "photosPickerSearchText",
       "kind": "optionalString",
       "type": "Swift.String?",
@@ -3476,6 +5795,7 @@
       "kind": "string",
       "type": "_PhotosUI_SwiftUI.PhotosPickerStyle",
       "ios": 17,
+      "framework": "PhotosUI",
       "cases": [
         {
           "name": "presentation",
@@ -3489,8 +5809,29 @@
           "name": "compact",
           "ios": 17
         }
-      ],
-      "framework": "PhotosUI"
+      ]
+    },
+    {
+      "name": "position",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "x",
+          "label": "x"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "y",
+          "label": "y"
+        }
+      ]
     },
     {
       "name": "preferredColorScheme",
@@ -3529,7 +5870,76 @@
       ]
     },
     {
-      "name": "presentationCompactAdaptation",
+      "name": "presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 16.4,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUI.PresentationAdaptation",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 16.4
+            },
+            {
+              "name": "none",
+              "ios": 16.4
+            },
+            {
+              "name": "popover",
+              "ios": 16.4
+            },
+            {
+              "name": "sheet",
+              "ios": 16.4
+            },
+            {
+              "name": "fullScreenCover",
+              "ios": 16.4
+            }
+          ],
+          "field": "horizontalAdaptation",
+          "label": "horizontal"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.PresentationAdaptation",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 16.4
+            },
+            {
+              "name": "none",
+              "ios": 16.4
+            },
+            {
+              "name": "popover",
+              "ios": 16.4
+            },
+            {
+              "name": "sheet",
+              "ios": 16.4
+            },
+            {
+              "name": "fullScreenCover",
+              "ios": 16.4
+            }
+          ],
+          "field": "verticalAdaptation",
+          "label": "vertical"
+        }
+      ],
+      "sdkName": "presentationCompactAdaptation"
+    },
+    {
+      "name": "presentationCompactAdaptationWithPresentationAdaptation",
+      "module": "SwiftUI",
       "kind": "string",
       "type": "SwiftUI.PresentationAdaptation",
       "ios": 16.4,
@@ -3554,7 +5964,8 @@
           "name": "fullScreenCover",
           "ios": 16.4
         }
-      ]
+      ],
+      "sdkName": "presentationCompactAdaptation"
     },
     {
       "name": "presentationContentInteraction",
@@ -3667,6 +6078,7 @@
       "kind": "string",
       "type": "SwiftUICore.Visibility",
       "ios": 17,
+      "framework": "StoreKit",
       "cases": [
         {
           "name": "automatic",
@@ -3680,8 +6092,7 @@
           "name": "hidden",
           "ios": 15
         }
-      ],
-      "framework": "StoreKit"
+      ]
     },
     {
       "name": "productIconBorder",
@@ -3696,6 +6107,7 @@
       "kind": "string",
       "type": "_RealityKit_SwiftUI.RealityViewLayoutOption",
       "ios": 26,
+      "framework": "RealityKit",
       "cases": [
         {
           "name": "flexible",
@@ -3709,8 +6121,7 @@
           "name": "fixedSize",
           "ios": 26
         }
-      ],
-      "framework": "RealityKit"
+      ]
     },
     {
       "name": "redacted",
@@ -3747,10 +6158,136 @@
       "ios": 16
     },
     {
-      "name": "safeAreaPadding",
+      "name": "rotationEffect",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Angle",
+          "optional": false,
+          "cases": [
+            {
+              "name": "zero",
+              "ios": 13
+            }
+          ],
+          "field": "angle",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.UnitPoint",
+          "optional": false,
+          "cases": [
+            {
+              "name": "zero",
+              "ios": 13
+            },
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            }
+          ],
+          "field": "anchor",
+          "label": "anchor"
+        }
+      ]
+    },
+    {
+      "name": "safeAreaPaddingWithCGFloat",
+      "module": "SwiftUICore",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
-      "ios": 17
+      "ios": 17,
+      "sdkName": "safeAreaPadding"
+    },
+    {
+      "name": "safeAreaPaddingWithEdgesAndLength",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Edge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "all",
+              "ios": 13
+            },
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "edges",
+          "label": "_"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "length",
+          "label": "_"
+        }
+      ],
+      "sdkName": "safeAreaPadding"
     },
     {
       "name": "saturation",
@@ -3773,7 +6310,207 @@
       "zeroArgument": true
     },
     {
-      "name": "scenePadding",
+      "name": "scaleEffectWithSAndAnchor",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "s",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.UnitPoint",
+          "optional": false,
+          "cases": [
+            {
+              "name": "zero",
+              "ios": 13
+            },
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            }
+          ],
+          "field": "anchor",
+          "label": "anchor"
+        }
+      ],
+      "sdkName": "scaleEffect"
+    },
+    {
+      "name": "scaleEffectWithXAndYAndAnchor",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "x",
+          "label": "x"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "y",
+          "label": "y"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.UnitPoint",
+          "optional": false,
+          "cases": [
+            {
+              "name": "zero",
+              "ios": 13
+            },
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            }
+          ],
+          "field": "anchor",
+          "label": "anchor"
+        }
+      ],
+      "sdkName": "scaleEffect"
+    },
+    {
+      "name": "scenePaddingWithPaddingAndEdges",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ScenePadding",
+          "optional": false,
+          "cases": [
+            {
+              "name": "minimum",
+              "ios": 16
+            }
+          ],
+          "field": "padding",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Edge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "all",
+              "ios": 13
+            },
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "edges",
+          "label": "edges"
+        }
+      ],
+      "sdkName": "scenePadding"
+    },
+    {
+      "name": "scenePaddingWithSet",
+      "module": "SwiftUI",
       "kind": "string",
       "type": "SwiftUICore.Edge.Set",
       "ios": 15,
@@ -3805,6 +6542,53 @@
         {
           "name": "vertical",
           "ios": 13
+        }
+      ],
+      "sdkName": "scenePadding"
+    },
+    {
+      "name": "scrollBounceBehavior",
+      "kind": "record",
+      "type": "",
+      "ios": 16.4,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ScrollBounceBehavior",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 16.4
+            },
+            {
+              "name": "always",
+              "ios": 16.4
+            },
+            {
+              "name": "basedOnSize",
+              "ios": 16.4
+            }
+          ],
+          "field": "behavior",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Axis.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "axes",
+          "label": "axes"
         }
       ]
     },
@@ -3861,6 +6645,174 @@
         {
           "name": "never",
           "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "scrollEdgeEffectHidden",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "hidden",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Edge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "all",
+              "ios": 13
+            },
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "edges",
+          "label": "for"
+        }
+      ]
+    },
+    {
+      "name": "scrollEdgeEffectStyle",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ScrollEdgeEffectStyle?",
+          "optional": true,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 26
+            },
+            {
+              "name": "hard",
+              "ios": 26
+            },
+            {
+              "name": "soft",
+              "ios": 26
+            }
+          ],
+          "field": "style",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Edge.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "all",
+              "ios": 13
+            },
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "edges",
+          "label": "for"
+        }
+      ]
+    },
+    {
+      "name": "scrollIndicators",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ScrollIndicatorVisibility",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 16
+            },
+            {
+              "name": "visible",
+              "ios": 16
+            },
+            {
+              "name": "hidden",
+              "ios": 16
+            },
+            {
+              "name": "never",
+              "ios": 16
+            }
+          ],
+          "field": "visibility",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Axis.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "horizontal",
+              "ios": 13
+            },
+            {
+              "name": "vertical",
+              "ios": 13
+            }
+          ],
+          "field": "axes",
+          "label": "axes"
         }
       ]
     },
@@ -3934,6 +6886,52 @@
       ]
     },
     {
+      "name": "searchSuggestions",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Visibility",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 15
+            },
+            {
+              "name": "visible",
+              "ios": 15
+            },
+            {
+              "name": "hidden",
+              "ios": 15
+            }
+          ],
+          "field": "visibility",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.SearchSuggestionsPlacement.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "menu",
+              "ios": 16
+            },
+            {
+              "name": "content",
+              "ios": 16
+            }
+          ],
+          "field": "placements",
+          "label": "for"
+        }
+      ]
+    },
+    {
       "name": "searchToolbarBehavior",
       "kind": "string",
       "type": "SwiftUI.SearchToolbarBehavior",
@@ -3962,10 +6960,125 @@
       "ios": 17
     },
     {
+      "name": "shadow",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Color",
+          "optional": false,
+          "cases": [
+            {
+              "name": "accentColor",
+              "ios": 13
+            },
+            {
+              "name": "red",
+              "ios": 13
+            },
+            {
+              "name": "orange",
+              "ios": 13
+            },
+            {
+              "name": "yellow",
+              "ios": 13
+            },
+            {
+              "name": "green",
+              "ios": 13
+            },
+            {
+              "name": "mint",
+              "ios": 15
+            },
+            {
+              "name": "teal",
+              "ios": 15
+            },
+            {
+              "name": "cyan",
+              "ios": 15
+            },
+            {
+              "name": "blue",
+              "ios": 13
+            },
+            {
+              "name": "indigo",
+              "ios": 15
+            },
+            {
+              "name": "purple",
+              "ios": 13
+            },
+            {
+              "name": "pink",
+              "ios": 13
+            },
+            {
+              "name": "brown",
+              "ios": 15
+            },
+            {
+              "name": "white",
+              "ios": 13
+            },
+            {
+              "name": "gray",
+              "ios": 13
+            },
+            {
+              "name": "black",
+              "ios": 13
+            },
+            {
+              "name": "clear",
+              "ios": 13
+            },
+            {
+              "name": "primary",
+              "ios": 13
+            },
+            {
+              "name": "secondary",
+              "ios": 13
+            }
+          ],
+          "field": "color",
+          "label": "color"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "radius",
+          "label": "radius"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "x",
+          "label": "x"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "y",
+          "label": "y"
+        }
+      ]
+    },
+    {
       "name": "shortcutsLinkStyle",
       "kind": "string",
       "type": "_AppIntents_SwiftUI.ShortcutsLinkStyle",
       "ios": 16,
+      "framework": "AppIntents",
       "cases": [
         {
           "name": "automatic",
@@ -3991,14 +7104,14 @@
           "name": "darkOutline",
           "ios": 16
         }
-      ],
-      "framework": "AppIntents"
+      ]
     },
     {
       "name": "signInWithAppleButtonStyle",
       "kind": "string",
       "type": "_AuthenticationServices_SwiftUI.SignInWithAppleButton.Style",
       "ios": 14,
+      "framework": "AuthenticationServices",
       "cases": [
         {
           "name": "black",
@@ -4012,14 +7125,14 @@
           "name": "whiteOutline",
           "ios": 14
         }
-      ],
-      "framework": "AuthenticationServices"
+      ]
     },
     {
       "name": "siriTipViewStyle",
       "kind": "string",
       "type": "_AppIntents_SwiftUI.SiriTipViewStyle",
       "ios": 16,
+      "framework": "AppIntents",
       "cases": [
         {
           "name": "automatic",
@@ -4033,8 +7146,7 @@
           "name": "dark",
           "ios": 16
         }
-      ],
-      "framework": "AppIntents"
+      ]
     },
     {
       "name": "sliderThumbVisibility",
@@ -4114,6 +7226,194 @@
       "ios": 13
     },
     {
+      "name": "storeButton",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Visibility",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 15
+            },
+            {
+              "name": "visible",
+              "ios": 15
+            },
+            {
+              "name": "hidden",
+              "ios": 15
+            }
+          ],
+          "field": "visibility",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "_StoreKit_SwiftUI.StoreButtonKind",
+          "optional": false,
+          "cases": [
+            {
+              "name": "restorePurchases",
+              "ios": 17
+            },
+            {
+              "name": "cancellation",
+              "ios": 17
+            },
+            {
+              "name": "redeemCode",
+              "ios": 17
+            },
+            {
+              "name": "signIn",
+              "ios": 17
+            },
+            {
+              "name": "policies",
+              "ios": 17
+            }
+          ],
+          "field": "buttonKinds",
+          "label": "for"
+        }
+      ],
+      "framework": "StoreKit"
+    },
+    {
+      "name": "strikethrough",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "arguments": [
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isActive",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Text.LineStyle.Pattern",
+          "optional": false,
+          "cases": [
+            {
+              "name": "solid",
+              "ios": 15
+            },
+            {
+              "name": "dot",
+              "ios": 15
+            },
+            {
+              "name": "dash",
+              "ios": 15
+            },
+            {
+              "name": "dashDot",
+              "ios": 15
+            },
+            {
+              "name": "dashDotDot",
+              "ios": 15
+            }
+          ],
+          "field": "pattern",
+          "label": "pattern"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Color?",
+          "optional": true,
+          "cases": [
+            {
+              "name": "accentColor",
+              "ios": 13
+            },
+            {
+              "name": "red",
+              "ios": 13
+            },
+            {
+              "name": "orange",
+              "ios": 13
+            },
+            {
+              "name": "yellow",
+              "ios": 13
+            },
+            {
+              "name": "green",
+              "ios": 13
+            },
+            {
+              "name": "mint",
+              "ios": 15
+            },
+            {
+              "name": "teal",
+              "ios": 15
+            },
+            {
+              "name": "cyan",
+              "ios": 15
+            },
+            {
+              "name": "blue",
+              "ios": 13
+            },
+            {
+              "name": "indigo",
+              "ios": 15
+            },
+            {
+              "name": "purple",
+              "ios": 13
+            },
+            {
+              "name": "pink",
+              "ios": 13
+            },
+            {
+              "name": "brown",
+              "ios": 15
+            },
+            {
+              "name": "white",
+              "ios": 13
+            },
+            {
+              "name": "gray",
+              "ios": 13
+            },
+            {
+              "name": "black",
+              "ios": 13
+            },
+            {
+              "name": "clear",
+              "ios": 13
+            },
+            {
+              "name": "primary",
+              "ios": 13
+            },
+            {
+              "name": "secondary",
+              "ios": 13
+            }
+          ],
+          "field": "color",
+          "label": "color"
+        }
+      ]
+    },
+    {
       "name": "submitLabel",
       "kind": "string",
       "type": "SwiftUI.SubmitLabel",
@@ -4164,10 +7464,54 @@
       "ios": 15
     },
     {
+      "name": "subscriptionOfferViewButtonVisibility",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Visibility",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 15
+            },
+            {
+              "name": "visible",
+              "ios": 15
+            },
+            {
+              "name": "hidden",
+              "ios": 15
+            }
+          ],
+          "field": "visibility",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "_StoreKit_SwiftUI.SubscriptionOfferViewButtonKind",
+          "optional": false,
+          "cases": [
+            {
+              "name": "detailLink",
+              "ios": 26
+            }
+          ],
+          "field": "buttonKinds",
+          "label": "for"
+        }
+      ],
+      "framework": "StoreKit"
+    },
+    {
       "name": "subscriptionStoreButtonLabel",
       "kind": "string",
       "type": "_StoreKit_SwiftUI.SubscriptionStoreButtonLabel",
       "ios": 17,
+      "framework": "StoreKit",
       "cases": [
         {
           "name": "automatic",
@@ -4193,14 +7537,14 @@
           "name": "price",
           "ios": 17
         }
-      ],
-      "framework": "StoreKit"
+      ]
     },
     {
       "name": "subscriptionStoreControlBackground",
       "kind": "string",
       "type": "_StoreKit_SwiftUI.SubscriptionStoreControlBackground",
       "ios": 17,
+      "framework": "StoreKit",
       "cases": [
         {
           "name": "automatic",
@@ -4214,8 +7558,7 @@
           "name": "gradientMaterialOnScroll",
           "ios": 17
         }
-      ],
-      "framework": "StoreKit"
+      ]
     },
     {
       "name": "swipeActionsContainer",
@@ -4423,6 +7766,92 @@
       ]
     },
     {
+      "name": "textInputFormattingControlVisibility",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Visibility",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 15
+            },
+            {
+              "name": "visible",
+              "ios": 15
+            },
+            {
+              "name": "hidden",
+              "ios": 15
+            }
+          ],
+          "field": "visibility",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.TextInputFormattingControlPlacement.Set",
+          "optional": false,
+          "cases": [
+            {
+              "name": "contextMenu",
+              "ios": 26
+            },
+            {
+              "name": "inputAssistant",
+              "ios": 26
+            },
+            {
+              "name": "all",
+              "ios": 26
+            },
+            {
+              "name": "default",
+              "ios": 26
+            }
+          ],
+          "field": "placement",
+          "label": "for"
+        }
+      ]
+    },
+    {
+      "name": "textScale",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Text.Scale",
+          "optional": false,
+          "cases": [
+            {
+              "name": "default",
+              "ios": 17
+            },
+            {
+              "name": "secondary",
+              "ios": 17
+            }
+          ],
+          "field": "scale",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ]
+    },
+    {
       "name": "textSelectionAffinity",
       "kind": "string",
       "type": "SwiftUI.TextSelectionAffinity",
@@ -4443,25 +7872,348 @@
       ]
     },
     {
-      "name": "toolbar",
-      "kind": "optionalEnum",
-      "type": "SwiftUI.ToolbarDefaultItemKind?",
-      "ios": 17,
-      "cases": [
+      "name": "toolbarBackground",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "arguments": [
         {
-          "name": "sidebarToggle",
-          "ios": 17
+          "kind": "enum",
+          "type": "SwiftUICore.Visibility",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 15
+            },
+            {
+              "name": "visible",
+              "ios": 15
+            },
+            {
+              "name": "hidden",
+              "ios": 15
+            }
+          ],
+          "field": "visibility",
+          "label": "_"
         },
         {
-          "name": "title",
-          "ios": 18
-        },
-        {
-          "name": "search",
-          "ios": 26
+          "kind": "enum",
+          "type": "SwiftUI.ToolbarPlacement",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 16
+            },
+            {
+              "name": "bottomBar",
+              "ios": 16
+            },
+            {
+              "name": "navigationBar",
+              "ios": 16
+            },
+            {
+              "name": "tabBar",
+              "ios": 16
+            },
+            {
+              "name": "statusBar",
+              "ios": 27
+            }
+          ],
+          "field": "bars",
+          "label": "for"
         }
-      ],
-      "label": "removing"
+      ]
+    },
+    {
+      "name": "toolbarBackgroundVisibility",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Visibility",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 15
+            },
+            {
+              "name": "visible",
+              "ios": 15
+            },
+            {
+              "name": "hidden",
+              "ios": 15
+            }
+          ],
+          "field": "visibility",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ToolbarPlacement",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 16
+            },
+            {
+              "name": "bottomBar",
+              "ios": 16
+            },
+            {
+              "name": "navigationBar",
+              "ios": 16
+            },
+            {
+              "name": "tabBar",
+              "ios": 16
+            },
+            {
+              "name": "statusBar",
+              "ios": 27
+            }
+          ],
+          "field": "bars",
+          "label": "for"
+        }
+      ]
+    },
+    {
+      "name": "toolbarColorScheme",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.ColorScheme?",
+          "optional": true,
+          "cases": [
+            {
+              "name": "light",
+              "ios": 13
+            },
+            {
+              "name": "dark",
+              "ios": 13
+            }
+          ],
+          "field": "colorScheme",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ToolbarPlacement",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 16
+            },
+            {
+              "name": "bottomBar",
+              "ios": 16
+            },
+            {
+              "name": "navigationBar",
+              "ios": 16
+            },
+            {
+              "name": "tabBar",
+              "ios": 16
+            },
+            {
+              "name": "statusBar",
+              "ios": 27
+            }
+          ],
+          "field": "bars",
+          "label": "for"
+        }
+      ]
+    },
+    {
+      "name": "toolbarMinimizationBehavior",
+      "kind": "record",
+      "type": "",
+      "ios": 27,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ToolbarMinimizationBehavior",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 27
+            },
+            {
+              "name": "onScrollDown",
+              "ios": 27
+            },
+            {
+              "name": "onScrollUp",
+              "ios": 27
+            },
+            {
+              "name": "never",
+              "ios": 27
+            }
+          ],
+          "field": "behavior",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ToolbarPlacement",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 16
+            },
+            {
+              "name": "bottomBar",
+              "ios": 16
+            },
+            {
+              "name": "navigationBar",
+              "ios": 16
+            },
+            {
+              "name": "tabBar",
+              "ios": 16
+            },
+            {
+              "name": "statusBar",
+              "ios": 27
+            }
+          ],
+          "field": "bars",
+          "label": "for"
+        }
+      ]
+    },
+    {
+      "name": "toolbarMinimizationRestoration",
+      "kind": "record",
+      "type": "",
+      "ios": 27,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ToolbarMinimizationRestoration",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 27
+            },
+            {
+              "name": "atScrollEdge",
+              "ios": 27
+            }
+          ],
+          "field": "restoration",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ToolbarPlacement",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 16
+            },
+            {
+              "name": "bottomBar",
+              "ios": 16
+            },
+            {
+              "name": "navigationBar",
+              "ios": 16
+            },
+            {
+              "name": "tabBar",
+              "ios": 16
+            },
+            {
+              "name": "statusBar",
+              "ios": 27
+            }
+          ],
+          "field": "bars",
+          "label": "for"
+        }
+      ]
+    },
+    {
+      "name": "toolbarMinimizationSafeAreaAdjustment",
+      "kind": "record",
+      "type": "",
+      "ios": 27,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ToolbarMinimizationSafeAreaAdjustment",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 27
+            },
+            {
+              "name": "enabled",
+              "ios": 27
+            },
+            {
+              "name": "disabled",
+              "ios": 27
+            }
+          ],
+          "field": "adjustment",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ToolbarPlacement",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 16
+            },
+            {
+              "name": "bottomBar",
+              "ios": 16
+            },
+            {
+              "name": "navigationBar",
+              "ios": 16
+            },
+            {
+              "name": "tabBar",
+              "ios": 16
+            },
+            {
+              "name": "statusBar",
+              "ios": 27
+            }
+          ],
+          "field": "bars",
+          "label": "for"
+        }
+      ]
     },
     {
       "name": "toolbarRole",
@@ -4512,6 +8264,147 @@
       ]
     },
     {
+      "name": "toolbarVisibility",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Visibility",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 15
+            },
+            {
+              "name": "visible",
+              "ios": 15
+            },
+            {
+              "name": "hidden",
+              "ios": 15
+            }
+          ],
+          "field": "visibility",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ToolbarPlacement",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 16
+            },
+            {
+              "name": "bottomBar",
+              "ios": 16
+            },
+            {
+              "name": "navigationBar",
+              "ios": 16
+            },
+            {
+              "name": "tabBar",
+              "ios": 16
+            },
+            {
+              "name": "statusBar",
+              "ios": 27
+            }
+          ],
+          "field": "bars",
+          "label": "for"
+        }
+      ]
+    },
+    {
+      "name": "toolbarWithRemoving",
+      "module": "SwiftUI",
+      "kind": "optionalEnum",
+      "type": "SwiftUI.ToolbarDefaultItemKind?",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "sidebarToggle",
+          "ios": 17
+        },
+        {
+          "name": "title",
+          "ios": 18
+        },
+        {
+          "name": "search",
+          "ios": 26
+        }
+      ],
+      "label": "removing",
+      "sdkName": "toolbar"
+    },
+    {
+      "name": "toolbarWithVisibilityAndBars",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Visibility",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 15
+            },
+            {
+              "name": "visible",
+              "ios": 15
+            },
+            {
+              "name": "hidden",
+              "ios": 15
+            }
+          ],
+          "field": "visibility",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUI.ToolbarPlacement",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 16
+            },
+            {
+              "name": "bottomBar",
+              "ios": 16
+            },
+            {
+              "name": "navigationBar",
+              "ios": 16
+            },
+            {
+              "name": "tabBar",
+              "ios": 16
+            },
+            {
+              "name": "statusBar",
+              "ios": 27
+            }
+          ],
+          "field": "bars",
+          "label": "for"
+        }
+      ],
+      "sdkName": "toolbar"
+    },
+    {
       "name": "tracking",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
@@ -4548,6 +8441,163 @@
       "ios": 16
     },
     {
+      "name": "typesettingLanguage",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.TypesettingLanguage",
+          "optional": false,
+          "cases": [
+            {
+              "name": "automatic",
+              "ios": 17
+            }
+          ],
+          "field": "language",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        }
+      ]
+    },
+    {
+      "name": "underline",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "arguments": [
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isActive",
+          "label": "_"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Text.LineStyle.Pattern",
+          "optional": false,
+          "cases": [
+            {
+              "name": "solid",
+              "ios": 15
+            },
+            {
+              "name": "dot",
+              "ios": 15
+            },
+            {
+              "name": "dash",
+              "ios": 15
+            },
+            {
+              "name": "dashDot",
+              "ios": 15
+            },
+            {
+              "name": "dashDotDot",
+              "ios": 15
+            }
+          ],
+          "field": "pattern",
+          "label": "pattern"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Color?",
+          "optional": true,
+          "cases": [
+            {
+              "name": "accentColor",
+              "ios": 13
+            },
+            {
+              "name": "red",
+              "ios": 13
+            },
+            {
+              "name": "orange",
+              "ios": 13
+            },
+            {
+              "name": "yellow",
+              "ios": 13
+            },
+            {
+              "name": "green",
+              "ios": 13
+            },
+            {
+              "name": "mint",
+              "ios": 15
+            },
+            {
+              "name": "teal",
+              "ios": 15
+            },
+            {
+              "name": "cyan",
+              "ios": 15
+            },
+            {
+              "name": "blue",
+              "ios": 13
+            },
+            {
+              "name": "indigo",
+              "ios": 15
+            },
+            {
+              "name": "purple",
+              "ios": 13
+            },
+            {
+              "name": "pink",
+              "ios": 13
+            },
+            {
+              "name": "brown",
+              "ios": 15
+            },
+            {
+              "name": "white",
+              "ios": 13
+            },
+            {
+              "name": "gray",
+              "ios": 13
+            },
+            {
+              "name": "black",
+              "ios": 13
+            },
+            {
+              "name": "clear",
+              "ios": 13
+            },
+            {
+              "name": "primary",
+              "ios": 13
+            },
+            {
+              "name": "secondary",
+              "ios": 13
+            }
+          ],
+          "field": "color",
+          "label": "color"
+        }
+      ]
+    },
+    {
       "name": "unredacted",
       "kind": "boolean",
       "type": "",
@@ -4559,6 +8609,7 @@
       "kind": "string",
       "type": "_PassKit_SwiftUI.VerifyIdentityWithWalletButtonStyle",
       "ios": 16,
+      "framework": "PassKit",
       "cases": [
         {
           "name": "black",
@@ -4568,14 +8619,14 @@
           "name": "blackOutline",
           "ios": 16
         }
-      ],
-      "framework": "PassKit"
+      ]
     },
     {
       "name": "webViewBackForwardNavigationGestures",
       "kind": "string",
       "type": "_WebKit_SwiftUI.WebView.BackForwardNavigationGesturesBehavior",
       "ios": 26,
+      "framework": "WebKit",
       "cases": [
         {
           "name": "automatic",
@@ -4589,14 +8640,14 @@
           "name": "disabled",
           "ios": 26
         }
-      ],
-      "framework": "WebKit"
+      ]
     },
     {
       "name": "webViewContentBackground",
       "kind": "string",
       "type": "SwiftUICore.Visibility",
       "ios": 26,
+      "framework": "WebKit",
       "cases": [
         {
           "name": "automatic",
@@ -4610,14 +8661,14 @@
           "name": "hidden",
           "ios": 15
         }
-      ],
-      "framework": "WebKit"
+      ]
     },
     {
       "name": "webViewElementFullscreenBehavior",
       "kind": "string",
       "type": "_WebKit_SwiftUI.WebView.ElementFullscreenBehavior",
       "ios": 26,
+      "framework": "WebKit",
       "cases": [
         {
           "name": "automatic",
@@ -4631,14 +8682,14 @@
           "name": "disabled",
           "ios": 26
         }
-      ],
-      "framework": "WebKit"
+      ]
     },
     {
       "name": "webViewLinkPreviews",
       "kind": "string",
       "type": "_WebKit_SwiftUI.WebView.LinkPreviewBehavior",
       "ios": 26,
+      "framework": "WebKit",
       "cases": [
         {
           "name": "automatic",
@@ -4652,14 +8703,14 @@
           "name": "disabled",
           "ios": 26
         }
-      ],
-      "framework": "WebKit"
+      ]
     },
     {
       "name": "webViewMagnificationGestures",
       "kind": "string",
       "type": "_WebKit_SwiftUI.WebView.MagnificationGesturesBehavior",
       "ios": 26,
+      "framework": "WebKit",
       "cases": [
         {
           "name": "automatic",
@@ -4673,8 +8724,7 @@
           "name": "disabled",
           "ios": 26
         }
-      ],
-      "framework": "WebKit"
+      ]
     },
     {
       "name": "windowToolbarFullScreenVisibility",
@@ -4820,9 +8870,11 @@
         "allowsHitTesting",
         "allowsTightening",
         "animation",
+        "aspectRatio",
         "background",
         "baselineOffset",
         "blendMode",
+        "blur",
         "bold",
         "border",
         "brightness",
@@ -4833,11 +8885,14 @@
         "colorMultiply",
         "colorScheme",
         "compositingGroup",
+        "containerCornerOffset",
+        "containerRelativeFrame",
         "contentTransition",
         "contrast",
         "controlSize",
         "defaultHoverEffect",
         "disabled",
+        "drawingGroup",
         "dynamicTypeSize",
         "edgesIgnoringSafeArea",
         "environment",
@@ -4854,6 +8909,7 @@
         "hoverEffect",
         "hoverEffectDisabled",
         "hueRotation",
+        "ignoresSafeArea",
         "imageScale",
         "italic",
         "kerning",
@@ -4867,31 +8923,40 @@
         "monospaced",
         "monospacedDigit",
         "multilineTextAlignment",
+        "offset",
         "onAppear",
         "onDisappear",
         "onOpenURL",
         "onTapGesture",
         "opacity",
         "padding",
+        "position",
         "preferredColorScheme",
         "privacySensitive",
         "redacted",
+        "rotationEffect",
         "safeAreaPadding",
         "saturation",
+        "scaleEffect",
         "scaledToFill",
         "scaledToFit",
+        "shadow",
         "speechAdjustedPitch",
         "speechAlwaysIncludesPunctuation",
         "speechAnnouncementsQueued",
         "speechSpellsOutCharacters",
+        "strikethrough",
         "symbolColorRenderingMode",
         "symbolRenderingMode",
         "symbolVariableValueMode",
         "symbolVariant",
         "textInputBorderShape",
+        "textScale",
         "tint",
         "tracking",
         "transition",
+        "typesettingLanguage",
+        "underline",
         "unredacted",
         "writingDirection",
         "zIndex"
@@ -4901,6 +8966,9 @@
         "accessibilityAction",
         "accessibilityActivationPoint",
         "accessibilityAddTraits",
+        "accessibilityDirectTouch",
+        "accessibilityDragPoint",
+        "accessibilityDropPoint",
         "accessibilityElement",
         "accessibilityHeading",
         "accessibilityHidden",
@@ -4909,6 +8977,7 @@
         "accessibilityLabel",
         "accessibilityRemoveTraits",
         "accessibilityRespondsToUserInteraction",
+        "accessibilityScrollStatus",
         "accessibilitySortPriority",
         "accessibilityTextContentType",
         "accessibilityValue",
@@ -4923,6 +8992,7 @@
         "buttonRepeatBehavior",
         "buttonStyle",
         "confirmationDialog",
+        "contentMargins",
         "contextMenu",
         "controlGroupStyle",
         "datePickerStyle",
@@ -4953,6 +9023,7 @@
         "gridCellColumns",
         "gridCellUnsizedAxes",
         "gridColumnAlignment",
+        "handGestureShortcut",
         "help",
         "hidden",
         "inspectorColumnWidth",
@@ -4965,8 +9036,14 @@
         "labelsHidden",
         "labelsVisibility",
         "listItemTint",
+        "listRowInsets",
+        "listRowSeparator",
+        "listRowSeparatorTint",
         "listRowSpacing",
         "listSectionIndexVisibility",
+        "listSectionMargins",
+        "listSectionSeparator",
+        "listSectionSeparatorTint",
         "listSectionSpacing",
         "listStyle",
         "menuActionDismissBehavior",
@@ -5005,15 +9082,20 @@
         "renameAction",
         "replaceDisabled",
         "scenePadding",
+        "scrollBounceBehavior",
         "scrollClipDisabled",
         "scrollContentBackground",
         "scrollDisabled",
         "scrollDismissesKeyboard",
+        "scrollEdgeEffectHidden",
+        "scrollEdgeEffectStyle",
+        "scrollIndicators",
         "scrollIndicatorsFlash",
         "scrollTargetLayout",
         "searchCompletion",
         "searchDictationBehavior",
         "searchPresentationToolbarBehavior",
+        "searchSuggestions",
         "searchToolbarBehavior",
         "searchable",
         "sectionIndexLabel",
@@ -5037,11 +9119,19 @@
         "tableColumnHeaders",
         "textFieldStyle",
         "textInputAutocapitalization",
+        "textInputFormattingControlVisibility",
         "textSelectionAffinity",
         "toggleStyle",
         "toolbar",
+        "toolbarBackground",
+        "toolbarBackgroundVisibility",
+        "toolbarColorScheme",
+        "toolbarMinimizationBehavior",
+        "toolbarMinimizationRestoration",
+        "toolbarMinimizationSafeAreaAdjustment",
         "toolbarRole",
         "toolbarTitleDisplayMode",
+        "toolbarVisibility",
         "typeSelectEquivalent",
         "windowToolbarFullScreenVisibility",
         "writingToolsAffordanceVisibility",
@@ -5060,6 +9150,8 @@
         "offerCodeRedemption",
         "productDescription",
         "productIconBorder",
+        "storeButton",
+        "subscriptionOfferViewButtonVisibility",
         "subscriptionStoreButtonLabel",
         "subscriptionStoreControlBackground"
       ],
@@ -5073,6 +9165,7 @@
         "musicSubscriptionOffer"
       ],
       "_PhotosUI_SwiftUI": [
+        "photosPickerAccessoryVisibility",
         "photosPickerSearchText",
         "photosPickerStyle"
       ],

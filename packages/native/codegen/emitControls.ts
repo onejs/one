@@ -144,10 +144,12 @@ ${styleFields
                 ? 'boolean | null'
                 : modifier.kind === 'optionalNumber'
                   ? 'number | null'
-                : modifier.kind === 'optionalString'
+              : modifier.kind === 'optionalString'
                   ? 'string | null'
                   : modifier.kind === 'optionalEnum'
                     ? `SDK${upper(modifier.name)} | null`
+                    : modifier.kind === 'record'
+                      ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ') : argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
               : modifier.kind === 'string' ? undefined : modifier.kind,
       values: modifier.cases?.map((item) => item.name),
     })),

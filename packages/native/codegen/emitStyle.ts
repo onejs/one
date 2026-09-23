@@ -53,6 +53,60 @@ ${slots.map((slot) => `    case OneNativeViewSlotName.${slot.name}:
           ? `if #available(iOS ${version}, *) { self.${modifier.sdkName ?? modifier.name}(${argument}) } else { self }`
           : `self.${modifier.sdkName ?? modifier.name}(${argument})`
       }
+      if (modifier.kind === 'record') {
+        const argumentsFromSDK = modifier.arguments!
+        const parsedArguments = argumentsFromSDK.map((argument, index) => {
+          const variable = `argument${index}`
+          const raw = `values[${index}]`
+          const baseType = argument.type.replace(/\?$/, '')
+          if (argument.kind === 'enum') {
+            const cases = argument.cases!.map((item) =>
+              `      case ${JSON.stringify(item.name)}: ${item.ios > 17 ? `if #available(iOS ${item.ios}, *) { return ${baseType}.${item.name} }\n        preconditionFailure("unavailable ${modifier.name}.${argument.field}: \\(raw)")` : `return ${baseType}.${item.name}`}`
+            ).join('\n')
+            return `    let ${variable}: ${argument.type} = {
+      guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
+      switch raw {
+${cases}
+      default: preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)")
+      }
+    }()`
+          }
+          if (argument.kind === 'boolean')
+            return `    let ${variable}: ${argument.type} = {
+      guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)") }
+      return raw == "true"
+    }()`
+          if (argument.kind === 'number') {
+            const value = baseType === 'CoreFoundation.CGFloat' ? 'CGFloat(number)' : baseType === 'Swift.Float' ? 'Float(number)' : baseType === 'Swift.Int' ? 'Int(number)' : 'number'
+            return `    let ${variable}: ${argument.type} = {
+      guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)") }
+      return ${value}
+    }()`
+          }
+          return `    let ${variable}: ${argument.type} = {
+      guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
+      return ${baseType === 'SwiftUICore.Text' ? 'Text(raw)' : 'raw'}
+    }()`
+        }).join('\n')
+        const call = argumentsFromSDK.map((argument, index) =>
+          `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`
+        ).join(', ')
+        const body = `let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == ${argumentsFromSDK.length} else { preconditionFailure("invalid ${modifier.name}: \\(value)") }
+      return decoded
+    }()
+${parsedArguments}
+    ${apply(call, 17, true)}`
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    ${modifier.ios > 17 ? `if #available(iOS ${modifier.ios}, *) {
+      ${body}
+    } else { self }` : body}
+  }`
+      }
       if (modifier.kind.startsWith('event') || modifier.kind.startsWith('binding')) {
         const bridge = modifier.kind.startsWith('event')
           ? modifier.kind === 'event'
@@ -145,6 +199,7 @@ ${styleFields
 
 const colorFields = [${colorFields.map((field) => `'${field.name}'`).join(', ')}] as const
 const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [modifier.name, modifier.kind])))} as const
+const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional }) => ({ field, kind, optional }))])))}
 
 export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeStyleNative | undefined {
   if (!style) return undefined
@@ -154,6 +209,20 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
     if (value === undefined) continue
     if (Object.hasOwn(sdkKinds, name)) {
       const kind = sdkKinds[name as keyof typeof sdkKinds]
+      if (kind === 'record') {
+        if (typeof value !== 'object' || value === null || Array.isArray(value)) throw new Error(name + ' must be a record')
+        const record = value as Record<string, unknown>
+        const values = sdkRecords[name].map((argument) => {
+          const item = record[argument.field]
+          if (argument.optional && item === null) return null
+          if (argument.kind === 'number' && (typeof item !== 'number' || !Number.isFinite(item))) throw new Error(name + '.' + argument.field + ' must be finite')
+          if (argument.kind === 'boolean' && typeof item !== 'boolean') throw new Error(name + '.' + argument.field + ' must be a boolean')
+          if ((argument.kind === 'string' || argument.kind === 'enum') && typeof item !== 'string') throw new Error(name + '.' + argument.field + ' must be a string')
+          return String(item)
+        })
+        sdkModifiers.push([name, JSON.stringify(values)])
+        continue
+      }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite')
       if (kind === 'optionalNumber' && value !== null && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite or null')
       if (kind === 'boolean' && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
