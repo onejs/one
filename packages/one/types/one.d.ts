@@ -1,4 +1,4 @@
-import { Browser as NativeBrowser, Clipboard as NativeClipboard, AppInfo, Compose, Fonts, Haptics, ImagePicker, MenuAction, Network as NativeNetwork, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from '@vxrn/native';
+import { Browser as NativeBrowser, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, Haptics, ImagePicker, MenuAction, Network as NativeNetwork, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from '@vxrn/native';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaFrame, useSafeAreaInsets } from '@vxrn/safe-area';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
 export type OneIOS = typeof Swift & {
@@ -30,6 +30,7 @@ export type OneUI = typeof NativeUI & {
 export type OneAPI = {
     readonly platform: OnePlatform;
     readonly AppInfo: typeof AppInfo;
+    readonly Database: typeof Database;
     readonly iOS: Readonly<OneIOS>;
     readonly Android: Readonly<OneAndroid>;
     readonly UI: Readonly<OneUI>;

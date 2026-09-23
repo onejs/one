@@ -1,5 +1,5 @@
 {
-  "sdk": "26",
+  "sdk": "27",
   "unmappedModifiers": [
     "menuStyle",
     "tabViewBottomAccessory",
@@ -25,6 +25,7 @@
       "inline": 14,
       "automatic": 13,
       "segmented": 13,
+      "tabs": 27,
       "palette": 17,
       "navigationLink": 16,
       "menu": 14
@@ -58,7 +59,8 @@
       "close": 26
     },
     "TabRole": {
-      "search": 18
+      "search": 18,
+      "prominent": 27
     },
     "ControlGroupStyle": {
       "palette": 17,
@@ -92,6 +94,7 @@
     "TextFieldStyle": {
       "automatic": 13,
       "roundedBorder": 13,
+      "bordered": 27,
       "plain": 13
     },
     "SubmitLabel": {
@@ -963,6 +966,26 @@
       ]
     },
     {
+      "name": "defaultTabBarPlacement",
+      "kind": "string",
+      "type": "SwiftUI.AdaptableTabBarPlacement",
+      "ios": 27,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 18
+        },
+        {
+          "name": "tabBar",
+          "ios": 18
+        },
+        {
+          "name": "sidebar",
+          "ios": 18
+        }
+      ]
+    },
+    {
       "name": "deleteDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
@@ -1713,6 +1736,30 @@
       ]
     },
     {
+      "name": "presentationPlacement",
+      "kind": "string",
+      "type": "SwiftUI.PresentationPlacement",
+      "ios": 27,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 27
+        },
+        {
+          "name": "leading",
+          "ios": 27
+        },
+        {
+          "name": "center",
+          "ios": 27
+        },
+        {
+          "name": "trailing",
+          "ios": 27
+        }
+      ]
+    },
+    {
       "name": "previewInterfaceOrientation",
       "kind": "string",
       "type": "SwiftUI.InterfaceOrientation",
@@ -2127,6 +2174,26 @@
       ]
     },
     {
+      "name": "textInputBorderShape",
+      "kind": "string",
+      "type": "SwiftUICore.TextInputBorderShape",
+      "ios": 27,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 27
+        },
+        {
+          "name": "capsule",
+          "ios": 27
+        },
+        {
+          "name": "roundedRectangle",
+          "ios": 27
+        }
+      ]
+    },
+    {
       "name": "textSelectionAffinity",
       "kind": "string",
       "type": "SwiftUI.TextSelectionAffinity",
@@ -2389,6 +2456,7 @@
         "speechSpellsOutCharacters",
         "symbolRenderingMode",
         "symbolVariant",
+        "textInputBorderShape",
         "tint",
         "tracking",
         "transition",
@@ -2407,6 +2475,7 @@
         "controlGroupStyle",
         "datePickerStyle",
         "defaultAdaptableTabBarPlacement",
+        "defaultTabBarPlacement",
         "deleteDisabled",
         "fileDialogBrowserOptions",
         "fileDialogCustomizationID",
@@ -2451,6 +2520,7 @@
         "presentationContentInteraction",
         "presentationDetents",
         "presentationDragIndicator",
+        "presentationPlacement",
         "presentationSizing",
         "previewInterfaceOrientation",
         "progressViewStyle",

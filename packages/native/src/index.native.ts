@@ -88,6 +88,7 @@ export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/ind
 export { AppInfo } from './app-info/index.native'
 export type { AppInfoApi } from './app-info/index.native'
 export { ImagePicker } from './image-picker/index.native'
+export { Database } from './database/index.native'
 export type {
   ImagePickerAsset,
   ImagePickerCanceledResult,
