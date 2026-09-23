@@ -475,7 +475,9 @@ private struct AccessoryContent: View {
   var body: some View {
     if let page = placement == .expanded ? (expanded ?? inline) : (inline ?? expanded) {
       OneNativeSlot(content: page.view, mode: .fill, layoutHost: host, onLayout: page.onLayout)
-        .frame(height: 52)
+        .frame(maxWidth: .infinity, minHeight: 52, maxHeight: 52)
+        .labelStyle(.titleAndIcon)
+        .contentShape(Rectangle())
     }
   }
 }
