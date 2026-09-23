@@ -228,8 +228,7 @@
         "OneNativeGlass": "OneNativeGlassComponentView",
         "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
-        "OneNativePopoverContent": "OneNativePopoverContentComponentView",
-        "OneSwiftHost": "OneSwiftHostComponentView"
+        "OneNativePopoverContent": "OneNativePopoverContentComponentView"
       }
     }
   }
