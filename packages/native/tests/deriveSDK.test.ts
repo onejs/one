@@ -184,6 +184,27 @@ describe('SDK modifier derivation', () => {
       { name: 'tag', kind: 'string', type: 'V', ios: 0 },
     ])
   })
+
+  it('derives URL values and optional empty action callbacks', () => {
+    expect(deriveModifiers([
+      method('fileDialogDefaultDirectory', 'SwiftUI', [{ label: '_', name: 'url', type: 'Foundation.URL?' }]),
+      method('navigationDocument', 'SwiftUI', [{ label: '_', name: 'url', type: 'Foundation.URL' }]),
+      method('subscriptionStorePolicyDestination', '_StoreKit_SwiftUI', [
+        { label: 'url', name: 'url', type: 'Foundation.URL' },
+        { label: 'for', name: 'button', type: '_StoreKit_SwiftUI.SubscriptionStorePolicyKind' },
+      ]),
+      { ...method('privacyPolicy', '_StoreKit_SwiftUI'), kind: 'static', owner: 'SubscriptionStorePolicyKind', type: '_StoreKit_SwiftUI.SubscriptionStorePolicyKind' },
+      method('subscriptionStoreSignInAction', '_StoreKit_SwiftUI', [{ label: '_', name: 'action', type: '(() -> ())?' }]),
+    ], 27, [])).toEqual([
+      { name: 'fileDialogDefaultDirectory', kind: 'optionalURL', type: 'Foundation.URL?', ios: 0 },
+      { name: 'navigationDocument', kind: 'url', type: 'Foundation.URL', ios: 0 },
+      { name: 'subscriptionStorePolicyDestination', kind: 'record', type: '', ios: 0, framework: 'StoreKit', arguments: [
+        { field: 'url', label: 'url', kind: 'url', type: 'Foundation.URL', optional: false },
+        { field: 'button', label: 'for', kind: 'enum', type: '_StoreKit_SwiftUI.SubscriptionStorePolicyKind', optional: false, cases: [{ name: 'privacyPolicy', ios: 0 }] },
+      ] },
+      { name: 'subscriptionStoreSignInAction', kind: 'event', type: '(() -> ())?', label: '_', ios: 0, framework: 'StoreKit' },
+    ])
+  })
 })
 
 describe('SDK tab view slots', () => {

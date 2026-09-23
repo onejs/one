@@ -491,6 +491,7 @@ export interface OneNativeStyle {
     fileDialogBrowserOptions?: SDKFileDialogBrowserOptions;
     fileDialogConfirmationLabel?: string | null;
     fileDialogCustomizationID?: string;
+    fileDialogDefaultDirectory?: string | null;
     fileDialogImportsUnresolvedAliases?: boolean;
     fileDialogMessage?: string | null;
     fileExporterFilenameLabel?: string | null;
@@ -647,6 +648,7 @@ export interface OneNativeStyle {
         title: string;
         displayMode: 'automatic' | 'inline' | 'large';
     }>;
+    navigationDocument?: string;
     navigationLinkIndicatorVisibility?: SDKNavigationLinkIndicatorVisibility;
     navigationSplitViewColumnWidthWithCGFloat?: number;
     navigationSplitViewColumnWidthWithMinAndIdealAndMax?: Readonly<{
@@ -816,8 +818,14 @@ export interface OneNativeStyle {
         visibility: 'automatic' | 'visible' | 'hidden';
         buttonKinds: 'detailLink';
     }>;
+    subscriptionOfferViewDetailAction?: () => void;
     subscriptionStoreButtonLabel?: SDKSubscriptionStoreButtonLabel;
     subscriptionStoreControlBackground?: SDKSubscriptionStoreControlBackground;
+    subscriptionStorePolicyDestination?: Readonly<{
+        url: string;
+        button: 'termsOfService' | 'privacyPolicy';
+    }>;
+    subscriptionStoreSignInAction?: () => void;
     swipeActionsContainer?: boolean;
     symbolColorRenderingMode?: SDKSymbolColorRenderingMode | null;
     symbolEffectsRemoved?: boolean;

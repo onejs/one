@@ -1,7 +1,7 @@
 import { ios, present, type Declaration } from './inventory'
 import type { Control } from './controlTypes'
 
-const emptyEventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> Swift\.Void\)\?$|^SwiftUICore\.Binding<Swift\.(?:Bool|String)>$/
+const emptyEventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> (?:Swift\.Void|\(\))\)\?$|^SwiftUICore\.Binding<Swift\.(?:Bool|String)>$/
 const scalarCallbackType = /^(?:@escaping )?\((?:_ [A-Za-z]\w*: )?(Swift\.(?:Bool|String|Int|Float|Double)|CoreFoundation\.CGFloat|Foundation\.URL)\) -> (?:Swift\.Void|\(\))$/
 const eventOrBindingType = (type: string) => emptyEventOrBindingType.test(type) || scalarCallbackType.test(type)
 
@@ -9,7 +9,7 @@ export type DerivedArgument = {
   field: string
   label: string
   type: string
-  kind: 'boolean' | 'number' | 'string' | 'enum'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum'
   optional: boolean
   cases?: readonly { name: string; ios: number }[]
 }
@@ -18,7 +18,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'bindingBoolean' | 'bindingString'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'bindingBoolean' | 'bindingString'
   ios: number
   type: string
   cases?: readonly { name: string; ios: number }[]
@@ -59,6 +59,8 @@ export function deriveModifiers(
         ? 'number'
         : baseType === 'Swift.String' || baseType === 'SwiftUICore.Text'
           ? 'string'
+          : baseType === 'Foundation.URL'
+            ? 'url'
           : undefined
     if (kind) return { kind, type, optional }
     if (!/^[A-Za-z_]\w*\.[A-Za-z][\w.]*$/.test(baseType)) return
@@ -168,6 +170,8 @@ export function deriveModifiers(
       if (!value) return []
       const kind = value.kind === 'enum'
         ? value.optional ? 'optionalEnum' : 'string'
+        : value.kind === 'url'
+          ? value.optional ? 'optionalURL' : 'url'
         : value.optional
           ? `optional${value.kind[0].toUpperCase()}${value.kind.slice(1)}` as DerivedModifier['kind']
           : value.kind
