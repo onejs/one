@@ -7,6 +7,8 @@ const eventOrBindingType = (type: string) => emptyEventOrBindingType.test(type) 
 
 export type DerivedModifier = {
   name: string
+  sdkName?: string
+  module?: string
   kind: 'boolean' | 'number' | 'string' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalEnum' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'bindingBoolean' | 'bindingString'
   ios: number
   type: string
@@ -59,6 +61,7 @@ export function deriveModifiers(
   for (const method of methods)
     byName.set(method.name, [...(byName.get(method.name) ?? []), method])
   const result: DerivedModifier[] = []
+  const publicNames = new Set([...reservedNames, ...byName.keys()])
   for (const [name, overloads] of byName) {
     const candidates = overloads.flatMap((method): DerivedModifier[] => {
       const framework = method.module.startsWith('_')
@@ -68,6 +71,7 @@ export function deriveModifiers(
         return [
           {
             name,
+            module: method.module,
             kind: 'boolean',
             type: '',
             ios: ios(method),
@@ -91,7 +95,7 @@ export function deriveModifiers(
                   ? 'eventNumber'
                   : 'event'
         return [{
-          name, kind, type: parameter.type, label: parameter.label, ios: ios(method), ...framework,
+          name, module: method.module, kind, type: parameter.type, label: parameter.label, ios: ios(method), ...framework,
           ...(method.parameters.length > 1 ? {
             callArguments: method.parameters.map((p) =>
               p === parameter ? { label: p.label, bridge: true as const } : { label: p.label, defaultValue: p.defaultValue }
@@ -117,7 +121,7 @@ export function deriveModifiers(
               : undefined
       if (baseKind) {
         const kind = type.endsWith('?') ? `optional${baseKind[0].toUpperCase()}${baseKind.slice(1)}` as DerivedModifier['kind'] : baseKind
-        return [{ name, kind, type, ios: ios(method), ...framework, ...(label === '_' ? {} : { label }) }]
+        return [{ name, module: method.module, kind, type, ios: ios(method), ...framework, ...(label === '_' ? {} : { label }) }]
       }
       const enumType = type.replace(/\?$/, '')
       if (!/^[A-Za-z_][\w]*\.[A-Za-z][\w.]*$/.test(enumType)) return []
@@ -138,11 +142,32 @@ export function deriveModifiers(
         .map((d) => ({ name: d.name, ios: ios(d) }))
       if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length)
         return []
-      return [{ name, kind: type.endsWith('?') ? 'optionalEnum' : 'string', type, ios: ios(method), cases, ...framework, ...(label === '_' ? {} : { label }) }]
+      return [{ name, module: method.module, kind: type.endsWith('?') ? 'optionalEnum' : 'string', type, ios: ios(method), cases, ...framework, ...(label === '_' ? {} : { label }) }]
     })
-    // overloads with the same public name need a semantic choice. neither their
-    // order in the SDK nor a guessed preferred type is a sound contract.
-    if (candidates.length === 1) result.push(candidates[0])
+    if (candidates.length === 1) {
+      const { module, ...modifier } = candidates[0]
+      result.push(modifier)
+      continue
+    }
+    for (const candidate of candidates.sort((a, b) =>
+      `${a.module}|${a.label}|${a.type}`.localeCompare(`${b.module}|${b.label}|${b.type}`)
+    )) {
+      const typeName = candidate.type.replace(/\?$/, '').split('.').at(-1)?.replace(/[^A-Za-z0-9]/g, '') ?? 'Value'
+      const suffix = candidate.label && candidate.label !== '_'
+        ? candidate.label[0].toUpperCase() + candidate.label.slice(1)
+        : candidate.zeroArgument
+          ? 'NoArguments'
+          : candidate.kind.startsWith('event')
+            ? `Event${candidate.kind.slice('event'.length) || 'Action'}`
+            : candidate.kind.startsWith('binding')
+              ? `Binding${candidate.kind.slice('binding'.length)}`
+              : `${candidate.type.endsWith('?') ? 'Optional' : ''}${typeName}`
+      let alias = `${name}With${suffix}`
+      if (publicNames.has(alias)) alias += `From${candidate.module?.replace(/[^A-Za-z0-9]/g, '')}`
+      while (publicNames.has(alias)) alias += 'Variant'
+      publicNames.add(alias)
+      result.push({ ...candidate, name: alias, sdkName: name })
+    }
   }
   return result.sort((a, b) => a.name.localeCompare(b.name))
 }

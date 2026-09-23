@@ -38,7 +38,7 @@ describe('SDK modifier derivation', () => {
     ])
   })
 
-  it('does not choose a zero-argument overload when another bridgeable overload shares its name', () => {
+  it('separates zero-argument and value overloads without choosing one', () => {
     expect(
       deriveModifiers(
         [
@@ -50,7 +50,10 @@ describe('SDK modifier derivation', () => {
         27,
         []
       )
-    ).toEqual([])
+    ).toEqual([
+      { name: 'exampleWithBool', sdkName: 'example', module: 'SwiftUICore', kind: 'boolean', type: 'Swift.Bool', ios: 0 },
+      { name: 'exampleWithNoArguments', sdkName: 'example', module: 'SwiftUICore', kind: 'boolean', type: '', ios: 0, zeroArgument: true },
+    ])
   })
 
   it('derives a void callback and a boolean binding from one generic event contract', () => {
@@ -71,6 +74,8 @@ describe('SDK modifier derivation', () => {
       method('accessibility', 'SwiftUI', [{ label: 'value', name: 'value', type: 'SwiftUICore.Text' }]),
     ], 27, [])).toEqual([
       { name: 'accessibilityLabel', kind: 'string', type: 'SwiftUICore.Text', ios: 0 },
+      { name: 'accessibilityWithHidden', sdkName: 'accessibility', module: 'SwiftUI', kind: 'boolean', type: 'Swift.Bool', ios: 0, label: 'hidden' },
+      { name: 'accessibilityWithValue', sdkName: 'accessibility', module: 'SwiftUI', kind: 'string', type: 'SwiftUICore.Text', ios: 0, label: 'value' },
       { name: 'statusBar', kind: 'boolean', type: 'Swift.Bool', ios: 0, label: 'hidden' },
     ])
   })
@@ -113,6 +118,16 @@ describe('SDK modifier derivation', () => {
       { name: 'onScrollVisibilityChange', kind: 'eventBoolean', type: '@escaping (Swift.Bool) -> Swift.Void', ios: 0, label: '_', callArguments: [
         { label: 'threshold', defaultValue: '0.5' }, { label: '_', bridge: true },
       ] },
+    ])
+  })
+
+  it('gives bridgeable overloads distinct props while retaining their SDK calls', () => {
+    expect(deriveModifiers([
+      method('onOpenURL', 'SwiftUI', [{ label: 'perform', name: 'action', type: '@escaping (Foundation.URL) -> ()' }]),
+      method('onOpenURL', 'SwiftUICore', [{ label: 'prefersInApp', name: 'prefersInApp', type: 'Swift.Bool' }]),
+    ], 27, [])).toEqual([
+      { name: 'onOpenURLWithPerform', sdkName: 'onOpenURL', module: 'SwiftUI', kind: 'eventString', type: '@escaping (Foundation.URL) -> ()', ios: 0, label: 'perform' },
+      { name: 'onOpenURLWithPrefersInApp', sdkName: 'onOpenURL', module: 'SwiftUICore', kind: 'boolean', type: 'Swift.Bool', ios: 0, label: 'prefersInApp' },
     ])
   })
 })

@@ -120,6 +120,62 @@ export const sdkAccessibilityTextContentTypeValues = [
 ] as const
 export type SDKAccessibilityTextContentType =
   (typeof sdkAccessibilityTextContentTypeValues)[number]
+export const sdkAccessibilityWithActivationPointValues = [
+  'zero',
+  'center',
+  'leading',
+  'trailing',
+  'top',
+  'bottom',
+  'topLeading',
+  'topTrailing',
+  'bottomLeading',
+  'bottomTrailing',
+] as const
+export type SDKAccessibilityWithActivationPoint =
+  (typeof sdkAccessibilityWithActivationPointValues)[number]
+export const sdkAccessibilityWithAddTraitsValues = [
+  'isButton',
+  'isHeader',
+  'isSelected',
+  'isLink',
+  'isSearchField',
+  'isImage',
+  'playsSound',
+  'isKeyboardKey',
+  'isStaticText',
+  'isSummaryElement',
+  'updatesFrequently',
+  'startsMediaSession',
+  'allowsDirectInteraction',
+  'causesPageTurn',
+  'isModal',
+  'isToggle',
+  'isTabBar',
+] as const
+export type SDKAccessibilityWithAddTraits =
+  (typeof sdkAccessibilityWithAddTraitsValues)[number]
+export const sdkAccessibilityWithRemoveTraitsValues = [
+  'isButton',
+  'isHeader',
+  'isSelected',
+  'isLink',
+  'isSearchField',
+  'isImage',
+  'playsSound',
+  'isKeyboardKey',
+  'isStaticText',
+  'isSummaryElement',
+  'updatesFrequently',
+  'startsMediaSession',
+  'allowsDirectInteraction',
+  'causesPageTurn',
+  'isModal',
+  'isToggle',
+  'isTabBar',
+] as const
+export type SDKAccessibilityWithRemoveTraits =
+  (typeof sdkAccessibilityWithRemoveTraitsValues)[number]
 export const sdkAddPassToWalletButtonStyleValues = ['black', 'blackOutline'] as const
 export type SDKAddPassToWalletButtonStyle =
   (typeof sdkAddPassToWalletButtonStyleValues)[number]
@@ -349,10 +405,48 @@ export const sdkHoverEffectValues = ['automatic', 'highlight', 'lift'] as const
 export type SDKHoverEffect = (typeof sdkHoverEffectValues)[number]
 export const sdkHueRotationValues = ['zero'] as const
 export type SDKHueRotation = (typeof sdkHueRotationValues)[number]
+export const sdkKeyboardShortcutWithKeyboardShortcutValues = [
+  'defaultAction',
+  'cancelAction',
+] as const
+export type SDKKeyboardShortcutWithKeyboardShortcut =
+  (typeof sdkKeyboardShortcutWithKeyboardShortcutValues)[number]
+export const sdkKeyboardShortcutWithOptionalKeyboardShortcutValues = [
+  'defaultAction',
+  'cancelAction',
+] as const
+export type SDKKeyboardShortcutWithOptionalKeyboardShortcut =
+  (typeof sdkKeyboardShortcutWithOptionalKeyboardShortcutValues)[number]
 export const sdkLabelsVisibilityValues = ['automatic', 'visible', 'hidden'] as const
 export type SDKLabelsVisibility = (typeof sdkLabelsVisibilityValues)[number]
 export const sdkLayoutDirectionBehaviorValues = ['fixed', 'mirrors'] as const
 export type SDKLayoutDirectionBehavior = (typeof sdkLayoutDirectionBehaviorValues)[number]
+export const sdkListItemTintWithOptionalColorValues = [
+  'accentColor',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'mint',
+  'teal',
+  'cyan',
+  'blue',
+  'indigo',
+  'purple',
+  'pink',
+  'brown',
+  'white',
+  'gray',
+  'black',
+  'clear',
+  'primary',
+  'secondary',
+] as const
+export type SDKListItemTintWithOptionalColor =
+  (typeof sdkListItemTintWithOptionalColorValues)[number]
+export const sdkListItemTintWithOptionalListItemTintValues = ['monochrome'] as const
+export type SDKListItemTintWithOptionalListItemTint =
+  (typeof sdkListItemTintWithOptionalListItemTintValues)[number]
 export const sdkListSectionIndexVisibilityValues = [
   'automatic',
   'visible',
@@ -360,6 +454,12 @@ export const sdkListSectionIndexVisibilityValues = [
 ] as const
 export type SDKListSectionIndexVisibility =
   (typeof sdkListSectionIndexVisibilityValues)[number]
+export const sdkListSectionSpacingWithListSectionSpacingValues = [
+  'default',
+  'compact',
+] as const
+export type SDKListSectionSpacingWithListSectionSpacing =
+  (typeof sdkListSectionSpacingWithListSectionSpacingValues)[number]
 export const sdkMapControlVisibilityValues = ['automatic', 'visible', 'hidden'] as const
 export type SDKMapControlVisibility = (typeof sdkMapControlVisibilityValues)[number]
 export const sdkMapFeatureSelectionAccessoryValues = [
@@ -390,6 +490,20 @@ export const sdkMenuIndicatorValues = ['automatic', 'visible', 'hidden'] as cons
 export type SDKMenuIndicator = (typeof sdkMenuIndicatorValues)[number]
 export const sdkMenuOrderValues = ['automatic', 'priority', 'fixed'] as const
 export type SDKMenuOrder = (typeof sdkMenuOrderValues)[number]
+export const sdkMultilineTextAlignmentWithStrategyValues = [
+  'layoutBased',
+  'writingDirectionBased',
+  'default',
+] as const
+export type SDKMultilineTextAlignmentWithStrategy =
+  (typeof sdkMultilineTextAlignmentWithStrategyValues)[number]
+export const sdkMultilineTextAlignmentWithTextAlignmentValues = [
+  'leading',
+  'center',
+  'trailing',
+] as const
+export type SDKMultilineTextAlignmentWithTextAlignment =
+  (typeof sdkMultilineTextAlignmentWithTextAlignmentValues)[number]
 export const sdkNavigationLinkIndicatorVisibilityValues = [
   'automatic',
   'visible',
@@ -752,14 +866,29 @@ export interface OneNativeStyle {
   accessibilitySortPriority?: number
   accessibilityTextContentType?: SDKAccessibilityTextContentType
   accessibilityValue?: string
+  accessibilityWithActivationPoint?: SDKAccessibilityWithActivationPoint
+  accessibilityWithAddTraits?: SDKAccessibilityWithAddTraits
+  accessibilityWithHidden?: boolean
+  accessibilityWithHint?: string
+  accessibilityWithIdentifier?: string
+  accessibilityWithLabel?: string
+  accessibilityWithRemoveTraits?: SDKAccessibilityWithRemoveTraits
+  accessibilityWithSortPriority?: number
+  accessibilityWithValue?: string
   addPassToWalletButtonStyle?: SDKAddPassToWalletButtonStyle
   allowedDynamicRange?: SDKAllowedDynamicRange | null
   allowsHitTesting?: boolean
   allowsTightening?: boolean
+  allowsWindowActivationEventsWithNoArguments?: boolean
+  allowsWindowActivationEventsWithOptionalBool?: boolean | null
   animation?: SDKAnimation | null
   assistiveAccessNavigationIcon?: string
   autocorrectionDisabled?: boolean
+  backgroundExtensionEffectWithIsEnabled?: boolean
+  backgroundExtensionEffectWithNoArguments?: boolean
   badgeProminence?: SDKBadgeProminence
+  badgeWithInt?: number
+  badgeWithOptionalText?: string | null
   baselineOffset?: number
   blendMode?: SDKBlendMode
   bold?: boolean
@@ -824,6 +953,8 @@ export interface OneNativeStyle {
   invalidatableContent?: boolean
   italic?: boolean
   kerning?: number
+  keyboardShortcutWithKeyboardShortcut?: SDKKeyboardShortcutWithKeyboardShortcut
+  keyboardShortcutWithOptionalKeyboardShortcut?: SDKKeyboardShortcutWithOptionalKeyboardShortcut | null
   labelIconToTitleSpacing?: number
   labelReservedIconWidth?: number
   labelsHidden?: boolean
@@ -832,8 +963,12 @@ export interface OneNativeStyle {
   layoutPriority?: number
   lineLimit?: number | null
   lineSpacing?: number
+  listItemTintWithOptionalColor?: SDKListItemTintWithOptionalColor | null
+  listItemTintWithOptionalListItemTint?: SDKListItemTintWithOptionalListItemTint | null
   listRowSpacing?: number | null
   listSectionIndexVisibility?: SDKListSectionIndexVisibility
+  listSectionSpacingWithCGFloat?: number
+  listSectionSpacingWithListSectionSpacing?: SDKListSectionSpacingWithListSectionSpacing
   luminanceToAlpha?: boolean
   manageSubscriptionsSheet?: Readonly<{
     value: boolean
@@ -850,6 +985,8 @@ export interface OneNativeStyle {
   monospaced?: boolean
   monospacedDigit?: boolean
   moveDisabled?: boolean
+  multilineTextAlignmentWithStrategy?: SDKMultilineTextAlignmentWithStrategy
+  multilineTextAlignmentWithTextAlignment?: SDKMultilineTextAlignmentWithTextAlignment
   musicSubscriptionOffer?: Readonly<{
     value: boolean
     onChange: (value: boolean) => void
@@ -860,12 +997,22 @@ export interface OneNativeStyle {
   navigationLinkIndicatorVisibility?: SDKNavigationLinkIndicatorVisibility
   navigationSplitViewColumnWidth?: number
   navigationSubtitle?: string
+  navigationTitleWithBindingString?: Readonly<{
+    value: string
+    onChange: (value: string) => void
+  }>
+  navigationTitleWithText?: string
   offerCodeRedemption?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   onAppear?: () => void
   onDisappear?: () => void
   onHover?: (value: boolean) => void
   onInteractiveResizeChange?: (value: boolean) => void
+  onLongPressGestureWithPerform?: () => void
+  onLongPressGestureWithPerformFromSwiftUI?: () => void
+  onLongPressGestureWithPerformFromSwiftUIVariant?: () => void
   onMapCameraChange?: () => void
+  onOpenURLWithPerform?: (value: string) => void
+  onOpenURLWithPrefersInApp?: boolean
   onScrollVisibilityChange?: (value: boolean) => void
   onSubmit?: () => void
   onTapGesture?: () => void

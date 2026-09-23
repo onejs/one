@@ -23,6 +23,12 @@ export declare const sdkAccessibilityRemoveTraitsValues: readonly ['isButton', '
 export type SDKAccessibilityRemoveTraits = (typeof sdkAccessibilityRemoveTraitsValues)[number];
 export declare const sdkAccessibilityTextContentTypeValues: readonly ['plain', 'console', 'fileSystem', 'messaging', 'narrative', 'sourceCode', 'spreadsheet', 'wordProcessing'];
 export type SDKAccessibilityTextContentType = (typeof sdkAccessibilityTextContentTypeValues)[number];
+export declare const sdkAccessibilityWithActivationPointValues: readonly ['zero', 'center', 'leading', 'trailing', 'top', 'bottom', 'topLeading', 'topTrailing', 'bottomLeading', 'bottomTrailing'];
+export type SDKAccessibilityWithActivationPoint = (typeof sdkAccessibilityWithActivationPointValues)[number];
+export declare const sdkAccessibilityWithAddTraitsValues: readonly ['isButton', 'isHeader', 'isSelected', 'isLink', 'isSearchField', 'isImage', 'playsSound', 'isKeyboardKey', 'isStaticText', 'isSummaryElement', 'updatesFrequently', 'startsMediaSession', 'allowsDirectInteraction', 'causesPageTurn', 'isModal', 'isToggle', 'isTabBar'];
+export type SDKAccessibilityWithAddTraits = (typeof sdkAccessibilityWithAddTraitsValues)[number];
+export declare const sdkAccessibilityWithRemoveTraitsValues: readonly ['isButton', 'isHeader', 'isSelected', 'isLink', 'isSearchField', 'isImage', 'playsSound', 'isKeyboardKey', 'isStaticText', 'isSummaryElement', 'updatesFrequently', 'startsMediaSession', 'allowsDirectInteraction', 'causesPageTurn', 'isModal', 'isToggle', 'isTabBar'];
+export type SDKAccessibilityWithRemoveTraits = (typeof sdkAccessibilityWithRemoveTraitsValues)[number];
 export declare const sdkAddPassToWalletButtonStyleValues: readonly ['black', 'blackOutline'];
 export type SDKAddPassToWalletButtonStyle = (typeof sdkAddPassToWalletButtonStyleValues)[number];
 export declare const sdkAllowedDynamicRangeValues: readonly ['standard', 'constrainedHigh', 'high'];
@@ -81,12 +87,22 @@ export declare const sdkHoverEffectValues: readonly ['automatic', 'highlight', '
 export type SDKHoverEffect = (typeof sdkHoverEffectValues)[number];
 export declare const sdkHueRotationValues: readonly ['zero'];
 export type SDKHueRotation = (typeof sdkHueRotationValues)[number];
+export declare const sdkKeyboardShortcutWithKeyboardShortcutValues: readonly ['defaultAction', 'cancelAction'];
+export type SDKKeyboardShortcutWithKeyboardShortcut = (typeof sdkKeyboardShortcutWithKeyboardShortcutValues)[number];
+export declare const sdkKeyboardShortcutWithOptionalKeyboardShortcutValues: readonly ['defaultAction', 'cancelAction'];
+export type SDKKeyboardShortcutWithOptionalKeyboardShortcut = (typeof sdkKeyboardShortcutWithOptionalKeyboardShortcutValues)[number];
 export declare const sdkLabelsVisibilityValues: readonly ['automatic', 'visible', 'hidden'];
 export type SDKLabelsVisibility = (typeof sdkLabelsVisibilityValues)[number];
 export declare const sdkLayoutDirectionBehaviorValues: readonly ['fixed', 'mirrors'];
 export type SDKLayoutDirectionBehavior = (typeof sdkLayoutDirectionBehaviorValues)[number];
+export declare const sdkListItemTintWithOptionalColorValues: readonly ['accentColor', 'red', 'orange', 'yellow', 'green', 'mint', 'teal', 'cyan', 'blue', 'indigo', 'purple', 'pink', 'brown', 'white', 'gray', 'black', 'clear', 'primary', 'secondary'];
+export type SDKListItemTintWithOptionalColor = (typeof sdkListItemTintWithOptionalColorValues)[number];
+export declare const sdkListItemTintWithOptionalListItemTintValues: readonly ['monochrome'];
+export type SDKListItemTintWithOptionalListItemTint = (typeof sdkListItemTintWithOptionalListItemTintValues)[number];
 export declare const sdkListSectionIndexVisibilityValues: readonly ['automatic', 'visible', 'hidden'];
 export type SDKListSectionIndexVisibility = (typeof sdkListSectionIndexVisibilityValues)[number];
+export declare const sdkListSectionSpacingWithListSectionSpacingValues: readonly ['default', 'compact'];
+export type SDKListSectionSpacingWithListSectionSpacing = (typeof sdkListSectionSpacingWithListSectionSpacingValues)[number];
 export declare const sdkMapControlVisibilityValues: readonly ['automatic', 'visible', 'hidden'];
 export type SDKMapControlVisibility = (typeof sdkMapControlVisibilityValues)[number];
 export declare const sdkMapFeatureSelectionAccessoryValues: readonly ['automatic', 'callout', 'sheet', 'caption'];
@@ -101,6 +117,10 @@ export declare const sdkMenuIndicatorValues: readonly ['automatic', 'visible', '
 export type SDKMenuIndicator = (typeof sdkMenuIndicatorValues)[number];
 export declare const sdkMenuOrderValues: readonly ['automatic', 'priority', 'fixed'];
 export type SDKMenuOrder = (typeof sdkMenuOrderValues)[number];
+export declare const sdkMultilineTextAlignmentWithStrategyValues: readonly ['layoutBased', 'writingDirectionBased', 'default'];
+export type SDKMultilineTextAlignmentWithStrategy = (typeof sdkMultilineTextAlignmentWithStrategyValues)[number];
+export declare const sdkMultilineTextAlignmentWithTextAlignmentValues: readonly ['leading', 'center', 'trailing'];
+export type SDKMultilineTextAlignmentWithTextAlignment = (typeof sdkMultilineTextAlignmentWithTextAlignmentValues)[number];
 export declare const sdkNavigationLinkIndicatorVisibilityValues: readonly ['automatic', 'visible', 'hidden'];
 export type SDKNavigationLinkIndicatorVisibility = (typeof sdkNavigationLinkIndicatorVisibilityValues)[number];
 export declare const sdkPaletteSelectionEffectValues: readonly ['automatic', 'custom'];
@@ -258,14 +278,29 @@ export interface OneNativeStyle {
     accessibilitySortPriority?: number;
     accessibilityTextContentType?: SDKAccessibilityTextContentType;
     accessibilityValue?: string;
+    accessibilityWithActivationPoint?: SDKAccessibilityWithActivationPoint;
+    accessibilityWithAddTraits?: SDKAccessibilityWithAddTraits;
+    accessibilityWithHidden?: boolean;
+    accessibilityWithHint?: string;
+    accessibilityWithIdentifier?: string;
+    accessibilityWithLabel?: string;
+    accessibilityWithRemoveTraits?: SDKAccessibilityWithRemoveTraits;
+    accessibilityWithSortPriority?: number;
+    accessibilityWithValue?: string;
     addPassToWalletButtonStyle?: SDKAddPassToWalletButtonStyle;
     allowedDynamicRange?: SDKAllowedDynamicRange | null;
     allowsHitTesting?: boolean;
     allowsTightening?: boolean;
+    allowsWindowActivationEventsWithNoArguments?: boolean;
+    allowsWindowActivationEventsWithOptionalBool?: boolean | null;
     animation?: SDKAnimation | null;
     assistiveAccessNavigationIcon?: string;
     autocorrectionDisabled?: boolean;
+    backgroundExtensionEffectWithIsEnabled?: boolean;
+    backgroundExtensionEffectWithNoArguments?: boolean;
     badgeProminence?: SDKBadgeProminence;
+    badgeWithInt?: number;
+    badgeWithOptionalText?: string | null;
     baselineOffset?: number;
     blendMode?: SDKBlendMode;
     bold?: boolean;
@@ -333,6 +368,8 @@ export interface OneNativeStyle {
     invalidatableContent?: boolean;
     italic?: boolean;
     kerning?: number;
+    keyboardShortcutWithKeyboardShortcut?: SDKKeyboardShortcutWithKeyboardShortcut;
+    keyboardShortcutWithOptionalKeyboardShortcut?: SDKKeyboardShortcutWithOptionalKeyboardShortcut | null;
     labelIconToTitleSpacing?: number;
     labelReservedIconWidth?: number;
     labelsHidden?: boolean;
@@ -341,8 +378,12 @@ export interface OneNativeStyle {
     layoutPriority?: number;
     lineLimit?: number | null;
     lineSpacing?: number;
+    listItemTintWithOptionalColor?: SDKListItemTintWithOptionalColor | null;
+    listItemTintWithOptionalListItemTint?: SDKListItemTintWithOptionalListItemTint | null;
     listRowSpacing?: number | null;
     listSectionIndexVisibility?: SDKListSectionIndexVisibility;
+    listSectionSpacingWithCGFloat?: number;
+    listSectionSpacingWithListSectionSpacing?: SDKListSectionSpacingWithListSectionSpacing;
     luminanceToAlpha?: boolean;
     manageSubscriptionsSheet?: Readonly<{
         value: boolean;
@@ -359,6 +400,8 @@ export interface OneNativeStyle {
     monospaced?: boolean;
     monospacedDigit?: boolean;
     moveDisabled?: boolean;
+    multilineTextAlignmentWithStrategy?: SDKMultilineTextAlignmentWithStrategy;
+    multilineTextAlignmentWithTextAlignment?: SDKMultilineTextAlignmentWithTextAlignment;
     musicSubscriptionOffer?: Readonly<{
         value: boolean;
         onChange: (value: boolean) => void;
@@ -369,6 +412,11 @@ export interface OneNativeStyle {
     navigationLinkIndicatorVisibility?: SDKNavigationLinkIndicatorVisibility;
     navigationSplitViewColumnWidth?: number;
     navigationSubtitle?: string;
+    navigationTitleWithBindingString?: Readonly<{
+        value: string;
+        onChange: (value: string) => void;
+    }>;
+    navigationTitleWithText?: string;
     offerCodeRedemption?: Readonly<{
         value: boolean;
         onChange: (value: boolean) => void;
@@ -377,7 +425,12 @@ export interface OneNativeStyle {
     onDisappear?: () => void;
     onHover?: (value: boolean) => void;
     onInteractiveResizeChange?: (value: boolean) => void;
+    onLongPressGestureWithPerform?: () => void;
+    onLongPressGestureWithPerformFromSwiftUI?: () => void;
+    onLongPressGestureWithPerformFromSwiftUIVariant?: () => void;
     onMapCameraChange?: () => void;
+    onOpenURLWithPerform?: (value: string) => void;
+    onOpenURLWithPrefersInApp?: boolean;
     onScrollVisibilityChange?: (value: boolean) => void;
     onSubmit?: () => void;
     onTapGesture?: () => void;

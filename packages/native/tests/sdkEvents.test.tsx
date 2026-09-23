@@ -17,22 +17,29 @@ describe('SDK callback and binding transport', () => {
     const appeared = vi.fn()
     const onChange = vi.fn()
     const onHover = vi.fn()
+    const onOpenURL = vi.fn()
     const swiftStyle = {
       onAppear: appeared,
       onHover,
+      onOpenURLWithPerform: onOpenURL,
+      onOpenURLWithPrefersInApp: true,
       findNavigator: { value: false, onChange },
     }
     const element = Controls.Text({ text: 'example', swiftStyle })
     expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
       ['onAppear', ''],
       ['onHover', ''],
+      ['onOpenURLWithPerform', ''],
+      ['onOpenURLWithPrefersInApp', 'true'],
       ['findNavigator', 'false'],
     ])
     element.props.onNativeSDKEvent({ nativeEvent: { name: 'onAppear', value: '' } })
     element.props.onNativeSDKEvent({ nativeEvent: { name: 'onHover', value: 'true' } })
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'onOpenURLWithPerform', value: 'https://example.com' } })
     element.props.onNativeSDKEvent({ nativeEvent: { name: 'findNavigator', value: 'true' } })
     expect(appeared).toHaveBeenCalledOnce()
     expect(onHover).toHaveBeenCalledWith(true)
+    expect(onOpenURL).toHaveBeenCalledWith('https://example.com')
     expect(onChange).toHaveBeenCalledWith(true)
   })
 })
