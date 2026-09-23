@@ -11,7 +11,7 @@ export type DerivedArgument = {
   label: string
   type: string
   sdkType?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'bindingBoolean' | 'bindingOptionalURL' | 'resultURL' | 'resultURLArray'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'bindingBoolean' | 'bindingOptionalURL' | 'resultURL' | 'resultURLArray' | 'eventStruct' | 'classUpdate'
   optional: boolean
   cases?: readonly { name: string; ios: number }[]
   fields?: readonly { name: string; label: string; type: string }[]
@@ -19,11 +19,12 @@ export type DerivedArgument = {
   scalarConstructor?: { label: string; type: string }
   swiftExpression?: string
   closureInput?: string
+  eventValue?: EventValueSchema
 }
 
 export type EventValueSchema =
   | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' }
-  | { kind: 'enum'; cases: readonly string[] }
+  | { kind: 'enum'; cases: readonly string[]; open?: true }
   | { kind: 'optional'; value: EventValueSchema }
   | { kind: 'array'; value: EventValueSchema }
   | { kind: 'object'; fields: readonly { name: string; value: EventValueSchema }[] }
@@ -280,16 +281,20 @@ export function deriveModifiers(
     if (type === 'CoreFoundation.CGSize') return { kind: 'size' }
     const [module, ...parts] = type.split('.')
     const owner = parts.join('.')
-    if (inventory.some((d) => d.module === module && d.kind === 'enum' &&
+    const enumDeclaration = inventory.find((d) => d.module === module && d.kind === 'enum' &&
       d.owner === parts.slice(0, -1).join('.') && d.name === parts.at(-1) &&
-      d.attributes.includes('@frozen') && present(d) && ios(d) <= version)) {
+      (d.attributes.includes('@frozen') || d.attributes.includes('@symbolgraph')) &&
+      present(d) && ios(d) <= version)
+    if (enumDeclaration) {
       const cases = inventory.filter((d) => d.module === module &&
         (d.owner === owner || d.owner === type) && d.enumCase && present(d) && ios(d) <= ceiling)
       if (cases.length && cases.every((item) => item.parameters.length === 0) &&
         new Set(cases.map((item) => item.name)).size === cases.length)
-        return { kind: 'enum', cases: cases.map((item) => item.name) }
+        return { kind: 'enum', cases: cases.map((item) => item.name),
+          ...(enumDeclaration.attributes.includes('@symbolgraph') ? { open: true as const } : {}) }
     }
-    if (!owner || seen.has(type) || !inventory.some((d) => d.module === module && d.kind === 'struct' &&
+    if (!owner || seen.has(type) || !inventory.some((d) => d.module === module &&
+      (d.kind === 'struct' || d.kind === 'class') &&
       d.owner === parts.slice(0, -1).join('.') && d.name === parts.at(-1) && !d.generic && present(d) && ios(d) <= version)) return
     const fields = inventory.filter((d) => d.module === module && (d.owner === owner || d.owner === type) &&
       d.kind === 'var' && d.stored && present(d) && ios(d) <= version)
@@ -328,9 +333,24 @@ export function deriveModifiers(
       : undefined
   }
   const structCallbackOf = (type: string, version: number) => {
-    const baseType = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> Swift\.Void$/.exec(type)?.[1]
+    const baseType = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (?:Swift\.Void|\(\))$/.exec(type)?.[1]
     const value = baseType && eventValueOf(baseType, version)
     return value?.kind === 'object' || value?.kind === 'point' ? value : undefined
+  }
+  const classUpdateOf = (type: string, version: number) => {
+    const input = /^@escaping \(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (?:Swift\.Void|\(\))$/.exec(type)?.[1]
+    if (!input) return
+    const [module, ...parts] = input.split('.')
+    const owner = parts.join('.')
+    if (!inventory.some((d) => d.module === module && d.kind === 'class' &&
+      d.owner === parts.slice(0, -1).join('.') && d.name === parts.at(-1) &&
+      present(d) && ios(d) <= version)) return
+    const fields = inventory.filter((d) => d.module === module &&
+      (d.owner === owner || d.owner === input) && d.kind === 'var' && d.writable &&
+      ['Swift.String', 'Swift.String?', 'Swift.Bool'].includes(d.type ?? '') &&
+      present(d) && ios(d) <= version)
+      .map((d) => ({ name: d.name, label: d.name, type: d.type! }))
+    return fields.length ? { input, fields } : undefined
   }
   const styleCases = (style: string) => {
     const cases = inventory.filter((d) =>
@@ -654,9 +674,17 @@ export function deriveModifiers(
         const preferNumeric = method.parameters.some((parameter) => valueOf(parameter.type)?.kind === 'numericTuple')
         const bridgeArguments = (parameters: Declaration['parameters']) => parameters.map((parameter, index) => {
           const resultURL = urlResultOf(parameter.type)
+          const classUpdate = parameter.name === 'update' && classUpdateOf(parameter.type, ios(method))
+          const eventValue = parameter.name === 'update' ? undefined : structCallbackOf(parameter.type, ios(method))
           const value = resultURL
             ? { kind: resultURL.startsWith('[') ? 'resultURLArray' as const : 'resultURL' as const,
                 type: parameter.type, optional: false }
+            : classUpdate
+              ? { kind: 'classUpdate' as const, type: parameter.type, optional: false,
+                fields: classUpdate.fields }
+            : eventValue
+              ? { kind: 'eventStruct' as const, type: parameter.type, optional: false,
+                eventValue }
             : parameter.type === 'SwiftUICore.Binding<Swift.Bool>'
             ? { kind: 'bindingBoolean' as const, type: parameter.type, optional: false }
             : parameter.type === 'SwiftUICore.Binding<Foundation.URL?>'
@@ -742,7 +770,11 @@ export function deriveModifiers(
     const keepBaseEvent = baseEvent.length === 1 && selected.some((candidate) =>
       candidate.kind === 'eventStruct' && candidate.module === baseEvent[0].module)
       ? baseEvent[0] : undefined
-    const keepBase = keepBaseBinding ?? keepBaseEvent
+    const baseStruct = selected.filter((candidate) => candidate.kind === 'eventStruct')
+    const keepBaseStruct = baseStruct.length === 1 && selected.some((candidate) =>
+      candidate.kind === 'record' && candidate.module === baseStruct[0].module)
+      ? baseStruct[0] : undefined
+    const keepBase = keepBaseBinding ?? keepBaseEvent ?? keepBaseStruct
     if (keepBase) {
       const { module, ...modifier } = keepBase
       result.push(modifier)

@@ -8,6 +8,7 @@ import GameController
 import StoreKit
 import MapKit
 import MusicKit
+import AVKit
 import PhotosUI
 import RealityKit
 import AppIntents
@@ -348,7 +349,11 @@ extension View {
       case "offerCodeRedemption": view = AnyView(view.oneNativeSDKOfferCodeRedemption(value, emit: emit))
       case "offset": view = AnyView(view.oneNativeSDKOffset(value, emit: emit))
       case "onAppear": view = AnyView(view.oneNativeSDKOnAppear(value, emit: emit))
+      case "onCameraCaptureEvent": view = AnyView(view.oneNativeSDKOnCameraCaptureEvent(value, emit: emit))
+      case "onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction": view = AnyView(view.oneNativeSDKOnCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction(value, emit: emit))
+      case "onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction": view = AnyView(view.oneNativeSDKOnCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction(value, emit: emit))
       case "onChange": view = AnyView(view.oneNativeSDKOnChange(value, emit: emit))
+      case "onContinueUserActivity": view = AnyView(view.oneNativeSDKOnContinueUserActivity(value, emit: emit))
       case "onContinuousHover": view = AnyView(view.oneNativeSDKOnContinuousHover(value, emit: emit))
       case "onDisappear": view = AnyView(view.oneNativeSDKOnDisappear(value, emit: emit))
       case "onDragSessionUpdated": view = AnyView(view.oneNativeSDKOnDragSessionUpdated(value, emit: emit))
@@ -518,6 +523,7 @@ extension View {
       case "typesettingLanguage": view = AnyView(view.oneNativeSDKTypesettingLanguage(value, emit: emit))
       case "underline": view = AnyView(view.oneNativeSDKUnderline(value, emit: emit))
       case "unredacted": view = AnyView(view.oneNativeSDKUnredacted(value, emit: emit))
+      case "userActivity": view = AnyView(view.oneNativeSDKUserActivity(value, emit: emit))
       case "verifyIdentityWithWalletButtonStyle": view = AnyView(view.oneNativeSDKVerifyIdentityWithWalletButtonStyle(value, emit: emit))
       case "webViewBackForwardNavigationGestures": view = AnyView(view.oneNativeSDKWebViewBackForwardNavigationGestures(value, emit: emit))
       case "webViewContentBackground": view = AnyView(view.oneNativeSDKWebViewContentBackground(value, emit: emit))
@@ -3884,8 +3890,100 @@ extension View {
     self.onAppear(perform: { emit("onAppear", "") })
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKOnCameraCaptureEvent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) { self.onCameraCaptureEvent(isEnabled: true, action: { item in
+      let payload = (["phase": ({ () -> String in switch item.phase { case .began: return "began" case .cancelled: return "cancelled" case .ended: return "ended" @unknown default: return "unknown" } })()] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onCameraCaptureEvent event") }
+      emit("onCameraCaptureEvent", encoded)
+    }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 4 else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.Bool = {
+      guard let raw = values[0] else { preconditionFailure("missing onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.isEnabled") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.isEnabled: \(raw)") }
+      return raw == "true"
+    }()
+    let argument1: Swift.Bool = {
+      guard let raw = values[1] else { preconditionFailure("missing onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.defaultSoundDisabled") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.defaultSoundDisabled: \(raw)") }
+      return raw == "true"
+    }()
+    let argument2: (AVKit.AVCaptureEvent) -> Void = { item in
+      let payload = (["phase": ({ () -> String in switch item.phase { case .began: return "began" case .cancelled: return "cancelled" case .ended: return "ended" @unknown default: return "unknown" } })(), "shouldPlaySound": item.shouldPlaySound] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.primaryAction event") }
+      emit("onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.primaryAction", encoded)
+    }
+    let argument3: (AVKit.AVCaptureEvent) -> Void = { item in
+      let payload = (["phase": ({ () -> String in switch item.phase { case .began: return "began" case .cancelled: return "cancelled" case .ended: return "ended" @unknown default: return "unknown" } })(), "shouldPlaySound": item.shouldPlaySound] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.secondaryAction event") }
+      emit("onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.secondaryAction", encoded)
+    }
+    self.onCameraCaptureEvent(isEnabled: argument0, defaultSoundDisabled: argument1, primaryAction: argument2, secondaryAction: argument3)
+    } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.Bool = {
+      guard let raw = values[0] else { preconditionFailure("missing onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction.isEnabled") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction.isEnabled: \(raw)") }
+      return raw == "true"
+    }()
+    let argument1: (AVKit.AVCaptureEvent) -> Void = { item in
+      let payload = (["phase": ({ () -> String in switch item.phase { case .began: return "began" case .cancelled: return "cancelled" case .ended: return "ended" @unknown default: return "unknown" } })()] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction.primaryAction event") }
+      emit("onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction.primaryAction", encoded)
+    }
+    let argument2: (AVKit.AVCaptureEvent) -> Void = { item in
+      let payload = (["phase": ({ () -> String in switch item.phase { case .began: return "began" case .cancelled: return "cancelled" case .ended: return "ended" @unknown default: return "unknown" } })()] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction.secondaryAction event") }
+      emit("onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction.secondaryAction", encoded)
+    }
+    self.onCameraCaptureEvent(isEnabled: argument0, primaryAction: argument1, secondaryAction: argument2)
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKOnChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onChange(of: value, perform: { changed in emit("onChange", changed) })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnContinueUserActivity(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid onContinueUserActivity: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.String = {
+      guard let raw = values[0] else { preconditionFailure("missing onContinueUserActivity.activityType") }
+      return raw
+    }()
+    let argument1: (Foundation.NSUserActivity) -> Void = { item in
+      let payload = (["activityType": item.activityType, "isEligibleForHandoff": item.isEligibleForHandoff, "isEligibleForPrediction": item.isEligibleForPrediction, "isEligibleForPublicIndexing": item.isEligibleForPublicIndexing, "isEligibleForSearch": item.isEligibleForSearch, "needsSave": item.needsSave, "supportsContinuationStreams": item.supportsContinuationStreams, "targetContentIdentifier": (item.targetContentIdentifier.map { inner -> Any in inner } ?? NSNull()), "title": (item.title.map { inner -> Any in inner } ?? NSNull())] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onContinueUserActivity.action event") }
+      emit("onContinueUserActivity.action", encoded)
+    }
+    self.onContinueUserActivity(argument0, perform: argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnContinuousHover(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -6339,6 +6437,66 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKUnredacted(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid unredacted: \(value)")
     if value == "true" { self.unredacted() } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKUserActivity(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid userActivity: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.String = {
+      guard let raw = values[0] else { preconditionFailure("missing userActivity.activityType") }
+      return raw
+    }()
+    let argument1: Swift.Bool = {
+      guard let raw = values[1] else { preconditionFailure("missing userActivity.isActive") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid userActivity.isActive: \(raw)") }
+      return raw == "true"
+    }()
+    let argument2: (Foundation.NSUserActivity) -> Void = {
+      guard let raw = values[2], let data = raw.data(using: .utf8),
+        let updated = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+        !updated.isEmpty else { preconditionFailure("invalid userActivity.update") }
+      return { item in
+      if let raw = updated["isEligibleForHandoff"] {
+        guard let value = raw as? Bool else { preconditionFailure("invalid userActivity.update.isEligibleForHandoff") }
+        item.isEligibleForHandoff = value
+      }
+      if let raw = updated["isEligibleForPrediction"] {
+        guard let value = raw as? Bool else { preconditionFailure("invalid userActivity.update.isEligibleForPrediction") }
+        item.isEligibleForPrediction = value
+      }
+      if let raw = updated["isEligibleForPublicIndexing"] {
+        guard let value = raw as? Bool else { preconditionFailure("invalid userActivity.update.isEligibleForPublicIndexing") }
+        item.isEligibleForPublicIndexing = value
+      }
+      if let raw = updated["isEligibleForSearch"] {
+        guard let value = raw as? Bool else { preconditionFailure("invalid userActivity.update.isEligibleForSearch") }
+        item.isEligibleForSearch = value
+      }
+      if let raw = updated["needsSave"] {
+        guard let value = raw as? Bool else { preconditionFailure("invalid userActivity.update.needsSave") }
+        item.needsSave = value
+      }
+      if let raw = updated["supportsContinuationStreams"] {
+        guard let value = raw as? Bool else { preconditionFailure("invalid userActivity.update.supportsContinuationStreams") }
+        item.supportsContinuationStreams = value
+      }
+      if let raw = updated["targetContentIdentifier"] {
+        if raw is NSNull { item.targetContentIdentifier = nil }
+        else if let string = raw as? String { item.targetContentIdentifier = string }
+        else { preconditionFailure("invalid userActivity.update.targetContentIdentifier") }
+      }
+      if let raw = updated["title"] {
+        if raw is NSNull { item.title = nil }
+        else if let string = raw as? String { item.title = string }
+        else { preconditionFailure("invalid userActivity.update.title") }
+      }
+      }
+    }()
+    self.userActivity(argument0, isActive: argument1, argument2)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKVerifyIdentityWithWalletButtonStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

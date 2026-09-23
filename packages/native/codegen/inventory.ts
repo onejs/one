@@ -16,6 +16,7 @@ export type Declaration = {
   generic?: boolean
   enumCase?: boolean
   stored?: boolean
+  writable?: boolean
 }
 
 const run = (file: string, args: string[]) =>

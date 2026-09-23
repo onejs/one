@@ -54,7 +54,13 @@ if (Number(sdkVersion.split('.')[0]) < MAXIMUM_IOS)
     `SwiftUI bindings target SDK ${MAXIMUM_IOS}, selected toolchain provides ${sdkVersion}`
   )
 const importedCases: Declaration[] = []
-for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport', 'Foundation']) {
+const eventClassTypes = new Set(inventory.flatMap((method) =>
+  method.kind === 'func' && method.owner.split('.').at(-1) === 'View'
+    ? method.parameters.flatMap((parameter) => {
+      const type = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (?:Swift\.Void|\(\))$/.exec(parameter.type)?.[1]
+      return type ? [type] : []
+    }) : []))
+for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport', 'Foundation', 'AVKit']) {
   const outputDir = join(cache, `symbols-${module}-${sdkVersion}`)
   const graphPath = join(outputDir, `${module}.symbols.json`)
   if (!existsSync(graphPath)) {
@@ -71,18 +77,41 @@ for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation'
   }[] }
   for (const symbol of graph.symbols) {
     const [owner, name] = symbol.pathComponents
-    if (symbol.pathComponents.length !== 2 || !/^[A-Za-z]\w*$/.test(name)) continue
     const declaration = symbol.declarationFragments?.map((part) => part.spelling).join('') ?? ''
+    const iosAvailability = symbol.availability?.find((entry) => entry.domain === 'iOS')
+    if (iosAvailability?.isUnconditionallyUnavailable) continue
+    const introduced = iosAvailability?.introduced
+    const attributes = introduced ? [`@available(iOS ${introduced.major}.${introduced.minor ?? 0}, *)`] : []
+    if (symbol.pathComponents.length === 1 &&
+      (symbol.kind.identifier === 'swift.class' && eventClassTypes.has(`${module}.${owner}`) ||
+        module === 'AVKit' && symbol.kind.identifier === 'swift.enum')) {
+      importedCases.push({ module, owner: '', name: owner,
+        kind: symbol.kind.identifier === 'swift.class' ? 'class' : 'enum',
+        parameters: [], line: 0,
+        attributes: symbol.kind.identifier === 'swift.enum' ? [...attributes, '@symbolgraph'] : attributes })
+    }
+    if (symbol.pathComponents.length === 2 && /^[A-Za-z]\w*$/.test(name)) {
+      if (symbol.kind.identifier === 'swift.property' && eventClassTypes.has(`${module}.${owner}`)) {
+        const property = /\bvar [A-Za-z]\w*: ([A-Za-z]\w*\??) \{ get/.exec(declaration)
+        const rawType = property?.[1].replace(/\?$/, '')
+        const prefix = rawType && ({ String: 'Swift', Bool: 'Swift', Int: 'Swift', Double: 'Swift', Float: 'Swift', URL: 'Foundation' } as Record<string, string>)[rawType]
+        if (property && rawType)
+          importedCases.push({ module, owner, name, kind: 'var', parameters: [], line: 0,
+            type: `${prefix ?? module}.${property[1]}`, stored: true,
+            writable: /\{ get set \}/.test(declaration), attributes })
+      } else if (module === 'AVKit' && symbol.kind.identifier === 'swift.enum.case') {
+        importedCases.push({ module, owner, name, kind: 'enumCase', enumCase: true,
+          parameters: [], line: 0, attributes })
+      }
+    }
+    if (symbol.pathComponents.length !== 2 || !/^[A-Za-z]\w*$/.test(name)) continue
     if (symbol.kind.identifier !== 'swift.enum.case' &&
       !(symbol.kind.identifier === 'swift.type.property' &&
         /\b(?:static|class) (?:let|var)\b/.test(declaration) &&
         declaration.includes(`: ${owner}`))) continue
-    const iosAvailability = symbol.availability?.find((entry) => entry.domain === 'iOS')
-    if (iosAvailability?.isUnconditionallyUnavailable) continue
-    const introduced = iosAvailability?.introduced
     importedCases.push({ module, owner, name, kind: 'static', parameters: [],
       type: `${module}.${owner}`, line: 0,
-      attributes: introduced ? [`@available(iOS ${introduced.major}.${introduced.minor ?? 0}, *)`] : [] })
+      attributes })
   }
 }
 importedCases.sort((a, b) => {

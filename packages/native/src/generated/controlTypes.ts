@@ -1934,7 +1934,43 @@ export interface OneNativeStyle {
   offerCodeRedemption?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   offset?: Readonly<{ x: number; y: number }>
   onAppear?: () => void
+  onCameraCaptureEvent?: (value: {
+    phase: 'began' | 'cancelled' | 'ended' | 'unknown'
+  }) => void
+  onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction?: Readonly<{
+    isEnabled: boolean
+    defaultSoundDisabled: boolean
+    primaryAction: (value: {
+      phase: 'began' | 'cancelled' | 'ended' | 'unknown'
+      shouldPlaySound: boolean
+    }) => void
+    secondaryAction: (value: {
+      phase: 'began' | 'cancelled' | 'ended' | 'unknown'
+      shouldPlaySound: boolean
+    }) => void
+  }>
+  onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction?: Readonly<{
+    isEnabled: boolean
+    primaryAction: (value: { phase: 'began' | 'cancelled' | 'ended' | 'unknown' }) => void
+    secondaryAction: (value: {
+      phase: 'began' | 'cancelled' | 'ended' | 'unknown'
+    }) => void
+  }>
   onChange?: Readonly<{ value: string; onChange: (value: string) => void }>
+  onContinueUserActivity?: Readonly<{
+    activityType: string
+    action: (value: {
+      activityType: string
+      isEligibleForHandoff: boolean
+      isEligibleForPrediction: boolean
+      isEligibleForPublicIndexing: boolean
+      isEligibleForSearch: boolean
+      needsSave: boolean
+      supportsContinuationStreams: boolean
+      targetContentIdentifier: string | null
+      title: string | null
+    }) => void
+  }>
   onContinuousHover?: (
     value:
       | { case: 'active'; values: readonly [{ x: number; y: number }] }
@@ -2421,6 +2457,20 @@ export interface OneNativeStyle {
       | null
   }>
   unredacted?: boolean
+  userActivity?: Readonly<{
+    activityType: string
+    isActive: boolean
+    update: Readonly<{
+      isEligibleForHandoff?: boolean
+      isEligibleForPrediction?: boolean
+      isEligibleForPublicIndexing?: boolean
+      isEligibleForSearch?: boolean
+      needsSave?: boolean
+      supportsContinuationStreams?: boolean
+      targetContentIdentifier?: string | null
+      title?: string | null
+    }>
+  }>
   verifyIdentityWithWalletButtonStyle?: SDKVerifyIdentityWithWalletButtonStyle
   webViewBackForwardNavigationGestures?: SDKWebViewBackForwardNavigationGestures
   webViewContentBackground?: SDKWebViewContentBackground
