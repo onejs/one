@@ -6,6 +6,8 @@ import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNati
 interface NativeProps extends ViewProps {
   packageName: string
   props: string
+  // a whole swift app: fill the space yoga gives instead of measuring content
+  fill: boolean
 }
 
 export default codegenNativeComponent<NativeProps>('OneSwiftHost', {

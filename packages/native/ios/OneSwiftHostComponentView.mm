@@ -31,7 +31,8 @@ using namespace facebook::react;
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneSwiftHostProps>(props);
   [_hostView configureWithPackageName:RCTNSStringFromString(next.packageName)
-                                props:RCTNSStringFromString(next.props)];
+                                props:RCTNSStringFromString(next.props)
+                                 fill:next.fill];
   [super updateProps:props oldProps:oldProps];
 }
 

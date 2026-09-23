@@ -5,6 +5,13 @@ import type { SwiftPackageViewProps } from './types'
 
 export type { SwiftPackageViewProps } from './types'
 
-export function SwiftPackageView({ packageName, props }: SwiftPackageViewProps) {
-  return <NativeSwiftHost packageName={packageName} props={JSON.stringify(props)} />
+export function SwiftPackageView({ packageName, props, fill }: SwiftPackageViewProps) {
+  return (
+    <NativeSwiftHost
+      packageName={packageName}
+      props={JSON.stringify(props)}
+      fill={fill}
+      style={fill ? { flex: 1 } : undefined}
+    />
+  )
 }
