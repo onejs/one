@@ -375,8 +375,10 @@ export interface OneNativeStyle {
     }>;
     onAppear?: () => void;
     onDisappear?: () => void;
+    onHover?: (value: boolean) => void;
+    onInteractiveResizeChange?: (value: boolean) => void;
     onMapCameraChange?: () => void;
-    onOpenURL?: boolean;
+    onScrollVisibilityChange?: (value: boolean) => void;
     onSubmit?: () => void;
     onTapGesture?: () => void;
     paletteSelectionEffect?: SDKPaletteSelectionEffect;

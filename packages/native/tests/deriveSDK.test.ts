@@ -98,6 +98,23 @@ describe('SDK modifier derivation', () => {
       { name: 'textCase', kind: 'optionalEnum', type: 'SwiftUICore.Text.Case?', ios: 0, cases: [{ name: 'uppercase', ios: 0 }] },
     ])
   })
+
+  it('derives scalar callback payloads through the event transport', () => {
+    expect(deriveModifiers([
+      method('onHover', 'SwiftUI', [{ label: 'perform', name: 'action', type: '@escaping (Swift.Bool) -> Swift.Void' }]),
+      method('onOpenURL', 'SwiftUI', [{ label: 'perform', name: 'action', type: '@escaping (Foundation.URL) -> ()' }]),
+      method('onScrollVisibilityChange', 'SwiftUI', [
+        { label: 'threshold', name: 'threshold', type: 'Swift.Double', defaultValue: '0.5' },
+        { label: '_', name: 'action', type: '@escaping (Swift.Bool) -> Swift.Void' },
+      ]),
+    ], 27, [])).toEqual([
+      { name: 'onHover', kind: 'eventBoolean', type: '@escaping (Swift.Bool) -> Swift.Void', ios: 0, label: 'perform' },
+      { name: 'onOpenURL', kind: 'eventString', type: '@escaping (Foundation.URL) -> ()', ios: 0, label: 'perform' },
+      { name: 'onScrollVisibilityChange', kind: 'eventBoolean', type: '@escaping (Swift.Bool) -> Swift.Void', ios: 0, label: '_', callArguments: [
+        { label: 'threshold', defaultValue: '0.5' }, { label: '_', bridge: true },
+      ] },
+    ])
+  })
 })
 
 describe('SDK tab view slots', () => {

@@ -2630,6 +2630,20 @@
       "ios": 13
     },
     {
+      "name": "onHover",
+      "kind": "eventBoolean",
+      "type": "@escaping (Swift.Bool) -> Swift.Void",
+      "label": "perform",
+      "ios": 13.4
+    },
+    {
+      "name": "onInteractiveResizeChange",
+      "kind": "eventBoolean",
+      "type": "@escaping (_ isResizing: Swift.Bool) -> Swift.Void",
+      "label": "_",
+      "ios": 26
+    },
+    {
       "name": "onMapCameraChange",
       "kind": "event",
       "type": "@escaping () -> Swift.Void",
@@ -2648,11 +2662,21 @@
       ]
     },
     {
-      "name": "onOpenURL",
-      "kind": "boolean",
-      "type": "Swift.Bool",
-      "ios": 26,
-      "label": "prefersInApp"
+      "name": "onScrollVisibilityChange",
+      "kind": "eventBoolean",
+      "type": "@escaping (Swift.Bool) -> Swift.Void",
+      "label": "_",
+      "ios": 18,
+      "callArguments": [
+        {
+          "label": "threshold",
+          "defaultValue": "0.5"
+        },
+        {
+          "label": "_",
+          "bridge": true
+        }
+      ]
     },
     {
       "name": "onSubmit",
@@ -4203,7 +4227,6 @@
         "monospacedDigit",
         "onAppear",
         "onDisappear",
-        "onOpenURL",
         "onTapGesture",
         "opacity",
         "padding",
@@ -4306,6 +4329,9 @@
         "navigationLinkIndicatorVisibility",
         "navigationSplitViewColumnWidth",
         "navigationSubtitle",
+        "onHover",
+        "onInteractiveResizeChange",
+        "onScrollVisibilityChange",
         "onSubmit",
         "paletteSelectionEffect",
         "persistentSystemOverlays",

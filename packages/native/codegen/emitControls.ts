@@ -120,7 +120,7 @@ ${styleFields
 #endif
 `
   )
-  const hasSDKEvents = derivedModifiers.some((modifier) => modifier.kind === 'event' || modifier.kind.startsWith('binding'))
+  const hasSDKEvents = derivedModifiers.some((modifier) => modifier.kind.startsWith('event') || modifier.kind.startsWith('binding'))
   const publicStyleFields: readonly StyleField[] = [
     ...styleFields,
     ...derivedModifiers.map((modifier) => ({
@@ -130,6 +130,12 @@ ${styleFields
       publicType:
         modifier.kind === 'event'
           ? '() => void'
+          : modifier.kind === 'eventBoolean'
+            ? '(value: boolean) => void'
+            : modifier.kind === 'eventNumber'
+              ? '(value: number) => void'
+              : modifier.kind === 'eventString'
+                ? '(value: string) => void'
           : modifier.kind === 'bindingBoolean'
             ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>'
             : modifier.kind === 'bindingString'
