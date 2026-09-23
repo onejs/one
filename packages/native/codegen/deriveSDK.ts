@@ -241,11 +241,14 @@ export function deriveModifiers(
         }]
       }
       if (method.parameters.length > 1) {
-        const argumentsFromSDK = method.parameters.map((parameter, index) => {
+        const bridgeArguments = (parameters: Declaration['parameters']) => parameters.map((parameter, index) => {
           const value = valueOf(parameter.type)
           return value && { ...value, field: parameter.name || `argument${index + 1}`, label: parameter.label }
         })
-        if (argumentsFromSDK.some((argument) => !argument)) return []
+        let argumentsFromSDK = bridgeArguments(method.parameters)
+        if (argumentsFromSDK.some((argument) => !argument))
+          argumentsFromSDK = bridgeArguments(method.parameters.filter((parameter) => parameter.defaultValue === undefined))
+        if (argumentsFromSDK.length === 0 || argumentsFromSDK.some((argument) => !argument)) return []
         const args = argumentsFromSDK as DerivedArgument[]
         if (new Set(args.map((argument) => argument.field)).size !== args.length) return []
         return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method), arguments: args, ...framework }]

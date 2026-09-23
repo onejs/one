@@ -75,10 +75,12 @@ describe('SDK callback and binding transport', () => {
 
   it('encodes text lists and string sets through generated record modifiers', () => {
     const element = Controls.Text({ text: 'example', swiftStyle: {
+      accessibilityCustomContent: { label: 'Account', value: 'Active' },
       accessibilityInputLabels: { inputLabels: ['Save, draft', 'Quote "text"'], isEnabled: true },
       handlesExternalEvents: { preferring: ['open*', 'tag,one'], allowing: ['*'] },
     } })
     const records = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(records.accessibilityCustomContent)).toEqual(['Account', 'Active'])
     expect(JSON.parse(JSON.parse(records.accessibilityInputLabels)[0])).toEqual(['Save, draft', 'Quote "text"'])
     expect(JSON.parse(JSON.parse(records.handlesExternalEvents)[0])).toEqual(['open*', 'tag,one'])
     expect(JSON.parse(JSON.parse(records.handlesExternalEvents)[1])).toEqual(['*'])

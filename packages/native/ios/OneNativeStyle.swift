@@ -112,6 +112,7 @@ extension View {
       case "accessibilityActivationPointWithUnitPoint": view = AnyView(view.oneNativeSDKAccessibilityActivationPointWithUnitPoint(value, emit: emit))
       case "accessibilityAddTraits": view = AnyView(view.oneNativeSDKAccessibilityAddTraits(value, emit: emit))
       case "accessibilityAdjustableAction": view = AnyView(view.oneNativeSDKAccessibilityAdjustableAction(value, emit: emit))
+      case "accessibilityCustomContent": view = AnyView(view.oneNativeSDKAccessibilityCustomContent(value, emit: emit))
       case "accessibilityDirectTouch": view = AnyView(view.oneNativeSDKAccessibilityDirectTouch(value, emit: emit))
       case "accessibilityDragPointWithPointAndDescription": view = AnyView(view.oneNativeSDKAccessibilityDragPointWithPointAndDescription(value, emit: emit))
       case "accessibilityDragPointWithPointAndDescriptionAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityDragPointWithPointAndDescriptionAndIsEnabled(value, emit: emit))
@@ -779,6 +780,24 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityAdjustableAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.accessibilityAdjustableAction({ value in emit("accessibilityAdjustableAction", String(describing: value)) })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityCustomContent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid accessibilityCustomContent: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Text = {
+      guard let raw = values[0] else { preconditionFailure("missing accessibilityCustomContent.label") }
+      return Text(raw)
+    }()
+    let argument1: SwiftUICore.Text = {
+      guard let raw = values[1] else { preconditionFailure("missing accessibilityCustomContent.value") }
+      return Text(raw)
+    }()
+    self.accessibilityCustomContent(argument0, argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityDirectTouch(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

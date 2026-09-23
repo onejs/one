@@ -50,6 +50,7 @@ const sdkKinds = {
   accessibilityActivationPointWithUnitPoint: 'string',
   accessibilityAddTraits: 'string',
   accessibilityAdjustableAction: 'eventEnum',
+  accessibilityCustomContent: 'record',
   accessibilityDirectTouch: 'record',
   accessibilityDragPointWithPointAndDescription: 'record',
   accessibilityDragPointWithPointAndDescriptionAndIsEnabled: 'record',
@@ -433,6 +434,10 @@ const sdkRecords: Record<
   accessibilityActivationPointWithActivationPointAndIsEnabled: [
     { field: 'activationPoint', kind: 'enum', optional: false },
     { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  accessibilityCustomContent: [
+    { field: 'label', kind: 'string', optional: false },
+    { field: 'value', kind: 'string', optional: false },
   ],
   accessibilityDirectTouch: [
     { field: 'isDirectTouchArea', kind: 'boolean', optional: false },

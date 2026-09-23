@@ -179,6 +179,21 @@ describe('SDK modifier derivation', () => {
     ])
   })
 
+  it('omits non-bridgeable SDK defaults from a record call', () => {
+    expect(deriveModifiers([
+      method('accessibilityCustomContent', 'SwiftUI', [
+        { label: '_', name: 'label', type: 'SwiftUICore.Text' },
+        { label: '_', name: 'value', type: 'SwiftUICore.Text' },
+        { label: 'importance', name: 'importance', type: 'Accessibility.AXCustomContent.Importance', defaultValue: '.default' },
+      ]),
+    ], 27, [])).toEqual([
+      { name: 'accessibilityCustomContent', kind: 'record', type: '', ios: 0, arguments: [
+        { field: 'label', label: '_', kind: 'string', type: 'SwiftUICore.Text', optional: false },
+        { field: 'value', label: '_', kind: 'string', type: 'SwiftUICore.Text', optional: false },
+      ] },
+    ])
+  })
+
   it('derives generic style cases through their protocol Self constraints', () => {
     expect(deriveModifiers([
       { ...method('menuStyle', 'SwiftUI', [{ label: '_', name: 'style', type: 'S' }]), requirements: ['S : SwiftUI.MenuStyle'] },
