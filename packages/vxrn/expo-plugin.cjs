@@ -73,6 +73,9 @@ module.exports = function withVxrn(config) {
           podfile = nativeProjectPatches.injectFmtCxx17FixIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectReactNativeScreensGammaIntoPodfile(podfile)
+          if (nativeProjectPatches.hasNitroWebImage(projectRoot)) {
+            podfile = nativeProjectPatches.injectNitroWebImageModularHeaderIntoPodfile(podfile)
+          }
           fs.writeFileSync(podfilePath, podfile, 'utf8')
           return nextConfig
         },
