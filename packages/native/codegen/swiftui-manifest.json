@@ -3174,6 +3174,14 @@
       "label": "name"
     },
     {
+      "name": "dataDetection",
+      "kind": "boolean",
+      "type": "",
+      "ios": 27,
+      "zeroArgument": true,
+      "framework": "DataDetection"
+    },
+    {
       "name": "datePickerStyle",
       "kind": "style",
       "type": "S",
@@ -6116,6 +6124,22 @@
       "sdkName": "navigationTitle"
     },
     {
+      "name": "navigationTransition",
+      "kind": "style",
+      "type": "some NavigationTransition",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 18
+        },
+        {
+          "name": "crossFade",
+          "ios": 27
+        }
+      ]
+    },
+    {
       "name": "navigationViewStyle",
       "kind": "style",
       "type": "S",
@@ -7079,6 +7103,30 @@
         {
           "name": "trailing",
           "ios": 27
+        }
+      ]
+    },
+    {
+      "name": "presentationSizing",
+      "kind": "style",
+      "type": "some PresentationSizing",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "form",
+          "ios": 18
+        },
+        {
+          "name": "page",
+          "ios": 18
+        },
+        {
+          "name": "fitted",
+          "ios": 18
+        },
+        {
+          "name": "automatic",
+          "ios": 18
         }
       ]
     },
@@ -10821,6 +10869,7 @@
         "navigationSplitViewStyle",
         "navigationSubtitle",
         "navigationTitle",
+        "navigationTransition",
         "navigationViewStyle",
         "onHover",
         "onInteractiveResizeChange",
@@ -10924,6 +10973,9 @@
         "payWithApplePayButtonDisableCardArt",
         "payWithApplePayButtonStyle",
         "verifyIdentityWithWalletButtonStyle"
+      ],
+      "_DataDetection_SwiftUI": [
+        "dataDetection"
       ],
       "_GameController_SwiftUI": [
         "handlesGameControllerEvents"

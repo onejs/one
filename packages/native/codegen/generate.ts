@@ -137,7 +137,7 @@ for (const modifier of derivedModifiers) {
       d.name === (modifier.sdkName ?? modifier.name) &&
       (!modifier.module || d.module === modifier.module) &&
       (modifier.zeroArgument
-        ? d.parameters.length === 0
+        ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.kind === 'record'
           ? d.parameters.length === modifier.arguments?.length &&
             d.parameters.every((parameter, index) =>

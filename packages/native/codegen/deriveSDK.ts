@@ -191,7 +191,9 @@ export function deriveModifiers(
         }
         return []
       }
-      if (method.parameters.length === 0)
+      if (method.parameters.length === 0 ||
+        (method.parameters.every((parameter) => parameter.defaultValue !== undefined && !parameter.type.includes('->')) &&
+          method.parameters.every((parameter) => !valueOf(parameter.type))))
         return [
           {
             name,
@@ -242,9 +244,9 @@ export function deriveModifiers(
         return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method), arguments: args, ...framework }]
       }
       const { type, label } = method.parameters[0]
-      const opaqueStyle = /^some ((?:[A-Za-z_]\w*\.)?[A-Za-z]\w*(?:Style|Behavior))$/.exec(type)?.[1]
-      if (opaqueStyle) {
-        const cases = styleCases(opaqueStyle.includes('.') ? opaqueStyle : `${method.module}.${opaqueStyle}`)
+      const opaqueProtocol = /^some ((?:[A-Za-z_]\w*\.)?[A-Za-z]\w*)$/.exec(type)?.[1]
+      if (opaqueProtocol) {
+        const cases = styleCases(opaqueProtocol.includes('.') ? opaqueProtocol : `${method.module}.${opaqueProtocol}`)
         if (cases) return [{ name, module: method.module, kind: 'style', type, ios: ios(method), cases, ...framework,
           ...(label === '_' ? {} : { label }) }]
       }
@@ -273,9 +275,11 @@ export function deriveModifiers(
       return [{ name, module: method.module, kind, type, ios: ios(method), ...framework,
         ...(value.cases ? { cases: value.cases } : {}), ...(label === '_' ? {} : { label }) }]
     })
-    const established = candidates.filter((candidate) =>
+    const concrete = candidates.filter((candidate) => !candidate.type.startsWith('some '))
+    const preferred = concrete.length ? concrete : candidates
+    const established = preferred.filter((candidate) =>
       candidate.kind !== 'record' || !candidate.arguments?.some((argument) => argument.sdkType))
-    const selected = established.length ? established : candidates
+    const selected = established.length ? established : preferred
     if (selected.length === 1) {
       const { module, ...modifier } = selected[0]
       result.push(modifier)

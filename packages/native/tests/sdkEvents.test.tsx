@@ -130,11 +130,15 @@ describe('SDK callback and binding transport', () => {
   it('encodes opaque behavior cases and optional string backed SDK values', () => {
     const element = Controls.Text({ text: 'example', swiftStyle: {
       scrollTargetBehavior: 'paging',
+      navigationTransition: 'crossFade',
       previewDevice: 'iPhone 17 Pro',
+      dataDetection: true,
     } })
     expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
       ['scrollTargetBehavior', 'paging'],
+      ['navigationTransition', 'crossFade'],
       ['previewDevice', '"iPhone 17 Pro"'],
+      ['dataDetection', 'true'],
     ])
     const cleared = Controls.Text({ text: 'example', swiftStyle: { previewDevice: null } })
     expect(JSON.parse(cleared.props.swiftStyle.sdkModifiers)).toEqual([['previewDevice', 'null']])
