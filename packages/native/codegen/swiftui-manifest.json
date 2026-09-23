@@ -2184,11 +2184,21 @@
       ]
     },
     {
-      "name": "assistiveAccessNavigationIcon",
+      "name": "assistiveAccessNavigationIconWithImage",
+      "module": "SwiftUI",
+      "kind": "string",
+      "type": "SwiftUICore.Image",
+      "ios": 26,
+      "sdkName": "assistiveAccessNavigationIcon"
+    },
+    {
+      "name": "assistiveAccessNavigationIconWithSystemImage",
+      "module": "SwiftUI",
       "kind": "string",
       "type": "Swift.String",
       "ios": 26,
-      "label": "systemImage"
+      "label": "systemImage",
+      "sdkName": "assistiveAccessNavigationIcon"
     },
     {
       "name": "asyncImageURLSession",
@@ -3057,6 +3067,42 @@
       "sdkName": "containerRelativeFrame"
     },
     {
+      "name": "containerShape",
+      "kind": "style",
+      "type": "T",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "buttonBorder",
+          "ios": 17
+        },
+        {
+          "name": "rect",
+          "ios": 13
+        },
+        {
+          "name": "capsule",
+          "ios": 13
+        },
+        {
+          "name": "ellipse",
+          "ios": 13
+        },
+        {
+          "name": "circle",
+          "ios": 13
+        },
+        {
+          "name": "containerRelative",
+          "ios": 14
+        },
+        {
+          "name": "textInputBorder",
+          "ios": 27
+        }
+      ]
+    },
+    {
       "name": "contentMarginsWithEdgesAndLengthAndPlacement",
       "module": "SwiftUI",
       "kind": "record",
@@ -3574,6 +3620,12 @@
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 13
+    },
+    {
+      "name": "dialogIcon",
+      "kind": "optionalString",
+      "type": "SwiftUICore.Image?",
+      "ios": 17
     },
     {
       "name": "dialogSuppressionToggle",
@@ -11985,6 +12037,7 @@
         "compositingGroup",
         "containerCornerOffset",
         "containerRelativeFrame",
+        "containerShape",
         "contentShape",
         "contentTransition",
         "contrast",
@@ -12126,6 +12179,7 @@
         "defaultTabBarPlacement",
         "defersSystemGestures",
         "deleteDisabled",
+        "dialogIcon",
         "dialogSuppressionToggle",
         "disableAutocorrection",
         "disclosureGroupStyle",

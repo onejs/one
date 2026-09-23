@@ -159,7 +159,8 @@ extension View {
       case "allowsWindowActivationEventsWithOptionalBool": view = AnyView(view.oneNativeSDKAllowsWindowActivationEventsWithOptionalBool(value, emit: emit))
       case "animation": view = AnyView(view.oneNativeSDKAnimation(value, emit: emit))
       case "aspectRatio": view = AnyView(view.oneNativeSDKAspectRatio(value, emit: emit))
-      case "assistiveAccessNavigationIcon": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIcon(value, emit: emit))
+      case "assistiveAccessNavigationIconWithImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithImage(value, emit: emit))
+      case "assistiveAccessNavigationIconWithSystemImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithSystemImage(value, emit: emit))
       case "asyncImageURLSession": view = AnyView(view.oneNativeSDKAsyncImageURLSession(value, emit: emit))
       case "autocapitalization": view = AnyView(view.oneNativeSDKAutocapitalization(value, emit: emit))
       case "autocorrectionDisabled": view = AnyView(view.oneNativeSDKAutocorrectionDisabled(value, emit: emit))
@@ -186,6 +187,7 @@ extension View {
       case "containerCornerOffset": view = AnyView(view.oneNativeSDKContainerCornerOffset(value, emit: emit))
       case "containerRelativeFrameWithAxesAndAlignment": view = AnyView(view.oneNativeSDKContainerRelativeFrameWithAxesAndAlignment(value, emit: emit))
       case "containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment": view = AnyView(view.oneNativeSDKContainerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment(value, emit: emit))
+      case "containerShape": view = AnyView(view.oneNativeSDKContainerShape(value, emit: emit))
       case "contentMarginsWithEdgesAndLengthAndPlacement": view = AnyView(view.oneNativeSDKContentMarginsWithEdgesAndLengthAndPlacement(value, emit: emit))
       case "contentMarginsWithLengthAndPlacement": view = AnyView(view.oneNativeSDKContentMarginsWithLengthAndPlacement(value, emit: emit))
       case "contentShape": view = AnyView(view.oneNativeSDKContentShape(value, emit: emit))
@@ -204,6 +206,7 @@ extension View {
       case "defaultTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultTabBarPlacement(value, emit: emit))
       case "defersSystemGestures": view = AnyView(view.oneNativeSDKDefersSystemGestures(value, emit: emit))
       case "deleteDisabled": view = AnyView(view.oneNativeSDKDeleteDisabled(value, emit: emit))
+      case "dialogIcon": view = AnyView(view.oneNativeSDKDialogIcon(value, emit: emit))
       case "dialogSuppressionToggle": view = AnyView(view.oneNativeSDKDialogSuppressionToggle(value, emit: emit))
       case "disableAutocorrection": view = AnyView(view.oneNativeSDKDisableAutocorrection(value, emit: emit))
       case "disabled": view = AnyView(view.oneNativeSDKDisabled(value, emit: emit))
@@ -1444,7 +1447,11 @@ extension View {
     self.aspectRatio(argument0, contentMode: argument1)
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKAssistiveAccessNavigationIcon(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKAssistiveAccessNavigationIconWithImage(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      if #available(iOS 26, *) { self.assistiveAccessNavigationIcon(Image(systemName: value)) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAssistiveAccessNavigationIconWithSystemImage(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if #available(iOS 26, *) { self.assistiveAccessNavigationIcon(systemImage: value) } else { self }
   }
 
@@ -1830,6 +1837,20 @@ extension View {
     self.containerRelativeFrame(argument0, count: argument1, span: argument2, spacing: argument3, alignment: argument4)
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKContainerShape(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "buttonBorder": self.containerShape(.buttonBorder)
+      case "rect": self.containerShape(.rect)
+      case "capsule": self.containerShape(.capsule)
+      case "ellipse": self.containerShape(.ellipse)
+      case "circle": self.containerShape(.circle)
+      case "containerRelative": self.containerShape(.containerRelative)
+      case "textInputBorder": if #available(iOS 27, *) { self.containerShape(.textInputBorder) } else { self }
+    default: preconditionFailure("invalid containerShape: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKContentMarginsWithEdgesAndLengthAndPlacement(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -2078,6 +2099,12 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKDeleteDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid deleteDisabled: \(value)")
       self.deleteDisabled(value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDialogIcon(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if value == "null" { self.dialogIcon(nil as SwiftUICore.Image?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+      self.dialogIcon(Image(systemName: decoded))
+    } else { preconditionFailure("invalid dialogIcon: \(value)") } }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDialogSuppressionToggle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

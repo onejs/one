@@ -329,6 +329,16 @@ export const sdkColorMultiplyValues = [
 export type SDKColorMultiply = (typeof sdkColorMultiplyValues)[number]
 export const sdkColorSchemeValues = ['light', 'dark'] as const
 export type SDKColorScheme = (typeof sdkColorSchemeValues)[number]
+export const sdkContainerShapeValues = [
+  'buttonBorder',
+  'rect',
+  'capsule',
+  'ellipse',
+  'circle',
+  'containerRelative',
+  'textInputBorder',
+] as const
+export type SDKContainerShape = (typeof sdkContainerShapeValues)[number]
 export const sdkContentShapeValues = [
   'buttonBorder',
   'rect',
@@ -1454,7 +1464,8 @@ export interface OneNativeStyle {
   allowsWindowActivationEventsWithOptionalBool?: boolean | null
   animation?: SDKAnimation | null
   aspectRatio?: Readonly<{ aspectRatio: number | null; contentMode: 'fit' | 'fill' }>
-  assistiveAccessNavigationIcon?: string
+  assistiveAccessNavigationIconWithImage?: string
+  assistiveAccessNavigationIconWithSystemImage?: string
   asyncImageURLSession?: SDKAsyncImageURLSession
   autocapitalization?: SDKAutocapitalization
   autocorrectionDisabled?: boolean
@@ -1523,6 +1534,7 @@ export interface OneNativeStyle {
       | 'trailingFirstTextBaseline'
       | 'trailingLastTextBaseline'
   }>
+  containerShape?: SDKContainerShape
   contentMarginsWithEdgesAndLengthAndPlacement?: Readonly<{
     edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
     length: number | null
@@ -1562,6 +1574,7 @@ export interface OneNativeStyle {
   defaultTabBarPlacement?: SDKDefaultTabBarPlacement
   defersSystemGestures?: SDKDefersSystemGestures
   deleteDisabled?: boolean
+  dialogIcon?: string | null
   dialogSuppressionToggle?: Readonly<{
     value: boolean
     onChange: (value: boolean) => void

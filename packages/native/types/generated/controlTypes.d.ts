@@ -61,6 +61,8 @@ export declare const sdkColorMultiplyValues: readonly ['accentColor', 'red', 'or
 export type SDKColorMultiply = (typeof sdkColorMultiplyValues)[number];
 export declare const sdkColorSchemeValues: readonly ['light', 'dark'];
 export type SDKColorScheme = (typeof sdkColorSchemeValues)[number];
+export declare const sdkContainerShapeValues: readonly ['buttonBorder', 'rect', 'capsule', 'ellipse', 'circle', 'containerRelative', 'textInputBorder'];
+export type SDKContainerShape = (typeof sdkContainerShapeValues)[number];
 export declare const sdkContentShapeValues: readonly ['buttonBorder', 'rect', 'capsule', 'ellipse', 'circle', 'containerRelative', 'textInputBorder'];
 export type SDKContentShape = (typeof sdkContentShapeValues)[number];
 export declare const sdkContentTransitionValues: readonly ['symbolEffect', 'identity', 'opacity', 'interpolate'];
@@ -481,7 +483,8 @@ export interface OneNativeStyle {
         aspectRatio: number | null;
         contentMode: 'fit' | 'fill';
     }>;
-    assistiveAccessNavigationIcon?: string;
+    assistiveAccessNavigationIconWithImage?: string;
+    assistiveAccessNavigationIconWithSystemImage?: string;
     asyncImageURLSession?: SDKAsyncImageURLSession;
     autocapitalization?: SDKAutocapitalization;
     autocorrectionDisabled?: boolean;
@@ -523,6 +526,7 @@ export interface OneNativeStyle {
         spacing: number;
         alignment: 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing' | 'centerFirstTextBaseline' | 'centerLastTextBaseline' | 'leadingFirstTextBaseline' | 'leadingLastTextBaseline' | 'trailingFirstTextBaseline' | 'trailingLastTextBaseline';
     }>;
+    containerShape?: SDKContainerShape;
     contentMarginsWithEdgesAndLengthAndPlacement?: Readonly<{
         edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical';
         length: number | null;
@@ -551,6 +555,7 @@ export interface OneNativeStyle {
     defaultTabBarPlacement?: SDKDefaultTabBarPlacement;
     defersSystemGestures?: SDKDefersSystemGestures;
     deleteDisabled?: boolean;
+    dialogIcon?: string | null;
     dialogSuppressionToggle?: Readonly<{
         value: boolean;
         onChange: (value: boolean) => void;
