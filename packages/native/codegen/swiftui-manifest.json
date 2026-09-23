@@ -1284,6 +1284,13 @@
       "label": "children"
     },
     {
+      "name": "accessibilityFocused",
+      "kind": "bindingFocusBoolean",
+      "type": "SwiftUI.AccessibilityFocusState<Swift.Bool>.Binding",
+      "label": "_",
+      "ios": 15
+    },
+    {
       "name": "accessibilityHeading",
       "kind": "string",
       "type": "SwiftUICore.AccessibilityHeadingLevel",
@@ -3856,6 +3863,13 @@
         }
       ],
       "sdkName": "focusable"
+    },
+    {
+      "name": "focused",
+      "kind": "bindingFocusBoolean",
+      "type": "SwiftUI.FocusState<Swift.Bool>.Binding",
+      "label": "_",
+      "ios": 15
     },
     {
       "name": "focusEffectDisabled",
@@ -8616,6 +8630,13 @@
       ]
     },
     {
+      "name": "searchFocused",
+      "kind": "bindingFocusBoolean",
+      "type": "SwiftUI.FocusState<Swift.Bool>.Binding",
+      "label": "_",
+      "ios": 18
+    },
+    {
       "name": "searchPresentationToolbarBehavior",
       "kind": "string",
       "type": "SwiftUI.SearchPresentationToolbarBehavior",
@@ -11351,6 +11372,7 @@
         "accessibilityDragPoint",
         "accessibilityDropPoint",
         "accessibilityElement",
+        "accessibilityFocused",
         "accessibilityHeading",
         "accessibilityHidden",
         "accessibilityHint",
@@ -11410,6 +11432,7 @@
         "flipsForRightToLeftLayoutDirection",
         "focusEffectDisabled",
         "focusable",
+        "focused",
         "formStyle",
         "fullScreenCover",
         "gaugeStyle",
@@ -11514,6 +11537,7 @@
         "scrollTargetLayout",
         "searchCompletion",
         "searchDictationBehavior",
+        "searchFocused",
         "searchPresentationToolbarBehavior",
         "searchScopes",
         "searchSuggestions",

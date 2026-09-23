@@ -119,6 +119,7 @@ extension View {
       case "accessibilityDropPointWithPointAndDescription": view = AnyView(view.oneNativeSDKAccessibilityDropPointWithPointAndDescription(value, emit: emit))
       case "accessibilityDropPointWithPointAndDescriptionAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityDropPointWithPointAndDescriptionAndIsEnabled(value, emit: emit))
       case "accessibilityElement": view = AnyView(view.oneNativeSDKAccessibilityElement(value, emit: emit))
+      case "accessibilityFocused": view = AnyView(view.oneNativeSDKAccessibilityFocused(value, emit: emit))
       case "accessibilityHeading": view = AnyView(view.oneNativeSDKAccessibilityHeading(value, emit: emit))
       case "accessibilityHiddenWithBool": view = AnyView(view.oneNativeSDKAccessibilityHiddenWithBool(value, emit: emit))
       case "accessibilityHiddenWithHiddenAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityHiddenWithHiddenAndIsEnabled(value, emit: emit))
@@ -225,6 +226,7 @@ extension View {
       case "flipsForRightToLeftLayoutDirection": view = AnyView(view.oneNativeSDKFlipsForRightToLeftLayoutDirection(value, emit: emit))
       case "focusableWithBool": view = AnyView(view.oneNativeSDKFocusableWithBool(value, emit: emit))
       case "focusableWithIsFocusableAndInteractions": view = AnyView(view.oneNativeSDKFocusableWithIsFocusableAndInteractions(value, emit: emit))
+      case "focused": view = AnyView(view.oneNativeSDKFocused(value, emit: emit))
       case "focusEffectDisabled": view = AnyView(view.oneNativeSDKFocusEffectDisabled(value, emit: emit))
       case "fontWidth": view = AnyView(view.oneNativeSDKFontWidth(value, emit: emit))
       case "foregroundColor": view = AnyView(view.oneNativeSDKForegroundColor(value, emit: emit))
@@ -403,6 +405,7 @@ extension View {
       case "searchable": view = AnyView(view.oneNativeSDKSearchable(value, emit: emit))
       case "searchCompletion": view = AnyView(view.oneNativeSDKSearchCompletion(value, emit: emit))
       case "searchDictationBehavior": view = AnyView(view.oneNativeSDKSearchDictationBehavior(value, emit: emit))
+      case "searchFocused": view = AnyView(view.oneNativeSDKSearchFocused(value, emit: emit))
       case "searchPresentationToolbarBehavior": view = AnyView(view.oneNativeSDKSearchPresentationToolbarBehavior(value, emit: emit))
       case "searchSuggestions": view = AnyView(view.oneNativeSDKSearchSuggestions(value, emit: emit))
       case "searchToolbarBehavior": view = AnyView(view.oneNativeSDKSearchToolbarBehavior(value, emit: emit))
@@ -971,6 +974,11 @@ extension View {
       case "combine": self.accessibilityElement(children: SwiftUI.AccessibilityChildBehavior.combine)
     default: preconditionFailure("invalid accessibilityElement: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityFocused(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid accessibilityFocused: \(value)")
+    self.modifier(OneNativeSDKAccessibilityFocusedFocusBinding(value: value == "true", emit: emit))
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityHeading(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2244,6 +2252,11 @@ extension View {
       }
     }()
     self.focusable(argument0, interactions: argument1)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFocused(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid focused: \(value)")
+    self.modifier(OneNativeSDKFocusedFocusBinding(value: value == "true", emit: emit))
   }
 
   @ViewBuilder fileprivate func oneNativeSDKFocusEffectDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4463,6 +4476,13 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKSearchFocused(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid searchFocused: \(value)")
+    if #available(iOS 18, *) {
+      self.modifier(OneNativeSDKSearchFocusedFocusBinding(value: value == "true", emit: emit))
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKSearchPresentationToolbarBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -5744,5 +5764,62 @@ extension View {
       if let number = Double(value), number.isFinite {
         self.zIndex(number)
       } else { preconditionFailure("invalid zIndex: \(value)") }
+  }
+}
+private struct OneNativeSDKAccessibilityFocusedFocusBinding: ViewModifier {
+  @AccessibilityFocusState private var focused: Bool
+  let value: Bool
+  let emit: (String, String) -> Void
+
+  func body(content: Content) -> some View {
+    content.accessibilityFocused($focused)
+      .onChange(of: focused) { _, next in
+        if next != value { emit("accessibilityFocused", String(next)) }
+      }
+      .onChange(of: value) { _, next in
+        if focused != next { focused = next }
+      }
+      .onAppear {
+        if focused != value { focused = value }
+      }
+  }
+}
+
+private struct OneNativeSDKFocusedFocusBinding: ViewModifier {
+  @FocusState private var focused: Bool
+  let value: Bool
+  let emit: (String, String) -> Void
+
+  func body(content: Content) -> some View {
+    content.focused($focused)
+      .onChange(of: focused) { _, next in
+        if next != value { emit("focused", String(next)) }
+      }
+      .onChange(of: value) { _, next in
+        if focused != next { focused = next }
+      }
+      .onAppear {
+        if focused != value { focused = value }
+      }
+  }
+}
+
+@available(iOS 18, *)
+private struct OneNativeSDKSearchFocusedFocusBinding: ViewModifier {
+  @FocusState private var focused: Bool
+  let value: Bool
+  let emit: (String, String) -> Void
+
+  func body(content: Content) -> some View {
+    content.searchFocused($focused)
+      .onChange(of: focused) { _, next in
+        if next != value { emit("searchFocused", String(next)) }
+      }
+      .onChange(of: value) { _, next in
+        if focused != next { focused = next }
+      }
+      .onAppear {
+        if focused != value { focused = value }
+      }
   }
 }

@@ -173,6 +173,15 @@ ${parsedArguments}
     } else { self }` : body}
   }`
       }
+      if (modifier.kind === 'bindingFocusBoolean') {
+        const holder = `OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}FocusBinding`
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")
+    ${modifier.ios > 17 ? `if #available(iOS ${modifier.ios}, *) {
+      self.modifier(${holder}(value: value == "true", emit: emit))
+    } else { self }` : `self.modifier(${holder}(value: value == "true", emit: emit))`}
+  }`
+      }
       if (modifier.kind === 'eventValueString')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     ${apply(`${modifier.label === '_' ? '' : `${modifier.label}: `}value, ${modifier.callbackLabel === '_' ? '' : `${modifier.callbackLabel}: `}{ changed in emit(${JSON.stringify(modifier.name)}, changed) }`, modifier.ios, true)}
@@ -286,6 +295,28 @@ ${parsed}
   }`
     })
     .join('\n\n')
+  const focusBindings = derived.filter((modifier) => modifier.kind === 'bindingFocusBoolean').map((modifier) => {
+    const holder = `OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}FocusBinding`
+    const accessibility = modifier.type.includes('AccessibilityFocusState')
+    return `${modifier.ios > 17 ? `@available(iOS ${modifier.ios}, *)\n` : ''}private struct ${holder}: ViewModifier {
+  @${accessibility ? 'AccessibilityFocusState' : 'FocusState'} private var focused: Bool
+  let value: Bool
+  let emit: (String, String) -> Void
+
+  func body(content: Content) -> some View {
+    content.${modifier.sdkName ?? modifier.name}($focused)
+      .onChange(of: focused) { _, next in
+        if next != value { emit(${JSON.stringify(modifier.name)}, String(next)) }
+      }
+      .onChange(of: value) { _, next in
+        if focused != next { focused = next }
+      }
+      .onAppear {
+        if focused != value { focused = value }
+      }
+  }
+}`
+  }).join('\n\n')
   outputs.set(
     'src/generated/swiftStyleNative.ts',
     header +
@@ -372,9 +403,9 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
       if (kind === 'optionalString' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')
       if (kind.startsWith('event') && kind !== 'eventValueString' && typeof value !== 'function') throw new Error(name + ' must be a callback')
       if (kind === 'eventValueString' && (typeof value !== 'object' || value === null || typeof (value as { value?: unknown }).value !== 'string' || typeof (value as { onChange?: unknown }).onChange !== 'function')) throw new Error(name + ' must be a string value and callback')
-      if ((kind === 'bindingBoolean' || kind === 'bindingString') &&
+      if ((kind === 'bindingBoolean' || kind === 'bindingFocusBoolean' || kind === 'bindingString') &&
         (typeof value !== 'object' || value === null || typeof (value as { onChange?: unknown }).onChange !== 'function' ||
-        typeof (value as { value?: unknown }).value !== (kind === 'bindingBoolean' ? 'boolean' : 'string')))
+        typeof (value as { value?: unknown }).value !== (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean' ? 'boolean' : 'string')))
         throw new Error(name + ' must be a binding')
       sdkModifiers.push([name, kind === 'eventValueString' ? (value as { value: string }).value : kind.startsWith('event') ? '' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : kind === 'optionalString' || kind === 'optionalURL' ? JSON.stringify(value) as string : String(value)])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
@@ -430,7 +461,10 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
       throw new Error(name + ' emitted an invalid struct value')
     ;(modifier as ((value: unknown) => void) | undefined)?.(payload)
   }
-  else if (kind === 'bindingBoolean') (modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(value === 'true')
+  else if (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean') {
+    if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid boolean')
+    ;(modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(value === 'true')
+  }
   else if (kind === 'bindingString') (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
   else if (kind === 'eventValueString') (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
 }
@@ -704,6 +738,7 @@ extension OneNativeStyle {
 extension View {
 ${generatedMethods}
 }
+${focusBindings}
 `
   )
 }

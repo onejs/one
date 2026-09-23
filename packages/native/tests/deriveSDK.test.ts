@@ -77,6 +77,21 @@ describe('SDK modifier derivation', () => {
     ])
   })
 
+  it('derives controlled focus bindings without renaming an existing callback', () => {
+    expect(deriveModifiers([
+      method('focused', 'SwiftUI', [{ label: '_', name: 'binding', type: 'SwiftUI.FocusState<Swift.Bool>.Binding' }]),
+      method('searchFocused', 'SwiftUI', [{ label: '_', name: 'binding', type: 'SwiftUI.FocusState<Swift.Bool>.Binding' }]),
+      method('accessibilityFocused', 'SwiftUI', [{ label: '_', name: 'binding', type: 'SwiftUI.AccessibilityFocusState<Swift.Bool>.Binding' }]),
+      method('renameAction', 'SwiftUI', [{ label: '_', name: 'action', type: '(() -> Swift.Void)?' }]),
+      method('renameAction', 'SwiftUI', [{ label: '_', name: 'binding', type: 'SwiftUI.FocusState<Swift.Bool>.Binding' }]),
+    ], 27, [])).toEqual([
+      { name: 'accessibilityFocused', kind: 'bindingFocusBoolean', type: 'SwiftUI.AccessibilityFocusState<Swift.Bool>.Binding', ios: 0, label: '_' },
+      { name: 'focused', kind: 'bindingFocusBoolean', type: 'SwiftUI.FocusState<Swift.Bool>.Binding', ios: 0, label: '_' },
+      { name: 'renameAction', kind: 'event', type: '(() -> Swift.Void)?', ios: 0, label: '_' },
+      { name: 'searchFocused', kind: 'bindingFocusBoolean', type: 'SwiftUI.FocusState<Swift.Bool>.Binding', ios: 0, label: '_' },
+    ])
+  })
+
   it('derives Text values and labeled scalars without guessing between overloads', () => {
     expect(deriveModifiers([
       method('accessibilityLabel', 'SwiftUI', [{ label: '_', name: 'label', type: 'SwiftUICore.Text' }]),
