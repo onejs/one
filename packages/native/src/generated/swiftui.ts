@@ -100,6 +100,28 @@ export type ListStyle =
   | 'grouped'
   | 'insetGrouped'
   | 'plain'
+export type ToolbarItemPlacement =
+  | 'automatic'
+  | 'principal'
+  | 'navigation'
+  | 'primaryAction'
+  | 'secondaryAction'
+  | 'status'
+  | 'confirmationAction'
+  | 'cancellationAction'
+  | 'destructiveAction'
+  | 'keyboard'
+  | 'topBarLeading'
+  | 'topBarTrailing'
+  | 'topBarPinnedTrailing'
+  | 'navigationBarLeading'
+  | 'navigationBarTrailing'
+  | 'title'
+  | 'largeTitle'
+  | 'bottomBar'
+  | 'subtitle'
+  | 'largeSubtitle'
+export type SpacerSizing = 'flexible' | 'fixed'
 export const swiftUIValues = {
   MenuOrder: {
     automatic: 16,
@@ -334,6 +356,32 @@ export const swiftUIValues = {
     grouped: 13,
     insetGrouped: 14,
     plain: 13,
+  },
+  ToolbarItemPlacement: {
+    automatic: 14,
+    principal: 14,
+    navigation: 14,
+    primaryAction: 14,
+    secondaryAction: 16,
+    status: 14,
+    confirmationAction: 14,
+    cancellationAction: 14,
+    destructiveAction: 14,
+    keyboard: 15,
+    topBarLeading: 14,
+    topBarTrailing: 14,
+    topBarPinnedTrailing: 27,
+    navigationBarLeading: 14,
+    navigationBarTrailing: 14,
+    title: 14,
+    largeTitle: 26,
+    bottomBar: 14,
+    subtitle: 26,
+    largeSubtitle: 26,
+  },
+  SpacerSizing: {
+    flexible: 26,
+    fixed: 26,
   },
 } as const
 export function assertSwiftUIValue(
