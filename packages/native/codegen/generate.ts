@@ -278,22 +278,31 @@ const nativeItem = `export type NativeMenuItem = Readonly<{\n${Object.entries(
   .map(([name, field]) => `  ${name}: ${fieldType(field.type)}`)
   .join('\n')}\n}>`
 for (const component of components) {
+  // a static object-array prop needs its element shape declared in the spec,
+  // the way the menu hard-codes NativeMenuItem. payloadTypes generalizes that
+  // one-off: name to shape, emitted verbatim above the props interface.
+  const payloadEntries: Array<[string, string]> =
+    'payloadTypes' in component ? Object.entries(component.payloadTypes) : []
   // numeric props arrive as CodegenTypes scalars, so the spec imports the ones the
   // recipe uses. components without them keep the historical import byte for byte.
   const usedTypes = [
     ...Object.values(component.props),
+    ...payloadEntries.map(([, shape]) => shape),
     ...Object.values(component.events).flatMap((fields) =>
       Object.values(fields as Record<string, string>)
     ),
   ].join(' ')
   const numeric = ['Double', 'Float'].filter((type) => new RegExp(`\\b${type}\\b`).test(usedTypes))
+  const payloadDeclarations = payloadEntries
+    .map(([name, shape]) => `type ${name} = ${shape}\n`)
+    .join('')
   outputs.set(
     `src/specs/${component.name}NativeComponent.ts`,
     header +
       `import type { ViewProps } from 'react-native'
 import type { ${['DirectEventHandler', 'Int32', ...numeric].join(', ')} } from 'react-native/Libraries/Types/CodegenTypes'
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
-${component.name === 'OneNativeMenu' ? nativeItem : ''}
+${component.name === 'OneNativeMenu' ? nativeItem : ''}${payloadDeclarations}
 interface NativeProps extends ViewProps {
 ${Object.entries(component.props)
   .map(([name, type]) => `  ${name}: ${type}`)

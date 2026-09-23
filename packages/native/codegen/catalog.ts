@@ -898,4 +898,38 @@ export const components = [
     ],
     interfaceOnly: false,
   },
+  {
+    // uniform map (UI.Map): SwiftUI Map on iOS, Google Maps Compose on
+    // Android. markers cross as a struct array like Swift.Map; overlays cross
+    // as one json string because polylines and polygons carry nested
+    // coordinate lists, which codegen object props cannot spell. both
+    // platforms decode it natively; there is no js copy of the parse. a leaf
+    // with heavy state, so it takes the yoga box and owns no slots.
+    name: 'OneNativeUiMap',
+    publicName: 'UiMap',
+    props: {
+      latitude: 'Double',
+      longitude: 'Double',
+      zoom: 'Double',
+      markers: 'ReadonlyArray<UiMapMarker>',
+      overlays: 'string',
+    },
+    payloadTypes: {
+      UiMapMarker:
+        'Readonly<{ id: string; title: string; latitude: Double; longitude: Double; tint: string }>',
+    },
+    events: {
+      onNativeUiMapCameraMove: {
+        latitude: 'Double',
+        longitude: 'Double',
+        zoom: 'Double',
+      },
+      onNativeUiMapMarkerClick: { id: 'string' },
+      onNativeUiMapClick: { latitude: 'Double', longitude: 'Double' },
+    },
+    enumProps: {},
+    layout: { kind: 'fill' },
+    slots: [],
+    interfaceOnly: false,
+  },
 ] as const

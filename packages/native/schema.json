@@ -705,6 +705,59 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeUiMap",
+      "publicName": "UiMap",
+      "props": {
+        "latitude": {
+          "type": "Double"
+        },
+        "longitude": {
+          "type": "Double"
+        },
+        "zoom": {
+          "type": "Double"
+        },
+        "markers": {
+          "type": "ReadonlyArray<UiMapMarker>"
+        },
+        "overlays": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeUiMapCameraMove": {
+          "latitude": {
+            "type": "Double"
+          },
+          "longitude": {
+            "type": "Double"
+          },
+          "zoom": {
+            "type": "Double"
+          }
+        },
+        "onNativeUiMapMarkerClick": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "onNativeUiMapClick": {
+          "latitude": {
+            "type": "Double"
+          },
+          "longitude": {
+            "type": "Double"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativePicker",
       "publicName": "Picker",
       "props": {
