@@ -136,6 +136,25 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('offset.x must be finite')
   })
 
+  it('encodes numeric SDK constructors and named tuples', () => {
+    const rotation3DEffect = {
+      angle: { radians: 0.7 },
+      axis: { x: 1, y: 0, z: -1 },
+      anchor: 'center' as const,
+      anchorZ: 2,
+      perspective: 0.5,
+    }
+    const element = Controls.Text({ text: 'example', swiftStyle: { rotation3DEffect } })
+    const record = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    const values = JSON.parse(record.rotation3DEffect)
+    expect(JSON.parse(values[0])).toEqual(rotation3DEffect.angle)
+    expect(JSON.parse(values[1])).toEqual(rotation3DEffect.axis)
+    expect(values.slice(2)).toEqual(['center', '2', '0.5'])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      rotation3DEffect: { ...rotation3DEffect, axis: { x: Infinity, y: 0, z: 0 } },
+    } })).toThrow('rotation3DEffect.axis must be a numeric object')
+  })
+
   it('encodes text lists and string sets through generated record modifiers', () => {
     const element = Controls.Text({ text: 'example', swiftStyle: {
       accessibilityCustomContent: { label: 'Account', value: 'Active' },

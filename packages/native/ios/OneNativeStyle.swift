@@ -377,6 +377,7 @@ extension View {
       case "redacted": view = AnyView(view.oneNativeSDKRedacted(value, emit: emit))
       case "renameAction": view = AnyView(view.oneNativeSDKRenameAction(value, emit: emit))
       case "replaceDisabled": view = AnyView(view.oneNativeSDKReplaceDisabled(value, emit: emit))
+      case "rotation3DEffect": view = AnyView(view.oneNativeSDKRotation3DEffect(value, emit: emit))
       case "rotationEffect": view = AnyView(view.oneNativeSDKRotationEffect(value, emit: emit))
       case "safeAreaPaddingWithCGFloat": view = AnyView(view.oneNativeSDKSafeAreaPaddingWithCGFloat(value, emit: emit))
       case "safeAreaPaddingWithEdgesAndLength": view = AnyView(view.oneNativeSDKSafeAreaPaddingWithEdgesAndLength(value, emit: emit))
@@ -4002,6 +4003,58 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKReplaceDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid replaceDisabled: \(value)")
       self.replaceDisabled(value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKRotation3DEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 5 else { preconditionFailure("invalid rotation3DEffect: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Angle = {
+      guard let raw = values[0] else { preconditionFailure("missing rotation3DEffect.angle") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["radians"], field0.isFinite else { preconditionFailure("invalid rotation3DEffect.angle: \(raw)") }
+      return SwiftUICore.Angle(radians: field0)
+    }()
+    let argument1: (x: CoreFoundation.CGFloat, y: CoreFoundation.CGFloat, z: CoreFoundation.CGFloat) = {
+      guard let raw = values[1] else { preconditionFailure("missing rotation3DEffect.axis") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["x"], field0.isFinite,
+        let field1 = decoded["y"], field1.isFinite,
+        let field2 = decoded["z"], field2.isFinite else { preconditionFailure("invalid rotation3DEffect.axis: \(raw)") }
+      return (x: CGFloat(field0), y: CGFloat(field1), z: CGFloat(field2))
+    }()
+    let argument2: SwiftUICore.UnitPoint = {
+      guard let raw = values[2] else { preconditionFailure("missing rotation3DEffect.anchor") }
+      switch raw {
+      case "zero": return SwiftUICore.UnitPoint.zero
+      case "center": return SwiftUICore.UnitPoint.center
+      case "leading": return SwiftUICore.UnitPoint.leading
+      case "trailing": return SwiftUICore.UnitPoint.trailing
+      case "top": return SwiftUICore.UnitPoint.top
+      case "bottom": return SwiftUICore.UnitPoint.bottom
+      case "topLeading": return SwiftUICore.UnitPoint.topLeading
+      case "topTrailing": return SwiftUICore.UnitPoint.topTrailing
+      case "bottomLeading": return SwiftUICore.UnitPoint.bottomLeading
+      case "bottomTrailing": return SwiftUICore.UnitPoint.bottomTrailing
+      default: preconditionFailure("invalid rotation3DEffect.anchor: \(raw)")
+      }
+    }()
+    let argument3: CoreFoundation.CGFloat = {
+      guard let raw = values[3] else { preconditionFailure("missing rotation3DEffect.anchorZ") }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid rotation3DEffect.anchorZ: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument4: CoreFoundation.CGFloat = {
+      guard let raw = values[4] else { preconditionFailure("missing rotation3DEffect.perspective") }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid rotation3DEffect.perspective: \(raw)") }
+      return CGFloat(number)
+    }()
+    self.rotation3DEffect(argument0, axis: argument1, anchor: argument2, anchorZ: argument3, perspective: argument4)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKRotationEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

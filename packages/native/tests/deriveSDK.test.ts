@@ -330,6 +330,28 @@ describe('SDK modifier derivation', () => {
         ] } },
     ])
   })
+
+  it('constructs numeric SDK structs and named tuples from public signatures', () => {
+    expect(deriveModifiers([
+      method('rotation3DEffect', 'SwiftUICore', [
+        { label: '_', name: 'angle', type: 'SwiftUICore.Angle' },
+        { label: 'axis', name: 'axis', type: '(x: CoreFoundation.CGFloat, y: CoreFoundation.CGFloat, z: CoreFoundation.CGFloat)' },
+      ]),
+      { ...method('Angle', 'SwiftUICore'), kind: 'struct', owner: '' },
+      { ...method('radians', 'SwiftUICore'), kind: 'var', owner: 'Angle', type: 'Swift.Double', stored: true },
+      { ...method('init', 'SwiftUICore', [{ label: 'radians', name: 'radians', type: 'Swift.Double' }]), kind: 'init', owner: 'Angle' },
+      { ...method('init', 'SwiftUICore', [{ label: 'degrees', name: 'degrees', type: 'Swift.Double' }]), kind: 'init', owner: 'Angle' },
+    ], 27, [])).toEqual([{ name: 'rotation3DEffect', kind: 'record', type: '', ios: 0, arguments: [
+      { field: 'angle', label: '_', kind: 'numericStruct', type: 'SwiftUICore.Angle', optional: false,
+        fields: [{ name: 'radians', label: 'radians', type: 'Swift.Double' }] },
+      { field: 'axis', label: 'axis', kind: 'numericTuple', type: '(x: CoreFoundation.CGFloat, y: CoreFoundation.CGFloat, z: CoreFoundation.CGFloat)', optional: false,
+        fields: [
+          { name: 'x', label: 'x', type: 'CoreFoundation.CGFloat' },
+          { name: 'y', label: 'y', type: 'CoreFoundation.CGFloat' },
+          { name: 'z', label: 'z', type: 'CoreFoundation.CGFloat' },
+        ] },
+    ] }])
+  })
 })
 
 describe('SDK view slots', () => {

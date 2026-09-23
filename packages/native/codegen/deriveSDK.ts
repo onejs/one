@@ -10,9 +10,10 @@ export type DerivedArgument = {
   label: string
   type: string
   sdkType?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple'
   optional: boolean
   cases?: readonly { name: string; ios: number }[]
+  fields?: readonly { name: string; label: string; type: string }[]
 }
 
 export type EventValueSchema =
@@ -41,7 +42,7 @@ export type DerivedModifier = {
 }
 
 const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) =>
-  (type: string): Omit<DerivedArgument, 'field' | 'label'> | undefined => {
+  (type: string, preferNumeric = false): Omit<DerivedArgument, 'field' | 'label'> | undefined => {
     const optional = type.endsWith('?')
     const baseType = type.replace(/\?$/, '')
     const kind = baseType === 'Swift.Bool'
@@ -58,8 +59,37 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) =>
       return { kind: 'stringArray', type, optional }
     if (baseType === 'Swift.Set<Swift.String>')
       return { kind: 'stringSet', type, optional }
+    const numericType = (value: string) =>
+      ['Swift.Double', 'Swift.Float', 'Swift.Int', 'CoreFoundation.CGFloat'].includes(value)
+    if (baseType.startsWith('(') && baseType.endsWith(')')) {
+      const fields = baseType.slice(1, -1).split(', ').map((part) => {
+        const match = /^([A-Za-z]\w*): (.+)$/.exec(part)
+        return match && numericType(match[2])
+          ? { name: match[1], label: match[1], type: match[2] } : undefined
+      })
+      if (fields.length && fields.every(Boolean))
+        return { kind: 'numericTuple', type, optional, fields: fields as NonNullable<DerivedArgument['fields']> }
+    }
     if (!/^[A-Za-z_]\w*\.[A-Za-z][\w.]*$/.test(baseType)) return
     const [module, ...owner] = baseType.split('.')
+    const ownerName = owner.join('.')
+    let numericStruct: Omit<DerivedArgument, 'field' | 'label'> | undefined
+    if (inventory.some((d) => d.module === module && d.kind === 'struct' &&
+      d.owner === owner.slice(0, -1).join('.') && d.name === owner.at(-1) &&
+      !d.generic && present(d) && ios(d) <= ceiling)) {
+      const stored = inventory.filter((d) => d.module === module &&
+        (d.owner === ownerName || d.owner === baseType) && d.kind === 'var' &&
+        d.stored && present(d) && ios(d) <= ceiling)
+      const constructors = inventory.filter((d) => d.module === module &&
+        (d.owner === ownerName || d.owner === baseType) && d.kind === 'init' &&
+        !d.requirements?.length && present(d) && ios(d) <= ceiling &&
+        d.parameters.length === stored.length && d.parameters.length > 0 &&
+        d.parameters.every((parameter) => numericType(parameter.type) &&
+          stored.some((field) => field.name === parameter.label && field.type === parameter.type)))
+      if (constructors.length === 1 && stored.every((field) => numericType(field.type ?? '')))
+        numericStruct = { kind: 'numericStruct', type, optional, fields: constructors[0].parameters.map((parameter) =>
+          ({ name: parameter.label, label: parameter.label, type: parameter.type })) }
+    }
     const cases = inventory
       .filter((d) =>
         d.module === module &&
@@ -70,7 +100,8 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) =>
         /^[A-Za-z]/.test(d.name) && present(d) && ios(d) <= ceiling
       )
       .map((d) => ({ name: d.name, ios: ios(d) }))
-    if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length) return
+    if (preferNumeric && numericStruct && cases.length < 2) return numericStruct
+    if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length) return numericStruct
     return { kind: 'enum', type, optional, cases }
   }
 
@@ -317,8 +348,9 @@ export function deriveModifiers(
         }]
       }
       if (method.parameters.length > 1) {
+        const preferNumeric = method.parameters.some((parameter) => valueOf(parameter.type)?.kind === 'numericTuple')
         const bridgeArguments = (parameters: Declaration['parameters']) => parameters.map((parameter, index) => {
-          const value = valueOf(parameter.type)
+          const value = valueOf(parameter.type, preferNumeric)
           return value && { ...value, field: parameter.name || `argument${index + 1}`, label: parameter.label }
         })
         let argumentsFromSDK = bridgeArguments(method.parameters)
@@ -351,6 +383,9 @@ export function deriveModifiers(
             type, rawString: true, ios: ios(method), ...framework, ...(label === '_' ? {} : { label }) }]
       }
       if (!value || value.kind === 'stringArray' || value.kind === 'stringSet') return []
+      if (value.kind === 'numericStruct' || value.kind === 'numericTuple')
+        return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+          arguments: [{ ...value, field: method.parameters[0].name || 'value', label }], ...framework }]
       const kind = value.kind === 'enum'
         ? value.optional ? 'optionalEnum' : 'string'
         : value.kind === 'url'
@@ -365,8 +400,11 @@ export function deriveModifiers(
       !candidates.some((other, otherIndex) => otherIndex !== index && other.kind === candidate.kind &&
         other.module === candidate.module && other.type === candidate.type && other.label === candidate.label &&
         (other.ios < candidate.ios || (other.ios === candidate.ios && otherIndex < index))))
-    const concrete = unique.filter((candidate) => !candidate.type.startsWith('some '))
-    const preferred = concrete.length ? concrete : unique
+    const establishedValues = unique.filter((candidate) => candidate.kind !== 'record' ||
+      !candidate.arguments?.some((argument) => argument.kind === 'numericStruct' || argument.kind === 'numericTuple'))
+    const valueCandidates = establishedValues.length ? establishedValues : unique
+    const concrete = valueCandidates.filter((candidate) => !candidate.type.startsWith('some '))
+    const preferred = concrete.length ? concrete : valueCandidates
     const established = preferred.filter((candidate) =>
       candidate.kind !== 'record' || !candidate.arguments?.some((argument) => argument.sdkType))
     const selected = established.length ? established : preferred
