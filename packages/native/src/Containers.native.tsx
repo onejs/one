@@ -6,7 +6,7 @@ import {
 } from 'react'
 import { Platform } from 'react-native'
 import { dispatchSDKEvent, swiftStyleNative } from './generated/swiftStyleNative'
-import { viewSlotAvailability } from './generated/viewSlots'
+import { viewSlotArguments, viewSlotAvailability } from './generated/viewSlots'
 import NativeButton from './specs/OneNativeButtonNativeComponent'
 import NativeContainerSlot from './specs/OneNativeContainerSlotNativeComponent'
 import NativeControlGroup from './specs/OneNativeControlGroupNativeComponent'
@@ -620,7 +620,7 @@ function OverlayFn({ alignment = 'center', children, style, ...props }: OverlayP
     throw new Error('Swift.Overlay takes a single Overlay.Content child')
   assertOneNativeChildren(children, 'Swift.Overlay')
   return (
-    <NativeOverlay {...props} style={[{ alignSelf: 'stretch' }, style]} alignment={alignment} slotName="">
+    <NativeOverlay {...props} style={[{ alignSelf: 'stretch' }, style]} alignment={alignment} slotName="" slotValues="[]">
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeOverlay>
   )
@@ -628,7 +628,7 @@ function OverlayFn({ alignment = 'center', children, style, ...props }: OverlayP
 
 export const Overlay = Object.assign(OverlayFn, { Content: OverlayContent })
 
-function ViewSlotFn({ name, children, style, ...props }: ViewSlotProps) {
+function ViewSlotFn({ name, options, children, style, ...props }: ViewSlotProps) {
   if (!Object.hasOwn(viewSlotAvailability, name))
     throw new Error(`unknown Swift.ViewSlot: ${name}`)
   if (Number.parseFloat(String(Platform.Version)) < viewSlotAvailability[name])
@@ -639,8 +639,16 @@ function ViewSlotFn({ name, children, style, ...props }: ViewSlotProps) {
   if (markers.length !== 1)
     throw new Error('Swift.ViewSlot takes one ViewSlot.Content child')
   assertOneNativeChildren(children, 'Swift.ViewSlot')
+  const values = viewSlotArguments[name].map((argument) => {
+    const value = (options as Record<string, string> | undefined)?.[argument.field]
+    if (!value || !Object.hasOwn(argument.cases, value))
+      throw new Error(`Swift.ViewSlot ${name}.${argument.field} must be a declared SDK case`)
+    if (Number.parseFloat(String(Platform.Version)) < (argument.cases as Record<string, number>)[value])
+      throw new Error(`Swift.ViewSlot ${name}.${argument.field}=${value} is unavailable on this iOS version`)
+    return value
+  })
   return (
-    <NativeOverlay {...props} style={[{ alignSelf: 'stretch' }, style]} alignment="center" slotName={name}>
+    <NativeOverlay {...props} style={[{ alignSelf: 'stretch' }, style]} alignment="center" slotName={name} slotValues={JSON.stringify(values)}>
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeOverlay>
   )
