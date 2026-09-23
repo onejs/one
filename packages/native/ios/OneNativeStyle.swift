@@ -81,7 +81,7 @@ public struct OneNativeStyle: Equatable {
 }
 
 extension View {
-  public func oneNativeStyle(_ style: OneNativeStyle) -> some View {
+  public func oneNativeStyle(_ style: OneNativeStyle, emit: @escaping (String, String) -> Void = { _, _ in }) -> some View {
     var view = AnyView(self
       .oneNativeFont(style)
       .oneNativeForegroundStyle(style.foregroundStyle)
@@ -97,135 +97,144 @@ extension View {
       let name = pair[0]
       let value = pair[1]
       switch name {
-      case "accessibilityShowsLargeContentViewer": view = AnyView(view.oneNativeSDKAccessibilityShowsLargeContentViewer(value))
-      case "allowsHitTesting": view = AnyView(view.oneNativeSDKAllowsHitTesting(value))
-      case "allowsTightening": view = AnyView(view.oneNativeSDKAllowsTightening(value))
-      case "allowsWindowActivationEvents": view = AnyView(view.oneNativeSDKAllowsWindowActivationEvents(value))
-      case "autocorrectionDisabled": view = AnyView(view.oneNativeSDKAutocorrectionDisabled(value))
-      case "backgroundExtensionEffect": view = AnyView(view.oneNativeSDKBackgroundExtensionEffect(value))
-      case "badge": view = AnyView(view.oneNativeSDKBadge(value))
-      case "badgeProminence": view = AnyView(view.oneNativeSDKBadgeProminence(value))
-      case "baselineOffset": view = AnyView(view.oneNativeSDKBaselineOffset(value))
-      case "blendMode": view = AnyView(view.oneNativeSDKBlendMode(value))
-      case "bold": view = AnyView(view.oneNativeSDKBold(value))
-      case "brightness": view = AnyView(view.oneNativeSDKBrightness(value))
-      case "buttonBorderShape": view = AnyView(view.oneNativeSDKButtonBorderShape(value))
-      case "buttonRepeatBehavior": view = AnyView(view.oneNativeSDKButtonRepeatBehavior(value))
-      case "buttonSizing": view = AnyView(view.oneNativeSDKButtonSizing(value))
-      case "colorInvert": view = AnyView(view.oneNativeSDKColorInvert(value))
-      case "colorMultiply": view = AnyView(view.oneNativeSDKColorMultiply(value))
-      case "colorScheme": view = AnyView(view.oneNativeSDKColorScheme(value))
-      case "compositingGroup": view = AnyView(view.oneNativeSDKCompositingGroup(value))
-      case "contentTransition": view = AnyView(view.oneNativeSDKContentTransition(value))
-      case "contrast": view = AnyView(view.oneNativeSDKContrast(value))
-      case "controlSize": view = AnyView(view.oneNativeSDKControlSize(value))
-      case "defaultAdaptableTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultAdaptableTabBarPlacement(value))
-      case "defaultTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultTabBarPlacement(value))
-      case "deleteDisabled": view = AnyView(view.oneNativeSDKDeleteDisabled(value))
-      case "disabled": view = AnyView(view.oneNativeSDKDisabled(value))
-      case "dynamicTypeSize": view = AnyView(view.oneNativeSDKDynamicTypeSize(value))
-      case "edgesIgnoringSafeArea": view = AnyView(view.oneNativeSDKEdgesIgnoringSafeArea(value))
-      case "fileDialogBrowserOptions": view = AnyView(view.oneNativeSDKFileDialogBrowserOptions(value))
-      case "fileDialogCustomizationID": view = AnyView(view.oneNativeSDKFileDialogCustomizationID(value))
-      case "fileDialogImportsUnresolvedAliases": view = AnyView(view.oneNativeSDKFileDialogImportsUnresolvedAliases(value))
-      case "findDisabled": view = AnyView(view.oneNativeSDKFindDisabled(value))
-      case "fixedSize": view = AnyView(view.oneNativeSDKFixedSize(value))
-      case "flipsForRightToLeftLayoutDirection": view = AnyView(view.oneNativeSDKFlipsForRightToLeftLayoutDirection(value))
-      case "focusable": view = AnyView(view.oneNativeSDKFocusable(value))
-      case "focusEffectDisabled": view = AnyView(view.oneNativeSDKFocusEffectDisabled(value))
-      case "geometryGroup": view = AnyView(view.oneNativeSDKGeometryGroup(value))
-      case "glassEffectTransition": view = AnyView(view.oneNativeSDKGlassEffectTransition(value))
-      case "grayscale": view = AnyView(view.oneNativeSDKGrayscale(value))
-      case "gridCellAnchor": view = AnyView(view.oneNativeSDKGridCellAnchor(value))
-      case "gridCellColumns": view = AnyView(view.oneNativeSDKGridCellColumns(value))
-      case "gridCellUnsizedAxes": view = AnyView(view.oneNativeSDKGridCellUnsizedAxes(value))
-      case "gridColumnAlignment": view = AnyView(view.oneNativeSDKGridColumnAlignment(value))
-      case "headerProminence": view = AnyView(view.oneNativeSDKHeaderProminence(value))
-      case "hidden": view = AnyView(view.oneNativeSDKHidden(value))
-      case "hoverEffect": view = AnyView(view.oneNativeSDKHoverEffect(value))
-      case "hoverEffectDisabled": view = AnyView(view.oneNativeSDKHoverEffectDisabled(value))
-      case "hueRotation": view = AnyView(view.oneNativeSDKHueRotation(value))
-      case "inspectorColumnWidth": view = AnyView(view.oneNativeSDKInspectorColumnWidth(value))
-      case "interactionActivityTrackingTag": view = AnyView(view.oneNativeSDKInteractionActivityTrackingTag(value))
-      case "interactiveDismissDisabled": view = AnyView(view.oneNativeSDKInteractiveDismissDisabled(value))
-      case "invalidatableContent": view = AnyView(view.oneNativeSDKInvalidatableContent(value))
-      case "italic": view = AnyView(view.oneNativeSDKItalic(value))
-      case "kerning": view = AnyView(view.oneNativeSDKKerning(value))
-      case "keyboardShortcut": view = AnyView(view.oneNativeSDKKeyboardShortcut(value))
-      case "labelIconToTitleSpacing": view = AnyView(view.oneNativeSDKLabelIconToTitleSpacing(value))
-      case "labelReservedIconWidth": view = AnyView(view.oneNativeSDKLabelReservedIconWidth(value))
-      case "labelsHidden": view = AnyView(view.oneNativeSDKLabelsHidden(value))
-      case "labelsVisibility": view = AnyView(view.oneNativeSDKLabelsVisibility(value))
-      case "layoutDirectionBehavior": view = AnyView(view.oneNativeSDKLayoutDirectionBehavior(value))
-      case "layoutPriority": view = AnyView(view.oneNativeSDKLayoutPriority(value))
-      case "lineSpacing": view = AnyView(view.oneNativeSDKLineSpacing(value))
-      case "listSectionIndexVisibility": view = AnyView(view.oneNativeSDKListSectionIndexVisibility(value))
-      case "luminanceToAlpha": view = AnyView(view.oneNativeSDKLuminanceToAlpha(value))
-      case "materialActiveAppearance": view = AnyView(view.oneNativeSDKMaterialActiveAppearance(value))
-      case "menuActionDismissBehavior": view = AnyView(view.oneNativeSDKMenuActionDismissBehavior(value))
-      case "menuIndicator": view = AnyView(view.oneNativeSDKMenuIndicator(value))
-      case "menuOrder": view = AnyView(view.oneNativeSDKMenuOrder(value))
-      case "minimumScaleFactor": view = AnyView(view.oneNativeSDKMinimumScaleFactor(value))
-      case "monospaced": view = AnyView(view.oneNativeSDKMonospaced(value))
-      case "monospacedDigit": view = AnyView(view.oneNativeSDKMonospacedDigit(value))
-      case "moveDisabled": view = AnyView(view.oneNativeSDKMoveDisabled(value))
-      case "multilineTextAlignment": view = AnyView(view.oneNativeSDKMultilineTextAlignment(value))
-      case "navigationBarBackButtonHidden": view = AnyView(view.oneNativeSDKNavigationBarBackButtonHidden(value))
-      case "navigationBarHidden": view = AnyView(view.oneNativeSDKNavigationBarHidden(value))
-      case "navigationLinkIndicatorVisibility": view = AnyView(view.oneNativeSDKNavigationLinkIndicatorVisibility(value))
-      case "navigationSplitViewColumnWidth": view = AnyView(view.oneNativeSDKNavigationSplitViewColumnWidth(value))
-      case "paletteSelectionEffect": view = AnyView(view.oneNativeSDKPaletteSelectionEffect(value))
-      case "payWithApplePayButtonDisableCardArt": view = AnyView(view.oneNativeSDKPayWithApplePayButtonDisableCardArt(value))
-      case "persistentSystemOverlays": view = AnyView(view.oneNativeSDKPersistentSystemOverlays(value))
-      case "presentationBackgroundInteraction": view = AnyView(view.oneNativeSDKPresentationBackgroundInteraction(value))
-      case "presentationCompactAdaptation": view = AnyView(view.oneNativeSDKPresentationCompactAdaptation(value))
-      case "presentationContentInteraction": view = AnyView(view.oneNativeSDKPresentationContentInteraction(value))
-      case "presentationDragIndicator": view = AnyView(view.oneNativeSDKPresentationDragIndicator(value))
-      case "presentationPlacement": view = AnyView(view.oneNativeSDKPresentationPlacement(value))
-      case "previewInterfaceOrientation": view = AnyView(view.oneNativeSDKPreviewInterfaceOrientation(value))
-      case "privacySensitive": view = AnyView(view.oneNativeSDKPrivacySensitive(value))
-      case "productIconBorder": view = AnyView(view.oneNativeSDKProductIconBorder(value))
-      case "replaceDisabled": view = AnyView(view.oneNativeSDKReplaceDisabled(value))
-      case "safeAreaPadding": view = AnyView(view.oneNativeSDKSafeAreaPadding(value))
-      case "saturation": view = AnyView(view.oneNativeSDKSaturation(value))
-      case "scaledToFill": view = AnyView(view.oneNativeSDKScaledToFill(value))
-      case "scaledToFit": view = AnyView(view.oneNativeSDKScaledToFit(value))
-      case "scenePadding": view = AnyView(view.oneNativeSDKScenePadding(value))
-      case "scrollClipDisabled": view = AnyView(view.oneNativeSDKScrollClipDisabled(value))
-      case "scrollContentBackground": view = AnyView(view.oneNativeSDKScrollContentBackground(value))
-      case "scrollDisabled": view = AnyView(view.oneNativeSDKScrollDisabled(value))
-      case "scrollDismissesKeyboard": view = AnyView(view.oneNativeSDKScrollDismissesKeyboard(value))
-      case "searchCompletion": view = AnyView(view.oneNativeSDKSearchCompletion(value))
-      case "searchDictationBehavior": view = AnyView(view.oneNativeSDKSearchDictationBehavior(value))
-      case "searchPresentationToolbarBehavior": view = AnyView(view.oneNativeSDKSearchPresentationToolbarBehavior(value))
-      case "searchToolbarBehavior": view = AnyView(view.oneNativeSDKSearchToolbarBehavior(value))
-      case "selectionDisabled": view = AnyView(view.oneNativeSDKSelectionDisabled(value))
-      case "sliderThumbVisibility": view = AnyView(view.oneNativeSDKSliderThumbVisibility(value))
-      case "speechAdjustedPitch": view = AnyView(view.oneNativeSDKSpeechAdjustedPitch(value))
-      case "speechAlwaysIncludesPunctuation": view = AnyView(view.oneNativeSDKSpeechAlwaysIncludesPunctuation(value))
-      case "speechAnnouncementsQueued": view = AnyView(view.oneNativeSDKSpeechAnnouncementsQueued(value))
-      case "speechSpellsOutCharacters": view = AnyView(view.oneNativeSDKSpeechSpellsOutCharacters(value))
-      case "springLoadingBehavior": view = AnyView(view.oneNativeSDKSpringLoadingBehavior(value))
-      case "statusBarHidden": view = AnyView(view.oneNativeSDKStatusBarHidden(value))
-      case "submitLabel": view = AnyView(view.oneNativeSDKSubmitLabel(value))
-      case "submitScope": view = AnyView(view.oneNativeSDKSubmitScope(value))
-      case "swipeActionsContainer": view = AnyView(view.oneNativeSDKSwipeActionsContainer(value))
-      case "symbolEffectsRemoved": view = AnyView(view.oneNativeSDKSymbolEffectsRemoved(value))
-      case "symbolVariant": view = AnyView(view.oneNativeSDKSymbolVariant(value))
-      case "tabBarMinimizeBehavior": view = AnyView(view.oneNativeSDKTabBarMinimizeBehavior(value))
-      case "tableColumnHeaders": view = AnyView(view.oneNativeSDKTableColumnHeaders(value))
-      case "tabViewSearchActivation": view = AnyView(view.oneNativeSDKTabViewSearchActivation(value))
-      case "textInputBorderShape": view = AnyView(view.oneNativeSDKTextInputBorderShape(value))
-      case "textSelectionAffinity": view = AnyView(view.oneNativeSDKTextSelectionAffinity(value))
-      case "toolbarRole": view = AnyView(view.oneNativeSDKToolbarRole(value))
-      case "toolbarTitleDisplayMode": view = AnyView(view.oneNativeSDKToolbarTitleDisplayMode(value))
-      case "tracking": view = AnyView(view.oneNativeSDKTracking(value))
-      case "transition": view = AnyView(view.oneNativeSDKTransition(value))
-      case "unredacted": view = AnyView(view.oneNativeSDKUnredacted(value))
-      case "windowToolbarFullScreenVisibility": view = AnyView(view.oneNativeSDKWindowToolbarFullScreenVisibility(value))
-      case "writingToolsAffordanceVisibility": view = AnyView(view.oneNativeSDKWritingToolsAffordanceVisibility(value))
-      case "writingToolsBehavior": view = AnyView(view.oneNativeSDKWritingToolsBehavior(value))
-      case "zIndex": view = AnyView(view.oneNativeSDKZIndex(value))
+      case "accessibilityShowsLargeContentViewer": view = AnyView(view.oneNativeSDKAccessibilityShowsLargeContentViewer(value, emit: emit))
+      case "allowsHitTesting": view = AnyView(view.oneNativeSDKAllowsHitTesting(value, emit: emit))
+      case "allowsTightening": view = AnyView(view.oneNativeSDKAllowsTightening(value, emit: emit))
+      case "allowsWindowActivationEvents": view = AnyView(view.oneNativeSDKAllowsWindowActivationEvents(value, emit: emit))
+      case "autocorrectionDisabled": view = AnyView(view.oneNativeSDKAutocorrectionDisabled(value, emit: emit))
+      case "backgroundExtensionEffect": view = AnyView(view.oneNativeSDKBackgroundExtensionEffect(value, emit: emit))
+      case "badge": view = AnyView(view.oneNativeSDKBadge(value, emit: emit))
+      case "badgeProminence": view = AnyView(view.oneNativeSDKBadgeProminence(value, emit: emit))
+      case "baselineOffset": view = AnyView(view.oneNativeSDKBaselineOffset(value, emit: emit))
+      case "blendMode": view = AnyView(view.oneNativeSDKBlendMode(value, emit: emit))
+      case "bold": view = AnyView(view.oneNativeSDKBold(value, emit: emit))
+      case "brightness": view = AnyView(view.oneNativeSDKBrightness(value, emit: emit))
+      case "buttonBorderShape": view = AnyView(view.oneNativeSDKButtonBorderShape(value, emit: emit))
+      case "buttonRepeatBehavior": view = AnyView(view.oneNativeSDKButtonRepeatBehavior(value, emit: emit))
+      case "buttonSizing": view = AnyView(view.oneNativeSDKButtonSizing(value, emit: emit))
+      case "colorInvert": view = AnyView(view.oneNativeSDKColorInvert(value, emit: emit))
+      case "colorMultiply": view = AnyView(view.oneNativeSDKColorMultiply(value, emit: emit))
+      case "colorScheme": view = AnyView(view.oneNativeSDKColorScheme(value, emit: emit))
+      case "compositingGroup": view = AnyView(view.oneNativeSDKCompositingGroup(value, emit: emit))
+      case "contentTransition": view = AnyView(view.oneNativeSDKContentTransition(value, emit: emit))
+      case "contrast": view = AnyView(view.oneNativeSDKContrast(value, emit: emit))
+      case "controlSize": view = AnyView(view.oneNativeSDKControlSize(value, emit: emit))
+      case "defaultAdaptableTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultAdaptableTabBarPlacement(value, emit: emit))
+      case "defaultTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultTabBarPlacement(value, emit: emit))
+      case "deleteDisabled": view = AnyView(view.oneNativeSDKDeleteDisabled(value, emit: emit))
+      case "dialogSuppressionToggle": view = AnyView(view.oneNativeSDKDialogSuppressionToggle(value, emit: emit))
+      case "disabled": view = AnyView(view.oneNativeSDKDisabled(value, emit: emit))
+      case "dynamicTypeSize": view = AnyView(view.oneNativeSDKDynamicTypeSize(value, emit: emit))
+      case "edgesIgnoringSafeArea": view = AnyView(view.oneNativeSDKEdgesIgnoringSafeArea(value, emit: emit))
+      case "fileDialogBrowserOptions": view = AnyView(view.oneNativeSDKFileDialogBrowserOptions(value, emit: emit))
+      case "fileDialogCustomizationID": view = AnyView(view.oneNativeSDKFileDialogCustomizationID(value, emit: emit))
+      case "fileDialogImportsUnresolvedAliases": view = AnyView(view.oneNativeSDKFileDialogImportsUnresolvedAliases(value, emit: emit))
+      case "findDisabled": view = AnyView(view.oneNativeSDKFindDisabled(value, emit: emit))
+      case "findNavigator": view = AnyView(view.oneNativeSDKFindNavigator(value, emit: emit))
+      case "fixedSize": view = AnyView(view.oneNativeSDKFixedSize(value, emit: emit))
+      case "flipsForRightToLeftLayoutDirection": view = AnyView(view.oneNativeSDKFlipsForRightToLeftLayoutDirection(value, emit: emit))
+      case "focusable": view = AnyView(view.oneNativeSDKFocusable(value, emit: emit))
+      case "focusEffectDisabled": view = AnyView(view.oneNativeSDKFocusEffectDisabled(value, emit: emit))
+      case "geometryGroup": view = AnyView(view.oneNativeSDKGeometryGroup(value, emit: emit))
+      case "glassEffectTransition": view = AnyView(view.oneNativeSDKGlassEffectTransition(value, emit: emit))
+      case "grayscale": view = AnyView(view.oneNativeSDKGrayscale(value, emit: emit))
+      case "gridCellAnchor": view = AnyView(view.oneNativeSDKGridCellAnchor(value, emit: emit))
+      case "gridCellColumns": view = AnyView(view.oneNativeSDKGridCellColumns(value, emit: emit))
+      case "gridCellUnsizedAxes": view = AnyView(view.oneNativeSDKGridCellUnsizedAxes(value, emit: emit))
+      case "gridColumnAlignment": view = AnyView(view.oneNativeSDKGridColumnAlignment(value, emit: emit))
+      case "headerProminence": view = AnyView(view.oneNativeSDKHeaderProminence(value, emit: emit))
+      case "hidden": view = AnyView(view.oneNativeSDKHidden(value, emit: emit))
+      case "hoverEffect": view = AnyView(view.oneNativeSDKHoverEffect(value, emit: emit))
+      case "hoverEffectDisabled": view = AnyView(view.oneNativeSDKHoverEffectDisabled(value, emit: emit))
+      case "hueRotation": view = AnyView(view.oneNativeSDKHueRotation(value, emit: emit))
+      case "inspectorColumnWidth": view = AnyView(view.oneNativeSDKInspectorColumnWidth(value, emit: emit))
+      case "interactionActivityTrackingTag": view = AnyView(view.oneNativeSDKInteractionActivityTrackingTag(value, emit: emit))
+      case "interactiveDismissDisabled": view = AnyView(view.oneNativeSDKInteractiveDismissDisabled(value, emit: emit))
+      case "invalidatableContent": view = AnyView(view.oneNativeSDKInvalidatableContent(value, emit: emit))
+      case "italic": view = AnyView(view.oneNativeSDKItalic(value, emit: emit))
+      case "kerning": view = AnyView(view.oneNativeSDKKerning(value, emit: emit))
+      case "keyboardShortcut": view = AnyView(view.oneNativeSDKKeyboardShortcut(value, emit: emit))
+      case "labelIconToTitleSpacing": view = AnyView(view.oneNativeSDKLabelIconToTitleSpacing(value, emit: emit))
+      case "labelReservedIconWidth": view = AnyView(view.oneNativeSDKLabelReservedIconWidth(value, emit: emit))
+      case "labelsHidden": view = AnyView(view.oneNativeSDKLabelsHidden(value, emit: emit))
+      case "labelsVisibility": view = AnyView(view.oneNativeSDKLabelsVisibility(value, emit: emit))
+      case "layoutDirectionBehavior": view = AnyView(view.oneNativeSDKLayoutDirectionBehavior(value, emit: emit))
+      case "layoutPriority": view = AnyView(view.oneNativeSDKLayoutPriority(value, emit: emit))
+      case "lineSpacing": view = AnyView(view.oneNativeSDKLineSpacing(value, emit: emit))
+      case "listSectionIndexVisibility": view = AnyView(view.oneNativeSDKListSectionIndexVisibility(value, emit: emit))
+      case "luminanceToAlpha": view = AnyView(view.oneNativeSDKLuminanceToAlpha(value, emit: emit))
+      case "materialActiveAppearance": view = AnyView(view.oneNativeSDKMaterialActiveAppearance(value, emit: emit))
+      case "menuActionDismissBehavior": view = AnyView(view.oneNativeSDKMenuActionDismissBehavior(value, emit: emit))
+      case "menuIndicator": view = AnyView(view.oneNativeSDKMenuIndicator(value, emit: emit))
+      case "menuOrder": view = AnyView(view.oneNativeSDKMenuOrder(value, emit: emit))
+      case "minimumScaleFactor": view = AnyView(view.oneNativeSDKMinimumScaleFactor(value, emit: emit))
+      case "monospaced": view = AnyView(view.oneNativeSDKMonospaced(value, emit: emit))
+      case "monospacedDigit": view = AnyView(view.oneNativeSDKMonospacedDigit(value, emit: emit))
+      case "moveDisabled": view = AnyView(view.oneNativeSDKMoveDisabled(value, emit: emit))
+      case "multilineTextAlignment": view = AnyView(view.oneNativeSDKMultilineTextAlignment(value, emit: emit))
+      case "navigationBarBackButtonHidden": view = AnyView(view.oneNativeSDKNavigationBarBackButtonHidden(value, emit: emit))
+      case "navigationBarHidden": view = AnyView(view.oneNativeSDKNavigationBarHidden(value, emit: emit))
+      case "navigationLinkIndicatorVisibility": view = AnyView(view.oneNativeSDKNavigationLinkIndicatorVisibility(value, emit: emit))
+      case "navigationSplitViewColumnWidth": view = AnyView(view.oneNativeSDKNavigationSplitViewColumnWidth(value, emit: emit))
+      case "navigationTitle": view = AnyView(view.oneNativeSDKNavigationTitle(value, emit: emit))
+      case "onAppear": view = AnyView(view.oneNativeSDKOnAppear(value, emit: emit))
+      case "onDisappear": view = AnyView(view.oneNativeSDKOnDisappear(value, emit: emit))
+      case "onSubmit": view = AnyView(view.oneNativeSDKOnSubmit(value, emit: emit))
+      case "onTapGesture": view = AnyView(view.oneNativeSDKOnTapGesture(value, emit: emit))
+      case "paletteSelectionEffect": view = AnyView(view.oneNativeSDKPaletteSelectionEffect(value, emit: emit))
+      case "payWithApplePayButtonDisableCardArt": view = AnyView(view.oneNativeSDKPayWithApplePayButtonDisableCardArt(value, emit: emit))
+      case "persistentSystemOverlays": view = AnyView(view.oneNativeSDKPersistentSystemOverlays(value, emit: emit))
+      case "presentationBackgroundInteraction": view = AnyView(view.oneNativeSDKPresentationBackgroundInteraction(value, emit: emit))
+      case "presentationCompactAdaptation": view = AnyView(view.oneNativeSDKPresentationCompactAdaptation(value, emit: emit))
+      case "presentationContentInteraction": view = AnyView(view.oneNativeSDKPresentationContentInteraction(value, emit: emit))
+      case "presentationDragIndicator": view = AnyView(view.oneNativeSDKPresentationDragIndicator(value, emit: emit))
+      case "presentationPlacement": view = AnyView(view.oneNativeSDKPresentationPlacement(value, emit: emit))
+      case "previewInterfaceOrientation": view = AnyView(view.oneNativeSDKPreviewInterfaceOrientation(value, emit: emit))
+      case "privacySensitive": view = AnyView(view.oneNativeSDKPrivacySensitive(value, emit: emit))
+      case "productIconBorder": view = AnyView(view.oneNativeSDKProductIconBorder(value, emit: emit))
+      case "renameAction": view = AnyView(view.oneNativeSDKRenameAction(value, emit: emit))
+      case "replaceDisabled": view = AnyView(view.oneNativeSDKReplaceDisabled(value, emit: emit))
+      case "safeAreaPadding": view = AnyView(view.oneNativeSDKSafeAreaPadding(value, emit: emit))
+      case "saturation": view = AnyView(view.oneNativeSDKSaturation(value, emit: emit))
+      case "scaledToFill": view = AnyView(view.oneNativeSDKScaledToFill(value, emit: emit))
+      case "scaledToFit": view = AnyView(view.oneNativeSDKScaledToFit(value, emit: emit))
+      case "scenePadding": view = AnyView(view.oneNativeSDKScenePadding(value, emit: emit))
+      case "scrollClipDisabled": view = AnyView(view.oneNativeSDKScrollClipDisabled(value, emit: emit))
+      case "scrollContentBackground": view = AnyView(view.oneNativeSDKScrollContentBackground(value, emit: emit))
+      case "scrollDisabled": view = AnyView(view.oneNativeSDKScrollDisabled(value, emit: emit))
+      case "scrollDismissesKeyboard": view = AnyView(view.oneNativeSDKScrollDismissesKeyboard(value, emit: emit))
+      case "searchable": view = AnyView(view.oneNativeSDKSearchable(value, emit: emit))
+      case "searchCompletion": view = AnyView(view.oneNativeSDKSearchCompletion(value, emit: emit))
+      case "searchDictationBehavior": view = AnyView(view.oneNativeSDKSearchDictationBehavior(value, emit: emit))
+      case "searchPresentationToolbarBehavior": view = AnyView(view.oneNativeSDKSearchPresentationToolbarBehavior(value, emit: emit))
+      case "searchToolbarBehavior": view = AnyView(view.oneNativeSDKSearchToolbarBehavior(value, emit: emit))
+      case "selectionDisabled": view = AnyView(view.oneNativeSDKSelectionDisabled(value, emit: emit))
+      case "sliderThumbVisibility": view = AnyView(view.oneNativeSDKSliderThumbVisibility(value, emit: emit))
+      case "speechAdjustedPitch": view = AnyView(view.oneNativeSDKSpeechAdjustedPitch(value, emit: emit))
+      case "speechAlwaysIncludesPunctuation": view = AnyView(view.oneNativeSDKSpeechAlwaysIncludesPunctuation(value, emit: emit))
+      case "speechAnnouncementsQueued": view = AnyView(view.oneNativeSDKSpeechAnnouncementsQueued(value, emit: emit))
+      case "speechSpellsOutCharacters": view = AnyView(view.oneNativeSDKSpeechSpellsOutCharacters(value, emit: emit))
+      case "springLoadingBehavior": view = AnyView(view.oneNativeSDKSpringLoadingBehavior(value, emit: emit))
+      case "statusBarHidden": view = AnyView(view.oneNativeSDKStatusBarHidden(value, emit: emit))
+      case "submitLabel": view = AnyView(view.oneNativeSDKSubmitLabel(value, emit: emit))
+      case "submitScope": view = AnyView(view.oneNativeSDKSubmitScope(value, emit: emit))
+      case "swipeActionsContainer": view = AnyView(view.oneNativeSDKSwipeActionsContainer(value, emit: emit))
+      case "symbolEffectsRemoved": view = AnyView(view.oneNativeSDKSymbolEffectsRemoved(value, emit: emit))
+      case "symbolVariant": view = AnyView(view.oneNativeSDKSymbolVariant(value, emit: emit))
+      case "tabBarMinimizeBehavior": view = AnyView(view.oneNativeSDKTabBarMinimizeBehavior(value, emit: emit))
+      case "tableColumnHeaders": view = AnyView(view.oneNativeSDKTableColumnHeaders(value, emit: emit))
+      case "tabViewSearchActivation": view = AnyView(view.oneNativeSDKTabViewSearchActivation(value, emit: emit))
+      case "textInputBorderShape": view = AnyView(view.oneNativeSDKTextInputBorderShape(value, emit: emit))
+      case "textSelectionAffinity": view = AnyView(view.oneNativeSDKTextSelectionAffinity(value, emit: emit))
+      case "toolbarRole": view = AnyView(view.oneNativeSDKToolbarRole(value, emit: emit))
+      case "toolbarTitleDisplayMode": view = AnyView(view.oneNativeSDKToolbarTitleDisplayMode(value, emit: emit))
+      case "tracking": view = AnyView(view.oneNativeSDKTracking(value, emit: emit))
+      case "transition": view = AnyView(view.oneNativeSDKTransition(value, emit: emit))
+      case "unredacted": view = AnyView(view.oneNativeSDKUnredacted(value, emit: emit))
+      case "windowToolbarFullScreenVisibility": view = AnyView(view.oneNativeSDKWindowToolbarFullScreenVisibility(value, emit: emit))
+      case "writingToolsAffordanceVisibility": view = AnyView(view.oneNativeSDKWritingToolsAffordanceVisibility(value, emit: emit))
+      case "writingToolsBehavior": view = AnyView(view.oneNativeSDKWritingToolsBehavior(value, emit: emit))
+      case "zIndex": view = AnyView(view.oneNativeSDKZIndex(value, emit: emit))
       default: preconditionFailure("unknown sdk modifier: \(name)")
       }
     }
@@ -418,43 +427,43 @@ extension OneNativeStyle {
 }
 
 extension View {
-  @ViewBuilder fileprivate func oneNativeSDKAccessibilityShowsLargeContentViewer(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityShowsLargeContentViewer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid accessibilityShowsLargeContentViewer: \(value)")
     if value == "true" { self.accessibilityShowsLargeContentViewer() } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKAllowsHitTesting(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKAllowsHitTesting(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid allowsHitTesting: \(value)")
       self.allowsHitTesting(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKAllowsTightening(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKAllowsTightening(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid allowsTightening: \(value)")
       self.allowsTightening(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKAllowsWindowActivationEvents(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKAllowsWindowActivationEvents(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid allowsWindowActivationEvents: \(value)")
     if value == "true" { if #available(iOS 18, *) { self.allowsWindowActivationEvents() } else { self } } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKAutocorrectionDisabled(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKAutocorrectionDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid autocorrectionDisabled: \(value)")
       self.autocorrectionDisabled(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKBackgroundExtensionEffect(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKBackgroundExtensionEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid backgroundExtensionEffect: \(value)")
     if value == "true" { if #available(iOS 26, *) { self.backgroundExtensionEffect() } else { self } } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKBadge(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKBadge(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.badge(Int(number))
       } else { preconditionFailure("invalid badge: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKBadgeProminence(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKBadgeProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "decreased": self.badgeProminence(.decreased)
       case "standard": self.badgeProminence(.standard)
@@ -463,13 +472,13 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKBaselineOffset(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKBaselineOffset(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.baselineOffset(CGFloat(number))
       } else { preconditionFailure("invalid baselineOffset: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKBlendMode(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKBlendMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "normal": self.blendMode(.normal)
       case "multiply": self.blendMode(.multiply)
@@ -496,18 +505,18 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKBold(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKBold(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid bold: \(value)")
       self.bold(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKBrightness(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKBrightness(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.brightness(number)
       } else { preconditionFailure("invalid brightness: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKButtonBorderShape(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKButtonBorderShape(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.buttonBorderShape(.automatic)
       case "capsule": self.buttonBorderShape(.capsule)
@@ -517,7 +526,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKButtonRepeatBehavior(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKButtonRepeatBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.buttonRepeatBehavior(.automatic)
       case "enabled": self.buttonRepeatBehavior(.enabled)
@@ -526,7 +535,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKButtonSizing(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKButtonSizing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 26, *) { self.buttonSizing(.automatic) } else { self }
       case "flexible": if #available(iOS 26, *) { self.buttonSizing(.flexible) } else { self }
@@ -535,12 +544,12 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKColorInvert(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKColorInvert(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid colorInvert: \(value)")
     if value == "true" { self.colorInvert() } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKColorMultiply(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKColorMultiply(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "accentColor": self.colorMultiply(.accentColor)
       case "red": self.colorMultiply(.red)
@@ -565,7 +574,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKColorScheme(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "light": self.colorScheme(.light)
       case "dark": self.colorScheme(.dark)
@@ -573,12 +582,12 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKCompositingGroup(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKCompositingGroup(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid compositingGroup: \(value)")
     if value == "true" { self.compositingGroup() } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKContentTransition(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKContentTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "symbolEffect": self.contentTransition(.symbolEffect)
       case "identity": self.contentTransition(.identity)
@@ -588,13 +597,13 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKContrast(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKContrast(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.contrast(number)
       } else { preconditionFailure("invalid contrast: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKControlSize(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKControlSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "mini": self.controlSize(.mini)
       case "small": self.controlSize(.small)
@@ -605,7 +614,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKDefaultAdaptableTabBarPlacement(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKDefaultAdaptableTabBarPlacement(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 18, *) { self.defaultAdaptableTabBarPlacement(.automatic) } else { self }
       case "tabBar": if #available(iOS 18, *) { self.defaultAdaptableTabBarPlacement(.tabBar) } else { self }
@@ -614,7 +623,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKDefaultTabBarPlacement(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKDefaultTabBarPlacement(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 27, *) { self.defaultTabBarPlacement(.automatic) } else { self }
       case "tabBar": if #available(iOS 27, *) { self.defaultTabBarPlacement(.tabBar) } else { self }
@@ -623,17 +632,22 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKDeleteDisabled(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKDeleteDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid deleteDisabled: \(value)")
       self.deleteDisabled(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKDisabled(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKDialogSuppressionToggle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid dialogSuppressionToggle: \(value)")
+    self.dialogSuppressionToggle(isSuppressed: Binding(get: { value == "true" }, set: { emit("dialogSuppressionToggle", String($0)) }))
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid disabled: \(value)")
       self.disabled(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKDynamicTypeSize(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKDynamicTypeSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "xSmall": self.dynamicTypeSize(.xSmall)
       case "small": self.dynamicTypeSize(.small)
@@ -651,7 +665,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKEdgesIgnoringSafeArea(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKEdgesIgnoringSafeArea(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "top": self.edgesIgnoringSafeArea(.top)
       case "leading": self.edgesIgnoringSafeArea(.leading)
@@ -664,7 +678,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKFileDialogBrowserOptions(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKFileDialogBrowserOptions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "enumeratePackages": self.fileDialogBrowserOptions(.enumeratePackages)
       case "includeHiddenFiles": self.fileDialogBrowserOptions(.includeHiddenFiles)
@@ -673,46 +687,51 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKFileDialogCustomizationID(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKFileDialogCustomizationID(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       self.fileDialogCustomizationID(value)
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKFileDialogImportsUnresolvedAliases(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKFileDialogImportsUnresolvedAliases(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid fileDialogImportsUnresolvedAliases: \(value)")
       self.fileDialogImportsUnresolvedAliases(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKFindDisabled(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKFindDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid findDisabled: \(value)")
       self.findDisabled(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKFixedSize(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKFindNavigator(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid findNavigator: \(value)")
+    self.findNavigator(isPresented: Binding(get: { value == "true" }, set: { emit("findNavigator", String($0)) }))
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFixedSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid fixedSize: \(value)")
     if value == "true" { self.fixedSize() } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKFlipsForRightToLeftLayoutDirection(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKFlipsForRightToLeftLayoutDirection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid flipsForRightToLeftLayoutDirection: \(value)")
       self.flipsForRightToLeftLayoutDirection(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKFocusable(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKFocusable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid focusable: \(value)")
       self.focusable(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKFocusEffectDisabled(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKFocusEffectDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid focusEffectDisabled: \(value)")
       self.focusEffectDisabled(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKGeometryGroup(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKGeometryGroup(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid geometryGroup: \(value)")
     if value == "true" { self.geometryGroup() } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKGlassEffectTransition(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKGlassEffectTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "matchedGeometry": if #available(iOS 26, *) { self.glassEffectTransition(.matchedGeometry) } else { self }
       case "materialize": if #available(iOS 26, *) { self.glassEffectTransition(.materialize) } else { self }
@@ -721,13 +740,13 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKGrayscale(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKGrayscale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.grayscale(number)
       } else { preconditionFailure("invalid grayscale: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKGridCellAnchor(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKGridCellAnchor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "zero": self.gridCellAnchor(.zero)
       case "center": self.gridCellAnchor(.center)
@@ -743,13 +762,13 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKGridCellColumns(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKGridCellColumns(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.gridCellColumns(Int(number))
       } else { preconditionFailure("invalid gridCellColumns: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKGridCellUnsizedAxes(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKGridCellUnsizedAxes(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "horizontal": self.gridCellUnsizedAxes(.horizontal)
       case "vertical": self.gridCellUnsizedAxes(.vertical)
@@ -757,7 +776,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKGridColumnAlignment(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKGridColumnAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "leading": self.gridColumnAlignment(.leading)
       case "center": self.gridColumnAlignment(.center)
@@ -768,7 +787,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKHeaderProminence(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKHeaderProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "standard": self.headerProminence(.standard)
       case "increased": self.headerProminence(.increased)
@@ -776,12 +795,12 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKHidden(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKHidden(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid hidden: \(value)")
     if value == "true" { self.hidden() } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKHoverEffect(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKHoverEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.hoverEffect(.automatic)
       case "highlight": self.hoverEffect(.highlight)
@@ -790,50 +809,50 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKHoverEffectDisabled(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKHoverEffectDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid hoverEffectDisabled: \(value)")
       self.hoverEffectDisabled(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKHueRotation(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKHueRotation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "zero": self.hueRotation(.zero)
     default: preconditionFailure("invalid hueRotation: \(value)")
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKInspectorColumnWidth(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKInspectorColumnWidth(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.inspectorColumnWidth(CGFloat(number))
       } else { preconditionFailure("invalid inspectorColumnWidth: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKInteractionActivityTrackingTag(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKInteractionActivityTrackingTag(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       self.interactionActivityTrackingTag(value)
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKInteractiveDismissDisabled(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKInteractiveDismissDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid interactiveDismissDisabled: \(value)")
       self.interactiveDismissDisabled(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKInvalidatableContent(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKInvalidatableContent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid invalidatableContent: \(value)")
       self.invalidatableContent(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKItalic(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKItalic(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid italic: \(value)")
       self.italic(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKKerning(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKKerning(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.kerning(CGFloat(number))
       } else { preconditionFailure("invalid kerning: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKKeyboardShortcut(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKKeyboardShortcut(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "defaultAction": self.keyboardShortcut(.defaultAction)
       case "cancelAction": self.keyboardShortcut(.cancelAction)
@@ -841,24 +860,24 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKLabelIconToTitleSpacing(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKLabelIconToTitleSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         if #available(iOS 26, *) { self.labelIconToTitleSpacing(CGFloat(number)) } else { self }
       } else { preconditionFailure("invalid labelIconToTitleSpacing: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKLabelReservedIconWidth(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKLabelReservedIconWidth(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         if #available(iOS 26, *) { self.labelReservedIconWidth(CGFloat(number)) } else { self }
       } else { preconditionFailure("invalid labelReservedIconWidth: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKLabelsHidden(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKLabelsHidden(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid labelsHidden: \(value)")
     if value == "true" { self.labelsHidden() } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKLabelsVisibility(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKLabelsVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 18, *) { self.labelsVisibility(.automatic) } else { self }
       case "visible": if #available(iOS 18, *) { self.labelsVisibility(.visible) } else { self }
@@ -867,7 +886,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKLayoutDirectionBehavior(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKLayoutDirectionBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "fixed": self.layoutDirectionBehavior(.fixed)
       case "mirrors": self.layoutDirectionBehavior(.mirrors)
@@ -875,19 +894,19 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKLayoutPriority(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKLayoutPriority(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.layoutPriority(number)
       } else { preconditionFailure("invalid layoutPriority: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKLineSpacing(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKLineSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.lineSpacing(CGFloat(number))
       } else { preconditionFailure("invalid lineSpacing: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKListSectionIndexVisibility(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKListSectionIndexVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 26, *) { self.listSectionIndexVisibility(.automatic) } else { self }
       case "visible": if #available(iOS 26, *) { self.listSectionIndexVisibility(.visible) } else { self }
@@ -896,12 +915,12 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKLuminanceToAlpha(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKLuminanceToAlpha(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid luminanceToAlpha: \(value)")
     if value == "true" { self.luminanceToAlpha() } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKMaterialActiveAppearance(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKMaterialActiveAppearance(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 18, *) { self.materialActiveAppearance(.automatic) } else { self }
       case "active": if #available(iOS 18, *) { self.materialActiveAppearance(.active) } else { self }
@@ -910,7 +929,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKMenuActionDismissBehavior(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKMenuActionDismissBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.menuActionDismissBehavior(.automatic)
       case "enabled": self.menuActionDismissBehavior(.enabled)
@@ -919,7 +938,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKMenuIndicator(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKMenuIndicator(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.menuIndicator(.automatic)
       case "visible": self.menuIndicator(.visible)
@@ -928,7 +947,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKMenuOrder(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKMenuOrder(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.menuOrder(.automatic)
       case "priority": self.menuOrder(.priority)
@@ -937,28 +956,28 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKMinimumScaleFactor(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKMinimumScaleFactor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.minimumScaleFactor(CGFloat(number))
       } else { preconditionFailure("invalid minimumScaleFactor: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKMonospaced(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKMonospaced(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid monospaced: \(value)")
       self.monospaced(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKMonospacedDigit(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKMonospacedDigit(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid monospacedDigit: \(value)")
     if value == "true" { self.monospacedDigit() } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKMoveDisabled(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKMoveDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid moveDisabled: \(value)")
       self.moveDisabled(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKMultilineTextAlignment(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKMultilineTextAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "leading": self.multilineTextAlignment(.leading)
       case "center": self.multilineTextAlignment(.center)
@@ -967,17 +986,17 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKNavigationBarBackButtonHidden(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKNavigationBarBackButtonHidden(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid navigationBarBackButtonHidden: \(value)")
       self.navigationBarBackButtonHidden(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKNavigationBarHidden(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKNavigationBarHidden(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid navigationBarHidden: \(value)")
       self.navigationBarHidden(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKNavigationLinkIndicatorVisibility(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKNavigationLinkIndicatorVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.navigationLinkIndicatorVisibility(.automatic)
       case "visible": self.navigationLinkIndicatorVisibility(.visible)
@@ -986,13 +1005,33 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKNavigationSplitViewColumnWidth(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKNavigationSplitViewColumnWidth(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.navigationSplitViewColumnWidth(CGFloat(number))
       } else { preconditionFailure("invalid navigationSplitViewColumnWidth: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKPaletteSelectionEffect(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKNavigationTitle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.navigationTitle(Binding(get: { value }, set: { emit("navigationTitle", String($0)) }))
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnAppear(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onAppear(perform: { emit("onAppear", "") })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnDisappear(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onDisappear(perform: { emit("onDisappear", "") })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnSubmit(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onSubmit({ emit("onSubmit", "") })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnTapGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onTapGesture(perform: { emit("onTapGesture", "") })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPaletteSelectionEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.paletteSelectionEffect(.automatic)
       case "custom": self.paletteSelectionEffect(.custom)
@@ -1000,12 +1039,12 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKPayWithApplePayButtonDisableCardArt(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKPayWithApplePayButtonDisableCardArt(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid payWithApplePayButtonDisableCardArt: \(value)")
     if value == "true" { if #available(iOS 26, *) { self.payWithApplePayButtonDisableCardArt() } else { self } } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKPersistentSystemOverlays(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKPersistentSystemOverlays(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.persistentSystemOverlays(.automatic)
       case "visible": self.persistentSystemOverlays(.visible)
@@ -1014,7 +1053,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKPresentationBackgroundInteraction(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKPresentationBackgroundInteraction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.presentationBackgroundInteraction(.automatic)
       case "enabled": self.presentationBackgroundInteraction(.enabled)
@@ -1023,7 +1062,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKPresentationCompactAdaptation(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKPresentationCompactAdaptation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.presentationCompactAdaptation(.automatic)
       case "none": self.presentationCompactAdaptation(.none)
@@ -1034,7 +1073,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKPresentationContentInteraction(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKPresentationContentInteraction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.presentationContentInteraction(.automatic)
       case "resizes": self.presentationContentInteraction(.resizes)
@@ -1043,7 +1082,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKPresentationDragIndicator(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKPresentationDragIndicator(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.presentationDragIndicator(.automatic)
       case "visible": self.presentationDragIndicator(.visible)
@@ -1052,7 +1091,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKPresentationPlacement(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKPresentationPlacement(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 27, *) { self.presentationPlacement(.automatic) } else { self }
       case "leading": if #available(iOS 27, *) { self.presentationPlacement(.leading) } else { self }
@@ -1062,7 +1101,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKPreviewInterfaceOrientation(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKPreviewInterfaceOrientation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "portrait": self.previewInterfaceOrientation(.portrait)
       case "portraitUpsideDown": self.previewInterfaceOrientation(.portraitUpsideDown)
@@ -1072,44 +1111,48 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKPrivacySensitive(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKPrivacySensitive(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid privacySensitive: \(value)")
       self.privacySensitive(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKProductIconBorder(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKProductIconBorder(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid productIconBorder: \(value)")
     if value == "true" { self.productIconBorder() } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKReplaceDisabled(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKRenameAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.renameAction({ emit("renameAction", "") })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKReplaceDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid replaceDisabled: \(value)")
       self.replaceDisabled(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSafeAreaPadding(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSafeAreaPadding(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.safeAreaPadding(CGFloat(number))
       } else { preconditionFailure("invalid safeAreaPadding: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSaturation(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSaturation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.saturation(number)
       } else { preconditionFailure("invalid saturation: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKScaledToFill(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKScaledToFill(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid scaledToFill: \(value)")
     if value == "true" { self.scaledToFill() } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKScaledToFit(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKScaledToFit(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid scaledToFit: \(value)")
     if value == "true" { self.scaledToFit() } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKScenePadding(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKScenePadding(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "top": self.scenePadding(.top)
       case "leading": self.scenePadding(.leading)
@@ -1122,12 +1165,12 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKScrollClipDisabled(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKScrollClipDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid scrollClipDisabled: \(value)")
       self.scrollClipDisabled(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKScrollContentBackground(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKScrollContentBackground(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.scrollContentBackground(.automatic)
       case "visible": self.scrollContentBackground(.visible)
@@ -1136,12 +1179,12 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKScrollDisabled(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKScrollDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid scrollDisabled: \(value)")
       self.scrollDisabled(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKScrollDismissesKeyboard(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKScrollDismissesKeyboard(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.scrollDismissesKeyboard(.automatic)
       case "immediately": self.scrollDismissesKeyboard(.immediately)
@@ -1151,18 +1194,22 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSearchCompletion(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSearchable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.searchable(text: Binding(get: { value }, set: { emit("searchable", String($0)) }))
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSearchCompletion(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       self.searchCompletion(value)
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSearchDictationBehavior(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSearchDictationBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.searchDictationBehavior(.automatic)
     default: preconditionFailure("invalid searchDictationBehavior: \(value)")
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSearchPresentationToolbarBehavior(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSearchPresentationToolbarBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 17.1, *) { self.searchPresentationToolbarBehavior(.automatic) } else { self }
       case "avoidHidingContent": if #available(iOS 17.1, *) { self.searchPresentationToolbarBehavior(.avoidHidingContent) } else { self }
@@ -1170,7 +1217,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSearchToolbarBehavior(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSearchToolbarBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 26, *) { self.searchToolbarBehavior(.automatic) } else { self }
       case "minimize": if #available(iOS 26, *) { self.searchToolbarBehavior(.minimize) } else { self }
@@ -1178,12 +1225,12 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSelectionDisabled(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSelectionDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid selectionDisabled: \(value)")
       self.selectionDisabled(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSliderThumbVisibility(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSliderThumbVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 26, *) { self.sliderThumbVisibility(.automatic) } else { self }
       case "visible": if #available(iOS 26, *) { self.sliderThumbVisibility(.visible) } else { self }
@@ -1192,28 +1239,28 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSpeechAdjustedPitch(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSpeechAdjustedPitch(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.speechAdjustedPitch(number)
       } else { preconditionFailure("invalid speechAdjustedPitch: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSpeechAlwaysIncludesPunctuation(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSpeechAlwaysIncludesPunctuation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid speechAlwaysIncludesPunctuation: \(value)")
       self.speechAlwaysIncludesPunctuation(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSpeechAnnouncementsQueued(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSpeechAnnouncementsQueued(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid speechAnnouncementsQueued: \(value)")
       self.speechAnnouncementsQueued(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSpeechSpellsOutCharacters(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSpeechSpellsOutCharacters(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid speechSpellsOutCharacters: \(value)")
       self.speechSpellsOutCharacters(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSpringLoadingBehavior(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSpringLoadingBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.springLoadingBehavior(.automatic)
       case "enabled": self.springLoadingBehavior(.enabled)
@@ -1222,12 +1269,12 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKStatusBarHidden(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKStatusBarHidden(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid statusBarHidden: \(value)")
       self.statusBarHidden(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSubmitLabel(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSubmitLabel(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "done": self.submitLabel(.done)
       case "go": self.submitLabel(.go)
@@ -1242,22 +1289,22 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSubmitScope(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSubmitScope(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid submitScope: \(value)")
       self.submitScope(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSwipeActionsContainer(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSwipeActionsContainer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid swipeActionsContainer: \(value)")
     if value == "true" { if #available(iOS 27, *) { self.swipeActionsContainer() } else { self } } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSymbolEffectsRemoved(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSymbolEffectsRemoved(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid symbolEffectsRemoved: \(value)")
       self.symbolEffectsRemoved(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSymbolVariant(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKSymbolVariant(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "none": self.symbolVariant(.none)
       case "circle": self.symbolVariant(.circle)
@@ -1269,7 +1316,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKTabBarMinimizeBehavior(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKTabBarMinimizeBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 26, *) { self.tabBarMinimizeBehavior(.automatic) } else { self }
       case "onScrollDown": if #available(iOS 26, *) { self.tabBarMinimizeBehavior(.onScrollDown) } else { self }
@@ -1279,7 +1326,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKTableColumnHeaders(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKTableColumnHeaders(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.tableColumnHeaders(.automatic)
       case "visible": self.tableColumnHeaders(.visible)
@@ -1288,7 +1335,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKTabViewSearchActivation(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKTabViewSearchActivation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 26, *) { self.tabViewSearchActivation(.automatic) } else { self }
       case "searchTabSelection": if #available(iOS 26, *) { self.tabViewSearchActivation(.searchTabSelection) } else { self }
@@ -1296,7 +1343,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKTextInputBorderShape(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKTextInputBorderShape(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 27, *) { self.textInputBorderShape(.automatic) } else { self }
       case "capsule": if #available(iOS 27, *) { self.textInputBorderShape(.capsule) } else { self }
@@ -1305,7 +1352,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKTextSelectionAffinity(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKTextSelectionAffinity(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 18, *) { self.textSelectionAffinity(.automatic) } else { self }
       case "upstream": if #available(iOS 18, *) { self.textSelectionAffinity(.upstream) } else { self }
@@ -1314,7 +1361,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKToolbarRole(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKToolbarRole(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.toolbarRole(.automatic)
       case "navigationStack": self.toolbarRole(.navigationStack)
@@ -1324,7 +1371,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKToolbarTitleDisplayMode(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKToolbarTitleDisplayMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": self.toolbarTitleDisplayMode(.automatic)
       case "large": self.toolbarTitleDisplayMode(.large)
@@ -1334,13 +1381,13 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKTracking(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKTracking(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.tracking(CGFloat(number))
       } else { preconditionFailure("invalid tracking: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKTransition(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "opacity": self.transition(.opacity)
       case "slide": self.transition(.slide)
@@ -1350,19 +1397,19 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKUnredacted(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKUnredacted(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid unredacted: \(value)")
     if value == "true" { self.unredacted() } else { self }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKWindowToolbarFullScreenVisibility(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKWindowToolbarFullScreenVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 18, *) { self.windowToolbarFullScreenVisibility(.automatic) } else { self }
     default: preconditionFailure("invalid windowToolbarFullScreenVisibility: \(value)")
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKWritingToolsAffordanceVisibility(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKWritingToolsAffordanceVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 18.4, *) { self.writingToolsAffordanceVisibility(.automatic) } else { self }
       case "visible": if #available(iOS 18.4, *) { self.writingToolsAffordanceVisibility(.visible) } else { self }
@@ -1371,7 +1418,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKWritingToolsBehavior(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKWritingToolsBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "automatic": if #available(iOS 18, *) { self.writingToolsBehavior(.automatic) } else { self }
       case "complete": if #available(iOS 18, *) { self.writingToolsBehavior(.complete) } else { self }
@@ -1381,7 +1428,7 @@ extension View {
     }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKZIndex(_ value: String) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKZIndex(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.zIndex(number)
       } else { preconditionFailure("invalid zIndex: \(value)") }

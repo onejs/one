@@ -51,6 +51,10 @@ interface NativeProps extends ViewProps {
     textContentType: string;
     axis: string;
     swiftStyle?: OneNativeStyleNative;
+    onNativeSDKEvent?: DirectEventHandler<Readonly<{
+        name: string;
+        value: string;
+    }>>;
     onNativeTextFieldValueChange?: DirectEventHandler<Readonly<{
         value: string;
         eventCount: Int32;

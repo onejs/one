@@ -38,6 +38,10 @@ interface NativeProps extends ViewProps {
     revision: Int32;
     url: string;
     swiftStyle?: OneNativeStyleNative;
+    onNativeSDKEvent?: DirectEventHandler<Readonly<{
+        name: string;
+        value: string;
+    }>>;
     onNativeQuickLookValueChange?: DirectEventHandler<Readonly<{
         value: boolean;
         eventCount: Int32;

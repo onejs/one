@@ -184,6 +184,10 @@ export interface OneNativeStyle {
     defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement;
     defaultTabBarPlacement?: SDKDefaultTabBarPlacement;
     deleteDisabled?: boolean;
+    dialogSuppressionToggle?: Readonly<{
+        value: boolean;
+        onChange: (value: boolean) => void;
+    }>;
     disabled?: boolean;
     dynamicTypeSize?: SDKDynamicTypeSize;
     edgesIgnoringSafeArea?: SDKEdgesIgnoringSafeArea;
@@ -191,6 +195,10 @@ export interface OneNativeStyle {
     fileDialogCustomizationID?: string;
     fileDialogImportsUnresolvedAliases?: boolean;
     findDisabled?: boolean;
+    findNavigator?: Readonly<{
+        value: boolean;
+        onChange: (value: boolean) => void;
+    }>;
     fixedSize?: boolean;
     flipsForRightToLeftLayoutDirection?: boolean;
     focusable?: boolean;
@@ -236,6 +244,14 @@ export interface OneNativeStyle {
     navigationBarHidden?: boolean;
     navigationLinkIndicatorVisibility?: SDKNavigationLinkIndicatorVisibility;
     navigationSplitViewColumnWidth?: number;
+    navigationTitle?: Readonly<{
+        value: string;
+        onChange: (value: string) => void;
+    }>;
+    onAppear?: () => void;
+    onDisappear?: () => void;
+    onSubmit?: () => void;
+    onTapGesture?: () => void;
     paletteSelectionEffect?: SDKPaletteSelectionEffect;
     payWithApplePayButtonDisableCardArt?: boolean;
     persistentSystemOverlays?: SDKPersistentSystemOverlays;
@@ -247,6 +263,7 @@ export interface OneNativeStyle {
     previewInterfaceOrientation?: SDKPreviewInterfaceOrientation;
     privacySensitive?: boolean;
     productIconBorder?: boolean;
+    renameAction?: () => void;
     replaceDisabled?: boolean;
     safeAreaPadding?: number;
     saturation?: number;
@@ -257,6 +274,10 @@ export interface OneNativeStyle {
     scrollContentBackground?: SDKScrollContentBackground;
     scrollDisabled?: boolean;
     scrollDismissesKeyboard?: SDKScrollDismissesKeyboard;
+    searchable?: Readonly<{
+        value: string;
+        onChange: (value: string) => void;
+    }>;
     searchCompletion?: string;
     searchDictationBehavior?: SDKSearchDictationBehavior;
     searchPresentationToolbarBehavior?: SDKSearchPresentationToolbarBehavior;

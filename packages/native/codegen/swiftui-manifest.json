@@ -1027,6 +1027,13 @@
       "ios": 13
     },
     {
+      "name": "dialogSuppressionToggle",
+      "kind": "bindingBoolean",
+      "type": "SwiftUICore.Binding<Swift.Bool>",
+      "label": "isSuppressed",
+      "ios": 17
+    },
+    {
       "name": "disabled",
       "kind": "boolean",
       "type": "Swift.Bool",
@@ -1160,6 +1167,13 @@
       "name": "findDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "findNavigator",
+      "kind": "bindingBoolean",
+      "type": "SwiftUICore.Binding<Swift.Bool>",
+      "label": "isPresented",
       "ios": 16
     },
     {
@@ -1689,6 +1703,41 @@
       "ios": 16
     },
     {
+      "name": "navigationTitle",
+      "kind": "bindingString",
+      "type": "SwiftUICore.Binding<Swift.String>",
+      "label": "_",
+      "ios": 16
+    },
+    {
+      "name": "onAppear",
+      "kind": "event",
+      "type": "(() -> Swift.Void)?",
+      "label": "perform",
+      "ios": 13
+    },
+    {
+      "name": "onDisappear",
+      "kind": "event",
+      "type": "(() -> Swift.Void)?",
+      "label": "perform",
+      "ios": 13
+    },
+    {
+      "name": "onSubmit",
+      "kind": "event",
+      "type": "@escaping () -> Swift.Void",
+      "label": "_",
+      "ios": 15
+    },
+    {
+      "name": "onTapGesture",
+      "kind": "event",
+      "type": "@escaping () -> Swift.Void",
+      "label": "perform",
+      "ios": 13
+    },
+    {
       "name": "paletteSelectionEffect",
       "kind": "string",
       "type": "SwiftUI.PaletteSelectionEffect",
@@ -1883,6 +1932,13 @@
       "framework": "StoreKit"
     },
     {
+      "name": "renameAction",
+      "kind": "event",
+      "type": "@escaping () -> Swift.Void",
+      "label": "_",
+      "ios": 16
+    },
+    {
       "name": "replaceDisabled",
       "kind": "boolean",
       "type": "Swift.Bool",
@@ -2005,6 +2061,13 @@
           "ios": 16
         }
       ]
+    },
+    {
+      "name": "searchable",
+      "kind": "bindingString",
+      "type": "SwiftUICore.Binding<Swift.String>",
+      "label": "text",
+      "ios": 15
     },
     {
       "name": "searchCompletion",
@@ -2573,6 +2636,9 @@
         "monospaced",
         "monospacedDigit",
         "multilineTextAlignment",
+        "onAppear",
+        "onDisappear",
+        "onTapGesture",
         "opacity",
         "padding",
         "privacySensitive",
@@ -2610,11 +2676,13 @@
         "defaultAdaptableTabBarPlacement",
         "defaultTabBarPlacement",
         "deleteDisabled",
+        "dialogSuppressionToggle",
         "fileDialogBrowserOptions",
         "fileDialogCustomizationID",
         "fileDialogImportsUnresolvedAliases",
         "fileImporter",
         "findDisabled",
+        "findNavigator",
         "flipsForRightToLeftLayoutDirection",
         "focusEffectDisabled",
         "focusable",
@@ -2644,6 +2712,7 @@
         "navigationBarHidden",
         "navigationLinkIndicatorVisibility",
         "navigationSplitViewColumnWidth",
+        "navigationTitle",
         "onSubmit",
         "paletteSelectionEffect",
         "persistentSystemOverlays",
@@ -2659,6 +2728,7 @@
         "presentationSizing",
         "previewInterfaceOrientation",
         "progressViewStyle",
+        "renameAction",
         "replaceDisabled",
         "scenePadding",
         "scrollClipDisabled",
@@ -2669,6 +2739,7 @@
         "searchDictationBehavior",
         "searchPresentationToolbarBehavior",
         "searchToolbarBehavior",
+        "searchable",
         "selectionDisabled",
         "sheet",
         "sliderThumbVisibility",

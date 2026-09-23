@@ -50,6 +50,7 @@ interface NativeProps extends ViewProps {
   options: ReadonlyArray<PickerOption>
   pickerStyle: string
   swiftStyle?: OneNativeStyleNative
+  onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativePickerValueChange?: DirectEventHandler<
     Readonly<{ value: string; eventCount: Int32; revision: Int32 }>
   >

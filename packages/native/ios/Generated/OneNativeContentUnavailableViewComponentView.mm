@@ -16,6 +16,12 @@ using namespace facebook::react;
     _actionsDirty = YES;
     _nativeView = [OneNativeContentUnavailableViewView new]; self.contentView = _nativeView;
     __weak OneNativeContentUnavailableViewComponentView *weakSelf = self;
+    _nativeView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeContentUnavailableViewComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeContentUnavailableViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
     _nativeView.onAction = ^(NSString *id, NSInteger eventCount) {
       OneNativeContentUnavailableViewComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;

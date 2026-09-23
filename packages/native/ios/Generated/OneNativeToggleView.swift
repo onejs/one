@@ -12,6 +12,9 @@ private final class ToggleModel: ObservableObject {
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
+  var onSDKEvent: ((String, String) -> Void)?
+  func emitSDKEvent(_ name: String, _ value: String) { if active { onSDKEvent?(name, value) } }
+
   var onChange: ((Bool, Int, Int) -> Void)?
   func change(_ value: Bool) {
     guard active, !disabled, controlled.value != value else { return }
@@ -20,6 +23,8 @@ private final class ToggleModel: ObservableObject {
   }
 }
 @objcMembers public final class OneNativeToggleView: UIView, OneNativeComposable {
+  public var onSDKEvent: ((String, String) -> Void)?
+
   public var onChange: ((Bool, Int, Int) -> Void)?
   private var model = ToggleModel()
   public var onHeight: ((CGFloat) -> Void)?
@@ -58,6 +63,8 @@ private final class ToggleModel: ObservableObject {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
+    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
+
     model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }
   }
   private func updateHost() {
@@ -73,7 +80,7 @@ private final class ToggleModel: ObservableObject {
   }
   public func reset() {
     compositionParent = nil
-    model.active = false; model.onChange = nil
+    model.active = false; model.onSDKEvent = nil; model.onChange = nil
     controller?.detach(); controller = nil; model = ToggleModel()
   }
 }
@@ -98,6 +105,6 @@ private struct ToggleContent: View {
       .oneNativeToggleStyle(model.toggleStyle)
       .disabled(model.disabled)
       .oneNativeAccessibility(model.accessibility)
-      .oneNativeStyle(model.swiftStyle)
+      .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }
 }

@@ -14,8 +14,13 @@ private final class ImageModel: ObservableObject {
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
+  var onSDKEvent: ((String, String) -> Void)?
+  func emitSDKEvent(_ name: String, _ value: String) { if active { onSDKEvent?(name, value) } }
+
 }
 @objcMembers public final class OneNativeImageView: UIView, OneNativeComposable {
+  public var onSDKEvent: ((String, String) -> Void)?
+
   private var model = ImageModel()
   public var onHeight: ((CGFloat) -> Void)?
   private var controller: OneNativeHostingController<OneNativeMeasuredStandalone<ImageContent>>?
@@ -55,6 +60,8 @@ private final class ImageModel: ObservableObject {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
+    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
+
   }
   private func updateHost() {
     guard compositionParent == nil else { return }
@@ -69,7 +76,7 @@ private final class ImageModel: ObservableObject {
   }
   public func reset() {
     compositionParent = nil
-    model.active = false
+    model.active = false; model.onSDKEvent = nil
     controller?.detach(); controller = nil; model = ImageModel()
   }
 }
@@ -88,6 +95,6 @@ private struct ImageContent: View {
       .oneNativeImageScale(model.imageScale)
       .oneNativeColorRole(model.colorRole)
       .oneNativeAccessibility(model.accessibility, decorativeWhenUnlabeled: true)
-      .oneNativeStyle(model.swiftStyle)
+      .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }
 }

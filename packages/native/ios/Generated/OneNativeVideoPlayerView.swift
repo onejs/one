@@ -10,8 +10,13 @@ private final class VideoPlayerModel: ObservableObject {
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
+  var onSDKEvent: ((String, String) -> Void)?
+  func emitSDKEvent(_ name: String, _ value: String) { if active { onSDKEvent?(name, value) } }
+
 }
 @objcMembers public final class OneNativeVideoPlayerView: UIView, OneNativeComposable {
+  public var onSDKEvent: ((String, String) -> Void)?
+
   private var model = VideoPlayerModel()
   private var controller: OneNativeHostingController<OneNativeStandalone<VideoPlayerContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
@@ -45,6 +50,8 @@ private final class VideoPlayerModel: ObservableObject {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
+    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
+
   }
   private func updateHost() {
     guard compositionParent == nil else { return }
@@ -59,7 +66,7 @@ private final class VideoPlayerModel: ObservableObject {
   }
   public func reset() {
     compositionParent = nil
-    model.active = false
+    model.active = false; model.onSDKEvent = nil
     controller?.detach(); controller = nil; model = VideoPlayerModel()
   }
 }
@@ -68,7 +75,7 @@ private struct VideoPlayerContent: View {
   var body: some View {
     VideoPlayerSurface(url: model.url, autoplay: model.autoplay)
       .oneNativeAccessibility(model.accessibility)
-      .oneNativeStyle(model.swiftStyle)
+      .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }
 }
 // AVPlayer holds the playback position and is expensive to build, so it is created once per

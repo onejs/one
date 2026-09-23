@@ -52,4 +52,14 @@ describe('SDK modifier derivation', () => {
       )
     ).toEqual([])
   })
+
+  it('derives a void callback and a boolean binding from one generic event contract', () => {
+    expect(deriveModifiers([
+      method('onAppear', 'SwiftUICore', [{ label: 'perform', name: 'action', type: '(() -> Swift.Void)?' }]),
+      method('findNavigator', 'SwiftUI', [{ label: 'isPresented', name: 'value', type: 'SwiftUICore.Binding<Swift.Bool>' }]),
+    ], 27, [])).toEqual([
+      { name: 'findNavigator', kind: 'bindingBoolean', type: 'SwiftUICore.Binding<Swift.Bool>', ios: 0, label: 'isPresented' },
+      { name: 'onAppear', kind: 'event', type: '(() -> Swift.Void)?', ios: 0, label: 'perform' },
+    ])
+  })
 })

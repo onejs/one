@@ -96,8 +96,10 @@ for (const modifier of derivedModifiers) {
     (d) =>
       d.kind === 'func' &&
       d.name === modifier.name &&
-      d.parameters.length === (modifier.zeroArgument ? 0 : 1) &&
-      (modifier.zeroArgument || d.parameters[0].type === modifier.type) &&
+      (modifier.zeroArgument
+        ? d.parameters.length === 0
+        : d.parameters.some((parameter) => parameter.type === modifier.type &&
+            (modifier.label === undefined || parameter.label === modifier.label))) &&
       d.owner.split('.').at(-1) === 'View'
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${modifier.name}`)

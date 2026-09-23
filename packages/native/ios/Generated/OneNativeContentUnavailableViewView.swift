@@ -11,6 +11,9 @@ private final class ContentUnavailableViewModel: ObservableObject {
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
+  var onSDKEvent: ((String, String) -> Void)?
+  func emitSDKEvent(_ name: String, _ value: String) { if active { onSDKEvent?(name, value) } }
+
   var onAction: ((String, Int) -> Void)?
   private var actionCount = 0
   func action(_ id: String) {
@@ -20,6 +23,8 @@ private final class ContentUnavailableViewModel: ObservableObject {
   }
 }
 @objcMembers public final class OneNativeContentUnavailableViewView: UIView, OneNativeComposable {
+  public var onSDKEvent: ((String, String) -> Void)?
+
   public var onAction: ((String, Int) -> Void)?
   private var model = ContentUnavailableViewModel()
   private var controller: OneNativeHostingController<OneNativeStandalone<ContentUnavailableViewContent>>?
@@ -55,6 +60,8 @@ private final class ContentUnavailableViewModel: ObservableObject {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
+    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
+
     model.onAction = { [weak self] id, actionCount in self?.onAction?(id, actionCount) }
   }
   private func updateHost() {
@@ -70,7 +77,7 @@ private final class ContentUnavailableViewModel: ObservableObject {
   }
   public func reset() {
     compositionParent = nil
-    model.active = false; model.onAction = nil
+    model.active = false; model.onSDKEvent = nil; model.onAction = nil
     controller?.detach(); controller = nil; model = ContentUnavailableViewModel()
   }
 }
@@ -93,6 +100,6 @@ private struct ContentUnavailableViewContent: View {
         }
       }
       .oneNativeAccessibility(model.accessibility)
-      .oneNativeStyle(model.swiftStyle)
+      .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }
 }

@@ -85,6 +85,7 @@ export function emitControls(
   controls: readonly Control[]
 ) {
   if (!controls.length) return
+  const hasSDKEvents = derivedModifiers.some((modifier) => modifier.kind === 'event' || modifier.kind.startsWith('binding'))
   const publicStyleFields: readonly StyleField[] = [
     ...styleFields,
     ...derivedModifiers.map((modifier) => ({
@@ -92,7 +93,13 @@ export function emitControls(
       kind: 'string' as const,
       derived: true as const,
       publicType:
-        modifier.kind === 'string' ? undefined : modifier.kind,
+        modifier.kind === 'event'
+          ? '() => void'
+          : modifier.kind === 'bindingBoolean'
+            ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>'
+            : modifier.kind === 'bindingString'
+              ? 'Readonly<{ value: string; onChange: (value: string) => void }>'
+              : modifier.kind === 'string' ? undefined : modifier.kind,
       values: modifier.cases?.map((item) => item.name),
     })),
   ]
@@ -152,7 +159,7 @@ export type OneNativeViewProps = Pick<
       .join('')
   let adapters =
     header +
-    "import { Platform } from 'react-native'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport { swiftStyleNative } from './swiftStyleNative'\nimport type * as Types from './controlTypes'\n" +
+    `import { Platform } from 'react-native'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport { swiftStyleNative${hasSDKEvents ? ', dispatchSDKEvent' : ''} } from './swiftStyleNative'\nimport type * as Types from './controlTypes'\n` +
     "import { iconColorRoles } from '../ui/iconRoles'\n" +
     (hasSync
       ? "import { getSyncStateId, isSyncState } from '../syncStore'\nimport { syncHandleOf, useSyncValue } from '../syncNativeState'\n"
@@ -186,7 +193,7 @@ export type OneNativeViewProps = Pick<
     const presentation = control.layout === 'presentation'
     // weakSelf only exists for the blocks below it, so a control with none would declare it
     // and never read it.
-    const callbacks = measured || !!value || actions.length > 0 || !!control.focus
+    const callbacks = measured || !!value || actions.length > 0 || !!control.focus || hasSDKEvents
     for (const key of Object.keys(control.setBody ?? {}))
       if (fields[key]?.type !== 'strings')
         throw new Error(`OneNative ${name}: setBody names non-strings field ${key}`)
@@ -276,6 +283,7 @@ ${
       ...Object.fromEntries(fieldEntries.map(([key, field]) => [key, nativeType(field)])),
     }
     const events: Record<string, Record<string, string>> = {
+      ...(hasSDKEvents ? { onNativeSDKEvent: { name: 'string', value: 'string' } } : {}),
       ...(value
         ? {
             [`onNative${name}ValueChange`]: {
@@ -422,6 +430,7 @@ ${
         : ''
     }  return <Native${name} {...props} ${styleProp}${control.decorativeWhenUnlabeled ? ' accessible={Boolean(props.accessibilityLabel)} accessibilityElementsHidden={!props.accessibilityLabel} accessibilityRole="image"' : ''}
     swiftStyle={swiftStyleNative(swiftStyle)}
+${hasSDKEvents ? '    onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}\n' : ''}
 ${value ? `    value={${value.sync ? syncNativeValue(value, `synced${upper(value.prop)}`) : (value.nativeValue ?? value.prop)}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${value?.sync ? `    syncStateId={syncHandle ? getSyncStateId(syncHandle) ?? 0 : 0}\n` : ''}${
       control.focus
         ? `    focused={focused ?? false} acknowledgedFocusEvent={focused !== undefined ? controlledFocus.acknowledgedEvent : 0} focusRevision={focusRevision}\n`
@@ -495,6 +504,7 @@ ${value ? `  @Published var controlled = OneNativeControlled<${swiftScalar(value
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
+${hasSDKEvents ? '  var onSDKEvent: ((String, String) -> Void)?\n  func emitSDKEvent(_ name: String, _ value: String) { if active { onSDKEvent?(name, value) } }\n' : ''}
 ${
   value?.sync
     ? `  var syncStateId: Int = 0
@@ -545,6 +555,7 @@ ${
           })
           .join('')}}
 @objcMembers public final class ${nativeName}View: UIView, OneNativeComposable {
+${hasSDKEvents ? '  public var onSDKEvent: ((String, String) -> Void)?\n' : ''}
 ${value ? `  public var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Void)?\n` : ''}${
           control.focus ? '  public var onFocusChange: ((Bool, Int, Int) -> Void)?\n' : ''
         }${actions
@@ -605,6 +616,7 @@ ${arrayFields
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
+${hasSDKEvents ? '    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }\n' : ''}
 ${value ? '    model.onChange = { [weak self] value, count, revision in self?.onChange?(value, count, revision) }\n' : ''}${
           control.focus
             ? '    model.onFocusChange = { [weak self] value, count, revision in self?.onFocusChange?(value, count, revision) }\n'
@@ -631,7 +643,7 @@ ${value ? '    model.onChange = { [weak self] value, count, revision in self?.on
   }
   public func reset() {
     compositionParent = nil
-    model.active = false${value ? '; model.onChange = nil' : ''}${control.focus ? '; model.onFocusChange = nil' : ''}${actions.map((action) => `; model.on${action.event} = nil`).join('')}
+    model.active = false${hasSDKEvents ? '; model.onSDKEvent = nil' : ''}${value ? '; model.onChange = nil' : ''}${control.focus ? '; model.onFocusChange = nil' : ''}${actions.map((action) => `; model.on${action.event} = nil`).join('')}
 ${presentation ? '    controller?.presentedViewController?.dismiss(animated: false)\n' : ''}    controller?.detach(); controller = nil; model = ${name}Model()
   }
 }
@@ -654,7 +666,7 @@ ${
 `
     : ''
 }${disabled ? '      .disabled(model.disabled)\n' : ''}      .oneNativeAccessibility(model.accessibility${control.decorativeWhenUnlabeled ? ', decorativeWhenUnlabeled: true' : ''})
-      .oneNativeStyle(model.swiftStyle)
+      .oneNativeStyle(model.swiftStyle${hasSDKEvents ? ', emit: model.emitSDKEvent' : ''})
   }
 }
 ${control.extraSwift ?? ''}
@@ -759,6 +771,13 @@ using namespace facebook::react;
     _props = std::make_shared<const ${nativeName}Props>();
 ${arrayFields.map(([key]) => `    _${key}Dirty = YES;\n`).join('')}${measured ? '    _measured = [OneNativeMeasuredHeight new];\n' : ''}    _nativeView = [${nativeName}View new]; self.contentView = _nativeView;
 ${callbacks ? `    __weak ${nativeName}ComponentView *weakSelf = self;\n` : ''}${
+          hasSDKEvents ? `    _nativeView.onSDKEvent = ^(NSString *name, NSString *value) {
+      ${nativeName}ComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const ${nativeName}EventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };\n` : ''
+        }${
           measured
             ? `    _nativeView.onHeight = ^(CGFloat height) {
       ${nativeName}ComponentView *strongSelf = weakSelf;

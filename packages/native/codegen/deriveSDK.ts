@@ -1,14 +1,17 @@
 import { ios, present, type Declaration } from './inventory'
 import type { Control } from './controlTypes'
 
+const eventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> Swift\.Void\)\?$|^SwiftUICore\.Binding<Swift\.(?:Bool|String)>$/
+
 export type DerivedModifier = {
   name: string
-  kind: 'boolean' | 'number' | 'string'
+  kind: 'boolean' | 'number' | 'string' | 'event' | 'bindingBoolean' | 'bindingString'
   ios: number
   type: string
   cases?: readonly { name: string; ios: number }[]
   zeroArgument?: true
   framework?: string
+  label?: string
 }
 
 // parameterless methods and one-argument methods with a bridge scalar or a
@@ -29,7 +32,9 @@ export function deriveModifiers(
       /^[a-z]/.test(d.name) &&
       (d.parameters.length === 0 || !d.name.startsWith('accessibility')) &&
       (d.parameters.length === 0 ||
-        (d.parameters.length === 1 && d.parameters[0].label === '_')) &&
+        (d.parameters.length === 1 && d.parameters[0].label === '_') ||
+        (d.parameters.length > 0 && d.parameters.every((p) => p.defaultValue !== undefined ||
+          eventOrBindingType.test(p.type)))) &&
       !d.requirements?.length &&
       present(d) &&
       ios(d) <= ceiling &&
@@ -54,6 +59,17 @@ export function deriveModifiers(
               : {}),
           },
         ]
+      const bridged = method.parameters.filter((p) => eventOrBindingType.test(p.type))
+      if (bridged.length === 1 && method.parameters.every((p) => p === bridged[0] || p.defaultValue !== undefined)) {
+        const parameter = bridged[0]
+        const kind = parameter.type.includes('Binding<Swift.Bool>')
+          ? 'bindingBoolean'
+          : parameter.type.includes('Binding<Swift.String>')
+            ? 'bindingString'
+            : 'event'
+        return [{ name, kind, type: parameter.type, label: parameter.label, ios: ios(method) }]
+      }
+      if (method.parameters.length !== 1 || method.parameters[0].label !== '_') return []
       const type = method.parameters[0].type
       const kind =
         type === 'Swift.Bool'

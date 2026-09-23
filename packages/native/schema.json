@@ -732,6 +732,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativePickerValueChange": {
           "value": {
             "type": "string"
@@ -789,6 +797,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeDatePickerValueChange": {
           "value": {
             "type": "Double"
@@ -836,6 +852,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeColorPickerValueChange": {
           "value": {
             "type": "string"
@@ -887,6 +911,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeToggleValueChange": {
           "value": {
             "type": "boolean"
@@ -952,6 +984,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeSliderValueChange": {
           "value": {
             "type": "Double"
@@ -1005,6 +1045,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeStepperValueChange": {
           "value": {
             "type": "Double"
@@ -1036,7 +1084,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -1058,7 +1115,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -1090,7 +1156,16 @@
           "enum": "ProgressViewStyle"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -1131,7 +1206,16 @@
           "enum": "GaugeStyle"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -1168,7 +1252,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -1202,7 +1295,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -1228,6 +1330,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeContentUnavailableViewAction": {
           "id": {
             "type": "string"
@@ -1257,7 +1367,16 @@
           "type": "ColorValue"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "fill"
@@ -1273,7 +1392,16 @@
           "type": "ColorValue"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "fill"
@@ -1289,7 +1417,16 @@
           "type": "ColorValue"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "fill"
@@ -1308,7 +1445,16 @@
           "type": "Double"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "fill"
@@ -1324,7 +1470,16 @@
           "type": "ColorValue"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "fill"
@@ -1343,7 +1498,16 @@
           "type": "boolean"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "fill"
@@ -1380,6 +1544,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativePhotosPickerPick": {
           "url": {
             "type": "string"
@@ -1451,6 +1623,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeWebViewNavigate": {
           "url": {
             "type": "string"
@@ -1511,6 +1691,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeSignInWithAppleButtonCompletion": {
           "type": {
             "type": "string"
@@ -1571,6 +1759,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeMapRegionChange": {
           "latitude": {
             "type": "Double"
@@ -1659,6 +1855,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeTextFieldValueChange": {
           "value": {
             "type": "string"
@@ -1761,6 +1965,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeSecureFieldValueChange": {
           "value": {
             "type": "string"
@@ -1836,6 +2048,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeAlertValueChange": {
           "value": {
             "type": "boolean"
@@ -1909,6 +2129,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeConfirmationDialogValueChange": {
           "value": {
             "type": "boolean"
@@ -1966,6 +2194,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeQuickLookValueChange": {
           "value": {
             "type": "boolean"
@@ -2010,6 +2246,14 @@
         }
       },
       "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
         "onNativeFileImporterValueChange": {
           "value": {
             "type": "boolean"
@@ -2062,7 +2306,16 @@
       "name": "OneNativeEditButton",
       "publicName": "EditButton",
       "props": {},
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -2074,7 +2327,16 @@
       "name": "OneNativeEmptyView",
       "publicName": "EmptyView",
       "props": {},
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -2426,6 +2688,14 @@
         "onNativeButtonPress": {
           "eventCount": {
             "type": "Int32"
+          }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
           }
         }
       },

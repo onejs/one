@@ -69,6 +69,7 @@ const sdkKinds = {
   defaultAdaptableTabBarPlacement: 'string',
   defaultTabBarPlacement: 'string',
   deleteDisabled: 'boolean',
+  dialogSuppressionToggle: 'bindingBoolean',
   disabled: 'boolean',
   dynamicTypeSize: 'string',
   edgesIgnoringSafeArea: 'string',
@@ -76,6 +77,7 @@ const sdkKinds = {
   fileDialogCustomizationID: 'string',
   fileDialogImportsUnresolvedAliases: 'boolean',
   findDisabled: 'boolean',
+  findNavigator: 'bindingBoolean',
   fixedSize: 'boolean',
   flipsForRightToLeftLayoutDirection: 'boolean',
   focusable: 'boolean',
@@ -121,6 +123,11 @@ const sdkKinds = {
   navigationBarHidden: 'boolean',
   navigationLinkIndicatorVisibility: 'string',
   navigationSplitViewColumnWidth: 'number',
+  navigationTitle: 'bindingString',
+  onAppear: 'event',
+  onDisappear: 'event',
+  onSubmit: 'event',
+  onTapGesture: 'event',
   paletteSelectionEffect: 'string',
   payWithApplePayButtonDisableCardArt: 'boolean',
   persistentSystemOverlays: 'string',
@@ -132,6 +139,7 @@ const sdkKinds = {
   previewInterfaceOrientation: 'string',
   privacySensitive: 'boolean',
   productIconBorder: 'boolean',
+  renameAction: 'event',
   replaceDisabled: 'boolean',
   safeAreaPadding: 'number',
   saturation: 'number',
@@ -142,6 +150,7 @@ const sdkKinds = {
   scrollContentBackground: 'string',
   scrollDisabled: 'boolean',
   scrollDismissesKeyboard: 'string',
+  searchable: 'bindingString',
   searchCompletion: 'string',
   searchDictationBehavior: 'string',
   searchPresentationToolbarBehavior: 'string',
@@ -191,7 +200,25 @@ export function swiftStyleNative(
         throw new Error(name + ' must be a boolean')
       if (kind === 'string' && typeof value !== 'string')
         throw new Error(name + ' must be a string')
-      sdkModifiers.push([name, String(value)])
+      if (kind === 'event' && typeof value !== 'function')
+        throw new Error(name + ' must be a callback')
+      if (
+        (kind === 'bindingBoolean' || kind === 'bindingString') &&
+        (typeof value !== 'object' ||
+          value === null ||
+          typeof (value as { onChange?: unknown }).onChange !== 'function' ||
+          typeof (value as { value?: unknown }).value !==
+            (kind === 'bindingBoolean' ? 'boolean' : 'string'))
+      )
+        throw new Error(name + ' must be a binding')
+      sdkModifiers.push([
+        name,
+        kind === 'event'
+          ? ''
+          : kind.startsWith('binding')
+            ? String((value as { value: unknown }).value)
+            : String(value),
+      ])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
     } else {
@@ -200,4 +227,20 @@ export function swiftStyleNative(
   }
   if (sdkModifiers.length) native.sdkModifiers = JSON.stringify(sdkModifiers)
   return native as OneNativeStyleNative
+}
+
+export function dispatchSDKEvent(
+  style: OneNativeStyle | undefined,
+  name: string,
+  value: string
+): void {
+  const modifier = (style as Record<string, unknown> | undefined)?.[name]
+  const kind = sdkKinds[name as keyof typeof sdkKinds]
+  if (kind === 'event') (modifier as (() => void) | undefined)?.()
+  else if (kind === 'bindingBoolean')
+    (modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(
+      value === 'true'
+    )
+  else if (kind === 'bindingString')
+    (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
 }
