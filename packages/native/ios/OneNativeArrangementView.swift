@@ -256,8 +256,7 @@ extension View {
     }
   }
 
-  @ViewBuilder
-  func oneNativeArrangementModifiers(_ modifiers: OneNativeArrangementModifiers) -> some View {
+  func oneNativeArrangementModifiers(_ modifiers: OneNativeArrangementModifiers) -> AnyView {
     var view = AnyView(self)
     if let ratio = modifiers.splitRatio {
       view = AnyView(view.splitArrangementLayoutRatio(CGFloat(truncating: ratio)))
@@ -297,6 +296,6 @@ extension View {
         view = AnyView(view.overlayArrangementEdge(.bottom))
       }
     }
-    view
+    return view
   }
 }
