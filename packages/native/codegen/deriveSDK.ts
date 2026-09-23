@@ -15,16 +15,22 @@ export type DerivedArgument = {
   cases?: readonly { name: string; ios: number }[]
 }
 
+export type EventValueSchema =
+  | { kind: 'number' | 'string' | 'boolean' | 'point' }
+  | { kind: 'optional'; value: EventValueSchema }
+  | { kind: 'object'; fields: readonly { name: string; value: EventValueSchema }[] }
+
 export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventValueString' | 'bindingBoolean' | 'bindingString'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'bindingBoolean' | 'bindingString'
   ios: number
   type: string
   rawString?: true
   cases?: readonly { name: string; ios: number }[]
-  associatedCases?: readonly { name: string; values: readonly ('point' | 'number' | 'string' | 'boolean')[] }[]
+  associatedCases?: readonly { name: string; values: readonly EventValueSchema[] }[]
+  eventValue?: EventValueSchema
   zeroArgument?: true
   framework?: string
   label?: string
@@ -134,6 +140,28 @@ export function deriveModifiers(
 ): DerivedModifier[] {
   const reservedNames = new Set(reserved.map((field) => field.name))
   const valueOf = bridgeValueOf(inventory, ceiling)
+  const eventValueOf = (type: string, version: number, seen = new Set<string>()): EventValueSchema | undefined => {
+    if (type.endsWith('?')) {
+      const value = eventValueOf(type.slice(0, -1), version, seen)
+      return value && { kind: 'optional', value }
+    }
+    if (['Swift.Double', 'Swift.Float', 'Swift.Int', 'CoreFoundation.CGFloat'].includes(type)) return { kind: 'number' }
+    if (type === 'Swift.String') return { kind: 'string' }
+    if (type === 'Swift.Bool') return { kind: 'boolean' }
+    if (type === 'CoreFoundation.CGPoint') return { kind: 'point' }
+    const [module, ...parts] = type.split('.')
+    const owner = parts.join('.')
+    if (!owner || seen.has(type) || !inventory.some((d) => d.module === module && d.kind === 'struct' &&
+      d.owner === parts.slice(0, -1).join('.') && d.name === parts.at(-1) && !d.generic && present(d) && ios(d) <= version)) return
+    const fields = inventory.filter((d) => d.module === module && (d.owner === owner || d.owner === type) &&
+      d.kind === 'var' && d.stored && present(d) && ios(d) <= version)
+    if (!fields.length || new Set(fields.map((field) => field.name)).size !== fields.length) return
+    const next = new Set([...seen, type])
+    const mapped = fields.map((field) => ({ name: field.name, value: eventValueOf(field.type ?? '', version, next) }))
+    return mapped.every((field) => field.value)
+      ? { kind: 'object', fields: mapped as { name: string; value: EventValueSchema }[] }
+      : undefined
+  }
   const enumCallbackOf = (type: string) => {
     const single = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> Swift\.Void$/.exec(type)
     const pair = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+), (?:_ [A-Za-z]\w*: )?\1\) -> Swift\.Void$/.exec(type)
@@ -155,14 +183,15 @@ export function deriveModifiers(
     if (cases.length < 2 || !cases.some((item) => item.parameters.length) ||
       new Set(cases.map((item) => item.name)).size !== cases.length) return
     const values = cases.map((item) => ({ name: item.name, values: item.parameters.map((parameter) =>
-      parameter.type === 'CoreFoundation.CGPoint' ? 'point' as const
-      : ['Swift.Double', 'Swift.Float', 'Swift.Int', 'CoreFoundation.CGFloat'].includes(parameter.type) ? 'number' as const
-      : parameter.type === 'Swift.String' ? 'string' as const
-      : parameter.type === 'Swift.Bool' ? 'boolean' as const
-      : undefined) }))
+      eventValueOf(parameter.type, version)) }))
     return values.every((item) => item.values.every(Boolean))
-      ? values as { name: string; values: ('point' | 'number' | 'string' | 'boolean')[] }[]
+      ? values as { name: string; values: EventValueSchema[] }[]
       : undefined
+  }
+  const structCallbackOf = (type: string, version: number) => {
+    const baseType = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> Swift\.Void$/.exec(type)?.[1]
+    const value = baseType && eventValueOf(baseType, version)
+    return value?.kind === 'object' ? value : undefined
   }
   const styleCases = (style: string) => {
     const cases = inventory.filter((d) =>
@@ -241,14 +270,17 @@ export function deriveModifiers(
             ...framework,
           },
         ]
-      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type) || enumCallbackOf(p.type) || associatedCallbackOf(p.type, ios(method)))
+      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type) || enumCallbackOf(p.type) || associatedCallbackOf(p.type, ios(method)) || structCallbackOf(p.type, ios(method)))
       if (bridged.length === 1 && method.parameters.every((p) => p === bridged[0] || p.defaultValue !== undefined)) {
         const parameter = bridged[0]
         const callbackValue = scalarCallbackType.exec(parameter.type)?.[1]
         const enumCallback = enumCallbackOf(parameter.type)
         const associatedCallback = associatedCallbackOf(parameter.type, ios(method))
+        const structCallback = structCallbackOf(parameter.type, ios(method))
         const kind = associatedCallback
           ? 'eventAssociatedEnum'
+          : structCallback
+            ? 'eventStruct'
           : enumCallback
           ? enumCallback.pair ? 'eventEnumPair' : 'eventEnum'
           : parameter.type.includes('Binding<Swift.Bool>')
@@ -266,6 +298,7 @@ export function deriveModifiers(
           name, module: method.module, kind, type: parameter.type, label: parameter.label, ios: ios(method), ...framework,
           ...(enumCallback ? { cases: enumCallback.cases } : {}),
           ...(associatedCallback ? { associatedCases: associatedCallback } : {}),
+          ...(structCallback ? { eventValue: structCallback } : {}),
           ...(method.parameters.length > 1 ? {
             callArguments: method.parameters.map((p) =>
               p === parameter ? { label: p.label, bridge: true as const } : { label: p.label, defaultValue: p.defaultValue }

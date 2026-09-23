@@ -265,12 +265,15 @@ const sdkKinds = {
   onChange: 'eventValueString',
   onContinuousHover: 'eventAssociatedEnum',
   onDisappear: 'event',
+  onDragSessionUpdated: 'eventStruct',
   onHover: 'eventBoolean',
   onInteractiveResizeChange: 'eventBoolean',
   onLongPressGesture: 'event',
   onMapCameraChange: 'event',
   onOpenURLWithPerform: 'eventString',
   onOpenURLWithPrefersInApp: 'boolean',
+  onPencilDoubleTap: 'eventStruct',
+  onPencilSqueeze: 'eventAssociatedEnum',
   onScrollPhaseChange: 'eventEnumPair',
   onScrollVisibilityChange: 'eventBoolean',
   onSubmit: 'event',
@@ -426,8 +429,175 @@ const sdkEventCases: Record<string, readonly string[]> = {
   accessibilityScrollAction: ['top', 'leading', 'bottom', 'trailing'],
   onScrollPhaseChange: ['idle', 'tracking', 'interacting', 'decelerating', 'animating'],
 }
-const sdkAssociatedCases: Record<string, Record<string, readonly string[]>> = {
-  onContinuousHover: { active: ['point'], ended: [] },
+type SDKEventValueShape =
+  | { kind: 'number' | 'string' | 'boolean' | 'point' }
+  | { kind: 'optional'; value: SDKEventValueShape }
+  | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
+const sdkAssociatedCases: Record<
+  string,
+  Record<string, readonly SDKEventValueShape[]>
+> = {
+  onContinuousHover: { active: [{ kind: 'point' }], ended: [] },
+  onPencilSqueeze: {
+    active: [
+      {
+        kind: 'object',
+        fields: [
+          {
+            name: 'hoverPose',
+            value: {
+              kind: 'optional',
+              value: {
+                kind: 'object',
+                fields: [
+                  { name: 'location', value: { kind: 'point' } },
+                  {
+                    name: 'anchor',
+                    value: {
+                      kind: 'object',
+                      fields: [
+                        { name: 'x', value: { kind: 'number' } },
+                        { name: 'y', value: { kind: 'number' } },
+                      ],
+                    },
+                  },
+                  { name: 'zDistance', value: { kind: 'number' } },
+                  {
+                    name: 'altitude',
+                    value: {
+                      kind: 'object',
+                      fields: [{ name: 'radians', value: { kind: 'number' } }],
+                    },
+                  },
+                  {
+                    name: 'azimuth',
+                    value: {
+                      kind: 'object',
+                      fields: [{ name: 'radians', value: { kind: 'number' } }],
+                    },
+                  },
+                  {
+                    name: 'roll',
+                    value: {
+                      kind: 'object',
+                      fields: [{ name: 'radians', value: { kind: 'number' } }],
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
+    ],
+    ended: [
+      {
+        kind: 'object',
+        fields: [
+          {
+            name: 'hoverPose',
+            value: {
+              kind: 'optional',
+              value: {
+                kind: 'object',
+                fields: [
+                  { name: 'location', value: { kind: 'point' } },
+                  {
+                    name: 'anchor',
+                    value: {
+                      kind: 'object',
+                      fields: [
+                        { name: 'x', value: { kind: 'number' } },
+                        { name: 'y', value: { kind: 'number' } },
+                      ],
+                    },
+                  },
+                  { name: 'zDistance', value: { kind: 'number' } },
+                  {
+                    name: 'altitude',
+                    value: {
+                      kind: 'object',
+                      fields: [{ name: 'radians', value: { kind: 'number' } }],
+                    },
+                  },
+                  {
+                    name: 'azimuth',
+                    value: {
+                      kind: 'object',
+                      fields: [{ name: 'radians', value: { kind: 'number' } }],
+                    },
+                  },
+                  {
+                    name: 'roll',
+                    value: {
+                      kind: 'object',
+                      fields: [{ name: 'radians', value: { kind: 'number' } }],
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
+    ],
+    failed: [],
+  },
+}
+const sdkEventStructs: Record<string, SDKEventValueShape> = {
+  onDragSessionUpdated: {
+    kind: 'object',
+    fields: [{ name: 'location', value: { kind: 'point' } }],
+  },
+  onPencilDoubleTap: {
+    kind: 'object',
+    fields: [
+      {
+        name: 'hoverPose',
+        value: {
+          kind: 'optional',
+          value: {
+            kind: 'object',
+            fields: [
+              { name: 'location', value: { kind: 'point' } },
+              {
+                name: 'anchor',
+                value: {
+                  kind: 'object',
+                  fields: [
+                    { name: 'x', value: { kind: 'number' } },
+                    { name: 'y', value: { kind: 'number' } },
+                  ],
+                },
+              },
+              { name: 'zDistance', value: { kind: 'number' } },
+              {
+                name: 'altitude',
+                value: {
+                  kind: 'object',
+                  fields: [{ name: 'radians', value: { kind: 'number' } }],
+                },
+              },
+              {
+                name: 'azimuth',
+                value: {
+                  kind: 'object',
+                  fields: [{ name: 'radians', value: { kind: 'number' } }],
+                },
+              },
+              {
+                name: 'roll',
+                value: {
+                  kind: 'object',
+                  fields: [{ name: 'radians', value: { kind: 'number' } }],
+                },
+              },
+            ],
+          },
+        },
+      },
+    ],
+  },
 }
 const sdkRecords: Record<
   string,
@@ -750,6 +920,29 @@ const sdkRecords: Record<
   ],
 }
 
+function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
+  if (shape.kind === 'optional')
+    return value === null || validSDKEventValue(value, shape.value)
+  if (shape.kind === 'number') return typeof value === 'number' && Number.isFinite(value)
+  if (shape.kind === 'string' || shape.kind === 'boolean')
+    return typeof value === shape.kind
+  if (!value || typeof value !== 'object') return false
+  const record = value as Record<string, unknown>
+  if (shape.kind === 'point')
+    return (
+      typeof record.x === 'number' &&
+      Number.isFinite(record.x) &&
+      typeof record.y === 'number' &&
+      Number.isFinite(record.y)
+    )
+  if (shape.kind !== 'object') return false
+  return shape.fields.every(
+    (field) =>
+      Object.hasOwn(record, field.name) &&
+      validSDKEventValue(record[field.name], field.value)
+  )
+}
+
 export function swiftStyleNative(
   style: OneNativeStyle | undefined
 ): OneNativeStyleNative | undefined {
@@ -904,21 +1097,15 @@ export function dispatchSDKEvent(
     if (!kinds || !Array.isArray(event.values) || event.values.length !== kinds.length)
       throw new Error(name + ' emitted an invalid enum case')
     for (const [index, item] of event.values.entries()) {
-      const kind = kinds[index]
-      if (kind === 'point') {
-        if (
-          !item ||
-          typeof item !== 'object' ||
-          typeof (item as { x?: unknown }).x !== 'number' ||
-          !Number.isFinite((item as { x: number }).x) ||
-          typeof (item as { y?: unknown }).y !== 'number' ||
-          !Number.isFinite((item as { y: number }).y)
-        )
-          throw new Error(name + ' emitted an invalid point')
-      } else if (typeof item !== kind || (kind === 'number' && !Number.isFinite(item)))
-        throw new Error(name + ' emitted an invalid enum value')
+      if (!validSDKEventValue(item, kinds[index]))
+        throw new Error(name + ' emitted an invalid ' + kinds[index].kind)
     }
     ;(modifier as ((value: unknown) => void) | undefined)?.(event)
+  } else if (kind === 'eventStruct') {
+    const payload: unknown = JSON.parse(value)
+    if (!validSDKEventValue(payload, sdkEventStructs[name]))
+      throw new Error(name + ' emitted an invalid struct value')
+    ;(modifier as ((value: unknown) => void) | undefined)?.(payload)
   } else if (kind === 'bindingBoolean')
     (modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(
       value === 'true'

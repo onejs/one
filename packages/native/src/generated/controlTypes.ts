@@ -1766,12 +1766,57 @@ export interface OneNativeStyle {
       | { case: 'ended'; values: readonly [] }
   ) => void
   onDisappear?: () => void
+  onDragSessionUpdated?: (value: { location: { x: number; y: number } }) => void
   onHover?: (value: boolean) => void
   onInteractiveResizeChange?: (value: boolean) => void
   onLongPressGesture?: () => void
   onMapCameraChange?: () => void
   onOpenURLWithPerform?: (value: string) => void
   onOpenURLWithPrefersInApp?: boolean
+  onPencilDoubleTap?: (value: {
+    hoverPose: {
+      location: { x: number; y: number }
+      anchor: { x: number; y: number }
+      zDistance: number
+      altitude: { radians: number }
+      azimuth: { radians: number }
+      roll: { radians: number }
+    } | null
+  }) => void
+  onPencilSqueeze?: (
+    value:
+      | {
+          case: 'active'
+          values: readonly [
+            {
+              hoverPose: {
+                location: { x: number; y: number }
+                anchor: { x: number; y: number }
+                zDistance: number
+                altitude: { radians: number }
+                azimuth: { radians: number }
+                roll: { radians: number }
+              } | null
+            },
+          ]
+        }
+      | {
+          case: 'ended'
+          values: readonly [
+            {
+              hoverPose: {
+                location: { x: number; y: number }
+                anchor: { x: number; y: number }
+                zDistance: number
+                altitude: { radians: number }
+                azimuth: { radians: number }
+                roll: { radians: number }
+              } | null
+            },
+          ]
+        }
+      | { case: 'failed'; values: readonly [] }
+  ) => void
   onScrollPhaseChange?: (
     oldValue: 'idle' | 'tracking' | 'interacting' | 'decelerating' | 'animating',
     newValue: 'idle' | 'tracking' | 'interacting' | 'decelerating' | 'animating'

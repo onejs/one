@@ -15,6 +15,7 @@ export type Declaration = {
   inheritedTypes?: string[]
   generic?: boolean
   enumCase?: boolean
+  stored?: boolean
 }
 
 const run = (file: string, args: string[]) =>
