@@ -14,8 +14,10 @@ enum OneNativeViewSlotName {
   static let containerBackground = "containerBackground"
   static let contentToolbar = "contentToolbar"
   static let contextMenu = "contextMenu"
+  static let inspector = "inspector"
   static let mapControls = "mapControls"
   static let mask = "mask"
+  static let navigationDestination = "navigationDestination"
   static let overlay = "overlay"
   static let presentationBackground = "presentationBackground"
   static let safeAreaBarWithHorizontalEdge = "safeAreaBarWithHorizontalEdge"
@@ -34,11 +36,11 @@ enum OneNativeViewSlotName {
   static let toolbar = "toolbar"
   static let toolbarOverflowMenu = "toolbarOverflowMenu"
   static let toolbarTitleMenu = "toolbarTitleMenu"
-  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, background, containerBackground, contentToolbar, contextMenu, mapControls, mask, overlay, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchSuggestions, sectionActions, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
+  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, background, containerBackground, contentToolbar, contextMenu, inspector, mapControls, mask, navigationDestination, overlay, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchSuggestions, sectionActions, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
 }
 
 extension View {
-  func oneNativeViewSlot(_ name: String, values: String = "[]", content: @escaping () -> AnyView) -> AnyView {
+  func oneNativeViewSlot(_ name: String, values: String = "[]", emit: @escaping (String, String) -> Void = { _, _ in }, content: @escaping () -> AnyView) -> AnyView {
     switch name {
     case OneNativeViewSlotName.accessibilityActions:
       if #available(iOS 16, *) {
@@ -116,6 +118,16 @@ extension View {
         return AnyView(self.contextMenu(menuItems: content))
       }
       return AnyView(self)
+    case OneNativeViewSlotName.inspector:
+      if #available(iOS 17, *) {
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          decoded.count == 1 else { preconditionFailure("invalid inspector slot values") }
+        guard decoded[0] == "true" || decoded[0] == "false" else { preconditionFailure("invalid inspector.isPresented") }
+        let argument0 = Binding<Bool>(get: { decoded[0] == "true" }, set: { emit("inspector", String($0)) })
+        return AnyView(self.inspector(isPresented: argument0, content: content))
+      }
+      return AnyView(self)
     case OneNativeViewSlotName.mapControls:
       if #available(iOS 17, *) {
         return AnyView(self.mapControls(content))
@@ -124,6 +136,16 @@ extension View {
     case OneNativeViewSlotName.mask:
       if #available(iOS 15, *) {
         return AnyView(self.mask(content))
+      }
+      return AnyView(self)
+    case OneNativeViewSlotName.navigationDestination:
+      if #available(iOS 16, *) {
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          decoded.count == 1 else { preconditionFailure("invalid navigationDestination slot values") }
+        guard decoded[0] == "true" || decoded[0] == "false" else { preconditionFailure("invalid navigationDestination.isPresented") }
+        let argument0 = Binding<Bool>(get: { decoded[0] == "true" }, set: { emit("navigationDestination", String($0)) })
+        return AnyView(self.navigationDestination(isPresented: argument0, destination: content))
       }
       return AnyView(self)
     case OneNativeViewSlotName.overlay:

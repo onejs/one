@@ -281,4 +281,17 @@ describe('SDK view slots', () => {
       { name: 'safeAreaInsetWithVerticalEdge', sdkName: 'safeAreaInset', module: 'SwiftUICore', label: 'content', ios: 0, arguments: [{ field: 'edge', label: 'edge', type: 'SwiftUICore.VerticalEdge', kind: 'enum', optional: false, cases: [{ name: 'top', ios: 0 }] }] },
     ])
   })
+
+  it('derives a boolean binding beside a view builder', () => {
+    expect(deriveViewSlots([{
+      ...method('inspector', 'SwiftUI', [
+        { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+        { label: 'content', name: 'content', type: '() -> V' },
+      ]),
+      requirements: ['V : SwiftUICore.View'],
+    }], 27)).toEqual([{
+      name: 'inspector', module: 'SwiftUI', label: 'content', ios: 0,
+      arguments: [{ field: 'isPresented', label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>', kind: 'bindingBoolean', optional: false }],
+    }])
+  })
 })

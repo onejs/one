@@ -59,7 +59,8 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) =>
     return { kind: 'enum', type, optional, cases }
   }
 
-export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; arguments: readonly DerivedArgument[] }
+export type DerivedSlotArgument = DerivedArgument | { field: string; label: string; type: string; kind: 'bindingBoolean'; optional: false }
+export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; arguments: readonly DerivedSlotArgument[] }
 
 export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
   const valueOf = bridgeValueOf(inventory, ceiling)
@@ -76,7 +77,8 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
       d.owner.split('.').at(-1) === 'View' && builders.length === 1 &&
       d.parameters.at(-1) === builders[0] &&
       d.parameters.every((parameter) => parameter === builders[0] || parameter.defaultValue !== undefined ||
-        valueOf(parameter.type)?.kind === 'enum') &&
+        valueOf(parameter.type)?.kind === 'enum' ||
+        parameter.type === 'SwiftUICore.Binding<Swift.Bool>') &&
       present(d) && ios(d) <= ceiling
     )
   })
@@ -95,7 +97,9 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
         parameter.type.startsWith('() ->'))!.label, ios: ios(slot),
       arguments: slot.parameters.filter((parameter) =>
         !parameter.type.startsWith('() ->') && parameter.defaultValue === undefined)
-        .map((parameter) => ({ ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label })) }
+        .map((parameter) => parameter.type === 'SwiftUICore.Binding<Swift.Bool>'
+          ? { field: parameter.name, label: parameter.label, type: parameter.type, kind: 'bindingBoolean' as const, optional: false as const }
+          : { ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label }) }
   }))
     .sort((a, b) => a.name.localeCompare(b.name))
 }
