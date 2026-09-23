@@ -171,7 +171,9 @@ export function resolveBoundServerUrl(requestedUrl: string, output: string): str
   if (!requestedPort || !output.includes(`Port ${requestedPort} is in use`)) {
     return requested
   }
-  const seen = [...output.matchAll(/https?:\/\/localhost:(\d+)/g)].map((m) => m[1])
+  const seen = [
+    ...output.replace(/\x1b\[[0-9;]*m/g, '').matchAll(/https?:\/\/localhost:(\d+)/g),
+  ].map((m) => m[1])
   const boundPort = seen[seen.length - 1]
   if (boundPort && boundPort !== requestedPort) {
     return requested.replace(`:${requestedPort}`, `:${boundPort}`)
