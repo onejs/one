@@ -1,4 +1,30 @@
 // native project patches shared by the prebuild path.
+const { createRequire } = require('node:module')
+const path = require('node:path')
+
+function hasNitroWebImage(root) {
+  const projectRequire = createRequire(path.join(root, 'package.json'))
+  try {
+    const nativeRoot = path.dirname(projectRequire.resolve('@vxrn/native/package.json'))
+    projectRequire.resolve('react-native-nitro-web-image/package.json', { paths: [nativeRoot] })
+    return true
+  } catch {
+    return false
+  }
+}
+
+const NITRO_WEB_IMAGE_MARKER = '# [vxrn/one] nitro web image modular header'
+
+function injectNitroWebImageModularHeaderIntoPodfile(podfile) {
+  if (podfile.includes(NITRO_WEB_IMAGE_MARKER) ||
+    /pod ['"]SDWebImage['"][^\n]*:modular_headers\s*=>\s*true/.test(podfile)) return podfile
+  const anchor = /^(\s*)config = use_native_modules!.*$/m
+  const match = podfile.match(anchor)
+  if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
+  const insertAt = match.index + match[0].length
+  return podfile.slice(0, insertAt) + '\n' + match[1] + NITRO_WEB_IMAGE_MARKER +
+    '\n' + match[1] + "pod 'SDWebImage', :modular_headers => true" + podfile.slice(insertAt)
+}
 
 /**
  * RN's fmt pod (11.x) fails to compile under Xcode 26 clang in C++20 mode:
@@ -547,6 +573,8 @@ function injectOneSwiftPackagesIntoPodfile(podfile) {
 }
 
 module.exports = {
+  hasNitroWebImage,
+  injectNitroWebImageModularHeaderIntoPodfile,
   injectOneSwiftPackagesIntoPodfile,
   addSetCliPathToBundleReactNativeShellScript,
   addPodHermescToBundleReactNativeShellScript,
