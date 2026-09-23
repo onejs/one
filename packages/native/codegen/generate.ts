@@ -1,9 +1,10 @@
 import { containerComponents, emitContainers, environmentMethods } from './emitContainers'
 import { emitPopover, popoverComponents, popoverMethods } from './emitPopover'
 import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
-import { controls } from './controlCatalog'
+import { controls as curatedControls } from './controlCatalog'
 import { emitControls } from './emitControls'
 import { emitStyle } from './emitStyle'
+import { deriveModifiers, deriveViews } from './deriveSDK'
 import { emitMenuValidator } from './menuValidator'
 import {
   readInventory,
@@ -21,12 +22,14 @@ import {
   tabConstructor,
   components,
   frameworks,
+  handwrittenComponents,
   menuMethods,
   modifierFamilies,
   enumTypes,
   fields,
   modifiers,
   styleModifiers,
+  styleFields,
   nodes,
 } from './catalog'
 
@@ -37,7 +40,7 @@ const MINIMUM_IOS = 17
 // the ceiling the checked-in bindings must compile against. CI pins an Xcode on this SDK
 // major, so symbols introduced above it are skipped and every newer toolchain produces
 // identical output. bump this when CI moves to a newer Xcode, then regenerate.
-const MAXIMUM_IOS = 26
+const MAXIMUM_IOS = 27
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const cache = join(root, '.codegen-cache')
@@ -45,6 +48,21 @@ mkdirSync(cache, { recursive: true })
 const run = (file: string, args: string[]) =>
   execFileSync(file, args, { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }).trim()
 const { sdk, swiftc, inventory } = readInventory(root)
+const controls = [
+  ...curatedControls,
+  ...deriveViews(
+    inventory,
+    MINIMUM_IOS,
+    new Set([
+      ...curatedControls.map((control) => control.name),
+      ...components.map((component) => component.publicName),
+      ...containerComponents.map((component) => component.publicName),
+      ...sheetComponents.map((component) => component.publicName),
+      ...popoverComponents.map((component) => component.publicName),
+    ])
+  ),
+]
+const derivedModifiers = deriveModifiers(inventory, MAXIMUM_IOS, styleFields)
 const sdkVersion = run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version'])
 if (Number(sdkVersion.split('.')[0]) < MAXIMUM_IOS)
   throw new Error(
@@ -70,6 +88,18 @@ const coverView = (declaration: Declaration) =>
   cover(coveredViews, declaration, shortOwner(declaration) ?? declaration.owner)
 const coverModifier = (declaration: Declaration) =>
   cover(coveredModifiers, declaration, declaration.name)
+for (const modifier of derivedModifiers) {
+  const declaration = inventory.find(
+    (d) =>
+      d.kind === 'func' &&
+      d.name === modifier.name &&
+      d.parameters.length === 1 &&
+      d.parameters[0].type === modifier.type &&
+      d.owner.split('.').at(-1) === 'View'
+  )
+  if (!declaration) throw new Error(`lost SDK declaration for ${modifier.name}`)
+  coverModifier(declaration)
+}
 const enums = Object.fromEntries(
   enumTypes.map((type) => {
     const cases = inventory.filter(
@@ -132,12 +162,15 @@ const outputs = new Map<string, string>()
 const { schema: controlComponents, payloads: controlPayloads } = emitControls(
   header,
   outputs,
-  inventory
+  inventory,
+  styleFields,
+  derivedModifiers,
+  controls
 ) ?? { schema: [], payloads: {} }
 emitSheet(header, outputs)
-emitContainers(header, outputs)
+emitContainers(header, outputs, styleFields)
 emitPopover(header, outputs)
-emitStyle(header, outputs)
+emitStyle(header, outputs, styleFields, derivedModifiers)
 // the sync-state TurboModule spec: pod-install and gradle codegen read it from
 // src/specs alongside the view specs. emitted here so --check guards the JSI
 // contract byte for byte. it carries no view config (see isViewSpecFile).
@@ -562,13 +595,15 @@ const manifest = {
             present(d) &&
             ios(d) <= MAXIMUM_IOS &&
             modifierFamilies.some((prefix) => d.name.startsWith(prefix)) &&
-            !methods.some((m) => m.name === d.name)
+            !methods.some((m) => m.name === d.name) &&
+            !derivedModifiers.some((m) => m.name === d.name)
         )
         .map((d) => d.name)
     ),
   ].sort(),
   enums,
   modifiers: methods,
+  derivedModifiers,
   // the hill-climb sets codegen/coverage.ts reports against: bound view types and
   // view modifier names per SDK module, collected at every selection site above.
   coverage: {
@@ -595,6 +630,7 @@ const packagePath = join(root, 'package.json')
 const packageMetadata = JSON.parse(readFileSync(packagePath, 'utf8'))
 packageMetadata.codegenConfig.ios.componentProvider = Object.fromEntries(
   [
+    ...handwrittenComponents.map((name) => ({ name })),
     ...components,
     ...controlComponents,
     ...sheetComponents,

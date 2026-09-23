@@ -19,6 +19,373 @@ export const glassEffectShapes = [
 export type GlassEffectShape = (typeof glassEffectShapes)[number]
 export const materials = ['ultraThin', 'thin', 'regular', 'thick', 'ultraThick'] as const
 export type Material = (typeof materials)[number]
+export const sdkBadgeProminenceValues = ['decreased', 'standard', 'increased'] as const
+export type SDKBadgeProminence = (typeof sdkBadgeProminenceValues)[number]
+export const sdkBlendModeValues = [
+  'normal',
+  'multiply',
+  'screen',
+  'overlay',
+  'darken',
+  'lighten',
+  'colorDodge',
+  'colorBurn',
+  'softLight',
+  'hardLight',
+  'difference',
+  'exclusion',
+  'hue',
+  'saturation',
+  'color',
+  'luminosity',
+  'sourceAtop',
+  'destinationOver',
+  'destinationOut',
+  'plusDarker',
+  'plusLighter',
+] as const
+export type SDKBlendMode = (typeof sdkBlendModeValues)[number]
+export const sdkButtonBorderShapeValues = [
+  'automatic',
+  'capsule',
+  'roundedRectangle',
+  'circle',
+] as const
+export type SDKButtonBorderShape = (typeof sdkButtonBorderShapeValues)[number]
+export const sdkButtonRepeatBehaviorValues = ['automatic', 'enabled', 'disabled'] as const
+export type SDKButtonRepeatBehavior = (typeof sdkButtonRepeatBehaviorValues)[number]
+export const sdkButtonSizingValues = ['automatic', 'flexible', 'fitted'] as const
+export type SDKButtonSizing = (typeof sdkButtonSizingValues)[number]
+export const sdkColorMultiplyValues = [
+  'accentColor',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'mint',
+  'teal',
+  'cyan',
+  'blue',
+  'indigo',
+  'purple',
+  'pink',
+  'brown',
+  'white',
+  'gray',
+  'black',
+  'clear',
+  'primary',
+  'secondary',
+] as const
+export type SDKColorMultiply = (typeof sdkColorMultiplyValues)[number]
+export const sdkColorSchemeValues = ['light', 'dark'] as const
+export type SDKColorScheme = (typeof sdkColorSchemeValues)[number]
+export const sdkContentTransitionValues = [
+  'symbolEffect',
+  'identity',
+  'opacity',
+  'interpolate',
+] as const
+export type SDKContentTransition = (typeof sdkContentTransitionValues)[number]
+export const sdkControlSizeValues = [
+  'mini',
+  'small',
+  'regular',
+  'large',
+  'extraLarge',
+] as const
+export type SDKControlSize = (typeof sdkControlSizeValues)[number]
+export const sdkDefaultAdaptableTabBarPlacementValues = [
+  'automatic',
+  'tabBar',
+  'sidebar',
+] as const
+export type SDKDefaultAdaptableTabBarPlacement =
+  (typeof sdkDefaultAdaptableTabBarPlacementValues)[number]
+export const sdkDefaultTabBarPlacementValues = ['automatic', 'tabBar', 'sidebar'] as const
+export type SDKDefaultTabBarPlacement = (typeof sdkDefaultTabBarPlacementValues)[number]
+export const sdkDynamicTypeSizeValues = [
+  'xSmall',
+  'small',
+  'medium',
+  'large',
+  'xLarge',
+  'xxLarge',
+  'xxxLarge',
+  'accessibility1',
+  'accessibility2',
+  'accessibility3',
+  'accessibility4',
+  'accessibility5',
+] as const
+export type SDKDynamicTypeSize = (typeof sdkDynamicTypeSizeValues)[number]
+export const sdkEdgesIgnoringSafeAreaValues = [
+  'top',
+  'leading',
+  'bottom',
+  'trailing',
+  'all',
+  'horizontal',
+  'vertical',
+] as const
+export type SDKEdgesIgnoringSafeArea = (typeof sdkEdgesIgnoringSafeAreaValues)[number]
+export const sdkFileDialogBrowserOptionsValues = [
+  'enumeratePackages',
+  'includeHiddenFiles',
+  'displayFileExtensions',
+] as const
+export type SDKFileDialogBrowserOptions =
+  (typeof sdkFileDialogBrowserOptionsValues)[number]
+export const sdkGlassEffectTransitionValues = [
+  'matchedGeometry',
+  'materialize',
+  'identity',
+] as const
+export type SDKGlassEffectTransition = (typeof sdkGlassEffectTransitionValues)[number]
+export const sdkGridCellAnchorValues = [
+  'zero',
+  'center',
+  'leading',
+  'trailing',
+  'top',
+  'bottom',
+  'topLeading',
+  'topTrailing',
+  'bottomLeading',
+  'bottomTrailing',
+] as const
+export type SDKGridCellAnchor = (typeof sdkGridCellAnchorValues)[number]
+export const sdkGridCellUnsizedAxesValues = ['horizontal', 'vertical'] as const
+export type SDKGridCellUnsizedAxes = (typeof sdkGridCellUnsizedAxesValues)[number]
+export const sdkGridColumnAlignmentValues = [
+  'leading',
+  'center',
+  'trailing',
+  'listRowSeparatorLeading',
+  'listRowSeparatorTrailing',
+] as const
+export type SDKGridColumnAlignment = (typeof sdkGridColumnAlignmentValues)[number]
+export const sdkHeaderProminenceValues = ['standard', 'increased'] as const
+export type SDKHeaderProminence = (typeof sdkHeaderProminenceValues)[number]
+export const sdkHoverEffectValues = ['automatic', 'highlight', 'lift'] as const
+export type SDKHoverEffect = (typeof sdkHoverEffectValues)[number]
+export const sdkHueRotationValues = ['zero'] as const
+export type SDKHueRotation = (typeof sdkHueRotationValues)[number]
+export const sdkKeyboardShortcutValues = ['defaultAction', 'cancelAction'] as const
+export type SDKKeyboardShortcut = (typeof sdkKeyboardShortcutValues)[number]
+export const sdkLabelsVisibilityValues = ['automatic', 'visible', 'hidden'] as const
+export type SDKLabelsVisibility = (typeof sdkLabelsVisibilityValues)[number]
+export const sdkLayoutDirectionBehaviorValues = ['fixed', 'mirrors'] as const
+export type SDKLayoutDirectionBehavior = (typeof sdkLayoutDirectionBehaviorValues)[number]
+export const sdkListSectionIndexVisibilityValues = [
+  'automatic',
+  'visible',
+  'hidden',
+] as const
+export type SDKListSectionIndexVisibility =
+  (typeof sdkListSectionIndexVisibilityValues)[number]
+export const sdkMaterialActiveAppearanceValues = [
+  'automatic',
+  'active',
+  'matchWindow',
+] as const
+export type SDKMaterialActiveAppearance =
+  (typeof sdkMaterialActiveAppearanceValues)[number]
+export const sdkMenuActionDismissBehaviorValues = [
+  'automatic',
+  'enabled',
+  'disabled',
+] as const
+export type SDKMenuActionDismissBehavior =
+  (typeof sdkMenuActionDismissBehaviorValues)[number]
+export const sdkMenuIndicatorValues = ['automatic', 'visible', 'hidden'] as const
+export type SDKMenuIndicator = (typeof sdkMenuIndicatorValues)[number]
+export const sdkMenuOrderValues = ['automatic', 'priority', 'fixed'] as const
+export type SDKMenuOrder = (typeof sdkMenuOrderValues)[number]
+export const sdkMultilineTextAlignmentValues = ['leading', 'center', 'trailing'] as const
+export type SDKMultilineTextAlignment = (typeof sdkMultilineTextAlignmentValues)[number]
+export const sdkNavigationLinkIndicatorVisibilityValues = [
+  'automatic',
+  'visible',
+  'hidden',
+] as const
+export type SDKNavigationLinkIndicatorVisibility =
+  (typeof sdkNavigationLinkIndicatorVisibilityValues)[number]
+export const sdkPaletteSelectionEffectValues = ['automatic', 'custom'] as const
+export type SDKPaletteSelectionEffect = (typeof sdkPaletteSelectionEffectValues)[number]
+export const sdkPersistentSystemOverlaysValues = [
+  'automatic',
+  'visible',
+  'hidden',
+] as const
+export type SDKPersistentSystemOverlays =
+  (typeof sdkPersistentSystemOverlaysValues)[number]
+export const sdkPresentationBackgroundInteractionValues = [
+  'automatic',
+  'enabled',
+  'disabled',
+] as const
+export type SDKPresentationBackgroundInteraction =
+  (typeof sdkPresentationBackgroundInteractionValues)[number]
+export const sdkPresentationCompactAdaptationValues = [
+  'automatic',
+  'none',
+  'popover',
+  'sheet',
+  'fullScreenCover',
+] as const
+export type SDKPresentationCompactAdaptation =
+  (typeof sdkPresentationCompactAdaptationValues)[number]
+export const sdkPresentationContentInteractionValues = [
+  'automatic',
+  'resizes',
+  'scrolls',
+] as const
+export type SDKPresentationContentInteraction =
+  (typeof sdkPresentationContentInteractionValues)[number]
+export const sdkPresentationDragIndicatorValues = [
+  'automatic',
+  'visible',
+  'hidden',
+] as const
+export type SDKPresentationDragIndicator =
+  (typeof sdkPresentationDragIndicatorValues)[number]
+export const sdkPresentationPlacementValues = [
+  'automatic',
+  'leading',
+  'center',
+  'trailing',
+] as const
+export type SDKPresentationPlacement = (typeof sdkPresentationPlacementValues)[number]
+export const sdkPreviewInterfaceOrientationValues = [
+  'portrait',
+  'portraitUpsideDown',
+  'landscapeLeft',
+  'landscapeRight',
+] as const
+export type SDKPreviewInterfaceOrientation =
+  (typeof sdkPreviewInterfaceOrientationValues)[number]
+export const sdkScenePaddingValues = [
+  'top',
+  'leading',
+  'bottom',
+  'trailing',
+  'all',
+  'horizontal',
+  'vertical',
+] as const
+export type SDKScenePadding = (typeof sdkScenePaddingValues)[number]
+export const sdkScrollContentBackgroundValues = [
+  'automatic',
+  'visible',
+  'hidden',
+] as const
+export type SDKScrollContentBackground = (typeof sdkScrollContentBackgroundValues)[number]
+export const sdkScrollDismissesKeyboardValues = [
+  'automatic',
+  'immediately',
+  'interactively',
+  'never',
+] as const
+export type SDKScrollDismissesKeyboard = (typeof sdkScrollDismissesKeyboardValues)[number]
+export const sdkSearchDictationBehaviorValues = ['automatic'] as const
+export type SDKSearchDictationBehavior = (typeof sdkSearchDictationBehaviorValues)[number]
+export const sdkSearchPresentationToolbarBehaviorValues = [
+  'automatic',
+  'avoidHidingContent',
+] as const
+export type SDKSearchPresentationToolbarBehavior =
+  (typeof sdkSearchPresentationToolbarBehaviorValues)[number]
+export const sdkSearchToolbarBehaviorValues = ['automatic', 'minimize'] as const
+export type SDKSearchToolbarBehavior = (typeof sdkSearchToolbarBehaviorValues)[number]
+export const sdkSliderThumbVisibilityValues = ['automatic', 'visible', 'hidden'] as const
+export type SDKSliderThumbVisibility = (typeof sdkSliderThumbVisibilityValues)[number]
+export const sdkSpringLoadingBehaviorValues = [
+  'automatic',
+  'enabled',
+  'disabled',
+] as const
+export type SDKSpringLoadingBehavior = (typeof sdkSpringLoadingBehaviorValues)[number]
+export const sdkSubmitLabelValues = [
+  'done',
+  'go',
+  'send',
+  'join',
+  'route',
+  'search',
+  'return',
+  'next',
+  'continue',
+] as const
+export type SDKSubmitLabel = (typeof sdkSubmitLabelValues)[number]
+export const sdkSymbolVariantValues = [
+  'none',
+  'circle',
+  'square',
+  'rectangle',
+  'fill',
+  'slash',
+] as const
+export type SDKSymbolVariant = (typeof sdkSymbolVariantValues)[number]
+export const sdkTabBarMinimizeBehaviorValues = [
+  'automatic',
+  'onScrollDown',
+  'onScrollUp',
+  'never',
+] as const
+export type SDKTabBarMinimizeBehavior = (typeof sdkTabBarMinimizeBehaviorValues)[number]
+export const sdkTableColumnHeadersValues = ['automatic', 'visible', 'hidden'] as const
+export type SDKTableColumnHeaders = (typeof sdkTableColumnHeadersValues)[number]
+export const sdkTabViewSearchActivationValues = [
+  'automatic',
+  'searchTabSelection',
+] as const
+export type SDKTabViewSearchActivation = (typeof sdkTabViewSearchActivationValues)[number]
+export const sdkTextInputBorderShapeValues = [
+  'automatic',
+  'capsule',
+  'roundedRectangle',
+] as const
+export type SDKTextInputBorderShape = (typeof sdkTextInputBorderShapeValues)[number]
+export const sdkTextSelectionAffinityValues = [
+  'automatic',
+  'upstream',
+  'downstream',
+] as const
+export type SDKTextSelectionAffinity = (typeof sdkTextSelectionAffinityValues)[number]
+export const sdkToolbarRoleValues = [
+  'automatic',
+  'navigationStack',
+  'browser',
+  'editor',
+] as const
+export type SDKToolbarRole = (typeof sdkToolbarRoleValues)[number]
+export const sdkToolbarTitleDisplayModeValues = [
+  'automatic',
+  'large',
+  'inlineLarge',
+  'inline',
+] as const
+export type SDKToolbarTitleDisplayMode = (typeof sdkToolbarTitleDisplayModeValues)[number]
+export const sdkTransitionValues = ['opacity', 'slide', 'identity', 'scale'] as const
+export type SDKTransition = (typeof sdkTransitionValues)[number]
+export const sdkWindowToolbarFullScreenVisibilityValues = ['automatic'] as const
+export type SDKWindowToolbarFullScreenVisibility =
+  (typeof sdkWindowToolbarFullScreenVisibilityValues)[number]
+export const sdkWritingToolsAffordanceVisibilityValues = [
+  'automatic',
+  'visible',
+  'hidden',
+] as const
+export type SDKWritingToolsAffordanceVisibility =
+  (typeof sdkWritingToolsAffordanceVisibilityValues)[number]
+export const sdkWritingToolsBehaviorValues = [
+  'automatic',
+  'complete',
+  'limited',
+  'disabled',
+] as const
+export type SDKWritingToolsBehavior = (typeof sdkWritingToolsBehaviorValues)[number]
 
 export interface OneNativeStyle {
   fontSize?: number
@@ -50,6 +417,118 @@ export interface OneNativeStyle {
   glassEffectTint?: ColorValue
   glassEffectShape?: GlassEffectShape
   material?: Material
+  allowsHitTesting?: boolean
+  allowsTightening?: boolean
+  autocorrectionDisabled?: boolean
+  badge?: number
+  badgeProminence?: SDKBadgeProminence
+  baselineOffset?: number
+  blendMode?: SDKBlendMode
+  bold?: boolean
+  brightness?: number
+  buttonBorderShape?: SDKButtonBorderShape
+  buttonRepeatBehavior?: SDKButtonRepeatBehavior
+  buttonSizing?: SDKButtonSizing
+  colorMultiply?: SDKColorMultiply
+  colorScheme?: SDKColorScheme
+  contentTransition?: SDKContentTransition
+  contrast?: number
+  controlSize?: SDKControlSize
+  defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement
+  defaultTabBarPlacement?: SDKDefaultTabBarPlacement
+  deleteDisabled?: boolean
+  disabled?: boolean
+  dynamicTypeSize?: SDKDynamicTypeSize
+  edgesIgnoringSafeArea?: SDKEdgesIgnoringSafeArea
+  fileDialogBrowserOptions?: SDKFileDialogBrowserOptions
+  fileDialogCustomizationID?: string
+  fileDialogImportsUnresolvedAliases?: boolean
+  findDisabled?: boolean
+  flipsForRightToLeftLayoutDirection?: boolean
+  focusable?: boolean
+  focusEffectDisabled?: boolean
+  glassEffectTransition?: SDKGlassEffectTransition
+  grayscale?: number
+  gridCellAnchor?: SDKGridCellAnchor
+  gridCellColumns?: number
+  gridCellUnsizedAxes?: SDKGridCellUnsizedAxes
+  gridColumnAlignment?: SDKGridColumnAlignment
+  headerProminence?: SDKHeaderProminence
+  hoverEffect?: SDKHoverEffect
+  hoverEffectDisabled?: boolean
+  hueRotation?: SDKHueRotation
+  inspectorColumnWidth?: number
+  interactionActivityTrackingTag?: string
+  interactiveDismissDisabled?: boolean
+  invalidatableContent?: boolean
+  italic?: boolean
+  kerning?: number
+  keyboardShortcut?: SDKKeyboardShortcut
+  labelIconToTitleSpacing?: number
+  labelReservedIconWidth?: number
+  labelsVisibility?: SDKLabelsVisibility
+  layoutDirectionBehavior?: SDKLayoutDirectionBehavior
+  layoutPriority?: number
+  lineSpacing?: number
+  listSectionIndexVisibility?: SDKListSectionIndexVisibility
+  materialActiveAppearance?: SDKMaterialActiveAppearance
+  menuActionDismissBehavior?: SDKMenuActionDismissBehavior
+  menuIndicator?: SDKMenuIndicator
+  menuOrder?: SDKMenuOrder
+  minimumScaleFactor?: number
+  monospaced?: boolean
+  moveDisabled?: boolean
+  multilineTextAlignment?: SDKMultilineTextAlignment
+  navigationBarBackButtonHidden?: boolean
+  navigationBarHidden?: boolean
+  navigationLinkIndicatorVisibility?: SDKNavigationLinkIndicatorVisibility
+  navigationSplitViewColumnWidth?: number
+  paletteSelectionEffect?: SDKPaletteSelectionEffect
+  persistentSystemOverlays?: SDKPersistentSystemOverlays
+  presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction
+  presentationCompactAdaptation?: SDKPresentationCompactAdaptation
+  presentationContentInteraction?: SDKPresentationContentInteraction
+  presentationDragIndicator?: SDKPresentationDragIndicator
+  presentationPlacement?: SDKPresentationPlacement
+  previewInterfaceOrientation?: SDKPreviewInterfaceOrientation
+  privacySensitive?: boolean
+  replaceDisabled?: boolean
+  safeAreaPadding?: number
+  saturation?: number
+  scenePadding?: SDKScenePadding
+  scrollClipDisabled?: boolean
+  scrollContentBackground?: SDKScrollContentBackground
+  scrollDisabled?: boolean
+  scrollDismissesKeyboard?: SDKScrollDismissesKeyboard
+  searchCompletion?: string
+  searchDictationBehavior?: SDKSearchDictationBehavior
+  searchPresentationToolbarBehavior?: SDKSearchPresentationToolbarBehavior
+  searchToolbarBehavior?: SDKSearchToolbarBehavior
+  selectionDisabled?: boolean
+  sliderThumbVisibility?: SDKSliderThumbVisibility
+  speechAdjustedPitch?: number
+  speechAlwaysIncludesPunctuation?: boolean
+  speechAnnouncementsQueued?: boolean
+  speechSpellsOutCharacters?: boolean
+  springLoadingBehavior?: SDKSpringLoadingBehavior
+  statusBarHidden?: boolean
+  submitLabel?: SDKSubmitLabel
+  submitScope?: boolean
+  symbolEffectsRemoved?: boolean
+  symbolVariant?: SDKSymbolVariant
+  tabBarMinimizeBehavior?: SDKTabBarMinimizeBehavior
+  tableColumnHeaders?: SDKTableColumnHeaders
+  tabViewSearchActivation?: SDKTabViewSearchActivation
+  textInputBorderShape?: SDKTextInputBorderShape
+  textSelectionAffinity?: SDKTextSelectionAffinity
+  toolbarRole?: SDKToolbarRole
+  toolbarTitleDisplayMode?: SDKToolbarTitleDisplayMode
+  tracking?: number
+  transition?: SDKTransition
+  windowToolbarFullScreenVisibility?: SDKWindowToolbarFullScreenVisibility
+  writingToolsAffordanceVisibility?: SDKWritingToolsAffordanceVisibility
+  writingToolsBehavior?: SDKWritingToolsBehavior
+  zIndex?: number
 }
 
 // the React Native props a One Native control honors. a composed control renders inside its
@@ -348,3 +827,5 @@ export interface FileImporterProps extends OneNativeViewProps {
   allowedContentTypes?: readonly string[]
   allowsMultipleSelection?: boolean
 }
+export interface EditButtonProps extends OneNativeViewProps {}
+export interface EmptyViewProps extends OneNativeViewProps {}

@@ -116,6 +116,7 @@ const testScreens = [
     testID: 'nav-one-native-app-info',
   },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
+  { href: '/one-native-autogen', label: 'One Native SDK Generation', testID: 'nav-one-native-autogen' },
   {
     href: '/one-native-android',
     label: 'One Native Android Proof',

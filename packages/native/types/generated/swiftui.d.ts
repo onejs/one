@@ -1,17 +1,17 @@
 export type MenuOrder = 'automatic' | 'priority' | 'fixed';
 export type Visibility = 'automatic' | 'visible' | 'hidden';
-export type PickerStyle = 'wheel' | 'inline' | 'automatic' | 'segmented' | 'palette' | 'navigationLink' | 'menu';
+export type PickerStyle = 'wheel' | 'inline' | 'automatic' | 'segmented' | 'tabs' | 'palette' | 'navigationLink' | 'menu';
 export type DatePickerStyle = 'wheel' | 'automatic' | 'graphical' | 'compact';
 export type ToggleStyle = 'button' | 'automatic' | 'switch';
 export type MenuActionDismissBehavior = 'automatic' | 'enabled' | 'disabled';
 export type TabBarMinimizeBehavior = 'automatic' | 'onScrollDown' | 'onScrollUp' | 'never';
 export type ButtonRole = 'destructive' | 'cancel' | 'confirm' | 'close';
-export type TabRole = 'search';
+export type TabRole = 'search' | 'prominent';
 export type ControlGroupStyle = 'palette' | 'automatic' | 'navigation' | 'menu' | 'compactMenu';
 export type PrimitiveButtonStyle = 'automatic' | 'glass' | 'borderless' | 'glassProminent' | 'plain' | 'bordered' | 'borderedProminent';
 export type ProgressViewStyle = 'linear' | 'circular' | 'automatic';
 export type GaugeStyle = 'accessoryCircularCapacity' | 'linearCapacity' | 'accessoryLinear' | 'accessoryLinearCapacity' | 'automatic' | 'accessoryCircular';
-export type TextFieldStyle = 'automatic' | 'roundedBorder' | 'plain';
+export type TextFieldStyle = 'automatic' | 'roundedBorder' | 'bordered' | 'plain';
 export type SubmitLabel = 'done' | 'go' | 'send' | 'join' | 'route' | 'search' | 'return' | 'next' | 'continue';
 export type TextInputAutocapitalization = 'never' | 'words' | 'sentences' | 'characters';
 export type Axis = 'horizontal' | 'vertical';
@@ -20,6 +20,7 @@ export type PresentationAdaptation = 'automatic' | 'none' | 'popover' | 'sheet' 
 export type PresentationContentInteraction = 'automatic' | 'resizes' | 'scrolls';
 export type ColorScheme = 'light' | 'dark';
 export type DynamicTypeSize = 'xSmall' | 'small' | 'medium' | 'large' | 'xLarge' | 'xxLarge' | 'xxxLarge' | 'accessibility1' | 'accessibility2' | 'accessibility3' | 'accessibility4' | 'accessibility5';
+export type ControlSize = 'mini' | 'small' | 'regular' | 'large' | 'extraLarge';
 export type SymbolRenderingMode = 'monochrome' | 'multicolor' | 'hierarchical' | 'palette';
 export type SymbolVariants = 'none' | 'circle' | 'square' | 'rectangle' | 'fill' | 'slash';
 export type ImageScale = 'small' | 'medium' | 'large';
@@ -46,6 +47,7 @@ export declare const swiftUIValues: {
         readonly inline: 14;
         readonly automatic: 13;
         readonly segmented: 13;
+        readonly tabs: 27;
         readonly palette: 17;
         readonly navigationLink: 16;
         readonly menu: 14;
@@ -80,6 +82,7 @@ export declare const swiftUIValues: {
     };
     readonly TabRole: {
         readonly search: 18;
+        readonly prominent: 27;
     };
     readonly ControlGroupStyle: {
         readonly palette: 17;
@@ -113,6 +116,7 @@ export declare const swiftUIValues: {
     readonly TextFieldStyle: {
         readonly automatic: 13;
         readonly roundedBorder: 13;
+        readonly bordered: 27;
         readonly plain: 13;
     };
     readonly SubmitLabel: {
@@ -171,6 +175,13 @@ export declare const swiftUIValues: {
         readonly accessibility3: 15;
         readonly accessibility4: 15;
         readonly accessibility5: 15;
+    };
+    readonly ControlSize: {
+        readonly mini: 15;
+        readonly small: 15;
+        readonly regular: 15;
+        readonly large: 15;
+        readonly extraLarge: 17;
     };
     readonly SymbolRenderingMode: {
         readonly monochrome: 15;
