@@ -1553,6 +1553,7 @@ export interface OneNativeStyle {
   controlGroupStyle?: SDKControlGroupStyle
   controlSize?: SDKControlSize
   coordinateSpace?: string
+  copyable?: Readonly<{ payload: readonly string[] }>
   dataDetection?: boolean
   datePickerStyle?: SDKDatePickerStyle
   defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement
@@ -1593,6 +1594,7 @@ export interface OneNativeStyle {
   documentLaunchSubtitle?: string
   documentLaunchTitle?: string
   dragConfiguration?: boolean
+  draggable?: Readonly<{ payload: string }>
   drawingGroup?: Readonly<{
     opaque: boolean
     colorMode: 'nonLinear' | 'linear' | 'extendedLinear'
@@ -1969,6 +1971,7 @@ export interface OneNativeStyle {
   onTapGestureWithPerform?: (value: { x: number; y: number }) => void
   onTapGestureWithPerformFromSwiftUICore?: () => void
   paletteSelectionEffect?: SDKPaletteSelectionEffect
+  pasteDestination?: (value: readonly string[]) => void
   payLaterViewAction?: SDKPayLaterViewAction
   payLaterViewDisplayStyle?: SDKPayLaterViewDisplayStyle
   payWithApplePayButtonDisableCardArt?: boolean

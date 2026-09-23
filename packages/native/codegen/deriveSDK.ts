@@ -386,6 +386,28 @@ export function deriveModifiers(
       }
       if (method.requirements?.length) {
         if (method.requirements.length !== 1) return []
+        const transferable = /^([A-Za-z_]\w*) : CoreTransferable\.Transferable$/.exec(method.requirements[0])?.[1]
+        if (transferable) {
+          const [first, action, ...defaults] = method.parameters
+          const arrayType = `@autoclosure @escaping () -> [${transferable}]`
+          const valueType = `@autoclosure @escaping () -> ${transferable}`
+          if (method.parameters.length === 1 && (first.type === arrayType || first.type === valueType))
+            return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+              arguments: [{ field: first.name || 'value', label: first.label,
+                type: first.type === arrayType ? '[Swift.String]' : 'Swift.String',
+                sdkType: first.type, kind: first.type === arrayType ? 'stringArray' : 'string', optional: false }],
+              ...framework }]
+          if (first?.type === `${transferable}.Type` && first.defaultValue !== undefined &&
+            new RegExp(`^@escaping \\((?:_ [A-Za-z]\\w*: )?\\[${transferable}\\]\\) -> Swift\\.Void$`).test(action?.type ?? '') &&
+            defaults.every((parameter) => parameter.defaultValue !== undefined))
+            return [{ name, module: method.module, kind: 'eventStruct', type: action.type,
+              label: action.label, eventValue: { kind: 'array', value: { kind: 'string' } },
+              callArguments: method.parameters.map((parameter) =>
+                parameter === first ? { label: parameter.label, defaultValue: 'String.self' } :
+                  parameter === action ? { label: parameter.label, bridge: true as const } :
+                    { label: parameter.label, defaultValue: parameter.defaultValue }),
+              ios: ios(method), ...framework }]
+        }
         const arrayID = /^([A-Za-z_]\w*) : Swift.Hashable$/.exec(method.requirements[0])?.[1]
         if (arrayID && method.parameters.length === 3 &&
           method.parameters[0].type === `${arrayID}.Type` &&

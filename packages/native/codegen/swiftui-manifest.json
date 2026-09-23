@@ -3367,6 +3367,22 @@
       "label": "name"
     },
     {
+      "name": "copyable",
+      "kind": "record",
+      "type": "",
+      "ios": 27,
+      "arguments": [
+        {
+          "field": "payload",
+          "label": "_",
+          "type": "[Swift.String]",
+          "sdkType": "@autoclosure @escaping () -> [T]",
+          "kind": "stringArray",
+          "optional": false
+        }
+      ]
+    },
+    {
       "name": "dataDetection",
       "kind": "boolean",
       "type": "",
@@ -3743,6 +3759,22 @@
         "label": "allowMove",
         "type": "Swift.Bool"
       }
+    },
+    {
+      "name": "draggable",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "arguments": [
+        {
+          "field": "payload",
+          "label": "_",
+          "type": "Swift.String",
+          "sdkType": "@autoclosure @escaping () -> T",
+          "kind": "string",
+          "optional": false
+        }
+      ]
     },
     {
       "name": "drawingGroup",
@@ -7299,6 +7331,33 @@
           "ios": 17
         }
       ]
+    },
+    {
+      "name": "pasteDestination",
+      "kind": "eventStruct",
+      "type": "@escaping ([T]) -> Swift.Void",
+      "label": "action",
+      "eventValue": {
+        "kind": "array",
+        "value": {
+          "kind": "string"
+        }
+      },
+      "callArguments": [
+        {
+          "label": "for",
+          "defaultValue": "String.self"
+        },
+        {
+          "label": "action",
+          "bridge": true
+        },
+        {
+          "label": "validator",
+          "defaultValue": "{ $0 }"
+        }
+      ],
+      "ios": 27
     },
     {
       "name": "payLaterViewAction",
@@ -12325,6 +12384,7 @@
         "contentToolbar",
         "contextMenu",
         "controlGroupStyle",
+        "copyable",
         "datePickerStyle",
         "defaultAdaptableTabBarPlacement",
         "defaultAppStorage",
@@ -12341,6 +12401,7 @@
         "documentLaunchSubtitle",
         "documentLaunchTitle",
         "dragConfiguration",
+        "draggable",
         "fileDialogBrowserOptions",
         "fileDialogConfirmationLabel",
         "fileDialogCustomizationID",
@@ -12427,6 +12488,7 @@
         "onSubmit",
         "onTapGesture",
         "paletteSelectionEffect",
+        "pasteDestination",
         "persistentSystemOverlays",
         "pickerStyle",
         "popover",

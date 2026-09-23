@@ -136,6 +136,7 @@ const sdkKinds = {
   controlGroupStyle: 'style',
   controlSize: 'string',
   coordinateSpace: 'string',
+  copyable: 'record',
   dataDetection: 'boolean',
   datePickerStyle: 'style',
   defaultAdaptableTabBarPlacement: 'string',
@@ -155,6 +156,7 @@ const sdkKinds = {
   documentLaunchSubtitle: 'string',
   documentLaunchTitle: 'string',
   dragConfiguration: 'boolean',
+  draggable: 'record',
   drawingGroup: 'record',
   dynamicTypeSize: 'string',
   edgesIgnoringSafeArea: 'string',
@@ -297,6 +299,7 @@ const sdkKinds = {
   onTapGestureWithPerform: 'eventStruct',
   onTapGestureWithPerformFromSwiftUICore: 'event',
   paletteSelectionEffect: 'string',
+  pasteDestination: 'eventStruct',
   payLaterViewAction: 'string',
   payLaterViewDisplayStyle: 'string',
   payWithApplePayButtonDisableCardArt: 'boolean',
@@ -675,6 +678,7 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
   },
   onScrollTargetVisibilityChange: { kind: 'array', value: { kind: 'string' } },
   onTapGestureWithPerform: { kind: 'point' },
+  pasteDestination: { kind: 'array', value: { kind: 'string' } },
   webViewOnScrollGeometryChangeWithContainerSize: {
     kind: 'object',
     fields: [
@@ -805,6 +809,7 @@ const sdkRecords: Record<
     { field: 'length', kind: 'number', optional: false },
     { field: 'placement', kind: 'enum', optional: false },
   ],
+  copyable: [{ field: 'payload', kind: 'stringArray', optional: false }],
   defaultScrollAnchorWithAnchorAndRole: [
     { field: 'anchor', kind: 'enum', optional: true },
     { field: 'role', kind: 'enum', optional: false },
@@ -822,6 +827,7 @@ const sdkRecords: Record<
     },
     { field: 'isEnabled', kind: 'boolean', optional: false },
   ],
+  draggable: [{ field: 'payload', kind: 'string', optional: false }],
   drawingGroup: [
     { field: 'opaque', kind: 'boolean', optional: false },
     { field: 'colorMode', kind: 'enum', optional: false },

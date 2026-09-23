@@ -13,6 +13,26 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('bridges transferable strings and paste events', () => {
+    const onPaste = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      copyable: { payload: ['first', 'second'] },
+      draggable: { payload: 'first' },
+      pasteDestination: onPaste,
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(modifiers.copyable)).toEqual([JSON.stringify(['first', 'second'])])
+    expect(JSON.parse(modifiers.draggable)).toEqual(['first'])
+    expect(modifiers.pasteDestination).toBe('')
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'pasteDestination', value: '["pasted","text"]',
+    } })
+    expect(onPaste).toHaveBeenCalledWith(['pasted', 'text'])
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'pasteDestination', value: '["valid",3]',
+    } })).toThrow('invalid struct value')
+  })
+
   it('round trips a Codable customization binding through native JSON', () => {
     const onChange = vi.fn()
     const current = '{"perTabState":[],"identifier":"D9754350-75EE-4390-AC54-159710381977","perSectionState":[]}'

@@ -197,6 +197,7 @@ extension View {
       case "controlGroupStyle": view = AnyView(view.oneNativeSDKControlGroupStyle(value, emit: emit))
       case "controlSize": view = AnyView(view.oneNativeSDKControlSize(value, emit: emit))
       case "coordinateSpace": view = AnyView(view.oneNativeSDKCoordinateSpace(value, emit: emit))
+      case "copyable": view = AnyView(view.oneNativeSDKCopyable(value, emit: emit))
       case "dataDetection": view = AnyView(view.oneNativeSDKDataDetection(value, emit: emit))
       case "datePickerStyle": view = AnyView(view.oneNativeSDKDatePickerStyle(value, emit: emit))
       case "defaultAdaptableTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultAdaptableTabBarPlacement(value, emit: emit))
@@ -216,6 +217,7 @@ extension View {
       case "documentLaunchSubtitle": view = AnyView(view.oneNativeSDKDocumentLaunchSubtitle(value, emit: emit))
       case "documentLaunchTitle": view = AnyView(view.oneNativeSDKDocumentLaunchTitle(value, emit: emit))
       case "dragConfiguration": view = AnyView(view.oneNativeSDKDragConfiguration(value, emit: emit))
+      case "draggable": view = AnyView(view.oneNativeSDKDraggable(value, emit: emit))
       case "drawingGroup": view = AnyView(view.oneNativeSDKDrawingGroup(value, emit: emit))
       case "dynamicTypeSize": view = AnyView(view.oneNativeSDKDynamicTypeSize(value, emit: emit))
       case "edgesIgnoringSafeArea": view = AnyView(view.oneNativeSDKEdgesIgnoringSafeArea(value, emit: emit))
@@ -358,6 +360,7 @@ extension View {
       case "onTapGestureWithPerform": view = AnyView(view.oneNativeSDKOnTapGestureWithPerform(value, emit: emit))
       case "onTapGestureWithPerformFromSwiftUICore": view = AnyView(view.oneNativeSDKOnTapGestureWithPerformFromSwiftUICore(value, emit: emit))
       case "paletteSelectionEffect": view = AnyView(view.oneNativeSDKPaletteSelectionEffect(value, emit: emit))
+      case "pasteDestination": view = AnyView(view.oneNativeSDKPasteDestination(value, emit: emit))
       case "payLaterViewAction": view = AnyView(view.oneNativeSDKPayLaterViewAction(value, emit: emit))
       case "payLaterViewDisplayStyle": view = AnyView(view.oneNativeSDKPayLaterViewDisplayStyle(value, emit: emit))
       case "payWithApplePayButtonDisableCardArt": view = AnyView(view.oneNativeSDKPayWithApplePayButtonDisableCardArt(value, emit: emit))
@@ -1996,6 +1999,23 @@ extension View {
       self.coordinateSpace(name: value)
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKCopyable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 27, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid copyable: \(value)") }
+      return decoded
+    }()
+    let argument0: [Swift.String] = {
+      guard let raw = values[0] else { preconditionFailure("missing copyable.payload") }
+      guard let data = raw.data(using: .utf8), let strings = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid copyable.payload: \(raw)") }
+      return strings
+    }()
+    self.copyable(argument0)
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKDataDetection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid dataDetection: \(value)")
     if value == "true" { if #available(iOS 27, *) { self.dataDetection() } else { self } } else { self }
@@ -2192,6 +2212,20 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKDragConfiguration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid dragConfiguration: \(value)")
       if #available(iOS 27, *) { self.dragConfiguration(SwiftUI.DragConfiguration(allowMove: value == "true")) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDraggable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid draggable: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.String = {
+      guard let raw = values[0] else { preconditionFailure("missing draggable.payload") }
+      return raw
+    }()
+    self.draggable(argument0)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDrawingGroup(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -3803,6 +3837,15 @@ extension View {
       case "custom": self.paletteSelectionEffect(SwiftUI.PaletteSelectionEffect.custom)
     default: preconditionFailure("invalid paletteSelectionEffect: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPasteDestination(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 27, *) { self.pasteDestination(for: String.self, action: { item in
+      let payload = item.map { item -> Any in item }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid pasteDestination event") }
+      emit("pasteDestination", encoded)
+    }, validator: { $0 }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPayLaterViewAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
