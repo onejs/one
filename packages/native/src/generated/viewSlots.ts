@@ -26,6 +26,8 @@ export const viewSlotAvailability = {
   safeAreaBarWithVerticalEdge: 26,
   safeAreaInsetWithHorizontalEdge: 15,
   safeAreaInsetWithVerticalEdge: 15,
+  searchScopesWithBindingString: 16,
+  searchScopesWithBindingStringAndSearchScopeActivation: 16.4,
   searchSuggestions: 16,
   sectionActions: 18,
   subscriptionStorePolicyDestination: 17,
@@ -91,6 +93,15 @@ export const viewSlotArguments = {
   ],
   safeAreaInsetWithVerticalEdge: [
     { field: 'edge', kind: 'enum', cases: { top: 15, bottom: 15 } },
+  ],
+  searchScopesWithBindingString: [{ field: 'scope', kind: 'bindingString' }],
+  searchScopesWithBindingStringAndSearchScopeActivation: [
+    { field: 'scope', kind: 'bindingString' },
+    {
+      field: 'activation',
+      kind: 'enum',
+      cases: { automatic: 16.4, onTextEntry: 16.4, onSearchPresentation: 16.4 },
+    },
   ],
   searchSuggestions: [],
   sectionActions: [],
@@ -161,6 +172,17 @@ export type ViewSlotConfiguration =
   | { name: 'safeAreaBarWithVerticalEdge'; options: { edge: 'top' | 'bottom' } }
   | { name: 'safeAreaInsetWithHorizontalEdge'; options: { edge: 'leading' | 'trailing' } }
   | { name: 'safeAreaInsetWithVerticalEdge'; options: { edge: 'top' | 'bottom' } }
+  | {
+      name: 'searchScopesWithBindingString'
+      options: { scope: { value: string; onChange: (value: string) => void } }
+    }
+  | {
+      name: 'searchScopesWithBindingStringAndSearchScopeActivation'
+      options: {
+        scope: { value: string; onChange: (value: string) => void }
+        activation: 'automatic' | 'onTextEntry' | 'onSearchPresentation'
+      }
+    }
   | { name: 'searchSuggestions'; options?: never }
   | { name: 'sectionActions'; options?: never }
   | {

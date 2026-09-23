@@ -30,6 +30,8 @@ enum OneNativeViewSlotName {
   static let safeAreaBarWithVerticalEdge = "safeAreaBarWithVerticalEdge"
   static let safeAreaInsetWithHorizontalEdge = "safeAreaInsetWithHorizontalEdge"
   static let safeAreaInsetWithVerticalEdge = "safeAreaInsetWithVerticalEdge"
+  static let searchScopesWithBindingString = "searchScopesWithBindingString"
+  static let searchScopesWithBindingStringAndSearchScopeActivation = "searchScopesWithBindingStringAndSearchScopeActivation"
   static let searchSuggestions = "searchSuggestions"
   static let sectionActions = "sectionActions"
   static let subscriptionStorePolicyDestination = "subscriptionStorePolicyDestination"
@@ -43,7 +45,7 @@ enum OneNativeViewSlotName {
   static let toolbar = "toolbar"
   static let toolbarOverflowMenu = "toolbarOverflowMenu"
   static let toolbarTitleMenu = "toolbarTitleMenu"
-  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, alert, background, confirmationDialog, containerBackground, contentToolbar, contextMenu, dismissalConfirmationDialog, inspector, listRowBackground, mapControls, mask, navigationBarItemsWithLeading, navigationBarItemsWithTrailing, navigationDestination, overlay, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchSuggestions, sectionActions, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewBottomAccessoryWithBool, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
+  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, alert, background, confirmationDialog, containerBackground, contentToolbar, contextMenu, dismissalConfirmationDialog, inspector, listRowBackground, mapControls, mask, navigationBarItemsWithLeading, navigationBarItemsWithTrailing, navigationDestination, overlay, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchScopesWithBindingString, searchScopesWithBindingStringAndSearchScopeActivation, searchSuggestions, sectionActions, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewBottomAccessoryWithBool, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
 }
 
 extension View {
@@ -271,6 +273,32 @@ extension View {
           }
         }()
         return AnyView(self.safeAreaInset(edge: argument0, content: content))
+      }
+      return AnyView(self)
+    case OneNativeViewSlotName.searchScopesWithBindingString:
+      if #available(iOS 16, *) {
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          decoded.count == 1 else { preconditionFailure("invalid searchScopesWithBindingString slot values") }
+        let argument0 = Binding<String>(get: { decoded[0] }, set: { emit("searchScopesWithBindingString", $0) })
+        return AnyView(self.searchScopes(argument0, scopes: content))
+      }
+      return AnyView(self)
+    case OneNativeViewSlotName.searchScopesWithBindingStringAndSearchScopeActivation:
+      if #available(iOS 16.4, *) {
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          decoded.count == 2 else { preconditionFailure("invalid searchScopesWithBindingStringAndSearchScopeActivation slot values") }
+        let argument0 = Binding<String>(get: { decoded[0] }, set: { emit("searchScopesWithBindingStringAndSearchScopeActivation", $0) })
+        let argument1: SwiftUI.SearchScopeActivation = {
+          switch decoded[1] {
+          case "automatic": return SwiftUI.SearchScopeActivation.automatic
+          case "onTextEntry": return SwiftUI.SearchScopeActivation.onTextEntry
+          case "onSearchPresentation": return SwiftUI.SearchScopeActivation.onSearchPresentation
+          default: preconditionFailure("invalid searchScopesWithBindingStringAndSearchScopeActivation.activation")
+          }
+        }()
+        return AnyView(self.searchScopes(argument0, activation: argument1, content))
       }
       return AnyView(self)
     case OneNativeViewSlotName.searchSuggestions:

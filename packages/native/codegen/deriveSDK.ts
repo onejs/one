@@ -66,7 +66,7 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) =>
     return { kind: 'enum', type, optional, cases }
   }
 
-export type DerivedSlotArgument = DerivedArgument | { field: string; label: string; type: string; kind: 'bindingBoolean'; optional: false }
+export type DerivedSlotArgument = DerivedArgument | { field: string; label: string; type: string; kind: 'bindingBoolean' | 'bindingString'; optional: false }
 export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; directValue?: true; arguments: readonly DerivedSlotArgument[] }
 
 export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
@@ -75,6 +75,10 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
     if (parameter.type === '() -> some View') return true
     const generic = /^\(\) -> ([A-Za-z_]\w*)$|^([A-Za-z_]\w*)\??$/.exec(parameter.type)
     return Boolean(generic && d.requirements?.includes(`${generic[1] ?? generic[2]} : SwiftUICore.View`))
+  }
+  const isStringBinding = (d: Declaration, type: string) => {
+    const generic = /^SwiftUICore\.Binding<([A-Za-z_]\w*)>$/.exec(type)?.[1]
+    return Boolean(generic && d.requirements?.includes(`${generic} : Swift.Hashable`))
   }
   const slots = inventory.filter((d) => {
     const builders = d.parameters.filter((parameter) => isContent(d, parameter))
@@ -85,7 +89,8 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
       d.parameters.at(-1) === builders[0] &&
       d.parameters.every((parameter) => parameter === builders[0] || parameter.defaultValue !== undefined ||
         ['enum', 'string', 'boolean'].includes(valueOf(parameter.type)?.kind ?? '') ||
-        parameter.type === 'SwiftUICore.Binding<Swift.Bool>') &&
+        parameter.type === 'SwiftUICore.Binding<Swift.Bool>' ||
+        isStringBinding(d, parameter.type)) &&
       present(d) && ios(d) <= ceiling
     )
   }).filter((slot, _, candidates) =>
@@ -103,7 +108,8 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
     const required = slot.parameters.filter((parameter) =>
       parameter !== content && parameter.defaultValue === undefined)
     const suffix = declarations.length === 1 || required.length === 0 ? ''
-      : `With${required.map((parameter) => parameter.type.split('.').at(-1)!).join('And')}`
+      : `With${required.map((parameter) => isStringBinding(slot, parameter.type)
+        ? 'BindingString' : parameter.type.split('.').at(-1)!.replace(/[^A-Za-z0-9]/g, '')).join('And')}`
     const directSuffix = declarations.length > 1 && directValue
       ? `With${content.label === '_' ? content.type.replace(/\?$/, '') : content.label[0].toUpperCase() + content.label.slice(1)}`
       : suffix
@@ -111,8 +117,8 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
       label: content.label, ios: ios(slot), ...(directValue ? { directValue: true as const } : {}),
       arguments: slot.parameters.filter((parameter) =>
         parameter !== content && parameter.defaultValue === undefined)
-        .map((parameter) => parameter.type === 'SwiftUICore.Binding<Swift.Bool>'
-          ? { field: parameter.name, label: parameter.label, type: parameter.type, kind: 'bindingBoolean' as const, optional: false as const }
+        .map((parameter) => parameter.type === 'SwiftUICore.Binding<Swift.Bool>' || isStringBinding(slot, parameter.type)
+          ? { field: parameter.name, label: parameter.label, type: parameter.type, kind: parameter.type === 'SwiftUICore.Binding<Swift.Bool>' ? 'bindingBoolean' as const : 'bindingString' as const, optional: false as const }
           : { ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label }) }
   }))
     .sort((a, b) => a.name.localeCompare(b.name))

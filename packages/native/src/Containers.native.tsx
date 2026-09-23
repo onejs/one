@@ -641,12 +641,12 @@ function ViewSlotFn({ name, options, children, style, ...props }: ViewSlotProps)
   assertOneNativeChildren(children, 'Swift.ViewSlot')
   const values = viewSlotArguments[name].map((argument) => {
     const value = (options as Record<string, unknown> | undefined)?.[argument.field]
-    if (argument.kind === 'bindingBoolean') {
+    if (argument.kind === 'bindingBoolean' || argument.kind === 'bindingString') {
       if (typeof value !== 'object' || value === null ||
-        typeof (value as { value?: unknown }).value !== 'boolean' ||
+        typeof (value as { value?: unknown }).value !== (argument.kind === 'bindingBoolean' ? 'boolean' : 'string') ||
         typeof (value as { onChange?: unknown }).onChange !== 'function')
-        throw new Error(`Swift.ViewSlot ${name}.${argument.field} must be a boolean binding`)
-      return String((value as { value: boolean }).value)
+        throw new Error(`Swift.ViewSlot ${name}.${argument.field} must be a ${argument.kind === 'bindingBoolean' ? 'boolean' : 'string'} binding`)
+      return String((value as { value: boolean | string }).value)
     }
     if (argument.kind === 'boolean') {
       if (typeof value !== 'boolean')
@@ -672,12 +672,18 @@ function ViewSlotFn({ name, options, children, style, ...props }: ViewSlotProps)
       slotName={name}
       slotValues={JSON.stringify(values)}
       onNativeSDKEvent={({ nativeEvent }) => {
-        if (nativeEvent.name !== name || (nativeEvent.value !== 'true' && nativeEvent.value !== 'false'))
-          throw new Error(`Swift.ViewSlot ${name} emitted an invalid binding event`)
-        const argument = viewSlotArguments[name].find((item) => item.kind === 'bindingBoolean')
+        if (nativeEvent.name !== name) throw new Error(`Swift.ViewSlot ${name} emitted an invalid binding event`)
+        const argument = viewSlotArguments[name].find((item) => item.kind === 'bindingBoolean' || item.kind === 'bindingString')
         if (!argument) throw new Error(`Swift.ViewSlot ${name} emitted an unexpected event`)
-        const binding = (options as Record<string, { onChange: (value: boolean) => void }>)[argument.field]
-        binding.onChange(nativeEvent.value === 'true')
+        if (argument.kind === 'bindingBoolean') {
+          if (nativeEvent.value !== 'true' && nativeEvent.value !== 'false')
+            throw new Error(`Swift.ViewSlot ${name} emitted an invalid boolean binding`)
+          const binding = (options as Record<string, { onChange: (value: boolean) => void }>)[argument.field]
+          binding.onChange(nativeEvent.value === 'true')
+        } else {
+          const binding = (options as Record<string, { onChange: (value: string) => void }>)[argument.field]
+          binding.onChange(nativeEvent.value)
+        }
       }}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
