@@ -222,6 +222,30 @@ ${parsedArguments}
     } else { self }` : `self.modifier(${holder}(value: value == "true", emit: emit))`}
   }`
       }
+      if (modifier.kind === 'bindingPoint') {
+        const type = modifier.bindingType!
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS ${modifier.ios}, *) {
+      let point: CGPoint? = {
+        if value == "null" { return nil }
+        guard let data = value.data(using: .utf8),
+          let coordinates = try? JSONDecoder().decode([String: Double].self, from: data),
+          coordinates.count == 2,
+          let x = coordinates["x"], x.isFinite,
+          let y = coordinates["y"], y.isFinite else { preconditionFailure("invalid ${modifier.name}: \\(value)") }
+        return CGPoint(x: x, y: y)
+      }()
+      self.${modifier.sdkName ?? modifier.name}(${modifier.label && modifier.label !== '_' ? `${modifier.label}: ` : ''}Binding<${type}>(get: {
+        point.map { ${type}(point: $0) } ?? ${type}()
+      }, set: { position in
+        let changed = position.point.map { ["x": Double($0.x), "y": Double($0.y)] }
+        guard let data = try? JSONEncoder().encode(changed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} event") }
+        emit(${JSON.stringify(modifier.name)}, encoded)
+      }))
+    } else { self }
+  }`
+      }
       if (modifier.kind === 'eventReturnArray') {
         const call = modifier.callArguments!.map((argument) =>
           `${argument.label === '_' ? '' : `${argument.label}: `}${argument.bridge ? 'action' : argument.defaultValue}`
@@ -540,7 +564,12 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
           typeof (value as { value?: unknown }).value !== (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean' ? 'boolean' : 'string'))))
         throw new Error(name + ' must be a binding')
       if (kind === 'bindingCodable' && (value as { value: string | null }).value !== null) JSON.parse((value as { value: string }).value)
-      sdkModifiers.push([name, kind === 'eventValueString' ? (value as { value: string }).value : kind === 'eventReturnArray' ? JSON.stringify((value as { items: string[] }).items) : kind.startsWith('event') ? '' : kind === 'bindingOptionalString' ? JSON.stringify((value as { value: string | null }).value) : kind === 'bindingCodable' && (value as { value: string | null }).value === null ? 'null' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : kind === 'optionalString' || kind === 'optionalURL' ? JSON.stringify(value) as string : String(value)])
+      if (kind === 'bindingPoint' &&
+        (typeof value !== 'object' || value === null || typeof (value as { onChange?: unknown }).onChange !== 'function' ||
+          ((value as { value?: unknown }).value !== null &&
+            !validSDKEventValue((value as { value?: unknown }).value, { kind: 'point' }))))
+        throw new Error(name + ' must be a point binding')
+      sdkModifiers.push([name, kind === 'eventValueString' ? (value as { value: string }).value : kind === 'eventReturnArray' ? JSON.stringify((value as { items: string[] }).items) : kind.startsWith('event') ? '' : kind === 'bindingOptionalString' || kind === 'bindingPoint' ? JSON.stringify((value as { value: unknown }).value) : kind === 'bindingCodable' && (value as { value: string | null }).value === null ? 'null' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : kind === 'optionalString' || kind === 'optionalURL' ? JSON.stringify(value) as string : String(value)])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
     } else {
@@ -638,6 +667,12 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
     const decoded: unknown = JSON.parse(value)
     if (decoded !== null && typeof decoded !== 'string') throw new Error(name + ' emitted an invalid optional string')
     ;(modifier as { onChange: (value: string | null) => void } | undefined)?.onChange(decoded)
+  }
+  else if (kind === 'bindingPoint') {
+    const decoded: unknown = JSON.parse(value)
+    if (decoded !== null && !validSDKEventValue(decoded, { kind: 'point' }))
+      throw new Error(name + ' emitted an invalid point')
+    ;(modifier as { onChange: (value: { x: number; y: number } | null) => void } | undefined)?.onChange(decoded as { x: number; y: number } | null)
   }
   else if (kind === 'eventValueString') (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
 }

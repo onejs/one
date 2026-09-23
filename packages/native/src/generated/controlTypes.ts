@@ -2158,7 +2158,11 @@ export interface OneNativeStyle {
     axes: 'horizontal' | 'vertical'
   }>
   scrollIndicatorsFlash?: boolean
-  scrollPosition?: Readonly<{
+  scrollPositionWithBindingPoint?: Readonly<{
+    value: Readonly<{ x: number; y: number }> | null
+    onChange: (value: Readonly<{ x: number; y: number }> | null) => void
+  }>
+  scrollPositionWithId?: Readonly<{
     value: string | null
     onChange: (value: string | null) => void
   }>
@@ -2409,6 +2413,10 @@ export interface OneNativeStyle {
     oldValue: { width: number; height: number }
     newValue: { width: number; height: number }
   }) => void
+  webViewScrollPosition?: Readonly<{
+    value: Readonly<{ x: number; y: number }> | null
+    onChange: (value: Readonly<{ x: number; y: number }> | null) => void
+  }>
   webViewTextSelection?: SDKWebViewTextSelection
   windowToolbarFullScreenVisibility?: SDKWindowToolbarFullScreenVisibility
   writingDirection?: SDKWritingDirection

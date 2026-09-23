@@ -429,7 +429,8 @@ extension View {
       case "scrollEdgeEffectStyle": view = AnyView(view.oneNativeSDKScrollEdgeEffectStyle(value, emit: emit))
       case "scrollIndicators": view = AnyView(view.oneNativeSDKScrollIndicators(value, emit: emit))
       case "scrollIndicatorsFlash": view = AnyView(view.oneNativeSDKScrollIndicatorsFlash(value, emit: emit))
-      case "scrollPosition": view = AnyView(view.oneNativeSDKScrollPosition(value, emit: emit))
+      case "scrollPositionWithBindingPoint": view = AnyView(view.oneNativeSDKScrollPositionWithBindingPoint(value, emit: emit))
+      case "scrollPositionWithId": view = AnyView(view.oneNativeSDKScrollPositionWithId(value, emit: emit))
       case "scrollTargetBehavior": view = AnyView(view.oneNativeSDKScrollTargetBehavior(value, emit: emit))
       case "scrollTargetLayout": view = AnyView(view.oneNativeSDKScrollTargetLayout(value, emit: emit))
       case "searchable": view = AnyView(view.oneNativeSDKSearchable(value, emit: emit))
@@ -522,6 +523,7 @@ extension View {
       case "webViewOnScrollGeometryChangeWithContainerSize": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContainerSize(value, emit: emit))
       case "webViewOnScrollGeometryChangeWithContentOffset": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContentOffset(value, emit: emit))
       case "webViewOnScrollGeometryChangeWithContentSize": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContentSize(value, emit: emit))
+      case "webViewScrollPosition": view = AnyView(view.oneNativeSDKWebViewScrollPosition(value, emit: emit))
       case "webViewTextSelection": view = AnyView(view.oneNativeSDKWebViewTextSelection(value, emit: emit))
       case "windowToolbarFullScreenVisibility": view = AnyView(view.oneNativeSDKWindowToolbarFullScreenVisibility(value, emit: emit))
       case "writingDirection": view = AnyView(view.oneNativeSDKWritingDirection(value, emit: emit))
@@ -4911,15 +4913,37 @@ extension View {
       self.scrollIndicatorsFlash(onAppear: value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKScrollPosition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKScrollPositionWithBindingPoint(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let point: CGPoint? = {
+        if value == "null" { return nil }
+        guard let data = value.data(using: .utf8),
+          let coordinates = try? JSONDecoder().decode([String: Double].self, from: data),
+          coordinates.count == 2,
+          let x = coordinates["x"], x.isFinite,
+          let y = coordinates["y"], y.isFinite else { preconditionFailure("invalid scrollPositionWithBindingPoint: \(value)") }
+        return CGPoint(x: x, y: y)
+      }()
+      self.scrollPosition(Binding<SwiftUICore.ScrollPosition>(get: {
+        point.map { SwiftUICore.ScrollPosition(point: $0) } ?? SwiftUICore.ScrollPosition()
+      }, set: { position in
+        let changed = position.point.map { ["x": Double($0.x), "y": Double($0.y)] }
+        guard let data = try? JSONEncoder().encode(changed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid scrollPositionWithBindingPoint event") }
+        emit("scrollPositionWithBindingPoint", encoded)
+      }))
+    } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKScrollPositionWithId(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.scrollPosition(id: Binding<String?>(get: {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
-        decoded is NSNull || decoded is String else { preconditionFailure("invalid scrollPosition: \(value)") }
+        decoded is NSNull || decoded is String else { preconditionFailure("invalid scrollPositionWithId: \(value)") }
       return decoded as? String
     }, set: { changed in
-      guard let data = try? JSONEncoder().encode(changed), let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid scrollPosition binding event") }
-      emit("scrollPosition", encoded)
+      guard let data = try? JSONEncoder().encode(changed), let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid scrollPositionWithId binding event") }
+      emit("scrollPositionWithId", encoded)
     }), anchor: nil)
   }
 
@@ -6339,6 +6363,28 @@ extension View {
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid webViewOnScrollGeometryChangeWithContentSize event") }
       emit("webViewOnScrollGeometryChangeWithContentSize", encoded)
     }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKWebViewScrollPosition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) {
+      let point: CGPoint? = {
+        if value == "null" { return nil }
+        guard let data = value.data(using: .utf8),
+          let coordinates = try? JSONDecoder().decode([String: Double].self, from: data),
+          coordinates.count == 2,
+          let x = coordinates["x"], x.isFinite,
+          let y = coordinates["y"], y.isFinite else { preconditionFailure("invalid webViewScrollPosition: \(value)") }
+        return CGPoint(x: x, y: y)
+      }()
+      self.webViewScrollPosition(Binding<SwiftUICore.ScrollPosition>(get: {
+        point.map { SwiftUICore.ScrollPosition(point: $0) } ?? SwiftUICore.ScrollPosition()
+      }, set: { position in
+        let changed = position.point.map { ["x": Double($0.x), "y": Double($0.y)] }
+        guard let data = try? JSONEncoder().encode(changed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid webViewScrollPosition event") }
+        emit("webViewScrollPosition", encoded)
+      }))
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKWebViewTextSelection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

@@ -367,7 +367,8 @@ const sdkKinds = {
   scrollEdgeEffectStyle: 'record',
   scrollIndicators: 'record',
   scrollIndicatorsFlash: 'boolean',
-  scrollPosition: 'bindingOptionalString',
+  scrollPositionWithBindingPoint: 'bindingPoint',
+  scrollPositionWithId: 'bindingOptionalString',
   scrollTargetBehavior: 'style',
   scrollTargetLayout: 'boolean',
   searchable: 'bindingString',
@@ -460,6 +461,7 @@ const sdkKinds = {
   webViewOnScrollGeometryChangeWithContainerSize: 'eventStruct',
   webViewOnScrollGeometryChangeWithContentOffset: 'eventStruct',
   webViewOnScrollGeometryChangeWithContentSize: 'eventStruct',
+  webViewScrollPosition: 'bindingPoint',
   webViewTextSelection: 'style',
   windowToolbarFullScreenVisibility: 'string',
   writingDirection: 'string',
@@ -1348,6 +1350,15 @@ export function swiftStyleNative(
         throw new Error(name + ' must be a binding')
       if (kind === 'bindingCodable' && (value as { value: string | null }).value !== null)
         JSON.parse((value as { value: string }).value)
+      if (
+        kind === 'bindingPoint' &&
+        (typeof value !== 'object' ||
+          value === null ||
+          typeof (value as { onChange?: unknown }).onChange !== 'function' ||
+          ((value as { value?: unknown }).value !== null &&
+            !validSDKEventValue((value as { value?: unknown }).value, { kind: 'point' })))
+      )
+        throw new Error(name + ' must be a point binding')
       sdkModifiers.push([
         name,
         kind === 'eventValueString'
@@ -1356,8 +1367,8 @@ export function swiftStyleNative(
             ? JSON.stringify((value as { items: string[] }).items)
             : kind.startsWith('event')
               ? ''
-              : kind === 'bindingOptionalString'
-                ? JSON.stringify((value as { value: string | null }).value)
+              : kind === 'bindingOptionalString' || kind === 'bindingPoint'
+                ? JSON.stringify((value as { value: unknown }).value)
                 : kind === 'bindingCodable' &&
                     (value as { value: string | null }).value === null
                   ? 'null'
@@ -1513,6 +1524,15 @@ export function dispatchSDKEvent(
     ;(modifier as { onChange: (value: string | null) => void } | undefined)?.onChange(
       decoded
     )
+  } else if (kind === 'bindingPoint') {
+    const decoded: unknown = JSON.parse(value)
+    if (decoded !== null && !validSDKEventValue(decoded, { kind: 'point' }))
+      throw new Error(name + ' emitted an invalid point')
+    ;(
+      modifier as
+        | { onChange: (value: { x: number; y: number } | null) => void }
+        | undefined
+    )?.onChange(decoded as { x: number; y: number } | null)
   } else if (kind === 'eventValueString')
     (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
 }
