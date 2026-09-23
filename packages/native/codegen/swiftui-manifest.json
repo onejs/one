@@ -7647,6 +7647,54 @@
       ]
     },
     {
+      "name": "projectionEffect",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "numericStruct",
+          "type": "SwiftUICore.ProjectionTransform",
+          "optional": false,
+          "fields": [
+            {
+              "name": "a",
+              "label": "a",
+              "type": "CoreFoundation.CGFloat"
+            },
+            {
+              "name": "b",
+              "label": "b",
+              "type": "CoreFoundation.CGFloat"
+            },
+            {
+              "name": "c",
+              "label": "c",
+              "type": "CoreFoundation.CGFloat"
+            },
+            {
+              "name": "d",
+              "label": "d",
+              "type": "CoreFoundation.CGFloat"
+            },
+            {
+              "name": "tx",
+              "label": "tx",
+              "type": "CoreFoundation.CGFloat"
+            },
+            {
+              "name": "ty",
+              "label": "ty",
+              "type": "CoreFoundation.CGFloat"
+            }
+          ],
+          "wrappedType": "CoreFoundation.CGAffineTransform",
+          "field": "transform",
+          "label": "_"
+        }
+      ]
+    },
+    {
       "name": "realityViewCameraControls",
       "kind": "string",
       "type": "RealityFoundation.CameraControls",
@@ -10644,6 +10692,53 @@
       "ios": 16
     },
     {
+      "name": "transformEffect",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "numericStruct",
+          "type": "CoreFoundation.CGAffineTransform",
+          "optional": false,
+          "fields": [
+            {
+              "name": "a",
+              "label": "a",
+              "type": "CoreFoundation.CGFloat"
+            },
+            {
+              "name": "b",
+              "label": "b",
+              "type": "CoreFoundation.CGFloat"
+            },
+            {
+              "name": "c",
+              "label": "c",
+              "type": "CoreFoundation.CGFloat"
+            },
+            {
+              "name": "d",
+              "label": "d",
+              "type": "CoreFoundation.CGFloat"
+            },
+            {
+              "name": "tx",
+              "label": "tx",
+              "type": "CoreFoundation.CGFloat"
+            },
+            {
+              "name": "ty",
+              "label": "ty",
+              "type": "CoreFoundation.CGFloat"
+            }
+          ],
+          "field": "transform",
+          "label": "_"
+        }
+      ]
+    },
+    {
       "name": "transition",
       "kind": "string",
       "type": "SwiftUICore.AnyTransition",
@@ -11234,6 +11329,7 @@
         "textScale",
         "tint",
         "tracking",
+        "transformEffect",
         "transition",
         "truncationMode",
         "typesettingLanguage",
@@ -11400,6 +11496,7 @@
         "previewInterfaceOrientation",
         "previewLayout",
         "progressViewStyle",
+        "projectionEffect",
         "renameAction",
         "replaceDisabled",
         "safeAreaBar",

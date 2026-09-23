@@ -14,6 +14,7 @@ export type DerivedArgument = {
   optional: boolean
   cases?: readonly { name: string; ios: number }[]
   fields?: readonly { name: string; label: string; type: string }[]
+  wrappedType?: string
 }
 
 export type EventValueSchema =
@@ -41,10 +42,14 @@ export type DerivedModifier = {
   arguments?: readonly DerivedArgument[]
 }
 
-const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) =>
-  (type: string, preferNumeric = false): Omit<DerivedArgument, 'field' | 'label'> | undefined => {
+const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
+  const affineFields = ['a', 'b', 'c', 'd', 'tx', 'ty'].map((name) =>
+    ({ name, label: name, type: 'CoreFoundation.CGFloat' }))
+  return (type: string, preferNumeric = false): Omit<DerivedArgument, 'field' | 'label'> | undefined => {
     const optional = type.endsWith('?')
     const baseType = type.replace(/\?$/, '')
+    if (baseType === 'CoreFoundation.CGAffineTransform')
+      return { kind: 'numericStruct', type, optional, fields: affineFields }
     const kind = baseType === 'Swift.Bool'
       ? 'boolean'
       : ['Swift.Double', 'Swift.Float', 'Swift.Int', 'CoreFoundation.CGFloat'].includes(baseType)
@@ -74,9 +79,10 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) =>
     const [module, ...owner] = baseType.split('.')
     const ownerName = owner.join('.')
     let numericStruct: Omit<DerivedArgument, 'field' | 'label'> | undefined
-    if (inventory.some((d) => d.module === module && d.kind === 'struct' &&
+    const publicStruct = inventory.some((d) => d.module === module && d.kind === 'struct' &&
       d.owner === owner.slice(0, -1).join('.') && d.name === owner.at(-1) &&
-      !d.generic && present(d) && ios(d) <= ceiling)) {
+      !d.generic && present(d) && ios(d) <= ceiling)
+    if (publicStruct) {
       const stored = inventory.filter((d) => d.module === module &&
         (d.owner === ownerName || d.owner === baseType) && d.kind === 'var' &&
         d.stored && present(d) && ios(d) <= ceiling)
@@ -89,6 +95,16 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) =>
       if (constructors.length === 1 && stored.every((field) => numericType(field.type ?? '')))
         numericStruct = { kind: 'numericStruct', type, optional, fields: constructors[0].parameters.map((parameter) =>
           ({ name: parameter.label, label: parameter.label, type: parameter.type })) }
+    }
+    if (publicStruct && !numericStruct) {
+      const affineInitializers = inventory.filter((d) => d.module === module &&
+        (d.owner === ownerName || d.owner === baseType) && d.kind === 'init' &&
+        d.parameters.length === 1 && d.parameters[0].label === '_' &&
+        d.parameters[0].type === 'CoreFoundation.CGAffineTransform' &&
+        !d.requirements?.length && present(d) && ios(d) <= ceiling)
+      if (affineInitializers.length === 1)
+        numericStruct = { kind: 'numericStruct', type, optional, fields: affineFields,
+          wrappedType: 'CoreFoundation.CGAffineTransform' }
     }
     const cases = inventory
       .filter((d) =>
@@ -104,6 +120,7 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) =>
     if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length) return numericStruct
     return { kind: 'enum', type, optional, cases }
   }
+}
 
 export type DerivedSlotArgument = DerivedArgument | { field: string; label: string; type: string; kind: 'bindingBoolean' | 'bindingString'; optional: false }
 export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; directValue?: true; arguments: readonly DerivedSlotArgument[] }

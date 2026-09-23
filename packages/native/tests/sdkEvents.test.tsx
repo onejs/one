@@ -155,6 +155,20 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('rotation3DEffect.axis must be a numeric object')
   })
 
+  it('encodes affine transforms for direct and wrapped SDK values', () => {
+    const transform = { a: 1, b: 0, c: 0.25, d: 1, tx: 12, ty: -4 }
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      transformEffect: { transform },
+      projectionEffect: { transform },
+    } })
+    const records = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(JSON.parse(records.transformEffect)[0])).toEqual(transform)
+    expect(JSON.parse(JSON.parse(records.projectionEffect)[0])).toEqual(transform)
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      transformEffect: { transform: { ...transform, tx: Infinity } },
+    } })).toThrow('transformEffect.transform must be a numeric object')
+  })
+
   it('encodes text lists and string sets through generated record modifiers', () => {
     const element = Controls.Text({ text: 'example', swiftStyle: {
       accessibilityCustomContent: { label: 'Account', value: 'Active' },
