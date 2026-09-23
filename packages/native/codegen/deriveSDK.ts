@@ -99,15 +99,23 @@ export function deriveModifiers(
         ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
         : {}
       if (method.requirements?.length) {
-        const style = /^S : ([A-Za-z_]\w*\.[A-Za-z][\w.]*)$/.exec(method.requirements[0] ?? '')?.[1]
-        if (method.requirements.length !== 1 || !style || method.parameters.length !== 1 || method.parameters[0].type !== 'S') return []
-        const cases = inventory.filter((d) =>
-          d.kind === 'static' && d.owner === style && d.parameters.length === 0 &&
-          d.requirements?.length === 1 && d.requirements[0] === `Self == ${d.type}` &&
-          /^[a-z]/.test(d.name) && present(d) && ios(d) <= ceiling
-        ).map((d) => ({ name: d.name, ios: ios(d) }))
-        if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length) return []
-        return [{ name, module: method.module, kind: 'style', type: 'S', ios: ios(method), cases, ...framework }]
+        if (method.requirements.length !== 1) return []
+        const style = /^S : ([A-Za-z_]\w*\.[A-Za-z][\w.]*)$/.exec(method.requirements[0])?.[1]
+        if (style && method.parameters.length === 1 && method.parameters[0].type === 'S') {
+          const cases = inventory.filter((d) =>
+            d.kind === 'static' && d.owner === style && d.parameters.length === 0 &&
+            d.requirements?.length === 1 && d.requirements[0] === `Self == ${d.type}` &&
+            /^[a-z]/.test(d.name) && present(d) && ios(d) <= ceiling
+          ).map((d) => ({ name: d.name, ios: ios(d) }))
+          if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length) return []
+          return [{ name, module: method.module, kind: 'style', type: 'S', ios: ios(method), cases, ...framework }]
+        }
+        const hashable = /^([A-Za-z_]\w*) : Swift.Hashable$/.exec(method.requirements[0])?.[1]
+        const [value, ...defaults] = method.parameters
+        if (hashable && value?.type === hashable && defaults.every((parameter) => parameter.defaultValue !== undefined))
+          return [{ name, module: method.module, kind: 'string', type: hashable, ios: ios(method), ...framework,
+            ...(value.label === '_' ? {} : { label: value.label }) }]
+        return []
       }
       if (method.parameters.length === 0)
         return [
