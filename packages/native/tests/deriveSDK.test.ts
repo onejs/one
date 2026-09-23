@@ -170,6 +170,18 @@ describe('SDK modifier derivation', () => {
     ])
   })
 
+  it('derives opaque style parameters from their protocol cases', () => {
+    expect(deriveModifiers([
+      method('textEditorStyle', 'SwiftUI', [{ label: '_', name: 'style', type: 'some TextEditorStyle' }]),
+      { ...method('automatic', 'SwiftUI'), kind: 'static', owner: 'SwiftUI.TextEditorStyle', type: 'SwiftUI.AutomaticTextEditorStyle', requirements: ['Self == SwiftUI.AutomaticTextEditorStyle'] },
+      { ...method('plain', 'SwiftUI'), kind: 'static', owner: 'SwiftUI.TextEditorStyle', type: 'SwiftUI.PlainTextEditorStyle', requirements: ['Self == SwiftUI.PlainTextEditorStyle'] },
+    ], 27, [])).toEqual([
+      { name: 'textEditorStyle', kind: 'style', type: 'some TextEditorStyle', ios: 0, cases: [
+        { name: 'automatic', ios: 0 }, { name: 'plain', ios: 0 },
+      ] },
+    ])
+  })
+
   it('instantiates a Hashable SDK value with a JavaScript string', () => {
     expect(deriveModifiers([
       { ...method('id', 'SwiftUICore', [{ label: '_', name: 'id', type: 'ID' }]), requirements: ['ID : Swift.Hashable'] },
