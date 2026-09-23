@@ -501,14 +501,21 @@ ${
         : ''
     }${
       control.focus
-        ? `  const controlledFocus = useControlled<{ value: boolean; eventCount: number; revision: number }>(event => onFocusChange?.(event.value), focusRevision)\n`
+        ? `  if (focused !== undefined && swiftStyle?.focused !== undefined)
+    throw new Error('${name} focus is controlled by both focused and swiftStyle.focused')
+  const sdkFocused = swiftStyle?.focused
+  const nativeSwiftStyle = sdkFocused ? { ...swiftStyle, focused: undefined } : swiftStyle
+  const controlledFocus = useControlled<{ value: boolean; eventCount: number; revision: number }>(event => {
+    onFocusChange?.(event.value)
+    sdkFocused?.onChange(event.value)
+  }, focusRevision)\n`
         : ''
     }  return <Native${name} {...props} ${styleProp}${control.decorativeWhenUnlabeled ? ' accessible={Boolean(props.accessibilityLabel)} accessibilityElementsHidden={!props.accessibilityLabel} accessibilityRole="image"' : ''}
-    swiftStyle={swiftStyleNative(swiftStyle)}
+    swiftStyle={swiftStyleNative(${control.focus ? 'nativeSwiftStyle' : 'swiftStyle'})}
 ${hasSDKEvents ? '    onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}\n' : ''}
 ${value ? `    value={${value.sync ? syncNativeValue(value, `synced${upper(value.prop)}`) : (value.nativeValue ?? value.prop)}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${value?.sync ? `    syncStateId={syncHandle ? getSyncStateId(syncHandle) ?? 0 : 0}\n` : ''}${
       control.focus
-        ? `    focused={focused ?? false} acknowledgedFocusEvent={focused !== undefined ? controlledFocus.acknowledgedEvent : 0} focusRevision={focusRevision}\n`
+        ? `    focused={focused ?? sdkFocused?.value ?? false} acknowledgedFocusEvent={focused !== undefined || sdkFocused !== undefined ? controlledFocus.acknowledgedEvent : 0} focusRevision={focusRevision}\n`
         : ''
     }${fieldEntries.map(([key, field]) => `    ${key}={${field.nativeValue ?? key}}`).join('\n')}
 ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNativeChange(nativeEvent)}\n` : ''}${

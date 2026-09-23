@@ -4,13 +4,19 @@ export declare const viewSlotAvailability: {
     readonly accessibilityChildren: 15;
     readonly accessibilityRepresentation: 15;
     readonly accessibilityShowsLargeContentViewer: 15;
+    readonly alert: 15;
     readonly background: 15;
+    readonly confirmationDialog: 15;
     readonly containerBackground: 17;
     readonly contentToolbar: 18.4;
     readonly contextMenu: 13;
+    readonly dismissalConfirmationDialog: 27;
     readonly inspector: 17;
+    readonly listRowBackground: 13;
     readonly mapControls: 17;
     readonly mask: 15;
+    readonly navigationBarItemsWithLeading: 13;
+    readonly navigationBarItemsWithTrailing: 13;
     readonly navigationDestination: 16;
     readonly overlay: 15;
     readonly presentationBackground: 16.4;
@@ -18,12 +24,15 @@ export declare const viewSlotAvailability: {
     readonly safeAreaBarWithVerticalEdge: 26;
     readonly safeAreaInsetWithHorizontalEdge: 15;
     readonly safeAreaInsetWithVerticalEdge: 15;
+    readonly searchScopesWithBindingString: 16;
+    readonly searchScopesWithBindingStringAndSearchScopeActivation: 16.4;
     readonly searchSuggestions: 16;
     readonly sectionActions: 18;
     readonly subscriptionStorePolicyDestination: 17;
     readonly swipeActions: 15;
     readonly tabItem: 13;
     readonly tabViewBottomAccessory: 26;
+    readonly tabViewBottomAccessoryWithBool: 26.1;
     readonly tabViewSidebarBottomBar: 18;
     readonly tabViewSidebarFooter: 18;
     readonly tabViewSidebarHeader: 18;
@@ -45,7 +54,21 @@ export declare const viewSlotArguments: {
     readonly accessibilityChildren: readonly [];
     readonly accessibilityRepresentation: readonly [];
     readonly accessibilityShowsLargeContentViewer: readonly [];
+    readonly alert: readonly [{
+        readonly field: 'title';
+        readonly kind: 'string';
+    }, {
+        readonly field: 'isPresented';
+        readonly kind: 'bindingBoolean';
+    }];
     readonly background: readonly [];
+    readonly confirmationDialog: readonly [{
+        readonly field: 'title';
+        readonly kind: 'string';
+    }, {
+        readonly field: 'isPresented';
+        readonly kind: 'bindingBoolean';
+    }];
     readonly containerBackground: readonly [{
         readonly field: 'container';
         readonly kind: 'enum';
@@ -62,12 +85,22 @@ export declare const viewSlotArguments: {
         };
     }];
     readonly contextMenu: readonly [];
+    readonly dismissalConfirmationDialog: readonly [{
+        readonly field: 'title';
+        readonly kind: 'string';
+    }, {
+        readonly field: 'shouldPresent';
+        readonly kind: 'boolean';
+    }];
     readonly inspector: readonly [{
         readonly field: 'isPresented';
         readonly kind: 'bindingBoolean';
     }];
+    readonly listRowBackground: readonly [];
     readonly mapControls: readonly [];
     readonly mask: readonly [];
+    readonly navigationBarItemsWithLeading: readonly [];
+    readonly navigationBarItemsWithTrailing: readonly [];
     readonly navigationDestination: readonly [{
         readonly field: 'isPresented';
         readonly kind: 'bindingBoolean';
@@ -106,6 +139,22 @@ export declare const viewSlotArguments: {
             readonly bottom: 15;
         };
     }];
+    readonly searchScopesWithBindingString: readonly [{
+        readonly field: 'scope';
+        readonly kind: 'bindingString';
+    }];
+    readonly searchScopesWithBindingStringAndSearchScopeActivation: readonly [{
+        readonly field: 'scope';
+        readonly kind: 'bindingString';
+    }, {
+        readonly field: 'activation';
+        readonly kind: 'enum';
+        readonly cases: {
+            readonly automatic: 16.4;
+            readonly onTextEntry: 16.4;
+            readonly onSearchPresentation: 16.4;
+        };
+    }];
     readonly searchSuggestions: readonly [];
     readonly sectionActions: readonly [];
     readonly subscriptionStorePolicyDestination: readonly [{
@@ -119,6 +168,10 @@ export declare const viewSlotArguments: {
     readonly swipeActions: readonly [];
     readonly tabItem: readonly [];
     readonly tabViewBottomAccessory: readonly [];
+    readonly tabViewBottomAccessoryWithBool: readonly [{
+        readonly field: 'isEnabled';
+        readonly kind: 'boolean';
+    }];
     readonly tabViewSidebarBottomBar: readonly [];
     readonly tabViewSidebarFooter: readonly [];
     readonly tabViewSidebarHeader: readonly [];
@@ -144,8 +197,26 @@ export type ViewSlotConfiguration = {
     name: 'accessibilityShowsLargeContentViewer';
     options?: never;
 } | {
+    name: 'alert';
+    options: {
+        title: string;
+        isPresented: {
+            value: boolean;
+            onChange: (value: boolean) => void;
+        };
+    };
+} | {
     name: 'background';
     options?: never;
+} | {
+    name: 'confirmationDialog';
+    options: {
+        title: string;
+        isPresented: {
+            value: boolean;
+            onChange: (value: boolean) => void;
+        };
+    };
 } | {
     name: 'containerBackground';
     options: {
@@ -160,6 +231,12 @@ export type ViewSlotConfiguration = {
     name: 'contextMenu';
     options?: never;
 } | {
+    name: 'dismissalConfirmationDialog';
+    options: {
+        title: string;
+        shouldPresent: boolean;
+    };
+} | {
     name: 'inspector';
     options: {
         isPresented: {
@@ -168,10 +245,19 @@ export type ViewSlotConfiguration = {
         };
     };
 } | {
+    name: 'listRowBackground';
+    options?: never;
+} | {
     name: 'mapControls';
     options?: never;
 } | {
     name: 'mask';
+    options?: never;
+} | {
+    name: 'navigationBarItemsWithLeading';
+    options?: never;
+} | {
+    name: 'navigationBarItemsWithTrailing';
     options?: never;
 } | {
     name: 'navigationDestination';
@@ -208,6 +294,23 @@ export type ViewSlotConfiguration = {
         edge: 'top' | 'bottom';
     };
 } | {
+    name: 'searchScopesWithBindingString';
+    options: {
+        scope: {
+            value: string;
+            onChange: (value: string) => void;
+        };
+    };
+} | {
+    name: 'searchScopesWithBindingStringAndSearchScopeActivation';
+    options: {
+        scope: {
+            value: string;
+            onChange: (value: string) => void;
+        };
+        activation: 'automatic' | 'onTextEntry' | 'onSearchPresentation';
+    };
+} | {
     name: 'searchSuggestions';
     options?: never;
 } | {
@@ -227,6 +330,11 @@ export type ViewSlotConfiguration = {
 } | {
     name: 'tabViewBottomAccessory';
     options?: never;
+} | {
+    name: 'tabViewBottomAccessoryWithBool';
+    options: {
+        isEnabled: boolean;
+    };
 } | {
     name: 'tabViewSidebarBottomBar';
     options?: never;
@@ -248,6 +356,7 @@ export type ViewSlotConfiguration = {
 };
 export declare const tabViewSlotAvailability: {
     readonly tabViewBottomAccessory: 26;
+    readonly tabViewBottomAccessoryWithBool: 26.1;
     readonly tabViewSidebarBottomBar: 18;
     readonly tabViewSidebarFooter: 18;
     readonly tabViewSidebarHeader: 18;

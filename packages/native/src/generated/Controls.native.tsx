@@ -1027,16 +1027,25 @@ export function TextField({
     syncHandle?.set(event.value)
     onTextChange(event.value)
   }, revision)
+  if (focused !== undefined && swiftStyle?.focused !== undefined)
+    throw new Error(
+      'TextField focus is controlled by both focused and swiftStyle.focused'
+    )
+  const sdkFocused = swiftStyle?.focused
+  const nativeSwiftStyle = sdkFocused ? { ...swiftStyle, focused: undefined } : swiftStyle
   const controlledFocus = useControlled<{
     value: boolean
     eventCount: number
     revision: number
-  }>((event) => onFocusChange?.(event.value), focusRevision)
+  }>((event) => {
+    onFocusChange?.(event.value)
+    sdkFocused?.onChange(event.value)
+  }, focusRevision)
   return (
     <NativeTextField
       {...props}
       style={style}
-      swiftStyle={swiftStyleNative(swiftStyle)}
+      swiftStyle={swiftStyleNative(nativeSwiftStyle)}
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
@@ -1044,9 +1053,11 @@ export function TextField({
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
       syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
-      focused={focused ?? false}
+      focused={focused ?? sdkFocused?.value ?? false}
       acknowledgedFocusEvent={
-        focused !== undefined ? controlledFocus.acknowledgedEvent : 0
+        focused !== undefined || sdkFocused !== undefined
+          ? controlledFocus.acknowledgedEvent
+          : 0
       }
       focusRevision={focusRevision}
       label={label}
@@ -1120,16 +1131,25 @@ export function SecureField({
     syncHandle?.set(event.value)
     onTextChange(event.value)
   }, revision)
+  if (focused !== undefined && swiftStyle?.focused !== undefined)
+    throw new Error(
+      'SecureField focus is controlled by both focused and swiftStyle.focused'
+    )
+  const sdkFocused = swiftStyle?.focused
+  const nativeSwiftStyle = sdkFocused ? { ...swiftStyle, focused: undefined } : swiftStyle
   const controlledFocus = useControlled<{
     value: boolean
     eventCount: number
     revision: number
-  }>((event) => onFocusChange?.(event.value), focusRevision)
+  }>((event) => {
+    onFocusChange?.(event.value)
+    sdkFocused?.onChange(event.value)
+  }, focusRevision)
   return (
     <NativeSecureField
       {...props}
       style={style}
-      swiftStyle={swiftStyleNative(swiftStyle)}
+      swiftStyle={swiftStyleNative(nativeSwiftStyle)}
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
@@ -1137,9 +1157,11 @@ export function SecureField({
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
       syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
-      focused={focused ?? false}
+      focused={focused ?? sdkFocused?.value ?? false}
       acknowledgedFocusEvent={
-        focused !== undefined ? controlledFocus.acknowledgedEvent : 0
+        focused !== undefined || sdkFocused !== undefined
+          ? controlledFocus.acknowledgedEvent
+          : 0
       }
       focusRevision={focusRevision}
       label={label}
