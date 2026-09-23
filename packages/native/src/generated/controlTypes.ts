@@ -41,7 +41,7 @@ export const sdkAccentColorValues = [
   'secondary',
 ] as const
 export type SDKAccentColor = (typeof sdkAccentColorValues)[number]
-export const sdkAccessibilityActivationPointValues = [
+export const sdkAccessibilityActivationPointWithUnitPointValues = [
   'zero',
   'center',
   'leading',
@@ -53,8 +53,8 @@ export const sdkAccessibilityActivationPointValues = [
   'bottomLeading',
   'bottomTrailing',
 ] as const
-export type SDKAccessibilityActivationPoint =
-  (typeof sdkAccessibilityActivationPointValues)[number]
+export type SDKAccessibilityActivationPointWithUnitPoint =
+  (typeof sdkAccessibilityActivationPointWithUnitPointValues)[number]
 export const sdkAccessibilityAddTraitsValues = [
   'isButton',
   'isHeader',
@@ -284,7 +284,7 @@ export type SDKDefaultAdaptableTabBarPlacement =
   (typeof sdkDefaultAdaptableTabBarPlacementValues)[number]
 export const sdkDefaultHoverEffectValues = ['automatic', 'highlight', 'lift'] as const
 export type SDKDefaultHoverEffect = (typeof sdkDefaultHoverEffectValues)[number]
-export const sdkDefaultScrollAnchorValues = [
+export const sdkDefaultScrollAnchorWithOptionalUnitPointValues = [
   'zero',
   'center',
   'leading',
@@ -296,7 +296,8 @@ export const sdkDefaultScrollAnchorValues = [
   'bottomLeading',
   'bottomTrailing',
 ] as const
-export type SDKDefaultScrollAnchor = (typeof sdkDefaultScrollAnchorValues)[number]
+export type SDKDefaultScrollAnchorWithOptionalUnitPoint =
+  (typeof sdkDefaultScrollAnchorWithOptionalUnitPointValues)[number]
 export const sdkDefaultTabBarPlacementValues = ['automatic', 'tabBar', 'sidebar'] as const
 export type SDKDefaultTabBarPlacement = (typeof sdkDefaultTabBarPlacementValues)[number]
 export const sdkDefersSystemGesturesValues = [
@@ -401,8 +402,13 @@ export const sdkGridColumnAlignmentValues = [
 export type SDKGridColumnAlignment = (typeof sdkGridColumnAlignmentValues)[number]
 export const sdkHeaderProminenceValues = ['standard', 'increased'] as const
 export type SDKHeaderProminence = (typeof sdkHeaderProminenceValues)[number]
-export const sdkHoverEffectValues = ['automatic', 'highlight', 'lift'] as const
-export type SDKHoverEffect = (typeof sdkHoverEffectValues)[number]
+export const sdkHoverEffectWithHoverEffectValues = [
+  'automatic',
+  'highlight',
+  'lift',
+] as const
+export type SDKHoverEffectWithHoverEffect =
+  (typeof sdkHoverEffectWithHoverEffectValues)[number]
 export const sdkHueRotationValues = ['zero'] as const
 export type SDKHueRotation = (typeof sdkHueRotationValues)[number]
 export const sdkKeyboardShortcutWithKeyboardShortcutValues = [
@@ -549,15 +555,15 @@ export const sdkPresentationBackgroundInteractionValues = [
 ] as const
 export type SDKPresentationBackgroundInteraction =
   (typeof sdkPresentationBackgroundInteractionValues)[number]
-export const sdkPresentationCompactAdaptationValues = [
+export const sdkPresentationCompactAdaptationWithPresentationAdaptationValues = [
   'automatic',
   'none',
   'popover',
   'sheet',
   'fullScreenCover',
 ] as const
-export type SDKPresentationCompactAdaptation =
-  (typeof sdkPresentationCompactAdaptationValues)[number]
+export type SDKPresentationCompactAdaptationWithPresentationAdaptation =
+  (typeof sdkPresentationCompactAdaptationWithPresentationAdaptationValues)[number]
 export const sdkPresentationContentInteractionValues = [
   'automatic',
   'resizes',
@@ -598,7 +604,7 @@ export type SDKRealityViewLayoutBehavior =
   (typeof sdkRealityViewLayoutBehaviorValues)[number]
 export const sdkRedactedValues = ['placeholder', 'privacy', 'invalidated'] as const
 export type SDKRedacted = (typeof sdkRedactedValues)[number]
-export const sdkScenePaddingValues = [
+export const sdkScenePaddingWithSetValues = [
   'top',
   'leading',
   'bottom',
@@ -607,7 +613,7 @@ export const sdkScenePaddingValues = [
   'horizontal',
   'vertical',
 ] as const
-export type SDKScenePadding = (typeof sdkScenePaddingValues)[number]
+export type SDKScenePaddingWithSet = (typeof sdkScenePaddingWithSetValues)[number]
 export const sdkScrollContentBackgroundValues = [
   'automatic',
   'visible',
@@ -741,8 +747,6 @@ export const sdkTextSelectionAffinityValues = [
   'downstream',
 ] as const
 export type SDKTextSelectionAffinity = (typeof sdkTextSelectionAffinityValues)[number]
-export const sdkToolbarValues = ['sidebarToggle', 'title', 'search'] as const
-export type SDKToolbar = (typeof sdkToolbarValues)[number]
 export const sdkToolbarRoleValues = [
   'automatic',
   'navigationStack',
@@ -757,6 +761,8 @@ export const sdkToolbarTitleDisplayModeValues = [
   'inline',
 ] as const
 export type SDKToolbarTitleDisplayMode = (typeof sdkToolbarTitleDisplayModeValues)[number]
+export const sdkToolbarWithRemovingValues = ['sidebarToggle', 'title', 'search'] as const
+export type SDKToolbarWithRemoving = (typeof sdkToolbarWithRemovingValues)[number]
 export const sdkTransitionValues = ['opacity', 'slide', 'identity', 'scale'] as const
 export type SDKTransition = (typeof sdkTransitionValues)[number]
 export const sdkVerifyIdentityWithWalletButtonStyleValues = [
@@ -851,21 +857,119 @@ export interface OneNativeStyle {
   material?: Material
   accentColor?: SDKAccentColor | null
   accessibilityAction?: () => void
-  accessibilityActivationPoint?: SDKAccessibilityActivationPoint
+  accessibilityActivationPointWithActivationPointAndIsEnabled?: Readonly<{
+    activationPoint:
+      | 'zero'
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+    isEnabled: boolean
+  }>
+  accessibilityActivationPointWithUnitPoint?: SDKAccessibilityActivationPointWithUnitPoint
   accessibilityAddTraits?: SDKAccessibilityAddTraits
+  accessibilityDirectTouch?: Readonly<{
+    isDirectTouchArea: boolean
+    options: 'silentOnTouch' | 'requiresActivation'
+  }>
+  accessibilityDragPointWithPointAndDescription?: Readonly<{
+    point:
+      | 'zero'
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+    description: string
+  }>
+  accessibilityDragPointWithPointAndDescriptionAndIsEnabled?: Readonly<{
+    point:
+      | 'zero'
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+    description: string
+    isEnabled: boolean
+  }>
+  accessibilityDropPointWithPointAndDescription?: Readonly<{
+    point:
+      | 'zero'
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+    description: string
+  }>
+  accessibilityDropPointWithPointAndDescriptionAndIsEnabled?: Readonly<{
+    point:
+      | 'zero'
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+    description: string
+    isEnabled: boolean
+  }>
   accessibilityElement?: SDKAccessibilityElement
   accessibilityHeading?: SDKAccessibilityHeading
-  accessibilityHidden?: boolean
-  accessibilityHint?: string
-  accessibilityIdentifier?: string
+  accessibilityHiddenWithBool?: boolean
+  accessibilityHiddenWithHiddenAndIsEnabled?: Readonly<{
+    hidden: boolean
+    isEnabled: boolean
+  }>
+  accessibilityHintWithHintAndIsEnabled?: Readonly<{ hint: string; isEnabled: boolean }>
+  accessibilityHintWithText?: string
+  accessibilityIdentifierWithIdentifierAndIsEnabled?: Readonly<{
+    identifier: string
+    isEnabled: boolean
+  }>
+  accessibilityIdentifierWithString?: string
   accessibilityIgnoresInvertColors?: boolean
-  accessibilityLabel?: string
+  accessibilityLabelWithLabelAndIsEnabled?: Readonly<{
+    label: string
+    isEnabled: boolean
+  }>
+  accessibilityLabelWithText?: string
   accessibilityRemoveTraits?: SDKAccessibilityRemoveTraits
-  accessibilityRespondsToUserInteraction?: boolean
+  accessibilityRespondsToUserInteractionWithBool?: boolean
+  accessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled?: Readonly<{
+    respondsToUserInteraction: boolean
+    isEnabled: boolean
+  }>
+  accessibilityScrollStatus?: Readonly<{ status: string; isEnabled: boolean }>
   accessibilityShowsLargeContentViewer?: boolean
   accessibilitySortPriority?: number
   accessibilityTextContentType?: SDKAccessibilityTextContentType
-  accessibilityValue?: string
+  accessibilityValueWithText?: string
+  accessibilityValueWithValueDescriptionAndIsEnabled?: Readonly<{
+    valueDescription: string
+    isEnabled: boolean
+  }>
   accessibilityWithActivationPoint?: SDKAccessibilityWithActivationPoint
   accessibilityWithAddTraits?: SDKAccessibilityWithAddTraits
   accessibilityWithHidden?: boolean
@@ -882,6 +986,7 @@ export interface OneNativeStyle {
   allowsWindowActivationEventsWithNoArguments?: boolean
   allowsWindowActivationEventsWithOptionalBool?: boolean | null
   animation?: SDKAnimation | null
+  aspectRatio?: Readonly<{ aspectRatio: number | null; contentMode: 'fit' | 'fill' }>
   assistiveAccessNavigationIcon?: string
   autocorrectionDisabled?: boolean
   backgroundExtensionEffectWithIsEnabled?: boolean
@@ -891,6 +996,7 @@ export interface OneNativeStyle {
   badgeWithOptionalText?: string | null
   baselineOffset?: number
   blendMode?: SDKBlendMode
+  blur?: Readonly<{ radius: number; opaque: boolean }>
   bold?: boolean
   brightness?: number
   buttonBorderShape?: SDKButtonBorderShape
@@ -901,12 +1007,81 @@ export interface OneNativeStyle {
   colorMultiply?: SDKColorMultiply
   colorScheme?: SDKColorScheme
   compositingGroup?: boolean
+  containerCornerOffset?: Readonly<{
+    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
+    sizeToFit: boolean
+  }>
+  containerRelativeFrameWithAxesAndAlignment?: Readonly<{
+    axes: 'horizontal' | 'vertical'
+    alignment:
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+      | 'centerFirstTextBaseline'
+      | 'centerLastTextBaseline'
+      | 'leadingFirstTextBaseline'
+      | 'leadingLastTextBaseline'
+      | 'trailingFirstTextBaseline'
+      | 'trailingLastTextBaseline'
+  }>
+  containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment?: Readonly<{
+    axes: 'horizontal' | 'vertical'
+    count: number
+    span: number
+    spacing: number
+    alignment:
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+      | 'centerFirstTextBaseline'
+      | 'centerLastTextBaseline'
+      | 'leadingFirstTextBaseline'
+      | 'leadingLastTextBaseline'
+      | 'trailingFirstTextBaseline'
+      | 'trailingLastTextBaseline'
+  }>
+  contentMarginsWithEdgesAndLengthAndPlacement?: Readonly<{
+    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
+    length: number | null
+    placement: 'automatic' | 'scrollContent' | 'scrollIndicators'
+  }>
+  contentMarginsWithLengthAndPlacement?: Readonly<{
+    length: number
+    placement: 'automatic' | 'scrollContent' | 'scrollIndicators'
+  }>
   contentTransition?: SDKContentTransition
   contrast?: number
   controlSize?: SDKControlSize
   defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement
   defaultHoverEffect?: SDKDefaultHoverEffect | null
-  defaultScrollAnchor?: SDKDefaultScrollAnchor | null
+  defaultScrollAnchorWithAnchorAndRole?: Readonly<{
+    anchor:
+      | 'zero'
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+      | null
+    role: 'initialOffset' | 'sizeChanges' | 'alignment'
+  }>
+  defaultScrollAnchorWithOptionalUnitPoint?: SDKDefaultScrollAnchorWithOptionalUnitPoint | null
   defaultTabBarPlacement?: SDKDefaultTabBarPlacement
   defersSystemGestures?: SDKDefersSystemGestures
   deleteDisabled?: boolean
@@ -918,6 +1093,10 @@ export interface OneNativeStyle {
   disabled?: boolean
   documentLaunchSubtitle?: string
   documentLaunchTitle?: string
+  drawingGroup?: Readonly<{
+    opaque: boolean
+    colorMode: 'nonLinear' | 'linear' | 'extendedLinear'
+  }>
   dynamicTypeSize?: SDKDynamicTypeSize
   edgesIgnoringSafeArea?: SDKEdgesIgnoringSafeArea
   fileDialogBrowserOptions?: SDKFileDialogBrowserOptions
@@ -928,9 +1107,17 @@ export interface OneNativeStyle {
   fileExporterFilenameLabel?: string | null
   findDisabled?: boolean
   findNavigator?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
-  fixedSize?: boolean
+  fixedSizeWithHorizontalAndVertical?: Readonly<{
+    horizontal: boolean
+    vertical: boolean
+  }>
+  fixedSizeWithNoArguments?: boolean
   flipsForRightToLeftLayoutDirection?: boolean
-  focusable?: boolean
+  focusableWithBool?: boolean
+  focusableWithIsFocusableAndInteractions?: Readonly<{
+    isFocusable: boolean
+    interactions: 'activate' | 'edit' | 'automatic'
+  }>
   focusEffectDisabled?: boolean
   fontWidth?: SDKFontWidth | null
   foregroundColor?: SDKForegroundColor | null
@@ -941,18 +1128,108 @@ export interface OneNativeStyle {
   gridCellColumns?: number
   gridCellUnsizedAxes?: SDKGridCellUnsizedAxes
   gridColumnAlignment?: SDKGridColumnAlignment
+  handGestureShortcut?: Readonly<{ shortcut: 'primaryAction'; isEnabled: boolean }>
   headerProminence?: SDKHeaderProminence
   help?: string
   hidden?: boolean
-  hoverEffect?: SDKHoverEffect
   hoverEffectDisabled?: boolean
+  hoverEffectWithEffectAndIsEnabled?: Readonly<{
+    effect: 'automatic' | 'highlight' | 'lift'
+    isEnabled: boolean
+  }>
+  hoverEffectWithHoverEffect?: SDKHoverEffectWithHoverEffect
   hueRotation?: SDKHueRotation
-  inspectorColumnWidth?: number
+  ignoresSafeAreaWithRegionsAndEdges?: Readonly<{
+    regions: 'container' | 'keyboard' | 'all'
+    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
+  }>
+  ignoresSafeAreaWithRegionsAndEdgesAndAlignment?: Readonly<{
+    regions: 'container' | 'keyboard' | 'all'
+    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
+    alignment:
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+      | 'centerFirstTextBaseline'
+      | 'centerLastTextBaseline'
+      | 'leadingFirstTextBaseline'
+      | 'leadingLastTextBaseline'
+      | 'trailingFirstTextBaseline'
+      | 'trailingLastTextBaseline'
+      | null
+  }>
+  inspectorColumnWidthWithCGFloat?: number
+  inspectorColumnWidthWithMinAndIdealAndMax?: Readonly<{
+    min: number | null
+    ideal: number
+    max: number | null
+  }>
   interactionActivityTrackingTag?: string
   interactiveDismissDisabled?: boolean
   invalidatableContent?: boolean
   italic?: boolean
   kerning?: number
+  keyboardShortcutWithKeyAndModifiers?: Readonly<{
+    key:
+      | 'upArrow'
+      | 'downArrow'
+      | 'leftArrow'
+      | 'rightArrow'
+      | 'escape'
+      | 'delete'
+      | 'deleteForward'
+      | 'home'
+      | 'end'
+      | 'pageUp'
+      | 'pageDown'
+      | 'clear'
+      | 'tab'
+      | 'space'
+      | 'return'
+    modifiers:
+      | 'capsLock'
+      | 'shift'
+      | 'control'
+      | 'option'
+      | 'command'
+      | 'numericPad'
+      | 'function'
+      | 'all'
+  }>
+  keyboardShortcutWithKeyAndModifiersAndLocalization?: Readonly<{
+    key:
+      | 'upArrow'
+      | 'downArrow'
+      | 'leftArrow'
+      | 'rightArrow'
+      | 'escape'
+      | 'delete'
+      | 'deleteForward'
+      | 'home'
+      | 'end'
+      | 'pageUp'
+      | 'pageDown'
+      | 'clear'
+      | 'tab'
+      | 'space'
+      | 'return'
+    modifiers:
+      | 'capsLock'
+      | 'shift'
+      | 'control'
+      | 'option'
+      | 'command'
+      | 'numericPad'
+      | 'function'
+      | 'all'
+    localization: 'automatic' | 'withoutMirroring' | 'custom'
+  }>
   keyboardShortcutWithKeyboardShortcut?: SDKKeyboardShortcutWithKeyboardShortcut
   keyboardShortcutWithOptionalKeyboardShortcut?: SDKKeyboardShortcutWithOptionalKeyboardShortcut | null
   labelIconToTitleSpacing?: number
@@ -961,12 +1238,77 @@ export interface OneNativeStyle {
   labelsVisibility?: SDKLabelsVisibility
   layoutDirectionBehavior?: SDKLayoutDirectionBehavior
   layoutPriority?: number
-  lineLimit?: number | null
+  lineLimitWithLimitAndReservesSpace?: Readonly<{ limit: number; reservesSpace: boolean }>
+  lineLimitWithOptionalInt?: number | null
   lineSpacing?: number
   listItemTintWithOptionalColor?: SDKListItemTintWithOptionalColor | null
   listItemTintWithOptionalListItemTint?: SDKListItemTintWithOptionalListItemTint | null
+  listRowInsets?: Readonly<{
+    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
+    length: number | null
+  }>
+  listRowSeparator?: Readonly<{
+    visibility: 'automatic' | 'visible' | 'hidden'
+    edges: 'top' | 'bottom' | 'all'
+  }>
+  listRowSeparatorTint?: Readonly<{
+    color:
+      | 'accentColor'
+      | 'red'
+      | 'orange'
+      | 'yellow'
+      | 'green'
+      | 'mint'
+      | 'teal'
+      | 'cyan'
+      | 'blue'
+      | 'indigo'
+      | 'purple'
+      | 'pink'
+      | 'brown'
+      | 'white'
+      | 'gray'
+      | 'black'
+      | 'clear'
+      | 'primary'
+      | 'secondary'
+      | null
+    edges: 'top' | 'bottom' | 'all'
+  }>
   listRowSpacing?: number | null
   listSectionIndexVisibility?: SDKListSectionIndexVisibility
+  listSectionMargins?: Readonly<{
+    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
+    length: number | null
+  }>
+  listSectionSeparator?: Readonly<{
+    visibility: 'automatic' | 'visible' | 'hidden'
+    edges: 'top' | 'bottom' | 'all'
+  }>
+  listSectionSeparatorTint?: Readonly<{
+    color:
+      | 'accentColor'
+      | 'red'
+      | 'orange'
+      | 'yellow'
+      | 'green'
+      | 'mint'
+      | 'teal'
+      | 'cyan'
+      | 'blue'
+      | 'indigo'
+      | 'purple'
+      | 'pink'
+      | 'brown'
+      | 'white'
+      | 'gray'
+      | 'black'
+      | 'clear'
+      | 'primary'
+      | 'secondary'
+      | null
+    edges: 'top' | 'bottom' | 'all'
+  }>
   listSectionSpacingWithCGFloat?: number
   listSectionSpacingWithListSectionSpacing?: SDKListSectionSpacingWithListSectionSpacing
   luminanceToAlpha?: boolean
@@ -995,7 +1337,12 @@ export interface OneNativeStyle {
   navigationBarHidden?: boolean
   navigationBarTitle?: string
   navigationLinkIndicatorVisibility?: SDKNavigationLinkIndicatorVisibility
-  navigationSplitViewColumnWidth?: number
+  navigationSplitViewColumnWidthWithCGFloat?: number
+  navigationSplitViewColumnWidthWithMinAndIdealAndMax?: Readonly<{
+    min: number | null
+    ideal: number
+    max: number | null
+  }>
   navigationSubtitle?: string
   navigationTitleWithBindingString?: Readonly<{
     value: string
@@ -1003,6 +1350,7 @@ export interface OneNativeStyle {
   }>
   navigationTitleWithText?: string
   offerCodeRedemption?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+  offset?: Readonly<{ x: number; y: number }>
   onAppear?: () => void
   onDisappear?: () => void
   onHover?: (value: boolean) => void
@@ -1022,11 +1370,20 @@ export interface OneNativeStyle {
   payWithApplePayButtonDisableCardArt?: boolean
   payWithApplePayButtonStyle?: SDKPayWithApplePayButtonStyle
   persistentSystemOverlays?: SDKPersistentSystemOverlays
+  photosPickerAccessoryVisibility?: Readonly<{
+    visibility: 'automatic' | 'visible' | 'hidden'
+    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
+  }>
   photosPickerSearchText?: string | null
   photosPickerStyle?: SDKPhotosPickerStyle
+  position?: Readonly<{ x: number; y: number }>
   preferredColorScheme?: SDKPreferredColorScheme | null
   presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction
-  presentationCompactAdaptation?: SDKPresentationCompactAdaptation
+  presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation?: Readonly<{
+    horizontalAdaptation: 'automatic' | 'none' | 'popover' | 'sheet' | 'fullScreenCover'
+    verticalAdaptation: 'automatic' | 'none' | 'popover' | 'sheet' | 'fullScreenCover'
+  }>
+  presentationCompactAdaptationWithPresentationAdaptation?: SDKPresentationCompactAdaptationWithPresentationAdaptation
   presentationContentInteraction?: SDKPresentationContentInteraction
   presentationCornerRadius?: number | null
   presentationDragIndicator?: SDKPresentationDragIndicator
@@ -1040,24 +1397,120 @@ export interface OneNativeStyle {
   redacted?: SDKRedacted
   renameAction?: () => void
   replaceDisabled?: boolean
-  safeAreaPadding?: number
+  rotationEffect?: Readonly<{
+    angle: 'zero'
+    anchor:
+      | 'zero'
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+  }>
+  safeAreaPaddingWithCGFloat?: number
+  safeAreaPaddingWithEdgesAndLength?: Readonly<{
+    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
+    length: number | null
+  }>
   saturation?: number
   scaledToFill?: boolean
   scaledToFit?: boolean
-  scenePadding?: SDKScenePadding
+  scaleEffectWithSAndAnchor?: Readonly<{
+    s: number
+    anchor:
+      | 'zero'
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+  }>
+  scaleEffectWithXAndYAndAnchor?: Readonly<{
+    x: number
+    y: number
+    anchor:
+      | 'zero'
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+  }>
+  scenePaddingWithPaddingAndEdges?: Readonly<{
+    padding: 'minimum'
+    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
+  }>
+  scenePaddingWithSet?: SDKScenePaddingWithSet
+  scrollBounceBehavior?: Readonly<{
+    behavior: 'automatic' | 'always' | 'basedOnSize'
+    axes: 'horizontal' | 'vertical'
+  }>
   scrollClipDisabled?: boolean
   scrollContentBackground?: SDKScrollContentBackground
   scrollDisabled?: boolean
   scrollDismissesKeyboard?: SDKScrollDismissesKeyboard
+  scrollEdgeEffectHidden?: Readonly<{
+    hidden: boolean
+    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
+  }>
+  scrollEdgeEffectStyle?: Readonly<{
+    style: 'automatic' | 'hard' | 'soft' | null
+    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
+  }>
+  scrollIndicators?: Readonly<{
+    visibility: 'automatic' | 'visible' | 'hidden' | 'never'
+    axes: 'horizontal' | 'vertical'
+  }>
   scrollIndicatorsFlash?: boolean
   scrollTargetLayout?: boolean
   searchable?: Readonly<{ value: string; onChange: (value: string) => void }>
   searchCompletion?: string
   searchDictationBehavior?: SDKSearchDictationBehavior
   searchPresentationToolbarBehavior?: SDKSearchPresentationToolbarBehavior
+  searchSuggestions?: Readonly<{
+    visibility: 'automatic' | 'visible' | 'hidden'
+    placements: 'menu' | 'content'
+  }>
   searchToolbarBehavior?: SDKSearchToolbarBehavior
   sectionIndexLabel?: string | null
   selectionDisabled?: boolean
+  shadow?: Readonly<{
+    color:
+      | 'accentColor'
+      | 'red'
+      | 'orange'
+      | 'yellow'
+      | 'green'
+      | 'mint'
+      | 'teal'
+      | 'cyan'
+      | 'blue'
+      | 'indigo'
+      | 'purple'
+      | 'pink'
+      | 'brown'
+      | 'white'
+      | 'gray'
+      | 'black'
+      | 'clear'
+      | 'primary'
+      | 'secondary'
+    radius: number
+    x: number
+    y: number
+  }>
   shortcutsLinkStyle?: SDKShortcutsLinkStyle
   signInWithAppleButtonStyle?: SDKSignInWithAppleButtonStyle
   siriTipViewStyle?: SDKSiriTipViewStyle
@@ -1069,8 +1522,46 @@ export interface OneNativeStyle {
   springLoadingBehavior?: SDKSpringLoadingBehavior
   statusBar?: boolean
   statusBarHidden?: boolean
+  storeButton?: Readonly<{
+    visibility: 'automatic' | 'visible' | 'hidden'
+    buttonKinds:
+      | 'restorePurchases'
+      | 'cancellation'
+      | 'redeemCode'
+      | 'signIn'
+      | 'policies'
+  }>
+  strikethrough?: Readonly<{
+    isActive: boolean
+    pattern: 'solid' | 'dot' | 'dash' | 'dashDot' | 'dashDotDot'
+    color:
+      | 'accentColor'
+      | 'red'
+      | 'orange'
+      | 'yellow'
+      | 'green'
+      | 'mint'
+      | 'teal'
+      | 'cyan'
+      | 'blue'
+      | 'indigo'
+      | 'purple'
+      | 'pink'
+      | 'brown'
+      | 'white'
+      | 'gray'
+      | 'black'
+      | 'clear'
+      | 'primary'
+      | 'secondary'
+      | null
+  }>
   submitLabel?: SDKSubmitLabel
   submitScope?: boolean
+  subscriptionOfferViewButtonVisibility?: Readonly<{
+    visibility: 'automatic' | 'visible' | 'hidden'
+    buttonKinds: 'detailLink'
+  }>
   subscriptionStoreButtonLabel?: SDKSubscriptionStoreButtonLabel
   subscriptionStoreControlBackground?: SDKSubscriptionStoreControlBackground
   swipeActionsContainer?: boolean
@@ -1084,13 +1575,76 @@ export interface OneNativeStyle {
   tabViewSearchActivation?: SDKTabViewSearchActivation
   textInputAutocapitalization?: SDKTextInputAutocapitalization | null
   textInputBorderShape?: SDKTextInputBorderShape
+  textInputFormattingControlVisibility?: Readonly<{
+    visibility: 'automatic' | 'visible' | 'hidden'
+    placement: 'contextMenu' | 'inputAssistant' | 'all' | 'default'
+  }>
+  textScale?: Readonly<{ scale: 'default' | 'secondary'; isEnabled: boolean }>
   textSelectionAffinity?: SDKTextSelectionAffinity
-  toolbar?: SDKToolbar | null
+  toolbarBackground?: Readonly<{
+    visibility: 'automatic' | 'visible' | 'hidden'
+    bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar'
+  }>
+  toolbarBackgroundVisibility?: Readonly<{
+    visibility: 'automatic' | 'visible' | 'hidden'
+    bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar'
+  }>
+  toolbarColorScheme?: Readonly<{
+    colorScheme: 'light' | 'dark' | null
+    bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar'
+  }>
+  toolbarMinimizationBehavior?: Readonly<{
+    behavior: 'automatic' | 'onScrollDown' | 'onScrollUp' | 'never'
+    bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar'
+  }>
+  toolbarMinimizationRestoration?: Readonly<{
+    restoration: 'automatic' | 'atScrollEdge'
+    bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar'
+  }>
+  toolbarMinimizationSafeAreaAdjustment?: Readonly<{
+    adjustment: 'automatic' | 'enabled' | 'disabled'
+    bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar'
+  }>
   toolbarRole?: SDKToolbarRole
   toolbarTitleDisplayMode?: SDKToolbarTitleDisplayMode
+  toolbarVisibility?: Readonly<{
+    visibility: 'automatic' | 'visible' | 'hidden'
+    bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar'
+  }>
+  toolbarWithRemoving?: SDKToolbarWithRemoving | null
+  toolbarWithVisibilityAndBars?: Readonly<{
+    visibility: 'automatic' | 'visible' | 'hidden'
+    bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar'
+  }>
   tracking?: number
   transition?: SDKTransition
   typeSelectEquivalent?: string | null
+  typesettingLanguage?: Readonly<{ language: 'automatic'; isEnabled: boolean }>
+  underline?: Readonly<{
+    isActive: boolean
+    pattern: 'solid' | 'dot' | 'dash' | 'dashDot' | 'dashDotDot'
+    color:
+      | 'accentColor'
+      | 'red'
+      | 'orange'
+      | 'yellow'
+      | 'green'
+      | 'mint'
+      | 'teal'
+      | 'cyan'
+      | 'blue'
+      | 'indigo'
+      | 'purple'
+      | 'pink'
+      | 'brown'
+      | 'white'
+      | 'gray'
+      | 'black'
+      | 'clear'
+      | 'primary'
+      | 'secondary'
+      | null
+  }>
   unredacted?: boolean
   verifyIdentityWithWalletButtonStyle?: SDKVerifyIdentityWithWalletButtonStyle
   webViewBackForwardNavigationGestures?: SDKWebViewBackForwardNavigationGestures

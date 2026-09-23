@@ -5,11 +5,20 @@ const emptyEventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\)
 const scalarCallbackType = /^(?:@escaping )?\((?:_ [A-Za-z]\w*: )?(Swift\.(?:Bool|String|Int|Float|Double)|CoreFoundation\.CGFloat|Foundation\.URL)\) -> (?:Swift\.Void|\(\))$/
 const eventOrBindingType = (type: string) => emptyEventOrBindingType.test(type) || scalarCallbackType.test(type)
 
+export type DerivedArgument = {
+  field: string
+  label: string
+  type: string
+  kind: 'boolean' | 'number' | 'string' | 'enum'
+  optional: boolean
+  cases?: readonly { name: string; ios: number }[]
+}
+
 export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalEnum' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'bindingBoolean' | 'bindingString'
+  kind: 'boolean' | 'number' | 'string' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalEnum' | 'record' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'bindingBoolean' | 'bindingString'
   ios: number
   type: string
   cases?: readonly { name: string; ios: number }[]
@@ -17,6 +26,7 @@ export type DerivedModifier = {
   framework?: string
   label?: string
   callArguments?: readonly { label: string; defaultValue?: string; bridge?: true }[]
+  arguments?: readonly DerivedArgument[]
 }
 
 export type DerivedViewSlot = { name: string; ios: number }
@@ -32,14 +42,39 @@ export function deriveTabViewSlots(inventory: readonly Declaration[], ceiling: n
   return slots.map((slot) => ({ name: slot.name, ios: ios(slot) })).sort((a, b) => a.name.localeCompare(b.name))
 }
 
-// parameterless methods and one-argument methods with a bridge scalar or a
-// static-case value have enough information to generate a prop and Swift call.
+// methods with bridgeable scalars and static-case values generate their props
+// and Swift calls from the SDK parameter list.
 export function deriveModifiers(
   inventory: readonly Declaration[],
   ceiling: number,
   reserved: readonly { name: string }[]
 ): DerivedModifier[] {
   const reservedNames = new Set(reserved.map((field) => field.name))
+  const valueOf = (type: string): Omit<DerivedArgument, 'field' | 'label'> | undefined => {
+    const optional = type.endsWith('?')
+    const baseType = type.replace(/\?$/, '')
+    const kind = baseType === 'Swift.Bool'
+      ? 'boolean'
+      : ['Swift.Double', 'Swift.Float', 'Swift.Int', 'CoreFoundation.CGFloat'].includes(baseType)
+        ? 'number'
+        : baseType === 'Swift.String' || baseType === 'SwiftUICore.Text'
+          ? 'string'
+          : undefined
+    if (kind) return { kind, type, optional }
+    if (!/^[A-Za-z_]\w*\.[A-Za-z][\w.]*$/.test(baseType)) return
+    const [module, ...owner] = baseType.split('.')
+    const cases = inventory
+      .filter((d) =>
+        d.module === module &&
+        (d.owner === owner.join('.') || d.owner === baseType) &&
+        d.kind === 'static' && d.parameters.length === 0 &&
+        (d.type?.replace('?', '') === owner.join('.') || d.type?.replace('?', '') === baseType) &&
+        /^[a-z]/.test(d.name) && present(d) && ios(d) <= ceiling
+      )
+      .map((d) => ({ name: d.name, ios: ios(d) }))
+    if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length) return
+    return { kind: 'enum', type, optional, cases }
+  }
   const methods = inventory.filter(
     (d) =>
       d.kind === 'func' &&
@@ -48,10 +83,6 @@ export function deriveModifiers(
         /^_[A-Za-z]+_SwiftUI$/.test(d.module)) &&
       d.owner.split('.').at(-1) === 'View' &&
       /^[a-z]/.test(d.name) &&
-      (d.parameters.length === 0 ||
-        d.parameters.length === 1 ||
-        (d.parameters.length > 0 && d.parameters.every((p) => p.defaultValue !== undefined ||
-          eventOrBindingType(p.type)))) &&
       !d.requirements?.length &&
       present(d) &&
       ios(d) <= ceiling &&
@@ -103,46 +134,26 @@ export function deriveModifiers(
           } : {}),
         }]
       }
-      if (method.parameters.length !== 1) return []
-      const { type, label } = method.parameters[0]
-      const baseType = type.replace(/\?$/, '')
-      const baseKind =
-        baseType === 'Swift.Bool'
-          ? 'boolean'
-          : [
-                'Swift.Double',
-                'Swift.Float',
-                'Swift.Int',
-                'CoreFoundation.CGFloat',
-              ].includes(baseType)
-            ? 'number'
-            : baseType === 'Swift.String' || baseType === 'SwiftUICore.Text'
-              ? 'string'
-              : undefined
-      if (baseKind) {
-        const kind = type.endsWith('?') ? `optional${baseKind[0].toUpperCase()}${baseKind.slice(1)}` as DerivedModifier['kind'] : baseKind
-        return [{ name, module: method.module, kind, type, ios: ios(method), ...framework, ...(label === '_' ? {} : { label }) }]
+      if (method.parameters.length > 1) {
+        const argumentsFromSDK = method.parameters.map((parameter, index) => {
+          const value = valueOf(parameter.type)
+          return value && { ...value, field: parameter.name || `argument${index + 1}`, label: parameter.label }
+        })
+        if (argumentsFromSDK.some((argument) => !argument)) return []
+        const args = argumentsFromSDK as DerivedArgument[]
+        if (new Set(args.map((argument) => argument.field)).size !== args.length) return []
+        return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method), arguments: args, ...framework }]
       }
-      const enumType = type.replace(/\?$/, '')
-      if (!/^[A-Za-z_][\w]*\.[A-Za-z][\w.]*$/.test(enumType)) return []
-      const [module, ...owner] = enumType.split('.')
-      const cases = inventory
-        .filter(
-          (d) =>
-            d.module === module &&
-            (d.owner === owner.join('.') || d.owner === enumType) &&
-            d.kind === 'static' &&
-            d.parameters.length === 0 &&
-            (d.type?.replace('?', '') === owner.join('.') ||
-              d.type?.replace('?', '') === enumType) &&
-            /^[a-z]/.test(d.name) &&
-            present(d) &&
-            ios(d) <= ceiling
-        )
-        .map((d) => ({ name: d.name, ios: ios(d) }))
-      if (!cases.length || new Set(cases.map((item) => item.name)).size !== cases.length)
-        return []
-      return [{ name, module: method.module, kind: type.endsWith('?') ? 'optionalEnum' : 'string', type, ios: ios(method), cases, ...framework, ...(label === '_' ? {} : { label }) }]
+      const { type, label } = method.parameters[0]
+      const value = valueOf(type)
+      if (!value) return []
+      const kind = value.kind === 'enum'
+        ? value.optional ? 'optionalEnum' : 'string'
+        : value.optional
+          ? `optional${value.kind[0].toUpperCase()}${value.kind.slice(1)}` as DerivedModifier['kind']
+          : value.kind
+      return [{ name, module: method.module, kind, type, ios: ios(method), ...framework,
+        ...(value.cases ? { cases: value.cases } : {}), ...(label === '_' ? {} : { label }) }]
     })
     if (candidates.length === 1) {
       const { module, ...modifier } = candidates[0]
@@ -157,6 +168,8 @@ export function deriveModifiers(
         ? candidate.label[0].toUpperCase() + candidate.label.slice(1)
         : candidate.zeroArgument
           ? 'NoArguments'
+          : candidate.kind === 'record'
+            ? candidate.arguments?.map((argument) => argument.field[0].toUpperCase() + argument.field.slice(1)).join('And') ?? 'Arguments'
           : candidate.kind.startsWith('event')
             ? `Event${candidate.kind.slice('event'.length) || 'Action'}`
             : candidate.kind.startsWith('binding')
