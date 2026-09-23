@@ -73,7 +73,7 @@ ${validation}    ${apply(argumentsFromSDK ?? bridge, modifier.ios, argumentsFrom
     if value == "true" { ${apply('', modifier.ios)} } else { self }
   }`
       }
-      if (modifier.kind.startsWith('optional')) {
+      if (modifier.kind === 'optionalBoolean' || modifier.kind === 'optionalNumber' || modifier.kind === 'optionalString') {
         const nil = `nil as ${modifier.type}`
         const parsed = modifier.kind === 'optionalBoolean'
           ? `if value == "true" || value == "false" { ${apply('value == "true"', modifier.ios)} } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
@@ -91,10 +91,11 @@ ${validation}    ${apply(argumentsFromSDK ?? bridge, modifier.ios, argumentsFrom
       if (modifier.cases) {
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
+${modifier.kind === 'optionalEnum' ? `      case "null": ${apply(`nil as ${modifier.type}`, modifier.ios)}` : ''}
 ${modifier.cases
   .map(
     (item) =>
-      `      case ${JSON.stringify(item.name)}: ${apply(`${modifier.type}.${item.name}`, Math.max(modifier.ios, item.ios))}`
+      `      case ${JSON.stringify(item.name)}: ${apply(`${modifier.type.replace(/\?$/, '')}.${item.name}`, Math.max(modifier.ios, item.ios))}`
   )
   .join('\n')}
     default: preconditionFailure("invalid ${modifier.name}: \\(value)")
@@ -156,6 +157,7 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
       if (kind === 'boolean' && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
       if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean') throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string') throw new Error(name + ' must be a string')
+      if (kind === 'optionalEnum' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')
       if (kind === 'optionalString' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')
       if (kind === 'event' && typeof value !== 'function') throw new Error(name + ' must be a callback')
       if ((kind === 'bindingBoolean' || kind === 'bindingString') &&
