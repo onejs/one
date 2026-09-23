@@ -185,20 +185,6 @@ jobs:
           lookup-only: true
           path: ${{ steps.get-built-app-path.outputs.built_app_path }}
 
-      - name: Restore Build Cache
-        if: ${{ !steps.pre-check-has-build.outputs.cache-hit && !steps.check-has-build.outputs.cache-hit }}
-        id: restore-build-cache
-        uses: actions/cache/restore@v5
-        env:
-          cache-name: ${{ env.app_id }}-build
-        with:
-          # per-configuration so Debug/Release don't stomp each other's derived data
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ inputs.configuration }}-${{ steps.calculate-build-hash.outputs.build_hash }}
-          restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-${{ inputs.configuration }}-
-          path: |
-            ${{ env.test_container_app_path }}/build
-
       - name: Build
         if: ${{ !steps.pre-check-has-build.outputs.cache-hit && !steps.check-has-build.outputs.cache-hit }}
         run: |
@@ -252,14 +238,6 @@ jobs:
           name: xcodebuild-${{ env.app_id }}-${{ inputs.configuration }}.log
           path: |
             ${{ env.test_container_app_path }}/xcodebuild.log
-
-      - name: Save Build Cache
-        uses: actions/cache/save@v5
-        if:  ${{ always() && !steps.pre-check-has-build.outputs.cache-hit && !steps.check-has-build.outputs.cache-hit }}
-        with:
-          key: ${{ steps.restore-build-cache.outputs.cache-primary-key }}
-          path: |
-            ${{ env.test_container_app_path }}/build
 
       # Not useful since it's hard to find which run that actually built the app. Instead, we re-upload the app to artifacts in subsequent workflows if tests failed.
       # - name: Upload Built App to Artifacts
