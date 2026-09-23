@@ -21,35 +21,29 @@ export const suppressBehavior: NotificationBehavior = {
   shouldSetBadge: false,
 }
 
-// the js side answers within 2.5s; native shows everything after 3s, so a
-// stalled bridge resolves the same way as a stalled handler.
-export const HANDLER_TIMEOUT_MS = 2500
-
 export function normalizeBehavior(input: unknown): NotificationBehavior {
   if (!input || typeof input !== 'object') return { ...suppressBehavior }
-  const behavior = input as Partial<Record<keyof NotificationBehavior, unknown>>
+  const read = (key: keyof NotificationBehavior): boolean =>
+    key in input && input[key] === true
   return {
-    shouldShowBanner: behavior.shouldShowBanner === true,
-    shouldShowList: behavior.shouldShowList === true,
-    shouldPlaySound: behavior.shouldPlaySound === true,
-    shouldSetBadge: behavior.shouldSetBadge === true,
+    shouldShowBanner: read('shouldShowBanner'),
+    shouldShowList: read('shouldShowList'),
+    shouldPlaySound: read('shouldPlaySound'),
+    shouldSetBadge: read('shouldSetBadge'),
   }
 }
 
 // pairs foreground arrivals with their presentation answers by request id.
 // each id settles exactly once; duplicates of an in-flight id are ignored.
-// no react-native imports: unit-tested with fake timers.
+// no timer here: native shows everything after 3s, the one clock for a
+// stalled handler. no react-native imports: unit-tested with fake timers.
 export class ForegroundHandler {
   private handler: NotificationHandlerInput | null = null
   private nulled = false
-  private pending = new Map<
-    string,
-    { settled: boolean; timer: ReturnType<typeof setTimeout> }
-  >()
+  private pending = new Map<string, { settled: boolean }>()
 
   constructor(
-    private present: (requestId: string, behavior: NotificationBehavior) => void,
-    private timeoutMs: number = HANDLER_TIMEOUT_MS
+    private present: (requestId: string, behavior: NotificationBehavior) => void
   ) {}
 
   setHandler(handler: NotificationHandlerInput | null) {
@@ -67,10 +61,7 @@ export class ForegroundHandler {
       return true
     }
     const handler = this.handler
-    const record = {
-      settled: false,
-      timer: setTimeout(() => this.settle(requestId, showAllBehavior), this.timeoutMs),
-    }
+    const record = { settled: false }
     this.pending.set(requestId, record)
     Promise.resolve()
       .then(() => handler.handleNotification(notification))
@@ -85,7 +76,6 @@ export class ForegroundHandler {
     const record = this.pending.get(requestId)
     if (!record || record.settled) return
     record.settled = true
-    clearTimeout(record.timer)
     this.pending.delete(requestId)
     this.present(requestId, { ...behavior })
   }

@@ -152,6 +152,24 @@ function snapshot(simulatorId: string): Node[] {
   return nodes
 }
 
+// single-element hit-test at a screen point. springboard-owned ui (in-app
+// notification banners) never appears in full-snapshot traversal but resolves
+// here. empty space reports "No translation object", which is a null.
+function hitTest(simulatorId: string, x: number, y: number): Node | null {
+  try {
+    const output = command(
+      ['simulator', 'snapshot-ui', '--point', `${Math.round(x)},${Math.round(y)}`],
+      simulatorId
+    )
+    const parsed = JSON.parse(output) as Node
+    return parsed && typeof parsed === 'object' ? parsed : null
+  } catch (error) {
+    if (error instanceof Error && /no translation object/i.test(error.message))
+      return null
+    throw error
+  }
+}
+
 const labels = (nodes: Node[]) =>
   nodes.flatMap((node) => (node.AXLabel ? [node.AXLabel] : []))
 const has = (nodes: Node[], text: string) =>
@@ -793,74 +811,87 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // no handler was set yet, so the first observed arrival shows by default.
     await tapFixture('one-native-notifications-schedule-now')
     await wait('foreground arrival fires received', (n) => has(n, 'Received: n3-1'))
-    // the banner covers the top center below the island; tapping it while
-    // the app is foregrounded delivers the response without leaving the
-    // screen. coordinates are calibrated for the 393x852 display.
-    point(196, 110)
-    await wait('banner tap fires response', (n) => has(n, 'Response: n3-1/'))
-    await tapFixture('one-native-notifications-last-refresh')
-    await wait('tap is cached as last response', (n) => has(n, 'Last: n3-1/N3 ping'))
-    screenshot('notifications-warm-tap.png')
-    // suppression taps must land on bare app chrome, never on a
-    // fixture button the earlier scrolling left under the point, so the
-    // fixture goes back to the top before each one.
-    const scrollTop = async () => {
-      for (let i = 0; i < 3; i++) {
-        command(
-          [
-            'ui-automation',
-            'swipe',
-            '--x1',
-            '196',
-            '--y1',
-            '300',
-            '--x2',
-            '196',
-            '--y2',
-            '700',
-            '--duration',
-            '0.3',
-          ],
-          config.simulatorId
-        )
-        await new Promise((resolve) => setTimeout(resolve, 300))
+
+    // banner seeds probe a column down the banner region; they are only
+    // search candidates, and every tap lands on an observed frame, never a
+    // calibrated coordinate.
+    const bannerSeedX = () => {
+      const width = snapshot(config.simulatorId).find(
+        (node) =>
+          node.type === 'Application' ||
+          node.AXRole === 'AXApplication' ||
+          node.role === 'AXApplication'
+      )?.frame?.width
+      if (!width) throw new Error('could not read the app width for banner seeds')
+      return Math.round(width / 2)
+    }
+    const bannerSeedYs = [62, 74, 86, 98, 110]
+    // the warm in-app banner never appears in full-snapshot traversal
+    // (springboard owns that window), so hit-test for the element carrying
+    // our title or body and tap its reported frame. the proof shot rides
+    // along: a separate screenshot round-trip first would push the tap past
+    // the banner's few seconds of life.
+    const tapWarmBanner = async (pngName: string, title: string, body: string) => {
+      const started = Date.now()
+      const x = bannerSeedX()
+      for (;;) {
+        for (const y of bannerSeedYs) {
+          const hit = hitTest(config.simulatorId, x, y)
+          if (
+            hit?.frame &&
+            (hit.AXLabel?.includes(title) || hit.AXLabel?.includes(body))
+          ) {
+            const found = hit.frame
+            const target = path.join(config.artifactDir, pngName)
+            fs.writeFileSync(
+              target.replace(/\.png$/i, '.ax.json'),
+              JSON.stringify({ seed: { x, y }, hit }, null, 2)
+            )
+            execFileSync(
+              'xcrun',
+              ['simctl', 'io', config.simulatorId, 'screenshot', target],
+              { stdio: 'inherit', timeout: 30_000 }
+            )
+            point(
+              Math.round(found.x + found.width / 2),
+              Math.round(found.y + found.height / 2)
+            )
+            checks.push({
+              name: `banner tap lands on ${title}`,
+              durationMs: Date.now() - started,
+            })
+            console.log(`PASS banner tap lands on ${title}`)
+            return
+          }
+          if (Date.now() - started > config.timeout)
+            throw new Error(`banner for ${title} never appeared`)
+        }
       }
     }
-    // a suppressing handler still fires received but shows no banner: the
-    // same tap lands in the app and no second response arrives.
-    await tapFixture('one-native-notifications-handler-suppress')
-    await wait('suppressing handler set', (n) => has(n, 'Handler: suppress'))
-    await tapFixture('one-native-notifications-schedule-now')
-    await wait('suppressed arrival still fires received', (n) => has(n, 'Received: n3-2'))
-    await scrollTop()
-    point(196, 110)
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    if (has(snapshot(config.simulatorId), 'Response: n3-2'))
-      throw new Error('a suppressed notification produced a response on tap')
-    // a nulled handler behaves the same way.
-    await tapFixture('one-native-notifications-handler-null')
-    await wait('nulled handler set', (n) => has(n, 'Handler: null'))
-    await tapFixture('one-native-notifications-schedule-now')
-    await wait('nulled arrival still fires received', (n) => has(n, 'Received: n3-3'))
-    await scrollTop()
-    point(196, 110)
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    if (has(snapshot(config.simulatorId), 'Response: n3-3'))
-      throw new Error('a nulled handler produced a response on tap')
-    // the banner's screen position varies by device and os (on the 402-wide
-    // sim it ends 3pt above the old calibrated point), so tap its observed
-    // accessibility frame rather than a fixed coordinate. springboard owns
-    // the tree while the app is down, so this polls raw snapshots. the proof
-    // shot rides along: a separate screenshot round-trip first would push the
-    // tap past the banner's few seconds of life.
+    // cold-start banners hang off springboard's own tree, which full
+    // snapshots do traverse, so the cold taps keep the snapshot lookup.
     const tapColdBanner = async (pngName: string, text: string) => {
       const started = Date.now()
-      for (;;) {
+      const bannerUp = () =>
+        snapshot(config.simulatorId).some((node) =>
+          node.AXLabel?.includes(text)
+        )
+      for (let attempt = 1; ; attempt++) {
         const nodes = snapshot(config.simulatorId)
         const found = nodes.find(
           (node) => node.AXLabel?.includes(text) && node.frame
         )?.frame
-        if (found) {
+        if (!found) {
+          if (Date.now() - started > config.timeout)
+            throw new Error(
+              attempt === 1
+                ? `banner for ${text} never appeared`
+                : `banner for ${text} dismissed before a tap registered`
+            )
+          await new Promise((resolve) => setTimeout(resolve, 250))
+          continue
+        }
+        if (attempt === 1) {
           const target = path.join(config.artifactDir, pngName)
           fs.writeFileSync(
             target.replace(/\.png$/i, '.ax.json'),
@@ -871,22 +902,108 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
             ['simctl', 'io', config.simulatorId, 'screenshot', target],
             { stdio: 'inherit', timeout: 30_000 }
           )
-          point(
-            Math.round(found.x + found.width / 2),
-            Math.round(found.y + found.height / 2)
-          )
-          checks.push({
-            name: `banner tap lands on ${text}`,
-            durationMs: Date.now() - started,
-          })
-          console.log(`PASS banner tap lands on ${text}`)
-          return
         }
-        if (Date.now() - started > config.timeout)
-          throw new Error(`banner for ${text} never appeared`)
-        await new Promise((resolve) => setTimeout(resolve, 250))
+        point(
+          Math.round(found.x + found.width / 2),
+          Math.round(found.y + found.height / 2)
+        )
+        // a tap that lands dismisses the banner within a couple of seconds;
+        // if it is still up, the touch never registered, so re-tap the
+        // fresh frame instead of failing a banner that is plainly tappable.
+        // if the banner left but the app never arrives, the tap missed and
+        // auto-dismiss took it: fail loudly instead of passing.
+        const dismissedBy = Date.now() + 5000
+        let dismissed = false
+        for (;;) {
+          if (!bannerUp()) {
+            dismissed = true
+            break
+          }
+          if (Date.now() > dismissedBy) break
+          await new Promise((resolve) => setTimeout(resolve, 250))
+        }
+        if (!dismissed) {
+          if (Date.now() - started > config.timeout)
+            throw new Error(`banner for ${text} never dismissed after ${attempt} taps`)
+          continue
+        }
+        const homeBy = Date.now() + 10_000
+        for (;;) {
+          if (homeLoaded(snapshot(config.simulatorId), config.suite)) {
+            checks.push({
+              name: `banner tap lands on ${text}`,
+              durationMs: Date.now() - started,
+            })
+            console.log(`PASS banner tap lands on ${text}`)
+            return
+          }
+          if (Date.now() > homeBy)
+            throw new Error(`banner for ${text} left but the app never launched`)
+          await new Promise((resolve) => setTimeout(resolve, 250))
+        }
       }
     }
+    // tapping the banner while the app is foregrounded delivers the
+    // response without leaving the screen.
+    await tapWarmBanner('notifications-warm-tap.png', 'N3 ping', 'arrival 1')
+    await wait('banner tap fires response', (n) => has(n, 'Response: n3-1/'))
+    await tapFixture('one-native-notifications-last-refresh')
+    await wait('tap is cached as last response', (n) => has(n, 'Last: n3-1/N3 ping'))
+    // a suppressed arrival must never surface a banner: sweep hit-tests
+    // for 3s and fail on any element carrying the title or body, then
+    // require the received event that proves the arrival itself happened,
+    // and a fresh presented-list read that lacks the id. the dismiss in
+    // the middle forces the read to be fresh: without it the wait below
+    // would pass on the stale pre-schedule label.
+    const expectSuppressed = async (
+      title: string,
+      body: string,
+      identifier: string,
+      receivedLabel: string
+    ) => {
+      const started = Date.now()
+      const x = bannerSeedX()
+      for (;;) {
+        for (const y of bannerSeedYs) {
+          const hit = hitTest(config.simulatorId, x, y)
+          if (hit?.AXLabel?.includes(title) || hit?.AXLabel?.includes(body))
+            throw new Error(`${title} was presented despite suppression`)
+          if (Date.now() - started > 3000) break
+        }
+        if (Date.now() - started > 3000) break
+      }
+      await wait(`${receivedLabel} arrived`, (n) => has(n, receivedLabel))
+      await tapFixture('one-native-notifications-dismiss-all')
+      await wait('presented cleared before read', (n) => has(n, 'Presented: dismissed'))
+      await tapFixture('one-native-notifications-presented-list')
+      await wait('presented list read back', (n) =>
+        labels(n).some(
+          (label) =>
+            label.startsWith('Presented: ') && label !== 'Presented: dismissed'
+        )
+      )
+      const presented = labels(snapshot(config.simulatorId)).find((label) =>
+        label.startsWith('Presented: ')
+      )
+      if (!presented) throw new Error('presented list never read back')
+      if (presented.slice('Presented: '.length).split(',').includes(identifier))
+        throw new Error(`${identifier} was delivered despite suppression`)
+      checks.push({
+        name: `suppressed arrival hides ${title}`,
+        durationMs: Date.now() - started,
+      })
+      console.log(`PASS suppressed arrival hides ${title}`)
+    }
+    // a suppressing handler still fires received but shows no banner.
+    await tapFixture('one-native-notifications-handler-suppress')
+    await wait('suppressing handler set', (n) => has(n, 'Handler: suppress'))
+    await tapFixture('one-native-notifications-schedule-now')
+    await expectSuppressed('N3 ping', 'arrival 2', 'n3-2', 'Received: n3-2')
+    // a nulled handler behaves the same way.
+    await tapFixture('one-native-notifications-handler-null')
+    await wait('nulled handler set', (n) => has(n, 'Handler: null'))
+    await tapFixture('one-native-notifications-schedule-now')
+    await expectSuppressed('N3 ping', 'arrival 3', 'n3-3', 'Received: n3-3')
     // cold start: terminate, push a banner onto the home screen, tap it.
     // the simctl push is the probe vehicle for the launch-timing question;
     // the delegate path it exercises is the same one local taps take.
@@ -947,10 +1064,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapFixture('one-native-notifications-presented-list')
     await wait('dismiss removes it from presented', (n) => has(n, 'Presented: none'))
     // local cold start: schedule 15s out, terminate, tap the delivered banner.
+    // the trigger counts from the schedule tap, before the terminate
+    // round-trip, so the banner is already up when a 14s sleep ends and the
+    // tap races its auto-dismiss; poll from 10s to catch it young.
     await tapFixture('one-native-notifications-schedule-cold')
     await wait('cold schedule set', (n) => has(n, 'Scheduled: n4-cold'))
     command(['simulator', 'stop', '--bundle-id', config.bundleId], config.simulatorId)
-    await new Promise((resolve) => setTimeout(resolve, 14000))
+    await new Promise((resolve) => setTimeout(resolve, 10000))
     await tapColdBanner('notifications-local-cold-banner.png', 'N4 cold')
     await wait('local cold start shows home', () => true, true)
     await dismissWarning(true)
