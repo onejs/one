@@ -20,6 +20,9 @@ describe('SDK callback and binding transport', () => {
       menuStyle: 'automatic',
       textCase: 'uppercase',
       truncationMode: 'tail',
+      id: 'row-1',
+      tag: 'selection-1',
+      coordinateSpace: 'chart',
     } })
     expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
       ['offset', '["12","-4"]'],
@@ -27,6 +30,9 @@ describe('SDK callback and binding transport', () => {
       ['menuStyle', 'automatic'],
       ['textCase', 'uppercase'],
       ['truncationMode', 'tail'],
+      ['id', 'row-1'],
+      ['tag', 'selection-1'],
+      ['coordinateSpace', 'chart'],
     ])
     expect(() => Controls.Text({ text: 'example', swiftStyle: {
       offset: { x: Number.POSITIVE_INFINITY, y: 0 },

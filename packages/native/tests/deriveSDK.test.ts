@@ -169,6 +169,21 @@ describe('SDK modifier derivation', () => {
       ] },
     ])
   })
+
+  it('instantiates a Hashable SDK value with a JavaScript string', () => {
+    expect(deriveModifiers([
+      { ...method('id', 'SwiftUICore', [{ label: '_', name: 'id', type: 'ID' }]), requirements: ['ID : Swift.Hashable'] },
+      { ...method('tag', 'SwiftUICore', [
+        { label: '_', name: 'tag', type: 'V' },
+        { label: 'includeOptional', name: 'includeOptional', type: 'Swift.Bool', defaultValue: 'true' },
+      ]), requirements: ['V : Swift.Hashable'] },
+      { ...method('coordinateSpace', 'SwiftUICore', [{ label: 'name', name: 'name', type: 'T' }]), requirements: ['T : Swift.Hashable'] },
+    ], 27, [])).toEqual([
+      { name: 'coordinateSpace', kind: 'string', type: 'T', label: 'name', ios: 0 },
+      { name: 'id', kind: 'string', type: 'ID', ios: 0 },
+      { name: 'tag', kind: 'string', type: 'V', ios: 0 },
+    ])
+  })
 })
 
 describe('SDK tab view slots', () => {
