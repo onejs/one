@@ -329,6 +329,16 @@ export const sdkColorMultiplyValues = [
 export type SDKColorMultiply = (typeof sdkColorMultiplyValues)[number]
 export const sdkColorSchemeValues = ['light', 'dark'] as const
 export type SDKColorScheme = (typeof sdkColorSchemeValues)[number]
+export const sdkContentShapeValues = [
+  'buttonBorder',
+  'rect',
+  'capsule',
+  'ellipse',
+  'circle',
+  'containerRelative',
+  'textInputBorder',
+] as const
+export type SDKContentShape = (typeof sdkContentShapeValues)[number]
 export const sdkContentTransitionValues = [
   'symbolEffect',
   'identity',
@@ -977,6 +987,86 @@ export const sdkSubscriptionStoreOptionGroupStyleValues = [
 ] as const
 export type SDKSubscriptionStoreOptionGroupStyle =
   (typeof sdkSubscriptionStoreOptionGroupStyleValues)[number]
+export const sdkSubscriptionStorePickerItemBackgroundValues = [
+  'placeholder',
+  'link',
+  'selection',
+  'windowBackground',
+  'fill',
+  'regularMaterial',
+  'thickMaterial',
+  'thinMaterial',
+  'ultraThinMaterial',
+  'ultraThickMaterial',
+  'bar',
+  'primary',
+  'secondary',
+  'tertiary',
+  'quaternary',
+  'quinary',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'mint',
+  'teal',
+  'cyan',
+  'blue',
+  'indigo',
+  'purple',
+  'pink',
+  'brown',
+  'white',
+  'gray',
+  'black',
+  'clear',
+  'separator',
+  'background',
+  'foreground',
+  'tint',
+] as const
+export type SDKSubscriptionStorePickerItemBackground =
+  (typeof sdkSubscriptionStorePickerItemBackgroundValues)[number]
+export const sdkSubscriptionStorePolicyForegroundStyleValues = [
+  'placeholder',
+  'link',
+  'selection',
+  'windowBackground',
+  'fill',
+  'regularMaterial',
+  'thickMaterial',
+  'thinMaterial',
+  'ultraThinMaterial',
+  'ultraThickMaterial',
+  'bar',
+  'primary',
+  'secondary',
+  'tertiary',
+  'quaternary',
+  'quinary',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'mint',
+  'teal',
+  'cyan',
+  'blue',
+  'indigo',
+  'purple',
+  'pink',
+  'brown',
+  'white',
+  'gray',
+  'black',
+  'clear',
+  'separator',
+  'background',
+  'foreground',
+  'tint',
+] as const
+export type SDKSubscriptionStorePolicyForegroundStyle =
+  (typeof sdkSubscriptionStorePolicyForegroundStyleValues)[number]
 export const sdkSymbolColorRenderingModeValues = ['flat', 'gradient'] as const
 export type SDKSymbolColorRenderingMode =
   (typeof sdkSymbolColorRenderingModeValues)[number]
@@ -1442,6 +1532,7 @@ export interface OneNativeStyle {
     length: number
     placement: 'automatic' | 'scrollContent' | 'scrollIndicators'
   }>
+  contentShape?: SDKContentShape
   contentTransition?: SDKContentTransition
   contrast?: number
   controlGroupStyle?: SDKControlGroupStyle
@@ -2112,10 +2203,12 @@ export interface OneNativeStyle {
   subscriptionStoreControlBackground?: SDKSubscriptionStoreControlBackground
   subscriptionStoreControlStyle?: SDKSubscriptionStoreControlStyle
   subscriptionStoreOptionGroupStyle?: SDKSubscriptionStoreOptionGroupStyle
+  subscriptionStorePickerItemBackground?: SDKSubscriptionStorePickerItemBackground
   subscriptionStorePolicyDestination?: Readonly<{
     url: string
     button: 'termsOfService' | 'privacyPolicy'
   }>
+  subscriptionStorePolicyForegroundStyle?: SDKSubscriptionStorePolicyForegroundStyle
   subscriptionStoreSignInAction?: () => void
   swipeActionsContainer?: boolean
   symbolColorRenderingMode?: SDKSymbolColorRenderingMode | null

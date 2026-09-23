@@ -61,6 +61,8 @@ export declare const sdkColorMultiplyValues: readonly ['accentColor', 'red', 'or
 export type SDKColorMultiply = (typeof sdkColorMultiplyValues)[number];
 export declare const sdkColorSchemeValues: readonly ['light', 'dark'];
 export type SDKColorScheme = (typeof sdkColorSchemeValues)[number];
+export declare const sdkContentShapeValues: readonly ['buttonBorder', 'rect', 'capsule', 'ellipse', 'circle', 'containerRelative', 'textInputBorder'];
+export type SDKContentShape = (typeof sdkContentShapeValues)[number];
 export declare const sdkContentTransitionValues: readonly ['symbolEffect', 'identity', 'opacity', 'interpolate'];
 export type SDKContentTransition = (typeof sdkContentTransitionValues)[number];
 export declare const sdkControlGroupStyleValues: readonly ['palette', 'automatic', 'navigation', 'menu', 'compactMenu'];
@@ -261,6 +263,10 @@ export declare const sdkSubscriptionStoreControlStyleValues: readonly ['pagedPro
 export type SDKSubscriptionStoreControlStyle = (typeof sdkSubscriptionStoreControlStyleValues)[number];
 export declare const sdkSubscriptionStoreOptionGroupStyleValues: readonly ['automatic', 'tabs', 'links'];
 export type SDKSubscriptionStoreOptionGroupStyle = (typeof sdkSubscriptionStoreOptionGroupStyleValues)[number];
+export declare const sdkSubscriptionStorePickerItemBackgroundValues: readonly ['placeholder', 'link', 'selection', 'windowBackground', 'fill', 'regularMaterial', 'thickMaterial', 'thinMaterial', 'ultraThinMaterial', 'ultraThickMaterial', 'bar', 'primary', 'secondary', 'tertiary', 'quaternary', 'quinary', 'red', 'orange', 'yellow', 'green', 'mint', 'teal', 'cyan', 'blue', 'indigo', 'purple', 'pink', 'brown', 'white', 'gray', 'black', 'clear', 'separator', 'background', 'foreground', 'tint'];
+export type SDKSubscriptionStorePickerItemBackground = (typeof sdkSubscriptionStorePickerItemBackgroundValues)[number];
+export declare const sdkSubscriptionStorePolicyForegroundStyleValues: readonly ['placeholder', 'link', 'selection', 'windowBackground', 'fill', 'regularMaterial', 'thickMaterial', 'thinMaterial', 'ultraThinMaterial', 'ultraThickMaterial', 'bar', 'primary', 'secondary', 'tertiary', 'quaternary', 'quinary', 'red', 'orange', 'yellow', 'green', 'mint', 'teal', 'cyan', 'blue', 'indigo', 'purple', 'pink', 'brown', 'white', 'gray', 'black', 'clear', 'separator', 'background', 'foreground', 'tint'];
+export type SDKSubscriptionStorePolicyForegroundStyle = (typeof sdkSubscriptionStorePolicyForegroundStyleValues)[number];
 export declare const sdkSymbolColorRenderingModeValues: readonly ['flat', 'gradient'];
 export type SDKSymbolColorRenderingMode = (typeof sdkSymbolColorRenderingModeValues)[number];
 export declare const sdkSymbolRenderingModeValues: readonly ['monochrome', 'multicolor', 'hierarchical', 'palette'];
@@ -526,6 +532,7 @@ export interface OneNativeStyle {
         length: number;
         placement: 'automatic' | 'scrollContent' | 'scrollIndicators';
     }>;
+    contentShape?: SDKContentShape;
     contentTransition?: SDKContentTransition;
     contrast?: number;
     controlGroupStyle?: SDKControlGroupStyle;
@@ -1091,10 +1098,12 @@ export interface OneNativeStyle {
     subscriptionStoreControlBackground?: SDKSubscriptionStoreControlBackground;
     subscriptionStoreControlStyle?: SDKSubscriptionStoreControlStyle;
     subscriptionStoreOptionGroupStyle?: SDKSubscriptionStoreOptionGroupStyle;
+    subscriptionStorePickerItemBackground?: SDKSubscriptionStorePickerItemBackground;
     subscriptionStorePolicyDestination?: Readonly<{
         url: string;
         button: 'termsOfService' | 'privacyPolicy';
     }>;
+    subscriptionStorePolicyForegroundStyle?: SDKSubscriptionStorePolicyForegroundStyle;
     subscriptionStoreSignInAction?: () => void;
     swipeActionsContainer?: boolean;
     symbolColorRenderingMode?: SDKSymbolColorRenderingMode | null;

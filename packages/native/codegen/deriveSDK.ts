@@ -333,11 +333,13 @@ export function deriveModifiers(
               { label: method.parameters[1].label, defaultValue: method.parameters[1].defaultValue },
               { label: method.parameters[2].label, bridge: true },
             ], ios: ios(method), ...framework }]
-        const style = /^S : ([A-Za-z_]\w*\.[A-Za-z][\w.]*)$/.exec(method.requirements[0])?.[1]
-        if (style && method.parameters.length === 1 && method.parameters[0].type === 'S') {
+        const styleRequirement = /^([A-Za-z_]\w*) : ([A-Za-z_]\w*\.[A-Za-z][\w.]*)$/.exec(method.requirements[0])
+        const style = styleRequirement?.[2]
+        if (styleRequirement && style && method.parameters[0]?.type === styleRequirement[1] &&
+          ((styleRequirement[1] === 'S' && method.parameters.length === 1) || (style === 'SwiftUICore.Shape' &&
+            method.parameters.slice(1).every((parameter) => parameter.defaultValue !== undefined)))) {
           const cases = styleCases(style)
-          if (!cases) return []
-          return [{ name, module: method.module, kind: 'style', type: 'S', ios: ios(method), cases, ...framework }]
+          if (cases) return [{ name, module: method.module, kind: 'style', type: styleRequirement[1], ios: ios(method), cases, ...framework }]
         }
         const hashable = /^([A-Za-z_]\w*) : Swift.Hashable$/.exec(method.requirements[0])?.[1]
         const equatable = /^([A-Za-z_]\w*) : Swift.Equatable$/.exec(method.requirements[0])?.[1]
@@ -433,7 +435,11 @@ export function deriveModifiers(
       const { type, label } = method.parameters[0]
       const opaqueProtocol = /^some ((?:[A-Za-z_]\w*\.)?[A-Za-z]\w*)$/.exec(type)?.[1]
       if (opaqueProtocol) {
-        const cases = styleCases(opaqueProtocol.includes('.') ? opaqueProtocol : `${method.module}.${opaqueProtocol}`)
+        const owners = [...new Set(inventory.filter((declaration) =>
+          declaration.kind === 'static' && declaration.owner.split('.').at(-1) === opaqueProtocol &&
+          present(declaration) && ios(declaration) <= ceiling).map((declaration) => declaration.owner))]
+        const cases = styleCases(opaqueProtocol.includes('.') ? opaqueProtocol : `${method.module}.${opaqueProtocol}`) ??
+          (owners.length === 1 ? styleCases(owners[0]) : undefined)
         if (cases) return [{ name, module: method.module, kind: 'style', type, ios: ios(method), cases, ...framework,
           ...(label === '_' ? {} : { label }) }]
       }
