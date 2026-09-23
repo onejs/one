@@ -863,8 +863,10 @@ export interface OneNativeStyle {
   offerCodeRedemption?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   onAppear?: () => void
   onDisappear?: () => void
+  onHover?: (value: boolean) => void
+  onInteractiveResizeChange?: (value: boolean) => void
   onMapCameraChange?: () => void
-  onOpenURL?: boolean
+  onScrollVisibilityChange?: (value: boolean) => void
   onSubmit?: () => void
   onTapGesture?: () => void
   paletteSelectionEffect?: SDKPaletteSelectionEffect

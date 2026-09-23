@@ -53,9 +53,11 @@ ${slots.map((slot) => `    case OneNativeViewSlotName.${slot.name}:
           ? `if #available(iOS ${version}, *) { self.${modifier.name}(${argument}) } else { self }`
           : `self.${modifier.name}(${argument})`
       }
-      if (modifier.kind === 'event' || modifier.kind.startsWith('binding')) {
-        const bridge = modifier.kind === 'event'
-          ? `{ emit(${JSON.stringify(modifier.name)}, "") }`
+      if (modifier.kind.startsWith('event') || modifier.kind.startsWith('binding')) {
+        const bridge = modifier.kind.startsWith('event')
+          ? modifier.kind === 'event'
+            ? `{ emit(${JSON.stringify(modifier.name)}, "") }`
+            : `{ value in emit(${JSON.stringify(modifier.name)}, ${modifier.type.includes('Foundation.URL') ? 'value.absoluteString' : 'String(value)'}) }`
           : `Binding(get: { ${modifier.kind === 'bindingBoolean' ? 'value == "true"' : 'value'} }, set: { emit(${JSON.stringify(modifier.name)}, String($0)) })`
         const validation = modifier.kind === 'bindingBoolean'
           ? `    let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")\n`
@@ -159,12 +161,12 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
       if (kind === 'string' && typeof value !== 'string') throw new Error(name + ' must be a string')
       if (kind === 'optionalEnum' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')
       if (kind === 'optionalString' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')
-      if (kind === 'event' && typeof value !== 'function') throw new Error(name + ' must be a callback')
+      if (kind.startsWith('event') && typeof value !== 'function') throw new Error(name + ' must be a callback')
       if ((kind === 'bindingBoolean' || kind === 'bindingString') &&
         (typeof value !== 'object' || value === null || typeof (value as { onChange?: unknown }).onChange !== 'function' ||
         typeof (value as { value?: unknown }).value !== (kind === 'bindingBoolean' ? 'boolean' : 'string')))
         throw new Error(name + ' must be a binding')
-      sdkModifiers.push([name, kind === 'event' ? '' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : kind === 'optionalString' ? JSON.stringify(value) as string : String(value)])
+      sdkModifiers.push([name, kind.startsWith('event') ? '' : kind.startsWith('binding') ? String((value as { value: unknown }).value) : kind === 'optionalString' ? JSON.stringify(value) as string : String(value)])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
     } else {
@@ -177,8 +179,18 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
 
 export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string, value: string): void {
   const modifier = (style as Record<string, unknown> | undefined)?.[name]
-  const kind = sdkKinds[name as keyof typeof sdkKinds]
+  const kind = sdkKinds[name as keyof typeof sdkKinds] as string | undefined
   if (kind === 'event') (modifier as (() => void) | undefined)?.()
+  else if (kind === 'eventBoolean') {
+    if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid boolean')
+    ;(modifier as ((value: boolean) => void) | undefined)?.(value === 'true')
+  }
+  else if (kind === 'eventNumber') {
+    const number = Number(value)
+    if (!Number.isFinite(number)) throw new Error(name + ' emitted an invalid number')
+    ;(modifier as ((value: number) => void) | undefined)?.(number)
+  }
+  else if (kind === 'eventString') (modifier as ((value: string) => void) | undefined)?.(value)
   else if (kind === 'bindingBoolean') (modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(value === 'true')
   else if (kind === 'bindingString') (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
 }
