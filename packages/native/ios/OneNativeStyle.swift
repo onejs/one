@@ -203,6 +203,7 @@ extension View {
       case "fileDialogBrowserOptions": view = AnyView(view.oneNativeSDKFileDialogBrowserOptions(value, emit: emit))
       case "fileDialogConfirmationLabel": view = AnyView(view.oneNativeSDKFileDialogConfirmationLabel(value, emit: emit))
       case "fileDialogCustomizationID": view = AnyView(view.oneNativeSDKFileDialogCustomizationID(value, emit: emit))
+      case "fileDialogDefaultDirectory": view = AnyView(view.oneNativeSDKFileDialogDefaultDirectory(value, emit: emit))
       case "fileDialogImportsUnresolvedAliases": view = AnyView(view.oneNativeSDKFileDialogImportsUnresolvedAliases(value, emit: emit))
       case "fileDialogMessage": view = AnyView(view.oneNativeSDKFileDialogMessage(value, emit: emit))
       case "fileExporterFilenameLabel": view = AnyView(view.oneNativeSDKFileExporterFilenameLabel(value, emit: emit))
@@ -296,6 +297,7 @@ extension View {
       case "navigationBarTitleDisplayMode": view = AnyView(view.oneNativeSDKNavigationBarTitleDisplayMode(value, emit: emit))
       case "navigationBarTitleWithText": view = AnyView(view.oneNativeSDKNavigationBarTitleWithText(value, emit: emit))
       case "navigationBarTitleWithTitleAndDisplayMode": view = AnyView(view.oneNativeSDKNavigationBarTitleWithTitleAndDisplayMode(value, emit: emit))
+      case "navigationDocument": view = AnyView(view.oneNativeSDKNavigationDocument(value, emit: emit))
       case "navigationLinkIndicatorVisibility": view = AnyView(view.oneNativeSDKNavigationLinkIndicatorVisibility(value, emit: emit))
       case "navigationSplitViewColumnWidthWithCGFloat": view = AnyView(view.oneNativeSDKNavigationSplitViewColumnWidthWithCGFloat(value, emit: emit))
       case "navigationSplitViewColumnWidthWithMinAndIdealAndMax": view = AnyView(view.oneNativeSDKNavigationSplitViewColumnWidthWithMinAndIdealAndMax(value, emit: emit))
@@ -394,8 +396,11 @@ extension View {
       case "submitLabel": view = AnyView(view.oneNativeSDKSubmitLabel(value, emit: emit))
       case "submitScope": view = AnyView(view.oneNativeSDKSubmitScope(value, emit: emit))
       case "subscriptionOfferViewButtonVisibility": view = AnyView(view.oneNativeSDKSubscriptionOfferViewButtonVisibility(value, emit: emit))
+      case "subscriptionOfferViewDetailAction": view = AnyView(view.oneNativeSDKSubscriptionOfferViewDetailAction(value, emit: emit))
       case "subscriptionStoreButtonLabel": view = AnyView(view.oneNativeSDKSubscriptionStoreButtonLabel(value, emit: emit))
       case "subscriptionStoreControlBackground": view = AnyView(view.oneNativeSDKSubscriptionStoreControlBackground(value, emit: emit))
+      case "subscriptionStorePolicyDestination": view = AnyView(view.oneNativeSDKSubscriptionStorePolicyDestination(value, emit: emit))
+      case "subscriptionStoreSignInAction": view = AnyView(view.oneNativeSDKSubscriptionStoreSignInAction(value, emit: emit))
       case "swipeActionsContainer": view = AnyView(view.oneNativeSDKSwipeActionsContainer(value, emit: emit))
       case "symbolColorRenderingMode": view = AnyView(view.oneNativeSDKSymbolColorRenderingMode(value, emit: emit))
       case "symbolEffectsRemoved": view = AnyView(view.oneNativeSDKSymbolEffectsRemoved(value, emit: emit))
@@ -2022,6 +2027,14 @@ extension View {
       self.fileDialogCustomizationID(value)
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKFileDialogDefaultDirectory(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if value == "null" { self.fileDialogDefaultDirectory(nil as Foundation.URL?) } else { if let data = value.data(using: .utf8),
+      let decoded = try? JSONDecoder().decode(String.self, from: data),
+      let url = Foundation.URL(string: decoded) {
+      self.fileDialogDefaultDirectory(url)
+    } else { preconditionFailure("invalid fileDialogDefaultDirectory: \(value)") } }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKFileDialogImportsUnresolvedAliases(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid fileDialogImportsUnresolvedAliases: \(value)")
       self.fileDialogImportsUnresolvedAliases(value == "true")
@@ -3175,6 +3188,10 @@ extension View {
       }
     }()
     self.navigationBarTitle(argument0, displayMode: argument1)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKNavigationDocument(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if let url = Foundation.URL(string: value) { self.navigationDocument(url) } else { preconditionFailure("invalid navigationDocument: \(value)") }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKNavigationLinkIndicatorVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4379,6 +4396,10 @@ extension View {
     } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKSubscriptionOfferViewDetailAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) { self.subscriptionOfferViewDetailAction({ emit("subscriptionOfferViewDetailAction", "") }) } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStoreButtonLabel(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -4400,6 +4421,33 @@ extension View {
       case "gradientMaterialOnScroll": self.subscriptionStoreControlBackground(_StoreKit_SwiftUI.SubscriptionStoreControlBackground.gradientMaterialOnScroll)
     default: preconditionFailure("invalid subscriptionStoreControlBackground: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSubscriptionStorePolicyDestination(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid subscriptionStorePolicyDestination: \(value)") }
+      return decoded
+    }()
+    let argument0: Foundation.URL = {
+      guard let raw = values[0] else { preconditionFailure("missing subscriptionStorePolicyDestination.url") }
+      guard let url = Foundation.URL(string: raw) else { preconditionFailure("invalid subscriptionStorePolicyDestination.url: \(raw)") }
+      return url
+    }()
+    let argument1: _StoreKit_SwiftUI.SubscriptionStorePolicyKind = {
+      guard let raw = values[1] else { preconditionFailure("missing subscriptionStorePolicyDestination.button") }
+      switch raw {
+      case "termsOfService": return _StoreKit_SwiftUI.SubscriptionStorePolicyKind.termsOfService
+      case "privacyPolicy": return _StoreKit_SwiftUI.SubscriptionStorePolicyKind.privacyPolicy
+      default: preconditionFailure("invalid subscriptionStorePolicyDestination.button: \(raw)")
+      }
+    }()
+    self.subscriptionStorePolicyDestination(url: argument0, for: argument1)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSubscriptionStoreSignInAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.subscriptionStoreSignInAction({ emit("subscriptionStoreSignInAction", "") })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSwipeActionsContainer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

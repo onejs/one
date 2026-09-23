@@ -144,6 +144,7 @@ const sdkKinds = {
   fileDialogBrowserOptions: 'string',
   fileDialogConfirmationLabel: 'optionalString',
   fileDialogCustomizationID: 'string',
+  fileDialogDefaultDirectory: 'optionalURL',
   fileDialogImportsUnresolvedAliases: 'boolean',
   fileDialogMessage: 'optionalString',
   fileExporterFilenameLabel: 'optionalString',
@@ -237,6 +238,7 @@ const sdkKinds = {
   navigationBarTitleDisplayMode: 'string',
   navigationBarTitleWithText: 'string',
   navigationBarTitleWithTitleAndDisplayMode: 'record',
+  navigationDocument: 'url',
   navigationLinkIndicatorVisibility: 'string',
   navigationSplitViewColumnWidthWithCGFloat: 'number',
   navigationSplitViewColumnWidthWithMinAndIdealAndMax: 'record',
@@ -335,8 +337,11 @@ const sdkKinds = {
   submitLabel: 'string',
   submitScope: 'boolean',
   subscriptionOfferViewButtonVisibility: 'record',
+  subscriptionOfferViewDetailAction: 'event',
   subscriptionStoreButtonLabel: 'string',
   subscriptionStoreControlBackground: 'string',
+  subscriptionStorePolicyDestination: 'record',
+  subscriptionStoreSignInAction: 'event',
   swipeActionsContainer: 'boolean',
   symbolColorRenderingMode: 'optionalEnum',
   symbolEffectsRemoved: 'boolean',
@@ -639,6 +644,10 @@ const sdkRecords: Record<
     { field: 'visibility', kind: 'enum', optional: false },
     { field: 'buttonKinds', kind: 'enum', optional: false },
   ],
+  subscriptionStorePolicyDestination: [
+    { field: 'url', kind: 'url', optional: false },
+    { field: 'button', kind: 'enum', optional: false },
+  ],
   textInputFormattingControlVisibility: [
     { field: 'visibility', kind: 'enum', optional: false },
     { field: 'placement', kind: 'enum', optional: false },
@@ -715,7 +724,9 @@ export function swiftStyleNative(
           if (argument.kind === 'boolean' && typeof item !== 'boolean')
             throw new Error(name + '.' + argument.field + ' must be a boolean')
           if (
-            (argument.kind === 'string' || argument.kind === 'enum') &&
+            (argument.kind === 'string' ||
+              argument.kind === 'url' ||
+              argument.kind === 'enum') &&
             typeof item !== 'string'
           )
             throw new Error(name + '.' + argument.field + ' must be a string')
@@ -738,6 +749,10 @@ export function swiftStyleNative(
         throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string')
         throw new Error(name + ' must be a string')
+      if (kind === 'url' && typeof value !== 'string')
+        throw new Error(name + ' must be a URL string')
+      if (kind === 'optionalURL' && value !== null && typeof value !== 'string')
+        throw new Error(name + ' must be a URL string or null')
       if (kind === 'optionalEnum' && value !== null && typeof value !== 'string')
         throw new Error(name + ' must be a string or null')
       if (kind === 'optionalString' && value !== null && typeof value !== 'string')
@@ -759,7 +774,7 @@ export function swiftStyleNative(
           ? ''
           : kind.startsWith('binding')
             ? String((value as { value: unknown }).value)
-            : kind === 'optionalString'
+            : kind === 'optionalString' || kind === 'optionalURL'
               ? (JSON.stringify(value) as string)
               : String(value),
       ])
