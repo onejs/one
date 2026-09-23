@@ -163,6 +163,7 @@ const sdkKinds = {
   draggable: 'record',
   drawingGroup: 'record',
   dropConfiguration: 'eventReturnEnum',
+  dropDestination: 'eventStruct',
   dynamicTypeSize: 'string',
   edgesIgnoringSafeArea: 'string',
   fileDialogBrowserOptions: 'string',
@@ -633,6 +634,30 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
       },
       { name: 'size', value: { kind: 'size' } },
       { name: 'location', value: { kind: 'point' } },
+    ],
+  },
+  dropDestination: {
+    kind: 'object',
+    fields: [
+      { name: 'items', value: { kind: 'array', value: { kind: 'string' } } },
+      {
+        name: 'session',
+        value: {
+          kind: 'object',
+          fields: [
+            { name: 'itemsCount', value: { kind: 'number' } },
+            {
+              name: 'suggestedOperations',
+              value: {
+                kind: 'object',
+                fields: [{ name: 'rawValue', value: { kind: 'number' } }],
+              },
+            },
+            { name: 'size', value: { kind: 'size' } },
+            { name: 'location', value: { kind: 'point' } },
+          ],
+        },
+      },
     ],
   },
   onCameraCaptureEvent: {

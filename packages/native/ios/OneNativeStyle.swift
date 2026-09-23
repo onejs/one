@@ -226,6 +226,7 @@ extension View {
       case "draggable": view = AnyView(view.oneNativeSDKDraggable(value, emit: emit))
       case "drawingGroup": view = AnyView(view.oneNativeSDKDrawingGroup(value, emit: emit))
       case "dropConfiguration": view = AnyView(view.oneNativeSDKDropConfiguration(value, emit: emit))
+      case "dropDestination": view = AnyView(view.oneNativeSDKDropDestination(value, emit: emit))
       case "dynamicTypeSize": view = AnyView(view.oneNativeSDKDynamicTypeSize(value, emit: emit))
       case "edgesIgnoringSafeArea": view = AnyView(view.oneNativeSDKEdgesIgnoringSafeArea(value, emit: emit))
       case "fileDialogBrowserOptions": view = AnyView(view.oneNativeSDKFileDialogBrowserOptions(value, emit: emit))
@@ -2381,6 +2382,15 @@ extension View {
     }
     self.dropConfiguration(action)
     } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDropDestination(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) { self.dropDestination(for: String.self, isEnabled: true, action: { items, session in
+      let payload = (["items": items.map { item -> Any in item }, "session": (["itemsCount": Double(session.itemsCount), "suggestedOperations": (["rawValue": Double(session.suggestedOperations.rawValue)] as [String: Any]), "size": (["width": Double(session.size.width), "height": Double(session.size.height)] as [String: Any]), "location": (["x": Double(session.location.x), "y": Double(session.location.y)] as [String: Any])] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid dropDestination event") }
+      emit("dropDestination", encoded)
+    }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDynamicTypeSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

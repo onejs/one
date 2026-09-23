@@ -1630,6 +1630,15 @@ export interface OneNativeStyle {
       location: { x: number; y: number }
     }) => void
   }>
+  dropDestination?: (value: {
+    items: readonly string[]
+    session: {
+      itemsCount: number
+      suggestedOperations: { rawValue: number }
+      size: { width: number; height: number }
+      location: { x: number; y: number }
+    }
+  }) => void
   dynamicTypeSize?: SDKDynamicTypeSize
   edgesIgnoringSafeArea?: SDKEdgesIgnoringSafeArea
   fileDialogBrowserOptions?: SDKFileDialogBrowserOptions

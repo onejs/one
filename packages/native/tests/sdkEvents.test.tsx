@@ -267,6 +267,30 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('invalid result event')
   })
 
+  it('sends transferable drop items with the SDK session', () => {
+    const onDrop = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: { dropDestination: onDrop } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['dropDestination', ''],
+    ])
+    const event = {
+      items: ['first', 'second'],
+      session: {
+        itemsCount: 2,
+        suggestedOperations: { rawValue: 1 },
+        size: { width: 40, height: 20 },
+        location: { x: 5, y: 7 },
+      },
+    }
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'dropDestination', value: JSON.stringify(event),
+    } })
+    expect(onDrop).toHaveBeenCalledWith(event)
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'dropDestination', value: JSON.stringify({ ...event, items: ['first', 2] }),
+    } })).toThrow('invalid struct value')
+  })
+
   it('round trips a Codable customization binding through native JSON', () => {
     const onChange = vi.fn()
     const current = '{"perTabState":[],"identifier":"D9754350-75EE-4390-AC54-159710381977","perSectionState":[]}'

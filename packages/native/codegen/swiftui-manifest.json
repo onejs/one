@@ -4019,6 +4019,85 @@
       "ios": 27
     },
     {
+      "name": "dropDestination",
+      "kind": "eventStruct",
+      "type": "@escaping (_ items: [T], _ session: SwiftUI.DropSession) -> Swift.Void",
+      "label": "action",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "items",
+            "value": {
+              "kind": "array",
+              "value": {
+                "kind": "string"
+              }
+            }
+          },
+          {
+            "name": "session",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "itemsCount",
+                  "value": {
+                    "kind": "number"
+                  }
+                },
+                {
+                  "name": "suggestedOperations",
+                  "value": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "name": "rawValue",
+                        "value": {
+                          "kind": "number"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "size",
+                  "value": {
+                    "kind": "size"
+                  }
+                },
+                {
+                  "name": "location",
+                  "value": {
+                    "kind": "point"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "eventInputs": [
+        "items",
+        "session"
+      ],
+      "callArguments": [
+        {
+          "label": "for",
+          "defaultValue": "String.self"
+        },
+        {
+          "label": "isEnabled",
+          "defaultValue": "true"
+        },
+        {
+          "label": "action",
+          "bridge": true
+        }
+      ],
+      "ios": 26
+    },
+    {
       "name": "dynamicTypeSize",
       "kind": "string",
       "type": "SwiftUICore.DynamicTypeSize",
@@ -13270,6 +13349,7 @@
         "dragConfiguration",
         "draggable",
         "dropConfiguration",
+        "dropDestination",
         "fileDialogBrowserOptions",
         "fileDialogConfirmationLabel",
         "fileDialogCustomizationID",
