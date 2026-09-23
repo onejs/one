@@ -4,6 +4,7 @@ import { Swift } from '@vxrn/native'
 
 export default function NativeAutogenProof() {
   const [selection, setSelection] = useState('proof')
+  const [menuSelected, setMenuSelected] = useState(false)
   return (
     <Swift.Tabs
       selection={selection}
@@ -21,6 +22,13 @@ export default function NativeAutogenProof() {
               text="Bold and tracked native text"
               swiftStyle={{ fontSize: 24, bold: true, tracking: 3 }}
             />
+            <Swift.ViewSlot name="contextMenu">
+              <Swift.Text text="Hold for a generated context menu" />
+              <Swift.ViewSlot.Content>
+                <Swift.Button label="Generated menu item" onPress={() => setMenuSelected(true)} />
+              </Swift.ViewSlot.Content>
+            </Swift.ViewSlot>
+            <Swift.Text text={menuSelected ? 'Generated menu selected' : 'Generated menu ready'} />
             <Text>Scroll to collapse the tab bar accessory.</Text>
             <View style={{ height: 900 }} />
           </View>

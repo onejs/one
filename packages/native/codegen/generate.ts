@@ -4,7 +4,7 @@ import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
 import { controls as curatedControls } from './controlCatalog'
 import { emitControls } from './emitControls'
 import { emitStyle } from './emitStyle'
-import { deriveModifiers, deriveTabViewSlots, deriveViews } from './deriveSDK'
+import { deriveModifiers, deriveViewSlots, deriveViews } from './deriveSDK'
 import { emitMenuValidator } from './menuValidator'
 import {
   readInventory,
@@ -67,7 +67,7 @@ const derivedModifiers = deriveModifiers(inventory, MAXIMUM_IOS, [
   ...styleFields,
   ...styleModifiers,
 ])
-const derivedTabViewSlots = deriveTabViewSlots(inventory, MAXIMUM_IOS)
+const derivedViewSlots = deriveViewSlots(inventory, MAXIMUM_IOS)
 const sdkVersion = run('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version'])
 if (Number(sdkVersion.split('.')[0]) < MAXIMUM_IOS)
   throw new Error(
@@ -113,11 +113,13 @@ for (const modifier of derivedModifiers) {
   if (!declaration) throw new Error(`lost SDK declaration for ${modifier.name}`)
   coverModifier(declaration)
 }
-for (const slot of derivedTabViewSlots) {
+for (const slot of derivedViewSlots) {
   const declaration = inventory.find((d) =>
-    d.kind === 'func' && d.module === 'SwiftUI' && d.owner.split('.').at(-1) === 'View' &&
+    d.kind === 'func' && d.module === slot.module && d.owner.split('.').at(-1) === 'View' &&
     d.name === slot.name && d.parameters.length === 1 &&
-    d.parameters[0].type === '() -> Content'
+    d.parameters[0].label === slot.label &&
+    d.requirements?.length === 1 &&
+    d.requirements[0] === `${d.parameters[0].type.slice(6)} : SwiftUICore.View`
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${slot.name} slot`)
   coverModifier(declaration)
@@ -192,7 +194,7 @@ const { schema: controlComponents, payloads: controlPayloads } = emitControls(
 emitSheet(header, outputs)
 emitContainers(header, outputs, styleFields)
 emitPopover(header, outputs)
-emitStyle(header, outputs, styleFields, derivedModifiers, derivedTabViewSlots)
+emitStyle(header, outputs, styleFields, derivedModifiers, derivedViewSlots)
 // the sync-state TurboModule spec: pod-install and gradle codegen read it from
 // src/specs alongside the view specs. emitted here so --check guards the JSI
 // contract byte for byte. it carries no view config (see isViewSpecFile).

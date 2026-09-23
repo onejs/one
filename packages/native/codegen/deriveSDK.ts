@@ -29,17 +29,22 @@ export type DerivedModifier = {
   arguments?: readonly DerivedArgument[]
 }
 
-export type DerivedViewSlot = { name: string; ios: number }
+export type DerivedViewSlot = { name: string; module: string; label: string; ios: number }
 
-export function deriveTabViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
+export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
   const slots = inventory.filter((d) =>
-    d.kind === 'func' && d.module === 'SwiftUI' && d.owner.split('.').at(-1) === 'View' &&
-    /^tabView[A-Z]/.test(d.name) && d.parameters.length === 1 &&
-    d.parameters[0].label === 'content' && d.parameters[0].type === '() -> Content' &&
-    d.requirements?.length === 1 && d.requirements[0] === 'Content : SwiftUICore.View' &&
+    d.kind === 'func' && (d.module === 'SwiftUI' || d.module === 'SwiftUICore') &&
+    d.owner.split('.').at(-1) === 'View' && d.parameters.length === 1 &&
+    /^\(\) -> [A-Za-z_]\w*$/.test(d.parameters[0].type) &&
+    d.requirements?.length === 1 &&
+    d.requirements[0] === `${d.parameters[0].type.slice(6)} : SwiftUICore.View` &&
     present(d) && ios(d) <= ceiling
   )
-  return slots.map((slot) => ({ name: slot.name, ios: ios(slot) })).sort((a, b) => a.name.localeCompare(b.name))
+  const byName = new Map<string, Declaration[]>()
+  for (const slot of slots) byName.set(slot.name, [...(byName.get(slot.name) ?? []), slot])
+  return [...byName].filter(([, declarations]) => declarations.length === 1)
+    .map(([, [slot]]) => ({ name: slot.name, module: slot.module, label: slot.parameters[0].label, ios: ios(slot) }))
+    .sort((a, b) => a.name.localeCompare(b.name))
 }
 
 // methods with bridgeable scalars and static-case values generate their props

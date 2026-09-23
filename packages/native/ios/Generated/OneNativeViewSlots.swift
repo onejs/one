@@ -3,16 +3,51 @@
 import SwiftUI
 
 enum OneNativeViewSlotName {
+  static let accessibilityActions = "accessibilityActions"
+  static let accessibilityChildren = "accessibilityChildren"
+  static let accessibilityRepresentation = "accessibilityRepresentation"
+  static let accessibilityShowsLargeContentViewer = "accessibilityShowsLargeContentViewer"
+  static let contextMenu = "contextMenu"
+  static let searchSuggestions = "searchSuggestions"
+  static let sectionActions = "sectionActions"
+  static let tabItem = "tabItem"
   static let tabViewBottomAccessory = "tabViewBottomAccessory"
   static let tabViewSidebarBottomBar = "tabViewSidebarBottomBar"
   static let tabViewSidebarFooter = "tabViewSidebarFooter"
   static let tabViewSidebarHeader = "tabViewSidebarHeader"
-  static let names = [tabViewBottomAccessory, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader]
+  static let toolbar = "toolbar"
+  static let toolbarOverflowMenu = "toolbarOverflowMenu"
+  static let toolbarTitleMenu = "toolbarTitleMenu"
+  static let names = [accessibilityActions, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, contextMenu, searchSuggestions, sectionActions, tabItem, tabViewBottomAccessory, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
 }
 
 extension View {
   func oneNativeViewSlot(_ name: String, content: @escaping () -> AnyView) -> AnyView {
     switch name {
+    case OneNativeViewSlotName.accessibilityActions:
+      if #available(iOS 16, *) { return AnyView(self.accessibilityActions(content)) }
+      return AnyView(self)
+    case OneNativeViewSlotName.accessibilityChildren:
+      if #available(iOS 15, *) { return AnyView(self.accessibilityChildren(children: content)) }
+      return AnyView(self)
+    case OneNativeViewSlotName.accessibilityRepresentation:
+      if #available(iOS 15, *) { return AnyView(self.accessibilityRepresentation(representation: content)) }
+      return AnyView(self)
+    case OneNativeViewSlotName.accessibilityShowsLargeContentViewer:
+      if #available(iOS 15, *) { return AnyView(self.accessibilityShowsLargeContentViewer(content)) }
+      return AnyView(self)
+    case OneNativeViewSlotName.contextMenu:
+      if #available(iOS 13, *) { return AnyView(self.contextMenu(menuItems: content)) }
+      return AnyView(self)
+    case OneNativeViewSlotName.searchSuggestions:
+      if #available(iOS 16, *) { return AnyView(self.searchSuggestions(content)) }
+      return AnyView(self)
+    case OneNativeViewSlotName.sectionActions:
+      if #available(iOS 18, *) { return AnyView(self.sectionActions(content: content)) }
+      return AnyView(self)
+    case OneNativeViewSlotName.tabItem:
+      if #available(iOS 13, *) { return AnyView(self.tabItem(content)) }
+      return AnyView(self)
     case OneNativeViewSlotName.tabViewBottomAccessory:
       if #available(iOS 26, *) { return AnyView(self.tabViewBottomAccessory(content: content)) }
       return AnyView(self)
@@ -24,6 +59,15 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.tabViewSidebarHeader:
       if #available(iOS 18, *) { return AnyView(self.tabViewSidebarHeader(content: content)) }
+      return AnyView(self)
+    case OneNativeViewSlotName.toolbar:
+      if #available(iOS 14, *) { return AnyView(self.toolbar(content: content)) }
+      return AnyView(self)
+    case OneNativeViewSlotName.toolbarOverflowMenu:
+      if #available(iOS 27, *) { return AnyView(self.toolbarOverflowMenu(content: content)) }
+      return AnyView(self)
+    case OneNativeViewSlotName.toolbarTitleMenu:
+      if #available(iOS 16, *) { return AnyView(self.toolbarTitleMenu(content: content)) }
       return AnyView(self)
     default: preconditionFailure("unknown view slot: \(name)")
     }

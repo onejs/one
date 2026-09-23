@@ -682,6 +682,7 @@ export const components = [
     publicName: 'Overlay',
     props: {
       alignment: 'string',
+      slotName: 'string',
     },
     events: {},
     enumProps: {},
