@@ -594,6 +594,39 @@ function NameField() {
 `One.UI.SafeArea` is documented under
 [SafeAreaView](/docs/components-SafeAreaView).
 
+### Adaptive layout
+
+`One.UI.useSizeClass()` returns the window scene's horizontal and vertical size
+classes (`compact`, `regular`, or `unspecified`) and re-renders when they change,
+so a layout can branch on the trait iOS uses rather than on the screen's width.
+On a foldable such as iPhone Duo the outer display is compact and the inner
+display regular in both axes.
+
+`One.UI.useHinge()` reports the hinge's `status` (`closed`, `partiallyOpen`,
+`fullyOpen`, or `unknown`) and `angle` in radians, and `One.UI.onHingeChange`
+subscribes outside React. `One.UI.useReservedRegions()` lists the display's
+reserved regions: a `division` is a fold that content should not straddle, an
+`occlusion` covers a camera. Each has a frame in window points. The `get*`
+variants read the current value once.
+
+`One.iOS.ArrangementView` is SwiftUI's `ArrangementView`, which places a primary
+and a secondary pane side by side or stacked and keeps them clear of a fold:
+
+```tsx
+function Workspace() {
+  const sizeClass = One.UI.useSizeClass()
+  if (sizeClass.horizontal !== 'regular') return <Chat />
+  return (
+    <One.iOS.ArrangementView
+      style={{ flex: 1 }}
+      arrangementViewStyle="split"
+      primary={<Chat />}
+      secondary={<Preview />}
+    />
+  )
+}
+```
+
 ---
 
 ## Gradients
