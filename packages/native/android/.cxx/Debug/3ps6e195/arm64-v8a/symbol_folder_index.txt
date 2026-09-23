@@ -1,0 +1,1 @@
+/Users/n8/.worktrees/one-native-haptics/node_modules/@vxrn/native/android/build/intermediates/cxx/Debug/3ps6e195/obj/arm64-v8a

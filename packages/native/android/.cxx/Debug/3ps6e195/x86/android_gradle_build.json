@@ -1,0 +1,49 @@
+{
+  "buildFiles": [
+    "/Users/n8/.worktrees/one-native-haptics/node_modules/@vxrn/native/android/.cxx/Debug/3ps6e195/prefab/x86/prefab/lib/i686-linux-android/cmake/ReactAndroid/ReactAndroidConfig.cmake",
+    "/Users/n8/.worktrees/one-native-haptics/node_modules/@vxrn/native/android/.cxx/Debug/3ps6e195/prefab/x86/prefab/lib/i686-linux-android/cmake/ReactAndroid/ReactAndroidConfigVersion.cmake",
+    "/Users/n8/.worktrees/one-native-haptics/node_modules/@vxrn/native/android/.cxx/Debug/3ps6e195/prefab/x86/prefab/lib/i686-linux-android/cmake/fbjni/fbjniConfig.cmake",
+    "/Users/n8/.worktrees/one-native-haptics/node_modules/@vxrn/native/android/.cxx/Debug/3ps6e195/prefab/x86/prefab/lib/i686-linux-android/cmake/fbjni/fbjniConfigVersion.cmake",
+    "/Users/n8/.worktrees/one-native-haptics/node_modules/@vxrn/native/android/.cxx/Debug/3ps6e195/prefab/x86/prefab/lib/i686-linux-android/cmake/react-native-worklets/react-native-workletsConfig.cmake",
+    "/Users/n8/.worktrees/one-native-haptics/node_modules/@vxrn/native/android/.cxx/Debug/3ps6e195/prefab/x86/prefab/lib/i686-linux-android/cmake/react-native-worklets/react-native-workletsConfigVersion.cmake",
+    "/Users/n8/.worktrees/one-native-haptics/node_modules/@vxrn/native/android/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/n8/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/n8/.worktrees/one-native-haptics/node_modules/@vxrn/native/android/.cxx/Debug/3ps6e195/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/n8/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/n8/.worktrees/one-native-haptics/node_modules/@vxrn/native/android/.cxx/Debug/3ps6e195/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "onenativesync::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "onenativesync",
+      "output": "/Users/n8/.worktrees/one-native-haptics/node_modules/@vxrn/native/android/build/intermediates/cxx/Debug/3ps6e195/obj/x86/libonenativesync.so",
+      "runtimeFiles": [
+        "/Users/n8/.gradle/caches/9.4.1/transforms/3cb1792e16d0777e9535521c99f0b7b5/transformed/fbjni-0.7.0/prefab/modules/fbjni/libs/android.x86/libfbjni.so",
+        "/Users/n8/.gradle/caches/9.4.1/transforms/2f3f04f29a7d86f4d7cc17e86688042f/transformed/react-android-0.87.1-debug/prefab/modules/jsi/libs/android.x86/libjsi.so",
+        "/Users/n8/.gradle/caches/9.4.1/transforms/2f3f04f29a7d86f4d7cc17e86688042f/transformed/react-android-0.87.1-debug/prefab/modules/reactnative/libs/android.x86/libreactnative.so",
+        "/Users/n8/.worktrees/one-native-haptics/node_modules/react-native-worklets/android/build/intermediates/cxx/Debug/6e4f5o1c/obj/x86/libworklets.so"
+      ]
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "/Users/n8/Library/Android/sdk/ndk/28.2.13676358/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang.lld",
+      "cppCompilerExecutable": "/Users/n8/Library/Android/sdk/ndk/28.2.13676358/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++.lld"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

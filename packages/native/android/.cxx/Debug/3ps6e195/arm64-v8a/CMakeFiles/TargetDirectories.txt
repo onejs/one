@@ -1,0 +1,3 @@
+/Users/n8/.worktrees/one-native-haptics/node_modules/@vxrn/native/android/.cxx/Debug/3ps6e195/arm64-v8a/CMakeFiles/onenativesync.dir
+/Users/n8/.worktrees/one-native-haptics/node_modules/@vxrn/native/android/.cxx/Debug/3ps6e195/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/n8/.worktrees/one-native-haptics/node_modules/@vxrn/native/android/.cxx/Debug/3ps6e195/arm64-v8a/CMakeFiles/rebuild_cache.dir
