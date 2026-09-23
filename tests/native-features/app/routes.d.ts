@@ -26,6 +26,7 @@ declare module 'one' {
         | `/one-native-android-inputs`
         | `/one-native-app-info`
         | `/one-native-apple-file`
+        | `/one-native-arrangement`
         | `/one-native-autogen`
         | `/one-native-browser`
         | `/one-native-clipboard`

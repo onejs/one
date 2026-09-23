@@ -73,6 +73,12 @@ export declare const Swift: {
     FileImporter: (_props: import("./types").FileImporterProps) => never;
     EditButton: (_props: import("./types").EditButtonProps) => never;
     EmptyView: (_props: import("./types").EmptyViewProps) => never;
+    ArrangementView: typeof import("./ArrangementView").ArrangementViewComponent & {
+        Primary: typeof import("./ArrangementView").ArrangementPrimary;
+        Secondary: typeof import("./ArrangementView").ArrangementSecondary;
+        Leading: typeof import("./ArrangementView").ArrangementPrimary;
+        Detail: typeof import("./ArrangementView").ArrangementSecondary;
+    };
     Tabs: typeof Tabs;
     Tab: typeof Tab;
     TabSection: typeof TabSection;

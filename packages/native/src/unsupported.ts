@@ -202,7 +202,9 @@ function ToolbarSpacer(_props: ToolbarSpacerProps): never {
     'Swift.ToolbarSpacer requires an iOS native build with @vxrn/native installed'
   )
 }
+import { ArrangementView } from './ArrangementView'
 export const Swift = {
+  ArrangementView,
   Tabs,
   Tab,
   TabSection,

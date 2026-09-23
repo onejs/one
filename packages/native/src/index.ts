@@ -6,6 +6,33 @@ export * from './extras'
 // toolbar item's props are the generated ToolbarItemProps, reachable through Swift.ToolbarItem.
 export type { ToolbarHostProps, ToolbarItemProps } from './extras'
 export * from './unsupported'
+export {
+  useSizeClass,
+  getSizeClass,
+  useHinge,
+  getHinge,
+  onHingeChange,
+  useReservedRegions,
+  getReservedRegions,
+} from './adaptive/index'
+export type {
+  UserInterfaceSizeClass,
+  SizeClass,
+  HingeStatus,
+  HingeState,
+  ReservedRegionKind,
+  ReservedRegion,
+  ReservedRegionOptions,
+} from './adaptive/types'
+export type {
+  ArrangementViewProps,
+  ArrangementPaneProps,
+  ArrangementViewStyle,
+  SplitLayoutRatio,
+  SplitLayoutSize,
+  SplitFixedLayoutSize,
+  OverlayArrangementEdge,
+} from './ArrangementView.native'
 export const Menu = Swift.Menu
 export const ContextMenu = Swift.ContextMenu
 export { Compose } from './compose'

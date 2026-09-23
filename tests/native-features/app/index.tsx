@@ -137,6 +137,11 @@ const testScreens = [
     testID: 'nav-one-native-autogen',
   },
   {
+    href: '/one-native-arrangement',
+    label: 'One Native Arrangement',
+    testID: 'nav-one-native-arrangement',
+  },
+  {
     href: '/one-native-android',
     label: 'One Native Android Proof',
     testID: 'nav-one-native-android',
