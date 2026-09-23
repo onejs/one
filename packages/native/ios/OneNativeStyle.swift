@@ -330,6 +330,7 @@ extension View {
       case "onContinuousHover": view = AnyView(view.oneNativeSDKOnContinuousHover(value, emit: emit))
       case "onDisappear": view = AnyView(view.oneNativeSDKOnDisappear(value, emit: emit))
       case "onDragSessionUpdated": view = AnyView(view.oneNativeSDKOnDragSessionUpdated(value, emit: emit))
+      case "onGeometryChangeWithSize": view = AnyView(view.oneNativeSDKOnGeometryChangeWithSize(value, emit: emit))
       case "onHover": view = AnyView(view.oneNativeSDKOnHover(value, emit: emit))
       case "onInteractiveResizeChange": view = AnyView(view.oneNativeSDKOnInteractiveResizeChange(value, emit: emit))
       case "onLongPressGesture": view = AnyView(view.oneNativeSDKOnLongPressGesture(value, emit: emit))
@@ -338,6 +339,9 @@ extension View {
       case "onOpenURLWithPrefersInApp": view = AnyView(view.oneNativeSDKOnOpenURLWithPrefersInApp(value, emit: emit))
       case "onPencilDoubleTap": view = AnyView(view.oneNativeSDKOnPencilDoubleTap(value, emit: emit))
       case "onPencilSqueeze": view = AnyView(view.oneNativeSDKOnPencilSqueeze(value, emit: emit))
+      case "onScrollGeometryChangeWithContainerSize": view = AnyView(view.oneNativeSDKOnScrollGeometryChangeWithContainerSize(value, emit: emit))
+      case "onScrollGeometryChangeWithContentOffset": view = AnyView(view.oneNativeSDKOnScrollGeometryChangeWithContentOffset(value, emit: emit))
+      case "onScrollGeometryChangeWithContentSize": view = AnyView(view.oneNativeSDKOnScrollGeometryChangeWithContentSize(value, emit: emit))
       case "onScrollPhaseChange": view = AnyView(view.oneNativeSDKOnScrollPhaseChange(value, emit: emit))
       case "onScrollTargetVisibilityChange": view = AnyView(view.oneNativeSDKOnScrollTargetVisibilityChange(value, emit: emit))
       case "onScrollVisibilityChange": view = AnyView(view.oneNativeSDKOnScrollVisibilityChange(value, emit: emit))
@@ -488,6 +492,9 @@ extension View {
       case "webViewElementFullscreenBehavior": view = AnyView(view.oneNativeSDKWebViewElementFullscreenBehavior(value, emit: emit))
       case "webViewLinkPreviews": view = AnyView(view.oneNativeSDKWebViewLinkPreviews(value, emit: emit))
       case "webViewMagnificationGestures": view = AnyView(view.oneNativeSDKWebViewMagnificationGestures(value, emit: emit))
+      case "webViewOnScrollGeometryChangeWithContainerSize": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContainerSize(value, emit: emit))
+      case "webViewOnScrollGeometryChangeWithContentOffset": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContentOffset(value, emit: emit))
+      case "webViewOnScrollGeometryChangeWithContentSize": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContentSize(value, emit: emit))
       case "webViewTextSelection": view = AnyView(view.oneNativeSDKWebViewTextSelection(value, emit: emit))
       case "windowToolbarFullScreenVisibility": view = AnyView(view.oneNativeSDKWindowToolbarFullScreenVisibility(value, emit: emit))
       case "writingDirection": view = AnyView(view.oneNativeSDKWritingDirection(value, emit: emit))
@@ -3526,6 +3533,15 @@ extension View {
     }) } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKOnGeometryChangeWithSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) { self.onGeometryChange(for: CoreFoundation.CGSize.self, of: { $0.size }, action: { oldValue, newValue in
+      let payload = (["oldValue": (["width": Double(oldValue.width), "height": Double(oldValue.height)] as [String: Any]), "newValue": (["width": Double(newValue.width), "height": Double(newValue.height)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onGeometryChangeWithSize event") }
+      emit("onGeometryChangeWithSize", encoded)
+    }) } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKOnHover(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onHover(perform: { value in emit("onHover", String(value)) })
   }
@@ -3574,6 +3590,33 @@ extension View {
       guard let data = try? JSONSerialization.data(withJSONObject: payload),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onPencilSqueeze event") }
       emit("onPencilSqueeze", encoded)
+    }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnScrollGeometryChangeWithContainerSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) { self.onScrollGeometryChange(for: CoreFoundation.CGSize.self, of: { $0.containerSize }, action: { oldValue, newValue in
+      let payload = (["oldValue": (["width": Double(oldValue.width), "height": Double(oldValue.height)] as [String: Any]), "newValue": (["width": Double(newValue.width), "height": Double(newValue.height)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onScrollGeometryChangeWithContainerSize event") }
+      emit("onScrollGeometryChangeWithContainerSize", encoded)
+    }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnScrollGeometryChangeWithContentOffset(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) { self.onScrollGeometryChange(for: CoreFoundation.CGPoint.self, of: { $0.contentOffset }, action: { oldValue, newValue in
+      let payload = (["oldValue": (["x": Double(oldValue.x), "y": Double(oldValue.y)] as [String: Any]), "newValue": (["x": Double(newValue.x), "y": Double(newValue.y)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onScrollGeometryChangeWithContentOffset event") }
+      emit("onScrollGeometryChangeWithContentOffset", encoded)
+    }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnScrollGeometryChangeWithContentSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) { self.onScrollGeometryChange(for: CoreFoundation.CGSize.self, of: { $0.contentSize }, action: { oldValue, newValue in
+      let payload = (["oldValue": (["width": Double(oldValue.width), "height": Double(oldValue.height)] as [String: Any]), "newValue": (["width": Double(newValue.width), "height": Double(newValue.height)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onScrollGeometryChangeWithContentSize event") }
+      emit("onScrollGeometryChangeWithContentSize", encoded)
     }) } else { self }
   }
 
@@ -5743,6 +5786,33 @@ extension View {
       case "disabled": if #available(iOS 26, *) { self.webViewMagnificationGestures(_WebKit_SwiftUI.WebView.MagnificationGesturesBehavior.disabled) } else { self }
     default: preconditionFailure("invalid webViewMagnificationGestures: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKWebViewOnScrollGeometryChangeWithContainerSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) { self.webViewOnScrollGeometryChange(for: CoreFoundation.CGSize.self, of: { $0.containerSize }, action: { oldValue, newValue in
+      let payload = (["oldValue": (["width": Double(oldValue.width), "height": Double(oldValue.height)] as [String: Any]), "newValue": (["width": Double(newValue.width), "height": Double(newValue.height)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid webViewOnScrollGeometryChangeWithContainerSize event") }
+      emit("webViewOnScrollGeometryChangeWithContainerSize", encoded)
+    }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKWebViewOnScrollGeometryChangeWithContentOffset(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) { self.webViewOnScrollGeometryChange(for: CoreFoundation.CGPoint.self, of: { $0.contentOffset }, action: { oldValue, newValue in
+      let payload = (["oldValue": (["x": Double(oldValue.x), "y": Double(oldValue.y)] as [String: Any]), "newValue": (["x": Double(newValue.x), "y": Double(newValue.y)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid webViewOnScrollGeometryChangeWithContentOffset event") }
+      emit("webViewOnScrollGeometryChangeWithContentOffset", encoded)
+    }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKWebViewOnScrollGeometryChangeWithContentSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) { self.webViewOnScrollGeometryChange(for: CoreFoundation.CGSize.self, of: { $0.contentSize }, action: { oldValue, newValue in
+      let payload = (["oldValue": (["width": Double(oldValue.width), "height": Double(oldValue.height)] as [String: Any]), "newValue": (["width": Double(newValue.width), "height": Double(newValue.height)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid webViewOnScrollGeometryChangeWithContentSize event") }
+      emit("webViewOnScrollGeometryChangeWithContentSize", encoded)
+    }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKWebViewTextSelection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

@@ -19,7 +19,7 @@ export type DerivedArgument = {
 }
 
 export type EventValueSchema =
-  | { kind: 'number' | 'string' | 'boolean' | 'point' }
+  | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' }
   | { kind: 'enum'; cases: readonly string[] }
   | { kind: 'optional'; value: EventValueSchema }
   | { kind: 'array'; value: EventValueSchema }
@@ -36,6 +36,8 @@ export type DerivedModifier = {
   cases?: readonly { name: string; ios: number }[]
   associatedCases?: readonly { name: string; values: readonly EventValueSchema[] }[]
   eventValue?: EventValueSchema
+  eventPair?: true
+  transformMember?: string
   zeroArgument?: true
   framework?: string
   label?: string
@@ -285,6 +287,37 @@ export function deriveModifiers(
       const framework = method.module.startsWith('_')
         ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
         : {}
+      const genericTransform = method.parameters.length === 3 &&
+        method.parameters[0].type === 'T.Type' &&
+        method.requirements?.some((requirement) =>
+          requirement === 'T : Swift.Equatable' || requirement === 'T : Swift.Hashable') &&
+        method.requirements.every((requirement) =>
+          requirement === 'T : Swift.Equatable' || requirement === 'T : Swift.Hashable' ||
+          requirement === 'T : Swift.Sendable') &&
+        /^@escaping (?:@Sendable )?\(SwiftUICore\.(ScrollGeometry|GeometryProxy)\) -> T$/.exec(method.parameters[1].type) &&
+        /^@escaping \((?:_ [A-Za-z]\w*: )?T, (?:_ [A-Za-z]\w*: )?T\) -> Swift\.Void$/.test(method.parameters[2].type)
+      if (genericTransform) {
+        const input = /^@escaping (?:@Sendable )?\(SwiftUICore\.(ScrollGeometry|GeometryProxy)\) -> T$/.exec(method.parameters[1].type)![1]
+        return inventory.filter((field) => field.module === 'SwiftUICore' &&
+          (field.owner === input || field.owner === `SwiftUICore.${input}`) &&
+          field.kind === 'var' &&
+          (field.type === 'CoreFoundation.CGPoint' || field.type === 'CoreFoundation.CGSize') &&
+          present(field) && ios(field) <= ceiling)
+          .map((field) => {
+            const value: EventValueSchema = { kind: field.type === 'CoreFoundation.CGPoint' ? 'point' : 'size' }
+            return { name: `${name}With${field.name[0].toUpperCase()}${field.name.slice(1)}`,
+              sdkName: name, module: method.module, kind: 'eventStruct',
+              type: method.parameters[2].type, label: method.parameters[2].label,
+              eventValue: { kind: 'object', fields: [
+                { name: 'oldValue', value }, { name: 'newValue', value },
+              ] }, eventPair: true as const, transformMember: field.name,
+              callArguments: [
+                { label: method.parameters[0].label, defaultValue: `${field.type}.self` },
+                { label: method.parameters[1].label, defaultValue: `{ $0.${field.name} }` },
+                { label: method.parameters[2].label, bridge: true as const },
+              ], ios: Math.max(ios(method), ios(field)), ...framework }
+          })
+      }
       if (method.requirements?.length) {
         if (method.requirements.length !== 1) return []
         const arrayID = /^([A-Za-z_]\w*) : Swift.Hashable$/.exec(method.requirements[0])?.[1]
@@ -432,6 +465,10 @@ export function deriveModifiers(
       return [{ name, module: method.module, kind, type, ios: ios(method), ...framework,
         ...(value.cases ? { cases: value.cases } : {}), ...(label === '_' ? {} : { label }) }]
     })
+    if (candidates.some((candidate) => candidate.transformMember)) {
+      result.push(...candidates.filter((candidate) => candidate.transformMember))
+      continue
+    }
     const unique = candidates.filter((candidate, index) => !candidate.kind.startsWith('event') ||
       !candidates.some((other, otherIndex) => otherIndex !== index && other.kind === candidate.kind &&
         other.module === candidate.module && other.type === candidate.type && other.label === candidate.label &&

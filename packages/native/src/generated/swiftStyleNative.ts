@@ -269,6 +269,7 @@ const sdkKinds = {
   onContinuousHover: 'eventAssociatedEnum',
   onDisappear: 'event',
   onDragSessionUpdated: 'eventStruct',
+  onGeometryChangeWithSize: 'eventStruct',
   onHover: 'eventBoolean',
   onInteractiveResizeChange: 'eventBoolean',
   onLongPressGesture: 'event',
@@ -277,6 +278,9 @@ const sdkKinds = {
   onOpenURLWithPrefersInApp: 'boolean',
   onPencilDoubleTap: 'eventStruct',
   onPencilSqueeze: 'eventAssociatedEnum',
+  onScrollGeometryChangeWithContainerSize: 'eventStruct',
+  onScrollGeometryChangeWithContentOffset: 'eventStruct',
+  onScrollGeometryChangeWithContentSize: 'eventStruct',
   onScrollPhaseChange: 'eventEnumPair',
   onScrollTargetVisibilityChange: 'eventStruct',
   onScrollVisibilityChange: 'eventBoolean',
@@ -427,6 +431,9 @@ const sdkKinds = {
   webViewElementFullscreenBehavior: 'string',
   webViewLinkPreviews: 'string',
   webViewMagnificationGestures: 'string',
+  webViewOnScrollGeometryChangeWithContainerSize: 'eventStruct',
+  webViewOnScrollGeometryChangeWithContentOffset: 'eventStruct',
+  webViewOnScrollGeometryChangeWithContentSize: 'eventStruct',
   webViewTextSelection: 'style',
   windowToolbarFullScreenVisibility: 'string',
   writingDirection: 'string',
@@ -440,7 +447,7 @@ const sdkEventCases: Record<string, readonly string[]> = {
   onScrollPhaseChange: ['idle', 'tracking', 'interacting', 'decelerating', 'animating'],
 }
 type SDKEventValueShape =
-  | { kind: 'number' | 'string' | 'boolean' | 'point' }
+  | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' }
   | { kind: 'enum'; cases: readonly string[] }
   | { kind: 'optional' | 'array'; value: SDKEventValueShape }
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
@@ -577,6 +584,13 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
     kind: 'object',
     fields: [{ name: 'location', value: { kind: 'point' } }],
   },
+  onGeometryChangeWithSize: {
+    kind: 'object',
+    fields: [
+      { name: 'oldValue', value: { kind: 'size' } },
+      { name: 'newValue', value: { kind: 'size' } },
+    ],
+  },
   onPencilDoubleTap: {
     kind: 'object',
     fields: [
@@ -626,8 +640,50 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
       },
     ],
   },
+  onScrollGeometryChangeWithContainerSize: {
+    kind: 'object',
+    fields: [
+      { name: 'oldValue', value: { kind: 'size' } },
+      { name: 'newValue', value: { kind: 'size' } },
+    ],
+  },
+  onScrollGeometryChangeWithContentOffset: {
+    kind: 'object',
+    fields: [
+      { name: 'oldValue', value: { kind: 'point' } },
+      { name: 'newValue', value: { kind: 'point' } },
+    ],
+  },
+  onScrollGeometryChangeWithContentSize: {
+    kind: 'object',
+    fields: [
+      { name: 'oldValue', value: { kind: 'size' } },
+      { name: 'newValue', value: { kind: 'size' } },
+    ],
+  },
   onScrollTargetVisibilityChange: { kind: 'array', value: { kind: 'string' } },
   onTapGestureWithPerform: { kind: 'point' },
+  webViewOnScrollGeometryChangeWithContainerSize: {
+    kind: 'object',
+    fields: [
+      { name: 'oldValue', value: { kind: 'size' } },
+      { name: 'newValue', value: { kind: 'size' } },
+    ],
+  },
+  webViewOnScrollGeometryChangeWithContentOffset: {
+    kind: 'object',
+    fields: [
+      { name: 'oldValue', value: { kind: 'point' } },
+      { name: 'newValue', value: { kind: 'point' } },
+    ],
+  },
+  webViewOnScrollGeometryChangeWithContentSize: {
+    kind: 'object',
+    fields: [
+      { name: 'oldValue', value: { kind: 'size' } },
+      { name: 'newValue', value: { kind: 'size' } },
+    ],
+  },
 }
 const sdkRecords: Record<
   string,
@@ -1026,6 +1082,13 @@ function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean 
       Number.isFinite(record.x) &&
       typeof record.y === 'number' &&
       Number.isFinite(record.y)
+    )
+  if (shape.kind === 'size')
+    return (
+      typeof record.width === 'number' &&
+      Number.isFinite(record.width) &&
+      typeof record.height === 'number' &&
+      Number.isFinite(record.height)
     )
   if (shape.kind !== 'object') return false
   return shape.fields.every(
