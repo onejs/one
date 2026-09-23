@@ -50,8 +50,8 @@ ${slots.map((slot) => `    case OneNativeViewSlotName.${slot.name}:
       const apply = (value: string, version: number, fullArguments = false) => {
         const argument = !fullArguments && modifier.label && modifier.label !== '_' ? `${modifier.label}: ${value}` : value
         return version > 17
-          ? `if #available(iOS ${version}, *) { self.${modifier.name}(${argument}) } else { self }`
-          : `self.${modifier.name}(${argument})`
+          ? `if #available(iOS ${version}, *) { self.${modifier.sdkName ?? modifier.name}(${argument}) } else { self }`
+          : `self.${modifier.sdkName ?? modifier.name}(${argument})`
       }
       if (modifier.kind.startsWith('event') || modifier.kind.startsWith('binding')) {
         const bridge = modifier.kind.startsWith('event')
