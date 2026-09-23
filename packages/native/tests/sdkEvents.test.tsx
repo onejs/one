@@ -104,13 +104,16 @@ describe('SDK callback and binding transport', () => {
     } as never })).toThrow('onChange must be a string value and callback')
   })
 
-  it('encodes cases imported from UIKit and PhotosUI symbol graphs', () => {
+  it('encodes cases imported from framework symbol graphs', () => {
     const element = Controls.Text({ text: 'example', swiftStyle: {
       keyboardType: 'URL',
       autocapitalization: 'sentences',
       textContentType: 'emailAddress',
       photosPickerDisabledCapabilities: 'search',
       photosPickerMetadataOptions: 'removeLocation',
+      handlesGameControllerEvents: 'gamepad',
+      previewLayout: 'sizeThatFits',
+      realityViewCameraControls: 'orbit',
     } })
     expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
       ['keyboardType', 'URL'],
@@ -118,6 +121,9 @@ describe('SDK callback and binding transport', () => {
       ['textContentType', 'emailAddress'],
       ['photosPickerDisabledCapabilities', 'search'],
       ['photosPickerMetadataOptions', 'removeLocation'],
+      ['handlesGameControllerEvents', 'gamepad'],
+      ['previewLayout', 'sizeThatFits'],
+      ['realityViewCameraControls', 'orbit'],
     ])
   })
 
