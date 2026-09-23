@@ -62,6 +62,30 @@ describe('SDK modifier derivation', () => {
       { name: 'onAppear', kind: 'event', type: '(() -> Swift.Void)?', ios: 0, label: 'perform' },
     ])
   })
+
+  it('derives Text values and labeled scalars without guessing between overloads', () => {
+    expect(deriveModifiers([
+      method('accessibilityLabel', 'SwiftUI', [{ label: '_', name: 'label', type: 'SwiftUICore.Text' }]),
+      method('statusBar', 'SwiftUI', [{ label: 'hidden', name: 'hidden', type: 'Swift.Bool' }]),
+      method('accessibility', 'SwiftUI', [{ label: 'hidden', name: 'hidden', type: 'Swift.Bool' }]),
+      method('accessibility', 'SwiftUI', [{ label: 'value', name: 'value', type: 'SwiftUICore.Text' }]),
+    ], 27, [])).toEqual([
+      { name: 'accessibilityLabel', kind: 'string', type: 'SwiftUICore.Text', ios: 0 },
+      { name: 'statusBar', kind: 'boolean', type: 'Swift.Bool', ios: 0, label: 'hidden' },
+    ])
+  })
+
+  it('keeps optional scalar and Text values distinct from a missing prop', () => {
+    expect(deriveModifiers([
+      method('lineLimit', 'SwiftUICore', [{ label: '_', name: 'limit', type: 'Swift.Int?' }]),
+      method('sectionIndexLabel', 'SwiftUI', [{ label: '_', name: 'label', type: 'SwiftUICore.Text?' }]),
+      method('disableAutocorrection', 'SwiftUI', [{ label: '_', name: 'enabled', type: 'Swift.Bool?' }]),
+    ], 27, [])).toEqual([
+      { name: 'disableAutocorrection', kind: 'optionalBoolean', type: 'Swift.Bool?', ios: 0 },
+      { name: 'lineLimit', kind: 'optionalNumber', type: 'Swift.Int?', ios: 0 },
+      { name: 'sectionIndexLabel', kind: 'optionalString', type: 'SwiftUICore.Text?', ios: 0 },
+    ])
+  })
 })
 
 describe('SDK tab view slots', () => {

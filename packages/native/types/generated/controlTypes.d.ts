@@ -9,6 +9,18 @@ export declare const glassEffectShapes: readonly ['capsule', 'circle', 'containe
 export type GlassEffectShape = (typeof glassEffectShapes)[number];
 export declare const materials: readonly ['ultraThin', 'thin', 'regular', 'thick', 'ultraThick'];
 export type Material = (typeof materials)[number];
+export declare const sdkAccessibilityActivationPointValues: readonly ['zero', 'center', 'leading', 'trailing', 'top', 'bottom', 'topLeading', 'topTrailing', 'bottomLeading', 'bottomTrailing'];
+export type SDKAccessibilityActivationPoint = (typeof sdkAccessibilityActivationPointValues)[number];
+export declare const sdkAccessibilityAddTraitsValues: readonly ['isButton', 'isHeader', 'isSelected', 'isLink', 'isSearchField', 'isImage', 'playsSound', 'isKeyboardKey', 'isStaticText', 'isSummaryElement', 'updatesFrequently', 'startsMediaSession', 'allowsDirectInteraction', 'causesPageTurn', 'isModal', 'isToggle', 'isTabBar'];
+export type SDKAccessibilityAddTraits = (typeof sdkAccessibilityAddTraitsValues)[number];
+export declare const sdkAccessibilityElementValues: readonly ['ignore', 'contain', 'combine'];
+export type SDKAccessibilityElement = (typeof sdkAccessibilityElementValues)[number];
+export declare const sdkAccessibilityHeadingValues: readonly ['unspecified', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+export type SDKAccessibilityHeading = (typeof sdkAccessibilityHeadingValues)[number];
+export declare const sdkAccessibilityRemoveTraitsValues: readonly ['isButton', 'isHeader', 'isSelected', 'isLink', 'isSearchField', 'isImage', 'playsSound', 'isKeyboardKey', 'isStaticText', 'isSummaryElement', 'updatesFrequently', 'startsMediaSession', 'allowsDirectInteraction', 'causesPageTurn', 'isModal', 'isToggle', 'isTabBar'];
+export type SDKAccessibilityRemoveTraits = (typeof sdkAccessibilityRemoveTraitsValues)[number];
+export declare const sdkAccessibilityTextContentTypeValues: readonly ['plain', 'console', 'fileSystem', 'messaging', 'narrative', 'sourceCode', 'spreadsheet', 'wordProcessing'];
+export type SDKAccessibilityTextContentType = (typeof sdkAccessibilityTextContentTypeValues)[number];
 export declare const sdkBadgeProminenceValues: readonly ['decreased', 'standard', 'increased'];
 export type SDKBadgeProminence = (typeof sdkBadgeProminenceValues)[number];
 export declare const sdkBlendModeValues: readonly ['normal', 'multiply', 'screen', 'overlay', 'darken', 'lighten', 'colorDodge', 'colorBurn', 'softLight', 'hardLight', 'difference', 'exclusion', 'hue', 'saturation', 'color', 'luminosity', 'sourceAtop', 'destinationOver', 'destinationOut', 'plusDarker', 'plusLighter'];
@@ -31,6 +43,8 @@ export declare const sdkDefaultAdaptableTabBarPlacementValues: readonly ['automa
 export type SDKDefaultAdaptableTabBarPlacement = (typeof sdkDefaultAdaptableTabBarPlacementValues)[number];
 export declare const sdkDefaultTabBarPlacementValues: readonly ['automatic', 'tabBar', 'sidebar'];
 export type SDKDefaultTabBarPlacement = (typeof sdkDefaultTabBarPlacementValues)[number];
+export declare const sdkDefersSystemGesturesValues: readonly ['top', 'leading', 'bottom', 'trailing', 'all', 'horizontal', 'vertical'];
+export type SDKDefersSystemGestures = (typeof sdkDefersSystemGesturesValues)[number];
 export declare const sdkDynamicTypeSizeValues: readonly ['xSmall', 'small', 'medium', 'large', 'xLarge', 'xxLarge', 'xxxLarge', 'accessibility1', 'accessibility2', 'accessibility3', 'accessibility4', 'accessibility5'];
 export type SDKDynamicTypeSize = (typeof sdkDynamicTypeSizeValues)[number];
 export declare const sdkEdgesIgnoringSafeAreaValues: readonly ['top', 'leading', 'bottom', 'trailing', 'all', 'horizontal', 'vertical'];
@@ -67,8 +81,6 @@ export declare const sdkMenuIndicatorValues: readonly ['automatic', 'visible', '
 export type SDKMenuIndicator = (typeof sdkMenuIndicatorValues)[number];
 export declare const sdkMenuOrderValues: readonly ['automatic', 'priority', 'fixed'];
 export type SDKMenuOrder = (typeof sdkMenuOrderValues)[number];
-export declare const sdkMultilineTextAlignmentValues: readonly ['leading', 'center', 'trailing'];
-export type SDKMultilineTextAlignment = (typeof sdkMultilineTextAlignmentValues)[number];
 export declare const sdkNavigationLinkIndicatorVisibilityValues: readonly ['automatic', 'visible', 'hidden'];
 export type SDKNavigationLinkIndicatorVisibility = (typeof sdkNavigationLinkIndicatorVisibilityValues)[number];
 export declare const sdkPaletteSelectionEffectValues: readonly ['automatic', 'custom'];
@@ -87,6 +99,8 @@ export declare const sdkPresentationPlacementValues: readonly ['automatic', 'lea
 export type SDKPresentationPlacement = (typeof sdkPresentationPlacementValues)[number];
 export declare const sdkPreviewInterfaceOrientationValues: readonly ['portrait', 'portraitUpsideDown', 'landscapeLeft', 'landscapeRight'];
 export type SDKPreviewInterfaceOrientation = (typeof sdkPreviewInterfaceOrientationValues)[number];
+export declare const sdkRedactedValues: readonly ['placeholder', 'privacy', 'invalidated'];
+export type SDKRedacted = (typeof sdkRedactedValues)[number];
 export declare const sdkScenePaddingValues: readonly ['top', 'leading', 'bottom', 'trailing', 'all', 'horizontal', 'vertical'];
 export type SDKScenePadding = (typeof sdkScenePaddingValues)[number];
 export declare const sdkScrollContentBackgroundValues: readonly ['automatic', 'visible', 'hidden'];
@@ -125,6 +139,8 @@ export declare const sdkTransitionValues: readonly ['opacity', 'slide', 'identit
 export type SDKTransition = (typeof sdkTransitionValues)[number];
 export declare const sdkWindowToolbarFullScreenVisibilityValues: readonly ['automatic'];
 export type SDKWindowToolbarFullScreenVisibility = (typeof sdkWindowToolbarFullScreenVisibilityValues)[number];
+export declare const sdkWritingDirectionValues: readonly ['layoutBased', 'contentBased', 'default'];
+export type SDKWritingDirection = (typeof sdkWritingDirectionValues)[number];
 export declare const sdkWritingToolsAffordanceVisibilityValues: readonly ['automatic', 'visible', 'hidden'];
 export type SDKWritingToolsAffordanceVisibility = (typeof sdkWritingToolsAffordanceVisibilityValues)[number];
 export declare const sdkWritingToolsBehaviorValues: readonly ['automatic', 'complete', 'limited', 'disabled'];
@@ -159,13 +175,26 @@ export interface OneNativeStyle {
     glassEffectTint?: ColorValue;
     glassEffectShape?: GlassEffectShape;
     material?: Material;
+    accessibilityAction?: () => void;
+    accessibilityActivationPoint?: SDKAccessibilityActivationPoint;
+    accessibilityAddTraits?: SDKAccessibilityAddTraits;
+    accessibilityElement?: SDKAccessibilityElement;
+    accessibilityHeading?: SDKAccessibilityHeading;
+    accessibilityHidden?: boolean;
+    accessibilityHint?: string;
+    accessibilityIdentifier?: string;
+    accessibilityIgnoresInvertColors?: boolean;
+    accessibilityLabel?: string;
+    accessibilityRemoveTraits?: SDKAccessibilityRemoveTraits;
+    accessibilityRespondsToUserInteraction?: boolean;
     accessibilityShowsLargeContentViewer?: boolean;
+    accessibilitySortPriority?: number;
+    accessibilityTextContentType?: SDKAccessibilityTextContentType;
+    accessibilityValue?: string;
     allowsHitTesting?: boolean;
     allowsTightening?: boolean;
-    allowsWindowActivationEvents?: boolean;
+    assistiveAccessNavigationIcon?: string;
     autocorrectionDisabled?: boolean;
-    backgroundExtensionEffect?: boolean;
-    badge?: number;
     badgeProminence?: SDKBadgeProminence;
     baselineOffset?: number;
     blendMode?: SDKBlendMode;
@@ -174,6 +203,7 @@ export interface OneNativeStyle {
     buttonBorderShape?: SDKButtonBorderShape;
     buttonRepeatBehavior?: SDKButtonRepeatBehavior;
     buttonSizing?: SDKButtonSizing;
+    clipped?: boolean;
     colorInvert?: boolean;
     colorMultiply?: SDKColorMultiply;
     colorScheme?: SDKColorScheme;
@@ -183,17 +213,24 @@ export interface OneNativeStyle {
     controlSize?: SDKControlSize;
     defaultAdaptableTabBarPlacement?: SDKDefaultAdaptableTabBarPlacement;
     defaultTabBarPlacement?: SDKDefaultTabBarPlacement;
+    defersSystemGestures?: SDKDefersSystemGestures;
     deleteDisabled?: boolean;
     dialogSuppressionToggle?: Readonly<{
         value: boolean;
         onChange: (value: boolean) => void;
     }>;
+    disableAutocorrection?: boolean | null;
     disabled?: boolean;
+    documentLaunchSubtitle?: string;
+    documentLaunchTitle?: string;
     dynamicTypeSize?: SDKDynamicTypeSize;
     edgesIgnoringSafeArea?: SDKEdgesIgnoringSafeArea;
     fileDialogBrowserOptions?: SDKFileDialogBrowserOptions;
+    fileDialogConfirmationLabel?: string | null;
     fileDialogCustomizationID?: string;
     fileDialogImportsUnresolvedAliases?: boolean;
+    fileDialogMessage?: string | null;
+    fileExporterFilenameLabel?: string | null;
     findDisabled?: boolean;
     findNavigator?: Readonly<{
         value: boolean;
@@ -211,6 +248,7 @@ export interface OneNativeStyle {
     gridCellUnsizedAxes?: SDKGridCellUnsizedAxes;
     gridColumnAlignment?: SDKGridColumnAlignment;
     headerProminence?: SDKHeaderProminence;
+    help?: string;
     hidden?: boolean;
     hoverEffect?: SDKHoverEffect;
     hoverEffectDisabled?: boolean;
@@ -228,7 +266,9 @@ export interface OneNativeStyle {
     labelsVisibility?: SDKLabelsVisibility;
     layoutDirectionBehavior?: SDKLayoutDirectionBehavior;
     layoutPriority?: number;
+    lineLimit?: number | null;
     lineSpacing?: number;
+    listRowSpacing?: number | null;
     listSectionIndexVisibility?: SDKListSectionIndexVisibility;
     luminanceToAlpha?: boolean;
     materialActiveAppearance?: SDKMaterialActiveAppearance;
@@ -239,17 +279,15 @@ export interface OneNativeStyle {
     monospaced?: boolean;
     monospacedDigit?: boolean;
     moveDisabled?: boolean;
-    multilineTextAlignment?: SDKMultilineTextAlignment;
     navigationBarBackButtonHidden?: boolean;
     navigationBarHidden?: boolean;
+    navigationBarTitle?: string;
     navigationLinkIndicatorVisibility?: SDKNavigationLinkIndicatorVisibility;
     navigationSplitViewColumnWidth?: number;
-    navigationTitle?: Readonly<{
-        value: string;
-        onChange: (value: string) => void;
-    }>;
+    navigationSubtitle?: string;
     onAppear?: () => void;
     onDisappear?: () => void;
+    onOpenURL?: boolean;
     onSubmit?: () => void;
     onTapGesture?: () => void;
     paletteSelectionEffect?: SDKPaletteSelectionEffect;
@@ -258,11 +296,14 @@ export interface OneNativeStyle {
     presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction;
     presentationCompactAdaptation?: SDKPresentationCompactAdaptation;
     presentationContentInteraction?: SDKPresentationContentInteraction;
+    presentationCornerRadius?: number | null;
     presentationDragIndicator?: SDKPresentationDragIndicator;
     presentationPlacement?: SDKPresentationPlacement;
+    previewDisplayName?: string | null;
     previewInterfaceOrientation?: SDKPreviewInterfaceOrientation;
     privacySensitive?: boolean;
     productIconBorder?: boolean;
+    redacted?: SDKRedacted;
     renameAction?: () => void;
     replaceDisabled?: boolean;
     safeAreaPadding?: number;
@@ -274,6 +315,8 @@ export interface OneNativeStyle {
     scrollContentBackground?: SDKScrollContentBackground;
     scrollDisabled?: boolean;
     scrollDismissesKeyboard?: SDKScrollDismissesKeyboard;
+    scrollIndicatorsFlash?: boolean;
+    scrollTargetLayout?: boolean;
     searchable?: Readonly<{
         value: string;
         onChange: (value: string) => void;
@@ -282,6 +325,7 @@ export interface OneNativeStyle {
     searchDictationBehavior?: SDKSearchDictationBehavior;
     searchPresentationToolbarBehavior?: SDKSearchPresentationToolbarBehavior;
     searchToolbarBehavior?: SDKSearchToolbarBehavior;
+    sectionIndexLabel?: string | null;
     selectionDisabled?: boolean;
     sliderThumbVisibility?: SDKSliderThumbVisibility;
     speechAdjustedPitch?: number;
@@ -289,6 +333,7 @@ export interface OneNativeStyle {
     speechAnnouncementsQueued?: boolean;
     speechSpellsOutCharacters?: boolean;
     springLoadingBehavior?: SDKSpringLoadingBehavior;
+    statusBar?: boolean;
     statusBarHidden?: boolean;
     submitLabel?: SDKSubmitLabel;
     submitScope?: boolean;
@@ -304,8 +349,10 @@ export interface OneNativeStyle {
     toolbarTitleDisplayMode?: SDKToolbarTitleDisplayMode;
     tracking?: number;
     transition?: SDKTransition;
+    typeSelectEquivalent?: string | null;
     unredacted?: boolean;
     windowToolbarFullScreenVisibility?: SDKWindowToolbarFullScreenVisibility;
+    writingDirection?: SDKWritingDirection;
     writingToolsAffordanceVisibility?: SDKWritingToolsAffordanceVisibility;
     writingToolsBehavior?: SDKWritingToolsBehavior;
     zIndex?: number;
