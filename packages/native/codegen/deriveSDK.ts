@@ -14,6 +14,19 @@ export type DerivedModifier = {
   label?: string
 }
 
+export type DerivedViewSlot = { name: string; ios: number }
+
+export function deriveTabViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
+  const slots = inventory.filter((d) =>
+    d.kind === 'func' && d.module === 'SwiftUI' && d.owner.split('.').at(-1) === 'View' &&
+    /^tabView[A-Z]/.test(d.name) && d.parameters.length === 1 &&
+    d.parameters[0].label === 'content' && d.parameters[0].type === '() -> Content' &&
+    d.requirements?.length === 1 && d.requirements[0] === 'Content : SwiftUICore.View' &&
+    present(d) && ios(d) <= ceiling
+  )
+  return slots.map((slot) => ({ name: slot.name, ios: ios(slot) })).sort((a, b) => a.name.localeCompare(b.name))
+}
+
 // parameterless methods and one-argument methods with a bridge scalar or a
 // static-case value have enough information to generate a prop and Swift call.
 export function deriveModifiers(

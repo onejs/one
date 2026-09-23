@@ -494,6 +494,7 @@ export const components = [
       systemImage: 'string',
       badge: 'string',
       tabRole: 'string',
+      slotHeight: 'Double',
       // an action tab reports presses and never becomes the selection.
       action: 'boolean',
     },

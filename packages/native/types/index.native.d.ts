@@ -3,7 +3,7 @@ import { ContextMenu, Menu } from './Menu.native';
 import { Page, Pager } from './Pager.native';
 import { Popover } from './Popover.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
-import { Tab, Tabs, TabViewBottomAccessory } from './Tabs.native';
+import { Tab, Tabs, TabViewBottomAccessory, TabViewSlot } from './Tabs.native';
 import { Compose } from './compose';
 import * as UI from './effects';
 export * from './extras';
@@ -42,6 +42,7 @@ export declare const Swift: {
     Tabs: typeof Tabs;
     Tab: typeof Tab;
     TabViewBottomAccessory: typeof TabViewBottomAccessory;
+    TabViewSlot: typeof TabViewSlot;
     Menu: typeof Menu;
     ContextMenu: typeof ContextMenu;
     Sheet: typeof Sheet;

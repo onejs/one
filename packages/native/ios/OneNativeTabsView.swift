@@ -9,16 +9,18 @@ public final class OneNativeTabItem: NSObject, Identifiable {
   public var badge: String
   public var role: String
   public var action: Bool
+  public var slotHeight: CGFloat
   public let view: UIView
   public let onLayout: (CGRect) -> Void
 
-  public init(id: String, title: String, systemImage: String, badge: String, role: String, action: Bool, view: UIView, onLayout: @escaping (CGRect) -> Void) {
+  public init(id: String, title: String, systemImage: String, badge: String, role: String, action: Bool, slotHeight: CGFloat, view: UIView, onLayout: @escaping (CGRect) -> Void) {
     self.id = id
     self.title = title
     self.systemImage = systemImage
     self.badge = badge
     self.role = role
     self.action = action
+    self.slotHeight = slotHeight
     self.view = view
     self.onLayout = onLayout
   }
@@ -83,6 +85,7 @@ public final class OneNativeTabsView: UIView {
       current.badge = page.badge
       current.role = page.role
       current.action = page.action
+      current.slotHeight = page.slotHeight
       return current
     }
     if topologyChanged { model.tabViewRevision += 1 }
@@ -138,10 +141,8 @@ private struct TabsContent: View {
 
   var body: some View {
     Group {
-      if #available(iOS 26.0, *), accessoryInline != nil {
-        modernTabs.tabViewBottomAccessory {
-          AccessoryContent(inline: accessoryInline, expanded: accessoryExpanded, host: host)
-        }
+      if #available(iOS 18.0, *), hasViewSlots {
+        slottedTabs
       } else if #available(iOS 18.0, *) {
         modernTabs
       } else {
@@ -152,7 +153,11 @@ private struct TabsContent: View {
   }
 
   private var tabPages: [OneNativeTabItem] {
-    model.pages.filter { !$0.id.hasPrefix("__one_native_accessory_") }
+    model.pages.filter { !$0.id.hasPrefix("__one_native_accessory_") && !$0.id.hasPrefix("__one_native_slot_") }
+  }
+
+  private var hasViewSlots: Bool {
+    accessoryInline != nil || model.pages.contains { $0.id.hasPrefix("__one_native_slot_") }
   }
 
   private var accessoryInline: OneNativeTabItem? {
@@ -161,6 +166,24 @@ private struct TabsContent: View {
 
   private var accessoryExpanded: OneNativeTabItem? {
     model.pages.first { $0.id == "__one_native_accessory_expanded__" }
+  }
+
+  @available(iOS 18.0, *)
+  private var slottedTabs: AnyView {
+    var view = AnyView(modernTabs)
+    if #available(iOS 26.0, *), accessoryInline != nil {
+      view = view.oneNativeViewSlot(OneNativeViewSlotName.tabViewBottomAccessory) {
+        AnyView(AccessoryContent(inline: accessoryInline, expanded: accessoryExpanded, host: host))
+      }
+    }
+    for name in OneNativeViewSlotName.names {
+      guard let page = model.pages.first(where: { $0.id == "__one_native_slot_\(name)__" }) else { continue }
+      view = view.oneNativeViewSlot(name) {
+        AnyView(OneNativeSlot(content: page.view, mode: .fill, layoutHost: host, onLayout: page.onLayout)
+          .frame(height: page.slotHeight))
+      }
+    }
+    return view
   }
 
   @available(iOS 18.0, *)

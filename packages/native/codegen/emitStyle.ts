@@ -1,12 +1,34 @@
 import type { StyleField } from './catalog'
-import type { DerivedModifier } from './deriveSDK'
+import type { DerivedModifier, DerivedViewSlot } from './deriveSDK'
 
 export function emitStyle(
   header: string,
   outputs: Map<string, string>,
   styleFields: readonly StyleField[],
-  derived: readonly DerivedModifier[]
+  derived: readonly DerivedModifier[],
+  slots: readonly DerivedViewSlot[]
 ) {
+  outputs.set('src/generated/viewSlots.ts', header + `export const tabViewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.ios])))} as const
+export type TabViewSlotName = keyof typeof tabViewSlotAvailability
+`)
+  outputs.set('ios/Generated/OneNativeViewSlots.swift', header + `import SwiftUI
+
+enum OneNativeViewSlotName {
+${slots.map((slot) => `  static let ${slot.name} = ${JSON.stringify(slot.name)}`).join('\n')}
+  static let names = [${slots.map((slot) => slot.name).join(', ')}]
+}
+
+extension View {
+  func oneNativeViewSlot(_ name: String, content: @escaping () -> AnyView) -> AnyView {
+    switch name {
+${slots.map((slot) => `    case OneNativeViewSlotName.${slot.name}:
+      if #available(iOS ${slot.ios}, *) { return AnyView(self.${slot.name}(content: content)) }
+      return AnyView(self)`).join('\n')}
+    default: preconditionFailure("unknown view slot: \\(name)")
+    }
+  }
+}
+`)
   // fabric runs processColor only on a top-level ColorValue prop, through the view
   // config; a color inside a struct prop reaches the native parser raw, and it reads an
   // unprocessed string as clear. every swiftStyle color is processed on the way out.
