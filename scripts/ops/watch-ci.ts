@@ -94,25 +94,28 @@ while (true) {
       run.event === 'workflow_dispatch' ||
       run.event === 'pull_request'
   )
-  const failed = direct.filter((run) => run.conclusion && bad.has(run.conclusion))
-  const pending = direct.filter((run) => run.status !== 'completed')
+  // duplicate push runs can cancel an older attempt for the same workflow and sha.
+  const latest = [...new Map(direct.sort((a, b) => a.databaseId - b.databaseId)
+    .map((run) => [run.name, run])).values()]
+  const failed = latest.filter((run) => run.conclusion && bad.has(run.conclusion))
+  const pending = latest.filter((run) => run.status !== 'completed')
   if (failed.length > 0) {
     for (const run of failed) {
       console.error(`failed: ${run.name} (${run.conclusion}) run ${run.databaseId}`)
     }
     process.exit(1)
   }
-  if (direct.length > 0 && pending.length === 0) {
-    const unproven = direct.filter((run) => !ok.has(run.conclusion ?? ''))
+  if (latest.length > 0 && pending.length === 0) {
+    const unproven = latest.filter((run) => !ok.has(run.conclusion ?? ''))
     if (unproven.length > 0) {
       for (const run of unproven) {
         console.error(`unproven: ${run.name} (${run.conclusion}) run ${run.databaseId}`)
       }
       process.exit(1)
     }
-    for (const run of direct) console.log(`ok: ${run.name} (${run.conclusion})`)
+    for (const run of latest) console.log(`ok: ${run.name} (${run.conclusion})`)
     process.exit(0)
   }
-  console.log(`${direct.length - pending.length}/${direct.length} complete`)
+  console.log(`${latest.length - pending.length}/${latest.length} complete`)
   await new Promise((resolve) => setTimeout(resolve, 60_000))
 }
