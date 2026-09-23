@@ -22,6 +22,7 @@ on:
       - '.github/workflows/build-ios-test-container-app.yml'
       - '.github/workflows/test-native-ios.yml'
       - 'bun.lock'
+      - 'patches/react-native-webgpu@0.5.14.patch'
       - 'package.json'
       - 'packages/one/metro-entry.js'
       - 'packages/one/metro-entry-ctx.js'
