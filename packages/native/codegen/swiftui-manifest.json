@@ -2,7 +2,6 @@
   "sdk": "27",
   "unmappedModifiers": [
     "tabViewBottomAccessory",
-    "tabViewCustomization",
     "tabViewSidebarBottomBar",
     "tabViewSidebarFooter",
     "tabViewSidebarHeader"
@@ -10461,6 +10460,15 @@
       ]
     },
     {
+      "name": "tabViewCustomization",
+      "kind": "bindingCodable",
+      "type": "SwiftUICore.Binding<SwiftUI.TabViewCustomization>?",
+      "label": "_",
+      "ios": 18,
+      "bindingType": "SwiftUI.TabViewCustomization",
+      "bindingDefault": true
+    },
+    {
       "name": "tabViewSearchActivation",
       "kind": "string",
       "type": "SwiftUI.TabSearchActivation",
@@ -12478,6 +12486,7 @@
         "tabBarMinimizeBehavior",
         "tabItem",
         "tabViewBottomAccessory",
+        "tabViewCustomization",
         "tabViewSearchActivation",
         "tabViewSidebarBottomBar",
         "tabViewSidebarFooter",

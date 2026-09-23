@@ -31,7 +31,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable'
   ios: number
   type: string
   rawString?: true
@@ -46,6 +46,8 @@ export type DerivedModifier = {
   framework?: string
   label?: string
   callbackLabel?: string
+  bindingType?: string
+  bindingDefault?: true
   callArguments?: readonly { label: string; defaultValue?: string; bridge?: true }[]
   arguments?: readonly DerivedArgument[]
 }
@@ -442,13 +444,23 @@ export function deriveModifiers(
             ...framework,
           },
         ]
-      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type) || p.type === 'SwiftUICore.Binding<(some Hashable)?>' || focusBindingType.test(p.type) || enumCallbackOf(p.type) || associatedCallbackOf(p.type, ios(method)) || structCallbackOf(p.type, ios(method)))
+      const codableBinding = (type: string) => {
+        const valueType = /^SwiftUICore\.Binding<([A-Za-z_]\w*\.[A-Za-z][\w.]*)>\??$/.exec(type)?.[1]
+        if (!valueType) return
+        const [valueModule, ...parts] = valueType.split('.')
+        return inventory.some((d) => d.module === valueModule && d.kind === 'struct' &&
+          d.owner === parts.slice(0, -1).join('.') && d.name === parts.at(-1) &&
+          d.inheritedTypes?.includes('Swift.Codable') && present(d) && ios(d) <= ceiling)
+          ? valueType : undefined
+      }
+      const bridged = method.parameters.filter((p) => eventOrBindingType(p.type) || p.type === 'SwiftUICore.Binding<(some Hashable)?>' || focusBindingType.test(p.type) || codableBinding(p.type) || enumCallbackOf(p.type) || associatedCallbackOf(p.type, ios(method)) || structCallbackOf(p.type, ios(method)))
       if (bridged.length === 1 && method.parameters.every((p) => p === bridged[0] || p.defaultValue !== undefined)) {
         const parameter = bridged[0]
         const callbackValue = scalarCallbackType.exec(parameter.type)?.[1]
         const enumCallback = enumCallbackOf(parameter.type)
         const associatedCallback = associatedCallbackOf(parameter.type, ios(method))
         const structCallback = structCallbackOf(parameter.type, ios(method))
+        const codableType = codableBinding(parameter.type)
         const kind = associatedCallback
           ? 'eventAssociatedEnum'
           : structCallback
@@ -457,6 +469,8 @@ export function deriveModifiers(
           ? enumCallback.pair ? 'eventEnumPair' : 'eventEnum'
           : focusBindingType.test(parameter.type)
           ? 'bindingFocusBoolean'
+          : codableType
+          ? 'bindingCodable'
           : parameter.type.includes('Binding<Swift.Bool>')
           ? 'bindingBoolean'
           : parameter.type.includes('Binding<Swift.String>')
@@ -472,6 +486,13 @@ export function deriveModifiers(
                   : 'event'
         return [{
           name, module: method.module, kind, type: parameter.type, label: parameter.label, ios: ios(method), ...framework,
+          ...(codableType ? {
+            bindingType: codableType,
+            ...(inventory.some((d) => d.module === codableType.split('.')[0] &&
+              (d.owner === codableType.split('.').slice(1).join('.') || d.owner === codableType) &&
+              d.kind === 'init' && d.parameters.length === 0 && present(d) && ios(d) <= ceiling)
+              ? { bindingDefault: true as const } : {}),
+          } : {}),
           ...(enumCallback ? { cases: enumCallback.cases } : {}),
           ...(associatedCallback ? { associatedCases: associatedCallback } : {}),
           ...(structCallback ? { eventValue: structCallback } : {}),

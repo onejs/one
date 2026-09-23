@@ -403,6 +403,7 @@ const sdkKinds = {
   tabBarMinimizeBehavior: 'string',
   tableColumnHeaders: 'string',
   tableStyle: 'style',
+  tabViewCustomization: 'bindingCodable',
   tabViewSearchActivation: 'string',
   tabViewStyle: 'style',
   tag: 'string',
@@ -696,6 +697,7 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
     ],
   },
 }
+const sdkCodableOptional: Record<string, boolean> = { tabViewCustomization: true }
 const sdkRecords: Record<
   string,
   readonly {
@@ -1240,11 +1242,13 @@ export function swiftStyleNative(
         (kind === 'bindingBoolean' ||
           kind === 'bindingFocusBoolean' ||
           kind === 'bindingString' ||
-          kind === 'bindingOptionalString') &&
+          kind === 'bindingOptionalString' ||
+          kind === 'bindingCodable') &&
         (typeof value !== 'object' ||
           value === null ||
           typeof (value as { onChange?: unknown }).onChange !== 'function' ||
-          (kind === 'bindingOptionalString'
+          (kind === 'bindingOptionalString' ||
+          (kind === 'bindingCodable' && sdkCodableOptional[name])
             ? (value as { value?: unknown }).value !== null &&
               typeof (value as { value?: unknown }).value !== 'string'
             : typeof (value as { value?: unknown }).value !==
@@ -1253,6 +1257,8 @@ export function swiftStyleNative(
                 : 'string')))
       )
         throw new Error(name + ' must be a binding')
+      if (kind === 'bindingCodable' && (value as { value: string | null }).value !== null)
+        JSON.parse((value as { value: string }).value)
       sdkModifiers.push([
         name,
         kind === 'eventValueString'
@@ -1261,11 +1267,14 @@ export function swiftStyleNative(
             ? ''
             : kind === 'bindingOptionalString'
               ? JSON.stringify((value as { value: string | null }).value)
-              : kind.startsWith('binding')
-                ? String((value as { value: unknown }).value)
-                : kind === 'optionalString' || kind === 'optionalURL'
-                  ? (JSON.stringify(value) as string)
-                  : String(value),
+              : kind === 'bindingCodable' &&
+                  (value as { value: string | null }).value === null
+                ? 'null'
+                : kind.startsWith('binding')
+                  ? String((value as { value: unknown }).value)
+                  : kind === 'optionalString' || kind === 'optionalURL'
+                    ? (JSON.stringify(value) as string)
+                    : String(value),
       ])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
@@ -1336,7 +1345,7 @@ export function dispatchSDKEvent(
     ;(modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(
       value === 'true'
     )
-  } else if (kind === 'bindingString')
+  } else if (kind === 'bindingString' || kind === 'bindingCodable')
     (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
   else if (kind === 'bindingOptionalString') {
     const decoded: unknown = JSON.parse(value)

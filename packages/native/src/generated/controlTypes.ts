@@ -2247,6 +2247,10 @@ export interface OneNativeStyle {
   tabBarMinimizeBehavior?: SDKTabBarMinimizeBehavior
   tableColumnHeaders?: SDKTableColumnHeaders
   tableStyle?: SDKTableStyle
+  tabViewCustomization?: Readonly<{
+    value: string | null
+    onChange: (value: string) => void
+  }>
   tabViewSearchActivation?: SDKTabViewSearchActivation
   tabViewStyle?: SDKTabViewStyle
   tag?: string
