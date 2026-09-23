@@ -106,7 +106,7 @@ export default function OneNativeArrangementFixture() {
                   <Text style={styles.metricLine}>None reported in current posture.</Text>
                 ) : (
                   reservedRegions.map((region, i) => (
-                    <View key={region.id || i} style={styles.regionRow}>
+                    <View key={`region-${region.kind}-${i}-${region.frame.x}`} style={styles.regionRow}>
                       <Text style={styles.regionKind}>
                         {region.kind} ({region.isActive ? 'active' : 'inactive'})
                       </Text>

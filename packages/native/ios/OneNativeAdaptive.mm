@@ -1,4 +1,5 @@
 #import "OneNativeAdaptive.h"
+#import <React/RCTView.h>
 #import <React/RCTUtils.h>
 #import "VxrnNative-Swift.h"
 
@@ -47,7 +48,7 @@ RCT_EXPORT_MODULE()
 - (void)startObserving
 {
   _hasListeners = YES;
-  __weak typeof(self) weakSelf = self;
+  __weak OneNativeAdaptive *weakSelf = self;
   dispatch_async(dispatch_get_main_queue(), ^{
     OneNativeAdaptiveBridge *bridge = [OneNativeAdaptiveBridge shared];
     bridge.onSizeClass = ^(NSString *h, NSString *v) {
