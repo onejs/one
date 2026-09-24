@@ -1,3 +1,4 @@
+import type { SDKEventValueShape } from './swiftStyleNative';
 export declare const viewSlotAvailability: {
     readonly accessibilityActions: 16;
     readonly accessibilityActionsWithAccessibilityActionCategory: 18;
@@ -6,6 +7,7 @@ export declare const viewSlotAvailability: {
     readonly accessibilityShowsLargeContentViewer: 15;
     readonly alert: 15;
     readonly background: 15;
+    readonly backgroundPreferenceValuePreferredColorScheme: 16;
     readonly confirmationDialog: 15;
     readonly containerBackground: 17;
     readonly contentToolbar: 18.4;
@@ -21,6 +23,7 @@ export declare const viewSlotAvailability: {
     readonly navigationBarItemsWithTrailing: 13;
     readonly navigationDestination: 16;
     readonly overlay: 15;
+    readonly overlayPreferenceValuePreferredColorScheme: 16;
     readonly popover: 13;
     readonly presentationBackground: 16.4;
     readonly safeAreaBarWithHorizontalEdge: 26;
@@ -67,6 +70,7 @@ export declare const viewSlotArguments: {
         readonly kind: 'bindingBoolean';
     }];
     readonly background: readonly [];
+    readonly backgroundPreferenceValuePreferredColorScheme: readonly [];
     readonly confirmationDialog: readonly [{
         readonly field: 'title';
         readonly kind: 'string';
@@ -119,6 +123,7 @@ export declare const viewSlotArguments: {
         readonly kind: 'bindingBoolean';
     }];
     readonly overlay: readonly [];
+    readonly overlayPreferenceValuePreferredColorScheme: readonly [];
     readonly popover: readonly [{
         readonly field: 'isPresented';
         readonly kind: 'bindingBoolean';
@@ -201,6 +206,7 @@ export declare const viewSlotArguments: {
     readonly toolbarOverflowMenu: readonly [];
     readonly toolbarTitleMenu: readonly [];
 };
+export declare const viewSlotEvents: Record<string, SDKEventValueShape>;
 export type ViewSlotConfiguration = {
     name: 'accessibilityActions';
     options?: never;
@@ -230,6 +236,11 @@ export type ViewSlotConfiguration = {
 } | {
     name: 'background';
     options?: never;
+} | {
+    name: 'backgroundPreferenceValuePreferredColorScheme';
+    options: {
+        onValue: (value: 'light' | 'dark' | 'unknown' | null) => void;
+    };
 } | {
     name: 'confirmationDialog';
     options: {
@@ -303,6 +314,11 @@ export type ViewSlotConfiguration = {
 } | {
     name: 'overlay';
     options?: never;
+} | {
+    name: 'overlayPreferenceValuePreferredColorScheme';
+    options: {
+        onValue: (value: 'light' | 'dark' | 'unknown' | null) => void;
+    };
 } | {
     name: 'popover';
     options: {

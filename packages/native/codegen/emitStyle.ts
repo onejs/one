@@ -1,5 +1,6 @@
 import type { StyleField } from './catalog'
 import type { DerivedModifier, DerivedViewSlot, EventValueSchema } from './deriveSDK'
+import { eventValueType } from './emitControls'
 import { sdkGuard } from './sdkGuard'
 
 const eventValueSwift = (value: EventValueSchema, expression: string): string => {
@@ -47,11 +48,13 @@ export function emitStyle(
   derived: readonly DerivedModifier[],
   slots: readonly DerivedViewSlot[]
 ) {
-  outputs.set('src/generated/viewSlots.ts', header + `export const viewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.ios])))} as const
+  outputs.set('src/generated/viewSlots.ts', header + `import type { SDKEventValueShape } from './swiftStyleNative'
+export const viewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.ios])))} as const
 export type ViewSlotName = keyof typeof viewSlotAvailability
 export const viewSlotArguments = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.arguments.map((argument) => ({ field: argument.field, kind: argument.kind, ...(argument.cases ? { cases: Object.fromEntries(argument.cases.map((item) => [item.name, item.ios])) } : {}) }))])))} as const
+export const viewSlotEvents: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(slots.filter((slot) => slot.preferenceEvent).map((slot) => [slot.name, slot.preferenceEvent])))}
 export type ViewSlotConfiguration =
-${slots.map((slot) => `  | { name: ${JSON.stringify(slot.name)}; ${slot.arguments.length ? `options: { ${slot.arguments.map((argument) => `${argument.field}: ${argument.kind === 'bindingBoolean' ? '{ value: boolean; onChange: (value: boolean) => void }' : argument.kind === 'bindingString' ? '{ value: string; onChange: (value: string) => void }' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'string' ? 'string' : argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}`).join('; ')} }` : 'options?: never'} }`).join('\n')}
+${slots.map((slot) => `  | { name: ${JSON.stringify(slot.name)}; ${slot.arguments.length || slot.preferenceEvent ? `options: { ${[...slot.arguments.map((argument) => `${argument.field}: ${argument.kind === 'bindingBoolean' ? '{ value: boolean; onChange: (value: boolean) => void }' : argument.kind === 'bindingString' ? '{ value: string; onChange: (value: string) => void }' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'string' ? 'string' : argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}`), ...(slot.preferenceEvent ? [`onValue: (value: ${eventValueType(slot.preferenceEvent)}) => void`] : [])].join('; ')} }` : 'options?: never'} }`).join('\n')}
 export const tabViewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.filter((slot) => /^tabView[A-Z]/.test(slot.name)).map((slot) => [slot.name, slot.ios])))} as const
 export type TabViewSlotName = keyof typeof tabViewSlotAvailability
 `)
@@ -87,7 +90,13 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
           default: preconditionFailure("invalid ${slot.name}.${argument.field}")
           }
         }()`).join('\n')}
-` : ''}        return AnyView(self.${slot.sdkName ?? slot.name}(${[...slot.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`), `${slot.label === '_' ? '' : `${slot.label}: `}${slot.directValue ? 'content()' : slot.closureInputs ? `{ ${slot.closureInputs.map(() => '_').join(', ')} in content() }` : 'content'}`].join(', ')}))
+` : ''}        ${slot.preferenceKey ? `return AnyView(self.${slot.sdkName ?? slot.name}(${slot.preferenceKey}.self, alignment: .center) { _ in content() }
+          .onPreferenceChange(${slot.preferenceKey}.self) { value in
+            let payload = ${eventValueSwift(slot.preferenceEvent!, 'value')}
+            guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+              let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${slot.name} preference") }
+            emit(${JSON.stringify(slot.name)}, encoded)
+          })` : `return AnyView(self.${slot.sdkName ?? slot.name}(${[...slot.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`), `${slot.label === '_' ? '' : `${slot.label}: `}${slot.directValue ? 'content()' : slot.closureInputs ? `{ ${slot.closureInputs.map(() => '_').join(', ')} in content() }` : 'content'}`].join(', ')}))`}
       }`, '')}
       return AnyView(self)`).join('\n')}
     default: preconditionFailure("unknown view slot: \\(name)")
@@ -714,7 +723,7 @@ const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [
 const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair' || modifier.kind === 'eventReturnEnum' || modifier.kind === 'caseSet').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
 const sdkVisualEffects: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'visualEffect').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
 const sdkOptionSets: Record<string, readonly { field: string; kind: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'optionSet').map((modifier) => [modifier.name, modifier.arguments!.map((argument) => ({ field: argument.field, kind: argument.kind }))])))}
-type SDKEventValueShape =
+export type SDKEventValueShape =
   | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' | 'description' }
   | { kind: 'enum'; cases: readonly string[]; open?: true }
   | { kind: 'optional' | 'array'; value: SDKEventValueShape }
@@ -729,7 +738,7 @@ const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null
 const sdkCodableOptional: Record<string, boolean> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'bindingCodable').map((modifier) => [modifier.name, modifier.type.endsWith('?')]))) }
 const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, fields, eventValue }) => ({ field, kind, optional, ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
 
-function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
+export function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
   if (shape.kind === 'optional') return value === null || validSDKEventValue(value, shape.value)
   if (shape.kind === 'array') return Array.isArray(value) && value.every((item) => validSDKEventValue(item, shape.value))
   if (shape.kind === 'number') return typeof value === 'number' && Number.isFinite(value)

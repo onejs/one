@@ -624,7 +624,7 @@ const sdkOptionSets: Record<string, readonly { field: string; kind: string }[]> 
     { field: 'introductoryOfferEligibility', kind: 'string' },
   ],
 }
-type SDKEventValueShape =
+export type SDKEventValueShape =
   | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' | 'description' }
   | { kind: 'enum'; cases: readonly string[]; open?: true }
   | { kind: 'optional' | 'array'; value: SDKEventValueShape }
@@ -1939,7 +1939,7 @@ const sdkRecords: Record<
   ],
 }
 
-function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
+export function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
   if (shape.kind === 'optional')
     return value === null || validSDKEventValue(value, shape.value)
   if (shape.kind === 'array')

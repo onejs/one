@@ -197,7 +197,13 @@ for (const modifier of derivedModifiers) {
 for (const slot of derivedViewSlots) {
   const declaration = inventory.find((d) =>
     d.kind === 'func' && d.module === slot.module && d.owner.split('.').at(-1) === 'View' &&
-    d.name === (slot.sdkName ?? slot.name) && d.parameters.some((parameter) =>
+    d.name === (slot.sdkName ?? slot.name) && (slot.preferenceKey
+      ? d.parameters.length === 3 && d.parameters[0].type === 'K.Type' &&
+        d.parameters[1].defaultValue !== undefined &&
+        d.parameters[2].type === '@escaping (K.Value) -> V' &&
+        d.requirements?.includes('K : SwiftUICore.PreferenceKey') &&
+        d.requirements?.includes('V : SwiftUICore.View')
+      : d.parameters.some((parameter) =>
       parameter.label === slot.label &&
       (slot.directValue
         ? /^([A-Za-z_]\w*)\??$/.test(parameter.type) &&
@@ -208,7 +214,7 @@ for (const slot of derivedViewSlots) {
             (d.requirements?.includes(`${/^(?:@escaping )?\(\) -> ([A-Za-z_]\w*)$/.exec(parameter.type)?.[1]} : SwiftUICore.View`) ?? false))) &&
     d.parameters.filter((parameter, index) => index !== d.parameters.length - 1 &&
       parameter.defaultValue === undefined).map((parameter) => parameter.type).join('|') ===
-      slot.arguments.map((argument) => argument.type).join('|')
+      slot.arguments.map((argument) => argument.type).join('|'))
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${slot.name} slot`)
   coverGeneratedModifier(declaration)

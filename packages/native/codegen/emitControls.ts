@@ -76,7 +76,7 @@ const styleFieldType = (field: StyleField) =>
           ? styleAlias(field)
           : 'string'
 
-const eventValueType = (value: EventValueSchema): string => {
+export const eventValueType = (value: EventValueSchema): string => {
   if (value.kind === 'number') return 'number'
   if (value.kind === 'string') return 'string'
   if (value.kind === 'description') return 'string'
