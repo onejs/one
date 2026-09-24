@@ -7,11 +7,13 @@ import AppIntents
 import StoreKit
 import DataDetection
 import RealityKit
+import UniformTypeIdentifiers
 import GameController
 import MapKit
 import MusicKit
 import AVKit
 import PhotosUI
+import QuickLook
 import AuthenticationServices
 import Symbols
 import Translation
@@ -207,6 +209,7 @@ extension View {
       case "controlSize": view = AnyView(view.oneNativeSDKControlSize(value, emit: emit))
       case "coordinateSpace": view = AnyView(view.oneNativeSDKCoordinateSpace(value, emit: emit))
       case "copyable": view = AnyView(view.oneNativeSDKCopyable(value, emit: emit))
+      case "cornerRadiusWithRadiusAndAntialiased": view = AnyView(view.oneNativeSDKCornerRadiusWithRadiusAndAntialiased(value, emit: emit))
       case "currentEntitlementTask": view = AnyView(view.oneNativeSDKCurrentEntitlementTask(value, emit: emit))
       case "cuttable": view = AnyView(view.oneNativeSDKCuttable(value, emit: emit))
       case "dataDetection": view = AnyView(view.oneNativeSDKDataDetection(value, emit: emit))
@@ -306,6 +309,8 @@ extension View {
       case "fileDialogURLEnabled": view = AnyView(view.oneNativeSDKFileDialogURLEnabled(value, emit: emit))
       case "fileExporter": view = AnyView(view.oneNativeSDKFileExporter(value, emit: emit))
       case "fileExporterFilenameLabel": view = AnyView(view.oneNativeSDKFileExporterFilenameLabel(value, emit: emit))
+      case "fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion": view = AnyView(view.oneNativeSDKFileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion(value, emit: emit))
+      case "fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion": view = AnyView(view.oneNativeSDKFileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion(value, emit: emit))
       case "fileMover": view = AnyView(view.oneNativeSDKFileMover(value, emit: emit))
       case "findDisabled": view = AnyView(view.oneNativeSDKFindDisabled(value, emit: emit))
       case "findNavigator": view = AnyView(view.oneNativeSDKFindNavigator(value, emit: emit))
@@ -497,6 +502,7 @@ extension View {
       case "productViewStyle": view = AnyView(view.oneNativeSDKProductViewStyle(value, emit: emit))
       case "progressViewStyle": view = AnyView(view.oneNativeSDKProgressViewStyle(value, emit: emit))
       case "projectionEffect": view = AnyView(view.oneNativeSDKProjectionEffect(value, emit: emit))
+      case "quickLookPreview": view = AnyView(view.oneNativeSDKQuickLookPreview(value, emit: emit))
       case "realityViewCameraControls": view = AnyView(view.oneNativeSDKRealityViewCameraControls(value, emit: emit))
       case "realityViewLayoutBehavior": view = AnyView(view.oneNativeSDKRealityViewLayoutBehavior(value, emit: emit))
       case "redacted": view = AnyView(view.oneNativeSDKRedacted(value, emit: emit))
@@ -2265,6 +2271,26 @@ self
 
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKCornerRadiusWithRadiusAndAntialiased(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid cornerRadiusWithRadiusAndAntialiased: \(value)") }
+      return decoded
+    }()
+    let argument0: CoreFoundation.CGFloat = {
+      guard let raw = values[0] else { preconditionFailure("missing cornerRadiusWithRadiusAndAntialiased.radius") }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid cornerRadiusWithRadiusAndAntialiased.radius: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument1: Swift.Bool = {
+      guard let raw = values[1] else { preconditionFailure("missing cornerRadiusWithRadiusAndAntialiased.antialiased") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid cornerRadiusWithRadiusAndAntialiased.antialiased: \(raw)") }
+      return raw == "true"
+    }()
+    self.cornerRadius(argument0, antialiased: argument1)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKCurrentEntitlementTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let decoded: [String] = {
       guard let data = value.data(using: .utf8),
@@ -3315,6 +3341,91 @@ self
     if value == "null" { self.fileExporterFilenameLabel(nil as SwiftUI.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       self.fileExporterFilenameLabel(Text(decoded))
     } else { preconditionFailure("invalid fileExporterFilenameLabel: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 4 else { preconditionFailure("invalid fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion.isPresented", String($0)) })
+    }()
+    let argument1: [UniformTypeIdentifiers.UTType] = {
+      guard let raw = values[1] else { preconditionFailure("missing fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion.allowedContentTypes") }
+      guard let data = raw.data(using: .utf8), let strings = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion.allowedContentTypes: \(raw)") }
+      return ({ () -> [UniformTypeIdentifiers.UTType] in
+        let identifiers = strings
+        if identifiers.isEmpty { return [.item] }
+        return identifiers.map { identifier in
+          guard let type = UniformTypeIdentifiers.UTType(identifier) else { preconditionFailure("invalid content type: \(identifier)") }
+          return type
+        }
+      })()
+    }()
+    let argument2: Swift.Bool = {
+      guard let raw = values[2] else { preconditionFailure("missing fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion.allowsMultipleSelection") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion.allowsMultipleSelection: \(raw)") }
+      return raw == "true"
+    }()
+    let argument3: (Swift.Result<[Foundation.URL], any Swift.Error>) -> Swift.Void = { result in
+      DispatchQueue.global(qos: .utility).async {
+        let payload: [String: Any]
+        switch result {
+        case .success(let urls):
+          do { payload = ["success": try urls.map(oneNativeCopyToCaches).map(\.absoluteString)] }
+          catch { payload = ["failure": String(describing: error)] }
+        case .failure(let error): payload = ["failure": String(describing: error)]
+        }
+        guard let data = try? JSONSerialization.data(withJSONObject: payload),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion.onCompletion result") }
+        DispatchQueue.main.async { emit("fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion.onCompletion", encoded) }
+      }
+    }
+    self.fileImporter(isPresented: argument0, allowedContentTypes: argument1, allowsMultipleSelection: argument2, onCompletion: argument3)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion.isPresented", String($0)) })
+    }()
+    let argument1: [UniformTypeIdentifiers.UTType] = {
+      guard let raw = values[1] else { preconditionFailure("missing fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion.allowedContentTypes") }
+      guard let data = raw.data(using: .utf8), let strings = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion.allowedContentTypes: \(raw)") }
+      return ({ () -> [UniformTypeIdentifiers.UTType] in
+        let identifiers = strings
+        if identifiers.isEmpty { return [.item] }
+        return identifiers.map { identifier in
+          guard let type = UniformTypeIdentifiers.UTType(identifier) else { preconditionFailure("invalid content type: \(identifier)") }
+          return type
+        }
+      })()
+    }()
+    let argument2: (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void = { result in
+      DispatchQueue.global(qos: .utility).async {
+        let payload: [String: Any]
+        switch result {
+        case .success(let urls):
+          do { payload = ["success": try oneNativeCopyToCaches(urls).absoluteString] }
+          catch { payload = ["failure": String(describing: error)] }
+        case .failure(let error): payload = ["failure": String(describing: error)]
+        }
+        guard let data = try? JSONSerialization.data(withJSONObject: payload),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion.onCompletion result") }
+        DispatchQueue.main.async { emit("fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion.onCompletion", encoded) }
+      }
+    }
+    self.fileImporter(isPresented: argument0, allowedContentTypes: argument1, onCompletion: argument2)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKFileMover(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -5856,6 +5967,22 @@ self
       return SwiftUI.ProjectionTransform(CoreFoundation.CGAffineTransform(a: CGFloat(field0), b: CGFloat(field1), c: CGFloat(field2), d: CGFloat(field3), tx: CGFloat(field4), ty: CGFloat(field5)))
     }()
     self.projectionEffect(argument0)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKQuickLookPreview(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.quickLookPreview(Binding<Foundation.URL?>(get: {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
+        decoded is NSNull || decoded is String else { preconditionFailure("invalid quickLookPreview: \(value)") }
+      if let raw = decoded as? String {
+        guard let url = Foundation.URL(string: raw) else { preconditionFailure("invalid quickLookPreview URL") }
+        return url
+      }
+      return nil
+    }, set: { changed in
+      guard let data = try? JSONEncoder().encode(changed?.absoluteString), let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid quickLookPreview binding event") }
+      emit("quickLookPreview", encoded)
+    }))
   }
 
   @ViewBuilder fileprivate func oneNativeSDKRealityViewCameraControls(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

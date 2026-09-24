@@ -148,6 +148,7 @@ const sdkKinds = {
   controlSize: 'string',
   coordinateSpace: 'string',
   copyable: 'record',
+  cornerRadiusWithRadiusAndAntialiased: 'record',
   currentEntitlementTask: 'eventAsyncStruct',
   cuttable: 'eventReturnArray',
   dataDetection: 'boolean',
@@ -247,6 +248,9 @@ const sdkKinds = {
   fileDialogURLEnabled: 'boolean',
   fileExporter: 'record',
   fileExporterFilenameLabel: 'optionalString',
+  fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion:
+    'record',
+  fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion: 'record',
   fileMover: 'record',
   findDisabled: 'boolean',
   findNavigator: 'bindingBoolean',
@@ -440,6 +444,7 @@ const sdkKinds = {
   productViewStyle: 'style',
   progressViewStyle: 'style',
   projectionEffect: 'record',
+  quickLookPreview: 'bindingOptionalString',
   realityViewCameraControls: 'string',
   realityViewLayoutBehavior: 'string',
   redacted: 'string',
@@ -1425,6 +1430,10 @@ const sdkRecords: Record<
     { field: 'placement', kind: 'enum', optional: false },
   ],
   copyable: [{ field: 'payload', kind: 'stringArray', optional: false }],
+  cornerRadiusWithRadiusAndAntialiased: [
+    { field: 'radius', kind: 'number', optional: false },
+    { field: 'antialiased', kind: 'boolean', optional: false },
+  ],
   defaultScrollAnchorWithAnchorAndRole: [
     { field: 'anchor', kind: 'enum', optional: true },
     { field: 'role', kind: 'enum', optional: false },
@@ -1454,6 +1463,18 @@ const sdkRecords: Record<
   fileExporter: [
     { field: 'isPresented', kind: 'bindingBoolean', optional: false },
     { field: 'item', kind: 'string', optional: true },
+    { field: 'onCompletion', kind: 'resultURL', optional: false },
+  ],
+  fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion:
+    [
+      { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+      { field: 'allowedContentTypes', kind: 'stringArray', optional: false },
+      { field: 'allowsMultipleSelection', kind: 'boolean', optional: false },
+      { field: 'onCompletion', kind: 'resultURLArray', optional: false },
+    ],
+  fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'allowedContentTypes', kind: 'stringArray', optional: false },
     { field: 'onCompletion', kind: 'resultURL', optional: false },
   ],
   fileMover: [

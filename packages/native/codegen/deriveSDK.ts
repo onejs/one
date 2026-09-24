@@ -1,7 +1,7 @@
 import { ios, present, type Declaration } from './inventory'
 import type { Control } from './controlTypes'
 
-const emptyEventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> (?:Swift\.Void|\(\))\)\?$|^SwiftUICore\.Binding<Swift\.(?:Bool|String)>$/
+const emptyEventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> (?:Swift\.Void|\(\))\)\?$|^SwiftUICore\.Binding<(?:Swift\.(?:Bool|String)|Foundation\.URL\?)>$/
 const scalarCallbackType = /^(?:@escaping )?\((?:_ [A-Za-z]\w*: )?(Swift\.(?:Bool|String|Int|Float|Double)|CoreFoundation\.CGFloat|Foundation\.URL)\) -> (?:Swift\.Void|\(\))$/
 const eventOrBindingType = (type: string) => emptyEventOrBindingType.test(type) || scalarCallbackType.test(type)
 const focusBindingType = /^SwiftUI\.(?:Accessibility)?FocusState<Swift\.Bool>\.Binding$/
@@ -97,6 +97,9 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
       return { kind: 'string', type, optional }
     if (baseType === '[Swift.String]' || baseType === '[SwiftUICore.Text]')
       return { kind: 'stringArray', type, optional }
+    if (baseType === '[UniformTypeIdentifiers.UTType]')
+      return { kind: 'stringArray', type, optional,
+        swiftExpression: '({ () -> [UniformTypeIdentifiers.UTType] in\n        let identifiers = $value\n        if identifiers.isEmpty { return [.item] }\n        return identifiers.map { identifier in\n          guard let type = UniformTypeIdentifiers.UTType(identifier) else { preconditionFailure("invalid content type: \\(identifier)") }\n          return type\n        }\n      })()' }
     if (baseType === 'Swift.Set<Swift.String>')
       return { kind: 'stringSet', type, optional }
     const numericType = (value: string) =>
@@ -217,12 +220,13 @@ export type DerivedViewSlot = { name: string; sdkName?: string; module: string; 
 
 export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
   const valueOf = bridgeValueOf(inventory, ceiling)
+  const isZeroInputClosure = (type: string) => /^(?:@escaping )?\(\) ->/.test(type)
   const closureInputsOf = (type: string) =>
     /^@escaping \(([^,<>()]+(?:, [^,<>()]+)*)\) -> some View$/.exec(type)?.[1].split(', ')
   const isContent = (d: Declaration, parameter: Declaration['parameters'][number]) => {
     if (parameter.type === '() -> some View') return true
     if (closureInputsOf(parameter.type)) return true
-    const generic = /^\(\) -> ([A-Za-z_]\w*)$|^([A-Za-z_]\w*)\??$/.exec(parameter.type)
+    const generic = /^(?:@escaping )?\(\) -> ([A-Za-z_]\w*)$|^([A-Za-z_]\w*)\??$/.exec(parameter.type)
     return Boolean(generic && d.requirements?.includes(`${generic[1] ?? generic[2]} : SwiftUICore.View`))
   }
   const isStringBinding = (d: Declaration, type: string) => {
@@ -234,7 +238,7 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
     return (
       d.kind === 'func' && (d.module === 'SwiftUI' || d.module === 'SwiftUICore' ||
         /^_[A-Za-z]+_SwiftUI$/.test(d.module)) &&
-      d.owner.split('.').at(-1) === 'View' && builders.length === 1 &&
+      d.owner.split('.').at(-1) === 'View' && /^[a-z]/.test(d.name) && builders.length === 1 &&
       d.parameters.at(-1) === builders[0] &&
       d.parameters.every((parameter) => parameter === builders[0] || parameter.defaultValue !== undefined ||
         ['enum', 'string', 'boolean'].includes(valueOf(parameter.type)?.kind ?? '') ||
@@ -243,9 +247,9 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
       present(d) && ios(d) <= ceiling
     )
   }).filter((slot, _, candidates) =>
-    slot.parameters.at(-1)!.type.startsWith('() ->') ||
+    isZeroInputClosure(slot.parameters.at(-1)!.type) ||
     !candidates.some((other) => other.module === slot.module && other.name === slot.name &&
-      other.parameters.at(-1)!.type.startsWith('() ->')))
+      isZeroInputClosure(other.parameters.at(-1)!.type)))
   const byName = new Map<string, Declaration[]>()
   for (const slot of slots) {
     const key = `${slot.module}.${slot.name}`
@@ -254,7 +258,7 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
   return [...byName].flatMap(([, declarations]) => declarations.map((slot) => {
     const content = slot.parameters.at(-1)!
     const closureInputs = closureInputsOf(content.type)
-    const directValue = !content.type.startsWith('() ->') && !closureInputs
+    const directValue = !isZeroInputClosure(content.type) && !closureInputs
     const required = slot.parameters.filter((parameter) =>
       parameter !== content && parameter.defaultValue === undefined)
     const suffix = declarations.length === 1 || required.length === 0 ? ''
@@ -467,7 +471,11 @@ export function deriveModifiers(
       /^[a-z]/.test(d.name) &&
       present(d) &&
       ios(d) <= ceiling &&
-      !reservedNames.has(d.name)
+      (!reservedNames.has(d.name) ||
+        (d.parameters.length > 1 && !d.requirements?.length &&
+          d.parameters.some((parameter) => parameter.defaultValue === undefined) &&
+          d.parameters.some((parameter) => parameter.defaultValue !== undefined) &&
+          d.parameters.every((parameter) => valueOf(parameter.type))))
   )
   const byName = new Map<string, Declaration[]>()
   for (const method of methods)
@@ -1001,7 +1009,8 @@ export function deriveModifiers(
           ? 'bindingBoolean'
           : parameter.type.includes('Binding<Swift.String>')
             ? 'bindingString'
-            : parameter.type === 'SwiftUICore.Binding<(some Hashable)?>'
+            : parameter.type === 'SwiftUICore.Binding<(some Hashable)?>' ||
+              parameter.type === 'SwiftUICore.Binding<Foundation.URL?>'
               ? 'bindingOptionalString'
             : callbackValue === 'Swift.Bool'
               ? 'eventBoolean'
@@ -1131,7 +1140,7 @@ export function deriveModifiers(
     const established = preferred.filter((candidate) =>
       candidate.kind !== 'record' || !candidate.arguments?.some((argument) => argument.sdkType))
     const selected = established.length ? established : preferred
-    if (selected.length === 1) {
+    if (selected.length === 1 && !reservedNames.has(name)) {
       const { module, ...modifier } = selected[0]
       result.push(modifier)
       continue

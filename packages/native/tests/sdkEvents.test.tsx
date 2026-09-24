@@ -15,6 +15,15 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('exposes a bridgeable SDK overload beside an existing style field', () => {
+    const element = Controls.Text({ text: 'round', swiftStyle: {
+      cornerRadiusWithRadiusAndAntialiased: { radius: 12, antialiased: false },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['cornerRadiusWithRadiusAndAntialiased', '["12","false"]'],
+    ])
+  })
+
   it('encodes numeric visual effects and scroll phase transitions from SDK methods', () => {
     const element = Controls.Text({ text: 'example', swiftStyle: {
       visualEffect: { kind: 'opacity', value: 0.8 },
@@ -53,6 +62,37 @@ describe('SDK callback and binding transport', () => {
     expect(() => Controls.Text({ text: 'example', swiftStyle: {
       presentationDetents: ['unknown' as never],
     } })).toThrow('presentationDetents must be public SDK values')
+  })
+
+  it('round trips an optional URL binding for an SDK preview', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'preview', swiftStyle: {
+      quickLookPreview: { value: 'file:///tmp/photo.jpg', onChange },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['quickLookPreview', '"file:///tmp/photo.jpg"'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'quickLookPreview', value: 'null' } })
+    expect(onChange).toHaveBeenCalledWith(null)
+  })
+
+  it('configures an SDK file importer from content type identifiers and a URL result', () => {
+    const onChange = vi.fn()
+    const onCompletion = vi.fn()
+    const element = Controls.Text({ text: 'import', swiftStyle: {
+      fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion: {
+        isPresented: { value: true, onChange },
+        allowedContentTypes: ['public.image'],
+        onCompletion,
+      },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion', '["true","[\\"public.image\\"]",""]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion.onCompletion', value: '{"success":"file:///tmp/photo.jpg"}',
+    } })
+    expect(onCompletion).toHaveBeenCalledWith({ success: 'file:///tmp/photo.jpg' })
   })
 
   it('uses a public preference key for setting, transforming, and observing its value', () => {
