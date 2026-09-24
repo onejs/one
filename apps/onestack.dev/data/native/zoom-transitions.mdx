@@ -42,3 +42,13 @@ function DetailScreen() {
 - Set `headerShown: false` on the detail screen to avoid the header overlapping during the zoom animation
 - The `identifier` must match between `ZoomTransitionSource` and `ZoomTransitionEnabler`
 - Use `One.iOS.ZoomTransitionAlignmentRectDetector` on the destination to align the zoom to a specific element
+
+### Props
+
+`ZoomTransitionSource` takes a required `identifier`, an optional
+`alignment` rect (`x`, `y`, `width`, `height`), and
+`animateAspectRatioChange`. `ZoomTransitionEnabler` takes the required
+`zoomTransitionSourceIdentifier` plus an optional `dismissalBoundsRect`
+(`minX`, `maxX`, `minY`, `maxY`) that bounds the dismiss gesture.
+`ZoomTransitionAlignmentRectDetector` takes the matching `identifier` and
+wraps the destination element.

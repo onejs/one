@@ -1,0 +1,71 @@
+---
+title: iOS Text and Fields
+description: Text, Label, TextField, and SecureField under One.iOS
+---
+
+Text display and text entry under `One.iOS`. `TextField` and `SecureField`
+take a plain string or a `NativeState` handle from
+`One.UI.useNativeState`, so keystrokes stay correct without a React render.
+Both follow the controlled pattern with `revision`, focus props
+(`focused`, `onFocusChange`, `focusRevision`), and `onSubmit`.
+
+## Text
+
+`One.iOS.Text` renders one string with `text`. It takes no other props
+beyond the shared view props.
+
+## Label
+
+`One.iOS.Label` renders a title with an icon: `label` plus `systemImage`,
+an SF Symbol name.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Label label="Favorites" systemImage="star" />
+```
+
+## TextField
+
+`One.iOS.TextField` is a single or multi-line field. `prompt` is the
+placeholder, `textFieldStyle` selects the SwiftUI text field style, and
+`axis` switches between horizontal and multi-line layout.
+
+| Prop | Type |
+|------|------|
+| `text` | `string` or `NativeState<string>` |
+| `onTextChange` | `(value: string) => void` |
+| `revision` | `number` |
+| `focused`, `focusRevision` | `boolean`, `number` |
+| `onFocusChange` | `(focused: boolean) => void` |
+| `onSubmit` | `() => void` |
+| `prompt` | `string` |
+| `textFieldStyle` | SwiftUI text field style |
+| `submitLabel` | SwiftUI submit label, or `''` |
+| `textInputAutocapitalization` | SwiftUI text input autocapitalization, or `''` |
+| `autocorrectionDisabled` | `boolean` |
+| `keyboardType` | keyboard type, or `''` |
+| `textContentType` | text content type, or `''` |
+| `axis` | SwiftUI axis |
+
+```tsx
+import { One } from 'one'
+
+const name = One.UI.useNativeState('')
+
+<One.iOS.TextField
+  label="Name"
+  text={name}
+  onTextChange={(value) => name.set(value)}
+  prompt="Ada Lovelace"
+/>
+```
+
+## SecureField
+
+`One.iOS.SecureField` has the same props as `TextField` and obscures its
+input for passwords.
+
+For a cross-platform field that also runs on Android and web, use
+[One.UI.TextInput](/native/text-input) instead. The iOS fields here throw
+outside iOS builds.

@@ -1,5 +1,5 @@
 ---
-title: Native Overview
+title: One Native
 description: How One's native APIs are named, packaged, and linked
 ---
 
@@ -39,6 +39,18 @@ builds and Compose components throw outside Android builds, so keep those
 branches behind platform checks. Components that are only meaningful on one
 platform but harmless elsewhere (toolbar, menu, zoom) return `null` instead,
 so they are safe to keep in cross-platform trees.
+
+`One.platform` reads the current platform: `'web'`, `'ios'`, `'android'`,
+or `'rnx'`.
+
+```tsx
+import { One } from 'one'
+
+if (One.platform === 'ios') {
+  return <One.iOS.Toggle label="Airplane mode" isOn={on} onIsOnChange={setOn} />
+}
+return <One.Android.Switch isOn={on} onIsOnChange={setOn} />
+```
 
 ## Packaging
 
