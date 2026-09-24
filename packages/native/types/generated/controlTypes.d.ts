@@ -1752,6 +1752,14 @@ export interface OneNativeStyle {
         bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar';
     }>;
     tracking?: number;
+    transaction?: Readonly<{
+        transform: Readonly<{
+            isContinuous?: boolean;
+            scrollPositionUpdatePreservesVelocity?: boolean;
+            disablesAnimations?: boolean;
+            tracksVelocity?: boolean;
+        }>;
+    }>;
     transformEffect?: Readonly<{
         transform: Readonly<{
             a: number;

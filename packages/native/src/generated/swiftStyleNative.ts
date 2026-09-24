@@ -532,6 +532,7 @@ const sdkKinds = {
   toolbarWithRemoving: 'optionalEnum',
   toolbarWithVisibilityAndBars: 'record',
   tracking: 'number',
+  transaction: 'record',
   transformEffect: 'record',
   transition: 'string',
   translationPresentation: 'record',
@@ -1617,6 +1618,23 @@ const sdkRecords: Record<
     { field: 'visibility', kind: 'enum', optional: false },
     { field: 'bars', kind: 'enum', optional: false },
   ],
+  transaction: [
+    {
+      field: 'transform',
+      kind: 'structUpdate',
+      optional: false,
+      fields: [
+        { name: 'isContinuous', type: 'Swift.Bool', integer: false },
+        {
+          name: 'scrollPositionUpdatePreservesVelocity',
+          type: 'Swift.Bool',
+          integer: false,
+        },
+        { name: 'disablesAnimations', type: 'Swift.Bool', integer: false },
+        { name: 'tracksVelocity', type: 'Swift.Bool', integer: false },
+      ],
+    },
+  ],
   transformEffect: [
     {
       field: 'transform',
@@ -1752,7 +1770,7 @@ export function swiftStyleNative(
               throw new Error(name + '.' + argument.field + ' must be a callback')
             return ''
           }
-          if (argument.kind === 'classUpdate') {
+          if (argument.kind === 'classUpdate' || argument.kind === 'structUpdate') {
             if (
               !item ||
               typeof item !== 'object' ||
@@ -1771,7 +1789,12 @@ export function swiftStyleNative(
               })
             )
               throw new Error(
-                name + '.' + argument.field + ' must be an SDK class update'
+                name +
+                  '.' +
+                  argument.field +
+                  (argument.kind === 'classUpdate'
+                    ? ' must be an SDK class update'
+                    : ' must be an SDK struct update')
               )
             return JSON.stringify(item)
           }
