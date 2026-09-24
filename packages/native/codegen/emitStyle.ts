@@ -481,10 +481,10 @@ ${validation}    ${apply(argumentsFromSDK ?? bridge, modifier.ios, argumentsFrom
     switch value {
 ${modifier.kind === 'optionalEnum' ? `      case "null": ${apply(`nil as ${modifier.type}`, modifier.ios)}` : ''}
 ${modifier.cases
-  .map(
-    (item) =>
-      `      case ${JSON.stringify(item.name)}: ${apply(modifier.kind === 'style' ? `.${item.name}` : `${modifier.type.replace(/\?$/, '')}.${item.name}`, Math.max(modifier.ios, item.ios))}`
-  )
+  .map((item) => {
+    const call = apply(modifier.kind === 'style' ? `.${item.name}` : `${modifier.type.replace(/\?$/, '')}.${item.name}`, Math.max(modifier.ios, item.ios))
+    return `      case ${JSON.stringify(item.name)}:${call.startsWith('\n') ? '' : ' '}${call}`
+  })
   .join('\n')}
     default: preconditionFailure("invalid ${modifier.name}: \\(value)")
     }

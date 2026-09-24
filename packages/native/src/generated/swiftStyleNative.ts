@@ -124,6 +124,7 @@ const sdkKinds = {
   buttonSizing: 'string',
   buttonStyle: 'style',
   clipped: 'boolean',
+  clipShape: 'style',
   colorEffect: 'record',
   colorInvert: 'boolean',
   colorMultiply: 'string',
@@ -189,9 +190,14 @@ const sdkKinds = {
   focusableWithIsFocusableAndInteractions: 'record',
   focused: 'bindingFocusBoolean',
   focusEffectDisabled: 'boolean',
+  font: 'optionalEnum',
   fontWidth: 'optionalEnum',
   foregroundColor: 'optionalEnum',
   formStyle: 'style',
+  frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment:
+    'record',
+  frameWithNoArguments: 'boolean',
+  frameWithWidthAndHeightAndAlignment: 'record',
   gaugeStyle: 'style',
   geometryGroup: 'boolean',
   gesture: 'gesture',
@@ -1185,6 +1191,21 @@ const sdkRecords: Record<
   focusableWithIsFocusableAndInteractions: [
     { field: 'isFocusable', kind: 'boolean', optional: false },
     { field: 'interactions', kind: 'enum', optional: false },
+  ],
+  frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment:
+    [
+      { field: 'minWidth', kind: 'number', optional: true },
+      { field: 'idealWidth', kind: 'number', optional: true },
+      { field: 'maxWidth', kind: 'number', optional: true },
+      { field: 'minHeight', kind: 'number', optional: true },
+      { field: 'idealHeight', kind: 'number', optional: true },
+      { field: 'maxHeight', kind: 'number', optional: true },
+      { field: 'alignment', kind: 'enum', optional: false },
+    ],
+  frameWithWidthAndHeightAndAlignment: [
+    { field: 'width', kind: 'number', optional: true },
+    { field: 'height', kind: 'number', optional: true },
+    { field: 'alignment', kind: 'enum', optional: false },
   ],
   handGestureShortcut: [
     { field: 'shortcut', kind: 'enum', optional: false },

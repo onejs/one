@@ -187,6 +187,7 @@ extension View {
       case "buttonSizing": view = AnyView(view.oneNativeSDKButtonSizing(value, emit: emit))
       case "buttonStyle": view = AnyView(view.oneNativeSDKButtonStyle(value, emit: emit))
       case "clipped": view = AnyView(view.oneNativeSDKClipped(value, emit: emit))
+      case "clipShape": view = AnyView(view.oneNativeSDKClipShape(value, emit: emit))
       case "colorEffect": view = AnyView(view.oneNativeSDKColorEffect(value, emit: emit))
       case "colorInvert": view = AnyView(view.oneNativeSDKColorInvert(value, emit: emit))
       case "colorMultiply": view = AnyView(view.oneNativeSDKColorMultiply(value, emit: emit))
@@ -252,9 +253,13 @@ extension View {
       case "focusableWithIsFocusableAndInteractions": view = AnyView(view.oneNativeSDKFocusableWithIsFocusableAndInteractions(value, emit: emit))
       case "focused": view = AnyView(view.oneNativeSDKFocused(value, emit: emit))
       case "focusEffectDisabled": view = AnyView(view.oneNativeSDKFocusEffectDisabled(value, emit: emit))
+      case "font": view = AnyView(view.oneNativeSDKFont(value, emit: emit))
       case "fontWidth": view = AnyView(view.oneNativeSDKFontWidth(value, emit: emit))
       case "foregroundColor": view = AnyView(view.oneNativeSDKForegroundColor(value, emit: emit))
       case "formStyle": view = AnyView(view.oneNativeSDKFormStyle(value, emit: emit))
+      case "frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment": view = AnyView(view.oneNativeSDKFrameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment(value, emit: emit))
+      case "frameWithNoArguments": view = AnyView(view.oneNativeSDKFrameWithNoArguments(value, emit: emit))
+      case "frameWithWidthAndHeightAndAlignment": view = AnyView(view.oneNativeSDKFrameWithWidthAndHeightAndAlignment(value, emit: emit))
       case "gaugeStyle": view = AnyView(view.oneNativeSDKGaugeStyle(value, emit: emit))
       case "geometryGroup": view = AnyView(view.oneNativeSDKGeometryGroup(value, emit: emit))
       case "gesture": view = AnyView(view.oneNativeSDKGesture(value, emit: emit))
@@ -1587,7 +1592,7 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAsyncImageURLSession(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "shared": 
+      case "shared":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.asyncImageURLSession(Foundation.URLSession.shared) } else { self }
 #else
@@ -1804,6 +1809,26 @@ self
       self.clipped(antialiased: value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKClipShape(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "buttonBorder": self.clipShape(.buttonBorder)
+      case "rect": self.clipShape(.rect)
+      case "capsule": self.clipShape(.capsule)
+      case "ellipse": self.clipShape(.ellipse)
+      case "circle": self.clipShape(.circle)
+      case "containerRelative": self.clipShape(.containerRelative)
+      case "textInputBorder":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.clipShape(.textInputBorder) } else { self }
+#else
+self
+#endif
+
+    default: preconditionFailure("invalid clipShape: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKColorEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -2000,7 +2025,7 @@ self
       case "ellipse": self.containerShape(.ellipse)
       case "circle": self.containerShape(.circle)
       case "containerRelative": self.containerShape(.containerRelative)
-      case "textInputBorder": 
+      case "textInputBorder":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.containerShape(.textInputBorder) } else { self }
 #else
@@ -2081,7 +2106,7 @@ self
       case "ellipse": self.contentShape(.ellipse)
       case "circle": self.contentShape(.circle)
       case "containerRelative": self.contentShape(.containerRelative)
-      case "textInputBorder": 
+      case "textInputBorder":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.contentShape(.textInputBorder) } else { self }
 #else
@@ -2298,21 +2323,21 @@ self
   @ViewBuilder fileprivate func oneNativeSDKDefaultTabBarPlacement(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": 
+      case "automatic":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.automatic) } else { self }
 #else
 self
 #endif
 
-      case "tabBar": 
+      case "tabBar":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.tabBar) } else { self }
 #else
 self
 #endif
 
-      case "sidebar": 
+      case "sidebar":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.sidebar) } else { self }
 #else
@@ -2740,6 +2765,25 @@ self
       self.focusEffectDisabled(value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKFont(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.font(nil as SwiftUICore.Font?)
+      case "largeTitle": self.font(SwiftUICore.Font.largeTitle)
+      case "title": self.font(SwiftUICore.Font.title)
+      case "title2": self.font(SwiftUICore.Font.title2)
+      case "title3": self.font(SwiftUICore.Font.title3)
+      case "headline": self.font(SwiftUICore.Font.headline)
+      case "subheadline": self.font(SwiftUICore.Font.subheadline)
+      case "body": self.font(SwiftUICore.Font.body)
+      case "callout": self.font(SwiftUICore.Font.callout)
+      case "footnote": self.font(SwiftUICore.Font.footnote)
+      case "caption": self.font(SwiftUICore.Font.caption)
+      case "caption2": self.font(SwiftUICore.Font.caption2)
+      case "default": if #available(iOS 26, *) { self.font(SwiftUICore.Font.default) } else { self }
+    default: preconditionFailure("invalid font: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKFontWidth(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.fontWidth(nil as SwiftUICore.Font.Width?)
@@ -2785,6 +2829,113 @@ self
       case "automatic": self.formStyle(.automatic)
     default: preconditionFailure("invalid formStyle: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFrameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 7 else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment: \(value)") }
+      return decoded
+    }()
+    let argument0: CoreFoundation.CGFloat? = {
+      guard let raw = values[0] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.minWidth: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument1: CoreFoundation.CGFloat? = {
+      guard let raw = values[1] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.idealWidth: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument2: CoreFoundation.CGFloat? = {
+      guard let raw = values[2] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxWidth: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument3: CoreFoundation.CGFloat? = {
+      guard let raw = values[3] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.minHeight: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument4: CoreFoundation.CGFloat? = {
+      guard let raw = values[4] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.idealHeight: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument5: CoreFoundation.CGFloat? = {
+      guard let raw = values[5] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxHeight: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument6: SwiftUICore.Alignment = {
+      guard let raw = values[6] else { preconditionFailure("missing frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.alignment") }
+      switch raw {
+      case "center": return SwiftUICore.Alignment.center
+      case "leading": return SwiftUICore.Alignment.leading
+      case "trailing": return SwiftUICore.Alignment.trailing
+      case "top": return SwiftUICore.Alignment.top
+      case "bottom": return SwiftUICore.Alignment.bottom
+      case "topLeading": return SwiftUICore.Alignment.topLeading
+      case "topTrailing": return SwiftUICore.Alignment.topTrailing
+      case "bottomLeading": return SwiftUICore.Alignment.bottomLeading
+      case "bottomTrailing": return SwiftUICore.Alignment.bottomTrailing
+      case "centerFirstTextBaseline": return SwiftUICore.Alignment.centerFirstTextBaseline
+      case "centerLastTextBaseline": return SwiftUICore.Alignment.centerLastTextBaseline
+      case "leadingFirstTextBaseline": return SwiftUICore.Alignment.leadingFirstTextBaseline
+      case "leadingLastTextBaseline": return SwiftUICore.Alignment.leadingLastTextBaseline
+      case "trailingFirstTextBaseline": return SwiftUICore.Alignment.trailingFirstTextBaseline
+      case "trailingLastTextBaseline": return SwiftUICore.Alignment.trailingLastTextBaseline
+      default: preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.alignment: \(raw)")
+      }
+    }()
+    self.frame(minWidth: argument0, idealWidth: argument1, maxWidth: argument2, minHeight: argument3, idealHeight: argument4, maxHeight: argument5, alignment: argument6)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFrameWithNoArguments(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid frameWithNoArguments: \(value)")
+    if value == "true" { self.frame() } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFrameWithWidthAndHeightAndAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment: \(value)") }
+      return decoded
+    }()
+    let argument0: CoreFoundation.CGFloat? = {
+      guard let raw = values[0] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.width: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument1: CoreFoundation.CGFloat? = {
+      guard let raw = values[1] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.height: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument2: SwiftUICore.Alignment = {
+      guard let raw = values[2] else { preconditionFailure("missing frameWithWidthAndHeightAndAlignment.alignment") }
+      switch raw {
+      case "center": return SwiftUICore.Alignment.center
+      case "leading": return SwiftUICore.Alignment.leading
+      case "trailing": return SwiftUICore.Alignment.trailing
+      case "top": return SwiftUICore.Alignment.top
+      case "bottom": return SwiftUICore.Alignment.bottom
+      case "topLeading": return SwiftUICore.Alignment.topLeading
+      case "topTrailing": return SwiftUICore.Alignment.topTrailing
+      case "bottomLeading": return SwiftUICore.Alignment.bottomLeading
+      case "bottomTrailing": return SwiftUICore.Alignment.bottomTrailing
+      case "centerFirstTextBaseline": return SwiftUICore.Alignment.centerFirstTextBaseline
+      case "centerLastTextBaseline": return SwiftUICore.Alignment.centerLastTextBaseline
+      case "leadingFirstTextBaseline": return SwiftUICore.Alignment.leadingFirstTextBaseline
+      case "leadingLastTextBaseline": return SwiftUICore.Alignment.leadingLastTextBaseline
+      case "trailingFirstTextBaseline": return SwiftUICore.Alignment.trailingFirstTextBaseline
+      case "trailingLastTextBaseline": return SwiftUICore.Alignment.trailingLastTextBaseline
+      default: preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.alignment: \(raw)")
+      }
+    }()
+    self.frame(width: argument0, height: argument1, alignment: argument2)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKGaugeStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4080,7 +4231,7 @@ self
     switch value {
 
       case "automatic": if #available(iOS 18, *) { self.navigationTransition(.automatic) } else { self }
-      case "crossFade": 
+      case "crossFade":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.navigationTransition(.crossFade) } else { self }
 #else
@@ -4547,14 +4698,14 @@ self
   @ViewBuilder fileprivate func oneNativeSDKPhotosPickerMetadataOptions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "removeCaptions": 
+      case "removeCaptions":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeCaptions) } else { self }
 #else
 self
 #endif
 
-      case "removeLocation": 
+      case "removeLocation":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeLocation) } else { self }
 #else
@@ -4643,7 +4794,7 @@ self
       case "inline": self.pickerStyle(.inline)
       case "automatic": self.pickerStyle(.automatic)
       case "segmented": self.pickerStyle(.segmented)
-      case "tabs": 
+      case "tabs":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.pickerStyle(.tabs) } else { self }
 #else
@@ -4812,28 +4963,28 @@ self
   @ViewBuilder fileprivate func oneNativeSDKPresentationPlacement(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": 
+      case "automatic":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.automatic) } else { self }
 #else
 self
 #endif
 
-      case "leading": 
+      case "leading":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.leading) } else { self }
 #else
 self
 #endif
 
-      case "center": 
+      case "center":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.center) } else { self }
 #else
 self
 #endif
 
-      case "trailing": 
+      case "trailing":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.trailing) } else { self }
 #else
@@ -6207,21 +6358,21 @@ self
       case "birthdateYear": self.textContentType(UIKit.UITextContentType.birthdateYear)
       case "cellularEID": if #available(iOS 17.4, *) { self.textContentType(UIKit.UITextContentType.cellularEID) } else { self }
       case "cellularIMEI": if #available(iOS 17.4, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI) } else { self }
-      case "cellularIMEI1": 
+      case "cellularIMEI1":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI1) } else { self }
 #else
 self
 #endif
 
-      case "cellularIMEI2": 
+      case "cellularIMEI2":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI2) } else { self }
 #else
 self
 #endif
 
-      case "cellularNAL": 
+      case "cellularNAL":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularNAL) } else { self }
 #else
@@ -6281,7 +6432,7 @@ self
 
       case "automatic": self.textFieldStyle(.automatic)
       case "roundedBorder": self.textFieldStyle(.roundedBorder)
-      case "bordered": 
+      case "bordered":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.textFieldStyle(.bordered) } else { self }
 #else
@@ -6307,21 +6458,21 @@ self
   @ViewBuilder fileprivate func oneNativeSDKTextInputBorderShape(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": 
+      case "automatic":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.automatic) } else { self }
 #else
 self
 #endif
 
-      case "capsule": 
+      case "capsule":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.capsule) } else { self }
 #else
 self
 #endif
 
-      case "roundedRectangle": 
+      case "roundedRectangle":
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.roundedRectangle) } else { self }
 #else
