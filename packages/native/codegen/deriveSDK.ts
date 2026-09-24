@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -625,6 +625,24 @@ export function deriveModifiers(
       const framework = method.module.startsWith('_')
         ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
         : {}
+      if (method.parameters.length === 2 &&
+        method.parameters[0].type === '@autoclosure @escaping () -> Swift.Array<ItemID>' &&
+        method.parameters[1].type === 'SwiftUICore.Namespace.ID?' &&
+        method.parameters[1].defaultValue !== undefined &&
+        method.requirements?.includes('ItemID : Swift.Hashable') &&
+        method.requirements.includes('ItemID : Swift.Sendable'))
+        return [{ name, module: method.module, kind: 'dragSelection', type: method.parameters[0].type,
+          ios: ios(method), ...framework }]
+      if (method.parameters.length === 4 &&
+        method.parameters[0].type === 'Item.Type' && method.parameters[0].defaultValue !== undefined &&
+        method.parameters[1].type === 'Swift.KeyPath<Item, ItemID>' &&
+        method.parameters[2].type === 'SwiftUICore.Namespace.ID?' &&
+        method.parameters[3].type === '@escaping (_ draggedItemIDs: Swift.Array<ItemID>) -> Data' &&
+        ['ItemID : Swift.Hashable', 'ItemID : Swift.Sendable', 'Item : CoreTransferable.Transferable',
+          'Item == Data.Element', 'Data : Swift.Collection'].every((requirement) =>
+          method.requirements?.includes(requirement)))
+        return [{ name, module: method.module, kind: 'dragContainer', type: method.parameters[3].type,
+          ios: ios(method), ...framework }]
       if (method.parameters.length === 2 && method.parameters[0].type === 'P' &&
         method.parameters[1].label === 'perform' &&
         method.parameters[1].type === '@escaping (P.Output) -> Swift.Void' &&
@@ -1475,6 +1493,16 @@ export function deriveModifiers(
       result.push({ ...candidate, name: alias, sdkName: name })
     }
   }
+  for (const method of methods.filter((method) => method.parameters.length === 2 &&
+    method.parameters[0].label === 'containerItemID' &&
+    method.parameters[0].type === 'ItemID' &&
+    method.parameters[1].label === 'containerNamespace' &&
+    method.parameters[1].type === 'SwiftUICore.Namespace.ID?' &&
+    method.parameters[1].defaultValue !== undefined &&
+    method.requirements?.includes('ItemID : Swift.Hashable') &&
+    method.requirements.includes('ItemID : Swift.Sendable')))
+    result.push({ name: `${method.name}WithContainerItemID`, sdkName: method.name,
+      kind: 'dragItemID', type: 'ItemID', ios: ios(method) })
   return result.sort((a, b) => a.name.localeCompare(b.name))
 }
 

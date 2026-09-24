@@ -804,9 +804,12 @@ export interface OneNativeStyle {
     documentLaunchSubtitle?: string;
     documentLaunchTitle?: string;
     dragConfiguration?: boolean;
+    dragContainer?: boolean;
+    dragContainerSelection?: readonly string[];
     draggable?: Readonly<{
         payload: string;
     }>;
+    draggableWithContainerItemID?: string;
     drawingGroup?: Readonly<{
         opaque: boolean;
         colorMode: 'nonLinear' | 'linear' | 'extendedLinear';

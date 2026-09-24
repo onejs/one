@@ -180,7 +180,10 @@ const sdkKinds = {
   documentLaunchSubtitle: 'string',
   documentLaunchTitle: 'string',
   dragConfiguration: 'boolean',
+  dragContainer: 'dragContainer',
+  dragContainerSelection: 'dragSelection',
   draggable: 'record',
+  draggableWithContainerItemID: 'dragItemID',
   drawingGroup: 'record',
   dropConfiguration: 'eventReturnEnum',
   dropDestination: 'eventStruct',
@@ -2454,6 +2457,12 @@ export function swiftStyleNative(
         sdkModifiers.push([name, record.name])
         continue
       }
+      if (kind === 'dragSelection') {
+        if (!Array.isArray(value) || value.some((item) => typeof item !== 'string'))
+          throw new Error(name + ' must be an array of string IDs')
+        sdkModifiers.push([name, JSON.stringify(value)])
+        continue
+      }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value)))
         throw new Error(name + ' must be finite')
       if (
@@ -2467,6 +2476,10 @@ export function swiftStyleNative(
         typeof value !== 'boolean'
       )
         throw new Error(name + ' must be a boolean')
+      if (kind === 'dragContainer' && typeof value !== 'boolean')
+        throw new Error(name + ' must be a boolean')
+      if (kind === 'dragItemID' && typeof value !== 'string')
+        throw new Error(name + ' must be a string ID')
       if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean')
         throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string')

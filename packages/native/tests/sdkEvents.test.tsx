@@ -399,6 +399,25 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('invalid notification event')
   })
 
+  it('shares drag item IDs between a generated container and its children', () => {
+    const container = Controls.Text({ text: 'container', swiftStyle: {
+      dragContainer: true, dragContainerSelection: ['first', 'second'],
+    } })
+    expect(JSON.parse(container.props.swiftStyle.sdkModifiers)).toEqual([
+      ['dragContainer', 'true'],
+      ['dragContainerSelection', '["first","second"]'],
+    ])
+    const child = Controls.Text({ text: 'item', swiftStyle: {
+      draggableWithContainerItemID: 'first',
+    } })
+    expect(JSON.parse(child.props.swiftStyle.sdkModifiers)).toEqual([
+      ['draggableWithContainerItemID', 'first'],
+    ])
+    expect(() => Controls.Text({ text: 'invalid', swiftStyle: {
+      dragContainerSelection: [1] as unknown as string[],
+    } })).toThrow('must be an array of string IDs')
+  })
+
   it('passes a purchase result through the async callback and rejects malformed cases', async () => {
     completeAsyncAction.mockClear()
     let finish!: () => void
