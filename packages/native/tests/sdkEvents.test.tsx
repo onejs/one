@@ -189,6 +189,18 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('inAppPurchaseOptions.quantity must be finite')
   })
 
+  it('selects a subscription pricing term by its position in the SDK array', () => {
+    const element = Controls.Text({ text: 'subscription', swiftStyle: {
+      preferredSubscriptionPricingTerms: 1,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['preferredSubscriptionPricingTerms', '1'],
+    ])
+    expect(() => Controls.Text({ text: 'subscription', swiftStyle: {
+      preferredSubscriptionPricingTerms: -1,
+    } })).toThrow('preferredSubscriptionPricingTerms must be a nonnegative index')
+  })
+
   it('configures an SDK set from public static values', () => {
     const element = Controls.Text({ text: 'example', swiftStyle: {
       presentationDetents: ['medium', 'large'],

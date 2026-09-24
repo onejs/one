@@ -443,6 +443,7 @@ const sdkKinds = {
   preferencePreferredColorScheme: 'optionalEnum',
   preferredColorScheme: 'optionalEnum',
   preferredSubscriptionOffer: 'selectionID',
+  preferredSubscriptionPricingTerms: 'selectionIndex',
   presentationBackground: 'style',
   presentationBackgroundInteraction: 'string',
   presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation: 'record',
@@ -2300,6 +2301,11 @@ export function swiftStyleNative(
         throw new Error(name + ' must be a string')
       if (kind === 'selectionID' && typeof value !== 'string')
         throw new Error(name + ' must be a string')
+      if (
+        kind === 'selectionIndex' &&
+        (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 0)
+      )
+        throw new Error(name + ' must be a nonnegative index')
       if (kind === 'url' && typeof value !== 'string')
         throw new Error(name + ' must be a URL string')
       if (kind === 'optionalURL' && value !== null && typeof value !== 'string')

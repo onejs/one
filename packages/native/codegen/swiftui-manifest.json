@@ -11309,6 +11309,15 @@
       "framework": "StoreKit"
     },
     {
+      "name": "preferredSubscriptionPricingTerms",
+      "kind": "selectionIndex",
+      "type": "@escaping (_ product: StoreKit.Product, _ subscriptionInfo: StoreKit.SubscriptionInfo) -> StoreKit.SubscriptionInfo.PricingTerms?",
+      "label": "_",
+      "selectionMember": "pricingTerms",
+      "ios": 26.4,
+      "framework": "StoreKit"
+    },
+    {
       "name": "presentationBackground",
       "kind": "style",
       "type": "S",
@@ -17306,6 +17315,7 @@
         "onInAppPurchaseCompletion",
         "onInAppPurchaseStart",
         "preferredSubscriptionOffer",
+        "preferredSubscriptionPricingTerms",
         "productDescription",
         "productIconBorder",
         "productViewStyle",
@@ -17811,6 +17821,7 @@
         "onInAppPurchaseCompletion",
         "onInAppPurchaseStart",
         "preferredSubscriptionOffer",
+        "preferredSubscriptionPricingTerms",
         "productDescription",
         "productIconBorder",
         "productViewStyle",
