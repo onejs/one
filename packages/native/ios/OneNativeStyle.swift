@@ -3,6 +3,7 @@
 import SwiftUI
 import UIKit
 import PassKit
+import AppIntents
 import StoreKit
 import DataDetection
 import GameController
@@ -11,7 +12,6 @@ import MusicKit
 import AVKit
 import PhotosUI
 import RealityKit
-import AppIntents
 import AuthenticationServices
 import Translation
 import WebKit
@@ -163,6 +163,7 @@ extension View {
       case "allowsWindowActivationEventsWithNoArguments": view = AnyView(view.oneNativeSDKAllowsWindowActivationEventsWithNoArguments(value, emit: emit))
       case "allowsWindowActivationEventsWithOptionalBool": view = AnyView(view.oneNativeSDKAllowsWindowActivationEventsWithOptionalBool(value, emit: emit))
       case "animation": view = AnyView(view.oneNativeSDKAnimation(value, emit: emit))
+      case "appEntityIdentifier": view = AnyView(view.oneNativeSDKAppEntityIdentifier(value, emit: emit))
       case "appStoreMerchandising": view = AnyView(view.oneNativeSDKAppStoreMerchandising(value, emit: emit))
       case "aspectRatio": view = AnyView(view.oneNativeSDKAspectRatio(value, emit: emit))
       case "assistiveAccessNavigationIconWithImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithImage(value, emit: emit))
@@ -1524,6 +1525,12 @@ extension View {
       case "linear": self.animation(SwiftUICore.Animation.linear)
     default: preconditionFailure("invalid animation: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAppEntityIdentifier(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if value == "null" { if #available(iOS 18.4, *) { self.appEntityIdentifier(nil as AppIntents.EntityIdentifier?) } else { self } } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+      if #available(iOS 18.4, *) { self.appEntityIdentifier((AppIntents.EntityIdentifier(activityIdentifier: decoded) ?? { () -> AppIntents.EntityIdentifier in preconditionFailure("invalid appEntityIdentifier") }())) } else { self }
+    } else { preconditionFailure("invalid appEntityIdentifier: \(value)") } }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAppStoreMerchandising(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

@@ -100,6 +100,7 @@ const sdkKinds = {
   allowsWindowActivationEventsWithNoArguments: 'boolean',
   allowsWindowActivationEventsWithOptionalBool: 'optionalBoolean',
   animation: 'optionalEnum',
+  appEntityIdentifier: 'optionalString',
   appStoreMerchandising: 'record',
   aspectRatio: 'record',
   assistiveAccessNavigationIconWithImage: 'string',

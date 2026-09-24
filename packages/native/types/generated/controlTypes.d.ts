@@ -494,6 +494,7 @@ export interface OneNativeStyle {
     allowsWindowActivationEventsWithNoArguments?: boolean;
     allowsWindowActivationEventsWithOptionalBool?: boolean | null;
     animation?: SDKAnimation | null;
+    appEntityIdentifier?: string | null;
     appStoreMerchandising?: Readonly<{
         isPresented: Readonly<{
             value: boolean;
