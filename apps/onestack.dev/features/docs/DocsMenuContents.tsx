@@ -32,29 +32,15 @@ export const DocsMenuContents = React.memo(function DocsMenuContents({
     itemsGrouped[key].push(item)
   }
 
-  // Find which section contains the current page
-  const currentSection = allItems.find((item) => item?.page.route === currentPath)
-  const currentSectionTitle = currentSection?.section.title || ''
-
-  // Use controlled value that updates when path changes
-  const [openSection, setOpenSection] = React.useState(currentSectionTitle)
-
-  // Update open section when navigating to a new page
-  React.useEffect(() => {
-    if (currentSectionTitle) {
-      setOpenSection(currentSectionTitle)
-    }
-  }, [currentSectionTitle])
-
   return (
     <>
       <div style={{ width: '100%' }}>
         {/* Blog link hidden for now - pages still accessible at /blog */}
+        {/* every section starts expanded; each still collapses on its own */}
         <Accordion
-          value={openSection}
-          onValueChange={setOpenSection}
-          type="single"
-          collapsible
+          key={currentPath.startsWith('/native') ? 'native' : 'docs'}
+          type="multiple"
+          defaultValue={Object.keys(itemsGrouped).filter(Boolean)}
         >
           {Object.keys(itemsGrouped).map((sectionTitle) => {
             const items = itemsGrouped[sectionTitle]
@@ -83,7 +69,6 @@ const SubSection = ({
   inMenu?: boolean
 }) => {
   const { currentPath } = useDocsMenu()
-  const [visible, setVisible] = React.useState(!section.title)
 
   const content = (
     <YStack px="$2" py="$3" mb="$3">
@@ -129,9 +114,6 @@ const SubSection = ({
         {({ open }) => {
           return (
             <XStack
-              onPress={() => {
-                setVisible(!visible)
-              }}
               fd="row"
               py="$2"
               px="$4"

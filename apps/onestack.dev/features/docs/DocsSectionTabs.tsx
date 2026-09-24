@@ -36,6 +36,7 @@ const Tab = ({
     <Link href={href} asChild>
       <XStack
         render="a"
+        className="text-underline-none"
         ai="center"
         jc="center"
         px="$3"
