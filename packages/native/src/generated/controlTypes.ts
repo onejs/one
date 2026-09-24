@@ -2468,6 +2468,14 @@ export interface OneNativeStyle {
     newValue: { width: number; height: number }
   }) => void
   onHover?: (value: boolean) => void
+  onInAppPurchaseStart?: (value: {
+    id: string
+    type: { rawValue: string }
+    displayName: string
+    description: string
+    displayPrice: string
+    isFamilyShareable: boolean
+  }) => void | Promise<void>
   onInteractiveResizeChange?: (value: boolean) => void
   onKeyPress?: Readonly<{
     result: 'handled' | 'ignored'
