@@ -49,10 +49,14 @@ describe('SDK callback and binding transport', () => {
     const element = Controls.Text({ text: 'native object', swiftStyle: {
       environmentObject: 'session-store',
       modifier: 'brand-effect',
+      modelContainer: 'app-models',
+      modelContext: 'edit-context',
     } })
     expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
       ['environmentObject', 'session-store'],
       ['modifier', 'brand-effect'],
+      ['modelContainer', 'app-models'],
+      ['modelContext', 'edit-context'],
     ])
     expect(() => Controls.Text({ text: 'native object', swiftStyle: {
       environmentObject: '',

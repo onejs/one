@@ -58,6 +58,7 @@ export type DerivedModifier = {
     multiCase: string; rangeLabel: string; rangesLabel: string; insertionLabel: string }
   requestType?: string
   registeredProtocol?: string
+  registeredType?: string
   requestProperty?: string
   sessionRequest?: { method: string; inputField: string; outputFields: readonly string[];
     actionLabel: string; defaults: readonly { label: string; value: string }[] }
@@ -722,6 +723,16 @@ export function deriveModifiers(
             type: method.parameters[0].type, registeredProtocol,
             ios: ios(method), ...framework }]
       }
+      const registeredType = method.parameters.length === 1 &&
+        method.parameters[0].label === '_' &&
+        method.parameters[0].type.match(/^([A-Za-z][A-Za-z0-9_]*)\.([A-Za-z][A-Za-z0-9_]*)$/)
+      if (registeredType && inventory.some((declaration) =>
+        declaration.module === registeredType[1] && declaration.kind === 'class' &&
+        declaration.owner === '' && declaration.name === registeredType[2] &&
+        present(declaration) && ios(declaration) <= ceiling))
+        return [{ name, module: method.module, kind: 'registeredValue',
+          type: method.parameters[0].type, registeredType: method.parameters[0].type,
+          ios: ios(method), ...framework }]
       const anchorSignature = method.parameters.length === 3 &&
         method.parameters[0].type === 'K.Type' &&
         method.parameters[1].type === 'SwiftUICore.Anchor<A>.Source' &&

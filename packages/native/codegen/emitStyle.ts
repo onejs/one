@@ -216,7 +216,7 @@ ${modifier.cases!.map((field) => `    case ${JSON.stringify(field.name)}:
     }
   }`
       if (modifier.kind === 'registeredValue')
-        return `  @available(iOS ${modifier.ios}, *)
+        return modifier.registeredProtocol ? `  @available(iOS ${modifier.ios}, *)
   fileprivate func ${helper}Registered<T: ${modifier.registeredProtocol}>(_ registered: T) -> some View {
     self.${modifier.sdkName ?? modifier.name}(registered)
   }
@@ -230,6 +230,16 @@ ${modifier.cases!.map((field) => `    case ${JSON.stringify(field.name)}:
         return found
       }()
       AnyView(${helper}Registered(registered))
+    } else { self }
+  }` : `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS ${modifier.ios}, *) {
+      let registered: ${modifier.registeredType} = {
+        guard let found = OneNativeRegisteredValue.value(value) as? ${modifier.registeredType} else {
+          preconditionFailure("missing ${modifier.name} registered value: \\(value)")
+        }
+        return found
+      }()
+      AnyView(self.${modifier.sdkName ?? modifier.name}(registered))
     } else { self }
   }`
       if (modifier.preferenceKey === 'OneNativeSDKRectAnchorKey')

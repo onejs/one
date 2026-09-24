@@ -2596,6 +2596,8 @@ export interface OneNativeStyle {
   menuOrder?: SDKMenuOrder
   menuStyle?: SDKMenuStyle
   minimumScaleFactor?: number
+  modelContainer?: string
+  modelContext?: string
   modifier?: string
   monospaced?: boolean
   monospacedDigit?: boolean
