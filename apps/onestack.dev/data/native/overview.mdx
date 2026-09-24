@@ -44,9 +44,8 @@ so they are safe to keep in cross-platform trees.
 
 The `one` package depends on `@vxrn/native`, which carries the native code:
 iOS sources, Android sources, C++, and the generated bindings. Install `one`
-and the native code comes with it. Remote images are the exception: they need
-`react-native-nitro-image` and `react-native-nitro-web-image` in the app.
-Each page names its extras when it has them.
+and the native code comes with it, including the libraries One builds on
+(Nitro Modules, Nitro Image, OP SQLite). There is nothing else to install.
 
 Non-view modules (clipboard, haptics, notifications, and the rest) are Nitro
 hybrid objects: a TypeScript spec in `packages/native/src/specs/*.nitro.ts`

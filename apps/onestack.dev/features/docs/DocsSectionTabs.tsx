@@ -1,21 +1,19 @@
 import { Link, usePathname } from 'one'
 import { SizableText, XStack } from 'tamagui'
 
-// Switches between the framework docs and the native docs,
-// mirroring the Core/UI tabs on tamagui.dev.
+// switches between the framework docs and the native docs, like the core and
+// ui tabs on tamagui.dev. the header shows it on wide screens, the menu on small.
 export const DocsSectionTabs = () => {
   const pathname = usePathname()
   const isNative = pathname.startsWith('/native')
 
   return (
     <XStack
+      ai="center"
       gap="$1"
       p="$1"
-      mb="$3"
-      mx="$2"
-      br="$4"
+      br="$10"
       bg="$color2"
-      ai="center"
       role="tablist"
       aria-label="Documentation section"
     >
@@ -30,32 +28,28 @@ const Tab = ({
   active,
   label,
 }: {
-  href: string
+  href: '/docs/introduction' | '/native'
   active: boolean
   label: string
 }) => {
   return (
-    <Link href={href as any} asChild>
+    <Link href={href} asChild>
       <XStack
         render="a"
-        f={1}
         ai="center"
         jc="center"
-        py="$2"
-        br="$3"
+        px="$3"
+        py="$1.5"
+        br="$8"
         cursor="pointer"
         bg={active ? '$background' : 'transparent'}
-        hoverStyle={{
-          bg: active ? '$background' : '$color3',
-        }}
-        pressStyle={{
-          bg: active ? '$background' : '$color4',
-        }}
+        hoverStyle={{ bg: active ? '$background' : '$color3' }}
+        pressStyle={{ bg: active ? '$background' : '$color4' }}
         role="tab"
         aria-selected={active}
       >
         <SizableText
-          size="$4"
+          size="$3"
           fow={active ? '700' : '500'}
           color={active ? '$color12' : '$color10'}
         >

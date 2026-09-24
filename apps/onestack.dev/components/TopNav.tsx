@@ -1,9 +1,10 @@
 import { Search } from '@tamagui/lucide-icons-2'
 import { useContext, useRef } from 'react'
-import { Separator, SizableText, styled, View, XStack, YStack } from 'tamagui'
+import { Separator, styled, View, XStack, YStack } from 'tamagui'
 import { Link, usePathname } from 'one'
 import { OneLogo } from '~/features/brand/Logo'
 import { ReleaseStatus } from '~/components/ReleaseStatus'
+import { DocsSectionTabs } from '~/features/docs/DocsSectionTabs'
 import { SearchContext } from '~/features/search/SearchContext'
 import { HeaderMenu } from '~/features/site/HeaderMenu'
 import { SocialLinksRow } from '~/features/site/SocialLinksRow'
@@ -29,74 +30,12 @@ const SimpleButton = styled(View, {
   },
 })
 
-const DocsNativeTabs = () => {
-  const pathname = usePathname()
-  const isNative = pathname.startsWith('/native')
-  const isDocs = pathname.startsWith('/docs') || isNative
-  if (!isDocs) return null
-
-  return (
-    <XStack
-      pe="auto"
-      ai="center"
-      gap="$1"
-      mr="$2"
-      p="$1"
-      br="$10"
-      bg="$color2"
-      $sm={{ dsp: 'none' }}
-      role="tablist"
-      aria-label="Documentation section"
-    >
-      <TopNavTab href="/docs/introduction" active={!isNative} label="Docs" />
-      <TopNavTab href="/native" active={isNative} label="Native" />
-    </XStack>
-  )
-}
-
-const TopNavTab = ({
-  href,
-  active,
-  label,
-}: {
-  href: string
-  active: boolean
-  label: string
-}) => {
-  return (
-    <Link href={href as any} asChild>
-      <XStack
-        render="a"
-        ai="center"
-        jc="center"
-        px="$3"
-        py="$1.5"
-        br="$8"
-        cursor="pointer"
-        bg={active ? '$background' : 'transparent'}
-        hoverStyle={{
-          bg: active ? '$background' : '$color3',
-        }}
-        role="tab"
-        aria-selected={active}
-      >
-        <SizableText
-          size="$3"
-          fow={active ? '700' : '500'}
-          color={active ? '$color12' : '$color10'}
-        >
-          {label}
-        </SizableText>
-      </XStack>
-    </Link>
-  )
-}
-
 export const TopNav = () => {
   const scrollParentRef = useRef<any>(null)
   const { onOpen } = useContext(SearchContext)
   const pathname = usePathname()
   const isBlog = pathname.startsWith('/blog')
+  const isDocs = pathname.startsWith('/docs') || pathname.startsWith('/native')
 
   return (
     <>
@@ -188,7 +127,11 @@ export const TopNav = () => {
           </XStack>
 
           <XStack pe="none" ai="center">
-            <DocsNativeTabs />
+            {isDocs && (
+              <View pe="auto" mr="$2" $sm={{ dsp: 'none' }}>
+                <DocsSectionTabs />
+              </View>
+            )}
 
             <SimpleButton marginTop={-3} mr={8} onPress={onOpen}>
               <Search width={24} height={24} color="$color12" strokeWidth={2} />

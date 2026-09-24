@@ -3,8 +3,7 @@ title: Haptics
 description: Fire-and-forget tactile feedback on both platforms
 ---
 
-Fire-and-forget tactile feedback, exposed as `One.UI.Haptics` (importable from
-`@vxrn/native/haptics`). The names follow Apple's feedback generators, not a
+Fire-and-forget tactile feedback, exposed as `One.UI.Haptics`. The names follow Apple's feedback generators, not a
 hardware spec: `selection` for picking among options, `impact` for physical
 commits, `notification` for completion and failure the user cares about.
 
@@ -17,11 +16,10 @@ One.UI.Haptics.notification('success')
 ```
 
 The calls are synchronous `void`, not promises: haptics have no meaningful
-completion, so awaiting them would only serialize feedback behind bridge
-latency. Unknown style or type strings throw a `TypeError` at the JS boundary.
-A missing native module throws: only the web entry is a silent no-op.
-Web is always a no-op: `navigator.vibrate()` cannot produce
-selection/impact/notification feedback.
+completion, so awaiting them would only delay the next feedback. Unknown style or type strings throw a `TypeError` at the JS boundary.
+On iOS and Android a missing native module throws. Web is a no-op, because
+`navigator.vibrate()` cannot produce selection, impact, or notification
+feedback.
 
 `impact` accepts `light`, `medium`, `heavy`, `soft`, or `rigid`.
 `notification` accepts `success`, `warning`, or `error`. On iOS each maps to

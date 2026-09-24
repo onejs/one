@@ -6,7 +6,7 @@ description: WebCrypto random values on native
 Hermes ships no WebCrypto, so One installs `crypto.getRandomValues` and
 `crypto.randomUUID` (RFC 4122 v4) on native at startup, backed by
 `SecRandomCopyBytes` on iOS and `java.security.SecureRandom` on Android,
-both synchronous over the bridge.
+both synchronous Nitro calls.
 
 ```tsx
 const id = crypto.randomUUID()
