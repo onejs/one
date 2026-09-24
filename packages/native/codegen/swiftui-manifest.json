@@ -2116,6 +2116,34 @@
       }
     },
     {
+      "name": "actionSheet",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "title",
+          "label": "title"
+        }
+      ],
+      "factoryParameter": {
+        "index": 1,
+        "label": "content",
+        "type": "SwiftUI.ActionSheet",
+        "argumentOffset": 1
+      }
+    },
+    {
       "name": "addPassToWalletButtonStyle",
       "kind": "string",
       "type": "_PassKit_SwiftUI.AddPassToWalletButtonStyle",
@@ -2131,6 +2159,34 @@
           "ios": 16
         }
       ]
+    },
+    {
+      "name": "alert",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "title",
+          "label": "title"
+        }
+      ],
+      "factoryParameter": {
+        "index": 1,
+        "label": "content",
+        "type": "SwiftUI.Alert",
+        "argumentOffset": 1
+      }
     },
     {
       "name": "alignmentGuideWithHorizontalAlignment",
@@ -16843,6 +16899,7 @@
         "accessibilityTextContentType",
         "accessibilityValue",
         "accessibilityZoomAction",
+        "actionSheet",
         "alert",
         "allowsWindowActivationEvents",
         "assistiveAccessNavigationIcon",
@@ -17342,6 +17399,7 @@
         "accessibilityTextContentType",
         "accessibilityValue",
         "accessibilityZoomAction",
+        "actionSheet",
         "alert",
         "allowsWindowActivationEvents",
         "assistiveAccessNavigationIcon",

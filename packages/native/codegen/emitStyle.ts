@@ -299,9 +299,17 @@ ${assignments}
       return ${expression(argument.swiftExpression, 'raw') ?? (baseType === 'SwiftUICore.Text' ? 'Text(raw)' : baseType === 'SwiftUICore.Image' ? 'Image(systemName: raw)' : construct('raw', argument.scalarConstructor, argument.type))}
     }()`
         }).join('\n')
-        const callArguments = argumentsFromSDK.map((argument, index) =>
+        const callArguments = argumentsFromSDK.slice(0, modifier.factoryParameter?.argumentOffset).map((argument, index) =>
           `${argument.label === '_' ? '' : `${argument.label}: `}${argument.closureInput ? `{ (_: ${argument.closureInput}) in argument${index} }` : `argument${index}`}`
         )
+        if (modifier.factoryParameter) {
+          const constructor = argumentsFromSDK.slice(modifier.factoryParameter.argumentOffset)
+            .map((argument, index) =>
+              `${argument.label === '_' ? '' : `${argument.label}: `}argument${modifier.factoryParameter!.argumentOffset + index}`)
+            .join(', ')
+          callArguments.splice(modifier.factoryParameter.index, 0,
+            `${modifier.factoryParameter.label === '_' ? '' : `${modifier.factoryParameter.label}: `}{ ${modifier.factoryParameter.type}(${constructor}) }`)
+        }
         if (modifier.namespaceParameter)
           callArguments.splice(modifier.namespaceParameter.index, 0,
             `${modifier.namespaceParameter.label === '_' ? '' : `${modifier.namespaceParameter.label}: `}OneNativeNamespace.id`)

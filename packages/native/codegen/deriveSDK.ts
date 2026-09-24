@@ -68,6 +68,7 @@ export type DerivedModifier = {
   callArguments?: readonly { label: string; defaultValue?: string; bridge?: true }[]
   namespaceParameter?: { index: number; label: string }
   sharedParameter?: { index: number; label: string; type: string }
+  factoryParameter?: { index: number; label: string; type: string; argumentOffset: number }
   arguments?: readonly DerivedArgument[]
 }
 
@@ -665,6 +666,42 @@ export function deriveModifiers(
               type: method.parameters[sharedIndex].type,
             }, ...framework }]
         return []
+      }
+      const factoryIndex = method.parameters.findIndex((parameter) =>
+        /^\(\) -> [A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+$/.test(parameter.type) &&
+        parameter.defaultValue === undefined)
+      if (factoryIndex !== -1 && !method.requirements?.length) {
+        const factory = method.parameters[factoryIndex]
+        const type = factory.type.slice('() -> '.length)
+        const [module, ...owner] = type.split('.')
+        const constructors = inventory.filter((declaration) => declaration.module === module &&
+          declaration.owner === owner.join('.') && declaration.kind === 'init' &&
+          !declaration.requirements?.length && present(declaration) && ios(declaration) <= ceiling &&
+          declaration.parameters.some((parameter) => parameter.defaultValue === undefined) &&
+          declaration.parameters.filter((parameter) => parameter.defaultValue === undefined)
+            .every((parameter) => valueOf(parameter.type)))
+        const required = method.parameters.filter((parameter, index) =>
+          index !== factoryIndex && parameter.defaultValue === undefined)
+        const argumentsFromSDK = required.map((parameter) => {
+          const value = parameter.type === 'SwiftUICore.Binding<Swift.Bool>'
+            ? { kind: 'bindingBoolean' as const, type: parameter.type, optional: false }
+            : valueOf(parameter.type)
+          return value && { ...value, field: parameter.name, label: parameter.label }
+        })
+        if (constructors.length === 1 && argumentsFromSDK.every(Boolean)) {
+          const constructorArguments = constructors[0].parameters
+            .filter((parameter) => parameter.defaultValue === undefined)
+            .map((parameter) => ({ ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label }))
+          const argumentsList = [...argumentsFromSDK as DerivedArgument[], ...constructorArguments]
+          if (new Set(argumentsList.map((argument) => argument.field)).size === argumentsList.length)
+            return [{ name, module: method.module, kind: 'record', type: '',
+              ios: Math.max(ios(method), ios(constructors[0])), arguments: argumentsList,
+              factoryParameter: {
+                index: method.parameters.slice(0, factoryIndex).filter((parameter) =>
+                  parameter.defaultValue === undefined).length,
+                label: factory.label, type, argumentOffset: required.length,
+              }, ...framework }]
+        }
       }
       const genericTransform = method.parameters.length === 3 &&
         method.parameters[0].type === 'T.Type' &&

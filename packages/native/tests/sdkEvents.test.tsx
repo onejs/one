@@ -66,6 +66,18 @@ describe('SDK callback and binding transport', () => {
     expect(onCustomizationChange).toHaveBeenCalledWith(false)
   })
 
+  it('constructs a defaulted SDK object for a zero-input content closure', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'confirm', swiftStyle: {
+      actionSheet: { isPresented: { value: true, onChange }, title: 'Confirm' },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['actionSheet', '["true","Confirm"]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'actionSheet.isPresented', value: 'false' } })
+    expect(onChange).toHaveBeenCalledWith(false)
+  })
+
   it('toggles a public boolean environment value through the SDK transform method', () => {
     const element = Controls.Text({ text: 'child', swiftStyle: {
       transformEnvironmentIsEnabled: true,

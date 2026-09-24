@@ -603,7 +603,21 @@ export interface OneNativeStyle {
             y: number;
         };
     }) => void;
+    actionSheet?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        title: string;
+    }>;
     addPassToWalletButtonStyle?: SDKAddPassToWalletButtonStyle;
+    alert?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        title: string;
+    }>;
     alignmentGuideWithHorizontalAlignment?: Readonly<{
         g: 'leading' | 'center' | 'trailing' | 'listRowSeparatorLeading' | 'listRowSeparatorTrailing';
         computeValue: number;

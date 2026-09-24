@@ -99,7 +99,9 @@ const sdkKinds = {
   accessibilityWithSortPriority: 'number',
   accessibilityWithValue: 'string',
   accessibilityZoomAction: 'eventStruct',
+  actionSheet: 'record',
   addPassToWalletButtonStyle: 'string',
+  alert: 'record',
   alignmentGuideWithHorizontalAlignment: 'record',
   alignmentGuideWithVerticalAlignment: 'record',
   allowedDynamicRange: 'optionalEnum',
@@ -1418,6 +1420,14 @@ const sdkRecords: Record<
   accessibilityValueWithValueDescriptionAndIsEnabled: [
     { field: 'valueDescription', kind: 'string', optional: false },
     { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  actionSheet: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'title', kind: 'string', optional: false },
+  ],
+  alert: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'title', kind: 'string', optional: false },
   ],
   alignmentGuideWithHorizontalAlignment: [
     { field: 'g', kind: 'enum', optional: false },

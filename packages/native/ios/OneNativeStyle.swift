@@ -164,7 +164,9 @@ extension View {
       case "accessibilityWithSortPriority": view = AnyView(view.oneNativeSDKAccessibilityWithSortPriority(value, emit: emit))
       case "accessibilityWithValue": view = AnyView(view.oneNativeSDKAccessibilityWithValue(value, emit: emit))
       case "accessibilityZoomAction": view = AnyView(view.oneNativeSDKAccessibilityZoomAction(value, emit: emit))
+      case "actionSheet": view = AnyView(view.oneNativeSDKActionSheet(value, emit: emit))
       case "addPassToWalletButtonStyle": view = AnyView(view.oneNativeSDKAddPassToWalletButtonStyle(value, emit: emit))
+      case "alert": view = AnyView(view.oneNativeSDKAlert(value, emit: emit))
       case "alignmentGuideWithHorizontalAlignment": view = AnyView(view.oneNativeSDKAlignmentGuideWithHorizontalAlignment(value, emit: emit))
       case "alignmentGuideWithVerticalAlignment": view = AnyView(view.oneNativeSDKAlignmentGuideWithVerticalAlignment(value, emit: emit))
       case "allowedDynamicRange": view = AnyView(view.oneNativeSDKAllowedDynamicRange(value, emit: emit))
@@ -1596,6 +1598,24 @@ extension View {
     })
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKActionSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid actionSheet: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid actionSheet.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("actionSheet.isPresented", String($0)) })
+    }()
+    let argument1: SwiftUI.Text = {
+      guard let raw = values[1] else { preconditionFailure("missing actionSheet.title") }
+      return Text(raw)
+    }()
+    self.actionSheet(isPresented: argument0, content: { SwiftUI.ActionSheet(title: argument1) })
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKAddPassToWalletButtonStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -1603,6 +1623,24 @@ extension View {
       case "blackOutline": self.addPassToWalletButtonStyle(_PassKit_SwiftUI.AddPassToWalletButtonStyle.blackOutline)
     default: preconditionFailure("invalid addPassToWalletButtonStyle: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAlert(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid alert: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid alert.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("alert.isPresented", String($0)) })
+    }()
+    let argument1: SwiftUI.Text = {
+      guard let raw = values[1] else { preconditionFailure("missing alert.title") }
+      return Text(raw)
+    }()
+    self.alert(isPresented: argument0, content: { SwiftUI.Alert(title: argument1) })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAlignmentGuideWithHorizontalAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
