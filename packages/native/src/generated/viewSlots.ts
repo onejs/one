@@ -14,6 +14,7 @@ export const viewSlotAvailability = {
   contextMenu: 13,
   dismissalConfirmationDialog: 27,
   documentBrowserContextMenu: 18.1,
+  fullScreenCover: 14,
   inspector: 17,
   listRowBackground: 13,
   mapControls: 17,
@@ -22,6 +23,7 @@ export const viewSlotAvailability = {
   navigationBarItemsWithTrailing: 13,
   navigationDestination: 16,
   overlay: 15,
+  popover: 13,
   presentationBackground: 16.4,
   safeAreaBarWithHorizontalEdge: 26,
   safeAreaBarWithVerticalEdge: 26,
@@ -31,6 +33,7 @@ export const viewSlotAvailability = {
   searchScopesWithBindingStringAndSearchScopeActivation: 16.4,
   searchSuggestions: 16,
   sectionActions: 18,
+  sheet: 13,
   subscriptionStoreControlIcon: 17,
   subscriptionStorePolicyDestination: 17,
   swipeActions: 15,
@@ -82,6 +85,7 @@ export const viewSlotArguments = {
     { field: 'shouldPresent', kind: 'boolean' },
   ],
   documentBrowserContextMenu: [],
+  fullScreenCover: [{ field: 'isPresented', kind: 'bindingBoolean' }],
   inspector: [{ field: 'isPresented', kind: 'bindingBoolean' }],
   listRowBackground: [],
   mapControls: [],
@@ -90,6 +94,7 @@ export const viewSlotArguments = {
   navigationBarItemsWithTrailing: [],
   navigationDestination: [{ field: 'isPresented', kind: 'bindingBoolean' }],
   overlay: [],
+  popover: [{ field: 'isPresented', kind: 'bindingBoolean' }],
   presentationBackground: [],
   safeAreaBarWithHorizontalEdge: [
     { field: 'edge', kind: 'enum', cases: { leading: 15, trailing: 15 } },
@@ -114,6 +119,7 @@ export const viewSlotArguments = {
   ],
   searchSuggestions: [],
   sectionActions: [],
+  sheet: [{ field: 'isPresented', kind: 'bindingBoolean' }],
   subscriptionStoreControlIcon: [],
   subscriptionStorePolicyDestination: [
     { field: 'button', kind: 'enum', cases: { termsOfService: 17, privacyPolicy: 17 } },
@@ -172,6 +178,10 @@ export type ViewSlotConfiguration =
     }
   | { name: 'documentBrowserContextMenu'; options?: never }
   | {
+      name: 'fullScreenCover'
+      options: { isPresented: { value: boolean; onChange: (value: boolean) => void } }
+    }
+  | {
       name: 'inspector'
       options: { isPresented: { value: boolean; onChange: (value: boolean) => void } }
     }
@@ -185,6 +195,10 @@ export type ViewSlotConfiguration =
       options: { isPresented: { value: boolean; onChange: (value: boolean) => void } }
     }
   | { name: 'overlay'; options?: never }
+  | {
+      name: 'popover'
+      options: { isPresented: { value: boolean; onChange: (value: boolean) => void } }
+    }
   | { name: 'presentationBackground'; options?: never }
   | { name: 'safeAreaBarWithHorizontalEdge'; options: { edge: 'leading' | 'trailing' } }
   | { name: 'safeAreaBarWithVerticalEdge'; options: { edge: 'top' | 'bottom' } }
@@ -203,6 +217,10 @@ export type ViewSlotConfiguration =
     }
   | { name: 'searchSuggestions'; options?: never }
   | { name: 'sectionActions'; options?: never }
+  | {
+      name: 'sheet'
+      options: { isPresented: { value: boolean; onChange: (value: boolean) => void } }
+    }
   | { name: 'subscriptionStoreControlIcon'; options?: never }
   | {
       name: 'subscriptionStorePolicyDestination'
