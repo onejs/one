@@ -331,6 +331,8 @@ export declare const sdkScrollDismissesKeyboardValues: readonly ['automatic', 'i
 export type SDKScrollDismissesKeyboard = (typeof sdkScrollDismissesKeyboardValues)[number];
 export declare const sdkScrollTargetBehaviorValues: readonly ['paging', 'viewAligned'];
 export type SDKScrollTargetBehavior = (typeof sdkScrollTargetBehaviorValues)[number];
+export declare const sdkScrollTransitionValues: readonly ['opacity', 'scaleEffect'];
+export type SDKScrollTransition = (typeof sdkScrollTransitionValues)[number];
 export declare const sdkSearchDictationBehaviorValues: readonly ['automatic'];
 export type SDKSearchDictationBehavior = (typeof sdkSearchDictationBehaviorValues)[number];
 export declare const sdkSearchPresentationToolbarBehaviorValues: readonly ['automatic', 'avoidHidingContent'];
@@ -415,6 +417,8 @@ export declare const sdkTruncationModeValues: readonly ['head', 'tail', 'middle'
 export type SDKTruncationMode = (typeof sdkTruncationModeValues)[number];
 export declare const sdkVerifyIdentityWithWalletButtonStyleValues: readonly ['black', 'blackOutline'];
 export type SDKVerifyIdentityWithWalletButtonStyle = (typeof sdkVerifyIdentityWithWalletButtonStyleValues)[number];
+export declare const sdkVisualEffectValues: readonly ['opacity', 'scaleEffect'];
+export type SDKVisualEffect = (typeof sdkVisualEffectValues)[number];
 export declare const sdkWebViewBackForwardNavigationGesturesValues: readonly ['automatic', 'enabled', 'disabled'];
 export type SDKWebViewBackForwardNavigationGestures = (typeof sdkWebViewBackForwardNavigationGesturesValues)[number];
 export declare const sdkWebViewContentBackgroundValues: readonly ['automatic', 'visible', 'hidden'];
@@ -1640,6 +1644,10 @@ export interface OneNativeStyle {
     }>;
     scrollTargetBehavior?: SDKScrollTargetBehavior;
     scrollTargetLayout?: boolean;
+    scrollTransition?: Readonly<{
+        kind: 'opacity' | 'scaleEffect';
+        value: number;
+    }>;
     searchable?: Readonly<{
         value: string;
         onChange: (value: string) => void;
@@ -1989,6 +1997,10 @@ export interface OneNativeStyle {
         }>;
     }>;
     verifyIdentityWithWalletButtonStyle?: SDKVerifyIdentityWithWalletButtonStyle;
+    visualEffect?: Readonly<{
+        kind: 'opacity' | 'scaleEffect';
+        value: number;
+    }>;
     webViewBackForwardNavigationGestures?: SDKWebViewBackForwardNavigationGestures;
     webViewContentBackground?: SDKWebViewContentBackground;
     webViewElementFullscreenBehavior?: SDKWebViewElementFullscreenBehavior;

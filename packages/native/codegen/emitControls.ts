@@ -149,6 +149,8 @@ ${styleFields
       publicType:
         modifier.kind === 'event'
           ? '() => void'
+          : modifier.kind === 'visualEffect'
+            ? `Readonly<{ kind: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}; value: number }>`
           : modifier.kind === 'eventAsync'
             ? '() => void | Promise<void>'
             : modifier.kind === 'eventAsyncStruct'

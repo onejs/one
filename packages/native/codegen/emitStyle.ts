@@ -442,6 +442,28 @@ ${modifier.arguments.map((argument, index) => argument.kind === 'stringArray'
       await OneNativeAsyncAction.wait(name: ${JSON.stringify(modifier.name)}, value: encoded, emit: emit)
     }`, modifier.ios, Boolean(modifier.arguments?.length))}
   }`
+      if (modifier.kind === 'visualEffect')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let decoded: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid ${modifier.name} visual effect") }
+      return decoded
+    }()
+    let amount: Double = {
+      guard let amount = Double(decoded[1]), amount.isFinite else { preconditionFailure("invalid ${modifier.name} amount") }
+      return amount
+    }()
+    switch decoded[0] {
+    case "opacity": ${apply(modifier.visualPhase
+      ? 'transition: { effect, phase in effect.opacity(1 - (1 - amount) * abs(phase.value)) }'
+      : '{ effect, _ in effect.opacity(amount) }', modifier.ios, Boolean(modifier.visualPhase))}
+    case "scaleEffect": ${apply(modifier.visualPhase
+      ? 'transition: { effect, phase in effect.scaleEffect(CGFloat(1 - (1 - amount) * abs(phase.value))) }'
+      : '{ effect, _ in effect.scaleEffect(CGFloat(amount)) }', modifier.ios, Boolean(modifier.visualPhase))}
+    default: preconditionFailure("invalid ${modifier.name} visual effect kind")
+    }
+  }`
       if (modifier.kind.startsWith('event') || modifier.kind.startsWith('binding')) {
         const bridge = modifier.kind.startsWith('event')
           ? modifier.kind === 'event'
@@ -625,6 +647,7 @@ ${styleFields
 const colorFields = [${colorFields.map((field) => `'${field.name}'`).join(', ')}] as const
 const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [modifier.name, modifier.kind])))} as const
 const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
+const sdkVisualEffects: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'visualEffect').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
 type SDKEventValueShape =
   | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' | 'description' }
   | { kind: 'enum'; cases: readonly string[]; open?: true }
@@ -747,6 +770,17 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
           typeof (value as { onEnded?: unknown }).onEnded !== 'function')
           throw new Error(name + ' must be an SDK gesture and callback')
         sdkModifiers.push([name, (value as { kind: string }).kind])
+        continue
+      }
+      if (kind === 'visualEffect') {
+        if (!value || typeof value !== 'object' || Array.isArray(value) ||
+          typeof (value as { kind?: unknown }).kind !== 'string' ||
+          !sdkVisualEffects[name].includes((value as { kind: string }).kind) ||
+          typeof (value as { value?: unknown }).value !== 'number' ||
+          !Number.isFinite((value as { value: number }).value))
+          throw new Error(name + ' must be a visual effect and finite value')
+        sdkModifiers.push([name, JSON.stringify([(value as { kind: string }).kind,
+          String((value as { value: number }).value)])])
         continue
       }
       if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {
