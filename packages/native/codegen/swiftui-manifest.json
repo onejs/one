@@ -10676,6 +10676,12 @@
       }
     },
     {
+      "name": "onReceive",
+      "kind": "eventNotification",
+      "type": "P",
+      "ios": 13
+    },
+    {
       "name": "onScrollGeometryChangeWithContainerSize",
       "sdkName": "onScrollGeometryChange",
       "module": "SwiftUI",
@@ -17540,6 +17546,7 @@
         "onOpenURL",
         "onPencilDoubleTap",
         "onPencilSqueeze",
+        "onReceive",
         "onScrollGeometryChange",
         "onScrollPhaseChange",
         "onScrollTargetVisibilityChange",
@@ -18051,6 +18058,7 @@
         "onOpenURL",
         "onPencilDoubleTap",
         "onPencilSqueeze",
+        "onReceive",
         "onScrollGeometryChange",
         "onScrollPhaseChange",
         "onScrollTargetVisibilityChange",

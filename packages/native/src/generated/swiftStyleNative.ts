@@ -417,6 +417,7 @@ const sdkKinds = {
   onPencilDoubleTap: 'eventStruct',
   onPencilSqueeze: 'eventAssociatedEnum',
   onPreferenceChangePreferredColorScheme: 'eventStruct',
+  onReceive: 'eventNotification',
   onScrollGeometryChangeWithContainerSize: 'eventStruct',
   onScrollGeometryChangeWithContentOffset: 'eventStruct',
   onScrollGeometryChangeWithContentSize: 'eventStruct',
@@ -2439,6 +2440,20 @@ export function swiftStyleNative(
         sdkModifiers.push([name, JSON.stringify(record.of)])
         continue
       }
+      if (kind === 'eventNotification') {
+        const record = value as { name?: unknown; onAction?: unknown } | undefined
+        if (
+          !record ||
+          typeof record.name !== 'string' ||
+          !record.name ||
+          typeof record.onAction !== 'function'
+        )
+          throw new Error(
+            name + ' must have a notification name and an onAction callback'
+          )
+        sdkModifiers.push([name, record.name])
+        continue
+      }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value)))
         throw new Error(name + ' must be finite')
       if (
@@ -2801,6 +2816,9 @@ export function dispatchSDKEvent(
     if (!validSDKEventValue(payload, sdkEventStructs[name]))
       throw new Error(name + ' emitted an invalid drop value')
     ;(modifier as { onDrop: (value: unknown) => void } | undefined)?.onDrop(payload)
+  } else if (kind === 'eventNotification') {
+    if (value !== '') throw new Error(name + ' emitted an invalid notification event')
+    ;(modifier as { onAction: () => void } | undefined)?.onAction()
   } else if (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean') {
     if (value !== 'true' && value !== 'false')
       throw new Error(name + ' emitted an invalid boolean')

@@ -2,6 +2,7 @@
 // edit the generator or catalog, then regenerate.
 import SwiftUI
 import UIKit
+import Combine
 import PassKit
 import AppIntents
 import StoreKit
@@ -482,6 +483,7 @@ extension View {
       case "onPencilDoubleTap": view = AnyView(view.oneNativeSDKOnPencilDoubleTap(value, emit: emit))
       case "onPencilSqueeze": view = AnyView(view.oneNativeSDKOnPencilSqueeze(value, emit: emit))
       case "onPreferenceChangePreferredColorScheme": view = AnyView(view.oneNativeSDKOnPreferenceChangePreferredColorScheme(value, emit: emit))
+      case "onReceive": view = AnyView(view.oneNativeSDKOnReceive(value, emit: emit))
       case "onScrollGeometryChangeWithContainerSize": view = AnyView(view.oneNativeSDKOnScrollGeometryChangeWithContainerSize(value, emit: emit))
       case "onScrollGeometryChangeWithContentOffset": view = AnyView(view.oneNativeSDKOnScrollGeometryChangeWithContentOffset(value, emit: emit))
       case "onScrollGeometryChangeWithContentSize": view = AnyView(view.oneNativeSDKOnScrollGeometryChangeWithContentSize(value, emit: emit))
@@ -5709,6 +5711,10 @@ self
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onPreferenceChangePreferredColorScheme event") }
       emit("onPreferenceChangePreferredColorScheme", encoded)
     })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnReceive(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onReceive(NotificationCenter.default.publisher(for: Notification.Name(value)), perform: { _ in emit("onReceive", "") })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnScrollGeometryChangeWithContainerSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

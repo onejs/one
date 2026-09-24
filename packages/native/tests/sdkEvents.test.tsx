@@ -384,6 +384,21 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('must have content types')
   })
 
+  it('receives a named native notification through the generated publisher', () => {
+    const onAction = vi.fn()
+    const element = Controls.Text({ text: 'notification', swiftStyle: {
+      onReceive: { name: 'example.updated', onAction },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['onReceive', 'example.updated'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'onReceive', value: '' } })
+    expect(onAction).toHaveBeenCalledOnce()
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onReceive', value: 'unexpected',
+    } })).toThrow('invalid notification event')
+  })
+
   it('passes a purchase result through the async callback and rejects malformed cases', async () => {
     completeAsyncAction.mockClear()
     let finish!: () => void

@@ -187,6 +187,8 @@ ${styleFields
                     ? 'Readonly<{ items: readonly string[]; onAction: () => void }>'
                   : modifier.kind === 'eventDrop'
                     ? `Readonly<{ of: readonly string[]; onDrop: (value: ${eventValueType(modifier.eventValue!)}) => void }>`
+                  : modifier.kind === 'eventNotification'
+                    ? 'Readonly<{ name: string; onAction: () => void }>'
                   : modifier.kind === 'eventReturnEnum'
                     ? `Readonly<{ result: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}; onAction: (value: ${eventValueType(modifier.eventValue!)}) => void }>`
           : modifier.kind === 'bindingBoolean' || modifier.kind === 'bindingFocusBoolean'
