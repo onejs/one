@@ -1,4 +1,4 @@
-package dev.onejs.onenative
+package com.margelo.nitro.one
 
 import android.Manifest
 import android.app.Activity
@@ -19,15 +19,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.facebook.react.bridge.ActivityEventListener
-import com.facebook.react.bridge.Arguments
-import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContextBaseJavaModule
-import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.ReadableMap
-import com.facebook.react.bridge.WritableMap
 import com.facebook.react.modules.core.PermissionAwareActivity
 import com.facebook.react.modules.core.PermissionListener
+import com.margelo.nitro.NitroModules
+import com.margelo.nitro.core.Promise
 import java.io.File
 import java.io.FileOutputStream
 import java.util.UUID
@@ -37,69 +33,68 @@ import java.util.UUID
 // the camera needs the CAMERA permission, which one prebuild writes from
 // native.app imagePicker. picked assets are copied into the app cache and
 // returned as file uris. backing out, a denied permission, and a missing
-// camera all resolve { canceled: true, assets: null }; only runtime failures
-// reject, with E_IMAGE_PICKER_FAILED.
-class OneNativeImagePickerModule(
-    reactContext: ReactApplicationContext,
-) : ReactContextBaseJavaModule(reactContext),
-    ActivityEventListener,
-    PermissionListener {
-    private var pendingPickerPromise: Promise? = null
+// camera all resolve canceled; only runtime failures reject. calls arrive on
+// the js thread and results on the ui thread, so the pending slot is only
+// taken or settled under the lock.
+class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, PermissionListener {
+    private val lock = Any()
+    private var pendingPickerPromise: Promise<ImagePickerNativeResult>? = null
     private var pendingPickerVerb: String = "launchLibrary"
-    private var pendingPermissionPromise: Promise? = null
+    private var pendingPermissionPromise: Promise<CameraPermissionResponse>? = null
     private var pendingLimit: Int = 1
     private var pendingSingle: PickVisualMedia? = null
     private var pendingMultiple: PickMultipleVisualMedia? = null
     private var pendingUsedPicker: Boolean = false
     private var pendingCameraFile: File? = null
 
+    private val context: ReactApplicationContext
+        get() = NitroModules.applicationContext
+            ?: throw IllegalStateException("ImagePicker: the react context is not ready")
+
     init {
-        reactContext.addActivityEventListener(this)
+        NitroModules.applicationContext?.addActivityEventListener(this)
     }
 
-    override fun getName(): String = NAME
-
-    override fun onCatalystInstanceDestroy() {
-        reactApplicationContext.removeActivityEventListener(this)
-        pendingPickerPromise?.reject(
-            E_FAILED,
-            "ImagePicker.$pendingPickerVerb: torn down mid-request"
-        )
-        pendingPermissionPromise?.reject(
-            E_FAILED,
-            "ImagePicker.requestCameraPermissions: torn down mid-request"
-        )
-        clearPickerPending()
-        pendingPermissionPromise = null
+    override fun dispose() {
+        NitroModules.applicationContext?.removeActivityEventListener(this)
+        val picker: Promise<ImagePickerNativeResult>?
+        val permission: Promise<CameraPermissionResponse>?
+        val verb: String
+        synchronized(lock) {
+            picker = pendingPickerPromise
+            permission = pendingPermissionPromise
+            verb = pendingPickerVerb
+            clearPickerPending()
+            pendingPermissionPromise = null
+        }
+        picker?.reject(OneNativeError(E_FAILED, "ImagePicker.$verb: torn down mid-request"))
+        permission?.reject(OneNativeError(E_FAILED, "ImagePicker.requestCameraPermissions: torn down mid-request"))
+        super.dispose()
     }
 
-    // a legacy module has no lifecycle owner to register activity result
+    // a hybrid object has no lifecycle owner to register activity result
     // launchers against, so it launches intents the classic way and reads
     // results through the activity event listener.
     @Suppress("DEPRECATION")
-    @ReactMethod
-    fun launchLibrary(options: ReadableMap, promise: Promise) {
-        if (!takePickerPending("launchLibrary", promise)) return
-        val activity = reactApplicationContext.currentActivity
+    override fun launchLibrary(options: ResolvedImagePickerOptions): Promise<ImagePickerNativeResult> {
+        val promise = Promise<ImagePickerNativeResult>()
+        if (!takePickerPending("launchLibrary", promise)) return promise
+        val activity = NitroModules.applicationContext?.currentActivity
         if (activity == null) {
             rejectPickerPending("launchLibrary", "found no activity to present from")
-            return
+            return promise
         }
-        val kinds =
-            options.getArray("mediaTypes")?.toArrayList()?.mapNotNull { it as? String }
-                ?: emptyList()
-        val allowsImages = kinds.contains("images")
-        val allowsVideos = kinds.contains("videos")
+        val allowsImages = options.mediaTypes.contains(ImagePickerMediaType.IMAGES)
+        val allowsVideos = options.mediaTypes.contains(ImagePickerMediaType.VIDEOS)
         if (!allowsImages && !allowsVideos) {
             // unreachable from the js entries, which validate first; settle
             // rather than hang a direct caller.
             rejectPickerPending("launchLibrary", "mediaTypes must list at least one media type")
-            return
+            return promise
         }
-        // zero is unlimited on both sides of the bridge, so the value passes through.
-        pendingLimit =
-            if (options.hasKey("selectionLimit")) options.getInt("selectionLimit") else 1
-        val selectionLimit = pendingLimit
+        // zero is unlimited on both sides, so the value passes through.
+        val selectionLimit = options.selectionLimit.toInt()
+        pendingLimit = selectionLimit
         val mediaType =
             when {
                 allowsImages && allowsVideos -> PickVisualMedia.ImageAndVideo
@@ -152,22 +147,23 @@ class OneNativeImagePickerModule(
         } catch (e: Exception) {
             rejectPickerPending("launchLibrary", e.message ?: "could not open the picker")
         }
+        return promise
     }
 
-    @ReactMethod
-    fun launchCamera(promise: Promise) {
-        if (!takePickerPending("launchCamera", promise)) return
-        val context = reactApplicationContext
+    override fun launchCamera(): Promise<ImagePickerNativeResult> {
+        val promise = Promise<ImagePickerNativeResult>()
+        if (!takePickerPending("launchCamera", promise)) return promise
+        val context = context
         val activity = context.currentActivity
         if (activity == null) {
             rejectPickerPending("launchCamera", "found no activity to present from")
-            return
+            return promise
         }
         // refusing and missing hardware are ordinary outcomes: both resolve
         // canceled, like backing out of the picker.
         if (!context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
             resolvePickerCanceled()
-            return
+            return promise
         }
         if (!isCameraDeclared()) {
             rejectPickerPending(
@@ -175,27 +171,27 @@ class OneNativeImagePickerModule(
                 "camera needs the CAMERA permission: set native.app imagePicker.camera " +
                     "and rerun one prebuild"
             )
-            return
+            return promise
         }
         if (
             ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) ==
                 PackageManager.PERMISSION_GRANTED
         ) {
             startCamera(activity)
-            return
+            return promise
         }
         if (cameraRationale(activity) || cameraAskedBefore(activity)) {
             // denied before, askable or permanent: stay quiet and resolve
             // canceled rather than nag on every launch. the explicit
             // requestCameraPermissions call is the way back.
             resolvePickerCanceled()
-            return
+            return promise
         }
         // undetermined: ask once, then capture or cancel on the answer.
         val aware = activity as? PermissionAwareActivity
         if (aware == null) {
             rejectPickerPending("launchCamera", "cannot request the camera permission here")
-            return
+            return promise
         }
         markCameraAsked()
         aware.requestPermissions(
@@ -203,54 +199,55 @@ class OneNativeImagePickerModule(
             REQUEST_CAMERA_PERMISSION,
             this
         )
+        return promise
     }
 
-    @ReactMethod
-    fun getCameraPermissions(promise: Promise) {
-        promise.resolve(cameraPermissionResponse())
+    override fun getCameraPermissions(): Promise<CameraPermissionResponse> {
+        // a read, never a prompt; outside the pending slot so it answers during a pick.
+        return Promise.resolved(cameraPermissionResponse())
     }
 
-    @ReactMethod
-    fun requestCameraPermissions(promise: Promise) {
-        if (pendingPermissionPromise != null) {
-            promise.reject(
-                E_FAILED,
-                "ImagePicker.requestCameraPermissions: another request is already in flight"
-            )
-            return
-        }
-        val context = reactApplicationContext
+    override fun requestCameraPermissions(): Promise<CameraPermissionResponse> {
+        val context = context
         if (!isCameraDeclared()) {
-            promise.reject(
-                E_FAILED,
-                "ImagePicker.requestCameraPermissions: camera needs the CAMERA permission: " +
-                    "set native.app imagePicker.camera and rerun one prebuild"
+            return Promise.rejected(
+                OneNativeError(E_FAILED,
+                    "ImagePicker.requestCameraPermissions: camera needs the CAMERA permission: " +
+                        "set native.app imagePicker.camera and rerun one prebuild"
+                )
             )
-            return
         }
         if (
             ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) ==
                 PackageManager.PERMISSION_GRANTED
         ) {
-            promise.resolve(cameraPermissionResponse())
-            return
+            return Promise.resolved(cameraPermissionResponse())
         }
         val activity = context.currentActivity
         val aware = activity as? PermissionAwareActivity
         if (activity == null || aware == null) {
-            promise.reject(
-                E_FAILED,
-                "ImagePicker.requestCameraPermissions: found no activity to prompt from"
+            return Promise.rejected(
+                OneNativeError(E_FAILED, "ImagePicker.requestCameraPermissions: found no activity to prompt from")
             )
-            return
         }
-        pendingPermissionPromise = promise
+        val promise = Promise<CameraPermissionResponse>()
+        synchronized(lock) {
+            if (pendingPermissionPromise != null) {
+                return Promise.rejected(
+                    OneNativeError(E_FAILED,
+                        "ImagePicker.requestCameraPermissions: another request is already in flight"
+                    )
+                )
+            }
+            pendingPermissionPromise = promise
+        }
         markCameraAsked()
         aware.requestPermissions(
             arrayOf(Manifest.permission.CAMERA),
             REQUEST_PERMISSION_CALL,
             this
         )
+        return promise
     }
 
     override fun onRequestPermissionsResult(
@@ -262,13 +259,17 @@ class OneNativeImagePickerModule(
             grantResults.isNotEmpty() &&
                 grantResults[0] == PackageManager.PERMISSION_GRANTED
         if (requestCode == REQUEST_PERMISSION_CALL) {
-            pendingPermissionPromise?.resolve(cameraPermissionResponse())
-            pendingPermissionPromise = null
+            val pending = synchronized(lock) {
+                val pending = pendingPermissionPromise
+                pendingPermissionPromise = null
+                pending
+            }
+            pending?.resolve(cameraPermissionResponse())
             return true
         }
         if (requestCode != REQUEST_CAMERA_PERMISSION) return false
         if (granted) {
-            val activity = reactApplicationContext.currentActivity
+            val activity = context.currentActivity
             if (activity == null) {
                 rejectPickerPending("launchCamera", "found no activity to present from")
             } else {
@@ -298,25 +299,24 @@ class OneNativeImagePickerModule(
     // granted, or denied with rationale: both are known states. otherwise
     // the asked flag separates the undetermined first run from a permanent
     // denial, which the platform reports identically.
-    private fun cameraPermissionResponse(): WritableMap {
-        val context = reactApplicationContext
+    private fun cameraPermissionResponse(): CameraPermissionResponse {
+        val context = context
         val granted =
             ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) ==
                 PackageManager.PERMISSION_GRANTED
         val activity = context.currentActivity
         val (status, canAskAgain) =
             when {
-                granted -> Pair("granted", true)
-                activity != null && cameraRationale(activity) -> Pair("denied", true)
-                activity != null && cameraAskedBefore(activity) -> Pair("denied", false)
-                activity == null && cameraAskedBefore(null) -> Pair("denied", false)
-                else -> Pair("undetermined", true)
+                granted -> Pair(CameraPermissionStatus.GRANTED, true)
+                activity != null && cameraRationale(activity) ->
+                    Pair(CameraPermissionStatus.DENIED, true)
+                activity != null && cameraAskedBefore(activity) ->
+                    Pair(CameraPermissionStatus.DENIED, false)
+                activity == null && cameraAskedBefore(null) ->
+                    Pair(CameraPermissionStatus.DENIED, false)
+                else -> Pair(CameraPermissionStatus.UNDETERMINED, true)
             }
-        val response = Arguments.createMap()
-        response.putString("status", status)
-        response.putBoolean("granted", granted)
-        response.putBoolean("canAskAgain", canAskAgain)
-        return response
+        return CameraPermissionResponse(status, granted, canAskAgain)
     }
 
     private fun cameraRationale(activity: Activity): Boolean {
@@ -329,14 +329,14 @@ class OneNativeImagePickerModule(
     private fun cameraAskedKey(): String = "one-native-image-picker.camera-asked"
 
     private fun cameraAskedBefore(activity: Activity?): Boolean {
-        val context = activity ?: reactApplicationContext
+        val context = activity ?: context
         return context
             .getSharedPreferences("one-native-image-picker", Activity.MODE_PRIVATE)
             .getBoolean(cameraAskedKey(), false)
     }
 
     private fun markCameraAsked() {
-        reactApplicationContext
+        context
             .getSharedPreferences("one-native-image-picker", Activity.MODE_PRIVATE)
             .edit()
             .putBoolean(cameraAskedKey(), true)
@@ -344,19 +344,20 @@ class OneNativeImagePickerModule(
     }
 
     private fun isCameraDeclared(): Boolean {
+        val context = context
         val info =
             try {
                 if (Build.VERSION.SDK_INT >= 33) {
-                    reactApplicationContext.packageManager.getPackageInfo(
-                        reactApplicationContext.packageName,
+                    context.packageManager.getPackageInfo(
+                        context.packageName,
                         PackageManager.PackageInfoFlags.of(
                             PackageManager.GET_PERMISSIONS.toLong()
                         )
                     )
                 } else {
                     @Suppress("DEPRECATION")
-                    reactApplicationContext.packageManager.getPackageInfo(
-                        reactApplicationContext.packageName,
+                    context.packageManager.getPackageInfo(
+                        context.packageName,
                         PackageManager.GET_PERMISSIONS
                     )
                 }
@@ -368,7 +369,7 @@ class OneNativeImagePickerModule(
 
     @Suppress("DEPRECATION")
     private fun startCamera(activity: Activity) {
-        val context = reactApplicationContext
+        val context = context
         try {
             val file = cacheFile("IMG", "jpg")
             val uri =
@@ -405,13 +406,13 @@ class OneNativeImagePickerModule(
     }
 
     private fun handleLibraryResult(resultCode: Int, data: Intent?) {
+        val single = pendingSingle
+        val multiple = pendingMultiple
         val sourceUris =
             when {
-                pendingSingle != null ->
-                    pendingSingle!!.parseResult(resultCode, data)?.let { listOf(it) }
-                        ?: emptyList()
-                pendingMultiple != null ->
-                    pendingMultiple!!.parseResult(resultCode, data) ?: emptyList()
+                single != null ->
+                    single.parseResult(resultCode, data)?.let { listOf(it) } ?: emptyList()
+                multiple != null -> multiple.parseResult(resultCode, data)
                 else -> fallbackUris(resultCode, data)
             }
         if (sourceUris.isEmpty()) {
@@ -421,14 +422,7 @@ class OneNativeImagePickerModule(
         val limited =
             if (pendingLimit > 0) sourceUris.take(pendingLimit) else sourceUris
         try {
-            val assets = Arguments.createArray()
-            for (uri in limited) {
-                assets.pushMap(copyToCache(uri))
-            }
-            val result = Arguments.createMap()
-            result.putBoolean("canceled", false)
-            result.putArray("assets", assets)
-            resolvePickerPending(result)
+            resolvePickerPending(limited.map { copyToCache(it) }.toTypedArray())
         } catch (e: Exception) {
             rejectPickerPending("launchLibrary", e.message ?: "could not copy a picked item")
         }
@@ -457,27 +451,25 @@ class OneNativeImagePickerModule(
         }
         try {
             val size = imageSize(file)
-            val assets = Arguments.createArray()
-            val asset = Arguments.createMap()
-            asset.putString("uri", Uri.fromFile(file).toString())
-            asset.putInt("width", size.first)
-            asset.putInt("height", size.second)
-            asset.putString("mimeType", "image/jpeg")
-            asset.putString("fileName", file.name)
-            asset.putDouble("fileSize", file.length().toDouble())
-            assets.pushMap(asset)
-            val result = Arguments.createMap()
-            result.putBoolean("canceled", false)
-            result.putArray("assets", assets)
-            resolvePickerPending(result)
+            resolvePickerPending(
+                arrayOf(
+                    ImagePickerAsset(
+                        Uri.fromFile(file).toString(),
+                        size.first.toDouble(),
+                        size.second.toDouble(),
+                        "image/jpeg",
+                        file.name,
+                        file.length().toDouble()
+                    )
+                )
+            )
         } catch (e: Exception) {
             file.delete()
             rejectPickerPending("launchCamera", e.message ?: "could not read the photo")
         }
     }
 
-    private fun copyToCache(source: Uri): WritableMap {
-        val context = reactApplicationContext
+    private fun copyToCache(source: Uri): ImagePickerAsset {
         val resolver = context.contentResolver
         val mimeType = resolver.getType(source)
         val isVideo = mimeType?.startsWith("video/") == true
@@ -493,19 +485,19 @@ class OneNativeImagePickerModule(
             FileOutputStream(dest).use { output -> input.copyTo(output) }
         }
         val size = if (isVideo) videoSize(dest) else imageSize(dest)
-        val asset = Arguments.createMap()
-        asset.putString("uri", Uri.fromFile(dest).toString())
-        asset.putInt("width", size.first)
-        asset.putInt("height", size.second)
-        if (mimeType != null) asset.putString("mimeType", mimeType)
-        asset.putString("fileName", displayName ?: dest.name)
-        asset.putDouble("fileSize", dest.length().toDouble())
-        return asset
+        return ImagePickerAsset(
+            Uri.fromFile(dest).toString(),
+            size.first.toDouble(),
+            size.second.toDouble(),
+            mimeType,
+            displayName ?: dest.name,
+            dest.length().toDouble()
+        )
     }
 
     private fun queryDisplayName(source: Uri): String? {
         val cursor =
-            reactApplicationContext.contentResolver.query(
+            context.contentResolver.query(
                 source,
                 arrayOf(OpenableColumns.DISPLAY_NAME),
                 null,
@@ -549,7 +541,7 @@ class OneNativeImagePickerModule(
     }
 
     private fun cacheFile(prefix: String, extension: String): File {
-        val dir = File(reactApplicationContext.cacheDir, "one-native-image-picker")
+        val dir = File(context.cacheDir, "one-native-image-picker")
         dir.mkdirs()
         return File(dir, "${prefix}_${UUID.randomUUID()}.$extension")
     }
@@ -573,9 +565,9 @@ class OneNativeImagePickerModule(
         }
     }
 
-    // zero is unlimited on both sides of the bridge; on api 33+ the real
-    // system maximum applies, below that the backported picker clamps the
-    // same sentinel androidx itself uses.
+    // zero is unlimited on both sides; on api 33+ the real system maximum
+    // applies, below that the backported picker clamps the same sentinel
+    // androidx itself uses.
     private fun effectiveMax(selectionLimit: Int): Int {
         val systemMax =
             if (Build.VERSION.SDK_INT >= 33) MediaStore.getPickImagesMaxLimit()
@@ -585,40 +577,38 @@ class OneNativeImagePickerModule(
         return selectionLimit
     }
 
-    // one launch in flight: the js entries throw before a second launch, so
-    // this only settles direct callers instead of clobbering the pending
-    // promise. permission reads never take this slot.
-    private fun takePickerPending(verb: String, promise: Promise): Boolean {
-        if (pendingPickerPromise != null) {
-            promise.reject(
-                E_FAILED,
-                "ImagePicker.$verb: another request is already in flight"
-            )
-            return false
+    // one launch in flight: native owns the slot, so a second launch rejects
+    // instead of clobbering the pending promise. permission reads never take
+    // this slot.
+    private fun takePickerPending(verb: String, promise: Promise<ImagePickerNativeResult>): Boolean {
+        synchronized(lock) {
+            if (pendingPickerPromise == null) {
+                pendingPickerPromise = promise
+                pendingPickerVerb = verb
+                return true
+            }
         }
-        pendingPickerPromise = promise
-        pendingPickerVerb = verb
-        return true
+        promise.reject(OneNativeError(E_FAILED, "ImagePicker.$verb: another request is already in flight"))
+        return false
     }
 
-    private fun resolvePickerPending(result: WritableMap) {
+    private fun takePickerPromise(): Promise<ImagePickerNativeResult>? = synchronized(lock) {
         val promise = pendingPickerPromise
         clearPickerPending()
-        promise?.resolve(result)
+        promise
+    }
+
+    private fun resolvePickerPending(assets: Array<ImagePickerAsset>) {
+        takePickerPromise()?.resolve(ImagePickerNativeResult(false, assets))
     }
 
     private fun resolvePickerCanceled() {
-        val result = Arguments.createMap()
-        result.putBoolean("canceled", true)
-        result.putNull("assets")
-        resolvePickerPending(result)
+        takePickerPromise()?.resolve(ImagePickerNativeResult(true, null))
     }
 
     private fun rejectPickerPending(verb: String, message: String) {
-        val promise = pendingPickerPromise
         pendingCameraFile?.delete()
-        clearPickerPending()
-        promise?.reject(E_FAILED, "ImagePicker.$verb: $message")
+        takePickerPromise()?.reject(OneNativeError(E_FAILED, "ImagePicker.$verb: $message"))
     }
 
     private fun clearPickerPending() {
@@ -631,8 +621,7 @@ class OneNativeImagePickerModule(
     }
 
     companion object {
-        const val NAME = "OneNativeImagePicker"
-        const val E_FAILED = "E_IMAGE_PICKER_FAILED"
+        private const val E_FAILED = "E_IMAGE_PICKER_FAILED"
         private const val REQUEST_LIBRARY = 0x1A01
         private const val REQUEST_CAMERA = 0x1A02
         private const val REQUEST_CAMERA_PERMISSION = 0x1A03

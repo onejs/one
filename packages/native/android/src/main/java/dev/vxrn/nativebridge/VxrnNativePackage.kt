@@ -10,8 +10,6 @@ import com.margelo.nitro.one.VxrnNativeOnLoad
 import dev.onejs.onenative.OneNativeBlurManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
-import dev.onejs.onenative.OneNativeFontsModule
-import dev.onejs.onenative.OneNativeImagePickerModule
 import dev.onejs.onenative.OneNativeMaskManager
 import dev.onejs.onenative.OneNativeMenuPopupModule
 import dev.onejs.onenative.OneNativeSafeAreaModule
@@ -26,8 +24,6 @@ class VxrnNativePackage : BaseReactPackage() {
             VxrnNativeModule.NAME -> VxrnNativeModule(reactContext)
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
-            OneNativeFontsModule.NAME -> OneNativeFontsModule(reactContext)
-            OneNativeImagePickerModule.NAME -> OneNativeImagePickerModule(reactContext)
             OneNativeMenuPopupModule.NAME -> OneNativeMenuPopupModule(reactContext)
             else -> null
         }
@@ -54,22 +50,6 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeSyncModule.NAME to ReactModuleInfo(
                 name = OneNativeSyncModule.NAME,
                 className = OneNativeSyncModule.NAME,
-                canOverrideExistingModule = false,
-                needsEagerInit = false,
-                isCxxModule = false,
-                isTurboModule = false
-            ),
-            OneNativeFontsModule.NAME to ReactModuleInfo(
-                name = OneNativeFontsModule.NAME,
-                className = OneNativeFontsModule.NAME,
-                canOverrideExistingModule = false,
-                needsEagerInit = false,
-                isCxxModule = false,
-                isTurboModule = false
-            ),
-            OneNativeImagePickerModule.NAME to ReactModuleInfo(
-                name = OneNativeImagePickerModule.NAME,
-                className = OneNativeImagePickerModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,

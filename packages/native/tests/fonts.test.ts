@@ -4,6 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { FontMap, UseFontsResult } from '../src/fonts/types'
 
 const { mockGet, mockResolveAssetSource, mockLoad, mockIsLoaded } = vi.hoisted(() => ({
+  // stands in for the OneFonts hybrid object lookup: null means not linked.
   mockGet: vi.fn(),
   mockResolveAssetSource: vi.fn(),
   mockLoad: vi.fn(),
@@ -12,7 +13,13 @@ const { mockGet, mockResolveAssetSource, mockLoad, mockIsLoaded } = vi.hoisted((
 
 vi.mock('react-native', () => ({
   Image: { resolveAssetSource: mockResolveAssetSource },
-  TurboModuleRegistry: { get: mockGet },
+}))
+
+vi.mock('react-native-nitro-modules', () => ({
+  NitroModules: {
+    hasHybridObject: (name: string) => name === 'OneFonts' && mockGet() != null,
+    createHybridObject: (name: string) => (name === 'OneFonts' ? mockGet() : null),
+  },
 }))
 
 // the entry caches the module handle, so every case re-imports it fresh.
@@ -62,6 +69,17 @@ describe('Fonts.load', () => {
       'Fonts.load: "Body" is not a font asset'
     )
     expect(mockLoad).not.toHaveBeenCalled()
+  })
+
+  it('splits the code off a native rejection', async () => {
+    mockLoad.mockRejectedValue(
+      new Error('E_FONTS_URI: Fonts.load: "Body" points at a missing file\n')
+    )
+    const { Fonts } = await loadEntry()
+
+    const error = await Fonts.load({ Body: 'file:///fonts/body.ttf' }).catch((e) => e)
+    expect(error.message).toBe('Fonts.load: "Body" points at a missing file')
+    expect(error.code).toBe('E_FONTS_URI')
   })
 
   it('rejects when the native module is missing', async () => {

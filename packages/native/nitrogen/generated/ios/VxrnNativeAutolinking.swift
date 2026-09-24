@@ -83,4 +83,28 @@ public final class VxrnNativeAutolinking {
   public static func isOneBrowserRecyclable() -> Bool {
     return HybridOneBrowser.self is any RecyclableView.Type
   }
+  
+  public static func createOneImagePicker() -> bridge.std__shared_ptr_HybridOneImagePickerSpec_ {
+    let hybridObject = HybridOneImagePicker()
+    return { () -> bridge.std__shared_ptr_HybridOneImagePickerSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+  
+  public static func isOneImagePickerRecyclable() -> Bool {
+    return HybridOneImagePicker.self is any RecyclableView.Type
+  }
+  
+  public static func createOneFonts() -> bridge.std__shared_ptr_HybridOneFontsSpec_ {
+    let hybridObject = HybridOneFonts()
+    return { () -> bridge.std__shared_ptr_HybridOneFontsSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+  
+  public static func isOneFontsRecyclable() -> Bool {
+    return HybridOneFonts.self is any RecyclableView.Type
+  }
 }

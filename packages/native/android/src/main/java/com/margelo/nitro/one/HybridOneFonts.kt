@@ -1,11 +1,10 @@
-package dev.onejs.onenative
+package com.margelo.nitro.one
 
-import com.facebook.react.bridge.Promise
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContextBaseJavaModule
 import android.graphics.Typeface
-import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.common.assets.ReactFontManager
+import com.margelo.nitro.NitroModules
+import com.margelo.nitro.core.Promise
 import java.io.File
 import java.net.URL
 import java.security.MessageDigest
@@ -18,10 +17,10 @@ import java.security.MessageDigest
 // Typeface exposes no name query, so a wrong key registers silently;
 // isLoaded answers from the manager's own registry plus assets/fonts for
 // embedded files.
-class OneNativeFontsModule(
-    reactContext: ReactApplicationContext,
-) : ReactContextBaseJavaModule(reactContext) {
-    override fun getName(): String = NAME
+class HybridOneFonts : HybridOneFontsSpec() {
+    private val context: ReactApplicationContext
+        get() = NitroModules.applicationContext
+            ?: throw IllegalStateException("Fonts: React context is not ready")
 
     @Volatile private var embeddedFontNames: Set<String>? = null
 
@@ -34,7 +33,7 @@ class OneNativeFontsModule(
         }
         val names =
             try {
-                reactApplicationContext.assets.list("fonts").orEmpty().map {
+                context.assets.list("fonts").orEmpty().map {
                     it.substringBeforeLast('.')
                 }.toSet()
             } catch (_: Exception) {
@@ -44,22 +43,20 @@ class OneNativeFontsModule(
         return names
     }
 
-    @ReactMethod(isBlockingSynchronousMethod = true)
-    fun isLoaded(name: String): Boolean {
+    override fun isLoaded(name: String): Boolean {
         if (ReactFontManager.getInstance().customFontFamilies.contains(name)) {
             return true
         }
         return embeddedNames().contains(name)
     }
 
-    @ReactMethod
-    fun load(name: String, uri: String, promise: Promise) {
+    override fun load(name: String, uri: String): Promise<Unit> {
         if (isLoaded(name)) {
-            promise.resolve(null)
-            return
+            return Promise.resolved(Unit)
         }
-        // the download and the registration run off the NativeModules
-        // thread; the bridge accepts resolve/reject from any thread.
+        val promise = Promise<Unit>()
+        // the download and the registration run off the js thread; a
+        // nitro promise settles from any thread.
         Thread {
             try {
                 val file = resolveFontFile(name, uri)
@@ -70,20 +67,21 @@ class OneNativeFontsModule(
                         null
                     }
                 if (typeface == null) {
-                    promise.reject("E_FONTS_REGISTER", "Fonts.load: \"$name\" could not be registered")
+                    promise.reject(OneNativeError("E_FONTS_REGISTER", "Fonts.load: \"$name\" could not be registered"))
                     return@Thread
                 }
                 ReactFontManager.getInstance().addCustomFont(name, typeface)
-                promise.resolve(null)
-            } catch (e: FontsUriException) {
-                promise.reject("E_FONTS_URI", e.message)
-            } catch (e: FontsDownloadException) {
-                promise.reject("E_FONTS_DOWNLOAD", e.message)
-            } catch (e: Exception) {
-                promise.reject("E_FONTS_DOWNLOAD", "Fonts.load: \"$name\" could not be downloaded", e)
+                promise.resolve(Unit)
+            } catch (e: OneNativeError) {
+                promise.reject(e)
+            } catch (_: Exception) {
+                promise.reject(OneNativeError("E_FONTS_DOWNLOAD", "Fonts.load: \"$name\" could not be downloaded"))
             }
         }.start()
+        return promise
     }
+
+    private fun uriError(message: String) = OneNativeError("E_FONTS_URI", message)
 
     private fun resolveFontFile(name: String, uri: String): File {
         if (!uri.contains("://")) {
@@ -93,47 +91,42 @@ class OneNativeFontsModule(
             try {
                 URL(uri)
             } catch (_: Exception) {
-                throw FontsUriException("Fonts.load: \"$name\" is not a usable uri")
+                throw uriError("Fonts.load: \"$name\" is not a usable uri")
             }
         return when (url.protocol.lowercase()) {
             "file" -> {
                 val file = File(url.path)
                 if (!file.isFile) {
-                    throw FontsUriException("Fonts.load: \"$name\" points at a missing file")
+                    throw uriError("Fonts.load: \"$name\" points at a missing file")
                 }
                 file
             }
             "http", "https" -> downloadFontFile(name, url)
             else ->
-                throw FontsUriException(
+                throw uriError(
                     "Fonts.load: \"$name\" uses an unsupported uri scheme \"${url.protocol}\""
                 )
         }
     }
 
     private fun copyResourceFontFile(name: String, resourceName: String): File {
-        val resources = reactApplicationContext.resources
-        val id =
-            resources.getIdentifier(
-                resourceName,
-                "raw",
-                reactApplicationContext.packageName
-            )
+        val resources = context.resources
+        val id = resources.getIdentifier(resourceName, "raw", context.packageName)
         if (id == 0) {
-            throw FontsUriException("Fonts.load: \"$name\" is not a packaged font resource")
+            throw uriError("Fonts.load: \"$name\" is not a packaged font resource")
         }
         val bytes =
             try {
                 resources.openRawResource(id).use { it.readBytes() }
             } catch (_: Exception) {
-                throw FontsUriException("Fonts.load: \"$name\" could not be read")
+                throw uriError("Fonts.load: \"$name\" could not be read")
             }
         if (bytes.isEmpty()) {
-            throw FontsUriException("Fonts.load: \"$name\" packaged zero bytes")
+            throw uriError("Fonts.load: \"$name\" packaged zero bytes")
         }
         // the resource name carries no extension; createFromFile sniffs
         // the content, so the suffix is only a label.
-        val directory = File(reactApplicationContext.cacheDir, "one-fonts")
+        val directory = File(context.cacheDir, "one-fonts")
         val file = File(directory, "$resourceName.ttf")
         if (!file.isFile) {
             directory.mkdirs()
@@ -146,25 +139,17 @@ class OneNativeFontsModule(
         val extension = url.path.substringAfterLast('.', "ttf").lowercase()
         val digest = MessageDigest.getInstance("SHA-256").digest(url.toString().toByteArray())
         val fileName = digest.joinToString("") { "%02x".format(it) } + "." + extension
-        val directory = File(reactApplicationContext.cacheDir, "one-fonts")
+        val directory = File(context.cacheDir, "one-fonts")
         val file = File(directory, fileName)
         if (file.isFile) {
             return file
         }
         val bytes = url.openStream().use { it.readBytes() }
         if (bytes.isEmpty()) {
-            throw FontsDownloadException("Fonts.load: \"$name\" downloaded zero bytes")
+            throw OneNativeError("E_FONTS_DOWNLOAD", "Fonts.load: \"$name\" downloaded zero bytes")
         }
         directory.mkdirs()
         file.writeBytes(bytes)
         return file
-    }
-
-    private class FontsUriException(message: String) : Exception(message)
-
-    private class FontsDownloadException(message: String) : Exception(message)
-
-    companion object {
-        const val NAME = "OneNativeFonts"
     }
 }

@@ -1,19 +1,21 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { ImagePicker as WebImagePicker } from '../src/image-picker/index'
 import {
   resolveCameraOptions,
   resolveImagePickerOptions,
 } from '../src/image-picker/options'
 
-const getMock = vi.fn()
-
-vi.mock('react-native', () => ({
-  TurboModuleRegistry: { get: (...args: unknown[]) => getMock(...args) },
+vi.mock('react-native-nitro-modules', () => ({
+  NitroModules: { hasHybridObject: vi.fn(), createHybridObject: vi.fn() },
 }))
 
-async function loadImagePicker() {
+async function loadImagePicker(hybrid: unknown = null) {
+  vi.resetModules()
+  const { NitroModules } = await import('react-native-nitro-modules')
+  vi.mocked(NitroModules.hasHybridObject).mockReturnValue(hybrid !== null)
+  vi.mocked(NitroModules.createHybridObject).mockReturnValue(hybrid as never)
   const module = await import('../src/image-picker/index.native')
-  return module.ImagePicker
+  return { ImagePicker: module.ImagePicker, NitroModules }
 }
 
 describe('resolveImagePickerOptions', () => {
@@ -94,14 +96,8 @@ describe('resolveCameraOptions', () => {
 })
 
 describe('ImagePicker without its native module', () => {
-  beforeEach(() => {
-    getMock.mockReset()
-    getMock.mockReturnValue(null)
-    vi.resetModules()
-  })
-
   it('throws synchronously from the launches, rejects from the permission reads', async () => {
-    const ImagePicker = await loadImagePicker()
+    const { ImagePicker } = await loadImagePicker()
     expect(() => ImagePicker.launchLibrary()).toThrow(
       'ImagePicker.launchLibrary needs a native build that includes @vxrn/native'
     )
@@ -117,7 +113,7 @@ describe('ImagePicker without its native module', () => {
   })
 
   it('validates arguments synchronously through the namespace', async () => {
-    const ImagePicker = await loadImagePicker()
+    const { ImagePicker } = await loadImagePicker()
     expect(() =>
       ImagePicker.launchLibrary({ mediaTypes: 'gifs' as never })
     ).toThrow(/mediaTypes/)
@@ -128,30 +124,57 @@ describe('ImagePicker without its native module', () => {
       /launchCamera.*video/
     )
   })
+})
 
-  it('validates before reaching the native module', async () => {
-    getMock.mockReturnValue({ launchLibrary: vi.fn(), launchCamera: vi.fn() })
-    const ImagePicker = await loadImagePicker()
+describe('ImagePicker with its hybrid object', () => {
+  it('validates before reaching the hybrid object', async () => {
+    const { ImagePicker, NitroModules } = await loadImagePicker({
+      launchLibrary: vi.fn(),
+      launchCamera: vi.fn(),
+    })
     expect(() => ImagePicker.launchLibrary({ mediaTypes: [] })).toThrow(/mediaTypes/)
     expect(() =>
       ImagePicker.launchCamera({ mediaTypes: ['images', 'videos'] })
     ).toThrow(/launchCamera.*video/)
-    expect(getMock).not.toHaveBeenCalled()
+    expect(NitroModules.createHybridObject).not.toHaveBeenCalled()
   })
 
-  it('passes options and results through the module untouched', async () => {
-    const launchLibrary = vi.fn(async () => ({ canceled: true, assets: null }))
-    getMock.mockReturnValue({ launchLibrary })
-    const ImagePicker = await loadImagePicker()
-    const result = await ImagePicker.launchLibrary({
+  it('passes resolved options through and narrows the flat result', async () => {
+    const asset = { uri: 'file:///a.jpg', width: 80, height: 120, mimeType: 'image/jpeg' }
+    const launchLibrary = vi
+      .fn()
+      .mockResolvedValueOnce({ canceled: true })
+      .mockResolvedValueOnce({ canceled: false, assets: [asset] })
+    const { ImagePicker } = await loadImagePicker({ launchLibrary })
+    expect(
+      await ImagePicker.launchLibrary({ mediaTypes: ['images', 'videos'], selectionLimit: 3 })
+    ).toEqual({ canceled: true, assets: null })
+    expect(await ImagePicker.launchLibrary()).toEqual({ canceled: false, assets: [asset] })
+    expect(launchLibrary).toHaveBeenNthCalledWith(1, {
       mediaTypes: ['images', 'videos'],
       selectionLimit: 3,
     })
-    expect(result).toEqual({ canceled: true, assets: null })
-    expect(launchLibrary).toHaveBeenCalledWith({
-      mediaTypes: ['images', 'videos'],
-      selectionLimit: 3,
+  })
+
+  it('splits the code off native rejections, including android printed ones', async () => {
+    const { ImagePicker } = await loadImagePicker({
+      launchCamera: vi.fn(async () => {
+        throw new Error('E_IMAGE_PICKER_FAILED: ImagePicker.launchCamera: the camera returned no image')
+      }),
+      requestCameraPermissions: vi.fn(async () => {
+        throw new Error(
+          'E_IMAGE_PICKER_FAILED: ImagePicker.requestCameraPermissions: found no activity to prompt from\n'
+        )
+      }),
     })
+    const camera = await ImagePicker.launchCamera().catch((error) => error)
+    expect(camera.message).toBe('ImagePicker.launchCamera: the camera returned no image')
+    expect(camera.code).toBe('E_IMAGE_PICKER_FAILED')
+    const request = await ImagePicker.requestCameraPermissions().catch((error) => error)
+    expect(request.message).toBe(
+      'ImagePicker.requestCameraPermissions: found no activity to prompt from'
+    )
+    expect(request.code).toBe('E_IMAGE_PICKER_FAILED')
   })
 })
 

@@ -18,6 +18,10 @@ namespace margelo::nitro::one { enum class BrowserPresentationStyle; }
 namespace margelo::nitro::one { enum class BrowserResultType; }
 // Forward declaration of `BrowserResult` to properly resolve imports.
 namespace margelo::nitro::one { struct BrowserResult; }
+// Forward declaration of `CameraPermissionResponse` to properly resolve imports.
+namespace margelo::nitro::one { struct CameraPermissionResponse; }
+// Forward declaration of `CameraPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class CameraPermissionStatus; }
 // Forward declaration of `HybridOneAppInfoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
@@ -26,10 +30,20 @@ namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 // Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneCryptoSpec; }
+// Forward declaration of `HybridOneFontsSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneFontsSpec; }
 // Forward declaration of `HybridOneHapticsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneHapticsSpec; }
+// Forward declaration of `HybridOneImagePickerSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
 // Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNetworkSpec; }
+// Forward declaration of `ImagePickerAsset` to properly resolve imports.
+namespace margelo::nitro::one { struct ImagePickerAsset; }
+// Forward declaration of `ImagePickerMediaType` to properly resolve imports.
+namespace margelo::nitro::one { enum class ImagePickerMediaType; }
+// Forward declaration of `ImagePickerNativeResult` to properly resolve imports.
+namespace margelo::nitro::one { struct ImagePickerNativeResult; }
 // Forward declaration of `NetworkStateType` to properly resolve imports.
 namespace margelo::nitro::one { enum class NetworkStateType; }
 // Forward declaration of `NetworkState` to properly resolve imports.
@@ -44,8 +58,12 @@ namespace VxrnNative { class HybridOneBrowserSpec_cxx; }
 namespace VxrnNative { class HybridOneClipboardSpec_cxx; }
 // Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneCryptoSpec_cxx; }
+// Forward declaration of `HybridOneFontsSpec_cxx` to properly resolve imports.
+namespace VxrnNative { class HybridOneFontsSpec_cxx; }
 // Forward declaration of `HybridOneHapticsSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneHapticsSpec_cxx; }
+// Forward declaration of `HybridOneImagePickerSpec_cxx` to properly resolve imports.
+namespace VxrnNative { class HybridOneImagePickerSpec_cxx; }
 // Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneNetworkSpec_cxx; }
 
@@ -55,12 +73,19 @@ namespace VxrnNative { class HybridOneNetworkSpec_cxx; }
 #include "BrowserPresentationStyle.hpp"
 #include "BrowserResult.hpp"
 #include "BrowserResultType.hpp"
+#include "CameraPermissionResponse.hpp"
+#include "CameraPermissionStatus.hpp"
 #include "HybridOneAppInfoSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
+#include "HybridOneFontsSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
+#include "HybridOneImagePickerSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
+#include "ImagePickerAsset.hpp"
+#include "ImagePickerMediaType.hpp"
+#include "ImagePickerNativeResult.hpp"
 #include "NetworkState.hpp"
 #include "NetworkStateType.hpp"
 #include <NitroModules/ArrayBuffer.hpp>
@@ -72,6 +97,7 @@ namespace VxrnNative { class HybridOneNetworkSpec_cxx; }
 #include <memory>
 #include <optional>
 #include <string>
+#include <vector>
 
 /**
  * Contains specialized versions of C++ templated types so they can be accessed from Swift,
@@ -384,6 +410,70 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::shared_ptr<ArrayBuffer>>::withError(error);
   }
   
+  // pragma MARK: std::shared_ptr<Promise<void>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<void>>`.
+   */
+  using std__shared_ptr_Promise_void__ = std::shared_ptr<Promise<void>>;
+  inline std::shared_ptr<Promise<void>> create_std__shared_ptr_Promise_void__() noexcept {
+    return Promise<void>::create();
+  }
+  inline PromiseHolder<void> wrap_std__shared_ptr_Promise_void__(std::shared_ptr<Promise<void>> promise) noexcept {
+    return PromiseHolder<void>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void()>
+  /**
+   * Specialized version of `std::function<void()>`.
+   */
+  using Func_void = std::function<void()>;
+  /**
+   * Wrapper class for a `std::function<void()>`, this can be used from Swift.
+   */
+  class Func_void_Wrapper final {
+  public:
+    explicit Func_void_Wrapper(std::function<void()>&& func): _function(std::make_unique<std::function<void()>>(std::move(func))) {}
+    inline void call() const noexcept {
+      _function->operator()();
+    }
+  private:
+    std::unique_ptr<std::function<void()>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_Wrapper wrap_Func_void(Func_void value) noexcept {
+    return Func_void_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneFontsSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneFontsSpec>`.
+   */
+  using std__shared_ptr_HybridOneFontsSpec_ = std::shared_ptr<HybridOneFontsSpec>;
+  std::shared_ptr<HybridOneFontsSpec> create_std__shared_ptr_HybridOneFontsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneFontsSpec_(std__shared_ptr_HybridOneFontsSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneFontsSpec>
+  using std__weak_ptr_HybridOneFontsSpec_ = std::weak_ptr<HybridOneFontsSpec>;
+  inline std__weak_ptr_HybridOneFontsSpec_ weakify_std__shared_ptr_HybridOneFontsSpec_(const std::shared_ptr<HybridOneFontsSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<void>>>
+  using Result_std__shared_ptr_Promise_void___ = Result<std::shared_ptr<Promise<void>>>;
+  inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::shared_ptr<Promise<void>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<void>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<void>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<bool>
+  using Result_bool_ = Result<bool>;
+  inline Result_bool_ create_Result_bool_(bool value) noexcept {
+    return Result<bool>::withValue(std::move(value));
+  }
+  inline Result_bool_ create_Result_bool_(const std::exception_ptr& error) noexcept {
+    return Result<bool>::withError(error);
+  }
+  
   // pragma MARK: std::shared_ptr<HybridOneHapticsSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneHapticsSpec>`.
@@ -395,6 +485,156 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneHapticsSpec>
   using std__weak_ptr_HybridOneHapticsSpec_ = std::weak_ptr<HybridOneHapticsSpec>;
   inline std__weak_ptr_HybridOneHapticsSpec_ weakify_std__shared_ptr_HybridOneHapticsSpec_(const std::shared_ptr<HybridOneHapticsSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: std::optional<double>
+  /**
+   * Specialized version of `std::optional<double>`.
+   */
+  using std__optional_double_ = std::optional<double>;
+  inline std::optional<double> create_std__optional_double_(const double& value) noexcept {
+    return std::optional<double>(value);
+  }
+  inline bool has_value_std__optional_double_(const std::optional<double>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline double get_std__optional_double_(const std::optional<double>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::vector<ImagePickerAsset>
+  /**
+   * Specialized version of `std::vector<ImagePickerAsset>`.
+   */
+  using std__vector_ImagePickerAsset_ = std::vector<ImagePickerAsset>;
+  inline std::vector<ImagePickerAsset> create_std__vector_ImagePickerAsset_(size_t size) noexcept {
+    std::vector<ImagePickerAsset> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::optional<std::vector<ImagePickerAsset>>
+  /**
+   * Specialized version of `std::optional<std::vector<ImagePickerAsset>>`.
+   */
+  using std__optional_std__vector_ImagePickerAsset__ = std::optional<std::vector<ImagePickerAsset>>;
+  inline std::optional<std::vector<ImagePickerAsset>> create_std__optional_std__vector_ImagePickerAsset__(const std::vector<ImagePickerAsset>& value) noexcept {
+    return std::optional<std::vector<ImagePickerAsset>>(value);
+  }
+  inline bool has_value_std__optional_std__vector_ImagePickerAsset__(const std::optional<std::vector<ImagePickerAsset>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::vector<ImagePickerAsset> get_std__optional_std__vector_ImagePickerAsset__(const std::optional<std::vector<ImagePickerAsset>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<ImagePickerNativeResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<ImagePickerNativeResult>>`.
+   */
+  using std__shared_ptr_Promise_ImagePickerNativeResult__ = std::shared_ptr<Promise<ImagePickerNativeResult>>;
+  inline std::shared_ptr<Promise<ImagePickerNativeResult>> create_std__shared_ptr_Promise_ImagePickerNativeResult__() noexcept {
+    return Promise<ImagePickerNativeResult>::create();
+  }
+  inline PromiseHolder<ImagePickerNativeResult> wrap_std__shared_ptr_Promise_ImagePickerNativeResult__(std::shared_ptr<Promise<ImagePickerNativeResult>> promise) noexcept {
+    return PromiseHolder<ImagePickerNativeResult>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const ImagePickerNativeResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const ImagePickerNativeResult&)>`.
+   */
+  using Func_void_ImagePickerNativeResult = std::function<void(const ImagePickerNativeResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const ImagePickerNativeResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_ImagePickerNativeResult_Wrapper final {
+  public:
+    explicit Func_void_ImagePickerNativeResult_Wrapper(std::function<void(const ImagePickerNativeResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const ImagePickerNativeResult& /* result */)>>(std::move(func))) {}
+    inline void call(ImagePickerNativeResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const ImagePickerNativeResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_ImagePickerNativeResult create_Func_void_ImagePickerNativeResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_ImagePickerNativeResult_Wrapper wrap_Func_void_ImagePickerNativeResult(Func_void_ImagePickerNativeResult value) noexcept {
+    return Func_void_ImagePickerNativeResult_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<ImagePickerMediaType>
+  /**
+   * Specialized version of `std::vector<ImagePickerMediaType>`.
+   */
+  using std__vector_ImagePickerMediaType_ = std::vector<ImagePickerMediaType>;
+  inline std::vector<ImagePickerMediaType> create_std__vector_ImagePickerMediaType_(size_t size) noexcept {
+    std::vector<ImagePickerMediaType> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<CameraPermissionResponse>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<CameraPermissionResponse>>`.
+   */
+  using std__shared_ptr_Promise_CameraPermissionResponse__ = std::shared_ptr<Promise<CameraPermissionResponse>>;
+  inline std::shared_ptr<Promise<CameraPermissionResponse>> create_std__shared_ptr_Promise_CameraPermissionResponse__() noexcept {
+    return Promise<CameraPermissionResponse>::create();
+  }
+  inline PromiseHolder<CameraPermissionResponse> wrap_std__shared_ptr_Promise_CameraPermissionResponse__(std::shared_ptr<Promise<CameraPermissionResponse>> promise) noexcept {
+    return PromiseHolder<CameraPermissionResponse>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const CameraPermissionResponse& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const CameraPermissionResponse&)>`.
+   */
+  using Func_void_CameraPermissionResponse = std::function<void(const CameraPermissionResponse& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const CameraPermissionResponse& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_CameraPermissionResponse_Wrapper final {
+  public:
+    explicit Func_void_CameraPermissionResponse_Wrapper(std::function<void(const CameraPermissionResponse& /* result */)>&& func): _function(std::make_unique<std::function<void(const CameraPermissionResponse& /* result */)>>(std::move(func))) {}
+    inline void call(CameraPermissionResponse result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const CameraPermissionResponse& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_CameraPermissionResponse create_Func_void_CameraPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_CameraPermissionResponse_Wrapper wrap_Func_void_CameraPermissionResponse(Func_void_CameraPermissionResponse value) noexcept {
+    return Func_void_CameraPermissionResponse_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneImagePickerSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneImagePickerSpec>`.
+   */
+  using std__shared_ptr_HybridOneImagePickerSpec_ = std::shared_ptr<HybridOneImagePickerSpec>;
+  std::shared_ptr<HybridOneImagePickerSpec> create_std__shared_ptr_HybridOneImagePickerSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneImagePickerSpec_(std__shared_ptr_HybridOneImagePickerSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneImagePickerSpec>
+  using std__weak_ptr_HybridOneImagePickerSpec_ = std::weak_ptr<HybridOneImagePickerSpec>;
+  inline std__weak_ptr_HybridOneImagePickerSpec_ weakify_std__shared_ptr_HybridOneImagePickerSpec_(const std::shared_ptr<HybridOneImagePickerSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>
+  using Result_std__shared_ptr_Promise_ImagePickerNativeResult___ = Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>;
+  inline Result_std__shared_ptr_Promise_ImagePickerNativeResult___ create_Result_std__shared_ptr_Promise_ImagePickerNativeResult___(const std::shared_ptr<Promise<ImagePickerNativeResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_ImagePickerNativeResult___ create_Result_std__shared_ptr_Promise_ImagePickerNativeResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<CameraPermissionResponse>>>
+  using Result_std__shared_ptr_Promise_CameraPermissionResponse___ = Result<std::shared_ptr<Promise<CameraPermissionResponse>>>;
+  inline Result_std__shared_ptr_Promise_CameraPermissionResponse___ create_Result_std__shared_ptr_Promise_CameraPermissionResponse___(const std::shared_ptr<Promise<CameraPermissionResponse>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<CameraPermissionResponse>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_CameraPermissionResponse___ create_Result_std__shared_ptr_Promise_CameraPermissionResponse___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<CameraPermissionResponse>>>::withError(error);
+  }
   
   // pragma MARK: std::shared_ptr<Promise<NetworkState>>
   /**
@@ -428,28 +668,6 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_NetworkState create_Func_void_NetworkState(void* NON_NULL swiftClosureWrapper) noexcept;
   inline Func_void_NetworkState_Wrapper wrap_Func_void_NetworkState(Func_void_NetworkState value) noexcept {
     return Func_void_NetworkState_Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::function<void()>
-  /**
-   * Specialized version of `std::function<void()>`.
-   */
-  using Func_void = std::function<void()>;
-  /**
-   * Wrapper class for a `std::function<void()>`, this can be used from Swift.
-   */
-  class Func_void_Wrapper final {
-  public:
-    explicit Func_void_Wrapper(std::function<void()>&& func): _function(std::make_unique<std::function<void()>>(std::move(func))) {}
-    inline void call() const noexcept {
-      _function->operator()();
-    }
-  private:
-    std::unique_ptr<std::function<void()>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_Wrapper wrap_Func_void(Func_void value) noexcept {
-    return Func_void_Wrapper(std::move(value));
   }
   
   // pragma MARK: std::shared_ptr<HybridOneNetworkSpec>

@@ -19,7 +19,9 @@
 #include "JHybridOneBrowserSpec.hpp"
 #include "JHybridOneClipboardSpec.hpp"
 #include "JHybridOneCryptoSpec.hpp"
+#include "JHybridOneFontsSpec.hpp"
 #include "JHybridOneHapticsSpec.hpp"
+#include "JHybridOneImagePickerSpec.hpp"
 #include "JHybridOneNetworkSpec.hpp"
 #include "JFunc_void.hpp"
 #include "JFunc_void_NetworkState.hpp"
@@ -81,6 +83,22 @@ struct JHybridOneBrowserSpecImpl: public jni::JavaClass<JHybridOneBrowserSpecImp
     return javaPart->getJHybridOneBrowserSpec();
   }
 };
+struct JHybridOneImagePickerSpecImpl: public jni::JavaClass<JHybridOneImagePickerSpecImpl, JHybridOneImagePickerSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneImagePicker;";
+  static std::shared_ptr<JHybridOneImagePickerSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneImagePickerSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneImagePickerSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneImagePickerSpec();
+  }
+};
+struct JHybridOneFontsSpecImpl: public jni::JavaClass<JHybridOneFontsSpecImpl, JHybridOneFontsSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneFonts;";
+  static std::shared_ptr<JHybridOneFontsSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneFontsSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneFontsSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneFontsSpec();
+  }
+};
 
 void registerAllNatives() {
   using namespace margelo::nitro;
@@ -91,7 +109,9 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneBrowserSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneClipboardSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneCryptoSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneFontsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneHapticsSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneImagePickerSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneNetworkSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_NetworkState_cxx::registerNatives();
@@ -131,6 +151,18 @@ void registerAllNatives() {
     "OneBrowser",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneBrowserSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneImagePicker",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneImagePickerSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneFonts",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneFontsSpecImpl::create();
     }
   );
 }

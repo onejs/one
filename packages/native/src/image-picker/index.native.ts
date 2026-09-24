@@ -1,5 +1,6 @@
-import { TurboModuleRegistry, type TurboModule } from 'react-native'
-
+import { NitroModules } from 'react-native-nitro-modules'
+import type { ImagePickerNativeResult, OneImagePicker } from '../specs/OneImagePicker.nitro'
+import { rethrowNativeError } from '../nativeError'
 import { resolveCameraOptions, resolveImagePickerOptions } from './options'
 import type {
   ImagePickerOptions,
@@ -9,33 +10,32 @@ import type {
 
 export type * from './types'
 
-// contract for the OneNativeImagePicker legacy native module. the package's
-// codegen covers components only, so the module stays legacy and is resolved
-// through the generic TurboModuleRegistry.get, which falls back to it.
-interface ImagePickerSpec extends TurboModule {
-  launchLibrary(options: {
-    mediaTypes: string[]
-    selectionLimit: number
-  }): Promise<ImagePickerResult>
-  launchCamera(): Promise<ImagePickerResult>
-  getCameraPermissions(): Promise<ImagePickerPermissionResponse>
-  requestCameraPermissions(): Promise<ImagePickerPermissionResponse>
-}
+// the OneImagePicker nitro hybrid object is created once and lazily. null
+// until the app links @vxrn/native, exactly like the other native modules in
+// this package.
+let hybrid: OneImagePicker | null | undefined
 
-// the native module is resolved once and lazily. null until the app links
-// @vxrn/native, exactly like the other native modules in this package.
-let cached: ImagePickerSpec | null | undefined
-
-function native(verb: string): ImagePickerSpec {
-  if (cached === undefined) {
-    cached = TurboModuleRegistry.get<ImagePickerSpec>('OneNativeImagePicker')
+function native(verb: string): OneImagePicker {
+  if (hybrid === undefined) {
+    hybrid = NitroModules.hasHybridObject('OneImagePicker')
+      ? NitroModules.createHybridObject<OneImagePicker>('OneImagePicker')
+      : null
   }
-  if (!cached) {
+  if (!hybrid) {
     throw new Error(
       `ImagePicker.${verb} needs a native build that includes @vxrn/native`
     )
   }
-  return cached
+  return hybrid
+}
+
+// native settles one flat result; assets are set only when not canceled.
+function toResult(result: ImagePickerNativeResult): ImagePickerResult {
+  if (result.canceled) return { canceled: true, assets: null }
+  if (!result.assets) {
+    throw new Error('ImagePicker: native returned a pick without assets')
+  }
+  return { canceled: false, assets: result.assets }
 }
 
 // present the system photo picker. ios uses PHPickerViewController, which
@@ -48,7 +48,7 @@ function launchLibrary(
   options: ImagePickerOptions = {}
 ): Promise<ImagePickerResult> {
   const resolved = resolveImagePickerOptions(options)
-  return native('launchLibrary').launchLibrary(resolved)
+  return native('launchLibrary').launchLibrary(resolved).then(toResult, rethrowNativeError)
 }
 
 // capture one still photo with the system camera. a denied permission, a
@@ -60,7 +60,7 @@ function launchCamera(
   options: ImagePickerOptions = {}
 ): Promise<ImagePickerResult> {
   resolveCameraOptions(options)
-  return native('launchCamera').launchCamera()
+  return native('launchCamera').launchCamera().then(toResult, rethrowNativeError)
 }
 
 // read the camera permission without prompting. outside the native pending
@@ -71,7 +71,7 @@ async function getCameraPermissions(): Promise<ImagePickerPermissionResponse> {
 
 // prompt for the camera permission unless it is already decided.
 async function requestCameraPermissions(): Promise<ImagePickerPermissionResponse> {
-  return native('requestCameraPermissions').requestCameraPermissions()
+  return native('requestCameraPermissions').requestCameraPermissions().catch(rethrowNativeError)
 }
 
 export const ImagePicker = Object.freeze({
