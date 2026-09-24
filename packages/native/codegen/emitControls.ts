@@ -139,7 +139,8 @@ ${styleFields
 #endif
 `
   )
-  const hasSDKEvents = derivedModifiers.some((modifier) => modifier.kind.startsWith('event') || modifier.kind.startsWith('binding'))
+  const hasSDKEvents = derivedModifiers.some((modifier) => modifier.kind.startsWith('event') ||
+    modifier.kind.startsWith('binding') || modifier.kind === 'sessionRequest')
   const publicStyleFields: readonly StyleField[] = [
     ...styleFields,
     ...derivedModifiers.map((modifier) => ({
@@ -167,6 +168,8 @@ ${styleFields
                 : `(value: ${eventValueType(modifier.eventValue!)}) => void | Promise<void>`
           : modifier.kind === 'eventAsyncString'
             ? `Readonly<{ ${modifier.predicateLabel}: ${modifier.selectionMember ? 'string' : 'boolean'}; ${modifier.callbackLabel}: (value: ${eventValueType(modifier.eventValue!)}) => string | Promise<string> }>`
+          : modifier.kind === 'sessionRequest'
+            ? `Readonly<{ ${modifier.sessionRequest!.inputField}: string; onResult: (value: Readonly<{ ${modifier.sessionRequest!.outputFields.map((field) => `${field}: string`).join('; ')}; error: null }> | Readonly<{ ${modifier.sessionRequest!.outputFields.map((field) => `${field}: null`).join('; ')}; error: string }>) => void }>`
           : modifier.kind === 'eventBoolean'
             ? '(value: boolean) => void'
             : modifier.kind === 'eventNumber'

@@ -153,6 +153,33 @@ describe('SDK modifier derivation', () => {
     ], 27, new Set())).toEqual([])
   })
 
+  it('derives an async session request from its public string method and response', () => {
+    const task = method('translationTask', '_Translation_SwiftUI', [
+      { label: 'source', name: 'source', type: 'Foundation.Locale.Language?', defaultValue: 'nil' },
+      { label: 'target', name: 'target', type: 'Foundation.Locale.Language?', defaultValue: 'nil' },
+      { label: 'action', name: 'action',
+        type: '@escaping (_ session: Translation.TranslationSession) async -> Swift.Void' },
+    ])
+    const session = { ...method('TranslationSession', 'Translation'), kind: 'class', owner: '' }
+    const request = { ...method('translate', 'Translation', [
+      { label: '_', name: 'string', type: 'Swift.String' },
+    ]), owner: 'TranslationSession', type: 'Translation.TranslationSession.Response' }
+    const response = { ...method('Response', 'Translation'), kind: 'struct', owner: 'TranslationSession' }
+    const sourceText = { ...method('sourceText', 'Translation'), kind: 'var',
+      owner: 'TranslationSession.Response', type: 'Swift.String' }
+    const targetText = { ...method('targetText', 'Translation'), kind: 'var',
+      owner: 'TranslationSession.Response', type: 'Swift.String' }
+    expect(deriveModifiers([task, session, request], 27, [])).toEqual([])
+    expect(deriveModifiers([task, session, request, response, sourceText, targetText], 27, []))
+      .toEqual([{
+        name: 'translationTask', kind: 'sessionRequest', type: task.parameters[2].type,
+        ios: 0, framework: 'Translation',
+        sessionRequest: { method: 'translate', inputField: 'sourceText',
+          outputFields: ['sourceText', 'targetText'], actionLabel: 'action',
+          defaults: [{ label: 'source', value: 'nil' }, { label: 'target', value: 'nil' }] },
+      }])
+  })
+
   it('derives optional SDK cases and framework overlay modifiers', () => {
     expect(deriveModifiers([
       method('textCase', 'SwiftUICore', [{ label: '_', name: 'textCase', type: 'SwiftUICore.Text.Case?' }]),

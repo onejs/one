@@ -612,6 +612,7 @@ const sdkKinds = {
   transformPreferencePreferredColorScheme: 'optionalEnum',
   transition: 'string',
   translationPresentation: 'record',
+  translationTask: 'sessionRequest',
   truncationMode: 'string',
   typeSelectEquivalent: 'optionalString',
   typesettingLanguage: 'record',
@@ -1278,6 +1279,15 @@ const sdkAsyncStringFields: Record<
     predicate: 'offer',
     callback: 'compactJWS',
     selects: true,
+  },
+}
+const sdkSessionRequests: Record<
+  string,
+  { inputField: string; outputFields: readonly string[] }
+> = {
+  translationTask: {
+    inputField: 'sourceText',
+    outputFields: ['sourceText', 'targetText'],
   },
 }
 const sdkAsyncObjectRequestBindings: Record<string, string> = {
@@ -2437,6 +2447,19 @@ export function swiftStyleNative(
         ])
         continue
       }
+      if (kind === 'sessionRequest') {
+        const inputField = sdkSessionRequests[name].inputField
+        if (
+          !value ||
+          typeof value !== 'object' ||
+          Array.isArray(value) ||
+          typeof (value as Record<string, unknown>)[inputField] !== 'string' ||
+          typeof (value as { onResult?: unknown }).onResult !== 'function'
+        )
+          throw new Error(name + ' must have source text and an onResult callback')
+        sdkModifiers.push([name, (value as Record<string, string>)[inputField]])
+        continue
+      }
       if (kind === 'eventDrop') {
         const record = value as { of?: unknown; onDrop?: unknown } | undefined
         if (
@@ -2811,6 +2834,19 @@ export function dispatchSDKEvent(
       native.completeString(identifier, null, String(error))
       throw error
     }
+  } else if (kind === 'sessionRequest') {
+    const payload: unknown = JSON.parse(value)
+    if (!payload || typeof payload !== 'object' || Array.isArray(payload))
+      throw new Error(name + ' emitted an invalid session response')
+    const result = payload as Record<string, unknown>
+    const fields = sdkSessionRequests[name].outputFields
+    const success =
+      result.error === null && fields.every((field) => typeof result[field] === 'string')
+    const failure =
+      typeof result.error === 'string' && fields.every((field) => result[field] === null)
+    if (!success && !failure)
+      throw new Error(name + ' emitted an invalid session response')
+    ;(modifier as { onResult: (value: unknown) => void } | undefined)?.onResult(result)
   } else if (kind === 'eventReturnArray')
     (modifier as { onAction: () => void } | undefined)?.onAction()
   else if (kind === 'eventReturnEnum') {

@@ -62,6 +62,13 @@ final class Inventory: SyntaxVisitor {
     owners.append(node.name.text); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map(requirementText) ?? []); return .visitChildren
   }
   override func visitPost(_ node: StructDeclSyntax) { owners.removeLast(); availability.removeLast(); requirements.removeLast() }
+  override func visit(_ node: ClassDeclSyntax) -> SyntaxVisitorContinueKind {
+    record(node, kind: "class", name: node.name.text, attrs: node.attributes,
+      inheritedTypes: node.inheritanceClause?.inheritedTypes.map { $0.type.trimmedDescription },
+      generic: node.genericParameterClause != nil)
+    owners.append(node.name.text); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map(requirementText) ?? []); return .visitChildren
+  }
+  override func visitPost(_ node: ClassDeclSyntax) { owners.removeLast(); availability.removeLast(); requirements.removeLast() }
   override func visit(_ node: EnumDeclSyntax) -> SyntaxVisitorContinueKind {
     record(node, kind: "enum", name: node.name.text, attrs: node.attributes)
     owners.append(node.name.text); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map(requirementText) ?? []); return .visitChildren

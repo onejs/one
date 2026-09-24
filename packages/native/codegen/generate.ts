@@ -270,6 +270,9 @@ for (const modifier of derivedModifiers) {
         ? d.parameters.length === 1 &&
           d.parameters[0].label === modifier.constructorParameter.label &&
           d.requirements?.some((requirement) => requirement.startsWith(`${d.parameters[0].type} : `))
+        : modifier.sessionRequest
+        ? d.parameters.at(-1)?.type === modifier.type &&
+          d.parameters.slice(0, -1).every((parameter) => parameter.defaultValue !== undefined)
         : modifier.zeroArgument
         ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.kind === 'record'

@@ -16623,6 +16623,32 @@
       "framework": "Translation"
     },
     {
+      "name": "translationTask",
+      "kind": "sessionRequest",
+      "type": "@escaping (_ session: Translation.TranslationSession) async -> Swift.Void",
+      "ios": 18,
+      "framework": "Translation",
+      "sessionRequest": {
+        "method": "translate",
+        "inputField": "sourceText",
+        "outputFields": [
+          "sourceText",
+          "targetText"
+        ],
+        "actionLabel": "action",
+        "defaults": [
+          {
+            "label": "source",
+            "value": "nil"
+          },
+          {
+            "label": "target",
+            "value": "nil"
+          }
+        ]
+      }
+    },
+    {
       "name": "truncationMode",
       "kind": "string",
       "type": "SwiftUICore.Text.TruncationMode",
@@ -17840,7 +17866,8 @@
         "signInWithAppleButtonStyle"
       ],
       "_Translation_SwiftUI": [
-        "translationPresentation"
+        "translationPresentation",
+        "translationTask"
       ],
       "_WebKit_SwiftUI": [
         "webViewBackForwardNavigationGestures",
@@ -18358,7 +18385,8 @@
         "signInWithAppleButtonStyle"
       ],
       "_Translation_SwiftUI": [
-        "translationPresentation"
+        "translationPresentation",
+        "translationTask"
       ],
       "_WebKit_SwiftUI": [
         "webViewBackForwardNavigationGestures",

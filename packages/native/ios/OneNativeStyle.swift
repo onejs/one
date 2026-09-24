@@ -719,6 +719,7 @@ extension View {
       case "transformPreferencePreferredColorScheme": view = AnyView(view.oneNativeSDKTransformPreferencePreferredColorScheme(value, emit: emit))
       case "transition": view = AnyView(view.oneNativeSDKTransition(value, emit: emit))
       case "translationPresentation": view = AnyView(view.oneNativeSDKTranslationPresentation(value, emit: emit))
+      case "translationTask": view = AnyView(view.oneNativeSDKTranslationTask(value, emit: emit))
       case "truncationMode": view = AnyView(view.oneNativeSDKTruncationMode(value, emit: emit))
       case "typeSelectEquivalent": view = AnyView(view.oneNativeSDKTypeSelectEquivalent(value, emit: emit))
       case "typesettingLanguage": view = AnyView(view.oneNativeSDKTypesettingLanguage(value, emit: emit))
@@ -8788,6 +8789,21 @@ self
     }()
     self.translationPresentation(isPresented: argument0, text: argument1)
     } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTranslationTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) { self.translationTask(source: nil, target: nil, action: { session in
+      let payload: [String: Any]
+      do {
+        let response = try await session.translate(value)
+        payload = ["sourceText": response.sourceText, "targetText": response.targetText, "error": NSNull()]
+      } catch {
+        payload = ["sourceText": NSNull(), "targetText": NSNull(), "error": String(describing: error)]
+      }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid translationTask response") }
+      emit("translationTask", encoded)
+    }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTruncationMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

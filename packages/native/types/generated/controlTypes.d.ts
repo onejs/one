@@ -2203,6 +2203,18 @@ export interface OneNativeStyle {
         }>;
         text: string;
     }>;
+    translationTask?: Readonly<{
+        sourceText: string;
+        onResult: (value: Readonly<{
+            sourceText: string;
+            targetText: string;
+            error: null;
+        }> | Readonly<{
+            sourceText: null;
+            targetText: null;
+            error: string;
+        }>) => void;
+    }>;
     truncationMode?: SDKTruncationMode;
     typeSelectEquivalent?: string | null;
     typesettingLanguage?: Readonly<{
