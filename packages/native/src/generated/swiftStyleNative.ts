@@ -377,6 +377,9 @@ const sdkKinds = {
   moveDisabled: 'boolean',
   multilineTextAlignmentWithStrategy: 'string',
   multilineTextAlignmentWithTextAlignment: 'string',
+  musicPickerWithMusicVideo: 'pickerSelection',
+  musicPickerWithSong: 'pickerSelection',
+  musicPickerWithTrack: 'pickerSelection',
   musicSubscriptionOffer: 'bindingBoolean',
   navigationBarBackButtonHidden: 'boolean',
   navigationBarHidden: 'boolean',
@@ -2460,6 +2463,31 @@ export function swiftStyleNative(
         sdkModifiers.push([name, (value as Record<string, string>)[inputField]])
         continue
       }
+      if (kind === 'pickerSelection') {
+        const picker = value as
+          | {
+              isPresented?: { value?: unknown; onChange?: unknown }
+              title?: unknown
+              onSelection?: unknown
+            }
+          | undefined
+        if (
+          !picker ||
+          typeof picker !== 'object' ||
+          typeof picker.isPresented?.value !== 'boolean' ||
+          typeof picker.isPresented.onChange !== 'function' ||
+          (picker.title !== undefined && typeof picker.title !== 'string') ||
+          typeof picker.onSelection !== 'function'
+        )
+          throw new Error(
+            name + ' must have a presentation binding and selection callback'
+          )
+        sdkModifiers.push([
+          name,
+          JSON.stringify([String(picker.isPresented.value), picker.title ?? null]),
+        ])
+        continue
+      }
       if (kind === 'eventDrop') {
         const record = value as { of?: unknown; onDrop?: unknown } | undefined
         if (
@@ -2667,6 +2695,21 @@ export function dispatchSDKEvent(
   if (separator !== -1) {
     const parent = name.slice(0, separator)
     const field = name.slice(separator + 1)
+    if (sdkKinds[parent as keyof typeof sdkKinds] === 'pickerSelection') {
+      const picker = (style as Record<string, unknown> | undefined)?.[parent] as
+        | {
+            isPresented: { onChange: (value: boolean) => void }
+            onSelection: (id: string) => void
+          }
+        | undefined
+      if (field === 'isPresented') {
+        if (value !== 'true' && value !== 'false')
+          throw new Error(name + ' emitted an invalid boolean')
+        picker?.isPresented.onChange(value === 'true')
+      } else if (field === 'onSelection') picker?.onSelection(value)
+      else throw new Error(name + ' emitted an invalid picker event')
+      return
+    }
     if (
       sdkRecords[parent]?.some(
         (argument) => argument.field === field && argument.kind === 'bindingBoolean'

@@ -180,6 +180,29 @@ describe('SDK modifier derivation', () => {
       }])
   })
 
+  it('specializes a picker selection binding to a public item with a string ID', () => {
+    const picker = { ...method('musicPicker', '_MusicKit_SwiftUI', [
+      { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+      { label: 'title', name: 'title', type: 'SwiftUICore.Text?', defaultValue: 'nil' },
+      { label: 'selection', name: 'selection', type: 'SwiftUICore.Binding<Selection?>' },
+    ]), requirements: ['Selection : _MusicKit_SwiftUI.PickableMusicItem'] }
+    const song = { ...method('Song', 'MusicKit'), kind: 'struct', owner: '' }
+    const conformance = { ...method('Song', '_MusicKit_SwiftUI'), kind: 'conformance',
+      name: 'MusicKit.Song', owner: '', inheritedTypes: ['_MusicKit_SwiftUI.PickableMusicItem'] }
+    const id = { ...method('id', 'MusicKit'), kind: 'var', owner: 'Song', type: 'MusicKit.MusicItemID' }
+    const rawValue = { ...method('rawValue', 'MusicKit'), kind: 'var',
+      owner: 'MusicItemID', type: 'Swift.String' }
+    expect(deriveModifiers([picker, song, conformance, id], 27, [])).toEqual([])
+    expect(deriveModifiers([picker, song, conformance, id, rawValue], 27, []))
+      .toEqual([{
+        name: 'musicPickerWithSong', sdkName: 'musicPicker', module: '_MusicKit_SwiftUI',
+        kind: 'pickerSelection', type: 'MusicKit.Song', ios: 0, framework: 'MusicKit',
+        aliasSuffix: 'Song',
+        pickerSelection: { selectionType: 'MusicKit.Song', presentedLabel: 'isPresented',
+          titleLabel: 'title', selectionLabel: 'selection', idField: 'id', rawField: 'rawValue' },
+      }])
+  })
+
   it('derives optional SDK cases and framework overlay modifiers', () => {
     expect(deriveModifiers([
       method('textCase', 'SwiftUICore', [{ label: '_', name: 'textCase', type: 'SwiftUICore.Text.Case?' }]),

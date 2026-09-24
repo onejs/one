@@ -423,6 +423,21 @@ ${modifier.gestureOptions!.map((option) => {
     ${apply(call, modifier.ios, true)}
   }`
       }
+      if (modifier.kind === 'pickerSelection') {
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let (presented, title): (Bool, String?) = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2, let presented = decoded[0],
+        presented == "true" || presented == "false" else { preconditionFailure("invalid ${modifier.name} picker") }
+      return (presented == "true", decoded[1])
+    }()
+${sdkGuard(modifier.ios, `if #available(iOS ${modifier.ios}, *) {
+      self.modifier(OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}Picker(
+        presented: presented, title: title, emit: emit))
+    } else { self }`, 'self')}
+  }`
+      }
       if (modifier.kind === 'eventReturnArray') {
         const call = modifier.callArguments!.map((argument) =>
           `${argument.label === '_' ? '' : `${argument.label}: `}${argument.bridge ? 'action' : argument.defaultValue}`
@@ -1072,6 +1087,18 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
         sdkModifiers.push([name, (value as Record<string, string>)[inputField]])
         continue
       }
+      if (kind === 'pickerSelection') {
+        const picker = value as { isPresented?: { value?: unknown; onChange?: unknown };
+          title?: unknown; onSelection?: unknown } | undefined
+        if (!picker || typeof picker !== 'object' ||
+          typeof picker.isPresented?.value !== 'boolean' ||
+          typeof picker.isPresented.onChange !== 'function' ||
+          (picker.title !== undefined && typeof picker.title !== 'string') ||
+          typeof picker.onSelection !== 'function')
+          throw new Error(name + ' must have a presentation binding and selection callback')
+        sdkModifiers.push([name, JSON.stringify([String(picker.isPresented.value), picker.title ?? null])])
+        continue
+      }
       if (kind === 'eventDrop') {
         const record = value as { of?: unknown; onDrop?: unknown } | undefined
         if (!record || !Array.isArray(record.of) || record.of.length === 0 ||
@@ -1158,6 +1185,17 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
   if (separator !== -1) {
     const parent = name.slice(0, separator)
     const field = name.slice(separator + 1)
+    if (sdkKinds[parent as keyof typeof sdkKinds] === 'pickerSelection') {
+      const picker = (style as Record<string, unknown> | undefined)?.[parent] as {
+        isPresented: { onChange: (value: boolean) => void }; onSelection: (id: string) => void
+      } | undefined
+      if (field === 'isPresented') {
+        if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid boolean')
+        picker?.isPresented.onChange(value === 'true')
+      } else if (field === 'onSelection') picker?.onSelection(value)
+      else throw new Error(name + ' emitted an invalid picker event')
+      return
+    }
     if (sdkRecords[parent]?.some((argument) => argument.field === field && argument.kind === 'bindingBoolean')) {
       if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid boolean')
       const record = (style as Record<string, unknown> | undefined)?.[parent] as Record<string, unknown> | undefined
@@ -1404,6 +1442,25 @@ ${derived.some((modifier) => modifier.uiRecognizer) ? `@available(iOS 18, *)
   }
 }
 ` : ''}
+${derived.filter((modifier) => modifier.kind === 'pickerSelection').map((modifier) => sdkGuard(modifier.ios, `@available(iOS ${modifier.ios}, *)
+private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}Picker: ViewModifier {
+  let presented: Bool
+  let title: String?
+  let emit: (String, String) -> Void
+  @State private var selection: ${modifier.pickerSelection!.selectionType}? = nil
+
+  func body(content: Content) -> some View {
+    content.${modifier.sdkName ?? modifier.name}(
+      ${modifier.pickerSelection!.presentedLabel}: Binding(get: { presented }, set: { emit(${JSON.stringify(`${modifier.name}.isPresented`)}, String($0)) }),
+      ${modifier.pickerSelection!.titleLabel}: title.map { Text($0) },
+      ${modifier.pickerSelection!.selectionLabel}: $selection
+    ).onChange(of: selection) { _, next in
+      guard let next else { return }
+      emit(${JSON.stringify(`${modifier.name}.onSelection`)}, next.${modifier.pickerSelection!.idField}.${modifier.pickerSelection!.rawField})
+      selection = nil
+    }
+  }
+}`, '')).join('\n')}
 ${derived.filter((modifier) => modifier.kind === 'asyncObjectRequest').map((modifier) => `@available(iOS ${modifier.ios}, *)
 @MainActor private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}Request: ViewModifier {
   let latitude: Double

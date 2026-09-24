@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -50,6 +50,8 @@ export type DerivedModifier = {
   resultType?: string
   selectionMember?: string
   selectionInputIndex?: number
+  pickerSelection?: { selectionType: string; presentedLabel: string; titleLabel: string;
+    selectionLabel: string; idField: string; rawField: string }
   requestType?: string
   requestProperty?: string
   sessionRequest?: { method: string; inputField: string; outputFields: readonly string[];
@@ -656,6 +658,44 @@ export function deriveModifiers(
       const framework = method.module.startsWith('_')
         ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
         : {}
+      const pickerProtocol = method.parameters.length === 3 &&
+        method.parameters[0].type === 'SwiftUICore.Binding<Swift.Bool>' &&
+        method.parameters[1].type === 'SwiftUICore.Text?' &&
+        method.parameters[1].defaultValue !== undefined &&
+        /^SwiftUICore\.Binding<([A-Za-z_]\w*)\?>$/.exec(method.parameters[2].type)?.[1]
+      const selectionProtocol = pickerProtocol && method.requirements?.find((requirement) =>
+        requirement.startsWith(`${pickerProtocol} : `))?.split(' : ')[1]
+      if (selectionProtocol) {
+        return inventory.filter((declaration) => declaration.kind === 'conformance' &&
+          declaration.inheritedTypes?.includes(selectionProtocol) &&
+          present(declaration) && ios(declaration) <= ceiling)
+          .flatMap((conformance) => {
+            const [module, ...parts] = conformance.name.split('.')
+            const owner = parts.join('.')
+            const type = inventory.find((declaration) => declaration.module === module &&
+              (declaration.kind === 'struct' || declaration.kind === 'enum') &&
+              declaration.owner === parts.slice(0, -1).join('.') &&
+              declaration.name === parts.at(-1) && present(declaration) && ios(declaration) <= ceiling)
+            const id = inventory.find((declaration) => declaration.module === module &&
+              declaration.kind === 'var' && declaration.owner === owner &&
+              declaration.name === 'id' && present(declaration) && ios(declaration) <= ceiling)
+            if (!type || !id?.type) return []
+            const [idModule, ...idParts] = id.type.split('.')
+            const raw = inventory.find((declaration) => declaration.module === idModule &&
+              declaration.kind === 'var' && declaration.owner === idParts.join('.') &&
+              declaration.name === 'rawValue' && declaration.type === 'Swift.String' &&
+              present(declaration) && ios(declaration) <= ceiling)
+            if (!raw) return []
+            return [{ name, module: method.module, kind: 'pickerSelection' as const,
+              type: conformance.name, aliasSuffix: parts.at(-1)!, ...framework,
+              ios: Math.max(ios(method), ios(conformance), ios(type), ios(id), ios(raw)),
+              pickerSelection: { selectionType: conformance.name,
+                presentedLabel: method.parameters[0].label,
+                titleLabel: method.parameters[1].label,
+                selectionLabel: method.parameters[2].label,
+                idField: id.name, rawField: raw.name } }]
+          })
+      }
       const action = method.parameters.at(-1)
       const sessionType = /^@escaping \(_ [A-Za-z_]\w*: ([A-Za-z_]\w*\.[A-Za-z][\w.]*)\) async -> Swift\.Void$/.exec(action?.type ?? '')?.[1]
       if (sessionType && method.parameters.slice(0, -1).every((parameter) => parameter.defaultValue !== undefined)) {

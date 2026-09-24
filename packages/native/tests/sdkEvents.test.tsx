@@ -67,6 +67,31 @@ describe('SDK callback and binding transport', () => {
     expect(onCustomizationChange).toHaveBeenCalledWith(false)
   })
 
+  it('round trips a MusicKit picker presentation and selected item ID', () => {
+    const onChange = vi.fn()
+    const onSelection = vi.fn()
+    const element = Controls.Text({ text: 'music', swiftStyle: {
+      musicPickerWithSong: { isPresented: { value: true, onChange }, title: 'Choose a song', onSelection },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['musicPickerWithSong', '["true","Choose a song"]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'musicPickerWithSong.isPresented', value: 'false',
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'musicPickerWithSong.onSelection', value: '12345',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+    expect(onSelection).toHaveBeenCalledWith('12345')
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'musicPickerWithSong.isPresented', value: 'closed',
+    } })).toThrow('invalid boolean')
+    expect(() => Controls.Text({ text: 'invalid', swiftStyle: {
+      musicPickerWithSong: { isPresented: { value: true, onChange }, title: 42 as never, onSelection },
+    } })).toThrow('presentation binding and selection callback')
+  })
+
   it('constructs a defaulted SDK object for a zero-input content closure', () => {
     const onChange = vi.fn()
     const element = Controls.Text({ text: 'confirm', swiftStyle: {

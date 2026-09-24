@@ -9324,6 +9324,60 @@
       "sdkName": "multilineTextAlignment"
     },
     {
+      "name": "musicPickerWithMusicVideo",
+      "module": "_MusicKit_SwiftUI",
+      "kind": "pickerSelection",
+      "type": "MusicKit.MusicVideo",
+      "aliasSuffix": "MusicVideo",
+      "framework": "MusicKit",
+      "ios": 27,
+      "pickerSelection": {
+        "selectionType": "MusicKit.MusicVideo",
+        "presentedLabel": "isPresented",
+        "titleLabel": "title",
+        "selectionLabel": "selection",
+        "idField": "id",
+        "rawField": "rawValue"
+      },
+      "sdkName": "musicPicker"
+    },
+    {
+      "name": "musicPickerWithSong",
+      "module": "_MusicKit_SwiftUI",
+      "kind": "pickerSelection",
+      "type": "MusicKit.Song",
+      "aliasSuffix": "Song",
+      "framework": "MusicKit",
+      "ios": 27,
+      "pickerSelection": {
+        "selectionType": "MusicKit.Song",
+        "presentedLabel": "isPresented",
+        "titleLabel": "title",
+        "selectionLabel": "selection",
+        "idField": "id",
+        "rawField": "rawValue"
+      },
+      "sdkName": "musicPicker"
+    },
+    {
+      "name": "musicPickerWithTrack",
+      "module": "_MusicKit_SwiftUI",
+      "kind": "pickerSelection",
+      "type": "MusicKit.Track",
+      "aliasSuffix": "Track",
+      "framework": "MusicKit",
+      "ios": 27,
+      "pickerSelection": {
+        "selectionType": "MusicKit.Track",
+        "presentedLabel": "isPresented",
+        "titleLabel": "title",
+        "selectionLabel": "selection",
+        "idField": "id",
+        "rawField": "rawValue"
+      },
+      "sdkName": "musicPicker"
+    },
+    {
       "name": "musicSubscriptionOffer",
       "kind": "bindingBoolean",
       "type": "SwiftUICore.Binding<Swift.Bool>",
@@ -17840,6 +17894,7 @@
         "onMapCameraChange"
       ],
       "_MusicKit_SwiftUI": [
+        "musicPicker",
         "musicSubscriptionOffer"
       ],
       "_AVKit_SwiftUI": [
@@ -18359,6 +18414,7 @@
         "onMapCameraChange"
       ],
       "_MusicKit_SwiftUI": [
+        "musicPicker",
         "musicSubscriptionOffer"
       ],
       "_AVKit_SwiftUI": [

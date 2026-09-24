@@ -273,6 +273,12 @@ for (const modifier of derivedModifiers) {
         : modifier.sessionRequest
         ? d.parameters.at(-1)?.type === modifier.type &&
           d.parameters.slice(0, -1).every((parameter) => parameter.defaultValue !== undefined)
+        : modifier.pickerSelection
+        ? d.parameters[0]?.type === 'SwiftUICore.Binding<Swift.Bool>' &&
+          d.parameters[1]?.type === 'SwiftUICore.Text?' &&
+          /^SwiftUICore\.Binding<([A-Za-z_]\w*)\?>$/.test(d.parameters[2]?.type ?? '') &&
+          d.requirements?.some((requirement) => requirement.startsWith(
+            `${/^SwiftUICore\.Binding<([A-Za-z_]\w*)\?>$/.exec(d.parameters[2].type)?.[1]} : `))
         : modifier.zeroArgument
         ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.kind === 'record'

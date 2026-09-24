@@ -37,6 +37,75 @@ private struct OneNativeRotorEntry: Identifiable { let id: String; var label: St
   }
 }
 
+
+#if ONE_IOS_27_SDK
+@available(iOS 27, *)
+private struct OneNativeSDKMusicPickerWithMusicVideoPicker: ViewModifier {
+  let presented: Bool
+  let title: String?
+  let emit: (String, String) -> Void
+  @State private var selection: MusicKit.MusicVideo? = nil
+
+  func body(content: Content) -> some View {
+    content.musicPicker(
+      isPresented: Binding(get: { presented }, set: { emit("musicPickerWithMusicVideo.isPresented", String($0)) }),
+      title: title.map { Text($0) },
+      selection: $selection
+    ).onChange(of: selection) { _, next in
+      guard let next else { return }
+      emit("musicPickerWithMusicVideo.onSelection", next.id.rawValue)
+      selection = nil
+    }
+  }
+}
+#endif
+
+
+#if ONE_IOS_27_SDK
+@available(iOS 27, *)
+private struct OneNativeSDKMusicPickerWithSongPicker: ViewModifier {
+  let presented: Bool
+  let title: String?
+  let emit: (String, String) -> Void
+  @State private var selection: MusicKit.Song? = nil
+
+  func body(content: Content) -> some View {
+    content.musicPicker(
+      isPresented: Binding(get: { presented }, set: { emit("musicPickerWithSong.isPresented", String($0)) }),
+      title: title.map { Text($0) },
+      selection: $selection
+    ).onChange(of: selection) { _, next in
+      guard let next else { return }
+      emit("musicPickerWithSong.onSelection", next.id.rawValue)
+      selection = nil
+    }
+  }
+}
+#endif
+
+
+#if ONE_IOS_27_SDK
+@available(iOS 27, *)
+private struct OneNativeSDKMusicPickerWithTrackPicker: ViewModifier {
+  let presented: Bool
+  let title: String?
+  let emit: (String, String) -> Void
+  @State private var selection: MusicKit.Track? = nil
+
+  func body(content: Content) -> some View {
+    content.musicPicker(
+      isPresented: Binding(get: { presented }, set: { emit("musicPickerWithTrack.isPresented", String($0)) }),
+      title: title.map { Text($0) },
+      selection: $selection
+    ).onChange(of: selection) { _, next in
+      guard let next else { return }
+      emit("musicPickerWithTrack.onSelection", next.id.rawValue)
+      selection = nil
+    }
+  }
+}
+#endif
+
 @available(iOS 17, *)
 @MainActor private struct OneNativeSDKLookAroundViewerRequest: ViewModifier {
   let latitude: Double
@@ -485,6 +554,9 @@ extension View {
       case "moveDisabled": view = AnyView(view.oneNativeSDKMoveDisabled(value, emit: emit))
       case "multilineTextAlignmentWithStrategy": view = AnyView(view.oneNativeSDKMultilineTextAlignmentWithStrategy(value, emit: emit))
       case "multilineTextAlignmentWithTextAlignment": view = AnyView(view.oneNativeSDKMultilineTextAlignmentWithTextAlignment(value, emit: emit))
+      case "musicPickerWithMusicVideo": view = AnyView(view.oneNativeSDKMusicPickerWithMusicVideo(value, emit: emit))
+      case "musicPickerWithSong": view = AnyView(view.oneNativeSDKMusicPickerWithSong(value, emit: emit))
+      case "musicPickerWithTrack": view = AnyView(view.oneNativeSDKMusicPickerWithTrack(value, emit: emit))
       case "musicSubscriptionOffer": view = AnyView(view.oneNativeSDKMusicSubscriptionOffer(value, emit: emit))
       case "navigationBarBackButtonHidden": view = AnyView(view.oneNativeSDKNavigationBarBackButtonHidden(value, emit: emit))
       case "navigationBarHidden": view = AnyView(view.oneNativeSDKNavigationBarHidden(value, emit: emit))
@@ -5343,6 +5415,66 @@ self
       case "trailing": self.multilineTextAlignment(SwiftUI.TextAlignment.trailing)
     default: preconditionFailure("invalid multilineTextAlignmentWithTextAlignment: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKMusicPickerWithMusicVideo(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let (presented, title): (Bool, String?) = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2, let presented = decoded[0],
+        presented == "true" || presented == "false" else { preconditionFailure("invalid musicPickerWithMusicVideo picker") }
+      return (presented == "true", decoded[1])
+    }()
+
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
+      self.modifier(OneNativeSDKMusicPickerWithMusicVideoPicker(
+        presented: presented, title: title, emit: emit))
+    } else { self }
+#else
+self
+#endif
+
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKMusicPickerWithSong(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let (presented, title): (Bool, String?) = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2, let presented = decoded[0],
+        presented == "true" || presented == "false" else { preconditionFailure("invalid musicPickerWithSong picker") }
+      return (presented == "true", decoded[1])
+    }()
+
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
+      self.modifier(OneNativeSDKMusicPickerWithSongPicker(
+        presented: presented, title: title, emit: emit))
+    } else { self }
+#else
+self
+#endif
+
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKMusicPickerWithTrack(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let (presented, title): (Bool, String?) = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2, let presented = decoded[0],
+        presented == "true" || presented == "false" else { preconditionFailure("invalid musicPickerWithTrack picker") }
+      return (presented == "true", decoded[1])
+    }()
+
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
+      self.modifier(OneNativeSDKMusicPickerWithTrackPicker(
+        presented: presented, title: title, emit: emit))
+    } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKMusicSubscriptionOffer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
