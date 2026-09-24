@@ -417,6 +417,23 @@ describe('SDK modifier derivation', () => {
     expect(deriveModifiers(declarations.map((declaration) => declaration.name === 'subscriptionBundle'
       ? { ...declaration, isStatic: false } : declaration), 27, [])).toEqual([])
   })
+
+  it('bridges a public unsigned transaction ID alias as an exact decimal string', () => {
+    expect(deriveModifiers([
+      method('refundRequestSheet', '_StoreKit_SwiftUI', [
+        { label: 'for', name: 'transactionID', type: 'StoreKit.Transaction.ID' },
+        { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+      ]),
+      { ...method('ID', 'StoreKit'), kind: 'typealias', owner: 'Transaction', type: 'Swift.UInt64' },
+    ], 27, [])).toEqual([{
+      name: 'refundRequestSheet', kind: 'record', type: '', ios: 0, framework: 'StoreKit',
+      arguments: [
+        { field: 'transactionID', label: 'for', type: 'StoreKit.Transaction.ID', kind: 'string', optional: false,
+          swiftExpression: 'UInt64($value) ?? { () -> UInt64 in preconditionFailure("invalid UInt64") }()' },
+        { field: 'isPresented', label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>', kind: 'bindingBoolean', optional: false },
+      ],
+    }])
+  })
 })
 
 describe('SDK view slots', () => {

@@ -362,6 +362,7 @@ const sdkKinds = {
   realityViewCameraControls: 'string',
   realityViewLayoutBehavior: 'string',
   redacted: 'string',
+  refundRequestSheet: 'record',
   renameAction: 'event',
   replaceDisabled: 'boolean',
   rotation3DEffect: 'record',
@@ -1398,6 +1399,10 @@ const sdkRecords: Record<
         { name: 'ty', type: 'CoreFoundation.CGFloat', integer: false },
       ],
     },
+  ],
+  refundRequestSheet: [
+    { field: 'transactionID', kind: 'string', optional: false },
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
   ],
   rotation3DEffect: [
     {

@@ -9503,6 +9503,30 @@
       "label": "reason"
     },
     {
+      "name": "refundRequestSheet",
+      "kind": "record",
+      "type": "",
+      "ios": 15,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "StoreKit.Transaction.ID",
+          "optional": false,
+          "swiftExpression": "UInt64($value) ?? { () -> UInt64 in preconditionFailure(\"invalid UInt64\") }()",
+          "field": "transactionID",
+          "label": "for"
+        },
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        }
+      ],
+      "framework": "StoreKit"
+    },
+    {
       "name": "renameAction",
       "kind": "event",
       "type": "@escaping () -> Swift.Void",
@@ -14124,6 +14148,7 @@
         "productDescription",
         "productIconBorder",
         "productViewStyle",
+        "refundRequestSheet",
         "storeButton",
         "subscriptionOfferViewButtonVisibility",
         "subscriptionOfferViewDetailAction",
@@ -14576,6 +14601,7 @@
         "productDescription",
         "productIconBorder",
         "productViewStyle",
+        "refundRequestSheet",
         "storeButton",
         "subscriptionOfferViewButtonVisibility",
         "subscriptionOfferViewDetailAction",

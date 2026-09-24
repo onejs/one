@@ -106,6 +106,13 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
     if (!/^[A-Za-z_]\w*\.[A-Za-z][\w.]*$/.test(baseType)) return
     const [module, ...owner] = baseType.split('.')
     const ownerName = owner.join('.')
+    const alias = inventory.find((d) => d.module === module && d.kind === 'typealias' &&
+      d.owner === owner.slice(0, -1).join('.') && d.name === owner.at(-1) &&
+      present(d) && ios(d) <= ceiling)
+    if (alias?.type === 'Swift.UInt64')
+      return { kind: 'string', type, optional,
+        swiftExpression: 'UInt64($value) ?? { () -> UInt64 in preconditionFailure("invalid UInt64") }()' }
+    if (alias?.type === 'Swift.String') return { kind: 'string', type, optional }
     let numericStruct: Omit<DerivedArgument, 'field' | 'label'> | undefined
     const publicStruct = inventory.find((d) => d.module === module && d.kind === 'struct' &&
       d.owner === owner.slice(0, -1).join('.') && d.name === owner.at(-1) &&

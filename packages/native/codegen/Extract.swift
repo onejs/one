@@ -69,6 +69,13 @@ final class Inventory: SyntaxVisitor {
     owners.append(node.extendedType.trimmedDescription); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map(requirementText) ?? []); return .visitChildren
   }
   override func visitPost(_ node: ExtensionDeclSyntax) { owners.removeLast(); availability.removeLast(); requirements.removeLast() }
+  override func visit(_ node: TypeAliasDeclSyntax) -> SyntaxVisitorContinueKind {
+    if node.modifiers.contains(where: { $0.name.text == "public" }) {
+      record(node, kind: "typealias", name: node.name.text, attrs: node.attributes,
+        type: node.initializer.value.trimmedDescription)
+    }
+    return .skipChildren
+  }
   override func visit(_ node: EnumCaseDeclSyntax) -> SyntaxVisitorContinueKind {
     for element in node.elements {
       if let clause = element.parameterClause {
