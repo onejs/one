@@ -458,13 +458,6 @@ function generateSceneDelegate(args: {
 function generateIosWidgets(dest: string, app: NativeAppManifest): void {
   const widgets = app.ios?.widgets
   if (!widgets) return
-  if (widgets.jsx) {
-    try {
-      module.createRequire(dest + '/').resolve('@use-voltra/ios-client/package.json')
-    } catch {
-      throw new Error('[vxrn] native.app.ios.widgets.jsx requires @use-voltra/ios-client')
-    }
-  }
   const appDir = path.join(dest, app.name)
   const extensionDir = path.join(dest, 'OneWidgets')
   FSExtra.mkdirSync(extensionDir, { recursive: true })
@@ -497,7 +490,6 @@ function generateIosWidgets(dest: string, app: NativeAppManifest): void {
   <key>CFBundleShortVersionString</key><string>${escapeXml(app.version || '1.0')}</string>
   <key>CFBundleVersion</key><string>${escapeXml(app.ios?.buildNumber || '1')}</string>
   <key>NSExtension</key><dict><key>NSExtensionPointIdentifier</key><string>com.apple.widgetkit-extension</string></dict>
-  ${widgets.jsx ? `<key>Voltra_AppGroupIdentifier</key><string>${escapeXml(widgets.appGroup)}</string>` : ''}
 </dict></plist>
 `
   )
@@ -515,12 +507,14 @@ enum OneWidgetContract {
     let title: String
     let value: String
     let subtitle: String
+    let layout: String?
   }
 
   struct Attributes: ActivityAttributes {
     struct ContentState: Codable, Hashable {
       let status: String
       let value: String
+      let layout: String?
     }
     let title: String
   }
@@ -532,7 +526,84 @@ enum OneWidgetContract {
     `import SwiftUI
 import WidgetKit
 import ActivityKit
-${widgets.jsx ? 'import VoltraRuntime' : ''}
+
+struct OneWidgetNode: Decodable {
+  let type: String
+  let text: String?
+  let style: Style?
+  let children: [OneWidgetNode]?
+
+  struct Style: Decodable {
+    let color: String?
+    let backgroundColor: String?
+    let fontSize: Double?
+    let fontWeight: String?
+    let padding: Double?
+    let borderRadius: Double?
+    let spacing: Double?
+  }
+}
+
+struct OneActivityView: Decodable {
+  let lockScreen: OneWidgetNode
+  let compactLeading: OneWidgetNode?
+  let compactTrailing: OneWidgetNode?
+  let minimal: OneWidgetNode?
+}
+
+private func oneDecode<T: Decodable>(_ value: String?, as type: T.Type) -> T? {
+  guard let value, let data = value.data(using: .utf8) else { return nil }
+  return try? JSONDecoder().decode(type, from: data)
+}
+
+private func oneColor(_ hex: String?) -> Color? {
+  guard let hex, hex.count == 7, hex.first == "#",
+        let rgb = Int(hex.dropFirst(), radix: 16) else { return nil }
+  return Color(red: Double((rgb >> 16) & 255) / 255,
+               green: Double((rgb >> 8) & 255) / 255,
+               blue: Double(rgb & 255) / 255)
+}
+
+struct OneWidgetRendered: View {
+  let node: OneWidgetNode
+
+  private var weight: Font.Weight {
+    switch node.style?.fontWeight {
+    case "medium": .medium
+    case "semibold": .semibold
+    case "bold": .bold
+    default: .regular
+    }
+  }
+
+  var body: some View {
+    Group {
+      switch node.type {
+      case "text":
+        Text(node.text ?? "")
+          .font(.system(size: CGFloat(node.style?.fontSize ?? 16), weight: weight))
+      case "vstack":
+        VStack(alignment: .leading, spacing: CGFloat(node.style?.spacing ?? 8)) {
+          ForEach(Array((node.children ?? []).enumerated()), id: \\.offset) { _, child in
+            OneWidgetRendered(node: child)
+          }
+        }
+      case "hstack":
+        HStack(spacing: CGFloat(node.style?.spacing ?? 8)) {
+          ForEach(Array((node.children ?? []).enumerated()), id: \\.offset) { _, child in
+            OneWidgetRendered(node: child)
+          }
+        }
+      case "spacer": Spacer()
+      default: EmptyView()
+      }
+    }
+    .foregroundColor(oneColor(node.style?.color))
+    .padding(CGFloat(node.style?.padding ?? 0))
+    .background { if let fill = oneColor(node.style?.backgroundColor) { fill } }
+    .clipShape(RoundedRectangle(cornerRadius: CGFloat(node.style?.borderRadius ?? 0)))
+  }
+}
 
 struct OneWidgetEntry: TimelineEntry {
   let date: Date
@@ -541,7 +612,7 @@ struct OneWidgetEntry: TimelineEntry {
 
 struct OneWidgetProvider: TimelineProvider {
   func placeholder(in context: Context) -> OneWidgetEntry {
-    OneWidgetEntry(date: .now, data: .init(title: ${JSON.stringify(widgets.displayName)}, value: "", subtitle: ""))
+    OneWidgetEntry(date: .now, data: .init(title: ${JSON.stringify(widgets.displayName)}, value: "", subtitle: "", layout: nil))
   }
 
   func getSnapshot(in context: Context, completion: @escaping (OneWidgetEntry) -> Void) {
@@ -555,7 +626,7 @@ struct OneWidgetProvider: TimelineProvider {
   private func entry() -> OneWidgetEntry {
     let stored = UserDefaults(suiteName: OneWidgetContract.appGroup)?.data(forKey: OneWidgetContract.dataKey)
     let data = stored.flatMap { try? JSONDecoder().decode(OneWidgetContract.Data.self, from: $0) }
-      ?? .init(title: ${JSON.stringify(widgets.displayName)}, value: "", subtitle: "")
+      ?? .init(title: ${JSON.stringify(widgets.displayName)}, value: "", subtitle: "", layout: nil)
     return OneWidgetEntry(date: .now, data: data)
   }
 }
@@ -563,10 +634,16 @@ struct OneWidgetProvider: TimelineProvider {
 struct OneWidget: Widget {
   var body: some WidgetConfiguration {
     StaticConfiguration(kind: OneWidgetContract.kind, provider: OneWidgetProvider()) { entry in
-      VStack(alignment: .leading, spacing: 8) {
-        Text(entry.data.title).font(.headline)
-        Text(entry.data.value).font(.title2).bold()
-        Text(entry.data.subtitle).font(.caption)
+      Group {
+        if let layout = oneDecode(entry.data.layout, as: OneWidgetNode.self) {
+          OneWidgetRendered(node: layout)
+        } else {
+          VStack(alignment: .leading, spacing: 8) {
+            Text(entry.data.title).font(.headline)
+            Text(entry.data.value).font(.title2).bold()
+            Text(entry.data.subtitle).font(.caption)
+          }
+        }
       }
       .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
       .containerBackground(.fill.tertiary, for: .widget)
@@ -580,13 +657,19 @@ struct OneWidget: Widget {
 struct OneLiveActivity: Widget {
   var body: some WidgetConfiguration {
     ActivityConfiguration(for: OneWidgetContract.Attributes.self) { context in
-      HStack {
-        VStack(alignment: .leading) {
-          Text(context.attributes.title).font(.headline)
-          Text(context.state.status)
+      Group {
+        if let layout = oneDecode(context.state.layout, as: OneActivityView.self) {
+          OneWidgetRendered(node: layout.lockScreen)
+        } else {
+          HStack {
+            VStack(alignment: .leading) {
+              Text(context.attributes.title).font(.headline)
+              Text(context.state.status)
+            }
+            Spacer()
+            Text(context.state.value).bold()
+          }
         }
-        Spacer()
-        Text(context.state.value).bold()
       }
       .padding()
       .activityBackgroundTint(.blue.opacity(0.2))
@@ -594,35 +677,37 @@ struct OneLiveActivity: Widget {
       DynamicIsland {
         DynamicIslandExpandedRegion(.leading) { Text(context.attributes.title) }
         DynamicIslandExpandedRegion(.trailing) { Text(context.state.value) }
-        DynamicIslandExpandedRegion(.bottom) { Text(context.state.status) }
+        DynamicIslandExpandedRegion(.bottom) {
+          if let layout = oneDecode(context.state.layout, as: OneActivityView.self) {
+            OneWidgetRendered(node: layout.lockScreen)
+          } else {
+            Text(context.state.status)
+          }
+        }
       } compactLeading: {
-        Text(context.attributes.title)
+        if let layout = oneDecode(context.state.layout, as: OneActivityView.self),
+           let leading = layout.compactLeading {
+          OneWidgetRendered(node: leading)
+        } else {
+          Text(context.attributes.title)
+        }
       } compactTrailing: {
-        Text(context.state.value)
+        if let layout = oneDecode(context.state.layout, as: OneActivityView.self),
+           let trailing = layout.compactTrailing {
+          OneWidgetRendered(node: trailing)
+        } else {
+          Text(context.state.value)
+        }
       } minimal: {
-        Text(context.state.value)
+        if let layout = oneDecode(context.state.layout, as: OneActivityView.self),
+           let minimal = layout.minimal {
+          OneWidgetRendered(node: minimal)
+        } else {
+          Text(context.state.value)
+        }
       }
     }
   }
-}
-
-${
-  widgets.jsx
-    ? `struct OneJSXWidget: Widget {
-  private let widgetId = ${JSON.stringify(widgets.jsx.id)}
-
-  var body: some WidgetConfiguration {
-    StaticConfiguration(kind: "Voltra_Widget_${widgets.jsx.id}", provider: VoltraHomeWidgetProvider(widgetId: widgetId)) { entry in
-      VoltraHomeWidgetView(entry: entry)
-    }
-    .configurationDisplayName(${JSON.stringify(widgets.jsx.displayName)})
-    .description(${JSON.stringify(widgets.jsx.description)})
-    .supportedFamilies([.systemSmall, .systemMedium])
-    .contentMarginsDisabled()
-  }
-}
-`
-    : ''
 }
 
 @main
@@ -630,7 +715,6 @@ struct OneWidgetsBundle: WidgetBundle {
   var body: some Widget {
     OneWidget()
     OneLiveActivity()
-    ${widgets.jsx ? 'OneJSXWidget()\n    VoltraWidget()' : ''}
   }
 }
 `
@@ -642,8 +726,11 @@ struct OneWidgetsBundle: WidgetBundle {
 
 @interface RCT_EXTERN_MODULE(OneWidgetsBridge, RCTEventEmitter)
 RCT_EXTERN_METHOD(writeWidget:(NSString *)title value:(NSString *)value subtitle:(NSString *)subtitle resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(writeView:(NSString *)layout resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(start:(NSString *)title status:(NSString *)status value:(NSString *)value push:(BOOL)push resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(startView:(NSString *)title layout:(NSString *)layout push:(BOOL)push resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(update:(NSString *)identifier status:(NSString *)status value:(NSString *)value resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(updateView:(NSString *)identifier layout:(NSString *)layout resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(end:(NSString *)identifier resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(pushToken:(NSString *)identifier resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 @end
@@ -693,7 +780,24 @@ class OneWidgetsBridge: RCTEventEmitter {
       return
     }
     do {
-      defaults.set(try JSONEncoder().encode(OneWidgetContract.Data(title: title, value: value, subtitle: subtitle)),
+      defaults.set(try JSONEncoder().encode(OneWidgetContract.Data(title: title, value: value, subtitle: subtitle, layout: nil)),
+                   forKey: OneWidgetContract.dataKey)
+      WidgetCenter.shared.reloadTimelines(ofKind: OneWidgetContract.kind)
+      resolve(nil)
+    } catch {
+      reject("widget_write", error.localizedDescription, error)
+    }
+  }
+
+  @objc(writeView:resolver:rejecter:)
+  func writeView(_ layout: String, resolver resolve: RCTPromiseResolveBlock,
+                 rejecter reject: RCTPromiseRejectBlock) {
+    guard let defaults = UserDefaults(suiteName: OneWidgetContract.appGroup) else {
+      reject("app_group", "Cannot open the configured App Group", nil)
+      return
+    }
+    do {
+      defaults.set(try JSONEncoder().encode(OneWidgetContract.Data(title: "", value: "", subtitle: "", layout: layout)),
                    forKey: OneWidgetContract.dataKey)
       WidgetCenter.shared.reloadTimelines(ofKind: OneWidgetContract.kind)
       resolve(nil)
@@ -712,7 +816,27 @@ class OneWidgetsBridge: RCTEventEmitter {
     do {
       let activity = try Activity<OneWidgetContract.Attributes>.request(
         attributes: .init(title: title),
-        content: .init(state: .init(status: status, value: value), staleDate: nil),
+        content: .init(state: .init(status: status, value: value, layout: nil), staleDate: nil),
+        pushType: push ? .token : nil
+      )
+      observeToken(activity)
+      resolve(activity.id)
+    } catch {
+      reject("activity_start", error.localizedDescription, error)
+    }
+  }
+
+  @objc(startView:layout:push:resolver:rejecter:)
+  func startView(_ title: String, layout: String, push: Bool,
+                 resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
+    guard ActivityAuthorizationInfo().areActivitiesEnabled else {
+      reject("activities_disabled", "Live Activities are disabled", nil)
+      return
+    }
+    do {
+      let activity = try Activity<OneWidgetContract.Attributes>.request(
+        attributes: .init(title: title),
+        content: .init(state: .init(status: "", value: "", layout: layout), staleDate: nil),
         pushType: push ? .token : nil
       )
       observeToken(activity)
@@ -730,7 +854,20 @@ class OneWidgetsBridge: RCTEventEmitter {
       return
     }
     Task {
-      await activity.update(.init(state: .init(status: status, value: value), staleDate: nil))
+      await activity.update(.init(state: .init(status: status, value: value, layout: nil), staleDate: nil))
+      resolve(nil)
+    }
+  }
+
+  @objc(updateView:layout:resolver:rejecter:)
+  func updateView(_ identifier: String, layout: String,
+                  resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
+    guard let activity = Activity<OneWidgetContract.Attributes>.activities.first(where: { $0.id == identifier }) else {
+      reject("activity_missing", "Live Activity not found", nil)
+      return
+    }
+    Task {
+      await activity.update(.init(state: .init(status: "", value: "", layout: layout), staleDate: nil))
       resolve(nil)
     }
   }
@@ -1064,14 +1201,6 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       }
       if (app.ios?.widgets) {
         stamps.push('\t<key>NSSupportsLiveActivities</key>\n\t<true/>')
-        if (app.ios.widgets.jsx) {
-          stamps.push(
-            `\t<key>Voltra_AppGroupIdentifier</key>\n\t<string>${escapeXml(app.ios.widgets.appGroup)}</string>`
-          )
-          if (app.ios.widgets.pushNotifications) {
-            stamps.push('\t<key>Voltra_EnablePushNotifications</key>\n\t<true/>')
-          }
-        }
       }
       if (stamps.length) {
         const anchor = '\t<key>LSRequiresIPhoneOS</key>'
@@ -1236,9 +1365,6 @@ end`
         rendered =
           nativeProjectPatches.injectNitroWebImageModularHeaderIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(rendered)
-      if (app.ios?.widgets?.jsx) {
-        rendered += `\n# jsx widgets use Voltra's SwiftUI renderer in One's generated extension\ntarget 'OneWidgets' do\n  client = \`node --print "require.resolve('@use-voltra/ios-client/package.json', {paths: ['#{Pod::Config.instance.installation_root}/..']})"\`.strip\n  raise 'Install @use-voltra/ios-client to build the JSX widget' if client.empty?\n  pod 'VoltraWidget', :path => File.join(File.dirname(client), 'ios')\nend\n`
-      }
       if (
         !rendered.includes('[vxrn/one] fmt c++17 fix') ||
         !rendered.includes('[vxrn/one] minify iOS Hermes Release bundle input')

@@ -7,7 +7,7 @@ import { FullScreenCover, Sheet } from './Sheet.native';
 import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native';
 import { Compose } from './compose';
 import * as UI from './effects';
-import { Widgets, LiveActivities } from './widgets/index.native';
+import { Widgets, LiveActivities, WidgetUI } from './widgets/index.native';
 export * from './extras';
 export type { ToolbarHostProps, ToolbarItemProps } from './extras';
 export { useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, ReservedRegions, } from './adaptive/index.native';
@@ -101,7 +101,7 @@ export declare const Swift: {
     Slot: typeof Slot;
 };
 export { Compose };
-export { Widgets, LiveActivities };
+export { Widgets, LiveActivities, WidgetUI };
 export { Menu, ContextMenu };
 export { useNativeState, type NativeState } from './nativeState';
 export { TextInput } from './universal/TextInput/index';

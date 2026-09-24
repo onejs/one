@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import { Button, Text, View } from 'react-native'
 import { One } from 'one'
-import {
-  Voltra,
-  updateWidget,
-  startLiveActivity,
-  updateLiveActivity,
-  stopLiveActivity,
-} from '@use-voltra/ios-client'
+
+const W = One.iOS.WidgetUI
+
+function DeliveryView({ value }: { value: string }) {
+  return (
+    <W.VStack style={{ padding: 12, spacing: 4 }}>
+      <W.Text style={{ fontSize: 18, fontWeight: 'bold', color: '#FFFFFF' }}>
+        One delivery
+      </W.Text>
+      <W.Text style={{ color: '#FFFFFF' }}>{value}</W.Text>
+    </W.VStack>
+  )
+}
 
 export default function WidgetDemo() {
   const [activityId, setActivityId] = useState<string | null>(null)
@@ -43,13 +49,12 @@ export default function WidgetDemo() {
         title="Write JSX widget"
         onPress={() =>
           run(async () => {
-            const view = (
-              <Voltra.VStack style={{ padding: 16 }}>
-                <Voltra.Text>One JSX</Voltra.Text>
-                <Voltra.Text>Value 84 from React</Voltra.Text>
-              </Voltra.VStack>
+            await One.iOS.Widgets.writeView(
+              <W.VStack style={{ padding: 12, spacing: 4 }}>
+                <W.Text style={{ fontSize: 18, fontWeight: 'bold' }}>One JSX</W.Text>
+                <W.Text>Value 84 from React</W.Text>
+              </W.VStack>
             )
-            await updateWidget('one_basic_jsx', { systemSmall: view, systemMedium: view })
             setMessage('JSX widget data written: 84')
           })
         }
@@ -95,14 +100,11 @@ export default function WidgetDemo() {
         title="Start JSX activity"
         onPress={() =>
           run(async () => {
-            const id = await startLiveActivity({
-              lockScreen: <Voltra.Text>JSX activity preparing</Voltra.Text>,
-              island: {
-                compact: {
-                  leading: <Voltra.Text>One</Voltra.Text>,
-                  trailing: <Voltra.Text>1/3</Voltra.Text>,
-                },
-              },
+            const id = await One.iOS.LiveActivities.startView('One delivery', {
+              lockScreen: <DeliveryView value="Preparing 1 of 3" />,
+              compactLeading: <W.Text>One</W.Text>,
+              compactTrailing: <W.Text>1/3</W.Text>,
+              minimal: <W.Text>1</W.Text>,
             })
             setJsxActivityId(id)
             setMessage(`Started JSX activity ${id}`)
@@ -114,14 +116,11 @@ export default function WidgetDemo() {
         disabled={!jsxActivityId}
         onPress={() =>
           run(async () => {
-            await updateLiveActivity(jsxActivityId!, {
-              lockScreen: <Voltra.Text>JSX activity on the way</Voltra.Text>,
-              island: {
-                compact: {
-                  leading: <Voltra.Text>One</Voltra.Text>,
-                  trailing: <Voltra.Text>2/3</Voltra.Text>,
-                },
-              },
+            await One.iOS.LiveActivities.updateView(jsxActivityId!, {
+              lockScreen: <DeliveryView value="On the way 2 of 3" />,
+              compactLeading: <W.Text>One</W.Text>,
+              compactTrailing: <W.Text>2/3</W.Text>,
+              minimal: <W.Text>2</W.Text>,
             })
             setMessage('Updated JSX activity: 2 of 3')
           })
@@ -132,7 +131,7 @@ export default function WidgetDemo() {
         disabled={!jsxActivityId}
         onPress={() =>
           run(async () => {
-            await stopLiveActivity(jsxActivityId!)
+            await One.iOS.LiveActivities.end(jsxActivityId!)
             setJsxActivityId(null)
             setMessage('Ended JSX activity')
           })

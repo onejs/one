@@ -31,11 +31,6 @@ export interface NativeAppManifest {
       displayName: string
       description: string
       pushNotifications?: boolean
-      jsx?: {
-        id: string
-        displayName: string
-        description: string
-      }
     }
   }
   android?: {

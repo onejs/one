@@ -243,30 +243,44 @@ entitlement; the signing profile must also enable Push Notifications.
 permissions and device tokens. App Groups and Live Activities need the corresponding
 capabilities in the app's signing profile on a physical device.
 
-For JSX layouts, install `@use-voltra/ios-client` and add `jsx` to the same
-`ios.widgets` object. One's prebuild includes Voltra's SwiftUI renderer in its
-existing extension target. React renders the JSX layout to a serialized payload
-in the app; the extension reads and displays that payload without the app runtime.
-
-```ts
-jsx: {
-  id: 'order_status',
-  displayName: 'Order status',
-  description: 'An order widget authored in JSX.',
-},
-```
+One also accepts JSX layouts through `One.iOS.WidgetUI`. The app serializes the
+layout to the same typed App Group contract or ActivityKit state. The generated
+SwiftUI extension renders it without a JavaScript runtime or an extra package.
 
 ```tsx
-import { Voltra, updateWidget, startLiveActivity } from '@use-voltra/ios-client'
+import { One } from 'one'
 
-const view = <Voltra.VStack><Voltra.Text>Order 2 of 3</Voltra.Text></Voltra.VStack>
-await updateWidget('order_status', { systemSmall: view, systemMedium: view })
-await startLiveActivity({ lockScreen: view })
+const W = One.iOS.WidgetUI
+
+function OrderStatus({ progress }: { progress: string }) {
+  return (
+    <W.VStack style={{ padding: 12, spacing: 4 }}>
+      <W.Text style={{ fontSize: 18, fontWeight: 'bold' }}>Order</W.Text>
+      <W.Text>{progress}</W.Text>
+    </W.VStack>
+  )
+}
+
+await One.iOS.Widgets.writeView(<OrderStatus progress="2 of 3" />)
+const id = await One.iOS.LiveActivities.startView('Order', {
+  lockScreen: <OrderStatus progress="1 of 3" />,
+  compactLeading: <W.Text>Order</W.Text>,
+  compactTrailing: <W.Text>1/3</W.Text>,
+})
+await One.iOS.LiveActivities.updateView(id, {
+  lockScreen: <OrderStatus progress="2 of 3" />,
+  compactLeading: <W.Text>Order</W.Text>,
+  compactTrailing: <W.Text>2/3</W.Text>,
+})
+await One.iOS.LiveActivities.end(id)
 ```
 
-The built-in SwiftUI widget uses the fixed `title`, `value`, and `subtitle` contract.
-The optional Voltra widget uses its own JSX payload and widget id. Android widgets
-require a separate Glance target, storage contract, and lifecycle; this setting
+`WidgetUI` supports `Text`, `VStack`, `HStack`, and `Spacer`, with `color`,
+`backgroundColor`, `fontSize`, `fontWeight`, `padding`, `borderRadius`, and
+`spacing` styles. Colors use six-digit hex values. JSX layouts can contain pure
+function components; compute hook state in the app and pass it as props. The
+`write` and `writeView` methods update the same widget. Android widgets require
+a separate Glance target, storage contract, and lifecycle; this setting
 generates only iOS targets.
 
 ### iOS Project Setup

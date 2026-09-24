@@ -78,7 +78,6 @@ describe('native.app manifest', () => {
       kind: 'MyAppStatus',
       displayName: 'Status',
       description: 'Current status',
-      jsx: { id: 'status_jsx', displayName: 'JSX status', description: 'Current status' },
     }
     expect(() =>
       validateNativeApp({ ...app, ios: { ...app.ios, widgets } })
@@ -101,15 +100,6 @@ describe('native.app manifest', () => {
         ios: { ...app.ios, widgets: { ...widgets, appGroup: 'dev.one.myapp' } },
       })
     ).toThrow(/appGroup/)
-    expect(() =>
-      validateNativeApp({
-        ...app,
-        ios: {
-          ...app.ios,
-          widgets: { ...widgets, jsx: { ...widgets.jsx, id: 'bad id' } },
-        },
-      })
-    ).toThrow(/jsx.id/)
   })
 
   test('rejects missing platform ids and out-of-range platform values', () => {

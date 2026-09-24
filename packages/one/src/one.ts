@@ -5,6 +5,7 @@ import {
   Browser as NativeBrowser,
   Widgets,
   LiveActivities,
+  WidgetUI,
   Clipboard as NativeClipboard,
   AppInfo,
   Color,
@@ -50,6 +51,7 @@ export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx'
 export type OneIOS = Omit<typeof Swift, 'ToolbarItem'> & {
   readonly Widgets: typeof Widgets
   readonly LiveActivities: typeof LiveActivities
+  readonly WidgetUI: typeof WidgetUI
   readonly Color: ColorType['ios']
   readonly MenuAction: typeof MenuAction
   readonly SplitView: typeof SplitView
@@ -118,6 +120,7 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   ...Swift,
   Widgets,
   LiveActivities,
+  WidgetUI,
   Color: Color.ios,
   MenuAction,
   SplitView,
