@@ -298,9 +298,13 @@ ${assignments}
       return ${expression(argument.swiftExpression, 'raw') ?? (baseType === 'SwiftUICore.Text' ? 'Text(raw)' : baseType === 'SwiftUICore.Image' ? 'Image(systemName: raw)' : construct('raw', argument.scalarConstructor, argument.type))}
     }()`
         }).join('\n')
-        const call = argumentsFromSDK.map((argument, index) =>
+        const callArguments = argumentsFromSDK.map((argument, index) =>
           `${argument.label === '_' ? '' : `${argument.label}: `}${argument.closureInput ? `{ (_: ${argument.closureInput}) in argument${index} }` : `argument${index}`}`
-        ).join(', ')
+        )
+        if (modifier.namespaceParameter)
+          callArguments.splice(modifier.namespaceParameter.index, 0,
+            `${modifier.namespaceParameter.label === '_' ? '' : `${modifier.namespaceParameter.label}: `}OneNativeNamespace.id`)
+        const call = callArguments.join(', ')
         const body = `let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -1128,6 +1132,8 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
       `import SwiftUI
 import UIKit
 ${frameworkImports.map((framework) => `import ${framework}`).join('\n')}
+
+${derived.some((modifier) => modifier.namespaceParameter) ? 'private enum OneNativeNamespace { static let id = Namespace().wrappedValue }\n' : ''}
 
 public struct OneNativeStyle: Equatable {
 ${properties}

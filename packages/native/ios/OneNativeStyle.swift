@@ -19,6 +19,9 @@ import Symbols
 import Translation
 import WebKit
 
+private enum OneNativeNamespace { static let id = Namespace().wrappedValue }
+
+
 public struct OneNativeStyle: Equatable {
   public var fontSize: CGFloat?
   public var fontWeight: String?
@@ -135,11 +138,14 @@ extension View {
       case "accessibilityIdentifierWithString": view = AnyView(view.oneNativeSDKAccessibilityIdentifierWithString(value, emit: emit))
       case "accessibilityIgnoresInvertColors": view = AnyView(view.oneNativeSDKAccessibilityIgnoresInvertColors(value, emit: emit))
       case "accessibilityInputLabels": view = AnyView(view.oneNativeSDKAccessibilityInputLabels(value, emit: emit))
+      case "accessibilityLabeledPair": view = AnyView(view.oneNativeSDKAccessibilityLabeledPair(value, emit: emit))
       case "accessibilityLabelWithLabelAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityLabelWithLabelAndIsEnabled(value, emit: emit))
       case "accessibilityLabelWithText": view = AnyView(view.oneNativeSDKAccessibilityLabelWithText(value, emit: emit))
+      case "accessibilityLinkedGroup": view = AnyView(view.oneNativeSDKAccessibilityLinkedGroup(value, emit: emit))
       case "accessibilityRemoveTraits": view = AnyView(view.oneNativeSDKAccessibilityRemoveTraits(value, emit: emit))
       case "accessibilityRespondsToUserInteractionWithBool": view = AnyView(view.oneNativeSDKAccessibilityRespondsToUserInteractionWithBool(value, emit: emit))
       case "accessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled(value, emit: emit))
+      case "accessibilityRotorEntry": view = AnyView(view.oneNativeSDKAccessibilityRotorEntry(value, emit: emit))
       case "accessibilityScrollAction": view = AnyView(view.oneNativeSDKAccessibilityScrollAction(value, emit: emit))
       case "accessibilityScrollStatus": view = AnyView(view.oneNativeSDKAccessibilityScrollStatus(value, emit: emit))
       case "accessibilityShowsLargeContentViewer": view = AnyView(view.oneNativeSDKAccessibilityShowsLargeContentViewer(value, emit: emit))
@@ -333,7 +339,9 @@ extension View {
       case "gaugeStyle": view = AnyView(view.oneNativeSDKGaugeStyle(value, emit: emit))
       case "geometryGroup": view = AnyView(view.oneNativeSDKGeometryGroup(value, emit: emit))
       case "gesture": view = AnyView(view.oneNativeSDKGesture(value, emit: emit))
+      case "glassEffectID": view = AnyView(view.oneNativeSDKGlassEffectID(value, emit: emit))
       case "glassEffectTransition": view = AnyView(view.oneNativeSDKGlassEffectTransition(value, emit: emit))
+      case "glassEffectUnion": view = AnyView(view.oneNativeSDKGlassEffectUnion(value, emit: emit))
       case "grayscale": view = AnyView(view.oneNativeSDKGrayscale(value, emit: emit))
       case "gridCellAnchor": view = AnyView(view.oneNativeSDKGridCellAnchor(value, emit: emit))
       case "gridCellColumns": view = AnyView(view.oneNativeSDKGridCellColumns(value, emit: emit))
@@ -403,6 +411,8 @@ extension View {
       case "mapFeatureSelectionAccessory": view = AnyView(view.oneNativeSDKMapFeatureSelectionAccessory(value, emit: emit))
       case "mapFeatureSelectionDisabled": view = AnyView(view.oneNativeSDKMapFeatureSelectionDisabled(value, emit: emit))
       case "mapStyle": view = AnyView(view.oneNativeSDKMapStyle(value, emit: emit))
+      case "matchedGeometryEffect": view = AnyView(view.oneNativeSDKMatchedGeometryEffect(value, emit: emit))
+      case "matchedTransitionSource": view = AnyView(view.oneNativeSDKMatchedTransitionSource(value, emit: emit))
       case "materialActiveAppearance": view = AnyView(view.oneNativeSDKMaterialActiveAppearance(value, emit: emit))
       case "menuActionDismissBehavior": view = AnyView(view.oneNativeSDKMenuActionDismissBehavior(value, emit: emit))
       case "menuIndicator": view = AnyView(view.oneNativeSDKMenuIndicator(value, emit: emit))
@@ -1277,6 +1287,28 @@ extension View {
     } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityLabeledPair(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid accessibilityLabeledPair: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.AccessibilityLabeledPairRole = {
+      guard let raw = values[0] else { preconditionFailure("missing accessibilityLabeledPair.role") }
+      switch raw {
+      case "label": return SwiftUI.AccessibilityLabeledPairRole.label
+      case "content": return SwiftUI.AccessibilityLabeledPairRole.content
+      default: preconditionFailure("invalid accessibilityLabeledPair.role: \(raw)")
+      }
+    }()
+    let argument1: Swift.String = {
+      guard let raw = values[1] else { preconditionFailure("missing accessibilityLabeledPair.id") }
+      return raw
+    }()
+    self.accessibilityLabeledPair(role: argument0, id: argument1, in: OneNativeNamespace.id)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityLabelWithLabelAndIsEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) {
       let values: [String?] = {
@@ -1300,6 +1332,20 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityLabelWithText(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       self.accessibilityLabel(Text(value))
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityLinkedGroup(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid accessibilityLinkedGroup: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.String = {
+      guard let raw = values[0] else { preconditionFailure("missing accessibilityLinkedGroup.id") }
+      return raw
+    }()
+    self.accessibilityLinkedGroup(id: argument0, in: OneNativeNamespace.id)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityRemoveTraits(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -1351,6 +1397,20 @@ extension View {
     }()
     self.accessibilityRespondsToUserInteraction(argument0, isEnabled: argument1)
     } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityRotorEntry(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid accessibilityRotorEntry: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.String = {
+      guard let raw = values[0] else { preconditionFailure("missing accessibilityRotorEntry.id") }
+      return raw
+    }()
+    self.accessibilityRotorEntry(id: argument0, in: OneNativeNamespace.id)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityScrollAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -3817,6 +3877,22 @@ self
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKGlassEffectID(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid glassEffectID: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.String? = {
+      guard let raw = values[0] else { return nil }
+      return raw
+    }()
+    self.glassEffectID(argument0, in: OneNativeNamespace.id)
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKGlassEffectTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -3825,6 +3901,22 @@ self
       case "identity": if #available(iOS 26, *) { self.glassEffectTransition(SwiftUI.GlassEffectTransition.identity) } else { self }
     default: preconditionFailure("invalid glassEffectTransition: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKGlassEffectUnion(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid glassEffectUnion: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.String? = {
+      guard let raw = values[0] else { return nil }
+      return raw
+    }()
+    self.glassEffectUnion(id: argument0, namespace: OneNativeNamespace.id)
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKGrayscale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4858,6 +4950,36 @@ self
       case "hybrid": self.mapStyle(_MapKit_SwiftUI.MapStyle.hybrid)
     default: preconditionFailure("invalid mapStyle: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKMatchedGeometryEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid matchedGeometryEffect: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.String = {
+      guard let raw = values[0] else { preconditionFailure("missing matchedGeometryEffect.id") }
+      return raw
+    }()
+    self.matchedGeometryEffect(id: argument0, in: OneNativeNamespace.id)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKMatchedTransitionSource(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid matchedTransitionSource: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.String = {
+      guard let raw = values[0] else { preconditionFailure("missing matchedTransitionSource.id") }
+      return raw
+    }()
+    self.matchedTransitionSource(id: argument0, in: OneNativeNamespace.id)
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKMaterialActiveAppearance(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
