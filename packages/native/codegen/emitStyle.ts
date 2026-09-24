@@ -1221,12 +1221,14 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
         isPresented: { onChange: (value: boolean) => void }
         onSelection: (url: string) => void
         onError: (message: string) => void
+        onItemIdentifier?: (id: string) => void
       } | undefined
       if (field === 'isPresented') {
         if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid boolean')
         picker?.isPresented.onChange(value === 'true')
       } else if (field === 'onSelection') picker?.onSelection(value)
       else if (field === 'onError') picker?.onError(value)
+      else if (field === 'onItemIdentifier') picker?.onItemIdentifier?.(value)
       else throw new Error(name + ' emitted an invalid transfer event')
       return
     }
@@ -1507,6 +1509,9 @@ private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slic
       ${modifier.transferSelection!.selectionLabel}: $selection
     ).onChange(of: selection) { _, next in
       guard let next else { return }
+      ${modifier.transferSelection!.identifierField ? `if let id = next.${modifier.transferSelection!.identifierField} {
+        emit(${JSON.stringify(`${modifier.name}.onItemIdentifier`)}, id)
+      }` : ''}
       selection = nil
       Task { @MainActor in
         do {

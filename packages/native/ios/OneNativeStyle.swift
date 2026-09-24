@@ -118,6 +118,9 @@ private struct OneNativeSDKPhotosPickerTransfer: ViewModifier {
       selection: $selection
     ).onChange(of: selection) { _, next in
       guard let next else { return }
+      if let id = next.itemIdentifier {
+        emit("photosPicker.onItemIdentifier", id)
+      }
       selection = nil
       Task { @MainActor in
         do {
@@ -656,8 +659,10 @@ extension View {
       case "photosReferenceImageViewer": view = AnyView(view.oneNativeSDKPhotosReferenceImageViewer(value, emit: emit))
       case "photosSharedAlbumCreationSheet": view = AnyView(view.oneNativeSDKPhotosSharedAlbumCreationSheet(value, emit: emit))
       case "photosSharedAlbumCustomizationSheet": view = AnyView(view.oneNativeSDKPhotosSharedAlbumCustomizationSheet(value, emit: emit))
+      case "photosSharedAlbumPostingSheet": view = AnyView(view.oneNativeSDKPhotosSharedAlbumPostingSheet(value, emit: emit))
       case "pickerStyle": view = AnyView(view.oneNativeSDKPickerStyle(value, emit: emit))
       case "position": view = AnyView(view.oneNativeSDKPosition(value, emit: emit))
+      case "postToPhotosSharedAlbumSheet": view = AnyView(view.oneNativeSDKPostToPhotosSharedAlbumSheet(value, emit: emit))
       case "preferencePreferredColorScheme": view = AnyView(view.oneNativeSDKPreferencePreferredColorScheme(value, emit: emit))
       case "preferredColorScheme": view = AnyView(view.oneNativeSDKPreferredColorScheme(value, emit: emit))
       case "preferredSubscriptionOffer": view = AnyView(view.oneNativeSDKPreferredSubscriptionOffer(value, emit: emit))
@@ -6326,6 +6331,33 @@ self
 
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKPhotosSharedAlbumPostingSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid photosSharedAlbumPostingSheet: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid photosSharedAlbumPostingSheet.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("photosSharedAlbumPostingSheet.isPresented", String($0)) })
+    }()
+    let argument1: [_PhotosUI_SwiftUI.PhotosPickerItem] = {
+      guard let raw = values[1] else { preconditionFailure("missing photosSharedAlbumPostingSheet.items") }
+      guard let data = raw.data(using: .utf8), let strings = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid photosSharedAlbumPostingSheet.items: \(raw)") }
+      return strings.map { _PhotosUI_SwiftUI.PhotosPickerItem(itemIdentifier: $0) }
+    }()
+    self.photosSharedAlbumPostingSheet(isPresented: argument0, items: argument1, photoLibrary: Photos.PHPhotoLibrary.shared())
+    } else { self }
+#else
+self
+#endif
+
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKPickerStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -6365,6 +6397,27 @@ self
       return CGFloat(number)
     }()
     self.position(x: argument0, y: argument1)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPostToPhotosSharedAlbumSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid postToPhotosSharedAlbumSheet: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid postToPhotosSharedAlbumSheet.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("postToPhotosSharedAlbumSheet.isPresented", String($0)) })
+    }()
+    let argument1: [_PhotosUI_SwiftUI.PhotosPickerItem] = {
+      guard let raw = values[1] else { preconditionFailure("missing postToPhotosSharedAlbumSheet.items") }
+      guard let data = raw.data(using: .utf8), let strings = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid postToPhotosSharedAlbumSheet.items: \(raw)") }
+      return strings.map { _PhotosUI_SwiftUI.PhotosPickerItem(itemIdentifier: $0) }
+    }()
+    self.postToPhotosSharedAlbumSheet(isPresented: argument0, items: argument1, photoLibrary: Photos.PHPhotoLibrary.shared())
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPreferencePreferredColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

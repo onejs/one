@@ -1625,6 +1625,20 @@
             "type": "Int32"
           }
         },
+        "onNativePhotosPickerPickItemIdentifier": {
+          "itemIdentifier": {
+            "type": "string"
+          },
+          "index": {
+            "type": "Double"
+          },
+          "count": {
+            "type": "Double"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
         "onNativePhotosPickerPickError": {
           "message": {
             "type": "string"
@@ -1638,6 +1652,10 @@
         {
           "publicProp": "onPick",
           "event": "onNativePhotosPickerPick"
+        },
+        {
+          "publicProp": "onPickItemIdentifier",
+          "event": "onNativePhotosPickerPickItemIdentifier"
         },
         {
           "publicProp": "onPickError",

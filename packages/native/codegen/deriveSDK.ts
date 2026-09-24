@@ -53,7 +53,7 @@ export type DerivedModifier = {
   pickerSelection?: { selectionType: string; presentedLabel: string; titleLabel: string;
     selectionLabel: string; idField: string; rawField: string }
   transferSelection?: { itemType: string; presentedLabel: string; selectionLabel: string;
-    contentTypesField: string }
+    contentTypesField: string; identifierField?: string }
   requestType?: string
   requestProperty?: string
   sessionRequest?: { method: string; inputField: string; outputFields: readonly string[];
@@ -116,6 +116,27 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
       return { kind: 'string', type, optional }
     if (baseType === '[Swift.String]' || baseType === '[SwiftUICore.Text]')
       return { kind: 'stringArray', type, optional }
+    const identifiedItems = /^\[([A-Za-z_]\w*\.[A-Za-z_]\w*)\]$/.exec(baseType)?.[1]
+    if (identifiedItems) {
+      const [module, name] = identifiedItems.split('.')
+      const item = inventory.find((declaration) => declaration.module === module &&
+        declaration.owner === '' && declaration.kind === 'struct' &&
+        declaration.name === name && present(declaration) && ios(declaration) <= ceiling)
+      const identifier = item && inventory.find((declaration) => declaration.module === module &&
+        declaration.owner === name && declaration.kind === 'var' &&
+        declaration.name.endsWith('Identifier') &&
+        (declaration.type === 'Swift.String' || declaration.type === 'Swift.String?') &&
+        present(declaration) && ios(declaration) <= ceiling)
+      const constructor = identifier && inventory.find((declaration) =>
+        declaration.module === module && declaration.owner === name &&
+        declaration.kind === 'init' && !declaration.failable &&
+        declaration.parameters.length === 1 &&
+        declaration.parameters[0].label === identifier.name &&
+        declaration.parameters[0].type === 'Swift.String' &&
+        present(declaration) && ios(declaration) <= ceiling)
+      if (constructor) return { kind: 'stringArray', type, optional,
+        swiftExpression: `$value.map { ${identifiedItems}(${constructor.parameters[0].label}: $0) }` }
+    }
     if (baseType === '[UniformTypeIdentifiers.UTType]')
       return { kind: 'stringArray', type, optional,
         swiftExpression: '({ () -> [UniformTypeIdentifiers.UTType] in\n        let identifiers = $value\n        if identifiers.isEmpty { return [.item] }\n        return identifiers.map { identifier in\n          guard let type = UniformTypeIdentifiers.UTType(identifier) else { preconditionFailure("invalid content type: \\(identifier)") }\n          return type\n        }\n      })()' }
@@ -676,14 +697,19 @@ export function deriveModifiers(
           declaration.module === module && declaration.owner === itemName &&
           declaration.type === '[UniformTypeIdentifiers.UTType]' &&
           present(declaration) && ios(declaration) <= ceiling)
+        const identifier = inventory.find((declaration) => declaration.kind === 'var' &&
+          declaration.module === module && declaration.owner === itemName &&
+          declaration.name.endsWith('Identifier') && declaration.type === 'Swift.String?' &&
+          present(declaration) && ios(declaration) <= ceiling)
         if (item && load && types) {
           return [{ name, module: method.module, kind: 'transferSelection' as const,
             type: transferType, ...framework,
-            ios: Math.max(ios(method), ios(item), ios(load), ios(types)),
+            ios: Math.max(ios(method), ios(item), ios(load), ios(types), identifier ? ios(identifier) : 0),
             transferSelection: { itemType: transferType,
               presentedLabel: method.parameters[0].label,
               selectionLabel: method.parameters[1].label,
-              contentTypesField: types.name } }]
+              contentTypesField: types.name,
+              ...(identifier ? { identifierField: identifier.name } : {}) } }]
         }
       }
       const pickerProtocol = method.parameters.length === 3 &&

@@ -452,8 +452,10 @@ const sdkKinds = {
   photosReferenceImageViewer: 'record',
   photosSharedAlbumCreationSheet: 'record',
   photosSharedAlbumCustomizationSheet: 'record',
+  photosSharedAlbumPostingSheet: 'record',
   pickerStyle: 'style',
   position: 'record',
+  postToPhotosSharedAlbumSheet: 'record',
   preferencePreferredColorScheme: 'optionalEnum',
   preferredColorScheme: 'optionalEnum',
   preferredSubscriptionOffer: 'selectionID',
@@ -1918,9 +1920,17 @@ const sdkRecords: Record<
     { field: 'isPresented', kind: 'bindingBoolean', optional: false },
     { field: 'albumIdentifier', kind: 'string', optional: true },
   ],
+  photosSharedAlbumPostingSheet: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'items', kind: 'stringArray', optional: false },
+  ],
   position: [
     { field: 'x', kind: 'number', optional: false },
     { field: 'y', kind: 'number', optional: false },
+  ],
+  postToPhotosSharedAlbumSheet: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'items', kind: 'stringArray', optional: false },
   ],
   presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation: [
     { field: 'horizontalAdaptation', kind: 'enum', optional: false },
@@ -2740,6 +2750,7 @@ export function dispatchSDKEvent(
             isPresented: { onChange: (value: boolean) => void }
             onSelection: (url: string) => void
             onError: (message: string) => void
+            onItemIdentifier?: (id: string) => void
           }
         | undefined
       if (field === 'isPresented') {
@@ -2748,6 +2759,7 @@ export function dispatchSDKEvent(
         picker?.isPresented.onChange(value === 'true')
       } else if (field === 'onSelection') picker?.onSelection(value)
       else if (field === 'onError') picker?.onError(value)
+      else if (field === 'onItemIdentifier') picker?.onItemIdentifier?.(value)
       else throw new Error(name + ' emitted an invalid transfer event')
       return
     }

@@ -11220,7 +11220,8 @@
         "itemType": "_PhotosUI_SwiftUI.PhotosPickerItem",
         "presentedLabel": "isPresented",
         "selectionLabel": "selection",
-        "contentTypesField": "supportedContentTypes"
+        "contentTypesField": "supportedContentTypes",
+        "identifierField": "itemIdentifier"
       }
     },
     {
@@ -11437,6 +11438,35 @@
       "framework": "PhotosUI"
     },
     {
+      "name": "photosSharedAlbumPostingSheet",
+      "kind": "record",
+      "type": "",
+      "ios": 27,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "stringArray",
+          "type": "[_PhotosUI_SwiftUI.PhotosPickerItem]",
+          "optional": false,
+          "swiftExpression": "$value.map { _PhotosUI_SwiftUI.PhotosPickerItem(itemIdentifier: $0) }",
+          "field": "items",
+          "label": "items"
+        }
+      ],
+      "sharedParameter": {
+        "index": 2,
+        "label": "photoLibrary",
+        "type": "Photos.PHPhotoLibrary"
+      },
+      "framework": "PhotosUI"
+    },
+    {
       "name": "pickerStyle",
       "kind": "style",
       "type": "S",
@@ -11497,6 +11527,35 @@
           "label": "y"
         }
       ]
+    },
+    {
+      "name": "postToPhotosSharedAlbumSheet",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "stringArray",
+          "type": "[_PhotosUI_SwiftUI.PhotosPickerItem]",
+          "optional": false,
+          "swiftExpression": "$value.map { _PhotosUI_SwiftUI.PhotosPickerItem(itemIdentifier: $0) }",
+          "field": "items",
+          "label": "items"
+        }
+      ],
+      "sharedParameter": {
+        "index": 2,
+        "label": "photoLibrary",
+        "type": "Photos.PHPhotoLibrary"
+      },
+      "framework": "PhotosUI"
     },
     {
       "name": "preferencePreferredColorScheme",
@@ -17922,7 +17981,9 @@
         "photosPickerStyle",
         "photosReferenceImageViewer",
         "photosSharedAlbumCreationSheet",
-        "photosSharedAlbumCustomizationSheet"
+        "photosSharedAlbumCustomizationSheet",
+        "photosSharedAlbumPostingSheet",
+        "postToPhotosSharedAlbumSheet"
       ],
       "_QuickLook_SwiftUI": [
         "quickLookPreview"
@@ -18443,7 +18504,9 @@
         "photosPickerStyle",
         "photosReferenceImageViewer",
         "photosSharedAlbumCreationSheet",
-        "photosSharedAlbumCustomizationSheet"
+        "photosSharedAlbumCustomizationSheet",
+        "photosSharedAlbumPostingSheet",
+        "postToPhotosSharedAlbumSheet"
       ],
       "_QuickLook_SwiftUI": [
         "quickLookPreview"

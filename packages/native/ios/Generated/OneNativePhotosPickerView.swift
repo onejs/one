@@ -27,6 +27,13 @@ private final class PhotosPickerModel: ObservableObject {
     pickCount += 1
     onPick?(url, index, count, pickCount)
   }
+  var onPickItemIdentifier: ((String, Double, Double, Int) -> Void)?
+  private var pickItemIdentifierCount = 0
+  func pickItemIdentifier(_ itemIdentifier: String, _ index: Double, _ count: Double) {
+    guard active, !disabled else { return }
+    pickItemIdentifierCount += 1
+    onPickItemIdentifier?(itemIdentifier, index, count, pickItemIdentifierCount)
+  }
   var onPickError: ((String, Int) -> Void)?
   private var pickErrorCount = 0
   func pickError(_ message: String) {
@@ -39,6 +46,7 @@ private final class PhotosPickerModel: ObservableObject {
   public var onSDKEvent: ((String, String) -> Void)?
 
   public var onPick: ((String, Double, Double, Int) -> Void)?
+  public var onPickItemIdentifier: ((String, Double, Double, Int) -> Void)?
   public var onPickError: ((String, Int) -> Void)?
   private var model = PhotosPickerModel()
   public var onHeight: ((CGFloat) -> Void)?
@@ -82,6 +90,7 @@ private final class PhotosPickerModel: ObservableObject {
     model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
 
     model.onPick = { [weak self] url, index, count, pickCount in self?.onPick?(url, index, count, pickCount) }
+    model.onPickItemIdentifier = { [weak self] itemIdentifier, index, count, pickItemIdentifierCount in self?.onPickItemIdentifier?(itemIdentifier, index, count, pickItemIdentifierCount) }
     model.onPickError = { [weak self] message, pickErrorCount in self?.onPickError?(message, pickErrorCount) }
   }
   private func updateHost() {
@@ -97,7 +106,7 @@ private final class PhotosPickerModel: ObservableObject {
   }
   public func reset() {
     compositionParent = nil
-    model.active = false; model.onSDKEvent = nil; model.onPick = nil; model.onPickError = nil
+    model.active = false; model.onSDKEvent = nil; model.onPick = nil; model.onPickItemIdentifier = nil; model.onPickError = nil
     controller?.detach(); controller = nil; model = PhotosPickerModel()
   }
 }
@@ -163,6 +172,7 @@ private struct PhotosPickerSurface: View {
   private func deliver(_ items: [PhotosPickerItem]) {
     let count = items.count
     for (index, item) in items.enumerated() {
+      if let id = item.itemIdentifier { model.pickItemIdentifier(id, Double(index), Double(count)) }
       Task { @MainActor in
         do {
           guard let data = try await item.loadTransferable(type: Data.self) else {
