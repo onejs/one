@@ -6,12 +6,15 @@ import NativeArrangementView from './specs/OneNativeArrangementViewNativeCompone
 import NativeArrangementSlot from './specs/OneNativeArrangementSlotNativeComponent'
 import { onHingeChange, type HingeState } from './adaptive/index.native'
 
+// a pane is as big as SwiftUI makes it, which is known only once the slot reports
+// its frame. until then it has no size: laying its content out across the whole
+// arrangement would hand every native container inside a frame it never has.
 const PANE_STYLE = {
   position: 'absolute',
   left: 0,
   top: 0,
-  width: '100%',
-  height: '100%',
+  width: 0,
+  height: 0,
 } as const
 
 export type ArrangementViewStyle =

@@ -10,6 +10,7 @@ private final class GlassModel: ObservableObject {
 private struct GlassContent: View {
   @ObservedObject var model: GlassModel
   @ObservedObject var children: OneNativeChildren
+  let standalone: Bool
 
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
@@ -17,6 +18,9 @@ private struct GlassContent: View {
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     .oneNativeStyle(model.style)
+    // standalone, React Native already placed the box, so insets the hosting controller
+    // inherits from the screen would only shrink the surface inside it.
+    .ignoresSafeArea(edges: standalone ? .all : [])
   }
 }
 
@@ -29,8 +33,8 @@ public final class OneNativeGlassView: OneNativeContainerView {
   public init() {
     let model = GlassModel()
     self.model = model
-    super.init(wrap: { children, _ in
-      AnyView(GlassContent(model: model, children: children))
+    super.init(wrap: { children, standalone in
+      AnyView(GlassContent(model: model, children: children, standalone: standalone))
     })
   }
 

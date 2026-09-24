@@ -14,6 +14,7 @@ import type {
 } from './types'
 import NativeTab from './specs/OneNativeTabNativeComponent'
 import NativeTabs from './specs/OneNativeTabsNativeComponent'
+import { Toolbar, ToolbarNode } from './NavigationStack.native'
 
 const PAGE_STYLE = {
   position: 'absolute',
@@ -138,10 +139,11 @@ export function Tabs({
     eventCount: number
     revision: number
   }>((event) => onSelectionChange(event.selection), revision)
-  const { entries, accessory, actions } = useMemo(() => {
+  const { entries, accessory, actions, toolbar } = useMemo(() => {
     const ids = new Set<string>()
     const entries: Entry[] = []
     let accessory: TabViewBottomAccessoryProps | undefined
+    let toolbar: ReactNode
     const actions = new Map<string, () => void>()
     const claim = (owner: string, id: string) => {
       if (!id || ids.has(id)) throw new Error(`${owner} requires unique, nonempty ids: "${id}"`)
@@ -204,6 +206,9 @@ export function Tabs({
       } else if (child.type === TabViewBottomAccessory) {
         if (accessory) throw new Error('Swift.Tabs accepts one TabViewBottomAccessory')
         accessory = child.props as TabViewBottomAccessoryProps
+      } else if (child.type === Toolbar) {
+        if (toolbar) throw new Error('Swift.Tabs accepts one Swift.Toolbar')
+        toolbar = (child.props as { children: ReactNode }).children
       } else if (child.type === TabViewSlot) {
         const slot = child.props as TabViewSlotProps
         if (!Object.hasOwn(tabViewSlotAvailability, slot.name))
@@ -228,11 +233,11 @@ export function Tabs({
         })
       } else {
         throw new Error(
-          'Swift.Tabs accepts Swift.Tab, Swift.TabSection, Swift.TabViewSlot, and Swift.TabViewBottomAccessory elements as direct children'
+          'Swift.Tabs accepts Swift.Tab, Swift.TabSection, Swift.TabViewSlot, Swift.TabViewBottomAccessory, and Swift.Toolbar elements as direct children'
         )
       }
     }
-    return { entries, accessory, actions }
+    return { entries, accessory, actions, toolbar }
   }, [children, iosVersion])
   const tabsBeyondIOS17 = entries.some(
     (entry) => entry.kind === 'section' || (entry.kind !== 'slot' && entry.tabModifiers !== '{}')
@@ -322,6 +327,7 @@ export function Tabs({
           </NativeTab>
         )
       })}
+      {toolbar ? <ToolbarNode iosVersion={iosVersion}>{toolbar}</ToolbarNode> : null}
     </NativeTabs>
   )
 }

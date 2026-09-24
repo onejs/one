@@ -144,7 +144,7 @@ public final class OneNativeToolbarView: OneNativeContainerView {
   // would silently drop every item it holds.
   public override func composeInto(_ parent: OneNativeCompositionParent) {
     guard let host = parent as? OneNativeToolbarHost else {
-      preconditionFailure("Swift.Toolbar must be a direct child of Swift.NavigationStack")
+      preconditionFailure("Swift.Toolbar must be a direct child of Swift.NavigationStack or Swift.Tabs")
     }
     self.host = host
     super.composeInto(parent)
