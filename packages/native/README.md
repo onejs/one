@@ -244,6 +244,9 @@ acknowledgement.
 
 Tabs require unique nonempty `id` values, a selection naming a mounted tab, and
 direct `Swift.Tab` children (arrays and conditional children are supported).
+One direct `Swift.Toolbar` may accompany the tabs. It attaches its items to the
+TabView's own bar, so they share the system's vertical bar when the tab bar is
+vertical.
 Pages mount eagerly and keep their React state when switching tabs. Give the tabs
 container bounded space, normally using `flex: 1` in a bounded parent.
 
@@ -315,6 +318,11 @@ are rejected before submitting native props.
   </Swift.TabSection>
   <Swift.Tab id="search" title="Search" systemImage="magnifyingglass" role="search">...</Swift.Tab>
   <Swift.TabViewBottomAccessory>...</Swift.TabViewBottomAccessory>
+  <Swift.Toolbar>
+    <Swift.ToolbarItem placement="topBarTrailing">
+      <Swift.Button label="Reload" systemImage="arrow.clockwise" onPress={reload} />
+    </Swift.ToolbarItem>
+  </Swift.Toolbar>
 </Swift.Tabs>
 ```
 
@@ -926,8 +934,8 @@ own way out, or React must set `isPresented` back to false.
 
 `Swift.NavigationStack` is a real SwiftUI `NavigationStack` whose root is the React Native
 content beside it, and `Swift.Toolbar` fills its navigation bar with real SwiftUI toolbar
-content. This is the shape that puts a native top bar with a title and controls over
-ordinary React Native pages.
+content. A `Swift.Toolbar` directly under `Swift.Tabs` attaches to the TabView instead.
+Use the container whose bar owns the actions.
 
 ```tsx
 function Mailbox() {
@@ -977,9 +985,9 @@ A stack takes the box React Native gives it, so give it a height or a flex paren
 React Native children are the stack's root: SwiftUI proposes that box and Yoga lays the
 subtree out inside it, the same contract a `Swift.Tab` page follows. `Swift.Toolbar`
 elements are read by the stack and never render where they are written, so they are
-direct children beside the content rather than inside it, and a `Swift.Toolbar` written
-anywhere else is an error rather than a silent no-op. More than one toolbar merges, in
-the order the toolbars are written.
+direct children beside the content rather than inside it. Tabs accepts one direct
+toolbar; a toolbar written outside either container is an error rather than a silent
+no-op. More than one stack toolbar merges in declaration order.
 
 Toolbar items are SwiftUI content: a `Swift.ToolbarItem` holds One Native controls,
 containers, or a `Swift.Slot` for a React Native subtree, exactly like any other
