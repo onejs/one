@@ -544,13 +544,17 @@ ${modifier.associatedCases!.map((item) => `      case .${item.name}${item.values
     }`
             : `{ value in emit(${JSON.stringify(modifier.name)}, ${modifier.type.includes('Foundation.URL') ? 'value.absoluteString' : 'String(value)'}) }`
           : modifier.kind === 'bindingOptionalString'
-            ? `Binding<String?>(get: {
+            ? `Binding<${modifier.type.includes('Foundation.URL?') ? 'Foundation.URL' : 'String'}?>(get: {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
         decoded is NSNull || decoded is String else { preconditionFailure("invalid ${modifier.name}: \\(value)") }
-      return decoded as? String
+      ${modifier.type.includes('Foundation.URL?') ? `if let raw = decoded as? String {
+        guard let url = Foundation.URL(string: raw) else { preconditionFailure("invalid ${modifier.name} URL") }
+        return url
+      }
+      return nil` : 'return decoded as? String'}
     }, set: { changed in
-      guard let data = try? JSONEncoder().encode(changed), let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} binding event") }
+      guard let data = try? JSONEncoder().encode(${modifier.type.includes('Foundation.URL?') ? 'changed?.absoluteString' : 'changed'}), let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} binding event") }
       emit(${JSON.stringify(modifier.name)}, encoded)
     })`
             : `Binding(get: { ${modifier.kind === 'bindingBoolean' ? 'value == "true"' : 'value'} }, set: { emit(${JSON.stringify(modifier.name)}, String($0)) })`

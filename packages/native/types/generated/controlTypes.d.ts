@@ -1564,6 +1564,10 @@ export interface OneNativeStyle {
             ty: number;
         }>;
     }>;
+    quickLookPreview?: Readonly<{
+        value: string | null;
+        onChange: (value: string | null) => void;
+    }>;
     realityViewCameraControls?: SDKRealityViewCameraControls;
     realityViewLayoutBehavior?: SDKRealityViewLayoutBehavior;
     redacted?: SDKRedacted;

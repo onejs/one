@@ -11307,6 +11307,14 @@
       ]
     },
     {
+      "name": "quickLookPreview",
+      "kind": "bindingOptionalString",
+      "type": "SwiftUICore.Binding<Foundation.URL?>",
+      "label": "_",
+      "ios": 14,
+      "framework": "QuickLook"
+    },
+    {
       "name": "realityViewCameraControls",
       "kind": "string",
       "type": "RealityFoundation.CameraControls",
@@ -16501,6 +16509,9 @@
         "photosPickerStyle",
         "photosReferenceImageViewer"
       ],
+      "_QuickLook_SwiftUI": [
+        "quickLookPreview"
+      ],
       "_RealityKit_SwiftUI": [
         "realityViewCameraControls",
         "realityViewLayoutBehavior"
@@ -16520,9 +16531,6 @@
         "webViewOnScrollGeometryChange",
         "webViewScrollPosition",
         "webViewTextSelection"
-      ],
-      "_QuickLook_SwiftUI": [
-        "quickLookPreview"
       ]
     },
     "generatedModifiers": {
@@ -16979,6 +16987,9 @@
         "photosPickerSearchText",
         "photosPickerStyle",
         "photosReferenceImageViewer"
+      ],
+      "_QuickLook_SwiftUI": [
+        "quickLookPreview"
       ],
       "_RealityKit_SwiftUI": [
         "realityViewCameraControls",
