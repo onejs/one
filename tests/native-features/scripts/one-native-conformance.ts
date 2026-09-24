@@ -136,25 +136,52 @@ function axe(args: string[], simulatorId: string) {
   }
 }
 
+// axe describe-ui lists the app's tree first, then repeats every descendant
+// as its own root, and it never sees other processes. so the snapshot keeps
+// the first root, and point probes add what another process draws on top:
+// a hit at the center from another pid is a remote sheet (safari, photo
+// picker) covering the app, which leaves only the application node, and a
+// hit in the banner strip is springboard's notification banner.
 function snapshot(simulatorId: string): Node[] {
-  const output = axe(['describe-ui'], simulatorId)
-  const nodes: Node[] = []
-  const visit = (value: unknown): void => {
-    if (Array.isArray(value)) return value.forEach(visit)
-    if (!value || typeof value !== 'object') return
-    const node = value as Node
-    if (
-      node.AXLabel ||
-      node.AXUniqueId ||
-      node.AXRole ||
-      node.role ||
-      node.type ||
-      node.frame
-    )
-      nodes.push(node)
-    Object.values(node).forEach(visit)
+  const [app] = JSON.parse(axe(['describe-ui'], simulatorId)) as Node[]
+  const frame = app.frame!
+  const probe = (x: number, y: number): Node => {
+    try {
+      return JSON.parse(
+        axe(['describe-ui', '--point', `${Math.round(x)},${Math.round(y)}`], simulatorId)
+      )
+    } catch (error) {
+      // axe refuses points under a system dialog, which another process owns.
+      if (String(error).includes('fullscreen dialog')) return { pid: -1 }
+      throw error
+    }
   }
-  visit(JSON.parse(output))
+  const center = probe(frame.width / 2, frame.height / 2)
+  const banner = probe(frame.width / 2, 80)
+  const foreign = (node: Node) => node.pid !== undefined && node.pid !== app.pid
+  // axe also repeats a text's run as a second node with the same type,
+  // label, and frame; one element is one node.
+  const nodes: Node[] = []
+  const seen = new Set<string>()
+  const visit = (node: Node): void => {
+    const f = node.frame
+    const key = JSON.stringify([
+      node.type,
+      node.AXLabel,
+      node.AXUniqueId,
+      f && [f.x, f.y, f.width, f.height],
+    ])
+    if (!seen.has(key)) {
+      seen.add(key)
+      nodes.push(node)
+    }
+    for (const child of (node.children as Node[] | undefined) ?? []) visit(child)
+  }
+  if (foreign(center)) nodes.push({ ...app, children: [] })
+  else visit(app)
+  // a remote sheet reaches the banner strip too; only a third process there
+  // is a banner.
+  if (foreign(banner) && banner.pid !== center.pid) visit(banner)
   return nodes
 }
 
@@ -466,18 +493,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       `${name} timed out after ${config.timeout}ms${detail ? `; ${detail}` : ''}; snapshot: ${snapshotPath}`
     )
   }
-  // the only tap path: touch down/up delivers on headless hosts, where the
-  // simulator tapAt call reports success without delivering anything.
+  // the only tap path: a physical touch down/up delivers on headless hosts,
+  // where the simulator tapAt call reports success without delivering
+  // anything. it goes through tap --tap-style physical because the touch
+  // subcommand cannot open simulator input on some devices where this can.
   const touch = (x: number, y: number) => {
     const output = axe(
       [
-        'touch',
+        'tap',
         '-x',
         String(Math.round(x)),
         '-y',
         String(Math.round(y)),
-        '--down',
-        '--up',
+        '--tap-style',
+        'physical',
       ],
       config.simulatorId
     )
@@ -667,21 +696,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     point(x, 783)
   }
 
-  // simctl forwards -RCT_jsLocation into nsuserdefaults, which is how a
-  // non-default packager port reaches the app; without it the app keeps the
-  // baked localhost:8081.
   const launchApp = () =>
-    execFileSync(
-      'xcrun',
-      [
-        'simctl',
-        'launch',
-        config.simulatorId,
-        config.bundleId,
-        ...(config.jsLocation ? ['-RCT_jsLocation', config.jsLocation] : []),
-      ],
-      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 30_000 }
-    )
+    execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, config.bundleId], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+      timeout: 30_000,
+    })
   const stopApp = () =>
     execFileSync('xcrun', ['simctl', 'terminate', config.simulatorId, config.bundleId], {
       encoding: 'utf8',
@@ -719,6 +739,26 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       timeout: 60_000,
     })
   }
+  // RCT_jsLocation in the app's defaults is how a non-default packager port
+  // reaches the app; without it the app keeps the baked localhost:8081. it is
+  // persisted rather than passed as a launch argument so that launches the
+  // runner does not make (a notification tap on a terminated app) load it too.
+  // written after the notifications reinstall, which clears the container.
+  if (config.jsLocation)
+    execFileSync(
+      'xcrun',
+      [
+        'simctl',
+        'spawn',
+        config.simulatorId,
+        'defaults',
+        'write',
+        config.bundleId,
+        'RCT_jsLocation',
+        config.jsLocation,
+      ],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
   launchApp()
   if (config.suite === 'sheets') {
     let expectedCount = 1
@@ -2149,7 +2189,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     if (sampleNodes.length !== 1 || !sampleNodes[0].frame) {
       throw new Error(
-        `fonts pixel gate: expected exactly one framed A sample, found ${sampleNodes.length}`
+        `fonts pixel gate: expected exactly one framed A sample, found ${JSON.stringify(sampleNodes.map(({ type, frame }) => ({ type, frame })))}`
       )
     }
     const sampleFrame = sampleNodes[0].frame
@@ -4131,7 +4171,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           await new Promise((resolve) => setTimeout(resolve, 250))
           continue
         }
-        if (row.y >= 0 && row.y + row.height <= app.height) {
+        // the nav header overlays the scroll view, so a row slid under it
+        // reads as on screen while the header takes the tap.
+        const back = id(nodes, 'BackButton')?.frame
+        const top = back ? back.y + back.height : 0
+        if (row.y >= top && row.y + row.height <= app.height) {
           // a row scratching in on swipe momentum swallows the tap or takes
           // it stale, so after a swipe tap only once the frame repeats. a
           // row that was already still takes the tap at once.
@@ -4143,17 +4187,19 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         }
         last = undefined
         swiped = true
+        // a row above the header scrolls back down, one below scrolls up.
+        const [from, to] = row.y < top ? [0.4, 0.6] : [0.75, 0.35]
         axe(
           [
             'swipe',
             '--start-x',
             String(Math.round(app.width / 2)),
             '--start-y',
-            String(Math.round(app.height * 0.75)),
+            String(Math.round(app.height * from)),
             '--end-x',
             String(Math.round(app.width / 2)),
             '--end-y',
-            String(Math.round(app.height * 0.35)),
+            String(Math.round(app.height * to)),
             '--duration',
             '0.3',
           ],
@@ -4240,7 +4286,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const started = Date.now()
       for (;;) {
         const nodes = snapshot(config.simulatorId)
-        if (nodes.some((node) => node.AXLabel?.includes('N3 ping') && node.frame))
+        // the fixture's own Last label carries the title too, so only a node
+        // another process draws is a banner.
+        const app = nodes.find((node) => node.type === 'Application')
+        if (
+          nodes.some(
+            (node) =>
+              node.pid !== app?.pid && node.AXLabel?.includes('N3 ping') && node.frame
+          )
+        )
           throw new Error(`${name} showed a banner`)
         if (Date.now() - started > 3000) break
         await new Promise((resolve) => setTimeout(resolve, 250))
@@ -4266,20 +4320,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     checks.push({ name: 'nulled n3-3 shows no banner', durationMs: 3000 })
     console.log('PASS nulled n3-3 shows no banner')
     // the banner's screen position varies by device and os, so tap its
-    // observed accessibility frame rather than a fixed coordinate.
-    // springboard owns the tree while the app is down, so this polls raw
-    // snapshots. the proof shot rides along: a separate screenshot
-    // round-trip first would push the tap past the banner's few seconds
-    // of life.
+    // observed accessibility frame rather than a fixed coordinate. a banner
+    // lives about six seconds and a full snapshot takes three axe calls, so
+    // this polls only the point probe in the banner strip, and the proof
+    // shot records that probe instead of taking a snapshot of its own.
+    const screenWidth = snapshot(config.simulatorId)[0].frame!.width
     const tapColdBanner = async (pngName: string, text: string) => {
       const started = Date.now()
       for (;;) {
-        const nodes = snapshot(config.simulatorId)
-        const found = nodes.find(
-          (node) => node.AXLabel?.includes(text) && node.frame
-        )?.frame
+        // the hit can be the banner's unlabeled container, so the title is
+        // searched through its subtree.
+        const find = (node: Node): Node | undefined =>
+          node.AXLabel?.includes(text) && node.frame
+            ? node
+            : ((node.children as Node[] | undefined) ?? []).map(find).find(Boolean)
+        const hit: Node = JSON.parse(
+          axe(
+            ['describe-ui', '--point', `${Math.round(screenWidth / 2)},80`],
+            config.simulatorId
+          )
+        )
+        const found = find(hit)?.frame
         if (found) {
-          screenshot(pngName)
+          screenshot(pngName, [hit])
           point(
             Math.round(found.x + found.width / 2),
             Math.round(found.y + found.height / 2)
