@@ -67,6 +67,20 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('environmentObject must name a registered native Swift value')
   })
 
+  it('keeps the accessibility callback beside a registered App Intent action', () => {
+    const callback = vi.fn()
+    const element = Controls.Text({ text: 'intent', swiftStyle: {
+      accessibilityAction: callback,
+      accessibilityActionWithAppIntent: 'open-details',
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['accessibilityAction', ''],
+      ['accessibilityActionWithAppIntent', 'open-details'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'accessibilityAction', value: '' } })
+    expect(callback).toHaveBeenCalledOnce()
+  })
+
   it('delivers resolved anchor rectangles through both preference modifiers', () => {
     const anchor = vi.fn()
     const transformed = vi.fn()

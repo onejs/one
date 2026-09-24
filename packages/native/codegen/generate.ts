@@ -308,6 +308,11 @@ for (const modifier of derivedModifiers) {
           ? d.parameters.length === 2 &&
             d.parameters[0].type === 'Swift.WritableKeyPath<SwiftUICore.ContainerValues, V>' &&
             d.parameters[1].type === 'V'
+          : modifier.registeredFactory === 'accessibilityAction'
+          ? d.parameters.length === 2 && d.parameters[0].label === 'named' &&
+            d.parameters[0].type === 'SwiftUICore.Text' &&
+            d.parameters[1].label === 'intent' && d.parameters[1].type === 'I' &&
+            d.requirements?.includes('I : AppIntents.AppIntent')
           : d.parameters.length === 1 && d.parameters[0].type === modifier.type &&
             d.parameters[0].label === '_'
         : modifier.textSelection

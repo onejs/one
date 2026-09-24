@@ -4,9 +4,9 @@ import SwiftUI
 import UIKit
 import Combine
 import Observation
+import AppIntents
 import Accessibility
 import PassKit
-import AppIntents
 import StoreKit
 import DataDetection
 import RealityKit
@@ -36,7 +36,7 @@ import WorkoutKit
 }
 
 @MainActor public struct OneNativeRegisteredModifier {
-  enum Kind { case layoutValue, containerValue }
+  enum Kind { case layoutValue, containerValue, accessibilityAction }
   let kind: Kind
   let apply: (AnyView) -> AnyView
 
@@ -48,6 +48,11 @@ import WorkoutKit
   @available(iOS 18, *)
   public static func containerValue<V>(_ keyPath: WritableKeyPath<ContainerValues, V>, _ value: V) -> Self {
     Self(kind: .containerValue) { AnyView($0.containerValue(keyPath, value)) }
+  }
+
+  @available(iOS 18, *)
+  public static func accessibilityAction<I: AppIntent>(named label: String, intent: I) -> Self {
+    Self(kind: .accessibilityAction) { AnyView($0.accessibilityAction(named: Text(label), intent: intent)) }
   }
 }
 
@@ -382,6 +387,7 @@ extension View {
       switch name {
       case "accentColor": view = AnyView(view.oneNativeSDKAccentColor(value, emit: emit))
       case "accessibilityAction": view = AnyView(view.oneNativeSDKAccessibilityAction(value, emit: emit))
+      case "accessibilityActionWithAppIntent": view = AnyView(view.oneNativeSDKAccessibilityActionWithAppIntent(value, emit: emit))
       case "accessibilityActivationPointWithActivationPointAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityActivationPointWithActivationPointAndIsEnabled(value, emit: emit))
       case "accessibilityActivationPointWithUnitPoint": view = AnyView(view.oneNativeSDKAccessibilityActivationPointWithUnitPoint(value, emit: emit))
       case "accessibilityAddTraits": view = AnyView(view.oneNativeSDKAccessibilityAddTraits(value, emit: emit))
@@ -1211,6 +1217,19 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.accessibilityAction(.default, { emit("accessibilityAction", "") })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityActionWithAppIntent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let registered: OneNativeRegisteredModifier = {
+        guard let found = OneNativeRegisteredValue.value(value) as? OneNativeRegisteredModifier else {
+          preconditionFailure("missing accessibilityActionWithAppIntent registered value: \(value)")
+        }
+        return found
+      }()
+      let _ = precondition(registered.kind == .accessibilityAction, "invalid accessibilityActionWithAppIntent registered value: \(value)")
+      registered.apply(AnyView(self))
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityActivationPointWithActivationPointAndIsEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

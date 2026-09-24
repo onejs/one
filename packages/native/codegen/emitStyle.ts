@@ -1799,7 +1799,7 @@ ${derived.some((modifier) => modifier.kind === 'registeredValue') ? `@MainActor 
 }
 ` : ''}
 ${derived.some((modifier) => modifier.registeredFactory) ? `@MainActor public struct OneNativeRegisteredModifier {
-  enum Kind { case layoutValue, containerValue }
+  enum Kind { case layoutValue, containerValue, accessibilityAction }
   let kind: Kind
   let apply: (AnyView) -> AnyView
 
@@ -1811,6 +1811,11 @@ ${derived.some((modifier) => modifier.registeredFactory) ? `@MainActor public st
   @available(iOS 18, *)
   public static func containerValue<V>(_ keyPath: WritableKeyPath<ContainerValues, V>, _ value: V) -> Self {
     Self(kind: .containerValue) { AnyView($0.containerValue(keyPath, value)) }
+  }
+
+  @available(iOS 18, *)
+  public static func accessibilityAction<I: AppIntent>(named label: String, intent: I) -> Self {
+    Self(kind: .accessibilityAction) { AnyView($0.accessibilityAction(named: Text(label), intent: intent)) }
   }
 }
 ` : ''}
