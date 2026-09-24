@@ -18,6 +18,7 @@ enum OneNativeViewSlotName {
   static let contextMenu = "contextMenu"
   static let dismissalConfirmationDialog = "dismissalConfirmationDialog"
   static let documentBrowserContextMenu = "documentBrowserContextMenu"
+  static let fullScreenCover = "fullScreenCover"
   static let inspector = "inspector"
   static let listRowBackground = "listRowBackground"
   static let mapControls = "mapControls"
@@ -26,6 +27,7 @@ enum OneNativeViewSlotName {
   static let navigationBarItemsWithTrailing = "navigationBarItemsWithTrailing"
   static let navigationDestination = "navigationDestination"
   static let overlay = "overlay"
+  static let popover = "popover"
   static let presentationBackground = "presentationBackground"
   static let safeAreaBarWithHorizontalEdge = "safeAreaBarWithHorizontalEdge"
   static let safeAreaBarWithVerticalEdge = "safeAreaBarWithVerticalEdge"
@@ -35,6 +37,7 @@ enum OneNativeViewSlotName {
   static let searchScopesWithBindingStringAndSearchScopeActivation = "searchScopesWithBindingStringAndSearchScopeActivation"
   static let searchSuggestions = "searchSuggestions"
   static let sectionActions = "sectionActions"
+  static let sheet = "sheet"
   static let subscriptionStoreControlIcon = "subscriptionStoreControlIcon"
   static let subscriptionStorePolicyDestination = "subscriptionStorePolicyDestination"
   static let swipeActions = "swipeActions"
@@ -47,7 +50,7 @@ enum OneNativeViewSlotName {
   static let toolbar = "toolbar"
   static let toolbarOverflowMenu = "toolbarOverflowMenu"
   static let toolbarTitleMenu = "toolbarTitleMenu"
-  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, alert, background, confirmationDialog, containerBackground, contentToolbar, contextMenu, dismissalConfirmationDialog, documentBrowserContextMenu, inspector, listRowBackground, mapControls, mask, navigationBarItemsWithLeading, navigationBarItemsWithTrailing, navigationDestination, overlay, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchScopesWithBindingString, searchScopesWithBindingStringAndSearchScopeActivation, searchSuggestions, sectionActions, subscriptionStoreControlIcon, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewBottomAccessoryWithBool, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
+  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, alert, background, confirmationDialog, containerBackground, contentToolbar, contextMenu, dismissalConfirmationDialog, documentBrowserContextMenu, fullScreenCover, inspector, listRowBackground, mapControls, mask, navigationBarItemsWithLeading, navigationBarItemsWithTrailing, navigationDestination, overlay, popover, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchScopesWithBindingString, searchScopesWithBindingStringAndSearchScopeActivation, searchSuggestions, sectionActions, sheet, subscriptionStoreControlIcon, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewBottomAccessoryWithBool, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
 }
 
 extension View {
@@ -161,6 +164,15 @@ extension View {
         return AnyView(self.documentBrowserContextMenu({ _ in content() }))
       }
       return AnyView(self)
+    case OneNativeViewSlotName.fullScreenCover:      if #available(iOS 14, *) {
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          decoded.count == 1 else { preconditionFailure("invalid fullScreenCover slot values") }
+        guard decoded[0] == "true" || decoded[0] == "false" else { preconditionFailure("invalid fullScreenCover.isPresented") }
+        let argument0 = Binding<Bool>(get: { decoded[0] == "true" }, set: { emit("fullScreenCover", String($0)) })
+        return AnyView(self.fullScreenCover(isPresented: argument0, content: content))
+      }
+      return AnyView(self)
     case OneNativeViewSlotName.inspector:      if #available(iOS 17, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
@@ -201,6 +213,15 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.overlay:      if #available(iOS 15, *) {
         return AnyView(self.overlay(content: content))
+      }
+      return AnyView(self)
+    case OneNativeViewSlotName.popover:      if #available(iOS 13, *) {
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          decoded.count == 1 else { preconditionFailure("invalid popover slot values") }
+        guard decoded[0] == "true" || decoded[0] == "false" else { preconditionFailure("invalid popover.isPresented") }
+        let argument0 = Binding<Bool>(get: { decoded[0] == "true" }, set: { emit("popover", String($0)) })
+        return AnyView(self.popover(isPresented: argument0, content: content))
       }
       return AnyView(self)
     case OneNativeViewSlotName.presentationBackground:      if #available(iOS 16.4, *) {
@@ -293,6 +314,15 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.sectionActions:      if #available(iOS 18, *) {
         return AnyView(self.sectionActions(content: content))
+      }
+      return AnyView(self)
+    case OneNativeViewSlotName.sheet:      if #available(iOS 13, *) {
+        guard let data = values.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          decoded.count == 1 else { preconditionFailure("invalid sheet slot values") }
+        guard decoded[0] == "true" || decoded[0] == "false" else { preconditionFailure("invalid sheet.isPresented") }
+        let argument0 = Binding<Bool>(get: { decoded[0] == "true" }, set: { emit("sheet", String($0)) })
+        return AnyView(self.sheet(isPresented: argument0, content: content))
       }
       return AnyView(self)
     case OneNativeViewSlotName.subscriptionStoreControlIcon:      if #available(iOS 17, *) {

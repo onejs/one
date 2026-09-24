@@ -301,6 +301,8 @@ export declare const sdkPresentationCompactAdaptationWithPresentationAdaptationV
 export type SDKPresentationCompactAdaptationWithPresentationAdaptation = (typeof sdkPresentationCompactAdaptationWithPresentationAdaptationValues)[number];
 export declare const sdkPresentationContentInteractionValues: readonly ['automatic', 'resizes', 'scrolls'];
 export type SDKPresentationContentInteraction = (typeof sdkPresentationContentInteractionValues)[number];
+export declare const sdkPresentationDetentsValues: readonly ['medium', 'large'];
+export type SDKPresentationDetents = (typeof sdkPresentationDetentsValues)[number];
 export declare const sdkPresentationDragIndicatorValues: readonly ['automatic', 'visible', 'hidden'];
 export type SDKPresentationDragIndicator = (typeof sdkPresentationDragIndicatorValues)[number];
 export declare const sdkPresentationPlacementValues: readonly ['automatic', 'leading', 'center', 'trailing'];
@@ -669,6 +671,10 @@ export interface OneNativeStyle {
     copyable?: Readonly<{
         payload: readonly string[];
     }>;
+    cornerRadiusWithRadiusAndAntialiased?: Readonly<{
+        radius: number;
+        antialiased: boolean;
+    }>;
     currentEntitlementTask?: Readonly<{
         productID: string;
         onAction: (value: {
@@ -863,6 +869,31 @@ export interface OneNativeStyle {
         }>) => void;
     }>;
     fileExporterFilenameLabel?: string | null;
+    fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        allowedContentTypes: readonly string[];
+        allowsMultipleSelection: boolean;
+        onCompletion: (result: Readonly<{
+            success: readonly string[];
+        } | {
+            failure: string;
+        }>) => void;
+    }>;
+    fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        allowedContentTypes: readonly string[];
+        onCompletion: (result: Readonly<{
+            success: string;
+        } | {
+            failure: string;
+        }>) => void;
+    }>;
     fileMover?: Readonly<{
         isPresented: Readonly<{
             value: boolean;
@@ -1539,6 +1570,7 @@ export interface OneNativeStyle {
     presentationCompactAdaptationWithPresentationAdaptation?: SDKPresentationCompactAdaptationWithPresentationAdaptation;
     presentationContentInteraction?: SDKPresentationContentInteraction;
     presentationCornerRadius?: number | null;
+    presentationDetents?: readonly SDKPresentationDetents[];
     presentationDragIndicator?: SDKPresentationDragIndicator;
     presentationPlacement?: SDKPresentationPlacement;
     presentationSizing?: SDKPresentationSizing;
@@ -1560,6 +1592,10 @@ export interface OneNativeStyle {
             tx: number;
             ty: number;
         }>;
+    }>;
+    quickLookPreview?: Readonly<{
+        value: string | null;
+        onChange: (value: string | null) => void;
     }>;
     realityViewCameraControls?: SDKRealityViewCameraControls;
     realityViewLayoutBehavior?: SDKRealityViewLayoutBehavior;

@@ -101,7 +101,11 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
   const colorFields = styleFields.filter((field) => field.kind === 'color')
   const frameworkImports = [
     ...new Set(
-      derived.flatMap((modifier) => (modifier.framework ? [modifier.framework] : []))
+      derived.flatMap((modifier) => [
+        ...(modifier.framework ? [modifier.framework] : []),
+        ...(modifier.arguments?.some((argument) => argument.type.includes('UniformTypeIdentifiers.'))
+          ? ['UniformTypeIdentifiers'] : []),
+      ])
     ),
   ]
   const generatedCalls = derived
@@ -179,6 +183,23 @@ ${cases}
         emit(${JSON.stringify(`${modifier.name}.${argument.field}`)}, encoded)
       })
     }()`
+          if ((argument.kind === 'resultURL' || argument.kind === 'resultURLArray') &&
+            argumentsFromSDK.some((item) => item.field === 'allowedContentTypes' &&
+              item.type === '[UniformTypeIdentifiers.UTType]'))
+            return `    let ${variable}: (Swift.Result<${argument.kind === 'resultURL' ? 'Foundation.URL' : '[Foundation.URL]'}, any Swift.Error>) -> Swift.Void = { result in
+      DispatchQueue.global(qos: .utility).async {
+        let payload: [String: Any]
+        switch result {
+        case .success(let urls):
+          do { payload = ["success": ${argument.kind === 'resultURL' ? 'try oneNativeCopyToCaches(urls).absoluteString' : 'try urls.map(oneNativeCopyToCaches).map(\\.absoluteString)'}] }
+          catch { payload = ["failure": String(describing: error)] }
+        case .failure(let error): payload = ["failure": String(describing: error)]
+        }
+        guard let data = try? JSONSerialization.data(withJSONObject: payload),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name}.${argument.field} result") }
+        DispatchQueue.main.async { emit(${JSON.stringify(`${modifier.name}.${argument.field}`)}, encoded) }
+      }
+    }`
           if (argument.kind === 'resultURL' || argument.kind === 'resultURLArray')
             return `    let ${variable}: (Swift.Result<${argument.kind === 'resultURL' ? 'Foundation.URL' : '[Foundation.URL]'}, any Swift.Error>) -> Swift.Void = { result in
       let payload: [String: Any]
@@ -242,7 +263,7 @@ ${assignments}
             return `    let ${variable}: ${argument.type} = {
       guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
       guard let data = raw.data(using: .utf8), let strings = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)") }
-      return ${argument.kind === 'stringSet' ? 'Set(strings)' : baseType === '[SwiftUICore.Text]' ? 'strings.map { Text($0) }' : 'strings'}
+      return ${expression(argument.swiftExpression, 'strings') ?? (argument.kind === 'stringSet' ? 'Set(strings)' : baseType === '[SwiftUICore.Text]' ? 'strings.map { Text($0) }' : 'strings')}
     }()`
           if (argument.kind === 'numericStruct' || argument.kind === 'numericTuple') {
             const fields = argument.fields!
@@ -544,13 +565,17 @@ ${modifier.associatedCases!.map((item) => `      case .${item.name}${item.values
     }`
             : `{ value in emit(${JSON.stringify(modifier.name)}, ${modifier.type.includes('Foundation.URL') ? 'value.absoluteString' : 'String(value)'}) }`
           : modifier.kind === 'bindingOptionalString'
-            ? `Binding<String?>(get: {
+            ? `Binding<${modifier.type.includes('Foundation.URL?') ? 'Foundation.URL' : 'String'}?>(get: {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
         decoded is NSNull || decoded is String else { preconditionFailure("invalid ${modifier.name}: \\(value)") }
-      return decoded as? String
+      ${modifier.type.includes('Foundation.URL?') ? `if let raw = decoded as? String {
+        guard let url = Foundation.URL(string: raw) else { preconditionFailure("invalid ${modifier.name} URL") }
+        return url
+      }
+      return nil` : 'return decoded as? String'}
     }, set: { changed in
-      guard let data = try? JSONEncoder().encode(changed), let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} binding event") }
+      guard let data = try? JSONEncoder().encode(${modifier.type.includes('Foundation.URL?') ? 'changed?.absoluteString' : 'changed'}), let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} binding event") }
       emit(${JSON.stringify(modifier.name)}, encoded)
     })`
             : `Binding(get: { ${modifier.kind === 'bindingBoolean' ? 'value == "true"' : 'value'} }, set: { emit(${JSON.stringify(modifier.name)}, String($0)) })`

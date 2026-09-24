@@ -1879,6 +1879,10 @@ export interface OneNativeStyle {
   controlSize?: SDKControlSize
   coordinateSpace?: string
   copyable?: Readonly<{ payload: readonly string[] }>
+  cornerRadiusWithRadiusAndAntialiased?: Readonly<{
+    radius: number
+    antialiased: boolean
+  }>
   currentEntitlementTask?: Readonly<{
     productID: string
     onAction: (
@@ -2041,6 +2045,19 @@ export interface OneNativeStyle {
     onCompletion: (result: Readonly<{ success: string } | { failure: string }>) => void
   }>
   fileExporterFilenameLabel?: string | null
+  fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    allowedContentTypes: readonly string[]
+    allowsMultipleSelection: boolean
+    onCompletion: (
+      result: Readonly<{ success: readonly string[] } | { failure: string }>
+    ) => void
+  }>
+  fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    allowedContentTypes: readonly string[]
+    onCompletion: (result: Readonly<{ success: string } | { failure: string }>) => void
+  }>
   fileMover?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
     file: string | null
@@ -2673,6 +2690,10 @@ export interface OneNativeStyle {
       tx: number
       ty: number
     }>
+  }>
+  quickLookPreview?: Readonly<{
+    value: string | null
+    onChange: (value: string | null) => void
   }>
   realityViewCameraControls?: SDKRealityViewCameraControls
   realityViewLayoutBehavior?: SDKRealityViewLayoutBehavior

@@ -3559,6 +3559,30 @@
       ]
     },
     {
+      "name": "cornerRadiusWithRadiusAndAntialiased",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "radius",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "antialiased",
+          "label": "antialiased"
+        }
+      ],
+      "sdkName": "cornerRadius"
+    },
+    {
       "name": "currentEntitlementTask",
       "kind": "eventAsyncStruct",
       "type": "@escaping (_StoreKit_SwiftUI.EntitlementTaskState<StoreKit.VerificationResult<StoreKit.Transaction>?>) async -> ()",
@@ -5660,6 +5684,77 @@
       "kind": "optionalString",
       "type": "SwiftUICore.Text?",
       "ios": 17
+    },
+    {
+      "name": "fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "stringArray",
+          "type": "[UniformTypeIdentifiers.UTType]",
+          "optional": false,
+          "swiftExpression": "({ () -> [UniformTypeIdentifiers.UTType] in\n        let identifiers = $value\n        if identifiers.isEmpty { return [.item] }\n        return identifiers.map { identifier in\n          guard let type = UniformTypeIdentifiers.UTType(identifier) else { preconditionFailure(\"invalid content type: \\(identifier)\") }\n          return type\n        }\n      })()",
+          "field": "allowedContentTypes",
+          "label": "allowedContentTypes"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "allowsMultipleSelection",
+          "label": "allowsMultipleSelection"
+        },
+        {
+          "kind": "resultURLArray",
+          "type": "@escaping (_ result: Swift.Result<[Foundation.URL], any Swift.Error>) -> Swift.Void",
+          "optional": false,
+          "field": "onCompletion",
+          "label": "onCompletion"
+        }
+      ],
+      "sdkName": "fileImporter"
+    },
+    {
+      "name": "fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "stringArray",
+          "type": "[UniformTypeIdentifiers.UTType]",
+          "optional": false,
+          "swiftExpression": "({ () -> [UniformTypeIdentifiers.UTType] in\n        let identifiers = $value\n        if identifiers.isEmpty { return [.item] }\n        return identifiers.map { identifier in\n          guard let type = UniformTypeIdentifiers.UTType(identifier) else { preconditionFailure(\"invalid content type: \\(identifier)\") }\n          return type\n        }\n      })()",
+          "field": "allowedContentTypes",
+          "label": "allowedContentTypes"
+        },
+        {
+          "kind": "resultURL",
+          "type": "@escaping (_ result: Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void",
+          "optional": false,
+          "field": "onCompletion",
+          "label": "onCompletion"
+        }
+      ],
+      "sdkName": "fileImporter"
     },
     {
       "name": "fileMover",
@@ -11307,6 +11402,14 @@
       ]
     },
     {
+      "name": "quickLookPreview",
+      "kind": "bindingOptionalString",
+      "type": "SwiftUICore.Binding<Foundation.URL?>",
+      "label": "_",
+      "ios": 14,
+      "framework": "QuickLook"
+    },
+    {
       "name": "realityViewCameraControls",
       "kind": "string",
       "type": "RealityFoundation.CameraControls",
@@ -16075,6 +16178,7 @@
         "contrast",
         "controlSize",
         "coordinateSpace",
+        "cornerRadius",
         "defaultHoverEffect",
         "disabled",
         "distortionEffect",
@@ -16501,6 +16605,9 @@
         "photosPickerStyle",
         "photosReferenceImageViewer"
       ],
+      "_QuickLook_SwiftUI": [
+        "quickLookPreview"
+      ],
       "_RealityKit_SwiftUI": [
         "realityViewCameraControls",
         "realityViewLayoutBehavior"
@@ -16520,9 +16627,6 @@
         "webViewOnScrollGeometryChange",
         "webViewScrollPosition",
         "webViewTextSelection"
-      ],
-      "_QuickLook_SwiftUI": [
-        "quickLookPreview"
       ]
     },
     "generatedModifiers": {
@@ -16559,6 +16663,7 @@
         "contrast",
         "controlSize",
         "coordinateSpace",
+        "cornerRadius",
         "defaultHoverEffect",
         "disabled",
         "distortionEffect",
@@ -16728,6 +16833,7 @@
         "fileDialogURLEnabled",
         "fileExporter",
         "fileExporterFilenameLabel",
+        "fileImporter",
         "fileMover",
         "findDisabled",
         "findNavigator",
@@ -16736,6 +16842,7 @@
         "focusable",
         "focused",
         "formStyle",
+        "fullScreenCover",
         "gaugeStyle",
         "gridCellAnchor",
         "gridCellColumns",
@@ -16814,6 +16921,7 @@
         "pasteDestination",
         "persistentSystemOverlays",
         "pickerStyle",
+        "popover",
         "presentationBackground",
         "presentationBackgroundInteraction",
         "presentationCompactAdaptation",
@@ -16859,6 +16967,7 @@
         "sectionIndexLabel",
         "selectionDisabled",
         "sensoryFeedback",
+        "sheet",
         "sliderThumbVisibility",
         "springLoadingBehavior",
         "statusBar",
@@ -16976,6 +17085,9 @@
         "photosPickerSearchText",
         "photosPickerStyle",
         "photosReferenceImageViewer"
+      ],
+      "_QuickLook_SwiftUI": [
+        "quickLookPreview"
       ],
       "_RealityKit_SwiftUI": [
         "realityViewCameraControls",
