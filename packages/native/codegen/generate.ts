@@ -175,6 +175,9 @@ for (const modifier of derivedModifiers) {
         ? d.parameters.length === 2 &&
           d.parameters[0].type === 'Swift.WritableKeyPath<SwiftUICore.EnvironmentValues, V>' &&
           d.parameters[1].type === 'V'
+        : modifier.preferenceKey
+        ? d.parameters[0]?.type === 'K.Type' &&
+          d.requirements?.includes('K : SwiftUICore.PreferenceKey')
         : modifier.zeroArgument
         ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.kind === 'record'

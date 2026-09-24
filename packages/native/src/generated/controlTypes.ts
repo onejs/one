@@ -1047,6 +1047,9 @@ export const sdkPickerStyleValues = [
   'menu',
 ] as const
 export type SDKPickerStyle = (typeof sdkPickerStyleValues)[number]
+export const sdkPreferencePreferredColorSchemeValues = ['light', 'dark'] as const
+export type SDKPreferencePreferredColorScheme =
+  (typeof sdkPreferencePreferredColorSchemeValues)[number]
 export const sdkPreferredColorSchemeValues = ['light', 'dark'] as const
 export type SDKPreferredColorScheme = (typeof sdkPreferredColorSchemeValues)[number]
 export const sdkPresentationBackgroundValues = [
@@ -1518,6 +1521,9 @@ export const sdkToolbarTitleDisplayModeValues = [
 export type SDKToolbarTitleDisplayMode = (typeof sdkToolbarTitleDisplayModeValues)[number]
 export const sdkToolbarWithRemovingValues = ['sidebarToggle', 'title', 'search'] as const
 export type SDKToolbarWithRemoving = (typeof sdkToolbarWithRemovingValues)[number]
+export const sdkTransformPreferencePreferredColorSchemeValues = ['light', 'dark'] as const
+export type SDKTransformPreferencePreferredColorScheme =
+  (typeof sdkTransformPreferencePreferredColorSchemeValues)[number]
 export const sdkTransitionValues = ['opacity', 'slide', 'identity', 'scale'] as const
 export type SDKTransition = (typeof sdkTransitionValues)[number]
 export const sdkTruncationModeValues = ['head', 'tail', 'middle'] as const
@@ -2532,6 +2538,9 @@ export interface OneNativeStyle {
         }
       | { case: 'failed'; values: readonly [] }
   ) => void
+  onPreferenceChangePreferredColorScheme?: (
+    value: 'light' | 'dark' | 'unknown' | null
+  ) => void
   onScrollGeometryChangeWithContainerSize?: (value: {
     oldValue: { width: number; height: number }
     newValue: { width: number; height: number }
@@ -2576,6 +2585,7 @@ export interface OneNativeStyle {
   }>
   pickerStyle?: SDKPickerStyle
   position?: Readonly<{ x: number; y: number }>
+  preferencePreferredColorScheme?: SDKPreferencePreferredColorScheme | null
   preferredColorScheme?: SDKPreferredColorScheme | null
   presentationBackground?: SDKPresentationBackground
   presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction
@@ -2957,6 +2967,7 @@ export interface OneNativeStyle {
       ty: number
     }>
   }>
+  transformPreferencePreferredColorScheme?: SDKTransformPreferencePreferredColorScheme | null
   transition?: SDKTransition
   translationPresentation?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>

@@ -289,6 +289,8 @@ export declare const sdkPhotosPickerStyleValues: readonly ['presentation', 'inli
 export type SDKPhotosPickerStyle = (typeof sdkPhotosPickerStyleValues)[number];
 export declare const sdkPickerStyleValues: readonly ['wheel', 'inline', 'automatic', 'segmented', 'tabs', 'palette', 'navigationLink', 'menu'];
 export type SDKPickerStyle = (typeof sdkPickerStyleValues)[number];
+export declare const sdkPreferencePreferredColorSchemeValues: readonly ['light', 'dark'];
+export type SDKPreferencePreferredColorScheme = (typeof sdkPreferencePreferredColorSchemeValues)[number];
 export declare const sdkPreferredColorSchemeValues: readonly ['light', 'dark'];
 export type SDKPreferredColorScheme = (typeof sdkPreferredColorSchemeValues)[number];
 export declare const sdkPresentationBackgroundValues: readonly ['placeholder', 'link', 'selection', 'windowBackground', 'fill', 'regularMaterial', 'thickMaterial', 'thinMaterial', 'ultraThinMaterial', 'ultraThickMaterial', 'bar', 'primary', 'secondary', 'tertiary', 'quaternary', 'quinary', 'red', 'orange', 'yellow', 'green', 'mint', 'teal', 'cyan', 'blue', 'indigo', 'purple', 'pink', 'brown', 'white', 'gray', 'black', 'clear', 'separator', 'background', 'foreground', 'tint'];
@@ -405,6 +407,8 @@ export declare const sdkToolbarTitleDisplayModeValues: readonly ['automatic', 'l
 export type SDKToolbarTitleDisplayMode = (typeof sdkToolbarTitleDisplayModeValues)[number];
 export declare const sdkToolbarWithRemovingValues: readonly ['sidebarToggle', 'title', 'search'];
 export type SDKToolbarWithRemoving = (typeof sdkToolbarWithRemovingValues)[number];
+export declare const sdkTransformPreferencePreferredColorSchemeValues: readonly ['light', 'dark'];
+export type SDKTransformPreferencePreferredColorScheme = (typeof sdkTransformPreferencePreferredColorSchemeValues)[number];
 export declare const sdkTransitionValues: readonly ['opacity', 'slide', 'identity', 'scale'];
 export type SDKTransition = (typeof sdkTransitionValues)[number];
 export declare const sdkTruncationModeValues: readonly ['head', 'tail', 'middle'];
@@ -1376,6 +1380,7 @@ export interface OneNativeStyle {
         case: 'failed';
         values: readonly [];
     }) => void;
+    onPreferenceChangePreferredColorScheme?: (value: 'light' | 'dark' | 'unknown' | null) => void;
     onScrollGeometryChangeWithContainerSize?: (value: {
         oldValue: {
             width: number;
@@ -1446,6 +1451,7 @@ export interface OneNativeStyle {
         x: number;
         y: number;
     }>;
+    preferencePreferredColorScheme?: SDKPreferencePreferredColorScheme | null;
     preferredColorScheme?: SDKPreferredColorScheme | null;
     presentationBackground?: SDKPresentationBackground;
     presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction;
@@ -1782,6 +1788,7 @@ export interface OneNativeStyle {
             ty: number;
         }>;
     }>;
+    transformPreferencePreferredColorScheme?: SDKTransformPreferencePreferredColorScheme | null;
     transition?: SDKTransition;
     translationPresentation?: Readonly<{
         isPresented: Readonly<{

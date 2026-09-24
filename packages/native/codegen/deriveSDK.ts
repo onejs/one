@@ -50,6 +50,8 @@ export type DerivedModifier = {
   gestureOptions?: readonly { name: string; type: string; ios: number; eventValue?: EventValueSchema }[]
   transformMember?: string
   environmentKey?: string
+  preferenceKey?: string
+  preferenceOperation?: 'set' | 'transform' | 'observe'
   zeroArgument?: true
   framework?: string
   label?: string
@@ -436,6 +438,43 @@ export function deriveModifiers(
         ...(value.scalarConstructor ? { scalarConstructor: value.scalarConstructor } : {}),
         ...(value.swiftExpression ? { swiftExpression: value.swiftExpression } : {}),
         ...(value.cases ? { cases: value.cases } : {}),
+      })
+    }
+  }
+  const preferenceMethods = ['preference', 'transformPreference', 'onPreferenceChange']
+    .map((name) => methods.find((method) => method.module === 'SwiftUICore' && method.name === name &&
+      method.requirements?.includes('K : SwiftUICore.PreferenceKey') &&
+      method.parameters[0]?.type === 'K.Type'))
+  for (const key of inventory.filter((declaration) => declaration.kind === 'struct' &&
+    declaration.owner === '' && !declaration.generic &&
+    declaration.inheritedTypes?.includes('SwiftUICore.PreferenceKey') &&
+    present(declaration) && ios(declaration) <= ceiling)) {
+    const valueAlias = inventory.find((declaration) => declaration.module === key.module &&
+      declaration.owner === key.name && declaration.kind === 'typealias' &&
+      declaration.name === 'Value' && present(declaration) && ios(declaration) <= ceiling)
+    const value = valueOf(valueAlias?.type ?? '')
+    if (!value || !['boolean', 'number', 'string', 'enum'].includes(value.kind)) continue
+    const baseName = key.name.replace(/Key$/, '')
+    if (baseName === key.name) continue
+    for (const [index, method] of preferenceMethods.entries()) {
+      if (!method) continue
+      const kind = index === 2 ? 'eventStruct' : value.kind === 'enum'
+        ? value.optional ? 'optionalEnum' : 'string'
+        : value.optional
+          ? `optional${value.kind[0].toUpperCase()}${value.kind.slice(1)}` as DerivedModifier['kind']
+          : value.kind
+      const eventValue: EventValueSchema | undefined = index === 2
+        ? value.kind === 'enum'
+          ? { kind: 'enum', cases: value.cases!.map((item) => item.name), open: true }
+          : { kind: value.kind as 'boolean' | 'number' | 'string' }
+        : undefined
+      result.push({ name: `${method.name}${baseName}`, sdkName: method.name,
+        module: method.module, preferenceKey: `${key.module}.${key.name}`,
+        preferenceOperation: index === 0 ? 'set' : index === 1 ? 'transform' : 'observe',
+        kind, type: index === 2 ? method.parameters.at(-1)!.type : valueAlias!.type!,
+        ios: Math.max(ios(method), ios(key), ios(valueAlias!)),
+        ...(value.cases && index !== 2 ? { cases: value.cases } : {}),
+        ...(eventValue ? { eventValue: value.optional ? { kind: 'optional', value: eventValue } : eventValue } : {}),
       })
     }
   }

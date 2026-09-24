@@ -15,6 +15,24 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('uses a public preference key for setting, transforming, and observing its value', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      preferencePreferredColorScheme: 'dark',
+      transformPreferencePreferredColorScheme: 'light',
+      onPreferenceChangePreferredColorScheme: onChange,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['preferencePreferredColorScheme', 'dark'],
+      ['transformPreferencePreferredColorScheme', 'light'],
+      ['onPreferenceChangePreferredColorScheme', ''],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onPreferenceChangePreferredColorScheme', value: '"dark"',
+    } })
+    expect(onChange).toHaveBeenCalledWith('dark')
+  })
+
   it('keeps native async actions pending until the JS callback settles', async () => {
     let finish!: () => void
     const action = vi.fn(() => new Promise<void>((resolve) => { finish = resolve }))
