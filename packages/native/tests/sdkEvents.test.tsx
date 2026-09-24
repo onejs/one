@@ -102,6 +102,18 @@ describe('SDK callback and binding transport', () => {
     ])
   })
 
+  it('builds identifiable rotor entries from public labels', () => {
+    const element = Controls.Text({ text: 'navigation', swiftStyle: {
+      accessibilityRotor: { rotorLabel: 'Links', entries: ['Home', 'Search'] },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['accessibilityRotor', '["Links","[\\"Home\\",\\"Search\\"]"]'],
+    ])
+    expect(() => Controls.Text({ text: 'duplicate', swiftStyle: {
+      accessibilityRotor: { rotorLabel: 'Links', entries: ['Home', 'Home'] },
+    } })).toThrow('distinct strings')
+  })
+
   it('toggles a public boolean environment value through the SDK transform method', () => {
     const element = Controls.Text({ text: 'child', swiftStyle: {
       transformEnvironmentIsEnabled: true,

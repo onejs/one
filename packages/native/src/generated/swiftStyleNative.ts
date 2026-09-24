@@ -81,6 +81,7 @@ const sdkKinds = {
   accessibilityRespondsToUserInteractionWithBool: 'boolean',
   accessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled:
     'record',
+  accessibilityRotor: 'record',
   accessibilityRotorEntry: 'record',
   accessibilityScrollAction: 'eventEnum',
   accessibilityScrollStatus: 'record',
@@ -1351,6 +1352,7 @@ const sdkRecords: Record<
     field: string
     kind: string
     optional: boolean
+    unique?: boolean
     fields?: readonly { name: string; type: string; integer: boolean }[]
     eventValue?: SDKEventValueShape
   }[]
@@ -1413,6 +1415,10 @@ const sdkRecords: Record<
   accessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled: [
     { field: 'respondsToUserInteraction', kind: 'boolean', optional: false },
     { field: 'isEnabled', kind: 'boolean', optional: false },
+  ],
+  accessibilityRotor: [
+    { field: 'rotorLabel', kind: 'string', optional: false },
+    { field: 'entries', kind: 'stringArray', optional: false, unique: true },
   ],
   accessibilityRotorEntry: [{ field: 'id', kind: 'string', optional: false }],
   accessibilityScrollStatus: [
@@ -2149,6 +2155,13 @@ export function swiftStyleNative(
             (!Array.isArray(item) || item.some((element) => typeof element !== 'string'))
           )
             throw new Error(name + '.' + argument.field + ' must be a string array')
+          if (
+            argument.unique &&
+            new Set(item as string[]).size !== (item as string[]).length
+          )
+            throw new Error(
+              name + '.' + argument.field + ' must contain distinct strings'
+            )
           if (argument.kind === 'numericStruct' || argument.kind === 'numericTuple') {
             if (
               !item ||

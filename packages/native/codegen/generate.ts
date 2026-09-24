@@ -245,6 +245,14 @@ for (const modifier of derivedModifiers) {
             parameter.defaultValue === undefined).every((parameter, index) =>
             parameter.label === modifier.arguments?.[index].label &&
             parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))
+        : modifier.fixedParameter
+        ? d.parameters.some((parameter) => parameter.type === modifier.fixedParameter?.type) &&
+          d.parameters.filter((parameter) => parameter.type !== modifier.fixedParameter?.type &&
+            parameter.defaultValue === undefined).length === modifier.arguments?.length &&
+          d.parameters.filter((parameter) => parameter.type !== modifier.fixedParameter?.type &&
+            parameter.defaultValue === undefined).every((parameter, index) =>
+            parameter.label === modifier.arguments?.[index].label &&
+            parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))
         : modifier.zeroArgument
         ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.kind === 'record'
