@@ -47,4 +47,28 @@ public final class VxrnNativeAutolinking {
   public static func isOneCryptoRecyclable() -> Bool {
     return HybridOneCrypto.self is any RecyclableView.Type
   }
+  
+  public static func createOneNetwork() -> bridge.std__shared_ptr_HybridOneNetworkSpec_ {
+    let hybridObject = HybridOneNetwork()
+    return { () -> bridge.std__shared_ptr_HybridOneNetworkSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+  
+  public static func isOneNetworkRecyclable() -> Bool {
+    return HybridOneNetwork.self is any RecyclableView.Type
+  }
+  
+  public static func createOneAppInfo() -> bridge.std__shared_ptr_HybridOneAppInfoSpec_ {
+    let hybridObject = HybridOneAppInfo()
+    return { () -> bridge.std__shared_ptr_HybridOneAppInfoSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+  
+  public static func isOneAppInfoRecyclable() -> Bool {
+    return HybridOneAppInfo.self is any RecyclableView.Type
+  }
 }

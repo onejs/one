@@ -8,14 +8,32 @@
 #include "VxrnNative-Swift-Cxx-Bridge.hpp"
 
 // Include C++ implementation defined types
+#include "HybridOneAppInfoSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
 #include "HybridOneCryptoSpecSwift.hpp"
 #include "HybridOneHapticsSpecSwift.hpp"
+#include "HybridOneNetworkSpecSwift.hpp"
 #include "VxrnNative-Swift-Cxx-Umbrella.hpp"
 #include <NitroModules/NitroDefines.hpp>
 
 namespace margelo::nitro::one::bridge::swift {
 
+  // pragma MARK: std::shared_ptr<HybridOneAppInfoSpec>
+  std::shared_ptr<HybridOneAppInfoSpec> create_std__shared_ptr_HybridOneAppInfoSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    VxrnNative::HybridOneAppInfoSpec_cxx swiftPart = VxrnNative::HybridOneAppInfoSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneAppInfoSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneAppInfoSpec_(std__shared_ptr_HybridOneAppInfoSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneAppInfoSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneAppInfoSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneAppInfoSpec\" is not implemented in Swift!");
+    }
+    #endif
+    VxrnNative::HybridOneAppInfoSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
   // pragma MARK: std::function<void(const std::string& /* result */)>
   Func_void_std__string create_Func_void_std__string(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = VxrnNative::Func_void_std__string::fromUnsafe(swiftClosureWrapper);
@@ -85,6 +103,38 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     VxrnNative::HybridOneHapticsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::function<void(const NetworkState& /* result */)>
+  Func_void_NetworkState create_Func_void_NetworkState(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_NetworkState::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const NetworkState& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void()>
+  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)]() mutable -> void {
+      swiftClosure.call();
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneNetworkSpec>
+  std::shared_ptr<HybridOneNetworkSpec> create_std__shared_ptr_HybridOneNetworkSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    VxrnNative::HybridOneNetworkSpec_cxx swiftPart = VxrnNative::HybridOneNetworkSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneNetworkSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneNetworkSpec_(std__shared_ptr_HybridOneNetworkSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneNetworkSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneNetworkSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneNetworkSpec\" is not implemented in Swift!");
+    }
+    #endif
+    VxrnNative::HybridOneNetworkSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

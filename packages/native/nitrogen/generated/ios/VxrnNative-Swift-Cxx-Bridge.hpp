@@ -8,25 +8,41 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `HybridOneAppInfoSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
 // Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 // Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneCryptoSpec; }
 // Forward declaration of `HybridOneHapticsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneHapticsSpec; }
+// Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneNetworkSpec; }
+// Forward declaration of `NetworkStateType` to properly resolve imports.
+namespace margelo::nitro::one { enum class NetworkStateType; }
+// Forward declaration of `NetworkState` to properly resolve imports.
+namespace margelo::nitro::one { struct NetworkState; }
 
 // Forward declarations of Swift defined types
+// Forward declaration of `HybridOneAppInfoSpec_cxx` to properly resolve imports.
+namespace VxrnNative { class HybridOneAppInfoSpec_cxx; }
 // Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneClipboardSpec_cxx; }
 // Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneCryptoSpec_cxx; }
 // Forward declaration of `HybridOneHapticsSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneHapticsSpec_cxx; }
+// Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.
+namespace VxrnNative { class HybridOneNetworkSpec_cxx; }
 
 // Include C++ defined types
+#include "HybridOneAppInfoSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
+#include "HybridOneNetworkSpec.hpp"
+#include "NetworkState.hpp"
+#include "NetworkStateType.hpp"
 #include <NitroModules/ArrayBuffer.hpp>
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/PromiseHolder.hpp>
@@ -34,6 +50,7 @@ namespace VxrnNative { class HybridOneHapticsSpec_cxx; }
 #include <exception>
 #include <functional>
 #include <memory>
+#include <optional>
 #include <string>
 
 /**
@@ -42,6 +59,33 @@ namespace VxrnNative { class HybridOneHapticsSpec_cxx; }
  */
 namespace margelo::nitro::one::bridge::swift {
 
+  // pragma MARK: std::optional<std::string>
+  /**
+   * Specialized version of `std::optional<std::string>`.
+   */
+  using std__optional_std__string_ = std::optional<std::string>;
+  inline std::optional<std::string> create_std__optional_std__string_(const std::string& value) noexcept {
+    return std::optional<std::string>(value);
+  }
+  inline bool has_value_std__optional_std__string_(const std::optional<std::string>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::string get_std__optional_std__string_(const std::optional<std::string>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneAppInfoSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneAppInfoSpec>`.
+   */
+  using std__shared_ptr_HybridOneAppInfoSpec_ = std::shared_ptr<HybridOneAppInfoSpec>;
+  std::shared_ptr<HybridOneAppInfoSpec> create_std__shared_ptr_HybridOneAppInfoSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneAppInfoSpec_(std__shared_ptr_HybridOneAppInfoSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneAppInfoSpec>
+  using std__weak_ptr_HybridOneAppInfoSpec_ = std::weak_ptr<HybridOneAppInfoSpec>;
+  inline std__weak_ptr_HybridOneAppInfoSpec_ weakify_std__shared_ptr_HybridOneAppInfoSpec_(const std::shared_ptr<HybridOneAppInfoSpec>& strong) noexcept { return strong; }
+  
   // pragma MARK: std::shared_ptr<Promise<std::string>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::string>>`.
@@ -202,6 +246,92 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_void_ create_Result_void_(const std::exception_ptr& error) noexcept {
     return Result<void>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<NetworkState>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<NetworkState>>`.
+   */
+  using std__shared_ptr_Promise_NetworkState__ = std::shared_ptr<Promise<NetworkState>>;
+  inline std::shared_ptr<Promise<NetworkState>> create_std__shared_ptr_Promise_NetworkState__() noexcept {
+    return Promise<NetworkState>::create();
+  }
+  inline PromiseHolder<NetworkState> wrap_std__shared_ptr_Promise_NetworkState__(std::shared_ptr<Promise<NetworkState>> promise) noexcept {
+    return PromiseHolder<NetworkState>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const NetworkState& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const NetworkState&)>`.
+   */
+  using Func_void_NetworkState = std::function<void(const NetworkState& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const NetworkState& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_NetworkState_Wrapper final {
+  public:
+    explicit Func_void_NetworkState_Wrapper(std::function<void(const NetworkState& /* result */)>&& func): _function(std::make_unique<std::function<void(const NetworkState& /* result */)>>(std::move(func))) {}
+    inline void call(NetworkState result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const NetworkState& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_NetworkState create_Func_void_NetworkState(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_NetworkState_Wrapper wrap_Func_void_NetworkState(Func_void_NetworkState value) noexcept {
+    return Func_void_NetworkState_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void()>
+  /**
+   * Specialized version of `std::function<void()>`.
+   */
+  using Func_void = std::function<void()>;
+  /**
+   * Wrapper class for a `std::function<void()>`, this can be used from Swift.
+   */
+  class Func_void_Wrapper final {
+  public:
+    explicit Func_void_Wrapper(std::function<void()>&& func): _function(std::make_unique<std::function<void()>>(std::move(func))) {}
+    inline void call() const noexcept {
+      _function->operator()();
+    }
+  private:
+    std::unique_ptr<std::function<void()>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_Wrapper wrap_Func_void(Func_void value) noexcept {
+    return Func_void_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneNetworkSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneNetworkSpec>`.
+   */
+  using std__shared_ptr_HybridOneNetworkSpec_ = std::shared_ptr<HybridOneNetworkSpec>;
+  std::shared_ptr<HybridOneNetworkSpec> create_std__shared_ptr_HybridOneNetworkSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneNetworkSpec_(std__shared_ptr_HybridOneNetworkSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneNetworkSpec>
+  using std__weak_ptr_HybridOneNetworkSpec_ = std::weak_ptr<HybridOneNetworkSpec>;
+  inline std__weak_ptr_HybridOneNetworkSpec_ weakify_std__shared_ptr_HybridOneNetworkSpec_(const std::shared_ptr<HybridOneNetworkSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<NetworkState>>>
+  using Result_std__shared_ptr_Promise_NetworkState___ = Result<std::shared_ptr<Promise<NetworkState>>>;
+  inline Result_std__shared_ptr_Promise_NetworkState___ create_Result_std__shared_ptr_Promise_NetworkState___(const std::shared_ptr<Promise<NetworkState>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<NetworkState>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_NetworkState___ create_Result_std__shared_ptr_Promise_NetworkState___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<NetworkState>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::function<void()>>
+  using Result_std__function_void____ = Result<std::function<void()>>;
+  inline Result_std__function_void____ create_Result_std__function_void____(const std::function<void()>& value) noexcept {
+    return Result<std::function<void()>>::withValue(value);
+  }
+  inline Result_std__function_void____ create_Result_std__function_void____(const std::exception_ptr& error) noexcept {
+    return Result<std::function<void()>>::withError(error);
   }
 
 } // namespace margelo::nitro::one::bridge::swift

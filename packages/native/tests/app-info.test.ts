@@ -3,10 +3,13 @@ import { build } from 'esbuild'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const { getMock } = vi.hoisted(() => ({ getMock: vi.fn() }))
+const { hybridMock } = vi.hoisted(() => ({ hybridMock: vi.fn() }))
 
-vi.mock('react-native', () => ({
-  TurboModuleRegistry: { get: getMock },
+vi.mock('react-native-nitro-modules', () => ({
+  NitroModules: {
+    hasHybridObject: () => hybridMock() != null,
+    createHybridObject: () => hybridMock(),
+  },
 }))
 
 const testDir = dirname(fileURLToPath(import.meta.url))
@@ -29,13 +32,11 @@ async function loadWeb() {
 }
 
 describe('app-info native snapshot', () => {
-  it('reads the TurboModule getConstants shape', async () => {
-    getMock.mockReturnValue({
-      getConstants: () => ({
-        version: '9.9.9',
-        build: '4242',
-        applicationId: 'dev.vxrn.native.tests',
-      }),
+  it('reads the hybrid object properties', async () => {
+    hybridMock.mockReturnValue({
+      version: '9.9.9',
+      build: '4242',
+      applicationId: 'dev.vxrn.native.tests',
     })
     const { AppInfo } = await loadNative()
     expect(AppInfo).toEqual({
@@ -46,29 +47,21 @@ describe('app-info native snapshot', () => {
     expect(Object.isFrozen(AppInfo)).toBe(true)
   })
 
-  it('yields all nulls when the module is missing', async () => {
-    getMock.mockReturnValue(null)
+  it('yields all nulls when the binary has no OneAppInfo', async () => {
+    hybridMock.mockReturnValue(undefined)
     const { AppInfo } = await loadNative()
     expect(AppInfo).toEqual({ version: null, build: null, applicationId: null })
     expect(Object.isFrozen(AppInfo)).toBe(true)
   })
 
-  it('yields all nulls when getConstants returns a non-object', async () => {
-    getMock.mockReturnValue({ getConstants: () => null })
+  it('nulls fields the platform leaves undefined', async () => {
+    hybridMock.mockReturnValue({ version: '9.9.9', applicationId: 'dev.vxrn.native.tests' })
     const { AppInfo } = await loadNative()
-    expect(AppInfo).toEqual({ version: null, build: null, applicationId: null })
-  })
-
-  it('nulls non-string fields individually, never guessing', async () => {
-    getMock.mockReturnValue({
-      getConstants: () => ({
-        version: '9.9.9',
-        build: 4242,
-        applicationId: { id: 'dev.vxrn.native.tests' },
-      }),
+    expect(AppInfo).toEqual({
+      version: '9.9.9',
+      build: null,
+      applicationId: 'dev.vxrn.native.tests',
     })
-    const { AppInfo } = await loadNative()
-    expect(AppInfo).toEqual({ version: '9.9.9', build: null, applicationId: null })
   })
 })
 

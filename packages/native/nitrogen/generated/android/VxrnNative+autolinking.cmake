@@ -33,13 +33,17 @@ target_sources(
   # Autolinking Setup
   ../nitrogen/generated/android/VxrnNativeOnLoad.cpp
   # Shared Nitrogen C++ sources
+  ../nitrogen/generated/shared/c++/HybridOneAppInfoSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneClipboardSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneCryptoSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneHapticsSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneNetworkSpec.cpp
   # Android-specific Nitrogen C++ sources
+  ../nitrogen/generated/android/c++/JHybridOneAppInfoSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneClipboardSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneCryptoSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneHapticsSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneNetworkSpec.cpp
 )
 
 # From node_modules/react-native/ReactAndroid/cmake-utils/folly-flags.cmake

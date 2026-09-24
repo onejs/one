@@ -12,24 +12,38 @@
 namespace margelo::nitro::one { enum class HapticImpact; }
 // Forward declaration of `HapticNotification` to properly resolve imports.
 namespace margelo::nitro::one { enum class HapticNotification; }
+// Forward declaration of `HybridOneAppInfoSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
 // Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 // Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneCryptoSpec; }
 // Forward declaration of `HybridOneHapticsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneHapticsSpec; }
+// Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneNetworkSpec; }
+// Forward declaration of `NetworkStateType` to properly resolve imports.
+namespace margelo::nitro::one { enum class NetworkStateType; }
+// Forward declaration of `NetworkState` to properly resolve imports.
+namespace margelo::nitro::one { struct NetworkState; }
 
 // Include C++ defined types
 #include "HapticImpact.hpp"
 #include "HapticNotification.hpp"
+#include "HybridOneAppInfoSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
+#include "HybridOneNetworkSpec.hpp"
+#include "NetworkState.hpp"
+#include "NetworkStateType.hpp"
 #include <NitroModules/ArrayBuffer.hpp>
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>
 #include <exception>
+#include <functional>
 #include <memory>
+#include <optional>
 #include <string>
 
 // C++ helpers for Swift
@@ -42,12 +56,16 @@ namespace margelo::nitro::one { class HybridOneHapticsSpec; }
 #include <NitroModules/DateToChronoDate.hpp>
 
 // Forward declarations of Swift defined types
+// Forward declaration of `HybridOneAppInfoSpec_cxx` to properly resolve imports.
+namespace VxrnNative { class HybridOneAppInfoSpec_cxx; }
 // Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneClipboardSpec_cxx; }
 // Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneCryptoSpec_cxx; }
 // Forward declaration of `HybridOneHapticsSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneHapticsSpec_cxx; }
+// Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.
+namespace VxrnNative { class HybridOneNetworkSpec_cxx; }
 
 // Include Swift defined types
 #if __has_include("VxrnNative-Swift.h")

@@ -13,6 +13,8 @@
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
 #include "HybridOneCryptoSpecSwift.hpp"
+#include "HybridOneNetworkSpecSwift.hpp"
+#include "HybridOneAppInfoSpecSwift.hpp"
 
 @interface VxrnNativeAutolinking : NSObject
 @end
@@ -41,6 +43,20 @@
     "OneCrypto",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneCryptoSpec> hybridObject = VxrnNative::VxrnNativeAutolinking::createOneCrypto();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneNetwork",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneNetworkSpec> hybridObject = VxrnNative::VxrnNativeAutolinking::createOneNetwork();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneAppInfo",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneAppInfoSpec> hybridObject = VxrnNative::VxrnNativeAutolinking::createOneAppInfo();
       return hybridObject;
     }
   );
