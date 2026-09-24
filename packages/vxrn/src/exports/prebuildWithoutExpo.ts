@@ -462,7 +462,7 @@ function patchIosPbxprojWidgets(project: string, app: NativeAppManifest): string
 `
   )
   const config = (id: string, mode: string) =>
-    `\t\t${id} /* ${mode} */ = {isa = XCBuildConfiguration; buildSettings = { CODE_SIGN_ENTITLEMENTS = OneWidgets/OneWidgets.entitlements; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = ${app.ios?.buildNumber || '1'}; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = OneWidgets/WidgetInfo.plist; IPHONEOS_DEPLOYMENT_TARGET = ${deploymentTarget}; MARKETING_VERSION = "${app.version || '1.0'}"; PRODUCT_BUNDLE_IDENTIFIER = ${bundleId}.widgets; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SKIP_INSTALL = YES; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1"; }; name = ${mode}; };`
+    `\t\t${id} /* ${mode} */ = {isa = XCBuildConfiguration; buildSettings = { CODE_SIGN_ENTITLEMENTS = OneWidgets/OneWidgets.entitlements; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = ${app.ios?.buildNumber || '1'}; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = OneWidgets/WidgetInfo.plist; IPHONEOS_DEPLOYMENT_TARGET = ${deploymentTarget}; MARKETING_VERSION = "${app.version || '1.0'}"; PRODUCT_BUNDLE_IDENTIFIER = ${bundleId}.widgets; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SKIP_INSTALL = YES; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "${app.ios?.tablet ? '1,2' : '1'}"; }; name = ${mode}; };`
   insert(
     '/* End XCBuildConfiguration section */',
     `${config(ids.debug, 'Debug')}\n${config(ids.release, 'Release')}`
@@ -509,10 +509,16 @@ function patchIosPbxprojWidgets(project: string, app: NativeAppManifest): string
   if (project.split(appBundleSetting).length !== 3) {
     throw new Error('[vxrn] expected two app bundle settings for widget entitlements')
   }
-  project = project.replaceAll(
-    appBundleSetting,
-    `CODE_SIGN_ENTITLEMENTS = ${name}/OneAppWidgets.entitlements;\n\t\t\t\t${appBundleSetting}`
-  )
+  // notifications.push wires its own app entitlements file above; a second
+  // CODE_SIGN_ENTITLEMENTS in one configuration silently loses, so the app
+  // group joins that file (see generateIosWidgets) instead of a duplicate.
+  const pushSetting = `CODE_SIGN_ENTITLEMENTS = ${name}/${name}.entitlements;`
+  if (!project.includes(pushSetting)) {
+    project = project.replaceAll(
+      appBundleSetting,
+      `CODE_SIGN_ENTITLEMENTS = ${name}/OneAppWidgets.entitlements;\n\t\t\t\t${appBundleSetting}`
+    )
+  }
   return project
 }
 
@@ -564,6 +570,29 @@ function generateIosWidgets(dest: string, app: NativeAppManifest): void {
         )
       : entitlements
   )
+  if (app.notifications?.push === true) {
+    // notifications.push signs the app with its own entitlements file, so
+    // the app group joins that file: the pbxproj patch above skips its
+    // duplicate CODE_SIGN_ENTITLEMENTS in that case.
+    const pushEntitlementsPath = path.join(appDir, `${app.name}.entitlements`)
+    let pushEntitlements: string
+    try {
+      pushEntitlements = FSExtra.readFileSync(pushEntitlementsPath, 'utf8')
+    } catch {
+      throw new Error(
+        `[vxrn] native.app combines widgets with notifications.push but ${app.name}.entitlements is missing`
+      )
+    }
+    if (!pushEntitlements.includes('com.apple.security.application-groups')) {
+      FSExtra.writeFileSync(
+        pushEntitlementsPath,
+        pushEntitlements.replace(
+          '</dict>',
+          `<key>com.apple.security.application-groups</key><array><string>${escapeXml(widgets.appGroup)}</string></array></dict>`
+        )
+      )
+    }
+  }
   FSExtra.writeFileSync(path.join(extensionDir, 'OneWidgets.entitlements'), entitlements)
   FSExtra.writeFileSync(
     path.join(extensionDir, 'WidgetInfo.plist'),
@@ -839,7 +868,11 @@ class OneWidgetsBridge: RCTEventEmitter {
       reject("activity_missing", "Live Activity not found", nil)
       return
     }
-    resolve(activity.pushToken?.map { String(format: "%02x", $0) }.joined())
+    if let data = activity.pushToken {
+      resolve(data.map { String(format: "%02x", $0) }.joined())
+    } else {
+      resolve(NSNull())
+    }
   }
 }
 `
