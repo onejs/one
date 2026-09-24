@@ -1811,7 +1811,7 @@ function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
   s.source_files = 'Sources/**/*.swift', 'Register.m'
   s.dependency 'VxrnNative'
   s.pod_target_xcconfig = {
-    'OTHER_SWIFT_FLAGS' => '$(inherited) -Xfrontend -import-module -Xfrontend VxrnNative -Xfrontend -entry-point-function-name -Xfrontend ${id}_main',
+    'OTHER_SWIFT_FLAGS' => '$(inherited) -cxx-interoperability-mode=default -Xcc -std=c++20 -Xfrontend -import-module -Xfrontend VxrnNative -Xfrontend -entry-point-function-name -Xfrontend ${id}_main',
   }
 end
 `
