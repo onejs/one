@@ -1846,7 +1846,15 @@ export interface OneNativeStyle {
     location: { x: number; y: number }
     point: { x: number; y: number }
   }) => void
+  actionSheet?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    title: string
+  }>
   addPassToWalletButtonStyle?: SDKAddPassToWalletButtonStyle
+  alert?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    title: string
+  }>
   alignmentGuideWithHorizontalAlignment?: Readonly<{
     g:
       | 'leading'
