@@ -2376,6 +2376,31 @@
       "sdkName": "allowsWindowActivationEvents"
     },
     {
+      "name": "anchorPreference",
+      "kind": "eventStruct",
+      "type": "@escaping (SwiftUICore.Anchor<A>) -> K.Value",
+      "ios": 13,
+      "preferenceKey": "OneNativeSDKRectAnchorKey",
+      "preferenceOperation": "set",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "origin",
+            "value": {
+              "kind": "point"
+            }
+          },
+          {
+            "name": "size",
+            "value": {
+              "kind": "size"
+            }
+          }
+        ]
+      }
+    },
+    {
       "name": "animation",
       "kind": "optionalEnum",
       "type": "SwiftUICore.Animation?",
@@ -16494,6 +16519,31 @@
       ]
     },
     {
+      "name": "transformAnchorPreference",
+      "kind": "eventStruct",
+      "type": "@escaping (inout K.Value, SwiftUICore.Anchor<A>) -> Swift.Void",
+      "ios": 13,
+      "preferenceKey": "OneNativeSDKRectAnchorKey",
+      "preferenceOperation": "transform",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "origin",
+            "value": {
+              "kind": "point"
+            }
+          },
+          {
+            "name": "size",
+            "value": {
+              "kind": "size"
+            }
+          }
+        ]
+      }
+    },
+    {
       "name": "transformEffect",
       "kind": "record",
       "type": "",
@@ -17525,6 +17575,7 @@
         "allowedDynamicRange",
         "allowsHitTesting",
         "allowsTightening",
+        "anchorPreference",
         "animation",
         "aspectRatio",
         "background",
@@ -17643,6 +17694,7 @@
         "tint",
         "tracking",
         "transaction",
+        "transformAnchorPreference",
         "transformEffect",
         "transformEnvironment",
         "transformPreference",
@@ -18054,6 +18106,7 @@
         "allowedDynamicRange",
         "allowsHitTesting",
         "allowsTightening",
+        "anchorPreference",
         "animation",
         "aspectRatio",
         "background",
@@ -18169,6 +18222,7 @@
         "tint",
         "tracking",
         "transaction",
+        "transformAnchorPreference",
         "transformEffect",
         "transformEnvironment",
         "transformPreference",

@@ -12,6 +12,8 @@ export default function NativeAutogenProof() {
   const [scrollPosition, setScrollPosition] = useState<string | null>(null)
   const [visibleTargets, setVisibleTargets] = useState<readonly string[]>([])
   const [geometryScrolled, setGeometryScrolled] = useState(false)
+  const [anchorWidth, setAnchorWidth] = useState<number | null>(null)
+  const [transformedAnchorWidth, setTransformedAnchorWidth] = useState<number | null>(null)
   return (
     <Swift.Tabs
       selection={selection}
@@ -29,6 +31,16 @@ export default function NativeAutogenProof() {
               text="Bold and tracked native text"
               swiftStyle={{ fontSize: 24, bold: true, tracking: 3 }}
             />
+            <Swift.Text
+              text="Generated anchor bounds"
+              swiftStyle={{ anchorPreference: ({ size }) => setAnchorWidth(size.width) }}
+            />
+            <Swift.Text text={anchorWidth === null ? 'Generated anchor pending' : `Generated anchor width ${Math.round(anchorWidth)}`} />
+            <Swift.Text
+              text="Generated transformed anchor bounds"
+              swiftStyle={{ transformAnchorPreference: ({ size }) => setTransformedAnchorWidth(size.width) }}
+            />
+            <Swift.Text text={transformedAnchorWidth === null ? 'Generated transformed anchor pending' : `Generated transformed anchor width ${Math.round(transformedAnchorWidth)}`} />
             <Swift.Text
               text="Tap for a generated point event"
               swiftStyle={{ onTapGestureWithPerform: setTapPoint }}

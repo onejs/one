@@ -111,6 +111,7 @@ const sdkKinds = {
   allowsTightening: 'boolean',
   allowsWindowActivationEventsWithNoArguments: 'boolean',
   allowsWindowActivationEventsWithOptionalBool: 'optionalBoolean',
+  anchorPreference: 'eventStruct',
   animation: 'optionalEnum',
   appEntityIdentifier: 'optionalString',
   appStoreMerchandising: 'record',
@@ -600,6 +601,7 @@ const sdkKinds = {
   toolbarWithVisibilityAndBars: 'record',
   tracking: 'number',
   transaction: 'record',
+  transformAnchorPreference: 'eventStruct',
   transformEffect: 'record',
   transformEnvironmentAccessibilityEnabled: 'boolean',
   transformEnvironmentAccessibilityPrefersCrossFadeTransitions: 'boolean',
@@ -805,6 +807,13 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
         },
       },
       { name: 'point', value: { kind: 'point' } },
+    ],
+  },
+  anchorPreference: {
+    kind: 'object',
+    fields: [
+      { name: 'origin', value: { kind: 'point' } },
+      { name: 'size', value: { kind: 'size' } },
     ],
   },
   currentEntitlementTask: {
@@ -1246,6 +1255,13 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
       },
     ],
     open: true,
+  },
+  transformAnchorPreference: {
+    kind: 'object',
+    fields: [
+      { name: 'origin', value: { kind: 'point' } },
+      { name: 'size', value: { kind: 'size' } },
+    ],
   },
   webViewOnScrollGeometryChangeWithContainerSize: {
     kind: 'object',
