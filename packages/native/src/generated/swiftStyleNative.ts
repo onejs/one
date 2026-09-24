@@ -440,6 +440,7 @@ const sdkKinds = {
   productViewStyle: 'style',
   progressViewStyle: 'style',
   projectionEffect: 'record',
+  quickLookPreview: 'bindingOptionalString',
   realityViewCameraControls: 'string',
   realityViewLayoutBehavior: 'string',
   redacted: 'string',

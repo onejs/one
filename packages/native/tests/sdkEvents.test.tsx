@@ -55,6 +55,18 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('presentationDetents must be public SDK values')
   })
 
+  it('round trips an optional URL binding for an SDK preview', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'preview', swiftStyle: {
+      quickLookPreview: { value: 'file:///tmp/photo.jpg', onChange },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['quickLookPreview', '"file:///tmp/photo.jpg"'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'quickLookPreview', value: 'null' } })
+    expect(onChange).toHaveBeenCalledWith(null)
+  })
+
   it('uses a public preference key for setting, transforming, and observing its value', () => {
     const onChange = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {

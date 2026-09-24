@@ -1,7 +1,7 @@
 import { ios, present, type Declaration } from './inventory'
 import type { Control } from './controlTypes'
 
-const emptyEventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> (?:Swift\.Void|\(\))\)\?$|^SwiftUICore\.Binding<Swift\.(?:Bool|String)>$/
+const emptyEventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> (?:Swift\.Void|\(\))\)\?$|^SwiftUICore\.Binding<(?:Swift\.(?:Bool|String)|Foundation\.URL\?)>$/
 const scalarCallbackType = /^(?:@escaping )?\((?:_ [A-Za-z]\w*: )?(Swift\.(?:Bool|String|Int|Float|Double)|CoreFoundation\.CGFloat|Foundation\.URL)\) -> (?:Swift\.Void|\(\))$/
 const eventOrBindingType = (type: string) => emptyEventOrBindingType.test(type) || scalarCallbackType.test(type)
 const focusBindingType = /^SwiftUI\.(?:Accessibility)?FocusState<Swift\.Bool>\.Binding$/
@@ -1002,7 +1002,8 @@ export function deriveModifiers(
           ? 'bindingBoolean'
           : parameter.type.includes('Binding<Swift.String>')
             ? 'bindingString'
-            : parameter.type === 'SwiftUICore.Binding<(some Hashable)?>'
+            : parameter.type === 'SwiftUICore.Binding<(some Hashable)?>' ||
+              parameter.type === 'SwiftUICore.Binding<Foundation.URL?>'
               ? 'bindingOptionalString'
             : callbackValue === 'Swift.Bool'
               ? 'eventBoolean'

@@ -12,6 +12,7 @@ import MapKit
 import MusicKit
 import AVKit
 import PhotosUI
+import QuickLook
 import AuthenticationServices
 import Symbols
 import Translation
@@ -497,6 +498,7 @@ extension View {
       case "productViewStyle": view = AnyView(view.oneNativeSDKProductViewStyle(value, emit: emit))
       case "progressViewStyle": view = AnyView(view.oneNativeSDKProgressViewStyle(value, emit: emit))
       case "projectionEffect": view = AnyView(view.oneNativeSDKProjectionEffect(value, emit: emit))
+      case "quickLookPreview": view = AnyView(view.oneNativeSDKQuickLookPreview(value, emit: emit))
       case "realityViewCameraControls": view = AnyView(view.oneNativeSDKRealityViewCameraControls(value, emit: emit))
       case "realityViewLayoutBehavior": view = AnyView(view.oneNativeSDKRealityViewLayoutBehavior(value, emit: emit))
       case "redacted": view = AnyView(view.oneNativeSDKRedacted(value, emit: emit))
@@ -5856,6 +5858,22 @@ self
       return SwiftUI.ProjectionTransform(CoreFoundation.CGAffineTransform(a: CGFloat(field0), b: CGFloat(field1), c: CGFloat(field2), d: CGFloat(field3), tx: CGFloat(field4), ty: CGFloat(field5)))
     }()
     self.projectionEffect(argument0)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKQuickLookPreview(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.quickLookPreview(Binding<Foundation.URL?>(get: {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
+        decoded is NSNull || decoded is String else { preconditionFailure("invalid quickLookPreview: \(value)") }
+      if let raw = decoded as? String {
+        guard let url = Foundation.URL(string: raw) else { preconditionFailure("invalid quickLookPreview URL") }
+        return url
+      }
+      return nil
+    }, set: { changed in
+      guard let data = try? JSONEncoder().encode(changed?.absoluteString), let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid quickLookPreview binding event") }
+      emit("quickLookPreview", encoded)
+    }))
   }
 
   @ViewBuilder fileprivate func oneNativeSDKRealityViewCameraControls(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
