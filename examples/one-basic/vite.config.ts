@@ -32,7 +32,21 @@ export default defineConfig({
             backgroundColor: '#000000',
             width: 200,
           },
-          ios: { bundleId: 'com.natew.oneexample', deploymentTarget: '17.0' },
+          ios: {
+            bundleId: 'com.natew.oneexample',
+            deploymentTarget: '17.0',
+            widgets: {
+              appGroup: 'group.com.natew.oneexample',
+              kind: 'OneBasicStatus',
+              displayName: 'One Status',
+              description: 'Shows the latest status from One Basic.',
+              jsx: {
+                id: 'one_basic_jsx',
+                displayName: 'One JSX Status',
+                description: 'Shows a widget authored with React JSX.',
+              },
+            },
+          },
           android: { applicationId: 'com.natew.oneexample' },
         },
         ...(process.env.TEST_METRO && {

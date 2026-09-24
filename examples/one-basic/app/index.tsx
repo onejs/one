@@ -19,6 +19,9 @@ export function Index() {
       <Link href="/test">
         <Text>Go to Test</Text>
       </Link>
+      <Link href="/widget-demo">
+        <Text>Widget and Live Activity demo</Text>
+      </Link>
     </View>
   )
 }
