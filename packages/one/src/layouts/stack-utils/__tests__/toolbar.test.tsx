@@ -201,7 +201,7 @@ describe('Stack.Toolbar composition', () => {
       toolbarProps(
         <StackToolbarMenu title="More" icon="ellipsis.circle">
           <StackToolbarMenuAction icon="square.and.arrow.up" onPress={onShare}>
-            Share
+            <StackToolbarLabel>Share</StackToolbarLabel>
           </StackToolbarMenuAction>
           <StackToolbarMenuAction destructive subtitle="gone forever" onPress={() => {}}>
             Delete
@@ -242,6 +242,12 @@ describe('Stack.Toolbar composition', () => {
       },
     ]
     expect(share).toMatchObject({ type: 'action', label: 'Share', state: 'off' })
+    // items cross the native bridge: React element children or unmapped
+    // props must not reach native-stack, which spreads them into native props
+    for (const action of [share, remove, submenu.items[0]]) {
+      expect(action).not.toHaveProperty('children')
+      expect(action).not.toHaveProperty('subtitle')
+    }
     share.onPress()
     expect(onShare).toHaveBeenCalledOnce()
     expect(remove).toMatchObject({
