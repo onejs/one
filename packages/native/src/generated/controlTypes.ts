@@ -2266,6 +2266,7 @@ export interface OneNativeStyle {
         onEnded: (value: { location: { x: number; y: number } }) => void
       }>
     | Readonly<{ kind: 'tap'; onEnded: () => void }>
+  gestureWithUITapRecognizer?: () => void
   glassEffectID?: Readonly<{ id: string | null }>
   glassEffectTransition?: SDKGlassEffectTransition
   glassEffectUnion?: Readonly<{ id: string | null }>

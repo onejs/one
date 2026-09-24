@@ -52,6 +52,7 @@ export type DerivedModifier = {
   selectionInputIndex?: number
   requestType?: string
   requestProperty?: string
+  uiRecognizer?: true
   resultConstructor?: { type: string; label: string }
   eventPair?: true
   eventInputs?: readonly string[]
@@ -1529,6 +1530,11 @@ export function deriveModifiers(
     method.requirements.includes('ItemID : Swift.Sendable')))
     result.push({ name: `${method.name}WithContainerItemID`, sdkName: method.name,
       kind: 'dragItemID', type: 'ItemID', ios: ios(method) })
+  for (const method of methods.filter((method) => method.module === 'SwiftUI' &&
+    method.parameters.length === 1 &&
+    method.parameters[0].type === 'some UIGestureRecognizerRepresentable'))
+    result.push({ name: `${method.name}WithUITapRecognizer`, sdkName: method.name,
+      kind: 'event', type: method.parameters[0].type, ios: ios(method), uiRecognizer: true })
   return result.sort((a, b) => a.name.localeCompare(b.name))
 }
 

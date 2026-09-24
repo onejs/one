@@ -1071,6 +1071,7 @@ export interface OneNativeStyle {
         kind: 'tap';
         onEnded: () => void;
     }>;
+    gestureWithUITapRecognizer?: () => void;
     glassEffectID?: Readonly<{
         id: string | null;
     }>;

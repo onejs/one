@@ -364,6 +364,10 @@ ${modifier.gestureOptions!.map((option) => {
     } else { self }`, 'self') : `self.modifier(${holder}(value: value == "true", emit: emit))`}
   }`
       }
+      if (modifier.uiRecognizer)
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    ${apply(`OneNativeSDKTapRecognizer(onTap: { emit(${JSON.stringify(modifier.name)}, "") })`, modifier.ios).trimStart()}
+  }`
       if (modifier.kind === 'defaultFocusBoolean') {
         const holder = `OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}FocusBinding`
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -1348,6 +1352,15 @@ ${frameworkImports.map((framework) => `import ${framework}`).join('\n')}
 
 ${derived.some((modifier) => modifier.namespaceParameter || modifier.kind === 'dragContainer' || modifier.kind === 'dragSelection' || modifier.kind === 'dragItemID') ? 'private enum OneNativeNamespace { static let id = Namespace().wrappedValue }\n' : ''}
 ${derived.some((modifier) => modifier.arguments?.some((argument) => argument.type === '[OneNativeRotorEntry]')) ? 'private struct OneNativeRotorEntry: Identifiable { let id: String; var label: String { id } }\n' : ''}
+${derived.some((modifier) => modifier.uiRecognizer) ? `@available(iOS 18, *)
+@MainActor private struct OneNativeSDKTapRecognizer: UIGestureRecognizerRepresentable {
+  let onTap: () -> Void
+  func makeUIGestureRecognizer(context: Context) -> UITapGestureRecognizer { UITapGestureRecognizer() }
+  func handleUIGestureRecognizerAction(_ recognizer: UITapGestureRecognizer, context: Context) {
+    if recognizer.state == .ended { onTap() }
+  }
+}
+` : ''}
 ${derived.filter((modifier) => modifier.kind === 'asyncObjectRequest').map((modifier) => `@available(iOS ${modifier.ios}, *)
 @MainActor private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}Request: ViewModifier {
   let latitude: Double

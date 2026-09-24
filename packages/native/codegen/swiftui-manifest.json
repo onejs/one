@@ -6865,6 +6865,14 @@
       "ios": 13
     },
     {
+      "name": "gestureWithUITapRecognizer",
+      "sdkName": "gesture",
+      "kind": "event",
+      "type": "some UIGestureRecognizerRepresentable",
+      "ios": 18,
+      "uiRecognizer": true
+    },
+    {
       "name": "glassEffectID",
       "kind": "record",
       "type": "",
@@ -17509,6 +17517,7 @@
         "formStyle",
         "fullScreenCover",
         "gaugeStyle",
+        "gesture",
         "gridCellAnchor",
         "gridCellColumns",
         "gridCellUnsizedAxes",
@@ -18024,6 +18033,7 @@
         "formStyle",
         "fullScreenCover",
         "gaugeStyle",
+        "gesture",
         "gridCellAnchor",
         "gridCellColumns",
         "gridCellUnsizedAxes",

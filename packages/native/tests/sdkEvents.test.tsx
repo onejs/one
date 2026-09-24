@@ -436,6 +436,18 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('invalid presentation value')
   })
 
+  it('routes the UIKit recognizer View overload through a generated tap callback', () => {
+    const onTap = vi.fn()
+    const element = Controls.Text({ text: 'tap', swiftStyle: {
+      gestureWithUITapRecognizer: onTap,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['gestureWithUITapRecognizer', ''],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'gestureWithUITapRecognizer', value: '' } })
+    expect(onTap).toHaveBeenCalledOnce()
+  })
+
   it('passes a purchase result through the async callback and rejects malformed cases', async () => {
     completeAsyncAction.mockClear()
     let finish!: () => void

@@ -285,6 +285,7 @@ const sdkKinds = {
   gaugeStyle: 'style',
   geometryGroup: 'boolean',
   gesture: 'gesture',
+  gestureWithUITapRecognizer: 'event',
   glassEffectID: 'record',
   glassEffectTransition: 'string',
   glassEffectUnion: 'record',
