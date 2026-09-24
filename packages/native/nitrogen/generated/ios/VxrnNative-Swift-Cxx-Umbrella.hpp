@@ -46,6 +46,8 @@ namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
 namespace margelo::nitro::one { class HybridOneNetworkSpec; }
 // Forward declaration of `HybridOneNotificationsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
+// Forward declaration of `HybridOneSecureStoreSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
 // Forward declaration of `ImagePickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerAsset; }
 // Forward declaration of `ImagePickerMediaType` to properly resolve imports.
@@ -115,6 +117,7 @@ namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
 #include "HybridOneImagePickerSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
+#include "HybridOneSecureStoreSpec.hpp"
 #include "ImagePickerAsset.hpp"
 #include "ImagePickerMediaType.hpp"
 #include "ImagePickerNativeResult.hpp"
@@ -178,6 +181,8 @@ namespace VxrnNative { class HybridOneImagePickerSpec_cxx; }
 namespace VxrnNative { class HybridOneNetworkSpec_cxx; }
 // Forward declaration of `HybridOneNotificationsSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneNotificationsSpec_cxx; }
+// Forward declaration of `HybridOneSecureStoreSpec_cxx` to properly resolve imports.
+namespace VxrnNative { class HybridOneSecureStoreSpec_cxx; }
 
 // Include Swift defined types
 #if __has_include("VxrnNative-Swift.h")

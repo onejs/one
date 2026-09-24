@@ -26,6 +26,7 @@ description: What every native API does on iOS, Android, and web
 | Haptics | UIFeedbackGenerator trio | performHapticFeedback mapping | no-op |
 | Crypto | SecRandomCopyBytes | SecureRandom | platform crypto |
 | ImagePicker | PHPickerViewController + camera | system photo picker + camera intent | file dialog + capture input |
+| SecureStore | Keychain, readable while unlocked | AES-256-GCM, key in AndroidKeyStore | rejects |
 | Map | One.UI.Map (MapKit) | One.UI.Map (Google Maps, key required) | renders nothing |
 | Picture in Picture | AVPictureInPictureController (sample buffer source) | activity pip mode | renders inline |
 | WebGPU | react-native-webgpu (Dawn) | react-native-webgpu (Dawn) | navigator.gpu |

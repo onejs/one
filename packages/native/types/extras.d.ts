@@ -14,4 +14,5 @@ export { Browser } from './browser';
 export type { BrowserAuthSessionOptions, BrowserAuthSessionResult, BrowserOpenOptions, BrowserPresentationStyle, BrowserRedirectResult, BrowserResult, BrowserResultType, } from './browser';
 export { Network, useNetworkState } from './network';
 export type { NetworkState, NetworkStateSubscription, NetworkStateType, } from './network';
+export { SecureStore } from './secure-store';
 //# sourceMappingURL=extras.d.ts.map
