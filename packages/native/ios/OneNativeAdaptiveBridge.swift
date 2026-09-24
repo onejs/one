@@ -11,7 +11,6 @@ public final class OneNativeAdaptiveBridge: NSObject {
 
   public var onSizeClass: ((String, String) -> Void)?
   public var onHinge: ((String, Double) -> Void)?
-  public var onReservedRegions: (([[String: Any]]) -> Void)?
 
   @MainActor
   public func currentWindow() -> UIWindow? {
@@ -58,37 +57,6 @@ public final class OneNativeAdaptiveBridge: NSObject {
   }
 
   @MainActor
-  public func getReservedRegions(includeInactive: Bool = false) -> [[String: Any]] {
-    #if ONE_IOS_27_1_SDK
-    guard #available(iOS 27.1, *), let window = currentWindow() else { return [] }
-    let opts: UIView.ReservedRegion.QueryOptions = includeInactive ? [.includeInactive] : []
-    let division = window.reservedRegions(kind: .division, options: opts)
-    let occlusion = window.reservedRegions(kind: .occlusion, options: opts)
-    return (division + occlusion).map { region in
-      [
-        "id": region.id.description,
-        "kind": region.kind == .division ? "division" : "occlusion",
-        "frame": [
-          "x": Double(region.frame.origin.x),
-          "y": Double(region.frame.origin.y),
-          "width": Double(region.frame.size.width),
-          "height": Double(region.frame.size.height)
-        ],
-        "margins": [
-          "top": Double(region.margins.top),
-          "left": Double(region.margins.left),
-          "bottom": Double(region.margins.bottom),
-          "right": Double(region.margins.right)
-        ],
-        "isActive": region.isActive
-      ]
-    }
-    #else
-    return []
-    #endif
-  }
-
-  @MainActor
   public func startObserving() {
     isObserving = true
     attachListenersIfNeeded()
@@ -120,7 +88,6 @@ public final class OneNativeAdaptiveBridge: NSObject {
         let h = self.sizeClassString(s.traitCollection.horizontalSizeClass)
         let v = self.sizeClassString(s.traitCollection.verticalSizeClass)
         self.onSizeClass?(h, v)
-        self.emitReservedRegions()
       }
     }
     #if ONE_IOS_27_1_SDK
@@ -142,18 +109,11 @@ public final class OneNativeAdaptiveBridge: NSObject {
           self.currentHingeData = nil
           self.onHinge?("unknown", 0.0)
         }
-        self.emitReservedRegions()
       }
       window.addInteraction(interaction)
       hingeInteraction = interaction
     }
     #endif
-  }
-
-  @MainActor
-  public func emitReservedRegions() {
-    let regions = getReservedRegions()
-    onReservedRegions?(regions)
   }
 
   @MainActor
@@ -170,6 +130,5 @@ public final class OneNativeAdaptiveBridge: NSObject {
     }
     onSizeClass = nil
     onHinge = nil
-    onReservedRegions = nil
   }
 }

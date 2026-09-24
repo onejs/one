@@ -1,12 +1,8 @@
-import type {
-  HingeState,
-  ReservedRegion,
-  ReservedRegionKind,
-  ReservedRegionOptions,
-  SizeClass,
-} from './types'
+import type { HingeState, SizeClass } from './types'
+import * as ReservedRegions from './ReservedRegions'
 
 export type * from './types'
+export { ReservedRegions }
 
 const DEFAULT_SIZE_CLASS: SizeClass = {
   horizontal: 'regular',
@@ -31,17 +27,4 @@ export async function getHinge(): Promise<HingeState | null> {
 
 export function onHingeChange(_callback: (hinge: HingeState | null) => void): () => void {
   return () => {}
-}
-
-export function useReservedRegions(
-  _kind?: ReservedRegionKind,
-  _options?: ReservedRegionOptions
-): ReservedRegion[] {
-  return []
-}
-
-export async function getReservedRegions(
-  _options?: ReservedRegionOptions
-): Promise<ReservedRegion[]> {
-  return []
 }

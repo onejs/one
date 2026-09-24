@@ -18,8 +18,7 @@ RCT_EXPORT_MODULE()
 {
   return @[
     @"oneNativeSizeClassDidChange",
-    @"oneNativeHingeDidChange",
-    @"oneNativeReservedRegionsDidChange"
+    @"oneNativeHingeDidChange"
   ];
 }
 
@@ -35,11 +34,9 @@ RCT_EXPORT_MODULE()
     OneNativeAdaptiveBridge *bridge = [OneNativeAdaptiveBridge shared];
     NSDictionary *sizeClass = [bridge getSizeClass];
     NSDictionary *hinge = [bridge getHinge];
-    NSArray *regions = [bridge getReservedRegionsWithIncludeInactive:NO];
     constants = @{
       @"initialSizeClass": sizeClass ?: @{@"horizontal": @"unspecified", @"vertical": @"unspecified"},
-      @"initialHinge": hinge ?: [NSNull null],
-      @"initialReservedRegions": regions ?: @[]
+      @"initialHinge": hinge ?: [NSNull null]
     };
   });
   return constants;
@@ -69,12 +66,6 @@ RCT_EXPORT_MODULE()
         }];
       }
     };
-    bridge.onReservedRegions = ^(NSArray<NSDictionary *> *regions) {
-      OneNativeAdaptive *strongSelf = weakSelf;
-      if (strongSelf && strongSelf->_hasListeners) {
-        [strongSelf sendEventWithName:@"oneNativeReservedRegionsDidChange" body:regions];
-      }
-    };
     [bridge startObserving];
   });
 }
@@ -99,13 +90,6 @@ RCT_EXPORT_METHOD(getHinge:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseR
   dispatch_async(dispatch_get_main_queue(), ^{
     id hinge = [[OneNativeAdaptiveBridge shared] getHinge];
     resolve(hinge ?: [NSNull null]);
-  });
-}
-
-RCT_EXPORT_METHOD(getReservedRegions:(BOOL)includeInactive resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
-  dispatch_async(dispatch_get_main_queue(), ^{
-    resolve([[OneNativeAdaptiveBridge shared] getReservedRegionsWithIncludeInactive:includeInactive]);
   });
 }
 

@@ -195,6 +195,7 @@
         "OneNativeSwipeActionsActions": "OneNativeSwipeActionsActionsComponentView",
         "OneNativePager": "OneNativePagerComponentView",
         "OneNativeSafeAreaProvider": "OneNativeSafeAreaProviderComponentView",
+        "OneNativeReservedRegionsProvider": "OneNativeReservedRegionsProviderComponentView",
         "OneNativeEdgeFade": "OneNativeEdgeFadeComponentView",
         "OneNativeBlur": "OneNativeBlurComponentView",
         "OneNativeMask": "OneNativeMaskComponentView",
