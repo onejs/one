@@ -22,6 +22,8 @@ import WebKit
 
 private enum OneNativeNamespace { static let id = Namespace().wrappedValue }
 
+private struct OneNativeRotorEntry: Identifiable { let id: String; var label: String { id } }
+
 
 public struct OneNativeStyle: Equatable {
   public var fontSize: CGFloat?
@@ -146,6 +148,7 @@ extension View {
       case "accessibilityRemoveTraits": view = AnyView(view.oneNativeSDKAccessibilityRemoveTraits(value, emit: emit))
       case "accessibilityRespondsToUserInteractionWithBool": view = AnyView(view.oneNativeSDKAccessibilityRespondsToUserInteractionWithBool(value, emit: emit))
       case "accessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled(value, emit: emit))
+      case "accessibilityRotor": view = AnyView(view.oneNativeSDKAccessibilityRotor(value, emit: emit))
       case "accessibilityRotorEntry": view = AnyView(view.oneNativeSDKAccessibilityRotorEntry(value, emit: emit))
       case "accessibilityScrollAction": view = AnyView(view.oneNativeSDKAccessibilityScrollAction(value, emit: emit))
       case "accessibilityScrollStatus": view = AnyView(view.oneNativeSDKAccessibilityScrollStatus(value, emit: emit))
@@ -1407,6 +1410,25 @@ extension View {
     }()
     self.accessibilityRespondsToUserInteraction(argument0, isEnabled: argument1)
     } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityRotor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid accessibilityRotor: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Text = {
+      guard let raw = values[0] else { preconditionFailure("missing accessibilityRotor.rotorLabel") }
+      return Text(raw)
+    }()
+    let argument1: [OneNativeRotorEntry] = {
+      guard let raw = values[1] else { preconditionFailure("missing accessibilityRotor.entries") }
+      guard let data = raw.data(using: .utf8), let strings = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid accessibilityRotor.entries: \(raw)") }
+      return strings.map { OneNativeRotorEntry(id: $0) }
+    }()
+    self.accessibilityRotor(argument0, entries: argument1, entryLabel: \OneNativeRotorEntry.label)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityRotorEntry(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
