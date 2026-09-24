@@ -36,7 +36,7 @@ import WorkoutKit
 }
 
 @MainActor public struct OneNativeRegisteredModifier {
-  enum Kind { case layoutValue, containerValue, accessibilityAction }
+  enum Kind { case layoutValue, containerValue, accessibilityAction, onAppIntentExecution }
   let kind: Kind
   let apply: (AnyView) -> AnyView
 
@@ -53,6 +53,13 @@ import WorkoutKit
   @available(iOS 18, *)
   public static func accessibilityAction<I: AppIntent>(named label: String, intent: I) -> Self {
     Self(kind: .accessibilityAction) { AnyView($0.accessibilityAction(named: Text(label), intent: intent)) }
+  }
+
+  @available(iOS 26, *)
+  public static func onAppIntentExecution<I: TargetContentProvidingIntent>(
+    _ intent: I.Type, perform action: @escaping @MainActor (I) -> Void
+  ) -> Self {
+    Self(kind: .onAppIntentExecution) { AnyView($0.onAppIntentExecution(intent, perform: action)) }
   }
 }
 
@@ -750,6 +757,7 @@ extension View {
       case "offerCodeRedemption": view = AnyView(view.oneNativeSDKOfferCodeRedemption(value, emit: emit))
       case "offset": view = AnyView(view.oneNativeSDKOffset(value, emit: emit))
       case "onAppear": view = AnyView(view.oneNativeSDKOnAppear(value, emit: emit))
+      case "onAppIntentExecution": view = AnyView(view.oneNativeSDKOnAppIntentExecution(value, emit: emit))
       case "onCameraCaptureEvent": view = AnyView(view.oneNativeSDKOnCameraCaptureEvent(value, emit: emit))
       case "onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction": view = AnyView(view.oneNativeSDKOnCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction(value, emit: emit))
       case "onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction": view = AnyView(view.oneNativeSDKOnCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction(value, emit: emit))
@@ -6125,6 +6133,19 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKOnAppear(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onAppear(perform: { emit("onAppear", "") })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnAppIntentExecution(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) {
+      let registered: OneNativeRegisteredModifier = {
+        guard let found = OneNativeRegisteredValue.value(value) as? OneNativeRegisteredModifier else {
+          preconditionFailure("missing onAppIntentExecution registered value: \(value)")
+        }
+        return found
+      }()
+      let _ = precondition(registered.kind == .onAppIntentExecution, "invalid onAppIntentExecution registered value: \(value)")
+      registered.apply(AnyView(self))
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnCameraCaptureEvent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

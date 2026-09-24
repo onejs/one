@@ -9831,6 +9831,14 @@
       "ios": 13
     },
     {
+      "name": "onAppIntentExecution",
+      "kind": "registeredValue",
+      "type": "I.Type",
+      "registeredFactory": "onAppIntentExecution",
+      "ios": 26,
+      "framework": "AppIntents"
+    },
+    {
       "name": "onCameraCaptureEvent",
       "kind": "eventStruct",
       "type": "@escaping (AVKit.AVCaptureEvent) -> Swift.Void",
@@ -18136,6 +18144,7 @@
       "_AppIntents_SwiftUI": [
         "accessibilityAction",
         "appEntityIdentifier",
+        "onAppIntentExecution",
         "shortcutsLinkStyle",
         "siriTipViewStyle"
       ],
@@ -18682,6 +18691,7 @@
       "_AppIntents_SwiftUI": [
         "accessibilityAction",
         "appEntityIdentifier",
+        "onAppIntentExecution",
         "shortcutsLinkStyle",
         "siriTipViewStyle"
       ],

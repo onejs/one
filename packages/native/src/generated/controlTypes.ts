@@ -2654,6 +2654,7 @@ export interface OneNativeStyle {
   offerCodeRedemption?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   offset?: Readonly<{ x: number; y: number }>
   onAppear?: () => void
+  onAppIntentExecution?: string
   onCameraCaptureEvent?: (value: {
     phase: 'began' | 'cancelled' | 'ended' | 'unknown'
   }) => void

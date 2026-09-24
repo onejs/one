@@ -313,6 +313,12 @@ for (const modifier of derivedModifiers) {
             d.parameters[0].type === 'SwiftUICore.Text' &&
             d.parameters[1].label === 'intent' && d.parameters[1].type === 'I' &&
             d.requirements?.includes('I : AppIntents.AppIntent')
+          : modifier.registeredFactory === 'onAppIntentExecution'
+          ? d.parameters.length === 2 && d.parameters[0].label === '_' &&
+            d.parameters[0].type === 'I.Type' && d.parameters[0].defaultValue === 'I.self' &&
+            d.parameters[1].label === 'perform' &&
+            d.parameters[1].type === '@escaping @_Concurrency.MainActor (I) -> Swift.Void' &&
+            d.requirements?.includes('I : AppIntents.TargetContentProvidingIntent')
           : d.parameters.length === 1 && d.parameters[0].type === modifier.type &&
             d.parameters[0].label === '_'
         : modifier.textSelection
