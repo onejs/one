@@ -11078,6 +11078,13 @@
       "label": "reason"
     },
     {
+      "name": "refreshable",
+      "kind": "eventAsync",
+      "type": "@escaping @Sendable () async -> Swift.Void",
+      "label": "action",
+      "ios": 15
+    },
+    {
       "name": "refundRequestSheet",
       "kind": "record",
       "type": "",
@@ -13617,6 +13624,13 @@
       "ios": 13
     },
     {
+      "name": "task",
+      "kind": "eventAsync",
+      "type": "sending @escaping @isolated(any) () async -> Swift.Void",
+      "label": "_",
+      "ios": 15
+    },
+    {
       "name": "textCase",
       "kind": "optionalEnum",
       "type": "SwiftUICore.Text.Case?",
@@ -15713,6 +15727,7 @@
         "previewLayout",
         "progressViewStyle",
         "projectionEffect",
+        "refreshable",
         "renameAction",
         "replaceDisabled",
         "safeAreaBar",
@@ -15762,6 +15777,7 @@
         "tabViewStyle",
         "tableColumnHeaders",
         "tableStyle",
+        "task",
         "textContentType",
         "textEditorStyle",
         "textFieldStyle",
@@ -16174,6 +16190,7 @@
         "previewLayout",
         "progressViewStyle",
         "projectionEffect",
+        "refreshable",
         "renameAction",
         "replaceDisabled",
         "safeAreaBar",
@@ -16222,6 +16239,7 @@
         "tabViewStyle",
         "tableColumnHeaders",
         "tableStyle",
+        "task",
         "textContentType",
         "textEditorStyle",
         "textFieldStyle",
