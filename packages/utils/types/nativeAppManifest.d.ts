@@ -15,6 +15,9 @@ export interface NativeAppManifest {
   imagePicker?: {
     camera?: string
   }
+  notifications?: {
+    push?: boolean
+  }
   ios?: {
     bundleId: string
     buildNumber?: string

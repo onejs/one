@@ -1,4 +1,4 @@
-import { Browser as NativeBrowser, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Network as NativeNetwork, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, getHinge, getSizeClass, onHingeChange, ReservedRegions, useHinge, useSizeClass, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from '@vxrn/native';
+import { Browser as NativeBrowser, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, getHinge, getSizeClass, onHingeChange, ReservedRegions, useHinge, useSizeClass, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from '@vxrn/native';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaFrame, useSafeAreaInsets } from '@vxrn/safe-area';
 import { Widgets, LiveActivities } from '@vxrn/native';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
@@ -39,6 +39,7 @@ export type OneUI = typeof NativeUI & {
     readonly onHingeChange: typeof onHingeChange;
     readonly ReservedRegions: typeof ReservedRegions;
 };
+export type OneNotifications = typeof Notifications;
 export type OneAPI = {
     readonly platform: OnePlatform;
     readonly AppInfo: typeof AppInfo;
@@ -46,6 +47,7 @@ export type OneAPI = {
     readonly iOS: Readonly<OneIOS>;
     readonly Android: Readonly<OneAndroid>;
     readonly UI: Readonly<OneUI>;
+    readonly Notifications: Readonly<OneNotifications>;
     readonly Clipboard: typeof NativeClipboard;
     readonly Network: typeof NativeNetwork;
     readonly Browser: typeof NativeBrowser;

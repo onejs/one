@@ -766,6 +766,18 @@ function relaunchApp(config: Config) {
   adbText(config, ['shell', 'am', 'start', '-W', '-n', launcherComponent])
 }
 
+// point the debug host at this run's metro: the stock emulator reaches the
+// host loopback as 10.0.2.2, so whoever else owns host:8081 does not
+// matter. call after a launch that guarantees the data dir exists; pm clear
+// wipes the stamp, so call again after every clear.
+function stampDebugHost(config: Config) {
+  // adb shell joins argv with spaces and re-parses on device, so the -c
+  // script travels inside its own double quotes; the xml attribute quotes
+  // are backslash-escaped for the device shell.
+  const script = `mkdir -p shared_prefs && echo '<map><string name=\\"debug_http_host\\">10.0.2.2:${config.metroPort}</string></map>' > shared_prefs/${config.packageId}_preferences.xml`
+  adbText(config, ['shell', 'run-as', config.packageId, 'sh', '-c', `"${script}"`])
+}
+
 async function run(config: Config) {
   mkdirSync(config.artifactDir, { recursive: true })
   const checks: Check[] = []
@@ -813,9 +825,10 @@ async function run(config: Config) {
     name: string,
     predicate: (nodes: Node[]) => boolean,
     missingMarker?: string,
-    detail?: (nodes: Node[]) => Record<string, unknown>
+    detail?: (nodes: Node[]) => Record<string, unknown>,
+    timeoutMs = config.timeout
   ) => {
-    const result = await waitFor(config, name, predicate, missingMarker)
+    const result = await waitFor(config, name, predicate, missingMarker, timeoutMs)
     const observed = detail?.(result.snapshot.nodes)
     const artifacts = capture(name, result.snapshot, 'passed', undefined, observed)
     const check: Check = {
@@ -832,6 +845,8 @@ async function run(config: Config) {
 
   try {
     preflight(config)
+    relaunchApp(config)
+    stampDebugHost(config)
     relaunchApp(config)
 
     await expect(
@@ -1941,6 +1956,373 @@ async function run(config: Config) {
       'one-native-image-picker-library'
     )
 
+    // notifications slice n1: clear app data so the permission starts
+    // undetermined like a fresh install, then grant and read back.
+    adbText(config, ['shell', 'pm', 'clear', config.packageId])
+    relaunchApp(config)
+    stampDebugHost(config)
+    relaunchApp(config)
+    await expect(
+      'notifications-home',
+      (nodes) =>
+        diagnose(nodes, [
+          ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+          ['nav list row', (n) => n.some((node) => node.resourceId.includes('nav-'))],
+        ]),
+      'home-screen'
+    )
+    await tapNavigation(config, 'nav-one-native-notifications')
+    await expect(
+      'notifications-mounted',
+      (nodes) => textIncludes(nodes, 'Notifications: mounted'),
+      'one-native-notifications-permission-refresh'
+    )
+    // the fixture scrolls; bring each button into the viewport like
+    // tapNavigation does before tapping its center.
+    const tapNotif = (name: string, testID: string) => {
+      for (let attempt = 0; attempt < 8; attempt++) {
+        const current = snapshot(config)
+        const rows = matching(current.nodes, { id: testID })
+        const viewport = applicationBounds(current.nodes)
+        const bounds = rows.length === 1 ? rows[0].bounds : undefined
+        const x = bounds ? Math.round((bounds.left + bounds.right) / 2) : 0
+        const y = bounds ? Math.round((bounds.top + bounds.bottom) / 2) : 0
+        if (
+          bounds &&
+          x > viewport.left &&
+          x < viewport.right &&
+          y > viewport.top &&
+          y < viewport.bottom
+        ) {
+          adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+          return
+        }
+        swipeFresh(config, name)
+      }
+      throw new Error(`Could not bring ${testID} into view on the fixture`)
+    }
+    tapNotif(
+      'Notifications permission refresh',
+      'one-native-notifications-permission-refresh'
+    )
+    await expect(
+      'notifications-permission-undetermined',
+      (nodes) => textIncludes(nodes, 'Permission: undetermined'),
+      'one-native-notifications-permission-refresh'
+    )
+    adbText(config, [
+      'shell',
+      'pm',
+      'grant',
+      config.packageId,
+      'android.permission.POST_NOTIFICATIONS',
+    ])
+    tapNotif(
+      'Notifications permission refresh granted',
+      'one-native-notifications-permission-refresh'
+    )
+    await expect(
+      'notifications-permission-granted',
+      (nodes) => textIncludes(nodes, 'Permission: granted'),
+      'one-native-notifications-permission-refresh'
+    )
+    tapNotif('Notifications badge set', 'one-native-notifications-badge-set')
+    await expect(
+      'notifications-badge-set-resolves-false',
+      (nodes) => textIncludes(nodes, 'Badge: set:no'),
+      'one-native-notifications-badge-set'
+    )
+    tapNotif('Notifications badge get', 'one-native-notifications-badge-get')
+    await expect(
+      'notifications-badge-is-zero',
+      (nodes) => textIncludes(nodes, 'Badge: 0'),
+      'one-native-notifications-badge-get'
+    )
+    // slice n2: create, read back, list, delete.
+    tapNotif('Notifications channel create', 'one-native-notifications-channel-create')
+    await expect(
+      'notifications-channel-created',
+      (nodes) => textIncludes(nodes, 'Channel: Test Channel/default'),
+      'one-native-notifications-channel-create'
+    )
+    tapNotif('Notifications channel get', 'one-native-notifications-channel-get')
+    await expect(
+      'notifications-channel-read-back',
+      (nodes) => textIncludes(nodes, 'Channel: Test Channel/default'),
+      'one-native-notifications-channel-get'
+    )
+    tapNotif('Notifications channel list', 'one-native-notifications-channel-list')
+    await expect(
+      'notifications-channel-listed',
+      (nodes) => textIncludes(nodes, 'Channels: 1'),
+      'one-native-notifications-channel-list'
+    )
+    tapNotif('Notifications channel delete', 'one-native-notifications-channel-delete')
+    await expect(
+      'notifications-channel-deleted',
+      (nodes) => textIncludes(nodes, 'Channel: deleted'),
+      'one-native-notifications-channel-delete'
+    )
+    tapNotif(
+      'Notifications channel get after delete',
+      'one-native-notifications-channel-get'
+    )
+    await expect(
+      'notifications-channel-gone',
+      (nodes) => textIncludes(nodes, 'Channel: null'),
+      'one-native-notifications-channel-get'
+    )
+    // the fixture app sets no push flag, so the nopush source set compiled:
+    // the token fetch rejects instead of reaching firebase.
+    tapNotif('Notifications push token', 'one-native-notifications-push-token')
+    await expect(
+      'notifications-push-disabled-rejects',
+      (nodes) => textIncludes(nodes, 'Push: error'),
+      'one-native-notifications-push-token'
+    )
+    // slice n3: with no listeners mounted, native presents the arrival
+    // itself instead of waiting out the 3s backstop.
+    tapNotif(
+      'Notifications schedule unobserved',
+      'one-native-notifications-schedule-unobserved'
+    )
+    await expect(
+      'notifications-unobserved-presented',
+      (nodes) => textIncludes(nodes, 'Unobserved: presented in '),
+      'one-native-notifications-schedule-unobserved'
+    )
+    tapNotif('Notifications subscribe', 'one-native-notifications-subscribe')
+    await expect(
+      'notifications-subscribed',
+      (nodes) => textIncludes(nodes, 'Subscribed: yes'),
+      'one-native-notifications-subscribe'
+    )
+    // no handler was set yet, so the first observed arrival shows by
+    // default. background the app, tap the banner in the shade, and the
+    // response lands back in the fixture.
+    tapNotif('Notifications schedule now', 'one-native-notifications-schedule-now')
+    await expect(
+      'notifications-received-default',
+      (nodes) => textIncludes(nodes, 'Received: n3-1'),
+      'one-native-notifications-schedule-now'
+    )
+    const tapShade = (name: string, text: string) => {
+      adbText(config, ['shell', 'input', 'keyevent', '3'])
+      adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+      const current = snapshot(config)
+      const target = current.nodes.find(
+        (node) => node.text === text || node.contentDescription === text
+      )
+      if (!target) throw new Error(`${name}: no shade node with text ${text}.`)
+      const bounds = validBounds(clickableTarget(current.nodes, target) ?? target, name)
+      const x = Math.round((bounds.left + bounds.right) / 2)
+      const y = Math.round((bounds.top + bounds.bottom) / 2)
+      adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+    }
+    const foregroundApp = () => {
+      const launcherComponent = adbText(config, [
+        'shell',
+        'cmd',
+        'package',
+        'resolve-activity',
+        '--brief',
+        '-c',
+        'android.intent.category.LAUNCHER',
+        config.packageId,
+      ])
+        .trim()
+        .split(/\r?\n/)
+        .findLast((line) => line.includes('/'))
+      if (!launcherComponent)
+        throw new Error(`No launcher activity resolved for ${config.packageId}.`)
+      adbText(config, ['shell', 'am', 'start', '-W', '-n', launcherComponent])
+    }
+    tapShade('Notifications warm tap', 'N3 ping')
+    await expect(
+      'notifications-response-warm',
+      (nodes) => textIncludes(nodes, 'Response: n3-1/'),
+      'one-native-notifications-schedule-now'
+    )
+    tapNotif('Notifications last refresh', 'one-native-notifications-last-refresh')
+    await expect(
+      'notifications-last-warm',
+      (nodes) => textIncludes(nodes, 'Last: n3-1/N3 ping'),
+      'one-native-notifications-last-refresh'
+    )
+    // a suppressing handler still fires received but posts nothing: the
+    // expanded shade holds no banner. the tapped n3-1 auto-cancelled, so
+    // any N3 ping in the shade is a failure.
+    tapNotif(
+      'Notifications handler suppress',
+      'one-native-notifications-handler-suppress'
+    )
+    await expect(
+      'notifications-handler-suppress',
+      (nodes) => textIncludes(nodes, 'Handler: suppress'),
+      'one-native-notifications-handler-suppress'
+    )
+    tapNotif('Notifications schedule suppressed', 'one-native-notifications-schedule-now')
+    await expect(
+      'notifications-received-suppressed',
+      (nodes) => textIncludes(nodes, 'Received: n3-2'),
+      'one-native-notifications-schedule-now'
+    )
+    adbText(config, ['shell', 'input', 'keyevent', '3'])
+    adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+    if (textIncludes(snapshot(config).nodes, 'N3 ping'))
+      throw new Error('a suppressed notification reached the shade')
+    adbText(config, ['shell', 'cmd', 'statusbar', 'collapse'])
+    foregroundApp()
+    await expect(
+      'notifications-foregrounded-after-suppress',
+      (nodes) => textIncludes(nodes, 'Received: n3-2'),
+      'one-native-notifications-schedule-now'
+    )
+    // a nulled handler behaves the same way.
+    tapNotif('Notifications handler null', 'one-native-notifications-handler-null')
+    await expect(
+      'notifications-handler-null',
+      (nodes) => textIncludes(nodes, 'Handler: null'),
+      'one-native-notifications-handler-null'
+    )
+    tapNotif('Notifications schedule nulled', 'one-native-notifications-schedule-now')
+    await expect(
+      'notifications-received-nulled',
+      (nodes) => textIncludes(nodes, 'Received: n3-3'),
+      'one-native-notifications-schedule-now'
+    )
+    adbText(config, ['shell', 'input', 'keyevent', '3'])
+    adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+    if (textIncludes(snapshot(config).nodes, 'N3 ping'))
+      throw new Error('a nulled handler reached the shade')
+    adbText(config, ['shell', 'cmd', 'statusbar', 'collapse'])
+    foregroundApp()
+    await expect(
+      'notifications-foregrounded-after-null',
+      (nodes) => textIncludes(nodes, 'Received: n3-3'),
+      'one-native-notifications-schedule-now'
+    )
+    // slice n4: clear leftovers, schedule two, cancel one, observe the other.
+    tapNotif('Notifications cancel all', 'one-native-notifications-cancel-all')
+    await expect(
+      'notifications-cancel-all',
+      (nodes) => textIncludes(nodes, 'Pending: cancelled'),
+      'one-native-notifications-cancel-all'
+    )
+    tapNotif('Notifications dismiss all', 'one-native-notifications-dismiss-all')
+    await expect(
+      'notifications-dismiss-all',
+      (nodes) => textIncludes(nodes, 'Presented: dismissed'),
+      'one-native-notifications-dismiss-all'
+    )
+    tapNotif(
+      'Notifications schedule interval',
+      'one-native-notifications-schedule-interval'
+    )
+    await expect(
+      'notifications-interval-scheduled',
+      (nodes) => textIncludes(nodes, 'Scheduled: n4-interval'),
+      'one-native-notifications-schedule-interval'
+    )
+    tapNotif('Notifications schedule date', 'one-native-notifications-schedule-date')
+    await expect(
+      'notifications-date-scheduled',
+      (nodes) => textIncludes(nodes, 'Scheduled: n4-date'),
+      'one-native-notifications-schedule-date'
+    )
+    tapNotif('Notifications scheduled list', 'one-native-notifications-scheduled-list')
+    await expect(
+      'notifications-both-pending',
+      (nodes) => textIncludes(nodes, 'Pending: n4-date,n4-interval'),
+      'one-native-notifications-scheduled-list'
+    )
+    tapNotif('Notifications cancel interval', 'one-native-notifications-cancel-interval')
+    await expect(
+      'notifications-interval-cancelled',
+      (nodes) => textIncludes(nodes, 'Pending: cancelled'),
+      'one-native-notifications-cancel-interval'
+    )
+    tapNotif(
+      'Notifications scheduled list again',
+      'one-native-notifications-scheduled-list'
+    )
+    await expect(
+      'notifications-cancel-removes-pending',
+      (nodes) => textIncludes(nodes, 'Pending: n4-date'),
+      'one-native-notifications-scheduled-list'
+    )
+    // the date trigger fires 25s after scheduling; the pending-list reads
+    // above already spent part of that, so this check gets its own budget.
+    await expect(
+      'notifications-date-received',
+      (nodes) => textIncludes(nodes, 'Received: n4-date'),
+      'one-native-notifications-schedule-now',
+      undefined,
+      45_000
+    )
+    tapNotif('Notifications presented list', 'one-native-notifications-presented-list')
+    await expect(
+      'notifications-date-presented',
+      (nodes) => textIncludes(nodes, 'Presented: n4-date'),
+      'one-native-notifications-presented-list'
+    )
+    tapNotif('Notifications dismiss date', 'one-native-notifications-dismiss-date')
+    await expect(
+      'notifications-dismiss-resolves',
+      (nodes) => textIncludes(nodes, 'Presented: dismissed'),
+      'one-native-notifications-dismiss-date'
+    )
+    tapNotif(
+      'Notifications presented list again',
+      'one-native-notifications-presented-list'
+    )
+    await expect(
+      'notifications-dismiss-removes-presented',
+      (nodes) => textIncludes(nodes, 'Presented: none'),
+      'one-native-notifications-presented-list'
+    )
+    // cold start through a dead process: schedule, background, kill (never
+    // force-stop: it cancels alarms), let the alarm post, tap the shade.
+    tapNotif('Notifications schedule cold', 'one-native-notifications-schedule-cold')
+    await expect(
+      'notifications-cold-scheduled',
+      (nodes) => textIncludes(nodes, 'Scheduled: n4-cold'),
+      'one-native-notifications-schedule-cold'
+    )
+    adbText(config, ['shell', 'input', 'keyevent', '3'])
+    adbText(config, ['shell', 'am', 'kill', config.packageId])
+    await new Promise((resolve) => setTimeout(resolve, 17_000))
+    adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+    {
+      const current = snapshot(config)
+      const target = current.nodes.find(
+        (node) => node.text === 'N4 cold' || node.contentDescription === 'N4 cold'
+      )
+      if (!target)
+        throw new Error('Notifications cold tap: no shade node with text N4 cold.')
+      const bounds = validBounds(
+        clickableTarget(current.nodes, target) ?? target,
+        'cold tap'
+      )
+      const x = Math.round((bounds.left + bounds.right) / 2)
+      const y = Math.round((bounds.top + bounds.bottom) / 2)
+      adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+    }
+    await expect(
+      'notifications-cold-home',
+      (nodes) =>
+        diagnose(nodes, [
+          ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+          ['nav list row', (n) => n.some((node) => node.resourceId.includes('nav-'))],
+        ]),
+      'home-screen'
+    )
+    await tapNavigation(config, 'nav-one-native-notifications')
+    await expect(
+      'notifications-cold-last-response',
+      (nodes) => textIncludes(nodes, 'Last: n4-cold/N4 cold'),
+      'one-native-notifications-last-refresh'
+    )
     pressBack(config)
     await expect(
       'fonts-navigate-home',

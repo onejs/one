@@ -16,6 +16,7 @@ import {
   MenuAction,
   Menu as NativeMenu,
   ContextMenu as NativeContextMenu,
+  Notifications,
   Network as NativeNetwork,
   SplitView,
   Swift,
@@ -93,6 +94,8 @@ export type OneUI = typeof NativeUI & {
   readonly ReservedRegions: typeof ReservedRegions
 }
 
+export type OneNotifications = typeof Notifications
+
 export type OneAPI = {
   readonly platform: OnePlatform
   readonly AppInfo: typeof AppInfo
@@ -100,6 +103,7 @@ export type OneAPI = {
   readonly iOS: Readonly<OneIOS>
   readonly Android: Readonly<OneAndroid>
   readonly UI: Readonly<OneUI>
+  readonly Notifications: Readonly<OneNotifications>
   readonly Clipboard: typeof NativeClipboard
   readonly Network: typeof NativeNetwork
   readonly Browser: typeof NativeBrowser
@@ -167,6 +171,7 @@ export const One: OneAPI = Object.freeze({
   iOS,
   Android,
   UI,
+  Notifications,
   Clipboard: NativeClipboard,
   Network: NativeNetwork,
   Browser: NativeBrowser,
