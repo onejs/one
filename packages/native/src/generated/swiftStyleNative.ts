@@ -401,6 +401,7 @@ const sdkKinds = {
   onDisappear: 'event',
   onDrag: 'string',
   onDragSessionUpdated: 'eventStruct',
+  onDrop: 'eventDrop',
   onDropSessionUpdated: 'eventStruct',
   onGeometryChangeWithSize: 'eventStruct',
   onHover: 'eventBoolean',
@@ -852,6 +853,13 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
   onDragSessionUpdated: {
     kind: 'object',
     fields: [{ name: 'location', value: { kind: 'point' } }],
+  },
+  onDrop: {
+    kind: 'object',
+    fields: [
+      { name: 'type', value: { kind: 'string' } },
+      { name: 'data', value: { kind: 'string' } },
+    ],
   },
   onDropSessionUpdated: {
     kind: 'object',
@@ -2418,6 +2426,19 @@ export function swiftStyleNative(
         ])
         continue
       }
+      if (kind === 'eventDrop') {
+        const record = value as { of?: unknown; onDrop?: unknown } | undefined
+        if (
+          !record ||
+          !Array.isArray(record.of) ||
+          record.of.length === 0 ||
+          record.of.some((item) => typeof item !== 'string' || !item) ||
+          typeof record.onDrop !== 'function'
+        )
+          throw new Error(name + ' must have content types and an onDrop callback')
+        sdkModifiers.push([name, JSON.stringify(record.of)])
+        continue
+      }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value)))
         throw new Error(name + ' must be finite')
       if (
@@ -2775,6 +2796,11 @@ export function dispatchSDKEvent(
     if (!validSDKEventValue(payload, sdkEventStructs[name]))
       throw new Error(name + ' emitted an invalid struct value')
     ;(modifier as ((value: unknown) => void) | undefined)?.(payload)
+  } else if (kind === 'eventDrop') {
+    const payload: unknown = JSON.parse(value)
+    if (!validSDKEventValue(payload, sdkEventStructs[name]))
+      throw new Error(name + ' emitted an invalid drop value')
+    ;(modifier as { onDrop: (value: unknown) => void } | undefined)?.onDrop(payload)
   } else if (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean') {
     if (value !== 'true' && value !== 'false')
       throw new Error(name + ' emitted an invalid boolean')

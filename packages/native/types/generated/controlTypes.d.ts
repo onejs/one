@@ -1400,6 +1400,13 @@ export interface OneNativeStyle {
             y: number;
         };
     }) => void;
+    onDrop?: Readonly<{
+        of: readonly string[];
+        onDrop: (value: {
+            type: string;
+            data: string;
+        }) => void;
+    }>;
     onDropSessionUpdated?: (value: {
         itemsCount: number;
         suggestedOperations: {

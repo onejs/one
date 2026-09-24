@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -625,6 +625,17 @@ export function deriveModifiers(
       const framework = method.module.startsWith('_')
         ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
         : {}
+      if (method.parameters.length === 3 && method.parameters[0].label === 'of' &&
+        method.parameters[0].type === '[Swift.String]' &&
+        method.parameters[1].label === 'isTargeted' &&
+        method.parameters[1].type === 'SwiftUICore.Binding<Swift.Bool>?' &&
+        method.parameters[2].label === 'perform' &&
+        method.parameters[2].type === '@escaping (_ providers: [Foundation.NSItemProvider]) -> Swift.Bool')
+        return [{ name, module: method.module, kind: 'eventDrop', type: '[Swift.String]', ios: ios(method),
+          eventValue: { kind: 'object', fields: [
+            { name: 'type', value: { kind: 'string' } },
+            { name: 'data', value: { kind: 'string' } },
+          ] }, ...framework }]
       const namespaceIndex = method.parameters.findIndex((parameter) =>
         parameter.type === 'SwiftUICore.Namespace.ID')
       if (namespaceIndex !== -1) {

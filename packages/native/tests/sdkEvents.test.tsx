@@ -365,6 +365,25 @@ describe('SDK callback and binding transport', () => {
     await vi.waitFor(() => expect(completeAsyncString).toHaveBeenCalledWith('promo-1', 'promotional-jws', null))
   })
 
+  it('delivers typed drop data through the generated item-provider callback', () => {
+    const onDrop = vi.fn()
+    const element = Controls.Text({ text: 'drop target', swiftStyle: {
+      onDrop: { of: ['public.plain-text'], onDrop },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['onDrop', '["public.plain-text"]'],
+    ])
+    const dropped = { type: 'public.plain-text', data: 'aGVsbG8=' }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'onDrop', value: JSON.stringify(dropped) } })
+    expect(onDrop).toHaveBeenCalledWith(dropped)
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onDrop', value: JSON.stringify({ type: 'public.plain-text', data: 123 }),
+    } })).toThrow('invalid drop value')
+    expect(() => Controls.Text({ text: 'invalid', swiftStyle: {
+      onDrop: { of: [], onDrop },
+    } })).toThrow('must have content types')
+  })
+
   it('passes a purchase result through the async callback and rejects malformed cases', async () => {
     completeAsyncAction.mockClear()
     let finish!: () => void
