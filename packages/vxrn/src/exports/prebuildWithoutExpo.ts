@@ -1385,6 +1385,12 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         // push library sets.
         stamps.push(`\t<key>OneNativeNotificationsEnabled</key>\n\t<true/>`)
       }
+      if (app.notifications?.push === true) {
+        // without the aps-environment entitlement the simulator never answers
+        // registerForRemoteNotifications, so the token getter reads this to
+        // reject at once like android's nopush flavor.
+        stamps.push(`\t<key>OneNativeNotificationsPush</key>\n\t<true/>`)
+      }
       if (app.ios?.widgets) {
         stamps.push('\t<key>NSSupportsLiveActivities</key>\n\t<true/>')
       }

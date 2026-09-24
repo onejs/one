@@ -188,6 +188,7 @@ ${APP_DELEGATE_PBXPROJ}`,
     expect(infoPlist.content).toContain('<key>UIFileSharingEnabled</key>')
     expect(infoPlist.content).toContain('<key>LSSupportsOpeningDocumentsInPlace</key>')
     expect(infoPlist.content).toContain('<key>OneNativeNotificationsEnabled</key>')
+    expect(infoPlist.content).not.toContain('OneNativeNotificationsPush')
     expect(() =>
       renderPrebuildFile({
         relativePath: 'HelloWorld/Info.plist',
@@ -856,6 +857,9 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     expect(entitlements).toContain('group.dev.one.myapp')
     expect(entitlements).toContain('<key>aps-environment</key>')
     expect(() => statSync(join(output, 'ios', 'MyApp', 'MyApp.entitlements'))).toThrow()
+    expect(readFileSync(join(output, 'ios', 'MyApp', 'Info.plist'), 'utf8')).toContain(
+      '<key>OneNativeNotificationsPush</key>'
+    )
   }, 180000)
 })
 
