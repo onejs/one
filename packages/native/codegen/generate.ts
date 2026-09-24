@@ -296,6 +296,9 @@ for (const slot of derivedViewSlots) {
       (slot.directValue
         ? /^([A-Za-z_]\w*)\??$/.test(parameter.type) &&
           d.requirements?.includes(`${parameter.type.replace(/\?$/, '')} : SwiftUICore.View`)
+        : slot.contentWrapper
+          ? (d.requirements?.some((requirement) => requirement.startsWith(
+              `${/^(?:@escaping )?\(\) -> ([A-Za-z_]\w*)$/.exec(parameter.type)?.[1]} : `)) ?? false)
         : slot.closureInputs
           ? parameter.type === `@escaping (${slot.closureInputs.join(', ')}) -> some View`
           : /^(?:@escaping )?\(\) -> some View$/.test(parameter.type) ||

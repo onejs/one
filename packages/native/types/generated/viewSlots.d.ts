@@ -30,6 +30,7 @@ export declare const viewSlotAvailability: {
     readonly safeAreaBarWithVerticalEdge: 26;
     readonly safeAreaInsetWithHorizontalEdge: 15;
     readonly safeAreaInsetWithVerticalEdge: 15;
+    readonly sceneAccessory: 27;
     readonly searchScopesWithBindingString: 16;
     readonly searchScopesWithBindingStringAndSearchScopeActivation: 16.4;
     readonly searchSuggestions: 16;
@@ -161,6 +162,7 @@ export declare const viewSlotArguments: {
             readonly bottom: 15;
         };
     }];
+    readonly sceneAccessory: readonly [];
     readonly searchScopesWithBindingString: readonly [{
         readonly field: 'scope';
         readonly kind: 'bindingString';
@@ -350,6 +352,9 @@ export type ViewSlotConfiguration = {
     options: {
         edge: 'top' | 'bottom';
     };
+} | {
+    name: 'sceneAccessory';
+    options?: never;
 } | {
     name: 'searchScopesWithBindingString';
     options: {

@@ -32,6 +32,7 @@ export const viewSlotAvailability = {
   safeAreaBarWithVerticalEdge: 26,
   safeAreaInsetWithHorizontalEdge: 15,
   safeAreaInsetWithVerticalEdge: 15,
+  sceneAccessory: 27,
   searchScopesWithBindingString: 16,
   searchScopesWithBindingStringAndSearchScopeActivation: 16.4,
   searchSuggestions: 16,
@@ -113,6 +114,7 @@ export const viewSlotArguments = {
   safeAreaInsetWithVerticalEdge: [
     { field: 'edge', kind: 'enum', cases: { top: 15, bottom: 15 } },
   ],
+  sceneAccessory: [],
   searchScopesWithBindingString: [{ field: 'scope', kind: 'bindingString' }],
   searchScopesWithBindingStringAndSearchScopeActivation: [
     { field: 'scope', kind: 'bindingString' },
@@ -227,6 +229,7 @@ export type ViewSlotConfiguration =
   | { name: 'safeAreaBarWithVerticalEdge'; options: { edge: 'top' | 'bottom' } }
   | { name: 'safeAreaInsetWithHorizontalEdge'; options: { edge: 'leading' | 'trailing' } }
   | { name: 'safeAreaInsetWithVerticalEdge'; options: { edge: 'top' | 'bottom' } }
+  | { name: 'sceneAccessory'; options?: never }
   | {
       name: 'searchScopesWithBindingString'
       options: { scope: { value: string; onChange: (value: string) => void } }

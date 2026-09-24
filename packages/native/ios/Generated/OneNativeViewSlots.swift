@@ -35,6 +35,7 @@ enum OneNativeViewSlotName {
   static let safeAreaBarWithVerticalEdge = "safeAreaBarWithVerticalEdge"
   static let safeAreaInsetWithHorizontalEdge = "safeAreaInsetWithHorizontalEdge"
   static let safeAreaInsetWithVerticalEdge = "safeAreaInsetWithVerticalEdge"
+  static let sceneAccessory = "sceneAccessory"
   static let searchScopesWithBindingString = "searchScopesWithBindingString"
   static let searchScopesWithBindingStringAndSearchScopeActivation = "searchScopesWithBindingStringAndSearchScopeActivation"
   static let searchSuggestions = "searchSuggestions"
@@ -52,7 +53,7 @@ enum OneNativeViewSlotName {
   static let toolbar = "toolbar"
   static let toolbarOverflowMenu = "toolbarOverflowMenu"
   static let toolbarTitleMenu = "toolbarTitleMenu"
-  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, alert, background, backgroundPreferenceValuePreferredColorScheme, confirmationDialog, containerBackground, contentToolbar, contextMenu, dismissalConfirmationDialog, documentBrowserContextMenu, fullScreenCover, inspector, listRowBackground, mapControls, mask, navigationBarItemsWithLeading, navigationBarItemsWithTrailing, navigationDestination, overlay, overlayPreferenceValuePreferredColorScheme, popover, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchScopesWithBindingString, searchScopesWithBindingStringAndSearchScopeActivation, searchSuggestions, sectionActions, sheet, subscriptionStoreControlIcon, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewBottomAccessoryWithBool, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
+  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, alert, background, backgroundPreferenceValuePreferredColorScheme, confirmationDialog, containerBackground, contentToolbar, contextMenu, dismissalConfirmationDialog, documentBrowserContextMenu, fullScreenCover, inspector, listRowBackground, mapControls, mask, navigationBarItemsWithLeading, navigationBarItemsWithTrailing, navigationDestination, overlay, overlayPreferenceValuePreferredColorScheme, popover, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, sceneAccessory, searchScopesWithBindingString, searchScopesWithBindingStringAndSearchScopeActivation, searchSuggestions, sectionActions, sheet, subscriptionStoreControlIcon, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewBottomAccessoryWithBool, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
 }
 
 extension View {
@@ -305,6 +306,14 @@ extension View {
         }()
         return AnyView(self.safeAreaInset(edge: argument0, content: content))
       }
+      return AnyView(self)
+    case OneNativeViewSlotName.sceneAccessory:
+#if ONE_IOS_27_SDK
+      if #available(iOS 27, *) {
+        return AnyView(self.sceneAccessory(content: { SwiftUI.ExternalNonInteractiveAccessory { content() } }))
+      }
+#endif
+
       return AnyView(self)
     case OneNativeViewSlotName.searchScopesWithBindingString:      if #available(iOS 16, *) {
         guard let data = values.data(using: .utf8),

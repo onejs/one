@@ -630,6 +630,22 @@ describe('SDK modifier derivation', () => {
 })
 
 describe('SDK view slots', () => {
+  it('wraps a child View in a public SDK content type for a scene accessory', () => {
+    const accessory = { ...method('sceneAccessory', 'SwiftUI', [
+      { label: 'content', name: 'content', type: '() -> C' },
+    ]), requirements: ['C : SwiftUI.SceneAccessoryContent'] }
+    const wrapper = { ...method('ExternalNonInteractiveAccessory', 'SwiftUI'), kind: 'struct',
+      inheritedTypes: ['SwiftUI.SceneAccessoryContent'] }
+    const initializer = { ...method('init', 'SwiftUI', [
+      { label: 'content', name: 'content', type: '@escaping () -> Content' },
+    ]), kind: 'init', owner: 'ExternalNonInteractiveAccessory',
+      requirements: ['Content : SwiftUICore.View'] }
+    expect(deriveViewSlots([accessory], 27)).toEqual([])
+    expect(deriveViewSlots([accessory, wrapper, initializer], 27)).toEqual([{
+      name: 'sceneAccessory', module: 'SwiftUI', label: 'content', ios: 0,
+      contentWrapper: 'SwiftUI.ExternalNonInteractiveAccessory', arguments: [],
+    }])
+  })
   it('derives escaping presentation builders with a controlled Boolean binding', () => {
     const presented = { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' }
     const content = { label: 'content', name: 'content', type: '@escaping () -> Content' }
