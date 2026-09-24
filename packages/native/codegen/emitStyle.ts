@@ -192,6 +192,29 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
       }
     }
   }`
+      if (modifier.kind === 'seedKeyframeAnimation')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let config: OneNativeSDKSeedKeyframeAnimation = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode(OneNativeSDKSeedKeyframeAnimation.self, from: data),
+        !decoded.frames.isEmpty,
+        decoded.frames.allSatisfy({ $0.value.isFinite && $0.duration.isFinite && $0.duration > 0 }) else {
+        preconditionFailure("invalid ${modifier.name}")
+      }
+      return decoded
+    }()
+    switch config.property {
+${modifier.cases!.map((field) => `    case ${JSON.stringify(field.name)}:
+      self.${modifier.sdkName ?? modifier.name}(trigger: config.trigger) { _ in
+        KeyframeTrack(\\.${field.name}) {
+          for frame in config.frames {
+            LinearKeyframe(frame.value, duration: frame.duration)
+          }
+        }
+      }`).join('\n')}
+    default: preconditionFailure("invalid ${modifier.name} property")
+    }
+  }`
       if (modifier.preferenceKey === 'OneNativeSDKRectAnchorKey')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.${modifier.sdkName ?? modifier.name}(key: OneNativeSDKRectAnchorKey.self, value: .bounds) ${modifier.preferenceOperation === 'transform'
@@ -1028,6 +1051,7 @@ ${styleFields
 
 const colorFields = [${colorFields.map((field) => `'${field.name}'`).join(', ')}] as const
 const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [modifier.name, modifier.kind])))} as const
+const sdkSeedKeyframeFields: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'seedKeyframeAnimation').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
 ${derived.some((modifier) => modifier.kind === 'phaseAnimation' || modifier.kind === 'keyframeAnimation') ? `function validScalarEffect(effect: unknown, value: unknown): value is number {
   if (typeof value !== 'number' || !Number.isFinite(value)) return false
   if (effect === 'opacity') return value >= 0 && value <= 1
@@ -1287,6 +1311,22 @@ function validTextRanges(value: unknown, text: string): value is OneNativeTextRa
             return !validScalarEffect(config.effect, item.value) ||
               typeof item.duration !== 'number' || !Number.isFinite(item.duration) || item.duration <= 0
           })) throw new Error(name + ' must have finite keyframes and positive durations')
+        sdkModifiers.push([name, JSON.stringify(value)])
+        continue
+      }
+      if (kind === 'seedKeyframeAnimation') {
+        if (!value || typeof value !== 'object' || Array.isArray(value))
+          throw new Error(name + ' must be a numeric keyframe animation')
+        const config = value as Record<string, unknown>
+        if (typeof config.trigger !== 'string' ||
+          typeof config.property !== 'string' || !sdkSeedKeyframeFields[name]?.includes(config.property) ||
+          !Array.isArray(config.frames) || !config.frames.length ||
+          config.frames.some((frame) => {
+            if (!frame || typeof frame !== 'object' || Array.isArray(frame)) return true
+            const item = frame as Record<string, unknown>
+            return typeof item.value !== 'number' || !Number.isFinite(item.value) ||
+              typeof item.duration !== 'number' || !Number.isFinite(item.duration) || item.duration <= 0
+          })) throw new Error(name + ' must have a trigger, numeric property and timed keyframes')
         sdkModifiers.push([name, JSON.stringify(value)])
         continue
       }
@@ -1750,6 +1790,16 @@ ${derived.some((modifier) => modifier.kind === 'keyframeAnimation') ? `private s
   let initialValue: Double
   let frames: [Frame]
   let repeating: Bool?
+}` : ''}
+${derived.some((modifier) => modifier.kind === 'seedKeyframeAnimation') ? `private struct OneNativeSDKSeedKeyframeAnimation: Codable, Sendable {
+  struct Frame: Codable, Sendable {
+    let value: Double
+    let duration: Double
+  }
+
+  let trigger: String
+  let property: String
+  let frames: [Frame]
 }` : ''}
 ${derived.some((modifier) => modifier.kind === 'chartDescriptor') ? `private struct OneNativeSDKChartDescriptor: Codable, AXChartDescriptorRepresentable {
   struct Axis: Codable {

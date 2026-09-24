@@ -73,6 +73,16 @@ private struct OneNativeSDKKeyframeAnimation: Codable, Sendable {
   let frames: [Frame]
   let repeating: Bool?
 }
+private struct OneNativeSDKSeedKeyframeAnimation: Codable, Sendable {
+  struct Frame: Codable, Sendable {
+    let value: Double
+    let duration: Double
+  }
+
+  let trigger: String
+  let property: String
+  let frames: [Frame]
+}
 private struct OneNativeSDKChartDescriptor: Codable, AXChartDescriptorRepresentable {
   struct Axis: Codable {
     let title: String
@@ -652,6 +662,7 @@ extension View {
       case "luminanceToAlpha": view = AnyView(view.oneNativeSDKLuminanceToAlpha(value, emit: emit))
       case "manageSubscriptionsSheet": view = AnyView(view.oneNativeSDKManageSubscriptionsSheet(value, emit: emit))
       case "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID": view = AnyView(view.oneNativeSDKManageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID(value, emit: emit))
+      case "mapCameraKeyframeAnimator": view = AnyView(view.oneNativeSDKMapCameraKeyframeAnimator(value, emit: emit))
       case "mapControlVisibility": view = AnyView(view.oneNativeSDKMapControlVisibility(value, emit: emit))
       case "mapFeatureSelectionAccessory": view = AnyView(view.oneNativeSDKMapFeatureSelectionAccessory(value, emit: emit))
       case "mapFeatureSelectionDisabled": view = AnyView(view.oneNativeSDKMapFeatureSelectionDisabled(value, emit: emit))
@@ -5378,6 +5389,45 @@ self
       return raw
     }()
     self.manageSubscriptionsSheet(isPresented: argument0, subscriptionGroupID: argument1)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKMapCameraKeyframeAnimator(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let config: OneNativeSDKSeedKeyframeAnimation = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode(OneNativeSDKSeedKeyframeAnimation.self, from: data),
+        !decoded.frames.isEmpty,
+        decoded.frames.allSatisfy({ $0.value.isFinite && $0.duration.isFinite && $0.duration > 0 }) else {
+        preconditionFailure("invalid mapCameraKeyframeAnimator")
+      }
+      return decoded
+    }()
+    switch config.property {
+    case "distance":
+      self.mapCameraKeyframeAnimator(trigger: config.trigger) { _ in
+        KeyframeTrack(\.distance) {
+          for frame in config.frames {
+            LinearKeyframe(frame.value, duration: frame.duration)
+          }
+        }
+      }
+    case "heading":
+      self.mapCameraKeyframeAnimator(trigger: config.trigger) { _ in
+        KeyframeTrack(\.heading) {
+          for frame in config.frames {
+            LinearKeyframe(frame.value, duration: frame.duration)
+          }
+        }
+      }
+    case "pitch":
+      self.mapCameraKeyframeAnimator(trigger: config.trigger) { _ in
+        KeyframeTrack(\.pitch) {
+          for frame in config.frames {
+            LinearKeyframe(frame.value, duration: frame.duration)
+          }
+        }
+      }
+    default: preconditionFailure("invalid mapCameraKeyframeAnimator property")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKMapControlVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

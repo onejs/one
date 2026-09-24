@@ -247,6 +247,8 @@ export declare const sdkListSectionSpacingWithListSectionSpacingValues: readonly
 export type SDKListSectionSpacingWithListSectionSpacing = (typeof sdkListSectionSpacingWithListSectionSpacingValues)[number];
 export declare const sdkListStyleValues: readonly ['automatic', 'sidebar', 'inset', 'grouped', 'insetGrouped', 'plain'];
 export type SDKListStyle = (typeof sdkListStyleValues)[number];
+export declare const sdkMapCameraKeyframeAnimatorValues: readonly ['distance', 'heading', 'pitch'];
+export type SDKMapCameraKeyframeAnimator = (typeof sdkMapCameraKeyframeAnimatorValues)[number];
 export declare const sdkMapControlVisibilityValues: readonly ['automatic', 'visible', 'hidden'];
 export type SDKMapControlVisibility = (typeof sdkMapControlVisibilityValues)[number];
 export declare const sdkMapFeatureSelectionAccessoryValues: readonly ['automatic', 'callout', 'sheet', 'caption'];
@@ -1315,6 +1317,14 @@ export interface OneNativeStyle {
             onChange: (value: boolean) => void;
         }>;
         subscriptionGroupID: string;
+    }>;
+    mapCameraKeyframeAnimator?: Readonly<{
+        trigger: string;
+        property: 'distance' | 'heading' | 'pitch';
+        frames: readonly Readonly<{
+            value: number;
+            duration: number;
+        }>[];
     }>;
     mapControlVisibility?: SDKMapControlVisibility;
     mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null;

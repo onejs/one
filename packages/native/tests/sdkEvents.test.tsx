@@ -33,6 +33,18 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('keyframeAnimator must have finite keyframes and positive durations')
   })
 
+  it('encodes SDK seeded numeric keyframes and rejects unknown fields', () => {
+    const animation = { trigger: 'camera-1', property: 'heading' as const,
+      frames: [{ value: 45, duration: 0.3 }, { value: 90, duration: 0.3 }] }
+    const element = Controls.Text({ text: 'camera', swiftStyle: { mapCameraKeyframeAnimator: animation } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['mapCameraKeyframeAnimator', JSON.stringify(animation)],
+    ])
+    expect(() => Controls.Text({ text: 'camera', swiftStyle: {
+      mapCameraKeyframeAnimator: { ...animation, property: 'unknown' as 'heading' },
+    } })).toThrow('mapCameraKeyframeAnimator must have a trigger, numeric property and timed keyframes')
+  })
+
   it('delivers resolved anchor rectangles through both preference modifiers', () => {
     const anchor = vi.fn()
     const transformed = vi.fn()

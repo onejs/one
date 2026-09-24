@@ -948,6 +948,13 @@ export const sdkListStyleValues = [
   'plain',
 ] as const
 export type SDKListStyle = (typeof sdkListStyleValues)[number]
+export const sdkMapCameraKeyframeAnimatorValues = [
+  'distance',
+  'heading',
+  'pitch',
+] as const
+export type SDKMapCameraKeyframeAnimator =
+  (typeof sdkMapCameraKeyframeAnimatorValues)[number]
 export const sdkMapControlVisibilityValues = ['automatic', 'visible', 'hidden'] as const
 export type SDKMapControlVisibility = (typeof sdkMapControlVisibilityValues)[number]
 export const sdkMapFeatureSelectionAccessoryValues = [
@@ -2553,6 +2560,11 @@ export interface OneNativeStyle {
   manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
     subscriptionGroupID: string
+  }>
+  mapCameraKeyframeAnimator?: Readonly<{
+    trigger: string
+    property: 'distance' | 'heading' | 'pitch'
+    frames: readonly Readonly<{ value: number; duration: number }>[]
   }>
   mapControlVisibility?: SDKMapControlVisibility
   mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null

@@ -360,6 +360,7 @@ const sdkKinds = {
   luminanceToAlpha: 'boolean',
   manageSubscriptionsSheet: 'bindingBoolean',
   manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID: 'record',
+  mapCameraKeyframeAnimator: 'seedKeyframeAnimation',
   mapControlVisibility: 'string',
   mapFeatureSelectionAccessory: 'optionalEnum',
   mapFeatureSelectionDisabled: 'boolean',
@@ -651,6 +652,9 @@ const sdkKinds = {
   writingToolsBehavior: 'string',
   zIndex: 'number',
 } as const
+const sdkSeedKeyframeFields: Record<string, readonly string[]> = {
+  mapCameraKeyframeAnimator: ['distance', 'heading', 'pitch'],
+}
 function validScalarEffect(effect: unknown, value: unknown): value is number {
   if (typeof value !== 'number' || !Number.isFinite(value)) return false
   if (effect === 'opacity') return value >= 0 && value <= 1
@@ -2590,6 +2594,34 @@ export function swiftStyleNative(
           })
         )
           throw new Error(name + ' must have finite keyframes and positive durations')
+        sdkModifiers.push([name, JSON.stringify(value)])
+        continue
+      }
+      if (kind === 'seedKeyframeAnimation') {
+        if (!value || typeof value !== 'object' || Array.isArray(value))
+          throw new Error(name + ' must be a numeric keyframe animation')
+        const config = value as Record<string, unknown>
+        if (
+          typeof config.trigger !== 'string' ||
+          typeof config.property !== 'string' ||
+          !sdkSeedKeyframeFields[name]?.includes(config.property) ||
+          !Array.isArray(config.frames) ||
+          !config.frames.length ||
+          config.frames.some((frame) => {
+            if (!frame || typeof frame !== 'object' || Array.isArray(frame)) return true
+            const item = frame as Record<string, unknown>
+            return (
+              typeof item.value !== 'number' ||
+              !Number.isFinite(item.value) ||
+              typeof item.duration !== 'number' ||
+              !Number.isFinite(item.duration) ||
+              item.duration <= 0
+            )
+          })
+        )
+          throw new Error(
+            name + ' must have a trigger, numeric property and timed keyframes'
+          )
         sdkModifiers.push([name, JSON.stringify(value)])
         continue
       }

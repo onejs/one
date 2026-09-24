@@ -293,6 +293,11 @@ for (const modifier of derivedModifiers) {
         ? d.parameters.length === 4 && d.parameters[0].type === modifier.type &&
           d.parameters[1].label === 'repeating' &&
           d.parameters[3].type === '@escaping (Value) -> some Keyframes<Value>'
+        : modifier.kind === 'seedKeyframeAnimation'
+        ? d.parameters.length === 2 && d.parameters[0].label === 'trigger' &&
+          d.parameters[0].type === 'some Equatable' &&
+          d.parameters[1].label === 'keyframes' &&
+          d.parameters[1].type.startsWith(`@escaping (${modifier.type}) -> some Keyframes<`)
         : modifier.textSelection
         ? d.parameters.length === 1 && d.parameters[0].type === modifier.type
         : modifier.zeroArgument
