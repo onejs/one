@@ -16,6 +16,7 @@
 #include <NitroModules/HybridObjectRegistry.hpp>
 
 #include "JHybridOneClipboardSpec.hpp"
+#include "JHybridOneCryptoSpec.hpp"
 #include "JHybridOneHapticsSpec.hpp"
 #include <NitroModules/DefaultConstructableObject.hpp>
 
@@ -43,6 +44,14 @@ struct JHybridOneClipboardSpecImpl: public jni::JavaClass<JHybridOneClipboardSpe
     return javaPart->getJHybridOneClipboardSpec();
   }
 };
+struct JHybridOneCryptoSpecImpl: public jni::JavaClass<JHybridOneCryptoSpecImpl, JHybridOneCryptoSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneCrypto;";
+  static std::shared_ptr<JHybridOneCryptoSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneCryptoSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneCryptoSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneCryptoSpec();
+  }
+};
 
 void registerAllNatives() {
   using namespace margelo::nitro;
@@ -50,6 +59,7 @@ void registerAllNatives() {
 
   // Register native JNI methods
   margelo::nitro::one::JHybridOneClipboardSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneCryptoSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneHapticsSpec::CxxPart::registerNatives();
 
   // Register Nitro Hybrid Objects
@@ -63,6 +73,12 @@ void registerAllNatives() {
     "OneClipboard",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneClipboardSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneCrypto",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneCryptoSpecImpl::create();
     }
   );
 }

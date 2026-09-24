@@ -12,6 +12,7 @@
 
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
+#include "HybridOneCryptoSpecSwift.hpp"
 
 @interface VxrnNativeAutolinking : NSObject
 @end
@@ -33,6 +34,13 @@
     "OneClipboard",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneClipboardSpec> hybridObject = VxrnNative::VxrnNativeAutolinking::createOneClipboard();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneCrypto",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneCryptoSpec> hybridObject = VxrnNative::VxrnNativeAutolinking::createOneCrypto();
       return hybridObject;
     }
   );

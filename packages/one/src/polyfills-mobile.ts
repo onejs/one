@@ -49,7 +49,7 @@ Promise.withResolvers || (Promise.withResolvers = promiseWithResolvers)
 
 // --------------- crypto -------------------
 // Hermes ships no WebCrypto. install getRandomValues + randomUUID backed
-// by the OneNativeCrypto module (SecRandomCopyBytes / SecureRandom), only
+// by the OneCrypto nitro hybrid object (SecRandomCopyBytes / SecureRandom), only
 // filling the pieces the runtime lacks.
 
 import { installCrypto } from '@vxrn/native/crypto'

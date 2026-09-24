@@ -16,6 +16,10 @@
     "OneClipboard": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneClipboard" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneClipboard" }
+    },
+    "OneCrypto": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneCrypto" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneCrypto" }
     }
   },
   "ignorePaths": ["**/node_modules", "dist", "types"]
