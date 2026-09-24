@@ -44,3 +44,4 @@ export type {
   NetworkStateSubscription,
   NetworkStateType,
 } from './network'
+export { SecureStore } from './secure-store'

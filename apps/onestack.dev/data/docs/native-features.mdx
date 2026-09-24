@@ -1116,6 +1116,33 @@ Migrating from `expo-image-picker` is an import change plus this rename:
 
 ---
 
+## SecureStore
+
+String key-value storage through `One.SecureStore`, matching `expo-secure-store`'s item API. Backed by the Keychain on iOS and AES-256-GCM ciphertexts under a key in Android KeyStore on Android.
+
+```tsx
+import { One } from 'one'
+
+await One.SecureStore.setItem('token', 'abc')
+const token = await One.SecureStore.getItem('token')
+// 'abc', or null when the key holds nothing
+await One.SecureStore.deleteItem('token')
+```
+
+Keys are non-empty strings and values are strings; anything else throws at the JS boundary. A missing key reads `null`, and deleting one resolves all the same. iOS items are readable while the device is unlocked. Android writes commit to disk before resolving, so a relaunch right after a set still reads the value; only runtime failures reject, with `E_SECURE_STORE_GET`, `E_SECURE_STORE_SET`, or `E_SECURE_STORE_DELETE`.
+
+There are no options: no access groups, no accessibility levels, no shared-preferences name. On web every verb rejects with `SecureStore.<verb> needs an iOS or Android build`, since anything kept in `localStorage` would persist in cleartext.
+
+### Migration from expo-secure-store
+
+| expo-secure-store | One |
+|---|---|
+| `getItemAsync(key)` | `One.SecureStore.getItem(key)` |
+| `setItemAsync(key, value)` | `One.SecureStore.setItem(key, value)` |
+| `deleteItemAsync(key)` | `One.SecureStore.deleteItem(key)` |
+
+---
+
 ## WebGPU
 
 One ships no GL view. The blessed GPU surface on native is
@@ -1218,6 +1245,7 @@ scene code bakes static gradients into `DataTexture`s instead.
 | Haptics | UIFeedbackGenerator trio | performHapticFeedback mapping | no-op |
 | Crypto | SecRandomCopyBytes | SecureRandom | platform crypto |
 | ImagePicker | PHPickerViewController + camera | system photo picker + camera intent | file dialog + capture input |
+| SecureStore | Keychain, readable while unlocked | AES-256-GCM, key in AndroidKeyStore | rejects |
 | Map | One.UI.Map (MapKit) | One.UI.Map (Google Maps, key required) | renders nothing |
 | WebGPU | react-native-webgpu (Dawn) | react-native-webgpu (Dawn) | navigator.gpu |
 

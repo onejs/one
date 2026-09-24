@@ -491,6 +491,7 @@ export interface OneNativeStyle {
     material?: Material;
     accentColor?: SDKAccentColor | null;
     accessibilityAction?: () => void;
+    accessibilityActionWithAppIntent?: string;
     accessibilityActivationPointWithActivationPointAndIsEnabled?: Readonly<{
         activationPoint: 'zero' | 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing';
         isEnabled: boolean;
@@ -672,6 +673,7 @@ export interface OneNativeStyle {
     }) => void;
     animation?: SDKAnimation | null;
     appEntityIdentifier?: string | null;
+    appEntityUIElements?: string;
     appStoreMerchandising?: Readonly<{
         isPresented: Readonly<{
             value: boolean;
@@ -748,6 +750,7 @@ export interface OneNativeStyle {
         alignment: 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing' | 'centerFirstTextBaseline' | 'centerLastTextBaseline' | 'leadingFirstTextBaseline' | 'leadingLastTextBaseline' | 'trailingFirstTextBaseline' | 'trailingLastTextBaseline';
     }>;
     containerShape?: SDKContainerShape;
+    containerValue?: string;
     contentMarginsWithEdgesAndLengthAndPlacement?: Readonly<{
         edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical';
         length: number | null;
@@ -1267,6 +1270,7 @@ export interface OneNativeStyle {
     }>;
     layoutDirectionBehavior?: SDKLayoutDirectionBehavior;
     layoutPriority?: number;
+    layoutValue?: string;
     lineHeight?: SDKLineHeight | null;
     lineLimitWithLimitAndReservesSpace?: Readonly<{
         limit: number;
@@ -1335,6 +1339,7 @@ export interface OneNativeStyle {
     }>;
     mapControlVisibility?: SDKMapControlVisibility;
     mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null;
+    mapFeatureSelectionContent?: string;
     mapFeatureSelectionDisabled?: boolean;
     mapItemDetailPopoverWithCurrentLocation?: Readonly<{
         isPresented: Readonly<{
@@ -1369,6 +1374,8 @@ export interface OneNativeStyle {
     menuOrder?: SDKMenuOrder;
     menuStyle?: SDKMenuStyle;
     minimumScaleFactor?: number;
+    modelContainer?: string;
+    modelContext?: string;
     modifier?: string;
     monospaced?: boolean;
     monospacedDigit?: boolean;
@@ -1437,6 +1444,11 @@ export interface OneNativeStyle {
         y: number;
     }>;
     onAppear?: () => void;
+    onAppIntentExecution?: string;
+    onApplePayCouponCodeChange?: string;
+    onApplePayPaymentMethodChange?: string;
+    onApplePayShippingContactChange?: string;
+    onApplePayShippingMethodChange?: string;
     onCameraCaptureEvent?: (value: {
         phase: 'began' | 'cancelled' | 'ended' | 'unknown';
     }) => void;
@@ -1851,6 +1863,7 @@ export interface OneNativeStyle {
         }>;
     }>;
     renameAction?: () => void;
+    reorderContainer?: string;
     replaceDisabled?: boolean;
     rotation3DEffect?: Readonly<{
         angle: Readonly<{
@@ -2286,6 +2299,7 @@ export interface OneNativeStyle {
             tracksVelocity?: boolean;
         }>;
     }>;
+    transactionTask?: string;
     transformAnchorPreference?: (value: {
         origin: {
             x: number;
