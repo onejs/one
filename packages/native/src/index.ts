@@ -1,6 +1,6 @@
 import * as UI from './effects'
 import { Swift } from './unsupported'
-import { Widgets, LiveActivities } from './widgets/index'
+import { Widgets, LiveActivities, WidgetUI } from './widgets/index'
 
 export * from './extras'
 // the package root keeps the navigation toolbar's props under the plain name; the SwiftUI
@@ -38,7 +38,7 @@ export const Menu = Swift.Menu
 export const ContextMenu = Swift.ContextMenu
 export { Compose } from './compose'
 export { Notifications } from './notifications'
-export { Widgets, LiveActivities }
+export { Widgets, LiveActivities, WidgetUI }
 export { useNativeState, type NativeState } from './nativeState'
 export { TextInput } from './universal/TextInput/index'
 export type {
