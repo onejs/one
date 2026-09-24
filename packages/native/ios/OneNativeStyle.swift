@@ -734,6 +734,7 @@ extension View {
       case "searchDictationBehavior": view = AnyView(view.oneNativeSDKSearchDictationBehavior(value, emit: emit))
       case "searchFocused": view = AnyView(view.oneNativeSDKSearchFocused(value, emit: emit))
       case "searchPresentationToolbarBehavior": view = AnyView(view.oneNativeSDKSearchPresentationToolbarBehavior(value, emit: emit))
+      case "searchSelection": view = AnyView(view.oneNativeSDKSearchSelection(value, emit: emit))
       case "searchSuggestions": view = AnyView(view.oneNativeSDKSearchSuggestions(value, emit: emit))
       case "searchToolbarBehavior": view = AnyView(view.oneNativeSDKSearchToolbarBehavior(value, emit: emit))
       case "sectionIndexLabel": view = AnyView(view.oneNativeSDKSectionIndexLabel(value, emit: emit))
@@ -7341,6 +7342,61 @@ if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.soft }
       case "avoidHidingContent": if #available(iOS 17.1, *) { self.searchPresentationToolbarBehavior(SwiftUI.SearchPresentationToolbarBehavior.avoidHidingContent) } else { self }
     default: preconditionFailure("invalid searchPresentationToolbarBehavior: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSearchSelection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) {
+      let fields: [String] = {
+        guard let data = value.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          decoded.count == 2 else { preconditionFailure("invalid searchSelection fields") }
+        return decoded
+      }()
+      let text = fields[0]
+      let offsets: [[Int]]? = {
+        if fields[1] == "null" { return nil }
+        guard let data = fields[1].data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([[Int]].self, from: data),
+          !decoded.isEmpty else { preconditionFailure("invalid searchSelection ranges") }
+        return decoded
+      }()
+      let selection: SwiftUI.TextSelection? = {
+        guard let offsets else { return nil }
+        let limit = text.utf16.count
+        var previousEnd = -1
+        let indexed = offsets.map { pair -> Range<String.Index> in
+          guard pair.count == 2, pair[0] >= 0, pair[0] <= pair[1], pair[1] <= limit,
+            pair[0] > previousEnd, offsets.count == 1 || pair[0] < pair[1] else {
+            preconditionFailure("invalid searchSelection range")
+          }
+          previousEnd = pair[1]
+          return String.Index(utf16Offset: pair[0], in: text)..<String.Index(utf16Offset: pair[1], in: text)
+        }
+        if indexed.count == 1 {
+          let range = indexed[0]
+          if range.isEmpty { return SwiftUI.TextSelection(insertionPoint: range.lowerBound) }
+          return SwiftUI.TextSelection(range: range)
+        }
+        var ranges = RangeSet<String.Index>()
+        for range in indexed { ranges.insert(contentsOf: range) }
+        return SwiftUI.TextSelection(ranges: ranges)
+      }()
+      self.searchSelection(Binding(get: { selection }, set: { changed in
+        let result: [[Int]]?
+        if let changed {
+          switch changed.indices {
+          case .selection(let range):
+            result = [[range.lowerBound.utf16Offset(in: text), range.upperBound.utf16Offset(in: text)]]
+          case .multiSelection(let ranges):
+            result = ranges.ranges.map { [$0.lowerBound.utf16Offset(in: text), $0.upperBound.utf16Offset(in: text)] }
+          @unknown default: preconditionFailure("unsupported searchSelection case")
+          }
+        } else { result = nil }
+        guard let data = try? JSONEncoder().encode(result),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid searchSelection event") }
+        emit("searchSelection", encoded)
+      }))
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSearchSuggestions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

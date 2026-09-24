@@ -286,6 +286,8 @@ for (const modifier of derivedModifiers) {
         : modifier.kind === 'equatableKey'
         ? d.parameters.length === 0 && d.requirements?.includes('Self : Swift.Equatable') &&
           d.type === modifier.type
+        : modifier.textSelection
+        ? d.parameters.length === 1 && d.parameters[0].type === modifier.type
         : modifier.zeroArgument
         ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.kind === 'record'

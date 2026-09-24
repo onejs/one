@@ -403,6 +403,64 @@ ${modifier.gestureOptions!.map((option) => {
     } else { self }`, 'self')}
   }`
       }
+      if (modifier.kind === 'bindingTextSelection') {
+        const selection = modifier.textSelection!
+        const event = JSON.stringify(modifier.name)
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {${sdkGuard(modifier.ios, `
+    if #available(iOS ${modifier.ios}, *) {
+      let fields: [String] = {
+        guard let data = value.data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([String].self, from: data),
+          decoded.count == 2 else { preconditionFailure("invalid ${modifier.name} fields") }
+        return decoded
+      }()
+      let text = fields[0]
+      let offsets: [[Int]]? = {
+        if fields[1] == "null" { return nil }
+        guard let data = fields[1].data(using: .utf8),
+          let decoded = try? JSONDecoder().decode([[Int]].self, from: data),
+          !decoded.isEmpty else { preconditionFailure("invalid ${modifier.name} ranges") }
+        return decoded
+      }()
+      let selection: ${selection.selectionType}? = {
+        guard let offsets else { return nil }
+        let limit = text.utf16.count
+        var previousEnd = -1
+        let indexed = offsets.map { pair -> Range<String.Index> in
+          guard pair.count == 2, pair[0] >= 0, pair[0] <= pair[1], pair[1] <= limit,
+            pair[0] > previousEnd, offsets.count == 1 || pair[0] < pair[1] else {
+            preconditionFailure("invalid ${modifier.name} range")
+          }
+          previousEnd = pair[1]
+          return String.Index(utf16Offset: pair[0], in: text)..<String.Index(utf16Offset: pair[1], in: text)
+        }
+        if indexed.count == 1 {
+          let range = indexed[0]
+          if range.isEmpty { return ${selection.selectionType}(${selection.insertionLabel}: range.lowerBound) }
+          return ${selection.selectionType}(${selection.rangeLabel}: range)
+        }
+        var ranges = RangeSet<String.Index>()
+        for range in indexed { ranges.insert(contentsOf: range) }
+        return ${selection.selectionType}(${selection.rangesLabel}: ranges)
+      }()
+      self.${modifier.sdkName ?? modifier.name}(${modifier.label && modifier.label !== '_' ? `${modifier.label}: ` : ''}Binding(get: { selection }, set: { changed in
+        let result: [[Int]]?
+        if let changed {
+          switch changed.${selection.indicesMember} {
+          case .${selection.singleCase}(let range):
+            result = [[range.lowerBound.utf16Offset(in: text), range.upperBound.utf16Offset(in: text)]]
+          case .${selection.multiCase}(let ranges):
+            result = ranges.ranges.map { [$0.lowerBound.utf16Offset(in: text), $0.upperBound.utf16Offset(in: text)] }
+          @unknown default: preconditionFailure("unsupported ${modifier.name} case")
+          }
+        } else { result = nil }
+        guard let data = try? JSONEncoder().encode(result),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} event") }
+        emit(${event}, encoded)
+      }))
+    } else { self }`, 'self')}
+  }`
+      }
       if (modifier.kind === 'sessionRequest') {
         const request = modifier.sessionRequest!
         const call = [...request.defaults.map((parameter) =>
@@ -964,7 +1022,30 @@ export function validSDKEventValue(value: unknown, shape: SDKEventValueShape): b
     validSDKEventValue(record[field.name], field.value))
 }
 
-export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeStyleNative | undefined {
+${derived.some((modifier) => modifier.kind === 'bindingTextSelection') ? `type OneNativeTextRanges = readonly (readonly [start: number, end: number])[] | null
+
+function validTextRanges(value: unknown, text: string): value is OneNativeTextRanges {
+  if (value === null) return true
+  if (!Array.isArray(value) || value.length === 0) return false
+  let previousEnd = -1
+  for (const pair of value) {
+    if (!Array.isArray(pair) || pair.length !== 2) return false
+    const [start, end] = pair
+    if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) ||
+      start < 0 || start > end || end > text.length || start <= previousEnd ||
+      (value.length > 1 && start === end)) return false
+    for (const offset of [start, end]) {
+      const before = text.charCodeAt(offset - 1)
+      const after = text.charCodeAt(offset)
+      if (before >= 0xd800 && before <= 0xdbff && after >= 0xdc00 && after <= 0xdfff)
+        return false
+    }
+    previousEnd = end
+  }
+  return true
+}
+
+` : ''}export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeStyleNative | undefined {
   if (!style) return undefined
   const native: Record<string, unknown> = {}
   const sdkModifiers: [string, string][] = []
@@ -1066,6 +1147,15 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
         if (!Array.isArray(value) || value.some((item) => typeof item !== 'string' || !sdkEventCases[name].includes(item)))
           throw new Error(name + ' must be public SDK values')
         sdkModifiers.push([name, JSON.stringify(value)])
+        continue
+      }
+      if (kind === 'bindingTextSelection') {
+        const binding = value as { text?: unknown; value?: unknown; onChange?: unknown } | undefined
+        if (!binding || typeof binding.text !== 'string' ||
+          !validTextRanges(binding.value, binding.text) ||
+          typeof binding.onChange !== 'function')
+          throw new Error(name + ' must have search text, UTF-16 ranges, and an onChange callback')
+        sdkModifiers.push([name, JSON.stringify([binding.text, JSON.stringify(binding.value)])])
         continue
       }
       if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {
@@ -1433,6 +1523,13 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
     if (decoded !== null && !validSDKEventValue(decoded, { kind: 'point' }))
       throw new Error(name + ' emitted an invalid point')
     ;(modifier as { onChange: (value: { x: number; y: number } | null) => void } | undefined)?.onChange(decoded as { x: number; y: number } | null)
+  }
+  else if (kind === 'bindingTextSelection') {
+    const binding = modifier as { text: string; onChange: (value: OneNativeTextRanges) => void } | undefined
+    if (!binding) return
+    const decoded: unknown = JSON.parse(value)
+    if (!validTextRanges(decoded, binding.text)) throw new Error(name + ' emitted invalid UTF-16 ranges')
+    binding.onChange(decoded)
   }
   else if (kind === 'eventValueString') (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
 }

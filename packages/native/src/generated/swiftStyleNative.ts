@@ -520,6 +520,7 @@ const sdkKinds = {
   searchDictationBehavior: 'string',
   searchFocused: 'bindingFocusBoolean',
   searchPresentationToolbarBehavior: 'string',
+  searchSelection: 'bindingTextSelection',
   searchSuggestions: 'record',
   searchToolbarBehavior: 'string',
   sectionIndexLabel: 'optionalString',
@@ -2230,6 +2231,36 @@ export function validSDKEventValue(value: unknown, shape: SDKEventValueShape): b
   )
 }
 
+type OneNativeTextRanges = readonly (readonly [start: number, end: number])[] | null
+
+function validTextRanges(value: unknown, text: string): value is OneNativeTextRanges {
+  if (value === null) return true
+  if (!Array.isArray(value) || value.length === 0) return false
+  let previousEnd = -1
+  for (const pair of value) {
+    if (!Array.isArray(pair) || pair.length !== 2) return false
+    const [start, end] = pair
+    if (
+      !Number.isSafeInteger(start) ||
+      !Number.isSafeInteger(end) ||
+      start < 0 ||
+      start > end ||
+      end > text.length ||
+      start <= previousEnd ||
+      (value.length > 1 && start === end)
+    )
+      return false
+    for (const offset of [start, end]) {
+      const before = text.charCodeAt(offset - 1)
+      const after = text.charCodeAt(offset)
+      if (before >= 0xd800 && before <= 0xdbff && after >= 0xdc00 && after <= 0xdfff)
+        return false
+    }
+    previousEnd = end
+  }
+  return true
+}
+
 export function swiftStyleNative(
   style: OneNativeStyle | undefined
 ): OneNativeStyleNative | undefined {
@@ -2420,6 +2451,25 @@ export function swiftStyleNative(
         )
           throw new Error(name + ' must be public SDK values')
         sdkModifiers.push([name, JSON.stringify(value)])
+        continue
+      }
+      if (kind === 'bindingTextSelection') {
+        const binding = value as
+          | { text?: unknown; value?: unknown; onChange?: unknown }
+          | undefined
+        if (
+          !binding ||
+          typeof binding.text !== 'string' ||
+          !validTextRanges(binding.value, binding.text) ||
+          typeof binding.onChange !== 'function'
+        )
+          throw new Error(
+            name + ' must have search text, UTF-16 ranges, and an onChange callback'
+          )
+        sdkModifiers.push([
+          name,
+          JSON.stringify([binding.text, JSON.stringify(binding.value)]),
+        ])
         continue
       }
       if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {
@@ -3037,6 +3087,15 @@ export function dispatchSDKEvent(
         | { onChange: (value: { x: number; y: number } | null) => void }
         | undefined
     )?.onChange(decoded as { x: number; y: number } | null)
+  } else if (kind === 'bindingTextSelection') {
+    const binding = modifier as
+      | { text: string; onChange: (value: OneNativeTextRanges) => void }
+      | undefined
+    if (!binding) return
+    const decoded: unknown = JSON.parse(value)
+    if (!validTextRanges(decoded, binding.text))
+      throw new Error(name + ' emitted invalid UTF-16 ranges')
+    binding.onChange(decoded)
   } else if (kind === 'eventValueString')
     (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
 }

@@ -13257,6 +13257,22 @@
       ]
     },
     {
+      "name": "searchSelection",
+      "kind": "bindingTextSelection",
+      "type": "SwiftUICore.Binding<SwiftUI.TextSelection?>",
+      "label": "_",
+      "ios": 26,
+      "textSelection": {
+        "selectionType": "SwiftUI.TextSelection",
+        "indicesMember": "indices",
+        "singleCase": "selection",
+        "multiCase": "multiSelection",
+        "rangeLabel": "range",
+        "rangesLabel": "ranges",
+        "insertionLabel": "insertionPoint"
+      }
+    },
+    {
       "name": "searchSuggestions",
       "kind": "record",
       "type": "",
@@ -17852,6 +17868,7 @@
         "searchFocused",
         "searchPresentationToolbarBehavior",
         "searchScopes",
+        "searchSelection",
         "searchSuggestions",
         "searchToolbarBehavior",
         "searchable",
@@ -18376,6 +18393,7 @@
         "searchFocused",
         "searchPresentationToolbarBehavior",
         "searchScopes",
+        "searchSelection",
         "searchSuggestions",
         "searchToolbarBehavior",
         "searchable",

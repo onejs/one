@@ -2988,6 +2988,11 @@ export interface OneNativeStyle {
   searchDictationBehavior?: SDKSearchDictationBehavior
   searchFocused?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   searchPresentationToolbarBehavior?: SDKSearchPresentationToolbarBehavior
+  searchSelection?: Readonly<{
+    text: string
+    value: readonly (readonly [start: number, end: number])[] | null
+    onChange: (value: readonly (readonly [start: number, end: number])[] | null) => void
+  }>
   searchSuggestions?: Readonly<{
     visibility: 'automatic' | 'visible' | 'hidden'
     placements: 'menu' | 'content'

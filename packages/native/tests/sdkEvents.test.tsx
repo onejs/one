@@ -345,6 +345,40 @@ describe('SDK callback and binding transport', () => {
     expect(onChange).toHaveBeenCalledWith(null)
   })
 
+  it('round trips UTF-16 search selection ranges across an emoji', () => {
+    const onChange = vi.fn()
+    const text = 'a😀b'
+    const element = Controls.Text({ text: 'search', swiftStyle: {
+      searchSelection: { text, value: [[1, 3]], onChange },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['searchSelection', JSON.stringify([text, '[[1,3]]'])],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'searchSelection', value: '[[0,1],[3,4]]',
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'searchSelection', value: 'null',
+    } })
+    expect(onChange).toHaveBeenNthCalledWith(1, [[0, 1], [3, 4]])
+    expect(onChange).toHaveBeenNthCalledWith(2, null)
+    expect(() => Controls.Text({ text: 'invalid', swiftStyle: {
+      searchSelection: { text, value: [[2, 3]], onChange },
+    } })).toThrow('UTF-16 ranges')
+    expect(() => Controls.Text({ text: 'overlap', swiftStyle: {
+      searchSelection: { text, value: [[0, 1], [1, 3]], onChange },
+    } })).toThrow('UTF-16 ranges')
+    const caret = Controls.Text({ text: 'caret', swiftStyle: {
+      searchSelection: { text, value: [[1, 1]], onChange },
+    } })
+    expect(JSON.parse(caret.props.swiftStyle.sdkModifiers)).toEqual([
+      ['searchSelection', JSON.stringify([text, '[[1,1]]'])],
+    ])
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'searchSelection', value: '[[0,5]]',
+    } })).toThrow('invalid UTF-16 ranges')
+  })
+
   it('configures an SDK file importer from content type identifiers and a URL result', () => {
     const onChange = vi.fn()
     const onCompletion = vi.fn()
