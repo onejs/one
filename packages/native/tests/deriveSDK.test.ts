@@ -434,6 +434,27 @@ describe('SDK modifier derivation', () => {
       ],
     }])
   })
+
+  it('constructs a public SDK object from its serialized data for a controlled sheet', () => {
+    expect(deriveModifiers([
+      method('workoutPreview', '_WorkoutKit_SwiftUI', [
+        { label: '_', name: 'plan', type: 'WorkoutKit.WorkoutPlan' },
+        { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+      ]),
+      { ...method('WorkoutPlan', 'WorkoutKit'), kind: 'struct', owner: '' },
+      { ...method('dataRepresentation', 'WorkoutKit'), kind: 'var', owner: 'WorkoutPlan', type: 'Foundation.Data' },
+      { ...method('init', 'WorkoutKit', [
+        { label: 'from', name: 'data', type: 'Foundation.Data' },
+      ]), kind: 'init', owner: 'WorkoutPlan' },
+    ], 27, [])).toEqual([{
+      name: 'workoutPreview', kind: 'record', type: '', ios: 0, framework: 'WorkoutKit',
+      arguments: [
+        { field: 'plan', label: '_', type: 'WorkoutKit.WorkoutPlan', kind: 'string', optional: false,
+          swiftExpression: '({ () -> WorkoutKit.WorkoutPlan in guard let data = Foundation.Data(base64Encoded: $value), let result = try? WorkoutKit.WorkoutPlan(from: data) else { preconditionFailure("invalid WorkoutKit.WorkoutPlan data") }; return result })()' },
+        { field: 'isPresented', label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>', kind: 'bindingBoolean', optional: false },
+      ],
+    }])
+  })
 })
 
 describe('SDK view slots', () => {
