@@ -1,0 +1,119 @@
+---
+title: iOS Buttons and Toggles
+description: Button, Toggle, Slider, Stepper, ShareLink, SignInWithAppleButton, and EditButton under One.iOS
+---
+
+Pressable and value controls under `One.iOS`. `Toggle`, `Slider`, and
+`Stepper` follow the controlled pattern: a value, an `onXChange` callback,
+and a `revision` number for external resets. Every control on this page
+accepts `disabled`, `label`, `systemImage` where noted, and the shared view
+props (`accessibilityLabel`, `accessibilityHint`, `accessibilityValue`,
+`testID`, `style`, `onLayout`, `swiftStyle`).
+
+## Button
+
+`One.iOS.Button` runs `onPress` when tapped. It takes either a label or
+children, never both, and needs at least a `label`, a `systemImage`, or
+children.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `onPress` | `() => void` | |
+| `label` | `string` | `''` |
+| `systemImage` | `string` | `''` |
+| `subtitle` | `string` | `''` |
+| `buttonRole` | SwiftUI button role, or `''` | `''` |
+| `buttonStyle` | `'automatic'`, `'glass'`, `'borderless'`, `'glassProminent'`, `'plain'`, `'bordered'`, `'borderedProminent'` | `'automatic'` |
+| `disclosureIndicator` | `boolean` | `false` |
+| `disabled` | `boolean` | `false` |
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Button label="Save" systemImage="tray.and.arrow.down" onPress={save} />
+```
+
+On web and Android this control throws. Keep it behind a platform check.
+
+## Toggle
+
+`One.iOS.Toggle` is a labeled switch. `toggleStyle` selects the SwiftUI
+toggle style.
+
+| Prop | Type |
+|------|------|
+| `isOn` | `boolean` |
+| `onIsOnChange` | `(value: boolean) => void` |
+| `revision` | `number` |
+| `toggleStyle` | SwiftUI toggle style |
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Toggle label="Airplane mode" isOn={on} onIsOnChange={setOn} />
+```
+
+## Slider
+
+`One.iOS.Slider` picks a number in a range. `minimumValueLabel`,
+`maximumValueLabel`, `minimumValueImage`, and `maximumValueImage` name the
+SwiftUI labels and SF Symbols drawn at each end.
+
+| Prop | Type |
+|------|------|
+| `value` | `number` |
+| `onValueChange` | `(value: number) => void` |
+| `revision` | `number` |
+| `minimumValue` | `number` |
+| `maximumValue` | `number` |
+| `step` | `number` |
+| `minimumValueLabel`, `maximumValueLabel` | `string` |
+| `minimumValueImage`, `maximumValueImage` | `string` |
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Slider
+  label="Volume"
+  value={volume}
+  onValueChange={setVolume}
+  minimumValue={0}
+  maximumValue={100}
+/>
+```
+
+## Stepper
+
+`One.iOS.Stepper` steps a number up and down with the same value props as
+`Slider` minus the end labels and images: `value`, `onValueChange`,
+`revision`, `minimumValue`, `maximumValue`, `step`.
+
+## ShareLink
+
+`One.iOS.ShareLink` opens the system share sheet for one item.
+
+| Prop | Type |
+|------|------|
+| `item` | `string` |
+| `itemType` | `'text'` or `'url'` |
+| `subject` | `string` |
+| `message` | `string` |
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.ShareLink label="Share" item="https://onestack.dev" itemType="url" />
+```
+
+## SignInWithAppleButton
+
+`One.iOS.SignInWithAppleButton` starts the Apple sign in flow and reports it
+through `onCompletion`, which is `{ type: 'success', user, email, givenName,
+familyName, identityToken, authorizationCode }`, `{ type: 'failed', message }`,
+or `{ type: 'cancelled' }`. `requestedScopes` picks from `'fullName'` and
+`'email'`; `nonce` passes a replay protection nonce through.
+
+## EditButton
+
+`One.iOS.EditButton` is the SwiftUI edit button with no props beyond the
+shared view props. It toggles edit mode for the enclosing `List` or `Form`.

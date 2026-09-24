@@ -1,0 +1,58 @@
+---
+title: iOS Progress and Gauges
+description: ProgressView and Gauge under One.iOS
+---
+
+Progress display under `One.iOS`. Both views accept the shared view props
+(`accessibilityLabel`, `accessibilityHint`, `accessibilityValue`, `testID`,
+`style`, `onLayout`, `swiftStyle`).
+
+## ProgressView
+
+`One.iOS.ProgressView` shows task progress. Leave `value` undefined for an
+indeterminate spinner.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `value` | `number` or `undefined` | |
+| `total` | `number` | |
+| `progressViewStyle` | SwiftUI progress view style | |
+
+`progressViewStyle` selects the SwiftUI progress view style.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.ProgressView label="Download" value={downloaded} total={total} />
+<One.iOS.ProgressView label="Loading" />
+```
+
+## Gauge
+
+`One.iOS.Gauge` shows a value in a range with optional end labels.
+`gaugeStyle` selects the SwiftUI gauge style.
+
+| Prop | Type |
+|------|------|
+| `value` | `number` |
+| `minimumValue` | `number` |
+| `maximumValue` | `number` |
+| `currentValueLabel` | `string` |
+| `minimumValueLabel` | `string` |
+| `maximumValueLabel` | `string` |
+| `gaugeStyle` | SwiftUI gauge style |
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Gauge
+  label="Speed"
+  value={speed}
+  minimumValue={0}
+  maximumValue={120}
+  currentValueLabel={`${speed} mph`}
+  gaugeStyle="accessoryCircular"
+/>
+```
+
+On web and Android these views throw. Keep them behind a platform check.

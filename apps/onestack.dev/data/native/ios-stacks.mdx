@@ -1,0 +1,58 @@
+---
+title: iOS Stacks
+description: Host, HStack, VStack, ZStack, Spacer, and Slot under One.iOS
+---
+
+Stack layout under `One.iOS`. Stacks measure their SwiftUI children, so a
+control composed inside one is sized by the parent. `Host`, `HStack`,
+`VStack`, and `Form` also take environment values that apply to the whole
+subtree: `colorScheme`, `dynamicTypeSize`, `controlSize`, `locale` (a
+non-empty identifier), `tint`, and `isEnabled`.
+
+Greedy containers take the box they are given instead of reporting an
+ideal height, so they cannot be children of a stack: `Form`, `List`,
+`ScrollView`, `DisclosureGroup`, `Tabs`, `Pager`, and `NavigationStack`
+each need their own box.
+
+## Host, HStack, VStack
+
+`One.iOS.Host` lays children along `axis` (`'vertical'` or `'horizontal'`).
+`One.iOS.HStack` is fixed horizontal, `One.iOS.VStack` fixed vertical.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `axis` | `'vertical'` or `'horizontal'` (Host only) | `'vertical'` |
+| `spacing` | non-negative `number` | `0` |
+| `alignment` | `'leading'`, `'center'`, `'trailing'` | `'leading'` |
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.VStack spacing={8}>
+  <One.iOS.Text text="Hello" />
+  <One.iOS.Text text="World" />
+</One.iOS.VStack>
+```
+
+`Host` carries a React Native subtree into a SwiftUI container: children
+that are not SwiftUI views render through React Native inside the stack.
+
+## ZStack
+
+`One.iOS.ZStack` layers children on top of each other. `alignment` is one
+of `'topLeading'`, `'top'`, `'topTrailing'`, `'leading'`, `'center'`,
+`'trailing'`, `'bottomLeading'`, `'bottom'`, `'bottomTrailing'`, defaulting
+to `'center'`.
+
+## Spacer
+
+`One.iOS.Spacer` pushes siblings apart. `minLength` is a non-negative
+number defaulting to `0`. A spacer must be a child of a stack or another
+container.
+
+## Slot
+
+`One.iOS.Slot` reserves a fixed-size box: `height` is required, `width`
+optional. Use it where a measured parent needs an explicit size.
+
+On web and Android these views throw. Keep them behind a platform check.

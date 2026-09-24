@@ -1,0 +1,28 @@
+---
+title: Safe Area
+description: The One.UI.SafeArea keys for native insets
+---
+
+`One.UI.SafeArea` is One's shared safe area API. Full props and examples
+live under [SafeAreaView](/docs/components-SafeAreaView); this page maps
+the six keys.
+
+| Key | What it is |
+|-----|-----------|
+| `Provider` | hosts the native safe area provider |
+| `View` | lays out within the safe area boundaries (`mode` padding or margin, `edges` to scope) |
+| `initialMetrics` | the first window metrics, for seeding layout before the provider reports |
+| `useFrame` | hook reading the current window frame |
+| `useInsets` | hook reading `{ top, right, bottom, left }` in pixels for custom layouts |
+
+It uses One's native host on iOS and Android and CSS environment insets on
+web, with no separate safe area package in your app.
+
+```tsx
+import { One } from 'one'
+
+function Padded() {
+  const insets = One.UI.SafeArea.useInsets()
+  return <Content style={{ paddingTop: insets.top }} />
+}
+```
