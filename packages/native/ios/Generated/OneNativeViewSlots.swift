@@ -53,43 +53,37 @@ enum OneNativeViewSlotName {
 extension View {
   func oneNativeViewSlot(_ name: String, values: String = "[]", emit: @escaping (String, String) -> Void = { _, _ in }, content: @escaping () -> AnyView) -> AnyView {
     switch name {
-    case OneNativeViewSlotName.accessibilityActions:
-      if #available(iOS 16, *) {
+    case OneNativeViewSlotName.accessibilityActions:      if #available(iOS 16, *) {
         return AnyView(self.accessibilityActions(content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.accessibilityActionsWithAccessibilityActionCategory:
-      if #available(iOS 18, *) {
+    case OneNativeViewSlotName.accessibilityActionsWithAccessibilityActionCategory:      if #available(iOS 18, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid accessibilityActionsWithAccessibilityActionCategory slot values") }
-        let argument0: SwiftUICore.AccessibilityActionCategory = {
+        let argument0: SwiftUI.AccessibilityActionCategory = {
           switch decoded[0] {
-          case "default": return SwiftUICore.AccessibilityActionCategory.default
-          case "edit": return SwiftUICore.AccessibilityActionCategory.edit
+          case "default": return SwiftUI.AccessibilityActionCategory.default
+          case "edit": return SwiftUI.AccessibilityActionCategory.edit
           default: preconditionFailure("invalid accessibilityActionsWithAccessibilityActionCategory.category")
           }
         }()
         return AnyView(self.accessibilityActions(category: argument0, content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.accessibilityChildren:
-      if #available(iOS 15, *) {
+    case OneNativeViewSlotName.accessibilityChildren:      if #available(iOS 15, *) {
         return AnyView(self.accessibilityChildren(children: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.accessibilityRepresentation:
-      if #available(iOS 15, *) {
+    case OneNativeViewSlotName.accessibilityRepresentation:      if #available(iOS 15, *) {
         return AnyView(self.accessibilityRepresentation(representation: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.accessibilityShowsLargeContentViewer:
-      if #available(iOS 15, *) {
+    case OneNativeViewSlotName.accessibilityShowsLargeContentViewer:      if #available(iOS 15, *) {
         return AnyView(self.accessibilityShowsLargeContentViewer(content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.alert:
-      if #available(iOS 15, *) {
+    case OneNativeViewSlotName.alert:      if #available(iOS 15, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 2 else { preconditionFailure("invalid alert slot values") }
@@ -99,13 +93,11 @@ extension View {
         return AnyView(self.alert(argument0, isPresented: argument1, actions: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.background:
-      if #available(iOS 15, *) {
+    case OneNativeViewSlotName.background:      if #available(iOS 15, *) {
         return AnyView(self.background(content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.confirmationDialog:
-      if #available(iOS 15, *) {
+    case OneNativeViewSlotName.confirmationDialog:      if #available(iOS 15, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 2 else { preconditionFailure("invalid confirmationDialog slot values") }
@@ -115,8 +107,7 @@ extension View {
         return AnyView(self.confirmationDialog(argument0, isPresented: argument1, actions: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.containerBackground:
-      if #available(iOS 17, *) {
+    case OneNativeViewSlotName.containerBackground:      if #available(iOS 17, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid containerBackground slot values") }
@@ -135,8 +126,7 @@ extension View {
         return AnyView(self.containerBackground(for: argument0, content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.contentToolbar:
-      if #available(iOS 18.4, *) {
+    case OneNativeViewSlotName.contentToolbar:      if #available(iOS 18.4, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid contentToolbar slot values") }
@@ -149,12 +139,12 @@ extension View {
         return AnyView(self.contentToolbar(for: argument0, content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.contextMenu:
-      if #available(iOS 13, *) {
+    case OneNativeViewSlotName.contextMenu:      if #available(iOS 13, *) {
         return AnyView(self.contextMenu(menuItems: content))
       }
       return AnyView(self)
     case OneNativeViewSlotName.dismissalConfirmationDialog:
+#if ONE_IOS_27_SDK
       if #available(iOS 27, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
@@ -164,14 +154,14 @@ extension View {
         let argument1 = decoded[1] == "true"
         return AnyView(self.dismissalConfirmationDialog(argument0, shouldPresent: argument1, actions: content))
       }
+#endif
+
       return AnyView(self)
-    case OneNativeViewSlotName.documentBrowserContextMenu:
-      if #available(iOS 18.1, *) {
+    case OneNativeViewSlotName.documentBrowserContextMenu:      if #available(iOS 18.1, *) {
         return AnyView(self.documentBrowserContextMenu({ _ in content() }))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.inspector:
-      if #available(iOS 17, *) {
+    case OneNativeViewSlotName.inspector:      if #available(iOS 17, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid inspector slot values") }
@@ -180,33 +170,27 @@ extension View {
         return AnyView(self.inspector(isPresented: argument0, content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.listRowBackground:
-      if #available(iOS 13, *) {
+    case OneNativeViewSlotName.listRowBackground:      if #available(iOS 13, *) {
         return AnyView(self.listRowBackground(content()))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.mapControls:
-      if #available(iOS 17, *) {
+    case OneNativeViewSlotName.mapControls:      if #available(iOS 17, *) {
         return AnyView(self.mapControls(content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.mask:
-      if #available(iOS 15, *) {
+    case OneNativeViewSlotName.mask:      if #available(iOS 15, *) {
         return AnyView(self.mask(content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.navigationBarItemsWithLeading:
-      if #available(iOS 13, *) {
+    case OneNativeViewSlotName.navigationBarItemsWithLeading:      if #available(iOS 13, *) {
         return AnyView(self.navigationBarItems(leading: content()))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.navigationBarItemsWithTrailing:
-      if #available(iOS 13, *) {
+    case OneNativeViewSlotName.navigationBarItemsWithTrailing:      if #available(iOS 13, *) {
         return AnyView(self.navigationBarItems(trailing: content()))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.navigationDestination:
-      if #available(iOS 16, *) {
+    case OneNativeViewSlotName.navigationDestination:      if #available(iOS 16, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid navigationDestination slot values") }
@@ -215,78 +199,71 @@ extension View {
         return AnyView(self.navigationDestination(isPresented: argument0, destination: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.overlay:
-      if #available(iOS 15, *) {
+    case OneNativeViewSlotName.overlay:      if #available(iOS 15, *) {
         return AnyView(self.overlay(content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.presentationBackground:
-      if #available(iOS 16.4, *) {
+    case OneNativeViewSlotName.presentationBackground:      if #available(iOS 16.4, *) {
         return AnyView(self.presentationBackground(content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.safeAreaBarWithHorizontalEdge:
-      if #available(iOS 26, *) {
+    case OneNativeViewSlotName.safeAreaBarWithHorizontalEdge:      if #available(iOS 26, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid safeAreaBarWithHorizontalEdge slot values") }
-        let argument0: SwiftUICore.HorizontalEdge = {
+        let argument0: SwiftUI.HorizontalEdge = {
           switch decoded[0] {
-          case "leading": return SwiftUICore.HorizontalEdge.leading
-          case "trailing": return SwiftUICore.HorizontalEdge.trailing
+          case "leading": return SwiftUI.HorizontalEdge.leading
+          case "trailing": return SwiftUI.HorizontalEdge.trailing
           default: preconditionFailure("invalid safeAreaBarWithHorizontalEdge.edge")
           }
         }()
         return AnyView(self.safeAreaBar(edge: argument0, content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.safeAreaBarWithVerticalEdge:
-      if #available(iOS 26, *) {
+    case OneNativeViewSlotName.safeAreaBarWithVerticalEdge:      if #available(iOS 26, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid safeAreaBarWithVerticalEdge slot values") }
-        let argument0: SwiftUICore.VerticalEdge = {
+        let argument0: SwiftUI.VerticalEdge = {
           switch decoded[0] {
-          case "top": return SwiftUICore.VerticalEdge.top
-          case "bottom": return SwiftUICore.VerticalEdge.bottom
+          case "top": return SwiftUI.VerticalEdge.top
+          case "bottom": return SwiftUI.VerticalEdge.bottom
           default: preconditionFailure("invalid safeAreaBarWithVerticalEdge.edge")
           }
         }()
         return AnyView(self.safeAreaBar(edge: argument0, content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.safeAreaInsetWithHorizontalEdge:
-      if #available(iOS 15, *) {
+    case OneNativeViewSlotName.safeAreaInsetWithHorizontalEdge:      if #available(iOS 15, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid safeAreaInsetWithHorizontalEdge slot values") }
-        let argument0: SwiftUICore.HorizontalEdge = {
+        let argument0: SwiftUI.HorizontalEdge = {
           switch decoded[0] {
-          case "leading": return SwiftUICore.HorizontalEdge.leading
-          case "trailing": return SwiftUICore.HorizontalEdge.trailing
+          case "leading": return SwiftUI.HorizontalEdge.leading
+          case "trailing": return SwiftUI.HorizontalEdge.trailing
           default: preconditionFailure("invalid safeAreaInsetWithHorizontalEdge.edge")
           }
         }()
         return AnyView(self.safeAreaInset(edge: argument0, content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.safeAreaInsetWithVerticalEdge:
-      if #available(iOS 15, *) {
+    case OneNativeViewSlotName.safeAreaInsetWithVerticalEdge:      if #available(iOS 15, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid safeAreaInsetWithVerticalEdge slot values") }
-        let argument0: SwiftUICore.VerticalEdge = {
+        let argument0: SwiftUI.VerticalEdge = {
           switch decoded[0] {
-          case "top": return SwiftUICore.VerticalEdge.top
-          case "bottom": return SwiftUICore.VerticalEdge.bottom
+          case "top": return SwiftUI.VerticalEdge.top
+          case "bottom": return SwiftUI.VerticalEdge.bottom
           default: preconditionFailure("invalid safeAreaInsetWithVerticalEdge.edge")
           }
         }()
         return AnyView(self.safeAreaInset(edge: argument0, content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.searchScopesWithBindingString:
-      if #available(iOS 16, *) {
+    case OneNativeViewSlotName.searchScopesWithBindingString:      if #available(iOS 16, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid searchScopesWithBindingString slot values") }
@@ -294,8 +271,7 @@ extension View {
         return AnyView(self.searchScopes(argument0, scopes: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.searchScopesWithBindingStringAndSearchScopeActivation:
-      if #available(iOS 16.4, *) {
+    case OneNativeViewSlotName.searchScopesWithBindingStringAndSearchScopeActivation:      if #available(iOS 16.4, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 2 else { preconditionFailure("invalid searchScopesWithBindingStringAndSearchScopeActivation slot values") }
@@ -311,23 +287,19 @@ extension View {
         return AnyView(self.searchScopes(argument0, activation: argument1, content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.searchSuggestions:
-      if #available(iOS 16, *) {
+    case OneNativeViewSlotName.searchSuggestions:      if #available(iOS 16, *) {
         return AnyView(self.searchSuggestions(content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.sectionActions:
-      if #available(iOS 18, *) {
+    case OneNativeViewSlotName.sectionActions:      if #available(iOS 18, *) {
         return AnyView(self.sectionActions(content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.subscriptionStoreControlIcon:
-      if #available(iOS 17, *) {
+    case OneNativeViewSlotName.subscriptionStoreControlIcon:      if #available(iOS 17, *) {
         return AnyView(self.subscriptionStoreControlIcon(icon: { _, _ in content() }))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.subscriptionStorePolicyDestination:
-      if #available(iOS 17, *) {
+    case OneNativeViewSlotName.subscriptionStorePolicyDestination:      if #available(iOS 17, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid subscriptionStorePolicyDestination slot values") }
@@ -341,23 +313,19 @@ extension View {
         return AnyView(self.subscriptionStorePolicyDestination(for: argument0, destination: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.swipeActions:
-      if #available(iOS 15, *) {
+    case OneNativeViewSlotName.swipeActions:      if #available(iOS 15, *) {
         return AnyView(self.swipeActions(content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.tabItem:
-      if #available(iOS 13, *) {
+    case OneNativeViewSlotName.tabItem:      if #available(iOS 13, *) {
         return AnyView(self.tabItem(content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.tabViewBottomAccessory:
-      if #available(iOS 26, *) {
+    case OneNativeViewSlotName.tabViewBottomAccessory:      if #available(iOS 26, *) {
         return AnyView(self.tabViewBottomAccessory(content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.tabViewBottomAccessoryWithBool:
-      if #available(iOS 26.1, *) {
+    case OneNativeViewSlotName.tabViewBottomAccessoryWithBool:      if #available(iOS 26.1, *) {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid tabViewBottomAccessoryWithBool slot values") }
@@ -366,33 +334,31 @@ extension View {
         return AnyView(self.tabViewBottomAccessory(isEnabled: argument0, content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.tabViewSidebarBottomBar:
-      if #available(iOS 18, *) {
+    case OneNativeViewSlotName.tabViewSidebarBottomBar:      if #available(iOS 18, *) {
         return AnyView(self.tabViewSidebarBottomBar(content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.tabViewSidebarFooter:
-      if #available(iOS 18, *) {
+    case OneNativeViewSlotName.tabViewSidebarFooter:      if #available(iOS 18, *) {
         return AnyView(self.tabViewSidebarFooter(content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.tabViewSidebarHeader:
-      if #available(iOS 18, *) {
+    case OneNativeViewSlotName.tabViewSidebarHeader:      if #available(iOS 18, *) {
         return AnyView(self.tabViewSidebarHeader(content: content))
       }
       return AnyView(self)
-    case OneNativeViewSlotName.toolbar:
-      if #available(iOS 14, *) {
+    case OneNativeViewSlotName.toolbar:      if #available(iOS 14, *) {
         return AnyView(self.toolbar(content: content))
       }
       return AnyView(self)
     case OneNativeViewSlotName.toolbarOverflowMenu:
+#if ONE_IOS_27_SDK
       if #available(iOS 27, *) {
         return AnyView(self.toolbarOverflowMenu(content: content))
       }
+#endif
+
       return AnyView(self)
-    case OneNativeViewSlotName.toolbarTitleMenu:
-      if #available(iOS 16, *) {
+    case OneNativeViewSlotName.toolbarTitleMenu:      if #available(iOS 16, *) {
         return AnyView(self.toolbarTitleMenu(content: content))
       }
       return AnyView(self)

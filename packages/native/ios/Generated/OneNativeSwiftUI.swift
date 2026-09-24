@@ -61,7 +61,11 @@ enum OneNativeGenerated {
     case "search":
       return .search
     case "prominent":
+
+#if ONE_IOS_27_SDK
       if #available(iOS 27, *) { return .prominent }
+#endif
+
       preconditionFailure("TabRole.prominent requires iOS 27")
     default: preconditionFailure("invalid TabRole: \(value)")
     }
@@ -102,6 +106,8 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid TabCustomizationBehavior: \(value)")
     }
   }
+
+#if ONE_IOS_27_SDK
   @available(iOS 27, *)
   static func tabSectionExpansion(_ value: String) -> TabSectionExpansion {
     switch value {
@@ -114,6 +120,8 @@ enum OneNativeGenerated {
     default: preconditionFailure("invalid TabSectionExpansion: \(value)")
     }
   }
+#endif
+
   static func springLoadingBehavior(_ value: String) -> SpringLoadingBehavior {
     switch value {
     case "automatic":
@@ -403,7 +411,11 @@ enum OneNativeGenerated {
     case "topBarTrailing":
       return .topBarTrailing
     case "topBarPinnedTrailing":
+
+#if ONE_IOS_27_SDK
       if #available(iOS 27, *) { return .topBarPinnedTrailing }
+#endif
+
       preconditionFailure("ToolbarItemPlacement.topBarPinnedTrailing requires iOS 27")
     case "navigationBarLeading":
       return .navigationBarLeading
@@ -458,7 +470,13 @@ extension View {
     case "segmented":
       self.pickerStyle(.segmented)
     case "tabs":
+
+#if ONE_IOS_27_SDK
       if #available(iOS 27, *) { self.pickerStyle(.tabs) } else { let _ = preconditionFailure("PickerStyle.tabs requires iOS 27"); self }
+#else
+      let _ = preconditionFailure("PickerStyle.tabs requires iOS 27"); self
+#endif
+
     case "palette":
       self.pickerStyle(.palette)
     case "navigationLink":
@@ -594,7 +612,13 @@ extension View {
     case "roundedBorder":
       self.textFieldStyle(.roundedBorder)
     case "bordered":
+
+#if ONE_IOS_27_SDK
       if #available(iOS 27, *) { self.textFieldStyle(.bordered) } else { let _ = preconditionFailure("TextFieldStyle.bordered requires iOS 27"); self }
+#else
+      let _ = preconditionFailure("TextFieldStyle.bordered requires iOS 27"); self
+#endif
+
     case "plain":
       self.textFieldStyle(.plain)
     default: let _ = preconditionFailure("invalid TextFieldStyle: \(value)"); self

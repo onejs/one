@@ -1,4 +1,5 @@
 import * as UI from './effects';
+import { Widgets, LiveActivities } from './widgets/index';
 export * from './extras';
 export type { ToolbarHostProps, ToolbarItemProps } from './extras';
 export * from './unsupported';
@@ -9,6 +10,7 @@ export declare const Menu: (_props: import("./types").MenuProps) => never;
 export declare const ContextMenu: (_props: import("./types").ContextMenuProps) => never;
 export { Compose } from './compose';
 export { Notifications } from './notifications';
+export { Widgets, LiveActivities };
 export { useNativeState, type NativeState } from './nativeState';
 export { TextInput } from './universal/TextInput/index';
 export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';

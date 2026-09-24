@@ -1,7 +1,10 @@
 import { Browser as NativeBrowser, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, getHinge, getSizeClass, onHingeChange, ReservedRegions, useHinge, useSizeClass, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from '@vxrn/native';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaFrame, useSafeAreaInsets } from '@vxrn/safe-area';
+import { Widgets, LiveActivities } from '@vxrn/native';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
 export type OneIOS = Omit<typeof Swift, 'ToolbarItem'> & {
+    readonly Widgets: typeof Widgets;
+    readonly LiveActivities: typeof LiveActivities;
     readonly Color: ColorType['ios'];
     readonly MenuAction: typeof MenuAction;
     readonly SplitView: typeof SplitView;

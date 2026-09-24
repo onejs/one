@@ -24,30 +24,28 @@ export default function StackToolbarDetailScreen() {
         <Text style={styles.actionText}>Back to oracle</Text>
       </Pressable>
 
-      <Stack.Toolbar.Bottom>
-        <Stack.Toolbar.Item
-          identifier="detail-edit"
-          title="Edit"
-          systemImageName="pencil"
+      <Stack.Toolbar>
+        <Stack.Toolbar.Button
+          icon="pencil"
           accessibilityLabel="Detail bottom edit"
-          onSelected={() => {}}
-        />
+          onPress={() => {}}
+        >
+          Edit
+        </Stack.Toolbar.Button>
         <Stack.Toolbar.Menu
-          identifier="detail-actions"
           title="Actions"
-          label="Actions"
-          systemImageName="ellipsis.circle"
+          icon="ellipsis.circle"
           accessibilityLabel="Detail bottom actions"
         >
-          <Stack.Toolbar.Item
-            identifier="detail-flag"
-            title="Flag"
-            systemImageName="flag"
+          <Stack.Toolbar.MenuAction
+            icon="flag"
             accessibilityLabel="Detail flag"
-            onSelected={() => {}}
-          />
+            onPress={() => {}}
+          >
+            Flag
+          </Stack.Toolbar.MenuAction>
         </Stack.Toolbar.Menu>
-      </Stack.Toolbar.Bottom>
+      </Stack.Toolbar>
     </View>
   )
 }

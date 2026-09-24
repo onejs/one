@@ -1,10 +1,11 @@
-import { readFileSync } from 'node:fs'
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
 import { createServer } from 'node:http'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it, vi } from 'vitest'
 import { applyBuiltInPatches } from '../utils/patches'
-import { buildNativeRunCommand, nativeRun } from './nativeRun'
+import { buildNativeRunCommand, nativeRun, resolveIosBundleId } from './nativeRun'
 
 vi.mock('../config/getOptionsFilled', () => ({
   fillOptions: vi.fn(async () => ({})),
@@ -26,6 +27,23 @@ describe('expo-free run commands', () => {
     expect(buildNativeRunCommand({ platform: 'android' })).toEqual({
       command: 'run-android',
       argv: ['--no-packager', '--port', '8081'],
+      port: 8081,
+    })
+  })
+
+  it('forwards an explicit simulator target instead of letting the cli pick', () => {
+    expect(
+      buildNativeRunCommand({ platform: 'ios', simulator: 'iPhone 16' })
+    ).toEqual({
+      command: 'run-ios',
+      argv: ['--no-packager', '--port', '8081', '--simulator', 'iPhone 16'],
+      port: 8081,
+    })
+    expect(
+      buildNativeRunCommand({ platform: 'ios', udid: 'some-udid' })
+    ).toEqual({
+      command: 'run-ios',
+      argv: ['--no-packager', '--port', '8081', '--udid', 'some-udid'],
       port: 8081,
     })
   })
@@ -97,6 +115,42 @@ describe('expo-free run commands', () => {
       expect(calls).toHaveLength(1)
     } finally {
       server.close()
+    }
+  })
+
+  it('passes the simulator target through to the community cli', async () => {
+    const server = createServer((req, res) => {
+      res.end(req.url === '/status' ? 'packager-status:running' : 'ok')
+    })
+    await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve))
+    const address = server.address()
+    const port = typeof address === 'object' && address ? address.port : 0
+    const calls: string[][] = []
+    try {
+      await nativeRun({
+        root: workspaceRoot,
+        platform: 'ios',
+        port,
+        udid: 'some-udid',
+        spawn: (_executable, argv) => calls.push(argv),
+      })
+      expect(calls).toHaveLength(1)
+      expect(calls[0]).toEqual(expect.arrayContaining(['--udid', 'some-udid']))
+    } finally {
+      server.close()
+    }
+  })
+
+  it('resolves the ios bundle id from app.json', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'nativerun-'))
+    try {
+      expect(resolveIosBundleId(dir)).toBeNull()
+      writeFileSync(join(dir, 'app.json'), JSON.stringify({ expo: { ios: { bundleIdentifier: 'dev.example.app' } } }))
+      expect(resolveIosBundleId(dir)).toBe('dev.example.app')
+      writeFileSync(join(dir, 'app.json'), 'not json')
+      expect(resolveIosBundleId(dir)).toBeNull()
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
     }
   })
 

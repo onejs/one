@@ -3,15 +3,15 @@
 import SwiftUI
 import UIKit
 import PassKit
+import AppIntents
 import StoreKit
 import DataDetection
+import RealityKit
 import GameController
 import MapKit
 import MusicKit
 import AVKit
 import PhotosUI
-import RealityKit
-import AppIntents
 import AuthenticationServices
 import Translation
 import WebKit
@@ -163,6 +163,7 @@ extension View {
       case "allowsWindowActivationEventsWithNoArguments": view = AnyView(view.oneNativeSDKAllowsWindowActivationEventsWithNoArguments(value, emit: emit))
       case "allowsWindowActivationEventsWithOptionalBool": view = AnyView(view.oneNativeSDKAllowsWindowActivationEventsWithOptionalBool(value, emit: emit))
       case "animation": view = AnyView(view.oneNativeSDKAnimation(value, emit: emit))
+      case "appEntityIdentifier": view = AnyView(view.oneNativeSDKAppEntityIdentifier(value, emit: emit))
       case "appStoreMerchandising": view = AnyView(view.oneNativeSDKAppStoreMerchandising(value, emit: emit))
       case "aspectRatio": view = AnyView(view.oneNativeSDKAspectRatio(value, emit: emit))
       case "assistiveAccessNavigationIconWithImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithImage(value, emit: emit))
@@ -186,6 +187,7 @@ extension View {
       case "buttonSizing": view = AnyView(view.oneNativeSDKButtonSizing(value, emit: emit))
       case "buttonStyle": view = AnyView(view.oneNativeSDKButtonStyle(value, emit: emit))
       case "clipped": view = AnyView(view.oneNativeSDKClipped(value, emit: emit))
+      case "clipShape": view = AnyView(view.oneNativeSDKClipShape(value, emit: emit))
       case "colorEffect": view = AnyView(view.oneNativeSDKColorEffect(value, emit: emit))
       case "colorInvert": view = AnyView(view.oneNativeSDKColorInvert(value, emit: emit))
       case "colorMultiply": view = AnyView(view.oneNativeSDKColorMultiply(value, emit: emit))
@@ -232,6 +234,67 @@ extension View {
       case "dropDestination": view = AnyView(view.oneNativeSDKDropDestination(value, emit: emit))
       case "dynamicTypeSize": view = AnyView(view.oneNativeSDKDynamicTypeSize(value, emit: emit))
       case "edgesIgnoringSafeArea": view = AnyView(view.oneNativeSDKEdgesIgnoringSafeArea(value, emit: emit))
+      case "environmentAccessibilityEnabled": view = AnyView(view.oneNativeSDKEnvironmentAccessibilityEnabled(value, emit: emit))
+      case "environmentAccessibilityPrefersCrossFadeTransitions": view = AnyView(view.oneNativeSDKEnvironmentAccessibilityPrefersCrossFadeTransitions(value, emit: emit))
+      case "environmentAllowedDynamicRange": view = AnyView(view.oneNativeSDKEnvironmentAllowedDynamicRange(value, emit: emit))
+      case "environmentAllowsTightening": view = AnyView(view.oneNativeSDKEnvironmentAllowsTightening(value, emit: emit))
+      case "environmentAppearsActive": view = AnyView(view.oneNativeSDKEnvironmentAppearsActive(value, emit: emit))
+      case "environmentAutocorrectionDisabled": view = AnyView(view.oneNativeSDKEnvironmentAutocorrectionDisabled(value, emit: emit))
+      case "environmentBackgroundMaterial": view = AnyView(view.oneNativeSDKEnvironmentBackgroundMaterial(value, emit: emit))
+      case "environmentBackgroundProminence": view = AnyView(view.oneNativeSDKEnvironmentBackgroundProminence(value, emit: emit))
+      case "environmentBadgeProminence": view = AnyView(view.oneNativeSDKEnvironmentBadgeProminence(value, emit: emit))
+      case "environmentCalendar": view = AnyView(view.oneNativeSDKEnvironmentCalendar(value, emit: emit))
+      case "environmentColorScheme": view = AnyView(view.oneNativeSDKEnvironmentColorScheme(value, emit: emit))
+      case "environmentContentTransition": view = AnyView(view.oneNativeSDKEnvironmentContentTransition(value, emit: emit))
+      case "environmentContentTransitionAddsDrawingGroup": view = AnyView(view.oneNativeSDKEnvironmentContentTransitionAddsDrawingGroup(value, emit: emit))
+      case "environmentControlSize": view = AnyView(view.oneNativeSDKEnvironmentControlSize(value, emit: emit))
+      case "environmentDefaultMinListHeaderHeight": view = AnyView(view.oneNativeSDKEnvironmentDefaultMinListHeaderHeight(value, emit: emit))
+      case "environmentDefaultMinListRowHeight": view = AnyView(view.oneNativeSDKEnvironmentDefaultMinListRowHeight(value, emit: emit))
+      case "environmentDisableAutocorrection": view = AnyView(view.oneNativeSDKEnvironmentDisableAutocorrection(value, emit: emit))
+      case "environmentDisplayScale": view = AnyView(view.oneNativeSDKEnvironmentDisplayScale(value, emit: emit))
+      case "environmentDynamicTypeSize": view = AnyView(view.oneNativeSDKEnvironmentDynamicTypeSize(value, emit: emit))
+      case "environmentFont": view = AnyView(view.oneNativeSDKEnvironmentFont(value, emit: emit))
+      case "environmentHeaderProminence": view = AnyView(view.oneNativeSDKEnvironmentHeaderProminence(value, emit: emit))
+      case "environmentHorizontalScrollBounceBehavior": view = AnyView(view.oneNativeSDKEnvironmentHorizontalScrollBounceBehavior(value, emit: emit))
+      case "environmentHorizontalScrollIndicatorVisibility": view = AnyView(view.oneNativeSDKEnvironmentHorizontalScrollIndicatorVisibility(value, emit: emit))
+      case "environmentHorizontalSizeClass": view = AnyView(view.oneNativeSDKEnvironmentHorizontalSizeClass(value, emit: emit))
+      case "environmentImageScale": view = AnyView(view.oneNativeSDKEnvironmentImageScale(value, emit: emit))
+      case "environmentIsEnabled": view = AnyView(view.oneNativeSDKEnvironmentIsEnabled(value, emit: emit))
+      case "environmentIsFocusEffectEnabled": view = AnyView(view.oneNativeSDKEnvironmentIsFocusEffectEnabled(value, emit: emit))
+      case "environmentIsHoverEffectEnabled": view = AnyView(view.oneNativeSDKEnvironmentIsHoverEffectEnabled(value, emit: emit))
+      case "environmentIsLuminanceReduced": view = AnyView(view.oneNativeSDKEnvironmentIsLuminanceReduced(value, emit: emit))
+      case "environmentIsSceneCaptured": view = AnyView(view.oneNativeSDKEnvironmentIsSceneCaptured(value, emit: emit))
+      case "environmentIsScrollEnabled": view = AnyView(view.oneNativeSDKEnvironmentIsScrollEnabled(value, emit: emit))
+      case "environmentLabelsVisibility": view = AnyView(view.oneNativeSDKEnvironmentLabelsVisibility(value, emit: emit))
+      case "environmentLayoutDirection": view = AnyView(view.oneNativeSDKEnvironmentLayoutDirection(value, emit: emit))
+      case "environmentLegibilityWeight": view = AnyView(view.oneNativeSDKEnvironmentLegibilityWeight(value, emit: emit))
+      case "environmentLineHeight": view = AnyView(view.oneNativeSDKEnvironmentLineHeight(value, emit: emit))
+      case "environmentLineLimit": view = AnyView(view.oneNativeSDKEnvironmentLineLimit(value, emit: emit))
+      case "environmentLineSpacing": view = AnyView(view.oneNativeSDKEnvironmentLineSpacing(value, emit: emit))
+      case "environmentLocale": view = AnyView(view.oneNativeSDKEnvironmentLocale(value, emit: emit))
+      case "environmentMaterialActiveAppearance": view = AnyView(view.oneNativeSDKEnvironmentMaterialActiveAppearance(value, emit: emit))
+      case "environmentMenuIndicatorVisibility": view = AnyView(view.oneNativeSDKEnvironmentMenuIndicatorVisibility(value, emit: emit))
+      case "environmentMenuOrder": view = AnyView(view.oneNativeSDKEnvironmentMenuOrder(value, emit: emit))
+      case "environmentMinimumScaleFactor": view = AnyView(view.oneNativeSDKEnvironmentMinimumScaleFactor(value, emit: emit))
+      case "environmentMultilineTextAlignment": view = AnyView(view.oneNativeSDKEnvironmentMultilineTextAlignment(value, emit: emit))
+      case "environmentRealityViewCameraControls": view = AnyView(view.oneNativeSDKEnvironmentRealityViewCameraControls(value, emit: emit))
+      case "environmentRedactionReasons": view = AnyView(view.oneNativeSDKEnvironmentRedactionReasons(value, emit: emit))
+      case "environmentScenePhase": view = AnyView(view.oneNativeSDKEnvironmentScenePhase(value, emit: emit))
+      case "environmentScrollDismissesKeyboardMode": view = AnyView(view.oneNativeSDKEnvironmentScrollDismissesKeyboardMode(value, emit: emit))
+      case "environmentSidebarRowSize": view = AnyView(view.oneNativeSDKEnvironmentSidebarRowSize(value, emit: emit))
+      case "environmentSizeCategory": view = AnyView(view.oneNativeSDKEnvironmentSizeCategory(value, emit: emit))
+      case "environmentSymbolColorRenderingMode": view = AnyView(view.oneNativeSDKEnvironmentSymbolColorRenderingMode(value, emit: emit))
+      case "environmentSymbolRenderingMode": view = AnyView(view.oneNativeSDKEnvironmentSymbolRenderingMode(value, emit: emit))
+      case "environmentSymbolVariableValueMode": view = AnyView(view.oneNativeSDKEnvironmentSymbolVariableValueMode(value, emit: emit))
+      case "environmentSymbolVariants": view = AnyView(view.oneNativeSDKEnvironmentSymbolVariants(value, emit: emit))
+      case "environmentSystemPrefersReducedResourceUsage": view = AnyView(view.oneNativeSDKEnvironmentSystemPrefersReducedResourceUsage(value, emit: emit))
+      case "environmentTextCase": view = AnyView(view.oneNativeSDKEnvironmentTextCase(value, emit: emit))
+      case "environmentTextSelectionAffinity": view = AnyView(view.oneNativeSDKEnvironmentTextSelectionAffinity(value, emit: emit))
+      case "environmentTimeZone": view = AnyView(view.oneNativeSDKEnvironmentTimeZone(value, emit: emit))
+      case "environmentTruncationMode": view = AnyView(view.oneNativeSDKEnvironmentTruncationMode(value, emit: emit))
+      case "environmentVerticalScrollBounceBehavior": view = AnyView(view.oneNativeSDKEnvironmentVerticalScrollBounceBehavior(value, emit: emit))
+      case "environmentVerticalScrollIndicatorVisibility": view = AnyView(view.oneNativeSDKEnvironmentVerticalScrollIndicatorVisibility(value, emit: emit))
+      case "environmentVerticalSizeClass": view = AnyView(view.oneNativeSDKEnvironmentVerticalSizeClass(value, emit: emit))
       case "fileDialogBrowserOptions": view = AnyView(view.oneNativeSDKFileDialogBrowserOptions(value, emit: emit))
       case "fileDialogConfirmationLabel": view = AnyView(view.oneNativeSDKFileDialogConfirmationLabel(value, emit: emit))
       case "fileDialogCustomizationID": view = AnyView(view.oneNativeSDKFileDialogCustomizationID(value, emit: emit))
@@ -251,9 +314,13 @@ extension View {
       case "focusableWithIsFocusableAndInteractions": view = AnyView(view.oneNativeSDKFocusableWithIsFocusableAndInteractions(value, emit: emit))
       case "focused": view = AnyView(view.oneNativeSDKFocused(value, emit: emit))
       case "focusEffectDisabled": view = AnyView(view.oneNativeSDKFocusEffectDisabled(value, emit: emit))
+      case "font": view = AnyView(view.oneNativeSDKFont(value, emit: emit))
       case "fontWidth": view = AnyView(view.oneNativeSDKFontWidth(value, emit: emit))
       case "foregroundColor": view = AnyView(view.oneNativeSDKForegroundColor(value, emit: emit))
       case "formStyle": view = AnyView(view.oneNativeSDKFormStyle(value, emit: emit))
+      case "frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment": view = AnyView(view.oneNativeSDKFrameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment(value, emit: emit))
+      case "frameWithNoArguments": view = AnyView(view.oneNativeSDKFrameWithNoArguments(value, emit: emit))
+      case "frameWithWidthAndHeightAndAlignment": view = AnyView(view.oneNativeSDKFrameWithWidthAndHeightAndAlignment(value, emit: emit))
       case "gaugeStyle": view = AnyView(view.oneNativeSDKGaugeStyle(value, emit: emit))
       case "geometryGroup": view = AnyView(view.oneNativeSDKGeometryGroup(value, emit: emit))
       case "gesture": view = AnyView(view.oneNativeSDKGesture(value, emit: emit))
@@ -744,26 +811,26 @@ extension OneNativeStyle {
 extension View {
   @ViewBuilder fileprivate func oneNativeSDKAccentColor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.accentColor(nil as SwiftUICore.Color?)
-      case "accentColor": self.accentColor(SwiftUICore.Color.accentColor)
-      case "red": self.accentColor(SwiftUICore.Color.red)
-      case "orange": self.accentColor(SwiftUICore.Color.orange)
-      case "yellow": self.accentColor(SwiftUICore.Color.yellow)
-      case "green": self.accentColor(SwiftUICore.Color.green)
-      case "mint": self.accentColor(SwiftUICore.Color.mint)
-      case "teal": self.accentColor(SwiftUICore.Color.teal)
-      case "cyan": self.accentColor(SwiftUICore.Color.cyan)
-      case "blue": self.accentColor(SwiftUICore.Color.blue)
-      case "indigo": self.accentColor(SwiftUICore.Color.indigo)
-      case "purple": self.accentColor(SwiftUICore.Color.purple)
-      case "pink": self.accentColor(SwiftUICore.Color.pink)
-      case "brown": self.accentColor(SwiftUICore.Color.brown)
-      case "white": self.accentColor(SwiftUICore.Color.white)
-      case "gray": self.accentColor(SwiftUICore.Color.gray)
-      case "black": self.accentColor(SwiftUICore.Color.black)
-      case "clear": self.accentColor(SwiftUICore.Color.clear)
-      case "primary": self.accentColor(SwiftUICore.Color.primary)
-      case "secondary": self.accentColor(SwiftUICore.Color.secondary)
+      case "null": self.accentColor(nil as SwiftUI.Color?)
+      case "accentColor": self.accentColor(SwiftUI.Color.accentColor)
+      case "red": self.accentColor(SwiftUI.Color.red)
+      case "orange": self.accentColor(SwiftUI.Color.orange)
+      case "yellow": self.accentColor(SwiftUI.Color.yellow)
+      case "green": self.accentColor(SwiftUI.Color.green)
+      case "mint": self.accentColor(SwiftUI.Color.mint)
+      case "teal": self.accentColor(SwiftUI.Color.teal)
+      case "cyan": self.accentColor(SwiftUI.Color.cyan)
+      case "blue": self.accentColor(SwiftUI.Color.blue)
+      case "indigo": self.accentColor(SwiftUI.Color.indigo)
+      case "purple": self.accentColor(SwiftUI.Color.purple)
+      case "pink": self.accentColor(SwiftUI.Color.pink)
+      case "brown": self.accentColor(SwiftUI.Color.brown)
+      case "white": self.accentColor(SwiftUI.Color.white)
+      case "gray": self.accentColor(SwiftUI.Color.gray)
+      case "black": self.accentColor(SwiftUI.Color.black)
+      case "clear": self.accentColor(SwiftUI.Color.clear)
+      case "primary": self.accentColor(SwiftUI.Color.primary)
+      case "secondary": self.accentColor(SwiftUI.Color.secondary)
     default: preconditionFailure("invalid accentColor: \(value)")
     }
   }
@@ -780,19 +847,19 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid accessibilityActivationPointWithActivationPointAndIsEnabled: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.UnitPoint = {
+    let argument0: SwiftUI.UnitPoint = {
       guard let raw = values[0] else { preconditionFailure("missing accessibilityActivationPointWithActivationPointAndIsEnabled.activationPoint") }
       switch raw {
-      case "zero": return SwiftUICore.UnitPoint.zero
-      case "center": return SwiftUICore.UnitPoint.center
-      case "leading": return SwiftUICore.UnitPoint.leading
-      case "trailing": return SwiftUICore.UnitPoint.trailing
-      case "top": return SwiftUICore.UnitPoint.top
-      case "bottom": return SwiftUICore.UnitPoint.bottom
-      case "topLeading": return SwiftUICore.UnitPoint.topLeading
-      case "topTrailing": return SwiftUICore.UnitPoint.topTrailing
-      case "bottomLeading": return SwiftUICore.UnitPoint.bottomLeading
-      case "bottomTrailing": return SwiftUICore.UnitPoint.bottomTrailing
+      case "zero": return SwiftUI.UnitPoint.zero
+      case "center": return SwiftUI.UnitPoint.center
+      case "leading": return SwiftUI.UnitPoint.leading
+      case "trailing": return SwiftUI.UnitPoint.trailing
+      case "top": return SwiftUI.UnitPoint.top
+      case "bottom": return SwiftUI.UnitPoint.bottom
+      case "topLeading": return SwiftUI.UnitPoint.topLeading
+      case "topTrailing": return SwiftUI.UnitPoint.topTrailing
+      case "bottomLeading": return SwiftUI.UnitPoint.bottomLeading
+      case "bottomTrailing": return SwiftUI.UnitPoint.bottomTrailing
       default: preconditionFailure("invalid accessibilityActivationPointWithActivationPointAndIsEnabled.activationPoint: \(raw)")
       }
     }()
@@ -808,16 +875,16 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityActivationPointWithUnitPoint(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "zero": self.accessibilityActivationPoint(SwiftUICore.UnitPoint.zero)
-      case "center": self.accessibilityActivationPoint(SwiftUICore.UnitPoint.center)
-      case "leading": self.accessibilityActivationPoint(SwiftUICore.UnitPoint.leading)
-      case "trailing": self.accessibilityActivationPoint(SwiftUICore.UnitPoint.trailing)
-      case "top": self.accessibilityActivationPoint(SwiftUICore.UnitPoint.top)
-      case "bottom": self.accessibilityActivationPoint(SwiftUICore.UnitPoint.bottom)
-      case "topLeading": self.accessibilityActivationPoint(SwiftUICore.UnitPoint.topLeading)
-      case "topTrailing": self.accessibilityActivationPoint(SwiftUICore.UnitPoint.topTrailing)
-      case "bottomLeading": self.accessibilityActivationPoint(SwiftUICore.UnitPoint.bottomLeading)
-      case "bottomTrailing": self.accessibilityActivationPoint(SwiftUICore.UnitPoint.bottomTrailing)
+      case "zero": self.accessibilityActivationPoint(SwiftUI.UnitPoint.zero)
+      case "center": self.accessibilityActivationPoint(SwiftUI.UnitPoint.center)
+      case "leading": self.accessibilityActivationPoint(SwiftUI.UnitPoint.leading)
+      case "trailing": self.accessibilityActivationPoint(SwiftUI.UnitPoint.trailing)
+      case "top": self.accessibilityActivationPoint(SwiftUI.UnitPoint.top)
+      case "bottom": self.accessibilityActivationPoint(SwiftUI.UnitPoint.bottom)
+      case "topLeading": self.accessibilityActivationPoint(SwiftUI.UnitPoint.topLeading)
+      case "topTrailing": self.accessibilityActivationPoint(SwiftUI.UnitPoint.topTrailing)
+      case "bottomLeading": self.accessibilityActivationPoint(SwiftUI.UnitPoint.bottomLeading)
+      case "bottomTrailing": self.accessibilityActivationPoint(SwiftUI.UnitPoint.bottomTrailing)
     default: preconditionFailure("invalid accessibilityActivationPointWithUnitPoint: \(value)")
     }
   }
@@ -825,23 +892,23 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityAddTraits(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "isButton": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.isButton)
-      case "isHeader": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.isHeader)
-      case "isSelected": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.isSelected)
-      case "isLink": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.isLink)
-      case "isSearchField": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.isSearchField)
-      case "isImage": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.isImage)
-      case "playsSound": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.playsSound)
-      case "isKeyboardKey": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.isKeyboardKey)
-      case "isStaticText": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.isStaticText)
-      case "isSummaryElement": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.isSummaryElement)
-      case "updatesFrequently": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.updatesFrequently)
-      case "startsMediaSession": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.startsMediaSession)
-      case "allowsDirectInteraction": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.allowsDirectInteraction)
-      case "causesPageTurn": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.causesPageTurn)
-      case "isModal": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.isModal)
-      case "isToggle": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.isToggle)
-      case "isTabBar": self.accessibilityAddTraits(SwiftUICore.AccessibilityTraits.isTabBar)
+      case "isButton": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isButton)
+      case "isHeader": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isHeader)
+      case "isSelected": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isSelected)
+      case "isLink": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isLink)
+      case "isSearchField": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isSearchField)
+      case "isImage": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isImage)
+      case "playsSound": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.playsSound)
+      case "isKeyboardKey": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isKeyboardKey)
+      case "isStaticText": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isStaticText)
+      case "isSummaryElement": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isSummaryElement)
+      case "updatesFrequently": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.updatesFrequently)
+      case "startsMediaSession": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.startsMediaSession)
+      case "allowsDirectInteraction": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.allowsDirectInteraction)
+      case "causesPageTurn": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.causesPageTurn)
+      case "isModal": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isModal)
+      case "isToggle": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isToggle)
+      case "isTabBar": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isTabBar)
     default: preconditionFailure("invalid accessibilityAddTraits: \(value)")
     }
   }
@@ -857,11 +924,11 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid accessibilityCustomContent: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Text = {
+    let argument0: SwiftUI.Text = {
       guard let raw = values[0] else { preconditionFailure("missing accessibilityCustomContent.label") }
       return Text(raw)
     }()
-    let argument1: SwiftUICore.Text = {
+    let argument1: SwiftUI.Text = {
       guard let raw = values[1] else { preconditionFailure("missing accessibilityCustomContent.value") }
       return Text(raw)
     }()
@@ -887,11 +954,11 @@ extension View {
       guard raw == "true" || raw == "false" else { preconditionFailure("invalid accessibilityDirectTouch.isDirectTouchArea: \(raw)") }
       return raw == "true"
     }()
-    let argument1: SwiftUICore.AccessibilityDirectTouchOptions = {
+    let argument1: SwiftUI.AccessibilityDirectTouchOptions = {
       guard let raw = values[1] else { preconditionFailure("missing accessibilityDirectTouch.options") }
       switch raw {
-      case "silentOnTouch": return SwiftUICore.AccessibilityDirectTouchOptions.silentOnTouch
-      case "requiresActivation": return SwiftUICore.AccessibilityDirectTouchOptions.requiresActivation
+      case "silentOnTouch": return SwiftUI.AccessibilityDirectTouchOptions.silentOnTouch
+      case "requiresActivation": return SwiftUI.AccessibilityDirectTouchOptions.requiresActivation
       default: preconditionFailure("invalid accessibilityDirectTouch.options: \(raw)")
       }
     }()
@@ -905,23 +972,23 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid accessibilityDragPointWithPointAndDescription: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.UnitPoint = {
+    let argument0: SwiftUI.UnitPoint = {
       guard let raw = values[0] else { preconditionFailure("missing accessibilityDragPointWithPointAndDescription.point") }
       switch raw {
-      case "zero": return SwiftUICore.UnitPoint.zero
-      case "center": return SwiftUICore.UnitPoint.center
-      case "leading": return SwiftUICore.UnitPoint.leading
-      case "trailing": return SwiftUICore.UnitPoint.trailing
-      case "top": return SwiftUICore.UnitPoint.top
-      case "bottom": return SwiftUICore.UnitPoint.bottom
-      case "topLeading": return SwiftUICore.UnitPoint.topLeading
-      case "topTrailing": return SwiftUICore.UnitPoint.topTrailing
-      case "bottomLeading": return SwiftUICore.UnitPoint.bottomLeading
-      case "bottomTrailing": return SwiftUICore.UnitPoint.bottomTrailing
+      case "zero": return SwiftUI.UnitPoint.zero
+      case "center": return SwiftUI.UnitPoint.center
+      case "leading": return SwiftUI.UnitPoint.leading
+      case "trailing": return SwiftUI.UnitPoint.trailing
+      case "top": return SwiftUI.UnitPoint.top
+      case "bottom": return SwiftUI.UnitPoint.bottom
+      case "topLeading": return SwiftUI.UnitPoint.topLeading
+      case "topTrailing": return SwiftUI.UnitPoint.topTrailing
+      case "bottomLeading": return SwiftUI.UnitPoint.bottomLeading
+      case "bottomTrailing": return SwiftUI.UnitPoint.bottomTrailing
       default: preconditionFailure("invalid accessibilityDragPointWithPointAndDescription.point: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.Text = {
+    let argument1: SwiftUI.Text = {
       guard let raw = values[1] else { preconditionFailure("missing accessibilityDragPointWithPointAndDescription.description") }
       return Text(raw)
     }()
@@ -936,23 +1003,23 @@ extension View {
         decoded.count == 3 else { preconditionFailure("invalid accessibilityDragPointWithPointAndDescriptionAndIsEnabled: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.UnitPoint = {
+    let argument0: SwiftUI.UnitPoint = {
       guard let raw = values[0] else { preconditionFailure("missing accessibilityDragPointWithPointAndDescriptionAndIsEnabled.point") }
       switch raw {
-      case "zero": return SwiftUICore.UnitPoint.zero
-      case "center": return SwiftUICore.UnitPoint.center
-      case "leading": return SwiftUICore.UnitPoint.leading
-      case "trailing": return SwiftUICore.UnitPoint.trailing
-      case "top": return SwiftUICore.UnitPoint.top
-      case "bottom": return SwiftUICore.UnitPoint.bottom
-      case "topLeading": return SwiftUICore.UnitPoint.topLeading
-      case "topTrailing": return SwiftUICore.UnitPoint.topTrailing
-      case "bottomLeading": return SwiftUICore.UnitPoint.bottomLeading
-      case "bottomTrailing": return SwiftUICore.UnitPoint.bottomTrailing
+      case "zero": return SwiftUI.UnitPoint.zero
+      case "center": return SwiftUI.UnitPoint.center
+      case "leading": return SwiftUI.UnitPoint.leading
+      case "trailing": return SwiftUI.UnitPoint.trailing
+      case "top": return SwiftUI.UnitPoint.top
+      case "bottom": return SwiftUI.UnitPoint.bottom
+      case "topLeading": return SwiftUI.UnitPoint.topLeading
+      case "topTrailing": return SwiftUI.UnitPoint.topTrailing
+      case "bottomLeading": return SwiftUI.UnitPoint.bottomLeading
+      case "bottomTrailing": return SwiftUI.UnitPoint.bottomTrailing
       default: preconditionFailure("invalid accessibilityDragPointWithPointAndDescriptionAndIsEnabled.point: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.Text = {
+    let argument1: SwiftUI.Text = {
       guard let raw = values[1] else { preconditionFailure("missing accessibilityDragPointWithPointAndDescriptionAndIsEnabled.description") }
       return Text(raw)
     }()
@@ -972,23 +1039,23 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid accessibilityDropPointWithPointAndDescription: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.UnitPoint = {
+    let argument0: SwiftUI.UnitPoint = {
       guard let raw = values[0] else { preconditionFailure("missing accessibilityDropPointWithPointAndDescription.point") }
       switch raw {
-      case "zero": return SwiftUICore.UnitPoint.zero
-      case "center": return SwiftUICore.UnitPoint.center
-      case "leading": return SwiftUICore.UnitPoint.leading
-      case "trailing": return SwiftUICore.UnitPoint.trailing
-      case "top": return SwiftUICore.UnitPoint.top
-      case "bottom": return SwiftUICore.UnitPoint.bottom
-      case "topLeading": return SwiftUICore.UnitPoint.topLeading
-      case "topTrailing": return SwiftUICore.UnitPoint.topTrailing
-      case "bottomLeading": return SwiftUICore.UnitPoint.bottomLeading
-      case "bottomTrailing": return SwiftUICore.UnitPoint.bottomTrailing
+      case "zero": return SwiftUI.UnitPoint.zero
+      case "center": return SwiftUI.UnitPoint.center
+      case "leading": return SwiftUI.UnitPoint.leading
+      case "trailing": return SwiftUI.UnitPoint.trailing
+      case "top": return SwiftUI.UnitPoint.top
+      case "bottom": return SwiftUI.UnitPoint.bottom
+      case "topLeading": return SwiftUI.UnitPoint.topLeading
+      case "topTrailing": return SwiftUI.UnitPoint.topTrailing
+      case "bottomLeading": return SwiftUI.UnitPoint.bottomLeading
+      case "bottomTrailing": return SwiftUI.UnitPoint.bottomTrailing
       default: preconditionFailure("invalid accessibilityDropPointWithPointAndDescription.point: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.Text = {
+    let argument1: SwiftUI.Text = {
       guard let raw = values[1] else { preconditionFailure("missing accessibilityDropPointWithPointAndDescription.description") }
       return Text(raw)
     }()
@@ -1003,23 +1070,23 @@ extension View {
         decoded.count == 3 else { preconditionFailure("invalid accessibilityDropPointWithPointAndDescriptionAndIsEnabled: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.UnitPoint = {
+    let argument0: SwiftUI.UnitPoint = {
       guard let raw = values[0] else { preconditionFailure("missing accessibilityDropPointWithPointAndDescriptionAndIsEnabled.point") }
       switch raw {
-      case "zero": return SwiftUICore.UnitPoint.zero
-      case "center": return SwiftUICore.UnitPoint.center
-      case "leading": return SwiftUICore.UnitPoint.leading
-      case "trailing": return SwiftUICore.UnitPoint.trailing
-      case "top": return SwiftUICore.UnitPoint.top
-      case "bottom": return SwiftUICore.UnitPoint.bottom
-      case "topLeading": return SwiftUICore.UnitPoint.topLeading
-      case "topTrailing": return SwiftUICore.UnitPoint.topTrailing
-      case "bottomLeading": return SwiftUICore.UnitPoint.bottomLeading
-      case "bottomTrailing": return SwiftUICore.UnitPoint.bottomTrailing
+      case "zero": return SwiftUI.UnitPoint.zero
+      case "center": return SwiftUI.UnitPoint.center
+      case "leading": return SwiftUI.UnitPoint.leading
+      case "trailing": return SwiftUI.UnitPoint.trailing
+      case "top": return SwiftUI.UnitPoint.top
+      case "bottom": return SwiftUI.UnitPoint.bottom
+      case "topLeading": return SwiftUI.UnitPoint.topLeading
+      case "topTrailing": return SwiftUI.UnitPoint.topTrailing
+      case "bottomLeading": return SwiftUI.UnitPoint.bottomLeading
+      case "bottomTrailing": return SwiftUI.UnitPoint.bottomTrailing
       default: preconditionFailure("invalid accessibilityDropPointWithPointAndDescriptionAndIsEnabled.point: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.Text = {
+    let argument1: SwiftUI.Text = {
       guard let raw = values[1] else { preconditionFailure("missing accessibilityDropPointWithPointAndDescriptionAndIsEnabled.description") }
       return Text(raw)
     }()
@@ -1050,13 +1117,13 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityHeading(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "unspecified": self.accessibilityHeading(SwiftUICore.AccessibilityHeadingLevel.unspecified)
-      case "h1": self.accessibilityHeading(SwiftUICore.AccessibilityHeadingLevel.h1)
-      case "h2": self.accessibilityHeading(SwiftUICore.AccessibilityHeadingLevel.h2)
-      case "h3": self.accessibilityHeading(SwiftUICore.AccessibilityHeadingLevel.h3)
-      case "h4": self.accessibilityHeading(SwiftUICore.AccessibilityHeadingLevel.h4)
-      case "h5": self.accessibilityHeading(SwiftUICore.AccessibilityHeadingLevel.h5)
-      case "h6": self.accessibilityHeading(SwiftUICore.AccessibilityHeadingLevel.h6)
+      case "unspecified": self.accessibilityHeading(SwiftUI.AccessibilityHeadingLevel.unspecified)
+      case "h1": self.accessibilityHeading(SwiftUI.AccessibilityHeadingLevel.h1)
+      case "h2": self.accessibilityHeading(SwiftUI.AccessibilityHeadingLevel.h2)
+      case "h3": self.accessibilityHeading(SwiftUI.AccessibilityHeadingLevel.h3)
+      case "h4": self.accessibilityHeading(SwiftUI.AccessibilityHeadingLevel.h4)
+      case "h5": self.accessibilityHeading(SwiftUI.AccessibilityHeadingLevel.h5)
+      case "h6": self.accessibilityHeading(SwiftUI.AccessibilityHeadingLevel.h6)
     default: preconditionFailure("invalid accessibilityHeading: \(value)")
     }
   }
@@ -1096,7 +1163,7 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid accessibilityHintWithHintAndIsEnabled: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Text = {
+    let argument0: SwiftUI.Text = {
       guard let raw = values[0] else { preconditionFailure("missing accessibilityHintWithHintAndIsEnabled.hint") }
       return Text(raw)
     }()
@@ -1151,7 +1218,7 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid accessibilityInputLabels: \(value)") }
       return decoded
     }()
-    let argument0: [SwiftUICore.Text] = {
+    let argument0: [SwiftUI.Text] = {
       guard let raw = values[0] else { preconditionFailure("missing accessibilityInputLabels.inputLabels") }
       guard let data = raw.data(using: .utf8), let strings = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid accessibilityInputLabels.inputLabels: \(raw)") }
       return strings.map { Text($0) }
@@ -1173,7 +1240,7 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid accessibilityLabelWithLabelAndIsEnabled: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Text = {
+    let argument0: SwiftUI.Text = {
       guard let raw = values[0] else { preconditionFailure("missing accessibilityLabelWithLabelAndIsEnabled.label") }
       return Text(raw)
     }()
@@ -1193,23 +1260,23 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityRemoveTraits(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "isButton": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.isButton)
-      case "isHeader": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.isHeader)
-      case "isSelected": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.isSelected)
-      case "isLink": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.isLink)
-      case "isSearchField": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.isSearchField)
-      case "isImage": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.isImage)
-      case "playsSound": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.playsSound)
-      case "isKeyboardKey": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.isKeyboardKey)
-      case "isStaticText": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.isStaticText)
-      case "isSummaryElement": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.isSummaryElement)
-      case "updatesFrequently": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.updatesFrequently)
-      case "startsMediaSession": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.startsMediaSession)
-      case "allowsDirectInteraction": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.allowsDirectInteraction)
-      case "causesPageTurn": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.causesPageTurn)
-      case "isModal": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.isModal)
-      case "isToggle": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.isToggle)
-      case "isTabBar": self.accessibilityRemoveTraits(SwiftUICore.AccessibilityTraits.isTabBar)
+      case "isButton": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isButton)
+      case "isHeader": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isHeader)
+      case "isSelected": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isSelected)
+      case "isLink": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isLink)
+      case "isSearchField": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isSearchField)
+      case "isImage": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isImage)
+      case "playsSound": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.playsSound)
+      case "isKeyboardKey": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isKeyboardKey)
+      case "isStaticText": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isStaticText)
+      case "isSummaryElement": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isSummaryElement)
+      case "updatesFrequently": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.updatesFrequently)
+      case "startsMediaSession": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.startsMediaSession)
+      case "allowsDirectInteraction": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.allowsDirectInteraction)
+      case "causesPageTurn": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.causesPageTurn)
+      case "isModal": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isModal)
+      case "isToggle": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isToggle)
+      case "isTabBar": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isTabBar)
     default: preconditionFailure("invalid accessibilityRemoveTraits: \(value)")
     }
   }
@@ -1253,7 +1320,7 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid accessibilityScrollStatus: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Text = {
+    let argument0: SwiftUI.Text = {
       guard let raw = values[0] else { preconditionFailure("missing accessibilityScrollStatus.status") }
       return Text(raw)
     }()
@@ -1280,14 +1347,14 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityTextContentType(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "plain": self.accessibilityTextContentType(SwiftUICore.AccessibilityTextContentType.plain)
-      case "console": self.accessibilityTextContentType(SwiftUICore.AccessibilityTextContentType.console)
-      case "fileSystem": self.accessibilityTextContentType(SwiftUICore.AccessibilityTextContentType.fileSystem)
-      case "messaging": self.accessibilityTextContentType(SwiftUICore.AccessibilityTextContentType.messaging)
-      case "narrative": self.accessibilityTextContentType(SwiftUICore.AccessibilityTextContentType.narrative)
-      case "sourceCode": self.accessibilityTextContentType(SwiftUICore.AccessibilityTextContentType.sourceCode)
-      case "spreadsheet": self.accessibilityTextContentType(SwiftUICore.AccessibilityTextContentType.spreadsheet)
-      case "wordProcessing": self.accessibilityTextContentType(SwiftUICore.AccessibilityTextContentType.wordProcessing)
+      case "plain": self.accessibilityTextContentType(SwiftUI.AccessibilityTextContentType.plain)
+      case "console": self.accessibilityTextContentType(SwiftUI.AccessibilityTextContentType.console)
+      case "fileSystem": self.accessibilityTextContentType(SwiftUI.AccessibilityTextContentType.fileSystem)
+      case "messaging": self.accessibilityTextContentType(SwiftUI.AccessibilityTextContentType.messaging)
+      case "narrative": self.accessibilityTextContentType(SwiftUI.AccessibilityTextContentType.narrative)
+      case "sourceCode": self.accessibilityTextContentType(SwiftUI.AccessibilityTextContentType.sourceCode)
+      case "spreadsheet": self.accessibilityTextContentType(SwiftUI.AccessibilityTextContentType.spreadsheet)
+      case "wordProcessing": self.accessibilityTextContentType(SwiftUI.AccessibilityTextContentType.wordProcessing)
     default: preconditionFailure("invalid accessibilityTextContentType: \(value)")
     }
   }
@@ -1304,7 +1371,7 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid accessibilityValueWithValueDescriptionAndIsEnabled: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Text = {
+    let argument0: SwiftUI.Text = {
       guard let raw = values[0] else { preconditionFailure("missing accessibilityValueWithValueDescriptionAndIsEnabled.valueDescription") }
       return Text(raw)
     }()
@@ -1320,16 +1387,16 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityWithActivationPoint(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "zero": self.accessibility(activationPoint: SwiftUICore.UnitPoint.zero)
-      case "center": self.accessibility(activationPoint: SwiftUICore.UnitPoint.center)
-      case "leading": self.accessibility(activationPoint: SwiftUICore.UnitPoint.leading)
-      case "trailing": self.accessibility(activationPoint: SwiftUICore.UnitPoint.trailing)
-      case "top": self.accessibility(activationPoint: SwiftUICore.UnitPoint.top)
-      case "bottom": self.accessibility(activationPoint: SwiftUICore.UnitPoint.bottom)
-      case "topLeading": self.accessibility(activationPoint: SwiftUICore.UnitPoint.topLeading)
-      case "topTrailing": self.accessibility(activationPoint: SwiftUICore.UnitPoint.topTrailing)
-      case "bottomLeading": self.accessibility(activationPoint: SwiftUICore.UnitPoint.bottomLeading)
-      case "bottomTrailing": self.accessibility(activationPoint: SwiftUICore.UnitPoint.bottomTrailing)
+      case "zero": self.accessibility(activationPoint: SwiftUI.UnitPoint.zero)
+      case "center": self.accessibility(activationPoint: SwiftUI.UnitPoint.center)
+      case "leading": self.accessibility(activationPoint: SwiftUI.UnitPoint.leading)
+      case "trailing": self.accessibility(activationPoint: SwiftUI.UnitPoint.trailing)
+      case "top": self.accessibility(activationPoint: SwiftUI.UnitPoint.top)
+      case "bottom": self.accessibility(activationPoint: SwiftUI.UnitPoint.bottom)
+      case "topLeading": self.accessibility(activationPoint: SwiftUI.UnitPoint.topLeading)
+      case "topTrailing": self.accessibility(activationPoint: SwiftUI.UnitPoint.topTrailing)
+      case "bottomLeading": self.accessibility(activationPoint: SwiftUI.UnitPoint.bottomLeading)
+      case "bottomTrailing": self.accessibility(activationPoint: SwiftUI.UnitPoint.bottomTrailing)
     default: preconditionFailure("invalid accessibilityWithActivationPoint: \(value)")
     }
   }
@@ -1337,23 +1404,23 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityWithAddTraits(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "isButton": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.isButton)
-      case "isHeader": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.isHeader)
-      case "isSelected": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.isSelected)
-      case "isLink": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.isLink)
-      case "isSearchField": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.isSearchField)
-      case "isImage": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.isImage)
-      case "playsSound": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.playsSound)
-      case "isKeyboardKey": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.isKeyboardKey)
-      case "isStaticText": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.isStaticText)
-      case "isSummaryElement": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.isSummaryElement)
-      case "updatesFrequently": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.updatesFrequently)
-      case "startsMediaSession": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.startsMediaSession)
-      case "allowsDirectInteraction": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.allowsDirectInteraction)
-      case "causesPageTurn": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.causesPageTurn)
-      case "isModal": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.isModal)
-      case "isToggle": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.isToggle)
-      case "isTabBar": self.accessibility(addTraits: SwiftUICore.AccessibilityTraits.isTabBar)
+      case "isButton": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isButton)
+      case "isHeader": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isHeader)
+      case "isSelected": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isSelected)
+      case "isLink": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isLink)
+      case "isSearchField": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isSearchField)
+      case "isImage": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isImage)
+      case "playsSound": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.playsSound)
+      case "isKeyboardKey": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isKeyboardKey)
+      case "isStaticText": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isStaticText)
+      case "isSummaryElement": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isSummaryElement)
+      case "updatesFrequently": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.updatesFrequently)
+      case "startsMediaSession": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.startsMediaSession)
+      case "allowsDirectInteraction": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.allowsDirectInteraction)
+      case "causesPageTurn": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.causesPageTurn)
+      case "isModal": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isModal)
+      case "isToggle": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isToggle)
+      case "isTabBar": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isTabBar)
     default: preconditionFailure("invalid accessibilityWithAddTraits: \(value)")
     }
   }
@@ -1378,23 +1445,23 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityWithRemoveTraits(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "isButton": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.isButton)
-      case "isHeader": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.isHeader)
-      case "isSelected": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.isSelected)
-      case "isLink": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.isLink)
-      case "isSearchField": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.isSearchField)
-      case "isImage": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.isImage)
-      case "playsSound": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.playsSound)
-      case "isKeyboardKey": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.isKeyboardKey)
-      case "isStaticText": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.isStaticText)
-      case "isSummaryElement": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.isSummaryElement)
-      case "updatesFrequently": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.updatesFrequently)
-      case "startsMediaSession": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.startsMediaSession)
-      case "allowsDirectInteraction": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.allowsDirectInteraction)
-      case "causesPageTurn": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.causesPageTurn)
-      case "isModal": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.isModal)
-      case "isToggle": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.isToggle)
-      case "isTabBar": self.accessibility(removeTraits: SwiftUICore.AccessibilityTraits.isTabBar)
+      case "isButton": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isButton)
+      case "isHeader": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isHeader)
+      case "isSelected": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isSelected)
+      case "isLink": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isLink)
+      case "isSearchField": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isSearchField)
+      case "isImage": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isImage)
+      case "playsSound": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.playsSound)
+      case "isKeyboardKey": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isKeyboardKey)
+      case "isStaticText": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isStaticText)
+      case "isSummaryElement": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isSummaryElement)
+      case "updatesFrequently": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.updatesFrequently)
+      case "startsMediaSession": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.startsMediaSession)
+      case "allowsDirectInteraction": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.allowsDirectInteraction)
+      case "causesPageTurn": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.causesPageTurn)
+      case "isModal": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isModal)
+      case "isToggle": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isToggle)
+      case "isTabBar": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isTabBar)
     default: preconditionFailure("invalid accessibilityWithRemoveTraits: \(value)")
     }
   }
@@ -1434,14 +1501,14 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid alignmentGuideWithHorizontalAlignment: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.HorizontalAlignment = {
+    let argument0: SwiftUI.HorizontalAlignment = {
       guard let raw = values[0] else { preconditionFailure("missing alignmentGuideWithHorizontalAlignment.g") }
       switch raw {
-      case "leading": return SwiftUICore.HorizontalAlignment.leading
-      case "center": return SwiftUICore.HorizontalAlignment.center
-      case "trailing": return SwiftUICore.HorizontalAlignment.trailing
-      case "listRowSeparatorLeading": return SwiftUICore.HorizontalAlignment.listRowSeparatorLeading
-      case "listRowSeparatorTrailing": return SwiftUICore.HorizontalAlignment.listRowSeparatorTrailing
+      case "leading": return SwiftUI.HorizontalAlignment.leading
+      case "center": return SwiftUI.HorizontalAlignment.center
+      case "trailing": return SwiftUI.HorizontalAlignment.trailing
+      case "listRowSeparatorLeading": return SwiftUI.HorizontalAlignment.listRowSeparatorLeading
+      case "listRowSeparatorTrailing": return SwiftUI.HorizontalAlignment.listRowSeparatorTrailing
       default: preconditionFailure("invalid alignmentGuideWithHorizontalAlignment.g: \(raw)")
       }
     }()
@@ -1450,7 +1517,7 @@ extension View {
       guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid alignmentGuideWithHorizontalAlignment.computeValue: \(raw)") }
       return CGFloat(number)
     }()
-    self.alignmentGuide(argument0, computeValue: { (_: SwiftUICore.ViewDimensions) in argument1 })
+    self.alignmentGuide(argument0, computeValue: { (_: SwiftUI.ViewDimensions) in argument1 })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAlignmentGuideWithVerticalAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -1460,14 +1527,14 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid alignmentGuideWithVerticalAlignment: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.VerticalAlignment = {
+    let argument0: SwiftUI.VerticalAlignment = {
       guard let raw = values[0] else { preconditionFailure("missing alignmentGuideWithVerticalAlignment.g") }
       switch raw {
-      case "top": return SwiftUICore.VerticalAlignment.top
-      case "center": return SwiftUICore.VerticalAlignment.center
-      case "bottom": return SwiftUICore.VerticalAlignment.bottom
-      case "firstTextBaseline": return SwiftUICore.VerticalAlignment.firstTextBaseline
-      case "lastTextBaseline": return SwiftUICore.VerticalAlignment.lastTextBaseline
+      case "top": return SwiftUI.VerticalAlignment.top
+      case "center": return SwiftUI.VerticalAlignment.center
+      case "bottom": return SwiftUI.VerticalAlignment.bottom
+      case "firstTextBaseline": return SwiftUI.VerticalAlignment.firstTextBaseline
+      case "lastTextBaseline": return SwiftUI.VerticalAlignment.lastTextBaseline
       default: preconditionFailure("invalid alignmentGuideWithVerticalAlignment.g: \(raw)")
       }
     }()
@@ -1476,15 +1543,15 @@ extension View {
       guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid alignmentGuideWithVerticalAlignment.computeValue: \(raw)") }
       return CGFloat(number)
     }()
-    self.alignmentGuide(argument0, computeValue: { (_: SwiftUICore.ViewDimensions) in argument1 })
+    self.alignmentGuide(argument0, computeValue: { (_: SwiftUI.ViewDimensions) in argument1 })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAllowedDynamicRange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.allowedDynamicRange(nil as SwiftUICore.Image.DynamicRange?)
-      case "standard": self.allowedDynamicRange(SwiftUICore.Image.DynamicRange.standard)
-      case "constrainedHigh": self.allowedDynamicRange(SwiftUICore.Image.DynamicRange.constrainedHigh)
-      case "high": self.allowedDynamicRange(SwiftUICore.Image.DynamicRange.high)
+      case "null": self.allowedDynamicRange(nil as SwiftUI.Image.DynamicRange?)
+      case "standard": self.allowedDynamicRange(SwiftUI.Image.DynamicRange.standard)
+      case "constrainedHigh": self.allowedDynamicRange(SwiftUI.Image.DynamicRange.constrainedHigh)
+      case "high": self.allowedDynamicRange(SwiftUI.Image.DynamicRange.high)
     default: preconditionFailure("invalid allowedDynamicRange: \(value)")
     }
   }
@@ -1510,20 +1577,26 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKAnimation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.animation(nil as SwiftUICore.Animation?)
-      case "default": self.animation(SwiftUICore.Animation.default)
-      case "interpolatingSpring": self.animation(SwiftUICore.Animation.interpolatingSpring)
-      case "spring": self.animation(SwiftUICore.Animation.spring)
-      case "interactiveSpring": self.animation(SwiftUICore.Animation.interactiveSpring)
-      case "smooth": self.animation(SwiftUICore.Animation.smooth)
-      case "snappy": self.animation(SwiftUICore.Animation.snappy)
-      case "bouncy": self.animation(SwiftUICore.Animation.bouncy)
-      case "easeInOut": self.animation(SwiftUICore.Animation.easeInOut)
-      case "easeIn": self.animation(SwiftUICore.Animation.easeIn)
-      case "easeOut": self.animation(SwiftUICore.Animation.easeOut)
-      case "linear": self.animation(SwiftUICore.Animation.linear)
+      case "null": self.animation(nil as SwiftUI.Animation?)
+      case "default": self.animation(SwiftUI.Animation.default)
+      case "interpolatingSpring": self.animation(SwiftUI.Animation.interpolatingSpring)
+      case "spring": self.animation(SwiftUI.Animation.spring)
+      case "interactiveSpring": self.animation(SwiftUI.Animation.interactiveSpring)
+      case "smooth": self.animation(SwiftUI.Animation.smooth)
+      case "snappy": self.animation(SwiftUI.Animation.snappy)
+      case "bouncy": self.animation(SwiftUI.Animation.bouncy)
+      case "easeInOut": self.animation(SwiftUI.Animation.easeInOut)
+      case "easeIn": self.animation(SwiftUI.Animation.easeIn)
+      case "easeOut": self.animation(SwiftUI.Animation.easeOut)
+      case "linear": self.animation(SwiftUI.Animation.linear)
     default: preconditionFailure("invalid animation: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAppEntityIdentifier(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if value == "null" { if #available(iOS 18.4, *) { self.appEntityIdentifier(nil as AppIntents.EntityIdentifier?) } else { self } } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+      if #available(iOS 18.4, *) { self.appEntityIdentifier((AppIntents.EntityIdentifier(activityIdentifier: decoded) ?? { () -> AppIntents.EntityIdentifier in preconditionFailure("invalid appEntityIdentifier") }())) } else { self }
+    } else { preconditionFailure("invalid appEntityIdentifier: \(value)") } }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAppStoreMerchandising(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -1534,7 +1607,7 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid appStoreMerchandising: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
       guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid appStoreMerchandising.isPresented") }
       return Binding<Bool>(get: { raw == "true" }, set: { emit("appStoreMerchandising.isPresented", String($0)) })
     }()
@@ -1558,11 +1631,11 @@ extension View {
       guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid aspectRatio.aspectRatio: \(raw)") }
       return CGFloat(number)
     }()
-    let argument1: SwiftUICore.ContentMode = {
+    let argument1: SwiftUI.ContentMode = {
       guard let raw = values[1] else { preconditionFailure("missing aspectRatio.contentMode") }
       switch raw {
-      case "fit": return SwiftUICore.ContentMode.fit
-      case "fill": return SwiftUICore.ContentMode.fill
+      case "fit": return SwiftUI.ContentMode.fit
+      case "fill": return SwiftUI.ContentMode.fill
       default: preconditionFailure("invalid aspectRatio.contentMode: \(raw)")
       }
     }()
@@ -1580,7 +1653,13 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAsyncImageURLSession(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "shared": if #available(iOS 27, *) { self.asyncImageURLSession(Foundation.URLSession.shared) } else { self }
+      case "shared":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.asyncImageURLSession(Foundation.URLSession.shared) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid asyncImageURLSession: \(value)")
     }
   }
@@ -1671,7 +1750,7 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKBadgeWithOptionalText(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { self.badge(nil as SwiftUICore.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+    if value == "null" { self.badge(nil as SwiftUI.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       self.badge(Text(decoded))
     } else { preconditionFailure("invalid badgeWithOptionalText: \(value)") } }
   }
@@ -1685,27 +1764,27 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKBlendMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "normal": self.blendMode(SwiftUICore.BlendMode.normal)
-      case "multiply": self.blendMode(SwiftUICore.BlendMode.multiply)
-      case "screen": self.blendMode(SwiftUICore.BlendMode.screen)
-      case "overlay": self.blendMode(SwiftUICore.BlendMode.overlay)
-      case "darken": self.blendMode(SwiftUICore.BlendMode.darken)
-      case "lighten": self.blendMode(SwiftUICore.BlendMode.lighten)
-      case "colorDodge": self.blendMode(SwiftUICore.BlendMode.colorDodge)
-      case "colorBurn": self.blendMode(SwiftUICore.BlendMode.colorBurn)
-      case "softLight": self.blendMode(SwiftUICore.BlendMode.softLight)
-      case "hardLight": self.blendMode(SwiftUICore.BlendMode.hardLight)
-      case "difference": self.blendMode(SwiftUICore.BlendMode.difference)
-      case "exclusion": self.blendMode(SwiftUICore.BlendMode.exclusion)
-      case "hue": self.blendMode(SwiftUICore.BlendMode.hue)
-      case "saturation": self.blendMode(SwiftUICore.BlendMode.saturation)
-      case "color": self.blendMode(SwiftUICore.BlendMode.color)
-      case "luminosity": self.blendMode(SwiftUICore.BlendMode.luminosity)
-      case "sourceAtop": self.blendMode(SwiftUICore.BlendMode.sourceAtop)
-      case "destinationOver": self.blendMode(SwiftUICore.BlendMode.destinationOver)
-      case "destinationOut": self.blendMode(SwiftUICore.BlendMode.destinationOut)
-      case "plusDarker": self.blendMode(SwiftUICore.BlendMode.plusDarker)
-      case "plusLighter": self.blendMode(SwiftUICore.BlendMode.plusLighter)
+      case "normal": self.blendMode(SwiftUI.BlendMode.normal)
+      case "multiply": self.blendMode(SwiftUI.BlendMode.multiply)
+      case "screen": self.blendMode(SwiftUI.BlendMode.screen)
+      case "overlay": self.blendMode(SwiftUI.BlendMode.overlay)
+      case "darken": self.blendMode(SwiftUI.BlendMode.darken)
+      case "lighten": self.blendMode(SwiftUI.BlendMode.lighten)
+      case "colorDodge": self.blendMode(SwiftUI.BlendMode.colorDodge)
+      case "colorBurn": self.blendMode(SwiftUI.BlendMode.colorBurn)
+      case "softLight": self.blendMode(SwiftUI.BlendMode.softLight)
+      case "hardLight": self.blendMode(SwiftUI.BlendMode.hardLight)
+      case "difference": self.blendMode(SwiftUI.BlendMode.difference)
+      case "exclusion": self.blendMode(SwiftUI.BlendMode.exclusion)
+      case "hue": self.blendMode(SwiftUI.BlendMode.hue)
+      case "saturation": self.blendMode(SwiftUI.BlendMode.saturation)
+      case "color": self.blendMode(SwiftUI.BlendMode.color)
+      case "luminosity": self.blendMode(SwiftUI.BlendMode.luminosity)
+      case "sourceAtop": self.blendMode(SwiftUI.BlendMode.sourceAtop)
+      case "destinationOver": self.blendMode(SwiftUI.BlendMode.destinationOver)
+      case "destinationOut": self.blendMode(SwiftUI.BlendMode.destinationOut)
+      case "plusDarker": self.blendMode(SwiftUI.BlendMode.plusDarker)
+      case "plusLighter": self.blendMode(SwiftUI.BlendMode.plusLighter)
     default: preconditionFailure("invalid blendMode: \(value)")
     }
   }
@@ -1765,9 +1844,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKButtonSizing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 26, *) { self.buttonSizing(SwiftUICore.ButtonSizing.automatic) } else { self }
-      case "flexible": if #available(iOS 26, *) { self.buttonSizing(SwiftUICore.ButtonSizing.flexible) } else { self }
-      case "fitted": if #available(iOS 26, *) { self.buttonSizing(SwiftUICore.ButtonSizing.fitted) } else { self }
+      case "automatic": if #available(iOS 26, *) { self.buttonSizing(SwiftUI.ButtonSizing.automatic) } else { self }
+      case "flexible": if #available(iOS 26, *) { self.buttonSizing(SwiftUI.ButtonSizing.flexible) } else { self }
+      case "fitted": if #available(iOS 26, *) { self.buttonSizing(SwiftUI.ButtonSizing.fitted) } else { self }
     default: preconditionFailure("invalid buttonSizing: \(value)")
     }
   }
@@ -1791,6 +1870,26 @@ extension View {
       self.clipped(antialiased: value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKClipShape(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "buttonBorder": self.clipShape(.buttonBorder)
+      case "rect": self.clipShape(.rect)
+      case "capsule": self.clipShape(.capsule)
+      case "ellipse": self.clipShape(.ellipse)
+      case "circle": self.clipShape(.circle)
+      case "containerRelative": self.clipShape(.containerRelative)
+      case "textInputBorder":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.clipShape(.textInputBorder) } else { self }
+#else
+self
+#endif
+
+    default: preconditionFailure("invalid clipShape: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKColorEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -1798,9 +1897,9 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid colorEffect: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Shader = {
+    let argument0: SwiftUI.Shader = {
       guard let raw = values[0] else { preconditionFailure("missing colorEffect.shader") }
-      return SwiftUICore.Shader(function: SwiftUICore.ShaderFunction(library: SwiftUICore.ShaderLibrary.default, name: raw), arguments: [])
+      return SwiftUI.Shader(function: SwiftUI.ShaderFunction(library: SwiftUI.ShaderLibrary.default, name: raw), arguments: [])
     }()
     let argument1: Swift.Bool = {
       guard let raw = values[1] else { preconditionFailure("missing colorEffect.isEnabled") }
@@ -1818,25 +1917,25 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKColorMultiply(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "accentColor": self.colorMultiply(SwiftUICore.Color.accentColor)
-      case "red": self.colorMultiply(SwiftUICore.Color.red)
-      case "orange": self.colorMultiply(SwiftUICore.Color.orange)
-      case "yellow": self.colorMultiply(SwiftUICore.Color.yellow)
-      case "green": self.colorMultiply(SwiftUICore.Color.green)
-      case "mint": self.colorMultiply(SwiftUICore.Color.mint)
-      case "teal": self.colorMultiply(SwiftUICore.Color.teal)
-      case "cyan": self.colorMultiply(SwiftUICore.Color.cyan)
-      case "blue": self.colorMultiply(SwiftUICore.Color.blue)
-      case "indigo": self.colorMultiply(SwiftUICore.Color.indigo)
-      case "purple": self.colorMultiply(SwiftUICore.Color.purple)
-      case "pink": self.colorMultiply(SwiftUICore.Color.pink)
-      case "brown": self.colorMultiply(SwiftUICore.Color.brown)
-      case "white": self.colorMultiply(SwiftUICore.Color.white)
-      case "gray": self.colorMultiply(SwiftUICore.Color.gray)
-      case "black": self.colorMultiply(SwiftUICore.Color.black)
-      case "clear": self.colorMultiply(SwiftUICore.Color.clear)
-      case "primary": self.colorMultiply(SwiftUICore.Color.primary)
-      case "secondary": self.colorMultiply(SwiftUICore.Color.secondary)
+      case "accentColor": self.colorMultiply(SwiftUI.Color.accentColor)
+      case "red": self.colorMultiply(SwiftUI.Color.red)
+      case "orange": self.colorMultiply(SwiftUI.Color.orange)
+      case "yellow": self.colorMultiply(SwiftUI.Color.yellow)
+      case "green": self.colorMultiply(SwiftUI.Color.green)
+      case "mint": self.colorMultiply(SwiftUI.Color.mint)
+      case "teal": self.colorMultiply(SwiftUI.Color.teal)
+      case "cyan": self.colorMultiply(SwiftUI.Color.cyan)
+      case "blue": self.colorMultiply(SwiftUI.Color.blue)
+      case "indigo": self.colorMultiply(SwiftUI.Color.indigo)
+      case "purple": self.colorMultiply(SwiftUI.Color.purple)
+      case "pink": self.colorMultiply(SwiftUI.Color.pink)
+      case "brown": self.colorMultiply(SwiftUI.Color.brown)
+      case "white": self.colorMultiply(SwiftUI.Color.white)
+      case "gray": self.colorMultiply(SwiftUI.Color.gray)
+      case "black": self.colorMultiply(SwiftUI.Color.black)
+      case "clear": self.colorMultiply(SwiftUI.Color.clear)
+      case "primary": self.colorMultiply(SwiftUI.Color.primary)
+      case "secondary": self.colorMultiply(SwiftUI.Color.secondary)
     default: preconditionFailure("invalid colorMultiply: \(value)")
     }
   }
@@ -1844,8 +1943,8 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "light": self.colorScheme(SwiftUICore.ColorScheme.light)
-      case "dark": self.colorScheme(SwiftUICore.ColorScheme.dark)
+      case "light": self.colorScheme(SwiftUI.ColorScheme.light)
+      case "dark": self.colorScheme(SwiftUI.ColorScheme.dark)
     default: preconditionFailure("invalid colorScheme: \(value)")
     }
   }
@@ -1863,16 +1962,16 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid containerCornerOffset: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Edge.Set = {
+    let argument0: SwiftUI.Edge.Set = {
       guard let raw = values[0] else { preconditionFailure("missing containerCornerOffset.edges") }
       switch raw {
-      case "top": return SwiftUICore.Edge.Set.top
-      case "leading": return SwiftUICore.Edge.Set.leading
-      case "bottom": return SwiftUICore.Edge.Set.bottom
-      case "trailing": return SwiftUICore.Edge.Set.trailing
-      case "all": return SwiftUICore.Edge.Set.all
-      case "horizontal": return SwiftUICore.Edge.Set.horizontal
-      case "vertical": return SwiftUICore.Edge.Set.vertical
+      case "top": return SwiftUI.Edge.Set.top
+      case "leading": return SwiftUI.Edge.Set.leading
+      case "bottom": return SwiftUI.Edge.Set.bottom
+      case "trailing": return SwiftUI.Edge.Set.trailing
+      case "all": return SwiftUI.Edge.Set.all
+      case "horizontal": return SwiftUI.Edge.Set.horizontal
+      case "vertical": return SwiftUI.Edge.Set.vertical
       default: preconditionFailure("invalid containerCornerOffset.edges: \(raw)")
       }
     }()
@@ -1892,32 +1991,32 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid containerRelativeFrameWithAxesAndAlignment: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Axis.Set = {
+    let argument0: SwiftUI.Axis.Set = {
       guard let raw = values[0] else { preconditionFailure("missing containerRelativeFrameWithAxesAndAlignment.axes") }
       switch raw {
-      case "horizontal": return SwiftUICore.Axis.Set.horizontal
-      case "vertical": return SwiftUICore.Axis.Set.vertical
+      case "horizontal": return SwiftUI.Axis.Set.horizontal
+      case "vertical": return SwiftUI.Axis.Set.vertical
       default: preconditionFailure("invalid containerRelativeFrameWithAxesAndAlignment.axes: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.Alignment = {
+    let argument1: SwiftUI.Alignment = {
       guard let raw = values[1] else { preconditionFailure("missing containerRelativeFrameWithAxesAndAlignment.alignment") }
       switch raw {
-      case "center": return SwiftUICore.Alignment.center
-      case "leading": return SwiftUICore.Alignment.leading
-      case "trailing": return SwiftUICore.Alignment.trailing
-      case "top": return SwiftUICore.Alignment.top
-      case "bottom": return SwiftUICore.Alignment.bottom
-      case "topLeading": return SwiftUICore.Alignment.topLeading
-      case "topTrailing": return SwiftUICore.Alignment.topTrailing
-      case "bottomLeading": return SwiftUICore.Alignment.bottomLeading
-      case "bottomTrailing": return SwiftUICore.Alignment.bottomTrailing
-      case "centerFirstTextBaseline": return SwiftUICore.Alignment.centerFirstTextBaseline
-      case "centerLastTextBaseline": return SwiftUICore.Alignment.centerLastTextBaseline
-      case "leadingFirstTextBaseline": return SwiftUICore.Alignment.leadingFirstTextBaseline
-      case "leadingLastTextBaseline": return SwiftUICore.Alignment.leadingLastTextBaseline
-      case "trailingFirstTextBaseline": return SwiftUICore.Alignment.trailingFirstTextBaseline
-      case "trailingLastTextBaseline": return SwiftUICore.Alignment.trailingLastTextBaseline
+      case "center": return SwiftUI.Alignment.center
+      case "leading": return SwiftUI.Alignment.leading
+      case "trailing": return SwiftUI.Alignment.trailing
+      case "top": return SwiftUI.Alignment.top
+      case "bottom": return SwiftUI.Alignment.bottom
+      case "topLeading": return SwiftUI.Alignment.topLeading
+      case "topTrailing": return SwiftUI.Alignment.topTrailing
+      case "bottomLeading": return SwiftUI.Alignment.bottomLeading
+      case "bottomTrailing": return SwiftUI.Alignment.bottomTrailing
+      case "centerFirstTextBaseline": return SwiftUI.Alignment.centerFirstTextBaseline
+      case "centerLastTextBaseline": return SwiftUI.Alignment.centerLastTextBaseline
+      case "leadingFirstTextBaseline": return SwiftUI.Alignment.leadingFirstTextBaseline
+      case "leadingLastTextBaseline": return SwiftUI.Alignment.leadingLastTextBaseline
+      case "trailingFirstTextBaseline": return SwiftUI.Alignment.trailingFirstTextBaseline
+      case "trailingLastTextBaseline": return SwiftUI.Alignment.trailingLastTextBaseline
       default: preconditionFailure("invalid containerRelativeFrameWithAxesAndAlignment.alignment: \(raw)")
       }
     }()
@@ -1931,11 +2030,11 @@ extension View {
         decoded.count == 5 else { preconditionFailure("invalid containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Axis.Set = {
+    let argument0: SwiftUI.Axis.Set = {
       guard let raw = values[0] else { preconditionFailure("missing containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment.axes") }
       switch raw {
-      case "horizontal": return SwiftUICore.Axis.Set.horizontal
-      case "vertical": return SwiftUICore.Axis.Set.vertical
+      case "horizontal": return SwiftUI.Axis.Set.horizontal
+      case "vertical": return SwiftUI.Axis.Set.vertical
       default: preconditionFailure("invalid containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment.axes: \(raw)")
       }
     }()
@@ -1954,24 +2053,24 @@ extension View {
       guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment.spacing: \(raw)") }
       return CGFloat(number)
     }()
-    let argument4: SwiftUICore.Alignment = {
+    let argument4: SwiftUI.Alignment = {
       guard let raw = values[4] else { preconditionFailure("missing containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment.alignment") }
       switch raw {
-      case "center": return SwiftUICore.Alignment.center
-      case "leading": return SwiftUICore.Alignment.leading
-      case "trailing": return SwiftUICore.Alignment.trailing
-      case "top": return SwiftUICore.Alignment.top
-      case "bottom": return SwiftUICore.Alignment.bottom
-      case "topLeading": return SwiftUICore.Alignment.topLeading
-      case "topTrailing": return SwiftUICore.Alignment.topTrailing
-      case "bottomLeading": return SwiftUICore.Alignment.bottomLeading
-      case "bottomTrailing": return SwiftUICore.Alignment.bottomTrailing
-      case "centerFirstTextBaseline": return SwiftUICore.Alignment.centerFirstTextBaseline
-      case "centerLastTextBaseline": return SwiftUICore.Alignment.centerLastTextBaseline
-      case "leadingFirstTextBaseline": return SwiftUICore.Alignment.leadingFirstTextBaseline
-      case "leadingLastTextBaseline": return SwiftUICore.Alignment.leadingLastTextBaseline
-      case "trailingFirstTextBaseline": return SwiftUICore.Alignment.trailingFirstTextBaseline
-      case "trailingLastTextBaseline": return SwiftUICore.Alignment.trailingLastTextBaseline
+      case "center": return SwiftUI.Alignment.center
+      case "leading": return SwiftUI.Alignment.leading
+      case "trailing": return SwiftUI.Alignment.trailing
+      case "top": return SwiftUI.Alignment.top
+      case "bottom": return SwiftUI.Alignment.bottom
+      case "topLeading": return SwiftUI.Alignment.topLeading
+      case "topTrailing": return SwiftUI.Alignment.topTrailing
+      case "bottomLeading": return SwiftUI.Alignment.bottomLeading
+      case "bottomTrailing": return SwiftUI.Alignment.bottomTrailing
+      case "centerFirstTextBaseline": return SwiftUI.Alignment.centerFirstTextBaseline
+      case "centerLastTextBaseline": return SwiftUI.Alignment.centerLastTextBaseline
+      case "leadingFirstTextBaseline": return SwiftUI.Alignment.leadingFirstTextBaseline
+      case "leadingLastTextBaseline": return SwiftUI.Alignment.leadingLastTextBaseline
+      case "trailingFirstTextBaseline": return SwiftUI.Alignment.trailingFirstTextBaseline
+      case "trailingLastTextBaseline": return SwiftUI.Alignment.trailingLastTextBaseline
       default: preconditionFailure("invalid containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment.alignment: \(raw)")
       }
     }()
@@ -1987,7 +2086,13 @@ extension View {
       case "ellipse": self.containerShape(.ellipse)
       case "circle": self.containerShape(.circle)
       case "containerRelative": self.containerShape(.containerRelative)
-      case "textInputBorder": if #available(iOS 27, *) { self.containerShape(.textInputBorder) } else { self }
+      case "textInputBorder":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.containerShape(.textInputBorder) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid containerShape: \(value)")
     }
   }
@@ -1999,16 +2104,16 @@ extension View {
         decoded.count == 3 else { preconditionFailure("invalid contentMarginsWithEdgesAndLengthAndPlacement: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Edge.Set = {
+    let argument0: SwiftUI.Edge.Set = {
       guard let raw = values[0] else { preconditionFailure("missing contentMarginsWithEdgesAndLengthAndPlacement.edges") }
       switch raw {
-      case "top": return SwiftUICore.Edge.Set.top
-      case "leading": return SwiftUICore.Edge.Set.leading
-      case "bottom": return SwiftUICore.Edge.Set.bottom
-      case "trailing": return SwiftUICore.Edge.Set.trailing
-      case "all": return SwiftUICore.Edge.Set.all
-      case "horizontal": return SwiftUICore.Edge.Set.horizontal
-      case "vertical": return SwiftUICore.Edge.Set.vertical
+      case "top": return SwiftUI.Edge.Set.top
+      case "leading": return SwiftUI.Edge.Set.leading
+      case "bottom": return SwiftUI.Edge.Set.bottom
+      case "trailing": return SwiftUI.Edge.Set.trailing
+      case "all": return SwiftUI.Edge.Set.all
+      case "horizontal": return SwiftUI.Edge.Set.horizontal
+      case "vertical": return SwiftUI.Edge.Set.vertical
       default: preconditionFailure("invalid contentMarginsWithEdgesAndLengthAndPlacement.edges: \(raw)")
       }
     }()
@@ -2062,7 +2167,13 @@ extension View {
       case "ellipse": self.contentShape(.ellipse)
       case "circle": self.contentShape(.circle)
       case "containerRelative": self.contentShape(.containerRelative)
-      case "textInputBorder": if #available(iOS 27, *) { self.contentShape(.textInputBorder) } else { self }
+      case "textInputBorder":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.contentShape(.textInputBorder) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid contentShape: \(value)")
     }
   }
@@ -2070,10 +2181,10 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKContentTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "symbolEffect": self.contentTransition(SwiftUICore.ContentTransition.symbolEffect)
-      case "identity": self.contentTransition(SwiftUICore.ContentTransition.identity)
-      case "opacity": self.contentTransition(SwiftUICore.ContentTransition.opacity)
-      case "interpolate": self.contentTransition(SwiftUICore.ContentTransition.interpolate)
+      case "symbolEffect": self.contentTransition(SwiftUI.ContentTransition.symbolEffect)
+      case "identity": self.contentTransition(SwiftUI.ContentTransition.identity)
+      case "opacity": self.contentTransition(SwiftUI.ContentTransition.opacity)
+      case "interpolate": self.contentTransition(SwiftUI.ContentTransition.interpolate)
     default: preconditionFailure("invalid contentTransition: \(value)")
     }
   }
@@ -2099,11 +2210,11 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKControlSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "mini": self.controlSize(SwiftUICore.ControlSize.mini)
-      case "small": self.controlSize(SwiftUICore.ControlSize.small)
-      case "regular": self.controlSize(SwiftUICore.ControlSize.regular)
-      case "large": self.controlSize(SwiftUICore.ControlSize.large)
-      case "extraLarge": self.controlSize(SwiftUICore.ControlSize.extraLarge)
+      case "mini": self.controlSize(SwiftUI.ControlSize.mini)
+      case "small": self.controlSize(SwiftUI.ControlSize.small)
+      case "regular": self.controlSize(SwiftUI.ControlSize.regular)
+      case "large": self.controlSize(SwiftUI.ControlSize.large)
+      case "extraLarge": self.controlSize(SwiftUI.ControlSize.extraLarge)
     default: preconditionFailure("invalid controlSize: \(value)")
     }
   }
@@ -2113,7 +2224,9 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKCopyable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -2127,10 +2240,16 @@ extension View {
     }()
     self.copyable(argument0)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKCuttable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let items: [String] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid cuttable: \(value)") }
@@ -2142,11 +2261,21 @@ extension View {
     }
     self.cuttable(for: String.self, action: action)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDataDetection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid dataDetection: \(value)")
-    if value == "true" { if #available(iOS 27, *) { self.dataDetection() } else { self } } else { self }
+    if value == "true" { 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.dataDetection() } else { self }
+#else
+self
+#endif
+ } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDatePickerStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2187,10 +2316,10 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKDefaultHoverEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.defaultHoverEffect(nil as SwiftUICore.HoverEffect?)
-      case "automatic": self.defaultHoverEffect(SwiftUICore.HoverEffect.automatic)
-      case "highlight": self.defaultHoverEffect(SwiftUICore.HoverEffect.highlight)
-      case "lift": self.defaultHoverEffect(SwiftUICore.HoverEffect.lift)
+      case "null": self.defaultHoverEffect(nil as SwiftUI.HoverEffect?)
+      case "automatic": self.defaultHoverEffect(SwiftUI.HoverEffect.automatic)
+      case "highlight": self.defaultHoverEffect(SwiftUI.HoverEffect.highlight)
+      case "lift": self.defaultHoverEffect(SwiftUI.HoverEffect.lift)
     default: preconditionFailure("invalid defaultHoverEffect: \(value)")
     }
   }
@@ -2203,19 +2332,19 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid defaultScrollAnchorWithAnchorAndRole: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.UnitPoint? = {
+    let argument0: SwiftUI.UnitPoint? = {
       guard let raw = values[0] else { return nil }
       switch raw {
-      case "zero": return SwiftUICore.UnitPoint.zero
-      case "center": return SwiftUICore.UnitPoint.center
-      case "leading": return SwiftUICore.UnitPoint.leading
-      case "trailing": return SwiftUICore.UnitPoint.trailing
-      case "top": return SwiftUICore.UnitPoint.top
-      case "bottom": return SwiftUICore.UnitPoint.bottom
-      case "topLeading": return SwiftUICore.UnitPoint.topLeading
-      case "topTrailing": return SwiftUICore.UnitPoint.topTrailing
-      case "bottomLeading": return SwiftUICore.UnitPoint.bottomLeading
-      case "bottomTrailing": return SwiftUICore.UnitPoint.bottomTrailing
+      case "zero": return SwiftUI.UnitPoint.zero
+      case "center": return SwiftUI.UnitPoint.center
+      case "leading": return SwiftUI.UnitPoint.leading
+      case "trailing": return SwiftUI.UnitPoint.trailing
+      case "top": return SwiftUI.UnitPoint.top
+      case "bottom": return SwiftUI.UnitPoint.bottom
+      case "topLeading": return SwiftUI.UnitPoint.topLeading
+      case "topTrailing": return SwiftUI.UnitPoint.topTrailing
+      case "bottomLeading": return SwiftUI.UnitPoint.bottomLeading
+      case "bottomTrailing": return SwiftUI.UnitPoint.bottomTrailing
       default: preconditionFailure("invalid defaultScrollAnchorWithAnchorAndRole.anchor: \(raw)")
       }
     }()
@@ -2237,17 +2366,17 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKDefaultScrollAnchorWithOptionalUnitPoint(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.defaultScrollAnchor(nil as SwiftUICore.UnitPoint?)
-      case "zero": self.defaultScrollAnchor(SwiftUICore.UnitPoint.zero)
-      case "center": self.defaultScrollAnchor(SwiftUICore.UnitPoint.center)
-      case "leading": self.defaultScrollAnchor(SwiftUICore.UnitPoint.leading)
-      case "trailing": self.defaultScrollAnchor(SwiftUICore.UnitPoint.trailing)
-      case "top": self.defaultScrollAnchor(SwiftUICore.UnitPoint.top)
-      case "bottom": self.defaultScrollAnchor(SwiftUICore.UnitPoint.bottom)
-      case "topLeading": self.defaultScrollAnchor(SwiftUICore.UnitPoint.topLeading)
-      case "topTrailing": self.defaultScrollAnchor(SwiftUICore.UnitPoint.topTrailing)
-      case "bottomLeading": self.defaultScrollAnchor(SwiftUICore.UnitPoint.bottomLeading)
-      case "bottomTrailing": self.defaultScrollAnchor(SwiftUICore.UnitPoint.bottomTrailing)
+      case "null": self.defaultScrollAnchor(nil as SwiftUI.UnitPoint?)
+      case "zero": self.defaultScrollAnchor(SwiftUI.UnitPoint.zero)
+      case "center": self.defaultScrollAnchor(SwiftUI.UnitPoint.center)
+      case "leading": self.defaultScrollAnchor(SwiftUI.UnitPoint.leading)
+      case "trailing": self.defaultScrollAnchor(SwiftUI.UnitPoint.trailing)
+      case "top": self.defaultScrollAnchor(SwiftUI.UnitPoint.top)
+      case "bottom": self.defaultScrollAnchor(SwiftUI.UnitPoint.bottom)
+      case "topLeading": self.defaultScrollAnchor(SwiftUI.UnitPoint.topLeading)
+      case "topTrailing": self.defaultScrollAnchor(SwiftUI.UnitPoint.topTrailing)
+      case "bottomLeading": self.defaultScrollAnchor(SwiftUI.UnitPoint.bottomLeading)
+      case "bottomTrailing": self.defaultScrollAnchor(SwiftUI.UnitPoint.bottomTrailing)
     default: preconditionFailure("invalid defaultScrollAnchorWithOptionalUnitPoint: \(value)")
     }
   }
@@ -2255,9 +2384,27 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKDefaultTabBarPlacement(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.automatic) } else { self }
-      case "tabBar": if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.tabBar) } else { self }
-      case "sidebar": if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.sidebar) } else { self }
+      case "automatic":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.automatic) } else { self }
+#else
+self
+#endif
+
+      case "tabBar":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.tabBar) } else { self }
+#else
+self
+#endif
+
+      case "sidebar":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.sidebar) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid defaultTabBarPlacement: \(value)")
     }
   }
@@ -2265,13 +2412,13 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKDefersSystemGestures(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "top": self.defersSystemGestures(on: SwiftUICore.Edge.Set.top)
-      case "leading": self.defersSystemGestures(on: SwiftUICore.Edge.Set.leading)
-      case "bottom": self.defersSystemGestures(on: SwiftUICore.Edge.Set.bottom)
-      case "trailing": self.defersSystemGestures(on: SwiftUICore.Edge.Set.trailing)
-      case "all": self.defersSystemGestures(on: SwiftUICore.Edge.Set.all)
-      case "horizontal": self.defersSystemGestures(on: SwiftUICore.Edge.Set.horizontal)
-      case "vertical": self.defersSystemGestures(on: SwiftUICore.Edge.Set.vertical)
+      case "top": self.defersSystemGestures(on: SwiftUI.Edge.Set.top)
+      case "leading": self.defersSystemGestures(on: SwiftUI.Edge.Set.leading)
+      case "bottom": self.defersSystemGestures(on: SwiftUI.Edge.Set.bottom)
+      case "trailing": self.defersSystemGestures(on: SwiftUI.Edge.Set.trailing)
+      case "all": self.defersSystemGestures(on: SwiftUI.Edge.Set.all)
+      case "horizontal": self.defersSystemGestures(on: SwiftUI.Edge.Set.horizontal)
+      case "vertical": self.defersSystemGestures(on: SwiftUI.Edge.Set.vertical)
     default: preconditionFailure("invalid defersSystemGestures: \(value)")
     }
   }
@@ -2282,7 +2429,7 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDialogIcon(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { self.dialogIcon(nil as SwiftUICore.Image?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+    if value == "null" { self.dialogIcon(nil as SwiftUI.Image?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       self.dialogIcon(Image(systemName: decoded))
     } else { preconditionFailure("invalid dialogIcon: \(value)") } }
   }
@@ -2299,11 +2446,11 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid dialogSuppressionToggleWithLabelAndIsSuppressed: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Text = {
+    let argument0: SwiftUI.Text = {
       guard let raw = values[0] else { preconditionFailure("missing dialogSuppressionToggleWithLabelAndIsSuppressed.label") }
       return Text(raw)
     }()
-    let argument1: SwiftUICore.Binding<Swift.Bool> = {
+    let argument1: SwiftUI.Binding<Swift.Bool> = {
       guard let raw = values[1], raw == "true" || raw == "false" else { preconditionFailure("invalid dialogSuppressionToggleWithLabelAndIsSuppressed.isSuppressed") }
       return Binding<Bool>(get: { raw == "true" }, set: { emit("dialogSuppressionToggleWithLabelAndIsSuppressed.isSuppressed", String($0)) })
     }()
@@ -2334,9 +2481,9 @@ extension View {
         decoded.count == 3 else { preconditionFailure("invalid distortionEffect: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Shader = {
+    let argument0: SwiftUI.Shader = {
       guard let raw = values[0] else { preconditionFailure("missing distortionEffect.shader") }
-      return SwiftUICore.Shader(function: SwiftUICore.ShaderFunction(library: SwiftUICore.ShaderLibrary.default, name: raw), arguments: [])
+      return SwiftUI.Shader(function: SwiftUI.ShaderFunction(library: SwiftUI.ShaderLibrary.default, name: raw), arguments: [])
     }()
     let argument1: CoreFoundation.CGSize = {
       guard let raw = values[1] else { preconditionFailure("missing distortionEffect.maxSampleOffset") }
@@ -2355,16 +2502,34 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDocumentLaunchSubtitle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if #available(iOS 27, *) { self.documentLaunchSubtitle(Text(value)) } else { self }
+
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.documentLaunchSubtitle(Text(value)) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDocumentLaunchTitle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if #available(iOS 27, *) { self.documentLaunchTitle(Text(value)) } else { self }
+
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.documentLaunchTitle(Text(value)) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDragConfiguration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid dragConfiguration: \(value)")
-      if #available(iOS 27, *) { self.dragConfiguration(SwiftUI.DragConfiguration(allowMove: value == "true")) } else { self }
+
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.dragConfiguration(SwiftUI.DragConfiguration(allowMove: value == "true")) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDraggable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2393,12 +2558,12 @@ extension View {
       guard raw == "true" || raw == "false" else { preconditionFailure("invalid drawingGroup.opaque: \(raw)") }
       return raw == "true"
     }()
-    let argument1: SwiftUICore.ColorRenderingMode = {
+    let argument1: SwiftUI.ColorRenderingMode = {
       guard let raw = values[1] else { preconditionFailure("missing drawingGroup.colorMode") }
       switch raw {
-      case "nonLinear": return SwiftUICore.ColorRenderingMode.nonLinear
-      case "linear": return SwiftUICore.ColorRenderingMode.linear
-      case "extendedLinear": return SwiftUICore.ColorRenderingMode.extendedLinear
+      case "nonLinear": return SwiftUI.ColorRenderingMode.nonLinear
+      case "linear": return SwiftUI.ColorRenderingMode.linear
+      case "extendedLinear": return SwiftUI.ColorRenderingMode.extendedLinear
       default: preconditionFailure("invalid drawingGroup.colorMode: \(raw)")
       }
     }()
@@ -2406,7 +2571,9 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDropConfiguration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let selected: SwiftUI.DropConfiguration = {
       switch value {
       case "cancel": return SwiftUI.DropConfiguration(operation: SwiftUI.DropOperation.cancel)
@@ -2425,6 +2592,10 @@ extension View {
     }
     self.dropConfiguration(action)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDropDestination(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2439,18 +2610,18 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKDynamicTypeSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "xSmall": self.dynamicTypeSize(SwiftUICore.DynamicTypeSize.xSmall)
-      case "small": self.dynamicTypeSize(SwiftUICore.DynamicTypeSize.small)
-      case "medium": self.dynamicTypeSize(SwiftUICore.DynamicTypeSize.medium)
-      case "large": self.dynamicTypeSize(SwiftUICore.DynamicTypeSize.large)
-      case "xLarge": self.dynamicTypeSize(SwiftUICore.DynamicTypeSize.xLarge)
-      case "xxLarge": self.dynamicTypeSize(SwiftUICore.DynamicTypeSize.xxLarge)
-      case "xxxLarge": self.dynamicTypeSize(SwiftUICore.DynamicTypeSize.xxxLarge)
-      case "accessibility1": self.dynamicTypeSize(SwiftUICore.DynamicTypeSize.accessibility1)
-      case "accessibility2": self.dynamicTypeSize(SwiftUICore.DynamicTypeSize.accessibility2)
-      case "accessibility3": self.dynamicTypeSize(SwiftUICore.DynamicTypeSize.accessibility3)
-      case "accessibility4": self.dynamicTypeSize(SwiftUICore.DynamicTypeSize.accessibility4)
-      case "accessibility5": self.dynamicTypeSize(SwiftUICore.DynamicTypeSize.accessibility5)
+      case "xSmall": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.xSmall)
+      case "small": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.small)
+      case "medium": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.medium)
+      case "large": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.large)
+      case "xLarge": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.xLarge)
+      case "xxLarge": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.xxLarge)
+      case "xxxLarge": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.xxxLarge)
+      case "accessibility1": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.accessibility1)
+      case "accessibility2": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.accessibility2)
+      case "accessibility3": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.accessibility3)
+      case "accessibility4": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.accessibility4)
+      case "accessibility5": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.accessibility5)
     default: preconditionFailure("invalid dynamicTypeSize: \(value)")
     }
   }
@@ -2458,14 +2629,566 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKEdgesIgnoringSafeArea(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "top": self.edgesIgnoringSafeArea(SwiftUICore.Edge.Set.top)
-      case "leading": self.edgesIgnoringSafeArea(SwiftUICore.Edge.Set.leading)
-      case "bottom": self.edgesIgnoringSafeArea(SwiftUICore.Edge.Set.bottom)
-      case "trailing": self.edgesIgnoringSafeArea(SwiftUICore.Edge.Set.trailing)
-      case "all": self.edgesIgnoringSafeArea(SwiftUICore.Edge.Set.all)
-      case "horizontal": self.edgesIgnoringSafeArea(SwiftUICore.Edge.Set.horizontal)
-      case "vertical": self.edgesIgnoringSafeArea(SwiftUICore.Edge.Set.vertical)
+      case "top": self.edgesIgnoringSafeArea(SwiftUI.Edge.Set.top)
+      case "leading": self.edgesIgnoringSafeArea(SwiftUI.Edge.Set.leading)
+      case "bottom": self.edgesIgnoringSafeArea(SwiftUI.Edge.Set.bottom)
+      case "trailing": self.edgesIgnoringSafeArea(SwiftUI.Edge.Set.trailing)
+      case "all": self.edgesIgnoringSafeArea(SwiftUI.Edge.Set.all)
+      case "horizontal": self.edgesIgnoringSafeArea(SwiftUI.Edge.Set.horizontal)
+      case "vertical": self.edgesIgnoringSafeArea(SwiftUI.Edge.Set.vertical)
     default: preconditionFailure("invalid edgesIgnoringSafeArea: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentAccessibilityEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentAccessibilityEnabled: \(value)")
+      self.environment(\.accessibilityEnabled, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentAccessibilityPrefersCrossFadeTransitions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentAccessibilityPrefersCrossFadeTransitions: \(value)")
+      if #available(iOS 26.4, *) { self.environment(\.accessibilityPrefersCrossFadeTransitions, value == "true") } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentAllowedDynamicRange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.allowedDynamicRange, nil as SwiftUI.Image.DynamicRange?)
+      case "standard": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.standard)
+      case "constrainedHigh": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.constrainedHigh)
+      case "high": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.high)
+    default: preconditionFailure("invalid environmentAllowedDynamicRange: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentAllowsTightening(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentAllowsTightening: \(value)")
+      self.environment(\.allowsTightening, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentAppearsActive(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentAppearsActive: \(value)")
+      if #available(iOS 18, *) { self.environment(\.appearsActive, value == "true") } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentAutocorrectionDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentAutocorrectionDisabled: \(value)")
+      self.environment(\.autocorrectionDisabled, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentBackgroundMaterial(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.backgroundMaterial, nil as SwiftUI.Material?)
+      case "regular": self.environment(\.backgroundMaterial, SwiftUI.Material.regular)
+      case "thick": self.environment(\.backgroundMaterial, SwiftUI.Material.thick)
+      case "thin": self.environment(\.backgroundMaterial, SwiftUI.Material.thin)
+      case "ultraThin": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThin)
+      case "ultraThick": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThick)
+      case "bar": self.environment(\.backgroundMaterial, SwiftUI.Material.bar)
+    default: preconditionFailure("invalid environmentBackgroundMaterial: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentBackgroundProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "standard": self.environment(\.backgroundProminence, SwiftUI.BackgroundProminence.standard)
+      case "increased": self.environment(\.backgroundProminence, SwiftUI.BackgroundProminence.increased)
+    default: preconditionFailure("invalid environmentBackgroundProminence: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentBadgeProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "decreased": self.environment(\.badgeProminence, SwiftUI.BadgeProminence.decreased)
+      case "standard": self.environment(\.badgeProminence, SwiftUI.BadgeProminence.standard)
+      case "increased": self.environment(\.badgeProminence, SwiftUI.BadgeProminence.increased)
+    default: preconditionFailure("invalid environmentBadgeProminence: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentCalendar(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "autoupdatingCurrent": self.environment(\.calendar, Foundation.Calendar.autoupdatingCurrent)
+      case "current": self.environment(\.calendar, Foundation.Calendar.current)
+    default: preconditionFailure("invalid environmentCalendar: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "light": self.environment(\.colorScheme, SwiftUI.ColorScheme.light)
+      case "dark": self.environment(\.colorScheme, SwiftUI.ColorScheme.dark)
+    default: preconditionFailure("invalid environmentColorScheme: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentContentTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "symbolEffect": self.environment(\.contentTransition, SwiftUI.ContentTransition.symbolEffect)
+      case "identity": self.environment(\.contentTransition, SwiftUI.ContentTransition.identity)
+      case "opacity": self.environment(\.contentTransition, SwiftUI.ContentTransition.opacity)
+      case "interpolate": self.environment(\.contentTransition, SwiftUI.ContentTransition.interpolate)
+    default: preconditionFailure("invalid environmentContentTransition: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentContentTransitionAddsDrawingGroup(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentContentTransitionAddsDrawingGroup: \(value)")
+      self.environment(\.contentTransitionAddsDrawingGroup, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentControlSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "mini": self.environment(\.controlSize, SwiftUI.ControlSize.mini)
+      case "small": self.environment(\.controlSize, SwiftUI.ControlSize.small)
+      case "regular": self.environment(\.controlSize, SwiftUI.ControlSize.regular)
+      case "large": self.environment(\.controlSize, SwiftUI.ControlSize.large)
+      case "extraLarge": self.environment(\.controlSize, SwiftUI.ControlSize.extraLarge)
+    default: preconditionFailure("invalid environmentControlSize: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentDefaultMinListHeaderHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if value == "null" { self.environment(\.defaultMinListHeaderHeight, nil as CoreFoundation.CGFloat?) } else { if let number = Double(value), number.isFinite {
+      self.environment(\.defaultMinListHeaderHeight, CGFloat(number))
+    } else { preconditionFailure("invalid environmentDefaultMinListHeaderHeight: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentDefaultMinListRowHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      if let number = Double(value), number.isFinite {
+        self.environment(\.defaultMinListRowHeight, CGFloat(number))
+      } else { preconditionFailure("invalid environmentDefaultMinListRowHeight: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentDisableAutocorrection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if value == "null" { self.environment(\.disableAutocorrection, nil as Swift.Bool?) } else { if value == "true" || value == "false" { self.environment(\.disableAutocorrection, value == "true") } else { preconditionFailure("invalid environmentDisableAutocorrection: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentDisplayScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      if let number = Double(value), number.isFinite {
+        self.environment(\.displayScale, CGFloat(number))
+      } else { preconditionFailure("invalid environmentDisplayScale: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentDynamicTypeSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "xSmall": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.xSmall)
+      case "small": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.small)
+      case "medium": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.medium)
+      case "large": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.large)
+      case "xLarge": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.xLarge)
+      case "xxLarge": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.xxLarge)
+      case "xxxLarge": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.xxxLarge)
+      case "accessibility1": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility1)
+      case "accessibility2": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility2)
+      case "accessibility3": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility3)
+      case "accessibility4": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility4)
+      case "accessibility5": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility5)
+    default: preconditionFailure("invalid environmentDynamicTypeSize: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentFont(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.font, nil as SwiftUI.Font?)
+      case "largeTitle": self.environment(\.font, SwiftUI.Font.largeTitle)
+      case "title": self.environment(\.font, SwiftUI.Font.title)
+      case "title2": self.environment(\.font, SwiftUI.Font.title2)
+      case "title3": self.environment(\.font, SwiftUI.Font.title3)
+      case "headline": self.environment(\.font, SwiftUI.Font.headline)
+      case "subheadline": self.environment(\.font, SwiftUI.Font.subheadline)
+      case "body": self.environment(\.font, SwiftUI.Font.body)
+      case "callout": self.environment(\.font, SwiftUI.Font.callout)
+      case "footnote": self.environment(\.font, SwiftUI.Font.footnote)
+      case "caption": self.environment(\.font, SwiftUI.Font.caption)
+      case "caption2": self.environment(\.font, SwiftUI.Font.caption2)
+      case "default": if #available(iOS 26, *) { self.environment(\.font, SwiftUI.Font.default) } else { self }
+    default: preconditionFailure("invalid environmentFont: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentHeaderProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "standard": self.environment(\.headerProminence, SwiftUI.Prominence.standard)
+      case "increased": self.environment(\.headerProminence, SwiftUI.Prominence.increased)
+    default: preconditionFailure("invalid environmentHeaderProminence: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentHorizontalScrollBounceBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.environment(\.horizontalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.automatic)
+      case "always": self.environment(\.horizontalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.always)
+      case "basedOnSize": self.environment(\.horizontalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.basedOnSize)
+    default: preconditionFailure("invalid environmentHorizontalScrollBounceBehavior: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentHorizontalScrollIndicatorVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.environment(\.horizontalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.automatic)
+      case "visible": self.environment(\.horizontalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.visible)
+      case "hidden": self.environment(\.horizontalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.hidden)
+      case "never": self.environment(\.horizontalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.never)
+    default: preconditionFailure("invalid environmentHorizontalScrollIndicatorVisibility: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentHorizontalSizeClass(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.horizontalSizeClass, nil as SwiftUI.UserInterfaceSizeClass?)
+      case "compact": self.environment(\.horizontalSizeClass, SwiftUI.UserInterfaceSizeClass.compact)
+      case "regular": self.environment(\.horizontalSizeClass, SwiftUI.UserInterfaceSizeClass.regular)
+    default: preconditionFailure("invalid environmentHorizontalSizeClass: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentImageScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "small": self.environment(\.imageScale, SwiftUI.Image.Scale.small)
+      case "medium": self.environment(\.imageScale, SwiftUI.Image.Scale.medium)
+      case "large": self.environment(\.imageScale, SwiftUI.Image.Scale.large)
+    default: preconditionFailure("invalid environmentImageScale: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentIsEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentIsEnabled: \(value)")
+      self.environment(\.isEnabled, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentIsFocusEffectEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentIsFocusEffectEnabled: \(value)")
+      self.environment(\.isFocusEffectEnabled, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentIsHoverEffectEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentIsHoverEffectEnabled: \(value)")
+      self.environment(\.isHoverEffectEnabled, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentIsLuminanceReduced(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentIsLuminanceReduced: \(value)")
+      self.environment(\.isLuminanceReduced, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentIsSceneCaptured(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentIsSceneCaptured: \(value)")
+      self.environment(\.isSceneCaptured, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentIsScrollEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentIsScrollEnabled: \(value)")
+      self.environment(\.isScrollEnabled, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentLabelsVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUI.Visibility.automatic) } else { self }
+      case "visible": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUI.Visibility.visible) } else { self }
+      case "hidden": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUI.Visibility.hidden) } else { self }
+    default: preconditionFailure("invalid environmentLabelsVisibility: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentLayoutDirection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "leftToRight": self.environment(\.layoutDirection, SwiftUI.LayoutDirection.leftToRight)
+      case "rightToLeft": self.environment(\.layoutDirection, SwiftUI.LayoutDirection.rightToLeft)
+    default: preconditionFailure("invalid environmentLayoutDirection: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentLegibilityWeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.legibilityWeight, nil as SwiftUI.LegibilityWeight?)
+      case "regular": self.environment(\.legibilityWeight, SwiftUI.LegibilityWeight.regular)
+      case "bold": self.environment(\.legibilityWeight, SwiftUI.LegibilityWeight.bold)
+    default: preconditionFailure("invalid environmentLegibilityWeight: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentLineHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": if #available(iOS 26, *) { self.environment(\.lineHeight, nil as Foundation.AttributedString.LineHeight?) } else { self }
+      case "variable": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.variable) } else { self }
+      case "normal": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.normal) } else { self }
+      case "tight": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.tight) } else { self }
+      case "loose": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.loose) } else { self }
+    default: preconditionFailure("invalid environmentLineHeight: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentLineLimit(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if value == "null" { self.environment(\.lineLimit, nil as Swift.Int?) } else { if let number = Double(value), number.isFinite {
+      self.environment(\.lineLimit, Int(number))
+    } else { preconditionFailure("invalid environmentLineLimit: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentLineSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      if let number = Double(value), number.isFinite {
+        self.environment(\.lineSpacing, CGFloat(number))
+      } else { preconditionFailure("invalid environmentLineSpacing: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentLocale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "autoupdatingCurrent": self.environment(\.locale, Foundation.Locale.autoupdatingCurrent)
+      case "current": self.environment(\.locale, Foundation.Locale.current)
+    default: preconditionFailure("invalid environmentLocale: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentMaterialActiveAppearance(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUI.MaterialActiveAppearance.automatic) } else { self }
+      case "active": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUI.MaterialActiveAppearance.active) } else { self }
+      case "matchWindow": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUI.MaterialActiveAppearance.matchWindow) } else { self }
+    default: preconditionFailure("invalid environmentMaterialActiveAppearance: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentMenuIndicatorVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.environment(\.menuIndicatorVisibility, SwiftUI.Visibility.automatic)
+      case "visible": self.environment(\.menuIndicatorVisibility, SwiftUI.Visibility.visible)
+      case "hidden": self.environment(\.menuIndicatorVisibility, SwiftUI.Visibility.hidden)
+    default: preconditionFailure("invalid environmentMenuIndicatorVisibility: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentMenuOrder(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.environment(\.menuOrder, SwiftUI.MenuOrder.automatic)
+      case "priority": self.environment(\.menuOrder, SwiftUI.MenuOrder.priority)
+      case "fixed": self.environment(\.menuOrder, SwiftUI.MenuOrder.fixed)
+    default: preconditionFailure("invalid environmentMenuOrder: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentMinimumScaleFactor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      if let number = Double(value), number.isFinite {
+        self.environment(\.minimumScaleFactor, CGFloat(number))
+      } else { preconditionFailure("invalid environmentMinimumScaleFactor: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentMultilineTextAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "leading": self.environment(\.multilineTextAlignment, SwiftUI.TextAlignment.leading)
+      case "center": self.environment(\.multilineTextAlignment, SwiftUI.TextAlignment.center)
+      case "trailing": self.environment(\.multilineTextAlignment, SwiftUI.TextAlignment.trailing)
+    default: preconditionFailure("invalid environmentMultilineTextAlignment: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentRealityViewCameraControls(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "dolly": if #available(iOS 18, *) { self.environment(\.realityViewCameraControls, RealityFoundation.CameraControls.dolly) } else { self }
+      case "none": if #available(iOS 18, *) { self.environment(\.realityViewCameraControls, RealityFoundation.CameraControls.none) } else { self }
+      case "orbit": if #available(iOS 18, *) { self.environment(\.realityViewCameraControls, RealityFoundation.CameraControls.orbit) } else { self }
+      case "pan": if #available(iOS 18, *) { self.environment(\.realityViewCameraControls, RealityFoundation.CameraControls.pan) } else { self }
+      case "tilt": if #available(iOS 18, *) { self.environment(\.realityViewCameraControls, RealityFoundation.CameraControls.tilt) } else { self }
+    default: preconditionFailure("invalid environmentRealityViewCameraControls: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentRedactionReasons(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "placeholder": self.environment(\.redactionReasons, SwiftUI.RedactionReasons.placeholder)
+      case "privacy": self.environment(\.redactionReasons, SwiftUI.RedactionReasons.privacy)
+      case "invalidated": self.environment(\.redactionReasons, SwiftUI.RedactionReasons.invalidated)
+    default: preconditionFailure("invalid environmentRedactionReasons: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentScenePhase(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "background": self.environment(\.scenePhase, SwiftUI.ScenePhase.background)
+      case "inactive": self.environment(\.scenePhase, SwiftUI.ScenePhase.inactive)
+      case "active": self.environment(\.scenePhase, SwiftUI.ScenePhase.active)
+    default: preconditionFailure("invalid environmentScenePhase: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentScrollDismissesKeyboardMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.environment(\.scrollDismissesKeyboardMode, SwiftUI.ScrollDismissesKeyboardMode.automatic)
+      case "immediately": self.environment(\.scrollDismissesKeyboardMode, SwiftUI.ScrollDismissesKeyboardMode.immediately)
+      case "interactively": self.environment(\.scrollDismissesKeyboardMode, SwiftUI.ScrollDismissesKeyboardMode.interactively)
+      case "never": self.environment(\.scrollDismissesKeyboardMode, SwiftUI.ScrollDismissesKeyboardMode.never)
+    default: preconditionFailure("invalid environmentScrollDismissesKeyboardMode: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentSidebarRowSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "small": self.environment(\.sidebarRowSize, SwiftUI.SidebarRowSize.small)
+      case "medium": self.environment(\.sidebarRowSize, SwiftUI.SidebarRowSize.medium)
+      case "large": self.environment(\.sidebarRowSize, SwiftUI.SidebarRowSize.large)
+    default: preconditionFailure("invalid environmentSidebarRowSize: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentSizeCategory(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "extraSmall": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.extraSmall)
+      case "small": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.small)
+      case "medium": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.medium)
+      case "large": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.large)
+      case "extraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.extraLarge)
+      case "extraExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.extraExtraLarge)
+      case "extraExtraExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.extraExtraExtraLarge)
+      case "accessibilityMedium": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityMedium)
+      case "accessibilityLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityLarge)
+      case "accessibilityExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityExtraLarge)
+      case "accessibilityExtraExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityExtraExtraLarge)
+      case "accessibilityExtraExtraExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityExtraExtraExtraLarge)
+    default: preconditionFailure("invalid environmentSizeCategory: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolColorRenderingMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, nil as SwiftUI.SymbolColorRenderingMode?) } else { self }
+      case "flat": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, SwiftUI.SymbolColorRenderingMode.flat) } else { self }
+      case "gradient": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, SwiftUI.SymbolColorRenderingMode.gradient) } else { self }
+    default: preconditionFailure("invalid environmentSymbolColorRenderingMode: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolRenderingMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.symbolRenderingMode, nil as SwiftUI.SymbolRenderingMode?)
+      case "monochrome": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.monochrome)
+      case "multicolor": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.multicolor)
+      case "hierarchical": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.hierarchical)
+      case "palette": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.palette)
+    default: preconditionFailure("invalid environmentSymbolRenderingMode: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolVariableValueMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, nil as SwiftUI.SymbolVariableValueMode?) } else { self }
+      case "color": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, SwiftUI.SymbolVariableValueMode.color) } else { self }
+      case "draw": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, SwiftUI.SymbolVariableValueMode.draw) } else { self }
+    default: preconditionFailure("invalid environmentSymbolVariableValueMode: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolVariants(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "none": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.none)
+      case "circle": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.circle)
+      case "square": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.square)
+      case "rectangle": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.rectangle)
+      case "fill": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.fill)
+      case "slash": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.slash)
+    default: preconditionFailure("invalid environmentSymbolVariants: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentSystemPrefersReducedResourceUsage(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentSystemPrefersReducedResourceUsage: \(value)")
+
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.environment(\.systemPrefersReducedResourceUsage, value == "true") } else { self }
+#else
+self
+#endif
+
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentTextCase(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.textCase, nil as SwiftUI.Text.Case?)
+      case "uppercase": self.environment(\.textCase, SwiftUI.Text.Case.uppercase)
+      case "lowercase": self.environment(\.textCase, SwiftUI.Text.Case.lowercase)
+    default: preconditionFailure("invalid environmentTextCase: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentTextSelectionAffinity(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": if #available(iOS 18, *) { self.environment(\.textSelectionAffinity, SwiftUI.TextSelectionAffinity.automatic) } else { self }
+      case "upstream": if #available(iOS 18, *) { self.environment(\.textSelectionAffinity, SwiftUI.TextSelectionAffinity.upstream) } else { self }
+      case "downstream": if #available(iOS 18, *) { self.environment(\.textSelectionAffinity, SwiftUI.TextSelectionAffinity.downstream) } else { self }
+    default: preconditionFailure("invalid environmentTextSelectionAffinity: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentTimeZone(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "autoupdatingCurrent": self.environment(\.timeZone, Foundation.TimeZone.autoupdatingCurrent)
+      case "current": self.environment(\.timeZone, Foundation.TimeZone.current)
+      case "gmt": self.environment(\.timeZone, Foundation.TimeZone.gmt)
+    default: preconditionFailure("invalid environmentTimeZone: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentTruncationMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "head": self.environment(\.truncationMode, SwiftUI.Text.TruncationMode.head)
+      case "tail": self.environment(\.truncationMode, SwiftUI.Text.TruncationMode.tail)
+      case "middle": self.environment(\.truncationMode, SwiftUI.Text.TruncationMode.middle)
+    default: preconditionFailure("invalid environmentTruncationMode: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentVerticalScrollBounceBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.environment(\.verticalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.automatic)
+      case "always": self.environment(\.verticalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.always)
+      case "basedOnSize": self.environment(\.verticalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.basedOnSize)
+    default: preconditionFailure("invalid environmentVerticalScrollBounceBehavior: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentVerticalScrollIndicatorVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.environment(\.verticalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.automatic)
+      case "visible": self.environment(\.verticalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.visible)
+      case "hidden": self.environment(\.verticalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.hidden)
+      case "never": self.environment(\.verticalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.never)
+    default: preconditionFailure("invalid environmentVerticalScrollIndicatorVisibility: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentVerticalSizeClass(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.verticalSizeClass, nil as SwiftUI.UserInterfaceSizeClass?)
+      case "compact": self.environment(\.verticalSizeClass, SwiftUI.UserInterfaceSizeClass.compact)
+      case "regular": self.environment(\.verticalSizeClass, SwiftUI.UserInterfaceSizeClass.regular)
+    default: preconditionFailure("invalid environmentVerticalSizeClass: \(value)")
     }
   }
 
@@ -2480,7 +3203,7 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKFileDialogConfirmationLabel(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { self.fileDialogConfirmationLabel(nil as SwiftUICore.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+    if value == "null" { self.fileDialogConfirmationLabel(nil as SwiftUI.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       self.fileDialogConfirmationLabel(Text(decoded))
     } else { preconditionFailure("invalid fileDialogConfirmationLabel: \(value)") } }
   }
@@ -2503,7 +3226,7 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKFileDialogMessage(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { self.fileDialogMessage(nil as SwiftUICore.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+    if value == "null" { self.fileDialogMessage(nil as SwiftUI.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       self.fileDialogMessage(Text(decoded))
     } else { preconditionFailure("invalid fileDialogMessage: \(value)") } }
   }
@@ -2520,7 +3243,7 @@ extension View {
         decoded.count == 3 else { preconditionFailure("invalid fileExporter: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
       guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid fileExporter.isPresented") }
       return Binding<Bool>(get: { raw == "true" }, set: { emit("fileExporter.isPresented", String($0)) })
     }()
@@ -2542,7 +3265,7 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKFileExporterFilenameLabel(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { self.fileExporterFilenameLabel(nil as SwiftUICore.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+    if value == "null" { self.fileExporterFilenameLabel(nil as SwiftUI.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       self.fileExporterFilenameLabel(Text(decoded))
     } else { preconditionFailure("invalid fileExporterFilenameLabel: \(value)") } }
   }
@@ -2554,7 +3277,7 @@ extension View {
         decoded.count == 3 else { preconditionFailure("invalid fileMover: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
       guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid fileMover.isPresented") }
       return Binding<Bool>(get: { raw == "true" }, set: { emit("fileMover.isPresented", String($0)) })
     }()
@@ -2655,39 +3378,58 @@ extension View {
       self.focusEffectDisabled(value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKFont(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.font(nil as SwiftUI.Font?)
+      case "largeTitle": self.font(SwiftUI.Font.largeTitle)
+      case "title": self.font(SwiftUI.Font.title)
+      case "title2": self.font(SwiftUI.Font.title2)
+      case "title3": self.font(SwiftUI.Font.title3)
+      case "headline": self.font(SwiftUI.Font.headline)
+      case "subheadline": self.font(SwiftUI.Font.subheadline)
+      case "body": self.font(SwiftUI.Font.body)
+      case "callout": self.font(SwiftUI.Font.callout)
+      case "footnote": self.font(SwiftUI.Font.footnote)
+      case "caption": self.font(SwiftUI.Font.caption)
+      case "caption2": self.font(SwiftUI.Font.caption2)
+      case "default": if #available(iOS 26, *) { self.font(SwiftUI.Font.default) } else { self }
+    default: preconditionFailure("invalid font: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKFontWidth(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.fontWidth(nil as SwiftUICore.Font.Width?)
-      case "compressed": self.fontWidth(SwiftUICore.Font.Width.compressed)
-      case "condensed": self.fontWidth(SwiftUICore.Font.Width.condensed)
-      case "standard": self.fontWidth(SwiftUICore.Font.Width.standard)
-      case "expanded": self.fontWidth(SwiftUICore.Font.Width.expanded)
+      case "null": self.fontWidth(nil as SwiftUI.Font.Width?)
+      case "compressed": self.fontWidth(SwiftUI.Font.Width.compressed)
+      case "condensed": self.fontWidth(SwiftUI.Font.Width.condensed)
+      case "standard": self.fontWidth(SwiftUI.Font.Width.standard)
+      case "expanded": self.fontWidth(SwiftUI.Font.Width.expanded)
     default: preconditionFailure("invalid fontWidth: \(value)")
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKForegroundColor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.foregroundColor(nil as SwiftUICore.Color?)
-      case "accentColor": self.foregroundColor(SwiftUICore.Color.accentColor)
-      case "red": self.foregroundColor(SwiftUICore.Color.red)
-      case "orange": self.foregroundColor(SwiftUICore.Color.orange)
-      case "yellow": self.foregroundColor(SwiftUICore.Color.yellow)
-      case "green": self.foregroundColor(SwiftUICore.Color.green)
-      case "mint": self.foregroundColor(SwiftUICore.Color.mint)
-      case "teal": self.foregroundColor(SwiftUICore.Color.teal)
-      case "cyan": self.foregroundColor(SwiftUICore.Color.cyan)
-      case "blue": self.foregroundColor(SwiftUICore.Color.blue)
-      case "indigo": self.foregroundColor(SwiftUICore.Color.indigo)
-      case "purple": self.foregroundColor(SwiftUICore.Color.purple)
-      case "pink": self.foregroundColor(SwiftUICore.Color.pink)
-      case "brown": self.foregroundColor(SwiftUICore.Color.brown)
-      case "white": self.foregroundColor(SwiftUICore.Color.white)
-      case "gray": self.foregroundColor(SwiftUICore.Color.gray)
-      case "black": self.foregroundColor(SwiftUICore.Color.black)
-      case "clear": self.foregroundColor(SwiftUICore.Color.clear)
-      case "primary": self.foregroundColor(SwiftUICore.Color.primary)
-      case "secondary": self.foregroundColor(SwiftUICore.Color.secondary)
+      case "null": self.foregroundColor(nil as SwiftUI.Color?)
+      case "accentColor": self.foregroundColor(SwiftUI.Color.accentColor)
+      case "red": self.foregroundColor(SwiftUI.Color.red)
+      case "orange": self.foregroundColor(SwiftUI.Color.orange)
+      case "yellow": self.foregroundColor(SwiftUI.Color.yellow)
+      case "green": self.foregroundColor(SwiftUI.Color.green)
+      case "mint": self.foregroundColor(SwiftUI.Color.mint)
+      case "teal": self.foregroundColor(SwiftUI.Color.teal)
+      case "cyan": self.foregroundColor(SwiftUI.Color.cyan)
+      case "blue": self.foregroundColor(SwiftUI.Color.blue)
+      case "indigo": self.foregroundColor(SwiftUI.Color.indigo)
+      case "purple": self.foregroundColor(SwiftUI.Color.purple)
+      case "pink": self.foregroundColor(SwiftUI.Color.pink)
+      case "brown": self.foregroundColor(SwiftUI.Color.brown)
+      case "white": self.foregroundColor(SwiftUI.Color.white)
+      case "gray": self.foregroundColor(SwiftUI.Color.gray)
+      case "black": self.foregroundColor(SwiftUI.Color.black)
+      case "clear": self.foregroundColor(SwiftUI.Color.clear)
+      case "primary": self.foregroundColor(SwiftUI.Color.primary)
+      case "secondary": self.foregroundColor(SwiftUI.Color.secondary)
     default: preconditionFailure("invalid foregroundColor: \(value)")
     }
   }
@@ -2700,6 +3442,113 @@ extension View {
       case "automatic": self.formStyle(.automatic)
     default: preconditionFailure("invalid formStyle: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFrameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 7 else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment: \(value)") }
+      return decoded
+    }()
+    let argument0: CoreFoundation.CGFloat? = {
+      guard let raw = values[0] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.minWidth: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument1: CoreFoundation.CGFloat? = {
+      guard let raw = values[1] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.idealWidth: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument2: CoreFoundation.CGFloat? = {
+      guard let raw = values[2] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxWidth: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument3: CoreFoundation.CGFloat? = {
+      guard let raw = values[3] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.minHeight: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument4: CoreFoundation.CGFloat? = {
+      guard let raw = values[4] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.idealHeight: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument5: CoreFoundation.CGFloat? = {
+      guard let raw = values[5] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxHeight: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument6: SwiftUI.Alignment = {
+      guard let raw = values[6] else { preconditionFailure("missing frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.alignment") }
+      switch raw {
+      case "center": return SwiftUI.Alignment.center
+      case "leading": return SwiftUI.Alignment.leading
+      case "trailing": return SwiftUI.Alignment.trailing
+      case "top": return SwiftUI.Alignment.top
+      case "bottom": return SwiftUI.Alignment.bottom
+      case "topLeading": return SwiftUI.Alignment.topLeading
+      case "topTrailing": return SwiftUI.Alignment.topTrailing
+      case "bottomLeading": return SwiftUI.Alignment.bottomLeading
+      case "bottomTrailing": return SwiftUI.Alignment.bottomTrailing
+      case "centerFirstTextBaseline": return SwiftUI.Alignment.centerFirstTextBaseline
+      case "centerLastTextBaseline": return SwiftUI.Alignment.centerLastTextBaseline
+      case "leadingFirstTextBaseline": return SwiftUI.Alignment.leadingFirstTextBaseline
+      case "leadingLastTextBaseline": return SwiftUI.Alignment.leadingLastTextBaseline
+      case "trailingFirstTextBaseline": return SwiftUI.Alignment.trailingFirstTextBaseline
+      case "trailingLastTextBaseline": return SwiftUI.Alignment.trailingLastTextBaseline
+      default: preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.alignment: \(raw)")
+      }
+    }()
+    self.frame(minWidth: argument0, idealWidth: argument1, maxWidth: argument2, minHeight: argument3, idealHeight: argument4, maxHeight: argument5, alignment: argument6)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFrameWithNoArguments(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid frameWithNoArguments: \(value)")
+    if value == "true" { self.frame() } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFrameWithWidthAndHeightAndAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment: \(value)") }
+      return decoded
+    }()
+    let argument0: CoreFoundation.CGFloat? = {
+      guard let raw = values[0] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.width: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument1: CoreFoundation.CGFloat? = {
+      guard let raw = values[1] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.height: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument2: SwiftUI.Alignment = {
+      guard let raw = values[2] else { preconditionFailure("missing frameWithWidthAndHeightAndAlignment.alignment") }
+      switch raw {
+      case "center": return SwiftUI.Alignment.center
+      case "leading": return SwiftUI.Alignment.leading
+      case "trailing": return SwiftUI.Alignment.trailing
+      case "top": return SwiftUI.Alignment.top
+      case "bottom": return SwiftUI.Alignment.bottom
+      case "topLeading": return SwiftUI.Alignment.topLeading
+      case "topTrailing": return SwiftUI.Alignment.topTrailing
+      case "bottomLeading": return SwiftUI.Alignment.bottomLeading
+      case "bottomTrailing": return SwiftUI.Alignment.bottomTrailing
+      case "centerFirstTextBaseline": return SwiftUI.Alignment.centerFirstTextBaseline
+      case "centerLastTextBaseline": return SwiftUI.Alignment.centerLastTextBaseline
+      case "leadingFirstTextBaseline": return SwiftUI.Alignment.leadingFirstTextBaseline
+      case "leadingLastTextBaseline": return SwiftUI.Alignment.leadingLastTextBaseline
+      case "trailingFirstTextBaseline": return SwiftUI.Alignment.trailingFirstTextBaseline
+      case "trailingLastTextBaseline": return SwiftUI.Alignment.trailingLastTextBaseline
+      default: preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.alignment: \(raw)")
+      }
+    }()
+    self.frame(width: argument0, height: argument1, alignment: argument2)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKGaugeStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2758,7 +3607,7 @@ extension View {
         emit("gesture", encoded)
       }))
     case "tap":
-      self.gesture(SwiftUICore.TapGesture().onEnded({ _ in emit("gesture", "") }))
+      self.gesture(SwiftUI.TapGesture().onEnded({ _ in emit("gesture", "") }))
     default: preconditionFailure("invalid gesture: \(value)")
     }
   }
@@ -2766,9 +3615,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKGlassEffectTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "matchedGeometry": if #available(iOS 26, *) { self.glassEffectTransition(SwiftUICore.GlassEffectTransition.matchedGeometry) } else { self }
-      case "materialize": if #available(iOS 26, *) { self.glassEffectTransition(SwiftUICore.GlassEffectTransition.materialize) } else { self }
-      case "identity": if #available(iOS 26, *) { self.glassEffectTransition(SwiftUICore.GlassEffectTransition.identity) } else { self }
+      case "matchedGeometry": if #available(iOS 26, *) { self.glassEffectTransition(SwiftUI.GlassEffectTransition.matchedGeometry) } else { self }
+      case "materialize": if #available(iOS 26, *) { self.glassEffectTransition(SwiftUI.GlassEffectTransition.materialize) } else { self }
+      case "identity": if #available(iOS 26, *) { self.glassEffectTransition(SwiftUI.GlassEffectTransition.identity) } else { self }
     default: preconditionFailure("invalid glassEffectTransition: \(value)")
     }
   }
@@ -2782,16 +3631,16 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKGridCellAnchor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "zero": self.gridCellAnchor(SwiftUICore.UnitPoint.zero)
-      case "center": self.gridCellAnchor(SwiftUICore.UnitPoint.center)
-      case "leading": self.gridCellAnchor(SwiftUICore.UnitPoint.leading)
-      case "trailing": self.gridCellAnchor(SwiftUICore.UnitPoint.trailing)
-      case "top": self.gridCellAnchor(SwiftUICore.UnitPoint.top)
-      case "bottom": self.gridCellAnchor(SwiftUICore.UnitPoint.bottom)
-      case "topLeading": self.gridCellAnchor(SwiftUICore.UnitPoint.topLeading)
-      case "topTrailing": self.gridCellAnchor(SwiftUICore.UnitPoint.topTrailing)
-      case "bottomLeading": self.gridCellAnchor(SwiftUICore.UnitPoint.bottomLeading)
-      case "bottomTrailing": self.gridCellAnchor(SwiftUICore.UnitPoint.bottomTrailing)
+      case "zero": self.gridCellAnchor(SwiftUI.UnitPoint.zero)
+      case "center": self.gridCellAnchor(SwiftUI.UnitPoint.center)
+      case "leading": self.gridCellAnchor(SwiftUI.UnitPoint.leading)
+      case "trailing": self.gridCellAnchor(SwiftUI.UnitPoint.trailing)
+      case "top": self.gridCellAnchor(SwiftUI.UnitPoint.top)
+      case "bottom": self.gridCellAnchor(SwiftUI.UnitPoint.bottom)
+      case "topLeading": self.gridCellAnchor(SwiftUI.UnitPoint.topLeading)
+      case "topTrailing": self.gridCellAnchor(SwiftUI.UnitPoint.topTrailing)
+      case "bottomLeading": self.gridCellAnchor(SwiftUI.UnitPoint.bottomLeading)
+      case "bottomTrailing": self.gridCellAnchor(SwiftUI.UnitPoint.bottomTrailing)
     default: preconditionFailure("invalid gridCellAnchor: \(value)")
     }
   }
@@ -2805,8 +3654,8 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKGridCellUnsizedAxes(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "horizontal": self.gridCellUnsizedAxes(SwiftUICore.Axis.Set.horizontal)
-      case "vertical": self.gridCellUnsizedAxes(SwiftUICore.Axis.Set.vertical)
+      case "horizontal": self.gridCellUnsizedAxes(SwiftUI.Axis.Set.horizontal)
+      case "vertical": self.gridCellUnsizedAxes(SwiftUI.Axis.Set.vertical)
     default: preconditionFailure("invalid gridCellUnsizedAxes: \(value)")
     }
   }
@@ -2814,11 +3663,11 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKGridColumnAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "leading": self.gridColumnAlignment(SwiftUICore.HorizontalAlignment.leading)
-      case "center": self.gridColumnAlignment(SwiftUICore.HorizontalAlignment.center)
-      case "trailing": self.gridColumnAlignment(SwiftUICore.HorizontalAlignment.trailing)
-      case "listRowSeparatorLeading": self.gridColumnAlignment(SwiftUICore.HorizontalAlignment.listRowSeparatorLeading)
-      case "listRowSeparatorTrailing": self.gridColumnAlignment(SwiftUICore.HorizontalAlignment.listRowSeparatorTrailing)
+      case "leading": self.gridColumnAlignment(SwiftUI.HorizontalAlignment.leading)
+      case "center": self.gridColumnAlignment(SwiftUI.HorizontalAlignment.center)
+      case "trailing": self.gridColumnAlignment(SwiftUI.HorizontalAlignment.trailing)
+      case "listRowSeparatorLeading": self.gridColumnAlignment(SwiftUI.HorizontalAlignment.listRowSeparatorLeading)
+      case "listRowSeparatorTrailing": self.gridColumnAlignment(SwiftUI.HorizontalAlignment.listRowSeparatorTrailing)
     default: preconditionFailure("invalid gridColumnAlignment: \(value)")
     }
   }
@@ -2887,8 +3736,8 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKHeaderProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "standard": self.headerProminence(SwiftUICore.Prominence.standard)
-      case "increased": self.headerProminence(SwiftUICore.Prominence.increased)
+      case "standard": self.headerProminence(SwiftUI.Prominence.standard)
+      case "increased": self.headerProminence(SwiftUI.Prominence.increased)
     default: preconditionFailure("invalid headerProminence: \(value)")
     }
   }
@@ -2940,7 +3789,7 @@ extension View {
         emit("highPriorityGesture", encoded)
       }))
     case "tap":
-      self.highPriorityGesture(SwiftUICore.TapGesture().onEnded({ _ in emit("highPriorityGesture", "") }))
+      self.highPriorityGesture(SwiftUI.TapGesture().onEnded({ _ in emit("highPriorityGesture", "") }))
     default: preconditionFailure("invalid highPriorityGesture: \(value)")
     }
   }
@@ -2957,12 +3806,12 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid hoverEffectWithEffectAndIsEnabled: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.HoverEffect = {
+    let argument0: SwiftUI.HoverEffect = {
       guard let raw = values[0] else { preconditionFailure("missing hoverEffectWithEffectAndIsEnabled.effect") }
       switch raw {
-      case "automatic": return SwiftUICore.HoverEffect.automatic
-      case "highlight": return SwiftUICore.HoverEffect.highlight
-      case "lift": return SwiftUICore.HoverEffect.lift
+      case "automatic": return SwiftUI.HoverEffect.automatic
+      case "highlight": return SwiftUI.HoverEffect.highlight
+      case "lift": return SwiftUI.HoverEffect.lift
       default: preconditionFailure("invalid hoverEffectWithEffectAndIsEnabled.effect: \(raw)")
       }
     }()
@@ -2977,9 +3826,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKHoverEffectWithHoverEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": self.hoverEffect(SwiftUICore.HoverEffect.automatic)
-      case "highlight": self.hoverEffect(SwiftUICore.HoverEffect.highlight)
-      case "lift": self.hoverEffect(SwiftUICore.HoverEffect.lift)
+      case "automatic": self.hoverEffect(SwiftUI.HoverEffect.automatic)
+      case "highlight": self.hoverEffect(SwiftUI.HoverEffect.highlight)
+      case "lift": self.hoverEffect(SwiftUI.HoverEffect.lift)
     default: preconditionFailure("invalid hoverEffectWithHoverEffect: \(value)")
     }
   }
@@ -2987,7 +3836,7 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKHueRotation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "zero": self.hueRotation(SwiftUICore.Angle.zero)
+      case "zero": self.hueRotation(SwiftUI.Angle.zero)
     default: preconditionFailure("invalid hueRotation: \(value)")
     }
   }
@@ -3003,25 +3852,25 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid ignoresSafeAreaWithRegionsAndEdges: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.SafeAreaRegions = {
+    let argument0: SwiftUI.SafeAreaRegions = {
       guard let raw = values[0] else { preconditionFailure("missing ignoresSafeAreaWithRegionsAndEdges.regions") }
       switch raw {
-      case "container": return SwiftUICore.SafeAreaRegions.container
-      case "keyboard": return SwiftUICore.SafeAreaRegions.keyboard
-      case "all": return SwiftUICore.SafeAreaRegions.all
+      case "container": return SwiftUI.SafeAreaRegions.container
+      case "keyboard": return SwiftUI.SafeAreaRegions.keyboard
+      case "all": return SwiftUI.SafeAreaRegions.all
       default: preconditionFailure("invalid ignoresSafeAreaWithRegionsAndEdges.regions: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.Edge.Set = {
+    let argument1: SwiftUI.Edge.Set = {
       guard let raw = values[1] else { preconditionFailure("missing ignoresSafeAreaWithRegionsAndEdges.edges") }
       switch raw {
-      case "top": return SwiftUICore.Edge.Set.top
-      case "leading": return SwiftUICore.Edge.Set.leading
-      case "bottom": return SwiftUICore.Edge.Set.bottom
-      case "trailing": return SwiftUICore.Edge.Set.trailing
-      case "all": return SwiftUICore.Edge.Set.all
-      case "horizontal": return SwiftUICore.Edge.Set.horizontal
-      case "vertical": return SwiftUICore.Edge.Set.vertical
+      case "top": return SwiftUI.Edge.Set.top
+      case "leading": return SwiftUI.Edge.Set.leading
+      case "bottom": return SwiftUI.Edge.Set.bottom
+      case "trailing": return SwiftUI.Edge.Set.trailing
+      case "all": return SwiftUI.Edge.Set.all
+      case "horizontal": return SwiftUI.Edge.Set.horizontal
+      case "vertical": return SwiftUI.Edge.Set.vertical
       default: preconditionFailure("invalid ignoresSafeAreaWithRegionsAndEdges.edges: \(raw)")
       }
     }()
@@ -3029,66 +3878,72 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKIgnoresSafeAreaWithRegionsAndEdgesAndAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
         decoded.count == 3 else { preconditionFailure("invalid ignoresSafeAreaWithRegionsAndEdgesAndAlignment: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.SafeAreaRegions = {
+    let argument0: SwiftUI.SafeAreaRegions = {
       guard let raw = values[0] else { preconditionFailure("missing ignoresSafeAreaWithRegionsAndEdgesAndAlignment.regions") }
       switch raw {
-      case "container": return SwiftUICore.SafeAreaRegions.container
-      case "keyboard": return SwiftUICore.SafeAreaRegions.keyboard
-      case "all": return SwiftUICore.SafeAreaRegions.all
+      case "container": return SwiftUI.SafeAreaRegions.container
+      case "keyboard": return SwiftUI.SafeAreaRegions.keyboard
+      case "all": return SwiftUI.SafeAreaRegions.all
       default: preconditionFailure("invalid ignoresSafeAreaWithRegionsAndEdgesAndAlignment.regions: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.Edge.Set = {
+    let argument1: SwiftUI.Edge.Set = {
       guard let raw = values[1] else { preconditionFailure("missing ignoresSafeAreaWithRegionsAndEdgesAndAlignment.edges") }
       switch raw {
-      case "top": return SwiftUICore.Edge.Set.top
-      case "leading": return SwiftUICore.Edge.Set.leading
-      case "bottom": return SwiftUICore.Edge.Set.bottom
-      case "trailing": return SwiftUICore.Edge.Set.trailing
-      case "all": return SwiftUICore.Edge.Set.all
-      case "horizontal": return SwiftUICore.Edge.Set.horizontal
-      case "vertical": return SwiftUICore.Edge.Set.vertical
+      case "top": return SwiftUI.Edge.Set.top
+      case "leading": return SwiftUI.Edge.Set.leading
+      case "bottom": return SwiftUI.Edge.Set.bottom
+      case "trailing": return SwiftUI.Edge.Set.trailing
+      case "all": return SwiftUI.Edge.Set.all
+      case "horizontal": return SwiftUI.Edge.Set.horizontal
+      case "vertical": return SwiftUI.Edge.Set.vertical
       default: preconditionFailure("invalid ignoresSafeAreaWithRegionsAndEdgesAndAlignment.edges: \(raw)")
       }
     }()
-    let argument2: SwiftUICore.Alignment? = {
+    let argument2: SwiftUI.Alignment? = {
       guard let raw = values[2] else { return nil }
       switch raw {
-      case "center": return SwiftUICore.Alignment.center
-      case "leading": return SwiftUICore.Alignment.leading
-      case "trailing": return SwiftUICore.Alignment.trailing
-      case "top": return SwiftUICore.Alignment.top
-      case "bottom": return SwiftUICore.Alignment.bottom
-      case "topLeading": return SwiftUICore.Alignment.topLeading
-      case "topTrailing": return SwiftUICore.Alignment.topTrailing
-      case "bottomLeading": return SwiftUICore.Alignment.bottomLeading
-      case "bottomTrailing": return SwiftUICore.Alignment.bottomTrailing
-      case "centerFirstTextBaseline": return SwiftUICore.Alignment.centerFirstTextBaseline
-      case "centerLastTextBaseline": return SwiftUICore.Alignment.centerLastTextBaseline
-      case "leadingFirstTextBaseline": return SwiftUICore.Alignment.leadingFirstTextBaseline
-      case "leadingLastTextBaseline": return SwiftUICore.Alignment.leadingLastTextBaseline
-      case "trailingFirstTextBaseline": return SwiftUICore.Alignment.trailingFirstTextBaseline
-      case "trailingLastTextBaseline": return SwiftUICore.Alignment.trailingLastTextBaseline
+      case "center": return SwiftUI.Alignment.center
+      case "leading": return SwiftUI.Alignment.leading
+      case "trailing": return SwiftUI.Alignment.trailing
+      case "top": return SwiftUI.Alignment.top
+      case "bottom": return SwiftUI.Alignment.bottom
+      case "topLeading": return SwiftUI.Alignment.topLeading
+      case "topTrailing": return SwiftUI.Alignment.topTrailing
+      case "bottomLeading": return SwiftUI.Alignment.bottomLeading
+      case "bottomTrailing": return SwiftUI.Alignment.bottomTrailing
+      case "centerFirstTextBaseline": return SwiftUI.Alignment.centerFirstTextBaseline
+      case "centerLastTextBaseline": return SwiftUI.Alignment.centerLastTextBaseline
+      case "leadingFirstTextBaseline": return SwiftUI.Alignment.leadingFirstTextBaseline
+      case "leadingLastTextBaseline": return SwiftUI.Alignment.leadingLastTextBaseline
+      case "trailingFirstTextBaseline": return SwiftUI.Alignment.trailingFirstTextBaseline
+      case "trailingLastTextBaseline": return SwiftUI.Alignment.trailingLastTextBaseline
       default: preconditionFailure("invalid ignoresSafeAreaWithRegionsAndEdgesAndAlignment.alignment: \(raw)")
       }
     }()
     self.ignoresSafeArea(argument0, edges: argument1, alignment: argument2)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKImageScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "small": self.imageScale(SwiftUICore.Image.Scale.small)
-      case "medium": self.imageScale(SwiftUICore.Image.Scale.medium)
-      case "large": self.imageScale(SwiftUICore.Image.Scale.large)
+      case "small": self.imageScale(SwiftUI.Image.Scale.small)
+      case "medium": self.imageScale(SwiftUI.Image.Scale.medium)
+      case "large": self.imageScale(SwiftUI.Image.Scale.large)
     default: preconditionFailure("invalid imageScale: \(value)")
     }
   }
@@ -3189,17 +4044,17 @@ extension View {
       default: preconditionFailure("invalid keyboardShortcutWithKeyAndModifiers.key: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.EventModifiers = {
+    let argument1: SwiftUI.EventModifiers = {
       guard let raw = values[1] else { preconditionFailure("missing keyboardShortcutWithKeyAndModifiers.modifiers") }
       switch raw {
-      case "capsLock": return SwiftUICore.EventModifiers.capsLock
-      case "shift": return SwiftUICore.EventModifiers.shift
-      case "control": return SwiftUICore.EventModifiers.control
-      case "option": return SwiftUICore.EventModifiers.option
-      case "command": return SwiftUICore.EventModifiers.command
-      case "numericPad": return SwiftUICore.EventModifiers.numericPad
-      case "function": return SwiftUICore.EventModifiers.function
-      case "all": return SwiftUICore.EventModifiers.all
+      case "capsLock": return SwiftUI.EventModifiers.capsLock
+      case "shift": return SwiftUI.EventModifiers.shift
+      case "control": return SwiftUI.EventModifiers.control
+      case "option": return SwiftUI.EventModifiers.option
+      case "command": return SwiftUI.EventModifiers.command
+      case "numericPad": return SwiftUI.EventModifiers.numericPad
+      case "function": return SwiftUI.EventModifiers.function
+      case "all": return SwiftUI.EventModifiers.all
       default: preconditionFailure("invalid keyboardShortcutWithKeyAndModifiers.modifiers: \(raw)")
       }
     }()
@@ -3234,17 +4089,17 @@ extension View {
       default: preconditionFailure("invalid keyboardShortcutWithKeyAndModifiersAndLocalization.key: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.EventModifiers = {
+    let argument1: SwiftUI.EventModifiers = {
       guard let raw = values[1] else { preconditionFailure("missing keyboardShortcutWithKeyAndModifiersAndLocalization.modifiers") }
       switch raw {
-      case "capsLock": return SwiftUICore.EventModifiers.capsLock
-      case "shift": return SwiftUICore.EventModifiers.shift
-      case "control": return SwiftUICore.EventModifiers.control
-      case "option": return SwiftUICore.EventModifiers.option
-      case "command": return SwiftUICore.EventModifiers.command
-      case "numericPad": return SwiftUICore.EventModifiers.numericPad
-      case "function": return SwiftUICore.EventModifiers.function
-      case "all": return SwiftUICore.EventModifiers.all
+      case "capsLock": return SwiftUI.EventModifiers.capsLock
+      case "shift": return SwiftUI.EventModifiers.shift
+      case "control": return SwiftUI.EventModifiers.control
+      case "option": return SwiftUI.EventModifiers.option
+      case "command": return SwiftUI.EventModifiers.command
+      case "numericPad": return SwiftUI.EventModifiers.numericPad
+      case "function": return SwiftUI.EventModifiers.function
+      case "all": return SwiftUI.EventModifiers.all
       default: preconditionFailure("invalid keyboardShortcutWithKeyAndModifiersAndLocalization.modifiers: \(raw)")
       }
     }()
@@ -3337,9 +4192,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKLabelsVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 18, *) { self.labelsVisibility(SwiftUICore.Visibility.automatic) } else { self }
-      case "visible": if #available(iOS 18, *) { self.labelsVisibility(SwiftUICore.Visibility.visible) } else { self }
-      case "hidden": if #available(iOS 18, *) { self.labelsVisibility(SwiftUICore.Visibility.hidden) } else { self }
+      case "automatic": if #available(iOS 18, *) { self.labelsVisibility(SwiftUI.Visibility.automatic) } else { self }
+      case "visible": if #available(iOS 18, *) { self.labelsVisibility(SwiftUI.Visibility.visible) } else { self }
+      case "hidden": if #available(iOS 18, *) { self.labelsVisibility(SwiftUI.Visibility.hidden) } else { self }
     default: preconditionFailure("invalid labelsVisibility: \(value)")
     }
   }
@@ -3351,9 +4206,9 @@ extension View {
         decoded.count == 3 else { preconditionFailure("invalid layerEffect: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Shader = {
+    let argument0: SwiftUI.Shader = {
       guard let raw = values[0] else { preconditionFailure("missing layerEffect.shader") }
-      return SwiftUICore.Shader(function: SwiftUICore.ShaderFunction(library: SwiftUICore.ShaderLibrary.default, name: raw), arguments: [])
+      return SwiftUI.Shader(function: SwiftUI.ShaderFunction(library: SwiftUI.ShaderLibrary.default, name: raw), arguments: [])
     }()
     let argument1: CoreFoundation.CGSize = {
       guard let raw = values[1] else { preconditionFailure("missing layerEffect.maxSampleOffset") }
@@ -3374,8 +4229,8 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKLayoutDirectionBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "fixed": self.layoutDirectionBehavior(SwiftUICore.LayoutDirectionBehavior.fixed)
-      case "mirrors": self.layoutDirectionBehavior(SwiftUICore.LayoutDirectionBehavior.mirrors)
+      case "fixed": self.layoutDirectionBehavior(SwiftUI.LayoutDirectionBehavior.fixed)
+      case "mirrors": self.layoutDirectionBehavior(SwiftUI.LayoutDirectionBehavior.mirrors)
     default: preconditionFailure("invalid layoutDirectionBehavior: \(value)")
     }
   }
@@ -3431,26 +4286,26 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKListItemTintWithOptionalColor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.listItemTint(nil as SwiftUICore.Color?)
-      case "accentColor": self.listItemTint(SwiftUICore.Color.accentColor)
-      case "red": self.listItemTint(SwiftUICore.Color.red)
-      case "orange": self.listItemTint(SwiftUICore.Color.orange)
-      case "yellow": self.listItemTint(SwiftUICore.Color.yellow)
-      case "green": self.listItemTint(SwiftUICore.Color.green)
-      case "mint": self.listItemTint(SwiftUICore.Color.mint)
-      case "teal": self.listItemTint(SwiftUICore.Color.teal)
-      case "cyan": self.listItemTint(SwiftUICore.Color.cyan)
-      case "blue": self.listItemTint(SwiftUICore.Color.blue)
-      case "indigo": self.listItemTint(SwiftUICore.Color.indigo)
-      case "purple": self.listItemTint(SwiftUICore.Color.purple)
-      case "pink": self.listItemTint(SwiftUICore.Color.pink)
-      case "brown": self.listItemTint(SwiftUICore.Color.brown)
-      case "white": self.listItemTint(SwiftUICore.Color.white)
-      case "gray": self.listItemTint(SwiftUICore.Color.gray)
-      case "black": self.listItemTint(SwiftUICore.Color.black)
-      case "clear": self.listItemTint(SwiftUICore.Color.clear)
-      case "primary": self.listItemTint(SwiftUICore.Color.primary)
-      case "secondary": self.listItemTint(SwiftUICore.Color.secondary)
+      case "null": self.listItemTint(nil as SwiftUI.Color?)
+      case "accentColor": self.listItemTint(SwiftUI.Color.accentColor)
+      case "red": self.listItemTint(SwiftUI.Color.red)
+      case "orange": self.listItemTint(SwiftUI.Color.orange)
+      case "yellow": self.listItemTint(SwiftUI.Color.yellow)
+      case "green": self.listItemTint(SwiftUI.Color.green)
+      case "mint": self.listItemTint(SwiftUI.Color.mint)
+      case "teal": self.listItemTint(SwiftUI.Color.teal)
+      case "cyan": self.listItemTint(SwiftUI.Color.cyan)
+      case "blue": self.listItemTint(SwiftUI.Color.blue)
+      case "indigo": self.listItemTint(SwiftUI.Color.indigo)
+      case "purple": self.listItemTint(SwiftUI.Color.purple)
+      case "pink": self.listItemTint(SwiftUI.Color.pink)
+      case "brown": self.listItemTint(SwiftUI.Color.brown)
+      case "white": self.listItemTint(SwiftUI.Color.white)
+      case "gray": self.listItemTint(SwiftUI.Color.gray)
+      case "black": self.listItemTint(SwiftUI.Color.black)
+      case "clear": self.listItemTint(SwiftUI.Color.clear)
+      case "primary": self.listItemTint(SwiftUI.Color.primary)
+      case "secondary": self.listItemTint(SwiftUI.Color.secondary)
     default: preconditionFailure("invalid listItemTintWithOptionalColor: \(value)")
     }
   }
@@ -3471,16 +4326,16 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid listRowInsets: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Edge.Set = {
+    let argument0: SwiftUI.Edge.Set = {
       guard let raw = values[0] else { preconditionFailure("missing listRowInsets.edges") }
       switch raw {
-      case "top": return SwiftUICore.Edge.Set.top
-      case "leading": return SwiftUICore.Edge.Set.leading
-      case "bottom": return SwiftUICore.Edge.Set.bottom
-      case "trailing": return SwiftUICore.Edge.Set.trailing
-      case "all": return SwiftUICore.Edge.Set.all
-      case "horizontal": return SwiftUICore.Edge.Set.horizontal
-      case "vertical": return SwiftUICore.Edge.Set.vertical
+      case "top": return SwiftUI.Edge.Set.top
+      case "leading": return SwiftUI.Edge.Set.leading
+      case "bottom": return SwiftUI.Edge.Set.bottom
+      case "trailing": return SwiftUI.Edge.Set.trailing
+      case "all": return SwiftUI.Edge.Set.all
+      case "horizontal": return SwiftUI.Edge.Set.horizontal
+      case "vertical": return SwiftUI.Edge.Set.vertical
       default: preconditionFailure("invalid listRowInsets.edges: \(raw)")
       }
     }()
@@ -3500,21 +4355,21 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid listRowSeparator: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Visibility = {
+    let argument0: SwiftUI.Visibility = {
       guard let raw = values[0] else { preconditionFailure("missing listRowSeparator.visibility") }
       switch raw {
-      case "automatic": return SwiftUICore.Visibility.automatic
-      case "visible": return SwiftUICore.Visibility.visible
-      case "hidden": return SwiftUICore.Visibility.hidden
+      case "automatic": return SwiftUI.Visibility.automatic
+      case "visible": return SwiftUI.Visibility.visible
+      case "hidden": return SwiftUI.Visibility.hidden
       default: preconditionFailure("invalid listRowSeparator.visibility: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.VerticalEdge.Set = {
+    let argument1: SwiftUI.VerticalEdge.Set = {
       guard let raw = values[1] else { preconditionFailure("missing listRowSeparator.edges") }
       switch raw {
-      case "top": return SwiftUICore.VerticalEdge.Set.top
-      case "bottom": return SwiftUICore.VerticalEdge.Set.bottom
-      case "all": return SwiftUICore.VerticalEdge.Set.all
+      case "top": return SwiftUI.VerticalEdge.Set.top
+      case "bottom": return SwiftUI.VerticalEdge.Set.bottom
+      case "all": return SwiftUI.VerticalEdge.Set.all
       default: preconditionFailure("invalid listRowSeparator.edges: \(raw)")
       }
     }()
@@ -3528,37 +4383,37 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid listRowSeparatorTint: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Color? = {
+    let argument0: SwiftUI.Color? = {
       guard let raw = values[0] else { return nil }
       switch raw {
-      case "accentColor": return SwiftUICore.Color.accentColor
-      case "red": return SwiftUICore.Color.red
-      case "orange": return SwiftUICore.Color.orange
-      case "yellow": return SwiftUICore.Color.yellow
-      case "green": return SwiftUICore.Color.green
-      case "mint": return SwiftUICore.Color.mint
-      case "teal": return SwiftUICore.Color.teal
-      case "cyan": return SwiftUICore.Color.cyan
-      case "blue": return SwiftUICore.Color.blue
-      case "indigo": return SwiftUICore.Color.indigo
-      case "purple": return SwiftUICore.Color.purple
-      case "pink": return SwiftUICore.Color.pink
-      case "brown": return SwiftUICore.Color.brown
-      case "white": return SwiftUICore.Color.white
-      case "gray": return SwiftUICore.Color.gray
-      case "black": return SwiftUICore.Color.black
-      case "clear": return SwiftUICore.Color.clear
-      case "primary": return SwiftUICore.Color.primary
-      case "secondary": return SwiftUICore.Color.secondary
+      case "accentColor": return SwiftUI.Color.accentColor
+      case "red": return SwiftUI.Color.red
+      case "orange": return SwiftUI.Color.orange
+      case "yellow": return SwiftUI.Color.yellow
+      case "green": return SwiftUI.Color.green
+      case "mint": return SwiftUI.Color.mint
+      case "teal": return SwiftUI.Color.teal
+      case "cyan": return SwiftUI.Color.cyan
+      case "blue": return SwiftUI.Color.blue
+      case "indigo": return SwiftUI.Color.indigo
+      case "purple": return SwiftUI.Color.purple
+      case "pink": return SwiftUI.Color.pink
+      case "brown": return SwiftUI.Color.brown
+      case "white": return SwiftUI.Color.white
+      case "gray": return SwiftUI.Color.gray
+      case "black": return SwiftUI.Color.black
+      case "clear": return SwiftUI.Color.clear
+      case "primary": return SwiftUI.Color.primary
+      case "secondary": return SwiftUI.Color.secondary
       default: preconditionFailure("invalid listRowSeparatorTint.color: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.VerticalEdge.Set = {
+    let argument1: SwiftUI.VerticalEdge.Set = {
       guard let raw = values[1] else { preconditionFailure("missing listRowSeparatorTint.edges") }
       switch raw {
-      case "top": return SwiftUICore.VerticalEdge.Set.top
-      case "bottom": return SwiftUICore.VerticalEdge.Set.bottom
-      case "all": return SwiftUICore.VerticalEdge.Set.all
+      case "top": return SwiftUI.VerticalEdge.Set.top
+      case "bottom": return SwiftUI.VerticalEdge.Set.bottom
+      case "all": return SwiftUI.VerticalEdge.Set.all
       default: preconditionFailure("invalid listRowSeparatorTint.edges: \(raw)")
       }
     }()
@@ -3574,9 +4429,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKListSectionIndexVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 26, *) { self.listSectionIndexVisibility(SwiftUICore.Visibility.automatic) } else { self }
-      case "visible": if #available(iOS 26, *) { self.listSectionIndexVisibility(SwiftUICore.Visibility.visible) } else { self }
-      case "hidden": if #available(iOS 26, *) { self.listSectionIndexVisibility(SwiftUICore.Visibility.hidden) } else { self }
+      case "automatic": if #available(iOS 26, *) { self.listSectionIndexVisibility(SwiftUI.Visibility.automatic) } else { self }
+      case "visible": if #available(iOS 26, *) { self.listSectionIndexVisibility(SwiftUI.Visibility.visible) } else { self }
+      case "hidden": if #available(iOS 26, *) { self.listSectionIndexVisibility(SwiftUI.Visibility.hidden) } else { self }
     default: preconditionFailure("invalid listSectionIndexVisibility: \(value)")
     }
   }
@@ -3589,16 +4444,16 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid listSectionMargins: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Edge.Set = {
+    let argument0: SwiftUI.Edge.Set = {
       guard let raw = values[0] else { preconditionFailure("missing listSectionMargins.edges") }
       switch raw {
-      case "top": return SwiftUICore.Edge.Set.top
-      case "leading": return SwiftUICore.Edge.Set.leading
-      case "bottom": return SwiftUICore.Edge.Set.bottom
-      case "trailing": return SwiftUICore.Edge.Set.trailing
-      case "all": return SwiftUICore.Edge.Set.all
-      case "horizontal": return SwiftUICore.Edge.Set.horizontal
-      case "vertical": return SwiftUICore.Edge.Set.vertical
+      case "top": return SwiftUI.Edge.Set.top
+      case "leading": return SwiftUI.Edge.Set.leading
+      case "bottom": return SwiftUI.Edge.Set.bottom
+      case "trailing": return SwiftUI.Edge.Set.trailing
+      case "all": return SwiftUI.Edge.Set.all
+      case "horizontal": return SwiftUI.Edge.Set.horizontal
+      case "vertical": return SwiftUI.Edge.Set.vertical
       default: preconditionFailure("invalid listSectionMargins.edges: \(raw)")
       }
     }()
@@ -3618,21 +4473,21 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid listSectionSeparator: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Visibility = {
+    let argument0: SwiftUI.Visibility = {
       guard let raw = values[0] else { preconditionFailure("missing listSectionSeparator.visibility") }
       switch raw {
-      case "automatic": return SwiftUICore.Visibility.automatic
-      case "visible": return SwiftUICore.Visibility.visible
-      case "hidden": return SwiftUICore.Visibility.hidden
+      case "automatic": return SwiftUI.Visibility.automatic
+      case "visible": return SwiftUI.Visibility.visible
+      case "hidden": return SwiftUI.Visibility.hidden
       default: preconditionFailure("invalid listSectionSeparator.visibility: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.VerticalEdge.Set = {
+    let argument1: SwiftUI.VerticalEdge.Set = {
       guard let raw = values[1] else { preconditionFailure("missing listSectionSeparator.edges") }
       switch raw {
-      case "top": return SwiftUICore.VerticalEdge.Set.top
-      case "bottom": return SwiftUICore.VerticalEdge.Set.bottom
-      case "all": return SwiftUICore.VerticalEdge.Set.all
+      case "top": return SwiftUI.VerticalEdge.Set.top
+      case "bottom": return SwiftUI.VerticalEdge.Set.bottom
+      case "all": return SwiftUI.VerticalEdge.Set.all
       default: preconditionFailure("invalid listSectionSeparator.edges: \(raw)")
       }
     }()
@@ -3646,37 +4501,37 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid listSectionSeparatorTint: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Color? = {
+    let argument0: SwiftUI.Color? = {
       guard let raw = values[0] else { return nil }
       switch raw {
-      case "accentColor": return SwiftUICore.Color.accentColor
-      case "red": return SwiftUICore.Color.red
-      case "orange": return SwiftUICore.Color.orange
-      case "yellow": return SwiftUICore.Color.yellow
-      case "green": return SwiftUICore.Color.green
-      case "mint": return SwiftUICore.Color.mint
-      case "teal": return SwiftUICore.Color.teal
-      case "cyan": return SwiftUICore.Color.cyan
-      case "blue": return SwiftUICore.Color.blue
-      case "indigo": return SwiftUICore.Color.indigo
-      case "purple": return SwiftUICore.Color.purple
-      case "pink": return SwiftUICore.Color.pink
-      case "brown": return SwiftUICore.Color.brown
-      case "white": return SwiftUICore.Color.white
-      case "gray": return SwiftUICore.Color.gray
-      case "black": return SwiftUICore.Color.black
-      case "clear": return SwiftUICore.Color.clear
-      case "primary": return SwiftUICore.Color.primary
-      case "secondary": return SwiftUICore.Color.secondary
+      case "accentColor": return SwiftUI.Color.accentColor
+      case "red": return SwiftUI.Color.red
+      case "orange": return SwiftUI.Color.orange
+      case "yellow": return SwiftUI.Color.yellow
+      case "green": return SwiftUI.Color.green
+      case "mint": return SwiftUI.Color.mint
+      case "teal": return SwiftUI.Color.teal
+      case "cyan": return SwiftUI.Color.cyan
+      case "blue": return SwiftUI.Color.blue
+      case "indigo": return SwiftUI.Color.indigo
+      case "purple": return SwiftUI.Color.purple
+      case "pink": return SwiftUI.Color.pink
+      case "brown": return SwiftUI.Color.brown
+      case "white": return SwiftUI.Color.white
+      case "gray": return SwiftUI.Color.gray
+      case "black": return SwiftUI.Color.black
+      case "clear": return SwiftUI.Color.clear
+      case "primary": return SwiftUI.Color.primary
+      case "secondary": return SwiftUI.Color.secondary
       default: preconditionFailure("invalid listSectionSeparatorTint.color: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.VerticalEdge.Set = {
+    let argument1: SwiftUI.VerticalEdge.Set = {
       guard let raw = values[1] else { preconditionFailure("missing listSectionSeparatorTint.edges") }
       switch raw {
-      case "top": return SwiftUICore.VerticalEdge.Set.top
-      case "bottom": return SwiftUICore.VerticalEdge.Set.bottom
-      case "all": return SwiftUICore.VerticalEdge.Set.all
+      case "top": return SwiftUI.VerticalEdge.Set.top
+      case "bottom": return SwiftUI.VerticalEdge.Set.bottom
+      case "all": return SwiftUI.VerticalEdge.Set.all
       default: preconditionFailure("invalid listSectionSeparatorTint.edges: \(raw)")
       }
     }()
@@ -3728,7 +4583,7 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
       guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID.isPresented") }
       return Binding<Bool>(get: { raw == "true" }, set: { emit("manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID.isPresented", String($0)) })
     }()
@@ -3742,9 +4597,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKMapControlVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": self.mapControlVisibility(SwiftUICore.Visibility.automatic)
-      case "visible": self.mapControlVisibility(SwiftUICore.Visibility.visible)
-      case "hidden": self.mapControlVisibility(SwiftUICore.Visibility.hidden)
+      case "automatic": self.mapControlVisibility(SwiftUI.Visibility.automatic)
+      case "visible": self.mapControlVisibility(SwiftUI.Visibility.visible)
+      case "hidden": self.mapControlVisibility(SwiftUI.Visibility.hidden)
     default: preconditionFailure("invalid mapControlVisibility: \(value)")
     }
   }
@@ -3778,9 +4633,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKMaterialActiveAppearance(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 18, *) { self.materialActiveAppearance(SwiftUICore.MaterialActiveAppearance.automatic) } else { self }
-      case "active": if #available(iOS 18, *) { self.materialActiveAppearance(SwiftUICore.MaterialActiveAppearance.active) } else { self }
-      case "matchWindow": if #available(iOS 18, *) { self.materialActiveAppearance(SwiftUICore.MaterialActiveAppearance.matchWindow) } else { self }
+      case "automatic": if #available(iOS 18, *) { self.materialActiveAppearance(SwiftUI.MaterialActiveAppearance.automatic) } else { self }
+      case "active": if #available(iOS 18, *) { self.materialActiveAppearance(SwiftUI.MaterialActiveAppearance.active) } else { self }
+      case "matchWindow": if #available(iOS 18, *) { self.materialActiveAppearance(SwiftUI.MaterialActiveAppearance.matchWindow) } else { self }
     default: preconditionFailure("invalid materialActiveAppearance: \(value)")
     }
   }
@@ -3798,9 +4653,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKMenuIndicator(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": self.menuIndicator(SwiftUICore.Visibility.automatic)
-      case "visible": self.menuIndicator(SwiftUICore.Visibility.visible)
-      case "hidden": self.menuIndicator(SwiftUICore.Visibility.hidden)
+      case "automatic": self.menuIndicator(SwiftUI.Visibility.automatic)
+      case "visible": self.menuIndicator(SwiftUI.Visibility.visible)
+      case "hidden": self.menuIndicator(SwiftUI.Visibility.hidden)
     default: preconditionFailure("invalid menuIndicator: \(value)")
     }
   }
@@ -3849,9 +4704,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKMultilineTextAlignmentWithStrategy(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "layoutBased": if #available(iOS 26, *) { self.multilineTextAlignment(strategy: SwiftUICore.Text.AlignmentStrategy.layoutBased) } else { self }
-      case "writingDirectionBased": if #available(iOS 26, *) { self.multilineTextAlignment(strategy: SwiftUICore.Text.AlignmentStrategy.writingDirectionBased) } else { self }
-      case "default": if #available(iOS 26, *) { self.multilineTextAlignment(strategy: SwiftUICore.Text.AlignmentStrategy.default) } else { self }
+      case "layoutBased": if #available(iOS 26, *) { self.multilineTextAlignment(strategy: SwiftUI.Text.AlignmentStrategy.layoutBased) } else { self }
+      case "writingDirectionBased": if #available(iOS 26, *) { self.multilineTextAlignment(strategy: SwiftUI.Text.AlignmentStrategy.writingDirectionBased) } else { self }
+      case "default": if #available(iOS 26, *) { self.multilineTextAlignment(strategy: SwiftUI.Text.AlignmentStrategy.default) } else { self }
     default: preconditionFailure("invalid multilineTextAlignmentWithStrategy: \(value)")
     }
   }
@@ -3859,9 +4714,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKMultilineTextAlignmentWithTextAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "leading": self.multilineTextAlignment(SwiftUICore.TextAlignment.leading)
-      case "center": self.multilineTextAlignment(SwiftUICore.TextAlignment.center)
-      case "trailing": self.multilineTextAlignment(SwiftUICore.TextAlignment.trailing)
+      case "leading": self.multilineTextAlignment(SwiftUI.TextAlignment.leading)
+      case "center": self.multilineTextAlignment(SwiftUI.TextAlignment.center)
+      case "trailing": self.multilineTextAlignment(SwiftUI.TextAlignment.trailing)
     default: preconditionFailure("invalid multilineTextAlignmentWithTextAlignment: \(value)")
     }
   }
@@ -3902,7 +4757,7 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid navigationBarTitleWithTitleAndDisplayMode: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Text = {
+    let argument0: SwiftUI.Text = {
       guard let raw = values[0] else { preconditionFailure("missing navigationBarTitleWithTitleAndDisplayMode.title") }
       return Text(raw)
     }()
@@ -3925,9 +4780,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKNavigationLinkIndicatorVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": self.navigationLinkIndicatorVisibility(SwiftUICore.Visibility.automatic)
-      case "visible": self.navigationLinkIndicatorVisibility(SwiftUICore.Visibility.visible)
-      case "hidden": self.navigationLinkIndicatorVisibility(SwiftUICore.Visibility.hidden)
+      case "automatic": self.navigationLinkIndicatorVisibility(SwiftUI.Visibility.automatic)
+      case "visible": self.navigationLinkIndicatorVisibility(SwiftUI.Visibility.visible)
+      case "hidden": self.navigationLinkIndicatorVisibility(SwiftUI.Visibility.hidden)
     default: preconditionFailure("invalid navigationLinkIndicatorVisibility: \(value)")
     }
   }
@@ -3989,7 +4844,13 @@ extension View {
     switch value {
 
       case "automatic": if #available(iOS 18, *) { self.navigationTransition(.automatic) } else { self }
-      case "crossFade": if #available(iOS 27, *) { self.navigationTransition(.crossFade) } else { self }
+      case "crossFade":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.navigationTransition(.crossFade) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid navigationTransition: \(value)")
     }
   }
@@ -4153,21 +5014,33 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnDragSessionUpdated(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) { self.onDragSessionUpdated({ item in
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.onDragSessionUpdated({ item in
       let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
       guard let data = try? JSONSerialization.data(withJSONObject: payload),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onDragSessionUpdated event") }
       emit("onDragSessionUpdated", encoded)
     }) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnDropSessionUpdated(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) { self.onDropSessionUpdated({ item in
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.onDropSessionUpdated({ item in
       let payload = (["itemsCount": Double(item.itemsCount), "suggestedOperations": (["rawValue": Double(item.suggestedOperations.rawValue)] as [String: Any]), "size": (["width": Double(item.size.width), "height": Double(item.size.height)] as [String: Any]), "location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
       guard let data = try? JSONSerialization.data(withJSONObject: payload),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onDropSessionUpdated event") }
       emit("onDropSessionUpdated", encoded)
     }) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnGeometryChangeWithSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4331,12 +5204,18 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPasteDestination(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) { self.pasteDestination(for: String.self, action: { item in
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.pasteDestination(for: String.self, action: { item in
       let payload = item.map { item -> Any in item }
       guard let data = try? JSONSerialization.data(withJSONObject: payload),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid pasteDestination event") }
       emit("pasteDestination", encoded)
     }, validator: { $0 }) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPayLaterViewAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4378,9 +5257,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKPersistentSystemOverlays(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": self.persistentSystemOverlays(SwiftUICore.Visibility.automatic)
-      case "visible": self.persistentSystemOverlays(SwiftUICore.Visibility.visible)
-      case "hidden": self.persistentSystemOverlays(SwiftUICore.Visibility.hidden)
+      case "automatic": self.persistentSystemOverlays(SwiftUI.Visibility.automatic)
+      case "visible": self.persistentSystemOverlays(SwiftUI.Visibility.visible)
+      case "hidden": self.persistentSystemOverlays(SwiftUI.Visibility.hidden)
     default: preconditionFailure("invalid persistentSystemOverlays: \(value)")
     }
   }
@@ -4392,25 +5271,25 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid photosPickerAccessoryVisibility: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Visibility = {
+    let argument0: SwiftUI.Visibility = {
       guard let raw = values[0] else { preconditionFailure("missing photosPickerAccessoryVisibility.visibility") }
       switch raw {
-      case "automatic": return SwiftUICore.Visibility.automatic
-      case "visible": return SwiftUICore.Visibility.visible
-      case "hidden": return SwiftUICore.Visibility.hidden
+      case "automatic": return SwiftUI.Visibility.automatic
+      case "visible": return SwiftUI.Visibility.visible
+      case "hidden": return SwiftUI.Visibility.hidden
       default: preconditionFailure("invalid photosPickerAccessoryVisibility.visibility: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.Edge.Set = {
+    let argument1: SwiftUI.Edge.Set = {
       guard let raw = values[1] else { preconditionFailure("missing photosPickerAccessoryVisibility.edges") }
       switch raw {
-      case "top": return SwiftUICore.Edge.Set.top
-      case "leading": return SwiftUICore.Edge.Set.leading
-      case "bottom": return SwiftUICore.Edge.Set.bottom
-      case "trailing": return SwiftUICore.Edge.Set.trailing
-      case "all": return SwiftUICore.Edge.Set.all
-      case "horizontal": return SwiftUICore.Edge.Set.horizontal
-      case "vertical": return SwiftUICore.Edge.Set.vertical
+      case "top": return SwiftUI.Edge.Set.top
+      case "leading": return SwiftUI.Edge.Set.leading
+      case "bottom": return SwiftUI.Edge.Set.bottom
+      case "trailing": return SwiftUI.Edge.Set.trailing
+      case "all": return SwiftUI.Edge.Set.all
+      case "horizontal": return SwiftUI.Edge.Set.horizontal
+      case "vertical": return SwiftUI.Edge.Set.vertical
       default: preconditionFailure("invalid photosPickerAccessoryVisibility.edges: \(raw)")
       }
     }()
@@ -4432,15 +5311,39 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKPhotosPickerMetadataOptions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "removeCaptions": if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeCaptions) } else { self }
-      case "removeLocation": if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeLocation) } else { self }
+      case "removeCaptions":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeCaptions) } else { self }
+#else
+self
+#endif
+
+      case "removeLocation":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeLocation) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid photosPickerMetadataOptions: \(value)")
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPhotosPickerSearchText(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { if #available(iOS 27, *) { self.photosPickerSearchText(nil as Swift.String?) } else { self } } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
-      if #available(iOS 27, *) { self.photosPickerSearchText(decoded) } else { self }
+    if value == "null" { 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.photosPickerSearchText(nil as Swift.String?) } else { self }
+#else
+self
+#endif
+ } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+      
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.photosPickerSearchText(decoded) } else { self }
+#else
+self
+#endif
+
     } else { preconditionFailure("invalid photosPickerSearchText: \(value)") } }
   }
 
@@ -4455,14 +5358,16 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPhotosReferenceImageViewer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
         decoded.count == 2 else { preconditionFailure("invalid photosReferenceImageViewer: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Binding<Foundation.URL?> = {
+    let argument0: SwiftUI.Binding<Foundation.URL?> = {
       guard let raw = values[0], let data = raw.data(using: .utf8),
         let decoded = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
         decoded is NSNull || decoded is String else { preconditionFailure("invalid photosReferenceImageViewer.fileURL") }
@@ -4489,6 +5394,10 @@ extension View {
     }
     self.photosReferenceImageViewer(fileURL: argument0, onProcessingCompletion: argument1)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPickerStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4498,7 +5407,13 @@ extension View {
       case "inline": self.pickerStyle(.inline)
       case "automatic": self.pickerStyle(.automatic)
       case "segmented": self.pickerStyle(.segmented)
-      case "tabs": if #available(iOS 27, *) { self.pickerStyle(.tabs) } else { self }
+      case "tabs":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.pickerStyle(.tabs) } else { self }
+#else
+self
+#endif
+
       case "palette": self.pickerStyle(.palette)
       case "navigationLink": self.pickerStyle(.navigationLink)
       case "menu": self.pickerStyle(.menu)
@@ -4528,9 +5443,9 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKPreferredColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.preferredColorScheme(nil as SwiftUICore.ColorScheme?)
-      case "light": self.preferredColorScheme(SwiftUICore.ColorScheme.light)
-      case "dark": self.preferredColorScheme(SwiftUICore.ColorScheme.dark)
+      case "null": self.preferredColorScheme(nil as SwiftUI.ColorScheme?)
+      case "light": self.preferredColorScheme(SwiftUI.ColorScheme.light)
+      case "dark": self.preferredColorScheme(SwiftUI.ColorScheme.dark)
     default: preconditionFailure("invalid preferredColorScheme: \(value)")
     }
   }
@@ -4651,9 +5566,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKPresentationDragIndicator(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": self.presentationDragIndicator(SwiftUICore.Visibility.automatic)
-      case "visible": self.presentationDragIndicator(SwiftUICore.Visibility.visible)
-      case "hidden": self.presentationDragIndicator(SwiftUICore.Visibility.hidden)
+      case "automatic": self.presentationDragIndicator(SwiftUI.Visibility.automatic)
+      case "visible": self.presentationDragIndicator(SwiftUI.Visibility.visible)
+      case "hidden": self.presentationDragIndicator(SwiftUI.Visibility.hidden)
     default: preconditionFailure("invalid presentationDragIndicator: \(value)")
     }
   }
@@ -4661,10 +5576,34 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKPresentationPlacement(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.automatic) } else { self }
-      case "leading": if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.leading) } else { self }
-      case "center": if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.center) } else { self }
-      case "trailing": if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.trailing) } else { self }
+      case "automatic":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.automatic) } else { self }
+#else
+self
+#endif
+
+      case "leading":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.leading) } else { self }
+#else
+self
+#endif
+
+      case "center":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.center) } else { self }
+#else
+self
+#endif
+
+      case "trailing":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.trailing) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid presentationPlacement: \(value)")
     }
   }
@@ -4720,9 +5659,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKProductDescription(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": self.productDescription(SwiftUICore.Visibility.automatic)
-      case "visible": self.productDescription(SwiftUICore.Visibility.visible)
-      case "hidden": self.productDescription(SwiftUICore.Visibility.hidden)
+      case "automatic": self.productDescription(SwiftUI.Visibility.automatic)
+      case "visible": self.productDescription(SwiftUI.Visibility.visible)
+      case "hidden": self.productDescription(SwiftUI.Visibility.hidden)
     default: preconditionFailure("invalid productDescription: \(value)")
     }
   }
@@ -4760,7 +5699,7 @@ extension View {
         decoded.count == 1 else { preconditionFailure("invalid projectionEffect: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.ProjectionTransform = {
+    let argument0: SwiftUI.ProjectionTransform = {
       guard let raw = values[0] else { preconditionFailure("missing projectionEffect.transform") }
       guard let data = raw.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
@@ -4770,7 +5709,7 @@ extension View {
         let field3 = decoded["d"], field3.isFinite,
         let field4 = decoded["tx"], field4.isFinite,
         let field5 = decoded["ty"], field5.isFinite else { preconditionFailure("invalid projectionEffect.transform: \(raw)") }
-      return SwiftUICore.ProjectionTransform(CoreFoundation.CGAffineTransform(a: CGFloat(field0), b: CGFloat(field1), c: CGFloat(field2), d: CGFloat(field3), tx: CGFloat(field4), ty: CGFloat(field5)))
+      return SwiftUI.ProjectionTransform(CoreFoundation.CGAffineTransform(a: CGFloat(field0), b: CGFloat(field1), c: CGFloat(field2), d: CGFloat(field3), tx: CGFloat(field4), ty: CGFloat(field5)))
     }()
     self.projectionEffect(argument0)
   }
@@ -4800,9 +5739,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKRedacted(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "placeholder": self.redacted(reason: SwiftUICore.RedactionReasons.placeholder)
-      case "privacy": self.redacted(reason: SwiftUICore.RedactionReasons.privacy)
-      case "invalidated": self.redacted(reason: SwiftUICore.RedactionReasons.invalidated)
+      case "placeholder": self.redacted(reason: SwiftUI.RedactionReasons.placeholder)
+      case "privacy": self.redacted(reason: SwiftUI.RedactionReasons.privacy)
+      case "invalidated": self.redacted(reason: SwiftUI.RedactionReasons.invalidated)
     default: preconditionFailure("invalid redacted: \(value)")
     }
   }
@@ -4818,7 +5757,7 @@ extension View {
       guard let raw = values[0] else { preconditionFailure("missing refundRequestSheet.transactionID") }
       return UInt64(raw) ?? { () -> UInt64 in preconditionFailure("invalid UInt64") }()
     }()
-    let argument1: SwiftUICore.Binding<Swift.Bool> = {
+    let argument1: SwiftUI.Binding<Swift.Bool> = {
       guard let raw = values[1], raw == "true" || raw == "false" else { preconditionFailure("invalid refundRequestSheet.isPresented") }
       return Binding<Bool>(get: { raw == "true" }, set: { emit("refundRequestSheet.isPresented", String($0)) })
     }()
@@ -4841,12 +5780,12 @@ extension View {
         decoded.count == 5 else { preconditionFailure("invalid rotation3DEffect: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Angle = {
+    let argument0: SwiftUI.Angle = {
       guard let raw = values[0] else { preconditionFailure("missing rotation3DEffect.angle") }
       guard let data = raw.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
         let field0 = decoded["radians"], field0.isFinite else { preconditionFailure("invalid rotation3DEffect.angle: \(raw)") }
-      return SwiftUICore.Angle(radians: field0)
+      return SwiftUI.Angle(radians: field0)
     }()
     let argument1: (x: CoreFoundation.CGFloat, y: CoreFoundation.CGFloat, z: CoreFoundation.CGFloat) = {
       guard let raw = values[1] else { preconditionFailure("missing rotation3DEffect.axis") }
@@ -4857,19 +5796,19 @@ extension View {
         let field2 = decoded["z"], field2.isFinite else { preconditionFailure("invalid rotation3DEffect.axis: \(raw)") }
       return (x: CGFloat(field0), y: CGFloat(field1), z: CGFloat(field2))
     }()
-    let argument2: SwiftUICore.UnitPoint = {
+    let argument2: SwiftUI.UnitPoint = {
       guard let raw = values[2] else { preconditionFailure("missing rotation3DEffect.anchor") }
       switch raw {
-      case "zero": return SwiftUICore.UnitPoint.zero
-      case "center": return SwiftUICore.UnitPoint.center
-      case "leading": return SwiftUICore.UnitPoint.leading
-      case "trailing": return SwiftUICore.UnitPoint.trailing
-      case "top": return SwiftUICore.UnitPoint.top
-      case "bottom": return SwiftUICore.UnitPoint.bottom
-      case "topLeading": return SwiftUICore.UnitPoint.topLeading
-      case "topTrailing": return SwiftUICore.UnitPoint.topTrailing
-      case "bottomLeading": return SwiftUICore.UnitPoint.bottomLeading
-      case "bottomTrailing": return SwiftUICore.UnitPoint.bottomTrailing
+      case "zero": return SwiftUI.UnitPoint.zero
+      case "center": return SwiftUI.UnitPoint.center
+      case "leading": return SwiftUI.UnitPoint.leading
+      case "trailing": return SwiftUI.UnitPoint.trailing
+      case "top": return SwiftUI.UnitPoint.top
+      case "bottom": return SwiftUI.UnitPoint.bottom
+      case "topLeading": return SwiftUI.UnitPoint.topLeading
+      case "topTrailing": return SwiftUI.UnitPoint.topTrailing
+      case "bottomLeading": return SwiftUI.UnitPoint.bottomLeading
+      case "bottomTrailing": return SwiftUI.UnitPoint.bottomTrailing
       default: preconditionFailure("invalid rotation3DEffect.anchor: \(raw)")
       }
     }()
@@ -4893,26 +5832,26 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid rotationEffect: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Angle = {
+    let argument0: SwiftUI.Angle = {
       guard let raw = values[0] else { preconditionFailure("missing rotationEffect.angle") }
       switch raw {
-      case "zero": return SwiftUICore.Angle.zero
+      case "zero": return SwiftUI.Angle.zero
       default: preconditionFailure("invalid rotationEffect.angle: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.UnitPoint = {
+    let argument1: SwiftUI.UnitPoint = {
       guard let raw = values[1] else { preconditionFailure("missing rotationEffect.anchor") }
       switch raw {
-      case "zero": return SwiftUICore.UnitPoint.zero
-      case "center": return SwiftUICore.UnitPoint.center
-      case "leading": return SwiftUICore.UnitPoint.leading
-      case "trailing": return SwiftUICore.UnitPoint.trailing
-      case "top": return SwiftUICore.UnitPoint.top
-      case "bottom": return SwiftUICore.UnitPoint.bottom
-      case "topLeading": return SwiftUICore.UnitPoint.topLeading
-      case "topTrailing": return SwiftUICore.UnitPoint.topTrailing
-      case "bottomLeading": return SwiftUICore.UnitPoint.bottomLeading
-      case "bottomTrailing": return SwiftUICore.UnitPoint.bottomTrailing
+      case "zero": return SwiftUI.UnitPoint.zero
+      case "center": return SwiftUI.UnitPoint.center
+      case "leading": return SwiftUI.UnitPoint.leading
+      case "trailing": return SwiftUI.UnitPoint.trailing
+      case "top": return SwiftUI.UnitPoint.top
+      case "bottom": return SwiftUI.UnitPoint.bottom
+      case "topLeading": return SwiftUI.UnitPoint.topLeading
+      case "topTrailing": return SwiftUI.UnitPoint.topTrailing
+      case "bottomLeading": return SwiftUI.UnitPoint.bottomLeading
+      case "bottomTrailing": return SwiftUI.UnitPoint.bottomTrailing
       default: preconditionFailure("invalid rotationEffect.anchor: \(raw)")
       }
     }()
@@ -4932,16 +5871,16 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid safeAreaPaddingWithEdgesAndLength: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Edge.Set = {
+    let argument0: SwiftUI.Edge.Set = {
       guard let raw = values[0] else { preconditionFailure("missing safeAreaPaddingWithEdgesAndLength.edges") }
       switch raw {
-      case "top": return SwiftUICore.Edge.Set.top
-      case "leading": return SwiftUICore.Edge.Set.leading
-      case "bottom": return SwiftUICore.Edge.Set.bottom
-      case "trailing": return SwiftUICore.Edge.Set.trailing
-      case "all": return SwiftUICore.Edge.Set.all
-      case "horizontal": return SwiftUICore.Edge.Set.horizontal
-      case "vertical": return SwiftUICore.Edge.Set.vertical
+      case "top": return SwiftUI.Edge.Set.top
+      case "leading": return SwiftUI.Edge.Set.leading
+      case "bottom": return SwiftUI.Edge.Set.bottom
+      case "trailing": return SwiftUI.Edge.Set.trailing
+      case "all": return SwiftUI.Edge.Set.all
+      case "horizontal": return SwiftUI.Edge.Set.horizontal
+      case "vertical": return SwiftUI.Edge.Set.vertical
       default: preconditionFailure("invalid safeAreaPaddingWithEdgesAndLength.edges: \(raw)")
       }
     }()
@@ -4981,19 +5920,19 @@ extension View {
       guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid scaleEffectWithSAndAnchor.s: \(raw)") }
       return CGFloat(number)
     }()
-    let argument1: SwiftUICore.UnitPoint = {
+    let argument1: SwiftUI.UnitPoint = {
       guard let raw = values[1] else { preconditionFailure("missing scaleEffectWithSAndAnchor.anchor") }
       switch raw {
-      case "zero": return SwiftUICore.UnitPoint.zero
-      case "center": return SwiftUICore.UnitPoint.center
-      case "leading": return SwiftUICore.UnitPoint.leading
-      case "trailing": return SwiftUICore.UnitPoint.trailing
-      case "top": return SwiftUICore.UnitPoint.top
-      case "bottom": return SwiftUICore.UnitPoint.bottom
-      case "topLeading": return SwiftUICore.UnitPoint.topLeading
-      case "topTrailing": return SwiftUICore.UnitPoint.topTrailing
-      case "bottomLeading": return SwiftUICore.UnitPoint.bottomLeading
-      case "bottomTrailing": return SwiftUICore.UnitPoint.bottomTrailing
+      case "zero": return SwiftUI.UnitPoint.zero
+      case "center": return SwiftUI.UnitPoint.center
+      case "leading": return SwiftUI.UnitPoint.leading
+      case "trailing": return SwiftUI.UnitPoint.trailing
+      case "top": return SwiftUI.UnitPoint.top
+      case "bottom": return SwiftUI.UnitPoint.bottom
+      case "topLeading": return SwiftUI.UnitPoint.topLeading
+      case "topTrailing": return SwiftUI.UnitPoint.topTrailing
+      case "bottomLeading": return SwiftUI.UnitPoint.bottomLeading
+      case "bottomTrailing": return SwiftUI.UnitPoint.bottomTrailing
       default: preconditionFailure("invalid scaleEffectWithSAndAnchor.anchor: \(raw)")
       }
     }()
@@ -5017,19 +5956,19 @@ extension View {
       guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid scaleEffectWithXAndYAndAnchor.y: \(raw)") }
       return CGFloat(number)
     }()
-    let argument2: SwiftUICore.UnitPoint = {
+    let argument2: SwiftUI.UnitPoint = {
       guard let raw = values[2] else { preconditionFailure("missing scaleEffectWithXAndYAndAnchor.anchor") }
       switch raw {
-      case "zero": return SwiftUICore.UnitPoint.zero
-      case "center": return SwiftUICore.UnitPoint.center
-      case "leading": return SwiftUICore.UnitPoint.leading
-      case "trailing": return SwiftUICore.UnitPoint.trailing
-      case "top": return SwiftUICore.UnitPoint.top
-      case "bottom": return SwiftUICore.UnitPoint.bottom
-      case "topLeading": return SwiftUICore.UnitPoint.topLeading
-      case "topTrailing": return SwiftUICore.UnitPoint.topTrailing
-      case "bottomLeading": return SwiftUICore.UnitPoint.bottomLeading
-      case "bottomTrailing": return SwiftUICore.UnitPoint.bottomTrailing
+      case "zero": return SwiftUI.UnitPoint.zero
+      case "center": return SwiftUI.UnitPoint.center
+      case "leading": return SwiftUI.UnitPoint.leading
+      case "trailing": return SwiftUI.UnitPoint.trailing
+      case "top": return SwiftUI.UnitPoint.top
+      case "bottom": return SwiftUI.UnitPoint.bottom
+      case "topLeading": return SwiftUI.UnitPoint.topLeading
+      case "topTrailing": return SwiftUI.UnitPoint.topTrailing
+      case "bottomLeading": return SwiftUI.UnitPoint.bottomLeading
+      case "bottomTrailing": return SwiftUI.UnitPoint.bottomTrailing
       default: preconditionFailure("invalid scaleEffectWithXAndYAndAnchor.anchor: \(raw)")
       }
     }()
@@ -5050,16 +5989,16 @@ extension View {
       default: preconditionFailure("invalid scenePaddingWithPaddingAndEdges.padding: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.Edge.Set = {
+    let argument1: SwiftUI.Edge.Set = {
       guard let raw = values[1] else { preconditionFailure("missing scenePaddingWithPaddingAndEdges.edges") }
       switch raw {
-      case "top": return SwiftUICore.Edge.Set.top
-      case "leading": return SwiftUICore.Edge.Set.leading
-      case "bottom": return SwiftUICore.Edge.Set.bottom
-      case "trailing": return SwiftUICore.Edge.Set.trailing
-      case "all": return SwiftUICore.Edge.Set.all
-      case "horizontal": return SwiftUICore.Edge.Set.horizontal
-      case "vertical": return SwiftUICore.Edge.Set.vertical
+      case "top": return SwiftUI.Edge.Set.top
+      case "leading": return SwiftUI.Edge.Set.leading
+      case "bottom": return SwiftUI.Edge.Set.bottom
+      case "trailing": return SwiftUI.Edge.Set.trailing
+      case "all": return SwiftUI.Edge.Set.all
+      case "horizontal": return SwiftUI.Edge.Set.horizontal
+      case "vertical": return SwiftUI.Edge.Set.vertical
       default: preconditionFailure("invalid scenePaddingWithPaddingAndEdges.edges: \(raw)")
       }
     }()
@@ -5069,13 +6008,13 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKScenePaddingWithSet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "top": self.scenePadding(SwiftUICore.Edge.Set.top)
-      case "leading": self.scenePadding(SwiftUICore.Edge.Set.leading)
-      case "bottom": self.scenePadding(SwiftUICore.Edge.Set.bottom)
-      case "trailing": self.scenePadding(SwiftUICore.Edge.Set.trailing)
-      case "all": self.scenePadding(SwiftUICore.Edge.Set.all)
-      case "horizontal": self.scenePadding(SwiftUICore.Edge.Set.horizontal)
-      case "vertical": self.scenePadding(SwiftUICore.Edge.Set.vertical)
+      case "top": self.scenePadding(SwiftUI.Edge.Set.top)
+      case "leading": self.scenePadding(SwiftUI.Edge.Set.leading)
+      case "bottom": self.scenePadding(SwiftUI.Edge.Set.bottom)
+      case "trailing": self.scenePadding(SwiftUI.Edge.Set.trailing)
+      case "all": self.scenePadding(SwiftUI.Edge.Set.all)
+      case "horizontal": self.scenePadding(SwiftUI.Edge.Set.horizontal)
+      case "vertical": self.scenePadding(SwiftUI.Edge.Set.vertical)
     default: preconditionFailure("invalid scenePaddingWithSet: \(value)")
     }
   }
@@ -5096,11 +6035,11 @@ extension View {
       default: preconditionFailure("invalid scrollBounceBehavior.behavior: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.Axis.Set = {
+    let argument1: SwiftUI.Axis.Set = {
       guard let raw = values[1] else { preconditionFailure("missing scrollBounceBehavior.axes") }
       switch raw {
-      case "horizontal": return SwiftUICore.Axis.Set.horizontal
-      case "vertical": return SwiftUICore.Axis.Set.vertical
+      case "horizontal": return SwiftUI.Axis.Set.horizontal
+      case "vertical": return SwiftUI.Axis.Set.vertical
       default: preconditionFailure("invalid scrollBounceBehavior.axes: \(raw)")
       }
     }()
@@ -5115,9 +6054,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKScrollContentBackground(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": self.scrollContentBackground(SwiftUICore.Visibility.automatic)
-      case "visible": self.scrollContentBackground(SwiftUICore.Visibility.visible)
-      case "hidden": self.scrollContentBackground(SwiftUICore.Visibility.hidden)
+      case "automatic": self.scrollContentBackground(SwiftUI.Visibility.automatic)
+      case "visible": self.scrollContentBackground(SwiftUI.Visibility.visible)
+      case "hidden": self.scrollContentBackground(SwiftUI.Visibility.hidden)
     default: preconditionFailure("invalid scrollContentBackground: \(value)")
     }
   }
@@ -5151,16 +6090,16 @@ extension View {
       guard raw == "true" || raw == "false" else { preconditionFailure("invalid scrollEdgeEffectHidden.hidden: \(raw)") }
       return raw == "true"
     }()
-    let argument1: SwiftUICore.Edge.Set = {
+    let argument1: SwiftUI.Edge.Set = {
       guard let raw = values[1] else { preconditionFailure("missing scrollEdgeEffectHidden.edges") }
       switch raw {
-      case "top": return SwiftUICore.Edge.Set.top
-      case "leading": return SwiftUICore.Edge.Set.leading
-      case "bottom": return SwiftUICore.Edge.Set.bottom
-      case "trailing": return SwiftUICore.Edge.Set.trailing
-      case "all": return SwiftUICore.Edge.Set.all
-      case "horizontal": return SwiftUICore.Edge.Set.horizontal
-      case "vertical": return SwiftUICore.Edge.Set.vertical
+      case "top": return SwiftUI.Edge.Set.top
+      case "leading": return SwiftUI.Edge.Set.leading
+      case "bottom": return SwiftUI.Edge.Set.bottom
+      case "trailing": return SwiftUI.Edge.Set.trailing
+      case "all": return SwiftUI.Edge.Set.all
+      case "horizontal": return SwiftUI.Edge.Set.horizontal
+      case "vertical": return SwiftUI.Edge.Set.vertical
       default: preconditionFailure("invalid scrollEdgeEffectHidden.edges: \(raw)")
       }
     }()
@@ -5188,16 +6127,16 @@ extension View {
       default: preconditionFailure("invalid scrollEdgeEffectStyle.style: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.Edge.Set = {
+    let argument1: SwiftUI.Edge.Set = {
       guard let raw = values[1] else { preconditionFailure("missing scrollEdgeEffectStyle.edges") }
       switch raw {
-      case "top": return SwiftUICore.Edge.Set.top
-      case "leading": return SwiftUICore.Edge.Set.leading
-      case "bottom": return SwiftUICore.Edge.Set.bottom
-      case "trailing": return SwiftUICore.Edge.Set.trailing
-      case "all": return SwiftUICore.Edge.Set.all
-      case "horizontal": return SwiftUICore.Edge.Set.horizontal
-      case "vertical": return SwiftUICore.Edge.Set.vertical
+      case "top": return SwiftUI.Edge.Set.top
+      case "leading": return SwiftUI.Edge.Set.leading
+      case "bottom": return SwiftUI.Edge.Set.bottom
+      case "trailing": return SwiftUI.Edge.Set.trailing
+      case "all": return SwiftUI.Edge.Set.all
+      case "horizontal": return SwiftUI.Edge.Set.horizontal
+      case "vertical": return SwiftUI.Edge.Set.vertical
       default: preconditionFailure("invalid scrollEdgeEffectStyle.edges: \(raw)")
       }
     }()
@@ -5222,11 +6161,11 @@ extension View {
       default: preconditionFailure("invalid scrollIndicators.visibility: \(raw)")
       }
     }()
-    let argument1: SwiftUICore.Axis.Set = {
+    let argument1: SwiftUI.Axis.Set = {
       guard let raw = values[1] else { preconditionFailure("missing scrollIndicators.axes") }
       switch raw {
-      case "horizontal": return SwiftUICore.Axis.Set.horizontal
-      case "vertical": return SwiftUICore.Axis.Set.vertical
+      case "horizontal": return SwiftUI.Axis.Set.horizontal
+      case "vertical": return SwiftUI.Axis.Set.vertical
       default: preconditionFailure("invalid scrollIndicators.axes: \(raw)")
       }
     }()
@@ -5249,8 +6188,8 @@ extension View {
           let y = coordinates["y"], y.isFinite else { preconditionFailure("invalid scrollPositionWithBindingPoint: \(value)") }
         return CGPoint(x: x, y: y)
       }()
-      self.scrollPosition(Binding<SwiftUICore.ScrollPosition>(get: {
-        point.map { SwiftUICore.ScrollPosition(point: $0) } ?? SwiftUICore.ScrollPosition()
+      self.scrollPosition(Binding<SwiftUI.ScrollPosition>(get: {
+        point.map { SwiftUI.ScrollPosition(point: $0) } ?? SwiftUI.ScrollPosition()
       }, set: { position in
         let changed = position.point.map { ["x": Double($0.x), "y": Double($0.y)] }
         guard let data = try? JSONEncoder().encode(changed),
@@ -5325,12 +6264,12 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid searchSuggestions: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Visibility = {
+    let argument0: SwiftUI.Visibility = {
       guard let raw = values[0] else { preconditionFailure("missing searchSuggestions.visibility") }
       switch raw {
-      case "automatic": return SwiftUICore.Visibility.automatic
-      case "visible": return SwiftUICore.Visibility.visible
-      case "hidden": return SwiftUICore.Visibility.hidden
+      case "automatic": return SwiftUI.Visibility.automatic
+      case "visible": return SwiftUI.Visibility.visible
+      case "hidden": return SwiftUI.Visibility.hidden
       default: preconditionFailure("invalid searchSuggestions.visibility: \(raw)")
       }
     }()
@@ -5355,7 +6294,7 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSectionIndexLabel(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { if #available(iOS 26, *) { self.sectionIndexLabel(nil as SwiftUICore.Text?) } else { self } } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+    if value == "null" { if #available(iOS 26, *) { self.sectionIndexLabel(nil as SwiftUI.Text?) } else { self } } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       if #available(iOS 26, *) { self.sectionIndexLabel(Text(decoded)) } else { self }
     } else { preconditionFailure("invalid sectionIndexLabel: \(value)") } }
   }
@@ -5405,28 +6344,28 @@ extension View {
         decoded.count == 4 else { preconditionFailure("invalid shadow: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Color = {
+    let argument0: SwiftUI.Color = {
       guard let raw = values[0] else { preconditionFailure("missing shadow.color") }
       switch raw {
-      case "accentColor": return SwiftUICore.Color.accentColor
-      case "red": return SwiftUICore.Color.red
-      case "orange": return SwiftUICore.Color.orange
-      case "yellow": return SwiftUICore.Color.yellow
-      case "green": return SwiftUICore.Color.green
-      case "mint": return SwiftUICore.Color.mint
-      case "teal": return SwiftUICore.Color.teal
-      case "cyan": return SwiftUICore.Color.cyan
-      case "blue": return SwiftUICore.Color.blue
-      case "indigo": return SwiftUICore.Color.indigo
-      case "purple": return SwiftUICore.Color.purple
-      case "pink": return SwiftUICore.Color.pink
-      case "brown": return SwiftUICore.Color.brown
-      case "white": return SwiftUICore.Color.white
-      case "gray": return SwiftUICore.Color.gray
-      case "black": return SwiftUICore.Color.black
-      case "clear": return SwiftUICore.Color.clear
-      case "primary": return SwiftUICore.Color.primary
-      case "secondary": return SwiftUICore.Color.secondary
+      case "accentColor": return SwiftUI.Color.accentColor
+      case "red": return SwiftUI.Color.red
+      case "orange": return SwiftUI.Color.orange
+      case "yellow": return SwiftUI.Color.yellow
+      case "green": return SwiftUI.Color.green
+      case "mint": return SwiftUI.Color.mint
+      case "teal": return SwiftUI.Color.teal
+      case "cyan": return SwiftUI.Color.cyan
+      case "blue": return SwiftUI.Color.blue
+      case "indigo": return SwiftUI.Color.indigo
+      case "purple": return SwiftUI.Color.purple
+      case "pink": return SwiftUI.Color.pink
+      case "brown": return SwiftUI.Color.brown
+      case "white": return SwiftUI.Color.white
+      case "gray": return SwiftUI.Color.gray
+      case "black": return SwiftUI.Color.black
+      case "clear": return SwiftUI.Color.clear
+      case "primary": return SwiftUI.Color.primary
+      case "secondary": return SwiftUI.Color.secondary
       default: preconditionFailure("invalid shadow.color: \(raw)")
       }
     }()
@@ -5509,7 +6448,7 @@ extension View {
         emit("simultaneousGesture", encoded)
       }))
     case "tap":
-      self.simultaneousGesture(SwiftUICore.TapGesture().onEnded({ _ in emit("simultaneousGesture", "") }))
+      self.simultaneousGesture(SwiftUI.TapGesture().onEnded({ _ in emit("simultaneousGesture", "") }))
     default: preconditionFailure("invalid simultaneousGesture: \(value)")
     }
   }
@@ -5527,9 +6466,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKSliderThumbVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 26, *) { self.sliderThumbVisibility(SwiftUICore.Visibility.automatic) } else { self }
-      case "visible": if #available(iOS 26, *) { self.sliderThumbVisibility(SwiftUICore.Visibility.visible) } else { self }
-      case "hidden": if #available(iOS 26, *) { self.sliderThumbVisibility(SwiftUICore.Visibility.hidden) } else { self }
+      case "automatic": if #available(iOS 26, *) { self.sliderThumbVisibility(SwiftUI.Visibility.automatic) } else { self }
+      case "visible": if #available(iOS 26, *) { self.sliderThumbVisibility(SwiftUI.Visibility.visible) } else { self }
+      case "hidden": if #available(iOS 26, *) { self.sliderThumbVisibility(SwiftUI.Visibility.hidden) } else { self }
     default: preconditionFailure("invalid sliderThumbVisibility: \(value)")
     }
   }
@@ -5582,12 +6521,12 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid storeButton: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Visibility = {
+    let argument0: SwiftUI.Visibility = {
       guard let raw = values[0] else { preconditionFailure("missing storeButton.visibility") }
       switch raw {
-      case "automatic": return SwiftUICore.Visibility.automatic
-      case "visible": return SwiftUICore.Visibility.visible
-      case "hidden": return SwiftUICore.Visibility.hidden
+      case "automatic": return SwiftUI.Visibility.automatic
+      case "visible": return SwiftUI.Visibility.visible
+      case "hidden": return SwiftUI.Visibility.hidden
       default: preconditionFailure("invalid storeButton.visibility: \(raw)")
       }
     }()
@@ -5617,39 +6556,39 @@ extension View {
       guard raw == "true" || raw == "false" else { preconditionFailure("invalid strikethrough.isActive: \(raw)") }
       return raw == "true"
     }()
-    let argument1: SwiftUICore.Text.LineStyle.Pattern = {
+    let argument1: SwiftUI.Text.LineStyle.Pattern = {
       guard let raw = values[1] else { preconditionFailure("missing strikethrough.pattern") }
       switch raw {
-      case "solid": return SwiftUICore.Text.LineStyle.Pattern.solid
-      case "dot": return SwiftUICore.Text.LineStyle.Pattern.dot
-      case "dash": return SwiftUICore.Text.LineStyle.Pattern.dash
-      case "dashDot": return SwiftUICore.Text.LineStyle.Pattern.dashDot
-      case "dashDotDot": return SwiftUICore.Text.LineStyle.Pattern.dashDotDot
+      case "solid": return SwiftUI.Text.LineStyle.Pattern.solid
+      case "dot": return SwiftUI.Text.LineStyle.Pattern.dot
+      case "dash": return SwiftUI.Text.LineStyle.Pattern.dash
+      case "dashDot": return SwiftUI.Text.LineStyle.Pattern.dashDot
+      case "dashDotDot": return SwiftUI.Text.LineStyle.Pattern.dashDotDot
       default: preconditionFailure("invalid strikethrough.pattern: \(raw)")
       }
     }()
-    let argument2: SwiftUICore.Color? = {
+    let argument2: SwiftUI.Color? = {
       guard let raw = values[2] else { return nil }
       switch raw {
-      case "accentColor": return SwiftUICore.Color.accentColor
-      case "red": return SwiftUICore.Color.red
-      case "orange": return SwiftUICore.Color.orange
-      case "yellow": return SwiftUICore.Color.yellow
-      case "green": return SwiftUICore.Color.green
-      case "mint": return SwiftUICore.Color.mint
-      case "teal": return SwiftUICore.Color.teal
-      case "cyan": return SwiftUICore.Color.cyan
-      case "blue": return SwiftUICore.Color.blue
-      case "indigo": return SwiftUICore.Color.indigo
-      case "purple": return SwiftUICore.Color.purple
-      case "pink": return SwiftUICore.Color.pink
-      case "brown": return SwiftUICore.Color.brown
-      case "white": return SwiftUICore.Color.white
-      case "gray": return SwiftUICore.Color.gray
-      case "black": return SwiftUICore.Color.black
-      case "clear": return SwiftUICore.Color.clear
-      case "primary": return SwiftUICore.Color.primary
-      case "secondary": return SwiftUICore.Color.secondary
+      case "accentColor": return SwiftUI.Color.accentColor
+      case "red": return SwiftUI.Color.red
+      case "orange": return SwiftUI.Color.orange
+      case "yellow": return SwiftUI.Color.yellow
+      case "green": return SwiftUI.Color.green
+      case "mint": return SwiftUI.Color.mint
+      case "teal": return SwiftUI.Color.teal
+      case "cyan": return SwiftUI.Color.cyan
+      case "blue": return SwiftUI.Color.blue
+      case "indigo": return SwiftUI.Color.indigo
+      case "purple": return SwiftUI.Color.purple
+      case "pink": return SwiftUI.Color.pink
+      case "brown": return SwiftUI.Color.brown
+      case "white": return SwiftUI.Color.white
+      case "gray": return SwiftUI.Color.gray
+      case "black": return SwiftUI.Color.black
+      case "clear": return SwiftUI.Color.clear
+      case "primary": return SwiftUI.Color.primary
+      case "secondary": return SwiftUI.Color.secondary
       default: preconditionFailure("invalid strikethrough.color: \(raw)")
       }
     }()
@@ -5685,12 +6624,12 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid subscriptionOfferViewButtonVisibility: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Visibility = {
+    let argument0: SwiftUI.Visibility = {
       guard let raw = values[0] else { preconditionFailure("missing subscriptionOfferViewButtonVisibility.visibility") }
       switch raw {
-      case "automatic": return SwiftUICore.Visibility.automatic
-      case "visible": return SwiftUICore.Visibility.visible
-      case "hidden": return SwiftUICore.Visibility.hidden
+      case "automatic": return SwiftUI.Visibility.automatic
+      case "visible": return SwiftUI.Visibility.visible
+      case "hidden": return SwiftUI.Visibility.hidden
       default: preconditionFailure("invalid subscriptionOfferViewButtonVisibility.visibility: \(raw)")
       }
     }()
@@ -5881,14 +6820,20 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKSwipeActionsContainer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid swipeActionsContainer: \(value)")
-    if value == "true" { if #available(iOS 27, *) { self.swipeActionsContainer() } else { self } } else { self }
+    if value == "true" { 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.swipeActionsContainer() } else { self }
+#else
+self
+#endif
+ } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSymbolColorRenderingMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": if #available(iOS 26, *) { self.symbolColorRenderingMode(nil as SwiftUICore.SymbolColorRenderingMode?) } else { self }
-      case "flat": if #available(iOS 26, *) { self.symbolColorRenderingMode(SwiftUICore.SymbolColorRenderingMode.flat) } else { self }
-      case "gradient": if #available(iOS 26, *) { self.symbolColorRenderingMode(SwiftUICore.SymbolColorRenderingMode.gradient) } else { self }
+      case "null": if #available(iOS 26, *) { self.symbolColorRenderingMode(nil as SwiftUI.SymbolColorRenderingMode?) } else { self }
+      case "flat": if #available(iOS 26, *) { self.symbolColorRenderingMode(SwiftUI.SymbolColorRenderingMode.flat) } else { self }
+      case "gradient": if #available(iOS 26, *) { self.symbolColorRenderingMode(SwiftUI.SymbolColorRenderingMode.gradient) } else { self }
     default: preconditionFailure("invalid symbolColorRenderingMode: \(value)")
     }
   }
@@ -5900,20 +6845,20 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKSymbolRenderingMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.symbolRenderingMode(nil as SwiftUICore.SymbolRenderingMode?)
-      case "monochrome": self.symbolRenderingMode(SwiftUICore.SymbolRenderingMode.monochrome)
-      case "multicolor": self.symbolRenderingMode(SwiftUICore.SymbolRenderingMode.multicolor)
-      case "hierarchical": self.symbolRenderingMode(SwiftUICore.SymbolRenderingMode.hierarchical)
-      case "palette": self.symbolRenderingMode(SwiftUICore.SymbolRenderingMode.palette)
+      case "null": self.symbolRenderingMode(nil as SwiftUI.SymbolRenderingMode?)
+      case "monochrome": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.monochrome)
+      case "multicolor": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.multicolor)
+      case "hierarchical": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.hierarchical)
+      case "palette": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.palette)
     default: preconditionFailure("invalid symbolRenderingMode: \(value)")
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSymbolVariableValueMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": if #available(iOS 26, *) { self.symbolVariableValueMode(nil as SwiftUICore.SymbolVariableValueMode?) } else { self }
-      case "color": if #available(iOS 26, *) { self.symbolVariableValueMode(SwiftUICore.SymbolVariableValueMode.color) } else { self }
-      case "draw": if #available(iOS 26, *) { self.symbolVariableValueMode(SwiftUICore.SymbolVariableValueMode.draw) } else { self }
+      case "null": if #available(iOS 26, *) { self.symbolVariableValueMode(nil as SwiftUI.SymbolVariableValueMode?) } else { self }
+      case "color": if #available(iOS 26, *) { self.symbolVariableValueMode(SwiftUI.SymbolVariableValueMode.color) } else { self }
+      case "draw": if #available(iOS 26, *) { self.symbolVariableValueMode(SwiftUI.SymbolVariableValueMode.draw) } else { self }
     default: preconditionFailure("invalid symbolVariableValueMode: \(value)")
     }
   }
@@ -5921,12 +6866,12 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKSymbolVariant(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "none": self.symbolVariant(SwiftUICore.SymbolVariants.none)
-      case "circle": self.symbolVariant(SwiftUICore.SymbolVariants.circle)
-      case "square": self.symbolVariant(SwiftUICore.SymbolVariants.square)
-      case "rectangle": self.symbolVariant(SwiftUICore.SymbolVariants.rectangle)
-      case "fill": self.symbolVariant(SwiftUICore.SymbolVariants.fill)
-      case "slash": self.symbolVariant(SwiftUICore.SymbolVariants.slash)
+      case "none": self.symbolVariant(SwiftUI.SymbolVariants.none)
+      case "circle": self.symbolVariant(SwiftUI.SymbolVariants.circle)
+      case "square": self.symbolVariant(SwiftUI.SymbolVariants.square)
+      case "rectangle": self.symbolVariant(SwiftUI.SymbolVariants.rectangle)
+      case "fill": self.symbolVariant(SwiftUI.SymbolVariants.fill)
+      case "slash": self.symbolVariant(SwiftUI.SymbolVariants.slash)
     default: preconditionFailure("invalid symbolVariant: \(value)")
     }
   }
@@ -5945,9 +6890,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKTableColumnHeaders(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": self.tableColumnHeaders(SwiftUICore.Visibility.automatic)
-      case "visible": self.tableColumnHeaders(SwiftUICore.Visibility.visible)
-      case "hidden": self.tableColumnHeaders(SwiftUICore.Visibility.hidden)
+      case "automatic": self.tableColumnHeaders(SwiftUI.Visibility.automatic)
+      case "visible": self.tableColumnHeaders(SwiftUI.Visibility.visible)
+      case "hidden": self.tableColumnHeaders(SwiftUI.Visibility.hidden)
     default: preconditionFailure("invalid tableColumnHeaders: \(value)")
     }
   }
@@ -6006,9 +6951,9 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKTextCase(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.textCase(nil as SwiftUICore.Text.Case?)
-      case "uppercase": self.textCase(SwiftUICore.Text.Case.uppercase)
-      case "lowercase": self.textCase(SwiftUICore.Text.Case.lowercase)
+      case "null": self.textCase(nil as SwiftUI.Text.Case?)
+      case "uppercase": self.textCase(SwiftUI.Text.Case.uppercase)
+      case "lowercase": self.textCase(SwiftUI.Text.Case.lowercase)
     default: preconditionFailure("invalid textCase: \(value)")
     }
   }
@@ -6026,9 +6971,27 @@ extension View {
       case "birthdateYear": self.textContentType(UIKit.UITextContentType.birthdateYear)
       case "cellularEID": if #available(iOS 17.4, *) { self.textContentType(UIKit.UITextContentType.cellularEID) } else { self }
       case "cellularIMEI": if #available(iOS 17.4, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI) } else { self }
-      case "cellularIMEI1": if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI1) } else { self }
-      case "cellularIMEI2": if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI2) } else { self }
-      case "cellularNAL": if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularNAL) } else { self }
+      case "cellularIMEI1":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI1) } else { self }
+#else
+self
+#endif
+
+      case "cellularIMEI2":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI2) } else { self }
+#else
+self
+#endif
+
+      case "cellularNAL":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularNAL) } else { self }
+#else
+self
+#endif
+
       case "countryName": self.textContentType(UIKit.UITextContentType.countryName)
       case "creditCardExpiration": self.textContentType(UIKit.UITextContentType.creditCardExpiration)
       case "creditCardExpirationMonth": self.textContentType(UIKit.UITextContentType.creditCardExpirationMonth)
@@ -6082,7 +7045,13 @@ extension View {
 
       case "automatic": self.textFieldStyle(.automatic)
       case "roundedBorder": self.textFieldStyle(.roundedBorder)
-      case "bordered": if #available(iOS 27, *) { self.textFieldStyle(.bordered) } else { self }
+      case "bordered":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textFieldStyle(.bordered) } else { self }
+#else
+self
+#endif
+
       case "plain": self.textFieldStyle(.plain)
     default: preconditionFailure("invalid textFieldStyle: \(value)")
     }
@@ -6102,9 +7071,27 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKTextInputBorderShape(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.automatic) } else { self }
-      case "capsule": if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.capsule) } else { self }
-      case "roundedRectangle": if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.roundedRectangle) } else { self }
+      case "automatic":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textInputBorderShape(SwiftUI.TextInputBorderShape.automatic) } else { self }
+#else
+self
+#endif
+
+      case "capsule":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textInputBorderShape(SwiftUI.TextInputBorderShape.capsule) } else { self }
+#else
+self
+#endif
+
+      case "roundedRectangle":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textInputBorderShape(SwiftUI.TextInputBorderShape.roundedRectangle) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid textInputBorderShape: \(value)")
     }
   }
@@ -6117,12 +7104,12 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid textInputFormattingControlVisibility: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Visibility = {
+    let argument0: SwiftUI.Visibility = {
       guard let raw = values[0] else { preconditionFailure("missing textInputFormattingControlVisibility.visibility") }
       switch raw {
-      case "automatic": return SwiftUICore.Visibility.automatic
-      case "visible": return SwiftUICore.Visibility.visible
-      case "hidden": return SwiftUICore.Visibility.hidden
+      case "automatic": return SwiftUI.Visibility.automatic
+      case "visible": return SwiftUI.Visibility.visible
+      case "hidden": return SwiftUI.Visibility.hidden
       default: preconditionFailure("invalid textInputFormattingControlVisibility.visibility: \(raw)")
       }
     }()
@@ -6151,11 +7138,11 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid textScale: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Text.Scale = {
+    let argument0: SwiftUI.Text.Scale = {
       guard let raw = values[0] else { preconditionFailure("missing textScale.scale") }
       switch raw {
-      case "default": return SwiftUICore.Text.Scale.default
-      case "secondary": return SwiftUICore.Text.Scale.secondary
+      case "default": return SwiftUI.Text.Scale.default
+      case "secondary": return SwiftUI.Text.Scale.secondary
       default: preconditionFailure("invalid textScale.scale: \(raw)")
       }
     }()
@@ -6203,12 +7190,12 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid toolbarBackground: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Visibility = {
+    let argument0: SwiftUI.Visibility = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarBackground.visibility") }
       switch raw {
-      case "automatic": return SwiftUICore.Visibility.automatic
-      case "visible": return SwiftUICore.Visibility.visible
-      case "hidden": return SwiftUICore.Visibility.hidden
+      case "automatic": return SwiftUI.Visibility.automatic
+      case "visible": return SwiftUI.Visibility.visible
+      case "hidden": return SwiftUI.Visibility.hidden
       default: preconditionFailure("invalid toolbarBackground.visibility: \(raw)")
       }
     }()
@@ -6219,7 +7206,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarBackground.bars: \(raw)")
       default: preconditionFailure("invalid toolbarBackground.bars: \(raw)")
       }
@@ -6235,12 +7226,12 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid toolbarBackgroundVisibility: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Visibility = {
+    let argument0: SwiftUI.Visibility = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarBackgroundVisibility.visibility") }
       switch raw {
-      case "automatic": return SwiftUICore.Visibility.automatic
-      case "visible": return SwiftUICore.Visibility.visible
-      case "hidden": return SwiftUICore.Visibility.hidden
+      case "automatic": return SwiftUI.Visibility.automatic
+      case "visible": return SwiftUI.Visibility.visible
+      case "hidden": return SwiftUI.Visibility.hidden
       default: preconditionFailure("invalid toolbarBackgroundVisibility.visibility: \(raw)")
       }
     }()
@@ -6251,7 +7242,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarBackgroundVisibility.bars: \(raw)")
       default: preconditionFailure("invalid toolbarBackgroundVisibility.bars: \(raw)")
       }
@@ -6267,11 +7262,11 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid toolbarColorScheme: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.ColorScheme? = {
+    let argument0: SwiftUI.ColorScheme? = {
       guard let raw = values[0] else { return nil }
       switch raw {
-      case "light": return SwiftUICore.ColorScheme.light
-      case "dark": return SwiftUICore.ColorScheme.dark
+      case "light": return SwiftUI.ColorScheme.light
+      case "dark": return SwiftUI.ColorScheme.dark
       default: preconditionFailure("invalid toolbarColorScheme.colorScheme: \(raw)")
       }
     }()
@@ -6282,7 +7277,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarColorScheme.bars: \(raw)")
       default: preconditionFailure("invalid toolbarColorScheme.bars: \(raw)")
       }
@@ -6291,7 +7290,9 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKToolbarMinimizationBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -6301,13 +7302,29 @@ extension View {
     let argument0: SwiftUI.ToolbarMinimizationBehavior = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarMinimizationBehavior.behavior") }
       switch raw {
-      case "automatic": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.automatic }
+      case "automatic": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.automatic }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
-      case "onScrollDown": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.onScrollDown }
+      case "onScrollDown": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.onScrollDown }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
-      case "onScrollUp": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.onScrollUp }
+      case "onScrollUp": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.onScrollUp }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
-      case "never": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.never }
+      case "never": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.never }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationBehavior.behavior: \(raw)")
       }
@@ -6319,17 +7336,27 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.bars: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationBehavior.bars: \(raw)")
       }
     }()
     self.toolbarMinimizationBehavior(argument0, for: argument1)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKToolbarMinimizationRestoration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -6339,9 +7366,17 @@ extension View {
     let argument0: SwiftUI.ToolbarMinimizationRestoration = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarMinimizationRestoration.restoration") }
       switch raw {
-      case "automatic": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.automatic }
+      case "automatic": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.automatic }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationRestoration.restoration: \(raw)")
-      case "atScrollEdge": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.atScrollEdge }
+      case "atScrollEdge": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.atScrollEdge }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationRestoration.restoration: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationRestoration.restoration: \(raw)")
       }
@@ -6353,17 +7388,27 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationRestoration.bars: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationRestoration.bars: \(raw)")
       }
     }()
     self.toolbarMinimizationRestoration(argument0, for: argument1)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKToolbarMinimizationSafeAreaAdjustment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -6373,11 +7418,23 @@ extension View {
     let argument0: SwiftUI.ToolbarMinimizationSafeAreaAdjustment = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarMinimizationSafeAreaAdjustment.adjustment") }
       switch raw {
-      case "automatic": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.automatic }
+      case "automatic": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.automatic }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationSafeAreaAdjustment.adjustment: \(raw)")
-      case "enabled": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.enabled }
+      case "enabled": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.enabled }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationSafeAreaAdjustment.adjustment: \(raw)")
-      case "disabled": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.disabled }
+      case "disabled": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.disabled }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationSafeAreaAdjustment.adjustment: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationSafeAreaAdjustment.adjustment: \(raw)")
       }
@@ -6389,13 +7446,21 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationSafeAreaAdjustment.bars: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationSafeAreaAdjustment.bars: \(raw)")
       }
     }()
     self.toolbarMinimizationSafeAreaAdjustment(argument0, for: argument1)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKToolbarRole(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -6428,12 +7493,12 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid toolbarVisibility: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Visibility = {
+    let argument0: SwiftUI.Visibility = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarVisibility.visibility") }
       switch raw {
-      case "automatic": return SwiftUICore.Visibility.automatic
-      case "visible": return SwiftUICore.Visibility.visible
-      case "hidden": return SwiftUICore.Visibility.hidden
+      case "automatic": return SwiftUI.Visibility.automatic
+      case "visible": return SwiftUI.Visibility.visible
+      case "hidden": return SwiftUI.Visibility.hidden
       default: preconditionFailure("invalid toolbarVisibility.visibility: \(raw)")
       }
     }()
@@ -6444,7 +7509,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarVisibility.bars: \(raw)")
       default: preconditionFailure("invalid toolbarVisibility.bars: \(raw)")
       }
@@ -6470,12 +7539,12 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid toolbarWithVisibilityAndBars: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Visibility = {
+    let argument0: SwiftUI.Visibility = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarWithVisibilityAndBars.visibility") }
       switch raw {
-      case "automatic": return SwiftUICore.Visibility.automatic
-      case "visible": return SwiftUICore.Visibility.visible
-      case "hidden": return SwiftUICore.Visibility.hidden
+      case "automatic": return SwiftUI.Visibility.automatic
+      case "visible": return SwiftUI.Visibility.visible
+      case "hidden": return SwiftUI.Visibility.hidden
       default: preconditionFailure("invalid toolbarWithVisibilityAndBars.visibility: \(raw)")
       }
     }()
@@ -6486,7 +7555,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarWithVisibilityAndBars.bars: \(raw)")
       default: preconditionFailure("invalid toolbarWithVisibilityAndBars.bars: \(raw)")
       }
@@ -6525,10 +7598,10 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "opacity": self.transition(SwiftUICore.AnyTransition.opacity)
-      case "slide": self.transition(SwiftUICore.AnyTransition.slide)
-      case "identity": self.transition(SwiftUICore.AnyTransition.identity)
-      case "scale": self.transition(SwiftUICore.AnyTransition.scale)
+      case "opacity": self.transition(SwiftUI.AnyTransition.opacity)
+      case "slide": self.transition(SwiftUI.AnyTransition.slide)
+      case "identity": self.transition(SwiftUI.AnyTransition.identity)
+      case "scale": self.transition(SwiftUI.AnyTransition.scale)
     default: preconditionFailure("invalid transition: \(value)")
     }
   }
@@ -6541,7 +7614,7 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid translationPresentation: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
       guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid translationPresentation.isPresented") }
       return Binding<Bool>(get: { raw == "true" }, set: { emit("translationPresentation.isPresented", String($0)) })
     }()
@@ -6556,15 +7629,15 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKTruncationMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "head": self.truncationMode(SwiftUICore.Text.TruncationMode.head)
-      case "tail": self.truncationMode(SwiftUICore.Text.TruncationMode.tail)
-      case "middle": self.truncationMode(SwiftUICore.Text.TruncationMode.middle)
+      case "head": self.truncationMode(SwiftUI.Text.TruncationMode.head)
+      case "tail": self.truncationMode(SwiftUI.Text.TruncationMode.tail)
+      case "middle": self.truncationMode(SwiftUI.Text.TruncationMode.middle)
     default: preconditionFailure("invalid truncationMode: \(value)")
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTypeSelectEquivalent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { self.typeSelectEquivalent(nil as SwiftUICore.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+    if value == "null" { self.typeSelectEquivalent(nil as SwiftUI.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       self.typeSelectEquivalent(Text(decoded))
     } else { preconditionFailure("invalid typeSelectEquivalent: \(value)") } }
   }
@@ -6576,10 +7649,10 @@ extension View {
         decoded.count == 2 else { preconditionFailure("invalid typesettingLanguage: \(value)") }
       return decoded
     }()
-    let argument0: SwiftUICore.TypesettingLanguage = {
+    let argument0: SwiftUI.TypesettingLanguage = {
       guard let raw = values[0] else { preconditionFailure("missing typesettingLanguage.language") }
       switch raw {
-      case "automatic": return SwiftUICore.TypesettingLanguage.automatic
+      case "automatic": return SwiftUI.TypesettingLanguage.automatic
       default: preconditionFailure("invalid typesettingLanguage.language: \(raw)")
       }
     }()
@@ -6603,39 +7676,39 @@ extension View {
       guard raw == "true" || raw == "false" else { preconditionFailure("invalid underline.isActive: \(raw)") }
       return raw == "true"
     }()
-    let argument1: SwiftUICore.Text.LineStyle.Pattern = {
+    let argument1: SwiftUI.Text.LineStyle.Pattern = {
       guard let raw = values[1] else { preconditionFailure("missing underline.pattern") }
       switch raw {
-      case "solid": return SwiftUICore.Text.LineStyle.Pattern.solid
-      case "dot": return SwiftUICore.Text.LineStyle.Pattern.dot
-      case "dash": return SwiftUICore.Text.LineStyle.Pattern.dash
-      case "dashDot": return SwiftUICore.Text.LineStyle.Pattern.dashDot
-      case "dashDotDot": return SwiftUICore.Text.LineStyle.Pattern.dashDotDot
+      case "solid": return SwiftUI.Text.LineStyle.Pattern.solid
+      case "dot": return SwiftUI.Text.LineStyle.Pattern.dot
+      case "dash": return SwiftUI.Text.LineStyle.Pattern.dash
+      case "dashDot": return SwiftUI.Text.LineStyle.Pattern.dashDot
+      case "dashDotDot": return SwiftUI.Text.LineStyle.Pattern.dashDotDot
       default: preconditionFailure("invalid underline.pattern: \(raw)")
       }
     }()
-    let argument2: SwiftUICore.Color? = {
+    let argument2: SwiftUI.Color? = {
       guard let raw = values[2] else { return nil }
       switch raw {
-      case "accentColor": return SwiftUICore.Color.accentColor
-      case "red": return SwiftUICore.Color.red
-      case "orange": return SwiftUICore.Color.orange
-      case "yellow": return SwiftUICore.Color.yellow
-      case "green": return SwiftUICore.Color.green
-      case "mint": return SwiftUICore.Color.mint
-      case "teal": return SwiftUICore.Color.teal
-      case "cyan": return SwiftUICore.Color.cyan
-      case "blue": return SwiftUICore.Color.blue
-      case "indigo": return SwiftUICore.Color.indigo
-      case "purple": return SwiftUICore.Color.purple
-      case "pink": return SwiftUICore.Color.pink
-      case "brown": return SwiftUICore.Color.brown
-      case "white": return SwiftUICore.Color.white
-      case "gray": return SwiftUICore.Color.gray
-      case "black": return SwiftUICore.Color.black
-      case "clear": return SwiftUICore.Color.clear
-      case "primary": return SwiftUICore.Color.primary
-      case "secondary": return SwiftUICore.Color.secondary
+      case "accentColor": return SwiftUI.Color.accentColor
+      case "red": return SwiftUI.Color.red
+      case "orange": return SwiftUI.Color.orange
+      case "yellow": return SwiftUI.Color.yellow
+      case "green": return SwiftUI.Color.green
+      case "mint": return SwiftUI.Color.mint
+      case "teal": return SwiftUI.Color.teal
+      case "cyan": return SwiftUI.Color.cyan
+      case "blue": return SwiftUI.Color.blue
+      case "indigo": return SwiftUI.Color.indigo
+      case "purple": return SwiftUI.Color.purple
+      case "pink": return SwiftUI.Color.pink
+      case "brown": return SwiftUI.Color.brown
+      case "white": return SwiftUI.Color.white
+      case "gray": return SwiftUI.Color.gray
+      case "black": return SwiftUI.Color.black
+      case "clear": return SwiftUI.Color.clear
+      case "primary": return SwiftUI.Color.primary
+      case "secondary": return SwiftUI.Color.secondary
       default: preconditionFailure("invalid underline.color: \(raw)")
       }
     }()
@@ -6729,9 +7802,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKWebViewContentBackground(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 26, *) { self.webViewContentBackground(SwiftUICore.Visibility.automatic) } else { self }
-      case "visible": if #available(iOS 26, *) { self.webViewContentBackground(SwiftUICore.Visibility.visible) } else { self }
-      case "hidden": if #available(iOS 26, *) { self.webViewContentBackground(SwiftUICore.Visibility.hidden) } else { self }
+      case "automatic": if #available(iOS 26, *) { self.webViewContentBackground(SwiftUI.Visibility.automatic) } else { self }
+      case "visible": if #available(iOS 26, *) { self.webViewContentBackground(SwiftUI.Visibility.visible) } else { self }
+      case "hidden": if #available(iOS 26, *) { self.webViewContentBackground(SwiftUI.Visibility.hidden) } else { self }
     default: preconditionFailure("invalid webViewContentBackground: \(value)")
     }
   }
@@ -6804,8 +7877,8 @@ extension View {
           let y = coordinates["y"], y.isFinite else { preconditionFailure("invalid webViewScrollPosition: \(value)") }
         return CGPoint(x: x, y: y)
       }()
-      self.webViewScrollPosition(Binding<SwiftUICore.ScrollPosition>(get: {
-        point.map { SwiftUICore.ScrollPosition(point: $0) } ?? SwiftUICore.ScrollPosition()
+      self.webViewScrollPosition(Binding<SwiftUI.ScrollPosition>(get: {
+        point.map { SwiftUI.ScrollPosition(point: $0) } ?? SwiftUI.ScrollPosition()
       }, set: { position in
         let changed = position.point.map { ["x": Double($0.x), "y": Double($0.y)] }
         guard let data = try? JSONEncoder().encode(changed),
@@ -6835,9 +7908,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKWritingDirection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "layoutBased": if #available(iOS 26, *) { self.writingDirection(strategy: SwiftUICore.Text.WritingDirectionStrategy.layoutBased) } else { self }
-      case "contentBased": if #available(iOS 26, *) { self.writingDirection(strategy: SwiftUICore.Text.WritingDirectionStrategy.contentBased) } else { self }
-      case "default": if #available(iOS 26, *) { self.writingDirection(strategy: SwiftUICore.Text.WritingDirectionStrategy.default) } else { self }
+      case "layoutBased": if #available(iOS 26, *) { self.writingDirection(strategy: SwiftUI.Text.WritingDirectionStrategy.layoutBased) } else { self }
+      case "contentBased": if #available(iOS 26, *) { self.writingDirection(strategy: SwiftUI.Text.WritingDirectionStrategy.contentBased) } else { self }
+      case "default": if #available(iOS 26, *) { self.writingDirection(strategy: SwiftUI.Text.WritingDirectionStrategy.default) } else { self }
     default: preconditionFailure("invalid writingDirection: \(value)")
     }
   }
@@ -6845,9 +7918,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKWritingToolsAffordanceVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 18.4, *) { self.writingToolsAffordanceVisibility(SwiftUICore.Visibility.automatic) } else { self }
-      case "visible": if #available(iOS 18.4, *) { self.writingToolsAffordanceVisibility(SwiftUICore.Visibility.visible) } else { self }
-      case "hidden": if #available(iOS 18.4, *) { self.writingToolsAffordanceVisibility(SwiftUICore.Visibility.hidden) } else { self }
+      case "automatic": if #available(iOS 18.4, *) { self.writingToolsAffordanceVisibility(SwiftUI.Visibility.automatic) } else { self }
+      case "visible": if #available(iOS 18.4, *) { self.writingToolsAffordanceVisibility(SwiftUI.Visibility.visible) } else { self }
+      case "hidden": if #available(iOS 18.4, *) { self.writingToolsAffordanceVisibility(SwiftUI.Visibility.hidden) } else { self }
     default: preconditionFailure("invalid writingToolsAffordanceVisibility: \(value)")
     }
   }

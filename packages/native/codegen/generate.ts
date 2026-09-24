@@ -4,6 +4,7 @@ import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
 import { controls as curatedControls } from './controlCatalog'
 import { emitControls } from './emitControls'
 import { emitStyle } from './emitStyle'
+import { sdkGuard } from './sdkGuard'
 import { deriveModifiers, deriveViewSlots, deriveViews } from './deriveSDK'
 import { emitMenuValidator } from './menuValidator'
 import {
@@ -136,7 +137,6 @@ const controls = [
 ]
 const derivedModifiers = deriveModifiers([...inventory, ...importedCases], MAXIMUM_IOS, [
   ...styleFields,
-  ...styleModifiers,
 ])
 const derivedViewSlots = deriveViewSlots(inventory, MAXIMUM_IOS)
 const shortOwner = (d: Declaration) => d.owner.split('.').at(-1)
@@ -171,7 +171,11 @@ for (const modifier of derivedModifiers) {
       d.kind === 'func' &&
       d.name === (modifier.sdkName ?? modifier.name) &&
       (!modifier.module || d.module === modifier.module) &&
-      (modifier.zeroArgument
+      (modifier.environmentKey
+        ? d.parameters.length === 2 &&
+          d.parameters[0].type === 'Swift.WritableKeyPath<SwiftUICore.EnvironmentValues, V>' &&
+          d.parameters[1].type === 'V'
+        : modifier.zeroArgument
         ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.kind === 'record'
           ? (d.parameters.length === modifier.arguments?.length ? d.parameters :
@@ -553,17 +557,20 @@ for (const [type, cases] of Object.entries(enums)) {
   // an empty string is the SDK's own default, which these express as nil.
   const optional = ['ButtonRole', 'TabRole', 'Edge'].includes(type)
   const minimum = Math.min(...Object.values(cases))
-  if (minimum > MINIMUM_IOS) swift += `  @available(iOS ${minimum}, *)\n`
-  swift += `  static func ${type[0].toLowerCase() + type.slice(1)}(_ value: String) -> ${swiftReturnType}${optional ? '?' : ''} {\n    switch value {\n`
-  if (optional) swift += '    case "": return nil\n'
+  let parser = ''
+  if (minimum > MINIMUM_IOS) parser += `  @available(iOS ${minimum}, *)\n`
+  parser += `  static func ${type[0].toLowerCase() + type.slice(1)}(_ value: String) -> ${swiftReturnType}${optional ? '?' : ''} {\n    switch value {\n`
+  if (optional) parser += '    case "": return nil\n'
   for (const [name, version] of Object.entries(cases)) {
-    swift += `    case "${name}":\n`
-    swift +=
+    parser += `    case "${name}":\n`
+    parser +=
       version > Math.max(MINIMUM_IOS, minimum)
-        ? `      if #available(iOS ${version}, *) { return .${name} }\n      preconditionFailure("${type}.${name} requires iOS ${version}")\n`
+        ? `${sdkGuard(version, `      if #available(iOS ${version}, *) { return .${name} }`, '')}\n      preconditionFailure("${type}.${name} requires iOS ${version}")\n`
         : `      return .${name}\n`
   }
-  swift += `    default: preconditionFailure("invalid ${type}: \\(value)")\n    }\n  }\n`
+  parser += `    default: preconditionFailure("invalid ${type}: \\(value)")\n    }\n  }`
+  // a parser for a type only a newer SDK declares cannot compile against an older one.
+  swift += `${sdkGuard(minimum, parser, '')}\n`
 }
 swift += '}\n\nextension View {\n'
 for (const method of methods) {
@@ -573,7 +580,7 @@ for (const method of methods) {
       swift += `    case "${name}":\n`
       swift +=
         version > MINIMUM_IOS
-          ? `      if #available(iOS ${version}, *) { self.${method.name}(.${name}) } else { let _ = preconditionFailure("${method.type}.${name} requires iOS ${version}"); self }\n`
+          ? `${sdkGuard(version, `      if #available(iOS ${version}, *) { self.${method.name}(.${name}) } else { let _ = preconditionFailure("${method.type}.${name} requires iOS ${version}"); self }`, `      let _ = preconditionFailure("${method.type}.${name} requires iOS ${version}"); self`)}\n`
           : `      self.${method.name}(.${name})\n`
     }
     swift += `    default: let _ = preconditionFailure("invalid ${method.type}: \\(value)"); self\n    }\n  }\n`
@@ -582,7 +589,7 @@ for (const method of methods) {
   const apply = `self.${method.name}(OneNativeGenerated.${method.type[0].toLowerCase() + method.type.slice(1)}(value))`
   swift += `  @ViewBuilder func oneNative${method.name[0].toUpperCase() + method.name.slice(1)}(_ value: String) -> some View {\n`
   if (method.ios > MINIMUM_IOS) {
-    swift += `    if #available(iOS ${method.ios}, *) {\n      if value.isEmpty { self } else { ${apply} }\n    } else {\n      let _ = precondition(value.isEmpty, "${method.name} requires iOS ${method.ios}")\n      self\n    }\n`
+    swift += `${sdkGuard(method.ios, `    if #available(iOS ${method.ios}, *) {\n      if value.isEmpty { self } else { ${apply} }\n    } else {\n      let _ = precondition(value.isEmpty, "${method.name} requires iOS ${method.ios}")\n      self\n    }`, `    let _ = precondition(value.isEmpty, "${method.name} requires iOS ${method.ios}")\n    self`)}\n`
   } else swift += `    if value.isEmpty { self } else { ${apply} }\n`
   swift += '  }\n'
 }
@@ -763,7 +770,10 @@ export type ComposeIconName = keyof typeof composeIconCodepoints
 const changed: string[] = []
 for (const [path, source] of outputs) {
   const temporary = join(cache, path.replaceAll('/', '_'))
-  writeFileSync(temporary, source.trimEnd() + '\n')
+  // swift names public types through the SwiftUI umbrella: the declaring module
+  // (SwiftUI or SwiftUICore) moves between SDKs, and SwiftUI re-exports both.
+  const text = path.endsWith('.swift') ? source.replaceAll('SwiftUICore.', 'SwiftUI.') : source
+  writeFileSync(temporary, text.trimEnd() + '\n')
   if (/\.tsx?$/.test(path))
     run('bunx', ['oxfmt', '-c', resolve(root, '../../.prettierrc'), temporary])
   const generated = readFileSync(temporary, 'utf8')
