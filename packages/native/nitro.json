@@ -40,6 +40,10 @@
     "OneFonts": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneFonts" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneFonts" }
+    },
+    "OneNotifications": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneNotifications" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneNotifications" }
     }
   },
   "ignorePaths": ["**/node_modules", "dist", "types"]

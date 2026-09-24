@@ -25,6 +25,10 @@
 #include "JHybridOneNetworkSpec.hpp"
 #include "JFunc_void.hpp"
 #include "JFunc_void_NetworkState.hpp"
+#include "JHybridOneNotificationsSpec.hpp"
+#include "JFunc_void_std__string_NativeNotification.hpp"
+#include "JFunc_void_NativeNotificationResponse.hpp"
+#include "JFunc_void_NativePushToken.hpp"
 #include <NitroModules/DefaultConstructableObject.hpp>
 
 namespace margelo::nitro::one {
@@ -99,6 +103,14 @@ struct JHybridOneFontsSpecImpl: public jni::JavaClass<JHybridOneFontsSpecImpl, J
     return javaPart->getJHybridOneFontsSpec();
   }
 };
+struct JHybridOneNotificationsSpecImpl: public jni::JavaClass<JHybridOneNotificationsSpecImpl, JHybridOneNotificationsSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneNotifications;";
+  static std::shared_ptr<JHybridOneNotificationsSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneNotificationsSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneNotificationsSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneNotificationsSpec();
+  }
+};
 
 void registerAllNatives() {
   using namespace margelo::nitro;
@@ -115,6 +127,10 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneNetworkSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_NetworkState_cxx::registerNatives();
+  margelo::nitro::one::JHybridOneNotificationsSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_std__string_NativeNotification_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_NativeNotificationResponse_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_NativePushToken_cxx::registerNatives();
 
   // Register Nitro Hybrid Objects
   HybridObjectRegistry::registerHybridObjectConstructor(
@@ -163,6 +179,12 @@ void registerAllNatives() {
     "OneFonts",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneFontsSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneNotifications",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneNotificationsSpecImpl::create();
     }
   );
 }

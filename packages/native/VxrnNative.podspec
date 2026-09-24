@@ -39,9 +39,9 @@ Pod::Spec.new do |s|
   load 'nitrogen/generated/ios/VxrnNative+autolinking.rb'
   add_nitrogen_files(s)
   # objc++ units build without clang modules, so VxrnNative-Swift.h skips its
-  # own @import React and never sees the nitro bridge types its c++ section
-  # names; every unit gets both first.
-  s.prefix_header_contents = "#ifdef __OBJC__\n#import <React/RCTView.h>\n#endif\n#ifdef __cplusplus\n#include \"VxrnNative-Swift-Cxx-Bridge.hpp\"\n#endif"
+  # own @import lines (React, UserNotifications) and never sees the nitro
+  # bridge types its c++ section names; every unit gets them first.
+  s.prefix_header_contents = "#ifdef __OBJC__\n#import <React/RCTView.h>\n#import <UserNotifications/UserNotifications.h>\n#endif\n#ifdef __cplusplus\n#include \"VxrnNative-Swift-Cxx-Bridge.hpp\"\n#endif"
 
   s.dependency 'RNWorklets'
 

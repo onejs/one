@@ -44,16 +44,54 @@ namespace margelo::nitro::one { class HybridOneHapticsSpec; }
 namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
 // Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNetworkSpec; }
+// Forward declaration of `HybridOneNotificationsSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 // Forward declaration of `ImagePickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerAsset; }
 // Forward declaration of `ImagePickerMediaType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ImagePickerMediaType; }
 // Forward declaration of `ImagePickerNativeResult` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerNativeResult; }
+// Forward declaration of `NativeChannelInput` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeChannelInput; }
+// Forward declaration of `NativeChannel` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeChannel; }
+// Forward declaration of `NativeContentInput` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeContentInput; }
+// Forward declaration of `NativeContent` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeContent; }
+// Forward declaration of `NativeIosPermissionRequest` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeIosPermissionRequest; }
+// Forward declaration of `NativeIosPermission` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeIosPermission; }
+// Forward declaration of `NativeNotificationRequest` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotificationRequest; }
+// Forward declaration of `NativeNotificationResponse` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotificationResponse; }
+// Forward declaration of `NativeNotification` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotification; }
+// Forward declaration of `NativePermissionRequest` to properly resolve imports.
+namespace margelo::nitro::one { struct NativePermissionRequest; }
+// Forward declaration of `NativePermissionResponse` to properly resolve imports.
+namespace margelo::nitro::one { struct NativePermissionResponse; }
+// Forward declaration of `NativePushToken` to properly resolve imports.
+namespace margelo::nitro::one { struct NativePushToken; }
+// Forward declaration of `NativeScheduleInput` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeScheduleInput; }
+// Forward declaration of `NativeTriggerInput` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeTriggerInput; }
+// Forward declaration of `NativeTriggerType` to properly resolve imports.
+namespace margelo::nitro::one { enum class NativeTriggerType; }
+// Forward declaration of `NativeTrigger` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeTrigger; }
 // Forward declaration of `NetworkStateType` to properly resolve imports.
 namespace margelo::nitro::one { enum class NetworkStateType; }
 // Forward declaration of `NetworkState` to properly resolve imports.
 namespace margelo::nitro::one { struct NetworkState; }
+// Forward declaration of `NotificationBehavior` to properly resolve imports.
+namespace margelo::nitro::one { struct NotificationBehavior; }
+// Forward declaration of `NotificationPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
 // Forward declaration of `ResolvedImagePickerOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
 
@@ -76,12 +114,32 @@ namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
 #include "HybridOneHapticsSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
+#include "HybridOneNotificationsSpec.hpp"
 #include "ImagePickerAsset.hpp"
 #include "ImagePickerMediaType.hpp"
 #include "ImagePickerNativeResult.hpp"
+#include "NativeChannel.hpp"
+#include "NativeChannelInput.hpp"
+#include "NativeContent.hpp"
+#include "NativeContentInput.hpp"
+#include "NativeIosPermission.hpp"
+#include "NativeIosPermissionRequest.hpp"
+#include "NativeNotification.hpp"
+#include "NativeNotificationRequest.hpp"
+#include "NativeNotificationResponse.hpp"
+#include "NativePermissionRequest.hpp"
+#include "NativePermissionResponse.hpp"
+#include "NativePushToken.hpp"
+#include "NativeScheduleInput.hpp"
+#include "NativeTrigger.hpp"
+#include "NativeTriggerInput.hpp"
+#include "NativeTriggerType.hpp"
 #include "NetworkState.hpp"
 #include "NetworkStateType.hpp"
+#include "NotificationBehavior.hpp"
+#include "NotificationPermissionStatus.hpp"
 #include "ResolvedImagePickerOptions.hpp"
+#include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>
@@ -118,6 +176,8 @@ namespace VxrnNative { class HybridOneHapticsSpec_cxx; }
 namespace VxrnNative { class HybridOneImagePickerSpec_cxx; }
 // Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneNetworkSpec_cxx; }
+// Forward declaration of `HybridOneNotificationsSpec_cxx` to properly resolve imports.
+namespace VxrnNative { class HybridOneNotificationsSpec_cxx; }
 
 // Include Swift defined types
 #if __has_include("VxrnNative-Swift.h")

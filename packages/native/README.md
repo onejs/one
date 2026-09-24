@@ -1411,7 +1411,11 @@ called straight through JSI. Views stay Fabric components. `OneHaptics` and
 3. Implement `ios/Nitro/HybridOne<Name>.swift` as
    `final class HybridOne<Name>: HybridOne<Name>Spec`. Calls arrive on the JS
    thread: hop to main with `DispatchQueue.main.async` for fire-and-forget UIKit
-   work, or return `Promise.async { @MainActor in ... }` for a result.
+   work, or return `Promise.async { @MainActor in ... }` for a result. The pod
+   builds Swift with C++ interop, which imports an options (`NS_OPTIONS`)
+   parameter inside a delegate's completion block as `Int`, so declare that
+   block as `(Int) -> Void`. A "nearly matches optional requirement" warning
+   means iOS never calls that method.
 4. Implement `android/src/main/java/com/margelo/nitro/one/HybridOne<Name>.kt`
    as `class HybridOne<Name> : HybridOne<Name>Spec()`. Reach the app through
    `NitroModules.applicationContext`, and use `Promise.async { ... }` for async
