@@ -293,6 +293,155 @@ function patchIosPbxprojSceneDelegate(rendered: string, appName: string): string
   return patched
 }
 
+function patchIosPbxprojWidgets(project: string, app: NativeAppManifest): string {
+  const name = app.name
+  const bundleId = app.ios!.bundleId
+  const deploymentTarget = app.ios!.deploymentTarget || '17.0'
+  const ids = {
+    product: 'A10000000000000000000001',
+    target: 'A10000000000000000000002',
+    group: 'A10000000000000000000003',
+    sources: 'A10000000000000000000004',
+    resources: 'A10000000000000000000005',
+    frameworks: 'A10000000000000000000006',
+    embed: 'A10000000000000000000007',
+    dependency: 'A10000000000000000000008',
+    proxy: 'A10000000000000000000009',
+    debug: 'A1000000000000000000000A',
+    release: 'A1000000000000000000000B',
+    config: 'A1000000000000000000000C',
+    widgetSource: 'A1000000000000000000000D',
+    contract: 'A1000000000000000000000E',
+    plist: 'A1000000000000000000000F',
+    entitlements: 'A10000000000000000000010',
+    appEntitlements: 'A10000000000000000000011',
+    bridgeSwift: 'A10000000000000000000012',
+    bridgeObjc: 'A10000000000000000000013',
+    widgetBuild: 'A10000000000000000000014',
+    contractWidgetBuild: 'A10000000000000000000015',
+    contractAppBuild: 'A10000000000000000000016',
+    bridgeSwiftBuild: 'A10000000000000000000017',
+    bridgeObjcBuild: 'A10000000000000000000018',
+    embedBuild: 'A10000000000000000000019',
+  }
+  const insert = (anchor: string, value: string) => {
+    if (!project.includes(anchor))
+      throw new Error(`[vxrn] widget target template anchor missing: ${anchor}`)
+    project = project.replace(anchor, `${value}\n${anchor}`)
+  }
+  insert(
+    '/* End PBXBuildFile section */',
+    `\t\t${ids.widgetBuild} /* OneWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ${ids.widgetSource} /* OneWidget.swift */; };
+\t\t${ids.contractWidgetBuild} /* OneWidgetContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = ${ids.contract} /* OneWidgetContract.swift */; };
+\t\t${ids.contractAppBuild} /* OneWidgetContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = ${ids.contract} /* OneWidgetContract.swift */; };
+\t\t${ids.bridgeSwiftBuild} /* OneWidgetsBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = ${ids.bridgeSwift} /* OneWidgetsBridge.swift */; };
+\t\t${ids.bridgeObjcBuild} /* OneWidgetsBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = ${ids.bridgeObjc} /* OneWidgetsBridge.m */; };
+\t\t${ids.embedBuild} /* OneWidgets.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = ${ids.product} /* OneWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };`
+  )
+  insert(
+    '/* End PBXFileReference section */',
+    `\t\t${ids.product} /* OneWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+\t\t${ids.widgetSource} /* OneWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneWidget.swift; sourceTree = "<group>"; };
+\t\t${ids.contract} /* OneWidgetContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OneWidgetContract.swift; path = ${name}/OneWidgetContract.swift; sourceTree = "<group>"; };
+\t\t${ids.plist} /* WidgetInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WidgetInfo.plist; sourceTree = "<group>"; };
+\t\t${ids.entitlements} /* OneWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = OneWidgets.entitlements; sourceTree = "<group>"; };
+\t\t${ids.appEntitlements} /* OneAppWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = OneAppWidgets.entitlements; path = ${name}/OneAppWidgets.entitlements; sourceTree = "<group>"; };
+\t\t${ids.bridgeSwift} /* OneWidgetsBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OneWidgetsBridge.swift; path = ${name}/OneWidgetsBridge.swift; sourceTree = "<group>"; };
+\t\t${ids.bridgeObjc} /* OneWidgetsBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OneWidgetsBridge.m; path = ${name}/OneWidgetsBridge.m; sourceTree = "<group>"; };`
+  )
+  insert(
+    '/* Begin PBXFrameworksBuildPhase section */',
+    `/* Begin PBXCopyFilesBuildPhase section */
+\t\t${ids.embed} /* Embed App Extensions */ = {isa = PBXCopyFilesBuildPhase; buildActionMask = 2147483647; dstPath = ""; dstSubfolderSpec = 13; files = (${ids.embedBuild} /* OneWidgets.appex in Embed App Extensions */, ); name = "Embed App Extensions"; runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXCopyFilesBuildPhase section */
+`
+  )
+  insert(
+    '/* End PBXFrameworksBuildPhase section */',
+    `\t\t${ids.frameworks} /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };`
+  )
+  insert(
+    '/* End PBXGroup section */',
+    `\t\t${ids.group} /* OneWidgets */ = {isa = PBXGroup; children = (${ids.widgetSource} /* OneWidget.swift */, ${ids.plist} /* WidgetInfo.plist */, ${ids.entitlements} /* OneWidgets.entitlements */, ); path = OneWidgets; sourceTree = "<group>"; };`
+  )
+  insert(
+    '/* End PBXNativeTarget section */',
+    `\t\t${ids.target} /* OneWidgets */ = {isa = PBXNativeTarget; buildConfigurationList = ${ids.config} /* Build configuration list for PBXNativeTarget "OneWidgets" */; buildPhases = (${ids.sources} /* Sources */, ${ids.frameworks} /* Frameworks */, ${ids.resources} /* Resources */, ); buildRules = (); dependencies = (); name = OneWidgets; productName = OneWidgets; productReference = ${ids.product} /* OneWidgets.appex */; productType = "com.apple.product-type.app-extension"; };`
+  )
+  insert(
+    '/* End PBXResourcesBuildPhase section */',
+    `\t\t${ids.resources} /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };`
+  )
+  insert(
+    '/* End PBXSourcesBuildPhase section */',
+    `\t\t${ids.sources} /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (${ids.widgetBuild} /* OneWidget.swift in Sources */, ${ids.contractWidgetBuild} /* OneWidgetContract.swift in Sources */, ); runOnlyForDeploymentPostprocessing = 0; };`
+  )
+  insert(
+    '/* Begin XCBuildConfiguration section */',
+    `/* Begin PBXContainerItemProxy section */
+\t\t${ids.proxy} /* PBXContainerItemProxy */ = {isa = PBXContainerItemProxy; containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */; proxyType = 1; remoteGlobalIDString = ${ids.target}; remoteInfo = OneWidgets; };
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXTargetDependency section */
+\t\t${ids.dependency} /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = ${ids.target} /* OneWidgets */; targetProxy = ${ids.proxy} /* PBXContainerItemProxy */; };
+/* End PBXTargetDependency section */
+`
+  )
+  const config = (id: string, mode: string) =>
+    `\t\t${id} /* ${mode} */ = {isa = XCBuildConfiguration; buildSettings = { CODE_SIGN_ENTITLEMENTS = OneWidgets/OneWidgets.entitlements; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = ${app.ios?.buildNumber || '1'}; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = OneWidgets/WidgetInfo.plist; IPHONEOS_DEPLOYMENT_TARGET = ${deploymentTarget}; MARKETING_VERSION = "${app.version || '1.0'}"; PRODUCT_BUNDLE_IDENTIFIER = ${bundleId}.widgets; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SKIP_INSTALL = YES; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1"; }; name = ${mode}; };`
+  insert(
+    '/* End XCBuildConfiguration section */',
+    `${config(ids.debug, 'Debug')}\n${config(ids.release, 'Release')}`
+  )
+  insert(
+    '/* End XCConfigurationList section */',
+    `\t\t${ids.config} /* Build configuration list for PBXNativeTarget "OneWidgets" */ = {isa = XCConfigurationList; buildConfigurations = (${ids.debug} /* Debug */, ${ids.release} /* Release */, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };`
+  )
+  const one = (anchor: string, value: string) => {
+    if (!project.includes(anchor))
+      throw new Error(`[vxrn] widget target template anchor missing: ${anchor}`)
+    project = project.replace(anchor, `${anchor}\n${value}`)
+  }
+  one(
+    '13B07F961A680F5B00A75B9A /* ' + name + '.app */,',
+    `\t\t\t\t${ids.product} /* OneWidgets.appex */,`
+  )
+  one(
+    '13B07FAE1A68108700A75B9A /* ' + name + ' */,',
+    `\t\t\t\t${ids.group} /* OneWidgets */,`
+  )
+  one(
+    '761780EC2CA45674006654EE /* AppDelegate.swift */,',
+    `\t\t\t\t${ids.contract} /* OneWidgetContract.swift */,\n\t\t\t\t${ids.appEntitlements} /* OneAppWidgets.entitlements */,\n\t\t\t\t${ids.bridgeSwift} /* OneWidgetsBridge.swift */,\n\t\t\t\t${ids.bridgeObjc} /* OneWidgetsBridge.m */,`
+  )
+  one(
+    '761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,',
+    `\t\t\t\t${ids.contractAppBuild} /* OneWidgetContract.swift in Sources */,\n\t\t\t\t${ids.bridgeSwiftBuild} /* OneWidgetsBridge.swift in Sources */,\n\t\t\t\t${ids.bridgeObjcBuild} /* OneWidgetsBridge.m in Sources */,`
+  )
+  one(
+    '13B07F861A680F5B00A75B9A /* ' + name + ' */,',
+    `\t\t\t\t${ids.target} /* OneWidgets */,`
+  )
+  one(
+    '13B07F8E1A680F5B00A75B9A /* Resources */,',
+    `\t\t\t\t${ids.embed} /* Embed App Extensions */,`
+  )
+  one(
+    'LastSwiftMigration = 1120;\n\t\t\t\t\t};',
+    `\t\t\t\t\t${ids.target} = { CreatedOnToolsVersion = 16.0; LastSwiftMigration = 1600; };`
+  )
+  one('dependencies = (', `\t\t\t\t${ids.dependency} /* PBXTargetDependency */,`)
+  const appBundleSetting = `PRODUCT_BUNDLE_IDENTIFIER = "${bundleId}";`
+  if (project.split(appBundleSetting).length !== 3) {
+    throw new Error('[vxrn] expected two app bundle settings for widget entitlements')
+  }
+  project = project.replaceAll(
+    appBundleSetting,
+    `CODE_SIGN_ENTITLEMENTS = ${name}/OneAppWidgets.entitlements;\n\t\t\t\t${appBundleSetting}`
+  )
+  return project
+}
+
 function generateSceneDelegate(args: {
   dest: string
   platform: 'ios' | 'android'
@@ -303,6 +452,314 @@ function generateSceneDelegate(args: {
   FSExtra.writeFileSync(
     path.join(dest, app.name, 'SceneDelegate.swift'),
     renderSceneDelegateSwift(app.name)
+  )
+}
+
+function generateIosWidgets(dest: string, app: NativeAppManifest): void {
+  const widgets = app.ios?.widgets
+  if (!widgets) return
+  if (widgets.jsx) {
+    try {
+      module.createRequire(dest + '/').resolve('@use-voltra/ios-client/package.json')
+    } catch {
+      throw new Error('[vxrn] native.app.ios.widgets.jsx requires @use-voltra/ios-client')
+    }
+  }
+  const appDir = path.join(dest, app.name)
+  const extensionDir = path.join(dest, 'OneWidgets')
+  FSExtra.mkdirSync(extensionDir, { recursive: true })
+  const entitlements = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict><key>com.apple.security.application-groups</key><array><string>${escapeXml(widgets.appGroup)}</string></array></dict></plist>
+`
+  FSExtra.writeFileSync(
+    path.join(appDir, 'OneAppWidgets.entitlements'),
+    widgets.pushNotifications
+      ? entitlements.replace(
+          '</dict></plist>',
+          '<key>aps-environment</key><string>development</string></dict></plist>'
+        )
+      : entitlements
+  )
+  FSExtra.writeFileSync(path.join(extensionDir, 'OneWidgets.entitlements'), entitlements)
+  FSExtra.writeFileSync(
+    path.join(extensionDir, 'WidgetInfo.plist'),
+    `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>CFBundleDevelopmentRegion</key><string>$(DEVELOPMENT_LANGUAGE)</string>
+  <key>CFBundleDisplayName</key><string>${escapeXml(widgets.displayName)}</string>
+  <key>CFBundleExecutable</key><string>$(EXECUTABLE_NAME)</string>
+  <key>CFBundleIdentifier</key><string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+  <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
+  <key>CFBundleName</key><string>$(PRODUCT_NAME)</string>
+  <key>CFBundlePackageType</key><string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+  <key>CFBundleShortVersionString</key><string>${escapeXml(app.version || '1.0')}</string>
+  <key>CFBundleVersion</key><string>${escapeXml(app.ios?.buildNumber || '1')}</string>
+  <key>NSExtension</key><dict><key>NSExtensionPointIdentifier</key><string>com.apple.widgetkit-extension</string></dict>
+  ${widgets.jsx ? `<key>Voltra_AppGroupIdentifier</key><string>${escapeXml(widgets.appGroup)}</string>` : ''}
+</dict></plist>
+`
+  )
+  FSExtra.writeFileSync(
+    path.join(appDir, 'OneWidgetContract.swift'),
+    `import Foundation
+import ActivityKit
+
+enum OneWidgetContract {
+  static let appGroup = ${JSON.stringify(widgets.appGroup)}
+  static let kind = ${JSON.stringify(widgets.kind)}
+  static let dataKey = "one.widget.data"
+
+  struct Data: Codable {
+    let title: String
+    let value: String
+    let subtitle: String
+  }
+
+  struct Attributes: ActivityAttributes {
+    struct ContentState: Codable, Hashable {
+      let status: String
+      let value: String
+    }
+    let title: String
+  }
+}
+`
+  )
+  FSExtra.writeFileSync(
+    path.join(extensionDir, 'OneWidget.swift'),
+    `import SwiftUI
+import WidgetKit
+import ActivityKit
+${widgets.jsx ? 'import VoltraRuntime' : ''}
+
+struct OneWidgetEntry: TimelineEntry {
+  let date: Date
+  let data: OneWidgetContract.Data
+}
+
+struct OneWidgetProvider: TimelineProvider {
+  func placeholder(in context: Context) -> OneWidgetEntry {
+    OneWidgetEntry(date: .now, data: .init(title: ${JSON.stringify(widgets.displayName)}, value: "", subtitle: ""))
+  }
+
+  func getSnapshot(in context: Context, completion: @escaping (OneWidgetEntry) -> Void) {
+    completion(entry())
+  }
+
+  func getTimeline(in context: Context, completion: @escaping (Timeline<OneWidgetEntry>) -> Void) {
+    completion(Timeline(entries: [entry()], policy: .never))
+  }
+
+  private func entry() -> OneWidgetEntry {
+    let stored = UserDefaults(suiteName: OneWidgetContract.appGroup)?.data(forKey: OneWidgetContract.dataKey)
+    let data = stored.flatMap { try? JSONDecoder().decode(OneWidgetContract.Data.self, from: $0) }
+      ?? .init(title: ${JSON.stringify(widgets.displayName)}, value: "", subtitle: "")
+    return OneWidgetEntry(date: .now, data: data)
+  }
+}
+
+struct OneWidget: Widget {
+  var body: some WidgetConfiguration {
+    StaticConfiguration(kind: OneWidgetContract.kind, provider: OneWidgetProvider()) { entry in
+      VStack(alignment: .leading, spacing: 8) {
+        Text(entry.data.title).font(.headline)
+        Text(entry.data.value).font(.title2).bold()
+        Text(entry.data.subtitle).font(.caption)
+      }
+      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+      .containerBackground(.fill.tertiary, for: .widget)
+    }
+    .configurationDisplayName(${JSON.stringify(widgets.displayName)})
+    .description(${JSON.stringify(widgets.description)})
+    .supportedFamilies([.systemSmall, .systemMedium])
+  }
+}
+
+struct OneLiveActivity: Widget {
+  var body: some WidgetConfiguration {
+    ActivityConfiguration(for: OneWidgetContract.Attributes.self) { context in
+      HStack {
+        VStack(alignment: .leading) {
+          Text(context.attributes.title).font(.headline)
+          Text(context.state.status)
+        }
+        Spacer()
+        Text(context.state.value).bold()
+      }
+      .padding()
+      .activityBackgroundTint(.blue.opacity(0.2))
+    } dynamicIsland: { context in
+      DynamicIsland {
+        DynamicIslandExpandedRegion(.leading) { Text(context.attributes.title) }
+        DynamicIslandExpandedRegion(.trailing) { Text(context.state.value) }
+        DynamicIslandExpandedRegion(.bottom) { Text(context.state.status) }
+      } compactLeading: {
+        Text(context.attributes.title)
+      } compactTrailing: {
+        Text(context.state.value)
+      } minimal: {
+        Text(context.state.value)
+      }
+    }
+  }
+}
+
+${
+  widgets.jsx
+    ? `struct OneJSXWidget: Widget {
+  private let widgetId = ${JSON.stringify(widgets.jsx.id)}
+
+  var body: some WidgetConfiguration {
+    StaticConfiguration(kind: "Voltra_Widget_${widgets.jsx.id}", provider: VoltraHomeWidgetProvider(widgetId: widgetId)) { entry in
+      VoltraHomeWidgetView(entry: entry)
+    }
+    .configurationDisplayName(${JSON.stringify(widgets.jsx.displayName)})
+    .description(${JSON.stringify(widgets.jsx.description)})
+    .supportedFamilies([.systemSmall, .systemMedium])
+    .contentMarginsDisabled()
+  }
+}
+`
+    : ''
+}
+
+@main
+struct OneWidgetsBundle: WidgetBundle {
+  var body: some Widget {
+    OneWidget()
+    OneLiveActivity()
+    ${widgets.jsx ? 'OneJSXWidget()\n    VoltraWidget()' : ''}
+  }
+}
+`
+  )
+  FSExtra.writeFileSync(
+    path.join(appDir, 'OneWidgetsBridge.m'),
+    `#import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
+
+@interface RCT_EXTERN_MODULE(OneWidgetsBridge, RCTEventEmitter)
+RCT_EXTERN_METHOD(writeWidget:(NSString *)title value:(NSString *)value subtitle:(NSString *)subtitle resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(start:(NSString *)title status:(NSString *)status value:(NSString *)value push:(BOOL)push resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(update:(NSString *)identifier status:(NSString *)status value:(NSString *)value resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(end:(NSString *)identifier resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(pushToken:(NSString *)identifier resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+@end
+`
+  )
+  FSExtra.writeFileSync(
+    path.join(appDir, 'OneWidgetsBridge.swift'),
+    `import Foundation
+import React
+import WidgetKit
+import ActivityKit
+
+@objc(OneWidgetsBridge)
+class OneWidgetsBridge: RCTEventEmitter {
+  private var tokenTasks: [String: Task<Void, Never>] = [:]
+
+  override func supportedEvents() -> [String]! { ["oneLiveActivityPushToken"] }
+
+  override func startObserving() {
+    for activity in Activity<OneWidgetContract.Attributes>.activities {
+      observeToken(activity)
+    }
+  }
+
+  override func stopObserving() {
+    for task in tokenTasks.values { task.cancel() }
+    tokenTasks.removeAll()
+  }
+
+  private func observeToken(_ activity: Activity<OneWidgetContract.Attributes>) {
+    guard tokenTasks[activity.id] == nil else { return }
+    tokenTasks[activity.id] = Task { [weak self] in
+      for await token in activity.pushTokenUpdates {
+        self?.sendEvent(withName: "oneLiveActivityPushToken", body: [
+          "id": activity.id,
+          "token": token.map { String(format: "%02x", $0) }.joined(),
+        ])
+      }
+    }
+  }
+
+  @objc(writeWidget:value:subtitle:resolver:rejecter:)
+  func writeWidget(_ title: String, value: String, subtitle: String,
+                   resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
+    guard let defaults = UserDefaults(suiteName: OneWidgetContract.appGroup) else {
+      reject("app_group", "Cannot open the configured App Group", nil)
+      return
+    }
+    do {
+      defaults.set(try JSONEncoder().encode(OneWidgetContract.Data(title: title, value: value, subtitle: subtitle)),
+                   forKey: OneWidgetContract.dataKey)
+      WidgetCenter.shared.reloadTimelines(ofKind: OneWidgetContract.kind)
+      resolve(nil)
+    } catch {
+      reject("widget_write", error.localizedDescription, error)
+    }
+  }
+
+  @objc(start:status:value:push:resolver:rejecter:)
+  func start(_ title: String, status: String, value: String, push: Bool,
+             resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
+    guard ActivityAuthorizationInfo().areActivitiesEnabled else {
+      reject("activities_disabled", "Live Activities are disabled", nil)
+      return
+    }
+    do {
+      let activity = try Activity<OneWidgetContract.Attributes>.request(
+        attributes: .init(title: title),
+        content: .init(state: .init(status: status, value: value), staleDate: nil),
+        pushType: push ? .token : nil
+      )
+      observeToken(activity)
+      resolve(activity.id)
+    } catch {
+      reject("activity_start", error.localizedDescription, error)
+    }
+  }
+
+  @objc(update:status:value:resolver:rejecter:)
+  func update(_ identifier: String, status: String, value: String,
+              resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
+    guard let activity = Activity<OneWidgetContract.Attributes>.activities.first(where: { $0.id == identifier }) else {
+      reject("activity_missing", "Live Activity not found", nil)
+      return
+    }
+    Task {
+      await activity.update(.init(state: .init(status: status, value: value), staleDate: nil))
+      resolve(nil)
+    }
+  }
+
+  @objc(end:resolver:rejecter:)
+  func end(_ identifier: String, resolver resolve: @escaping RCTPromiseResolveBlock,
+           rejecter reject: @escaping RCTPromiseRejectBlock) {
+    guard let activity = Activity<OneWidgetContract.Attributes>.activities.first(where: { $0.id == identifier }) else {
+      reject("activity_missing", "Live Activity not found", nil)
+      return
+    }
+    Task {
+      await activity.end(nil, dismissalPolicy: .immediate)
+      tokenTasks.removeValue(forKey: identifier)?.cancel()
+      resolve(nil)
+    }
+  }
+
+  @objc(pushToken:resolver:rejecter:)
+  func pushToken(_ identifier: String, resolver resolve: RCTPromiseResolveBlock,
+                 rejecter reject: RCTPromiseRejectBlock) {
+    guard let activity = Activity<OneWidgetContract.Attributes>.activities.first(where: { $0.id == identifier }) else {
+      reject("activity_missing", "Live Activity not found", nil)
+      return
+    }
+    resolve(activity.pushToken?.map { String(format: "%02x", $0) }.joined())
+  }
+}
+`
   )
 }
 
@@ -605,6 +1062,17 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
           `\t<key>UIFileSharingEnabled</key>\n\t<true/>\n\t<key>LSSupportsOpeningDocumentsInPlace</key>\n\t<true/>`
         )
       }
+      if (app.ios?.widgets) {
+        stamps.push('\t<key>NSSupportsLiveActivities</key>\n\t<true/>')
+        if (app.ios.widgets.jsx) {
+          stamps.push(
+            `\t<key>Voltra_AppGroupIdentifier</key>\n\t<string>${escapeXml(app.ios.widgets.appGroup)}</string>`
+          )
+          if (app.ios.widgets.pushNotifications) {
+            stamps.push('\t<key>Voltra_EnablePushNotifications</key>\n\t<true/>')
+          }
+        }
+      }
       if (stamps.length) {
         const anchor = '\t<key>LSRequiresIPhoneOS</key>'
         if (!rendered.includes(anchor))
@@ -749,6 +1217,7 @@ end`
     if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {
       rendered = patchIosBundlePhase(rendered)
       rendered = patchIosPbxprojSceneDelegate(rendered, appName)
+      if (app.ios?.widgets) rendered = patchIosPbxprojWidgets(rendered, app)
     }
     if (platform === 'ios' && relativePath === 'Podfile') {
       if (app.ios?.ccache) rendered = `ENV['USE_CCACHE'] ||= '1'\n${rendered}`
@@ -764,8 +1233,12 @@ end`
       rendered = nativeProjectPatches.injectFmtCxx17FixIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectOneSwiftPackagesIntoPodfile(rendered)
       if (nitroWebImage)
-        rendered = nativeProjectPatches.injectNitroWebImageModularHeaderIntoPodfile(rendered)
+        rendered =
+          nativeProjectPatches.injectNitroWebImageModularHeaderIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(rendered)
+      if (app.ios?.widgets?.jsx) {
+        rendered += `\n# jsx widgets use Voltra's SwiftUI renderer in One's generated extension\ntarget 'OneWidgets' do\n  client = \`node --print "require.resolve('@use-voltra/ios-client/package.json', {paths: ['#{Pod::Config.instance.installation_root}/..']})"\`.strip\n  raise 'Install @use-voltra/ios-client to build the JSX widget' if client.empty?\n  pod 'VoltraWidget', :path => File.join(File.dirname(client), 'ios')\nend\n`
+      }
       if (
         !rendered.includes('[vxrn/one] fmt c++17 fix') ||
         !rendered.includes('[vxrn/one] minify iOS Hermes Release bundle input')
@@ -884,6 +1357,7 @@ export const generateForPlatform = async (
   await generateAppIcons({ root, dest, platform, app })
   await generateSplashScreen({ root, dest, platform, app })
   generateSceneDelegate({ dest, platform, app })
+  if (platform === 'ios') generateIosWidgets(dest, app)
   if (platform === 'ios') generateSwiftPackages({ root, dest })
 }
 
@@ -903,7 +1377,8 @@ function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
       return
     }
     for (const entry of entries) {
-      if (!entry.isDirectory() || entry.name.startsWith('.') || skip.has(entry.name)) continue
+      if (!entry.isDirectory() || entry.name.startsWith('.') || skip.has(entry.name))
+        continue
       walk(path.join(dir, entry.name))
     }
   }
@@ -919,7 +1394,8 @@ function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
         if (entry.name.startsWith('.') || skip.has(entry.name)) continue
         const full = path.join(dir, entry.name)
         if (entry.isDirectory()) collect(full)
-        else if (entry.name.endsWith('.swift') && entry.name !== 'Package.swift') sources.push(full)
+        else if (entry.name.endsWith('.swift') && entry.name !== 'Package.swift')
+          sources.push(full)
       }
     }
     collect(packageDir)
