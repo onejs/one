@@ -57,6 +57,8 @@ export declare const sdkButtonSizingValues: readonly ['automatic', 'flexible', '
 export type SDKButtonSizing = (typeof sdkButtonSizingValues)[number];
 export declare const sdkButtonStyleValues: readonly ['automatic', 'glass', 'borderless', 'glassProminent', 'plain', 'bordered', 'borderedProminent'];
 export type SDKButtonStyle = (typeof sdkButtonStyleValues)[number];
+export declare const sdkClipShapeValues: readonly ['buttonBorder', 'rect', 'capsule', 'ellipse', 'circle', 'containerRelative', 'textInputBorder'];
+export type SDKClipShape = (typeof sdkClipShapeValues)[number];
 export declare const sdkColorMultiplyValues: readonly ['accentColor', 'red', 'orange', 'yellow', 'green', 'mint', 'teal', 'cyan', 'blue', 'indigo', 'purple', 'pink', 'brown', 'white', 'gray', 'black', 'clear', 'primary', 'secondary'];
 export type SDKColorMultiply = (typeof sdkColorMultiplyValues)[number];
 export declare const sdkColorSchemeValues: readonly ['light', 'dark'];
@@ -95,6 +97,8 @@ export declare const sdkEdgesIgnoringSafeAreaValues: readonly ['top', 'leading',
 export type SDKEdgesIgnoringSafeArea = (typeof sdkEdgesIgnoringSafeAreaValues)[number];
 export declare const sdkFileDialogBrowserOptionsValues: readonly ['enumeratePackages', 'includeHiddenFiles', 'displayFileExtensions'];
 export type SDKFileDialogBrowserOptions = (typeof sdkFileDialogBrowserOptionsValues)[number];
+export declare const sdkFontValues: readonly ['largeTitle', 'title', 'title2', 'title3', 'headline', 'subheadline', 'body', 'callout', 'footnote', 'caption', 'caption2', 'default'];
+export type SDKFont = (typeof sdkFontValues)[number];
 export declare const sdkFontWidthValues: readonly ['compressed', 'condensed', 'standard', 'expanded'];
 export type SDKFontWidth = (typeof sdkFontWidthValues)[number];
 export declare const sdkForegroundColorValues: readonly ['accentColor', 'red', 'orange', 'yellow', 'green', 'mint', 'teal', 'cyan', 'blue', 'indigo', 'purple', 'pink', 'brown', 'white', 'gray', 'black', 'clear', 'primary', 'secondary'];
@@ -530,6 +534,7 @@ export interface OneNativeStyle {
     buttonSizing?: SDKButtonSizing;
     buttonStyle?: SDKButtonStyle;
     clipped?: boolean;
+    clipShape?: SDKClipShape;
     colorEffect?: Readonly<{
         shader: string;
         isEnabled: boolean;
@@ -712,9 +717,25 @@ export interface OneNativeStyle {
         onChange: (value: boolean) => void;
     }>;
     focusEffectDisabled?: boolean;
+    font?: SDKFont | null;
     fontWidth?: SDKFontWidth | null;
     foregroundColor?: SDKForegroundColor | null;
     formStyle?: SDKFormStyle;
+    frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment?: Readonly<{
+        minWidth: number | null;
+        idealWidth: number | null;
+        maxWidth: number | null;
+        minHeight: number | null;
+        idealHeight: number | null;
+        maxHeight: number | null;
+        alignment: 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing' | 'centerFirstTextBaseline' | 'centerLastTextBaseline' | 'leadingFirstTextBaseline' | 'leadingLastTextBaseline' | 'trailingFirstTextBaseline' | 'trailingLastTextBaseline';
+    }>;
+    frameWithNoArguments?: boolean;
+    frameWithWidthAndHeightAndAlignment?: Readonly<{
+        width: number | null;
+        height: number | null;
+        alignment: 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing' | 'centerFirstTextBaseline' | 'centerLastTextBaseline' | 'leadingFirstTextBaseline' | 'leadingLastTextBaseline' | 'trailingFirstTextBaseline' | 'trailingLastTextBaseline';
+    }>;
     gaugeStyle?: SDKGaugeStyle;
     geometryGroup?: boolean;
     gesture?: Readonly<{
