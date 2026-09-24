@@ -464,6 +464,27 @@ ${modifier.arguments.map((argument, index) => argument.kind === 'stringArray'
     default: preconditionFailure("invalid ${modifier.name} visual effect kind")
     }
   }`
+      if (modifier.kind === 'optionSet')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let decoded: [String: String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: String].self, from: data) else { preconditionFailure("invalid ${modifier.name} options") }
+      return decoded
+    }()
+    let options: [${modifier.resultType}] = {
+      var options: [${modifier.resultType}] = []
+${modifier.arguments!.map((argument) => `      if let raw = decoded[${JSON.stringify(argument.field)}] {
+${argument.kind === 'number' ? `        guard let parsed = Int(raw) else { preconditionFailure("invalid ${modifier.name}.${argument.field}") }` : argument.kind === 'boolean' ? `        guard raw == "true" || raw == "false" else { preconditionFailure("invalid ${modifier.name}.${argument.field}") }` : ''}
+        options.append(${modifier.resultType}.${argument.field}(${argument.label === '_' ? '' : `${argument.label}: `}${argument.kind === 'number' ? 'parsed' : argument.kind === 'boolean' ? 'raw == "true"' : 'raw'}))
+      }`).join('\n')}
+      return options
+    }()
+    ${apply('{ _ in Set(options) }', modifier.ios)}
+  }`
+      if (modifier.kind === 'selectionID')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    ${apply('{ _, _, eligible in eligible.first { $0.id == value } }', modifier.ios)}
+  }`
       if (modifier.kind.startsWith('event') || modifier.kind.startsWith('binding')) {
         const bridge = modifier.kind.startsWith('event')
           ? modifier.kind === 'event'
@@ -648,6 +669,7 @@ const colorFields = [${colorFields.map((field) => `'${field.name}'`).join(', ')}
 const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [modifier.name, modifier.kind])))} as const
 const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
 const sdkVisualEffects: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'visualEffect').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
+const sdkOptionSets: Record<string, readonly { field: string; kind: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'optionSet').map((modifier) => [modifier.name, modifier.arguments!.map((argument) => ({ field: argument.field, kind: argument.kind }))])))}
 type SDKEventValueShape =
   | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' | 'description' }
   | { kind: 'enum'; cases: readonly string[]; open?: true }
@@ -783,6 +805,25 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
           String((value as { value: number }).value)])])
         continue
       }
+      if (kind === 'optionSet') {
+        if (!value || typeof value !== 'object' || Array.isArray(value))
+          throw new Error(name + ' must be an SDK option set')
+        const record = value as Record<string, unknown>
+        const options: Record<string, string> = {}
+        for (const [field, item] of Object.entries(record)) {
+          const argument = sdkOptionSets[name].find((entry) => entry.field === field)
+          if (!argument) throw new Error(name + '.' + field + ' is not an SDK option')
+          if (argument.kind === 'number' && (typeof item !== 'number' || !Number.isSafeInteger(item)))
+            throw new Error(name + '.' + field + ' must be finite')
+          if (argument.kind === 'boolean' && typeof item !== 'boolean')
+            throw new Error(name + '.' + field + ' must be a boolean')
+          if (argument.kind === 'string' && typeof item !== 'string')
+            throw new Error(name + '.' + field + ' must be a string')
+          options[field] = String(item)
+        }
+        sdkModifiers.push([name, JSON.stringify(options)])
+        continue
+      }
       if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {
         if (!value || typeof value !== 'object' || Array.isArray(value) ||
           typeof (value as { onAction?: unknown }).onAction !== 'function')
@@ -806,6 +847,7 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
       if ((kind === 'boolean' || kind === 'defaultFocusBoolean') && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
       if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean') throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string') throw new Error(name + ' must be a string')
+      if (kind === 'selectionID' && typeof value !== 'string') throw new Error(name + ' must be a string')
       if (kind === 'url' && typeof value !== 'string') throw new Error(name + ' must be a URL string')
       if (kind === 'optionalURL' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a URL string or null')
       if (kind === 'optionalEnum' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')

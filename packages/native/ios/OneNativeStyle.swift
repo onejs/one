@@ -348,6 +348,7 @@ extension View {
       case "ignoresSafeAreaWithRegionsAndEdges": view = AnyView(view.oneNativeSDKIgnoresSafeAreaWithRegionsAndEdges(value, emit: emit))
       case "ignoresSafeAreaWithRegionsAndEdgesAndAlignment": view = AnyView(view.oneNativeSDKIgnoresSafeAreaWithRegionsAndEdgesAndAlignment(value, emit: emit))
       case "imageScale": view = AnyView(view.oneNativeSDKImageScale(value, emit: emit))
+      case "inAppPurchaseOptions": view = AnyView(view.oneNativeSDKInAppPurchaseOptions(value, emit: emit))
       case "indexViewStyle": view = AnyView(view.oneNativeSDKIndexViewStyle(value, emit: emit))
       case "inspectorColumnWidthWithCGFloat": view = AnyView(view.oneNativeSDKInspectorColumnWidthWithCGFloat(value, emit: emit))
       case "inspectorColumnWidthWithMinAndIdealAndMax": view = AnyView(view.oneNativeSDKInspectorColumnWidthWithMinAndIdealAndMax(value, emit: emit))
@@ -475,6 +476,7 @@ extension View {
       case "position": view = AnyView(view.oneNativeSDKPosition(value, emit: emit))
       case "preferencePreferredColorScheme": view = AnyView(view.oneNativeSDKPreferencePreferredColorScheme(value, emit: emit))
       case "preferredColorScheme": view = AnyView(view.oneNativeSDKPreferredColorScheme(value, emit: emit))
+      case "preferredSubscriptionOffer": view = AnyView(view.oneNativeSDKPreferredSubscriptionOffer(value, emit: emit))
       case "presentationBackground": view = AnyView(view.oneNativeSDKPresentationBackground(value, emit: emit))
       case "presentationBackgroundInteraction": view = AnyView(view.oneNativeSDKPresentationBackgroundInteraction(value, emit: emit))
       case "presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation": view = AnyView(view.oneNativeSDKPresentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation(value, emit: emit))
@@ -3992,6 +3994,31 @@ self
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKInAppPurchaseOptions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let decoded: [String: String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: String].self, from: data) else { preconditionFailure("invalid inAppPurchaseOptions options") }
+      return decoded
+    }()
+    let options: [StoreKit.Product.PurchaseOption] = {
+      var options: [StoreKit.Product.PurchaseOption] = []
+      if let raw = decoded["quantity"] {
+        guard let parsed = Int(raw) else { preconditionFailure("invalid inAppPurchaseOptions.quantity") }
+        options.append(StoreKit.Product.PurchaseOption.quantity(parsed))
+      }
+      if let raw = decoded["simulatesAskToBuyInSandbox"] {
+        guard raw == "true" || raw == "false" else { preconditionFailure("invalid inAppPurchaseOptions.simulatesAskToBuyInSandbox") }
+        options.append(StoreKit.Product.PurchaseOption.simulatesAskToBuyInSandbox(raw == "true"))
+      }
+      if let raw = decoded["introductoryOfferEligibility"] {
+
+        options.append(StoreKit.Product.PurchaseOption.introductoryOfferEligibility(compactJWS: raw))
+      }
+      return options
+    }()
+    self.inAppPurchaseOptions({ _ in Set(options) })
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKIndexViewStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -5545,6 +5572,10 @@ self
       case "dark": self.preferredColorScheme(SwiftUI.ColorScheme.dark)
     default: preconditionFailure("invalid preferredColorScheme: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPreferredSubscriptionOffer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) { self.preferredSubscriptionOffer({ _, _, eligible in eligible.first { $0.id == value } }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPresentationBackground(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

@@ -2224,6 +2224,11 @@ export interface OneNativeStyle {
       | null
   }>
   imageScale?: SDKImageScale
+  inAppPurchaseOptions?: Readonly<{
+    quantity?: number
+    simulatesAskToBuyInSandbox?: boolean
+    introductoryOfferEligibility?: string
+  }>
   indexViewStyle?: SDKIndexViewStyle
   inspectorColumnWidthWithCGFloat?: number
   inspectorColumnWidthWithMinAndIdealAndMax?: Readonly<{
@@ -2634,6 +2639,7 @@ export interface OneNativeStyle {
   position?: Readonly<{ x: number; y: number }>
   preferencePreferredColorScheme?: SDKPreferencePreferredColorScheme | null
   preferredColorScheme?: SDKPreferredColorScheme | null
+  preferredSubscriptionOffer?: string
   presentationBackground?: SDKPresentationBackground
   presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction
   presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation?: Readonly<{

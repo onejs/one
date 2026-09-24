@@ -290,6 +290,7 @@ const sdkKinds = {
   ignoresSafeAreaWithRegionsAndEdges: 'record',
   ignoresSafeAreaWithRegionsAndEdgesAndAlignment: 'record',
   imageScale: 'string',
+  inAppPurchaseOptions: 'optionSet',
   indexViewStyle: 'style',
   inspectorColumnWidthWithCGFloat: 'number',
   inspectorColumnWidthWithMinAndIdealAndMax: 'record',
@@ -418,6 +419,7 @@ const sdkKinds = {
   position: 'record',
   preferencePreferredColorScheme: 'optionalEnum',
   preferredColorScheme: 'optionalEnum',
+  preferredSubscriptionOffer: 'selectionID',
   presentationBackground: 'style',
   presentationBackgroundInteraction: 'string',
   presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation: 'record',
@@ -587,6 +589,13 @@ const sdkEventCases: Record<string, readonly string[]> = {
 const sdkVisualEffects: Record<string, readonly string[]> = {
   scrollTransition: ['opacity', 'scaleEffect'],
   visualEffect: ['opacity', 'scaleEffect'],
+}
+const sdkOptionSets: Record<string, readonly { field: string; kind: string }[]> = {
+  inAppPurchaseOptions: [
+    { field: 'quantity', kind: 'number' },
+    { field: 'simulatesAskToBuyInSandbox', kind: 'boolean' },
+    { field: 'introductoryOfferEligibility', kind: 'string' },
+  ],
 }
 type SDKEventValueShape =
   | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' | 'description' }
@@ -2117,6 +2126,28 @@ export function swiftStyleNative(
         ])
         continue
       }
+      if (kind === 'optionSet') {
+        if (!value || typeof value !== 'object' || Array.isArray(value))
+          throw new Error(name + ' must be an SDK option set')
+        const record = value as Record<string, unknown>
+        const options: Record<string, string> = {}
+        for (const [field, item] of Object.entries(record)) {
+          const argument = sdkOptionSets[name].find((entry) => entry.field === field)
+          if (!argument) throw new Error(name + '.' + field + ' is not an SDK option')
+          if (
+            argument.kind === 'number' &&
+            (typeof item !== 'number' || !Number.isSafeInteger(item))
+          )
+            throw new Error(name + '.' + field + ' must be finite')
+          if (argument.kind === 'boolean' && typeof item !== 'boolean')
+            throw new Error(name + '.' + field + ' must be a boolean')
+          if (argument.kind === 'string' && typeof item !== 'string')
+            throw new Error(name + '.' + field + ' must be a string')
+          options[field] = String(item)
+        }
+        sdkModifiers.push([name, JSON.stringify(options)])
+        continue
+      }
       if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {
         if (
           !value ||
@@ -2156,6 +2187,8 @@ export function swiftStyleNative(
       if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean')
         throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string')
+        throw new Error(name + ' must be a string')
+      if (kind === 'selectionID' && typeof value !== 'string')
         throw new Error(name + ' must be a string')
       if (kind === 'url' && typeof value !== 'string')
         throw new Error(name + ' must be a URL string')

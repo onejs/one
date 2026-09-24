@@ -36,7 +36,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'selectionID' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -803,6 +803,33 @@ export function deriveModifiers(
             ...(visualInput === 'SwiftUI.ScrollTransitionPhase' ? { visualPhase: true as const } : {}),
             ...framework }]
       }
+      const optionSet = method.parameters.length === 1 &&
+        /^\(\(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) async -> Swift\.Set<([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)>\)\?$/.exec(method.parameters[0].type)
+      if (optionSet) {
+        const optionType = optionSet[2]
+        const options = inventory.filter((declaration) => declaration.module === optionType.split('.')[0] &&
+          declaration.owner === optionType && declaration.kind === 'func' && declaration.isStatic &&
+          declaration.type === optionType && declaration.parameters.length === 1 &&
+          ['Swift.Int', 'Swift.Bool', 'Swift.String'].includes(declaration.parameters[0].type) &&
+          present(declaration) && ios(declaration) <= ios(method))
+        if (options.length && new Set(options.map((declaration) => declaration.name)).size === options.length)
+          return [{ name, module: method.module, kind: 'optionSet', type: method.parameters[0].type,
+            resultType: optionType, ios: ios(method), ...framework,
+            arguments: options.map((declaration) => ({ field: declaration.name,
+              label: declaration.parameters[0].label, type: declaration.parameters[0].type,
+              kind: declaration.parameters[0].type === 'Swift.Int' ? 'number' as const :
+                declaration.parameters[0].type === 'Swift.Bool' ? 'boolean' as const : 'string' as const,
+              optional: true })) }]
+      }
+      const eligibleSelection = method.parameters.length === 1 &&
+        /^@escaping \((?:_ [A-Za-z_]\w*: )?[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+, (?:_ [A-Za-z_]\w*: )?[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+, (?:_ [A-Za-z_]\w*: )?\[([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\]\) -> \1\?$/.exec(method.parameters[0].type)
+      if (eligibleSelection && inventory.some((declaration) =>
+        declaration.module === eligibleSelection[1].split('.')[0] &&
+        declaration.owner === eligibleSelection[1] && declaration.kind === 'var' &&
+        declaration.name === 'id' && ['Swift.String', 'Swift.String?'].includes(declaration.type ?? '') &&
+        present(declaration) && ios(declaration) <= ios(method)))
+        return [{ name, module: method.module, kind: 'selectionID', type: method.parameters[0].type,
+          label: method.parameters[0].label, ios: ios(method), ...framework }]
       if (method.parameters.length === 0 ||
         (method.parameters.every((parameter) => parameter.defaultValue !== undefined && !parameter.type.includes('->')) &&
           method.parameters.every((parameter) => !valueOf(parameter.type))))
