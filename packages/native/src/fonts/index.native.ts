@@ -1,17 +1,23 @@
 import { useEffect, useState } from 'react'
-import { Image, TurboModuleRegistry } from 'react-native'
-import type { Spec as OneNativeFontsSpec } from '../specs/OneNativeFontsNativeModule'
+import { Image } from 'react-native'
+import { NitroModules } from 'react-native-nitro-modules'
+import { rethrowNativeError } from '../nativeError'
+import type { OneFonts } from '../specs/OneFonts.nitro'
 import type { FontMap, Fonts as FontsApi, FontSource, UseFontsResult } from './types'
 
 export type * from './types'
 
-let cachedModule: OneNativeFontsSpec | null | undefined
+// the OneFonts nitro hybrid object is created once and lazily. null until
+// the app links @vxrn/native.
+let hybrid: OneFonts | null | undefined
 
-function getModule(): OneNativeFontsSpec | null {
-  if (cachedModule === undefined) {
-    cachedModule = TurboModuleRegistry.get<OneNativeFontsSpec>('OneNativeFonts')
+function getModule(): OneFonts | null {
+  if (hybrid === undefined) {
+    hybrid = NitroModules.hasHybridObject('OneFonts')
+      ? NitroModules.createHybridObject<OneFonts>('OneFonts')
+      : null
   }
-  return cachedModule
+  return hybrid
 }
 
 function resolveFontUri(name: string, source: FontSource): string {
@@ -34,7 +40,9 @@ async function load(fonts: FontMap): Promise<void> {
     name,
     uri: resolveFontUri(name, source),
   }))
-  await Promise.all(entries.map(({ name, uri }) => module.load(name, uri)))
+  await Promise.all(
+    entries.map(({ name, uri }) => module.load(name, uri).catch(rethrowNativeError))
+  )
 }
 
 function isLoaded(name: string): boolean {

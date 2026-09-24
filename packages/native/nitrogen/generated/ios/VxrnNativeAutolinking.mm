@@ -16,6 +16,8 @@
 #include "HybridOneNetworkSpecSwift.hpp"
 #include "HybridOneAppInfoSpecSwift.hpp"
 #include "HybridOneBrowserSpecSwift.hpp"
+#include "HybridOneImagePickerSpecSwift.hpp"
+#include "HybridOneFontsSpecSwift.hpp"
 
 @interface VxrnNativeAutolinking : NSObject
 @end
@@ -65,6 +67,20 @@
     "OneBrowser",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneBrowserSpec> hybridObject = VxrnNative::VxrnNativeAutolinking::createOneBrowser();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneImagePicker",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneImagePickerSpec> hybridObject = VxrnNative::VxrnNativeAutolinking::createOneImagePicker();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneFonts",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneFontsSpec> hybridObject = VxrnNative::VxrnNativeAutolinking::createOneFonts();
       return hybridObject;
     }
   );

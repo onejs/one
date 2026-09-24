@@ -20,6 +20,10 @@ namespace margelo::nitro::one { enum class BrowserPresentationStyle; }
 namespace margelo::nitro::one { enum class BrowserResultType; }
 // Forward declaration of `BrowserResult` to properly resolve imports.
 namespace margelo::nitro::one { struct BrowserResult; }
+// Forward declaration of `CameraPermissionResponse` to properly resolve imports.
+namespace margelo::nitro::one { struct CameraPermissionResponse; }
+// Forward declaration of `CameraPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class CameraPermissionStatus; }
 // Forward declaration of `HapticImpact` to properly resolve imports.
 namespace margelo::nitro::one { enum class HapticImpact; }
 // Forward declaration of `HapticNotification` to properly resolve imports.
@@ -32,14 +36,26 @@ namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 // Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneCryptoSpec; }
+// Forward declaration of `HybridOneFontsSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneFontsSpec; }
 // Forward declaration of `HybridOneHapticsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneHapticsSpec; }
+// Forward declaration of `HybridOneImagePickerSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
 // Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNetworkSpec; }
+// Forward declaration of `ImagePickerAsset` to properly resolve imports.
+namespace margelo::nitro::one { struct ImagePickerAsset; }
+// Forward declaration of `ImagePickerMediaType` to properly resolve imports.
+namespace margelo::nitro::one { enum class ImagePickerMediaType; }
+// Forward declaration of `ImagePickerNativeResult` to properly resolve imports.
+namespace margelo::nitro::one { struct ImagePickerNativeResult; }
 // Forward declaration of `NetworkStateType` to properly resolve imports.
 namespace margelo::nitro::one { enum class NetworkStateType; }
 // Forward declaration of `NetworkState` to properly resolve imports.
 namespace margelo::nitro::one { struct NetworkState; }
+// Forward declaration of `ResolvedImagePickerOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
 
 // Include C++ defined types
 #include "BrowserAuthResult.hpp"
@@ -48,16 +64,24 @@ namespace margelo::nitro::one { struct NetworkState; }
 #include "BrowserPresentationStyle.hpp"
 #include "BrowserResult.hpp"
 #include "BrowserResultType.hpp"
+#include "CameraPermissionResponse.hpp"
+#include "CameraPermissionStatus.hpp"
 #include "HapticImpact.hpp"
 #include "HapticNotification.hpp"
 #include "HybridOneAppInfoSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
+#include "HybridOneFontsSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
+#include "HybridOneImagePickerSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
+#include "ImagePickerAsset.hpp"
+#include "ImagePickerMediaType.hpp"
+#include "ImagePickerNativeResult.hpp"
 #include "NetworkState.hpp"
 #include "NetworkStateType.hpp"
+#include "ResolvedImagePickerOptions.hpp"
 #include <NitroModules/ArrayBuffer.hpp>
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>
@@ -66,6 +90,7 @@ namespace margelo::nitro::one { struct NetworkState; }
 #include <memory>
 #include <optional>
 #include <string>
+#include <vector>
 
 // C++ helpers for Swift
 #include "VxrnNative-Swift-Cxx-Bridge.hpp"
@@ -85,8 +110,12 @@ namespace VxrnNative { class HybridOneBrowserSpec_cxx; }
 namespace VxrnNative { class HybridOneClipboardSpec_cxx; }
 // Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneCryptoSpec_cxx; }
+// Forward declaration of `HybridOneFontsSpec_cxx` to properly resolve imports.
+namespace VxrnNative { class HybridOneFontsSpec_cxx; }
 // Forward declaration of `HybridOneHapticsSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneHapticsSpec_cxx; }
+// Forward declaration of `HybridOneImagePickerSpec_cxx` to properly resolve imports.
+namespace VxrnNative { class HybridOneImagePickerSpec_cxx; }
 // Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneNetworkSpec_cxx; }
 

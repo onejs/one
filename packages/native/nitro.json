@@ -32,6 +32,14 @@
     "OneBrowser": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneBrowser" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneBrowser" }
+    },
+    "OneImagePicker": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneImagePicker" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneImagePicker" }
+    },
+    "OneFonts": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneFonts" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneFonts" }
     }
   },
   "ignorePaths": ["**/node_modules", "dist", "types"]

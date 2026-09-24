@@ -12,7 +12,9 @@
 #include "HybridOneBrowserSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
 #include "HybridOneCryptoSpecSwift.hpp"
+#include "HybridOneFontsSpecSwift.hpp"
 #include "HybridOneHapticsSpecSwift.hpp"
+#include "HybridOneImagePickerSpecSwift.hpp"
 #include "HybridOneNetworkSpecSwift.hpp"
 #include "VxrnNative-Swift-Cxx-Umbrella.hpp"
 #include <NitroModules/NitroDefines.hpp>
@@ -123,6 +125,30 @@ namespace margelo::nitro::one::bridge::swift {
     return swiftPart.toUnsafe();
   }
   
+  // pragma MARK: std::function<void()>
+  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)]() mutable -> void {
+      swiftClosure.call();
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneFontsSpec>
+  std::shared_ptr<HybridOneFontsSpec> create_std__shared_ptr_HybridOneFontsSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    VxrnNative::HybridOneFontsSpec_cxx swiftPart = VxrnNative::HybridOneFontsSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneFontsSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneFontsSpec_(std__shared_ptr_HybridOneFontsSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneFontsSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneFontsSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneFontsSpec\" is not implemented in Swift!");
+    }
+    #endif
+    VxrnNative::HybridOneFontsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
   // pragma MARK: std::shared_ptr<HybridOneHapticsSpec>
   std::shared_ptr<HybridOneHapticsSpec> create_std__shared_ptr_HybridOneHapticsSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     VxrnNative::HybridOneHapticsSpec_cxx swiftPart = VxrnNative::HybridOneHapticsSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -139,19 +165,43 @@ namespace margelo::nitro::one::bridge::swift {
     return swiftPart.toUnsafe();
   }
   
+  // pragma MARK: std::function<void(const ImagePickerNativeResult& /* result */)>
+  Func_void_ImagePickerNativeResult create_Func_void_ImagePickerNativeResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_ImagePickerNativeResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const ImagePickerNativeResult& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const CameraPermissionResponse& /* result */)>
+  Func_void_CameraPermissionResponse create_Func_void_CameraPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_CameraPermissionResponse::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const CameraPermissionResponse& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneImagePickerSpec>
+  std::shared_ptr<HybridOneImagePickerSpec> create_std__shared_ptr_HybridOneImagePickerSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    VxrnNative::HybridOneImagePickerSpec_cxx swiftPart = VxrnNative::HybridOneImagePickerSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneImagePickerSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneImagePickerSpec_(std__shared_ptr_HybridOneImagePickerSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneImagePickerSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneImagePickerSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneImagePickerSpec\" is not implemented in Swift!");
+    }
+    #endif
+    VxrnNative::HybridOneImagePickerSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
   // pragma MARK: std::function<void(const NetworkState& /* result */)>
   Func_void_NetworkState create_Func_void_NetworkState(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = VxrnNative::Func_void_NetworkState::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const NetworkState& result) mutable -> void {
       swiftClosure.call(result);
-    };
-  }
-  
-  // pragma MARK: std::function<void()>
-  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = VxrnNative::Func_void::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)]() mutable -> void {
-      swiftClosure.call();
     };
   }
   
