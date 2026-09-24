@@ -174,14 +174,15 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
           if (statics.length === 1) return { expression: `${valueType}.default`, inputs: 0 }
           const next = new Set([...seen, valueType])
           const expressions = inventory.filter((d) => d.module === valueModule &&
-            (d.owner === valueName || d.owner === valueType) && d.kind === 'init' &&
+            (d.owner === valueName || d.owner === valueType) &&
+            (d.kind === 'init' || d.kind === 'func' && d.isStatic && d.type === valueType) &&
             d.parameters.length > 0 && !d.requirements?.length && present(d) && ios(d) <= ceiling)
             .map((d) => {
               const argumentsOf = d.parameters.map((parameter) => expressionFor(parameter.type, next))
               if (argumentsOf.some((argument) => !argument)) return
               const inputs = argumentsOf.reduce((count, argument) => count + argument!.inputs, 0)
               if (inputs !== 1) return
-              return { inputs, expression: `${valueType}(${d.parameters.map((parameter, index) =>
+              return { inputs, expression: `${valueType}${d.kind === 'func' ? `.${d.name}` : ''}(${d.parameters.map((parameter, index) =>
                 `${parameter.label === '_' ? '' : `${parameter.label}: `}${argumentsOf[index]!.expression}`).join(', ')})` }
             }).filter((value) => value !== undefined)
           return expressions.length === 1 ? expressions[0] : undefined

@@ -2255,6 +2255,30 @@
       ]
     },
     {
+      "name": "appStoreMerchandising",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "string",
+          "type": "StoreKit.AppStoreMerchandisingKind",
+          "optional": false,
+          "swiftExpression": "StoreKit.AppStoreMerchandisingKind.subscriptionBundle($value)",
+          "field": "kind",
+          "label": "kind"
+        }
+      ],
+      "framework": "StoreKit"
+    },
+    {
       "name": "aspectRatio",
       "kind": "record",
       "type": "",
@@ -14093,13 +14117,8 @@
         "payWithApplePayButtonStyle",
         "verifyIdentityWithWalletButtonStyle"
       ],
-      "_DataDetection_SwiftUI": [
-        "dataDetection"
-      ],
-      "_GameController_SwiftUI": [
-        "handlesGameControllerEvents"
-      ],
       "_StoreKit_SwiftUI": [
+        "appStoreMerchandising",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
         "productDescription",
@@ -14118,6 +14137,12 @@
         "subscriptionStorePolicyDestination",
         "subscriptionStorePolicyForegroundStyle",
         "subscriptionStoreSignInAction"
+      ],
+      "_DataDetection_SwiftUI": [
+        "dataDetection"
+      ],
+      "_GameController_SwiftUI": [
+        "handlesGameControllerEvents"
       ],
       "_MapKit_SwiftUI": [
         "mapControlVisibility",
@@ -14544,13 +14569,8 @@
         "payWithApplePayButtonStyle",
         "verifyIdentityWithWalletButtonStyle"
       ],
-      "_DataDetection_SwiftUI": [
-        "dataDetection"
-      ],
-      "_GameController_SwiftUI": [
-        "handlesGameControllerEvents"
-      ],
       "_StoreKit_SwiftUI": [
+        "appStoreMerchandising",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
         "productDescription",
@@ -14569,6 +14589,12 @@
         "subscriptionStorePolicyDestination",
         "subscriptionStorePolicyForegroundStyle",
         "subscriptionStoreSignInAction"
+      ],
+      "_DataDetection_SwiftUI": [
+        "dataDetection"
+      ],
+      "_GameController_SwiftUI": [
+        "handlesGameControllerEvents"
       ],
       "_MapKit_SwiftUI": [
         "mapControlVisibility",

@@ -65,6 +65,19 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('invalid boolean')
   })
 
+  it('constructs an SDK value through a public string factory beside a binding', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'subscription', swiftStyle: {
+      appStoreMerchandising: { isPresented: { value: true, onChange }, kind: 'group-id' },
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(modifiers.appStoreMerchandising)).toEqual(['true', 'group-id'])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'appStoreMerchandising.isPresented', value: 'false',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+  })
+
   it('routes a file mover completion result from a generated record', () => {
     const onChange = vi.fn()
     const onCompletion = vi.fn()

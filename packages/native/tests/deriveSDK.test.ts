@@ -394,6 +394,29 @@ describe('SDK modifier derivation', () => {
       }] },
     ])
   })
+
+  it('uses a public static string factory to construct a record value', () => {
+    const declarations: Declaration[] = [
+      method('appStoreMerchandising', '_StoreKit_SwiftUI', [
+        { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+        { label: 'kind', name: 'kind', type: 'StoreKit.AppStoreMerchandisingKind' },
+      ]),
+      { ...method('AppStoreMerchandisingKind', 'StoreKit'), kind: 'struct', owner: '' },
+      { ...method('subscriptionBundle', 'StoreKit', [
+        { label: '_', name: 'groupID', type: 'Swift.String' },
+      ]), owner: 'AppStoreMerchandisingKind', type: 'StoreKit.AppStoreMerchandisingKind', isStatic: true },
+    ]
+    expect(deriveModifiers(declarations, 27, [])).toEqual([{
+      name: 'appStoreMerchandising', kind: 'record', type: '', ios: 0, framework: 'StoreKit',
+      arguments: [
+        { field: 'isPresented', label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>', kind: 'bindingBoolean', optional: false },
+        { field: 'kind', label: 'kind', type: 'StoreKit.AppStoreMerchandisingKind', kind: 'string', optional: false,
+          swiftExpression: 'StoreKit.AppStoreMerchandisingKind.subscriptionBundle($value)' },
+      ],
+    }])
+    expect(deriveModifiers(declarations.map((declaration) => declaration.name === 'subscriptionBundle'
+      ? { ...declaration, isStatic: false } : declaration), 27, [])).toEqual([])
+  })
 })
 
 describe('SDK view slots', () => {
