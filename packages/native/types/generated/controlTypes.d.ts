@@ -363,6 +363,8 @@ export declare const sdkSubscriptionStorePolicyForegroundStyleValues: readonly [
 export type SDKSubscriptionStorePolicyForegroundStyle = (typeof sdkSubscriptionStorePolicyForegroundStyleValues)[number];
 export declare const sdkSymbolColorRenderingModeValues: readonly ['flat', 'gradient'];
 export type SDKSymbolColorRenderingMode = (typeof sdkSymbolColorRenderingModeValues)[number];
+export declare const sdkSymbolEffectValues: readonly ['pulse', 'bounce', 'variableColor', 'scale', 'wiggle', 'rotate', 'breathe'];
+export type SDKSymbolEffect = (typeof sdkSymbolEffectValues)[number];
 export declare const sdkSymbolRenderingModeValues: readonly ['monochrome', 'multicolor', 'hierarchical', 'palette'];
 export type SDKSymbolRenderingMode = (typeof sdkSymbolRenderingModeValues)[number];
 export declare const sdkSymbolVariableValueModeValues: readonly ['color', 'draw'];
@@ -1682,6 +1684,7 @@ export interface OneNativeStyle {
     subscriptionStoreSignInAction?: () => void;
     swipeActionsContainer?: boolean;
     symbolColorRenderingMode?: SDKSymbolColorRenderingMode | null;
+    symbolEffect?: SDKSymbolEffect;
     symbolEffectsRemoved?: boolean;
     symbolRenderingMode?: SDKSymbolRenderingMode | null;
     symbolVariableValueMode?: SDKSymbolVariableValueMode | null;
@@ -1749,6 +1752,14 @@ export interface OneNativeStyle {
         bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar';
     }>;
     tracking?: number;
+    transaction?: Readonly<{
+        transform: Readonly<{
+            isContinuous?: boolean;
+            scrollPositionUpdatePreservesVelocity?: boolean;
+            disablesAnimations?: boolean;
+            tracksVelocity?: boolean;
+        }>;
+    }>;
     transformEffect?: Readonly<{
         transform: Readonly<{
             a: number;
