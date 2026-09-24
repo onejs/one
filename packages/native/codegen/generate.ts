@@ -174,7 +174,7 @@ for (const modifier of derivedModifiers) {
       (modifier.environmentKey
         ? d.parameters.length === 2 &&
           d.parameters[0].type === 'Swift.WritableKeyPath<SwiftUICore.EnvironmentValues, V>' &&
-          d.parameters[1].type === 'V'
+          d.parameters[1].type === (modifier.environmentTransform ? '@escaping (inout V) -> Swift.Void' : 'V')
         : modifier.preferenceKey
         ? d.parameters[0]?.type === 'K.Type' &&
           d.requirements?.includes('K : SwiftUICore.PreferenceKey')

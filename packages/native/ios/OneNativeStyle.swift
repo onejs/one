@@ -619,6 +619,23 @@ extension View {
       case "tracking": view = AnyView(view.oneNativeSDKTracking(value, emit: emit))
       case "transaction": view = AnyView(view.oneNativeSDKTransaction(value, emit: emit))
       case "transformEffect": view = AnyView(view.oneNativeSDKTransformEffect(value, emit: emit))
+      case "transformEnvironmentAccessibilityEnabled": view = AnyView(view.oneNativeSDKTransformEnvironmentAccessibilityEnabled(value, emit: emit))
+      case "transformEnvironmentAccessibilityPrefersCrossFadeTransitions": view = AnyView(view.oneNativeSDKTransformEnvironmentAccessibilityPrefersCrossFadeTransitions(value, emit: emit))
+      case "transformEnvironmentAllowsTightening": view = AnyView(view.oneNativeSDKTransformEnvironmentAllowsTightening(value, emit: emit))
+      case "transformEnvironmentAppearsActive": view = AnyView(view.oneNativeSDKTransformEnvironmentAppearsActive(value, emit: emit))
+      case "transformEnvironmentAutocorrectionDisabled": view = AnyView(view.oneNativeSDKTransformEnvironmentAutocorrectionDisabled(value, emit: emit))
+      case "transformEnvironmentContentTransitionAddsDrawingGroup": view = AnyView(view.oneNativeSDKTransformEnvironmentContentTransitionAddsDrawingGroup(value, emit: emit))
+      case "transformEnvironmentDefaultMinListRowHeight": view = AnyView(view.oneNativeSDKTransformEnvironmentDefaultMinListRowHeight(value, emit: emit))
+      case "transformEnvironmentDisplayScale": view = AnyView(view.oneNativeSDKTransformEnvironmentDisplayScale(value, emit: emit))
+      case "transformEnvironmentIsEnabled": view = AnyView(view.oneNativeSDKTransformEnvironmentIsEnabled(value, emit: emit))
+      case "transformEnvironmentIsFocusEffectEnabled": view = AnyView(view.oneNativeSDKTransformEnvironmentIsFocusEffectEnabled(value, emit: emit))
+      case "transformEnvironmentIsHoverEffectEnabled": view = AnyView(view.oneNativeSDKTransformEnvironmentIsHoverEffectEnabled(value, emit: emit))
+      case "transformEnvironmentIsLuminanceReduced": view = AnyView(view.oneNativeSDKTransformEnvironmentIsLuminanceReduced(value, emit: emit))
+      case "transformEnvironmentIsSceneCaptured": view = AnyView(view.oneNativeSDKTransformEnvironmentIsSceneCaptured(value, emit: emit))
+      case "transformEnvironmentIsScrollEnabled": view = AnyView(view.oneNativeSDKTransformEnvironmentIsScrollEnabled(value, emit: emit))
+      case "transformEnvironmentLineSpacing": view = AnyView(view.oneNativeSDKTransformEnvironmentLineSpacing(value, emit: emit))
+      case "transformEnvironmentMinimumScaleFactor": view = AnyView(view.oneNativeSDKTransformEnvironmentMinimumScaleFactor(value, emit: emit))
+      case "transformEnvironmentSystemPrefersReducedResourceUsage": view = AnyView(view.oneNativeSDKTransformEnvironmentSystemPrefersReducedResourceUsage(value, emit: emit))
       case "transformPreferencePreferredColorScheme": view = AnyView(view.oneNativeSDKTransformPreferencePreferredColorScheme(value, emit: emit))
       case "transition": view = AnyView(view.oneNativeSDKTransition(value, emit: emit))
       case "translationPresentation": view = AnyView(view.oneNativeSDKTranslationPresentation(value, emit: emit))
@@ -8081,6 +8098,101 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
       return CoreFoundation.CGAffineTransform(a: CGFloat(field0), b: CGFloat(field1), c: CGFloat(field2), d: CGFloat(field3), tx: CGFloat(field4), ty: CGFloat(field5))
     }()
     self.transformEffect(argument0)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentAccessibilityEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid transformEnvironmentAccessibilityEnabled: \(value)")
+      self.transformEnvironment(\.accessibilityEnabled, transform: { environmentValue in if value == "true" { environmentValue.toggle() } })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentAccessibilityPrefersCrossFadeTransitions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid transformEnvironmentAccessibilityPrefersCrossFadeTransitions: \(value)")
+      if #available(iOS 26.4, *) { self.transformEnvironment(\.accessibilityPrefersCrossFadeTransitions, transform: { environmentValue in if value == "true" { environmentValue.toggle() } }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentAllowsTightening(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid transformEnvironmentAllowsTightening: \(value)")
+      self.transformEnvironment(\.allowsTightening, transform: { environmentValue in if value == "true" { environmentValue.toggle() } })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentAppearsActive(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid transformEnvironmentAppearsActive: \(value)")
+      if #available(iOS 18, *) { self.transformEnvironment(\.appearsActive, transform: { environmentValue in if value == "true" { environmentValue.toggle() } }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentAutocorrectionDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid transformEnvironmentAutocorrectionDisabled: \(value)")
+      self.transformEnvironment(\.autocorrectionDisabled, transform: { environmentValue in if value == "true" { environmentValue.toggle() } })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentContentTransitionAddsDrawingGroup(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid transformEnvironmentContentTransitionAddsDrawingGroup: \(value)")
+      self.transformEnvironment(\.contentTransitionAddsDrawingGroup, transform: { environmentValue in if value == "true" { environmentValue.toggle() } })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentDefaultMinListRowHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      if let number = Double(value), number.isFinite {
+        self.transformEnvironment(\.defaultMinListRowHeight, transform: { environmentValue in environmentValue += CGFloat(number) })
+      } else { preconditionFailure("invalid transformEnvironmentDefaultMinListRowHeight: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentDisplayScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      if let number = Double(value), number.isFinite {
+        self.transformEnvironment(\.displayScale, transform: { environmentValue in environmentValue += CGFloat(number) })
+      } else { preconditionFailure("invalid transformEnvironmentDisplayScale: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentIsEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid transformEnvironmentIsEnabled: \(value)")
+      self.transformEnvironment(\.isEnabled, transform: { environmentValue in if value == "true" { environmentValue.toggle() } })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentIsFocusEffectEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid transformEnvironmentIsFocusEffectEnabled: \(value)")
+      self.transformEnvironment(\.isFocusEffectEnabled, transform: { environmentValue in if value == "true" { environmentValue.toggle() } })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentIsHoverEffectEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid transformEnvironmentIsHoverEffectEnabled: \(value)")
+      self.transformEnvironment(\.isHoverEffectEnabled, transform: { environmentValue in if value == "true" { environmentValue.toggle() } })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentIsLuminanceReduced(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid transformEnvironmentIsLuminanceReduced: \(value)")
+      self.transformEnvironment(\.isLuminanceReduced, transform: { environmentValue in if value == "true" { environmentValue.toggle() } })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentIsSceneCaptured(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid transformEnvironmentIsSceneCaptured: \(value)")
+      self.transformEnvironment(\.isSceneCaptured, transform: { environmentValue in if value == "true" { environmentValue.toggle() } })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentIsScrollEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid transformEnvironmentIsScrollEnabled: \(value)")
+      self.transformEnvironment(\.isScrollEnabled, transform: { environmentValue in if value == "true" { environmentValue.toggle() } })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentLineSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      if let number = Double(value), number.isFinite {
+        self.transformEnvironment(\.lineSpacing, transform: { environmentValue in environmentValue += CGFloat(number) })
+      } else { preconditionFailure("invalid transformEnvironmentLineSpacing: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentMinimumScaleFactor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      if let number = Double(value), number.isFinite {
+        self.transformEnvironment(\.minimumScaleFactor, transform: { environmentValue in environmentValue += CGFloat(number) })
+      } else { preconditionFailure("invalid transformEnvironmentMinimumScaleFactor: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformEnvironmentSystemPrefersReducedResourceUsage(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid transformEnvironmentSystemPrefersReducedResourceUsage: \(value)")
+
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.transformEnvironment(\.systemPrefersReducedResourceUsage, transform: { environmentValue in if value == "true" { environmentValue.toggle() } }) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransformPreferencePreferredColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

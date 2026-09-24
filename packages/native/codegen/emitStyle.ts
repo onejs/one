@@ -118,7 +118,12 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
     .map((modifier) => {
       const helper = `oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}`
       const apply = (value: string, version: number, fullArguments = false) => {
-        const argument = modifier.environmentKey ? `\\.${modifier.environmentKey}, ${value}` :
+        const argument = modifier.environmentKey
+          ? modifier.environmentTransform
+            ? modifier.environmentTransform === 'toggle'
+              ? `\\.${modifier.environmentKey}, transform: { environmentValue in if ${value} { environmentValue.toggle() } }`
+              : `\\.${modifier.environmentKey}, transform: { environmentValue in environmentValue += ${value} }`
+            : `\\.${modifier.environmentKey}, ${value}` :
           modifier.preferenceKey ? modifier.preferenceOperation === 'set'
             ? `key: ${modifier.preferenceKey}.self, value: ${value}`
             : modifier.preferenceOperation === 'transform'

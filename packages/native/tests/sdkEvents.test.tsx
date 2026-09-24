@@ -15,6 +15,17 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('toggles a public boolean environment value through the SDK transform method', () => {
+    const element = Controls.Text({ text: 'child', swiftStyle: {
+      transformEnvironmentIsEnabled: true,
+      transformEnvironmentLineSpacing: 2,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['transformEnvironmentIsEnabled', 'true'],
+      ['transformEnvironmentLineSpacing', '2'],
+    ])
+  })
+
   it('exposes a bridgeable SDK overload beside an existing style field', () => {
     const element = Controls.Text({ text: 'round', swiftStyle: {
       cornerRadiusWithRadiusAndAntialiased: { radius: 12, antialiased: false },

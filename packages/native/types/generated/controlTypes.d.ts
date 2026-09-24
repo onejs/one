@@ -2012,6 +2012,23 @@ export interface OneNativeStyle {
             ty: number;
         }>;
     }>;
+    transformEnvironmentAccessibilityEnabled?: boolean;
+    transformEnvironmentAccessibilityPrefersCrossFadeTransitions?: boolean;
+    transformEnvironmentAllowsTightening?: boolean;
+    transformEnvironmentAppearsActive?: boolean;
+    transformEnvironmentAutocorrectionDisabled?: boolean;
+    transformEnvironmentContentTransitionAddsDrawingGroup?: boolean;
+    transformEnvironmentDefaultMinListRowHeight?: number;
+    transformEnvironmentDisplayScale?: number;
+    transformEnvironmentIsEnabled?: boolean;
+    transformEnvironmentIsFocusEffectEnabled?: boolean;
+    transformEnvironmentIsHoverEffectEnabled?: boolean;
+    transformEnvironmentIsLuminanceReduced?: boolean;
+    transformEnvironmentIsSceneCaptured?: boolean;
+    transformEnvironmentIsScrollEnabled?: boolean;
+    transformEnvironmentLineSpacing?: number;
+    transformEnvironmentMinimumScaleFactor?: number;
+    transformEnvironmentSystemPrefersReducedResourceUsage?: boolean;
     transformPreferencePreferredColorScheme?: SDKTransformPreferencePreferredColorScheme | null;
     transition?: SDKTransition;
     translationPresentation?: Readonly<{
