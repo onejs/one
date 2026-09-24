@@ -93,6 +93,12 @@
       "import": "./dist/esm/clipboard/index.mjs",
       "require": "./dist/cjs/clipboard/index.cjs"
     },
+    "./notifications": {
+      "types": "./types/notifications/index.d.ts",
+      "react-native": "./dist/esm/notifications/index.native.js",
+      "import": "./dist/esm/notifications/index.mjs",
+      "require": "./dist/cjs/notifications/index.cjs"
+    },
     "./network": {
       "types": "./types/network/index.d.ts",
       "react-native": "./dist/esm/network/index.native.js",
@@ -159,7 +165,7 @@
     "@react-native/babel-plugin-codegen": "0.87.1",
     "@react-native/codegen": "^0.87.1",
     "esbuild": "^0.25.12",
-    "@tamagui/build": "3.0.0-beta.1309.1",
+    "@tamagui/build": "3.0.0-beta.1432.1",
     "@types/react-test-renderer": "^19.1.0",
     "react-native-web": "^0.21.2",
     "react-native-worklets": "~0.12.2",

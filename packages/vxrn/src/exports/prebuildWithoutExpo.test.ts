@@ -27,6 +27,7 @@ const app = {
   name: 'MyApp',
   displayName: 'My App',
   scheme: ['myapp', 'myapp-dev'],
+  notifications: {},
   imagePicker: { camera: 'Capture photos & videos' },
   ios: {
     bundleId: 'dev.one.myapp',
@@ -112,6 +113,9 @@ describe('native.app prebuild validation', () => {
     expect(() => validatePrebuildApp({ ...app, imagePicker: { camera: '' } })).toThrow(
       /imagePicker\.camera/
     )
+    expect(() =>
+      validatePrebuildApp({ ...app, notifications: { push: 'yes' } } as any)
+    ).toThrow(/notifications\.push/)
     // platform-scoped: android-only skips the ios requirement and vice versa
     expect(() =>
       validatePrebuildApp({ name: 'MyApp', android: app.android } as any, 'android')
@@ -183,6 +187,7 @@ ${APP_DELEGATE_PBXPROJ}`,
     expect(infoPlist.content).toContain('<false/>')
     expect(infoPlist.content).toContain('<key>UIFileSharingEnabled</key>')
     expect(infoPlist.content).toContain('<key>LSSupportsOpeningDocumentsInPlace</key>')
+    expect(infoPlist.content).toContain('<key>OneNativeNotificationsEnabled</key>')
     expect(() =>
       renderPrebuildFile({
         relativePath: 'HelloWorld/Info.plist',
@@ -197,7 +202,7 @@ ${APP_DELEGATE_PBXPROJ}`,
     const androidManifest = renderPrebuildFile({
       relativePath: 'app/src/main/AndroidManifest.xml',
       content:
-        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>',
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
       platform: 'android',
       app,
     })
@@ -209,6 +214,14 @@ ${APP_DELEGATE_PBXPROJ}`,
     )
     expect(androidManifest.content).toContain('<data android:scheme="myapp" />')
     expect(androidManifest.content).toContain('<data android:scheme="myapp-dev" />')
+    expect(androidManifest.content).toContain(
+      '<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />'
+    )
+    expect(androidManifest.content).toContain(
+      '<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />'
+    )
+    expect(androidManifest.content).toContain('OneNativeNotificationsReceiver')
+    expect(androidManifest.content).toContain('android.intent.action.BOOT_COMPLETED')
 
     const android = renderPrebuildFile({
       relativePath: 'app/src/main/java/com/helloworld/MainActivity.kt',
@@ -295,7 +308,7 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
   })
 
   it('omits camera entries when imagePicker.camera is unset', () => {
-    const bare = { ...app, imagePicker: undefined }
+    const bare = { ...app, imagePicker: undefined, notifications: undefined }
     const infoPlist = renderPrebuildFile({
       relativePath: 'HelloWorld/Info.plist',
       content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
@@ -321,7 +334,7 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
     const manifest = renderPrebuildFile({
       relativePath: 'app/src/main/AndroidManifest.xml',
       content:
-        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <application>\n    </application>',
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
       platform: 'android',
       app: maps,
     })
@@ -338,7 +351,7 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
     const bare = renderPrebuildFile({
       relativePath: 'app/src/main/AndroidManifest.xml',
       content:
-        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <application>\n    </application>',
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
       platform: 'android',
       app,
     })
@@ -367,6 +380,162 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
     ).toThrow(
       '[vxrn] cannot stamp the maps api key: expected </application> in app/src/main/AndroidManifest.xml'
     )
+  })
+
+  it('omits notification entries when notifications is unset', () => {
+    const bare = { ...app, notifications: undefined }
+    const infoPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: bare,
+    })
+    expect(infoPlist.content).not.toContain('OneNativeNotificationsEnabled')
+    const androidManifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
+      platform: 'android',
+      app: bare,
+    })
+    expect(androidManifest.content).not.toContain('POST_NOTIFICATIONS')
+    expect(androidManifest.content).not.toContain('OneNativeNotificationsReceiver')
+  })
+
+  it('fails loudly when a notification anchor is missing', () => {
+    const noCamera = { ...app, imagePicker: undefined }
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'app/src/main/AndroidManifest.xml',
+        content: '<manifest>\n    <activity>\n      </activity>\n    </application>',
+        platform: 'android',
+        app: noCamera,
+      })
+    ).toThrow(/cannot stamp notification permissions/)
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'app/src/main/AndroidManifest.xml',
+        content:
+          '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>',
+        platform: 'android',
+        app: noCamera,
+      })
+    ).toThrow(/failed to stamp the notification receiver/)
+  })
+
+  it('stamps push entries only when notifications.push is set', () => {
+    const push = {
+      ...app,
+      notifications: { push: true },
+    } satisfies PrebuildAppConfig
+    const props = renderPrebuildFile({
+      relativePath: 'gradle.properties',
+      content: 'hermesEnabled=true',
+      platform: 'android',
+      app: push,
+    })
+    expect(props.content).toContain('oneNativePush=true')
+    const manifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
+      platform: 'android',
+      app: push,
+    })
+    expect(manifest.content).toContain('OneNativeNotificationsReceiver')
+    expect(manifest.content).toContain('OneNativePushService')
+    expect(manifest.content).toContain('com.google.firebase.MESSAGING_EVENT')
+
+    const pbxproj = renderPrebuildFile({
+      relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
+      content: `shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};\nproduct\n${APP_DELEGATE_PBXPROJ}\n\t\t\t\tPRODUCT_NAME = HelloWorld;`,
+      platform: 'ios',
+      app: push,
+    })
+    expect(pbxproj.content).toContain(
+      'CODE_SIGN_ENTITLEMENTS = MyApp/MyApp.entitlements;'
+    )
+    expect(pbxproj.content).toContain('/* MyApp.entitlements */')
+
+    const appDelegate = renderPrebuildFile({
+      relativePath: 'HelloWorld/AppDelegate.swift',
+      content: `@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+  var window: UIWindow?
+
+  var reactNativeDelegate: ReactNativeDelegate?
+  var reactNativeFactory: RCTReactNativeFactory?
+
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+  ) -> Bool {
+    let delegate = ReactNativeDelegate()
+    let factory = RCTReactNativeFactory(delegate: delegate)
+    delegate.dependencyProvider = RCTAppDependencyProvider()
+
+    reactNativeDelegate = delegate
+    reactNativeFactory = factory
+
+    window = UIWindow(frame: UIScreen.main.bounds)
+
+    factory.startReactNative(
+      withModuleName: "HelloWorld",
+      in: window,
+      launchOptions: launchOptions
+    )
+
+    return true
+  }
+}`,
+      platform: 'ios',
+      app: push,
+    })
+    expect(appDelegate.content).toContain(
+      'didRegisterForRemoteNotificationsWithDeviceToken'
+    )
+    expect(appDelegate.content).toContain('OneNativePushTokenDidRegister')
+    expect(appDelegate.content).toContain(
+      'didFailToRegisterForRemoteNotificationsWithError'
+    )
+
+    const bareProps = renderPrebuildFile({
+      relativePath: 'gradle.properties',
+      content: 'hermesEnabled=true',
+      platform: 'android',
+      app,
+    })
+    expect(bareProps.content).not.toContain('oneNativePush=true')
+    const bareManifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
+      platform: 'android',
+      app,
+    })
+    expect(bareManifest.content).not.toContain('OneNativePushService')
+    const barePbxproj = renderPrebuildFile({
+      relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
+      content: `shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};\nproduct\n${APP_DELEGATE_PBXPROJ}\n\t\t\t\tPRODUCT_NAME = HelloWorld;`,
+      platform: 'ios',
+      app,
+    })
+    expect(barePbxproj.content).not.toContain('CODE_SIGN_ENTITLEMENTS')
+    // the push service needs the receiver anchor: without notifications the
+    // receiver stamper never runs, so the push stamper reports it.
+    const pushOnly = {
+      name: 'MyApp',
+      notifications: { push: true },
+      android: { applicationId: 'dev.one.myapp' },
+    } satisfies PrebuildAppConfig
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'app/src/main/AndroidManifest.xml',
+        content: '<manifest>\n</manifest>',
+        platform: 'android',
+        app: pushOnly,
+      })
+    ).toThrow(/cannot stamp notification permissions/)
   })
 
   it('throws instead of silently skipping a missing camera anchor', () => {
@@ -558,6 +727,9 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     expect(rendered.content).not.toContain('UIWindow(frame:')
     expect(rendered.content).not.toContain('var window')
     expect(rendered.content).not.toContain('var reactNativeFactory')
+    expect(rendered.content).toContain('didRegisterForRemoteNotificationsWithDeviceToken')
+    expect(rendered.content).toContain('OneNativePushTokenDidRegister')
+    expect(rendered.content).toContain('didFailToRegisterForRemoteNotificationsWithError')
   })
 
   it('throws instead of shipping a non-scene AppDelegate', () => {
@@ -634,6 +806,7 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
 
     const infoPlist = readFileSync(join(output, 'ios', 'MyApp', 'Info.plist'), 'utf8')
     expect(infoPlist).toContain('<key>UIApplicationSceneManifest</key>')
+    expect(infoPlist).toContain('<key>OneNativeNotificationsEnabled</key>')
 
     const project = readFileSync(
       join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
@@ -641,6 +814,9 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     )
     expect(project).toContain('path = MyApp/SceneDelegate.swift')
     expect(project).toContain('/* SceneDelegate.swift in Sources */,')
+    // no push flag: no entitlements file and no entitlement wiring.
+    expect(project).not.toContain('CODE_SIGN_ENTITLEMENTS')
+    expect(() => statSync(join(output, 'ios', 'MyApp', 'MyApp.entitlements'))).toThrow()
   }, 180000)
 })
 
