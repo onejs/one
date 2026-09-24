@@ -33,7 +33,8 @@ using namespace facebook::react;
                          interactive:next.interactive
                                shape:RCTNSStringFromString(next.shape)
                        cornerRadius:next.cornerRadius
-                               tint:tint];
+                               tint:tint
+                        colorScheme:RCTNSStringFromString(next.colorScheme)];
   [super updateProps:props oldProps:oldProps];
 }
 

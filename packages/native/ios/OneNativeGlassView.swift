@@ -5,6 +5,7 @@ private final class GlassModel: ObservableObject {
   // a glass surface is the same style vocabulary a control takes, so the container assembles
   // one and the shared style chain draws it. nothing else in the style is set.
   @Published var style = OneNativeStyle()
+  @Published var colorScheme = ""
 }
 
 private struct GlassContent: View {
@@ -18,6 +19,8 @@ private struct GlassContent: View {
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     .oneNativeStyle(model.style)
+    // outside the style chain, so the glass surface draws in it along with the children.
+    .oneNativeColorScheme(model.colorScheme)
     // standalone, React Native already placed the box, so insets the hosting controller
     // inherits from the screen would only shrink the surface inside it.
     .ignoresSafeArea(edges: standalone ? .all : [])
@@ -42,7 +45,7 @@ public final class OneNativeGlassView: OneNativeContainerView {
 
   public func configure(
     material: String, glassEffect: String, interactive: Bool, shape: String,
-    cornerRadius: Double, tint: UIColor?
+    cornerRadius: Double, tint: UIColor?, colorScheme: String
   ) {
     var next = OneNativeStyle()
     if !material.isEmpty { next.material = material }
@@ -54,6 +57,7 @@ public final class OneNativeGlassView: OneNativeContainerView {
     if cornerRadius >= 0 { next.cornerRadius = CGFloat(cornerRadius) }
     next.glassEffectTint = tint
     if model.style != next { model.style = next }
+    if model.colorScheme != colorScheme { model.colorScheme = colorScheme }
   }
 }
 

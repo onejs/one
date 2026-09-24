@@ -1325,7 +1325,9 @@ or `identity`. A `Swift.Glass` with no surface props uses SwiftUI's default `reg
 glass; setting `material` alone instead draws that material. `interactive` is independent
 of the variant, matching `Glass.interactive(_:)`, so clear and regular glass can both
 react to touch. `tint` maps only to `Glass.tint(_:)`; it does not change the accent color
-of controls inside the container.
+of controls inside the container. `colorScheme` (`light` or `dark`) sets the appearance
+the surface and its children draw in, as it does on `Swift.Host`, so glass over a dark
+band can stay dark while the app is light.
 
 `shape` accepts `capsule`, `circle`, `containerRelativeShape`, `ellipse`, `rectangle`,
 or `roundedRectangle`. Leaving it out keeps SwiftUI's default glass shape. A

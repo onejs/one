@@ -148,6 +148,8 @@ export const containerComponents = [
       shape: 'string?',
       cornerRadius: 'Double?',
       tint: 'ColorValue?',
+      // the appearance the glass draws in, like a host's; tint stays the glass's own.
+      colorScheme: environmentProps.colorScheme,
     },
     events: {},
     enumProps: {},
@@ -441,6 +443,7 @@ export interface GlassProps extends ViewProps {
   shape?: GlassEffectShape
   cornerRadius?: number
   tint?: ColorValue
+  colorScheme?: ColorScheme
   children: ReactNode
 }
 export interface SlotProps extends ViewProps {
