@@ -1,11 +1,8 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { Network } from '../src/network/index'
 
-vi.mock('react-native', () => ({
-  TurboModuleRegistry: { get: vi.fn() },
-  NativeEventEmitter: vi.fn(function () {
-    return { addListener: vi.fn(() => ({ remove: vi.fn() })) }
-  }),
+vi.mock('react-native-nitro-modules', () => ({
+  NitroModules: { createHybridObject: vi.fn() },
 }))
 
 afterEach(() => {
@@ -34,10 +31,10 @@ function stubWindow() {
   }
 }
 
-async function loadNativeEntry(nativeModule: unknown) {
+async function loadNativeEntry(hybrid: unknown) {
   vi.resetModules()
-  const { TurboModuleRegistry } = await import('react-native')
-  vi.mocked(TurboModuleRegistry.get).mockReturnValue(nativeModule as never)
+  const { NitroModules } = await import('react-native-nitro-modules')
+  vi.mocked(NitroModules.createHybridObject).mockReturnValue(hybrid as never)
   return import('../src/network/index.native')
 }
 
@@ -104,46 +101,31 @@ describe('network web', () => {
 
 describe('network native entry', () => {
   it('delegates the one-shot read', async () => {
-    const nativeModule = {
+    const hybrid = {
       getState: vi.fn(async () => ({
         type: 'wifi',
         isConnected: true,
         isInternetReachable: true,
       })),
     }
-    const { Network: native } = await loadNativeEntry(nativeModule)
+    const { Network: native } = await loadNativeEntry(hybrid)
     expect(await native.getState()).toEqual({
       type: 'wifi',
       isConnected: true,
       isInternetReachable: true,
     })
-    expect(nativeModule.getState).toHaveBeenCalledTimes(1)
+    expect(hybrid.getState).toHaveBeenCalledTimes(1)
   })
 
-  it('rejects the read without a native module', async () => {
-    const { Network: native } = await loadNativeEntry(null)
-    await expect(native.getState()).rejects.toThrow(
-      'Network needs a native build that includes @vxrn/native'
-    )
-  })
-
-  it('subscribes through one event emitter wrapping the module', async () => {
-    const nativeModule = {}
-    const { Network: native } = await loadNativeEntry(nativeModule)
-    const { NativeEventEmitter } = await import('react-native')
+  it('subscribes through the hybrid object and removes with its remover', async () => {
+    const remover = vi.fn()
+    const hybrid = { addStateListener: vi.fn(() => remover) }
+    const { Network: native } = await loadNativeEntry(hybrid)
     const seen: unknown[] = []
     const subscription = native.addStateListener((state) => {
       seen.push(state)
     })
-    expect(vi.mocked(NativeEventEmitter).mock.calls[0]?.[0]).toBe(nativeModule)
-    const emitter = vi.mocked(NativeEventEmitter).mock.results[0]?.value as {
-      addListener: ReturnType<typeof vi.fn>
-    }
-    expect(emitter.addListener).toHaveBeenCalledWith(
-      'oneNativeNetworkStateChanged',
-      expect.any(Function)
-    )
-    const emit = emitter.addListener.mock.calls[0]?.[1] as (
+    const emit = hybrid.addStateListener.mock.calls[0]?.[0] as unknown as (
       state: unknown
     ) => void
     emit({ type: 'cellular', isConnected: true, isInternetReachable: true })
@@ -151,22 +133,13 @@ describe('network native entry', () => {
       { type: 'cellular', isConnected: true, isInternetReachable: true },
     ])
     subscription.remove()
-  })
-
-  it('returns a no-op subscription without a native module', async () => {
-    const { Network: native } = await loadNativeEntry(null)
-    native
-      .addStateListener(() => {
-        throw new Error('must not fire')
-      })
-      .remove()
+    expect(remover).toHaveBeenCalledTimes(1)
   })
 
   it('throws the same listener check as the web entry', async () => {
-    const { Network: native } = await loadNativeEntry(null)
+    const { Network: native } = await loadNativeEntry({})
     expect(() => native.addStateListener('nope' as never)).toThrow(
       'Network.addStateListener: listener must be a function'
     )
   })
 })
-

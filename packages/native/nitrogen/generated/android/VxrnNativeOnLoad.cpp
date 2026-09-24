@@ -15,9 +15,13 @@
 #include <fbjni/fbjni.h>
 #include <NitroModules/HybridObjectRegistry.hpp>
 
+#include "JHybridOneAppInfoSpec.hpp"
 #include "JHybridOneClipboardSpec.hpp"
 #include "JHybridOneCryptoSpec.hpp"
 #include "JHybridOneHapticsSpec.hpp"
+#include "JHybridOneNetworkSpec.hpp"
+#include "JFunc_void.hpp"
+#include "JFunc_void_NetworkState.hpp"
 #include <NitroModules/DefaultConstructableObject.hpp>
 
 namespace margelo::nitro::one {
@@ -52,15 +56,35 @@ struct JHybridOneCryptoSpecImpl: public jni::JavaClass<JHybridOneCryptoSpecImpl,
     return javaPart->getJHybridOneCryptoSpec();
   }
 };
+struct JHybridOneNetworkSpecImpl: public jni::JavaClass<JHybridOneNetworkSpecImpl, JHybridOneNetworkSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneNetwork;";
+  static std::shared_ptr<JHybridOneNetworkSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneNetworkSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneNetworkSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneNetworkSpec();
+  }
+};
+struct JHybridOneAppInfoSpecImpl: public jni::JavaClass<JHybridOneAppInfoSpecImpl, JHybridOneAppInfoSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneAppInfo;";
+  static std::shared_ptr<JHybridOneAppInfoSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneAppInfoSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneAppInfoSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneAppInfoSpec();
+  }
+};
 
 void registerAllNatives() {
   using namespace margelo::nitro;
   using namespace margelo::nitro::one;
 
   // Register native JNI methods
+  margelo::nitro::one::JHybridOneAppInfoSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneClipboardSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneCryptoSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneHapticsSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneNetworkSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_NetworkState_cxx::registerNatives();
 
   // Register Nitro Hybrid Objects
   HybridObjectRegistry::registerHybridObjectConstructor(
@@ -79,6 +103,18 @@ void registerAllNatives() {
     "OneCrypto",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneCryptoSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneNetwork",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneNetworkSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneAppInfo",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneAppInfoSpecImpl::create();
     }
   );
 }
