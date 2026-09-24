@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'equatableKey' | 'chartDescriptor' | 'phaseAnimation' | 'keyframeAnimation' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'transferSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint' | 'bindingTextSelection'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'equatableKey' | 'chartDescriptor' | 'phaseAnimation' | 'keyframeAnimation' | 'seedKeyframeAnimation' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'transferSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint' | 'bindingTextSelection'
   ios: number
   type: string
   rawString?: true
@@ -738,6 +738,26 @@ export function deriveModifiers(
       if (linearKeyframe)
         return [{ name, module: method.module, kind: 'keyframeAnimation',
           type: method.parameters[0].type, ios: Math.max(ios(method), ios(linearKeyframe)), ...framework }]
+      const seedKeyframes = /^@escaping \(([\w.]+)\) -> some Keyframes<([\w.]+)>$/.exec(method.parameters[1]?.type ?? '')
+      if (method.parameters.length === 2 && method.parameters[0].label === 'trigger' &&
+        method.parameters[0].type === 'some Equatable' &&
+        method.parameters[1].label === 'keyframes' && seedKeyframes &&
+        seedKeyframes[1].split('.').at(-1) === seedKeyframes[2].split('.').at(-1) &&
+        inventory.some((declaration) => declaration.module === 'SwiftUICore' &&
+          declaration.owner === 'LinearKeyframe' && declaration.kind === 'init' &&
+          declaration.parameters[0]?.type === 'Value' &&
+          declaration.parameters[1]?.type === 'Foundation.TimeInterval' &&
+          present(declaration) && ios(declaration) <= ceiling)) {
+        const [seedModule, seedName] = seedKeyframes[1].split('.')
+        const fields = inventory.filter((declaration) => declaration.module === seedModule &&
+          declaration.owner === seedName &&
+          declaration.kind === 'var' && declaration.type === 'Swift.Double' &&
+          present(declaration) && ios(declaration) <= ceiling)
+          .map((declaration) => ({ name: declaration.name, ios: ios(declaration) }))
+        if (fields.length) return [{ name, module: method.module, kind: 'seedKeyframeAnimation',
+          type: seedKeyframes[1], cases: fields,
+          ios: Math.max(ios(method), ...fields.map((field) => field.ios)), ...framework }]
+      }
       if (method.parameters.length === 0 &&
         method.requirements?.includes('Self : Swift.Equatable') &&
         method.type === `${method.module}.EquatableView<Self>`)

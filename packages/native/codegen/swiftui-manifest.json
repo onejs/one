@@ -8971,6 +8971,27 @@
       "sdkName": "manageSubscriptionsSheet"
     },
     {
+      "name": "mapCameraKeyframeAnimator",
+      "kind": "seedKeyframeAnimation",
+      "type": "_MapKit_SwiftUI.MapCamera",
+      "cases": [
+        {
+          "name": "distance",
+          "ios": 17
+        },
+        {
+          "name": "heading",
+          "ios": 17
+        },
+        {
+          "name": "pitch",
+          "ios": 17
+        }
+      ],
+      "ios": 17,
+      "framework": "MapKit"
+    },
+    {
       "name": "mapControlVisibility",
       "kind": "string",
       "type": "SwiftUICore.Visibility",
@@ -18053,6 +18074,7 @@
       ],
       "_MapKit_SwiftUI": [
         "lookAroundViewer",
+        "mapCameraKeyframeAnimator",
         "mapControlVisibility",
         "mapControls",
         "mapFeatureSelectionAccessory",
@@ -18583,6 +18605,7 @@
       ],
       "_MapKit_SwiftUI": [
         "lookAroundViewer",
+        "mapCameraKeyframeAnimator",
         "mapControlVisibility",
         "mapControls",
         "mapFeatureSelectionAccessory",
