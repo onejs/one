@@ -572,6 +572,34 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('invalid boolean')
   })
 
+  it('sends an async session request and validates its result', () => {
+    const onResult = vi.fn()
+    const element = Controls.Text({ text: 'translate', swiftStyle: {
+      translationTask: { sourceText: 'bonjour', onResult },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toContainEqual([
+      'translationTask', 'bonjour',
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'translationTask',
+      value: '{"sourceText":"bonjour","targetText":"hello","error":null}',
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'translationTask',
+      value: '{"sourceText":null,"targetText":null,"error":"language unavailable"}',
+    } })
+    expect(onResult).toHaveBeenNthCalledWith(1, {
+      sourceText: 'bonjour', targetText: 'hello', error: null,
+    })
+    expect(onResult).toHaveBeenNthCalledWith(2, {
+      sourceText: null, targetText: null, error: 'language unavailable',
+    })
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: { name: 'translationTask',
+      value: '{"sourceText":"bonjour","targetText":null,"error":null}',
+    } })).toThrow('invalid session response')
+    expect(() => Controls.Text({ text: 'translate', swiftStyle: {
+      translationTask: { sourceText: 3 as unknown as string, onResult },
+    } })).toThrow('source text')
+  })
+
   it('constructs an SDK value through a public string factory beside a binding', () => {
     const onChange = vi.fn()
     const element = Controls.Text({ text: 'subscription', swiftStyle: {

@@ -3316,6 +3316,14 @@ export interface OneNativeStyle {
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
     text: string
   }>
+  translationTask?: Readonly<{
+    sourceText: string
+    onResult: (
+      value:
+        | Readonly<{ sourceText: string; targetText: string; error: null }>
+        | Readonly<{ sourceText: null; targetText: null; error: string }>
+    ) => void
+  }>
   truncationMode?: SDKTruncationMode
   typeSelectEquivalent?: string | null
   typesettingLanguage?: Readonly<{ language: 'automatic'; isEnabled: boolean }>

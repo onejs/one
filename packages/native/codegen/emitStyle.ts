@@ -403,6 +403,26 @@ ${modifier.gestureOptions!.map((option) => {
     } else { self }`, 'self')}
   }`
       }
+      if (modifier.kind === 'sessionRequest') {
+        const request = modifier.sessionRequest!
+        const call = [...request.defaults.map((parameter) =>
+          `${parameter.label === '_' ? '' : `${parameter.label}: `}${parameter.value}`),
+          `${request.actionLabel === '_' ? '' : `${request.actionLabel}: `}{ session in
+      let payload: [String: Any]
+      do {
+        let response = try await session.${request.method}(value)
+        payload = [${[...request.outputFields.map((field) => `${JSON.stringify(field)}: response.${field}`), '"error": NSNull()'].join(', ')}]
+      } catch {
+        payload = [${[...request.outputFields.map((field) => `${JSON.stringify(field)}: NSNull()`), '"error": String(describing: error)'].join(', ')}]
+      }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} response") }
+      emit(${JSON.stringify(modifier.name)}, encoded)
+    }`].join(', ')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    ${apply(call, modifier.ios, true)}
+  }`
+      }
       if (modifier.kind === 'eventReturnArray') {
         const call = modifier.callArguments!.map((argument) =>
           `${argument.label === '_' ? '' : `${argument.label}: `}${argument.bridge ? 'action' : argument.defaultValue}`
@@ -864,6 +884,7 @@ const sdkAssociatedCases: Record<string, Record<string, readonly SDKEventValueSh
 const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct' || modifier.kind === 'eventDrop' || modifier.kind === 'eventAsyncStruct' || modifier.kind === 'eventAsyncString' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.eventValue])))}
 const sdkAsyncArguments: Record<string, readonly { field: string; kind: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAsyncStruct' && modifier.arguments?.length).map((modifier) => [modifier.name, modifier.arguments!.map((argument) => ({ field: argument.field, kind: argument.kind }))])))}
 const sdkAsyncStringFields: Record<string, { predicate: string; callback: string; selects: boolean }> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAsyncString').map((modifier) => [modifier.name, { predicate: modifier.predicateLabel, callback: modifier.callbackLabel, selects: Boolean(modifier.selectionMember) }]))) }
+const sdkSessionRequests: Record<string, { inputField: string; outputFields: readonly string[] }> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'sessionRequest').map((modifier) => [modifier.name, { inputField: modifier.sessionRequest!.inputField, outputFields: modifier.sessionRequest!.outputFields }]))) }
 const sdkAsyncObjectRequestBindings: Record<string, string> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'asyncObjectRequest').map((modifier) => [modifier.name, modifier.predicateLabel])))}
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'gesture').map((modifier) => [modifier.name, Object.fromEntries(modifier.gestureOptions!.map((option) => [option.name, option.eventValue ?? null]))])))}
 const sdkCodableOptional: Record<string, boolean> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'bindingCodable').map((modifier) => [modifier.name, modifier.type.endsWith('?')]))) }
@@ -1040,6 +1061,15 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
           typeof (value as Record<string, unknown>)[fields.callback] !== 'function')
           throw new Error(name + ' must be an async string callback and SDK decision')
         sdkModifiers.push([name, String((value as Record<string, unknown>)[fields.predicate])])
+        continue
+      }
+      if (kind === 'sessionRequest') {
+        const inputField = sdkSessionRequests[name].inputField
+        if (!value || typeof value !== 'object' || Array.isArray(value) ||
+          typeof (value as Record<string, unknown>)[inputField] !== 'string' ||
+          typeof (value as { onResult?: unknown }).onResult !== 'function')
+          throw new Error(name + ' must have source text and an onResult callback')
+        sdkModifiers.push([name, (value as Record<string, string>)[inputField]])
         continue
       }
       if (kind === 'eventDrop') {
@@ -1231,6 +1261,17 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
       native.completeString(identifier, null, String(error))
       throw error
     }
+  }
+  else if (kind === 'sessionRequest') {
+    const payload: unknown = JSON.parse(value)
+    if (!payload || typeof payload !== 'object' || Array.isArray(payload))
+      throw new Error(name + ' emitted an invalid session response')
+    const result = payload as Record<string, unknown>
+    const fields = sdkSessionRequests[name].outputFields
+    const success = result.error === null && fields.every((field) => typeof result[field] === 'string')
+    const failure = typeof result.error === 'string' && fields.every((field) => result[field] === null)
+    if (!success && !failure) throw new Error(name + ' emitted an invalid session response')
+    ;(modifier as { onResult: (value: unknown) => void } | undefined)?.onResult(result)
   }
   else if (kind === 'eventReturnArray') (modifier as { onAction: () => void } | undefined)?.onAction()
   else if (kind === 'eventReturnEnum') {

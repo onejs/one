@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -52,6 +52,8 @@ export type DerivedModifier = {
   selectionInputIndex?: number
   requestType?: string
   requestProperty?: string
+  sessionRequest?: { method: string; inputField: string; outputFields: readonly string[];
+    actionLabel: string; defaults: readonly { label: string; value: string }[] }
   uiRecognizer?: true
   resultConstructor?: { type: string; label: string }
   eventPair?: true
@@ -654,6 +656,43 @@ export function deriveModifiers(
       const framework = method.module.startsWith('_')
         ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
         : {}
+      const action = method.parameters.at(-1)
+      const sessionType = /^@escaping \(_ [A-Za-z_]\w*: ([A-Za-z_]\w*\.[A-Za-z][\w.]*)\) async -> Swift\.Void$/.exec(action?.type ?? '')?.[1]
+      if (sessionType && method.parameters.slice(0, -1).every((parameter) => parameter.defaultValue !== undefined)) {
+        const [sessionModule, ...sessionParts] = sessionType.split('.')
+        const sessionOwner = sessionParts.join('.')
+        if (inventory.some((declaration) => declaration.module === sessionModule &&
+          declaration.kind === 'class' && declaration.owner === sessionParts.slice(0, -1).join('.') &&
+          declaration.name === sessionParts.at(-1) && present(declaration) && ios(declaration) <= ceiling)) {
+          const requests = inventory.filter((declaration) => declaration.module === sessionModule &&
+            declaration.kind === 'func' && declaration.owner === sessionOwner &&
+            declaration.parameters.length === 1 && declaration.parameters[0].type === 'Swift.String' &&
+            declaration.type?.startsWith(`${sessionType}.`) &&
+            present(declaration) && ios(declaration) <= ceiling)
+            .flatMap((request) => {
+              const responseOwner = request.type!.slice(sessionModule.length + 1)
+              const response = inventory.find((declaration) => declaration.module === sessionModule &&
+                declaration.kind === 'struct' &&
+                `${declaration.owner ? `${declaration.owner}.` : ''}${declaration.name}` === responseOwner &&
+                present(declaration) && ios(declaration) <= ceiling)
+              if (!response) return []
+              const fields = inventory.filter((declaration) => declaration.module === sessionModule &&
+                declaration.kind === 'var' && declaration.owner === responseOwner &&
+                declaration.type === 'Swift.String' && present(declaration) && ios(declaration) <= ceiling)
+              return fields.length ? [{ request, fields }] : []
+            })
+          if (requests.length === 1) {
+            const { request, fields } = requests[0]
+            return [{ name, module: method.module, kind: 'sessionRequest', type: action!.type,
+              ios: Math.max(ios(method), ios(request), ...fields.map(ios)), ...framework,
+              sessionRequest: { method: request.name,
+                inputField: fields.find((field) => field.name.startsWith('source'))?.name ?? request.parameters[0].name,
+                outputFields: fields.map((field) => field.name), actionLabel: action!.label,
+                defaults: method.parameters.slice(0, -1).map((parameter) =>
+                  ({ label: parameter.label, value: parameter.defaultValue! })) } }]
+          }
+        }
+      }
       if (method.parameters.length >= 2 &&
         method.parameters[0].type === 'SwiftUICore.Binding<Swift.Bool>' &&
         /^([A-Za-z]\w*\.)+[A-Za-z]\w*\?$/.test(method.parameters[1].type) &&
