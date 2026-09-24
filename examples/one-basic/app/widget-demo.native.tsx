@@ -36,9 +36,11 @@ export default function WidgetDemo() {
   }
 
   return (
-    <View style={{ flex: 1, padding: 30, gap: 16, justifyContent: 'center' }}>
-      <Text>Widget and Live Activity proof</Text>
-      <Text>{message}</Text>
+    <View
+      style={{ flex: 1, padding: 30, gap: 16, justifyContent: 'center', backgroundColor: '#101115' }}
+    >
+      <Text style={{ color: '#FFFFFF' }}>Widget and Live Activity proof</Text>
+      <Text style={{ color: '#FFFFFF' }}>{message}</Text>
       <Button
         title="Write widget"
         onPress={() =>
