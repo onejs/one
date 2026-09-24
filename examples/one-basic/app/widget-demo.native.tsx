@@ -125,6 +125,9 @@ export default function WidgetDemo() {
               compactLeading: <W.Text>One</W.Text>,
               compactTrailing: <W.Text>1/3</W.Text>,
               minimal: <W.Text>1</W.Text>,
+              expandedLeading: <W.Text>One delivery</W.Text>,
+              expandedTrailing: <W.Gauge value={1} total={3} />,
+              expandedBottom: <DeliveryView value="Preparing 1 of 3" step={1} />,
             })
             setJsxActivityId(id)
             setMessage(`Started JSX activity ${id}`)
@@ -141,6 +144,9 @@ export default function WidgetDemo() {
               compactLeading: <W.Text>One</W.Text>,
               compactTrailing: <W.Text>2/3</W.Text>,
               minimal: <W.Text>2</W.Text>,
+              expandedLeading: <W.Text>One delivery</W.Text>,
+              expandedTrailing: <W.Gauge value={2} total={3} />,
+              expandedBottom: <DeliveryView value="On the way 2 of 3" step={2} />,
             })
             setMessage('Updated JSX activity: 2 of 3')
           })

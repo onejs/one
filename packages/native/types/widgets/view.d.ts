@@ -52,6 +52,9 @@ export type ActivityView = {
     compactLeading?: ReactNode;
     compactTrailing?: ReactNode;
     minimal?: ReactNode;
+    expandedLeading?: ReactNode;
+    expandedTrailing?: ReactNode;
+    expandedBottom?: ReactNode;
 };
 export declare function encodeWidgetView(view: ReactNode): string;
 export declare function encodeActivityView(view: ActivityView): string;
