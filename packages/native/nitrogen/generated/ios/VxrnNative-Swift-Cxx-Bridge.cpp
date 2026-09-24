@@ -9,6 +9,7 @@
 
 // Include C++ implementation defined types
 #include "HybridOneAppInfoSpecSwift.hpp"
+#include "HybridOneBrowserSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
 #include "HybridOneCryptoSpecSwift.hpp"
 #include "HybridOneHapticsSpecSwift.hpp"
@@ -34,10 +35,10 @@ namespace margelo::nitro::one::bridge::swift {
     return swiftPart.toUnsafe();
   }
   
-  // pragma MARK: std::function<void(const std::string& /* result */)>
-  Func_void_std__string create_Func_void_std__string(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = VxrnNative::Func_void_std__string::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const std::string& result) mutable -> void {
+  // pragma MARK: std::function<void(const BrowserResult& /* result */)>
+  Func_void_BrowserResult create_Func_void_BrowserResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_BrowserResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const BrowserResult& result) mutable -> void {
       swiftClosure.call(result);
     };
   }
@@ -47,6 +48,38 @@ namespace margelo::nitro::one::bridge::swift {
     auto swiftClosure = VxrnNative::Func_void_std__exception_ptr::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const std::exception_ptr& error) mutable -> void {
       swiftClosure.call(error);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const BrowserAuthResult& /* result */)>
+  Func_void_BrowserAuthResult create_Func_void_BrowserAuthResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_BrowserAuthResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const BrowserAuthResult& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneBrowserSpec>
+  std::shared_ptr<HybridOneBrowserSpec> create_std__shared_ptr_HybridOneBrowserSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    VxrnNative::HybridOneBrowserSpec_cxx swiftPart = VxrnNative::HybridOneBrowserSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneBrowserSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneBrowserSpec_(std__shared_ptr_HybridOneBrowserSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneBrowserSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneBrowserSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneBrowserSpec\" is not implemented in Swift!");
+    }
+    #endif
+    VxrnNative::HybridOneBrowserSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::function<void(const std::string& /* result */)>
+  Func_void_std__string create_Func_void_std__string(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_std__string::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::string& result) mutable -> void {
+      swiftClosure.call(result);
     };
   }
   

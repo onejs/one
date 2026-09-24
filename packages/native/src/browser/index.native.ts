@@ -1,4 +1,5 @@
-import { TurboModuleRegistry, type TurboModule } from 'react-native'
+import { NitroModules } from 'react-native-nitro-modules'
+import type { BrowserAuthResult, OneBrowser } from '../specs/OneBrowser.nitro'
 import type {
   BrowserAuthSessionOptions,
   BrowserAuthSessionResult,
@@ -23,26 +24,25 @@ export type {
 } from './types'
 
 // in-app browser matching expo-web-browser: plain pages in a safari sheet or
-// custom tab, auth sessions with a redirect result. the native module is
-// resolved once and lazily; native owns presentation and the session.
-interface BrowserSpec extends TurboModule {
-  open(url: string, options: BrowserOpenOptions): Promise<BrowserResult>
-  dismiss(): Promise<BrowserResult>
-  openAuthSession(
-    url: string,
-    redirectUrl: string | null,
-    options: BrowserAuthSessionOptions
-  ): Promise<BrowserAuthSessionResult>
-  dismissAuthSession(): void
+// custom tab, auth sessions with a redirect result. the OneBrowser nitro
+// hybrid object is resolved once and lazily; native owns presentation and
+// the session.
+let hybrid: OneBrowser | null | undefined
+
+function native(): OneBrowser | null {
+  if (hybrid === undefined) {
+    hybrid = NitroModules.hasHybridObject('OneBrowser')
+      ? NitroModules.createHybridObject<OneBrowser>('OneBrowser')
+      : null
+  }
+  return hybrid
 }
 
-let nativeModule: BrowserSpec | null | undefined
-
-function native(): BrowserSpec | null {
-  if (nativeModule === undefined) {
-    nativeModule = TurboModuleRegistry.get<BrowserSpec>('OneNativeBrowser')
-  }
-  return nativeModule
+// native sets url exactly when the session redirected.
+function toAuthSessionResult({ type, url }: BrowserAuthResult): BrowserAuthSessionResult {
+  if (type === 'success' && url !== undefined) return { type, url }
+  if (type === 'success') throw new Error('Browser.openAuthSession: redirect without a url')
+  return { type }
 }
 
 function needNative(): Promise<never> {
@@ -75,7 +75,9 @@ function openAuthSession(
   assertAuthOptions(options, 'Browser.openAuthSession')
   const resolved = native()
   if (!resolved) return needNative()
-  return resolved.openAuthSession(url, redirectUrl ?? null, options)
+  return resolved
+    .openAuthSession(url, redirectUrl ?? undefined, options)
+    .then(toAuthSessionResult)
 }
 
 function dismissAuthSession(): void {

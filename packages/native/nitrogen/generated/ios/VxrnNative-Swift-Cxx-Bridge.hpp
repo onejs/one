@@ -8,8 +8,20 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `BrowserAuthResultType` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrowserAuthResultType; }
+// Forward declaration of `BrowserAuthResult` to properly resolve imports.
+namespace margelo::nitro::one { struct BrowserAuthResult; }
+// Forward declaration of `BrowserPresentationStyle` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrowserPresentationStyle; }
+// Forward declaration of `BrowserResultType` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrowserResultType; }
+// Forward declaration of `BrowserResult` to properly resolve imports.
+namespace margelo::nitro::one { struct BrowserResult; }
 // Forward declaration of `HybridOneAppInfoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
+// Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 // Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 // Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
@@ -26,6 +38,8 @@ namespace margelo::nitro::one { struct NetworkState; }
 // Forward declarations of Swift defined types
 // Forward declaration of `HybridOneAppInfoSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneAppInfoSpec_cxx; }
+// Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
+namespace VxrnNative { class HybridOneBrowserSpec_cxx; }
 // Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneClipboardSpec_cxx; }
 // Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
@@ -36,7 +50,13 @@ namespace VxrnNative { class HybridOneHapticsSpec_cxx; }
 namespace VxrnNative { class HybridOneNetworkSpec_cxx; }
 
 // Include C++ defined types
+#include "BrowserAuthResult.hpp"
+#include "BrowserAuthResultType.hpp"
+#include "BrowserPresentationStyle.hpp"
+#include "BrowserResult.hpp"
+#include "BrowserResultType.hpp"
 #include "HybridOneAppInfoSpec.hpp"
+#include "HybridOneBrowserSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
@@ -86,6 +106,165 @@ namespace margelo::nitro::one::bridge::swift {
   using std__weak_ptr_HybridOneAppInfoSpec_ = std::weak_ptr<HybridOneAppInfoSpec>;
   inline std__weak_ptr_HybridOneAppInfoSpec_ weakify_std__shared_ptr_HybridOneAppInfoSpec_(const std::shared_ptr<HybridOneAppInfoSpec>& strong) noexcept { return strong; }
   
+  // pragma MARK: std::shared_ptr<Promise<BrowserResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<BrowserResult>>`.
+   */
+  using std__shared_ptr_Promise_BrowserResult__ = std::shared_ptr<Promise<BrowserResult>>;
+  inline std::shared_ptr<Promise<BrowserResult>> create_std__shared_ptr_Promise_BrowserResult__() noexcept {
+    return Promise<BrowserResult>::create();
+  }
+  inline PromiseHolder<BrowserResult> wrap_std__shared_ptr_Promise_BrowserResult__(std::shared_ptr<Promise<BrowserResult>> promise) noexcept {
+    return PromiseHolder<BrowserResult>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const BrowserResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const BrowserResult&)>`.
+   */
+  using Func_void_BrowserResult = std::function<void(const BrowserResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BrowserResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_BrowserResult_Wrapper final {
+  public:
+    explicit Func_void_BrowserResult_Wrapper(std::function<void(const BrowserResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const BrowserResult& /* result */)>>(std::move(func))) {}
+    inline void call(BrowserResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BrowserResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BrowserResult create_Func_void_BrowserResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BrowserResult_Wrapper wrap_Func_void_BrowserResult(Func_void_BrowserResult value) noexcept {
+    return Func_void_BrowserResult_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
+  /**
+   * Specialized version of `std::function<void(const std::exception_ptr&)>`.
+   */
+  using Func_void_std__exception_ptr = std::function<void(const std::exception_ptr& /* error */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::exception_ptr& / * error * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__exception_ptr_Wrapper final {
+  public:
+    explicit Func_void_std__exception_ptr_Wrapper(std::function<void(const std::exception_ptr& /* error */)>&& func): _function(std::make_unique<std::function<void(const std::exception_ptr& /* error */)>>(std::move(func))) {}
+    inline void call(std::exception_ptr error) const noexcept {
+      _function->operator()(error);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::exception_ptr& /* error */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__exception_ptr_Wrapper wrap_Func_void_std__exception_ptr(Func_void_std__exception_ptr value) noexcept {
+    return Func_void_std__exception_ptr_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::optional<BrowserPresentationStyle>
+  /**
+   * Specialized version of `std::optional<BrowserPresentationStyle>`.
+   */
+  using std__optional_BrowserPresentationStyle_ = std::optional<BrowserPresentationStyle>;
+  inline std::optional<BrowserPresentationStyle> create_std__optional_BrowserPresentationStyle_(const BrowserPresentationStyle& value) noexcept {
+    return std::optional<BrowserPresentationStyle>(value);
+  }
+  inline bool has_value_std__optional_BrowserPresentationStyle_(const std::optional<BrowserPresentationStyle>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline BrowserPresentationStyle get_std__optional_BrowserPresentationStyle_(const std::optional<BrowserPresentationStyle>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<bool>
+  /**
+   * Specialized version of `std::optional<bool>`.
+   */
+  using std__optional_bool_ = std::optional<bool>;
+  inline std::optional<bool> create_std__optional_bool_(const bool& value) noexcept {
+    return std::optional<bool>(value);
+  }
+  inline bool has_value_std__optional_bool_(const std::optional<bool>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline bool get_std__optional_bool_(const std::optional<bool>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<BrowserAuthResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<BrowserAuthResult>>`.
+   */
+  using std__shared_ptr_Promise_BrowserAuthResult__ = std::shared_ptr<Promise<BrowserAuthResult>>;
+  inline std::shared_ptr<Promise<BrowserAuthResult>> create_std__shared_ptr_Promise_BrowserAuthResult__() noexcept {
+    return Promise<BrowserAuthResult>::create();
+  }
+  inline PromiseHolder<BrowserAuthResult> wrap_std__shared_ptr_Promise_BrowserAuthResult__(std::shared_ptr<Promise<BrowserAuthResult>> promise) noexcept {
+    return PromiseHolder<BrowserAuthResult>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const BrowserAuthResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const BrowserAuthResult&)>`.
+   */
+  using Func_void_BrowserAuthResult = std::function<void(const BrowserAuthResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BrowserAuthResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_BrowserAuthResult_Wrapper final {
+  public:
+    explicit Func_void_BrowserAuthResult_Wrapper(std::function<void(const BrowserAuthResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const BrowserAuthResult& /* result */)>>(std::move(func))) {}
+    inline void call(BrowserAuthResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BrowserAuthResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BrowserAuthResult create_Func_void_BrowserAuthResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BrowserAuthResult_Wrapper wrap_Func_void_BrowserAuthResult(Func_void_BrowserAuthResult value) noexcept {
+    return Func_void_BrowserAuthResult_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneBrowserSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneBrowserSpec>`.
+   */
+  using std__shared_ptr_HybridOneBrowserSpec_ = std::shared_ptr<HybridOneBrowserSpec>;
+  std::shared_ptr<HybridOneBrowserSpec> create_std__shared_ptr_HybridOneBrowserSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneBrowserSpec_(std__shared_ptr_HybridOneBrowserSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneBrowserSpec>
+  using std__weak_ptr_HybridOneBrowserSpec_ = std::weak_ptr<HybridOneBrowserSpec>;
+  inline std__weak_ptr_HybridOneBrowserSpec_ weakify_std__shared_ptr_HybridOneBrowserSpec_(const std::shared_ptr<HybridOneBrowserSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<BrowserResult>>>
+  using Result_std__shared_ptr_Promise_BrowserResult___ = Result<std::shared_ptr<Promise<BrowserResult>>>;
+  inline Result_std__shared_ptr_Promise_BrowserResult___ create_Result_std__shared_ptr_Promise_BrowserResult___(const std::shared_ptr<Promise<BrowserResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<BrowserResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_BrowserResult___ create_Result_std__shared_ptr_Promise_BrowserResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<BrowserResult>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<BrowserAuthResult>>>
+  using Result_std__shared_ptr_Promise_BrowserAuthResult___ = Result<std::shared_ptr<Promise<BrowserAuthResult>>>;
+  inline Result_std__shared_ptr_Promise_BrowserAuthResult___ create_Result_std__shared_ptr_Promise_BrowserAuthResult___(const std::shared_ptr<Promise<BrowserAuthResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<BrowserAuthResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_BrowserAuthResult___ create_Result_std__shared_ptr_Promise_BrowserAuthResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<BrowserAuthResult>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<void>
+  using Result_void_ = Result<void>;
+  inline Result_void_ create_Result_void_() noexcept {
+    return Result<void>::withValue();
+  }
+  inline Result_void_ create_Result_void_(const std::exception_ptr& error) noexcept {
+    return Result<void>::withError(error);
+  }
+  
   // pragma MARK: std::shared_ptr<Promise<std::string>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::string>>`.
@@ -118,28 +297,6 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_std__string create_Func_void_std__string(void* NON_NULL swiftClosureWrapper) noexcept;
   inline Func_void_std__string_Wrapper wrap_Func_void_std__string(Func_void_std__string value) noexcept {
     return Func_void_std__string_Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
-  /**
-   * Specialized version of `std::function<void(const std::exception_ptr&)>`.
-   */
-  using Func_void_std__exception_ptr = std::function<void(const std::exception_ptr& /* error */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::exception_ptr& / * error * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__exception_ptr_Wrapper final {
-  public:
-    explicit Func_void_std__exception_ptr_Wrapper(std::function<void(const std::exception_ptr& /* error */)>&& func): _function(std::make_unique<std::function<void(const std::exception_ptr& /* error */)>>(std::move(func))) {}
-    inline void call(std::exception_ptr error) const noexcept {
-      _function->operator()(error);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::exception_ptr& /* error */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__exception_ptr_Wrapper wrap_Func_void_std__exception_ptr(Func_void_std__exception_ptr value) noexcept {
-    return Func_void_std__exception_ptr_Wrapper(std::move(value));
   }
   
   // pragma MARK: std::shared_ptr<Promise<bool>>
@@ -238,15 +395,6 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneHapticsSpec>
   using std__weak_ptr_HybridOneHapticsSpec_ = std::weak_ptr<HybridOneHapticsSpec>;
   inline std__weak_ptr_HybridOneHapticsSpec_ weakify_std__shared_ptr_HybridOneHapticsSpec_(const std::shared_ptr<HybridOneHapticsSpec>& strong) noexcept { return strong; }
-  
-  // pragma MARK: Result<void>
-  using Result_void_ = Result<void>;
-  inline Result_void_ create_Result_void_() noexcept {
-    return Result<void>::withValue();
-  }
-  inline Result_void_ create_Result_void_(const std::exception_ptr& error) noexcept {
-    return Result<void>::withError(error);
-  }
   
   // pragma MARK: std::shared_ptr<Promise<NetworkState>>
   /**

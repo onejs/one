@@ -1,18 +1,19 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { Browser } from '../src/browser/index'
 
-vi.mock('react-native', () => ({
-  TurboModuleRegistry: { get: vi.fn() },
+vi.mock('react-native-nitro-modules', () => ({
+  NitroModules: { hasHybridObject: vi.fn(), createHybridObject: vi.fn() },
 }))
 
 afterEach(() => {
   vi.unstubAllGlobals()
 })
 
-async function loadNativeEntry(nativeModule: unknown) {
+async function loadNativeEntry(hybrid: unknown) {
   vi.resetModules()
-  const { TurboModuleRegistry } = await import('react-native')
-  vi.mocked(TurboModuleRegistry.get).mockReturnValue(nativeModule as never)
+  const { NitroModules } = await import('react-native-nitro-modules')
+  vi.mocked(NitroModules.hasHybridObject).mockReturnValue(hybrid !== null)
+  vi.mocked(NitroModules.createHybridObject).mockReturnValue(hybrid as never)
   return import('../src/browser/index.native')
 }
 
@@ -93,7 +94,10 @@ describe('browser native entry', () => {
     const nativeModule = {
       open: vi.fn(async () => ({ type: 'opened' })),
       dismiss: vi.fn(async () => ({ type: 'dismiss' })),
-      openAuthSession: vi.fn(async () => ({ type: 'success', url: 'a://b' })),
+      openAuthSession: vi.fn(async (): Promise<{ type: string; url?: string }> => ({
+        type: 'success',
+        url: 'a://b',
+      })),
       dismissAuthSession: vi.fn(),
     }
     const { Browser: native } = await loadNativeEntry(nativeModule)
@@ -107,6 +111,13 @@ describe('browser native entry', () => {
     expect(nativeModule.openAuthSession).toHaveBeenCalledWith(
       'https://example.com',
       'a://b',
+      {}
+    )
+    nativeModule.openAuthSession.mockResolvedValueOnce({ type: 'cancel' })
+    expect(await native.openAuthSession('https://example.com')).toEqual({ type: 'cancel' })
+    expect(nativeModule.openAuthSession).toHaveBeenLastCalledWith(
+      'https://example.com',
+      undefined,
       {}
     )
     native.dismissAuthSession()

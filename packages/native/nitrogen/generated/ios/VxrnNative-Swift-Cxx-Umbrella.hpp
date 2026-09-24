@@ -8,12 +8,26 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `BrowserAuthResultType` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrowserAuthResultType; }
+// Forward declaration of `BrowserAuthResult` to properly resolve imports.
+namespace margelo::nitro::one { struct BrowserAuthResult; }
+// Forward declaration of `BrowserNativeOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct BrowserNativeOptions; }
+// Forward declaration of `BrowserPresentationStyle` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrowserPresentationStyle; }
+// Forward declaration of `BrowserResultType` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrowserResultType; }
+// Forward declaration of `BrowserResult` to properly resolve imports.
+namespace margelo::nitro::one { struct BrowserResult; }
 // Forward declaration of `HapticImpact` to properly resolve imports.
 namespace margelo::nitro::one { enum class HapticImpact; }
 // Forward declaration of `HapticNotification` to properly resolve imports.
 namespace margelo::nitro::one { enum class HapticNotification; }
 // Forward declaration of `HybridOneAppInfoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
+// Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 // Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 // Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
@@ -28,9 +42,16 @@ namespace margelo::nitro::one { enum class NetworkStateType; }
 namespace margelo::nitro::one { struct NetworkState; }
 
 // Include C++ defined types
+#include "BrowserAuthResult.hpp"
+#include "BrowserAuthResultType.hpp"
+#include "BrowserNativeOptions.hpp"
+#include "BrowserPresentationStyle.hpp"
+#include "BrowserResult.hpp"
+#include "BrowserResultType.hpp"
 #include "HapticImpact.hpp"
 #include "HapticNotification.hpp"
 #include "HybridOneAppInfoSpec.hpp"
+#include "HybridOneBrowserSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
@@ -58,6 +79,8 @@ namespace margelo::nitro::one { struct NetworkState; }
 // Forward declarations of Swift defined types
 // Forward declaration of `HybridOneAppInfoSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneAppInfoSpec_cxx; }
+// Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
+namespace VxrnNative { class HybridOneBrowserSpec_cxx; }
 // Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneClipboardSpec_cxx; }
 // Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
