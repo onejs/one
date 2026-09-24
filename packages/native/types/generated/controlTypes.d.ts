@@ -181,6 +181,10 @@ export declare const sdkFileDialogBrowserOptionsValues: readonly ['enumeratePack
 export type SDKFileDialogBrowserOptions = (typeof sdkFileDialogBrowserOptionsValues)[number];
 export declare const sdkFontValues: readonly ['largeTitle', 'title', 'title2', 'title3', 'headline', 'subheadline', 'body', 'callout', 'footnote', 'caption', 'caption2', 'default'];
 export type SDKFont = (typeof sdkFontValues)[number];
+export declare const sdkFontDesignWithOptionalDesignValues: readonly ['default', 'serif', 'rounded', 'monospaced'];
+export type SDKFontDesignWithOptionalDesign = (typeof sdkFontDesignWithOptionalDesignValues)[number];
+export declare const sdkFontWeightWithOptionalWeightValues: readonly ['ultraLight', 'thin', 'light', 'regular', 'medium', 'semibold', 'bold', 'heavy', 'black'];
+export type SDKFontWeightWithOptionalWeight = (typeof sdkFontWeightWithOptionalWeightValues)[number];
 export declare const sdkFontWidthValues: readonly ['compressed', 'condensed', 'standard', 'expanded'];
 export type SDKFontWidth = (typeof sdkFontWidthValues)[number];
 export declare const sdkForegroundColorValues: readonly ['accentColor', 'red', 'orange', 'yellow', 'green', 'mint', 'teal', 'cyan', 'blue', 'indigo', 'purple', 'pink', 'brown', 'white', 'gray', 'black', 'clear', 'primary', 'secondary'];
@@ -403,6 +407,8 @@ export declare const sdkTextSelectionValues: readonly ['enabled', 'disabled'];
 export type SDKTextSelection = (typeof sdkTextSelectionValues)[number];
 export declare const sdkTextSelectionAffinityValues: readonly ['automatic', 'upstream', 'downstream'];
 export type SDKTextSelectionAffinity = (typeof sdkTextSelectionAffinityValues)[number];
+export declare const sdkTintWithOptionalColorValues: readonly ['accentColor', 'red', 'orange', 'yellow', 'green', 'mint', 'teal', 'cyan', 'blue', 'indigo', 'purple', 'pink', 'brown', 'white', 'gray', 'black', 'clear', 'primary', 'secondary'];
+export type SDKTintWithOptionalColor = (typeof sdkTintWithOptionalColorValues)[number];
 export declare const sdkToggleStyleValues: readonly ['button', 'automatic', 'switch'];
 export type SDKToggleStyle = (typeof sdkToggleStyleValues)[number];
 export declare const sdkToolbarRoleValues: readonly ['automatic', 'navigationStack', 'browser', 'editor'];
@@ -928,6 +934,8 @@ export interface OneNativeStyle {
     }>;
     focusEffectDisabled?: boolean;
     font?: SDKFont | null;
+    fontDesignWithOptionalDesign?: SDKFontDesignWithOptionalDesign | null;
+    fontWeightWithOptionalWeight?: SDKFontWeightWithOptionalWeight | null;
     fontWidth?: SDKFontWidth | null;
     foregroundColor?: SDKForegroundColor | null;
     formStyle?: SDKFormStyle;
@@ -1948,6 +1956,7 @@ export interface OneNativeStyle {
     }>;
     textSelection?: SDKTextSelection;
     textSelectionAffinity?: SDKTextSelectionAffinity;
+    tintWithOptionalColor?: SDKTintWithOptionalColor | null;
     toggleStyle?: SDKToggleStyle;
     toolbarBackground?: Readonly<{
         visibility: 'automatic' | 'visible' | 'hidden';

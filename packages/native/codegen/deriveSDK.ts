@@ -472,10 +472,13 @@ export function deriveModifiers(
       present(d) &&
       ios(d) <= ceiling &&
       (!reservedNames.has(d.name) ||
-        (d.parameters.length > 1 && !d.requirements?.length &&
-          d.parameters.some((parameter) => parameter.defaultValue === undefined) &&
-          d.parameters.some((parameter) => parameter.defaultValue !== undefined) &&
-          d.parameters.every((parameter) => valueOf(parameter.type))))
+        (!d.requirements?.length &&
+          (d.parameters.length === 1 && valueOf(d.parameters[0].type)?.kind === 'enum' &&
+            valueOf(d.parameters[0].type)?.optional ||
+            d.parameters.length > 1 &&
+              d.parameters.some((parameter) => parameter.defaultValue === undefined) &&
+              d.parameters.some((parameter) => parameter.defaultValue !== undefined) &&
+              d.parameters.every((parameter) => valueOf(parameter.type)))))
   )
   const byName = new Map<string, Declaration[]>()
   for (const method of methods)

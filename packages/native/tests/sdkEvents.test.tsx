@@ -24,6 +24,19 @@ describe('SDK callback and binding transport', () => {
     ])
   })
 
+  it('exposes optional SDK static values beside legacy style fields', () => {
+    const element = Controls.Text({ text: 'styled', swiftStyle: {
+      fontWeightWithOptionalWeight: 'semibold',
+      fontDesignWithOptionalDesign: 'rounded',
+      tintWithOptionalColor: 'indigo',
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['fontWeightWithOptionalWeight', 'semibold'],
+      ['fontDesignWithOptionalDesign', 'rounded'],
+      ['tintWithOptionalColor', 'indigo'],
+    ])
+  })
+
   it('encodes numeric visual effects and scroll phase transitions from SDK methods', () => {
     const element = Controls.Text({ text: 'example', swiftStyle: {
       visualEffect: { kind: 'opacity', value: 0.8 },
