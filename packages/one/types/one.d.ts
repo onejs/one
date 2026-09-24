@@ -15,6 +15,7 @@ export type OneIOS = Omit<typeof Swift, 'ToolbarItem'> & {
     readonly ZoomTransitionSource: typeof ZoomTransitionSource;
 };
 export type OneAndroid = typeof Compose & {
+    readonly Color: ColorType['android'];
     readonly Menu: typeof NativeMenu;
     readonly ContextMenu: typeof NativeContextMenu;
 };
