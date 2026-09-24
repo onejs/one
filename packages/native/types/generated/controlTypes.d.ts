@@ -1314,6 +1314,30 @@ export interface OneNativeStyle {
     moveDisabled?: boolean;
     multilineTextAlignmentWithStrategy?: SDKMultilineTextAlignmentWithStrategy;
     multilineTextAlignmentWithTextAlignment?: SDKMultilineTextAlignmentWithTextAlignment;
+    musicPickerWithMusicVideo?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        title?: string;
+        onSelection: (id: string) => void;
+    }>;
+    musicPickerWithSong?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        title?: string;
+        onSelection: (id: string) => void;
+    }>;
+    musicPickerWithTrack?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        title?: string;
+        onSelection: (id: string) => void;
+    }>;
     musicSubscriptionOffer?: Readonly<{
         value: boolean;
         onChange: (value: boolean) => void;
