@@ -25,6 +25,18 @@ export interface NativeAppManifest {
     ccache?: boolean
     usesNonExemptEncryption?: boolean
     fileSharing?: boolean
+    widgets?: {
+      appGroup: string
+      kind: string
+      displayName: string
+      description: string
+      pushNotifications?: boolean
+      jsx?: {
+        id: string
+        displayName: string
+        description: string
+      }
+    }
   }
   android?: {
     applicationId: string
