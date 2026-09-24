@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -63,6 +63,7 @@ export type DerivedModifier = {
   framework?: string
   label?: string
   callbackLabel?: string
+  predicateLabel?: string
   bindingType?: string
   bindingDefault?: true
   predicateInput?: string
@@ -415,7 +416,8 @@ export function deriveModifiers(
     if (!owner || seen.has(type) || !inventory.some((d) => d.module === module &&
       (d.kind === 'struct' || d.kind === 'class') &&
       (d.owner === parts.slice(0, -1).join('.') ||
-        directEnumValue && d.owner === [module, ...parts.slice(0, -1)].join('.')) &&
+        (seen.size === 0 || directEnumValue) &&
+        d.owner === [module, ...parts.slice(0, -1)].join('.')) &&
       d.name === parts.at(-1) && !d.generic && present(d) && ios(d) <= version)) {
       const raw = inventory.find((d) => d.module === module && d.kind === 'struct' &&
         d.owner === [module, ...parts.slice(0, -1)].join('.') && d.name === parts.at(-1) &&
@@ -937,6 +939,27 @@ export function deriveModifiers(
               arguments: argumentsFromSDK as DerivedArgument[], ...framework }]
         }
         return []
+      }
+      if (method.parameters.length === 2) {
+        const [predicate, signer] = method.parameters
+        const booleanInputs = /^@escaping \((.+)\) -> Swift\.Bool$/.exec(predicate.type)?.[1]
+        const stringInputs = /^@escaping \((.+)\) async throws -> Swift\.String$/.exec(signer.type)?.[1]
+        const parseInputs = (inputs: string | undefined) => inputs?.split(', ').map((part) =>
+          /^_ ([A-Za-z_]\w*): ([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)$/.exec(part))
+        const decision = parseInputs(booleanInputs)
+        const signing = parseInputs(stringInputs)
+        if (predicate.label !== '_' && signer.label !== '_' && decision?.length &&
+          signing?.length === decision.length && decision.every(Boolean) && signing.every(Boolean) &&
+          decision.every((input, index) => input![2] === signing[index]![2])) {
+          const values = signing.map((input) => eventValueOf(input![2], ios(method)))
+          if (values.every(Boolean))
+            return [{ name, module: method.module, kind: 'eventAsyncString', type: signer.type,
+              predicateLabel: predicate.label, callbackLabel: signer.label,
+              eventInputs: signing.map((input) => input![1]),
+              eventValue: { kind: 'object', fields: signing.map((input, index) =>
+                ({ name: input![1], value: values[index]! })) },
+              ios: ios(method), ...framework }]
+        }
       }
       const asyncAction = method.parameters.find((parameter) =>
         /^(?:sending )?@escaping (?:@Sendable |@isolated\(any\) )?\(\) async -> Swift\.Void$/.test(parameter.type))

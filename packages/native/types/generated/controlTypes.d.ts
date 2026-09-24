@@ -1957,6 +1957,24 @@ export interface OneNativeStyle {
     }>;
     submitLabel?: SDKSubmitLabel;
     submitScope?: boolean;
+    subscriptionIntroductoryOffer?: Readonly<{
+        applyOffer: boolean;
+        compactJWS: (value: {
+            product: {
+                id: string;
+                type: {
+                    rawValue: string;
+                };
+                displayName: string;
+                description: string;
+                displayPrice: string;
+                isFamilyShareable: boolean;
+            };
+            subscriptionInfo: {
+                subscriptionGroupID: string;
+            };
+        }) => string | Promise<string>;
+    }>;
     subscriptionOfferViewButtonVisibility?: Readonly<{
         visibility: 'automatic' | 'visible' | 'hidden';
         buttonKinds: 'detailLink';

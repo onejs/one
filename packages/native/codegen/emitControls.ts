@@ -161,10 +161,12 @@ ${styleFields
             ? 'number'
           : modifier.kind === 'eventAsync'
             ? '() => void | Promise<void>'
-            : modifier.kind === 'eventAsyncStruct'
+          : modifier.kind === 'eventAsyncStruct'
               ? modifier.arguments?.length
                 ? `Readonly<{ ${modifier.arguments.map((argument) => `${argument.field}: ${argument.kind === 'stringArray' ? 'readonly string[]' : 'string'}`).join('; ')}; onAction: (value: ${eventValueType(modifier.eventValue!)}) => void | Promise<void> }>`
                 : `(value: ${eventValueType(modifier.eventValue!)}) => void | Promise<void>`
+          : modifier.kind === 'eventAsyncString'
+            ? `Readonly<{ ${modifier.predicateLabel}: boolean; ${modifier.callbackLabel}: (value: ${eventValueType(modifier.eventValue!)}) => string | Promise<string> }>`
           : modifier.kind === 'eventBoolean'
             ? '(value: boolean) => void'
             : modifier.kind === 'eventNumber'

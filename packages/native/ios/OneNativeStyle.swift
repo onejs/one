@@ -594,6 +594,7 @@ extension View {
       case "strikethrough": view = AnyView(view.oneNativeSDKStrikethrough(value, emit: emit))
       case "submitLabel": view = AnyView(view.oneNativeSDKSubmitLabel(value, emit: emit))
       case "submitScope": view = AnyView(view.oneNativeSDKSubmitScope(value, emit: emit))
+      case "subscriptionIntroductoryOffer": view = AnyView(view.oneNativeSDKSubscriptionIntroductoryOffer(value, emit: emit))
       case "subscriptionOfferViewButtonVisibility": view = AnyView(view.oneNativeSDKSubscriptionOfferViewButtonVisibility(value, emit: emit))
       case "subscriptionOfferViewDetailAction": view = AnyView(view.oneNativeSDKSubscriptionOfferViewDetailAction(value, emit: emit))
       case "subscriptionOfferViewStyle": view = AnyView(view.oneNativeSDKSubscriptionOfferViewStyle(value, emit: emit))
@@ -7342,6 +7343,19 @@ self
   @ViewBuilder fileprivate func oneNativeSDKSubmitScope(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid submitScope: \(value)")
       self.submitScope(value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSubscriptionIntroductoryOffer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let enabled: Bool = {
+      guard value == "true" || value == "false" else { preconditionFailure("invalid subscriptionIntroductoryOffer: \(value)") }
+      return value == "true"
+    }()
+    if #available(iOS 26, *) { self.subscriptionIntroductoryOffer(applyOffer: { _, _ in enabled }, compactJWS: { product, subscriptionInfo in
+      let payload = (["product": (["id": product.id, "type": (["rawValue": product.type.rawValue] as [String: Any]), "displayName": product.displayName, "description": product.description, "displayPrice": product.displayPrice, "isFamilyShareable": product.isFamilyShareable] as [String: Any]), "subscriptionInfo": (["subscriptionGroupID": subscriptionInfo.subscriptionGroupID] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid subscriptionIntroductoryOffer async string event") }
+      return try await OneNativeAsyncAction.waitForString(name: "subscriptionIntroductoryOffer", value: encoded, emit: emit)
+    }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionOfferViewButtonVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

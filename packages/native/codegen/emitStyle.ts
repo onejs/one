@@ -497,6 +497,24 @@ ${modifier.arguments.map((argument, index) => argument.kind === 'stringArray'
       await OneNativeAsyncAction.wait(name: ${JSON.stringify(modifier.name)}, value: encoded, emit: emit)
     }`, modifier.ios, Boolean(modifier.arguments?.length))}
   }`
+      if (modifier.kind === 'eventAsyncString') {
+        const inputs = modifier.eventInputs!
+        const fields = modifier.eventValue!.kind === 'object' ? modifier.eventValue!.fields : []
+        const payload = `([${fields.map((field, index) =>
+          `${JSON.stringify(field.name)}: ${eventValueSwift(field.value, inputs[index])}`).join(', ')}] as [String: Any])`
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let enabled: Bool = {
+      guard value == "true" || value == "false" else { preconditionFailure("invalid ${modifier.name}: \\(value)") }
+      return value == "true"
+    }()
+    ${apply(`${modifier.predicateLabel}: { ${inputs.map(() => '_').join(', ')} in enabled }, ${modifier.callbackLabel}: { ${inputs.join(', ')} in
+      let payload = ${payload}
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} async string event") }
+      return try await OneNativeAsyncAction.waitForString(name: ${JSON.stringify(modifier.name)}, value: encoded, emit: emit)
+    }`, modifier.ios, true)}
+  }`
+      }
       if (modifier.kind === 'visualEffect')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let decoded: [String] = {
@@ -763,8 +781,9 @@ export type SDKEventValueShape =
   | { kind: 'verification' }
   | { kind: 'associatedEnum'; cases: readonly { name: string; values: readonly SDKEventValueShape[] }[]; open?: true }
 const sdkAssociatedCases: Record<string, Record<string, readonly SDKEventValueShape[]>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAssociatedEnum').map((modifier) => [modifier.name, Object.fromEntries(modifier.associatedCases!.map((item) => [item.name, item.values]))])))}
-const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct' || modifier.kind === 'eventAsyncStruct' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.eventValue])))}
+const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct' || modifier.kind === 'eventAsyncStruct' || modifier.kind === 'eventAsyncString' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.eventValue])))}
 const sdkAsyncArguments: Record<string, readonly { field: string; kind: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAsyncStruct' && modifier.arguments?.length).map((modifier) => [modifier.name, modifier.arguments!.map((argument) => ({ field: argument.field, kind: argument.kind }))])))}
+const sdkAsyncStringFields: Record<string, { predicate: string; callback: string }> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAsyncString').map((modifier) => [modifier.name, { predicate: modifier.predicateLabel, callback: modifier.callbackLabel }]))) }
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'gesture').map((modifier) => [modifier.name, Object.fromEntries(modifier.gestureOptions!.map((option) => [option.name, option.eventValue ?? null]))])))}
 const sdkCodableOptional: Record<string, boolean> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'bindingCodable').map((modifier) => [modifier.name, modifier.type.endsWith('?')]))) }
 const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; unique?: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, unique, fields, eventValue }) => ({ field, kind, optional, ...(unique ? { unique } : {}), ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
@@ -933,6 +952,15 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
         sdkModifiers.push([name, JSON.stringify(argumentsFromSDK)])
         continue
       }
+      if (kind === 'eventAsyncString') {
+        const fields = sdkAsyncStringFields[name]
+        if (!value || typeof value !== 'object' || Array.isArray(value) ||
+          typeof (value as Record<string, unknown>)[fields.predicate] !== 'boolean' ||
+          typeof (value as Record<string, unknown>)[fields.callback] !== 'function')
+          throw new Error(name + ' must be an async string callback and Boolean decision')
+        sdkModifiers.push([name, String((value as Record<string, unknown>)[fields.predicate])])
+        continue
+      }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite')
       if (kind === 'optionalNumber' && value !== null && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite or null')
       if ((kind === 'boolean' || kind === 'defaultFocusBoolean') && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
@@ -1058,6 +1086,32 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
       (modifier as { onAction?: (value: unknown) => void | Promise<void> } | undefined)?.onAction
     void Promise.resolve().then(() => action?.(payload))
       .finally(() => native.complete(identifier))
+  }
+  else if (kind === 'eventAsyncString') {
+    const native = NativeModules.OneNativeAsyncActionModule as {
+      completeString(identifier: string, value: string | null, error: string | null): void
+    } | undefined
+    if (!native) throw new Error('OneNativeAsyncActionModule is unavailable')
+    const envelope: unknown = JSON.parse(value)
+    if (!envelope || typeof envelope !== 'object' ||
+      typeof (envelope as { id?: unknown }).id !== 'string' ||
+      typeof (envelope as { value?: unknown }).value !== 'string')
+      throw new Error(name + ' emitted an invalid async string event')
+    const identifier = (envelope as { id: string }).id
+    try {
+      const payload: unknown = JSON.parse((envelope as { value: string }).value)
+      if (!validSDKEventValue(payload, sdkEventStructs[name]))
+        throw new Error(name + ' emitted an invalid async string value')
+      const action = (modifier as Record<string, unknown> | undefined)?.[sdkAsyncStringFields[name].callback] as
+        ((value: unknown) => string | Promise<string>) | undefined
+      void Promise.resolve().then(() => action?.(payload)).then((result) => {
+        if (typeof result !== 'string') throw new Error(name + ' must return a string')
+        native.completeString(identifier, result, null)
+      }).catch((error) => native.completeString(identifier, null, String(error)))
+    } catch (error) {
+      native.completeString(identifier, null, String(error))
+      throw error
+    }
   }
   else if (kind === 'eventReturnArray') (modifier as { onAction: () => void } | undefined)?.onAction()
   else if (kind === 'eventReturnEnum') {

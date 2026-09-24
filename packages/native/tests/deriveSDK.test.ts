@@ -491,6 +491,30 @@ describe('SDK modifier derivation', () => {
       { ...method('currentDirectory', 'Foundation'), owner: 'URL', type: 'Foundation.URL', isStatic: true },
     ], 27, [])).toEqual([{ name: 'navigationDocument', kind: 'url', type: 'Foundation.URL', ios: 0 }])
   })
+
+  it('derives a Boolean decision and an async string result from paired SDK callbacks', () => {
+    const product = 'StoreKit.Product'
+    const info = 'StoreKit.Product.SubscriptionInfo'
+    const asyncType = `@escaping (_ product: ${product}, _ subscriptionInfo: ${info}) async throws -> Swift.String`
+    expect(deriveModifiers([
+      method('subscriptionIntroductoryOffer', '_StoreKit_SwiftUI', [
+        { label: 'applyOffer', name: 'applyOffer', type: `@escaping (_ product: ${product}, _ subscriptionInfo: ${info}) -> Swift.Bool` },
+        { label: 'compactJWS', name: 'compactJWS', type: asyncType },
+      ]),
+      { ...method('Product', 'StoreKit'), kind: 'struct', owner: '' },
+      { ...method('id', 'StoreKit'), kind: 'var', owner: product, type: 'Swift.String', stored: true },
+      { ...method('SubscriptionInfo', 'StoreKit'), kind: 'struct', owner: product },
+      { ...method('subscriptionGroupID', 'StoreKit'), kind: 'var', owner: info, type: 'Swift.String', stored: true },
+    ], 27, [])).toEqual([{
+      name: 'subscriptionIntroductoryOffer', kind: 'eventAsyncString', type: asyncType,
+      ios: 0, framework: 'StoreKit', predicateLabel: 'applyOffer', callbackLabel: 'compactJWS',
+      eventInputs: ['product', 'subscriptionInfo'],
+      eventValue: { kind: 'object', fields: [
+        { name: 'product', value: { kind: 'object', fields: [{ name: 'id', value: { kind: 'string' } }] } },
+        { name: 'subscriptionInfo', value: { kind: 'object', fields: [{ name: 'subscriptionGroupID', value: { kind: 'string' } }] } },
+      ] },
+    }])
+  })
 })
 
 describe('SDK view slots', () => {
