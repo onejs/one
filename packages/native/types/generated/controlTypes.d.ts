@@ -567,6 +567,10 @@ export interface OneNativeStyle {
         respondsToUserInteraction: boolean;
         isEnabled: boolean;
     }>;
+    accessibilityRotor?: Readonly<{
+        rotorLabel: string;
+        entries: readonly string[];
+    }>;
     accessibilityRotorEntry?: Readonly<{
         id: string;
     }>;

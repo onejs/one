@@ -316,6 +316,9 @@ ${assignments}
         if (modifier.sharedParameter)
           callArguments.splice(modifier.sharedParameter.index, 0,
             `${modifier.sharedParameter.label === '_' ? '' : `${modifier.sharedParameter.label}: `}${modifier.sharedParameter.type}.shared()`)
+        if (modifier.fixedParameter)
+          callArguments.splice(modifier.fixedParameter.index, 0,
+            `${modifier.fixedParameter.label === '_' ? '' : `${modifier.fixedParameter.label}: `}${modifier.fixedParameter.expression}`)
         const call = callArguments.join(', ')
         const body = `let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -756,7 +759,7 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Obj
 const sdkAsyncArguments: Record<string, readonly { field: string; kind: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAsyncStruct' && modifier.arguments?.length).map((modifier) => [modifier.name, modifier.arguments!.map((argument) => ({ field: argument.field, kind: argument.kind }))])))}
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'gesture').map((modifier) => [modifier.name, Object.fromEntries(modifier.gestureOptions!.map((option) => [option.name, option.eventValue ?? null]))])))}
 const sdkCodableOptional: Record<string, boolean> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'bindingCodable').map((modifier) => [modifier.name, modifier.type.endsWith('?')]))) }
-const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, fields, eventValue }) => ({ field, kind, optional, ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
+const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; unique?: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, unique, fields, eventValue }) => ({ field, kind, optional, ...(unique ? { unique } : {}), ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
 
 export function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
   if (shape.kind === 'optional') return value === null || validSDKEventValue(value, shape.value)
@@ -844,6 +847,7 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
           if (argument.kind === 'boolean' && typeof item !== 'boolean') throw new Error(name + '.' + argument.field + ' must be a boolean')
           if ((argument.kind === 'string' || argument.kind === 'url' || argument.kind === 'enum') && typeof item !== 'string') throw new Error(name + '.' + argument.field + ' must be a string')
           if ((argument.kind === 'stringArray' || argument.kind === 'stringSet') && (!Array.isArray(item) || item.some((element) => typeof element !== 'string'))) throw new Error(name + '.' + argument.field + ' must be a string array')
+          if (argument.unique && new Set(item as string[]).size !== (item as string[]).length) throw new Error(name + '.' + argument.field + ' must contain distinct strings')
           if (argument.kind === 'numericStruct' || argument.kind === 'numericTuple') {
             if (!item || typeof item !== 'object' || Array.isArray(item) ||
               Object.keys(item).length !== argument.fields!.length ||
@@ -1150,6 +1154,7 @@ import UIKit
 ${frameworkImports.map((framework) => `import ${framework}`).join('\n')}
 
 ${derived.some((modifier) => modifier.namespaceParameter) ? 'private enum OneNativeNamespace { static let id = Namespace().wrappedValue }\n' : ''}
+${derived.some((modifier) => modifier.arguments?.some((argument) => argument.type === '[OneNativeRotorEntry]')) ? 'private struct OneNativeRotorEntry: Identifiable { let id: String; var label: String { id } }\n' : ''}
 
 public struct OneNativeStyle: Equatable {
 ${properties}
