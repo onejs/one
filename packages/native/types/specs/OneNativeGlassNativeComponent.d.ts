@@ -7,6 +7,7 @@ interface NativeProps extends ViewProps {
     shape?: string;
     cornerRadius?: Double;
     tint?: ColorValue;
+    colorScheme: string;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
 export default _default;

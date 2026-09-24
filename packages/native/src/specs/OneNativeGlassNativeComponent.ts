@@ -10,5 +10,6 @@ interface NativeProps extends ViewProps {
   shape?: string
   cornerRadius?: Double
   tint?: ColorValue
+  colorScheme: string
 }
 export default codegenNativeComponent<NativeProps>('OneNativeGlass')

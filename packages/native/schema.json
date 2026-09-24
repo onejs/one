@@ -2798,6 +2798,9 @@
         },
         "tint": {
           "type": "ColorValue"
+        },
+        "colorScheme": {
+          "type": "string"
         }
       },
       "events": {},

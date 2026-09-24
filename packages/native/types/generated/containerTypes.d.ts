@@ -62,6 +62,7 @@ export interface GlassProps extends ViewProps {
     shape?: GlassEffectShape;
     cornerRadius?: number;
     tint?: ColorValue;
+    colorScheme?: ColorScheme;
     children: ReactNode;
 }
 export interface SlotProps extends ViewProps {
