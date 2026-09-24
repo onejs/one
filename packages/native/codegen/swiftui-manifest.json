@@ -9879,6 +9879,27 @@
       ]
     },
     {
+      "name": "onPreferenceChangePreferredColorScheme",
+      "sdkName": "onPreferenceChange",
+      "module": "SwiftUICore",
+      "preferenceKey": "SwiftUICore.PreferredColorSchemeKey",
+      "preferenceOperation": "observe",
+      "kind": "eventStruct",
+      "type": "@escaping (K.Value) -> Swift.Void",
+      "ios": 13,
+      "eventValue": {
+        "kind": "optional",
+        "value": {
+          "kind": "enum",
+          "cases": [
+            "light",
+            "dark"
+          ],
+          "open": true
+        }
+      }
+    },
+    {
       "name": "onScrollGeometryChangeWithContainerSize",
       "sdkName": "onScrollGeometryChange",
       "module": "SwiftUI",
@@ -10500,6 +10521,26 @@
           "optional": false,
           "field": "y",
           "label": "y"
+        }
+      ]
+    },
+    {
+      "name": "preferencePreferredColorScheme",
+      "sdkName": "preference",
+      "module": "SwiftUICore",
+      "preferenceKey": "SwiftUICore.PreferredColorSchemeKey",
+      "preferenceOperation": "set",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.ColorScheme?",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "light",
+          "ios": 13
+        },
+        {
+          "name": "dark",
+          "ios": 13
         }
       ]
     },
@@ -14758,6 +14799,26 @@
       ]
     },
     {
+      "name": "transformPreferencePreferredColorScheme",
+      "sdkName": "transformPreference",
+      "module": "SwiftUICore",
+      "preferenceKey": "SwiftUICore.PreferredColorSchemeKey",
+      "preferenceOperation": "transform",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.ColorScheme?",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "light",
+          "ios": 13
+        },
+        {
+          "name": "dark",
+          "ios": 13
+        }
+      ]
+    },
+    {
       "name": "transition",
       "kind": "string",
       "type": "SwiftUICore.AnyTransition",
@@ -15558,11 +15619,13 @@
         "onDisappear",
         "onGeometryChange",
         "onOpenURL",
+        "onPreferenceChange",
         "onTapGesture",
         "opacity",
         "overlay",
         "padding",
         "position",
+        "preference",
         "preferredColorScheme",
         "privacySensitive",
         "redacted",
@@ -15594,6 +15657,7 @@
         "tracking",
         "transaction",
         "transformEffect",
+        "transformPreference",
         "transition",
         "truncationMode",
         "typesettingLanguage",
@@ -16029,9 +16093,11 @@
         "onDisappear",
         "onGeometryChange",
         "onOpenURL",
+        "onPreferenceChange",
         "onTapGesture",
         "overlay",
         "position",
+        "preference",
         "preferredColorScheme",
         "privacySensitive",
         "redacted",
@@ -16062,6 +16128,7 @@
         "tracking",
         "transaction",
         "transformEffect",
+        "transformPreference",
         "transition",
         "truncationMode",
         "typesettingLanguage",

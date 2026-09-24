@@ -93,6 +93,11 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
       const helper = `oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}`
       const apply = (value: string, version: number, fullArguments = false) => {
         const argument = modifier.environmentKey ? `\\.${modifier.environmentKey}, ${value}` :
+          modifier.preferenceKey ? modifier.preferenceOperation === 'set'
+            ? `key: ${modifier.preferenceKey}.self, value: ${value}`
+            : modifier.preferenceOperation === 'transform'
+              ? `${modifier.preferenceKey}.self, { current in current = ${value} }`
+              : `${modifier.preferenceKey}.self, perform: ${value}` :
           !fullArguments && modifier.label && modifier.label !== '_' ? `${modifier.label}: ${value}` : value
         return version > 17
           ? sdkGuard(version, `if #available(iOS ${version}, *) { self.${modifier.sdkName ?? modifier.name}(${argument}) } else { self }`, 'self')
@@ -435,7 +440,7 @@ ${modifier.associatedCases!.map((item) => `      case .${item.name}${item.values
     }`
                   : `{ item in
       let payload = ${eventValueSwift(modifier.eventValue!, 'item')}
-      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+      guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} event") }
       emit(${JSON.stringify(modifier.name)}, encoded)
     }`

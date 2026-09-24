@@ -446,6 +446,7 @@ extension View {
       case "onOpenURLWithPrefersInApp": view = AnyView(view.oneNativeSDKOnOpenURLWithPrefersInApp(value, emit: emit))
       case "onPencilDoubleTap": view = AnyView(view.oneNativeSDKOnPencilDoubleTap(value, emit: emit))
       case "onPencilSqueeze": view = AnyView(view.oneNativeSDKOnPencilSqueeze(value, emit: emit))
+      case "onPreferenceChangePreferredColorScheme": view = AnyView(view.oneNativeSDKOnPreferenceChangePreferredColorScheme(value, emit: emit))
       case "onScrollGeometryChangeWithContainerSize": view = AnyView(view.oneNativeSDKOnScrollGeometryChangeWithContainerSize(value, emit: emit))
       case "onScrollGeometryChangeWithContentOffset": view = AnyView(view.oneNativeSDKOnScrollGeometryChangeWithContentOffset(value, emit: emit))
       case "onScrollGeometryChangeWithContentSize": view = AnyView(view.oneNativeSDKOnScrollGeometryChangeWithContentSize(value, emit: emit))
@@ -470,6 +471,7 @@ extension View {
       case "photosReferenceImageViewer": view = AnyView(view.oneNativeSDKPhotosReferenceImageViewer(value, emit: emit))
       case "pickerStyle": view = AnyView(view.oneNativeSDKPickerStyle(value, emit: emit))
       case "position": view = AnyView(view.oneNativeSDKPosition(value, emit: emit))
+      case "preferencePreferredColorScheme": view = AnyView(view.oneNativeSDKPreferencePreferredColorScheme(value, emit: emit))
       case "preferredColorScheme": view = AnyView(view.oneNativeSDKPreferredColorScheme(value, emit: emit))
       case "presentationBackground": view = AnyView(view.oneNativeSDKPresentationBackground(value, emit: emit))
       case "presentationBackgroundInteraction": view = AnyView(view.oneNativeSDKPresentationBackgroundInteraction(value, emit: emit))
@@ -599,6 +601,7 @@ extension View {
       case "tracking": view = AnyView(view.oneNativeSDKTracking(value, emit: emit))
       case "transaction": view = AnyView(view.oneNativeSDKTransaction(value, emit: emit))
       case "transformEffect": view = AnyView(view.oneNativeSDKTransformEffect(value, emit: emit))
+      case "transformPreferencePreferredColorScheme": view = AnyView(view.oneNativeSDKTransformPreferencePreferredColorScheme(value, emit: emit))
       case "transition": view = AnyView(view.oneNativeSDKTransition(value, emit: emit))
       case "translationPresentation": view = AnyView(view.oneNativeSDKTranslationPresentation(value, emit: emit))
       case "truncationMode": view = AnyView(view.oneNativeSDKTruncationMode(value, emit: emit))
@@ -1485,7 +1488,7 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityZoomAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.accessibilityZoomAction({ item in
       let payload = (["direction": ({ () -> String in switch item.direction { case .zoomIn: return "zoomIn" case .zoomOut: return "zoomOut" } })(), "location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "point": (["x": Double(item.point.x), "y": Double(item.point.y)] as [String: Any])] as [String: Any])
-      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+      guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid accessibilityZoomAction event") }
       emit("accessibilityZoomAction", encoded)
     })
@@ -4903,7 +4906,7 @@ self
   @ViewBuilder fileprivate func oneNativeSDKOnCameraCaptureEvent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) { self.onCameraCaptureEvent(isEnabled: true, action: { item in
       let payload = (["phase": ({ () -> String in switch item.phase { case .began: return "began" case .cancelled: return "cancelled" case .ended: return "ended" @unknown default: return "unknown" } })()] as [String: Any])
-      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+      guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onCameraCaptureEvent event") }
       emit("onCameraCaptureEvent", encoded)
     }) } else { self }
@@ -5024,7 +5027,7 @@ self
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.onDragSessionUpdated({ item in
       let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
-      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+      guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onDragSessionUpdated event") }
       emit("onDragSessionUpdated", encoded)
     }) } else { self }
@@ -5039,7 +5042,7 @@ self
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.onDropSessionUpdated({ item in
       let payload = (["itemsCount": Double(item.itemsCount), "suggestedOperations": (["rawValue": Double(item.suggestedOperations.rawValue)] as [String: Any]), "size": (["width": Double(item.size.width), "height": Double(item.size.height)] as [String: Any]), "location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
-      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+      guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onDropSessionUpdated event") }
       emit("onDropSessionUpdated", encoded)
     }) } else { self }
@@ -5104,7 +5107,7 @@ self
   @ViewBuilder fileprivate func oneNativeSDKOnMapCameraChangeWithEventStruct(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onMapCameraChange(frequency: .onEnd, { item in
       let payload = (["camera": (["distance": Double(item.camera.distance), "heading": Double(item.camera.heading), "pitch": Double(item.camera.pitch)] as [String: Any])] as [String: Any])
-      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+      guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onMapCameraChangeWithEventStruct event") }
       emit("onMapCameraChangeWithEventStruct", encoded)
     })
@@ -5122,7 +5125,7 @@ self
   @ViewBuilder fileprivate func oneNativeSDKOnPencilDoubleTap(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 17.5, *) { self.onPencilDoubleTap(perform: { item in
       let payload = (["hoverPose": (item.hoverPose.map { inner -> Any in (["location": (["x": Double(inner.location.x), "y": Double(inner.location.y)] as [String: Any]), "anchor": (["x": Double(inner.anchor.x), "y": Double(inner.anchor.y)] as [String: Any]), "zDistance": Double(inner.zDistance), "altitude": (["radians": Double(inner.altitude.radians)] as [String: Any]), "azimuth": (["radians": Double(inner.azimuth.radians)] as [String: Any]), "roll": (["radians": Double(inner.roll.radians)] as [String: Any])] as [String: Any]) } ?? NSNull())] as [String: Any])
-      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+      guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onPencilDoubleTap event") }
       emit("onPencilDoubleTap", encoded)
     }) } else { self }
@@ -5143,6 +5146,15 @@ self
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onPencilSqueeze event") }
       emit("onPencilSqueeze", encoded)
     }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnPreferenceChangePreferredColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onPreferenceChange(SwiftUI.PreferredColorSchemeKey.self, perform: { item in
+      let payload = (item.map { inner -> Any in ({ () -> String in switch inner { case .light: return "light" case .dark: return "dark" @unknown default: return "unknown" } })() } ?? NSNull())
+      guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onPreferenceChangePreferredColorScheme event") }
+      emit("onPreferenceChangePreferredColorScheme", encoded)
+    })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnScrollGeometryChangeWithContainerSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -5182,7 +5194,7 @@ self
   @ViewBuilder fileprivate func oneNativeSDKOnScrollTargetVisibilityChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) { self.onScrollTargetVisibilityChange(idType: String.self, threshold: 0.5, { item in
       let payload = item.map { item -> Any in item }
-      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+      guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onScrollTargetVisibilityChange event") }
       emit("onScrollTargetVisibilityChange", encoded)
     }) } else { self }
@@ -5199,7 +5211,7 @@ self
   @ViewBuilder fileprivate func oneNativeSDKOnTapGestureWithPerform(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onTapGesture(count: 1, coordinateSpace: .local, perform: { item in
       let payload = (["x": Double(item.x), "y": Double(item.y)] as [String: Any])
-      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+      guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onTapGestureWithPerform event") }
       emit("onTapGestureWithPerform", encoded)
     })
@@ -5223,7 +5235,7 @@ self
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.pasteDestination(for: String.self, action: { item in
       let payload = item.map { item -> Any in item }
-      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+      guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid pasteDestination event") }
       emit("pasteDestination", encoded)
     }, validator: { $0 }) } else { self }
@@ -5454,6 +5466,15 @@ self
       return CGFloat(number)
     }()
     self.position(x: argument0, y: argument1)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPreferencePreferredColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.preference(key: SwiftUI.PreferredColorSchemeKey.self, value: nil as SwiftUI.ColorScheme?)
+      case "light": self.preference(key: SwiftUI.PreferredColorSchemeKey.self, value: SwiftUI.ColorScheme.light)
+      case "dark": self.preference(key: SwiftUI.PreferredColorSchemeKey.self, value: SwiftUI.ColorScheme.dark)
+    default: preconditionFailure("invalid preferencePreferredColorScheme: \(value)")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPreferredColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -7667,6 +7688,15 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
       return CoreFoundation.CGAffineTransform(a: CGFloat(field0), b: CGFloat(field1), c: CGFloat(field2), d: CGFloat(field3), tx: CGFloat(field4), ty: CGFloat(field5))
     }()
     self.transformEffect(argument0)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformPreferencePreferredColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.transformPreference(SwiftUI.PreferredColorSchemeKey.self, { current in current = nil as SwiftUI.ColorScheme? })
+      case "light": self.transformPreference(SwiftUI.PreferredColorSchemeKey.self, { current in current = SwiftUI.ColorScheme.light })
+      case "dark": self.transformPreference(SwiftUI.PreferredColorSchemeKey.self, { current in current = SwiftUI.ColorScheme.dark })
+    default: preconditionFailure("invalid transformPreferencePreferredColorScheme: \(value)")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
