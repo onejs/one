@@ -1,30 +1,114 @@
 ---
-title: Presentations and Tabs
-description: Sheets, popovers, menus, and tabs under One.iOS
+title: Presentations and Menus
+description: Sheet, FullScreenCover, Popover, Alert, ConfirmationDialog, QuickLook, Menu, and ContextMenu under One.iOS
 ---
 
-Sheets, popovers, menus, and tabs under `One.iOS`.
+Modal presentations and menus under `One.iOS`. Sheet-style components are
+controlled with `isPresented`, `onIsPresentedChange`, and `revision`.
 
-| Component | Key props |
-|-----------|-----------|
-| `Sheet` | `isPresented`, `onIsPresentedChange`, `presentationDetents`, `selectedDetent`, `onSelectedDetentChange`, `fitToContents`, `presentationDragIndicator`, `interactiveDismissDisabled`, `presentationBackground` |
-| `FullScreenCover` | `isPresented`, `onIsPresentedChange`, `onDismiss` |
-| `Popover` | `isPresented`, `onIsPresentedChange`, `arrowEdge`, `contentWidth`, `contentHeight`, `content` |
-| `Menu` | `items`, `onAction`, `accessibilityLabel`; children render the trigger |
-| `ContextMenu` | same as `Menu`; the trigger keeps its own touches |
-| `Tabs`, `Tab` | `selection`, `onSelectionChange`, `tabViewStyle`, `tabBarVisibility`, `customization`, `swiftStyle`; tabs carry `id`, `title`, `systemImage`, `badge`, `role` |
+## Sheet
 
-A `Tab` carries either `onPress` or children, never both. An action tab runs
-its handler and never becomes the selection. `selection` must identify a
-mounted page tab.
+`One.iOS.Sheet` presents a sheet. `presentationDetents` lists the allowed
+heights: `'medium'`, `'large'`, `{ fraction }` (0 to 1), or `{ height }`
+in points, defaulting to large. Detents must be unique.
+
+| Prop | Type |
+|------|------|
+| `isPresented`, `onIsPresentedChange` | `boolean`, `(value: boolean) => void` |
+| `onDismiss` | `() => void` |
+| `presentationDetents` | `readonly` detent |
+| `selectedDetent`, `onSelectedDetentChange` | controlled detent (pass both or neither) |
+| `detentRevision` | `number` |
+| `fitToContents` | `boolean` (cannot combine with `selectedDetent`) |
+| `presentationDragIndicator` | visibility |
+| `interactiveDismissDisabled` | `boolean` |
+| `presentationBackground` | color value |
+| `presentationBackgroundInteraction` | `'automatic'`, `'enabled'`, `'disabled'`, or `{ enabledUpThrough: detent }` |
+| `presentationContentInteraction` | content interaction |
+| `presentationSizing` | `'automatic'`, `'fitted'`, `'form'`, `'page'` |
 
 ```tsx
 import { One } from 'one'
 
-<One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
-  <One.iOS.Tab id="feed" title="Feed" systemImage="house">
-    <FeedScreen />
-  </One.iOS.Tab>
-  <One.iOS.Tab id="new" title="New" systemImage="plus" onPress={openComposer} />
-</One.iOS.Tabs>
+<One.iOS.Sheet
+  isPresented={open}
+  onIsPresentedChange={setOpen}
+  presentationDetents={['medium', 'large']}
+/>
 ```
+
+## FullScreenCover
+
+`One.iOS.FullScreenCover` covers the screen with `isPresented`,
+`onIsPresentedChange`, `onDismiss`, and `revision`. It has no detents: the
+content dismisses from React or from a control it supplies.
+
+## Popover
+
+`One.iOS.Popover` anchors a popover to its children. `content` is the
+popover body with an explicit `contentWidth` and `contentHeight`;
+`arrowEdge` picks the arrow edge and `presentationCompactAdaptation` picks
+the compact adaptation.
+
+## Alert
+
+`One.iOS.Alert` shows a system alert. `title` and `message` are strings,
+`actions` is a list of `{ id, label, role }`, `onAction` receives `(id,
+presenting)`, and `presenting` scopes the callback.
+
+## ConfirmationDialog
+
+`One.iOS.ConfirmationDialog` has the same props as `Alert` plus
+`titleVisibility`, which mirrors the SwiftUI title visibility.
+
+## QuickLook
+
+`One.iOS.QuickLook` previews the document at `url` while `isPresented` is
+true.
+
+## Menu
+
+`One.iOS.Menu` renders its children as the trigger and opens a SwiftUI menu
+on tap. `items` is a list of menu items, `onAction` receives the tapped
+item id, and `accessibilityLabel` names the trigger.
+
+Item shapes:
+
+| `type` | Key fields |
+|--------|-----------|
+| `'action'` | `id`, `title`, `systemImage`, `role`, `disabled`, `hidden`, `help` |
+| `'toggle'` | `id`, `title`, `systemImage`, `values` (boolean list) |
+| `'submenu'` | `id`, `title`, `systemImage`, `children`, `menuOrder` |
+| `'section'` | `id`, `title`, `children` |
+| `'controlGroup'` | `id`, `title`, `systemImage`, `children`, `controlGroupStyle` |
+| `'divider'` | `id` |
+
+Item ids must be unique and nonempty. A menu with toggles requires
+`onValueChange`, which receives `(id, value, sourceIndex)`. `menuOrder` and
+`menuActionDismissBehavior` mirror the SwiftUI menu modifiers, and
+`disabled` disables the trigger.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Menu
+  accessibilityLabel="Options"
+  items={[
+    { type: 'action', id: 'share', title: 'Share', systemImage: 'square.and.arrow.up' },
+    { type: 'divider', id: 'sep' },
+    { type: 'action', id: 'delete', title: 'Delete', role: 'destructive' },
+  ]}
+  onAction={(id) => act(id)}
+>
+  <One.iOS.Image systemName="ellipsis.circle" />
+</One.iOS.Menu>
+```
+
+## ContextMenu
+
+`One.iOS.ContextMenu` takes the same props as `Menu` (with an optional
+`accessibilityLabel`) and opens on long press instead of tap. The trigger
+keeps its own touches.
+
+On web and Android these views throw, except where noted. Keep them behind
+a platform check.

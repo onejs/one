@@ -16,7 +16,10 @@ gradient over the children), or `blur` (progressive blur); the mode follows
 corner radius; `style.borderRadius` is ignored.
 
 `Blur` takes `intensity` (0 to 100, default 50) and `tint`. `Mask` takes a
-`maskElement` subtree whose opaque pixels show the content.
+`maskElement` subtree whose opaque pixels show the content and whose
+transparent pixels hide it. The mask renders offscreen and must fill the
+whole view; anything but an element warns once and renders the children
+unmasked.
 
 ```tsx
 import { One } from 'one'

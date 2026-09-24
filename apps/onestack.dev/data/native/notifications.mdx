@@ -94,9 +94,15 @@ await One.Notifications.schedule({
 })
 ```
 
-`cancelScheduled`, `cancelAllScheduled`, and `getAllScheduled` manage the
-pending list; `getPresented`, `dismiss`, and `dismissAll` manage what is on
-screen.
+`cancelScheduled` removes one pending notification by identifier,
+`cancelAllScheduled` clears the pending list, and `getAllScheduled`
+resolves the pending requests. `getPresented` resolves the notifications
+currently on screen, `dismiss` removes one by identifier, and `dismissAll`
+clears them.
+
+On web there is no native runtime: permission reads resolve denied, lists
+are empty, listeners are inert, and `schedule` rejects. Input checks match
+native exactly, so bad input throws on web the same way.
 
 On Android the triggers ride `AlarmManager.setAndAllowWhileIdle`: one inexact
 path, no `SCHEDULE_EXACT_ALARM`, so a delivery deferred by doze is expected,

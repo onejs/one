@@ -3,26 +3,29 @@ title: Android Compose
 description: Jetpack Compose views under One.Android
 ---
 
-Jetpack Compose views under `One.Android`. Containers take children;
-`Text`, `Icon`, `Button`, `Switch`, `TextField`, `Slider`, `AlertDialog`,
-and `ProgressIndicator` are leaves and reject children. A node nested in a
-Compose tree styles through `composeStyle`; `style` applies only at the root
-of the tree.
+Jetpack Compose views under `One.Android`. Layout nodes (`Column`, `Row`,
+`Box`) take children; `Text`, `Icon`, `Button`, `Switch`, `TextField`,
+`Slider`, `AlertDialog`, and `ProgressIndicator` are leaves. `Dialog`
+takes children and shows them in a dialog window. Every node takes the
+shared props (`accessibilityLabel`, `accessibilityState`,
+`accessibilityValue`, `accessibilityRole`, `testID`, `style`) plus
+`composeStyle`: background and foreground colors, padding, width, height,
+`fillMaxWidth`, `fillMaxHeight`, `cornerRadius`, `opacity`, border color
+and width. A node nested in a Compose tree styles through `composeStyle`;
+`style` applies only at the root of the tree.
 
-| Component | Key props |
-|-----------|-----------|
-| `Column` | `horizontalAlignment`, `verticalArrangement`, `spacing` |
-| `Row` | `verticalAlignment`, `horizontalArrangement`, `spacing` |
-| `Box` | `contentAlignment` |
-| `Text` | `text`, `fontSize`, `fontWeight`, `textAlign`, `maxLines` |
-| `Icon` | `name`, `size` (default 24), `filled` |
-| `Button` | `label`, `variant` (`filled`, `outlined`, `text`), `tone` (`default`, `danger`), `icon`, `iconFilled`, `onPress` |
-| `Switch` | `isOn`, `onIsOnChange`, `label` |
-| `TextField` | `text` (string or native state), `onTextChange`, `label`, `placeholder`, `variant` (`filled`, `outlined`), `keyboardType`, `secureText`, `focused`, `onFocusChange`, `imeAction`, `onSubmit`, `maxLength`, `multiline`, `capitalization`, `autoCorrect`, `textAlign` |
-| `Slider` | `value`, `onValueChange`, `minimumValue`, `maximumValue`, `step` |
-| `AlertDialog` | `visible`, `title`, `message`, `confirmLabel`, `dismissLabel`, `onConfirm`, `onDismiss` |
-| `Dialog` | `visible`, `onDismiss` |
-| `ProgressIndicator` | `variant` (`linear` or `circular`), `progress` |
+## Column, Row, Box
+
+`One.Android.Column` stacks children vertically with
+`horizontalAlignment` (`'start'`, `'centerHorizontally'`, `'end'`) and
+`verticalArrangement` (`'top'`, `'center'`, `'bottom'`, `'spaceBetween'`,
+`'spaceAround'`, `'spaceEvenly'`). `One.Android.Row` is the horizontal
+mirror with `verticalAlignment` (`'top'`, `'centerVertically'`,
+`'bottom'`) and `horizontalArrangement` (same six values). Both take
+`spacing` in dp. `One.Android.Box` layers children with
+`contentAlignment` (`'topStart'`, `'topCenter'`, `'topEnd'`,
+`'centerStart'`, `'center'`, `'centerEnd'`, `'bottomStart'`,
+`'bottomCenter'`, `'bottomEnd'`, `'top'`, `'bottom'`, `'start'`, `'end'`).
 
 ```tsx
 import { One } from 'one'
@@ -33,5 +36,77 @@ import { One } from 'one'
 </One.Android.Column>
 ```
 
-`One.Android` components throw when rendered outside an Android build, so keep
-those branches behind platform checks.
+## Text
+
+`One.Android.Text` renders `text` with `fontSize` in sp, `fontWeight`
+(`'thin'` through `'black'`), `textAlign` (`'unspecified'`, `'left'`,
+`'right'`, `'center'`, `'justify'`, `'start'`, `'end'`), and `maxLines`.
+
+## Icon
+
+`One.Android.Icon` renders a Material icon by `name` with `size` in dp
+(default 24) and `filled` for the filled variant. For a cross-platform icon
+that also renders on iOS and web, use [One.UI.Icon](/native/icons) with
+per-platform elements instead.
+
+## Button
+
+`One.Android.Button` shows `label` with an optional `icon` (and
+`iconFilled`). `variant` is `'filled'`, `'outlined'`, or `'text'`; `tone`
+is `'default'` or `'danger'`; `disabled` disables it; `onPress` handles
+taps.
+
+## Switch
+
+`One.Android.Switch` is the Compose toggle: `isOn` with `onIsOnChange`
+(required), an optional `label`, `disabled`, and `revision` for external
+resets.
+
+## TextField
+
+`One.Android.TextField` edits `text` (a string or a native state handle
+from `One.UI.useNativeState`) and reports `onTextChange` (required).
+`revision` resets externally.
+
+| Prop | Type |
+|------|------|
+| `label`, `placeholder` | `string` |
+| `variant` | `'filled'` or `'outlined'` |
+| `keyboardType` | `'default'`, `'number'`, `'decimal'`, `'email'`, `'password'`, `'phone'`, `'url'` |
+| `secureText` | `boolean` |
+| `disabled` | `boolean` |
+| `focused`, `focusRevision` | `boolean`, `number` |
+| `onFocusChange` | `(focused: boolean) => void` |
+| `imeAction` | `'default'`, `'none'`, `'go'`, `'search'`, `'send'`, `'previous'`, `'next'`, `'done'` |
+| `onSubmit` | `() => void` |
+| `maxLength` | `number` |
+| `multiline` | `boolean` |
+| `capitalization` | `'none'`, `'characters'`, `'words'`, `'sentences'` |
+| `autoCorrect` | `boolean` |
+| `textAlign` | text align |
+
+For a cross-platform field that also runs on iOS and web, use
+[One.UI.TextInput](/native/text-input) instead.
+
+## Slider
+
+`One.Android.Slider` picks a number with `value` and `onValueChange`
+(required), `revision`, `minimumValue`, `maximumValue`, `step`, and
+`disabled`.
+
+## AlertDialog, Dialog
+
+`One.Android.AlertDialog` shows a confirmation while `visible` is true.
+`title` and `message` are strings; `confirmLabel` (required) and
+`dismissLabel` name the buttons; `onConfirm` and `onDismiss` (both
+required) handle them. `One.Android.Dialog` shows its children in a dialog
+window while `visible` is true and reports dismissal through `onDismiss`.
+
+## ProgressIndicator
+
+`One.Android.ProgressIndicator` shows progress as `'linear'` or
+`'circular'` (default linear). Leave `progress` undefined for an
+indeterminate indicator.
+
+`One.Android` components throw when rendered outside an Android build, so
+keep those branches behind platform checks.
