@@ -1,9 +1,11 @@
 import type { StyleField } from './catalog'
 import type { DerivedModifier, DerivedViewSlot, EventValueSchema } from './deriveSDK'
+import { eventValueType } from './emitControls'
 import { sdkGuard } from './sdkGuard'
 
 const eventValueSwift = (value: EventValueSchema, expression: string): string => {
   if (value.kind === 'number') return `Double(${expression})`
+  if (value.kind === 'description') return `String(describing: ${expression})`
   if (value.kind === 'string' || value.kind === 'boolean') return expression
   if (value.kind === 'point')
     return `(["x": Double(${expression}.x), "y": Double(${expression}.y)] as [String: Any])`
@@ -15,6 +17,27 @@ const eventValueSwift = (value: EventValueSchema, expression: string): string =>
     return `(${expression}.map { inner -> Any in ${eventValueSwift(value.value, 'inner')} } ?? NSNull())`
   if (value.kind === 'array')
     return `${expression}.map { item -> Any in ${eventValueSwift(value.value, 'item')} }`
+  if (value.kind === 'verification')
+    return `({ () -> [String: Any] in
+      switch ${expression} {
+      case .verified: return ["case": "verified", "jwsRepresentation": ${expression}.jwsRepresentation, "error": NSNull()]
+      case .unverified(_, let error): return ["case": "unverified", "jwsRepresentation": ${expression}.jwsRepresentation, "error": String(describing: error)]
+      }
+    })()`
+  if (value.kind === 'result')
+    return `({ () -> [String: Any] in
+      switch ${expression} {
+      case .success(let item): return ["case": "success", "value": ${eventValueSwift(value.value, 'item')}]
+      case .failure(let error): return ["case": "failure", "error": String(describing: error)]
+      }
+    })()`
+  if (value.kind === 'associatedEnum')
+    return `({ () -> [String: Any] in
+      switch ${expression} {
+${value.cases.map((item) => `      case .${item.name}${item.values.length ? `(${item.values.map((_, index) => `let value${index}`).join(', ')})` : ''}: return ["case": ${JSON.stringify(item.name)}, "values": [${item.values.map((nested, index) => eventValueSwift(nested, `value${index}`)).join(', ')}]]`).join('\n')}
+${value.open ? '      @unknown default: return ["case": "unknown", "values": []]' : ''}
+      }
+    })()`
   return `([${value.fields.map((field) => `${JSON.stringify(field.name)}: ${eventValueSwift(field.value, `${expression}.${field.name}`)}`).join(', ')}] as [String: Any])`
 }
 
@@ -25,11 +48,13 @@ export function emitStyle(
   derived: readonly DerivedModifier[],
   slots: readonly DerivedViewSlot[]
 ) {
-  outputs.set('src/generated/viewSlots.ts', header + `export const viewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.ios])))} as const
+  outputs.set('src/generated/viewSlots.ts', header + `import type { SDKEventValueShape } from './swiftStyleNative'
+export const viewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.ios])))} as const
 export type ViewSlotName = keyof typeof viewSlotAvailability
 export const viewSlotArguments = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.arguments.map((argument) => ({ field: argument.field, kind: argument.kind, ...(argument.cases ? { cases: Object.fromEntries(argument.cases.map((item) => [item.name, item.ios])) } : {}) }))])))} as const
+export const viewSlotEvents: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(slots.filter((slot) => slot.preferenceEvent).map((slot) => [slot.name, slot.preferenceEvent])))}
 export type ViewSlotConfiguration =
-${slots.map((slot) => `  | { name: ${JSON.stringify(slot.name)}; ${slot.arguments.length ? `options: { ${slot.arguments.map((argument) => `${argument.field}: ${argument.kind === 'bindingBoolean' ? '{ value: boolean; onChange: (value: boolean) => void }' : argument.kind === 'bindingString' ? '{ value: string; onChange: (value: string) => void }' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'string' ? 'string' : argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}`).join('; ')} }` : 'options?: never'} }`).join('\n')}
+${slots.map((slot) => `  | { name: ${JSON.stringify(slot.name)}; ${slot.arguments.length || slot.preferenceEvent ? `options: { ${[...slot.arguments.map((argument) => `${argument.field}: ${argument.kind === 'bindingBoolean' ? '{ value: boolean; onChange: (value: boolean) => void }' : argument.kind === 'bindingString' ? '{ value: string; onChange: (value: string) => void }' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'string' ? 'string' : argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}`), ...(slot.preferenceEvent ? [`onValue: (value: ${eventValueType(slot.preferenceEvent)}) => void`] : [])].join('; ')} }` : 'options?: never'} }`).join('\n')}
 export const tabViewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.filter((slot) => /^tabView[A-Z]/.test(slot.name)).map((slot) => [slot.name, slot.ios])))} as const
 export type TabViewSlotName = keyof typeof tabViewSlotAvailability
 `)
@@ -65,7 +90,13 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
           default: preconditionFailure("invalid ${slot.name}.${argument.field}")
           }
         }()`).join('\n')}
-` : ''}        return AnyView(self.${slot.sdkName ?? slot.name}(${[...slot.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`), `${slot.label === '_' ? '' : `${slot.label}: `}${slot.directValue ? 'content()' : slot.closureInputs ? `{ ${slot.closureInputs.map(() => '_').join(', ')} in content() }` : 'content'}`].join(', ')}))
+` : ''}        ${slot.preferenceKey ? `return AnyView(self.${slot.sdkName ?? slot.name}(${slot.preferenceKey}.self, alignment: .center) { _ in content() }
+          .onPreferenceChange(${slot.preferenceKey}.self) { value in
+            let payload = ${eventValueSwift(slot.preferenceEvent!, 'value')}
+            guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+              let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${slot.name} preference") }
+            emit(${JSON.stringify(slot.name)}, encoded)
+          })` : `return AnyView(self.${slot.sdkName ?? slot.name}(${[...slot.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`), `${slot.label === '_' ? '' : `${slot.label}: `}${slot.directValue ? 'content()' : slot.closureInputs ? `{ ${slot.closureInputs.map(() => '_').join(', ')} in content() }` : 'content'}`].join(', ')}))`}
       }`, '')}
       return AnyView(self)`).join('\n')}
     default: preconditionFailure("unknown view slot: \\(name)")
@@ -79,7 +110,12 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
   const colorFields = styleFields.filter((field) => field.kind === 'color')
   const frameworkImports = [
     ...new Set(
-      derived.flatMap((modifier) => (modifier.framework ? [modifier.framework] : []))
+      derived.flatMap((modifier) => [
+        ...(modifier.framework ? [modifier.framework] : []),
+        ...(modifier.sharedParameter ? [modifier.sharedParameter.type.split('.')[0]] : []),
+        ...(modifier.arguments?.some((argument) => argument.type.includes('UniformTypeIdentifiers.'))
+          ? ['UniformTypeIdentifiers'] : []),
+      ])
     ),
   ]
   const generatedCalls = derived
@@ -92,7 +128,17 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
     .map((modifier) => {
       const helper = `oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}`
       const apply = (value: string, version: number, fullArguments = false) => {
-        const argument = modifier.environmentKey ? `\\.${modifier.environmentKey}, ${value}` :
+        const argument = modifier.environmentKey
+          ? modifier.environmentTransform
+            ? modifier.environmentTransform === 'toggle'
+              ? `\\.${modifier.environmentKey}, transform: { environmentValue in if ${value} { environmentValue.toggle() } }`
+              : `\\.${modifier.environmentKey}, transform: { environmentValue in environmentValue += ${value} }`
+            : `\\.${modifier.environmentKey}, ${value}` :
+          modifier.preferenceKey ? modifier.preferenceOperation === 'set'
+            ? `key: ${modifier.preferenceKey}.self, value: ${value}`
+            : modifier.preferenceOperation === 'transform'
+              ? `${modifier.preferenceKey}.self, { current in current = ${value} }`
+              : `${modifier.preferenceKey}.self, perform: ${value}` :
           !fullArguments && modifier.label && modifier.label !== '_' ? `${modifier.label}: ${value}` : value
         return version > 17
           ? sdkGuard(version, `if #available(iOS ${version}, *) { self.${modifier.sdkName ?? modifier.name}(${argument}) } else { self }`, 'self')
@@ -152,6 +198,23 @@ ${cases}
         emit(${JSON.stringify(`${modifier.name}.${argument.field}`)}, encoded)
       })
     }()`
+          if ((argument.kind === 'resultURL' || argument.kind === 'resultURLArray') &&
+            argumentsFromSDK.some((item) => item.field === 'allowedContentTypes' &&
+              item.type === '[UniformTypeIdentifiers.UTType]'))
+            return `    let ${variable}: (Swift.Result<${argument.kind === 'resultURL' ? 'Foundation.URL' : '[Foundation.URL]'}, any Swift.Error>) -> Swift.Void = { result in
+      DispatchQueue.global(qos: .utility).async {
+        let payload: [String: Any]
+        switch result {
+        case .success(let urls):
+          do { payload = ["success": ${argument.kind === 'resultURL' ? 'try oneNativeCopyToCaches(urls).absoluteString' : 'try urls.map(oneNativeCopyToCaches).map(\\.absoluteString)'}] }
+          catch { payload = ["failure": String(describing: error)] }
+        case .failure(let error): payload = ["failure": String(describing: error)]
+        }
+        guard let data = try? JSONSerialization.data(withJSONObject: payload),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name}.${argument.field} result") }
+        DispatchQueue.main.async { emit(${JSON.stringify(`${modifier.name}.${argument.field}`)}, encoded) }
+      }
+    }`
           if (argument.kind === 'resultURL' || argument.kind === 'resultURLArray')
             return `    let ${variable}: (Swift.Result<${argument.kind === 'resultURL' ? 'Foundation.URL' : '[Foundation.URL]'}, any Swift.Error>) -> Swift.Void = { result in
       let payload: [String: Any]
@@ -172,15 +235,22 @@ ${cases}
       emit(${JSON.stringify(`${modifier.name}.${argument.field}`)}, encoded)
     }`
           }
-          if (argument.kind === 'classUpdate') {
-            const input = /^@escaping \(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (?:Swift\.Void|\(\))$/.exec(argument.type)![1]
-            const assignments = argument.fields!.map((field) => `      if let raw = updated[${JSON.stringify(field.name)}] {
-        ${field.type === 'Swift.String?' ? `if raw is NSNull { item.${field.name} = nil }
+          if (argument.kind === 'classUpdate' || argument.kind === 'structUpdate') {
+            const input = /^@escaping \((?:inout )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (?:Swift\.Void|\(\))$/.exec(argument.type)![1]
+            const assignments = argument.fields!.map((field) => {
+              const assignment = field.type === 'Swift.String?' ? `if raw is NSNull { item.${field.name} = nil }
         else if let string = raw as? String { item.${field.name} = string }
         else { preconditionFailure("invalid ${modifier.name}.${argument.field}.${field.name}") }` : `guard let value = raw as? ${field.type === 'Swift.Bool' ? 'Bool' : 'String'} else { preconditionFailure("invalid ${modifier.name}.${argument.field}.${field.name}") }
-        item.${field.name} = value`}
-      }`).join('\n')
-            return `    let ${variable}: (${input}) -> Void = {
+        item.${field.name} = value`
+              const guarded = field.ios && field.ios > modifier.ios
+                ? `if #available(iOS ${field.ios}, *) {
+        ${assignment}
+        }` : assignment
+              return `      if let raw = updated[${JSON.stringify(field.name)}] {
+        ${guarded}
+      }`
+            }).join('\n')
+            return `    let ${variable}: (${argument.kind === 'structUpdate' ? 'inout ' : ''}${input}) -> Void = {
       guard let raw = ${raw}, let data = raw.data(using: .utf8),
         let updated = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
         !updated.isEmpty else { preconditionFailure("invalid ${modifier.name}.${argument.field}") }
@@ -208,7 +278,7 @@ ${assignments}
             return `    let ${variable}: ${argument.type} = {
       guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
       guard let data = raw.data(using: .utf8), let strings = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid ${modifier.name}.${argument.field}: \\(raw)") }
-      return ${argument.kind === 'stringSet' ? 'Set(strings)' : baseType === '[SwiftUICore.Text]' ? 'strings.map { Text($0) }' : 'strings'}
+      return ${expression(argument.swiftExpression, 'strings') ?? (argument.kind === 'stringSet' ? 'Set(strings)' : baseType === '[SwiftUICore.Text]' ? 'strings.map { Text($0) }' : 'strings')}
     }()`
           if (argument.kind === 'numericStruct' || argument.kind === 'numericTuple') {
             const fields = argument.fields!
@@ -229,9 +299,27 @@ ${assignments}
       return ${expression(argument.swiftExpression, 'raw') ?? (baseType === 'SwiftUICore.Text' ? 'Text(raw)' : baseType === 'SwiftUICore.Image' ? 'Image(systemName: raw)' : construct('raw', argument.scalarConstructor, argument.type))}
     }()`
         }).join('\n')
-        const call = argumentsFromSDK.map((argument, index) =>
+        const callArguments = argumentsFromSDK.slice(0, modifier.factoryParameter?.argumentOffset).map((argument, index) =>
           `${argument.label === '_' ? '' : `${argument.label}: `}${argument.closureInput ? `{ (_: ${argument.closureInput}) in argument${index} }` : `argument${index}`}`
-        ).join(', ')
+        )
+        if (modifier.factoryParameter) {
+          const constructor = argumentsFromSDK.slice(modifier.factoryParameter.argumentOffset)
+            .map((argument, index) =>
+              `${argument.label === '_' ? '' : `${argument.label}: `}argument${modifier.factoryParameter!.argumentOffset + index}`)
+            .join(', ')
+          callArguments.splice(modifier.factoryParameter.index, 0,
+            `${modifier.factoryParameter.label === '_' ? '' : `${modifier.factoryParameter.label}: `}{ ${modifier.factoryParameter.type}(${constructor}) }`)
+        }
+        if (modifier.namespaceParameter)
+          callArguments.splice(modifier.namespaceParameter.index, 0,
+            `${modifier.namespaceParameter.label === '_' ? '' : `${modifier.namespaceParameter.label}: `}OneNativeNamespace.id`)
+        if (modifier.sharedParameter)
+          callArguments.splice(modifier.sharedParameter.index, 0,
+            `${modifier.sharedParameter.label === '_' ? '' : `${modifier.sharedParameter.label}: `}${modifier.sharedParameter.type}.shared()`)
+        if (modifier.fixedParameter)
+          callArguments.splice(modifier.fixedParameter.index, 0,
+            `${modifier.fixedParameter.label === '_' ? '' : `${modifier.fixedParameter.label}: `}${modifier.fixedParameter.expression}`)
+        const call = callArguments.join(', ')
         const body = `let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -240,11 +328,12 @@ ${assignments}
     }()
 ${parsedArguments}
     ${apply(call, 17, true)}`
-        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+        const generated = `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     ${modifier.ios > 17 ? sdkGuard(modifier.ios, `if #available(iOS ${modifier.ios}, *) {
       ${body}
     } else { self }`, 'self') : body}
   }`
+        return modifier.sharedParameter ? generated.replace(/^    $/gm, '') : generated
       }
       if (modifier.kind === 'gesture')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -381,6 +470,90 @@ ${modifier.cases!.map((item) => `      case ${JSON.stringify(item.name)}: return
     } else { self }`, 'self') : body}
   }`
       }
+      if (modifier.kind === 'eventAsync')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    ${apply(`{ await OneNativeAsyncAction.wait(name: ${JSON.stringify(modifier.name)}, emit: emit) }`, modifier.ios)}
+  }`
+      if (modifier.kind === 'eventAsyncStruct')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    ${modifier.arguments?.length ? `let decoded: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data),
+        decoded.count == ${modifier.arguments.length} else { preconditionFailure("invalid ${modifier.name} arguments") }
+      return decoded
+    }()
+${modifier.arguments.map((argument, index) => argument.kind === 'stringArray'
+  ? `    let argument${index}: [String] = {
+      guard let data = decoded[${index}].data(using: .utf8),
+        let items = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid ${modifier.name}.${argument.field}") }
+      return items
+    }()` : '').filter(Boolean).join('\n')}
+    ` : ''}${apply(`${modifier.arguments?.length ? `${modifier.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}${argument.kind === 'stringArray' ? `argument${index}` : `decoded[${index}]`}`).join(', ')}, ${modifier.label === '_' ? '' : `${modifier.label}: `}` : ''}{ ${modifier.eventInputs?.join(', ') ?? 'item'} in
+      let payload = ${modifier.eventInputs && modifier.eventValue?.kind === 'object'
+        ? `([${modifier.eventValue.fields.map((field, index) => `${JSON.stringify(field.name)}: ${eventValueSwift(field.value, modifier.eventInputs![index])}`).join(', ')}] as [String: Any])`
+        : eventValueSwift(modifier.eventValue!, 'item')}
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} async event") }
+      await OneNativeAsyncAction.wait(name: ${JSON.stringify(modifier.name)}, value: encoded, emit: emit)
+    }`, modifier.ios, Boolean(modifier.arguments?.length))}
+  }`
+      if (modifier.kind === 'visualEffect')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let decoded: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid ${modifier.name} visual effect") }
+      return decoded
+    }()
+    let amount: Double = {
+      guard let amount = Double(decoded[1]), amount.isFinite else { preconditionFailure("invalid ${modifier.name} amount") }
+      return amount
+    }()
+    switch decoded[0] {
+    case "opacity": ${apply(modifier.visualPhase
+      ? 'transition: { effect, phase in effect.opacity(1 - (1 - amount) * abs(phase.value)) }'
+      : '{ effect, _ in effect.opacity(amount) }', modifier.ios, Boolean(modifier.visualPhase))}
+    case "scaleEffect": ${apply(modifier.visualPhase
+      ? 'transition: { effect, phase in effect.scaleEffect(CGFloat(1 - (1 - amount) * abs(phase.value))) }'
+      : '{ effect, _ in effect.scaleEffect(CGFloat(amount)) }', modifier.ios, Boolean(modifier.visualPhase))}
+    default: preconditionFailure("invalid ${modifier.name} visual effect kind")
+    }
+  }`
+      if (modifier.kind === 'optionSet')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let decoded: [String: String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: String].self, from: data) else { preconditionFailure("invalid ${modifier.name} options") }
+      return decoded
+    }()
+    let options: [${modifier.resultType}] = {
+      var options: [${modifier.resultType}] = []
+${modifier.arguments!.map((argument) => `      if let raw = decoded[${JSON.stringify(argument.field)}] {
+${argument.kind === 'number' ? `        guard let parsed = Int(raw) else { preconditionFailure("invalid ${modifier.name}.${argument.field}") }` : argument.kind === 'boolean' ? `        guard raw == "true" || raw == "false" else { preconditionFailure("invalid ${modifier.name}.${argument.field}") }` : ''}
+        options.append(${modifier.resultType}.${argument.field}(${argument.label === '_' ? '' : `${argument.label}: `}${argument.kind === 'number' ? 'parsed' : argument.kind === 'boolean' ? 'raw == "true"' : 'raw'}))
+      }`).join('\n')}
+      return options
+    }()
+    ${apply('{ _ in Set(options) }', modifier.ios)}
+  }`
+      if (modifier.kind === 'selectionID')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    ${apply('{ _, _, eligible in eligible.first { $0.id == value } }', modifier.ios)}
+  }`
+      if (modifier.kind === 'caseSet')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let selected: Set<${modifier.resultType}> = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid ${modifier.name} values") }
+      return Set(decoded.map { item in
+        switch item {
+${modifier.cases!.map((item) => `        case ${JSON.stringify(item.name)}: return ${modifier.resultType}.${item.name}`).join('\n')}
+        default: preconditionFailure("invalid ${modifier.name} value: \\(item)")
+        }
+      })
+    }()
+    ${apply('selected', modifier.ios)}
+  }`
       if (modifier.kind.startsWith('event') || modifier.kind.startsWith('binding')) {
         const bridge = modifier.kind.startsWith('event')
           ? modifier.kind === 'event'
@@ -415,7 +588,7 @@ ${modifier.associatedCases!.map((item) => `      case .${item.name}${item.values
     }`
                   : `{ item in
       let payload = ${eventValueSwift(modifier.eventValue!, 'item')}
-      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+      guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} event") }
       emit(${JSON.stringify(modifier.name)}, encoded)
     }`
@@ -426,13 +599,17 @@ ${modifier.associatedCases!.map((item) => `      case .${item.name}${item.values
     }`
             : `{ value in emit(${JSON.stringify(modifier.name)}, ${modifier.type.includes('Foundation.URL') ? 'value.absoluteString' : 'String(value)'}) }`
           : modifier.kind === 'bindingOptionalString'
-            ? `Binding<String?>(get: {
+            ? `Binding<${modifier.type.includes('Foundation.URL?') ? 'Foundation.URL' : 'String'}?>(get: {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
         decoded is NSNull || decoded is String else { preconditionFailure("invalid ${modifier.name}: \\(value)") }
-      return decoded as? String
+      ${modifier.type.includes('Foundation.URL?') ? `if let raw = decoded as? String {
+        guard let url = Foundation.URL(string: raw) else { preconditionFailure("invalid ${modifier.name} URL") }
+        return url
+      }
+      return nil` : 'return decoded as? String'}
     }, set: { changed in
-      guard let data = try? JSONEncoder().encode(changed), let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} binding event") }
+      guard let data = try? JSONEncoder().encode(${modifier.type.includes('Foundation.URL?') ? 'changed?.absoluteString' : 'changed'}), let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} binding event") }
       emit(${JSON.stringify(modifier.name)}, encoded)
     })`
             : `Binding(get: { ${modifier.kind === 'bindingBoolean' ? 'value == "true"' : 'value'} }, set: { emit(${JSON.stringify(modifier.name)}, String($0)) })`
@@ -447,9 +624,12 @@ ${validation}    ${apply(argumentsFromSDK ?? bridge, modifier.ios, argumentsFrom
   }`
       }
       if (modifier.zeroArgument) {
+        const argument = modifier.namespaceParameter
+          ? `${modifier.namespaceParameter.label === '_' ? '' : `${modifier.namespaceParameter.label}: `}OneNativeNamespace.id`
+          : ''
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")
-    if value == "true" { ${apply('', modifier.ios)} } else { self }
+    if value == "true" { ${apply(argument, modifier.ios)} } else { self }
   }`
       }
       if (modifier.kind === 'url' || modifier.kind === 'optionalURL') {
@@ -548,7 +728,7 @@ ${parsed.replace(/[ \t]+$/gm, '')}
   outputs.set(
     'src/generated/swiftStyleNative.ts',
     header +
-      `import { processColor, type ColorValue, type ProcessedColorValue } from 'react-native'
+      `import { NativeModules, processColor, type ColorValue, type ProcessedColorValue } from 'react-native'
 import type { OneNativeStyle } from './controlTypes'
 
 export type OneNativeStyleNative = Readonly<{
@@ -563,25 +743,53 @@ ${styleFields
 
 const colorFields = [${colorFields.map((field) => `'${field.name}'`).join(', ')}] as const
 const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [modifier.name, modifier.kind])))} as const
-const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
-type SDKEventValueShape =
-  | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' }
+const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair' || modifier.kind === 'eventReturnEnum' || modifier.kind === 'caseSet').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
+const sdkVisualEffects: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'visualEffect').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
+const sdkOptionSets: Record<string, readonly { field: string; kind: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'optionSet').map((modifier) => [modifier.name, modifier.arguments!.map((argument) => ({ field: argument.field, kind: argument.kind }))])))}
+export type SDKEventValueShape =
+  | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' | 'description' }
   | { kind: 'enum'; cases: readonly string[]; open?: true }
   | { kind: 'optional' | 'array'; value: SDKEventValueShape }
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
+  | { kind: 'result'; value: SDKEventValueShape }
+  | { kind: 'verification' }
+  | { kind: 'associatedEnum'; cases: readonly { name: string; values: readonly SDKEventValueShape[] }[]; open?: true }
 const sdkAssociatedCases: Record<string, Record<string, readonly SDKEventValueShape[]>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAssociatedEnum').map((modifier) => [modifier.name, Object.fromEntries(modifier.associatedCases!.map((item) => [item.name, item.values]))])))}
-const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.eventValue])))}
+const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct' || modifier.kind === 'eventAsyncStruct' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.eventValue])))}
+const sdkAsyncArguments: Record<string, readonly { field: string; kind: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAsyncStruct' && modifier.arguments?.length).map((modifier) => [modifier.name, modifier.arguments!.map((argument) => ({ field: argument.field, kind: argument.kind }))])))}
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'gesture').map((modifier) => [modifier.name, Object.fromEntries(modifier.gestureOptions!.map((option) => [option.name, option.eventValue ?? null]))])))}
 const sdkCodableOptional: Record<string, boolean> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'bindingCodable').map((modifier) => [modifier.name, modifier.type.endsWith('?')]))) }
-const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, fields, eventValue }) => ({ field, kind, optional, ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
+const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; unique?: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, unique, fields, eventValue }) => ({ field, kind, optional, ...(unique ? { unique } : {}), ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
 
-function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
+export function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
   if (shape.kind === 'optional') return value === null || validSDKEventValue(value, shape.value)
   if (shape.kind === 'array') return Array.isArray(value) && value.every((item) => validSDKEventValue(item, shape.value))
   if (shape.kind === 'number') return typeof value === 'number' && Number.isFinite(value)
-  if (shape.kind === 'string' || shape.kind === 'boolean') return typeof value === shape.kind
+  if (shape.kind === 'string' || shape.kind === 'description' || shape.kind === 'boolean')
+    return typeof value === (shape.kind === 'description' ? 'string' : shape.kind)
   if (shape.kind === 'enum') return typeof value === 'string' &&
     (shape.cases.includes(value) || shape.open === true && value === 'unknown')
+  if (shape.kind === 'verification') return Boolean(value && typeof value === 'object' &&
+    ((value as { case?: unknown }).case === 'verified' || (value as { case?: unknown }).case === 'unverified') &&
+    typeof (value as { jwsRepresentation?: unknown }).jwsRepresentation === 'string' &&
+    ((value as { case: string; error?: unknown }).case === 'verified'
+      ? (value as { error?: unknown }).error === null
+      : typeof (value as { error?: unknown }).error === 'string'))
+  if (shape.kind === 'result') return Boolean(value && typeof value === 'object' &&
+    ((value as { case?: unknown }).case === 'success'
+      ? validSDKEventValue((value as { value?: unknown }).value, shape.value)
+      : (value as { case?: unknown }).case === 'failure' &&
+        typeof (value as { error?: unknown }).error === 'string'))
+  if (shape.kind === 'associatedEnum') {
+    if (!value || typeof value !== 'object') return false
+    if (shape.open && (value as { case?: unknown }).case === 'unknown')
+      return Array.isArray((value as { values?: unknown }).values) &&
+        (value as { values: unknown[] }).values.length === 0
+    const item = shape.cases.find((entry) => entry.name === (value as { case?: unknown }).case)
+    return Boolean(item && Array.isArray((value as { values?: unknown }).values) &&
+      (value as { values: unknown[] }).values.length === item.values.length &&
+      item.values.every((nested, index) => validSDKEventValue((value as { values: unknown[] }).values[index], nested)))
+  }
   if (!value || typeof value !== 'object') return false
   const record = value as Record<string, unknown>
   if (shape.kind === 'point')
@@ -626,19 +834,20 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
             if (typeof item !== 'function') throw new Error(name + '.' + argument.field + ' must be a callback')
             return ''
           }
-          if (argument.kind === 'classUpdate') {
+          if (argument.kind === 'classUpdate' || argument.kind === 'structUpdate') {
             if (!item || typeof item !== 'object' || Array.isArray(item) ||
               Object.keys(item).length === 0 || Object.entries(item).some(([key, fieldValue]) => {
                 const field = argument.fields?.find((entry) => entry.name === key)
                 return !field || (field.type === 'Swift.Bool' ? typeof fieldValue !== 'boolean' :
                   field.type.endsWith('?') && fieldValue === null ? false : typeof fieldValue !== 'string')
-              })) throw new Error(name + '.' + argument.field + ' must be an SDK class update')
+              })) throw new Error(name + '.' + argument.field + (argument.kind === 'classUpdate' ? ' must be an SDK class update' : ' must be an SDK struct update'))
             return JSON.stringify(item)
           }
           if (argument.kind === 'number' && (typeof item !== 'number' || !Number.isFinite(item))) throw new Error(name + '.' + argument.field + ' must be finite')
           if (argument.kind === 'boolean' && typeof item !== 'boolean') throw new Error(name + '.' + argument.field + ' must be a boolean')
           if ((argument.kind === 'string' || argument.kind === 'url' || argument.kind === 'enum') && typeof item !== 'string') throw new Error(name + '.' + argument.field + ' must be a string')
           if ((argument.kind === 'stringArray' || argument.kind === 'stringSet') && (!Array.isArray(item) || item.some((element) => typeof element !== 'string'))) throw new Error(name + '.' + argument.field + ' must be a string array')
+          if (argument.unique && new Set(item as string[]).size !== (item as string[]).length) throw new Error(name + '.' + argument.field + ' must contain distinct strings')
           if (argument.kind === 'numericStruct' || argument.kind === 'numericTuple') {
             if (!item || typeof item !== 'object' || Array.isArray(item) ||
               Object.keys(item).length !== argument.fields!.length ||
@@ -662,11 +871,66 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
         sdkModifiers.push([name, (value as { kind: string }).kind])
         continue
       }
+      if (kind === 'visualEffect') {
+        if (!value || typeof value !== 'object' || Array.isArray(value) ||
+          typeof (value as { kind?: unknown }).kind !== 'string' ||
+          !sdkVisualEffects[name].includes((value as { kind: string }).kind) ||
+          typeof (value as { value?: unknown }).value !== 'number' ||
+          !Number.isFinite((value as { value: number }).value))
+          throw new Error(name + ' must be a visual effect and finite value')
+        sdkModifiers.push([name, JSON.stringify([(value as { kind: string }).kind,
+          String((value as { value: number }).value)])])
+        continue
+      }
+      if (kind === 'optionSet') {
+        if (!value || typeof value !== 'object' || Array.isArray(value))
+          throw new Error(name + ' must be an SDK option set')
+        const record = value as Record<string, unknown>
+        const options: Record<string, string> = {}
+        for (const [field, item] of Object.entries(record)) {
+          const argument = sdkOptionSets[name].find((entry) => entry.field === field)
+          if (!argument) throw new Error(name + '.' + field + ' is not an SDK option')
+          if (argument.kind === 'number' && (typeof item !== 'number' || !Number.isSafeInteger(item)))
+            throw new Error(name + '.' + field + ' must be finite')
+          if (argument.kind === 'boolean' && typeof item !== 'boolean')
+            throw new Error(name + '.' + field + ' must be a boolean')
+          if (argument.kind === 'string' && typeof item !== 'string')
+            throw new Error(name + '.' + field + ' must be a string')
+          options[field] = String(item)
+        }
+        sdkModifiers.push([name, JSON.stringify(options)])
+        continue
+      }
+      if (kind === 'caseSet') {
+        if (!Array.isArray(value) || value.some((item) => typeof item !== 'string' || !sdkEventCases[name].includes(item)))
+          throw new Error(name + ' must be public SDK values')
+        sdkModifiers.push([name, JSON.stringify(value)])
+        continue
+      }
+      if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {
+        if (!value || typeof value !== 'object' || Array.isArray(value) ||
+          typeof (value as { onAction?: unknown }).onAction !== 'function')
+          throw new Error(name + ' must be an async SDK callback and arguments')
+        const record = value as Record<string, unknown>
+        const argumentsFromSDK = sdkAsyncArguments[name].map(({ field, kind }) => {
+          const item = record[field]
+          if (kind === 'stringArray') {
+            if (!Array.isArray(item) || item.some((value) => typeof value !== 'string'))
+              throw new Error(name + '.' + field + ' must be a string array')
+            return JSON.stringify(item)
+          }
+          if (typeof item !== 'string') throw new Error(name + '.' + field + ' must be a string')
+          return item
+        })
+        sdkModifiers.push([name, JSON.stringify(argumentsFromSDK)])
+        continue
+      }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite')
       if (kind === 'optionalNumber' && value !== null && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite or null')
       if ((kind === 'boolean' || kind === 'defaultFocusBoolean') && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
       if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean') throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string') throw new Error(name + ' must be a string')
+      if (kind === 'selectionID' && typeof value !== 'string') throw new Error(name + ' must be a string')
       if (kind === 'url' && typeof value !== 'string') throw new Error(name + ' must be a URL string')
       if (kind === 'optionalURL' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a URL string or null')
       if (kind === 'optionalEnum' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')
@@ -763,6 +1027,29 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
     }
   }
   else if (kind === 'event') (modifier as (() => void) | undefined)?.()
+  else if (kind === 'eventAsync') {
+    const native = NativeModules.OneNativeAsyncActionModule as { complete(identifier: string): void } | undefined
+    if (!native) throw new Error('OneNativeAsyncActionModule is unavailable')
+    void Promise.resolve().then(() => (modifier as (() => void | Promise<void>) | undefined)?.())
+      .finally(() => native.complete(value))
+  }
+  else if (kind === 'eventAsyncStruct') {
+    const native = NativeModules.OneNativeAsyncActionModule as { complete(identifier: string): void } | undefined
+    if (!native) throw new Error('OneNativeAsyncActionModule is unavailable')
+    const envelope: unknown = JSON.parse(value)
+    if (!envelope || typeof envelope !== 'object' ||
+      typeof (envelope as { id?: unknown }).id !== 'string' ||
+      typeof (envelope as { value?: unknown }).value !== 'string')
+      throw new Error(name + ' emitted an invalid async event')
+    const identifier = (envelope as { id: string }).id
+    const payload: unknown = JSON.parse((envelope as { value: string }).value)
+    if (!validSDKEventValue(payload, sdkEventStructs[name]))
+      throw new Error(name + ' emitted an invalid async value')
+    const action = typeof modifier === 'function' ? modifier :
+      (modifier as { onAction?: (value: unknown) => void | Promise<void> } | undefined)?.onAction
+    void Promise.resolve().then(() => action?.(payload))
+      .finally(() => native.complete(identifier))
+  }
   else if (kind === 'eventReturnArray') (modifier as { onAction: () => void } | undefined)?.onAction()
   else if (kind === 'eventReturnEnum') {
     const payload: unknown = JSON.parse(value)
@@ -865,6 +1152,9 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
       `import SwiftUI
 import UIKit
 ${frameworkImports.map((framework) => `import ${framework}`).join('\n')}
+
+${derived.some((modifier) => modifier.namespaceParameter) ? 'private enum OneNativeNamespace { static let id = Namespace().wrappedValue }\n' : ''}
+${derived.some((modifier) => modifier.arguments?.some((argument) => argument.type === '[OneNativeRotorEntry]')) ? 'private struct OneNativeRotorEntry: Identifiable { let id: String; var label: String { id } }\n' : ''}
 
 public struct OneNativeStyle: Equatable {
 ${properties}

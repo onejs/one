@@ -114,6 +114,11 @@ private struct OneNativeMenuRoot: View {
       if model.presentation == "contextMenu" {
         OneNativeSlot(content: trigger, mode: .fill)
           .frame(width: model.size.width, height: model.size.height)
+          // yoga owns the trigger frame, so pin the slot to the host's box
+          // explicitly: inside a page the pager presents at the safe box, the
+          // safe-area proposal would otherwise displace this fixed frame off
+          // the yoga box the trigger was laid out in.
+          .position(x: model.size.width / 2, y: model.size.height / 2)
           .contentShape(Rectangle())
           .contextMenu {
             OneNativeGeneratedMenuContent(model: model, parentId: "")
@@ -127,6 +132,8 @@ private struct OneNativeMenuRoot: View {
         } label: {
           OneNativeSlot(content: trigger, mode: .passive)
             .frame(width: model.size.width, height: model.size.height)
+            // same as above: yoga owns the trigger frame, not the safe area.
+            .position(x: model.size.width / 2, y: model.size.height / 2)
             .contentShape(Rectangle())
         }
         .menuStyle(.button)

@@ -167,11 +167,14 @@ jobs:
           set -euo pipefail
           git fetch --no-tags origin "$TARGET_REF"
           [[ "$(git rev-parse HEAD)" == "$TARGET_SHA" ]]
-          [[ "$(git rev-parse FETCH_HEAD)" == "$TARGET_SHA" ]]
           if [[ "$RELEASE_KIND" == "beta" ]]; then
+            # v2-beta moves every few minutes and a beta pushes nothing back, so
+            # it ships any commit on the branch, not only a tip that outlived ci
             [[ "$TARGET_REF" == "v2-beta" ]]
-          elif [[ "$RELEASE_KIND" != "canary" ]]; then
-            [[ "$TARGET_REF" == "main" ]]
+            git merge-base --is-ancestor "$TARGET_SHA" FETCH_HEAD
+          else
+            [[ "$(git rev-parse FETCH_HEAD)" == "$TARGET_SHA" ]]
+            [[ "$RELEASE_KIND" == "canary" || "$TARGET_REF" == "main" ]]
           fi
 
       - name: Setup Node.js

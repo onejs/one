@@ -1,7 +1,7 @@
 import { ios, present, type Declaration } from './inventory'
 import type { Control } from './controlTypes'
 
-const emptyEventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> (?:Swift\.Void|\(\))\)\?$|^SwiftUICore\.Binding<Swift\.(?:Bool|String)>$/
+const emptyEventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> (?:Swift\.Void|\(\))\)\?$|^SwiftUICore\.Binding<(?:Swift\.(?:Bool|String)|Foundation\.URL\?)>$/
 const scalarCallbackType = /^(?:@escaping )?\((?:_ [A-Za-z]\w*: )?(Swift\.(?:Bool|String|Int|Float|Double)|CoreFoundation\.CGFloat|Foundation\.URL)\) -> (?:Swift\.Void|\(\))$/
 const eventOrBindingType = (type: string) => emptyEventOrBindingType.test(type) || scalarCallbackType.test(type)
 const focusBindingType = /^SwiftUI\.(?:Accessibility)?FocusState<Swift\.Bool>\.Binding$/
@@ -11,29 +11,33 @@ export type DerivedArgument = {
   label: string
   type: string
   sdkType?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'bindingBoolean' | 'bindingOptionalURL' | 'resultURL' | 'resultURLArray' | 'eventStruct' | 'classUpdate'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'bindingBoolean' | 'bindingOptionalURL' | 'resultURL' | 'resultURLArray' | 'eventStruct' | 'classUpdate' | 'structUpdate'
   optional: boolean
   cases?: readonly { name: string; ios: number }[]
-  fields?: readonly { name: string; label: string; type: string }[]
+  fields?: readonly { name: string; label: string; type: string; ios?: number }[]
   wrappedType?: string
   scalarConstructor?: { label: string; type: string; failable?: boolean }
   swiftExpression?: string
   closureInput?: string
   eventValue?: EventValueSchema
+  unique?: true
 }
 
 export type EventValueSchema =
-  | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' }
+  | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' | 'description' }
   | { kind: 'enum'; cases: readonly string[]; open?: true }
   | { kind: 'optional'; value: EventValueSchema }
   | { kind: 'array'; value: EventValueSchema }
   | { kind: 'object'; fields: readonly { name: string; value: EventValueSchema }[] }
+  | { kind: 'result'; value: EventValueSchema }
+  | { kind: 'verification' }
+  | { kind: 'associatedEnum'; cases: readonly { name: string; values: readonly EventValueSchema[] }[]; open?: true }
 
 export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -47,9 +51,13 @@ export type DerivedModifier = {
   resultConstructor?: { type: string; label: string }
   eventPair?: true
   eventInputs?: readonly string[]
+  visualPhase?: true
   gestureOptions?: readonly { name: string; type: string; ios: number; eventValue?: EventValueSchema }[]
   transformMember?: string
   environmentKey?: string
+  environmentTransform?: 'toggle' | 'add'
+  preferenceKey?: string
+  preferenceOperation?: 'set' | 'transform' | 'observe'
   zeroArgument?: true
   framework?: string
   label?: string
@@ -59,6 +67,10 @@ export type DerivedModifier = {
   predicateInput?: string
   aliasSuffix?: string
   callArguments?: readonly { label: string; defaultValue?: string; bridge?: true }[]
+  namespaceParameter?: { index: number; label: string }
+  sharedParameter?: { index: number; label: string; type: string }
+  factoryParameter?: { index: number; label: string; type: string; returnType: string; argumentOffset: number }
+  fixedParameter?: { index: number; label: string; type: string; expression: string }
   arguments?: readonly DerivedArgument[]
 }
 
@@ -91,6 +103,9 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
       return { kind: 'string', type, optional }
     if (baseType === '[Swift.String]' || baseType === '[SwiftUICore.Text]')
       return { kind: 'stringArray', type, optional }
+    if (baseType === '[UniformTypeIdentifiers.UTType]')
+      return { kind: 'stringArray', type, optional,
+        swiftExpression: '({ () -> [UniformTypeIdentifiers.UTType] in\n        let identifiers = $value\n        if identifiers.isEmpty { return [.item] }\n        return identifiers.map { identifier in\n          guard let type = UniformTypeIdentifiers.UTType(identifier) else { preconditionFailure("invalid content type: \\(identifier)") }\n          return type\n        }\n      })()' }
     if (baseType === 'Swift.Set<Swift.String>')
       return { kind: 'stringSet', type, optional }
     const numericType = (value: string) =>
@@ -207,16 +222,17 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
 }
 
 export type DerivedSlotArgument = DerivedArgument | { field: string; label: string; type: string; kind: 'bindingBoolean' | 'bindingString'; optional: false }
-export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; directValue?: true; closureInputs?: readonly string[]; arguments: readonly DerivedSlotArgument[] }
+export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; directValue?: true; closureInputs?: readonly string[]; preferenceKey?: string; preferenceEvent?: EventValueSchema; arguments: readonly DerivedSlotArgument[] }
 
 export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
   const valueOf = bridgeValueOf(inventory, ceiling)
+  const isZeroInputClosure = (type: string) => /^(?:@escaping )?\(\) ->/.test(type)
   const closureInputsOf = (type: string) =>
     /^@escaping \(([^,<>()]+(?:, [^,<>()]+)*)\) -> some View$/.exec(type)?.[1].split(', ')
   const isContent = (d: Declaration, parameter: Declaration['parameters'][number]) => {
     if (parameter.type === '() -> some View') return true
     if (closureInputsOf(parameter.type)) return true
-    const generic = /^\(\) -> ([A-Za-z_]\w*)$|^([A-Za-z_]\w*)\??$/.exec(parameter.type)
+    const generic = /^(?:@escaping )?\(\) -> ([A-Za-z_]\w*)$|^([A-Za-z_]\w*)\??$/.exec(parameter.type)
     return Boolean(generic && d.requirements?.includes(`${generic[1] ?? generic[2]} : SwiftUICore.View`))
   }
   const isStringBinding = (d: Declaration, type: string) => {
@@ -228,7 +244,7 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
     return (
       d.kind === 'func' && (d.module === 'SwiftUI' || d.module === 'SwiftUICore' ||
         /^_[A-Za-z]+_SwiftUI$/.test(d.module)) &&
-      d.owner.split('.').at(-1) === 'View' && builders.length === 1 &&
+      d.owner.split('.').at(-1) === 'View' && /^[a-z]/.test(d.name) && builders.length === 1 &&
       d.parameters.at(-1) === builders[0] &&
       d.parameters.every((parameter) => parameter === builders[0] || parameter.defaultValue !== undefined ||
         ['enum', 'string', 'boolean'].includes(valueOf(parameter.type)?.kind ?? '') ||
@@ -237,18 +253,18 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
       present(d) && ios(d) <= ceiling
     )
   }).filter((slot, _, candidates) =>
-    slot.parameters.at(-1)!.type.startsWith('() ->') ||
+    isZeroInputClosure(slot.parameters.at(-1)!.type) ||
     !candidates.some((other) => other.module === slot.module && other.name === slot.name &&
-      other.parameters.at(-1)!.type.startsWith('() ->')))
+      isZeroInputClosure(other.parameters.at(-1)!.type)))
   const byName = new Map<string, Declaration[]>()
   for (const slot of slots) {
     const key = `${slot.module}.${slot.name}`
     byName.set(key, [...(byName.get(key) ?? []), slot])
   }
-  return [...byName].flatMap(([, declarations]) => declarations.map((slot) => {
+  const directSlots = [...byName].flatMap(([, declarations]) => declarations.map((slot) => {
     const content = slot.parameters.at(-1)!
     const closureInputs = closureInputsOf(content.type)
-    const directValue = !content.type.startsWith('() ->') && !closureInputs
+    const directValue = !isZeroInputClosure(content.type) && !closureInputs
     const required = slot.parameters.filter((parameter) =>
       parameter !== content && parameter.defaultValue === undefined)
     const suffix = declarations.length === 1 || required.length === 0 ? ''
@@ -266,7 +282,39 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
           ? { field: parameter.name, label: parameter.label, type: parameter.type, kind: parameter.type === 'SwiftUICore.Binding<Swift.Bool>' ? 'bindingBoolean' as const : 'bindingString' as const, optional: false as const }
           : { ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label }) }
   }))
-    .sort((a, b) => a.name.localeCompare(b.name))
+  const preferenceMethods = inventory.filter((method) =>
+    method.kind === 'func' && method.module === 'SwiftUICore' &&
+    ['overlayPreferenceValue', 'backgroundPreferenceValue'].includes(method.name) &&
+    method.owner.split('.').at(-1) === 'View' &&
+    method.parameters.length === 3 && method.parameters[0].type === 'K.Type' &&
+    method.parameters[1].defaultValue !== undefined &&
+    method.parameters[2].type === '@escaping (K.Value) -> V' &&
+    method.requirements?.includes('K : SwiftUICore.PreferenceKey') &&
+    method.requirements?.includes('V : SwiftUICore.View') &&
+    present(method) && ios(method) <= ceiling)
+  const preferenceSlots: DerivedViewSlot[] = []
+  for (const key of inventory.filter((declaration) => declaration.kind === 'struct' &&
+    declaration.owner === '' && !declaration.generic &&
+    declaration.inheritedTypes?.includes('SwiftUICore.PreferenceKey') &&
+    present(declaration) && ios(declaration) <= ceiling)) {
+    const valueAlias = inventory.find((declaration) => declaration.module === key.module &&
+      declaration.owner === key.name && declaration.kind === 'typealias' &&
+      declaration.name === 'Value' && present(declaration) && ios(declaration) <= ceiling)
+    const value = valueOf(valueAlias?.type ?? '')
+    if (!value || !['boolean', 'number', 'string', 'enum'].includes(value.kind)) continue
+    const event: EventValueSchema = value.kind === 'enum'
+      ? { kind: 'enum', cases: value.cases!.map((item) => item.name), open: true }
+      : { kind: value.kind as 'boolean' | 'number' | 'string' }
+    for (const method of preferenceMethods)
+      preferenceSlots.push({ name: `${method.name}${key.name.replace(/Key$/, '')}`,
+        sdkName: method.name, module: method.module, label: method.parameters[2].label,
+        ios: Math.max(ios(method), ios(key), ios(valueAlias!)),
+        preferenceKey: `${key.module}.${key.name}`,
+        preferenceEvent: value.optional ? { kind: 'optional', value: event } : event,
+        arguments: [],
+      })
+  }
+  return [...directSlots, ...preferenceSlots].sort((a, b) => a.name.localeCompare(b.name))
 }
 
 // methods with bridgeable scalars and static-case values generate their props
@@ -282,32 +330,89 @@ export function deriveModifiers(
     (/^@escaping \((?:_ [A-Za-z]\w*: )?Swift\.Result<(\[Foundation\.URL\]|Foundation\.URL), any Swift\.Error>\) -> Swift\.Void$/.exec(type) ??
       /^\(\(Swift\.Result<(\[Foundation\.URL\]|Foundation\.URL), any Swift\.Error>\) -> Swift\.Void\)\?$/.exec(type))?.[1]
   const eventValueOf = (type: string, version: number, seen = new Set<string>()): EventValueSchema | undefined => {
+    const result = /^Swift\.Result<(.+), any Swift\.Error>$/.exec(type)
+    if (result) {
+      const value = eventValueOf(result[1], version, seen)
+      return value && { kind: 'result', value }
+    }
+    const verified = /^StoreKit\.VerificationResult<(.+)>$/.exec(type)
+    if (verified && inventory.some((declaration) => declaration.module === 'StoreKit' &&
+      declaration.owner === 'StoreKit.VerificationResult' && declaration.name === 'jwsRepresentation' &&
+      declaration.type === 'Swift.String' &&
+      declaration.requirements?.includes(`SignedType == ${verified[1]}`) &&
+      present(declaration) && ios(declaration) <= version))
+      return { kind: 'verification' }
     if (type.endsWith('?')) {
       const value = eventValueOf(type.slice(0, -1), version, seen)
       return value && { kind: 'optional', value }
     }
+    if (type.startsWith('[') && type.endsWith(']')) {
+      const value = eventValueOf(type.slice(1, -1), version, seen)
+      return value && { kind: 'array', value }
+    }
+    if (type === 'any Swift.Error') return { kind: 'description' }
     if (['Swift.Double', 'Swift.Float', 'Swift.Int', 'CoreFoundation.CGFloat'].includes(type)) return { kind: 'number' }
     if (type === 'Swift.String') return { kind: 'string' }
     if (type === 'Swift.Bool') return { kind: 'boolean' }
     if (type === 'CoreFoundation.CGPoint') return { kind: 'point' }
     if (type === 'CoreFoundation.CGSize') return { kind: 'size' }
-    const [module, ...parts] = type.split('.')
+    const generic = /^([^<]+)<(.+)>$/.exec(type)
+    const concreteType = generic?.[1] ?? type
+    const [module, ...parts] = concreteType.split('.')
     const owner = parts.join('.')
+    const alias = inventory.find((d) => d.module === module && d.kind === 'typealias' &&
+      (d.owner === parts.slice(0, -1).join('.') ||
+        d.owner === [module, ...parts.slice(0, -1)].join('.')) &&
+      d.name === parts.at(-1) && present(d) && ios(d) <= version)
+    if (alias?.type === 'Swift.String') return { kind: 'string' }
+    const nestedModule = parts.at(-2)?.startsWith('_') ? parts.at(-2) : undefined
+    const nestedOwner = nestedModule ? [module, ...parts.slice(0, -2)].join('.') : undefined
     const enumDeclaration = inventory.find((d) => d.module === module && d.kind === 'enum' &&
-      d.owner === parts.slice(0, -1).join('.') && d.name === parts.at(-1) &&
-      (d.attributes.includes('@frozen') || d.attributes.includes('@symbolgraph')) &&
-      present(d) && ios(d) <= version)
+      (d.owner === parts.slice(0, -1).join('.') ||
+        d.owner === [module, ...parts.slice(0, -1)].join('.')) &&
+      d.name === parts.at(-1) &&
+      present(d) && ios(d) <= version) ??
+      inventory.find((d) => d.module === nestedModule && d.kind === 'enum' &&
+        d.owner === nestedOwner && d.name === parts.at(-1) && present(d) && ios(d) <= version) ??
+      inventory.find((d) => d.kind === 'enum' && d.owner === [module, ...parts.slice(0, -1)].join('.') &&
+        d.name === parts.at(-1) && present(d) && ios(d) <= version)
     if (enumDeclaration) {
-      const cases = inventory.filter((d) => d.module === module &&
-        (d.owner === owner || d.owner === type) && d.enumCase && present(d) && ios(d) <= ceiling)
-      if (cases.length && cases.every((item) => item.parameters.length === 0) &&
+      const caseOwner = nestedModule ? `${nestedOwner}.${parts.at(-1)}` : concreteType
+      const cases = inventory.filter((d) => d.module === enumDeclaration.module &&
+        (d.owner === owner || d.owner === caseOwner) && d.enumCase && present(d) && ios(d) <= ceiling)
+      if ((enumDeclaration.attributes.includes('@frozen') || enumDeclaration.attributes.includes('@symbolgraph')) &&
+        cases.length && cases.every((item) => item.parameters.length === 0) &&
         new Set(cases.map((item) => item.name)).size === cases.length)
         return { kind: 'enum', cases: cases.map((item) => item.name),
           ...(enumDeclaration.attributes.includes('@symbolgraph') ? { open: true as const } : {}) }
+      if (cases.length && cases.some((item) => item.parameters.length) &&
+        new Set(cases.map((item) => item.name)).size === cases.length) {
+        const values = cases.map((item) => ({ name: item.name,
+          values: item.parameters.map((parameter) => eventValueOf(
+            generic && parameter.type === 'Value' ? generic[2] : parameter.type,
+            version, new Set([...seen, type]))) }))
+        if (values.every((item) => item.values.every(Boolean)))
+          return { kind: 'associatedEnum', cases: values as { name: string; values: EventValueSchema[] }[],
+            ...(!enumDeclaration.attributes.includes('@frozen') ? { open: true as const } : {}) }
+      }
     }
+    const parent = [...seen][0]?.replace(/<.*$/, '')
+    const directEnumValue = seen.size === 1 && inventory.some((d) => d.kind === 'enum' &&
+      d.name === parent?.split('.').at(-1) && present(d) && ios(d) <= version)
     if (!owner || seen.has(type) || !inventory.some((d) => d.module === module &&
       (d.kind === 'struct' || d.kind === 'class') &&
-      d.owner === parts.slice(0, -1).join('.') && d.name === parts.at(-1) && !d.generic && present(d) && ios(d) <= version)) return
+      (d.owner === parts.slice(0, -1).join('.') ||
+        directEnumValue && d.owner === [module, ...parts.slice(0, -1)].join('.')) &&
+      d.name === parts.at(-1) && !d.generic && present(d) && ios(d) <= version)) {
+      const raw = inventory.find((d) => d.module === module && d.kind === 'struct' &&
+        d.owner === [module, ...parts.slice(0, -1)].join('.') && d.name === parts.at(-1) &&
+        d.inheritedTypes?.includes('Swift.RawRepresentable') && present(d) && ios(d) <= version) &&
+        inventory.find((d) => d.module === module && d.kind === 'var' && d.owner === concreteType &&
+          d.name === 'rawValue' && d.stored && ['Swift.String', 'Swift.Int'].includes(d.type ?? '') &&
+          present(d) && ios(d) <= version)
+      return raw ? { kind: 'object', fields: [{ name: 'rawValue',
+        value: { kind: raw.type === 'Swift.String' ? 'string' : 'number' } }] } : undefined
+    }
     const fields = inventory.filter((d) => d.module === module && (d.owner === owner || d.owner === type) &&
       d.kind === 'var' && d.stored && present(d) && ios(d) <= version)
     if (!fields.length || new Set(fields.map((field) => field.name)).size !== fields.length) return
@@ -404,7 +509,17 @@ export function deriveModifiers(
       /^[a-z]/.test(d.name) &&
       present(d) &&
       ios(d) <= ceiling &&
-      !reservedNames.has(d.name)
+      (!reservedNames.has(d.name) ||
+        (!d.requirements?.length &&
+          (d.parameters.length === 1 && valueOf(d.parameters[0].type)?.kind === 'enum' &&
+            valueOf(d.parameters[0].type)?.optional ||
+            d.parameters.length > 1 &&
+              d.parameters.every((parameter) => parameter.defaultValue !== undefined) &&
+              valueOf(d.parameters[0].type)?.kind === 'enum' ||
+            d.parameters.length > 1 &&
+              d.parameters.some((parameter) => parameter.defaultValue === undefined) &&
+              d.parameters.some((parameter) => parameter.defaultValue !== undefined) &&
+              d.parameters.every((parameter) => valueOf(parameter.type)))))
   )
   const byName = new Map<string, Declaration[]>()
   for (const method of methods)
@@ -415,6 +530,10 @@ export function deriveModifiers(
     method.module === 'SwiftUICore' && method.parameters.length === 2 &&
     method.parameters[0].type === 'Swift.WritableKeyPath<SwiftUICore.EnvironmentValues, V>' &&
     method.parameters[1].type === 'V')
+  const transformEnvironmentMethod = methods.find((method) => method.name === 'transformEnvironment' &&
+    method.module === 'SwiftUICore' && method.parameters.length === 2 &&
+    method.parameters[0].type === 'Swift.WritableKeyPath<SwiftUICore.EnvironmentValues, V>' &&
+    method.parameters[1].type === '@escaping (inout V) -> Swift.Void')
   if (environmentMethod) {
     for (const field of inventory.filter((declaration) =>
       (declaration.module === 'SwiftUI' || declaration.module === 'SwiftUICore' ||
@@ -437,6 +556,52 @@ export function deriveModifiers(
         ...(value.swiftExpression ? { swiftExpression: value.swiftExpression } : {}),
         ...(value.cases ? { cases: value.cases } : {}),
       })
+      if (transformEnvironmentMethod && !value.optional &&
+        (value.kind === 'boolean' || value.kind === 'number' && field.type !== 'Swift.Int'))
+        result.push({ name: `transformEnvironment${field.name[0].toUpperCase()}${field.name.slice(1)}`,
+          sdkName: 'transformEnvironment', module: 'SwiftUICore', environmentKey: field.name,
+          environmentTransform: value.kind === 'boolean' ? 'toggle' : 'add',
+          kind: value.kind, type: field.type!,
+          ios: Math.max(ios(transformEnvironmentMethod), ios(field)),
+          ...(field.module.startsWith('_') ? { framework: field.module.slice(1, -'_SwiftUI'.length) } : {}),
+        })
+    }
+  }
+  const preferenceMethods = ['preference', 'transformPreference', 'onPreferenceChange']
+    .map((name) => methods.find((method) => method.module === 'SwiftUICore' && method.name === name &&
+      method.requirements?.includes('K : SwiftUICore.PreferenceKey') &&
+      method.parameters[0]?.type === 'K.Type'))
+  for (const key of inventory.filter((declaration) => declaration.kind === 'struct' &&
+    declaration.owner === '' && !declaration.generic &&
+    declaration.inheritedTypes?.includes('SwiftUICore.PreferenceKey') &&
+    present(declaration) && ios(declaration) <= ceiling)) {
+    const valueAlias = inventory.find((declaration) => declaration.module === key.module &&
+      declaration.owner === key.name && declaration.kind === 'typealias' &&
+      declaration.name === 'Value' && present(declaration) && ios(declaration) <= ceiling)
+    const value = valueOf(valueAlias?.type ?? '')
+    if (!value || !['boolean', 'number', 'string', 'enum'].includes(value.kind)) continue
+    const baseName = key.name.replace(/Key$/, '')
+    if (baseName === key.name) continue
+    for (const [index, method] of preferenceMethods.entries()) {
+      if (!method) continue
+      const kind = index === 2 ? 'eventStruct' : value.kind === 'enum'
+        ? value.optional ? 'optionalEnum' : 'string'
+        : value.optional
+          ? `optional${value.kind[0].toUpperCase()}${value.kind.slice(1)}` as DerivedModifier['kind']
+          : value.kind
+      const eventValue: EventValueSchema | undefined = index === 2
+        ? value.kind === 'enum'
+          ? { kind: 'enum', cases: value.cases!.map((item) => item.name), open: true }
+          : { kind: value.kind as 'boolean' | 'number' | 'string' }
+        : undefined
+      result.push({ name: `${method.name}${baseName}`, sdkName: method.name,
+        module: method.module, preferenceKey: `${key.module}.${key.name}`,
+        preferenceOperation: index === 0 ? 'set' : index === 1 ? 'transform' : 'observe',
+        kind, type: index === 2 ? method.parameters.at(-1)!.type : valueAlias!.type!,
+        ios: Math.max(ios(method), ios(key), ios(valueAlias!)),
+        ...(value.cases && index !== 2 ? { cases: value.cases } : {}),
+        ...(eventValue ? { eventValue: value.optional ? { kind: 'optional', value: eventValue } : eventValue } : {}),
+      })
     }
   }
   for (const [name, overloads] of byName) {
@@ -444,6 +609,130 @@ export function deriveModifiers(
       const framework = method.module.startsWith('_')
         ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
         : {}
+      const namespaceIndex = method.parameters.findIndex((parameter) =>
+        parameter.type === 'SwiftUICore.Namespace.ID')
+      if (namespaceIndex !== -1) {
+        const required = method.parameters.filter((parameter, index) =>
+          index !== namespaceIndex && parameter.defaultValue === undefined)
+        if (!required.length && method.parameters.length === 1)
+          return [{ name, module: method.module, kind: 'boolean', type: '', ios: ios(method),
+            zeroArgument: true,
+            namespaceParameter: { index: 0, label: method.parameters[namespaceIndex].label },
+            ...framework }]
+        const argumentsFromSDK = required.map((parameter) => {
+          const generic = parameter.type === 'some Hashable' ||
+            parameter.type === '(some (Hashable & Sendable))?' ||
+            method.requirements?.includes(`${parameter.type.replace(/\?$/, '')} : Swift.Hashable`)
+          const value = generic
+            ? { kind: 'string' as const, type: parameter.type.endsWith('?') ? 'Swift.String?' : 'Swift.String',
+              sdkType: parameter.type, optional: parameter.type.endsWith('?') }
+            : valueOf(parameter.type)
+          return value && { ...value, field: parameter.name, label: parameter.label }
+        })
+        if (required.length && argumentsFromSDK.every(Boolean) &&
+          new Set(argumentsFromSDK.map((argument) => argument!.field)).size === required.length)
+          return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+            arguments: argumentsFromSDK as DerivedArgument[],
+            namespaceParameter: {
+              index: method.parameters.slice(0, namespaceIndex).filter((parameter) =>
+                parameter.defaultValue === undefined).length,
+              label: method.parameters[namespaceIndex].label,
+            },
+            ...framework }]
+        return []
+      }
+      const sharedIndex = method.parameters.findIndex((parameter) =>
+        parameter.defaultValue === undefined &&
+        inventory.some((declaration) => declaration.module === parameter.type.split('.')[0] &&
+          declaration.owner === parameter.type.split('.').slice(1).join('.') &&
+          declaration.kind === 'func' && declaration.isStatic && declaration.name === 'shared' &&
+          declaration.type === parameter.type && declaration.parameters.length === 0 &&
+          present(declaration) && ios(declaration) <= ceiling))
+      if (sharedIndex !== -1) {
+        const required = method.parameters.filter((parameter, index) =>
+          index !== sharedIndex && parameter.defaultValue === undefined)
+        const argumentsFromSDK = required.map((parameter) => {
+          const value = parameter.type === 'SwiftUICore.Binding<Swift.Bool>'
+            ? { kind: 'bindingBoolean' as const, type: parameter.type, optional: false }
+            : valueOf(parameter.type)
+          return value && { ...value, field: parameter.name, label: parameter.label }
+        })
+        if (required.length && argumentsFromSDK.every(Boolean) &&
+          new Set(argumentsFromSDK.map((argument) => argument!.field)).size === required.length)
+          return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+            arguments: argumentsFromSDK as DerivedArgument[],
+            sharedParameter: {
+              index: method.parameters.slice(0, sharedIndex).filter((parameter) =>
+                parameter.defaultValue === undefined).length,
+              label: method.parameters[sharedIndex].label,
+              type: method.parameters[sharedIndex].type,
+            }, ...framework }]
+        return []
+      }
+      const factoryIndex = method.parameters.findIndex((parameter) =>
+        /^(?:@escaping )?\(\) -> [A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+$/.test(parameter.type) &&
+        parameter.defaultValue === undefined)
+      if (factoryIndex !== -1 && !method.requirements?.length) {
+        const factory = method.parameters[factoryIndex]
+        const returnType = factory.type.replace(/^(?:@escaping )?\(\) -> /, '')
+        const possibleTypes = [returnType, ...inventory.filter((declaration) =>
+          declaration.kind === 'class' && declaration.inheritedTypes?.includes(returnType) &&
+          present(declaration) && ios(declaration) <= ceiling)
+          .map((declaration) => `${declaration.module}.${declaration.owner ? `${declaration.owner}.` : ''}${declaration.name}`)]
+        const constructors = inventory.filter((declaration) =>
+          possibleTypes.includes(`${declaration.module}.${declaration.owner}`) &&
+          declaration.kind === 'init' &&
+          !declaration.requirements?.length && present(declaration) && ios(declaration) <= ceiling &&
+          declaration.parameters.some((parameter) => parameter.defaultValue === undefined) &&
+          declaration.parameters.filter((parameter) => parameter.defaultValue === undefined)
+            .every((parameter) => valueOf(parameter.type)))
+        const required = method.parameters.filter((parameter, index) =>
+          index !== factoryIndex && parameter.defaultValue === undefined)
+        const argumentsFromSDK = required.map((parameter) => {
+          const value = parameter.type === 'SwiftUICore.Binding<Swift.Bool>'
+            ? { kind: 'bindingBoolean' as const, type: parameter.type, optional: false }
+            : valueOf(parameter.type)
+          return value && { ...value, field: parameter.name, label: parameter.label }
+        })
+        if (constructors.length && argumentsFromSDK.every(Boolean))
+          return constructors.filter((constructor) => constructors.filter((other) =>
+            other.module === constructor.module && other.owner === constructor.owner).length === 1)
+            .flatMap((constructor) => {
+              const constructorArguments = constructor.parameters
+                .filter((parameter) => parameter.defaultValue === undefined)
+                .map((parameter) => ({ ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label }))
+              const argumentsList = [...argumentsFromSDK as DerivedArgument[], ...constructorArguments]
+              if (new Set(argumentsList.map((argument) => argument.field)).size === argumentsList.length) {
+                const type = `${constructor.module}.${constructor.owner}`
+                return [{ name, module: method.module, kind: 'record' as const, type: '',
+                  ios: Math.max(ios(method), ios(constructor)), arguments: argumentsList,
+                  ...(type !== returnType ? { aliasSuffix: type.split('.').at(-1) } : {}),
+                  factoryParameter: {
+                    index: method.parameters.slice(0, factoryIndex).filter((parameter) =>
+                      parameter.defaultValue === undefined).length,
+                    label: factory.label, type, returnType, argumentOffset: required.length,
+                  }, ...framework }]
+              }
+              return []
+            })
+      }
+      if (method.parameters.length === 3 &&
+        method.parameters[0].type === 'SwiftUICore.Text' &&
+        method.parameters[1].type === '[EntryModel]' &&
+        method.parameters[2].type === 'Swift.KeyPath<EntryModel, Swift.String>' &&
+        method.requirements?.includes('EntryModel : Swift.Identifiable'))
+        return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+          arguments: [
+            { ...valueOf(method.parameters[0].type)!, field: method.parameters[0].name,
+              label: method.parameters[0].label },
+            { field: method.parameters[1].name, label: method.parameters[1].label,
+              kind: 'stringArray', type: '[OneNativeRotorEntry]', sdkType: '[EntryModel]',
+              optional: false, unique: true,
+              swiftExpression: '$value.map { OneNativeRotorEntry(id: $0) }' },
+          ],
+          fixedParameter: { index: 2, label: method.parameters[2].label,
+            type: method.parameters[2].type, expression: '\\OneNativeRotorEntry.label' },
+          ...framework }]
       const genericTransform = method.parameters.length === 3 &&
         method.parameters[0].type === 'T.Type' &&
         method.requirements?.some((requirement) =>
@@ -476,6 +765,36 @@ export function deriveModifiers(
           })
       }
       if (method.requirements?.length) {
+        if (method.requirements.length === 2 && method.parameters.length >= 1 &&
+          method.parameters.slice(1).every((parameter) => parameter.defaultValue !== undefined)) {
+          const constraints = method.requirements.map((requirement) =>
+            /^([A-Za-z_]\w*) : ([A-Za-z_]\w*\.[A-Za-z][\w.]*)$/.exec(requirement))
+          if (constraints.every(Boolean) && constraints[0]![1] === constraints[1]![1] &&
+            method.parameters[0].type === constraints[0]![1]) {
+            for (const [base, marker] of [[constraints[0]![2], constraints[1]![2]],
+              [constraints[1]![2], constraints[0]![2]]]) {
+              const cases = inventory.filter((declaration) =>
+                declaration.kind === 'static' && declaration.owner === base &&
+                declaration.requirements?.length === 1 &&
+                declaration.requirements[0] === `Self == ${declaration.type}` &&
+                declaration.parameters.length === 0 && /^[a-z]/.test(declaration.name) &&
+                present(declaration) && ios(declaration) <= ceiling)
+                .flatMap((declaration) => {
+                  const conformance = inventory.find((item) => item.kind === 'conformance' &&
+                    item.module === declaration.module && item.name === declaration.type &&
+                    !item.requirements?.length && item.inheritedTypes?.includes(marker) &&
+                    present(item) && ios(item) <= ceiling)
+                  return conformance
+                    ? [{ name: declaration.name, ios: Math.max(ios(declaration), ios(conformance)) }]
+                    : []
+                })
+              if (cases.length && new Set(cases.map((item) => item.name)).size === cases.length)
+                return [{ name, module: method.module, kind: 'style', type: method.parameters[0].type,
+                  ios: ios(method), cases,
+                  ...(base.split('.')[0] === 'SwiftUICore' ? framework : { framework: base.split('.')[0] }) }]
+            }
+          }
+        }
         if (method.requirements.length !== 1) return []
         const focusValue = /^([A-Za-z_]\w*) : Swift\.Hashable$/.exec(method.requirements[0])?.[1]
         if (focusValue && method.parameters.length >= 2 &&
@@ -597,6 +916,134 @@ export function deriveModifiers(
         }
         return []
       }
+      const asyncAction = method.parameters.find((parameter) =>
+        /^(?:sending )?@escaping (?:@Sendable |@isolated\(any\) )?\(\) async -> Swift\.Void$/.test(parameter.type))
+      if (asyncAction && method.parameters.every((parameter) =>
+        parameter === asyncAction || parameter.defaultValue !== undefined))
+        return [{ name, module: method.module, kind: 'eventAsync', type: asyncAction.type,
+          label: asyncAction.label, ios: ios(method), ...framework }]
+      const asyncValue = method.parameters.find((parameter) =>
+        /^\(\(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) async -> \(\)\)\?$/.test(parameter.type))
+      if (asyncValue && method.parameters.every((parameter) =>
+        parameter === asyncValue || parameter.defaultValue !== undefined)) {
+        const input = /^\(\(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) async -> \(\)\)\?$/.exec(asyncValue.type)![1]
+        const value = eventValueOf(input, ios(method))
+        if (value?.kind === 'object')
+          return [{ name, module: method.module, kind: 'eventAsyncStruct', type: asyncValue.type,
+            label: asyncValue.label, eventInputType: input, eventValue: value,
+            ios: ios(method), ...framework }]
+      }
+      const asyncResult = method.parameters.find((parameter) =>
+        /^\(\(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+), (Swift\.Result<.+, any Swift\.Error>)\) async -> \(\)\)\?$/.test(parameter.type))
+      if (asyncResult && method.parameters.every((parameter) =>
+        parameter === asyncResult || parameter.defaultValue !== undefined)) {
+        const input = /^\(\(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+), (Swift\.Result<.+, any Swift\.Error>)\) async -> \(\)\)\?$/.exec(asyncResult.type)!
+        const first = eventValueOf(input[1], ios(method))
+        const second = eventValueOf(input[2], ios(method))
+        if (first && second)
+          return [{ name, module: method.module, kind: 'eventAsyncStruct', type: asyncResult.type,
+            label: asyncResult.label, eventInputs: ['first', 'result'],
+            eventValue: { kind: 'object', fields: [
+              { name: 'value', value: first }, { name: 'result', value: second },
+            ] }, ios: ios(method), ...framework }]
+      }
+      const asyncState = method.parameters.find((parameter) =>
+        /^@escaping \(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*(?:<.+>)?)+)\) async -> \(\)$/.test(parameter.type))
+      const requiredInput = method.parameters.filter((parameter) =>
+        parameter !== asyncState && parameter.defaultValue === undefined)
+      if (asyncState && requiredInput.length === 1 && method.parameters.every((parameter) =>
+        parameter === asyncState || parameter === requiredInput[0] || parameter.defaultValue !== undefined)) {
+        const input = /^@escaping \((.+)\) async -> \(\)$/.exec(asyncState.type)![1]
+        const collectionElement = /^some Collection<([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)> & Sendable & Equatable$/.exec(requiredInput[0].type)?.[1]
+        const collectionAlias = collectionElement && inventory.filter((declaration) =>
+          declaration.kind === 'typealias' && declaration.type === 'Swift.String' &&
+          declaration.owner === collectionElement.split('.').slice(0, -1).join('.') &&
+          declaration.name === collectionElement.split('.').at(-1) &&
+          present(declaration) && ios(declaration) <= ceiling)
+        const argument = valueOf(requiredInput[0].type) ??
+          (collectionAlias?.length === 1
+            ? { kind: 'stringArray' as const, type: '[Swift.String]', optional: false }
+            : undefined)
+        const eventValue = eventValueOf(input, ios(method))
+        if ((argument?.kind === 'string' || argument?.kind === 'stringArray') && eventValue)
+          return [{ name, module: method.module, kind: 'eventAsyncStruct', type: asyncState.type,
+            label: asyncState.label, eventInputType: input, eventValue,
+            arguments: [{ ...argument, field: requiredInput[0].name, label: requiredInput[0].label }],
+            ios: ios(method), ...framework }]
+      }
+      const visualClosure = method.parameters.at(-1)
+      const visualInput = visualClosure &&
+        /^@escaping @Sendable \(SwiftUICore\.EmptyVisualEffect, (SwiftUICore\.GeometryProxy|SwiftUI\.ScrollTransitionPhase)\) -> some VisualEffect$/.exec(visualClosure.type)?.[1]
+      if (visualInput && method.parameters.every((parameter) =>
+        parameter === visualClosure || parameter.defaultValue !== undefined)) {
+        const cases = inventory.filter((declaration) => declaration.module === 'SwiftUICore' &&
+          declaration.owner === 'SwiftUICore.VisualEffect' && declaration.kind === 'func' &&
+          ['opacity', 'scaleEffect'].includes(declaration.name) &&
+          declaration.type === 'some SwiftUICore.VisualEffect' &&
+          declaration.parameters.length >= 1 &&
+          declaration.parameters[0].defaultValue === undefined &&
+          ['Swift.Double', 'CoreFoundation.CGFloat'].includes(declaration.parameters[0].type) &&
+          declaration.parameters.slice(1).every((parameter) => parameter.defaultValue !== undefined) &&
+          present(declaration) && ios(declaration) <= ceiling)
+          .map((declaration) => ({ name: declaration.name, ios: ios(declaration) }))
+        if (new Set(cases.map((item) => item.name)).size === 2)
+          return [{ name, module: method.module, kind: 'visualEffect', type: visualClosure!.type,
+            cases, ios: ios(method),
+            ...(visualInput === 'SwiftUI.ScrollTransitionPhase' ? { visualPhase: true as const } : {}),
+            ...framework }]
+      }
+      const optionSet = method.parameters.length === 1 &&
+        /^\(\(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) async -> Swift\.Set<([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)>\)\?$/.exec(method.parameters[0].type)
+      if (optionSet) {
+        const optionType = optionSet[2]
+        const options = inventory.filter((declaration) => declaration.module === optionType.split('.')[0] &&
+          declaration.owner === optionType && declaration.kind === 'func' && declaration.isStatic &&
+          declaration.type === optionType && declaration.parameters.length === 1 &&
+          ['Swift.Int', 'Swift.Bool', 'Swift.String'].includes(declaration.parameters[0].type) &&
+          present(declaration) && ios(declaration) <= ios(method))
+        if (options.length && new Set(options.map((declaration) => declaration.name)).size === options.length)
+          return [{ name, module: method.module, kind: 'optionSet', type: method.parameters[0].type,
+            resultType: optionType, ios: ios(method), ...framework,
+            arguments: options.map((declaration) => ({ field: declaration.name,
+              label: declaration.parameters[0].label, type: declaration.parameters[0].type,
+              kind: declaration.parameters[0].type === 'Swift.Int' ? 'number' as const :
+                declaration.parameters[0].type === 'Swift.Bool' ? 'boolean' as const : 'string' as const,
+              optional: true })) }]
+      }
+      const caseSet = method.parameters.length === 1 &&
+        /^Swift\.Set<([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)>$/.exec(method.parameters[0].type)
+      if (caseSet) {
+        const valueType = caseSet[1]
+        const owner = valueType.split('.').slice(1).join('.')
+        const cases = inventory.filter((declaration) =>
+          declaration.module === valueType.split('.')[0] &&
+          (declaration.owner === owner || declaration.owner === valueType) &&
+          declaration.kind === 'static' && declaration.type === valueType &&
+          declaration.parameters.length === 0 && /^[a-z]/.test(declaration.name) &&
+          present(declaration) && ios(declaration) <= ios(method))
+          .map((declaration) => ({ name: declaration.name, ios: ios(declaration) }))
+        if (cases.length && new Set(cases.map((item) => item.name)).size === cases.length)
+          return [{ name, module: method.module, kind: 'caseSet', type: method.parameters[0].type,
+            resultType: valueType, label: method.parameters[0].label, cases,
+            ios: ios(method), ...framework }]
+      }
+      const eligibleSelection = method.parameters.length === 1 &&
+        /^@escaping \((?:_ [A-Za-z_]\w*: )?[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+, (?:_ [A-Za-z_]\w*: )?[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+, (?:_ [A-Za-z_]\w*: )?\[([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\]\) -> \1\?$/.exec(method.parameters[0].type)
+      if (eligibleSelection && inventory.some((declaration) =>
+        declaration.module === eligibleSelection[1].split('.')[0] &&
+        declaration.owner === eligibleSelection[1] && declaration.kind === 'var' &&
+        declaration.name === 'id' && ['Swift.String', 'Swift.String?'].includes(declaration.type ?? '') &&
+        present(declaration) && ios(declaration) <= ios(method)))
+        return [{ name, module: method.module, kind: 'selectionID', type: method.parameters[0].type,
+          label: method.parameters[0].label, ios: ios(method), ...framework }]
+      const defaultedCase = method.parameters.length > 1 &&
+        method.parameters.every((parameter) => parameter.defaultValue !== undefined) &&
+        valueOf(method.parameters[0].type)
+      if (defaultedCase?.kind === 'enum' && defaultedCase.cases)
+        return [{ name, module: method.module, kind: 'string',
+          type: method.parameters[0].type, cases: defaultedCase.cases, ios: ios(method),
+          ...(method.parameters[0].label === '_' ? {} : { label: method.parameters[0].label }),
+          ...framework }]
       if (method.parameters.length === 0 ||
         (method.parameters.every((parameter) => parameter.defaultValue !== undefined && !parameter.type.includes('->')) &&
           method.parameters.every((parameter) => !valueOf(parameter.type))))
@@ -611,6 +1058,29 @@ export function deriveModifiers(
             ...framework,
           },
         ]
+      if (method.parameters.length === 1) {
+        const input = /^@escaping \(inout ([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> Swift\.Void$/.exec(method.parameters[0].type)?.[1]
+        if (input) {
+          const [module, ...parts] = input.split('.')
+          const owner = parts.join('.')
+          if (inventory.some((declaration) => declaration.module === module &&
+            declaration.kind === 'struct' && declaration.owner === parts.slice(0, -1).join('.') &&
+            declaration.name === parts.at(-1) && !declaration.generic &&
+            present(declaration) && ios(declaration) <= ceiling)) {
+            const fields = inventory.filter((declaration) => declaration.module === module &&
+              (declaration.owner === owner || declaration.owner === input) &&
+              declaration.kind === 'var' && declaration.writable &&
+              declaration.type === 'Swift.Bool' && /^[a-z]/.test(declaration.name) &&
+              present(declaration) && ios(declaration) <= ceiling)
+              .map((declaration) => ({ name: declaration.name, label: declaration.name,
+                type: declaration.type!, ios: ios(declaration) }))
+            if (fields.length) return [{ name, module: method.module, kind: 'record', type: '',
+              ios: ios(method), arguments: [{ field: method.parameters[0].name,
+                label: method.parameters[0].label, type: method.parameters[0].type,
+                kind: 'structUpdate', optional: false, fields }], ...framework }]
+          }
+        }
+      }
       const predicateInput = method.parameters.length === 1 &&
         /^@escaping \(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> Swift\.Bool$/.exec(method.parameters[0].type)?.[1]
       if (predicateInput)
@@ -728,7 +1198,8 @@ export function deriveModifiers(
           ? 'bindingBoolean'
           : parameter.type.includes('Binding<Swift.String>')
             ? 'bindingString'
-            : parameter.type === 'SwiftUICore.Binding<(some Hashable)?>'
+            : parameter.type === 'SwiftUICore.Binding<(some Hashable)?>' ||
+              parameter.type === 'SwiftUICore.Binding<Foundation.URL?>'
               ? 'bindingOptionalString'
             : callbackValue === 'Swift.Bool'
               ? 'eventBoolean'
@@ -858,7 +1329,7 @@ export function deriveModifiers(
     const established = preferred.filter((candidate) =>
       candidate.kind !== 'record' || !candidate.arguments?.some((argument) => argument.sdkType))
     const selected = established.length ? established : preferred
-    if (selected.length === 1) {
+    if (selected.length === 1 && !reservedNames.has(name)) {
       const { module, ...modifier } = selected[0]
       result.push(modifier)
       continue

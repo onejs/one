@@ -731,6 +731,27 @@ export const sdkFontValues = [
   'default',
 ] as const
 export type SDKFont = (typeof sdkFontValues)[number]
+export const sdkFontDesignWithOptionalDesignValues = [
+  'default',
+  'serif',
+  'rounded',
+  'monospaced',
+] as const
+export type SDKFontDesignWithOptionalDesign =
+  (typeof sdkFontDesignWithOptionalDesignValues)[number]
+export const sdkFontWeightWithOptionalWeightValues = [
+  'ultraLight',
+  'thin',
+  'light',
+  'regular',
+  'medium',
+  'semibold',
+  'bold',
+  'heavy',
+  'black',
+] as const
+export type SDKFontWeightWithOptionalWeight =
+  (typeof sdkFontWeightWithOptionalWeightValues)[number]
 export const sdkFontWidthValues = [
   'compressed',
   'condensed',
@@ -777,6 +798,8 @@ export const sdkGlassEffectTransitionValues = [
   'identity',
 ] as const
 export type SDKGlassEffectTransition = (typeof sdkGlassEffectTransitionValues)[number]
+export const sdkGlassEffectWithGlassValues = ['regular', 'clear', 'identity'] as const
+export type SDKGlassEffectWithGlass = (typeof sdkGlassEffectWithGlassValues)[number]
 export const sdkGridCellAnchorValues = [
   'zero',
   'center',
@@ -814,8 +837,22 @@ export const sdkHoverEffectWithHoverEffectValues = [
 ] as const
 export type SDKHoverEffectWithHoverEffect =
   (typeof sdkHoverEffectWithHoverEffectValues)[number]
+export const sdkHoverEffectWithHoverEffectFromSwiftUICoreValues = [
+  'automatic',
+  'highlight',
+  'lift',
+] as const
+export type SDKHoverEffectWithHoverEffectFromSwiftUICore =
+  (typeof sdkHoverEffectWithHoverEffectFromSwiftUICoreValues)[number]
 export const sdkHueRotationValues = ['zero'] as const
 export type SDKHueRotation = (typeof sdkHueRotationValues)[number]
+export const sdkIgnoresSafeAreaWithSafeAreaRegionsValues = [
+  'container',
+  'keyboard',
+  'all',
+] as const
+export type SDKIgnoresSafeAreaWithSafeAreaRegions =
+  (typeof sdkIgnoresSafeAreaWithSafeAreaRegionsValues)[number]
 export const sdkImageScaleValues = ['small', 'medium', 'large'] as const
 export type SDKImageScale = (typeof sdkImageScaleValues)[number]
 export const sdkIndexViewStyleValues = ['page'] as const
@@ -992,6 +1029,16 @@ export const sdkOnScrollPhaseChangeValues = [
   'animating',
 ] as const
 export type SDKOnScrollPhaseChange = (typeof sdkOnScrollPhaseChangeValues)[number]
+export const sdkPaddingWithSetValues = [
+  'top',
+  'leading',
+  'bottom',
+  'trailing',
+  'all',
+  'horizontal',
+  'vertical',
+] as const
+export type SDKPaddingWithSet = (typeof sdkPaddingWithSetValues)[number]
 export const sdkPaletteSelectionEffectValues = ['automatic', 'custom'] as const
 export type SDKPaletteSelectionEffect = (typeof sdkPaletteSelectionEffectValues)[number]
 export const sdkPayLaterViewActionValues = ['learnMore', 'calculator'] as const
@@ -1047,6 +1094,9 @@ export const sdkPickerStyleValues = [
   'menu',
 ] as const
 export type SDKPickerStyle = (typeof sdkPickerStyleValues)[number]
+export const sdkPreferencePreferredColorSchemeValues = ['light', 'dark'] as const
+export type SDKPreferencePreferredColorScheme =
+  (typeof sdkPreferencePreferredColorSchemeValues)[number]
 export const sdkPreferredColorSchemeValues = ['light', 'dark'] as const
 export type SDKPreferredColorScheme = (typeof sdkPreferredColorSchemeValues)[number]
 export const sdkPresentationBackgroundValues = [
@@ -1111,6 +1161,8 @@ export const sdkPresentationContentInteractionValues = [
 ] as const
 export type SDKPresentationContentInteraction =
   (typeof sdkPresentationContentInteractionValues)[number]
+export const sdkPresentationDetentsValues = ['medium', 'large'] as const
+export type SDKPresentationDetents = (typeof sdkPresentationDetentsValues)[number]
 export const sdkPresentationDragIndicatorValues = [
   'automatic',
   'visible',
@@ -1171,6 +1223,16 @@ export type SDKRealityViewLayoutBehavior =
   (typeof sdkRealityViewLayoutBehaviorValues)[number]
 export const sdkRedactedValues = ['placeholder', 'privacy', 'invalidated'] as const
 export type SDKRedacted = (typeof sdkRedactedValues)[number]
+export const sdkSafeAreaPaddingWithSetValues = [
+  'top',
+  'leading',
+  'bottom',
+  'trailing',
+  'all',
+  'horizontal',
+  'vertical',
+] as const
+export type SDKSafeAreaPaddingWithSet = (typeof sdkSafeAreaPaddingWithSetValues)[number]
 export const sdkScenePaddingWithSetValues = [
   'top',
   'leading',
@@ -1196,6 +1258,8 @@ export const sdkScrollDismissesKeyboardValues = [
 export type SDKScrollDismissesKeyboard = (typeof sdkScrollDismissesKeyboardValues)[number]
 export const sdkScrollTargetBehaviorValues = ['paging', 'viewAligned'] as const
 export type SDKScrollTargetBehavior = (typeof sdkScrollTargetBehaviorValues)[number]
+export const sdkScrollTransitionValues = ['opacity', 'scaleEffect'] as const
+export type SDKScrollTransition = (typeof sdkScrollTransitionValues)[number]
 export const sdkSearchDictationBehaviorValues = ['automatic'] as const
 export type SDKSearchDictationBehavior = (typeof sdkSearchDictationBehaviorValues)[number]
 export const sdkSearchPresentationToolbarBehaviorValues = [
@@ -1365,6 +1429,16 @@ export type SDKSubscriptionStorePolicyForegroundStyle =
 export const sdkSymbolColorRenderingModeValues = ['flat', 'gradient'] as const
 export type SDKSymbolColorRenderingMode =
   (typeof sdkSymbolColorRenderingModeValues)[number]
+export const sdkSymbolEffectValues = [
+  'pulse',
+  'bounce',
+  'variableColor',
+  'scale',
+  'wiggle',
+  'rotate',
+  'breathe',
+] as const
+export type SDKSymbolEffect = (typeof sdkSymbolEffectValues)[number]
 export const sdkSymbolRenderingModeValues = [
   'monochrome',
   'multicolor',
@@ -1490,6 +1564,28 @@ export const sdkTextSelectionAffinityValues = [
   'downstream',
 ] as const
 export type SDKTextSelectionAffinity = (typeof sdkTextSelectionAffinityValues)[number]
+export const sdkTintWithOptionalColorValues = [
+  'accentColor',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'mint',
+  'teal',
+  'cyan',
+  'blue',
+  'indigo',
+  'purple',
+  'pink',
+  'brown',
+  'white',
+  'gray',
+  'black',
+  'clear',
+  'primary',
+  'secondary',
+] as const
+export type SDKTintWithOptionalColor = (typeof sdkTintWithOptionalColorValues)[number]
 export const sdkToggleStyleValues = ['button', 'automatic', 'switch'] as const
 export type SDKToggleStyle = (typeof sdkToggleStyleValues)[number]
 export const sdkToolbarRoleValues = [
@@ -1508,6 +1604,9 @@ export const sdkToolbarTitleDisplayModeValues = [
 export type SDKToolbarTitleDisplayMode = (typeof sdkToolbarTitleDisplayModeValues)[number]
 export const sdkToolbarWithRemovingValues = ['sidebarToggle', 'title', 'search'] as const
 export type SDKToolbarWithRemoving = (typeof sdkToolbarWithRemovingValues)[number]
+export const sdkTransformPreferencePreferredColorSchemeValues = ['light', 'dark'] as const
+export type SDKTransformPreferencePreferredColorScheme =
+  (typeof sdkTransformPreferencePreferredColorSchemeValues)[number]
 export const sdkTransitionValues = ['opacity', 'slide', 'identity', 'scale'] as const
 export type SDKTransition = (typeof sdkTransitionValues)[number]
 export const sdkTruncationModeValues = ['head', 'tail', 'middle'] as const
@@ -1518,6 +1617,8 @@ export const sdkVerifyIdentityWithWalletButtonStyleValues = [
 ] as const
 export type SDKVerifyIdentityWithWalletButtonStyle =
   (typeof sdkVerifyIdentityWithWalletButtonStyleValues)[number]
+export const sdkVisualEffectValues = ['opacity', 'scaleEffect'] as const
+export type SDKVisualEffect = (typeof sdkVisualEffectValues)[number]
 export const sdkWebViewBackForwardNavigationGesturesValues = [
   'automatic',
   'enabled',
@@ -1707,17 +1808,21 @@ export interface OneNativeStyle {
     inputLabels: readonly string[]
     isEnabled: boolean
   }>
+  accessibilityLabeledPair?: Readonly<{ role: 'label' | 'content'; id: string }>
   accessibilityLabelWithLabelAndIsEnabled?: Readonly<{
     label: string
     isEnabled: boolean
   }>
   accessibilityLabelWithText?: string
+  accessibilityLinkedGroup?: Readonly<{ id: string }>
   accessibilityRemoveTraits?: SDKAccessibilityRemoveTraits
   accessibilityRespondsToUserInteractionWithBool?: boolean
   accessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled?: Readonly<{
     respondsToUserInteraction: boolean
     isEnabled: boolean
   }>
+  accessibilityRotor?: Readonly<{ rotorLabel: string; entries: readonly string[] }>
+  accessibilityRotorEntry?: Readonly<{ id: string }>
   accessibilityScrollAction?: (value: 'top' | 'leading' | 'bottom' | 'trailing') => void
   accessibilityScrollStatus?: Readonly<{ status: string; isEnabled: boolean }>
   accessibilityShowsLargeContentViewer?: boolean
@@ -1742,7 +1847,15 @@ export interface OneNativeStyle {
     location: { x: number; y: number }
     point: { x: number; y: number }
   }) => void
+  actionSheet?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    title: string
+  }>
   addPassToWalletButtonStyle?: SDKAddPassToWalletButtonStyle
+  alert?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    title: string
+  }>
   alignmentGuideWithHorizontalAlignment?: Readonly<{
     g:
       | 'leading'
@@ -1766,6 +1879,15 @@ export interface OneNativeStyle {
   appStoreMerchandising?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
     kind: string
+  }>
+  appStoreOverlayWithAppClipConfiguration?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    position: 'bottom' | 'bottomRaised'
+  }>
+  appStoreOverlayWithAppConfiguration?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    appIdentifier: string
+    position: 'bottom' | 'bottomRaised'
   }>
   aspectRatio?: Readonly<{ aspectRatio: number | null; contentMode: 'fit' | 'fill' }>
   assistiveAccessNavigationIconWithImage?: string
@@ -1857,6 +1979,27 @@ export interface OneNativeStyle {
   controlSize?: SDKControlSize
   coordinateSpace?: string
   copyable?: Readonly<{ payload: readonly string[] }>
+  cornerRadiusWithRadiusAndAntialiased?: Readonly<{
+    radius: number
+    antialiased: boolean
+  }>
+  currentEntitlementTask?: Readonly<{
+    productID: string
+    onAction: (
+      value:
+        | { case: 'loading'; values: readonly [] }
+        | { case: 'failure'; values: readonly [string] }
+        | {
+            case: 'success'
+            values: readonly [
+              | { case: 'verified'; jwsRepresentation: string; error: null }
+              | { case: 'unverified'; jwsRepresentation: string; error: string }
+              | null,
+            ]
+          }
+        | { case: 'unknown'; values: readonly [] }
+    ) => void | Promise<void>
+  }>
   cuttable?: Readonly<{ items: readonly string[]; onAction: () => void }>
   dataDetection?: boolean
   datePickerStyle?: SDKDatePickerStyle
@@ -2002,6 +2145,19 @@ export interface OneNativeStyle {
     onCompletion: (result: Readonly<{ success: string } | { failure: string }>) => void
   }>
   fileExporterFilenameLabel?: string | null
+  fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    allowedContentTypes: readonly string[]
+    allowsMultipleSelection: boolean
+    onCompletion: (
+      result: Readonly<{ success: readonly string[] } | { failure: string }>
+    ) => void
+  }>
+  fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    allowedContentTypes: readonly string[]
+    onCompletion: (result: Readonly<{ success: string } | { failure: string }>) => void
+  }>
   fileMover?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
     file: string | null
@@ -2023,6 +2179,8 @@ export interface OneNativeStyle {
   focused?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   focusEffectDisabled?: boolean
   font?: SDKFont | null
+  fontDesignWithOptionalDesign?: SDKFontDesignWithOptionalDesign | null
+  fontWeightWithOptionalWeight?: SDKFontWeightWithOptionalWeight | null
   fontWidth?: SDKFontWidth | null
   foregroundColor?: SDKForegroundColor | null
   formStyle?: SDKFormStyle
@@ -2105,7 +2263,10 @@ export interface OneNativeStyle {
         onEnded: (value: { location: { x: number; y: number } }) => void
       }>
     | Readonly<{ kind: 'tap'; onEnded: () => void }>
+  glassEffectID?: Readonly<{ id: string | null }>
   glassEffectTransition?: SDKGlassEffectTransition
+  glassEffectUnion?: Readonly<{ id: string | null }>
+  glassEffectWithGlass?: SDKGlassEffectWithGlass
   grayscale?: number
   gridCellAnchor?: SDKGridCellAnchor
   gridCellColumns?: number
@@ -2154,17 +2315,10 @@ export interface OneNativeStyle {
       }>
     | Readonly<{ kind: 'tap'; onEnded: () => void }>
   hoverEffectDisabled?: boolean
-  hoverEffectWithEffectAndIsEnabled?: Readonly<{
-    effect: 'automatic' | 'highlight' | 'lift'
-    isEnabled: boolean
-  }>
   hoverEffectWithHoverEffect?: SDKHoverEffectWithHoverEffect
+  hoverEffectWithHoverEffectFromSwiftUICore?: SDKHoverEffectWithHoverEffectFromSwiftUICore
   hueRotation?: SDKHueRotation
   id?: string
-  ignoresSafeAreaWithRegionsAndEdges?: Readonly<{
-    regions: 'container' | 'keyboard' | 'all'
-    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
-  }>
   ignoresSafeAreaWithRegionsAndEdgesAndAlignment?: Readonly<{
     regions: 'container' | 'keyboard' | 'all'
     edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
@@ -2186,7 +2340,13 @@ export interface OneNativeStyle {
       | 'trailingLastTextBaseline'
       | null
   }>
+  ignoresSafeAreaWithSafeAreaRegions?: SDKIgnoresSafeAreaWithSafeAreaRegions
   imageScale?: SDKImageScale
+  inAppPurchaseOptions?: Readonly<{
+    quantity?: number
+    simulatesAskToBuyInSandbox?: boolean
+    introductoryOfferEligibility?: string
+  }>
   indexViewStyle?: SDKIndexViewStyle
   inspectorColumnWidthWithCGFloat?: number
   inspectorColumnWidthWithMinAndIdealAndMax?: Readonly<{
@@ -2358,7 +2518,10 @@ export interface OneNativeStyle {
   mapControlVisibility?: SDKMapControlVisibility
   mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null
   mapFeatureSelectionDisabled?: boolean
+  mapScope?: boolean
   mapStyle?: SDKMapStyle
+  matchedGeometryEffect?: Readonly<{ id: string }>
+  matchedTransitionSource?: Readonly<{ id: string }>
   materialActiveAppearance?: SDKMaterialActiveAppearance
   menuActionDismissBehavior?: SDKMenuActionDismissBehavior
   menuIndicator?: SDKMenuIndicator
@@ -2458,6 +2621,40 @@ export interface OneNativeStyle {
     newValue: { width: number; height: number }
   }) => void
   onHover?: (value: boolean) => void
+  onInAppPurchaseCompletion?: (value: {
+    value: {
+      id: string
+      type: { rawValue: string }
+      displayName: string
+      description: string
+      displayPrice: string
+      isFamilyShareable: boolean
+    }
+    result:
+      | {
+          case: 'success'
+          value:
+            | {
+                case: 'success'
+                values: readonly [
+                  | { case: 'verified'; jwsRepresentation: string; error: null }
+                  | { case: 'unverified'; jwsRepresentation: string; error: string },
+                ]
+              }
+            | { case: 'userCancelled'; values: readonly [] }
+            | { case: 'pending'; values: readonly [] }
+            | { case: 'unknown'; values: readonly [] }
+        }
+      | { case: 'failure'; error: string }
+  }) => void | Promise<void>
+  onInAppPurchaseStart?: (value: {
+    id: string
+    type: { rawValue: string }
+    displayName: string
+    description: string
+    displayPrice: string
+    isFamilyShareable: boolean
+  }) => void | Promise<void>
   onInteractiveResizeChange?: (value: boolean) => void
   onKeyPress?: Readonly<{
     result: 'handled' | 'ignored'
@@ -2514,6 +2711,9 @@ export interface OneNativeStyle {
         }
       | { case: 'failed'; values: readonly [] }
   ) => void
+  onPreferenceChangePreferredColorScheme?: (
+    value: 'light' | 'dark' | 'unknown' | null
+  ) => void
   onScrollGeometryChangeWithContainerSize?: (value: {
     oldValue: { width: number; height: number }
     newValue: { width: number; height: number }
@@ -2535,6 +2735,7 @@ export interface OneNativeStyle {
   onSubmit?: () => void
   onTapGestureWithPerform?: (value: { x: number; y: number }) => void
   onTapGestureWithPerformFromSwiftUICore?: () => void
+  paddingWithSet?: SDKPaddingWithSet
   paletteSelectionEffect?: SDKPaletteSelectionEffect
   pasteDestination?: (value: readonly string[]) => void
   payLaterViewAction?: SDKPayLaterViewAction
@@ -2556,9 +2757,18 @@ export interface OneNativeStyle {
       result: Readonly<{ success: string } | { failure: string }>
     ) => void
   }>
+  photosSharedAlbumCreationSheet?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+  }>
+  photosSharedAlbumCustomizationSheet?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    albumIdentifier: string | null
+  }>
   pickerStyle?: SDKPickerStyle
   position?: Readonly<{ x: number; y: number }>
+  preferencePreferredColorScheme?: SDKPreferencePreferredColorScheme | null
   preferredColorScheme?: SDKPreferredColorScheme | null
+  preferredSubscriptionOffer?: string
   presentationBackground?: SDKPresentationBackground
   presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction
   presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation?: Readonly<{
@@ -2568,6 +2778,7 @@ export interface OneNativeStyle {
   presentationCompactAdaptationWithPresentationAdaptation?: SDKPresentationCompactAdaptationWithPresentationAdaptation
   presentationContentInteraction?: SDKPresentationContentInteraction
   presentationCornerRadius?: number | null
+  presentationDetents?: readonly SDKPresentationDetents[]
   presentationDragIndicator?: SDKPresentationDragIndicator
   presentationPlacement?: SDKPresentationPlacement
   presentationSizing?: SDKPresentationSizing
@@ -2590,9 +2801,14 @@ export interface OneNativeStyle {
       ty: number
     }>
   }>
+  quickLookPreview?: Readonly<{
+    value: string | null
+    onChange: (value: string | null) => void
+  }>
   realityViewCameraControls?: SDKRealityViewCameraControls
   realityViewLayoutBehavior?: SDKRealityViewLayoutBehavior
   redacted?: SDKRedacted
+  refreshable?: () => void | Promise<void>
   refundRequestSheet?: Readonly<{
     transactionID: string
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
@@ -2631,10 +2847,7 @@ export interface OneNativeStyle {
       | 'bottomTrailing'
   }>
   safeAreaPaddingWithCGFloat?: number
-  safeAreaPaddingWithEdgesAndLength?: Readonly<{
-    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
-    length: number | null
-  }>
+  safeAreaPaddingWithSet?: SDKSafeAreaPaddingWithSet
   saturation?: number
   scaledToFill?: boolean
   scaledToFit?: boolean
@@ -2703,6 +2916,7 @@ export interface OneNativeStyle {
   }>
   scrollTargetBehavior?: SDKScrollTargetBehavior
   scrollTargetLayout?: boolean
+  scrollTransition?: Readonly<{ kind: 'opacity' | 'scaleEffect'; value: number }>
   searchable?: Readonly<{ value: string; onChange: (value: string) => void }>
   searchCompletion?: string
   searchDictationBehavior?: SDKSearchDictationBehavior
@@ -2808,6 +3022,52 @@ export interface OneNativeStyle {
       | 'signIn'
       | 'policies'
   }>
+  storeProductsTask?: Readonly<{
+    ids: readonly string[]
+    onAction: (
+      value:
+        | { case: 'loading'; values: readonly [] }
+        | { case: 'failure'; values: readonly [string] }
+        | {
+            case: 'success'
+            values: readonly [
+              readonly {
+                id: string
+                type: { rawValue: string }
+                displayName: string
+                description: string
+                displayPrice: string
+                isFamilyShareable: boolean
+              }[],
+              readonly string[],
+            ]
+          }
+        | { case: 'unknown'; values: readonly [] }
+    ) => void | Promise<void>
+  }>
+  storeProductTask?: Readonly<{
+    id: string
+    onAction: (
+      value:
+        | { case: 'loading'; values: readonly [] }
+        | { case: 'unavailable'; values: readonly [] }
+        | { case: 'failure'; values: readonly [string] }
+        | {
+            case: 'success'
+            values: readonly [
+              {
+                id: string
+                type: { rawValue: string }
+                displayName: string
+                description: string
+                displayPrice: string
+                isFamilyShareable: boolean
+              },
+            ]
+          }
+        | { case: 'unknown'; values: readonly [] }
+    ) => void | Promise<void>
+  }>
   strikethrough?: Readonly<{
     isActive: boolean
     pattern: 'solid' | 'dot' | 'dash' | 'dashDot' | 'dashDotDot'
@@ -2841,6 +3101,29 @@ export interface OneNativeStyle {
   }>
   subscriptionOfferViewDetailAction?: () => void
   subscriptionOfferViewStyle?: SDKSubscriptionOfferViewStyle
+  subscriptionStatusTask?: Readonly<{
+    groupID: string
+    onAction: (
+      value:
+        | { case: 'loading'; values: readonly [] }
+        | { case: 'failure'; values: readonly [string] }
+        | {
+            case: 'success'
+            values: readonly [
+              readonly {
+                state: { rawValue: number }
+                transaction:
+                  | { case: 'verified'; jwsRepresentation: string; error: null }
+                  | { case: 'unverified'; jwsRepresentation: string; error: string }
+                renewalInfo:
+                  | { case: 'verified'; jwsRepresentation: string; error: null }
+                  | { case: 'unverified'; jwsRepresentation: string; error: string }
+              }[],
+            ]
+          }
+        | { case: 'unknown'; values: readonly [] }
+    ) => void | Promise<void>
+  }>
   subscriptionStoreButtonLabel?: SDKSubscriptionStoreButtonLabel
   subscriptionStoreControlBackground?: SDKSubscriptionStoreControlBackground
   subscriptionStoreControlStyle?: SDKSubscriptionStoreControlStyle
@@ -2854,6 +3137,7 @@ export interface OneNativeStyle {
   subscriptionStoreSignInAction?: () => void
   swipeActionsContainer?: boolean
   symbolColorRenderingMode?: SDKSymbolColorRenderingMode | null
+  symbolEffect?: SDKSymbolEffect
   symbolEffectsRemoved?: boolean
   symbolRenderingMode?: SDKSymbolRenderingMode | null
   symbolVariableValueMode?: SDKSymbolVariableValueMode | null
@@ -2868,6 +3152,7 @@ export interface OneNativeStyle {
   tabViewSearchActivation?: SDKTabViewSearchActivation
   tabViewStyle?: SDKTabViewStyle
   tag?: string
+  task?: () => void | Promise<void>
   textCase?: SDKTextCase | null
   textContentType?: SDKTextContentType | null
   textEditorStyle?: SDKTextEditorStyle
@@ -2881,6 +3166,7 @@ export interface OneNativeStyle {
   textScale?: Readonly<{ scale: 'default' | 'secondary'; isEnabled: boolean }>
   textSelection?: SDKTextSelection
   textSelectionAffinity?: SDKTextSelectionAffinity
+  tintWithOptionalColor?: SDKTintWithOptionalColor | null
   toggleStyle?: SDKToggleStyle
   toolbarBackground?: Readonly<{
     visibility: 'automatic' | 'visible' | 'hidden'
@@ -2918,6 +3204,14 @@ export interface OneNativeStyle {
     bars: 'automatic' | 'bottomBar' | 'navigationBar' | 'tabBar' | 'statusBar'
   }>
   tracking?: number
+  transaction?: Readonly<{
+    transform: Readonly<{
+      isContinuous?: boolean
+      scrollPositionUpdatePreservesVelocity?: boolean
+      disablesAnimations?: boolean
+      tracksVelocity?: boolean
+    }>
+  }>
   transformEffect?: Readonly<{
     transform: Readonly<{
       a: number
@@ -2928,6 +3222,24 @@ export interface OneNativeStyle {
       ty: number
     }>
   }>
+  transformEnvironmentAccessibilityEnabled?: boolean
+  transformEnvironmentAccessibilityPrefersCrossFadeTransitions?: boolean
+  transformEnvironmentAllowsTightening?: boolean
+  transformEnvironmentAppearsActive?: boolean
+  transformEnvironmentAutocorrectionDisabled?: boolean
+  transformEnvironmentContentTransitionAddsDrawingGroup?: boolean
+  transformEnvironmentDefaultMinListRowHeight?: number
+  transformEnvironmentDisplayScale?: number
+  transformEnvironmentIsEnabled?: boolean
+  transformEnvironmentIsFocusEffectEnabled?: boolean
+  transformEnvironmentIsHoverEffectEnabled?: boolean
+  transformEnvironmentIsLuminanceReduced?: boolean
+  transformEnvironmentIsSceneCaptured?: boolean
+  transformEnvironmentIsScrollEnabled?: boolean
+  transformEnvironmentLineSpacing?: number
+  transformEnvironmentMinimumScaleFactor?: number
+  transformEnvironmentSystemPrefersReducedResourceUsage?: boolean
+  transformPreferencePreferredColorScheme?: SDKTransformPreferencePreferredColorScheme | null
   transition?: SDKTransition
   translationPresentation?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
@@ -2977,6 +3289,7 @@ export interface OneNativeStyle {
     }>
   }>
   verifyIdentityWithWalletButtonStyle?: SDKVerifyIdentityWithWalletButtonStyle
+  visualEffect?: Readonly<{ kind: 'opacity' | 'scaleEffect'; value: number }>
   webViewBackForwardNavigationGestures?: SDKWebViewBackForwardNavigationGestures
   webViewContentBackground?: SDKWebViewContentBackground
   webViewElementFullscreenBehavior?: SDKWebViewElementFullscreenBehavior

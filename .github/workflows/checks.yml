@@ -19,7 +19,9 @@ permissions:
   contents: read
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  # v2-beta takes pushes every few minutes and the beta release requires full CI
+  # on its exact sha, so each v2-beta commit gets its own group and always finishes.
+  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/v2-beta' && github.sha || github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' && !startsWith(github.ref, 'refs/heads/gh-readonly-queue/') }}
 
 jobs:

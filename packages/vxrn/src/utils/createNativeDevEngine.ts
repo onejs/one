@@ -260,7 +260,7 @@ function getNativePlugins(
   const context: NativePluginContext = { root, platform, dev }
   return [
     // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
-    ...(globalThis.__vxrnAddNativePlugins || []),
+    ...(globalThis.__vxrnAddNativePlugins?.(platform) || []),
     // block .server.* and _middleware.* files from entering the native bundle
     serverFileExclusionPlugin(),
     // guard server-only / client-only / web-only / native-only imports
