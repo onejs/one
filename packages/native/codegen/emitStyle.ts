@@ -388,6 +388,10 @@ ${modifier.cases!.map((item) => `      case ${JSON.stringify(item.name)}: return
     } else { self }`, 'self') : body}
   }`
       }
+      if (modifier.kind === 'eventAsync')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    ${apply(`{ await OneNativeAsyncAction.wait(name: ${JSON.stringify(modifier.name)}, emit: emit) }`, modifier.ios)}
+  }`
       if (modifier.kind.startsWith('event') || modifier.kind.startsWith('binding')) {
         const bridge = modifier.kind.startsWith('event')
           ? modifier.kind === 'event'
@@ -555,7 +559,7 @@ ${parsed.replace(/[ \t]+$/gm, '')}
   outputs.set(
     'src/generated/swiftStyleNative.ts',
     header +
-      `import { processColor, type ColorValue, type ProcessedColorValue } from 'react-native'
+      `import { NativeModules, processColor, type ColorValue, type ProcessedColorValue } from 'react-native'
 import type { OneNativeStyle } from './controlTypes'
 
 export type OneNativeStyleNative = Readonly<{
@@ -770,6 +774,12 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
     }
   }
   else if (kind === 'event') (modifier as (() => void) | undefined)?.()
+  else if (kind === 'eventAsync') {
+    const native = NativeModules.OneNativeAsyncActionModule as { complete(identifier: string): void } | undefined
+    if (!native) throw new Error('OneNativeAsyncActionModule is unavailable')
+    void Promise.resolve().then(() => (modifier as (() => void | Promise<void>) | undefined)?.())
+      .finally(() => native.complete(value))
+  }
   else if (kind === 'eventReturnArray') (modifier as { onAction: () => void } | undefined)?.onAction()
   else if (kind === 'eventReturnEnum') {
     const payload: unknown = JSON.parse(value)
