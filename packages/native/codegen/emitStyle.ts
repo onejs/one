@@ -92,7 +92,8 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
     .map((modifier) => {
       const helper = `oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}`
       const apply = (value: string, version: number, fullArguments = false) => {
-        const argument = !fullArguments && modifier.label && modifier.label !== '_' ? `${modifier.label}: ${value}` : value
+        const argument = modifier.environmentKey ? `\\.${modifier.environmentKey}, ${value}` :
+          !fullArguments && modifier.label && modifier.label !== '_' ? `${modifier.label}: ${value}` : value
         return version > 17
           ? sdkGuard(version, `if #available(iOS ${version}, *) { self.${modifier.sdkName ?? modifier.name}(${argument}) } else { self }`, 'self')
           : `self.${modifier.sdkName ?? modifier.name}(${argument})`
@@ -509,7 +510,7 @@ ${modifier.cases
       } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
             : `      ${apply(modifier.rawString ? `${modifier.type}(rawValue: value)` : expression(modifier.swiftExpression, 'value') ?? (modifier.type === 'SwiftUICore.Text' ? 'Text(value)' : modifier.type === 'SwiftUICore.Image' ? 'Image(systemName: value)' : construct('value')), modifier.ios)}`
       return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-${parsed}
+${parsed.replace(/[ \t]+$/gm, '')}
   }`
     })
     .join('\n\n')

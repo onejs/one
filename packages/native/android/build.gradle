@@ -31,6 +31,17 @@ def oneNativeMapsEnabled() {
     return value != null && value.toString() == "true"
 }
 
+// remote push on android compiles only when the app sets
+// native.app.notifications.push: prebuild writes oneNativePush=true to the
+// root gradle.properties, and without it the nopush source set (whose fetch
+// rejects) compiles instead, keeping firebase messaging out of the app
+// entirely. read through the root project first: the flag lives in the
+// app's gradle.properties, not this library's.
+def oneNativePushEnabled() {
+    def value = rootProject.findProperty("oneNativePush") ?: findProperty("oneNativePush")
+    return value != null && value.toString() == "true"
+}
+
 android {
     namespace "dev.vxrn.nativebridge"
     compileSdkVersion safeExtGet("compileSdkVersion", 35)
@@ -65,6 +76,8 @@ android {
         named("main") {
             // exactly one of these defines dev.onejs.onenative.OneNativeUiMapManager.
             java.srcDir(oneNativeMapsEnabled() ? "src/maps/java" : "src/nomaps/java")
+            // exactly one of these defines dev.onejs.onenative.OneNativePush.
+            java.srcDir(oneNativePushEnabled() ? "src/push/java" : "src/nopush/java")
         }
     }
 
@@ -132,6 +145,12 @@ dependencies {
         implementation "androidx.lifecycle:lifecycle-runtime:2.9.3"
     }
     implementation project(":react-native-nitro-modules")
+    // firebase messaging only when the app opted into push via the manifest
+    // flag; without it nothing here references it, which is what keeps it
+    // out of the apk.
+    if (oneNativePushEnabled()) {
+        implementation "com.google.firebase:firebase-messaging:25.0.1"
+    }
     if (rootProject.subprojects.find { it.name == "react-native-worklets" } != null) {
         implementation project(":react-native-worklets")
     } else {

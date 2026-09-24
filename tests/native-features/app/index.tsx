@@ -167,6 +167,11 @@ const testScreens = [
     testID: 'nav-one-native-system',
   },
   {
+    href: '/one-native-notifications',
+    label: 'One Native Notifications',
+    testID: 'nav-one-native-notifications',
+  },
+  {
     href: '/one-native-apple-file',
     label: 'One Native Apple File',
     testID: 'nav-one-native-apple-file',

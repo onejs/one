@@ -47,6 +47,7 @@ declare module 'one' {
         | `/one-native-media`
         | `/one-native-navigation`
         | `/one-native-network`
+        | `/one-native-notifications`
         | `/one-native-popover`
         | `/one-native-safe-area`
         | `/one-native-sheet`

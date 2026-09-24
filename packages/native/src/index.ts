@@ -37,6 +37,7 @@ export type {
 export const Menu = Swift.Menu
 export const ContextMenu = Swift.ContextMenu
 export { Compose } from './compose'
+export { Notifications } from './notifications'
 export { Widgets, LiveActivities }
 export { useNativeState, type NativeState } from './nativeState'
 export { TextInput } from './universal/TextInput/index'

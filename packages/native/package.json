@@ -95,6 +95,12 @@
       "import": "./dist/esm/clipboard/index.mjs",
       "require": "./dist/cjs/clipboard/index.cjs"
     },
+    "./notifications": {
+      "types": "./types/notifications/index.d.ts",
+      "react-native": "./dist/esm/notifications/index.native.js",
+      "import": "./dist/esm/notifications/index.mjs",
+      "require": "./dist/cjs/notifications/index.cjs"
+    },
     "./network": {
       "types": "./types/network/index.d.ts",
       "react-native": "./dist/esm/network/index.native.js",
