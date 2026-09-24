@@ -640,6 +640,21 @@ export interface OneNativeStyle {
         }>;
         kind: string;
     }>;
+    appStoreOverlayWithAppClipConfiguration?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        position: 'bottom' | 'bottomRaised';
+    }>;
+    appStoreOverlayWithAppConfiguration?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        appIdentifier: string;
+        position: 'bottom' | 'bottomRaised';
+    }>;
     aspectRatio?: Readonly<{
         aspectRatio: number | null;
         contentMode: 'fit' | 'fill';

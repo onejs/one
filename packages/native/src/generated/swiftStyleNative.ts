@@ -112,6 +112,8 @@ const sdkKinds = {
   animation: 'optionalEnum',
   appEntityIdentifier: 'optionalString',
   appStoreMerchandising: 'record',
+  appStoreOverlayWithAppClipConfiguration: 'record',
+  appStoreOverlayWithAppConfiguration: 'record',
   aspectRatio: 'record',
   assistiveAccessNavigationIconWithImage: 'string',
   assistiveAccessNavigationIconWithSystemImage: 'string',
@@ -1440,6 +1442,15 @@ const sdkRecords: Record<
   appStoreMerchandising: [
     { field: 'isPresented', kind: 'bindingBoolean', optional: false },
     { field: 'kind', kind: 'string', optional: false },
+  ],
+  appStoreOverlayWithAppClipConfiguration: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'position', kind: 'enum', optional: false },
+  ],
+  appStoreOverlayWithAppConfiguration: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'appIdentifier', kind: 'string', optional: false },
+    { field: 'position', kind: 'enum', optional: false },
   ],
   aspectRatio: [
     { field: 'aspectRatio', kind: 'number', optional: true },

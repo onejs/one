@@ -1879,6 +1879,15 @@ export interface OneNativeStyle {
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
     kind: string
   }>
+  appStoreOverlayWithAppClipConfiguration?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    position: 'bottom' | 'bottomRaised'
+  }>
+  appStoreOverlayWithAppConfiguration?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    appIdentifier: string
+    position: 'bottom' | 'bottomRaised'
+  }>
   aspectRatio?: Readonly<{ aspectRatio: number | null; contentMode: 'fit' | 'fill' }>
   assistiveAccessNavigationIconWithImage?: string
   assistiveAccessNavigationIconWithSystemImage?: string

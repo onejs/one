@@ -177,6 +177,8 @@ extension View {
       case "animation": view = AnyView(view.oneNativeSDKAnimation(value, emit: emit))
       case "appEntityIdentifier": view = AnyView(view.oneNativeSDKAppEntityIdentifier(value, emit: emit))
       case "appStoreMerchandising": view = AnyView(view.oneNativeSDKAppStoreMerchandising(value, emit: emit))
+      case "appStoreOverlayWithAppClipConfiguration": view = AnyView(view.oneNativeSDKAppStoreOverlayWithAppClipConfiguration(value, emit: emit))
+      case "appStoreOverlayWithAppConfiguration": view = AnyView(view.oneNativeSDKAppStoreOverlayWithAppConfiguration(value, emit: emit))
       case "aspectRatio": view = AnyView(view.oneNativeSDKAspectRatio(value, emit: emit))
       case "assistiveAccessNavigationIconWithImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithImage(value, emit: emit))
       case "assistiveAccessNavigationIconWithSystemImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithSystemImage(value, emit: emit))
@@ -1766,6 +1768,54 @@ extension View {
     }()
     self.appStoreMerchandising(isPresented: argument0, kind: argument1)
     } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAppStoreOverlayWithAppClipConfiguration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid appStoreOverlayWithAppClipConfiguration: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid appStoreOverlayWithAppClipConfiguration.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("appStoreOverlayWithAppClipConfiguration.isPresented", String($0)) })
+    }()
+    let argument1: StoreKit.SKOverlay.Position = {
+      guard let raw = values[1] else { preconditionFailure("missing appStoreOverlayWithAppClipConfiguration.position") }
+      switch raw {
+      case "bottom": return StoreKit.SKOverlay.Position.bottom
+      case "bottomRaised": return StoreKit.SKOverlay.Position.bottomRaised
+      default: preconditionFailure("invalid appStoreOverlayWithAppClipConfiguration.position: \(raw)")
+      }
+    }()
+    self.appStoreOverlay(isPresented: argument0, configuration: { StoreKit.SKOverlay.AppClipConfiguration(position: argument1) })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAppStoreOverlayWithAppConfiguration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid appStoreOverlayWithAppConfiguration: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid appStoreOverlayWithAppConfiguration.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("appStoreOverlayWithAppConfiguration.isPresented", String($0)) })
+    }()
+    let argument1: Swift.String = {
+      guard let raw = values[1] else { preconditionFailure("missing appStoreOverlayWithAppConfiguration.appIdentifier") }
+      return raw
+    }()
+    let argument2: StoreKit.SKOverlay.Position = {
+      guard let raw = values[2] else { preconditionFailure("missing appStoreOverlayWithAppConfiguration.position") }
+      switch raw {
+      case "bottom": return StoreKit.SKOverlay.Position.bottom
+      case "bottomRaised": return StoreKit.SKOverlay.Position.bottomRaised
+      default: preconditionFailure("invalid appStoreOverlayWithAppConfiguration.position: \(raw)")
+      }
+    }()
+    self.appStoreOverlay(isPresented: argument0, configuration: { StoreKit.SKOverlay.AppConfiguration(appIdentifier: argument1, position: argument2) })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAspectRatio(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

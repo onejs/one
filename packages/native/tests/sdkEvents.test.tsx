@@ -78,6 +78,30 @@ describe('SDK callback and binding transport', () => {
     expect(onChange).toHaveBeenCalledWith(false)
   })
 
+  it('constructs public SDK subclasses for an object-returning closure', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'overlay', swiftStyle: {
+      appStoreOverlayWithAppConfiguration: {
+        isPresented: { value: true, onChange }, appIdentifier: '123456789', position: 'bottom',
+      },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['appStoreOverlayWithAppConfiguration', '["true","123456789","bottom"]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'appStoreOverlayWithAppConfiguration.isPresented', value: 'false',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+    const clip = Controls.Text({ text: 'clip', swiftStyle: {
+      appStoreOverlayWithAppClipConfiguration: {
+        isPresented: { value: false, onChange }, position: 'bottomRaised',
+      },
+    } })
+    expect(JSON.parse(clip.props.swiftStyle.sdkModifiers)).toEqual([
+      ['appStoreOverlayWithAppClipConfiguration', '["false","bottomRaised"]'],
+    ])
+  })
+
   it('toggles a public boolean environment value through the SDK transform method', () => {
     const element = Controls.Text({ text: 'child', swiftStyle: {
       transformEnvironmentIsEnabled: true,
