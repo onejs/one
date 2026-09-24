@@ -540,6 +540,14 @@ ${argument.kind === 'number' ? `        guard let parsed = Int(raw) else { preco
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     ${apply('{ _, _, eligible in eligible.first { $0.id == value } }', modifier.ios)}
   }`
+      if (modifier.kind === 'selectionIndex')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let selected: Int = {
+      guard let index = Int(value), index >= 0 else { preconditionFailure("invalid ${modifier.name}: \\(value)") }
+      return index
+    }()
+    ${apply(`{ _, input in input.${modifier.selectionMember}.indices.contains(selected) ? input.${modifier.selectionMember}[selected] : nil }`, modifier.ios)}
+  }`
       if (modifier.kind === 'caseSet')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let selected: Set<${modifier.resultType}> = {
@@ -931,6 +939,7 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
       if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean') throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string') throw new Error(name + ' must be a string')
       if (kind === 'selectionID' && typeof value !== 'string') throw new Error(name + ' must be a string')
+      if (kind === 'selectionIndex' && (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 0)) throw new Error(name + ' must be a nonnegative index')
       if (kind === 'url' && typeof value !== 'string') throw new Error(name + ' must be a URL string')
       if (kind === 'optionalURL' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a URL string or null')
       if (kind === 'optionalEnum' && value !== null && typeof value !== 'string') throw new Error(name + ' must be a string or null')

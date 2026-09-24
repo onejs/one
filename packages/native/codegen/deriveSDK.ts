@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -48,6 +48,7 @@ export type DerivedModifier = {
   eventValue?: EventValueSchema
   eventInputType?: string
   resultType?: string
+  selectionMember?: string
   resultConstructor?: { type: string; label: string }
   eventPair?: true
   eventInputs?: readonly string[]
@@ -1048,6 +1049,28 @@ export function deriveModifiers(
         present(declaration) && ios(declaration) <= ios(method)))
         return [{ name, module: method.module, kind: 'selectionID', type: method.parameters[0].type,
           label: method.parameters[0].label, ios: ios(method), ...framework }]
+      const arraySelection = method.parameters.length === 1 &&
+        /^@escaping \((?:_ [A-Za-z_]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+), (?:_ [A-Za-z_]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> ([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\?$/.exec(method.parameters[0].type)
+      if (arraySelection) {
+        const resolveAlias = (type: string) => {
+          const alias = inventory.filter((declaration) => declaration.kind === 'typealias' &&
+            type.startsWith(`${declaration.module}.${declaration.name}`) &&
+            (type.length === `${declaration.module}.${declaration.name}`.length ||
+              type[`${declaration.module}.${declaration.name}`.length] === '.') &&
+            declaration.owner === '' && declaration.type && present(declaration) && ios(declaration) <= ceiling)
+            .sort((a, b) => b.name.length - a.name.length)[0]
+          return alias ? `${alias.type}${type.slice(`${alias.module}.${alias.name}`.length)}` : type
+        }
+        const owner = resolveAlias(arraySelection[2])
+        const result = resolveAlias(arraySelection[3])
+        const members = inventory.filter((declaration) => declaration.kind === 'var' &&
+          declaration.module === owner.split('.')[0] && declaration.owner === owner &&
+          declaration.type === `[${result}]` && present(declaration) && ios(declaration) <= ceiling)
+        if (members.length === 1)
+          return [{ name, module: method.module, kind: 'selectionIndex',
+            type: method.parameters[0].type, label: method.parameters[0].label,
+            selectionMember: members[0].name, ios: Math.max(ios(method), ios(members[0])), ...framework }]
+      }
       const defaultedCase = method.parameters.length > 1 &&
         method.parameters.every((parameter) => parameter.defaultValue !== undefined) &&
         valueOf(method.parameters[0].type)

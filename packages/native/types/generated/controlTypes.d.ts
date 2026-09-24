@@ -1644,6 +1644,7 @@ export interface OneNativeStyle {
     preferencePreferredColorScheme?: SDKPreferencePreferredColorScheme | null;
     preferredColorScheme?: SDKPreferredColorScheme | null;
     preferredSubscriptionOffer?: string;
+    preferredSubscriptionPricingTerms?: number;
     presentationBackground?: SDKPresentationBackground;
     presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction;
     presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation?: Readonly<{

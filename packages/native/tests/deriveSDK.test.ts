@@ -455,6 +455,20 @@ describe('SDK modifier derivation', () => {
       ],
     }])
   })
+
+  it('selects a callback result from a public array on its input', () => {
+    expect(deriveModifiers([
+      method('preferredSubscriptionPricingTerms', '_StoreKit_SwiftUI', [{
+        label: '_', name: 'pricingTerms',
+        type: '@escaping (_ product: StoreKit.Product, _ subscriptionInfo: StoreKit.SubscriptionInfo) -> StoreKit.SubscriptionInfo.PricingTerms?',
+      }]),
+      { ...method('SubscriptionInfo', 'StoreKit'), kind: 'typealias', owner: '', type: 'StoreKit.Product.SubscriptionInfo' },
+      { ...method('pricingTerms', 'StoreKit'), kind: 'var', owner: 'StoreKit.Product.SubscriptionInfo', type: '[StoreKit.Product.SubscriptionInfo.PricingTerms]' },
+    ], 27, [])).toEqual([{
+      name: 'preferredSubscriptionPricingTerms', kind: 'selectionIndex', type: '@escaping (_ product: StoreKit.Product, _ subscriptionInfo: StoreKit.SubscriptionInfo) -> StoreKit.SubscriptionInfo.PricingTerms?',
+      label: '_', selectionMember: 'pricingTerms', ios: 0, framework: 'StoreKit',
+    }])
+  })
 })
 
 describe('SDK view slots', () => {

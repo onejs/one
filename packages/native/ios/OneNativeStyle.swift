@@ -508,6 +508,7 @@ extension View {
       case "preferencePreferredColorScheme": view = AnyView(view.oneNativeSDKPreferencePreferredColorScheme(value, emit: emit))
       case "preferredColorScheme": view = AnyView(view.oneNativeSDKPreferredColorScheme(value, emit: emit))
       case "preferredSubscriptionOffer": view = AnyView(view.oneNativeSDKPreferredSubscriptionOffer(value, emit: emit))
+      case "preferredSubscriptionPricingTerms": view = AnyView(view.oneNativeSDKPreferredSubscriptionPricingTerms(value, emit: emit))
       case "presentationBackground": view = AnyView(view.oneNativeSDKPresentationBackground(value, emit: emit))
       case "presentationBackgroundInteraction": view = AnyView(view.oneNativeSDKPresentationBackgroundInteraction(value, emit: emit))
       case "presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation": view = AnyView(view.oneNativeSDKPresentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation(value, emit: emit))
@@ -6016,6 +6017,14 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKPreferredSubscriptionOffer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) { self.preferredSubscriptionOffer({ _, _, eligible in eligible.first { $0.id == value } }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPreferredSubscriptionPricingTerms(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let selected: Int = {
+      guard let index = Int(value), index >= 0 else { preconditionFailure("invalid preferredSubscriptionPricingTerms: \(value)") }
+      return index
+    }()
+    if #available(iOS 26.4, *) { self.preferredSubscriptionPricingTerms({ _, input in input.pricingTerms.indices.contains(selected) ? input.pricingTerms[selected] : nil }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPresentationBackground(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

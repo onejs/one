@@ -157,6 +157,8 @@ ${styleFields
             ? `readonly SDK${upper(modifier.name)}[]`
           : modifier.kind === 'selectionID'
             ? 'string'
+          : modifier.kind === 'selectionIndex'
+            ? 'number'
           : modifier.kind === 'eventAsync'
             ? '() => void | Promise<void>'
             : modifier.kind === 'eventAsyncStruct'
