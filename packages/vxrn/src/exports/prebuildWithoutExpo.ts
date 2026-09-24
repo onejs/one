@@ -1394,6 +1394,11 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       if (app.ios?.widgets) {
         stamps.push('\t<key>NSSupportsLiveActivities</key>\n\t<true/>')
       }
+      if (app.pictureInPicture) {
+        stamps.push(
+          '\t<key>UIBackgroundModes</key>\n\t<array>\n\t\t<string>audio</string>\n\t</array>'
+        )
+      }
       if (stamps.length) {
         const anchor = '\t<key>LSRequiresIPhoneOS</key>'
         if (!rendered.includes(anchor))
@@ -1519,6 +1524,22 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         const trailed = rendered.endsWith('\n') ? rendered : `${rendered}\n`
         rendered = `${trailed}\n# One.UI.Map: set by native.app.android.googleMapsApiKey.\n${line}\n`
       }
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.pictureInPicture
+    ) {
+      const anchor = 'android:name=".MainActivity"'
+      if (!rendered.includes(anchor)) {
+        throw new Error(
+          '[vxrn] cannot stamp picture in picture: expected .MainActivity in app/src/main/AndroidManifest.xml'
+        )
+      }
+      rendered = rendered.replace(
+        anchor,
+        `${anchor}\n        android:supportsPictureInPicture="true"`
+      )
     }
     if (
       platform === 'android' &&

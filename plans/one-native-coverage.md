@@ -178,3 +178,28 @@ rediscovered: a presented dialog owns the accessibility tree, so the app's own s
 rows are invisible while it is up; a SecureField reports as a `TextField` carrying the
 `AXSecureTextField` subrole; and an attached hardware keyboard suppresses the software
 keyboard, so there is no keyboard element to wait on before typing.
+
+## Beyond SwiftUI
+
+Common native patterns that no SwiftUI view covers: app services, system windows,
+and OS integrations. A queue, not a spec. Each ships as a uniform `One.UI` component
+or service where iOS and Android can agree, plus raw `One.iOS` / `One.Android`
+access under the platform's own names where they cannot.
+
+| Pattern | Status |
+| --- | --- |
+| Haptics, Clipboard, Browser, ImagePicker, Fonts, Network, AppInfo, Crypto | shipped, both platforms (Nitro) |
+| Notifications | shipped, both platforms (Nitro) |
+| Widgets, Live Activities | shipped, iOS only (`One.iOS`); Android Glance widgets not started |
+| Picture in Picture (any view) | shipped, both platforms: `One.UI.PictureInPicture`, `native.app.pictureInPicture` |
+| Picture in Picture (video, custom controls) | not started: AVPlayerLayer PiP for a real player (the any-view path snapshots video), Android `setActions` remote actions |
+| Share sheet (imperative) | not started; ShareLink covers the SwiftUI button form only |
+| Secure storage (Keychain, Keystore) | not started |
+| Biometrics (LocalAuthentication, BiometricPrompt) | not started |
+| Keep awake, screen brightness | not started |
+| Store review prompt | not started |
+| Splash screen control | not started |
+| Now Playing / media session and remote commands | not started |
+| Background tasks (BGTaskScheduler, WorkManager) | not started |
+| App Intents, Shortcuts, Siri, App Actions | not started |
+| CallKit / ConnectionService | not started |

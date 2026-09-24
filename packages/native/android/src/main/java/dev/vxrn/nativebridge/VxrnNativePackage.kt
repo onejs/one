@@ -12,6 +12,7 @@ import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
 import dev.onejs.onenative.OneNativeMaskManager
 import dev.onejs.onenative.OneNativeMenuPopupModule
+import dev.onejs.onenative.OneNativePictureInPictureManager
 import dev.onejs.onenative.OneNativeSafeAreaModule
 import dev.onejs.onenative.OneNativeReservedRegionsProviderManager
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
@@ -77,6 +78,7 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeBlurManager(),
             OneNativeMaskManager(),
             OneNativeUiMapManager(),
+            OneNativePictureInPictureManager(),
         )
 
     companion object {
