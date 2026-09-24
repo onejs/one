@@ -818,6 +818,45 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     expect(project).not.toContain('CODE_SIGN_ENTITLEMENTS')
     expect(() => statSync(join(output, 'ios', 'MyApp', 'MyApp.entitlements'))).toThrow()
   }, 180000)
+
+  it('shares one app entitlement file when widgets and notification push are enabled', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-widget-push-'))
+    await generateForPlatform(
+      workspaceRoot,
+      'ios',
+      {
+        ...app,
+        notifications: { push: true },
+        ios: {
+          ...app.ios,
+          widgets: {
+            appGroup: 'group.dev.one.myapp',
+            kind: 'MyAppStatus',
+            displayName: 'Status',
+            description: 'Current status',
+          },
+        },
+      },
+      join(output, 'ios')
+    )
+
+    const project = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    expect(project).toContain(
+      'CODE_SIGN_ENTITLEMENTS = MyApp/OneAppWidgets.entitlements;'
+    )
+    expect(project).not.toContain('MyApp/MyApp.entitlements')
+    const entitlements = readFileSync(
+      join(output, 'ios', 'MyApp', 'OneAppWidgets.entitlements'),
+      'utf8'
+    )
+    expect(entitlements).toContain('group.dev.one.myapp')
+    expect(entitlements).toContain('<key>aps-environment</key>')
+    expect(() => statSync(join(output, 'ios', 'MyApp', 'MyApp.entitlements'))).toThrow()
+  }, 180000)
 })
 
 describe('community autolink inventory', () => {
@@ -1273,19 +1312,17 @@ describe('ios widgets', () => {
       join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
       'utf8'
     )
-    // one CODE_SIGN_ENTITLEMENTS per app configuration: the push file wins
-    // and the widget setting stays out, so neither side silently loses.
+    // one CODE_SIGN_ENTITLEMENTS per app configuration carries both grants.
     expect(
-      project.match(/CODE_SIGN_ENTITLEMENTS = MyApp\/MyApp\.entitlements;/g)
+      project.match(/CODE_SIGN_ENTITLEMENTS = MyApp\/OneAppWidgets\.entitlements;/g)
     ).toHaveLength(2)
-    expect(project).not.toContain(
-      'CODE_SIGN_ENTITLEMENTS = MyApp/OneAppWidgets.entitlements;'
-    )
-    const pushEntitlements = readFileSync(
-      join(output, 'ios', 'MyApp', 'MyApp.entitlements'),
+    expect(project).not.toContain('CODE_SIGN_ENTITLEMENTS = MyApp/MyApp.entitlements;')
+    expect(() => statSync(join(output, 'ios', 'MyApp', 'MyApp.entitlements'))).toThrow()
+    const appEntitlements = readFileSync(
+      join(output, 'ios', 'MyApp', 'OneAppWidgets.entitlements'),
       'utf8'
     )
-    expect(pushEntitlements).toContain('<key>aps-environment</key>')
-    expect(pushEntitlements).toContain('group.dev.one.myapp')
+    expect(appEntitlements).toContain('<key>aps-environment</key>')
+    expect(appEntitlements).toContain('group.dev.one.myapp')
   }, 180000)
 })
