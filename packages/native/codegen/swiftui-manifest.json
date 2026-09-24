@@ -5953,6 +5953,78 @@
       ]
     },
     {
+      "name": "fontDesignWithOptionalDesign",
+      "module": "SwiftUICore",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.Font.Design?",
+      "ios": 16.1,
+      "cases": [
+        {
+          "name": "default",
+          "ios": 13
+        },
+        {
+          "name": "serif",
+          "ios": 13
+        },
+        {
+          "name": "rounded",
+          "ios": 13
+        },
+        {
+          "name": "monospaced",
+          "ios": 13
+        }
+      ],
+      "sdkName": "fontDesign"
+    },
+    {
+      "name": "fontWeightWithOptionalWeight",
+      "module": "SwiftUICore",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.Font.Weight?",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "ultraLight",
+          "ios": 13
+        },
+        {
+          "name": "thin",
+          "ios": 13
+        },
+        {
+          "name": "light",
+          "ios": 13
+        },
+        {
+          "name": "regular",
+          "ios": 13
+        },
+        {
+          "name": "medium",
+          "ios": 13
+        },
+        {
+          "name": "semibold",
+          "ios": 13
+        },
+        {
+          "name": "bold",
+          "ios": 13
+        },
+        {
+          "name": "heavy",
+          "ios": 13
+        },
+        {
+          "name": "black",
+          "ios": 13
+        }
+      ],
+      "sdkName": "fontWeight"
+    },
+    {
       "name": "fontWidth",
       "kind": "optionalEnum",
       "type": "SwiftUICore.Font.Width?",
@@ -14741,6 +14813,92 @@
       ]
     },
     {
+      "name": "tintWithOptionalColor",
+      "module": "SwiftUICore",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.Color?",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "accentColor",
+          "ios": 13
+        },
+        {
+          "name": "red",
+          "ios": 13
+        },
+        {
+          "name": "orange",
+          "ios": 13
+        },
+        {
+          "name": "yellow",
+          "ios": 13
+        },
+        {
+          "name": "green",
+          "ios": 13
+        },
+        {
+          "name": "mint",
+          "ios": 15
+        },
+        {
+          "name": "teal",
+          "ios": 15
+        },
+        {
+          "name": "cyan",
+          "ios": 15
+        },
+        {
+          "name": "blue",
+          "ios": 13
+        },
+        {
+          "name": "indigo",
+          "ios": 15
+        },
+        {
+          "name": "purple",
+          "ios": 13
+        },
+        {
+          "name": "pink",
+          "ios": 13
+        },
+        {
+          "name": "brown",
+          "ios": 15
+        },
+        {
+          "name": "white",
+          "ios": 13
+        },
+        {
+          "name": "gray",
+          "ios": 13
+        },
+        {
+          "name": "black",
+          "ios": 13
+        },
+        {
+          "name": "clear",
+          "ios": 13
+        },
+        {
+          "name": "primary",
+          "ios": 13
+        },
+        {
+          "name": "secondary",
+          "ios": 13
+        }
+      ],
+      "sdkName": "tint"
+    },
+    {
       "name": "toggleStyle",
       "kind": "style",
       "type": "S",
@@ -16188,6 +16346,8 @@
         "environment",
         "fixedSize",
         "font",
+        "fontDesign",
+        "fontWeight",
         "fontWidth",
         "foregroundColor",
         "foregroundStyle",
@@ -16673,6 +16833,8 @@
         "environment",
         "fixedSize",
         "font",
+        "fontDesign",
+        "fontWeight",
         "fontWidth",
         "foregroundColor",
         "frame",
@@ -16741,6 +16903,7 @@
         "textCase",
         "textInputBorderShape",
         "textScale",
+        "tint",
         "tracking",
         "transaction",
         "transformEffect",

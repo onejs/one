@@ -322,6 +322,8 @@ extension View {
       case "focused": view = AnyView(view.oneNativeSDKFocused(value, emit: emit))
       case "focusEffectDisabled": view = AnyView(view.oneNativeSDKFocusEffectDisabled(value, emit: emit))
       case "font": view = AnyView(view.oneNativeSDKFont(value, emit: emit))
+      case "fontDesignWithOptionalDesign": view = AnyView(view.oneNativeSDKFontDesignWithOptionalDesign(value, emit: emit))
+      case "fontWeightWithOptionalWeight": view = AnyView(view.oneNativeSDKFontWeightWithOptionalWeight(value, emit: emit))
       case "fontWidth": view = AnyView(view.oneNativeSDKFontWidth(value, emit: emit))
       case "foregroundColor": view = AnyView(view.oneNativeSDKForegroundColor(value, emit: emit))
       case "formStyle": view = AnyView(view.oneNativeSDKFormStyle(value, emit: emit))
@@ -601,6 +603,7 @@ extension View {
       case "textScale": view = AnyView(view.oneNativeSDKTextScale(value, emit: emit))
       case "textSelection": view = AnyView(view.oneNativeSDKTextSelection(value, emit: emit))
       case "textSelectionAffinity": view = AnyView(view.oneNativeSDKTextSelectionAffinity(value, emit: emit))
+      case "tintWithOptionalColor": view = AnyView(view.oneNativeSDKTintWithOptionalColor(value, emit: emit))
       case "toggleStyle": view = AnyView(view.oneNativeSDKToggleStyle(value, emit: emit))
       case "toolbarBackground": view = AnyView(view.oneNativeSDKToolbarBackground(value, emit: emit))
       case "toolbarBackgroundVisibility": view = AnyView(view.oneNativeSDKToolbarBackgroundVisibility(value, emit: emit))
@@ -3552,6 +3555,33 @@ self
       case "caption2": self.font(SwiftUI.Font.caption2)
       case "default": if #available(iOS 26, *) { self.font(SwiftUI.Font.default) } else { self }
     default: preconditionFailure("invalid font: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFontDesignWithOptionalDesign(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.fontDesign(nil as SwiftUI.Font.Design?)
+      case "default": self.fontDesign(SwiftUI.Font.Design.default)
+      case "serif": self.fontDesign(SwiftUI.Font.Design.serif)
+      case "rounded": self.fontDesign(SwiftUI.Font.Design.rounded)
+      case "monospaced": self.fontDesign(SwiftUI.Font.Design.monospaced)
+    default: preconditionFailure("invalid fontDesignWithOptionalDesign: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFontWeightWithOptionalWeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.fontWeight(nil as SwiftUI.Font.Weight?)
+      case "ultraLight": self.fontWeight(SwiftUI.Font.Weight.ultraLight)
+      case "thin": self.fontWeight(SwiftUI.Font.Weight.thin)
+      case "light": self.fontWeight(SwiftUI.Font.Weight.light)
+      case "regular": self.fontWeight(SwiftUI.Font.Weight.regular)
+      case "medium": self.fontWeight(SwiftUI.Font.Weight.medium)
+      case "semibold": self.fontWeight(SwiftUI.Font.Weight.semibold)
+      case "bold": self.fontWeight(SwiftUI.Font.Weight.bold)
+      case "heavy": self.fontWeight(SwiftUI.Font.Weight.heavy)
+      case "black": self.fontWeight(SwiftUI.Font.Weight.black)
+    default: preconditionFailure("invalid fontWeightWithOptionalWeight: \(value)")
     }
   }
 
@@ -7565,6 +7595,32 @@ self
       case "upstream": if #available(iOS 18, *) { self.textSelectionAffinity(SwiftUI.TextSelectionAffinity.upstream) } else { self }
       case "downstream": if #available(iOS 18, *) { self.textSelectionAffinity(SwiftUI.TextSelectionAffinity.downstream) } else { self }
     default: preconditionFailure("invalid textSelectionAffinity: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTintWithOptionalColor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.tint(nil as SwiftUI.Color?)
+      case "accentColor": self.tint(SwiftUI.Color.accentColor)
+      case "red": self.tint(SwiftUI.Color.red)
+      case "orange": self.tint(SwiftUI.Color.orange)
+      case "yellow": self.tint(SwiftUI.Color.yellow)
+      case "green": self.tint(SwiftUI.Color.green)
+      case "mint": self.tint(SwiftUI.Color.mint)
+      case "teal": self.tint(SwiftUI.Color.teal)
+      case "cyan": self.tint(SwiftUI.Color.cyan)
+      case "blue": self.tint(SwiftUI.Color.blue)
+      case "indigo": self.tint(SwiftUI.Color.indigo)
+      case "purple": self.tint(SwiftUI.Color.purple)
+      case "pink": self.tint(SwiftUI.Color.pink)
+      case "brown": self.tint(SwiftUI.Color.brown)
+      case "white": self.tint(SwiftUI.Color.white)
+      case "gray": self.tint(SwiftUI.Color.gray)
+      case "black": self.tint(SwiftUI.Color.black)
+      case "clear": self.tint(SwiftUI.Color.clear)
+      case "primary": self.tint(SwiftUI.Color.primary)
+      case "secondary": self.tint(SwiftUI.Color.secondary)
+    default: preconditionFailure("invalid tintWithOptionalColor: \(value)")
     }
   }
 

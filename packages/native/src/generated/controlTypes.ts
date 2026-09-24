@@ -731,6 +731,27 @@ export const sdkFontValues = [
   'default',
 ] as const
 export type SDKFont = (typeof sdkFontValues)[number]
+export const sdkFontDesignWithOptionalDesignValues = [
+  'default',
+  'serif',
+  'rounded',
+  'monospaced',
+] as const
+export type SDKFontDesignWithOptionalDesign =
+  (typeof sdkFontDesignWithOptionalDesignValues)[number]
+export const sdkFontWeightWithOptionalWeightValues = [
+  'ultraLight',
+  'thin',
+  'light',
+  'regular',
+  'medium',
+  'semibold',
+  'bold',
+  'heavy',
+  'black',
+] as const
+export type SDKFontWeightWithOptionalWeight =
+  (typeof sdkFontWeightWithOptionalWeightValues)[number]
 export const sdkFontWidthValues = [
   'compressed',
   'condensed',
@@ -1507,6 +1528,28 @@ export const sdkTextSelectionAffinityValues = [
   'downstream',
 ] as const
 export type SDKTextSelectionAffinity = (typeof sdkTextSelectionAffinityValues)[number]
+export const sdkTintWithOptionalColorValues = [
+  'accentColor',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'mint',
+  'teal',
+  'cyan',
+  'blue',
+  'indigo',
+  'purple',
+  'pink',
+  'brown',
+  'white',
+  'gray',
+  'black',
+  'clear',
+  'primary',
+  'secondary',
+] as const
+export type SDKTintWithOptionalColor = (typeof sdkTintWithOptionalColorValues)[number]
 export const sdkToggleStyleValues = ['button', 'automatic', 'switch'] as const
 export type SDKToggleStyle = (typeof sdkToggleStyleValues)[number]
 export const sdkToolbarRoleValues = [
@@ -2079,6 +2122,8 @@ export interface OneNativeStyle {
   focused?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   focusEffectDisabled?: boolean
   font?: SDKFont | null
+  fontDesignWithOptionalDesign?: SDKFontDesignWithOptionalDesign | null
+  fontWeightWithOptionalWeight?: SDKFontWeightWithOptionalWeight | null
   fontWidth?: SDKFontWidth | null
   foregroundColor?: SDKForegroundColor | null
   formStyle?: SDKFormStyle
@@ -3059,6 +3104,7 @@ export interface OneNativeStyle {
   textScale?: Readonly<{ scale: 'default' | 'secondary'; isEnabled: boolean }>
   textSelection?: SDKTextSelection
   textSelectionAffinity?: SDKTextSelectionAffinity
+  tintWithOptionalColor?: SDKTintWithOptionalColor | null
   toggleStyle?: SDKToggleStyle
   toolbarBackground?: Readonly<{
     visibility: 'automatic' | 'visible' | 'hidden'
