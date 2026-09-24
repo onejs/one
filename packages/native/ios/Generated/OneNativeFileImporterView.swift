@@ -119,7 +119,7 @@ private func oneNativeContentTypes(_ identifiers: [String]) -> [UTType] {
 // Caches, keeping its filename, and the copy is what the event reports. Caches is the
 // system's to purge; nothing here deletes the file. runs on a utility queue; the
 // security-scoped access opens and closes on that same thread.
-private func oneNativeCopyToCaches(_ url: URL) throws -> URL {
+func oneNativeCopyToCaches(_ url: URL) throws -> URL {
   let accessing = url.startAccessingSecurityScopedResource()
   defer { if accessing { url.stopAccessingSecurityScopedResource() } }
   let folder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]

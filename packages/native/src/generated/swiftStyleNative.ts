@@ -247,6 +247,9 @@ const sdkKinds = {
   fileDialogURLEnabled: 'boolean',
   fileExporter: 'record',
   fileExporterFilenameLabel: 'optionalString',
+  fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion:
+    'record',
+  fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion: 'record',
   fileMover: 'record',
   findDisabled: 'boolean',
   findNavigator: 'bindingBoolean',
@@ -1455,6 +1458,18 @@ const sdkRecords: Record<
   fileExporter: [
     { field: 'isPresented', kind: 'bindingBoolean', optional: false },
     { field: 'item', kind: 'string', optional: true },
+    { field: 'onCompletion', kind: 'resultURL', optional: false },
+  ],
+  fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion:
+    [
+      { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+      { field: 'allowedContentTypes', kind: 'stringArray', optional: false },
+      { field: 'allowsMultipleSelection', kind: 'boolean', optional: false },
+      { field: 'onCompletion', kind: 'resultURLArray', optional: false },
+    ],
+  fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'allowedContentTypes', kind: 'stringArray', optional: false },
     { field: 'onCompletion', kind: 'resultURL', optional: false },
   ],
   fileMover: [

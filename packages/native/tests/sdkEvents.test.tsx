@@ -67,6 +67,25 @@ describe('SDK callback and binding transport', () => {
     expect(onChange).toHaveBeenCalledWith(null)
   })
 
+  it('configures an SDK file importer from content type identifiers and a URL result', () => {
+    const onChange = vi.fn()
+    const onCompletion = vi.fn()
+    const element = Controls.Text({ text: 'import', swiftStyle: {
+      fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion: {
+        isPresented: { value: true, onChange },
+        allowedContentTypes: ['public.image'],
+        onCompletion,
+      },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion', '["true","[\\"public.image\\"]",""]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion.onCompletion', value: '{"success":"file:///tmp/photo.jpg"}',
+    } })
+    expect(onCompletion).toHaveBeenCalledWith({ success: 'file:///tmp/photo.jpg' })
+  })
+
   it('uses a public preference key for setting, transforming, and observing its value', () => {
     const onChange = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {

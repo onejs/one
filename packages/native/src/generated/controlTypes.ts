@@ -2041,6 +2041,19 @@ export interface OneNativeStyle {
     onCompletion: (result: Readonly<{ success: string } | { failure: string }>) => void
   }>
   fileExporterFilenameLabel?: string | null
+  fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    allowedContentTypes: readonly string[]
+    allowsMultipleSelection: boolean
+    onCompletion: (
+      result: Readonly<{ success: readonly string[] } | { failure: string }>
+    ) => void
+  }>
+  fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    allowedContentTypes: readonly string[]
+    onCompletion: (result: Readonly<{ success: string } | { failure: string }>) => void
+  }>
   fileMover?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
     file: string | null
