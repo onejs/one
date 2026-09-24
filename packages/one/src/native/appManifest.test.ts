@@ -9,6 +9,7 @@ describe('native.app manifest re-export', () => {
       validateNativeApp({
         name: 'MyApp',
         imagePicker: { camera: 'Take profile photos.' },
+        notifications: {},
         ios: { bundleId: 'dev.one.myapp', buildNumber: '42' },
         android: { applicationId: 'dev.one.myapp', versionCode: 42 },
       })
@@ -22,5 +23,13 @@ describe('native.app manifest re-export', () => {
         android: { applicationId: 'dev.one.myapp' },
       })
     ).toThrow(/imagePicker\.camera/)
+    expect(() =>
+      validateNativeApp({
+        name: 'MyApp',
+        notifications: { push: 'yes' },
+        ios: { bundleId: 'dev.one.myapp' },
+        android: { applicationId: 'dev.one.myapp' },
+      } as any)
+    ).toThrow(/notifications\.push/)
   })
 })

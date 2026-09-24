@@ -103,6 +103,7 @@ function escapeXml(value: string): string {
 // the only path, on every ios version prebuild supports.
 const SCENE_DELEGATE_FILE_REF_ID = '1A2B3C4D5E6F7A8B9C0D1E2F'
 const SCENE_DELEGATE_BUILD_FILE_ID = '2B3C4D5E6F7A8B9C0D1E2F1A'
+const PUSH_ENTITLEMENTS_FILE_REF_ID = '3C4D5E6F7A8B9C0D1E2F1A2B'
 
 export function renderSceneDelegateSwift(appName: string): string {
   return `import UIKit
@@ -257,6 +258,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     true
   }
+
+  // remote push answers land here; the notifications module observes the
+  // forward. inert unless something calls registerForRemoteNotifications.
+  func application(
+    _ application: UIApplication,
+    didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+  ) {
+    NotificationCenter.default.post(
+      name: NSNotification.Name("OneNativePushTokenDidRegister"),
+      object: nil,
+      userInfo: ["deviceToken": deviceToken]
+    )
+  }
+
+  func application(
+    _ application: UIApplication,
+    didFailToRegisterForRemoteNotificationsWithError error: Error
+  ) {
+    NotificationCenter.default.post(
+      name: NSNotification.Name("OneNativePushTokenDidFail"),
+      object: nil,
+      userInfo: ["error": error.localizedDescription]
+    )
+  }
 }`
   )
 }
@@ -293,6 +318,55 @@ function patchIosPbxprojSceneDelegate(rendered: string, appName: string): string
   return patched
 }
 
+function patchIosPbxprojPushEntitlements(rendered: string, appName: string): string {
+  // the aps-environment entitlement only when the app opts into push. the
+  // community template ships no entitlements file, so this adds the file
+  // reference plus the CODE_SIGN_ENTITLEMENTS setting on the app target.
+  const edits: Array<[string, string]> = [
+    [
+      '/* AppDelegate.swift */ = {isa = PBXFileReference;',
+      `\t\t${PUSH_ENTITLEMENTS_FILE_REF_ID} /* ${appName}.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ${appName}.entitlements; path = ${appName}/${appName}.entitlements; sourceTree = "<group>"; };`,
+    ],
+    [
+      '/* AppDelegate.swift */,',
+      `\t\t\t\t${PUSH_ENTITLEMENTS_FILE_REF_ID} /* ${appName}.entitlements */,`,
+    ],
+  ]
+  let patched = rendered
+  for (const [anchor, insertion] of edits) {
+    const next = insertAfterLine(patched, anchor, insertion)
+    if (next === patched) {
+      throw new Error(
+        `[vxrn] prebuild template project.pbxproj lost its AppDelegate.swift anchor (${anchor})`
+      )
+    }
+    patched = next
+  }
+  const setting = `PRODUCT_NAME = ${appName};`
+  if (!patched.includes(setting)) {
+    throw new Error(
+      '[vxrn] prebuild template project.pbxproj lost its PRODUCT_NAME anchor'
+    )
+  }
+  return patched
+    .split(setting)
+    .join(
+      `${setting}\n\t\t\t\tCODE_SIGN_ENTITLEMENTS = ${appName}/${appName}.entitlements;`
+    )
+}
+
+function renderPushEntitlements(): string {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+\t<key>aps-environment</key>
+\t<string>development</string>
+</dict>
+</plist>
+`
+}
+
 function generateSceneDelegate(args: {
   dest: string
   platform: 'ios' | 'android'
@@ -304,6 +378,15 @@ function generateSceneDelegate(args: {
     path.join(dest, app.name, 'SceneDelegate.swift'),
     renderSceneDelegateSwift(app.name)
   )
+  // the aps-environment entitlement only when the app opts into push: the
+  // pbxproj patch above wires it in, and without the flag no file is
+  // written, so non-push apps stay entitlement-free.
+  if (app.notifications?.push === true) {
+    FSExtra.writeFileSync(
+      path.join(dest, app.name, `${app.name}.entitlements`),
+      renderPushEntitlements()
+    )
+  }
 }
 
 export interface RenderedPrebuildFile {
@@ -605,6 +688,12 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
           `\t<key>UIFileSharingEnabled</key>\n\t<true/>\n\t<key>LSSupportsOpeningDocumentsInPlace</key>\n\t<true/>`
         )
       }
+      if (app.notifications !== undefined) {
+        // gates the UNUserNotificationCenter delegate install: apps that link
+        // @vxrn/native without notifications keep whatever delegate their own
+        // push library sets.
+        stamps.push(`\t<key>OneNativeNotificationsEnabled</key>\n\t<true/>`)
+      }
       if (stamps.length) {
         const anchor = '\t<key>LSRequiresIPhoneOS</key>'
         if (!rendered.includes(anchor))
@@ -633,6 +722,61 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.notifications !== undefined
+    ) {
+      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
+      if (!rendered.includes(anchor)) {
+        throw new Error(
+          '[vxrn] cannot stamp notification permissions: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
+        )
+      }
+      rendered = rendered.replace(
+        anchor,
+        `${anchor}\n    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />\n    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />`
+      )
+      if (!rendered.includes('android.permission.POST_NOTIFICATIONS')) {
+        throw new Error(
+          '[vxrn] failed to stamp notification permissions into app manifest'
+        )
+      }
+      // the alarm and boot receiver lives in the app manifest, never the
+      // library one, so apps without notifications gain nothing. alarms
+      // arrive as explicit intents; only boot needs the filter.
+      rendered = rendered.replace(
+        '      </activity>\n    </application>',
+        '      </activity>\n      <receiver android:name="dev.onejs.onenative.OneNativeNotificationsReceiver" android:exported="false">\n          <intent-filter>\n              <action android:name="android.intent.action.BOOT_COMPLETED" />\n          </intent-filter>\n      </receiver>\n    </application>'
+      )
+      if (!rendered.includes('OneNativeNotificationsReceiver')) {
+        throw new Error(
+          '[vxrn] failed to stamp the notification receiver into app manifest'
+        )
+      }
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.notifications?.push === true
+    ) {
+      // the fcm refresh service lives in the app manifest, never the
+      // library one, so apps without push never start it. push implies the
+      // notifications block above, so the receiver anchor is present.
+      const anchor = 'dev.onejs.onenative.OneNativeNotificationsReceiver'
+      if (!rendered.includes(anchor)) {
+        throw new Error(
+          '[vxrn] cannot stamp the push service: expected the notification receiver in app/src/main/AndroidManifest.xml'
+        )
+      }
+      rendered = rendered.replace(
+        '      </receiver>\n    </application>',
+        '      </receiver>\n      <service android:name="dev.onejs.onenative.OneNativePushService" android:exported="false">\n          <intent-filter>\n              <action android:name="com.google.firebase.MESSAGING_EVENT" />\n          </intent-filter>\n      </service>\n    </application>'
+      )
+      if (!rendered.includes('OneNativePushService')) {
+        throw new Error('[vxrn] failed to stamp the push service into app manifest')
+      }
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
       app.android?.googleMapsApiKey !== undefined
     ) {
       const anchor = '    </application>'
@@ -645,6 +789,21 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         anchor,
         `      <meta-data android:name="com.google.android.geo.API_KEY" android:value="${escapeXml(app.android.googleMapsApiKey)}" />\n${anchor}`
       )
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'gradle.properties' &&
+      app.notifications?.push === true
+    ) {
+      // the flag @vxrn/native reads to compile the fcm source set in. it
+      // lives in the root gradle.properties so library builds see it through
+      // the root project; without it the file is untouched and firebase
+      // messaging stays out of the app.
+      const line = 'oneNativePush=true'
+      if (!rendered.includes(line)) {
+        const trailed = rendered.endsWith('\n') ? rendered : `${rendered}\n`
+        rendered = `${trailed}\n# Remote push: set by native.app.notifications.push.\n${line}\n`
+      }
     }
     if (
       platform === 'android' &&
@@ -749,6 +908,9 @@ end`
     if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {
       rendered = patchIosBundlePhase(rendered)
       rendered = patchIosPbxprojSceneDelegate(rendered, appName)
+      if (app.notifications?.push === true) {
+        rendered = patchIosPbxprojPushEntitlements(rendered, appName)
+      }
     }
     if (platform === 'ios' && relativePath === 'Podfile') {
       if (app.ios?.ccache) rendered = `ENV['USE_CCACHE'] ||= '1'\n${rendered}`
@@ -764,7 +926,8 @@ end`
       rendered = nativeProjectPatches.injectFmtCxx17FixIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectOneSwiftPackagesIntoPodfile(rendered)
       if (nitroWebImage)
-        rendered = nativeProjectPatches.injectNitroWebImageModularHeaderIntoPodfile(rendered)
+        rendered =
+          nativeProjectPatches.injectNitroWebImageModularHeaderIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(rendered)
       if (
         !rendered.includes('[vxrn/one] fmt c++17 fix') ||
@@ -903,7 +1066,8 @@ function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
       return
     }
     for (const entry of entries) {
-      if (!entry.isDirectory() || entry.name.startsWith('.') || skip.has(entry.name)) continue
+      if (!entry.isDirectory() || entry.name.startsWith('.') || skip.has(entry.name))
+        continue
       walk(path.join(dir, entry.name))
     }
   }
@@ -919,7 +1083,8 @@ function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
         if (entry.name.startsWith('.') || skip.has(entry.name)) continue
         const full = path.join(dir, entry.name)
         if (entry.isDirectory()) collect(full)
-        else if (entry.name.endsWith('.swift') && entry.name !== 'Package.swift') sources.push(full)
+        else if (entry.name.endsWith('.swift') && entry.name !== 'Package.swift')
+          sources.push(full)
       }
     }
     collect(packageDir)
