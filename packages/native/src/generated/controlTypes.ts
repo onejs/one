@@ -2739,6 +2739,13 @@ export interface OneNativeStyle {
       result: Readonly<{ success: string } | { failure: string }>
     ) => void
   }>
+  photosSharedAlbumCreationSheet?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+  }>
+  photosSharedAlbumCustomizationSheet?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    albumIdentifier: string | null
+  }>
   pickerStyle?: SDKPickerStyle
   position?: Readonly<{ x: number; y: number }>
   preferencePreferredColorScheme?: SDKPreferencePreferredColorScheme | null

@@ -10972,6 +10972,55 @@
       "framework": "PhotosUI"
     },
     {
+      "name": "photosSharedAlbumCreationSheet",
+      "kind": "record",
+      "type": "",
+      "ios": 27,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        }
+      ],
+      "sharedParameter": {
+        "index": 1,
+        "label": "photoLibrary",
+        "type": "Photos.PHPhotoLibrary"
+      },
+      "framework": "PhotosUI"
+    },
+    {
+      "name": "photosSharedAlbumCustomizationSheet",
+      "kind": "record",
+      "type": "",
+      "ios": 27,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "string",
+          "type": "Swift.String?",
+          "optional": true,
+          "field": "albumIdentifier",
+          "label": "albumIdentifier"
+        }
+      ],
+      "sharedParameter": {
+        "index": 2,
+        "label": "photoLibrary",
+        "type": "Photos.PHPhotoLibrary"
+      },
+      "framework": "PhotosUI"
+    },
+    {
       "name": "pickerStyle",
       "kind": "style",
       "type": "S",
@@ -17096,7 +17145,9 @@
         "photosPickerMetadataOptions",
         "photosPickerSearchText",
         "photosPickerStyle",
-        "photosReferenceImageViewer"
+        "photosReferenceImageViewer",
+        "photosSharedAlbumCreationSheet",
+        "photosSharedAlbumCustomizationSheet"
       ],
       "_QuickLook_SwiftUI": [
         "quickLookPreview"
@@ -17593,7 +17644,9 @@
         "photosPickerMetadataOptions",
         "photosPickerSearchText",
         "photosPickerStyle",
-        "photosReferenceImageViewer"
+        "photosReferenceImageViewer",
+        "photosSharedAlbumCreationSheet",
+        "photosSharedAlbumCustomizationSheet"
       ],
       "_QuickLook_SwiftUI": [
         "quickLookPreview"

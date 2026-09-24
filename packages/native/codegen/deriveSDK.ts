@@ -67,6 +67,7 @@ export type DerivedModifier = {
   aliasSuffix?: string
   callArguments?: readonly { label: string; defaultValue?: string; bridge?: true }[]
   namespaceParameter?: { index: number; label: string }
+  sharedParameter?: { index: number; label: string; type: string }
   arguments?: readonly DerivedArgument[]
 }
 
@@ -635,6 +636,34 @@ export function deriveModifiers(
               label: method.parameters[namespaceIndex].label,
             },
             ...framework }]
+        return []
+      }
+      const sharedIndex = method.parameters.findIndex((parameter) =>
+        parameter.defaultValue === undefined &&
+        inventory.some((declaration) => declaration.module === parameter.type.split('.')[0] &&
+          declaration.owner === parameter.type.split('.').slice(1).join('.') &&
+          declaration.kind === 'func' && declaration.isStatic && declaration.name === 'shared' &&
+          declaration.type === parameter.type && declaration.parameters.length === 0 &&
+          present(declaration) && ios(declaration) <= ceiling))
+      if (sharedIndex !== -1) {
+        const required = method.parameters.filter((parameter, index) =>
+          index !== sharedIndex && parameter.defaultValue === undefined)
+        const argumentsFromSDK = required.map((parameter) => {
+          const value = parameter.type === 'SwiftUICore.Binding<Swift.Bool>'
+            ? { kind: 'bindingBoolean' as const, type: parameter.type, optional: false }
+            : valueOf(parameter.type)
+          return value && { ...value, field: parameter.name, label: parameter.label }
+        })
+        if (required.length && argumentsFromSDK.every(Boolean) &&
+          new Set(argumentsFromSDK.map((argument) => argument!.field)).size === required.length)
+          return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+            arguments: argumentsFromSDK as DerivedArgument[],
+            sharedParameter: {
+              index: method.parameters.slice(0, sharedIndex).filter((parameter) =>
+                parameter.defaultValue === undefined).length,
+              label: method.parameters[sharedIndex].label,
+              type: method.parameters[sharedIndex].type,
+            }, ...framework }]
         return []
       }
       const genericTransform = method.parameters.length === 3 &&

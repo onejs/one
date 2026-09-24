@@ -431,6 +431,8 @@ const sdkKinds = {
   photosPickerSearchText: 'optionalString',
   photosPickerStyle: 'string',
   photosReferenceImageViewer: 'record',
+  photosSharedAlbumCreationSheet: 'record',
+  photosSharedAlbumCustomizationSheet: 'record',
   pickerStyle: 'style',
   position: 'record',
   preferencePreferredColorScheme: 'optionalEnum',
@@ -1728,6 +1730,13 @@ const sdkRecords: Record<
   photosReferenceImageViewer: [
     { field: 'fileURL', kind: 'bindingOptionalURL', optional: false },
     { field: 'onProcessingCompletion', kind: 'resultURL', optional: false },
+  ],
+  photosSharedAlbumCreationSheet: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+  ],
+  photosSharedAlbumCustomizationSheet: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'albumIdentifier', kind: 'string', optional: true },
   ],
   position: [
     { field: 'x', kind: 'number', optional: false },
