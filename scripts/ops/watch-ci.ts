@@ -2,6 +2,7 @@
 // exit 0: all runs completed successfully (or were skipped).
 // exit 1: any run failed, was cancelled, or timed out.
 // usage: bun scripts/ops/watch-ci.ts --sha <sha> [--repo onejs/one] [--workflow "Checks and Tests" ...]
+// workflow names filter runs; path filters may prevent a named workflow from starting.
 //
 // polls the api once a minute inside this process so the caller can sleep
 // through it with `tm wait --exec` instead of burning turns.
@@ -107,7 +108,7 @@ while (true) {
     }
     process.exit(1)
   }
-  if (latest.length > 0 && latest.length >= workflows.length && pending.length === 0) {
+  if (latest.length > 0 && pending.length === 0) {
     const unproven = latest.filter((run) => !ok.has(run.conclusion ?? ''))
     if (unproven.length > 0) {
       for (const run of unproven) {
