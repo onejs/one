@@ -966,4 +966,31 @@ export const components = [
     slots: [],
     interfaceOnly: false,
   },
+  {
+    // uniform picture in picture (UI.PictureInPicture). the children float in
+    // the system pip window: on ios rendered into an AVSampleBufferDisplayLayer
+    // content source, on android drawn full-window while the activity is in
+    // pip mode. active is a request that acts on change; the event reports
+    // every real transition, including ones the system starts or ends.
+    name: 'OneNativePictureInPicture',
+    publicName: 'PictureInPicture',
+    props: {
+      active: 'boolean',
+      autoEnter: 'boolean',
+    },
+    events: {
+      onNativePictureInPictureChange: { active: 'boolean' },
+    },
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'children',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'yoga',
+      },
+    ],
+    interfaceOnly: false,
+  },
 ] as const

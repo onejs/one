@@ -764,6 +764,38 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativePictureInPicture",
+      "publicName": "PictureInPicture",
+      "props": {
+        "active": {
+          "type": "boolean"
+        },
+        "autoEnter": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativePictureInPictureChange": {
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativePicker",
       "publicName": "Picker",
       "props": {

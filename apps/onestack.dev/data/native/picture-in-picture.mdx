@@ -1,0 +1,48 @@
+---
+title: Picture in Picture
+description: Float any view in the system picture in picture window on iOS and Android
+---
+
+`One.UI.PictureInPicture` floats its children in the system picture in
+picture window, where they keep updating while the app is in the
+background. `active` asks for the window when it changes; `autoEnter`
+enters it when the user leaves the app; `onActiveChange` reports every
+real transition, including ones the system makes on its own (closing the
+window, returning to the app).
+
+```tsx
+import { One } from 'one'
+
+const [active, setActive] = useState(false)
+
+<One.UI.PictureInPicture
+  style={{ width: '100%', aspectRatio: 16 / 9 }}
+  active={active}
+  autoEnter
+  onActiveChange={setActive}
+>
+  <Scoreboard />
+</One.UI.PictureInPicture>
+```
+
+Turn it on in the app manifest; prebuild adds the iOS `audio` background
+mode and the Android `supportsPictureInPicture` activity flag:
+
+```ts
+one({ native: { app: { pictureInPicture: true } } })
+```
+
+iOS renders the children into an `AVSampleBufferDisplayLayer` about 30
+times a second, so content drawn outside Core Animation (video players,
+Metal and WebGPU canvases) shows as its last snapshot. The audio session
+is set to playback, mixing with other audio. iPhone simulators report
+picture in picture as unsupported; use a device or an iPad simulator.
+
+Android shrinks the whole activity into the window, so the component
+freezes the layout at full size and fills the window with just its
+children, scaled to fit. The window's aspect ratio follows the
+component's, clamped to what Android allows (1:2.39 to 2.39:1). Returning
+to the app, on either platform, ends picture in picture and brings the
+content back inline.
+
+Web renders the children inline.

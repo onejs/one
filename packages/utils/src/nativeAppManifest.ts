@@ -29,6 +29,9 @@ export interface NativeAppManifest {
   notifications?: {
     push?: boolean
   }
+  // One.UI.PictureInPicture: stamps the ios audio background mode (pip opens
+  // only for a playback session) and android's supportsPictureInPicture.
+  pictureInPicture?: boolean
   ios?: {
     bundleId: string
     buildNumber?: string
@@ -137,6 +140,12 @@ export function validateNativeApp(
     ) {
       fail('notifications.push must be a boolean')
     }
+  }
+  if (
+    manifest.pictureInPicture !== undefined &&
+    typeof manifest.pictureInPicture !== 'boolean'
+  ) {
+    fail('pictureInPicture must be a boolean')
   }
   if (!platform || platform === 'ios') {
     if (!manifest.ios?.bundleId || !REVERSE_DNS.test(manifest.ios.bundleId)) {

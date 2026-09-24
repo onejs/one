@@ -209,6 +209,7 @@
         "OneNativeBlur": "OneNativeBlurComponentView",
         "OneNativeMask": "OneNativeMaskComponentView",
         "OneNativeUiMap": "OneNativeUiMapComponentView",
+        "OneNativePictureInPicture": "OneNativePictureInPictureComponentView",
         "OneNativePicker": "OneNativePickerComponentView",
         "OneNativeDatePicker": "OneNativeDatePickerComponentView",
         "OneNativeColorPicker": "OneNativeColorPickerComponentView",

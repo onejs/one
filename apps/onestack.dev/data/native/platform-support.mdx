@@ -27,6 +27,7 @@ description: What every native API does on iOS, Android, and web
 | Crypto | SecRandomCopyBytes | SecureRandom | platform crypto |
 | ImagePicker | PHPickerViewController + camera | system photo picker + camera intent | file dialog + capture input |
 | Map | One.UI.Map (MapKit) | One.UI.Map (Google Maps, key required) | renders nothing |
+| Picture in Picture | AVPictureInPictureController (sample buffer source) | activity pip mode | renders inline |
 | WebGPU | react-native-webgpu (Dawn) | react-native-webgpu (Dawn) | navigator.gpu |
 
 Unsupported toolbar, menu, and zoom components return `null`, so they are safe
