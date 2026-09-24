@@ -16,6 +16,7 @@
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "HybridOneImagePickerSpecSwift.hpp"
 #include "HybridOneNetworkSpecSwift.hpp"
+#include "HybridOneNotificationsSpecSwift.hpp"
 #include "VxrnNative-Swift-Cxx-Umbrella.hpp"
 #include <NitroModules/NitroDefines.hpp>
 
@@ -218,6 +219,94 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     VxrnNative::HybridOneNetworkSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::function<void(const NativePermissionResponse& /* result */)>
+  Func_void_NativePermissionResponse create_Func_void_NativePermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_NativePermissionResponse::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const NativePermissionResponse& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(double /* result */)>
+  Func_void_double create_Func_void_double(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_double::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](double result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const std::optional<NativeChannel>& /* result */)>
+  Func_void_std__optional_NativeChannel_ create_Func_void_std__optional_NativeChannel_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_std__optional_NativeChannel_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::optional<NativeChannel>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<NativeChannel>& /* result */)>
+  Func_void_std__vector_NativeChannel_ create_Func_void_std__vector_NativeChannel_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_std__vector_NativeChannel_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::vector<NativeChannel>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<NativeNotificationRequest>& /* result */)>
+  Func_void_std__vector_NativeNotificationRequest_ create_Func_void_std__vector_NativeNotificationRequest_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_std__vector_NativeNotificationRequest_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::vector<NativeNotificationRequest>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<NativeNotification>& /* result */)>
+  Func_void_std__vector_NativeNotification_ create_Func_void_std__vector_NativeNotification_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_std__vector_NativeNotification_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::vector<NativeNotification>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const NativePushToken& /* result */)>
+  Func_void_NativePushToken create_Func_void_NativePushToken(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_NativePushToken::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const NativePushToken& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const std::string& /* requestId */, const NativeNotification& /* notification */)>
+  Func_void_std__string_NativeNotification create_Func_void_std__string_NativeNotification(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_std__string_NativeNotification::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::string& requestId, const NativeNotification& notification) mutable -> void {
+      swiftClosure.call(requestId, notification);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const NativeNotificationResponse& /* response */)>
+  Func_void_NativeNotificationResponse create_Func_void_NativeNotificationResponse(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = VxrnNative::Func_void_NativeNotificationResponse::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const NativeNotificationResponse& response) mutable -> void {
+      swiftClosure.call(response);
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneNotificationsSpec>
+  std::shared_ptr<HybridOneNotificationsSpec> create_std__shared_ptr_HybridOneNotificationsSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    VxrnNative::HybridOneNotificationsSpec_cxx swiftPart = VxrnNative::HybridOneNotificationsSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneNotificationsSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneNotificationsSpec_(std__shared_ptr_HybridOneNotificationsSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneNotificationsSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneNotificationsSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneNotificationsSpec\" is not implemented in Swift!");
+    }
+    #endif
+    VxrnNative::HybridOneNotificationsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

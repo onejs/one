@@ -1,22 +1,32 @@
-import { NativeEventEmitter, Platform, TurboModuleRegistry } from 'react-native'
+import { Platform } from 'react-native'
+import { type AnyMap, NitroModules, type ValueType } from 'react-native-nitro-modules'
 
+import { rethrowNativeError } from '../nativeError'
 import type {
   NativeChannel,
+  NativeContent,
+  NativeNotification,
+  NativeNotificationRequest,
+  NativeNotificationResponse,
   NativePermissionResponse,
-  Spec as NotificationsSpec,
-} from '../specs/OneNativeNotificationsNativeModule'
+  NativeTrigger,
+  OneNotifications,
+} from '../specs/OneNotifications.nitro'
 import { ForegroundHandler } from './handlerState'
 import type {
   DevicePushToken,
   Notification,
   NotificationChannel,
   NotificationChannelInput,
+  NotificationContent,
   NotificationHandlerInput,
   NotificationPermissionRequest,
   NotificationPermissionResponse,
+  NotificationRequest,
   NotificationResponse,
   NotificationScheduleInput,
   NotificationSubscription,
+  NotificationTrigger,
   ScheduledNotification,
 } from './types'
 import {
@@ -28,14 +38,16 @@ import {
 
 export type * from './types'
 
-// the native module is resolved once and lazily. null until the app links
-// @vxrn/native; every method below degrades to its web behavior then,
-// instead of throwing.
-let cached: NotificationsSpec | null | undefined
+// the OneNotifications nitro hybrid object is created once and lazily. null
+// until the app links @vxrn/native; every method below degrades to its web
+// behavior then, instead of throwing.
+let cached: OneNotifications | null | undefined
 
-function native(): NotificationsSpec | null {
+function native(): OneNotifications | null {
   if (cached === undefined) {
-    cached = TurboModuleRegistry.get<NotificationsSpec>('OneNativeNotifications')
+    cached = NitroModules.hasHybridObject('OneNotifications')
+      ? NitroModules.createHybridObject<OneNotifications>('OneNotifications')
+      : null
   }
   return cached
 }
@@ -74,7 +86,9 @@ async function requestPermissions(
 ): Promise<NotificationPermissionResponse> {
   const module = native()
   if (!module) return { ...denied }
-  return mapPermissionResponse(await module.requestPermissions(options))
+  return mapPermissionResponse(
+    await module.requestPermissions(options).catch(rethrowNativeError)
+  )
 }
 
 // the app icon badge count. always 0 on android.
@@ -85,7 +99,7 @@ async function getBadgeCount(): Promise<number> {
 // set the app icon badge count. resolves false on android: the launcher
 // owns badges there.
 async function setBadgeCount(count: number): Promise<boolean> {
-  return (await native()?.setBadgeCount(count)) ?? false
+  return (await native()?.setBadgeCount(count).catch(rethrowNativeError)) ?? false
 }
 
 function mapChannel(channel: NativeChannel): NotificationChannel {
@@ -133,45 +147,112 @@ async function deleteChannel(channelId: string): Promise<void> {
   await native()?.deleteNotificationChannel(channelId)
 }
 
-// one native subscription per event, fanned out to js listeners, plus the
-// foreground runner that answers native's presentation round trip.
+// native flattens nulls to absent fields and trigger variants to one
+// struct; these restore the public shapes.
+function mapTrigger(trigger: NativeTrigger): NotificationTrigger {
+  switch (trigger.type) {
+    case 'timeInterval':
+      return {
+        type: 'timeInterval',
+        seconds: trigger.seconds ?? 0,
+        repeats: trigger.repeats ?? false,
+      }
+    case 'date':
+      return { type: 'date', date: trigger.date ?? 0 }
+    case 'push':
+      return { type: 'push' }
+    default:
+      return { type: 'unknown' }
+  }
+}
+
+function mapContent(content: NativeContent): NotificationContent {
+  return {
+    title: content.title ?? null,
+    subtitle: content.subtitle ?? null,
+    body: content.body ?? null,
+    data: content.data,
+    sound: content.sound,
+    badge: content.badge ?? null,
+  }
+}
+
+function mapRequest(request: NativeNotificationRequest): NotificationRequest {
+  return {
+    identifier: request.identifier,
+    content: mapContent(request.content),
+    trigger: mapTrigger(request.trigger),
+  }
+}
+
+function mapNotification(notification: NativeNotification): Notification {
+  return { request: mapRequest(notification.request), date: notification.date }
+}
+
+function mapResponse(response: NativeNotificationResponse): NotificationResponse {
+  return {
+    notification: mapNotification(response.notification),
+    actionIdentifier: response.actionIdentifier,
+  }
+}
+
+// content data crosses nitro as an AnyMap: json values only. undefined and
+// other non-json entries drop, as the bridge serializer did.
+function toValue(value: unknown): ValueType | undefined {
+  if (
+    value === null ||
+    typeof value === 'string' ||
+    typeof value === 'number' ||
+    typeof value === 'boolean'
+  ) {
+    return value
+  }
+  if (Array.isArray(value)) return value.map((item) => toValue(item) ?? null)
+  if (typeof value === 'object') return toAnyMap(Object.entries(value))
+  return undefined
+}
+
+function toAnyMap(entries: [string, unknown][]): AnyMap {
+  const map: AnyMap = {}
+  for (const [key, item] of entries) {
+    const value = toValue(item)
+    if (value !== undefined) map[key] = value
+  }
+  return map
+}
+
+// one native listener set, fanned out to js listeners, plus the foreground
+// runner that answers native's presentation round trip.
 const receivedListeners = new Set<(notification: Notification) => void>()
 const responseListeners = new Set<(response: NotificationResponse) => void>()
 const pushTokenListeners = new Set<(token: DevicePushToken) => void>()
-let sharedEmitter: NativeEventEmitter | null = null
 let sharedRunner: ForegroundHandler | null = null
 
-function events(module: NotificationsSpec): {
-  emitter: NativeEventEmitter
-  runner: ForegroundHandler
-} {
-  if (!sharedEmitter || !sharedRunner) {
-    const runner = new ForegroundHandler((requestId, behavior) => {
-      // native drops unknown ids and shows everything after 3s on its own,
-      // so a rejection here only means the bridge is gone.
-      module.presentNotification(requestId, behavior).catch(() => {})
-    })
-    const emitter = new NativeEventEmitter(module)
-    emitter.addListener(
-      'oneNativeNotificationsReceived',
-      (event: { requestId: string; notification: Notification }) => {
-        if (!runner.receive(event.requestId, event.notification)) return
-        receivedListeners.forEach((listener) => listener(event.notification))
-      }
+function events(module: OneNotifications): ForegroundHandler {
+  if (!sharedRunner) {
+    // native drops unknown ids and shows everything after 3s on its own.
+    const runner = new ForegroundHandler((requestId, behavior) =>
+      module.presentNotification(requestId, behavior)
     )
-    emitter.addListener(
-      'oneNativeNotificationsResponse',
-      (response: NotificationResponse) => {
+    module.setListeners(
+      (requestId, nativeNotification) => {
+        const notification = mapNotification(nativeNotification)
+        if (!runner.receive(requestId, notification)) return
+        receivedListeners.forEach((listener) => listener(notification))
+      },
+      (nativeResponse) => {
+        const response = mapResponse(nativeResponse)
         responseListeners.forEach((listener) => listener(response))
+      },
+      (token) => {
+        if (token.type !== 'ios' && token.type !== 'android') return
+        const mapped: DevicePushToken = { type: token.type, data: token.data }
+        pushTokenListeners.forEach((listener) => listener(mapped))
       }
     )
-    emitter.addListener('oneNativeNotificationsPushToken', (token: DevicePushToken) => {
-      pushTokenListeners.forEach((listener) => listener(token))
-    })
-    sharedEmitter = emitter
     sharedRunner = runner
   }
-  return { emitter: sharedEmitter, runner: sharedRunner }
+  return sharedRunner
 }
 
 function subscribe<T>(
@@ -211,7 +292,7 @@ async function getDevicePushTokenAsync(): Promise<DevicePushToken> {
   const module = native()
   if (!module)
     throw new Error('Notifications.getDevicePushTokenAsync needs an iOS or Android build')
-  const token = await module.getDevicePushToken()
+  const token = await module.getDevicePushToken().catch(rethrowNativeError)
   const type =
     token && (token.type === 'ios' || token.type === 'android') ? token.type : null
   if (!token || type === null || typeof token.data !== 'string' || !token.data.length) {
@@ -234,12 +315,13 @@ function addPushTokenListener(
 function setHandler(handler: NotificationHandlerInput | null): void {
   const module = native()
   if (!module) return
-  events(module).runner.setHandler(handler)
+  events(module).setHandler(handler)
 }
 
 // the response that last tapped the app awake, if any. synchronous, like expo.
 function getLastResponse(): NotificationResponse | null {
-  return native()?.getLastNotificationResponse() ?? null
+  const response = native()?.getLastNotificationResponse()
+  return response ? mapResponse(response) : null
 }
 
 function clearLastResponse(): void {
@@ -252,19 +334,22 @@ function clearLastResponse(): void {
 async function schedule(request: NotificationScheduleInput): Promise<string> {
   const module = native()
   if (!module) throw new Error('Notifications.schedule needs an iOS or Android build')
-  const trigger = request.trigger
-  if (
-    trigger !== null &&
-    typeof trigger === 'object' &&
-    trigger.type === 'date' &&
-    trigger.date instanceof Date
-  ) {
-    return module.scheduleNotification({
-      ...request,
-      trigger: { ...trigger, date: trigger.date.getTime() },
+  const { content, trigger } = request
+  return module
+    .scheduleNotification({
+      identifier: request.identifier,
+      content: { ...content, data: content.data ? toAnyMap(Object.entries(content.data)) : undefined },
+      trigger:
+        trigger == null
+          ? undefined
+          : trigger.type === 'date'
+            ? {
+                ...trigger,
+                date: trigger.date instanceof Date ? trigger.date.getTime() : trigger.date,
+              }
+            : trigger,
     })
-  }
-  return module.scheduleNotification(request)
+    .catch(rethrowNativeError)
 }
 
 async function cancelScheduled(identifier: string): Promise<void> {
@@ -276,11 +361,13 @@ async function cancelAllScheduled(): Promise<void> {
 }
 
 async function getAllScheduled(): Promise<ScheduledNotification[]> {
-  return (await native()?.getAllScheduledNotifications()) ?? []
+  const scheduled = await native()?.getAllScheduledNotifications()
+  return scheduled ? scheduled.map(mapRequest) : []
 }
 
 async function getPresented(): Promise<Notification[]> {
-  return (await native()?.getPresentedNotifications()) ?? []
+  const presented = await native()?.getPresentedNotifications()
+  return presented ? presented.map(mapNotification) : []
 }
 
 async function dismiss(identifier: string): Promise<void> {

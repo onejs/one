@@ -38,16 +38,44 @@ namespace margelo::nitro::one { class HybridOneHapticsSpec; }
 namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
 // Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNetworkSpec; }
+// Forward declaration of `HybridOneNotificationsSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 // Forward declaration of `ImagePickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerAsset; }
 // Forward declaration of `ImagePickerMediaType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ImagePickerMediaType; }
 // Forward declaration of `ImagePickerNativeResult` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerNativeResult; }
+// Forward declaration of `NativeChannel` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeChannel; }
+// Forward declaration of `NativeContent` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeContent; }
+// Forward declaration of `NativeIosPermissionRequest` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeIosPermissionRequest; }
+// Forward declaration of `NativeIosPermission` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeIosPermission; }
+// Forward declaration of `NativeNotificationRequest` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotificationRequest; }
+// Forward declaration of `NativeNotificationResponse` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotificationResponse; }
+// Forward declaration of `NativeNotification` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotification; }
+// Forward declaration of `NativePermissionResponse` to properly resolve imports.
+namespace margelo::nitro::one { struct NativePermissionResponse; }
+// Forward declaration of `NativePushToken` to properly resolve imports.
+namespace margelo::nitro::one { struct NativePushToken; }
+// Forward declaration of `NativeTriggerInput` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeTriggerInput; }
+// Forward declaration of `NativeTriggerType` to properly resolve imports.
+namespace margelo::nitro::one { enum class NativeTriggerType; }
+// Forward declaration of `NativeTrigger` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeTrigger; }
 // Forward declaration of `NetworkStateType` to properly resolve imports.
 namespace margelo::nitro::one { enum class NetworkStateType; }
 // Forward declaration of `NetworkState` to properly resolve imports.
 namespace margelo::nitro::one { struct NetworkState; }
+// Forward declaration of `NotificationPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
 
 // Forward declarations of Swift defined types
 // Forward declaration of `HybridOneAppInfoSpec_cxx` to properly resolve imports.
@@ -66,6 +94,8 @@ namespace VxrnNative { class HybridOneHapticsSpec_cxx; }
 namespace VxrnNative { class HybridOneImagePickerSpec_cxx; }
 // Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneNetworkSpec_cxx; }
+// Forward declaration of `HybridOneNotificationsSpec_cxx` to properly resolve imports.
+namespace VxrnNative { class HybridOneNotificationsSpec_cxx; }
 
 // Include C++ defined types
 #include "BrowserAuthResult.hpp"
@@ -83,11 +113,26 @@ namespace VxrnNative { class HybridOneNetworkSpec_cxx; }
 #include "HybridOneHapticsSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
+#include "HybridOneNotificationsSpec.hpp"
 #include "ImagePickerAsset.hpp"
 #include "ImagePickerMediaType.hpp"
 #include "ImagePickerNativeResult.hpp"
+#include "NativeChannel.hpp"
+#include "NativeContent.hpp"
+#include "NativeIosPermission.hpp"
+#include "NativeIosPermissionRequest.hpp"
+#include "NativeNotification.hpp"
+#include "NativeNotificationRequest.hpp"
+#include "NativeNotificationResponse.hpp"
+#include "NativePermissionResponse.hpp"
+#include "NativePushToken.hpp"
+#include "NativeTrigger.hpp"
+#include "NativeTriggerInput.hpp"
+#include "NativeTriggerType.hpp"
 #include "NetworkState.hpp"
 #include "NetworkStateType.hpp"
+#include "NotificationPermissionStatus.hpp"
+#include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/PromiseHolder.hpp>
@@ -698,6 +743,521 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__function_void____ create_Result_std__function_void____(const std::exception_ptr& error) noexcept {
     return Result<std::function<void()>>::withError(error);
+  }
+  
+  // pragma MARK: std::optional<NativeIosPermission>
+  /**
+   * Specialized version of `std::optional<NativeIosPermission>`.
+   */
+  using std__optional_NativeIosPermission_ = std::optional<NativeIosPermission>;
+  inline std::optional<NativeIosPermission> create_std__optional_NativeIosPermission_(const NativeIosPermission& value) noexcept {
+    return std::optional<NativeIosPermission>(value);
+  }
+  inline bool has_value_std__optional_NativeIosPermission_(const std::optional<NativeIosPermission>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline NativeIosPermission get_std__optional_NativeIosPermission_(const std::optional<NativeIosPermission>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<NativePermissionResponse>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<NativePermissionResponse>>`.
+   */
+  using std__shared_ptr_Promise_NativePermissionResponse__ = std::shared_ptr<Promise<NativePermissionResponse>>;
+  inline std::shared_ptr<Promise<NativePermissionResponse>> create_std__shared_ptr_Promise_NativePermissionResponse__() noexcept {
+    return Promise<NativePermissionResponse>::create();
+  }
+  inline PromiseHolder<NativePermissionResponse> wrap_std__shared_ptr_Promise_NativePermissionResponse__(std::shared_ptr<Promise<NativePermissionResponse>> promise) noexcept {
+    return PromiseHolder<NativePermissionResponse>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const NativePermissionResponse& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const NativePermissionResponse&)>`.
+   */
+  using Func_void_NativePermissionResponse = std::function<void(const NativePermissionResponse& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const NativePermissionResponse& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_NativePermissionResponse_Wrapper final {
+  public:
+    explicit Func_void_NativePermissionResponse_Wrapper(std::function<void(const NativePermissionResponse& /* result */)>&& func): _function(std::make_unique<std::function<void(const NativePermissionResponse& /* result */)>>(std::move(func))) {}
+    inline void call(NativePermissionResponse result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const NativePermissionResponse& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_NativePermissionResponse create_Func_void_NativePermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_NativePermissionResponse_Wrapper wrap_Func_void_NativePermissionResponse(Func_void_NativePermissionResponse value) noexcept {
+    return Func_void_NativePermissionResponse_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::optional<NativeIosPermissionRequest>
+  /**
+   * Specialized version of `std::optional<NativeIosPermissionRequest>`.
+   */
+  using std__optional_NativeIosPermissionRequest_ = std::optional<NativeIosPermissionRequest>;
+  inline std::optional<NativeIosPermissionRequest> create_std__optional_NativeIosPermissionRequest_(const NativeIosPermissionRequest& value) noexcept {
+    return std::optional<NativeIosPermissionRequest>(value);
+  }
+  inline bool has_value_std__optional_NativeIosPermissionRequest_(const std::optional<NativeIosPermissionRequest>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline NativeIosPermissionRequest get_std__optional_NativeIosPermissionRequest_(const std::optional<NativeIosPermissionRequest>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<double>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<double>>`.
+   */
+  using std__shared_ptr_Promise_double__ = std::shared_ptr<Promise<double>>;
+  inline std::shared_ptr<Promise<double>> create_std__shared_ptr_Promise_double__() noexcept {
+    return Promise<double>::create();
+  }
+  inline PromiseHolder<double> wrap_std__shared_ptr_Promise_double__(std::shared_ptr<Promise<double>> promise) noexcept {
+    return PromiseHolder<double>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(double /* result */)>
+  /**
+   * Specialized version of `std::function<void(double)>`.
+   */
+  using Func_void_double = std::function<void(double /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(double / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_double_Wrapper final {
+  public:
+    explicit Func_void_double_Wrapper(std::function<void(double /* result */)>&& func): _function(std::make_unique<std::function<void(double /* result */)>>(std::move(func))) {}
+    inline void call(double result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(double /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_double create_Func_void_double(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_double_Wrapper wrap_Func_void_double(Func_void_double value) noexcept {
+    return Func_void_double_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<double>
+  /**
+   * Specialized version of `std::vector<double>`.
+   */
+  using std__vector_double_ = std::vector<double>;
+  inline std::vector<double> create_std__vector_double_(size_t size) noexcept {
+    std::vector<double> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::optional<std::vector<double>>
+  /**
+   * Specialized version of `std::optional<std::vector<double>>`.
+   */
+  using std__optional_std__vector_double__ = std::optional<std::vector<double>>;
+  inline std::optional<std::vector<double>> create_std__optional_std__vector_double__(const std::vector<double>& value) noexcept {
+    return std::optional<std::vector<double>>(value);
+  }
+  inline bool has_value_std__optional_std__vector_double__(const std::optional<std::vector<double>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::vector<double> get_std__optional_std__vector_double__(const std::optional<std::vector<double>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<NativeChannel>
+  /**
+   * Specialized version of `std::optional<NativeChannel>`.
+   */
+  using std__optional_NativeChannel_ = std::optional<NativeChannel>;
+  inline std::optional<NativeChannel> create_std__optional_NativeChannel_(const NativeChannel& value) noexcept {
+    return std::optional<NativeChannel>(value);
+  }
+  inline bool has_value_std__optional_NativeChannel_(const std::optional<NativeChannel>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline NativeChannel get_std__optional_NativeChannel_(const std::optional<NativeChannel>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::optional<NativeChannel>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::optional<NativeChannel>>>`.
+   */
+  using std__shared_ptr_Promise_std__optional_NativeChannel___ = std::shared_ptr<Promise<std::optional<NativeChannel>>>;
+  inline std::shared_ptr<Promise<std::optional<NativeChannel>>> create_std__shared_ptr_Promise_std__optional_NativeChannel___() noexcept {
+    return Promise<std::optional<NativeChannel>>::create();
+  }
+  inline PromiseHolder<std::optional<NativeChannel>> wrap_std__shared_ptr_Promise_std__optional_NativeChannel___(std::shared_ptr<Promise<std::optional<NativeChannel>>> promise) noexcept {
+    return PromiseHolder<std::optional<NativeChannel>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::optional<NativeChannel>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::optional<NativeChannel>&)>`.
+   */
+  using Func_void_std__optional_NativeChannel_ = std::function<void(const std::optional<NativeChannel>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::optional<NativeChannel>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__optional_NativeChannel__Wrapper final {
+  public:
+    explicit Func_void_std__optional_NativeChannel__Wrapper(std::function<void(const std::optional<NativeChannel>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::optional<NativeChannel>& /* result */)>>(std::move(func))) {}
+    inline void call(std::optional<NativeChannel> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::optional<NativeChannel>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__optional_NativeChannel_ create_Func_void_std__optional_NativeChannel_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__optional_NativeChannel__Wrapper wrap_Func_void_std__optional_NativeChannel_(Func_void_std__optional_NativeChannel_ value) noexcept {
+    return Func_void_std__optional_NativeChannel__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<NativeChannel>
+  /**
+   * Specialized version of `std::vector<NativeChannel>`.
+   */
+  using std__vector_NativeChannel_ = std::vector<NativeChannel>;
+  inline std::vector<NativeChannel> create_std__vector_NativeChannel_(size_t size) noexcept {
+    std::vector<NativeChannel> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::vector<NativeChannel>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<NativeChannel>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_NativeChannel___ = std::shared_ptr<Promise<std::vector<NativeChannel>>>;
+  inline std::shared_ptr<Promise<std::vector<NativeChannel>>> create_std__shared_ptr_Promise_std__vector_NativeChannel___() noexcept {
+    return Promise<std::vector<NativeChannel>>::create();
+  }
+  inline PromiseHolder<std::vector<NativeChannel>> wrap_std__shared_ptr_Promise_std__vector_NativeChannel___(std::shared_ptr<Promise<std::vector<NativeChannel>>> promise) noexcept {
+    return PromiseHolder<std::vector<NativeChannel>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<NativeChannel>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<NativeChannel>&)>`.
+   */
+  using Func_void_std__vector_NativeChannel_ = std::function<void(const std::vector<NativeChannel>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<NativeChannel>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_NativeChannel__Wrapper final {
+  public:
+    explicit Func_void_std__vector_NativeChannel__Wrapper(std::function<void(const std::vector<NativeChannel>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<NativeChannel>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<NativeChannel> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<NativeChannel>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_NativeChannel_ create_Func_void_std__vector_NativeChannel_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_NativeChannel__Wrapper wrap_Func_void_std__vector_NativeChannel_(Func_void_std__vector_NativeChannel_ value) noexcept {
+    return Func_void_std__vector_NativeChannel__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::optional<std::shared_ptr<AnyMap>>
+  /**
+   * Specialized version of `std::optional<std::shared_ptr<AnyMap>>`.
+   */
+  using std__optional_std__shared_ptr_AnyMap__ = std::optional<std::shared_ptr<AnyMap>>;
+  inline std::optional<std::shared_ptr<AnyMap>> create_std__optional_std__shared_ptr_AnyMap__(const std::shared_ptr<AnyMap>& value) noexcept {
+    return std::optional<std::shared_ptr<AnyMap>>(value);
+  }
+  inline bool has_value_std__optional_std__shared_ptr_AnyMap__(const std::optional<std::shared_ptr<AnyMap>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::shared_ptr<AnyMap> get_std__optional_std__shared_ptr_AnyMap__(const std::optional<std::shared_ptr<AnyMap>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<NativeTriggerInput>
+  /**
+   * Specialized version of `std::optional<NativeTriggerInput>`.
+   */
+  using std__optional_NativeTriggerInput_ = std::optional<NativeTriggerInput>;
+  inline std::optional<NativeTriggerInput> create_std__optional_NativeTriggerInput_(const NativeTriggerInput& value) noexcept {
+    return std::optional<NativeTriggerInput>(value);
+  }
+  inline bool has_value_std__optional_NativeTriggerInput_(const std::optional<NativeTriggerInput>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline NativeTriggerInput get_std__optional_NativeTriggerInput_(const std::optional<NativeTriggerInput>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::vector<NativeNotificationRequest>
+  /**
+   * Specialized version of `std::vector<NativeNotificationRequest>`.
+   */
+  using std__vector_NativeNotificationRequest_ = std::vector<NativeNotificationRequest>;
+  inline std::vector<NativeNotificationRequest> create_std__vector_NativeNotificationRequest_(size_t size) noexcept {
+    std::vector<NativeNotificationRequest> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_NativeNotificationRequest___ = std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>;
+  inline std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>> create_std__shared_ptr_Promise_std__vector_NativeNotificationRequest___() noexcept {
+    return Promise<std::vector<NativeNotificationRequest>>::create();
+  }
+  inline PromiseHolder<std::vector<NativeNotificationRequest>> wrap_std__shared_ptr_Promise_std__vector_NativeNotificationRequest___(std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>> promise) noexcept {
+    return PromiseHolder<std::vector<NativeNotificationRequest>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<NativeNotificationRequest>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<NativeNotificationRequest>&)>`.
+   */
+  using Func_void_std__vector_NativeNotificationRequest_ = std::function<void(const std::vector<NativeNotificationRequest>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<NativeNotificationRequest>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_NativeNotificationRequest__Wrapper final {
+  public:
+    explicit Func_void_std__vector_NativeNotificationRequest__Wrapper(std::function<void(const std::vector<NativeNotificationRequest>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<NativeNotificationRequest>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<NativeNotificationRequest> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<NativeNotificationRequest>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_NativeNotificationRequest_ create_Func_void_std__vector_NativeNotificationRequest_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_NativeNotificationRequest__Wrapper wrap_Func_void_std__vector_NativeNotificationRequest_(Func_void_std__vector_NativeNotificationRequest_ value) noexcept {
+    return Func_void_std__vector_NativeNotificationRequest__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<NativeNotification>
+  /**
+   * Specialized version of `std::vector<NativeNotification>`.
+   */
+  using std__vector_NativeNotification_ = std::vector<NativeNotification>;
+  inline std::vector<NativeNotification> create_std__vector_NativeNotification_(size_t size) noexcept {
+    std::vector<NativeNotification> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::vector<NativeNotification>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<NativeNotification>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_NativeNotification___ = std::shared_ptr<Promise<std::vector<NativeNotification>>>;
+  inline std::shared_ptr<Promise<std::vector<NativeNotification>>> create_std__shared_ptr_Promise_std__vector_NativeNotification___() noexcept {
+    return Promise<std::vector<NativeNotification>>::create();
+  }
+  inline PromiseHolder<std::vector<NativeNotification>> wrap_std__shared_ptr_Promise_std__vector_NativeNotification___(std::shared_ptr<Promise<std::vector<NativeNotification>>> promise) noexcept {
+    return PromiseHolder<std::vector<NativeNotification>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<NativeNotification>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<NativeNotification>&)>`.
+   */
+  using Func_void_std__vector_NativeNotification_ = std::function<void(const std::vector<NativeNotification>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<NativeNotification>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_NativeNotification__Wrapper final {
+  public:
+    explicit Func_void_std__vector_NativeNotification__Wrapper(std::function<void(const std::vector<NativeNotification>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<NativeNotification>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<NativeNotification> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<NativeNotification>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_NativeNotification_ create_Func_void_std__vector_NativeNotification_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_NativeNotification__Wrapper wrap_Func_void_std__vector_NativeNotification_(Func_void_std__vector_NativeNotification_ value) noexcept {
+    return Func_void_std__vector_NativeNotification__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<NativePushToken>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<NativePushToken>>`.
+   */
+  using std__shared_ptr_Promise_NativePushToken__ = std::shared_ptr<Promise<NativePushToken>>;
+  inline std::shared_ptr<Promise<NativePushToken>> create_std__shared_ptr_Promise_NativePushToken__() noexcept {
+    return Promise<NativePushToken>::create();
+  }
+  inline PromiseHolder<NativePushToken> wrap_std__shared_ptr_Promise_NativePushToken__(std::shared_ptr<Promise<NativePushToken>> promise) noexcept {
+    return PromiseHolder<NativePushToken>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const NativePushToken& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const NativePushToken&)>`.
+   */
+  using Func_void_NativePushToken = std::function<void(const NativePushToken& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const NativePushToken& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_NativePushToken_Wrapper final {
+  public:
+    explicit Func_void_NativePushToken_Wrapper(std::function<void(const NativePushToken& /* result */)>&& func): _function(std::make_unique<std::function<void(const NativePushToken& /* result */)>>(std::move(func))) {}
+    inline void call(NativePushToken result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const NativePushToken& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_NativePushToken create_Func_void_NativePushToken(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_NativePushToken_Wrapper wrap_Func_void_NativePushToken(Func_void_NativePushToken value) noexcept {
+    return Func_void_NativePushToken_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const std::string& /* requestId */, const NativeNotification& /* notification */)>
+  /**
+   * Specialized version of `std::function<void(const std::string&, const NativeNotification&)>`.
+   */
+  using Func_void_std__string_NativeNotification = std::function<void(const std::string& /* requestId */, const NativeNotification& /* notification */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::string& / * requestId * /, const NativeNotification& / * notification * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__string_NativeNotification_Wrapper final {
+  public:
+    explicit Func_void_std__string_NativeNotification_Wrapper(std::function<void(const std::string& /* requestId */, const NativeNotification& /* notification */)>&& func): _function(std::make_unique<std::function<void(const std::string& /* requestId */, const NativeNotification& /* notification */)>>(std::move(func))) {}
+    inline void call(std::string requestId, NativeNotification notification) const noexcept {
+      _function->operator()(requestId, notification);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::string& /* requestId */, const NativeNotification& /* notification */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__string_NativeNotification create_Func_void_std__string_NativeNotification(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__string_NativeNotification_Wrapper wrap_Func_void_std__string_NativeNotification(Func_void_std__string_NativeNotification value) noexcept {
+    return Func_void_std__string_NativeNotification_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const NativeNotificationResponse& /* response */)>
+  /**
+   * Specialized version of `std::function<void(const NativeNotificationResponse&)>`.
+   */
+  using Func_void_NativeNotificationResponse = std::function<void(const NativeNotificationResponse& /* response */)>;
+  /**
+   * Wrapper class for a `std::function<void(const NativeNotificationResponse& / * response * /)>`, this can be used from Swift.
+   */
+  class Func_void_NativeNotificationResponse_Wrapper final {
+  public:
+    explicit Func_void_NativeNotificationResponse_Wrapper(std::function<void(const NativeNotificationResponse& /* response */)>&& func): _function(std::make_unique<std::function<void(const NativeNotificationResponse& /* response */)>>(std::move(func))) {}
+    inline void call(NativeNotificationResponse response) const noexcept {
+      _function->operator()(response);
+    }
+  private:
+    std::unique_ptr<std::function<void(const NativeNotificationResponse& /* response */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_NativeNotificationResponse create_Func_void_NativeNotificationResponse(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_NativeNotificationResponse_Wrapper wrap_Func_void_NativeNotificationResponse(Func_void_NativeNotificationResponse value) noexcept {
+    return Func_void_NativeNotificationResponse_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::optional<NativeNotificationResponse>
+  /**
+   * Specialized version of `std::optional<NativeNotificationResponse>`.
+   */
+  using std__optional_NativeNotificationResponse_ = std::optional<NativeNotificationResponse>;
+  inline std::optional<NativeNotificationResponse> create_std__optional_NativeNotificationResponse_(const NativeNotificationResponse& value) noexcept {
+    return std::optional<NativeNotificationResponse>(value);
+  }
+  inline bool has_value_std__optional_NativeNotificationResponse_(const std::optional<NativeNotificationResponse>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline NativeNotificationResponse get_std__optional_NativeNotificationResponse_(const std::optional<NativeNotificationResponse>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneNotificationsSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneNotificationsSpec>`.
+   */
+  using std__shared_ptr_HybridOneNotificationsSpec_ = std::shared_ptr<HybridOneNotificationsSpec>;
+  std::shared_ptr<HybridOneNotificationsSpec> create_std__shared_ptr_HybridOneNotificationsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneNotificationsSpec_(std__shared_ptr_HybridOneNotificationsSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneNotificationsSpec>
+  using std__weak_ptr_HybridOneNotificationsSpec_ = std::weak_ptr<HybridOneNotificationsSpec>;
+  inline std__weak_ptr_HybridOneNotificationsSpec_ weakify_std__shared_ptr_HybridOneNotificationsSpec_(const std::shared_ptr<HybridOneNotificationsSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<NativePermissionResponse>>>
+  using Result_std__shared_ptr_Promise_NativePermissionResponse___ = Result<std::shared_ptr<Promise<NativePermissionResponse>>>;
+  inline Result_std__shared_ptr_Promise_NativePermissionResponse___ create_Result_std__shared_ptr_Promise_NativePermissionResponse___(const std::shared_ptr<Promise<NativePermissionResponse>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<NativePermissionResponse>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_NativePermissionResponse___ create_Result_std__shared_ptr_Promise_NativePermissionResponse___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<NativePermissionResponse>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<double>>>
+  using Result_std__shared_ptr_Promise_double___ = Result<std::shared_ptr<Promise<double>>>;
+  inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::shared_ptr<Promise<double>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<double>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<double>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::optional<NativeChannel>>>>
+  using Result_std__shared_ptr_Promise_std__optional_NativeChannel____ = Result<std::shared_ptr<Promise<std::optional<NativeChannel>>>>;
+  inline Result_std__shared_ptr_Promise_std__optional_NativeChannel____ create_Result_std__shared_ptr_Promise_std__optional_NativeChannel____(const std::shared_ptr<Promise<std::optional<NativeChannel>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::optional<NativeChannel>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__optional_NativeChannel____ create_Result_std__shared_ptr_Promise_std__optional_NativeChannel____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::optional<NativeChannel>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<NativeChannel>>>>
+  using Result_std__shared_ptr_Promise_std__vector_NativeChannel____ = Result<std::shared_ptr<Promise<std::vector<NativeChannel>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_NativeChannel____ create_Result_std__shared_ptr_Promise_std__vector_NativeChannel____(const std::shared_ptr<Promise<std::vector<NativeChannel>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<NativeChannel>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_NativeChannel____ create_Result_std__shared_ptr_Promise_std__vector_NativeChannel____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<NativeChannel>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>>
+  using Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____ = Result<std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____ create_Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____(const std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____ create_Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<NativeNotification>>>>
+  using Result_std__shared_ptr_Promise_std__vector_NativeNotification____ = Result<std::shared_ptr<Promise<std::vector<NativeNotification>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_NativeNotification____ create_Result_std__shared_ptr_Promise_std__vector_NativeNotification____(const std::shared_ptr<Promise<std::vector<NativeNotification>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<NativeNotification>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_NativeNotification____ create_Result_std__shared_ptr_Promise_std__vector_NativeNotification____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<NativeNotification>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<NativePushToken>>>
+  using Result_std__shared_ptr_Promise_NativePushToken___ = Result<std::shared_ptr<Promise<NativePushToken>>>;
+  inline Result_std__shared_ptr_Promise_NativePushToken___ create_Result_std__shared_ptr_Promise_NativePushToken___(const std::shared_ptr<Promise<NativePushToken>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<NativePushToken>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_NativePushToken___ create_Result_std__shared_ptr_Promise_NativePushToken___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<NativePushToken>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::optional<NativeNotificationResponse>>
+  using Result_std__optional_NativeNotificationResponse__ = Result<std::optional<NativeNotificationResponse>>;
+  inline Result_std__optional_NativeNotificationResponse__ create_Result_std__optional_NativeNotificationResponse__(const std::optional<NativeNotificationResponse>& value) noexcept {
+    return Result<std::optional<NativeNotificationResponse>>::withValue(value);
+  }
+  inline Result_std__optional_NativeNotificationResponse__ create_Result_std__optional_NativeNotificationResponse__(const std::exception_ptr& error) noexcept {
+    return Result<std::optional<NativeNotificationResponse>>::withError(error);
   }
 
 } // namespace margelo::nitro::one::bridge::swift

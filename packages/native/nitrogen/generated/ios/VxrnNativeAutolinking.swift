@@ -107,4 +107,16 @@ public final class VxrnNativeAutolinking {
   public static func isOneFontsRecyclable() -> Bool {
     return HybridOneFonts.self is any RecyclableView.Type
   }
+  
+  public static func createOneNotifications() -> bridge.std__shared_ptr_HybridOneNotificationsSpec_ {
+    let hybridObject = HybridOneNotifications()
+    return { () -> bridge.std__shared_ptr_HybridOneNotificationsSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+  
+  public static func isOneNotificationsRecyclable() -> Bool {
+    return HybridOneNotifications.self is any RecyclableView.Type
+  }
 }

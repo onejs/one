@@ -1,20 +1,28 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-vi.mock('react-native', () => ({
-  NativeEventEmitter: class {
-    addListener() {}
-    removeAllListeners() {}
-  },
-  Platform: { OS: 'ios' },
-  TurboModuleRegistry: { get: vi.fn() },
+const { mockGet } = vi.hoisted(() => ({
+  // stands in for the OneNotifications hybrid object lookup: null means not
+  // linked.
+  mockGet: vi.fn(),
 }))
 
-import type { Spec as NotificationsSpec } from '../src/specs/OneNativeNotificationsNativeModule'
+vi.mock('react-native', () => ({
+  Platform: { OS: 'ios' },
+}))
 
-async function loadNamespace(getImpl: (name: string) => unknown, os = 'ios') {
+vi.mock('react-native-nitro-modules', () => ({
+  NitroModules: {
+    hasHybridObject: (name: string) => name === 'OneNotifications' && mockGet() != null,
+    createHybridObject: (name: string) => (name === 'OneNotifications' ? mockGet() : null),
+  },
+}))
+
+import type { OneNotifications } from '../src/specs/OneNotifications.nitro'
+
+async function loadNamespace(getImpl: () => unknown, os = 'ios') {
   vi.resetModules()
   const rn = await import('react-native')
-  vi.mocked(rn.TurboModuleRegistry.get).mockImplementation(getImpl as never)
+  mockGet.mockImplementation(getImpl)
   rn.Platform.OS = os
   return (await import('../src/notifications/index.native')).Notifications
 }
@@ -79,7 +87,7 @@ describe('Notifications without the native module', () => {
 })
 
 describe('Notifications boundary mapping', () => {
-  function fakeModule(overrides: Partial<NotificationsSpec> = {}) {
+  function fakeModule(overrides: Partial<OneNotifications> = {}) {
     return {
       getPermissions: vi.fn(async () => ({
         status: 'granted',
@@ -103,7 +111,7 @@ describe('Notifications boundary mapping', () => {
           showBadge: true,
         })
       ),
-      getNotificationChannel: vi.fn(async () => null),
+      getNotificationChannel: vi.fn(async () => undefined),
       getNotificationChannels: vi.fn(async () => []),
       deleteNotificationChannel: vi.fn(async () => {}),
       scheduleNotification: vi.fn(async () => 'scheduled-id'),
@@ -113,12 +121,11 @@ describe('Notifications boundary mapping', () => {
       getPresentedNotifications: vi.fn(async () => []),
       dismissNotification: vi.fn(async () => {}),
       dismissAllNotifications: vi.fn(async () => {}),
-      presentNotification: vi.fn(async () => {}),
+      presentNotification: vi.fn(() => {}),
       getDevicePushToken: vi.fn(async () => ({ type: 'ios', data: 'cafef00d' })),
-      getLastNotificationResponse: vi.fn(() => null),
+      setListeners: vi.fn(() => {}),
+      getLastNotificationResponse: vi.fn(() => undefined),
       clearLastNotificationResponse: vi.fn(() => {}),
-      addListener: vi.fn(() => {}),
-      removeListeners: vi.fn(() => {}),
       ...overrides,
     }
   }
@@ -164,6 +171,114 @@ describe('Notifications boundary mapping', () => {
     expect(module.scheduleNotification).toHaveBeenCalledWith({
       content: { title: 'x' },
       trigger: { type: 'date', date: 1790000000000 },
+    })
+  })
+
+  const nativeNotification = {
+    request: {
+      identifier: 'n1',
+      content: { title: 'hi', data: { k: 1 }, sound: false },
+      trigger: { type: 'timeInterval' as const, seconds: 5, repeats: false },
+    },
+    date: 1790000000000,
+  }
+  const publicNotification = {
+    request: {
+      identifier: 'n1',
+      content: {
+        title: 'hi',
+        subtitle: null,
+        body: null,
+        data: { k: 1 },
+        sound: false,
+        badge: null,
+      },
+      trigger: { type: 'timeInterval', seconds: 5, repeats: false },
+    },
+    date: 1790000000000,
+  }
+
+  it('restores public nulls and trigger variants from native shapes', async () => {
+    const Notifications = await loadNamespace(() =>
+      fakeModule({
+        getPresentedNotifications: vi.fn(async () => [nativeNotification]),
+        getAllScheduledNotifications: vi.fn(async () => [
+          {
+            identifier: 's1',
+            content: { data: {}, sound: true, badge: 2 },
+            trigger: { type: 'date' as const, date: 1790000000000 },
+          },
+        ]),
+        getLastNotificationResponse: vi.fn(() => ({
+          notification: nativeNotification,
+          actionIdentifier: 'expo.modules.notifications.actions.DEFAULT',
+        })),
+      })
+    )
+    expect(await Notifications.getPresented()).toStrictEqual([publicNotification])
+    expect(await Notifications.getAllScheduled()).toStrictEqual([
+      {
+        identifier: 's1',
+        content: { title: null, subtitle: null, body: null, data: {}, sound: true, badge: 2 },
+        trigger: { type: 'date', date: 1790000000000 },
+      },
+    ])
+    expect(Notifications.getLastResponse()).toStrictEqual({
+      notification: publicNotification,
+      actionIdentifier: 'expo.modules.notifications.actions.DEFAULT',
+    })
+  })
+
+  it('sends content data as json values only', async () => {
+    const module = fakeModule()
+    const Notifications = await loadNamespace(() => module)
+    await Notifications.schedule({
+      content: { data: { keep: [1, undefined], nested: { a: 'b', gone: undefined }, fn: () => {} } },
+      trigger: null,
+    })
+    expect(module.scheduleNotification.mock.calls[0][0].content.data).toStrictEqual({
+      keep: [1, null],
+      nested: { a: 'b' },
+    })
+    expect(module.scheduleNotification.mock.calls[0][0].trigger).toBeUndefined()
+  })
+
+  it('splits the code off a native rejection', async () => {
+    const Notifications = await loadNamespace(() =>
+      fakeModule({
+        scheduleNotification: vi.fn(async () => {
+          throw new Error('E_NOTIFICATIONS_TRIGGER: timeInterval seconds must be positive')
+        }),
+      })
+    )
+    const error = await Notifications.schedule({
+      content: {},
+      trigger: { type: 'timeInterval', seconds: 0 },
+    }).catch((caught: unknown) => caught)
+    expect(error).toBeInstanceOf(Error)
+    expect(error).toMatchObject({
+      code: 'E_NOTIFICATIONS_TRIGGER',
+      message: 'timeInterval seconds must be positive',
+    })
+  })
+
+  it('fans native arrivals out and answers the presentation round trip', async () => {
+    const module = fakeModule()
+    const Notifications = await loadNamespace(() => module)
+    const received: unknown[] = []
+    Notifications.addReceivedListener((notification) => received.push(notification))
+    expect(module.setListeners).toHaveBeenCalledTimes(1)
+    const [onReceived] = module.setListeners.mock.calls[0] as unknown as [
+      (requestId: string, notification: typeof nativeNotification) => void,
+    ]
+    onReceived('r1', nativeNotification)
+    expect(received).toStrictEqual([publicNotification])
+    // no handler set: show everything, like expo.
+    expect(module.presentNotification).toHaveBeenCalledWith('r1', {
+      shouldShowBanner: true,
+      shouldShowList: true,
+      shouldPlaySound: true,
+      shouldSetBadge: true,
     })
   })
 
