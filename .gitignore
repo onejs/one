@@ -3,6 +3,7 @@
 examples/*/ios/**
 examples/*/android/**
 packages/*/android/build/**
+packages/*/android/.cxx/**
 
 apps/*/ios/**
 apps/*/android/**

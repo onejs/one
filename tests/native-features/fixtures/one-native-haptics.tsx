@@ -1,13 +1,13 @@
 import { Haptics } from '@vxrn/native/haptics'
 import { useState } from 'react'
-import { Pressable, StyleSheet, Text, TurboModuleRegistry, View } from 'react-native'
-import type { TurboModule } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { NitroModules } from 'react-native-nitro-modules'
 
 // exercises One.UI.Haptics end to end: the module-present marker proves the
-// native module resolved, and one button per verb proves each call crosses
-// the bridge without a redbox. taps record into labels because RN Text
-// testIDs vanish from the accessibility snapshot while Pressable IDs
-// survive; feel itself is human-verified on device.
+// OneHaptics nitro hybrid object is registered, and one button per verb
+// proves each call reaches native without a redbox. taps record into labels
+// because RN Text testIDs vanish from the accessibility snapshot while
+// Pressable IDs survive; feel itself is human-verified on device.
 const verbs = [
   { id: 'selection', run: () => Haptics.selection() },
   { id: 'impact-light', run: () => Haptics.impact('light') },
@@ -22,11 +22,11 @@ const verbs = [
 
 export default function OneNativeHaptics() {
   // the public api has no availability probe by convention, so the fixture
-  // reads the registry directly for its marker. a web bundle has no
-  // TurboModuleRegistry, which throws and reads unavailable, correctly.
+  // asks the nitro registry directly for its marker. a web bundle has no
+  // NitroModules, which throws and reads unavailable, correctly.
   const [available] = useState(() => {
     try {
-      return TurboModuleRegistry.get<TurboModule>('OneNativeHaptics') != null
+      return NitroModules.hasHybridObject('OneHaptics')
     } catch {
       return false
     }
