@@ -2255,6 +2255,18 @@
       ]
     },
     {
+      "name": "appEntityIdentifier",
+      "kind": "optionalString",
+      "type": "AppIntents.EntityIdentifier?",
+      "ios": 18.4,
+      "framework": "AppIntents",
+      "scalarConstructor": {
+        "label": "activityIdentifier",
+        "type": "Swift.String",
+        "failable": true
+      }
+    },
+    {
       "name": "appStoreMerchandising",
       "kind": "record",
       "type": "",
@@ -14141,6 +14153,11 @@
         "payWithApplePayButtonStyle",
         "verifyIdentityWithWalletButtonStyle"
       ],
+      "_AppIntents_SwiftUI": [
+        "appEntityIdentifier",
+        "shortcutsLinkStyle",
+        "siriTipViewStyle"
+      ],
       "_StoreKit_SwiftUI": [
         "appStoreMerchandising",
         "manageSubscriptionsSheet",
@@ -14194,10 +14211,6 @@
       "_RealityKit_SwiftUI": [
         "realityViewCameraControls",
         "realityViewLayoutBehavior"
-      ],
-      "_AppIntents_SwiftUI": [
-        "shortcutsLinkStyle",
-        "siriTipViewStyle"
       ],
       "_AuthenticationServices_SwiftUI": [
         "signInWithAppleButtonStyle"
@@ -14594,6 +14607,11 @@
         "payWithApplePayButtonStyle",
         "verifyIdentityWithWalletButtonStyle"
       ],
+      "_AppIntents_SwiftUI": [
+        "appEntityIdentifier",
+        "shortcutsLinkStyle",
+        "siriTipViewStyle"
+      ],
       "_StoreKit_SwiftUI": [
         "appStoreMerchandising",
         "manageSubscriptionsSheet",
@@ -14647,10 +14665,6 @@
       "_RealityKit_SwiftUI": [
         "realityViewCameraControls",
         "realityViewLayoutBehavior"
-      ],
-      "_AppIntents_SwiftUI": [
-        "shortcutsLinkStyle",
-        "siriTipViewStyle"
       ],
       "_AuthenticationServices_SwiftUI": [
         "signInWithAppleButtonStyle"

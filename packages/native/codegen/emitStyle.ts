@@ -97,8 +97,14 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
           ? `if #available(iOS ${version}, *) { self.${modifier.sdkName ?? modifier.name}(${argument}) } else { self }`
           : `self.${modifier.sdkName ?? modifier.name}(${argument})`
       }
-      const construct = (value: string, constructor = modifier.scalarConstructor, type = modifier.type) =>
-        constructor ? `${type.replace(/\?$/, '')}(${constructor.label}: ${value})` : value
+      const construct = (value: string, constructor = modifier.scalarConstructor, type = modifier.type) => {
+        if (!constructor) return value
+        const baseType = type.replace(/\?$/, '')
+        const call = `${baseType}(${constructor.label}: ${value})`
+        return constructor.failable
+          ? `(${call} ?? { () -> ${baseType} in preconditionFailure("invalid ${modifier.name}") }())`
+          : call
+      }
       const expression = (template: string | undefined, value: string) => template?.replace('$value', value)
       if (modifier.kind === 'record') {
         const argumentsFromSDK = modifier.arguments!
