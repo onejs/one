@@ -19,6 +19,7 @@ import AuthenticationServices
 import Symbols
 import Translation
 import WebKit
+import WorkoutKit
 
 private enum OneNativeNamespace { static let id = Namespace().wrappedValue }
 
@@ -419,6 +420,9 @@ extension View {
       case "mapControlVisibility": view = AnyView(view.oneNativeSDKMapControlVisibility(value, emit: emit))
       case "mapFeatureSelectionAccessory": view = AnyView(view.oneNativeSDKMapFeatureSelectionAccessory(value, emit: emit))
       case "mapFeatureSelectionDisabled": view = AnyView(view.oneNativeSDKMapFeatureSelectionDisabled(value, emit: emit))
+      case "mapItemDetailPopoverWithCurrentLocation": view = AnyView(view.oneNativeSDKMapItemDetailPopoverWithCurrentLocation(value, emit: emit))
+      case "mapItemDetailPopoverWithCurrentLocationAndArrowEdge": view = AnyView(view.oneNativeSDKMapItemDetailPopoverWithCurrentLocationAndArrowEdge(value, emit: emit))
+      case "mapItemDetailSheetWithCurrentLocation": view = AnyView(view.oneNativeSDKMapItemDetailSheetWithCurrentLocation(value, emit: emit))
       case "mapScope": view = AnyView(view.oneNativeSDKMapScope(value, emit: emit))
       case "mapStyle": view = AnyView(view.oneNativeSDKMapStyle(value, emit: emit))
       case "matchedGeometryEffect": view = AnyView(view.oneNativeSDKMatchedGeometryEffect(value, emit: emit))
@@ -507,6 +511,7 @@ extension View {
       case "preferencePreferredColorScheme": view = AnyView(view.oneNativeSDKPreferencePreferredColorScheme(value, emit: emit))
       case "preferredColorScheme": view = AnyView(view.oneNativeSDKPreferredColorScheme(value, emit: emit))
       case "preferredSubscriptionOffer": view = AnyView(view.oneNativeSDKPreferredSubscriptionOffer(value, emit: emit))
+      case "preferredSubscriptionPricingTerms": view = AnyView(view.oneNativeSDKPreferredSubscriptionPricingTerms(value, emit: emit))
       case "presentationBackground": view = AnyView(view.oneNativeSDKPresentationBackground(value, emit: emit))
       case "presentationBackgroundInteraction": view = AnyView(view.oneNativeSDKPresentationBackgroundInteraction(value, emit: emit))
       case "presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation": view = AnyView(view.oneNativeSDKPresentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation(value, emit: emit))
@@ -589,6 +594,7 @@ extension View {
       case "strikethrough": view = AnyView(view.oneNativeSDKStrikethrough(value, emit: emit))
       case "submitLabel": view = AnyView(view.oneNativeSDKSubmitLabel(value, emit: emit))
       case "submitScope": view = AnyView(view.oneNativeSDKSubmitScope(value, emit: emit))
+      case "subscriptionIntroductoryOffer": view = AnyView(view.oneNativeSDKSubscriptionIntroductoryOffer(value, emit: emit))
       case "subscriptionOfferViewButtonVisibility": view = AnyView(view.oneNativeSDKSubscriptionOfferViewButtonVisibility(value, emit: emit))
       case "subscriptionOfferViewDetailAction": view = AnyView(view.oneNativeSDKSubscriptionOfferViewDetailAction(value, emit: emit))
       case "subscriptionOfferViewStyle": view = AnyView(view.oneNativeSDKSubscriptionOfferViewStyle(value, emit: emit))
@@ -681,6 +687,7 @@ extension View {
       case "webViewScrollPosition": view = AnyView(view.oneNativeSDKWebViewScrollPosition(value, emit: emit))
       case "webViewTextSelection": view = AnyView(view.oneNativeSDKWebViewTextSelection(value, emit: emit))
       case "windowToolbarFullScreenVisibility": view = AnyView(view.oneNativeSDKWindowToolbarFullScreenVisibility(value, emit: emit))
+      case "workoutPreview": view = AnyView(view.oneNativeSDKWorkoutPreview(value, emit: emit))
       case "writingDirection": view = AnyView(view.oneNativeSDKWritingDirection(value, emit: emit))
       case "writingToolsAffordanceVisibility": view = AnyView(view.oneNativeSDKWritingToolsAffordanceVisibility(value, emit: emit))
       case "writingToolsBehavior": view = AnyView(view.oneNativeSDKWritingToolsBehavior(value, emit: emit))
@@ -5032,6 +5039,64 @@ self
       self.mapFeatureSelectionDisabled({ (_: _MapKit_SwiftUI.MapFeature) in value == "true" })
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKMapItemDetailPopoverWithCurrentLocation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid mapItemDetailPopoverWithCurrentLocation: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid mapItemDetailPopoverWithCurrentLocation.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("mapItemDetailPopoverWithCurrentLocation.isPresented", String($0)) })
+    }()
+    self.mapItemDetailPopover(isPresented: argument0, item: MapKit.MKMapItem.forCurrentLocation())
+    } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKMapItemDetailPopoverWithCurrentLocationAndArrowEdge(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid mapItemDetailPopoverWithCurrentLocationAndArrowEdge: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid mapItemDetailPopoverWithCurrentLocationAndArrowEdge.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("mapItemDetailPopoverWithCurrentLocationAndArrowEdge.isPresented", String($0)) })
+    }()
+    let argument1: SwiftUI.Edge = {
+      guard let raw = values[1] else { preconditionFailure("missing mapItemDetailPopoverWithCurrentLocationAndArrowEdge.arrowEdge") }
+      switch raw {
+      case "top": return SwiftUI.Edge.top
+      case "leading": return SwiftUI.Edge.leading
+      case "bottom": return SwiftUI.Edge.bottom
+      case "trailing": return SwiftUI.Edge.trailing
+      default: preconditionFailure("invalid mapItemDetailPopoverWithCurrentLocationAndArrowEdge.arrowEdge: \(raw)")
+      }
+    }()
+    self.mapItemDetailPopover(isPresented: argument0, item: MapKit.MKMapItem.forCurrentLocation(), arrowEdge: argument1)
+    } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKMapItemDetailSheetWithCurrentLocation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid mapItemDetailSheetWithCurrentLocation: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid mapItemDetailSheetWithCurrentLocation.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("mapItemDetailSheetWithCurrentLocation.isPresented", String($0)) })
+    }()
+    self.mapItemDetailSheet(isPresented: argument0, item: MapKit.MKMapItem.forCurrentLocation())
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKMapScope(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid mapScope: \(value)")
     if value == "true" { self.mapScope(OneNativeNamespace.id) } else { self }
@@ -6014,6 +6079,14 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKPreferredSubscriptionOffer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if #available(iOS 18, *) { self.preferredSubscriptionOffer({ _, _, eligible in eligible.first { $0.id == value } }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPreferredSubscriptionPricingTerms(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let selected: Int = {
+      guard let index = Int(value), index >= 0 else { preconditionFailure("invalid preferredSubscriptionPricingTerms: \(value)") }
+      return index
+    }()
+    if #available(iOS 26.4, *) { self.preferredSubscriptionPricingTerms({ _, input in input.pricingTerms.indices.contains(selected) ? input.pricingTerms[selected] : nil }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPresentationBackground(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -7270,6 +7343,19 @@ self
   @ViewBuilder fileprivate func oneNativeSDKSubmitScope(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid submitScope: \(value)")
       self.submitScope(value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSubscriptionIntroductoryOffer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let enabled: Bool = {
+      guard value == "true" || value == "false" else { preconditionFailure("invalid subscriptionIntroductoryOffer: \(value)") }
+      return value == "true"
+    }()
+    if #available(iOS 26, *) { self.subscriptionIntroductoryOffer(applyOffer: { _, _ in enabled }, compactJWS: { product, subscriptionInfo in
+      let payload = (["product": (["id": product.id, "type": (["rawValue": product.type.rawValue] as [String: Any]), "displayName": product.displayName, "description": product.description, "displayPrice": product.displayPrice, "isFamilyShareable": product.isFamilyShareable] as [String: Any]), "subscriptionInfo": (["subscriptionGroupID": subscriptionInfo.subscriptionGroupID] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid subscriptionIntroductoryOffer async string event") }
+      return try await OneNativeAsyncAction.waitForString(name: "subscriptionIntroductoryOffer", value: encoded, emit: emit)
+    }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionOfferViewButtonVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -8795,6 +8881,24 @@ self
       case "automatic": if #available(iOS 18, *) { self.windowToolbarFullScreenVisibility(SwiftUI.WindowToolbarFullScreenVisibility.automatic) } else { self }
     default: preconditionFailure("invalid windowToolbarFullScreenVisibility: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKWorkoutPreview(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid workoutPreview: \(value)") }
+      return decoded
+    }()
+    let argument0: WorkoutKit.WorkoutPlan = {
+      guard let raw = values[0] else { preconditionFailure("missing workoutPreview.workout") }
+      return ({ () -> WorkoutKit.WorkoutPlan in guard let data = Foundation.Data(base64Encoded: raw), let result = try? WorkoutKit.WorkoutPlan(from: data) else { preconditionFailure("invalid WorkoutKit.WorkoutPlan data") }; return result })()
+    }()
+    let argument1: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[1], raw == "true" || raw == "false" else { preconditionFailure("invalid workoutPreview.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("workoutPreview.isPresented", String($0)) })
+    }()
+    self.workoutPreview(argument0, isPresented: argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKWritingDirection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

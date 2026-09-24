@@ -8943,6 +8943,106 @@
       "framework": "MapKit"
     },
     {
+      "name": "mapItemDetailPopoverWithCurrentLocation",
+      "module": "_MapKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        }
+      ],
+      "aliasSuffix": "CurrentLocation",
+      "sharedParameter": {
+        "index": 1,
+        "label": "item",
+        "type": "MapKit.MKMapItem",
+        "factoryName": "forCurrentLocation"
+      },
+      "framework": "MapKit",
+      "sdkName": "mapItemDetailPopover"
+    },
+    {
+      "name": "mapItemDetailPopoverWithCurrentLocationAndArrowEdge",
+      "module": "_MapKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Edge",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            }
+          ],
+          "field": "arrowEdge",
+          "label": "arrowEdge"
+        }
+      ],
+      "aliasSuffix": "CurrentLocationAndArrowEdge",
+      "sharedParameter": {
+        "index": 1,
+        "label": "item",
+        "type": "MapKit.MKMapItem",
+        "factoryName": "forCurrentLocation"
+      },
+      "framework": "MapKit",
+      "sdkName": "mapItemDetailPopover"
+    },
+    {
+      "name": "mapItemDetailSheetWithCurrentLocation",
+      "module": "_MapKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        }
+      ],
+      "aliasSuffix": "CurrentLocation",
+      "sharedParameter": {
+        "index": 1,
+        "label": "item",
+        "type": "MapKit.MKMapItem",
+        "factoryName": "forCurrentLocation"
+      },
+      "framework": "MapKit",
+      "sdkName": "mapItemDetailSheet"
+    },
+    {
       "name": "mapScope",
       "kind": "boolean",
       "type": "",
@@ -11306,6 +11406,15 @@
       "type": "@escaping (_ product: StoreKit.Product, _ subscription: StoreKit.Product.SubscriptionInfo, _ eligibleOffers: [StoreKit.Product.SubscriptionOffer]) -> StoreKit.Product.SubscriptionOffer?",
       "label": "_",
       "ios": 18,
+      "framework": "StoreKit"
+    },
+    {
+      "name": "preferredSubscriptionPricingTerms",
+      "kind": "selectionIndex",
+      "type": "@escaping (_ product: StoreKit.Product, _ subscriptionInfo: StoreKit.SubscriptionInfo) -> StoreKit.SubscriptionInfo.PricingTerms?",
+      "label": "_",
+      "selectionMember": "pricingTerms",
+      "ios": 26.4,
       "framework": "StoreKit"
     },
     {
@@ -13909,6 +14018,90 @@
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 15
+    },
+    {
+      "name": "subscriptionIntroductoryOffer",
+      "kind": "eventAsyncString",
+      "type": "@escaping (_ product: StoreKit.Product, _ subscriptionInfo: StoreKit.Product.SubscriptionInfo) async throws -> Swift.String",
+      "predicateLabel": "applyOffer",
+      "callbackLabel": "compactJWS",
+      "eventInputs": [
+        "product",
+        "subscriptionInfo"
+      ],
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "product",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "id",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "type",
+                  "value": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "name": "rawValue",
+                        "value": {
+                          "kind": "string"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "displayName",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "description",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "displayPrice",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "isFamilyShareable",
+                  "value": {
+                    "kind": "boolean"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "subscriptionInfo",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "subscriptionGroupID",
+                  "value": {
+                    "kind": "string"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "ios": 26,
+      "framework": "StoreKit"
     },
     {
       "name": "subscriptionOfferViewButtonVisibility",
@@ -16731,6 +16924,30 @@
       ]
     },
     {
+      "name": "workoutPreview",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "WorkoutKit.WorkoutPlan",
+          "optional": false,
+          "swiftExpression": "({ () -> WorkoutKit.WorkoutPlan in guard let data = Foundation.Data(base64Encoded: $value), let result = try? WorkoutKit.WorkoutPlan(from: data) else { preconditionFailure(\"invalid WorkoutKit.WorkoutPlan data\") }; return result })()",
+          "field": "workout",
+          "label": "_"
+        },
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        }
+      ],
+      "framework": "WorkoutKit"
+    },
+    {
       "name": "writingDirection",
       "kind": "string",
       "type": "SwiftUICore.Text.WritingDirectionStrategy",
@@ -17282,6 +17499,7 @@
         "onInAppPurchaseCompletion",
         "onInAppPurchaseStart",
         "preferredSubscriptionOffer",
+        "preferredSubscriptionPricingTerms",
         "productDescription",
         "productIconBorder",
         "productViewStyle",
@@ -17289,6 +17507,7 @@
         "storeButton",
         "storeProductTask",
         "storeProductsTask",
+        "subscriptionIntroductoryOffer",
         "subscriptionOfferViewButtonVisibility",
         "subscriptionOfferViewDetailAction",
         "subscriptionOfferViewStyle",
@@ -17314,6 +17533,8 @@
         "mapControls",
         "mapFeatureSelectionAccessory",
         "mapFeatureSelectionDisabled",
+        "mapItemDetailPopover",
+        "mapItemDetailSheet",
         "mapScope",
         "mapStyle",
         "onMapCameraChange"
@@ -17356,6 +17577,9 @@
         "webViewOnScrollGeometryChange",
         "webViewScrollPosition",
         "webViewTextSelection"
+      ],
+      "_WorkoutKit_SwiftUI": [
+        "workoutPreview"
       ]
     },
     "generatedModifiers": {
@@ -17784,6 +18008,7 @@
         "onInAppPurchaseCompletion",
         "onInAppPurchaseStart",
         "preferredSubscriptionOffer",
+        "preferredSubscriptionPricingTerms",
         "productDescription",
         "productIconBorder",
         "productViewStyle",
@@ -17791,6 +18016,7 @@
         "storeButton",
         "storeProductTask",
         "storeProductsTask",
+        "subscriptionIntroductoryOffer",
         "subscriptionOfferViewButtonVisibility",
         "subscriptionOfferViewDetailAction",
         "subscriptionOfferViewStyle",
@@ -17816,6 +18042,8 @@
         "mapControls",
         "mapFeatureSelectionAccessory",
         "mapFeatureSelectionDisabled",
+        "mapItemDetailPopover",
+        "mapItemDetailSheet",
         "mapScope",
         "mapStyle",
         "onMapCameraChange"
@@ -17858,6 +18086,9 @@
         "webViewOnScrollGeometryChange",
         "webViewScrollPosition",
         "webViewTextSelection"
+      ],
+      "_WorkoutKit_SwiftUI": [
+        "workoutPreview"
       ]
     }
   },

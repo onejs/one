@@ -1264,6 +1264,25 @@ export interface OneNativeStyle {
     mapControlVisibility?: SDKMapControlVisibility;
     mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null;
     mapFeatureSelectionDisabled?: boolean;
+    mapItemDetailPopoverWithCurrentLocation?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+    }>;
+    mapItemDetailPopoverWithCurrentLocationAndArrowEdge?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        arrowEdge: 'top' | 'leading' | 'bottom' | 'trailing';
+    }>;
+    mapItemDetailSheetWithCurrentLocation?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+    }>;
     mapScope?: boolean;
     mapStyle?: SDKMapStyle;
     matchedGeometryEffect?: Readonly<{
@@ -1644,6 +1663,7 @@ export interface OneNativeStyle {
     preferencePreferredColorScheme?: SDKPreferencePreferredColorScheme | null;
     preferredColorScheme?: SDKPreferredColorScheme | null;
     preferredSubscriptionOffer?: string;
+    preferredSubscriptionPricingTerms?: number;
     presentationBackground?: SDKPresentationBackground;
     presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction;
     presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation?: Readonly<{
@@ -1937,6 +1957,24 @@ export interface OneNativeStyle {
     }>;
     submitLabel?: SDKSubmitLabel;
     submitScope?: boolean;
+    subscriptionIntroductoryOffer?: Readonly<{
+        applyOffer: boolean;
+        compactJWS: (value: {
+            product: {
+                id: string;
+                type: {
+                    rawValue: string;
+                };
+                displayName: string;
+                description: string;
+                displayPrice: string;
+                isFamilyShareable: boolean;
+            };
+            subscriptionInfo: {
+                subscriptionGroupID: string;
+            };
+        }) => string | Promise<string>;
+    }>;
     subscriptionOfferViewButtonVisibility?: Readonly<{
         visibility: 'automatic' | 'visible' | 'hidden';
         buttonKinds: 'detailLink';
@@ -2188,6 +2226,13 @@ export interface OneNativeStyle {
     }>;
     webViewTextSelection?: SDKWebViewTextSelection;
     windowToolbarFullScreenVisibility?: SDKWindowToolbarFullScreenVisibility;
+    workoutPreview?: Readonly<{
+        workout: string;
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+    }>;
     writingDirection?: SDKWritingDirection;
     writingToolsAffordanceVisibility?: SDKWritingToolsAffordanceVisibility;
     writingToolsBehavior?: SDKWritingToolsBehavior;
