@@ -266,6 +266,10 @@ for (const modifier of derivedModifiers) {
             parameter.defaultValue === undefined).every((parameter, index) =>
             parameter.label === modifier.arguments?.[index].label &&
             parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))
+        : modifier.constructorParameter
+        ? d.parameters.length === 1 &&
+          d.parameters[0].label === modifier.constructorParameter.label &&
+          d.requirements?.some((requirement) => requirement.startsWith(`${d.parameters[0].type} : `))
         : modifier.zeroArgument
         ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.kind === 'record'

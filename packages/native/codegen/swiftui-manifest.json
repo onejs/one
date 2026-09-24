@@ -11867,6 +11867,60 @@
       ]
     },
     {
+      "name": "previewContext",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "framework": "WidgetKit",
+      "constructorParameter": {
+        "type": "WidgetKit.WidgetPreviewContext",
+        "label": "_"
+      },
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "WidgetKit.WidgetFamily",
+          "optional": false,
+          "cases": [
+            {
+              "name": "systemSmall",
+              "ios": 14
+            },
+            {
+              "name": "systemMedium",
+              "ios": 14
+            },
+            {
+              "name": "systemLarge",
+              "ios": 14
+            },
+            {
+              "name": "systemExtraLarge",
+              "ios": 15
+            },
+            {
+              "name": "systemExtraLargePortrait",
+              "ios": 27
+            },
+            {
+              "name": "accessoryCircular",
+              "ios": 16
+            },
+            {
+              "name": "accessoryRectangular",
+              "ios": 16
+            },
+            {
+              "name": "accessoryInline",
+              "ios": 16
+            }
+          ],
+          "field": "family",
+          "label": "family"
+        }
+      ]
+    },
+    {
       "name": "previewDevice",
       "kind": "optionalString",
       "type": "SwiftUI.PreviewDevice?",
@@ -17608,6 +17662,7 @@
         "presentationDragIndicator",
         "presentationPlacement",
         "presentationSizing",
+        "previewContext",
         "previewDevice",
         "previewDisplayName",
         "previewInterfaceOrientation",
@@ -18125,6 +18180,7 @@
         "presentationDragIndicator",
         "presentationPlacement",
         "presentationSizing",
+        "previewContext",
         "previewDevice",
         "previewDisplayName",
         "previewInterfaceOrientation",

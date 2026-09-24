@@ -136,6 +136,7 @@ extension View {
           case "subscriptionStore": return SwiftUI.ContainerBackgroundPlacement.subscriptionStore
           case "subscriptionStoreHeader": return SwiftUI.ContainerBackgroundPlacement.subscriptionStoreHeader
           case "subscriptionStoreFullHeight": return SwiftUI.ContainerBackgroundPlacement.subscriptionStoreFullHeight
+          case "widget": return SwiftUI.ContainerBackgroundPlacement.widget
           default: preconditionFailure("invalid containerBackground.container")
           }
         }()

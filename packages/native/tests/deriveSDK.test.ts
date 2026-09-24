@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { deriveModifiers, deriveViewSlots } from '../codegen/deriveSDK'
+import { deriveModifiers, deriveViewSlots, deriveViews } from '../codegen/deriveSDK'
 import type { Declaration } from '../codegen/inventory'
 
 const method = (
@@ -126,6 +126,31 @@ describe('SDK modifier derivation', () => {
     ], 27, [])).toEqual([
       { name: 'previewDevice', kind: 'optionalString', type: 'SwiftUI.PreviewDevice?', rawString: true, ios: 0 },
     ])
+  })
+
+  it('constructs a public protocol conformer from a bridgeable SDK argument', () => {
+    const preview = { ...method('previewContext', 'SwiftUI', [
+      { label: '_', name: 'value', type: 'C' },
+    ]), requirements: ['C : SwiftUI.PreviewContext'] }
+    const context = { ...method('WidgetPreviewContext', 'WidgetKit'), kind: 'struct', owner: '',
+      inheritedTypes: ['SwiftUI.PreviewContext'] }
+    const initializer = { ...method('init', 'WidgetKit', [
+      { label: 'family', name: 'family', type: 'WidgetKit.WidgetFamily' },
+    ]), kind: 'init', owner: 'WidgetPreviewContext' }
+    const family = { ...method('systemSmall', 'WidgetKit'), kind: 'static', owner: 'WidgetFamily',
+      type: 'WidgetFamily' }
+    expect(deriveModifiers([preview], 27, [])).toEqual([])
+    expect(deriveModifiers([preview, context, initializer, family], 27, [])).toEqual([{
+      name: 'previewContext', kind: 'record', type: '', ios: 0, framework: 'WidgetKit',
+      constructorParameter: { type: 'WidgetKit.WidgetPreviewContext', label: '_' },
+      arguments: [{ field: 'family', label: 'family', kind: 'enum',
+        type: 'WidgetKit.WidgetFamily', optional: false, cases: [{ name: 'systemSmall', ios: 0 }] }],
+    }])
+    expect(deriveViews([
+      { ...method('AccessoryWidgetBackground', 'WidgetKit'), kind: 'struct', owner: '',
+        inheritedTypes: ['SwiftUICore.View'] },
+      { ...method('init', 'WidgetKit'), kind: 'init', owner: 'AccessoryWidgetBackground' },
+    ], 27, new Set())).toEqual([])
   })
 
   it('derives optional SDK cases and framework overlay modifiers', () => {
