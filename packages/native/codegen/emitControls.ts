@@ -143,6 +143,8 @@ ${styleFields
       publicType:
         modifier.kind === 'event'
           ? '() => void'
+          : modifier.kind === 'eventAsync'
+            ? '() => void | Promise<void>'
           : modifier.kind === 'eventBoolean'
             ? '(value: boolean) => void'
             : modifier.kind === 'eventNumber'
