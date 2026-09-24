@@ -115,12 +115,16 @@ class HybridOneSecureStore : HybridOneSecureStoreSpec() {
 
     override fun setItem(key: String, value: String): Promise<Unit> =
         guarded("E_SECURE_STORE_SET", "setItem") {
-            prefs().edit().putString(key, encrypt(value)).commit()
+            if (!prefs().edit().putString(key, encrypt(value)).commit()) {
+                throw SecureStoreException("the write could not be committed to disk")
+            }
         }
 
     override fun deleteItem(key: String): Promise<Unit> =
         guarded("E_SECURE_STORE_DELETE", "deleteItem") {
-            prefs().edit().remove(key).commit()
+            if (!prefs().edit().remove(key).commit()) {
+                throw SecureStoreException("the delete could not be committed to disk")
+            }
         }
 
     private class SecureStoreException(message: String) : Exception(message)
