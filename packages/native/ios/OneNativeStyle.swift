@@ -2767,19 +2767,19 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKFont(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.font(nil as SwiftUICore.Font?)
-      case "largeTitle": self.font(SwiftUICore.Font.largeTitle)
-      case "title": self.font(SwiftUICore.Font.title)
-      case "title2": self.font(SwiftUICore.Font.title2)
-      case "title3": self.font(SwiftUICore.Font.title3)
-      case "headline": self.font(SwiftUICore.Font.headline)
-      case "subheadline": self.font(SwiftUICore.Font.subheadline)
-      case "body": self.font(SwiftUICore.Font.body)
-      case "callout": self.font(SwiftUICore.Font.callout)
-      case "footnote": self.font(SwiftUICore.Font.footnote)
-      case "caption": self.font(SwiftUICore.Font.caption)
-      case "caption2": self.font(SwiftUICore.Font.caption2)
-      case "default": if #available(iOS 26, *) { self.font(SwiftUICore.Font.default) } else { self }
+      case "null": self.font(nil as SwiftUI.Font?)
+      case "largeTitle": self.font(SwiftUI.Font.largeTitle)
+      case "title": self.font(SwiftUI.Font.title)
+      case "title2": self.font(SwiftUI.Font.title2)
+      case "title3": self.font(SwiftUI.Font.title3)
+      case "headline": self.font(SwiftUI.Font.headline)
+      case "subheadline": self.font(SwiftUI.Font.subheadline)
+      case "body": self.font(SwiftUI.Font.body)
+      case "callout": self.font(SwiftUI.Font.callout)
+      case "footnote": self.font(SwiftUI.Font.footnote)
+      case "caption": self.font(SwiftUI.Font.caption)
+      case "caption2": self.font(SwiftUI.Font.caption2)
+      case "default": if #available(iOS 26, *) { self.font(SwiftUI.Font.default) } else { self }
     default: preconditionFailure("invalid font: \(value)")
     }
   }
@@ -2868,24 +2868,24 @@ self
       guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxHeight: \(raw)") }
       return CGFloat(number)
     }()
-    let argument6: SwiftUICore.Alignment = {
+    let argument6: SwiftUI.Alignment = {
       guard let raw = values[6] else { preconditionFailure("missing frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.alignment") }
       switch raw {
-      case "center": return SwiftUICore.Alignment.center
-      case "leading": return SwiftUICore.Alignment.leading
-      case "trailing": return SwiftUICore.Alignment.trailing
-      case "top": return SwiftUICore.Alignment.top
-      case "bottom": return SwiftUICore.Alignment.bottom
-      case "topLeading": return SwiftUICore.Alignment.topLeading
-      case "topTrailing": return SwiftUICore.Alignment.topTrailing
-      case "bottomLeading": return SwiftUICore.Alignment.bottomLeading
-      case "bottomTrailing": return SwiftUICore.Alignment.bottomTrailing
-      case "centerFirstTextBaseline": return SwiftUICore.Alignment.centerFirstTextBaseline
-      case "centerLastTextBaseline": return SwiftUICore.Alignment.centerLastTextBaseline
-      case "leadingFirstTextBaseline": return SwiftUICore.Alignment.leadingFirstTextBaseline
-      case "leadingLastTextBaseline": return SwiftUICore.Alignment.leadingLastTextBaseline
-      case "trailingFirstTextBaseline": return SwiftUICore.Alignment.trailingFirstTextBaseline
-      case "trailingLastTextBaseline": return SwiftUICore.Alignment.trailingLastTextBaseline
+      case "center": return SwiftUI.Alignment.center
+      case "leading": return SwiftUI.Alignment.leading
+      case "trailing": return SwiftUI.Alignment.trailing
+      case "top": return SwiftUI.Alignment.top
+      case "bottom": return SwiftUI.Alignment.bottom
+      case "topLeading": return SwiftUI.Alignment.topLeading
+      case "topTrailing": return SwiftUI.Alignment.topTrailing
+      case "bottomLeading": return SwiftUI.Alignment.bottomLeading
+      case "bottomTrailing": return SwiftUI.Alignment.bottomTrailing
+      case "centerFirstTextBaseline": return SwiftUI.Alignment.centerFirstTextBaseline
+      case "centerLastTextBaseline": return SwiftUI.Alignment.centerLastTextBaseline
+      case "leadingFirstTextBaseline": return SwiftUI.Alignment.leadingFirstTextBaseline
+      case "leadingLastTextBaseline": return SwiftUI.Alignment.leadingLastTextBaseline
+      case "trailingFirstTextBaseline": return SwiftUI.Alignment.trailingFirstTextBaseline
+      case "trailingLastTextBaseline": return SwiftUI.Alignment.trailingLastTextBaseline
       default: preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.alignment: \(raw)")
       }
     }()
@@ -2914,24 +2914,24 @@ self
       guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.height: \(raw)") }
       return CGFloat(number)
     }()
-    let argument2: SwiftUICore.Alignment = {
+    let argument2: SwiftUI.Alignment = {
       guard let raw = values[2] else { preconditionFailure("missing frameWithWidthAndHeightAndAlignment.alignment") }
       switch raw {
-      case "center": return SwiftUICore.Alignment.center
-      case "leading": return SwiftUICore.Alignment.leading
-      case "trailing": return SwiftUICore.Alignment.trailing
-      case "top": return SwiftUICore.Alignment.top
-      case "bottom": return SwiftUICore.Alignment.bottom
-      case "topLeading": return SwiftUICore.Alignment.topLeading
-      case "topTrailing": return SwiftUICore.Alignment.topTrailing
-      case "bottomLeading": return SwiftUICore.Alignment.bottomLeading
-      case "bottomTrailing": return SwiftUICore.Alignment.bottomTrailing
-      case "centerFirstTextBaseline": return SwiftUICore.Alignment.centerFirstTextBaseline
-      case "centerLastTextBaseline": return SwiftUICore.Alignment.centerLastTextBaseline
-      case "leadingFirstTextBaseline": return SwiftUICore.Alignment.leadingFirstTextBaseline
-      case "leadingLastTextBaseline": return SwiftUICore.Alignment.leadingLastTextBaseline
-      case "trailingFirstTextBaseline": return SwiftUICore.Alignment.trailingFirstTextBaseline
-      case "trailingLastTextBaseline": return SwiftUICore.Alignment.trailingLastTextBaseline
+      case "center": return SwiftUI.Alignment.center
+      case "leading": return SwiftUI.Alignment.leading
+      case "trailing": return SwiftUI.Alignment.trailing
+      case "top": return SwiftUI.Alignment.top
+      case "bottom": return SwiftUI.Alignment.bottom
+      case "topLeading": return SwiftUI.Alignment.topLeading
+      case "topTrailing": return SwiftUI.Alignment.topTrailing
+      case "bottomLeading": return SwiftUI.Alignment.bottomLeading
+      case "bottomTrailing": return SwiftUI.Alignment.bottomTrailing
+      case "centerFirstTextBaseline": return SwiftUI.Alignment.centerFirstTextBaseline
+      case "centerLastTextBaseline": return SwiftUI.Alignment.centerLastTextBaseline
+      case "leadingFirstTextBaseline": return SwiftUI.Alignment.leadingFirstTextBaseline
+      case "leadingLastTextBaseline": return SwiftUI.Alignment.leadingLastTextBaseline
+      case "trailingFirstTextBaseline": return SwiftUI.Alignment.trailingFirstTextBaseline
+      case "trailingLastTextBaseline": return SwiftUI.Alignment.trailingLastTextBaseline
       default: preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.alignment: \(raw)")
       }
     }()
