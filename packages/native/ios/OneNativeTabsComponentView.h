@@ -22,7 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *role;
 @property (nonatomic, assign) CGFloat slotHeight;
 @property (nonatomic, copy) NSString *tabModifiers;
+@property (nonatomic, copy) NSDictionary *swiftStyle;
 - (void)updateNativeFrame:(CGRect)frame;
+- (void)emitSDKEvent:(NSString *)name value:(NSString *)value;
 @end
 
 NS_ASSUME_NONNULL_END

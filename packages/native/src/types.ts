@@ -54,6 +54,8 @@ export interface TabProps extends TabContentProps {
   testID?: string
   // an action tab carries onPress instead of a page. Swift.Tabs requires exactly one of them.
   onPress?: () => void
+  // View modifiers on the page's content, as SwiftUI applies them inside a Tab.
+  swiftStyle?: OneNativeStyle
   children?: ReactNode
 }
 export interface TabSectionProps extends TabContentProps {

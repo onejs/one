@@ -489,7 +489,9 @@ export const components = [
       // SDK TabContent modifier adds a field here rather than a Fabric prop on every page.
       tabModifiers: 'string',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    // View modifiers on the page's content, the way SwiftUI modifies a Tab's content view.
+    swiftStyle: true,
     enumProps: { tabRole: 'TabRole' },
     layout: { kind: 'container' },
     slots: [

@@ -51,6 +51,9 @@ public final class OneNativeTabItem: NSObject, Identifiable {
   public var role: String
   public var slotHeight: CGFloat
   var modifiers: OneNativeTabModifiers
+  // View modifiers on the page's content, and where their SDK events go.
+  var style = OneNativeStyle()
+  public var emit: (String, String) -> Void = { _, _ in }
   public let view: UIView
   public let onLayout: (CGRect) -> Void
 
@@ -65,6 +68,10 @@ public final class OneNativeTabItem: NSObject, Identifiable {
     self.modifiers = OneNativeTabModifiers(json: tabModifiers)
     self.view = view
     self.onLayout = onLayout
+  }
+
+  public func configureStyle(_ style: [String: Any]) {
+    self.style = OneNativeStyle(dictionary: style)
   }
 }
 
@@ -191,6 +198,8 @@ public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
       current.role = page.role
       current.slotHeight = page.slotHeight
       current.modifiers = page.modifiers
+      current.style = page.style
+      current.emit = page.emit
       return current
     }
     if topologyChanged { model.tabViewRevision += 1 }
@@ -366,6 +375,7 @@ private struct TabsContent: View {
     Tab(value: page.id, role: OneNativeGenerated.tabRole(page.role)) {
       NavigationStack {
         slot(page)
+          .oneNativeStyle(page.style, emit: page.emit)
           .toolbarVisibility(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
           .toolbar {
             ForEach(model.toolbarEntries) { entry in
@@ -386,6 +396,7 @@ private struct TabsContent: View {
     TabView(selection: Binding(get: { model.controlled.value }, set: { model.select($0) })) {
       ForEach(groups.flatMap(\.tabs)) { page in
         slot(page)
+          .oneNativeStyle(page.style, emit: page.emit)
           .toolbar(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
           .tabItem {
             if page.systemImage.isEmpty {
