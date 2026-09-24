@@ -215,6 +215,23 @@ ${modifier.cases!.map((field) => `    case ${JSON.stringify(field.name)}:
     default: preconditionFailure("invalid ${modifier.name} property")
     }
   }`
+      if (modifier.kind === 'registeredValue')
+        return `  @available(iOS ${modifier.ios}, *)
+  fileprivate func ${helper}Registered<T: ${modifier.registeredProtocol}>(_ registered: T) -> some View {
+    self.${modifier.sdkName ?? modifier.name}(registered)
+  }
+
+  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS ${modifier.ios}, *) {
+      let registered: any ${modifier.registeredProtocol} = {
+        guard let found = OneNativeRegisteredValue.value(value) as? any ${modifier.registeredProtocol} else {
+          preconditionFailure("missing ${modifier.name} registered value: \\(value)")
+        }
+        return found
+      }()
+      AnyView(${helper}Registered(registered))
+    } else { self }
+  }`
       if (modifier.preferenceKey === 'OneNativeSDKRectAnchorKey')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.${modifier.sdkName ?? modifier.name}(key: OneNativeSDKRectAnchorKey.self, value: .bounds) ${modifier.preferenceOperation === 'transform'
@@ -1330,6 +1347,12 @@ function validTextRanges(value: unknown, text: string): value is OneNativeTextRa
         sdkModifiers.push([name, JSON.stringify(value)])
         continue
       }
+      if (kind === 'registeredValue') {
+        if (typeof value !== 'string' || !value)
+          throw new Error(name + ' must name a registered native Swift value')
+        sdkModifiers.push([name, value])
+        continue
+      }
       if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {
         if (!value || typeof value !== 'object' || Array.isArray(value) ||
           typeof (value as { onAction?: unknown }).onAction !== 'function')
@@ -1743,8 +1766,17 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
       `import SwiftUI
 import UIKit
 import Combine
+${derived.some((modifier) => modifier.registeredProtocol?.includes('Observation.Observable')) ? 'import Observation' : ''}
 ${frameworkImports.map((framework) => `import ${framework}`).join('\n')}
 
+${derived.some((modifier) => modifier.kind === 'registeredValue') ? `@MainActor public enum OneNativeRegisteredValue {
+  private static var values: [String: Any] = [:]
+
+  public static func register(_ value: Any, for name: String) { values[name] = value }
+  public static func unregister(_ name: String) { values.removeValue(forKey: name) }
+  static func value(_ name: String) -> Any? { values[name] }
+}
+` : ''}
 ${derived.some((modifier) => modifier.namespaceParameter || modifier.kind === 'dragContainer' || modifier.kind === 'dragSelection' || modifier.kind === 'dragItemID') ? 'private enum OneNativeNamespace { static let id = Namespace().wrappedValue }\n' : ''}
 ${derived.some((modifier) => modifier.arguments?.some((argument) => argument.type === '[OneNativeRotorEntry]')) ? 'private struct OneNativeRotorEntry: Identifiable { let id: String; var label: String { id } }\n' : ''}
 ${derived.filter((modifier) => modifier.kind === 'equatableKey').map((modifier) => sdkGuard(modifier.ios, `@available(iOS ${modifier.ios}, *)

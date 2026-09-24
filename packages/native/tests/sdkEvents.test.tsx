@@ -45,6 +45,20 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('mapCameraKeyframeAnimator must have a trigger, numeric property and timed keyframes')
   })
 
+  it('passes registered native Swift value names and rejects empty registrations', () => {
+    const element = Controls.Text({ text: 'native object', swiftStyle: {
+      environmentObject: 'session-store',
+      modifier: 'brand-effect',
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['environmentObject', 'session-store'],
+      ['modifier', 'brand-effect'],
+    ])
+    expect(() => Controls.Text({ text: 'native object', swiftStyle: {
+      environmentObject: '',
+    } })).toThrow('environmentObject must name a registered native Swift value')
+  })
+
   it('delivers resolved anchor rectangles through both preference modifiers', () => {
     const anchor = vi.fn()
     const transformed = vi.fn()

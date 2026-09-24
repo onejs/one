@@ -167,6 +167,8 @@ ${styleFields
             ? 'Readonly<{ effect: "opacity" | "scale" | "blur"; initialValue: number; frames: readonly Readonly<{ value: number; duration: number }>[]; repeating?: boolean }>'
           : modifier.kind === 'seedKeyframeAnimation'
             ? `Readonly<{ trigger: string; property: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}; frames: readonly Readonly<{ value: number; duration: number }>[] }>`
+          : modifier.kind === 'registeredValue'
+            ? 'string'
           : modifier.kind === 'selectionID'
             ? 'string'
           : modifier.kind === 'selectionIndex'

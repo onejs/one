@@ -2643,6 +2643,13 @@
       ]
     },
     {
+      "name": "attributedTextFormattingDefinition",
+      "kind": "registeredValue",
+      "type": "D",
+      "registeredProtocol": "SwiftUICore.AttributedTextFormattingDefinition",
+      "ios": 26
+    },
+    {
       "name": "autocapitalization",
       "kind": "string",
       "type": "UIKit.UITextAutocapitalizationType",
@@ -4655,6 +4662,13 @@
       ]
     },
     {
+      "name": "environment",
+      "kind": "registeredValue",
+      "type": "T?",
+      "registeredProtocol": "Observation.Observable & AnyObject",
+      "ios": 17
+    },
+    {
       "name": "environmentAccessibilityEnabled",
       "sdkName": "environment",
       "module": "SwiftUICore",
@@ -5450,6 +5464,13 @@
       ]
     },
     {
+      "name": "environmentObject",
+      "kind": "registeredValue",
+      "type": "T",
+      "registeredProtocol": "Combine.ObservableObject",
+      "ios": 13
+    },
+    {
       "name": "environmentRealityViewCameraControls",
       "sdkName": "environment",
       "module": "SwiftUICore",
@@ -6205,6 +6226,34 @@
       "type": "SwiftUI.FocusState<Swift.Bool>.Binding",
       "label": "_",
       "ios": 15
+    },
+    {
+      "name": "focusedObject",
+      "kind": "registeredValue",
+      "type": "T",
+      "registeredProtocol": "Combine.ObservableObject",
+      "ios": 16
+    },
+    {
+      "name": "focusedSceneObject",
+      "kind": "registeredValue",
+      "type": "T",
+      "registeredProtocol": "Combine.ObservableObject",
+      "ios": 16
+    },
+    {
+      "name": "focusedSceneValue",
+      "kind": "registeredValue",
+      "type": "T?",
+      "registeredProtocol": "Observation.Observable & AnyObject",
+      "ios": 17
+    },
+    {
+      "name": "focusedValue",
+      "kind": "registeredValue",
+      "type": "T?",
+      "registeredProtocol": "Observation.Observable & AnyObject",
+      "ios": 17
     },
     {
       "name": "focusEffectDisabled",
@@ -9322,6 +9371,13 @@
       "name": "minimumScaleFactor",
       "kind": "number",
       "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "modifier",
+      "kind": "registeredValue",
+      "type": "T",
+      "registeredProtocol": "SwiftUICore.ViewModifier",
       "ios": 13
     },
     {
@@ -15798,6 +15854,13 @@
       ]
     },
     {
+      "name": "textRenderer",
+      "kind": "registeredValue",
+      "type": "T",
+      "registeredProtocol": "SwiftUICore.TextRenderer",
+      "ios": 18
+    },
+    {
       "name": "textScale",
       "kind": "record",
       "type": "",
@@ -17611,6 +17674,7 @@
         "anchorPreference",
         "animation",
         "aspectRatio",
+        "attributedTextFormattingDefinition",
         "background",
         "backgroundPreferenceValue",
         "backgroundStyle",
@@ -17644,6 +17708,7 @@
         "dynamicTypeSize",
         "edgesIgnoringSafeArea",
         "environment",
+        "environmentObject",
         "fixedSize",
         "font",
         "fontDesign",
@@ -17681,6 +17746,7 @@
         "matchedGeometryEffect",
         "materialActiveAppearance",
         "minimumScaleFactor",
+        "modifier",
         "monospaced",
         "monospacedDigit",
         "multilineTextAlignment",
@@ -17725,6 +17791,7 @@
         "tag",
         "textCase",
         "textInputBorderShape",
+        "textRenderer",
         "textScale",
         "tint",
         "tracking",
@@ -17838,6 +17905,10 @@
         "focusEffectDisabled",
         "focusable",
         "focused",
+        "focusedObject",
+        "focusedSceneObject",
+        "focusedSceneValue",
+        "focusedValue",
         "formStyle",
         "fullScreenCover",
         "gaugeStyle",
@@ -18145,6 +18216,7 @@
         "anchorPreference",
         "animation",
         "aspectRatio",
+        "attributedTextFormattingDefinition",
         "background",
         "backgroundPreferenceValue",
         "backgroundStyle",
@@ -18177,6 +18249,7 @@
         "dynamicTypeSize",
         "edgesIgnoringSafeArea",
         "environment",
+        "environmentObject",
         "fixedSize",
         "font",
         "fontDesign",
@@ -18213,6 +18286,7 @@
         "matchedGeometryEffect",
         "materialActiveAppearance",
         "minimumScaleFactor",
+        "modifier",
         "monospaced",
         "monospacedDigit",
         "multilineTextAlignment",
@@ -18256,6 +18330,7 @@
         "tag",
         "textCase",
         "textInputBorderShape",
+        "textRenderer",
         "textScale",
         "tint",
         "tracking",
@@ -18369,6 +18444,10 @@
         "focusEffectDisabled",
         "focusable",
         "focused",
+        "focusedObject",
+        "focusedSceneObject",
+        "focusedSceneValue",
+        "focusedValue",
         "formStyle",
         "fullScreenCover",
         "gaugeStyle",
