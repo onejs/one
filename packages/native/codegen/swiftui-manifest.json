@@ -8943,6 +8943,106 @@
       "framework": "MapKit"
     },
     {
+      "name": "mapItemDetailPopoverWithCurrentLocation",
+      "module": "_MapKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        }
+      ],
+      "aliasSuffix": "CurrentLocation",
+      "sharedParameter": {
+        "index": 1,
+        "label": "item",
+        "type": "MapKit.MKMapItem",
+        "factoryName": "forCurrentLocation"
+      },
+      "framework": "MapKit",
+      "sdkName": "mapItemDetailPopover"
+    },
+    {
+      "name": "mapItemDetailPopoverWithCurrentLocationAndArrowEdge",
+      "module": "_MapKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Edge",
+          "optional": false,
+          "cases": [
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            }
+          ],
+          "field": "arrowEdge",
+          "label": "arrowEdge"
+        }
+      ],
+      "aliasSuffix": "CurrentLocationAndArrowEdge",
+      "sharedParameter": {
+        "index": 1,
+        "label": "item",
+        "type": "MapKit.MKMapItem",
+        "factoryName": "forCurrentLocation"
+      },
+      "framework": "MapKit",
+      "sdkName": "mapItemDetailPopover"
+    },
+    {
+      "name": "mapItemDetailSheetWithCurrentLocation",
+      "module": "_MapKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        }
+      ],
+      "aliasSuffix": "CurrentLocation",
+      "sharedParameter": {
+        "index": 1,
+        "label": "item",
+        "type": "MapKit.MKMapItem",
+        "factoryName": "forCurrentLocation"
+      },
+      "framework": "MapKit",
+      "sdkName": "mapItemDetailSheet"
+    },
+    {
       "name": "mapScope",
       "kind": "boolean",
       "type": "",
@@ -17348,6 +17448,8 @@
         "mapControls",
         "mapFeatureSelectionAccessory",
         "mapFeatureSelectionDisabled",
+        "mapItemDetailPopover",
+        "mapItemDetailSheet",
         "mapScope",
         "mapStyle",
         "onMapCameraChange"
@@ -17854,6 +17956,8 @@
         "mapControls",
         "mapFeatureSelectionAccessory",
         "mapFeatureSelectionDisabled",
+        "mapItemDetailPopover",
+        "mapItemDetailSheet",
         "mapScope",
         "mapStyle",
         "onMapCameraChange"

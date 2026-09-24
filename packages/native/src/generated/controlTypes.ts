@@ -2518,6 +2518,16 @@ export interface OneNativeStyle {
   mapControlVisibility?: SDKMapControlVisibility
   mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null
   mapFeatureSelectionDisabled?: boolean
+  mapItemDetailPopoverWithCurrentLocation?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+  }>
+  mapItemDetailPopoverWithCurrentLocationAndArrowEdge?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    arrowEdge: 'top' | 'leading' | 'bottom' | 'trailing'
+  }>
+  mapItemDetailSheetWithCurrentLocation?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+  }>
   mapScope?: boolean
   mapStyle?: SDKMapStyle
   matchedGeometryEffect?: Readonly<{ id: string }>

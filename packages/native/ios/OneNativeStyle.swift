@@ -420,6 +420,9 @@ extension View {
       case "mapControlVisibility": view = AnyView(view.oneNativeSDKMapControlVisibility(value, emit: emit))
       case "mapFeatureSelectionAccessory": view = AnyView(view.oneNativeSDKMapFeatureSelectionAccessory(value, emit: emit))
       case "mapFeatureSelectionDisabled": view = AnyView(view.oneNativeSDKMapFeatureSelectionDisabled(value, emit: emit))
+      case "mapItemDetailPopoverWithCurrentLocation": view = AnyView(view.oneNativeSDKMapItemDetailPopoverWithCurrentLocation(value, emit: emit))
+      case "mapItemDetailPopoverWithCurrentLocationAndArrowEdge": view = AnyView(view.oneNativeSDKMapItemDetailPopoverWithCurrentLocationAndArrowEdge(value, emit: emit))
+      case "mapItemDetailSheetWithCurrentLocation": view = AnyView(view.oneNativeSDKMapItemDetailSheetWithCurrentLocation(value, emit: emit))
       case "mapScope": view = AnyView(view.oneNativeSDKMapScope(value, emit: emit))
       case "mapStyle": view = AnyView(view.oneNativeSDKMapStyle(value, emit: emit))
       case "matchedGeometryEffect": view = AnyView(view.oneNativeSDKMatchedGeometryEffect(value, emit: emit))
@@ -5033,6 +5036,64 @@ self
   @ViewBuilder fileprivate func oneNativeSDKMapFeatureSelectionDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid mapFeatureSelectionDisabled: \(value)")
       self.mapFeatureSelectionDisabled({ (_: _MapKit_SwiftUI.MapFeature) in value == "true" })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKMapItemDetailPopoverWithCurrentLocation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid mapItemDetailPopoverWithCurrentLocation: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid mapItemDetailPopoverWithCurrentLocation.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("mapItemDetailPopoverWithCurrentLocation.isPresented", String($0)) })
+    }()
+    self.mapItemDetailPopover(isPresented: argument0, item: MapKit.MKMapItem.forCurrentLocation())
+    } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKMapItemDetailPopoverWithCurrentLocationAndArrowEdge(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid mapItemDetailPopoverWithCurrentLocationAndArrowEdge: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid mapItemDetailPopoverWithCurrentLocationAndArrowEdge.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("mapItemDetailPopoverWithCurrentLocationAndArrowEdge.isPresented", String($0)) })
+    }()
+    let argument1: SwiftUI.Edge = {
+      guard let raw = values[1] else { preconditionFailure("missing mapItemDetailPopoverWithCurrentLocationAndArrowEdge.arrowEdge") }
+      switch raw {
+      case "top": return SwiftUI.Edge.top
+      case "leading": return SwiftUI.Edge.leading
+      case "bottom": return SwiftUI.Edge.bottom
+      case "trailing": return SwiftUI.Edge.trailing
+      default: preconditionFailure("invalid mapItemDetailPopoverWithCurrentLocationAndArrowEdge.arrowEdge: \(raw)")
+      }
+    }()
+    self.mapItemDetailPopover(isPresented: argument0, item: MapKit.MKMapItem.forCurrentLocation(), arrowEdge: argument1)
+    } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKMapItemDetailSheetWithCurrentLocation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid mapItemDetailSheetWithCurrentLocation: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid mapItemDetailSheetWithCurrentLocation.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("mapItemDetailSheetWithCurrentLocation.isPresented", String($0)) })
+    }()
+    self.mapItemDetailSheet(isPresented: argument0, item: MapKit.MKMapItem.forCurrentLocation())
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKMapScope(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
