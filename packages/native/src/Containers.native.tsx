@@ -5,8 +5,8 @@ import {
   type ReactNode,
 } from 'react'
 import { Platform } from 'react-native'
-import { dispatchSDKEvent, swiftStyleNative } from './generated/swiftStyleNative'
-import { viewSlotArguments, viewSlotAvailability } from './generated/viewSlots'
+import { dispatchSDKEvent, swiftStyleNative, validSDKEventValue } from './generated/swiftStyleNative'
+import { viewSlotArguments, viewSlotAvailability, viewSlotEvents } from './generated/viewSlots'
 import NativeButton from './specs/OneNativeButtonNativeComponent'
 import NativeContainerSlot from './specs/OneNativeContainerSlotNativeComponent'
 import NativeControlGroup from './specs/OneNativeControlGroupNativeComponent'
@@ -646,6 +646,9 @@ function ViewSlotFn({ name, options, children, style, ...props }: ViewSlotProps)
   if (markers.length !== 1)
     throw new Error('Swift.ViewSlot takes one ViewSlot.Content child')
   assertOneNativeChildren(children, 'Swift.ViewSlot')
+  const preferenceEvent = Object.hasOwn(viewSlotEvents, name) ? viewSlotEvents[name] : undefined
+  if (preferenceEvent && typeof (options as { onValue?: unknown } | undefined)?.onValue !== 'function')
+    throw new Error(`Swift.ViewSlot ${name}.onValue must be a callback`)
   const values = viewSlotArguments[name].map((argument) => {
     const value = (options as Record<string, unknown> | undefined)?.[argument.field]
     if (argument.kind === 'bindingBoolean' || argument.kind === 'bindingString') {
@@ -680,6 +683,15 @@ function ViewSlotFn({ name, options, children, style, ...props }: ViewSlotProps)
       slotValues={JSON.stringify(values)}
       onNativeSDKEvent={({ nativeEvent }) => {
         if (nativeEvent.name !== name) throw new Error(`Swift.ViewSlot ${name} emitted an invalid binding event`)
+        if (preferenceEvent) {
+          let value: unknown
+          try { value = JSON.parse(nativeEvent.value) }
+          catch { throw new Error(`Swift.ViewSlot ${name} emitted an invalid preference value`) }
+          if (!validSDKEventValue(value, preferenceEvent))
+            throw new Error(`Swift.ViewSlot ${name} emitted an invalid preference value`)
+          ;(options as { onValue: (value: unknown) => void }).onValue(value)
+          return
+        }
         const argument = viewSlotArguments[name].find((item) => item.kind === 'bindingBoolean' || item.kind === 'bindingString')
         if (!argument) throw new Error(`Swift.ViewSlot ${name} emitted an unexpected event`)
         if (argument.kind === 'bindingBoolean') {

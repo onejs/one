@@ -12,6 +12,7 @@ enum OneNativeViewSlotName {
   static let accessibilityShowsLargeContentViewer = "accessibilityShowsLargeContentViewer"
   static let alert = "alert"
   static let background = "background"
+  static let backgroundPreferenceValuePreferredColorScheme = "backgroundPreferenceValuePreferredColorScheme"
   static let confirmationDialog = "confirmationDialog"
   static let containerBackground = "containerBackground"
   static let contentToolbar = "contentToolbar"
@@ -27,6 +28,7 @@ enum OneNativeViewSlotName {
   static let navigationBarItemsWithTrailing = "navigationBarItemsWithTrailing"
   static let navigationDestination = "navigationDestination"
   static let overlay = "overlay"
+  static let overlayPreferenceValuePreferredColorScheme = "overlayPreferenceValuePreferredColorScheme"
   static let popover = "popover"
   static let presentationBackground = "presentationBackground"
   static let safeAreaBarWithHorizontalEdge = "safeAreaBarWithHorizontalEdge"
@@ -50,7 +52,7 @@ enum OneNativeViewSlotName {
   static let toolbar = "toolbar"
   static let toolbarOverflowMenu = "toolbarOverflowMenu"
   static let toolbarTitleMenu = "toolbarTitleMenu"
-  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, alert, background, confirmationDialog, containerBackground, contentToolbar, contextMenu, dismissalConfirmationDialog, documentBrowserContextMenu, fullScreenCover, inspector, listRowBackground, mapControls, mask, navigationBarItemsWithLeading, navigationBarItemsWithTrailing, navigationDestination, overlay, popover, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchScopesWithBindingString, searchScopesWithBindingStringAndSearchScopeActivation, searchSuggestions, sectionActions, sheet, subscriptionStoreControlIcon, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewBottomAccessoryWithBool, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
+  static let names = [accessibilityActions, accessibilityActionsWithAccessibilityActionCategory, accessibilityChildren, accessibilityRepresentation, accessibilityShowsLargeContentViewer, alert, background, backgroundPreferenceValuePreferredColorScheme, confirmationDialog, containerBackground, contentToolbar, contextMenu, dismissalConfirmationDialog, documentBrowserContextMenu, fullScreenCover, inspector, listRowBackground, mapControls, mask, navigationBarItemsWithLeading, navigationBarItemsWithTrailing, navigationDestination, overlay, overlayPreferenceValuePreferredColorScheme, popover, presentationBackground, safeAreaBarWithHorizontalEdge, safeAreaBarWithVerticalEdge, safeAreaInsetWithHorizontalEdge, safeAreaInsetWithVerticalEdge, searchScopesWithBindingString, searchScopesWithBindingStringAndSearchScopeActivation, searchSuggestions, sectionActions, sheet, subscriptionStoreControlIcon, subscriptionStorePolicyDestination, swipeActions, tabItem, tabViewBottomAccessory, tabViewBottomAccessoryWithBool, tabViewSidebarBottomBar, tabViewSidebarFooter, tabViewSidebarHeader, toolbar, toolbarOverflowMenu, toolbarTitleMenu]
 }
 
 extension View {
@@ -98,6 +100,16 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.background:      if #available(iOS 15, *) {
         return AnyView(self.background(content: content))
+      }
+      return AnyView(self)
+    case OneNativeViewSlotName.backgroundPreferenceValuePreferredColorScheme:      if #available(iOS 16, *) {
+        return AnyView(self.backgroundPreferenceValue(SwiftUI.PreferredColorSchemeKey.self, alignment: .center) { _ in content() }
+          .onPreferenceChange(SwiftUI.PreferredColorSchemeKey.self) { value in
+            let payload = (value.map { inner -> Any in ({ () -> String in switch inner { case .light: return "light" case .dark: return "dark" @unknown default: return "unknown" } })() } ?? NSNull())
+            guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+              let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid backgroundPreferenceValuePreferredColorScheme preference") }
+            emit("backgroundPreferenceValuePreferredColorScheme", encoded)
+          })
       }
       return AnyView(self)
     case OneNativeViewSlotName.confirmationDialog:      if #available(iOS 15, *) {
@@ -213,6 +225,16 @@ extension View {
       return AnyView(self)
     case OneNativeViewSlotName.overlay:      if #available(iOS 15, *) {
         return AnyView(self.overlay(content: content))
+      }
+      return AnyView(self)
+    case OneNativeViewSlotName.overlayPreferenceValuePreferredColorScheme:      if #available(iOS 16, *) {
+        return AnyView(self.overlayPreferenceValue(SwiftUI.PreferredColorSchemeKey.self, alignment: .center) { _ in content() }
+          .onPreferenceChange(SwiftUI.PreferredColorSchemeKey.self) { value in
+            let payload = (value.map { inner -> Any in ({ () -> String in switch inner { case .light: return "light" case .dark: return "dark" @unknown default: return "unknown" } })() } ?? NSNull())
+            guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+              let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid overlayPreferenceValuePreferredColorScheme preference") }
+            emit("overlayPreferenceValuePreferredColorScheme", encoded)
+          })
       }
       return AnyView(self)
     case OneNativeViewSlotName.popover:      if #available(iOS 13, *) {

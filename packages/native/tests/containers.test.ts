@@ -39,6 +39,27 @@ const component = (publicName: string) =>
 // the non-iOS entry has to carry every container: a missing one is undefined at the call
 // site, which React reads as a component type it cannot render.
 describe('container surface', () => {
+  it('sends a preference value from a generated child slot to React', () => {
+    const onValue = vi.fn()
+    const slot = render(Containers.ViewSlot, {
+      name: 'overlayPreferenceValuePreferredColorScheme',
+      options: { onValue },
+      children: createElement(Containers.ViewSlot.Content, { children: null }),
+    })
+    expect(JSON.parse(slot.props.slotValues)).toEqual([])
+    slot.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'overlayPreferenceValuePreferredColorScheme', value: '"dark"',
+    } })
+    expect(onValue).toHaveBeenCalledWith('dark')
+    slot.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'overlayPreferenceValuePreferredColorScheme', value: 'null',
+    } })
+    expect(onValue).toHaveBeenCalledWith(null)
+    expect(() => slot.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'overlayPreferenceValuePreferredColorScheme', value: '"orange"',
+    } })).toThrow('invalid preference value')
+  })
+
   it('passes a generated presentation binding through a child slot', () => {
     const onChange = vi.fn()
     const slot = render(Containers.ViewSlot, {

@@ -217,7 +217,7 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
 }
 
 export type DerivedSlotArgument = DerivedArgument | { field: string; label: string; type: string; kind: 'bindingBoolean' | 'bindingString'; optional: false }
-export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; directValue?: true; closureInputs?: readonly string[]; arguments: readonly DerivedSlotArgument[] }
+export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; directValue?: true; closureInputs?: readonly string[]; preferenceKey?: string; preferenceEvent?: EventValueSchema; arguments: readonly DerivedSlotArgument[] }
 
 export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
   const valueOf = bridgeValueOf(inventory, ceiling)
@@ -256,7 +256,7 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
     const key = `${slot.module}.${slot.name}`
     byName.set(key, [...(byName.get(key) ?? []), slot])
   }
-  return [...byName].flatMap(([, declarations]) => declarations.map((slot) => {
+  const directSlots = [...byName].flatMap(([, declarations]) => declarations.map((slot) => {
     const content = slot.parameters.at(-1)!
     const closureInputs = closureInputsOf(content.type)
     const directValue = !isZeroInputClosure(content.type) && !closureInputs
@@ -277,7 +277,39 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
           ? { field: parameter.name, label: parameter.label, type: parameter.type, kind: parameter.type === 'SwiftUICore.Binding<Swift.Bool>' ? 'bindingBoolean' as const : 'bindingString' as const, optional: false as const }
           : { ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label }) }
   }))
-    .sort((a, b) => a.name.localeCompare(b.name))
+  const preferenceMethods = inventory.filter((method) =>
+    method.kind === 'func' && method.module === 'SwiftUICore' &&
+    ['overlayPreferenceValue', 'backgroundPreferenceValue'].includes(method.name) &&
+    method.owner.split('.').at(-1) === 'View' &&
+    method.parameters.length === 3 && method.parameters[0].type === 'K.Type' &&
+    method.parameters[1].defaultValue !== undefined &&
+    method.parameters[2].type === '@escaping (K.Value) -> V' &&
+    method.requirements?.includes('K : SwiftUICore.PreferenceKey') &&
+    method.requirements?.includes('V : SwiftUICore.View') &&
+    present(method) && ios(method) <= ceiling)
+  const preferenceSlots: DerivedViewSlot[] = []
+  for (const key of inventory.filter((declaration) => declaration.kind === 'struct' &&
+    declaration.owner === '' && !declaration.generic &&
+    declaration.inheritedTypes?.includes('SwiftUICore.PreferenceKey') &&
+    present(declaration) && ios(declaration) <= ceiling)) {
+    const valueAlias = inventory.find((declaration) => declaration.module === key.module &&
+      declaration.owner === key.name && declaration.kind === 'typealias' &&
+      declaration.name === 'Value' && present(declaration) && ios(declaration) <= ceiling)
+    const value = valueOf(valueAlias?.type ?? '')
+    if (!value || !['boolean', 'number', 'string', 'enum'].includes(value.kind)) continue
+    const event: EventValueSchema = value.kind === 'enum'
+      ? { kind: 'enum', cases: value.cases!.map((item) => item.name), open: true }
+      : { kind: value.kind as 'boolean' | 'number' | 'string' }
+    for (const method of preferenceMethods)
+      preferenceSlots.push({ name: `${method.name}${key.name.replace(/Key$/, '')}`,
+        sdkName: method.name, module: method.module, label: method.parameters[2].label,
+        ios: Math.max(ios(method), ios(key), ios(valueAlias!)),
+        preferenceKey: `${key.module}.${key.name}`,
+        preferenceEvent: value.optional ? { kind: 'optional', value: event } : event,
+        arguments: [],
+      })
+  }
+  return [...directSlots, ...preferenceSlots].sort((a, b) => a.name.localeCompare(b.name))
 }
 
 // methods with bridgeable scalars and static-case values generate their props
