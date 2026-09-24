@@ -79,6 +79,7 @@ const styleFieldType = (field: StyleField) =>
 const eventValueType = (value: EventValueSchema): string => {
   if (value.kind === 'number') return 'number'
   if (value.kind === 'string') return 'string'
+  if (value.kind === 'description') return 'string'
   if (value.kind === 'boolean') return 'boolean'
   if (value.kind === 'point') return '{ x: number; y: number }'
   if (value.kind === 'size') return '{ width: number; height: number }'
@@ -151,7 +152,9 @@ ${styleFields
           : modifier.kind === 'eventAsync'
             ? '() => void | Promise<void>'
             : modifier.kind === 'eventAsyncStruct'
-              ? `(value: ${eventValueType(modifier.eventValue!)}) => void | Promise<void>`
+              ? modifier.arguments?.length
+                ? `Readonly<{ ${modifier.arguments.map((argument) => `${argument.field}: ${argument.kind === 'stringArray' ? 'readonly string[]' : 'string'}`).join('; ')}; onAction: (value: ${eventValueType(modifier.eventValue!)}) => void | Promise<void> }>`
+                : `(value: ${eventValueType(modifier.eventValue!)}) => void | Promise<void>`
           : modifier.kind === 'eventBoolean'
             ? '(value: boolean) => void'
             : modifier.kind === 'eventNumber'

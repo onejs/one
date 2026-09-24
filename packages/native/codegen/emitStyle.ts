@@ -4,6 +4,7 @@ import { sdkGuard } from './sdkGuard'
 
 const eventValueSwift = (value: EventValueSchema, expression: string): string => {
   if (value.kind === 'number') return `Double(${expression})`
+  if (value.kind === 'description') return `String(describing: ${expression})`
   if (value.kind === 'string' || value.kind === 'boolean') return expression
   if (value.kind === 'point')
     return `(["x": Double(${expression}.x), "y": Double(${expression}.y)] as [String: Any])`
@@ -420,14 +421,26 @@ ${modifier.cases!.map((item) => `      case ${JSON.stringify(item.name)}: return
   }`
       if (modifier.kind === 'eventAsyncStruct')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    ${apply(`{ ${modifier.eventInputs?.join(', ') ?? 'item'} in
+    ${modifier.arguments?.length ? `let decoded: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data),
+        decoded.count == ${modifier.arguments.length} else { preconditionFailure("invalid ${modifier.name} arguments") }
+      return decoded
+    }()
+${modifier.arguments.map((argument, index) => argument.kind === 'stringArray'
+  ? `    let argument${index}: [String] = {
+      guard let data = decoded[${index}].data(using: .utf8),
+        let items = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid ${modifier.name}.${argument.field}") }
+      return items
+    }()` : '').filter(Boolean).join('\n')}
+    ` : ''}${apply(`${modifier.arguments?.length ? `${modifier.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}${argument.kind === 'stringArray' ? `argument${index}` : `decoded[${index}]`}`).join(', ')}, ${modifier.label === '_' ? '' : `${modifier.label}: `}` : ''}{ ${modifier.eventInputs?.join(', ') ?? 'item'} in
       let payload = ${modifier.eventInputs && modifier.eventValue?.kind === 'object'
         ? `([${modifier.eventValue.fields.map((field, index) => `${JSON.stringify(field.name)}: ${eventValueSwift(field.value, modifier.eventInputs![index])}`).join(', ')}] as [String: Any])`
         : eventValueSwift(modifier.eventValue!, 'item')}
       guard let data = try? JSONSerialization.data(withJSONObject: payload),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} async event") }
       await OneNativeAsyncAction.wait(name: ${JSON.stringify(modifier.name)}, value: encoded, emit: emit)
-    }`, modifier.ios)}
+    }`, modifier.ios, Boolean(modifier.arguments?.length))}
   }`
       if (modifier.kind.startsWith('event') || modifier.kind.startsWith('binding')) {
         const bridge = modifier.kind.startsWith('event')
@@ -613,7 +626,7 @@ const colorFields = [${colorFields.map((field) => `'${field.name}'`).join(', ')}
 const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [modifier.name, modifier.kind])))} as const
 const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
 type SDKEventValueShape =
-  | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' }
+  | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' | 'description' }
   | { kind: 'enum'; cases: readonly string[]; open?: true }
   | { kind: 'optional' | 'array'; value: SDKEventValueShape }
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
@@ -622,6 +635,7 @@ type SDKEventValueShape =
   | { kind: 'associatedEnum'; cases: readonly { name: string; values: readonly SDKEventValueShape[] }[]; open?: true }
 const sdkAssociatedCases: Record<string, Record<string, readonly SDKEventValueShape[]>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAssociatedEnum').map((modifier) => [modifier.name, Object.fromEntries(modifier.associatedCases!.map((item) => [item.name, item.values]))])))}
 const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct' || modifier.kind === 'eventAsyncStruct' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.eventValue])))}
+const sdkAsyncArguments: Record<string, readonly { field: string; kind: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAsyncStruct' && modifier.arguments?.length).map((modifier) => [modifier.name, modifier.arguments!.map((argument) => ({ field: argument.field, kind: argument.kind }))])))}
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'gesture').map((modifier) => [modifier.name, Object.fromEntries(modifier.gestureOptions!.map((option) => [option.name, option.eventValue ?? null]))])))}
 const sdkCodableOptional: Record<string, boolean> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'bindingCodable').map((modifier) => [modifier.name, modifier.type.endsWith('?')]))) }
 const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, fields, eventValue }) => ({ field, kind, optional, ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
@@ -630,7 +644,8 @@ function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean 
   if (shape.kind === 'optional') return value === null || validSDKEventValue(value, shape.value)
   if (shape.kind === 'array') return Array.isArray(value) && value.every((item) => validSDKEventValue(item, shape.value))
   if (shape.kind === 'number') return typeof value === 'number' && Number.isFinite(value)
-  if (shape.kind === 'string' || shape.kind === 'boolean') return typeof value === shape.kind
+  if (shape.kind === 'string' || shape.kind === 'description' || shape.kind === 'boolean')
+    return typeof value === (shape.kind === 'description' ? 'string' : shape.kind)
   if (shape.kind === 'enum') return typeof value === 'string' &&
     (shape.cases.includes(value) || shape.open === true && value === 'unknown')
   if (shape.kind === 'verification') return Boolean(value && typeof value === 'object' &&
@@ -732,6 +747,24 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
           typeof (value as { onEnded?: unknown }).onEnded !== 'function')
           throw new Error(name + ' must be an SDK gesture and callback')
         sdkModifiers.push([name, (value as { kind: string }).kind])
+        continue
+      }
+      if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {
+        if (!value || typeof value !== 'object' || Array.isArray(value) ||
+          typeof (value as { onAction?: unknown }).onAction !== 'function')
+          throw new Error(name + ' must be an async SDK callback and arguments')
+        const record = value as Record<string, unknown>
+        const argumentsFromSDK = sdkAsyncArguments[name].map(({ field, kind }) => {
+          const item = record[field]
+          if (kind === 'stringArray') {
+            if (!Array.isArray(item) || item.some((value) => typeof value !== 'string'))
+              throw new Error(name + '.' + field + ' must be a string array')
+            return JSON.stringify(item)
+          }
+          if (typeof item !== 'string') throw new Error(name + '.' + field + ' must be a string')
+          return item
+        })
+        sdkModifiers.push([name, JSON.stringify(argumentsFromSDK)])
         continue
       }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite')
@@ -853,7 +886,9 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
     const payload: unknown = JSON.parse((envelope as { value: string }).value)
     if (!validSDKEventValue(payload, sdkEventStructs[name]))
       throw new Error(name + ' emitted an invalid async value')
-    void Promise.resolve().then(() => (modifier as ((value: unknown) => void | Promise<void>) | undefined)?.(payload))
+    const action = typeof modifier === 'function' ? modifier :
+      (modifier as { onAction?: (value: unknown) => void | Promise<void> } | undefined)?.onAction
+    void Promise.resolve().then(() => action?.(payload))
       .finally(() => native.complete(identifier))
   }
   else if (kind === 'eventReturnArray') (modifier as { onAction: () => void } | undefined)?.onAction()

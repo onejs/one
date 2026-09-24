@@ -89,6 +89,54 @@ describe('SDK callback and binding transport', () => {
         result: { case: 'success', value: { case: 'success', values: [] } } }) }) } })).toThrow('invalid async value')
   })
 
+  it('passes StoreKit task states with their required identifiers', async () => {
+    completeAsyncAction.mockClear()
+    const entitlement = vi.fn()
+    const productState = vi.fn()
+    const productsState = vi.fn()
+    const subscriptionState = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      currentEntitlementTask: { productID: 'monthly', onAction: entitlement },
+      storeProductTask: { id: 'monthly', onAction: productState },
+      storeProductsTask: { ids: ['monthly', 'yearly'], onAction: productsState },
+      subscriptionStatusTask: { groupID: 'pro', onAction: subscriptionState },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['currentEntitlementTask', '["monthly"]'],
+      ['storeProductTask', '["monthly"]'],
+      ['storeProductsTask', JSON.stringify([JSON.stringify(['monthly', 'yearly'])])],
+      ['subscriptionStatusTask', '["pro"]'],
+    ])
+    const state = { case: 'success', values: [{
+      case: 'verified', jwsRepresentation: 'signed-entitlement', error: null,
+    }] }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'currentEntitlementTask',
+      value: JSON.stringify({ id: 'action-5', value: JSON.stringify(state) }) } })
+    await vi.waitFor(() => expect(entitlement).toHaveBeenCalledWith(state))
+    await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-5'))
+    const product = { id: 'monthly', type: { rawValue: 'autoRenewable' }, displayName: 'Monthly',
+      description: 'Plan', displayPrice: '$5', isFamilyShareable: false }
+    const loaded = { case: 'success', values: [product] }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'storeProductTask',
+      value: JSON.stringify({ id: 'action-6', value: JSON.stringify(loaded) }) } })
+    await vi.waitFor(() => expect(productState).toHaveBeenCalledWith(loaded))
+    await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-6'))
+    const collected = { case: 'success', values: [[product], ['yearly']] }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'storeProductsTask',
+      value: JSON.stringify({ id: 'action-7', value: JSON.stringify(collected) }) } })
+    await vi.waitFor(() => expect(productsState).toHaveBeenCalledWith(collected))
+    await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-7'))
+    const subscription = { case: 'success', values: [[{
+      state: { rawValue: 1 },
+      transaction: { case: 'verified', jwsRepresentation: 'signed-transaction', error: null },
+      renewalInfo: { case: 'verified', jwsRepresentation: 'signed-renewal', error: null },
+    }]] }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'subscriptionStatusTask',
+      value: JSON.stringify({ id: 'action-8', value: JSON.stringify(subscription) }) } })
+    await vi.waitFor(() => expect(subscriptionState).toHaveBeenCalledWith(subscription))
+    await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-8'))
+  })
+
   it('bridges transferable strings and paste events', () => {
     const onPaste = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {

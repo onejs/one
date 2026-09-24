@@ -665,6 +665,32 @@ export interface OneNativeStyle {
     copyable?: Readonly<{
         payload: readonly string[];
     }>;
+    currentEntitlementTask?: Readonly<{
+        productID: string;
+        onAction: (value: {
+            case: 'loading';
+            values: readonly [];
+        } | {
+            case: 'failure';
+            values: readonly [string];
+        } | {
+            case: 'success';
+            values: readonly [
+                {
+                    case: 'verified';
+                    jwsRepresentation: string;
+                    error: null;
+                } | {
+                    case: 'unverified';
+                    jwsRepresentation: string;
+                    error: string;
+                } | null
+            ];
+        } | {
+            case: 'unknown';
+            values: readonly [];
+        }) => void | Promise<void>;
+    }>;
     cuttable?: Readonly<{
         items: readonly string[];
         onAction: () => void;
@@ -1716,6 +1742,64 @@ export interface OneNativeStyle {
         visibility: 'automatic' | 'visible' | 'hidden';
         buttonKinds: 'restorePurchases' | 'cancellation' | 'redeemCode' | 'signIn' | 'policies';
     }>;
+    storeProductsTask?: Readonly<{
+        ids: readonly string[];
+        onAction: (value: {
+            case: 'loading';
+            values: readonly [];
+        } | {
+            case: 'failure';
+            values: readonly [string];
+        } | {
+            case: 'success';
+            values: readonly [
+                readonly {
+                    id: string;
+                    type: {
+                        rawValue: string;
+                    };
+                    displayName: string;
+                    description: string;
+                    displayPrice: string;
+                    isFamilyShareable: boolean;
+                }[],
+                readonly string[]
+            ];
+        } | {
+            case: 'unknown';
+            values: readonly [];
+        }) => void | Promise<void>;
+    }>;
+    storeProductTask?: Readonly<{
+        id: string;
+        onAction: (value: {
+            case: 'loading';
+            values: readonly [];
+        } | {
+            case: 'unavailable';
+            values: readonly [];
+        } | {
+            case: 'failure';
+            values: readonly [string];
+        } | {
+            case: 'success';
+            values: readonly [
+                {
+                    id: string;
+                    type: {
+                        rawValue: string;
+                    };
+                    displayName: string;
+                    description: string;
+                    displayPrice: string;
+                    isFamilyShareable: boolean;
+                }
+            ];
+        } | {
+            case: 'unknown';
+            values: readonly [];
+        }) => void | Promise<void>;
+    }>;
     strikethrough?: Readonly<{
         isActive: boolean;
         pattern: 'solid' | 'dot' | 'dash' | 'dashDot' | 'dashDotDot';
@@ -1729,6 +1813,46 @@ export interface OneNativeStyle {
     }>;
     subscriptionOfferViewDetailAction?: () => void;
     subscriptionOfferViewStyle?: SDKSubscriptionOfferViewStyle;
+    subscriptionStatusTask?: Readonly<{
+        groupID: string;
+        onAction: (value: {
+            case: 'loading';
+            values: readonly [];
+        } | {
+            case: 'failure';
+            values: readonly [string];
+        } | {
+            case: 'success';
+            values: readonly [
+                readonly {
+                    state: {
+                        rawValue: number;
+                    };
+                    transaction: {
+                        case: 'verified';
+                        jwsRepresentation: string;
+                        error: null;
+                    } | {
+                        case: 'unverified';
+                        jwsRepresentation: string;
+                        error: string;
+                    };
+                    renewalInfo: {
+                        case: 'verified';
+                        jwsRepresentation: string;
+                        error: null;
+                    } | {
+                        case: 'unverified';
+                        jwsRepresentation: string;
+                        error: string;
+                    };
+                }[]
+            ];
+        } | {
+            case: 'unknown';
+            values: readonly [];
+        }) => void | Promise<void>;
+    }>;
     subscriptionStoreButtonLabel?: SDKSubscriptionStoreButtonLabel;
     subscriptionStoreControlBackground?: SDKSubscriptionStoreControlBackground;
     subscriptionStoreControlStyle?: SDKSubscriptionStoreControlStyle;

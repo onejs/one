@@ -23,7 +23,7 @@ export type DerivedArgument = {
 }
 
 export type EventValueSchema =
-  | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' }
+  | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' | 'description' }
   | { kind: 'enum'; cases: readonly string[]; open?: true }
   | { kind: 'optional'; value: EventValueSchema }
   | { kind: 'array'; value: EventValueSchema }
@@ -303,21 +303,40 @@ export function deriveModifiers(
       const value = eventValueOf(type.slice(0, -1), version, seen)
       return value && { kind: 'optional', value }
     }
+    if (type.startsWith('[') && type.endsWith(']')) {
+      const value = eventValueOf(type.slice(1, -1), version, seen)
+      return value && { kind: 'array', value }
+    }
+    if (type === 'any Swift.Error') return { kind: 'description' }
     if (['Swift.Double', 'Swift.Float', 'Swift.Int', 'CoreFoundation.CGFloat'].includes(type)) return { kind: 'number' }
     if (type === 'Swift.String') return { kind: 'string' }
     if (type === 'Swift.Bool') return { kind: 'boolean' }
     if (type === 'CoreFoundation.CGPoint') return { kind: 'point' }
     if (type === 'CoreFoundation.CGSize') return { kind: 'size' }
-    const [module, ...parts] = type.split('.')
+    const generic = /^([^<]+)<(.+)>$/.exec(type)
+    const concreteType = generic?.[1] ?? type
+    const [module, ...parts] = concreteType.split('.')
     const owner = parts.join('.')
+    const alias = inventory.find((d) => d.module === module && d.kind === 'typealias' &&
+      (d.owner === parts.slice(0, -1).join('.') ||
+        d.owner === [module, ...parts.slice(0, -1)].join('.')) &&
+      d.name === parts.at(-1) && present(d) && ios(d) <= version)
+    if (alias?.type === 'Swift.String') return { kind: 'string' }
+    const nestedModule = parts.at(-2)?.startsWith('_') ? parts.at(-2) : undefined
+    const nestedOwner = nestedModule ? [module, ...parts.slice(0, -2)].join('.') : undefined
     const enumDeclaration = inventory.find((d) => d.module === module && d.kind === 'enum' &&
       (d.owner === parts.slice(0, -1).join('.') ||
         d.owner === [module, ...parts.slice(0, -1)].join('.')) &&
       d.name === parts.at(-1) &&
-      present(d) && ios(d) <= version)
+      present(d) && ios(d) <= version) ??
+      inventory.find((d) => d.module === nestedModule && d.kind === 'enum' &&
+        d.owner === nestedOwner && d.name === parts.at(-1) && present(d) && ios(d) <= version) ??
+      inventory.find((d) => d.kind === 'enum' && d.owner === [module, ...parts.slice(0, -1)].join('.') &&
+        d.name === parts.at(-1) && present(d) && ios(d) <= version)
     if (enumDeclaration) {
-      const cases = inventory.filter((d) => d.module === module &&
-        (d.owner === owner || d.owner === type) && d.enumCase && present(d) && ios(d) <= ceiling)
+      const caseOwner = nestedModule ? `${nestedOwner}.${parts.at(-1)}` : concreteType
+      const cases = inventory.filter((d) => d.module === enumDeclaration.module &&
+        (d.owner === owner || d.owner === caseOwner) && d.enumCase && present(d) && ios(d) <= ceiling)
       if ((enumDeclaration.attributes.includes('@frozen') || enumDeclaration.attributes.includes('@symbolgraph')) &&
         cases.length && cases.every((item) => item.parameters.length === 0) &&
         new Set(cases.map((item) => item.name)).size === cases.length)
@@ -326,15 +345,31 @@ export function deriveModifiers(
       if (cases.length && cases.some((item) => item.parameters.length) &&
         new Set(cases.map((item) => item.name)).size === cases.length) {
         const values = cases.map((item) => ({ name: item.name,
-          values: item.parameters.map((parameter) => eventValueOf(parameter.type, version, new Set([...seen, type]))) }))
+          values: item.parameters.map((parameter) => eventValueOf(
+            generic && parameter.type === 'Value' ? generic[2] : parameter.type,
+            version, new Set([...seen, type]))) }))
         if (values.every((item) => item.values.every(Boolean)))
           return { kind: 'associatedEnum', cases: values as { name: string; values: EventValueSchema[] }[],
             ...(!enumDeclaration.attributes.includes('@frozen') ? { open: true as const } : {}) }
       }
     }
+    const parent = [...seen][0]?.replace(/<.*$/, '')
+    const directEnumValue = seen.size === 1 && inventory.some((d) => d.kind === 'enum' &&
+      d.name === parent?.split('.').at(-1) && present(d) && ios(d) <= version)
     if (!owner || seen.has(type) || !inventory.some((d) => d.module === module &&
       (d.kind === 'struct' || d.kind === 'class') &&
-      d.owner === parts.slice(0, -1).join('.') && d.name === parts.at(-1) && !d.generic && present(d) && ios(d) <= version)) return
+      (d.owner === parts.slice(0, -1).join('.') ||
+        directEnumValue && d.owner === [module, ...parts.slice(0, -1)].join('.')) &&
+      d.name === parts.at(-1) && !d.generic && present(d) && ios(d) <= version)) {
+      const raw = inventory.find((d) => d.module === module && d.kind === 'struct' &&
+        d.owner === [module, ...parts.slice(0, -1)].join('.') && d.name === parts.at(-1) &&
+        d.inheritedTypes?.includes('Swift.RawRepresentable') && present(d) && ios(d) <= version) &&
+        inventory.find((d) => d.module === module && d.kind === 'var' && d.owner === concreteType &&
+          d.name === 'rawValue' && d.stored && ['Swift.String', 'Swift.Int'].includes(d.type ?? '') &&
+          present(d) && ios(d) <= version)
+      return raw ? { kind: 'object', fields: [{ name: 'rawValue',
+        value: { kind: raw.type === 'Swift.String' ? 'string' : 'number' } }] } : undefined
+    }
     const fields = inventory.filter((d) => d.module === module && (d.owner === owner || d.owner === type) &&
       d.kind === 'var' && d.stored && present(d) && ios(d) <= version)
     if (!fields.length || new Set(fields.map((field) => field.name)).size !== fields.length) return
@@ -721,6 +756,30 @@ export function deriveModifiers(
             eventValue: { kind: 'object', fields: [
               { name: 'value', value: first }, { name: 'result', value: second },
             ] }, ios: ios(method), ...framework }]
+      }
+      const asyncState = method.parameters.find((parameter) =>
+        /^@escaping \(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*(?:<.+>)?)+)\) async -> \(\)$/.test(parameter.type))
+      const requiredInput = method.parameters.filter((parameter) =>
+        parameter !== asyncState && parameter.defaultValue === undefined)
+      if (asyncState && requiredInput.length === 1 && method.parameters.every((parameter) =>
+        parameter === asyncState || parameter === requiredInput[0] || parameter.defaultValue !== undefined)) {
+        const input = /^@escaping \((.+)\) async -> \(\)$/.exec(asyncState.type)![1]
+        const collectionElement = /^some Collection<([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)> & Sendable & Equatable$/.exec(requiredInput[0].type)?.[1]
+        const collectionAlias = collectionElement && inventory.filter((declaration) =>
+          declaration.kind === 'typealias' && declaration.type === 'Swift.String' &&
+          declaration.owner === collectionElement.split('.').slice(0, -1).join('.') &&
+          declaration.name === collectionElement.split('.').at(-1) &&
+          present(declaration) && ios(declaration) <= ceiling)
+        const argument = valueOf(requiredInput[0].type) ??
+          (collectionAlias?.length === 1
+            ? { kind: 'stringArray' as const, type: '[Swift.String]', optional: false }
+            : undefined)
+        const eventValue = eventValueOf(input, ios(method))
+        if ((argument?.kind === 'string' || argument?.kind === 'stringArray') && eventValue)
+          return [{ name, module: method.module, kind: 'eventAsyncStruct', type: asyncState.type,
+            label: asyncState.label, eventInputType: input, eventValue,
+            arguments: [{ ...argument, field: requiredInput[0].name, label: requiredInput[0].label }],
+            ios: ios(method), ...framework }]
       }
       if (method.parameters.length === 0 ||
         (method.parameters.every((parameter) => parameter.defaultValue !== undefined && !parameter.type.includes('->')) &&
