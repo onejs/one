@@ -6724,6 +6724,28 @@
       }
     },
     {
+      "name": "glassEffectWithGlass",
+      "module": "SwiftUICore",
+      "kind": "string",
+      "type": "SwiftUICore.Glass",
+      "cases": [
+        {
+          "name": "regular",
+          "ios": 26
+        },
+        {
+          "name": "clear",
+          "ios": 26
+        },
+        {
+          "name": "identity",
+          "ios": 26
+        }
+      ],
+      "ios": 26,
+      "sdkName": "glassEffect"
+    },
+    {
       "name": "grayscale",
       "kind": "number",
       "type": "Swift.Double",
@@ -7111,44 +7133,6 @@
       "ios": 17
     },
     {
-      "name": "hoverEffectWithEffectAndIsEnabled",
-      "module": "SwiftUICore",
-      "kind": "record",
-      "type": "",
-      "ios": 17,
-      "arguments": [
-        {
-          "kind": "enum",
-          "type": "SwiftUICore.HoverEffect",
-          "optional": false,
-          "cases": [
-            {
-              "name": "automatic",
-              "ios": 13.4
-            },
-            {
-              "name": "highlight",
-              "ios": 13.4
-            },
-            {
-              "name": "lift",
-              "ios": 13.4
-            }
-          ],
-          "field": "effect",
-          "label": "_"
-        },
-        {
-          "kind": "boolean",
-          "type": "Swift.Bool",
-          "optional": false,
-          "field": "isEnabled",
-          "label": "isEnabled"
-        }
-      ],
-      "sdkName": "hoverEffect"
-    },
-    {
       "name": "hoverEffectWithHoverEffect",
       "module": "SwiftUICore",
       "kind": "string",
@@ -7171,6 +7155,28 @@
       "sdkName": "hoverEffect"
     },
     {
+      "name": "hoverEffectWithHoverEffectFromSwiftUICore",
+      "module": "SwiftUICore",
+      "kind": "string",
+      "type": "SwiftUICore.HoverEffect",
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 13.4
+        },
+        {
+          "name": "highlight",
+          "ios": 13.4
+        },
+        {
+          "name": "lift",
+          "ios": 13.4
+        }
+      ],
+      "ios": 17,
+      "sdkName": "hoverEffect"
+    },
+    {
       "name": "hueRotation",
       "kind": "string",
       "type": "SwiftUICore.Angle",
@@ -7187,74 +7193,6 @@
       "kind": "string",
       "type": "ID",
       "ios": 13
-    },
-    {
-      "name": "ignoresSafeAreaWithRegionsAndEdges",
-      "module": "SwiftUICore",
-      "kind": "record",
-      "type": "",
-      "ios": 14,
-      "arguments": [
-        {
-          "kind": "enum",
-          "type": "SwiftUICore.SafeAreaRegions",
-          "optional": false,
-          "cases": [
-            {
-              "name": "container",
-              "ios": 14
-            },
-            {
-              "name": "keyboard",
-              "ios": 14
-            },
-            {
-              "name": "all",
-              "ios": 14
-            }
-          ],
-          "field": "regions",
-          "label": "_"
-        },
-        {
-          "kind": "enum",
-          "type": "SwiftUICore.Edge.Set",
-          "optional": false,
-          "cases": [
-            {
-              "name": "top",
-              "ios": 13
-            },
-            {
-              "name": "leading",
-              "ios": 13
-            },
-            {
-              "name": "bottom",
-              "ios": 13
-            },
-            {
-              "name": "trailing",
-              "ios": 13
-            },
-            {
-              "name": "all",
-              "ios": 13
-            },
-            {
-              "name": "horizontal",
-              "ios": 13
-            },
-            {
-              "name": "vertical",
-              "ios": 13
-            }
-          ],
-          "field": "edges",
-          "label": "edges"
-        }
-      ],
-      "sdkName": "ignoresSafeArea"
     },
     {
       "name": "ignoresSafeAreaWithRegionsAndEdgesAndAlignment",
@@ -7391,6 +7329,28 @@
           "label": "alignment"
         }
       ],
+      "sdkName": "ignoresSafeArea"
+    },
+    {
+      "name": "ignoresSafeAreaWithSafeAreaRegions",
+      "module": "SwiftUICore",
+      "kind": "string",
+      "type": "SwiftUICore.SafeAreaRegions",
+      "cases": [
+        {
+          "name": "container",
+          "ios": 14
+        },
+        {
+          "name": "keyboard",
+          "ios": 14
+        },
+        {
+          "name": "all",
+          "ios": 14
+        }
+      ],
+      "ios": 14,
       "sdkName": "ignoresSafeArea"
     },
     {
@@ -8798,6 +8758,18 @@
       "type": "@escaping (_MapKit_SwiftUI.MapFeature) -> Swift.Bool",
       "predicateInput": "_MapKit_SwiftUI.MapFeature",
       "ios": 17,
+      "framework": "MapKit"
+    },
+    {
+      "name": "mapScope",
+      "kind": "boolean",
+      "type": "",
+      "ios": 17,
+      "zeroArgument": true,
+      "namespaceParameter": {
+        "index": 0,
+        "label": "_"
+      },
       "framework": "MapKit"
     },
     {
@@ -10660,6 +10632,44 @@
       "sdkName": "onTapGesture"
     },
     {
+      "name": "paddingWithSet",
+      "module": "SwiftUICore",
+      "kind": "string",
+      "type": "SwiftUICore.Edge.Set",
+      "cases": [
+        {
+          "name": "top",
+          "ios": 13
+        },
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "bottom",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        },
+        {
+          "name": "all",
+          "ios": 13
+        },
+        {
+          "name": "horizontal",
+          "ios": 13
+        },
+        {
+          "name": "vertical",
+          "ios": 13
+        }
+      ],
+      "ios": 13,
+      "sdkName": "padding"
+    },
+    {
       "name": "paletteSelectionEffect",
       "kind": "string",
       "type": "SwiftUI.PaletteSelectionEffect",
@@ -11941,57 +11951,41 @@
       "sdkName": "safeAreaPadding"
     },
     {
-      "name": "safeAreaPaddingWithEdgesAndLength",
+      "name": "safeAreaPaddingWithSet",
       "module": "SwiftUICore",
-      "kind": "record",
-      "type": "",
-      "ios": 17,
-      "arguments": [
+      "kind": "string",
+      "type": "SwiftUICore.Edge.Set",
+      "cases": [
         {
-          "kind": "enum",
-          "type": "SwiftUICore.Edge.Set",
-          "optional": false,
-          "cases": [
-            {
-              "name": "top",
-              "ios": 13
-            },
-            {
-              "name": "leading",
-              "ios": 13
-            },
-            {
-              "name": "bottom",
-              "ios": 13
-            },
-            {
-              "name": "trailing",
-              "ios": 13
-            },
-            {
-              "name": "all",
-              "ios": 13
-            },
-            {
-              "name": "horizontal",
-              "ios": 13
-            },
-            {
-              "name": "vertical",
-              "ios": 13
-            }
-          ],
-          "field": "edges",
-          "label": "_"
+          "name": "top",
+          "ios": 13
         },
         {
-          "kind": "number",
-          "type": "CoreFoundation.CGFloat?",
-          "optional": true,
-          "field": "length",
-          "label": "_"
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "bottom",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        },
+        {
+          "name": "all",
+          "ios": 13
+        },
+        {
+          "name": "horizontal",
+          "ios": 13
+        },
+        {
+          "name": "vertical",
+          "ios": 13
         }
       ],
+      "ios": 17,
       "sdkName": "safeAreaPadding"
     },
     {
@@ -16682,6 +16676,7 @@
         "frame",
         "geometryGroup",
         "gesture",
+        "glassEffect",
         "glassEffectID",
         "glassEffectTransition",
         "glassEffectUnion",
@@ -17085,6 +17080,7 @@
         "mapControls",
         "mapFeatureSelectionAccessory",
         "mapFeatureSelectionDisabled",
+        "mapScope",
         "mapStyle",
         "onMapCameraChange"
       ],
@@ -17178,6 +17174,7 @@
         "frame",
         "geometryGroup",
         "gesture",
+        "glassEffect",
         "glassEffectID",
         "glassEffectTransition",
         "glassEffectUnion",
@@ -17216,6 +17213,7 @@
         "onTapGesture",
         "overlay",
         "overlayPreferenceValue",
+        "padding",
         "position",
         "preference",
         "preferredColorScheme",
@@ -17579,6 +17577,7 @@
         "mapControls",
         "mapFeatureSelectionAccessory",
         "mapFeatureSelectionDisabled",
+        "mapScope",
         "mapStyle",
         "onMapCameraChange"
       ],

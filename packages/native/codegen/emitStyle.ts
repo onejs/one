@@ -608,9 +608,12 @@ ${validation}    ${apply(argumentsFromSDK ?? bridge, modifier.ios, argumentsFrom
   }`
       }
       if (modifier.zeroArgument) {
+        const argument = modifier.namespaceParameter
+          ? `${modifier.namespaceParameter.label === '_' ? '' : `${modifier.namespaceParameter.label}: `}OneNativeNamespace.id`
+          : ''
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")
-    if value == "true" { ${apply('', modifier.ios)} } else { self }
+    if value == "true" { ${apply(argument, modifier.ios)} } else { self }
   }`
       }
       if (modifier.kind === 'url' || modifier.kind === 'optionalURL') {

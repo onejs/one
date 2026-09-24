@@ -510,6 +510,9 @@ export function deriveModifiers(
           (d.parameters.length === 1 && valueOf(d.parameters[0].type)?.kind === 'enum' &&
             valueOf(d.parameters[0].type)?.optional ||
             d.parameters.length > 1 &&
+              d.parameters.every((parameter) => parameter.defaultValue !== undefined) &&
+              valueOf(d.parameters[0].type)?.kind === 'enum' ||
+            d.parameters.length > 1 &&
               d.parameters.some((parameter) => parameter.defaultValue === undefined) &&
               d.parameters.some((parameter) => parameter.defaultValue !== undefined) &&
               d.parameters.every((parameter) => valueOf(parameter.type)))))
@@ -607,6 +610,11 @@ export function deriveModifiers(
       if (namespaceIndex !== -1) {
         const required = method.parameters.filter((parameter, index) =>
           index !== namespaceIndex && parameter.defaultValue === undefined)
+        if (!required.length && method.parameters.length === 1)
+          return [{ name, module: method.module, kind: 'boolean', type: '', ios: ios(method),
+            zeroArgument: true,
+            namespaceParameter: { index: 0, label: method.parameters[namespaceIndex].label },
+            ...framework }]
         const argumentsFromSDK = required.map((parameter) => {
           const generic = parameter.type === 'some Hashable' ||
             parameter.type === '(some (Hashable & Sendable))?' ||
@@ -932,6 +940,14 @@ export function deriveModifiers(
         present(declaration) && ios(declaration) <= ios(method)))
         return [{ name, module: method.module, kind: 'selectionID', type: method.parameters[0].type,
           label: method.parameters[0].label, ios: ios(method), ...framework }]
+      const defaultedCase = method.parameters.length > 1 &&
+        method.parameters.every((parameter) => parameter.defaultValue !== undefined) &&
+        valueOf(method.parameters[0].type)
+      if (defaultedCase?.kind === 'enum' && defaultedCase.cases)
+        return [{ name, module: method.module, kind: 'string',
+          type: method.parameters[0].type, cases: defaultedCase.cases, ios: ios(method),
+          ...(method.parameters[0].label === '_' ? {} : { label: method.parameters[0].label }),
+          ...framework }]
       if (method.parameters.length === 0 ||
         (method.parameters.every((parameter) => parameter.defaultValue !== undefined && !parameter.type.includes('->')) &&
           method.parameters.every((parameter) => !valueOf(parameter.type))))

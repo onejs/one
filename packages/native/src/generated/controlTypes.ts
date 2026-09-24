@@ -798,6 +798,8 @@ export const sdkGlassEffectTransitionValues = [
   'identity',
 ] as const
 export type SDKGlassEffectTransition = (typeof sdkGlassEffectTransitionValues)[number]
+export const sdkGlassEffectWithGlassValues = ['regular', 'clear', 'identity'] as const
+export type SDKGlassEffectWithGlass = (typeof sdkGlassEffectWithGlassValues)[number]
 export const sdkGridCellAnchorValues = [
   'zero',
   'center',
@@ -835,8 +837,22 @@ export const sdkHoverEffectWithHoverEffectValues = [
 ] as const
 export type SDKHoverEffectWithHoverEffect =
   (typeof sdkHoverEffectWithHoverEffectValues)[number]
+export const sdkHoverEffectWithHoverEffectFromSwiftUICoreValues = [
+  'automatic',
+  'highlight',
+  'lift',
+] as const
+export type SDKHoverEffectWithHoverEffectFromSwiftUICore =
+  (typeof sdkHoverEffectWithHoverEffectFromSwiftUICoreValues)[number]
 export const sdkHueRotationValues = ['zero'] as const
 export type SDKHueRotation = (typeof sdkHueRotationValues)[number]
+export const sdkIgnoresSafeAreaWithSafeAreaRegionsValues = [
+  'container',
+  'keyboard',
+  'all',
+] as const
+export type SDKIgnoresSafeAreaWithSafeAreaRegions =
+  (typeof sdkIgnoresSafeAreaWithSafeAreaRegionsValues)[number]
 export const sdkImageScaleValues = ['small', 'medium', 'large'] as const
 export type SDKImageScale = (typeof sdkImageScaleValues)[number]
 export const sdkIndexViewStyleValues = ['page'] as const
@@ -1013,6 +1029,16 @@ export const sdkOnScrollPhaseChangeValues = [
   'animating',
 ] as const
 export type SDKOnScrollPhaseChange = (typeof sdkOnScrollPhaseChangeValues)[number]
+export const sdkPaddingWithSetValues = [
+  'top',
+  'leading',
+  'bottom',
+  'trailing',
+  'all',
+  'horizontal',
+  'vertical',
+] as const
+export type SDKPaddingWithSet = (typeof sdkPaddingWithSetValues)[number]
 export const sdkPaletteSelectionEffectValues = ['automatic', 'custom'] as const
 export type SDKPaletteSelectionEffect = (typeof sdkPaletteSelectionEffectValues)[number]
 export const sdkPayLaterViewActionValues = ['learnMore', 'calculator'] as const
@@ -1197,6 +1223,16 @@ export type SDKRealityViewLayoutBehavior =
   (typeof sdkRealityViewLayoutBehaviorValues)[number]
 export const sdkRedactedValues = ['placeholder', 'privacy', 'invalidated'] as const
 export type SDKRedacted = (typeof sdkRedactedValues)[number]
+export const sdkSafeAreaPaddingWithSetValues = [
+  'top',
+  'leading',
+  'bottom',
+  'trailing',
+  'all',
+  'horizontal',
+  'vertical',
+] as const
+export type SDKSafeAreaPaddingWithSet = (typeof sdkSafeAreaPaddingWithSetValues)[number]
 export const sdkScenePaddingWithSetValues = [
   'top',
   'leading',
@@ -2212,6 +2248,7 @@ export interface OneNativeStyle {
   glassEffectID?: Readonly<{ id: string | null }>
   glassEffectTransition?: SDKGlassEffectTransition
   glassEffectUnion?: Readonly<{ id: string | null }>
+  glassEffectWithGlass?: SDKGlassEffectWithGlass
   grayscale?: number
   gridCellAnchor?: SDKGridCellAnchor
   gridCellColumns?: number
@@ -2260,17 +2297,10 @@ export interface OneNativeStyle {
       }>
     | Readonly<{ kind: 'tap'; onEnded: () => void }>
   hoverEffectDisabled?: boolean
-  hoverEffectWithEffectAndIsEnabled?: Readonly<{
-    effect: 'automatic' | 'highlight' | 'lift'
-    isEnabled: boolean
-  }>
   hoverEffectWithHoverEffect?: SDKHoverEffectWithHoverEffect
+  hoverEffectWithHoverEffectFromSwiftUICore?: SDKHoverEffectWithHoverEffectFromSwiftUICore
   hueRotation?: SDKHueRotation
   id?: string
-  ignoresSafeAreaWithRegionsAndEdges?: Readonly<{
-    regions: 'container' | 'keyboard' | 'all'
-    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
-  }>
   ignoresSafeAreaWithRegionsAndEdgesAndAlignment?: Readonly<{
     regions: 'container' | 'keyboard' | 'all'
     edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
@@ -2292,6 +2322,7 @@ export interface OneNativeStyle {
       | 'trailingLastTextBaseline'
       | null
   }>
+  ignoresSafeAreaWithSafeAreaRegions?: SDKIgnoresSafeAreaWithSafeAreaRegions
   imageScale?: SDKImageScale
   inAppPurchaseOptions?: Readonly<{
     quantity?: number
@@ -2469,6 +2500,7 @@ export interface OneNativeStyle {
   mapControlVisibility?: SDKMapControlVisibility
   mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null
   mapFeatureSelectionDisabled?: boolean
+  mapScope?: boolean
   mapStyle?: SDKMapStyle
   matchedGeometryEffect?: Readonly<{ id: string }>
   matchedTransitionSource?: Readonly<{ id: string }>
@@ -2685,6 +2717,7 @@ export interface OneNativeStyle {
   onSubmit?: () => void
   onTapGestureWithPerform?: (value: { x: number; y: number }) => void
   onTapGestureWithPerformFromSwiftUICore?: () => void
+  paddingWithSet?: SDKPaddingWithSet
   paletteSelectionEffect?: SDKPaletteSelectionEffect
   pasteDestination?: (value: readonly string[]) => void
   payLaterViewAction?: SDKPayLaterViewAction
@@ -2789,10 +2822,7 @@ export interface OneNativeStyle {
       | 'bottomTrailing'
   }>
   safeAreaPaddingWithCGFloat?: number
-  safeAreaPaddingWithEdgesAndLength?: Readonly<{
-    edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
-    length: number | null
-  }>
+  safeAreaPaddingWithSet?: SDKSafeAreaPaddingWithSet
   saturation?: number
   scaledToFill?: boolean
   scaledToFit?: boolean

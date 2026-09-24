@@ -30,6 +30,19 @@ describe('SDK callback and binding transport', () => {
     ])
   })
 
+  it('uses SDK defaults for glass and a captured namespace for map scope', () => {
+    const element = Controls.Text({ text: 'map', swiftStyle: {
+      glassEffectWithGlass: 'regular',
+      mapScope: true,
+      paddingWithSet: 'horizontal',
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['glassEffectWithGlass', 'regular'],
+      ['mapScope', 'true'],
+      ['paddingWithSet', 'horizontal'],
+    ])
+  })
+
   it('toggles a public boolean environment value through the SDK transform method', () => {
     const element = Controls.Text({ text: 'child', swiftStyle: {
       transformEnvironmentIsEnabled: true,
