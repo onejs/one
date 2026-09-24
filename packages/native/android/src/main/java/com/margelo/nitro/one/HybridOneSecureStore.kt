@@ -46,11 +46,20 @@ class HybridOneSecureStore : HybridOneSecureStoreSpec() {
         return generator.generateKey()
     }
 
+    @Synchronized
+    private fun rekey(): SecretKey {
+        deleteKey()
+        return generateKey()
+    }
+
     private fun deleteKey() {
         val store = keyStore()
         if (store.containsAlias(KEY_ALIAS)) store.deleteEntry(KEY_ALIAS)
     }
 
+    // promises run on a thread pool: without the lock, two first writes can
+    // each mint the key, and the value sealed under the replaced one is lost.
+    @Synchronized
     private fun secretKey(): SecretKey =
         (keyStore().getEntry(KEY_ALIAS, null) as? KeyStore.SecretKeyEntry)?.secretKey
             ?: generateKey()
@@ -69,8 +78,7 @@ class HybridOneSecureStore : HybridOneSecureStoreSpec() {
         } catch (e: InvalidKeyException) {
             // the keystore dropped the key (a restore can do this): mint a
             // fresh key and write once more under it.
-            deleteKey()
-            return encryptWith(generateKey(), value)
+            return encryptWith(rekey(), value)
         }
     }
 
