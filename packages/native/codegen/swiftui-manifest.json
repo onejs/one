@@ -13387,6 +13387,43 @@
       ]
     },
     {
+      "name": "symbolEffect",
+      "kind": "style",
+      "type": "T",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "pulse",
+          "ios": 17
+        },
+        {
+          "name": "bounce",
+          "ios": 18
+        },
+        {
+          "name": "variableColor",
+          "ios": 17
+        },
+        {
+          "name": "scale",
+          "ios": 17
+        },
+        {
+          "name": "wiggle",
+          "ios": 18
+        },
+        {
+          "name": "rotate",
+          "ios": 18
+        },
+        {
+          "name": "breathe",
+          "ios": 18
+        }
+      ],
+      "framework": "Symbols"
+    },
+    {
       "name": "symbolEffectsRemoved",
       "kind": "boolean",
       "type": "Swift.Bool",
@@ -15432,6 +15469,7 @@
         "speechSpellsOutCharacters",
         "strikethrough",
         "symbolColorRenderingMode",
+        "symbolEffect",
         "symbolRenderingMode",
         "symbolVariableValueMode",
         "symbolVariant",
@@ -15896,6 +15934,7 @@
         "speechSpellsOutCharacters",
         "strikethrough",
         "symbolColorRenderingMode",
+        "symbolEffect",
         "symbolRenderingMode",
         "symbolVariableValueMode",
         "symbolVariant",

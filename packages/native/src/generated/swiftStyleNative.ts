@@ -497,6 +497,7 @@ const sdkKinds = {
   subscriptionStoreSignInAction: 'event',
   swipeActionsContainer: 'boolean',
   symbolColorRenderingMode: 'optionalEnum',
+  symbolEffect: 'style',
   symbolEffectsRemoved: 'boolean',
   symbolRenderingMode: 'optionalEnum',
   symbolVariableValueMode: 'optionalEnum',

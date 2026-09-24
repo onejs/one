@@ -13,6 +13,7 @@ import MusicKit
 import AVKit
 import PhotosUI
 import AuthenticationServices
+import Symbols
 import Translation
 import WebKit
 
@@ -558,6 +559,7 @@ extension View {
       case "subscriptionStoreSignInAction": view = AnyView(view.oneNativeSDKSubscriptionStoreSignInAction(value, emit: emit))
       case "swipeActionsContainer": view = AnyView(view.oneNativeSDKSwipeActionsContainer(value, emit: emit))
       case "symbolColorRenderingMode": view = AnyView(view.oneNativeSDKSymbolColorRenderingMode(value, emit: emit))
+      case "symbolEffect": view = AnyView(view.oneNativeSDKSymbolEffect(value, emit: emit))
       case "symbolEffectsRemoved": view = AnyView(view.oneNativeSDKSymbolEffectsRemoved(value, emit: emit))
       case "symbolRenderingMode": view = AnyView(view.oneNativeSDKSymbolRenderingMode(value, emit: emit))
       case "symbolVariableValueMode": view = AnyView(view.oneNativeSDKSymbolVariableValueMode(value, emit: emit))
@@ -6835,6 +6837,20 @@ self
       case "flat": if #available(iOS 26, *) { self.symbolColorRenderingMode(SwiftUI.SymbolColorRenderingMode.flat) } else { self }
       case "gradient": if #available(iOS 26, *) { self.symbolColorRenderingMode(SwiftUI.SymbolColorRenderingMode.gradient) } else { self }
     default: preconditionFailure("invalid symbolColorRenderingMode: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSymbolEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "pulse": self.symbolEffect(.pulse)
+      case "bounce": if #available(iOS 18, *) { self.symbolEffect(.bounce) } else { self }
+      case "variableColor": self.symbolEffect(.variableColor)
+      case "scale": self.symbolEffect(.scale)
+      case "wiggle": if #available(iOS 18, *) { self.symbolEffect(.wiggle) } else { self }
+      case "rotate": if #available(iOS 18, *) { self.symbolEffect(.rotate) } else { self }
+      case "breathe": if #available(iOS 18, *) { self.symbolEffect(.breathe) } else { self }
+    default: preconditionFailure("invalid symbolEffect: \(value)")
     }
   }
 

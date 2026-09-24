@@ -476,6 +476,36 @@ export function deriveModifiers(
           })
       }
       if (method.requirements?.length) {
+        if (method.requirements.length === 2 && method.parameters.length >= 1 &&
+          method.parameters.slice(1).every((parameter) => parameter.defaultValue !== undefined)) {
+          const constraints = method.requirements.map((requirement) =>
+            /^([A-Za-z_]\w*) : ([A-Za-z_]\w*\.[A-Za-z][\w.]*)$/.exec(requirement))
+          if (constraints.every(Boolean) && constraints[0]![1] === constraints[1]![1] &&
+            method.parameters[0].type === constraints[0]![1]) {
+            for (const [base, marker] of [[constraints[0]![2], constraints[1]![2]],
+              [constraints[1]![2], constraints[0]![2]]]) {
+              const cases = inventory.filter((declaration) =>
+                declaration.kind === 'static' && declaration.owner === base &&
+                declaration.requirements?.length === 1 &&
+                declaration.requirements[0] === `Self == ${declaration.type}` &&
+                declaration.parameters.length === 0 && /^[a-z]/.test(declaration.name) &&
+                present(declaration) && ios(declaration) <= ceiling)
+                .flatMap((declaration) => {
+                  const conformance = inventory.find((item) => item.kind === 'conformance' &&
+                    item.module === declaration.module && item.name === declaration.type &&
+                    !item.requirements?.length && item.inheritedTypes?.includes(marker) &&
+                    present(item) && ios(item) <= ceiling)
+                  return conformance
+                    ? [{ name: declaration.name, ios: Math.max(ios(declaration), ios(conformance)) }]
+                    : []
+                })
+              if (cases.length && new Set(cases.map((item) => item.name)).size === cases.length)
+                return [{ name, module: method.module, kind: 'style', type: method.parameters[0].type,
+                  ios: ios(method), cases,
+                  ...(base.split('.')[0] === 'SwiftUICore' ? framework : { framework: base.split('.')[0] }) }]
+            }
+          }
+        }
         if (method.requirements.length !== 1) return []
         const focusValue = /^([A-Za-z_]\w*) : Swift\.Hashable$/.exec(method.requirements[0])?.[1]
         if (focusValue && method.parameters.length >= 2 &&

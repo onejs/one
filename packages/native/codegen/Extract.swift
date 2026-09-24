@@ -68,6 +68,10 @@ final class Inventory: SyntaxVisitor {
   }
   override func visitPost(_ node: EnumDeclSyntax) { owners.removeLast(); availability.removeLast(); requirements.removeLast() }
   override func visit(_ node: ExtensionDeclSyntax) -> SyntaxVisitorContinueKind {
+    if let inherited = node.inheritanceClause?.inheritedTypes.map({ $0.type.trimmedDescription }) {
+      record(node, kind: "conformance", name: node.extendedType.trimmedDescription,
+        attrs: node.attributes, inheritedTypes: inherited)
+    }
     owners.append(node.extendedType.trimmedDescription); availability.append(attributes(node.attributes)); requirements.append(node.genericWhereClause?.requirements.map(requirementText) ?? []); return .visitChildren
   }
   override func visitPost(_ node: ExtensionDeclSyntax) { owners.removeLast(); availability.removeLast(); requirements.removeLast() }
