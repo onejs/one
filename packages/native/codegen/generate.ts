@@ -770,7 +770,10 @@ export type ComposeIconName = keyof typeof composeIconCodepoints
 const changed: string[] = []
 for (const [path, source] of outputs) {
   const temporary = join(cache, path.replaceAll('/', '_'))
-  writeFileSync(temporary, source.trimEnd() + '\n')
+  // swift names public types through the SwiftUI umbrella: the declaring module
+  // (SwiftUI or SwiftUICore) moves between SDKs, and SwiftUI re-exports both.
+  const text = path.endsWith('.swift') ? source.replaceAll('SwiftUICore.', 'SwiftUI.') : source
+  writeFileSync(temporary, text.trimEnd() + '\n')
   if (/\.tsx?$/.test(path))
     run('bunx', ['oxfmt', '-c', resolve(root, '../../.prettierrc'), temporary])
   const generated = readFileSync(temporary, 'utf8')
