@@ -4,14 +4,22 @@ import {
   Swift,
   useSizeClass,
   useHinge,
-  useReservedRegions,
+  ReservedRegions,
   type ArrangementViewStyle,
 } from '@vxrn/native'
 
 export default function OneNativeArrangementFixture() {
+  return (
+    <ReservedRegions.Provider style={styles.container}>
+      <Arrangement />
+    </ReservedRegions.Provider>
+  )
+}
+
+function Arrangement() {
   const sizeClass = useSizeClass()
   const hinge = useHinge()
-  const reservedRegions = useReservedRegions()
+  const reservedRegions = ReservedRegions.useRegions({ includeInactive: true })
   const [style, setStyle] = useState<ArrangementViewStyle>('automatic')
 
   return (

@@ -54,7 +54,13 @@ if (Number(sdkVersion.split('.')[0]) < MAXIMUM_IOS)
     `SwiftUI bindings target SDK ${MAXIMUM_IOS}, selected toolchain provides ${sdkVersion}`
   )
 const importedCases: Declaration[] = []
-for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport', 'Foundation']) {
+const eventClassTypes = new Set(inventory.flatMap((method) =>
+  method.kind === 'func' && method.owner.split('.').at(-1) === 'View'
+    ? method.parameters.flatMap((parameter) => {
+      const type = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (?:Swift\.Void|\(\))$/.exec(parameter.type)?.[1]
+      return type ? [type] : []
+    }) : []))
+for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport', 'Foundation', 'AVKit']) {
   const outputDir = join(cache, `symbols-${module}-${sdkVersion}`)
   const graphPath = join(outputDir, `${module}.symbols.json`)
   if (!existsSync(graphPath)) {
@@ -71,18 +77,41 @@ for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation'
   }[] }
   for (const symbol of graph.symbols) {
     const [owner, name] = symbol.pathComponents
-    if (symbol.pathComponents.length !== 2 || !/^[A-Za-z]\w*$/.test(name)) continue
     const declaration = symbol.declarationFragments?.map((part) => part.spelling).join('') ?? ''
+    const iosAvailability = symbol.availability?.find((entry) => entry.domain === 'iOS')
+    if (iosAvailability?.isUnconditionallyUnavailable) continue
+    const introduced = iosAvailability?.introduced
+    const attributes = introduced ? [`@available(iOS ${introduced.major}.${introduced.minor ?? 0}, *)`] : []
+    if (symbol.pathComponents.length === 1 &&
+      (symbol.kind.identifier === 'swift.class' && eventClassTypes.has(`${module}.${owner}`) ||
+        module === 'AVKit' && symbol.kind.identifier === 'swift.enum')) {
+      importedCases.push({ module, owner: '', name: owner,
+        kind: symbol.kind.identifier === 'swift.class' ? 'class' : 'enum',
+        parameters: [], line: 0,
+        attributes: symbol.kind.identifier === 'swift.enum' ? [...attributes, '@symbolgraph'] : attributes })
+    }
+    if (symbol.pathComponents.length === 2 && /^[A-Za-z]\w*$/.test(name)) {
+      if (symbol.kind.identifier === 'swift.property' && eventClassTypes.has(`${module}.${owner}`)) {
+        const property = /\bvar [A-Za-z]\w*: ([A-Za-z]\w*\??) \{ get/.exec(declaration)
+        const rawType = property?.[1].replace(/\?$/, '')
+        const prefix = rawType && ({ String: 'Swift', Bool: 'Swift', Int: 'Swift', Double: 'Swift', Float: 'Swift', URL: 'Foundation' } as Record<string, string>)[rawType]
+        if (property && rawType)
+          importedCases.push({ module, owner, name, kind: 'var', parameters: [], line: 0,
+            type: `${prefix ?? module}.${property[1]}`, stored: true,
+            writable: /\{ get set \}/.test(declaration), attributes })
+      } else if (module === 'AVKit' && symbol.kind.identifier === 'swift.enum.case') {
+        importedCases.push({ module, owner, name, kind: 'enumCase', enumCase: true,
+          parameters: [], line: 0, attributes })
+      }
+    }
+    if (symbol.pathComponents.length !== 2 || !/^[A-Za-z]\w*$/.test(name)) continue
     if (symbol.kind.identifier !== 'swift.enum.case' &&
       !(symbol.kind.identifier === 'swift.type.property' &&
         /\b(?:static|class) (?:let|var)\b/.test(declaration) &&
         declaration.includes(`: ${owner}`))) continue
-    const iosAvailability = symbol.availability?.find((entry) => entry.domain === 'iOS')
-    if (iosAvailability?.isUnconditionallyUnavailable) continue
-    const introduced = iosAvailability?.introduced
     importedCases.push({ module, owner, name, kind: 'static', parameters: [],
       type: `${module}.${owner}`, line: 0,
-      attributes: introduced ? [`@available(iOS ${introduced.major}.${introduced.minor ?? 0}, *)`] : [] })
+      attributes })
   }
 }
 importedCases.sort((a, b) => {
@@ -113,7 +142,8 @@ const derivedViewSlots = deriveViewSlots(inventory, MAXIMUM_IOS)
 const shortOwner = (d: Declaration) => d.owner.split('.').at(-1)
 const ownerMatches = (d: Declaration, type: string) => {
   const parts = d.owner.split('.')
-  return parts.at(-1) === type || parts.slice(-2).join('') === type
+  const owner = parts[0] === d.module ? parts.slice(1) : parts
+  return owner.length <= 2 && (owner.at(-1) === type || owner.join('') === type)
 }
 const selected: Declaration[] = []
 // the hill-climb sets: every SDK view constructor and view modifier the generator
@@ -121,6 +151,7 @@ const selected: Declaration[] = []
 // selected but not covered: they are value plumbing, not bound views or modifiers.
 const coveredViews = new Map<string, Set<string>>()
 const coveredModifiers = new Map<string, Set<string>>()
+const generatedModifiers = new Map<string, Set<string>>()
 const cover = (map: Map<string, Set<string>>, declaration: Declaration, name: string) => {
   const names = map.get(declaration.module) ?? new Set<string>()
   names.add(name)
@@ -130,6 +161,10 @@ const coverView = (declaration: Declaration) =>
   cover(coveredViews, declaration, shortOwner(declaration) ?? declaration.owner)
 const coverModifier = (declaration: Declaration) =>
   cover(coveredModifiers, declaration, declaration.name)
+const coverGeneratedModifier = (declaration: Declaration) => {
+  coverModifier(declaration)
+  cover(generatedModifiers, declaration, declaration.name)
+}
 for (const modifier of derivedModifiers) {
   const declaration = inventory.find(
     (d) =>
@@ -150,7 +185,7 @@ for (const modifier of derivedModifiers) {
       d.owner.split('.').at(-1) === 'View'
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${modifier.name}`)
-  coverModifier(declaration)
+  coverGeneratedModifier(declaration)
 }
 for (const slot of derivedViewSlots) {
   const declaration = inventory.find((d) =>
@@ -170,7 +205,7 @@ for (const slot of derivedViewSlots) {
       slot.arguments.map((argument) => argument.type).join('|')
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${slot.name} slot`)
-  coverModifier(declaration)
+  coverGeneratedModifier(declaration)
 }
 const enums = Object.fromEntries(
   enumTypes.map((type) => {
@@ -675,6 +710,9 @@ const manifest = {
     ),
     modifiers: Object.fromEntries(
       [...coveredModifiers].map(([module, names]) => [module, [...names].sort()])
+    ),
+    generatedModifiers: Object.fromEntries(
+      [...generatedModifiers].map(([module, names]) => [module, [...names].sort()])
     ),
   },
   // constructor requirements omitted: SDK revisions restate equivalent generic

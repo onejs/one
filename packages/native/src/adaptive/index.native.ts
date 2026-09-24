@@ -1,14 +1,10 @@
 import { useEffect, useState, useSyncExternalStore } from 'react'
 import { NativeEventEmitter, NativeModules, Platform } from 'react-native'
-import type {
-  HingeState,
-  ReservedRegion,
-  ReservedRegionKind,
-  ReservedRegionOptions,
-  SizeClass,
-} from './types'
+import type { HingeState, SizeClass } from './types'
+import * as ReservedRegions from './ReservedRegions.native'
 
 export type * from './types'
+export { ReservedRegions }
 
 const NativeAdaptive = NativeModules.OneNativeAdaptive
 
@@ -22,7 +18,6 @@ function getInitialConstants() {
     return {
       initialSizeClass: DEFAULT_SIZE_CLASS,
       initialHinge: null,
-      initialReservedRegions: [] as ReservedRegion[],
     }
   }
   const constants =
@@ -32,7 +27,6 @@ function getInitialConstants() {
   return {
     initialSizeClass: (constants?.initialSizeClass as SizeClass) ?? DEFAULT_SIZE_CLASS,
     initialHinge: (constants?.initialHinge as HingeState | null) ?? null,
-    initialReservedRegions: (constants?.initialReservedRegions as ReservedRegion[]) ?? [],
   }
 }
 
@@ -40,11 +34,9 @@ const emitter = Platform.OS === 'ios' && NativeAdaptive ? new NativeEventEmitter
 
 let currentSizeClass: SizeClass = getInitialConstants().initialSizeClass
 let currentHinge: HingeState | null = getInitialConstants().initialHinge
-let currentReservedRegions: ReservedRegion[] = getInitialConstants().initialReservedRegions
 
 const sizeClassListeners = new Set<() => void>()
 const hingeListeners = new Set<() => void>()
-const reservedRegionsListeners = new Set<() => void>()
 
 if (emitter) {
   emitter.addListener('oneNativeSizeClassDidChange', (event: SizeClass) => {
@@ -54,10 +46,6 @@ if (emitter) {
   emitter.addListener('oneNativeHingeDidChange', (event: HingeState | null) => {
     currentHinge = event
     hingeListeners.forEach((listener) => listener())
-  })
-  emitter.addListener('oneNativeReservedRegionsDidChange', (event: ReservedRegion[]) => {
-    currentReservedRegions = event
-    reservedRegionsListeners.forEach((listener) => listener())
   })
 }
 
@@ -115,41 +103,4 @@ export function onHingeChange(callback: (hinge: HingeState | null) => void): () 
   if (!emitter) return () => {}
   const sub = emitter.addListener('oneNativeHingeDidChange', callback)
   return () => sub.remove()
-}
-
-/**
- * Returns the current reserved regions (e.g. hinge division, occlusion) from UIView.reservedRegions.
- */
-export function useReservedRegions(
-  kind?: ReservedRegionKind,
-  options?: ReservedRegionOptions
-): ReservedRegion[] {
-  const regions = useSyncExternalStore(
-    (onStoreChange) => {
-      reservedRegionsListeners.add(onStoreChange)
-      return () => {
-        reservedRegionsListeners.delete(onStoreChange)
-      }
-    },
-    () => currentReservedRegions,
-    () => []
-  )
-
-  let filtered = regions
-  if (kind) {
-    filtered = filtered.filter((r) => r.kind === kind)
-  }
-  if (!options?.includeInactive) {
-    filtered = filtered.filter((r) => r.isActive)
-  }
-  return filtered
-}
-
-export async function getReservedRegions(
-  options?: ReservedRegionOptions
-): Promise<ReservedRegion[]> {
-  if (Platform.OS !== 'ios' || !NativeAdaptive?.getReservedRegions) {
-    return []
-  }
-  return await NativeAdaptive.getReservedRegions(Boolean(options?.includeInactive))
 }

@@ -20,6 +20,7 @@ import dev.onejs.onenative.OneNativeMaskManager
 import dev.onejs.onenative.OneNativeMenuPopupModule
 import dev.onejs.onenative.OneNativeNetworkModule
 import dev.onejs.onenative.OneNativeSafeAreaModule
+import dev.onejs.onenative.OneNativeReservedRegionsProviderManager
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
 import dev.onejs.onenative.OneNativeSyncModule
 import dev.onejs.onenative.OneNativeUiMapManager
@@ -150,6 +151,7 @@ class VxrnNativePackage : BaseReactPackage() {
         listOf(
             OneNativeComposeNodeManager(),
             OneNativeSafeAreaProviderManager(),
+            OneNativeReservedRegionsProviderManager(),
             OneNativeEdgeFadeManager(),
             OneNativeBlurManager(),
             OneNativeMaskManager(),

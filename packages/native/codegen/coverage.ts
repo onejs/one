@@ -7,6 +7,7 @@ import { ios, present, readInventory, type Declaration } from './inventory'
 export type ManifestCoverage = {
   views: Record<string, string[]>
   modifiers: Record<string, string[]>
+  generatedModifiers?: Record<string, string[]>
 }
 
 export type SetCoverage = {
@@ -20,8 +21,8 @@ export type SetCoverage = {
 export type CoverageReport = {
   targetSdk: number
   declarations: number
-  modules: Record<string, { views: SetCoverage; modifiers: SetCoverage }>
-  totals: { views: SetCoverage; modifiers: SetCoverage }
+  modules: Record<string, { views: SetCoverage; modifiers: SetCoverage; generatedModifiers: SetCoverage }>
+  totals: { views: SetCoverage; modifiers: SetCoverage; generatedModifiers: SetCoverage }
 }
 
 const shortOwner = (declaration: Declaration) => declaration.owner.split('.').at(-1)
@@ -78,19 +79,28 @@ export function computeCoverage(
     else if (isViewModifierShape(declaration))
       (above ? sets.aboveModifiers : sets.modifiers).add(declaration.name)
   }
-  const report: Record<string, { views: SetCoverage; modifiers: SetCoverage }> = {}
-  const totals = { views: emptySet(), modifiers: emptySet() }
+  const report: Record<string, { views: SetCoverage; modifiers: SetCoverage; generatedModifiers: SetCoverage }> = {}
+  const totals = { views: emptySet(), modifiers: emptySet(), generatedModifiers: emptySet() }
   for (const [module, sets] of universe) {
+    const boundNames = new Set(coverage.modifiers[module] ?? [])
+    for (const name of coverage.generatedModifiers?.[module] ?? [])
+      if (!boundNames.has(name)) throw new Error(`generated modifier is not bound: ${module}.${name}`)
     const views = diff(sets.views, sets.aboveViews.size, coverage.views[module] ?? [])
     const modifiers = diff(
       sets.modifiers,
       sets.aboveModifiers.size,
       coverage.modifiers[module] ?? []
     )
-    report[module] = { views, modifiers }
+    const generatedModifiers = diff(
+      sets.modifiers,
+      sets.aboveModifiers.size,
+      coverage.generatedModifiers?.[module] ?? []
+    )
+    report[module] = { views, modifiers, generatedModifiers }
     for (const [key, set] of [
       ['views', views],
       ['modifiers', modifiers],
+      ['generatedModifiers', generatedModifiers],
     ] as const) {
       totals[key].mapped += set.mapped
       totals[key].total += set.total
@@ -103,6 +113,8 @@ export function computeCoverage(
   totals.views.unmappedNames.sort()
   totals.modifiers.mappedNames.sort()
   totals.modifiers.unmappedNames.sort()
+  totals.generatedModifiers.mappedNames.sort()
+  totals.generatedModifiers.unmappedNames.sort()
   return { modules: report, totals }
 }
 
@@ -157,16 +169,16 @@ if (import.meta.main) {
   } else {
     const width = Math.max(...modules.map((module) => module.length), 'module'.length)
     console.log(
-      `${'module'.padEnd(width)}  views mapped/total  modifiers mapped/total`
+      `${'module'.padEnd(width)}  views mapped/total  modifiers generated/total  modifiers bound/total`
     )
     for (const module of modules) {
-      const { views, modifiers } = byModule[module]
+      const { views, modifiers, generatedModifiers } = byModule[module]
       console.log(
-        `${module.padEnd(width)}  ${String(views.mapped).padStart(5)} / ${String(views.total).padEnd(5)}  ${String(modifiers.mapped).padStart(5)} / ${String(modifiers.total).padEnd(5)}`
+        `${module.padEnd(width)}  ${String(views.mapped).padStart(5)} / ${String(views.total).padEnd(5)}  ${String(generatedModifiers.mapped).padStart(5)} / ${String(generatedModifiers.total).padEnd(5)}  ${String(modifiers.mapped).padStart(5)} / ${String(modifiers.total).padEnd(5)}`
       )
     }
     console.log(
-      `${'total'.padEnd(width)}  ${String(totals.views.mapped).padStart(5)} / ${String(totals.views.total).padEnd(5)}  ${String(totals.modifiers.mapped).padStart(5)} / ${String(totals.modifiers.total).padEnd(5)}`
+      `${'total'.padEnd(width)}  ${String(totals.views.mapped).padStart(5)} / ${String(totals.views.total).padEnd(5)}  ${String(totals.generatedModifiers.mapped).padStart(5)} / ${String(totals.generatedModifiers.total).padEnd(5)}  ${String(totals.modifiers.mapped).padStart(5)} / ${String(totals.modifiers.total).padEnd(5)}`
     )
   console.log(
     `\ntarget SDK ${report.targetSdk} (toolchain ${sdk}): ${report.declarations} declarations, ` +

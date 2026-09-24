@@ -82,7 +82,8 @@ const eventValueType = (value: EventValueSchema): string => {
   if (value.kind === 'boolean') return 'boolean'
   if (value.kind === 'point') return '{ x: number; y: number }'
   if (value.kind === 'size') return '{ width: number; height: number }'
-  if (value.kind === 'enum') return value.cases.map((item) => JSON.stringify(item)).join(' | ')
+  if (value.kind === 'enum') return [...value.cases, ...(value.open ? ['unknown'] : [])]
+    .map((item) => JSON.stringify(item)).join(' | ')
   if (value.kind === 'optional') return `${eventValueType(value.value)} | null`
   if (value.kind === 'array') return `readonly ${eventValueType(value.value)}[]`
   return `{ ${value.fields.map((field) => `${field.name}: ${eventValueType(field.value)}`).join('; ')} }`
@@ -160,6 +161,8 @@ ${styleFields
                     ? 'Readonly<{ value: string; onChange: (value: string) => void }>'
                   : modifier.kind === 'eventReturnArray'
                     ? 'Readonly<{ items: readonly string[]; onAction: () => void }>'
+                  : modifier.kind === 'eventReturnEnum'
+                    ? `Readonly<{ result: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}; onAction: (value: ${eventValueType(modifier.eventValue!)}) => void }>`
           : modifier.kind === 'bindingBoolean' || modifier.kind === 'bindingFocusBoolean'
             ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>'
             : modifier.kind === 'bindingString'
@@ -168,6 +171,8 @@ ${styleFields
                 ? 'Readonly<{ value: string | null; onChange: (value: string | null) => void }>'
               : modifier.kind === 'bindingCodable'
                 ? `Readonly<{ value: string${modifier.type.endsWith('?') ? ' | null' : ''}; onChange: (value: string) => void }>`
+              : modifier.kind === 'bindingPoint'
+                ? 'Readonly<{ value: Readonly<{ x: number; y: number }> | null; onChange: (value: Readonly<{ x: number; y: number }> | null) => void }>'
               : modifier.kind === 'optionalBoolean'
                 ? 'boolean | null'
                 : modifier.kind === 'optionalNumber'
@@ -178,8 +183,12 @@ ${styleFields
                     ? 'string | null'
                   : modifier.kind === 'optionalEnum'
                     ? `SDK${upper(modifier.name)} | null`
+                    : modifier.kind === 'gesture'
+                      ? modifier.gestureOptions!.map((option) => `Readonly<{ kind: ${JSON.stringify(option.name)}; onEnded: ${option.eventValue ? `(value: ${eventValueType(option.eventValue)})` : '()'} => void }>`).join(' | ')
+                    : modifier.kind === 'defaultFocusBoolean'
+                      ? 'boolean'
                     : modifier.kind === 'record'
-                      ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ') : argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'bindingBoolean' ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>' : argument.kind === 'stringArray' || argument.kind === 'stringSet' ? 'readonly string[]' : argument.kind === 'numericStruct' || argument.kind === 'numericTuple' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}: number`).join('; ')} }>` : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
+                      ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ') : argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'bindingBoolean' ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>' : argument.kind === 'bindingOptionalURL' ? 'Readonly<{ value: string | null; onChange: (value: string | null) => void }>' : argument.kind === 'eventStruct' ? `(value: ${eventValueType(argument.eventValue!)}) => void` : argument.kind === 'classUpdate' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}?: ${field.type === 'Swift.Bool' ? 'boolean' : field.type.endsWith('?') ? 'string | null' : 'string'}`).join('; ')} }>` : argument.kind === 'resultURL' || argument.kind === 'resultURLArray' ? `(result: Readonly<{ success: ${argument.kind === 'resultURL' ? 'string' : 'readonly string[]'} } | { failure: string }>) => void` : argument.kind === 'stringArray' || argument.kind === 'stringSet' ? 'readonly string[]' : argument.kind === 'numericStruct' || argument.kind === 'numericTuple' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}: number`).join('; ')} }>` : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
                       : modifier.kind === 'style' ? undefined
                       : modifier.kind === 'url' ? 'string'
               : modifier.kind === 'string' ? undefined : modifier.kind,

@@ -54,8 +54,7 @@ export {
   useHinge,
   getHinge,
   onHingeChange,
-  useReservedRegions,
-  getReservedRegions,
+  ReservedRegions,
 } from './adaptive/index.native'
 export type {
   UserInterfaceSizeClass,
@@ -65,6 +64,7 @@ export type {
   ReservedRegionKind,
   ReservedRegion,
   ReservedRegionOptions,
+  ReservedRegionsProviderProps,
 } from './adaptive/types'
 export type {
   ArrangementViewProps,

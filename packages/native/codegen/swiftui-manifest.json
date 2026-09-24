@@ -952,6 +952,12 @@
       ]
     },
     {
+      "name": "accessibilityDefaultFocus",
+      "kind": "defaultFocusBoolean",
+      "type": "SwiftUI.AccessibilityFocusState<Value>.Binding",
+      "ios": 26
+    },
+    {
       "name": "accessibilityDirectTouch",
       "kind": "record",
       "type": "",
@@ -2247,6 +2253,30 @@
           "ios": 13
         }
       ]
+    },
+    {
+      "name": "appStoreMerchandising",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "string",
+          "type": "StoreKit.AppStoreMerchandisingKind",
+          "optional": false,
+          "swiftExpression": "StoreKit.AppStoreMerchandisingKind.subscriptionBundle($value)",
+          "field": "kind",
+          "label": "kind"
+        }
+      ],
+      "framework": "StoreKit"
     },
     {
       "name": "aspectRatio",
@@ -3561,6 +3591,12 @@
       ]
     },
     {
+      "name": "defaultFocus",
+      "kind": "defaultFocusBoolean",
+      "type": "SwiftUI.FocusState<V>.Binding",
+      "ios": 17
+    },
+    {
       "name": "defaultHoverEffect",
       "kind": "optionalEnum",
       "type": "SwiftUICore.HoverEffect?",
@@ -3951,6 +3987,153 @@
       ]
     },
     {
+      "name": "dropConfiguration",
+      "kind": "eventReturnEnum",
+      "type": "@escaping (SwiftUI.DropSession) -> SwiftUI.DropConfiguration",
+      "label": "_",
+      "eventInputType": "SwiftUI.DropSession",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "itemsCount",
+            "value": {
+              "kind": "number"
+            }
+          },
+          {
+            "name": "suggestedOperations",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "rawValue",
+                  "value": {
+                    "kind": "number"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "size",
+            "value": {
+              "kind": "size"
+            }
+          },
+          {
+            "name": "location",
+            "value": {
+              "kind": "point"
+            }
+          }
+        ]
+      },
+      "resultType": "SwiftUI.DropConfiguration",
+      "resultConstructor": {
+        "type": "SwiftUI.DropOperation",
+        "label": "operation"
+      },
+      "cases": [
+        {
+          "name": "cancel",
+          "ios": 13.4
+        },
+        {
+          "name": "forbidden",
+          "ios": 13.4
+        },
+        {
+          "name": "copy",
+          "ios": 13.4
+        },
+        {
+          "name": "move",
+          "ios": 13.4
+        }
+      ],
+      "ios": 27
+    },
+    {
+      "name": "dropDestination",
+      "kind": "eventStruct",
+      "type": "@escaping (_ items: [T], _ session: SwiftUI.DropSession) -> Swift.Void",
+      "label": "action",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "items",
+            "value": {
+              "kind": "array",
+              "value": {
+                "kind": "string"
+              }
+            }
+          },
+          {
+            "name": "session",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "itemsCount",
+                  "value": {
+                    "kind": "number"
+                  }
+                },
+                {
+                  "name": "suggestedOperations",
+                  "value": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "name": "rawValue",
+                        "value": {
+                          "kind": "number"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "size",
+                  "value": {
+                    "kind": "size"
+                  }
+                },
+                {
+                  "name": "location",
+                  "value": {
+                    "kind": "point"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "eventInputs": [
+        "items",
+        "session"
+      ],
+      "callArguments": [
+        {
+          "label": "for",
+          "defaultValue": "String.self"
+        },
+        {
+          "label": "isEnabled",
+          "defaultValue": "true"
+        },
+        {
+          "label": "action",
+          "bridge": true
+        }
+      ],
+      "ios": 26
+    },
+    {
       "name": "dynamicTypeSize",
       "kind": "string",
       "type": "SwiftUICore.DynamicTypeSize",
@@ -4093,10 +4276,76 @@
       "ios": 17
     },
     {
+      "name": "fileDialogURLEnabled",
+      "kind": "boolean",
+      "type": "Foundation.Predicate<Foundation.URL>",
+      "predicateInput": "Foundation.URL",
+      "ios": 17
+    },
+    {
+      "name": "fileExporter",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "field": "isPresented",
+          "label": "isPresented",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "kind": "bindingBoolean",
+          "optional": false
+        },
+        {
+          "field": "item",
+          "label": "item",
+          "type": "Swift.String?",
+          "sdkType": "T?",
+          "kind": "string",
+          "optional": true
+        },
+        {
+          "field": "onCompletion",
+          "label": "onCompletion",
+          "type": "@escaping (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void",
+          "kind": "resultURL",
+          "optional": false
+        }
+      ]
+    },
+    {
       "name": "fileExporterFilenameLabel",
       "kind": "optionalString",
       "type": "SwiftUICore.Text?",
       "ios": 17
+    },
+    {
+      "name": "fileMover",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "url",
+          "type": "Foundation.URL?",
+          "optional": true,
+          "field": "file",
+          "label": "file"
+        },
+        {
+          "kind": "resultURL",
+          "type": "@escaping (_ result: Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void",
+          "optional": false,
+          "field": "onCompletion",
+          "label": "onCompletion"
+        }
+      ]
     },
     {
       "name": "findDisabled",
@@ -4377,6 +4626,178 @@
       "zeroArgument": true
     },
     {
+      "name": "gesture",
+      "kind": "gesture",
+      "type": "T",
+      "label": "_",
+      "gestureOptions": [
+        {
+          "name": "drag",
+          "type": "SwiftUI.DragGesture",
+          "ios": 13,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "location",
+                "value": {
+                  "kind": "point"
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "longPress",
+          "type": "SwiftUI.LongPressGesture",
+          "ios": 13,
+          "eventValue": {
+            "kind": "boolean"
+          }
+        },
+        {
+          "name": "magnify",
+          "type": "SwiftUI.MagnifyGesture",
+          "ios": 17,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "magnification",
+                "value": {
+                  "kind": "number"
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "number"
+                }
+              },
+              {
+                "name": "startAnchor",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "x",
+                      "value": {
+                        "kind": "number"
+                      }
+                    },
+                    {
+                      "name": "y",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "rotate",
+          "type": "SwiftUI.RotateGesture",
+          "ios": 17,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "rotation",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "radians",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "radians",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startAnchor",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "x",
+                      "value": {
+                        "kind": "number"
+                      }
+                    },
+                    {
+                      "name": "y",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "spatialTap",
+          "type": "SwiftUI.SpatialTapGesture",
+          "ios": 16,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "location",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "tap",
+          "type": "SwiftUICore.TapGesture",
+          "ios": 13
+        }
+      ],
+      "ios": 13
+    },
+    {
       "name": "glassEffectTransition",
       "kind": "string",
       "type": "SwiftUICore.GlassEffectTransition",
@@ -4604,6 +5025,178 @@
       "type": "",
       "ios": 13,
       "zeroArgument": true
+    },
+    {
+      "name": "highPriorityGesture",
+      "kind": "gesture",
+      "type": "T",
+      "label": "_",
+      "gestureOptions": [
+        {
+          "name": "drag",
+          "type": "SwiftUI.DragGesture",
+          "ios": 13,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "location",
+                "value": {
+                  "kind": "point"
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "longPress",
+          "type": "SwiftUI.LongPressGesture",
+          "ios": 13,
+          "eventValue": {
+            "kind": "boolean"
+          }
+        },
+        {
+          "name": "magnify",
+          "type": "SwiftUI.MagnifyGesture",
+          "ios": 17,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "magnification",
+                "value": {
+                  "kind": "number"
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "number"
+                }
+              },
+              {
+                "name": "startAnchor",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "x",
+                      "value": {
+                        "kind": "number"
+                      }
+                    },
+                    {
+                      "name": "y",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "rotate",
+          "type": "SwiftUI.RotateGesture",
+          "ios": 17,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "rotation",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "radians",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "radians",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startAnchor",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "x",
+                      "value": {
+                        "kind": "number"
+                      }
+                    },
+                    {
+                      "name": "y",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "spatialTap",
+          "type": "SwiftUI.SpatialTapGesture",
+          "ios": 16,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "location",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "tap",
+          "type": "SwiftUICore.TapGesture",
+          "ios": 13
+        }
+      ],
+      "ios": 13
     },
     {
       "name": "hoverEffectDisabled",
@@ -4988,6 +5581,13 @@
       "kind": "boolean",
       "type": "Swift.Bool",
       "ios": 16
+    },
+    {
+      "name": "itemProvider",
+      "kind": "string",
+      "type": "Swift.Optional<() -> Foundation.NSItemProvider?>",
+      "swiftExpression": "{ Foundation.NSItemProvider(object: $value as NSString) }",
+      "ios": 13
     },
     {
       "name": "kerning",
@@ -6746,12 +7346,285 @@
       "ios": 13
     },
     {
+      "name": "onCameraCaptureEvent",
+      "kind": "eventStruct",
+      "type": "@escaping (AVKit.AVCaptureEvent) -> Swift.Void",
+      "label": "action",
+      "ios": 18,
+      "framework": "AVKit",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "phase",
+            "value": {
+              "kind": "enum",
+              "cases": [
+                "began",
+                "cancelled",
+                "ended"
+              ],
+              "open": true
+            }
+          }
+        ]
+      },
+      "callArguments": [
+        {
+          "label": "isEnabled",
+          "defaultValue": "true"
+        },
+        {
+          "label": "action",
+          "bridge": true
+        }
+      ]
+    },
+    {
+      "name": "onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction",
+      "module": "_AVKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "defaultSoundDisabled",
+          "label": "defaultSoundDisabled"
+        },
+        {
+          "kind": "eventStruct",
+          "type": "@escaping (AVKit.AVCaptureEvent) -> Swift.Void",
+          "optional": false,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "phase",
+                "value": {
+                  "kind": "enum",
+                  "cases": [
+                    "began",
+                    "cancelled",
+                    "ended"
+                  ],
+                  "open": true
+                }
+              },
+              {
+                "name": "shouldPlaySound",
+                "value": {
+                  "kind": "boolean"
+                }
+              }
+            ]
+          },
+          "field": "primaryAction",
+          "label": "primaryAction"
+        },
+        {
+          "kind": "eventStruct",
+          "type": "@escaping (AVKit.AVCaptureEvent) -> Swift.Void",
+          "optional": false,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "phase",
+                "value": {
+                  "kind": "enum",
+                  "cases": [
+                    "began",
+                    "cancelled",
+                    "ended"
+                  ],
+                  "open": true
+                }
+              },
+              {
+                "name": "shouldPlaySound",
+                "value": {
+                  "kind": "boolean"
+                }
+              }
+            ]
+          },
+          "field": "secondaryAction",
+          "label": "secondaryAction"
+        }
+      ],
+      "framework": "AVKit",
+      "sdkName": "onCameraCaptureEvent"
+    },
+    {
+      "name": "onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction",
+      "module": "_AVKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isEnabled",
+          "label": "isEnabled"
+        },
+        {
+          "kind": "eventStruct",
+          "type": "@escaping (AVKit.AVCaptureEvent) -> Swift.Void",
+          "optional": false,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "phase",
+                "value": {
+                  "kind": "enum",
+                  "cases": [
+                    "began",
+                    "cancelled",
+                    "ended"
+                  ],
+                  "open": true
+                }
+              }
+            ]
+          },
+          "field": "primaryAction",
+          "label": "primaryAction"
+        },
+        {
+          "kind": "eventStruct",
+          "type": "@escaping (AVKit.AVCaptureEvent) -> Swift.Void",
+          "optional": false,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "phase",
+                "value": {
+                  "kind": "enum",
+                  "cases": [
+                    "began",
+                    "cancelled",
+                    "ended"
+                  ],
+                  "open": true
+                }
+              }
+            ]
+          },
+          "field": "secondaryAction",
+          "label": "secondaryAction"
+        }
+      ],
+      "framework": "AVKit",
+      "sdkName": "onCameraCaptureEvent"
+    },
+    {
       "name": "onChange",
       "kind": "eventValueString",
       "type": "V",
       "label": "of",
       "callbackLabel": "perform",
       "ios": 14
+    },
+    {
+      "name": "onContinueUserActivity",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "optional": false,
+          "field": "activityType",
+          "label": "_"
+        },
+        {
+          "kind": "eventStruct",
+          "type": "@escaping (Foundation.NSUserActivity) -> ()",
+          "optional": false,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "activityType",
+                "value": {
+                  "kind": "string"
+                }
+              },
+              {
+                "name": "isEligibleForHandoff",
+                "value": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "name": "isEligibleForPrediction",
+                "value": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "name": "isEligibleForPublicIndexing",
+                "value": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "name": "isEligibleForSearch",
+                "value": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "name": "needsSave",
+                "value": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "name": "supportsContinuationStreams",
+                "value": {
+                  "kind": "boolean"
+                }
+              },
+              {
+                "name": "targetContentIdentifier",
+                "value": {
+                  "kind": "optional",
+                  "value": {
+                    "kind": "string"
+                  }
+                }
+              },
+              {
+                "name": "title",
+                "value": {
+                  "kind": "optional",
+                  "value": {
+                    "kind": "string"
+                  }
+                }
+              }
+            ]
+          },
+          "field": "action",
+          "label": "perform"
+        }
+      ]
     },
     {
       "name": "onContinuousHover",
@@ -6792,6 +7665,13 @@
       "ios": 13
     },
     {
+      "name": "onDrag",
+      "kind": "string",
+      "type": "@escaping () -> Foundation.NSItemProvider",
+      "swiftExpression": "{ Foundation.NSItemProvider(object: $value as NSString) }",
+      "ios": 13.4
+    },
+    {
       "name": "onDragSessionUpdated",
       "kind": "eventStruct",
       "type": "@escaping (SwiftUI.DragSession) -> Swift.Void",
@@ -6800,6 +7680,50 @@
       "eventValue": {
         "kind": "object",
         "fields": [
+          {
+            "name": "location",
+            "value": {
+              "kind": "point"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "onDropSessionUpdated",
+      "kind": "eventStruct",
+      "type": "@escaping (SwiftUI.DropSession) -> Swift.Void",
+      "label": "_",
+      "ios": 27,
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "itemsCount",
+            "value": {
+              "kind": "number"
+            }
+          },
+          {
+            "name": "suggestedOperations",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "rawValue",
+                  "value": {
+                    "kind": "number"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "size",
+            "value": {
+              "kind": "size"
+            }
+          },
           {
             "name": "location",
             "value": {
@@ -6866,6 +7790,50 @@
       "ios": 26
     },
     {
+      "name": "onKeyPress",
+      "kind": "eventReturnEnum",
+      "type": "@escaping (SwiftUI.KeyPress) -> SwiftUI.KeyPress.Result",
+      "label": "action",
+      "eventInputType": "SwiftUI.KeyPress",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "characters",
+            "value": {
+              "kind": "string"
+            }
+          },
+          {
+            "name": "modifiers",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "rawValue",
+                  "value": {
+                    "kind": "number"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "resultType": "SwiftUI.KeyPress.Result",
+      "cases": [
+        {
+          "name": "handled",
+          "ios": 17
+        },
+        {
+          "name": "ignored",
+          "ios": 17
+        }
+      ],
+      "ios": 17
+    },
+    {
       "name": "onLongPressGesture",
       "kind": "event",
       "type": "@escaping () -> Swift.Void",
@@ -6907,6 +7875,57 @@
           "bridge": true
         }
       ]
+    },
+    {
+      "name": "onMapCameraChangeWithEventStruct",
+      "module": "_MapKit_SwiftUI",
+      "kind": "eventStruct",
+      "type": "@escaping (_MapKit_SwiftUI.MapCameraUpdateContext) -> Swift.Void",
+      "label": "_",
+      "ios": 17,
+      "framework": "MapKit",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "camera",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "distance",
+                  "value": {
+                    "kind": "number"
+                  }
+                },
+                {
+                  "name": "heading",
+                  "value": {
+                    "kind": "number"
+                  }
+                },
+                {
+                  "name": "pitch",
+                  "value": {
+                    "kind": "number"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "callArguments": [
+        {
+          "label": "frequency",
+          "defaultValue": ".onEnd"
+        },
+        {
+          "label": "_",
+          "bridge": true
+        }
+      ],
+      "sdkName": "onMapCameraChange"
     },
     {
       "name": "onOpenURLWithPerform",
@@ -7767,6 +8786,29 @@
       ]
     },
     {
+      "name": "photosReferenceImageViewer",
+      "kind": "record",
+      "type": "",
+      "ios": 27,
+      "arguments": [
+        {
+          "kind": "bindingOptionalURL",
+          "type": "SwiftUICore.Binding<Foundation.URL?>",
+          "optional": false,
+          "field": "fileURL",
+          "label": "fileURL"
+        },
+        {
+          "kind": "resultURL",
+          "type": "((Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void)?",
+          "optional": false,
+          "field": "onProcessingCompletion",
+          "label": "onProcessingCompletion"
+        }
+      ],
+      "framework": "PhotosUI"
+    },
+    {
       "name": "pickerStyle",
       "kind": "style",
       "type": "S",
@@ -8459,6 +9501,30 @@
         }
       ],
       "label": "reason"
+    },
+    {
+      "name": "refundRequestSheet",
+      "kind": "record",
+      "type": "",
+      "ios": 15,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "StoreKit.Transaction.ID",
+          "optional": false,
+          "swiftExpression": "UInt64($value) ?? { () -> UInt64 in preconditionFailure(\"invalid UInt64\") }()",
+          "field": "transactionID",
+          "label": "for"
+        },
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        }
+      ],
+      "framework": "StoreKit"
     },
     {
       "name": "renameAction",
@@ -9249,7 +10315,28 @@
       "label": "onAppear"
     },
     {
-      "name": "scrollPosition",
+      "name": "scrollPositionWithBindingPoint",
+      "module": "SwiftUI",
+      "kind": "bindingPoint",
+      "type": "SwiftUICore.Binding<SwiftUICore.ScrollPosition>",
+      "label": "_",
+      "ios": 18,
+      "bindingType": "SwiftUICore.ScrollPosition",
+      "callArguments": [
+        {
+          "label": "_",
+          "bridge": true
+        },
+        {
+          "label": "anchor",
+          "defaultValue": "nil"
+        }
+      ],
+      "sdkName": "scrollPosition"
+    },
+    {
+      "name": "scrollPositionWithId",
+      "module": "SwiftUI",
       "kind": "bindingOptionalString",
       "type": "SwiftUICore.Binding<(some Hashable)?>",
       "label": "id",
@@ -9263,7 +10350,8 @@
           "label": "anchor",
           "defaultValue": "nil"
         }
-      ]
+      ],
+      "sdkName": "scrollPosition"
     },
     {
       "name": "scrollTargetBehavior",
@@ -9664,6 +10752,178 @@
           "ios": 14
         }
       ]
+    },
+    {
+      "name": "simultaneousGesture",
+      "kind": "gesture",
+      "type": "T",
+      "label": "_",
+      "gestureOptions": [
+        {
+          "name": "drag",
+          "type": "SwiftUI.DragGesture",
+          "ios": 13,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "location",
+                "value": {
+                  "kind": "point"
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "longPress",
+          "type": "SwiftUI.LongPressGesture",
+          "ios": 13,
+          "eventValue": {
+            "kind": "boolean"
+          }
+        },
+        {
+          "name": "magnify",
+          "type": "SwiftUI.MagnifyGesture",
+          "ios": 17,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "magnification",
+                "value": {
+                  "kind": "number"
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "number"
+                }
+              },
+              {
+                "name": "startAnchor",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "x",
+                      "value": {
+                        "kind": "number"
+                      }
+                    },
+                    {
+                      "name": "y",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "rotate",
+          "type": "SwiftUI.RotateGesture",
+          "ios": 17,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "rotation",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "radians",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "velocity",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "radians",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startAnchor",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "x",
+                      "value": {
+                        "kind": "number"
+                      }
+                    },
+                    {
+                      "name": "y",
+                      "value": {
+                        "kind": "number"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "startLocation",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "spatialTap",
+          "type": "SwiftUI.SpatialTapGesture",
+          "ios": 16,
+          "eventValue": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "location",
+                "value": {
+                  "kind": "point"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "tap",
+          "type": "SwiftUICore.TapGesture",
+          "ios": 13
+        }
+      ],
+      "ios": 13
     },
     {
       "name": "siriTipViewStyle",
@@ -12010,6 +13270,77 @@
       "zeroArgument": true
     },
     {
+      "name": "userActivity",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "optional": false,
+          "field": "activityType",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "isActive",
+          "label": "isActive"
+        },
+        {
+          "kind": "classUpdate",
+          "type": "@escaping (Foundation.NSUserActivity) -> ()",
+          "optional": false,
+          "fields": [
+            {
+              "name": "isEligibleForHandoff",
+              "label": "isEligibleForHandoff",
+              "type": "Swift.Bool"
+            },
+            {
+              "name": "isEligibleForPrediction",
+              "label": "isEligibleForPrediction",
+              "type": "Swift.Bool"
+            },
+            {
+              "name": "isEligibleForPublicIndexing",
+              "label": "isEligibleForPublicIndexing",
+              "type": "Swift.Bool"
+            },
+            {
+              "name": "isEligibleForSearch",
+              "label": "isEligibleForSearch",
+              "type": "Swift.Bool"
+            },
+            {
+              "name": "needsSave",
+              "label": "needsSave",
+              "type": "Swift.Bool"
+            },
+            {
+              "name": "supportsContinuationStreams",
+              "label": "supportsContinuationStreams",
+              "type": "Swift.Bool"
+            },
+            {
+              "name": "targetContentIdentifier",
+              "label": "targetContentIdentifier",
+              "type": "Swift.String?"
+            },
+            {
+              "name": "title",
+              "label": "title",
+              "type": "Swift.String?"
+            }
+          ],
+          "field": "update",
+          "label": "_"
+        }
+      ]
+    },
+    {
       "name": "verifyIdentityWithWalletButtonStyle",
       "kind": "string",
       "type": "_PassKit_SwiftUI.VerifyIdentityWithWalletButtonStyle",
@@ -12261,6 +13592,15 @@
       "framework": "WebKit"
     },
     {
+      "name": "webViewScrollPosition",
+      "kind": "bindingPoint",
+      "type": "SwiftUICore.Binding<SwiftUICore.ScrollPosition>",
+      "label": "_",
+      "ios": 26,
+      "framework": "WebKit",
+      "bindingType": "SwiftUICore.ScrollPosition"
+    },
+    {
       "name": "webViewTextSelection",
       "kind": "style",
       "type": "S",
@@ -12461,9 +13801,11 @@
         "foregroundStyle",
         "frame",
         "geometryGroup",
+        "gesture",
         "glassEffectTransition",
         "grayscale",
         "headerProminence",
+        "highPriorityGesture",
         "hoverEffect",
         "hoverEffectDisabled",
         "hueRotation",
@@ -12508,6 +13850,7 @@
         "scaledToFill",
         "scaledToFit",
         "shadow",
+        "simultaneousGesture",
         "speechAdjustedPitch",
         "speechAlwaysIncludesPunctuation",
         "speechAnnouncementsQueued",
@@ -12541,6 +13884,7 @@
         "accessibilityAdjustableAction",
         "accessibilityChildren",
         "accessibilityCustomContent",
+        "accessibilityDefaultFocus",
         "accessibilityDirectTouch",
         "accessibilityDragPoint",
         "accessibilityDropPoint",
@@ -12584,6 +13928,7 @@
         "datePickerStyle",
         "defaultAdaptableTabBarPlacement",
         "defaultAppStorage",
+        "defaultFocus",
         "defaultScrollAnchor",
         "defaultTabBarPlacement",
         "defersSystemGestures",
@@ -12598,14 +13943,19 @@
         "documentLaunchTitle",
         "dragConfiguration",
         "draggable",
+        "dropConfiguration",
+        "dropDestination",
         "fileDialogBrowserOptions",
         "fileDialogConfirmationLabel",
         "fileDialogCustomizationID",
         "fileDialogDefaultDirectory",
         "fileDialogImportsUnresolvedAliases",
         "fileDialogMessage",
+        "fileDialogURLEnabled",
+        "fileExporter",
         "fileExporterFilenameLabel",
         "fileImporter",
+        "fileMover",
         "findDisabled",
         "findNavigator",
         "flipsForRightToLeftLayoutDirection",
@@ -12630,6 +13980,7 @@
         "interactionActivityTrackingTag",
         "interactiveDismissDisabled",
         "invalidatableContent",
+        "itemProvider",
         "keyboardShortcut",
         "keyboardType",
         "labelIconToTitleSpacing",
@@ -12669,10 +14020,14 @@
         "navigationTitle",
         "navigationTransition",
         "navigationViewStyle",
+        "onContinueUserActivity",
         "onContinuousHover",
+        "onDrag",
         "onDragSessionUpdated",
+        "onDropSessionUpdated",
         "onHover",
         "onInteractiveResizeChange",
+        "onKeyPress",
         "onLongPressGesture",
         "onOpenURL",
         "onPencilDoubleTap",
@@ -12773,6 +14128,7 @@
         "toolbarTitleMenu",
         "toolbarVisibility",
         "typeSelectEquivalent",
+        "userActivity",
         "windowToolbarFullScreenVisibility",
         "writingToolsAffordanceVisibility",
         "writingToolsBehavior"
@@ -12785,18 +14141,14 @@
         "payWithApplePayButtonStyle",
         "verifyIdentityWithWalletButtonStyle"
       ],
-      "_DataDetection_SwiftUI": [
-        "dataDetection"
-      ],
-      "_GameController_SwiftUI": [
-        "handlesGameControllerEvents"
-      ],
       "_StoreKit_SwiftUI": [
+        "appStoreMerchandising",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
         "productDescription",
         "productIconBorder",
         "productViewStyle",
+        "refundRequestSheet",
         "storeButton",
         "subscriptionOfferViewButtonVisibility",
         "subscriptionOfferViewDetailAction",
@@ -12811,6 +14163,12 @@
         "subscriptionStorePolicyForegroundStyle",
         "subscriptionStoreSignInAction"
       ],
+      "_DataDetection_SwiftUI": [
+        "dataDetection"
+      ],
+      "_GameController_SwiftUI": [
+        "handlesGameControllerEvents"
+      ],
       "_MapKit_SwiftUI": [
         "mapControlVisibility",
         "mapControls",
@@ -12822,12 +14180,16 @@
       "_MusicKit_SwiftUI": [
         "musicSubscriptionOffer"
       ],
+      "_AVKit_SwiftUI": [
+        "onCameraCaptureEvent"
+      ],
       "_PhotosUI_SwiftUI": [
         "photosPickerAccessoryVisibility",
         "photosPickerDisabledCapabilities",
         "photosPickerMetadataOptions",
         "photosPickerSearchText",
-        "photosPickerStyle"
+        "photosPickerStyle",
+        "photosReferenceImageViewer"
       ],
       "_RealityKit_SwiftUI": [
         "realityViewCameraControls",
@@ -12850,10 +14212,461 @@
         "webViewLinkPreviews",
         "webViewMagnificationGestures",
         "webViewOnScrollGeometryChange",
+        "webViewScrollPosition",
         "webViewTextSelection"
       ],
       "_QuickLook_SwiftUI": [
         "quickLookPreview"
+      ]
+    },
+    "generatedModifiers": {
+      "SwiftUICore": [
+        "accentColor",
+        "accessibilityIgnoresInvertColors",
+        "accessibilityShowsLargeContentViewer",
+        "alignmentGuide",
+        "allowedDynamicRange",
+        "allowsHitTesting",
+        "allowsTightening",
+        "animation",
+        "aspectRatio",
+        "background",
+        "backgroundStyle",
+        "baselineOffset",
+        "blendMode",
+        "blur",
+        "bold",
+        "brightness",
+        "buttonSizing",
+        "clipped",
+        "colorEffect",
+        "colorInvert",
+        "colorMultiply",
+        "colorScheme",
+        "compositingGroup",
+        "containerCornerOffset",
+        "containerRelativeFrame",
+        "containerShape",
+        "contentShape",
+        "contentTransition",
+        "contrast",
+        "controlSize",
+        "coordinateSpace",
+        "defaultHoverEffect",
+        "disabled",
+        "distortionEffect",
+        "drawingGroup",
+        "dynamicTypeSize",
+        "edgesIgnoringSafeArea",
+        "fixedSize",
+        "fontWidth",
+        "foregroundColor",
+        "geometryGroup",
+        "gesture",
+        "glassEffectTransition",
+        "grayscale",
+        "headerProminence",
+        "highPriorityGesture",
+        "hoverEffect",
+        "hoverEffectDisabled",
+        "hueRotation",
+        "id",
+        "ignoresSafeArea",
+        "imageScale",
+        "italic",
+        "kerning",
+        "layerEffect",
+        "layoutDirectionBehavior",
+        "layoutPriority",
+        "lineHeight",
+        "lineLimit",
+        "lineSpacing",
+        "luminanceToAlpha",
+        "mask",
+        "materialActiveAppearance",
+        "minimumScaleFactor",
+        "monospaced",
+        "monospacedDigit",
+        "multilineTextAlignment",
+        "offset",
+        "onAppear",
+        "onChange",
+        "onDisappear",
+        "onGeometryChange",
+        "onOpenURL",
+        "onTapGesture",
+        "overlay",
+        "position",
+        "preferredColorScheme",
+        "privacySensitive",
+        "redacted",
+        "rotation3DEffect",
+        "rotationEffect",
+        "safeAreaInset",
+        "safeAreaPadding",
+        "saturation",
+        "scaleEffect",
+        "scaledToFill",
+        "scaledToFit",
+        "shadow",
+        "simultaneousGesture",
+        "speechAdjustedPitch",
+        "speechAlwaysIncludesPunctuation",
+        "speechAnnouncementsQueued",
+        "speechSpellsOutCharacters",
+        "strikethrough",
+        "symbolColorRenderingMode",
+        "symbolRenderingMode",
+        "symbolVariableValueMode",
+        "symbolVariant",
+        "tag",
+        "textCase",
+        "textInputBorderShape",
+        "textScale",
+        "tracking",
+        "transformEffect",
+        "transition",
+        "truncationMode",
+        "typesettingLanguage",
+        "underline",
+        "unredacted",
+        "writingDirection",
+        "zIndex"
+      ],
+      "SwiftUI": [
+        "accessibility",
+        "accessibilityAction",
+        "accessibilityActions",
+        "accessibilityActivationPoint",
+        "accessibilityAddTraits",
+        "accessibilityAdjustableAction",
+        "accessibilityChildren",
+        "accessibilityCustomContent",
+        "accessibilityDefaultFocus",
+        "accessibilityDirectTouch",
+        "accessibilityDragPoint",
+        "accessibilityDropPoint",
+        "accessibilityElement",
+        "accessibilityFocused",
+        "accessibilityHeading",
+        "accessibilityHidden",
+        "accessibilityHint",
+        "accessibilityIdentifier",
+        "accessibilityInputLabels",
+        "accessibilityLabel",
+        "accessibilityRemoveTraits",
+        "accessibilityRepresentation",
+        "accessibilityRespondsToUserInteraction",
+        "accessibilityScrollAction",
+        "accessibilityScrollStatus",
+        "accessibilitySortPriority",
+        "accessibilityTextContentType",
+        "accessibilityValue",
+        "accessibilityZoomAction",
+        "alert",
+        "allowsWindowActivationEvents",
+        "assistiveAccessNavigationIcon",
+        "asyncImageURLSession",
+        "autocapitalization",
+        "autocorrectionDisabled",
+        "backgroundExtensionEffect",
+        "badge",
+        "badgeProminence",
+        "buttonBorderShape",
+        "buttonRepeatBehavior",
+        "buttonStyle",
+        "confirmationDialog",
+        "containerBackground",
+        "contentMargins",
+        "contentToolbar",
+        "contextMenu",
+        "controlGroupStyle",
+        "copyable",
+        "cuttable",
+        "datePickerStyle",
+        "defaultAdaptableTabBarPlacement",
+        "defaultAppStorage",
+        "defaultFocus",
+        "defaultScrollAnchor",
+        "defaultTabBarPlacement",
+        "defersSystemGestures",
+        "deleteDisabled",
+        "dialogIcon",
+        "dialogSuppressionToggle",
+        "disableAutocorrection",
+        "disclosureGroupStyle",
+        "dismissalConfirmationDialog",
+        "documentBrowserContextMenu",
+        "documentLaunchSubtitle",
+        "documentLaunchTitle",
+        "dragConfiguration",
+        "draggable",
+        "dropConfiguration",
+        "dropDestination",
+        "fileDialogBrowserOptions",
+        "fileDialogConfirmationLabel",
+        "fileDialogCustomizationID",
+        "fileDialogDefaultDirectory",
+        "fileDialogImportsUnresolvedAliases",
+        "fileDialogMessage",
+        "fileDialogURLEnabled",
+        "fileExporter",
+        "fileExporterFilenameLabel",
+        "fileMover",
+        "findDisabled",
+        "findNavigator",
+        "flipsForRightToLeftLayoutDirection",
+        "focusEffectDisabled",
+        "focusable",
+        "focused",
+        "formStyle",
+        "gaugeStyle",
+        "gridCellAnchor",
+        "gridCellColumns",
+        "gridCellUnsizedAxes",
+        "gridColumnAlignment",
+        "groupBoxStyle",
+        "handGestureShortcut",
+        "handlesExternalEvents",
+        "help",
+        "hidden",
+        "indexViewStyle",
+        "inspector",
+        "inspectorColumnWidth",
+        "interactionActivityTrackingTag",
+        "interactiveDismissDisabled",
+        "invalidatableContent",
+        "itemProvider",
+        "keyboardShortcut",
+        "keyboardType",
+        "labelIconToTitleSpacing",
+        "labelReservedIconWidth",
+        "labelStyle",
+        "labeledContentStyle",
+        "labelsHidden",
+        "labelsVisibility",
+        "listItemTint",
+        "listRowBackground",
+        "listRowInsets",
+        "listRowSeparator",
+        "listRowSeparatorTint",
+        "listRowSpacing",
+        "listSectionIndexVisibility",
+        "listSectionMargins",
+        "listSectionSeparator",
+        "listSectionSeparatorTint",
+        "listSectionSpacing",
+        "listStyle",
+        "menuActionDismissBehavior",
+        "menuIndicator",
+        "menuOrder",
+        "menuStyle",
+        "moveDisabled",
+        "navigationBarBackButtonHidden",
+        "navigationBarHidden",
+        "navigationBarItems",
+        "navigationBarTitle",
+        "navigationBarTitleDisplayMode",
+        "navigationDestination",
+        "navigationDocument",
+        "navigationLinkIndicatorVisibility",
+        "navigationSplitViewColumnWidth",
+        "navigationSplitViewStyle",
+        "navigationSubtitle",
+        "navigationTitle",
+        "navigationTransition",
+        "navigationViewStyle",
+        "onContinueUserActivity",
+        "onContinuousHover",
+        "onDrag",
+        "onDragSessionUpdated",
+        "onDropSessionUpdated",
+        "onHover",
+        "onInteractiveResizeChange",
+        "onKeyPress",
+        "onLongPressGesture",
+        "onOpenURL",
+        "onPencilDoubleTap",
+        "onPencilSqueeze",
+        "onScrollGeometryChange",
+        "onScrollPhaseChange",
+        "onScrollTargetVisibilityChange",
+        "onScrollVisibilityChange",
+        "onSubmit",
+        "onTapGesture",
+        "paletteSelectionEffect",
+        "pasteDestination",
+        "persistentSystemOverlays",
+        "pickerStyle",
+        "presentationBackground",
+        "presentationBackgroundInteraction",
+        "presentationCompactAdaptation",
+        "presentationContentInteraction",
+        "presentationCornerRadius",
+        "presentationDragIndicator",
+        "presentationPlacement",
+        "presentationSizing",
+        "previewDevice",
+        "previewDisplayName",
+        "previewInterfaceOrientation",
+        "previewLayout",
+        "progressViewStyle",
+        "projectionEffect",
+        "renameAction",
+        "replaceDisabled",
+        "safeAreaBar",
+        "scenePadding",
+        "scrollBounceBehavior",
+        "scrollClipDisabled",
+        "scrollContentBackground",
+        "scrollDisabled",
+        "scrollDismissesKeyboard",
+        "scrollEdgeEffectHidden",
+        "scrollEdgeEffectStyle",
+        "scrollIndicators",
+        "scrollIndicatorsFlash",
+        "scrollPosition",
+        "scrollTargetBehavior",
+        "scrollTargetLayout",
+        "searchCompletion",
+        "searchDictationBehavior",
+        "searchFocused",
+        "searchPresentationToolbarBehavior",
+        "searchScopes",
+        "searchSuggestions",
+        "searchToolbarBehavior",
+        "searchable",
+        "sectionActions",
+        "sectionIndexLabel",
+        "selectionDisabled",
+        "sensoryFeedback",
+        "sliderThumbVisibility",
+        "springLoadingBehavior",
+        "statusBar",
+        "statusBarHidden",
+        "submitLabel",
+        "submitScope",
+        "swipeActions",
+        "swipeActionsContainer",
+        "symbolEffectsRemoved",
+        "tabBarMinimizeBehavior",
+        "tabItem",
+        "tabViewBottomAccessory",
+        "tabViewCustomization",
+        "tabViewSearchActivation",
+        "tabViewSidebarBottomBar",
+        "tabViewSidebarFooter",
+        "tabViewSidebarHeader",
+        "tabViewStyle",
+        "tableColumnHeaders",
+        "tableStyle",
+        "textContentType",
+        "textEditorStyle",
+        "textFieldStyle",
+        "textInputAutocapitalization",
+        "textInputFormattingControlVisibility",
+        "textSelection",
+        "textSelectionAffinity",
+        "toggleStyle",
+        "toolbar",
+        "toolbarBackground",
+        "toolbarBackgroundVisibility",
+        "toolbarColorScheme",
+        "toolbarMinimizationBehavior",
+        "toolbarMinimizationRestoration",
+        "toolbarMinimizationSafeAreaAdjustment",
+        "toolbarOverflowMenu",
+        "toolbarRole",
+        "toolbarTitleDisplayMode",
+        "toolbarTitleMenu",
+        "toolbarVisibility",
+        "typeSelectEquivalent",
+        "userActivity",
+        "windowToolbarFullScreenVisibility",
+        "writingToolsAffordanceVisibility",
+        "writingToolsBehavior"
+      ],
+      "_PassKit_SwiftUI": [
+        "addPassToWalletButtonStyle",
+        "payLaterViewAction",
+        "payLaterViewDisplayStyle",
+        "payWithApplePayButtonDisableCardArt",
+        "payWithApplePayButtonStyle",
+        "verifyIdentityWithWalletButtonStyle"
+      ],
+      "_StoreKit_SwiftUI": [
+        "appStoreMerchandising",
+        "manageSubscriptionsSheet",
+        "offerCodeRedemption",
+        "productDescription",
+        "productIconBorder",
+        "productViewStyle",
+        "refundRequestSheet",
+        "storeButton",
+        "subscriptionOfferViewButtonVisibility",
+        "subscriptionOfferViewDetailAction",
+        "subscriptionOfferViewStyle",
+        "subscriptionStoreButtonLabel",
+        "subscriptionStoreControlBackground",
+        "subscriptionStoreControlIcon",
+        "subscriptionStoreControlStyle",
+        "subscriptionStoreOptionGroupStyle",
+        "subscriptionStorePickerItemBackground",
+        "subscriptionStorePolicyDestination",
+        "subscriptionStorePolicyForegroundStyle",
+        "subscriptionStoreSignInAction"
+      ],
+      "_DataDetection_SwiftUI": [
+        "dataDetection"
+      ],
+      "_GameController_SwiftUI": [
+        "handlesGameControllerEvents"
+      ],
+      "_MapKit_SwiftUI": [
+        "mapControlVisibility",
+        "mapControls",
+        "mapFeatureSelectionAccessory",
+        "mapFeatureSelectionDisabled",
+        "mapStyle",
+        "onMapCameraChange"
+      ],
+      "_MusicKit_SwiftUI": [
+        "musicSubscriptionOffer"
+      ],
+      "_AVKit_SwiftUI": [
+        "onCameraCaptureEvent"
+      ],
+      "_PhotosUI_SwiftUI": [
+        "photosPickerAccessoryVisibility",
+        "photosPickerDisabledCapabilities",
+        "photosPickerMetadataOptions",
+        "photosPickerSearchText",
+        "photosPickerStyle",
+        "photosReferenceImageViewer"
+      ],
+      "_RealityKit_SwiftUI": [
+        "realityViewCameraControls",
+        "realityViewLayoutBehavior"
+      ],
+      "_AppIntents_SwiftUI": [
+        "shortcutsLinkStyle",
+        "siriTipViewStyle"
+      ],
+      "_AuthenticationServices_SwiftUI": [
+        "signInWithAppleButtonStyle"
+      ],
+      "_Translation_SwiftUI": [
+        "translationPresentation"
+      ],
+      "_WebKit_SwiftUI": [
+        "webViewBackForwardNavigationGestures",
+        "webViewContentBackground",
+        "webViewElementFullscreenBehavior",
+        "webViewLinkPreviews",
+        "webViewMagnificationGestures",
+        "webViewOnScrollGeometryChange",
+        "webViewScrollPosition",
+        "webViewTextSelection"
       ]
     }
   },

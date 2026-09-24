@@ -65,6 +65,308 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('invalid boolean')
   })
 
+  it('constructs an SDK value through a public string factory beside a binding', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'subscription', swiftStyle: {
+      appStoreMerchandising: { isPresented: { value: true, onChange }, kind: 'group-id' },
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(modifiers.appStoreMerchandising)).toEqual(['true', 'group-id'])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'appStoreMerchandising.isPresented', value: 'false',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+  })
+
+  it('preserves an unsigned StoreKit transaction ID beside a presentation binding', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'refund', swiftStyle: {
+      refundRequestSheet: {
+        transactionID: '18446744073709551615',
+        isPresented: { value: true, onChange },
+      },
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(modifiers.refundRequestSheet)).toEqual(['18446744073709551615', 'true'])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'refundRequestSheet.isPresented', value: 'false',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+  })
+
+  it('routes a file mover completion result from a generated record', () => {
+    const onChange = vi.fn()
+    const onCompletion = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      fileMover: {
+        isPresented: { value: true, onChange },
+        file: 'file:///tmp/source.txt',
+        onCompletion,
+      },
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(modifiers.fileMover)).toEqual(['true', 'file:///tmp/source.txt', ''])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'fileMover.isPresented', value: 'false',
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'fileMover.onCompletion', value: '{"success":"file:///tmp/target.txt"}',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+    expect(onCompletion).toHaveBeenCalledWith({ success: 'file:///tmp/target.txt' })
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'fileMover.onCompletion', value: '{"success":12}',
+    } })).toThrow('invalid result')
+  })
+
+  it('routes an optional URL binding beside a completion result', () => {
+    const onChange = vi.fn()
+    const onProcessingCompletion = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      photosReferenceImageViewer: {
+        fileURL: { value: null, onChange },
+        onProcessingCompletion,
+      },
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(modifiers.photosReferenceImageViewer)).toEqual(['null', ''])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosReferenceImageViewer.fileURL', value: '"file:///tmp/photo.jpg"',
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosReferenceImageViewer.onProcessingCompletion', value: '{"failure":"unavailable"}',
+    } })
+    expect(onChange).toHaveBeenCalledWith('file:///tmp/photo.jpg')
+    expect(onProcessingCompletion).toHaveBeenCalledWith({ failure: 'unavailable' })
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosReferenceImageViewer.fileURL', value: '3',
+    } })).toThrow('invalid URL')
+  })
+
+  it('specializes a transferable file export to a string item', () => {
+    const onChange = vi.fn()
+    const onCompletion = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      fileExporter: {
+        isPresented: { value: true, onChange },
+        item: 'exported text',
+        onCompletion,
+      },
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(modifiers.fileExporter)).toEqual(['true', 'exported text', ''])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'fileExporter.onCompletion', value: '{"success":"file:///tmp/export.txt"}',
+    } })
+    expect(onCompletion).toHaveBeenCalledWith({ success: 'file:///tmp/export.txt' })
+  })
+
+  it('carries a point binding through the WebView host', () => {
+    const onChange = vi.fn()
+    const element = Controls.WebView({ html: '<p>hello</p>', swiftStyle: {
+      webViewScrollPosition: { value: { x: 12, y: 24 }, onChange },
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(modifiers.webViewScrollPosition).toBe('{"x":12,"y":24}')
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'webViewScrollPosition', value: '{"x":10,"y":5}',
+    } })
+    expect(onChange).toHaveBeenCalledWith({ x: 10, y: 5 })
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'webViewScrollPosition', value: '{"x":"bad","y":5}',
+    } })).toThrow('invalid point')
+    expect(() => Controls.WebView({ html: '<p>hello</p>', swiftStyle: {
+      webViewScrollPosition: { value: { x: Infinity, y: 0 }, onChange },
+    } })).toThrow('point binding')
+  })
+
+  it('projects public drop-session fields without changing an existing callback', () => {
+    const onDropSessionUpdated = vi.fn()
+    const onMapCameraChange = vi.fn()
+    const onMapCameraChangeWithEventStruct = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      onDropSessionUpdated,
+      onMapCameraChange,
+      onMapCameraChangeWithEventStruct,
+    } })
+    const drop = {
+      itemsCount: 2,
+      suggestedOperations: { rawValue: 3 },
+      size: { width: 80, height: 40 },
+      location: { x: 10, y: 5 },
+    }
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onDropSessionUpdated', value: JSON.stringify(drop),
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onMapCameraChange', value: '',
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onMapCameraChangeWithEventStruct',
+      value: '{"camera":{"distance":100,"heading":90,"pitch":20}}',
+    } })
+    expect(onDropSessionUpdated).toHaveBeenCalledWith(drop)
+    expect(onMapCameraChange).toHaveBeenCalledOnce()
+    expect(onMapCameraChangeWithEventStruct).toHaveBeenCalledWith({
+      camera: { distance: 100, heading: 90, pitch: 20 },
+    })
+  })
+
+  it('projects a public framework class event and its enum phase', () => {
+    const onCameraCaptureEvent = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: { onCameraCaptureEvent } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['onCameraCaptureEvent', ''],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onCameraCaptureEvent', value: '{"phase":"began"}',
+    } })
+    expect(onCameraCaptureEvent).toHaveBeenCalledWith({ phase: 'began' })
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onCameraCaptureEvent', value: '{"phase":"invalid"}',
+    } })).toThrow('invalid struct value')
+  })
+
+  it('routes a class event and configures writable class fields', () => {
+    const onContinue = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      onContinueUserActivity: { activityType: 'example.edit', action: onContinue },
+      userActivity: {
+        activityType: 'example.edit', isActive: true,
+        update: { title: 'Draft', isEligibleForHandoff: true },
+      },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['onContinueUserActivity', '["example.edit",""]'],
+      ['userActivity', '["example.edit","true","{\\"title\\":\\"Draft\\",\\"isEligibleForHandoff\\":true}"]'],
+    ])
+    const activity = {
+      activityType: 'example.edit',
+      isEligibleForHandoff: true,
+      isEligibleForPrediction: false,
+      isEligibleForPublicIndexing: false,
+      isEligibleForSearch: false,
+      needsSave: false,
+      supportsContinuationStreams: false,
+      targetContentIdentifier: null,
+      title: 'Draft',
+    }
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onContinueUserActivity.action', value: JSON.stringify(activity),
+    } })
+    expect(onContinue).toHaveBeenCalledWith(activity)
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      userActivity: {
+        activityType: 'example.edit', isActive: true,
+        update: { title: 42 as unknown as string },
+      },
+    } })).toThrow('SDK class update')
+  })
+
+  it('returns configured SDK results and dispatches structured callback inputs', () => {
+    const onDrop = vi.fn()
+    const onKey = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      dropConfiguration: { result: 'copy', onAction: onDrop },
+      onKeyPress: { result: 'handled', onAction: onKey },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['dropConfiguration', 'copy'],
+      ['onKeyPress', 'handled'],
+    ])
+    const drop = {
+      itemsCount: 2,
+      suggestedOperations: { rawValue: 3 },
+      size: { width: 80, height: 40 },
+      location: { x: 10, y: 5 },
+    }
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'dropConfiguration', value: JSON.stringify(drop),
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onKeyPress', value: '{"characters":"a","modifiers":{"rawValue":1}}',
+    } })
+    expect(onDrop).toHaveBeenCalledWith(drop)
+    expect(onKey).toHaveBeenCalledWith({ characters: 'a', modifiers: { rawValue: 1 } })
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      onKeyPress: { result: 'invalid' as 'handled', onAction: onKey },
+    } })).toThrow('SDK result and callback')
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'dropConfiguration', value: '{"itemsCount":"bad"}',
+    } })).toThrow('invalid result event')
+  })
+
+  it('sends transferable drop items with the SDK session', () => {
+    const onDrop = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: { dropDestination: onDrop } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['dropDestination', ''],
+    ])
+    const event = {
+      items: ['first', 'second'],
+      session: {
+        itemsCount: 2,
+        suggestedOperations: { rawValue: 1 },
+        size: { width: 40, height: 20 },
+        location: { x: 5, y: 7 },
+      },
+    }
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'dropDestination', value: JSON.stringify(event),
+    } })
+    expect(onDrop).toHaveBeenCalledWith(event)
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'dropDestination', value: JSON.stringify({ ...event, items: ['first', 2] }),
+    } })).toThrow('invalid struct value')
+  })
+
+  it('configures drag item providers from strings', () => {
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      itemProvider: 'shared text',
+      onDrag: 'dragged text',
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['itemProvider', 'shared text'],
+      ['onDrag', 'dragged text'],
+    ])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      onDrag: 3 as unknown as string,
+    } })).toThrow('must be a string')
+  })
+
+  it('routes generated gesture end values through each gesture modifier', () => {
+    const onTap = vi.fn()
+    const onDrag = vi.fn()
+    const onLongPress = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      gesture: { kind: 'tap', onEnded: onTap },
+      highPriorityGesture: { kind: 'drag', onEnded: onDrag },
+      simultaneousGesture: { kind: 'longPress', onEnded: onLongPress },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['gesture', 'tap'],
+      ['highPriorityGesture', 'drag'],
+      ['simultaneousGesture', 'longPress'],
+    ])
+    const drag = { location: { x: 20, y: 30 }, startLocation: { x: 5, y: 10 } }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'gesture', value: '' } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'highPriorityGesture', value: JSON.stringify(drag),
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'simultaneousGesture', value: 'true',
+    } })
+    expect(onTap).toHaveBeenCalledOnce()
+    expect(onDrag).toHaveBeenCalledWith(drag)
+    expect(onLongPress).toHaveBeenCalledWith(true)
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      gesture: { kind: 'unknown' as 'tap', onEnded: onTap },
+    } })).toThrow('SDK gesture and callback')
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'highPriorityGesture', value: '{"location":{"x":20,"y":"bad"}}',
+    } })).toThrow('invalid gesture event')
+  })
+
   it('round trips a Codable customization binding through native JSON', () => {
     const onChange = vi.fn()
     const current = '{"perTabState":[],"identifier":"D9754350-75EE-4390-AC54-159710381977","perSectionState":[]}'
@@ -374,5 +676,19 @@ describe('SDK callback and binding transport', () => {
     expect(searchFocused).toHaveBeenCalledWith(true)
     expect(accessibilityFocused).toHaveBeenCalledWith(true)
     expect(() => emit('focused', 'maybe')).toThrow('focused emitted an invalid boolean')
+  })
+
+  it('enables SDK default focus through self-owned Boolean focus state', () => {
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      defaultFocus: true,
+      accessibilityDefaultFocus: false,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['defaultFocus', 'true'],
+      ['accessibilityDefaultFocus', 'false'],
+    ])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      defaultFocus: 'yes' as unknown as boolean,
+    } })).toThrow('defaultFocus must be a boolean')
   })
 })
