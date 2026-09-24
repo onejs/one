@@ -38,7 +38,10 @@ class HybridOneBrowser : HybridOneBrowserSpec(), ActivityEventListener, Lifecycl
     override fun open(url: String, options: BrowserNativeOptions): Promise<BrowserResult> {
         val activity = NitroModules.applicationContext?.currentActivity
             ?: return Promise.rejected(
-                Error("Browser.open: no foreground activity to present the browser.")
+                OneNativeError(
+                    "E_BROWSER_ACTIVITY",
+                    "Browser.open: no foreground activity to present the browser."
+                )
             )
         return try {
             launchCustomTab(activity, url, options)
@@ -46,7 +49,7 @@ class HybridOneBrowser : HybridOneBrowserSpec(), ActivityEventListener, Lifecycl
             // immediately, matching expo-web-browser on Android.
             Promise.resolved(BrowserResult(BrowserResultType.OPENED))
         } catch (e: Exception) {
-            Promise.rejected(Error("Browser.open: ${e.message}", e))
+            Promise.rejected(OneNativeError("E_BROWSER_OPEN", "Browser.open: ${e.message}"))
         }
     }
 
@@ -68,7 +71,10 @@ class HybridOneBrowser : HybridOneBrowserSpec(), ActivityEventListener, Lifecycl
             }
             val activity = NitroModules.applicationContext?.currentActivity
                 ?: return Promise.rejected(
-                    Error("Browser.openAuthSession: no foreground activity to present the browser.")
+                    OneNativeError(
+                        "E_BROWSER_ACTIVITY",
+                        "Browser.openAuthSession: no foreground activity to present the browser."
+                    )
                 )
             try {
                 authScheme = redirectUrl?.let { Uri.parse(it)?.scheme }
@@ -80,7 +86,7 @@ class HybridOneBrowser : HybridOneBrowserSpec(), ActivityEventListener, Lifecycl
             } catch (e: Exception) {
                 authPromise = null
                 authScheme = null
-                return Promise.rejected(Error("Browser.openAuthSession: ${e.message}", e))
+                return Promise.rejected(OneNativeError("E_BROWSER_OPEN", "Browser.openAuthSession: ${e.message}"))
             }
         }
         return promise

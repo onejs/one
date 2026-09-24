@@ -34,15 +34,26 @@ final class HybridOneNetwork: HybridOneNetworkSpec {
   func getState() throws -> Promise<NetworkState> {
     let promise = Promise<NetworkState>()
     let monitor = NWPathMonitor()
-    // the handler runs on this serial queue, so the flag needs no lock.
-    var resolved = false
+    let queue = DispatchQueue(label: "dev.onejs.network")
+    // the handler and the timeout both run on this serial queue, so the flag
+    // needs no lock. the first path settles; with none in five seconds the
+    // read rejects instead of hanging.
+    var settled = false
     monitor.pathUpdateHandler = { path in
-      if resolved { return }
-      resolved = true
+      if settled { return }
+      settled = true
       monitor.cancel()
       promise.resolve(withResult: HybridOneNetwork.state(for: path))
     }
-    monitor.start(queue: DispatchQueue(label: "dev.onejs.network"))
+    monitor.start(queue: queue)
+    queue.asyncAfter(deadline: .now() + 5) {
+      if settled { return }
+      settled = true
+      monitor.cancel()
+      promise.reject(
+        withError: oneNativeError(
+          "E_NETWORK_TIMEOUT", "Network.getState: timed out waiting for the network path."))
+    }
     return promise
   }
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NitroModules } from 'react-native-nitro-modules'
+import { rethrowNativeError } from '../nativeError'
 import type { OneNetwork } from '../specs/OneNetwork.nitro'
 import type { NetworkState, NetworkStateSubscription } from './types'
 import { assertStateListener } from './validate'
@@ -18,7 +19,7 @@ function native(): OneNetwork {
 }
 
 function getState(): Promise<NetworkState> {
-  return native().getState()
+  return native().getState().catch(rethrowNativeError)
 }
 
 function addStateListener(

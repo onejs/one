@@ -21,7 +21,13 @@ class HybridOneNetwork : HybridOneNetworkSpec() {
             as? ConnectivityManager
             ?: throw IllegalStateException("Network: React context is not ready")
 
-    override fun getState(): Promise<NetworkState> = Promise.async { currentState() }
+    override fun getState(): Promise<NetworkState> = Promise.async {
+        try {
+            currentState()
+        } catch (e: Exception) {
+            throw OneNativeError("E_NETWORK_STATE", "Network.getState: ${e.message}")
+        }
+    }
 
     override fun addStateListener(listener: (state: NetworkState) -> Unit): () -> Unit {
         synchronized(this) {
