@@ -342,6 +342,7 @@ extension View {
       case "glassEffectID": view = AnyView(view.oneNativeSDKGlassEffectID(value, emit: emit))
       case "glassEffectTransition": view = AnyView(view.oneNativeSDKGlassEffectTransition(value, emit: emit))
       case "glassEffectUnion": view = AnyView(view.oneNativeSDKGlassEffectUnion(value, emit: emit))
+      case "glassEffectWithGlass": view = AnyView(view.oneNativeSDKGlassEffectWithGlass(value, emit: emit))
       case "grayscale": view = AnyView(view.oneNativeSDKGrayscale(value, emit: emit))
       case "gridCellAnchor": view = AnyView(view.oneNativeSDKGridCellAnchor(value, emit: emit))
       case "gridCellColumns": view = AnyView(view.oneNativeSDKGridCellColumns(value, emit: emit))
@@ -356,12 +357,12 @@ extension View {
       case "hidden": view = AnyView(view.oneNativeSDKHidden(value, emit: emit))
       case "highPriorityGesture": view = AnyView(view.oneNativeSDKHighPriorityGesture(value, emit: emit))
       case "hoverEffectDisabled": view = AnyView(view.oneNativeSDKHoverEffectDisabled(value, emit: emit))
-      case "hoverEffectWithEffectAndIsEnabled": view = AnyView(view.oneNativeSDKHoverEffectWithEffectAndIsEnabled(value, emit: emit))
       case "hoverEffectWithHoverEffect": view = AnyView(view.oneNativeSDKHoverEffectWithHoverEffect(value, emit: emit))
+      case "hoverEffectWithHoverEffectFromSwiftUICore": view = AnyView(view.oneNativeSDKHoverEffectWithHoverEffectFromSwiftUICore(value, emit: emit))
       case "hueRotation": view = AnyView(view.oneNativeSDKHueRotation(value, emit: emit))
       case "id": view = AnyView(view.oneNativeSDKId(value, emit: emit))
-      case "ignoresSafeAreaWithRegionsAndEdges": view = AnyView(view.oneNativeSDKIgnoresSafeAreaWithRegionsAndEdges(value, emit: emit))
       case "ignoresSafeAreaWithRegionsAndEdgesAndAlignment": view = AnyView(view.oneNativeSDKIgnoresSafeAreaWithRegionsAndEdgesAndAlignment(value, emit: emit))
+      case "ignoresSafeAreaWithSafeAreaRegions": view = AnyView(view.oneNativeSDKIgnoresSafeAreaWithSafeAreaRegions(value, emit: emit))
       case "imageScale": view = AnyView(view.oneNativeSDKImageScale(value, emit: emit))
       case "inAppPurchaseOptions": view = AnyView(view.oneNativeSDKInAppPurchaseOptions(value, emit: emit))
       case "indexViewStyle": view = AnyView(view.oneNativeSDKIndexViewStyle(value, emit: emit))
@@ -410,6 +411,7 @@ extension View {
       case "mapControlVisibility": view = AnyView(view.oneNativeSDKMapControlVisibility(value, emit: emit))
       case "mapFeatureSelectionAccessory": view = AnyView(view.oneNativeSDKMapFeatureSelectionAccessory(value, emit: emit))
       case "mapFeatureSelectionDisabled": view = AnyView(view.oneNativeSDKMapFeatureSelectionDisabled(value, emit: emit))
+      case "mapScope": view = AnyView(view.oneNativeSDKMapScope(value, emit: emit))
       case "mapStyle": view = AnyView(view.oneNativeSDKMapStyle(value, emit: emit))
       case "matchedGeometryEffect": view = AnyView(view.oneNativeSDKMatchedGeometryEffect(value, emit: emit))
       case "matchedTransitionSource": view = AnyView(view.oneNativeSDKMatchedTransitionSource(value, emit: emit))
@@ -476,6 +478,7 @@ extension View {
       case "onSubmit": view = AnyView(view.oneNativeSDKOnSubmit(value, emit: emit))
       case "onTapGestureWithPerform": view = AnyView(view.oneNativeSDKOnTapGestureWithPerform(value, emit: emit))
       case "onTapGestureWithPerformFromSwiftUICore": view = AnyView(view.oneNativeSDKOnTapGestureWithPerformFromSwiftUICore(value, emit: emit))
+      case "paddingWithSet": view = AnyView(view.oneNativeSDKPaddingWithSet(value, emit: emit))
       case "paletteSelectionEffect": view = AnyView(view.oneNativeSDKPaletteSelectionEffect(value, emit: emit))
       case "pasteDestination": view = AnyView(view.oneNativeSDKPasteDestination(value, emit: emit))
       case "payLaterViewAction": view = AnyView(view.oneNativeSDKPayLaterViewAction(value, emit: emit))
@@ -525,7 +528,7 @@ extension View {
       case "rotation3DEffect": view = AnyView(view.oneNativeSDKRotation3DEffect(value, emit: emit))
       case "rotationEffect": view = AnyView(view.oneNativeSDKRotationEffect(value, emit: emit))
       case "safeAreaPaddingWithCGFloat": view = AnyView(view.oneNativeSDKSafeAreaPaddingWithCGFloat(value, emit: emit))
-      case "safeAreaPaddingWithEdgesAndLength": view = AnyView(view.oneNativeSDKSafeAreaPaddingWithEdgesAndLength(value, emit: emit))
+      case "safeAreaPaddingWithSet": view = AnyView(view.oneNativeSDKSafeAreaPaddingWithSet(value, emit: emit))
       case "saturation": view = AnyView(view.oneNativeSDKSaturation(value, emit: emit))
       case "scaledToFill": view = AnyView(view.oneNativeSDKScaledToFill(value, emit: emit))
       case "scaledToFit": view = AnyView(view.oneNativeSDKScaledToFit(value, emit: emit))
@@ -3919,6 +3922,16 @@ self
     } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKGlassEffectWithGlass(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "regular": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.regular) } else { self }
+      case "clear": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.clear) } else { self }
+      case "identity": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.identity) } else { self }
+    default: preconditionFailure("invalid glassEffectWithGlass: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKGrayscale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if let number = Double(value), number.isFinite {
         self.grayscale(number)
@@ -4096,30 +4109,6 @@ self
       self.hoverEffectDisabled(value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKHoverEffectWithEffectAndIsEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    let values: [String?] = {
-      guard let data = value.data(using: .utf8),
-        let decoded = try? JSONDecoder().decode([String?].self, from: data),
-        decoded.count == 2 else { preconditionFailure("invalid hoverEffectWithEffectAndIsEnabled: \(value)") }
-      return decoded
-    }()
-    let argument0: SwiftUI.HoverEffect = {
-      guard let raw = values[0] else { preconditionFailure("missing hoverEffectWithEffectAndIsEnabled.effect") }
-      switch raw {
-      case "automatic": return SwiftUI.HoverEffect.automatic
-      case "highlight": return SwiftUI.HoverEffect.highlight
-      case "lift": return SwiftUI.HoverEffect.lift
-      default: preconditionFailure("invalid hoverEffectWithEffectAndIsEnabled.effect: \(raw)")
-      }
-    }()
-    let argument1: Swift.Bool = {
-      guard let raw = values[1] else { preconditionFailure("missing hoverEffectWithEffectAndIsEnabled.isEnabled") }
-      guard raw == "true" || raw == "false" else { preconditionFailure("invalid hoverEffectWithEffectAndIsEnabled.isEnabled: \(raw)") }
-      return raw == "true"
-    }()
-    self.hoverEffect(argument0, isEnabled: argument1)
-  }
-
   @ViewBuilder fileprivate func oneNativeSDKHoverEffectWithHoverEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -4127,6 +4116,16 @@ self
       case "highlight": self.hoverEffect(SwiftUI.HoverEffect.highlight)
       case "lift": self.hoverEffect(SwiftUI.HoverEffect.lift)
     default: preconditionFailure("invalid hoverEffectWithHoverEffect: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKHoverEffectWithHoverEffectFromSwiftUICore(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.hoverEffect(SwiftUI.HoverEffect.automatic)
+      case "highlight": self.hoverEffect(SwiftUI.HoverEffect.highlight)
+      case "lift": self.hoverEffect(SwiftUI.HoverEffect.lift)
+    default: preconditionFailure("invalid hoverEffectWithHoverEffectFromSwiftUICore: \(value)")
     }
   }
 
@@ -4140,38 +4139,6 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKId(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       self.id(value)
-  }
-
-  @ViewBuilder fileprivate func oneNativeSDKIgnoresSafeAreaWithRegionsAndEdges(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    let values: [String?] = {
-      guard let data = value.data(using: .utf8),
-        let decoded = try? JSONDecoder().decode([String?].self, from: data),
-        decoded.count == 2 else { preconditionFailure("invalid ignoresSafeAreaWithRegionsAndEdges: \(value)") }
-      return decoded
-    }()
-    let argument0: SwiftUI.SafeAreaRegions = {
-      guard let raw = values[0] else { preconditionFailure("missing ignoresSafeAreaWithRegionsAndEdges.regions") }
-      switch raw {
-      case "container": return SwiftUI.SafeAreaRegions.container
-      case "keyboard": return SwiftUI.SafeAreaRegions.keyboard
-      case "all": return SwiftUI.SafeAreaRegions.all
-      default: preconditionFailure("invalid ignoresSafeAreaWithRegionsAndEdges.regions: \(raw)")
-      }
-    }()
-    let argument1: SwiftUI.Edge.Set = {
-      guard let raw = values[1] else { preconditionFailure("missing ignoresSafeAreaWithRegionsAndEdges.edges") }
-      switch raw {
-      case "top": return SwiftUI.Edge.Set.top
-      case "leading": return SwiftUI.Edge.Set.leading
-      case "bottom": return SwiftUI.Edge.Set.bottom
-      case "trailing": return SwiftUI.Edge.Set.trailing
-      case "all": return SwiftUI.Edge.Set.all
-      case "horizontal": return SwiftUI.Edge.Set.horizontal
-      case "vertical": return SwiftUI.Edge.Set.vertical
-      default: preconditionFailure("invalid ignoresSafeAreaWithRegionsAndEdges.edges: \(raw)")
-      }
-    }()
-    self.ignoresSafeArea(argument0, edges: argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKIgnoresSafeAreaWithRegionsAndEdgesAndAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4233,6 +4200,16 @@ if #available(iOS 27, *) {
 self
 #endif
 
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKIgnoresSafeAreaWithSafeAreaRegions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "container": self.ignoresSafeArea(SwiftUI.SafeAreaRegions.container)
+      case "keyboard": self.ignoresSafeArea(SwiftUI.SafeAreaRegions.keyboard)
+      case "all": self.ignoresSafeArea(SwiftUI.SafeAreaRegions.all)
+    default: preconditionFailure("invalid ignoresSafeAreaWithSafeAreaRegions: \(value)")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKImageScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4942,6 +4919,11 @@ self
       self.mapFeatureSelectionDisabled({ (_: _MapKit_SwiftUI.MapFeature) in value == "true" })
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKMapScope(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid mapScope: \(value)")
+    if value == "true" { self.mapScope(OneNativeNamespace.id) } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKMapStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -5588,6 +5570,20 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKOnTapGestureWithPerformFromSwiftUICore(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onTapGesture(count: 1, perform: { emit("onTapGestureWithPerformFromSwiftUICore", "") })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPaddingWithSet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "top": self.padding(SwiftUI.Edge.Set.top)
+      case "leading": self.padding(SwiftUI.Edge.Set.leading)
+      case "bottom": self.padding(SwiftUI.Edge.Set.bottom)
+      case "trailing": self.padding(SwiftUI.Edge.Set.trailing)
+      case "all": self.padding(SwiftUI.Edge.Set.all)
+      case "horizontal": self.padding(SwiftUI.Edge.Set.horizontal)
+      case "vertical": self.padding(SwiftUI.Edge.Set.vertical)
+    default: preconditionFailure("invalid paddingWithSet: \(value)")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPaletteSelectionEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -6308,32 +6304,18 @@ self
       } else { preconditionFailure("invalid safeAreaPaddingWithCGFloat: \(value)") }
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKSafeAreaPaddingWithEdgesAndLength(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    let values: [String?] = {
-      guard let data = value.data(using: .utf8),
-        let decoded = try? JSONDecoder().decode([String?].self, from: data),
-        decoded.count == 2 else { preconditionFailure("invalid safeAreaPaddingWithEdgesAndLength: \(value)") }
-      return decoded
-    }()
-    let argument0: SwiftUI.Edge.Set = {
-      guard let raw = values[0] else { preconditionFailure("missing safeAreaPaddingWithEdgesAndLength.edges") }
-      switch raw {
-      case "top": return SwiftUI.Edge.Set.top
-      case "leading": return SwiftUI.Edge.Set.leading
-      case "bottom": return SwiftUI.Edge.Set.bottom
-      case "trailing": return SwiftUI.Edge.Set.trailing
-      case "all": return SwiftUI.Edge.Set.all
-      case "horizontal": return SwiftUI.Edge.Set.horizontal
-      case "vertical": return SwiftUI.Edge.Set.vertical
-      default: preconditionFailure("invalid safeAreaPaddingWithEdgesAndLength.edges: \(raw)")
-      }
-    }()
-    let argument1: CoreFoundation.CGFloat? = {
-      guard let raw = values[1] else { return nil }
-      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid safeAreaPaddingWithEdgesAndLength.length: \(raw)") }
-      return CGFloat(number)
-    }()
-    self.safeAreaPadding(argument0, argument1)
+  @ViewBuilder fileprivate func oneNativeSDKSafeAreaPaddingWithSet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "top": self.safeAreaPadding(SwiftUI.Edge.Set.top)
+      case "leading": self.safeAreaPadding(SwiftUI.Edge.Set.leading)
+      case "bottom": self.safeAreaPadding(SwiftUI.Edge.Set.bottom)
+      case "trailing": self.safeAreaPadding(SwiftUI.Edge.Set.trailing)
+      case "all": self.safeAreaPadding(SwiftUI.Edge.Set.all)
+      case "horizontal": self.safeAreaPadding(SwiftUI.Edge.Set.horizontal)
+      case "vertical": self.safeAreaPadding(SwiftUI.Edge.Set.vertical)
+    default: preconditionFailure("invalid safeAreaPaddingWithSet: \(value)")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSaturation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

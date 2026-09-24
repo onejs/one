@@ -195,6 +195,8 @@ export declare const sdkGaugeStyleValues: readonly ['accessoryCircularCapacity',
 export type SDKGaugeStyle = (typeof sdkGaugeStyleValues)[number];
 export declare const sdkGlassEffectTransitionValues: readonly ['matchedGeometry', 'materialize', 'identity'];
 export type SDKGlassEffectTransition = (typeof sdkGlassEffectTransitionValues)[number];
+export declare const sdkGlassEffectWithGlassValues: readonly ['regular', 'clear', 'identity'];
+export type SDKGlassEffectWithGlass = (typeof sdkGlassEffectWithGlassValues)[number];
 export declare const sdkGridCellAnchorValues: readonly ['zero', 'center', 'leading', 'trailing', 'top', 'bottom', 'topLeading', 'topTrailing', 'bottomLeading', 'bottomTrailing'];
 export type SDKGridCellAnchor = (typeof sdkGridCellAnchorValues)[number];
 export declare const sdkGridCellUnsizedAxesValues: readonly ['horizontal', 'vertical'];
@@ -209,8 +211,12 @@ export declare const sdkHeaderProminenceValues: readonly ['standard', 'increased
 export type SDKHeaderProminence = (typeof sdkHeaderProminenceValues)[number];
 export declare const sdkHoverEffectWithHoverEffectValues: readonly ['automatic', 'highlight', 'lift'];
 export type SDKHoverEffectWithHoverEffect = (typeof sdkHoverEffectWithHoverEffectValues)[number];
+export declare const sdkHoverEffectWithHoverEffectFromSwiftUICoreValues: readonly ['automatic', 'highlight', 'lift'];
+export type SDKHoverEffectWithHoverEffectFromSwiftUICore = (typeof sdkHoverEffectWithHoverEffectFromSwiftUICoreValues)[number];
 export declare const sdkHueRotationValues: readonly ['zero'];
 export type SDKHueRotation = (typeof sdkHueRotationValues)[number];
+export declare const sdkIgnoresSafeAreaWithSafeAreaRegionsValues: readonly ['container', 'keyboard', 'all'];
+export type SDKIgnoresSafeAreaWithSafeAreaRegions = (typeof sdkIgnoresSafeAreaWithSafeAreaRegionsValues)[number];
 export declare const sdkImageScaleValues: readonly ['small', 'medium', 'large'];
 export type SDKImageScale = (typeof sdkImageScaleValues)[number];
 export declare const sdkIndexViewStyleValues: readonly ['page'];
@@ -275,6 +281,8 @@ export declare const sdkOnKeyPressValues: readonly ['handled', 'ignored'];
 export type SDKOnKeyPress = (typeof sdkOnKeyPressValues)[number];
 export declare const sdkOnScrollPhaseChangeValues: readonly ['idle', 'tracking', 'interacting', 'decelerating', 'animating'];
 export type SDKOnScrollPhaseChange = (typeof sdkOnScrollPhaseChangeValues)[number];
+export declare const sdkPaddingWithSetValues: readonly ['top', 'leading', 'bottom', 'trailing', 'all', 'horizontal', 'vertical'];
+export type SDKPaddingWithSet = (typeof sdkPaddingWithSetValues)[number];
 export declare const sdkPaletteSelectionEffectValues: readonly ['automatic', 'custom'];
 export type SDKPaletteSelectionEffect = (typeof sdkPaletteSelectionEffectValues)[number];
 export declare const sdkPayLaterViewActionValues: readonly ['learnMore', 'calculator'];
@@ -329,6 +337,8 @@ export declare const sdkRealityViewLayoutBehaviorValues: readonly ['flexible', '
 export type SDKRealityViewLayoutBehavior = (typeof sdkRealityViewLayoutBehaviorValues)[number];
 export declare const sdkRedactedValues: readonly ['placeholder', 'privacy', 'invalidated'];
 export type SDKRedacted = (typeof sdkRedactedValues)[number];
+export declare const sdkSafeAreaPaddingWithSetValues: readonly ['top', 'leading', 'bottom', 'trailing', 'all', 'horizontal', 'vertical'];
+export type SDKSafeAreaPaddingWithSet = (typeof sdkSafeAreaPaddingWithSetValues)[number];
 export declare const sdkScenePaddingWithSetValues: readonly ['top', 'leading', 'bottom', 'trailing', 'all', 'horizontal', 'vertical'];
 export type SDKScenePaddingWithSet = (typeof sdkScenePaddingWithSetValues)[number];
 export declare const sdkScrollContentBackgroundValues: readonly ['automatic', 'visible', 'hidden'];
@@ -1032,6 +1042,7 @@ export interface OneNativeStyle {
     glassEffectUnion?: Readonly<{
         id: string | null;
     }>;
+    glassEffectWithGlass?: SDKGlassEffectWithGlass;
     grayscale?: number;
     gridCellAnchor?: SDKGridCellAnchor;
     gridCellColumns?: number;
@@ -1110,22 +1121,16 @@ export interface OneNativeStyle {
         onEnded: () => void;
     }>;
     hoverEffectDisabled?: boolean;
-    hoverEffectWithEffectAndIsEnabled?: Readonly<{
-        effect: 'automatic' | 'highlight' | 'lift';
-        isEnabled: boolean;
-    }>;
     hoverEffectWithHoverEffect?: SDKHoverEffectWithHoverEffect;
+    hoverEffectWithHoverEffectFromSwiftUICore?: SDKHoverEffectWithHoverEffectFromSwiftUICore;
     hueRotation?: SDKHueRotation;
     id?: string;
-    ignoresSafeAreaWithRegionsAndEdges?: Readonly<{
-        regions: 'container' | 'keyboard' | 'all';
-        edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical';
-    }>;
     ignoresSafeAreaWithRegionsAndEdgesAndAlignment?: Readonly<{
         regions: 'container' | 'keyboard' | 'all';
         edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical';
         alignment: 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing' | 'centerFirstTextBaseline' | 'centerLastTextBaseline' | 'leadingFirstTextBaseline' | 'leadingLastTextBaseline' | 'trailingFirstTextBaseline' | 'trailingLastTextBaseline' | null;
     }>;
+    ignoresSafeAreaWithSafeAreaRegions?: SDKIgnoresSafeAreaWithSafeAreaRegions;
     imageScale?: SDKImageScale;
     inAppPurchaseOptions?: Readonly<{
         quantity?: number;
@@ -1226,6 +1231,7 @@ export interface OneNativeStyle {
     mapControlVisibility?: SDKMapControlVisibility;
     mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null;
     mapFeatureSelectionDisabled?: boolean;
+    mapScope?: boolean;
     mapStyle?: SDKMapStyle;
     matchedGeometryEffect?: Readonly<{
         id: string;
@@ -1557,6 +1563,7 @@ export interface OneNativeStyle {
         y: number;
     }) => void;
     onTapGestureWithPerformFromSwiftUICore?: () => void;
+    paddingWithSet?: SDKPaddingWithSet;
     paletteSelectionEffect?: SDKPaletteSelectionEffect;
     pasteDestination?: (value: readonly string[]) => void;
     payLaterViewAction?: SDKPayLaterViewAction;
@@ -1658,10 +1665,7 @@ export interface OneNativeStyle {
         anchor: 'zero' | 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing';
     }>;
     safeAreaPaddingWithCGFloat?: number;
-    safeAreaPaddingWithEdgesAndLength?: Readonly<{
-        edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical';
-        length: number | null;
-    }>;
+    safeAreaPaddingWithSet?: SDKSafeAreaPaddingWithSet;
     saturation?: number;
     scaledToFill?: boolean;
     scaledToFit?: boolean;

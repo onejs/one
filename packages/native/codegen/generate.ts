@@ -178,16 +178,16 @@ for (const modifier of derivedModifiers) {
         : modifier.preferenceKey
         ? d.parameters[0]?.type === 'K.Type' &&
           d.requirements?.includes('K : SwiftUICore.PreferenceKey')
-        : modifier.zeroArgument
-        ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.namespaceParameter
         ? d.parameters.some((parameter) => parameter.type === 'SwiftUICore.Namespace.ID') &&
           d.parameters.filter((parameter) => parameter.type !== 'SwiftUICore.Namespace.ID' &&
-            parameter.defaultValue === undefined).length === modifier.arguments?.length &&
+            parameter.defaultValue === undefined).length === (modifier.arguments?.length ?? 0) &&
           d.parameters.filter((parameter) => parameter.type !== 'SwiftUICore.Namespace.ID' &&
             parameter.defaultValue === undefined).every((parameter, index) =>
             parameter.label === modifier.arguments?.[index].label &&
             parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))
+        : modifier.zeroArgument
+        ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.kind === 'record'
           ? (d.parameters.length === modifier.arguments?.length ? d.parameters :
             d.parameters.filter((parameter) => parameter.defaultValue === undefined)).length === modifier.arguments?.length &&
