@@ -9,6 +9,7 @@
 
 // Include C++ implementation defined types
 #include "HybridOneClipboardSpecSwift.hpp"
+#include "HybridOneCryptoSpecSwift.hpp"
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "VxrnNative-Swift-Cxx-Umbrella.hpp"
 #include <NitroModules/NitroDefines.hpp>
@@ -52,6 +53,22 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     VxrnNative::HybridOneClipboardSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneCryptoSpec>
+  std::shared_ptr<HybridOneCryptoSpec> create_std__shared_ptr_HybridOneCryptoSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    VxrnNative::HybridOneCryptoSpec_cxx swiftPart = VxrnNative::HybridOneCryptoSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneCryptoSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneCryptoSpec_(std__shared_ptr_HybridOneCryptoSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneCryptoSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneCryptoSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneCryptoSpec\" is not implemented in Swift!");
+    }
+    #endif
+    VxrnNative::HybridOneCryptoSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   

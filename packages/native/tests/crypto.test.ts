@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
 import {
-  decodeHexBytes,
   fillRandomValues,
   formatUuidV4,
   installCryptoPolyfill,
@@ -25,14 +24,6 @@ describe('formatUuidV4', () => {
     for (let round = 0; round < 50; round++) {
       expect(formatUuidV4(crypto.getRandomValues(new Uint8Array(16)))).toMatch(UUID_V4)
     }
-  })
-})
-
-describe('decodeHexBytes', () => {
-  it('rejects truncated, long, and non-hex payloads', () => {
-    expect(() => decodeHexBytes('00ff', 3)).toThrow()
-    expect(() => decodeHexBytes('00ff10a5', 3)).toThrow()
-    expect(() => decodeHexBytes('00zz10a5', 4)).toThrow()
   })
 })
 

@@ -14,6 +14,8 @@ namespace margelo::nitro::one { enum class HapticImpact; }
 namespace margelo::nitro::one { enum class HapticNotification; }
 // Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
+// Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneCryptoSpec; }
 // Forward declaration of `HybridOneHapticsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneHapticsSpec; }
 
@@ -21,7 +23,9 @@ namespace margelo::nitro::one { class HybridOneHapticsSpec; }
 #include "HapticImpact.hpp"
 #include "HapticNotification.hpp"
 #include "HybridOneClipboardSpec.hpp"
+#include "HybridOneCryptoSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
+#include <NitroModules/ArrayBuffer.hpp>
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>
 #include <exception>
@@ -40,6 +44,8 @@ namespace margelo::nitro::one { class HybridOneHapticsSpec; }
 // Forward declarations of Swift defined types
 // Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneClipboardSpec_cxx; }
+// Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
+namespace VxrnNative { class HybridOneCryptoSpec_cxx; }
 // Forward declaration of `HybridOneHapticsSpec_cxx` to properly resolve imports.
 namespace VxrnNative { class HybridOneHapticsSpec_cxx; }
 

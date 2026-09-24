@@ -34,9 +34,11 @@ target_sources(
   ../nitrogen/generated/android/VxrnNativeOnLoad.cpp
   # Shared Nitrogen C++ sources
   ../nitrogen/generated/shared/c++/HybridOneClipboardSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneCryptoSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneHapticsSpec.cpp
   # Android-specific Nitrogen C++ sources
   ../nitrogen/generated/android/c++/JHybridOneClipboardSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneCryptoSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneHapticsSpec.cpp
 )
 

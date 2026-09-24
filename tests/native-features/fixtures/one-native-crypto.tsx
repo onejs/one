@@ -1,12 +1,13 @@
 import { useCallback, useState } from 'react'
-import { Pressable, StyleSheet, Text, TurboModuleRegistry, View } from 'react-native'
-import type { TurboModule } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { NitroModules } from 'react-native-nitro-modules'
 
 // exercises the One crypto polyfill end to end: two randomUUIDs plus a
 // getRandomValues fill, all rendered as labels because RN Text testIDs
 // vanish from the accessibility snapshot while Pressable IDs survive. the
-// module marker proves the native side resolved; Valid/Distinct mirror
-// what the conformance scripts re-check from the raw labels.
+// module marker proves the OneCrypto nitro hybrid object is registered;
+// Valid/Distinct mirror what the conformance scripts re-check from the raw
+// labels.
 const UUID_V4 = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
 
 type DeviceCrypto = {
@@ -47,11 +48,11 @@ function readState() {
 
 export default function OneNativeCrypto() {
   // the public api has no availability probe by convention, so the fixture
-  // reads the registry directly for its marker. a web bundle has no
-  // TurboModuleRegistry, which throws and reads unavailable, correctly.
+  // asks the nitro registry directly for its marker. a web bundle has no
+  // NitroModules, which throws and reads unavailable, correctly.
   const [available] = useState(() => {
     try {
-      return TurboModuleRegistry.get<TurboModule>('OneNativeCrypto') != null
+      return NitroModules.hasHybridObject('OneCrypto')
     } catch {
       return false
     }

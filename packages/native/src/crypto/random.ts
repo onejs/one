@@ -14,34 +14,6 @@ export function assertByteCount(count: number): void {
   }
 }
 
-function nibble(code: number): number {
-  if (code >= 48 && code <= 57) return code - 48
-  if (code >= 97 && code <= 102) return code - 87
-  if (code >= 65 && code <= 70) return code - 55
-  return -1
-}
-
-// decodes the lowercase hex the native modules return. validates length
-// and digits strictly: a truncated or corrupt bridge payload must throw,
-// never silently fill with weak bytes.
-export function decodeHexBytes(hex: string, expectedLength: number): Uint8Array {
-  if (hex.length !== expectedLength * 2) {
-    throw new Error(
-      `secure random: expected ${expectedLength * 2} hex chars, got ${hex.length}.`
-    )
-  }
-  const out = new Uint8Array(expectedLength)
-  for (let i = 0; i < expectedLength; i++) {
-    const hi = nibble(hex.charCodeAt(i * 2))
-    const lo = nibble(hex.charCodeAt(i * 2 + 1))
-    if (hi === -1 || lo === -1) {
-      throw new Error(`secure random: invalid hex at byte ${i}.`)
-    }
-    out[i] = hi * 16 + lo
-  }
-  return out
-}
-
 const HEX_DIGITS = '0123456789abcdef'
 
 // rfc 4122 section 4.4: 16 random bytes with the version nibble set to 4
