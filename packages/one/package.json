@@ -269,7 +269,7 @@
     "@react-navigation/core": "~8.0.0-alpha.34",
     "@react-navigation/drawer": "~8.0.0-alpha.51",
     "@react-navigation/native": "8.0.0-alpha.44",
-    "@tamagui/build": "3.0.0-beta.1309.1",
+    "@tamagui/build": "3.0.0-beta.1432.1",
     "react-native-gesture-handler": "~3.3.0",
     "react-native-reanimated": "~4.6.0",
     "react-native-screens": "~4.27.0",
