@@ -13,11 +13,13 @@ import {
 import { useDocsMenu } from '~/features/docs/useDocsMenu'
 import { OneBall } from '../brand/Logo'
 import { DocsMenuContents } from '../docs/DocsMenuContents'
+import { DocsSectionTabs } from '../docs/DocsSectionTabs'
+import { nativeRoutes } from '../docs/nativeRoutes'
 import { ScrollView } from './ScrollView'
 import { useIsScrolled } from './useIsScrolled'
 import { SocialLinksRow } from './SocialLinksRow'
 import { View } from 'tamagui'
-import { Link } from 'one'
+import { Link, usePathname } from 'one'
 
 export const HeaderMenu = React.memo(function HeaderMenu() {
   const { open, setOpen } = useDocsMenu()
@@ -153,6 +155,8 @@ const HeaderMenuContent = React.memo(function HeaderMenuContent({
 }: {
   open: boolean
 }) {
+  const pathname = usePathname()
+  const isNative = pathname.startsWith('/native')
   return (
     <Popover.Content
       mt={-5}
@@ -193,7 +197,8 @@ const HeaderMenuContent = React.memo(function HeaderMenuContent({
 
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, width: '100%' }}>
         <YStack aria-label="Home menu contents" w="100%" p="$4" ai="flex-end">
-          <DocsMenuContents inMenu />
+          <DocsSectionTabs />
+          <DocsMenuContents inMenu routes={isNative ? nativeRoutes : undefined} />
         </YStack>
       </ScrollView>
     </Popover.Content>
