@@ -137,7 +137,6 @@ const controls = [
 ]
 const derivedModifiers = deriveModifiers([...inventory, ...importedCases], MAXIMUM_IOS, [
   ...styleFields,
-  ...styleModifiers,
 ])
 const derivedViewSlots = deriveViewSlots(inventory, MAXIMUM_IOS)
 const shortOwner = (d: Declaration) => d.owner.split('.').at(-1)
