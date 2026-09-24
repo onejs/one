@@ -19,6 +19,7 @@
 #include "HybridOneImagePickerSpecSwift.hpp"
 #include "HybridOneFontsSpecSwift.hpp"
 #include "HybridOneNotificationsSpecSwift.hpp"
+#include "HybridOneSecureStoreSpecSwift.hpp"
 
 @interface VxrnNativeAutolinking : NSObject
 @end
@@ -89,6 +90,13 @@
     "OneNotifications",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneNotificationsSpec> hybridObject = VxrnNative::VxrnNativeAutolinking::createOneNotifications();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneSecureStore",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneSecureStoreSpec> hybridObject = VxrnNative::VxrnNativeAutolinking::createOneSecureStore();
       return hybridObject;
     }
   );

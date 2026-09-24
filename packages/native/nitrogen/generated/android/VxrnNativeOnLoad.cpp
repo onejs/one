@@ -29,6 +29,7 @@
 #include "JFunc_void_std__string_NativeNotification.hpp"
 #include "JFunc_void_NativeNotificationResponse.hpp"
 #include "JFunc_void_NativePushToken.hpp"
+#include "JHybridOneSecureStoreSpec.hpp"
 #include <NitroModules/DefaultConstructableObject.hpp>
 
 namespace margelo::nitro::one {
@@ -111,6 +112,14 @@ struct JHybridOneNotificationsSpecImpl: public jni::JavaClass<JHybridOneNotifica
     return javaPart->getJHybridOneNotificationsSpec();
   }
 };
+struct JHybridOneSecureStoreSpecImpl: public jni::JavaClass<JHybridOneSecureStoreSpecImpl, JHybridOneSecureStoreSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneSecureStore;";
+  static std::shared_ptr<JHybridOneSecureStoreSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneSecureStoreSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneSecureStoreSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneSecureStoreSpec();
+  }
+};
 
 void registerAllNatives() {
   using namespace margelo::nitro;
@@ -131,6 +140,7 @@ void registerAllNatives() {
   margelo::nitro::one::JFunc_void_std__string_NativeNotification_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_NativeNotificationResponse_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_NativePushToken_cxx::registerNatives();
+  margelo::nitro::one::JHybridOneSecureStoreSpec::CxxPart::registerNatives();
 
   // Register Nitro Hybrid Objects
   HybridObjectRegistry::registerHybridObjectConstructor(
@@ -185,6 +195,12 @@ void registerAllNatives() {
     "OneNotifications",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneNotificationsSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneSecureStore",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneSecureStoreSpecImpl::create();
     }
   );
 }

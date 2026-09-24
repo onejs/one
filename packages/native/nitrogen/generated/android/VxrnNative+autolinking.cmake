@@ -42,6 +42,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneImagePickerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNetworkSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNotificationsSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneSecureStoreSpec.cpp
   # Android-specific Nitrogen C++ sources
   ../nitrogen/generated/android/c++/JHybridOneAppInfoSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneBrowserSpec.cpp
@@ -52,6 +53,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneImagePickerSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNetworkSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNotificationsSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneSecureStoreSpec.cpp
 )
 
 # From node_modules/react-native/ReactAndroid/cmake-utils/folly-flags.cmake

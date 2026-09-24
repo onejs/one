@@ -19,6 +19,7 @@ import {
   ContextMenu as NativeContextMenu,
   Notifications,
   Network as NativeNetwork,
+  SecureStore as NativeSecureStore,
   SplitView,
   Swift,
   TextInput,
@@ -110,6 +111,7 @@ export type OneAPI = {
   readonly Network: typeof NativeNetwork
   readonly Browser: typeof NativeBrowser
   readonly ImagePicker: typeof ImagePicker
+  readonly SecureStore: typeof NativeSecureStore
   readonly useNetworkState: typeof useNetworkState
 }
 
@@ -179,5 +181,6 @@ export const One: OneAPI = Object.freeze({
   Network: NativeNetwork,
   Browser: NativeBrowser,
   ImagePicker,
+  SecureStore: NativeSecureStore,
   useNetworkState,
 })
