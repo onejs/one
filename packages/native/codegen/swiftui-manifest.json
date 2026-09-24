@@ -2140,6 +2140,7 @@
         "index": 1,
         "label": "content",
         "type": "SwiftUI.ActionSheet",
+        "returnType": "SwiftUI.ActionSheet",
         "argumentOffset": 1
       }
     },
@@ -2185,6 +2186,7 @@
         "index": 1,
         "label": "content",
         "type": "SwiftUI.Alert",
+        "returnType": "SwiftUI.Alert",
         "argumentOffset": 1
       }
     },
@@ -2422,6 +2424,99 @@
         }
       ],
       "framework": "StoreKit"
+    },
+    {
+      "name": "appStoreOverlayWithAppClipConfiguration",
+      "module": "_StoreKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "enum",
+          "type": "StoreKit.SKOverlay.Position",
+          "optional": false,
+          "cases": [
+            {
+              "name": "bottom",
+              "ios": 14
+            },
+            {
+              "name": "bottomRaised",
+              "ios": 14
+            }
+          ],
+          "field": "position",
+          "label": "position"
+        }
+      ],
+      "aliasSuffix": "AppClipConfiguration",
+      "factoryParameter": {
+        "index": 1,
+        "label": "configuration",
+        "type": "StoreKit.SKOverlay.AppClipConfiguration",
+        "returnType": "StoreKit.SKOverlay.Configuration",
+        "argumentOffset": 1
+      },
+      "framework": "StoreKit",
+      "sdkName": "appStoreOverlay"
+    },
+    {
+      "name": "appStoreOverlayWithAppConfiguration",
+      "module": "_StoreKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "optional": false,
+          "field": "appIdentifier",
+          "label": "appIdentifier"
+        },
+        {
+          "kind": "enum",
+          "type": "StoreKit.SKOverlay.Position",
+          "optional": false,
+          "cases": [
+            {
+              "name": "bottom",
+              "ios": 14
+            },
+            {
+              "name": "bottomRaised",
+              "ios": 14
+            }
+          ],
+          "field": "position",
+          "label": "position"
+        }
+      ],
+      "aliasSuffix": "AppConfiguration",
+      "factoryParameter": {
+        "index": 1,
+        "label": "configuration",
+        "type": "StoreKit.SKOverlay.AppConfiguration",
+        "returnType": "StoreKit.SKOverlay.Configuration",
+        "argumentOffset": 1
+      },
+      "framework": "StoreKit",
+      "sdkName": "appStoreOverlay"
     },
     {
       "name": "aspectRatio",
@@ -17147,6 +17242,7 @@
       ],
       "_StoreKit_SwiftUI": [
         "appStoreMerchandising",
+        "appStoreOverlay",
         "currentEntitlementTask",
         "inAppPurchaseOptions",
         "manageSubscriptionsSheet",
@@ -17647,6 +17743,7 @@
       ],
       "_StoreKit_SwiftUI": [
         "appStoreMerchandising",
+        "appStoreOverlay",
         "currentEntitlementTask",
         "inAppPurchaseOptions",
         "manageSubscriptionsSheet",

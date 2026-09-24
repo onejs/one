@@ -61,7 +61,7 @@ const eventClassTypes = new Set(inventory.flatMap((method) =>
       const type = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (?:Swift\.Void|\(\))$/.exec(parameter.type)?.[1]
       return type ? [type] : []
     }) : []))
-for (const module of ['UIKit', 'PhotosUI', 'Photos', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport', 'Foundation', 'AVKit']) {
+for (const module of ['UIKit', 'PhotosUI', 'Photos', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport', 'Foundation', 'AVKit', 'StoreKit']) {
   const outputDir = join(cache, `symbols-${module}-${sdkVersion}`)
   const graphPath = join(outputDir, `${module}.symbols.json`)
   if (!existsSync(graphPath)) {
@@ -72,10 +72,17 @@ for (const module of ['UIKit', 'PhotosUI', 'Photos', 'GameController', 'RealityF
   }
   const graph = JSON.parse(readFileSync(graphPath, 'utf8')) as { symbols: {
     kind: { identifier: string }
+    identifier: { precise: string }
     pathComponents: string[]
     declarationFragments?: { spelling: string }[]
     availability?: { domain: string; introduced?: { major: number; minor?: number }; isUnconditionallyUnavailable?: boolean }[]
-  }[] }
+  }[]; relationships?: { kind: string; source: string; target: string }[] }
+  const classNames = new Map(graph.symbols.filter((symbol) => symbol.kind.identifier === 'swift.class')
+    .map((symbol) => [symbol.identifier.precise, `${module}.${symbol.pathComponents.join('.')}`]))
+  const parentClasses = new Map((graph.relationships ?? [])
+    .filter((relationship) => relationship.kind === 'inheritsFrom' &&
+      classNames.has(relationship.source) && classNames.has(relationship.target))
+    .map((relationship) => [relationship.source, classNames.get(relationship.target)!]))
   for (const symbol of graph.symbols) {
     const [owner, name] = symbol.pathComponents
     const declaration = symbol.declarationFragments?.map((part) => part.spelling).join('') ?? ''
@@ -83,6 +90,34 @@ for (const module of ['UIKit', 'PhotosUI', 'Photos', 'GameController', 'RealityF
     if (iosAvailability?.isUnconditionallyUnavailable) continue
     const introduced = iosAvailability?.introduced
     const attributes = introduced ? [`@available(iOS ${introduced.major}.${introduced.minor ?? 0}, *)`] : []
+    if (symbol.kind.identifier === 'swift.class' && symbol.pathComponents.length > 1 &&
+      parentClasses.has(symbol.identifier.precise))
+      importedCases.push({ module, owner: symbol.pathComponents.slice(0, -1).join('.'),
+        name: symbol.pathComponents.at(-1)!, kind: 'class', parameters: [], line: 0,
+        inheritedTypes: [parentClasses.get(symbol.identifier.precise)!], attributes })
+    if (symbol.kind.identifier === 'swift.init' && symbol.pathComponents.length > 2 &&
+      /^init\([^()]*\)$/.test(declaration)) {
+      const owner = symbol.pathComponents.slice(0, -1).join('.')
+      const className = `${module}.${owner}`
+      if ([...classNames.values()].includes(className)) {
+        const parameters = declaration.slice(5, -1).split(', ').filter(Boolean).map((entry) => {
+          const match = /^([A-Za-z_]\w*): ([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*)$/.exec(entry)
+          if (!match) return
+          const type = match[2] === 'String' ? 'Swift.String' :
+            ['Bool', 'Int', 'Double', 'Float'].includes(match[2]) ? `Swift.${match[2]}` :
+              match[2].startsWith(`${symbol.pathComponents[0]}.`) ? `${module}.${match[2]}` : match[2]
+          return { label: match[1], name: match[1], type }
+        })
+        if (parameters.length && parameters.every(Boolean))
+          importedCases.push({ module, owner, name: 'init', kind: 'init',
+            parameters: parameters as Declaration['parameters'], line: 0, attributes })
+      }
+    }
+    if (symbol.kind.identifier === 'swift.enum.case' && symbol.pathComponents.length > 2) {
+      const owner = symbol.pathComponents.slice(0, -1).join('.')
+      importedCases.push({ module, owner, name: symbol.pathComponents.at(-1)!, kind: 'static',
+        type: `${module}.${owner}`, parameters: [], line: 0, attributes })
+    }
     if (symbol.pathComponents.length === 2 && name === 'shared()' &&
       symbol.kind.identifier === 'swift.type.method' &&
       new RegExp(`^class func shared\\(\\) -> ${owner}$`).test(declaration))
@@ -200,10 +235,13 @@ for (const modifier of derivedModifiers) {
             parameter.label === modifier.arguments?.[index].label &&
             parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))
         : modifier.factoryParameter
-        ? d.parameters.some((parameter) => parameter.type === `() -> ${modifier.factoryParameter?.type}`) &&
-          d.parameters.filter((parameter) => parameter.type !== `() -> ${modifier.factoryParameter?.type}` &&
+        ? d.parameters.some((parameter) =>
+            parameter.type.replace(/^@escaping /, '') === `() -> ${modifier.factoryParameter?.returnType}`) &&
+          d.parameters.filter((parameter) =>
+            parameter.type.replace(/^@escaping /, '') !== `() -> ${modifier.factoryParameter?.returnType}` &&
             parameter.defaultValue === undefined).length === modifier.factoryParameter.argumentOffset &&
-          d.parameters.filter((parameter) => parameter.type !== `() -> ${modifier.factoryParameter?.type}` &&
+          d.parameters.filter((parameter) =>
+            parameter.type.replace(/^@escaping /, '') !== `() -> ${modifier.factoryParameter?.returnType}` &&
             parameter.defaultValue === undefined).every((parameter, index) =>
             parameter.label === modifier.arguments?.[index].label &&
             parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))

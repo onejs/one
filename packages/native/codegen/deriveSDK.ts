@@ -68,7 +68,7 @@ export type DerivedModifier = {
   callArguments?: readonly { label: string; defaultValue?: string; bridge?: true }[]
   namespaceParameter?: { index: number; label: string }
   sharedParameter?: { index: number; label: string; type: string }
-  factoryParameter?: { index: number; label: string; type: string; argumentOffset: number }
+  factoryParameter?: { index: number; label: string; type: string; returnType: string; argumentOffset: number }
   arguments?: readonly DerivedArgument[]
 }
 
@@ -668,14 +668,18 @@ export function deriveModifiers(
         return []
       }
       const factoryIndex = method.parameters.findIndex((parameter) =>
-        /^\(\) -> [A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+$/.test(parameter.type) &&
+        /^(?:@escaping )?\(\) -> [A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+$/.test(parameter.type) &&
         parameter.defaultValue === undefined)
       if (factoryIndex !== -1 && !method.requirements?.length) {
         const factory = method.parameters[factoryIndex]
-        const type = factory.type.slice('() -> '.length)
-        const [module, ...owner] = type.split('.')
-        const constructors = inventory.filter((declaration) => declaration.module === module &&
-          declaration.owner === owner.join('.') && declaration.kind === 'init' &&
+        const returnType = factory.type.replace(/^(?:@escaping )?\(\) -> /, '')
+        const possibleTypes = [returnType, ...inventory.filter((declaration) =>
+          declaration.kind === 'class' && declaration.inheritedTypes?.includes(returnType) &&
+          present(declaration) && ios(declaration) <= ceiling)
+          .map((declaration) => `${declaration.module}.${declaration.owner ? `${declaration.owner}.` : ''}${declaration.name}`)]
+        const constructors = inventory.filter((declaration) =>
+          possibleTypes.includes(`${declaration.module}.${declaration.owner}`) &&
+          declaration.kind === 'init' &&
           !declaration.requirements?.length && present(declaration) && ios(declaration) <= ceiling &&
           declaration.parameters.some((parameter) => parameter.defaultValue === undefined) &&
           declaration.parameters.filter((parameter) => parameter.defaultValue === undefined)
@@ -688,20 +692,27 @@ export function deriveModifiers(
             : valueOf(parameter.type)
           return value && { ...value, field: parameter.name, label: parameter.label }
         })
-        if (constructors.length === 1 && argumentsFromSDK.every(Boolean)) {
-          const constructorArguments = constructors[0].parameters
-            .filter((parameter) => parameter.defaultValue === undefined)
-            .map((parameter) => ({ ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label }))
-          const argumentsList = [...argumentsFromSDK as DerivedArgument[], ...constructorArguments]
-          if (new Set(argumentsList.map((argument) => argument.field)).size === argumentsList.length)
-            return [{ name, module: method.module, kind: 'record', type: '',
-              ios: Math.max(ios(method), ios(constructors[0])), arguments: argumentsList,
-              factoryParameter: {
-                index: method.parameters.slice(0, factoryIndex).filter((parameter) =>
-                  parameter.defaultValue === undefined).length,
-                label: factory.label, type, argumentOffset: required.length,
-              }, ...framework }]
-        }
+        if (constructors.length && argumentsFromSDK.every(Boolean))
+          return constructors.filter((constructor) => constructors.filter((other) =>
+            other.module === constructor.module && other.owner === constructor.owner).length === 1)
+            .flatMap((constructor) => {
+              const constructorArguments = constructor.parameters
+                .filter((parameter) => parameter.defaultValue === undefined)
+                .map((parameter) => ({ ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label }))
+              const argumentsList = [...argumentsFromSDK as DerivedArgument[], ...constructorArguments]
+              if (new Set(argumentsList.map((argument) => argument.field)).size === argumentsList.length) {
+                const type = `${constructor.module}.${constructor.owner}`
+                return [{ name, module: method.module, kind: 'record' as const, type: '',
+                  ios: Math.max(ios(method), ios(constructor)), arguments: argumentsList,
+                  ...(type !== returnType ? { aliasSuffix: type.split('.').at(-1) } : {}),
+                  factoryParameter: {
+                    index: method.parameters.slice(0, factoryIndex).filter((parameter) =>
+                      parameter.defaultValue === undefined).length,
+                    label: factory.label, type, returnType, argumentOffset: required.length,
+                  }, ...framework }]
+              }
+              return []
+            })
       }
       const genericTransform = method.parameters.length === 3 &&
         method.parameters[0].type === 'T.Type' &&
