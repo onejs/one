@@ -54,6 +54,14 @@ describe('SDK callback and binding transport', () => {
       layoutValue: 'column-span',
       containerValue: 'badge-value',
       onAppIntentExecution: 'selection-handler',
+      appEntityUIElements: 'entity-elements',
+      onApplePayCouponCodeChange: 'coupon-update',
+      onApplePayPaymentMethodChange: 'payment-method-update',
+      onApplePayShippingContactChange: 'shipping-contact-update',
+      onApplePayShippingMethodChange: 'shipping-method-update',
+      reorderContainer: 'reorder-items',
+      mapFeatureSelectionContent: 'selected-feature',
+      transactionTask: 'credential-transaction',
     } })
     expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
       ['environmentObject', 'session-store'],
@@ -63,6 +71,14 @@ describe('SDK callback and binding transport', () => {
       ['layoutValue', 'column-span'],
       ['containerValue', 'badge-value'],
       ['onAppIntentExecution', 'selection-handler'],
+      ['appEntityUIElements', 'entity-elements'],
+      ['onApplePayCouponCodeChange', 'coupon-update'],
+      ['onApplePayPaymentMethodChange', 'payment-method-update'],
+      ['onApplePayShippingContactChange', 'shipping-contact-update'],
+      ['onApplePayShippingMethodChange', 'shipping-method-update'],
+      ['reorderContainer', 'reorder-items'],
+      ['mapFeatureSelectionContent', 'selected-feature'],
+      ['transactionTask', 'credential-transaction'],
     ])
     expect(() => Controls.Text({ text: 'native object', swiftStyle: {
       environmentObject: '',

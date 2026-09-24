@@ -23,6 +23,7 @@ import WidgetKit
 import QuickLook
 import AuthenticationServices
 import Symbols
+import SecureElementCredential
 import Translation
 import WebKit
 import WorkoutKit
@@ -36,7 +37,7 @@ import WorkoutKit
 }
 
 @MainActor public struct OneNativeRegisteredModifier {
-  enum Kind { case layoutValue, containerValue, accessibilityAction, onAppIntentExecution }
+  enum Kind { case layoutValue, containerValue, accessibilityAction, onAppIntentExecution, reorderContainer, mapFeatureSelectionContent, transactionTask, appEntityUIElements, onApplePayCouponCodeChange, onApplePayPaymentMethodChange, onApplePayShippingContactChange, onApplePayShippingMethodChange }
   let kind: Kind
   let apply: (AnyView) -> AnyView
 
@@ -60,6 +61,54 @@ import WorkoutKit
     _ intent: I.Type, perform action: @escaping @MainActor (I) -> Void
   ) -> Self {
     Self(kind: .onAppIntentExecution) { AnyView($0.onAppIntentExecution(intent, perform: action)) }
+  }
+
+  @available(iOS 27, *)
+  public static func reorderContainer<Item: Identifiable>(
+    for item: Item.Type, isEnabled: Bool = true,
+    move: @escaping (ReorderDifference<Item.ID, ReorderableSingleCollectionIdentifier>) -> Void
+  ) -> Self where Item.ID: Sendable {
+    Self(kind: .reorderContainer) { AnyView($0.reorderContainer(for: item, isEnabled: isEnabled, move: move)) }
+  }
+
+  @available(iOS 17, *)
+  public static func mapFeatureSelectionContent<Content: MapContent>(
+    @MapContentBuilder content: @escaping (MapFeature) -> Content
+  ) -> Self {
+    Self(kind: .mapFeatureSelectionContent) { AnyView($0.mapFeatureSelectionContent(content: content)) }
+  }
+
+  @available(iOS 18.1, *)
+  public static func transactionTask(
+    _ configuration: CredentialTransaction.Configuration?,
+    action: @escaping (CredentialTransaction) async -> Void
+  ) -> Self {
+    Self(kind: .transactionTask) { AnyView($0.transactionTask(configuration, action: action)) }
+  }
+
+  @available(iOS 18.4, *)
+  public static func appEntityUIElements(_ action: @escaping @MainActor (AppIntents.AppEntityUIElementsContext) -> [AppIntents.AppEntityUIElement]) -> Self {
+    Self(kind: .appEntityUIElements) { AnyView($0.appEntityUIElements(action)) }
+  }
+
+  @available(iOS 15.5, *)
+  public static func onApplePayCouponCodeChange(_ action: @escaping (Swift.String) async -> PassKit.PKPaymentRequestCouponCodeUpdate) -> Self {
+    Self(kind: .onApplePayCouponCodeChange) { AnyView($0.onApplePayCouponCodeChange(perform: action)) }
+  }
+
+  @available(iOS 15.5, *)
+  public static func onApplePayPaymentMethodChange(_ action: @escaping (PassKit.PKPaymentMethod) async -> PassKit.PKPaymentRequestPaymentMethodUpdate) -> Self {
+    Self(kind: .onApplePayPaymentMethodChange) { AnyView($0.onApplePayPaymentMethodChange(perform: action)) }
+  }
+
+  @available(iOS 15.5, *)
+  public static func onApplePayShippingContactChange(_ action: @escaping (PassKit.PKContact) async -> PassKit.PKPaymentRequestShippingContactUpdate) -> Self {
+    Self(kind: .onApplePayShippingContactChange) { AnyView($0.onApplePayShippingContactChange(perform: action)) }
+  }
+
+  @available(iOS 15.5, *)
+  public static func onApplePayShippingMethodChange(_ action: @escaping (PassKit.PKShippingMethod) async -> PassKit.PKPaymentRequestShippingMethodUpdate) -> Self {
+    Self(kind: .onApplePayShippingMethodChange) { AnyView($0.onApplePayShippingMethodChange(perform: action)) }
   }
 }
 
@@ -457,6 +506,7 @@ extension View {
       case "anchorPreference": view = AnyView(view.oneNativeSDKAnchorPreference(value, emit: emit))
       case "animation": view = AnyView(view.oneNativeSDKAnimation(value, emit: emit))
       case "appEntityIdentifier": view = AnyView(view.oneNativeSDKAppEntityIdentifier(value, emit: emit))
+      case "appEntityUIElements": view = AnyView(view.oneNativeSDKAppEntityUIElements(value, emit: emit))
       case "appStoreMerchandising": view = AnyView(view.oneNativeSDKAppStoreMerchandising(value, emit: emit))
       case "appStoreOverlayWithAppClipConfiguration": view = AnyView(view.oneNativeSDKAppStoreOverlayWithAppClipConfiguration(value, emit: emit))
       case "appStoreOverlayWithAppConfiguration": view = AnyView(view.oneNativeSDKAppStoreOverlayWithAppConfiguration(value, emit: emit))
@@ -713,6 +763,7 @@ extension View {
       case "mapCameraKeyframeAnimator": view = AnyView(view.oneNativeSDKMapCameraKeyframeAnimator(value, emit: emit))
       case "mapControlVisibility": view = AnyView(view.oneNativeSDKMapControlVisibility(value, emit: emit))
       case "mapFeatureSelectionAccessory": view = AnyView(view.oneNativeSDKMapFeatureSelectionAccessory(value, emit: emit))
+      case "mapFeatureSelectionContent": view = AnyView(view.oneNativeSDKMapFeatureSelectionContent(value, emit: emit))
       case "mapFeatureSelectionDisabled": view = AnyView(view.oneNativeSDKMapFeatureSelectionDisabled(value, emit: emit))
       case "mapItemDetailPopoverWithCurrentLocation": view = AnyView(view.oneNativeSDKMapItemDetailPopoverWithCurrentLocation(value, emit: emit))
       case "mapItemDetailPopoverWithCurrentLocationAndArrowEdge": view = AnyView(view.oneNativeSDKMapItemDetailPopoverWithCurrentLocationAndArrowEdge(value, emit: emit))
@@ -758,6 +809,10 @@ extension View {
       case "offset": view = AnyView(view.oneNativeSDKOffset(value, emit: emit))
       case "onAppear": view = AnyView(view.oneNativeSDKOnAppear(value, emit: emit))
       case "onAppIntentExecution": view = AnyView(view.oneNativeSDKOnAppIntentExecution(value, emit: emit))
+      case "onApplePayCouponCodeChange": view = AnyView(view.oneNativeSDKOnApplePayCouponCodeChange(value, emit: emit))
+      case "onApplePayPaymentMethodChange": view = AnyView(view.oneNativeSDKOnApplePayPaymentMethodChange(value, emit: emit))
+      case "onApplePayShippingContactChange": view = AnyView(view.oneNativeSDKOnApplePayShippingContactChange(value, emit: emit))
+      case "onApplePayShippingMethodChange": view = AnyView(view.oneNativeSDKOnApplePayShippingMethodChange(value, emit: emit))
       case "onCameraCaptureEvent": view = AnyView(view.oneNativeSDKOnCameraCaptureEvent(value, emit: emit))
       case "onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction": view = AnyView(view.oneNativeSDKOnCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction(value, emit: emit))
       case "onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction": view = AnyView(view.oneNativeSDKOnCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction(value, emit: emit))
@@ -847,6 +902,7 @@ extension View {
       case "refreshable": view = AnyView(view.oneNativeSDKRefreshable(value, emit: emit))
       case "refundRequestSheet": view = AnyView(view.oneNativeSDKRefundRequestSheet(value, emit: emit))
       case "renameAction": view = AnyView(view.oneNativeSDKRenameAction(value, emit: emit))
+      case "reorderContainer": view = AnyView(view.oneNativeSDKReorderContainer(value, emit: emit))
       case "replaceDisabled": view = AnyView(view.oneNativeSDKReplaceDisabled(value, emit: emit))
       case "rotation3DEffect": view = AnyView(view.oneNativeSDKRotation3DEffect(value, emit: emit))
       case "rotationEffect": view = AnyView(view.oneNativeSDKRotationEffect(value, emit: emit))
@@ -958,6 +1014,7 @@ extension View {
       case "toolbarWithVisibilityAndBars": view = AnyView(view.oneNativeSDKToolbarWithVisibilityAndBars(value, emit: emit))
       case "tracking": view = AnyView(view.oneNativeSDKTracking(value, emit: emit))
       case "transaction": view = AnyView(view.oneNativeSDKTransaction(value, emit: emit))
+      case "transactionTask": view = AnyView(view.oneNativeSDKTransactionTask(value, emit: emit))
       case "transformAnchorPreference": view = AnyView(view.oneNativeSDKTransformAnchorPreference(value, emit: emit))
       case "transformEffect": view = AnyView(view.oneNativeSDKTransformEffect(value, emit: emit))
       case "transformEnvironmentAccessibilityEnabled": view = AnyView(view.oneNativeSDKTransformEnvironmentAccessibilityEnabled(value, emit: emit))
@@ -2132,6 +2189,19 @@ extension View {
     if value == "null" { if #available(iOS 18.4, *) { self.appEntityIdentifier(nil as AppIntents.EntityIdentifier?) } else { self } } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       if #available(iOS 18.4, *) { self.appEntityIdentifier((AppIntents.EntityIdentifier(activityIdentifier: decoded) ?? { () -> AppIntents.EntityIdentifier in preconditionFailure("invalid appEntityIdentifier") }())) } else { self }
     } else { preconditionFailure("invalid appEntityIdentifier: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAppEntityUIElements(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18.4, *) {
+      let registered: OneNativeRegisteredModifier = {
+        guard let found = OneNativeRegisteredValue.value(value) as? OneNativeRegisteredModifier else {
+          preconditionFailure("missing appEntityUIElements registered value: \(value)")
+        }
+        return found
+      }()
+      let _ = precondition(registered.kind == .appEntityUIElements, "invalid appEntityUIElements registered value: \(value)")
+      registered.apply(AnyView(self))
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAppStoreMerchandising(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -5662,6 +5732,19 @@ self
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKMapFeatureSelectionContent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 17, *) {
+      let registered: OneNativeRegisteredModifier = {
+        guard let found = OneNativeRegisteredValue.value(value) as? OneNativeRegisteredModifier else {
+          preconditionFailure("missing mapFeatureSelectionContent registered value: \(value)")
+        }
+        return found
+      }()
+      let _ = precondition(registered.kind == .mapFeatureSelectionContent, "invalid mapFeatureSelectionContent registered value: \(value)")
+      registered.apply(AnyView(self))
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKMapFeatureSelectionDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid mapFeatureSelectionDisabled: \(value)")
       self.mapFeatureSelectionDisabled({ (_: _MapKit_SwiftUI.MapFeature) in value == "true" })
@@ -6144,6 +6227,58 @@ self
         return found
       }()
       let _ = precondition(registered.kind == .onAppIntentExecution, "invalid onAppIntentExecution registered value: \(value)")
+      registered.apply(AnyView(self))
+    } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnApplePayCouponCodeChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 15.5, *) {
+      let registered: OneNativeRegisteredModifier = {
+        guard let found = OneNativeRegisteredValue.value(value) as? OneNativeRegisteredModifier else {
+          preconditionFailure("missing onApplePayCouponCodeChange registered value: \(value)")
+        }
+        return found
+      }()
+      let _ = precondition(registered.kind == .onApplePayCouponCodeChange, "invalid onApplePayCouponCodeChange registered value: \(value)")
+      registered.apply(AnyView(self))
+    } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnApplePayPaymentMethodChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 15.5, *) {
+      let registered: OneNativeRegisteredModifier = {
+        guard let found = OneNativeRegisteredValue.value(value) as? OneNativeRegisteredModifier else {
+          preconditionFailure("missing onApplePayPaymentMethodChange registered value: \(value)")
+        }
+        return found
+      }()
+      let _ = precondition(registered.kind == .onApplePayPaymentMethodChange, "invalid onApplePayPaymentMethodChange registered value: \(value)")
+      registered.apply(AnyView(self))
+    } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnApplePayShippingContactChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 15.5, *) {
+      let registered: OneNativeRegisteredModifier = {
+        guard let found = OneNativeRegisteredValue.value(value) as? OneNativeRegisteredModifier else {
+          preconditionFailure("missing onApplePayShippingContactChange registered value: \(value)")
+        }
+        return found
+      }()
+      let _ = precondition(registered.kind == .onApplePayShippingContactChange, "invalid onApplePayShippingContactChange registered value: \(value)")
+      registered.apply(AnyView(self))
+    } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnApplePayShippingMethodChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 15.5, *) {
+      let registered: OneNativeRegisteredModifier = {
+        guard let found = OneNativeRegisteredValue.value(value) as? OneNativeRegisteredModifier else {
+          preconditionFailure("missing onApplePayShippingMethodChange registered value: \(value)")
+        }
+        return found
+      }()
+      let _ = precondition(registered.kind == .onApplePayShippingMethodChange, "invalid onApplePayShippingMethodChange registered value: \(value)")
       registered.apply(AnyView(self))
     } else { self }
   }
@@ -7310,6 +7445,19 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
 
   @ViewBuilder fileprivate func oneNativeSDKRenameAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.renameAction({ emit("renameAction", "") })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKReorderContainer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 27, *) {
+      let registered: OneNativeRegisteredModifier = {
+        guard let found = OneNativeRegisteredValue.value(value) as? OneNativeRegisteredModifier else {
+          preconditionFailure("missing reorderContainer registered value: \(value)")
+        }
+        return found
+      }()
+      let _ = precondition(registered.kind == .reorderContainer, "invalid reorderContainer registered value: \(value)")
+      registered.apply(AnyView(self))
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKReplaceDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -9405,6 +9553,19 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
       }
     }()
     self.transaction(argument0)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransactionTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18.1, *) {
+      let registered: OneNativeRegisteredModifier = {
+        guard let found = OneNativeRegisteredValue.value(value) as? OneNativeRegisteredModifier else {
+          preconditionFailure("missing transactionTask registered value: \(value)")
+        }
+        return found
+      }()
+      let _ = precondition(registered.kind == .transactionTask, "invalid transactionTask registered value: \(value)")
+      registered.apply(AnyView(self))
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransformAnchorPreference(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
