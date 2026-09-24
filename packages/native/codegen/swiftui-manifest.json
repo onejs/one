@@ -3559,6 +3559,30 @@
       ]
     },
     {
+      "name": "cornerRadiusWithRadiusAndAntialiased",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "radius",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "antialiased",
+          "label": "antialiased"
+        }
+      ],
+      "sdkName": "cornerRadius"
+    },
+    {
       "name": "currentEntitlementTask",
       "kind": "eventAsyncStruct",
       "type": "@escaping (_StoreKit_SwiftUI.EntitlementTaskState<StoreKit.VerificationResult<StoreKit.Transaction>?>) async -> ()",
@@ -16154,6 +16178,7 @@
         "contrast",
         "controlSize",
         "coordinateSpace",
+        "cornerRadius",
         "defaultHoverEffect",
         "disabled",
         "distortionEffect",
@@ -16638,6 +16663,7 @@
         "contrast",
         "controlSize",
         "coordinateSpace",
+        "cornerRadius",
         "defaultHoverEffect",
         "disabled",
         "distortionEffect",

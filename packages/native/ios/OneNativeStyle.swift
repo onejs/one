@@ -209,6 +209,7 @@ extension View {
       case "controlSize": view = AnyView(view.oneNativeSDKControlSize(value, emit: emit))
       case "coordinateSpace": view = AnyView(view.oneNativeSDKCoordinateSpace(value, emit: emit))
       case "copyable": view = AnyView(view.oneNativeSDKCopyable(value, emit: emit))
+      case "cornerRadiusWithRadiusAndAntialiased": view = AnyView(view.oneNativeSDKCornerRadiusWithRadiusAndAntialiased(value, emit: emit))
       case "currentEntitlementTask": view = AnyView(view.oneNativeSDKCurrentEntitlementTask(value, emit: emit))
       case "cuttable": view = AnyView(view.oneNativeSDKCuttable(value, emit: emit))
       case "dataDetection": view = AnyView(view.oneNativeSDKDataDetection(value, emit: emit))
@@ -2268,6 +2269,26 @@ if #available(iOS 27, *) {
 self
 #endif
 
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKCornerRadiusWithRadiusAndAntialiased(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid cornerRadiusWithRadiusAndAntialiased: \(value)") }
+      return decoded
+    }()
+    let argument0: CoreFoundation.CGFloat = {
+      guard let raw = values[0] else { preconditionFailure("missing cornerRadiusWithRadiusAndAntialiased.radius") }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid cornerRadiusWithRadiusAndAntialiased.radius: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument1: Swift.Bool = {
+      guard let raw = values[1] else { preconditionFailure("missing cornerRadiusWithRadiusAndAntialiased.antialiased") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid cornerRadiusWithRadiusAndAntialiased.antialiased: \(raw)") }
+      return raw == "true"
+    }()
+    self.cornerRadius(argument0, antialiased: argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKCurrentEntitlementTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

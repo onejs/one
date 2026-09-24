@@ -1879,6 +1879,10 @@ export interface OneNativeStyle {
   controlSize?: SDKControlSize
   coordinateSpace?: string
   copyable?: Readonly<{ payload: readonly string[] }>
+  cornerRadiusWithRadiusAndAntialiased?: Readonly<{
+    radius: number
+    antialiased: boolean
+  }>
   currentEntitlementTask?: Readonly<{
     productID: string
     onAction: (

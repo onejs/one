@@ -471,7 +471,11 @@ export function deriveModifiers(
       /^[a-z]/.test(d.name) &&
       present(d) &&
       ios(d) <= ceiling &&
-      !reservedNames.has(d.name)
+      (!reservedNames.has(d.name) ||
+        (d.parameters.length > 1 && !d.requirements?.length &&
+          d.parameters.some((parameter) => parameter.defaultValue === undefined) &&
+          d.parameters.some((parameter) => parameter.defaultValue !== undefined) &&
+          d.parameters.every((parameter) => valueOf(parameter.type))))
   )
   const byName = new Map<string, Declaration[]>()
   for (const method of methods)
@@ -1136,7 +1140,7 @@ export function deriveModifiers(
     const established = preferred.filter((candidate) =>
       candidate.kind !== 'record' || !candidate.arguments?.some((argument) => argument.sdkType))
     const selected = established.length ? established : preferred
-    if (selected.length === 1) {
+    if (selected.length === 1 && !reservedNames.has(name)) {
       const { module, ...modifier } = selected[0]
       result.push(modifier)
       continue

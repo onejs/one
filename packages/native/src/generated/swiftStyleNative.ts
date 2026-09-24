@@ -148,6 +148,7 @@ const sdkKinds = {
   controlSize: 'string',
   coordinateSpace: 'string',
   copyable: 'record',
+  cornerRadiusWithRadiusAndAntialiased: 'record',
   currentEntitlementTask: 'eventAsyncStruct',
   cuttable: 'eventReturnArray',
   dataDetection: 'boolean',
@@ -1429,6 +1430,10 @@ const sdkRecords: Record<
     { field: 'placement', kind: 'enum', optional: false },
   ],
   copyable: [{ field: 'payload', kind: 'stringArray', optional: false }],
+  cornerRadiusWithRadiusAndAntialiased: [
+    { field: 'radius', kind: 'number', optional: false },
+    { field: 'antialiased', kind: 'boolean', optional: false },
+  ],
   defaultScrollAnchorWithAnchorAndRole: [
     { field: 'anchor', kind: 'enum', optional: true },
     { field: 'role', kind: 'enum', optional: false },
