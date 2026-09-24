@@ -1,0 +1,78 @@
+---
+title: iOS Groups
+description: Group, ControlGroup, DisclosureGroup, Divider, Link, LabeledContent, Glass, Overlay, ViewSlot, and SwipeActions under One.iOS
+---
+
+Grouping views under `One.iOS`.
+
+## Group
+
+`One.iOS.Group` groups children with no visual effect. Use it to apply
+modifiers or structure to several views at once.
+
+## ControlGroup
+
+`One.iOS.ControlGroup` groups controls into one segmented unit with an
+optional `label` and `systemImage`. `controlGroupStyle` is `'palette'`,
+`'automatic'`, `'navigation'`, `'menu'`, or `'compactMenu'`.
+
+## DisclosureGroup
+
+`One.iOS.DisclosureGroup` is an expanding section. `label` is required;
+`isExpanded` with `onIsExpandedChange` (and `revision` for external
+resets) controls the expansion.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.DisclosureGroup
+  label="Advanced"
+  isExpanded={open}
+  onIsExpandedChange={setOpen}
+>
+  <One.iOS.Toggle label="Debug" isOn={debug} onIsOnChange={setDebug} />
+</One.iOS.DisclosureGroup>
+```
+
+## Divider
+
+`One.iOS.Divider` draws a hairline between rows. It takes view props only.
+
+## Link
+
+`One.iOS.Link` opens `destination`, a URL string, with an optional `label`
+or children.
+
+## LabeledContent
+
+`One.iOS.LabeledContent` shows a `label` with a `value` string, an optional
+`systemImage`, and optional children for a custom value view.
+
+## Glass
+
+`One.iOS.Glass` applies a glass or material effect to its children.
+`glassEffect` is `'regular'`, `'clear'`, or `'identity'`; `material` picks
+the SwiftUI material; `shape` picks the glass shape; `cornerRadius`
+explicitly rounds; `interactive` opts into interactive glass; `tint` and
+`colorScheme` tint and scope the effect.
+
+## Overlay, Overlay.Content
+
+`One.iOS.Overlay` layers its children over the views behind it with an
+`alignment` from the ZStack alignments. `One.iOS.Overlay.Content` marks the
+overlay subtree.
+
+## ViewSlot, ViewSlot.Content
+
+`One.iOS.ViewSlot` hosts a native view modifier slot: `name` picks the
+SwiftUI slot (background, alert, accessibility actions, and the rest) and
+`options` carries that slot's parameters. `One.iOS.ViewSlot.Content` marks
+the slot subtree.
+
+## SwipeActions, SwipeActions.Actions
+
+`One.iOS.SwipeActions` wraps a `List` row to add swipe actions.
+`One.iOS.SwipeActions.Actions` groups the action buttons with `edge`
+(`'leading'` or `'trailing'`) and `allowsFullSwipe`.
+
+On web and Android these views throw. Keep them behind a platform check.

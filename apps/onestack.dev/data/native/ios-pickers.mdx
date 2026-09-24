@@ -1,0 +1,108 @@
+---
+title: iOS Pickers
+description: Picker, DatePicker, ColorPicker, PhotosPicker, and FileImporter under One.iOS
+---
+
+Value pickers under `One.iOS`. `Picker`, `DatePicker`, and `ColorPicker`
+follow the controlled pattern: a `selection`, an `onSelectionChange`
+callback, and a `revision` number for external resets. Every picker accepts
+`disabled`, `label`, and the shared view props (`accessibilityLabel`,
+`accessibilityHint`, `accessibilityValue`, `testID`, `style`, `onLayout`,
+`swiftStyle`).
+
+## Picker
+
+`One.iOS.Picker` picks one string from `options`, each `{ value, label }`.
+`pickerStyle` selects the SwiftUI picker style.
+
+| Prop | Type |
+|------|------|
+| `selection` | `string` |
+| `onSelectionChange` | `(value: string) => void` |
+| `revision` | `number` |
+| `options` | `readonly { value: string; label: string }[]` |
+| `pickerStyle` | `'wheel'`, `'inline'`, `'automatic'`, `'segmented'`, `'tabs'`, `'palette'`, `'navigationLink'`, `'menu'` |
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Picker
+  label="Size"
+  selection={size}
+  onSelectionChange={setSize}
+  options={[
+    { value: 's', label: 'Small' },
+    { value: 'm', label: 'Medium' },
+    { value: 'l', label: 'Large' },
+  ]}
+/>
+```
+
+## DatePicker
+
+`One.iOS.DatePicker` picks a `Date`. `minimumDate` and `maximumDate` bound
+the range; `displayedComponents` is `'date'`, `'hourAndMinute'`, or
+`'dateAndTime'`; `datePickerStyle` is `'wheel'`, `'automatic'`,
+`'graphical'`, or `'compact'`.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.DatePicker
+  label="Departure"
+  selection={date}
+  onSelectionChange={setDate}
+  minimumDate={new Date()}
+  displayedComponents="dateAndTime"
+/>
+```
+
+## ColorPicker
+
+`One.iOS.ColorPicker` picks a color as a hex string (`#RRGGBB` or
+`#RRGGBBAA`). `supportsOpacity` shows the opacity slider.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.ColorPicker
+  label="Accent"
+  selection={color}
+  onSelectionChange={setColor}
+  supportsOpacity
+/>
+```
+
+## PhotosPicker
+
+`One.iOS.PhotosPicker` opens the system photo library. `onPick` receives
+`(url, index, count)` per asset; `onPickItemIdentifier` receives the Photos
+item identifier instead; `onPickError` reports failures. `maxSelectionCount`
+caps the selection, `selectionBehavior` mirrors the PhotosUI selection
+behavior, `filter` limits the library to `'any'`, `'images'`, `'videos'`,
+`'livePhotos'`, `'screenshots'`, `'screenRecordings'`, `'slomoVideos'`,
+`'timelapseVideos'`, `'cinematicVideos'`, `'depthEffectPhotos'`,
+`'bursts'`, or `'panoramas'`, and `preferredItemEncoding` mirrors the
+encoding disambiguation policy.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.PhotosPicker
+  label="Add photos"
+  onPick={(url) => addPhoto(url)}
+  onPickError={(message) => setError(message)}
+  maxSelectionCount={5}
+  filter="images"
+/>
+```
+
+## FileImporter
+
+`One.iOS.FileImporter` opens the system file importer while `isPresented`
+is true and reports dismissal through `onIsPresentedChange`. `onCompletion`
+receives `{ type: 'success', url, index, count }`, `{ type: 'failed',
+message }`, or `{ type: 'cancelled' }`. `allowedContentTypes` lists uniform
+type identifiers and `allowsMultipleSelection` permits more than one file.
+
+On web and Android these pickers throw. Keep them behind a platform check.

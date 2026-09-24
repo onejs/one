@@ -15,4 +15,16 @@ import { One } from 'one'
 
 ### iOS Colors
 
-All UIKit semantic colors: `systemBlue`, `systemRed`, `systemGreen`, `label`, `secondaryLabel`, `systemBackground`, `separator`, `systemFill`, `systemGray` through `systemGray6`, and more.
+All UIKit semantic colors: `systemBlue`, `systemBrown`, `systemCyan`,
+`systemGreen`, `systemIndigo`, `systemMint`, `systemOrange`, `systemPink`,
+`systemPurple`, `systemRed`, `systemTeal`, `systemYellow`, `systemGray`
+through `systemGray6`, `label`, `secondaryLabel`, `tertiaryLabel`,
+`quaternaryLabel`, `systemFill`, `secondarySystemFill`,
+`tertiarySystemFill`, `quaternarySystemFill`, `placeholderText`,
+`systemBackground`, `secondarySystemBackground`,
+`systemGroupedBackground`, `secondarySystemGroupedBackground`,
+`tertiarySystemGroupedBackground`, `separator`, `opaqueSeparator`, `link`,
+`darkText`, and `lightText`.
+
+On web every color reads `null`, so gate native styling behind a platform
+check or fall back to a web color.

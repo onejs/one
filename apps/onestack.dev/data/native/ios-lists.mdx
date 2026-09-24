@@ -1,0 +1,53 @@
+---
+title: iOS Lists and Forms
+description: Form, Section, List, ScrollView, LazyVStack, and LazyHStack under One.iOS
+---
+
+Lists and forms under `One.iOS`. These are greedy containers: they take the
+box they are given, so give each its own box instead of nesting one inside
+a stack.
+
+## Form
+
+`One.iOS.Form` is a grouped settings form. `sizing` is `'fill'` (the
+default, flexes to its box) or `'content'` (wraps its rows). Switching
+sizing remounts the form. `Form` also takes the environment values
+(`colorScheme`, `dynamicTypeSize`, `controlSize`, `locale`, `tint`,
+`isEnabled`).
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Form>
+  <One.iOS.Section title="General">
+    <One.iOS.Toggle label="Airplane mode" isOn={on} onIsOnChange={setOn} />
+  </One.iOS.Section>
+</One.iOS.Form>
+```
+
+## Section
+
+`One.iOS.Section` groups rows with a `title` header and a `footer` string.
+
+## List
+
+`One.iOS.List` is a SwiftUI list. `listStyle` is `'automatic'`,
+`'sidebar'`, `'inset'`, `'grouped'`, `'insetGrouped'`, or `'plain'`. Rows
+support swipe actions through
+[Swift.SwipeActions](/native/ios-groups), and an `EditButton` toggles edit
+mode.
+
+## ScrollView
+
+`One.iOS.ScrollView` scrolls its children. `axes` is `'vertical'`,
+`'horizontal'`, or `'both'`; `showsIndicators` toggles the scroll
+indicators; `swiftStyle` applies native modifiers.
+
+## LazyVStack, LazyHStack
+
+`One.iOS.LazyVStack` and `One.iOS.LazyHStack` lay children out lazily along
+one axis. Both take `spacing`. `LazyVStack` aligns with `'leading'`,
+`'center'`, or `'trailing'`; `LazyHStack` aligns with `'top'`,
+`'center'`, `'bottom'`, `'firstTextBaseline'`, or `'lastTextBaseline'`.
+
+On web and Android these views throw. Keep them behind a platform check.
