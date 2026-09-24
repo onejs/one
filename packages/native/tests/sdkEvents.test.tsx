@@ -78,6 +78,22 @@ describe('SDK callback and binding transport', () => {
     expect(onChange).toHaveBeenCalledWith(false)
   })
 
+  it('preserves an unsigned StoreKit transaction ID beside a presentation binding', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'refund', swiftStyle: {
+      refundRequestSheet: {
+        transactionID: '18446744073709551615',
+        isPresented: { value: true, onChange },
+      },
+    } })
+    const modifiers = Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers))
+    expect(JSON.parse(modifiers.refundRequestSheet)).toEqual(['18446744073709551615', 'true'])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'refundRequestSheet.isPresented', value: 'false',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+  })
+
   it('routes a file mover completion result from a generated record', () => {
     const onChange = vi.fn()
     const onCompletion = vi.fn()

@@ -424,6 +424,7 @@ extension View {
       case "realityViewCameraControls": view = AnyView(view.oneNativeSDKRealityViewCameraControls(value, emit: emit))
       case "realityViewLayoutBehavior": view = AnyView(view.oneNativeSDKRealityViewLayoutBehavior(value, emit: emit))
       case "redacted": view = AnyView(view.oneNativeSDKRedacted(value, emit: emit))
+      case "refundRequestSheet": view = AnyView(view.oneNativeSDKRefundRequestSheet(value, emit: emit))
       case "renameAction": view = AnyView(view.oneNativeSDKRenameAction(value, emit: emit))
       case "replaceDisabled": view = AnyView(view.oneNativeSDKReplaceDisabled(value, emit: emit))
       case "rotation3DEffect": view = AnyView(view.oneNativeSDKRotation3DEffect(value, emit: emit))
@@ -4804,6 +4805,24 @@ extension View {
       case "invalidated": self.redacted(reason: SwiftUICore.RedactionReasons.invalidated)
     default: preconditionFailure("invalid redacted: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKRefundRequestSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid refundRequestSheet: \(value)") }
+      return decoded
+    }()
+    let argument0: StoreKit.Transaction.ID = {
+      guard let raw = values[0] else { preconditionFailure("missing refundRequestSheet.transactionID") }
+      return UInt64(raw) ?? { () -> UInt64 in preconditionFailure("invalid UInt64") }()
+    }()
+    let argument1: SwiftUICore.Binding<Swift.Bool> = {
+      guard let raw = values[1], raw == "true" || raw == "false" else { preconditionFailure("invalid refundRequestSheet.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("refundRequestSheet.isPresented", String($0)) })
+    }()
+    self.refundRequestSheet(for: argument0, isPresented: argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKRenameAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

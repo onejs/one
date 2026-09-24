@@ -1304,6 +1304,13 @@ export interface OneNativeStyle {
     realityViewCameraControls?: SDKRealityViewCameraControls;
     realityViewLayoutBehavior?: SDKRealityViewLayoutBehavior;
     redacted?: SDKRedacted;
+    refundRequestSheet?: Readonly<{
+        transactionID: string;
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+    }>;
     renameAction?: () => void;
     replaceDisabled?: boolean;
     rotation3DEffect?: Readonly<{
