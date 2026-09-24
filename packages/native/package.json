@@ -95,6 +95,12 @@
       "import": "./dist/esm/clipboard/index.mjs",
       "require": "./dist/cjs/clipboard/index.cjs"
     },
+    "./secure-store": {
+      "types": "./types/secure-store/index.d.ts",
+      "react-native": "./dist/esm/secure-store/index.native.js",
+      "import": "./dist/esm/secure-store/index.mjs",
+      "require": "./dist/cjs/secure-store/index.cjs"
+    },
     "./notifications": {
       "types": "./types/notifications/index.d.ts",
       "react-native": "./dist/esm/notifications/index.native.js",

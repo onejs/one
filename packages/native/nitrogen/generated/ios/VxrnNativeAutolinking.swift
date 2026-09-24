@@ -119,4 +119,16 @@ public final class VxrnNativeAutolinking {
   public static func isOneNotificationsRecyclable() -> Bool {
     return HybridOneNotifications.self is any RecyclableView.Type
   }
+  
+  public static func createOneSecureStore() -> bridge.std__shared_ptr_HybridOneSecureStoreSpec_ {
+    let hybridObject = HybridOneSecureStore()
+    return { () -> bridge.std__shared_ptr_HybridOneSecureStoreSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+  
+  public static func isOneSecureStoreRecyclable() -> Bool {
+    return HybridOneSecureStore.self is any RecyclableView.Type
+  }
 }
