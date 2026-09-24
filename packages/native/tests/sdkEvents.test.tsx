@@ -43,6 +43,18 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('inAppPurchaseOptions.quantity must be finite')
   })
 
+  it('configures an SDK set from public static values', () => {
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      presentationDetents: ['medium', 'large'],
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['presentationDetents', '["medium","large"]'],
+    ])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      presentationDetents: ['unknown' as never],
+    } })).toThrow('presentationDetents must be public SDK values')
+  })
+
   it('uses a public preference key for setting, transforming, and observing its value', () => {
     const onChange = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {

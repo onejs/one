@@ -483,6 +483,7 @@ extension View {
       case "presentationCompactAdaptationWithPresentationAdaptation": view = AnyView(view.oneNativeSDKPresentationCompactAdaptationWithPresentationAdaptation(value, emit: emit))
       case "presentationContentInteraction": view = AnyView(view.oneNativeSDKPresentationContentInteraction(value, emit: emit))
       case "presentationCornerRadius": view = AnyView(view.oneNativeSDKPresentationCornerRadius(value, emit: emit))
+      case "presentationDetents": view = AnyView(view.oneNativeSDKPresentationDetents(value, emit: emit))
       case "presentationDragIndicator": view = AnyView(view.oneNativeSDKPresentationDragIndicator(value, emit: emit))
       case "presentationPlacement": view = AnyView(view.oneNativeSDKPresentationPlacement(value, emit: emit))
       case "presentationSizing": view = AnyView(view.oneNativeSDKPresentationSizing(value, emit: emit))
@@ -5689,6 +5690,21 @@ self
     if value == "null" { self.presentationCornerRadius(nil as CoreFoundation.CGFloat?) } else { if let number = Double(value), number.isFinite {
       self.presentationCornerRadius(CGFloat(number))
     } else { preconditionFailure("invalid presentationCornerRadius: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPresentationDetents(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let selected: Set<SwiftUI.PresentationDetent> = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid presentationDetents values") }
+      return Set(decoded.map { item in
+        switch item {
+        case "medium": return SwiftUI.PresentationDetent.medium
+        case "large": return SwiftUI.PresentationDetent.large
+        default: preconditionFailure("invalid presentationDetents value: \(item)")
+        }
+      })
+    }()
+    self.presentationDetents(selected)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPresentationDragIndicator(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

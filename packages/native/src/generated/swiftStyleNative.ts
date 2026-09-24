@@ -426,6 +426,7 @@ const sdkKinds = {
   presentationCompactAdaptationWithPresentationAdaptation: 'string',
   presentationContentInteraction: 'string',
   presentationCornerRadius: 'optionalNumber',
+  presentationDetents: 'caseSet',
   presentationDragIndicator: 'string',
   presentationPlacement: 'string',
   presentationSizing: 'style',
@@ -585,6 +586,7 @@ const sdkEventCases: Record<string, readonly string[]> = {
   dropConfiguration: ['cancel', 'forbidden', 'copy', 'move'],
   onKeyPress: ['handled', 'ignored'],
   onScrollPhaseChange: ['idle', 'tracking', 'interacting', 'decelerating', 'animating'],
+  presentationDetents: ['medium', 'large'],
 }
 const sdkVisualEffects: Record<string, readonly string[]> = {
   scrollTransition: ['opacity', 'scaleEffect'],
@@ -2146,6 +2148,17 @@ export function swiftStyleNative(
           options[field] = String(item)
         }
         sdkModifiers.push([name, JSON.stringify(options)])
+        continue
+      }
+      if (kind === 'caseSet') {
+        if (
+          !Array.isArray(value) ||
+          value.some(
+            (item) => typeof item !== 'string' || !sdkEventCases[name].includes(item)
+          )
+        )
+          throw new Error(name + ' must be public SDK values')
+        sdkModifiers.push([name, JSON.stringify(value)])
         continue
       }
       if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {

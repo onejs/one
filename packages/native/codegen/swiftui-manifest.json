@@ -11040,6 +11040,24 @@
       "ios": 16.4
     },
     {
+      "name": "presentationDetents",
+      "kind": "caseSet",
+      "type": "Swift.Set<SwiftUI.PresentationDetent>",
+      "resultType": "SwiftUI.PresentationDetent",
+      "label": "_",
+      "cases": [
+        {
+          "name": "medium",
+          "ios": 16
+        },
+        {
+          "name": "large",
+          "ios": 16
+        }
+      ],
+      "ios": 16
+    },
+    {
       "name": "presentationDragIndicator",
       "kind": "string",
       "type": "SwiftUICore.Visibility",
@@ -16801,6 +16819,7 @@
         "presentationCompactAdaptation",
         "presentationContentInteraction",
         "presentationCornerRadius",
+        "presentationDetents",
         "presentationDragIndicator",
         "presentationPlacement",
         "presentationSizing",

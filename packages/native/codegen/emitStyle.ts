@@ -485,6 +485,20 @@ ${argument.kind === 'number' ? `        guard let parsed = Int(raw) else { preco
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     ${apply('{ _, _, eligible in eligible.first { $0.id == value } }', modifier.ios)}
   }`
+      if (modifier.kind === 'caseSet')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let selected: Set<${modifier.resultType}> = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid ${modifier.name} values") }
+      return Set(decoded.map { item in
+        switch item {
+${modifier.cases!.map((item) => `        case ${JSON.stringify(item.name)}: return ${modifier.resultType}.${item.name}`).join('\n')}
+        default: preconditionFailure("invalid ${modifier.name} value: \\(item)")
+        }
+      })
+    }()
+    ${apply('selected', modifier.ios)}
+  }`
       if (modifier.kind.startsWith('event') || modifier.kind.startsWith('binding')) {
         const bridge = modifier.kind.startsWith('event')
           ? modifier.kind === 'event'
@@ -667,7 +681,7 @@ ${styleFields
 
 const colorFields = [${colorFields.map((field) => `'${field.name}'`).join(', ')}] as const
 const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [modifier.name, modifier.kind])))} as const
-const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
+const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair' || modifier.kind === 'eventReturnEnum' || modifier.kind === 'caseSet').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
 const sdkVisualEffects: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'visualEffect').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
 const sdkOptionSets: Record<string, readonly { field: string; kind: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'optionSet').map((modifier) => [modifier.name, modifier.arguments!.map((argument) => ({ field: argument.field, kind: argument.kind }))])))}
 type SDKEventValueShape =
@@ -822,6 +836,12 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
           options[field] = String(item)
         }
         sdkModifiers.push([name, JSON.stringify(options)])
+        continue
+      }
+      if (kind === 'caseSet') {
+        if (!Array.isArray(value) || value.some((item) => typeof item !== 'string' || !sdkEventCases[name].includes(item)))
+          throw new Error(name + ' must be public SDK values')
+        sdkModifiers.push([name, JSON.stringify(value)])
         continue
       }
       if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {

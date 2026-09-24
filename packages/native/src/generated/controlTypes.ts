@@ -1114,6 +1114,8 @@ export const sdkPresentationContentInteractionValues = [
 ] as const
 export type SDKPresentationContentInteraction =
   (typeof sdkPresentationContentInteractionValues)[number]
+export const sdkPresentationDetentsValues = ['medium', 'large'] as const
+export type SDKPresentationDetents = (typeof sdkPresentationDetentsValues)[number]
 export const sdkPresentationDragIndicatorValues = [
   'automatic',
   'visible',
@@ -2649,6 +2651,7 @@ export interface OneNativeStyle {
   presentationCompactAdaptationWithPresentationAdaptation?: SDKPresentationCompactAdaptationWithPresentationAdaptation
   presentationContentInteraction?: SDKPresentationContentInteraction
   presentationCornerRadius?: number | null
+  presentationDetents?: readonly SDKPresentationDetents[]
   presentationDragIndicator?: SDKPresentationDragIndicator
   presentationPlacement?: SDKPresentationPlacement
   presentationSizing?: SDKPresentationSizing
