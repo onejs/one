@@ -1,0 +1,17 @@
+---
+title: Image
+description: Shared images through the native image loader
+---
+
+`One.UI.Image` displays local and remote images through Nitro Image on iOS and Android.
+Use a URL string, a `{ uri }` source, or a bundled React Native image resource.
+
+```tsx
+import { One } from 'one'
+
+<One.UI.Image source={{ uri: photoUrl }} resizeMode="cover" style={{ width: 240, height: 160 }} />
+```
+
+Apps using remote images install `react-native-nitro-image`,
+`react-native-nitro-web-image`, and `react-native-nitro-modules` so the native
+image loader is linked into both platforms.

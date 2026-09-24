@@ -1,0 +1,35 @@
+---
+title: App Info
+description: Installed-binary identity, read synchronously
+---
+
+Installed-binary identity, exposed as `One.AppInfo` (importable from
+`@vxrn/native/app-info`). Three fields, read synchronously from the native
+constants: `version` is the user-visible marketing version
+(`CFBundleShortVersionString` / `versionName`), `build` the binary build
+(`CFBundleVersion` / `versionCode`, stringified on both platforms so display
+and comparison code stays platform-blind), and `applicationId` the install
+identity (`CFBundleIdentifier` / `applicationId`).
+
+```tsx
+import { One } from 'one'
+
+One.AppInfo.version // '2.4.6' | null
+One.AppInfo.build // '891' | null
+One.AppInfo.applicationId // 'dev.app.id' | null
+```
+
+The values are a snapshot read once at import and frozen: the binary cannot
+change under a running process. `null` means unknown (a host that failed to
+stamp, or an old build without the native module), never guessed. On native
+the snapshot always describes the installed binary, never bundle-time values:
+after an over-the-air update the JavaScript bundle and the binary disagree,
+which is exactly when a build comparison must read the binary. On web there
+is no installed binary: `version` comes from the `ONE_APP_VERSION` build-time
+value, and `build` and `applicationId` are always `null`.
+
+Prebuild stamps the binary values from `native.app`: `version` becomes
+`MARKETING_VERSION` / `versionName`, `ios.buildNumber` becomes
+`CURRENT_PROJECT_VERSION`, and `android.versionCode` becomes `versionCode`.
+Missing fields keep the template defaults (`1.0` / `1`), so a store build
+must set all three.

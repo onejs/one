@@ -1,0 +1,77 @@
+---
+title: WebGPU
+description: GPU rendering through react-native-webgpu
+---
+
+One ships no GL view. The blessed GPU surface on native is
+`react-native-webgpu`, which vendors Dawn on iOS and Android and exposes
+the web `navigator.gpu` API plus a `Canvas` component: raw WebGPU,
+TypeGPU, or three.js all build on it, and nothing else is needed.
+
+Three.js runs through `three/webgpu` with `WebGPURenderer`, including
+under React Three Fiber. R3F mounts through `createRoot` on the webgpu
+canvas — never `@react-three/fiber/native`, which hard-requires
+`expo-gl`:
+
+```tsx
+import { Canvas as GpuCanvas, useCanvasRef } from 'react-native-webgpu'
+import * as THREE from 'three/webgpu'
+import { createRoot, events, extend } from '@react-three/fiber'
+
+// inside a component, after layout with nonzero size:
+extend(THREE)
+const context = ref.current?.getContext('webgpu')
+const renderer = new THREE.WebGPURenderer({
+  canvas: context.canvas,
+  context,
+})
+await renderer.init()
+const renderFrame = renderer.render.bind(renderer)
+renderer.render = (scene, camera) => {
+  renderFrame(scene, camera)
+  context.present()
+}
+const root = createRoot(context.canvas)
+root.configure({ size, events, gl: renderer, frameloop: 'always', dpr: 1 })
+root.render(<Scene />)
+```
+
+Every frame ends with `context.present()`, and unmount calls
+`setAnimationLoop(null)` plus `dispose()` — R3F's unmount alone never
+stops three's internal frame loop.
+
+One three instance must serve the whole graph: bare `three` resolves to
+the `three/webgpu` build and `@react-three/fiber` to its web entry on
+the native environments only, so web keeps WebGL three. Vite has no
+per-environment `resolve.alias`, so this is a small `resolveId` plugin
+in the app's `vite.config.ts`:
+
+```ts
+import type { Plugin } from 'vite'
+
+function nativeWebgpuAliases(): Plugin {
+  return {
+    name: 'native-webgpu-aliases',
+    applyToEnvironment: (environment) =>
+      environment.name === 'ios' || environment.name === 'android',
+    async resolveId(source, _importer, options) {
+      if (source === 'three' || source === '@react-three/fiber') {
+        const target =
+          source === 'three'
+            ? 'three/webgpu'
+            : '@react-three/fiber/dist/react-three-fiber.esm.js'
+        return await this.resolve(target, undefined, {
+          ...options,
+          skipSelf: true,
+        })
+      }
+      return null
+    },
+  }
+}
+```
+
+Metro mode has no resolver hook for this rewrite: R3F on WebGPU needs
+the default bundler. WebGPURenderer runs no GLSL — `ShaderMaterial`,
+`onBeforeCompile`, and `PMREMGenerator` do not work under it — so shared
+scene code bakes static gradients into `DataTexture`s instead.

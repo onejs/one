@@ -1,0 +1,43 @@
+---
+title: Browser
+description: In-app browser and auth sessions
+---
+
+In-app browser through `One.Browser`, matching `expo-web-browser`'s result shapes. Pages open in `SFSafariViewController` on iOS and Custom Tabs on Android; auth sessions use `ASWebAuthenticationSession` on iOS and Custom Tabs with an app redirect on Android.
+
+```tsx
+import { One } from 'one'
+
+const page = await One.Browser.open('https://example.com')
+// { type: 'cancel' } once the user closes the sheet
+// { type: 'opened' } on Android, which reports no close event
+
+await One.Browser.dismiss()
+// { type: 'dismiss' }
+
+const auth = await One.Browser.openAuthSession(
+  'https://example.com/login',
+  'myapp://auth'
+)
+// { type: 'success', url: 'myapp://auth?code=…' } on redirect
+// { type: 'cancel' } when the user backs out
+
+One.Browser.dismissAuthSession()
+```
+
+`open` takes `{ presentationStyle, toolbarColor, controlsColor }` on iOS and `{ browserPackage, toolbarColor, showTitle }` on Android. `openAuthSession` adds `preferEphemeralSession` on iOS. On Android the auth promise settles when the redirect returns to the app (the standard single-task activity delivers it) or with `cancel` when the user closes the tab. The `locked` type reports a second session opened while one is already up. `dismissAuthSession` cancels a pending auth session, whose promise then resolves `dismiss`.
+
+On web, `open` opens a blank-target tab and a blocked popup rejects with code `E_BROWSER_BLOCKED`; `openAuthSession` rejects with `Browser.openAuthSession needs an iOS or Android build`.
+
+### Migration from expo-web-browser
+
+| expo-web-browser | One |
+|---|---|
+| `openBrowserAsync(url, options?)` | `One.Browser.open(url, options?)` |
+| `dismissBrowser()` | `One.Browser.dismiss()` |
+| `openAuthSessionAsync(url, redirectUrl?, options?)` | `One.Browser.openAuthSession(url, redirectUrl?, options?)` |
+| `dismissAuthSession()` | `One.Browser.dismissAuthSession()` |
+| `WebBrowserResult` | `BrowserResult` |
+| `WebBrowserResultType` | `BrowserResultType` |
+| `WebBrowserPresentationStyle` | `BrowserPresentationStyle` |
+| `ERR_WEB_BROWSER_BLOCKED` | `E_BROWSER_BLOCKED` |

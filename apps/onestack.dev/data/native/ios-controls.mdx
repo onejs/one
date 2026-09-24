@@ -1,0 +1,50 @@
+---
+title: iOS Controls
+description: Generated SwiftUI controls under One.iOS
+---
+
+Generated SwiftUI controls under `One.iOS`. Interactive controls follow one
+pattern: a controlled value, an `onXChange` callback, and a `revision` number
+for external resets. Every control accepts `accessibilityLabel`,
+`accessibilityHint`, `accessibilityValue`, `testID`, `style`, `onLayout`, and
+`swiftStyle`. A control composed inside a SwiftUI parent is measured by that
+parent; `style` describes the outer box only when the control stands alone.
+
+| Component | Key props |
+|-----------|-----------|
+| `Picker` | `selection`, `onSelectionChange`, `options` (`{ value, label }`), `pickerStyle` |
+| `DatePicker` | `selection` (Date), `onSelectionChange`, `minimumDate`, `maximumDate`, `displayedComponents`, `datePickerStyle` |
+| `ColorPicker` | `selection` (`#RRGGBB` or `#RRGGBBAA`), `onSelectionChange`, `supportsOpacity` |
+| `Toggle` | `isOn`, `onIsOnChange`, `toggleStyle` |
+| `Slider` | `value`, `onValueChange`, `minimumValue`, `maximumValue`, `step`, `minimumValueLabel`, `maximumValueLabel`, `minimumValueImage`, `maximumValueImage` |
+| `Stepper` | `value`, `onValueChange`, `minimumValue`, `maximumValue`, `step` |
+| `Text` | `text` |
+| `Label` | `label`, `systemImage` |
+| `Button` | `label`, `systemImage`, `subtitle`, `buttonRole`, `buttonStyle`, `disclosureIndicator`, `onPress` |
+| `ProgressView` | `value` (undefined renders indeterminate), `total`, `progressViewStyle` |
+| `Gauge` | `value`, `minimumValue`, `maximumValue`, `currentValueLabel`, `minimumValueLabel`, `maximumValueLabel`, `gaugeStyle` |
+| `Image` | `systemName`, `symbolRenderingMode`, `symbolVariant`, `imageScale`, `variableValue`, `colorRole` |
+| `ShareLink` | `label`, `systemImage`, `item`, `itemType` (`text` or `url`), `subject`, `message` |
+| `ContentUnavailableView` | `title`, `systemImage`, `description`, `actions`, `onAction` |
+| `VideoPlayer` | `url`, `autoplay` |
+| `PhotosPicker` | `onPick`, `onPickError`, `maxSelectionCount`, `selectionBehavior`, `filter`, `preferredItemEncoding` |
+| `WebView` | `url` or `html`, `onNavigate`, `onTitleChange`, `onLoadingChange` |
+| `Map` | `latitude`, `longitude`, `distance`, `markers` (`{ id, label, latitude, longitude }`), `onRegionChange` |
+| `TextField` | `text` (string or native state), `onTextChange`, `prompt`, `keyboardType`, `focused`, `onFocusChange`, `onSubmit` |
+| `SecureField` | same as `TextField`, for passwords |
+| `Alert` | `isPresented`, `onIsPresentedChange`, `title`, `message`, `actions`, `onAction` |
+| `ConfirmationDialog` | same as `Alert`, plus `titleVisibility` |
+| `QuickLook` | `isPresented`, `onIsPresentedChange`, `url` |
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Toggle label="Airplane mode" isOn={on} onIsOnChange={setOn} />
+<One.iOS.Slider
+  label="Volume"
+  value={volume}
+  onValueChange={setVolume}
+  minimumValue={0}
+  maximumValue={100}
+/>
+```

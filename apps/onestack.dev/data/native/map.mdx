@@ -1,0 +1,75 @@
+---
+title: Map
+description: One map on both platforms, MapKit on iOS and Google Maps on Android
+---
+
+`One.UI.Map` is one map on both platforms: MapKit on iOS, Google Maps
+on Android. It takes a Google-style camera, a marker array, and overlay
+arrays; the camera seeds from `cameraPosition` and re-seeds only when its
+value changes, while the user pans and zooms freely in between.
+
+```tsx
+import { One } from 'one'
+
+<One.UI.Map
+  style={{ flex: 1 }}
+  cameraPosition={{
+    coordinates: { latitude: 37.7955, longitude: -122.3937 },
+    zoom: 12,
+  }}
+  markers={[
+    {
+      id: 'ferry',
+      coordinates: { latitude: 37.7955, longitude: -122.3937 },
+      title: 'Ferry Building',
+      tintColor: '#ff3b30',
+    },
+  ]}
+  onCameraMove={({ coordinates, zoom }) => recordCamera(coordinates, zoom)}
+  onMarkerClick={(marker) => selectPlace(marker.id)}
+  onMapClick={({ coordinates }) => dropPin(coordinates)}
+/>
+```
+
+Props, all optional (an empty map renders the default camera over San
+Francisco): `cameraPosition` (`coordinates` plus Google `zoom`),
+`markers` (`id`, `coordinates`, `title`, `tintColor`), `polylines`
+(`id`, `coordinates`, `color`, `width`), `polygons` (`id`,
+`coordinates`, `color`, `lineColor`, `lineWidth`), and `circles` (`id`,
+`center`, `radius` in metres, `color`, `lineColor`, `lineWidth`).
+Colours are `#rrggbb` or `#rrggbbaa` strings; marker ids must be unique.
+`onCameraMove` fires once, when a gesture ends — never feed it back into
+`cameraPosition`, which would re-seed on every move end and fight the
+pan. `onMarkerClick` returns the marker object from props, matched by
+id. Marker taps never also report as map taps.
+
+Excluded on purpose: custom marker views and callouts, user location,
+map type and styling, tilt and bearing, gesture toggles, and imperative
+camera refs. Web renders nothing; pair with a web map library there.
+
+Android needs a maps key in the app manifest, or mounting throws:
+
+```ts
+one({
+  native: {
+    app: {
+      android: {
+        googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+      },
+    },
+  },
+})
+```
+
+The Maps SDK compiles into Android builds only when the key is set;
+without it the dependency stays out of the APK entirely. iOS needs no
+key.
+
+### Migration from react-native-maps
+
+Convert the region to a camera: `zoom = log2(360 * widthPt / 256 / longitudeDelta)`,
+where `widthPt` is the map view width in points, and center coordinates as-is.
+Marker children become the `markers` array;
+`onRegionChangeComplete` becomes `onCameraMove`. Designs that need
+custom pin views, callouts, or camera refs have no equivalent — say so
+instead of reaching for another map library.

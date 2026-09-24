@@ -1,0 +1,30 @@
+---
+title: Presentations and Tabs
+description: Sheets, popovers, menus, and tabs under One.iOS
+---
+
+Sheets, popovers, menus, and tabs under `One.iOS`.
+
+| Component | Key props |
+|-----------|-----------|
+| `Sheet` | `isPresented`, `onIsPresentedChange`, `presentationDetents`, `selectedDetent`, `onSelectedDetentChange`, `fitToContents`, `presentationDragIndicator`, `interactiveDismissDisabled`, `presentationBackground` |
+| `FullScreenCover` | `isPresented`, `onIsPresentedChange`, `onDismiss` |
+| `Popover` | `isPresented`, `onIsPresentedChange`, `arrowEdge`, `contentWidth`, `contentHeight`, `content` |
+| `Menu` | `items`, `onAction`, `accessibilityLabel`; children render the trigger |
+| `ContextMenu` | same as `Menu`; the trigger keeps its own touches |
+| `Tabs`, `Tab` | `selection`, `onSelectionChange`, `tabViewStyle`, `tabBarVisibility`, `customization`, `swiftStyle`; tabs carry `id`, `title`, `systemImage`, `badge`, `role` |
+
+A `Tab` carries either `onPress` or children, never both. An action tab runs
+its handler and never becomes the selection. `selection` must identify a
+mounted page tab.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
+  <One.iOS.Tab id="feed" title="Feed" systemImage="house">
+    <FeedScreen />
+  </One.iOS.Tab>
+  <One.iOS.Tab id="new" title="New" systemImage="plus" onPress={openComposer} />
+</One.iOS.Tabs>
+```
