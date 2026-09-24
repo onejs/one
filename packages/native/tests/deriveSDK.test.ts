@@ -100,6 +100,33 @@ describe('SDK modifier derivation', () => {
     ])
   })
 
+  it('derives text-selection bindings from public range constructors and cases', () => {
+    const selection = method('searchSelection', 'SwiftUI', [{ label: '_', name: 'selection',
+      type: 'SwiftUICore.Binding<SwiftUI.TextSelection?>' }])
+    const item = { ...method('TextSelection', 'SwiftUI'), kind: 'struct', owner: '' }
+    const indices = { ...method('indices', 'SwiftUI'), kind: 'var', owner: 'TextSelection',
+      type: 'SwiftUI.TextSelection.Indices' }
+    const range = { ...method('init', 'SwiftUI', [{ label: 'range', name: 'range',
+      type: 'Swift.Range<Swift.String.Index>' }]), kind: 'init', owner: 'TextSelection' }
+    const ranges = { ...method('init', 'SwiftUI', [{ label: 'ranges', name: 'ranges',
+      type: 'Swift.RangeSet<Swift.String.Index>' }]), kind: 'init', owner: 'TextSelection' }
+    const insertion = { ...method('init', 'SwiftUI', [{ label: 'insertionPoint', name: 'insertionPoint',
+      type: 'Swift.String.Index' }]), kind: 'init', owner: 'TextSelection' }
+    const singleCase = { ...method('selection', 'SwiftUI', [{ label: '_', name: 'range',
+      type: 'Swift.Range<Swift.String.Index>' }]), kind: 'case', owner: 'TextSelection.Indices' }
+    const multiCase = { ...method('multiSelection', 'SwiftUI', [{ label: '_', name: 'ranges',
+      type: 'Swift.RangeSet<Swift.String.Index>' }]), kind: 'case', owner: 'TextSelection.Indices' }
+    const declarations = [selection, item, indices, range, ranges, insertion, singleCase, multiCase]
+    expect(deriveModifiers(declarations.slice(0, -1), 27, [])).toEqual([])
+    expect(deriveModifiers(declarations, 27, [])).toEqual([{
+      name: 'searchSelection', kind: 'bindingTextSelection',
+      type: 'SwiftUICore.Binding<SwiftUI.TextSelection?>', label: '_', ios: 0,
+      textSelection: { selectionType: 'SwiftUI.TextSelection', indicesMember: 'indices',
+        singleCase: 'selection', multiCase: 'multiSelection', rangeLabel: 'range',
+        rangesLabel: 'ranges', insertionLabel: 'insertionPoint' },
+    }])
+  })
+
   it('derives Text values and labeled scalars without guessing between overloads', () => {
     expect(deriveModifiers([
       method('accessibilityLabel', 'SwiftUI', [{ label: '_', name: 'label', type: 'SwiftUICore.Text' }]),

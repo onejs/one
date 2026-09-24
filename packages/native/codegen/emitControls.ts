@@ -211,6 +211,8 @@ ${styleFields
                 ? `Readonly<{ value: string${modifier.type.endsWith('?') ? ' | null' : ''}; onChange: (value: string) => void }>`
               : modifier.kind === 'bindingPoint'
                 ? 'Readonly<{ value: Readonly<{ x: number; y: number }> | null; onChange: (value: Readonly<{ x: number; y: number }> | null) => void }>'
+              : modifier.kind === 'bindingTextSelection'
+                ? 'Readonly<{ text: string; value: readonly (readonly [start: number, end: number])[] | null; onChange: (value: readonly (readonly [start: number, end: number])[] | null) => void }>'
               : modifier.kind === 'optionalBoolean'
                 ? 'boolean | null'
                 : modifier.kind === 'optionalNumber'

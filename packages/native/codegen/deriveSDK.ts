@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'equatableKey' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'transferSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'equatableKey' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'transferSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint' | 'bindingTextSelection'
   ios: number
   type: string
   rawString?: true
@@ -54,6 +54,8 @@ export type DerivedModifier = {
     selectionLabel: string; idField: string; rawField: string }
   transferSelection?: { itemType: string; presentedLabel: string; selectionLabel: string;
     contentTypesField: string; identifierField?: string }
+  textSelection?: { selectionType: string; indicesMember: string; singleCase: string;
+    multiCase: string; rangeLabel: string; rangesLabel: string; insertionLabel: string }
   requestType?: string
   requestProperty?: string
   sessionRequest?: { method: string; inputField: string; outputFields: readonly string[];
@@ -686,6 +688,42 @@ export function deriveModifiers(
         method.type === `${method.module}.EquatableView<Self>`)
         return [{ name, module: method.module, kind: 'equatableKey',
           type: method.type, ios: ios(method), ...framework }]
+      const textSelectionType = method.parameters.length === 1 &&
+        /^SwiftUICore\.Binding<([A-Za-z_]\w*\.[A-Za-z_]\w*)\?>$/.exec(method.parameters[0].type)?.[1]
+      if (textSelectionType) {
+        const [module, itemName] = textSelectionType.split('.')
+        const item = inventory.find((declaration) => declaration.kind === 'struct' &&
+          declaration.module === module && declaration.owner === '' &&
+          declaration.name === itemName && present(declaration) && ios(declaration) <= ceiling)
+        const indices = inventory.find((declaration) => declaration.kind === 'var' &&
+          declaration.module === module && declaration.owner === itemName &&
+          declaration.type === `${textSelectionType}.Indices` &&
+          present(declaration) && ios(declaration) <= ceiling)
+        const constructor = (type: string) => inventory.find((declaration) =>
+          declaration.kind === 'init' && declaration.module === module &&
+          declaration.owner === itemName && declaration.parameters.length === 1 &&
+          declaration.parameters[0].type === type && present(declaration) && ios(declaration) <= ceiling)
+        const range = constructor('Swift.Range<Swift.String.Index>')
+        const ranges = constructor('Swift.RangeSet<Swift.String.Index>')
+        const insertion = constructor('Swift.String.Index')
+        const selectionCase = inventory.find((declaration) => declaration.kind === 'case' &&
+          declaration.module === module && declaration.owner === `${itemName}.Indices` &&
+          declaration.parameters[0]?.type === 'Swift.Range<Swift.String.Index>' &&
+          present(declaration) && ios(declaration) <= ceiling)
+        const multiCase = inventory.find((declaration) => declaration.kind === 'case' &&
+          declaration.module === module && declaration.owner === `${itemName}.Indices` &&
+          declaration.parameters[0]?.type === 'Swift.RangeSet<Swift.String.Index>' &&
+          present(declaration) && ios(declaration) <= ceiling)
+        if (item && indices && range && ranges && insertion && selectionCase && multiCase)
+          return [{ name, module: method.module, kind: 'bindingTextSelection',
+            type: method.parameters[0].type, label: method.parameters[0].label, ...framework,
+            ios: Math.max(...[method, item, indices, range, ranges, insertion, selectionCase, multiCase].map(ios)),
+            textSelection: { selectionType: textSelectionType, indicesMember: indices.name,
+              singleCase: selectionCase.name, multiCase: multiCase.name,
+              rangeLabel: range.parameters[0].label,
+              rangesLabel: ranges.parameters[0].label,
+              insertionLabel: insertion.parameters[0].label } }]
+      }
       const transferType = method.parameters[0]?.type === 'SwiftUICore.Binding<Swift.Bool>' &&
         method.parameters.slice(2).every((parameter) => parameter.defaultValue !== undefined) &&
         /^SwiftUICore\.Binding<([A-Za-z_]\w*\.[A-Za-z_]\w*)\?>$/.exec(method.parameters[1]?.type ?? '')?.[1]
