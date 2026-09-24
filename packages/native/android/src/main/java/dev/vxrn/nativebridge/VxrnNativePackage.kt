@@ -8,7 +8,6 @@ import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
 import com.margelo.nitro.one.VxrnNativeOnLoad
 import dev.onejs.onenative.OneNativeBlurManager
-import dev.onejs.onenative.OneNativeBrowserModule
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
 import dev.onejs.onenative.OneNativeFontsModule
@@ -28,7 +27,6 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
             OneNativeFontsModule.NAME -> OneNativeFontsModule(reactContext)
-            OneNativeBrowserModule.NAME -> OneNativeBrowserModule(reactContext)
             OneNativeImagePickerModule.NAME -> OneNativeImagePickerModule(reactContext)
             OneNativeMenuPopupModule.NAME -> OneNativeMenuPopupModule(reactContext)
             else -> null
@@ -64,14 +62,6 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeFontsModule.NAME to ReactModuleInfo(
                 name = OneNativeFontsModule.NAME,
                 className = OneNativeFontsModule.NAME,
-                canOverrideExistingModule = false,
-                needsEagerInit = false,
-                isCxxModule = false,
-                isTurboModule = false
-            ),
-            OneNativeBrowserModule.NAME to ReactModuleInfo(
-                name = OneNativeBrowserModule.NAME,
-                className = OneNativeBrowserModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,

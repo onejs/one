@@ -15,6 +15,7 @@
 #include "HybridOneCryptoSpecSwift.hpp"
 #include "HybridOneNetworkSpecSwift.hpp"
 #include "HybridOneAppInfoSpecSwift.hpp"
+#include "HybridOneBrowserSpecSwift.hpp"
 
 @interface VxrnNativeAutolinking : NSObject
 @end
@@ -57,6 +58,13 @@
     "OneAppInfo",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneAppInfoSpec> hybridObject = VxrnNative::VxrnNativeAutolinking::createOneAppInfo();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneBrowser",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneBrowserSpec> hybridObject = VxrnNative::VxrnNativeAutolinking::createOneBrowser();
       return hybridObject;
     }
   );

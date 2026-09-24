@@ -16,6 +16,7 @@
 #include <NitroModules/HybridObjectRegistry.hpp>
 
 #include "JHybridOneAppInfoSpec.hpp"
+#include "JHybridOneBrowserSpec.hpp"
 #include "JHybridOneClipboardSpec.hpp"
 #include "JHybridOneCryptoSpec.hpp"
 #include "JHybridOneHapticsSpec.hpp"
@@ -72,6 +73,14 @@ struct JHybridOneAppInfoSpecImpl: public jni::JavaClass<JHybridOneAppInfoSpecImp
     return javaPart->getJHybridOneAppInfoSpec();
   }
 };
+struct JHybridOneBrowserSpecImpl: public jni::JavaClass<JHybridOneBrowserSpecImpl, JHybridOneBrowserSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneBrowser;";
+  static std::shared_ptr<JHybridOneBrowserSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneBrowserSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneBrowserSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneBrowserSpec();
+  }
+};
 
 void registerAllNatives() {
   using namespace margelo::nitro;
@@ -79,6 +88,7 @@ void registerAllNatives() {
 
   // Register native JNI methods
   margelo::nitro::one::JHybridOneAppInfoSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneBrowserSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneClipboardSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneCryptoSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneHapticsSpec::CxxPart::registerNatives();
@@ -115,6 +125,12 @@ void registerAllNatives() {
     "OneAppInfo",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneAppInfoSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneBrowser",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneBrowserSpecImpl::create();
     }
   );
 }

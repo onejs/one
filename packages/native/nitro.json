@@ -28,6 +28,10 @@
     "OneAppInfo": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneAppInfo" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneAppInfo" }
+    },
+    "OneBrowser": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneBrowser" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneBrowser" }
     }
   },
   "ignorePaths": ["**/node_modules", "dist", "types"]
