@@ -1700,6 +1700,9 @@ export interface OneNativeStyle {
     presentationDragIndicator?: SDKPresentationDragIndicator;
     presentationPlacement?: SDKPresentationPlacement;
     presentationSizing?: SDKPresentationSizing;
+    previewContext?: Readonly<{
+        family: 'systemSmall' | 'systemMedium' | 'systemLarge' | 'systemExtraLarge' | 'systemExtraLargePortrait' | 'accessoryCircular' | 'accessoryRectangular' | 'accessoryInline';
+    }>;
     previewDevice?: string | null;
     previewDisplayName?: string | null;
     previewInterfaceOrientation?: SDKPreviewInterfaceOrientation;

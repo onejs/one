@@ -76,6 +76,7 @@ export type DerivedModifier = {
   namespaceParameter?: { index: number; label: string }
   sharedParameter?: { index: number; label: string; type: string; factoryName?: string }
   factoryParameter?: { index: number; label: string; type: string; returnType: string; argumentOffset: number }
+  constructorParameter?: { type: string; label: string }
   fixedParameter?: { index: number; label: string; type: string; expression: string }
   arguments?: readonly DerivedArgument[]
 }
@@ -1027,6 +1028,32 @@ export function deriveModifiers(
             return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
               arguments: argumentsFromSDK as DerivedArgument[], ...framework }]
         }
+        const generic = method.parameters.length === 1 && method.requirements?.length === 1 &&
+          /^([A-Za-z_]\w*) : ([A-Za-z_]\w*\.[A-Za-z][\w.]*)$/.exec(method.requirements[0])
+        if (generic && method.parameters[0].type === generic[1]) {
+          const constructors = inventory.filter((declaration) => declaration.kind === 'struct' &&
+            declaration.owner === '' && !declaration.generic &&
+            declaration.inheritedTypes?.includes(generic[2]) &&
+            present(declaration) && ios(declaration) <= ceiling)
+            .flatMap((conformer) => inventory.filter((declaration) =>
+              declaration.kind === 'init' && declaration.module === conformer.module &&
+              (declaration.owner === conformer.name || declaration.owner === `${conformer.module}.${conformer.name}`) &&
+              !declaration.requirements?.length && declaration.parameters.length > 0 &&
+              declaration.parameters.every((parameter) => valueOf(parameter.type)) &&
+              present(declaration) && ios(declaration) <= ceiling)
+              .map((initializer) => ({ conformer, initializer })))
+          if (constructors.length === 1) {
+            const { conformer, initializer } = constructors[0]
+            return [{ name, module: method.module, kind: 'record', type: '',
+              ios: Math.max(ios(method), ios(conformer), ios(initializer)),
+              ...(conformer.module === 'SwiftUI' || conformer.module === 'SwiftUICore'
+                ? framework : { framework: conformer.module }),
+              constructorParameter: { type: `${conformer.module}.${conformer.name}`,
+                label: method.parameters[0].label },
+              arguments: initializer.parameters.map((parameter) =>
+                ({ ...valueOf(parameter.type)!, field: parameter.name, label: parameter.label })) }]
+          }
+        }
         return []
       }
       if (method.parameters.length === 2) {
@@ -1574,6 +1601,8 @@ export function deriveViews(
     .filter(
       (d) =>
         d.kind === 'struct' &&
+        (d.module === 'SwiftUI' || d.module === 'SwiftUICore' ||
+          /^_[A-Za-z]+_SwiftUI$/.test(d.module)) &&
         d.owner === '' &&
         !d.generic &&
         /^[A-Z]/.test(d.name) &&

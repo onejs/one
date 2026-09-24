@@ -16,6 +16,7 @@ import MusicKit
 import AVKit
 import PhotosUI
 import Photos
+import WidgetKit
 import QuickLook
 import AuthenticationServices
 import Symbols
@@ -570,6 +571,7 @@ extension View {
       case "presentationDragIndicator": view = AnyView(view.oneNativeSDKPresentationDragIndicator(value, emit: emit))
       case "presentationPlacement": view = AnyView(view.oneNativeSDKPresentationPlacement(value, emit: emit))
       case "presentationSizing": view = AnyView(view.oneNativeSDKPresentationSizing(value, emit: emit))
+      case "previewContext": view = AnyView(view.oneNativeSDKPreviewContext(value, emit: emit))
       case "previewDevice": view = AnyView(view.oneNativeSDKPreviewDevice(value, emit: emit))
       case "previewDisplayName": view = AnyView(view.oneNativeSDKPreviewDisplayName(value, emit: emit))
       case "previewInterfaceOrientation": view = AnyView(view.oneNativeSDKPreviewInterfaceOrientation(value, emit: emit))
@@ -2676,11 +2678,14 @@ self
     let argument1: SwiftUI.ScrollAnchorRole = {
       guard let raw = values[1] else { preconditionFailure("missing defaultScrollAnchorWithAnchorAndRole.role") }
       switch raw {
-      case "initialOffset": if #available(iOS 18, *) { return SwiftUI.ScrollAnchorRole.initialOffset }
+      case "initialOffset":
+if #available(iOS 18, *) { return SwiftUI.ScrollAnchorRole.initialOffset }
         preconditionFailure("unavailable defaultScrollAnchorWithAnchorAndRole.role: \(raw)")
-      case "sizeChanges": if #available(iOS 18, *) { return SwiftUI.ScrollAnchorRole.sizeChanges }
+      case "sizeChanges":
+if #available(iOS 18, *) { return SwiftUI.ScrollAnchorRole.sizeChanges }
         preconditionFailure("unavailable defaultScrollAnchorWithAnchorAndRole.role: \(raw)")
-      case "alignment": if #available(iOS 18, *) { return SwiftUI.ScrollAnchorRole.alignment }
+      case "alignment":
+if #available(iOS 18, *) { return SwiftUI.ScrollAnchorRole.alignment }
         preconditionFailure("unavailable defaultScrollAnchorWithAnchorAndRole.role: \(raw)")
       default: preconditionFailure("invalid defaultScrollAnchorWithAnchorAndRole.role: \(raw)")
       }
@@ -4212,7 +4217,8 @@ self
     let argument0: SwiftUI.HandGestureShortcut = {
       guard let raw = values[0] else { preconditionFailure("missing handGestureShortcut.shortcut") }
       switch raw {
-      case "primaryAction": if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
+      case "primaryAction":
+if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
         preconditionFailure("unavailable handGestureShortcut.shortcut: \(raw)")
       default: preconditionFailure("invalid handGestureShortcut.shortcut: \(raw)")
       }
@@ -6405,6 +6411,36 @@ self
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKPreviewContext(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid previewContext: \(value)") }
+      return decoded
+    }()
+    let argument0: WidgetKit.WidgetFamily = {
+      guard let raw = values[0] else { preconditionFailure("missing previewContext.family") }
+      switch raw {
+      case "systemSmall": return WidgetKit.WidgetFamily.systemSmall
+      case "systemMedium": return WidgetKit.WidgetFamily.systemMedium
+      case "systemLarge": return WidgetKit.WidgetFamily.systemLarge
+      case "systemExtraLarge": return WidgetKit.WidgetFamily.systemExtraLarge
+      case "systemExtraLargePortrait":
+
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrait }
+#endif
+
+        preconditionFailure("unavailable previewContext.family: \(raw)")
+      case "accessoryCircular": return WidgetKit.WidgetFamily.accessoryCircular
+      case "accessoryRectangular": return WidgetKit.WidgetFamily.accessoryRectangular
+      case "accessoryInline": return WidgetKit.WidgetFamily.accessoryInline
+      default: preconditionFailure("invalid previewContext.family: \(raw)")
+      }
+    }()
+    self.previewContext(WidgetKit.WidgetPreviewContext(family: argument0))
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKPreviewDevice(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if value == "null" { self.previewDevice(nil as SwiftUI.PreviewDevice?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       self.previewDevice(SwiftUI.PreviewDevice(rawValue: decoded))
@@ -6910,11 +6946,14 @@ self
     let argument0: SwiftUI.ScrollEdgeEffectStyle? = {
       guard let raw = values[0] else { return nil }
       switch raw {
-      case "automatic": if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.automatic }
+      case "automatic":
+if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.automatic }
         preconditionFailure("unavailable scrollEdgeEffectStyle.style: \(raw)")
-      case "hard": if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.hard }
+      case "hard":
+if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.hard }
         preconditionFailure("unavailable scrollEdgeEffectStyle.style: \(raw)")
-      case "soft": if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.soft }
+      case "soft":
+if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.soft }
         preconditionFailure("unavailable scrollEdgeEffectStyle.style: \(raw)")
       default: preconditionFailure("invalid scrollEdgeEffectStyle.style: \(raw)")
       }
@@ -7134,7 +7173,8 @@ self
       case "stop": return SwiftUI.SensoryFeedback.stop
       case "alignment": return SwiftUI.SensoryFeedback.alignment
       case "levelChange": return SwiftUI.SensoryFeedback.levelChange
-      case "pathComplete": if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
+      case "pathComplete":
+if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
         preconditionFailure("unavailable sensoryFeedback.feedback: \(raw)")
       case "impact": return SwiftUI.SensoryFeedback.impact
       default: preconditionFailure("invalid sensoryFeedback.feedback: \(raw)")
@@ -7510,7 +7550,8 @@ self
     let argument1: _StoreKit_SwiftUI.SubscriptionOfferViewButtonKind = {
       guard let raw = values[1] else { preconditionFailure("missing subscriptionOfferViewButtonVisibility.buttonKinds") }
       switch raw {
-      case "detailLink": if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonKind.detailLink }
+      case "detailLink":
+if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonKind.detailLink }
         preconditionFailure("unavailable subscriptionOfferViewButtonVisibility.buttonKinds: \(raw)")
       default: preconditionFailure("invalid subscriptionOfferViewButtonVisibility.buttonKinds: \(raw)")
       }
@@ -8051,13 +8092,17 @@ self
     let argument1: SwiftUI.TextInputFormattingControlPlacement.Set = {
       guard let raw = values[1] else { preconditionFailure("missing textInputFormattingControlVisibility.placement") }
       switch raw {
-      case "contextMenu": if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Set.contextMenu }
+      case "contextMenu":
+if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Set.contextMenu }
         preconditionFailure("unavailable textInputFormattingControlVisibility.placement: \(raw)")
-      case "inputAssistant": if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Set.inputAssistant }
+      case "inputAssistant":
+if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Set.inputAssistant }
         preconditionFailure("unavailable textInputFormattingControlVisibility.placement: \(raw)")
-      case "all": if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Set.all }
+      case "all":
+if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Set.all }
         preconditionFailure("unavailable textInputFormattingControlVisibility.placement: \(raw)")
-      case "default": if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Set.default }
+      case "default":
+if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Set.default }
         preconditionFailure("unavailable textInputFormattingControlVisibility.placement: \(raw)")
       default: preconditionFailure("invalid textInputFormattingControlVisibility.placement: \(raw)")
       }
@@ -8167,7 +8212,8 @@ self
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": 
+      case "statusBar":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
 #endif
@@ -8203,7 +8249,8 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": 
+      case "statusBar":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
 #endif
@@ -8238,7 +8285,8 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": 
+      case "statusBar":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
 #endif
@@ -8263,25 +8311,29 @@ if #available(iOS 27, *) {
     let argument0: SwiftUI.ToolbarMinimizationBehavior = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarMinimizationBehavior.behavior") }
       switch raw {
-      case "automatic": 
+      case "automatic":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.automatic }
 #endif
 
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
-      case "onScrollDown": 
+      case "onScrollDown":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.onScrollDown }
 #endif
 
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
-      case "onScrollUp": 
+      case "onScrollUp":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.onScrollUp }
 #endif
 
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
-      case "never": 
+      case "never":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.never }
 #endif
@@ -8297,7 +8349,8 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.never }
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": 
+      case "statusBar":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
 #endif
@@ -8327,13 +8380,15 @@ if #available(iOS 27, *) {
     let argument0: SwiftUI.ToolbarMinimizationRestoration = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarMinimizationRestoration.restoration") }
       switch raw {
-      case "automatic": 
+      case "automatic":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.automatic }
 #endif
 
         preconditionFailure("unavailable toolbarMinimizationRestoration.restoration: \(raw)")
-      case "atScrollEdge": 
+      case "atScrollEdge":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.atScrollEdge }
 #endif
@@ -8349,7 +8404,8 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.atScrol
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": 
+      case "statusBar":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
 #endif
@@ -8379,19 +8435,22 @@ if #available(iOS 27, *) {
     let argument0: SwiftUI.ToolbarMinimizationSafeAreaAdjustment = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarMinimizationSafeAreaAdjustment.adjustment") }
       switch raw {
-      case "automatic": 
+      case "automatic":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.automatic }
 #endif
 
         preconditionFailure("unavailable toolbarMinimizationSafeAreaAdjustment.adjustment: \(raw)")
-      case "enabled": 
+      case "enabled":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.enabled }
 #endif
 
         preconditionFailure("unavailable toolbarMinimizationSafeAreaAdjustment.adjustment: \(raw)")
-      case "disabled": 
+      case "disabled":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.disabled }
 #endif
@@ -8407,7 +8466,8 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": 
+      case "statusBar":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
 #endif
@@ -8470,7 +8530,8 @@ self
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": 
+      case "statusBar":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
 #endif
@@ -8516,7 +8577,8 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": 
+      case "statusBar":
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
 #endif

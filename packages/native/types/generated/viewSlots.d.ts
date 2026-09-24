@@ -88,6 +88,7 @@ export declare const viewSlotArguments: {
             readonly subscriptionStore: 17;
             readonly subscriptionStoreHeader: 17;
             readonly subscriptionStoreFullHeight: 17;
+            readonly widget: 17;
         };
     }];
     readonly contentToolbar: readonly [{
@@ -255,7 +256,7 @@ export type ViewSlotConfiguration = {
 } | {
     name: 'containerBackground';
     options: {
-        container: 'navigation' | 'navigationSplitView' | 'subscriptionStore' | 'subscriptionStoreHeader' | 'subscriptionStoreFullHeight';
+        container: 'navigation' | 'navigationSplitView' | 'subscriptionStore' | 'subscriptionStoreHeader' | 'subscriptionStoreFullHeight' | 'widget';
     };
 } | {
     name: 'contentToolbar';

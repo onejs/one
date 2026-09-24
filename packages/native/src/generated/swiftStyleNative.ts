@@ -464,6 +464,7 @@ const sdkKinds = {
   presentationDragIndicator: 'string',
   presentationPlacement: 'string',
   presentationSizing: 'style',
+  previewContext: 'record',
   previewDevice: 'optionalString',
   previewDisplayName: 'optionalString',
   previewInterfaceOrientation: 'string',
@@ -1911,6 +1912,7 @@ const sdkRecords: Record<
     { field: 'horizontalAdaptation', kind: 'enum', optional: false },
     { field: 'verticalAdaptation', kind: 'enum', optional: false },
   ],
+  previewContext: [{ field: 'family', kind: 'enum', optional: false }],
   projectionEffect: [
     {
       field: 'transform',

@@ -80,6 +80,7 @@ export const viewSlotArguments = {
         subscriptionStore: 17,
         subscriptionStoreHeader: 17,
         subscriptionStoreFullHeight: 17,
+        widget: 17,
       },
     },
   ],
@@ -189,6 +190,7 @@ export type ViewSlotConfiguration =
           | 'subscriptionStore'
           | 'subscriptionStoreHeader'
           | 'subscriptionStoreFullHeight'
+          | 'widget'
       }
     }
   | { name: 'contentToolbar'; options: { placement: 'tabViewSidebar' } }

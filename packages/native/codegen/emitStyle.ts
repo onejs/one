@@ -162,7 +162,7 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
           const baseType = argument.type.replace(/\?$/, '')
           if (argument.kind === 'enum') {
             const cases = argument.cases!.map((item) =>
-              `      case ${JSON.stringify(item.name)}: ${item.ios > 17 ? `${sdkGuard(item.ios, `if #available(iOS ${item.ios}, *) { return ${baseType}.${item.name} }`, '')}\n        preconditionFailure("unavailable ${modifier.name}.${argument.field}: \\(raw)")` : `return ${baseType}.${item.name}`}`
+              `      case ${JSON.stringify(item.name)}:${item.ios > 17 ? `\n${sdkGuard(item.ios, `if #available(iOS ${item.ios}, *) { return ${baseType}.${item.name} }`, '')}\n        preconditionFailure("unavailable ${modifier.name}.${argument.field}: \\(raw)")` : ` return ${baseType}.${item.name}`}`
             ).join('\n')
             return `    let ${variable}: ${argument.type} = {
       guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
@@ -320,7 +320,9 @@ ${assignments}
         if (modifier.fixedParameter)
           callArguments.splice(modifier.fixedParameter.index, 0,
             `${modifier.fixedParameter.label === '_' ? '' : `${modifier.fixedParameter.label}: `}${modifier.fixedParameter.expression}`)
-        const call = callArguments.join(', ')
+        const call = modifier.constructorParameter
+          ? `${modifier.constructorParameter.label === '_' ? '' : `${modifier.constructorParameter.label}: `}${modifier.constructorParameter.type}(${callArguments.join(', ')})`
+          : callArguments.join(', ')
         const body = `let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
