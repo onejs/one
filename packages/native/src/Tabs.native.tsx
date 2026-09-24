@@ -5,6 +5,7 @@ import { dispatchSDKEvent, swiftStyleNative } from './generated/swiftStyleNative
 import { tabViewSlotAvailability } from './generated/viewSlots'
 import { Children, isValidElement, useMemo, type ReactNode } from 'react'
 import type {
+  OneNativeStyle,
   TabContentProps,
   TabProps,
   TabSectionProps,
@@ -14,6 +15,7 @@ import type {
 } from './types'
 import NativeTab from './specs/OneNativeTabNativeComponent'
 import NativeTabs from './specs/OneNativeTabsNativeComponent'
+import { Toolbar, ToolbarNode } from './NavigationStack.native'
 
 const PAGE_STYLE = {
   position: 'absolute',
@@ -48,6 +50,7 @@ type Entry = {
   role: string
   slotHeight: number
   tabModifiers: string
+  swiftStyle?: OneNativeStyle
   testID?: string
   onPress?: () => void
   children: ReactNode
@@ -138,17 +141,29 @@ export function Tabs({
     eventCount: number
     revision: number
   }>((event) => onSelectionChange(event.selection), revision)
-  const { entries, accessory, actions } = useMemo(() => {
+  const { entries, accessory, actions, toolbar } = useMemo(() => {
     const ids = new Set<string>()
     const entries: Entry[] = []
     let accessory: TabViewBottomAccessoryProps | undefined
+    let toolbar: ReactNode
     const actions = new Map<string, () => void>()
     const claim = (owner: string, id: string) => {
       if (!id || ids.has(id)) throw new Error(`${owner} requires unique, nonempty ids: "${id}"`)
       ids.add(id)
     }
     const tab = (props: TabProps, section: string | undefined) => {
-      const { id, title, systemImage, image, badge, role, testID, onPress, children: page } = props
+      const {
+        id,
+        title,
+        systemImage,
+        image,
+        badge,
+        role,
+        testID,
+        onPress,
+        swiftStyle,
+        children: page,
+      } = props
       claim('Swift.Tab', id)
       if (Boolean(onPress) === (page !== undefined)) {
         throw new Error(
@@ -166,6 +181,7 @@ export function Tabs({
         role: role ?? '',
         slotHeight: 0,
         tabModifiers: tabContentModifiers(`Swift.Tab "${id}"`, { ...props, section }, iosVersion),
+        swiftStyle,
         testID,
         onPress,
         children: page,
@@ -204,6 +220,9 @@ export function Tabs({
       } else if (child.type === TabViewBottomAccessory) {
         if (accessory) throw new Error('Swift.Tabs accepts one TabViewBottomAccessory')
         accessory = child.props as TabViewBottomAccessoryProps
+      } else if (child.type === Toolbar) {
+        if (toolbar) throw new Error('Swift.Tabs accepts one Swift.Toolbar')
+        toolbar = (child.props as { children: ReactNode }).children
       } else if (child.type === TabViewSlot) {
         const slot = child.props as TabViewSlotProps
         if (!Object.hasOwn(tabViewSlotAvailability, slot.name))
@@ -228,11 +247,11 @@ export function Tabs({
         })
       } else {
         throw new Error(
-          'Swift.Tabs accepts Swift.Tab, Swift.TabSection, Swift.TabViewSlot, and Swift.TabViewBottomAccessory elements as direct children'
+          'Swift.Tabs accepts Swift.Tab, Swift.TabSection, Swift.TabViewSlot, Swift.TabViewBottomAccessory, and Swift.Toolbar elements as direct children'
         )
       }
     }
-    return { entries, accessory, actions }
+    return { entries, accessory, actions, toolbar }
   }, [children, iosVersion])
   const tabsBeyondIOS17 = entries.some(
     (entry) => entry.kind === 'section' || (entry.kind !== 'slot' && entry.tabModifiers !== '{}')
@@ -311,6 +330,10 @@ export function Tabs({
             tabRole={entry.role}
             slotHeight={entry.slotHeight}
             tabModifiers={entry.tabModifiers}
+            swiftStyle={swiftStyleNative(entry.swiftStyle)}
+            onNativeSDKEvent={({ nativeEvent }) =>
+              dispatchSDKEvent(entry.swiftStyle, nativeEvent.name, nativeEvent.value)
+            }
             testID={entry.testID}
             style={PAGE_STYLE}
             collapsable={false}
@@ -322,6 +345,7 @@ export function Tabs({
           </NativeTab>
         )
       })}
+      {toolbar ? <ToolbarNode iosVersion={iosVersion}>{toolbar}</ToolbarNode> : null}
     </NativeTabs>
   )
 }
