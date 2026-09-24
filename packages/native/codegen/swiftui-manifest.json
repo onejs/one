@@ -5871,6 +5871,12 @@
       ]
     },
     {
+      "name": "equatable",
+      "kind": "equatableKey",
+      "type": "SwiftUI.EquatableView<Self>",
+      "ios": 13
+    },
+    {
       "name": "fileDialogBrowserOptions",
       "kind": "string",
       "type": "SwiftUI.FileDialogBrowserOptions",
@@ -17703,6 +17709,7 @@
         "draggable",
         "dropConfiguration",
         "dropDestination",
+        "equatable",
         "fileDialogBrowserOptions",
         "fileDialogConfirmationLabel",
         "fileDialogCustomizationID",
@@ -18226,6 +18233,7 @@
         "draggable",
         "dropConfiguration",
         "dropDestination",
+        "equatable",
         "fileDialogBrowserOptions",
         "fileDialogConfirmationLabel",
         "fileDialogCustomizationID",

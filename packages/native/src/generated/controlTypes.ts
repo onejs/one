@@ -2135,6 +2135,7 @@ export interface OneNativeStyle {
   environmentVerticalScrollBounceBehavior?: SDKEnvironmentVerticalScrollBounceBehavior
   environmentVerticalScrollIndicatorVisibility?: SDKEnvironmentVerticalScrollIndicatorVisibility
   environmentVerticalSizeClass?: SDKEnvironmentVerticalSizeClass | null
+  equatable?: string
   fileDialogBrowserOptions?: SDKFileDialogBrowserOptions
   fileDialogConfirmationLabel?: string | null
   fileDialogCustomizationID?: string

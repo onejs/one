@@ -258,6 +258,16 @@ describe('SDK callback and binding transport', () => {
     ])
   })
 
+  it('passes an explicit equality key to a generated Equatable view wrapper', () => {
+    const element = Controls.Text({ text: 'stable', swiftStyle: { equatable: 'revision-1' } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['equatable', 'revision-1'],
+    ])
+    expect(() => Controls.Text({ text: 'invalid', swiftStyle: {
+      equatable: 1 as never,
+    } })).toThrow('must be an equality key')
+  })
+
   it('exposes optional SDK static values beside legacy style fields', () => {
     const element = Controls.Text({ text: 'styled', swiftStyle: {
       fontWeightWithOptionalWeight: 'semibold',

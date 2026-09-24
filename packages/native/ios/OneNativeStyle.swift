@@ -28,6 +28,13 @@ private enum OneNativeNamespace { static let id = Namespace().wrappedValue }
 
 private struct OneNativeRotorEntry: Identifiable { let id: String; var label: String { id } }
 
+@available(iOS 13, *)
+private struct OneNativeSDKEquatableKeyView<Content: View>: View, Equatable {
+  let key: String
+  let content: Content
+  static func == (lhs: Self, rhs: Self) -> Bool { lhs.key == rhs.key }
+  var body: some View { content }
+}
 @available(iOS 18, *)
 @MainActor private struct OneNativeSDKTapRecognizer: UIGestureRecognizerRepresentable {
   let onTap: () -> Void
@@ -460,6 +467,7 @@ extension View {
       case "environmentVerticalScrollBounceBehavior": view = AnyView(view.oneNativeSDKEnvironmentVerticalScrollBounceBehavior(value, emit: emit))
       case "environmentVerticalScrollIndicatorVisibility": view = AnyView(view.oneNativeSDKEnvironmentVerticalScrollIndicatorVisibility(value, emit: emit))
       case "environmentVerticalSizeClass": view = AnyView(view.oneNativeSDKEnvironmentVerticalSizeClass(value, emit: emit))
+      case "equatable": view = AnyView(view.oneNativeSDKEquatable(value, emit: emit))
       case "fileDialogBrowserOptions": view = AnyView(view.oneNativeSDKFileDialogBrowserOptions(value, emit: emit))
       case "fileDialogConfirmationLabel": view = AnyView(view.oneNativeSDKFileDialogConfirmationLabel(value, emit: emit))
       case "fileDialogCustomizationID": view = AnyView(view.oneNativeSDKFileDialogCustomizationID(value, emit: emit))
@@ -3665,6 +3673,12 @@ self
       case "regular": self.environment(\.verticalSizeClass, SwiftUI.UserInterfaceSizeClass.regular)
     default: preconditionFailure("invalid environmentVerticalSizeClass: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEquatable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+if #available(iOS 13, *) {
+      OneNativeSDKEquatableKeyView(key: value, content: self).equatable()
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKFileDialogBrowserOptions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
