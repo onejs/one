@@ -1,0 +1,34 @@
+---
+title: Haptics
+description: Fire-and-forget tactile feedback on both platforms
+---
+
+Fire-and-forget tactile feedback, exposed as `One.UI.Haptics`. The names follow Apple's feedback generators, not a
+hardware spec: `selection` for picking among options, `impact` for physical
+commits, `notification` for completion and failure the user cares about.
+
+```tsx
+import { One } from 'one'
+
+One.UI.Haptics.selection()
+One.UI.Haptics.impact('medium')
+One.UI.Haptics.notification('success')
+```
+
+The calls are synchronous `void`, not promises: haptics have no meaningful
+completion, so awaiting them would only delay the next feedback. Unknown style or type strings throw a `TypeError` at the JS boundary.
+On iOS and Android a missing native module throws. Web is a no-op, because
+`navigator.vibrate()` cannot produce selection, impact, or notification
+feedback.
+
+`impact` accepts `light`, `medium`, `heavy`, `soft`, or `rigid`.
+`notification` accepts `success`, `warning`, or `error`. On iOS each maps to
+its `UIFeedbackGenerator` directly. On Android the mapping uses
+`performHapticFeedback` with no `VIBRATE` permission, so `soft`/`rigid` fold
+onto the nearest grade and pre-30 devices fall back: selection uses
+`CLOCK_TICK` below API 34, success uses `VIRTUAL_KEY` and error uses
+`CONTEXT_CLICK` below API 30 (warning stays `LONG_PRESS`, so warning and
+error feel distinct on API 24-29).
+
+Feedback is never the sole success/error signal: pair every call with visual
+state. Both platforms honor the system haptics settings without extra code.

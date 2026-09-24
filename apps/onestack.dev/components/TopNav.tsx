@@ -4,6 +4,7 @@ import { Separator, styled, View, XStack, YStack } from 'tamagui'
 import { Link, usePathname } from 'one'
 import { OneLogo } from '~/features/brand/Logo'
 import { ReleaseStatus } from '~/components/ReleaseStatus'
+import { DocsSectionTabs } from '~/features/docs/DocsSectionTabs'
 import { SearchContext } from '~/features/search/SearchContext'
 import { HeaderMenu } from '~/features/site/HeaderMenu'
 import { SocialLinksRow } from '~/features/site/SocialLinksRow'
@@ -34,6 +35,7 @@ export const TopNav = () => {
   const { onOpen } = useContext(SearchContext)
   const pathname = usePathname()
   const isBlog = pathname.startsWith('/blog')
+  const isDocs = pathname.startsWith('/docs') || pathname.startsWith('/native')
 
   return (
     <>
@@ -125,6 +127,12 @@ export const TopNav = () => {
           </XStack>
 
           <XStack pe="none" ai="center">
+            {isDocs && (
+              <View pe="auto" mr="$2" $sm={{ dsp: 'none' }}>
+                <DocsSectionTabs />
+              </View>
+            )}
+
             <SimpleButton marginTop={-3} mr={8} onPress={onOpen}>
               <Search width={24} height={24} color="$color12" strokeWidth={2} />
             </SimpleButton>

@@ -1,0 +1,44 @@
+---
+title: Zoom Transitions
+description: Native iOS 18+ zoom transitions between screens
+---
+
+Native iOS 18+ zoom transitions. The destination screen expands from a source element with a fluid animation.
+
+<Notice>
+  Requires iOS 18+. Falls back to standard push transition on older versions.
+</Notice>
+
+```tsx
+import { One } from 'one'
+
+// source screen: wrap the tappable element
+function ListScreen() {
+  const router = useRouter()
+  return (
+    <One.iOS.ZoomTransitionSource identifier="item-1">
+      <Pressable onPress={() => router.push('/detail?id=item-1')}>
+        <Text>Mountain View</Text>
+      </Pressable>
+    </One.iOS.ZoomTransitionSource>
+  )
+}
+
+// destination screen: place the enabler anywhere
+function DetailScreen() {
+  const { id } = useParams()
+  return (
+    <View>
+      <Stack.Screen options={{ headerShown: false }} />
+      <One.iOS.ZoomTransitionEnabler zoomTransitionSourceIdentifier={id} />
+      <Text>Detail for {id}</Text>
+    </View>
+  )
+}
+```
+
+### Tips
+
+- Set `headerShown: false` on the detail screen to avoid the header overlapping during the zoom animation
+- The `identifier` must match between `ZoomTransitionSource` and `ZoomTransitionEnabler`
+- Use `One.iOS.ZoomTransitionAlignmentRectDetector` on the destination to align the zoom to a specific element
