@@ -50,7 +50,7 @@ export default function NativeAutogenProof() {
             <Swift.ScrollView
               style={{ height: 100 }}
               swiftStyle={{
-                scrollPosition: { value: scrollPosition, onChange: setScrollPosition },
+                scrollPositionWithId: { value: scrollPosition, onChange: setScrollPosition },
                 onScrollTargetVisibilityChange: setVisibleTargets,
                 onScrollGeometryChangeWithContentOffset: ({ newValue }) => {
                   if (newValue.y > 1) setGeometryScrolled(true)
