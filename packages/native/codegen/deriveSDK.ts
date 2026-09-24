@@ -69,7 +69,7 @@ export type DerivedModifier = {
   aliasSuffix?: string
   callArguments?: readonly { label: string; defaultValue?: string; bridge?: true }[]
   namespaceParameter?: { index: number; label: string }
-  sharedParameter?: { index: number; label: string; type: string }
+  sharedParameter?: { index: number; label: string; type: string; factoryName?: string }
   factoryParameter?: { index: number; label: string; type: string; returnType: string; argumentOffset: number }
   fixedParameter?: { index: number; label: string; type: string; expression: string }
   arguments?: readonly DerivedArgument[]
@@ -654,14 +654,18 @@ export function deriveModifiers(
             ...framework }]
         return []
       }
-      const sharedIndex = method.parameters.findIndex((parameter) =>
-        parameter.defaultValue === undefined &&
-        inventory.some((declaration) => declaration.module === parameter.type.split('.')[0] &&
-          declaration.owner === parameter.type.split('.').slice(1).join('.') &&
-          declaration.kind === 'func' && declaration.isStatic && declaration.name === 'shared' &&
-          declaration.type === parameter.type && declaration.parameters.length === 0 &&
-          present(declaration) && ios(declaration) <= ceiling))
+      const objectFactories = method.parameters.map((parameter) => {
+        const type = parameter.type.replace(/\?$/, '')
+        if (parameter.defaultValue !== undefined || valueOf(parameter.type)) return []
+        return inventory.filter((declaration) => declaration.module === type.split('.')[0] &&
+          declaration.owner === type.split('.').slice(1).join('.') &&
+          declaration.kind === 'func' && declaration.isStatic &&
+          declaration.type === type && declaration.parameters.length === 0 &&
+          present(declaration) && ios(declaration) <= ceiling)
+      })
+      const sharedIndex = objectFactories.findIndex((factories) => factories.length === 1)
       if (sharedIndex !== -1) {
+        const factory = objectFactories[sharedIndex][0]
         const required = method.parameters.filter((parameter, index) =>
           index !== sharedIndex && parameter.defaultValue === undefined)
         const argumentsFromSDK = required.map((parameter) => {
@@ -672,13 +676,18 @@ export function deriveModifiers(
         })
         if (required.length && argumentsFromSDK.every(Boolean) &&
           new Set(argumentsFromSDK.map((argument) => argument!.field)).size === required.length)
-          return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+          return [{ name, module: method.module, kind: 'record', type: '', ios: Math.max(ios(method), ios(factory)),
             arguments: argumentsFromSDK as DerivedArgument[],
+            ...(factory.name === 'shared' ? {} : { aliasSuffix:
+              (factory.name.startsWith('for') ? factory.name.slice(3) : factory.name[0].toUpperCase() + factory.name.slice(1)) +
+              required.filter((parameter) => parameter.type !== 'SwiftUICore.Binding<Swift.Bool>')
+                .map((parameter) => `And${parameter.name[0].toUpperCase()}${parameter.name.slice(1)}`).join('') }),
             sharedParameter: {
               index: method.parameters.slice(0, sharedIndex).filter((parameter) =>
                 parameter.defaultValue === undefined).length,
               label: method.parameters[sharedIndex].label,
-              type: method.parameters[sharedIndex].type,
+              type: method.parameters[sharedIndex].type.replace(/\?$/, ''),
+              ...(factory.name === 'shared' ? {} : { factoryName: factory.name }),
             }, ...framework }]
         return []
       }
@@ -1364,7 +1373,7 @@ export function deriveModifiers(
     const established = preferred.filter((candidate) =>
       candidate.kind !== 'record' || !candidate.arguments?.some((argument) => argument.sdkType))
     const selected = established.length ? established : preferred
-    if (selected.length === 1 && !reservedNames.has(name)) {
+    if (selected.length === 1 && !reservedNames.has(name) && !selected[0].aliasSuffix) {
       const { module, ...modifier } = selected[0]
       result.push(modifier)
       continue

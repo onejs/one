@@ -354,6 +354,9 @@ const sdkKinds = {
   mapControlVisibility: 'string',
   mapFeatureSelectionAccessory: 'optionalEnum',
   mapFeatureSelectionDisabled: 'boolean',
+  mapItemDetailPopoverWithCurrentLocation: 'record',
+  mapItemDetailPopoverWithCurrentLocationAndArrowEdge: 'record',
+  mapItemDetailSheetWithCurrentLocation: 'record',
   mapScope: 'boolean',
   mapStyle: 'string',
   matchedGeometryEffect: 'record',
@@ -1645,6 +1648,16 @@ const sdkRecords: Record<
   manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID: [
     { field: 'isPresented', kind: 'bindingBoolean', optional: false },
     { field: 'subscriptionGroupID', kind: 'string', optional: false },
+  ],
+  mapItemDetailPopoverWithCurrentLocation: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+  ],
+  mapItemDetailPopoverWithCurrentLocationAndArrowEdge: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'arrowEdge', kind: 'enum', optional: false },
+  ],
+  mapItemDetailSheetWithCurrentLocation: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
   ],
   matchedGeometryEffect: [{ field: 'id', kind: 'string', optional: false }],
   matchedTransitionSource: [{ field: 'id', kind: 'string', optional: false }],

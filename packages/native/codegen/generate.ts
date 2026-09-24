@@ -61,7 +61,7 @@ const eventClassTypes = new Set(inventory.flatMap((method) =>
       const type = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (?:Swift\.Void|\(\))$/.exec(parameter.type)?.[1]
       return type ? [type] : []
     }) : []))
-for (const module of ['UIKit', 'PhotosUI', 'Photos', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport', 'Foundation', 'AVKit', 'StoreKit']) {
+for (const module of ['UIKit', 'PhotosUI', 'Photos', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport', 'Foundation', 'AVKit', 'StoreKit', 'MapKit']) {
   const outputDir = join(cache, `symbols-${module}-${sdkVersion}`)
   const graphPath = join(outputDir, `${module}.symbols.json`)
   if (!existsSync(graphPath)) {
@@ -118,10 +118,11 @@ for (const module of ['UIKit', 'PhotosUI', 'Photos', 'GameController', 'RealityF
       importedCases.push({ module, owner, name: symbol.pathComponents.at(-1)!, kind: 'static',
         type: `${module}.${owner}`, parameters: [], line: 0, attributes })
     }
-    if (symbol.pathComponents.length === 2 && name === 'shared()' &&
+    const staticFactory = symbol.pathComponents.length === 2 &&
       symbol.kind.identifier === 'swift.type.method' &&
-      new RegExp(`^class func shared\\(\\) -> ${owner}$`).test(declaration))
-      importedCases.push({ module, owner, name: 'shared', kind: 'func', isStatic: true,
+      /^(?:class|static) func ([A-Za-z]\w*)\(\) -> ([A-Za-z]\w*)$/.exec(declaration)
+    if (staticFactory && staticFactory[2] === owner)
+      importedCases.push({ module, owner, name: staticFactory[1], kind: 'func', isStatic: true,
         type: `${module}.${owner}`, parameters: [], line: 0, attributes })
     if (symbol.pathComponents.length === 1 &&
       (symbol.kind.identifier === 'swift.class' && eventClassTypes.has(`${module}.${owner}`) ||
@@ -227,10 +228,10 @@ for (const modifier of derivedModifiers) {
             parameter.label === modifier.arguments?.[index].label &&
             parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))
         : modifier.sharedParameter
-        ? d.parameters.some((parameter) => parameter.type === modifier.sharedParameter?.type) &&
-          d.parameters.filter((parameter) => parameter.type !== modifier.sharedParameter?.type &&
+        ? d.parameters.some((parameter) => parameter.type.replace(/\?$/, '') === modifier.sharedParameter?.type) &&
+          d.parameters.filter((parameter) => parameter.type.replace(/\?$/, '') !== modifier.sharedParameter?.type &&
             parameter.defaultValue === undefined).length === modifier.arguments?.length &&
-          d.parameters.filter((parameter) => parameter.type !== modifier.sharedParameter?.type &&
+          d.parameters.filter((parameter) => parameter.type.replace(/\?$/, '') !== modifier.sharedParameter?.type &&
             parameter.defaultValue === undefined).every((parameter, index) =>
             parameter.label === modifier.arguments?.[index].label &&
             parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))

@@ -116,6 +116,24 @@ describe('SDK callback and binding transport', () => {
     expect(onChange).toHaveBeenCalledWith(false)
   })
 
+  it('presents current-location MapKit details through SDK object factories', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'location', swiftStyle: {
+      mapItemDetailSheetWithCurrentLocation: { isPresented: { value: true, onChange } },
+      mapItemDetailPopoverWithCurrentLocationAndArrowEdge: {
+        isPresented: { value: false, onChange }, arrowEdge: 'bottom',
+      },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['mapItemDetailSheetWithCurrentLocation', '["true"]'],
+      ['mapItemDetailPopoverWithCurrentLocationAndArrowEdge', '["false","bottom"]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'mapItemDetailSheetWithCurrentLocation.isPresented', value: 'false',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+  })
+
   it('builds identifiable rotor entries from public labels', () => {
     const element = Controls.Text({ text: 'navigation', swiftStyle: {
       accessibilityRotor: { rotorLabel: 'Links', entries: ['Home', 'Search'] },

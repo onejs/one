@@ -315,7 +315,7 @@ ${assignments}
             `${modifier.namespaceParameter.label === '_' ? '' : `${modifier.namespaceParameter.label}: `}OneNativeNamespace.id`)
         if (modifier.sharedParameter)
           callArguments.splice(modifier.sharedParameter.index, 0,
-            `${modifier.sharedParameter.label === '_' ? '' : `${modifier.sharedParameter.label}: `}${modifier.sharedParameter.type}.shared()`)
+            `${modifier.sharedParameter.label === '_' ? '' : `${modifier.sharedParameter.label}: `}${modifier.sharedParameter.type}.${modifier.sharedParameter.factoryName ?? 'shared'}()`)
         if (modifier.fixedParameter)
           callArguments.splice(modifier.fixedParameter.index, 0,
             `${modifier.fixedParameter.label === '_' ? '' : `${modifier.fixedParameter.label}: `}${modifier.fixedParameter.expression}`)

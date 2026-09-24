@@ -469,6 +469,28 @@ describe('SDK modifier derivation', () => {
       label: '_', selectionMember: 'pricingTerms', ios: 0, framework: 'StoreKit',
     }])
   })
+
+  it('uses a unique zero-argument SDK factory for a required object', () => {
+    expect(deriveModifiers([
+      method('mapItemDetailSheet', '_MapKit_SwiftUI', [
+        { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+        { label: 'item', name: 'item', type: 'MapKit.MKMapItem?' },
+        { label: 'displaysMap', name: 'displaysMap', type: 'Swift.Bool', defaultValue: 'true' },
+      ]),
+      { ...method('forCurrentLocation', 'MapKit'), owner: 'MKMapItem', type: 'MapKit.MKMapItem', isStatic: true },
+    ], 27, [])).toEqual([{
+      name: 'mapItemDetailSheetWithCurrentLocation', sdkName: 'mapItemDetailSheet', module: '_MapKit_SwiftUI',
+      kind: 'record', type: '', ios: 0, framework: 'MapKit', aliasSuffix: 'CurrentLocation',
+      arguments: [{ field: 'isPresented', label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>', kind: 'bindingBoolean', optional: false }],
+      sharedParameter: { index: 1, label: 'item', type: 'MapKit.MKMapItem', factoryName: 'forCurrentLocation' },
+    }])
+    expect(deriveModifiers([
+      method('navigationDocument', 'SwiftUI', [
+        { label: '_', name: 'url', type: 'Foundation.URL' },
+      ]),
+      { ...method('currentDirectory', 'Foundation'), owner: 'URL', type: 'Foundation.URL', isStatic: true },
+    ], 27, [])).toEqual([{ name: 'navigationDocument', kind: 'url', type: 'Foundation.URL', ios: 0 }])
+  })
 })
 
 describe('SDK view slots', () => {
