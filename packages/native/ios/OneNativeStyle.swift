@@ -1587,7 +1587,13 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAsyncImageURLSession(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "shared": if #available(iOS 27, *) { self.asyncImageURLSession(Foundation.URLSession.shared) } else { self }
+      case "shared": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.asyncImageURLSession(Foundation.URLSession.shared) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid asyncImageURLSession: \(value)")
     }
   }
@@ -1994,7 +2000,13 @@ extension View {
       case "ellipse": self.containerShape(.ellipse)
       case "circle": self.containerShape(.circle)
       case "containerRelative": self.containerShape(.containerRelative)
-      case "textInputBorder": if #available(iOS 27, *) { self.containerShape(.textInputBorder) } else { self }
+      case "textInputBorder": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.containerShape(.textInputBorder) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid containerShape: \(value)")
     }
   }
@@ -2069,7 +2081,13 @@ extension View {
       case "ellipse": self.contentShape(.ellipse)
       case "circle": self.contentShape(.circle)
       case "containerRelative": self.contentShape(.containerRelative)
-      case "textInputBorder": if #available(iOS 27, *) { self.contentShape(.textInputBorder) } else { self }
+      case "textInputBorder": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.contentShape(.textInputBorder) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid contentShape: \(value)")
     }
   }
@@ -2120,7 +2138,9 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKCopyable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -2134,10 +2154,16 @@ extension View {
     }()
     self.copyable(argument0)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKCuttable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let items: [String] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid cuttable: \(value)") }
@@ -2149,11 +2175,21 @@ extension View {
     }
     self.cuttable(for: String.self, action: action)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDataDetection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid dataDetection: \(value)")
-    if value == "true" { if #available(iOS 27, *) { self.dataDetection() } else { self } } else { self }
+    if value == "true" { 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.dataDetection() } else { self }
+#else
+self
+#endif
+ } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDatePickerStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2262,9 +2298,27 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKDefaultTabBarPlacement(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.automatic) } else { self }
-      case "tabBar": if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.tabBar) } else { self }
-      case "sidebar": if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.sidebar) } else { self }
+      case "automatic": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.automatic) } else { self }
+#else
+self
+#endif
+
+      case "tabBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.tabBar) } else { self }
+#else
+self
+#endif
+
+      case "sidebar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.sidebar) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid defaultTabBarPlacement: \(value)")
     }
   }
@@ -2362,16 +2416,34 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDocumentLaunchSubtitle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if #available(iOS 27, *) { self.documentLaunchSubtitle(Text(value)) } else { self }
+      
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.documentLaunchSubtitle(Text(value)) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDocumentLaunchTitle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if #available(iOS 27, *) { self.documentLaunchTitle(Text(value)) } else { self }
+      
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.documentLaunchTitle(Text(value)) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDragConfiguration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid dragConfiguration: \(value)")
-      if #available(iOS 27, *) { self.dragConfiguration(SwiftUI.DragConfiguration(allowMove: value == "true")) } else { self }
+      
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.dragConfiguration(SwiftUI.DragConfiguration(allowMove: value == "true")) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDraggable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2413,7 +2485,9 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDropConfiguration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let selected: SwiftUI.DropConfiguration = {
       switch value {
       case "cancel": return SwiftUI.DropConfiguration(operation: SwiftUI.DropOperation.cancel)
@@ -2432,6 +2506,10 @@ extension View {
     }
     self.dropConfiguration(action)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDropDestination(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -3036,7 +3114,9 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKIgnoresSafeAreaWithRegionsAndEdgesAndAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -3088,6 +3168,10 @@ extension View {
     }()
     self.ignoresSafeArea(argument0, edges: argument1, alignment: argument2)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKImageScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -3996,7 +4080,13 @@ extension View {
     switch value {
 
       case "automatic": if #available(iOS 18, *) { self.navigationTransition(.automatic) } else { self }
-      case "crossFade": if #available(iOS 27, *) { self.navigationTransition(.crossFade) } else { self }
+      case "crossFade": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.navigationTransition(.crossFade) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid navigationTransition: \(value)")
     }
   }
@@ -4160,21 +4250,33 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnDragSessionUpdated(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) { self.onDragSessionUpdated({ item in
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.onDragSessionUpdated({ item in
       let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
       guard let data = try? JSONSerialization.data(withJSONObject: payload),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onDragSessionUpdated event") }
       emit("onDragSessionUpdated", encoded)
     }) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnDropSessionUpdated(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) { self.onDropSessionUpdated({ item in
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.onDropSessionUpdated({ item in
       let payload = (["itemsCount": Double(item.itemsCount), "suggestedOperations": (["rawValue": Double(item.suggestedOperations.rawValue)] as [String: Any]), "size": (["width": Double(item.size.width), "height": Double(item.size.height)] as [String: Any]), "location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
       guard let data = try? JSONSerialization.data(withJSONObject: payload),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onDropSessionUpdated event") }
       emit("onDropSessionUpdated", encoded)
     }) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnGeometryChangeWithSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4338,12 +4440,18 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPasteDestination(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) { self.pasteDestination(for: String.self, action: { item in
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.pasteDestination(for: String.self, action: { item in
       let payload = item.map { item -> Any in item }
       guard let data = try? JSONSerialization.data(withJSONObject: payload),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid pasteDestination event") }
       emit("pasteDestination", encoded)
     }, validator: { $0 }) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPayLaterViewAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4439,15 +4547,39 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKPhotosPickerMetadataOptions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "removeCaptions": if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeCaptions) } else { self }
-      case "removeLocation": if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeLocation) } else { self }
+      case "removeCaptions": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeCaptions) } else { self }
+#else
+self
+#endif
+
+      case "removeLocation": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeLocation) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid photosPickerMetadataOptions: \(value)")
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPhotosPickerSearchText(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { if #available(iOS 27, *) { self.photosPickerSearchText(nil as Swift.String?) } else { self } } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
-      if #available(iOS 27, *) { self.photosPickerSearchText(decoded) } else { self }
+    if value == "null" { 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.photosPickerSearchText(nil as Swift.String?) } else { self }
+#else
+self
+#endif
+ } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+      
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.photosPickerSearchText(decoded) } else { self }
+#else
+self
+#endif
+
     } else { preconditionFailure("invalid photosPickerSearchText: \(value)") } }
   }
 
@@ -4462,7 +4594,9 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPhotosReferenceImageViewer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -4496,6 +4630,10 @@ extension View {
     }
     self.photosReferenceImageViewer(fileURL: argument0, onProcessingCompletion: argument1)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPickerStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4505,7 +4643,13 @@ extension View {
       case "inline": self.pickerStyle(.inline)
       case "automatic": self.pickerStyle(.automatic)
       case "segmented": self.pickerStyle(.segmented)
-      case "tabs": if #available(iOS 27, *) { self.pickerStyle(.tabs) } else { self }
+      case "tabs": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.pickerStyle(.tabs) } else { self }
+#else
+self
+#endif
+
       case "palette": self.pickerStyle(.palette)
       case "navigationLink": self.pickerStyle(.navigationLink)
       case "menu": self.pickerStyle(.menu)
@@ -4668,10 +4812,34 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKPresentationPlacement(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.automatic) } else { self }
-      case "leading": if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.leading) } else { self }
-      case "center": if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.center) } else { self }
-      case "trailing": if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.trailing) } else { self }
+      case "automatic": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.automatic) } else { self }
+#else
+self
+#endif
+
+      case "leading": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.leading) } else { self }
+#else
+self
+#endif
+
+      case "center": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.center) } else { self }
+#else
+self
+#endif
+
+      case "trailing": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.trailing) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid presentationPlacement: \(value)")
     }
   }
@@ -5888,7 +6056,13 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKSwipeActionsContainer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid swipeActionsContainer: \(value)")
-    if value == "true" { if #available(iOS 27, *) { self.swipeActionsContainer() } else { self } } else { self }
+    if value == "true" { 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.swipeActionsContainer() } else { self }
+#else
+self
+#endif
+ } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSymbolColorRenderingMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -6033,9 +6207,27 @@ extension View {
       case "birthdateYear": self.textContentType(UIKit.UITextContentType.birthdateYear)
       case "cellularEID": if #available(iOS 17.4, *) { self.textContentType(UIKit.UITextContentType.cellularEID) } else { self }
       case "cellularIMEI": if #available(iOS 17.4, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI) } else { self }
-      case "cellularIMEI1": if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI1) } else { self }
-      case "cellularIMEI2": if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI2) } else { self }
-      case "cellularNAL": if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularNAL) } else { self }
+      case "cellularIMEI1": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI1) } else { self }
+#else
+self
+#endif
+
+      case "cellularIMEI2": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI2) } else { self }
+#else
+self
+#endif
+
+      case "cellularNAL": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularNAL) } else { self }
+#else
+self
+#endif
+
       case "countryName": self.textContentType(UIKit.UITextContentType.countryName)
       case "creditCardExpiration": self.textContentType(UIKit.UITextContentType.creditCardExpiration)
       case "creditCardExpirationMonth": self.textContentType(UIKit.UITextContentType.creditCardExpirationMonth)
@@ -6089,7 +6281,13 @@ extension View {
 
       case "automatic": self.textFieldStyle(.automatic)
       case "roundedBorder": self.textFieldStyle(.roundedBorder)
-      case "bordered": if #available(iOS 27, *) { self.textFieldStyle(.bordered) } else { self }
+      case "bordered": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textFieldStyle(.bordered) } else { self }
+#else
+self
+#endif
+
       case "plain": self.textFieldStyle(.plain)
     default: preconditionFailure("invalid textFieldStyle: \(value)")
     }
@@ -6109,9 +6307,27 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKTextInputBorderShape(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.automatic) } else { self }
-      case "capsule": if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.capsule) } else { self }
-      case "roundedRectangle": if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.roundedRectangle) } else { self }
+      case "automatic": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.automatic) } else { self }
+#else
+self
+#endif
+
+      case "capsule": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.capsule) } else { self }
+#else
+self
+#endif
+
+      case "roundedRectangle": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.roundedRectangle) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid textInputBorderShape: \(value)")
     }
   }
@@ -6226,7 +6442,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarBackground.bars: \(raw)")
       default: preconditionFailure("invalid toolbarBackground.bars: \(raw)")
       }
@@ -6258,7 +6478,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarBackgroundVisibility.bars: \(raw)")
       default: preconditionFailure("invalid toolbarBackgroundVisibility.bars: \(raw)")
       }
@@ -6289,7 +6513,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarColorScheme.bars: \(raw)")
       default: preconditionFailure("invalid toolbarColorScheme.bars: \(raw)")
       }
@@ -6298,7 +6526,9 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKToolbarMinimizationBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -6308,13 +6538,29 @@ extension View {
     let argument0: SwiftUI.ToolbarMinimizationBehavior = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarMinimizationBehavior.behavior") }
       switch raw {
-      case "automatic": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.automatic }
+      case "automatic": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.automatic }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
-      case "onScrollDown": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.onScrollDown }
+      case "onScrollDown": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.onScrollDown }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
-      case "onScrollUp": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.onScrollUp }
+      case "onScrollUp": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.onScrollUp }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
-      case "never": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.never }
+      case "never": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.never }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationBehavior.behavior: \(raw)")
       }
@@ -6326,17 +6572,27 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.bars: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationBehavior.bars: \(raw)")
       }
     }()
     self.toolbarMinimizationBehavior(argument0, for: argument1)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKToolbarMinimizationRestoration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -6346,9 +6602,17 @@ extension View {
     let argument0: SwiftUI.ToolbarMinimizationRestoration = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarMinimizationRestoration.restoration") }
       switch raw {
-      case "automatic": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.automatic }
+      case "automatic": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.automatic }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationRestoration.restoration: \(raw)")
-      case "atScrollEdge": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.atScrollEdge }
+      case "atScrollEdge": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.atScrollEdge }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationRestoration.restoration: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationRestoration.restoration: \(raw)")
       }
@@ -6360,17 +6624,27 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationRestoration.bars: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationRestoration.bars: \(raw)")
       }
     }()
     self.toolbarMinimizationRestoration(argument0, for: argument1)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKToolbarMinimizationSafeAreaAdjustment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -6380,11 +6654,23 @@ extension View {
     let argument0: SwiftUI.ToolbarMinimizationSafeAreaAdjustment = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarMinimizationSafeAreaAdjustment.adjustment") }
       switch raw {
-      case "automatic": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.automatic }
+      case "automatic": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.automatic }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationSafeAreaAdjustment.adjustment: \(raw)")
-      case "enabled": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.enabled }
+      case "enabled": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.enabled }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationSafeAreaAdjustment.adjustment: \(raw)")
-      case "disabled": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.disabled }
+      case "disabled": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.disabled }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationSafeAreaAdjustment.adjustment: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationSafeAreaAdjustment.adjustment: \(raw)")
       }
@@ -6396,13 +6682,21 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationSafeAreaAdjustment.bars: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationSafeAreaAdjustment.bars: \(raw)")
       }
     }()
     self.toolbarMinimizationSafeAreaAdjustment(argument0, for: argument1)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKToolbarRole(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -6451,7 +6745,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarVisibility.bars: \(raw)")
       default: preconditionFailure("invalid toolbarVisibility.bars: \(raw)")
       }
@@ -6493,7 +6791,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarWithVisibilityAndBars.bars: \(raw)")
       default: preconditionFailure("invalid toolbarWithVisibilityAndBars.bars: \(raw)")
       }
