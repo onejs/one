@@ -1365,6 +1365,16 @@ export type SDKSubscriptionStorePolicyForegroundStyle =
 export const sdkSymbolColorRenderingModeValues = ['flat', 'gradient'] as const
 export type SDKSymbolColorRenderingMode =
   (typeof sdkSymbolColorRenderingModeValues)[number]
+export const sdkSymbolEffectValues = [
+  'pulse',
+  'bounce',
+  'variableColor',
+  'scale',
+  'wiggle',
+  'rotate',
+  'breathe',
+] as const
+export type SDKSymbolEffect = (typeof sdkSymbolEffectValues)[number]
 export const sdkSymbolRenderingModeValues = [
   'monochrome',
   'multicolor',
@@ -2854,6 +2864,7 @@ export interface OneNativeStyle {
   subscriptionStoreSignInAction?: () => void
   swipeActionsContainer?: boolean
   symbolColorRenderingMode?: SDKSymbolColorRenderingMode | null
+  symbolEffect?: SDKSymbolEffect
   symbolEffectsRemoved?: boolean
   symbolRenderingMode?: SDKSymbolRenderingMode | null
   symbolVariableValueMode?: SDKSymbolVariableValueMode | null
