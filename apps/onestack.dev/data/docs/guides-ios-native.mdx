@@ -201,6 +201,74 @@ the artwork, then generates density-specific Android assets inside a 288 dp squa
 the app's Documents as a folder in the Files app and in document pickers under
 On My iPhone, and files the app saves there can be opened in place.
 
+### iOS widgets and Live Activities
+
+Set `ios.widgets` to have `one prebuild --platform ios` generate a WidgetKit extension,
+App Group entitlements for both targets, and a small SwiftUI widget and Live Activity.
+The app writes a typed payload to the App Group. The extension reads that payload
+without running the app's JavaScript.
+
+```ts
+ios: {
+  bundleId: 'com.example.myapp',
+  deploymentTarget: '17.0',
+  widgets: {
+    appGroup: 'group.com.example.myapp',
+    kind: 'MyAppStatus',
+    displayName: 'My status',
+    description: 'Shows the latest status.',
+  },
+}
+```
+
+```ts
+import { One } from 'one'
+
+await One.iOS.Widgets.write({ title: 'Order', value: '2 of 3', subtitle: 'On the way' })
+const id = await One.iOS.LiveActivities.start('Order', { status: 'Preparing', value: '1 of 3' })
+await One.iOS.LiveActivities.update(id, { status: 'On the way', value: '2 of 3' })
+const token = await One.iOS.LiveActivities.pushToken(id)
+const unsubscribe = One.iOS.LiveActivities.onPushToken(({ id, token }) => {
+  // send the ActivityKit token to your server
+})
+await One.iOS.LiveActivities.end(id)
+unsubscribe()
+```
+
+Pass `true` as the third argument to `start` to request an ActivityKit push token.
+Set `ios.widgets.pushNotifications: true` before prebuild to add the APNs
+entitlement; the signing profile must also enable Push Notifications.
+`pushToken` returns the current token or `null` while iOS has not issued one;
+`onPushToken` reports later token changes. These APIs are separate from notification
+permissions and device tokens. App Groups and Live Activities need the corresponding
+capabilities in the app's signing profile on a physical device.
+
+For JSX layouts, install `@use-voltra/ios-client` and add `jsx` to the same
+`ios.widgets` object. One's prebuild includes Voltra's SwiftUI renderer in its
+existing extension target. React renders the JSX layout to a serialized payload
+in the app; the extension reads and displays that payload without the app runtime.
+
+```ts
+jsx: {
+  id: 'order_status',
+  displayName: 'Order status',
+  description: 'An order widget authored in JSX.',
+},
+```
+
+```tsx
+import { Voltra, updateWidget, startLiveActivity } from '@use-voltra/ios-client'
+
+const view = <Voltra.VStack><Voltra.Text>Order 2 of 3</Voltra.Text></Voltra.VStack>
+await updateWidget('order_status', { systemSmall: view, systemMedium: view })
+await startLiveActivity({ lockScreen: view })
+```
+
+The built-in SwiftUI widget uses the fixed `title`, `value`, and `subtitle` contract.
+The optional Voltra widget uses its own JSX payload and widget id. Android widgets
+require a separate Glance target, storage contract, and lifecycle; this setting
+generates only iOS targets.
+
 ### iOS Project Setup
 
 <Notice>

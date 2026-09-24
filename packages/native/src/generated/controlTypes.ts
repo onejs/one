@@ -305,6 +305,16 @@ export const sdkButtonStyleValues = [
   'borderedProminent',
 ] as const
 export type SDKButtonStyle = (typeof sdkButtonStyleValues)[number]
+export const sdkClipShapeValues = [
+  'buttonBorder',
+  'rect',
+  'capsule',
+  'ellipse',
+  'circle',
+  'containerRelative',
+  'textInputBorder',
+] as const
+export type SDKClipShape = (typeof sdkClipShapeValues)[number]
 export const sdkColorMultiplyValues = [
   'accentColor',
   'red',
@@ -445,6 +455,260 @@ export const sdkEdgesIgnoringSafeAreaValues = [
   'vertical',
 ] as const
 export type SDKEdgesIgnoringSafeArea = (typeof sdkEdgesIgnoringSafeAreaValues)[number]
+export const sdkEnvironmentAllowedDynamicRangeValues = [
+  'standard',
+  'constrainedHigh',
+  'high',
+] as const
+export type SDKEnvironmentAllowedDynamicRange =
+  (typeof sdkEnvironmentAllowedDynamicRangeValues)[number]
+export const sdkEnvironmentBackgroundMaterialValues = [
+  'regular',
+  'thick',
+  'thin',
+  'ultraThin',
+  'ultraThick',
+  'bar',
+] as const
+export type SDKEnvironmentBackgroundMaterial =
+  (typeof sdkEnvironmentBackgroundMaterialValues)[number]
+export const sdkEnvironmentBackgroundProminenceValues = ['standard', 'increased'] as const
+export type SDKEnvironmentBackgroundProminence =
+  (typeof sdkEnvironmentBackgroundProminenceValues)[number]
+export const sdkEnvironmentBadgeProminenceValues = [
+  'decreased',
+  'standard',
+  'increased',
+] as const
+export type SDKEnvironmentBadgeProminence =
+  (typeof sdkEnvironmentBadgeProminenceValues)[number]
+export const sdkEnvironmentCalendarValues = ['autoupdatingCurrent', 'current'] as const
+export type SDKEnvironmentCalendar = (typeof sdkEnvironmentCalendarValues)[number]
+export const sdkEnvironmentColorSchemeValues = ['light', 'dark'] as const
+export type SDKEnvironmentColorScheme = (typeof sdkEnvironmentColorSchemeValues)[number]
+export const sdkEnvironmentContentTransitionValues = [
+  'symbolEffect',
+  'identity',
+  'opacity',
+  'interpolate',
+] as const
+export type SDKEnvironmentContentTransition =
+  (typeof sdkEnvironmentContentTransitionValues)[number]
+export const sdkEnvironmentControlSizeValues = [
+  'mini',
+  'small',
+  'regular',
+  'large',
+  'extraLarge',
+] as const
+export type SDKEnvironmentControlSize = (typeof sdkEnvironmentControlSizeValues)[number]
+export const sdkEnvironmentDynamicTypeSizeValues = [
+  'xSmall',
+  'small',
+  'medium',
+  'large',
+  'xLarge',
+  'xxLarge',
+  'xxxLarge',
+  'accessibility1',
+  'accessibility2',
+  'accessibility3',
+  'accessibility4',
+  'accessibility5',
+] as const
+export type SDKEnvironmentDynamicTypeSize =
+  (typeof sdkEnvironmentDynamicTypeSizeValues)[number]
+export const sdkEnvironmentFontValues = [
+  'largeTitle',
+  'title',
+  'title2',
+  'title3',
+  'headline',
+  'subheadline',
+  'body',
+  'callout',
+  'footnote',
+  'caption',
+  'caption2',
+  'default',
+] as const
+export type SDKEnvironmentFont = (typeof sdkEnvironmentFontValues)[number]
+export const sdkEnvironmentHeaderProminenceValues = ['standard', 'increased'] as const
+export type SDKEnvironmentHeaderProminence =
+  (typeof sdkEnvironmentHeaderProminenceValues)[number]
+export const sdkEnvironmentHorizontalScrollBounceBehaviorValues = [
+  'automatic',
+  'always',
+  'basedOnSize',
+] as const
+export type SDKEnvironmentHorizontalScrollBounceBehavior =
+  (typeof sdkEnvironmentHorizontalScrollBounceBehaviorValues)[number]
+export const sdkEnvironmentHorizontalScrollIndicatorVisibilityValues = [
+  'automatic',
+  'visible',
+  'hidden',
+  'never',
+] as const
+export type SDKEnvironmentHorizontalScrollIndicatorVisibility =
+  (typeof sdkEnvironmentHorizontalScrollIndicatorVisibilityValues)[number]
+export const sdkEnvironmentHorizontalSizeClassValues = ['compact', 'regular'] as const
+export type SDKEnvironmentHorizontalSizeClass =
+  (typeof sdkEnvironmentHorizontalSizeClassValues)[number]
+export const sdkEnvironmentImageScaleValues = ['small', 'medium', 'large'] as const
+export type SDKEnvironmentImageScale = (typeof sdkEnvironmentImageScaleValues)[number]
+export const sdkEnvironmentLabelsVisibilityValues = [
+  'automatic',
+  'visible',
+  'hidden',
+] as const
+export type SDKEnvironmentLabelsVisibility =
+  (typeof sdkEnvironmentLabelsVisibilityValues)[number]
+export const sdkEnvironmentLayoutDirectionValues = ['leftToRight', 'rightToLeft'] as const
+export type SDKEnvironmentLayoutDirection =
+  (typeof sdkEnvironmentLayoutDirectionValues)[number]
+export const sdkEnvironmentLegibilityWeightValues = ['regular', 'bold'] as const
+export type SDKEnvironmentLegibilityWeight =
+  (typeof sdkEnvironmentLegibilityWeightValues)[number]
+export const sdkEnvironmentLineHeightValues = [
+  'variable',
+  'normal',
+  'tight',
+  'loose',
+] as const
+export type SDKEnvironmentLineHeight = (typeof sdkEnvironmentLineHeightValues)[number]
+export const sdkEnvironmentLocaleValues = ['autoupdatingCurrent', 'current'] as const
+export type SDKEnvironmentLocale = (typeof sdkEnvironmentLocaleValues)[number]
+export const sdkEnvironmentMaterialActiveAppearanceValues = [
+  'automatic',
+  'active',
+  'matchWindow',
+] as const
+export type SDKEnvironmentMaterialActiveAppearance =
+  (typeof sdkEnvironmentMaterialActiveAppearanceValues)[number]
+export const sdkEnvironmentMenuIndicatorVisibilityValues = [
+  'automatic',
+  'visible',
+  'hidden',
+] as const
+export type SDKEnvironmentMenuIndicatorVisibility =
+  (typeof sdkEnvironmentMenuIndicatorVisibilityValues)[number]
+export const sdkEnvironmentMenuOrderValues = ['automatic', 'priority', 'fixed'] as const
+export type SDKEnvironmentMenuOrder = (typeof sdkEnvironmentMenuOrderValues)[number]
+export const sdkEnvironmentMultilineTextAlignmentValues = [
+  'leading',
+  'center',
+  'trailing',
+] as const
+export type SDKEnvironmentMultilineTextAlignment =
+  (typeof sdkEnvironmentMultilineTextAlignmentValues)[number]
+export const sdkEnvironmentRealityViewCameraControlsValues = [
+  'dolly',
+  'none',
+  'orbit',
+  'pan',
+  'tilt',
+] as const
+export type SDKEnvironmentRealityViewCameraControls =
+  (typeof sdkEnvironmentRealityViewCameraControlsValues)[number]
+export const sdkEnvironmentRedactionReasonsValues = [
+  'placeholder',
+  'privacy',
+  'invalidated',
+] as const
+export type SDKEnvironmentRedactionReasons =
+  (typeof sdkEnvironmentRedactionReasonsValues)[number]
+export const sdkEnvironmentScenePhaseValues = [
+  'background',
+  'inactive',
+  'active',
+] as const
+export type SDKEnvironmentScenePhase = (typeof sdkEnvironmentScenePhaseValues)[number]
+export const sdkEnvironmentScrollDismissesKeyboardModeValues = [
+  'automatic',
+  'immediately',
+  'interactively',
+  'never',
+] as const
+export type SDKEnvironmentScrollDismissesKeyboardMode =
+  (typeof sdkEnvironmentScrollDismissesKeyboardModeValues)[number]
+export const sdkEnvironmentSidebarRowSizeValues = ['small', 'medium', 'large'] as const
+export type SDKEnvironmentSidebarRowSize =
+  (typeof sdkEnvironmentSidebarRowSizeValues)[number]
+export const sdkEnvironmentSizeCategoryValues = [
+  'extraSmall',
+  'small',
+  'medium',
+  'large',
+  'extraLarge',
+  'extraExtraLarge',
+  'extraExtraExtraLarge',
+  'accessibilityMedium',
+  'accessibilityLarge',
+  'accessibilityExtraLarge',
+  'accessibilityExtraExtraLarge',
+  'accessibilityExtraExtraExtraLarge',
+] as const
+export type SDKEnvironmentSizeCategory = (typeof sdkEnvironmentSizeCategoryValues)[number]
+export const sdkEnvironmentSymbolColorRenderingModeValues = ['flat', 'gradient'] as const
+export type SDKEnvironmentSymbolColorRenderingMode =
+  (typeof sdkEnvironmentSymbolColorRenderingModeValues)[number]
+export const sdkEnvironmentSymbolRenderingModeValues = [
+  'monochrome',
+  'multicolor',
+  'hierarchical',
+  'palette',
+] as const
+export type SDKEnvironmentSymbolRenderingMode =
+  (typeof sdkEnvironmentSymbolRenderingModeValues)[number]
+export const sdkEnvironmentSymbolVariableValueModeValues = ['color', 'draw'] as const
+export type SDKEnvironmentSymbolVariableValueMode =
+  (typeof sdkEnvironmentSymbolVariableValueModeValues)[number]
+export const sdkEnvironmentSymbolVariantsValues = [
+  'none',
+  'circle',
+  'square',
+  'rectangle',
+  'fill',
+  'slash',
+] as const
+export type SDKEnvironmentSymbolVariants =
+  (typeof sdkEnvironmentSymbolVariantsValues)[number]
+export const sdkEnvironmentTextCaseValues = ['uppercase', 'lowercase'] as const
+export type SDKEnvironmentTextCase = (typeof sdkEnvironmentTextCaseValues)[number]
+export const sdkEnvironmentTextSelectionAffinityValues = [
+  'automatic',
+  'upstream',
+  'downstream',
+] as const
+export type SDKEnvironmentTextSelectionAffinity =
+  (typeof sdkEnvironmentTextSelectionAffinityValues)[number]
+export const sdkEnvironmentTimeZoneValues = [
+  'autoupdatingCurrent',
+  'current',
+  'gmt',
+] as const
+export type SDKEnvironmentTimeZone = (typeof sdkEnvironmentTimeZoneValues)[number]
+export const sdkEnvironmentTruncationModeValues = ['head', 'tail', 'middle'] as const
+export type SDKEnvironmentTruncationMode =
+  (typeof sdkEnvironmentTruncationModeValues)[number]
+export const sdkEnvironmentVerticalScrollBounceBehaviorValues = [
+  'automatic',
+  'always',
+  'basedOnSize',
+] as const
+export type SDKEnvironmentVerticalScrollBounceBehavior =
+  (typeof sdkEnvironmentVerticalScrollBounceBehaviorValues)[number]
+export const sdkEnvironmentVerticalScrollIndicatorVisibilityValues = [
+  'automatic',
+  'visible',
+  'hidden',
+  'never',
+] as const
+export type SDKEnvironmentVerticalScrollIndicatorVisibility =
+  (typeof sdkEnvironmentVerticalScrollIndicatorVisibilityValues)[number]
+export const sdkEnvironmentVerticalSizeClassValues = ['compact', 'regular'] as const
+export type SDKEnvironmentVerticalSizeClass =
+  (typeof sdkEnvironmentVerticalSizeClassValues)[number]
 export const sdkFileDialogBrowserOptionsValues = [
   'enumeratePackages',
   'includeHiddenFiles',
@@ -452,6 +716,21 @@ export const sdkFileDialogBrowserOptionsValues = [
 ] as const
 export type SDKFileDialogBrowserOptions =
   (typeof sdkFileDialogBrowserOptionsValues)[number]
+export const sdkFontValues = [
+  'largeTitle',
+  'title',
+  'title2',
+  'title3',
+  'headline',
+  'subheadline',
+  'body',
+  'callout',
+  'footnote',
+  'caption',
+  'caption2',
+  'default',
+] as const
+export type SDKFont = (typeof sdkFontValues)[number]
 export const sdkFontWidthValues = [
   'compressed',
   'condensed',
@@ -1483,6 +1762,7 @@ export interface OneNativeStyle {
   allowsWindowActivationEventsWithNoArguments?: boolean
   allowsWindowActivationEventsWithOptionalBool?: boolean | null
   animation?: SDKAnimation | null
+  appEntityIdentifier?: string | null
   appStoreMerchandising?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
     kind: string
@@ -1509,6 +1789,7 @@ export interface OneNativeStyle {
   buttonSizing?: SDKButtonSizing
   buttonStyle?: SDKButtonStyle
   clipped?: boolean
+  clipShape?: SDKClipShape
   colorEffect?: Readonly<{ shader: string; isEnabled: boolean }>
   colorInvert?: boolean
   colorMultiply?: SDKColorMultiply
@@ -1647,6 +1928,67 @@ export interface OneNativeStyle {
   }) => void
   dynamicTypeSize?: SDKDynamicTypeSize
   edgesIgnoringSafeArea?: SDKEdgesIgnoringSafeArea
+  environmentAccessibilityEnabled?: boolean
+  environmentAccessibilityPrefersCrossFadeTransitions?: boolean
+  environmentAllowedDynamicRange?: SDKEnvironmentAllowedDynamicRange | null
+  environmentAllowsTightening?: boolean
+  environmentAppearsActive?: boolean
+  environmentAutocorrectionDisabled?: boolean
+  environmentBackgroundMaterial?: SDKEnvironmentBackgroundMaterial | null
+  environmentBackgroundProminence?: SDKEnvironmentBackgroundProminence
+  environmentBadgeProminence?: SDKEnvironmentBadgeProminence
+  environmentCalendar?: SDKEnvironmentCalendar
+  environmentColorScheme?: SDKEnvironmentColorScheme
+  environmentContentTransition?: SDKEnvironmentContentTransition
+  environmentContentTransitionAddsDrawingGroup?: boolean
+  environmentControlSize?: SDKEnvironmentControlSize
+  environmentDefaultMinListHeaderHeight?: number | null
+  environmentDefaultMinListRowHeight?: number
+  environmentDisableAutocorrection?: boolean | null
+  environmentDisplayScale?: number
+  environmentDynamicTypeSize?: SDKEnvironmentDynamicTypeSize
+  environmentFont?: SDKEnvironmentFont | null
+  environmentHeaderProminence?: SDKEnvironmentHeaderProminence
+  environmentHorizontalScrollBounceBehavior?: SDKEnvironmentHorizontalScrollBounceBehavior
+  environmentHorizontalScrollIndicatorVisibility?: SDKEnvironmentHorizontalScrollIndicatorVisibility
+  environmentHorizontalSizeClass?: SDKEnvironmentHorizontalSizeClass | null
+  environmentImageScale?: SDKEnvironmentImageScale
+  environmentIsEnabled?: boolean
+  environmentIsFocusEffectEnabled?: boolean
+  environmentIsHoverEffectEnabled?: boolean
+  environmentIsLuminanceReduced?: boolean
+  environmentIsSceneCaptured?: boolean
+  environmentIsScrollEnabled?: boolean
+  environmentLabelsVisibility?: SDKEnvironmentLabelsVisibility
+  environmentLayoutDirection?: SDKEnvironmentLayoutDirection
+  environmentLegibilityWeight?: SDKEnvironmentLegibilityWeight | null
+  environmentLineHeight?: SDKEnvironmentLineHeight | null
+  environmentLineLimit?: number | null
+  environmentLineSpacing?: number
+  environmentLocale?: SDKEnvironmentLocale
+  environmentMaterialActiveAppearance?: SDKEnvironmentMaterialActiveAppearance
+  environmentMenuIndicatorVisibility?: SDKEnvironmentMenuIndicatorVisibility
+  environmentMenuOrder?: SDKEnvironmentMenuOrder
+  environmentMinimumScaleFactor?: number
+  environmentMultilineTextAlignment?: SDKEnvironmentMultilineTextAlignment
+  environmentRealityViewCameraControls?: SDKEnvironmentRealityViewCameraControls
+  environmentRedactionReasons?: SDKEnvironmentRedactionReasons
+  environmentScenePhase?: SDKEnvironmentScenePhase
+  environmentScrollDismissesKeyboardMode?: SDKEnvironmentScrollDismissesKeyboardMode
+  environmentSidebarRowSize?: SDKEnvironmentSidebarRowSize
+  environmentSizeCategory?: SDKEnvironmentSizeCategory
+  environmentSymbolColorRenderingMode?: SDKEnvironmentSymbolColorRenderingMode | null
+  environmentSymbolRenderingMode?: SDKEnvironmentSymbolRenderingMode | null
+  environmentSymbolVariableValueMode?: SDKEnvironmentSymbolVariableValueMode | null
+  environmentSymbolVariants?: SDKEnvironmentSymbolVariants
+  environmentSystemPrefersReducedResourceUsage?: boolean
+  environmentTextCase?: SDKEnvironmentTextCase | null
+  environmentTextSelectionAffinity?: SDKEnvironmentTextSelectionAffinity
+  environmentTimeZone?: SDKEnvironmentTimeZone
+  environmentTruncationMode?: SDKEnvironmentTruncationMode
+  environmentVerticalScrollBounceBehavior?: SDKEnvironmentVerticalScrollBounceBehavior
+  environmentVerticalScrollIndicatorVisibility?: SDKEnvironmentVerticalScrollIndicatorVisibility
+  environmentVerticalSizeClass?: SDKEnvironmentVerticalSizeClass | null
   fileDialogBrowserOptions?: SDKFileDialogBrowserOptions
   fileDialogConfirmationLabel?: string | null
   fileDialogCustomizationID?: string
@@ -1680,9 +2022,55 @@ export interface OneNativeStyle {
   }>
   focused?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   focusEffectDisabled?: boolean
+  font?: SDKFont | null
   fontWidth?: SDKFontWidth | null
   foregroundColor?: SDKForegroundColor | null
   formStyle?: SDKFormStyle
+  frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment?: Readonly<{
+    minWidth: number | null
+    idealWidth: number | null
+    maxWidth: number | null
+    minHeight: number | null
+    idealHeight: number | null
+    maxHeight: number | null
+    alignment:
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+      | 'centerFirstTextBaseline'
+      | 'centerLastTextBaseline'
+      | 'leadingFirstTextBaseline'
+      | 'leadingLastTextBaseline'
+      | 'trailingFirstTextBaseline'
+      | 'trailingLastTextBaseline'
+  }>
+  frameWithNoArguments?: boolean
+  frameWithWidthAndHeightAndAlignment?: Readonly<{
+    width: number | null
+    height: number | null
+    alignment:
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+      | 'centerFirstTextBaseline'
+      | 'centerLastTextBaseline'
+      | 'leadingFirstTextBaseline'
+      | 'leadingLastTextBaseline'
+      | 'trailingFirstTextBaseline'
+      | 'trailingLastTextBaseline'
+  }>
   gaugeStyle?: SDKGaugeStyle
   geometryGroup?: boolean
   gesture?:

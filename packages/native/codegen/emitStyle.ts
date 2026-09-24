@@ -1,5 +1,6 @@
 import type { StyleField } from './catalog'
 import type { DerivedModifier, DerivedViewSlot, EventValueSchema } from './deriveSDK'
+import { sdkGuard } from './sdkGuard'
 
 const eventValueSwift = (value: EventValueSchema, expression: string): string => {
   if (value.kind === 'number') return `Double(${expression})`
@@ -43,8 +44,7 @@ ${slots.map((slot) => `  static let ${slot.name} = ${JSON.stringify(slot.name)}`
 extension View {
   func oneNativeViewSlot(_ name: String, values: String = "[]", emit: @escaping (String, String) -> Void = { _, _ in }, content: @escaping () -> AnyView) -> AnyView {
     switch name {
-${slots.map((slot) => `    case OneNativeViewSlotName.${slot.name}:
-      if #available(iOS ${slot.ios}, *) {
+${slots.map((slot) => `    case OneNativeViewSlotName.${slot.name}:${sdkGuard(slot.ios, `      if #available(iOS ${slot.ios}, *) {
 ${slot.arguments.length ? `        guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == ${slot.arguments.length} else { preconditionFailure("invalid ${slot.name} slot values") }
@@ -60,13 +60,13 @@ ${slot.arguments.map((argument, index) => argument.kind === 'bindingBoolean'
     ? `        let argument${index} = ${argument.type === 'SwiftUICore.Text' ? `Text(decoded[${index}])` : `decoded[${index}]`}`
   : `        let argument${index}: ${argument.type} = {
           switch decoded[${index}] {
-${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${item.ios > slot.ios ? `if #available(iOS ${item.ios}, *) { return ${argument.type}.${item.name} }
+${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${item.ios > slot.ios ? `${sdkGuard(item.ios, `if #available(iOS ${item.ios}, *) { return ${argument.type}.${item.name} }`, '')}
             preconditionFailure("unavailable ${slot.name}.${argument.field}")` : `return ${argument.type}.${item.name}`}`).join('\n')}
           default: preconditionFailure("invalid ${slot.name}.${argument.field}")
           }
         }()`).join('\n')}
 ` : ''}        return AnyView(self.${slot.sdkName ?? slot.name}(${[...slot.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`), `${slot.label === '_' ? '' : `${slot.label}: `}${slot.directValue ? 'content()' : slot.closureInputs ? `{ ${slot.closureInputs.map(() => '_').join(', ')} in content() }` : 'content'}`].join(', ')}))
-      }
+      }`, '')}
       return AnyView(self)`).join('\n')}
     default: preconditionFailure("unknown view slot: \\(name)")
     }
@@ -92,13 +92,20 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
     .map((modifier) => {
       const helper = `oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}`
       const apply = (value: string, version: number, fullArguments = false) => {
-        const argument = !fullArguments && modifier.label && modifier.label !== '_' ? `${modifier.label}: ${value}` : value
+        const argument = modifier.environmentKey ? `\\.${modifier.environmentKey}, ${value}` :
+          !fullArguments && modifier.label && modifier.label !== '_' ? `${modifier.label}: ${value}` : value
         return version > 17
-          ? `if #available(iOS ${version}, *) { self.${modifier.sdkName ?? modifier.name}(${argument}) } else { self }`
+          ? sdkGuard(version, `if #available(iOS ${version}, *) { self.${modifier.sdkName ?? modifier.name}(${argument}) } else { self }`, 'self')
           : `self.${modifier.sdkName ?? modifier.name}(${argument})`
       }
-      const construct = (value: string, constructor = modifier.scalarConstructor, type = modifier.type) =>
-        constructor ? `${type.replace(/\?$/, '')}(${constructor.label}: ${value})` : value
+      const construct = (value: string, constructor = modifier.scalarConstructor, type = modifier.type) => {
+        if (!constructor) return value
+        const baseType = type.replace(/\?$/, '')
+        const call = `${baseType}(${constructor.label}: ${value})`
+        return constructor.failable
+          ? `(${call} ?? { () -> ${baseType} in preconditionFailure("invalid ${modifier.name}") }())`
+          : call
+      }
       const expression = (template: string | undefined, value: string) => template?.replace('$value', value)
       if (modifier.kind === 'record') {
         const argumentsFromSDK = modifier.arguments!
@@ -108,7 +115,7 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
           const baseType = argument.type.replace(/\?$/, '')
           if (argument.kind === 'enum') {
             const cases = argument.cases!.map((item) =>
-              `      case ${JSON.stringify(item.name)}: ${item.ios > 17 ? `if #available(iOS ${item.ios}, *) { return ${baseType}.${item.name} }\n        preconditionFailure("unavailable ${modifier.name}.${argument.field}: \\(raw)")` : `return ${baseType}.${item.name}`}`
+              `      case ${JSON.stringify(item.name)}: ${item.ios > 17 ? `${sdkGuard(item.ios, `if #available(iOS ${item.ios}, *) { return ${baseType}.${item.name} }`, '')}\n        preconditionFailure("unavailable ${modifier.name}.${argument.field}: \\(raw)")` : `return ${baseType}.${item.name}`}`
             ).join('\n')
             return `    let ${variable}: ${argument.type} = {
       guard let raw = ${raw} else { ${argument.optional ? 'return nil' : `preconditionFailure("missing ${modifier.name}.${argument.field}")`} }
@@ -234,9 +241,9 @@ ${assignments}
 ${parsedArguments}
     ${apply(call, 17, true)}`
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    ${modifier.ios > 17 ? `if #available(iOS ${modifier.ios}, *) {
+    ${modifier.ios > 17 ? sdkGuard(modifier.ios, `if #available(iOS ${modifier.ios}, *) {
       ${body}
-    } else { self }` : body}
+    } else { self }`, 'self') : body}
   }`
       }
       if (modifier.kind === 'gesture')
@@ -253,7 +260,7 @@ ${modifier.gestureOptions!.map((option) => {
             : `{ _ in emit(${JSON.stringify(modifier.name)}, "") }`
           const call = `self.${modifier.sdkName ?? modifier.name}(${option.type}().onEnded(${ended}))`
           return `    case ${JSON.stringify(option.name)}:
-      ${option.ios > 17 ? `if #available(iOS ${option.ios}, *) { ${call} } else { self }` : call}`
+      ${option.ios > 17 ? sdkGuard(option.ios, `if #available(iOS ${option.ios}, *) { ${call} } else { self }`, 'self') : call}`
         }).join('\n')}
     default: preconditionFailure("invalid ${modifier.name}: \\(value)")
     }
@@ -262,9 +269,9 @@ ${modifier.gestureOptions!.map((option) => {
         const holder = `OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}FocusBinding`
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")
-    ${modifier.ios > 17 ? `if #available(iOS ${modifier.ios}, *) {
+    ${modifier.ios > 17 ? sdkGuard(modifier.ios, `if #available(iOS ${modifier.ios}, *) {
       self.modifier(${holder}(value: value == "true", emit: emit))
-    } else { self }` : `self.modifier(${holder}(value: value == "true", emit: emit))`}
+    } else { self }`, 'self') : `self.modifier(${holder}(value: value == "true", emit: emit))`}
   }`
       }
       if (modifier.kind === 'defaultFocusBoolean') {
@@ -272,13 +279,13 @@ ${modifier.gestureOptions!.map((option) => {
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name}: \\(value)")
     if value == "true" {
-      ${modifier.ios > 17 ? `if #available(iOS ${modifier.ios}, *) { self.modifier(${holder}()) } else { self }` : `self.modifier(${holder}())`}
+      ${modifier.ios > 17 ? sdkGuard(modifier.ios, `if #available(iOS ${modifier.ios}, *) { self.modifier(${holder}()) } else { self }`, 'self') : `self.modifier(${holder}())`}
     } else { self }
   }`
       }
       if (modifier.kind === 'bindingPoint') {
         const type = modifier.bindingType!
-        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {${sdkGuard(modifier.ios, `
     if #available(iOS ${modifier.ios}, *) {
       let point: CGPoint? = {
         if value == "null" { return nil }
@@ -297,7 +304,7 @@ ${modifier.gestureOptions!.map((option) => {
           let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} event") }
         emit(${JSON.stringify(modifier.name)}, encoded)
       }))
-    } else { self }
+    } else { self }`, 'self')}
   }`
       }
       if (modifier.kind === 'eventReturnArray') {
@@ -315,9 +322,9 @@ ${modifier.gestureOptions!.map((option) => {
     }
     ${apply(call, 17, true)}`
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    ${modifier.ios > 17 ? `if #available(iOS ${modifier.ios}, *) {
+    ${modifier.ios > 17 ? sdkGuard(modifier.ios, `if #available(iOS ${modifier.ios}, *) {
       ${body}
-    } else { self }` : body}
+    } else { self }`, 'self') : body}
   }`
       }
       if (modifier.kind === 'eventReturnEnum') {
@@ -336,9 +343,9 @@ ${modifier.cases!.map((item) => `      case ${JSON.stringify(item.name)}: return
     }
     ${apply(`${modifier.label && modifier.label !== '_' ? `${modifier.label}: ` : ''}action`, 17, true)}`
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    ${modifier.ios > 17 ? `if #available(iOS ${modifier.ios}, *) {
+    ${modifier.ios > 17 ? sdkGuard(modifier.ios, `if #available(iOS ${modifier.ios}, *) {
       ${body}
-    } else { self }` : body}
+    } else { self }`, 'self') : body}
   }`
       }
       if (modifier.kind === 'eventValueString')
@@ -369,9 +376,9 @@ ${modifier.cases!.map((item) => `      case ${JSON.stringify(item.name)}: return
     }()
     ${apply(call, 17, modifier.callArguments !== undefined)}`
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    ${modifier.ios > 17 ? `if #available(iOS ${modifier.ios}, *) {
+    ${modifier.ios > 17 ? sdkGuard(modifier.ios, `if #available(iOS ${modifier.ios}, *) {
       ${body}
-    } else { self }` : body}
+    } else { self }`, 'self') : body}
   }`
       }
       if (modifier.kind.startsWith('event') || modifier.kind.startsWith('binding')) {
@@ -475,10 +482,10 @@ ${validation}    ${apply(argumentsFromSDK ?? bridge, modifier.ios, argumentsFrom
     switch value {
 ${modifier.kind === 'optionalEnum' ? `      case "null": ${apply(`nil as ${modifier.type}`, modifier.ios)}` : ''}
 ${modifier.cases
-  .map(
-    (item) =>
-      `      case ${JSON.stringify(item.name)}: ${apply(modifier.kind === 'style' ? `.${item.name}` : `${modifier.type.replace(/\?$/, '')}.${item.name}`, Math.max(modifier.ios, item.ios))}`
-  )
+  .map((item) => {
+    const call = apply(modifier.kind === 'style' ? `.${item.name}` : `${modifier.type.replace(/\?$/, '')}.${item.name}`, Math.max(modifier.ios, item.ios))
+    return `      case ${JSON.stringify(item.name)}:${call.startsWith('\n') ? '' : ' '}${call}`
+  })
   .join('\n')}
     default: preconditionFailure("invalid ${modifier.name}: \\(value)")
     }
@@ -503,7 +510,7 @@ ${modifier.cases
       } else { preconditionFailure("invalid ${modifier.name}: \\(value)") }`
             : `      ${apply(modifier.rawString ? `${modifier.type}(rawValue: value)` : expression(modifier.swiftExpression, 'value') ?? (modifier.type === 'SwiftUICore.Text' ? 'Text(value)' : modifier.type === 'SwiftUICore.Image' ? 'Image(systemName: value)' : construct('value')), modifier.ios)}`
       return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-${parsed}
+${parsed.replace(/[ \t]+$/gm, '')}
   }`
     })
     .join('\n\n')
