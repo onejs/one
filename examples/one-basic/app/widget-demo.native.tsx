@@ -4,13 +4,20 @@ import { One } from 'one'
 
 const W = One.iOS.WidgetUI
 
-function DeliveryView({ value }: { value: string }) {
+function DeliveryView({ value, step }: { value: string; step: number }) {
   return (
-    <W.VStack style={{ padding: 12, spacing: 4 }}>
-      <W.Text style={{ fontSize: 18, fontWeight: 'bold', color: '#FFFFFF' }}>
-        One delivery
-      </W.Text>
+    <W.VStack style={{ padding: 12, spacing: 8 }}>
+      <W.HStack style={{ spacing: 8 }}>
+        <W.Image
+          systemName="shippingbox.fill"
+          style={{ color: '#55C5E9', fontSize: 20 }}
+        />
+        <W.Text style={{ fontSize: 18, fontWeight: 'bold', color: '#FFFFFF' }}>
+          One delivery
+        </W.Text>
+      </W.HStack>
       <W.Text style={{ color: '#FFFFFF' }}>{value}</W.Text>
+      <W.Progress value={step} total={3} style={{ color: '#55C5E9' }} />
     </W.VStack>
   )
 }
@@ -50,9 +57,22 @@ export default function WidgetDemo() {
         onPress={() =>
           run(async () => {
             await One.iOS.Widgets.writeView(
-              <W.VStack style={{ padding: 12, spacing: 4 }}>
-                <W.Text style={{ fontSize: 18, fontWeight: 'bold' }}>One JSX</W.Text>
+              <W.VStack style={{ padding: 12, spacing: 8 }}>
+                <W.HStack style={{ spacing: 8 }}>
+                  <W.Image
+                    systemName="shippingbox.fill"
+                    style={{ color: '#1685B1', fontSize: 20 }}
+                  />
+                  <W.Text style={{ fontSize: 18, fontWeight: 'bold' }}>One JSX</W.Text>
+                </W.HStack>
                 <W.Text>Value 84 from React</W.Text>
+                <W.Progress value={2} total={3} style={{ color: '#1685B1' }} />
+                <W.Divider />
+                <W.Link url="https://onestack.dev">
+                  <W.Text style={{ color: '#1685B1', fontSize: 12 }}>
+                    Learn about One
+                  </W.Text>
+                </W.Link>
               </W.VStack>
             )
             setMessage('JSX widget data written: 84')
@@ -101,7 +121,7 @@ export default function WidgetDemo() {
         onPress={() =>
           run(async () => {
             const id = await One.iOS.LiveActivities.startView('One delivery', {
-              lockScreen: <DeliveryView value="Preparing 1 of 3" />,
+              lockScreen: <DeliveryView value="Preparing 1 of 3" step={1} />,
               compactLeading: <W.Text>One</W.Text>,
               compactTrailing: <W.Text>1/3</W.Text>,
               minimal: <W.Text>1</W.Text>,
@@ -117,7 +137,7 @@ export default function WidgetDemo() {
         onPress={() =>
           run(async () => {
             await One.iOS.LiveActivities.updateView(jsxActivityId!, {
-              lockScreen: <DeliveryView value="On the way 2 of 3" />,
+              lockScreen: <DeliveryView value="On the way 2 of 3" step={2} />,
               compactLeading: <W.Text>One</W.Text>,
               compactTrailing: <W.Text>2/3</W.Text>,
               minimal: <W.Text>2</W.Text>,
