@@ -27,6 +27,15 @@ private enum OneNativeNamespace { static let id = Namespace().wrappedValue }
 
 private struct OneNativeRotorEntry: Identifiable { let id: String; var label: String { id } }
 
+@available(iOS 18, *)
+@MainActor private struct OneNativeSDKTapRecognizer: UIGestureRecognizerRepresentable {
+  let onTap: () -> Void
+  func makeUIGestureRecognizer(context: Context) -> UITapGestureRecognizer { UITapGestureRecognizer() }
+  func handleUIGestureRecognizerAction(_ recognizer: UITapGestureRecognizer, context: Context) {
+    if recognizer.state == .ended { onTap() }
+  }
+}
+
 @available(iOS 17, *)
 @MainActor private struct OneNativeSDKLookAroundViewerRequest: ViewModifier {
   let latitude: Double
@@ -383,6 +392,7 @@ extension View {
       case "gaugeStyle": view = AnyView(view.oneNativeSDKGaugeStyle(value, emit: emit))
       case "geometryGroup": view = AnyView(view.oneNativeSDKGeometryGroup(value, emit: emit))
       case "gesture": view = AnyView(view.oneNativeSDKGesture(value, emit: emit))
+      case "gestureWithUITapRecognizer": view = AnyView(view.oneNativeSDKGestureWithUITapRecognizer(value, emit: emit))
       case "glassEffectID": view = AnyView(view.oneNativeSDKGlassEffectID(value, emit: emit))
       case "glassEffectTransition": view = AnyView(view.oneNativeSDKGlassEffectTransition(value, emit: emit))
       case "glassEffectUnion": view = AnyView(view.oneNativeSDKGlassEffectUnion(value, emit: emit))
@@ -4075,6 +4085,10 @@ self
       self.gesture(SwiftUI.TapGesture().onEnded({ _ in emit("gesture", "") }))
     default: preconditionFailure("invalid gesture: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKGestureWithUITapRecognizer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) { self.gesture(OneNativeSDKTapRecognizer(onTap: { emit("gestureWithUITapRecognizer", "") })) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKGlassEffectID(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

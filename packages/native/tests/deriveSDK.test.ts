@@ -616,6 +616,17 @@ describe('SDK modifier derivation', () => {
       predicateLabel: 'isPresented', label: 'initialScene',
     }])
   })
+
+  it('derives the UIKit recognizer View overload beside the SwiftUI gesture overload', () => {
+    const methodFromSDK = method('gesture', 'SwiftUI', [
+      { label: '_', name: 'gesture', type: 'some UIGestureRecognizerRepresentable' },
+    ])
+    expect(deriveModifiers([methodFromSDK], 27, [])).toEqual([{
+      name: 'gestureWithUITapRecognizer', sdkName: 'gesture',
+      kind: 'event', type: 'some UIGestureRecognizerRepresentable', ios: 0,
+      uiRecognizer: true,
+    }])
+  })
 })
 
 describe('SDK view slots', () => {
