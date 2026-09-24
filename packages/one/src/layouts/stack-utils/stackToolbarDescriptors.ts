@@ -415,14 +415,24 @@ function menuLabelAndTitle(
 function menuActionPropsToHeaderAction(
   props: StackToolbarMenuActionProps
 ): NativeStackHeaderItemMenuAction {
-  const { isOn, unstable_keepPresented, icon, image, iconRenderingMode, ...rest } =
-    props as StackToolbarMenuActionProps & { image?: ImageSourcePropType }
+  // children and subtitle are mapped below; spreading them would send a
+  // React element across the native bridge and drop every header item
+  const {
+    children,
+    subtitle,
+    isOn,
+    unstable_keepPresented,
+    icon,
+    image,
+    iconRenderingMode,
+    ...rest
+  } = props as StackToolbarMenuActionProps & { image?: ImageSourcePropType }
   void image
-  const shared = labelFromChildren(props.children)
-  const iconResolution = resolveIcon(icon, props.children)
+  const shared = labelFromChildren(children)
+  const iconResolution = resolveIcon(icon, children)
   const item = {
     ...rest,
-    description: props.subtitle,
+    description: subtitle,
     type: 'action',
     label: shared,
     state: isOn ? ('on' as const) : ('off' as const),
