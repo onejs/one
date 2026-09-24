@@ -207,6 +207,7 @@ extension View {
       case "controlSize": view = AnyView(view.oneNativeSDKControlSize(value, emit: emit))
       case "coordinateSpace": view = AnyView(view.oneNativeSDKCoordinateSpace(value, emit: emit))
       case "copyable": view = AnyView(view.oneNativeSDKCopyable(value, emit: emit))
+      case "currentEntitlementTask": view = AnyView(view.oneNativeSDKCurrentEntitlementTask(value, emit: emit))
       case "cuttable": view = AnyView(view.oneNativeSDKCuttable(value, emit: emit))
       case "dataDetection": view = AnyView(view.oneNativeSDKDataDetection(value, emit: emit))
       case "datePickerStyle": view = AnyView(view.oneNativeSDKDatePickerStyle(value, emit: emit))
@@ -548,12 +549,15 @@ extension View {
       case "statusBar": view = AnyView(view.oneNativeSDKStatusBar(value, emit: emit))
       case "statusBarHidden": view = AnyView(view.oneNativeSDKStatusBarHidden(value, emit: emit))
       case "storeButton": view = AnyView(view.oneNativeSDKStoreButton(value, emit: emit))
+      case "storeProductsTask": view = AnyView(view.oneNativeSDKStoreProductsTask(value, emit: emit))
+      case "storeProductTask": view = AnyView(view.oneNativeSDKStoreProductTask(value, emit: emit))
       case "strikethrough": view = AnyView(view.oneNativeSDKStrikethrough(value, emit: emit))
       case "submitLabel": view = AnyView(view.oneNativeSDKSubmitLabel(value, emit: emit))
       case "submitScope": view = AnyView(view.oneNativeSDKSubmitScope(value, emit: emit))
       case "subscriptionOfferViewButtonVisibility": view = AnyView(view.oneNativeSDKSubscriptionOfferViewButtonVisibility(value, emit: emit))
       case "subscriptionOfferViewDetailAction": view = AnyView(view.oneNativeSDKSubscriptionOfferViewDetailAction(value, emit: emit))
       case "subscriptionOfferViewStyle": view = AnyView(view.oneNativeSDKSubscriptionOfferViewStyle(value, emit: emit))
+      case "subscriptionStatusTask": view = AnyView(view.oneNativeSDKSubscriptionStatusTask(value, emit: emit))
       case "subscriptionStoreButtonLabel": view = AnyView(view.oneNativeSDKSubscriptionStoreButtonLabel(value, emit: emit))
       case "subscriptionStoreControlBackground": view = AnyView(view.oneNativeSDKSubscriptionStoreControlBackground(value, emit: emit))
       case "subscriptionStoreControlStyle": view = AnyView(view.oneNativeSDKSubscriptionStoreControlStyle(value, emit: emit))
@@ -2254,6 +2258,34 @@ if #available(iOS 27, *) {
 self
 #endif
 
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKCurrentEntitlementTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let decoded: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid currentEntitlementTask arguments") }
+      return decoded
+    }()
+
+    self.currentEntitlementTask(for: decoded[0], action: { item in
+      let payload = ({ () -> [String: Any] in
+      switch item {
+      case .loading: return ["case": "loading", "values": []]
+      case .failure(let value0): return ["case": "failure", "values": [String(describing: value0)]]
+      case .success(let value0): return ["case": "success", "values": [(value0.map { inner -> Any in ({ () -> [String: Any] in
+      switch inner {
+      case .verified: return ["case": "verified", "jwsRepresentation": inner.jwsRepresentation, "error": NSNull()]
+      case .unverified(_, let error): return ["case": "unverified", "jwsRepresentation": inner.jwsRepresentation, "error": String(describing: error)]
+      }
+    })() } ?? NSNull())]]
+      @unknown default: return ["case": "unknown", "values": []]
+      }
+    })()
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid currentEntitlementTask async event") }
+      await OneNativeAsyncAction.wait(name: "currentEntitlementTask", value: encoded, emit: emit)
+    })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKCuttable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -6611,6 +6643,57 @@ self
     self.storeButton(argument0, for: argument1)
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKStoreProductsTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let decoded: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid storeProductsTask arguments") }
+      return decoded
+    }()
+    let argument0: [String] = {
+      guard let data = decoded[0].data(using: .utf8),
+        let items = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid storeProductsTask.ids") }
+      return items
+    }()
+    self.storeProductsTask(for: argument0, action: { item in
+      let payload = ({ () -> [String: Any] in
+      switch item {
+      case .loading: return ["case": "loading", "values": []]
+      case .failure(let value0): return ["case": "failure", "values": [String(describing: value0)]]
+      case .success(let value0, let value1): return ["case": "success", "values": [value0.map { item -> Any in (["id": item.id, "type": (["rawValue": item.type.rawValue] as [String: Any]), "displayName": item.displayName, "description": item.description, "displayPrice": item.displayPrice, "isFamilyShareable": item.isFamilyShareable] as [String: Any]) }, value1.map { item -> Any in item }]]
+      @unknown default: return ["case": "unknown", "values": []]
+      }
+    })()
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid storeProductsTask async event") }
+      await OneNativeAsyncAction.wait(name: "storeProductsTask", value: encoded, emit: emit)
+    })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKStoreProductTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let decoded: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid storeProductTask arguments") }
+      return decoded
+    }()
+
+    self.storeProductTask(for: decoded[0], action: { item in
+      let payload = ({ () -> [String: Any] in
+      switch item {
+      case .loading: return ["case": "loading", "values": []]
+      case .unavailable: return ["case": "unavailable", "values": []]
+      case .failure(let value0): return ["case": "failure", "values": [String(describing: value0)]]
+      case .success(let value0): return ["case": "success", "values": [(["id": value0.id, "type": (["rawValue": value0.type.rawValue] as [String: Any]), "displayName": value0.displayName, "description": value0.description, "displayPrice": value0.displayPrice, "isFamilyShareable": value0.isFamilyShareable] as [String: Any])]]
+      @unknown default: return ["case": "unknown", "values": []]
+      }
+    })()
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid storeProductTask async event") }
+      await OneNativeAsyncAction.wait(name: "storeProductTask", value: encoded, emit: emit)
+    })
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKStrikethrough(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -6723,6 +6806,39 @@ self
       case "compact": if #available(iOS 26, *) { self.subscriptionOfferViewStyle(.compact) } else { self }
     default: preconditionFailure("invalid subscriptionOfferViewStyle: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSubscriptionStatusTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let decoded: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid subscriptionStatusTask arguments") }
+      return decoded
+    }()
+
+    self.subscriptionStatusTask(for: decoded[0], action: { item in
+      let payload = ({ () -> [String: Any] in
+      switch item {
+      case .loading: return ["case": "loading", "values": []]
+      case .failure(let value0): return ["case": "failure", "values": [String(describing: value0)]]
+      case .success(let value0): return ["case": "success", "values": [value0.map { item -> Any in (["state": (["rawValue": Double(item.state.rawValue)] as [String: Any]), "transaction": ({ () -> [String: Any] in
+      switch item.transaction {
+      case .verified: return ["case": "verified", "jwsRepresentation": item.transaction.jwsRepresentation, "error": NSNull()]
+      case .unverified(_, let error): return ["case": "unverified", "jwsRepresentation": item.transaction.jwsRepresentation, "error": String(describing: error)]
+      }
+    })(), "renewalInfo": ({ () -> [String: Any] in
+      switch item.renewalInfo {
+      case .verified: return ["case": "verified", "jwsRepresentation": item.renewalInfo.jwsRepresentation, "error": NSNull()]
+      case .unverified(_, let error): return ["case": "unverified", "jwsRepresentation": item.renewalInfo.jwsRepresentation, "error": String(describing: error)]
+      }
+    })()] as [String: Any]) }]]
+      @unknown default: return ["case": "unknown", "values": []]
+      }
+    })()
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid subscriptionStatusTask async event") }
+      await OneNativeAsyncAction.wait(name: "subscriptionStatusTask", value: encoded, emit: emit)
+    })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStoreButtonLabel(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

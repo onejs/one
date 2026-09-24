@@ -148,6 +148,7 @@ const sdkKinds = {
   controlSize: 'string',
   coordinateSpace: 'string',
   copyable: 'record',
+  currentEntitlementTask: 'eventAsyncStruct',
   cuttable: 'eventReturnArray',
   dataDetection: 'boolean',
   datePickerStyle: 'style',
@@ -491,12 +492,15 @@ const sdkKinds = {
   statusBar: 'boolean',
   statusBarHidden: 'boolean',
   storeButton: 'record',
+  storeProductsTask: 'eventAsyncStruct',
+  storeProductTask: 'eventAsyncStruct',
   strikethrough: 'record',
   submitLabel: 'string',
   submitScope: 'boolean',
   subscriptionOfferViewButtonVisibility: 'record',
   subscriptionOfferViewDetailAction: 'event',
   subscriptionOfferViewStyle: 'style',
+  subscriptionStatusTask: 'eventAsyncStruct',
   subscriptionStoreButtonLabel: 'string',
   subscriptionStoreControlBackground: 'string',
   subscriptionStoreControlStyle: 'style',
@@ -579,7 +583,7 @@ const sdkEventCases: Record<string, readonly string[]> = {
   onScrollPhaseChange: ['idle', 'tracking', 'interacting', 'decelerating', 'animating'],
 }
 type SDKEventValueShape =
-  | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' }
+  | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' | 'description' }
   | { kind: 'enum'; cases: readonly string[]; open?: true }
   | { kind: 'optional' | 'array'; value: SDKEventValueShape }
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
@@ -718,6 +722,18 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
       },
       { name: 'point', value: { kind: 'point' } },
     ],
+  },
+  currentEntitlementTask: {
+    kind: 'associatedEnum',
+    cases: [
+      { name: 'loading', values: [] },
+      { name: 'failure', values: [{ kind: 'description' }] },
+      {
+        name: 'success',
+        values: [{ kind: 'optional', value: { kind: 'verification' } }],
+      },
+    ],
+    open: true,
   },
   dropConfiguration: {
     kind: 'object',
@@ -956,6 +972,101 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
   onScrollTargetVisibilityChange: { kind: 'array', value: { kind: 'string' } },
   onTapGestureWithPerform: { kind: 'point' },
   pasteDestination: { kind: 'array', value: { kind: 'string' } },
+  storeProductsTask: {
+    kind: 'associatedEnum',
+    cases: [
+      { name: 'loading', values: [] },
+      { name: 'failure', values: [{ kind: 'description' }] },
+      {
+        name: 'success',
+        values: [
+          {
+            kind: 'array',
+            value: {
+              kind: 'object',
+              fields: [
+                { name: 'id', value: { kind: 'string' } },
+                {
+                  name: 'type',
+                  value: {
+                    kind: 'object',
+                    fields: [{ name: 'rawValue', value: { kind: 'string' } }],
+                  },
+                },
+                { name: 'displayName', value: { kind: 'string' } },
+                { name: 'description', value: { kind: 'string' } },
+                { name: 'displayPrice', value: { kind: 'string' } },
+                { name: 'isFamilyShareable', value: { kind: 'boolean' } },
+              ],
+            },
+          },
+          { kind: 'array', value: { kind: 'string' } },
+        ],
+      },
+    ],
+    open: true,
+  },
+  storeProductTask: {
+    kind: 'associatedEnum',
+    cases: [
+      { name: 'loading', values: [] },
+      { name: 'unavailable', values: [] },
+      { name: 'failure', values: [{ kind: 'description' }] },
+      {
+        name: 'success',
+        values: [
+          {
+            kind: 'object',
+            fields: [
+              { name: 'id', value: { kind: 'string' } },
+              {
+                name: 'type',
+                value: {
+                  kind: 'object',
+                  fields: [{ name: 'rawValue', value: { kind: 'string' } }],
+                },
+              },
+              { name: 'displayName', value: { kind: 'string' } },
+              { name: 'description', value: { kind: 'string' } },
+              { name: 'displayPrice', value: { kind: 'string' } },
+              { name: 'isFamilyShareable', value: { kind: 'boolean' } },
+            ],
+          },
+        ],
+      },
+    ],
+    open: true,
+  },
+  subscriptionStatusTask: {
+    kind: 'associatedEnum',
+    cases: [
+      { name: 'loading', values: [] },
+      { name: 'failure', values: [{ kind: 'description' }] },
+      {
+        name: 'success',
+        values: [
+          {
+            kind: 'array',
+            value: {
+              kind: 'object',
+              fields: [
+                {
+                  name: 'state',
+                  value: {
+                    kind: 'object',
+                    fields: [{ name: 'rawValue', value: { kind: 'number' } }],
+                  },
+                },
+                { name: 'transaction', value: { kind: 'verification' } },
+                { name: 'renewalInfo', value: { kind: 'verification' } },
+              ],
+            },
+          },
+        ],
+      },
+    ],
+    open: true,
+  },
   webViewOnScrollGeometryChangeWithContainerSize: {
     kind: 'object',
     fields: [
@@ -977,6 +1088,12 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
       { name: 'newValue', value: { kind: 'size' } },
     ],
   },
+}
+const sdkAsyncArguments: Record<string, readonly { field: string; kind: string }[]> = {
+  currentEntitlementTask: [{ field: 'productID', kind: 'string' }],
+  storeProductsTask: [{ field: 'ids', kind: 'stringArray' }],
+  storeProductTask: [{ field: 'id', kind: 'string' }],
+  subscriptionStatusTask: [{ field: 'groupID', kind: 'string' }],
 }
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = {
   gesture: {
@@ -1772,8 +1889,8 @@ function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean 
       Array.isArray(value) && value.every((item) => validSDKEventValue(item, shape.value))
     )
   if (shape.kind === 'number') return typeof value === 'number' && Number.isFinite(value)
-  if (shape.kind === 'string' || shape.kind === 'boolean')
-    return typeof value === shape.kind
+  if (shape.kind === 'string' || shape.kind === 'description' || shape.kind === 'boolean')
+    return typeof value === (shape.kind === 'description' ? 'string' : shape.kind)
   if (shape.kind === 'enum')
     return (
       typeof value === 'string' &&
@@ -1972,6 +2089,29 @@ export function swiftStyleNative(
         )
           throw new Error(name + ' must be an SDK gesture and callback')
         sdkModifiers.push([name, (value as { kind: string }).kind])
+        continue
+      }
+      if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {
+        if (
+          !value ||
+          typeof value !== 'object' ||
+          Array.isArray(value) ||
+          typeof (value as { onAction?: unknown }).onAction !== 'function'
+        )
+          throw new Error(name + ' must be an async SDK callback and arguments')
+        const record = value as Record<string, unknown>
+        const argumentsFromSDK = sdkAsyncArguments[name].map(({ field, kind }) => {
+          const item = record[field]
+          if (kind === 'stringArray') {
+            if (!Array.isArray(item) || item.some((value) => typeof value !== 'string'))
+              throw new Error(name + '.' + field + ' must be a string array')
+            return JSON.stringify(item)
+          }
+          if (typeof item !== 'string')
+            throw new Error(name + '.' + field + ' must be a string')
+          return item
+        })
+        sdkModifiers.push([name, JSON.stringify(argumentsFromSDK)])
         continue
       }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value)))
@@ -2223,10 +2363,16 @@ export function dispatchSDKEvent(
     const payload: unknown = JSON.parse((envelope as { value: string }).value)
     if (!validSDKEventValue(payload, sdkEventStructs[name]))
       throw new Error(name + ' emitted an invalid async value')
+    const action =
+      typeof modifier === 'function'
+        ? modifier
+        : (
+            modifier as
+              | { onAction?: (value: unknown) => void | Promise<void> }
+              | undefined
+          )?.onAction
     void Promise.resolve()
-      .then(() =>
-        (modifier as ((value: unknown) => void | Promise<void>) | undefined)?.(payload)
-      )
+      .then(() => action?.(payload))
       .finally(() => native.complete(identifier))
   } else if (kind === 'eventReturnArray')
     (modifier as { onAction: () => void } | undefined)?.onAction()

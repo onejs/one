@@ -3559,6 +3559,53 @@
       ]
     },
     {
+      "name": "currentEntitlementTask",
+      "kind": "eventAsyncStruct",
+      "type": "@escaping (_StoreKit_SwiftUI.EntitlementTaskState<StoreKit.VerificationResult<StoreKit.Transaction>?>) async -> ()",
+      "label": "action",
+      "eventInputType": "_StoreKit_SwiftUI.EntitlementTaskState<StoreKit.VerificationResult<StoreKit.Transaction>?>",
+      "eventValue": {
+        "kind": "associatedEnum",
+        "cases": [
+          {
+            "name": "loading",
+            "values": []
+          },
+          {
+            "name": "failure",
+            "values": [
+              {
+                "kind": "description"
+              }
+            ]
+          },
+          {
+            "name": "success",
+            "values": [
+              {
+                "kind": "optional",
+                "value": {
+                  "kind": "verification"
+                }
+              }
+            ]
+          }
+        ],
+        "open": true
+      },
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "optional": false,
+          "field": "productID",
+          "label": "for"
+        }
+      ],
+      "ios": 17,
+      "framework": "StoreKit"
+    },
+    {
       "name": "cuttable",
       "kind": "eventReturnArray",
       "type": "@escaping () -> [T]",
@@ -12861,6 +12908,199 @@
       "framework": "StoreKit"
     },
     {
+      "name": "storeProductsTask",
+      "kind": "eventAsyncStruct",
+      "type": "@escaping (StoreKit.Product.CollectionTaskState) async -> ()",
+      "label": "action",
+      "eventInputType": "StoreKit.Product.CollectionTaskState",
+      "eventValue": {
+        "kind": "associatedEnum",
+        "cases": [
+          {
+            "name": "loading",
+            "values": []
+          },
+          {
+            "name": "failure",
+            "values": [
+              {
+                "kind": "description"
+              }
+            ]
+          },
+          {
+            "name": "success",
+            "values": [
+              {
+                "kind": "array",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "id",
+                      "value": {
+                        "kind": "string"
+                      }
+                    },
+                    {
+                      "name": "type",
+                      "value": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "name": "rawValue",
+                            "value": {
+                              "kind": "string"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "displayName",
+                      "value": {
+                        "kind": "string"
+                      }
+                    },
+                    {
+                      "name": "description",
+                      "value": {
+                        "kind": "string"
+                      }
+                    },
+                    {
+                      "name": "displayPrice",
+                      "value": {
+                        "kind": "string"
+                      }
+                    },
+                    {
+                      "name": "isFamilyShareable",
+                      "value": {
+                        "kind": "boolean"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "kind": "array",
+                "value": {
+                  "kind": "string"
+                }
+              }
+            ]
+          }
+        ],
+        "open": true
+      },
+      "arguments": [
+        {
+          "kind": "stringArray",
+          "type": "[Swift.String]",
+          "optional": false,
+          "field": "ids",
+          "label": "for"
+        }
+      ],
+      "ios": 17,
+      "framework": "StoreKit"
+    },
+    {
+      "name": "storeProductTask",
+      "kind": "eventAsyncStruct",
+      "type": "@escaping (StoreKit.Product.TaskState) async -> ()",
+      "label": "action",
+      "eventInputType": "StoreKit.Product.TaskState",
+      "eventValue": {
+        "kind": "associatedEnum",
+        "cases": [
+          {
+            "name": "loading",
+            "values": []
+          },
+          {
+            "name": "unavailable",
+            "values": []
+          },
+          {
+            "name": "failure",
+            "values": [
+              {
+                "kind": "description"
+              }
+            ]
+          },
+          {
+            "name": "success",
+            "values": [
+              {
+                "kind": "object",
+                "fields": [
+                  {
+                    "name": "id",
+                    "value": {
+                      "kind": "string"
+                    }
+                  },
+                  {
+                    "name": "type",
+                    "value": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "name": "rawValue",
+                          "value": {
+                            "kind": "string"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "displayName",
+                    "value": {
+                      "kind": "string"
+                    }
+                  },
+                  {
+                    "name": "description",
+                    "value": {
+                      "kind": "string"
+                    }
+                  },
+                  {
+                    "name": "displayPrice",
+                    "value": {
+                      "kind": "string"
+                    }
+                  },
+                  {
+                    "name": "isFamilyShareable",
+                    "value": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "open": true
+      },
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "StoreKit.Product.ID",
+          "optional": false,
+          "field": "id",
+          "label": "for"
+        }
+      ],
+      "ios": 17,
+      "framework": "StoreKit"
+    },
+    {
       "name": "strikethrough",
       "kind": "record",
       "type": "",
@@ -13105,6 +13345,81 @@
           "ios": 26
         }
       ],
+      "framework": "StoreKit"
+    },
+    {
+      "name": "subscriptionStatusTask",
+      "kind": "eventAsyncStruct",
+      "type": "@escaping (_StoreKit_SwiftUI.EntitlementTaskState<[StoreKit.Product.SubscriptionInfo.Status]>) async -> ()",
+      "label": "action",
+      "eventInputType": "_StoreKit_SwiftUI.EntitlementTaskState<[StoreKit.Product.SubscriptionInfo.Status]>",
+      "eventValue": {
+        "kind": "associatedEnum",
+        "cases": [
+          {
+            "name": "loading",
+            "values": []
+          },
+          {
+            "name": "failure",
+            "values": [
+              {
+                "kind": "description"
+              }
+            ]
+          },
+          {
+            "name": "success",
+            "values": [
+              {
+                "kind": "array",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "state",
+                      "value": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "name": "rawValue",
+                            "value": {
+                              "kind": "number"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "transaction",
+                      "value": {
+                        "kind": "verification"
+                      }
+                    },
+                    {
+                      "name": "renewalInfo",
+                      "value": {
+                        "kind": "verification"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "open": true
+      },
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "optional": false,
+          "field": "groupID",
+          "label": "for"
+        }
+      ],
+      "ios": 17,
       "framework": "StoreKit"
     },
     {
@@ -16038,6 +16353,7 @@
       ],
       "_StoreKit_SwiftUI": [
         "appStoreMerchandising",
+        "currentEntitlementTask",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
         "onInAppPurchaseCompletion",
@@ -16047,9 +16363,12 @@
         "productViewStyle",
         "refundRequestSheet",
         "storeButton",
+        "storeProductTask",
+        "storeProductsTask",
         "subscriptionOfferViewButtonVisibility",
         "subscriptionOfferViewDetailAction",
         "subscriptionOfferViewStyle",
+        "subscriptionStatusTask",
         "subscriptionStoreButtonLabel",
         "subscriptionStoreControlBackground",
         "subscriptionStoreControlIcon",
@@ -16505,6 +16824,7 @@
       ],
       "_StoreKit_SwiftUI": [
         "appStoreMerchandising",
+        "currentEntitlementTask",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
         "onInAppPurchaseCompletion",
@@ -16514,9 +16834,12 @@
         "productViewStyle",
         "refundRequestSheet",
         "storeButton",
+        "storeProductTask",
+        "storeProductsTask",
         "subscriptionOfferViewButtonVisibility",
         "subscriptionOfferViewDetailAction",
         "subscriptionOfferViewStyle",
+        "subscriptionStatusTask",
         "subscriptionStoreButtonLabel",
         "subscriptionStoreControlBackground",
         "subscriptionStoreControlIcon",
