@@ -40,6 +40,7 @@ describe('computeCoverage', () => {
       {
         views: { SwiftUI: ['Button'] },
         modifiers: { SwiftUI: ['padding'], _WebKit_SwiftUI: ['webViewMagnificationGestures'] },
+        generatedModifiers: { _WebKit_SwiftUI: ['webViewMagnificationGestures'] },
       },
       ['SwiftUI', '_MapKit_SwiftUI', '_WebKit_SwiftUI'],
       26
@@ -60,6 +61,7 @@ describe('computeCoverage', () => {
     expect(modules._WebKit_SwiftUI.modifiers).toMatchObject({ mapped: 1, total: 1 })
     expect(totals.views).toMatchObject({ mapped: 1, total: 3 })
     expect(totals.modifiers).toMatchObject({ mapped: 2, total: 3 })
+    expect(totals.generatedModifiers).toMatchObject({ mapped: 1, total: 3 })
   })
 
   it('excludes nested structs, SPI, and unavailable declarations from the universe', () => {
@@ -80,6 +82,15 @@ describe('computeCoverage', () => {
       total: 1,
       unmappedNames: ['padding'],
     })
+  })
+
+  it('rejects generated coverage without a bound modifier', () => {
+    expect(() => computeCoverage(
+      [modifier('SwiftUI', 'padding')],
+      { views: {}, modifiers: {}, generatedModifiers: { SwiftUI: ['padding'] } },
+      ['SwiftUI'],
+      27
+    )).toThrow('generated modifier is not bound: SwiftUI.padding')
   })
 
   it('counts above-ceiling names separately instead of as unmapped', () => {

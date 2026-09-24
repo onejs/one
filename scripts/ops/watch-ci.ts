@@ -1,7 +1,7 @@
 // watches every github actions run for one sha to a terminal state.
 // exit 0: all runs completed successfully (or were skipped).
 // exit 1: any run failed, was cancelled, or timed out.
-// usage: bun scripts/ops/watch-ci.ts --sha <sha> [--repo onejs/one]
+// usage: bun scripts/ops/watch-ci.ts --sha <sha> [--repo onejs/one] [--workflow "Checks and Tests" ...]
 //
 // polls the api once a minute inside this process so the caller can sleep
 // through it with `tm wait --exec` instead of burning turns.
@@ -14,8 +14,9 @@ const readFlag = (name: string) => {
 
 const shaArg = readFlag('sha')
 const repo = readFlag('repo') ?? 'onejs/one'
-if (!shaArg) {
-  console.error('usage: bun scripts/ops/watch-ci.ts --sha <sha> [--repo owner/name]')
+const workflows = [...new Set(args.flatMap((arg, index) => arg === '--workflow' ? [args[index + 1]] : []))]
+if (!shaArg || workflows.some((name) => !name || name.startsWith('--'))) {
+  console.error('usage: bun scripts/ops/watch-ci.ts --sha <sha> [--repo owner/name] [--workflow name ...]')
   process.exit(2)
 }
 
@@ -90,9 +91,10 @@ while (true) {
   // crowd out the push that actually verifies this sha
   const direct = runs.filter(
     (run) =>
-      run.event === 'push' ||
-      run.event === 'workflow_dispatch' ||
-      run.event === 'pull_request'
+      (run.event === 'push' ||
+        run.event === 'workflow_dispatch' ||
+        run.event === 'pull_request') &&
+      (workflows.length === 0 || workflows.includes(run.name))
   )
   // duplicate push runs can cancel an older attempt for the same workflow and sha.
   const latest = [...new Map(direct.sort((a, b) => a.databaseId - b.databaseId)
@@ -105,7 +107,7 @@ while (true) {
     }
     process.exit(1)
   }
-  if (latest.length > 0 && pending.length === 0) {
+  if (latest.length > 0 && latest.length >= workflows.length && pending.length === 0) {
     const unproven = latest.filter((run) => !ok.has(run.conclusion ?? ''))
     if (unproven.length > 0) {
       for (const run of unproven) {

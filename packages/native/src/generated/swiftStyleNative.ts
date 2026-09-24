@@ -51,6 +51,7 @@ const sdkKinds = {
   accessibilityAddTraits: 'string',
   accessibilityAdjustableAction: 'eventEnum',
   accessibilityCustomContent: 'record',
+  accessibilityDefaultFocus: 'defaultFocusBoolean',
   accessibilityDirectTouch: 'record',
   accessibilityDragPointWithPointAndDescription: 'record',
   accessibilityDragPointWithPointAndDescriptionAndIsEnabled: 'record',
@@ -99,6 +100,7 @@ const sdkKinds = {
   allowsWindowActivationEventsWithNoArguments: 'boolean',
   allowsWindowActivationEventsWithOptionalBool: 'optionalBoolean',
   animation: 'optionalEnum',
+  appStoreMerchandising: 'record',
   aspectRatio: 'record',
   assistiveAccessNavigationIconWithImage: 'string',
   assistiveAccessNavigationIconWithSystemImage: 'string',
@@ -144,6 +146,7 @@ const sdkKinds = {
   datePickerStyle: 'style',
   defaultAdaptableTabBarPlacement: 'string',
   defaultAppStorage: 'string',
+  defaultFocus: 'defaultFocusBoolean',
   defaultHoverEffect: 'optionalEnum',
   defaultScrollAnchorWithAnchorAndRole: 'record',
   defaultScrollAnchorWithOptionalUnitPoint: 'optionalEnum',
@@ -162,6 +165,8 @@ const sdkKinds = {
   dragConfiguration: 'boolean',
   draggable: 'record',
   drawingGroup: 'record',
+  dropConfiguration: 'eventReturnEnum',
+  dropDestination: 'eventStruct',
   dynamicTypeSize: 'string',
   edgesIgnoringSafeArea: 'string',
   fileDialogBrowserOptions: 'string',
@@ -170,7 +175,10 @@ const sdkKinds = {
   fileDialogDefaultDirectory: 'optionalURL',
   fileDialogImportsUnresolvedAliases: 'boolean',
   fileDialogMessage: 'optionalString',
+  fileDialogURLEnabled: 'boolean',
+  fileExporter: 'record',
   fileExporterFilenameLabel: 'optionalString',
+  fileMover: 'record',
   findDisabled: 'boolean',
   findNavigator: 'bindingBoolean',
   fixedSizeWithHorizontalAndVertical: 'record',
@@ -185,6 +193,7 @@ const sdkKinds = {
   formStyle: 'style',
   gaugeStyle: 'style',
   geometryGroup: 'boolean',
+  gesture: 'gesture',
   glassEffectTransition: 'string',
   grayscale: 'number',
   gridCellAnchor: 'string',
@@ -198,6 +207,7 @@ const sdkKinds = {
   headerProminence: 'string',
   help: 'string',
   hidden: 'boolean',
+  highPriorityGesture: 'gesture',
   hoverEffectDisabled: 'boolean',
   hoverEffectWithEffectAndIsEnabled: 'record',
   hoverEffectWithHoverEffect: 'string',
@@ -213,6 +223,7 @@ const sdkKinds = {
   interactiveDismissDisabled: 'boolean',
   invalidatableContent: 'boolean',
   italic: 'boolean',
+  itemProvider: 'string',
   kerning: 'number',
   keyboardShortcutWithKeyAndModifiers: 'record',
   keyboardShortcutWithKeyAndModifiersAndLocalization: 'record',
@@ -282,15 +293,24 @@ const sdkKinds = {
   offerCodeRedemption: 'bindingBoolean',
   offset: 'record',
   onAppear: 'event',
+  onCameraCaptureEvent: 'eventStruct',
+  onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction:
+    'record',
+  onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction: 'record',
   onChange: 'eventValueString',
+  onContinueUserActivity: 'record',
   onContinuousHover: 'eventAssociatedEnum',
   onDisappear: 'event',
+  onDrag: 'string',
   onDragSessionUpdated: 'eventStruct',
+  onDropSessionUpdated: 'eventStruct',
   onGeometryChangeWithSize: 'eventStruct',
   onHover: 'eventBoolean',
   onInteractiveResizeChange: 'eventBoolean',
+  onKeyPress: 'eventReturnEnum',
   onLongPressGesture: 'event',
   onMapCameraChange: 'event',
+  onMapCameraChangeWithEventStruct: 'eventStruct',
   onOpenURLWithPerform: 'eventString',
   onOpenURLWithPrefersInApp: 'boolean',
   onPencilDoubleTap: 'eventStruct',
@@ -316,6 +336,7 @@ const sdkKinds = {
   photosPickerMetadataOptions: 'string',
   photosPickerSearchText: 'optionalString',
   photosPickerStyle: 'string',
+  photosReferenceImageViewer: 'record',
   pickerStyle: 'style',
   position: 'record',
   preferredColorScheme: 'optionalEnum',
@@ -341,6 +362,7 @@ const sdkKinds = {
   realityViewCameraControls: 'string',
   realityViewLayoutBehavior: 'string',
   redacted: 'string',
+  refundRequestSheet: 'record',
   renameAction: 'event',
   replaceDisabled: 'boolean',
   rotation3DEffect: 'record',
@@ -363,7 +385,8 @@ const sdkKinds = {
   scrollEdgeEffectStyle: 'record',
   scrollIndicators: 'record',
   scrollIndicatorsFlash: 'boolean',
-  scrollPosition: 'bindingOptionalString',
+  scrollPositionWithBindingPoint: 'bindingPoint',
+  scrollPositionWithId: 'bindingOptionalString',
   scrollTargetBehavior: 'style',
   scrollTargetLayout: 'boolean',
   searchable: 'bindingString',
@@ -379,6 +402,7 @@ const sdkKinds = {
   shadow: 'record',
   shortcutsLinkStyle: 'string',
   signInWithAppleButtonStyle: 'string',
+  simultaneousGesture: 'gesture',
   siriTipViewStyle: 'string',
   sliderThumbVisibility: 'string',
   speechAdjustedPitch: 'number',
@@ -447,6 +471,7 @@ const sdkKinds = {
   typesettingLanguage: 'record',
   underline: 'record',
   unredacted: 'boolean',
+  userActivity: 'record',
   verifyIdentityWithWalletButtonStyle: 'string',
   webViewBackForwardNavigationGestures: 'string',
   webViewContentBackground: 'string',
@@ -456,6 +481,7 @@ const sdkKinds = {
   webViewOnScrollGeometryChangeWithContainerSize: 'eventStruct',
   webViewOnScrollGeometryChangeWithContentOffset: 'eventStruct',
   webViewOnScrollGeometryChangeWithContentSize: 'eventStruct',
+  webViewScrollPosition: 'bindingPoint',
   webViewTextSelection: 'style',
   windowToolbarFullScreenVisibility: 'string',
   writingDirection: 'string',
@@ -466,11 +492,13 @@ const sdkKinds = {
 const sdkEventCases: Record<string, readonly string[]> = {
   accessibilityAdjustableAction: ['increment', 'decrement'],
   accessibilityScrollAction: ['top', 'leading', 'bottom', 'trailing'],
+  dropConfiguration: ['cancel', 'forbidden', 'copy', 'move'],
+  onKeyPress: ['handled', 'ignored'],
   onScrollPhaseChange: ['idle', 'tracking', 'interacting', 'decelerating', 'animating'],
 }
 type SDKEventValueShape =
   | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' }
-  | { kind: 'enum'; cases: readonly string[] }
+  | { kind: 'enum'; cases: readonly string[]; open?: true }
   | { kind: 'optional' | 'array'; value: SDKEventValueShape }
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
 const sdkAssociatedCases: Record<
@@ -602,15 +630,107 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
       { name: 'point', value: { kind: 'point' } },
     ],
   },
+  dropConfiguration: {
+    kind: 'object',
+    fields: [
+      { name: 'itemsCount', value: { kind: 'number' } },
+      {
+        name: 'suggestedOperations',
+        value: {
+          kind: 'object',
+          fields: [{ name: 'rawValue', value: { kind: 'number' } }],
+        },
+      },
+      { name: 'size', value: { kind: 'size' } },
+      { name: 'location', value: { kind: 'point' } },
+    ],
+  },
+  dropDestination: {
+    kind: 'object',
+    fields: [
+      { name: 'items', value: { kind: 'array', value: { kind: 'string' } } },
+      {
+        name: 'session',
+        value: {
+          kind: 'object',
+          fields: [
+            { name: 'itemsCount', value: { kind: 'number' } },
+            {
+              name: 'suggestedOperations',
+              value: {
+                kind: 'object',
+                fields: [{ name: 'rawValue', value: { kind: 'number' } }],
+              },
+            },
+            { name: 'size', value: { kind: 'size' } },
+            { name: 'location', value: { kind: 'point' } },
+          ],
+        },
+      },
+    ],
+  },
+  onCameraCaptureEvent: {
+    kind: 'object',
+    fields: [
+      {
+        name: 'phase',
+        value: { kind: 'enum', cases: ['began', 'cancelled', 'ended'], open: true },
+      },
+    ],
+  },
   onDragSessionUpdated: {
     kind: 'object',
     fields: [{ name: 'location', value: { kind: 'point' } }],
+  },
+  onDropSessionUpdated: {
+    kind: 'object',
+    fields: [
+      { name: 'itemsCount', value: { kind: 'number' } },
+      {
+        name: 'suggestedOperations',
+        value: {
+          kind: 'object',
+          fields: [{ name: 'rawValue', value: { kind: 'number' } }],
+        },
+      },
+      { name: 'size', value: { kind: 'size' } },
+      { name: 'location', value: { kind: 'point' } },
+    ],
   },
   onGeometryChangeWithSize: {
     kind: 'object',
     fields: [
       { name: 'oldValue', value: { kind: 'size' } },
       { name: 'newValue', value: { kind: 'size' } },
+    ],
+  },
+  onKeyPress: {
+    kind: 'object',
+    fields: [
+      { name: 'characters', value: { kind: 'string' } },
+      {
+        name: 'modifiers',
+        value: {
+          kind: 'object',
+          fields: [{ name: 'rawValue', value: { kind: 'number' } }],
+        },
+      },
+    ],
+  },
+  onMapCameraChangeWithEventStruct: {
+    kind: 'object',
+    fields: [
+      {
+        name: 'camera',
+        value: {
+          kind: 'object',
+          fields: [
+            { name: 'distance', value: { kind: 'number' } },
+            { name: 'heading', value: { kind: 'number' } },
+            { name: 'pitch', value: { kind: 'number' } },
+          ],
+        },
+      },
     ],
   },
   onPencilDoubleTap: {
@@ -708,6 +828,197 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
     ],
   },
 }
+const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = {
+  gesture: {
+    drag: {
+      kind: 'object',
+      fields: [
+        { name: 'location', value: { kind: 'point' } },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    longPress: { kind: 'boolean' },
+    magnify: {
+      kind: 'object',
+      fields: [
+        { name: 'magnification', value: { kind: 'number' } },
+        { name: 'velocity', value: { kind: 'number' } },
+        {
+          name: 'startAnchor',
+          value: {
+            kind: 'object',
+            fields: [
+              { name: 'x', value: { kind: 'number' } },
+              { name: 'y', value: { kind: 'number' } },
+            ],
+          },
+        },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    rotate: {
+      kind: 'object',
+      fields: [
+        {
+          name: 'rotation',
+          value: {
+            kind: 'object',
+            fields: [{ name: 'radians', value: { kind: 'number' } }],
+          },
+        },
+        {
+          name: 'velocity',
+          value: {
+            kind: 'object',
+            fields: [{ name: 'radians', value: { kind: 'number' } }],
+          },
+        },
+        {
+          name: 'startAnchor',
+          value: {
+            kind: 'object',
+            fields: [
+              { name: 'x', value: { kind: 'number' } },
+              { name: 'y', value: { kind: 'number' } },
+            ],
+          },
+        },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    spatialTap: {
+      kind: 'object',
+      fields: [{ name: 'location', value: { kind: 'point' } }],
+    },
+    tap: null,
+  },
+  highPriorityGesture: {
+    drag: {
+      kind: 'object',
+      fields: [
+        { name: 'location', value: { kind: 'point' } },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    longPress: { kind: 'boolean' },
+    magnify: {
+      kind: 'object',
+      fields: [
+        { name: 'magnification', value: { kind: 'number' } },
+        { name: 'velocity', value: { kind: 'number' } },
+        {
+          name: 'startAnchor',
+          value: {
+            kind: 'object',
+            fields: [
+              { name: 'x', value: { kind: 'number' } },
+              { name: 'y', value: { kind: 'number' } },
+            ],
+          },
+        },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    rotate: {
+      kind: 'object',
+      fields: [
+        {
+          name: 'rotation',
+          value: {
+            kind: 'object',
+            fields: [{ name: 'radians', value: { kind: 'number' } }],
+          },
+        },
+        {
+          name: 'velocity',
+          value: {
+            kind: 'object',
+            fields: [{ name: 'radians', value: { kind: 'number' } }],
+          },
+        },
+        {
+          name: 'startAnchor',
+          value: {
+            kind: 'object',
+            fields: [
+              { name: 'x', value: { kind: 'number' } },
+              { name: 'y', value: { kind: 'number' } },
+            ],
+          },
+        },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    spatialTap: {
+      kind: 'object',
+      fields: [{ name: 'location', value: { kind: 'point' } }],
+    },
+    tap: null,
+  },
+  simultaneousGesture: {
+    drag: {
+      kind: 'object',
+      fields: [
+        { name: 'location', value: { kind: 'point' } },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    longPress: { kind: 'boolean' },
+    magnify: {
+      kind: 'object',
+      fields: [
+        { name: 'magnification', value: { kind: 'number' } },
+        { name: 'velocity', value: { kind: 'number' } },
+        {
+          name: 'startAnchor',
+          value: {
+            kind: 'object',
+            fields: [
+              { name: 'x', value: { kind: 'number' } },
+              { name: 'y', value: { kind: 'number' } },
+            ],
+          },
+        },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    rotate: {
+      kind: 'object',
+      fields: [
+        {
+          name: 'rotation',
+          value: {
+            kind: 'object',
+            fields: [{ name: 'radians', value: { kind: 'number' } }],
+          },
+        },
+        {
+          name: 'velocity',
+          value: {
+            kind: 'object',
+            fields: [{ name: 'radians', value: { kind: 'number' } }],
+          },
+        },
+        {
+          name: 'startAnchor',
+          value: {
+            kind: 'object',
+            fields: [
+              { name: 'x', value: { kind: 'number' } },
+              { name: 'y', value: { kind: 'number' } },
+            ],
+          },
+        },
+        { name: 'startLocation', value: { kind: 'point' } },
+      ],
+    },
+    spatialTap: {
+      kind: 'object',
+      fields: [{ name: 'location', value: { kind: 'point' } }],
+    },
+    tap: null,
+  },
+}
 const sdkCodableOptional: Record<string, boolean> = { tabViewCustomization: true }
 const sdkRecords: Record<
   string,
@@ -715,7 +1026,8 @@ const sdkRecords: Record<
     field: string
     kind: string
     optional: boolean
-    fields?: readonly { name: string; integer: boolean }[]
+    fields?: readonly { name: string; type: string; integer: boolean }[]
+    eventValue?: SDKEventValueShape
   }[]
 > = {
   accessibilityActivationPointWithActivationPointAndIsEnabled: [
@@ -788,6 +1100,10 @@ const sdkRecords: Record<
     { field: 'g', kind: 'enum', optional: false },
     { field: 'computeValue', kind: 'number', optional: false },
   ],
+  appStoreMerchandising: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'kind', kind: 'string', optional: false },
+  ],
   aspectRatio: [
     { field: 'aspectRatio', kind: 'number', optional: true },
     { field: 'contentMode', kind: 'enum', optional: false },
@@ -840,8 +1156,8 @@ const sdkRecords: Record<
       kind: 'numericStruct',
       optional: false,
       fields: [
-        { name: 'width', integer: false },
-        { name: 'height', integer: false },
+        { name: 'width', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'height', type: 'CoreFoundation.CGFloat', integer: false },
       ],
     },
     { field: 'isEnabled', kind: 'boolean', optional: false },
@@ -850,6 +1166,16 @@ const sdkRecords: Record<
   drawingGroup: [
     { field: 'opaque', kind: 'boolean', optional: false },
     { field: 'colorMode', kind: 'enum', optional: false },
+  ],
+  fileExporter: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'item', kind: 'string', optional: true },
+    { field: 'onCompletion', kind: 'resultURL', optional: false },
+  ],
+  fileMover: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'file', kind: 'url', optional: true },
+    { field: 'onCompletion', kind: 'resultURL', optional: false },
   ],
   fixedSizeWithHorizontalAndVertical: [
     { field: 'horizontal', kind: 'boolean', optional: false },
@@ -901,8 +1227,8 @@ const sdkRecords: Record<
       kind: 'numericStruct',
       optional: false,
       fields: [
-        { name: 'width', integer: false },
-        { name: 'height', integer: false },
+        { name: 'width', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'height', type: 'CoreFoundation.CGFloat', integer: false },
       ],
     },
     { field: 'isEnabled', kind: 'boolean', optional: false },
@@ -952,9 +1278,104 @@ const sdkRecords: Record<
     { field: 'x', kind: 'number', optional: false },
     { field: 'y', kind: 'number', optional: false },
   ],
+  onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction:
+    [
+      { field: 'isEnabled', kind: 'boolean', optional: false },
+      { field: 'defaultSoundDisabled', kind: 'boolean', optional: false },
+      {
+        field: 'primaryAction',
+        kind: 'eventStruct',
+        optional: false,
+        eventValue: {
+          kind: 'object',
+          fields: [
+            {
+              name: 'phase',
+              value: { kind: 'enum', cases: ['began', 'cancelled', 'ended'], open: true },
+            },
+            { name: 'shouldPlaySound', value: { kind: 'boolean' } },
+          ],
+        },
+      },
+      {
+        field: 'secondaryAction',
+        kind: 'eventStruct',
+        optional: false,
+        eventValue: {
+          kind: 'object',
+          fields: [
+            {
+              name: 'phase',
+              value: { kind: 'enum', cases: ['began', 'cancelled', 'ended'], open: true },
+            },
+            { name: 'shouldPlaySound', value: { kind: 'boolean' } },
+          ],
+        },
+      },
+    ],
+  onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction: [
+    { field: 'isEnabled', kind: 'boolean', optional: false },
+    {
+      field: 'primaryAction',
+      kind: 'eventStruct',
+      optional: false,
+      eventValue: {
+        kind: 'object',
+        fields: [
+          {
+            name: 'phase',
+            value: { kind: 'enum', cases: ['began', 'cancelled', 'ended'], open: true },
+          },
+        ],
+      },
+    },
+    {
+      field: 'secondaryAction',
+      kind: 'eventStruct',
+      optional: false,
+      eventValue: {
+        kind: 'object',
+        fields: [
+          {
+            name: 'phase',
+            value: { kind: 'enum', cases: ['began', 'cancelled', 'ended'], open: true },
+          },
+        ],
+      },
+    },
+  ],
+  onContinueUserActivity: [
+    { field: 'activityType', kind: 'string', optional: false },
+    {
+      field: 'action',
+      kind: 'eventStruct',
+      optional: false,
+      eventValue: {
+        kind: 'object',
+        fields: [
+          { name: 'activityType', value: { kind: 'string' } },
+          { name: 'isEligibleForHandoff', value: { kind: 'boolean' } },
+          { name: 'isEligibleForPrediction', value: { kind: 'boolean' } },
+          { name: 'isEligibleForPublicIndexing', value: { kind: 'boolean' } },
+          { name: 'isEligibleForSearch', value: { kind: 'boolean' } },
+          { name: 'needsSave', value: { kind: 'boolean' } },
+          { name: 'supportsContinuationStreams', value: { kind: 'boolean' } },
+          {
+            name: 'targetContentIdentifier',
+            value: { kind: 'optional', value: { kind: 'string' } },
+          },
+          { name: 'title', value: { kind: 'optional', value: { kind: 'string' } } },
+        ],
+      },
+    },
+  ],
   photosPickerAccessoryVisibility: [
     { field: 'visibility', kind: 'enum', optional: false },
     { field: 'edges', kind: 'enum', optional: false },
+  ],
+  photosReferenceImageViewer: [
+    { field: 'fileURL', kind: 'bindingOptionalURL', optional: false },
+    { field: 'onProcessingCompletion', kind: 'resultURL', optional: false },
   ],
   position: [
     { field: 'x', kind: 'number', optional: false },
@@ -970,30 +1391,34 @@ const sdkRecords: Record<
       kind: 'numericStruct',
       optional: false,
       fields: [
-        { name: 'a', integer: false },
-        { name: 'b', integer: false },
-        { name: 'c', integer: false },
-        { name: 'd', integer: false },
-        { name: 'tx', integer: false },
-        { name: 'ty', integer: false },
+        { name: 'a', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'b', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'c', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'd', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'tx', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'ty', type: 'CoreFoundation.CGFloat', integer: false },
       ],
     },
+  ],
+  refundRequestSheet: [
+    { field: 'transactionID', kind: 'string', optional: false },
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
   ],
   rotation3DEffect: [
     {
       field: 'angle',
       kind: 'numericStruct',
       optional: false,
-      fields: [{ name: 'radians', integer: false }],
+      fields: [{ name: 'radians', type: 'Swift.Double', integer: false }],
     },
     {
       field: 'axis',
       kind: 'numericTuple',
       optional: false,
       fields: [
-        { name: 'x', integer: false },
-        { name: 'y', integer: false },
-        { name: 'z', integer: false },
+        { name: 'x', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'y', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'z', type: 'CoreFoundation.CGFloat', integer: false },
       ],
     },
     { field: 'anchor', kind: 'enum', optional: false },
@@ -1114,12 +1539,12 @@ const sdkRecords: Record<
       kind: 'numericStruct',
       optional: false,
       fields: [
-        { name: 'a', integer: false },
-        { name: 'b', integer: false },
-        { name: 'c', integer: false },
-        { name: 'd', integer: false },
-        { name: 'tx', integer: false },
-        { name: 'ty', integer: false },
+        { name: 'a', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'b', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'c', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'd', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'tx', type: 'CoreFoundation.CGFloat', integer: false },
+        { name: 'ty', type: 'CoreFoundation.CGFloat', integer: false },
       ],
     },
   ],
@@ -1136,6 +1561,25 @@ const sdkRecords: Record<
     { field: 'pattern', kind: 'enum', optional: false },
     { field: 'color', kind: 'enum', optional: true },
   ],
+  userActivity: [
+    { field: 'activityType', kind: 'string', optional: false },
+    { field: 'isActive', kind: 'boolean', optional: false },
+    {
+      field: 'update',
+      kind: 'classUpdate',
+      optional: false,
+      fields: [
+        { name: 'isEligibleForHandoff', type: 'Swift.Bool', integer: false },
+        { name: 'isEligibleForPrediction', type: 'Swift.Bool', integer: false },
+        { name: 'isEligibleForPublicIndexing', type: 'Swift.Bool', integer: false },
+        { name: 'isEligibleForSearch', type: 'Swift.Bool', integer: false },
+        { name: 'needsSave', type: 'Swift.Bool', integer: false },
+        { name: 'supportsContinuationStreams', type: 'Swift.Bool', integer: false },
+        { name: 'targetContentIdentifier', type: 'Swift.String?', integer: false },
+        { name: 'title', type: 'Swift.String?', integer: false },
+      ],
+    },
+  ],
 }
 
 function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
@@ -1149,7 +1593,10 @@ function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean 
   if (shape.kind === 'string' || shape.kind === 'boolean')
     return typeof value === shape.kind
   if (shape.kind === 'enum')
-    return typeof value === 'string' && shape.cases.includes(value)
+    return (
+      typeof value === 'string' &&
+      (shape.cases.includes(value) || (shape.open === true && value === 'unknown'))
+    )
   if (!value || typeof value !== 'object') return false
   const record = value as Record<string, unknown>
   if (shape.kind === 'point')
@@ -1201,6 +1648,49 @@ export function swiftStyleNative(
               throw new Error(name + '.' + argument.field + ' must be a boolean binding')
             return String((item as { value: boolean }).value)
           }
+          if (argument.kind === 'bindingOptionalURL') {
+            if (
+              !item ||
+              typeof item !== 'object' ||
+              ((item as { value?: unknown }).value !== null &&
+                typeof (item as { value?: unknown }).value !== 'string') ||
+              typeof (item as { onChange?: unknown }).onChange !== 'function'
+            )
+              throw new Error(name + '.' + argument.field + ' must be a URL binding')
+            return JSON.stringify((item as { value: string | null }).value)
+          }
+          if (
+            argument.kind === 'resultURL' ||
+            argument.kind === 'resultURLArray' ||
+            argument.kind === 'eventStruct'
+          ) {
+            if (typeof item !== 'function')
+              throw new Error(name + '.' + argument.field + ' must be a callback')
+            return ''
+          }
+          if (argument.kind === 'classUpdate') {
+            if (
+              !item ||
+              typeof item !== 'object' ||
+              Array.isArray(item) ||
+              Object.keys(item).length === 0 ||
+              Object.entries(item).some(([key, fieldValue]) => {
+                const field = argument.fields?.find((entry) => entry.name === key)
+                return (
+                  !field ||
+                  (field.type === 'Swift.Bool'
+                    ? typeof fieldValue !== 'boolean'
+                    : field.type.endsWith('?') && fieldValue === null
+                      ? false
+                      : typeof fieldValue !== 'string')
+                )
+              })
+            )
+              throw new Error(
+                name + '.' + argument.field + ' must be an SDK class update'
+              )
+            return JSON.stringify(item)
+          }
           if (
             argument.kind === 'number' &&
             (typeof item !== 'number' || !Number.isFinite(item))
@@ -1245,6 +1735,19 @@ export function swiftStyleNative(
         sdkModifiers.push([name, JSON.stringify(values)])
         continue
       }
+      if (kind === 'gesture') {
+        if (
+          !value ||
+          typeof value !== 'object' ||
+          Array.isArray(value) ||
+          typeof (value as { kind?: unknown }).kind !== 'string' ||
+          !Object.hasOwn(sdkGestureOptions[name], (value as { kind: string }).kind) ||
+          typeof (value as { onEnded?: unknown }).onEnded !== 'function'
+        )
+          throw new Error(name + ' must be an SDK gesture and callback')
+        sdkModifiers.push([name, (value as { kind: string }).kind])
+        continue
+      }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value)))
         throw new Error(name + ' must be finite')
       if (
@@ -1253,7 +1756,10 @@ export function swiftStyleNative(
         (typeof value !== 'number' || !Number.isFinite(value))
       )
         throw new Error(name + ' must be finite or null')
-      if (kind === 'boolean' && typeof value !== 'boolean')
+      if (
+        (kind === 'boolean' || kind === 'defaultFocusBoolean') &&
+        typeof value !== 'boolean'
+      )
         throw new Error(name + ' must be a boolean')
       if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean')
         throw new Error(name + ' must be a boolean or null')
@@ -1271,6 +1777,7 @@ export function swiftStyleNative(
         kind.startsWith('event') &&
         kind !== 'eventValueString' &&
         kind !== 'eventReturnArray' &&
+        kind !== 'eventReturnEnum' &&
         typeof value !== 'function'
       )
         throw new Error(name + ' must be a callback')
@@ -1294,6 +1801,15 @@ export function swiftStyleNative(
       )
         throw new Error(name + ' must be a string array and callback')
       if (
+        kind === 'eventReturnEnum' &&
+        (typeof value !== 'object' ||
+          value === null ||
+          typeof (value as { result?: unknown }).result !== 'string' ||
+          !sdkEventCases[name].includes((value as { result: string }).result) ||
+          typeof (value as { onAction?: unknown }).onAction !== 'function')
+      )
+        throw new Error(name + ' must be an SDK result and callback')
+      if (
         (kind === 'bindingBoolean' ||
           kind === 'bindingFocusBoolean' ||
           kind === 'bindingString' ||
@@ -1314,24 +1830,35 @@ export function swiftStyleNative(
         throw new Error(name + ' must be a binding')
       if (kind === 'bindingCodable' && (value as { value: string | null }).value !== null)
         JSON.parse((value as { value: string }).value)
+      if (
+        kind === 'bindingPoint' &&
+        (typeof value !== 'object' ||
+          value === null ||
+          typeof (value as { onChange?: unknown }).onChange !== 'function' ||
+          ((value as { value?: unknown }).value !== null &&
+            !validSDKEventValue((value as { value?: unknown }).value, { kind: 'point' })))
+      )
+        throw new Error(name + ' must be a point binding')
       sdkModifiers.push([
         name,
         kind === 'eventValueString'
           ? (value as { value: string }).value
           : kind === 'eventReturnArray'
             ? JSON.stringify((value as { items: string[] }).items)
-            : kind.startsWith('event')
-              ? ''
-              : kind === 'bindingOptionalString'
-                ? JSON.stringify((value as { value: string | null }).value)
-                : kind === 'bindingCodable' &&
-                    (value as { value: string | null }).value === null
-                  ? 'null'
-                  : kind.startsWith('binding')
-                    ? String((value as { value: unknown }).value)
-                    : kind === 'optionalString' || kind === 'optionalURL'
-                      ? (JSON.stringify(value) as string)
-                      : String(value),
+            : kind === 'eventReturnEnum'
+              ? (value as { result: string }).result
+              : kind.startsWith('event')
+                ? ''
+                : kind === 'bindingOptionalString' || kind === 'bindingPoint'
+                  ? JSON.stringify((value as { value: unknown }).value)
+                  : kind === 'bindingCodable' &&
+                      (value as { value: string | null }).value === null
+                    ? 'null'
+                    : kind.startsWith('binding')
+                      ? String((value as { value: unknown }).value)
+                      : kind === 'optionalString' || kind === 'optionalURL'
+                        ? (JSON.stringify(value) as string)
+                        : String(value),
       ])
     } else if (colorFields.includes(name as (typeof colorFields)[number])) {
       native[name] = processColor(value as ColorValue) ?? undefined
@@ -1367,13 +1894,92 @@ export function dispatchSDKEvent(
       )
       return
     }
+    if (
+      sdkRecords[parent]?.some(
+        (argument) => argument.field === field && argument.kind === 'bindingOptionalURL'
+      )
+    ) {
+      const decoded: unknown = JSON.parse(value)
+      if (decoded !== null && typeof decoded !== 'string')
+        throw new Error(name + ' emitted an invalid URL')
+      const record = (style as Record<string, unknown> | undefined)?.[parent] as
+        | Record<string, unknown>
+        | undefined
+      ;(
+        record?.[field] as { onChange: (value: string | null) => void } | undefined
+      )?.onChange(decoded)
+      return
+    }
+    const result = sdkRecords[parent]?.find(
+      (argument) =>
+        argument.field === field &&
+        (argument.kind === 'resultURL' || argument.kind === 'resultURLArray')
+    )
+    if (result) {
+      const decoded: unknown = JSON.parse(value)
+      if (!decoded || typeof decoded !== 'object' || Array.isArray(decoded))
+        throw new Error(name + ' emitted an invalid result')
+      const payload = decoded as Record<string, unknown>
+      const success = payload.success
+      const failure = payload.failure
+      const validSuccess =
+        result.kind === 'resultURL'
+          ? typeof success === 'string'
+          : Array.isArray(success) && success.every((item) => typeof item === 'string')
+      if (
+        !(
+          (validSuccess && failure === undefined) ||
+          (success === undefined && typeof failure === 'string')
+        ) ||
+        Object.keys(payload).length !== 1
+      )
+        throw new Error(name + ' emitted an invalid result')
+      const record = (style as Record<string, unknown> | undefined)?.[parent] as
+        | Record<string, unknown>
+        | undefined
+      ;(record?.[field] as ((result: unknown) => void) | undefined)?.(payload)
+      return
+    }
+    const event = sdkRecords[parent]?.find(
+      (argument) => argument.field === field && argument.kind === 'eventStruct'
+    )
+    if (event) {
+      const payload: unknown = JSON.parse(value)
+      if (!validSDKEventValue(payload, event.eventValue!))
+        throw new Error(name + ' emitted an invalid struct value')
+      const record = (style as Record<string, unknown> | undefined)?.[parent] as
+        | Record<string, unknown>
+        | undefined
+      ;(record?.[field] as ((value: unknown) => void) | undefined)?.(payload)
+      return
+    }
   }
   const modifier = (style as Record<string, unknown> | undefined)?.[name]
   const kind = sdkKinds[name as keyof typeof sdkKinds] as string | undefined
-  if (kind === 'event') (modifier as (() => void) | undefined)?.()
+  if (kind === 'gesture') {
+    const config = modifier as
+      | { kind: string; onEnded: (value?: unknown) => void }
+      | undefined
+    const shape = config && sdkGestureOptions[name]?.[config.kind]
+    if (shape === undefined) throw new Error(name + ' emitted an invalid gesture')
+    if (shape === null) {
+      if (value !== '') throw new Error(name + ' emitted an invalid gesture event')
+      config?.onEnded()
+    } else {
+      const payload: unknown = JSON.parse(value)
+      if (!validSDKEventValue(payload, shape))
+        throw new Error(name + ' emitted an invalid gesture event')
+      config?.onEnded(payload)
+    }
+  } else if (kind === 'event') (modifier as (() => void) | undefined)?.()
   else if (kind === 'eventReturnArray')
     (modifier as { onAction: () => void } | undefined)?.onAction()
-  else if (kind === 'eventBoolean') {
+  else if (kind === 'eventReturnEnum') {
+    const payload: unknown = JSON.parse(value)
+    if (!validSDKEventValue(payload, sdkEventStructs[name]))
+      throw new Error(name + ' emitted an invalid result event')
+    ;(modifier as { onAction: (value: unknown) => void } | undefined)?.onAction(payload)
+  } else if (kind === 'eventBoolean') {
     if (value !== 'true' && value !== 'false')
       throw new Error(name + ' emitted an invalid boolean')
     ;(modifier as ((value: boolean) => void) | undefined)?.(value === 'true')
@@ -1433,6 +2039,15 @@ export function dispatchSDKEvent(
     ;(modifier as { onChange: (value: string | null) => void } | undefined)?.onChange(
       decoded
     )
+  } else if (kind === 'bindingPoint') {
+    const decoded: unknown = JSON.parse(value)
+    if (decoded !== null && !validSDKEventValue(decoded, { kind: 'point' }))
+      throw new Error(name + ' emitted an invalid point')
+    ;(
+      modifier as
+        | { onChange: (value: { x: number; y: number } | null) => void }
+        | undefined
+    )?.onChange(decoded as { x: number; y: number } | null)
   } else if (kind === 'eventValueString')
     (modifier as { onChange: (value: string) => void } | undefined)?.onChange(value)
 }

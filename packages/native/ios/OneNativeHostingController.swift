@@ -8,16 +8,21 @@ final class OneNativeHostingController<Content: View>: UIHostingController<Conte
   // the first view controller on the responder chain: uikit resolves that same
   // controller when the hosted view is added and raises
   // UIViewControllerHierarchyInconsistency for any other parent, so the parent is
-  // never redirected. one controller cannot take the child at all: a UITabBarController's
-  // children are its tabs, and react-native-screens casts every one of them to a tab
-  // screen, so a host inside the tab bar's own view (a bottom accessory) is hosted
+  // never redirected. two controllers cannot take the child at all, because their
+  // children are their content: a UITabBarController's children are its tabs, and
+  // react-native-screens casts every one of them to a tab screen; a
+  // UINavigationController's children are its stack, so addChild pushes the host
+  // as a new screen with an empty bar and a back button. a host inside either
+  // controller's own chrome (a bottom accessory, a navigation bar item) is hosted
   // without containment, as a plain subview.
   func attach(to host: UIView) {
     guard host.window != nil else { detach(); return }
     var responder: UIResponder? = host.next
     while responder != nil && !(responder is UIViewController) { responder = responder?.next }
     let nearest = responder as? UIViewController
-    let parent: UIViewController? = (nearest == nil || nearest is UITabBarController) ? nil : nearest
+    let parent: UIViewController? =
+      (nearest == nil || nearest is UITabBarController || nearest is UINavigationController)
+      ? nil : nearest
     if view.superview !== host || self.parent !== parent {
       detach()
       parent?.addChild(self)
