@@ -437,6 +437,19 @@ describe('SDK modifier derivation', () => {
 })
 
 describe('SDK view slots', () => {
+  it('derives escaping presentation builders with a controlled Boolean binding', () => {
+    const presented = { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' }
+    const content = { label: 'content', name: 'content', type: '@escaping () -> Content' }
+    expect(deriveViewSlots(['sheet', 'popover', 'fullScreenCover', '_cover'].map((name) => ({
+      ...method(name, 'SwiftUI', [presented, content]),
+      requirements: ['Content : SwiftUICore.View'],
+    })), 27)).toEqual(['fullScreenCover', 'popover', 'sheet'].map((name) => ({
+      name, module: 'SwiftUI', label: 'content', ios: 0,
+      arguments: [{ field: 'isPresented', label: 'isPresented', type: presented.type,
+        kind: 'bindingBoolean', optional: false }],
+    })))
+  })
+
   it('derives a direct generic View argument as a child slot', () => {
     expect(deriveViewSlots([
       { ...method('listRowBackground', 'SwiftUI', [{ label: '_', name: 'view', type: 'V?' }]), requirements: ['V : SwiftUICore.View'] },

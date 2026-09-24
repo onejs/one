@@ -301,6 +301,8 @@ export declare const sdkPresentationCompactAdaptationWithPresentationAdaptationV
 export type SDKPresentationCompactAdaptationWithPresentationAdaptation = (typeof sdkPresentationCompactAdaptationWithPresentationAdaptationValues)[number];
 export declare const sdkPresentationContentInteractionValues: readonly ['automatic', 'resizes', 'scrolls'];
 export type SDKPresentationContentInteraction = (typeof sdkPresentationContentInteractionValues)[number];
+export declare const sdkPresentationDetentsValues: readonly ['medium', 'large'];
+export type SDKPresentationDetents = (typeof sdkPresentationDetentsValues)[number];
 export declare const sdkPresentationDragIndicatorValues: readonly ['automatic', 'visible', 'hidden'];
 export type SDKPresentationDragIndicator = (typeof sdkPresentationDragIndicatorValues)[number];
 export declare const sdkPresentationPlacementValues: readonly ['automatic', 'leading', 'center', 'trailing'];
@@ -1539,6 +1541,7 @@ export interface OneNativeStyle {
     presentationCompactAdaptationWithPresentationAdaptation?: SDKPresentationCompactAdaptationWithPresentationAdaptation;
     presentationContentInteraction?: SDKPresentationContentInteraction;
     presentationCornerRadius?: number | null;
+    presentationDetents?: readonly SDKPresentationDetents[];
     presentationDragIndicator?: SDKPresentationDragIndicator;
     presentationPlacement?: SDKPresentationPlacement;
     presentationSizing?: SDKPresentationSizing;
