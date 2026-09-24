@@ -13,6 +13,7 @@ import MusicKit
 import AVKit
 import PhotosUI
 import AuthenticationServices
+import Symbols
 import Translation
 import WebKit
 
@@ -558,6 +559,7 @@ extension View {
       case "subscriptionStoreSignInAction": view = AnyView(view.oneNativeSDKSubscriptionStoreSignInAction(value, emit: emit))
       case "swipeActionsContainer": view = AnyView(view.oneNativeSDKSwipeActionsContainer(value, emit: emit))
       case "symbolColorRenderingMode": view = AnyView(view.oneNativeSDKSymbolColorRenderingMode(value, emit: emit))
+      case "symbolEffect": view = AnyView(view.oneNativeSDKSymbolEffect(value, emit: emit))
       case "symbolEffectsRemoved": view = AnyView(view.oneNativeSDKSymbolEffectsRemoved(value, emit: emit))
       case "symbolRenderingMode": view = AnyView(view.oneNativeSDKSymbolRenderingMode(value, emit: emit))
       case "symbolVariableValueMode": view = AnyView(view.oneNativeSDKSymbolVariableValueMode(value, emit: emit))
@@ -592,6 +594,7 @@ extension View {
       case "toolbarWithRemoving": view = AnyView(view.oneNativeSDKToolbarWithRemoving(value, emit: emit))
       case "toolbarWithVisibilityAndBars": view = AnyView(view.oneNativeSDKToolbarWithVisibilityAndBars(value, emit: emit))
       case "tracking": view = AnyView(view.oneNativeSDKTracking(value, emit: emit))
+      case "transaction": view = AnyView(view.oneNativeSDKTransaction(value, emit: emit))
       case "transformEffect": view = AnyView(view.oneNativeSDKTransformEffect(value, emit: emit))
       case "transition": view = AnyView(view.oneNativeSDKTransition(value, emit: emit))
       case "translationPresentation": view = AnyView(view.oneNativeSDKTranslationPresentation(value, emit: emit))
@@ -6838,6 +6841,20 @@ self
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKSymbolEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "pulse": self.symbolEffect(.pulse)
+      case "bounce": if #available(iOS 18, *) { self.symbolEffect(.bounce) } else { self }
+      case "variableColor": self.symbolEffect(.variableColor)
+      case "scale": self.symbolEffect(.scale)
+      case "wiggle": if #available(iOS 18, *) { self.symbolEffect(.wiggle) } else { self }
+      case "rotate": if #available(iOS 18, *) { self.symbolEffect(.rotate) } else { self }
+      case "breathe": if #available(iOS 18, *) { self.symbolEffect(.breathe) } else { self }
+    default: preconditionFailure("invalid symbolEffect: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKSymbolEffectsRemoved(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid symbolEffectsRemoved: \(value)")
       self.symbolEffectsRemoved(value == "true")
@@ -7571,6 +7588,43 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
       if let number = Double(value), number.isFinite {
         self.tracking(CGFloat(number))
       } else { preconditionFailure("invalid tracking: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransaction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid transaction: \(value)") }
+      return decoded
+    }()
+    let argument0: (inout SwiftUI.Transaction) -> Void = {
+      guard let raw = values[0], let data = raw.data(using: .utf8),
+        let updated = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+        !updated.isEmpty else { preconditionFailure("invalid transaction.transform") }
+      return { item in
+      if let raw = updated["isContinuous"] {
+        guard let value = raw as? Bool else { preconditionFailure("invalid transaction.transform.isContinuous") }
+        item.isContinuous = value
+      }
+      if let raw = updated["scrollPositionUpdatePreservesVelocity"] {
+        if #available(iOS 18, *) {
+        guard let value = raw as? Bool else { preconditionFailure("invalid transaction.transform.scrollPositionUpdatePreservesVelocity") }
+        item.scrollPositionUpdatePreservesVelocity = value
+        }
+      }
+      if let raw = updated["disablesAnimations"] {
+        guard let value = raw as? Bool else { preconditionFailure("invalid transaction.transform.disablesAnimations") }
+        item.disablesAnimations = value
+      }
+      if let raw = updated["tracksVelocity"] {
+        if #available(iOS 17, *) {
+        guard let value = raw as? Bool else { preconditionFailure("invalid transaction.transform.tracksVelocity") }
+        item.tracksVelocity = value
+        }
+      }
+      }
+    }()
+    self.transaction(argument0)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransformEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
