@@ -50,6 +50,7 @@ const suites = [
   'clipboard',
   'network',
   'browser',
+  'notifications',
   'image-picker',
   'ui-map',
   'gpu',
@@ -61,11 +62,13 @@ type Config = {
   artifactDir: string
   timeout: number
   suite: Suite
+  appPath: string
+  jsLocation: string
 }
 
 function usage() {
   console.log(
-    `Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite ${suites.join('|')}] [--artifact-dir <PATH>] [--timeout <MS>]`
+    `Usage: bun tests/native-features/scripts/one-native-conformance.ts --simulator-id <UUID> --bundle-id <BUNDLE_ID> [--suite ${suites.join('|')}] [--artifact-dir <PATH>] [--timeout <MS>] [--app-path <PATH>] [--js-location <HOST:PORT>]`
   )
 }
 
@@ -75,6 +78,8 @@ function parse(args: string[]): Config {
   let artifactDir = '/tmp/one-native-conformance'
   let timeout = 15_000
   let suite: Suite = 'tabs-menu'
+  let appPath = ''
+  let jsLocation = ''
   for (let i = 0; i < args.length; i++) {
     const arg = args[i]
     if (arg === '--help' || arg === '-h') {
@@ -86,6 +91,8 @@ function parse(args: string[]): Config {
     else if (arg === '--bundle-id') bundleId = args[++i] || ''
     else if (arg === '--artifact-dir') artifactDir = args[++i] || ''
     else if (arg === '--timeout') timeout = Number(args[++i])
+    else if (arg === '--app-path') appPath = args[++i] || ''
+    else if (arg === '--js-location') jsLocation = args[++i] || ''
     else if (arg === '--suite') {
       const value = args[++i] || ''
       if (!(suites as readonly string[]).includes(value))
@@ -104,7 +111,7 @@ function parse(args: string[]): Config {
       'A simulator id, bundle id, artifact directory, and positive integer timeout are required.'
     )
   }
-  return { simulatorId, bundleId, artifactDir, timeout, suite }
+  return { simulatorId, bundleId, artifactDir, timeout, suite, appPath, jsLocation }
 }
 
 function command(args: string[], simulatorId: string) {
@@ -295,6 +302,10 @@ const browserLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-browser-open')) && has(nodes, 'Result: ')) ||
     browserPresented(nodes))
+const notificationsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-notifications-permission-refresh')) &&
+  has(nodes, 'Notifications: mounted')
 // a presented photo picker covers the fixture and publishes no accessibility
 // tree of its own, so the screen counts as loaded from the fixture side, the
 // camera prompt, or the bare application node.
@@ -354,6 +365,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   clipboard: clipboardLoaded,
   network: networkLoaded,
   browser: browserLoaded,
+  notifications: notificationsLoaded,
   'image-picker': imagePickerLoaded,
   'ui-map': uiMapLoaded,
   gpu: gpuLoaded,
@@ -384,6 +396,7 @@ const suiteHome: Record<Suite, string> = {
   clipboard: 'nav-one-native-clipboard',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
+  notifications: 'nav-one-native-notifications',
   'image-picker': 'nav-one-native-image-picker',
   'ui-map': 'nav-one-native-ui-map',
   gpu: 'nav-one-native-gpu',
@@ -654,6 +667,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     point(x, 783)
   }
 
+  // launch-app drops --args, so a non-default packager port launches through
+  // simctl, which forwards -RCT_jsLocation into nsuserdefaults. without the
+  // flag the app keeps the baked localhost:8081.
+  const launchApp = () => {
+    if (!config.jsLocation)
+      return command(
+        ['simulator', 'launch-app', '--bundle-id', config.bundleId],
+        config.simulatorId
+      )
+    execFileSync(
+      'xcrun',
+      [
+        'simctl',
+        'launch',
+        config.simulatorId,
+        config.bundleId,
+        '-RCT_jsLocation',
+        config.jsLocation,
+      ],
+      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 30_000 }
+    )
+  }
+
   try {
     command(['simulator', 'stop', '--bundle-id', config.bundleId], config.simulatorId)
   } catch (error) {
@@ -670,7 +706,21 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       { stdio: 'ignore', timeout: 30_000 }
     )
   }
-  command(['simulator', 'launch-app', '--bundle-id', config.bundleId], config.simulatorId)
+  if (config.suite === 'notifications') {
+    // simctl privacy has no notifications service on this xcode, so a
+    // reinstall stands in for reset: it returns permission to undetermined.
+    if (!config.appPath)
+      throw new Error('The notifications suite requires --app-path for a fresh install.')
+    execFileSync('xcrun', ['simctl', 'uninstall', config.simulatorId, config.bundleId], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    execFileSync('xcrun', ['simctl', 'install', config.simulatorId, config.appPath], {
+      stdio: 'ignore',
+      timeout: 60_000,
+    })
+  }
+  launchApp()
   if (config.suite === 'sheets') {
     let expectedCount = 1
     const retained = (nodes: Node[]) =>
@@ -4153,6 +4203,261 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         labels(n).includes('Result: none')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'notifications') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-notifications')
+    await wait('notifications fixture mounted', (n) => has(n, 'Notifications: mounted'))
+    // the fixture scrolls; bring each button fully on screen like tapNav does.
+    const tapFixture = async (testID: string) => {
+      let last: { x: number; y: number } | undefined
+      let swiped = false
+      for (let attempt = 0; attempt < 10; attempt++) {
+        const nodes = snapshot(config.simulatorId)
+        const app = nodes.find((node) => node.type === 'Application')?.frame
+        const row = id(nodes, testID)?.frame
+        // axe can sample mid-commit while the fixture settles, so a missing
+        // frame retries like the scroll below instead of failing the suite.
+        if (!app || !row) {
+          last = undefined
+          await new Promise((resolve) => setTimeout(resolve, 250))
+          continue
+        }
+        if (row.y >= 0 && row.y + row.height <= app.height) {
+          // a row scratching in on swipe momentum swallows the tap or takes
+          // it stale, so after a swipe tap only once the frame repeats. a
+          // row that was already still takes the tap at once.
+          if (!swiped || (last && last.x === row.x && last.y === row.y))
+            return tap({ id: testID })
+          last = { x: row.x, y: row.y }
+          await new Promise((resolve) => setTimeout(resolve, 250))
+          continue
+        }
+        last = undefined
+        swiped = true
+        command(
+          [
+            'ui-automation',
+            'swipe',
+            '--x1',
+            String(Math.round(app.width / 2)),
+            '--y1',
+            String(Math.round(app.height * 0.75)),
+            '--x2',
+            String(Math.round(app.width / 2)),
+            '--y2',
+            String(Math.round(app.height * 0.35)),
+            '--duration',
+            '0.3',
+          ],
+          config.simulatorId
+        )
+        await new Promise((resolve) => setTimeout(resolve, 400))
+      }
+      throw new Error(`Could not bring ${testID} into view on the fixture`)
+    }
+    await tapFixture('one-native-notifications-permission-refresh')
+    await wait('permission starts undetermined', (n) =>
+      has(n, 'Permission: undetermined')
+    )
+    // no simctl grant exists for notifications either, so the suite taps
+    // through the real system prompt instead.
+    await tapFixture('one-native-notifications-permission-request')
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+    screenshot('notifications-permission-prompt.png')
+    await tap({ label: 'Allow' })
+    await tapFixture('one-native-notifications-permission-refresh')
+    await wait('prompt allow reads back granted', (n) => has(n, 'Permission: granted'))
+    await tapFixture('one-native-notifications-badge-set')
+    await wait('badge set resolves', (n) => has(n, 'Badge: set:yes'))
+    await tapFixture('one-native-notifications-badge-get')
+    await wait('badge round-trips', (n) => has(n, 'Badge: 5'))
+    await tapFixture('one-native-notifications-badge-clear')
+    await wait('badge clear resolves', (n) => has(n, 'Badge: set:yes'))
+    await tapFixture('one-native-notifications-badge-get')
+    await wait('badge clears', (n) => has(n, 'Badge: 0'))
+    // ios has no channels: create resolves null and the list stays empty.
+    await tapFixture('one-native-notifications-channel-create')
+    await wait('channel create resolves null on ios', (n) => has(n, 'Channel: null'))
+    await tapFixture('one-native-notifications-channel-list')
+    await wait('channel list is empty on ios', (n) => has(n, 'Channels: 0'))
+    // slice n3: with no listeners mounted, native presents the arrival
+    // itself instead of waiting out the 3s backstop.
+    await tapFixture('one-native-notifications-schedule-unobserved')
+    await wait('unobserved arrival presents fast', (n) =>
+      has(n, 'Unobserved: presented in ')
+    )
+    await tapFixture('one-native-notifications-subscribe')
+    await wait('listeners subscribed', (n) => has(n, 'Subscribed: yes'))
+    // remote push on the simulator: registering for remote notifications
+    // answers with a token on ios 16+.
+    await tapFixture('one-native-notifications-push-token')
+    await wait('push token resolves', (n) =>
+      labels(n).some((label) => label.startsWith('Push: ios/'))
+    )
+    screenshot('notifications-push-token.png')
+    // no handler was set yet, so the first observed arrival shows by default.
+    await tapFixture('one-native-notifications-schedule-now')
+    await wait('foreground arrival fires received', (n) => has(n, 'Received: n3-1'))
+    // the banner's screen position varies by device and os, so tap its
+    // observed accessibility frame rather than a fixed coordinate, the same
+    // lookup the cold-start tap uses below.
+    {
+      const started = Date.now()
+      for (;;) {
+        const nodes = snapshot(config.simulatorId)
+        const frame = nodes.find(
+          (node) => node.AXLabel?.includes('N3 ping') && node.frame
+        )?.frame
+        if (frame) {
+          point(
+            Math.round(frame.x + frame.width / 2),
+            Math.round(frame.y + frame.height / 2)
+          )
+          break
+        }
+        if (Date.now() - started > config.timeout)
+          throw new Error('warm banner for N3 ping never appeared')
+        await new Promise((resolve) => setTimeout(resolve, 250))
+      }
+    }
+    await wait('banner tap fires response', (n) => has(n, 'Response: n3-1/'))
+    await tapFixture('one-native-notifications-last-refresh')
+    await wait('tap is cached as last response', (n) => has(n, 'Last: n3-1/N3 ping'))
+    screenshot('notifications-warm-tap.png')
+    // a suppressing handler still fires received but shows no banner: poll
+    // raw snapshots for 3s and fail on any node carrying the title, the
+    // same lookup the banner tap uses. a fixed-coordinate tap cannot fail
+    // here: it lands on app chrome either way.
+    const assertNoBanner = async (name: string) => {
+      const started = Date.now()
+      for (;;) {
+        const nodes = snapshot(config.simulatorId)
+        if (nodes.some((node) => node.AXLabel?.includes('N3 ping') && node.frame))
+          throw new Error(`${name} showed a banner`)
+        if (Date.now() - started > 3000) break
+        await new Promise((resolve) => setTimeout(resolve, 250))
+      }
+    }
+    await tapFixture('one-native-notifications-handler-suppress')
+    await wait('suppressing handler set', (n) => has(n, 'Handler: suppress'))
+    await tapFixture('one-native-notifications-schedule-now')
+    await wait('suppressed arrival still fires received', (n) => has(n, 'Received: n3-2'))
+    await assertNoBanner('a suppressed notification')
+    if (!has(snapshot(config.simulatorId), 'Received: n3-2'))
+      throw new Error('the suppressed arrival never reached received')
+    checks.push({ name: 'suppressed n3-2 shows no banner', durationMs: 3000 })
+    console.log('PASS suppressed n3-2 shows no banner')
+    // a nulled handler behaves the same way.
+    await tapFixture('one-native-notifications-handler-null')
+    await wait('nulled handler set', (n) => has(n, 'Handler: null'))
+    await tapFixture('one-native-notifications-schedule-now')
+    await wait('nulled arrival still fires received', (n) => has(n, 'Received: n3-3'))
+    await assertNoBanner('a nulled handler notification')
+    if (!has(snapshot(config.simulatorId), 'Received: n3-3'))
+      throw new Error('the nulled arrival never reached received')
+    checks.push({ name: 'nulled n3-3 shows no banner', durationMs: 3000 })
+    console.log('PASS nulled n3-3 shows no banner')
+    // the banner's screen position varies by device and os, so tap its
+    // observed accessibility frame rather than a fixed coordinate.
+    // springboard owns the tree while the app is down, so this polls raw
+    // snapshots. the proof shot rides along: a separate screenshot
+    // round-trip first would push the tap past the banner's few seconds
+    // of life.
+    const tapColdBanner = async (pngName: string, text: string) => {
+      const started = Date.now()
+      for (;;) {
+        const nodes = snapshot(config.simulatorId)
+        const found = nodes.find(
+          (node) => node.AXLabel?.includes(text) && node.frame
+        )?.frame
+        if (found) {
+          screenshot(pngName)
+          point(
+            Math.round(found.x + found.width / 2),
+            Math.round(found.y + found.height / 2)
+          )
+          checks.push({
+            name: `banner tap lands on ${text}`,
+            durationMs: Date.now() - started,
+          })
+          console.log(`PASS banner tap lands on ${text}`)
+          return
+        }
+        if (Date.now() - started > config.timeout)
+          throw new Error(`banner for ${text} never appeared`)
+        await new Promise((resolve) => setTimeout(resolve, 250))
+      }
+    }
+    // cold start: terminate, push a banner onto the home screen, tap it.
+    // the simctl push is the probe vehicle for the launch-timing question;
+    // the delegate path it exercises is the same one local taps take.
+    command(['simulator', 'stop', '--bundle-id', config.bundleId], config.simulatorId)
+    const pushPayload = path.join(config.artifactDir, 'n3-cold-push.apns')
+    fs.writeFileSync(
+      pushPayload,
+      JSON.stringify({ aps: { alert: { title: 'N3 cold', body: 'tap me' } } })
+    )
+    execFileSync(
+      'xcrun',
+      ['simctl', 'push', config.simulatorId, config.bundleId, pushPayload],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await tapColdBanner('notifications-cold-banner.png', 'N3 cold')
+    await wait('cold start shows home', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-notifications')
+    await wait('cold-start tap delivered last response', (n) =>
+      labels(n).some((label) => label.startsWith('Last: ') && label.includes('N3 cold'))
+    )
+    // the relaunch dropped the n3 listeners, and without observers native
+    // presents arrivals itself instead of emitting them, so subscribe again
+    // before n4 expects received events.
+    await tapFixture('one-native-notifications-subscribe')
+    await wait('listeners re-subscribed after cold start', (n) =>
+      has(n, 'Subscribed: yes')
+    )
+    // slice n4: clear leftovers, schedule two, cancel one, observe the other.
+    await tapFixture('one-native-notifications-cancel-all')
+    await wait('cancel all resolves', (n) => has(n, 'Pending: cancelled'))
+    await tapFixture('one-native-notifications-dismiss-all')
+    await wait('dismiss all resolves', (n) => has(n, 'Presented: dismissed'))
+    await tapFixture('one-native-notifications-schedule-interval')
+    await wait('interval scheduled', (n) => has(n, 'Scheduled: n4-interval'))
+    await tapFixture('one-native-notifications-schedule-date')
+    await wait('date scheduled', (n) => has(n, 'Scheduled: n4-date'))
+    await tapFixture('one-native-notifications-scheduled-list')
+    await wait('both listed as pending', (n) => has(n, 'Pending: n4-date,n4-interval'))
+    await tapFixture('one-native-notifications-cancel-interval')
+    await wait('interval cancelled', (n) => has(n, 'Pending: cancelled'))
+    await tapFixture('one-native-notifications-scheduled-list')
+    await wait('cancel removes it from pending', (n) => has(n, 'Pending: n4-date'))
+    // the date trigger fires 25s after scheduling; run this suite with a
+    // timeout that covers it (--timeout 60000).
+    await wait('date trigger delivers to received', (n) => has(n, 'Received: n4-date'))
+    await tapFixture('one-native-notifications-presented-list')
+    await wait('delivered notification is presented', (n) => has(n, 'Presented: n4-date'))
+    await tapFixture('one-native-notifications-dismiss-date')
+    await wait('dismiss resolves', (n) => has(n, 'Presented: dismissed'))
+    await tapFixture('one-native-notifications-presented-list')
+    await wait('dismiss removes it from presented', (n) => has(n, 'Presented: none'))
+    // local cold start: schedule 15s out, terminate, tap the delivered banner.
+    await tapFixture('one-native-notifications-schedule-cold')
+    await wait('cold schedule set', (n) => has(n, 'Scheduled: n4-cold'))
+    command(['simulator', 'stop', '--bundle-id', config.bundleId], config.simulatorId)
+    await new Promise((resolve) => setTimeout(resolve, 14000))
+    await tapColdBanner('notifications-local-cold-banner.png', 'N4 cold')
+    await wait('local cold start shows home', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-notifications')
+    await wait('local cold-start tap delivered last response', (n) =>
+      labels(n).some((label) => label.startsWith('Last: ') && label.includes('N4 cold'))
+    )
+
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
