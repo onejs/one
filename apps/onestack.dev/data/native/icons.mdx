@@ -1,0 +1,49 @@
+---
+title: Icons
+description: Shared icon selection with responsive native colors
+---
+
+`One.UI.Icon` selects the icon element your app provides for the current platform
+and applies a responsive native system color on iOS and Android. Pass a
+`One.iOS.Image` and a `One.Android.Icon`; this ensures both native elements can
+consume the shared color contract. Your app owns the glyph mapping, availability,
+size, variant, directionality, and accessibility label. An icon without a label is
+treated as decoration.
+
+```tsx
+import { One } from 'one'
+
+const shareIcons = {
+  ios: (
+    <One.iOS.Image
+      systemName="square.and.arrow.up"
+      accessibilityLabel="Share"
+      swiftStyle={{ fontSize: 20 }}
+    />
+  ),
+  android: <One.Android.Icon name="share" size={20} accessibilityLabel="Share" />,
+  web: <ShareIcon color="$color" size={20} />,
+}
+
+<One.UI.Icon icons={shareIcons} colorRole="accent" />
+<One.UI.Icon icons={shareIcons} color="#E5484D" />
+```
+
+`colorRole` accepts `primary`, `secondary`, `tertiary`, `accent`, or `danger`.
+The role reaches SwiftUI or Compose unchanged and resolves from the active native
+color scheme. A light or dark mode change updates the mounted native icon without a
+React appearance subscription. If neither color prop is present, `primary` is the
+default. Use `color` for a React Native `ColorValue`, including an iOS dynamic color
+in iOS code or a regular color string. `color` and `colorRole` are mutually exclusive.
+
+One does not map these roles on web. When `icons.web` is present, One returns that
+React element unchanged so Tamagui or the app can style it. When it is absent, the
+component renders nothing on web.
+
+### One.UI.Icon Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `icons` | `{ ios: ReactElement<ImageProps>; android: ReactElement<ComposeIconProps>; web?: ReactElement }` | App-owned platform icons using `One.iOS.Image` and `One.Android.Icon` |
+| `colorRole` | `'primary' \| 'secondary' \| 'tertiary' \| 'accent' \| 'danger'` | Responsive native system color |
+| `color` | `ColorValue` | Custom color, mutually exclusive with `colorRole` |

@@ -1,0 +1,94 @@
+---
+title: Text Input
+description: Native text input with shared state, plus adaptive layout
+---
+
+`One.UI.useNativeState` creates one observable handle shared between
+JavaScript and the bound native views. Pass the handle as `value` to
+`One.UI.TextInput`: keystrokes land in every bound view without a React
+render. The ref carries `focus`, `blur`, `clear`, `isFocused`, and
+`setSelection`.
+
+```tsx
+import { One } from 'one'
+
+function NameField() {
+  const name = One.UI.useNativeState('')
+
+  return (
+    <One.UI.TextInput
+      value={name}
+      placeholder="Name"
+      onSubmitEditing={(text) => save(text)}
+    />
+  )
+}
+```
+
+`One.UI.SafeArea` is documented under
+[SafeAreaView](/docs/components-SafeAreaView).
+
+### Adaptive layout
+
+`One.UI.useSizeClass()` returns the window scene's horizontal and vertical size
+classes (`compact`, `regular`, or `unspecified`) and re-renders when they change,
+so a layout can branch on the trait iOS uses rather than on the screen's width.
+On a foldable such as iPhone Duo the outer display is compact and the inner
+display regular in both axes.
+
+`One.UI.useHinge()` reports the hinge's `status` (`closed`, `partiallyOpen`,
+`fullyOpen`, or `unknown`) and `angle` in radians, and `One.UI.onHingeChange`
+subscribes outside React. The `get*` variants read the current value once.
+
+Safe area insets say how far to pull content in from each edge; they cannot
+describe a fold across the middle of the screen or a camera on the inner
+display. `One.UI.ReservedRegions.Provider` is a view that reports the regions
+reserved inside its own bounds, and `One.UI.ReservedRegions.useRegions()` reads
+them from the nearest provider. A `division` is a fold that content should not
+straddle; an `occlusion` is a camera cutout or system control that hides
+content. Each region has an `id`, a `frame` in the provider's points (margins
+included), the `margins` kept around it for interactive content, and
+`isActive`. `useRegions` returns active regions unless you pass
+`{ includeInactive: true }`, and `{ kind: 'division' }` narrows to one kind.
+`useReady()` turns true once the provider has taken its first reading, which
+lands before the first frame.
+
+On iOS 27.1 the regions come from UIKit's `reservedRegions` and update as the
+hinge moves. On Android a fold from Jetpack WindowManager is a `division`,
+active while it separates the display, and each display cutout
+is an `occlusion`; Android reports no margins. The web reports none.
+
+```tsx
+function Canvas() {
+  const [fold] = One.UI.ReservedRegions.useRegions({ kind: 'division' })
+  if (!fold) return <Board />
+  return (
+    <>
+      <Board style={{ height: fold.frame.y }} />
+      <Palette style={{ top: fold.frame.y + fold.frame.height }} />
+    </>
+  )
+}
+
+<One.UI.ReservedRegions.Provider style={{ flex: 1 }}>
+  <Canvas />
+</One.UI.ReservedRegions.Provider>
+```
+
+`One.iOS.ArrangementView` is SwiftUI's `ArrangementView`, which places a primary
+and a secondary pane side by side or stacked and keeps them clear of a fold:
+
+```tsx
+function Workspace() {
+  const sizeClass = One.UI.useSizeClass()
+  if (sizeClass.horizontal !== 'regular') return <Chat />
+  return (
+    <One.iOS.ArrangementView
+      style={{ flex: 1 }}
+      arrangementViewStyle="split"
+      primary={<Chat />}
+      secondary={<Preview />}
+    />
+  )
+}
+```

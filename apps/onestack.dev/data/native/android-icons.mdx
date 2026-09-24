@@ -1,0 +1,35 @@
+---
+title: Android Icons
+description: Native Material Symbols icons for the Android Compose surface
+---
+
+Native Material Symbols icons for the Android Compose surface.
+
+```tsx
+import { One } from 'one'
+
+<One.Android.Column>
+  <One.Android.Icon
+    name="star"
+    size={24}
+    filled
+    composeStyle={{ foregroundColor: '#FFC107' }}
+  />
+  <One.Android.Button label="Next" icon="arrow_forward" iconFilled onPress={() => {}} />
+</One.Android.Column>
+```
+
+Names are Material Symbols snake_case names from fonts.google.com/icons, such as `star` or `arrow_forward`. There is no mapping to SF Symbols: iOS keeps `systemImage`/`systemName`. Unlike the null-returning toolbar and zoom components, the `One.Android` components throw when rendered outside an Android build, including on web.
+
+`size` defaults to 24. `filled` picks the bundled filled font instead of outlined. `One.Android.Button` takes a leading icon with `icon` and `iconFilled`; a standalone icon tints with `composeStyle.foregroundColor`, while a Button icon follows the button's content color. Fonts are bundled, so rendering is offline and synchronous. Unknown names throw when the icon renders, and an icon with no `accessibilityLabel` is decorative.
+
+### One.Android.Icon Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `name` | `string` | Material Symbols snake_case name (required) |
+| `size` | `number` | Icon size, defaults to 24 |
+| `filled` | `boolean` | Use the filled font instead of outlined |
+| `accessibilityLabel` | `string` | Accessibility label; without one the icon is decorative |
+| `style` | `ViewStyle` | Applies only at the root of a Compose tree |
+| `composeStyle` | `ComposeStyle` | Tint and styling inside a Compose tree, including `foregroundColor` |

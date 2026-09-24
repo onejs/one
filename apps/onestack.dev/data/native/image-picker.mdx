@@ -1,0 +1,77 @@
+---
+title: ImagePicker
+description: Uniform imperative image picker for library and camera
+---
+
+Uniform imperative image picker. The `expo-image-picker` module API is the reference shape,
+so migration is mechanical; this is the small subset One supports.
+
+```tsx
+import { One } from 'one'
+
+const picked = await One.ImagePicker.launchLibrary({
+  mediaTypes: 'images',
+  selectionLimit: 1,
+})
+if (!picked.canceled) {
+  const [first] = picked.assets
+  console.log(first.uri, first.width, first.height)
+}
+
+const photo = await One.ImagePicker.launchCamera()
+```
+
+`launchLibrary` presents the system photo picker: `PHPickerViewController` on iOS,
+which needs no permission prompt, and the system photo picker on Android with a documents
+fallback on devices without it. `mediaTypes` is `'images'`, `'videos'`, or both, defaulting
+to `'images'`. `selectionLimit` is the maximum number of assets, defaulting to `1`; `0` is
+unlimited (the system maximum).
+
+`launchCamera` captures one still photo with the system camera. It needs the camera
+permission declared in `native.app`:
+
+```ts
+one({
+  native: {
+    app: {
+      notifications: {},
+      imagePicker: { camera: 'Take profile photos.' },
+      // ...
+    },
+  },
+})
+```
+
+`one prebuild` writes the string to `NSCameraUsageDescription` on iOS and declares the
+`CAMERA` permission on Android. Without it the call rejects instead of crashing. A denied
+permission, a missing camera, and backing out of either call all resolve
+`{ canceled: true, assets: null }`; check the permission first when the distinction
+matters. Only runtime failures reject, with `E_IMAGE_PICKER_FAILED`.
+
+The camera permission reads without prompting and prompts on request. Neither system
+picker needs a grant, so no media library permission calls exist:
+
+```tsx
+const current = await One.ImagePicker.getCameraPermissions()
+// { status: 'undetermined', granted: false, canAskAgain: true }
+const next = await One.ImagePicker.requestCameraPermissions()
+```
+
+Picked assets are copied into the app cache and returned as file URIs with `width`, `height`,
+and, when the platform provides them, `mimeType`, `fileName`, and `fileSize`. On web the
+library opens a file dialog and the camera opens a capture input on mobile browsers, and
+both permission calls read granted.
+
+### Migration from expo-image-picker
+
+Migrating from `expo-image-picker` is an import change plus this rename:
+
+| Expo | One |
+|------|-----|
+| `launchImageLibraryAsync` | `launchLibrary` |
+| `launchCameraAsync` | `launchCamera` |
+| `getCameraPermissionsAsync` | `getCameraPermissions` |
+| `requestCameraPermissionsAsync` | `requestCameraPermissions` |
+
+`allowsEditing`, `quality`, `aspect`, and the other Expo options have no equivalent:
+`mediaTypes` and `selectionLimit` are the whole options surface.

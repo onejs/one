@@ -1,0 +1,49 @@
+---
+title: SplitView
+description: Native UISplitViewController for iPad multi-column layouts
+---
+
+Native `UISplitViewController` for iPad multi-column layouts.
+
+<Notice theme="yellow">
+  SplitView requires `react-native-screens` gamma mode. Enable it in the One native app manifest:
+
+  ```ts
+  one({
+    native: {
+      app: {
+        name: 'MyApp',
+        ios: {
+          bundleId: 'com.example.myapp',
+          screensGamma: true,
+        },
+        android: { applicationId: 'com.example.myapp' },
+      },
+    },
+  })
+  ```
+
+  `one prebuild` adds the Podfile setting before CocoaPods runs. For an existing
+  native project that One did not generate, add `ENV['RNS_GAMMA_ENABLED'] ||= '1'`
+  to the top of its Podfile. The `SplitView.Column` markers must be direct children of
+  `SplitView`; One maps them to the native screen columns and supplies the routed
+  detail through `slot`.
+</Notice>
+
+```tsx
+import { One } from 'one'
+
+function Layout() {
+  return (
+    <One.iOS.SplitView slot={Detail}>
+      <One.iOS.SplitView.Column>
+        <SidebarContent />
+      </One.iOS.SplitView.Column>
+    </One.iOS.SplitView>
+  )
+}
+```
+
+On iPhone, SplitView collapses to a single column automatically.
+`SplitView.Inspector` marks an inspector column the same way `SplitView.Column`
+marks a sidebar column.

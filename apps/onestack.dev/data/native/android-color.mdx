@@ -1,0 +1,19 @@
+---
+title: Android Color
+description: Adaptive Material colors through Color.android
+---
+
+Adaptive Material colors through `Color.android` from `@vxrn/native`:
+
+```tsx
+import { Color } from '@vxrn/native'
+
+<View style={{ backgroundColor: Color.android.material.primary }} />
+<Text style={{ color: Color.android.dynamic.onSurface }} />
+```
+
+`material` carries the static Material 3 palette, `dynamic` follows the
+system wallpaper colors on Android 12 and later. The values are static strings
+resolved from the current theme when read: re-read them after a light or dark
+mode change rather than caching them. For icon colors that update without a
+React subscription, use the `colorRole` prop on `One.UI.Icon` instead.
