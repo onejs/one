@@ -108,43 +108,47 @@ function DetailScreen() {
 
 ## Toolbar
 
-Declarative native toolbar items through `Stack.Toolbar`, in the same compound style as `Stack.Header`. iOS only: leading/trailing slots compile to native header items, and `Stack.Toolbar.Bottom` renders a native `UIToolbar` at the bottom of the screen.
+Declarative native toolbar items through `Stack.Toolbar`, in the same compound style as `Stack.Header`. iOS only: one toolbar declares one `placement`, and `left`/`right` compile to native header items while `bottom` (the default) renders a native `UIToolbar` at the bottom of the screen.
 
 ```tsx
 import { Stack } from 'one'
 
 <Stack.Screen name="index">
-  <Stack.Toolbar>
-    <Stack.Toolbar.Leading>
-      <Stack.Toolbar.Item title="Edit" systemImageName="pencil" onPress={edit} />
-    </Stack.Toolbar.Leading>
-    <Stack.Toolbar.Trailing>
-      <Stack.Toolbar.Menu title="More" systemImageName="ellipsis.circle">
-        <Stack.Toolbar.Item title="Share" onPress={share} />
-      </Stack.Toolbar.Menu>
-    </Stack.Toolbar.Trailing>
+  <Stack.Toolbar placement="left">
+    <Stack.Toolbar.Button icon="pencil" onPress={edit}>
+      Edit
+    </Stack.Toolbar.Button>
+  </Stack.Toolbar>
+  <Stack.Toolbar placement="right">
+    <Stack.Toolbar.Menu title="More" icon="ellipsis.circle">
+      <Stack.Toolbar.MenuAction icon="square.and.arrow.up" onPress={share}>
+        Share
+      </Stack.Toolbar.MenuAction>
+    </Stack.Toolbar.Menu>
   </Stack.Toolbar>
 </Stack.Screen>
 ```
 
-`Leading`/`Trailing` are the primary direction-aware names (`Left`/`Right` are aliases). Items take `title`, `systemImageName` (SF Symbol), `tintColor` (including dynamic iOS values), `disabled`, `hidden`, `selected`, and the `onPress`/`onSelected` aliases. `sharesBackground` and `hidesSharedBackground` pass through to header items for iOS 26 Liquid Glass.
+Buttons take their label as text children (or a `Label` child), `icon` (SF Symbol name or image source), `tintColor` (including dynamic iOS values), `variant`, `disabled`, `hidden`, `selected`, and `onPress`. `separateBackground` opts out of the shared background and `hidesSharedBackground` hides it behind the item for iOS 26 Liquid Glass. Menus nest `MenuAction` children and `Menu` submenus. `Spacer` is flexible or fixed with `width`; `SearchBarSlot` embeds the screen search bar.
 
-Options are route-local and dynamic: render a nameless `Stack.Screen` with a `Stack.Toolbar` in route content and its options apply to the current route through `setOptions`, so screen state can drive items without a new API. An explicit slot always wins over incoming options: a slot whose items are all hidden writes an empty array and clears inherited items, while an absent slot preserves them.
+Options are route-local and dynamic: render a nameless `Stack.Screen` with a `Stack.Toolbar` in route content and its options apply to the current route through `setOptions`, so screen state can drive items without a new API. An explicit toolbar always wins over incoming options on its own side: a toolbar whose items are all hidden writes an empty array and clears inherited items, while an absent toolbar preserves them.
 
 ### Bottom toolbar
 
 ```tsx
 // inside screen content, iOS only
-<Stack.Toolbar.Bottom hidden={hidden} animated>
-  <Stack.Toolbar.Item title="Add" systemImageName="plus" onPress={add} />
-</Stack.Toolbar.Bottom>
+<Stack.Toolbar>
+  <Stack.Toolbar.Button icon="plus" hidden={hidden} onPress={add}>
+    Add
+  </Stack.Toolbar.Button>
+</Stack.Toolbar>
 ```
 
-`Stack.Toolbar.Bottom` must mount in screen content where the responder chain reaches the screen view controller; in layout config it warns and is ignored. Bottom items take the same props, including `sharesBackground` and `hidesSharedBackground`.
+`Stack.Toolbar` with bottom placement must mount in screen content where the responder chain reaches the screen view controller; in layout config it warns and is ignored. Bottom items take the same props. Hide the bar by unmounting the toolbar or by setting `hidden` on its items.
 
 ### Lower-level primitive
 
-`One.iOS.ToolbarHost` with `One.iOS.ToolbarItem` children is the lower-level bottom-`UIToolbar` renderer that `Stack.Toolbar.Bottom` builds on. Reach for it directly only when you need item types the declarative API does not expose (fixed/fluid spacers, search bar, badges).
+`One.iOS.ToolbarHost` with `One.iOS.ToolbarItem` children is the lower-level bottom-`UIToolbar` renderer that `Stack.Toolbar` with bottom placement builds on. Reach for it directly only when you need explicit item identifiers or native item props the declarative API does not forward.
 
 ### ToolbarItem Props
 
@@ -604,10 +608,42 @@ display regular in both axes.
 
 `One.UI.useHinge()` reports the hinge's `status` (`closed`, `partiallyOpen`,
 `fullyOpen`, or `unknown`) and `angle` in radians, and `One.UI.onHingeChange`
-subscribes outside React. `One.UI.useReservedRegions()` lists the display's
-reserved regions: a `division` is a fold that content should not straddle, an
-`occlusion` covers a camera. Each has a frame in window points. The `get*`
-variants read the current value once.
+subscribes outside React. The `get*` variants read the current value once.
+
+Safe area insets say how far to pull content in from each edge; they cannot
+describe a fold across the middle of the screen or a camera on the inner
+display. `One.UI.ReservedRegions.Provider` is a view that reports the regions
+reserved inside its own bounds, and `One.UI.ReservedRegions.useRegions()` reads
+them from the nearest provider. A `division` is a fold that content should not
+straddle; an `occlusion` is a camera cutout or system control that hides
+content. Each region has an `id`, a `frame` in the provider's points (margins
+included), the `margins` kept around it for interactive content, and
+`isActive`. `useRegions` returns active regions unless you pass
+`{ includeInactive: true }`, and `{ kind: 'division' }` narrows to one kind.
+`useReady()` turns true once the provider has taken its first reading, which
+lands before the first frame.
+
+On iOS 27.1 the regions come from UIKit's `reservedRegions` and update as the
+hinge moves. On Android a fold from Jetpack WindowManager is a `division`,
+active while it is half open or separates the display, and each display cutout
+is an `occlusion`; Android reports no margins. The web reports none.
+
+```tsx
+function Canvas() {
+  const [fold] = One.UI.ReservedRegions.useRegions({ kind: 'division' })
+  if (!fold) return <Board />
+  return (
+    <>
+      <Board style={{ height: fold.frame.y }} />
+      <Palette style={{ top: fold.frame.y + fold.frame.height }} />
+    </>
+  )
+}
+
+<One.UI.ReservedRegions.Provider style={{ flex: 1 }}>
+  <Canvas />
+</One.UI.ReservedRegions.Provider>
+```
 
 `One.iOS.ArrangementView` is SwiftUI's `ArrangementView`, which places a primary
 and a secondary pane side by side or stacked and keeps them clear of a fold:

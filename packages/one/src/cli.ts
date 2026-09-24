@@ -240,7 +240,16 @@ const runIos = defineCommand({
     version: version,
     description: withDocsLink('Run the iOS app', 'run:ios'),
   },
-  args: {},
+  args: {
+    simulator: {
+      type: 'string',
+      description: 'explicitly set the simulator to use, e.g. "iPhone 16"',
+    },
+    udid: {
+      type: 'string',
+      description: 'explicitly set the simulator to use by UDID',
+    },
+  },
   async run({ args }) {
     const { run } = await import('./cli/runIos')
     await run(args)

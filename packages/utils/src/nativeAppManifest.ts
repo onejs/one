@@ -33,6 +33,18 @@ export interface NativeAppManifest {
     usesNonExemptEncryption?: boolean
     // exposes the app's Documents in the Files app and document pickers.
     fileSharing?: boolean
+    widgets?: {
+      appGroup: string
+      kind: string
+      displayName: string
+      description: string
+      pushNotifications?: boolean
+      jsx?: {
+        id: string
+        displayName: string
+        description: string
+      }
+    }
   }
   android?: {
     applicationId: string
@@ -134,6 +146,37 @@ export function validateNativeApp(
       fail(
         `ios.buildNumber "${manifest.ios.buildNumber}" must contain only letters, digits, and dots`
       )
+    }
+    const widgets = manifest.ios.widgets
+    if (widgets) {
+      if (!manifest.ios.deploymentTarget || Number(manifest.ios.deploymentTarget) < 17) {
+        fail('ios.widgets requires ios.deploymentTarget of 17.0 or newer')
+      }
+      if (
+        !/^group\.[A-Za-z][A-Za-z0-9-]*(\.[A-Za-z][A-Za-z0-9-]*)+$/.test(widgets.appGroup)
+      ) {
+        fail('ios.widgets.appGroup must be a reverse-dns App Group beginning with group.')
+      }
+      if (!/^[A-Za-z][A-Za-z0-9._-]*$/.test(widgets.kind)) {
+        fail('ios.widgets.kind must be a non-empty WidgetKit kind')
+      }
+      if (!widgets.displayName?.trim() || !widgets.description?.trim()) {
+        fail('ios.widgets.displayName and description must be non-empty strings')
+      }
+      if (
+        widgets.pushNotifications !== undefined &&
+        typeof widgets.pushNotifications !== 'boolean'
+      ) {
+        fail('ios.widgets.pushNotifications must be a boolean')
+      }
+      if (widgets.jsx) {
+        if (!/^[A-Za-z][A-Za-z0-9_]*$/.test(widgets.jsx.id)) {
+          fail('ios.widgets.jsx.id must contain only letters, digits, and underscore')
+        }
+        if (!widgets.jsx.displayName?.trim() || !widgets.jsx.description?.trim()) {
+          fail('ios.widgets.jsx requires displayName and description')
+        }
+      }
     }
   }
   if (!platform || platform === 'android') {

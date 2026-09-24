@@ -1,5 +1,6 @@
 import * as UI from './effects'
 import { Swift } from './unsupported'
+import { Widgets, LiveActivities } from './widgets/index'
 
 export * from './extras'
 // the package root keeps the navigation toolbar's props under the plain name; the SwiftUI
@@ -12,8 +13,7 @@ export {
   useHinge,
   getHinge,
   onHingeChange,
-  useReservedRegions,
-  getReservedRegions,
+  ReservedRegions,
 } from './adaptive/index'
 export type {
   UserInterfaceSizeClass,
@@ -23,6 +23,7 @@ export type {
   ReservedRegionKind,
   ReservedRegion,
   ReservedRegionOptions,
+  ReservedRegionsProviderProps,
 } from './adaptive/types'
 export type {
   ArrangementViewProps,
@@ -36,6 +37,7 @@ export type {
 export const Menu = Swift.Menu
 export const ContextMenu = Swift.ContextMenu
 export { Compose } from './compose'
+export { Widgets, LiveActivities }
 export { useNativeState, type NativeState } from './nativeState'
 export { TextInput } from './universal/TextInput/index'
 export type {
