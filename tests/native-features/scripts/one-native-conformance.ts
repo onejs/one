@@ -114,9 +114,12 @@ function parse(args: string[]): Config {
   return { simulatorId, bundleId, artifactDir, timeout, suite, appPath, jsLocation }
 }
 
-function command(args: string[], simulatorId: string) {
+// every ui action and the accessibility snapshot go straight to the axe cli:
+// xcodebuildmcp 2.6 and later only act on element refs from their own
+// snapshot, and its earlier releases bundle an axe that cannot load xcode 27.
+function axe(args: string[], simulatorId: string) {
   try {
-    return execFileSync('xcodebuildmcp', [...args, '--simulator-id', simulatorId], {
+    return execFileSync('axe', [...args, '--udid', simulatorId], {
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'pipe'],
       timeout: 30_000,
@@ -128,14 +131,13 @@ function command(args: string[], simulatorId: string) {
       message: string
     }
     throw new Error(
-      `xcodebuildmcp ${args.join(' ')} failed: ${result.stderr?.toString() || result.stdout?.toString() || result.message}`
+      `axe ${args.join(' ')} failed: ${result.stderr?.toString() || result.stdout?.toString() || result.message}`
     )
   }
 }
 
 function snapshot(simulatorId: string): Node[] {
-  const output = command(['simulator', 'snapshot-ui'], simulatorId)
-  const json = output.match(/```json\s*([\s\S]*?)```/)?.[1] || output
+  const output = axe(['describe-ui'], simulatorId)
   const nodes: Node[] = []
   const visit = (value: unknown): void => {
     if (Array.isArray(value)) return value.forEach(visit)
@@ -152,7 +154,7 @@ function snapshot(simulatorId: string): Node[] {
       nodes.push(node)
     Object.values(node).forEach(visit)
   }
-  visit(JSON.parse(json))
+  visit(JSON.parse(output))
   return nodes
 }
 
@@ -467,9 +469,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   // the only tap path: touch down/up delivers on headless hosts, where the
   // simulator tapAt call reports success without delivering anything.
   const touch = (x: number, y: number) => {
-    const output = command(
+    const output = axe(
       [
-        'ui-automation',
         'touch',
         '-x',
         String(Math.round(x)),
@@ -513,7 +514,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   ) => {
     if (!text) throw new Error('typeInto requires text')
     const before = String(current(snapshot(config.simulatorId)) ?? '')
-    command(['ui-automation', 'type-text', '--text', text[0]], config.simulatorId)
+    axe(['type', text[0]], config.simulatorId)
     // a single character has no remainder to gate, and some fields are expected to reject it
     // and restore the old value, so waiting for a change there would hang on correct behavior.
     if (text.length === 1) return
@@ -521,7 +522,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       `${name} takes the first character`,
       (nodes) => String(current(nodes) ?? '') !== before
     )
-    command(['ui-automation', 'type-text', '--text', text.slice(1)], config.simulatorId)
+    axe(['type', text.slice(1)], config.simulatorId)
   }
   // the home list scrolls; a row below the fold takes a clamped tap that lands on the
   // wrong route, so bring it fully on screen before tapping it.
@@ -537,17 +538,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       // carried past the top needs it pulled back down: scrolling one direction only
       // walks past an overshot row and never comes back to it.
       const down = row.y < 0
-      command(
+      axe(
         [
-          'ui-automation',
           'swipe',
-          '--x1',
+          '--start-x',
           String(Math.round(app.width / 2)),
-          '--y1',
+          '--start-y',
           String(Math.round(app.height * (down ? 0.35 : 0.75))),
-          '--x2',
+          '--end-x',
           String(Math.round(app.width / 2)),
-          '--y2',
+          '--end-y',
           String(Math.round(app.height * (down ? 0.75 : 0.35))),
           '--duration',
           // a fast swipe throws the short home list its whole scrollable range and the
@@ -667,15 +667,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     point(x, 783)
   }
 
-  // launch-app drops --args, so a non-default packager port launches through
-  // simctl, which forwards -RCT_jsLocation into nsuserdefaults. without the
-  // flag the app keeps the baked localhost:8081.
-  const launchApp = () => {
-    if (!config.jsLocation)
-      return command(
-        ['simulator', 'launch-app', '--bundle-id', config.bundleId],
-        config.simulatorId
-      )
+  // simctl forwards -RCT_jsLocation into nsuserdefaults, which is how a
+  // non-default packager port reaches the app; without it the app keeps the
+  // baked localhost:8081.
+  const launchApp = () =>
     execFileSync(
       'xcrun',
       [
@@ -683,15 +678,19 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         'launch',
         config.simulatorId,
         config.bundleId,
-        '-RCT_jsLocation',
-        config.jsLocation,
+        ...(config.jsLocation ? ['-RCT_jsLocation', config.jsLocation] : []),
       ],
       { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 30_000 }
     )
-  }
+  const stopApp = () =>
+    execFileSync('xcrun', ['simctl', 'terminate', config.simulatorId, config.bundleId], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+      timeout: 30_000,
+    })
 
   try {
-    command(['simulator', 'stop', '--bundle-id', config.bundleId], config.simulatorId)
+    stopApp()
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
     // a freshly booted device has never run the app, and simctl words that differently
@@ -750,19 +749,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Boolean(id(n, 'one-native-sheet-block-dismiss')?.frame)
       )
       const frame = id(nodes, 'one-native-sheet-block-dismiss')!.frame!
-      command(
-        [
-          'ui-automation',
-          'long-press',
-          '-x',
-          String(Math.round(frame.x + frame.width / 2)),
-          '-y',
-          String(Math.round(frame.y + frame.height / 2)),
-          '--duration',
-          '0.15',
-        ],
-        config.simulatorId
-      )
+      touch(frame.x + frame.width / 2, frame.y + frame.height / 2)
       await wait(
         `interactive dismiss block is ${expected}`,
         (n) => id(n, 'one-native-sheet-block-dismiss')?.AXValue === expected
@@ -774,17 +761,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
       const frame = nodes.find((n) => n.AXLabel === 'Sheet Content')!.frame!
       const app = nodes.find((n) => n.type === 'Application')!.frame!
-      command(
+      axe(
         [
-          'ui-automation',
           'swipe',
-          '--x1',
+          '--start-x',
           String(Math.round(app.width / 2)),
-          '--y1',
+          '--start-y',
           String(Math.round(frame.y - 7)),
-          '--x2',
+          '--end-x',
           String(Math.round(app.width / 2)),
-          '--y2',
+          '--end-y',
           String(Math.round(app.height - 10)),
           '--duration',
           '0.35',
@@ -905,27 +891,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // character it had just sent, so the check could never pass rather than never fail.
     const typeField = (name: string, testID: string, text: string) =>
       typeInto(name, text, (n) => id(n, testID)?.AXValue)
-    const submit = () =>
-      command(['ui-automation', 'key-press', '--key-code', '40'], config.simulatorId)
+    const submit = () => axe(['key', '40'], config.simulatorId)
     const pressSwitch = async () => {
       const nodes = await wait('native switch is ready', (n) =>
         Boolean(n.find((x) => x.AXLabel === 'Enable notifications' && x.frame))
       )
       const frame = nodes.find((n) => n.AXLabel === 'Enable notifications')!.frame!
       // iOS switch tracking needs a physical press; an instantaneous HID tap never begins tracking.
-      command(
-        [
-          'ui-automation',
-          'long-press',
-          '-x',
-          String(Math.round(frame.x + frame.width - 25)),
-          '-y',
-          String(Math.round(frame.y + frame.height / 2)),
-          '--duration',
-          '0.15',
-        ],
-        config.simulatorId
-      )
+      touch(frame.x + frame.width - 25, frame.y + frame.height / 2)
     }
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
@@ -1025,17 +998,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => value(n, '25') && nativeValue(n, 'Volume', 0.25)
     )
     const frame = nodes.find((n) => n.AXLabel === 'Volume')!.frame!
-    command(
+    axe(
       [
-        'ui-automation',
         'swipe',
-        '--x1',
+        '--start-x',
         String(Math.round(frame.x + frame.width * 0.25)),
-        '--y1',
+        '--start-y',
         String(Math.round(frame.y + frame.height / 2)),
-        '--x2',
+        '--end-x',
         String(Math.round(frame.x + frame.width - 1)),
-        '--y2',
+        '--end-y',
         String(Math.round(frame.y + frame.height / 2)),
         '--duration',
         '0.3',
@@ -1052,17 +1024,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => value(n, '50') && nativeValue(n, 'Volume', 0.5)
     )
     tap({ id: 'one-native-control-reject' })
-    command(
+    axe(
       [
-        'ui-automation',
         'swipe',
-        '--x1',
+        '--start-x',
         String(Math.round(frame.x + frame.width * 0.5)),
-        '--y1',
+        '--start-y',
         String(Math.round(frame.y + frame.height / 2)),
-        '--x2',
+        '--end-x',
         String(Math.round(frame.x + frame.width - 1)),
-        '--y2',
+        '--end-y',
         String(Math.round(frame.y + frame.height / 2)),
         '--duration',
         '0.3',
@@ -1136,8 +1107,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         text,
         (n) => field(n, secure)?.AXValue
       )
-    const submit = () =>
-      command(['ui-automation', 'key-press', '--key-code', '40'], config.simulatorId)
+    const submit = () => axe(['key', '40'], config.simulatorId)
     const indicator = (nodes: Node[], testID: string) =>
       nodes.filter((node) => node.AXUniqueId === testID)
     const captureIndicator = (name: string, nodes: Node[]) => {
@@ -1564,19 +1534,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Boolean(control(n, 'CheckBox', 'Notify')?.frame)
       )
       const frame = control(nodes, 'CheckBox', 'Notify')!.frame!
-      command(
-        [
-          'ui-automation',
-          'long-press',
-          '-x',
-          String(Math.round(frame.x + frame.width - 25)),
-          '-y',
-          String(Math.round(frame.y + frame.height / 2)),
-          '--duration',
-          '0.15',
-        ],
-        config.simulatorId
-      )
+      touch(frame.x + frame.width - 25, frame.y + frame.height / 2)
     }
 
     await wait('home screen mounted', () => true, true)
@@ -1713,19 +1671,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Boolean(control(n, 'CheckBox', label)?.frame)
       )
       const frame = control(nodes, 'CheckBox', label)!.frame!
-      command(
-        [
-          'ui-automation',
-          'long-press',
-          '-x',
-          String(Math.round(frame.x + frame.width - 25)),
-          '-y',
-          String(Math.round(frame.y + frame.height / 2)),
-          '--duration',
-          '0.15',
-        ],
-        config.simulatorId
-      )
+      touch(frame.x + frame.width - 25, frame.y + frame.height / 2)
     }
     // a swipe anchored to a visible row stays inside its own scroll view: starting one
     // on a neighboring list would scroll that instead.
@@ -1740,17 +1686,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     ) => {
       for (let attempt = 0; attempt < 24; attempt++) {
         if (labels(snapshot(config.simulatorId)).includes(target)) return
-        command(
+        axe(
           [
-            'ui-automation',
             'swipe',
-            '--x1',
+            '--start-x',
             String(band.x1),
-            '--y1',
+            '--start-y',
             String(band.y1),
-            '--x2',
+            '--end-x',
             String(band.x2),
-            '--y2',
+            '--end-y',
             String(band.y2),
             '--duration',
             '0.3',
@@ -1855,17 +1800,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     ) => {
       const x = Math.round(frame.x + frame.width / 2)
       const y = Math.round(frame.y + frame.height / 2)
-      command(
+      axe(
         [
-          'ui-automation',
           'swipe',
-          '--x1',
+          '--start-x',
           String(left ? x + 40 : x - 40),
-          '--y1',
+          '--start-y',
           String(y),
-          '--x2',
+          '--end-x',
           String(left ? x - 40 : x + 40),
-          '--y2',
+          '--end-y',
           String(y),
           '--duration',
           '0.3',
@@ -2037,19 +1981,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Boolean(control(n, 'CheckBox', label)?.frame)
       )
       const frame = control(nodes, 'CheckBox', label)!.frame!
-      command(
-        [
-          'ui-automation',
-          'long-press',
-          '-x',
-          String(Math.round(frame.x + frame.width - 25)),
-          '-y',
-          String(Math.round(frame.y + frame.height / 2)),
-          '--duration',
-          '0.15',
-        ],
-        config.simulatorId
-      )
+      touch(frame.x + frame.width - 25, frame.y + frame.height / 2)
     }
     const fieldValue = (nodes: Node[]) => id(nodes, 'one-native-state-field')?.AXValue
 
@@ -2425,17 +2357,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // has no outside to tap, so it takes the drag a user would use.
     const dragSheetDown = () => {
       const frame = app()
-      command(
+      axe(
         [
-          'ui-automation',
           'swipe',
-          '--x1',
+          '--start-x',
           String(Math.round(frame.width / 2)),
-          '--y1',
+          '--start-y',
           String(Math.round(frame.height * 0.2)),
-          '--x2',
+          '--end-x',
           String(Math.round(frame.width / 2)),
-          '--y2',
+          '--end-y',
           String(Math.round(frame.height * 0.9)),
           '--duration',
           '0.3',
@@ -2612,20 +2543,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       y: number
       width: number
       height: number
-    }) =>
-      command(
-        [
-          'ui-automation',
-          'long-press',
-          '-x',
-          String(Math.round(frame.x + frame.width - 25)),
-          '-y',
-          String(Math.round(frame.y + frame.height / 2)),
-          '--duration',
-          '0.15',
-        ],
-        config.simulatorId
-      )
+    }) => touch(frame.x + frame.width - 25, frame.y + frame.height / 2)
 
     await tapNav('nav-one-native-accessibility')
     let nodes = await wait('accessibility: the screen mounted', (n) =>
@@ -2788,19 +2706,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Boolean(control(n, 'CheckBox', 'Toggle')?.frame)
       )
       const frame = control(nodes, 'CheckBox', 'Toggle')!.frame!
-      command(
-        [
-          'ui-automation',
-          'long-press',
-          '-x',
-          String(Math.round(frame.x + frame.width - 25)),
-          '-y',
-          String(Math.round(frame.y + frame.height / 2)),
-          '--duration',
-          '0.15',
-        ],
-        config.simulatorId
-      )
+      touch(frame.x + frame.width - 25, frame.y + frame.height / 2)
     }
 
     await wait('home screen mounted', () => true, true)
@@ -4029,17 +3935,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     screenshot('apple-file-picker-swipe.png')
     // the drag starts on the sheet title bar: a mid-sheet drag scrolls the
     // file grid instead of dismissing the sheet (proven on device).
-    command(
+    axe(
       [
-        'ui-automation',
         'swipe',
-        '--x1',
+        '--start-x',
         '201',
-        '--y1',
+        '--start-y',
         '225',
-        '--x2',
+        '--end-x',
         '201',
-        '--y2',
+        '--end-y',
         '750',
         '--duration',
         '1.0',
@@ -4238,17 +4143,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         }
         last = undefined
         swiped = true
-        command(
+        axe(
           [
-            'ui-automation',
             'swipe',
-            '--x1',
+            '--start-x',
             String(Math.round(app.width / 2)),
-            '--y1',
+            '--start-y',
             String(Math.round(app.height * 0.75)),
-            '--x2',
+            '--end-x',
             String(Math.round(app.width / 2)),
-            '--y2',
+            '--end-y',
             String(Math.round(app.height * 0.35)),
             '--duration',
             '0.3',
@@ -4395,7 +4299,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // cold start: terminate, push a banner onto the home screen, tap it.
     // the simctl push is the probe vehicle for the launch-timing question;
     // the delegate path it exercises is the same one local taps take.
-    command(['simulator', 'stop', '--bundle-id', config.bundleId], config.simulatorId)
+    stopApp()
     const pushPayload = path.join(config.artifactDir, 'n3-cold-push.apns')
     fs.writeFileSync(
       pushPayload,
@@ -4448,7 +4352,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // local cold start: schedule 15s out, terminate, tap the delivered banner.
     await tapFixture('one-native-notifications-schedule-cold')
     await wait('cold schedule set', (n) => has(n, 'Scheduled: n4-cold'))
-    command(['simulator', 'stop', '--bundle-id', config.bundleId], config.simulatorId)
+    stopApp()
     await new Promise((resolve) => setTimeout(resolve, 14000))
     await tapColdBanner('notifications-local-cold-banner.png', 'N4 cold')
     await wait('local cold start shows home', () => true, true)
