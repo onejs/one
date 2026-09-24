@@ -112,4 +112,66 @@ describe('WidgetUI payload', () => {
       encodeWidgetView(createElement(WidgetUI.Link, { url: '/relative' }))
     ).toThrow(/absolute/)
   })
+
+  test('renders conditional branches like React instead of throwing', () => {
+    function Maybe({ show }: { show: boolean }) {
+      if (!show) return null
+      return createElement(WidgetUI.Text, null, 'shown')
+    }
+    function Rows() {
+      return [
+        createElement(WidgetUI.Text, { key: 'a' }, 'a'),
+        createElement(WidgetUI.Text, { key: 'b' }, 'b'),
+      ] as any
+    }
+    expect(
+      JSON.parse(
+        encodeWidgetView(
+          createElement(
+            WidgetUI.VStack,
+            null,
+            createElement(Maybe, { show: false }),
+            createElement(Rows, null),
+            false,
+            createElement(WidgetUI.Text, null, 'kept')
+          )
+        )
+      )
+    ).toEqual({
+      type: 'vstack',
+      children: [
+        {
+          type: 'vstack',
+          children: [
+            { type: 'text', text: 'a' },
+            { type: 'text', text: 'b' },
+          ],
+        },
+        { type: 'text', text: 'kept' },
+      ],
+    })
+    expect(() => encodeWidgetView(null)).toThrow(/WidgetUI root/)
+    expect(() =>
+      encodeActivityView({
+        lockScreen: createElement(Maybe, { show: false }),
+      })
+    ).toThrow(/lockScreen/)
+  })
+
+  test('rejects style values the Swift decoder cannot read', () => {
+    const text = (style: any) => createElement(WidgetUI.Text, { style }, 'x')
+    expect(() => encodeWidgetView(text({ color: 'red' }))).toThrow(/six-digit hex/)
+    expect(() => encodeWidgetView(text({ backgroundColor: '#FFF' }))).toThrow(
+      /six-digit hex/
+    )
+    expect(() =>
+      encodeWidgetView(createElement(WidgetUI.Circle, { fill: 'white' }))
+    ).toThrow(/six-digit hex/)
+    expect(() => encodeWidgetView(text({ lineLimit: 2.5 }))).toThrow(/integer/)
+    expect(() => encodeWidgetView(text({ fontSize: '16' }))).toThrow(/must be a number/)
+    expect(() => encodeWidgetView(text({ fontWeight: 600 as any }))).toThrow(
+      /must be a string/
+    )
+    expect(() => encodeWidgetView(text('bold' as any))).toThrow(/must be an object/)
+  })
 })

@@ -1230,9 +1230,13 @@ describe('ios widgets', () => {
       'utf8'
     )
     // one extension target, not duplicated
-    expect(project.match(/\/\* OneWidgets \*\/ = \{isa = PBXNativeTarget/g)).toHaveLength(1)
+    expect(project.match(/\/\* OneWidgets \*\/ = \{isa = PBXNativeTarget/g)).toHaveLength(
+      1
+    )
     expect(project).toContain('PRODUCT_BUNDLE_IDENTIFIER = dev.one.myapp.widgets;')
-    expect(project).toContain('CODE_SIGN_ENTITLEMENTS = OneWidgets/OneWidgets.entitlements;')
+    expect(project).toContain(
+      'CODE_SIGN_ENTITLEMENTS = OneWidgets/OneWidgets.entitlements;'
+    )
     expect(project).toContain(
       'CODE_SIGN_ENTITLEMENTS = MyApp/OneAppWidgets.entitlements;'
     )
@@ -1264,6 +1268,55 @@ describe('ios widgets', () => {
     expect(bridge).toContain('resolve(NSNull())')
   }, 180000)
 
+  it('renders every WidgetUI node and slot the serializer can emit', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-widgets-jsx-'))
+    await generateForPlatform(workspaceRoot, 'ios', widgetsApp, join(output, 'ios'))
+
+    const readGenerated = (relativePath: string) =>
+      readFileSync(join(output, 'ios', relativePath), 'utf8')
+    const rendered = readGenerated('OneWidgets/OneWidget.swift')
+    // every node type packages/native/src/widgets/view.ts can emit needs a
+    // Swift decode path, or the extension renders a blank subtree
+    for (const type of [
+      'text',
+      'vstack',
+      'hstack',
+      'zstack',
+      'spacer',
+      'divider',
+      'image',
+      'progress',
+      'gauge',
+      'circle',
+      'rectangle',
+      'rounded-rectangle',
+      'link',
+    ]) {
+      expect(rendered).toContain(`case "${type}":`)
+    }
+    // every ActivityView slot needs a decode path in both presentations
+    for (const slot of [
+      'lockScreen',
+      'compactLeading',
+      'compactTrailing',
+      'minimal',
+      'expandedLeading',
+      'expandedTrailing',
+      'expandedBottom',
+    ]) {
+      expect(rendered).toContain(slot)
+    }
+    // the JSX bridge methods exist on both sides of the React Native bridge
+    for (const method of ['writeView', 'startView', 'updateView']) {
+      expect(readGenerated('MyApp/OneWidgetsBridge.swift')).toContain(method)
+      expect(readGenerated('MyApp/OneWidgetsBridge.m')).toContain(method)
+    }
+    // the shared contract carries the serialized layouts
+    const contract = readGenerated('MyApp/OneWidgetContract.swift')
+    expect(contract.match(/let layout: String\?/g)).toHaveLength(2)
+  }, 180000)
+
   it('regenerates byte-identical widget projects and adds nothing without the config', async () => {
     const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
     const first = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-widgets-a-'))
@@ -1292,10 +1345,12 @@ describe('ios widgets', () => {
     )
     expect(plainProject).not.toContain('OneWidgets')
     expect(() => statSync(join(plain, 'ios', 'OneWidgets'))).toThrow()
-    expect(() => statSync(join(plain, 'ios', 'MyApp', 'OneWidgetsBridge.swift'))).toThrow()
-    expect(
-      readFileSync(join(plain, 'ios', 'MyApp', 'Info.plist'), 'utf8')
-    ).not.toContain('NSSupportsLiveActivities')
+    expect(() =>
+      statSync(join(plain, 'ios', 'MyApp', 'OneWidgetsBridge.swift'))
+    ).toThrow()
+    expect(readFileSync(join(plain, 'ios', 'MyApp', 'Info.plist'), 'utf8')).not.toContain(
+      'NSSupportsLiveActivities'
+    )
   }, 180000)
 
   it('merges the app group into the push entitlements instead of a duplicate setting', async () => {

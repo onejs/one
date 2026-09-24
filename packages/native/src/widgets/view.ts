@@ -70,9 +70,62 @@ type Node = {
   url?: string
 }
 
-function node(view: ReactNode): Node {
+const hexColor = /^#[0-9a-fA-F]{6}$/
+
+const styleNumberKeys = [
+  'fontSize',
+  'padding',
+  'borderRadius',
+  'spacing',
+  'width',
+  'height',
+  'opacity',
+] as const
+
+const styleStringKeys = ['fontWeight', 'fontDesign', 'alignment'] as const
+
+// every style value must survive the generated Swift decoder, which reads
+// numbers as Double, lineLimit as Int, and colors as #rrggbb. anything else
+// fails the whole layout decode, so reject it here where the error is visible.
+function checkStyle(style: WidgetStyle | undefined, fill?: unknown): void {
+  if (fill != null && (typeof fill !== 'string' || !hexColor.test(fill))) {
+    throw new Error('WidgetUI fill must be six-digit hex like #1685B1')
+  }
+  if (style == null) return
+  if (typeof style !== 'object' || Array.isArray(style)) {
+    throw new Error('WidgetUI style must be an object')
+  }
+  for (const key of ['color', 'backgroundColor'] as const) {
+    const value = style[key]
+    if (value != null && (typeof value !== 'string' || !hexColor.test(value))) {
+      throw new Error(`WidgetUI ${key} must be six-digit hex like #1685B1`)
+    }
+  }
+  if (
+    style.lineLimit != null &&
+    (typeof style.lineLimit !== 'number' || !Number.isInteger(style.lineLimit))
+  ) {
+    throw new Error('WidgetUI lineLimit must be an integer')
+  }
+  for (const key of styleNumberKeys) {
+    if (style[key] != null && typeof style[key] !== 'number') {
+      throw new Error(`WidgetUI ${key} must be a number`)
+    }
+  }
+  for (const key of styleStringKeys) {
+    if (style[key] != null && typeof style[key] !== 'string') {
+      throw new Error(`WidgetUI ${key} must be a string`)
+    }
+  }
+}
+
+function node(view: ReactNode): Node | null {
+  if (view == null || typeof view === 'boolean') return null
   if (typeof view === 'string' || typeof view === 'number') {
     return { type: 'text', text: String(view) }
+  }
+  if (Array.isArray(view)) {
+    return { type: 'vstack', children: children(view) }
   }
   if (!isValidElement(view)) {
     throw new Error('Widget JSX needs a WidgetUI root')
@@ -115,6 +168,13 @@ function node(view: ReactNode): Node {
     style,
     ...props
   } = view.props as WidgetProps & ImageProps & ProgressProps & ShapeProps & LinkProps
+  checkStyle(style, (props as ShapeProps).fill)
+  if (
+    (props as ShapeProps).cornerRadius != null &&
+    typeof (props as ShapeProps).cornerRadius !== 'number'
+  ) {
+    throw new Error('WidgetUI cornerRadius must be a number')
+  }
   if (type === 'text') {
     const parts = Children.toArray(content)
     if (parts.some((part) => typeof part !== 'string' && typeof part !== 'number')) {
@@ -158,16 +218,29 @@ function node(view: ReactNode): Node {
 }
 
 function children(content: ReactNode): Node[] {
-  return Children.toArray(content).map(node)
+  const nodes: Node[] = []
+  for (const child of Children.toArray(content)) {
+    const next = node(child)
+    if (next) nodes.push(next)
+  }
+  return nodes
 }
 
 export function encodeWidgetView(view: ReactNode): string {
-  return JSON.stringify(node(view))
+  const root = node(view)
+  if (!root) {
+    throw new Error('Widget JSX needs a WidgetUI root')
+  }
+  return JSON.stringify(root)
 }
 
 export function encodeActivityView(view: ActivityView): string {
+  const lockScreen = node(view.lockScreen)
+  if (!lockScreen) {
+    throw new Error('Live Activity JSX needs a lockScreen layout')
+  }
   const encoded = JSON.stringify({
-    lockScreen: node(view.lockScreen),
+    lockScreen,
     compactLeading: view.compactLeading == null ? null : node(view.compactLeading),
     compactTrailing: view.compactTrailing == null ? null : node(view.compactTrailing),
     minimal: view.minimal == null ? null : node(view.minimal),
