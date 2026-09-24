@@ -154,6 +154,44 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
           : call
       }
       const expression = (template: string | undefined, value: string) => template?.replace('$value', value)
+      if (modifier.kind === 'phaseAnimation')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let config: OneNativeSDKPhaseAnimation = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode(OneNativeSDKPhaseAnimation.self, from: data),
+        decoded.phases.count >= 2, decoded.duration.isFinite, decoded.duration > 0,
+        decoded.phases.allSatisfy({ OneNativeSDKScalarEffect.valid(decoded.effect, $0) }) else {
+        preconditionFailure("invalid ${modifier.name}")
+      }
+      return decoded
+    }()
+    self.${modifier.sdkName ?? modifier.name}(config.phases) { content, phase in
+      content.modifier(OneNativeSDKScalarEffect(effect: config.effect, value: phase))
+    } animation: { _ in .easeInOut(duration: config.duration) }
+  }`
+      if (modifier.kind === 'keyframeAnimation')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let config: OneNativeSDKKeyframeAnimation = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode(OneNativeSDKKeyframeAnimation.self, from: data),
+        !decoded.frames.isEmpty,
+        OneNativeSDKScalarEffect.valid(decoded.effect, decoded.initialValue),
+        decoded.frames.allSatisfy({ OneNativeSDKScalarEffect.valid(decoded.effect, $0.value) &&
+          $0.duration.isFinite && $0.duration > 0 }) else {
+        preconditionFailure("invalid ${modifier.name}")
+      }
+      return decoded
+    }()
+    self.${modifier.sdkName ?? modifier.name}(initialValue: config.initialValue, repeating: config.repeating ?? true) { content, current in
+      content.modifier(OneNativeSDKScalarEffect(effect: config.effect, value: current))
+    } keyframes: { _ in
+      KeyframeTrack(\\.self) {
+        for frame in config.frames {
+          LinearKeyframe(frame.value, duration: frame.duration)
+        }
+      }
+    }
+  }`
       if (modifier.preferenceKey === 'OneNativeSDKRectAnchorKey')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.${modifier.sdkName ?? modifier.name}(key: OneNativeSDKRectAnchorKey.self, value: .bounds) ${modifier.preferenceOperation === 'transform'
@@ -990,6 +1028,12 @@ ${styleFields
 
 const colorFields = [${colorFields.map((field) => `'${field.name}'`).join(', ')}] as const
 const sdkKinds = ${JSON.stringify(Object.fromEntries(derived.map((modifier) => [modifier.name, modifier.kind])))} as const
+${derived.some((modifier) => modifier.kind === 'phaseAnimation' || modifier.kind === 'keyframeAnimation') ? `function validScalarEffect(effect: unknown, value: unknown): value is number {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return false
+  if (effect === 'opacity') return value >= 0 && value <= 1
+  return (effect === 'scale' || effect === 'blur') && value >= 0
+}
+` : ''}
 const sdkEventCases: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventEnum' || modifier.kind === 'eventEnumPair' || modifier.kind === 'eventReturnEnum' || modifier.kind === 'caseSet').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
 const sdkVisualEffects: Record<string, readonly string[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'visualEffect').map((modifier) => [modifier.name, modifier.cases!.map((item) => item.name)])))}
 const sdkOptionSets: Record<string, readonly { field: string; kind: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'optionSet').map((modifier) => [modifier.name, modifier.arguments!.map((argument) => ({ field: argument.field, kind: argument.kind }))])))}
@@ -1216,6 +1260,33 @@ function validTextRanges(value: unknown, text: string): value is OneNativeTextRa
               (item.gridlinePositions !== undefined && (!Array.isArray(item.gridlinePositions) ||
                 item.gridlinePositions.some((position) => typeof position !== 'number' || !Number.isFinite(position))))
           })) throw new Error(name + ' must contain finite axes and series points')
+        sdkModifiers.push([name, JSON.stringify(value)])
+        continue
+      }
+      if (kind === 'phaseAnimation') {
+        if (!value || typeof value !== 'object' || Array.isArray(value))
+          throw new Error(name + ' must be a scalar phase animation')
+        const config = value as Record<string, unknown>
+        if (!Array.isArray(config.phases) || config.phases.length < 2 ||
+          config.phases.some((phase) => !validScalarEffect(config.effect, phase)) ||
+          typeof config.duration !== 'number' || !Number.isFinite(config.duration) || config.duration <= 0)
+          throw new Error(name + ' must have finite phases and positive duration')
+        sdkModifiers.push([name, JSON.stringify(value)])
+        continue
+      }
+      if (kind === 'keyframeAnimation') {
+        if (!value || typeof value !== 'object' || Array.isArray(value))
+          throw new Error(name + ' must be a scalar keyframe animation')
+        const config = value as Record<string, unknown>
+        if (!validScalarEffect(config.effect, config.initialValue) ||
+          (config.repeating !== undefined && typeof config.repeating !== 'boolean') ||
+          !Array.isArray(config.frames) || !config.frames.length ||
+          config.frames.some((frame) => {
+            if (!frame || typeof frame !== 'object' || Array.isArray(frame)) return true
+            const item = frame as Record<string, unknown>
+            return !validScalarEffect(config.effect, item.value) ||
+              typeof item.duration !== 'number' || !Number.isFinite(item.duration) || item.duration <= 0
+          })) throw new Error(name + ' must have finite keyframes and positive durations')
         sdkModifiers.push([name, JSON.stringify(value)])
         continue
       }
@@ -1648,6 +1719,37 @@ ${derived.some((modifier) => modifier.preferenceKey === 'OneNativeSDKRectAnchorK
   static func reduce(value: inout Anchor<CGRect>?, nextValue: () -> Anchor<CGRect>?) {
     value = nextValue() ?? value
   }
+}` : ''}
+${derived.some((modifier) => modifier.kind === 'phaseAnimation' || modifier.kind === 'keyframeAnimation') ? `private struct OneNativeSDKScalarEffect: ViewModifier {
+  let effect: String
+  let value: Double
+
+  static func valid(_ effect: String, _ value: Double) -> Bool {
+    value.isFinite && (effect == "opacity" ? value >= 0 && value <= 1 :
+      (effect == "scale" || effect == "blur") && value >= 0)
+  }
+
+  @ViewBuilder func body(content: Content) -> some View {
+    if effect == "opacity" { content.opacity(value) }
+    else if effect == "scale" { content.scaleEffect(value) }
+    else { content.blur(radius: value) }
+  }
+}` : ''}
+${derived.some((modifier) => modifier.kind === 'phaseAnimation') ? `private struct OneNativeSDKPhaseAnimation: Codable, Sendable {
+  let effect: String
+  let phases: [Double]
+  let duration: Double
+}` : ''}
+${derived.some((modifier) => modifier.kind === 'keyframeAnimation') ? `private struct OneNativeSDKKeyframeAnimation: Codable, Sendable {
+  struct Frame: Codable, Sendable {
+    let value: Double
+    let duration: Double
+  }
+
+  let effect: String
+  let initialValue: Double
+  let frames: [Frame]
+  let repeating: Bool?
 }` : ''}
 ${derived.some((modifier) => modifier.kind === 'chartDescriptor') ? `private struct OneNativeSDKChartDescriptor: Codable, AXChartDescriptorRepresentable {
   struct Axis: Codable {

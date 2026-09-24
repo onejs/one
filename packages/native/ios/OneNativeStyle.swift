@@ -42,6 +42,37 @@ private struct OneNativeSDKRectAnchorKey: PreferenceKey {
     value = nextValue() ?? value
   }
 }
+private struct OneNativeSDKScalarEffect: ViewModifier {
+  let effect: String
+  let value: Double
+
+  static func valid(_ effect: String, _ value: Double) -> Bool {
+    value.isFinite && (effect == "opacity" ? value >= 0 && value <= 1 :
+      (effect == "scale" || effect == "blur") && value >= 0)
+  }
+
+  @ViewBuilder func body(content: Content) -> some View {
+    if effect == "opacity" { content.opacity(value) }
+    else if effect == "scale" { content.scaleEffect(value) }
+    else { content.blur(radius: value) }
+  }
+}
+private struct OneNativeSDKPhaseAnimation: Codable, Sendable {
+  let effect: String
+  let phases: [Double]
+  let duration: Double
+}
+private struct OneNativeSDKKeyframeAnimation: Codable, Sendable {
+  struct Frame: Codable, Sendable {
+    let value: Double
+    let duration: Double
+  }
+
+  let effect: String
+  let initialValue: Double
+  let frames: [Frame]
+  let repeating: Bool?
+}
 private struct OneNativeSDKChartDescriptor: Codable, AXChartDescriptorRepresentable {
   struct Axis: Codable {
     let title: String
@@ -590,6 +621,7 @@ extension View {
       case "keyboardShortcutWithKeyboardShortcut": view = AnyView(view.oneNativeSDKKeyboardShortcutWithKeyboardShortcut(value, emit: emit))
       case "keyboardShortcutWithOptionalKeyboardShortcut": view = AnyView(view.oneNativeSDKKeyboardShortcutWithOptionalKeyboardShortcut(value, emit: emit))
       case "keyboardType": view = AnyView(view.oneNativeSDKKeyboardType(value, emit: emit))
+      case "keyframeAnimator": view = AnyView(view.oneNativeSDKKeyframeAnimator(value, emit: emit))
       case "labeledContentStyle": view = AnyView(view.oneNativeSDKLabeledContentStyle(value, emit: emit))
       case "labelIconToTitleSpacing": view = AnyView(view.oneNativeSDKLabelIconToTitleSpacing(value, emit: emit))
       case "labelReservedIconWidth": view = AnyView(view.oneNativeSDKLabelReservedIconWidth(value, emit: emit))
@@ -706,6 +738,7 @@ extension View {
       case "payWithApplePayButtonDisableCardArt": view = AnyView(view.oneNativeSDKPayWithApplePayButtonDisableCardArt(value, emit: emit))
       case "payWithApplePayButtonStyle": view = AnyView(view.oneNativeSDKPayWithApplePayButtonStyle(value, emit: emit))
       case "persistentSystemOverlays": view = AnyView(view.oneNativeSDKPersistentSystemOverlays(value, emit: emit))
+      case "phaseAnimator": view = AnyView(view.oneNativeSDKPhaseAnimator(value, emit: emit))
       case "photosPicker": view = AnyView(view.oneNativeSDKPhotosPicker(value, emit: emit))
       case "photosPickerAccessoryVisibility": view = AnyView(view.oneNativeSDKPhotosPickerAccessoryVisibility(value, emit: emit))
       case "photosPickerDisabledCapabilities": view = AnyView(view.oneNativeSDKPhotosPickerDisabledCapabilities(value, emit: emit))
@@ -4869,6 +4902,29 @@ self
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKKeyframeAnimator(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let config: OneNativeSDKKeyframeAnimation = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode(OneNativeSDKKeyframeAnimation.self, from: data),
+        !decoded.frames.isEmpty,
+        OneNativeSDKScalarEffect.valid(decoded.effect, decoded.initialValue),
+        decoded.frames.allSatisfy({ OneNativeSDKScalarEffect.valid(decoded.effect, $0.value) &&
+          $0.duration.isFinite && $0.duration > 0 }) else {
+        preconditionFailure("invalid keyframeAnimator")
+      }
+      return decoded
+    }()
+    self.keyframeAnimator(initialValue: config.initialValue, repeating: config.repeating ?? true) { content, current in
+      content.modifier(OneNativeSDKScalarEffect(effect: config.effect, value: current))
+    } keyframes: { _ in
+      KeyframeTrack(\.self) {
+        for frame in config.frames {
+          LinearKeyframe(frame.value, duration: frame.duration)
+        }
+      }
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKLabeledContentStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -6230,6 +6286,21 @@ self
       case "hidden": self.persistentSystemOverlays(SwiftUI.Visibility.hidden)
     default: preconditionFailure("invalid persistentSystemOverlays: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPhaseAnimator(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let config: OneNativeSDKPhaseAnimation = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode(OneNativeSDKPhaseAnimation.self, from: data),
+        decoded.phases.count >= 2, decoded.duration.isFinite, decoded.duration > 0,
+        decoded.phases.allSatisfy({ OneNativeSDKScalarEffect.valid(decoded.effect, $0) }) else {
+        preconditionFailure("invalid phaseAnimator")
+      }
+      return decoded
+    }()
+    self.phaseAnimator(config.phases) { content, phase in
+      content.modifier(OneNativeSDKScalarEffect(effect: config.effect, value: phase))
+    } animation: { _ in .easeInOut(duration: config.duration) }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPhotosPicker(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

@@ -286,6 +286,13 @@ for (const modifier of derivedModifiers) {
         : modifier.kind === 'equatableKey'
         ? d.parameters.length === 0 && d.requirements?.includes('Self : Swift.Equatable') &&
           d.type === modifier.type
+        : modifier.kind === 'phaseAnimation'
+        ? d.parameters.length === 3 && d.parameters[0].type === modifier.type &&
+          d.parameters[1].type === '@escaping (SwiftUICore.PlaceholderContentView<Self>, Phase) -> some View'
+        : modifier.kind === 'keyframeAnimation'
+        ? d.parameters.length === 4 && d.parameters[0].type === modifier.type &&
+          d.parameters[1].label === 'repeating' &&
+          d.parameters[3].type === '@escaping (Value) -> some Keyframes<Value>'
         : modifier.textSelection
         ? d.parameters.length === 1 && d.parameters[0].type === modifier.type
         : modifier.zeroArgument

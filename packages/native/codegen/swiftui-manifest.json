@@ -8097,6 +8097,12 @@
       ]
     },
     {
+      "name": "keyframeAnimator",
+      "kind": "keyframeAnimation",
+      "type": "Value",
+      "ios": 17
+    },
+    {
       "name": "labeledContentStyle",
       "kind": "style",
       "type": "S",
@@ -11247,6 +11253,12 @@
           "ios": 15
         }
       ]
+    },
+    {
+      "name": "phaseAnimator",
+      "kind": "phaseAnimation",
+      "type": "some Sequence<Phase>",
+      "ios": 17
     },
     {
       "name": "photosPicker",
@@ -17636,6 +17648,7 @@
         "imageScale",
         "italic",
         "kerning",
+        "keyframeAnimator",
         "layerEffect",
         "layoutDirectionBehavior",
         "layoutPriority",
@@ -17662,6 +17675,7 @@
         "overlay",
         "overlayPreferenceValue",
         "padding",
+        "phaseAnimator",
         "position",
         "preference",
         "preferredColorScheme",
@@ -18165,6 +18179,7 @@
         "imageScale",
         "italic",
         "kerning",
+        "keyframeAnimator",
         "layerEffect",
         "layoutDirectionBehavior",
         "layoutPriority",
@@ -18190,6 +18205,7 @@
         "overlay",
         "overlayPreferenceValue",
         "padding",
+        "phaseAnimator",
         "position",
         "preference",
         "preferredColorScheme",

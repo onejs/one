@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'equatableKey' | 'chartDescriptor' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'transferSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint' | 'bindingTextSelection'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'equatableKey' | 'chartDescriptor' | 'phaseAnimation' | 'keyframeAnimation' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'transferSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint' | 'bindingTextSelection'
   ios: number
   type: string
   rawString?: true
@@ -715,6 +715,29 @@ export function deriveModifiers(
             { name: 'origin', value: { kind: 'point' } },
             { name: 'size', value: { kind: 'size' } },
           ] } }]
+      if (method.parameters.length === 3 &&
+        method.parameters[0].type === 'some Sequence<Phase>' &&
+        method.parameters[1].type === '@escaping (SwiftUICore.PlaceholderContentView<Self>, Phase) -> some View' &&
+        method.parameters[2].type === '@escaping (Phase) -> SwiftUICore.Animation?' &&
+        method.parameters[2].defaultValue !== undefined &&
+        method.requirements?.includes('Phase : Swift.Equatable'))
+        return [{ name, module: method.module, kind: 'phaseAnimation',
+          type: method.parameters[0].type, ios: ios(method), ...framework }]
+      const keyframeSignature = method.parameters.length === 4 &&
+        method.parameters[0].type === 'Value' &&
+        method.parameters[1].label === 'repeating' &&
+        method.parameters[1].type === 'Swift.Bool' &&
+        method.parameters[1].defaultValue !== undefined &&
+        method.parameters[2].type === '@escaping @Sendable (SwiftUICore.PlaceholderContentView<Self>, Value) -> some View' &&
+        method.parameters[3].type === '@escaping (Value) -> some Keyframes<Value>'
+      const linearKeyframe = keyframeSignature && inventory.find((declaration) =>
+        declaration.module === 'SwiftUICore' && declaration.owner === 'LinearKeyframe' &&
+        declaration.kind === 'init' && declaration.parameters[0]?.type === 'Value' &&
+        declaration.parameters[1]?.type === 'Foundation.TimeInterval' &&
+        present(declaration) && ios(declaration) <= ceiling)
+      if (linearKeyframe)
+        return [{ name, module: method.module, kind: 'keyframeAnimation',
+          type: method.parameters[0].type, ios: Math.max(ios(method), ios(linearKeyframe)), ...framework }]
       if (method.parameters.length === 0 &&
         method.requirements?.includes('Self : Swift.Equatable') &&
         method.type === `${method.module}.EquatableView<Self>`)

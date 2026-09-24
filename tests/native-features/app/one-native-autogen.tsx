@@ -42,6 +42,16 @@ export default function NativeAutogenProof() {
             />
             <Swift.Text text={transformedAnchorWidth === null ? 'Generated transformed anchor pending' : `Generated transformed anchor width ${Math.round(transformedAnchorWidth)}`} />
             <Swift.Text
+              text="Generated phase opacity"
+              swiftStyle={{ phaseAnimator: { effect: 'opacity', phases: [1, 0.25], duration: 0.5 } }}
+            />
+            <Swift.Text
+              text="Generated keyframe scale"
+              swiftStyle={{ keyframeAnimator: { effect: 'scale', initialValue: 1, frames: [
+                { value: 1.25, duration: 0.4 }, { value: 1, duration: 0.4 },
+              ] } }}
+            />
+            <Swift.Text
               text="Tap for a generated point event"
               swiftStyle={{ onTapGestureWithPerform: setTapPoint }}
             />
