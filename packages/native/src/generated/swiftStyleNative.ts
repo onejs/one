@@ -329,6 +329,7 @@ const sdkKinds = {
   keyboardShortcutWithKeyboardShortcut: 'string',
   keyboardShortcutWithOptionalKeyboardShortcut: 'optionalEnum',
   keyboardType: 'string',
+  keyframeAnimator: 'keyframeAnimation',
   labeledContentStyle: 'style',
   labelIconToTitleSpacing: 'number',
   labelReservedIconWidth: 'number',
@@ -446,6 +447,7 @@ const sdkKinds = {
   payWithApplePayButtonDisableCardArt: 'boolean',
   payWithApplePayButtonStyle: 'string',
   persistentSystemOverlays: 'string',
+  phaseAnimator: 'phaseAnimation',
   photosPicker: 'transferSelection',
   photosPickerAccessoryVisibility: 'record',
   photosPickerDisabledCapabilities: 'string',
@@ -649,6 +651,12 @@ const sdkKinds = {
   writingToolsBehavior: 'string',
   zIndex: 'number',
 } as const
+function validScalarEffect(effect: unknown, value: unknown): value is number {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return false
+  if (effect === 'opacity') return value >= 0 && value <= 1
+  return (effect === 'scale' || effect === 'blur') && value >= 0
+}
+
 const sdkEventCases: Record<string, readonly string[]> = {
   accessibilityAdjustableAction: ['increment', 'decrement'],
   accessibilityScrollAction: ['top', 'leading', 'bottom', 'trailing'],
@@ -2542,6 +2550,46 @@ export function swiftStyleNative(
           })
         )
           throw new Error(name + ' must contain finite axes and series points')
+        sdkModifiers.push([name, JSON.stringify(value)])
+        continue
+      }
+      if (kind === 'phaseAnimation') {
+        if (!value || typeof value !== 'object' || Array.isArray(value))
+          throw new Error(name + ' must be a scalar phase animation')
+        const config = value as Record<string, unknown>
+        if (
+          !Array.isArray(config.phases) ||
+          config.phases.length < 2 ||
+          config.phases.some((phase) => !validScalarEffect(config.effect, phase)) ||
+          typeof config.duration !== 'number' ||
+          !Number.isFinite(config.duration) ||
+          config.duration <= 0
+        )
+          throw new Error(name + ' must have finite phases and positive duration')
+        sdkModifiers.push([name, JSON.stringify(value)])
+        continue
+      }
+      if (kind === 'keyframeAnimation') {
+        if (!value || typeof value !== 'object' || Array.isArray(value))
+          throw new Error(name + ' must be a scalar keyframe animation')
+        const config = value as Record<string, unknown>
+        if (
+          !validScalarEffect(config.effect, config.initialValue) ||
+          (config.repeating !== undefined && typeof config.repeating !== 'boolean') ||
+          !Array.isArray(config.frames) ||
+          !config.frames.length ||
+          config.frames.some((frame) => {
+            if (!frame || typeof frame !== 'object' || Array.isArray(frame)) return true
+            const item = frame as Record<string, unknown>
+            return (
+              !validScalarEffect(config.effect, item.value) ||
+              typeof item.duration !== 'number' ||
+              !Number.isFinite(item.duration) ||
+              item.duration <= 0
+            )
+          })
+        )
+          throw new Error(name + ' must have finite keyframes and positive durations')
         sdkModifiers.push([name, JSON.stringify(value)])
         continue
       }

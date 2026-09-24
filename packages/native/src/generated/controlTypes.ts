@@ -2446,6 +2446,12 @@ export interface OneNativeStyle {
   keyboardShortcutWithKeyboardShortcut?: SDKKeyboardShortcutWithKeyboardShortcut
   keyboardShortcutWithOptionalKeyboardShortcut?: SDKKeyboardShortcutWithOptionalKeyboardShortcut | null
   keyboardType?: SDKKeyboardType
+  keyframeAnimator?: Readonly<{
+    effect: 'opacity' | 'scale' | 'blur'
+    initialValue: number
+    frames: readonly Readonly<{ value: number; duration: number }>[]
+    repeating?: boolean
+  }>
   labeledContentStyle?: SDKLabeledContentStyle
   labelIconToTitleSpacing?: number
   labelReservedIconWidth?: number
@@ -2806,6 +2812,11 @@ export interface OneNativeStyle {
   payWithApplePayButtonDisableCardArt?: boolean
   payWithApplePayButtonStyle?: SDKPayWithApplePayButtonStyle
   persistentSystemOverlays?: SDKPersistentSystemOverlays
+  phaseAnimator?: Readonly<{
+    effect: 'opacity' | 'scale' | 'blur'
+    phases: readonly number[]
+    duration: number
+  }>
   photosPicker?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
     onSelection: (url: string) => void

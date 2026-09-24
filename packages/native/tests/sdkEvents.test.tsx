@@ -16,6 +16,23 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('encodes numeric phase and keyframe animations and rejects invalid values', () => {
+    const phaseAnimator = { effect: 'opacity' as const, phases: [1, 0.4, 1], duration: 0.25 }
+    const keyframeAnimator = { effect: 'scale' as const, initialValue: 1,
+      frames: [{ value: 1.2, duration: 0.25 }, { value: 1, duration: 0.25 }], repeating: true }
+    const element = Controls.Text({ text: 'animate', swiftStyle: { phaseAnimator, keyframeAnimator } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['phaseAnimator', JSON.stringify(phaseAnimator)],
+      ['keyframeAnimator', JSON.stringify(keyframeAnimator)],
+    ])
+    expect(() => Controls.Text({ text: 'animate', swiftStyle: {
+      phaseAnimator: { effect: 'opacity', phases: [1, 1.5], duration: 0.25 },
+    } })).toThrow('phaseAnimator must have finite phases and positive duration')
+    expect(() => Controls.Text({ text: 'animate', swiftStyle: {
+      keyframeAnimator: { effect: 'scale', initialValue: 1, frames: [{ value: 1.2, duration: -1 }] },
+    } })).toThrow('keyframeAnimator must have finite keyframes and positive durations')
+  })
+
   it('delivers resolved anchor rectangles through both preference modifiers', () => {
     const anchor = vi.fn()
     const transformed = vi.fn()
