@@ -49,6 +49,7 @@ export type DerivedModifier = {
   eventInputType?: string
   resultType?: string
   selectionMember?: string
+  selectionInputIndex?: number
   resultConstructor?: { type: string; label: string }
   eventPair?: true
   eventInputs?: readonly string[]
@@ -942,23 +943,40 @@ export function deriveModifiers(
       }
       if (method.parameters.length === 2) {
         const [predicate, signer] = method.parameters
-        const booleanInputs = /^@escaping \((.+)\) -> Swift\.Bool$/.exec(predicate.type)?.[1]
+        const decisionClosure = /^@escaping \((.+)\) -> (Swift\.Bool|[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+\?)$/.exec(predicate.type)
         const stringInputs = /^@escaping \((.+)\) async throws -> Swift\.String$/.exec(signer.type)?.[1]
         const parseInputs = (inputs: string | undefined) => inputs?.split(', ').map((part) =>
           /^_ ([A-Za-z_]\w*): ([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)$/.exec(part))
-        const decision = parseInputs(booleanInputs)
+        const decision = parseInputs(decisionClosure?.[1])
         const signing = parseInputs(stringInputs)
+        const booleanDecision = decisionClosure?.[2] === 'Swift.Bool'
+        const selectedType = booleanDecision ? undefined : decisionClosure?.[2].slice(0, -1)
+        const possibleSelections = selectedType && decision?.every(Boolean) && signing?.every(Boolean) &&
+          signing.length === decision.length + 1 && signing.at(-1)![2] === selectedType &&
+          inventory.some((declaration) => declaration.kind === 'var' && declaration.name === 'id' &&
+            declaration.owner === selectedType && ['Swift.String', 'Swift.String?'].includes(declaration.type ?? '') &&
+            present(declaration) && ios(declaration) <= ceiling)
+          ? decision.flatMap((input, index) => inventory.filter((declaration) =>
+            declaration.kind === 'var' && declaration.owner === input![2] &&
+            declaration.type === `[${selectedType}]` && present(declaration) && ios(declaration) <= ceiling)
+            .map((member) => ({ member, index }))) : []
+        const namedSelections = possibleSelections.filter(({ member }) =>
+          member.name === `${signing?.at(-1)?.[1]}s`)
+        const selection = namedSelections.length === 1 ? namedSelections[0]
+          : possibleSelections.length === 1 ? possibleSelections[0] : undefined
         if (predicate.label !== '_' && signer.label !== '_' && decision?.length &&
-          signing?.length === decision.length && decision.every(Boolean) && signing.every(Boolean) &&
+          signing && decision.every(Boolean) && signing.every(Boolean) &&
+          (booleanDecision && signing.length === decision.length || selection) &&
           decision.every((input, index) => input![2] === signing[index]![2])) {
           const values = signing.map((input) => eventValueOf(input![2], ios(method)))
           if (values.every(Boolean))
             return [{ name, module: method.module, kind: 'eventAsyncString', type: signer.type,
               predicateLabel: predicate.label, callbackLabel: signer.label,
+              ...(selection ? { selectionMember: selection.member.name, selectionInputIndex: selection.index } : {}),
               eventInputs: signing.map((input) => input![1]),
               eventValue: { kind: 'object', fields: signing.map((input, index) =>
                 ({ name: input![1], value: values[index]! })) },
-              ios: ios(method), ...framework }]
+              ios: selection ? Math.max(ios(method), ios(selection.member)) : ios(method), ...framework }]
         }
       }
       const asyncAction = method.parameters.find((parameter) =>

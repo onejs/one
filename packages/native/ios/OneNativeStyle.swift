@@ -598,6 +598,7 @@ extension View {
       case "subscriptionOfferViewButtonVisibility": view = AnyView(view.oneNativeSDKSubscriptionOfferViewButtonVisibility(value, emit: emit))
       case "subscriptionOfferViewDetailAction": view = AnyView(view.oneNativeSDKSubscriptionOfferViewDetailAction(value, emit: emit))
       case "subscriptionOfferViewStyle": view = AnyView(view.oneNativeSDKSubscriptionOfferViewStyle(value, emit: emit))
+      case "subscriptionPromotionalOffer": view = AnyView(view.oneNativeSDKSubscriptionPromotionalOffer(value, emit: emit))
       case "subscriptionStatusTask": view = AnyView(view.oneNativeSDKSubscriptionStatusTask(value, emit: emit))
       case "subscriptionStoreButtonLabel": view = AnyView(view.oneNativeSDKSubscriptionStoreButtonLabel(value, emit: emit))
       case "subscriptionStoreControlBackground": view = AnyView(view.oneNativeSDKSubscriptionStoreControlBackground(value, emit: emit))
@@ -7398,6 +7399,16 @@ self
       case "compact": if #available(iOS 26, *) { self.subscriptionOfferViewStyle(.compact) } else { self }
     default: preconditionFailure("invalid subscriptionOfferViewStyle: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSubscriptionPromotionalOffer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let selected = value
+    if #available(iOS 26, *) { self.subscriptionPromotionalOffer(offer: { product, subscriptionInfo in subscriptionInfo.promotionalOffers.first { $0.id == selected } }, compactJWS: { product, subscriptionInfo, promotionalOffer in
+      let payload = (["product": (["id": product.id, "type": (["rawValue": product.type.rawValue] as [String: Any]), "displayName": product.displayName, "description": product.description, "displayPrice": product.displayPrice, "isFamilyShareable": product.isFamilyShareable] as [String: Any]), "subscriptionInfo": (["subscriptionGroupID": subscriptionInfo.subscriptionGroupID] as [String: Any]), "promotionalOffer": (["id": (promotionalOffer.id.map { inner -> Any in inner } ?? NSNull()), "type": (["rawValue": promotionalOffer.type.rawValue] as [String: Any]), "displayPrice": promotionalOffer.displayPrice, "periodCount": Double(promotionalOffer.periodCount), "paymentMode": (["rawValue": promotionalOffer.paymentMode.rawValue] as [String: Any])] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid subscriptionPromotionalOffer async string event") }
+      return try await OneNativeAsyncAction.waitForString(name: "subscriptionPromotionalOffer", value: encoded, emit: emit)
+    }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStatusTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

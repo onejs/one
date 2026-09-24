@@ -345,6 +345,26 @@ describe('SDK callback and binding transport', () => {
       'Error: subscriptionIntroductoryOffer emitted an invalid async string value')
   })
 
+  it('selects a promotional offer by ID and returns its signed JWS', async () => {
+    completeAsyncString.mockClear()
+    const compactJWS = vi.fn(async () => 'promotional-jws')
+    const element = Controls.Text({ text: 'promotion', swiftStyle: {
+      subscriptionPromotionalOffer: { offer: 'summer', compactJWS },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['subscriptionPromotionalOffer', 'summer'],
+    ])
+    const product = { id: 'monthly', type: { rawValue: 'autoRenewable' }, displayName: 'Monthly',
+      description: 'Plan', displayPrice: '$5', isFamilyShareable: false }
+    const subscriptionInfo = { subscriptionGroupID: 'pro' }
+    const promotionalOffer = { id: 'summer', type: { rawValue: 'promotional' }, displayPrice: '$3',
+      periodCount: 3, paymentMode: { rawValue: 'payAsYouGo' } }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'subscriptionPromotionalOffer',
+      value: JSON.stringify({ id: 'promo-1', value: JSON.stringify({ product, subscriptionInfo, promotionalOffer }) }) } })
+    await vi.waitFor(() => expect(compactJWS).toHaveBeenCalledWith({ product, subscriptionInfo, promotionalOffer }))
+    await vi.waitFor(() => expect(completeAsyncString).toHaveBeenCalledWith('promo-1', 'promotional-jws', null))
+  })
+
   it('passes a purchase result through the async callback and rejects malformed cases', async () => {
     completeAsyncAction.mockClear()
     let finish!: () => void

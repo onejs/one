@@ -515,6 +515,37 @@ describe('SDK modifier derivation', () => {
       ] },
     }])
   })
+
+  it('selects a public SDK offer for an async string signing callback', () => {
+    const product = 'StoreKit.Product'
+    const info = 'StoreKit.Product.SubscriptionInfo'
+    const offer = 'StoreKit.Product.SubscriptionOffer'
+    const asyncType = `@escaping (_ product: ${product}, _ subscriptionInfo: ${info}, _ promotionalOffer: ${offer}) async throws -> Swift.String`
+    expect(deriveModifiers([
+      method('subscriptionPromotionalOffer', '_StoreKit_SwiftUI', [
+        { label: 'offer', name: 'offer', type: `@escaping (_ product: ${product}, _ subscriptionInfo: ${info}) -> ${offer}?` },
+        { label: 'compactJWS', name: 'compactJWS', type: asyncType },
+      ]),
+      { ...method('Product', 'StoreKit'), kind: 'struct', owner: '' },
+      { ...method('id', 'StoreKit'), kind: 'var', owner: product, type: 'Swift.String', stored: true },
+      { ...method('SubscriptionInfo', 'StoreKit'), kind: 'struct', owner: product },
+      { ...method('subscriptionGroupID', 'StoreKit'), kind: 'var', owner: info, type: 'Swift.String', stored: true },
+      { ...method('promotionalOffers', 'StoreKit'), kind: 'var', owner: info, type: `[${offer}]`, stored: true },
+      { ...method('winBackOffers', 'StoreKit'), kind: 'var', owner: info, type: `[${offer}]`, stored: true },
+      { ...method('SubscriptionOffer', 'StoreKit'), kind: 'struct', owner: product },
+      { ...method('id', 'StoreKit'), kind: 'var', owner: offer, type: 'Swift.String?', stored: true },
+    ], 27, [])).toEqual([{
+      name: 'subscriptionPromotionalOffer', kind: 'eventAsyncString', type: asyncType,
+      ios: 0, framework: 'StoreKit', predicateLabel: 'offer', callbackLabel: 'compactJWS',
+      selectionMember: 'promotionalOffers', selectionInputIndex: 1,
+      eventInputs: ['product', 'subscriptionInfo', 'promotionalOffer'],
+      eventValue: { kind: 'object', fields: [
+        { name: 'product', value: { kind: 'object', fields: [{ name: 'id', value: { kind: 'string' } }] } },
+        { name: 'subscriptionInfo', value: { kind: 'object', fields: [{ name: 'subscriptionGroupID', value: { kind: 'string' } }] } },
+        { name: 'promotionalOffer', value: { kind: 'object', fields: [{ name: 'id', value: { kind: 'optional', value: { kind: 'string' } } }] } },
+      ] },
+    }])
+  })
 })
 
 describe('SDK view slots', () => {

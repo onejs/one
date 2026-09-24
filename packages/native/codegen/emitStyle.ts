@@ -502,12 +502,18 @@ ${modifier.arguments.map((argument, index) => argument.kind === 'stringArray'
         const fields = modifier.eventValue!.kind === 'object' ? modifier.eventValue!.fields : []
         const payload = `([${fields.map((field, index) =>
           `${JSON.stringify(field.name)}: ${eventValueSwift(field.value, inputs[index])}`).join(', ')}] as [String: Any])`
-        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    let enabled: Bool = {
+        const decision = modifier.selectionMember
+          ? `let selected = value`
+          : `let enabled: Bool = {
       guard value == "true" || value == "false" else { preconditionFailure("invalid ${modifier.name}: \\(value)") }
       return value == "true"
-    }()
-    ${apply(`${modifier.predicateLabel}: { ${inputs.map(() => '_').join(', ')} in enabled }, ${modifier.callbackLabel}: { ${inputs.join(', ')} in
+    }()`
+        const predicate = modifier.selectionMember
+          ? `{ ${inputs.slice(0, -1).join(', ')} in ${inputs[modifier.selectionInputIndex!]}.${modifier.selectionMember}.first { $0.id == selected } }`
+          : `{ ${inputs.map(() => '_').join(', ')} in enabled }`
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    ${decision}
+    ${apply(`${modifier.predicateLabel}: ${predicate}, ${modifier.callbackLabel}: { ${inputs.join(', ')} in
       let payload = ${payload}
       guard let data = try? JSONSerialization.data(withJSONObject: payload),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} async string event") }
@@ -783,7 +789,7 @@ export type SDKEventValueShape =
 const sdkAssociatedCases: Record<string, Record<string, readonly SDKEventValueShape[]>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAssociatedEnum').map((modifier) => [modifier.name, Object.fromEntries(modifier.associatedCases!.map((item) => [item.name, item.values]))])))}
 const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct' || modifier.kind === 'eventAsyncStruct' || modifier.kind === 'eventAsyncString' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.eventValue])))}
 const sdkAsyncArguments: Record<string, readonly { field: string; kind: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAsyncStruct' && modifier.arguments?.length).map((modifier) => [modifier.name, modifier.arguments!.map((argument) => ({ field: argument.field, kind: argument.kind }))])))}
-const sdkAsyncStringFields: Record<string, { predicate: string; callback: string }> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAsyncString').map((modifier) => [modifier.name, { predicate: modifier.predicateLabel, callback: modifier.callbackLabel }]))) }
+const sdkAsyncStringFields: Record<string, { predicate: string; callback: string; selects: boolean }> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAsyncString').map((modifier) => [modifier.name, { predicate: modifier.predicateLabel, callback: modifier.callbackLabel, selects: Boolean(modifier.selectionMember) }]))) }
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'gesture').map((modifier) => [modifier.name, Object.fromEntries(modifier.gestureOptions!.map((option) => [option.name, option.eventValue ?? null]))])))}
 const sdkCodableOptional: Record<string, boolean> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'bindingCodable').map((modifier) => [modifier.name, modifier.type.endsWith('?')]))) }
 const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; unique?: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, unique, fields, eventValue }) => ({ field, kind, optional, ...(unique ? { unique } : {}), ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
@@ -955,9 +961,9 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
       if (kind === 'eventAsyncString') {
         const fields = sdkAsyncStringFields[name]
         if (!value || typeof value !== 'object' || Array.isArray(value) ||
-          typeof (value as Record<string, unknown>)[fields.predicate] !== 'boolean' ||
+          typeof (value as Record<string, unknown>)[fields.predicate] !== (fields.selects ? 'string' : 'boolean') ||
           typeof (value as Record<string, unknown>)[fields.callback] !== 'function')
-          throw new Error(name + ' must be an async string callback and Boolean decision')
+          throw new Error(name + ' must be an async string callback and SDK decision')
         sdkModifiers.push([name, String((value as Record<string, unknown>)[fields.predicate])])
         continue
       }

@@ -533,6 +533,7 @@ const sdkKinds = {
   subscriptionOfferViewButtonVisibility: 'record',
   subscriptionOfferViewDetailAction: 'event',
   subscriptionOfferViewStyle: 'style',
+  subscriptionPromotionalOffer: 'eventAsyncString',
   subscriptionStatusTask: 'eventAsyncStruct',
   subscriptionStoreButtonLabel: 'string',
   subscriptionStoreControlBackground: 'string',
@@ -1134,6 +1135,63 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
       },
     ],
   },
+  subscriptionPromotionalOffer: {
+    kind: 'object',
+    fields: [
+      {
+        name: 'product',
+        value: {
+          kind: 'object',
+          fields: [
+            { name: 'id', value: { kind: 'string' } },
+            {
+              name: 'type',
+              value: {
+                kind: 'object',
+                fields: [{ name: 'rawValue', value: { kind: 'string' } }],
+              },
+            },
+            { name: 'displayName', value: { kind: 'string' } },
+            { name: 'description', value: { kind: 'string' } },
+            { name: 'displayPrice', value: { kind: 'string' } },
+            { name: 'isFamilyShareable', value: { kind: 'boolean' } },
+          ],
+        },
+      },
+      {
+        name: 'subscriptionInfo',
+        value: {
+          kind: 'object',
+          fields: [{ name: 'subscriptionGroupID', value: { kind: 'string' } }],
+        },
+      },
+      {
+        name: 'promotionalOffer',
+        value: {
+          kind: 'object',
+          fields: [
+            { name: 'id', value: { kind: 'optional', value: { kind: 'string' } } },
+            {
+              name: 'type',
+              value: {
+                kind: 'object',
+                fields: [{ name: 'rawValue', value: { kind: 'string' } }],
+              },
+            },
+            { name: 'displayPrice', value: { kind: 'string' } },
+            { name: 'periodCount', value: { kind: 'number' } },
+            {
+              name: 'paymentMode',
+              value: {
+                kind: 'object',
+                fields: [{ name: 'rawValue', value: { kind: 'string' } }],
+              },
+            },
+          ],
+        },
+      },
+    ],
+  },
   subscriptionStatusTask: {
     kind: 'associatedEnum',
     cases: [
@@ -1192,8 +1250,20 @@ const sdkAsyncArguments: Record<string, readonly { field: string; kind: string }
   storeProductTask: [{ field: 'id', kind: 'string' }],
   subscriptionStatusTask: [{ field: 'groupID', kind: 'string' }],
 }
-const sdkAsyncStringFields: Record<string, { predicate: string; callback: string }> = {
-  subscriptionIntroductoryOffer: { predicate: 'applyOffer', callback: 'compactJWS' },
+const sdkAsyncStringFields: Record<
+  string,
+  { predicate: string; callback: string; selects: boolean }
+> = {
+  subscriptionIntroductoryOffer: {
+    predicate: 'applyOffer',
+    callback: 'compactJWS',
+    selects: false,
+  },
+  subscriptionPromotionalOffer: {
+    predicate: 'offer',
+    callback: 'compactJWS',
+    selects: true,
+  },
 }
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = {
   gesture: {
@@ -2337,10 +2407,11 @@ export function swiftStyleNative(
           !value ||
           typeof value !== 'object' ||
           Array.isArray(value) ||
-          typeof (value as Record<string, unknown>)[fields.predicate] !== 'boolean' ||
+          typeof (value as Record<string, unknown>)[fields.predicate] !==
+            (fields.selects ? 'string' : 'boolean') ||
           typeof (value as Record<string, unknown>)[fields.callback] !== 'function'
         )
-          throw new Error(name + ' must be an async string callback and Boolean decision')
+          throw new Error(name + ' must be an async string callback and SDK decision')
         sdkModifiers.push([
           name,
           String((value as Record<string, unknown>)[fields.predicate]),
