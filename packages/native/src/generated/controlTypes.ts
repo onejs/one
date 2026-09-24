@@ -2728,6 +2728,7 @@ export interface OneNativeStyle {
   onPreferenceChangePreferredColorScheme?: (
     value: 'light' | 'dark' | 'unknown' | null
   ) => void
+  onReceive?: Readonly<{ name: string; onAction: () => void }>
   onScrollGeometryChangeWithContainerSize?: (value: {
     oldValue: { width: number; height: number }
     newValue: { width: number; height: number }

@@ -562,6 +562,17 @@ describe('SDK modifier derivation', () => {
       ] },
     }])
   })
+
+  it('specializes a native notification publisher for a generic receive callback', () => {
+    expect(deriveModifiers([
+      { ...method('onReceive', 'SwiftUI', [
+        { label: '_', name: 'publisher', type: 'P' },
+        { label: 'perform', name: 'action', type: '@escaping (P.Output) -> Swift.Void' },
+      ]), requirements: ['P : Combine.Publisher', 'P.Failure == Swift.Never'] },
+    ], 27, [])).toEqual([{
+      name: 'onReceive', kind: 'eventNotification', type: 'P', ios: 0,
+    }])
+  })
 })
 
 describe('SDK view slots', () => {

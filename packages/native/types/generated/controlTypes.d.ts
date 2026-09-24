@@ -1583,6 +1583,10 @@ export interface OneNativeStyle {
         values: readonly [];
     }) => void;
     onPreferenceChangePreferredColorScheme?: (value: 'light' | 'dark' | 'unknown' | null) => void;
+    onReceive?: Readonly<{
+        name: string;
+        onAction: () => void;
+    }>;
     onScrollGeometryChangeWithContainerSize?: (value: {
         oldValue: {
             width: number;

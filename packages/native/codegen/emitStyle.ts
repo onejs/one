@@ -497,6 +497,10 @@ ${modifier.cases!.map((item) => `      case ${JSON.stringify(item.name)}: return
       return accepted
     }`, modifier.ios, true)}
   }`
+      if (modifier.kind === 'eventNotification')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    ${apply(`NotificationCenter.default.publisher(for: Notification.Name(value)), perform: { _ in emit(${JSON.stringify(modifier.name)}, "") }`, modifier.ios, true)}
+  }`
       if (modifier.kind === 'eventAsyncStruct')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     ${modifier.arguments?.length ? `let decoded: [String] = {
@@ -999,6 +1003,14 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
         sdkModifiers.push([name, JSON.stringify(record.of)])
         continue
       }
+      if (kind === 'eventNotification') {
+        const record = value as { name?: unknown; onAction?: unknown } | undefined
+        if (!record || typeof record.name !== 'string' || !record.name ||
+          typeof record.onAction !== 'function')
+          throw new Error(name + ' must have a notification name and an onAction callback')
+        sdkModifiers.push([name, record.name])
+        continue
+      }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite')
       if (kind === 'optionalNumber' && value !== null && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite or null')
       if ((kind === 'boolean' || kind === 'defaultFocusBoolean') && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
@@ -1203,6 +1215,10 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
       throw new Error(name + ' emitted an invalid drop value')
     ;(modifier as { onDrop: (value: unknown) => void } | undefined)?.onDrop(payload)
   }
+  else if (kind === 'eventNotification') {
+    if (value !== '') throw new Error(name + ' emitted an invalid notification event')
+    ;(modifier as { onAction: () => void } | undefined)?.onAction()
+  }
   else if (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean') {
     if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid boolean')
     ;(modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(value === 'true')
@@ -1258,6 +1274,7 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
     header +
       `import SwiftUI
 import UIKit
+import Combine
 ${frameworkImports.map((framework) => `import ${framework}`).join('\n')}
 
 ${derived.some((modifier) => modifier.namespaceParameter) ? 'private enum OneNativeNamespace { static let id = Namespace().wrappedValue }\n' : ''}
