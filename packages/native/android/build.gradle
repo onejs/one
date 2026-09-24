@@ -45,6 +45,9 @@ def oneNativePushEnabled() {
 android {
     namespace "dev.vxrn.nativebridge"
     compileSdkVersion safeExtGet("compileSdkVersion", 35)
+    // the app packages libc++_shared from its own ndk; compiling against a
+    // newer default ndk links symbols that library lacks and fails to load.
+    ndkVersion rootProject.ext.ndkVersion
 
     defaultConfig {
         minSdkVersion safeExtGet("minSdkVersion", 23)
