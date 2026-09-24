@@ -1385,3 +1385,36 @@ describe('ios widgets', () => {
     expect(appEntitlements).toContain('group.dev.one.myapp')
   }, 180000)
 })
+
+describe('swift cxx interop', () => {
+  it('emits cxx flags for swift packages', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-swift-cxx-'))
+    const workspaceModules = fileURLToPath(
+      new URL('../../../../node_modules', import.meta.url)
+    )
+    mkdirSync(join(root, 'node_modules', '@react-native-community'), { recursive: true })
+    const { symlinkSync } = await import('node:fs')
+    for (const name of ['cli', 'template']) {
+      symlinkSync(
+        join(workspaceModules, '@react-native-community', name),
+        join(root, 'node_modules', '@react-native-community', name)
+      )
+    }
+    const pkgDir = join(root, 'MyFeature')
+    mkdirSync(join(pkgDir, 'Sources'), { recursive: true })
+    writeFileSync(join(pkgDir, 'Package.swift'), '// swift-tools-version: 5.9\n')
+    writeFileSync(
+      join(pkgDir, 'Sources', 'Feature.swift'),
+      'import VxrnNative\npublic func probe() { OneNativeRegisteredValue.register("x", for: "x") }\n'
+    )
+    await generateForPlatform(root, 'ios', app)
+    const podspec = readFileSync(
+      join(root, 'ios', 'OneSwiftPackages', 'MyFeature', 'MyFeature.podspec'),
+      'utf8'
+    )
+    expect(podspec).toContain(
+      '$(inherited) -cxx-interoperability-mode=default -Xcc -std=c++20'
+    )
+    expect(podspec).toContain('-Xfrontend -import-module -Xfrontend VxrnNative')
+  }, 180000)
+})
