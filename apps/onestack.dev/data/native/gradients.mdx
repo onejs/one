@@ -1,0 +1,31 @@
+---
+title: Gradients
+description: Linear gradients through the React Native backgroundImage style
+---
+
+Gradients use the React Native 0.87 `backgroundImage` style prop with linear
+gradients. No extra component is needed.
+
+```tsx
+import { View } from 'react-native'
+
+<View
+  style={{
+    backgroundImage: [
+      {
+        type: 'linear-gradient',
+        direction: 'to bottom',
+        colorStops: [
+          { color: 'rgba(0,0,0,1)', positions: ['0%'] },
+          { color: 'rgba(0,0,0,0)', positions: ['100%'] },
+        ],
+      },
+    ],
+  }}
+/>
+```
+
+One's own `EdgeFade` overlay mode paints this exact shape, sampling its edge
+curve into gradient stops. See `packages/native/src/effects/EdgeFade.native.tsx`
+for the prior art. The stable `backgroundImage` key needs React Native 0.87;
+0.86 only processes the experimental alias.

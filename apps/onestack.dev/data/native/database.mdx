@@ -1,0 +1,18 @@
+---
+title: Database
+description: SQLite through OP SQLite on iOS and Android
+---
+
+`One.Database` exposes OP SQLite's synchronous and asynchronous database opens
+on iOS and Android. Zero apps can use its existing `@rocicorp/zero/op-sqlite`
+store provider for the local sync database.
+
+```tsx
+import { One } from 'one'
+
+const db = One.Database.open({ name: 'app.sqlite' })
+const rows = db.executeSync('SELECT * FROM notes').rows
+```
+
+`@op-engineering/op-sqlite` ships with `@vxrn/native`, so no extra install
+is needed.

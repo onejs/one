@@ -1,0 +1,74 @@
+---
+title: WebGPU
+description: GPU rendering through react-native-webgpu
+---
+
+One ships no GL view. The blessed GPU surface on native is
+`react-native-webgpu`, which vendors Dawn on iOS and Android and exposes
+the web `navigator.gpu` API plus a `Canvas` component: raw WebGPU,
+TypeGPU, or three.js all build on it, and nothing else is needed.
+
+Three.js runs through `three/webgpu` with `WebGPURenderer`, including
+under React Three Fiber. R3F mounts through `createRoot` on the webgpu
+canvas. Do not use `@react-three/fiber/native`, which requires `expo-gl`:
+
+```tsx
+import { Canvas, useCanvasRef } from 'react-native-webgpu'
+import * as THREE from 'three/webgpu'
+import { createRoot, events, extend } from '@react-three/fiber'
+
+// inside a component, once layout has a nonzero size:
+const ref = useCanvasRef()
+extend(THREE)
+const context = ref.current.getContext('webgpu')
+const renderer = new THREE.WebGPURenderer({ canvas: context.canvas, context })
+await renderer.init()
+const renderFrame = renderer.render.bind(renderer)
+renderer.render = (scene, camera) => {
+  renderFrame(scene, camera)
+  context.present()
+}
+const root = createRoot(context.canvas)
+root.configure({ size, events, gl: renderer, frameloop: 'always', dpr: 1 })
+root.render(<Scene />)
+
+// and render the surface itself:
+<Canvas ref={ref} style={{ flex: 1 }} />
+```
+
+Every frame ends with `context.present()`. On unmount, call
+`setAnimationLoop(null)` and `dispose()` on the renderer: R3F's unmount alone
+never stops three's internal frame loop.
+
+One three instance must serve the whole graph. On native, bare `three`
+resolves to the `three/webgpu` build and `@react-three/fiber` to its web
+entry, while web keeps WebGL three. The [`alias`](/docs/configuration#alias)
+option's `native` map does this:
+
+```ts
+import { createRequire } from 'node:module'
+import { one } from 'one/vite'
+
+const require = createRequire(import.meta.url)
+
+export default {
+  plugins: [
+    one({
+      alias: {
+        native: {
+          three: require.resolve('three/webgpu'),
+          '@react-three/fiber': require.resolve(
+            '@react-three/fiber/dist/react-three-fiber.esm.js'
+          ),
+        },
+      },
+    }),
+  ],
+}
+```
+
+Metro mode does not apply One's aliases, so R3F on WebGPU needs the default
+bundler. `WebGPURenderer` runs no GLSL: `ShaderMaterial` and
+`onBeforeCompile` do not work under it. Use node materials, or bake static
+gradients into vertex colors or `DataTexture`s. `PMREMGenerator.fromScene`
+works; `compileEquirectangularShader` does not exist on this backend.

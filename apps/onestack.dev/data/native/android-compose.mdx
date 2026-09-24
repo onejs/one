@@ -1,0 +1,37 @@
+---
+title: Android Compose
+description: Jetpack Compose views under One.Android
+---
+
+Jetpack Compose views under `One.Android`. Containers take children;
+`Text`, `Icon`, `Button`, `Switch`, `TextField`, `Slider`, `AlertDialog`,
+and `ProgressIndicator` are leaves and reject children. A node nested in a
+Compose tree styles through `composeStyle`; `style` applies only at the root
+of the tree.
+
+| Component | Key props |
+|-----------|-----------|
+| `Column` | `horizontalAlignment`, `verticalArrangement`, `spacing` |
+| `Row` | `verticalAlignment`, `horizontalArrangement`, `spacing` |
+| `Box` | `contentAlignment` |
+| `Text` | `text`, `fontSize`, `fontWeight`, `textAlign`, `maxLines` |
+| `Icon` | `name`, `size` (default 24), `filled` |
+| `Button` | `label`, `variant` (`filled`, `outlined`, `text`), `tone` (`default`, `danger`), `icon`, `iconFilled`, `onPress` |
+| `Switch` | `isOn`, `onIsOnChange`, `label` |
+| `TextField` | `text` (string or native state), `onTextChange`, `label`, `placeholder`, `variant` (`filled`, `outlined`), `keyboardType`, `secureText`, `focused`, `onFocusChange`, `imeAction`, `onSubmit`, `maxLength`, `multiline`, `capitalization`, `autoCorrect`, `textAlign` |
+| `Slider` | `value`, `onValueChange`, `minimumValue`, `maximumValue`, `step` |
+| `AlertDialog` | `visible`, `title`, `message`, `confirmLabel`, `dismissLabel`, `onConfirm`, `onDismiss` |
+| `Dialog` | `visible`, `onDismiss` |
+| `ProgressIndicator` | `variant` (`linear` or `circular`), `progress` |
+
+```tsx
+import { One } from 'one'
+
+<One.Android.Column spacing={12}>
+  <One.Android.Text text="Airplane mode" />
+  <One.Android.Switch isOn={on} onIsOnChange={setOn} />
+</One.Android.Column>
+```
+
+`One.Android` components throw when rendered outside an Android build, so keep
+those branches behind platform checks.
