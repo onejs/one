@@ -3599,6 +3599,13 @@
       ]
     },
     {
+      "name": "containerValue",
+      "kind": "registeredValue",
+      "type": "Swift.WritableKeyPath<SwiftUICore.ContainerValues, V>",
+      "registeredFactory": "containerValue",
+      "ios": 18
+    },
+    {
       "name": "contentMarginsWithEdgesAndLengthAndPlacement",
       "module": "SwiftUI",
       "kind": "record",
@@ -8289,6 +8296,13 @@
       "kind": "number",
       "type": "Swift.Double",
       "ios": 13
+    },
+    {
+      "name": "layoutValue",
+      "kind": "registeredValue",
+      "type": "K.Type",
+      "registeredFactory": "layoutValue",
+      "ios": 16
     },
     {
       "name": "lineHeight",
@@ -17711,6 +17725,7 @@
         "containerCornerOffset",
         "containerRelativeFrame",
         "containerShape",
+        "containerValue",
         "contentShape",
         "contentTransition",
         "contrast",
@@ -17754,6 +17769,7 @@
         "layerEffect",
         "layoutDirectionBehavior",
         "layoutPriority",
+        "layoutValue",
         "lineHeight",
         "lineLimit",
         "lineSpacing",
@@ -18256,6 +18272,7 @@
         "containerCornerOffset",
         "containerRelativeFrame",
         "containerShape",
+        "containerValue",
         "contentShape",
         "contentTransition",
         "contrast",
@@ -18298,6 +18315,7 @@
         "layerEffect",
         "layoutDirectionBehavior",
         "layoutPriority",
+        "layoutValue",
         "lineHeight",
         "lineLimit",
         "lineSpacing",

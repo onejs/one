@@ -299,8 +299,17 @@ for (const modifier of derivedModifiers) {
           d.parameters[1].label === 'keyframes' &&
           d.parameters[1].type.startsWith(`@escaping (${modifier.type}) -> some Keyframes<`)
         : modifier.kind === 'registeredValue'
-        ? d.parameters.length === 1 && d.parameters[0].type === modifier.type &&
-          d.parameters[0].label === '_'
+        ? modifier.registeredFactory === 'layoutValue'
+          ? d.parameters.length === 2 && d.parameters[0].label === 'key' &&
+            d.parameters[0].type === 'K.Type' && d.parameters[1].label === 'value' &&
+            d.parameters[1].type === 'K.Value' &&
+            d.requirements?.includes('K : SwiftUICore.LayoutValueKey')
+          : modifier.registeredFactory === 'containerValue'
+          ? d.parameters.length === 2 &&
+            d.parameters[0].type === 'Swift.WritableKeyPath<SwiftUICore.ContainerValues, V>' &&
+            d.parameters[1].type === 'V'
+          : d.parameters.length === 1 && d.parameters[0].type === modifier.type &&
+            d.parameters[0].label === '_'
         : modifier.textSelection
         ? d.parameters.length === 1 && d.parameters[0].type === modifier.type
         : modifier.zeroArgument

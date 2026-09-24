@@ -216,7 +216,18 @@ ${modifier.cases!.map((field) => `    case ${JSON.stringify(field.name)}:
     }
   }`
       if (modifier.kind === 'registeredValue')
-        return modifier.registeredProtocol ? `  @available(iOS ${modifier.ios}, *)
+        return modifier.registeredFactory ? `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS ${modifier.ios}, *) {
+      let registered: OneNativeRegisteredModifier = {
+        guard let found = OneNativeRegisteredValue.value(value) as? OneNativeRegisteredModifier else {
+          preconditionFailure("missing ${modifier.name} registered value: \\(value)")
+        }
+        return found
+      }()
+      let _ = precondition(registered.kind == .${modifier.registeredFactory}, "invalid ${modifier.name} registered value: \\(value)")
+      registered.apply(AnyView(self))
+    } else { self }
+  }` : modifier.registeredProtocol ? `  @available(iOS ${modifier.ios}, *)
   fileprivate func ${helper}Registered<T: ${modifier.registeredProtocol}>(_ registered: T) -> some View {
     self.${modifier.sdkName ?? modifier.name}(registered)
   }
@@ -1785,6 +1796,22 @@ ${derived.some((modifier) => modifier.kind === 'registeredValue') ? `@MainActor 
   public static func register(_ value: Any, for name: String) { values[name] = value }
   public static func unregister(_ name: String) { values.removeValue(forKey: name) }
   static func value(_ name: String) -> Any? { values[name] }
+}
+` : ''}
+${derived.some((modifier) => modifier.registeredFactory) ? `@MainActor public struct OneNativeRegisteredModifier {
+  enum Kind { case layoutValue, containerValue }
+  let kind: Kind
+  let apply: (AnyView) -> AnyView
+
+  @available(iOS 16, *)
+  public static func layoutValue<K: LayoutValueKey>(key: K.Type, value: K.Value) -> Self {
+    Self(kind: .layoutValue) { AnyView($0.layoutValue(key: key, value: value)) }
+  }
+
+  @available(iOS 18, *)
+  public static func containerValue<V>(_ keyPath: WritableKeyPath<ContainerValues, V>, _ value: V) -> Self {
+    Self(kind: .containerValue) { AnyView($0.containerValue(keyPath, value)) }
+  }
 }
 ` : ''}
 ${derived.some((modifier) => modifier.namespaceParameter || modifier.kind === 'dragContainer' || modifier.kind === 'dragSelection' || modifier.kind === 'dragItemID') ? 'private enum OneNativeNamespace { static let id = Namespace().wrappedValue }\n' : ''}

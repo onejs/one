@@ -35,6 +35,22 @@ import WorkoutKit
   static func value(_ name: String) -> Any? { values[name] }
 }
 
+@MainActor public struct OneNativeRegisteredModifier {
+  enum Kind { case layoutValue, containerValue }
+  let kind: Kind
+  let apply: (AnyView) -> AnyView
+
+  @available(iOS 16, *)
+  public static func layoutValue<K: LayoutValueKey>(key: K.Type, value: K.Value) -> Self {
+    Self(kind: .layoutValue) { AnyView($0.layoutValue(key: key, value: value)) }
+  }
+
+  @available(iOS 18, *)
+  public static func containerValue<V>(_ keyPath: WritableKeyPath<ContainerValues, V>, _ value: V) -> Self {
+    Self(kind: .containerValue) { AnyView($0.containerValue(keyPath, value)) }
+  }
+}
+
 private enum OneNativeNamespace { static let id = Namespace().wrappedValue }
 
 private struct OneNativeRotorEntry: Identifiable { let id: String; var label: String { id } }
@@ -464,6 +480,7 @@ extension View {
       case "containerRelativeFrameWithAxesAndAlignment": view = AnyView(view.oneNativeSDKContainerRelativeFrameWithAxesAndAlignment(value, emit: emit))
       case "containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment": view = AnyView(view.oneNativeSDKContainerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment(value, emit: emit))
       case "containerShape": view = AnyView(view.oneNativeSDKContainerShape(value, emit: emit))
+      case "containerValue": view = AnyView(view.oneNativeSDKContainerValue(value, emit: emit))
       case "contentMarginsWithEdgesAndLengthAndPlacement": view = AnyView(view.oneNativeSDKContentMarginsWithEdgesAndLengthAndPlacement(value, emit: emit))
       case "contentMarginsWithLengthAndPlacement": view = AnyView(view.oneNativeSDKContentMarginsWithLengthAndPlacement(value, emit: emit))
       case "contentShape": view = AnyView(view.oneNativeSDKContentShape(value, emit: emit))
@@ -658,6 +675,7 @@ extension View {
       case "layerEffect": view = AnyView(view.oneNativeSDKLayerEffect(value, emit: emit))
       case "layoutDirectionBehavior": view = AnyView(view.oneNativeSDKLayoutDirectionBehavior(value, emit: emit))
       case "layoutPriority": view = AnyView(view.oneNativeSDKLayoutPriority(value, emit: emit))
+      case "layoutValue": view = AnyView(view.oneNativeSDKLayoutValue(value, emit: emit))
       case "lineHeight": view = AnyView(view.oneNativeSDKLineHeight(value, emit: emit))
       case "lineLimitWithLimitAndReservesSpace": view = AnyView(view.oneNativeSDKLineLimitWithLimitAndReservesSpace(value, emit: emit))
       case "lineLimitWithOptionalInt": view = AnyView(view.oneNativeSDKLineLimitWithOptionalInt(value, emit: emit))
@@ -2650,6 +2668,19 @@ self
 
     default: preconditionFailure("invalid containerShape: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKContainerValue(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let registered: OneNativeRegisteredModifier = {
+        guard let found = OneNativeRegisteredValue.value(value) as? OneNativeRegisteredModifier else {
+          preconditionFailure("missing containerValue registered value: \(value)")
+        }
+        return found
+      }()
+      let _ = precondition(registered.kind == .containerValue, "invalid containerValue registered value: \(value)")
+      registered.apply(AnyView(self))
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKContentMarginsWithEdgesAndLengthAndPlacement(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -5162,6 +5193,19 @@ self
       if let number = Double(value), number.isFinite {
         self.layoutPriority(number)
       } else { preconditionFailure("invalid layoutPriority: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKLayoutValue(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 16, *) {
+      let registered: OneNativeRegisteredModifier = {
+        guard let found = OneNativeRegisteredValue.value(value) as? OneNativeRegisteredModifier else {
+          preconditionFailure("missing layoutValue registered value: \(value)")
+        }
+        return found
+      }()
+      let _ = precondition(registered.kind == .layoutValue, "invalid layoutValue registered value: \(value)")
+      registered.apply(AnyView(self))
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKLineHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

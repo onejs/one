@@ -1994,6 +1994,7 @@ export interface OneNativeStyle {
       | 'trailingLastTextBaseline'
   }>
   containerShape?: SDKContainerShape
+  containerValue?: string
   contentMarginsWithEdgesAndLengthAndPlacement?: Readonly<{
     edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'
     length: number | null
@@ -2479,6 +2480,7 @@ export interface OneNativeStyle {
   }>
   layoutDirectionBehavior?: SDKLayoutDirectionBehavior
   layoutPriority?: number
+  layoutValue?: string
   lineHeight?: SDKLineHeight | null
   lineLimitWithLimitAndReservesSpace?: Readonly<{ limit: number; reservesSpace: boolean }>
   lineLimitWithOptionalInt?: number | null
