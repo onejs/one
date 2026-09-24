@@ -9,6 +9,7 @@ export type { ArrangementViewProps, ArrangementPaneProps, ArrangementViewStyle, 
 export declare const Menu: (_props: import("./types").MenuProps) => never;
 export declare const ContextMenu: (_props: import("./types").ContextMenuProps) => never;
 export { Compose } from './compose';
+export { Notifications } from './notifications';
 export { Widgets, LiveActivities, WidgetUI };
 export { useNativeState, type NativeState } from './nativeState';
 export { TextInput } from './universal/TextInput/index';
