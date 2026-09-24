@@ -66,6 +66,7 @@ export type OneIOS = Omit<typeof Swift, 'ToolbarItem'> & {
 }
 
 export type OneAndroid = typeof Compose & {
+  readonly Color: ColorType['android']
   readonly Menu: typeof NativeMenu
   readonly ContextMenu: typeof NativeContextMenu
 }
@@ -137,6 +138,7 @@ const iOS: Readonly<OneIOS> = Object.freeze({
 
 const Android: Readonly<OneAndroid> = Object.freeze({
   ...Compose,
+  Color: Color.android,
   Menu: NativeMenu,
   ContextMenu: NativeContextMenu,
 })

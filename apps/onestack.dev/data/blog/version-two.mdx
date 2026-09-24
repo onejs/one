@@ -23,7 +23,7 @@ npx one@beta
 ## One native
 
 One native is a library of real platform interfaces for React Native apps,
-shipped in the existing `@vxrn/native` package. The iOS surface is generated
+shipped inside the `one` package. The iOS surface is generated
 SwiftUI, exposed through a `Swift` export and as `One.iOS` in app code: tabs,
 menus, pickers, form controls, sheets, full screen covers, containers,
 popovers, video, maps, web views, sharing, the photo library, empty states,
@@ -59,7 +59,7 @@ low-level `TabView` for explicit composition: controlled `selection` with
 instead of a page.
 
 During development the library lived in a separate `one-native` workspace
-package. It was folded into `@vxrn/native`, so consumers install and import
+package. It was folded into `one`, so consumers install and import
 one package. The fold raised the floor for the whole package: React Native
 0.87 with the New Architecture, since the library ships Fabric components.
 The iOS floor stays at 17, with iOS 26 features gated at runtime.
@@ -173,7 +173,7 @@ for this blog.
 ## Requirements
 
 The v2 line requires React 19 (19.2.3 or later) and React Native 0.87, with
-0.87.1 for `@vxrn/native`. Apps using `@vxrn/native` build for iOS 17 and
+0.87.1 for One native. Apps using One native build for iOS 17 and
 later and use the New Architecture on native, since the library ships Fabric
 components. Navigation peers moved to React Navigation 8 alphas. Metro mode
 remains the compatibility path for apps that need it.
