@@ -304,6 +304,7 @@ are rejected before submitting native props.
 | `tabViewSidebarHeader`, `Footer`, `BottomBar` | `Swift.TabViewSlot` |
 | `toolbarVisibility(_:for: .tabBar)` | `tabBarVisibility` |
 | `tabBarMinimizeBehavior`, `tabViewSearchActivation`, `defaultTabBarPlacement`, `tint` and every other scalar View modifier | `swiftStyle` |
+| View modifiers on a tab's content, such as `ignoresSafeArea(_:edges:)` | `Swift.Tab` `swiftStyle` |
 
 ```tsx
 <Swift.Tabs

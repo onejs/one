@@ -104,6 +104,8 @@ using namespace facebook::react;
         OneNativeTabComponentView *strongPage = weakPage;
         if (strongPage.tabs) [strongPage updateNativeFrame:frame];
       }];
+    [item configureStyle:page.swiftStyle];
+    item.emit = ^(NSString *name, NSString *value) { [weakPage emitSDKEvent:name value:value]; };
     [items addObject:item];
   }
   [_tabsView setPages:items];
@@ -151,6 +153,7 @@ using namespace facebook::react;
     _role = @"";
     _slotHeight = 0;
     _tabModifiers = @"{}";
+    _swiftStyle = @{};
   }
   return self;
 }
@@ -164,10 +167,12 @@ using namespace facebook::react;
   NSString *role = RCTNSStringFromString(next.tabRole);
   NSString *kind = RCTNSStringFromString(next.kind);
   NSString *tabModifiers = RCTNSStringFromString(next.tabModifiers);
+  NSDictionary *swiftStyle = OneNativeStyleDictionary(next.swiftStyle);
   BOOL changed = ![self.tabId isEqualToString:tabId] || ![self.kind isEqualToString:kind] ||
     ![self.title isEqualToString:title] || ![self.systemImage isEqualToString:systemImage] ||
     ![self.badge isEqualToString:badge] || ![self.role isEqualToString:role] ||
-    self.slotHeight != next.slotHeight || ![self.tabModifiers isEqualToString:tabModifiers];
+    self.slotHeight != next.slotHeight || ![self.tabModifiers isEqualToString:tabModifiers] ||
+    ![self.swiftStyle isEqualToDictionary:swiftStyle];
   self.tabId = tabId;
   self.kind = kind;
   self.title = title;
@@ -176,8 +181,15 @@ using namespace facebook::react;
   self.role = role;
   self.slotHeight = next.slotHeight;
   self.tabModifiers = tabModifiers;
+  self.swiftStyle = swiftStyle;
   if (changed) [self.tabs invalidatePages];
   [super updateProps:props oldProps:oldProps];
+}
+
+- (void)emitSDKEvent:(NSString *)name value:(NSString *)value {
+  if (!_eventEmitter) return;
+  auto emitter = std::static_pointer_cast<const OneNativeTabEventEmitter>(_eventEmitter);
+  emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
 }
 
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState {

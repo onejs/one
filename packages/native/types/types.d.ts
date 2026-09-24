@@ -40,6 +40,7 @@ export interface TabProps extends TabContentProps {
     tabPlacement?: TabPlacement;
     testID?: string;
     onPress?: () => void;
+    swiftStyle?: OneNativeStyle;
     children?: ReactNode;
 }
 export interface TabSectionProps extends TabContentProps {
