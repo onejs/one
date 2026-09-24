@@ -42,6 +42,7 @@ import * as Controls from './generated/Controls.native'
 import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native'
 import { Compose } from './compose'
 import * as UI from './effects'
+import { Widgets, LiveActivities } from './widgets/index.native'
 
 export * from './extras'
 // the package root keeps the navigation toolbar's props under the plain name; the SwiftUI
@@ -126,6 +127,7 @@ export const Swift =
       }
     : UnsupportedSwift
 export { Compose }
+export { Widgets, LiveActivities }
 export { Menu, ContextMenu }
 export { useNativeState, type NativeState } from './nativeState'
 export { TextInput } from './universal/TextInput/index'
