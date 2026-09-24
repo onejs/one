@@ -34,18 +34,16 @@ export default function StackToolbarOracleScreen() {
   return (
     <View style={styles.container} testID="stack-toolbar-oracle">
       <Stack.Screen>
-        <Stack.Toolbar>
-          <Stack.Toolbar.Trailing>
-            <Stack.Toolbar.Item
-              identifier="oracle-route-probe"
-              title="Probe"
-              systemImageName="magnifyingglass"
-              hidden={routeTrailingHidden}
-              accessibilityLabel="Oracle route probe"
-              accessibilityHint="Toggles with screen state"
-              onPress={() => recordAction('probe')}
-            />
-          </Stack.Toolbar.Trailing>
+        <Stack.Toolbar placement="right">
+          <Stack.Toolbar.Button
+            icon="magnifyingglass"
+            hidden={routeTrailingHidden}
+            accessibilityLabel="Oracle route probe"
+            accessibilityHint="Toggles with screen state"
+            onPress={() => recordAction('probe')}
+          >
+            Probe
+          </Stack.Toolbar.Button>
         </Stack.Toolbar>
       </Stack.Screen>
 
@@ -144,53 +142,53 @@ export default function StackToolbarOracleScreen() {
       </ScrollView>
 
       {bottomMounted && (
-        <Stack.Toolbar.Bottom hidden={toolbarHidden} animated>
+        <Stack.Toolbar>
           {bottomFull && (
-            <Stack.Toolbar.Item
-              identifier="oracle-add"
-              title="Add"
-              systemImageName="plus"
+            <Stack.Toolbar.Button
+              icon="plus"
               tintColor={dynamicTint}
+              hidden={toolbarHidden}
               accessibilityLabel="Oracle bottom add"
               accessibilityHint="Adds an oracle entry"
-              onSelected={() => recordAction('add')}
-            />
+              onPress={() => recordAction('add')}
+            >
+              Add
+            </Stack.Toolbar.Button>
           )}
           {bottomFull && (
             <Stack.Toolbar.Menu
-              identifier="oracle-actions"
               title="Actions"
-              label="Actions"
-              systemImageName="ellipsis.circle"
+              icon="ellipsis.circle"
+              hidden={toolbarHidden}
               accessibilityLabel="Oracle bottom actions"
             >
-              <Stack.Toolbar.Item
-                identifier="oracle-mark"
-                title="Mark reviewed"
-                systemImageName="checkmark.circle"
+              <Stack.Toolbar.MenuAction
+                icon="checkmark.circle"
                 accessibilityLabel="Oracle mark reviewed"
-                onSelected={() => recordAction('menu')}
-              />
-              <Stack.Toolbar.Item
-                identifier="oracle-delete"
-                title="Delete"
-                systemImageName="trash"
+                onPress={() => recordAction('menu')}
+              >
+                Mark reviewed
+              </Stack.Toolbar.MenuAction>
+              <Stack.Toolbar.MenuAction
+                icon="trash"
                 destructive
                 accessibilityLabel="Oracle delete"
-                onSelected={() => recordAction('delete')}
-              />
-              <Stack.Toolbar.Menu identifier="oracle-advanced" title="Advanced">
-                <Stack.Toolbar.Item
-                  identifier="oracle-inspect"
-                  title="Inspect"
-                  selected
+                onPress={() => recordAction('delete')}
+              >
+                Delete
+              </Stack.Toolbar.MenuAction>
+              <Stack.Toolbar.Menu title="Advanced">
+                <Stack.Toolbar.MenuAction
+                  isOn
                   accessibilityLabel="Oracle inspect"
-                  onSelected={() => recordAction('inspect')}
-                />
+                  onPress={() => recordAction('inspect')}
+                >
+                  Inspect
+                </Stack.Toolbar.MenuAction>
               </Stack.Toolbar.Menu>
             </Stack.Toolbar.Menu>
           )}
-        </Stack.Toolbar.Bottom>
+        </Stack.Toolbar>
       )}
     </View>
   )
