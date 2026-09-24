@@ -65,6 +65,30 @@ describe('SDK callback and binding transport', () => {
     await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-2'))
   })
 
+  it('passes a purchase result through the async callback and rejects malformed cases', async () => {
+    completeAsyncAction.mockClear()
+    let finish!: () => void
+    const action = vi.fn(() => new Promise<void>((resolve) => { finish = resolve }))
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      onInAppPurchaseCompletion: action,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([['onInAppPurchaseCompletion', '']])
+    const product = { id: 'monthly', type: { rawValue: 'autoRenewable' }, displayName: 'Monthly',
+      description: 'Plan', displayPrice: '$5', isFamilyShareable: false }
+    const result = { case: 'success', value: { case: 'success', values: [
+      { case: 'verified', jwsRepresentation: 'signed-transaction', error: null },
+    ] } }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'onInAppPurchaseCompletion',
+      value: JSON.stringify({ id: 'action-3', value: JSON.stringify({ value: product, result }) }) } })
+    await vi.waitFor(() => expect(action).toHaveBeenCalledWith({ value: product, result }))
+    expect(completeAsyncAction).not.toHaveBeenCalled()
+    finish()
+    await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-3'))
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: { name: 'onInAppPurchaseCompletion',
+      value: JSON.stringify({ id: 'action-4', value: JSON.stringify({ value: product,
+        result: { case: 'success', value: { case: 'success', values: [] } } }) }) } })).toThrow('invalid async value')
+  })
+
   it('bridges transferable strings and paste events', () => {
     const onPaste = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {

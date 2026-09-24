@@ -379,6 +379,7 @@ const sdkKinds = {
   onDropSessionUpdated: 'eventStruct',
   onGeometryChangeWithSize: 'eventStruct',
   onHover: 'eventBoolean',
+  onInAppPurchaseCompletion: 'eventAsyncStruct',
   onInAppPurchaseStart: 'eventAsyncStruct',
   onInteractiveResizeChange: 'eventBoolean',
   onKeyPress: 'eventReturnEnum',
@@ -582,6 +583,13 @@ type SDKEventValueShape =
   | { kind: 'enum'; cases: readonly string[]; open?: true }
   | { kind: 'optional' | 'array'; value: SDKEventValueShape }
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
+  | { kind: 'result'; value: SDKEventValueShape }
+  | { kind: 'verification' }
+  | {
+      kind: 'associatedEnum'
+      cases: readonly { name: string; values: readonly SDKEventValueShape[] }[]
+      open?: true
+    }
 const sdkAssociatedCases: Record<
   string,
   Record<string, readonly SDKEventValueShape[]>
@@ -783,6 +791,46 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
     fields: [
       { name: 'oldValue', value: { kind: 'size' } },
       { name: 'newValue', value: { kind: 'size' } },
+    ],
+  },
+  onInAppPurchaseCompletion: {
+    kind: 'object',
+    fields: [
+      {
+        name: 'value',
+        value: {
+          kind: 'object',
+          fields: [
+            { name: 'id', value: { kind: 'string' } },
+            {
+              name: 'type',
+              value: {
+                kind: 'object',
+                fields: [{ name: 'rawValue', value: { kind: 'string' } }],
+              },
+            },
+            { name: 'displayName', value: { kind: 'string' } },
+            { name: 'description', value: { kind: 'string' } },
+            { name: 'displayPrice', value: { kind: 'string' } },
+            { name: 'isFamilyShareable', value: { kind: 'boolean' } },
+          ],
+        },
+      },
+      {
+        name: 'result',
+        value: {
+          kind: 'result',
+          value: {
+            kind: 'associatedEnum',
+            cases: [
+              { name: 'success', values: [{ kind: 'verification' }] },
+              { name: 'userCancelled', values: [] },
+              { name: 'pending', values: [] },
+            ],
+            open: true,
+          },
+        },
+      },
     ],
   },
   onInAppPurchaseStart: {
@@ -1731,6 +1779,45 @@ function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean 
       typeof value === 'string' &&
       (shape.cases.includes(value) || (shape.open === true && value === 'unknown'))
     )
+  if (shape.kind === 'verification')
+    return Boolean(
+      value &&
+      typeof value === 'object' &&
+      ((value as { case?: unknown }).case === 'verified' ||
+        (value as { case?: unknown }).case === 'unverified') &&
+      typeof (value as { jwsRepresentation?: unknown }).jwsRepresentation === 'string' &&
+      ((value as { case: string; error?: unknown }).case === 'verified'
+        ? (value as { error?: unknown }).error === null
+        : typeof (value as { error?: unknown }).error === 'string')
+    )
+  if (shape.kind === 'result')
+    return Boolean(
+      value &&
+      typeof value === 'object' &&
+      ((value as { case?: unknown }).case === 'success'
+        ? validSDKEventValue((value as { value?: unknown }).value, shape.value)
+        : (value as { case?: unknown }).case === 'failure' &&
+          typeof (value as { error?: unknown }).error === 'string')
+    )
+  if (shape.kind === 'associatedEnum') {
+    if (!value || typeof value !== 'object') return false
+    if (shape.open && (value as { case?: unknown }).case === 'unknown')
+      return (
+        Array.isArray((value as { values?: unknown }).values) &&
+        (value as { values: unknown[] }).values.length === 0
+      )
+    const item = shape.cases.find(
+      (entry) => entry.name === (value as { case?: unknown }).case
+    )
+    return Boolean(
+      item &&
+      Array.isArray((value as { values?: unknown }).values) &&
+      (value as { values: unknown[] }).values.length === item.values.length &&
+      item.values.every((nested, index) =>
+        validSDKEventValue((value as { values: unknown[] }).values[index], nested)
+      )
+    )
+  }
   if (!value || typeof value !== 'object') return false
   const record = value as Record<string, unknown>
   if (shape.kind === 'point')
