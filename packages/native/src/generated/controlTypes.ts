@@ -305,6 +305,16 @@ export const sdkButtonStyleValues = [
   'borderedProminent',
 ] as const
 export type SDKButtonStyle = (typeof sdkButtonStyleValues)[number]
+export const sdkClipShapeValues = [
+  'buttonBorder',
+  'rect',
+  'capsule',
+  'ellipse',
+  'circle',
+  'containerRelative',
+  'textInputBorder',
+] as const
+export type SDKClipShape = (typeof sdkClipShapeValues)[number]
 export const sdkColorMultiplyValues = [
   'accentColor',
   'red',
@@ -452,6 +462,21 @@ export const sdkFileDialogBrowserOptionsValues = [
 ] as const
 export type SDKFileDialogBrowserOptions =
   (typeof sdkFileDialogBrowserOptionsValues)[number]
+export const sdkFontValues = [
+  'largeTitle',
+  'title',
+  'title2',
+  'title3',
+  'headline',
+  'subheadline',
+  'body',
+  'callout',
+  'footnote',
+  'caption',
+  'caption2',
+  'default',
+] as const
+export type SDKFont = (typeof sdkFontValues)[number]
 export const sdkFontWidthValues = [
   'compressed',
   'condensed',
@@ -1510,6 +1535,7 @@ export interface OneNativeStyle {
   buttonSizing?: SDKButtonSizing
   buttonStyle?: SDKButtonStyle
   clipped?: boolean
+  clipShape?: SDKClipShape
   colorEffect?: Readonly<{ shader: string; isEnabled: boolean }>
   colorInvert?: boolean
   colorMultiply?: SDKColorMultiply
@@ -1681,9 +1707,55 @@ export interface OneNativeStyle {
   }>
   focused?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   focusEffectDisabled?: boolean
+  font?: SDKFont | null
   fontWidth?: SDKFontWidth | null
   foregroundColor?: SDKForegroundColor | null
   formStyle?: SDKFormStyle
+  frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment?: Readonly<{
+    minWidth: number | null
+    idealWidth: number | null
+    maxWidth: number | null
+    minHeight: number | null
+    idealHeight: number | null
+    maxHeight: number | null
+    alignment:
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+      | 'centerFirstTextBaseline'
+      | 'centerLastTextBaseline'
+      | 'leadingFirstTextBaseline'
+      | 'leadingLastTextBaseline'
+      | 'trailingFirstTextBaseline'
+      | 'trailingLastTextBaseline'
+  }>
+  frameWithNoArguments?: boolean
+  frameWithWidthAndHeightAndAlignment?: Readonly<{
+    width: number | null
+    height: number | null
+    alignment:
+      | 'center'
+      | 'leading'
+      | 'trailing'
+      | 'top'
+      | 'bottom'
+      | 'topLeading'
+      | 'topTrailing'
+      | 'bottomLeading'
+      | 'bottomTrailing'
+      | 'centerFirstTextBaseline'
+      | 'centerLastTextBaseline'
+      | 'leadingFirstTextBaseline'
+      | 'leadingLastTextBaseline'
+      | 'trailingFirstTextBaseline'
+      | 'trailingLastTextBaseline'
+  }>
   gaugeStyle?: SDKGaugeStyle
   geometryGroup?: boolean
   gesture?:
