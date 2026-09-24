@@ -317,7 +317,7 @@ class MenuActionView: RCTView, MenuUpdatable {
     baseUiAction.image = image
     baseUiAction.attributes = attributes
     baseUiAction.state = _isOn == true ? .on : .off
-    if #available(iOS 16.0, *) { if let subtitle = _subtitle { baseUiAction.subtitle = subtitle } }
+    if let subtitle = _subtitle { baseUiAction.subtitle = subtitle }
     if let label = _discoverabilityLabel { baseUiAction.discoverabilityTitle = label }
     parentMenuUpdatable?.updateMenu()
   }

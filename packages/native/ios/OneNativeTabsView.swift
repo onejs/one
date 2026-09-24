@@ -114,7 +114,7 @@ public final class OneNativeTabsView: UIView {
       controller = OneNativeHostingController(rootView: TabsContent(model: model, host: self))
     }
     controller?.attach(to: self)
-    model.active = controller?.isAttached == true
+    model.active = controller?.parent != nil
   }
 
   private func detachController() {

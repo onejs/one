@@ -149,7 +149,7 @@ final class OneNativeChildren: ObservableObject {
       controller = OneNativeHostingController(rootView: wrap(published, true))
     }
     controller?.attach(to: self)
-    setActive(controller?.isAttached == true)
+    setActive(controller?.parent != nil)
   }
 
   public func reset() {

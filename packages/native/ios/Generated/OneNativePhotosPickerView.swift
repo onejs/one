@@ -84,7 +84,7 @@ private final class PhotosPickerModel: ObservableObject {
       controller = OneNativeHostingController(rootView: OneNativeMeasuredStandalone(content: PhotosPickerContent(model: model), onHeight: { [weak self] height in self?.onHeight?(height) }))
     }
     controller?.attach(to: self)
-    model.active = controller?.isAttached == true
+    model.active = controller?.parent != nil
   }
   public func reset() {
     compositionParent = nil

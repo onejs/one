@@ -65,7 +65,7 @@ private final class MapModel: ObservableObject {
       controller = OneNativeHostingController(rootView: OneNativeStandalone(content: MapContent(model: model)))
     }
     controller?.attach(to: self)
-    model.active = controller?.isAttached == true
+    model.active = controller?.parent != nil
   }
   public func reset() {
     compositionParent = nil

@@ -53,7 +53,7 @@ private final class VideoPlayerModel: ObservableObject {
       controller = OneNativeHostingController(rootView: OneNativeStandalone(content: VideoPlayerContent(model: model)))
     }
     controller?.attach(to: self)
-    model.active = controller?.isAttached == true
+    model.active = controller?.parent != nil
   }
   public func reset() {
     compositionParent = nil

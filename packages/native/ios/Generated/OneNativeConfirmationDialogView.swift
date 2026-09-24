@@ -78,7 +78,7 @@ private final class ConfirmationDialogModel: ObservableObject {
       controller = OneNativeHostingController(rootView: OneNativeStandalone(content: ConfirmationDialogContent(model: model)))
     }
     controller?.attach(to: self)
-    model.active = controller?.isAttached == true
+    model.active = controller?.parent != nil
   }
   public func reset() {
     compositionParent = nil
