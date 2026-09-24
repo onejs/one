@@ -1653,6 +1653,37 @@
       "sdkName": "accessibilityRespondsToUserInteraction"
     },
     {
+      "name": "accessibilityRotor",
+      "kind": "record",
+      "type": "",
+      "ios": 15,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "rotorLabel",
+          "label": "_"
+        },
+        {
+          "field": "entries",
+          "label": "entries",
+          "kind": "stringArray",
+          "type": "[OneNativeRotorEntry]",
+          "sdkType": "[EntryModel]",
+          "optional": false,
+          "unique": true,
+          "swiftExpression": "$value.map { OneNativeRotorEntry(id: $0) }"
+        }
+      ],
+      "fixedParameter": {
+        "index": 2,
+        "label": "entryLabel",
+        "type": "Swift.KeyPath<EntryModel, Swift.String>",
+        "expression": "\\OneNativeRotorEntry.label"
+      }
+    },
+    {
       "name": "accessibilityRotorEntry",
       "kind": "record",
       "type": "",
@@ -16987,6 +17018,7 @@
         "accessibilityRemoveTraits",
         "accessibilityRepresentation",
         "accessibilityRespondsToUserInteraction",
+        "accessibilityRotor",
         "accessibilityRotorEntry",
         "accessibilityScrollAction",
         "accessibilityScrollStatus",
@@ -17488,6 +17520,7 @@
         "accessibilityRemoveTraits",
         "accessibilityRepresentation",
         "accessibilityRespondsToUserInteraction",
+        "accessibilityRotor",
         "accessibilityRotorEntry",
         "accessibilityScrollAction",
         "accessibilityScrollStatus",

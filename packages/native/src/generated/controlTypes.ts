@@ -1821,6 +1821,7 @@ export interface OneNativeStyle {
     respondsToUserInteraction: boolean
     isEnabled: boolean
   }>
+  accessibilityRotor?: Readonly<{ rotorLabel: string; entries: readonly string[] }>
   accessibilityRotorEntry?: Readonly<{ id: string }>
   accessibilityScrollAction?: (value: 'top' | 'leading' | 'bottom' | 'trailing') => void
   accessibilityScrollStatus?: Readonly<{ status: string; isEnabled: boolean }>

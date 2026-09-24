@@ -20,6 +20,7 @@ export type DerivedArgument = {
   swiftExpression?: string
   closureInput?: string
   eventValue?: EventValueSchema
+  unique?: true
 }
 
 export type EventValueSchema =
@@ -69,6 +70,7 @@ export type DerivedModifier = {
   namespaceParameter?: { index: number; label: string }
   sharedParameter?: { index: number; label: string; type: string }
   factoryParameter?: { index: number; label: string; type: string; returnType: string; argumentOffset: number }
+  fixedParameter?: { index: number; label: string; type: string; expression: string }
   arguments?: readonly DerivedArgument[]
 }
 
@@ -714,6 +716,23 @@ export function deriveModifiers(
               return []
             })
       }
+      if (method.parameters.length === 3 &&
+        method.parameters[0].type === 'SwiftUICore.Text' &&
+        method.parameters[1].type === '[EntryModel]' &&
+        method.parameters[2].type === 'Swift.KeyPath<EntryModel, Swift.String>' &&
+        method.requirements?.includes('EntryModel : Swift.Identifiable'))
+        return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+          arguments: [
+            { ...valueOf(method.parameters[0].type)!, field: method.parameters[0].name,
+              label: method.parameters[0].label },
+            { field: method.parameters[1].name, label: method.parameters[1].label,
+              kind: 'stringArray', type: '[OneNativeRotorEntry]', sdkType: '[EntryModel]',
+              optional: false, unique: true,
+              swiftExpression: '$value.map { OneNativeRotorEntry(id: $0) }' },
+          ],
+          fixedParameter: { index: 2, label: method.parameters[2].label,
+            type: method.parameters[2].type, expression: '\\OneNativeRotorEntry.label' },
+          ...framework }]
       const genericTransform = method.parameters.length === 3 &&
         method.parameters[0].type === 'T.Type' &&
         method.requirements?.some((requirement) =>
