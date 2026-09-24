@@ -573,6 +573,31 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeReservedRegionsProvider",
+      "publicName": "ReservedRegionsProvider",
+      "props": {},
+      "events": {
+        "onNativeReservedRegionsChange": {
+          "regions": {
+            "type": "{ id: string; kind: string; x: Double; y: Double; width: Double; height: Double; marginTop: Double; marginLeft: Double; marginBottom: Double; marginRight: Double; isActive: boolean }[]"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeEdgeFade",
       "publicName": "EdgeFade",
       "props": {

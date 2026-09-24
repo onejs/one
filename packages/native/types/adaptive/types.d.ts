@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+import type { ViewProps } from 'react-native';
 export type UserInterfaceSizeClass = 'compact' | 'regular' | 'unspecified';
 export interface SizeClass {
     horizontal: UserInterfaceSizeClass;
@@ -10,15 +12,18 @@ export interface HingeState {
     angle: number;
 }
 export type ReservedRegionKind = 'division' | 'occlusion';
+/** A region reserved inside a ReservedRegions.Provider, in its coordinates. */
 export interface ReservedRegion {
     id: string;
     kind: ReservedRegionKind;
+    /** The region's rect, margins included. */
     frame: {
         x: number;
         y: number;
         width: number;
         height: number;
     };
+    /** Room kept around the reserved rect for interactive content. */
     margins: {
         top: number;
         left: number;
@@ -28,6 +33,10 @@ export interface ReservedRegion {
     isActive: boolean;
 }
 export interface ReservedRegionOptions {
+    kind?: ReservedRegionKind;
     includeInactive?: boolean;
+}
+export interface ReservedRegionsProviderProps extends ViewProps {
+    children?: ReactNode;
 }
 //# sourceMappingURL=types.d.ts.map

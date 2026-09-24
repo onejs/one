@@ -1,13 +1,15 @@
 import * as UI from './effects';
+import { Widgets, LiveActivities } from './widgets/index';
 export * from './extras';
 export type { ToolbarHostProps, ToolbarItemProps } from './extras';
 export * from './unsupported';
-export { useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, useReservedRegions, getReservedRegions, } from './adaptive/index';
-export type { UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, ReservedRegionOptions, } from './adaptive/types';
+export { useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, ReservedRegions, } from './adaptive/index';
+export type { UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, ReservedRegionOptions, ReservedRegionsProviderProps, } from './adaptive/types';
 export type { ArrangementViewProps, ArrangementPaneProps, ArrangementViewStyle, SplitLayoutRatio, SplitLayoutSize, SplitFixedLayoutSize, OverlayArrangementEdge, } from './ArrangementView.native';
 export declare const Menu: (_props: import("./types").MenuProps) => never;
 export declare const ContextMenu: (_props: import("./types").ContextMenuProps) => never;
 export { Compose } from './compose';
+export { Widgets, LiveActivities };
 export { useNativeState, type NativeState } from './nativeState';
 export { TextInput } from './universal/TextInput/index';
 export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';

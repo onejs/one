@@ -72,6 +72,46 @@ describe('native.app manifest', () => {
     )
   })
 
+  test('validates the iOS widget target and App Group before prebuild', () => {
+    const widgets = {
+      appGroup: 'group.dev.one.myapp',
+      kind: 'MyAppStatus',
+      displayName: 'Status',
+      description: 'Current status',
+      jsx: { id: 'status_jsx', displayName: 'JSX status', description: 'Current status' },
+    }
+    expect(() =>
+      validateNativeApp({ ...app, ios: { ...app.ios, widgets } })
+    ).not.toThrow()
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: { ...app.ios, widgets: { ...widgets, pushNotifications: 'yes' as any } },
+      })
+    ).toThrow(/pushNotifications/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: { ...app.ios, deploymentTarget: '16.4', widgets },
+      })
+    ).toThrow(/deploymentTarget/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: { ...app.ios, widgets: { ...widgets, appGroup: 'dev.one.myapp' } },
+      })
+    ).toThrow(/appGroup/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: {
+          ...app.ios,
+          widgets: { ...widgets, jsx: { ...widgets.jsx, id: 'bad id' } },
+        },
+      })
+    ).toThrow(/jsx.id/)
+  })
+
   test('rejects missing platform ids and out-of-range platform values', () => {
     expect(() => validateNativeApp({ name: 'MyApp' } as any)).toThrow(/bundleId/)
     expect(() =>

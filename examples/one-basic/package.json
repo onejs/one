@@ -17,6 +17,7 @@
   "dependencies": {
     "@callstack/liquid-glass": "^0.8.1",
     "@react-navigation/native": "8.0.0-alpha.44",
+    "@use-voltra/ios-client": "2.3.2",
     "one": "workspace:*",
     "react": "19.2.3",
     "react-dom": "19.2.3",

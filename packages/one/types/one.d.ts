@@ -1,7 +1,9 @@
-import { Browser as NativeBrowser, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Network as NativeNetwork, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, getHinge, getReservedRegions, getSizeClass, onHingeChange, useHinge, useReservedRegions, useSizeClass, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from '@vxrn/native';
+import { Browser as NativeBrowser, Widgets, LiveActivities, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Network as NativeNetwork, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, getHinge, getSizeClass, onHingeChange, ReservedRegions, useHinge, useSizeClass, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from '@vxrn/native';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaFrame, useSafeAreaInsets } from '@vxrn/safe-area';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
 export type OneIOS = Omit<typeof Swift, 'ToolbarItem'> & {
+    readonly Widgets: typeof Widgets;
+    readonly LiveActivities: typeof LiveActivities;
     readonly Color: ColorType['ios'];
     readonly MenuAction: typeof MenuAction;
     readonly SplitView: typeof SplitView;
@@ -34,8 +36,7 @@ export type OneUI = typeof NativeUI & {
     readonly useHinge: typeof useHinge;
     readonly getHinge: typeof getHinge;
     readonly onHingeChange: typeof onHingeChange;
-    readonly useReservedRegions: typeof useReservedRegions;
-    readonly getReservedRegions: typeof getReservedRegions;
+    readonly ReservedRegions: typeof ReservedRegions;
 };
 export type OneAPI = {
     readonly platform: OnePlatform;

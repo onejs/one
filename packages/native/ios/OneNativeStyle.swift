@@ -3,15 +3,17 @@
 import SwiftUI
 import UIKit
 import PassKit
+import AppIntents
+import StoreKit
 import DataDetection
 import GameController
-import StoreKit
 import MapKit
 import MusicKit
+import AVKit
 import PhotosUI
 import RealityKit
-import AppIntents
 import AuthenticationServices
+import Translation
 import WebKit
 
 public struct OneNativeStyle: Equatable {
@@ -113,6 +115,7 @@ extension View {
       case "accessibilityAddTraits": view = AnyView(view.oneNativeSDKAccessibilityAddTraits(value, emit: emit))
       case "accessibilityAdjustableAction": view = AnyView(view.oneNativeSDKAccessibilityAdjustableAction(value, emit: emit))
       case "accessibilityCustomContent": view = AnyView(view.oneNativeSDKAccessibilityCustomContent(value, emit: emit))
+      case "accessibilityDefaultFocus": view = AnyView(view.oneNativeSDKAccessibilityDefaultFocus(value, emit: emit))
       case "accessibilityDirectTouch": view = AnyView(view.oneNativeSDKAccessibilityDirectTouch(value, emit: emit))
       case "accessibilityDragPointWithPointAndDescription": view = AnyView(view.oneNativeSDKAccessibilityDragPointWithPointAndDescription(value, emit: emit))
       case "accessibilityDragPointWithPointAndDescriptionAndIsEnabled": view = AnyView(view.oneNativeSDKAccessibilityDragPointWithPointAndDescriptionAndIsEnabled(value, emit: emit))
@@ -152,14 +155,19 @@ extension View {
       case "accessibilityWithValue": view = AnyView(view.oneNativeSDKAccessibilityWithValue(value, emit: emit))
       case "accessibilityZoomAction": view = AnyView(view.oneNativeSDKAccessibilityZoomAction(value, emit: emit))
       case "addPassToWalletButtonStyle": view = AnyView(view.oneNativeSDKAddPassToWalletButtonStyle(value, emit: emit))
+      case "alignmentGuideWithHorizontalAlignment": view = AnyView(view.oneNativeSDKAlignmentGuideWithHorizontalAlignment(value, emit: emit))
+      case "alignmentGuideWithVerticalAlignment": view = AnyView(view.oneNativeSDKAlignmentGuideWithVerticalAlignment(value, emit: emit))
       case "allowedDynamicRange": view = AnyView(view.oneNativeSDKAllowedDynamicRange(value, emit: emit))
       case "allowsHitTesting": view = AnyView(view.oneNativeSDKAllowsHitTesting(value, emit: emit))
       case "allowsTightening": view = AnyView(view.oneNativeSDKAllowsTightening(value, emit: emit))
       case "allowsWindowActivationEventsWithNoArguments": view = AnyView(view.oneNativeSDKAllowsWindowActivationEventsWithNoArguments(value, emit: emit))
       case "allowsWindowActivationEventsWithOptionalBool": view = AnyView(view.oneNativeSDKAllowsWindowActivationEventsWithOptionalBool(value, emit: emit))
       case "animation": view = AnyView(view.oneNativeSDKAnimation(value, emit: emit))
+      case "appEntityIdentifier": view = AnyView(view.oneNativeSDKAppEntityIdentifier(value, emit: emit))
+      case "appStoreMerchandising": view = AnyView(view.oneNativeSDKAppStoreMerchandising(value, emit: emit))
       case "aspectRatio": view = AnyView(view.oneNativeSDKAspectRatio(value, emit: emit))
-      case "assistiveAccessNavigationIcon": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIcon(value, emit: emit))
+      case "assistiveAccessNavigationIconWithImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithImage(value, emit: emit))
+      case "assistiveAccessNavigationIconWithSystemImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithSystemImage(value, emit: emit))
       case "asyncImageURLSession": view = AnyView(view.oneNativeSDKAsyncImageURLSession(value, emit: emit))
       case "autocapitalization": view = AnyView(view.oneNativeSDKAutocapitalization(value, emit: emit))
       case "autocorrectionDisabled": view = AnyView(view.oneNativeSDKAutocorrectionDisabled(value, emit: emit))
@@ -179,6 +187,8 @@ extension View {
       case "buttonSizing": view = AnyView(view.oneNativeSDKButtonSizing(value, emit: emit))
       case "buttonStyle": view = AnyView(view.oneNativeSDKButtonStyle(value, emit: emit))
       case "clipped": view = AnyView(view.oneNativeSDKClipped(value, emit: emit))
+      case "clipShape": view = AnyView(view.oneNativeSDKClipShape(value, emit: emit))
+      case "colorEffect": view = AnyView(view.oneNativeSDKColorEffect(value, emit: emit))
       case "colorInvert": view = AnyView(view.oneNativeSDKColorInvert(value, emit: emit))
       case "colorMultiply": view = AnyView(view.oneNativeSDKColorMultiply(value, emit: emit))
       case "colorScheme": view = AnyView(view.oneNativeSDKColorScheme(value, emit: emit))
@@ -186,30 +196,42 @@ extension View {
       case "containerCornerOffset": view = AnyView(view.oneNativeSDKContainerCornerOffset(value, emit: emit))
       case "containerRelativeFrameWithAxesAndAlignment": view = AnyView(view.oneNativeSDKContainerRelativeFrameWithAxesAndAlignment(value, emit: emit))
       case "containerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment": view = AnyView(view.oneNativeSDKContainerRelativeFrameWithAxesAndCountAndSpanAndSpacingAndAlignment(value, emit: emit))
+      case "containerShape": view = AnyView(view.oneNativeSDKContainerShape(value, emit: emit))
       case "contentMarginsWithEdgesAndLengthAndPlacement": view = AnyView(view.oneNativeSDKContentMarginsWithEdgesAndLengthAndPlacement(value, emit: emit))
       case "contentMarginsWithLengthAndPlacement": view = AnyView(view.oneNativeSDKContentMarginsWithLengthAndPlacement(value, emit: emit))
+      case "contentShape": view = AnyView(view.oneNativeSDKContentShape(value, emit: emit))
       case "contentTransition": view = AnyView(view.oneNativeSDKContentTransition(value, emit: emit))
       case "contrast": view = AnyView(view.oneNativeSDKContrast(value, emit: emit))
       case "controlGroupStyle": view = AnyView(view.oneNativeSDKControlGroupStyle(value, emit: emit))
       case "controlSize": view = AnyView(view.oneNativeSDKControlSize(value, emit: emit))
       case "coordinateSpace": view = AnyView(view.oneNativeSDKCoordinateSpace(value, emit: emit))
+      case "copyable": view = AnyView(view.oneNativeSDKCopyable(value, emit: emit))
+      case "cuttable": view = AnyView(view.oneNativeSDKCuttable(value, emit: emit))
       case "dataDetection": view = AnyView(view.oneNativeSDKDataDetection(value, emit: emit))
       case "datePickerStyle": view = AnyView(view.oneNativeSDKDatePickerStyle(value, emit: emit))
       case "defaultAdaptableTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultAdaptableTabBarPlacement(value, emit: emit))
       case "defaultAppStorage": view = AnyView(view.oneNativeSDKDefaultAppStorage(value, emit: emit))
+      case "defaultFocus": view = AnyView(view.oneNativeSDKDefaultFocus(value, emit: emit))
       case "defaultHoverEffect": view = AnyView(view.oneNativeSDKDefaultHoverEffect(value, emit: emit))
       case "defaultScrollAnchorWithAnchorAndRole": view = AnyView(view.oneNativeSDKDefaultScrollAnchorWithAnchorAndRole(value, emit: emit))
       case "defaultScrollAnchorWithOptionalUnitPoint": view = AnyView(view.oneNativeSDKDefaultScrollAnchorWithOptionalUnitPoint(value, emit: emit))
       case "defaultTabBarPlacement": view = AnyView(view.oneNativeSDKDefaultTabBarPlacement(value, emit: emit))
       case "defersSystemGestures": view = AnyView(view.oneNativeSDKDefersSystemGestures(value, emit: emit))
       case "deleteDisabled": view = AnyView(view.oneNativeSDKDeleteDisabled(value, emit: emit))
+      case "dialogIcon": view = AnyView(view.oneNativeSDKDialogIcon(value, emit: emit))
       case "dialogSuppressionToggle": view = AnyView(view.oneNativeSDKDialogSuppressionToggle(value, emit: emit))
+      case "dialogSuppressionToggleWithLabelAndIsSuppressed": view = AnyView(view.oneNativeSDKDialogSuppressionToggleWithLabelAndIsSuppressed(value, emit: emit))
       case "disableAutocorrection": view = AnyView(view.oneNativeSDKDisableAutocorrection(value, emit: emit))
       case "disabled": view = AnyView(view.oneNativeSDKDisabled(value, emit: emit))
       case "disclosureGroupStyle": view = AnyView(view.oneNativeSDKDisclosureGroupStyle(value, emit: emit))
+      case "distortionEffect": view = AnyView(view.oneNativeSDKDistortionEffect(value, emit: emit))
       case "documentLaunchSubtitle": view = AnyView(view.oneNativeSDKDocumentLaunchSubtitle(value, emit: emit))
       case "documentLaunchTitle": view = AnyView(view.oneNativeSDKDocumentLaunchTitle(value, emit: emit))
+      case "dragConfiguration": view = AnyView(view.oneNativeSDKDragConfiguration(value, emit: emit))
+      case "draggable": view = AnyView(view.oneNativeSDKDraggable(value, emit: emit))
       case "drawingGroup": view = AnyView(view.oneNativeSDKDrawingGroup(value, emit: emit))
+      case "dropConfiguration": view = AnyView(view.oneNativeSDKDropConfiguration(value, emit: emit))
+      case "dropDestination": view = AnyView(view.oneNativeSDKDropDestination(value, emit: emit))
       case "dynamicTypeSize": view = AnyView(view.oneNativeSDKDynamicTypeSize(value, emit: emit))
       case "edgesIgnoringSafeArea": view = AnyView(view.oneNativeSDKEdgesIgnoringSafeArea(value, emit: emit))
       case "fileDialogBrowserOptions": view = AnyView(view.oneNativeSDKFileDialogBrowserOptions(value, emit: emit))
@@ -218,7 +240,10 @@ extension View {
       case "fileDialogDefaultDirectory": view = AnyView(view.oneNativeSDKFileDialogDefaultDirectory(value, emit: emit))
       case "fileDialogImportsUnresolvedAliases": view = AnyView(view.oneNativeSDKFileDialogImportsUnresolvedAliases(value, emit: emit))
       case "fileDialogMessage": view = AnyView(view.oneNativeSDKFileDialogMessage(value, emit: emit))
+      case "fileDialogURLEnabled": view = AnyView(view.oneNativeSDKFileDialogURLEnabled(value, emit: emit))
+      case "fileExporter": view = AnyView(view.oneNativeSDKFileExporter(value, emit: emit))
       case "fileExporterFilenameLabel": view = AnyView(view.oneNativeSDKFileExporterFilenameLabel(value, emit: emit))
+      case "fileMover": view = AnyView(view.oneNativeSDKFileMover(value, emit: emit))
       case "findDisabled": view = AnyView(view.oneNativeSDKFindDisabled(value, emit: emit))
       case "findNavigator": view = AnyView(view.oneNativeSDKFindNavigator(value, emit: emit))
       case "fixedSizeWithHorizontalAndVertical": view = AnyView(view.oneNativeSDKFixedSizeWithHorizontalAndVertical(value, emit: emit))
@@ -228,11 +253,16 @@ extension View {
       case "focusableWithIsFocusableAndInteractions": view = AnyView(view.oneNativeSDKFocusableWithIsFocusableAndInteractions(value, emit: emit))
       case "focused": view = AnyView(view.oneNativeSDKFocused(value, emit: emit))
       case "focusEffectDisabled": view = AnyView(view.oneNativeSDKFocusEffectDisabled(value, emit: emit))
+      case "font": view = AnyView(view.oneNativeSDKFont(value, emit: emit))
       case "fontWidth": view = AnyView(view.oneNativeSDKFontWidth(value, emit: emit))
       case "foregroundColor": view = AnyView(view.oneNativeSDKForegroundColor(value, emit: emit))
       case "formStyle": view = AnyView(view.oneNativeSDKFormStyle(value, emit: emit))
+      case "frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment": view = AnyView(view.oneNativeSDKFrameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment(value, emit: emit))
+      case "frameWithNoArguments": view = AnyView(view.oneNativeSDKFrameWithNoArguments(value, emit: emit))
+      case "frameWithWidthAndHeightAndAlignment": view = AnyView(view.oneNativeSDKFrameWithWidthAndHeightAndAlignment(value, emit: emit))
       case "gaugeStyle": view = AnyView(view.oneNativeSDKGaugeStyle(value, emit: emit))
       case "geometryGroup": view = AnyView(view.oneNativeSDKGeometryGroup(value, emit: emit))
+      case "gesture": view = AnyView(view.oneNativeSDKGesture(value, emit: emit))
       case "glassEffectTransition": view = AnyView(view.oneNativeSDKGlassEffectTransition(value, emit: emit))
       case "grayscale": view = AnyView(view.oneNativeSDKGrayscale(value, emit: emit))
       case "gridCellAnchor": view = AnyView(view.oneNativeSDKGridCellAnchor(value, emit: emit))
@@ -246,6 +276,7 @@ extension View {
       case "headerProminence": view = AnyView(view.oneNativeSDKHeaderProminence(value, emit: emit))
       case "help": view = AnyView(view.oneNativeSDKHelp(value, emit: emit))
       case "hidden": view = AnyView(view.oneNativeSDKHidden(value, emit: emit))
+      case "highPriorityGesture": view = AnyView(view.oneNativeSDKHighPriorityGesture(value, emit: emit))
       case "hoverEffectDisabled": view = AnyView(view.oneNativeSDKHoverEffectDisabled(value, emit: emit))
       case "hoverEffectWithEffectAndIsEnabled": view = AnyView(view.oneNativeSDKHoverEffectWithEffectAndIsEnabled(value, emit: emit))
       case "hoverEffectWithHoverEffect": view = AnyView(view.oneNativeSDKHoverEffectWithHoverEffect(value, emit: emit))
@@ -261,6 +292,7 @@ extension View {
       case "interactiveDismissDisabled": view = AnyView(view.oneNativeSDKInteractiveDismissDisabled(value, emit: emit))
       case "invalidatableContent": view = AnyView(view.oneNativeSDKInvalidatableContent(value, emit: emit))
       case "italic": view = AnyView(view.oneNativeSDKItalic(value, emit: emit))
+      case "itemProvider": view = AnyView(view.oneNativeSDKItemProvider(value, emit: emit))
       case "kerning": view = AnyView(view.oneNativeSDKKerning(value, emit: emit))
       case "keyboardShortcutWithKeyAndModifiers": view = AnyView(view.oneNativeSDKKeyboardShortcutWithKeyAndModifiers(value, emit: emit))
       case "keyboardShortcutWithKeyAndModifiersAndLocalization": view = AnyView(view.oneNativeSDKKeyboardShortcutWithKeyAndModifiersAndLocalization(value, emit: emit))
@@ -273,8 +305,10 @@ extension View {
       case "labelsHidden": view = AnyView(view.oneNativeSDKLabelsHidden(value, emit: emit))
       case "labelStyle": view = AnyView(view.oneNativeSDKLabelStyle(value, emit: emit))
       case "labelsVisibility": view = AnyView(view.oneNativeSDKLabelsVisibility(value, emit: emit))
+      case "layerEffect": view = AnyView(view.oneNativeSDKLayerEffect(value, emit: emit))
       case "layoutDirectionBehavior": view = AnyView(view.oneNativeSDKLayoutDirectionBehavior(value, emit: emit))
       case "layoutPriority": view = AnyView(view.oneNativeSDKLayoutPriority(value, emit: emit))
+      case "lineHeight": view = AnyView(view.oneNativeSDKLineHeight(value, emit: emit))
       case "lineLimitWithLimitAndReservesSpace": view = AnyView(view.oneNativeSDKLineLimitWithLimitAndReservesSpace(value, emit: emit))
       case "lineLimitWithOptionalInt": view = AnyView(view.oneNativeSDKLineLimitWithOptionalInt(value, emit: emit))
       case "lineSpacing": view = AnyView(view.oneNativeSDKLineSpacing(value, emit: emit))
@@ -293,8 +327,10 @@ extension View {
       case "listStyle": view = AnyView(view.oneNativeSDKListStyle(value, emit: emit))
       case "luminanceToAlpha": view = AnyView(view.oneNativeSDKLuminanceToAlpha(value, emit: emit))
       case "manageSubscriptionsSheet": view = AnyView(view.oneNativeSDKManageSubscriptionsSheet(value, emit: emit))
+      case "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID": view = AnyView(view.oneNativeSDKManageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID(value, emit: emit))
       case "mapControlVisibility": view = AnyView(view.oneNativeSDKMapControlVisibility(value, emit: emit))
       case "mapFeatureSelectionAccessory": view = AnyView(view.oneNativeSDKMapFeatureSelectionAccessory(value, emit: emit))
+      case "mapFeatureSelectionDisabled": view = AnyView(view.oneNativeSDKMapFeatureSelectionDisabled(value, emit: emit))
       case "mapStyle": view = AnyView(view.oneNativeSDKMapStyle(value, emit: emit))
       case "materialActiveAppearance": view = AnyView(view.oneNativeSDKMaterialActiveAppearance(value, emit: emit))
       case "menuActionDismissBehavior": view = AnyView(view.oneNativeSDKMenuActionDismissBehavior(value, emit: emit))
@@ -326,15 +362,23 @@ extension View {
       case "offerCodeRedemption": view = AnyView(view.oneNativeSDKOfferCodeRedemption(value, emit: emit))
       case "offset": view = AnyView(view.oneNativeSDKOffset(value, emit: emit))
       case "onAppear": view = AnyView(view.oneNativeSDKOnAppear(value, emit: emit))
+      case "onCameraCaptureEvent": view = AnyView(view.oneNativeSDKOnCameraCaptureEvent(value, emit: emit))
+      case "onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction": view = AnyView(view.oneNativeSDKOnCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction(value, emit: emit))
+      case "onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction": view = AnyView(view.oneNativeSDKOnCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction(value, emit: emit))
       case "onChange": view = AnyView(view.oneNativeSDKOnChange(value, emit: emit))
+      case "onContinueUserActivity": view = AnyView(view.oneNativeSDKOnContinueUserActivity(value, emit: emit))
       case "onContinuousHover": view = AnyView(view.oneNativeSDKOnContinuousHover(value, emit: emit))
       case "onDisappear": view = AnyView(view.oneNativeSDKOnDisappear(value, emit: emit))
+      case "onDrag": view = AnyView(view.oneNativeSDKOnDrag(value, emit: emit))
       case "onDragSessionUpdated": view = AnyView(view.oneNativeSDKOnDragSessionUpdated(value, emit: emit))
+      case "onDropSessionUpdated": view = AnyView(view.oneNativeSDKOnDropSessionUpdated(value, emit: emit))
       case "onGeometryChangeWithSize": view = AnyView(view.oneNativeSDKOnGeometryChangeWithSize(value, emit: emit))
       case "onHover": view = AnyView(view.oneNativeSDKOnHover(value, emit: emit))
       case "onInteractiveResizeChange": view = AnyView(view.oneNativeSDKOnInteractiveResizeChange(value, emit: emit))
+      case "onKeyPress": view = AnyView(view.oneNativeSDKOnKeyPress(value, emit: emit))
       case "onLongPressGesture": view = AnyView(view.oneNativeSDKOnLongPressGesture(value, emit: emit))
       case "onMapCameraChange": view = AnyView(view.oneNativeSDKOnMapCameraChange(value, emit: emit))
+      case "onMapCameraChangeWithEventStruct": view = AnyView(view.oneNativeSDKOnMapCameraChangeWithEventStruct(value, emit: emit))
       case "onOpenURLWithPerform": view = AnyView(view.oneNativeSDKOnOpenURLWithPerform(value, emit: emit))
       case "onOpenURLWithPrefersInApp": view = AnyView(view.oneNativeSDKOnOpenURLWithPrefersInApp(value, emit: emit))
       case "onPencilDoubleTap": view = AnyView(view.oneNativeSDKOnPencilDoubleTap(value, emit: emit))
@@ -349,6 +393,7 @@ extension View {
       case "onTapGestureWithPerform": view = AnyView(view.oneNativeSDKOnTapGestureWithPerform(value, emit: emit))
       case "onTapGestureWithPerformFromSwiftUICore": view = AnyView(view.oneNativeSDKOnTapGestureWithPerformFromSwiftUICore(value, emit: emit))
       case "paletteSelectionEffect": view = AnyView(view.oneNativeSDKPaletteSelectionEffect(value, emit: emit))
+      case "pasteDestination": view = AnyView(view.oneNativeSDKPasteDestination(value, emit: emit))
       case "payLaterViewAction": view = AnyView(view.oneNativeSDKPayLaterViewAction(value, emit: emit))
       case "payLaterViewDisplayStyle": view = AnyView(view.oneNativeSDKPayLaterViewDisplayStyle(value, emit: emit))
       case "payWithApplePayButtonDisableCardArt": view = AnyView(view.oneNativeSDKPayWithApplePayButtonDisableCardArt(value, emit: emit))
@@ -359,6 +404,7 @@ extension View {
       case "photosPickerMetadataOptions": view = AnyView(view.oneNativeSDKPhotosPickerMetadataOptions(value, emit: emit))
       case "photosPickerSearchText": view = AnyView(view.oneNativeSDKPhotosPickerSearchText(value, emit: emit))
       case "photosPickerStyle": view = AnyView(view.oneNativeSDKPhotosPickerStyle(value, emit: emit))
+      case "photosReferenceImageViewer": view = AnyView(view.oneNativeSDKPhotosReferenceImageViewer(value, emit: emit))
       case "pickerStyle": view = AnyView(view.oneNativeSDKPickerStyle(value, emit: emit))
       case "position": view = AnyView(view.oneNativeSDKPosition(value, emit: emit))
       case "preferredColorScheme": view = AnyView(view.oneNativeSDKPreferredColorScheme(value, emit: emit))
@@ -384,6 +430,7 @@ extension View {
       case "realityViewCameraControls": view = AnyView(view.oneNativeSDKRealityViewCameraControls(value, emit: emit))
       case "realityViewLayoutBehavior": view = AnyView(view.oneNativeSDKRealityViewLayoutBehavior(value, emit: emit))
       case "redacted": view = AnyView(view.oneNativeSDKRedacted(value, emit: emit))
+      case "refundRequestSheet": view = AnyView(view.oneNativeSDKRefundRequestSheet(value, emit: emit))
       case "renameAction": view = AnyView(view.oneNativeSDKRenameAction(value, emit: emit))
       case "replaceDisabled": view = AnyView(view.oneNativeSDKReplaceDisabled(value, emit: emit))
       case "rotation3DEffect": view = AnyView(view.oneNativeSDKRotation3DEffect(value, emit: emit))
@@ -406,7 +453,8 @@ extension View {
       case "scrollEdgeEffectStyle": view = AnyView(view.oneNativeSDKScrollEdgeEffectStyle(value, emit: emit))
       case "scrollIndicators": view = AnyView(view.oneNativeSDKScrollIndicators(value, emit: emit))
       case "scrollIndicatorsFlash": view = AnyView(view.oneNativeSDKScrollIndicatorsFlash(value, emit: emit))
-      case "scrollPosition": view = AnyView(view.oneNativeSDKScrollPosition(value, emit: emit))
+      case "scrollPositionWithBindingPoint": view = AnyView(view.oneNativeSDKScrollPositionWithBindingPoint(value, emit: emit))
+      case "scrollPositionWithId": view = AnyView(view.oneNativeSDKScrollPositionWithId(value, emit: emit))
       case "scrollTargetBehavior": view = AnyView(view.oneNativeSDKScrollTargetBehavior(value, emit: emit))
       case "scrollTargetLayout": view = AnyView(view.oneNativeSDKScrollTargetLayout(value, emit: emit))
       case "searchable": view = AnyView(view.oneNativeSDKSearchable(value, emit: emit))
@@ -422,6 +470,7 @@ extension View {
       case "shadow": view = AnyView(view.oneNativeSDKShadow(value, emit: emit))
       case "shortcutsLinkStyle": view = AnyView(view.oneNativeSDKShortcutsLinkStyle(value, emit: emit))
       case "signInWithAppleButtonStyle": view = AnyView(view.oneNativeSDKSignInWithAppleButtonStyle(value, emit: emit))
+      case "simultaneousGesture": view = AnyView(view.oneNativeSDKSimultaneousGesture(value, emit: emit))
       case "siriTipViewStyle": view = AnyView(view.oneNativeSDKSiriTipViewStyle(value, emit: emit))
       case "sliderThumbVisibility": view = AnyView(view.oneNativeSDKSliderThumbVisibility(value, emit: emit))
       case "speechAdjustedPitch": view = AnyView(view.oneNativeSDKSpeechAdjustedPitch(value, emit: emit))
@@ -442,7 +491,9 @@ extension View {
       case "subscriptionStoreControlBackground": view = AnyView(view.oneNativeSDKSubscriptionStoreControlBackground(value, emit: emit))
       case "subscriptionStoreControlStyle": view = AnyView(view.oneNativeSDKSubscriptionStoreControlStyle(value, emit: emit))
       case "subscriptionStoreOptionGroupStyle": view = AnyView(view.oneNativeSDKSubscriptionStoreOptionGroupStyle(value, emit: emit))
+      case "subscriptionStorePickerItemBackground": view = AnyView(view.oneNativeSDKSubscriptionStorePickerItemBackground(value, emit: emit))
       case "subscriptionStorePolicyDestination": view = AnyView(view.oneNativeSDKSubscriptionStorePolicyDestination(value, emit: emit))
+      case "subscriptionStorePolicyForegroundStyle": view = AnyView(view.oneNativeSDKSubscriptionStorePolicyForegroundStyle(value, emit: emit))
       case "subscriptionStoreSignInAction": view = AnyView(view.oneNativeSDKSubscriptionStoreSignInAction(value, emit: emit))
       case "swipeActionsContainer": view = AnyView(view.oneNativeSDKSwipeActionsContainer(value, emit: emit))
       case "symbolColorRenderingMode": view = AnyView(view.oneNativeSDKSymbolColorRenderingMode(value, emit: emit))
@@ -453,6 +504,7 @@ extension View {
       case "tabBarMinimizeBehavior": view = AnyView(view.oneNativeSDKTabBarMinimizeBehavior(value, emit: emit))
       case "tableColumnHeaders": view = AnyView(view.oneNativeSDKTableColumnHeaders(value, emit: emit))
       case "tableStyle": view = AnyView(view.oneNativeSDKTableStyle(value, emit: emit))
+      case "tabViewCustomization": view = AnyView(view.oneNativeSDKTabViewCustomization(value, emit: emit))
       case "tabViewSearchActivation": view = AnyView(view.oneNativeSDKTabViewSearchActivation(value, emit: emit))
       case "tabViewStyle": view = AnyView(view.oneNativeSDKTabViewStyle(value, emit: emit))
       case "tag": view = AnyView(view.oneNativeSDKTag(value, emit: emit))
@@ -481,11 +533,13 @@ extension View {
       case "tracking": view = AnyView(view.oneNativeSDKTracking(value, emit: emit))
       case "transformEffect": view = AnyView(view.oneNativeSDKTransformEffect(value, emit: emit))
       case "transition": view = AnyView(view.oneNativeSDKTransition(value, emit: emit))
+      case "translationPresentation": view = AnyView(view.oneNativeSDKTranslationPresentation(value, emit: emit))
       case "truncationMode": view = AnyView(view.oneNativeSDKTruncationMode(value, emit: emit))
       case "typeSelectEquivalent": view = AnyView(view.oneNativeSDKTypeSelectEquivalent(value, emit: emit))
       case "typesettingLanguage": view = AnyView(view.oneNativeSDKTypesettingLanguage(value, emit: emit))
       case "underline": view = AnyView(view.oneNativeSDKUnderline(value, emit: emit))
       case "unredacted": view = AnyView(view.oneNativeSDKUnredacted(value, emit: emit))
+      case "userActivity": view = AnyView(view.oneNativeSDKUserActivity(value, emit: emit))
       case "verifyIdentityWithWalletButtonStyle": view = AnyView(view.oneNativeSDKVerifyIdentityWithWalletButtonStyle(value, emit: emit))
       case "webViewBackForwardNavigationGestures": view = AnyView(view.oneNativeSDKWebViewBackForwardNavigationGestures(value, emit: emit))
       case "webViewContentBackground": view = AnyView(view.oneNativeSDKWebViewContentBackground(value, emit: emit))
@@ -495,6 +549,7 @@ extension View {
       case "webViewOnScrollGeometryChangeWithContainerSize": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContainerSize(value, emit: emit))
       case "webViewOnScrollGeometryChangeWithContentOffset": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContentOffset(value, emit: emit))
       case "webViewOnScrollGeometryChangeWithContentSize": view = AnyView(view.oneNativeSDKWebViewOnScrollGeometryChangeWithContentSize(value, emit: emit))
+      case "webViewScrollPosition": view = AnyView(view.oneNativeSDKWebViewScrollPosition(value, emit: emit))
       case "webViewTextSelection": view = AnyView(view.oneNativeSDKWebViewTextSelection(value, emit: emit))
       case "windowToolbarFullScreenVisibility": view = AnyView(view.oneNativeSDKWindowToolbarFullScreenVisibility(value, emit: emit))
       case "writingDirection": view = AnyView(view.oneNativeSDKWritingDirection(value, emit: emit))
@@ -817,6 +872,13 @@ extension View {
       return Text(raw)
     }()
     self.accessibilityCustomContent(argument0, argument1)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityDefaultFocus(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid accessibilityDefaultFocus: \(value)")
+    if value == "true" {
+      if #available(iOS 26, *) { self.modifier(OneNativeSDKAccessibilityDefaultFocusFocusBinding()) } else { self }
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityDirectTouch(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -1371,6 +1433,58 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKAlignmentGuideWithHorizontalAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid alignmentGuideWithHorizontalAlignment: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.HorizontalAlignment = {
+      guard let raw = values[0] else { preconditionFailure("missing alignmentGuideWithHorizontalAlignment.g") }
+      switch raw {
+      case "leading": return SwiftUICore.HorizontalAlignment.leading
+      case "center": return SwiftUICore.HorizontalAlignment.center
+      case "trailing": return SwiftUICore.HorizontalAlignment.trailing
+      case "listRowSeparatorLeading": return SwiftUICore.HorizontalAlignment.listRowSeparatorLeading
+      case "listRowSeparatorTrailing": return SwiftUICore.HorizontalAlignment.listRowSeparatorTrailing
+      default: preconditionFailure("invalid alignmentGuideWithHorizontalAlignment.g: \(raw)")
+      }
+    }()
+    let argument1: CoreFoundation.CGFloat = {
+      guard let raw = values[1] else { preconditionFailure("missing alignmentGuideWithHorizontalAlignment.computeValue") }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid alignmentGuideWithHorizontalAlignment.computeValue: \(raw)") }
+      return CGFloat(number)
+    }()
+    self.alignmentGuide(argument0, computeValue: { (_: SwiftUICore.ViewDimensions) in argument1 })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAlignmentGuideWithVerticalAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid alignmentGuideWithVerticalAlignment: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.VerticalAlignment = {
+      guard let raw = values[0] else { preconditionFailure("missing alignmentGuideWithVerticalAlignment.g") }
+      switch raw {
+      case "top": return SwiftUICore.VerticalAlignment.top
+      case "center": return SwiftUICore.VerticalAlignment.center
+      case "bottom": return SwiftUICore.VerticalAlignment.bottom
+      case "firstTextBaseline": return SwiftUICore.VerticalAlignment.firstTextBaseline
+      case "lastTextBaseline": return SwiftUICore.VerticalAlignment.lastTextBaseline
+      default: preconditionFailure("invalid alignmentGuideWithVerticalAlignment.g: \(raw)")
+      }
+    }()
+    let argument1: CoreFoundation.CGFloat = {
+      guard let raw = values[1] else { preconditionFailure("missing alignmentGuideWithVerticalAlignment.computeValue") }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid alignmentGuideWithVerticalAlignment.computeValue: \(raw)") }
+      return CGFloat(number)
+    }()
+    self.alignmentGuide(argument0, computeValue: { (_: SwiftUICore.ViewDimensions) in argument1 })
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKAllowedDynamicRange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.allowedDynamicRange(nil as SwiftUICore.Image.DynamicRange?)
@@ -1418,6 +1532,32 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKAppEntityIdentifier(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if value == "null" { if #available(iOS 18.4, *) { self.appEntityIdentifier(nil as AppIntents.EntityIdentifier?) } else { self } } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+      if #available(iOS 18.4, *) { self.appEntityIdentifier((AppIntents.EntityIdentifier(activityIdentifier: decoded) ?? { () -> AppIntents.EntityIdentifier in preconditionFailure("invalid appEntityIdentifier") }())) } else { self }
+    } else { preconditionFailure("invalid appEntityIdentifier: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAppStoreMerchandising(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid appStoreMerchandising: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid appStoreMerchandising.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("appStoreMerchandising.isPresented", String($0)) })
+    }()
+    let argument1: StoreKit.AppStoreMerchandisingKind = {
+      guard let raw = values[1] else { preconditionFailure("missing appStoreMerchandising.kind") }
+      return StoreKit.AppStoreMerchandisingKind.subscriptionBundle(raw)
+    }()
+    self.appStoreMerchandising(isPresented: argument0, kind: argument1)
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKAspectRatio(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -1441,14 +1581,24 @@ extension View {
     self.aspectRatio(argument0, contentMode: argument1)
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKAssistiveAccessNavigationIcon(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKAssistiveAccessNavigationIconWithImage(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      if #available(iOS 26, *) { self.assistiveAccessNavigationIcon(Image(systemName: value)) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAssistiveAccessNavigationIconWithSystemImage(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       if #available(iOS 26, *) { self.assistiveAccessNavigationIcon(systemImage: value) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAsyncImageURLSession(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "shared": if #available(iOS 27, *) { self.asyncImageURLSession(Foundation.URLSession.shared) } else { self }
+      case "shared":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.asyncImageURLSession(Foundation.URLSession.shared) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid asyncImageURLSession: \(value)")
     }
   }
@@ -1659,6 +1809,45 @@ extension View {
       self.clipped(antialiased: value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKClipShape(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "buttonBorder": self.clipShape(.buttonBorder)
+      case "rect": self.clipShape(.rect)
+      case "capsule": self.clipShape(.capsule)
+      case "ellipse": self.clipShape(.ellipse)
+      case "circle": self.clipShape(.circle)
+      case "containerRelative": self.clipShape(.containerRelative)
+      case "textInputBorder":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.clipShape(.textInputBorder) } else { self }
+#else
+self
+#endif
+
+    default: preconditionFailure("invalid clipShape: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKColorEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid colorEffect: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Shader = {
+      guard let raw = values[0] else { preconditionFailure("missing colorEffect.shader") }
+      return SwiftUICore.Shader(function: SwiftUICore.ShaderFunction(library: SwiftUICore.ShaderLibrary.default, name: raw), arguments: [])
+    }()
+    let argument1: Swift.Bool = {
+      guard let raw = values[1] else { preconditionFailure("missing colorEffect.isEnabled") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid colorEffect.isEnabled: \(raw)") }
+      return raw == "true"
+    }()
+    self.colorEffect(argument0, isEnabled: argument1)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKColorInvert(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid colorInvert: \(value)")
     if value == "true" { self.colorInvert() } else { self }
@@ -1827,6 +2016,26 @@ extension View {
     self.containerRelativeFrame(argument0, count: argument1, span: argument2, spacing: argument3, alignment: argument4)
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKContainerShape(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "buttonBorder": self.containerShape(.buttonBorder)
+      case "rect": self.containerShape(.rect)
+      case "capsule": self.containerShape(.capsule)
+      case "ellipse": self.containerShape(.ellipse)
+      case "circle": self.containerShape(.circle)
+      case "containerRelative": self.containerShape(.containerRelative)
+      case "textInputBorder":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.containerShape(.textInputBorder) } else { self }
+#else
+self
+#endif
+
+    default: preconditionFailure("invalid containerShape: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKContentMarginsWithEdgesAndLengthAndPlacement(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -1888,6 +2097,26 @@ extension View {
     self.contentMargins(argument0, for: argument1)
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKContentShape(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "buttonBorder": self.contentShape(.buttonBorder)
+      case "rect": self.contentShape(.rect)
+      case "capsule": self.contentShape(.capsule)
+      case "ellipse": self.contentShape(.ellipse)
+      case "circle": self.contentShape(.circle)
+      case "containerRelative": self.contentShape(.containerRelative)
+      case "textInputBorder":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.contentShape(.textInputBorder) } else { self }
+#else
+self
+#endif
+
+    default: preconditionFailure("invalid contentShape: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKContentTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -1933,9 +2162,59 @@ extension View {
       self.coordinateSpace(name: value)
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKCopyable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid copyable: \(value)") }
+      return decoded
+    }()
+    let argument0: [Swift.String] = {
+      guard let raw = values[0] else { preconditionFailure("missing copyable.payload") }
+      guard let data = raw.data(using: .utf8), let strings = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid copyable.payload: \(raw)") }
+      return strings
+    }()
+    self.copyable(argument0)
+    } else { self }
+#else
+self
+#endif
+
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKCuttable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
+      let items: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid cuttable: \(value)") }
+      return decoded
+    }()
+    let action: () -> [String] = {
+      emit("cuttable", "")
+      return items
+    }
+    self.cuttable(for: String.self, action: action)
+    } else { self }
+#else
+self
+#endif
+
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKDataDetection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid dataDetection: \(value)")
-    if value == "true" { if #available(iOS 27, *) { self.dataDetection() } else { self } } else { self }
+    if value == "true" { 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.dataDetection() } else { self }
+#else
+self
+#endif
+ } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDatePickerStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -1965,6 +2244,13 @@ extension View {
       case "standard": self.defaultAppStorage(Foundation.UserDefaults.standard)
     default: preconditionFailure("invalid defaultAppStorage: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDefaultFocus(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid defaultFocus: \(value)")
+    if value == "true" {
+      self.modifier(OneNativeSDKDefaultFocusFocusBinding())
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDefaultHoverEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2037,9 +2323,27 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKDefaultTabBarPlacement(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.automatic) } else { self }
-      case "tabBar": if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.tabBar) } else { self }
-      case "sidebar": if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.sidebar) } else { self }
+      case "automatic":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.automatic) } else { self }
+#else
+self
+#endif
+
+      case "tabBar":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.tabBar) } else { self }
+#else
+self
+#endif
+
+      case "sidebar":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.sidebar) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid defaultTabBarPlacement: \(value)")
     }
   }
@@ -2063,9 +2367,33 @@ extension View {
       self.deleteDisabled(value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKDialogIcon(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if value == "null" { self.dialogIcon(nil as SwiftUICore.Image?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+      self.dialogIcon(Image(systemName: decoded))
+    } else { preconditionFailure("invalid dialogIcon: \(value)") } }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKDialogSuppressionToggle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid dialogSuppressionToggle: \(value)")
     self.dialogSuppressionToggle(isSuppressed: Binding(get: { value == "true" }, set: { emit("dialogSuppressionToggle", String($0)) }))
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDialogSuppressionToggleWithLabelAndIsSuppressed(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid dialogSuppressionToggleWithLabelAndIsSuppressed: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Text = {
+      guard let raw = values[0] else { preconditionFailure("missing dialogSuppressionToggleWithLabelAndIsSuppressed.label") }
+      return Text(raw)
+    }()
+    let argument1: SwiftUICore.Binding<Swift.Bool> = {
+      guard let raw = values[1], raw == "true" || raw == "false" else { preconditionFailure("invalid dialogSuppressionToggleWithLabelAndIsSuppressed.isSuppressed") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("dialogSuppressionToggleWithLabelAndIsSuppressed.isSuppressed", String($0)) })
+    }()
+    self.dialogSuppressionToggle(argument0, isSuppressed: argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDisableAutocorrection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2085,12 +2413,76 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKDistortionEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid distortionEffect: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Shader = {
+      guard let raw = values[0] else { preconditionFailure("missing distortionEffect.shader") }
+      return SwiftUICore.Shader(function: SwiftUICore.ShaderFunction(library: SwiftUICore.ShaderLibrary.default, name: raw), arguments: [])
+    }()
+    let argument1: CoreFoundation.CGSize = {
+      guard let raw = values[1] else { preconditionFailure("missing distortionEffect.maxSampleOffset") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["width"], field0.isFinite,
+        let field1 = decoded["height"], field1.isFinite else { preconditionFailure("invalid distortionEffect.maxSampleOffset: \(raw)") }
+      return CoreFoundation.CGSize(width: CGFloat(field0), height: CGFloat(field1))
+    }()
+    let argument2: Swift.Bool = {
+      guard let raw = values[2] else { preconditionFailure("missing distortionEffect.isEnabled") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid distortionEffect.isEnabled: \(raw)") }
+      return raw == "true"
+    }()
+    self.distortionEffect(argument0, maxSampleOffset: argument1, isEnabled: argument2)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKDocumentLaunchSubtitle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if #available(iOS 27, *) { self.documentLaunchSubtitle(Text(value)) } else { self }
+      
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.documentLaunchSubtitle(Text(value)) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDocumentLaunchTitle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      if #available(iOS 27, *) { self.documentLaunchTitle(Text(value)) } else { self }
+      
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.documentLaunchTitle(Text(value)) } else { self }
+#else
+self
+#endif
+
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDragConfiguration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid dragConfiguration: \(value)")
+      
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.dragConfiguration(SwiftUI.DragConfiguration(allowMove: value == "true")) } else { self }
+#else
+self
+#endif
+
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDraggable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid draggable: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.String = {
+      guard let raw = values[0] else { preconditionFailure("missing draggable.payload") }
+      return raw
+    }()
+    self.draggable(argument0)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDrawingGroup(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2115,6 +2507,43 @@ extension View {
       }
     }()
     self.drawingGroup(opaque: argument0, colorMode: argument1)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDropConfiguration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
+      let selected: SwiftUI.DropConfiguration = {
+      switch value {
+      case "cancel": return SwiftUI.DropConfiguration(operation: SwiftUI.DropOperation.cancel)
+      case "forbidden": return SwiftUI.DropConfiguration(operation: SwiftUI.DropOperation.forbidden)
+      case "copy": return SwiftUI.DropConfiguration(operation: SwiftUI.DropOperation.copy)
+      case "move": return SwiftUI.DropConfiguration(operation: SwiftUI.DropOperation.move)
+      default: preconditionFailure("invalid dropConfiguration: \(value)")
+      }
+    }()
+    let action: (SwiftUI.DropSession) -> SwiftUI.DropConfiguration = { item in
+      let payload = (["itemsCount": Double(item.itemsCount), "suggestedOperations": (["rawValue": Double(item.suggestedOperations.rawValue)] as [String: Any]), "size": (["width": Double(item.size.width), "height": Double(item.size.height)] as [String: Any]), "location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid dropConfiguration event") }
+      emit("dropConfiguration", encoded)
+      return selected
+    }
+    self.dropConfiguration(action)
+    } else { self }
+#else
+self
+#endif
+
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDropDestination(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) { self.dropDestination(for: String.self, isEnabled: true, action: { items, session in
+      let payload = (["items": items.map { item -> Any in item }, "session": (["itemsCount": Double(session.itemsCount), "suggestedOperations": (["rawValue": Double(session.suggestedOperations.rawValue)] as [String: Any]), "size": (["width": Double(session.size.width), "height": Double(session.size.height)] as [String: Any]), "location": (["x": Double(session.location.x), "y": Double(session.location.y)] as [String: Any])] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid dropDestination event") }
+      emit("dropDestination", encoded)
+    }) } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDynamicTypeSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2189,10 +2618,72 @@ extension View {
     } else { preconditionFailure("invalid fileDialogMessage: \(value)") } }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKFileDialogURLEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid fileDialogURLEnabled: \(value)")
+      self.fileDialogURLEnabled(#Predicate<Foundation.URL> { _ in value == "true" })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFileExporter(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid fileExporter: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid fileExporter.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("fileExporter.isPresented", String($0)) })
+    }()
+    let argument1: Swift.String? = {
+      guard let raw = values[1] else { return nil }
+      return raw
+    }()
+    let argument2: (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void = { result in
+      let payload: [String: Any]
+      switch result {
+      case .success(let urls): payload = ["success": urls.absoluteString]
+      case .failure(let error): payload = ["failure": String(describing: error)]
+      }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid fileExporter.onCompletion result") }
+      emit("fileExporter.onCompletion", encoded)
+    }
+    self.fileExporter(isPresented: argument0, item: argument1, onCompletion: argument2)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKFileExporterFilenameLabel(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if value == "null" { self.fileExporterFilenameLabel(nil as SwiftUICore.Text?) } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
       self.fileExporterFilenameLabel(Text(decoded))
     } else { preconditionFailure("invalid fileExporterFilenameLabel: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFileMover(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid fileMover: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid fileMover.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("fileMover.isPresented", String($0)) })
+    }()
+    let argument1: Foundation.URL? = {
+      guard let raw = values[1] else { return nil }
+      guard let url = Foundation.URL(string: raw) else { preconditionFailure("invalid fileMover.file: \(raw)") }
+      return url
+    }()
+    let argument2: (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void = { result in
+      let payload: [String: Any]
+      switch result {
+      case .success(let urls): payload = ["success": urls.absoluteString]
+      case .failure(let error): payload = ["failure": String(describing: error)]
+      }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid fileMover.onCompletion result") }
+      emit("fileMover.onCompletion", encoded)
+    }
+    self.fileMover(isPresented: argument0, file: argument1, onCompletion: argument2)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKFindDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2274,6 +2765,25 @@ extension View {
       self.focusEffectDisabled(value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKFont(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.font(nil as SwiftUICore.Font?)
+      case "largeTitle": self.font(SwiftUICore.Font.largeTitle)
+      case "title": self.font(SwiftUICore.Font.title)
+      case "title2": self.font(SwiftUICore.Font.title2)
+      case "title3": self.font(SwiftUICore.Font.title3)
+      case "headline": self.font(SwiftUICore.Font.headline)
+      case "subheadline": self.font(SwiftUICore.Font.subheadline)
+      case "body": self.font(SwiftUICore.Font.body)
+      case "callout": self.font(SwiftUICore.Font.callout)
+      case "footnote": self.font(SwiftUICore.Font.footnote)
+      case "caption": self.font(SwiftUICore.Font.caption)
+      case "caption2": self.font(SwiftUICore.Font.caption2)
+      case "default": if #available(iOS 26, *) { self.font(SwiftUICore.Font.default) } else { self }
+    default: preconditionFailure("invalid font: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKFontWidth(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.fontWidth(nil as SwiftUICore.Font.Width?)
@@ -2321,6 +2831,113 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKFrameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 7 else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment: \(value)") }
+      return decoded
+    }()
+    let argument0: CoreFoundation.CGFloat? = {
+      guard let raw = values[0] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.minWidth: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument1: CoreFoundation.CGFloat? = {
+      guard let raw = values[1] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.idealWidth: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument2: CoreFoundation.CGFloat? = {
+      guard let raw = values[2] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxWidth: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument3: CoreFoundation.CGFloat? = {
+      guard let raw = values[3] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.minHeight: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument4: CoreFoundation.CGFloat? = {
+      guard let raw = values[4] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.idealHeight: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument5: CoreFoundation.CGFloat? = {
+      guard let raw = values[5] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.maxHeight: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument6: SwiftUICore.Alignment = {
+      guard let raw = values[6] else { preconditionFailure("missing frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.alignment") }
+      switch raw {
+      case "center": return SwiftUICore.Alignment.center
+      case "leading": return SwiftUICore.Alignment.leading
+      case "trailing": return SwiftUICore.Alignment.trailing
+      case "top": return SwiftUICore.Alignment.top
+      case "bottom": return SwiftUICore.Alignment.bottom
+      case "topLeading": return SwiftUICore.Alignment.topLeading
+      case "topTrailing": return SwiftUICore.Alignment.topTrailing
+      case "bottomLeading": return SwiftUICore.Alignment.bottomLeading
+      case "bottomTrailing": return SwiftUICore.Alignment.bottomTrailing
+      case "centerFirstTextBaseline": return SwiftUICore.Alignment.centerFirstTextBaseline
+      case "centerLastTextBaseline": return SwiftUICore.Alignment.centerLastTextBaseline
+      case "leadingFirstTextBaseline": return SwiftUICore.Alignment.leadingFirstTextBaseline
+      case "leadingLastTextBaseline": return SwiftUICore.Alignment.leadingLastTextBaseline
+      case "trailingFirstTextBaseline": return SwiftUICore.Alignment.trailingFirstTextBaseline
+      case "trailingLastTextBaseline": return SwiftUICore.Alignment.trailingLastTextBaseline
+      default: preconditionFailure("invalid frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment.alignment: \(raw)")
+      }
+    }()
+    self.frame(minWidth: argument0, idealWidth: argument1, maxWidth: argument2, minHeight: argument3, idealHeight: argument4, maxHeight: argument5, alignment: argument6)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFrameWithNoArguments(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid frameWithNoArguments: \(value)")
+    if value == "true" { self.frame() } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFrameWithWidthAndHeightAndAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment: \(value)") }
+      return decoded
+    }()
+    let argument0: CoreFoundation.CGFloat? = {
+      guard let raw = values[0] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.width: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument1: CoreFoundation.CGFloat? = {
+      guard let raw = values[1] else { return nil }
+      guard let number = Double(raw), number.isFinite else { preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.height: \(raw)") }
+      return CGFloat(number)
+    }()
+    let argument2: SwiftUICore.Alignment = {
+      guard let raw = values[2] else { preconditionFailure("missing frameWithWidthAndHeightAndAlignment.alignment") }
+      switch raw {
+      case "center": return SwiftUICore.Alignment.center
+      case "leading": return SwiftUICore.Alignment.leading
+      case "trailing": return SwiftUICore.Alignment.trailing
+      case "top": return SwiftUICore.Alignment.top
+      case "bottom": return SwiftUICore.Alignment.bottom
+      case "topLeading": return SwiftUICore.Alignment.topLeading
+      case "topTrailing": return SwiftUICore.Alignment.topTrailing
+      case "bottomLeading": return SwiftUICore.Alignment.bottomLeading
+      case "bottomTrailing": return SwiftUICore.Alignment.bottomTrailing
+      case "centerFirstTextBaseline": return SwiftUICore.Alignment.centerFirstTextBaseline
+      case "centerLastTextBaseline": return SwiftUICore.Alignment.centerLastTextBaseline
+      case "leadingFirstTextBaseline": return SwiftUICore.Alignment.leadingFirstTextBaseline
+      case "leadingLastTextBaseline": return SwiftUICore.Alignment.leadingLastTextBaseline
+      case "trailingFirstTextBaseline": return SwiftUICore.Alignment.trailingFirstTextBaseline
+      case "trailingLastTextBaseline": return SwiftUICore.Alignment.trailingLastTextBaseline
+      default: preconditionFailure("invalid frameWithWidthAndHeightAndAlignment.alignment: \(raw)")
+      }
+    }()
+    self.frame(width: argument0, height: argument1, alignment: argument2)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKGaugeStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -2337,6 +2954,49 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKGeometryGroup(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid geometryGroup: \(value)")
     if value == "true" { self.geometryGroup() } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+    case "drag":
+      self.gesture(SwiftUI.DragGesture().onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.drag event") }
+        emit("gesture", encoded)
+      }))
+    case "longPress":
+      self.gesture(SwiftUI.LongPressGesture().onEnded({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.longPress event") }
+        emit("gesture", encoded)
+      }))
+    case "magnify":
+      self.gesture(SwiftUI.MagnifyGesture().onEnded({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.magnify event") }
+        emit("gesture", encoded)
+      }))
+    case "rotate":
+      self.gesture(SwiftUI.RotateGesture().onEnded({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.rotate event") }
+        emit("gesture", encoded)
+      }))
+    case "spatialTap":
+      self.gesture(SwiftUI.SpatialTapGesture().onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid gesture.spatialTap event") }
+        emit("gesture", encoded)
+      }))
+    case "tap":
+      self.gesture(SwiftUICore.TapGesture().onEnded({ _ in emit("gesture", "") }))
+    default: preconditionFailure("invalid gesture: \(value)")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKGlassEffectTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2478,6 +3138,49 @@ extension View {
     if value == "true" { self.hidden() } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKHighPriorityGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+    case "drag":
+      self.highPriorityGesture(SwiftUI.DragGesture().onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.drag event") }
+        emit("highPriorityGesture", encoded)
+      }))
+    case "longPress":
+      self.highPriorityGesture(SwiftUI.LongPressGesture().onEnded({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.longPress event") }
+        emit("highPriorityGesture", encoded)
+      }))
+    case "magnify":
+      self.highPriorityGesture(SwiftUI.MagnifyGesture().onEnded({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.magnify event") }
+        emit("highPriorityGesture", encoded)
+      }))
+    case "rotate":
+      self.highPriorityGesture(SwiftUI.RotateGesture().onEnded({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.rotate event") }
+        emit("highPriorityGesture", encoded)
+      }))
+    case "spatialTap":
+      self.highPriorityGesture(SwiftUI.SpatialTapGesture().onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid highPriorityGesture.spatialTap event") }
+        emit("highPriorityGesture", encoded)
+      }))
+    case "tap":
+      self.highPriorityGesture(SwiftUICore.TapGesture().onEnded({ _ in emit("highPriorityGesture", "") }))
+    default: preconditionFailure("invalid highPriorityGesture: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKHoverEffectDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid hoverEffectDisabled: \(value)")
       self.hoverEffectDisabled(value == "true")
@@ -2562,7 +3265,9 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKIgnoresSafeAreaWithRegionsAndEdgesAndAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -2614,6 +3319,10 @@ extension View {
     }()
     self.ignoresSafeArea(argument0, edges: argument1, alignment: argument2)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKImageScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2682,6 +3391,10 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKItalic(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid italic: \(value)")
       self.italic(value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKItemProvider(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      self.itemProvider({ Foundation.NSItemProvider(object: value as NSString) })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKKerning(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -2873,6 +3586,33 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKLayerEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid layerEffect: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Shader = {
+      guard let raw = values[0] else { preconditionFailure("missing layerEffect.shader") }
+      return SwiftUICore.Shader(function: SwiftUICore.ShaderFunction(library: SwiftUICore.ShaderLibrary.default, name: raw), arguments: [])
+    }()
+    let argument1: CoreFoundation.CGSize = {
+      guard let raw = values[1] else { preconditionFailure("missing layerEffect.maxSampleOffset") }
+      guard let data = raw.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String: Double].self, from: data),
+        let field0 = decoded["width"], field0.isFinite,
+        let field1 = decoded["height"], field1.isFinite else { preconditionFailure("invalid layerEffect.maxSampleOffset: \(raw)") }
+      return CoreFoundation.CGSize(width: CGFloat(field0), height: CGFloat(field1))
+    }()
+    let argument2: Swift.Bool = {
+      guard let raw = values[2] else { preconditionFailure("missing layerEffect.isEnabled") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid layerEffect.isEnabled: \(raw)") }
+      return raw == "true"
+    }()
+    self.layerEffect(argument0, maxSampleOffset: argument1, isEnabled: argument2)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKLayoutDirectionBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -2886,6 +3626,17 @@ extension View {
       if let number = Double(value), number.isFinite {
         self.layoutPriority(number)
       } else { preconditionFailure("invalid layoutPriority: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKLineHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": if #available(iOS 26, *) { self.lineHeight(nil as Foundation.AttributedString.LineHeight?) } else { self }
+      case "variable": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.variable) } else { self }
+      case "normal": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.normal) } else { self }
+      case "tight": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.tight) } else { self }
+      case "loose": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.loose) } else { self }
+    default: preconditionFailure("invalid lineHeight: \(value)")
+    }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKLineLimitWithLimitAndReservesSpace(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -3212,6 +3963,24 @@ extension View {
     self.manageSubscriptionsSheet(isPresented: Binding(get: { value == "true" }, set: { emit("manageSubscriptionsSheet", String($0)) }))
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKManageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID.isPresented", String($0)) })
+    }()
+    let argument1: Swift.String = {
+      guard let raw = values[1] else { preconditionFailure("missing manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID.subscriptionGroupID") }
+      return raw
+    }()
+    self.manageSubscriptionsSheet(isPresented: argument0, subscriptionGroupID: argument1)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKMapControlVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -3231,6 +4000,11 @@ extension View {
       case "caption": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.caption) } else { self }
     default: preconditionFailure("invalid mapFeatureSelectionAccessory: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKMapFeatureSelectionDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid mapFeatureSelectionDisabled: \(value)")
+      self.mapFeatureSelectionDisabled({ (_: _MapKit_SwiftUI.MapFeature) in value == "true" })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKMapStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -3457,7 +4231,13 @@ extension View {
     switch value {
 
       case "automatic": if #available(iOS 18, *) { self.navigationTransition(.automatic) } else { self }
-      case "crossFade": if #available(iOS 27, *) { self.navigationTransition(.crossFade) } else { self }
+      case "crossFade":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.navigationTransition(.crossFade) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid navigationTransition: \(value)")
     }
   }
@@ -3501,8 +4281,100 @@ extension View {
     self.onAppear(perform: { emit("onAppear", "") })
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKOnCameraCaptureEvent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) { self.onCameraCaptureEvent(isEnabled: true, action: { item in
+      let payload = (["phase": ({ () -> String in switch item.phase { case .began: return "began" case .cancelled: return "cancelled" case .ended: return "ended" @unknown default: return "unknown" } })()] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onCameraCaptureEvent event") }
+      emit("onCameraCaptureEvent", encoded)
+    }) } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 4 else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.Bool = {
+      guard let raw = values[0] else { preconditionFailure("missing onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.isEnabled") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.isEnabled: \(raw)") }
+      return raw == "true"
+    }()
+    let argument1: Swift.Bool = {
+      guard let raw = values[1] else { preconditionFailure("missing onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.defaultSoundDisabled") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.defaultSoundDisabled: \(raw)") }
+      return raw == "true"
+    }()
+    let argument2: (AVKit.AVCaptureEvent) -> Void = { item in
+      let payload = (["phase": ({ () -> String in switch item.phase { case .began: return "began" case .cancelled: return "cancelled" case .ended: return "ended" @unknown default: return "unknown" } })(), "shouldPlaySound": item.shouldPlaySound] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.primaryAction event") }
+      emit("onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.primaryAction", encoded)
+    }
+    let argument3: (AVKit.AVCaptureEvent) -> Void = { item in
+      let payload = (["phase": ({ () -> String in switch item.phase { case .began: return "began" case .cancelled: return "cancelled" case .ended: return "ended" @unknown default: return "unknown" } })(), "shouldPlaySound": item.shouldPlaySound] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.secondaryAction event") }
+      emit("onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction.secondaryAction", encoded)
+    }
+    self.onCameraCaptureEvent(isEnabled: argument0, defaultSoundDisabled: argument1, primaryAction: argument2, secondaryAction: argument3)
+    } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.Bool = {
+      guard let raw = values[0] else { preconditionFailure("missing onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction.isEnabled") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction.isEnabled: \(raw)") }
+      return raw == "true"
+    }()
+    let argument1: (AVKit.AVCaptureEvent) -> Void = { item in
+      let payload = (["phase": ({ () -> String in switch item.phase { case .began: return "began" case .cancelled: return "cancelled" case .ended: return "ended" @unknown default: return "unknown" } })()] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction.primaryAction event") }
+      emit("onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction.primaryAction", encoded)
+    }
+    let argument2: (AVKit.AVCaptureEvent) -> Void = { item in
+      let payload = (["phase": ({ () -> String in switch item.phase { case .began: return "began" case .cancelled: return "cancelled" case .ended: return "ended" @unknown default: return "unknown" } })()] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction.secondaryAction event") }
+      emit("onCameraCaptureEventWithIsEnabledAndPrimaryActionAndSecondaryAction.secondaryAction", encoded)
+    }
+    self.onCameraCaptureEvent(isEnabled: argument0, primaryAction: argument1, secondaryAction: argument2)
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKOnChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onChange(of: value, perform: { changed in emit("onChange", changed) })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnContinueUserActivity(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid onContinueUserActivity: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.String = {
+      guard let raw = values[0] else { preconditionFailure("missing onContinueUserActivity.activityType") }
+      return raw
+    }()
+    let argument1: (Foundation.NSUserActivity) -> Void = { item in
+      let payload = (["activityType": item.activityType, "isEligibleForHandoff": item.isEligibleForHandoff, "isEligibleForPrediction": item.isEligibleForPrediction, "isEligibleForPublicIndexing": item.isEligibleForPublicIndexing, "isEligibleForSearch": item.isEligibleForSearch, "needsSave": item.needsSave, "supportsContinuationStreams": item.supportsContinuationStreams, "targetContentIdentifier": (item.targetContentIdentifier.map { inner -> Any in inner } ?? NSNull()), "title": (item.title.map { inner -> Any in inner } ?? NSNull())] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onContinueUserActivity.action event") }
+      emit("onContinueUserActivity.action", encoded)
+    }
+    self.onContinueUserActivity(argument0, perform: argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnContinuousHover(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -3524,13 +4396,38 @@ extension View {
     self.onDisappear(perform: { emit("onDisappear", "") })
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKOnDrag(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      self.onDrag({ Foundation.NSItemProvider(object: value as NSString) })
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKOnDragSessionUpdated(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) { self.onDragSessionUpdated({ item in
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.onDragSessionUpdated({ item in
       let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
       guard let data = try? JSONSerialization.data(withJSONObject: payload),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onDragSessionUpdated event") }
       emit("onDragSessionUpdated", encoded)
     }) } else { self }
+#else
+self
+#endif
+
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnDropSessionUpdated(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.onDropSessionUpdated({ item in
+      let payload = (["itemsCount": Double(item.itemsCount), "suggestedOperations": (["rawValue": Double(item.suggestedOperations.rawValue)] as [String: Any]), "size": (["width": Double(item.size.width), "height": Double(item.size.height)] as [String: Any]), "location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onDropSessionUpdated event") }
+      emit("onDropSessionUpdated", encoded)
+    }) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnGeometryChangeWithSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -3550,12 +4447,39 @@ extension View {
     if #available(iOS 26, *) { self.onInteractiveResizeChange({ value in emit("onInteractiveResizeChange", String(value)) }) } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKOnKeyPress(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let selected: SwiftUI.KeyPress.Result = {
+      switch value {
+      case "handled": return SwiftUI.KeyPress.Result.handled
+      case "ignored": return SwiftUI.KeyPress.Result.ignored
+      default: preconditionFailure("invalid onKeyPress: \(value)")
+      }
+    }()
+    let action: (SwiftUI.KeyPress) -> SwiftUI.KeyPress.Result = { item in
+      let payload = (["characters": item.characters, "modifiers": (["rawValue": Double(item.modifiers.rawValue)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onKeyPress event") }
+      emit("onKeyPress", encoded)
+      return selected
+    }
+    self.onKeyPress(action: action)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKOnLongPressGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onLongPressGesture(minimumDuration: 0.5, maximumDistance: 10, perform: { emit("onLongPressGesture", "") }, onPressingChanged: nil)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnMapCameraChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onMapCameraChange(frequency: .onEnd, { emit("onMapCameraChange", "") })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnMapCameraChangeWithEventStruct(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onMapCameraChange(frequency: .onEnd, { item in
+      let payload = (["camera": (["distance": Double(item.camera.distance), "heading": Double(item.camera.heading), "pitch": Double(item.camera.pitch)] as [String: Any])] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onMapCameraChangeWithEventStruct event") }
+      emit("onMapCameraChangeWithEventStruct", encoded)
+    })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnOpenURLWithPerform(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -3666,6 +4590,21 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKPasteDestination(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.pasteDestination(for: String.self, action: { item in
+      let payload = item.map { item -> Any in item }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid pasteDestination event") }
+      emit("pasteDestination", encoded)
+    }, validator: { $0 }) } else { self }
+#else
+self
+#endif
+
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKPayLaterViewAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -3759,15 +4698,39 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKPhotosPickerMetadataOptions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "removeCaptions": if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeCaptions) } else { self }
-      case "removeLocation": if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeLocation) } else { self }
+      case "removeCaptions":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeCaptions) } else { self }
+#else
+self
+#endif
+
+      case "removeLocation":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMetadataOptions.removeLocation) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid photosPickerMetadataOptions: \(value)")
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPhotosPickerSearchText(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if value == "null" { if #available(iOS 27, *) { self.photosPickerSearchText(nil as Swift.String?) } else { self } } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
-      if #available(iOS 27, *) { self.photosPickerSearchText(decoded) } else { self }
+    if value == "null" { 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.photosPickerSearchText(nil as Swift.String?) } else { self }
+#else
+self
+#endif
+ } else { if let data = value.data(using: .utf8), let decoded = try? JSONDecoder().decode(String.self, from: data) {
+      
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.photosPickerSearchText(decoded) } else { self }
+#else
+self
+#endif
+
     } else { preconditionFailure("invalid photosPickerSearchText: \(value)") } }
   }
 
@@ -3781,6 +4744,49 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKPhotosReferenceImageViewer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid photosReferenceImageViewer: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Binding<Foundation.URL?> = {
+      guard let raw = values[0], let data = raw.data(using: .utf8),
+        let decoded = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
+        decoded is NSNull || decoded is String else { preconditionFailure("invalid photosReferenceImageViewer.fileURL") }
+      let current: Foundation.URL?
+      if let text = decoded as? String {
+        guard let url = Foundation.URL(string: text) else { preconditionFailure("invalid photosReferenceImageViewer.fileURL URL") }
+        current = url
+      } else { current = nil }
+      return Binding<Foundation.URL?>(get: { current }, set: { changed in
+        guard let data = try? JSONEncoder().encode(changed?.absoluteString),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid photosReferenceImageViewer.fileURL event") }
+        emit("photosReferenceImageViewer.fileURL", encoded)
+      })
+    }()
+    let argument1: (Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void = { result in
+      let payload: [String: Any]
+      switch result {
+      case .success(let urls): payload = ["success": urls.absoluteString]
+      case .failure(let error): payload = ["failure": String(describing: error)]
+      }
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid photosReferenceImageViewer.onProcessingCompletion result") }
+      emit("photosReferenceImageViewer.onProcessingCompletion", encoded)
+    }
+    self.photosReferenceImageViewer(fileURL: argument0, onProcessingCompletion: argument1)
+    } else { self }
+#else
+self
+#endif
+
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKPickerStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -3788,7 +4794,13 @@ extension View {
       case "inline": self.pickerStyle(.inline)
       case "automatic": self.pickerStyle(.automatic)
       case "segmented": self.pickerStyle(.segmented)
-      case "tabs": if #available(iOS 27, *) { self.pickerStyle(.tabs) } else { self }
+      case "tabs":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.pickerStyle(.tabs) } else { self }
+#else
+self
+#endif
+
       case "palette": self.pickerStyle(.palette)
       case "navigationLink": self.pickerStyle(.navigationLink)
       case "menu": self.pickerStyle(.menu)
@@ -3951,10 +4963,34 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKPresentationPlacement(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.automatic) } else { self }
-      case "leading": if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.leading) } else { self }
-      case "center": if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.center) } else { self }
-      case "trailing": if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.trailing) } else { self }
+      case "automatic":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.automatic) } else { self }
+#else
+self
+#endif
+
+      case "leading":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.leading) } else { self }
+#else
+self
+#endif
+
+      case "center":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.center) } else { self }
+#else
+self
+#endif
+
+      case "trailing":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacement.trailing) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid presentationPlacement: \(value)")
     }
   }
@@ -4095,6 +5131,24 @@ extension View {
       case "invalidated": self.redacted(reason: SwiftUICore.RedactionReasons.invalidated)
     default: preconditionFailure("invalid redacted: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKRefundRequestSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid refundRequestSheet: \(value)") }
+      return decoded
+    }()
+    let argument0: StoreKit.Transaction.ID = {
+      guard let raw = values[0] else { preconditionFailure("missing refundRequestSheet.transactionID") }
+      return UInt64(raw) ?? { () -> UInt64 in preconditionFailure("invalid UInt64") }()
+    }()
+    let argument1: SwiftUICore.Binding<Swift.Bool> = {
+      guard let raw = values[1], raw == "true" || raw == "false" else { preconditionFailure("invalid refundRequestSheet.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("refundRequestSheet.isPresented", String($0)) })
+    }()
+    self.refundRequestSheet(for: argument0, isPresented: argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKRenameAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4510,15 +5564,37 @@ extension View {
       self.scrollIndicatorsFlash(onAppear: value == "true")
   }
 
-  @ViewBuilder fileprivate func oneNativeSDKScrollPosition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+  @ViewBuilder fileprivate func oneNativeSDKScrollPositionWithBindingPoint(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let point: CGPoint? = {
+        if value == "null" { return nil }
+        guard let data = value.data(using: .utf8),
+          let coordinates = try? JSONDecoder().decode([String: Double].self, from: data),
+          coordinates.count == 2,
+          let x = coordinates["x"], x.isFinite,
+          let y = coordinates["y"], y.isFinite else { preconditionFailure("invalid scrollPositionWithBindingPoint: \(value)") }
+        return CGPoint(x: x, y: y)
+      }()
+      self.scrollPosition(Binding<SwiftUICore.ScrollPosition>(get: {
+        point.map { SwiftUICore.ScrollPosition(point: $0) } ?? SwiftUICore.ScrollPosition()
+      }, set: { position in
+        let changed = position.point.map { ["x": Double($0.x), "y": Double($0.y)] }
+        guard let data = try? JSONEncoder().encode(changed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid scrollPositionWithBindingPoint event") }
+        emit("scrollPositionWithBindingPoint", encoded)
+      }))
+    } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKScrollPositionWithId(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.scrollPosition(id: Binding<String?>(get: {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed),
-        decoded is NSNull || decoded is String else { preconditionFailure("invalid scrollPosition: \(value)") }
+        decoded is NSNull || decoded is String else { preconditionFailure("invalid scrollPositionWithId: \(value)") }
       return decoded as? String
     }, set: { changed in
-      guard let data = try? JSONEncoder().encode(changed), let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid scrollPosition binding event") }
-      emit("scrollPosition", encoded)
+      guard let data = try? JSONEncoder().encode(changed), let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid scrollPositionWithId binding event") }
+      emit("scrollPositionWithId", encoded)
     }), anchor: nil)
   }
 
@@ -4718,6 +5794,49 @@ extension View {
       case "white": self.signInWithAppleButtonStyle(_AuthenticationServices_SwiftUI.SignInWithAppleButton.Style.white)
       case "whiteOutline": self.signInWithAppleButtonStyle(_AuthenticationServices_SwiftUI.SignInWithAppleButton.Style.whiteOutline)
     default: preconditionFailure("invalid signInWithAppleButtonStyle: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSimultaneousGesture(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+    case "drag":
+      self.simultaneousGesture(SwiftUI.DragGesture().onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.drag event") }
+        emit("simultaneousGesture", encoded)
+      }))
+    case "longPress":
+      self.simultaneousGesture(SwiftUI.LongPressGesture().onEnded({ item in
+        let payload = item
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.longPress event") }
+        emit("simultaneousGesture", encoded)
+      }))
+    case "magnify":
+      self.simultaneousGesture(SwiftUI.MagnifyGesture().onEnded({ item in
+        let payload = (["magnification": Double(item.magnification), "velocity": Double(item.velocity), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.magnify event") }
+        emit("simultaneousGesture", encoded)
+      }))
+    case "rotate":
+      self.simultaneousGesture(SwiftUI.RotateGesture().onEnded({ item in
+        let payload = (["rotation": (["radians": Double(item.rotation.radians)] as [String: Any]), "velocity": (["radians": Double(item.velocity.radians)] as [String: Any]), "startAnchor": (["x": Double(item.startAnchor.x), "y": Double(item.startAnchor.y)] as [String: Any]), "startLocation": (["x": Double(item.startLocation.x), "y": Double(item.startLocation.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.rotate event") }
+        emit("simultaneousGesture", encoded)
+      }))
+    case "spatialTap":
+      self.simultaneousGesture(SwiftUI.SpatialTapGesture().onEnded({ item in
+        let payload = (["location": (["x": Double(item.location.x), "y": Double(item.location.y)] as [String: Any])] as [String: Any])
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid simultaneousGesture.spatialTap event") }
+        emit("simultaneousGesture", encoded)
+      }))
+    case "tap":
+      self.simultaneousGesture(SwiftUICore.TapGesture().onEnded({ _ in emit("simultaneousGesture", "") }))
+    default: preconditionFailure("invalid simultaneousGesture: \(value)")
     }
   }
 
@@ -4973,6 +6092,49 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKSubscriptionStorePickerItemBackground(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "placeholder": self.subscriptionStorePickerItemBackground(.placeholder)
+      case "link": self.subscriptionStorePickerItemBackground(.link)
+      case "selection": self.subscriptionStorePickerItemBackground(.selection)
+      case "windowBackground": self.subscriptionStorePickerItemBackground(.windowBackground)
+      case "fill": self.subscriptionStorePickerItemBackground(.fill)
+      case "regularMaterial": self.subscriptionStorePickerItemBackground(.regularMaterial)
+      case "thickMaterial": self.subscriptionStorePickerItemBackground(.thickMaterial)
+      case "thinMaterial": self.subscriptionStorePickerItemBackground(.thinMaterial)
+      case "ultraThinMaterial": self.subscriptionStorePickerItemBackground(.ultraThinMaterial)
+      case "ultraThickMaterial": self.subscriptionStorePickerItemBackground(.ultraThickMaterial)
+      case "bar": self.subscriptionStorePickerItemBackground(.bar)
+      case "primary": self.subscriptionStorePickerItemBackground(.primary)
+      case "secondary": self.subscriptionStorePickerItemBackground(.secondary)
+      case "tertiary": self.subscriptionStorePickerItemBackground(.tertiary)
+      case "quaternary": self.subscriptionStorePickerItemBackground(.quaternary)
+      case "quinary": self.subscriptionStorePickerItemBackground(.quinary)
+      case "red": self.subscriptionStorePickerItemBackground(.red)
+      case "orange": self.subscriptionStorePickerItemBackground(.orange)
+      case "yellow": self.subscriptionStorePickerItemBackground(.yellow)
+      case "green": self.subscriptionStorePickerItemBackground(.green)
+      case "mint": self.subscriptionStorePickerItemBackground(.mint)
+      case "teal": self.subscriptionStorePickerItemBackground(.teal)
+      case "cyan": self.subscriptionStorePickerItemBackground(.cyan)
+      case "blue": self.subscriptionStorePickerItemBackground(.blue)
+      case "indigo": self.subscriptionStorePickerItemBackground(.indigo)
+      case "purple": self.subscriptionStorePickerItemBackground(.purple)
+      case "pink": self.subscriptionStorePickerItemBackground(.pink)
+      case "brown": self.subscriptionStorePickerItemBackground(.brown)
+      case "white": self.subscriptionStorePickerItemBackground(.white)
+      case "gray": self.subscriptionStorePickerItemBackground(.gray)
+      case "black": self.subscriptionStorePickerItemBackground(.black)
+      case "clear": self.subscriptionStorePickerItemBackground(.clear)
+      case "separator": self.subscriptionStorePickerItemBackground(.separator)
+      case "background": self.subscriptionStorePickerItemBackground(.background)
+      case "foreground": self.subscriptionStorePickerItemBackground(.foreground)
+      case "tint": self.subscriptionStorePickerItemBackground(.tint)
+    default: preconditionFailure("invalid subscriptionStorePickerItemBackground: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStorePolicyDestination(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -4996,13 +6158,62 @@ extension View {
     self.subscriptionStorePolicyDestination(url: argument0, for: argument1)
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKSubscriptionStorePolicyForegroundStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "placeholder": self.subscriptionStorePolicyForegroundStyle(.placeholder)
+      case "link": self.subscriptionStorePolicyForegroundStyle(.link)
+      case "selection": self.subscriptionStorePolicyForegroundStyle(.selection)
+      case "windowBackground": self.subscriptionStorePolicyForegroundStyle(.windowBackground)
+      case "fill": self.subscriptionStorePolicyForegroundStyle(.fill)
+      case "regularMaterial": self.subscriptionStorePolicyForegroundStyle(.regularMaterial)
+      case "thickMaterial": self.subscriptionStorePolicyForegroundStyle(.thickMaterial)
+      case "thinMaterial": self.subscriptionStorePolicyForegroundStyle(.thinMaterial)
+      case "ultraThinMaterial": self.subscriptionStorePolicyForegroundStyle(.ultraThinMaterial)
+      case "ultraThickMaterial": self.subscriptionStorePolicyForegroundStyle(.ultraThickMaterial)
+      case "bar": self.subscriptionStorePolicyForegroundStyle(.bar)
+      case "primary": self.subscriptionStorePolicyForegroundStyle(.primary)
+      case "secondary": self.subscriptionStorePolicyForegroundStyle(.secondary)
+      case "tertiary": self.subscriptionStorePolicyForegroundStyle(.tertiary)
+      case "quaternary": self.subscriptionStorePolicyForegroundStyle(.quaternary)
+      case "quinary": self.subscriptionStorePolicyForegroundStyle(.quinary)
+      case "red": self.subscriptionStorePolicyForegroundStyle(.red)
+      case "orange": self.subscriptionStorePolicyForegroundStyle(.orange)
+      case "yellow": self.subscriptionStorePolicyForegroundStyle(.yellow)
+      case "green": self.subscriptionStorePolicyForegroundStyle(.green)
+      case "mint": self.subscriptionStorePolicyForegroundStyle(.mint)
+      case "teal": self.subscriptionStorePolicyForegroundStyle(.teal)
+      case "cyan": self.subscriptionStorePolicyForegroundStyle(.cyan)
+      case "blue": self.subscriptionStorePolicyForegroundStyle(.blue)
+      case "indigo": self.subscriptionStorePolicyForegroundStyle(.indigo)
+      case "purple": self.subscriptionStorePolicyForegroundStyle(.purple)
+      case "pink": self.subscriptionStorePolicyForegroundStyle(.pink)
+      case "brown": self.subscriptionStorePolicyForegroundStyle(.brown)
+      case "white": self.subscriptionStorePolicyForegroundStyle(.white)
+      case "gray": self.subscriptionStorePolicyForegroundStyle(.gray)
+      case "black": self.subscriptionStorePolicyForegroundStyle(.black)
+      case "clear": self.subscriptionStorePolicyForegroundStyle(.clear)
+      case "separator": self.subscriptionStorePolicyForegroundStyle(.separator)
+      case "background": self.subscriptionStorePolicyForegroundStyle(.background)
+      case "foreground": self.subscriptionStorePolicyForegroundStyle(.foreground)
+      case "tint": self.subscriptionStorePolicyForegroundStyle(.tint)
+    default: preconditionFailure("invalid subscriptionStorePolicyForegroundStyle: \(value)")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKSubscriptionStoreSignInAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.subscriptionStoreSignInAction({ emit("subscriptionStoreSignInAction", "") })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSwipeActionsContainer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid swipeActionsContainer: \(value)")
-    if value == "true" { if #available(iOS 27, *) { self.swipeActionsContainer() } else { self } } else { self }
+    if value == "true" { 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.swipeActionsContainer() } else { self }
+#else
+self
+#endif
+ } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKSymbolColorRenderingMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -5082,6 +6293,25 @@ extension View {
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKTabViewCustomization(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let binding: Binding<SwiftUI.TabViewCustomization> = {
+      let decoded: SwiftUI.TabViewCustomization = {
+        if value == "null" { return SwiftUI.TabViewCustomization() }
+        guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode(SwiftUI.TabViewCustomization.self, from: data) else { preconditionFailure("invalid tabViewCustomization: \(value)") }
+        return decoded
+      }()
+      return Binding<SwiftUI.TabViewCustomization>(get: { decoded }, set: { changed in
+        guard let data = try? JSONEncoder().encode(changed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid tabViewCustomization binding event") }
+        emit("tabViewCustomization", encoded)
+      })
+    }()
+    self.tabViewCustomization(binding)
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKTabViewSearchActivation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -5128,9 +6358,27 @@ extension View {
       case "birthdateYear": self.textContentType(UIKit.UITextContentType.birthdateYear)
       case "cellularEID": if #available(iOS 17.4, *) { self.textContentType(UIKit.UITextContentType.cellularEID) } else { self }
       case "cellularIMEI": if #available(iOS 17.4, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI) } else { self }
-      case "cellularIMEI1": if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI1) } else { self }
-      case "cellularIMEI2": if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI2) } else { self }
-      case "cellularNAL": if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularNAL) } else { self }
+      case "cellularIMEI1":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI1) } else { self }
+#else
+self
+#endif
+
+      case "cellularIMEI2":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI2) } else { self }
+#else
+self
+#endif
+
+      case "cellularNAL":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularNAL) } else { self }
+#else
+self
+#endif
+
       case "countryName": self.textContentType(UIKit.UITextContentType.countryName)
       case "creditCardExpiration": self.textContentType(UIKit.UITextContentType.creditCardExpiration)
       case "creditCardExpirationMonth": self.textContentType(UIKit.UITextContentType.creditCardExpirationMonth)
@@ -5184,7 +6432,13 @@ extension View {
 
       case "automatic": self.textFieldStyle(.automatic)
       case "roundedBorder": self.textFieldStyle(.roundedBorder)
-      case "bordered": if #available(iOS 27, *) { self.textFieldStyle(.bordered) } else { self }
+      case "bordered":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textFieldStyle(.bordered) } else { self }
+#else
+self
+#endif
+
       case "plain": self.textFieldStyle(.plain)
     default: preconditionFailure("invalid textFieldStyle: \(value)")
     }
@@ -5204,9 +6458,27 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKTextInputBorderShape(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.automatic) } else { self }
-      case "capsule": if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.capsule) } else { self }
-      case "roundedRectangle": if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.roundedRectangle) } else { self }
+      case "automatic":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.automatic) } else { self }
+#else
+self
+#endif
+
+      case "capsule":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.capsule) } else { self }
+#else
+self
+#endif
+
+      case "roundedRectangle":
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.textInputBorderShape(SwiftUICore.TextInputBorderShape.roundedRectangle) } else { self }
+#else
+self
+#endif
+
     default: preconditionFailure("invalid textInputBorderShape: \(value)")
     }
   }
@@ -5321,7 +6593,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarBackground.bars: \(raw)")
       default: preconditionFailure("invalid toolbarBackground.bars: \(raw)")
       }
@@ -5353,7 +6629,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarBackgroundVisibility.bars: \(raw)")
       default: preconditionFailure("invalid toolbarBackgroundVisibility.bars: \(raw)")
       }
@@ -5384,7 +6664,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarColorScheme.bars: \(raw)")
       default: preconditionFailure("invalid toolbarColorScheme.bars: \(raw)")
       }
@@ -5393,7 +6677,9 @@ extension View {
   }
 
   @ViewBuilder fileprivate func oneNativeSDKToolbarMinimizationBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -5403,13 +6689,29 @@ extension View {
     let argument0: SwiftUI.ToolbarMinimizationBehavior = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarMinimizationBehavior.behavior") }
       switch raw {
-      case "automatic": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.automatic }
+      case "automatic": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.automatic }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
-      case "onScrollDown": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.onScrollDown }
+      case "onScrollDown": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.onScrollDown }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
-      case "onScrollUp": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.onScrollUp }
+      case "onScrollUp": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.onScrollUp }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
-      case "never": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.never }
+      case "never": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationBehavior.never }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.behavior: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationBehavior.behavior: \(raw)")
       }
@@ -5421,17 +6723,27 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationBehavior.bars: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationBehavior.bars: \(raw)")
       }
     }()
     self.toolbarMinimizationBehavior(argument0, for: argument1)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKToolbarMinimizationRestoration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -5441,9 +6753,17 @@ extension View {
     let argument0: SwiftUI.ToolbarMinimizationRestoration = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarMinimizationRestoration.restoration") }
       switch raw {
-      case "automatic": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.automatic }
+      case "automatic": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.automatic }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationRestoration.restoration: \(raw)")
-      case "atScrollEdge": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.atScrollEdge }
+      case "atScrollEdge": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationRestoration.atScrollEdge }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationRestoration.restoration: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationRestoration.restoration: \(raw)")
       }
@@ -5455,17 +6775,27 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationRestoration.bars: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationRestoration.bars: \(raw)")
       }
     }()
     self.toolbarMinimizationRestoration(argument0, for: argument1)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKToolbarMinimizationSafeAreaAdjustment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    if #available(iOS 27, *) {
+    
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
       let values: [String?] = {
       guard let data = value.data(using: .utf8),
         let decoded = try? JSONDecoder().decode([String?].self, from: data),
@@ -5475,11 +6805,23 @@ extension View {
     let argument0: SwiftUI.ToolbarMinimizationSafeAreaAdjustment = {
       guard let raw = values[0] else { preconditionFailure("missing toolbarMinimizationSafeAreaAdjustment.adjustment") }
       switch raw {
-      case "automatic": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.automatic }
+      case "automatic": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.automatic }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationSafeAreaAdjustment.adjustment: \(raw)")
-      case "enabled": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.enabled }
+      case "enabled": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.enabled }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationSafeAreaAdjustment.adjustment: \(raw)")
-      case "disabled": if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.disabled }
+      case "disabled": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarMinimizationSafeAreaAdjustment.disabled }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationSafeAreaAdjustment.adjustment: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationSafeAreaAdjustment.adjustment: \(raw)")
       }
@@ -5491,13 +6833,21 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarMinimizationSafeAreaAdjustment.bars: \(raw)")
       default: preconditionFailure("invalid toolbarMinimizationSafeAreaAdjustment.bars: \(raw)")
       }
     }()
     self.toolbarMinimizationSafeAreaAdjustment(argument0, for: argument1)
     } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKToolbarRole(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -5546,7 +6896,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarVisibility.bars: \(raw)")
       default: preconditionFailure("invalid toolbarVisibility.bars: \(raw)")
       }
@@ -5588,7 +6942,11 @@ extension View {
       case "bottomBar": return SwiftUI.ToolbarPlacement.bottomBar
       case "navigationBar": return SwiftUI.ToolbarPlacement.navigationBar
       case "tabBar": return SwiftUI.ToolbarPlacement.tabBar
-      case "statusBar": if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+      case "statusBar": 
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
+#endif
+
         preconditionFailure("unavailable toolbarWithVisibilityAndBars.bars: \(raw)")
       default: preconditionFailure("invalid toolbarWithVisibilityAndBars.bars: \(raw)")
       }
@@ -5633,6 +6991,26 @@ extension View {
       case "scale": self.transition(SwiftUICore.AnyTransition.scale)
     default: preconditionFailure("invalid transition: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTranslationPresentation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 17.4, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid translationPresentation: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid translationPresentation.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("translationPresentation.isPresented", String($0)) })
+    }()
+    let argument1: Swift.String = {
+      guard let raw = values[1] else { preconditionFailure("missing translationPresentation.text") }
+      return raw
+    }()
+    self.translationPresentation(isPresented: argument0, text: argument1)
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTruncationMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -5729,6 +7107,66 @@ extension View {
     if value == "true" { self.unredacted() } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKUserActivity(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 3 else { preconditionFailure("invalid userActivity: \(value)") }
+      return decoded
+    }()
+    let argument0: Swift.String = {
+      guard let raw = values[0] else { preconditionFailure("missing userActivity.activityType") }
+      return raw
+    }()
+    let argument1: Swift.Bool = {
+      guard let raw = values[1] else { preconditionFailure("missing userActivity.isActive") }
+      guard raw == "true" || raw == "false" else { preconditionFailure("invalid userActivity.isActive: \(raw)") }
+      return raw == "true"
+    }()
+    let argument2: (Foundation.NSUserActivity) -> Void = {
+      guard let raw = values[2], let data = raw.data(using: .utf8),
+        let updated = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+        !updated.isEmpty else { preconditionFailure("invalid userActivity.update") }
+      return { item in
+      if let raw = updated["isEligibleForHandoff"] {
+        guard let value = raw as? Bool else { preconditionFailure("invalid userActivity.update.isEligibleForHandoff") }
+        item.isEligibleForHandoff = value
+      }
+      if let raw = updated["isEligibleForPrediction"] {
+        guard let value = raw as? Bool else { preconditionFailure("invalid userActivity.update.isEligibleForPrediction") }
+        item.isEligibleForPrediction = value
+      }
+      if let raw = updated["isEligibleForPublicIndexing"] {
+        guard let value = raw as? Bool else { preconditionFailure("invalid userActivity.update.isEligibleForPublicIndexing") }
+        item.isEligibleForPublicIndexing = value
+      }
+      if let raw = updated["isEligibleForSearch"] {
+        guard let value = raw as? Bool else { preconditionFailure("invalid userActivity.update.isEligibleForSearch") }
+        item.isEligibleForSearch = value
+      }
+      if let raw = updated["needsSave"] {
+        guard let value = raw as? Bool else { preconditionFailure("invalid userActivity.update.needsSave") }
+        item.needsSave = value
+      }
+      if let raw = updated["supportsContinuationStreams"] {
+        guard let value = raw as? Bool else { preconditionFailure("invalid userActivity.update.supportsContinuationStreams") }
+        item.supportsContinuationStreams = value
+      }
+      if let raw = updated["targetContentIdentifier"] {
+        if raw is NSNull { item.targetContentIdentifier = nil }
+        else if let string = raw as? String { item.targetContentIdentifier = string }
+        else { preconditionFailure("invalid userActivity.update.targetContentIdentifier") }
+      }
+      if let raw = updated["title"] {
+        if raw is NSNull { item.title = nil }
+        else if let string = raw as? String { item.title = string }
+        else { preconditionFailure("invalid userActivity.update.title") }
+      }
+      }
+    }()
+    self.userActivity(argument0, isActive: argument1, argument2)
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKVerifyIdentityWithWalletButtonStyle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -5815,6 +7253,28 @@ extension View {
     }) } else { self }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKWebViewScrollPosition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) {
+      let point: CGPoint? = {
+        if value == "null" { return nil }
+        guard let data = value.data(using: .utf8),
+          let coordinates = try? JSONDecoder().decode([String: Double].self, from: data),
+          coordinates.count == 2,
+          let x = coordinates["x"], x.isFinite,
+          let y = coordinates["y"], y.isFinite else { preconditionFailure("invalid webViewScrollPosition: \(value)") }
+        return CGPoint(x: x, y: y)
+      }()
+      self.webViewScrollPosition(Binding<SwiftUICore.ScrollPosition>(get: {
+        point.map { SwiftUICore.ScrollPosition(point: $0) } ?? SwiftUICore.ScrollPosition()
+      }, set: { position in
+        let changed = position.point.map { ["x": Double($0.x), "y": Double($0.y)] }
+        guard let data = try? JSONEncoder().encode(changed),
+          let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid webViewScrollPosition event") }
+        emit("webViewScrollPosition", encoded)
+      }))
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKWebViewTextSelection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -5869,6 +7329,16 @@ extension View {
       } else { preconditionFailure("invalid zIndex: \(value)") }
   }
 }
+@available(iOS 26, *)
+private struct OneNativeSDKAccessibilityDefaultFocusFocusBinding: ViewModifier {
+  @AccessibilityFocusState private var focused: Bool
+
+  func body(content: Content) -> some View {
+    content.accessibilityFocused($focused)
+      .accessibilityDefaultFocus($focused, true)
+  }
+}
+
 private struct OneNativeSDKAccessibilityFocusedFocusBinding: ViewModifier {
   @AccessibilityFocusState private var focused: Bool
   let value: Bool
@@ -5885,6 +7355,15 @@ private struct OneNativeSDKAccessibilityFocusedFocusBinding: ViewModifier {
       .onAppear {
         if focused != value { focused = value }
       }
+  }
+}
+
+private struct OneNativeSDKDefaultFocusFocusBinding: ViewModifier {
+  @FocusState private var focused: Bool
+
+  func body(content: Content) -> some View {
+    content.focused($focused)
+      .defaultFocus($focused, true)
   }
 }
 

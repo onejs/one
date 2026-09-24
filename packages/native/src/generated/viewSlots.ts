@@ -13,6 +13,7 @@ export const viewSlotAvailability = {
   contentToolbar: 18.4,
   contextMenu: 13,
   dismissalConfirmationDialog: 27,
+  documentBrowserContextMenu: 18.1,
   inspector: 17,
   listRowBackground: 13,
   mapControls: 17,
@@ -30,6 +31,7 @@ export const viewSlotAvailability = {
   searchScopesWithBindingStringAndSearchScopeActivation: 16.4,
   searchSuggestions: 16,
   sectionActions: 18,
+  subscriptionStoreControlIcon: 17,
   subscriptionStorePolicyDestination: 17,
   swipeActions: 15,
   tabItem: 13,
@@ -64,7 +66,13 @@ export const viewSlotArguments = {
     {
       field: 'container',
       kind: 'enum',
-      cases: { navigation: 18, navigationSplitView: 18 },
+      cases: {
+        navigation: 18,
+        navigationSplitView: 18,
+        subscriptionStore: 17,
+        subscriptionStoreHeader: 17,
+        subscriptionStoreFullHeight: 17,
+      },
     },
   ],
   contentToolbar: [{ field: 'placement', kind: 'enum', cases: { tabViewSidebar: 18.4 } }],
@@ -73,6 +81,7 @@ export const viewSlotArguments = {
     { field: 'title', kind: 'string' },
     { field: 'shouldPresent', kind: 'boolean' },
   ],
+  documentBrowserContextMenu: [],
   inspector: [{ field: 'isPresented', kind: 'bindingBoolean' }],
   listRowBackground: [],
   mapControls: [],
@@ -105,6 +114,7 @@ export const viewSlotArguments = {
   ],
   searchSuggestions: [],
   sectionActions: [],
+  subscriptionStoreControlIcon: [],
   subscriptionStorePolicyDestination: [
     { field: 'button', kind: 'enum', cases: { termsOfService: 17, privacyPolicy: 17 } },
   ],
@@ -145,7 +155,14 @@ export type ViewSlotConfiguration =
     }
   | {
       name: 'containerBackground'
-      options: { container: 'navigation' | 'navigationSplitView' }
+      options: {
+        container:
+          | 'navigation'
+          | 'navigationSplitView'
+          | 'subscriptionStore'
+          | 'subscriptionStoreHeader'
+          | 'subscriptionStoreFullHeight'
+      }
     }
   | { name: 'contentToolbar'; options: { placement: 'tabViewSidebar' } }
   | { name: 'contextMenu'; options?: never }
@@ -153,6 +170,7 @@ export type ViewSlotConfiguration =
       name: 'dismissalConfirmationDialog'
       options: { title: string; shouldPresent: boolean }
     }
+  | { name: 'documentBrowserContextMenu'; options?: never }
   | {
       name: 'inspector'
       options: { isPresented: { value: boolean; onChange: (value: boolean) => void } }
@@ -185,6 +203,7 @@ export type ViewSlotConfiguration =
     }
   | { name: 'searchSuggestions'; options?: never }
   | { name: 'sectionActions'; options?: never }
+  | { name: 'subscriptionStoreControlIcon'; options?: never }
   | {
       name: 'subscriptionStorePolicyDestination'
       options: { button: 'termsOfService' | 'privacyPolicy' }
