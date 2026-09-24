@@ -1483,6 +1483,10 @@ export interface OneNativeStyle {
   allowsWindowActivationEventsWithNoArguments?: boolean
   allowsWindowActivationEventsWithOptionalBool?: boolean | null
   animation?: SDKAnimation | null
+  appStoreMerchandising?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    kind: string
+  }>
   aspectRatio?: Readonly<{ aspectRatio: number | null; contentMode: 'fit' | 'fill' }>
   assistiveAccessNavigationIconWithImage?: string
   assistiveAccessNavigationIconWithSystemImage?: string
@@ -2201,6 +2205,10 @@ export interface OneNativeStyle {
   realityViewCameraControls?: SDKRealityViewCameraControls
   realityViewLayoutBehavior?: SDKRealityViewLayoutBehavior
   redacted?: SDKRedacted
+  refundRequestSheet?: Readonly<{
+    transactionID: string
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+  }>
   renameAction?: () => void
   replaceDisabled?: boolean
   rotation3DEffect?: Readonly<{

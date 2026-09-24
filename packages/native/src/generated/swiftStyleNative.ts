@@ -100,6 +100,7 @@ const sdkKinds = {
   allowsWindowActivationEventsWithNoArguments: 'boolean',
   allowsWindowActivationEventsWithOptionalBool: 'optionalBoolean',
   animation: 'optionalEnum',
+  appStoreMerchandising: 'record',
   aspectRatio: 'record',
   assistiveAccessNavigationIconWithImage: 'string',
   assistiveAccessNavigationIconWithSystemImage: 'string',
@@ -361,6 +362,7 @@ const sdkKinds = {
   realityViewCameraControls: 'string',
   realityViewLayoutBehavior: 'string',
   redacted: 'string',
+  refundRequestSheet: 'record',
   renameAction: 'event',
   replaceDisabled: 'boolean',
   rotation3DEffect: 'record',
@@ -1098,6 +1100,10 @@ const sdkRecords: Record<
     { field: 'g', kind: 'enum', optional: false },
     { field: 'computeValue', kind: 'number', optional: false },
   ],
+  appStoreMerchandising: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'kind', kind: 'string', optional: false },
+  ],
   aspectRatio: [
     { field: 'aspectRatio', kind: 'number', optional: true },
     { field: 'contentMode', kind: 'enum', optional: false },
@@ -1393,6 +1399,10 @@ const sdkRecords: Record<
         { name: 'ty', type: 'CoreFoundation.CGFloat', integer: false },
       ],
     },
+  ],
+  refundRequestSheet: [
+    { field: 'transactionID', kind: 'string', optional: false },
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
   ],
   rotation3DEffect: [
     {

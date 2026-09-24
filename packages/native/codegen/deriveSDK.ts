@@ -106,6 +106,13 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
     if (!/^[A-Za-z_]\w*\.[A-Za-z][\w.]*$/.test(baseType)) return
     const [module, ...owner] = baseType.split('.')
     const ownerName = owner.join('.')
+    const alias = inventory.find((d) => d.module === module && d.kind === 'typealias' &&
+      d.owner === owner.slice(0, -1).join('.') && d.name === owner.at(-1) &&
+      present(d) && ios(d) <= ceiling)
+    if (alias?.type === 'Swift.UInt64')
+      return { kind: 'string', type, optional,
+        swiftExpression: 'UInt64($value) ?? { () -> UInt64 in preconditionFailure("invalid UInt64") }()' }
+    if (alias?.type === 'Swift.String') return { kind: 'string', type, optional }
     let numericStruct: Omit<DerivedArgument, 'field' | 'label'> | undefined
     const publicStruct = inventory.find((d) => d.module === module && d.kind === 'struct' &&
       d.owner === owner.slice(0, -1).join('.') && d.name === owner.at(-1) &&
@@ -174,14 +181,15 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
           if (statics.length === 1) return { expression: `${valueType}.default`, inputs: 0 }
           const next = new Set([...seen, valueType])
           const expressions = inventory.filter((d) => d.module === valueModule &&
-            (d.owner === valueName || d.owner === valueType) && d.kind === 'init' &&
+            (d.owner === valueName || d.owner === valueType) &&
+            (d.kind === 'init' || d.kind === 'func' && d.isStatic && d.type === valueType) &&
             d.parameters.length > 0 && !d.requirements?.length && present(d) && ios(d) <= ceiling)
             .map((d) => {
               const argumentsOf = d.parameters.map((parameter) => expressionFor(parameter.type, next))
               if (argumentsOf.some((argument) => !argument)) return
               const inputs = argumentsOf.reduce((count, argument) => count + argument!.inputs, 0)
               if (inputs !== 1) return
-              return { inputs, expression: `${valueType}(${d.parameters.map((parameter, index) =>
+              return { inputs, expression: `${valueType}${d.kind === 'func' ? `.${d.name}` : ''}(${d.parameters.map((parameter, index) =>
                 `${parameter.label === '_' ? '' : `${parameter.label}: `}${argumentsOf[index]!.expression}`).join(', ')})` }
             }).filter((value) => value !== undefined)
           return expressions.length === 1 ? expressions[0] : undefined

@@ -2255,6 +2255,30 @@
       ]
     },
     {
+      "name": "appStoreMerchandising",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "string",
+          "type": "StoreKit.AppStoreMerchandisingKind",
+          "optional": false,
+          "swiftExpression": "StoreKit.AppStoreMerchandisingKind.subscriptionBundle($value)",
+          "field": "kind",
+          "label": "kind"
+        }
+      ],
+      "framework": "StoreKit"
+    },
+    {
       "name": "aspectRatio",
       "kind": "record",
       "type": "",
@@ -9479,6 +9503,30 @@
       "label": "reason"
     },
     {
+      "name": "refundRequestSheet",
+      "kind": "record",
+      "type": "",
+      "ios": 15,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "StoreKit.Transaction.ID",
+          "optional": false,
+          "swiftExpression": "UInt64($value) ?? { () -> UInt64 in preconditionFailure(\"invalid UInt64\") }()",
+          "field": "transactionID",
+          "label": "for"
+        },
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        }
+      ],
+      "framework": "StoreKit"
+    },
+    {
       "name": "renameAction",
       "kind": "event",
       "type": "@escaping () -> Swift.Void",
@@ -14093,18 +14141,14 @@
         "payWithApplePayButtonStyle",
         "verifyIdentityWithWalletButtonStyle"
       ],
-      "_DataDetection_SwiftUI": [
-        "dataDetection"
-      ],
-      "_GameController_SwiftUI": [
-        "handlesGameControllerEvents"
-      ],
       "_StoreKit_SwiftUI": [
+        "appStoreMerchandising",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
         "productDescription",
         "productIconBorder",
         "productViewStyle",
+        "refundRequestSheet",
         "storeButton",
         "subscriptionOfferViewButtonVisibility",
         "subscriptionOfferViewDetailAction",
@@ -14118,6 +14162,12 @@
         "subscriptionStorePolicyDestination",
         "subscriptionStorePolicyForegroundStyle",
         "subscriptionStoreSignInAction"
+      ],
+      "_DataDetection_SwiftUI": [
+        "dataDetection"
+      ],
+      "_GameController_SwiftUI": [
+        "handlesGameControllerEvents"
       ],
       "_MapKit_SwiftUI": [
         "mapControlVisibility",
@@ -14544,18 +14594,14 @@
         "payWithApplePayButtonStyle",
         "verifyIdentityWithWalletButtonStyle"
       ],
-      "_DataDetection_SwiftUI": [
-        "dataDetection"
-      ],
-      "_GameController_SwiftUI": [
-        "handlesGameControllerEvents"
-      ],
       "_StoreKit_SwiftUI": [
+        "appStoreMerchandising",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
         "productDescription",
         "productIconBorder",
         "productViewStyle",
+        "refundRequestSheet",
         "storeButton",
         "subscriptionOfferViewButtonVisibility",
         "subscriptionOfferViewDetailAction",
@@ -14569,6 +14615,12 @@
         "subscriptionStorePolicyDestination",
         "subscriptionStorePolicyForegroundStyle",
         "subscriptionStoreSignInAction"
+      ],
+      "_DataDetection_SwiftUI": [
+        "dataDetection"
+      ],
+      "_GameController_SwiftUI": [
+        "handlesGameControllerEvents"
       ],
       "_MapKit_SwiftUI": [
         "mapControlVisibility",

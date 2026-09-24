@@ -142,7 +142,8 @@ const derivedViewSlots = deriveViewSlots(inventory, MAXIMUM_IOS)
 const shortOwner = (d: Declaration) => d.owner.split('.').at(-1)
 const ownerMatches = (d: Declaration, type: string) => {
   const parts = d.owner.split('.')
-  return parts.at(-1) === type || parts.slice(-2).join('') === type
+  const owner = parts[0] === d.module ? parts.slice(1) : parts
+  return owner.length <= 2 && (owner.at(-1) === type || owner.join('') === type)
 }
 const selected: Declaration[] = []
 // the hill-climb sets: every SDK view constructor and view modifier the generator
