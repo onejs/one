@@ -154,6 +154,17 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
           : call
       }
       const expression = (template: string | undefined, value: string) => template?.replace('$value', value)
+      if (modifier.kind === 'chartDescriptor')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let descriptor: OneNativeSDKChartDescriptor = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode(OneNativeSDKChartDescriptor.self, from: data) else {
+        preconditionFailure("invalid ${modifier.name}")
+      }
+      return decoded
+    }()
+    ${apply('descriptor', modifier.ios)}
+  }`
       if (modifier.kind === 'record') {
         const argumentsFromSDK = modifier.arguments!
         const parsedArguments = argumentsFromSDK.map((argument, index) => {
@@ -1158,6 +1169,36 @@ function validTextRanges(value: unknown, text: string): value is OneNativeTextRa
         sdkModifiers.push([name, JSON.stringify([binding.text, JSON.stringify(binding.value)])])
         continue
       }
+      if (kind === 'chartDescriptor') {
+        if (!value || typeof value !== 'object' || Array.isArray(value))
+          throw new Error(name + ' must be a chart descriptor')
+        const chart = value as Record<string, unknown>
+        if ((chart.title !== undefined && typeof chart.title !== 'string') ||
+          (chart.summary !== undefined && typeof chart.summary !== 'string') ||
+          !Array.isArray(chart.series) || chart.series.some((series) => {
+            if (!series || typeof series !== 'object' || Array.isArray(series)) return true
+            const item = series as Record<string, unknown>
+            return typeof item.name !== 'string' || typeof item.isContinuous !== 'boolean' ||
+              !Array.isArray(item.points) || item.points.some((point) => {
+                if (!point || typeof point !== 'object' || Array.isArray(point)) return true
+                const coordinate = point as Record<string, unknown>
+                return typeof coordinate.x !== 'number' || !Number.isFinite(coordinate.x) ||
+                  (coordinate.y !== undefined && (typeof coordinate.y !== 'number' || !Number.isFinite(coordinate.y))) ||
+                  (coordinate.label !== undefined && typeof coordinate.label !== 'string')
+              })
+          }) || [chart.xAxis, chart.yAxis].some((axis, index) => {
+            if (index === 1 && axis === undefined) return false
+            if (!axis || typeof axis !== 'object' || Array.isArray(axis)) return true
+            const item = axis as Record<string, unknown>
+            return typeof item.title !== 'string' || !Array.isArray(item.range) || item.range.length !== 2 ||
+              item.range.some((bound) => typeof bound !== 'number' || !Number.isFinite(bound)) ||
+              item.range[0] > item.range[1] ||
+              (item.gridlinePositions !== undefined && (!Array.isArray(item.gridlinePositions) ||
+                item.gridlinePositions.some((position) => typeof position !== 'number' || !Number.isFinite(position))))
+          })) throw new Error(name + ' must contain finite axes and series points')
+        sdkModifiers.push([name, JSON.stringify(value)])
+        continue
+      }
       if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {
         if (!value || typeof value !== 'object' || Array.isArray(value) ||
           typeof (value as { onAction?: unknown }).onAction !== 'function')
@@ -1582,6 +1623,45 @@ private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slic
   static func == (lhs: Self, rhs: Self) -> Bool { lhs.key == rhs.key }
   var body: some View { content }
 }`, '')).join('\n')}
+${derived.some((modifier) => modifier.kind === 'chartDescriptor') ? `private struct OneNativeSDKChartDescriptor: Codable, AXChartDescriptorRepresentable {
+  struct Axis: Codable {
+    let title: String
+    let range: [Double]
+    let gridlinePositions: [Double]?
+
+    var descriptor: AXNumericDataAxisDescriptor {
+      precondition(range.count == 2 && range[0].isFinite && range[1].isFinite && range[0] <= range[1])
+      return AXNumericDataAxisDescriptor(title: title, range: range[0]...range[1],
+        gridlinePositions: gridlinePositions ?? []) { String($0) }
+    }
+  }
+
+  struct Point: Codable {
+    let x: Double
+    let y: Double?
+    let label: String?
+  }
+
+  struct Series: Codable {
+    let name: String
+    let isContinuous: Bool
+    let points: [Point]
+  }
+
+  let title: String?
+  let summary: String?
+  let xAxis: Axis
+  let yAxis: Axis?
+  let series: [Series]
+
+  func makeChartDescriptor() -> AXChartDescriptor {
+    AXChartDescriptor(title: title, summary: summary, xAxis: xAxis.descriptor,
+      yAxis: yAxis?.descriptor, series: series.map { entry in
+        AXDataSeriesDescriptor(name: entry.name, isContinuous: entry.isContinuous,
+          dataPoints: entry.points.map { AXDataPoint(x: $0.x, y: $0.y, label: $0.label) })
+      })
+  }
+}` : ''}
 ${derived.some((modifier) => modifier.uiRecognizer) ? `@available(iOS 18, *)
 @MainActor private struct OneNativeSDKTapRecognizer: UIGestureRecognizerRepresentable {
   let onTap: () -> Void

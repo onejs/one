@@ -1724,6 +1724,25 @@ export interface OneNativeStyle {
   accessibilityActivationPointWithUnitPoint?: SDKAccessibilityActivationPointWithUnitPoint
   accessibilityAddTraits?: SDKAccessibilityAddTraits
   accessibilityAdjustableAction?: (value: 'increment' | 'decrement') => void
+  accessibilityChartDescriptor?: Readonly<{
+    title?: string
+    summary?: string
+    xAxis: Readonly<{
+      title: string
+      range: readonly [number, number]
+      gridlinePositions?: readonly number[]
+    }>
+    yAxis?: Readonly<{
+      title: string
+      range: readonly [number, number]
+      gridlinePositions?: readonly number[]
+    }>
+    series: readonly Readonly<{
+      name: string
+      isContinuous: boolean
+      points: readonly Readonly<{ x: number; y?: number; label?: string }>[]
+    }>[]
+  }>
   accessibilityCustomContent?: Readonly<{ label: string; value: string }>
   accessibilityDefaultFocus?: boolean
   accessibilityDirectTouch?: Readonly<{

@@ -159,6 +159,8 @@ ${styleFields
             ? `readonly SDK${upper(modifier.name)}[]`
           : modifier.kind === 'equatableKey'
             ? 'string'
+          : modifier.kind === 'chartDescriptor'
+            ? 'Readonly<{ title?: string; summary?: string; xAxis: Readonly<{ title: string; range: readonly [number, number]; gridlinePositions?: readonly number[] }>; yAxis?: Readonly<{ title: string; range: readonly [number, number]; gridlinePositions?: readonly number[] }>; series: readonly Readonly<{ name: string; isContinuous: boolean; points: readonly Readonly<{ x: number; y?: number; label?: string }>[] }>[] }>'
           : modifier.kind === 'selectionID'
             ? 'string'
           : modifier.kind === 'selectionIndex'

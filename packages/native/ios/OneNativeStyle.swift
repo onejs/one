@@ -3,6 +3,7 @@
 import SwiftUI
 import UIKit
 import Combine
+import Accessibility
 import PassKit
 import AppIntents
 import StoreKit
@@ -34,6 +35,45 @@ private struct OneNativeSDKEquatableKeyView<Content: View>: View, Equatable {
   let content: Content
   static func == (lhs: Self, rhs: Self) -> Bool { lhs.key == rhs.key }
   var body: some View { content }
+}
+private struct OneNativeSDKChartDescriptor: Codable, AXChartDescriptorRepresentable {
+  struct Axis: Codable {
+    let title: String
+    let range: [Double]
+    let gridlinePositions: [Double]?
+
+    var descriptor: AXNumericDataAxisDescriptor {
+      precondition(range.count == 2 && range[0].isFinite && range[1].isFinite && range[0] <= range[1])
+      return AXNumericDataAxisDescriptor(title: title, range: range[0]...range[1],
+        gridlinePositions: gridlinePositions ?? []) { String($0) }
+    }
+  }
+
+  struct Point: Codable {
+    let x: Double
+    let y: Double?
+    let label: String?
+  }
+
+  struct Series: Codable {
+    let name: String
+    let isContinuous: Bool
+    let points: [Point]
+  }
+
+  let title: String?
+  let summary: String?
+  let xAxis: Axis
+  let yAxis: Axis?
+  let series: [Series]
+
+  func makeChartDescriptor() -> AXChartDescriptor {
+    AXChartDescriptor(title: title, summary: summary, xAxis: xAxis.descriptor,
+      yAxis: yAxis?.descriptor, series: series.map { entry in
+        AXDataSeriesDescriptor(name: entry.name, isContinuous: entry.isContinuous,
+          dataPoints: entry.points.map { AXDataPoint(x: $0.x, y: $0.y, label: $0.label) })
+      })
+  }
 }
 @available(iOS 18, *)
 @MainActor private struct OneNativeSDKTapRecognizer: UIGestureRecognizerRepresentable {
@@ -273,6 +313,7 @@ extension View {
       case "accessibilityActivationPointWithUnitPoint": view = AnyView(view.oneNativeSDKAccessibilityActivationPointWithUnitPoint(value, emit: emit))
       case "accessibilityAddTraits": view = AnyView(view.oneNativeSDKAccessibilityAddTraits(value, emit: emit))
       case "accessibilityAdjustableAction": view = AnyView(view.oneNativeSDKAccessibilityAdjustableAction(value, emit: emit))
+      case "accessibilityChartDescriptor": view = AnyView(view.oneNativeSDKAccessibilityChartDescriptor(value, emit: emit))
       case "accessibilityCustomContent": view = AnyView(view.oneNativeSDKAccessibilityCustomContent(value, emit: emit))
       case "accessibilityDefaultFocus": view = AnyView(view.oneNativeSDKAccessibilityDefaultFocus(value, emit: emit))
       case "accessibilityDirectTouch": view = AnyView(view.oneNativeSDKAccessibilityDirectTouch(value, emit: emit))
@@ -1157,6 +1198,17 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityAdjustableAction(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.accessibilityAdjustableAction({ value in emit("accessibilityAdjustableAction", String(describing: value)) })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAccessibilityChartDescriptor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let descriptor: OneNativeSDKChartDescriptor = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode(OneNativeSDKChartDescriptor.self, from: data) else {
+        preconditionFailure("invalid accessibilityChartDescriptor")
+      }
+      return decoded
+    }()
+    self.accessibilityChartDescriptor(descriptor)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAccessibilityCustomContent(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
