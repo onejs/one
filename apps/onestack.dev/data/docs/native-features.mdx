@@ -108,43 +108,47 @@ function DetailScreen() {
 
 ## Toolbar
 
-Declarative native toolbar items through `Stack.Toolbar`, in the same compound style as `Stack.Header`. iOS only: leading/trailing slots compile to native header items, and `Stack.Toolbar.Bottom` renders a native `UIToolbar` at the bottom of the screen.
+Declarative native toolbar items through `Stack.Toolbar`, in the same compound style as `Stack.Header`. iOS only: one toolbar declares one `placement`, and `left`/`right` compile to native header items while `bottom` (the default) renders a native `UIToolbar` at the bottom of the screen.
 
 ```tsx
 import { Stack } from 'one'
 
 <Stack.Screen name="index">
-  <Stack.Toolbar>
-    <Stack.Toolbar.Leading>
-      <Stack.Toolbar.Item title="Edit" systemImageName="pencil" onPress={edit} />
-    </Stack.Toolbar.Leading>
-    <Stack.Toolbar.Trailing>
-      <Stack.Toolbar.Menu title="More" systemImageName="ellipsis.circle">
-        <Stack.Toolbar.Item title="Share" onPress={share} />
-      </Stack.Toolbar.Menu>
-    </Stack.Toolbar.Trailing>
+  <Stack.Toolbar placement="left">
+    <Stack.Toolbar.Button icon="pencil" onPress={edit}>
+      Edit
+    </Stack.Toolbar.Button>
+  </Stack.Toolbar>
+  <Stack.Toolbar placement="right">
+    <Stack.Toolbar.Menu title="More" icon="ellipsis.circle">
+      <Stack.Toolbar.MenuAction icon="square.and.arrow.up" onPress={share}>
+        Share
+      </Stack.Toolbar.MenuAction>
+    </Stack.Toolbar.Menu>
   </Stack.Toolbar>
 </Stack.Screen>
 ```
 
-`Leading`/`Trailing` are the primary direction-aware names (`Left`/`Right` are aliases). Items take `title`, `systemImageName` (SF Symbol), `tintColor` (including dynamic iOS values), `disabled`, `hidden`, `selected`, and the `onPress`/`onSelected` aliases. `sharesBackground` and `hidesSharedBackground` pass through to header items for iOS 26 Liquid Glass.
+Buttons take their label as text children (or a `Label` child), `icon` (SF Symbol name or image source), `tintColor` (including dynamic iOS values), `variant`, `disabled`, `hidden`, `selected`, and `onPress`. `separateBackground` opts out of the shared background and `hidesSharedBackground` hides it behind the item for iOS 26 Liquid Glass. Menus nest `MenuAction` children and `Menu` submenus. `Spacer` is flexible or fixed with `width`; `SearchBarSlot` embeds the screen search bar.
 
-Options are route-local and dynamic: render a nameless `Stack.Screen` with a `Stack.Toolbar` in route content and its options apply to the current route through `setOptions`, so screen state can drive items without a new API. An explicit slot always wins over incoming options: a slot whose items are all hidden writes an empty array and clears inherited items, while an absent slot preserves them.
+Options are route-local and dynamic: render a nameless `Stack.Screen` with a `Stack.Toolbar` in route content and its options apply to the current route through `setOptions`, so screen state can drive items without a new API. An explicit toolbar always wins over incoming options on its own side: a toolbar whose items are all hidden writes an empty array and clears inherited items, while an absent toolbar preserves them.
 
 ### Bottom toolbar
 
 ```tsx
 // inside screen content, iOS only
-<Stack.Toolbar.Bottom hidden={hidden} animated>
-  <Stack.Toolbar.Item title="Add" systemImageName="plus" onPress={add} />
-</Stack.Toolbar.Bottom>
+<Stack.Toolbar>
+  <Stack.Toolbar.Button icon="plus" hidden={hidden} onPress={add}>
+    Add
+  </Stack.Toolbar.Button>
+</Stack.Toolbar>
 ```
 
-`Stack.Toolbar.Bottom` must mount in screen content where the responder chain reaches the screen view controller; in layout config it warns and is ignored. Bottom items take the same props, including `sharesBackground` and `hidesSharedBackground`.
+`Stack.Toolbar` with bottom placement must mount in screen content where the responder chain reaches the screen view controller; in layout config it warns and is ignored. Bottom items take the same props. Hide the bar by unmounting the toolbar or by setting `hidden` on its items.
 
 ### Lower-level primitive
 
-`One.iOS.ToolbarHost` with `One.iOS.ToolbarItem` children is the lower-level bottom-`UIToolbar` renderer that `Stack.Toolbar.Bottom` builds on. Reach for it directly only when you need item types the declarative API does not expose (fixed/fluid spacers, search bar, badges).
+`One.iOS.ToolbarHost` with `One.iOS.ToolbarItem` children is the lower-level bottom-`UIToolbar` renderer that `Stack.Toolbar` with bottom placement builds on. Reach for it directly only when you need explicit item identifiers or native item props the declarative API does not forward.
 
 ### ToolbarItem Props
 
