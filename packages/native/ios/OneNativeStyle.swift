@@ -436,6 +436,7 @@ extension View {
       case "onDropSessionUpdated": view = AnyView(view.oneNativeSDKOnDropSessionUpdated(value, emit: emit))
       case "onGeometryChangeWithSize": view = AnyView(view.oneNativeSDKOnGeometryChangeWithSize(value, emit: emit))
       case "onHover": view = AnyView(view.oneNativeSDKOnHover(value, emit: emit))
+      case "onInAppPurchaseCompletion": view = AnyView(view.oneNativeSDKOnInAppPurchaseCompletion(value, emit: emit))
       case "onInAppPurchaseStart": view = AnyView(view.oneNativeSDKOnInAppPurchaseStart(value, emit: emit))
       case "onInteractiveResizeChange": view = AnyView(view.oneNativeSDKOnInteractiveResizeChange(value, emit: emit))
       case "onKeyPress": view = AnyView(view.oneNativeSDKOnKeyPress(value, emit: emit))
@@ -5063,6 +5064,32 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKOnHover(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onHover(perform: { value in emit("onHover", String(value)) })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnInAppPurchaseCompletion(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onInAppPurchaseCompletion(perform: { first, result in
+      let payload = (["value": (["id": first.id, "type": (["rawValue": first.type.rawValue] as [String: Any]), "displayName": first.displayName, "description": first.description, "displayPrice": first.displayPrice, "isFamilyShareable": first.isFamilyShareable] as [String: Any]), "result": ({ () -> [String: Any] in
+      switch result {
+      case .success(let item): return ["case": "success", "value": ({ () -> [String: Any] in
+      switch item {
+      case .success(let value0): return ["case": "success", "values": [({ () -> [String: Any] in
+      switch value0 {
+      case .verified: return ["case": "verified", "jwsRepresentation": value0.jwsRepresentation, "error": NSNull()]
+      case .unverified(_, let error): return ["case": "unverified", "jwsRepresentation": value0.jwsRepresentation, "error": String(describing: error)]
+      }
+    })()]]
+      case .userCancelled: return ["case": "userCancelled", "values": []]
+      case .pending: return ["case": "pending", "values": []]
+      @unknown default: return ["case": "unknown", "values": []]
+      }
+    })()]
+      case .failure(let error): return ["case": "failure", "error": String(describing: error)]
+      }
+    })()] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onInAppPurchaseCompletion async event") }
+      await OneNativeAsyncAction.wait(name: "onInAppPurchaseCompletion", value: encoded, emit: emit)
+    })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnInAppPurchaseStart(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

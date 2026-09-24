@@ -9358,6 +9358,103 @@
       "ios": 13.4
     },
     {
+      "name": "onInAppPurchaseCompletion",
+      "kind": "eventAsyncStruct",
+      "type": "((StoreKit.Product, Swift.Result<StoreKit.Product.PurchaseResult, any Swift.Error>) async -> ())?",
+      "label": "perform",
+      "eventInputs": [
+        "first",
+        "result"
+      ],
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "value",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "id",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "type",
+                  "value": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "name": "rawValue",
+                        "value": {
+                          "kind": "string"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "displayName",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "description",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "displayPrice",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "isFamilyShareable",
+                  "value": {
+                    "kind": "boolean"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "result",
+            "value": {
+              "kind": "result",
+              "value": {
+                "kind": "associatedEnum",
+                "cases": [
+                  {
+                    "name": "success",
+                    "values": [
+                      {
+                        "kind": "verification"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "userCancelled",
+                    "values": []
+                  },
+                  {
+                    "name": "pending",
+                    "values": []
+                  }
+                ],
+                "open": true
+              }
+            }
+          }
+        ]
+      },
+      "ios": 17,
+      "framework": "StoreKit"
+    },
+    {
       "name": "onInAppPurchaseStart",
       "kind": "eventAsyncStruct",
       "type": "((StoreKit.Product) async -> ())?",
@@ -15943,6 +16040,7 @@
         "appStoreMerchandising",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
+        "onInAppPurchaseCompletion",
         "onInAppPurchaseStart",
         "productDescription",
         "productIconBorder",
@@ -16409,6 +16507,7 @@
         "appStoreMerchandising",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
+        "onInAppPurchaseCompletion",
         "onInAppPurchaseStart",
         "productDescription",
         "productIconBorder",

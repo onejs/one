@@ -2474,6 +2474,32 @@ export interface OneNativeStyle {
     newValue: { width: number; height: number }
   }) => void
   onHover?: (value: boolean) => void
+  onInAppPurchaseCompletion?: (value: {
+    value: {
+      id: string
+      type: { rawValue: string }
+      displayName: string
+      description: string
+      displayPrice: string
+      isFamilyShareable: boolean
+    }
+    result:
+      | {
+          case: 'success'
+          value:
+            | {
+                case: 'success'
+                values: readonly [
+                  | { case: 'verified'; jwsRepresentation: string; error: null }
+                  | { case: 'unverified'; jwsRepresentation: string; error: string },
+                ]
+              }
+            | { case: 'userCancelled'; values: readonly [] }
+            | { case: 'pending'; values: readonly [] }
+            | { case: 'unknown'; values: readonly [] }
+        }
+      | { case: 'failure'; error: string }
+  }) => void | Promise<void>
   onInAppPurchaseStart?: (value: {
     id: string
     type: { rawValue: string }

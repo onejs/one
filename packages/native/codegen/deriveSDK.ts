@@ -28,6 +28,9 @@ export type EventValueSchema =
   | { kind: 'optional'; value: EventValueSchema }
   | { kind: 'array'; value: EventValueSchema }
   | { kind: 'object'; fields: readonly { name: string; value: EventValueSchema }[] }
+  | { kind: 'result'; value: EventValueSchema }
+  | { kind: 'verification' }
+  | { kind: 'associatedEnum'; cases: readonly { name: string; values: readonly EventValueSchema[] }[]; open?: true }
 
 export type DerivedModifier = {
   name: string
@@ -284,6 +287,18 @@ export function deriveModifiers(
     (/^@escaping \((?:_ [A-Za-z]\w*: )?Swift\.Result<(\[Foundation\.URL\]|Foundation\.URL), any Swift\.Error>\) -> Swift\.Void$/.exec(type) ??
       /^\(\(Swift\.Result<(\[Foundation\.URL\]|Foundation\.URL), any Swift\.Error>\) -> Swift\.Void\)\?$/.exec(type))?.[1]
   const eventValueOf = (type: string, version: number, seen = new Set<string>()): EventValueSchema | undefined => {
+    const result = /^Swift\.Result<(.+), any Swift\.Error>$/.exec(type)
+    if (result) {
+      const value = eventValueOf(result[1], version, seen)
+      return value && { kind: 'result', value }
+    }
+    const verified = /^StoreKit\.VerificationResult<(.+)>$/.exec(type)
+    if (verified && inventory.some((declaration) => declaration.module === 'StoreKit' &&
+      declaration.owner === 'StoreKit.VerificationResult' && declaration.name === 'jwsRepresentation' &&
+      declaration.type === 'Swift.String' &&
+      declaration.requirements?.includes(`SignedType == ${verified[1]}`) &&
+      present(declaration) && ios(declaration) <= version))
+      return { kind: 'verification' }
     if (type.endsWith('?')) {
       const value = eventValueOf(type.slice(0, -1), version, seen)
       return value && { kind: 'optional', value }
@@ -296,16 +311,26 @@ export function deriveModifiers(
     const [module, ...parts] = type.split('.')
     const owner = parts.join('.')
     const enumDeclaration = inventory.find((d) => d.module === module && d.kind === 'enum' &&
-      d.owner === parts.slice(0, -1).join('.') && d.name === parts.at(-1) &&
-      (d.attributes.includes('@frozen') || d.attributes.includes('@symbolgraph')) &&
+      (d.owner === parts.slice(0, -1).join('.') ||
+        d.owner === [module, ...parts.slice(0, -1)].join('.')) &&
+      d.name === parts.at(-1) &&
       present(d) && ios(d) <= version)
     if (enumDeclaration) {
       const cases = inventory.filter((d) => d.module === module &&
         (d.owner === owner || d.owner === type) && d.enumCase && present(d) && ios(d) <= ceiling)
-      if (cases.length && cases.every((item) => item.parameters.length === 0) &&
+      if ((enumDeclaration.attributes.includes('@frozen') || enumDeclaration.attributes.includes('@symbolgraph')) &&
+        cases.length && cases.every((item) => item.parameters.length === 0) &&
         new Set(cases.map((item) => item.name)).size === cases.length)
         return { kind: 'enum', cases: cases.map((item) => item.name),
           ...(enumDeclaration.attributes.includes('@symbolgraph') ? { open: true as const } : {}) }
+      if (cases.length && cases.some((item) => item.parameters.length) &&
+        new Set(cases.map((item) => item.name)).size === cases.length) {
+        const values = cases.map((item) => ({ name: item.name,
+          values: item.parameters.map((parameter) => eventValueOf(parameter.type, version, new Set([...seen, type]))) }))
+        if (values.every((item) => item.values.every(Boolean)))
+          return { kind: 'associatedEnum', cases: values as { name: string; values: EventValueSchema[] }[],
+            ...(!enumDeclaration.attributes.includes('@frozen') ? { open: true as const } : {}) }
+      }
     }
     if (!owner || seen.has(type) || !inventory.some((d) => d.module === module &&
       (d.kind === 'struct' || d.kind === 'class') &&
@@ -682,6 +707,20 @@ export function deriveModifiers(
           return [{ name, module: method.module, kind: 'eventAsyncStruct', type: asyncValue.type,
             label: asyncValue.label, eventInputType: input, eventValue: value,
             ios: ios(method), ...framework }]
+      }
+      const asyncResult = method.parameters.find((parameter) =>
+        /^\(\(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+), (Swift\.Result<.+, any Swift\.Error>)\) async -> \(\)\)\?$/.test(parameter.type))
+      if (asyncResult && method.parameters.every((parameter) =>
+        parameter === asyncResult || parameter.defaultValue !== undefined)) {
+        const input = /^\(\(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+), (Swift\.Result<.+, any Swift\.Error>)\) async -> \(\)\)\?$/.exec(asyncResult.type)!
+        const first = eventValueOf(input[1], ios(method))
+        const second = eventValueOf(input[2], ios(method))
+        if (first && second)
+          return [{ name, module: method.module, kind: 'eventAsyncStruct', type: asyncResult.type,
+            label: asyncResult.label, eventInputs: ['first', 'result'],
+            eventValue: { kind: 'object', fields: [
+              { name: 'value', value: first }, { name: 'result', value: second },
+            ] }, ios: ios(method), ...framework }]
       }
       if (method.parameters.length === 0 ||
         (method.parameters.every((parameter) => parameter.defaultValue !== undefined && !parameter.type.includes('->')) &&

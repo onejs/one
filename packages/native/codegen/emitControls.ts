@@ -86,6 +86,11 @@ const eventValueType = (value: EventValueSchema): string => {
     .map((item) => JSON.stringify(item)).join(' | ')
   if (value.kind === 'optional') return `${eventValueType(value.value)} | null`
   if (value.kind === 'array') return `readonly ${eventValueType(value.value)}[]`
+  if (value.kind === 'verification') return '{ case: "verified"; jwsRepresentation: string; error: null } | { case: "unverified"; jwsRepresentation: string; error: string }'
+  if (value.kind === 'result') return `{ case: "success"; value: ${eventValueType(value.value)} } | { case: "failure"; error: string }`
+  if (value.kind === 'associatedEnum') return value.cases.map((item) =>
+    `{ case: ${JSON.stringify(item.name)}; values: readonly [${item.values.map(eventValueType).join(', ')}] }`).concat(
+      value.open ? ['{ case: "unknown"; values: readonly [] }'] : []).join(' | ')
   return `{ ${value.fields.map((field) => `${field.name}: ${eventValueType(field.value)}`).join('; ')} }`
 }
 

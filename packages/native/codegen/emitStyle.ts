@@ -15,6 +15,27 @@ const eventValueSwift = (value: EventValueSchema, expression: string): string =>
     return `(${expression}.map { inner -> Any in ${eventValueSwift(value.value, 'inner')} } ?? NSNull())`
   if (value.kind === 'array')
     return `${expression}.map { item -> Any in ${eventValueSwift(value.value, 'item')} }`
+  if (value.kind === 'verification')
+    return `({ () -> [String: Any] in
+      switch ${expression} {
+      case .verified: return ["case": "verified", "jwsRepresentation": ${expression}.jwsRepresentation, "error": NSNull()]
+      case .unverified(_, let error): return ["case": "unverified", "jwsRepresentation": ${expression}.jwsRepresentation, "error": String(describing: error)]
+      }
+    })()`
+  if (value.kind === 'result')
+    return `({ () -> [String: Any] in
+      switch ${expression} {
+      case .success(let item): return ["case": "success", "value": ${eventValueSwift(value.value, 'item')}]
+      case .failure(let error): return ["case": "failure", "error": String(describing: error)]
+      }
+    })()`
+  if (value.kind === 'associatedEnum')
+    return `({ () -> [String: Any] in
+      switch ${expression} {
+${value.cases.map((item) => `      case .${item.name}${item.values.length ? `(${item.values.map((_, index) => `let value${index}`).join(', ')})` : ''}: return ["case": ${JSON.stringify(item.name)}, "values": [${item.values.map((nested, index) => eventValueSwift(nested, `value${index}`)).join(', ')}]]`).join('\n')}
+${value.open ? '      @unknown default: return ["case": "unknown", "values": []]' : ''}
+      }
+    })()`
   return `([${value.fields.map((field) => `${JSON.stringify(field.name)}: ${eventValueSwift(field.value, `${expression}.${field.name}`)}`).join(', ')}] as [String: Any])`
 }
 
@@ -399,8 +420,10 @@ ${modifier.cases!.map((item) => `      case ${JSON.stringify(item.name)}: return
   }`
       if (modifier.kind === 'eventAsyncStruct')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-    ${apply(`{ item in
-      let payload = ${eventValueSwift(modifier.eventValue!, 'item')}
+    ${apply(`{ ${modifier.eventInputs?.join(', ') ?? 'item'} in
+      let payload = ${modifier.eventInputs && modifier.eventValue?.kind === 'object'
+        ? `([${modifier.eventValue.fields.map((field, index) => `${JSON.stringify(field.name)}: ${eventValueSwift(field.value, modifier.eventInputs![index])}`).join(', ')}] as [String: Any])`
+        : eventValueSwift(modifier.eventValue!, 'item')}
       guard let data = try? JSONSerialization.data(withJSONObject: payload),
         let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${modifier.name} async event") }
       await OneNativeAsyncAction.wait(name: ${JSON.stringify(modifier.name)}, value: encoded, emit: emit)
@@ -594,6 +617,9 @@ type SDKEventValueShape =
   | { kind: 'enum'; cases: readonly string[]; open?: true }
   | { kind: 'optional' | 'array'; value: SDKEventValueShape }
   | { kind: 'object'; fields: readonly { name: string; value: SDKEventValueShape }[] }
+  | { kind: 'result'; value: SDKEventValueShape }
+  | { kind: 'verification' }
+  | { kind: 'associatedEnum'; cases: readonly { name: string; values: readonly SDKEventValueShape[] }[]; open?: true }
 const sdkAssociatedCases: Record<string, Record<string, readonly SDKEventValueShape[]>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAssociatedEnum').map((modifier) => [modifier.name, Object.fromEntries(modifier.associatedCases!.map((item) => [item.name, item.values]))])))}
 const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct' || modifier.kind === 'eventAsyncStruct' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.eventValue])))}
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'gesture').map((modifier) => [modifier.name, Object.fromEntries(modifier.gestureOptions!.map((option) => [option.name, option.eventValue ?? null]))])))}
@@ -607,6 +633,27 @@ function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean 
   if (shape.kind === 'string' || shape.kind === 'boolean') return typeof value === shape.kind
   if (shape.kind === 'enum') return typeof value === 'string' &&
     (shape.cases.includes(value) || shape.open === true && value === 'unknown')
+  if (shape.kind === 'verification') return Boolean(value && typeof value === 'object' &&
+    ((value as { case?: unknown }).case === 'verified' || (value as { case?: unknown }).case === 'unverified') &&
+    typeof (value as { jwsRepresentation?: unknown }).jwsRepresentation === 'string' &&
+    ((value as { case: string; error?: unknown }).case === 'verified'
+      ? (value as { error?: unknown }).error === null
+      : typeof (value as { error?: unknown }).error === 'string'))
+  if (shape.kind === 'result') return Boolean(value && typeof value === 'object' &&
+    ((value as { case?: unknown }).case === 'success'
+      ? validSDKEventValue((value as { value?: unknown }).value, shape.value)
+      : (value as { case?: unknown }).case === 'failure' &&
+        typeof (value as { error?: unknown }).error === 'string'))
+  if (shape.kind === 'associatedEnum') {
+    if (!value || typeof value !== 'object') return false
+    if (shape.open && (value as { case?: unknown }).case === 'unknown')
+      return Array.isArray((value as { values?: unknown }).values) &&
+        (value as { values: unknown[] }).values.length === 0
+    const item = shape.cases.find((entry) => entry.name === (value as { case?: unknown }).case)
+    return Boolean(item && Array.isArray((value as { values?: unknown }).values) &&
+      (value as { values: unknown[] }).values.length === item.values.length &&
+      item.values.every((nested, index) => validSDKEventValue((value as { values: unknown[] }).values[index], nested)))
+  }
   if (!value || typeof value !== 'object') return false
   const record = value as Record<string, unknown>
   if (shape.kind === 'point')
