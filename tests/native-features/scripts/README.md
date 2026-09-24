@@ -49,7 +49,7 @@ bun tests/native-features/scripts/one-native-conformance.ts \
 
 Before home navigation and native tab taps, the runner waits for stable bounds and dismisses any observed development warning overlay and asserts it is gone. The overlay can cover the target while its accessibility node remains present.
 
-The runner uses `xcodebuildmcp simulator stop`, `launch-app`, `snapshot-ui`, `ui-automation tap`, `ui-automation swipe`, `ui-automation type-text`, and `xcrun simctl io … screenshot`. Screenshot failures fail the run.
+The runner drives the simulator with the [axe](https://github.com/cameroncooke/AXe) cli on `PATH` (`describe-ui`, `touch`, `swipe`, `key`, `type`) and `xcrun simctl` (`launch`, `terminate`, `io … screenshot`). Use axe 1.8 or later on Xcode 27; `xcodebuildmcp` 2.7 bundles it under `libexec/bundled/axe`. Screenshot failures fail the run.
 
 `tabs-menu` asserts the loaded fixture before every condition, then covers initial menu state and layout, React Native state retention through external, reordered, and native tab selection, native selection rejection and acceptance, menu visibility and disabled/hidden attributes, nested and deep menu actions, controlled kept-open toggles, the exact `Mixed: true,true` transition, palette and kept-open action dismissal behavior, search-role tab selection, and two leave/reenter cycles with identical menu payloads. Home loaded is `nav-one-native`. Fixture loaded is the original tabs predicate: `One Native` plus `Selected:`, or an Application node with `Dismiss context menu`.
 
