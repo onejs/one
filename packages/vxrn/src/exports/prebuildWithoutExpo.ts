@@ -527,9 +527,8 @@ function generateSceneDelegate(args: {
     path.join(dest, app.name, 'SceneDelegate.swift'),
     renderSceneDelegateSwift(app.name)
   )
-  // the aps-environment entitlement only when the app opts into push: the
-  // pbxproj patch above wires it in, and without the flag no file is
-  // written, so non-push apps stay entitlement-free.
+  // widgets use the same app entitlement file for the app group and apns.
+  // without widgets, push gets its own entitlement file.
   if (app.notifications?.push === true && !app.ios?.widgets) {
     FSExtra.writeFileSync(
       path.join(dest, app.name, `${app.name}.entitlements`),
