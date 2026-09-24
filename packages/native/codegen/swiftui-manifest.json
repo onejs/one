@@ -16731,6 +16731,30 @@
       ]
     },
     {
+      "name": "workoutPreview",
+      "kind": "record",
+      "type": "",
+      "ios": 17,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "WorkoutKit.WorkoutPlan",
+          "optional": false,
+          "swiftExpression": "({ () -> WorkoutKit.WorkoutPlan in guard let data = Foundation.Data(base64Encoded: $value), let result = try? WorkoutKit.WorkoutPlan(from: data) else { preconditionFailure(\"invalid WorkoutKit.WorkoutPlan data\") }; return result })()",
+          "field": "workout",
+          "label": "_"
+        },
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        }
+      ],
+      "framework": "WorkoutKit"
+    },
+    {
       "name": "writingDirection",
       "kind": "string",
       "type": "SwiftUICore.Text.WritingDirectionStrategy",
@@ -17356,6 +17380,9 @@
         "webViewOnScrollGeometryChange",
         "webViewScrollPosition",
         "webViewTextSelection"
+      ],
+      "_WorkoutKit_SwiftUI": [
+        "workoutPreview"
       ]
     },
     "generatedModifiers": {
@@ -17858,6 +17885,9 @@
         "webViewOnScrollGeometryChange",
         "webViewScrollPosition",
         "webViewTextSelection"
+      ],
+      "_WorkoutKit_SwiftUI": [
+        "workoutPreview"
       ]
     }
   },

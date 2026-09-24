@@ -148,6 +148,18 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
           ({ name: parameter.label, label: parameter.label, type: parameter.type })) }
     }
     if (publicStruct && !numericStruct) {
+      const dataConstructor = inventory.filter((d) => d.module === module &&
+        (d.owner === ownerName || d.owner === baseType) && d.kind === 'init' &&
+        d.parameters.length === 1 && d.parameters[0].label === 'from' &&
+        d.parameters[0].type === 'Foundation.Data' && !d.requirements?.length &&
+        present(d) && ios(d) <= ceiling)
+      const dataRepresentation = inventory.some((d) => d.module === module &&
+        (d.owner === ownerName || d.owner === baseType) && d.kind === 'var' &&
+        d.name === 'dataRepresentation' && d.type === 'Foundation.Data' &&
+        present(d) && ios(d) <= ceiling)
+      if (dataConstructor.length === 1 && dataRepresentation)
+        return { kind: 'string', type, optional,
+          swiftExpression: `({ () -> ${baseType} in guard let data = Foundation.Data(base64Encoded: $value), let result = try? ${baseType}(from: data) else { preconditionFailure("invalid ${baseType} data") }; return result })()` }
       const affineInitializers = inventory.filter((d) => d.module === module &&
         (d.owner === ownerName || d.owner === baseType) && d.kind === 'init' &&
         d.parameters.length === 1 && d.parameters[0].label === '_' &&

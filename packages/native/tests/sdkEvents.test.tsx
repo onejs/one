@@ -102,6 +102,20 @@ describe('SDK callback and binding transport', () => {
     ])
   })
 
+  it('passes a serialized workout plan to the controlled preview', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'workout', swiftStyle: {
+      workoutPreview: { workout: 'AQID', isPresented: { value: true, onChange } },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['workoutPreview', '["AQID","true"]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'workoutPreview.isPresented', value: 'false',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+  })
+
   it('builds identifiable rotor entries from public labels', () => {
     const element = Controls.Text({ text: 'navigation', swiftStyle: {
       accessibilityRotor: { rotorLabel: 'Links', entries: ['Home', 'Search'] },

@@ -617,6 +617,7 @@ const sdkKinds = {
   webViewScrollPosition: 'bindingPoint',
   webViewTextSelection: 'style',
   windowToolbarFullScreenVisibility: 'string',
+  workoutPreview: 'record',
   writingDirection: 'string',
   writingToolsAffordanceVisibility: 'string',
   writingToolsBehavior: 'string',
@@ -1980,6 +1981,10 @@ const sdkRecords: Record<
         { name: 'title', type: 'Swift.String?', integer: false },
       ],
     },
+  ],
+  workoutPreview: [
+    { field: 'workout', kind: 'string', optional: false },
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
   ],
 }
 

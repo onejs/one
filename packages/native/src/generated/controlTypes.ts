@@ -3313,6 +3313,10 @@ export interface OneNativeStyle {
   }>
   webViewTextSelection?: SDKWebViewTextSelection
   windowToolbarFullScreenVisibility?: SDKWindowToolbarFullScreenVisibility
+  workoutPreview?: Readonly<{
+    workout: string
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+  }>
   writingDirection?: SDKWritingDirection
   writingToolsAffordanceVisibility?: SDKWritingToolsAffordanceVisibility
   writingToolsBehavior?: SDKWritingToolsBehavior

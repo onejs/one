@@ -40,7 +40,7 @@ export function readInventory(root: string) {
     .sort()
   const modules = ['SwiftUI', 'SwiftUICore', ...overlays]
   // supporting modules provide argument values but do not expand the SwiftUI coverage universe.
-  const paths = [...modules, 'AppIntents', 'CoreText', 'StoreKit', 'Symbols'].map((module) =>
+  const paths = [...modules, 'AppIntents', 'CoreText', 'StoreKit', 'Symbols', 'WorkoutKit'].map((module) =>
     join(
       sdk,
       `System/Library/Frameworks/${module}.framework/Modules/${module}.swiftmodule/arm64-apple-ios-simulator.swiftinterface`

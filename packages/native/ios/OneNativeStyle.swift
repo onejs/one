@@ -19,6 +19,7 @@ import AuthenticationServices
 import Symbols
 import Translation
 import WebKit
+import WorkoutKit
 
 private enum OneNativeNamespace { static let id = Namespace().wrappedValue }
 
@@ -681,6 +682,7 @@ extension View {
       case "webViewScrollPosition": view = AnyView(view.oneNativeSDKWebViewScrollPosition(value, emit: emit))
       case "webViewTextSelection": view = AnyView(view.oneNativeSDKWebViewTextSelection(value, emit: emit))
       case "windowToolbarFullScreenVisibility": view = AnyView(view.oneNativeSDKWindowToolbarFullScreenVisibility(value, emit: emit))
+      case "workoutPreview": view = AnyView(view.oneNativeSDKWorkoutPreview(value, emit: emit))
       case "writingDirection": view = AnyView(view.oneNativeSDKWritingDirection(value, emit: emit))
       case "writingToolsAffordanceVisibility": view = AnyView(view.oneNativeSDKWritingToolsAffordanceVisibility(value, emit: emit))
       case "writingToolsBehavior": view = AnyView(view.oneNativeSDKWritingToolsBehavior(value, emit: emit))
@@ -8795,6 +8797,24 @@ self
       case "automatic": if #available(iOS 18, *) { self.windowToolbarFullScreenVisibility(SwiftUI.WindowToolbarFullScreenVisibility.automatic) } else { self }
     default: preconditionFailure("invalid windowToolbarFullScreenVisibility: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKWorkoutPreview(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid workoutPreview: \(value)") }
+      return decoded
+    }()
+    let argument0: WorkoutKit.WorkoutPlan = {
+      guard let raw = values[0] else { preconditionFailure("missing workoutPreview.workout") }
+      return ({ () -> WorkoutKit.WorkoutPlan in guard let data = Foundation.Data(base64Encoded: raw), let result = try? WorkoutKit.WorkoutPlan(from: data) else { preconditionFailure("invalid WorkoutKit.WorkoutPlan data") }; return result })()
+    }()
+    let argument1: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[1], raw == "true" || raw == "false" else { preconditionFailure("invalid workoutPreview.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("workoutPreview.isPresented", String($0)) })
+    }()
+    self.workoutPreview(argument0, isPresented: argument1)
   }
 
   @ViewBuilder fileprivate func oneNativeSDKWritingDirection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
