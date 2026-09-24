@@ -12,7 +12,13 @@ import { One } from 'one'
 
 const db = One.Database.open({ name: 'app.sqlite' })
 const rows = db.executeSync('SELECT * FROM notes').rows
+
+const asyncDb = await One.Database.openAsync({ name: 'app.sqlite' })
 ```
+
+`open` returns the database synchronously; `openAsync` resolves it. Both
+take the OP SQLite open options. On web both throw: browser persistence
+belongs to the caller's web storage provider.
 
 `@op-engineering/op-sqlite` ships with `one`, so no extra install
 is needed.

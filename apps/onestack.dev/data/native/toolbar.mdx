@@ -82,3 +82,35 @@ import { One } from 'one'
   onSelected={() => console.log('delete')}
 />
 ```
+
+| Prop | Type |
+|------|------|
+| `identifier` | `string` (required) |
+| `title` | `string` |
+| `label` | `string` |
+| `icon` | SF Symbol name |
+| `xcassetName`, `image`, `imageRenderingMode` | asset image sources (`'template'` or `'original'`) |
+| `disabled`, `destructive`, `hidden` | `boolean` |
+| `discoverabilityLabel` | `string` |
+| `subtitle` | `string` |
+| `accessibilityLabel`, `accessibilityHint` | `string` |
+| `displayAsPalette`, `displayInline` | `boolean` |
+| `preferredElementSize` | `'auto'`, `'small'`, `'medium'`, `'large'` |
+| `isOn` | `boolean` |
+| `keepPresented` | `boolean` |
+| `tintColor` | color value |
+| `barButtonItemStyle` | `'plain'`, `'done'`, `'prominent'` |
+| `sharesBackground`, `hidesSharedBackground` | `boolean` |
+| `singleSelection` | `boolean` |
+| `titleStyle` | font family, size, weight, and color |
+| `onSelected` | `() => void` |
+
+### ToolbarHost Props
+
+| Prop | Type | Default |
+|------|------|---------|
+| `hidden` | `boolean` | |
+| `animated` | `boolean` | `true` |
+
+`hidden` hides the navigation controller toolbar, animated when `animated`
+is true.

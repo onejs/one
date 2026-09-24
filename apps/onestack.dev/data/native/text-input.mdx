@@ -25,6 +25,23 @@ function NameField() {
 }
 ```
 
+`One.UI.TextInput` props mirror the familiar text input contract. `value`
+takes a native state handle (or is left uncontrolled with `defaultValue`);
+`onChangeText` reports edits; `editable` and `readOnly` gate input;
+`multiline` scrolls inside the field height on native (default 56) while
+web grows; `maxLength` clamps in host on Android and web and converges on
+the controlled round-trip on iOS; `secureTextEntry` obscures input;
+`keyboardType` and `inputMode` pick the keyboard; `autoCapitalize`,
+`autoCorrect`, and `autoComplete` tune corrections (`autoComplete` runs on
+iOS and web and is ignored on Android); `returnKeyType` and `enterKeyHint`
+name the return key; `textAlign` runs on Android and web and is ignored on
+iOS; `autoFocus` focuses on mount. Events are `onFocus`, `onBlur`, and
+`onSubmitEditing`, which receives the text. The web-only props
+(`numberOfLines`, `rows`, `onContentSizeChange`, `onSelectionChange`,
+`selection`, `selectTextOnFocus`, `selectionColor`, `selectionHandleColor`,
+`cursorColor`, `caretHidden`, `placeholderTextColor`, `textStyle`) apply on
+web and are accepted but ignored on native.
+
 `One.UI.SafeArea` is documented under
 [SafeAreaView](/docs/components-SafeAreaView).
 
