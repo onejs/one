@@ -23,6 +23,7 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
 
   return (
     <Link
+      className="text-underline-none"
       {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       href={href as any}
     >
