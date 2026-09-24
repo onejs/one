@@ -4242,13 +4242,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     await tapFixture('one-native-notifications-subscribe')
     await wait('listeners subscribed', (n) => has(n, 'Subscribed: yes'))
-    // remote push on the simulator: registering for remote notifications
-    // answers with a token on ios 16+.
+    // the fixture app sets no push flag, so the token getter rejects at once
+    // instead of waiting on a registration the os never answers.
     await tapFixture('one-native-notifications-push-token')
-    await wait('push token resolves', (n) =>
-      labels(n).some((label) => label.startsWith('Push: ios/'))
+    await wait('push disabled rejects', (n) =>
+      labels(n).some((label) => label.startsWith('Push: error'))
     )
-    screenshot('notifications-push-token.png')
     // no handler was set yet, so the first observed arrival shows by default.
     await tapFixture('one-native-notifications-schedule-now')
     await wait('foreground arrival fires received', (n) => has(n, 'Received: n3-1'))

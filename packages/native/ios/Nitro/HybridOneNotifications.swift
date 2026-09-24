@@ -203,8 +203,16 @@ final class HybridOneNotifications: HybridOneNotificationsSpec {
   }
 
   // remote push token: a cached registration answers at once, otherwise the
-  // getter waits for the os callback the app delegate forwards.
+  // getter waits for the os callback the app delegate forwards. an app built
+  // without native.app.notifications.push rejects, as on android.
   func getDevicePushToken() throws -> Promise<NativePushToken> {
+    guard (Bundle.main.object(forInfoDictionaryKey: "OneNativeNotificationsPush") as? Bool) == true
+    else {
+      return Promise.rejected(
+        withError: oneNativeError(
+          "E_NOTIFICATIONS_PUSH_TOKEN",
+          "push is not enabled: set native.app.notifications.push to fetch a push token"))
+    }
     let promise = Promise<NativePushToken>()
     DispatchQueue.main.async {
       if let cached = self.center.pushToken {
