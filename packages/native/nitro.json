@@ -1,0 +1,22 @@
+{
+  "$schema": "https://nitro.margelo.com/nitro.schema.json",
+  "cxxNamespace": ["one"],
+  "ios": {
+    "iosModuleName": "VxrnNative"
+  },
+  "android": {
+    "androidNamespace": ["one"],
+    "androidCxxLibName": "VxrnNative"
+  },
+  "autolinking": {
+    "OneHaptics": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneHaptics" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneHaptics" }
+    },
+    "OneClipboard": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneClipboard" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneClipboard" }
+    }
+  },
+  "ignorePaths": ["**/node_modules", "dist", "types"]
+}

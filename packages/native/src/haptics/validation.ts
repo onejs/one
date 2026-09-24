@@ -1,8 +1,8 @@
 import type { HapticImpact, HapticNotification } from './types'
 
 // js-boundary validation shared by the web and native entries. unknown
-// style/type strings throw here so invalid calls never reach the bridge;
-// the native side no-ops on them defensively.
+// style/type strings throw here so invalid calls never reach native, whose
+// spec takes them as enums.
 export const IMPACT_STYLES: readonly HapticImpact[] = [
   'light',
   'medium',

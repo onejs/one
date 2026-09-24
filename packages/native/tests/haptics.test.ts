@@ -2,14 +2,14 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 const { getMock } = vi.hoisted(() => ({ getMock: vi.fn() }))
 
-vi.mock('react-native', () => ({
-  TurboModuleRegistry: { get: getMock },
+vi.mock('react-native-nitro-modules', () => ({
+  NitroModules: { createHybridObject: getMock },
 }))
 
 import { Haptics as WebHaptics } from '../src/haptics/index'
 
 async function loadNative() {
-  // the native entry caches the module lookup at module scope, so each
+  // the native entry caches the hybrid object at module scope, so each
   // dispatch case re-imports fresh after setting the mock.
   vi.resetModules()
   return await import('../src/haptics/index.native')
@@ -30,7 +30,7 @@ describe('haptics js-boundary validation', () => {
   })
 
   it('accepts every documented style and type', async () => {
-    getMock.mockReturnValue(null)
+    getMock.mockReturnValue({ selection: vi.fn(), impact: vi.fn(), notification: vi.fn() })
     const { Haptics } = await loadNative()
     for (const style of ['light', 'medium', 'heavy', 'soft', 'rigid'] as const) {
       expect(() => Haptics.impact(style)).not.toThrow()
@@ -46,7 +46,7 @@ describe('haptics js-boundary validation', () => {
 })
 
 describe('haptics native dispatch', () => {
-  it('dispatches to the native module when present', async () => {
+  it('dispatches to the hybrid object', async () => {
     const native = { selection: vi.fn(), impact: vi.fn(), notification: vi.fn() }
     getMock.mockReturnValue(native)
     const { Haptics } = await loadNative()
@@ -58,7 +58,7 @@ describe('haptics native dispatch', () => {
     expect(native.notification).toHaveBeenCalledWith('error')
   })
 
-  it('resolves the native module once', async () => {
+  it('creates the hybrid object once', async () => {
     const native = { selection: vi.fn(), impact: vi.fn(), notification: vi.fn() }
     getMock.mockReturnValue(native)
     const { Haptics } = await loadNative()
@@ -66,15 +66,7 @@ describe('haptics native dispatch', () => {
     Haptics.impact('light')
     Haptics.notification('success')
     expect(getMock).toHaveBeenCalledTimes(1)
-    expect(getMock).toHaveBeenCalledWith('OneNativeHaptics')
-  })
-
-  it('no-ops when the native module is missing', async () => {
-    getMock.mockReturnValue(null)
-    const { Haptics } = await loadNative()
-    expect(() => Haptics.selection()).not.toThrow()
-    expect(() => Haptics.impact('light')).not.toThrow()
-    expect(() => Haptics.notification('success')).not.toThrow()
+    expect(getMock).toHaveBeenCalledWith('OneHaptics')
   })
 
   it('never dispatches invalid strings: validation throws first', async () => {

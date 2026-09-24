@@ -31,6 +31,11 @@ Pod::Spec.new do |s|
   s.exclude_files = 'ios/Tests/**/*'
   s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}', 'cpp/**/*.{h,cpp}'
 
+  # nitro hybrid objects: nitrogen generates the specs and bridges from
+  # src/specs/*.nitro.ts into nitrogen/generated (see README).
+  load 'nitrogen/generated/ios/VxrnNative+autolinking.rb'
+  add_nitrogen_files(s)
+
   s.dependency 'RNWorklets'
 
   install_modules_dependencies(s)

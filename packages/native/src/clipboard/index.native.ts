@@ -1,46 +1,28 @@
-import { TurboModuleRegistry, type TurboModule } from 'react-native'
+import { NitroModules } from 'react-native-nitro-modules'
+import type { OneClipboard } from '../specs/OneClipboard.nitro'
 import { assertSetStringText } from './validate'
 
-// string clipboard matching expo-clipboard's string api. the native module
-// is resolved once and lazily; native owns all behavior.
-interface ClipboardSpec extends TurboModule {
-  getString(): Promise<string>
-  setString(text: string): Promise<boolean>
-  hasString(): Promise<boolean>
-}
+// string clipboard matching expo-clipboard's string api, backed by the
+// OneClipboard nitro hybrid object (created on first use and cached). native
+// owns all behavior.
+let hybrid: OneClipboard | undefined
 
-let nativeModule: ClipboardSpec | null | undefined
-
-function native(): ClipboardSpec | null {
-  if (nativeModule === undefined) {
-    nativeModule = TurboModuleRegistry.get<ClipboardSpec>('OneNativeClipboard')
-  }
-  return nativeModule
-}
-
-function needNative(): Promise<never> {
-  return Promise.reject(
-    new Error('Clipboard needs a native build that includes @vxrn/native')
-  )
+function native(): OneClipboard {
+  hybrid ??= NitroModules.createHybridObject<OneClipboard>('OneClipboard')
+  return hybrid
 }
 
 function getString(): Promise<string> {
-  const resolved = native()
-  if (!resolved) return needNative()
-  return resolved.getString()
+  return native().getString()
 }
 
 function setString(text: string): Promise<boolean> {
   assertSetStringText(text)
-  const resolved = native()
-  if (!resolved) return needNative()
-  return resolved.setString(text)
+  return native().setString(text)
 }
 
 function hasString(): Promise<boolean> {
-  const resolved = native()
-  if (!resolved) return needNative()
-  return resolved.hasString()
+  return native().hasString()
 }
 
 export const Clipboard = Object.freeze({ getString, setString, hasString })

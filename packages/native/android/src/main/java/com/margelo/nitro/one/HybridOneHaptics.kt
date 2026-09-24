@@ -1,10 +1,8 @@
-package dev.onejs.onenative
+package com.margelo.nitro.one
 
 import android.os.Build
 import android.view.HapticFeedbackConstants
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContextBaseJavaModule
-import com.facebook.react.bridge.ReactMethod
+import com.margelo.nitro.NitroModules
 
 // Fire-and-forget tactile feedback, the Android half of One.UI.Haptics. Every
 // call hops to the UI thread and goes through the activity decor view's
@@ -25,12 +23,9 @@ import com.facebook.react.bridge.ReactMethod
 // Android has no soft/rigid grades, so they fold onto the nearest grade.
 // Below API 30 warning stays LONG_PRESS while error falls to CONTEXT_CLICK
 // so the two stay distinct on API 24-29.
-class OneNativeHapticsModule(reactContext: ReactApplicationContext) :
-    ReactContextBaseJavaModule(reactContext) {
-    override fun getName(): String = NAME
-
+class HybridOneHaptics : HybridOneHapticsSpec() {
     private fun perform(feedbackConstant: Int) {
-        val activity = reactApplicationContext.currentActivity ?: return
+        val activity = NitroModules.applicationContext?.currentActivity ?: return
         activity.runOnUiThread {
             activity.window?.decorView?.performHapticFeedback(
                 feedbackConstant,
@@ -39,8 +34,7 @@ class OneNativeHapticsModule(reactContext: ReactApplicationContext) :
         }
     }
 
-    @ReactMethod
-    fun selection() {
+    override fun selection() {
         perform(
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                 HapticFeedbackConstants.SEGMENT_TICK
@@ -50,43 +44,33 @@ class OneNativeHapticsModule(reactContext: ReactApplicationContext) :
         )
     }
 
-    @ReactMethod
-    fun impact(style: String?) {
-        val constant =
+    override fun impact(style: HapticImpact) {
+        perform(
             when (style) {
-                "light", "soft" -> HapticFeedbackConstants.KEYBOARD_TAP
-                "medium", "rigid" -> HapticFeedbackConstants.VIRTUAL_KEY
-                "heavy" -> HapticFeedbackConstants.LONG_PRESS
-                // Unknown strings no-op here: the JS boundary already throws.
-                else -> return
+                HapticImpact.LIGHT, HapticImpact.SOFT -> HapticFeedbackConstants.KEYBOARD_TAP
+                HapticImpact.MEDIUM, HapticImpact.RIGID -> HapticFeedbackConstants.VIRTUAL_KEY
+                HapticImpact.HEAVY -> HapticFeedbackConstants.LONG_PRESS
             }
-        perform(constant)
+        )
     }
 
-    @ReactMethod
-    fun notification(type: String?) {
-        val constant =
+    override fun notification(type: HapticNotification) {
+        perform(
             when (type) {
-                "success" ->
+                HapticNotification.SUCCESS ->
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         HapticFeedbackConstants.CONFIRM
                     } else {
                         HapticFeedbackConstants.VIRTUAL_KEY
                     }
-                "warning" -> HapticFeedbackConstants.LONG_PRESS
-                "error" ->
+                HapticNotification.WARNING -> HapticFeedbackConstants.LONG_PRESS
+                HapticNotification.ERROR ->
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         HapticFeedbackConstants.REJECT
                     } else {
                         HapticFeedbackConstants.CONTEXT_CLICK
                     }
-                // Unknown strings no-op here: the JS boundary already throws.
-                else -> return
             }
-        perform(constant)
-    }
-
-    companion object {
-        const val NAME = "OneNativeHaptics"
+        )
     }
 }
