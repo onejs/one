@@ -171,7 +171,11 @@ for (const modifier of derivedModifiers) {
       d.kind === 'func' &&
       d.name === (modifier.sdkName ?? modifier.name) &&
       (!modifier.module || d.module === modifier.module) &&
-      (modifier.zeroArgument
+      (modifier.environmentKey
+        ? d.parameters.length === 2 &&
+          d.parameters[0].type === 'Swift.WritableKeyPath<SwiftUICore.EnvironmentValues, V>' &&
+          d.parameters[1].type === 'V'
+        : modifier.zeroArgument
         ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.kind === 'record'
           ? (d.parameters.length === modifier.arguments?.length ? d.parameters :
@@ -766,7 +770,10 @@ export type ComposeIconName = keyof typeof composeIconCodepoints
 const changed: string[] = []
 for (const [path, source] of outputs) {
   const temporary = join(cache, path.replaceAll('/', '_'))
-  writeFileSync(temporary, source.trimEnd() + '\n')
+  // swift names public types through the SwiftUI umbrella: the declaring module
+  // (SwiftUI or SwiftUICore) moves between SDKs, and SwiftUI re-exports both.
+  const text = path.endsWith('.swift') ? source.replaceAll('SwiftUICore.', 'SwiftUI.') : source
+  writeFileSync(temporary, text.trimEnd() + '\n')
   if (/\.tsx?$/.test(path))
     run('bunx', ['oxfmt', '-c', resolve(root, '../../.prettierrc'), temporary])
   const generated = readFileSync(temporary, 'utf8')

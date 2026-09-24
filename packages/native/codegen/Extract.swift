@@ -22,6 +22,7 @@ struct Declaration: Codable {
   let generic: Bool?
   let enumCase: Bool?
   let stored: Bool?
+  let writable: Bool?
   let isStatic: Bool?
   let failable: Bool?
 }
@@ -46,13 +47,13 @@ final class Inventory: SyntaxVisitor {
   func attributes(_ attrs: AttributeListSyntax) -> [String] {
     attrs.compactMap { $0.as(AttributeSyntax.self)?.trimmedDescription }
   }
-  func record(_ node: some SyntaxProtocol, kind: String, name: String, attrs: AttributeListSyntax, parameters: FunctionParameterListSyntax? = nil, type: String? = nil, whereClause: GenericWhereClauseSyntax? = nil, inheritedTypes: [String]? = nil, generic: Bool? = nil, enumCase: Bool? = nil, stored: Bool? = nil, isStatic: Bool? = nil, failable: Bool? = nil) {
+  func record(_ node: some SyntaxProtocol, kind: String, name: String, attrs: AttributeListSyntax, parameters: FunctionParameterListSyntax? = nil, type: String? = nil, whereClause: GenericWhereClauseSyntax? = nil, inheritedTypes: [String]? = nil, generic: Bool? = nil, enumCase: Bool? = nil, stored: Bool? = nil, writable: Bool? = nil, isStatic: Bool? = nil, failable: Bool? = nil) {
     declarations.append(Declaration(module: module, owner: owners.joined(separator: "."), kind: kind, name: name.replacingOccurrences(of: "`", with: ""),
       attributes: availability.flatMap { $0 } + attributes(attrs),
       requirements: requirements.flatMap { $0 } + (whereClause?.requirements.map(requirementText) ?? []),
       parameters: parameters?.map { Parameter(label: $0.firstName.text, name: $0.secondName?.text ?? $0.firstName.text, type: $0.type.trimmedDescription, defaultValue: $0.defaultValue?.value.trimmedDescription) } ?? [],
       type: type, line: location.location(for: node.positionAfterSkippingLeadingTrivia).line,
-      inheritedTypes: inheritedTypes, generic: generic, enumCase: enumCase, stored: stored, isStatic: isStatic, failable: failable))
+      inheritedTypes: inheritedTypes, generic: generic, enumCase: enumCase, stored: stored, writable: writable, isStatic: isStatic, failable: failable))
   }
   override func visit(_ node: StructDeclSyntax) -> SyntaxVisitorContinueKind {
     record(node, kind: "struct", name: node.name.text, attrs: node.attributes,
@@ -88,7 +89,7 @@ final class Inventory: SyntaxVisitor {
               type: $0.type.trimmedDescription, defaultValue: nil)
           },
           type: owners.last, line: location.location(for: element.positionAfterSkippingLeadingTrivia).line,
-          inheritedTypes: nil, generic: nil, enumCase: true, stored: nil, isStatic: nil, failable: nil))
+          inheritedTypes: nil, generic: nil, enumCase: true, stored: nil, writable: nil, isStatic: nil, failable: nil))
       } else {
         record(element, kind: "static", name: element.name.text, attrs: node.attributes, type: owners.last, enumCase: true)
       }
@@ -112,9 +113,19 @@ final class Inventory: SyntaxVisitor {
   override func visit(_ node: VariableDeclSyntax) -> SyntaxVisitorContinueKind {
     if node.modifiers.contains(where: { $0.name.text == "public" }) {
       for binding in node.bindings {
+        let writable: Bool
+        if let accessorBlock = binding.accessorBlock {
+          switch accessorBlock.accessors {
+          case .accessors(let list): writable = list.contains { $0.accessorSpecifier.text == "set" }
+          case .getter: writable = false
+          @unknown default: writable = false
+          }
+        } else {
+          writable = false
+        }
         record(node, kind: node.modifiers.contains(where: { $0.name.text == "static" }) ? "static" : "var",
           name: binding.pattern.trimmedDescription, attrs: node.attributes, type: binding.typeAnnotation?.type.trimmedDescription,
-          stored: binding.accessorBlock == nil)
+          stored: binding.accessorBlock == nil, writable: writable)
       }
     }
     return .skipChildren

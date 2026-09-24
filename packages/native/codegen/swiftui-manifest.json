@@ -4274,6 +4274,1254 @@
       ]
     },
     {
+      "name": "environmentAccessibilityEnabled",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "accessibilityEnabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "environmentAccessibilityPrefersCrossFadeTransitions",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "accessibilityPrefersCrossFadeTransitions",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 26.4
+    },
+    {
+      "name": "environmentAllowedDynamicRange",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "allowedDynamicRange",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.Image.DynamicRange?",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "standard",
+          "ios": 17
+        },
+        {
+          "name": "constrainedHigh",
+          "ios": 17
+        },
+        {
+          "name": "high",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "environmentAllowsTightening",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "allowsTightening",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "environmentAppearsActive",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "appearsActive",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 18
+    },
+    {
+      "name": "environmentAutocorrectionDisabled",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "autocorrectionDisabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "environmentBackgroundMaterial",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "backgroundMaterial",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.Material?",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "regular",
+          "ios": 15
+        },
+        {
+          "name": "thick",
+          "ios": 15
+        },
+        {
+          "name": "thin",
+          "ios": 15
+        },
+        {
+          "name": "ultraThin",
+          "ios": 15
+        },
+        {
+          "name": "ultraThick",
+          "ios": 15
+        },
+        {
+          "name": "bar",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "environmentBackgroundProminence",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "backgroundProminence",
+      "kind": "string",
+      "type": "SwiftUICore.BackgroundProminence",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "standard",
+          "ios": 17
+        },
+        {
+          "name": "increased",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "environmentBadgeProminence",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "badgeProminence",
+      "kind": "string",
+      "type": "SwiftUI.BadgeProminence",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "decreased",
+          "ios": 17
+        },
+        {
+          "name": "standard",
+          "ios": 17
+        },
+        {
+          "name": "increased",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "environmentCalendar",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "calendar",
+      "kind": "string",
+      "type": "Foundation.Calendar",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "autoupdatingCurrent",
+          "ios": 8
+        },
+        {
+          "name": "current",
+          "ios": 8
+        }
+      ]
+    },
+    {
+      "name": "environmentColorScheme",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "colorScheme",
+      "kind": "string",
+      "type": "SwiftUICore.ColorScheme",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "light",
+          "ios": 13
+        },
+        {
+          "name": "dark",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "environmentContentTransition",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "contentTransition",
+      "kind": "string",
+      "type": "SwiftUICore.ContentTransition",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "symbolEffect",
+          "ios": 17
+        },
+        {
+          "name": "identity",
+          "ios": 16
+        },
+        {
+          "name": "opacity",
+          "ios": 16
+        },
+        {
+          "name": "interpolate",
+          "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "environmentContentTransitionAddsDrawingGroup",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "contentTransitionAddsDrawingGroup",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "environmentControlSize",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "controlSize",
+      "kind": "string",
+      "type": "SwiftUICore.ControlSize",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "mini",
+          "ios": 15
+        },
+        {
+          "name": "small",
+          "ios": 15
+        },
+        {
+          "name": "regular",
+          "ios": 15
+        },
+        {
+          "name": "large",
+          "ios": 15
+        },
+        {
+          "name": "extraLarge",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "environmentDefaultMinListHeaderHeight",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "defaultMinListHeaderHeight",
+      "kind": "optionalNumber",
+      "type": "CoreFoundation.CGFloat?",
+      "ios": 13
+    },
+    {
+      "name": "environmentDefaultMinListRowHeight",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "defaultMinListRowHeight",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "environmentDisableAutocorrection",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "disableAutocorrection",
+      "kind": "optionalBoolean",
+      "type": "Swift.Bool?",
+      "ios": 13
+    },
+    {
+      "name": "environmentDisplayScale",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "displayScale",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "environmentDynamicTypeSize",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "dynamicTypeSize",
+      "kind": "string",
+      "type": "SwiftUICore.DynamicTypeSize",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "xSmall",
+          "ios": 15
+        },
+        {
+          "name": "small",
+          "ios": 15
+        },
+        {
+          "name": "medium",
+          "ios": 15
+        },
+        {
+          "name": "large",
+          "ios": 15
+        },
+        {
+          "name": "xLarge",
+          "ios": 15
+        },
+        {
+          "name": "xxLarge",
+          "ios": 15
+        },
+        {
+          "name": "xxxLarge",
+          "ios": 15
+        },
+        {
+          "name": "accessibility1",
+          "ios": 15
+        },
+        {
+          "name": "accessibility2",
+          "ios": 15
+        },
+        {
+          "name": "accessibility3",
+          "ios": 15
+        },
+        {
+          "name": "accessibility4",
+          "ios": 15
+        },
+        {
+          "name": "accessibility5",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "environmentFont",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "font",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.Font?",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "largeTitle",
+          "ios": 13
+        },
+        {
+          "name": "title",
+          "ios": 13
+        },
+        {
+          "name": "title2",
+          "ios": 14
+        },
+        {
+          "name": "title3",
+          "ios": 14
+        },
+        {
+          "name": "headline",
+          "ios": 13
+        },
+        {
+          "name": "subheadline",
+          "ios": 13
+        },
+        {
+          "name": "body",
+          "ios": 13
+        },
+        {
+          "name": "callout",
+          "ios": 13
+        },
+        {
+          "name": "footnote",
+          "ios": 13
+        },
+        {
+          "name": "caption",
+          "ios": 13
+        },
+        {
+          "name": "caption2",
+          "ios": 14
+        },
+        {
+          "name": "default",
+          "ios": 26
+        }
+      ]
+    },
+    {
+      "name": "environmentHeaderProminence",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "headerProminence",
+      "kind": "string",
+      "type": "SwiftUICore.Prominence",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "standard",
+          "ios": 15
+        },
+        {
+          "name": "increased",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "environmentHorizontalScrollBounceBehavior",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "horizontalScrollBounceBehavior",
+      "kind": "string",
+      "type": "SwiftUI.ScrollBounceBehavior",
+      "ios": 16.4,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16.4
+        },
+        {
+          "name": "always",
+          "ios": 16.4
+        },
+        {
+          "name": "basedOnSize",
+          "ios": 16.4
+        }
+      ]
+    },
+    {
+      "name": "environmentHorizontalScrollIndicatorVisibility",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "horizontalScrollIndicatorVisibility",
+      "kind": "string",
+      "type": "SwiftUI.ScrollIndicatorVisibility",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16
+        },
+        {
+          "name": "visible",
+          "ios": 16
+        },
+        {
+          "name": "hidden",
+          "ios": 16
+        },
+        {
+          "name": "never",
+          "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "environmentHorizontalSizeClass",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "horizontalSizeClass",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.UserInterfaceSizeClass?",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "compact",
+          "ios": 13
+        },
+        {
+          "name": "regular",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "environmentImageScale",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "imageScale",
+      "kind": "string",
+      "type": "SwiftUICore.Image.Scale",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "small",
+          "ios": 13
+        },
+        {
+          "name": "medium",
+          "ios": 13
+        },
+        {
+          "name": "large",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "environmentIsEnabled",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "isEnabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "environmentIsFocusEffectEnabled",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "isFocusEffectEnabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "environmentIsHoverEffectEnabled",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "isHoverEffectEnabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "environmentIsLuminanceReduced",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "isLuminanceReduced",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "environmentIsSceneCaptured",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "isSceneCaptured",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "environmentIsScrollEnabled",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "isScrollEnabled",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "environmentLabelsVisibility",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "labelsVisibility",
+      "kind": "string",
+      "type": "SwiftUICore.Visibility",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "visible",
+          "ios": 15
+        },
+        {
+          "name": "hidden",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "environmentLayoutDirection",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "layoutDirection",
+      "kind": "string",
+      "type": "SwiftUICore.LayoutDirection",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "leftToRight",
+          "ios": 13
+        },
+        {
+          "name": "rightToLeft",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "environmentLegibilityWeight",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "legibilityWeight",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.LegibilityWeight?",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "regular",
+          "ios": 13
+        },
+        {
+          "name": "bold",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "environmentLineHeight",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "lineHeight",
+      "kind": "optionalEnum",
+      "type": "Foundation.AttributedString.LineHeight?",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "variable",
+          "ios": 26
+        },
+        {
+          "name": "normal",
+          "ios": 26
+        },
+        {
+          "name": "tight",
+          "ios": 26
+        },
+        {
+          "name": "loose",
+          "ios": 26
+        }
+      ]
+    },
+    {
+      "name": "environmentLineLimit",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "lineLimit",
+      "kind": "optionalNumber",
+      "type": "Swift.Int?",
+      "ios": 13
+    },
+    {
+      "name": "environmentLineSpacing",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "lineSpacing",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "environmentLocale",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "locale",
+      "kind": "string",
+      "type": "Foundation.Locale",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "autoupdatingCurrent",
+          "ios": 8
+        },
+        {
+          "name": "current",
+          "ios": 8
+        }
+      ]
+    },
+    {
+      "name": "environmentMaterialActiveAppearance",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "materialActiveAppearance",
+      "kind": "string",
+      "type": "SwiftUICore.MaterialActiveAppearance",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 18
+        },
+        {
+          "name": "active",
+          "ios": 18
+        },
+        {
+          "name": "matchWindow",
+          "ios": 18
+        }
+      ]
+    },
+    {
+      "name": "environmentMenuIndicatorVisibility",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "menuIndicatorVisibility",
+      "kind": "string",
+      "type": "SwiftUICore.Visibility",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 15
+        },
+        {
+          "name": "visible",
+          "ios": 15
+        },
+        {
+          "name": "hidden",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "environmentMenuOrder",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "menuOrder",
+      "kind": "string",
+      "type": "SwiftUI.MenuOrder",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16
+        },
+        {
+          "name": "priority",
+          "ios": 16
+        },
+        {
+          "name": "fixed",
+          "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "environmentMinimumScaleFactor",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "minimumScaleFactor",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "environmentMultilineTextAlignment",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "multilineTextAlignment",
+      "kind": "string",
+      "type": "SwiftUICore.TextAlignment",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "center",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "environmentRealityViewCameraControls",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "realityViewCameraControls",
+      "kind": "string",
+      "type": "RealityFoundation.CameraControls",
+      "ios": 18,
+      "framework": "RealityKit",
+      "cases": [
+        {
+          "name": "dolly",
+          "ios": 18
+        },
+        {
+          "name": "none",
+          "ios": 18
+        },
+        {
+          "name": "orbit",
+          "ios": 18
+        },
+        {
+          "name": "pan",
+          "ios": 18
+        },
+        {
+          "name": "tilt",
+          "ios": 18
+        }
+      ]
+    },
+    {
+      "name": "environmentRedactionReasons",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "redactionReasons",
+      "kind": "string",
+      "type": "SwiftUICore.RedactionReasons",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "placeholder",
+          "ios": 14
+        },
+        {
+          "name": "privacy",
+          "ios": 15
+        },
+        {
+          "name": "invalidated",
+          "ios": 17
+        }
+      ]
+    },
+    {
+      "name": "environmentScenePhase",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "scenePhase",
+      "kind": "string",
+      "type": "SwiftUI.ScenePhase",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "background",
+          "ios": 14
+        },
+        {
+          "name": "inactive",
+          "ios": 14
+        },
+        {
+          "name": "active",
+          "ios": 14
+        }
+      ]
+    },
+    {
+      "name": "environmentScrollDismissesKeyboardMode",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "scrollDismissesKeyboardMode",
+      "kind": "string",
+      "type": "SwiftUI.ScrollDismissesKeyboardMode",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16
+        },
+        {
+          "name": "immediately",
+          "ios": 16
+        },
+        {
+          "name": "interactively",
+          "ios": 16
+        },
+        {
+          "name": "never",
+          "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "environmentSidebarRowSize",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "sidebarRowSize",
+      "kind": "string",
+      "type": "SwiftUI.SidebarRowSize",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "small",
+          "ios": 16
+        },
+        {
+          "name": "medium",
+          "ios": 16
+        },
+        {
+          "name": "large",
+          "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "environmentSizeCategory",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "sizeCategory",
+      "kind": "string",
+      "type": "SwiftUICore.ContentSizeCategory",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "extraSmall",
+          "ios": 13
+        },
+        {
+          "name": "small",
+          "ios": 13
+        },
+        {
+          "name": "medium",
+          "ios": 13
+        },
+        {
+          "name": "large",
+          "ios": 13
+        },
+        {
+          "name": "extraLarge",
+          "ios": 13
+        },
+        {
+          "name": "extraExtraLarge",
+          "ios": 13
+        },
+        {
+          "name": "extraExtraExtraLarge",
+          "ios": 13
+        },
+        {
+          "name": "accessibilityMedium",
+          "ios": 13
+        },
+        {
+          "name": "accessibilityLarge",
+          "ios": 13
+        },
+        {
+          "name": "accessibilityExtraLarge",
+          "ios": 13
+        },
+        {
+          "name": "accessibilityExtraExtraLarge",
+          "ios": 13
+        },
+        {
+          "name": "accessibilityExtraExtraExtraLarge",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "environmentSymbolColorRenderingMode",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "symbolColorRenderingMode",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.SymbolColorRenderingMode?",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "flat",
+          "ios": 26
+        },
+        {
+          "name": "gradient",
+          "ios": 26
+        }
+      ]
+    },
+    {
+      "name": "environmentSymbolRenderingMode",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "symbolRenderingMode",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.SymbolRenderingMode?",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "monochrome",
+          "ios": 15
+        },
+        {
+          "name": "multicolor",
+          "ios": 15
+        },
+        {
+          "name": "hierarchical",
+          "ios": 15
+        },
+        {
+          "name": "palette",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "environmentSymbolVariableValueMode",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "symbolVariableValueMode",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.SymbolVariableValueMode?",
+      "ios": 26,
+      "cases": [
+        {
+          "name": "color",
+          "ios": 26
+        },
+        {
+          "name": "draw",
+          "ios": 26
+        }
+      ]
+    },
+    {
+      "name": "environmentSymbolVariants",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "symbolVariants",
+      "kind": "string",
+      "type": "SwiftUICore.SymbolVariants",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "none",
+          "ios": 15
+        },
+        {
+          "name": "circle",
+          "ios": 15
+        },
+        {
+          "name": "square",
+          "ios": 15
+        },
+        {
+          "name": "rectangle",
+          "ios": 15
+        },
+        {
+          "name": "fill",
+          "ios": 15
+        },
+        {
+          "name": "slash",
+          "ios": 15
+        }
+      ]
+    },
+    {
+      "name": "environmentSystemPrefersReducedResourceUsage",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "systemPrefersReducedResourceUsage",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 27
+    },
+    {
+      "name": "environmentTextCase",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "textCase",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.Text.Case?",
+      "ios": 14,
+      "cases": [
+        {
+          "name": "uppercase",
+          "ios": 14
+        },
+        {
+          "name": "lowercase",
+          "ios": 14
+        }
+      ]
+    },
+    {
+      "name": "environmentTextSelectionAffinity",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "textSelectionAffinity",
+      "kind": "string",
+      "type": "SwiftUI.TextSelectionAffinity",
+      "ios": 18,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 18
+        },
+        {
+          "name": "upstream",
+          "ios": 18
+        },
+        {
+          "name": "downstream",
+          "ios": 18
+        }
+      ]
+    },
+    {
+      "name": "environmentTimeZone",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "timeZone",
+      "kind": "string",
+      "type": "Foundation.TimeZone",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "autoupdatingCurrent",
+          "ios": 8
+        },
+        {
+          "name": "current",
+          "ios": 8
+        },
+        {
+          "name": "gmt",
+          "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "environmentTruncationMode",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "truncationMode",
+      "kind": "string",
+      "type": "SwiftUICore.Text.TruncationMode",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "head",
+          "ios": 13
+        },
+        {
+          "name": "tail",
+          "ios": 13
+        },
+        {
+          "name": "middle",
+          "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "environmentVerticalScrollBounceBehavior",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "verticalScrollBounceBehavior",
+      "kind": "string",
+      "type": "SwiftUI.ScrollBounceBehavior",
+      "ios": 16.4,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16.4
+        },
+        {
+          "name": "always",
+          "ios": 16.4
+        },
+        {
+          "name": "basedOnSize",
+          "ios": 16.4
+        }
+      ]
+    },
+    {
+      "name": "environmentVerticalScrollIndicatorVisibility",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "verticalScrollIndicatorVisibility",
+      "kind": "string",
+      "type": "SwiftUI.ScrollIndicatorVisibility",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 16
+        },
+        {
+          "name": "visible",
+          "ios": 16
+        },
+        {
+          "name": "hidden",
+          "ios": 16
+        },
+        {
+          "name": "never",
+          "ios": 16
+        }
+      ]
+    },
+    {
+      "name": "environmentVerticalSizeClass",
+      "sdkName": "environment",
+      "module": "SwiftUICore",
+      "environmentKey": "verticalSizeClass",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.UserInterfaceSizeClass?",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "compact",
+          "ios": 13
+        },
+        {
+          "name": "regular",
+          "ios": 13
+        }
+      ]
+    },
+    {
       "name": "fileDialogBrowserOptions",
       "kind": "string",
       "type": "SwiftUI.FileDialogBrowserOptions",
@@ -14587,6 +15835,7 @@
         "drawingGroup",
         "dynamicTypeSize",
         "edgesIgnoringSafeArea",
+        "environment",
         "fixedSize",
         "font",
         "fontWidth",
