@@ -67,6 +67,39 @@ describe('SDK callback and binding transport', () => {
     expect(onCustomizationChange).toHaveBeenCalledWith(false)
   })
 
+  it('passes public photo item identifiers to shared-album sheets', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'share photos', swiftStyle: {
+      photosSharedAlbumPostingSheet: {
+        isPresented: { value: true, onChange }, items: ['photo-1', 'photo-2'],
+      },
+      postToPhotosSharedAlbumSheet: {
+        isPresented: { value: false, onChange }, items: ['photo-3'],
+      },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['photosSharedAlbumPostingSheet', '["true","[\\"photo-1\\",\\"photo-2\\"]"]'],
+      ['postToPhotosSharedAlbumSheet', '["false","[\\"photo-3\\"]"]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosSharedAlbumPostingSheet.isPresented', value: 'false',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+    expect(() => Controls.Text({ text: 'invalid', swiftStyle: {
+      postToPhotosSharedAlbumSheet: { isPresented: { value: true, onChange },
+        items: [1] as unknown as string[] },
+    } })).toThrow('must be a string array')
+  })
+
+  it('reports a selected photo library identifier with its selection position', () => {
+    const onPickItemIdentifier = vi.fn()
+    const element = Controls.PhotosPicker({ label: 'Photos', onPickItemIdentifier })
+    element.props.onNativePhotosPickerPickItemIdentifier({ nativeEvent: {
+      itemIdentifier: 'photo-1', index: 1, count: 2,
+    } })
+    expect(onPickItemIdentifier).toHaveBeenCalledWith('photo-1', 1, 2)
+  })
+
   it('round trips a MusicKit picker presentation and selected item ID', () => {
     const onChange = vi.fn()
     const onSelection = vi.fn()
@@ -96,8 +129,9 @@ describe('SDK callback and binding transport', () => {
     const onChange = vi.fn()
     const onSelection = vi.fn()
     const onError = vi.fn()
+    const onItemIdentifier = vi.fn()
     const element = Controls.Text({ text: 'photo', swiftStyle: {
-      photosPicker: { isPresented: { value: true, onChange }, onSelection, onError },
+      photosPicker: { isPresented: { value: true, onChange }, onSelection, onError, onItemIdentifier },
     } })
     expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
       ['photosPicker', 'true'],
@@ -111,9 +145,13 @@ describe('SDK callback and binding transport', () => {
     element.props.onNativeSDKEvent({ nativeEvent: {
       name: 'photosPicker.onError', value: 'no data',
     } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosPicker.onItemIdentifier', value: 'photo-1',
+    } })
     expect(onChange).toHaveBeenCalledWith(false)
     expect(onSelection).toHaveBeenCalledWith('file:///tmp/photo.heic')
     expect(onError).toHaveBeenCalledWith('no data')
+    expect(onItemIdentifier).toHaveBeenCalledWith('photo-1')
     expect(() => Controls.Text({ text: 'invalid', swiftStyle: {
       photosPicker: { isPresented: { value: true, onChange }, onSelection,
         onError: undefined as never },

@@ -732,6 +732,7 @@ export function VideoPlayer({
 import NativePhotosPicker from '../specs/OneNativePhotosPickerNativeComponent'
 export function PhotosPicker({
   onPick,
+  onPickItemIdentifier,
   onPickError,
   label = '',
   disabled = false,
@@ -794,6 +795,13 @@ export function PhotosPicker({
       preferredItemEncoding={preferredItemEncoding}
       onNativePhotosPickerPick={({ nativeEvent }) =>
         onPick?.(nativeEvent.url, nativeEvent.index, nativeEvent.count)
+      }
+      onNativePhotosPickerPickItemIdentifier={({ nativeEvent }) =>
+        onPickItemIdentifier?.(
+          nativeEvent.itemIdentifier,
+          nativeEvent.index,
+          nativeEvent.count
+        )
       }
       onNativePhotosPickerPickError={({ nativeEvent }) =>
         onPickError?.(nativeEvent.message)

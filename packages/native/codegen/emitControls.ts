@@ -174,7 +174,7 @@ ${styleFields
           : modifier.kind === 'pickerSelection'
             ? 'Readonly<{ isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>; title?: string; onSelection: (id: string) => void }>'
           : modifier.kind === 'transferSelection'
-            ? 'Readonly<{ isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>; onSelection: (url: string) => void; onError: (message: string) => void }>'
+            ? `Readonly<{ isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>; onSelection: (url: string) => void; onError: (message: string) => void${modifier.transferSelection!.identifierField ? '; onItemIdentifier?: (id: string) => void' : ''} }>`
           : modifier.kind === 'eventBoolean'
             ? '(value: boolean) => void'
             : modifier.kind === 'eventNumber'

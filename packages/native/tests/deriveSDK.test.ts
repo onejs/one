@@ -216,14 +216,47 @@ describe('SDK modifier derivation', () => {
     ]), owner: 'PhotosPickerItem' }
     const types = { ...method('supportedContentTypes', '_PhotosUI_SwiftUI'),
       kind: 'var', owner: 'PhotosPickerItem', type: '[UniformTypeIdentifiers.UTType]' }
+    const identifier = { ...method('itemIdentifier', '_PhotosUI_SwiftUI'),
+      kind: 'var', owner: 'PhotosPickerItem', type: 'Swift.String?' }
     expect(deriveModifiers([picker, item, types], 27, [])).toEqual([])
-    expect(deriveModifiers([picker, item, load, types], 27, [])).toEqual([{
+    expect(deriveModifiers([picker, item, load, types, identifier], 27, [])).toEqual([{
       name: 'photosPicker', kind: 'transferSelection',
       type: '_PhotosUI_SwiftUI.PhotosPickerItem', framework: 'PhotosUI', ios: 0,
       transferSelection: { itemType: '_PhotosUI_SwiftUI.PhotosPickerItem',
         presentedLabel: 'isPresented', selectionLabel: 'selection',
-        contentTypesField: 'supportedContentTypes' },
+        contentTypesField: 'supportedContentTypes', identifierField: 'itemIdentifier' },
     }])
+  })
+
+  it('constructs SDK item arrays from public string identifiers in a shared-object sheet', () => {
+    const sheet = method('photosSharedAlbumPostingSheet', '_PhotosUI_SwiftUI', [
+      { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+      { label: 'items', name: 'items', type: '[_PhotosUI_SwiftUI.PhotosPickerItem]' },
+      { label: 'photoLibrary', name: 'photoLibrary', type: 'Photos.PHPhotoLibrary' },
+      { label: 'completion', name: 'completion',
+        type: '((Swift.Result<Swift.String, any Swift.Error>) -> Swift.Void)?', defaultValue: 'nil' },
+    ])
+    const item = { ...method('PhotosPickerItem', '_PhotosUI_SwiftUI'), kind: 'struct', owner: '' }
+    const identifier = { ...method('itemIdentifier', '_PhotosUI_SwiftUI'),
+      kind: 'var', owner: 'PhotosPickerItem', type: 'Swift.String?' }
+    const constructor = { ...method('init', '_PhotosUI_SwiftUI', [
+      { label: 'itemIdentifier', name: 'itemIdentifier', type: 'Swift.String' },
+    ]), kind: 'init', owner: 'PhotosPickerItem', failable: false }
+    const library = { ...method('shared', 'Photos'), kind: 'func', owner: 'PHPhotoLibrary',
+      isStatic: true, type: 'Photos.PHPhotoLibrary', parameters: [] }
+    expect(deriveModifiers([sheet, item, identifier, library], 27, [])).toEqual([])
+    const derived = deriveModifiers([sheet, item, identifier, constructor, library], 27, [])
+    expect(derived).toHaveLength(1)
+    expect(derived[0].kind).toBe('record')
+    expect(derived[0].arguments).toEqual([
+      { field: 'isPresented', label: 'isPresented', kind: 'bindingBoolean',
+        type: 'SwiftUICore.Binding<Swift.Bool>', optional: false },
+      { field: 'items', label: 'items', kind: 'stringArray',
+        type: '[_PhotosUI_SwiftUI.PhotosPickerItem]', optional: false,
+        swiftExpression: '$value.map { _PhotosUI_SwiftUI.PhotosPickerItem(itemIdentifier: $0) }' },
+    ])
+    expect(derived[0].sharedParameter).toEqual({ index: 2, label: 'photoLibrary',
+      type: 'Photos.PHPhotoLibrary' })
   })
 
   it('derives optional SDK cases and framework overlay modifiers', () => {

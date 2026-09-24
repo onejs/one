@@ -18,7 +18,7 @@ export declare function Rectangle({ fill, swiftStyle, style, ...props }: Types.R
 export declare function RoundedRectangle({ fill, cornerRadius, swiftStyle, style, ...props }: Types.RoundedRectangleProps): import("react/jsx-runtime").JSX.Element;
 export declare function Ellipse({ fill, swiftStyle, style, ...props }: Types.EllipseProps): import("react/jsx-runtime").JSX.Element;
 export declare function VideoPlayer({ url, autoplay, swiftStyle, style, ...props }: Types.VideoPlayerProps): import("react/jsx-runtime").JSX.Element;
-export declare function PhotosPicker({ onPick, onPickError, label, disabled, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: Types.PhotosPickerProps): import("react/jsx-runtime").JSX.Element;
+export declare function PhotosPicker({ onPick, onPickItemIdentifier, onPickError, label, disabled, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: Types.PhotosPickerProps): import("react/jsx-runtime").JSX.Element;
 export declare function WebView({ onNavigate, onTitleChange, onLoadingChange, url, html, backForwardNavigationGestures, magnificationGestures, linkPreviews, elementFullscreen, contentBackground, swiftStyle, style, ...props }: Types.WebViewProps): import("react/jsx-runtime").JSX.Element;
 export declare function SignInWithAppleButton({ onCompletion, requestedScopes, nonce, swiftStyle, style, ...props }: Types.SignInWithAppleButtonProps): import("react/jsx-runtime").JSX.Element;
 export declare function Map({ onRegionChange, latitude, longitude, distance, markers, swiftStyle, style, ...props }: Types.MapProps): import("react/jsx-runtime").JSX.Element;

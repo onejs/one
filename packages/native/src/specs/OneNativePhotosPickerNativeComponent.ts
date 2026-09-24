@@ -54,6 +54,9 @@ interface NativeProps extends ViewProps {
   onNativePhotosPickerPick?: DirectEventHandler<
     Readonly<{ url: string; index: Double; count: Double; eventCount: Int32 }>
   >
+  onNativePhotosPickerPickItemIdentifier?: DirectEventHandler<
+    Readonly<{ itemIdentifier: string; index: Double; count: Double; eventCount: Int32 }>
+  >
   onNativePhotosPickerPickError?: DirectEventHandler<
     Readonly<{ message: string; eventCount: Int32 }>
   >

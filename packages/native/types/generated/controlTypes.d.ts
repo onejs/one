@@ -1677,6 +1677,7 @@ export interface OneNativeStyle {
         }>;
         onSelection: (url: string) => void;
         onError: (message: string) => void;
+        onItemIdentifier?: (id: string) => void;
     }>;
     photosPickerAccessoryVisibility?: Readonly<{
         visibility: 'automatic' | 'visible' | 'hidden';
@@ -1710,10 +1711,24 @@ export interface OneNativeStyle {
         }>;
         albumIdentifier: string | null;
     }>;
+    photosSharedAlbumPostingSheet?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        items: readonly string[];
+    }>;
     pickerStyle?: SDKPickerStyle;
     position?: Readonly<{
         x: number;
         y: number;
+    }>;
+    postToPhotosSharedAlbumSheet?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        items: readonly string[];
     }>;
     preferencePreferredColorScheme?: SDKPreferencePreferredColorScheme | null;
     preferredColorScheme?: SDKPreferredColorScheme | null;
@@ -2488,6 +2503,7 @@ export interface VideoPlayerProps extends OneNativeViewProps {
 }
 export interface PhotosPickerProps extends OneNativeViewProps {
     onPick?: (url: string, index: number, count: number) => void;
+    onPickItemIdentifier?: (itemIdentifier: string, index: number, count: number) => void;
     onPickError?: (message: string) => void;
     label?: string;
     disabled?: boolean;

@@ -59,6 +59,11 @@ private struct VideoPlayerSurface: View {
         event: 'Pick',
         payload: { url: 'string', index: 'Double', count: 'Double' },
       },
+      {
+        prop: 'onPickItemIdentifier',
+        event: 'PickItemIdentifier',
+        payload: { itemIdentifier: 'string', index: 'Double', count: 'Double' },
+      },
       { prop: 'onPickError', event: 'PickError', payload: { message: 'string' } },
     ],
     fields: {
@@ -159,6 +164,7 @@ private struct PhotosPickerSurface: View {
   private func deliver(_ items: [PhotosPickerItem]) {
     let count = items.count
     for (index, item) in items.enumerated() {
+      if let id = item.itemIdentifier { model.pickItemIdentifier(id, Double(index), Double(count)) }
       Task { @MainActor in
         do {
           guard let data = try await item.loadTransferable(type: Data.self) else {

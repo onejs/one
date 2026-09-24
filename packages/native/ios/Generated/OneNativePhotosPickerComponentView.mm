@@ -35,6 +35,12 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativePhotosPickerEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativePhotosPickerPick({.url = std::string(url.UTF8String), .index = (double)index, .count = (double)count, .eventCount = (int)eventCount});
     };
+    _nativeView.onPickItemIdentifier = ^(NSString *itemIdentifier, double index, double count, NSInteger eventCount) {
+      OneNativePhotosPickerComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativePhotosPickerEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativePhotosPickerPickItemIdentifier({.itemIdentifier = std::string(itemIdentifier.UTF8String), .index = (double)index, .count = (double)count, .eventCount = (int)eventCount});
+    };
     _nativeView.onPickError = ^(NSString *message, NSInteger eventCount) {
       OneNativePhotosPickerComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
