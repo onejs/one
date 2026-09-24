@@ -59,6 +59,7 @@ export type DerivedModifier = {
   requestType?: string
   registeredProtocol?: string
   registeredType?: string
+  registeredFactory?: 'layoutValue' | 'containerValue'
   requestProperty?: string
   sessionRequest?: { method: string; inputField: string; outputFields: readonly string[];
     actionLabel: string; defaults: readonly { label: string; value: string }[] }
@@ -732,6 +733,18 @@ export function deriveModifiers(
         present(declaration) && ios(declaration) <= ceiling))
         return [{ name, module: method.module, kind: 'registeredValue',
           type: method.parameters[0].type, registeredType: method.parameters[0].type,
+          ios: ios(method), ...framework }]
+      const layoutValue = method.parameters.length === 2 &&
+        method.parameters[0].label === 'key' && method.parameters[0].type === 'K.Type' &&
+        method.parameters[1].label === 'value' && method.parameters[1].type === 'K.Value' &&
+        method.requirements?.includes('K : SwiftUICore.LayoutValueKey')
+      const containerValue = method.parameters.length === 2 &&
+        method.parameters[0].type === 'Swift.WritableKeyPath<SwiftUICore.ContainerValues, V>' &&
+        method.parameters[1].type === 'V'
+      if (layoutValue || containerValue)
+        return [{ name, module: method.module, kind: 'registeredValue',
+          type: method.parameters[0].type,
+          registeredFactory: layoutValue ? 'layoutValue' : 'containerValue',
           ios: ios(method), ...framework }]
       const anchorSignature = method.parameters.length === 3 &&
         method.parameters[0].type === 'K.Type' &&

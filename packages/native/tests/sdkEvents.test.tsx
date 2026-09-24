@@ -51,12 +51,16 @@ describe('SDK callback and binding transport', () => {
       modifier: 'brand-effect',
       modelContainer: 'app-models',
       modelContext: 'edit-context',
+      layoutValue: 'column-span',
+      containerValue: 'badge-value',
     } })
     expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
       ['environmentObject', 'session-store'],
       ['modifier', 'brand-effect'],
       ['modelContainer', 'app-models'],
       ['modelContext', 'edit-context'],
+      ['layoutValue', 'column-span'],
+      ['containerValue', 'badge-value'],
     ])
     expect(() => Controls.Text({ text: 'native object', swiftStyle: {
       environmentObject: '',
