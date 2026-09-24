@@ -240,18 +240,40 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
 }
 
 export type DerivedSlotArgument = DerivedArgument | { field: string; label: string; type: string; kind: 'bindingBoolean' | 'bindingString'; optional: false }
-export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; directValue?: true; closureInputs?: readonly string[]; preferenceKey?: string; preferenceEvent?: EventValueSchema; arguments: readonly DerivedSlotArgument[] }
+export type DerivedViewSlot = { name: string; sdkName?: string; module: string; label: string; ios: number; directValue?: true; closureInputs?: readonly string[]; contentWrapper?: string; preferenceKey?: string; preferenceEvent?: EventValueSchema; arguments: readonly DerivedSlotArgument[] }
 
 export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
   const valueOf = bridgeValueOf(inventory, ceiling)
   const isZeroInputClosure = (type: string) => /^(?:@escaping )?\(\) ->/.test(type)
   const closureInputsOf = (type: string) =>
     /^@escaping \(([^,<>()]+(?:, [^,<>()]+)*)\) -> some View$/.exec(type)?.[1].split(', ')
+  const viewContentInitializers = new Map(inventory.filter((declaration) =>
+    declaration.kind === 'init' && declaration.parameters.length === 1 &&
+    declaration.parameters[0].type === '@escaping () -> Content' &&
+    declaration.requirements?.includes('Content : SwiftUICore.View') &&
+    present(declaration) && ios(declaration) <= ceiling)
+    .map((declaration) => [`${declaration.module}.${declaration.owner}`, ios(declaration)]))
+  const contentWrappers = inventory.filter((declaration) => declaration.kind === 'struct' &&
+    declaration.inheritedTypes?.length && present(declaration) && ios(declaration) <= ceiling)
+    .flatMap((wrapper) => {
+      const initializerIOS = viewContentInitializers.get(`${wrapper.module}.${wrapper.name}`)
+      return initializerIOS === undefined ? [] : wrapper.inheritedTypes!.map((protocol) =>
+        ({ protocol, type: `${wrapper.module}.${wrapper.name}`,
+          ios: Math.max(ios(wrapper), initializerIOS) }))
+    })
+  const contentWrapperOf = (d: Declaration, parameter: Declaration['parameters'][number]) => {
+    const generic = /^(?:@escaping )?\(\) -> ([A-Za-z_]\w*)$/.exec(parameter.type)?.[1]
+    const protocol = d.requirements?.find((requirement) => requirement.startsWith(`${generic} : `))?.split(' : ')[1]
+    const matches = protocol === 'SwiftUICore.View' ? []
+      : contentWrappers.filter((wrapper) => wrapper.protocol === protocol)
+    return matches.length === 1 ? matches[0] : undefined
+  }
   const isContent = (d: Declaration, parameter: Declaration['parameters'][number]) => {
     if (parameter.type === '() -> some View') return true
     if (closureInputsOf(parameter.type)) return true
     const generic = /^(?:@escaping )?\(\) -> ([A-Za-z_]\w*)$|^([A-Za-z_]\w*)\??$/.exec(parameter.type)
-    return Boolean(generic && d.requirements?.includes(`${generic[1] ?? generic[2]} : SwiftUICore.View`))
+    return Boolean(generic && (d.requirements?.includes(`${generic[1] ?? generic[2]} : SwiftUICore.View`) ||
+      contentWrapperOf(d, parameter)))
   }
   const isStringBinding = (d: Declaration, type: string) => {
     const generic = /^SwiftUICore\.Binding<([A-Za-z_]\w*)>$/.exec(type)?.[1]
@@ -281,6 +303,7 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
   }
   const directSlots = [...byName].flatMap(([, declarations]) => declarations.map((slot) => {
     const content = slot.parameters.at(-1)!
+    const contentWrapper = contentWrapperOf(slot, content)
     const closureInputs = closureInputsOf(content.type)
     const directValue = !isZeroInputClosure(content.type) && !closureInputs
     const required = slot.parameters.filter((parameter) =>
@@ -292,7 +315,9 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
       ? `With${content.label === '_' ? content.type.replace(/\?$/, '') : content.label[0].toUpperCase() + content.label.slice(1)}`
       : suffix
     return { name: `${slot.name}${directSuffix}`, ...(directSuffix ? { sdkName: slot.name } : {}), module: slot.module,
-      label: content.label, ios: ios(slot), ...(directValue ? { directValue: true as const } : {}),
+      label: content.label, ios: Math.max(ios(slot), contentWrapper?.ios ?? 0),
+      ...(contentWrapper ? { contentWrapper: contentWrapper.type } : {}),
+      ...(directValue ? { directValue: true as const } : {}),
       ...(closureInputs ? { closureInputs } : {}),
       arguments: slot.parameters.filter((parameter) =>
         parameter !== content && parameter.defaultValue === undefined)

@@ -96,7 +96,7 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
             guard let data = try? JSONSerialization.data(withJSONObject: payload, options: .fragmentsAllowed),
               let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid ${slot.name} preference") }
             emit(${JSON.stringify(slot.name)}, encoded)
-          })` : `return AnyView(self.${slot.sdkName ?? slot.name}(${[...slot.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`), `${slot.label === '_' ? '' : `${slot.label}: `}${slot.directValue ? 'content()' : slot.closureInputs ? `{ ${slot.closureInputs.map(() => '_').join(', ')} in content() }` : 'content'}`].join(', ')}))`}
+          })` : `return AnyView(self.${slot.sdkName ?? slot.name}(${[...slot.arguments.map((argument, index) => `${argument.label === '_' ? '' : `${argument.label}: `}argument${index}`), `${slot.label === '_' ? '' : `${slot.label}: `}${slot.directValue ? 'content()' : slot.closureInputs ? `{ ${slot.closureInputs.map(() => '_').join(', ')} in content() }` : slot.contentWrapper ? `{ ${slot.contentWrapper} { content() } }` : 'content'}`].join(', ')}))`}
       }`, '')}
       return AnyView(self)`).join('\n')}
     default: preconditionFailure("unknown view slot: \\(name)")
