@@ -249,7 +249,10 @@ extension View {
       case "documentLaunchSubtitle": view = AnyView(view.oneNativeSDKDocumentLaunchSubtitle(value, emit: emit))
       case "documentLaunchTitle": view = AnyView(view.oneNativeSDKDocumentLaunchTitle(value, emit: emit))
       case "dragConfiguration": view = AnyView(view.oneNativeSDKDragConfiguration(value, emit: emit))
+      case "dragContainer": view = AnyView(view.oneNativeSDKDragContainer(value, emit: emit))
+      case "dragContainerSelection": view = AnyView(view.oneNativeSDKDragContainerSelection(value, emit: emit))
       case "draggable": view = AnyView(view.oneNativeSDKDraggable(value, emit: emit))
+      case "draggableWithContainerItemID": view = AnyView(view.oneNativeSDKDraggableWithContainerItemID(value, emit: emit))
       case "drawingGroup": view = AnyView(view.oneNativeSDKDrawingGroup(value, emit: emit))
       case "dropConfiguration": view = AnyView(view.oneNativeSDKDropConfiguration(value, emit: emit))
       case "dropDestination": view = AnyView(view.oneNativeSDKDropDestination(value, emit: emit))
@@ -2812,6 +2815,35 @@ self
 
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKDragContainer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let enabled: Bool = {
+      guard value == "true" || value == "false" else { preconditionFailure("invalid dragContainer: \(value)") }
+      return value == "true"
+    }()
+    if enabled {
+      #if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.dragContainer(for: String.self, itemID: \.self, in: OneNativeNamespace.id, { ids in ids }) } else { self }
+#else
+self
+#endif
+
+    } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDragContainerSelection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let ids: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid dragContainerSelection IDs") }
+      return decoded
+    }()
+    #if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.dragContainerSelection(ids, containerNamespace: OneNativeNamespace.id) } else { self }
+#else
+self
+#endif
+
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKDraggable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -2824,6 +2856,15 @@ self
       return raw
     }()
     self.draggable(argument0)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKDraggableWithContainerItemID(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    #if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.draggable(containerItemID: value, containerNamespace: OneNativeNamespace.id) } else { self }
+#else
+self
+#endif
+
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDrawingGroup(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

@@ -573,6 +573,29 @@ describe('SDK modifier derivation', () => {
       name: 'onReceive', kind: 'eventNotification', type: 'P', ios: 0,
     }])
   })
+
+  it('derives a shared string-ID drag container, selection, and child item', () => {
+    const dragContainer = { ...method('dragContainer', 'SwiftUI', [
+      { label: 'for', name: 'itemType', type: 'Item.Type', defaultValue: 'Item.self' },
+      { label: 'itemID', name: 'itemID', type: 'Swift.KeyPath<Item, ItemID>' },
+      { label: 'in', name: 'namespace', type: 'SwiftUICore.Namespace.ID?', defaultValue: 'nil' },
+      { label: '_', name: 'payload', type: '@escaping (_ draggedItemIDs: Swift.Array<ItemID>) -> Data' },
+    ]), requirements: ['ItemID : Swift.Hashable', 'ItemID : Swift.Sendable',
+      'Item : CoreTransferable.Transferable', 'Item == Data.Element', 'Data : Swift.Collection'] }
+    const selection = { ...method('dragContainerSelection', 'SwiftUI', [
+      { label: '_', name: 'selection', type: '@autoclosure @escaping () -> Swift.Array<ItemID>' },
+      { label: 'containerNamespace', name: 'containerNamespace', type: 'SwiftUICore.Namespace.ID?', defaultValue: 'nil' },
+    ]), requirements: ['ItemID : Swift.Hashable', 'ItemID : Swift.Sendable'] }
+    const item = { ...method('draggable', 'SwiftUI', [
+      { label: 'containerItemID', name: 'containerItemID', type: 'ItemID' },
+      { label: 'containerNamespace', name: 'containerNamespace', type: 'SwiftUICore.Namespace.ID?', defaultValue: 'nil' },
+    ]), requirements: ['ItemID : Swift.Hashable', 'ItemID : Swift.Sendable'] }
+    expect(deriveModifiers([dragContainer, selection, item], 27, [])).toEqual([
+      { name: 'dragContainer', kind: 'dragContainer', type: '@escaping (_ draggedItemIDs: Swift.Array<ItemID>) -> Data', ios: 0 },
+      { name: 'dragContainerSelection', kind: 'dragSelection', type: '@autoclosure @escaping () -> Swift.Array<ItemID>', ios: 0 },
+      { name: 'draggableWithContainerItemID', sdkName: 'draggable', kind: 'dragItemID', type: 'ItemID', ios: 0 },
+    ])
+  })
 })
 
 describe('SDK view slots', () => {

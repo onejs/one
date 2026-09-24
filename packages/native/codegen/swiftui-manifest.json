@@ -4313,6 +4313,18 @@
       }
     },
     {
+      "name": "dragContainer",
+      "kind": "dragContainer",
+      "type": "@escaping (_ draggedItemIDs: Swift.Array<ItemID>) -> Data",
+      "ios": 27
+    },
+    {
+      "name": "dragContainerSelection",
+      "kind": "dragSelection",
+      "type": "@autoclosure @escaping () -> Swift.Array<ItemID>",
+      "ios": 27
+    },
+    {
       "name": "draggable",
       "kind": "record",
       "type": "",
@@ -4327,6 +4339,13 @@
           "optional": false
         }
       ]
+    },
+    {
+      "name": "draggableWithContainerItemID",
+      "sdkName": "draggable",
+      "kind": "dragItemID",
+      "type": "ItemID",
+      "ios": 27
     },
     {
       "name": "drawingGroup",
@@ -17454,6 +17473,8 @@
         "documentLaunchSubtitle",
         "documentLaunchTitle",
         "dragConfiguration",
+        "dragContainer",
+        "dragContainerSelection",
         "draggable",
         "dropConfiguration",
         "dropDestination",
@@ -17966,6 +17987,8 @@
         "documentLaunchSubtitle",
         "documentLaunchTitle",
         "dragConfiguration",
+        "dragContainer",
+        "dragContainerSelection",
         "draggable",
         "dropConfiguration",
         "dropDestination",

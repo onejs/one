@@ -474,6 +474,29 @@ ${modifier.cases!.map((item) => `      case ${JSON.stringify(item.name)}: return
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     ${apply(`{ await OneNativeAsyncAction.wait(name: ${JSON.stringify(modifier.name)}, emit: emit) }`, modifier.ios)}
   }`
+      if (modifier.kind === 'dragContainer')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let enabled: Bool = {
+      guard value == "true" || value == "false" else { preconditionFailure("invalid ${modifier.name}: \\(value)") }
+      return value == "true"
+    }()
+    if enabled {
+      ${apply('for: String.self, itemID: \\.self, in: OneNativeNamespace.id, { ids in ids }', modifier.ios, true).trimStart()}
+    } else { self }
+  }`
+      if (modifier.kind === 'dragSelection')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let ids: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data) else { preconditionFailure("invalid ${modifier.name} IDs") }
+      return decoded
+    }()
+    ${apply('ids, containerNamespace: OneNativeNamespace.id', modifier.ios, true).trimStart()}
+  }`
+      if (modifier.kind === 'dragItemID')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    ${apply('containerItemID: value, containerNamespace: OneNativeNamespace.id', modifier.ios, true).trimStart()}
+  }`
       if (modifier.kind === 'eventDrop')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let types: [String] = {
@@ -1011,9 +1034,17 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
         sdkModifiers.push([name, record.name])
         continue
       }
+      if (kind === 'dragSelection') {
+        if (!Array.isArray(value) || value.some((item) => typeof item !== 'string'))
+          throw new Error(name + ' must be an array of string IDs')
+        sdkModifiers.push([name, JSON.stringify(value)])
+        continue
+      }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite')
       if (kind === 'optionalNumber' && value !== null && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite or null')
       if ((kind === 'boolean' || kind === 'defaultFocusBoolean') && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
+      if (kind === 'dragContainer' && typeof value !== 'boolean') throw new Error(name + ' must be a boolean')
+      if (kind === 'dragItemID' && typeof value !== 'string') throw new Error(name + ' must be a string ID')
       if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean') throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string') throw new Error(name + ' must be a string')
       if (kind === 'selectionID' && typeof value !== 'string') throw new Error(name + ' must be a string')
@@ -1277,7 +1308,7 @@ import UIKit
 import Combine
 ${frameworkImports.map((framework) => `import ${framework}`).join('\n')}
 
-${derived.some((modifier) => modifier.namespaceParameter) ? 'private enum OneNativeNamespace { static let id = Namespace().wrappedValue }\n' : ''}
+${derived.some((modifier) => modifier.namespaceParameter || modifier.kind === 'dragContainer' || modifier.kind === 'dragSelection' || modifier.kind === 'dragItemID') ? 'private enum OneNativeNamespace { static let id = Namespace().wrappedValue }\n' : ''}
 ${derived.some((modifier) => modifier.arguments?.some((argument) => argument.type === '[OneNativeRotorEntry]')) ? 'private struct OneNativeRotorEntry: Identifiable { let id: String; var label: String { id } }\n' : ''}
 
 public struct OneNativeStyle: Equatable {

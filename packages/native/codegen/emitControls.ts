@@ -215,6 +215,12 @@ ${styleFields
                       ? modifier.gestureOptions!.map((option) => `Readonly<{ kind: ${JSON.stringify(option.name)}; onEnded: ${option.eventValue ? `(value: ${eventValueType(option.eventValue)})` : '()'} => void }>`).join(' | ')
                     : modifier.kind === 'defaultFocusBoolean'
                       ? 'boolean'
+                    : modifier.kind === 'dragContainer'
+                      ? 'boolean'
+                    : modifier.kind === 'dragSelection'
+                      ? 'readonly string[]'
+                    : modifier.kind === 'dragItemID'
+                      ? 'string'
                     : modifier.kind === 'record'
                       ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ') : argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'bindingBoolean' ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>' : argument.kind === 'bindingOptionalURL' ? 'Readonly<{ value: string | null; onChange: (value: string | null) => void }>' : argument.kind === 'eventStruct' ? `(value: ${eventValueType(argument.eventValue!)}) => void` : argument.kind === 'classUpdate' || argument.kind === 'structUpdate' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}?: ${field.type === 'Swift.Bool' ? 'boolean' : field.type.endsWith('?') ? 'string | null' : 'string'}`).join('; ')} }>` : argument.kind === 'resultURL' || argument.kind === 'resultURLArray' ? `(result: Readonly<{ success: ${argument.kind === 'resultURL' ? 'string' : 'readonly string[]'} } | { failure: string }>) => void` : argument.kind === 'stringArray' || argument.kind === 'stringSet' ? 'readonly string[]' : argument.kind === 'numericStruct' || argument.kind === 'numericTuple' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}: number`).join('; ')} }>` : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
                       : modifier.kind === 'style' ? undefined
