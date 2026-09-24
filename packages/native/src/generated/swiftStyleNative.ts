@@ -354,6 +354,9 @@ const sdkKinds = {
   mapControlVisibility: 'string',
   mapFeatureSelectionAccessory: 'optionalEnum',
   mapFeatureSelectionDisabled: 'boolean',
+  mapItemDetailPopoverWithCurrentLocation: 'record',
+  mapItemDetailPopoverWithCurrentLocationAndArrowEdge: 'record',
+  mapItemDetailSheetWithCurrentLocation: 'record',
   mapScope: 'boolean',
   mapStyle: 'string',
   matchedGeometryEffect: 'record',
@@ -443,6 +446,7 @@ const sdkKinds = {
   preferencePreferredColorScheme: 'optionalEnum',
   preferredColorScheme: 'optionalEnum',
   preferredSubscriptionOffer: 'selectionID',
+  preferredSubscriptionPricingTerms: 'selectionIndex',
   presentationBackground: 'style',
   presentationBackgroundInteraction: 'string',
   presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation: 'record',
@@ -525,6 +529,7 @@ const sdkKinds = {
   strikethrough: 'record',
   submitLabel: 'string',
   submitScope: 'boolean',
+  subscriptionIntroductoryOffer: 'eventAsyncString',
   subscriptionOfferViewButtonVisibility: 'record',
   subscriptionOfferViewDetailAction: 'event',
   subscriptionOfferViewStyle: 'style',
@@ -617,6 +622,7 @@ const sdkKinds = {
   webViewScrollPosition: 'bindingPoint',
   webViewTextSelection: 'style',
   windowToolbarFullScreenVisibility: 'string',
+  workoutPreview: 'record',
   writingDirection: 'string',
   writingToolsAffordanceVisibility: 'string',
   writingToolsBehavior: 'string',
@@ -1096,6 +1102,38 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
     ],
     open: true,
   },
+  subscriptionIntroductoryOffer: {
+    kind: 'object',
+    fields: [
+      {
+        name: 'product',
+        value: {
+          kind: 'object',
+          fields: [
+            { name: 'id', value: { kind: 'string' } },
+            {
+              name: 'type',
+              value: {
+                kind: 'object',
+                fields: [{ name: 'rawValue', value: { kind: 'string' } }],
+              },
+            },
+            { name: 'displayName', value: { kind: 'string' } },
+            { name: 'description', value: { kind: 'string' } },
+            { name: 'displayPrice', value: { kind: 'string' } },
+            { name: 'isFamilyShareable', value: { kind: 'boolean' } },
+          ],
+        },
+      },
+      {
+        name: 'subscriptionInfo',
+        value: {
+          kind: 'object',
+          fields: [{ name: 'subscriptionGroupID', value: { kind: 'string' } }],
+        },
+      },
+    ],
+  },
   subscriptionStatusTask: {
     kind: 'associatedEnum',
     cases: [
@@ -1153,6 +1191,9 @@ const sdkAsyncArguments: Record<string, readonly { field: string; kind: string }
   storeProductsTask: [{ field: 'ids', kind: 'stringArray' }],
   storeProductTask: [{ field: 'id', kind: 'string' }],
   subscriptionStatusTask: [{ field: 'groupID', kind: 'string' }],
+}
+const sdkAsyncStringFields: Record<string, { predicate: string; callback: string }> = {
+  subscriptionIntroductoryOffer: { predicate: 'applyOffer', callback: 'compactJWS' },
 }
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = {
   gesture: {
@@ -1644,6 +1685,16 @@ const sdkRecords: Record<
     { field: 'isPresented', kind: 'bindingBoolean', optional: false },
     { field: 'subscriptionGroupID', kind: 'string', optional: false },
   ],
+  mapItemDetailPopoverWithCurrentLocation: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+  ],
+  mapItemDetailPopoverWithCurrentLocationAndArrowEdge: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'arrowEdge', kind: 'enum', optional: false },
+  ],
+  mapItemDetailSheetWithCurrentLocation: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+  ],
   matchedGeometryEffect: [{ field: 'id', kind: 'string', optional: false }],
   matchedTransitionSource: [{ field: 'id', kind: 'string', optional: false }],
   navigationBarTitleWithTitleAndDisplayMode: [
@@ -1981,6 +2032,10 @@ const sdkRecords: Record<
       ],
     },
   ],
+  workoutPreview: [
+    { field: 'workout', kind: 'string', optional: false },
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+  ],
 }
 
 export function validSDKEventValue(value: unknown, shape: SDKEventValueShape): boolean {
@@ -2276,6 +2331,22 @@ export function swiftStyleNative(
         sdkModifiers.push([name, JSON.stringify(argumentsFromSDK)])
         continue
       }
+      if (kind === 'eventAsyncString') {
+        const fields = sdkAsyncStringFields[name]
+        if (
+          !value ||
+          typeof value !== 'object' ||
+          Array.isArray(value) ||
+          typeof (value as Record<string, unknown>)[fields.predicate] !== 'boolean' ||
+          typeof (value as Record<string, unknown>)[fields.callback] !== 'function'
+        )
+          throw new Error(name + ' must be an async string callback and Boolean decision')
+        sdkModifiers.push([
+          name,
+          String((value as Record<string, unknown>)[fields.predicate]),
+        ])
+        continue
+      }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value)))
         throw new Error(name + ' must be finite')
       if (
@@ -2295,6 +2366,11 @@ export function swiftStyleNative(
         throw new Error(name + ' must be a string')
       if (kind === 'selectionID' && typeof value !== 'string')
         throw new Error(name + ' must be a string')
+      if (
+        kind === 'selectionIndex' &&
+        (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 0)
+      )
+        throw new Error(name + ' must be a nonnegative index')
       if (kind === 'url' && typeof value !== 'string')
         throw new Error(name + ' must be a URL string')
       if (kind === 'optionalURL' && value !== null && typeof value !== 'string')
@@ -2538,6 +2614,44 @@ export function dispatchSDKEvent(
     void Promise.resolve()
       .then(() => action?.(payload))
       .finally(() => native.complete(identifier))
+  } else if (kind === 'eventAsyncString') {
+    const native = NativeModules.OneNativeAsyncActionModule as
+      | {
+          completeString(
+            identifier: string,
+            value: string | null,
+            error: string | null
+          ): void
+        }
+      | undefined
+    if (!native) throw new Error('OneNativeAsyncActionModule is unavailable')
+    const envelope: unknown = JSON.parse(value)
+    if (
+      !envelope ||
+      typeof envelope !== 'object' ||
+      typeof (envelope as { id?: unknown }).id !== 'string' ||
+      typeof (envelope as { value?: unknown }).value !== 'string'
+    )
+      throw new Error(name + ' emitted an invalid async string event')
+    const identifier = (envelope as { id: string }).id
+    try {
+      const payload: unknown = JSON.parse((envelope as { value: string }).value)
+      if (!validSDKEventValue(payload, sdkEventStructs[name]))
+        throw new Error(name + ' emitted an invalid async string value')
+      const action = (modifier as Record<string, unknown> | undefined)?.[
+        sdkAsyncStringFields[name].callback
+      ] as ((value: unknown) => string | Promise<string>) | undefined
+      void Promise.resolve()
+        .then(() => action?.(payload))
+        .then((result) => {
+          if (typeof result !== 'string') throw new Error(name + ' must return a string')
+          native.completeString(identifier, result, null)
+        })
+        .catch((error) => native.completeString(identifier, null, String(error)))
+    } catch (error) {
+      native.completeString(identifier, null, String(error))
+      throw error
+    }
   } else if (kind === 'eventReturnArray')
     (modifier as { onAction: () => void } | undefined)?.onAction()
   else if (kind === 'eventReturnEnum') {

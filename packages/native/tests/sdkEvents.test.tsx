@@ -1,9 +1,10 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
 const completeAsyncAction = vi.hoisted(() => vi.fn())
+const completeAsyncString = vi.hoisted(() => vi.fn())
 vi.mock('react-native', () => ({
   Platform: { OS: 'ios', Version: '27.0' },
-  NativeModules: { OneNativeAsyncActionModule: { complete: completeAsyncAction } },
+  NativeModules: { OneNativeAsyncActionModule: { complete: completeAsyncAction, completeString: completeAsyncString } },
 }))
 vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
   default: (name: string) => ({ __component: name }),
@@ -102,6 +103,38 @@ describe('SDK callback and binding transport', () => {
     ])
   })
 
+  it('passes a serialized workout plan to the controlled preview', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'workout', swiftStyle: {
+      workoutPreview: { workout: 'AQID', isPresented: { value: true, onChange } },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['workoutPreview', '["AQID","true"]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'workoutPreview.isPresented', value: 'false',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+  })
+
+  it('presents current-location MapKit details through SDK object factories', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'location', swiftStyle: {
+      mapItemDetailSheetWithCurrentLocation: { isPresented: { value: true, onChange } },
+      mapItemDetailPopoverWithCurrentLocationAndArrowEdge: {
+        isPresented: { value: false, onChange }, arrowEdge: 'bottom',
+      },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['mapItemDetailSheetWithCurrentLocation', '["true"]'],
+      ['mapItemDetailPopoverWithCurrentLocationAndArrowEdge', '["false","bottom"]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'mapItemDetailSheetWithCurrentLocation.isPresented', value: 'false',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+  })
+
   it('builds identifiable rotor entries from public labels', () => {
     const element = Controls.Text({ text: 'navigation', swiftStyle: {
       accessibilityRotor: { rotorLabel: 'Links', entries: ['Home', 'Search'] },
@@ -173,6 +206,18 @@ describe('SDK callback and binding transport', () => {
     expect(() => Controls.Text({ text: 'example', swiftStyle: {
       inAppPurchaseOptions: { quantity: 'two' as never },
     } })).toThrow('inAppPurchaseOptions.quantity must be finite')
+  })
+
+  it('selects a subscription pricing term by its position in the SDK array', () => {
+    const element = Controls.Text({ text: 'subscription', swiftStyle: {
+      preferredSubscriptionPricingTerms: 1,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['preferredSubscriptionPricingTerms', '1'],
+    ])
+    expect(() => Controls.Text({ text: 'subscription', swiftStyle: {
+      preferredSubscriptionPricingTerms: -1,
+    } })).toThrow('preferredSubscriptionPricingTerms must be a nonnegative index')
   })
 
   it('configures an SDK set from public static values', () => {
@@ -266,6 +311,38 @@ describe('SDK callback and binding transport', () => {
     expect(completeAsyncAction).not.toHaveBeenCalled()
     finish()
     await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-2'))
+  })
+
+  it('returns a signed string or error from a generated async SDK callback', async () => {
+    completeAsyncString.mockClear()
+    let finish!: (value: string) => void
+    const compactJWS = vi.fn(() => new Promise<string>((resolve) => { finish = resolve }))
+    const element = Controls.Text({ text: 'subscription', swiftStyle: {
+      subscriptionIntroductoryOffer: { applyOffer: true, compactJWS },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['subscriptionIntroductoryOffer', 'true'],
+    ])
+    const product = { id: 'monthly', type: { rawValue: 'autoRenewable' }, displayName: 'Monthly',
+      description: 'Plan', displayPrice: '$5', isFamilyShareable: false }
+    const subscriptionInfo = { subscriptionGroupID: 'pro' }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'subscriptionIntroductoryOffer',
+      value: JSON.stringify({ id: 'sign-1', value: JSON.stringify({ product, subscriptionInfo }) }) } })
+    await vi.waitFor(() => expect(compactJWS).toHaveBeenCalledWith({ product, subscriptionInfo }))
+    expect(completeAsyncString).not.toHaveBeenCalled()
+    finish('signed-jws')
+    await vi.waitFor(() => expect(completeAsyncString).toHaveBeenCalledWith('sign-1', 'signed-jws', null))
+
+    const rejected = Controls.Text({ text: 'subscription', swiftStyle: {
+      subscriptionIntroductoryOffer: { applyOffer: false, compactJWS: () => Promise.reject(new Error('signing failed')) },
+    } })
+    rejected.props.onNativeSDKEvent({ nativeEvent: { name: 'subscriptionIntroductoryOffer',
+      value: JSON.stringify({ id: 'sign-2', value: JSON.stringify({ product, subscriptionInfo }) }) } })
+    await vi.waitFor(() => expect(completeAsyncString).toHaveBeenCalledWith('sign-2', null, 'Error: signing failed'))
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: { name: 'subscriptionIntroductoryOffer',
+      value: JSON.stringify({ id: 'sign-3', value: JSON.stringify({ product: {}, subscriptionInfo }) }) } })).toThrow('invalid async string value')
+    expect(completeAsyncString).toHaveBeenCalledWith('sign-3', null,
+      'Error: subscriptionIntroductoryOffer emitted an invalid async string value')
   })
 
   it('passes a purchase result through the async callback and rejects malformed cases', async () => {

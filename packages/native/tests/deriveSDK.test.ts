@@ -434,6 +434,87 @@ describe('SDK modifier derivation', () => {
       ],
     }])
   })
+
+  it('constructs a public SDK object from its serialized data for a controlled sheet', () => {
+    expect(deriveModifiers([
+      method('workoutPreview', '_WorkoutKit_SwiftUI', [
+        { label: '_', name: 'plan', type: 'WorkoutKit.WorkoutPlan' },
+        { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+      ]),
+      { ...method('WorkoutPlan', 'WorkoutKit'), kind: 'struct', owner: '' },
+      { ...method('dataRepresentation', 'WorkoutKit'), kind: 'var', owner: 'WorkoutPlan', type: 'Foundation.Data' },
+      { ...method('init', 'WorkoutKit', [
+        { label: 'from', name: 'data', type: 'Foundation.Data' },
+      ]), kind: 'init', owner: 'WorkoutPlan' },
+    ], 27, [])).toEqual([{
+      name: 'workoutPreview', kind: 'record', type: '', ios: 0, framework: 'WorkoutKit',
+      arguments: [
+        { field: 'plan', label: '_', type: 'WorkoutKit.WorkoutPlan', kind: 'string', optional: false,
+          swiftExpression: '({ () -> WorkoutKit.WorkoutPlan in guard let data = Foundation.Data(base64Encoded: $value), let result = try? WorkoutKit.WorkoutPlan(from: data) else { preconditionFailure("invalid WorkoutKit.WorkoutPlan data") }; return result })()' },
+        { field: 'isPresented', label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>', kind: 'bindingBoolean', optional: false },
+      ],
+    }])
+  })
+
+  it('selects a callback result from a public array on its input', () => {
+    expect(deriveModifiers([
+      method('preferredSubscriptionPricingTerms', '_StoreKit_SwiftUI', [{
+        label: '_', name: 'pricingTerms',
+        type: '@escaping (_ product: StoreKit.Product, _ subscriptionInfo: StoreKit.SubscriptionInfo) -> StoreKit.SubscriptionInfo.PricingTerms?',
+      }]),
+      { ...method('SubscriptionInfo', 'StoreKit'), kind: 'typealias', owner: '', type: 'StoreKit.Product.SubscriptionInfo' },
+      { ...method('pricingTerms', 'StoreKit'), kind: 'var', owner: 'StoreKit.Product.SubscriptionInfo', type: '[StoreKit.Product.SubscriptionInfo.PricingTerms]' },
+    ], 27, [])).toEqual([{
+      name: 'preferredSubscriptionPricingTerms', kind: 'selectionIndex', type: '@escaping (_ product: StoreKit.Product, _ subscriptionInfo: StoreKit.SubscriptionInfo) -> StoreKit.SubscriptionInfo.PricingTerms?',
+      label: '_', selectionMember: 'pricingTerms', ios: 0, framework: 'StoreKit',
+    }])
+  })
+
+  it('uses a unique zero-argument SDK factory for a required object', () => {
+    expect(deriveModifiers([
+      method('mapItemDetailSheet', '_MapKit_SwiftUI', [
+        { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+        { label: 'item', name: 'item', type: 'MapKit.MKMapItem?' },
+        { label: 'displaysMap', name: 'displaysMap', type: 'Swift.Bool', defaultValue: 'true' },
+      ]),
+      { ...method('forCurrentLocation', 'MapKit'), owner: 'MKMapItem', type: 'MapKit.MKMapItem', isStatic: true },
+    ], 27, [])).toEqual([{
+      name: 'mapItemDetailSheetWithCurrentLocation', sdkName: 'mapItemDetailSheet', module: '_MapKit_SwiftUI',
+      kind: 'record', type: '', ios: 0, framework: 'MapKit', aliasSuffix: 'CurrentLocation',
+      arguments: [{ field: 'isPresented', label: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>', kind: 'bindingBoolean', optional: false }],
+      sharedParameter: { index: 1, label: 'item', type: 'MapKit.MKMapItem', factoryName: 'forCurrentLocation' },
+    }])
+    expect(deriveModifiers([
+      method('navigationDocument', 'SwiftUI', [
+        { label: '_', name: 'url', type: 'Foundation.URL' },
+      ]),
+      { ...method('currentDirectory', 'Foundation'), owner: 'URL', type: 'Foundation.URL', isStatic: true },
+    ], 27, [])).toEqual([{ name: 'navigationDocument', kind: 'url', type: 'Foundation.URL', ios: 0 }])
+  })
+
+  it('derives a Boolean decision and an async string result from paired SDK callbacks', () => {
+    const product = 'StoreKit.Product'
+    const info = 'StoreKit.Product.SubscriptionInfo'
+    const asyncType = `@escaping (_ product: ${product}, _ subscriptionInfo: ${info}) async throws -> Swift.String`
+    expect(deriveModifiers([
+      method('subscriptionIntroductoryOffer', '_StoreKit_SwiftUI', [
+        { label: 'applyOffer', name: 'applyOffer', type: `@escaping (_ product: ${product}, _ subscriptionInfo: ${info}) -> Swift.Bool` },
+        { label: 'compactJWS', name: 'compactJWS', type: asyncType },
+      ]),
+      { ...method('Product', 'StoreKit'), kind: 'struct', owner: '' },
+      { ...method('id', 'StoreKit'), kind: 'var', owner: product, type: 'Swift.String', stored: true },
+      { ...method('SubscriptionInfo', 'StoreKit'), kind: 'struct', owner: product },
+      { ...method('subscriptionGroupID', 'StoreKit'), kind: 'var', owner: info, type: 'Swift.String', stored: true },
+    ], 27, [])).toEqual([{
+      name: 'subscriptionIntroductoryOffer', kind: 'eventAsyncString', type: asyncType,
+      ios: 0, framework: 'StoreKit', predicateLabel: 'applyOffer', callbackLabel: 'compactJWS',
+      eventInputs: ['product', 'subscriptionInfo'],
+      eventValue: { kind: 'object', fields: [
+        { name: 'product', value: { kind: 'object', fields: [{ name: 'id', value: { kind: 'string' } }] } },
+        { name: 'subscriptionInfo', value: { kind: 'object', fields: [{ name: 'subscriptionGroupID', value: { kind: 'string' } }] } },
+      ] },
+    }])
+  })
 })
 
 describe('SDK view slots', () => {

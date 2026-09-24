@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -48,6 +48,7 @@ export type DerivedModifier = {
   eventValue?: EventValueSchema
   eventInputType?: string
   resultType?: string
+  selectionMember?: string
   resultConstructor?: { type: string; label: string }
   eventPair?: true
   eventInputs?: readonly string[]
@@ -62,13 +63,14 @@ export type DerivedModifier = {
   framework?: string
   label?: string
   callbackLabel?: string
+  predicateLabel?: string
   bindingType?: string
   bindingDefault?: true
   predicateInput?: string
   aliasSuffix?: string
   callArguments?: readonly { label: string; defaultValue?: string; bridge?: true }[]
   namespaceParameter?: { index: number; label: string }
-  sharedParameter?: { index: number; label: string; type: string }
+  sharedParameter?: { index: number; label: string; type: string; factoryName?: string }
   factoryParameter?: { index: number; label: string; type: string; returnType: string; argumentOffset: number }
   fixedParameter?: { index: number; label: string; type: string; expression: string }
   arguments?: readonly DerivedArgument[]
@@ -148,6 +150,18 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
           ({ name: parameter.label, label: parameter.label, type: parameter.type })) }
     }
     if (publicStruct && !numericStruct) {
+      const dataConstructor = inventory.filter((d) => d.module === module &&
+        (d.owner === ownerName || d.owner === baseType) && d.kind === 'init' &&
+        d.parameters.length === 1 && d.parameters[0].label === 'from' &&
+        d.parameters[0].type === 'Foundation.Data' && !d.requirements?.length &&
+        present(d) && ios(d) <= ceiling)
+      const dataRepresentation = inventory.some((d) => d.module === module &&
+        (d.owner === ownerName || d.owner === baseType) && d.kind === 'var' &&
+        d.name === 'dataRepresentation' && d.type === 'Foundation.Data' &&
+        present(d) && ios(d) <= ceiling)
+      if (dataConstructor.length === 1 && dataRepresentation)
+        return { kind: 'string', type, optional,
+          swiftExpression: `({ () -> ${baseType} in guard let data = Foundation.Data(base64Encoded: $value), let result = try? ${baseType}(from: data) else { preconditionFailure("invalid ${baseType} data") }; return result })()` }
       const affineInitializers = inventory.filter((d) => d.module === module &&
         (d.owner === ownerName || d.owner === baseType) && d.kind === 'init' &&
         d.parameters.length === 1 && d.parameters[0].label === '_' &&
@@ -402,7 +416,8 @@ export function deriveModifiers(
     if (!owner || seen.has(type) || !inventory.some((d) => d.module === module &&
       (d.kind === 'struct' || d.kind === 'class') &&
       (d.owner === parts.slice(0, -1).join('.') ||
-        directEnumValue && d.owner === [module, ...parts.slice(0, -1)].join('.')) &&
+        (seen.size === 0 || directEnumValue) &&
+        d.owner === [module, ...parts.slice(0, -1)].join('.')) &&
       d.name === parts.at(-1) && !d.generic && present(d) && ios(d) <= version)) {
       const raw = inventory.find((d) => d.module === module && d.kind === 'struct' &&
         d.owner === [module, ...parts.slice(0, -1)].join('.') && d.name === parts.at(-1) &&
@@ -641,14 +656,18 @@ export function deriveModifiers(
             ...framework }]
         return []
       }
-      const sharedIndex = method.parameters.findIndex((parameter) =>
-        parameter.defaultValue === undefined &&
-        inventory.some((declaration) => declaration.module === parameter.type.split('.')[0] &&
-          declaration.owner === parameter.type.split('.').slice(1).join('.') &&
-          declaration.kind === 'func' && declaration.isStatic && declaration.name === 'shared' &&
-          declaration.type === parameter.type && declaration.parameters.length === 0 &&
-          present(declaration) && ios(declaration) <= ceiling))
+      const objectFactories = method.parameters.map((parameter) => {
+        const type = parameter.type.replace(/\?$/, '')
+        if (parameter.defaultValue !== undefined || valueOf(parameter.type)) return []
+        return inventory.filter((declaration) => declaration.module === type.split('.')[0] &&
+          declaration.owner === type.split('.').slice(1).join('.') &&
+          declaration.kind === 'func' && declaration.isStatic &&
+          declaration.type === type && declaration.parameters.length === 0 &&
+          present(declaration) && ios(declaration) <= ceiling)
+      })
+      const sharedIndex = objectFactories.findIndex((factories) => factories.length === 1)
       if (sharedIndex !== -1) {
+        const factory = objectFactories[sharedIndex][0]
         const required = method.parameters.filter((parameter, index) =>
           index !== sharedIndex && parameter.defaultValue === undefined)
         const argumentsFromSDK = required.map((parameter) => {
@@ -659,13 +678,18 @@ export function deriveModifiers(
         })
         if (required.length && argumentsFromSDK.every(Boolean) &&
           new Set(argumentsFromSDK.map((argument) => argument!.field)).size === required.length)
-          return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+          return [{ name, module: method.module, kind: 'record', type: '', ios: Math.max(ios(method), ios(factory)),
             arguments: argumentsFromSDK as DerivedArgument[],
+            ...(factory.name === 'shared' ? {} : { aliasSuffix:
+              (factory.name.startsWith('for') ? factory.name.slice(3) : factory.name[0].toUpperCase() + factory.name.slice(1)) +
+              required.filter((parameter) => parameter.type !== 'SwiftUICore.Binding<Swift.Bool>')
+                .map((parameter) => `And${parameter.name[0].toUpperCase()}${parameter.name.slice(1)}`).join('') }),
             sharedParameter: {
               index: method.parameters.slice(0, sharedIndex).filter((parameter) =>
                 parameter.defaultValue === undefined).length,
               label: method.parameters[sharedIndex].label,
-              type: method.parameters[sharedIndex].type,
+              type: method.parameters[sharedIndex].type.replace(/\?$/, ''),
+              ...(factory.name === 'shared' ? {} : { factoryName: factory.name }),
             }, ...framework }]
         return []
       }
@@ -916,6 +940,27 @@ export function deriveModifiers(
         }
         return []
       }
+      if (method.parameters.length === 2) {
+        const [predicate, signer] = method.parameters
+        const booleanInputs = /^@escaping \((.+)\) -> Swift\.Bool$/.exec(predicate.type)?.[1]
+        const stringInputs = /^@escaping \((.+)\) async throws -> Swift\.String$/.exec(signer.type)?.[1]
+        const parseInputs = (inputs: string | undefined) => inputs?.split(', ').map((part) =>
+          /^_ ([A-Za-z_]\w*): ([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)$/.exec(part))
+        const decision = parseInputs(booleanInputs)
+        const signing = parseInputs(stringInputs)
+        if (predicate.label !== '_' && signer.label !== '_' && decision?.length &&
+          signing?.length === decision.length && decision.every(Boolean) && signing.every(Boolean) &&
+          decision.every((input, index) => input![2] === signing[index]![2])) {
+          const values = signing.map((input) => eventValueOf(input![2], ios(method)))
+          if (values.every(Boolean))
+            return [{ name, module: method.module, kind: 'eventAsyncString', type: signer.type,
+              predicateLabel: predicate.label, callbackLabel: signer.label,
+              eventInputs: signing.map((input) => input![1]),
+              eventValue: { kind: 'object', fields: signing.map((input, index) =>
+                ({ name: input![1], value: values[index]! })) },
+              ios: ios(method), ...framework }]
+        }
+      }
       const asyncAction = method.parameters.find((parameter) =>
         /^(?:sending )?@escaping (?:@Sendable |@isolated\(any\) )?\(\) async -> Swift\.Void$/.test(parameter.type))
       if (asyncAction && method.parameters.every((parameter) =>
@@ -1036,6 +1081,28 @@ export function deriveModifiers(
         present(declaration) && ios(declaration) <= ios(method)))
         return [{ name, module: method.module, kind: 'selectionID', type: method.parameters[0].type,
           label: method.parameters[0].label, ios: ios(method), ...framework }]
+      const arraySelection = method.parameters.length === 1 &&
+        /^@escaping \((?:_ [A-Za-z_]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+), (?:_ [A-Za-z_]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> ([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\?$/.exec(method.parameters[0].type)
+      if (arraySelection) {
+        const resolveAlias = (type: string) => {
+          const alias = inventory.filter((declaration) => declaration.kind === 'typealias' &&
+            type.startsWith(`${declaration.module}.${declaration.name}`) &&
+            (type.length === `${declaration.module}.${declaration.name}`.length ||
+              type[`${declaration.module}.${declaration.name}`.length] === '.') &&
+            declaration.owner === '' && declaration.type && present(declaration) && ios(declaration) <= ceiling)
+            .sort((a, b) => b.name.length - a.name.length)[0]
+          return alias ? `${alias.type}${type.slice(`${alias.module}.${alias.name}`.length)}` : type
+        }
+        const owner = resolveAlias(arraySelection[2])
+        const result = resolveAlias(arraySelection[3])
+        const members = inventory.filter((declaration) => declaration.kind === 'var' &&
+          declaration.module === owner.split('.')[0] && declaration.owner === owner &&
+          declaration.type === `[${result}]` && present(declaration) && ios(declaration) <= ceiling)
+        if (members.length === 1)
+          return [{ name, module: method.module, kind: 'selectionIndex',
+            type: method.parameters[0].type, label: method.parameters[0].label,
+            selectionMember: members[0].name, ios: Math.max(ios(method), ios(members[0])), ...framework }]
+      }
       const defaultedCase = method.parameters.length > 1 &&
         method.parameters.every((parameter) => parameter.defaultValue !== undefined) &&
         valueOf(method.parameters[0].type)
@@ -1329,7 +1396,7 @@ export function deriveModifiers(
     const established = preferred.filter((candidate) =>
       candidate.kind !== 'record' || !candidate.arguments?.some((argument) => argument.sdkType))
     const selected = established.length ? established : preferred
-    if (selected.length === 1 && !reservedNames.has(name)) {
+    if (selected.length === 1 && !reservedNames.has(name) && !selected[0].aliasSuffix) {
       const { module, ...modifier } = selected[0]
       result.push(modifier)
       continue
