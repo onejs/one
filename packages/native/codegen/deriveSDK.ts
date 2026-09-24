@@ -16,7 +16,7 @@ export type DerivedArgument = {
   cases?: readonly { name: string; ios: number }[]
   fields?: readonly { name: string; label: string; type: string }[]
   wrappedType?: string
-  scalarConstructor?: { label: string; type: string }
+  scalarConstructor?: { label: string; type: string; failable?: boolean }
   swiftExpression?: string
   closureInput?: string
   eventValue?: EventValueSchema
@@ -37,7 +37,7 @@ export type DerivedModifier = {
   ios: number
   type: string
   rawString?: true
-  scalarConstructor?: { label: string; type: string }
+  scalarConstructor?: { label: string; type: string; failable?: boolean }
   swiftExpression?: string
   cases?: readonly { name: string; ios: number }[]
   associatedCases?: readonly { name: string; values: readonly EventValueSchema[] }[]
@@ -163,7 +163,8 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
         if (constructors.length === 1) {
           const parameter = constructors[0].parameters[0]
           return { kind: parameter.type === 'Swift.Bool' ? 'boolean' : parameter.type === 'Swift.String' ? 'string' : 'number',
-            type, optional, scalarConstructor: { label: parameter.label, type: parameter.type } }
+            type, optional, scalarConstructor: { label: parameter.label, type: parameter.type,
+              ...(constructors[0].failable ? { failable: true } : {}) } }
         }
         const expressionFor = (valueType: string, seen: ReadonlySet<string>): { expression: string; inputs: number } | undefined => {
           if (valueType === 'Swift.String') return { expression: '$value', inputs: 1 }
