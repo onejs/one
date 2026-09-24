@@ -29,6 +29,24 @@ describe('SDK callback and binding transport', () => {
     await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-1'))
   })
 
+  it('passes an SDK value into an async callback before completing native work', async () => {
+    completeAsyncAction.mockClear()
+    let finish!: () => void
+    const action = vi.fn(() => new Promise<void>((resolve) => { finish = resolve }))
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      onInAppPurchaseStart: action,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([['onInAppPurchaseStart', '']])
+    const product = { id: 'monthly', type: { rawValue: 'autoRenewable' }, displayName: 'Monthly', description: 'Plan',
+      displayPrice: '$5', isFamilyShareable: false }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'onInAppPurchaseStart',
+      value: JSON.stringify({ id: 'action-2', value: JSON.stringify(product) }) } })
+    await vi.waitFor(() => expect(action).toHaveBeenCalledWith(product))
+    expect(completeAsyncAction).not.toHaveBeenCalled()
+    finish()
+    await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-2'))
+  })
+
   it('bridges transferable strings and paste events', () => {
     const onPaste = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {

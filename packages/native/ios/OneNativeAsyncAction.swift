@@ -4,7 +4,7 @@ import Foundation
 enum OneNativeAsyncAction {
   private static var pending: [String: CheckedContinuation<Void, Never>] = [:]
 
-  static func wait(name: String, emit: @escaping (String, String) -> Void) async {
+  static func wait(name: String, value: String? = nil, emit: @escaping (String, String) -> Void) async {
     let identifier = UUID().uuidString
     await withTaskCancellationHandler {
       await withCheckedContinuation { continuation in
@@ -13,7 +13,15 @@ enum OneNativeAsyncAction {
           return
         }
         pending[identifier] = continuation
-        emit(name, identifier)
+        if let value {
+          guard let data = try? JSONEncoder().encode(["id": identifier, "value": value]),
+            let encoded = String(data: data, encoding: .utf8) else {
+            preconditionFailure("invalid async SDK event")
+          }
+          emit(name, encoded)
+        } else {
+          emit(name, identifier)
+        }
       }
     } onCancel: {
       Task { @MainActor in complete(identifier) }

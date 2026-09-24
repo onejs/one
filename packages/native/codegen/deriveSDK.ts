@@ -33,7 +33,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -633,6 +633,17 @@ export function deriveModifiers(
         parameter === asyncAction || parameter.defaultValue !== undefined))
         return [{ name, module: method.module, kind: 'eventAsync', type: asyncAction.type,
           label: asyncAction.label, ios: ios(method), ...framework }]
+      const asyncValue = method.parameters.find((parameter) =>
+        /^\(\(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) async -> \(\)\)\?$/.test(parameter.type))
+      if (asyncValue && method.parameters.every((parameter) =>
+        parameter === asyncValue || parameter.defaultValue !== undefined)) {
+        const input = /^\(\(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) async -> \(\)\)\?$/.exec(asyncValue.type)![1]
+        const value = eventValueOf(input, ios(method))
+        if (value?.kind === 'object')
+          return [{ name, module: method.module, kind: 'eventAsyncStruct', type: asyncValue.type,
+            label: asyncValue.label, eventInputType: input, eventValue: value,
+            ios: ios(method), ...framework }]
+      }
       if (method.parameters.length === 0 ||
         (method.parameters.every((parameter) => parameter.defaultValue !== undefined && !parameter.type.includes('->')) &&
           method.parameters.every((parameter) => !valueOf(parameter.type))))

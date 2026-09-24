@@ -436,6 +436,7 @@ extension View {
       case "onDropSessionUpdated": view = AnyView(view.oneNativeSDKOnDropSessionUpdated(value, emit: emit))
       case "onGeometryChangeWithSize": view = AnyView(view.oneNativeSDKOnGeometryChangeWithSize(value, emit: emit))
       case "onHover": view = AnyView(view.oneNativeSDKOnHover(value, emit: emit))
+      case "onInAppPurchaseStart": view = AnyView(view.oneNativeSDKOnInAppPurchaseStart(value, emit: emit))
       case "onInteractiveResizeChange": view = AnyView(view.oneNativeSDKOnInteractiveResizeChange(value, emit: emit))
       case "onKeyPress": view = AnyView(view.oneNativeSDKOnKeyPress(value, emit: emit))
       case "onLongPressGesture": view = AnyView(view.oneNativeSDKOnLongPressGesture(value, emit: emit))
@@ -5059,6 +5060,15 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKOnHover(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.onHover(perform: { value in emit("onHover", String(value)) })
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnInAppPurchaseStart(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.onInAppPurchaseStart(perform: { item in
+      let payload = (["id": item.id, "type": (["rawValue": item.type.rawValue] as [String: Any]), "displayName": item.displayName, "description": item.description, "displayPrice": item.displayPrice, "isFamilyShareable": item.isFamilyShareable] as [String: Any])
+      guard let data = try? JSONSerialization.data(withJSONObject: payload),
+        let encoded = String(data: data, encoding: .utf8) else { preconditionFailure("invalid onInAppPurchaseStart async event") }
+      await OneNativeAsyncAction.wait(name: "onInAppPurchaseStart", value: encoded, emit: emit)
+    })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnInteractiveResizeChange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

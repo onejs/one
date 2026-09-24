@@ -379,6 +379,7 @@ const sdkKinds = {
   onDropSessionUpdated: 'eventStruct',
   onGeometryChangeWithSize: 'eventStruct',
   onHover: 'eventBoolean',
+  onInAppPurchaseStart: 'eventAsyncStruct',
   onInteractiveResizeChange: 'eventBoolean',
   onKeyPress: 'eventReturnEnum',
   onLongPressGesture: 'event',
@@ -779,6 +780,23 @@ const sdkEventStructs: Record<string, SDKEventValueShape> = {
     fields: [
       { name: 'oldValue', value: { kind: 'size' } },
       { name: 'newValue', value: { kind: 'size' } },
+    ],
+  },
+  onInAppPurchaseStart: {
+    kind: 'object',
+    fields: [
+      { name: 'id', value: { kind: 'string' } },
+      {
+        name: 'type',
+        value: {
+          kind: 'object',
+          fields: [{ name: 'rawValue', value: { kind: 'string' } }],
+        },
+      },
+      { name: 'displayName', value: { kind: 'string' } },
+      { name: 'description', value: { kind: 'string' } },
+      { name: 'displayPrice', value: { kind: 'string' } },
+      { name: 'isFamilyShareable', value: { kind: 'boolean' } },
     ],
   },
   onKeyPress: {
@@ -2094,6 +2112,28 @@ export function dispatchSDKEvent(
     void Promise.resolve()
       .then(() => (modifier as (() => void | Promise<void>) | undefined)?.())
       .finally(() => native.complete(value))
+  } else if (kind === 'eventAsyncStruct') {
+    const native = NativeModules.OneNativeAsyncActionModule as
+      | { complete(identifier: string): void }
+      | undefined
+    if (!native) throw new Error('OneNativeAsyncActionModule is unavailable')
+    const envelope: unknown = JSON.parse(value)
+    if (
+      !envelope ||
+      typeof envelope !== 'object' ||
+      typeof (envelope as { id?: unknown }).id !== 'string' ||
+      typeof (envelope as { value?: unknown }).value !== 'string'
+    )
+      throw new Error(name + ' emitted an invalid async event')
+    const identifier = (envelope as { id: string }).id
+    const payload: unknown = JSON.parse((envelope as { value: string }).value)
+    if (!validSDKEventValue(payload, sdkEventStructs[name]))
+      throw new Error(name + ' emitted an invalid async value')
+    void Promise.resolve()
+      .then(() =>
+        (modifier as ((value: unknown) => void | Promise<void>) | undefined)?.(payload)
+      )
+      .finally(() => native.complete(identifier))
   } else if (kind === 'eventReturnArray')
     (modifier as { onAction: () => void } | undefined)?.onAction()
   else if (kind === 'eventReturnEnum') {

@@ -9358,6 +9358,64 @@
       "ios": 13.4
     },
     {
+      "name": "onInAppPurchaseStart",
+      "kind": "eventAsyncStruct",
+      "type": "((StoreKit.Product) async -> ())?",
+      "label": "perform",
+      "eventInputType": "StoreKit.Product",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "id",
+            "value": {
+              "kind": "string"
+            }
+          },
+          {
+            "name": "type",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "rawValue",
+                  "value": {
+                    "kind": "string"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "displayName",
+            "value": {
+              "kind": "string"
+            }
+          },
+          {
+            "name": "description",
+            "value": {
+              "kind": "string"
+            }
+          },
+          {
+            "name": "displayPrice",
+            "value": {
+              "kind": "string"
+            }
+          },
+          {
+            "name": "isFamilyShareable",
+            "value": {
+              "kind": "boolean"
+            }
+          }
+        ]
+      },
+      "ios": 17,
+      "framework": "StoreKit"
+    },
+    {
       "name": "onInteractiveResizeChange",
       "kind": "eventBoolean",
       "type": "@escaping (_ isResizing: Swift.Bool) -> Swift.Void",
@@ -15821,6 +15879,7 @@
         "appStoreMerchandising",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
+        "onInAppPurchaseStart",
         "productDescription",
         "productIconBorder",
         "productViewStyle",
@@ -16283,6 +16342,7 @@
         "appStoreMerchandising",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
+        "onInAppPurchaseStart",
         "productDescription",
         "productIconBorder",
         "productViewStyle",
