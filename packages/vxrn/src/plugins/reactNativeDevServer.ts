@@ -7,6 +7,9 @@ import {
 } from '../utils/connectedNativeClients'
 import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { URL } from 'node:url'
+import { createRequire } from 'node:module'
+import { join } from 'node:path'
+import { randomUUID } from 'node:crypto'
 import { readFile } from 'node:fs/promises'
 import { createDevMiddleware } from '@react-native/dev-middleware'
 import { createNativeDevEngine } from '../utils/createNativeDevEngine'
@@ -93,6 +96,98 @@ export function createReactNativeDevServerPlugin(
         unstable_experiments: {
           enableStandaloneFuseboxShell: false,
         },
+      })
+
+      // an expo project's clients (dev launcher, expo-updates, peach) ask `/`,
+      // `/manifest` or `/index.exp` for the evaluated app config with an
+      // `expo-platform` header or `?platform=`. answer with the expo updates
+      // manifest expo cli's ExpoGoManifestHandlerMiddleware serves. a project
+      // without @expo/config gets none, like a bare react native metro.
+      const projectRequire = createRequire(join(root, 'package.json'))
+      const anonymousScopeId = randomUUID()
+      server.middlewares.use(async (req, res, next) => {
+        if (req.method !== 'GET' && req.method !== 'HEAD') return next()
+        const url = new URL(req.url || '/', `http://${req.headers.host || 'localhost'}`)
+        if (url.pathname !== '/' && url.pathname !== '/manifest' && url.pathname !== '/index.exp') {
+          return next()
+        }
+        const header = req.headers['expo-platform'] || req.headers['exponent-platform']
+        const platform =
+          validPlatforms[url.searchParams.get('platform') || String(header || '')]
+        if (!platform) return next()
+
+        let expoConfigPath: string
+        try {
+          expoConfigPath = projectRequire.resolve('@expo/config')
+        } catch {
+          return next()
+        }
+        const expoRequire = createRequire(expoConfigPath)
+        const { getConfig } = expoRequire('@expo/config')
+        const { resolveRelativeEntryPoint } = expoRequire('@expo/config/paths')
+        const { Updates } = expoRequire('@expo/config-plugins')
+
+        try {
+          const { exp, pkg } = getConfig(root)
+          const hostUri = req.headers.host || `localhost:${getBoundPort(server)}`
+          const mainModuleName: string = resolveRelativeEntryPoint(root, { platform, pkg })
+          const runtimeVersion = await Updates.getRuntimeVersionAsync(
+            root,
+            { ...exp, runtimeVersion: exp.runtimeVersion ?? { policy: 'sdkVersion' } },
+            platform
+          )
+          const manifest = JSON.stringify({
+            id: randomUUID(),
+            createdAt: new Date().toISOString(),
+            runtimeVersion,
+            launchAsset: {
+              key: 'bundle',
+              contentType: 'application/javascript',
+              url: `http://${hostUri}/${encodeURI(mainModuleName.replace(/^\/+/, ''))}.bundle?platform=${platform}&dev=true&hot=false`,
+            },
+            assets: [],
+            metadata: {},
+            extra: {
+              eas: { projectId: exp.extra?.eas?.projectId ?? undefined },
+              expoClient: { ...exp, hostUri },
+              expoGo: {
+                debuggerHost: hostUri,
+                developer: { tool: 'expo-cli', projectRoot: root },
+                packagerOpts: { dev: true },
+                mainModuleName,
+              },
+              scopeKey: `@anonymous/${exp.slug}-${anonymousScopeId}`,
+            },
+          })
+
+          const headers: Record<string, string> = {
+            'expo-protocol-version': '0',
+            'expo-sfv-version': '0',
+            'cache-control': 'private, max-age=0',
+          }
+          const accept = String(req.headers.accept || '')
+          if (accept.includes('multipart/mixed')) {
+            const boundary = `vxrn-${randomUUID()}`
+            res.writeHead(200, {
+              ...headers,
+              'content-type': `multipart/mixed; boundary=${boundary}`,
+            })
+            res.end(
+              `--${boundary}\r\ncontent-disposition: form-data; name="manifest"\r\ncontent-type: application/json\r\n\r\n${manifest}\r\n--${boundary}--\r\n`
+            )
+            return
+          }
+          const contentType = accept.includes('application/expo+json')
+            ? 'application/expo+json'
+            : accept.includes('application/json')
+              ? 'application/json'
+              : 'text/plain'
+          res.writeHead(200, { ...headers, 'content-type': contentType })
+          res.end(req.method === 'HEAD' ? undefined : manifest)
+        } catch (error) {
+          res.writeHead(500, { 'Content-Type': 'text/plain' })
+          res.end(error instanceof Error ? error.stack || error.message : String(error))
+        }
       })
 
       // Native AssetSourceResolver requests the URL registered in the Rolldown
