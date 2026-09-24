@@ -14172,6 +14172,150 @@
       "framework": "StoreKit"
     },
     {
+      "name": "subscriptionPromotionalOffer",
+      "kind": "eventAsyncString",
+      "type": "@escaping (_ product: StoreKit.Product, _ subscriptionInfo: StoreKit.Product.SubscriptionInfo, _ promotionalOffer: StoreKit.Product.SubscriptionOffer) async throws -> Swift.String",
+      "predicateLabel": "offer",
+      "callbackLabel": "compactJWS",
+      "selectionMember": "promotionalOffers",
+      "selectionInputIndex": 1,
+      "eventInputs": [
+        "product",
+        "subscriptionInfo",
+        "promotionalOffer"
+      ],
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "product",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "id",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "type",
+                  "value": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "name": "rawValue",
+                        "value": {
+                          "kind": "string"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "displayName",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "description",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "displayPrice",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "isFamilyShareable",
+                  "value": {
+                    "kind": "boolean"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "subscriptionInfo",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "subscriptionGroupID",
+                  "value": {
+                    "kind": "string"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "promotionalOffer",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "id",
+                  "value": {
+                    "kind": "optional",
+                    "value": {
+                      "kind": "string"
+                    }
+                  }
+                },
+                {
+                  "name": "type",
+                  "value": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "name": "rawValue",
+                        "value": {
+                          "kind": "string"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "displayPrice",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "periodCount",
+                  "value": {
+                    "kind": "number"
+                  }
+                },
+                {
+                  "name": "paymentMode",
+                  "value": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "name": "rawValue",
+                        "value": {
+                          "kind": "string"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "ios": 26,
+      "framework": "StoreKit"
+    },
+    {
       "name": "subscriptionStatusTask",
       "kind": "eventAsyncStruct",
       "type": "@escaping (_StoreKit_SwiftUI.EntitlementTaskState<[StoreKit.Product.SubscriptionInfo.Status]>) async -> ()",
@@ -17511,6 +17655,7 @@
         "subscriptionOfferViewButtonVisibility",
         "subscriptionOfferViewDetailAction",
         "subscriptionOfferViewStyle",
+        "subscriptionPromotionalOffer",
         "subscriptionStatusTask",
         "subscriptionStoreButtonLabel",
         "subscriptionStoreControlBackground",
@@ -18020,6 +18165,7 @@
         "subscriptionOfferViewButtonVisibility",
         "subscriptionOfferViewDetailAction",
         "subscriptionOfferViewStyle",
+        "subscriptionPromotionalOffer",
         "subscriptionStatusTask",
         "subscriptionStoreButtonLabel",
         "subscriptionStoreControlBackground",

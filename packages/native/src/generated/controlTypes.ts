@@ -3126,6 +3126,27 @@ export interface OneNativeStyle {
   }>
   subscriptionOfferViewDetailAction?: () => void
   subscriptionOfferViewStyle?: SDKSubscriptionOfferViewStyle
+  subscriptionPromotionalOffer?: Readonly<{
+    offer: string
+    compactJWS: (value: {
+      product: {
+        id: string
+        type: { rawValue: string }
+        displayName: string
+        description: string
+        displayPrice: string
+        isFamilyShareable: boolean
+      }
+      subscriptionInfo: { subscriptionGroupID: string }
+      promotionalOffer: {
+        id: string | null
+        type: { rawValue: string }
+        displayPrice: string
+        periodCount: number
+        paymentMode: { rawValue: string }
+      }
+    }) => string | Promise<string>
+  }>
   subscriptionStatusTask?: Readonly<{
     groupID: string
     onAction: (
