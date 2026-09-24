@@ -54,6 +54,7 @@ export type DerivedModifier = {
   gestureOptions?: readonly { name: string; type: string; ios: number; eventValue?: EventValueSchema }[]
   transformMember?: string
   environmentKey?: string
+  environmentTransform?: 'toggle' | 'add'
   preferenceKey?: string
   preferenceOperation?: 'set' | 'transform' | 'observe'
   zeroArgument?: true
@@ -489,6 +490,10 @@ export function deriveModifiers(
     method.module === 'SwiftUICore' && method.parameters.length === 2 &&
     method.parameters[0].type === 'Swift.WritableKeyPath<SwiftUICore.EnvironmentValues, V>' &&
     method.parameters[1].type === 'V')
+  const transformEnvironmentMethod = methods.find((method) => method.name === 'transformEnvironment' &&
+    method.module === 'SwiftUICore' && method.parameters.length === 2 &&
+    method.parameters[0].type === 'Swift.WritableKeyPath<SwiftUICore.EnvironmentValues, V>' &&
+    method.parameters[1].type === '@escaping (inout V) -> Swift.Void')
   if (environmentMethod) {
     for (const field of inventory.filter((declaration) =>
       (declaration.module === 'SwiftUI' || declaration.module === 'SwiftUICore' ||
@@ -511,6 +516,15 @@ export function deriveModifiers(
         ...(value.swiftExpression ? { swiftExpression: value.swiftExpression } : {}),
         ...(value.cases ? { cases: value.cases } : {}),
       })
+      if (transformEnvironmentMethod && !value.optional &&
+        (value.kind === 'boolean' || value.kind === 'number' && field.type !== 'Swift.Int'))
+        result.push({ name: `transformEnvironment${field.name[0].toUpperCase()}${field.name.slice(1)}`,
+          sdkName: 'transformEnvironment', module: 'SwiftUICore', environmentKey: field.name,
+          environmentTransform: value.kind === 'boolean' ? 'toggle' : 'add',
+          kind: value.kind, type: field.type!,
+          ios: Math.max(ios(transformEnvironmentMethod), ios(field)),
+          ...(field.module.startsWith('_') ? { framework: field.module.slice(1, -'_SwiftUI'.length) } : {}),
+        })
     }
   }
   const preferenceMethods = ['preference', 'transformPreference', 'onPreferenceChange']

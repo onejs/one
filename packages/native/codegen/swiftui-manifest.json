@@ -15546,6 +15546,176 @@
       ]
     },
     {
+      "name": "transformEnvironmentAccessibilityEnabled",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "accessibilityEnabled",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentAccessibilityPrefersCrossFadeTransitions",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "accessibilityPrefersCrossFadeTransitions",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 26.4
+    },
+    {
+      "name": "transformEnvironmentAllowsTightening",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "allowsTightening",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentAppearsActive",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "appearsActive",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 18
+    },
+    {
+      "name": "transformEnvironmentAutocorrectionDisabled",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "autocorrectionDisabled",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentContentTransitionAddsDrawingGroup",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "contentTransitionAddsDrawingGroup",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "transformEnvironmentDefaultMinListRowHeight",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "defaultMinListRowHeight",
+      "environmentTransform": "add",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentDisplayScale",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "displayScale",
+      "environmentTransform": "add",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentIsEnabled",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "isEnabled",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentIsFocusEffectEnabled",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "isFocusEffectEnabled",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "transformEnvironmentIsHoverEffectEnabled",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "isHoverEffectEnabled",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "transformEnvironmentIsLuminanceReduced",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "isLuminanceReduced",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "transformEnvironmentIsSceneCaptured",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "isSceneCaptured",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "transformEnvironmentIsScrollEnabled",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "isScrollEnabled",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "transformEnvironmentLineSpacing",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "lineSpacing",
+      "environmentTransform": "add",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentMinimumScaleFactor",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "minimumScaleFactor",
+      "environmentTransform": "add",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentSystemPrefersReducedResourceUsage",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "systemPrefersReducedResourceUsage",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 27
+    },
+    {
       "name": "transformPreferencePreferredColorScheme",
       "sdkName": "transformPreference",
       "module": "SwiftUICore",
@@ -16423,6 +16593,7 @@
         "tracking",
         "transaction",
         "transformEffect",
+        "transformEnvironment",
         "transformPreference",
         "transition",
         "truncationMode",
@@ -16907,6 +17078,7 @@
         "tracking",
         "transaction",
         "transformEffect",
+        "transformEnvironment",
         "transformPreference",
         "transition",
         "truncationMode",
