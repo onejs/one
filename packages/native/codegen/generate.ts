@@ -283,6 +283,9 @@ for (const modifier of derivedModifiers) {
         ? d.parameters[0]?.type === 'SwiftUICore.Binding<Swift.Bool>' &&
           d.parameters[1]?.type === `SwiftUICore.Binding<${modifier.transferSelection.itemType}?>` &&
           d.parameters.slice(2).every((parameter) => parameter.defaultValue !== undefined)
+        : modifier.kind === 'equatableKey'
+        ? d.parameters.length === 0 && d.requirements?.includes('Self : Swift.Equatable') &&
+          d.type === modifier.type
         : modifier.zeroArgument
         ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.kind === 'record'

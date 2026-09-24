@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'transferSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'equatableKey' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'transferSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -681,6 +681,11 @@ export function deriveModifiers(
       const framework = method.module.startsWith('_')
         ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
         : {}
+      if (method.parameters.length === 0 &&
+        method.requirements?.includes('Self : Swift.Equatable') &&
+        method.type === `${method.module}.EquatableView<Self>`)
+        return [{ name, module: method.module, kind: 'equatableKey',
+          type: method.type, ios: ios(method), ...framework }]
       const transferType = method.parameters[0]?.type === 'SwiftUICore.Binding<Swift.Bool>' &&
         method.parameters.slice(2).every((parameter) => parameter.defaultValue !== undefined) &&
         /^SwiftUICore\.Binding<([A-Za-z_]\w*\.[A-Za-z_]\w*)\?>$/.exec(method.parameters[1]?.type ?? '')?.[1]

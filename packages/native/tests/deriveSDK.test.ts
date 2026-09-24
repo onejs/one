@@ -38,6 +38,14 @@ describe('SDK modifier derivation', () => {
     ])
   })
 
+  it('derives a keyed wrapper for a parameterless method constrained on Self equality', () => {
+    const equatable = { ...method('equatable', 'SwiftUI'),
+      requirements: ['Self : Swift.Equatable'], type: 'SwiftUI.EquatableView<Self>' }
+    expect(deriveModifiers([equatable], 27, [])).toEqual([{
+      name: 'equatable', kind: 'equatableKey', type: 'SwiftUI.EquatableView<Self>', ios: 0,
+    }])
+  })
+
   it('calls SDK defaults when every modifier argument has a default', () => {
     expect(deriveModifiers([
       method('glassEffect', 'SwiftUICore', [

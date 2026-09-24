@@ -250,6 +250,7 @@ const sdkKinds = {
   environmentVerticalScrollBounceBehavior: 'string',
   environmentVerticalScrollIndicatorVisibility: 'string',
   environmentVerticalSizeClass: 'optionalEnum',
+  equatable: 'equatableKey',
   fileDialogBrowserOptions: 'string',
   fileDialogConfirmationLabel: 'optionalString',
   fileDialogCustomizationID: 'string',
@@ -2608,6 +2609,8 @@ export function swiftStyleNative(
         throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string')
         throw new Error(name + ' must be a string')
+      if (kind === 'equatableKey' && typeof value !== 'string')
+        throw new Error(name + ' must be an equality key')
       if (kind === 'selectionID' && typeof value !== 'string')
         throw new Error(name + ' must be a string')
       if (

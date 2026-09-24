@@ -423,6 +423,14 @@ ${modifier.gestureOptions!.map((option) => {
     ${apply(call, modifier.ios, true)}
   }`
       }
+      if (modifier.kind === 'equatableKey') {
+        const wrapper = `OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}KeyView`
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+${sdkGuard(modifier.ios, `if #available(iOS ${modifier.ios}, *) {
+      ${wrapper}(key: value, content: self).${modifier.sdkName ?? modifier.name}()
+    } else { self }`, 'self')}
+  }`
+      }
       if (modifier.kind === 'pickerSelection') {
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let (presented, title): (Bool, String?) = {
@@ -1162,6 +1170,7 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
       if (kind === 'dragItemID' && typeof value !== 'string') throw new Error(name + ' must be a string ID')
       if (kind === 'optionalBoolean' && value !== null && typeof value !== 'boolean') throw new Error(name + ' must be a boolean or null')
       if (kind === 'string' && typeof value !== 'string') throw new Error(name + ' must be a string')
+      if (kind === 'equatableKey' && typeof value !== 'string') throw new Error(name + ' must be an equality key')
       if (kind === 'selectionID' && typeof value !== 'string') throw new Error(name + ' must be a string')
       if (kind === 'selectionIndex' && (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 0)) throw new Error(name + ' must be a nonnegative index')
       if (kind === 'url' && typeof value !== 'string') throw new Error(name + ' must be a URL string')
@@ -1469,6 +1478,13 @@ ${frameworkImports.map((framework) => `import ${framework}`).join('\n')}
 
 ${derived.some((modifier) => modifier.namespaceParameter || modifier.kind === 'dragContainer' || modifier.kind === 'dragSelection' || modifier.kind === 'dragItemID') ? 'private enum OneNativeNamespace { static let id = Namespace().wrappedValue }\n' : ''}
 ${derived.some((modifier) => modifier.arguments?.some((argument) => argument.type === '[OneNativeRotorEntry]')) ? 'private struct OneNativeRotorEntry: Identifiable { let id: String; var label: String { id } }\n' : ''}
+${derived.filter((modifier) => modifier.kind === 'equatableKey').map((modifier) => sdkGuard(modifier.ios, `@available(iOS ${modifier.ios}, *)
+private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}KeyView<Content: View>: View, Equatable {
+  let key: String
+  let content: Content
+  static func == (lhs: Self, rhs: Self) -> Bool { lhs.key == rhs.key }
+  var body: some View { content }
+}`, '')).join('\n')}
 ${derived.some((modifier) => modifier.uiRecognizer) ? `@available(iOS 18, *)
 @MainActor private struct OneNativeSDKTapRecognizer: UIGestureRecognizerRepresentable {
   let onTap: () -> Void

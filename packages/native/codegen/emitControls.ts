@@ -157,6 +157,8 @@ ${styleFields
             ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}?: ${argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : 'string'}`).join('; ')} }>`
           : modifier.kind === 'caseSet'
             ? `readonly SDK${upper(modifier.name)}[]`
+          : modifier.kind === 'equatableKey'
+            ? 'string'
           : modifier.kind === 'selectionID'
             ? 'string'
           : modifier.kind === 'selectionIndex'
