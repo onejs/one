@@ -11,6 +11,7 @@ import RealityKit
 import UniformTypeIdentifiers
 import GameController
 import MapKit
+import CoreLocation
 import MusicKit
 import AVKit
 import PhotosUI
@@ -26,6 +27,36 @@ private enum OneNativeNamespace { static let id = Namespace().wrappedValue }
 
 private struct OneNativeRotorEntry: Identifiable { let id: String; var label: String { id } }
 
+@available(iOS 17, *)
+@MainActor private struct OneNativeSDKLookAroundViewerRequest: ViewModifier {
+  let latitude: Double
+  let longitude: Double
+  let presented: Bool
+  let emit: (String, String) -> Void
+  @State private var object: MapKit.MKLookAroundScene?
+
+  func body(content: Content) -> some View {
+    content
+      .task(id: "\(latitude),\(longitude),\(presented)") {
+        guard presented else { object = nil; return }
+        do {
+          let request = MapKit.MKLookAroundSceneRequest(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+          let next = try await request.scene
+          guard !Task.isCancelled else { return }
+          object = next
+          if next == nil { emit("lookAroundViewer", "false") }
+        } catch {
+          guard !Task.isCancelled else { return }
+          object = nil
+          emit("lookAroundViewer", "false")
+        }
+      }
+      .lookAroundViewer(isPresented: Binding(
+        get: { presented && object != nil },
+        set: { emit("lookAroundViewer", String($0)) }
+      ), initialScene: object)
+  }
+}
 
 public struct OneNativeStyle: Equatable {
   public var fontSize: CGFloat?
@@ -418,6 +449,7 @@ extension View {
       case "listSectionSpacingWithCGFloat": view = AnyView(view.oneNativeSDKListSectionSpacingWithCGFloat(value, emit: emit))
       case "listSectionSpacingWithListSectionSpacing": view = AnyView(view.oneNativeSDKListSectionSpacingWithListSectionSpacing(value, emit: emit))
       case "listStyle": view = AnyView(view.oneNativeSDKListStyle(value, emit: emit))
+      case "lookAroundViewer": view = AnyView(view.oneNativeSDKLookAroundViewer(value, emit: emit))
       case "luminanceToAlpha": view = AnyView(view.oneNativeSDKLuminanceToAlpha(value, emit: emit))
       case "manageSubscriptionsSheet": view = AnyView(view.oneNativeSDKManageSubscriptionsSheet(value, emit: emit))
       case "manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID": view = AnyView(view.oneNativeSDKManageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID(value, emit: emit))
@@ -5028,6 +5060,20 @@ self
       case "plain": self.listStyle(.plain)
     default: preconditionFailure("invalid listStyle: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKLookAroundViewer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let config: (Bool, Double, Double) = {
+      guard let data = value.data(using: .utf8),
+        let values = try? JSONDecoder().decode([String].self, from: data), values.count == 3,
+        (values[0] == "true" || values[0] == "false"),
+        let latitude = Double(values[1]), (-90...90).contains(latitude),
+        let longitude = Double(values[2]), (-180...180).contains(longitude) else {
+        preconditionFailure("invalid lookAroundViewer request")
+      }
+      return (values[0] == "true", latitude, longitude)
+    }()
+    self.modifier(OneNativeSDKLookAroundViewerRequest(latitude: config.1, longitude: config.2, presented: config.0, emit: emit))
   }
 
   @ViewBuilder fileprivate func oneNativeSDKLuminanceToAlpha(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

@@ -8868,6 +8868,17 @@
       ]
     },
     {
+      "name": "lookAroundViewer",
+      "kind": "asyncObjectRequest",
+      "type": "MapKit.MKLookAroundScene?",
+      "ios": 17,
+      "requestType": "MapKit.MKLookAroundSceneRequest",
+      "requestProperty": "scene",
+      "predicateLabel": "isPresented",
+      "label": "initialScene",
+      "framework": "MapKit"
+    },
+    {
       "name": "luminanceToAlpha",
       "kind": "boolean",
       "type": "",
@@ -17726,6 +17737,7 @@
         "handlesGameControllerEvents"
       ],
       "_MapKit_SwiftUI": [
+        "lookAroundViewer",
         "mapControlVisibility",
         "mapControls",
         "mapFeatureSelectionAccessory",
@@ -18240,6 +18252,7 @@
         "handlesGameControllerEvents"
       ],
       "_MapKit_SwiftUI": [
+        "lookAroundViewer",
         "mapControlVisibility",
         "mapControls",
         "mapFeatureSelectionAccessory",

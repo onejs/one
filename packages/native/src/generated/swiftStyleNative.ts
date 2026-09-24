@@ -351,6 +351,7 @@ const sdkKinds = {
   listSectionSpacingWithCGFloat: 'number',
   listSectionSpacingWithListSectionSpacing: 'string',
   listStyle: 'style',
+  lookAroundViewer: 'asyncObjectRequest',
   luminanceToAlpha: 'boolean',
   manageSubscriptionsSheet: 'bindingBoolean',
   manageSubscriptionsSheetWithIsPresentedAndSubscriptionGroupID: 'record',
@@ -1276,6 +1277,9 @@ const sdkAsyncStringFields: Record<
     callback: 'compactJWS',
     selects: true,
   },
+}
+const sdkAsyncObjectRequestBindings: Record<string, string> = {
+  lookAroundViewer: 'isPresented',
 }
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = {
   gesture: {
@@ -2463,6 +2467,38 @@ export function swiftStyleNative(
         sdkModifiers.push([name, JSON.stringify(value)])
         continue
       }
+      if (kind === 'asyncObjectRequest') {
+        const record = value as Record<string, unknown> | undefined
+        const binding = record?.[sdkAsyncObjectRequestBindings[name]] as
+          | { value?: unknown; onChange?: unknown }
+          | undefined
+        if (
+          !record ||
+          !binding ||
+          typeof binding.value !== 'boolean' ||
+          typeof binding.onChange !== 'function' ||
+          typeof record.latitude !== 'number' ||
+          !Number.isFinite(record.latitude) ||
+          record.latitude < -90 ||
+          record.latitude > 90 ||
+          typeof record.longitude !== 'number' ||
+          !Number.isFinite(record.longitude) ||
+          record.longitude < -180 ||
+          record.longitude > 180
+        )
+          throw new Error(
+            name + ' must have a presentation binding and valid coordinates'
+          )
+        sdkModifiers.push([
+          name,
+          JSON.stringify([
+            String(binding.value),
+            String(record.latitude),
+            String(record.longitude),
+          ]),
+        ])
+        continue
+      }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value)))
         throw new Error(name + ' must be finite')
       if (
@@ -2832,6 +2868,13 @@ export function dispatchSDKEvent(
   } else if (kind === 'eventNotification') {
     if (value !== '') throw new Error(name + ' emitted an invalid notification event')
     ;(modifier as { onAction: () => void } | undefined)?.onAction()
+  } else if (kind === 'asyncObjectRequest') {
+    if (value !== 'true' && value !== 'false')
+      throw new Error(name + ' emitted an invalid presentation value')
+    const binding = (modifier as Record<string, unknown> | undefined)?.[
+      sdkAsyncObjectRequestBindings[name]
+    ] as { onChange: (value: boolean) => void } | undefined
+    binding?.onChange(value === 'true')
   } else if (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean') {
     if (value !== 'true' && value !== 'false')
       throw new Error(name + ' emitted an invalid boolean')

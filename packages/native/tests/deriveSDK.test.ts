@@ -596,6 +596,26 @@ describe('SDK modifier derivation', () => {
       { name: 'draggableWithContainerItemID', sdkName: 'draggable', kind: 'dragItemID', type: 'ItemID', ios: 0 },
     ])
   })
+
+  it('loads an optional SDK scene through its public async coordinate request', () => {
+    expect(deriveModifiers([
+      method('lookAroundViewer', '_MapKit_SwiftUI', [
+        { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+        { label: 'initialScene', name: 'initialScene', type: 'MapKit.MKLookAroundScene?' },
+        { label: 'allowsNavigation', name: 'allowsNavigation', type: 'Swift.Bool', defaultValue: 'true' },
+      ]),
+      { ...method('init', 'MapKit', [
+        { label: 'coordinate', name: 'coordinate', type: 'CoreLocation.CLLocationCoordinate2D' },
+      ]), kind: 'init', owner: 'MKLookAroundSceneRequest' },
+      { ...method('scene', 'MapKit'), kind: 'var', owner: 'MKLookAroundSceneRequest',
+        type: 'MapKit.MKLookAroundScene?', attributes: ['@async'] },
+    ], 27, [])).toEqual([{
+      name: 'lookAroundViewer', kind: 'asyncObjectRequest',
+      type: 'MapKit.MKLookAroundScene?', ios: 0, framework: 'MapKit',
+      requestType: 'MapKit.MKLookAroundSceneRequest', requestProperty: 'scene',
+      predicateLabel: 'isPresented', label: 'initialScene',
+    }])
+  })
 })
 
 describe('SDK view slots', () => {

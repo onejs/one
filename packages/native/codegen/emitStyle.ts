@@ -115,6 +115,7 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
         ...(modifier.sharedParameter ? [modifier.sharedParameter.type.split('.')[0]] : []),
         ...(modifier.arguments?.some((argument) => argument.type.includes('UniformTypeIdentifiers.'))
           ? ['UniformTypeIdentifiers'] : []),
+        ...(modifier.kind === 'asyncObjectRequest' ? ['CoreLocation'] : []),
       ])
     ),
   ]
@@ -497,6 +498,23 @@ ${modifier.cases!.map((item) => `      case ${JSON.stringify(item.name)}: return
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     ${apply('containerItemID: value, containerNamespace: OneNativeNamespace.id', modifier.ios, true).trimStart()}
   }`
+      if (modifier.kind === 'asyncObjectRequest') {
+        const wrapper = `OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}Request`
+        const call = `self.modifier(${wrapper}(latitude: config.1, longitude: config.2, presented: config.0, emit: emit))`
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let config: (Bool, Double, Double) = {
+      guard let data = value.data(using: .utf8),
+        let values = try? JSONDecoder().decode([String].self, from: data), values.count == 3,
+        (values[0] == "true" || values[0] == "false"),
+        let latitude = Double(values[1]), (-90...90).contains(latitude),
+        let longitude = Double(values[2]), (-180...180).contains(longitude) else {
+        preconditionFailure("invalid ${modifier.name} request")
+      }
+      return (values[0] == "true", latitude, longitude)
+    }()
+    ${modifier.ios > 17 ? sdkGuard(modifier.ios, `if #available(iOS ${modifier.ios}, *) { ${call} } else { self }`, 'self').trimStart() : call}
+  }`
+      }
       if (modifier.kind === 'eventDrop')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let types: [String] = {
@@ -840,6 +858,7 @@ const sdkAssociatedCases: Record<string, Record<string, readonly SDKEventValueSh
 const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct' || modifier.kind === 'eventDrop' || modifier.kind === 'eventAsyncStruct' || modifier.kind === 'eventAsyncString' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.eventValue])))}
 const sdkAsyncArguments: Record<string, readonly { field: string; kind: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAsyncStruct' && modifier.arguments?.length).map((modifier) => [modifier.name, modifier.arguments!.map((argument) => ({ field: argument.field, kind: argument.kind }))])))}
 const sdkAsyncStringFields: Record<string, { predicate: string; callback: string; selects: boolean }> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAsyncString').map((modifier) => [modifier.name, { predicate: modifier.predicateLabel, callback: modifier.callbackLabel, selects: Boolean(modifier.selectionMember) }]))) }
+const sdkAsyncObjectRequestBindings: Record<string, string> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'asyncObjectRequest').map((modifier) => [modifier.name, modifier.predicateLabel])))}
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'gesture').map((modifier) => [modifier.name, Object.fromEntries(modifier.gestureOptions!.map((option) => [option.name, option.eventValue ?? null]))])))}
 const sdkCodableOptional: Record<string, boolean> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'bindingCodable').map((modifier) => [modifier.name, modifier.type.endsWith('?')]))) }
 const sdkRecords: Record<string, readonly { field: string; kind: string; optional: boolean; unique?: boolean; fields?: readonly { name: string; type: string; integer: boolean }[]; eventValue?: SDKEventValueShape }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'record').map((modifier) => [modifier.name, modifier.arguments!.map(({ field, kind, optional, unique, fields, eventValue }) => ({ field, kind, optional, ...(unique ? { unique } : {}), ...(fields ? { fields: fields.map((item) => ({ name: item.name, type: item.type, integer: item.type === 'Swift.Int' })) } : {}), ...(eventValue ? { eventValue } : {}) }))])))}
@@ -1038,6 +1057,19 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
         if (!Array.isArray(value) || value.some((item) => typeof item !== 'string'))
           throw new Error(name + ' must be an array of string IDs')
         sdkModifiers.push([name, JSON.stringify(value)])
+        continue
+      }
+      if (kind === 'asyncObjectRequest') {
+        const record = value as Record<string, unknown> | undefined
+        const binding = record?.[sdkAsyncObjectRequestBindings[name]] as { value?: unknown; onChange?: unknown } | undefined
+        if (!record || !binding || typeof binding.value !== 'boolean' ||
+          typeof binding.onChange !== 'function' ||
+          typeof record.latitude !== 'number' || !Number.isFinite(record.latitude) ||
+          record.latitude < -90 || record.latitude > 90 ||
+          typeof record.longitude !== 'number' || !Number.isFinite(record.longitude) ||
+          record.longitude < -180 || record.longitude > 180)
+          throw new Error(name + ' must have a presentation binding and valid coordinates')
+        sdkModifiers.push([name, JSON.stringify([String(binding.value), String(record.latitude), String(record.longitude)])])
         continue
       }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite')
@@ -1250,6 +1282,12 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
     if (value !== '') throw new Error(name + ' emitted an invalid notification event')
     ;(modifier as { onAction: () => void } | undefined)?.onAction()
   }
+  else if (kind === 'asyncObjectRequest') {
+    if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid presentation value')
+    const binding = (modifier as Record<string, unknown> | undefined)?.[sdkAsyncObjectRequestBindings[name]] as
+      { onChange: (value: boolean) => void } | undefined
+    binding?.onChange(value === 'true')
+  }
   else if (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean') {
     if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid boolean')
     ;(modifier as { onChange: (value: boolean) => void } | undefined)?.onChange(value === 'true')
@@ -1310,6 +1348,36 @@ ${frameworkImports.map((framework) => `import ${framework}`).join('\n')}
 
 ${derived.some((modifier) => modifier.namespaceParameter || modifier.kind === 'dragContainer' || modifier.kind === 'dragSelection' || modifier.kind === 'dragItemID') ? 'private enum OneNativeNamespace { static let id = Namespace().wrappedValue }\n' : ''}
 ${derived.some((modifier) => modifier.arguments?.some((argument) => argument.type === '[OneNativeRotorEntry]')) ? 'private struct OneNativeRotorEntry: Identifiable { let id: String; var label: String { id } }\n' : ''}
+${derived.filter((modifier) => modifier.kind === 'asyncObjectRequest').map((modifier) => `@available(iOS ${modifier.ios}, *)
+@MainActor private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}Request: ViewModifier {
+  let latitude: Double
+  let longitude: Double
+  let presented: Bool
+  let emit: (String, String) -> Void
+  @State private var object: ${modifier.type}
+
+  func body(content: Content) -> some View {
+    content
+      .task(id: "\\(latitude),\\(longitude),\\(presented)") {
+        guard presented else { object = nil; return }
+        do {
+          let request = ${modifier.requestType}(coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+          let next = try await request.${modifier.requestProperty}
+          guard !Task.isCancelled else { return }
+          object = next
+          if next == nil { emit(${JSON.stringify(modifier.name)}, "false") }
+        } catch {
+          guard !Task.isCancelled else { return }
+          object = nil
+          emit(${JSON.stringify(modifier.name)}, "false")
+        }
+      }
+      .${modifier.sdkName ?? modifier.name}(${modifier.predicateLabel}: Binding(
+        get: { presented && object != nil },
+        set: { emit(${JSON.stringify(modifier.name)}, String($0)) }
+      ), ${modifier.label}: object)
+  }
+}`).join('\n\n')}
 
 public struct OneNativeStyle: Equatable {
 ${properties}

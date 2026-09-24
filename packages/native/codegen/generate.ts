@@ -113,6 +113,18 @@ for (const module of ['UIKit', 'PhotosUI', 'Photos', 'GameController', 'RealityF
             parameters: parameters as Declaration['parameters'], line: 0, attributes })
       }
     }
+    if (symbol.pathComponents.length === 2 && symbol.kind.identifier === 'swift.init' &&
+      declaration === 'init(coordinate: CLLocationCoordinate2D)')
+      importedCases.push({ module, owner, name: 'init', kind: 'init', parameters: [
+        { label: 'coordinate', name: 'coordinate', type: 'CoreLocation.CLLocationCoordinate2D' },
+      ], line: 0, attributes })
+    if (symbol.pathComponents.length === 2 && symbol.kind.identifier === 'swift.property') {
+      const asyncResult = /^var ([A-Za-z]\w*): ([A-Za-z]\w*)\? \{ get async throws \}$/.exec(declaration)
+      if (asyncResult && asyncResult[1] === name)
+        importedCases.push({ module, owner, name, kind: 'var',
+          type: `${module}.${asyncResult[2]}?`, parameters: [], line: 0,
+          attributes: [...attributes, '@async'] })
+    }
     if (symbol.kind.identifier === 'swift.enum.case' && symbol.pathComponents.length > 2) {
       const owner = symbol.pathComponents.slice(0, -1).join('.')
       importedCases.push({ module, owner, name: symbol.pathComponents.at(-1)!, kind: 'static',

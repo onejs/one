@@ -1252,6 +1252,14 @@ export interface OneNativeStyle {
     listSectionSpacingWithCGFloat?: number;
     listSectionSpacingWithListSectionSpacing?: SDKListSectionSpacingWithListSectionSpacing;
     listStyle?: SDKListStyle;
+    lookAroundViewer?: Readonly<{
+        isPresented: Readonly<{
+            value: boolean;
+            onChange: (value: boolean) => void;
+        }>;
+        latitude: number;
+        longitude: number;
+    }>;
     luminanceToAlpha?: boolean;
     manageSubscriptionsSheet?: Readonly<{
         value: boolean;
