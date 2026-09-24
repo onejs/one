@@ -141,7 +141,7 @@ ${styleFields
   )
   const hasSDKEvents = derivedModifiers.some((modifier) => modifier.kind.startsWith('event') ||
     modifier.kind.startsWith('binding') || modifier.kind === 'sessionRequest' ||
-    modifier.kind === 'pickerSelection')
+    modifier.kind === 'pickerSelection' || modifier.kind === 'transferSelection')
   const publicStyleFields: readonly StyleField[] = [
     ...styleFields,
     ...derivedModifiers.map((modifier) => ({
@@ -173,6 +173,8 @@ ${styleFields
             ? `Readonly<{ ${modifier.sessionRequest!.inputField}: string; onResult: (value: Readonly<{ ${modifier.sessionRequest!.outputFields.map((field) => `${field}: string`).join('; ')}; error: null }> | Readonly<{ ${modifier.sessionRequest!.outputFields.map((field) => `${field}: null`).join('; ')}; error: string }>) => void }>`
           : modifier.kind === 'pickerSelection'
             ? 'Readonly<{ isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>; title?: string; onSelection: (id: string) => void }>'
+          : modifier.kind === 'transferSelection'
+            ? 'Readonly<{ isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>; onSelection: (url: string) => void; onError: (message: string) => void }>'
           : modifier.kind === 'eventBoolean'
             ? '(value: boolean) => void'
             : modifier.kind === 'eventNumber'

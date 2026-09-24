@@ -443,6 +443,7 @@ const sdkKinds = {
   payWithApplePayButtonDisableCardArt: 'boolean',
   payWithApplePayButtonStyle: 'string',
   persistentSystemOverlays: 'string',
+  photosPicker: 'transferSelection',
   photosPickerAccessoryVisibility: 'record',
   photosPickerDisabledCapabilities: 'string',
   photosPickerMetadataOptions: 'string',
@@ -2488,6 +2489,29 @@ export function swiftStyleNative(
         ])
         continue
       }
+      if (kind === 'transferSelection') {
+        const picker = value as
+          | {
+              isPresented?: { value?: unknown; onChange?: unknown }
+              onSelection?: unknown
+              onError?: unknown
+            }
+          | undefined
+        if (
+          !picker ||
+          typeof picker !== 'object' ||
+          typeof picker.isPresented?.value !== 'boolean' ||
+          typeof picker.isPresented.onChange !== 'function' ||
+          typeof picker.onSelection !== 'function' ||
+          typeof picker.onError !== 'function'
+        )
+          throw new Error(
+            name +
+              ' must have a presentation binding, selection callback, and error callback'
+          )
+        sdkModifiers.push([name, String(picker.isPresented.value)])
+        continue
+      }
       if (kind === 'eventDrop') {
         const record = value as { of?: unknown; onDrop?: unknown } | undefined
         if (
@@ -2708,6 +2732,23 @@ export function dispatchSDKEvent(
         picker?.isPresented.onChange(value === 'true')
       } else if (field === 'onSelection') picker?.onSelection(value)
       else throw new Error(name + ' emitted an invalid picker event')
+      return
+    }
+    if (sdkKinds[parent as keyof typeof sdkKinds] === 'transferSelection') {
+      const picker = (style as Record<string, unknown> | undefined)?.[parent] as
+        | {
+            isPresented: { onChange: (value: boolean) => void }
+            onSelection: (url: string) => void
+            onError: (message: string) => void
+          }
+        | undefined
+      if (field === 'isPresented') {
+        if (value !== 'true' && value !== 'false')
+          throw new Error(name + ' emitted an invalid boolean')
+        picker?.isPresented.onChange(value === 'true')
+      } else if (field === 'onSelection') picker?.onSelection(value)
+      else if (field === 'onError') picker?.onError(value)
+      else throw new Error(name + ' emitted an invalid transfer event')
       return
     }
     if (

@@ -2782,6 +2782,11 @@ export interface OneNativeStyle {
   payWithApplePayButtonDisableCardArt?: boolean
   payWithApplePayButtonStyle?: SDKPayWithApplePayButtonStyle
   persistentSystemOverlays?: SDKPersistentSystemOverlays
+  photosPicker?: Readonly<{
+    isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+    onSelection: (url: string) => void
+    onError: (message: string) => void
+  }>
   photosPickerAccessoryVisibility?: Readonly<{
     visibility: 'automatic' | 'visible' | 'hidden'
     edges: 'top' | 'leading' | 'bottom' | 'trailing' | 'all' | 'horizontal' | 'vertical'

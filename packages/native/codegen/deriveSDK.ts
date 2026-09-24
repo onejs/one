@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'transferSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -52,6 +52,8 @@ export type DerivedModifier = {
   selectionInputIndex?: number
   pickerSelection?: { selectionType: string; presentedLabel: string; titleLabel: string;
     selectionLabel: string; idField: string; rawField: string }
+  transferSelection?: { itemType: string; presentedLabel: string; selectionLabel: string;
+    contentTypesField: string }
   requestType?: string
   requestProperty?: string
   sessionRequest?: { method: string; inputField: string; outputFields: readonly string[];
@@ -658,6 +660,32 @@ export function deriveModifiers(
       const framework = method.module.startsWith('_')
         ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
         : {}
+      const transferType = method.parameters[0]?.type === 'SwiftUICore.Binding<Swift.Bool>' &&
+        method.parameters.slice(2).every((parameter) => parameter.defaultValue !== undefined) &&
+        /^SwiftUICore\.Binding<([A-Za-z_]\w*\.[A-Za-z_]\w*)\?>$/.exec(method.parameters[1]?.type ?? '')?.[1]
+      if (transferType) {
+        const [module, itemName] = transferType.split('.')
+        const item = inventory.find((declaration) => declaration.kind === 'struct' &&
+          declaration.module === module && declaration.owner === '' &&
+          declaration.name === itemName && present(declaration) && ios(declaration) <= ceiling)
+        const load = inventory.find((declaration) => declaration.kind === 'func' &&
+          declaration.module === module && declaration.owner === itemName &&
+          declaration.name === 'loadTransferable' && declaration.parameters.length === 1 &&
+          declaration.parameters[0].label === 'type' && present(declaration) && ios(declaration) <= ceiling)
+        const types = inventory.find((declaration) => declaration.kind === 'var' &&
+          declaration.module === module && declaration.owner === itemName &&
+          declaration.type === '[UniformTypeIdentifiers.UTType]' &&
+          present(declaration) && ios(declaration) <= ceiling)
+        if (item && load && types) {
+          return [{ name, module: method.module, kind: 'transferSelection' as const,
+            type: transferType, ...framework,
+            ios: Math.max(ios(method), ios(item), ios(load), ios(types)),
+            transferSelection: { itemType: transferType,
+              presentedLabel: method.parameters[0].label,
+              selectionLabel: method.parameters[1].label,
+              contentTypesField: types.name } }]
+        }
+      }
       const pickerProtocol = method.parameters.length === 3 &&
         method.parameters[0].type === 'SwiftUICore.Binding<Swift.Bool>' &&
         method.parameters[1].type === 'SwiftUICore.Text?' &&
