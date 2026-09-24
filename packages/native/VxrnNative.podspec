@@ -18,12 +18,15 @@ Pod::Spec.new do |s|
 
   sdk_version = Gem::Version.new(`xcrun --sdk iphoneos --show-sdk-version`.strip)
   swift_flags = '$(inherited) -Xcc -Wno-non-modular-include-in-framework-module'
-  swift_flags += ' -D ONE_IOS_27_1_SDK' if sdk_version >= Gem::Version.new('27.1')
+  # one flag per SDK that declares newer api: generated swift guards that api with it, so
+  # an older Xcode still compiles. codegen/sdkGuard.ts lists the same versions.
+  { '27' => 'ONE_IOS_27_SDK', '27.1' => 'ONE_IOS_27_1_SDK' }.each do |version, flag|
+    swift_flags += " -D #{flag}" if sdk_version >= Gem::Version.new(version)
+  end
   s.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
     'SWIFT_COMPILATION_MODE' => 'incremental',
     'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
-    # the iPhone Duo APIs first ship in the iOS 27.1 SDK.
     'OTHER_SWIFT_FLAGS' => swift_flags,
     'HEADER_SEARCH_PATHS' => '"$(PODS_TARGET_SRCROOT)/cpp" "$(OBJECT_FILE_DIR_normal)/$(CURRENT_ARCH)"',
   }

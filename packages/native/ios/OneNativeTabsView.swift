@@ -436,16 +436,25 @@ extension TabContent where TabValue == String {
     if let value { self.tabPlacement(OneNativeGenerated.tabPlacement(value)) } else { self }
   }
 
+  // both need api only the iOS 27 SDK declares; VxrnNative.podspec defines the flag.
   @TabContentBuilder<String>
   func oneNativeDefaultSectionExpansion(_ value: String?) -> some TabContent<String> {
+    #if ONE_IOS_27_SDK
     if let value, #available(iOS 27.0, *) {
       self.defaultSectionExpansion(OneNativeGenerated.tabSectionExpansion(value))
     } else { self }
+    #else
+    self
+    #endif
   }
 
   @TabContentBuilder<String>
   func oneNativeHelp(_ text: String?) -> some TabContent<String> {
+    #if ONE_IOS_27_SDK
     if let text, #available(iOS 27.0, *) { self.help(Text(text)) } else { self }
+    #else
+    self
+    #endif
   }
 
   @TabContentBuilder<String>
