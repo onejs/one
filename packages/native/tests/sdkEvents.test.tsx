@@ -15,6 +15,21 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('shares a native namespace across SDK modifiers with string identifiers', () => {
+    const element = Controls.Text({ text: 'source', swiftStyle: {
+      matchedGeometryEffect: { id: 'hero' },
+      accessibilityLabeledPair: { role: 'label', id: 'title' },
+      glassEffectID: { id: 'glass' },
+      glassEffectUnion: { id: null },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['matchedGeometryEffect', '["hero"]'],
+      ['accessibilityLabeledPair', '["label","title"]'],
+      ['glassEffectID', '["glass"]'],
+      ['glassEffectUnion', '[null]'],
+    ])
+  })
+
   it('toggles a public boolean environment value through the SDK transform method', () => {
     const element = Controls.Text({ text: 'child', swiftStyle: {
       transformEnvironmentIsEnabled: true,

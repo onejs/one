@@ -539,16 +539,26 @@ export interface OneNativeStyle {
         inputLabels: readonly string[];
         isEnabled: boolean;
     }>;
+    accessibilityLabeledPair?: Readonly<{
+        role: 'label' | 'content';
+        id: string;
+    }>;
     accessibilityLabelWithLabelAndIsEnabled?: Readonly<{
         label: string;
         isEnabled: boolean;
     }>;
     accessibilityLabelWithText?: string;
+    accessibilityLinkedGroup?: Readonly<{
+        id: string;
+    }>;
     accessibilityRemoveTraits?: SDKAccessibilityRemoveTraits;
     accessibilityRespondsToUserInteractionWithBool?: boolean;
     accessibilityRespondsToUserInteractionWithRespondsToUserInteractionAndIsEnabled?: Readonly<{
         respondsToUserInteraction: boolean;
         isEnabled: boolean;
+    }>;
+    accessibilityRotorEntry?: Readonly<{
+        id: string;
     }>;
     accessibilityScrollAction?: (value: 'top' | 'leading' | 'bottom' | 'trailing') => void;
     accessibilityScrollStatus?: Readonly<{
@@ -1015,7 +1025,13 @@ export interface OneNativeStyle {
         kind: 'tap';
         onEnded: () => void;
     }>;
+    glassEffectID?: Readonly<{
+        id: string | null;
+    }>;
     glassEffectTransition?: SDKGlassEffectTransition;
+    glassEffectUnion?: Readonly<{
+        id: string | null;
+    }>;
     grayscale?: number;
     gridCellAnchor?: SDKGridCellAnchor;
     gridCellColumns?: number;
@@ -1211,6 +1227,12 @@ export interface OneNativeStyle {
     mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null;
     mapFeatureSelectionDisabled?: boolean;
     mapStyle?: SDKMapStyle;
+    matchedGeometryEffect?: Readonly<{
+        id: string;
+    }>;
+    matchedTransitionSource?: Readonly<{
+        id: string;
+    }>;
     materialActiveAppearance?: SDKMaterialActiveAppearance;
     menuActionDismissBehavior?: SDKMenuActionDismissBehavior;
     menuIndicator?: SDKMenuIndicator;

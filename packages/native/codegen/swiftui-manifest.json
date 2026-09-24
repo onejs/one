@@ -1456,6 +1456,43 @@
       ]
     },
     {
+      "name": "accessibilityLabeledPair",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUI.AccessibilityLabeledPairRole",
+          "optional": false,
+          "cases": [
+            {
+              "name": "label",
+              "ios": 14
+            },
+            {
+              "name": "content",
+              "ios": 14
+            }
+          ],
+          "field": "role",
+          "label": "role"
+        },
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "sdkType": "ID",
+          "optional": false,
+          "field": "id",
+          "label": "id"
+        }
+      ],
+      "namespaceParameter": {
+        "index": 2,
+        "label": "in"
+      }
+    },
+    {
       "name": "accessibilityLabelWithLabelAndIsEnabled",
       "module": "SwiftUI",
       "kind": "record",
@@ -1486,6 +1523,26 @@
       "type": "SwiftUICore.Text",
       "ios": 14,
       "sdkName": "accessibilityLabel"
+    },
+    {
+      "name": "accessibilityLinkedGroup",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "sdkType": "ID",
+          "optional": false,
+          "field": "id",
+          "label": "id"
+        }
+      ],
+      "namespaceParameter": {
+        "index": 1,
+        "label": "in"
+      }
     },
     {
       "name": "accessibilityRemoveTraits",
@@ -1594,6 +1651,26 @@
         }
       ],
       "sdkName": "accessibilityRespondsToUserInteraction"
+    },
+    {
+      "name": "accessibilityRotorEntry",
+      "kind": "record",
+      "type": "",
+      "ios": 15,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "sdkType": "ID",
+          "optional": false,
+          "field": "id",
+          "label": "id"
+        }
+      ],
+      "namespaceParameter": {
+        "index": 1,
+        "label": "in"
+      }
     },
     {
       "name": "accessibilityScrollAction",
@@ -6587,6 +6664,26 @@
       "ios": 13
     },
     {
+      "name": "glassEffectID",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String?",
+          "sdkType": "(some (Hashable & Sendable))?",
+          "optional": true,
+          "field": "id",
+          "label": "_"
+        }
+      ],
+      "namespaceParameter": {
+        "index": 1,
+        "label": "in"
+      }
+    },
+    {
       "name": "glassEffectTransition",
       "kind": "string",
       "type": "SwiftUICore.GlassEffectTransition",
@@ -6605,6 +6702,26 @@
           "ios": 26
         }
       ]
+    },
+    {
+      "name": "glassEffectUnion",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String?",
+          "sdkType": "(some (Hashable & Sendable))?",
+          "optional": true,
+          "field": "id",
+          "label": "id"
+        }
+      ],
+      "namespaceParameter": {
+        "index": 1,
+        "label": "namespace"
+      }
     },
     {
       "name": "grayscale",
@@ -8703,6 +8820,46 @@
           "ios": 17
         }
       ]
+    },
+    {
+      "name": "matchedGeometryEffect",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "sdkType": "ID",
+          "optional": false,
+          "field": "id",
+          "label": "id"
+        }
+      ],
+      "namespaceParameter": {
+        "index": 1,
+        "label": "in"
+      }
+    },
+    {
+      "name": "matchedTransitionSource",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "sdkType": "some Hashable",
+          "optional": false,
+          "field": "id",
+          "label": "id"
+        }
+      ],
+      "namespaceParameter": {
+        "index": 1,
+        "label": "in"
+      }
     },
     {
       "name": "materialActiveAppearance",
@@ -16525,7 +16682,9 @@
         "frame",
         "geometryGroup",
         "gesture",
+        "glassEffectID",
         "glassEffectTransition",
+        "glassEffectUnion",
         "grayscale",
         "headerProminence",
         "highPriorityGesture",
@@ -16545,6 +16704,7 @@
         "lineSpacing",
         "luminanceToAlpha",
         "mask",
+        "matchedGeometryEffect",
         "materialActiveAppearance",
         "minimumScaleFactor",
         "monospaced",
@@ -16627,9 +16787,12 @@
         "accessibilityIdentifier",
         "accessibilityInputLabels",
         "accessibilityLabel",
+        "accessibilityLabeledPair",
+        "accessibilityLinkedGroup",
         "accessibilityRemoveTraits",
         "accessibilityRepresentation",
         "accessibilityRespondsToUserInteraction",
+        "accessibilityRotorEntry",
         "accessibilityScrollAction",
         "accessibilityScrollStatus",
         "accessibilitySortPriority",
@@ -16732,6 +16895,7 @@
         "listSectionSeparatorTint",
         "listSectionSpacing",
         "listStyle",
+        "matchedTransitionSource",
         "menuActionDismissBehavior",
         "menuIndicator",
         "menuOrder",
@@ -17014,7 +17178,9 @@
         "frame",
         "geometryGroup",
         "gesture",
+        "glassEffectID",
         "glassEffectTransition",
+        "glassEffectUnion",
         "grayscale",
         "headerProminence",
         "highPriorityGesture",
@@ -17034,6 +17200,7 @@
         "lineSpacing",
         "luminanceToAlpha",
         "mask",
+        "matchedGeometryEffect",
         "materialActiveAppearance",
         "minimumScaleFactor",
         "monospaced",
@@ -17114,9 +17281,12 @@
         "accessibilityIdentifier",
         "accessibilityInputLabels",
         "accessibilityLabel",
+        "accessibilityLabeledPair",
+        "accessibilityLinkedGroup",
         "accessibilityRemoveTraits",
         "accessibilityRepresentation",
         "accessibilityRespondsToUserInteraction",
+        "accessibilityRotorEntry",
         "accessibilityScrollAction",
         "accessibilityScrollStatus",
         "accessibilitySortPriority",
@@ -17219,6 +17389,7 @@
         "listSectionSeparatorTint",
         "listSectionSpacing",
         "listStyle",
+        "matchedTransitionSource",
         "menuActionDismissBehavior",
         "menuIndicator",
         "menuOrder",

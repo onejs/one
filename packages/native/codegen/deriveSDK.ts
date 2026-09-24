@@ -66,6 +66,7 @@ export type DerivedModifier = {
   predicateInput?: string
   aliasSuffix?: string
   callArguments?: readonly { label: string; defaultValue?: string; bridge?: true }[]
+  namespaceParameter?: { index: number; label: string }
   arguments?: readonly DerivedArgument[]
 }
 
@@ -601,6 +602,33 @@ export function deriveModifiers(
       const framework = method.module.startsWith('_')
         ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
         : {}
+      const namespaceIndex = method.parameters.findIndex((parameter) =>
+        parameter.type === 'SwiftUICore.Namespace.ID')
+      if (namespaceIndex !== -1) {
+        const required = method.parameters.filter((parameter, index) =>
+          index !== namespaceIndex && parameter.defaultValue === undefined)
+        const argumentsFromSDK = required.map((parameter) => {
+          const generic = parameter.type === 'some Hashable' ||
+            parameter.type === '(some (Hashable & Sendable))?' ||
+            method.requirements?.includes(`${parameter.type.replace(/\?$/, '')} : Swift.Hashable`)
+          const value = generic
+            ? { kind: 'string' as const, type: parameter.type.endsWith('?') ? 'Swift.String?' : 'Swift.String',
+              sdkType: parameter.type, optional: parameter.type.endsWith('?') }
+            : valueOf(parameter.type)
+          return value && { ...value, field: parameter.name, label: parameter.label }
+        })
+        if (required.length && argumentsFromSDK.every(Boolean) &&
+          new Set(argumentsFromSDK.map((argument) => argument!.field)).size === required.length)
+          return [{ name, module: method.module, kind: 'record', type: '', ios: ios(method),
+            arguments: argumentsFromSDK as DerivedArgument[],
+            namespaceParameter: {
+              index: method.parameters.slice(0, namespaceIndex).filter((parameter) =>
+                parameter.defaultValue === undefined).length,
+              label: method.parameters[namespaceIndex].label,
+            },
+            ...framework }]
+        return []
+      }
       const genericTransform = method.parameters.length === 3 &&
         method.parameters[0].type === 'T.Type' &&
         method.requirements?.some((requirement) =>
