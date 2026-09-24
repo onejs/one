@@ -100,6 +100,7 @@ const sdkKinds = {
   allowsWindowActivationEventsWithNoArguments: 'boolean',
   allowsWindowActivationEventsWithOptionalBool: 'optionalBoolean',
   animation: 'optionalEnum',
+  appStoreMerchandising: 'record',
   aspectRatio: 'record',
   assistiveAccessNavigationIconWithImage: 'string',
   assistiveAccessNavigationIconWithSystemImage: 'string',
@@ -1097,6 +1098,10 @@ const sdkRecords: Record<
   alignmentGuideWithVerticalAlignment: [
     { field: 'g', kind: 'enum', optional: false },
     { field: 'computeValue', kind: 'number', optional: false },
+  ],
+  appStoreMerchandising: [
+    { field: 'isPresented', kind: 'bindingBoolean', optional: false },
+    { field: 'kind', kind: 'string', optional: false },
   ],
   aspectRatio: [
     { field: 'aspectRatio', kind: 'number', optional: true },

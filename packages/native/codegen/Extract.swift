@@ -22,6 +22,7 @@ struct Declaration: Codable {
   let generic: Bool?
   let enumCase: Bool?
   let stored: Bool?
+  let isStatic: Bool?
 }
 // generic requirement elements carry their trailing comma; selectors compare on the text alone.
 func requirementText(_ requirement: GenericRequirementSyntax) -> String {
@@ -44,13 +45,13 @@ final class Inventory: SyntaxVisitor {
   func attributes(_ attrs: AttributeListSyntax) -> [String] {
     attrs.compactMap { $0.as(AttributeSyntax.self)?.trimmedDescription }
   }
-  func record(_ node: some SyntaxProtocol, kind: String, name: String, attrs: AttributeListSyntax, parameters: FunctionParameterListSyntax? = nil, type: String? = nil, whereClause: GenericWhereClauseSyntax? = nil, inheritedTypes: [String]? = nil, generic: Bool? = nil, enumCase: Bool? = nil, stored: Bool? = nil) {
+  func record(_ node: some SyntaxProtocol, kind: String, name: String, attrs: AttributeListSyntax, parameters: FunctionParameterListSyntax? = nil, type: String? = nil, whereClause: GenericWhereClauseSyntax? = nil, inheritedTypes: [String]? = nil, generic: Bool? = nil, enumCase: Bool? = nil, stored: Bool? = nil, isStatic: Bool? = nil) {
     declarations.append(Declaration(module: module, owner: owners.joined(separator: "."), kind: kind, name: name.replacingOccurrences(of: "`", with: ""),
       attributes: availability.flatMap { $0 } + attributes(attrs),
       requirements: requirements.flatMap { $0 } + (whereClause?.requirements.map(requirementText) ?? []),
       parameters: parameters?.map { Parameter(label: $0.firstName.text, name: $0.secondName?.text ?? $0.firstName.text, type: $0.type.trimmedDescription, defaultValue: $0.defaultValue?.value.trimmedDescription) } ?? [],
       type: type, line: location.location(for: node.positionAfterSkippingLeadingTrivia).line,
-      inheritedTypes: inheritedTypes, generic: generic, enumCase: enumCase, stored: stored))
+      inheritedTypes: inheritedTypes, generic: generic, enumCase: enumCase, stored: stored, isStatic: isStatic))
   }
   override func visit(_ node: StructDeclSyntax) -> SyntaxVisitorContinueKind {
     record(node, kind: "struct", name: node.name.text, attrs: node.attributes,
@@ -79,7 +80,7 @@ final class Inventory: SyntaxVisitor {
               type: $0.type.trimmedDescription, defaultValue: nil)
           },
           type: owners.last, line: location.location(for: element.positionAfterSkippingLeadingTrivia).line,
-          inheritedTypes: nil, generic: nil, enumCase: true, stored: nil))
+          inheritedTypes: nil, generic: nil, enumCase: true, stored: nil, isStatic: nil))
       } else {
         record(element, kind: "static", name: element.name.text, attrs: node.attributes, type: owners.last, enumCase: true)
       }
@@ -88,7 +89,8 @@ final class Inventory: SyntaxVisitor {
   }
   override func visit(_ node: FunctionDeclSyntax) -> SyntaxVisitorContinueKind {
     if node.modifiers.contains(where: { $0.name.text == "public" }) {
-      record(node, kind: "func", name: node.name.text, attrs: node.attributes, parameters: node.signature.parameterClause.parameters, type: node.signature.returnClause?.type.trimmedDescription, whereClause: node.genericWhereClause)
+      record(node, kind: "func", name: node.name.text, attrs: node.attributes, parameters: node.signature.parameterClause.parameters, type: node.signature.returnClause?.type.trimmedDescription, whereClause: node.genericWhereClause,
+        isStatic: node.modifiers.contains(where: { $0.name.text == "static" || $0.name.text == "class" }))
     }
     return .skipChildren
   }

@@ -3,9 +3,9 @@
 import SwiftUI
 import UIKit
 import PassKit
+import StoreKit
 import DataDetection
 import GameController
-import StoreKit
 import MapKit
 import MusicKit
 import AVKit
@@ -163,6 +163,7 @@ extension View {
       case "allowsWindowActivationEventsWithNoArguments": view = AnyView(view.oneNativeSDKAllowsWindowActivationEventsWithNoArguments(value, emit: emit))
       case "allowsWindowActivationEventsWithOptionalBool": view = AnyView(view.oneNativeSDKAllowsWindowActivationEventsWithOptionalBool(value, emit: emit))
       case "animation": view = AnyView(view.oneNativeSDKAnimation(value, emit: emit))
+      case "appStoreMerchandising": view = AnyView(view.oneNativeSDKAppStoreMerchandising(value, emit: emit))
       case "aspectRatio": view = AnyView(view.oneNativeSDKAspectRatio(value, emit: emit))
       case "assistiveAccessNavigationIconWithImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithImage(value, emit: emit))
       case "assistiveAccessNavigationIconWithSystemImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithSystemImage(value, emit: emit))
@@ -1522,6 +1523,26 @@ extension View {
       case "linear": self.animation(SwiftUICore.Animation.linear)
     default: preconditionFailure("invalid animation: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAppStoreMerchandising(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid appStoreMerchandising: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUICore.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid appStoreMerchandising.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("appStoreMerchandising.isPresented", String($0)) })
+    }()
+    let argument1: StoreKit.AppStoreMerchandisingKind = {
+      guard let raw = values[1] else { preconditionFailure("missing appStoreMerchandising.kind") }
+      return StoreKit.AppStoreMerchandisingKind.subscriptionBundle(raw)
+    }()
+    self.appStoreMerchandising(isPresented: argument0, kind: argument1)
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAspectRatio(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
