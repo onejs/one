@@ -59,7 +59,7 @@ describe.each(['ios', 'android'] as const)('native plugin adapters on %s', (plat
         })
       )
       const previousPlugins = globalThis.__vxrnAddNativePlugins
-      globalThis.__vxrnAddNativePlugins = [plugins[0]]
+      globalThis.__vxrnAddNativePlugins = () => [plugins[0]]
       const configuredPlugins: Plugin[] = [
         plugins[1],
         {

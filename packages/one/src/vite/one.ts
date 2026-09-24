@@ -300,6 +300,81 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     },
   }
 
+  // resolveId-based aliases that work during vite transforms, rolldown dep
+  // pre-bundling (where resolve.alias is not applied), and the standalone
+  // native bundler, which has no vite environment and so is told its platform
+  const createAliasPlugin = (
+    alias: NonNullable<One.PluginOptions['alias']>,
+    nativePlatform?: 'ios' | 'android'
+  ) => {
+    const resolveMap = (map?: Record<string, string>) => {
+      if (!map) return null
+      const out: Record<string, string> = {}
+      for (const [key, value] of Object.entries(map)) {
+        try {
+          out[key] = path.isAbsolute(value) ? value : resolvePath(value)
+        } catch {
+          out[key] = value
+        }
+      }
+      return out
+    }
+
+    const resolved = {
+      web: resolveMap(alias.web),
+      native: resolveMap(alias.native),
+      client: resolveMap(alias.client),
+      ssr: resolveMap(alias.ssr),
+      ios: resolveMap(alias.ios),
+      android: resolveMap(alias.android),
+    }
+
+    // every alias is an exact source match, so the union of all keys is
+    // an exact rust-side filter. anything else never enters js.
+    const aliasKeys = [
+      ...new Set(Object.values(resolved).flatMap((m) => (m ? Object.keys(m) : []))),
+    ]
+    const aliasFilter = aliasKeys.length
+      ? new RegExp(
+          `^(?:${aliasKeys.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})$`
+        )
+      : /(?!)/
+
+    return {
+      name: 'one:alias',
+      enforce: 'pre',
+      resolveId: {
+        filter: { id: aliasFilter },
+        handler(source) {
+          const env = nativePlatform ?? this.environment?.name
+
+          // specific env wins over general
+          const specific = env ? resolved[env as keyof typeof resolved] : null
+          if (specific && source in specific) {
+            const id = specific[source]
+            return {
+              id,
+              external: false,
+              packageJsonPath: nearestPackageJson(id),
+            }
+          }
+
+          // fall back to general (web/native)
+          const isWeb = !env || env === 'client' || env === 'ssr'
+          const general = isWeb ? resolved.web : resolved.native
+          if (general && source in general) {
+            const id = general[source]
+            return {
+              id,
+              external: false,
+              packageJsonPath: nearestPackageJson(id),
+            }
+          }
+        },
+      },
+    } satisfies Plugin
+  }
+
   const devAndProdPlugins: Plugin[] = [
     {
       name: 'one:config',
@@ -502,83 +577,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           })(),
         ]),
 
-    // resolveId-based aliases that work during both vite transforms AND
-    // rolldown dep pre-bundling (where resolve.alias is not applied)
-    ...(options.alias
-      ? [
-          (() => {
-            const resolveMap = (map?: Record<string, string>) => {
-              if (!map) return null
-              const out: Record<string, string> = {}
-              for (const [key, value] of Object.entries(map)) {
-                try {
-                  out[key] = path.isAbsolute(value) ? value : resolvePath(value)
-                } catch {
-                  out[key] = value
-                }
-              }
-              return out
-            }
-
-            const a = options.alias!
-            const resolved = {
-              web: resolveMap(a.web),
-              native: resolveMap(a.native),
-              client: resolveMap(a.client),
-              ssr: resolveMap(a.ssr),
-              ios: resolveMap(a.ios),
-              android: resolveMap(a.android),
-            }
-
-            // every alias is an exact source match, so the union of all keys is
-            // an exact rust-side filter. anything else never enters js.
-            const aliasKeys = [
-              ...new Set(
-                Object.values(resolved).flatMap((m) => (m ? Object.keys(m) : []))
-              ),
-            ]
-            const aliasFilter = aliasKeys.length
-              ? new RegExp(
-                  `^(?:${aliasKeys.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})$`
-                )
-              : /(?!)/
-
-            return {
-              name: 'one:alias',
-              enforce: 'pre',
-              resolveId: {
-                filter: { id: aliasFilter },
-                handler(source) {
-                  const env = this.environment?.name
-
-                  // specific env wins over general
-                  const specific = env ? resolved[env as keyof typeof resolved] : null
-                  if (specific && source in specific) {
-                    const id = specific[source]
-                    return {
-                      id,
-                      external: false,
-                      packageJsonPath: nearestPackageJson(id),
-                    }
-                  }
-
-                  // fall back to general (web/native)
-                  const isWeb = !env || env === 'client' || env === 'ssr'
-                  const general = isWeb ? resolved.web : resolved.native
-                  if (general && source in general) {
-                    const id = general[source]
-                    return {
-                      id,
-                      external: false,
-                      packageJsonPath: nearestPackageJson(id),
-                    }
-                  }
-                },
-              },
-            } satisfies Plugin
-          })(),
-        ]
-      : []),
+    ...(options.alias ? [createAliasPlugin(options.alias)] : []),
 
     {
       // rolldown fails on deep react-native/Libraries/* imports during dep pre-bundling.
@@ -886,7 +885,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         ? undefined
         : (nativeOptions?.bundlerOptions as any)
 
-    globalThis.__vxrnAddNativePlugins = [
+    globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android') => [
+      ...(options.alias ? [createAliasPlugin(options.alias, platform)] : []),
       clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),
       ...(viteBundlerOptions?.plugins ?? []),
       // last, so an app plugin that compiles .swift itself (a simulator) wins
