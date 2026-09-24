@@ -15,6 +15,20 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('encodes numeric visual effects and scroll phase transitions from SDK methods', () => {
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      visualEffect: { kind: 'opacity', value: 0.8 },
+      scrollTransition: { kind: 'scaleEffect', value: 0.9 },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['visualEffect', '["opacity","0.8"]'],
+      ['scrollTransition', '["scaleEffect","0.9"]'],
+    ])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      scrollTransition: { kind: 'blur' as never, value: 2 },
+    } })).toThrow('scrollTransition must be a visual effect and finite value')
+  })
+
   it('uses a public preference key for setting, transforming, and observing its value', () => {
     const onChange = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {

@@ -12202,6 +12202,23 @@
       "label": "isEnabled"
     },
     {
+      "name": "scrollTransition",
+      "kind": "visualEffect",
+      "type": "@escaping @Sendable (SwiftUICore.EmptyVisualEffect, SwiftUI.ScrollTransitionPhase) -> some VisualEffect",
+      "cases": [
+        {
+          "name": "opacity",
+          "ios": 17
+        },
+        {
+          "name": "scaleEffect",
+          "ios": 17
+        }
+      ],
+      "ios": 17,
+      "visualPhase": true
+    },
+    {
       "name": "searchable",
       "kind": "bindingString",
       "type": "SwiftUICore.Binding<Swift.String>",
@@ -15556,6 +15573,22 @@
       ]
     },
     {
+      "name": "visualEffect",
+      "kind": "visualEffect",
+      "type": "@escaping @Sendable (SwiftUICore.EmptyVisualEffect, SwiftUICore.GeometryProxy) -> some VisualEffect",
+      "cases": [
+        {
+          "name": "opacity",
+          "ios": 17
+        },
+        {
+          "name": "scaleEffect",
+          "ios": 17
+        }
+      ],
+      "ios": 17
+    },
+    {
       "name": "webViewBackForwardNavigationGestures",
       "kind": "string",
       "type": "_WebKit_SwiftUI.WebView.BackForwardNavigationGesturesBehavior",
@@ -16075,6 +16108,7 @@
         "typesettingLanguage",
         "underline",
         "unredacted",
+        "visualEffect",
         "writingDirection",
         "zIndex"
       ],
@@ -16278,6 +16312,7 @@
         "scrollPosition",
         "scrollTargetBehavior",
         "scrollTargetLayout",
+        "scrollTransition",
         "searchCompletion",
         "searchDictationBehavior",
         "searchFocused",
@@ -16551,6 +16586,7 @@
         "typesettingLanguage",
         "underline",
         "unredacted",
+        "visualEffect",
         "writingDirection",
         "zIndex"
       ],
@@ -16750,6 +16786,7 @@
         "scrollPosition",
         "scrollTargetBehavior",
         "scrollTargetLayout",
+        "scrollTransition",
         "searchCompletion",
         "searchDictationBehavior",
         "searchFocused",

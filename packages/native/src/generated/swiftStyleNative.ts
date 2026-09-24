@@ -468,6 +468,7 @@ const sdkKinds = {
   scrollPositionWithId: 'bindingOptionalString',
   scrollTargetBehavior: 'style',
   scrollTargetLayout: 'boolean',
+  scrollTransition: 'visualEffect',
   searchable: 'bindingString',
   searchCompletion: 'string',
   searchDictationBehavior: 'string',
@@ -559,6 +560,7 @@ const sdkKinds = {
   unredacted: 'boolean',
   userActivity: 'record',
   verifyIdentityWithWalletButtonStyle: 'string',
+  visualEffect: 'visualEffect',
   webViewBackForwardNavigationGestures: 'string',
   webViewContentBackground: 'string',
   webViewElementFullscreenBehavior: 'string',
@@ -581,6 +583,10 @@ const sdkEventCases: Record<string, readonly string[]> = {
   dropConfiguration: ['cancel', 'forbidden', 'copy', 'move'],
   onKeyPress: ['handled', 'ignored'],
   onScrollPhaseChange: ['idle', 'tracking', 'interacting', 'decelerating', 'animating'],
+}
+const sdkVisualEffects: Record<string, readonly string[]> = {
+  scrollTransition: ['opacity', 'scaleEffect'],
+  visualEffect: ['opacity', 'scaleEffect'],
 }
 type SDKEventValueShape =
   | { kind: 'number' | 'string' | 'boolean' | 'point' | 'size' | 'description' }
@@ -2089,6 +2095,26 @@ export function swiftStyleNative(
         )
           throw new Error(name + ' must be an SDK gesture and callback')
         sdkModifiers.push([name, (value as { kind: string }).kind])
+        continue
+      }
+      if (kind === 'visualEffect') {
+        if (
+          !value ||
+          typeof value !== 'object' ||
+          Array.isArray(value) ||
+          typeof (value as { kind?: unknown }).kind !== 'string' ||
+          !sdkVisualEffects[name].includes((value as { kind: string }).kind) ||
+          typeof (value as { value?: unknown }).value !== 'number' ||
+          !Number.isFinite((value as { value: number }).value)
+        )
+          throw new Error(name + ' must be a visual effect and finite value')
+        sdkModifiers.push([
+          name,
+          JSON.stringify([
+            (value as { kind: string }).kind,
+            String((value as { value: number }).value),
+          ]),
+        ])
         continue
       }
       if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {

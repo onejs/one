@@ -36,7 +36,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -50,6 +50,7 @@ export type DerivedModifier = {
   resultConstructor?: { type: string; label: string }
   eventPair?: true
   eventInputs?: readonly string[]
+  visualPhase?: true
   gestureOptions?: readonly { name: string; type: string; ios: number; eventValue?: EventValueSchema }[]
   transformMember?: string
   environmentKey?: string
@@ -780,6 +781,27 @@ export function deriveModifiers(
             label: asyncState.label, eventInputType: input, eventValue,
             arguments: [{ ...argument, field: requiredInput[0].name, label: requiredInput[0].label }],
             ios: ios(method), ...framework }]
+      }
+      const visualClosure = method.parameters.at(-1)
+      const visualInput = visualClosure &&
+        /^@escaping @Sendable \(SwiftUICore\.EmptyVisualEffect, (SwiftUICore\.GeometryProxy|SwiftUI\.ScrollTransitionPhase)\) -> some VisualEffect$/.exec(visualClosure.type)?.[1]
+      if (visualInput && method.parameters.every((parameter) =>
+        parameter === visualClosure || parameter.defaultValue !== undefined)) {
+        const cases = inventory.filter((declaration) => declaration.module === 'SwiftUICore' &&
+          declaration.owner === 'SwiftUICore.VisualEffect' && declaration.kind === 'func' &&
+          ['opacity', 'scaleEffect'].includes(declaration.name) &&
+          declaration.type === 'some SwiftUICore.VisualEffect' &&
+          declaration.parameters.length >= 1 &&
+          declaration.parameters[0].defaultValue === undefined &&
+          ['Swift.Double', 'CoreFoundation.CGFloat'].includes(declaration.parameters[0].type) &&
+          declaration.parameters.slice(1).every((parameter) => parameter.defaultValue !== undefined) &&
+          present(declaration) && ios(declaration) <= ceiling)
+          .map((declaration) => ({ name: declaration.name, ios: ios(declaration) }))
+        if (new Set(cases.map((item) => item.name)).size === 2)
+          return [{ name, module: method.module, kind: 'visualEffect', type: visualClosure!.type,
+            cases, ios: ios(method),
+            ...(visualInput === 'SwiftUI.ScrollTransitionPhase' ? { visualPhase: true as const } : {}),
+            ...framework }]
       }
       if (method.parameters.length === 0 ||
         (method.parameters.every((parameter) => parameter.defaultValue !== undefined && !parameter.type.includes('->')) &&

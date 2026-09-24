@@ -525,6 +525,7 @@ extension View {
       case "scrollPositionWithId": view = AnyView(view.oneNativeSDKScrollPositionWithId(value, emit: emit))
       case "scrollTargetBehavior": view = AnyView(view.oneNativeSDKScrollTargetBehavior(value, emit: emit))
       case "scrollTargetLayout": view = AnyView(view.oneNativeSDKScrollTargetLayout(value, emit: emit))
+      case "scrollTransition": view = AnyView(view.oneNativeSDKScrollTransition(value, emit: emit))
       case "searchable": view = AnyView(view.oneNativeSDKSearchable(value, emit: emit))
       case "searchCompletion": view = AnyView(view.oneNativeSDKSearchCompletion(value, emit: emit))
       case "searchDictationBehavior": view = AnyView(view.oneNativeSDKSearchDictationBehavior(value, emit: emit))
@@ -616,6 +617,7 @@ extension View {
       case "unredacted": view = AnyView(view.oneNativeSDKUnredacted(value, emit: emit))
       case "userActivity": view = AnyView(view.oneNativeSDKUserActivity(value, emit: emit))
       case "verifyIdentityWithWalletButtonStyle": view = AnyView(view.oneNativeSDKVerifyIdentityWithWalletButtonStyle(value, emit: emit))
+      case "visualEffect": view = AnyView(view.oneNativeSDKVisualEffect(value, emit: emit))
       case "webViewBackForwardNavigationGestures": view = AnyView(view.oneNativeSDKWebViewBackForwardNavigationGestures(value, emit: emit))
       case "webViewContentBackground": view = AnyView(view.oneNativeSDKWebViewContentBackground(value, emit: emit))
       case "webViewElementFullscreenBehavior": view = AnyView(view.oneNativeSDKWebViewElementFullscreenBehavior(value, emit: emit))
@@ -6324,6 +6326,24 @@ self
       self.scrollTargetLayout(isEnabled: value == "true")
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKScrollTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let decoded: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid scrollTransition visual effect") }
+      return decoded
+    }()
+    let amount: Double = {
+      guard let amount = Double(decoded[1]), amount.isFinite else { preconditionFailure("invalid scrollTransition amount") }
+      return amount
+    }()
+    switch decoded[0] {
+    case "opacity": self.scrollTransition(transition: { effect, phase in effect.opacity(1 - (1 - amount) * abs(phase.value)) })
+    case "scaleEffect": self.scrollTransition(transition: { effect, phase in effect.scaleEffect(CGFloat(1 - (1 - amount) * abs(phase.value))) })
+    default: preconditionFailure("invalid scrollTransition visual effect kind")
+    }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKSearchable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     self.searchable(text: Binding(get: { value }, set: { emit("searchable", String($0)) }), placement: .automatic, prompt: nil)
   }
@@ -8033,6 +8053,24 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
       case "black": self.verifyIdentityWithWalletButtonStyle(_PassKit_SwiftUI.VerifyIdentityWithWalletButtonStyle.black)
       case "blackOutline": self.verifyIdentityWithWalletButtonStyle(_PassKit_SwiftUI.VerifyIdentityWithWalletButtonStyle.blackOutline)
     default: preconditionFailure("invalid verifyIdentityWithWalletButtonStyle: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKVisualEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let decoded: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid visualEffect visual effect") }
+      return decoded
+    }()
+    let amount: Double = {
+      guard let amount = Double(decoded[1]), amount.isFinite else { preconditionFailure("invalid visualEffect amount") }
+      return amount
+    }()
+    switch decoded[0] {
+    case "opacity": self.visualEffect({ effect, _ in effect.opacity(amount) })
+    case "scaleEffect": self.visualEffect({ effect, _ in effect.scaleEffect(CGFloat(amount)) })
+    default: preconditionFailure("invalid visualEffect visual effect kind")
     }
   }
 

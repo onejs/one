@@ -1199,6 +1199,8 @@ export const sdkScrollDismissesKeyboardValues = [
 export type SDKScrollDismissesKeyboard = (typeof sdkScrollDismissesKeyboardValues)[number]
 export const sdkScrollTargetBehaviorValues = ['paging', 'viewAligned'] as const
 export type SDKScrollTargetBehavior = (typeof sdkScrollTargetBehaviorValues)[number]
+export const sdkScrollTransitionValues = ['opacity', 'scaleEffect'] as const
+export type SDKScrollTransition = (typeof sdkScrollTransitionValues)[number]
 export const sdkSearchDictationBehaviorValues = ['automatic'] as const
 export type SDKSearchDictationBehavior = (typeof sdkSearchDictationBehaviorValues)[number]
 export const sdkSearchPresentationToolbarBehaviorValues = [
@@ -1534,6 +1536,8 @@ export const sdkVerifyIdentityWithWalletButtonStyleValues = [
 ] as const
 export type SDKVerifyIdentityWithWalletButtonStyle =
   (typeof sdkVerifyIdentityWithWalletButtonStyleValues)[number]
+export const sdkVisualEffectValues = ['opacity', 'scaleEffect'] as const
+export type SDKVisualEffect = (typeof sdkVisualEffectValues)[number]
 export const sdkWebViewBackForwardNavigationGesturesValues = [
   'automatic',
   'enabled',
@@ -2775,6 +2779,7 @@ export interface OneNativeStyle {
   }>
   scrollTargetBehavior?: SDKScrollTargetBehavior
   scrollTargetLayout?: boolean
+  scrollTransition?: Readonly<{ kind: 'opacity' | 'scaleEffect'; value: number }>
   searchable?: Readonly<{ value: string; onChange: (value: string) => void }>
   searchCompletion?: string
   searchDictationBehavior?: SDKSearchDictationBehavior
@@ -3129,6 +3134,7 @@ export interface OneNativeStyle {
     }>
   }>
   verifyIdentityWithWalletButtonStyle?: SDKVerifyIdentityWithWalletButtonStyle
+  visualEffect?: Readonly<{ kind: 'opacity' | 'scaleEffect'; value: number }>
   webViewBackForwardNavigationGestures?: SDKWebViewBackForwardNavigationGestures
   webViewContentBackground?: SDKWebViewContentBackground
   webViewElementFullscreenBehavior?: SDKWebViewElementFullscreenBehavior
