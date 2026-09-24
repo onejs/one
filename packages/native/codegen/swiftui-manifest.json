@@ -721,6 +721,17 @@
       ]
     },
     {
+      "name": "accessibilityActionWithAppIntent",
+      "module": "_AppIntents_SwiftUI",
+      "kind": "registeredValue",
+      "type": "SwiftUICore.Text",
+      "registeredFactory": "accessibilityAction",
+      "aliasSuffix": "AppIntent",
+      "ios": 18,
+      "framework": "AppIntents",
+      "sdkName": "accessibilityAction"
+    },
+    {
       "name": "accessibilityActivationPointWithActivationPointAndIsEnabled",
       "module": "SwiftUI",
       "kind": "record",
@@ -18122,6 +18133,12 @@
         "writingToolsAffordanceVisibility",
         "writingToolsBehavior"
       ],
+      "_AppIntents_SwiftUI": [
+        "accessibilityAction",
+        "appEntityIdentifier",
+        "shortcutsLinkStyle",
+        "siriTipViewStyle"
+      ],
       "_PassKit_SwiftUI": [
         "addPassToWalletButtonStyle",
         "payLaterViewAction",
@@ -18129,11 +18146,6 @@
         "payWithApplePayButtonDisableCardArt",
         "payWithApplePayButtonStyle",
         "verifyIdentityWithWalletButtonStyle"
-      ],
-      "_AppIntents_SwiftUI": [
-        "appEntityIdentifier",
-        "shortcutsLinkStyle",
-        "siriTipViewStyle"
       ],
       "_StoreKit_SwiftUI": [
         "appStoreMerchandising",
@@ -18667,6 +18679,12 @@
         "writingToolsAffordanceVisibility",
         "writingToolsBehavior"
       ],
+      "_AppIntents_SwiftUI": [
+        "accessibilityAction",
+        "appEntityIdentifier",
+        "shortcutsLinkStyle",
+        "siriTipViewStyle"
+      ],
       "_PassKit_SwiftUI": [
         "addPassToWalletButtonStyle",
         "payLaterViewAction",
@@ -18674,11 +18692,6 @@
         "payWithApplePayButtonDisableCardArt",
         "payWithApplePayButtonStyle",
         "verifyIdentityWithWalletButtonStyle"
-      ],
-      "_AppIntents_SwiftUI": [
-        "appEntityIdentifier",
-        "shortcutsLinkStyle",
-        "siriTipViewStyle"
       ],
       "_StoreKit_SwiftUI": [
         "appStoreMerchandising",

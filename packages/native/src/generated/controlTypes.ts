@@ -1714,6 +1714,7 @@ export interface OneNativeStyle {
   material?: Material
   accentColor?: SDKAccentColor | null
   accessibilityAction?: () => void
+  accessibilityActionWithAppIntent?: string
   accessibilityActivationPointWithActivationPointAndIsEnabled?: Readonly<{
     activationPoint:
       | 'zero'

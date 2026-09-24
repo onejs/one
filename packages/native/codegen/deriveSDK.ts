@@ -59,7 +59,7 @@ export type DerivedModifier = {
   requestType?: string
   registeredProtocol?: string
   registeredType?: string
-  registeredFactory?: 'layoutValue' | 'containerValue'
+  registeredFactory?: 'layoutValue' | 'containerValue' | 'accessibilityAction'
   requestProperty?: string
   sessionRequest?: { method: string; inputField: string; outputFields: readonly string[];
     actionLabel: string; defaults: readonly { label: string; value: string }[] }
@@ -746,6 +746,13 @@ export function deriveModifiers(
           type: method.parameters[0].type,
           registeredFactory: layoutValue ? 'layoutValue' : 'containerValue',
           ios: ios(method), ...framework }]
+      if (method.parameters.length === 2 && method.parameters[0].label === 'named' &&
+        method.parameters[0].type === 'SwiftUICore.Text' &&
+        method.parameters[1].label === 'intent' && method.parameters[1].type === 'I' &&
+        method.requirements?.includes('I : AppIntents.AppIntent'))
+        return [{ name, module: method.module, kind: 'registeredValue',
+          type: method.parameters[0].type, registeredFactory: 'accessibilityAction',
+          aliasSuffix: 'AppIntent', ios: ios(method), ...framework }]
       const anchorSignature = method.parameters.length === 3 &&
         method.parameters[0].type === 'K.Type' &&
         method.parameters[1].type === 'SwiftUICore.Anchor<A>.Source' &&
@@ -1840,7 +1847,8 @@ export function deriveModifiers(
       ? baseBinding[0] : undefined
     const baseEvent = selected.filter((candidate) => candidate.kind === 'event')
     const keepBaseEvent = baseEvent.length === 1 && selected.some((candidate) =>
-      candidate.kind === 'eventStruct' && candidate.module === baseEvent[0].module)
+      candidate.kind === 'eventStruct' && candidate.module === baseEvent[0].module ||
+      candidate.registeredFactory === 'accessibilityAction')
       ? baseEvent[0] : undefined
     const baseStruct = selected.filter((candidate) => candidate.kind === 'eventStruct')
     const keepBaseStruct = baseStruct.length === 1 && selected.some((candidate) =>

@@ -51,6 +51,7 @@ const colorFields = [
 const sdkKinds = {
   accentColor: 'optionalEnum',
   accessibilityAction: 'event',
+  accessibilityActionWithAppIntent: 'registeredValue',
   accessibilityActivationPointWithActivationPointAndIsEnabled: 'record',
   accessibilityActivationPointWithUnitPoint: 'string',
   accessibilityAddTraits: 'string',
