@@ -1,4 +1,4 @@
-import { Browser as NativeBrowser, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Network as NativeNetwork, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from '@vxrn/native';
+import { Browser as NativeBrowser, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Network as NativeNetwork, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, getHinge, getSizeClass, onHingeChange, ReservedRegions, useHinge, useSizeClass, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from '@vxrn/native';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaFrame, useSafeAreaInsets } from '@vxrn/safe-area';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
 export type OneIOS = Omit<typeof Swift, 'ToolbarItem'> & {
@@ -29,6 +29,12 @@ export type OneUI = typeof NativeUI & {
     readonly TextInput: typeof TextInput;
     readonly useFonts: typeof useFonts;
     readonly useNativeState: typeof useNativeState;
+    readonly useSizeClass: typeof useSizeClass;
+    readonly getSizeClass: typeof getSizeClass;
+    readonly useHinge: typeof useHinge;
+    readonly getHinge: typeof getHinge;
+    readonly onHingeChange: typeof onHingeChange;
+    readonly ReservedRegions: typeof ReservedRegions;
 };
 export type OneAPI = {
     readonly platform: OnePlatform;

@@ -6,8 +6,6 @@ import {
   useHinge,
   getHinge,
   onHingeChange,
-  useReservedRegions,
-  getReservedRegions,
 } from '../src/index'
 
 describe('ArrangementView and adaptive layout APIs', () => {
@@ -25,8 +23,6 @@ describe('ArrangementView and adaptive layout APIs', () => {
     expect(typeof useHinge).toBe('function')
     expect(typeof getHinge).toBe('function')
     expect(typeof onHingeChange).toBe('function')
-    expect(typeof useReservedRegions).toBe('function')
-    expect(typeof getReservedRegions).toBe('function')
 
     const sizeClass = await getSizeClass()
     expect(sizeClass).toHaveProperty('horizontal')
@@ -34,8 +30,5 @@ describe('ArrangementView and adaptive layout APIs', () => {
 
     const hinge = await getHinge()
     expect(hinge === null || typeof hinge === 'object').toBe(true)
-
-    const regions = await getReservedRegions()
-    expect(Array.isArray(regions)).toBe(true)
   })
 })

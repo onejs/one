@@ -821,6 +821,34 @@ export const components = [
     interfaceOnly: false,
   },
   {
+    // view-scoped reserved regions (UI.ReservedRegions.Provider): a Yoga
+    // view that reports the regions reserved inside its own bounds, in its
+    // own coordinates. iOS reads UIView reservedRegions (27.1) for both
+    // kinds, including inactive ones; Android maps WindowManager folding
+    // features to divisions and display cutouts to occlusions. regions cross
+    // as a flat struct array (codegen events take `T[]`, not ReadonlyArray);
+    // the adapter reshapes them.
+    name: 'OneNativeReservedRegionsProvider',
+    publicName: 'ReservedRegionsProvider',
+    props: {},
+    events: {
+      onNativeReservedRegionsChange: {
+        regions:
+          '{ id: string; kind: string; x: Double; y: Double; width: Double; height: Double; marginTop: Double; marginLeft: Double; marginBottom: Double; marginRight: Double; isActive: boolean }[]',
+      },
+    },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'children',
+        content: 'react-native',
+        cardinality: 'many',
+        layout: 'yoga',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
     // owned edge-fade primitive (UI.EdgeFade mask and blur modes). a Yoga
     // container that alpha-fades its children toward any edge (mask) or
     // progressively blurs them toward the edge (blur). sizes are dp (0 =
