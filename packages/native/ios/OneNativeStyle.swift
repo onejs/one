@@ -6,13 +6,14 @@ import PassKit
 import AppIntents
 import StoreKit
 import DataDetection
+import RealityKit
 import GameController
 import MapKit
 import MusicKit
 import AVKit
 import PhotosUI
-import RealityKit
 import AuthenticationServices
+import Symbols
 import Translation
 import WebKit
 
@@ -234,6 +235,67 @@ extension View {
       case "dropDestination": view = AnyView(view.oneNativeSDKDropDestination(value, emit: emit))
       case "dynamicTypeSize": view = AnyView(view.oneNativeSDKDynamicTypeSize(value, emit: emit))
       case "edgesIgnoringSafeArea": view = AnyView(view.oneNativeSDKEdgesIgnoringSafeArea(value, emit: emit))
+      case "environmentAccessibilityEnabled": view = AnyView(view.oneNativeSDKEnvironmentAccessibilityEnabled(value, emit: emit))
+      case "environmentAccessibilityPrefersCrossFadeTransitions": view = AnyView(view.oneNativeSDKEnvironmentAccessibilityPrefersCrossFadeTransitions(value, emit: emit))
+      case "environmentAllowedDynamicRange": view = AnyView(view.oneNativeSDKEnvironmentAllowedDynamicRange(value, emit: emit))
+      case "environmentAllowsTightening": view = AnyView(view.oneNativeSDKEnvironmentAllowsTightening(value, emit: emit))
+      case "environmentAppearsActive": view = AnyView(view.oneNativeSDKEnvironmentAppearsActive(value, emit: emit))
+      case "environmentAutocorrectionDisabled": view = AnyView(view.oneNativeSDKEnvironmentAutocorrectionDisabled(value, emit: emit))
+      case "environmentBackgroundMaterial": view = AnyView(view.oneNativeSDKEnvironmentBackgroundMaterial(value, emit: emit))
+      case "environmentBackgroundProminence": view = AnyView(view.oneNativeSDKEnvironmentBackgroundProminence(value, emit: emit))
+      case "environmentBadgeProminence": view = AnyView(view.oneNativeSDKEnvironmentBadgeProminence(value, emit: emit))
+      case "environmentCalendar": view = AnyView(view.oneNativeSDKEnvironmentCalendar(value, emit: emit))
+      case "environmentColorScheme": view = AnyView(view.oneNativeSDKEnvironmentColorScheme(value, emit: emit))
+      case "environmentContentTransition": view = AnyView(view.oneNativeSDKEnvironmentContentTransition(value, emit: emit))
+      case "environmentContentTransitionAddsDrawingGroup": view = AnyView(view.oneNativeSDKEnvironmentContentTransitionAddsDrawingGroup(value, emit: emit))
+      case "environmentControlSize": view = AnyView(view.oneNativeSDKEnvironmentControlSize(value, emit: emit))
+      case "environmentDefaultMinListHeaderHeight": view = AnyView(view.oneNativeSDKEnvironmentDefaultMinListHeaderHeight(value, emit: emit))
+      case "environmentDefaultMinListRowHeight": view = AnyView(view.oneNativeSDKEnvironmentDefaultMinListRowHeight(value, emit: emit))
+      case "environmentDisableAutocorrection": view = AnyView(view.oneNativeSDKEnvironmentDisableAutocorrection(value, emit: emit))
+      case "environmentDisplayScale": view = AnyView(view.oneNativeSDKEnvironmentDisplayScale(value, emit: emit))
+      case "environmentDynamicTypeSize": view = AnyView(view.oneNativeSDKEnvironmentDynamicTypeSize(value, emit: emit))
+      case "environmentFont": view = AnyView(view.oneNativeSDKEnvironmentFont(value, emit: emit))
+      case "environmentHeaderProminence": view = AnyView(view.oneNativeSDKEnvironmentHeaderProminence(value, emit: emit))
+      case "environmentHorizontalScrollBounceBehavior": view = AnyView(view.oneNativeSDKEnvironmentHorizontalScrollBounceBehavior(value, emit: emit))
+      case "environmentHorizontalScrollIndicatorVisibility": view = AnyView(view.oneNativeSDKEnvironmentHorizontalScrollIndicatorVisibility(value, emit: emit))
+      case "environmentHorizontalSizeClass": view = AnyView(view.oneNativeSDKEnvironmentHorizontalSizeClass(value, emit: emit))
+      case "environmentImageScale": view = AnyView(view.oneNativeSDKEnvironmentImageScale(value, emit: emit))
+      case "environmentIsEnabled": view = AnyView(view.oneNativeSDKEnvironmentIsEnabled(value, emit: emit))
+      case "environmentIsFocusEffectEnabled": view = AnyView(view.oneNativeSDKEnvironmentIsFocusEffectEnabled(value, emit: emit))
+      case "environmentIsHoverEffectEnabled": view = AnyView(view.oneNativeSDKEnvironmentIsHoverEffectEnabled(value, emit: emit))
+      case "environmentIsLuminanceReduced": view = AnyView(view.oneNativeSDKEnvironmentIsLuminanceReduced(value, emit: emit))
+      case "environmentIsSceneCaptured": view = AnyView(view.oneNativeSDKEnvironmentIsSceneCaptured(value, emit: emit))
+      case "environmentIsScrollEnabled": view = AnyView(view.oneNativeSDKEnvironmentIsScrollEnabled(value, emit: emit))
+      case "environmentLabelsVisibility": view = AnyView(view.oneNativeSDKEnvironmentLabelsVisibility(value, emit: emit))
+      case "environmentLayoutDirection": view = AnyView(view.oneNativeSDKEnvironmentLayoutDirection(value, emit: emit))
+      case "environmentLegibilityWeight": view = AnyView(view.oneNativeSDKEnvironmentLegibilityWeight(value, emit: emit))
+      case "environmentLineHeight": view = AnyView(view.oneNativeSDKEnvironmentLineHeight(value, emit: emit))
+      case "environmentLineLimit": view = AnyView(view.oneNativeSDKEnvironmentLineLimit(value, emit: emit))
+      case "environmentLineSpacing": view = AnyView(view.oneNativeSDKEnvironmentLineSpacing(value, emit: emit))
+      case "environmentLocale": view = AnyView(view.oneNativeSDKEnvironmentLocale(value, emit: emit))
+      case "environmentMaterialActiveAppearance": view = AnyView(view.oneNativeSDKEnvironmentMaterialActiveAppearance(value, emit: emit))
+      case "environmentMenuIndicatorVisibility": view = AnyView(view.oneNativeSDKEnvironmentMenuIndicatorVisibility(value, emit: emit))
+      case "environmentMenuOrder": view = AnyView(view.oneNativeSDKEnvironmentMenuOrder(value, emit: emit))
+      case "environmentMinimumScaleFactor": view = AnyView(view.oneNativeSDKEnvironmentMinimumScaleFactor(value, emit: emit))
+      case "environmentMultilineTextAlignment": view = AnyView(view.oneNativeSDKEnvironmentMultilineTextAlignment(value, emit: emit))
+      case "environmentRealityViewCameraControls": view = AnyView(view.oneNativeSDKEnvironmentRealityViewCameraControls(value, emit: emit))
+      case "environmentRedactionReasons": view = AnyView(view.oneNativeSDKEnvironmentRedactionReasons(value, emit: emit))
+      case "environmentScenePhase": view = AnyView(view.oneNativeSDKEnvironmentScenePhase(value, emit: emit))
+      case "environmentScrollDismissesKeyboardMode": view = AnyView(view.oneNativeSDKEnvironmentScrollDismissesKeyboardMode(value, emit: emit))
+      case "environmentSidebarRowSize": view = AnyView(view.oneNativeSDKEnvironmentSidebarRowSize(value, emit: emit))
+      case "environmentSizeCategory": view = AnyView(view.oneNativeSDKEnvironmentSizeCategory(value, emit: emit))
+      case "environmentSymbolColorRenderingMode": view = AnyView(view.oneNativeSDKEnvironmentSymbolColorRenderingMode(value, emit: emit))
+      case "environmentSymbolRenderingMode": view = AnyView(view.oneNativeSDKEnvironmentSymbolRenderingMode(value, emit: emit))
+      case "environmentSymbolVariableValueMode": view = AnyView(view.oneNativeSDKEnvironmentSymbolVariableValueMode(value, emit: emit))
+      case "environmentSymbolVariants": view = AnyView(view.oneNativeSDKEnvironmentSymbolVariants(value, emit: emit))
+      case "environmentSystemPrefersReducedResourceUsage": view = AnyView(view.oneNativeSDKEnvironmentSystemPrefersReducedResourceUsage(value, emit: emit))
+      case "environmentTextCase": view = AnyView(view.oneNativeSDKEnvironmentTextCase(value, emit: emit))
+      case "environmentTextSelectionAffinity": view = AnyView(view.oneNativeSDKEnvironmentTextSelectionAffinity(value, emit: emit))
+      case "environmentTimeZone": view = AnyView(view.oneNativeSDKEnvironmentTimeZone(value, emit: emit))
+      case "environmentTruncationMode": view = AnyView(view.oneNativeSDKEnvironmentTruncationMode(value, emit: emit))
+      case "environmentVerticalScrollBounceBehavior": view = AnyView(view.oneNativeSDKEnvironmentVerticalScrollBounceBehavior(value, emit: emit))
+      case "environmentVerticalScrollIndicatorVisibility": view = AnyView(view.oneNativeSDKEnvironmentVerticalScrollIndicatorVisibility(value, emit: emit))
+      case "environmentVerticalSizeClass": view = AnyView(view.oneNativeSDKEnvironmentVerticalSizeClass(value, emit: emit))
       case "fileDialogBrowserOptions": view = AnyView(view.oneNativeSDKFileDialogBrowserOptions(value, emit: emit))
       case "fileDialogConfirmationLabel": view = AnyView(view.oneNativeSDKFileDialogConfirmationLabel(value, emit: emit))
       case "fileDialogCustomizationID": view = AnyView(view.oneNativeSDKFileDialogCustomizationID(value, emit: emit))
@@ -497,6 +559,7 @@ extension View {
       case "subscriptionStoreSignInAction": view = AnyView(view.oneNativeSDKSubscriptionStoreSignInAction(value, emit: emit))
       case "swipeActionsContainer": view = AnyView(view.oneNativeSDKSwipeActionsContainer(value, emit: emit))
       case "symbolColorRenderingMode": view = AnyView(view.oneNativeSDKSymbolColorRenderingMode(value, emit: emit))
+      case "symbolEffect": view = AnyView(view.oneNativeSDKSymbolEffect(value, emit: emit))
       case "symbolEffectsRemoved": view = AnyView(view.oneNativeSDKSymbolEffectsRemoved(value, emit: emit))
       case "symbolRenderingMode": view = AnyView(view.oneNativeSDKSymbolRenderingMode(value, emit: emit))
       case "symbolVariableValueMode": view = AnyView(view.oneNativeSDKSymbolVariableValueMode(value, emit: emit))
@@ -2441,7 +2504,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDocumentLaunchSubtitle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.documentLaunchSubtitle(Text(value)) } else { self }
 #else
@@ -2451,7 +2514,7 @@ self
   }
 
   @ViewBuilder fileprivate func oneNativeSDKDocumentLaunchTitle(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
-      
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.documentLaunchTitle(Text(value)) } else { self }
 #else
@@ -2462,7 +2525,7 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKDragConfiguration(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid dragConfiguration: \(value)")
-      
+
 #if ONE_IOS_27_SDK
 if #available(iOS 27, *) { self.dragConfiguration(SwiftUI.DragConfiguration(allowMove: value == "true")) } else { self }
 #else
@@ -2576,6 +2639,558 @@ self
       case "horizontal": self.edgesIgnoringSafeArea(SwiftUI.Edge.Set.horizontal)
       case "vertical": self.edgesIgnoringSafeArea(SwiftUI.Edge.Set.vertical)
     default: preconditionFailure("invalid edgesIgnoringSafeArea: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentAccessibilityEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentAccessibilityEnabled: \(value)")
+      self.environment(\.accessibilityEnabled, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentAccessibilityPrefersCrossFadeTransitions(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentAccessibilityPrefersCrossFadeTransitions: \(value)")
+      if #available(iOS 26.4, *) { self.environment(\.accessibilityPrefersCrossFadeTransitions, value == "true") } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentAllowedDynamicRange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.allowedDynamicRange, nil as SwiftUI.Image.DynamicRange?)
+      case "standard": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.standard)
+      case "constrainedHigh": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.constrainedHigh)
+      case "high": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.high)
+    default: preconditionFailure("invalid environmentAllowedDynamicRange: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentAllowsTightening(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentAllowsTightening: \(value)")
+      self.environment(\.allowsTightening, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentAppearsActive(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentAppearsActive: \(value)")
+      if #available(iOS 18, *) { self.environment(\.appearsActive, value == "true") } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentAutocorrectionDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentAutocorrectionDisabled: \(value)")
+      self.environment(\.autocorrectionDisabled, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentBackgroundMaterial(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.backgroundMaterial, nil as SwiftUI.Material?)
+      case "regular": self.environment(\.backgroundMaterial, SwiftUI.Material.regular)
+      case "thick": self.environment(\.backgroundMaterial, SwiftUI.Material.thick)
+      case "thin": self.environment(\.backgroundMaterial, SwiftUI.Material.thin)
+      case "ultraThin": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThin)
+      case "ultraThick": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThick)
+      case "bar": self.environment(\.backgroundMaterial, SwiftUI.Material.bar)
+    default: preconditionFailure("invalid environmentBackgroundMaterial: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentBackgroundProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "standard": self.environment(\.backgroundProminence, SwiftUI.BackgroundProminence.standard)
+      case "increased": self.environment(\.backgroundProminence, SwiftUI.BackgroundProminence.increased)
+    default: preconditionFailure("invalid environmentBackgroundProminence: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentBadgeProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "decreased": self.environment(\.badgeProminence, SwiftUI.BadgeProminence.decreased)
+      case "standard": self.environment(\.badgeProminence, SwiftUI.BadgeProminence.standard)
+      case "increased": self.environment(\.badgeProminence, SwiftUI.BadgeProminence.increased)
+    default: preconditionFailure("invalid environmentBadgeProminence: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentCalendar(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "autoupdatingCurrent": self.environment(\.calendar, Foundation.Calendar.autoupdatingCurrent)
+      case "current": self.environment(\.calendar, Foundation.Calendar.current)
+    default: preconditionFailure("invalid environmentCalendar: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "light": self.environment(\.colorScheme, SwiftUI.ColorScheme.light)
+      case "dark": self.environment(\.colorScheme, SwiftUI.ColorScheme.dark)
+    default: preconditionFailure("invalid environmentColorScheme: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentContentTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "symbolEffect": self.environment(\.contentTransition, SwiftUI.ContentTransition.symbolEffect)
+      case "identity": self.environment(\.contentTransition, SwiftUI.ContentTransition.identity)
+      case "opacity": self.environment(\.contentTransition, SwiftUI.ContentTransition.opacity)
+      case "interpolate": self.environment(\.contentTransition, SwiftUI.ContentTransition.interpolate)
+    default: preconditionFailure("invalid environmentContentTransition: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentContentTransitionAddsDrawingGroup(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentContentTransitionAddsDrawingGroup: \(value)")
+      self.environment(\.contentTransitionAddsDrawingGroup, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentControlSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "mini": self.environment(\.controlSize, SwiftUI.ControlSize.mini)
+      case "small": self.environment(\.controlSize, SwiftUI.ControlSize.small)
+      case "regular": self.environment(\.controlSize, SwiftUI.ControlSize.regular)
+      case "large": self.environment(\.controlSize, SwiftUI.ControlSize.large)
+      case "extraLarge": self.environment(\.controlSize, SwiftUI.ControlSize.extraLarge)
+    default: preconditionFailure("invalid environmentControlSize: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentDefaultMinListHeaderHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if value == "null" { self.environment(\.defaultMinListHeaderHeight, nil as CoreFoundation.CGFloat?) } else { if let number = Double(value), number.isFinite {
+      self.environment(\.defaultMinListHeaderHeight, CGFloat(number))
+    } else { preconditionFailure("invalid environmentDefaultMinListHeaderHeight: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentDefaultMinListRowHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      if let number = Double(value), number.isFinite {
+        self.environment(\.defaultMinListRowHeight, CGFloat(number))
+      } else { preconditionFailure("invalid environmentDefaultMinListRowHeight: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentDisableAutocorrection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if value == "null" { self.environment(\.disableAutocorrection, nil as Swift.Bool?) } else { if value == "true" || value == "false" { self.environment(\.disableAutocorrection, value == "true") } else { preconditionFailure("invalid environmentDisableAutocorrection: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentDisplayScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      if let number = Double(value), number.isFinite {
+        self.environment(\.displayScale, CGFloat(number))
+      } else { preconditionFailure("invalid environmentDisplayScale: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentDynamicTypeSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "xSmall": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.xSmall)
+      case "small": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.small)
+      case "medium": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.medium)
+      case "large": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.large)
+      case "xLarge": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.xLarge)
+      case "xxLarge": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.xxLarge)
+      case "xxxLarge": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.xxxLarge)
+      case "accessibility1": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility1)
+      case "accessibility2": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility2)
+      case "accessibility3": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility3)
+      case "accessibility4": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility4)
+      case "accessibility5": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility5)
+    default: preconditionFailure("invalid environmentDynamicTypeSize: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentFont(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.font, nil as SwiftUI.Font?)
+      case "largeTitle": self.environment(\.font, SwiftUI.Font.largeTitle)
+      case "title": self.environment(\.font, SwiftUI.Font.title)
+      case "title2": self.environment(\.font, SwiftUI.Font.title2)
+      case "title3": self.environment(\.font, SwiftUI.Font.title3)
+      case "headline": self.environment(\.font, SwiftUI.Font.headline)
+      case "subheadline": self.environment(\.font, SwiftUI.Font.subheadline)
+      case "body": self.environment(\.font, SwiftUI.Font.body)
+      case "callout": self.environment(\.font, SwiftUI.Font.callout)
+      case "footnote": self.environment(\.font, SwiftUI.Font.footnote)
+      case "caption": self.environment(\.font, SwiftUI.Font.caption)
+      case "caption2": self.environment(\.font, SwiftUI.Font.caption2)
+      case "default": if #available(iOS 26, *) { self.environment(\.font, SwiftUI.Font.default) } else { self }
+    default: preconditionFailure("invalid environmentFont: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentHeaderProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "standard": self.environment(\.headerProminence, SwiftUI.Prominence.standard)
+      case "increased": self.environment(\.headerProminence, SwiftUI.Prominence.increased)
+    default: preconditionFailure("invalid environmentHeaderProminence: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentHorizontalScrollBounceBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.environment(\.horizontalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.automatic)
+      case "always": self.environment(\.horizontalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.always)
+      case "basedOnSize": self.environment(\.horizontalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.basedOnSize)
+    default: preconditionFailure("invalid environmentHorizontalScrollBounceBehavior: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentHorizontalScrollIndicatorVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.environment(\.horizontalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.automatic)
+      case "visible": self.environment(\.horizontalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.visible)
+      case "hidden": self.environment(\.horizontalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.hidden)
+      case "never": self.environment(\.horizontalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.never)
+    default: preconditionFailure("invalid environmentHorizontalScrollIndicatorVisibility: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentHorizontalSizeClass(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.horizontalSizeClass, nil as SwiftUI.UserInterfaceSizeClass?)
+      case "compact": self.environment(\.horizontalSizeClass, SwiftUI.UserInterfaceSizeClass.compact)
+      case "regular": self.environment(\.horizontalSizeClass, SwiftUI.UserInterfaceSizeClass.regular)
+    default: preconditionFailure("invalid environmentHorizontalSizeClass: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentImageScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "small": self.environment(\.imageScale, SwiftUI.Image.Scale.small)
+      case "medium": self.environment(\.imageScale, SwiftUI.Image.Scale.medium)
+      case "large": self.environment(\.imageScale, SwiftUI.Image.Scale.large)
+    default: preconditionFailure("invalid environmentImageScale: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentIsEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentIsEnabled: \(value)")
+      self.environment(\.isEnabled, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentIsFocusEffectEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentIsFocusEffectEnabled: \(value)")
+      self.environment(\.isFocusEffectEnabled, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentIsHoverEffectEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentIsHoverEffectEnabled: \(value)")
+      self.environment(\.isHoverEffectEnabled, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentIsLuminanceReduced(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentIsLuminanceReduced: \(value)")
+      self.environment(\.isLuminanceReduced, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentIsSceneCaptured(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentIsSceneCaptured: \(value)")
+      self.environment(\.isSceneCaptured, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentIsScrollEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentIsScrollEnabled: \(value)")
+      self.environment(\.isScrollEnabled, value == "true")
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentLabelsVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUI.Visibility.automatic) } else { self }
+      case "visible": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUI.Visibility.visible) } else { self }
+      case "hidden": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUI.Visibility.hidden) } else { self }
+    default: preconditionFailure("invalid environmentLabelsVisibility: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentLayoutDirection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "leftToRight": self.environment(\.layoutDirection, SwiftUI.LayoutDirection.leftToRight)
+      case "rightToLeft": self.environment(\.layoutDirection, SwiftUI.LayoutDirection.rightToLeft)
+    default: preconditionFailure("invalid environmentLayoutDirection: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentLegibilityWeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.legibilityWeight, nil as SwiftUI.LegibilityWeight?)
+      case "regular": self.environment(\.legibilityWeight, SwiftUI.LegibilityWeight.regular)
+      case "bold": self.environment(\.legibilityWeight, SwiftUI.LegibilityWeight.bold)
+    default: preconditionFailure("invalid environmentLegibilityWeight: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentLineHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": if #available(iOS 26, *) { self.environment(\.lineHeight, nil as Foundation.AttributedString.LineHeight?) } else { self }
+      case "variable": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.variable) } else { self }
+      case "normal": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.normal) } else { self }
+      case "tight": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.tight) } else { self }
+      case "loose": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.loose) } else { self }
+    default: preconditionFailure("invalid environmentLineHeight: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentLineLimit(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if value == "null" { self.environment(\.lineLimit, nil as Swift.Int?) } else { if let number = Double(value), number.isFinite {
+      self.environment(\.lineLimit, Int(number))
+    } else { preconditionFailure("invalid environmentLineLimit: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentLineSpacing(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      if let number = Double(value), number.isFinite {
+        self.environment(\.lineSpacing, CGFloat(number))
+      } else { preconditionFailure("invalid environmentLineSpacing: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentLocale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "autoupdatingCurrent": self.environment(\.locale, Foundation.Locale.autoupdatingCurrent)
+      case "current": self.environment(\.locale, Foundation.Locale.current)
+    default: preconditionFailure("invalid environmentLocale: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentMaterialActiveAppearance(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUI.MaterialActiveAppearance.automatic) } else { self }
+      case "active": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUI.MaterialActiveAppearance.active) } else { self }
+      case "matchWindow": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUI.MaterialActiveAppearance.matchWindow) } else { self }
+    default: preconditionFailure("invalid environmentMaterialActiveAppearance: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentMenuIndicatorVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.environment(\.menuIndicatorVisibility, SwiftUI.Visibility.automatic)
+      case "visible": self.environment(\.menuIndicatorVisibility, SwiftUI.Visibility.visible)
+      case "hidden": self.environment(\.menuIndicatorVisibility, SwiftUI.Visibility.hidden)
+    default: preconditionFailure("invalid environmentMenuIndicatorVisibility: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentMenuOrder(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.environment(\.menuOrder, SwiftUI.MenuOrder.automatic)
+      case "priority": self.environment(\.menuOrder, SwiftUI.MenuOrder.priority)
+      case "fixed": self.environment(\.menuOrder, SwiftUI.MenuOrder.fixed)
+    default: preconditionFailure("invalid environmentMenuOrder: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentMinimumScaleFactor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      if let number = Double(value), number.isFinite {
+        self.environment(\.minimumScaleFactor, CGFloat(number))
+      } else { preconditionFailure("invalid environmentMinimumScaleFactor: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentMultilineTextAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "leading": self.environment(\.multilineTextAlignment, SwiftUI.TextAlignment.leading)
+      case "center": self.environment(\.multilineTextAlignment, SwiftUI.TextAlignment.center)
+      case "trailing": self.environment(\.multilineTextAlignment, SwiftUI.TextAlignment.trailing)
+    default: preconditionFailure("invalid environmentMultilineTextAlignment: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentRealityViewCameraControls(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "dolly": if #available(iOS 18, *) { self.environment(\.realityViewCameraControls, RealityFoundation.CameraControls.dolly) } else { self }
+      case "none": if #available(iOS 18, *) { self.environment(\.realityViewCameraControls, RealityFoundation.CameraControls.none) } else { self }
+      case "orbit": if #available(iOS 18, *) { self.environment(\.realityViewCameraControls, RealityFoundation.CameraControls.orbit) } else { self }
+      case "pan": if #available(iOS 18, *) { self.environment(\.realityViewCameraControls, RealityFoundation.CameraControls.pan) } else { self }
+      case "tilt": if #available(iOS 18, *) { self.environment(\.realityViewCameraControls, RealityFoundation.CameraControls.tilt) } else { self }
+    default: preconditionFailure("invalid environmentRealityViewCameraControls: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentRedactionReasons(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "placeholder": self.environment(\.redactionReasons, SwiftUI.RedactionReasons.placeholder)
+      case "privacy": self.environment(\.redactionReasons, SwiftUI.RedactionReasons.privacy)
+      case "invalidated": self.environment(\.redactionReasons, SwiftUI.RedactionReasons.invalidated)
+    default: preconditionFailure("invalid environmentRedactionReasons: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentScenePhase(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "background": self.environment(\.scenePhase, SwiftUI.ScenePhase.background)
+      case "inactive": self.environment(\.scenePhase, SwiftUI.ScenePhase.inactive)
+      case "active": self.environment(\.scenePhase, SwiftUI.ScenePhase.active)
+    default: preconditionFailure("invalid environmentScenePhase: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentScrollDismissesKeyboardMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.environment(\.scrollDismissesKeyboardMode, SwiftUI.ScrollDismissesKeyboardMode.automatic)
+      case "immediately": self.environment(\.scrollDismissesKeyboardMode, SwiftUI.ScrollDismissesKeyboardMode.immediately)
+      case "interactively": self.environment(\.scrollDismissesKeyboardMode, SwiftUI.ScrollDismissesKeyboardMode.interactively)
+      case "never": self.environment(\.scrollDismissesKeyboardMode, SwiftUI.ScrollDismissesKeyboardMode.never)
+    default: preconditionFailure("invalid environmentScrollDismissesKeyboardMode: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentSidebarRowSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "small": self.environment(\.sidebarRowSize, SwiftUI.SidebarRowSize.small)
+      case "medium": self.environment(\.sidebarRowSize, SwiftUI.SidebarRowSize.medium)
+      case "large": self.environment(\.sidebarRowSize, SwiftUI.SidebarRowSize.large)
+    default: preconditionFailure("invalid environmentSidebarRowSize: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentSizeCategory(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "extraSmall": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.extraSmall)
+      case "small": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.small)
+      case "medium": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.medium)
+      case "large": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.large)
+      case "extraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.extraLarge)
+      case "extraExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.extraExtraLarge)
+      case "extraExtraExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.extraExtraExtraLarge)
+      case "accessibilityMedium": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityMedium)
+      case "accessibilityLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityLarge)
+      case "accessibilityExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityExtraLarge)
+      case "accessibilityExtraExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityExtraExtraLarge)
+      case "accessibilityExtraExtraExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityExtraExtraExtraLarge)
+    default: preconditionFailure("invalid environmentSizeCategory: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolColorRenderingMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, nil as SwiftUI.SymbolColorRenderingMode?) } else { self }
+      case "flat": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, SwiftUI.SymbolColorRenderingMode.flat) } else { self }
+      case "gradient": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, SwiftUI.SymbolColorRenderingMode.gradient) } else { self }
+    default: preconditionFailure("invalid environmentSymbolColorRenderingMode: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolRenderingMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.symbolRenderingMode, nil as SwiftUI.SymbolRenderingMode?)
+      case "monochrome": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.monochrome)
+      case "multicolor": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.multicolor)
+      case "hierarchical": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.hierarchical)
+      case "palette": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.palette)
+    default: preconditionFailure("invalid environmentSymbolRenderingMode: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolVariableValueMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, nil as SwiftUI.SymbolVariableValueMode?) } else { self }
+      case "color": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, SwiftUI.SymbolVariableValueMode.color) } else { self }
+      case "draw": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, SwiftUI.SymbolVariableValueMode.draw) } else { self }
+    default: preconditionFailure("invalid environmentSymbolVariableValueMode: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolVariants(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "none": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.none)
+      case "circle": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.circle)
+      case "square": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.square)
+      case "rectangle": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.rectangle)
+      case "fill": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.fill)
+      case "slash": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.slash)
+    default: preconditionFailure("invalid environmentSymbolVariants: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentSystemPrefersReducedResourceUsage(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+      let _ = precondition(value == "true" || value == "false", "invalid environmentSystemPrefersReducedResourceUsage: \(value)")
+
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) { self.environment(\.systemPrefersReducedResourceUsage, value == "true") } else { self }
+#else
+self
+#endif
+
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentTextCase(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.textCase, nil as SwiftUI.Text.Case?)
+      case "uppercase": self.environment(\.textCase, SwiftUI.Text.Case.uppercase)
+      case "lowercase": self.environment(\.textCase, SwiftUI.Text.Case.lowercase)
+    default: preconditionFailure("invalid environmentTextCase: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentTextSelectionAffinity(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": if #available(iOS 18, *) { self.environment(\.textSelectionAffinity, SwiftUI.TextSelectionAffinity.automatic) } else { self }
+      case "upstream": if #available(iOS 18, *) { self.environment(\.textSelectionAffinity, SwiftUI.TextSelectionAffinity.upstream) } else { self }
+      case "downstream": if #available(iOS 18, *) { self.environment(\.textSelectionAffinity, SwiftUI.TextSelectionAffinity.downstream) } else { self }
+    default: preconditionFailure("invalid environmentTextSelectionAffinity: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentTimeZone(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "autoupdatingCurrent": self.environment(\.timeZone, Foundation.TimeZone.autoupdatingCurrent)
+      case "current": self.environment(\.timeZone, Foundation.TimeZone.current)
+      case "gmt": self.environment(\.timeZone, Foundation.TimeZone.gmt)
+    default: preconditionFailure("invalid environmentTimeZone: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentTruncationMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "head": self.environment(\.truncationMode, SwiftUI.Text.TruncationMode.head)
+      case "tail": self.environment(\.truncationMode, SwiftUI.Text.TruncationMode.tail)
+      case "middle": self.environment(\.truncationMode, SwiftUI.Text.TruncationMode.middle)
+    default: preconditionFailure("invalid environmentTruncationMode: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentVerticalScrollBounceBehavior(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.environment(\.verticalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.automatic)
+      case "always": self.environment(\.verticalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.always)
+      case "basedOnSize": self.environment(\.verticalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.basedOnSize)
+    default: preconditionFailure("invalid environmentVerticalScrollBounceBehavior: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentVerticalScrollIndicatorVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "automatic": self.environment(\.verticalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.automatic)
+      case "visible": self.environment(\.verticalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.visible)
+      case "hidden": self.environment(\.verticalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.hidden)
+      case "never": self.environment(\.verticalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.never)
+    default: preconditionFailure("invalid environmentVerticalScrollIndicatorVisibility: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentVerticalSizeClass(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+      case "null": self.environment(\.verticalSizeClass, nil as SwiftUI.UserInterfaceSizeClass?)
+      case "compact": self.environment(\.verticalSizeClass, SwiftUI.UserInterfaceSizeClass.compact)
+      case "regular": self.environment(\.verticalSizeClass, SwiftUI.UserInterfaceSizeClass.regular)
+    default: preconditionFailure("invalid environmentVerticalSizeClass: \(value)")
     }
   }
 
@@ -6222,6 +6837,20 @@ self
       case "flat": if #available(iOS 26, *) { self.symbolColorRenderingMode(SwiftUI.SymbolColorRenderingMode.flat) } else { self }
       case "gradient": if #available(iOS 26, *) { self.symbolColorRenderingMode(SwiftUI.SymbolColorRenderingMode.gradient) } else { self }
     default: preconditionFailure("invalid symbolColorRenderingMode: \(value)")
+    }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKSymbolEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    switch value {
+
+      case "pulse": self.symbolEffect(.pulse)
+      case "bounce": if #available(iOS 18, *) { self.symbolEffect(.bounce) } else { self }
+      case "variableColor": self.symbolEffect(.variableColor)
+      case "scale": self.symbolEffect(.scale)
+      case "wiggle": if #available(iOS 18, *) { self.symbolEffect(.wiggle) } else { self }
+      case "rotate": if #available(iOS 18, *) { self.symbolEffect(.rotate) } else { self }
+      case "breathe": if #available(iOS 18, *) { self.symbolEffect(.breathe) } else { self }
+    default: preconditionFailure("invalid symbolEffect: \(value)")
     }
   }
 
