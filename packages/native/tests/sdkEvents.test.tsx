@@ -1,7 +1,9 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
+const completeAsyncAction = vi.hoisted(() => vi.fn())
 vi.mock('react-native', () => ({
   Platform: { OS: 'ios', Version: '27.0' },
+  NativeModules: { OneNativeAsyncActionModule: { complete: completeAsyncAction } },
 }))
 vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
   default: (name: string) => ({ __component: name }),
@@ -13,6 +15,331 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('shares a native namespace across SDK modifiers with string identifiers', () => {
+    const element = Controls.Text({ text: 'source', swiftStyle: {
+      matchedGeometryEffect: { id: 'hero' },
+      accessibilityLabeledPair: { role: 'label', id: 'title' },
+      glassEffectID: { id: 'glass' },
+      glassEffectUnion: { id: null },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['matchedGeometryEffect', '["hero"]'],
+      ['accessibilityLabeledPair', '["label","title"]'],
+      ['glassEffectID', '["glass"]'],
+      ['glassEffectUnion', '[null]'],
+    ])
+  })
+
+  it('uses SDK defaults for glass and a captured namespace for map scope', () => {
+    const element = Controls.Text({ text: 'map', swiftStyle: {
+      glassEffectWithGlass: 'regular',
+      mapScope: true,
+      paddingWithSet: 'horizontal',
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['glassEffectWithGlass', 'regular'],
+      ['mapScope', 'true'],
+      ['paddingWithSet', 'horizontal'],
+    ])
+  })
+
+  it('uses a public shared SDK instance for album sheet modifiers', () => {
+    const onCreationChange = vi.fn()
+    const onCustomizationChange = vi.fn()
+    const element = Controls.Text({ text: 'albums', swiftStyle: {
+      photosSharedAlbumCreationSheet: { isPresented: { value: true, onChange: onCreationChange } },
+      photosSharedAlbumCustomizationSheet: {
+        isPresented: { value: true, onChange: onCustomizationChange }, albumIdentifier: 'album-1',
+      },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['photosSharedAlbumCreationSheet', '["true"]'],
+      ['photosSharedAlbumCustomizationSheet', '["true","album-1"]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosSharedAlbumCreationSheet.isPresented', value: 'false',
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosSharedAlbumCustomizationSheet.isPresented', value: 'false',
+    } })
+    expect(onCreationChange).toHaveBeenCalledWith(false)
+    expect(onCustomizationChange).toHaveBeenCalledWith(false)
+  })
+
+  it('constructs a defaulted SDK object for a zero-input content closure', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'confirm', swiftStyle: {
+      actionSheet: { isPresented: { value: true, onChange }, title: 'Confirm' },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['actionSheet', '["true","Confirm"]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'actionSheet.isPresented', value: 'false' } })
+    expect(onChange).toHaveBeenCalledWith(false)
+  })
+
+  it('constructs public SDK subclasses for an object-returning closure', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'overlay', swiftStyle: {
+      appStoreOverlayWithAppConfiguration: {
+        isPresented: { value: true, onChange }, appIdentifier: '123456789', position: 'bottom',
+      },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['appStoreOverlayWithAppConfiguration', '["true","123456789","bottom"]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'appStoreOverlayWithAppConfiguration.isPresented', value: 'false',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+    const clip = Controls.Text({ text: 'clip', swiftStyle: {
+      appStoreOverlayWithAppClipConfiguration: {
+        isPresented: { value: false, onChange }, position: 'bottomRaised',
+      },
+    } })
+    expect(JSON.parse(clip.props.swiftStyle.sdkModifiers)).toEqual([
+      ['appStoreOverlayWithAppClipConfiguration', '["false","bottomRaised"]'],
+    ])
+  })
+
+  it('builds identifiable rotor entries from public labels', () => {
+    const element = Controls.Text({ text: 'navigation', swiftStyle: {
+      accessibilityRotor: { rotorLabel: 'Links', entries: ['Home', 'Search'] },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['accessibilityRotor', '["Links","[\\"Home\\",\\"Search\\"]"]'],
+    ])
+    expect(() => Controls.Text({ text: 'duplicate', swiftStyle: {
+      accessibilityRotor: { rotorLabel: 'Links', entries: ['Home', 'Home'] },
+    } })).toThrow('distinct strings')
+  })
+
+  it('toggles a public boolean environment value through the SDK transform method', () => {
+    const element = Controls.Text({ text: 'child', swiftStyle: {
+      transformEnvironmentIsEnabled: true,
+      transformEnvironmentLineSpacing: 2,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['transformEnvironmentIsEnabled', 'true'],
+      ['transformEnvironmentLineSpacing', '2'],
+    ])
+  })
+
+  it('exposes a bridgeable SDK overload beside an existing style field', () => {
+    const element = Controls.Text({ text: 'round', swiftStyle: {
+      cornerRadiusWithRadiusAndAntialiased: { radius: 12, antialiased: false },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['cornerRadiusWithRadiusAndAntialiased', '["12","false"]'],
+    ])
+  })
+
+  it('exposes optional SDK static values beside legacy style fields', () => {
+    const element = Controls.Text({ text: 'styled', swiftStyle: {
+      fontWeightWithOptionalWeight: 'semibold',
+      fontDesignWithOptionalDesign: 'rounded',
+      tintWithOptionalColor: 'indigo',
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['fontWeightWithOptionalWeight', 'semibold'],
+      ['fontDesignWithOptionalDesign', 'rounded'],
+      ['tintWithOptionalColor', 'indigo'],
+    ])
+  })
+
+  it('encodes numeric visual effects and scroll phase transitions from SDK methods', () => {
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      visualEffect: { kind: 'opacity', value: 0.8 },
+      scrollTransition: { kind: 'scaleEffect', value: 0.9 },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['visualEffect', '["opacity","0.8"]'],
+      ['scrollTransition', '["scaleEffect","0.9"]'],
+    ])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      scrollTransition: { kind: 'blur' as never, value: 2 },
+    } })).toThrow('scrollTransition must be a visual effect and finite value')
+  })
+
+  it('configures SDK callbacks that return purchase options and eligible offers', () => {
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      inAppPurchaseOptions: { quantity: 2, simulatesAskToBuyInSandbox: true },
+      preferredSubscriptionOffer: 'offer-1',
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['inAppPurchaseOptions', '{"quantity":"2","simulatesAskToBuyInSandbox":"true"}'],
+      ['preferredSubscriptionOffer', 'offer-1'],
+    ])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      inAppPurchaseOptions: { quantity: 'two' as never },
+    } })).toThrow('inAppPurchaseOptions.quantity must be finite')
+  })
+
+  it('configures an SDK set from public static values', () => {
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      presentationDetents: ['medium', 'large'],
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['presentationDetents', '["medium","large"]'],
+    ])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      presentationDetents: ['unknown' as never],
+    } })).toThrow('presentationDetents must be public SDK values')
+  })
+
+  it('round trips an optional URL binding for an SDK preview', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'preview', swiftStyle: {
+      quickLookPreview: { value: 'file:///tmp/photo.jpg', onChange },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['quickLookPreview', '"file:///tmp/photo.jpg"'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'quickLookPreview', value: 'null' } })
+    expect(onChange).toHaveBeenCalledWith(null)
+  })
+
+  it('configures an SDK file importer from content type identifiers and a URL result', () => {
+    const onChange = vi.fn()
+    const onCompletion = vi.fn()
+    const element = Controls.Text({ text: 'import', swiftStyle: {
+      fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion: {
+        isPresented: { value: true, onChange },
+        allowedContentTypes: ['public.image'],
+        onCompletion,
+      },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion', '["true","[\\"public.image\\"]",""]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion.onCompletion', value: '{"success":"file:///tmp/photo.jpg"}',
+    } })
+    expect(onCompletion).toHaveBeenCalledWith({ success: 'file:///tmp/photo.jpg' })
+  })
+
+  it('uses a public preference key for setting, transforming, and observing its value', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      preferencePreferredColorScheme: 'dark',
+      transformPreferencePreferredColorScheme: 'light',
+      onPreferenceChangePreferredColorScheme: onChange,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['preferencePreferredColorScheme', 'dark'],
+      ['transformPreferencePreferredColorScheme', 'light'],
+      ['onPreferenceChangePreferredColorScheme', ''],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'onPreferenceChangePreferredColorScheme', value: '"dark"',
+    } })
+    expect(onChange).toHaveBeenCalledWith('dark')
+  })
+
+  it('keeps native async actions pending until the JS callback settles', async () => {
+    let finish!: () => void
+    const action = vi.fn(() => new Promise<void>((resolve) => { finish = resolve }))
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      refreshable: action,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([['refreshable', '']])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'refreshable', value: 'action-1' } })
+    await vi.waitFor(() => expect(action).toHaveBeenCalledOnce())
+    expect(completeAsyncAction).not.toHaveBeenCalled()
+    finish()
+    await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-1'))
+  })
+
+  it('passes an SDK value into an async callback before completing native work', async () => {
+    completeAsyncAction.mockClear()
+    let finish!: () => void
+    const action = vi.fn(() => new Promise<void>((resolve) => { finish = resolve }))
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      onInAppPurchaseStart: action,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([['onInAppPurchaseStart', '']])
+    const product = { id: 'monthly', type: { rawValue: 'autoRenewable' }, displayName: 'Monthly', description: 'Plan',
+      displayPrice: '$5', isFamilyShareable: false }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'onInAppPurchaseStart',
+      value: JSON.stringify({ id: 'action-2', value: JSON.stringify(product) }) } })
+    await vi.waitFor(() => expect(action).toHaveBeenCalledWith(product))
+    expect(completeAsyncAction).not.toHaveBeenCalled()
+    finish()
+    await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-2'))
+  })
+
+  it('passes a purchase result through the async callback and rejects malformed cases', async () => {
+    completeAsyncAction.mockClear()
+    let finish!: () => void
+    const action = vi.fn(() => new Promise<void>((resolve) => { finish = resolve }))
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      onInAppPurchaseCompletion: action,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([['onInAppPurchaseCompletion', '']])
+    const product = { id: 'monthly', type: { rawValue: 'autoRenewable' }, displayName: 'Monthly',
+      description: 'Plan', displayPrice: '$5', isFamilyShareable: false }
+    const result = { case: 'success', value: { case: 'success', values: [
+      { case: 'verified', jwsRepresentation: 'signed-transaction', error: null },
+    ] } }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'onInAppPurchaseCompletion',
+      value: JSON.stringify({ id: 'action-3', value: JSON.stringify({ value: product, result }) }) } })
+    await vi.waitFor(() => expect(action).toHaveBeenCalledWith({ value: product, result }))
+    expect(completeAsyncAction).not.toHaveBeenCalled()
+    finish()
+    await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-3'))
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: { name: 'onInAppPurchaseCompletion',
+      value: JSON.stringify({ id: 'action-4', value: JSON.stringify({ value: product,
+        result: { case: 'success', value: { case: 'success', values: [] } } }) }) } })).toThrow('invalid async value')
+  })
+
+  it('passes StoreKit task states with their required identifiers', async () => {
+    completeAsyncAction.mockClear()
+    const entitlement = vi.fn()
+    const productState = vi.fn()
+    const productsState = vi.fn()
+    const subscriptionState = vi.fn()
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      currentEntitlementTask: { productID: 'monthly', onAction: entitlement },
+      storeProductTask: { id: 'monthly', onAction: productState },
+      storeProductsTask: { ids: ['monthly', 'yearly'], onAction: productsState },
+      subscriptionStatusTask: { groupID: 'pro', onAction: subscriptionState },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['currentEntitlementTask', '["monthly"]'],
+      ['storeProductTask', '["monthly"]'],
+      ['storeProductsTask', JSON.stringify([JSON.stringify(['monthly', 'yearly'])])],
+      ['subscriptionStatusTask', '["pro"]'],
+    ])
+    const state = { case: 'success', values: [{
+      case: 'verified', jwsRepresentation: 'signed-entitlement', error: null,
+    }] }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'currentEntitlementTask',
+      value: JSON.stringify({ id: 'action-5', value: JSON.stringify(state) }) } })
+    await vi.waitFor(() => expect(entitlement).toHaveBeenCalledWith(state))
+    await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-5'))
+    const product = { id: 'monthly', type: { rawValue: 'autoRenewable' }, displayName: 'Monthly',
+      description: 'Plan', displayPrice: '$5', isFamilyShareable: false }
+    const loaded = { case: 'success', values: [product] }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'storeProductTask',
+      value: JSON.stringify({ id: 'action-6', value: JSON.stringify(loaded) }) } })
+    await vi.waitFor(() => expect(productState).toHaveBeenCalledWith(loaded))
+    await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-6'))
+    const collected = { case: 'success', values: [[product], ['yearly']] }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'storeProductsTask',
+      value: JSON.stringify({ id: 'action-7', value: JSON.stringify(collected) }) } })
+    await vi.waitFor(() => expect(productsState).toHaveBeenCalledWith(collected))
+    await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-7'))
+    const subscription = { case: 'success', values: [[{
+      state: { rawValue: 1 },
+      transaction: { case: 'verified', jwsRepresentation: 'signed-transaction', error: null },
+      renewalInfo: { case: 'verified', jwsRepresentation: 'signed-renewal', error: null },
+    }]] }
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'subscriptionStatusTask',
+      value: JSON.stringify({ id: 'action-8', value: JSON.stringify(subscription) }) } })
+    await vi.waitFor(() => expect(subscriptionState).toHaveBeenCalledWith(subscription))
+    await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-8'))
+  })
+
   it('bridges transferable strings and paste events', () => {
     const onPaste = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {

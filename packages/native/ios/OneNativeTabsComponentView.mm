@@ -3,6 +3,7 @@
 #import <React/RCTView.h>
 #import "VxrnNative-Swift.h"
 #import "OneNativeTabShadowNode.h"
+#import "OneNativeNavigationStackComponentView.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
@@ -13,6 +14,7 @@ using namespace facebook::react;
 @implementation OneNativeTabsComponentView {
   OneNativeTabsView *_tabsView;
   NSMutableArray<OneNativeTabComponentView *> *_pages;
+  NSMutableArray<OneNativeToolbarView *> *_toolbars;
   BOOL _pagesDirty;
 }
 
@@ -24,6 +26,7 @@ using namespace facebook::react;
   if (self = [super initWithFrame:frame]) {
     _props = std::make_shared<const OneNativeTabsProps>();
     _pages = [NSMutableArray new];
+    _toolbars = [NSMutableArray new];
     _tabsView = [OneNativeTabsView new];
     self.contentView = _tabsView;
     __weak OneNativeTabsComponentView *weakSelf = self;
@@ -56,14 +59,26 @@ using namespace facebook::react;
 }
 
 - (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
-  NSAssert([child isKindOfClass:OneNativeTabComponentView.class], @"Swift.Tabs requires Swift.Tab children");
+  if ([child isKindOfClass:OneNativeToolbarComponentView.class]) {
+    OneNativeToolbarView *toolbar = ((OneNativeToolbarComponentView *)child).toolbarView;
+    [_toolbars addObject:toolbar];
+    [_tabsView mountToolbar:toolbar];
+    return;
+  }
+  NSAssert([child isKindOfClass:OneNativeTabComponentView.class], @"Swift.Tabs requires Swift.Tab or Swift.Toolbar children");
   OneNativeTabComponentView *page = (OneNativeTabComponentView *)child;
   page.tabs = self;
-  [_pages insertObject:page atIndex:index];
+  [_pages insertObject:page atIndex:MIN(index, _pages.count)];
   [self invalidatePages];
 }
 
 - (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  if ([child isKindOfClass:OneNativeToolbarComponentView.class]) {
+    OneNativeToolbarView *toolbar = ((OneNativeToolbarComponentView *)child).toolbarView;
+    [_toolbars removeObjectIdenticalTo:toolbar];
+    [_tabsView unmountToolbar:toolbar];
+    return;
+  }
   OneNativeTabComponentView *page = (OneNativeTabComponentView *)child;
   page.tabs = nil;
   [_pages removeObjectIdenticalTo:page];
@@ -89,6 +104,8 @@ using namespace facebook::react;
         OneNativeTabComponentView *strongPage = weakPage;
         if (strongPage.tabs) [strongPage updateNativeFrame:frame];
       }];
+    [item configureStyle:page.swiftStyle];
+    item.emit = ^(NSString *name, NSString *value) { [weakPage emitSDKEvent:name value:value]; };
     [items addObject:item];
   }
   [_tabsView setPages:items];
@@ -110,6 +127,7 @@ using namespace facebook::react;
   [super prepareForRecycle];
   for (OneNativeTabComponentView *page in _pages) page.tabs = nil;
   [_pages removeAllObjects];
+  [_toolbars removeAllObjects];
   [_tabsView reset];
   _pagesDirty = NO;
 }
@@ -135,6 +153,7 @@ using namespace facebook::react;
     _role = @"";
     _slotHeight = 0;
     _tabModifiers = @"{}";
+    _swiftStyle = @{};
   }
   return self;
 }
@@ -148,10 +167,12 @@ using namespace facebook::react;
   NSString *role = RCTNSStringFromString(next.tabRole);
   NSString *kind = RCTNSStringFromString(next.kind);
   NSString *tabModifiers = RCTNSStringFromString(next.tabModifiers);
+  NSDictionary *swiftStyle = OneNativeStyleDictionary(next.swiftStyle);
   BOOL changed = ![self.tabId isEqualToString:tabId] || ![self.kind isEqualToString:kind] ||
     ![self.title isEqualToString:title] || ![self.systemImage isEqualToString:systemImage] ||
     ![self.badge isEqualToString:badge] || ![self.role isEqualToString:role] ||
-    self.slotHeight != next.slotHeight || ![self.tabModifiers isEqualToString:tabModifiers];
+    self.slotHeight != next.slotHeight || ![self.tabModifiers isEqualToString:tabModifiers] ||
+    ![self.swiftStyle isEqualToDictionary:swiftStyle];
   self.tabId = tabId;
   self.kind = kind;
   self.title = title;
@@ -160,8 +181,15 @@ using namespace facebook::react;
   self.role = role;
   self.slotHeight = next.slotHeight;
   self.tabModifiers = tabModifiers;
+  self.swiftStyle = swiftStyle;
   if (changed) [self.tabs invalidatePages];
   [super updateProps:props oldProps:oldProps];
+}
+
+- (void)emitSDKEvent:(NSString *)name value:(NSString *)value {
+  if (!_eventEmitter) return;
+  auto emitter = std::static_pointer_cast<const OneNativeTabEventEmitter>(_eventEmitter);
+  emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
 }
 
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState {

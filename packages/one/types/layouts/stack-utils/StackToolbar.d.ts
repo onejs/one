@@ -12,13 +12,13 @@ export declare function StackToolbarComponent(props: StackToolbarProps): import(
  * Leaf toolbar button descriptor. Placement comes from the enclosing
  * Stack.Toolbar.
  */
-export declare function StackToolbarButton(props: StackToolbarButtonProps): null;
+export declare function StackToolbarButton(_props: StackToolbarButtonProps): null;
 /**
  * Interactive menu descriptor. Children are MenuAction descriptors, nested
  * Menu descriptors become submenus. Label/Icon children configure the bar
  * item; title is the menu title.
  */
-export declare function StackToolbarMenu(props: StackToolbarMenuProps): null;
+export declare function StackToolbarMenu(_props: StackToolbarMenuProps): null;
 /** Leaf menu action descriptor. */
 export declare function StackToolbarMenuAction(_props: StackToolbarMenuActionProps): null;
 /** Flexible spacer, or fixed when width is set. */

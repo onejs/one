@@ -1456,6 +1456,43 @@
       ]
     },
     {
+      "name": "accessibilityLabeledPair",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "enum",
+          "type": "SwiftUI.AccessibilityLabeledPairRole",
+          "optional": false,
+          "cases": [
+            {
+              "name": "label",
+              "ios": 14
+            },
+            {
+              "name": "content",
+              "ios": 14
+            }
+          ],
+          "field": "role",
+          "label": "role"
+        },
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "sdkType": "ID",
+          "optional": false,
+          "field": "id",
+          "label": "id"
+        }
+      ],
+      "namespaceParameter": {
+        "index": 2,
+        "label": "in"
+      }
+    },
+    {
       "name": "accessibilityLabelWithLabelAndIsEnabled",
       "module": "SwiftUI",
       "kind": "record",
@@ -1486,6 +1523,26 @@
       "type": "SwiftUICore.Text",
       "ios": 14,
       "sdkName": "accessibilityLabel"
+    },
+    {
+      "name": "accessibilityLinkedGroup",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "sdkType": "ID",
+          "optional": false,
+          "field": "id",
+          "label": "id"
+        }
+      ],
+      "namespaceParameter": {
+        "index": 1,
+        "label": "in"
+      }
     },
     {
       "name": "accessibilityRemoveTraits",
@@ -1594,6 +1651,57 @@
         }
       ],
       "sdkName": "accessibilityRespondsToUserInteraction"
+    },
+    {
+      "name": "accessibilityRotor",
+      "kind": "record",
+      "type": "",
+      "ios": 15,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "rotorLabel",
+          "label": "_"
+        },
+        {
+          "field": "entries",
+          "label": "entries",
+          "kind": "stringArray",
+          "type": "[OneNativeRotorEntry]",
+          "sdkType": "[EntryModel]",
+          "optional": false,
+          "unique": true,
+          "swiftExpression": "$value.map { OneNativeRotorEntry(id: $0) }"
+        }
+      ],
+      "fixedParameter": {
+        "index": 2,
+        "label": "entryLabel",
+        "type": "Swift.KeyPath<EntryModel, Swift.String>",
+        "expression": "\\OneNativeRotorEntry.label"
+      }
+    },
+    {
+      "name": "accessibilityRotorEntry",
+      "kind": "record",
+      "type": "",
+      "ios": 15,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "sdkType": "ID",
+          "optional": false,
+          "field": "id",
+          "label": "id"
+        }
+      ],
+      "namespaceParameter": {
+        "index": 1,
+        "label": "in"
+      }
     },
     {
       "name": "accessibilityScrollAction",
@@ -2039,6 +2147,35 @@
       }
     },
     {
+      "name": "actionSheet",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "title",
+          "label": "title"
+        }
+      ],
+      "factoryParameter": {
+        "index": 1,
+        "label": "content",
+        "type": "SwiftUI.ActionSheet",
+        "returnType": "SwiftUI.ActionSheet",
+        "argumentOffset": 1
+      }
+    },
+    {
       "name": "addPassToWalletButtonStyle",
       "kind": "string",
       "type": "_PassKit_SwiftUI.AddPassToWalletButtonStyle",
@@ -2054,6 +2191,35 @@
           "ios": 16
         }
       ]
+    },
+    {
+      "name": "alert",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "string",
+          "type": "SwiftUICore.Text",
+          "optional": false,
+          "field": "title",
+          "label": "title"
+        }
+      ],
+      "factoryParameter": {
+        "index": 1,
+        "label": "content",
+        "type": "SwiftUI.Alert",
+        "returnType": "SwiftUI.Alert",
+        "argumentOffset": 1
+      }
     },
     {
       "name": "alignmentGuideWithHorizontalAlignment",
@@ -2289,6 +2455,99 @@
         }
       ],
       "framework": "StoreKit"
+    },
+    {
+      "name": "appStoreOverlayWithAppClipConfiguration",
+      "module": "_StoreKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "enum",
+          "type": "StoreKit.SKOverlay.Position",
+          "optional": false,
+          "cases": [
+            {
+              "name": "bottom",
+              "ios": 14
+            },
+            {
+              "name": "bottomRaised",
+              "ios": 14
+            }
+          ],
+          "field": "position",
+          "label": "position"
+        }
+      ],
+      "aliasSuffix": "AppClipConfiguration",
+      "factoryParameter": {
+        "index": 1,
+        "label": "configuration",
+        "type": "StoreKit.SKOverlay.AppClipConfiguration",
+        "returnType": "StoreKit.SKOverlay.Configuration",
+        "argumentOffset": 1
+      },
+      "framework": "StoreKit",
+      "sdkName": "appStoreOverlay"
+    },
+    {
+      "name": "appStoreOverlayWithAppConfiguration",
+      "module": "_StoreKit_SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "optional": false,
+          "field": "appIdentifier",
+          "label": "appIdentifier"
+        },
+        {
+          "kind": "enum",
+          "type": "StoreKit.SKOverlay.Position",
+          "optional": false,
+          "cases": [
+            {
+              "name": "bottom",
+              "ios": 14
+            },
+            {
+              "name": "bottomRaised",
+              "ios": 14
+            }
+          ],
+          "field": "position",
+          "label": "position"
+        }
+      ],
+      "aliasSuffix": "AppConfiguration",
+      "factoryParameter": {
+        "index": 1,
+        "label": "configuration",
+        "type": "StoreKit.SKOverlay.AppConfiguration",
+        "returnType": "StoreKit.SKOverlay.Configuration",
+        "argumentOffset": 1
+      },
+      "framework": "StoreKit",
+      "sdkName": "appStoreOverlay"
     },
     {
       "name": "aspectRatio",
@@ -3557,6 +3816,77 @@
           "optional": false
         }
       ]
+    },
+    {
+      "name": "cornerRadiusWithRadiusAndAntialiased",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat",
+          "optional": false,
+          "field": "radius",
+          "label": "_"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "antialiased",
+          "label": "antialiased"
+        }
+      ],
+      "sdkName": "cornerRadius"
+    },
+    {
+      "name": "currentEntitlementTask",
+      "kind": "eventAsyncStruct",
+      "type": "@escaping (_StoreKit_SwiftUI.EntitlementTaskState<StoreKit.VerificationResult<StoreKit.Transaction>?>) async -> ()",
+      "label": "action",
+      "eventInputType": "_StoreKit_SwiftUI.EntitlementTaskState<StoreKit.VerificationResult<StoreKit.Transaction>?>",
+      "eventValue": {
+        "kind": "associatedEnum",
+        "cases": [
+          {
+            "name": "loading",
+            "values": []
+          },
+          {
+            "name": "failure",
+            "values": [
+              {
+                "kind": "description"
+              }
+            ]
+          },
+          {
+            "name": "success",
+            "values": [
+              {
+                "kind": "optional",
+                "value": {
+                  "kind": "verification"
+                }
+              }
+            ]
+          }
+        ],
+        "open": true
+      },
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "optional": false,
+          "field": "productID",
+          "label": "for"
+        }
+      ],
+      "ios": 17,
+      "framework": "StoreKit"
     },
     {
       "name": "cuttable",
@@ -5615,6 +5945,77 @@
       "ios": 17
     },
     {
+      "name": "fileImporterWithIsPresentedAndAllowedContentTypesAndAllowsMultipleSelectionAndOnCompletion",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "stringArray",
+          "type": "[UniformTypeIdentifiers.UTType]",
+          "optional": false,
+          "swiftExpression": "({ () -> [UniformTypeIdentifiers.UTType] in\n        let identifiers = $value\n        if identifiers.isEmpty { return [.item] }\n        return identifiers.map { identifier in\n          guard let type = UniformTypeIdentifiers.UTType(identifier) else { preconditionFailure(\"invalid content type: \\(identifier)\") }\n          return type\n        }\n      })()",
+          "field": "allowedContentTypes",
+          "label": "allowedContentTypes"
+        },
+        {
+          "kind": "boolean",
+          "type": "Swift.Bool",
+          "optional": false,
+          "field": "allowsMultipleSelection",
+          "label": "allowsMultipleSelection"
+        },
+        {
+          "kind": "resultURLArray",
+          "type": "@escaping (_ result: Swift.Result<[Foundation.URL], any Swift.Error>) -> Swift.Void",
+          "optional": false,
+          "field": "onCompletion",
+          "label": "onCompletion"
+        }
+      ],
+      "sdkName": "fileImporter"
+    },
+    {
+      "name": "fileImporterWithIsPresentedAndAllowedContentTypesAndOnCompletion",
+      "module": "SwiftUI",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "stringArray",
+          "type": "[UniformTypeIdentifiers.UTType]",
+          "optional": false,
+          "swiftExpression": "({ () -> [UniformTypeIdentifiers.UTType] in\n        let identifiers = $value\n        if identifiers.isEmpty { return [.item] }\n        return identifiers.map { identifier in\n          guard let type = UniformTypeIdentifiers.UTType(identifier) else { preconditionFailure(\"invalid content type: \\(identifier)\") }\n          return type\n        }\n      })()",
+          "field": "allowedContentTypes",
+          "label": "allowedContentTypes"
+        },
+        {
+          "kind": "resultURL",
+          "type": "@escaping (_ result: Swift.Result<Foundation.URL, any Swift.Error>) -> Swift.Void",
+          "optional": false,
+          "field": "onCompletion",
+          "label": "onCompletion"
+        }
+      ],
+      "sdkName": "fileImporter"
+    },
+    {
       "name": "fileMover",
       "kind": "record",
       "type": "",
@@ -5809,6 +6210,78 @@
           "ios": 26
         }
       ]
+    },
+    {
+      "name": "fontDesignWithOptionalDesign",
+      "module": "SwiftUICore",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.Font.Design?",
+      "ios": 16.1,
+      "cases": [
+        {
+          "name": "default",
+          "ios": 13
+        },
+        {
+          "name": "serif",
+          "ios": 13
+        },
+        {
+          "name": "rounded",
+          "ios": 13
+        },
+        {
+          "name": "monospaced",
+          "ios": 13
+        }
+      ],
+      "sdkName": "fontDesign"
+    },
+    {
+      "name": "fontWeightWithOptionalWeight",
+      "module": "SwiftUICore",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.Font.Weight?",
+      "ios": 16,
+      "cases": [
+        {
+          "name": "ultraLight",
+          "ios": 13
+        },
+        {
+          "name": "thin",
+          "ios": 13
+        },
+        {
+          "name": "light",
+          "ios": 13
+        },
+        {
+          "name": "regular",
+          "ios": 13
+        },
+        {
+          "name": "medium",
+          "ios": 13
+        },
+        {
+          "name": "semibold",
+          "ios": 13
+        },
+        {
+          "name": "bold",
+          "ios": 13
+        },
+        {
+          "name": "heavy",
+          "ios": 13
+        },
+        {
+          "name": "black",
+          "ios": 13
+        }
+      ],
+      "sdkName": "fontWeight"
     },
     {
       "name": "fontWidth",
@@ -6373,6 +6846,26 @@
       "ios": 13
     },
     {
+      "name": "glassEffectID",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String?",
+          "sdkType": "(some (Hashable & Sendable))?",
+          "optional": true,
+          "field": "id",
+          "label": "_"
+        }
+      ],
+      "namespaceParameter": {
+        "index": 1,
+        "label": "in"
+      }
+    },
+    {
       "name": "glassEffectTransition",
       "kind": "string",
       "type": "SwiftUICore.GlassEffectTransition",
@@ -6391,6 +6884,48 @@
           "ios": 26
         }
       ]
+    },
+    {
+      "name": "glassEffectUnion",
+      "kind": "record",
+      "type": "",
+      "ios": 26,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String?",
+          "sdkType": "(some (Hashable & Sendable))?",
+          "optional": true,
+          "field": "id",
+          "label": "id"
+        }
+      ],
+      "namespaceParameter": {
+        "index": 1,
+        "label": "namespace"
+      }
+    },
+    {
+      "name": "glassEffectWithGlass",
+      "module": "SwiftUICore",
+      "kind": "string",
+      "type": "SwiftUICore.Glass",
+      "cases": [
+        {
+          "name": "regular",
+          "ios": 26
+        },
+        {
+          "name": "clear",
+          "ios": 26
+        },
+        {
+          "name": "identity",
+          "ios": 26
+        }
+      ],
+      "ios": 26,
+      "sdkName": "glassEffect"
     },
     {
       "name": "grayscale",
@@ -6780,44 +7315,6 @@
       "ios": 17
     },
     {
-      "name": "hoverEffectWithEffectAndIsEnabled",
-      "module": "SwiftUICore",
-      "kind": "record",
-      "type": "",
-      "ios": 17,
-      "arguments": [
-        {
-          "kind": "enum",
-          "type": "SwiftUICore.HoverEffect",
-          "optional": false,
-          "cases": [
-            {
-              "name": "automatic",
-              "ios": 13.4
-            },
-            {
-              "name": "highlight",
-              "ios": 13.4
-            },
-            {
-              "name": "lift",
-              "ios": 13.4
-            }
-          ],
-          "field": "effect",
-          "label": "_"
-        },
-        {
-          "kind": "boolean",
-          "type": "Swift.Bool",
-          "optional": false,
-          "field": "isEnabled",
-          "label": "isEnabled"
-        }
-      ],
-      "sdkName": "hoverEffect"
-    },
-    {
       "name": "hoverEffectWithHoverEffect",
       "module": "SwiftUICore",
       "kind": "string",
@@ -6840,6 +7337,28 @@
       "sdkName": "hoverEffect"
     },
     {
+      "name": "hoverEffectWithHoverEffectFromSwiftUICore",
+      "module": "SwiftUICore",
+      "kind": "string",
+      "type": "SwiftUICore.HoverEffect",
+      "cases": [
+        {
+          "name": "automatic",
+          "ios": 13.4
+        },
+        {
+          "name": "highlight",
+          "ios": 13.4
+        },
+        {
+          "name": "lift",
+          "ios": 13.4
+        }
+      ],
+      "ios": 17,
+      "sdkName": "hoverEffect"
+    },
+    {
       "name": "hueRotation",
       "kind": "string",
       "type": "SwiftUICore.Angle",
@@ -6856,74 +7375,6 @@
       "kind": "string",
       "type": "ID",
       "ios": 13
-    },
-    {
-      "name": "ignoresSafeAreaWithRegionsAndEdges",
-      "module": "SwiftUICore",
-      "kind": "record",
-      "type": "",
-      "ios": 14,
-      "arguments": [
-        {
-          "kind": "enum",
-          "type": "SwiftUICore.SafeAreaRegions",
-          "optional": false,
-          "cases": [
-            {
-              "name": "container",
-              "ios": 14
-            },
-            {
-              "name": "keyboard",
-              "ios": 14
-            },
-            {
-              "name": "all",
-              "ios": 14
-            }
-          ],
-          "field": "regions",
-          "label": "_"
-        },
-        {
-          "kind": "enum",
-          "type": "SwiftUICore.Edge.Set",
-          "optional": false,
-          "cases": [
-            {
-              "name": "top",
-              "ios": 13
-            },
-            {
-              "name": "leading",
-              "ios": 13
-            },
-            {
-              "name": "bottom",
-              "ios": 13
-            },
-            {
-              "name": "trailing",
-              "ios": 13
-            },
-            {
-              "name": "all",
-              "ios": 13
-            },
-            {
-              "name": "horizontal",
-              "ios": 13
-            },
-            {
-              "name": "vertical",
-              "ios": 13
-            }
-          ],
-          "field": "edges",
-          "label": "edges"
-        }
-      ],
-      "sdkName": "ignoresSafeArea"
     },
     {
       "name": "ignoresSafeAreaWithRegionsAndEdgesAndAlignment",
@@ -7063,6 +7514,28 @@
       "sdkName": "ignoresSafeArea"
     },
     {
+      "name": "ignoresSafeAreaWithSafeAreaRegions",
+      "module": "SwiftUICore",
+      "kind": "string",
+      "type": "SwiftUICore.SafeAreaRegions",
+      "cases": [
+        {
+          "name": "container",
+          "ios": 14
+        },
+        {
+          "name": "keyboard",
+          "ios": 14
+        },
+        {
+          "name": "all",
+          "ios": 14
+        }
+      ],
+      "ios": 14,
+      "sdkName": "ignoresSafeArea"
+    },
+    {
       "name": "imageScale",
       "kind": "string",
       "type": "SwiftUICore.Image.Scale",
@@ -7079,6 +7552,37 @@
         {
           "name": "large",
           "ios": 13
+        }
+      ]
+    },
+    {
+      "name": "inAppPurchaseOptions",
+      "kind": "optionSet",
+      "type": "((StoreKit.Product) async -> Swift.Set<StoreKit.Product.PurchaseOption>)?",
+      "resultType": "StoreKit.Product.PurchaseOption",
+      "ios": 17,
+      "framework": "StoreKit",
+      "arguments": [
+        {
+          "field": "quantity",
+          "label": "_",
+          "type": "Swift.Int",
+          "kind": "number",
+          "optional": true
+        },
+        {
+          "field": "simulatesAskToBuyInSandbox",
+          "label": "_",
+          "type": "Swift.Bool",
+          "kind": "boolean",
+          "optional": true
+        },
+        {
+          "field": "introductoryOfferEligibility",
+          "label": "compactJWS",
+          "type": "Swift.String",
+          "kind": "string",
+          "optional": true
         }
       ]
     },
@@ -8439,6 +8943,18 @@
       "framework": "MapKit"
     },
     {
+      "name": "mapScope",
+      "kind": "boolean",
+      "type": "",
+      "ios": 17,
+      "zeroArgument": true,
+      "namespaceParameter": {
+        "index": 0,
+        "label": "_"
+      },
+      "framework": "MapKit"
+    },
+    {
       "name": "mapStyle",
       "kind": "string",
       "type": "_MapKit_SwiftUI.MapStyle",
@@ -8458,6 +8974,46 @@
           "ios": 17
         }
       ]
+    },
+    {
+      "name": "matchedGeometryEffect",
+      "kind": "record",
+      "type": "",
+      "ios": 14,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "sdkType": "ID",
+          "optional": false,
+          "field": "id",
+          "label": "id"
+        }
+      ],
+      "namespaceParameter": {
+        "index": 1,
+        "label": "in"
+      }
+    },
+    {
+      "name": "matchedTransitionSource",
+      "kind": "record",
+      "type": "",
+      "ios": 18,
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "sdkType": "some Hashable",
+          "optional": false,
+          "field": "id",
+          "label": "id"
+        }
+      ],
+      "namespaceParameter": {
+        "index": 1,
+        "label": "in"
+      }
     },
     {
       "name": "materialActiveAppearance",
@@ -9358,6 +9914,161 @@
       "ios": 13.4
     },
     {
+      "name": "onInAppPurchaseCompletion",
+      "kind": "eventAsyncStruct",
+      "type": "((StoreKit.Product, Swift.Result<StoreKit.Product.PurchaseResult, any Swift.Error>) async -> ())?",
+      "label": "perform",
+      "eventInputs": [
+        "first",
+        "result"
+      ],
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "value",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "id",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "type",
+                  "value": {
+                    "kind": "object",
+                    "fields": [
+                      {
+                        "name": "rawValue",
+                        "value": {
+                          "kind": "string"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "displayName",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "description",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "displayPrice",
+                  "value": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "name": "isFamilyShareable",
+                  "value": {
+                    "kind": "boolean"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "result",
+            "value": {
+              "kind": "result",
+              "value": {
+                "kind": "associatedEnum",
+                "cases": [
+                  {
+                    "name": "success",
+                    "values": [
+                      {
+                        "kind": "verification"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "userCancelled",
+                    "values": []
+                  },
+                  {
+                    "name": "pending",
+                    "values": []
+                  }
+                ],
+                "open": true
+              }
+            }
+          }
+        ]
+      },
+      "ios": 17,
+      "framework": "StoreKit"
+    },
+    {
+      "name": "onInAppPurchaseStart",
+      "kind": "eventAsyncStruct",
+      "type": "((StoreKit.Product) async -> ())?",
+      "label": "perform",
+      "eventInputType": "StoreKit.Product",
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "id",
+            "value": {
+              "kind": "string"
+            }
+          },
+          {
+            "name": "type",
+            "value": {
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "rawValue",
+                  "value": {
+                    "kind": "string"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "displayName",
+            "value": {
+              "kind": "string"
+            }
+          },
+          {
+            "name": "description",
+            "value": {
+              "kind": "string"
+            }
+          },
+          {
+            "name": "displayPrice",
+            "value": {
+              "kind": "string"
+            }
+          },
+          {
+            "name": "isFamilyShareable",
+            "value": {
+              "kind": "boolean"
+            }
+          }
+        ]
+      },
+      "ios": 17,
+      "framework": "StoreKit"
+    },
+    {
       "name": "onInteractiveResizeChange",
       "kind": "eventBoolean",
       "type": "@escaping (_ isResizing: Swift.Bool) -> Swift.Void",
@@ -9821,6 +10532,27 @@
       ]
     },
     {
+      "name": "onPreferenceChangePreferredColorScheme",
+      "sdkName": "onPreferenceChange",
+      "module": "SwiftUICore",
+      "preferenceKey": "SwiftUICore.PreferredColorSchemeKey",
+      "preferenceOperation": "observe",
+      "kind": "eventStruct",
+      "type": "@escaping (K.Value) -> Swift.Void",
+      "ios": 13,
+      "eventValue": {
+        "kind": "optional",
+        "value": {
+          "kind": "enum",
+          "cases": [
+            "light",
+            "dark"
+          ],
+          "open": true
+        }
+      }
+    },
+    {
       "name": "onScrollGeometryChangeWithContainerSize",
       "sdkName": "onScrollGeometryChange",
       "module": "SwiftUI",
@@ -10080,6 +10812,44 @@
         }
       ],
       "sdkName": "onTapGesture"
+    },
+    {
+      "name": "paddingWithSet",
+      "module": "SwiftUICore",
+      "kind": "string",
+      "type": "SwiftUICore.Edge.Set",
+      "cases": [
+        {
+          "name": "top",
+          "ios": 13
+        },
+        {
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "bottom",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        },
+        {
+          "name": "all",
+          "ios": 13
+        },
+        {
+          "name": "horizontal",
+          "ios": 13
+        },
+        {
+          "name": "vertical",
+          "ios": 13
+        }
+      ],
+      "ios": 13,
+      "sdkName": "padding"
     },
     {
       "name": "paletteSelectionEffect",
@@ -10384,6 +11154,55 @@
       "framework": "PhotosUI"
     },
     {
+      "name": "photosSharedAlbumCreationSheet",
+      "kind": "record",
+      "type": "",
+      "ios": 27,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        }
+      ],
+      "sharedParameter": {
+        "index": 1,
+        "label": "photoLibrary",
+        "type": "Photos.PHPhotoLibrary"
+      },
+      "framework": "PhotosUI"
+    },
+    {
+      "name": "photosSharedAlbumCustomizationSheet",
+      "kind": "record",
+      "type": "",
+      "ios": 27,
+      "arguments": [
+        {
+          "kind": "bindingBoolean",
+          "type": "SwiftUICore.Binding<Swift.Bool>",
+          "optional": false,
+          "field": "isPresented",
+          "label": "isPresented"
+        },
+        {
+          "kind": "string",
+          "type": "Swift.String?",
+          "optional": true,
+          "field": "albumIdentifier",
+          "label": "albumIdentifier"
+        }
+      ],
+      "sharedParameter": {
+        "index": 2,
+        "label": "photoLibrary",
+        "type": "Photos.PHPhotoLibrary"
+      },
+      "framework": "PhotosUI"
+    },
+    {
       "name": "pickerStyle",
       "kind": "style",
       "type": "S",
@@ -10446,6 +11265,26 @@
       ]
     },
     {
+      "name": "preferencePreferredColorScheme",
+      "sdkName": "preference",
+      "module": "SwiftUICore",
+      "preferenceKey": "SwiftUICore.PreferredColorSchemeKey",
+      "preferenceOperation": "set",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.ColorScheme?",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "light",
+          "ios": 13
+        },
+        {
+          "name": "dark",
+          "ios": 13
+        }
+      ]
+    },
+    {
       "name": "preferredColorScheme",
       "kind": "optionalEnum",
       "type": "SwiftUICore.ColorScheme?",
@@ -10460,6 +11299,14 @@
           "ios": 13
         }
       ]
+    },
+    {
+      "name": "preferredSubscriptionOffer",
+      "kind": "selectionID",
+      "type": "@escaping (_ product: StoreKit.Product, _ subscription: StoreKit.Product.SubscriptionInfo, _ eligibleOffers: [StoreKit.Product.SubscriptionOffer]) -> StoreKit.Product.SubscriptionOffer?",
+      "label": "_",
+      "ios": 18,
+      "framework": "StoreKit"
     },
     {
       "name": "presentationBackground",
@@ -10758,6 +11605,24 @@
       "ios": 16.4
     },
     {
+      "name": "presentationDetents",
+      "kind": "caseSet",
+      "type": "Swift.Set<SwiftUI.PresentationDetent>",
+      "resultType": "SwiftUI.PresentationDetent",
+      "label": "_",
+      "cases": [
+        {
+          "name": "medium",
+          "ios": 16
+        },
+        {
+          "name": "large",
+          "ios": 16
+        }
+      ],
+      "ios": 16
+    },
+    {
       "name": "presentationDragIndicator",
       "kind": "string",
       "type": "SwiftUICore.Visibility",
@@ -11007,6 +11872,14 @@
       ]
     },
     {
+      "name": "quickLookPreview",
+      "kind": "bindingOptionalString",
+      "type": "SwiftUICore.Binding<Foundation.URL?>",
+      "label": "_",
+      "ios": 14,
+      "framework": "QuickLook"
+    },
+    {
       "name": "realityViewCameraControls",
       "kind": "string",
       "type": "RealityFoundation.CameraControls",
@@ -11076,6 +11949,13 @@
         }
       ],
       "label": "reason"
+    },
+    {
+      "name": "refreshable",
+      "kind": "eventAsync",
+      "type": "@escaping @Sendable () async -> Swift.Void",
+      "label": "action",
+      "ios": 15
     },
     {
       "name": "refundRequestSheet",
@@ -11302,57 +12182,41 @@
       "sdkName": "safeAreaPadding"
     },
     {
-      "name": "safeAreaPaddingWithEdgesAndLength",
+      "name": "safeAreaPaddingWithSet",
       "module": "SwiftUICore",
-      "kind": "record",
-      "type": "",
-      "ios": 17,
-      "arguments": [
+      "kind": "string",
+      "type": "SwiftUICore.Edge.Set",
+      "cases": [
         {
-          "kind": "enum",
-          "type": "SwiftUICore.Edge.Set",
-          "optional": false,
-          "cases": [
-            {
-              "name": "top",
-              "ios": 13
-            },
-            {
-              "name": "leading",
-              "ios": 13
-            },
-            {
-              "name": "bottom",
-              "ios": 13
-            },
-            {
-              "name": "trailing",
-              "ios": 13
-            },
-            {
-              "name": "all",
-              "ios": 13
-            },
-            {
-              "name": "horizontal",
-              "ios": 13
-            },
-            {
-              "name": "vertical",
-              "ios": 13
-            }
-          ],
-          "field": "edges",
-          "label": "_"
+          "name": "top",
+          "ios": 13
         },
         {
-          "kind": "number",
-          "type": "CoreFoundation.CGFloat?",
-          "optional": true,
-          "field": "length",
-          "label": "_"
+          "name": "leading",
+          "ios": 13
+        },
+        {
+          "name": "bottom",
+          "ios": 13
+        },
+        {
+          "name": "trailing",
+          "ios": 13
+        },
+        {
+          "name": "all",
+          "ios": 13
+        },
+        {
+          "name": "horizontal",
+          "ios": 13
+        },
+        {
+          "name": "vertical",
+          "ios": 13
         }
       ],
+      "ios": 17,
       "sdkName": "safeAreaPadding"
     },
     {
@@ -11950,6 +12814,23 @@
       "type": "Swift.Bool",
       "ios": 17,
       "label": "isEnabled"
+    },
+    {
+      "name": "scrollTransition",
+      "kind": "visualEffect",
+      "type": "@escaping @Sendable (SwiftUICore.EmptyVisualEffect, SwiftUI.ScrollTransitionPhase) -> some VisualEffect",
+      "cases": [
+        {
+          "name": "opacity",
+          "ios": 17
+        },
+        {
+          "name": "scaleEffect",
+          "ios": 17
+        }
+      ],
+      "ios": 17,
+      "visualPhase": true
     },
     {
       "name": "searchable",
@@ -12658,6 +13539,199 @@
       "framework": "StoreKit"
     },
     {
+      "name": "storeProductsTask",
+      "kind": "eventAsyncStruct",
+      "type": "@escaping (StoreKit.Product.CollectionTaskState) async -> ()",
+      "label": "action",
+      "eventInputType": "StoreKit.Product.CollectionTaskState",
+      "eventValue": {
+        "kind": "associatedEnum",
+        "cases": [
+          {
+            "name": "loading",
+            "values": []
+          },
+          {
+            "name": "failure",
+            "values": [
+              {
+                "kind": "description"
+              }
+            ]
+          },
+          {
+            "name": "success",
+            "values": [
+              {
+                "kind": "array",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "id",
+                      "value": {
+                        "kind": "string"
+                      }
+                    },
+                    {
+                      "name": "type",
+                      "value": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "name": "rawValue",
+                            "value": {
+                              "kind": "string"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "displayName",
+                      "value": {
+                        "kind": "string"
+                      }
+                    },
+                    {
+                      "name": "description",
+                      "value": {
+                        "kind": "string"
+                      }
+                    },
+                    {
+                      "name": "displayPrice",
+                      "value": {
+                        "kind": "string"
+                      }
+                    },
+                    {
+                      "name": "isFamilyShareable",
+                      "value": {
+                        "kind": "boolean"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "kind": "array",
+                "value": {
+                  "kind": "string"
+                }
+              }
+            ]
+          }
+        ],
+        "open": true
+      },
+      "arguments": [
+        {
+          "kind": "stringArray",
+          "type": "[Swift.String]",
+          "optional": false,
+          "field": "ids",
+          "label": "for"
+        }
+      ],
+      "ios": 17,
+      "framework": "StoreKit"
+    },
+    {
+      "name": "storeProductTask",
+      "kind": "eventAsyncStruct",
+      "type": "@escaping (StoreKit.Product.TaskState) async -> ()",
+      "label": "action",
+      "eventInputType": "StoreKit.Product.TaskState",
+      "eventValue": {
+        "kind": "associatedEnum",
+        "cases": [
+          {
+            "name": "loading",
+            "values": []
+          },
+          {
+            "name": "unavailable",
+            "values": []
+          },
+          {
+            "name": "failure",
+            "values": [
+              {
+                "kind": "description"
+              }
+            ]
+          },
+          {
+            "name": "success",
+            "values": [
+              {
+                "kind": "object",
+                "fields": [
+                  {
+                    "name": "id",
+                    "value": {
+                      "kind": "string"
+                    }
+                  },
+                  {
+                    "name": "type",
+                    "value": {
+                      "kind": "object",
+                      "fields": [
+                        {
+                          "name": "rawValue",
+                          "value": {
+                            "kind": "string"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "displayName",
+                    "value": {
+                      "kind": "string"
+                    }
+                  },
+                  {
+                    "name": "description",
+                    "value": {
+                      "kind": "string"
+                    }
+                  },
+                  {
+                    "name": "displayPrice",
+                    "value": {
+                      "kind": "string"
+                    }
+                  },
+                  {
+                    "name": "isFamilyShareable",
+                    "value": {
+                      "kind": "boolean"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "open": true
+      },
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "StoreKit.Product.ID",
+          "optional": false,
+          "field": "id",
+          "label": "for"
+        }
+      ],
+      "ios": 17,
+      "framework": "StoreKit"
+    },
+    {
       "name": "strikethrough",
       "kind": "record",
       "type": "",
@@ -12902,6 +13976,81 @@
           "ios": 26
         }
       ],
+      "framework": "StoreKit"
+    },
+    {
+      "name": "subscriptionStatusTask",
+      "kind": "eventAsyncStruct",
+      "type": "@escaping (_StoreKit_SwiftUI.EntitlementTaskState<[StoreKit.Product.SubscriptionInfo.Status]>) async -> ()",
+      "label": "action",
+      "eventInputType": "_StoreKit_SwiftUI.EntitlementTaskState<[StoreKit.Product.SubscriptionInfo.Status]>",
+      "eventValue": {
+        "kind": "associatedEnum",
+        "cases": [
+          {
+            "name": "loading",
+            "values": []
+          },
+          {
+            "name": "failure",
+            "values": [
+              {
+                "kind": "description"
+              }
+            ]
+          },
+          {
+            "name": "success",
+            "values": [
+              {
+                "kind": "array",
+                "value": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "state",
+                      "value": {
+                        "kind": "object",
+                        "fields": [
+                          {
+                            "name": "rawValue",
+                            "value": {
+                              "kind": "number"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "transaction",
+                      "value": {
+                        "kind": "verification"
+                      }
+                    },
+                    {
+                      "name": "renewalInfo",
+                      "value": {
+                        "kind": "verification"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "open": true
+      },
+      "arguments": [
+        {
+          "kind": "string",
+          "type": "Swift.String",
+          "optional": false,
+          "field": "groupID",
+          "label": "for"
+        }
+      ],
+      "ios": 17,
       "framework": "StoreKit"
     },
     {
@@ -13387,6 +14536,43 @@
       ]
     },
     {
+      "name": "symbolEffect",
+      "kind": "style",
+      "type": "T",
+      "ios": 17,
+      "cases": [
+        {
+          "name": "pulse",
+          "ios": 17
+        },
+        {
+          "name": "bounce",
+          "ios": 18
+        },
+        {
+          "name": "variableColor",
+          "ios": 17
+        },
+        {
+          "name": "scale",
+          "ios": 17
+        },
+        {
+          "name": "wiggle",
+          "ios": 18
+        },
+        {
+          "name": "rotate",
+          "ios": 18
+        },
+        {
+          "name": "breathe",
+          "ios": 18
+        }
+      ],
+      "framework": "Symbols"
+    },
+    {
       "name": "symbolEffectsRemoved",
       "kind": "boolean",
       "type": "Swift.Bool",
@@ -13578,6 +14764,13 @@
       "kind": "string",
       "type": "V",
       "ios": 13
+    },
+    {
+      "name": "task",
+      "kind": "eventAsync",
+      "type": "sending @escaping @isolated(any) () async -> Swift.Void",
+      "label": "_",
+      "ios": 15
     },
     {
       "name": "textCase",
@@ -14000,6 +15193,92 @@
           "ios": 18
         }
       ]
+    },
+    {
+      "name": "tintWithOptionalColor",
+      "module": "SwiftUICore",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.Color?",
+      "ios": 15,
+      "cases": [
+        {
+          "name": "accentColor",
+          "ios": 13
+        },
+        {
+          "name": "red",
+          "ios": 13
+        },
+        {
+          "name": "orange",
+          "ios": 13
+        },
+        {
+          "name": "yellow",
+          "ios": 13
+        },
+        {
+          "name": "green",
+          "ios": 13
+        },
+        {
+          "name": "mint",
+          "ios": 15
+        },
+        {
+          "name": "teal",
+          "ios": 15
+        },
+        {
+          "name": "cyan",
+          "ios": 15
+        },
+        {
+          "name": "blue",
+          "ios": 13
+        },
+        {
+          "name": "indigo",
+          "ios": 15
+        },
+        {
+          "name": "purple",
+          "ios": 13
+        },
+        {
+          "name": "pink",
+          "ios": 13
+        },
+        {
+          "name": "brown",
+          "ios": 15
+        },
+        {
+          "name": "white",
+          "ios": 13
+        },
+        {
+          "name": "gray",
+          "ios": 13
+        },
+        {
+          "name": "black",
+          "ios": 13
+        },
+        {
+          "name": "clear",
+          "ios": 13
+        },
+        {
+          "name": "primary",
+          "ios": 13
+        },
+        {
+          "name": "secondary",
+          "ios": 13
+        }
+      ],
+      "sdkName": "tint"
     },
     {
       "name": "toggleStyle",
@@ -14561,6 +15840,47 @@
       "ios": 16
     },
     {
+      "name": "transaction",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "field": "transform",
+          "label": "_",
+          "type": "@escaping (inout SwiftUICore.Transaction) -> Swift.Void",
+          "kind": "structUpdate",
+          "optional": false,
+          "fields": [
+            {
+              "name": "isContinuous",
+              "label": "isContinuous",
+              "type": "Swift.Bool",
+              "ios": 13
+            },
+            {
+              "name": "scrollPositionUpdatePreservesVelocity",
+              "label": "scrollPositionUpdatePreservesVelocity",
+              "type": "Swift.Bool",
+              "ios": 18
+            },
+            {
+              "name": "disablesAnimations",
+              "label": "disablesAnimations",
+              "type": "Swift.Bool",
+              "ios": 13
+            },
+            {
+              "name": "tracksVelocity",
+              "label": "tracksVelocity",
+              "type": "Swift.Bool",
+              "ios": 17
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "transformEffect",
       "kind": "record",
       "type": "",
@@ -14604,6 +15924,196 @@
           ],
           "field": "transform",
           "label": "_"
+        }
+      ]
+    },
+    {
+      "name": "transformEnvironmentAccessibilityEnabled",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "accessibilityEnabled",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentAccessibilityPrefersCrossFadeTransitions",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "accessibilityPrefersCrossFadeTransitions",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 26.4
+    },
+    {
+      "name": "transformEnvironmentAllowsTightening",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "allowsTightening",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentAppearsActive",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "appearsActive",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 18
+    },
+    {
+      "name": "transformEnvironmentAutocorrectionDisabled",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "autocorrectionDisabled",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentContentTransitionAddsDrawingGroup",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "contentTransitionAddsDrawingGroup",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "transformEnvironmentDefaultMinListRowHeight",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "defaultMinListRowHeight",
+      "environmentTransform": "add",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentDisplayScale",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "displayScale",
+      "environmentTransform": "add",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentIsEnabled",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "isEnabled",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentIsFocusEffectEnabled",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "isFocusEffectEnabled",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "transformEnvironmentIsHoverEffectEnabled",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "isHoverEffectEnabled",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "transformEnvironmentIsLuminanceReduced",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "isLuminanceReduced",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "transformEnvironmentIsSceneCaptured",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "isSceneCaptured",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 17
+    },
+    {
+      "name": "transformEnvironmentIsScrollEnabled",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "isScrollEnabled",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 16
+    },
+    {
+      "name": "transformEnvironmentLineSpacing",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "lineSpacing",
+      "environmentTransform": "add",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentMinimumScaleFactor",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "minimumScaleFactor",
+      "environmentTransform": "add",
+      "kind": "number",
+      "type": "CoreFoundation.CGFloat",
+      "ios": 13
+    },
+    {
+      "name": "transformEnvironmentSystemPrefersReducedResourceUsage",
+      "sdkName": "transformEnvironment",
+      "module": "SwiftUICore",
+      "environmentKey": "systemPrefersReducedResourceUsage",
+      "environmentTransform": "toggle",
+      "kind": "boolean",
+      "type": "Swift.Bool",
+      "ios": 27
+    },
+    {
+      "name": "transformPreferencePreferredColorScheme",
+      "sdkName": "transformPreference",
+      "module": "SwiftUICore",
+      "preferenceKey": "SwiftUICore.PreferredColorSchemeKey",
+      "preferenceOperation": "transform",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.ColorScheme?",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "light",
+          "ios": 13
+        },
+        {
+          "name": "dark",
+          "ios": 13
         }
       ]
     },
@@ -14931,6 +16441,22 @@
           "ios": 16
         }
       ]
+    },
+    {
+      "name": "visualEffect",
+      "kind": "visualEffect",
+      "type": "@escaping @Sendable (SwiftUICore.EmptyVisualEffect, SwiftUICore.GeometryProxy) -> some VisualEffect",
+      "cases": [
+        {
+          "name": "opacity",
+          "ios": 17
+        },
+        {
+          "name": "scaleEffect",
+          "ios": 17
+        }
+      ],
+      "ios": 17
     },
     {
       "name": "webViewBackForwardNavigationGestures",
@@ -15339,6 +16865,7 @@
         "animation",
         "aspectRatio",
         "background",
+        "backgroundPreferenceValue",
         "backgroundStyle",
         "baselineOffset",
         "blendMode",
@@ -15362,6 +16889,7 @@
         "contrast",
         "controlSize",
         "coordinateSpace",
+        "cornerRadius",
         "defaultHoverEffect",
         "disabled",
         "distortionEffect",
@@ -15371,13 +16899,18 @@
         "environment",
         "fixedSize",
         "font",
+        "fontDesign",
+        "fontWeight",
         "fontWidth",
         "foregroundColor",
         "foregroundStyle",
         "frame",
         "geometryGroup",
         "gesture",
+        "glassEffect",
+        "glassEffectID",
         "glassEffectTransition",
+        "glassEffectUnion",
         "grayscale",
         "headerProminence",
         "highPriorityGesture",
@@ -15397,6 +16930,7 @@
         "lineSpacing",
         "luminanceToAlpha",
         "mask",
+        "matchedGeometryEffect",
         "materialActiveAppearance",
         "minimumScaleFactor",
         "monospaced",
@@ -15408,11 +16942,14 @@
         "onDisappear",
         "onGeometryChange",
         "onOpenURL",
+        "onPreferenceChange",
         "onTapGesture",
         "opacity",
         "overlay",
+        "overlayPreferenceValue",
         "padding",
         "position",
+        "preference",
         "preferredColorScheme",
         "privacySensitive",
         "redacted",
@@ -15432,6 +16969,7 @@
         "speechSpellsOutCharacters",
         "strikethrough",
         "symbolColorRenderingMode",
+        "symbolEffect",
         "symbolRenderingMode",
         "symbolVariableValueMode",
         "symbolVariant",
@@ -15441,12 +16979,16 @@
         "textScale",
         "tint",
         "tracking",
+        "transaction",
         "transformEffect",
+        "transformEnvironment",
+        "transformPreference",
         "transition",
         "truncationMode",
         "typesettingLanguage",
         "underline",
         "unredacted",
+        "visualEffect",
         "writingDirection",
         "zIndex"
       ],
@@ -15471,15 +17013,20 @@
         "accessibilityIdentifier",
         "accessibilityInputLabels",
         "accessibilityLabel",
+        "accessibilityLabeledPair",
+        "accessibilityLinkedGroup",
         "accessibilityRemoveTraits",
         "accessibilityRepresentation",
         "accessibilityRespondsToUserInteraction",
+        "accessibilityRotor",
+        "accessibilityRotorEntry",
         "accessibilityScrollAction",
         "accessibilityScrollStatus",
         "accessibilitySortPriority",
         "accessibilityTextContentType",
         "accessibilityValue",
         "accessibilityZoomAction",
+        "actionSheet",
         "alert",
         "allowsWindowActivationEvents",
         "assistiveAccessNavigationIcon",
@@ -15576,6 +17123,7 @@
         "listSectionSeparatorTint",
         "listSectionSpacing",
         "listStyle",
+        "matchedTransitionSource",
         "menuActionDismissBehavior",
         "menuIndicator",
         "menuOrder",
@@ -15633,6 +17181,7 @@
         "previewLayout",
         "progressViewStyle",
         "projectionEffect",
+        "refreshable",
         "renameAction",
         "replaceDisabled",
         "safeAreaBar",
@@ -15649,6 +17198,7 @@
         "scrollPosition",
         "scrollTargetBehavior",
         "scrollTargetLayout",
+        "scrollTransition",
         "searchCompletion",
         "searchDictationBehavior",
         "searchFocused",
@@ -15682,6 +17232,7 @@
         "tabViewStyle",
         "tableColumnHeaders",
         "tableStyle",
+        "task",
         "textContentType",
         "textEditorStyle",
         "textFieldStyle",
@@ -15723,16 +17274,25 @@
       ],
       "_StoreKit_SwiftUI": [
         "appStoreMerchandising",
+        "appStoreOverlay",
+        "currentEntitlementTask",
+        "inAppPurchaseOptions",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
+        "onInAppPurchaseCompletion",
+        "onInAppPurchaseStart",
+        "preferredSubscriptionOffer",
         "productDescription",
         "productIconBorder",
         "productViewStyle",
         "refundRequestSheet",
         "storeButton",
+        "storeProductTask",
+        "storeProductsTask",
         "subscriptionOfferViewButtonVisibility",
         "subscriptionOfferViewDetailAction",
         "subscriptionOfferViewStyle",
+        "subscriptionStatusTask",
         "subscriptionStoreButtonLabel",
         "subscriptionStoreControlBackground",
         "subscriptionStoreControlIcon",
@@ -15754,6 +17314,7 @@
         "mapControls",
         "mapFeatureSelectionAccessory",
         "mapFeatureSelectionDisabled",
+        "mapScope",
         "mapStyle",
         "onMapCameraChange"
       ],
@@ -15769,7 +17330,12 @@
         "photosPickerMetadataOptions",
         "photosPickerSearchText",
         "photosPickerStyle",
-        "photosReferenceImageViewer"
+        "photosReferenceImageViewer",
+        "photosSharedAlbumCreationSheet",
+        "photosSharedAlbumCustomizationSheet"
+      ],
+      "_QuickLook_SwiftUI": [
+        "quickLookPreview"
       ],
       "_RealityKit_SwiftUI": [
         "realityViewCameraControls",
@@ -15790,9 +17356,6 @@
         "webViewOnScrollGeometryChange",
         "webViewScrollPosition",
         "webViewTextSelection"
-      ],
-      "_QuickLook_SwiftUI": [
-        "quickLookPreview"
       ]
     },
     "generatedModifiers": {
@@ -15807,6 +17370,7 @@
         "animation",
         "aspectRatio",
         "background",
+        "backgroundPreferenceValue",
         "backgroundStyle",
         "baselineOffset",
         "blendMode",
@@ -15829,6 +17393,7 @@
         "contrast",
         "controlSize",
         "coordinateSpace",
+        "cornerRadius",
         "defaultHoverEffect",
         "disabled",
         "distortionEffect",
@@ -15838,12 +17403,17 @@
         "environment",
         "fixedSize",
         "font",
+        "fontDesign",
+        "fontWeight",
         "fontWidth",
         "foregroundColor",
         "frame",
         "geometryGroup",
         "gesture",
+        "glassEffect",
+        "glassEffectID",
         "glassEffectTransition",
+        "glassEffectUnion",
         "grayscale",
         "headerProminence",
         "highPriorityGesture",
@@ -15863,6 +17433,7 @@
         "lineSpacing",
         "luminanceToAlpha",
         "mask",
+        "matchedGeometryEffect",
         "materialActiveAppearance",
         "minimumScaleFactor",
         "monospaced",
@@ -15874,9 +17445,13 @@
         "onDisappear",
         "onGeometryChange",
         "onOpenURL",
+        "onPreferenceChange",
         "onTapGesture",
         "overlay",
+        "overlayPreferenceValue",
+        "padding",
         "position",
+        "preference",
         "preferredColorScheme",
         "privacySensitive",
         "redacted",
@@ -15896,6 +17471,7 @@
         "speechSpellsOutCharacters",
         "strikethrough",
         "symbolColorRenderingMode",
+        "symbolEffect",
         "symbolRenderingMode",
         "symbolVariableValueMode",
         "symbolVariant",
@@ -15903,13 +17479,18 @@
         "textCase",
         "textInputBorderShape",
         "textScale",
+        "tint",
         "tracking",
+        "transaction",
         "transformEffect",
+        "transformEnvironment",
+        "transformPreference",
         "transition",
         "truncationMode",
         "typesettingLanguage",
         "underline",
         "unredacted",
+        "visualEffect",
         "writingDirection",
         "zIndex"
       ],
@@ -15934,15 +17515,20 @@
         "accessibilityIdentifier",
         "accessibilityInputLabels",
         "accessibilityLabel",
+        "accessibilityLabeledPair",
+        "accessibilityLinkedGroup",
         "accessibilityRemoveTraits",
         "accessibilityRepresentation",
         "accessibilityRespondsToUserInteraction",
+        "accessibilityRotor",
+        "accessibilityRotorEntry",
         "accessibilityScrollAction",
         "accessibilityScrollStatus",
         "accessibilitySortPriority",
         "accessibilityTextContentType",
         "accessibilityValue",
         "accessibilityZoomAction",
+        "actionSheet",
         "alert",
         "allowsWindowActivationEvents",
         "assistiveAccessNavigationIcon",
@@ -15992,6 +17578,7 @@
         "fileDialogURLEnabled",
         "fileExporter",
         "fileExporterFilenameLabel",
+        "fileImporter",
         "fileMover",
         "findDisabled",
         "findNavigator",
@@ -16000,6 +17587,7 @@
         "focusable",
         "focused",
         "formStyle",
+        "fullScreenCover",
         "gaugeStyle",
         "gridCellAnchor",
         "gridCellColumns",
@@ -16037,6 +17625,7 @@
         "listSectionSeparatorTint",
         "listSectionSpacing",
         "listStyle",
+        "matchedTransitionSource",
         "menuActionDismissBehavior",
         "menuIndicator",
         "menuOrder",
@@ -16078,11 +17667,13 @@
         "pasteDestination",
         "persistentSystemOverlays",
         "pickerStyle",
+        "popover",
         "presentationBackground",
         "presentationBackgroundInteraction",
         "presentationCompactAdaptation",
         "presentationContentInteraction",
         "presentationCornerRadius",
+        "presentationDetents",
         "presentationDragIndicator",
         "presentationPlacement",
         "presentationSizing",
@@ -16092,6 +17683,7 @@
         "previewLayout",
         "progressViewStyle",
         "projectionEffect",
+        "refreshable",
         "renameAction",
         "replaceDisabled",
         "safeAreaBar",
@@ -16108,6 +17700,7 @@
         "scrollPosition",
         "scrollTargetBehavior",
         "scrollTargetLayout",
+        "scrollTransition",
         "searchCompletion",
         "searchDictationBehavior",
         "searchFocused",
@@ -16120,6 +17713,7 @@
         "sectionIndexLabel",
         "selectionDisabled",
         "sensoryFeedback",
+        "sheet",
         "sliderThumbVisibility",
         "springLoadingBehavior",
         "statusBar",
@@ -16140,6 +17734,7 @@
         "tabViewStyle",
         "tableColumnHeaders",
         "tableStyle",
+        "task",
         "textContentType",
         "textEditorStyle",
         "textFieldStyle",
@@ -16181,16 +17776,25 @@
       ],
       "_StoreKit_SwiftUI": [
         "appStoreMerchandising",
+        "appStoreOverlay",
+        "currentEntitlementTask",
+        "inAppPurchaseOptions",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
+        "onInAppPurchaseCompletion",
+        "onInAppPurchaseStart",
+        "preferredSubscriptionOffer",
         "productDescription",
         "productIconBorder",
         "productViewStyle",
         "refundRequestSheet",
         "storeButton",
+        "storeProductTask",
+        "storeProductsTask",
         "subscriptionOfferViewButtonVisibility",
         "subscriptionOfferViewDetailAction",
         "subscriptionOfferViewStyle",
+        "subscriptionStatusTask",
         "subscriptionStoreButtonLabel",
         "subscriptionStoreControlBackground",
         "subscriptionStoreControlIcon",
@@ -16212,6 +17816,7 @@
         "mapControls",
         "mapFeatureSelectionAccessory",
         "mapFeatureSelectionDisabled",
+        "mapScope",
         "mapStyle",
         "onMapCameraChange"
       ],
@@ -16227,7 +17832,12 @@
         "photosPickerMetadataOptions",
         "photosPickerSearchText",
         "photosPickerStyle",
-        "photosReferenceImageViewer"
+        "photosReferenceImageViewer",
+        "photosSharedAlbumCreationSheet",
+        "photosSharedAlbumCustomizationSheet"
+      ],
+      "_QuickLook_SwiftUI": [
+        "quickLookPreview"
       ],
       "_RealityKit_SwiftUI": [
         "realityViewCameraControls",

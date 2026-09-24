@@ -61,7 +61,7 @@ const eventClassTypes = new Set(inventory.flatMap((method) =>
       const type = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (?:Swift\.Void|\(\))$/.exec(parameter.type)?.[1]
       return type ? [type] : []
     }) : []))
-for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport', 'Foundation', 'AVKit']) {
+for (const module of ['UIKit', 'PhotosUI', 'Photos', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport', 'Foundation', 'AVKit', 'StoreKit']) {
   const outputDir = join(cache, `symbols-${module}-${sdkVersion}`)
   const graphPath = join(outputDir, `${module}.symbols.json`)
   if (!existsSync(graphPath)) {
@@ -72,10 +72,17 @@ for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation'
   }
   const graph = JSON.parse(readFileSync(graphPath, 'utf8')) as { symbols: {
     kind: { identifier: string }
+    identifier: { precise: string }
     pathComponents: string[]
     declarationFragments?: { spelling: string }[]
     availability?: { domain: string; introduced?: { major: number; minor?: number }; isUnconditionallyUnavailable?: boolean }[]
-  }[] }
+  }[]; relationships?: { kind: string; source: string; target: string }[] }
+  const classNames = new Map(graph.symbols.filter((symbol) => symbol.kind.identifier === 'swift.class')
+    .map((symbol) => [symbol.identifier.precise, `${module}.${symbol.pathComponents.join('.')}`]))
+  const parentClasses = new Map((graph.relationships ?? [])
+    .filter((relationship) => relationship.kind === 'inheritsFrom' &&
+      classNames.has(relationship.source) && classNames.has(relationship.target))
+    .map((relationship) => [relationship.source, classNames.get(relationship.target)!]))
   for (const symbol of graph.symbols) {
     const [owner, name] = symbol.pathComponents
     const declaration = symbol.declarationFragments?.map((part) => part.spelling).join('') ?? ''
@@ -83,6 +90,39 @@ for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation'
     if (iosAvailability?.isUnconditionallyUnavailable) continue
     const introduced = iosAvailability?.introduced
     const attributes = introduced ? [`@available(iOS ${introduced.major}.${introduced.minor ?? 0}, *)`] : []
+    if (symbol.kind.identifier === 'swift.class' && symbol.pathComponents.length > 1 &&
+      parentClasses.has(symbol.identifier.precise))
+      importedCases.push({ module, owner: symbol.pathComponents.slice(0, -1).join('.'),
+        name: symbol.pathComponents.at(-1)!, kind: 'class', parameters: [], line: 0,
+        inheritedTypes: [parentClasses.get(symbol.identifier.precise)!], attributes })
+    if (symbol.kind.identifier === 'swift.init' && symbol.pathComponents.length > 2 &&
+      /^init\([^()]*\)$/.test(declaration)) {
+      const owner = symbol.pathComponents.slice(0, -1).join('.')
+      const className = `${module}.${owner}`
+      if ([...classNames.values()].includes(className)) {
+        const parameters = declaration.slice(5, -1).split(', ').filter(Boolean).map((entry) => {
+          const match = /^([A-Za-z_]\w*): ([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*)$/.exec(entry)
+          if (!match) return
+          const type = match[2] === 'String' ? 'Swift.String' :
+            ['Bool', 'Int', 'Double', 'Float'].includes(match[2]) ? `Swift.${match[2]}` :
+              match[2].startsWith(`${symbol.pathComponents[0]}.`) ? `${module}.${match[2]}` : match[2]
+          return { label: match[1], name: match[1], type }
+        })
+        if (parameters.length && parameters.every(Boolean))
+          importedCases.push({ module, owner, name: 'init', kind: 'init',
+            parameters: parameters as Declaration['parameters'], line: 0, attributes })
+      }
+    }
+    if (symbol.kind.identifier === 'swift.enum.case' && symbol.pathComponents.length > 2) {
+      const owner = symbol.pathComponents.slice(0, -1).join('.')
+      importedCases.push({ module, owner, name: symbol.pathComponents.at(-1)!, kind: 'static',
+        type: `${module}.${owner}`, parameters: [], line: 0, attributes })
+    }
+    if (symbol.pathComponents.length === 2 && name === 'shared()' &&
+      symbol.kind.identifier === 'swift.type.method' &&
+      new RegExp(`^class func shared\\(\\) -> ${owner}$`).test(declaration))
+      importedCases.push({ module, owner, name: 'shared', kind: 'func', isStatic: true,
+        type: `${module}.${owner}`, parameters: [], line: 0, attributes })
     if (symbol.pathComponents.length === 1 &&
       (symbol.kind.identifier === 'swift.class' && eventClassTypes.has(`${module}.${owner}`) ||
         module === 'AVKit' && symbol.kind.identifier === 'swift.enum')) {
@@ -174,7 +214,45 @@ for (const modifier of derivedModifiers) {
       (modifier.environmentKey
         ? d.parameters.length === 2 &&
           d.parameters[0].type === 'Swift.WritableKeyPath<SwiftUICore.EnvironmentValues, V>' &&
-          d.parameters[1].type === 'V'
+          d.parameters[1].type === (modifier.environmentTransform ? '@escaping (inout V) -> Swift.Void' : 'V')
+        : modifier.preferenceKey
+        ? d.parameters[0]?.type === 'K.Type' &&
+          d.requirements?.includes('K : SwiftUICore.PreferenceKey')
+        : modifier.namespaceParameter
+        ? d.parameters.some((parameter) => parameter.type === 'SwiftUICore.Namespace.ID') &&
+          d.parameters.filter((parameter) => parameter.type !== 'SwiftUICore.Namespace.ID' &&
+            parameter.defaultValue === undefined).length === (modifier.arguments?.length ?? 0) &&
+          d.parameters.filter((parameter) => parameter.type !== 'SwiftUICore.Namespace.ID' &&
+            parameter.defaultValue === undefined).every((parameter, index) =>
+            parameter.label === modifier.arguments?.[index].label &&
+            parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))
+        : modifier.sharedParameter
+        ? d.parameters.some((parameter) => parameter.type === modifier.sharedParameter?.type) &&
+          d.parameters.filter((parameter) => parameter.type !== modifier.sharedParameter?.type &&
+            parameter.defaultValue === undefined).length === modifier.arguments?.length &&
+          d.parameters.filter((parameter) => parameter.type !== modifier.sharedParameter?.type &&
+            parameter.defaultValue === undefined).every((parameter, index) =>
+            parameter.label === modifier.arguments?.[index].label &&
+            parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))
+        : modifier.factoryParameter
+        ? d.parameters.some((parameter) =>
+            parameter.type.replace(/^@escaping /, '') === `() -> ${modifier.factoryParameter?.returnType}`) &&
+          d.parameters.filter((parameter) =>
+            parameter.type.replace(/^@escaping /, '') !== `() -> ${modifier.factoryParameter?.returnType}` &&
+            parameter.defaultValue === undefined).length === modifier.factoryParameter.argumentOffset &&
+          d.parameters.filter((parameter) =>
+            parameter.type.replace(/^@escaping /, '') !== `() -> ${modifier.factoryParameter?.returnType}` &&
+            parameter.defaultValue === undefined).every((parameter, index) =>
+            parameter.label === modifier.arguments?.[index].label &&
+            parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))
+        : modifier.fixedParameter
+        ? d.parameters.some((parameter) => parameter.type === modifier.fixedParameter?.type) &&
+          d.parameters.filter((parameter) => parameter.type !== modifier.fixedParameter?.type &&
+            parameter.defaultValue === undefined).length === modifier.arguments?.length &&
+          d.parameters.filter((parameter) => parameter.type !== modifier.fixedParameter?.type &&
+            parameter.defaultValue === undefined).every((parameter, index) =>
+            parameter.label === modifier.arguments?.[index].label &&
+            parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))
         : modifier.zeroArgument
         ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.kind === 'record'
@@ -194,19 +272,24 @@ for (const modifier of derivedModifiers) {
 for (const slot of derivedViewSlots) {
   const declaration = inventory.find((d) =>
     d.kind === 'func' && d.module === slot.module && d.owner.split('.').at(-1) === 'View' &&
-    d.name === (slot.sdkName ?? slot.name) && d.parameters.some((parameter) =>
+    d.name === (slot.sdkName ?? slot.name) && (slot.preferenceKey
+      ? d.parameters.length === 3 && d.parameters[0].type === 'K.Type' &&
+        d.parameters[1].defaultValue !== undefined &&
+        d.parameters[2].type === '@escaping (K.Value) -> V' &&
+        d.requirements?.includes('K : SwiftUICore.PreferenceKey') &&
+        d.requirements?.includes('V : SwiftUICore.View')
+      : d.parameters.some((parameter) =>
       parameter.label === slot.label &&
       (slot.directValue
         ? /^([A-Za-z_]\w*)\??$/.test(parameter.type) &&
           d.requirements?.includes(`${parameter.type.replace(/\?$/, '')} : SwiftUICore.View`)
         : slot.closureInputs
           ? parameter.type === `@escaping (${slot.closureInputs.join(', ')}) -> some View`
-          : parameter.type === '() -> some View' ||
-            (/^\(\) -> [A-Za-z_]\w*$/.test(parameter.type) &&
-              d.requirements?.includes(`${parameter.type.slice(6)} : SwiftUICore.View`)))) &&
+          : /^(?:@escaping )?\(\) -> some View$/.test(parameter.type) ||
+            (d.requirements?.includes(`${/^(?:@escaping )?\(\) -> ([A-Za-z_]\w*)$/.exec(parameter.type)?.[1]} : SwiftUICore.View`) ?? false))) &&
     d.parameters.filter((parameter, index) => index !== d.parameters.length - 1 &&
       parameter.defaultValue === undefined).map((parameter) => parameter.type).join('|') ===
-      slot.arguments.map((argument) => argument.type).join('|')
+      slot.arguments.map((argument) => argument.type).join('|'))
   )
   if (!declaration) throw new Error(`lost SDK declaration for ${slot.name} slot`)
   coverGeneratedModifier(declaration)

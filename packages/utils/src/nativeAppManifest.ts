@@ -46,11 +46,6 @@ export interface NativeAppManifest {
       displayName: string
       description: string
       pushNotifications?: boolean
-      jsx?: {
-        id: string
-        displayName: string
-        description: string
-      }
     }
   }
   android?: {
@@ -184,14 +179,6 @@ export function validateNativeApp(
         typeof widgets.pushNotifications !== 'boolean'
       ) {
         fail('ios.widgets.pushNotifications must be a boolean')
-      }
-      if (widgets.jsx) {
-        if (!/^[A-Za-z][A-Za-z0-9_]*$/.test(widgets.jsx.id)) {
-          fail('ios.widgets.jsx.id must contain only letters, digits, and underscore')
-        }
-        if (!widgets.jsx.displayName?.trim() || !widgets.jsx.description?.trim()) {
-          fail('ios.widgets.jsx requires displayName and description')
-        }
       }
     }
   }

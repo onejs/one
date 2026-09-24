@@ -1,3 +1,4 @@
+import type { SDKEventValueShape } from './swiftStyleNative';
 export declare const viewSlotAvailability: {
     readonly accessibilityActions: 16;
     readonly accessibilityActionsWithAccessibilityActionCategory: 18;
@@ -6,12 +7,14 @@ export declare const viewSlotAvailability: {
     readonly accessibilityShowsLargeContentViewer: 15;
     readonly alert: 15;
     readonly background: 15;
+    readonly backgroundPreferenceValuePreferredColorScheme: 16;
     readonly confirmationDialog: 15;
     readonly containerBackground: 17;
     readonly contentToolbar: 18.4;
     readonly contextMenu: 13;
     readonly dismissalConfirmationDialog: 27;
     readonly documentBrowserContextMenu: 18.1;
+    readonly fullScreenCover: 14;
     readonly inspector: 17;
     readonly listRowBackground: 13;
     readonly mapControls: 17;
@@ -20,6 +23,8 @@ export declare const viewSlotAvailability: {
     readonly navigationBarItemsWithTrailing: 13;
     readonly navigationDestination: 16;
     readonly overlay: 15;
+    readonly overlayPreferenceValuePreferredColorScheme: 16;
+    readonly popover: 13;
     readonly presentationBackground: 16.4;
     readonly safeAreaBarWithHorizontalEdge: 26;
     readonly safeAreaBarWithVerticalEdge: 26;
@@ -29,6 +34,7 @@ export declare const viewSlotAvailability: {
     readonly searchScopesWithBindingStringAndSearchScopeActivation: 16.4;
     readonly searchSuggestions: 16;
     readonly sectionActions: 18;
+    readonly sheet: 13;
     readonly subscriptionStoreControlIcon: 17;
     readonly subscriptionStorePolicyDestination: 17;
     readonly swipeActions: 15;
@@ -64,6 +70,7 @@ export declare const viewSlotArguments: {
         readonly kind: 'bindingBoolean';
     }];
     readonly background: readonly [];
+    readonly backgroundPreferenceValuePreferredColorScheme: readonly [];
     readonly confirmationDialog: readonly [{
         readonly field: 'title';
         readonly kind: 'string';
@@ -98,6 +105,10 @@ export declare const viewSlotArguments: {
         readonly kind: 'boolean';
     }];
     readonly documentBrowserContextMenu: readonly [];
+    readonly fullScreenCover: readonly [{
+        readonly field: 'isPresented';
+        readonly kind: 'bindingBoolean';
+    }];
     readonly inspector: readonly [{
         readonly field: 'isPresented';
         readonly kind: 'bindingBoolean';
@@ -112,6 +123,11 @@ export declare const viewSlotArguments: {
         readonly kind: 'bindingBoolean';
     }];
     readonly overlay: readonly [];
+    readonly overlayPreferenceValuePreferredColorScheme: readonly [];
+    readonly popover: readonly [{
+        readonly field: 'isPresented';
+        readonly kind: 'bindingBoolean';
+    }];
     readonly presentationBackground: readonly [];
     readonly safeAreaBarWithHorizontalEdge: readonly [{
         readonly field: 'edge';
@@ -163,6 +179,10 @@ export declare const viewSlotArguments: {
     }];
     readonly searchSuggestions: readonly [];
     readonly sectionActions: readonly [];
+    readonly sheet: readonly [{
+        readonly field: 'isPresented';
+        readonly kind: 'bindingBoolean';
+    }];
     readonly subscriptionStoreControlIcon: readonly [];
     readonly subscriptionStorePolicyDestination: readonly [{
         readonly field: 'button';
@@ -186,6 +206,7 @@ export declare const viewSlotArguments: {
     readonly toolbarOverflowMenu: readonly [];
     readonly toolbarTitleMenu: readonly [];
 };
+export declare const viewSlotEvents: Record<string, SDKEventValueShape>;
 export type ViewSlotConfiguration = {
     name: 'accessibilityActions';
     options?: never;
@@ -215,6 +236,11 @@ export type ViewSlotConfiguration = {
 } | {
     name: 'background';
     options?: never;
+} | {
+    name: 'backgroundPreferenceValuePreferredColorScheme';
+    options: {
+        onValue: (value: 'light' | 'dark' | 'unknown' | null) => void;
+    };
 } | {
     name: 'confirmationDialog';
     options: {
@@ -246,6 +272,14 @@ export type ViewSlotConfiguration = {
 } | {
     name: 'documentBrowserContextMenu';
     options?: never;
+} | {
+    name: 'fullScreenCover';
+    options: {
+        isPresented: {
+            value: boolean;
+            onChange: (value: boolean) => void;
+        };
+    };
 } | {
     name: 'inspector';
     options: {
@@ -280,6 +314,19 @@ export type ViewSlotConfiguration = {
 } | {
     name: 'overlay';
     options?: never;
+} | {
+    name: 'overlayPreferenceValuePreferredColorScheme';
+    options: {
+        onValue: (value: 'light' | 'dark' | 'unknown' | null) => void;
+    };
+} | {
+    name: 'popover';
+    options: {
+        isPresented: {
+            value: boolean;
+            onChange: (value: boolean) => void;
+        };
+    };
 } | {
     name: 'presentationBackground';
     options?: never;
@@ -326,6 +373,14 @@ export type ViewSlotConfiguration = {
 } | {
     name: 'sectionActions';
     options?: never;
+} | {
+    name: 'sheet';
+    options: {
+        isPresented: {
+            value: boolean;
+            onChange: (value: boolean) => void;
+        };
+    };
 } | {
     name: 'subscriptionStoreControlIcon';
     options?: never;

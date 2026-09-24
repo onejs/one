@@ -76,9 +76,10 @@ const styleFieldType = (field: StyleField) =>
           ? styleAlias(field)
           : 'string'
 
-const eventValueType = (value: EventValueSchema): string => {
+export const eventValueType = (value: EventValueSchema): string => {
   if (value.kind === 'number') return 'number'
   if (value.kind === 'string') return 'string'
+  if (value.kind === 'description') return 'string'
   if (value.kind === 'boolean') return 'boolean'
   if (value.kind === 'point') return '{ x: number; y: number }'
   if (value.kind === 'size') return '{ width: number; height: number }'
@@ -86,6 +87,11 @@ const eventValueType = (value: EventValueSchema): string => {
     .map((item) => JSON.stringify(item)).join(' | ')
   if (value.kind === 'optional') return `${eventValueType(value.value)} | null`
   if (value.kind === 'array') return `readonly ${eventValueType(value.value)}[]`
+  if (value.kind === 'verification') return '{ case: "verified"; jwsRepresentation: string; error: null } | { case: "unverified"; jwsRepresentation: string; error: string }'
+  if (value.kind === 'result') return `{ case: "success"; value: ${eventValueType(value.value)} } | { case: "failure"; error: string }`
+  if (value.kind === 'associatedEnum') return value.cases.map((item) =>
+    `{ case: ${JSON.stringify(item.name)}; values: readonly [${item.values.map(eventValueType).join(', ')}] }`).concat(
+      value.open ? ['{ case: "unknown"; values: readonly [] }'] : []).join(' | ')
   return `{ ${value.fields.map((field) => `${field.name}: ${eventValueType(field.value)}`).join('; ')} }`
 }
 
@@ -143,6 +149,20 @@ ${styleFields
       publicType:
         modifier.kind === 'event'
           ? '() => void'
+          : modifier.kind === 'visualEffect'
+            ? `Readonly<{ kind: ${modifier.cases!.map((item) => JSON.stringify(item.name)).join(' | ')}; value: number }>`
+          : modifier.kind === 'optionSet'
+            ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}?: ${argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : 'string'}`).join('; ')} }>`
+          : modifier.kind === 'caseSet'
+            ? `readonly SDK${upper(modifier.name)}[]`
+          : modifier.kind === 'selectionID'
+            ? 'string'
+          : modifier.kind === 'eventAsync'
+            ? '() => void | Promise<void>'
+            : modifier.kind === 'eventAsyncStruct'
+              ? modifier.arguments?.length
+                ? `Readonly<{ ${modifier.arguments.map((argument) => `${argument.field}: ${argument.kind === 'stringArray' ? 'readonly string[]' : 'string'}`).join('; ')}; onAction: (value: ${eventValueType(modifier.eventValue!)}) => void | Promise<void> }>`
+                : `(value: ${eventValueType(modifier.eventValue!)}) => void | Promise<void>`
           : modifier.kind === 'eventBoolean'
             ? '(value: boolean) => void'
             : modifier.kind === 'eventNumber'
@@ -188,7 +208,7 @@ ${styleFields
                     : modifier.kind === 'defaultFocusBoolean'
                       ? 'boolean'
                     : modifier.kind === 'record'
-                      ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ') : argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'bindingBoolean' ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>' : argument.kind === 'bindingOptionalURL' ? 'Readonly<{ value: string | null; onChange: (value: string | null) => void }>' : argument.kind === 'eventStruct' ? `(value: ${eventValueType(argument.eventValue!)}) => void` : argument.kind === 'classUpdate' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}?: ${field.type === 'Swift.Bool' ? 'boolean' : field.type.endsWith('?') ? 'string | null' : 'string'}`).join('; ')} }>` : argument.kind === 'resultURL' || argument.kind === 'resultURLArray' ? `(result: Readonly<{ success: ${argument.kind === 'resultURL' ? 'string' : 'readonly string[]'} } | { failure: string }>) => void` : argument.kind === 'stringArray' || argument.kind === 'stringSet' ? 'readonly string[]' : argument.kind === 'numericStruct' || argument.kind === 'numericTuple' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}: number`).join('; ')} }>` : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
+                      ? `Readonly<{ ${modifier.arguments!.map((argument) => `${argument.field}: ${argument.kind === 'enum' ? argument.cases!.map((item) => JSON.stringify(item.name)).join(' | ') : argument.kind === 'number' ? 'number' : argument.kind === 'boolean' ? 'boolean' : argument.kind === 'bindingBoolean' ? 'Readonly<{ value: boolean; onChange: (value: boolean) => void }>' : argument.kind === 'bindingOptionalURL' ? 'Readonly<{ value: string | null; onChange: (value: string | null) => void }>' : argument.kind === 'eventStruct' ? `(value: ${eventValueType(argument.eventValue!)}) => void` : argument.kind === 'classUpdate' || argument.kind === 'structUpdate' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}?: ${field.type === 'Swift.Bool' ? 'boolean' : field.type.endsWith('?') ? 'string | null' : 'string'}`).join('; ')} }>` : argument.kind === 'resultURL' || argument.kind === 'resultURLArray' ? `(result: Readonly<{ success: ${argument.kind === 'resultURL' ? 'string' : 'readonly string[]'} } | { failure: string }>) => void` : argument.kind === 'stringArray' || argument.kind === 'stringSet' ? 'readonly string[]' : argument.kind === 'numericStruct' || argument.kind === 'numericTuple' ? `Readonly<{ ${argument.fields!.map((field) => `${field.name}: number`).join('; ')} }>` : 'string'}${argument.optional ? ' | null' : ''}`).join('; ')} }>`
                       : modifier.kind === 'style' ? undefined
                       : modifier.kind === 'url' ? 'string'
               : modifier.kind === 'string' ? undefined : modifier.kind,

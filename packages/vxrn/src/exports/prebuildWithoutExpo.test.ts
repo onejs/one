@@ -818,6 +818,45 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     expect(project).not.toContain('CODE_SIGN_ENTITLEMENTS')
     expect(() => statSync(join(output, 'ios', 'MyApp', 'MyApp.entitlements'))).toThrow()
   }, 180000)
+
+  it('shares one app entitlement file when widgets and notification push are enabled', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-widget-push-'))
+    await generateForPlatform(
+      workspaceRoot,
+      'ios',
+      {
+        ...app,
+        notifications: { push: true },
+        ios: {
+          ...app.ios,
+          widgets: {
+            appGroup: 'group.dev.one.myapp',
+            kind: 'MyAppStatus',
+            displayName: 'Status',
+            description: 'Current status',
+          },
+        },
+      },
+      join(output, 'ios')
+    )
+
+    const project = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    expect(project).toContain(
+      'CODE_SIGN_ENTITLEMENTS = MyApp/OneAppWidgets.entitlements;'
+    )
+    expect(project).not.toContain('MyApp/MyApp.entitlements')
+    const entitlements = readFileSync(
+      join(output, 'ios', 'MyApp', 'OneAppWidgets.entitlements'),
+      'utf8'
+    )
+    expect(entitlements).toContain('group.dev.one.myapp')
+    expect(entitlements).toContain('<key>aps-environment</key>')
+    expect(() => statSync(join(output, 'ios', 'MyApp', 'MyApp.entitlements'))).toThrow()
+  }, 180000)
 })
 
 describe('community autolink inventory', () => {
@@ -1164,5 +1203,181 @@ describe('generateForPlatform determinism', () => {
       'utf8'
     )
     expect(mainActivity).toContain('RNScreensFragmentFactory')
+  }, 180000)
+})
+
+describe('ios widgets', () => {
+  const widgetsApp = {
+    ...app,
+    ios: {
+      ...app.ios,
+      widgets: {
+        appGroup: 'group.dev.one.myapp',
+        kind: 'MyAppStatus',
+        displayName: 'My status',
+        description: 'Current status',
+      },
+    },
+  } satisfies PrebuildAppConfig
+
+  it('generates one extension target with consistent ids and a null push token', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-widgets-'))
+    await generateForPlatform(workspaceRoot, 'ios', widgetsApp, join(output, 'ios'))
+
+    const project = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    // one extension target, not duplicated
+    expect(project.match(/\/\* OneWidgets \*\/ = \{isa = PBXNativeTarget/g)).toHaveLength(
+      1
+    )
+    expect(project).toContain('PRODUCT_BUNDLE_IDENTIFIER = dev.one.myapp.widgets;')
+    expect(project).toContain(
+      'CODE_SIGN_ENTITLEMENTS = OneWidgets/OneWidgets.entitlements;'
+    )
+    expect(project).toContain(
+      'CODE_SIGN_ENTITLEMENTS = MyApp/OneAppWidgets.entitlements;'
+    )
+    // the extension follows the app onto ipad instead of staying iphone-only
+    const families = [...project.matchAll(/TARGETED_DEVICE_FAMILY = "([^"]+)";/g)].map(
+      (match) => match[1]
+    )
+    expect(families.length).toBeGreaterThan(0)
+    expect(new Set(families)).toEqual(new Set(['1,2']))
+
+    const readGenerated = (relativePath: string) =>
+      readFileSync(join(output, 'ios', relativePath), 'utf8')
+    // the same app group lands in both entitlements and the shared swift
+    // contract the app and the extension compile together
+    for (const relativePath of [
+      'OneWidgets/OneWidgets.entitlements',
+      'MyApp/OneAppWidgets.entitlements',
+      'MyApp/OneWidgetContract.swift',
+    ]) {
+      expect(readGenerated(relativePath)).toContain('group.dev.one.myapp')
+    }
+    expect(readGenerated('OneWidgets/WidgetInfo.plist')).toContain('My status')
+    expect(readGenerated('MyApp/Info.plist')).toContain('NSSupportsLiveActivities')
+    expect(readGenerated('OneWidgets/OneWidget.swift')).toContain('OneLiveActivity()')
+    const bridge = readGenerated('MyApp/OneWidgetsBridge.swift')
+    expect(bridge).toContain('func pushToken')
+    // a missing activitykit push token resolves null, matching the typed
+    // contract, instead of the undefined a bare nil resolve produces
+    expect(bridge).toContain('resolve(NSNull())')
+  }, 180000)
+
+  it('renders every WidgetUI node and slot the serializer can emit', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-widgets-jsx-'))
+    await generateForPlatform(workspaceRoot, 'ios', widgetsApp, join(output, 'ios'))
+
+    const readGenerated = (relativePath: string) =>
+      readFileSync(join(output, 'ios', relativePath), 'utf8')
+    const rendered = readGenerated('OneWidgets/OneWidget.swift')
+    // every node type packages/native/src/widgets/view.ts can emit needs a
+    // Swift decode path, or the extension renders a blank subtree
+    for (const type of [
+      'text',
+      'vstack',
+      'hstack',
+      'zstack',
+      'spacer',
+      'divider',
+      'image',
+      'progress',
+      'gauge',
+      'circle',
+      'rectangle',
+      'rounded-rectangle',
+      'link',
+    ]) {
+      expect(rendered).toContain(`case "${type}":`)
+    }
+    // every ActivityView slot needs a decode path in both presentations
+    for (const slot of [
+      'lockScreen',
+      'compactLeading',
+      'compactTrailing',
+      'minimal',
+      'expandedLeading',
+      'expandedTrailing',
+      'expandedBottom',
+    ]) {
+      expect(rendered).toContain(slot)
+    }
+    // the JSX bridge methods exist on both sides of the React Native bridge
+    for (const method of ['writeView', 'startView', 'updateView']) {
+      expect(readGenerated('MyApp/OneWidgetsBridge.swift')).toContain(method)
+      expect(readGenerated('MyApp/OneWidgetsBridge.m')).toContain(method)
+    }
+    // the shared contract carries the serialized layouts
+    const contract = readGenerated('MyApp/OneWidgetContract.swift')
+    expect(contract.match(/let layout: String\?/g)).toHaveLength(2)
+  }, 180000)
+
+  it('regenerates byte-identical widget projects and adds nothing without the config', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const first = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-widgets-a-'))
+    const second = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-widgets-b-'))
+    await generateForPlatform(workspaceRoot, 'ios', widgetsApp, join(first, 'ios'))
+    await generateForPlatform(workspaceRoot, 'ios', widgetsApp, join(second, 'ios'))
+    const snapshot = (dir: string): Array<[string, string]> => {
+      const out: Array<[string, string]> = []
+      const walkDir = (current: string) => {
+        for (const entry of readdirSync(current).sort()) {
+          const full = join(current, entry)
+          if (statSync(full).isDirectory()) walkDir(full)
+          else out.push([relative(dir, full), readFileSync(full).toString('base64')])
+        }
+      }
+      walkDir(dir)
+      return out
+    }
+    expect(snapshot(first)).toEqual(snapshot(second))
+
+    const plain = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-nowidgets-'))
+    await generateForPlatform(workspaceRoot, 'ios', app, join(plain, 'ios'))
+    const plainProject = readFileSync(
+      join(plain, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    expect(plainProject).not.toContain('OneWidgets')
+    expect(() => statSync(join(plain, 'ios', 'OneWidgets'))).toThrow()
+    expect(() =>
+      statSync(join(plain, 'ios', 'MyApp', 'OneWidgetsBridge.swift'))
+    ).toThrow()
+    expect(readFileSync(join(plain, 'ios', 'MyApp', 'Info.plist'), 'utf8')).not.toContain(
+      'NSSupportsLiveActivities'
+    )
+  }, 180000)
+
+  it('merges the app group into the push entitlements instead of a duplicate setting', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-widgets-push-'))
+    await generateForPlatform(
+      workspaceRoot,
+      'ios',
+      { ...widgetsApp, notifications: { push: true } },
+      join(output, 'ios')
+    )
+
+    const project = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    // one CODE_SIGN_ENTITLEMENTS per app configuration carries both grants.
+    expect(
+      project.match(/CODE_SIGN_ENTITLEMENTS = MyApp\/OneAppWidgets\.entitlements;/g)
+    ).toHaveLength(2)
+    expect(project).not.toContain('CODE_SIGN_ENTITLEMENTS = MyApp/MyApp.entitlements;')
+    expect(() => statSync(join(output, 'ios', 'MyApp', 'MyApp.entitlements'))).toThrow()
+    const appEntitlements = readFileSync(
+      join(output, 'ios', 'MyApp', 'OneAppWidgets.entitlements'),
+      'utf8'
+    )
+    expect(appEntitlements).toContain('<key>aps-environment</key>')
+    expect(appEntitlements).toContain('group.dev.one.myapp')
   }, 180000)
 })

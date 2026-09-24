@@ -40,11 +40,6 @@ export default defineConfig({
               kind: 'OneBasicStatus',
               displayName: 'One Status',
               description: 'Shows the latest status from One Basic.',
-              jsx: {
-                id: 'one_basic_jsx',
-                displayName: 'One JSX Status',
-                description: 'Shows a widget authored with React JSX.',
-              },
             },
           },
           android: { applicationId: 'com.natew.oneexample' },
