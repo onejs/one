@@ -1072,6 +1072,11 @@ export interface OneNativeStyle {
         alignment: 'center' | 'leading' | 'trailing' | 'top' | 'bottom' | 'topLeading' | 'topTrailing' | 'bottomLeading' | 'bottomTrailing' | 'centerFirstTextBaseline' | 'centerLastTextBaseline' | 'leadingFirstTextBaseline' | 'leadingLastTextBaseline' | 'trailingFirstTextBaseline' | 'trailingLastTextBaseline' | null;
     }>;
     imageScale?: SDKImageScale;
+    inAppPurchaseOptions?: Readonly<{
+        quantity?: number;
+        simulatesAskToBuyInSandbox?: boolean;
+        introductoryOfferEligibility?: string;
+    }>;
     indexViewStyle?: SDKIndexViewStyle;
     inspectorColumnWidthWithCGFloat?: number;
     inspectorColumnWidthWithMinAndIdealAndMax?: Readonly<{
@@ -1524,6 +1529,7 @@ export interface OneNativeStyle {
     }>;
     preferencePreferredColorScheme?: SDKPreferencePreferredColorScheme | null;
     preferredColorScheme?: SDKPreferredColorScheme | null;
+    preferredSubscriptionOffer?: string;
     presentationBackground?: SDKPresentationBackground;
     presentationBackgroundInteraction?: SDKPresentationBackgroundInteraction;
     presentationCompactAdaptationWithHorizontalAdaptationAndVerticalAdaptation?: Readonly<{

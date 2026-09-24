@@ -29,6 +29,20 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('scrollTransition must be a visual effect and finite value')
   })
 
+  it('configures SDK callbacks that return purchase options and eligible offers', () => {
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      inAppPurchaseOptions: { quantity: 2, simulatesAskToBuyInSandbox: true },
+      preferredSubscriptionOffer: 'offer-1',
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['inAppPurchaseOptions', '{"quantity":"2","simulatesAskToBuyInSandbox":"true"}'],
+      ['preferredSubscriptionOffer', 'offer-1'],
+    ])
+    expect(() => Controls.Text({ text: 'example', swiftStyle: {
+      inAppPurchaseOptions: { quantity: 'two' as never },
+    } })).toThrow('inAppPurchaseOptions.quantity must be finite')
+  })
+
   it('uses a public preference key for setting, transforming, and observing its value', () => {
     const onChange = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {

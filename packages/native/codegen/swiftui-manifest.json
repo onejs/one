@@ -7130,6 +7130,37 @@
       ]
     },
     {
+      "name": "inAppPurchaseOptions",
+      "kind": "optionSet",
+      "type": "((StoreKit.Product) async -> Swift.Set<StoreKit.Product.PurchaseOption>)?",
+      "resultType": "StoreKit.Product.PurchaseOption",
+      "ios": 17,
+      "framework": "StoreKit",
+      "arguments": [
+        {
+          "field": "quantity",
+          "label": "_",
+          "type": "Swift.Int",
+          "kind": "number",
+          "optional": true
+        },
+        {
+          "field": "simulatesAskToBuyInSandbox",
+          "label": "_",
+          "type": "Swift.Bool",
+          "kind": "boolean",
+          "optional": true
+        },
+        {
+          "field": "introductoryOfferEligibility",
+          "label": "compactJWS",
+          "type": "Swift.String",
+          "kind": "string",
+          "optional": true
+        }
+      ]
+    },
+    {
       "name": "indexViewStyle",
       "kind": "style",
       "type": "S",
@@ -10703,6 +10734,14 @@
           "ios": 13
         }
       ]
+    },
+    {
+      "name": "preferredSubscriptionOffer",
+      "kind": "selectionID",
+      "type": "@escaping (_ product: StoreKit.Product, _ subscription: StoreKit.Product.SubscriptionInfo, _ eligibleOffers: [StoreKit.Product.SubscriptionOffer]) -> StoreKit.Product.SubscriptionOffer?",
+      "label": "_",
+      "ios": 18,
+      "framework": "StoreKit"
     },
     {
       "name": "presentationBackground",
@@ -16389,10 +16428,12 @@
       "_StoreKit_SwiftUI": [
         "appStoreMerchandising",
         "currentEntitlementTask",
+        "inAppPurchaseOptions",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
         "onInAppPurchaseCompletion",
         "onInAppPurchaseStart",
+        "preferredSubscriptionOffer",
         "productDescription",
         "productIconBorder",
         "productViewStyle",
@@ -16862,10 +16903,12 @@
       "_StoreKit_SwiftUI": [
         "appStoreMerchandising",
         "currentEntitlementTask",
+        "inAppPurchaseOptions",
         "manageSubscriptionsSheet",
         "offerCodeRedemption",
         "onInAppPurchaseCompletion",
         "onInAppPurchaseStart",
+        "preferredSubscriptionOffer",
         "productDescription",
         "productIconBorder",
         "productViewStyle",
