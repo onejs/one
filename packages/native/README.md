@@ -1391,6 +1391,48 @@ form, a section or a host, and its trigger can be any One Native content.
 The presented content carries its own touch handler, the same as sheet content, because
 presentation leaves the React Native surface.
 
+## Adding a native module
+
+Every non-view native module is a [Nitro](https://nitro.margelo.com) hybrid
+object: a TypeScript spec that nitrogen turns into Swift and Kotlin interfaces,
+called straight through JSI. Views stay Fabric components. `OneHaptics` and
+`OneClipboard` are the reference ports.
+
+1. Write `src/specs/One<Name>.nitro.ts`: one interface extending
+   `HybridObject<{ ios: 'swift'; android: 'kotlin' }>`. Prefix the name with
+   `One`, because hybrid object names share one global registry with every
+   other Nitro library in the app. Make a method sync when the platform API is
+   sync, and return a `Promise` only when native has to wait (a main-thread hop
+   whose result JS needs, a system prompt, I/O). String unions become native
+   enums, so reuse the public type from the module's `types.ts`.
+2. Add the name to `autolinking` in `nitro.json` with
+   `implementationClassName: "HybridOne<Name>"` for both platforms, then run
+   `bun run nitrogen`. Commit everything it writes under `nitrogen/generated`.
+3. Implement `ios/Nitro/HybridOne<Name>.swift` as
+   `final class HybridOne<Name>: HybridOne<Name>Spec`. Calls arrive on the JS
+   thread: hop to main with `DispatchQueue.main.async` for fire-and-forget UIKit
+   work, or return `Promise.async { @MainActor in ... }` for a result.
+4. Implement `android/src/main/java/com/margelo/nitro/one/HybridOne<Name>.kt`
+   as `class HybridOne<Name> : HybridOne<Name>Spec()`. Reach the app through
+   `NitroModules.applicationContext`, and use `Promise.async { ... }` for async
+   methods.
+5. In the module's `index.native.ts`, create the object on first use and cache
+   it: `hybrid ??= NitroModules.createHybridObject<One<Name>>('One<Name>')`.
+   The public API and its argument validation stay in JS, unchanged.
+6. Delete the module's legacy bridge files (the iOS `.h`/`.m` and the Kotlin
+   `*Module.kt` plus its `VxrnNativePackage` entries) in the same change, and
+   point its tests at a `react-native-nitro-modules` mock.
+7. In Contrast, register the Peach seam with
+   `registerNitroHybridObject('One<Name>', ...)` in
+   `packages/peach-compat/src/stubs/one-native-register.ts`, implementing the
+   same spec.
+
+Nothing else changes per module: `VxrnNative.podspec` loads nitrogen's
+autolinking script, and Android builds the generated C++ into the package's
+single `VxrnNative` library, whose `JNI_OnLoad` registers every hybrid object.
+Validate on an iOS simulator build and an Android `assembleDebug` of an app that
+depends on this package.
+
 ## Generation
 
 From `packages/native`, run:
