@@ -203,6 +203,29 @@ describe('SDK modifier derivation', () => {
       }])
   })
 
+  it('derives a single transferable picker selection from its public item API', () => {
+    const picker = method('photosPicker', '_PhotosUI_SwiftUI', [
+      { label: 'isPresented', name: 'isPresented', type: 'SwiftUICore.Binding<Swift.Bool>' },
+      { label: 'selection', name: 'selection',
+        type: 'SwiftUICore.Binding<_PhotosUI_SwiftUI.PhotosPickerItem?>' },
+      { label: 'matching', name: 'matching', type: 'PhotosUI.PHPickerFilter?', defaultValue: 'nil' },
+    ])
+    const item = { ...method('PhotosPickerItem', '_PhotosUI_SwiftUI'), kind: 'struct', owner: '' }
+    const load = { ...method('loadTransferable', '_PhotosUI_SwiftUI', [
+      { label: 'type', name: 'type', type: 'T.Type' },
+    ]), owner: 'PhotosPickerItem' }
+    const types = { ...method('supportedContentTypes', '_PhotosUI_SwiftUI'),
+      kind: 'var', owner: 'PhotosPickerItem', type: '[UniformTypeIdentifiers.UTType]' }
+    expect(deriveModifiers([picker, item, types], 27, [])).toEqual([])
+    expect(deriveModifiers([picker, item, load, types], 27, [])).toEqual([{
+      name: 'photosPicker', kind: 'transferSelection',
+      type: '_PhotosUI_SwiftUI.PhotosPickerItem', framework: 'PhotosUI', ios: 0,
+      transferSelection: { itemType: '_PhotosUI_SwiftUI.PhotosPickerItem',
+        presentedLabel: 'isPresented', selectionLabel: 'selection',
+        contentTypesField: 'supportedContentTypes' },
+    }])
+  })
+
   it('derives optional SDK cases and framework overlay modifiers', () => {
     expect(deriveModifiers([
       method('textCase', 'SwiftUICore', [{ label: '_', name: 'textCase', type: 'SwiftUICore.Text.Case?' }]),

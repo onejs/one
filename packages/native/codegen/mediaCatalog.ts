@@ -126,6 +126,13 @@ private func oneNativePhotosFilter(_ value: String) -> PHPickerFilter? {
   default: preconditionFailure("invalid PHPickerFilter: \\(value)")
   }
 }
+func oneNativePickerFile(_ data: Data, extension ext: String) throws -> URL {
+  let url = FileManager.default.temporaryDirectory
+    .appendingPathComponent("one-native-photo-\\(UUID().uuidString)")
+    .appendingPathExtension(ext)
+  try data.write(to: url)
+  return url
+}
 private struct PhotosPickerSurface: View {
   @ObservedObject var model: PhotosPickerModel
   // the picker owns its selection; React never sets it, so it lives here rather than in the
@@ -158,22 +165,13 @@ private struct PhotosPickerSurface: View {
             model.pickError("the picked item carries no data")
             return
           }
-          let url = try write(data, named: item.supportedContentTypes.first?.preferredFilenameExtension ?? "dat")
+          let url = try oneNativePickerFile(data, extension: item.supportedContentTypes.first?.preferredFilenameExtension ?? "dat")
           model.pick(url.absoluteString, Double(index), Double(count))
         } catch {
           model.pickError(error.localizedDescription)
         }
       }
     }
-  }
-  // the caller gets a file it can read, so the bytes land in the temporary directory under a
-  // fresh name. the system clears that directory; nothing here deletes the file.
-  private func write(_ data: Data, named ext: String) throws -> URL {
-    let url = FileManager.default.temporaryDirectory
-      .appendingPathComponent("one-native-photo-\\(UUID().uuidString)")
-      .appendingPathExtension(ext)
-    try data.write(to: url)
-    return url
   }
 }
 `,

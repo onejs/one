@@ -92,6 +92,34 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('presentation binding and selection callback')
   })
 
+  it('delivers a photo picker file URL and loading errors', () => {
+    const onChange = vi.fn()
+    const onSelection = vi.fn()
+    const onError = vi.fn()
+    const element = Controls.Text({ text: 'photo', swiftStyle: {
+      photosPicker: { isPresented: { value: true, onChange }, onSelection, onError },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['photosPicker', 'true'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosPicker.isPresented', value: 'false',
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosPicker.onSelection', value: 'file:///tmp/photo.heic',
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosPicker.onError', value: 'no data',
+    } })
+    expect(onChange).toHaveBeenCalledWith(false)
+    expect(onSelection).toHaveBeenCalledWith('file:///tmp/photo.heic')
+    expect(onError).toHaveBeenCalledWith('no data')
+    expect(() => Controls.Text({ text: 'invalid', swiftStyle: {
+      photosPicker: { isPresented: { value: true, onChange }, onSelection,
+        onError: undefined as never },
+    } })).toThrow('presentation binding, selection callback, and error callback')
+  })
+
   it('constructs a defaulted SDK object for a zero-input content closure', () => {
     const onChange = vi.fn()
     const element = Controls.Text({ text: 'confirm', swiftStyle: {

@@ -279,6 +279,10 @@ for (const modifier of derivedModifiers) {
           /^SwiftUICore\.Binding<([A-Za-z_]\w*)\?>$/.test(d.parameters[2]?.type ?? '') &&
           d.requirements?.some((requirement) => requirement.startsWith(
             `${/^SwiftUICore\.Binding<([A-Za-z_]\w*)\?>$/.exec(d.parameters[2].type)?.[1]} : `))
+        : modifier.transferSelection
+        ? d.parameters[0]?.type === 'SwiftUICore.Binding<Swift.Bool>' &&
+          d.parameters[1]?.type === `SwiftUICore.Binding<${modifier.transferSelection.itemType}?>` &&
+          d.parameters.slice(2).every((parameter) => parameter.defaultValue !== undefined)
         : modifier.zeroArgument
         ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.kind === 'record'

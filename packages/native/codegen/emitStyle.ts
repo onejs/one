@@ -438,6 +438,15 @@ ${sdkGuard(modifier.ios, `if #available(iOS ${modifier.ios}, *) {
     } else { self }`, 'self')}
   }`
       }
+      if (modifier.kind === 'transferSelection') {
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid ${modifier.name} presentation")
+${sdkGuard(modifier.ios, `if #available(iOS ${modifier.ios}, *) {
+      self.modifier(OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}Transfer(
+        presented: value == "true", emit: emit))
+    } else { self }`, 'self')}
+  }`
+      }
       if (modifier.kind === 'eventReturnArray') {
         const call = modifier.callArguments!.map((argument) =>
           `${argument.label === '_' ? '' : `${argument.label}: `}${argument.bridge ? 'action' : argument.defaultValue}`
@@ -1099,6 +1108,17 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
         sdkModifiers.push([name, JSON.stringify([String(picker.isPresented.value), picker.title ?? null])])
         continue
       }
+      if (kind === 'transferSelection') {
+        const picker = value as { isPresented?: { value?: unknown; onChange?: unknown };
+          onSelection?: unknown; onError?: unknown } | undefined
+        if (!picker || typeof picker !== 'object' ||
+          typeof picker.isPresented?.value !== 'boolean' ||
+          typeof picker.isPresented.onChange !== 'function' ||
+          typeof picker.onSelection !== 'function' || typeof picker.onError !== 'function')
+          throw new Error(name + ' must have a presentation binding, selection callback, and error callback')
+        sdkModifiers.push([name, String(picker.isPresented.value)])
+        continue
+      }
       if (kind === 'eventDrop') {
         const record = value as { of?: unknown; onDrop?: unknown } | undefined
         if (!record || !Array.isArray(record.of) || record.of.length === 0 ||
@@ -1194,6 +1214,20 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
         picker?.isPresented.onChange(value === 'true')
       } else if (field === 'onSelection') picker?.onSelection(value)
       else throw new Error(name + ' emitted an invalid picker event')
+      return
+    }
+    if (sdkKinds[parent as keyof typeof sdkKinds] === 'transferSelection') {
+      const picker = (style as Record<string, unknown> | undefined)?.[parent] as {
+        isPresented: { onChange: (value: boolean) => void }
+        onSelection: (url: string) => void
+        onError: (message: string) => void
+      } | undefined
+      if (field === 'isPresented') {
+        if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid boolean')
+        picker?.isPresented.onChange(value === 'true')
+      } else if (field === 'onSelection') picker?.onSelection(value)
+      else if (field === 'onError') picker?.onError(value)
+      else throw new Error(name + ' emitted an invalid transfer event')
       return
     }
     if (sdkRecords[parent]?.some((argument) => argument.field === field && argument.kind === 'bindingBoolean')) {
@@ -1458,6 +1492,34 @@ private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slic
       guard let next else { return }
       emit(${JSON.stringify(`${modifier.name}.onSelection`)}, next.${modifier.pickerSelection!.idField}.${modifier.pickerSelection!.rawField})
       selection = nil
+    }
+  }
+}`, '')).join('\n')}
+${derived.filter((modifier) => modifier.kind === 'transferSelection').map((modifier) => sdkGuard(modifier.ios, `@available(iOS ${modifier.ios}, *)
+private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}Transfer: ViewModifier {
+  let presented: Bool
+  let emit: (String, String) -> Void
+  @State private var selection: ${modifier.transferSelection!.itemType}? = nil
+
+  func body(content: Content) -> some View {
+    content.${modifier.sdkName ?? modifier.name}(
+      ${modifier.transferSelection!.presentedLabel}: Binding(get: { presented }, set: { emit(${JSON.stringify(`${modifier.name}.isPresented`)}, String($0)) }),
+      ${modifier.transferSelection!.selectionLabel}: $selection
+    ).onChange(of: selection) { _, next in
+      guard let next else { return }
+      selection = nil
+      Task { @MainActor in
+        do {
+          guard let data = try await next.loadTransferable(type: Data.self) else {
+            emit(${JSON.stringify(`${modifier.name}.onError`)}, "the picked item carries no data")
+            return
+          }
+          let url = try oneNativePickerFile(data, extension: next.${modifier.transferSelection!.contentTypesField}.first?.preferredFilenameExtension ?? "dat")
+          emit(${JSON.stringify(`${modifier.name}.onSelection`)}, url.absoluteString)
+        } catch {
+          emit(${JSON.stringify(`${modifier.name}.onError`)}, error.localizedDescription)
+        }
+      }
     }
   }
 }`, '')).join('\n')}

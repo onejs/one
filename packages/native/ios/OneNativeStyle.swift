@@ -106,6 +106,34 @@ private struct OneNativeSDKMusicPickerWithTrackPicker: ViewModifier {
 }
 #endif
 
+@available(iOS 16, *)
+private struct OneNativeSDKPhotosPickerTransfer: ViewModifier {
+  let presented: Bool
+  let emit: (String, String) -> Void
+  @State private var selection: _PhotosUI_SwiftUI.PhotosPickerItem? = nil
+
+  func body(content: Content) -> some View {
+    content.photosPicker(
+      isPresented: Binding(get: { presented }, set: { emit("photosPicker.isPresented", String($0)) }),
+      selection: $selection
+    ).onChange(of: selection) { _, next in
+      guard let next else { return }
+      selection = nil
+      Task { @MainActor in
+        do {
+          guard let data = try await next.loadTransferable(type: Data.self) else {
+            emit("photosPicker.onError", "the picked item carries no data")
+            return
+          }
+          let url = try oneNativePickerFile(data, extension: next.supportedContentTypes.first?.preferredFilenameExtension ?? "dat")
+          emit("photosPicker.onSelection", url.absoluteString)
+        } catch {
+          emit("photosPicker.onError", error.localizedDescription)
+        }
+      }
+    }
+  }
+}
 @available(iOS 17, *)
 @MainActor private struct OneNativeSDKLookAroundViewerRequest: ViewModifier {
   let latitude: Double
@@ -619,6 +647,7 @@ extension View {
       case "payWithApplePayButtonDisableCardArt": view = AnyView(view.oneNativeSDKPayWithApplePayButtonDisableCardArt(value, emit: emit))
       case "payWithApplePayButtonStyle": view = AnyView(view.oneNativeSDKPayWithApplePayButtonStyle(value, emit: emit))
       case "persistentSystemOverlays": view = AnyView(view.oneNativeSDKPersistentSystemOverlays(value, emit: emit))
+      case "photosPicker": view = AnyView(view.oneNativeSDKPhotosPicker(value, emit: emit))
       case "photosPickerAccessoryVisibility": view = AnyView(view.oneNativeSDKPhotosPickerAccessoryVisibility(value, emit: emit))
       case "photosPickerDisabledCapabilities": view = AnyView(view.oneNativeSDKPhotosPickerDisabledCapabilities(value, emit: emit))
       case "photosPickerMetadataOptions": view = AnyView(view.oneNativeSDKPhotosPickerMetadataOptions(value, emit: emit))
@@ -6103,6 +6132,14 @@ self
       case "hidden": self.persistentSystemOverlays(SwiftUI.Visibility.hidden)
     default: preconditionFailure("invalid persistentSystemOverlays: \(value)")
     }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPhotosPicker(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let _ = precondition(value == "true" || value == "false", "invalid photosPicker presentation")
+if #available(iOS 16, *) {
+      self.modifier(OneNativeSDKPhotosPickerTransfer(
+        presented: value == "true", emit: emit))
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKPhotosPickerAccessoryVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

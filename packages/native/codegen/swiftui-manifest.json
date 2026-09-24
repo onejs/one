@@ -11211,6 +11211,19 @@
       ]
     },
     {
+      "name": "photosPicker",
+      "kind": "transferSelection",
+      "type": "_PhotosUI_SwiftUI.PhotosPickerItem",
+      "framework": "PhotosUI",
+      "ios": 16,
+      "transferSelection": {
+        "itemType": "_PhotosUI_SwiftUI.PhotosPickerItem",
+        "presentedLabel": "isPresented",
+        "selectionLabel": "selection",
+        "contentTypesField": "supportedContentTypes"
+      }
+    },
+    {
       "name": "photosPickerAccessoryVisibility",
       "kind": "record",
       "type": "",
@@ -17901,6 +17914,7 @@
         "onCameraCaptureEvent"
       ],
       "_PhotosUI_SwiftUI": [
+        "photosPicker",
         "photosPickerAccessoryVisibility",
         "photosPickerDisabledCapabilities",
         "photosPickerMetadataOptions",
@@ -18421,6 +18435,7 @@
         "onCameraCaptureEvent"
       ],
       "_PhotosUI_SwiftUI": [
+        "photosPicker",
         "photosPickerAccessoryVisibility",
         "photosPickerDisabledCapabilities",
         "photosPickerMetadataOptions",
