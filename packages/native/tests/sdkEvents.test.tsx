@@ -15,6 +15,15 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('exposes a bridgeable SDK overload beside an existing style field', () => {
+    const element = Controls.Text({ text: 'round', swiftStyle: {
+      cornerRadiusWithRadiusAndAntialiased: { radius: 12, antialiased: false },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['cornerRadiusWithRadiusAndAntialiased', '["12","false"]'],
+    ])
+  })
+
   it('encodes numeric visual effects and scroll phase transitions from SDK methods', () => {
     const element = Controls.Text({ text: 'example', swiftStyle: {
       visualEffect: { kind: 'opacity', value: 0.8 },
