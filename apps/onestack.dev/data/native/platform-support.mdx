@@ -1,0 +1,36 @@
+---
+title: Platform Support
+description: What every native API does on iOS, Android, and web
+---
+
+| Feature | iOS | Android | Web |
+|---------|-----|---------|-----|
+| Responsive icon colors | One.UI.Icon + UIKit semantic colors | One.UI.Icon + adaptive Material color scheme | app-provided element |
+| Zoom Transitions | iOS 18+ | unsupported | unsupported |
+| Toolbar | UIToolbar + SF Symbols | unsupported | unsupported |
+| Menu Actions | UIMenu / UIAction | unsupported | unsupported |
+| SplitView | iPad (gamma required) | routed slot fallback | routed slot fallback |
+| Icons | SF Symbols via One.iOS.Image | Material Symbols via One.Android.Icon | unsupported |
+| Shared icon selection | One.UI.Icon | One.UI.Icon | app-provided React element |
+| SwiftUI controls and containers | One.iOS.* | unsupported (throws) | unsupported (throws) |
+| Compose views | unsupported (throws) | One.Android.* | unsupported (throws) |
+| EdgeFade, Blur, Mask | native primitive | native primitive | throws |
+| Gradients | RN 0.87 `backgroundImage` (see Gradients) | RN 0.87 `backgroundImage` (see Gradients) | see Gradients |
+| TextInput, native state | One.UI.* | One.UI.* | One.UI.* (web behavior) |
+| Safe area | One.UI.SafeArea | One.UI.SafeArea | One.UI.SafeArea (css env) |
+| Colors | One.iOS.Color | Color.android | null |
+| Notifications | permission, badge, channels (no-op), events, handler, scheduling | permission, badge (no-op), channels, events, handler, scheduling | denied, inert |
+| Clipboard | UIPasteboard | ClipboardManager | navigator.clipboard |
+| Network | NWPathMonitor | ConnectivityManager | navigator.onLine |
+| Browser | SFSafariViewController + ASWebAuthenticationSession | Custom Tabs | window.open |
+| Haptics | UIFeedbackGenerator trio | performHapticFeedback mapping | no-op |
+| Crypto | SecRandomCopyBytes | SecureRandom | platform crypto |
+| ImagePicker | PHPickerViewController + camera | system photo picker + camera intent | file dialog + capture input |
+| Map | One.UI.Map (MapKit) | One.UI.Map (Google Maps, key required) | renders nothing |
+| WebGPU | react-native-webgpu (Dawn) | react-native-webgpu (Dawn) | navigator.gpu |
+
+Unsupported toolbar, menu, and zoom components return `null`, so they are safe
+to keep in cross-platform component trees. SplitView renders its routed `slot`
+without native columns on Android and web. SwiftUI components throw outside
+iOS builds and Compose components throw outside Android builds, so keep those
+branches behind platform checks.

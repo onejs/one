@@ -56,6 +56,11 @@ export default {
             destination: '/blog/version-one',
             permanent: true,
           },
+          {
+            source: '/docs/native-features',
+            destination: '/native',
+            permanent: true,
+          },
         ],
       },
 
