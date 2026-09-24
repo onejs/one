@@ -97,6 +97,9 @@ const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
       return { kind: 'string', type, optional }
     if (baseType === '[Swift.String]' || baseType === '[SwiftUICore.Text]')
       return { kind: 'stringArray', type, optional }
+    if (baseType === '[UniformTypeIdentifiers.UTType]')
+      return { kind: 'stringArray', type, optional,
+        swiftExpression: '({ () -> [UniformTypeIdentifiers.UTType] in\n        let identifiers = $value\n        if identifiers.isEmpty { return [.item] }\n        return identifiers.map { identifier in\n          guard let type = UniformTypeIdentifiers.UTType(identifier) else { preconditionFailure("invalid content type: \\(identifier)") }\n          return type\n        }\n      })()' }
     if (baseType === 'Swift.Set<Swift.String>')
       return { kind: 'stringSet', type, optional }
     const numericType = (value: string) =>
