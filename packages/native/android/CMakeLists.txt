@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(OneNativeSync CXX)
+project(VxrnNative CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -12,17 +12,21 @@ find_package(fbjni REQUIRED CONFIG)
 find_package(ReactAndroid REQUIRED CONFIG)
 find_package(react-native-worklets REQUIRED CONFIG)
 
-# the JSI host object is shared with iOS; only the registry trampolines differ
-# (Swift there, JNI here).
+# one library for the package's C++: the sync-state JSI host object (shared
+# with iOS; only the registry trampolines differ, Swift there, JNI here) and
+# the nitrogen-generated Nitro hybrid objects. JNI_OnLoad in
+# OneNativeSyncJni.cpp registers both.
 add_library(
-  onenativesync SHARED
+  VxrnNative SHARED
   ${JNI_DIR}/OneNativeSyncJni.cpp
   ${CPP_DIR}/OneNativeSyncHost.cpp)
 
-target_include_directories(onenativesync PRIVATE ${CPP_DIR} ${JNI_DIR})
+target_include_directories(VxrnNative PRIVATE ${CPP_DIR} ${JNI_DIR})
+
+include(${CMAKE_SOURCE_DIR}/../nitrogen/generated/android/VxrnNative+autolinking.cmake)
 
 target_link_libraries(
-  onenativesync
+  VxrnNative
   fbjni::fbjni
   ReactAndroid::jsi
   ReactAndroid::reactnative

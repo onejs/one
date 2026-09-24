@@ -18,6 +18,7 @@
     "android/CMakeLists.txt",
     "android/src",
     "cpp",
+    "nitrogen",
     "VxrnNative.podspec",
     "react-native.config.cjs",
     "schema.json"
@@ -29,6 +30,7 @@
     "test": "vitest run",
     "generate": "bun codegen/generate.ts",
     "generate:check": "bun codegen/generate.ts --check",
+    "nitrogen": "nitrogen",
     "coverage": "bun codegen/coverage.ts",
     "measure": "bun codegen/measure.ts"
   },
@@ -158,9 +160,10 @@
     "@babel/generator": "7.29.7",
     "@react-native/babel-plugin-codegen": "0.87.1",
     "@react-native/codegen": "^0.87.1",
-    "esbuild": "^0.25.12",
     "@tamagui/build": "3.0.0-beta.1309.1",
     "@types/react-test-renderer": "^19.1.0",
+    "esbuild": "^0.25.12",
+    "nitrogen": "0.37.0",
     "react-native-web": "^0.21.2",
     "react-native-worklets": "~0.12.2",
     "react-test-renderer": "^19.2.0",

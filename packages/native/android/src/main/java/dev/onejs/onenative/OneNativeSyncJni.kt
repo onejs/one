@@ -18,7 +18,7 @@ import com.facebook.soloader.SoLoader
 internal class OneNativeSyncJni {
     companion object {
         init {
-            SoLoader.loadLibrary("onenativesync")
+            SoLoader.loadLibrary("VxrnNative")
         }
 
         @JvmStatic

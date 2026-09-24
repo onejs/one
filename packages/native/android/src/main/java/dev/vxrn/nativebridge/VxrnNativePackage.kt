@@ -6,15 +6,14 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
+import com.margelo.nitro.one.VxrnNativeOnLoad
 import dev.onejs.onenative.OneNativeAppInfoModule
 import dev.onejs.onenative.OneNativeBlurManager
 import dev.onejs.onenative.OneNativeBrowserModule
-import dev.onejs.onenative.OneNativeClipboardModule
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeCryptoModule
 import dev.onejs.onenative.OneNativeEdgeFadeManager
 import dev.onejs.onenative.OneNativeFontsModule
-import dev.onejs.onenative.OneNativeHapticsModule
 import dev.onejs.onenative.OneNativeImagePickerModule
 import dev.onejs.onenative.OneNativeMaskManager
 import dev.onejs.onenative.OneNativeMenuPopupModule
@@ -29,13 +28,11 @@ class VxrnNativePackage : BaseReactPackage() {
     override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
         return when (name) {
             VxrnNativeModule.NAME -> VxrnNativeModule(reactContext)
-            OneNativeHapticsModule.NAME -> OneNativeHapticsModule(reactContext)
             OneNativeCryptoModule.NAME -> OneNativeCryptoModule(reactContext)
             OneNativeAppInfoModule.NAME -> OneNativeAppInfoModule(reactContext)
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
             OneNativeFontsModule.NAME -> OneNativeFontsModule(reactContext)
-            OneNativeClipboardModule.NAME -> OneNativeClipboardModule(reactContext)
             OneNativeNetworkModule.NAME -> OneNativeNetworkModule(reactContext)
             OneNativeBrowserModule.NAME -> OneNativeBrowserModule(reactContext)
             OneNativeImagePickerModule.NAME -> OneNativeImagePickerModule(reactContext)
@@ -49,14 +46,6 @@ class VxrnNativePackage : BaseReactPackage() {
             VxrnNativeModule.NAME to ReactModuleInfo(
                 name = VxrnNativeModule.NAME,
                 className = VxrnNativeModule.NAME,
-                canOverrideExistingModule = false,
-                needsEagerInit = false,
-                isCxxModule = false,
-                isTurboModule = false
-            ),
-            OneNativeHapticsModule.NAME to ReactModuleInfo(
-                name = OneNativeHapticsModule.NAME,
-                className = OneNativeHapticsModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,
@@ -97,14 +86,6 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeFontsModule.NAME to ReactModuleInfo(
                 name = OneNativeFontsModule.NAME,
                 className = OneNativeFontsModule.NAME,
-                canOverrideExistingModule = false,
-                needsEagerInit = false,
-                isCxxModule = false,
-                isTurboModule = false
-            ),
-            OneNativeClipboardModule.NAME to ReactModuleInfo(
-                name = OneNativeClipboardModule.NAME,
-                className = OneNativeClipboardModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,
@@ -157,4 +138,12 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeMaskManager(),
             OneNativeUiMapManager(),
         )
+
+    companion object {
+        init {
+            // registers every Nitro hybrid object (OneHaptics, OneClipboard, ...)
+            // before JS can ask NitroModules for one.
+            VxrnNativeOnLoad.initializeNative()
+        }
+    }
 }

@@ -1,18 +1,18 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { Clipboard } from '../src/clipboard/index'
 
-vi.mock('react-native', () => ({
-  TurboModuleRegistry: { get: vi.fn() },
+vi.mock('react-native-nitro-modules', () => ({
+  NitroModules: { createHybridObject: vi.fn() },
 }))
 
 afterEach(() => {
   vi.unstubAllGlobals()
 })
 
-async function loadNativeEntry(nativeModule: unknown) {
+async function loadNativeEntry(hybrid: unknown) {
   vi.resetModules()
-  const { TurboModuleRegistry } = await import('react-native')
-  vi.mocked(TurboModuleRegistry.get).mockReturnValue(nativeModule as never)
+  const { NitroModules } = await import('react-native-nitro-modules')
+  vi.mocked(NitroModules.createHybridObject).mockReturnValue(hybrid as never)
   return import('../src/clipboard/index.native')
 }
 
@@ -85,7 +85,7 @@ describe('clipboard web', () => {
 })
 
 describe('clipboard native entry', () => {
-  it('delegates every call to the native module', async () => {
+  it('delegates every call to the hybrid object', async () => {
     const nativeModule = {
       getString: vi.fn(async () => 'hi'),
       setString: vi.fn(async () => true),
@@ -96,19 +96,6 @@ describe('clipboard native entry', () => {
     expect(await native.setString('hi')).toBe(true)
     expect(nativeModule.setString).toHaveBeenCalledWith('hi')
     expect(await native.hasString()).toBe(true)
-  })
-
-  it('rejects without a native module', async () => {
-    const { Clipboard: native } = await loadNativeEntry(null)
-    await expect(native.getString()).rejects.toThrow(
-      'Clipboard needs a native build that includes @vxrn/native'
-    )
-    await expect(native.setString('hi')).rejects.toThrow(
-      'Clipboard needs a native build that includes @vxrn/native'
-    )
-    await expect(native.hasString()).rejects.toThrow(
-      'Clipboard needs a native build that includes @vxrn/native'
-    )
   })
 
   it('throws the same write check as the web entry', async () => {

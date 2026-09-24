@@ -16,6 +16,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'org.jetbrains.kotlin.plugin.compose'
 apply plugin: 'com.facebook.react'
+apply from: '../nitrogen/generated/android/VxrnNative+autolinking.gradle'
 
 group = 'dev.vxrn'
 
@@ -130,6 +131,7 @@ dependencies {
         implementation "com.google.maps.android:maps-compose:6.10.0"
         implementation "androidx.lifecycle:lifecycle-runtime:2.9.3"
     }
+    implementation project(":react-native-nitro-modules")
     if (rootProject.subprojects.find { it.name == "react-native-worklets" } != null) {
         implementation project(":react-native-worklets")
     } else {

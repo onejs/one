@@ -6,6 +6,7 @@
 #include <worklets/Compat/StableApi.h>
 
 #include "OneNativeSyncHost.h"
+#include "VxrnNativeOnLoad.hpp"
 #include "OneNativeSyncBridge.h"
 
 using namespace facebook;
@@ -197,5 +198,6 @@ Java_dev_onejs_onenative_OneNativeSyncJni_nativeDidSetExternally(
 jint JNI_OnLoad(JavaVM *vm, void *) {
   return facebook::jni::initialize(vm, [] {
     OneNativeSyncJni::registerNatives();
+    margelo::nitro::one::registerAllNatives();
   });
 }
