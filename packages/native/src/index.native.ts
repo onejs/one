@@ -127,6 +127,7 @@ export const Swift =
       }
     : UnsupportedSwift
 export { Compose }
+export { Notifications } from './notifications'
 export { Widgets, LiveActivities }
 export { Menu, ContextMenu }
 export { useNativeState, type NativeState } from './nativeState'

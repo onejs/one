@@ -19,6 +19,7 @@ import dev.onejs.onenative.OneNativeImagePickerModule
 import dev.onejs.onenative.OneNativeMaskManager
 import dev.onejs.onenative.OneNativeMenuPopupModule
 import dev.onejs.onenative.OneNativeNetworkModule
+import dev.onejs.onenative.OneNativeNotificationsModule
 import dev.onejs.onenative.OneNativeSafeAreaModule
 import dev.onejs.onenative.OneNativeReservedRegionsProviderManager
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
@@ -34,6 +35,7 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeAppInfoModule.NAME -> OneNativeAppInfoModule(reactContext)
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
+            OneNativeNotificationsModule.NAME -> OneNativeNotificationsModule(reactContext)
             OneNativeFontsModule.NAME -> OneNativeFontsModule(reactContext)
             OneNativeClipboardModule.NAME -> OneNativeClipboardModule(reactContext)
             OneNativeNetworkModule.NAME -> OneNativeNetworkModule(reactContext)
@@ -89,6 +91,14 @@ class VxrnNativePackage : BaseReactPackage() {
             OneNativeSyncModule.NAME to ReactModuleInfo(
                 name = OneNativeSyncModule.NAME,
                 className = OneNativeSyncModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeNotificationsModule.NAME to ReactModuleInfo(
+                name = OneNativeNotificationsModule.NAME,
+                className = OneNativeNotificationsModule.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,
