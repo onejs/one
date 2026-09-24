@@ -36,7 +36,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'selectionID' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -820,6 +820,23 @@ export function deriveModifiers(
               kind: declaration.parameters[0].type === 'Swift.Int' ? 'number' as const :
                 declaration.parameters[0].type === 'Swift.Bool' ? 'boolean' as const : 'string' as const,
               optional: true })) }]
+      }
+      const caseSet = method.parameters.length === 1 &&
+        /^Swift\.Set<([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)>$/.exec(method.parameters[0].type)
+      if (caseSet) {
+        const valueType = caseSet[1]
+        const owner = valueType.split('.').slice(1).join('.')
+        const cases = inventory.filter((declaration) =>
+          declaration.module === valueType.split('.')[0] &&
+          (declaration.owner === owner || declaration.owner === valueType) &&
+          declaration.kind === 'static' && declaration.type === valueType &&
+          declaration.parameters.length === 0 && /^[a-z]/.test(declaration.name) &&
+          present(declaration) && ios(declaration) <= ios(method))
+          .map((declaration) => ({ name: declaration.name, ios: ios(declaration) }))
+        if (cases.length && new Set(cases.map((item) => item.name)).size === cases.length)
+          return [{ name, module: method.module, kind: 'caseSet', type: method.parameters[0].type,
+            resultType: valueType, label: method.parameters[0].label, cases,
+            ios: ios(method), ...framework }]
       }
       const eligibleSelection = method.parameters.length === 1 &&
         /^@escaping \((?:_ [A-Za-z_]\w*: )?[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+, (?:_ [A-Za-z_]\w*: )?[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+, (?:_ [A-Za-z_]\w*: )?\[([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\]\) -> \1\?$/.exec(method.parameters[0].type)
