@@ -34,7 +34,7 @@ const TOOLBAR_CHILDREN =
 // the three markers are read by Swift.Toolbar and Swift.NavigationStack and never render
 // where they are written, exactly like Swift.Tab inside Swift.Tabs.
 export function Toolbar(_props: ToolbarProps): never {
-  throw new Error('Swift.Toolbar must be a direct child of Swift.NavigationStack')
+  throw new Error('Swift.Toolbar must be a direct child of Swift.NavigationStack or Swift.Tabs')
 }
 
 export function ToolbarItem(_props: ToolbarItemProps): never {
@@ -137,7 +137,7 @@ function ToolbarSpacerNode({
 
 // one Swift.Toolbar becomes one native toolbar: its markers read as toolbar entries in
 // the order they are written, and the stack merges every toolbar it is given.
-function ToolbarNode({
+export function ToolbarNode({
   children,
   iosVersion,
 }: {

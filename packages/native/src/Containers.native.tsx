@@ -458,6 +458,7 @@ export function Glass({
   shape,
   cornerRadius,
   tint,
+  colorScheme,
   children,
   style,
   ...props
@@ -472,6 +473,8 @@ export function Glass({
     throw new Error('Swift.Glass cornerRadius must be a non-negative number')
   if (shape !== undefined && shape !== 'roundedRectangle' && cornerRadius !== undefined)
     throw new Error('Swift.Glass cornerRadius requires shape="roundedRectangle"')
+  if (colorScheme)
+    assertSwiftUIValue('ColorScheme', colorScheme, Number.parseFloat(String(Platform.Version)))
   assertOneNativeChildren(children, 'Swift.Glass')
   return (
     <NativeGlass
@@ -483,6 +486,7 @@ export function Glass({
       shape={shape ?? ''}
       cornerRadius={cornerRadius ?? -1}
       tint={tint}
+      colorScheme={colorScheme ?? ''}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeGlass>

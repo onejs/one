@@ -51,6 +51,9 @@ public final class OneNativeTabItem: NSObject, Identifiable {
   public var role: String
   public var slotHeight: CGFloat
   var modifiers: OneNativeTabModifiers
+  // View modifiers on the page's content, and where their SDK events go.
+  var style = OneNativeStyle()
+  public var emit: (String, String) -> Void = { _, _ in }
   public let view: UIView
   public let onLayout: (CGRect) -> Void
 
@@ -66,6 +69,10 @@ public final class OneNativeTabItem: NSObject, Identifiable {
     self.view = view
     self.onLayout = onLayout
   }
+
+  public func configureStyle(_ style: [String: Any]) {
+    self.style = OneNativeStyle(dictionary: style)
+  }
 }
 
 // a TabView entry: one tab, or a section with the tabs that name it.
@@ -77,6 +84,7 @@ private struct TabGroup: Identifiable {
 
 private final class TabsModel: ObservableObject {
   @Published var pages: [OneNativeTabItem] = []
+  @Published var toolbarEntries: [OneNativeToolbarEntry] = []
   @Published var controlled = OneNativeControlled("")
   @Published var tabViewStyle = "automatic"
   @Published var tabBarVisibility = "automatic"
@@ -151,13 +159,23 @@ private final class TabsModel: ObservableObject {
 }
 
 @objcMembers
-public final class OneNativeTabsView: UIView {
+public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
   public var onSelection: ((String, Int, Int) -> Void)?
   public var onAction: ((String) -> Void)?
   public var onCustomization: ((String) -> Void)?
   public var onSDKEvent: ((String, String) -> Void)?
   private var model = TabsModel()
   private var controller: OneNativeHostingController<TabsContent>?
+  private var toolbars: [OneNativeToolbarView] = []
+  private var active = false
+
+  public var compositionActive: Bool { active }
+
+  private func setActive(_ next: Bool) {
+    guard active != next else { return }
+    active = next
+    for toolbar in toolbars { toolbar.propagateActive(next) }
+  }
 
   public override init(frame: CGRect) {
     super.init(frame: frame)
@@ -180,9 +198,29 @@ public final class OneNativeTabsView: UIView {
       current.role = page.role
       current.slotHeight = page.slotHeight
       current.modifiers = page.modifiers
+      current.style = page.style
+      current.emit = page.emit
       return current
     }
     if topologyChanged { model.tabViewRevision += 1 }
+  }
+
+  public func mountToolbar(_ toolbar: OneNativeToolbarView) {
+    toolbars.append(toolbar)
+    toolbar.composeInto(self)
+    publishToolbars()
+  }
+
+  public func unmountToolbar(_ toolbar: OneNativeToolbarView) {
+    toolbars.removeAll { $0 === toolbar }
+    toolbar.decompose()
+    publishToolbars()
+  }
+
+  public func toolbarChanged() { publishToolbars() }
+
+  private func publishToolbars() {
+    model.toolbarEntries = toolbars.flatMap(\.entries)
   }
 
   public func setSelection(_ selection: String, acknowledgedEvent: Int, revision: Int) {
@@ -225,10 +263,12 @@ public final class OneNativeTabsView: UIView {
     }
     controller?.attach(to: self)
     model.active = controller?.isAttached == true
+    setActive(model.active)
   }
 
   private func detachController() {
     model.active = false
+    setActive(false)
     controller?.detach()
   }
 
@@ -238,6 +278,9 @@ public final class OneNativeTabsView: UIView {
     model.onAction = nil
     model.onCustomization = nil
     model.onSDKEvent = nil
+    setActive(false)
+    for toolbar in toolbars { toolbar.decompose() }
+    toolbars.removeAll()
     detachController()
     controller = nil
     model = TabsModel()
@@ -330,13 +373,15 @@ private struct TabsContent: View {
   @TabContentBuilder<String>
   private func tab(_ page: OneNativeTabItem) -> some TabContent<String> {
     Tab(value: page.id, role: OneNativeGenerated.tabRole(page.role)) {
-      if page.role == "search" {
-        NavigationStack {
-          slot(page)
-        }
-        .toolbarVisibility(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
-      } else {
-        slot(page).toolbarVisibility(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
+      NavigationStack {
+        slot(page)
+          .oneNativeStyle(page.style, emit: page.emit)
+          .toolbarVisibility(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
+          .toolbar {
+            ForEach(model.toolbarEntries) { entry in
+              OneNativeToolbarEntryContent(entry: entry)
+            }
+          }
       }
     } label: {
       if let image = page.modifiers.image { Label(page.title, image: image) }
@@ -351,6 +396,7 @@ private struct TabsContent: View {
     TabView(selection: Binding(get: { model.controlled.value }, set: { model.select($0) })) {
       ForEach(groups.flatMap(\.tabs)) { page in
         slot(page)
+          .oneNativeStyle(page.style, emit: page.emit)
           .toolbar(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
           .tabItem {
             if page.systemImage.isEmpty {

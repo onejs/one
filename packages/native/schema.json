@@ -117,7 +117,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -2789,6 +2798,9 @@
         },
         "tint": {
           "type": "ColorValue"
+        },
+        "colorScheme": {
+          "type": "string"
         }
       },
       "events": {},
