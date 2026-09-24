@@ -818,6 +818,45 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     expect(project).not.toContain('CODE_SIGN_ENTITLEMENTS')
     expect(() => statSync(join(output, 'ios', 'MyApp', 'MyApp.entitlements'))).toThrow()
   }, 180000)
+
+  it('shares one app entitlement file when widgets and notification push are enabled', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-widget-push-'))
+    await generateForPlatform(
+      workspaceRoot,
+      'ios',
+      {
+        ...app,
+        notifications: { push: true },
+        ios: {
+          ...app.ios,
+          widgets: {
+            appGroup: 'group.dev.one.myapp',
+            kind: 'MyAppStatus',
+            displayName: 'Status',
+            description: 'Current status',
+          },
+        },
+      },
+      join(output, 'ios')
+    )
+
+    const project = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    expect(project).toContain(
+      'CODE_SIGN_ENTITLEMENTS = MyApp/OneAppWidgets.entitlements;'
+    )
+    expect(project).not.toContain('MyApp/MyApp.entitlements')
+    const entitlements = readFileSync(
+      join(output, 'ios', 'MyApp', 'OneAppWidgets.entitlements'),
+      'utf8'
+    )
+    expect(entitlements).toContain('group.dev.one.myapp')
+    expect(entitlements).toContain('<key>aps-environment</key>')
+    expect(() => statSync(join(output, 'ios', 'MyApp', 'MyApp.entitlements'))).toThrow()
+  }, 180000)
 })
 
 describe('community autolink inventory', () => {

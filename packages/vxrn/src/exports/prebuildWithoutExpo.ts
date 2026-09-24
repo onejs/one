@@ -530,7 +530,7 @@ function generateSceneDelegate(args: {
   // the aps-environment entitlement only when the app opts into push: the
   // pbxproj patch above wires it in, and without the flag no file is
   // written, so non-push apps stay entitlement-free.
-  if (app.notifications?.push === true) {
+  if (app.notifications?.push === true && !app.ios?.widgets) {
     FSExtra.writeFileSync(
       path.join(dest, app.name, `${app.name}.entitlements`),
       renderPushEntitlements()
@@ -550,7 +550,7 @@ function generateIosWidgets(dest: string, app: NativeAppManifest): void {
 `
   FSExtra.writeFileSync(
     path.join(appDir, 'OneAppWidgets.entitlements'),
-    widgets.pushNotifications
+    widgets.pushNotifications || app.notifications?.push
       ? entitlements.replace(
           '</dict></plist>',
           '<key>aps-environment</key><string>development</string></dict></plist>'
@@ -615,15 +615,27 @@ struct OneWidgetNode: Decodable {
   let text: String?
   let style: Style?
   let children: [OneWidgetNode]?
+  let systemName: String?
+  let value: Double?
+  let total: Double?
+  let fill: String?
+  let cornerRadius: Double?
+  let url: String?
 
   struct Style: Decodable {
     let color: String?
     let backgroundColor: String?
     let fontSize: Double?
     let fontWeight: String?
+    let fontDesign: String?
     let padding: Double?
     let borderRadius: Double?
     let spacing: Double?
+    let width: Double?
+    let height: Double?
+    let opacity: Double?
+    let lineLimit: Int?
+    let alignment: String?
   }
 }
 
@@ -650,6 +662,22 @@ private func oneColor(_ hex: String?) -> Color? {
 struct OneWidgetRendered: View {
   let node: OneWidgetNode
 
+  private var alignment: Alignment {
+    switch node.style?.alignment {
+    case "leading": .leading
+    case "trailing": .trailing
+    default: .center
+    }
+  }
+
+  private var horizontalAlignment: HorizontalAlignment {
+    switch node.style?.alignment {
+    case "center": .center
+    case "trailing": .trailing
+    default: .leading
+    }
+  }
+
   private var weight: Font.Weight {
     switch node.style?.fontWeight {
     case "medium": .medium
@@ -659,14 +687,23 @@ struct OneWidgetRendered: View {
     }
   }
 
+  private var design: Font.Design {
+    switch node.style?.fontDesign {
+    case "rounded": .rounded
+    case "serif": .serif
+    case "monospaced": .monospaced
+    default: .default
+    }
+  }
+
   var body: some View {
     Group {
       switch node.type {
       case "text":
         Text(node.text ?? "")
-          .font(.system(size: CGFloat(node.style?.fontSize ?? 16), weight: weight))
+          .font(.system(size: CGFloat(node.style?.fontSize ?? 16), weight: weight, design: design))
       case "vstack":
-        VStack(alignment: .leading, spacing: CGFloat(node.style?.spacing ?? 8)) {
+        VStack(alignment: horizontalAlignment, spacing: CGFloat(node.style?.spacing ?? 8)) {
           ForEach(Array((node.children ?? []).enumerated()), id: \\.offset) { _, child in
             OneWidgetRendered(node: child)
           }
@@ -677,11 +714,50 @@ struct OneWidgetRendered: View {
             OneWidgetRendered(node: child)
           }
         }
-      case "spacer": Spacer()
+      case "zstack":
+        ZStack(alignment: alignment) {
+          ForEach(Array((node.children ?? []).enumerated()), id: \\.offset) { _, child in
+            OneWidgetRendered(node: child)
+          }
+        }
+      case "spacer": Spacer(minLength: 0)
+      case "divider": Divider()
+      case "image":
+        if let systemName = node.systemName {
+          Image(systemName: systemName)
+            .font(.system(size: CGFloat(node.style?.fontSize ?? 20), weight: weight))
+        }
+      case "progress":
+        ProgressView(value: node.value ?? 0, total: node.total ?? 1)
+          .tint(oneColor(node.style?.color))
+      case "gauge":
+        Gauge(value: node.value ?? 0, in: 0...(node.total ?? 1)) { EmptyView() }
+          .gaugeStyle(.accessoryCircular)
+          .tint(oneColor(node.style?.color))
+      case "circle":
+        Circle().fill(oneColor(node.fill) ?? .primary)
+      case "rectangle":
+        Rectangle().fill(oneColor(node.fill) ?? .primary)
+      case "rounded-rectangle":
+        RoundedRectangle(cornerRadius: CGFloat(node.cornerRadius ?? 8))
+          .fill(oneColor(node.fill) ?? .primary)
+      case "link":
+        if let url = node.url.flatMap(URL.init(string:)) {
+          Link(destination: url) {
+            ForEach(Array((node.children ?? []).enumerated()), id: \\.offset) { _, child in
+              OneWidgetRendered(node: child)
+            }
+          }
+        }
       default: EmptyView()
       }
     }
     .foregroundColor(oneColor(node.style?.color))
+    .lineLimit(node.style?.lineLimit)
+    .frame(width: node.style?.width.map { CGFloat($0) },
+           height: node.style?.height.map { CGFloat($0) },
+           alignment: alignment)
+    .opacity(node.style?.opacity ?? 1)
     .padding(CGFloat(node.style?.padding ?? 0))
     .background { if let fill = oneColor(node.style?.backgroundColor) { fill } }
     .clipShape(RoundedRectangle(cornerRadius: CGFloat(node.style?.borderRadius ?? 0)))
@@ -1505,7 +1581,7 @@ end`
     if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {
       rendered = patchIosBundlePhase(rendered)
       rendered = patchIosPbxprojSceneDelegate(rendered, appName)
-      if (app.notifications?.push === true) {
+      if (app.notifications?.push === true && !app.ios?.widgets) {
         rendered = patchIosPbxprojPushEntitlements(rendered, appName)
       }
       if (app.ios?.widgets) rendered = patchIosPbxprojWidgets(rendered, app)
