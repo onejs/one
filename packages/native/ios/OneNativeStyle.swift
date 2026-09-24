@@ -2652,10 +2652,10 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentAllowedDynamicRange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.environment(\.allowedDynamicRange, nil as SwiftUICore.Image.DynamicRange?)
-      case "standard": self.environment(\.allowedDynamicRange, SwiftUICore.Image.DynamicRange.standard)
-      case "constrainedHigh": self.environment(\.allowedDynamicRange, SwiftUICore.Image.DynamicRange.constrainedHigh)
-      case "high": self.environment(\.allowedDynamicRange, SwiftUICore.Image.DynamicRange.high)
+      case "null": self.environment(\.allowedDynamicRange, nil as SwiftUI.Image.DynamicRange?)
+      case "standard": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.standard)
+      case "constrainedHigh": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.constrainedHigh)
+      case "high": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.high)
     default: preconditionFailure("invalid environmentAllowedDynamicRange: \(value)")
     }
   }
@@ -2677,13 +2677,13 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentBackgroundMaterial(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.environment(\.backgroundMaterial, nil as SwiftUICore.Material?)
-      case "regular": self.environment(\.backgroundMaterial, SwiftUICore.Material.regular)
-      case "thick": self.environment(\.backgroundMaterial, SwiftUICore.Material.thick)
-      case "thin": self.environment(\.backgroundMaterial, SwiftUICore.Material.thin)
-      case "ultraThin": self.environment(\.backgroundMaterial, SwiftUICore.Material.ultraThin)
-      case "ultraThick": self.environment(\.backgroundMaterial, SwiftUICore.Material.ultraThick)
-      case "bar": self.environment(\.backgroundMaterial, SwiftUICore.Material.bar)
+      case "null": self.environment(\.backgroundMaterial, nil as SwiftUI.Material?)
+      case "regular": self.environment(\.backgroundMaterial, SwiftUI.Material.regular)
+      case "thick": self.environment(\.backgroundMaterial, SwiftUI.Material.thick)
+      case "thin": self.environment(\.backgroundMaterial, SwiftUI.Material.thin)
+      case "ultraThin": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThin)
+      case "ultraThick": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThick)
+      case "bar": self.environment(\.backgroundMaterial, SwiftUI.Material.bar)
     default: preconditionFailure("invalid environmentBackgroundMaterial: \(value)")
     }
   }
@@ -2691,8 +2691,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentBackgroundProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "standard": self.environment(\.backgroundProminence, SwiftUICore.BackgroundProminence.standard)
-      case "increased": self.environment(\.backgroundProminence, SwiftUICore.BackgroundProminence.increased)
+      case "standard": self.environment(\.backgroundProminence, SwiftUI.BackgroundProminence.standard)
+      case "increased": self.environment(\.backgroundProminence, SwiftUI.BackgroundProminence.increased)
     default: preconditionFailure("invalid environmentBackgroundProminence: \(value)")
     }
   }
@@ -2719,8 +2719,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "light": self.environment(\.colorScheme, SwiftUICore.ColorScheme.light)
-      case "dark": self.environment(\.colorScheme, SwiftUICore.ColorScheme.dark)
+      case "light": self.environment(\.colorScheme, SwiftUI.ColorScheme.light)
+      case "dark": self.environment(\.colorScheme, SwiftUI.ColorScheme.dark)
     default: preconditionFailure("invalid environmentColorScheme: \(value)")
     }
   }
@@ -2728,10 +2728,10 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentContentTransition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "symbolEffect": self.environment(\.contentTransition, SwiftUICore.ContentTransition.symbolEffect)
-      case "identity": self.environment(\.contentTransition, SwiftUICore.ContentTransition.identity)
-      case "opacity": self.environment(\.contentTransition, SwiftUICore.ContentTransition.opacity)
-      case "interpolate": self.environment(\.contentTransition, SwiftUICore.ContentTransition.interpolate)
+      case "symbolEffect": self.environment(\.contentTransition, SwiftUI.ContentTransition.symbolEffect)
+      case "identity": self.environment(\.contentTransition, SwiftUI.ContentTransition.identity)
+      case "opacity": self.environment(\.contentTransition, SwiftUI.ContentTransition.opacity)
+      case "interpolate": self.environment(\.contentTransition, SwiftUI.ContentTransition.interpolate)
     default: preconditionFailure("invalid environmentContentTransition: \(value)")
     }
   }
@@ -2744,11 +2744,11 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentControlSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "mini": self.environment(\.controlSize, SwiftUICore.ControlSize.mini)
-      case "small": self.environment(\.controlSize, SwiftUICore.ControlSize.small)
-      case "regular": self.environment(\.controlSize, SwiftUICore.ControlSize.regular)
-      case "large": self.environment(\.controlSize, SwiftUICore.ControlSize.large)
-      case "extraLarge": self.environment(\.controlSize, SwiftUICore.ControlSize.extraLarge)
+      case "mini": self.environment(\.controlSize, SwiftUI.ControlSize.mini)
+      case "small": self.environment(\.controlSize, SwiftUI.ControlSize.small)
+      case "regular": self.environment(\.controlSize, SwiftUI.ControlSize.regular)
+      case "large": self.environment(\.controlSize, SwiftUI.ControlSize.large)
+      case "extraLarge": self.environment(\.controlSize, SwiftUI.ControlSize.extraLarge)
     default: preconditionFailure("invalid environmentControlSize: \(value)")
     }
   }
@@ -2778,37 +2778,37 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentDynamicTypeSize(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "xSmall": self.environment(\.dynamicTypeSize, SwiftUICore.DynamicTypeSize.xSmall)
-      case "small": self.environment(\.dynamicTypeSize, SwiftUICore.DynamicTypeSize.small)
-      case "medium": self.environment(\.dynamicTypeSize, SwiftUICore.DynamicTypeSize.medium)
-      case "large": self.environment(\.dynamicTypeSize, SwiftUICore.DynamicTypeSize.large)
-      case "xLarge": self.environment(\.dynamicTypeSize, SwiftUICore.DynamicTypeSize.xLarge)
-      case "xxLarge": self.environment(\.dynamicTypeSize, SwiftUICore.DynamicTypeSize.xxLarge)
-      case "xxxLarge": self.environment(\.dynamicTypeSize, SwiftUICore.DynamicTypeSize.xxxLarge)
-      case "accessibility1": self.environment(\.dynamicTypeSize, SwiftUICore.DynamicTypeSize.accessibility1)
-      case "accessibility2": self.environment(\.dynamicTypeSize, SwiftUICore.DynamicTypeSize.accessibility2)
-      case "accessibility3": self.environment(\.dynamicTypeSize, SwiftUICore.DynamicTypeSize.accessibility3)
-      case "accessibility4": self.environment(\.dynamicTypeSize, SwiftUICore.DynamicTypeSize.accessibility4)
-      case "accessibility5": self.environment(\.dynamicTypeSize, SwiftUICore.DynamicTypeSize.accessibility5)
+      case "xSmall": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.xSmall)
+      case "small": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.small)
+      case "medium": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.medium)
+      case "large": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.large)
+      case "xLarge": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.xLarge)
+      case "xxLarge": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.xxLarge)
+      case "xxxLarge": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.xxxLarge)
+      case "accessibility1": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility1)
+      case "accessibility2": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility2)
+      case "accessibility3": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility3)
+      case "accessibility4": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility4)
+      case "accessibility5": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility5)
     default: preconditionFailure("invalid environmentDynamicTypeSize: \(value)")
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentFont(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.environment(\.font, nil as SwiftUICore.Font?)
-      case "largeTitle": self.environment(\.font, SwiftUICore.Font.largeTitle)
-      case "title": self.environment(\.font, SwiftUICore.Font.title)
-      case "title2": self.environment(\.font, SwiftUICore.Font.title2)
-      case "title3": self.environment(\.font, SwiftUICore.Font.title3)
-      case "headline": self.environment(\.font, SwiftUICore.Font.headline)
-      case "subheadline": self.environment(\.font, SwiftUICore.Font.subheadline)
-      case "body": self.environment(\.font, SwiftUICore.Font.body)
-      case "callout": self.environment(\.font, SwiftUICore.Font.callout)
-      case "footnote": self.environment(\.font, SwiftUICore.Font.footnote)
-      case "caption": self.environment(\.font, SwiftUICore.Font.caption)
-      case "caption2": self.environment(\.font, SwiftUICore.Font.caption2)
-      case "default": if #available(iOS 26, *) { self.environment(\.font, SwiftUICore.Font.default) } else { self }
+      case "null": self.environment(\.font, nil as SwiftUI.Font?)
+      case "largeTitle": self.environment(\.font, SwiftUI.Font.largeTitle)
+      case "title": self.environment(\.font, SwiftUI.Font.title)
+      case "title2": self.environment(\.font, SwiftUI.Font.title2)
+      case "title3": self.environment(\.font, SwiftUI.Font.title3)
+      case "headline": self.environment(\.font, SwiftUI.Font.headline)
+      case "subheadline": self.environment(\.font, SwiftUI.Font.subheadline)
+      case "body": self.environment(\.font, SwiftUI.Font.body)
+      case "callout": self.environment(\.font, SwiftUI.Font.callout)
+      case "footnote": self.environment(\.font, SwiftUI.Font.footnote)
+      case "caption": self.environment(\.font, SwiftUI.Font.caption)
+      case "caption2": self.environment(\.font, SwiftUI.Font.caption2)
+      case "default": if #available(iOS 26, *) { self.environment(\.font, SwiftUI.Font.default) } else { self }
     default: preconditionFailure("invalid environmentFont: \(value)")
     }
   }
@@ -2816,8 +2816,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentHeaderProminence(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "standard": self.environment(\.headerProminence, SwiftUICore.Prominence.standard)
-      case "increased": self.environment(\.headerProminence, SwiftUICore.Prominence.increased)
+      case "standard": self.environment(\.headerProminence, SwiftUI.Prominence.standard)
+      case "increased": self.environment(\.headerProminence, SwiftUI.Prominence.increased)
     default: preconditionFailure("invalid environmentHeaderProminence: \(value)")
     }
   }
@@ -2845,9 +2845,9 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentHorizontalSizeClass(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.environment(\.horizontalSizeClass, nil as SwiftUICore.UserInterfaceSizeClass?)
-      case "compact": self.environment(\.horizontalSizeClass, SwiftUICore.UserInterfaceSizeClass.compact)
-      case "regular": self.environment(\.horizontalSizeClass, SwiftUICore.UserInterfaceSizeClass.regular)
+      case "null": self.environment(\.horizontalSizeClass, nil as SwiftUI.UserInterfaceSizeClass?)
+      case "compact": self.environment(\.horizontalSizeClass, SwiftUI.UserInterfaceSizeClass.compact)
+      case "regular": self.environment(\.horizontalSizeClass, SwiftUI.UserInterfaceSizeClass.regular)
     default: preconditionFailure("invalid environmentHorizontalSizeClass: \(value)")
     }
   }
@@ -2855,9 +2855,9 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentImageScale(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "small": self.environment(\.imageScale, SwiftUICore.Image.Scale.small)
-      case "medium": self.environment(\.imageScale, SwiftUICore.Image.Scale.medium)
-      case "large": self.environment(\.imageScale, SwiftUICore.Image.Scale.large)
+      case "small": self.environment(\.imageScale, SwiftUI.Image.Scale.small)
+      case "medium": self.environment(\.imageScale, SwiftUI.Image.Scale.medium)
+      case "large": self.environment(\.imageScale, SwiftUI.Image.Scale.large)
     default: preconditionFailure("invalid environmentImageScale: \(value)")
     }
   }
@@ -2895,9 +2895,9 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentLabelsVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUICore.Visibility.automatic) } else { self }
-      case "visible": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUICore.Visibility.visible) } else { self }
-      case "hidden": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUICore.Visibility.hidden) } else { self }
+      case "automatic": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUI.Visibility.automatic) } else { self }
+      case "visible": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUI.Visibility.visible) } else { self }
+      case "hidden": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUI.Visibility.hidden) } else { self }
     default: preconditionFailure("invalid environmentLabelsVisibility: \(value)")
     }
   }
@@ -2905,17 +2905,17 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentLayoutDirection(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "leftToRight": self.environment(\.layoutDirection, SwiftUICore.LayoutDirection.leftToRight)
-      case "rightToLeft": self.environment(\.layoutDirection, SwiftUICore.LayoutDirection.rightToLeft)
+      case "leftToRight": self.environment(\.layoutDirection, SwiftUI.LayoutDirection.leftToRight)
+      case "rightToLeft": self.environment(\.layoutDirection, SwiftUI.LayoutDirection.rightToLeft)
     default: preconditionFailure("invalid environmentLayoutDirection: \(value)")
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentLegibilityWeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.environment(\.legibilityWeight, nil as SwiftUICore.LegibilityWeight?)
-      case "regular": self.environment(\.legibilityWeight, SwiftUICore.LegibilityWeight.regular)
-      case "bold": self.environment(\.legibilityWeight, SwiftUICore.LegibilityWeight.bold)
+      case "null": self.environment(\.legibilityWeight, nil as SwiftUI.LegibilityWeight?)
+      case "regular": self.environment(\.legibilityWeight, SwiftUI.LegibilityWeight.regular)
+      case "bold": self.environment(\.legibilityWeight, SwiftUI.LegibilityWeight.bold)
     default: preconditionFailure("invalid environmentLegibilityWeight: \(value)")
     }
   }
@@ -2955,9 +2955,9 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentMaterialActiveAppearance(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUICore.MaterialActiveAppearance.automatic) } else { self }
-      case "active": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUICore.MaterialActiveAppearance.active) } else { self }
-      case "matchWindow": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUICore.MaterialActiveAppearance.matchWindow) } else { self }
+      case "automatic": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUI.MaterialActiveAppearance.automatic) } else { self }
+      case "active": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUI.MaterialActiveAppearance.active) } else { self }
+      case "matchWindow": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUI.MaterialActiveAppearance.matchWindow) } else { self }
     default: preconditionFailure("invalid environmentMaterialActiveAppearance: \(value)")
     }
   }
@@ -2965,9 +2965,9 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentMenuIndicatorVisibility(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": self.environment(\.menuIndicatorVisibility, SwiftUICore.Visibility.automatic)
-      case "visible": self.environment(\.menuIndicatorVisibility, SwiftUICore.Visibility.visible)
-      case "hidden": self.environment(\.menuIndicatorVisibility, SwiftUICore.Visibility.hidden)
+      case "automatic": self.environment(\.menuIndicatorVisibility, SwiftUI.Visibility.automatic)
+      case "visible": self.environment(\.menuIndicatorVisibility, SwiftUI.Visibility.visible)
+      case "hidden": self.environment(\.menuIndicatorVisibility, SwiftUI.Visibility.hidden)
     default: preconditionFailure("invalid environmentMenuIndicatorVisibility: \(value)")
     }
   }
@@ -2991,9 +2991,9 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentMultilineTextAlignment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "leading": self.environment(\.multilineTextAlignment, SwiftUICore.TextAlignment.leading)
-      case "center": self.environment(\.multilineTextAlignment, SwiftUICore.TextAlignment.center)
-      case "trailing": self.environment(\.multilineTextAlignment, SwiftUICore.TextAlignment.trailing)
+      case "leading": self.environment(\.multilineTextAlignment, SwiftUI.TextAlignment.leading)
+      case "center": self.environment(\.multilineTextAlignment, SwiftUI.TextAlignment.center)
+      case "trailing": self.environment(\.multilineTextAlignment, SwiftUI.TextAlignment.trailing)
     default: preconditionFailure("invalid environmentMultilineTextAlignment: \(value)")
     }
   }
@@ -3013,9 +3013,9 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentRedactionReasons(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "placeholder": self.environment(\.redactionReasons, SwiftUICore.RedactionReasons.placeholder)
-      case "privacy": self.environment(\.redactionReasons, SwiftUICore.RedactionReasons.privacy)
-      case "invalidated": self.environment(\.redactionReasons, SwiftUICore.RedactionReasons.invalidated)
+      case "placeholder": self.environment(\.redactionReasons, SwiftUI.RedactionReasons.placeholder)
+      case "privacy": self.environment(\.redactionReasons, SwiftUI.RedactionReasons.privacy)
+      case "invalidated": self.environment(\.redactionReasons, SwiftUI.RedactionReasons.invalidated)
     default: preconditionFailure("invalid environmentRedactionReasons: \(value)")
     }
   }
@@ -3054,47 +3054,47 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentSizeCategory(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "extraSmall": self.environment(\.sizeCategory, SwiftUICore.ContentSizeCategory.extraSmall)
-      case "small": self.environment(\.sizeCategory, SwiftUICore.ContentSizeCategory.small)
-      case "medium": self.environment(\.sizeCategory, SwiftUICore.ContentSizeCategory.medium)
-      case "large": self.environment(\.sizeCategory, SwiftUICore.ContentSizeCategory.large)
-      case "extraLarge": self.environment(\.sizeCategory, SwiftUICore.ContentSizeCategory.extraLarge)
-      case "extraExtraLarge": self.environment(\.sizeCategory, SwiftUICore.ContentSizeCategory.extraExtraLarge)
-      case "extraExtraExtraLarge": self.environment(\.sizeCategory, SwiftUICore.ContentSizeCategory.extraExtraExtraLarge)
-      case "accessibilityMedium": self.environment(\.sizeCategory, SwiftUICore.ContentSizeCategory.accessibilityMedium)
-      case "accessibilityLarge": self.environment(\.sizeCategory, SwiftUICore.ContentSizeCategory.accessibilityLarge)
-      case "accessibilityExtraLarge": self.environment(\.sizeCategory, SwiftUICore.ContentSizeCategory.accessibilityExtraLarge)
-      case "accessibilityExtraExtraLarge": self.environment(\.sizeCategory, SwiftUICore.ContentSizeCategory.accessibilityExtraExtraLarge)
-      case "accessibilityExtraExtraExtraLarge": self.environment(\.sizeCategory, SwiftUICore.ContentSizeCategory.accessibilityExtraExtraExtraLarge)
+      case "extraSmall": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.extraSmall)
+      case "small": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.small)
+      case "medium": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.medium)
+      case "large": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.large)
+      case "extraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.extraLarge)
+      case "extraExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.extraExtraLarge)
+      case "extraExtraExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.extraExtraExtraLarge)
+      case "accessibilityMedium": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityMedium)
+      case "accessibilityLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityLarge)
+      case "accessibilityExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityExtraLarge)
+      case "accessibilityExtraExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityExtraExtraLarge)
+      case "accessibilityExtraExtraExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityExtraExtraExtraLarge)
     default: preconditionFailure("invalid environmentSizeCategory: \(value)")
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolColorRenderingMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, nil as SwiftUICore.SymbolColorRenderingMode?) } else { self }
-      case "flat": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, SwiftUICore.SymbolColorRenderingMode.flat) } else { self }
-      case "gradient": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, SwiftUICore.SymbolColorRenderingMode.gradient) } else { self }
+      case "null": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, nil as SwiftUI.SymbolColorRenderingMode?) } else { self }
+      case "flat": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, SwiftUI.SymbolColorRenderingMode.flat) } else { self }
+      case "gradient": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, SwiftUI.SymbolColorRenderingMode.gradient) } else { self }
     default: preconditionFailure("invalid environmentSymbolColorRenderingMode: \(value)")
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolRenderingMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.environment(\.symbolRenderingMode, nil as SwiftUICore.SymbolRenderingMode?)
-      case "monochrome": self.environment(\.symbolRenderingMode, SwiftUICore.SymbolRenderingMode.monochrome)
-      case "multicolor": self.environment(\.symbolRenderingMode, SwiftUICore.SymbolRenderingMode.multicolor)
-      case "hierarchical": self.environment(\.symbolRenderingMode, SwiftUICore.SymbolRenderingMode.hierarchical)
-      case "palette": self.environment(\.symbolRenderingMode, SwiftUICore.SymbolRenderingMode.palette)
+      case "null": self.environment(\.symbolRenderingMode, nil as SwiftUI.SymbolRenderingMode?)
+      case "monochrome": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.monochrome)
+      case "multicolor": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.multicolor)
+      case "hierarchical": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.hierarchical)
+      case "palette": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.palette)
     default: preconditionFailure("invalid environmentSymbolRenderingMode: \(value)")
     }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolVariableValueMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, nil as SwiftUICore.SymbolVariableValueMode?) } else { self }
-      case "color": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, SwiftUICore.SymbolVariableValueMode.color) } else { self }
-      case "draw": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, SwiftUICore.SymbolVariableValueMode.draw) } else { self }
+      case "null": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, nil as SwiftUI.SymbolVariableValueMode?) } else { self }
+      case "color": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, SwiftUI.SymbolVariableValueMode.color) } else { self }
+      case "draw": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, SwiftUI.SymbolVariableValueMode.draw) } else { self }
     default: preconditionFailure("invalid environmentSymbolVariableValueMode: \(value)")
     }
   }
@@ -3102,12 +3102,12 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolVariants(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "none": self.environment(\.symbolVariants, SwiftUICore.SymbolVariants.none)
-      case "circle": self.environment(\.symbolVariants, SwiftUICore.SymbolVariants.circle)
-      case "square": self.environment(\.symbolVariants, SwiftUICore.SymbolVariants.square)
-      case "rectangle": self.environment(\.symbolVariants, SwiftUICore.SymbolVariants.rectangle)
-      case "fill": self.environment(\.symbolVariants, SwiftUICore.SymbolVariants.fill)
-      case "slash": self.environment(\.symbolVariants, SwiftUICore.SymbolVariants.slash)
+      case "none": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.none)
+      case "circle": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.circle)
+      case "square": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.square)
+      case "rectangle": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.rectangle)
+      case "fill": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.fill)
+      case "slash": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.slash)
     default: preconditionFailure("invalid environmentSymbolVariants: \(value)")
     }
   }
@@ -3125,9 +3125,9 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentTextCase(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.environment(\.textCase, nil as SwiftUICore.Text.Case?)
-      case "uppercase": self.environment(\.textCase, SwiftUICore.Text.Case.uppercase)
-      case "lowercase": self.environment(\.textCase, SwiftUICore.Text.Case.lowercase)
+      case "null": self.environment(\.textCase, nil as SwiftUI.Text.Case?)
+      case "uppercase": self.environment(\.textCase, SwiftUI.Text.Case.uppercase)
+      case "lowercase": self.environment(\.textCase, SwiftUI.Text.Case.lowercase)
     default: preconditionFailure("invalid environmentTextCase: \(value)")
     }
   }
@@ -3155,9 +3155,9 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentTruncationMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "head": self.environment(\.truncationMode, SwiftUICore.Text.TruncationMode.head)
-      case "tail": self.environment(\.truncationMode, SwiftUICore.Text.TruncationMode.tail)
-      case "middle": self.environment(\.truncationMode, SwiftUICore.Text.TruncationMode.middle)
+      case "head": self.environment(\.truncationMode, SwiftUI.Text.TruncationMode.head)
+      case "tail": self.environment(\.truncationMode, SwiftUI.Text.TruncationMode.tail)
+      case "middle": self.environment(\.truncationMode, SwiftUI.Text.TruncationMode.middle)
     default: preconditionFailure("invalid environmentTruncationMode: \(value)")
     }
   }
@@ -3185,9 +3185,9 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentVerticalSizeClass(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
-      case "null": self.environment(\.verticalSizeClass, nil as SwiftUICore.UserInterfaceSizeClass?)
-      case "compact": self.environment(\.verticalSizeClass, SwiftUICore.UserInterfaceSizeClass.compact)
-      case "regular": self.environment(\.verticalSizeClass, SwiftUICore.UserInterfaceSizeClass.regular)
+      case "null": self.environment(\.verticalSizeClass, nil as SwiftUI.UserInterfaceSizeClass?)
+      case "compact": self.environment(\.verticalSizeClass, SwiftUI.UserInterfaceSizeClass.compact)
+      case "regular": self.environment(\.verticalSizeClass, SwiftUI.UserInterfaceSizeClass.regular)
     default: preconditionFailure("invalid environmentVerticalSizeClass: \(value)")
     }
   }
