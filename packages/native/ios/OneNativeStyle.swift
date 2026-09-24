@@ -492,6 +492,7 @@ extension View {
       case "realityViewCameraControls": view = AnyView(view.oneNativeSDKRealityViewCameraControls(value, emit: emit))
       case "realityViewLayoutBehavior": view = AnyView(view.oneNativeSDKRealityViewLayoutBehavior(value, emit: emit))
       case "redacted": view = AnyView(view.oneNativeSDKRedacted(value, emit: emit))
+      case "refreshable": view = AnyView(view.oneNativeSDKRefreshable(value, emit: emit))
       case "refundRequestSheet": view = AnyView(view.oneNativeSDKRefundRequestSheet(value, emit: emit))
       case "renameAction": view = AnyView(view.oneNativeSDKRenameAction(value, emit: emit))
       case "replaceDisabled": view = AnyView(view.oneNativeSDKReplaceDisabled(value, emit: emit))
@@ -571,6 +572,7 @@ extension View {
       case "tabViewSearchActivation": view = AnyView(view.oneNativeSDKTabViewSearchActivation(value, emit: emit))
       case "tabViewStyle": view = AnyView(view.oneNativeSDKTabViewStyle(value, emit: emit))
       case "tag": view = AnyView(view.oneNativeSDKTag(value, emit: emit))
+      case "task": view = AnyView(view.oneNativeSDKTask(value, emit: emit))
       case "textCase": view = AnyView(view.oneNativeSDKTextCase(value, emit: emit))
       case "textContentType": view = AnyView(view.oneNativeSDKTextContentType(value, emit: emit))
       case "textEditorStyle": view = AnyView(view.oneNativeSDKTextEditorStyle(value, emit: emit))
@@ -5749,6 +5751,10 @@ self
     }
   }
 
+  @ViewBuilder fileprivate func oneNativeSDKRefreshable(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.refreshable(action: { await OneNativeAsyncAction.wait(name: "refreshable", emit: emit) })
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKRefundRequestSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -6964,6 +6970,10 @@ self
 
   @ViewBuilder fileprivate func oneNativeSDKTag(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       self.tag(value)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTask(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.task({ await OneNativeAsyncAction.wait(name: "task", emit: emit) })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTextCase(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

@@ -1471,6 +1471,7 @@ export interface OneNativeStyle {
     realityViewCameraControls?: SDKRealityViewCameraControls;
     realityViewLayoutBehavior?: SDKRealityViewLayoutBehavior;
     redacted?: SDKRedacted;
+    refreshable?: () => void | Promise<void>;
     refundRequestSheet?: Readonly<{
         transactionID: string;
         isPresented: Readonly<{
@@ -1699,6 +1700,7 @@ export interface OneNativeStyle {
     tabViewSearchActivation?: SDKTabViewSearchActivation;
     tabViewStyle?: SDKTabViewStyle;
     tag?: string;
+    task?: () => void | Promise<void>;
     textCase?: SDKTextCase | null;
     textContentType?: SDKTextContentType | null;
     textEditorStyle?: SDKTextEditorStyle;

@@ -1,7 +1,9 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 
+const completeAsyncAction = vi.hoisted(() => vi.fn())
 vi.mock('react-native', () => ({
   Platform: { OS: 'ios', Version: '27.0' },
+  NativeModules: { OneNativeAsyncActionModule: { complete: completeAsyncAction } },
 }))
 vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
   default: (name: string) => ({ __component: name }),
@@ -13,6 +15,20 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('keeps native async actions pending until the JS callback settles', async () => {
+    let finish!: () => void
+    const action = vi.fn(() => new Promise<void>((resolve) => { finish = resolve }))
+    const element = Controls.Text({ text: 'example', swiftStyle: {
+      refreshable: action,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([['refreshable', '']])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'refreshable', value: 'action-1' } })
+    await vi.waitFor(() => expect(action).toHaveBeenCalledOnce())
+    expect(completeAsyncAction).not.toHaveBeenCalled()
+    finish()
+    await vi.waitFor(() => expect(completeAsyncAction).toHaveBeenCalledWith('action-1'))
+  })
+
   it('bridges transferable strings and paste events', () => {
     const onPaste = vi.fn()
     const element = Controls.Text({ text: 'example', swiftStyle: {
