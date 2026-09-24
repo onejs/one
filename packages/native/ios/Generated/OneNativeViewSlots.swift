@@ -61,10 +61,10 @@ extension View {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid accessibilityActionsWithAccessibilityActionCategory slot values") }
-        let argument0: SwiftUICore.AccessibilityActionCategory = {
+        let argument0: SwiftUI.AccessibilityActionCategory = {
           switch decoded[0] {
-          case "default": return SwiftUICore.AccessibilityActionCategory.default
-          case "edit": return SwiftUICore.AccessibilityActionCategory.edit
+          case "default": return SwiftUI.AccessibilityActionCategory.default
+          case "edit": return SwiftUI.AccessibilityActionCategory.edit
           default: preconditionFailure("invalid accessibilityActionsWithAccessibilityActionCategory.category")
           }
         }()
@@ -211,10 +211,10 @@ extension View {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid safeAreaBarWithHorizontalEdge slot values") }
-        let argument0: SwiftUICore.HorizontalEdge = {
+        let argument0: SwiftUI.HorizontalEdge = {
           switch decoded[0] {
-          case "leading": return SwiftUICore.HorizontalEdge.leading
-          case "trailing": return SwiftUICore.HorizontalEdge.trailing
+          case "leading": return SwiftUI.HorizontalEdge.leading
+          case "trailing": return SwiftUI.HorizontalEdge.trailing
           default: preconditionFailure("invalid safeAreaBarWithHorizontalEdge.edge")
           }
         }()
@@ -225,10 +225,10 @@ extension View {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid safeAreaBarWithVerticalEdge slot values") }
-        let argument0: SwiftUICore.VerticalEdge = {
+        let argument0: SwiftUI.VerticalEdge = {
           switch decoded[0] {
-          case "top": return SwiftUICore.VerticalEdge.top
-          case "bottom": return SwiftUICore.VerticalEdge.bottom
+          case "top": return SwiftUI.VerticalEdge.top
+          case "bottom": return SwiftUI.VerticalEdge.bottom
           default: preconditionFailure("invalid safeAreaBarWithVerticalEdge.edge")
           }
         }()
@@ -239,10 +239,10 @@ extension View {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid safeAreaInsetWithHorizontalEdge slot values") }
-        let argument0: SwiftUICore.HorizontalEdge = {
+        let argument0: SwiftUI.HorizontalEdge = {
           switch decoded[0] {
-          case "leading": return SwiftUICore.HorizontalEdge.leading
-          case "trailing": return SwiftUICore.HorizontalEdge.trailing
+          case "leading": return SwiftUI.HorizontalEdge.leading
+          case "trailing": return SwiftUI.HorizontalEdge.trailing
           default: preconditionFailure("invalid safeAreaInsetWithHorizontalEdge.edge")
           }
         }()
@@ -253,10 +253,10 @@ extension View {
         guard let data = values.data(using: .utf8),
           let decoded = try? JSONDecoder().decode([String].self, from: data),
           decoded.count == 1 else { preconditionFailure("invalid safeAreaInsetWithVerticalEdge slot values") }
-        let argument0: SwiftUICore.VerticalEdge = {
+        let argument0: SwiftUI.VerticalEdge = {
           switch decoded[0] {
-          case "top": return SwiftUICore.VerticalEdge.top
-          case "bottom": return SwiftUICore.VerticalEdge.bottom
+          case "top": return SwiftUI.VerticalEdge.top
+          case "bottom": return SwiftUI.VerticalEdge.bottom
           default: preconditionFailure("invalid safeAreaInsetWithVerticalEdge.edge")
           }
         }()
