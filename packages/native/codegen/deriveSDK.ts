@@ -11,10 +11,10 @@ export type DerivedArgument = {
   label: string
   type: string
   sdkType?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'bindingBoolean' | 'bindingOptionalURL' | 'resultURL' | 'resultURLArray' | 'eventStruct' | 'classUpdate'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'enum' | 'stringArray' | 'stringSet' | 'numericStruct' | 'numericTuple' | 'bindingBoolean' | 'bindingOptionalURL' | 'resultURL' | 'resultURLArray' | 'eventStruct' | 'classUpdate' | 'structUpdate'
   optional: boolean
   cases?: readonly { name: string; ios: number }[]
-  fields?: readonly { name: string; label: string; type: string }[]
+  fields?: readonly { name: string; label: string; type: string; ios?: number }[]
   wrappedType?: string
   scalarConstructor?: { label: string; type: string; failable?: boolean }
   swiftExpression?: string
@@ -641,6 +641,29 @@ export function deriveModifiers(
             ...framework,
           },
         ]
+      if (method.parameters.length === 1) {
+        const input = /^@escaping \(inout ([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> Swift\.Void$/.exec(method.parameters[0].type)?.[1]
+        if (input) {
+          const [module, ...parts] = input.split('.')
+          const owner = parts.join('.')
+          if (inventory.some((declaration) => declaration.module === module &&
+            declaration.kind === 'struct' && declaration.owner === parts.slice(0, -1).join('.') &&
+            declaration.name === parts.at(-1) && !declaration.generic &&
+            present(declaration) && ios(declaration) <= ceiling)) {
+            const fields = inventory.filter((declaration) => declaration.module === module &&
+              (declaration.owner === owner || declaration.owner === input) &&
+              declaration.kind === 'var' && declaration.writable &&
+              declaration.type === 'Swift.Bool' && /^[a-z]/.test(declaration.name) &&
+              present(declaration) && ios(declaration) <= ceiling)
+              .map((declaration) => ({ name: declaration.name, label: declaration.name,
+                type: declaration.type!, ios: ios(declaration) }))
+            if (fields.length) return [{ name, module: method.module, kind: 'record', type: '',
+              ios: ios(method), arguments: [{ field: method.parameters[0].name,
+                label: method.parameters[0].label, type: method.parameters[0].type,
+                kind: 'structUpdate', optional: false, fields }], ...framework }]
+          }
+        }
+      }
       const predicateInput = method.parameters.length === 1 &&
         /^@escaping \(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> Swift\.Bool$/.exec(method.parameters[0].type)?.[1]
       if (predicateInput)

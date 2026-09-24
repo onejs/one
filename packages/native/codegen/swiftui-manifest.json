@@ -14598,6 +14598,47 @@
       "ios": 16
     },
     {
+      "name": "transaction",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "field": "transform",
+          "label": "_",
+          "type": "@escaping (inout SwiftUICore.Transaction) -> Swift.Void",
+          "kind": "structUpdate",
+          "optional": false,
+          "fields": [
+            {
+              "name": "isContinuous",
+              "label": "isContinuous",
+              "type": "Swift.Bool",
+              "ios": 13
+            },
+            {
+              "name": "scrollPositionUpdatePreservesVelocity",
+              "label": "scrollPositionUpdatePreservesVelocity",
+              "type": "Swift.Bool",
+              "ios": 18
+            },
+            {
+              "name": "disablesAnimations",
+              "label": "disablesAnimations",
+              "type": "Swift.Bool",
+              "ios": 13
+            },
+            {
+              "name": "tracksVelocity",
+              "label": "tracksVelocity",
+              "type": "Swift.Bool",
+              "ios": 17
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "transformEffect",
       "kind": "record",
       "type": "",
@@ -15479,6 +15520,7 @@
         "textScale",
         "tint",
         "tracking",
+        "transaction",
         "transformEffect",
         "transition",
         "truncationMode",
@@ -15943,6 +15985,7 @@
         "textInputBorderShape",
         "textScale",
         "tracking",
+        "transaction",
         "transformEffect",
         "transition",
         "truncationMode",

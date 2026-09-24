@@ -172,15 +172,22 @@ ${cases}
       emit(${JSON.stringify(`${modifier.name}.${argument.field}`)}, encoded)
     }`
           }
-          if (argument.kind === 'classUpdate') {
-            const input = /^@escaping \(([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (?:Swift\.Void|\(\))$/.exec(argument.type)![1]
-            const assignments = argument.fields!.map((field) => `      if let raw = updated[${JSON.stringify(field.name)}] {
-        ${field.type === 'Swift.String?' ? `if raw is NSNull { item.${field.name} = nil }
+          if (argument.kind === 'classUpdate' || argument.kind === 'structUpdate') {
+            const input = /^@escaping \((?:inout )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (?:Swift\.Void|\(\))$/.exec(argument.type)![1]
+            const assignments = argument.fields!.map((field) => {
+              const assignment = field.type === 'Swift.String?' ? `if raw is NSNull { item.${field.name} = nil }
         else if let string = raw as? String { item.${field.name} = string }
         else { preconditionFailure("invalid ${modifier.name}.${argument.field}.${field.name}") }` : `guard let value = raw as? ${field.type === 'Swift.Bool' ? 'Bool' : 'String'} else { preconditionFailure("invalid ${modifier.name}.${argument.field}.${field.name}") }
-        item.${field.name} = value`}
-      }`).join('\n')
-            return `    let ${variable}: (${input}) -> Void = {
+        item.${field.name} = value`
+              const guarded = field.ios && field.ios > modifier.ios
+                ? `if #available(iOS ${field.ios}, *) {
+        ${assignment}
+        }` : assignment
+              return `      if let raw = updated[${JSON.stringify(field.name)}] {
+        ${guarded}
+      }`
+            }).join('\n')
+            return `    let ${variable}: (${argument.kind === 'structUpdate' ? 'inout ' : ''}${input}) -> Void = {
       guard let raw = ${raw}, let data = raw.data(using: .utf8),
         let updated = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
         !updated.isEmpty else { preconditionFailure("invalid ${modifier.name}.${argument.field}") }
@@ -626,13 +633,13 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
             if (typeof item !== 'function') throw new Error(name + '.' + argument.field + ' must be a callback')
             return ''
           }
-          if (argument.kind === 'classUpdate') {
+          if (argument.kind === 'classUpdate' || argument.kind === 'structUpdate') {
             if (!item || typeof item !== 'object' || Array.isArray(item) ||
               Object.keys(item).length === 0 || Object.entries(item).some(([key, fieldValue]) => {
                 const field = argument.fields?.find((entry) => entry.name === key)
                 return !field || (field.type === 'Swift.Bool' ? typeof fieldValue !== 'boolean' :
                   field.type.endsWith('?') && fieldValue === null ? false : typeof fieldValue !== 'string')
-              })) throw new Error(name + '.' + argument.field + ' must be an SDK class update')
+              })) throw new Error(name + '.' + argument.field + (argument.kind === 'classUpdate' ? ' must be an SDK class update' : ' must be an SDK struct update'))
             return JSON.stringify(item)
           }
           if (argument.kind === 'number' && (typeof item !== 'number' || !Number.isFinite(item))) throw new Error(name + '.' + argument.field + ' must be finite')
