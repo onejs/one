@@ -6,18 +6,24 @@ import { docsRoutes } from './docsRoutes'
 import { useDocsMenu } from './useDocsMenu'
 import { ChevronDown } from '@tamagui/lucide-icons-2'
 
-const allItems = docsRoutes.flatMap((section, sectionIndex) =>
-  section.pages?.map((page, index) => ({ page, section, sectionIndex, index }))
-)
+type Routes = typeof docsRoutes
 
-type Item = (typeof allItems)[0]
-type Section = Item['section']
+const getAllItems = (routes: Routes) =>
+  routes.flatMap((section, sectionIndex) =>
+    section.pages?.map((page, index) => ({ page, section, sectionIndex, index }))
+  )
+
+type Item = ReturnType<typeof getAllItems>[number]
+type Section = NonNullable<Item>['section']
 
 export const DocsMenuContents = React.memo(function DocsMenuContents({
   inMenu,
+  routes = docsRoutes,
 }: {
   inMenu?: boolean
+  routes?: Routes
 }) {
+  const allItems = React.useMemo(() => getAllItems(routes), [routes])
   const { currentPath } = useDocsMenu()
   const activeItems = allItems
   const [items, setItems] = React.useState(activeItems)

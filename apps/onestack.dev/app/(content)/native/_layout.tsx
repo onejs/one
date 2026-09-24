@@ -14,16 +14,18 @@ import { TopNav } from '~/components/TopNav'
 import { OneLogo } from '~/features/brand/Logo'
 import { DocsMenuContents } from '~/features/docs/DocsMenuContents'
 import { DocsSectionTabs } from '~/features/docs/DocsSectionTabs'
-import { useDocsMenu } from '~/features/docs/useDocsMenu'
+import { nativeRoutes } from '~/features/docs/nativeRoutes'
+import { useNativeMenu } from '~/features/docs/useNativeMenu'
 import { ContainerDocs } from '~/features/site/Containers'
 
 const GITHUB_URL = 'https://github.com'
 const REPO_NAME = 'onejs/one'
-const BRANCH = 'main'
+const BRANCH = 'v2-beta'
 
-export default function DocsLayout() {
-  const { currentPath, next, previous, documentVersionPath } = useDocsMenu()
-  const editUrl = `${GITHUB_URL}/${REPO_NAME}/edit/${BRANCH}/apps/onestack.dev/data${currentPath}${documentVersionPath}.mdx`
+export default function NativeLayout() {
+  const { currentPath, next, previous } = useNativeMenu()
+  const slug = currentPath.replace('/native', '') || '/overview'
+  const editUrl = `${GITHUB_URL}/${REPO_NAME}/edit/${BRANCH}/apps/onestack.dev/data/native${slug}.mdx`
 
   return (
     <>
@@ -82,7 +84,7 @@ export default function DocsLayout() {
               }}
             >
               <DocsSectionTabs />
-              <DocsMenuContents />
+              <DocsMenuContents routes={nativeRoutes} />
 
               <YStack h={200} />
             </View>
