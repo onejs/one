@@ -3,15 +3,19 @@ import { Accordion, Paragraph, Square, XStack, YStack } from 'tamagui'
 import { Link } from 'one'
 import { DocsRouteNavItem } from './DocsRouteNavItem'
 import { docsRoutes } from './docsRoutes'
+import { nativeRoutes } from './nativeRoutes'
 import { useDocsMenu } from './useDocsMenu'
 import { ChevronDown } from '@tamagui/lucide-icons-2'
 
-const allItems = docsRoutes.flatMap((section, sectionIndex) =>
-  section.pages?.map((page, index) => ({ page, section, sectionIndex, index }))
-)
+type Routes = typeof docsRoutes
 
-type Item = (typeof allItems)[0]
-type Section = Item['section']
+const getAllItems = (routes: Routes) =>
+  routes.flatMap((section, sectionIndex) =>
+    section.pages?.map((page, index) => ({ page, section, sectionIndex, index }))
+  )
+
+type Item = ReturnType<typeof getAllItems>[number]
+type Section = NonNullable<Item>['section']
 
 export const DocsMenuContents = React.memo(function DocsMenuContents({
   inMenu,
@@ -19,11 +23,10 @@ export const DocsMenuContents = React.memo(function DocsMenuContents({
   inMenu?: boolean
 }) {
   const { currentPath } = useDocsMenu()
-  const activeItems = allItems
-  const [items, setItems] = React.useState(activeItems)
-
+  const routes = currentPath.startsWith('/native') ? nativeRoutes : docsRoutes
+  const allItems = React.useMemo(() => getAllItems(routes), [routes])
   const itemsGrouped: Record<string, Item[]> = {}
-  for (const item of items) {
+  for (const item of allItems) {
     const key = item.section.title || ''
     itemsGrouped[key] ||= []
     itemsGrouped[key].push(item)
