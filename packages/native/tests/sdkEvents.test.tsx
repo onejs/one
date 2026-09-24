@@ -43,6 +43,29 @@ describe('SDK callback and binding transport', () => {
     ])
   })
 
+  it('uses a public shared SDK instance for album sheet modifiers', () => {
+    const onCreationChange = vi.fn()
+    const onCustomizationChange = vi.fn()
+    const element = Controls.Text({ text: 'albums', swiftStyle: {
+      photosSharedAlbumCreationSheet: { isPresented: { value: true, onChange: onCreationChange } },
+      photosSharedAlbumCustomizationSheet: {
+        isPresented: { value: true, onChange: onCustomizationChange }, albumIdentifier: 'album-1',
+      },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['photosSharedAlbumCreationSheet', '["true"]'],
+      ['photosSharedAlbumCustomizationSheet', '["true","album-1"]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosSharedAlbumCreationSheet.isPresented', value: 'false',
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'photosSharedAlbumCustomizationSheet.isPresented', value: 'false',
+    } })
+    expect(onCreationChange).toHaveBeenCalledWith(false)
+    expect(onCustomizationChange).toHaveBeenCalledWith(false)
+  })
+
   it('toggles a public boolean environment value through the SDK transform method', () => {
     const element = Controls.Text({ text: 'child', swiftStyle: {
       transformEnvironmentIsEnabled: true,

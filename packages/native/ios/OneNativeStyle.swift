@@ -13,6 +13,7 @@ import MapKit
 import MusicKit
 import AVKit
 import PhotosUI
+import Photos
 import QuickLook
 import AuthenticationServices
 import Symbols
@@ -492,6 +493,8 @@ extension View {
       case "photosPickerSearchText": view = AnyView(view.oneNativeSDKPhotosPickerSearchText(value, emit: emit))
       case "photosPickerStyle": view = AnyView(view.oneNativeSDKPhotosPickerStyle(value, emit: emit))
       case "photosReferenceImageViewer": view = AnyView(view.oneNativeSDKPhotosReferenceImageViewer(value, emit: emit))
+      case "photosSharedAlbumCreationSheet": view = AnyView(view.oneNativeSDKPhotosSharedAlbumCreationSheet(value, emit: emit))
+      case "photosSharedAlbumCustomizationSheet": view = AnyView(view.oneNativeSDKPhotosSharedAlbumCustomizationSheet(value, emit: emit))
       case "pickerStyle": view = AnyView(view.oneNativeSDKPickerStyle(value, emit: emit))
       case "position": view = AnyView(view.oneNativeSDKPosition(value, emit: emit))
       case "preferencePreferredColorScheme": view = AnyView(view.oneNativeSDKPreferencePreferredColorScheme(value, emit: emit))
@@ -5785,6 +5788,54 @@ if #available(iOS 27, *) {
       emit("photosReferenceImageViewer.onProcessingCompletion", encoded)
     }
     self.photosReferenceImageViewer(fileURL: argument0, onProcessingCompletion: argument1)
+    } else { self }
+#else
+self
+#endif
+
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPhotosSharedAlbumCreationSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 1 else { preconditionFailure("invalid photosSharedAlbumCreationSheet: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid photosSharedAlbumCreationSheet.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("photosSharedAlbumCreationSheet.isPresented", String($0)) })
+    }()
+    self.photosSharedAlbumCreationSheet(isPresented: argument0, photoLibrary: Photos.PHPhotoLibrary.shared())
+    } else { self }
+#else
+self
+#endif
+
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKPhotosSharedAlbumCustomizationSheet(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+
+#if ONE_IOS_27_SDK
+if #available(iOS 27, *) {
+      let values: [String?] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String?].self, from: data),
+        decoded.count == 2 else { preconditionFailure("invalid photosSharedAlbumCustomizationSheet: \(value)") }
+      return decoded
+    }()
+    let argument0: SwiftUI.Binding<Swift.Bool> = {
+      guard let raw = values[0], raw == "true" || raw == "false" else { preconditionFailure("invalid photosSharedAlbumCustomizationSheet.isPresented") }
+      return Binding<Bool>(get: { raw == "true" }, set: { emit("photosSharedAlbumCustomizationSheet.isPresented", String($0)) })
+    }()
+    let argument1: Swift.String? = {
+      guard let raw = values[1] else { return nil }
+      return raw
+    }()
+    self.photosSharedAlbumCustomizationSheet(isPresented: argument0, albumIdentifier: argument1, photoLibrary: Photos.PHPhotoLibrary.shared())
     } else { self }
 #else
 self

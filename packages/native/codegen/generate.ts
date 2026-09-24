@@ -61,7 +61,7 @@ const eventClassTypes = new Set(inventory.flatMap((method) =>
       const type = /^@escaping \((?:_ [A-Za-z]\w*: )?([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\) -> (?:Swift\.Void|\(\))$/.exec(parameter.type)?.[1]
       return type ? [type] : []
     }) : []))
-for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport', 'Foundation', 'AVKit']) {
+for (const module of ['UIKit', 'PhotosUI', 'Photos', 'GameController', 'RealityFoundation', 'DeveloperToolsSupport', 'Foundation', 'AVKit']) {
   const outputDir = join(cache, `symbols-${module}-${sdkVersion}`)
   const graphPath = join(outputDir, `${module}.symbols.json`)
   if (!existsSync(graphPath)) {
@@ -83,6 +83,11 @@ for (const module of ['UIKit', 'PhotosUI', 'GameController', 'RealityFoundation'
     if (iosAvailability?.isUnconditionallyUnavailable) continue
     const introduced = iosAvailability?.introduced
     const attributes = introduced ? [`@available(iOS ${introduced.major}.${introduced.minor ?? 0}, *)`] : []
+    if (symbol.pathComponents.length === 2 && name === 'shared()' &&
+      symbol.kind.identifier === 'swift.type.method' &&
+      new RegExp(`^class func shared\\(\\) -> ${owner}$`).test(declaration))
+      importedCases.push({ module, owner, name: 'shared', kind: 'func', isStatic: true,
+        type: `${module}.${owner}`, parameters: [], line: 0, attributes })
     if (symbol.pathComponents.length === 1 &&
       (symbol.kind.identifier === 'swift.class' && eventClassTypes.has(`${module}.${owner}`) ||
         module === 'AVKit' && symbol.kind.identifier === 'swift.enum')) {
@@ -183,6 +188,14 @@ for (const modifier of derivedModifiers) {
           d.parameters.filter((parameter) => parameter.type !== 'SwiftUICore.Namespace.ID' &&
             parameter.defaultValue === undefined).length === (modifier.arguments?.length ?? 0) &&
           d.parameters.filter((parameter) => parameter.type !== 'SwiftUICore.Namespace.ID' &&
+            parameter.defaultValue === undefined).every((parameter, index) =>
+            parameter.label === modifier.arguments?.[index].label &&
+            parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))
+        : modifier.sharedParameter
+        ? d.parameters.some((parameter) => parameter.type === modifier.sharedParameter?.type) &&
+          d.parameters.filter((parameter) => parameter.type !== modifier.sharedParameter?.type &&
+            parameter.defaultValue === undefined).length === modifier.arguments?.length &&
+          d.parameters.filter((parameter) => parameter.type !== modifier.sharedParameter?.type &&
             parameter.defaultValue === undefined).every((parameter, index) =>
             parameter.label === modifier.arguments?.[index].label &&
             parameter.type === (modifier.arguments?.[index].sdkType ?? modifier.arguments?.[index].type))

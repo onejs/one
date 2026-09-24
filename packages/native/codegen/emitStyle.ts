@@ -112,6 +112,7 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
     ...new Set(
       derived.flatMap((modifier) => [
         ...(modifier.framework ? [modifier.framework] : []),
+        ...(modifier.sharedParameter ? [modifier.sharedParameter.type.split('.')[0]] : []),
         ...(modifier.arguments?.some((argument) => argument.type.includes('UniformTypeIdentifiers.'))
           ? ['UniformTypeIdentifiers'] : []),
       ])
@@ -304,6 +305,9 @@ ${assignments}
         if (modifier.namespaceParameter)
           callArguments.splice(modifier.namespaceParameter.index, 0,
             `${modifier.namespaceParameter.label === '_' ? '' : `${modifier.namespaceParameter.label}: `}OneNativeNamespace.id`)
+        if (modifier.sharedParameter)
+          callArguments.splice(modifier.sharedParameter.index, 0,
+            `${modifier.sharedParameter.label === '_' ? '' : `${modifier.sharedParameter.label}: `}${modifier.sharedParameter.type}.shared()`)
         const call = callArguments.join(', ')
         const body = `let values: [String?] = {
       guard let data = value.data(using: .utf8),
@@ -313,11 +317,12 @@ ${assignments}
     }()
 ${parsedArguments}
     ${apply(call, 17, true)}`
-        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+        const generated = `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     ${modifier.ios > 17 ? sdkGuard(modifier.ios, `if #available(iOS ${modifier.ios}, *) {
       ${body}
     } else { self }`, 'self') : body}
   }`
+        return modifier.sharedParameter ? generated.replace(/^    $/gm, '') : generated
       }
       if (modifier.kind === 'gesture')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
