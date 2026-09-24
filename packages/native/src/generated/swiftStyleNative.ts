@@ -417,6 +417,7 @@ const sdkKinds = {
   offerCodeRedemption: 'bindingBoolean',
   offset: 'record',
   onAppear: 'event',
+  onAppIntentExecution: 'registeredValue',
   onCameraCaptureEvent: 'eventStruct',
   onCameraCaptureEventWithIsEnabledAndDefaultSoundDisabledAndPrimaryActionAndSecondaryAction:
     'record',

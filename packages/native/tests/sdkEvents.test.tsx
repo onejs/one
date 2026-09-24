@@ -53,6 +53,7 @@ describe('SDK callback and binding transport', () => {
       modelContext: 'edit-context',
       layoutValue: 'column-span',
       containerValue: 'badge-value',
+      onAppIntentExecution: 'selection-handler',
     } })
     expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
       ['environmentObject', 'session-store'],
@@ -61,6 +62,7 @@ describe('SDK callback and binding transport', () => {
       ['modelContext', 'edit-context'],
       ['layoutValue', 'column-span'],
       ['containerValue', 'badge-value'],
+      ['onAppIntentExecution', 'selection-handler'],
     ])
     expect(() => Controls.Text({ text: 'native object', swiftStyle: {
       environmentObject: '',

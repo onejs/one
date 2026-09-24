@@ -59,7 +59,7 @@ export type DerivedModifier = {
   requestType?: string
   registeredProtocol?: string
   registeredType?: string
-  registeredFactory?: 'layoutValue' | 'containerValue' | 'accessibilityAction'
+  registeredFactory?: 'layoutValue' | 'containerValue' | 'accessibilityAction' | 'onAppIntentExecution'
   requestProperty?: string
   sessionRequest?: { method: string; inputField: string; outputFields: readonly string[];
     actionLabel: string; defaults: readonly { label: string; value: string }[] }
@@ -753,6 +753,14 @@ export function deriveModifiers(
         return [{ name, module: method.module, kind: 'registeredValue',
           type: method.parameters[0].type, registeredFactory: 'accessibilityAction',
           aliasSuffix: 'AppIntent', ios: ios(method), ...framework }]
+      if (method.parameters.length === 2 && method.parameters[0].label === '_' &&
+        method.parameters[0].type === 'I.Type' && method.parameters[0].defaultValue === 'I.self' &&
+        method.parameters[1].label === 'perform' &&
+        method.parameters[1].type === '@escaping @_Concurrency.MainActor (I) -> Swift.Void' &&
+        method.requirements?.includes('I : AppIntents.TargetContentProvidingIntent'))
+        return [{ name, module: method.module, kind: 'registeredValue',
+          type: method.parameters[0].type, registeredFactory: 'onAppIntentExecution',
+          ios: ios(method), ...framework }]
       const anchorSignature = method.parameters.length === 3 &&
         method.parameters[0].type === 'K.Type' &&
         method.parameters[1].type === 'SwiftUICore.Anchor<A>.Source' &&
