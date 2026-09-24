@@ -298,6 +298,9 @@ for (const modifier of derivedModifiers) {
           d.parameters[0].type === 'some Equatable' &&
           d.parameters[1].label === 'keyframes' &&
           d.parameters[1].type.startsWith(`@escaping (${modifier.type}) -> some Keyframes<`)
+        : modifier.kind === 'registeredValue'
+        ? d.parameters.length === 1 && d.parameters[0].type === modifier.type &&
+          d.parameters[0].label === '_'
         : modifier.textSelection
         ? d.parameters.length === 1 && d.parameters[0].type === modifier.type
         : modifier.zeroArgument

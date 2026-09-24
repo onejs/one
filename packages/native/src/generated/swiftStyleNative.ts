@@ -121,6 +121,7 @@ const sdkKinds = {
   assistiveAccessNavigationIconWithImage: 'string',
   assistiveAccessNavigationIconWithSystemImage: 'string',
   asyncImageURLSession: 'string',
+  attributedTextFormattingDefinition: 'registeredValue',
   autocapitalization: 'string',
   autocorrectionDisabled: 'boolean',
   backgroundExtensionEffectWithIsEnabled: 'boolean',
@@ -191,6 +192,7 @@ const sdkKinds = {
   dropDestination: 'eventStruct',
   dynamicTypeSize: 'string',
   edgesIgnoringSafeArea: 'string',
+  environment: 'registeredValue',
   environmentAccessibilityEnabled: 'boolean',
   environmentAccessibilityPrefersCrossFadeTransitions: 'boolean',
   environmentAllowedDynamicRange: 'optionalEnum',
@@ -234,6 +236,7 @@ const sdkKinds = {
   environmentMenuOrder: 'string',
   environmentMinimumScaleFactor: 'number',
   environmentMultilineTextAlignment: 'string',
+  environmentObject: 'registeredValue',
   environmentRealityViewCameraControls: 'string',
   environmentRedactionReasons: 'string',
   environmentScenePhase: 'string',
@@ -274,6 +277,10 @@ const sdkKinds = {
   focusableWithBool: 'boolean',
   focusableWithIsFocusableAndInteractions: 'record',
   focused: 'bindingFocusBoolean',
+  focusedObject: 'registeredValue',
+  focusedSceneObject: 'registeredValue',
+  focusedSceneValue: 'registeredValue',
+  focusedValue: 'registeredValue',
   focusEffectDisabled: 'boolean',
   font: 'optionalEnum',
   fontDesignWithOptionalDesign: 'optionalEnum',
@@ -377,6 +384,7 @@ const sdkKinds = {
   menuOrder: 'string',
   menuStyle: 'style',
   minimumScaleFactor: 'number',
+  modifier: 'registeredValue',
   monospaced: 'boolean',
   monospacedDigit: 'boolean',
   moveDisabled: 'boolean',
@@ -586,6 +594,7 @@ const sdkKinds = {
   textInputAutocapitalization: 'optionalEnum',
   textInputBorderShape: 'string',
   textInputFormattingControlVisibility: 'record',
+  textRenderer: 'registeredValue',
   textScale: 'record',
   textSelection: 'style',
   textSelectionAffinity: 'string',
@@ -2623,6 +2632,12 @@ export function swiftStyleNative(
             name + ' must have a trigger, numeric property and timed keyframes'
           )
         sdkModifiers.push([name, JSON.stringify(value)])
+        continue
+      }
+      if (kind === 'registeredValue') {
+        if (typeof value !== 'string' || !value)
+          throw new Error(name + ' must name a registered native Swift value')
+        sdkModifiers.push([name, value])
         continue
       }
       if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {

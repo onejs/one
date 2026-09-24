@@ -3,6 +3,7 @@
 import SwiftUI
 import UIKit
 import Combine
+import Observation
 import Accessibility
 import PassKit
 import AppIntents
@@ -24,6 +25,14 @@ import Symbols
 import Translation
 import WebKit
 import WorkoutKit
+
+@MainActor public enum OneNativeRegisteredValue {
+  private static var values: [String: Any] = [:]
+
+  public static func register(_ value: Any, for name: String) { values[name] = value }
+  public static func unregister(_ name: String) { values.removeValue(forKey: name) }
+  static func value(_ name: String) -> Any? { values[name] }
+}
 
 private enum OneNativeNamespace { static let id = Namespace().wrappedValue }
 
@@ -425,6 +434,7 @@ extension View {
       case "assistiveAccessNavigationIconWithImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithImage(value, emit: emit))
       case "assistiveAccessNavigationIconWithSystemImage": view = AnyView(view.oneNativeSDKAssistiveAccessNavigationIconWithSystemImage(value, emit: emit))
       case "asyncImageURLSession": view = AnyView(view.oneNativeSDKAsyncImageURLSession(value, emit: emit))
+      case "attributedTextFormattingDefinition": view = AnyView(view.oneNativeSDKAttributedTextFormattingDefinition(value, emit: emit))
       case "autocapitalization": view = AnyView(view.oneNativeSDKAutocapitalization(value, emit: emit))
       case "autocorrectionDisabled": view = AnyView(view.oneNativeSDKAutocorrectionDisabled(value, emit: emit))
       case "backgroundExtensionEffectWithIsEnabled": view = AnyView(view.oneNativeSDKBackgroundExtensionEffectWithIsEnabled(value, emit: emit))
@@ -495,6 +505,7 @@ extension View {
       case "dropDestination": view = AnyView(view.oneNativeSDKDropDestination(value, emit: emit))
       case "dynamicTypeSize": view = AnyView(view.oneNativeSDKDynamicTypeSize(value, emit: emit))
       case "edgesIgnoringSafeArea": view = AnyView(view.oneNativeSDKEdgesIgnoringSafeArea(value, emit: emit))
+      case "environment": view = AnyView(view.oneNativeSDKEnvironment(value, emit: emit))
       case "environmentAccessibilityEnabled": view = AnyView(view.oneNativeSDKEnvironmentAccessibilityEnabled(value, emit: emit))
       case "environmentAccessibilityPrefersCrossFadeTransitions": view = AnyView(view.oneNativeSDKEnvironmentAccessibilityPrefersCrossFadeTransitions(value, emit: emit))
       case "environmentAllowedDynamicRange": view = AnyView(view.oneNativeSDKEnvironmentAllowedDynamicRange(value, emit: emit))
@@ -538,6 +549,7 @@ extension View {
       case "environmentMenuOrder": view = AnyView(view.oneNativeSDKEnvironmentMenuOrder(value, emit: emit))
       case "environmentMinimumScaleFactor": view = AnyView(view.oneNativeSDKEnvironmentMinimumScaleFactor(value, emit: emit))
       case "environmentMultilineTextAlignment": view = AnyView(view.oneNativeSDKEnvironmentMultilineTextAlignment(value, emit: emit))
+      case "environmentObject": view = AnyView(view.oneNativeSDKEnvironmentObject(value, emit: emit))
       case "environmentRealityViewCameraControls": view = AnyView(view.oneNativeSDKEnvironmentRealityViewCameraControls(value, emit: emit))
       case "environmentRedactionReasons": view = AnyView(view.oneNativeSDKEnvironmentRedactionReasons(value, emit: emit))
       case "environmentScenePhase": view = AnyView(view.oneNativeSDKEnvironmentScenePhase(value, emit: emit))
@@ -577,6 +589,10 @@ extension View {
       case "focusableWithBool": view = AnyView(view.oneNativeSDKFocusableWithBool(value, emit: emit))
       case "focusableWithIsFocusableAndInteractions": view = AnyView(view.oneNativeSDKFocusableWithIsFocusableAndInteractions(value, emit: emit))
       case "focused": view = AnyView(view.oneNativeSDKFocused(value, emit: emit))
+      case "focusedObject": view = AnyView(view.oneNativeSDKFocusedObject(value, emit: emit))
+      case "focusedSceneObject": view = AnyView(view.oneNativeSDKFocusedSceneObject(value, emit: emit))
+      case "focusedSceneValue": view = AnyView(view.oneNativeSDKFocusedSceneValue(value, emit: emit))
+      case "focusedValue": view = AnyView(view.oneNativeSDKFocusedValue(value, emit: emit))
       case "focusEffectDisabled": view = AnyView(view.oneNativeSDKFocusEffectDisabled(value, emit: emit))
       case "font": view = AnyView(view.oneNativeSDKFont(value, emit: emit))
       case "fontDesignWithOptionalDesign": view = AnyView(view.oneNativeSDKFontDesignWithOptionalDesign(value, emit: emit))
@@ -679,6 +695,7 @@ extension View {
       case "menuOrder": view = AnyView(view.oneNativeSDKMenuOrder(value, emit: emit))
       case "menuStyle": view = AnyView(view.oneNativeSDKMenuStyle(value, emit: emit))
       case "minimumScaleFactor": view = AnyView(view.oneNativeSDKMinimumScaleFactor(value, emit: emit))
+      case "modifier": view = AnyView(view.oneNativeSDKModifier(value, emit: emit))
       case "monospaced": view = AnyView(view.oneNativeSDKMonospaced(value, emit: emit))
       case "monospacedDigit": view = AnyView(view.oneNativeSDKMonospacedDigit(value, emit: emit))
       case "moveDisabled": view = AnyView(view.oneNativeSDKMoveDisabled(value, emit: emit))
@@ -887,6 +904,7 @@ extension View {
       case "textInputAutocapitalization": view = AnyView(view.oneNativeSDKTextInputAutocapitalization(value, emit: emit))
       case "textInputBorderShape": view = AnyView(view.oneNativeSDKTextInputBorderShape(value, emit: emit))
       case "textInputFormattingControlVisibility": view = AnyView(view.oneNativeSDKTextInputFormattingControlVisibility(value, emit: emit))
+      case "textRenderer": view = AnyView(view.oneNativeSDKTextRenderer(value, emit: emit))
       case "textScale": view = AnyView(view.oneNativeSDKTextScale(value, emit: emit))
       case "textSelection": view = AnyView(view.oneNativeSDKTextSelection(value, emit: emit))
       case "textSelectionAffinity": view = AnyView(view.oneNativeSDKTextSelectionAffinity(value, emit: emit))
@@ -2181,6 +2199,23 @@ self
     }
   }
 
+  @available(iOS 26, *)
+  fileprivate func oneNativeSDKAttributedTextFormattingDefinitionRegistered<T: SwiftUI.AttributedTextFormattingDefinition>(_ registered: T) -> some View {
+    self.attributedTextFormattingDefinition(registered)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAttributedTextFormattingDefinition(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 26, *) {
+      let registered: any SwiftUI.AttributedTextFormattingDefinition = {
+        guard let found = OneNativeRegisteredValue.value(value) as? any SwiftUI.AttributedTextFormattingDefinition else {
+          preconditionFailure("missing attributedTextFormattingDefinition registered value: \(value)")
+        }
+        return found
+      }()
+      AnyView(oneNativeSDKAttributedTextFormattingDefinitionRegistered(registered))
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKAutocapitalization(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
@@ -3246,6 +3281,23 @@ self
     }
   }
 
+  @available(iOS 17, *)
+  fileprivate func oneNativeSDKEnvironmentRegistered<T: Observation.Observable & AnyObject>(_ registered: T) -> some View {
+    self.environment(registered)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironment(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 17, *) {
+      let registered: any Observation.Observable & AnyObject = {
+        guard let found = OneNativeRegisteredValue.value(value) as? any Observation.Observable & AnyObject else {
+          preconditionFailure("missing environment registered value: \(value)")
+        }
+        return found
+      }()
+      AnyView(oneNativeSDKEnvironmentRegistered(registered))
+    } else { self }
+  }
+
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentAccessibilityEnabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
       let _ = precondition(value == "true" || value == "false", "invalid environmentAccessibilityEnabled: \(value)")
       self.environment(\.accessibilityEnabled, value == "true")
@@ -3602,6 +3654,23 @@ self
       case "trailing": self.environment(\.multilineTextAlignment, SwiftUI.TextAlignment.trailing)
     default: preconditionFailure("invalid environmentMultilineTextAlignment: \(value)")
     }
+  }
+
+  @available(iOS 13, *)
+  fileprivate func oneNativeSDKEnvironmentObjectRegistered<T: Combine.ObservableObject>(_ registered: T) -> some View {
+    self.environmentObject(registered)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKEnvironmentObject(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 13, *) {
+      let registered: any Combine.ObservableObject = {
+        guard let found = OneNativeRegisteredValue.value(value) as? any Combine.ObservableObject else {
+          preconditionFailure("missing environmentObject registered value: \(value)")
+        }
+        return found
+      }()
+      AnyView(oneNativeSDKEnvironmentObjectRegistered(registered))
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentRealityViewCameraControls(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -4068,6 +4137,74 @@ if #available(iOS 13, *) {
   @ViewBuilder fileprivate func oneNativeSDKFocused(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let _ = precondition(value == "true" || value == "false", "invalid focused: \(value)")
     self.modifier(OneNativeSDKFocusedFocusBinding(value: value == "true", emit: emit))
+  }
+
+  @available(iOS 16, *)
+  fileprivate func oneNativeSDKFocusedObjectRegistered<T: Combine.ObservableObject>(_ registered: T) -> some View {
+    self.focusedObject(registered)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFocusedObject(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 16, *) {
+      let registered: any Combine.ObservableObject = {
+        guard let found = OneNativeRegisteredValue.value(value) as? any Combine.ObservableObject else {
+          preconditionFailure("missing focusedObject registered value: \(value)")
+        }
+        return found
+      }()
+      AnyView(oneNativeSDKFocusedObjectRegistered(registered))
+    } else { self }
+  }
+
+  @available(iOS 16, *)
+  fileprivate func oneNativeSDKFocusedSceneObjectRegistered<T: Combine.ObservableObject>(_ registered: T) -> some View {
+    self.focusedSceneObject(registered)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFocusedSceneObject(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 16, *) {
+      let registered: any Combine.ObservableObject = {
+        guard let found = OneNativeRegisteredValue.value(value) as? any Combine.ObservableObject else {
+          preconditionFailure("missing focusedSceneObject registered value: \(value)")
+        }
+        return found
+      }()
+      AnyView(oneNativeSDKFocusedSceneObjectRegistered(registered))
+    } else { self }
+  }
+
+  @available(iOS 17, *)
+  fileprivate func oneNativeSDKFocusedSceneValueRegistered<T: Observation.Observable & AnyObject>(_ registered: T) -> some View {
+    self.focusedSceneValue(registered)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFocusedSceneValue(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 17, *) {
+      let registered: any Observation.Observable & AnyObject = {
+        guard let found = OneNativeRegisteredValue.value(value) as? any Observation.Observable & AnyObject else {
+          preconditionFailure("missing focusedSceneValue registered value: \(value)")
+        }
+        return found
+      }()
+      AnyView(oneNativeSDKFocusedSceneValueRegistered(registered))
+    } else { self }
+  }
+
+  @available(iOS 17, *)
+  fileprivate func oneNativeSDKFocusedValueRegistered<T: Observation.Observable & AnyObject>(_ registered: T) -> some View {
+    self.focusedValue(registered)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKFocusedValue(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 17, *) {
+      let registered: any Observation.Observable & AnyObject = {
+        guard let found = OneNativeRegisteredValue.value(value) as? any Observation.Observable & AnyObject else {
+          preconditionFailure("missing focusedValue registered value: \(value)")
+        }
+        return found
+      }()
+      AnyView(oneNativeSDKFocusedValueRegistered(registered))
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKFocusEffectDisabled(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -5613,6 +5750,23 @@ self
       if let number = Double(value), number.isFinite {
         self.minimumScaleFactor(CGFloat(number))
       } else { preconditionFailure("invalid minimumScaleFactor: \(value)") }
+  }
+
+  @available(iOS 13, *)
+  fileprivate func oneNativeSDKModifierRegistered<T: SwiftUI.ViewModifier>(_ registered: T) -> some View {
+    self.modifier(registered)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKModifier(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 13, *) {
+      let registered: any SwiftUI.ViewModifier = {
+        guard let found = OneNativeRegisteredValue.value(value) as? any SwiftUI.ViewModifier else {
+          preconditionFailure("missing modifier registered value: \(value)")
+        }
+        return found
+      }()
+      AnyView(oneNativeSDKModifierRegistered(registered))
+    } else { self }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKMonospaced(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -8600,6 +8754,23 @@ if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Se
       }
     }()
     self.textInputFormattingControlVisibility(argument0, for: argument1)
+    } else { self }
+  }
+
+  @available(iOS 18, *)
+  fileprivate func oneNativeSDKTextRendererRegistered<T: SwiftUI.TextRenderer>(_ registered: T) -> some View {
+    self.textRenderer(registered)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTextRenderer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 18, *) {
+      let registered: any SwiftUI.TextRenderer = {
+        guard let found = OneNativeRegisteredValue.value(value) as? any SwiftUI.TextRenderer else {
+          preconditionFailure("missing textRenderer registered value: \(value)")
+        }
+        return found
+      }()
+      AnyView(oneNativeSDKTextRendererRegistered(registered))
     } else { self }
   }
 

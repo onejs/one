@@ -1923,6 +1923,7 @@ export interface OneNativeStyle {
   assistiveAccessNavigationIconWithImage?: string
   assistiveAccessNavigationIconWithSystemImage?: string
   asyncImageURLSession?: SDKAsyncImageURLSession
+  attributedTextFormattingDefinition?: string
   autocapitalization?: SDKAutocapitalization
   autocorrectionDisabled?: boolean
   backgroundExtensionEffectWithIsEnabled?: boolean
@@ -2104,6 +2105,7 @@ export interface OneNativeStyle {
   }) => void
   dynamicTypeSize?: SDKDynamicTypeSize
   edgesIgnoringSafeArea?: SDKEdgesIgnoringSafeArea
+  environment?: string
   environmentAccessibilityEnabled?: boolean
   environmentAccessibilityPrefersCrossFadeTransitions?: boolean
   environmentAllowedDynamicRange?: SDKEnvironmentAllowedDynamicRange | null
@@ -2147,6 +2149,7 @@ export interface OneNativeStyle {
   environmentMenuOrder?: SDKEnvironmentMenuOrder
   environmentMinimumScaleFactor?: number
   environmentMultilineTextAlignment?: SDKEnvironmentMultilineTextAlignment
+  environmentObject?: string
   environmentRealityViewCameraControls?: SDKEnvironmentRealityViewCameraControls
   environmentRedactionReasons?: SDKEnvironmentRedactionReasons
   environmentScenePhase?: SDKEnvironmentScenePhase
@@ -2211,6 +2214,10 @@ export interface OneNativeStyle {
     interactions: 'activate' | 'edit' | 'automatic'
   }>
   focused?: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
+  focusedObject?: string
+  focusedSceneObject?: string
+  focusedSceneValue?: string
+  focusedValue?: string
   focusEffectDisabled?: boolean
   font?: SDKFont | null
   fontDesignWithOptionalDesign?: SDKFontDesignWithOptionalDesign | null
@@ -2589,6 +2596,7 @@ export interface OneNativeStyle {
   menuOrder?: SDKMenuOrder
   menuStyle?: SDKMenuStyle
   minimumScaleFactor?: number
+  modifier?: string
   monospaced?: boolean
   monospacedDigit?: boolean
   moveDisabled?: boolean
@@ -3315,6 +3323,7 @@ export interface OneNativeStyle {
     visibility: 'automatic' | 'visible' | 'hidden'
     placement: 'contextMenu' | 'inputAssistant' | 'all' | 'default'
   }>
+  textRenderer?: string
   textScale?: Readonly<{ scale: 'default' | 'secondary'; isEnabled: boolean }>
   textSelection?: SDKTextSelection
   textSelectionAffinity?: SDKTextSelectionAffinity

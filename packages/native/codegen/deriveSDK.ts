@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'equatableKey' | 'chartDescriptor' | 'phaseAnimation' | 'keyframeAnimation' | 'seedKeyframeAnimation' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'transferSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint' | 'bindingTextSelection'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'equatableKey' | 'chartDescriptor' | 'phaseAnimation' | 'keyframeAnimation' | 'seedKeyframeAnimation' | 'registeredValue' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'transferSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint' | 'bindingTextSelection'
   ios: number
   type: string
   rawString?: true
@@ -57,6 +57,7 @@ export type DerivedModifier = {
   textSelection?: { selectionType: string; indicesMember: string; singleCase: string;
     multiCase: string; rangeLabel: string; rangesLabel: string; insertionLabel: string }
   requestType?: string
+  registeredProtocol?: string
   requestProperty?: string
   sessionRequest?: { method: string; inputField: string; outputFields: readonly string[];
     actionLabel: string; defaults: readonly { label: string; value: string }[] }
@@ -696,6 +697,31 @@ export function deriveModifiers(
       if (chartProtocol && chartConstructor)
         return [{ name, module: method.module, kind: 'chartDescriptor', type: method.parameters[0].type,
           ios: Math.max(ios(method), ios(chartConstructor)), framework: 'Accessibility' }]
+      const registeredParameter = method.parameters.length === 1 &&
+        method.parameters[0].label === '_' && /^([A-Z][A-Za-z0-9_]*)\??$/.exec(method.parameters[0].type)
+      if (registeredParameter) {
+        const generic = registeredParameter[1]
+        const registeredProtocol = method.requirements?.includes(`${generic} : Combine.ObservableObject`)
+          ? 'Combine.ObservableObject'
+          : method.requirements?.includes(`${generic} : Observation.Observable`) &&
+            method.requirements.includes(`${generic} : AnyObject`)
+            ? 'Observation.Observable & AnyObject'
+          : method.requirements?.includes(`${generic} : SwiftUICore.TextRenderer`)
+            ? 'SwiftUICore.TextRenderer'
+          : method.requirements?.includes(`${generic} : SwiftUICore.AttributedTextFormattingDefinition`)
+            ? 'SwiftUICore.AttributedTextFormattingDefinition'
+          : method.type === `SwiftUICore.ModifiedContent<Self, ${generic}>`
+            ? 'SwiftUICore.ViewModifier'
+            : undefined
+        if (registeredProtocol && method.parameters[0].type.endsWith('?') &&
+          overloads.some((candidate) => candidate.module === method.module &&
+            candidate.parameters.length === 1 &&
+            candidate.parameters[0].type === generic)) return []
+        if (registeredProtocol)
+          return [{ name, module: method.module, kind: 'registeredValue',
+            type: method.parameters[0].type, registeredProtocol,
+            ios: ios(method), ...framework }]
+      }
       const anchorSignature = method.parameters.length === 3 &&
         method.parameters[0].type === 'K.Type' &&
         method.parameters[1].type === 'SwiftUICore.Anchor<A>.Source' &&
