@@ -10,21 +10,18 @@ TypeGPU, or three.js all build on it, and nothing else is needed.
 
 Three.js runs through `three/webgpu` with `WebGPURenderer`, including
 under React Three Fiber. R3F mounts through `createRoot` on the webgpu
-canvas — never `@react-three/fiber/native`, which hard-requires
-`expo-gl`:
+canvas. Do not use `@react-three/fiber/native`, which requires `expo-gl`:
 
 ```tsx
-import { Canvas as GpuCanvas, useCanvasRef } from 'react-native-webgpu'
+import { Canvas, useCanvasRef } from 'react-native-webgpu'
 import * as THREE from 'three/webgpu'
 import { createRoot, events, extend } from '@react-three/fiber'
 
-// inside a component, after layout with nonzero size:
+// inside a component, once layout has a nonzero size:
+const ref = useCanvasRef()
 extend(THREE)
-const context = ref.current?.getContext('webgpu')
-const renderer = new THREE.WebGPURenderer({
-  canvas: context.canvas,
-  context,
-})
+const context = ref.current.getContext('webgpu')
+const renderer = new THREE.WebGPURenderer({ canvas: context.canvas, context })
 await renderer.init()
 const renderFrame = renderer.render.bind(renderer)
 renderer.render = (scene, camera) => {
@@ -34,44 +31,44 @@ renderer.render = (scene, camera) => {
 const root = createRoot(context.canvas)
 root.configure({ size, events, gl: renderer, frameloop: 'always', dpr: 1 })
 root.render(<Scene />)
+
+// and render the surface itself:
+<Canvas ref={ref} style={{ flex: 1 }} />
 ```
 
-Every frame ends with `context.present()`, and unmount calls
-`setAnimationLoop(null)` plus `dispose()` — R3F's unmount alone never
-stops three's internal frame loop.
+Every frame ends with `context.present()`. On unmount, call
+`setAnimationLoop(null)` and `dispose()` on the renderer: R3F's unmount alone
+never stops three's internal frame loop.
 
-One three instance must serve the whole graph: bare `three` resolves to
-the `three/webgpu` build and `@react-three/fiber` to its web entry on
-the native environments only, so web keeps WebGL three. Vite has no
-per-environment `resolve.alias`, so this is a small `resolveId` plugin
-in the app's `vite.config.ts`:
+One three instance must serve the whole graph. On native, bare `three`
+resolves to the `three/webgpu` build and `@react-three/fiber` to its web
+entry, while web keeps WebGL three. The [`alias`](/docs/configuration#alias)
+option's `native` map does this:
 
 ```ts
-import type { Plugin } from 'vite'
+import { createRequire } from 'node:module'
+import { one } from 'one/vite'
 
-function nativeWebgpuAliases(): Plugin {
-  return {
-    name: 'native-webgpu-aliases',
-    applyToEnvironment: (environment) =>
-      environment.name === 'ios' || environment.name === 'android',
-    async resolveId(source, _importer, options) {
-      if (source === 'three' || source === '@react-three/fiber') {
-        const target =
-          source === 'three'
-            ? 'three/webgpu'
-            : '@react-three/fiber/dist/react-three-fiber.esm.js'
-        return await this.resolve(target, undefined, {
-          ...options,
-          skipSelf: true,
-        })
-      }
-      return null
-    },
-  }
+const require = createRequire(import.meta.url)
+
+export default {
+  plugins: [
+    one({
+      alias: {
+        native: {
+          three: require.resolve('three/webgpu'),
+          '@react-three/fiber': require.resolve(
+            '@react-three/fiber/dist/react-three-fiber.esm.js'
+          ),
+        },
+      },
+    }),
+  ],
 }
 ```
 
-Metro mode has no resolver hook for this rewrite: R3F on WebGPU needs
-the default bundler. WebGPURenderer runs no GLSL — `ShaderMaterial`,
-`onBeforeCompile`, and `PMREMGenerator` do not work under it — so shared
-scene code bakes static gradients into `DataTexture`s instead.
+Metro mode does not apply One's aliases, so R3F on WebGPU needs the default
+bundler. `WebGPURenderer` runs no GLSL: `ShaderMaterial` and
+`onBeforeCompile` do not work under it. Use node materials, or bake static
+gradients into vertex colors or `DataTexture`s. `PMREMGenerator.fromScene`
+works; `compileEquirectangularShader` does not exist on this backend.

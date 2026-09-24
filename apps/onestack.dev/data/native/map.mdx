@@ -38,8 +38,8 @@ Francisco): `cameraPosition` (`coordinates` plus Google `zoom`),
 `coordinates`, `color`, `lineColor`, `lineWidth`), and `circles` (`id`,
 `center`, `radius` in metres, `color`, `lineColor`, `lineWidth`).
 Colours are `#rrggbb` or `#rrggbbaa` strings; marker ids must be unique.
-`onCameraMove` fires once, when a gesture ends — never feed it back into
-`cameraPosition`, which would re-seed on every move end and fight the
+`onCameraMove` fires once, when a gesture ends. Never feed it back into
+`cameraPosition`: that re-seeds the camera on every move end and fights the
 pan. `onMarkerClick` returns the marker object from props, matched by
 id. Marker taps never also report as map taps.
 
@@ -71,5 +71,5 @@ Convert the region to a camera: `zoom = log2(360 * widthPt / 256 / longitudeDelt
 where `widthPt` is the map view width in points, and center coordinates as-is.
 Marker children become the `markers` array;
 `onRegionChangeComplete` becomes `onCameraMove`. Designs that need
-custom pin views, callouts, or camera refs have no equivalent — say so
-instead of reaching for another map library.
+custom pin views, callouts, or camera refs have no equivalent yet; keep
+`react-native-maps` for those screens.
