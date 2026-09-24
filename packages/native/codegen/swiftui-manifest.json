@@ -2827,6 +2827,42 @@
       "label": "antialiased"
     },
     {
+      "name": "clipShape",
+      "kind": "style",
+      "type": "S",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "buttonBorder",
+          "ios": 17
+        },
+        {
+          "name": "rect",
+          "ios": 13
+        },
+        {
+          "name": "capsule",
+          "ios": 13
+        },
+        {
+          "name": "ellipse",
+          "ios": 13
+        },
+        {
+          "name": "circle",
+          "ios": 13
+        },
+        {
+          "name": "containerRelative",
+          "ios": 14
+        },
+        {
+          "name": "textInputBorder",
+          "ios": 27
+        }
+      ]
+    },
+    {
       "name": "colorEffect",
       "kind": "record",
       "type": "",
@@ -4471,6 +4507,62 @@
       "ios": 17
     },
     {
+      "name": "font",
+      "kind": "optionalEnum",
+      "type": "SwiftUICore.Font?",
+      "ios": 13,
+      "cases": [
+        {
+          "name": "largeTitle",
+          "ios": 13
+        },
+        {
+          "name": "title",
+          "ios": 13
+        },
+        {
+          "name": "title2",
+          "ios": 14
+        },
+        {
+          "name": "title3",
+          "ios": 14
+        },
+        {
+          "name": "headline",
+          "ios": 13
+        },
+        {
+          "name": "subheadline",
+          "ios": 13
+        },
+        {
+          "name": "body",
+          "ios": 13
+        },
+        {
+          "name": "callout",
+          "ios": 13
+        },
+        {
+          "name": "footnote",
+          "ios": 13
+        },
+        {
+          "name": "caption",
+          "ios": 13
+        },
+        {
+          "name": "caption2",
+          "ios": 14
+        },
+        {
+          "name": "default",
+          "ios": 26
+        }
+      ]
+    },
+    {
       "name": "fontWidth",
       "kind": "optionalEnum",
       "type": "SwiftUICore.Font.Width?",
@@ -4597,6 +4689,229 @@
           "ios": 16
         }
       ]
+    },
+    {
+      "name": "frameWithMinWidthAndIdealWidthAndMaxWidthAndMinHeightAndIdealHeightAndMaxHeightAndAlignment",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "minWidth",
+          "label": "minWidth"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "idealWidth",
+          "label": "idealWidth"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "maxWidth",
+          "label": "maxWidth"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "minHeight",
+          "label": "minHeight"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "idealHeight",
+          "label": "idealHeight"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "maxHeight",
+          "label": "maxHeight"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Alignment",
+          "optional": false,
+          "cases": [
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            },
+            {
+              "name": "centerFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "centerLastTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "leadingFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "leadingLastTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "trailingFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "trailingLastTextBaseline",
+              "ios": 13
+            }
+          ],
+          "field": "alignment",
+          "label": "alignment"
+        }
+      ],
+      "sdkName": "frame"
+    },
+    {
+      "name": "frameWithNoArguments",
+      "module": "SwiftUICore",
+      "kind": "boolean",
+      "type": "",
+      "ios": 13,
+      "zeroArgument": true,
+      "sdkName": "frame"
+    },
+    {
+      "name": "frameWithWidthAndHeightAndAlignment",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 13,
+      "arguments": [
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "width",
+          "label": "width"
+        },
+        {
+          "kind": "number",
+          "type": "CoreFoundation.CGFloat?",
+          "optional": true,
+          "field": "height",
+          "label": "height"
+        },
+        {
+          "kind": "enum",
+          "type": "SwiftUICore.Alignment",
+          "optional": false,
+          "cases": [
+            {
+              "name": "center",
+              "ios": 13
+            },
+            {
+              "name": "leading",
+              "ios": 13
+            },
+            {
+              "name": "trailing",
+              "ios": 13
+            },
+            {
+              "name": "top",
+              "ios": 13
+            },
+            {
+              "name": "bottom",
+              "ios": 13
+            },
+            {
+              "name": "topLeading",
+              "ios": 13
+            },
+            {
+              "name": "topTrailing",
+              "ios": 13
+            },
+            {
+              "name": "bottomLeading",
+              "ios": 13
+            },
+            {
+              "name": "bottomTrailing",
+              "ios": 13
+            },
+            {
+              "name": "centerFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "centerLastTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "leadingFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "leadingLastTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "trailingFirstTextBaseline",
+              "ios": 13
+            },
+            {
+              "name": "trailingLastTextBaseline",
+              "ios": 13
+            }
+          ],
+          "field": "alignment",
+          "label": "alignment"
+        }
+      ],
+      "sdkName": "frame"
     },
     {
       "name": "gaugeStyle",
@@ -14251,6 +14566,7 @@
         "bold",
         "brightness",
         "buttonSizing",
+        "clipShape",
         "clipped",
         "colorEffect",
         "colorInvert",
@@ -14272,8 +14588,10 @@
         "dynamicTypeSize",
         "edgesIgnoringSafeArea",
         "fixedSize",
+        "font",
         "fontWidth",
         "foregroundColor",
+        "frame",
         "geometryGroup",
         "gesture",
         "glassEffectTransition",
