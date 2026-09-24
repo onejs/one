@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'selectionID' | 'selectionIndex' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint'
   ios: number
   type: string
   rawString?: true
@@ -50,6 +50,8 @@ export type DerivedModifier = {
   resultType?: string
   selectionMember?: string
   selectionInputIndex?: number
+  requestType?: string
+  requestProperty?: string
   resultConstructor?: { type: string; label: string }
   eventPair?: true
   eventInputs?: readonly string[]
@@ -625,6 +627,30 @@ export function deriveModifiers(
       const framework = method.module.startsWith('_')
         ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
         : {}
+      if (method.parameters.length >= 2 &&
+        method.parameters[0].type === 'SwiftUICore.Binding<Swift.Bool>' &&
+        /^([A-Za-z]\w*\.)+[A-Za-z]\w*\?$/.test(method.parameters[1].type) &&
+        method.parameters.slice(2).every((parameter) => parameter.defaultValue !== undefined)) {
+        const resultType = method.parameters[1].type
+        const [requestModule, ...resultParts] = resultType.slice(0, -1).split('.')
+        const requestOwner = `${resultParts.join('.')}Request`
+        const request = inventory.find((declaration) => declaration.module === requestModule &&
+          declaration.owner === requestOwner && declaration.kind === 'init' &&
+          declaration.parameters.length === 1 &&
+          declaration.parameters[0].label === 'coordinate' &&
+          declaration.parameters[0].type === 'CoreLocation.CLLocationCoordinate2D' &&
+          present(declaration) && ios(declaration) <= ceiling)
+        const result = inventory.find((declaration) => declaration.module === requestModule &&
+          declaration.owner === requestOwner && declaration.kind === 'var' &&
+          declaration.type === resultType && declaration.attributes.includes('@async') &&
+          present(declaration) && ios(declaration) <= ceiling)
+        if (request && result)
+          return [{ name, module: method.module, kind: 'asyncObjectRequest',
+            type: resultType, ios: Math.max(ios(method), ios(request), ios(result)),
+            requestType: `${requestModule}.${requestOwner}`, requestProperty: result.name,
+            predicateLabel: method.parameters[0].label, label: method.parameters[1].label,
+            ...framework }]
+      }
       if (method.parameters.length === 2 &&
         method.parameters[0].type === '@autoclosure @escaping () -> Swift.Array<ItemID>' &&
         method.parameters[1].type === 'SwiftUICore.Namespace.ID?' &&

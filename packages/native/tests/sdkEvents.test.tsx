@@ -418,6 +418,24 @@ describe('SDK callback and binding transport', () => {
     } })).toThrow('must be an array of string IDs')
   })
 
+  it('requests a Look Around scene from coordinates and reports presentation changes', () => {
+    const onChange = vi.fn()
+    const element = Controls.Text({ text: 'look around', swiftStyle: {
+      lookAroundViewer: { isPresented: { value: true, onChange }, latitude: 37.7749, longitude: -122.4194 },
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['lookAroundViewer', '["true","37.7749","-122.4194"]'],
+    ])
+    element.props.onNativeSDKEvent({ nativeEvent: { name: 'lookAroundViewer', value: 'false' } })
+    expect(onChange).toHaveBeenCalledWith(false)
+    expect(() => Controls.Text({ text: 'invalid', swiftStyle: {
+      lookAroundViewer: { isPresented: { value: true, onChange }, latitude: 91, longitude: 0 },
+    } })).toThrow('valid coordinates')
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'lookAroundViewer', value: 'missing',
+    } })).toThrow('invalid presentation value')
+  })
+
   it('passes a purchase result through the async callback and rejects malformed cases', async () => {
     completeAsyncAction.mockClear()
     let finish!: () => void
