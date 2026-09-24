@@ -52,6 +52,9 @@ export type ActivityView = {
   compactLeading?: ReactNode
   compactTrailing?: ReactNode
   minimal?: ReactNode
+  expandedLeading?: ReactNode
+  expandedTrailing?: ReactNode
+  expandedBottom?: ReactNode
 }
 
 type Node = {
@@ -168,6 +171,9 @@ export function encodeActivityView(view: ActivityView): string {
     compactLeading: view.compactLeading == null ? null : node(view.compactLeading),
     compactTrailing: view.compactTrailing == null ? null : node(view.compactTrailing),
     minimal: view.minimal == null ? null : node(view.minimal),
+    expandedLeading: view.expandedLeading == null ? null : node(view.expandedLeading),
+    expandedTrailing: view.expandedTrailing == null ? null : node(view.expandedTrailing),
+    expandedBottom: view.expandedBottom == null ? null : node(view.expandedBottom),
   })
   if (new TextEncoder().encode(encoded).length > 3500) {
     throw new Error('Live Activity JSX must fit within 3500 UTF-8 bytes')

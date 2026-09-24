@@ -643,6 +643,9 @@ struct OneActivityView: Decodable {
   let compactLeading: OneWidgetNode?
   let compactTrailing: OneWidgetNode?
   let minimal: OneWidgetNode?
+  let expandedLeading: OneWidgetNode?
+  let expandedTrailing: OneWidgetNode?
+  let expandedBottom: OneWidgetNode?
 }
 
 private func oneDecode<T: Decodable>(_ value: String?, as type: T.Type) -> T? {
@@ -833,11 +836,25 @@ struct OneLiveActivity: Widget {
       .activityBackgroundTint(.blue.opacity(0.2))
     } dynamicIsland: { context in
       DynamicIsland {
-        DynamicIslandExpandedRegion(.leading) { Text(context.attributes.title) }
-        DynamicIslandExpandedRegion(.trailing) { Text(context.state.value) }
+        DynamicIslandExpandedRegion(.leading) {
+          if let layout = oneDecode(context.state.layout, as: OneActivityView.self),
+             let leading = layout.expandedLeading {
+            OneWidgetRendered(node: leading)
+          } else {
+            Text(context.attributes.title)
+          }
+        }
+        DynamicIslandExpandedRegion(.trailing) {
+          if let layout = oneDecode(context.state.layout, as: OneActivityView.self),
+             let trailing = layout.expandedTrailing {
+            OneWidgetRendered(node: trailing)
+          } else {
+            Text(context.state.value)
+          }
+        }
         DynamicIslandExpandedRegion(.bottom) {
           if let layout = oneDecode(context.state.layout, as: OneActivityView.self) {
-            OneWidgetRendered(node: layout.lockScreen)
+            OneWidgetRendered(node: layout.expandedBottom ?? layout.lockScreen)
           } else {
             Text(context.state.status)
           }
