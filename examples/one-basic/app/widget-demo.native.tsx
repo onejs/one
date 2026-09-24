@@ -65,9 +65,9 @@ export default function WidgetDemo() {
                     systemName="shippingbox.fill"
                     style={{ color: '#1685B1', fontSize: 20 }}
                   />
-                  <W.Text style={{ fontSize: 18, fontWeight: 'bold' }}>One JSX</W.Text>
+                  <W.Text style={{ fontSize: 15, fontWeight: 'bold' }}>One</W.Text>
                 </W.HStack>
-                <W.Text>Value 84 from React</W.Text>
+                <W.Text style={{ fontSize: 14 }}>84 from React</W.Text>
                 <W.Progress value={2} total={3} style={{ color: '#1685B1' }} />
                 <W.Divider />
                 <W.Link url="https://onestack.dev">
