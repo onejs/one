@@ -1,4 +1,4 @@
-import type { ParamListBase, StackNavigationState } from '@react-navigation/native';
+import type { NavigationState, ParamListBase, StackNavigationState } from '@react-navigation/native';
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 declare const OVERLAY_PRESENTATIONS: readonly ['modal', 'transparentModal', 'fullScreenModal', 'formSheet', 'pageSheet', 'containedModal', 'containedTransparentModal'];
 type OverlayPresentation = (typeof OVERLAY_PRESENTATIONS)[number];
@@ -31,6 +31,6 @@ export declare function convertStackStateToNonOverlayState(state: StackNavigatio
  * is an overlay. Accepts the same predicate as
  * `convertStackStateToNonOverlayState`.
  */
-export declare function findLastNonOverlayIndex(state: StackNavigationState<ParamListBase>, descriptors: DescriptorMap, isOverlay?: (options: NativeStackNavigationOptions | undefined | null) => boolean): number;
+export declare function findLastNonOverlayIndex(state: Pick<NavigationState<ParamListBase>, 'index' | 'routes'>, descriptors: DescriptorMap, isOverlay?: (options: NativeStackNavigationOptions | undefined | null) => boolean): number;
 export type { OverlayPresentation };
 //# sourceMappingURL=stackStateUtils.d.ts.map
