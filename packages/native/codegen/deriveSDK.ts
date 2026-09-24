@@ -49,6 +49,7 @@ export type DerivedModifier = {
   eventInputs?: readonly string[]
   gestureOptions?: readonly { name: string; type: string; ios: number; eventValue?: EventValueSchema }[]
   transformMember?: string
+  environmentKey?: string
   zeroArgument?: true
   framework?: string
   label?: string
@@ -410,6 +411,34 @@ export function deriveModifiers(
     byName.set(method.name, [...(byName.get(method.name) ?? []), method])
   const result: DerivedModifier[] = []
   const publicNames = new Set([...reservedNames, ...byName.keys()])
+  const environmentMethod = methods.find((method) => method.name === 'environment' &&
+    method.module === 'SwiftUICore' && method.parameters.length === 2 &&
+    method.parameters[0].type === 'Swift.WritableKeyPath<SwiftUICore.EnvironmentValues, V>' &&
+    method.parameters[1].type === 'V')
+  if (environmentMethod) {
+    for (const field of inventory.filter((declaration) =>
+      (declaration.module === 'SwiftUI' || declaration.module === 'SwiftUICore' ||
+        /^_[A-Za-z]+_SwiftUI$/.test(declaration.module)) &&
+      declaration.owner.split('.').at(-1) === 'EnvironmentValues' &&
+      declaration.kind === 'var' && declaration.writable && /^[a-z]/.test(declaration.name) &&
+      present(declaration) && ios(declaration) <= ceiling)) {
+      const value = valueOf(field.type ?? '')
+      if (!value || !['boolean', 'number', 'string', 'enum'].includes(value.kind)) continue
+      const kind = value.kind === 'enum'
+        ? value.optional ? 'optionalEnum' : 'string'
+        : value.optional
+          ? `optional${value.kind[0].toUpperCase()}${value.kind.slice(1)}` as DerivedModifier['kind']
+          : value.kind
+      result.push({ name: `environment${field.name[0].toUpperCase()}${field.name.slice(1)}`,
+        sdkName: 'environment', module: 'SwiftUICore', environmentKey: field.name,
+        kind, type: field.type!, ios: Math.max(ios(environmentMethod), ios(field)),
+        ...(field.module.startsWith('_') ? { framework: field.module.slice(1, -'_SwiftUI'.length) } : {}),
+        ...(value.scalarConstructor ? { scalarConstructor: value.scalarConstructor } : {}),
+        ...(value.swiftExpression ? { swiftExpression: value.swiftExpression } : {}),
+        ...(value.cases ? { cases: value.cases } : {}),
+      })
+    }
+  }
   for (const [name, overloads] of byName) {
     const candidates = overloads.flatMap((method): DerivedModifier[] => {
       const framework = method.module.startsWith('_')

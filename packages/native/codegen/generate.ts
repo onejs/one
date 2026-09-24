@@ -171,7 +171,11 @@ for (const modifier of derivedModifiers) {
       d.kind === 'func' &&
       d.name === (modifier.sdkName ?? modifier.name) &&
       (!modifier.module || d.module === modifier.module) &&
-      (modifier.zeroArgument
+      (modifier.environmentKey
+        ? d.parameters.length === 2 &&
+          d.parameters[0].type === 'Swift.WritableKeyPath<SwiftUICore.EnvironmentValues, V>' &&
+          d.parameters[1].type === 'V'
+        : modifier.zeroArgument
         ? d.parameters.every((parameter) => parameter.defaultValue !== undefined)
         : modifier.kind === 'record'
           ? (d.parameters.length === modifier.arguments?.length ? d.parameters :
