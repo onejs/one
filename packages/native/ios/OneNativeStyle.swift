@@ -14,6 +14,7 @@ import UniformTypeIdentifiers
 import GameController
 import MapKit
 import CoreLocation
+import SwiftData
 import MusicKit
 import AVKit
 import PhotosUI
@@ -695,6 +696,8 @@ extension View {
       case "menuOrder": view = AnyView(view.oneNativeSDKMenuOrder(value, emit: emit))
       case "menuStyle": view = AnyView(view.oneNativeSDKMenuStyle(value, emit: emit))
       case "minimumScaleFactor": view = AnyView(view.oneNativeSDKMinimumScaleFactor(value, emit: emit))
+      case "modelContainer": view = AnyView(view.oneNativeSDKModelContainer(value, emit: emit))
+      case "modelContext": view = AnyView(view.oneNativeSDKModelContext(value, emit: emit))
       case "modifier": view = AnyView(view.oneNativeSDKModifier(value, emit: emit))
       case "monospaced": view = AnyView(view.oneNativeSDKMonospaced(value, emit: emit))
       case "monospacedDigit": view = AnyView(view.oneNativeSDKMonospacedDigit(value, emit: emit))
@@ -5750,6 +5753,30 @@ self
       if let number = Double(value), number.isFinite {
         self.minimumScaleFactor(CGFloat(number))
       } else { preconditionFailure("invalid minimumScaleFactor: \(value)") }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKModelContainer(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 17, *) {
+      let registered: SwiftData.ModelContainer = {
+        guard let found = OneNativeRegisteredValue.value(value) as? SwiftData.ModelContainer else {
+          preconditionFailure("missing modelContainer registered value: \(value)")
+        }
+        return found
+      }()
+      AnyView(self.modelContainer(registered))
+    } else { self }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKModelContext(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    if #available(iOS 17, *) {
+      let registered: SwiftData.ModelContext = {
+        guard let found = OneNativeRegisteredValue.value(value) as? SwiftData.ModelContext else {
+          preconditionFailure("missing modelContext registered value: \(value)")
+        }
+        return found
+      }()
+      AnyView(self.modelContext(registered))
+    } else { self }
   }
 
   @available(iOS 13, *)

@@ -9374,6 +9374,22 @@
       "ios": 13
     },
     {
+      "name": "modelContainer",
+      "kind": "registeredValue",
+      "type": "SwiftData.ModelContainer",
+      "registeredType": "SwiftData.ModelContainer",
+      "ios": 17,
+      "framework": "SwiftData"
+    },
+    {
+      "name": "modelContext",
+      "kind": "registeredValue",
+      "type": "SwiftData.ModelContext",
+      "registeredType": "SwiftData.ModelContext",
+      "ios": 17,
+      "framework": "SwiftData"
+    },
+    {
       "name": "modifier",
       "kind": "registeredValue",
       "type": "T",
@@ -18156,6 +18172,10 @@
         "mapStyle",
         "onMapCameraChange"
       ],
+      "_SwiftData_SwiftUI": [
+        "modelContainer",
+        "modelContext"
+      ],
       "_MusicKit_SwiftUI": [
         "musicPicker",
         "musicSubscriptionOffer"
@@ -18694,6 +18714,10 @@
         "mapScope",
         "mapStyle",
         "onMapCameraChange"
+      ],
+      "_SwiftData_SwiftUI": [
+        "modelContainer",
+        "modelContext"
       ],
       "_MusicKit_SwiftUI": [
         "musicPicker",

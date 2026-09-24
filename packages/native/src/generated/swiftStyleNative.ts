@@ -384,6 +384,8 @@ const sdkKinds = {
   menuOrder: 'string',
   menuStyle: 'style',
   minimumScaleFactor: 'number',
+  modelContainer: 'registeredValue',
+  modelContext: 'registeredValue',
   modifier: 'registeredValue',
   monospaced: 'boolean',
   monospacedDigit: 'boolean',
