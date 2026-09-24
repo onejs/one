@@ -36,6 +36,12 @@ private struct OneNativeSDKEquatableKeyView<Content: View>: View, Equatable {
   static func == (lhs: Self, rhs: Self) -> Bool { lhs.key == rhs.key }
   var body: some View { content }
 }
+private struct OneNativeSDKRectAnchorKey: PreferenceKey {
+  static var defaultValue: Anchor<CGRect>? { nil }
+  static func reduce(value: inout Anchor<CGRect>?, nextValue: () -> Anchor<CGRect>?) {
+    value = nextValue() ?? value
+  }
+}
 private struct OneNativeSDKChartDescriptor: Codable, AXChartDescriptorRepresentable {
   struct Axis: Codable {
     let title: String
@@ -368,6 +374,7 @@ extension View {
       case "allowsTightening": view = AnyView(view.oneNativeSDKAllowsTightening(value, emit: emit))
       case "allowsWindowActivationEventsWithNoArguments": view = AnyView(view.oneNativeSDKAllowsWindowActivationEventsWithNoArguments(value, emit: emit))
       case "allowsWindowActivationEventsWithOptionalBool": view = AnyView(view.oneNativeSDKAllowsWindowActivationEventsWithOptionalBool(value, emit: emit))
+      case "anchorPreference": view = AnyView(view.oneNativeSDKAnchorPreference(value, emit: emit))
       case "animation": view = AnyView(view.oneNativeSDKAnimation(value, emit: emit))
       case "appEntityIdentifier": view = AnyView(view.oneNativeSDKAppEntityIdentifier(value, emit: emit))
       case "appStoreMerchandising": view = AnyView(view.oneNativeSDKAppStoreMerchandising(value, emit: emit))
@@ -854,6 +861,7 @@ extension View {
       case "toolbarWithVisibilityAndBars": view = AnyView(view.oneNativeSDKToolbarWithVisibilityAndBars(value, emit: emit))
       case "tracking": view = AnyView(view.oneNativeSDKTracking(value, emit: emit))
       case "transaction": view = AnyView(view.oneNativeSDKTransaction(value, emit: emit))
+      case "transformAnchorPreference": view = AnyView(view.oneNativeSDKTransformAnchorPreference(value, emit: emit))
       case "transformEffect": view = AnyView(view.oneNativeSDKTransformEffect(value, emit: emit))
       case "transformEnvironmentAccessibilityEnabled": view = AnyView(view.oneNativeSDKTransformEnvironmentAccessibilityEnabled(value, emit: emit))
       case "transformEnvironmentAccessibilityPrefersCrossFadeTransitions": view = AnyView(view.oneNativeSDKTransformEnvironmentAccessibilityPrefersCrossFadeTransitions(value, emit: emit))
@@ -1972,6 +1980,24 @@ extension View {
 
   @ViewBuilder fileprivate func oneNativeSDKAllowsWindowActivationEventsWithOptionalBool(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     if value == "null" { if #available(iOS 18, *) { self.allowsWindowActivationEvents(nil as Swift.Bool?) } else { self } } else { if value == "true" || value == "false" { if #available(iOS 18, *) { self.allowsWindowActivationEvents(value == "true") } else { self } } else { preconditionFailure("invalid allowsWindowActivationEventsWithOptionalBool: \(value)") } }
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKAnchorPreference(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.anchorPreference(key: OneNativeSDKRectAnchorKey.self, value: .bounds) { anchor in anchor }
+      .backgroundPreferenceValue(OneNativeSDKRectAnchorKey.self) { anchor in
+        GeometryReader { geometry in
+          Color.clear.onGeometryChange(for: CGRect.self) { _ in
+            anchor.map { geometry[$0] } ?? .zero
+          } action: { rect in
+            let payload = (["origin": (["x": Double(rect.origin.x), "y": Double(rect.origin.y)] as [String: Any]), "size": (["width": Double(rect.size.width), "height": Double(rect.size.height)] as [String: Any])] as [String: Any])
+            guard let data = try? JSONSerialization.data(withJSONObject: payload),
+              let encoded = String(data: data, encoding: .utf8) else {
+              preconditionFailure("invalid anchorPreference event")
+            }
+            emit("anchorPreference", encoded)
+          }
+        }
+      }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKAnimation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
@@ -8976,6 +9002,24 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
       }
     }()
     self.transaction(argument0)
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKTransformAnchorPreference(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.transformAnchorPreference(key: OneNativeSDKRectAnchorKey.self, value: .bounds) { current, anchor in current = anchor }
+      .backgroundPreferenceValue(OneNativeSDKRectAnchorKey.self) { anchor in
+        GeometryReader { geometry in
+          Color.clear.onGeometryChange(for: CGRect.self) { _ in
+            anchor.map { geometry[$0] } ?? .zero
+          } action: { rect in
+            let payload = (["origin": (["x": Double(rect.origin.x), "y": Double(rect.origin.y)] as [String: Any]), "size": (["width": Double(rect.size.width), "height": Double(rect.size.height)] as [String: Any])] as [String: Any])
+            guard let data = try? JSONSerialization.data(withJSONObject: payload),
+              let encoded = String(data: data, encoding: .utf8) else {
+              preconditionFailure("invalid transformAnchorPreference event")
+            }
+            emit("transformAnchorPreference", encoded)
+          }
+        }
+      }
   }
 
   @ViewBuilder fileprivate func oneNativeSDKTransformEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {

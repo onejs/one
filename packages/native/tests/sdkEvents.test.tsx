@@ -16,6 +16,30 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('delivers resolved anchor rectangles through both preference modifiers', () => {
+    const anchor = vi.fn()
+    const transformed = vi.fn()
+    const element = Controls.Text({ text: 'anchor', swiftStyle: {
+      anchorPreference: anchor,
+      transformAnchorPreference: transformed,
+    } })
+    expect(JSON.parse(element.props.swiftStyle.sdkModifiers)).toEqual([
+      ['anchorPreference', ''], ['transformAnchorPreference', ''],
+    ])
+    const rectangle = { origin: { x: 12, y: 24 }, size: { width: 80, height: 30 } }
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'anchorPreference', value: JSON.stringify(rectangle),
+    } })
+    element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'transformAnchorPreference', value: JSON.stringify(rectangle),
+    } })
+    expect(anchor).toHaveBeenCalledWith(rectangle)
+    expect(transformed).toHaveBeenCalledWith(rectangle)
+    expect(() => element.props.onNativeSDKEvent({ nativeEvent: {
+      name: 'anchorPreference', value: JSON.stringify({ ...rectangle, size: { width: Infinity } }),
+    } })).toThrow('anchorPreference emitted an invalid struct value')
+  })
+
   it('sends accessible numeric chart axes and series through the descriptor modifier', () => {
     const chart = {
       title: 'Revenue',

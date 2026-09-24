@@ -696,6 +696,25 @@ export function deriveModifiers(
       if (chartProtocol && chartConstructor)
         return [{ name, module: method.module, kind: 'chartDescriptor', type: method.parameters[0].type,
           ios: Math.max(ios(method), ios(chartConstructor)), framework: 'Accessibility' }]
+      const anchorSignature = method.parameters.length === 3 &&
+        method.parameters[0].type === 'K.Type' &&
+        method.parameters[1].type === 'SwiftUICore.Anchor<A>.Source' &&
+        method.requirements?.includes('K : SwiftUICore.PreferenceKey') &&
+        (method.parameters[2].type === '@escaping (SwiftUICore.Anchor<A>) -> K.Value' ||
+          method.parameters[2].type === '@escaping (inout K.Value, SwiftUICore.Anchor<A>) -> Swift.Void')
+      const anchorSource = anchorSignature && inventory.find((declaration) => declaration.module === 'SwiftUICore' &&
+        declaration.owner === 'SwiftUICore.Anchor.Source' && declaration.kind === 'static' &&
+        declaration.name === 'bounds' && declaration.type === 'SwiftUICore.Anchor<CoreFoundation.CGRect>.Source' &&
+        declaration.requirements?.includes('Value == CoreFoundation.CGRect') &&
+        present(declaration) && ios(declaration) <= ceiling)
+      if (anchorSource)
+        return [{ name, module: method.module, kind: 'eventStruct', type: method.parameters[2].type,
+          ios: Math.max(ios(method), ios(anchorSource)), preferenceKey: 'OneNativeSDKRectAnchorKey',
+          preferenceOperation: method.parameters[2].type.startsWith('@escaping (inout') ? 'transform' : 'set',
+          eventValue: { kind: 'object', fields: [
+            { name: 'origin', value: { kind: 'point' } },
+            { name: 'size', value: { kind: 'size' } },
+          ] } }]
       if (method.parameters.length === 0 &&
         method.requirements?.includes('Self : Swift.Equatable') &&
         method.type === `${method.module}.EquatableView<Self>`)

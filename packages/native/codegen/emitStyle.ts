@@ -154,6 +154,26 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
           : call
       }
       const expression = (template: string | undefined, value: string) => template?.replace('$value', value)
+      if (modifier.preferenceKey === 'OneNativeSDKRectAnchorKey')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    self.${modifier.sdkName ?? modifier.name}(key: OneNativeSDKRectAnchorKey.self, value: .bounds) ${modifier.preferenceOperation === 'transform'
+      ? '{ current, anchor in current = anchor }'
+      : '{ anchor in anchor }'}
+      .backgroundPreferenceValue(OneNativeSDKRectAnchorKey.self) { anchor in
+        GeometryReader { geometry in
+          Color.clear.onGeometryChange(for: CGRect.self) { _ in
+            anchor.map { geometry[$0] } ?? .zero
+          } action: { rect in
+            let payload = ${eventValueSwift(modifier.eventValue!, 'rect')}
+            guard let data = try? JSONSerialization.data(withJSONObject: payload),
+              let encoded = String(data: data, encoding: .utf8) else {
+              preconditionFailure("invalid ${modifier.name} event")
+            }
+            emit(${JSON.stringify(modifier.name)}, encoded)
+          }
+        }
+      }
+  }`
       if (modifier.kind === 'chartDescriptor')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     let descriptor: OneNativeSDKChartDescriptor = {
@@ -1623,6 +1643,12 @@ private struct OneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slic
   static func == (lhs: Self, rhs: Self) -> Bool { lhs.key == rhs.key }
   var body: some View { content }
 }`, '')).join('\n')}
+${derived.some((modifier) => modifier.preferenceKey === 'OneNativeSDKRectAnchorKey') ? `private struct OneNativeSDKRectAnchorKey: PreferenceKey {
+  static var defaultValue: Anchor<CGRect>? { nil }
+  static func reduce(value: inout Anchor<CGRect>?, nextValue: () -> Anchor<CGRect>?) {
+    value = nextValue() ?? value
+  }
+}` : ''}
 ${derived.some((modifier) => modifier.kind === 'chartDescriptor') ? `private struct OneNativeSDKChartDescriptor: Codable, AXChartDescriptorRepresentable {
   struct Axis: Codable {
     let title: String

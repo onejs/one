@@ -1893,6 +1893,10 @@ export interface OneNativeStyle {
   allowsTightening?: boolean
   allowsWindowActivationEventsWithNoArguments?: boolean
   allowsWindowActivationEventsWithOptionalBool?: boolean | null
+  anchorPreference?: (value: {
+    origin: { x: number; y: number }
+    size: { width: number; height: number }
+  }) => void
   animation?: SDKAnimation | null
   appEntityIdentifier?: string | null
   appStoreMerchandising?: Readonly<{
@@ -3337,6 +3341,10 @@ export interface OneNativeStyle {
       tracksVelocity?: boolean
     }>
   }>
+  transformAnchorPreference?: (value: {
+    origin: { x: number; y: number }
+    size: { width: number; height: number }
+  }) => void
   transformEffect?: Readonly<{
     transform: Readonly<{
       a: number
