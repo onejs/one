@@ -59,7 +59,9 @@ export type DerivedModifier = {
   requestType?: string
   registeredProtocol?: string
   registeredType?: string
-  registeredFactory?: 'layoutValue' | 'containerValue' | 'accessibilityAction' | 'onAppIntentExecution'
+  registeredFactory?: string
+  registeredCallbackType?: string
+  registeredCallbackLabel?: string
   requestProperty?: string
   sessionRequest?: { method: string; inputField: string; outputFields: readonly string[];
     actionLabel: string; defaults: readonly { label: string; value: string }[] }
@@ -760,6 +762,38 @@ export function deriveModifiers(
         method.requirements?.includes('I : AppIntents.TargetContentProvidingIntent'))
         return [{ name, module: method.module, kind: 'registeredValue',
           type: method.parameters[0].type, registeredFactory: 'onAppIntentExecution',
+          ios: ios(method), ...framework }]
+      const callback = method.parameters.length === 1 && method.parameters[0]
+      if (callback && (
+        method.module === '_PassKit_SwiftUI' && callback.label === 'perform' &&
+          /^@escaping \((?:PassKit\.PK\w+|Swift\.String)\) async -> PassKit\.PKPaymentRequest\w+Update$/.test(callback.type) ||
+        method.module === '_AppIntents_SwiftUI' && callback.label === '_' &&
+          callback.type === '@escaping @_Concurrency.MainActor (AppIntents.AppEntityUIElementsContext) -> [AppIntents.AppEntityUIElement]'
+      ))
+        return [{ name, module: method.module, kind: 'registeredValue',
+          type: callback.type, registeredFactory: method.name,
+          registeredCallbackType: callback.type.replace('@_Concurrency.MainActor', '@MainActor'),
+          registeredCallbackLabel: callback.label, ios: ios(method), ...framework }]
+      if (method.parameters.length === 3 && method.parameters[0].label === 'for' &&
+        method.parameters[0].type === 'Item.Type' && method.parameters[1].label === 'isEnabled' &&
+        method.parameters[1].type === 'Swift.Bool' && method.parameters[2].label === 'move' &&
+        method.parameters[2].type === '@escaping (_ difference: SwiftUI.ReorderDifference<Item.ID, SwiftUI.ReorderableSingleCollectionIdentifier>) -> ()' &&
+        method.requirements?.includes('Item : Swift.Identifiable') &&
+        method.requirements?.includes('Item.ID : Swift.Sendable'))
+        return [{ name, module: method.module, kind: 'registeredValue',
+          type: method.parameters[0].type, registeredFactory: 'reorderContainer',
+          ios: ios(method), ...framework }]
+      if (method.parameters.length === 1 && method.parameters[0].label === 'content' &&
+        method.parameters[0].type === '@escaping (_MapKit_SwiftUI.MapFeature) -> some MapContent')
+        return [{ name, module: method.module, kind: 'registeredValue',
+          type: method.parameters[0].type, registeredFactory: 'mapFeatureSelectionContent',
+          ios: ios(method), ...framework }]
+      if (method.parameters.length === 2 &&
+        method.parameters[0].type === '_SecureElementCredential_SwiftUI.CredentialTransaction.Configuration?' &&
+        method.parameters[1].label === 'action' &&
+        method.parameters[1].type === '@escaping (_ transaction: _SecureElementCredential_SwiftUI.CredentialTransaction) async -> Swift.Void')
+        return [{ name, module: method.module, kind: 'registeredValue',
+          type: method.parameters[0].type, registeredFactory: 'transactionTask',
           ios: ios(method), ...framework }]
       const anchorSignature = method.parameters.length === 3 &&
         method.parameters[0].type === 'K.Type' &&

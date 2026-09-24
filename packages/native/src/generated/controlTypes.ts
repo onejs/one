@@ -1907,6 +1907,7 @@ export interface OneNativeStyle {
   }) => void
   animation?: SDKAnimation | null
   appEntityIdentifier?: string | null
+  appEntityUIElements?: string
   appStoreMerchandising?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
     kind: string
@@ -2578,6 +2579,7 @@ export interface OneNativeStyle {
   }>
   mapControlVisibility?: SDKMapControlVisibility
   mapFeatureSelectionAccessory?: SDKMapFeatureSelectionAccessory | null
+  mapFeatureSelectionContent?: string
   mapFeatureSelectionDisabled?: boolean
   mapItemDetailPopoverWithCurrentLocation?: Readonly<{
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
@@ -2655,6 +2657,10 @@ export interface OneNativeStyle {
   offset?: Readonly<{ x: number; y: number }>
   onAppear?: () => void
   onAppIntentExecution?: string
+  onApplePayCouponCodeChange?: string
+  onApplePayPaymentMethodChange?: string
+  onApplePayShippingContactChange?: string
+  onApplePayShippingMethodChange?: string
   onCameraCaptureEvent?: (value: {
     phase: 'began' | 'cancelled' | 'ended' | 'unknown'
   }) => void
@@ -2940,6 +2946,7 @@ export interface OneNativeStyle {
     isPresented: Readonly<{ value: boolean; onChange: (value: boolean) => void }>
   }>
   renameAction?: () => void
+  reorderContainer?: string
   replaceDisabled?: boolean
   rotation3DEffect?: Readonly<{
     angle: Readonly<{ radians: number }>
@@ -3379,6 +3386,7 @@ export interface OneNativeStyle {
       tracksVelocity?: boolean
     }>
   }>
+  transactionTask?: string
   transformAnchorPreference?: (value: {
     origin: { x: number; y: number }
     size: { width: number; height: number }

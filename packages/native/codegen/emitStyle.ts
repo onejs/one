@@ -1799,7 +1799,7 @@ ${derived.some((modifier) => modifier.kind === 'registeredValue') ? `@MainActor 
 }
 ` : ''}
 ${derived.some((modifier) => modifier.registeredFactory) ? `@MainActor public struct OneNativeRegisteredModifier {
-  enum Kind { case layoutValue, containerValue, accessibilityAction, onAppIntentExecution }
+  enum Kind { case ${['layoutValue', 'containerValue', 'accessibilityAction', 'onAppIntentExecution', 'reorderContainer', 'mapFeatureSelectionContent', 'transactionTask', ...derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) => modifier.registeredFactory!)].join(', ')} }
   let kind: Kind
   let apply: (AnyView) -> AnyView
 
@@ -1824,6 +1824,34 @@ ${derived.some((modifier) => modifier.registeredFactory) ? `@MainActor public st
   ) -> Self {
     Self(kind: .onAppIntentExecution) { AnyView($0.onAppIntentExecution(intent, perform: action)) }
   }
+
+  @available(iOS 27, *)
+  public static func reorderContainer<Item: Identifiable>(
+    for item: Item.Type, isEnabled: Bool = true,
+    move: @escaping (ReorderDifference<Item.ID, ReorderableSingleCollectionIdentifier>) -> Void
+  ) -> Self where Item.ID: Sendable {
+    Self(kind: .reorderContainer) { AnyView($0.reorderContainer(for: item, isEnabled: isEnabled, move: move)) }
+  }
+
+  @available(iOS 17, *)
+  public static func mapFeatureSelectionContent<Content: MapContent>(
+    @MapContentBuilder content: @escaping (MapFeature) -> Content
+  ) -> Self {
+    Self(kind: .mapFeatureSelectionContent) { AnyView($0.mapFeatureSelectionContent(content: content)) }
+  }
+
+  @available(iOS 18.1, *)
+  public static func transactionTask(
+    _ configuration: CredentialTransaction.Configuration?,
+    action: @escaping (CredentialTransaction) async -> Void
+  ) -> Self {
+    Self(kind: .transactionTask) { AnyView($0.transactionTask(configuration, action: action)) }
+  }
+${derived.filter((modifier) => modifier.registeredCallbackType).map((modifier) => `
+  @available(iOS ${modifier.ios}, *)
+  public static func ${modifier.registeredFactory}(_ action: ${modifier.registeredCallbackType}) -> Self {
+    Self(kind: .${modifier.registeredFactory}) { AnyView($0.${modifier.sdkName ?? modifier.name}(${modifier.registeredCallbackLabel === '_' ? '' : `${modifier.registeredCallbackLabel}: `}action)) }
+  }`).join('\n')}
 }
 ` : ''}
 ${derived.some((modifier) => modifier.namespaceParameter || modifier.kind === 'dragContainer' || modifier.kind === 'dragSelection' || modifier.kind === 'dragItemID') ? 'private enum OneNativeNamespace { static let id = Namespace().wrappedValue }\n' : ''}

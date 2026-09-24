@@ -299,7 +299,10 @@ for (const modifier of derivedModifiers) {
           d.parameters[1].label === 'keyframes' &&
           d.parameters[1].type.startsWith(`@escaping (${modifier.type}) -> some Keyframes<`)
         : modifier.kind === 'registeredValue'
-        ? modifier.registeredFactory === 'layoutValue'
+        ? modifier.registeredCallbackType
+          ? d.parameters.length === 1 && d.parameters[0].type.replace('@_Concurrency.MainActor', '@MainActor') === modifier.registeredCallbackType &&
+            d.parameters[0].label === modifier.registeredCallbackLabel
+          : modifier.registeredFactory === 'layoutValue'
           ? d.parameters.length === 2 && d.parameters[0].label === 'key' &&
             d.parameters[0].type === 'K.Type' && d.parameters[1].label === 'value' &&
             d.parameters[1].type === 'K.Value' &&
@@ -319,6 +322,19 @@ for (const modifier of derivedModifiers) {
             d.parameters[1].label === 'perform' &&
             d.parameters[1].type === '@escaping @_Concurrency.MainActor (I) -> Swift.Void' &&
             d.requirements?.includes('I : AppIntents.TargetContentProvidingIntent')
+          : modifier.registeredFactory === 'reorderContainer'
+          ? d.parameters.length === 3 && d.parameters[0].label === 'for' &&
+            d.parameters[0].type === 'Item.Type' && d.parameters[1].type === 'Swift.Bool' &&
+            d.parameters[2].type === '@escaping (_ difference: SwiftUI.ReorderDifference<Item.ID, SwiftUI.ReorderableSingleCollectionIdentifier>) -> ()' &&
+            d.requirements?.includes('Item : Swift.Identifiable') &&
+            d.requirements?.includes('Item.ID : Swift.Sendable')
+          : modifier.registeredFactory === 'mapFeatureSelectionContent'
+          ? d.parameters.length === 1 && d.parameters[0].label === 'content' &&
+            d.parameters[0].type === '@escaping (_MapKit_SwiftUI.MapFeature) -> some MapContent'
+          : modifier.registeredFactory === 'transactionTask'
+          ? d.parameters.length === 2 &&
+            d.parameters[0].type === '_SecureElementCredential_SwiftUI.CredentialTransaction.Configuration?' &&
+            d.parameters[1].type === '@escaping (_ transaction: _SecureElementCredential_SwiftUI.CredentialTransaction) async -> Swift.Void'
           : d.parameters.length === 1 && d.parameters[0].type === modifier.type &&
             d.parameters[0].label === '_'
         : modifier.textSelection

@@ -2476,6 +2476,16 @@
       }
     },
     {
+      "name": "appEntityUIElements",
+      "kind": "registeredValue",
+      "type": "@escaping @_Concurrency.MainActor (AppIntents.AppEntityUIElementsContext) -> [AppIntents.AppEntityUIElement]",
+      "registeredFactory": "appEntityUIElements",
+      "registeredCallbackType": "@escaping @MainActor (AppIntents.AppEntityUIElementsContext) -> [AppIntents.AppEntityUIElement]",
+      "registeredCallbackLabel": "_",
+      "ios": 18.4,
+      "framework": "AppIntents"
+    },
+    {
       "name": "appStoreMerchandising",
       "kind": "record",
       "type": "",
@@ -9112,6 +9122,14 @@
       ]
     },
     {
+      "name": "mapFeatureSelectionContent",
+      "kind": "registeredValue",
+      "type": "@escaping (_MapKit_SwiftUI.MapFeature) -> some MapContent",
+      "registeredFactory": "mapFeatureSelectionContent",
+      "ios": 17,
+      "framework": "MapKit"
+    },
+    {
       "name": "mapFeatureSelectionDisabled",
       "kind": "boolean",
       "type": "@escaping (_MapKit_SwiftUI.MapFeature) -> Swift.Bool",
@@ -9837,6 +9855,46 @@
       "registeredFactory": "onAppIntentExecution",
       "ios": 26,
       "framework": "AppIntents"
+    },
+    {
+      "name": "onApplePayCouponCodeChange",
+      "kind": "registeredValue",
+      "type": "@escaping (Swift.String) async -> PassKit.PKPaymentRequestCouponCodeUpdate",
+      "registeredFactory": "onApplePayCouponCodeChange",
+      "registeredCallbackType": "@escaping (Swift.String) async -> PassKit.PKPaymentRequestCouponCodeUpdate",
+      "registeredCallbackLabel": "perform",
+      "ios": 15.5,
+      "framework": "PassKit"
+    },
+    {
+      "name": "onApplePayPaymentMethodChange",
+      "kind": "registeredValue",
+      "type": "@escaping (PassKit.PKPaymentMethod) async -> PassKit.PKPaymentRequestPaymentMethodUpdate",
+      "registeredFactory": "onApplePayPaymentMethodChange",
+      "registeredCallbackType": "@escaping (PassKit.PKPaymentMethod) async -> PassKit.PKPaymentRequestPaymentMethodUpdate",
+      "registeredCallbackLabel": "perform",
+      "ios": 15.5,
+      "framework": "PassKit"
+    },
+    {
+      "name": "onApplePayShippingContactChange",
+      "kind": "registeredValue",
+      "type": "@escaping (PassKit.PKContact) async -> PassKit.PKPaymentRequestShippingContactUpdate",
+      "registeredFactory": "onApplePayShippingContactChange",
+      "registeredCallbackType": "@escaping (PassKit.PKContact) async -> PassKit.PKPaymentRequestShippingContactUpdate",
+      "registeredCallbackLabel": "perform",
+      "ios": 15.5,
+      "framework": "PassKit"
+    },
+    {
+      "name": "onApplePayShippingMethodChange",
+      "kind": "registeredValue",
+      "type": "@escaping (PassKit.PKShippingMethod) async -> PassKit.PKPaymentRequestShippingMethodUpdate",
+      "registeredFactory": "onApplePayShippingMethodChange",
+      "registeredCallbackType": "@escaping (PassKit.PKShippingMethod) async -> PassKit.PKPaymentRequestShippingMethodUpdate",
+      "registeredCallbackLabel": "perform",
+      "ios": 15.5,
+      "framework": "PassKit"
     },
     {
       "name": "onCameraCaptureEvent",
@@ -12519,6 +12577,13 @@
       "type": "@escaping () -> Swift.Void",
       "label": "_",
       "ios": 16
+    },
+    {
+      "name": "reorderContainer",
+      "kind": "registeredValue",
+      "type": "Item.Type",
+      "registeredFactory": "reorderContainer",
+      "ios": 27
     },
     {
       "name": "replaceDisabled",
@@ -16664,6 +16729,14 @@
       ]
     },
     {
+      "name": "transactionTask",
+      "kind": "registeredValue",
+      "type": "_SecureElementCredential_SwiftUI.CredentialTransaction.Configuration?",
+      "registeredFactory": "transactionTask",
+      "ios": 18.1,
+      "framework": "SecureElementCredential"
+    },
+    {
       "name": "transformAnchorPreference",
       "kind": "eventStruct",
       "type": "@escaping (inout K.Value, SwiftUICore.Anchor<A>) -> Swift.Void",
@@ -18063,6 +18136,7 @@
         "projectionEffect",
         "refreshable",
         "renameAction",
+        "reorderContainer",
         "replaceDisabled",
         "safeAreaBar",
         "sceneAccessory",
@@ -18144,12 +18218,17 @@
       "_AppIntents_SwiftUI": [
         "accessibilityAction",
         "appEntityIdentifier",
+        "appEntityUIElements",
         "onAppIntentExecution",
         "shortcutsLinkStyle",
         "siriTipViewStyle"
       ],
       "_PassKit_SwiftUI": [
         "addPassToWalletButtonStyle",
+        "onApplePayCouponCodeChange",
+        "onApplePayPaymentMethodChange",
+        "onApplePayShippingContactChange",
+        "onApplePayShippingMethodChange",
         "payLaterViewAction",
         "payLaterViewDisplayStyle",
         "payWithApplePayButtonDisableCardArt",
@@ -18202,6 +18281,7 @@
         "mapControlVisibility",
         "mapControls",
         "mapFeatureSelectionAccessory",
+        "mapFeatureSelectionContent",
         "mapFeatureSelectionDisabled",
         "mapItemDetailPopover",
         "mapItemDetailSheet",
@@ -18242,6 +18322,9 @@
       ],
       "_AuthenticationServices_SwiftUI": [
         "signInWithAppleButtonStyle"
+      ],
+      "_SecureElementCredential_SwiftUI": [
+        "transactionTask"
       ],
       "_Translation_SwiftUI": [
         "translationPresentation",
@@ -18610,6 +18693,7 @@
         "projectionEffect",
         "refreshable",
         "renameAction",
+        "reorderContainer",
         "replaceDisabled",
         "safeAreaBar",
         "sceneAccessory",
@@ -18691,12 +18775,17 @@
       "_AppIntents_SwiftUI": [
         "accessibilityAction",
         "appEntityIdentifier",
+        "appEntityUIElements",
         "onAppIntentExecution",
         "shortcutsLinkStyle",
         "siriTipViewStyle"
       ],
       "_PassKit_SwiftUI": [
         "addPassToWalletButtonStyle",
+        "onApplePayCouponCodeChange",
+        "onApplePayPaymentMethodChange",
+        "onApplePayShippingContactChange",
+        "onApplePayShippingMethodChange",
         "payLaterViewAction",
         "payLaterViewDisplayStyle",
         "payWithApplePayButtonDisableCardArt",
@@ -18749,6 +18838,7 @@
         "mapControlVisibility",
         "mapControls",
         "mapFeatureSelectionAccessory",
+        "mapFeatureSelectionContent",
         "mapFeatureSelectionDisabled",
         "mapItemDetailPopover",
         "mapItemDetailSheet",
@@ -18789,6 +18879,9 @@
       ],
       "_AuthenticationServices_SwiftUI": [
         "signInWithAppleButtonStyle"
+      ],
+      "_SecureElementCredential_SwiftUI": [
+        "transactionTask"
       ],
       "_Translation_SwiftUI": [
         "translationPresentation",
