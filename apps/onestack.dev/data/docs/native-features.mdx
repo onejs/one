@@ -709,6 +709,144 @@ stay native values and follow theme changes without a React subscription.
 
 ---
 
+## Notifications
+
+Local notifications through the `Notifications` namespace, available as
+`One.Notifications` and from `@vxrn/native/notifications`. Payload shapes
+follow `expo-notifications`; platform enums are string unions.
+
+```tsx
+import { One } from 'one'
+
+const current = await One.Notifications.getPermissions()
+if (!current.granted) {
+  await One.Notifications.requestPermissions()
+}
+await One.Notifications.setBadgeCount(3)
+```
+
+Permission reads resolve
+`{ status: 'granted' | 'denied' | 'undetermined', granted, canAskAgain }`,
+with an `ios.status` carrying the authorization as
+`'notDetermined' | 'denied' | 'authorized' | 'provisional' | 'ephemeral'`
+on iOS. `requestPermissions` accepts
+`{ ios: { allowAlert, allowBadge, allowSound, allowProvisional } }`; unset
+fields default to true except `allowProvisional`. On Android below 13 there is
+no runtime prompt, so requesting resolves the current status. `setBadgeCount`
+resolves `false` and `getBadgeCount` resolves `0` on Android: the launcher
+owns badges there.
+
+Android delivery targets notification channels. Create one before
+scheduling onto it; settings apply on first create, afterwards the user owns
+them in system settings.
+
+```tsx
+await One.Notifications.setChannel('reminders', {
+  name: 'Reminders',
+  importance: 'default',
+})
+```
+
+`getChannel`, `getChannels`, and `deleteChannel` round out the set. On iOS
+they resolve `null`, `[]`, and nothing: there are no channels there.
+Importance is `'none' | 'min' | 'low' | 'default' | 'high' | 'max'`; the
+legacy expo numbers 0-5 still map.
+
+`schedule` delivers a local notification; `trigger: null` shows it
+immediately. Every arrival fires `addReceivedListener` while the app runs in
+the foreground, and every tap fires `addResponseReceivedListener` with the
+notification and the default action identifier:
+
+```tsx
+One.Notifications.setHandler({
+  handleNotification: async () => ({
+    shouldShowBanner: true,
+    shouldShowList: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+})
+
+const id = await One.Notifications.schedule({
+  content: { title: 'Hello', body: 'world' },
+  trigger: null,
+})
+```
+
+Until the app sets a handler the notification shows fully: banner, list,
+sound, and badge. That matches `expo-notifications`, whose default handler
+asks for everything and whose 3 s timeout presents rather than drops; this
+module does the same, answering from JS within 2.5 s and from native at 3 s.
+With no listeners mounted at all native presents immediately instead of
+waiting out the backstop. Setting the handler to `null` leaves native
+undecided, which hides the notification on both platforms while listeners
+still fire. On Android the banner flag raises the priority but the channel
+importance governs what the system actually shows, and `shouldSetBadge` is
+ignored: launcher badges are out of scope.
+
+A tap that cold-starts the app cannot reach a listener: JS is not running
+yet. It surfaces through the synchronous `getLastResponse` instead, which
+the app reads on launch; `clearLastResponse` dismisses it. The iOS delegate
+installs at launch, before the bridge loads, so the cold-start tap is cached
+no matter how early it arrives.
+
+Two more triggers schedule into the future: `{ type: 'timeInterval', seconds,
+repeats? }` and `{ type: 'date', date }`, where the date is a timestamp or a
+`Date`. A past date delivers immediately. Both take an Android `channelId`;
+unknown ids fall back to an owned Default channel rather than posting
+nowhere. Rescheduling an identifier replaces it.
+
+```tsx
+await One.Notifications.schedule({
+  identifier: 'tea',
+  content: { title: 'Tea', body: 'ready' },
+  trigger: { type: 'timeInterval', seconds: 300 },
+})
+```
+
+`cancelScheduled`, `cancelAllScheduled`, and `getAllScheduled` manage the
+pending list; `getPresented`, `dismiss`, and `dismissAll` manage what is on
+screen.
+
+On Android the triggers ride `AlarmManager.setAndAllowWhileIdle`: one inexact
+path, no `SCHEDULE_EXACT_ALARM`, so a delivery deferred by doze is expected,
+not a bug. Schedules persist across restarts and a boot receiver re-arms
+them; one-shots that expired while the device was off are dropped and repeats
+restart from boot. iOS has two platform rules worth knowing: a repeating
+interval must be at least 60 seconds, and the calendar trigger resolves to
+whole seconds.
+
+Remote push tokens follow `expo-notifications`' shape.
+`getDevicePushTokenAsync` resolves `{ type: 'ios' | 'android', data }`: the
+APNs hex token on iOS (via `registerForRemoteNotifications`, which works on
+the simulator on iOS 16+) and the FCM registration token on Android.
+`addPushTokenListener` returns a subscription that fires when the token
+refreshes:
+
+```tsx
+const token = await One.Notifications.getDevicePushTokenAsync()
+// { type: 'ios', data: 'a1b2...' }
+
+const sub = One.Notifications.addPushTokenListener((next) => {
+  console.log(next.data)
+})
+sub.remove()
+```
+
+Push is opt-in per platform. On Android it needs
+`native.app.notifications.push`, which compiles the Firebase Messaging
+source set in; without it the app carries no Firebase classes and the call
+rejects. On iOS the same flag stamps the `aps-environment` entitlement;
+without it the call still registers, but a device has no push environment
+to answer in.
+
+Declare the capability in `native.app` so prebuild stamps the Android
+permissions and receiver plus the iOS delegate gate. Without it the iOS
+delegate never installs, so apps linking `@vxrn/native` for other modules
+keep whatever delegate their own push library sets.
+
+---
+
 ## Clipboard
 
 String clipboard through `One.Clipboard`, matching `expo-clipboard`'s string API. Backed by `UIPasteboard` on iOS, `ClipboardManager` on Android, and `navigator.clipboard` on web.
@@ -932,6 +1070,7 @@ permission declared in `native.app`:
 one({
   native: {
     app: {
+      notifications: {},
       imagePicker: { camera: 'Take profile photos.' },
       // ...
     },
@@ -1068,6 +1207,7 @@ scene code bakes static gradients into `DataTexture`s instead.
 | TextInput, native state | One.UI.* | One.UI.* | One.UI.* (web behavior) |
 | Safe area | One.UI.SafeArea | One.UI.SafeArea | One.UI.SafeArea (css env) |
 | Colors | One.iOS.Color | Color.android | null |
+| Notifications | permission, badge, channels (no-op), events, handler, scheduling | permission, badge (no-op), channels, events, handler, scheduling | denied, inert |
 | Clipboard | UIPasteboard | ClipboardManager | navigator.clipboard |
 | Network | NWPathMonitor | ConnectivityManager | navigator.onLine |
 | Browser | SFSafariViewController + ASWebAuthenticationSession | Custom Tabs | window.open |

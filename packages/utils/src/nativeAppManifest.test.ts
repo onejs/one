@@ -129,6 +129,19 @@ describe('native.app manifest', () => {
     ).toThrow(/versionCode/)
   })
 
+  test('accepts notifications and rejects a non-boolean push', () => {
+    expect(() => validateNativeApp({ ...app, notifications: undefined })).not.toThrow()
+    expect(() =>
+      validateNativeApp({ ...app, notifications: { push: true } })
+    ).not.toThrow()
+    expect(() =>
+      validateNativeApp({ ...app, notifications: { push: 'yes' } } as any)
+    ).toThrow(/notifications\.push/)
+    expect(() => validateNativeApp({ ...app, notifications: true } as any)).toThrow(
+      /notifications\.push/
+    )
+  })
+
   test('accepts a maps key and rejects empty ones', () => {
     expect(() =>
       validateNativeApp({

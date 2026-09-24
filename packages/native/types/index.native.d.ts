@@ -100,6 +100,7 @@ export declare const Swift: {
     Slot: typeof Slot;
 };
 export { Compose };
+export { Notifications } from './notifications';
 export { Menu, ContextMenu };
 export { useNativeState, type NativeState } from './nativeState';
 export { TextInput } from './universal/TextInput/index';

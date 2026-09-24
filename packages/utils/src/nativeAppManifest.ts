@@ -22,6 +22,13 @@ export interface NativeAppManifest {
     // One.ImagePicker.launchCamera.
     camera?: string
   }
+  // present when the app uses local notifications. prebuild stamps the
+  // android notification permissions and receiver plus the ios delegate gate.
+  // push opts into remote push: the fcm source set and the aps-environment
+  // entitlement. without it firebase stays out of the app entirely.
+  notifications?: {
+    push?: boolean
+  }
   ios?: {
     bundleId: string
     buildNumber?: string
@@ -114,6 +121,15 @@ export function validateNativeApp(
       manifest.imagePicker.camera.trim() === '')
   ) {
     fail('imagePicker.camera must be a non-empty string')
+  }
+  if (manifest.notifications !== undefined) {
+    if (
+      typeof manifest.notifications !== 'object' ||
+      (manifest.notifications.push !== undefined &&
+        typeof manifest.notifications.push !== 'boolean')
+    ) {
+      fail('notifications.push must be a boolean')
+    }
   }
   if (!platform || platform === 'ios') {
     if (!manifest.ios?.bundleId || !REVERSE_DNS.test(manifest.ios.bundleId)) {
