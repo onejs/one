@@ -474,6 +474,29 @@ ${modifier.cases!.map((item) => `      case ${JSON.stringify(item.name)}: return
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     ${apply(`{ await OneNativeAsyncAction.wait(name: ${JSON.stringify(modifier.name)}, emit: emit) }`, modifier.ios)}
   }`
+      if (modifier.kind === 'eventDrop')
+        return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let types: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data),
+        !decoded.isEmpty else { preconditionFailure("invalid ${modifier.name} types") }
+      return decoded
+    }()
+    ${apply(`of: types, isTargeted: nil, perform: { providers in
+      var accepted = false
+      for provider in providers {
+        guard let type = types.first(where: { provider.hasItemConformingToTypeIdentifier($0) }) else { continue }
+        accepted = true
+        provider.loadDataRepresentation(forTypeIdentifier: type) { data, _ in
+          guard let data,
+            let encodedData = try? JSONSerialization.data(withJSONObject: ["type": type, "data": data.base64EncodedString()]),
+            let encoded = String(data: encodedData, encoding: .utf8) else { return }
+          DispatchQueue.main.async { emit(${JSON.stringify(modifier.name)}, encoded) }
+        }
+      }
+      return accepted
+    }`, modifier.ios, true)}
+  }`
       if (modifier.kind === 'eventAsyncStruct')
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     ${modifier.arguments?.length ? `let decoded: [String] = {
@@ -787,7 +810,7 @@ export type SDKEventValueShape =
   | { kind: 'verification' }
   | { kind: 'associatedEnum'; cases: readonly { name: string; values: readonly SDKEventValueShape[] }[]; open?: true }
 const sdkAssociatedCases: Record<string, Record<string, readonly SDKEventValueShape[]>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAssociatedEnum').map((modifier) => [modifier.name, Object.fromEntries(modifier.associatedCases!.map((item) => [item.name, item.values]))])))}
-const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct' || modifier.kind === 'eventAsyncStruct' || modifier.kind === 'eventAsyncString' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.eventValue])))}
+const sdkEventStructs: Record<string, SDKEventValueShape> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventStruct' || modifier.kind === 'eventDrop' || modifier.kind === 'eventAsyncStruct' || modifier.kind === 'eventAsyncString' || modifier.kind === 'eventReturnEnum').map((modifier) => [modifier.name, modifier.eventValue])))}
 const sdkAsyncArguments: Record<string, readonly { field: string; kind: string }[]> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAsyncStruct' && modifier.arguments?.length).map((modifier) => [modifier.name, modifier.arguments!.map((argument) => ({ field: argument.field, kind: argument.kind }))])))}
 const sdkAsyncStringFields: Record<string, { predicate: string; callback: string; selects: boolean }> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'eventAsyncString').map((modifier) => [modifier.name, { predicate: modifier.predicateLabel, callback: modifier.callbackLabel, selects: Boolean(modifier.selectionMember) }]))) }
 const sdkGestureOptions: Record<string, Record<string, SDKEventValueShape | null>> = ${JSON.stringify(Object.fromEntries(derived.filter((modifier) => modifier.kind === 'gesture').map((modifier) => [modifier.name, Object.fromEntries(modifier.gestureOptions!.map((option) => [option.name, option.eventValue ?? null]))])))}
@@ -965,6 +988,15 @@ export function swiftStyleNative(style: OneNativeStyle | undefined): OneNativeSt
           typeof (value as Record<string, unknown>)[fields.callback] !== 'function')
           throw new Error(name + ' must be an async string callback and SDK decision')
         sdkModifiers.push([name, String((value as Record<string, unknown>)[fields.predicate])])
+        continue
+      }
+      if (kind === 'eventDrop') {
+        const record = value as { of?: unknown; onDrop?: unknown } | undefined
+        if (!record || !Array.isArray(record.of) || record.of.length === 0 ||
+          record.of.some((item) => typeof item !== 'string' || !item) ||
+          typeof record.onDrop !== 'function')
+          throw new Error(name + ' must have content types and an onDrop callback')
+        sdkModifiers.push([name, JSON.stringify(record.of)])
         continue
       }
       if (kind === 'number' && (typeof value !== 'number' || !Number.isFinite(value))) throw new Error(name + ' must be finite')
@@ -1164,6 +1196,12 @@ export function dispatchSDKEvent(style: OneNativeStyle | undefined, name: string
     if (!validSDKEventValue(payload, sdkEventStructs[name]))
       throw new Error(name + ' emitted an invalid struct value')
     ;(modifier as ((value: unknown) => void) | undefined)?.(payload)
+  }
+  else if (kind === 'eventDrop') {
+    const payload: unknown = JSON.parse(value)
+    if (!validSDKEventValue(payload, sdkEventStructs[name]))
+      throw new Error(name + ' emitted an invalid drop value')
+    ;(modifier as { onDrop: (value: unknown) => void } | undefined)?.onDrop(payload)
   }
   else if (kind === 'bindingBoolean' || kind === 'bindingFocusBoolean') {
     if (value !== 'true' && value !== 'false') throw new Error(name + ' emitted an invalid boolean')

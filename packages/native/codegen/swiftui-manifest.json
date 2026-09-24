@@ -9921,6 +9921,29 @@
       }
     },
     {
+      "name": "onDrop",
+      "kind": "eventDrop",
+      "type": "[Swift.String]",
+      "ios": 13.4,
+      "eventValue": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "type",
+            "value": {
+              "kind": "string"
+            }
+          },
+          {
+            "name": "data",
+            "value": {
+              "kind": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
       "name": "onDropSessionUpdated",
       "kind": "eventStruct",
       "type": "@escaping (SwiftUI.DropSession) -> Swift.Void",
@@ -17508,6 +17531,7 @@
         "onContinuousHover",
         "onDrag",
         "onDragSessionUpdated",
+        "onDrop",
         "onDropSessionUpdated",
         "onHover",
         "onInteractiveResizeChange",
@@ -18018,6 +18042,7 @@
         "onContinuousHover",
         "onDrag",
         "onDragSessionUpdated",
+        "onDrop",
         "onDropSessionUpdated",
         "onHover",
         "onInteractiveResizeChange",

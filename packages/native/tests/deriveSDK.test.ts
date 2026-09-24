@@ -546,6 +546,22 @@ describe('SDK modifier derivation', () => {
       ] },
     }])
   })
+
+  it('derives item-provider drops as typed binary events', () => {
+    expect(deriveModifiers([
+      method('onDrop', 'SwiftUI', [
+        { label: 'of', name: 'supportedTypes', type: '[Swift.String]' },
+        { label: 'isTargeted', name: 'isTargeted', type: 'SwiftUICore.Binding<Swift.Bool>?' },
+        { label: 'perform', name: 'action', type: '@escaping (_ providers: [Foundation.NSItemProvider]) -> Swift.Bool' },
+      ]),
+    ], 27, [])).toEqual([{
+      name: 'onDrop', kind: 'eventDrop', type: '[Swift.String]', ios: 0,
+      eventValue: { kind: 'object', fields: [
+        { name: 'type', value: { kind: 'string' } },
+        { name: 'data', value: { kind: 'string' } },
+      ] },
+    }])
+  })
 })
 
 describe('SDK view slots', () => {

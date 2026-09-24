@@ -466,6 +466,7 @@ extension View {
       case "onDisappear": view = AnyView(view.oneNativeSDKOnDisappear(value, emit: emit))
       case "onDrag": view = AnyView(view.oneNativeSDKOnDrag(value, emit: emit))
       case "onDragSessionUpdated": view = AnyView(view.oneNativeSDKOnDragSessionUpdated(value, emit: emit))
+      case "onDrop": view = AnyView(view.oneNativeSDKOnDrop(value, emit: emit))
       case "onDropSessionUpdated": view = AnyView(view.oneNativeSDKOnDropSessionUpdated(value, emit: emit))
       case "onGeometryChangeWithSize": view = AnyView(view.oneNativeSDKOnGeometryChangeWithSize(value, emit: emit))
       case "onHover": view = AnyView(view.oneNativeSDKOnHover(value, emit: emit))
@@ -5539,6 +5540,29 @@ if #available(iOS 27, *) { self.onDragSessionUpdated({ item in
 self
 #endif
 
+  }
+
+  @ViewBuilder fileprivate func oneNativeSDKOnDrop(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
+    let types: [String] = {
+      guard let data = value.data(using: .utf8),
+        let decoded = try? JSONDecoder().decode([String].self, from: data),
+        !decoded.isEmpty else { preconditionFailure("invalid onDrop types") }
+      return decoded
+    }()
+    self.onDrop(of: types, isTargeted: nil, perform: { providers in
+      var accepted = false
+      for provider in providers {
+        guard let type = types.first(where: { provider.hasItemConformingToTypeIdentifier($0) }) else { continue }
+        accepted = true
+        provider.loadDataRepresentation(forTypeIdentifier: type) { data, _ in
+          guard let data,
+            let encodedData = try? JSONSerialization.data(withJSONObject: ["type": type, "data": data.base64EncodedString()]),
+            let encoded = String(data: encodedData, encoding: .utf8) else { return }
+          DispatchQueue.main.async { emit("onDrop", encoded) }
+        }
+      }
+      return accepted
+    })
   }
 
   @ViewBuilder fileprivate func oneNativeSDKOnDropSessionUpdated(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
