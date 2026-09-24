@@ -771,14 +771,11 @@ function relaunchApp(config: Config) {
 // matter. call after a launch that guarantees the data dir exists; pm clear
 // wipes the stamp, so call again after every clear.
 function stampDebugHost(config: Config) {
-  adbText(config, [
-    'shell',
-    'run-as',
-    config.packageId,
-    'sh',
-    '-c',
-    `mkdir -p shared_prefs && printf '%s' '<map><string name="debug_http_host">10.0.2.2:${config.metroPort}</string></map>' > shared_prefs/${config.packageId}_preferences.xml`,
-  ])
+  // adb shell joins argv with spaces and re-parses on device, so the -c
+  // script travels inside its own double quotes; the xml attribute quotes
+  // are backslash-escaped for the device shell.
+  const script = `mkdir -p shared_prefs && echo '<map><string name=\\"debug_http_host\\">10.0.2.2:${config.metroPort}</string></map>' > shared_prefs/${config.packageId}_preferences.xml`
+  adbText(config, ['shell', 'run-as', config.packageId, 'sh', '-c', `"${script}"`])
 }
 
 async function run(config: Config) {
