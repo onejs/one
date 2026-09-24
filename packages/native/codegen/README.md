@@ -10,6 +10,8 @@
 2. Keep explicit overrides only for semantics absent from a signature: bindings and events, generic construction, view-building closures and slots, layout ownership, and values such as `Color` needing conversion. List each override category and its files below. `tabViewBottomAccessory` uses a view-building slot; its placement is an SDK environment value that accessory content can read.
 3. Regenerate, typecheck, build a native consumer, and render an accessory plus two newly derived modifiers in an iOS 27 simulator. Record modifier counts before and after. Check generation for drift and run the native tests covering the touched interfaces.
 
+For the `tests/native-features` iOS consumer, refresh React Codegen headers with `USE_FRAMEWORKS=static pod install` from `tests/native-features/ios` before building the workspace. A plain `pod install` cannot integrate its NitroWebImage and SDWebImage dependencies as static libraries.
+
 ## Semantic overrides
 
 - Closures and bindings: `controlCatalog.ts`, `leafCatalog.ts`, and `controlTypes.ts` choose React events, controlled values, actions, and constructors with label or content closures. A Swift closure signature does not say which state React owns or when an event fires.
