@@ -85,7 +85,7 @@ final class HybridOneBrowser: HybridOneBrowserSpec {
   // a bad url rejects the promise, like the bridge before the port, rather
   // than throwing synchronously into js.
   private static func rejected<T>(_ verb: String) -> Promise<T> {
-    return Promise.rejected(withError: RuntimeError.error(withMessage: "\(verb): requires a url."))
+    return Promise.rejected(withError: oneNativeError("E_BROWSER_URL", "\(verb): requires a url."))
   }
 
   func open(url urlString: String, options: BrowserNativeOptions) throws -> Promise<BrowserResult>
@@ -166,8 +166,8 @@ final class HybridOneBrowser: HybridOneBrowserSpec {
         self.authSession = nil
         self.authPromise = nil
         promise.reject(
-          withError: RuntimeError.error(
-            withMessage: "Browser.openAuthSession: the auth session could not start."))
+          withError: oneNativeError(
+            "E_BROWSER_START", "Browser.openAuthSession: the auth session could not start."))
       }
     }
     return promise

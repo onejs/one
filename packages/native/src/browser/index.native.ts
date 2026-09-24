@@ -1,4 +1,5 @@
 import { NitroModules } from 'react-native-nitro-modules'
+import { rethrowNativeError } from '../nativeError'
 import type { BrowserAuthResult, OneBrowser } from '../specs/OneBrowser.nitro'
 import type {
   BrowserAuthSessionOptions,
@@ -56,7 +57,7 @@ function open(url: string, options: BrowserOpenOptions = {}): Promise<BrowserRes
   assertOpenOptions(options, 'Browser.open')
   const resolved = native()
   if (!resolved) return needNative()
-  return resolved.open(url, options)
+  return resolved.open(url, options).catch(rethrowNativeError)
 }
 
 function dismiss(): Promise<BrowserResult> {
@@ -77,7 +78,7 @@ function openAuthSession(
   if (!resolved) return needNative()
   return resolved
     .openAuthSession(url, redirectUrl ?? undefined, options)
-    .then(toAuthSessionResult)
+    .then(toAuthSessionResult, rethrowNativeError)
 }
 
 function dismissAuthSession(): void {

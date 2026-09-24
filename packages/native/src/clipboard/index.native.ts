@@ -1,4 +1,5 @@
 import { NitroModules } from 'react-native-nitro-modules'
+import { rethrowNativeError } from '../nativeError'
 import type { OneClipboard } from '../specs/OneClipboard.nitro'
 import { assertSetStringText } from './validate'
 
@@ -13,16 +14,16 @@ function native(): OneClipboard {
 }
 
 function getString(): Promise<string> {
-  return native().getString()
+  return native().getString().catch(rethrowNativeError)
 }
 
 function setString(text: string): Promise<boolean> {
   assertSetStringText(text)
-  return native().setString(text)
+  return native().setString(text).catch(rethrowNativeError)
 }
 
 function hasString(): Promise<boolean> {
-  return native().hasString()
+  return native().hasString().catch(rethrowNativeError)
 }
 
 export const Clipboard = Object.freeze({ getString, setString, hasString })

@@ -22,12 +22,25 @@ class HybridOneClipboard : HybridOneClipboardSpec() {
         return clip.getItemAt(0)?.coerceToText(context())?.toString() ?: ""
     }
 
-    override fun getString(): Promise<String> = Promise.async { primaryText() }
+    // any platform failure rejects with the stable code for its verb.
+    private fun <T> guarded(code: String, verb: String, body: () -> T): Promise<T> =
+        Promise.async {
+            try {
+                body()
+            } catch (e: Exception) {
+                throw OneNativeError(code, "Clipboard.$verb: ${e.message}")
+            }
+        }
 
-    override fun setString(text: String): Promise<Boolean> = Promise.async {
-        clipboard().setPrimaryClip(ClipData.newPlainText("text", text))
-        true
-    }
+    override fun getString(): Promise<String> =
+        guarded("E_CLIPBOARD_GET", "getString") { primaryText() }
 
-    override fun hasString(): Promise<Boolean> = Promise.async { primaryText().isNotEmpty() }
+    override fun setString(text: String): Promise<Boolean> =
+        guarded("E_CLIPBOARD_SET", "setString") {
+            clipboard().setPrimaryClip(ClipData.newPlainText("text", text))
+            true
+        }
+
+    override fun hasString(): Promise<Boolean> =
+        guarded("E_CLIPBOARD_HAS", "hasString") { primaryText().isNotEmpty() }
 }
