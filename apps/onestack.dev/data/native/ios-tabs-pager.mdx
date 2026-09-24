@@ -1,0 +1,91 @@
+---
+title: iOS Tabs and Pager
+description: Tabs, Tab, TabSection, TabViewSlot, TabViewBottomAccessory, Pager, and Page under One.iOS
+---
+
+Tab navigation and swipe paging under `One.iOS`.
+
+## Tabs
+
+`One.iOS.Tabs` is a SwiftUI tab view. `selection` with
+`onSelectionChange` (and `revision` for external resets) controls the
+active tab; `selection` must identify a mounted page tab. `tabViewStyle`
+selects the tab view style and `tabBarVisibility` sets the tab bar
+visibility on every page. `customization` with `onCustomizationChange`
+binds tab view customization as JSON: persist what it reports and pass it
+back.
+
+Only `Tab`, `TabSection`, `TabViewSlot`, and `TabViewBottomAccessory` may
+be direct children of `Tabs`.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
+  <One.iOS.Tab id="feed" title="Feed" systemImage="house">
+    <FeedScreen />
+  </One.iOS.Tab>
+  <One.iOS.Tab id="new" title="New" systemImage="plus" onPress={openComposer} />
+</One.iOS.Tabs>
+```
+
+## Tab
+
+`One.iOS.Tab` is one tab. It carries either `onPress` or children, never
+both: a tab with `onPress` is an action tab that runs its handler and never
+becomes the selection.
+
+| Prop | Type |
+|------|------|
+| `id` | `string` (required) |
+| `title` | `string` |
+| `systemImage` | SF Symbol name (never with `image`) |
+| `image` | asset catalog image (never with `systemImage`) |
+| `badge` | `string` or `number` |
+| `role` | tab role |
+| `tabPlacement` | tab placement |
+| `onPress` | `() => void` (action tab) |
+| `testID` | `string` |
+| `swiftStyle` | native modifiers on the page content |
+
+Shared tab content modifiers apply to `Tab` and `TabSection`: `disabled`
+(iOS 18.4 or later), `hidden`, `customizationID`, `customizationBehavior`,
+`defaultVisibility`, `springLoadingBehavior`, accessibility labels, and
+`help` (iOS 27 or later).
+
+## TabSection
+
+`One.iOS.TabSection` groups tabs in the sidebar with a required `id` and
+`title`, an optional `defaultSectionExpansion`, and optional
+`sectionActions`: SwiftUI buttons (`{ id, title, systemImage, onPress }`)
+in the section header. Children are `Tab` elements.
+
+## TabViewSlot
+
+`One.iOS.TabViewSlot` fills a named tab view slot with a fixed `height`.
+Slot names are `tabViewBottomAccessory` (iOS 26), `tabViewSidebarBottomBar`,
+`tabViewSidebarFooter`, and `tabViewSidebarHeader` (iOS 18).
+
+## TabViewBottomAccessory
+
+`One.iOS.TabViewBottomAccessory` renders the bottom accessory with
+`inline` and `expanded` content. `isEnabled` hides the accessory without
+remounting it (iOS 26.1 or later).
+
+## Pager, Page
+
+`One.iOS.Pager` is a tab bar without the bar: swipe between pages under a
+controlled `selection` with `onSelectionChange` and `revision`. Children
+must be `Page` elements with unique nonempty ids, and `selection` must
+identify a mounted page.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Pager selection={page} onSelectionChange={setPage}>
+  <One.iOS.Page id="one">...</One.iOS.Page>
+  <One.iOS.Page id="two">...</One.iOS.Page>
+</One.iOS.Pager>
+```
+
+On web and Android these views throw. Keep them behind a platform check.

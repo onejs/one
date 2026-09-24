@@ -1,0 +1,38 @@
+---
+title: Fonts
+description: Custom fonts with One.UI.Fonts and useFonts
+---
+
+Custom fonts under `One.UI`. `Fonts.load` loads a map of PostScript name
+to source; a source is an imported asset or a URI string (a file or https
+URI on native, a URL on web). Loading a name that is already usable
+resolves at once, and the promise rejects with the first failure.
+`Fonts.isLoaded` synchronously asks the platform whether a name is usable,
+so it is also true for embedded and system fonts.
+
+```tsx
+import { One } from 'one'
+
+await One.UI.Fonts.load({ Inter: require('./assets/Inter.ttf') })
+One.UI.Fonts.isLoaded('Inter') // true
+```
+
+On Android, always key by the file's PostScript name: the platform
+exposes no name query, so a wrong key registers silently and a later
+`isLoaded` for that key reads true. On web, fonts known at build time
+belong in CSS `@font-face`; `load` is for fonts chosen at runtime.
+
+`One.UI.useFonts` loads a map on mount and returns `[loaded, error]`. It
+seeds from the platform so a map that is already usable never flashes
+unloaded. Pass a stable map: the effect runs once, like the familiar font
+hook.
+
+```tsx
+import { One } from 'one'
+
+function App() {
+  const [loaded, error] = One.UI.useFonts({ Inter: require('./assets/Inter.ttf') })
+  if (!loaded) return null
+  return <Content />
+}
+```

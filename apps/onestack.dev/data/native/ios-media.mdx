@@ -1,0 +1,92 @@
+---
+title: iOS Media and Empty States
+description: Image, shapes, VideoPlayer, WebView, Map, ContentUnavailableView, and EmptyView under One.iOS
+---
+
+Media, shapes, and empty states under `One.iOS`. Every view here accepts
+the shared view props (`accessibilityLabel`, `accessibilityHint`,
+`accessibilityValue`, `testID`, `style`, `onLayout`, `swiftStyle`).
+
+## Image
+
+`One.iOS.Image` renders an SF Symbol by name. `symbolRenderingMode`,
+`symbolVariant`, `imageScale`, and `colorRole` mirror the SwiftUI symbol
+modifiers; `variableValue` drives a variable symbol. Each takes `''` for
+unset.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Image systemName="star.fill" imageScale="large" />
+```
+
+For bundled, remote, and cross-platform images, use
+[One.UI.Image](/native/image) instead.
+
+## Shapes
+
+`Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, and `Ellipse` fill a
+SwiftUI shape with `fill`, a color value. `RoundedRectangle` also takes
+`cornerRadius`, a number.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Circle fill="red" />
+<One.iOS.RoundedRectangle fill="blue" cornerRadius={12} />
+```
+
+## VideoPlayer
+
+`One.iOS.VideoPlayer` plays a remote video from `url`. `autoplay` starts
+playback without a tap.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.VideoPlayer url="https://example.com/trailer.mp4" autoplay />
+```
+
+## WebView
+
+`One.iOS.WebView` embeds web content: pass `url` for a page or `html` for a
+markup string. `onNavigate` reports URL changes, `onTitleChange` reports the
+page title, and `onLoadingChange` reports `(loading, progress)`.
+`backForwardNavigationGestures`, `magnificationGestures`, `linkPreviews`,
+`elementFullscreen`, and `contentBackground` mirror the WebKit behaviors and
+take `''` for unset.
+
+## Map
+
+`One.iOS.Map` is the SwiftUI map. `latitude`, `longitude`, and `distance`
+set the region, `markers` places pins (`{ id, label, latitude, longitude }`
+each), and `onRegionChange` reports `(latitude, longitude, distance)` on
+every move.
+
+For a cross-platform map with polylines, polygons, and circles, use
+[One.UI.Map](/native/map) instead.
+
+## ContentUnavailableView
+
+`One.iOS.ContentUnavailableView` renders an empty state with action
+buttons. `actions` is a list of `{ id, label, role }` and `onAction`
+receives the tapped action id.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.ContentUnavailableView
+  title="No results"
+  systemImage="magnifyingglass"
+  description="Try a different search."
+  actions={[{ id: 'retry', label: 'Retry' }]}
+  onAction={(id) => id === 'retry' && reload()}
+/>
+```
+
+## EmptyView
+
+`One.iOS.EmptyView` renders nothing. It is a placeholder where SwiftUI
+expects a view, with no props beyond the shared view props.
+
+On web and Android these views throw. Keep them behind a platform check.

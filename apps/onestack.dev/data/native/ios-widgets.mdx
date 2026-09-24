@@ -1,0 +1,67 @@
+---
+title: iOS Widgets and Live Activities
+description: Widgets, LiveActivities, and WidgetUI under One.iOS
+---
+
+Home Screen widgets and Live Activities under `One.iOS`. These need
+`native.app.ios.widgets` and a new iOS build; without the native bridge
+every call throws. Outside iOS they throw as well.
+
+## Widgets
+
+`One.iOS.Widgets` writes the widget's content.
+
+| Function | Signature |
+|----------|-----------|
+| `write` | `(data: { title: string; value: string; subtitle: string }) => Promise<void>` |
+| `writeView` | `(view: ReactNode) => Promise<void>` |
+
+`write` sets plain text content; `writeView` renders a `WidgetUI` tree
+(see below) into the widget.
+
+## LiveActivities
+
+`One.iOS.LiveActivities` manages Live Activities. State is `{ status:
+string; value: string }`; push token events are `{ id: string; token:
+string }`.
+
+| Function | Signature |
+|----------|-----------|
+| `start` | `(title: string, state, push?: boolean) => Promise<string>` (resolves the activity id) |
+| `startView` | `(title: string, view: ActivityView, push?: boolean) => Promise<string>` |
+| `update` | `(id: string, state) => Promise<void>` |
+| `updateView` | `(id: string, view: ActivityView) => Promise<void>` |
+| `end` | `(id: string) => Promise<void>` |
+| `pushToken` | `(id: string) => Promise<string \| null>` |
+| `onPushToken` | `(listener: (event) => void) => () => void` (returns an unsubscribe function) |
+
+`push` opts into push updates. An `ActivityView` is `{ lockScreen,
+compactLeading, compactTrailing, minimal, expandedLeading,
+expandedTrailing, expandedBottom }` of widget nodes.
+
+## WidgetUI
+
+`One.iOS.WidgetUI` builds widget content from `Text`, `VStack`, `HStack`,
+`ZStack`, `Spacer`, `Divider`, `Image` (`systemName`), `Progress` and
+`Gauge` (`value`, `total`), `Circle`, `Rectangle`, `RoundedRectangle`
+(`fill`, `cornerRadius`), and `Link` (`url`). Styling goes through a small
+style object: `color`, `backgroundColor`, `fontSize`, `fontWeight`
+(`regular`, `medium`, `semibold`, `bold`), `fontDesign` (`default`,
+`rounded`, `serif`, `monospaced`), `padding`, `borderRadius`, `spacing`,
+`width`, `height`, `opacity`, `lineLimit`, and `alignment` (`leading`,
+`center`, `trailing`).
+
+```tsx
+import { One } from 'one'
+
+await One.iOS.Widgets.writeView(
+  <One.iOS.WidgetUI.VStack>
+    <One.iOS.WidgetUI.Text>Next train</One.iOS.WidgetUI.Text>
+    <One.iOS.WidgetUI.Text>4 min</One.iOS.WidgetUI.Text>
+  </One.iOS.WidgetUI.VStack>
+)
+
+const id = await One.iOS.LiveActivities.start('Trip', { status: 'Boarding', value: 'Gate 12' })
+await One.iOS.LiveActivities.update(id, { status: 'Departed', value: 'On time' })
+await One.iOS.LiveActivities.end(id)
+```

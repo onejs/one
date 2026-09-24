@@ -1,0 +1,35 @@
+---
+title: Android Menus
+description: Menu and ContextMenu under One.Android
+---
+
+Menus under `One.Android`. They take the same `items` shapes as the iOS
+menu (action, toggle, submenu, section, controlGroup, divider; see
+[Presentations and Menus](/native/ios-presentations)) and render them as a
+native popup anchored to the trigger. Item ids must be unique and
+nonempty, and a menu with toggles requires `onValueChange`, which receives
+`(id, value, sourceIndex)`.
+
+`One.Android.Menu` opens on tap; `One.Android.ContextMenu` opens on long
+press. `disabled` disables the trigger without opening. Unlike iOS, the
+Android menu ignores `revision`, `menuOrder`, and
+`menuActionDismissBehavior`, and it selects synchronously: if the trigger
+has no native view when tapped, tapping throws.
+
+```tsx
+import { One } from 'one'
+
+<One.Android.Menu
+  accessibilityLabel="Options"
+  items={[
+    { type: 'action', id: 'share', title: 'Share' },
+    { type: 'action', id: 'delete', title: 'Delete' },
+  ]}
+  onAction={(id) => act(id)}
+>
+  <One.Android.Icon name="more_vert" />
+</One.Android.Menu>
+```
+
+These components throw when rendered outside an Android build, so keep
+those branches behind platform checks.

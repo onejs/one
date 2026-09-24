@@ -1,0 +1,56 @@
+---
+title: iOS Navigation and Toolbar
+description: NavigationStack, Toolbar, ToolbarItem, ToolbarItemGroup, and ToolbarSpacer under One.iOS
+---
+
+Navigation chrome under `One.iOS`. This is the SwiftUI toolbar that fills
+the navigation bar, distinct from the UIKit navigation toolbar
+(`One.iOS.ToolbarHost` and `One.iOS.ToolbarItem`) covered in
+[Toolbar and Menus](/native/toolbar).
+
+## NavigationStack
+
+`One.iOS.NavigationStack` is a SwiftUI navigation stack whose root is the
+React Native content beside it. Children are `Toolbar` elements (which fill
+the navigation bar) or React Native content; `ToolbarItem`,
+`ToolbarItemGroup`, and `ToolbarSpacer` belong inside a `Toolbar`, never
+directly in the stack. Navigation title, title display mode, and every
+other scalar navigation or toolbar modifier reach the stack through
+`swiftStyle`, so the bar has no bespoke props.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.NavigationStack>
+  <One.iOS.Toolbar>
+    <One.iOS.ToolbarItem placement="primaryAction">
+      <One.iOS.Button label="Save" onPress={save} />
+    </One.iOS.ToolbarItem>
+  </One.iOS.Toolbar>
+  <Content />
+</One.iOS.NavigationStack>
+```
+
+## Toolbar
+
+`One.iOS.Toolbar` becomes one native toolbar. Its children must be
+`ToolbarItem`, `ToolbarItemGroup`, or `ToolbarSpacer` elements in order,
+and the stack merges every toolbar it is given.
+
+## ToolbarItem
+
+`One.iOS.ToolbarItem` places one item with `placement` (automatic,
+principal, navigation, primaryAction, secondaryAction, status,
+confirmationAction, and the rest of the SwiftUI placements).
+
+## ToolbarItemGroup
+
+`One.iOS.ToolbarItemGroup` places a group with `placement` plus an
+optional `label` and `systemImage`.
+
+## ToolbarSpacer
+
+`One.iOS.ToolbarSpacer` spreads toolbar items apart and takes no children.
+`sizing` defaults to flexible; it requires iOS 26 or later.
+
+On web and Android these views throw. Keep them behind a platform check.
