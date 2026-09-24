@@ -217,12 +217,13 @@ export type DerivedViewSlot = { name: string; sdkName?: string; module: string; 
 
 export function deriveViewSlots(inventory: readonly Declaration[], ceiling: number): DerivedViewSlot[] {
   const valueOf = bridgeValueOf(inventory, ceiling)
+  const isZeroInputClosure = (type: string) => /^(?:@escaping )?\(\) ->/.test(type)
   const closureInputsOf = (type: string) =>
     /^@escaping \(([^,<>()]+(?:, [^,<>()]+)*)\) -> some View$/.exec(type)?.[1].split(', ')
   const isContent = (d: Declaration, parameter: Declaration['parameters'][number]) => {
     if (parameter.type === '() -> some View') return true
     if (closureInputsOf(parameter.type)) return true
-    const generic = /^\(\) -> ([A-Za-z_]\w*)$|^([A-Za-z_]\w*)\??$/.exec(parameter.type)
+    const generic = /^(?:@escaping )?\(\) -> ([A-Za-z_]\w*)$|^([A-Za-z_]\w*)\??$/.exec(parameter.type)
     return Boolean(generic && d.requirements?.includes(`${generic[1] ?? generic[2]} : SwiftUICore.View`))
   }
   const isStringBinding = (d: Declaration, type: string) => {
@@ -234,7 +235,7 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
     return (
       d.kind === 'func' && (d.module === 'SwiftUI' || d.module === 'SwiftUICore' ||
         /^_[A-Za-z]+_SwiftUI$/.test(d.module)) &&
-      d.owner.split('.').at(-1) === 'View' && builders.length === 1 &&
+      d.owner.split('.').at(-1) === 'View' && /^[a-z]/.test(d.name) && builders.length === 1 &&
       d.parameters.at(-1) === builders[0] &&
       d.parameters.every((parameter) => parameter === builders[0] || parameter.defaultValue !== undefined ||
         ['enum', 'string', 'boolean'].includes(valueOf(parameter.type)?.kind ?? '') ||
@@ -243,9 +244,9 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
       present(d) && ios(d) <= ceiling
     )
   }).filter((slot, _, candidates) =>
-    slot.parameters.at(-1)!.type.startsWith('() ->') ||
+    isZeroInputClosure(slot.parameters.at(-1)!.type) ||
     !candidates.some((other) => other.module === slot.module && other.name === slot.name &&
-      other.parameters.at(-1)!.type.startsWith('() ->')))
+      isZeroInputClosure(other.parameters.at(-1)!.type)))
   const byName = new Map<string, Declaration[]>()
   for (const slot of slots) {
     const key = `${slot.module}.${slot.name}`
@@ -254,7 +255,7 @@ export function deriveViewSlots(inventory: readonly Declaration[], ceiling: numb
   return [...byName].flatMap(([, declarations]) => declarations.map((slot) => {
     const content = slot.parameters.at(-1)!
     const closureInputs = closureInputsOf(content.type)
-    const directValue = !content.type.startsWith('() ->') && !closureInputs
+    const directValue = !isZeroInputClosure(content.type) && !closureInputs
     const required = slot.parameters.filter((parameter) =>
       parameter !== content && parameter.defaultValue === undefined)
     const suffix = declarations.length === 1 || required.length === 0 ? ''
