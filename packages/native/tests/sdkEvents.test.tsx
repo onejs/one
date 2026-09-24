@@ -16,6 +16,24 @@ beforeAll(async () => {
 })
 
 describe('SDK callback and binding transport', () => {
+  it('sends accessible numeric chart axes and series through the descriptor modifier', () => {
+    const chart = {
+      title: 'Revenue',
+      summary: 'Revenue rose',
+      xAxis: { title: 'Year', range: [2024, 2026] as const, gridlinePositions: [2024, 2025, 2026] },
+      yAxis: { title: 'Dollars', range: [0, 100] as const },
+      series: [{ name: 'Product', isContinuous: true, points: [
+        { x: 2024, y: 25, label: 'Start' }, { x: 2025, y: 75 },
+      ] }],
+    }
+    const element = Controls.Text({ text: 'chart', swiftStyle: { accessibilityChartDescriptor: chart } })
+    expect(Object.fromEntries(JSON.parse(element.props.swiftStyle.sdkModifiers)).accessibilityChartDescriptor)
+      .toEqual(JSON.stringify(chart))
+    expect(() => Controls.Text({ text: 'chart', swiftStyle: {
+      accessibilityChartDescriptor: { ...chart, xAxis: { title: 'Year', range: [2026, 2024] } },
+    } })).toThrow('accessibilityChartDescriptor must contain finite axes and series points')
+  })
+
   it('shares a native namespace across SDK modifiers with string identifiers', () => {
     const element = Controls.Text({ text: 'source', swiftStyle: {
       matchedGeometryEffect: { id: 'hero' },

@@ -55,6 +55,7 @@ const sdkKinds = {
   accessibilityActivationPointWithUnitPoint: 'string',
   accessibilityAddTraits: 'string',
   accessibilityAdjustableAction: 'eventEnum',
+  accessibilityChartDescriptor: 'chartDescriptor',
   accessibilityCustomContent: 'record',
   accessibilityDefaultFocus: 'defaultFocusBoolean',
   accessibilityDirectTouch: 'record',
@@ -2470,6 +2471,62 @@ export function swiftStyleNative(
           name,
           JSON.stringify([binding.text, JSON.stringify(binding.value)]),
         ])
+        continue
+      }
+      if (kind === 'chartDescriptor') {
+        if (!value || typeof value !== 'object' || Array.isArray(value))
+          throw new Error(name + ' must be a chart descriptor')
+        const chart = value as Record<string, unknown>
+        if (
+          (chart.title !== undefined && typeof chart.title !== 'string') ||
+          (chart.summary !== undefined && typeof chart.summary !== 'string') ||
+          !Array.isArray(chart.series) ||
+          chart.series.some((series) => {
+            if (!series || typeof series !== 'object' || Array.isArray(series))
+              return true
+            const item = series as Record<string, unknown>
+            return (
+              typeof item.name !== 'string' ||
+              typeof item.isContinuous !== 'boolean' ||
+              !Array.isArray(item.points) ||
+              item.points.some((point) => {
+                if (!point || typeof point !== 'object' || Array.isArray(point))
+                  return true
+                const coordinate = point as Record<string, unknown>
+                return (
+                  typeof coordinate.x !== 'number' ||
+                  !Number.isFinite(coordinate.x) ||
+                  (coordinate.y !== undefined &&
+                    (typeof coordinate.y !== 'number' ||
+                      !Number.isFinite(coordinate.y))) ||
+                  (coordinate.label !== undefined && typeof coordinate.label !== 'string')
+                )
+              })
+            )
+          }) ||
+          [chart.xAxis, chart.yAxis].some((axis, index) => {
+            if (index === 1 && axis === undefined) return false
+            if (!axis || typeof axis !== 'object' || Array.isArray(axis)) return true
+            const item = axis as Record<string, unknown>
+            return (
+              typeof item.title !== 'string' ||
+              !Array.isArray(item.range) ||
+              item.range.length !== 2 ||
+              item.range.some(
+                (bound) => typeof bound !== 'number' || !Number.isFinite(bound)
+              ) ||
+              item.range[0] > item.range[1] ||
+              (item.gridlinePositions !== undefined &&
+                (!Array.isArray(item.gridlinePositions) ||
+                  item.gridlinePositions.some(
+                    (position) =>
+                      typeof position !== 'number' || !Number.isFinite(position)
+                  )))
+            )
+          })
+        )
+          throw new Error(name + ' must contain finite axes and series points')
+        sdkModifiers.push([name, JSON.stringify(value)])
         continue
       }
       if (kind === 'eventAsyncStruct' && sdkAsyncArguments[name]) {

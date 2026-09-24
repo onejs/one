@@ -930,6 +930,13 @@
       ]
     },
     {
+      "name": "accessibilityChartDescriptor",
+      "kind": "chartDescriptor",
+      "type": "R",
+      "ios": 15,
+      "framework": "Accessibility"
+    },
+    {
       "name": "accessibilityCustomContent",
       "kind": "record",
       "type": "",
@@ -17655,6 +17662,7 @@
         "accessibilityActivationPoint",
         "accessibilityAddTraits",
         "accessibilityAdjustableAction",
+        "accessibilityChartDescriptor",
         "accessibilityChildren",
         "accessibilityCustomContent",
         "accessibilityDefaultFocus",
@@ -18180,6 +18188,7 @@
         "accessibilityActivationPoint",
         "accessibilityAddTraits",
         "accessibilityAdjustableAction",
+        "accessibilityChartDescriptor",
         "accessibilityChildren",
         "accessibilityCustomContent",
         "accessibilityDefaultFocus",

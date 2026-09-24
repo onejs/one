@@ -37,7 +37,7 @@ export type DerivedModifier = {
   name: string
   sdkName?: string
   module?: string
-  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'equatableKey' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'transferSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint' | 'bindingTextSelection'
+  kind: 'boolean' | 'number' | 'string' | 'url' | 'optionalBoolean' | 'optionalNumber' | 'optionalString' | 'optionalURL' | 'optionalEnum' | 'record' | 'style' | 'visualEffect' | 'optionSet' | 'caseSet' | 'equatableKey' | 'chartDescriptor' | 'selectionID' | 'selectionIndex' | 'pickerSelection' | 'transferSelection' | 'dragContainer' | 'dragSelection' | 'dragItemID' | 'asyncObjectRequest' | 'sessionRequest' | 'gesture' | 'defaultFocusBoolean' | 'event' | 'eventAsync' | 'eventAsyncStruct' | 'eventAsyncString' | 'eventDrop' | 'eventNotification' | 'eventBoolean' | 'eventNumber' | 'eventString' | 'eventEnum' | 'eventEnumPair' | 'eventAssociatedEnum' | 'eventStruct' | 'eventValueString' | 'eventReturnArray' | 'eventReturnEnum' | 'bindingBoolean' | 'bindingString' | 'bindingOptionalString' | 'bindingFocusBoolean' | 'bindingCodable' | 'bindingPoint' | 'bindingTextSelection'
   ios: number
   type: string
   rawString?: true
@@ -683,6 +683,19 @@ export function deriveModifiers(
       const framework = method.module.startsWith('_')
         ? { framework: method.module.slice(1, -'_SwiftUI'.length) }
         : {}
+      const chartProtocol = method.parameters.length === 1 &&
+        method.requirements?.length === 1 &&
+        method.requirements[0] === `${method.parameters[0].type} : SwiftUICore.AXChartDescriptorRepresentable`
+      const chartConstructor = chartProtocol && inventory.find((declaration) => declaration.module === 'Accessibility' &&
+        declaration.owner === 'Accessibility.AXChartDescriptor' && declaration.kind === 'init' &&
+        declaration.parameters.some((parameter) => parameter.label === 'xAxis' &&
+          parameter.type === 'any Accessibility.AXDataAxisDescriptor') &&
+        declaration.parameters.some((parameter) => parameter.label === 'series' &&
+          parameter.type === '[Accessibility.AXDataSeriesDescriptor]') &&
+        present(declaration) && ios(declaration) <= ceiling)
+      if (chartProtocol && chartConstructor)
+        return [{ name, module: method.module, kind: 'chartDescriptor', type: method.parameters[0].type,
+          ios: Math.max(ios(method), ios(chartConstructor)), framework: 'Accessibility' }]
       if (method.parameters.length === 0 &&
         method.requirements?.includes('Self : Swift.Equatable') &&
         method.type === `${method.module}.EquatableView<Self>`)
