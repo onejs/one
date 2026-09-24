@@ -38,6 +38,7 @@ export default defineConfig({
         app: {
           name: 'NativeFeatureTests',
           scheme: 'nativefeatures',
+          notifications: {},
           // non-default versions the app-info conformance suites assert
           // exactly, proving prebuild stamping reaches runtime.
           version: '9.9.9',
