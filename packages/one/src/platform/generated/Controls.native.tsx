@@ -466,6 +466,7 @@ import NativeImage from '../specs/OneNativeImageNativeComponent'
 export function Image({
   systemName = '',
   uri = '',
+  renderingMode = 'original',
   symbolRenderingMode = '',
   symbolVariant = '',
   imageScale = '',
@@ -478,6 +479,12 @@ export function Image({
   if (!systemName === !uri)
     throw new Error(
       'Image takes exactly one of systemName (an SF Symbol name) or uri (a remote image)'
+    )
+  if (renderingMode !== 'original' && renderingMode !== 'template')
+    throw new Error("Image renderingMode must be 'original' or 'template'")
+  if (renderingMode === 'template' && !uri)
+    throw new Error(
+      'Image renderingMode applies to a uri image; an SF Symbol is already a template'
     )
   if (variableValue !== undefined && !Number.isFinite(variableValue))
     throw new Error('Image variableValue must be a finite number or undefined')
@@ -516,6 +523,7 @@ export function Image({
       }
       systemName={systemName}
       uri={uri}
+      renderingMode={renderingMode}
       symbolRenderingMode={symbolRenderingMode}
       symbolVariant={symbolVariant}
       imageScale={imageScale}

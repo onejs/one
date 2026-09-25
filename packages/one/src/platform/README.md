@@ -544,6 +544,8 @@ SwiftUI does. `Image` renders an SF Symbol with `systemName`, optional `symbolRe
 the two). A `uri` image loads into `Image(uiImage:)`, fills the frame `swiftStyle` gives it, and
 keeps its own colors, so as a `Button`'s label in a toolbar it becomes the bar item's image: the
 iPhone Duo's edge dock takes it into the item's pill, where `AsyncImage` would stay page content.
+`renderingMode: 'template'` draws it as a template instead, so an app asset glyph takes the
+bar's tint like an SF Symbol.
 All three are display only: they have no events and no controlled value, and they are most useful
 as rows inside a container.
 

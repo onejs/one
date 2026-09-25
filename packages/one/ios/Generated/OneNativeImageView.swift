@@ -6,6 +6,7 @@ import UIKit
 private final class ImageModel: ObservableObject {
   @Published var systemName: String = ""
   @Published var uri: String = ""
+  @Published var renderingMode: String = "original"
   @Published var symbolRenderingMode: String = ""
   @Published var symbolVariant: String = ""
   @Published var imageScale: String = ""
@@ -35,9 +36,10 @@ private final class ImageModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ systemName: String, uri: String, symbolRenderingMode: String, symbolVariant: String, imageScale: String, variableValue: Double, hasVariableValue: Bool, colorRole: String) {
+  public func configure(_ systemName: String, uri: String, renderingMode: String, symbolRenderingMode: String, symbolVariant: String, imageScale: String, variableValue: Double, hasVariableValue: Bool, colorRole: String) {
     if model.systemName != systemName { model.systemName = systemName }
     if model.uri != uri { model.uri = uri }
+    if model.renderingMode != renderingMode { model.renderingMode = renderingMode }
     if model.symbolRenderingMode != symbolRenderingMode { model.symbolRenderingMode = symbolRenderingMode }
     if model.symbolVariant != symbolVariant { model.symbolVariant = symbolVariant }
     if model.imageScale != imageScale { model.imageScale = imageScale }
@@ -87,7 +89,7 @@ private struct ImageContent: View {
   var body: some View {
     Group {
         if !model.uri.isEmpty {
-          OneNativeRemoteImage(uri: model.uri)
+          OneNativeRemoteImage(uri: model.uri, template: model.renderingMode == "template")
         } else if model.hasVariableValue {
           Image(systemName: model.systemName, variableValue: model.variableValue)
         } else {
