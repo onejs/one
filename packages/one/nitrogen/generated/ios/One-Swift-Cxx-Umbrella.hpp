@@ -32,6 +32,12 @@ namespace margelo::nitro::one { struct DocumentPickerNativeResult; }
 namespace margelo::nitro::one { enum class HapticImpact; }
 // Forward declaration of `HapticNotification` to properly resolve imports.
 namespace margelo::nitro::one { enum class HapticNotification; }
+// Forward declaration of `HingeState` to properly resolve imports.
+namespace margelo::nitro::one { struct HingeState; }
+// Forward declaration of `HingeStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class HingeStatus; }
+// Forward declaration of `HybridOneAdaptiveSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
 // Forward declaration of `HybridOneAppInfoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
@@ -104,6 +110,10 @@ namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
 namespace margelo::nitro::one { struct ResolvedDocumentPickerOptions; }
 // Forward declaration of `ResolvedImagePickerOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
+// Forward declaration of `SizeClass` to properly resolve imports.
+namespace margelo::nitro::one { struct SizeClass; }
+// Forward declaration of `UserInterfaceSizeClass` to properly resolve imports.
+namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 
 // Include C++ defined types
 #include "BrowserAuthResult.hpp"
@@ -118,6 +128,9 @@ namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
 #include "DocumentPickerNativeResult.hpp"
 #include "HapticImpact.hpp"
 #include "HapticNotification.hpp"
+#include "HingeState.hpp"
+#include "HingeStatus.hpp"
+#include "HybridOneAdaptiveSpec.hpp"
 #include "HybridOneAppInfoSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
@@ -154,6 +167,8 @@ namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
 #include "NotificationPermissionStatus.hpp"
 #include "ResolvedDocumentPickerOptions.hpp"
 #include "ResolvedImagePickerOptions.hpp"
+#include "SizeClass.hpp"
+#include "UserInterfaceSizeClass.hpp"
 #include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
 #include <NitroModules/Promise.hpp>
@@ -175,6 +190,8 @@ namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
 #include <NitroModules/DateToChronoDate.hpp>
 
 // Forward declarations of Swift defined types
+// Forward declaration of `HybridOneAdaptiveSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneAdaptiveSpec_cxx; }
 // Forward declaration of `HybridOneAppInfoSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppInfoSpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.

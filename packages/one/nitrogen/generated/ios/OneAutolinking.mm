@@ -21,6 +21,7 @@
 #include "HybridOneFontsSpecSwift.hpp"
 #include "HybridOneNotificationsSpecSwift.hpp"
 #include "HybridOneSecureStoreSpecSwift.hpp"
+#include "HybridOneAdaptiveSpecSwift.hpp"
 
 @interface OneAutolinking : NSObject
 @end
@@ -105,6 +106,13 @@
     "OneSecureStore",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneSecureStoreSpec> hybridObject = One::OneAutolinking::createOneSecureStore();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneAdaptive",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneAdaptiveSpec> hybridObject = One::OneAutolinking::createOneAdaptive();
       return hybridObject;
     }
   );
