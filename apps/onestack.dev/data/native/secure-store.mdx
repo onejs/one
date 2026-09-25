@@ -3,7 +3,7 @@ title: SecureStore
 description: Secure string storage backed by the Keychain and Android Keystore
 ---
 
-String key-value storage through `One.SecureStore`, matching `expo-secure-store`'s item API. Backed by the Keychain on iOS and AES-256-GCM ciphertexts under a key in Android Keystore on Android.
+String key-value storage through `One.SecureStore`. Backed by the Keychain on iOS and AES-256-GCM ciphertexts under a key in Android Keystore on Android.
 
 ```tsx
 import { One } from 'one'
@@ -19,11 +19,3 @@ Keys are non-empty strings and values are strings; anything else throws at the J
 There are no options: no access groups, no accessibility levels, no shared-preferences name. On web every verb rejects with `SecureStore.<verb> needs an iOS or Android build`, since anything kept in `localStorage` would persist in cleartext.
 
 One-generated apps set `android:allowBackup="false"` (from the community template), so stored values are never backed up. If an app opts into backup, the preferences file restores without the Keystore key, which never leaves the device, and restored values fail to decrypt: reads reject with `E_SECURE_STORE_GET` until the value is rewritten.
-
-### Migration from expo-secure-store
-
-| expo-secure-store | One |
-|---|---|
-| `getItemAsync(key)` | `One.SecureStore.getItem(key)` |
-| `setItemAsync(key, value)` | `One.SecureStore.setItem(key, value)` |
-| `deleteItemAsync(key)` | `One.SecureStore.deleteItem(key)` |

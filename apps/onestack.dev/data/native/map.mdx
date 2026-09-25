@@ -64,12 +64,3 @@ one({
 The Maps SDK compiles into Android builds only when the key is set;
 without it the dependency stays out of the APK entirely. iOS needs no
 key.
-
-### Migration from react-native-maps
-
-Convert the region to a camera: `zoom = log2(360 * widthPt / 256 / longitudeDelta)`,
-where `widthPt` is the map view width in points, and center coordinates as-is.
-Marker children become the `markers` array;
-`onRegionChangeComplete` becomes `onCameraMove`. Designs that need
-custom pin views, callouts, or camera refs have no equivalent yet; keep
-`react-native-maps` for those screens.

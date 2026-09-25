@@ -70,7 +70,7 @@ export const nativeRoutes = [
   {
     title: 'Resources',
     pages: [
-      { title: 'Migrating from Expo', route: '/native/migrating-from-expo' },
+      { title: 'Migrating to One Native', route: '/native/migrating-to-one' },
       { title: 'Platform Support', route: '/native/platform-support' },
     ],
   },
