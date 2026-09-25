@@ -1,5 +1,4 @@
-import { useLocalSearchParams, useRouter, Stack } from 'one'
-import { ZoomTransitionEnabler } from '@vxrn/native'
+import { useLocalSearchParams, useRouter, Stack, One } from 'one'
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 
 export default function ZoomDetailScreen() {
@@ -13,7 +12,7 @@ export default function ZoomDetailScreen() {
   return (
     <View style={styles.container} testID="zoom-detail-screen">
       <Stack.Screen options={{ headerShown: false }} />
-      <ZoomTransitionEnabler zoomTransitionSourceIdentifier={id || ''} />
+      <One.iOS.ZoomTransitionEnabler zoomTransitionSourceIdentifier={id || ''} />
 
       <View
         testID="zoom-detail-card"

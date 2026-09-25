@@ -34,13 +34,13 @@ direct platform API first, a uniform API only when it is small and Expo has a sh
 - **RAN (read):** `One.iOS` has every one of those components except `Circle`:
   `Swift` exports Host, HStack, VStack, ZStack, Form, Section, LabeledContent, List,
   ScrollView, Menu, ContextMenu, SwipeActions, Spacer, Slot and more
-  (`packages/native/src/index.native.ts`), and the generated controls are Picker,
+  (`packages/one/src/platform/index.native.ts`), and the generated controls are Picker,
   DatePicker, ColorPicker, Toggle, Slider, Stepper, Text, Label, Button, ProgressView,
   Gauge, Image, ShareLink, ContentUnavailableView, VideoPlayer, PhotosPicker, WebView,
   Map, TextField, SecureField, Alert, ConfirmationDialog, QuickLook
   (`src/generated/Controls.native.tsx`). `Slot` is the `RNHostView` equivalent. `tag` has
   no counterpart because One pickers take options as data.
-- **RAN (grep, zero files under `packages/native/src` and `codegen`):** `controlSize`,
+- **RAN (grep, zero files under `packages/one/src` and `codegen`):** `controlSize`,
   `Circle`, `Capsule`, `Rectangle`, `listRowInsets`, `listRowSeparator`,
   `listSectionSpacing`, `headerProminence`, `refreshable`, `searchable`. The 29 iOS
   style fields (`codegen/catalog.ts` `styleFields`) cover `frame`, `font`,

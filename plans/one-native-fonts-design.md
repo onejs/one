@@ -1,6 +1,6 @@
 # One native fonts
 
-**Recommendation (INFERRED):** ship `One.UI.Fonts` from `@vxrn/native/fonts`: a runtime
+**Recommendation (INFERRED):** ship `One.UI.Fonts` from `one/fonts`: a runtime
 loader with two calls, `load` and `isLoaded`, plus a `useFonts` hook, and a
 `native.app.fonts` list that prebuild embeds in the binary. The runtime loader is the
 part that matters most, because a Contrast generated app runs on a prebuilt template
@@ -48,9 +48,9 @@ document. Reviewed once by another model; its required changes are folded in bel
   entries and no synchronized folder groups (`HelloWorld.xcodeproj/project.pbxproj:11,18,44,160-161`),
   so a new bundle resource would need four pbxproj lines. Prebuild already rewrites the
   React Native bundle script phase and throws when it cannot (`prebuildWithoutExpo.ts:78-115`).
-- **RAN (read):** Android modules are registered by hand in `VxrnNativePackage.kt`:
+- **RAN (read):** Android modules are registered by hand in `OnePackage.kt`:
   `getModule` (`:18`) and one `ReactModuleInfo` each with `isTurboModule = false`
-  (`:29-51`, SafeArea and Sync). `@vxrn/native` already embeds fonts of its own as
+  (`:29-51`, SafeArea and Sync). `one` already embeds fonts of its own as
   `res/font` resources read through Compose `Font(R.font...)`
   (`OneNativeComposeNodeView.kt:1449-1450`); that path serves Compose text only and does
   not reach React Native `fontFamily`, so it is no substitute for `assets/fonts`.
@@ -86,7 +86,7 @@ silently fall back on the other:
 ## API (exact surface)
 
 ```ts
-// @vxrn/native/fonts, surfaced as One.UI.Fonts and One.UI.useFonts
+// one/fonts, surfaced as One.UI.Fonts and One.UI.useFonts
 type FontSource = number | string // an imported font asset, or a file:// or https:// uri
 type FontMap = Readonly<Record<string, FontSource>>
 
@@ -112,7 +112,7 @@ function useFonts(fonts: FontMap): readonly [loaded: boolean, error: Error | nul
 
 **Spec.** One legacy module `OneNativeFonts`, spec file
 `src/specs/OneNativeFontsNativeModule.ts`, resolved with one lazy cached
-`TurboModuleRegistry.get<Spec>()`. On Android it is added to `VxrnNativePackage.kt` in
+`TurboModuleRegistry.get<Spec>()`. On Android it is added to `OnePackage.kt` in
 both `getModule` and `getReactModuleInfoProvider` with `isTurboModule = false`, like
 SafeArea and Sync:
 
@@ -128,7 +128,7 @@ number goes through `Image.resolveAssetSource(source)`, which returns null for a
 that is not a registered asset; that case throws `Fonts.load: "<name>" is not a font
 asset` before any native call. Then one `load` call per entry under `Promise.all`. React
 Native core already owns that resolution, so One needs no `expo-asset`. With the native module missing, `load` rejects
-with `fonts need a native build that includes @vxrn/native` and `isLoaded` returns
+with `fonts need a native build that includes one` and `isLoaded` returns
 `false`.
 
 **Native, one path on each platform:** make the uri a local file, register it, check it.

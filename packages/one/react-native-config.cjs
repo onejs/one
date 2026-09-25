@@ -1,5 +1,6 @@
 const path = require('node:path')
-const nativeRoot = path.dirname(require.resolve('@vxrn/native/package.json'))
+// one's own native code autolinks as the `one` dependency. these are its native
+// dependencies, which the app does not declare, so they resolve from one.
 const bundledNativePackages = [
   '@op-engineering/op-sqlite',
   'react-native-nitro-image',
@@ -9,15 +10,10 @@ const bundledNativePackages = [
 
 module.exports = {
   commands: [...require('vxrn/react-native-commands')],
-  dependencies: {
-    '@vxrn/native': {
-      root: nativeRoot,
-    },
-    ...Object.fromEntries(
-      bundledNativePackages.map((name) => [
-        name,
-        { root: path.dirname(require.resolve(`${name}/package.json`, { paths: [nativeRoot] })) },
-      ])
-    ),
-  },
+  dependencies: Object.fromEntries(
+    bundledNativePackages.map((name) => [
+      name,
+      { root: path.dirname(require.resolve(`${name}/package.json`, { paths: [__dirname] })) },
+    ])
+  ),
 }

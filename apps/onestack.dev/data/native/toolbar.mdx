@@ -43,9 +43,9 @@ Options are route-local and dynamic: render a nameless `Stack.Screen` with a `St
 
 ### Lower-level primitive
 
-`One.iOS.ToolbarHost` with `One.iOS.ToolbarItem` children is the lower-level bottom-`UIToolbar` renderer that `Stack.Toolbar` with bottom placement builds on. Reach for it directly only when you need explicit item identifiers or native item props the declarative API does not forward.
+`One.iOS.ToolbarHost` with `One.iOS.BarButtonItem` children (each a `UIBarButtonItem`) is the lower-level bottom-`UIToolbar` renderer that `Stack.Toolbar` with bottom placement builds on. Reach for it directly only when you need explicit item identifiers or native item props the declarative API does not forward.
 
-### ToolbarItem Props
+### BarButtonItem Props
 
 | Prop | Type | Description |
 |------|------|-------------|

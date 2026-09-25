@@ -1,0 +1,54 @@
+{
+  "$schema": "https://nitro.margelo.com/nitro.schema.json",
+  "cxxNamespace": ["one"],
+  "ios": {
+    "iosModuleName": "One"
+  },
+  "android": {
+    "androidNamespace": ["one"],
+    "androidCxxLibName": "One"
+  },
+  "autolinking": {
+    "OneHaptics": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneHaptics" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneHaptics" }
+    },
+    "OneClipboard": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneClipboard" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneClipboard" }
+    },
+    "OneCrypto": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneCrypto" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneCrypto" }
+    },
+    "OneNetwork": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneNetwork" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneNetwork" }
+    },
+    "OneAppInfo": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneAppInfo" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneAppInfo" }
+    },
+    "OneBrowser": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneBrowser" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneBrowser" }
+    },
+    "OneImagePicker": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneImagePicker" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneImagePicker" }
+    },
+    "OneFonts": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneFonts" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneFonts" }
+    },
+    "OneNotifications": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneNotifications" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneNotifications" }
+    },
+    "OneSecureStore": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneSecureStore" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneSecureStore" }
+    }
+  },
+  "ignorePaths": ["**/node_modules", "dist", "types"]
+}

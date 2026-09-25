@@ -1,6 +1,9 @@
+import type { ComponentProps } from 'react'
 import { useEffect, useRef, useState } from 'react'
-import { Swift, type DialogAction } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
+
+type DialogAction = ComponentProps<typeof One.iOS.Alert>['actions'][number]
 
 const categories = ['Alert', 'Confirmation'] as const
 const titleVisibilities = ['automatic', 'visible', 'hidden'] as const
@@ -157,7 +160,7 @@ export default function OneNativeDialogs() {
         ) : null}
       </View>
       {category === 'Alert' ? (
-        <Swift.Alert
+        <One.iOS.Alert
           actions={alertActions}
           isPresented={isPresented}
           message="Alert actions report their ids separately from dismissal."
@@ -168,7 +171,7 @@ export default function OneNativeDialogs() {
           onIsPresentedChange={handlePresentationChange}
         />
       ) : (
-        <Swift.ConfirmationDialog
+        <One.iOS.ConfirmationDialog
           actions={confirmationActions}
           isPresented={isPresented}
           message="Confirmation actions report their ids separately from dismissal."
@@ -221,8 +224,8 @@ export default function OneNativeDialogs() {
         >{`Nested last: ${nestedLast}`}</Text>
       </View>
       {rootAttached ? (
-        <Swift.Host>
-          <Swift.Alert
+        <One.iOS.Host>
+          <One.iOS.Alert
             actions={nestedActions}
             isPresented={nestedPresented}
             message="Nested actions report under a detachable root."
@@ -232,7 +235,7 @@ export default function OneNativeDialogs() {
             onAction={handleNestedAction}
             onIsPresentedChange={handleNestedChange}
           />
-        </Swift.Host>
+        </One.iOS.Host>
       ) : null}
     </View>
   )

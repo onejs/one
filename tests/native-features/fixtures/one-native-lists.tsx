@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View, useColorScheme } from 'react-native'
+import { One } from 'one'
 
 const listStyles = ['automatic', 'plain', 'grouped'] as const
 
@@ -31,38 +31,38 @@ export default function OneNativeLists() {
         </Pressable>
       </View>
 
-      <Swift.List listStyle={listStyle} style={styles.list}>
-        <Swift.Section title="Fruits">
-          <Swift.Text text="Apple" />
-          <Swift.Text text="Banana" />
-          <Swift.Text text="Orange" />
-          <Swift.Button
+      <One.iOS.List listStyle={listStyle} style={styles.list}>
+        <One.iOS.Section title="Fruits">
+          <One.iOS.Text text="Apple" />
+          <One.iOS.Text text="Banana" />
+          <One.iOS.Text text="Orange" />
+          <One.iOS.Button
             label="List button"
             onPress={() => setListTaps((count) => count + 1)}
           />
-          <Swift.Toggle label="Ripe" isOn={isOn} onIsOnChange={setIsOn} />
-        </Swift.Section>
-        <Swift.Section title="Vegetables">
-          <Swift.Text text="Carrot" />
-          <Swift.Text text="Broccoli" />
-        </Swift.Section>
-      </Swift.List>
+          <One.iOS.Toggle label="Ripe" isOn={isOn} onIsOnChange={setIsOn} />
+        </One.iOS.Section>
+        <One.iOS.Section title="Vegetables">
+          <One.iOS.Text text="Carrot" />
+          <One.iOS.Text text="Broccoli" />
+        </One.iOS.Section>
+      </One.iOS.List>
 
-      <Swift.ScrollView style={styles.vertical}>
-        <Swift.LazyVStack>
+      <One.iOS.ScrollView style={styles.vertical}>
+        <One.iOS.LazyVStack>
           {Array.from({ length: 30 }, (_, index) => (
-            <Swift.Text key={index} text={`Row ${index + 1}`} />
+            <One.iOS.Text key={index} text={`Row ${index + 1}`} />
           ))}
-        </Swift.LazyVStack>
-      </Swift.ScrollView>
+        </One.iOS.LazyVStack>
+      </One.iOS.ScrollView>
 
-      <Swift.ScrollView axes="horizontal" style={styles.horizontal}>
-        <Swift.LazyHStack>
+      <One.iOS.ScrollView axes="horizontal" style={styles.horizontal}>
+        <One.iOS.LazyHStack>
           {Array.from({ length: 20 }, (_, index) => (
-            <Swift.Text key={index} text={`Chip ${index + 1}`} />
+            <One.iOS.Text key={index} text={`Chip ${index + 1}`} />
           ))}
-        </Swift.LazyHStack>
-      </Swift.ScrollView>
+        </One.iOS.LazyHStack>
+      </One.iOS.ScrollView>
 
       <View style={styles.row}>
         <Text

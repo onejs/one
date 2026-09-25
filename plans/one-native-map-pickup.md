@@ -31,7 +31,7 @@ amendment) first, then this note.
   +134pt). Center taps hit the Ferry Building POI and MapKit consumes
   them (INFERRED: same as Google's onPoiClick-not-onMapClick), so the
   suite taps water at 85% width.
-- Unit: `packages/native/tests/map.test.ts` 7/7; `typecheck`, `generate`
+- Unit: `packages/one/tests/map.test.ts` 7/7; `typecheck`, `generate`
   + `generate:check`, package `build` (58 specs, UiMap dist mirror with
   all 3 events + static view config) all green.
 
@@ -104,8 +104,8 @@ amendment) first, then this note.
    manifest field (coordinate with r43632, who is folding validators),
    prebuild stamp (meta-data + manifestPlaceholders + gradle.properties
    flag), maps/nomaps source sets + conditional deps in
-   `packages/native/android/build.gradle`, `OneNativeUiMapManager` in
-   both sets + `VxrnNativePackage` registration, real
+   `packages/one/android/build.gradle`, `OneNativeUiMapManager` in
+   both sets + `OnePackage` registration, real
    `ui/Map.android.tsx`, android flow steps in
    `one-native-conformance.android.ts`. No key is available: prebuild
    with a placeholder `GOOGLE_MAPS_API_KEY` (fixture manifest reads

@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { SplitView } from '@vxrn/native'
 import { View, Text, Pressable, ScrollView, StyleSheet, Platform } from 'react-native'
+import { One } from 'one'
 
 const sidebarItems = [
   { id: 'inbox', label: 'Inbox', count: 12 },
@@ -75,7 +75,7 @@ function MainSlot() {
         Main Content Area
       </Text>
       <Text style={styles.mainDescription}>
-        This is the main content slot of the SplitView
+        This is the main content slot of the One.iOS.SplitView
       </Text>
     </View>
   )
@@ -88,7 +88,7 @@ export default function SplitViewTestScreen() {
   return (
     <View style={styles.container} testID="split-view-test-screen">
       <Text testID="split-view-title" style={styles.title}>
-        SplitView Test
+        One.iOS.SplitView Test
       </Text>
 
       <Text testID="split-view-platform" style={styles.platformLabel}>
@@ -97,16 +97,16 @@ export default function SplitViewTestScreen() {
 
       {isIOS ? (
         <View style={styles.splitContainer} testID="split-view-container">
-          <SplitView slot={MainSlot}>
-            <SplitView.Column>
+          <One.iOS.SplitView slot={MainSlot}>
+            <One.iOS.SplitView.Column>
               <SidebarContent selectedId={selectedId} onSelect={setSelectedId} />
-            </SplitView.Column>
-          </SplitView>
+            </One.iOS.SplitView.Column>
+          </One.iOS.SplitView>
         </View>
       ) : (
         <View testID="split-view-fallback" style={styles.fallback}>
           <Text style={styles.fallbackText}>
-            SplitView is only available on iOS / iPadOS
+            One.iOS.SplitView is only available on iOS / iPadOS
           </Text>
           {/* render sidebar and detail as stacked views on non-iOS */}
           <SidebarContent selectedId={selectedId} onSelect={setSelectedId} />
@@ -116,7 +116,7 @@ export default function SplitViewTestScreen() {
 
       <View testID="split-view-render-status" style={styles.statusBar}>
         <Text testID="split-view-render-complete" style={styles.statusText}>
-          SplitView test rendered
+          One.iOS.SplitView test rendered
         </Text>
         <Text testID="split-view-selected-id" style={styles.statusDetail}>
           Selected: {selectedId}

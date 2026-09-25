@@ -31,9 +31,6 @@ function nativeWebgpuAliases(): Plugin {
 export default defineConfig({
   plugins: [
     one({
-      setupFile: {
-        native: './setup.native.ts',
-      },
       native: {
         app: {
           name: 'NativeFeatureTests',

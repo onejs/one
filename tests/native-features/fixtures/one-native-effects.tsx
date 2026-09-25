@@ -1,6 +1,6 @@
-import { UI } from '@vxrn/native'
 import { useState } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 // runtime proof for the native-effects track. mirrors Contrast Mobile's
 // consumption 1:1: a BottomBlurBand-shaped progressive blur over a scrolling
@@ -40,7 +40,7 @@ export default function OneNativeEffects() {
           <Stripes testID="one-native-effects-stripes" />
         </ScrollView>
         {band && (
-          <UI.EdgeFade
+          <One.UI.EdgeFade
             testID="one-native-effects-blur-band"
             mode="blur"
             bottom={140}
@@ -58,17 +58,17 @@ export default function OneNativeEffects() {
                 <Text>Hide band</Text>
               </Pressable>
             </View>
-          </UI.EdgeFade>
+          </One.UI.EdgeFade>
         )}
       </View>
 
       {/* progressive mask over stripes. */}
-      <UI.EdgeFade testID="one-native-effects-mask" mode="mask" top={48} bottom={48}>
+      <One.UI.EdgeFade testID="one-native-effects-mask" mode="mask" top={48} bottom={48}>
         <Stripes testID="one-native-effects-mask-stripes" />
-      </UI.EdgeFade>
+      </One.UI.EdgeFade>
 
       {/* RN-core overlay gradient over a solid block (no native code). */}
-      <UI.EdgeFade
+      <One.UI.EdgeFade
         testID="one-native-effects-overlay"
         mode="overlay"
         top={64}
@@ -76,44 +76,44 @@ export default function OneNativeEffects() {
         style={styles.overlayBlock}
       >
         <Text style={styles.overlayText}>overlay over solid</Text>
-      </UI.EdgeFade>
+      </One.UI.EdgeFade>
 
       {/* regular tinted blur with a sharp child on top. */}
       <View style={styles.blurStage}>
         <Stripes testID="one-native-effects-blur-stripes" />
-        <UI.Blur
+        <One.UI.Blur
           testID="one-native-effects-blur"
           tint="systemChromeMaterial"
           intensity={60}
           style={styles.blurCard}
         >
           <Text style={styles.blurText}>sharp on blur</Text>
-        </UI.Blur>
+        </One.UI.Blur>
       </View>
 
       {/* arbitrary-element mask: content shows only inside the diamond. */}
-      <UI.Mask
+      <One.UI.Mask
         testID="one-native-effects-mask-element"
         style={styles.arbitraryMask}
         maskElement={<View style={styles.diamond} />}
       >
         <Stripes testID="one-native-effects-arbitrary-stripes" />
-      </UI.Mask>
+      </One.UI.Mask>
 
       {/* negative controls: each must render identically to unstyled content. */}
       <Text>Negatives (must match plain content)</Text>
-      <UI.EdgeFade testID="one-native-effects-negative-noedge">
+      <One.UI.EdgeFade testID="one-native-effects-negative-noedge">
         <Text>no edges enabled</Text>
-      </UI.EdgeFade>
-      <UI.EdgeFade testID="one-native-effects-negative-zero-blur" mode="blur" bottom={80} blurRadius={0}>
+      </One.UI.EdgeFade>
+      <One.UI.EdgeFade testID="one-native-effects-negative-zero-blur" mode="blur" bottom={80} blurRadius={0}>
         <Text>zero blur radius</Text>
-      </UI.EdgeFade>
-      <UI.Blur testID="one-native-effects-negative-zero-intensity" intensity={0}>
+      </One.UI.EdgeFade>
+      <One.UI.Blur testID="one-native-effects-negative-zero-intensity" intensity={0}>
         <Text>zero intensity</Text>
-      </UI.Blur>
-      <UI.Mask testID="one-native-effects-negative-invalid-mask">
+      </One.UI.Blur>
+      <One.UI.Mask testID="one-native-effects-negative-invalid-mask">
         <Text>invalid mask element</Text>
-      </UI.Mask>
+      </One.UI.Mask>
     </View>
   )
 }

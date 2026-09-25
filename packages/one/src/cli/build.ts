@@ -48,6 +48,7 @@ import { labelProcess } from './label-process'
 import { getRouteExports } from './serverRouteModules'
 import { pLimit } from '../utils/pLimit'
 import { getCriticalCSSOutputPaths } from '../vite/plugins/criticalCSSPlugin'
+import { absorbedPackageAliases } from '../utils/absorbedPackages'
 
 const { ensureDir, writeJSON } = FSExtra
 
@@ -1440,10 +1441,9 @@ export default {
               find: 'react-native',
               replacement: resolvePath('react-native-web', options.root),
             },
-            {
-              find: 'react-native-safe-area-context',
-              replacement: resolvePath('@vxrn/safe-area', options.root),
-            },
+            ...Object.entries(absorbedPackageAliases(options.root, 'web')).map(
+              ([find, replacement]) => ({ find, replacement })
+            ),
           ],
         },
         build: {

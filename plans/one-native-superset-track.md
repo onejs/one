@@ -1,6 +1,6 @@
 # One Native superset track
 
-Goal: `@vxrn/native` becomes a strict superset of Expo UI on iOS and Android,
+Goal: `one` becomes a strict superset of Expo UI on iOS and Android,
 with auto-generated Swift + TypeScript that matches Apple APIs as closely as
 possible. End state: run a script, get the library. Hill-climbed in shippable
 steps, not one shot.

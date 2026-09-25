@@ -84,7 +84,7 @@ Returns `{ top, right, bottom, left }` in pixels.
 - **iOS**: Reads native safe area APIs for the status bar, notch or Dynamic Island, and home indicator.
 - **Android**: Reads native window insets for status bars, navigation bars, and display cutouts.
 
-One automatically sets up `SafeAreaProvider` - no additional setup needed.
+One mounts the safe area provider at its root on every platform, so there is no setup. Libraries that import `react-native-safe-area-context`, such as React Navigation, resolve to One's safe area and read the same insets. If your app declares `react-native-safe-area-context` in its own `package.json`, One leaves that package alone and your copy is used.
 
 ## Related
 

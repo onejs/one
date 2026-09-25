@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Compose } from '@vxrn/native'
+import { One } from 'one'
 
 const rootStyle = { flex: 1 } as const
 const rowStyle = { fillMaxWidth: true } as const
@@ -18,25 +18,25 @@ export default function OneNativeAndroidInputs() {
   const [customOutcome, setCustomOutcome] = useState('none')
 
   return (
-    <Compose.Column
+    <One.Android.Column
       accessibilityLabel="One Native Android inputs proof"
       testID="one-native-android-inputs-screen"
       style={rootStyle}
       spacing={4}
       composeStyle={{ padding: 8, fillMaxWidth: true, fillMaxHeight: true }}
     >
-      <Compose.Text
+      <One.Android.Text
         accessibilityRole="header"
         accessibilityLabel="Android inputs proof mounted"
         testID="one-native-android-inputs-mounted"
         text="Android inputs proof mounted"
       />
 
-      <Compose.Text
+      <One.Android.Text
         testID="one-native-android-inputs-text-status"
         text={`Text: ${name} · Request: ${nameRequest} · Revision: ${textRevision}`}
       />
-      <Compose.TextField
+      <One.Android.TextField
         accessibilityLabel="Name field"
         label="Name"
         placeholder="Your name"
@@ -49,19 +49,19 @@ export default function OneNativeAndroidInputs() {
         testID="one-native-android-inputs-textfield"
         composeStyle={fieldStyle}
       />
-      <Compose.Row
+      <One.Android.Row
         testID="one-native-android-inputs-text-row"
         composeStyle={rowStyle}
         spacing={8}
       >
-        <Compose.Button
+        <One.Android.Button
           accessibilityRole="button"
           accessibilityLabel={rejectText ? 'Accept text' : 'Reject text'}
           label={rejectText ? 'Accept text' : 'Reject text'}
           onPress={() => setRejectText((value) => !value)}
           testID="one-native-android-inputs-text-policy"
         />
-        <Compose.Button
+        <One.Android.Button
           accessibilityRole="button"
           label="Reset text"
           tone="danger"
@@ -72,13 +72,13 @@ export default function OneNativeAndroidInputs() {
           }}
           testID="one-native-android-inputs-text-reset"
         />
-      </Compose.Row>
+      </One.Android.Row>
 
-      <Compose.Text
+      <One.Android.Text
         testID="one-native-android-inputs-slider-status"
         text={`Slider: ${Math.round(volume)} · Request: ${Math.round(volumeRequest)}`}
       />
-      <Compose.Slider
+      <One.Android.Slider
         accessibilityLabel="Volume slider"
         value={volume}
         onValueChange={(value) => {
@@ -91,36 +91,36 @@ export default function OneNativeAndroidInputs() {
         testID="one-native-android-inputs-slider"
         composeStyle={fieldStyle}
       />
-      <Compose.Row
+      <One.Android.Row
         testID="one-native-android-inputs-slider-row"
         composeStyle={rowStyle}
         spacing={8}
       >
-        <Compose.Button
+        <One.Android.Button
           accessibilityRole="button"
           label="Volume -5"
           onPress={() => setVolume((value) => Math.max(0, value - 5))}
           testID="one-native-android-inputs-slider-down"
         />
-        <Compose.Button
+        <One.Android.Button
           accessibilityRole="button"
           label="Volume +5"
           onPress={() => setVolume((value) => Math.min(100, value + 5))}
           testID="one-native-android-inputs-slider-up"
         />
-      </Compose.Row>
+      </One.Android.Row>
 
-      <Compose.Text
+      <One.Android.Text
         testID="one-native-android-inputs-dialog-status"
         text={`Dialog: ${dialogOutcome}`}
       />
-      <Compose.Button
+      <One.Android.Button
         accessibilityRole="button"
         label="Show dialog"
         onPress={() => setDialogVisible(true)}
         testID="one-native-android-inputs-dialog-show"
       />
-      <Compose.AlertDialog
+      <One.Android.AlertDialog
         testID="one-native-android-inputs-alertdialog"
         visible={dialogVisible}
         title="Delete item?"
@@ -137,17 +137,17 @@ export default function OneNativeAndroidInputs() {
         }}
       />
 
-      <Compose.Text
+      <One.Android.Text
         testID="one-native-android-inputs-custom-status"
         text={`Custom dialog: ${customOutcome}`}
       />
-      <Compose.Button
+      <One.Android.Button
         accessibilityRole="button"
         label="Show custom"
         onPress={() => setCustomVisible(true)}
         testID="one-native-android-inputs-custom-show"
       />
-      <Compose.Dialog
+      <One.Android.Dialog
         testID="one-native-android-inputs-dialog"
         visible={customVisible}
         onDismiss={() => {
@@ -155,12 +155,12 @@ export default function OneNativeAndroidInputs() {
           setCustomOutcome('dismissed')
         }}
       >
-        <Compose.Box composeStyle={{ backgroundColor: '#FFFFFF', cornerRadius: 12, padding: 16 }}>
-          <Compose.Text
+        <One.Android.Box composeStyle={{ backgroundColor: '#FFFFFF', cornerRadius: 12, padding: 16 }}>
+          <One.Android.Text
             testID="one-native-android-inputs-custom-body"
             text="Custom dialog body"
           />
-          <Compose.Button
+          <One.Android.Button
             accessibilityRole="button"
             label="Close"
             onPress={() => {
@@ -169,22 +169,22 @@ export default function OneNativeAndroidInputs() {
             }}
             testID="one-native-android-inputs-custom-close"
           />
-        </Compose.Box>
-      </Compose.Dialog>
+        </One.Android.Box>
+      </One.Android.Dialog>
 
-      <Compose.Text
+      <One.Android.Text
         testID="one-native-android-inputs-progress-status"
         text="Progress mounted"
       />
-      <Compose.ProgressIndicator
+      <One.Android.ProgressIndicator
         variant="linear"
         progress={0.4}
         testID="one-native-android-inputs-progress-linear"
         composeStyle={fieldStyle}
       />
-      <Compose.ProgressIndicator
+      <One.Android.ProgressIndicator
         testID="one-native-android-inputs-progress-circular"
       />
-    </Compose.Column>
+    </One.Android.Column>
   )
 }

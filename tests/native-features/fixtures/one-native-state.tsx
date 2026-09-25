@@ -1,24 +1,24 @@
-import { Swift, useNativeState } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 export default function OneNativeState() {
-  const name = useNativeState('')
-  const flag = useNativeState(false)
+  const name = One.UI.useNativeState('')
+  const flag = One.UI.useNativeState(false)
 
   return (
     <View style={styles.screen} testID="one-native-state-screen">
-      <Swift.TextField
+      <One.iOS.TextField
         label="Name"
         text={name.value}
         onTextChange={name.set}
         autocorrectionDisabled
         testID="one-native-state-field"
       />
-      <Swift.Text
+      <One.iOS.Text
         text={name.value === '' ? 'Mirror: empty' : `Mirror: ${name.value}`}
       />
-      <Swift.Toggle label="First" isOn={flag.value} onIsOnChange={flag.set} />
-      <Swift.Toggle label="Second" isOn={flag.value} onIsOnChange={flag.set} />
+      <One.iOS.Toggle label="First" isOn={flag.value} onIsOnChange={flag.set} />
+      <One.iOS.Toggle label="Second" isOn={flag.value} onIsOnChange={flag.set} />
       <Pressable
         testID="one-native-state-set"
         style={styles.chip}

@@ -8,7 +8,6 @@ import type { VXRNOptionsFilled } from './getOptionsFilled'
 
 export const dedupe = [
   'one',
-  '@vxrn/safe-area',
   'react',
   'react-dom',
   'react-dom/client',
@@ -112,10 +111,6 @@ export async function getBaseViteConfig(
         {
           find: 'react-native',
           replacement: resolvePath('react-native-web', root),
-        },
-        {
-          find: 'react-native-safe-area-context',
-          replacement: resolvePath('@vxrn/safe-area', root),
         },
         // bundle size optimizations
         {

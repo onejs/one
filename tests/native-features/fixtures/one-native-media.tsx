@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 const categories = ['Player', 'Preview'] as const
 
@@ -82,7 +82,7 @@ export default function OneNativeMedia() {
               <Text style={styles.actionText}>Toggle height</Text>
             </Pressable>
           </View>
-          <Swift.VideoPlayer
+          <One.iOS.VideoPlayer
             autoplay={autoplay}
             style={[styles.video, { height: tall ? 320 : 220 }]}
             testID="one-native-media-video"
@@ -101,7 +101,7 @@ export default function OneNativeMedia() {
               <Text style={styles.actionText}>Open preview</Text>
             </Pressable>
           </View>
-          <Swift.QuickLook
+          <One.iOS.QuickLook
             isPresented={isPresented}
             testID="one-native-media-quicklook"
             url={previewURL}

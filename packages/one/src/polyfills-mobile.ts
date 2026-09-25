@@ -52,6 +52,6 @@ Promise.withResolvers || (Promise.withResolvers = promiseWithResolvers)
 // by the OneCrypto nitro hybrid object (SecRandomCopyBytes / SecureRandom), only
 // filling the pieces the runtime lacks.
 
-import { installCrypto } from '@vxrn/native/crypto'
+import { installCrypto } from './platform/crypto'
 
 installCrypto()
