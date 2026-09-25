@@ -3,16 +3,16 @@ title: Haptics
 description: Fire-and-forget tactile feedback on both platforms
 ---
 
-Fire-and-forget tactile feedback, exposed as `One.UI.Haptics`. The names follow Apple's feedback generators, not a
+Fire-and-forget tactile feedback, exposed as `One.Haptics`. The names follow Apple's feedback generators, not a
 hardware spec: `selection` for picking among options, `impact` for physical
 commits, `notification` for completion and failure the user cares about.
 
 ```tsx
 import { One } from 'one'
 
-One.UI.Haptics.selection()
-One.UI.Haptics.impact('medium')
-One.UI.Haptics.notification('success')
+One.Haptics.selection()
+One.Haptics.impact('medium')
+One.Haptics.notification('success')
 ```
 
 The calls are synchronous `void`, not promises: haptics have no meaningful

@@ -1,7 +1,7 @@
 import NitroModules
 import UIKit
 
-// fire-and-forget tactile feedback, the ios half of One.UI.Haptics. calls
+// fire-and-forget tactile feedback, the ios half of One.Haptics. calls
 // arrive synchronously on the JS thread and UIFeedbackGenerator is main-thread
 // only, so each one hops to main. one retained generator per style; each call
 // prepares then fires so gesture-threshold rates stay responsive. soft/rigid
