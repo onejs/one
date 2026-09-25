@@ -167,7 +167,7 @@ final class OneNativeSheetModel: ObservableObject {
         self?.onDetentChange?(type, value, count, revision)
       }
       model.onDismiss = { [weak self] revision in self?.onDismiss?(revision) }
-      controller = OneNativeHostingController(rootView: OneNativeSheetRoot(model: model))
+      controller = OneNativeHostingController(rootView: OneNativeSheetRoot(model: model), screenInsets: true)
     }
     controller?.attach(to: self)
     model.active = controller?.isAttached == true

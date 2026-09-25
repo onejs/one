@@ -128,7 +128,7 @@ public final class OneNativeNavigationStackView: UIView, OneNativeToolbarHost {
     if controller == nil {
       model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
       controller = OneNativeHostingController(
-        rootView: OneNativeNavigationStackRoot(model: model, host: self))
+        rootView: OneNativeNavigationStackRoot(model: model, host: self), screenInsets: true)
     }
     controller?.attach(to: self)
     let attached = controller?.isAttached == true
