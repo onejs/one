@@ -16,7 +16,7 @@ Scope, three things:
 
 How this package works: codegen/Extract.swift parses .swiftinterface files, inventory.ts builds the symbol map, generate.ts drives the emitters, output lands in ios/Generated/ and src/generated/. Never hand-edit generated files, change the mapping and regenerate.
 
-Gate, run from packages/native:
+Gate, run from packages/one:
   bun run generate:check
 codegen, output diff, swiftc -typecheck over every .swift in ios/ and ios/Generated/, and the controlled-state probe. Green before you report. Also bun run typecheck and bun run test.
 
@@ -26,7 +26,7 @@ What you must NOT do:
 - Do not boot a simulator, do not run the device conformance suite. I own 36CB8903-C59C-4438-BA29-E7A3C8876C37 and another agent is capturing pixel oracles on it now; the suite is load-sensitive and a second CoreSimulator client corrupts both. I run the device suite at integration. This means you cannot visually confirm the tab fix yourself. Get it right by reading TabsContent and reasoning about the selection-to-content association, then tell me exactly what you want me to run to confirm it.
 - Do not touch port 8107.
 - Do not push. Commit to your branch, report the SHA to me.
-- Nothing outside packages/native and its fixture. Not soot, not rnx.
+- Nothing outside packages/one and its fixture. Not soot, not rnx.
 
 Visual check regions are ABSOLUTE fixture coordinates. Adding a control shifts everything below it; the handoff records a 39pt shift that broke five checks which were not regressions. Report any shift you cause with its offset. Never re-baseline a visual check to make it green.
 

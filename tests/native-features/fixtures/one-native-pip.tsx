@@ -1,6 +1,6 @@
-import { UI } from '@vxrn/native'
 import { useEffect, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 // exercises One.UI.PictureInPicture: a js-driven clock and a sweeping bar
 // inside the pip content prove the window keeps updating while the app is in
@@ -24,7 +24,7 @@ export default function OneNativePip() {
 
   return (
     <View style={styles.screen}>
-      <UI.PictureInPicture
+      <One.UI.PictureInPicture
         testID="one-native-pip"
         style={styles.pip}
         active={active}
@@ -38,7 +38,7 @@ export default function OneNativePip() {
         <View style={styles.track}>
           <View style={[styles.bar, { left: `${sweep * 80}%` }]} />
         </View>
-      </UI.PictureInPicture>
+      </One.UI.PictureInPicture>
       <Text>{`Active: ${active ? 'yes' : 'no'}`}</Text>
       <Text>{`Changes: ${changes.join(',') || 'none'}`}</Text>
       <Text>{`Auto enter: ${autoEnter ? 'on' : 'off'}`}</Text>

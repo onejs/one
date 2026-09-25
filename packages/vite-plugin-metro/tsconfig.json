@@ -17,9 +17,6 @@
       "path": "../resolve"
     },
     {
-      "path": "../safe-area"
-    },
-    {
       "path": "../url-parse"
     },
     {

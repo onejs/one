@@ -218,7 +218,7 @@ export default function HomeScreen() {
       testID="home-screen"
     >
       <Text testID="home-title" style={styles.title}>
-        @vxrn/native Test Suite
+        One Native Test Suite
       </Text>
 
       <Text testID="home-subtitle" style={styles.subtitle}>

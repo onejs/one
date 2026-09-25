@@ -1,6 +1,6 @@
-import { Browser } from '@vxrn/native'
 import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 // exercises the browser api against the real safari sheet: a user dismiss
 // resolving cancel, a programmatic dismiss resolving dismiss, and auth
@@ -27,7 +27,7 @@ export default function OneNativeBrowser() {
       <Pressable
         testID="one-native-browser-open"
         style={styles.chip}
-        onPress={async () => setResult((await Browser.open(page)).type)}
+        onPress={async () => setResult((await One.Browser.open(page)).type)}
       >
         <Text>Open page</Text>
       </Pressable>
@@ -35,9 +35,9 @@ export default function OneNativeBrowser() {
         testID="one-native-browser-open-dismiss"
         style={styles.chip}
         onPress={async () => {
-          const pending = Browser.open(page)
+          const pending = One.Browser.open(page)
           await new Promise((resolve) => setTimeout(resolve, 750))
-          setDismissed((await Browser.dismiss()).type)
+          setDismissed((await One.Browser.dismiss()).type)
           setOpened((await pending).type)
         }}
       >
@@ -47,7 +47,7 @@ export default function OneNativeBrowser() {
         testID="one-native-browser-auth"
         style={styles.chip}
         onPress={async () => {
-          const next = await Browser.openAuthSession(page, redirect)
+          const next = await One.Browser.openAuthSession(page, redirect)
           setAuth(next.type === 'success' ? `success ${next.url}` : next.type)
         }}
       >
@@ -59,8 +59,8 @@ export default function OneNativeBrowser() {
         onPress={async () => {
           // same tick, no sleep: opening backgrounds the app on android,
           // which pauses js timers until the tab closes.
-          const pending = Browser.openAuthSession(page, redirect)
-          Browser.dismissAuthSession()
+          const pending = One.Browser.openAuthSession(page, redirect)
+          One.Browser.dismissAuthSession()
           const next = await pending
           setAuth(next.type === 'success' ? `success ${next.url}` : next.type)
         }}
@@ -71,7 +71,7 @@ export default function OneNativeBrowser() {
         testID="one-native-browser-auth-redirect"
         style={styles.chip}
         onPress={async () => {
-          const next = await Browser.openAuthSession(redirectStart, redirect, {
+          const next = await One.Browser.openAuthSession(redirectStart, redirect, {
             preferEphemeralSession: true,
           })
           setAuth(next.type === 'success' ? `success ${next.url}` : next.type)

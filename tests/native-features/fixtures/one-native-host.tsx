@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 const axes = ['vertical', 'horizontal'] as const
 const spacings = [0, 20] as const
@@ -78,7 +78,7 @@ export default function OneNativeHost() {
         </Pressable>
       </View>
 
-      <Swift.Host
+      <One.iOS.Host
         testID="one-native-host"
         axis={axis}
         spacing={spacing}
@@ -90,7 +90,7 @@ export default function OneNativeHost() {
           setWidth(Math.round(nativeEvent.layout.width))
         }}
       >
-        <Swift.Toggle
+        <One.iOS.Toggle
           label={label}
           isOn={isOn}
           onIsOnChange={(value) => {
@@ -99,13 +99,13 @@ export default function OneNativeHost() {
           }}
         />
         {expanded ? (
-          <Swift.Button
+          <One.iOS.Button
             label="Composed button"
             onPress={() => setTaps((count) => count + 1)}
           />
         ) : null}
         {expanded ? (
-          <Swift.Stepper
+          <One.iOS.Stepper
             label="Composed stepper"
             value={step}
             minimumValue={0}
@@ -113,7 +113,7 @@ export default function OneNativeHost() {
             onValueChange={setStep}
           />
         ) : null}
-      </Swift.Host>
+      </One.iOS.Host>
 
       <Text
         testID="one-native-host-size"

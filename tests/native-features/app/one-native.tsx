@@ -1,6 +1,9 @@
+import type { ComponentProps } from 'react'
 import { useState, type ReactNode } from 'react'
-import { Swift, type MenuItem } from '@vxrn/native'
 import { Platform, View, Text, Pressable, TextInput, StyleSheet } from 'react-native'
+import { One } from 'one'
+
+type MenuItem = ComponentProps<typeof One.iOS.Menu>['items'][number]
 
 const FIRST = 'first'
 const SECOND = 'second'
@@ -234,7 +237,7 @@ export default function OneNativeScreen() {
         </Pressable>
       </View>
 
-      <Swift.Tabs
+      <One.iOS.Tabs
         selection={selection}
         swiftStyle={iosVersion >= 26 ? { tabBarMinimizeBehavior: 'never' } : undefined}
         onSelectionChange={(id) => {
@@ -245,7 +248,7 @@ export default function OneNativeScreen() {
         }}
       >
         {tabOrder.map((id) => (
-          <Swift.Tab
+          <One.iOS.Tab
             key={id}
             id={id}
             title={titles[id]}
@@ -256,7 +259,7 @@ export default function OneNativeScreen() {
           >
             <TabPage id={id} title={titles[id]}>
               {id === FIRST ? (
-                <Swift.Menu
+                <One.iOS.Menu
                   accessibilityLabel="Open native menu"
                   menuOrder="fixed"
                   style={{
@@ -277,13 +280,13 @@ export default function OneNativeScreen() {
                   <View testID="one-native-menu-trigger" style={styles.menuTrigger}>
                     <Text style={styles.buttonText}>Open Menu</Text>
                   </View>
-                </Swift.Menu>
+                </One.iOS.Menu>
               ) : null}
             </TabPage>
-          </Swift.Tab>
+          </One.iOS.Tab>
         ))}
         {actionTab && !searchRole ? (
-          <Swift.Tab
+          <One.iOS.Tab
             id="compose"
             title="Compose"
             systemImage="plus"
@@ -292,7 +295,7 @@ export default function OneNativeScreen() {
             onPress={() => setActionPresses((count) => count + 1)}
           />
         ) : null}
-      </Swift.Tabs>
+      </One.iOS.Tabs>
     </View>
   )
 }

@@ -2,7 +2,7 @@
 // FloatingTabBar against is measured off captures of this screen, so the screen exists to be
 // photographed rather than tapped:
 //
-//  - Swift.Tabs fills the window with no padding and no bordered container, so an x measured
+//  - One.iOS.Tabs fills the window with no padding and no bordered container, so an x measured
 //    here is a real screen coordinate. the one-native screen wraps its tabs in a 16pt padded
 //    card, which shifts every edge and shrinks the width SwiftUI lays the bar out in.
 //  - the page behind the bar is one flat saturated colour. the capsule is a translucent glass
@@ -11,9 +11,9 @@
 //    fifty-level step, which lets the driver measure it a second, independent way.
 //  - one cell renders at a time, named on screen, advanced by one button.
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { View, Text, Pressable, ScrollView, StyleSheet } from 'react-native'
 import { cells, type OracleCell } from './tab-bar-oracle-cells'
+import { One } from 'one'
 
 export const ORACLE_BACKDROP = '#00A03C'
 
@@ -71,7 +71,7 @@ function Cell({
   const [scrollOffset, setScrollOffset] = useState(0)
 
   return (
-    <Swift.Tabs
+    <One.iOS.Tabs
       selection={selection}
       onSelectionChange={setSelection}
       tabViewStyle={cell.sidebarAdaptable ? 'sidebarAdaptable' : 'tabBarOnly'}
@@ -79,7 +79,7 @@ function Cell({
     >
       {cell.tabs.map((tab) =>
         tab.action ? (
-          <Swift.Tab
+          <One.iOS.Tab
             key={tab.id}
             id={tab.id}
             title={tab.title}
@@ -90,7 +90,7 @@ function Cell({
             onPress={() => setPresses((count) => count + 1)}
           />
         ) : (
-          <Swift.Tab
+          <One.iOS.Tab
             key={tab.id}
             id={tab.id}
             title={tab.title}
@@ -125,10 +125,10 @@ function Cell({
                 scrollOffset={cell.scrollablePage ? scrollOffset : null}
               />
             </View>
-          </Swift.Tab>
+          </One.iOS.Tab>
         )
       )}
-    </Swift.Tabs>
+    </One.iOS.Tabs>
   )
 }
 

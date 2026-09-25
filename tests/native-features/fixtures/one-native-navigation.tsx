@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 // a sheet whose root is a real SwiftUI NavigationStack: the navigation bar carries a
 // segmented principal Picker that switches the React Native page under it, and a trailing
@@ -36,22 +36,22 @@ export default function OneNativeNavigation() {
         testID="one-native-navigation-sort"
       >{`Sort: ${sort}`}</Text>
 
-      <Swift.Sheet
+      <One.iOS.Sheet
         isPresented={open}
         onIsPresentedChange={setOpen}
         onDismiss={() => setCloses((count) => count + 1)}
         presentationDetents={['large']}
       >
-        <Swift.NavigationStack
+        <One.iOS.NavigationStack
           style={styles.stack}
           swiftStyle={{
             navigationTitleWithText: 'Mailbox',
             navigationBarTitleDisplayMode: 'inline',
           }}
         >
-          <Swift.Toolbar>
-            <Swift.ToolbarItem placement="principal">
-              <Swift.Picker
+          <One.iOS.Toolbar>
+            <One.iOS.ToolbarItem placement="principal">
+              <One.iOS.Picker
                 label="Mailbox"
                 pickerStyle="segmented"
                 selection={page}
@@ -61,27 +61,27 @@ export default function OneNativeNavigation() {
                   { value: 'archive', label: 'Archive' },
                 ]}
               />
-            </Swift.ToolbarItem>
-            <Swift.ToolbarItemGroup
+            </One.iOS.ToolbarItem>
+            <One.iOS.ToolbarItemGroup
               placement="topBarLeading"
               label="Sort"
               systemImage="arrow.up.arrow.down"
             >
-              <Swift.Button
+              <One.iOS.Button
                 label="Newest"
                 onPress={() => setSort((count) => count + 1)}
               />
-            </Swift.ToolbarItemGroup>
-            <Swift.ToolbarSpacer sizing="fixed" placement="topBarLeading" />
-            <Swift.ToolbarItem placement="topBarTrailing">
-              <Swift.Button
+            </One.iOS.ToolbarItemGroup>
+            <One.iOS.ToolbarSpacer sizing="fixed" placement="topBarLeading" />
+            <One.iOS.ToolbarItem placement="topBarTrailing">
+              <One.iOS.Button
                 label="Close"
                 systemImage="xmark"
                 buttonRole="close"
                 onPress={() => setOpen(false)}
               />
-            </Swift.ToolbarItem>
-          </Swift.Toolbar>
+            </One.iOS.ToolbarItem>
+          </One.iOS.Toolbar>
 
           <View style={styles.page}>
             <Text style={styles.pageText} testID="one-native-navigation-stack-page">
@@ -96,8 +96,8 @@ export default function OneNativeNavigation() {
               <Text style={styles.tapText}>{`Taps: ${taps}`}</Text>
             </Pressable>
           </View>
-        </Swift.NavigationStack>
-      </Swift.Sheet>
+        </One.iOS.NavigationStack>
+      </One.iOS.Sheet>
     </View>
   )
 }

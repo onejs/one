@@ -1,8 +1,11 @@
+import type { ComponentProps } from 'react'
 import { useState } from 'react'
-import { Swift, type TabViewStyle } from '@vxrn/native'
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { One } from 'one'
 
-// exercises every Swift.Tabs parity row in one screen: roles, sections with
+type TabViewStyle = NonNullable<ComponentProps<typeof One.iOS.Tabs>['tabViewStyle']>
+
+// exercises every One.iOS.Tabs parity row in one screen: roles, sections with
 // header actions, badges, the bottom accessory, tab bar visibility, styles,
 // customization and minimize behavior.
 const STYLES: TabViewStyle[] = ['automatic', 'sidebarAdaptable', 'tabBarOnly']
@@ -67,15 +70,15 @@ export default function OneNativeTabView() {
       <Pressable testID="tabview-reset-customization" style={styles.button} onPress={() => setCustomization('')}>
         <Text style={styles.buttonText}>Reset customization</Text>
       </Pressable>
-      <Swift.HStack>
-        <Swift.Button testID="test-glass" label="/" buttonStyle="glass" onPress={() => log('test-glass')} />
-        <Swift.Button testID="test-plain" label="iOS" systemImage="iphone" buttonStyle="plain" onPress={() => log('test-plain')} />
-      </Swift.HStack>
+      <One.iOS.HStack>
+        <One.iOS.Button testID="test-glass" label="/" buttonStyle="glass" onPress={() => log('test-glass')} />
+        <One.iOS.Button testID="test-plain" label="iOS" systemImage="iphone" buttonStyle="plain" onPress={() => log('test-plain')} />
+      </One.iOS.HStack>
     </View>
   )
 
   return (
-    <Swift.Tabs
+    <One.iOS.Tabs
       selection={selection}
       onSelectionChange={setSelection}
       tabViewStyle={tabViewStyle}
@@ -87,13 +90,13 @@ export default function OneNativeTabView() {
       }}
       swiftStyle={{ tabBarMinimizeBehavior: 'onScrollDown', searchable: { value: query, onChange: setQuery } }}
     >
-      <Swift.Tab id="build" title="Build" systemImage="hammer" badge={3} customizationID="build">
+      <One.iOS.Tab id="build" title="Build" systemImage="hammer" badge={3} customizationID="build">
         <Page id="build" title="Build" controls={controls} />
-      </Swift.Tab>
-      <Swift.Tab id="design" title="Design" systemImage="paintbrush" customizationID="design">
+      </One.iOS.Tab>
+      <One.iOS.Tab id="design" title="Design" systemImage="paintbrush" customizationID="design">
         <Page id="design" title="Design" />
-      </Swift.Tab>
-      <Swift.Tab
+      </One.iOS.Tab>
+      <One.iOS.Tab
         id="deploy"
         title="Deploy"
         systemImage="paperplane"
@@ -102,36 +105,36 @@ export default function OneNativeTabView() {
         customizationBehavior={{ behavior: 'disabled', for: ['sidebar'] }}
       >
         <Page id="deploy" title="Deploy" />
-      </Swift.Tab>
-      <Swift.TabSection
+      </One.iOS.Tab>
+      <One.iOS.TabSection
         id="library"
         title="Library"
         customizationID="library"
         defaultVisibility={{ visibility: 'hidden', for: ['tabBar'] }}
         sectionActions={[{ id: 'library-add', title: 'Add', systemImage: 'plus', onPress: () => log('section add') }]}
       >
-        <Swift.Tab id="recent" title="Recent" systemImage="clock" customizationID="recent">
+        <One.iOS.Tab id="recent" title="Recent" systemImage="clock" customizationID="recent">
           <Page id="recent" title="Recent" />
-        </Swift.Tab>
-        <Swift.Tab id="starred" title="Starred" systemImage="star" customizationID="starred" disabled>
+        </One.iOS.Tab>
+        <One.iOS.Tab id="starred" title="Starred" systemImage="star" customizationID="starred" disabled>
           <Page id="starred" title="Starred" />
-        </Swift.Tab>
-      </Swift.TabSection>
-      <Swift.Tab id="search" title="Search" systemImage="magnifyingglass" role="search">
+        </One.iOS.Tab>
+      </One.iOS.TabSection>
+      <One.iOS.Tab id="search" title="Search" systemImage="magnifyingglass" role="search">
         <Page id="search" title={`Search ${query}`} />
-      </Swift.Tab>
-      <Swift.TabViewBottomAccessory isEnabled={accessoryEnabled}>
+      </One.iOS.Tab>
+      <One.iOS.TabViewBottomAccessory isEnabled={accessoryEnabled}>
         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16 }}>
           <Pressable testID="tabview-accessory" onPress={() => log('accessory')}>
             <Text style={styles.accessoryText}>Preview · {selection}</Text>
           </Pressable>
-          <Swift.HStack style={{ minWidth: 120 }}>
-            <Swift.Button testID="test-acc-glass" label="/" buttonStyle="glass" onPress={() => log('acc-glass')} />
-            <Swift.Button testID="test-acc-plain" label="iOS" systemImage="iphone" buttonStyle="plain" onPress={() => log('acc-plain')} />
-          </Swift.HStack>
+          <One.iOS.HStack style={{ minWidth: 120 }}>
+            <One.iOS.Button testID="test-acc-glass" label="/" buttonStyle="glass" onPress={() => log('acc-glass')} />
+            <One.iOS.Button testID="test-acc-plain" label="iOS" systemImage="iphone" buttonStyle="plain" onPress={() => log('acc-plain')} />
+          </One.iOS.HStack>
         </View>
-      </Swift.TabViewBottomAccessory>
-    </Swift.Tabs>
+      </One.iOS.TabViewBottomAccessory>
+    </One.iOS.Tabs>
   )
 }
 

@@ -15,7 +15,7 @@ Labels throughout:
 - **INFERRED:** conclusion or proposed design derived from named inspected sources. All recommendations remain unimplemented.
 - **GUESSED:** unverified prediction, including effort estimates. Cost bands mean relative engineering scope, not delivery promises.
 
-**RAN:** Read `plans/one-native-layout-design.md`, `plans/handoff-one-native-parity.md`, `codegen/catalog.ts`, `codegen/generate.ts`, and `ios/OneNativeComposition.swift` first. Additional package paths below are relative to `packages/native/` and refer to files opened during this session. Read the worktree's root `AGENTS.md`; this assignment's explicit one-file/no-commit boundary controls delivery.
+**RAN:** Read `plans/one-native-layout-design.md`, `plans/handoff-one-native-parity.md`, `codegen/catalog.ts`, `codegen/generate.ts`, and `ios/OneNativeComposition.swift` first. Additional package paths below are relative to `packages/one/` and refer to files opened during this session. Read the worktree's root `AGENTS.md`; this assignment's explicit one-file/no-commit boundary controls delivery.
 
 **RAN:** The handoff records 126 mapped symbols, 89 generated files, 9,715 extracted declarations and nine passing simulator suites. Those are prior-session receipts, not independently rerun results. The document's historical measurement results likewise remain attributed to that document.
 

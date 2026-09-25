@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 const places = {
   Ferry: { label: 'Ferry Building', latitude: 37.7955, longitude: -122.3937 },
@@ -69,7 +69,7 @@ export default function OneNativeMap() {
           >{`${label}: ${value}`}</Text>
         ))}
       </View>
-      <Swift.Map
+      <One.iOS.Map
         distance={4000}
         latitude={current.latitude}
         longitude={current.longitude}

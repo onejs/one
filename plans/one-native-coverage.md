@@ -29,7 +29,7 @@ content-sized layout engine.
 
 ## Coverage target
 
-The comparison inventory read `@vxrn/native` 1.26.0 in this checkout and official
+The comparison inventory read `one` 1.26.0 in this checkout and official
 Expo UI source reporting 58.0.0. Expo's SwiftUI export list was last changed by
 `5ad6930946f1` when inspected. The SDK 57 documentation and Expo main differ; this
 matrix uses the source inventory, not a claim of exact SDK 57 parity.
@@ -61,7 +61,7 @@ tab/menu suite also passes native selection, reordered RN state retention, kept-
 checked/mixed controls, nested actions, and two accessible remounts with identical
 menu data.
 
-## `@vxrn/native` boundary
+## `one` boundary
 
 | Existing surface | Migration requirement |
 | --- | --- |
@@ -112,7 +112,7 @@ The transport is Fabric props/events plus direct native Fabric state updates for
 tab geometry. There is no Nitro dependency. Review whether any new operation
 actually needs synchronous non-view transport before adding one.
 
-Reproduce the JS baseline with `bun packages/native/codegen/measure.ts`.
+Reproduce the JS baseline with `bun packages/one/codegen/measure.ts`.
 Native baseline command: `xcodebuildmcp simulator build --project-path
 tests/native-features/ios/Pods/Pods.xcodeproj --scheme OneNative --configuration
 Release --simulator-id <uuid>`. Inspect the arm64 archive under

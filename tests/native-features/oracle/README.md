@@ -101,7 +101,7 @@ membership edges would mean nothing.
     selected index             first, middle, last, and the detached search tab
 
 The `TabBarMinimizeBehavior` list is the generated enum's, read from
-`packages/native/src/generated/swiftui.ts`, not guessed.
+`packages/one/src/platform/generated/swiftui.ts`, not guessed.
 
 `tabBarMinimizeBehavior` and `sidebarAdaptable` have **no consumer in rnx**: neither prop exists
 there, and both are listed as missing from the old routed-tab path. Their cells are measured and
@@ -363,10 +363,10 @@ frames. The two methods share no step; where they disagree, the step reading is 
 **The conclusion, and its labels.** RAN: no measured geometry changes at any offset for any value.
 TESTED: a positive control proves the prop is threaded and read, since a bogus value raises
 `Unknown SwiftUI TabBarMinimizeBehavior` out of `assertSwiftUIValue` in
-`packages/native/src/generated/swiftui.ts`, and the device is iOS 26 so nothing is version
+`packages/one/src/platform/generated/swiftui.ts`, and the device is iOS 26 so nothing is version
 gated. READ: `OneNativeTabsView.swift:122` applies `.oneNativeTabBarMinimizeBehavior`, and each tab
 hosts `OneNativeSlot(content: page.view)` where `page.view` is a `UIView`. There is no SwiftUI
-`ScrollView` anywhere in the hierarchy, and `@vxrn/native` exposes no native scroll container.
+`ScrollView` anywhere in the hierarchy, and `one` exposes no native scroll container.
 
 So this is not "the value is inert". The modifier is applied and accepted, and the thing that
 scrolls is a React Native scroll view that SwiftUI never sees, which is why the scroll indicator in

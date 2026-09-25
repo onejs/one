@@ -19,21 +19,21 @@ Owner direction (Nate): keep a simple wrapper over the platform-native maps. rea
 ## Evidence
 
 - **RAN (read):** `One.iOS` spreads `Swift` (`packages/one/src/one.ts:71-72`), and
-  `Swift.Map` is the generated `Map` (`packages/native/src/generated/Controls.native.tsx:759`).
+  `Swift.Map` is the generated `Map` (`packages/one/src/platform/generated/Controls.native.tsx:759`).
   Its props are `latitude`, `longitude`, `distance`, `markers` of `{ id, label, latitude,
   longitude }` and `onRegionChange(latitude, longitude, distance)`
   (`generated/controlTypes.ts:79-84,244-250`). The native view seeds a SwiftUI camera from
   props, re-seeds only when the props change, and reports only when a gesture ends
-  (`packages/native/ios/Generated/OneNativeMapView.swift:94-96,118,125-137`). It is generated
-  from `packages/native/codegen/mapCatalog.ts:5-9`, so changes go in the catalog. Its
+  (`packages/one/ios/Generated/OneNativeMapView.swift:94-96,118,125-137`). It is generated
+  from `packages/one/codegen/mapCatalog.ts:5-9`, so changes go in the catalog. Its
   `setMarkers` uses `as!` force casts (`OneNativeMapView.swift:42`).
 - **RAN (read):** the iOS `map` conformance suite exists (`tests/native-features/scripts/one-native-conformance.ts:42,2451-2491`)
   with fixture `tests/native-features/fixtures/one-native-map.tsx:72`. Android has no map:
-  `Compose` lists no map (`packages/native/src/compose.android.tsx:524-537`) and
-  `@vxrn/native`'s Android dependencies have no Maps SDK (`packages/native/android/build.gradle:78-87`).
+  `Compose` lists no map (`packages/one/src/platform/compose.android.tsx:524-537`) and
+  `one`'s Android dependencies have no Maps SDK (`packages/one/android/build.gradle:78-87`).
 - **RAN (read):** the precedent for a uniform component is `One.UI.Icon`: platform files
-  `packages/native/src/ui/Icon.{ios,android,}.tsx`, exported at
-  `packages/native/src/effects/index.ts:11` and spread into `One.UI` (`one.ts:95-100`).
+  `packages/one/src/platform/ui/Icon.{ios,android,}.tsx`, exported at
+  `packages/one/src/platform/effects/index.ts:11` and spread into `One.UI` (`one.ts:95-100`).
   Its web file renders only what the app passes for web (`ui/Icon.tsx:4-6`).
 - **RAN (read):** expo-maps (canary 58, as installed in Contrast): `CameraPosition` is
   `{ coordinates, zoom }` (`src/shared.types.ts:15-26`). `onCameraMove` carries
@@ -49,7 +49,7 @@ Owner direction (Nate): keep a simple wrapper over the platform-native maps. rea
   `MapPolygon` (`:528`), `MapCircle` (`:932`), `MapReader` with
   `convert(_:from:)` (`:632,645`, iOS 17), `MapCameraUpdateContext.region` (`:431`) and a
   `Map(position:selection:content:)` initializer (`:482`). All of them fit the iOS 17
-  package floor (`packages/native/schema.json:4`).
+  package floor (`packages/one/schema.json:4`).
 
 ## Surface (exact)
 
@@ -78,7 +78,7 @@ interface MapProps {
 
 - **Camera.** It works the same as `Swift.Map` today: `cameraPosition` seeds the camera and
   re-centres it when its value changes, and the user pans freely in between. It is
-  deliberately uncontrolled (README `packages/native/README.md:580-583`). `onCameraMove`
+  deliberately uncontrolled (README `packages/one/README.md:580-583`). `onCameraMove`
   keeps Expo's name but fires once, when a gesture ends. That matches iOS `.onEnd`
   (`OneNativeMapView.swift:118`) and the moment Compose's `cameraPositionState.isMoving`
   turns false. Its payload is the subset both platforms report exactly.
@@ -99,7 +99,7 @@ interface MapProps {
   renames `label` to `title` when it sends markers. Parsing replaces the `as!` casts with
   typed decoding.
 - **Android implementation.** A new view manager, `OneNativeMapManager`, registered in
-  `VxrnNativePackage.createViewManagers` (`VxrnNativePackage.kt:56-65`), hosts a
+  `OnePackage.createViewManagers` (`OnePackage.kt:56-65`), hosts a
   `ComposeView` running `GoogleMap(cameraPositionState)` with `Marker`, `Polyline`,
   `Polygon` and `Circle`, plus `onMapClick` and `onMarkerClick` that return `true` after
   emitting. It stays out of the Compose node tree (`OneNativeComposeNodeView.kt:800`): a map
@@ -121,7 +121,7 @@ is set, prebuild does three things. It stamps
 into `<application>`, using the manifest patch style of `prebuildWithoutExpo.ts:474-489`. It
 sets `manifestPlaceholders = [googleMapsApiKey: ...]` in `app/build.gradle` from the configured
 value, so the literal key sits in one generated file. And it writes `oneNativeMaps=true` to
-`gradle.properties`. `packages/native/android/build.gradle` then adds `src/maps/java` and
+`gradle.properties`. `packages/one/android/build.gradle` then adds `src/maps/java` and
 `maps-compose` plus `play-services-maps`. Without the flag it adds `src/nomaps/java`, whose
 manager renders a view that throws on mount with `One.UI.Map on Android needs
 native.app.android.googleMapsApiKey`. **INFERRED:** `com.google.android.geo.API_KEY` is the

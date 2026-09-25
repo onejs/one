@@ -1,6 +1,6 @@
-import { Network } from '@vxrn/native'
 import { useEffect, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 // exercises the network state api against the live radio: a one-shot read
 // plus a change listener whose first event proves the native monitor is
@@ -10,10 +10,10 @@ export default function OneNativeNetwork() {
   const [state, setState] = useState('none')
   const [events, setEvents] = useState(0)
   useEffect(() => {
-    Network.getState().then((next) =>
+    One.Network.getState().then((next) =>
       setState(`${next.type} ${next.isConnected} ${next.isInternetReachable}`)
     )
-    const subscription = Network.addStateListener((next) => {
+    const subscription = One.Network.addStateListener((next) => {
       setEvents((count) => count + 1)
       setState(`${next.type} ${next.isConnected} ${next.isInternetReachable}`)
     })
@@ -27,7 +27,7 @@ export default function OneNativeNetwork() {
         testID="one-native-network-refresh"
         style={styles.chip}
         onPress={async () => {
-          const next = await Network.getState()
+          const next = await One.Network.getState()
           setState(`${next.type} ${next.isConnected} ${next.isInternetReachable}`)
         }}
       >

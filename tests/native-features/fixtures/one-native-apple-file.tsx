@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 const categories = ['SignIn', 'Files'] as const
 
@@ -104,7 +104,7 @@ export default function OneNativeAppleFile() {
       </View>
       {category === 'SignIn' ? (
         <View style={styles.nativeArea}>
-          <Swift.SignInWithAppleButton
+          <One.iOS.SignInWithAppleButton
             requestedScopes={requestedScopes}
             nonce={nonce}
             onCompletion={(completion) => {
@@ -139,7 +139,7 @@ export default function OneNativeAppleFile() {
               <Text style={styles.actionText}>Open importer</Text>
             </Pressable>
           </View>
-          <Swift.FileImporter
+          <One.iOS.FileImporter
             isPresented={isPresented}
             allowedContentTypes={allowedContentTypes}
             allowsMultipleSelection={false}

@@ -62,15 +62,15 @@ value fixed for the life of the process is a readonly property read once at impo
 
 ## 3. Package layout
 
-Per namespace, in `packages/native`:
+Per namespace, in `packages/one`:
 
 - `src/<kebab-name>/index.native.ts`, `index.ts` (web), `types.ts`. The subpath is
-  `@vxrn/native/<kebab-name>`, added to `package.json` `exports` in the same form as
+  `one/<kebab-name>`, added to `package.json` `exports` in the same form as
   `./haptics`. The root entry re-exports it and `packages/one/src/one.ts` attaches it.
 - A subpath exports the namespace object, its hooks and its types. Validation helpers,
   the spec interface and the module accessor stay private.
 - Native module name `OneNative<Name>`; iOS `ios/OneNative<Name>.{h,m}` or `.swift`;
-  Android `OneNative<Name>Module.kt`, registered in `VxrnNativePackage.kt`.
+  Android `OneNative<Name>Module.kt`, registered in `OnePackage.kt`.
 - A uniform component lives in `src/ui/<Name>.{ios,android,}.tsx` and is exported through
   `src/effects/index.ts` like `Icon`. It gets no subpath of its own.
 
@@ -97,7 +97,7 @@ one treatment, the same in every namespace.
 | **Nothing there** | a value: `null` for one thing, `[]` for a list, Expo's empty value where Expo defines one. Never `undefined`, never an error. | `AppInfo.build` unknown is `null`; `Notifications.getLastResponse()` is `null`; `Clipboard.getString()` is `''` |
 | **The user said no or backed out** | a resolved value in Expo's shape. Never a rejection: refusing is an ordinary outcome and every caller must handle it. | picker `{ canceled: true, assets: null }`; browser `{ type: 'cancel' }`; permission `{ status: 'denied' }` |
 | **The concept belongs to the other platform** | resolves the empty value, so shared code needs no `Platform.OS` check. | `Notifications.setChannel` on iOS resolves `null`; `getBadgeCount` on Android resolves `0` |
-| **No native side**: web with no equivalent, or a binary built before the module existed | effects do nothing; reads return the empty or denied value; a call that promises a result rejects with `<Namespace>.<verb> needs an iOS or Android build` or `... needs a native build that includes @vxrn/native`. Anything security-bearing throws and never degrades: crypto installs nothing without its module. | `Haptics.*` on web; `Notifications.getPermissions()` on web is denied with `canAskAgain: false`; `Notifications.schedule` on web rejects |
+| **No native side**: web with no equivalent, or a binary built before the module existed | effects do nothing; reads return the empty or denied value; a call that promises a result rejects with `<Namespace>.<verb> needs an iOS or Android build` or `... needs a native build that includes one`. Anything security-bearing throws and never degrades: crypto installs nothing without its module. | `Haptics.*` on web; `Notifications.getPermissions()` on web is denied with `canAskAgain: false`; `Notifications.schedule` on web rejects |
 | **It failed at runtime**: I/O, OS error | rejects with an `Error` whose message starts `<Namespace>.<verb>:` and whose `code` is stable, `E_<NAMESPACE>_<REASON>`, passed as the first argument of RN's `reject`. Docs list a code only when an app would branch on it. | `E_FONTS_DOWNLOAD` |
 
 There is no availability probe by default. With the rules above an app rarely needs to
@@ -144,10 +144,10 @@ type PermissionResponse = Readonly<{
   subscription shape, with the namespace's noun dropped from the name:
   `Network.addStateListener`, `Notifications.addResponseReceivedListener`. No
   `remove*Listener` functions. The listener receives one payload object.
-- **Event transport.** No module in `@vxrn/native` emits an event today (**RAN:** no
+- **Event transport.** No module in `one` emits an event today (**RAN:** no
   `NativeEventEmitter`, `DeviceEventEmitter` or `RCTEventEmitter` under
-  `packages/native/src` or `ios`), and `codegenConfig.type` is `components`
-  (`packages/native/package.json:105`), so module specs are not generated. Codegen's
+  `packages/one/src` or `ios`), and `codegenConfig.type` is `components`
+  (`packages/one/package.json:105`), so module specs are not generated. Codegen's
   `EventEmitter<T>`, which the notifications design cites, exists only on generated
   TurboModules and is unavailable to a legacy module (**INFERRED** from how the generated
   spec class carries the emitter). The one transport is therefore the legacy one: iOS

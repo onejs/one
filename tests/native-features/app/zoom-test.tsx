@@ -1,5 +1,4 @@
-import { useRouter } from 'one'
-import { ZoomTransitionSource } from '@vxrn/native'
+import { useRouter, One } from 'one'
 import { View, Text, Pressable, ScrollView, StyleSheet } from 'react-native'
 
 const items = [
@@ -27,7 +26,7 @@ export default function ZoomTestScreen() {
 
       <View style={styles.grid} testID="zoom-items-grid">
         {items.map((item) => (
-          <ZoomTransitionSource key={item.id} identifier={item.id}>
+          <One.iOS.ZoomTransitionSource key={item.id} identifier={item.id}>
             <Pressable
               testID={`zoom-source-${item.id}`}
               style={[styles.card, { backgroundColor: item.color }]}
@@ -41,7 +40,7 @@ export default function ZoomTestScreen() {
               <Text style={styles.cardTitle}>{item.title}</Text>
               <Text style={styles.cardId}>{item.id}</Text>
             </Pressable>
-          </ZoomTransitionSource>
+          </One.iOS.ZoomTransitionSource>
         ))}
       </View>
 

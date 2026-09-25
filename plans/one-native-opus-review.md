@@ -261,7 +261,7 @@ Record this as a decision with its reopening criteria so it stops being re-litig
 
 ## 6. soot conformance
 
-soot ships a browser implementation of `@vxrn/native`'s native view seam at
+soot ships a browser implementation of `one`'s native view seam at
 `~/soot/packages/compat/src/stubs/native-seams/vxrn-native.tsx`, 369 lines, with
 hand-copied prop type declarations, registered by component name through
 `registerNativeComponentImplementation`. There is a Playwright conformance test at
@@ -285,14 +285,14 @@ one-native adds a prop the simulator does not handle. That turns silent drift in
 red test, and it is the same artifact the plan's browser preview adapter needs later.
 
 Also worth noting for soot: the flat data-payload menu is markedly easier to reimplement
-in a browser than `@vxrn/native`'s React-children menu tree. That is a second argument
+in a browser than `one`'s React-children menu tree. That is a second argument
 for the composition rule in section 2.
 
 ---
 
 ## 7. Smaller items, worth doing in the same wave
 
-- **Web throws.** `src/index.ts` exports components that throw on render. `@vxrn/native`
+- **Web throws.** `src/index.ts` exports components that throw on render. `one`
   returns `null`. A component that hard-throws cannot be used in shared One code without
   a `Platform` check at every call site. Decide before the surface grows: I would render
   children for RN-hosting components, render nothing with a one-time dev warning for leaf

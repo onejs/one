@@ -853,7 +853,7 @@ async function run(config: Config) {
       'app-mounted',
       (nodes) =>
         exactlyOneId(nodes, 'home-screen') &&
-        textIncludes(nodes, '@vxrn/native Test Suite'),
+        textIncludes(nodes, 'One Native Test Suite'),
       'home-screen'
     )
     await tapNavigation(config)

@@ -1,6 +1,6 @@
-import { AppInfo } from '@vxrn/native/app-info'
 import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 // renders the One.AppInfo snapshot: version/build/applicationId read
 // synchronously from the installed binary's constants. the conformance
@@ -13,9 +13,9 @@ export default function OneNativeAppInfo() {
 
   return (
     <View style={styles.screen}>
-      <Text>{`Version: ${AppInfo.version ?? 'null'}`}</Text>
-      <Text>{`Build: ${AppInfo.build ?? 'null'}`}</Text>
-      <Text>{`ApplicationId: ${AppInfo.applicationId ?? 'null'}`}</Text>
+      <Text>{`Version: ${One.AppInfo.version ?? 'null'}`}</Text>
+      <Text>{`Build: ${One.AppInfo.build ?? 'null'}`}</Text>
+      <Text>{`ApplicationId: ${One.AppInfo.applicationId ?? 'null'}`}</Text>
       <Text>{`Taps: ${taps}`}</Text>
       <Pressable
         testID="one-native-app-info-refresh"

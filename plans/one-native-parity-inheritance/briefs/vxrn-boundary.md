@@ -1,10 +1,10 @@
 Rote collection only. No diagnosis, no architecture opinions, no correctness verdicts. Report the collected facts to your parent session and stop. Do not edit any file, do not commit, do not spawn.
 
 TASK
-Build a caller inventory for the package `@vxrn/native` (source at /Users/n8/.worktrees/one-native/packages/native). I need to know who actually imports each export and how, because a replacement package is being written and each surface must be migrated by caller behavior.
+Build a caller inventory for the package `one` (source at /Users/n8/.worktrees/one-native/packages/one). I need to know who actually imports each export and how, because a replacement package is being written and each surface must be migrated by caller behavior.
 
 STEP 1 - list the exports
-Read /Users/n8/.worktrees/one-native/packages/native/src (use its index/entry file) and list every public export name with the file:line where it is defined and a one-line description of what it is (component, hook, constant object, type).
+Read /Users/n8/.worktrees/one-native/packages/one/src (use its index/entry file) and list every public export name with the file:line where it is defined and a one-line description of what it is (component, hook, constant object, type).
 
 STEP 2 - find the callers
 Search these roots ONLY, and prune node_modules, dist, .git, ios/build, and any generated output:
@@ -15,7 +15,7 @@ Search these roots ONLY, and prune node_modules, dist, .git, ios/build, and any 
   /Users/n8/soot
   /Users/n8/takeout-free
   /Users/n8/orez
-Search for: the module specifier `@vxrn/native`, and separately each exported identifier name.
+Search for: the module specifier `one`, and separately each exported identifier name.
 
 For every hit that is a real import or usage (not a definition inside the package itself, not a lockfile, not a changelog), record one row:
   repo | file:line | which export | how it is used (props passed / call shape, one line)

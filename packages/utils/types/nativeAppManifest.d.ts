@@ -18,6 +18,7 @@ export interface NativeAppManifest {
     notifications?: {
         push?: boolean;
     };
+    pictureInPicture?: boolean;
     ios?: {
         bundleId: string;
         buildNumber?: string;
