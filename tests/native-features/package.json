@@ -20,7 +20,6 @@
     "one": "workspace:*",
     "react": "19.2.3",
     "react-native": "0.87.1",
-    "react-native-safe-area-context": "~5.8.1",
     "react-native-screens": "~4.27.0",
     "react-native-webgpu": "0.5.14",
     "react-native-worklets": "~0.12.2",

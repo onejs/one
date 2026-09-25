@@ -27,3 +27,5 @@ ignores:
   - "one"
   # metro resolves this from the app; one does not install it
   - "babel-preset-expo"
+  # native only: its nitro hybrid objects load one.ui.image urls, linked through react-native-config
+  - "react-native-nitro-web-image"
