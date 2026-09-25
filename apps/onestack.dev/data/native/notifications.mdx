@@ -133,10 +133,27 @@ Push is opt-in per platform. On Android it needs
 `native.app.notifications.push`, which compiles the Firebase Messaging
 source set in; without it the app carries no Firebase classes and the call
 rejects. On iOS the same flag stamps the `aps-environment` entitlement;
-without it the call still registers, but a device has no push environment
-to answer in.
+without it the call rejects as well, since the OS never answers the
+registration. One receives the token from the app delegate itself, so the
+host needs no delegate code.
 
 Declare the capability in `native.app` so prebuild stamps the Android
 permissions and receiver plus the iOS delegate gate. Without it the iOS
 delegate never installs, so an app that uses its own push library keeps
 that library's delegate.
+
+Expo-prebuilt apps pass the same choice to `vxrn/expo-plugin`, which writes
+the same entries during `expo prebuild`. `mode` sets `aps-environment`, as
+in `expo-notifications`, and defaults to `development`:
+
+```json
+{
+  "expo": {
+    "plugins": [
+      ["vxrn/expo-plugin", { "notifications": { "push": true, "mode": "production" } }]
+    ]
+  }
+}
+```
+
+Use `{ "notifications": {} }` for local notifications without push.

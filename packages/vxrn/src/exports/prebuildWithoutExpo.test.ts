@@ -492,12 +492,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       platform: 'ios',
       app: push,
     })
-    expect(appDelegate.content).toContain(
+    // one hooks the delegate's push callbacks at launch; the template
+    // carries no forward of its own.
+    expect(appDelegate.content).not.toContain(
       'didRegisterForRemoteNotificationsWithDeviceToken'
-    )
-    expect(appDelegate.content).toContain('OneNativePushTokenDidRegister')
-    expect(appDelegate.content).toContain(
-      'didFailToRegisterForRemoteNotificationsWithError'
     )
 
     const bareProps = renderPrebuildFile({
@@ -728,9 +726,6 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     expect(rendered.content).not.toContain('UIWindow(frame:')
     expect(rendered.content).not.toContain('var window')
     expect(rendered.content).not.toContain('var reactNativeFactory')
-    expect(rendered.content).toContain('didRegisterForRemoteNotificationsWithDeviceToken')
-    expect(rendered.content).toContain('OneNativePushTokenDidRegister')
-    expect(rendered.content).toContain('didFailToRegisterForRemoteNotificationsWithError')
   })
 
   it('throws instead of shipping a non-scene AppDelegate', () => {
