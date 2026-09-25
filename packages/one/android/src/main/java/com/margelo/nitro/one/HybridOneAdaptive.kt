@@ -142,24 +142,11 @@ class HybridOneAdaptive : HybridOneAdaptiveSpec() {
             }
         }
 
-    // synchronous seed for the JS import-time read. measurement failures
-    // fall back to unspecified/null (the legacy default contract); only a
-    // missing hybrid throws, at creation.
-    override fun getInitialSizeClass(): SizeClass {
-        return try {
-            computeSizeClass()
-        } catch (e: Exception) {
-            SizeClass(UserInterfaceSizeClass.UNSPECIFIED, UserInterfaceSizeClass.UNSPECIFIED)
-        }
-    }
+    // synchronous seed for the JS import-time read: the same measurement as
+    // getSizeClass/getHinge, unspecified when no activity is attached yet.
+    override fun getInitialSizeClass(): SizeClass = computeSizeClass()
 
-    override fun getInitialHinge(): HingeState? {
-        return try {
-            computeHinge()
-        } catch (e: Exception) {
-            null
-        }
-    }
+    override fun getInitialHinge(): HingeState? = computeHinge()
 
     override fun getHinge(): Promise<HingeState?> =
         Promise.async {
