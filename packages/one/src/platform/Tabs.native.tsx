@@ -62,6 +62,7 @@ function tabContentModifiers(
   owner: string,
   props: TabContentProps & {
     image?: string
+    labelStyle?: string
     section?: string
     tabPlacement?: string
     defaultSectionExpansion?: string
@@ -92,6 +93,7 @@ function tabContentModifiers(
     assertSwiftUIValue('TabSectionExpansion', props.defaultSectionExpansion, iosVersion)
   return JSON.stringify({
     image: props.image,
+    labelStyle: props.labelStyle,
     section: props.section,
     disabled: props.disabled,
     hidden: props.hidden,
