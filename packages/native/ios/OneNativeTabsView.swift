@@ -82,6 +82,72 @@ private struct TabGroup: Identifiable {
   var tabs: [OneNativeTabItem]
 }
 
+// an action tab is a button wearing a tab's chrome. UIKit asks before it selects a tab, so the
+// press fires there and the selected page never changes; every other delegate call reaches
+// SwiftUI's own delegate unchanged.
+private final class ActionTabDelegate: NSObject, UITabBarControllerDelegate {
+  weak var original: UITabBarControllerDelegate?
+  weak var model: TabsModel?
+
+  override func responds(to selector: Selector!) -> Bool {
+    super.responds(to: selector) || (original?.responds(to: selector) ?? false)
+  }
+
+  override func forwardingTarget(for selector: Selector!) -> Any? {
+    original?.responds(to: selector) == true ? original : nil
+  }
+
+  @available(iOS 18.0, *)
+  func tabBarController(_ controller: UITabBarController, shouldSelectTab tab: UITab) -> Bool {
+    if let model, model.active, let page = model.actionPage(tab, in: controller) {
+      model.press(page.id)
+      return false
+    }
+    return original?.tabBarController?(controller, shouldSelectTab: tab) ?? true
+  }
+
+  // before iOS 18 the tab bar selects view controllers, one per tab in the flat order.
+  func tabBarController(_ controller: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+    if #unavailable(iOS 18.0), let model, model.active,
+      let index = controller.viewControllers?.firstIndex(of: viewController)
+    {
+      let tabs = model.groups.flatMap(\.tabs)
+      if tabs.indices.contains(index), tabs[index].kind == "action" {
+        model.press(tabs[index].id)
+        return false
+      }
+    }
+    return original?.tabBarController?(controller, shouldSelect: viewController) ?? true
+  }
+}
+
+private struct ActionTabHook: UIViewRepresentable {
+  weak var host: OneNativeTabsView?
+
+  func makeUIView(context: Context) -> HookView { HookView() }
+  func updateUIView(_ view: HookView, context: Context) {
+    view.host = host
+    view.report()
+  }
+
+  final class HookView: UIView {
+    weak var host: OneNativeTabsView?
+
+    override func didMoveToWindow() {
+      super.didMoveToWindow()
+      report()
+    }
+
+    func report() {
+      guard window != nil else { return }
+      let owner = sequence(first: self as UIResponder, next: \.next).first { $0 is UIViewController }
+      if let tabBarController = (owner as? UIViewController)?.tabBarController {
+        host?.interceptActionTabs(tabBarController)
+      }
+    }
+  }
+}
+
 private final class TabsModel: ObservableObject {
   @Published var pages: [OneNativeTabItem] = []
   @Published var toolbarEntries: [OneNativeToolbarEntry] = []
@@ -101,19 +167,9 @@ private final class TabsModel: ObservableObject {
   var onAction: ((String) -> Void)?
   var onCustomization: ((String) -> Void)?
   var onSDKEvent: ((String, String) -> Void)?
-  private var pendingAction: String?
 
   func select(_ id: String) {
-    guard active, let page = pages.first(where: { $0.id == id }) else { return }
-    if page.kind == "action" {
-      // an action tab is a button wearing a tab's chrome, so the press fires and the selection
-      // stays put. TabView has already moved its own selection by the time this setter runs, so
-      // rebuild it before publishing the action so observers only see a press after the binding
-      // has snapped back to the controlled value.
-      pendingAction = id
-      tabViewRevision += 1
-      return
-    }
+    guard active, pages.contains(where: { $0.id == id && $0.kind != "action" }) else { return }
     guard controlled.value != id else { return }
     controlled.change(id)
     onSelection?(id, controlled.eventCount, controlled.revision)
@@ -123,10 +179,32 @@ private final class TabsModel: ObservableObject {
     if active { onAction?(id) }
   }
 
-  func publishPendingAction() {
-    guard let id = pendingAction else { return }
-    pendingAction = nil
-    onAction?(id)
+  // the TabView's top level in order: each section is one entry, each tab outside one another.
+  var groups: [TabGroup] {
+    var groups: [TabGroup] = []
+    for page in pages {
+      switch page.kind {
+      case "section":
+        groups.append(TabGroup(id: page.id, section: page, tabs: []))
+      case "page", "action":
+        if let section = page.modifiers.section, let index = groups.firstIndex(where: { $0.id == section }) {
+          groups[index].tabs.append(page)
+        } else {
+          groups.append(TabGroup(id: page.id, section: nil, tabs: [page]))
+        }
+      default: continue
+      }
+    }
+    return groups
+  }
+
+  // SwiftUI names its UITabs itself, so a tab is found by its place in the tab bar's top level.
+  @available(iOS 18.0, *)
+  func actionPage(_ tab: UITab, in controller: UITabBarController) -> OneNativeTabItem? {
+    guard let index = controller.tabs.firstIndex(where: { $0 === tab }) else { return nil }
+    let groups = groups
+    guard groups.indices.contains(index), groups[index].section == nil else { return nil }
+    return groups[index].tabs.first { $0.kind == "action" }
   }
 
   func emitSDKEvent(_ name: String, _ value: String) {
@@ -166,6 +244,7 @@ public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
   public var onSDKEvent: ((String, String) -> Void)?
   private var model = TabsModel()
   private var controller: OneNativeHostingController<TabsContent>?
+  private let actionDelegate = ActionTabDelegate()
   private var toolbars: [OneNativeToolbarView] = []
   private var active = false
 
@@ -252,6 +331,16 @@ public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
     controller?.view.frame = bounds
   }
 
+  // SwiftUI builds its tab bar controller after the first layout and can replace its delegate,
+  // so each page's hook reports the controller once it is in the window and the interceptor goes
+  // back in front of whatever SwiftUI installed.
+  func interceptActionTabs(_ tabBarController: UITabBarController) {
+    guard tabBarController.delegate !== actionDelegate else { return }
+    actionDelegate.original = tabBarController.delegate
+    actionDelegate.model = model
+    tabBarController.delegate = actionDelegate
+  }
+
   private func attachController() {
     guard window != nil else { return }
     if controller == nil {
@@ -306,23 +395,6 @@ private struct TabsContent: View {
     model.pages.filter { $0.kind == kind }
   }
 
-  private var groups: [TabGroup] {
-    var groups: [TabGroup] = []
-    for page in model.pages {
-      switch page.kind {
-      case "section":
-        groups.append(TabGroup(id: page.id, section: page, tabs: []))
-      case "page", "action":
-        if let section = page.modifiers.section, let index = groups.firstIndex(where: { $0.id == section }) {
-          groups[index].tabs.append(page)
-        } else {
-          groups.append(TabGroup(id: page.id, section: nil, tabs: [page]))
-        }
-      default: continue
-      }
-    }
-    return groups
-  }
 
   private func slot(_ page: OneNativeTabItem) -> OneNativeSlot {
     OneNativeSlot(content: page.view, mode: .fill, layoutHost: host, onLayout: page.onLayout)
@@ -353,7 +425,7 @@ private struct TabsContent: View {
   @available(iOS 18.0, *)
   private var tabs: some View {
     TabView(selection: Binding(get: { model.controlled.value }, set: { model.select($0) })) {
-      ForEach(groups) { group in
+      ForEach(model.groups) { group in
         if let section = group.section {
           TabSection(section.title) {
             ForEach(group.tabs) { page in tab(page) }
@@ -365,7 +437,6 @@ private struct TabsContent: View {
         }
       }
     }
-    .onAppear { model.publishPendingAction() }
     .id(model.tabViewRevision)
   }
 
@@ -375,6 +446,7 @@ private struct TabsContent: View {
     Tab(value: page.id, role: OneNativeGenerated.tabRole(page.role)) {
       NavigationStack {
         slot(page)
+          .background(ActionTabHook(host: host))
           .oneNativeStyle(page.style, emit: page.emit)
           .toolbarVisibility(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
           .toolbar {
@@ -394,8 +466,9 @@ private struct TabsContent: View {
 
   private var legacyTabs: some View {
     TabView(selection: Binding(get: { model.controlled.value }, set: { model.select($0) })) {
-      ForEach(groups.flatMap(\.tabs)) { page in
+      ForEach(model.groups.flatMap(\.tabs)) { page in
         slot(page)
+          .background(ActionTabHook(host: host))
           .oneNativeStyle(page.style, emit: page.emit)
           .toolbar(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
           .tabItem {
@@ -409,7 +482,6 @@ private struct TabsContent: View {
           .tag(page.id)
       }
     }
-    .onAppear { model.publishPendingAction() }
     .id(model.tabViewRevision)
   }
 }
