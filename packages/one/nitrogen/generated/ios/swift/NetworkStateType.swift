@@ -17,10 +17,10 @@ public extension NetworkStateType {
    */
   init?(fromString string: String) {
     switch string {
-      case "none":
-        self = .none
       case "unknown":
         self = .unknown
+      case "none":
+        self = .none
       case "cellular":
         self = .cellular
       case "wifi":
@@ -45,10 +45,10 @@ public extension NetworkStateType {
    */
   var stringValue: String {
     switch self {
-      case .none:
-        return "none"
       case .unknown:
         return "unknown"
+      case .none:
+        return "none"
       case .cellular:
         return "cellular"
       case .wifi:

@@ -15,6 +15,10 @@
 #include <fbjni/fbjni.h>
 #include <NitroModules/HybridObjectRegistry.hpp>
 
+#include "JHybridOneAdaptiveSpec.hpp"
+#include "JFunc_void.hpp"
+#include "JFunc_void_SizeClass.hpp"
+#include "JFunc_void_std__optional_HingeState_.hpp"
 #include "JHybridOneAppInfoSpec.hpp"
 #include "JHybridOneBrowserSpec.hpp"
 #include "JHybridOneClipboardSpec.hpp"
@@ -24,7 +28,6 @@
 #include "JHybridOneHapticsSpec.hpp"
 #include "JHybridOneImagePickerSpec.hpp"
 #include "JHybridOneNetworkSpec.hpp"
-#include "JFunc_void.hpp"
 #include "JFunc_void_NetworkState.hpp"
 #include "JHybridOneNotificationsSpec.hpp"
 #include "JFunc_void_std__string_NativeNotification.hpp"
@@ -129,12 +132,24 @@ struct JHybridOneSecureStoreSpecImpl: public jni::JavaClass<JHybridOneSecureStor
     return javaPart->getJHybridOneSecureStoreSpec();
   }
 };
+struct JHybridOneAdaptiveSpecImpl: public jni::JavaClass<JHybridOneAdaptiveSpecImpl, JHybridOneAdaptiveSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneAdaptive;";
+  static std::shared_ptr<JHybridOneAdaptiveSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneAdaptiveSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneAdaptiveSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneAdaptiveSpec();
+  }
+};
 
 void registerAllNatives() {
   using namespace margelo::nitro;
   using namespace margelo::nitro::one;
 
   // Register native JNI methods
+  margelo::nitro::one::JHybridOneAdaptiveSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_SizeClass_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_std__optional_HingeState__cxx::registerNatives();
   margelo::nitro::one::JHybridOneAppInfoSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneBrowserSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneClipboardSpec::CxxPart::registerNatives();
@@ -144,7 +159,6 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneHapticsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneImagePickerSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneNetworkSpec::CxxPart::registerNatives();
-  margelo::nitro::one::JFunc_void_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_NetworkState_cxx::registerNatives();
   margelo::nitro::one::JHybridOneNotificationsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_std__string_NativeNotification_cxx::registerNatives();
@@ -217,6 +231,12 @@ void registerAllNatives() {
     "OneSecureStore",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneSecureStoreSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneAdaptive",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneAdaptiveSpecImpl::create();
     }
   );
 }
