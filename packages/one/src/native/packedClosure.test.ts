@@ -293,6 +293,13 @@ for (const specifier of [
 }
 const config = require('one/react-native-config')
 for (const [name, dependency] of Object.entries(config.dependencies)) {
+  // a package one absorbs has no root: the entry only turns its native code off
+  if (dependency.root === undefined) {
+    if (dependency.platforms?.ios !== null || dependency.platforms?.android !== null) {
+      throw new Error('react-native config entry ' + name + ' neither links nor disables native code')
+    }
+    continue
+  }
   if (dependency.root.includes(${JSON.stringify(workspaceRoot)})) {
     throw new Error('react-native config resolved ' + name + ' into the workspace: ' + dependency.root)
   }
