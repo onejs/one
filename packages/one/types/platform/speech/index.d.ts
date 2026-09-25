@@ -4,6 +4,6 @@ export declare const Speech: Readonly<{
     isAvailable: () => boolean;
     getPermissions: () => Promise<SpeechPermissionResponse>;
     requestPermissions: () => Promise<SpeechPermissionResponse>;
-    start: (_options: SpeechStartOptions, onEvent: (event: SpeechEvent) => void) => SpeechSession;
+    start: (_options: SpeechStartOptions, _onEvent: (event: SpeechEvent) => void) => SpeechSession;
 }>;
 //# sourceMappingURL=index.d.ts.map

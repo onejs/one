@@ -12,8 +12,18 @@
 namespace margelo::nitro::one { struct AppleAuthCredential; }
 // Forward declaration of `AppleAuthFullName` to properly resolve imports.
 namespace margelo::nitro::one { struct AppleAuthFullName; }
+// Forward declaration of `AppleAuthResultType` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleAuthResultType; }
+// Forward declaration of `AppleAuthResult` to properly resolve imports.
+namespace margelo::nitro::one { struct AppleAuthResult; }
+// Forward declaration of `AppleAuthScope` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleAuthScope; }
 // Forward declaration of `AppleAuthSignInOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct AppleAuthSignInOptions; }
+// Forward declaration of `AppleCredentialState` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleCredentialState; }
+// Forward declaration of `AppleRealUserStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleRealUserStatus; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
@@ -142,7 +152,12 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 // Include C++ defined types
 #include "AppleAuthCredential.hpp"
 #include "AppleAuthFullName.hpp"
+#include "AppleAuthResult.hpp"
+#include "AppleAuthResultType.hpp"
+#include "AppleAuthScope.hpp"
 #include "AppleAuthSignInOptions.hpp"
+#include "AppleCredentialState.hpp"
+#include "AppleRealUserStatus.hpp"
 #include "BrowserAuthResult.hpp"
 #include "BrowserAuthResultType.hpp"
 #include "BrowserColorScheme.hpp"

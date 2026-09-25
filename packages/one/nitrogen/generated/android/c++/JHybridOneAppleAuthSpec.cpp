@@ -7,24 +7,44 @@
 
 #include "JHybridOneAppleAuthSpec.hpp"
 
+// Forward declaration of `AppleAuthResult` to properly resolve imports.
+namespace margelo::nitro::one { struct AppleAuthResult; }
+// Forward declaration of `AppleAuthResultType` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleAuthResultType; }
 // Forward declaration of `AppleAuthCredential` to properly resolve imports.
 namespace margelo::nitro::one { struct AppleAuthCredential; }
 // Forward declaration of `AppleAuthFullName` to properly resolve imports.
 namespace margelo::nitro::one { struct AppleAuthFullName; }
+// Forward declaration of `AppleRealUserStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleRealUserStatus; }
+// Forward declaration of `AppleCredentialState` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleCredentialState; }
 // Forward declaration of `AppleAuthSignInOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct AppleAuthSignInOptions; }
+// Forward declaration of `AppleAuthScope` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleAuthScope; }
 
-#include "AppleAuthCredential.hpp"
+#include "AppleAuthResult.hpp"
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/JPromise.hpp>
+#include "JAppleAuthResult.hpp"
+#include "AppleAuthResultType.hpp"
+#include "JAppleAuthResultType.hpp"
+#include "AppleAuthCredential.hpp"
+#include <optional>
 #include "JAppleAuthCredential.hpp"
 #include <string>
-#include <optional>
 #include "AppleAuthFullName.hpp"
 #include "JAppleAuthFullName.hpp"
+#include "AppleRealUserStatus.hpp"
+#include "JAppleRealUserStatus.hpp"
+#include "AppleCredentialState.hpp"
+#include "JAppleCredentialState.hpp"
 #include "AppleAuthSignInOptions.hpp"
 #include "JAppleAuthSignInOptions.hpp"
+#include "AppleAuthScope.hpp"
 #include <vector>
+#include "JAppleAuthScope.hpp"
 
 namespace margelo::nitro::one {
 
@@ -64,13 +84,13 @@ namespace margelo::nitro::one {
     auto __result = method(_javaPart);
     return static_cast<bool>(__result);
   }
-  std::shared_ptr<Promise<AppleAuthCredential>> JHybridOneAppleAuthSpec::signIn(const AppleAuthSignInOptions& options) {
+  std::shared_ptr<Promise<AppleAuthResult>> JHybridOneAppleAuthSpec::signIn(const AppleAuthSignInOptions& options) {
     static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<JAppleAuthSignInOptions> /* options */)>("signIn");
     auto __result = method(_javaPart, JAppleAuthSignInOptions::fromCpp(options));
     return [&]() {
-      auto __promise = Promise<AppleAuthCredential>::create();
+      auto __promise = Promise<AppleAuthResult>::create();
       __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
-        auto __result = jni::static_ref_cast<JAppleAuthCredential>(__boxedResult);
+        auto __result = jni::static_ref_cast<JAppleAuthResult>(__boxedResult);
         __promise->resolve(__result->toCpp());
       });
       __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
@@ -80,14 +100,14 @@ namespace margelo::nitro::one {
       return __promise;
     }();
   }
-  std::shared_ptr<Promise<double>> JHybridOneAppleAuthSpec::getCredentialState(const std::string& user) {
+  std::shared_ptr<Promise<AppleCredentialState>> JHybridOneAppleAuthSpec::getCredentialState(const std::string& user) {
     static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* user */)>("getCredentialState");
     auto __result = method(_javaPart, jni::make_jstring(user));
     return [&]() {
-      auto __promise = Promise<double>::create();
+      auto __promise = Promise<AppleCredentialState>::create();
       __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
-        auto __result = jni::static_ref_cast<jni::JDouble>(__boxedResult);
-        __promise->resolve(__result->value());
+        auto __result = jni::static_ref_cast<JAppleCredentialState>(__boxedResult);
+        __promise->resolve(__result->toCpp());
       });
       __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
         jni::JniException __jniError(__throwable);

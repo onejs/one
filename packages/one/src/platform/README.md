@@ -1587,25 +1587,40 @@ local origin and a supplied touch handler because it leaves the RN surface.
 General SwiftUI tree composition, additional SDK bindings, browser rendering,
 and Android rendering remain separate stages in `plans/one-native-architecture.md`.
 
-## One.AppleAuth and One.Browser
+## One.Auth.Apple and One.Browser
 
-### One.AppleAuth
+### One.Auth.Apple
 
-One.AppleAuth provides native Sign in with Apple for iOS and explicit unsupported status for Android, designed as a zero-friction replacement for `expo-apple-authentication` in apps like Contrast.
+`One.Auth.Apple` is Sign in with Apple on iOS (`isAvailable`, `signIn`,
+`getCredentialState`), replacing `expo-apple-authentication`. Android and the web
+report `isAvailable: false` and reject every request; there is no web fallback. The
+button is `One.iOS.SignInWithAppleButton`, which runs the same flow natively, or any
+button whose press calls `signIn`.
 
-| Library | Native API Used | What It Gets Right | What It Misses | What One Does |
-| :--- | :--- | :--- | :--- | :--- |
-| `expo-apple-authentication` | iOS `AuthenticationServices` (`ASAuthorizationController`) | Standard credential request flow, basic button wrapper | Legacy bridge/event emitter module architecture; separate UIKit button component that doesn't leverage SwiftUI; unhandled rejection on Android rather than explicit absence typing | Nitro Hybrid Object with direct synchronous `isAvailable` check and async methods (`signInAsync`, `getCredentialStateAsync`); button wraps One's native SwiftUI `SignInWithAppleButton`; preserves `ERR_REQUEST_CANCELED` error code; Android is explicitly `isAvailable = false` with no fake web fallback |
-| `@invertase/react-native-apple-authentication` | iOS `ASAuthorizationController` | Pure auth services wrapper; good error enum typing | Separate package dependency; React Native bridge overhead; complex delegate management; no SwiftUI integration | Direct Nitro module; built into `One.AppleAuth`; matches Expo result shape mechanically while using modern Swift concurrency and active scene presentation |
+Migrating from Expo: `signInAsync` is `signIn`, `getCredentialStateAsync` is
+`getCredentialState`, `isAvailableAsync()` is the `isAvailable` property, and the
+enums are strings (`AppleAuthenticationScope.FULL_NAME` is `'fullName'`,
+`AppleAuthenticationCredentialState.NOT_FOUND` is `'notFound'`,
+`AppleAuthenticationUserDetectionStatus.LIKELY_REAL` is `'likelyReal'`). Options and
+credential fields keep Expo's names. `signIn` resolves `{ type: 'success', credential }`,
+or `{ type: 'cancel' }` when the user backs out, where Expo rejects with
+`ERR_REQUEST_CANCELED`. A failure rejects with `E_AUTH_SIGN_IN` or
+`E_AUTH_CREDENTIAL_STATE` and a message carrying the AuthenticationServices error
+domain and code.
+
+| Library | Native API | What it misses | What One does |
+| :--- | :--- | :--- | :--- |
+| `expo-apple-authentication` | `ASAuthorizationController` | bridge module; numeric enums; a cancel is a rejection; the native error code is dropped | Nitro hybrid object, string unions, a cancel is a result, the domain and code kept in the error |
+| `@invertase/react-native-apple-authentication` | `ASAuthorizationController` | a separate package and bridge module | built into One behind the same credential shape as Expo |
 
 ### One.Browser
 
-One.Browser provides high-fidelity in-app browsing and web authentication sessions matching `expo-web-browser` with maximal native feel on iOS and Android.
+`One.Browser` opens pages in `SFSafariViewController` and Custom Tabs and runs authentication sessions in `ASWebAuthenticationSession` and Android's Auth Tab, replacing `expo-web-browser`.
 
 | Library | Native API Used | What It Gets Right | What It Misses | What One Does |
 | :--- | :--- | :--- | :--- | :--- |
-| `expo-web-browser` | iOS `SFSafariViewController` + `ASWebAuthenticationSession`; Android `CustomTabsIntent` | Standard auth session pattern with redirect URL interception; presentation styling | No Android Custom Tabs warmup (`warmup`) or URL prefetching (`mayLaunchUrl`); no Android `AuthTabIntent` (uses full custom tab for auth); no iOS 17.4+ `ASWebAuthenticationSession.Callback.https` (uses custom schemes only); fragile presentation anchor on iPad multi-window | Supports iOS 17.4+ `Callback.https` and custom scheme callbacks; anchors to the active `UIWindowScene` key window; on Android uses `AuthTabIntent` (`androidx.browser:browser:1.9.0`) for clean auth tabs with fallback to Custom Tabs; provides `warmup()` and `mayLaunchUrl()`; full dark/light `colorScheme` support |
-| `react-native-inappbrowser-reborn` | iOS `SFSafariViewController`; Android `CustomTabsIntent` | Basic options like toolbar color | Does not use `ASWebAuthenticationSession` or `AuthTabIntent` for authentication (relies on deep link roundtrips); legacy bridge; no Nitro speed | Uses native OS authentication session primitives on both platforms with direct callbacks, ephemeral session options, and Nitro speed |
+| `expo-web-browser` | iOS `SFSafariViewController` + `ASWebAuthenticationSession`; Android `CustomTabsIntent` | auth session with redirect interception; `warmUpAsync` and `mayInitWithUrlAsync` on Android | a bridge module; Android auth runs in a plain custom tab and reads the redirect through Linking | Nitro hybrid object; Android auth uses `AuthTabIntent` (`androidx.browser` 1.9) where the browser supports it; `warmup()` and `mayLaunchUrl()` resolve whether Custom Tabs accepted them, and false on iOS, which has no counterpart |
+| `react-native-inappbrowser-reborn` | iOS `SFSafariViewController`; Android `CustomTabsIntent` | Basic options like toolbar color | Does not use `ASWebAuthenticationSession` or `AuthTabIntent` for authentication (relies on deep link roundtrips); bridge module | Uses native OS authentication session primitives on both platforms with direct callbacks, and ephemeral session options |
 
 ## One.Speech
 

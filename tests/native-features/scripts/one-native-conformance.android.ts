@@ -1906,9 +1906,8 @@ async function run(config: Config) {
       'one-native-app-info-refresh'
     )
 
-    // apple auth on Android: explicit absence. isAvailable is false,
-    // isAvailableAsync resolves false, signInAsync rejects with ERR_REQUEST_FAILED,
-    // getCredentialStateAsync rejects with ERR_REQUEST_FAILED, and the button renders null.
+    // apple auth on Android answers the way the web entry does: isAvailable is
+    // false and both requests reject, without a code, as needing an iOS build.
     pressBack(config)
     await expect(
       'apple-auth-navigate-home',
@@ -1923,11 +1922,8 @@ async function run(config: Config) {
     await expect(
       'apple-auth-explicit-absence',
       (nodes) =>
-        diagnose(nodes, [
-          ['sync availability false', (n) => textIncludes(n, 'AvailableSync: false')],
-          ['async availability false', (n) => textIncludes(n, 'AvailableAsync: false')],
-        ]),
-      'one-native-apple-auth-available-sync'
+        diagnose(nodes, [['availability false', (n) => textIncludes(n, 'Available: false')]]),
+      'one-native-apple-auth-available'
     )
     tapFresh(config, 'Apple auth signin tap', {
       id: 'one-native-apple-auth-signin',
@@ -1936,7 +1932,11 @@ async function run(config: Config) {
     })
     await expect(
       'apple-auth-signin-rejected',
-      (nodes) => textIncludes(nodes, 'SignIn: error: ERR_REQUEST_FAILED'),
+      (nodes) =>
+        textIncludes(
+          nodes,
+          'SignIn: error: Auth.Apple.signIn needs an iOS build'
+        ),
       'one-native-apple-auth-signin-result'
     )
     tapFresh(config, 'Apple auth credential tap', {
@@ -1946,7 +1946,11 @@ async function run(config: Config) {
     })
     await expect(
       'apple-auth-credential-rejected',
-      (nodes) => textIncludes(nodes, 'CredentialState: error: ERR_REQUEST_FAILED'),
+      (nodes) =>
+        textIncludes(
+          nodes,
+          'CredentialState: error: Auth.Apple.getCredentialState needs an iOS build'
+        ),
       'one-native-apple-auth-credential-state'
     )
 
@@ -1974,6 +1978,8 @@ async function run(config: Config) {
     })
     await expect(
       'browser-warmup-result',
+      // the boolean is chrome's own answer; the check is that the call settles,
+      // which it did not when no custom tabs client bound
       (nodes) => textIncludes(nodes, 'Warmup: true') || textIncludes(nodes, 'Warmup: false'),
       'one-native-browser-warmup'
     )
@@ -1984,9 +1990,34 @@ async function run(config: Config) {
     })
     await expect(
       'browser-may-launch-result',
-      (nodes) => textIncludes(nodes, 'MayLaunchUrl: true') || textIncludes(nodes, 'MayLaunchUrl: false'),
+      (nodes) =>
+        textIncludes(nodes, 'MayLaunchUrl: true') || textIncludes(nodes, 'MayLaunchUrl: false'),
       'one-native-browser-may-launch'
     )
+
+    // the auth tab follows a real redirect to the app's scheme and settles the
+    // session with that url. the emulator reaches the host's redirect server
+    // through adb reverse.
+    adbText(config, ['reverse', 'tcp:8123', 'tcp:8123'])
+    const redirectServer = Bun.serve({
+      port: 8123,
+      fetch: () => Response.redirect('nativefeatures://auth?code=android1', 302),
+    })
+    try {
+      tapFresh(config, 'Browser auth redirect tap', {
+        id: 'one-native-browser-auth-redirect',
+        role: 'button',
+        clickable: true,
+      })
+      await expect(
+        'browser-auth-redirect',
+        (nodes) => textIncludes(nodes, 'Auth: success nativefeatures://auth?code=android1'),
+        'one-native-browser-auth-redirect'
+      )
+    } finally {
+      redirectServer.stop()
+      adbText(config, ['reverse', '--remove', 'tcp:8123'])
+    }
 
     // the system picker (or the documents fallback on devices without it)
     // opens outside our tree, so back dismisses it and the canceled result

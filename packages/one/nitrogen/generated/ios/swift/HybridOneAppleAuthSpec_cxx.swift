@@ -137,40 +137,40 @@ open class HybridOneAppleAuthSpec_cxx {
   }
   
   @inline(__always)
-  public final func signIn(options: AppleAuthSignInOptions) -> bridge.Result_std__shared_ptr_Promise_AppleAuthCredential___ {
+  public final func signIn(options: AppleAuthSignInOptions) -> bridge.Result_std__shared_ptr_Promise_AppleAuthResult___ {
     do {
       let __result = try self.__implementation.signIn(options: options)
-      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_AppleAuthCredential__ in
-        let __promise = bridge.create_std__shared_ptr_Promise_AppleAuthCredential__()
-        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_AppleAuthCredential__(__promise)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_AppleAuthResult__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_AppleAuthResult__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_AppleAuthResult__(__promise)
         __result
           .then({ __result in __promiseHolder.resolve(__result) })
           .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
         return __promise
       }()
-      return bridge.create_Result_std__shared_ptr_Promise_AppleAuthCredential___(__resultCpp)
+      return bridge.create_Result_std__shared_ptr_Promise_AppleAuthResult___(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_std__shared_ptr_Promise_AppleAuthCredential___(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_Promise_AppleAuthResult___(__exceptionPtr)
     }
   }
   
   @inline(__always)
-  public final func getCredentialState(user: std.string) -> bridge.Result_std__shared_ptr_Promise_double___ {
+  public final func getCredentialState(user: std.string) -> bridge.Result_std__shared_ptr_Promise_AppleCredentialState___ {
     do {
       let __result = try self.__implementation.getCredentialState(user: String(user))
-      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_double__ in
-        let __promise = bridge.create_std__shared_ptr_Promise_double__()
-        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_double__(__promise)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_AppleCredentialState__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_AppleCredentialState__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_AppleCredentialState__(__promise)
         __result
           .then({ __result in __promiseHolder.resolve(__result) })
           .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
         return __promise
       }()
-      return bridge.create_Result_std__shared_ptr_Promise_double___(__resultCpp)
+      return bridge.create_Result_std__shared_ptr_Promise_AppleCredentialState___(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_std__shared_ptr_Promise_double___(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_Promise_AppleCredentialState___(__exceptionPtr)
     }
   }
 }

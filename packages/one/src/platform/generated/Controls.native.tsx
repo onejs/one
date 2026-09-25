@@ -896,6 +896,7 @@ export function SignInWithAppleButton({
   onCompletion,
   requestedScopes = [],
   nonce = '',
+  label = 'signIn',
   swiftStyle,
   style,
   ...props
@@ -908,6 +909,10 @@ export function SignInWithAppleButton({
   }
   if (typeof nonce !== 'string')
     throw new Error('SignInWithAppleButton nonce must be a string')
+  if (label !== 'signIn' && label !== 'continue' && label !== 'signUp')
+    throw new Error(
+      "SignInWithAppleButton label must be 'signIn', 'continue' or 'signUp'"
+    )
 
   return (
     <NativeSignInWithAppleButton
@@ -919,6 +924,7 @@ export function SignInWithAppleButton({
       }
       requestedScopes={requestedScopes}
       nonce={nonce}
+      label={label}
       onNativeSignInWithAppleButtonCompletion={({ nativeEvent }) =>
         onCompletion?.(
           nativeEvent.type === 'success'

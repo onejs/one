@@ -3,8 +3,9 @@ import NitroModules
 import React
 import UIKit
 
-// native sign in with apple replacing expo-apple-authentication.
-// uses ASAuthorizationController + ASAuthorizationAppleIDProvider.
+// One.Auth.Apple: sign in with apple through ASAuthorizationController and
+// ASAuthorizationAppleIDProvider, replacing expo-apple-authentication. a failure
+// that is not a cancel carries the native error domain and code in its message.
 final class HybridOneAppleAuth: HybridOneAppleAuthSpec {
   private var activeAuthDelegate: AppleAuthSessionDelegate?
 
@@ -12,18 +13,17 @@ final class HybridOneAppleAuth: HybridOneAppleAuthSpec {
     return true
   }
 
-  func signIn(options: AppleAuthSignInOptions) throws -> Promise<AppleAuthCredential> {
-    let promise = Promise<AppleAuthCredential>()
+  func signIn(options: AppleAuthSignInOptions) throws -> Promise<AppleAuthResult> {
+    let promise = Promise<AppleAuthResult>()
     DispatchQueue.main.async {
       let appleIDProvider = ASAuthorizationAppleIDProvider()
       let request = appleIDProvider.createRequest()
 
       if let scopes = options.requestedScopes {
-        request.requestedScopes = scopes.compactMap { scope in
+        request.requestedScopes = scopes.map { scope in
           switch scope {
-          case "fullName": return .fullName
-          case "email": return .email
-          default: return nil
+          case .fullname: return .fullName
+          case .email: return .email
           }
         }
       }
@@ -48,51 +48,51 @@ final class HybridOneAppleAuth: HybridOneAppleAuthSpec {
     return promise
   }
 
-  func getCredentialState(user: String) throws -> Promise<Double> {
-    let promise = Promise<Double>()
-    let appleIDProvider = ASAuthorizationAppleIDProvider()
-    appleIDProvider.getCredentialState(forUserID: user) { state, error in
+  func getCredentialState(user: String) throws -> Promise<AppleCredentialState> {
+    let promise = Promise<AppleCredentialState>()
+    ASAuthorizationAppleIDProvider().getCredentialState(forUserID: user) { state, error in
       if let error {
-        promise.reject(withError: oneNativeError("ERR_REQUEST_FAILED", error.localizedDescription))
+        promise.reject(
+          withError: appleAuthError(
+            "E_AUTH_CREDENTIAL_STATE", "Auth.Apple.getCredentialState", error))
         return
       }
-      let rawState: Double
       switch state {
-      case .revoked:
-        rawState = 0
-      case .authorized:
-        rawState = 1
-      case .notFound:
-        rawState = 2
-      case .transferred:
-        rawState = 3
+      case .revoked: promise.resolve(withResult: .revoked)
+      case .authorized: promise.resolve(withResult: .authorized)
+      case .notFound: promise.resolve(withResult: .notfound)
+      case .transferred: promise.resolve(withResult: .transferred)
       @unknown default:
-        rawState = 2
+        promise.reject(
+          withError: oneNativeError(
+            "E_AUTH_CREDENTIAL_STATE",
+            "Auth.Apple.getCredentialState: unknown credential state \(state.rawValue)"))
       }
-      promise.resolve(withResult: rawState)
     }
     return promise
   }
 }
 
+// the native domain and code stay in the message, so a caller (and the
+// conformance suite) can tell which AuthenticationServices failure it was.
+private func appleAuthError(_ code: String, _ verb: String, _ error: Error) -> Error {
+  let nsError = error as NSError
+  return oneNativeError(
+    code, "\(verb): \(nsError.domain) \(nsError.code): \(nsError.localizedDescription)")
+}
+
 private final class AppleAuthSessionDelegate: NSObject, ASAuthorizationControllerDelegate,
   ASAuthorizationControllerPresentationContextProviding
 {
-  private let promise: Promise<AppleAuthCredential>
+  private let promise: Promise<AppleAuthResult>
   private let onFinished: () -> Void
 
-  init(promise: Promise<AppleAuthCredential>, onFinished: @escaping () -> Void) {
+  init(promise: Promise<AppleAuthResult>, onFinished: @escaping () -> Void) {
     self.promise = promise
     self.onFinished = onFinished
   }
 
   func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-    if let window = UIApplication.shared.connectedScenes
-      .compactMap({ $0 as? UIWindowScene })
-      .flatMap({ $0.windows })
-      .first(where: { $0.isKeyWindow }) {
-      return window
-    }
     return RCTKeyWindow() ?? ASPresentationAnchor()
   }
 
@@ -102,7 +102,9 @@ private final class AppleAuthSessionDelegate: NSObject, ASAuthorizationControlle
   ) {
     defer { onFinished() }
     guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else {
-      promise.reject(withError: oneNativeError("ERR_REQUEST_FAILED", "Unexpected credential received."))
+      promise.reject(
+        withError: oneNativeError(
+          "E_AUTH_SIGN_IN", "Auth.Apple.signIn: the credential is not an Apple ID credential"))
       return
     }
 
@@ -121,16 +123,11 @@ private final class AppleAuthSessionDelegate: NSObject, ASAuthorizationControlle
       )
     }
 
-    let realUserStatus: Double
+    let realUserStatus: AppleRealUserStatus
     switch credential.realUserStatus {
-    case .unsupported:
-      realUserStatus = 0
-    case .unknown:
-      realUserStatus = 1
-    case .likelyReal:
-      realUserStatus = 2
-    @unknown default:
-      realUserStatus = 0
+    case .likelyReal: realUserStatus = .likelyreal
+    case .unknown: realUserStatus = .unknown
+    default: realUserStatus = .unsupported
     }
 
     let result = AppleAuthCredential(
@@ -142,7 +139,7 @@ private final class AppleAuthSessionDelegate: NSObject, ASAuthorizationControlle
       fullName: fullName,
       realUserStatus: realUserStatus
     )
-    promise.resolve(withResult: result)
+    promise.resolve(withResult: AppleAuthResult(type: .success, credential: result))
   }
 
   func authorizationController(
@@ -154,11 +151,9 @@ private final class AppleAuthSessionDelegate: NSObject, ASAuthorizationControlle
     if nsError.domain == ASAuthorizationErrorDomain,
       nsError.code == ASAuthorizationError.Code.canceled.rawValue
     {
-      promise.reject(
-        withError: oneNativeError("ERR_REQUEST_CANCELED", "The user canceled the authorization request."))
+      promise.resolve(withResult: AppleAuthResult(type: .cancel, credential: nil))
     } else {
-      promise.reject(
-        withError: oneNativeError("ERR_REQUEST_FAILED", error.localizedDescription))
+      promise.reject(withError: appleAuthError("E_AUTH_SIGN_IN", "Auth.Apple.signIn", error))
     }
   }
 }

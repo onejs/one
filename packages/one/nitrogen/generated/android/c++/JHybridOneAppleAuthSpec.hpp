@@ -55,8 +55,8 @@ namespace margelo::nitro::one {
   public:
     // Methods
     bool isAvailable() override;
-    std::shared_ptr<Promise<AppleAuthCredential>> signIn(const AppleAuthSignInOptions& options) override;
-    std::shared_ptr<Promise<double>> getCredentialState(const std::string& user) override;
+    std::shared_ptr<Promise<AppleAuthResult>> signIn(const AppleAuthSignInOptions& options) override;
+    std::shared_ptr<Promise<AppleCredentialState>> getCredentialState(const std::string& user) override;
 
   private:
     jni::global_ref<JHybridOneAppleAuthSpec::JavaPart> _javaPart;

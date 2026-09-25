@@ -38,7 +38,7 @@ data class AppleAuthCredential(
   val fullName: AppleAuthFullName?,
   @DoNotStrip
   @Keep
-  val realUserStatus: Double
+  val realUserStatus: AppleRealUserStatus
 ) {
   /* primary constructor */
 
@@ -74,7 +74,7 @@ data class AppleAuthCredential(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(user: String, state: String?, identityToken: String?, authorizationCode: String?, email: String?, fullName: AppleAuthFullName?, realUserStatus: Double): AppleAuthCredential {
+    private fun fromCpp(user: String, state: String?, identityToken: String?, authorizationCode: String?, email: String?, fullName: AppleAuthFullName?, realUserStatus: AppleRealUserStatus): AppleAuthCredential {
       return AppleAuthCredential(user, state, identityToken, authorizationCode, email, fullName, realUserStatus)
     }
   }

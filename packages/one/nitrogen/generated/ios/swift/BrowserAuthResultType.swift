@@ -17,6 +17,8 @@ public extension BrowserAuthResultType {
    */
   init?(fromString string: String) {
     switch string {
+      case "success":
+        self = .success
       case "cancel":
         self = .cancel
       case "dismiss":
@@ -25,8 +27,6 @@ public extension BrowserAuthResultType {
         self = .opened
       case "locked":
         self = .locked
-      case "success":
-        self = .success
       default:
         return nil
     }
@@ -37,6 +37,8 @@ public extension BrowserAuthResultType {
    */
   var stringValue: String {
     switch self {
+      case .success:
+        return "success"
       case .cancel:
         return "cancel"
       case .dismiss:
@@ -45,8 +47,6 @@ public extension BrowserAuthResultType {
         return "opened"
       case .locked:
         return "locked"
-      case .success:
-        return "success"
     }
   }
 }

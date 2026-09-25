@@ -26,16 +26,12 @@ export type {
 
 // in-app browser matching expo-web-browser: plain pages in a safari sheet or
 // custom tab, auth sessions with a redirect result. the OneBrowser nitro
-// hybrid object is resolved once and lazily; native owns presentation and
-// the session.
-let hybrid: OneBrowser | null | undefined
+// hybrid object is created on first use and cached; native owns presentation
+// and the session.
+let hybrid: OneBrowser | undefined
 
-function native(): OneBrowser | null {
-  if (hybrid === undefined) {
-    hybrid = NitroModules.hasHybridObject('OneBrowser')
-      ? NitroModules.createHybridObject<OneBrowser>('OneBrowser')
-      : null
-  }
+function native(): OneBrowser {
+  hybrid ??= NitroModules.createHybridObject<OneBrowser>('OneBrowser')
   return hybrid
 }
 
@@ -46,24 +42,14 @@ function toAuthSessionResult({ type, url }: BrowserAuthResult): BrowserAuthSessi
   return { type }
 }
 
-function needNative(): Promise<never> {
-  return Promise.reject(
-    new Error('Browser needs a native build')
-  )
-}
-
 function open(url: string, options: BrowserOpenOptions = {}): Promise<BrowserResult> {
   assertBrowserUrl(url, 'Browser.open')
   assertOpenOptions(options, 'Browser.open')
-  const resolved = native()
-  if (!resolved) return needNative()
-  return resolved.open(url, options).catch(rethrowNativeError)
+  return native().open(url, options).catch(rethrowNativeError)
 }
 
 function dismiss(): Promise<BrowserResult> {
-  const resolved = native()
-  if (!resolved) return needNative()
-  return resolved.dismiss()
+  return native().dismiss()
 }
 
 function openAuthSession(
@@ -74,28 +60,22 @@ function openAuthSession(
   assertBrowserUrl(url, 'Browser.openAuthSession')
   assertRedirectUrl(redirectUrl, 'Browser.openAuthSession')
   assertAuthOptions(options, 'Browser.openAuthSession')
-  const resolved = native()
-  if (!resolved) return needNative()
-  return resolved
+  return native()
     .openAuthSession(url, redirectUrl ?? undefined, options)
     .then(toAuthSessionResult, rethrowNativeError)
 }
 
 function dismissAuthSession(): void {
-  native()?.dismissAuthSession()
+  native().dismissAuthSession()
 }
 
 function warmup(browserPackage?: string): Promise<boolean> {
-  const resolved = native()
-  if (!resolved) return Promise.resolve(false)
-  return resolved.warmup(browserPackage).catch(() => false)
+  return native().warmup(browserPackage).catch(rethrowNativeError)
 }
 
 function mayLaunchUrl(url: string, browserPackage?: string): Promise<boolean> {
   assertBrowserUrl(url, 'Browser.mayLaunchUrl')
-  const resolved = native()
-  if (!resolved) return Promise.resolve(false)
-  return resolved.mayLaunchUrl(url, browserPackage).catch(() => false)
+  return native().mayLaunchUrl(url, browserPackage).catch(rethrowNativeError)
 }
 
 export const Browser = Object.freeze({
@@ -106,4 +86,3 @@ export const Browser = Object.freeze({
   warmup,
   mayLaunchUrl,
 })
-
