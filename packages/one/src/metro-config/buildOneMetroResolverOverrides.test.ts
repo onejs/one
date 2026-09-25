@@ -1,5 +1,6 @@
+import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, onTestFinished } from 'vitest'
 import { buildOneMetroResolverOverrides } from './buildOneMetroResolverOverrides'
 
 describe('buildOneMetroResolverOverrides', () => {
@@ -37,17 +38,47 @@ describe('buildOneMetroResolverOverrides', () => {
       'react-native-worklets/package.json',
       'ios'
     )
-    resolveRequest(
-      { originModulePath: nestedOrigin },
-      'react-native-safe-area-context',
-      'ios'
-    )
+    // a library's safe-area import reaches one's own safe area, never the package
+    expect(
+      resolveRequest(
+        { originModulePath: nestedOrigin },
+        'react-native-safe-area-context',
+        'ios'
+      )
+    ).toEqual({
+      type: 'sourceFile',
+      filePath: path.join(projectRoot, 'dist/esm/safe-area-context/index.native.js'),
+    })
 
     expect(resolvedOrigins).toEqual([
       `react-native-worklets:${path.join(projectRoot, 'package.json')}`,
       `react-native-worklets/package.json:${path.join(projectRoot, 'package.json')}`,
-      `react-native-safe-area-context:${nestedOrigin}`,
     ])
+  })
+
+  it('leaves an absorbed package to the app when the app declares it', () => {
+    // inside the workspace, so the app still resolves one's own metro helpers
+    const projectRoot = mkdtempSync(path.join(__dirname, '.absorbed-'))
+    onTestFinished(() => rmSync(projectRoot, { recursive: true }))
+    writeFileSync(
+      path.join(projectRoot, 'package.json'),
+      JSON.stringify({ dependencies: { 'react-native-safe-area-context': '5.8.1' } })
+    )
+    const config = buildOneMetroResolverOverrides({ projectRoot })({
+      resolver: {
+        resolveRequest: (_context: unknown, moduleName: string) => ({
+          type: 'sourceFile',
+          filePath: `app:${moduleName}`,
+        }),
+      },
+    })
+    expect(
+      config.resolver?.resolveRequest(
+        { originModulePath: path.join(projectRoot, 'index.js') },
+        'react-native-safe-area-context',
+        'ios'
+      )
+    ).toEqual({ type: 'sourceFile', filePath: 'app:react-native-safe-area-context' })
   })
 
   it('keeps the compiled react-native-svg native entry point', () => {
