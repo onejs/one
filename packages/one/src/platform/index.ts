@@ -53,6 +53,7 @@ export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/ind
 export { AppInfo } from './app-info/index'
 export type { AppInfoApi } from './app-info/index'
 export { ImagePicker } from './image-picker/index'
+export { DocumentPicker } from './document-picker/index'
 export { Database } from './database/index'
 export type {
   ImagePickerAsset,
@@ -63,6 +64,13 @@ export type {
   ImagePickerResult,
   ImagePickerSuccessResult,
 } from './image-picker/index'
+export type {
+  DocumentPickerAsset,
+  DocumentPickerCanceledResult,
+  DocumentPickerOptions,
+  DocumentPickerResult,
+  DocumentPickerSuccessResult,
+} from './document-picker/index'
 // web subset of the UI namespace (pure curve math, types, throwing
 // component stubs). mirrors index.native.ts; see effects/index.ts.
 export { UI }

@@ -144,6 +144,7 @@ export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/ind
 export { AppInfo } from './app-info/index.native'
 export type { AppInfoApi } from './app-info/index.native'
 export { ImagePicker } from './image-picker/index.native'
+export { DocumentPicker } from './document-picker/index.native'
 export { Database } from './database/index.native'
 export type {
   ImagePickerAsset,
@@ -154,6 +155,13 @@ export type {
   ImagePickerResult,
   ImagePickerSuccessResult,
 } from './image-picker/index.native'
+export type {
+  DocumentPickerAsset,
+  DocumentPickerCanceledResult,
+  DocumentPickerOptions,
+  DocumentPickerResult,
+  DocumentPickerSuccessResult,
+} from './document-picker/index.native'
 // One.UI components live here physically: UI.EdgeFade, UI.Blur, UI.Mask.
 // the One package re-exports this namespace as One.UI.
 export { UI }

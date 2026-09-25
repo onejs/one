@@ -1,0 +1,46 @@
+---
+title: DocumentPicker
+description: Uniform imperative picker for arbitrary files
+---
+
+Uniform imperative document picker. The `expo-document-picker` module API is the reference
+shape, so migration is mechanical; this is the small subset One supports.
+
+```tsx
+import { One } from 'one'
+
+const picked = await One.DocumentPicker.getDocument({
+  type: ['application/pdf', 'image/*'],
+  multiple: false,
+})
+if (!picked.canceled) {
+  const [first] = picked.assets
+  console.log(first.uri, first.name, first.mimeType, first.size)
+  const bytes = await (await fetch(first.uri)).arrayBuffer()
+}
+```
+
+`getDocument` presents the system document picker: `UIDocumentPickerViewController` on
+iOS and `ACTION_OPEN_DOCUMENT` on Android. Neither needs a permission. `type` is one mime
+type or a list, exact (`'application/pdf'`) or a wildcard (`'image/*'`), defaulting to
+`'*/*'`. `multiple` allows picking more than one file, defaulting to `false`.
+
+Picked files are copied into the app cache and returned as file URIs with `name` and,
+when the platform provides them, `mimeType` and `size` in bytes. Read one with
+`fetch(uri)`: `.arrayBuffer()`, `.blob()`, or `.text()` all work on both platforms, so no
+file system module is needed.
+
+Backing out resolves `{ canceled: true, assets: null }`. One pick is in flight at a time;
+a second call while the picker is up rejects. Runtime failures reject with
+`E_DOCUMENT_PICKER_FAILED`. On web the call opens a file dialog and returns blob URLs.
+
+### Migration from expo-document-picker
+
+Migrating from `expo-document-picker` is an import change plus this rename:
+
+| Expo | One |
+|------|-----|
+| `getDocumentAsync` | `getDocument` |
+
+`copyToCacheDirectory` has no equivalent because files are always copied. Reads through
+`expo-file-system` become `fetch(uri)`.
