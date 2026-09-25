@@ -1888,6 +1888,88 @@ async function run(config: Config) {
       'one-native-app-info-refresh'
     )
 
+    // apple auth on Android: explicit absence. isAvailable is false,
+    // isAvailableAsync resolves false, signInAsync rejects with ERR_REQUEST_FAILED,
+    // getCredentialStateAsync rejects with ERR_REQUEST_FAILED, and the button renders null.
+    pressBack(config)
+    await expect(
+      'apple-auth-navigate-home',
+      (nodes) =>
+        diagnose(nodes, [
+          ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+          ['nav list row', (n) => n.some((node) => node.resourceId.includes('nav-'))],
+        ]),
+      'home-screen'
+    )
+    await tapNavigation(config, 'nav-one-native-apple-auth')
+    await expect(
+      'apple-auth-explicit-absence',
+      (nodes) =>
+        diagnose(nodes, [
+          ['sync availability false', (n) => textIncludes(n, 'AvailableSync: false')],
+          ['async availability false', (n) => textIncludes(n, 'AvailableAsync: false')],
+        ]),
+      'one-native-apple-auth-available-sync'
+    )
+    tapFresh(config, 'Apple auth signin tap', {
+      id: 'one-native-apple-auth-signin',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'apple-auth-signin-rejected',
+      (nodes) => textIncludes(nodes, 'SignIn: error: ERR_REQUEST_FAILED'),
+      'one-native-apple-auth-signin-result'
+    )
+    tapFresh(config, 'Apple auth credential tap', {
+      id: 'one-native-apple-auth-credential',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'apple-auth-credential-rejected',
+      (nodes) => textIncludes(nodes, 'CredentialState: error: ERR_REQUEST_FAILED'),
+      'one-native-apple-auth-credential-state'
+    )
+
+    // browser on Android: warmup and mayLaunchUrl exercise Custom Tabs service
+    pressBack(config)
+    await expect(
+      'browser-navigate-home',
+      (nodes) =>
+        diagnose(nodes, [
+          ['home-screen marker', (n) => exactlyOneId(n, 'home-screen')],
+          ['nav list row', (n) => n.some((node) => node.resourceId.includes('nav-'))],
+        ]),
+      'home-screen'
+    )
+    await tapNavigation(config, 'nav-one-native-browser')
+    await expect(
+      'browser-mounted',
+      (nodes) => textIncludes(nodes, 'Result: none'),
+      'one-native-browser-open'
+    )
+    tapFresh(config, 'Browser warmup tap', {
+      id: 'one-native-browser-warmup',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'browser-warmup-result',
+      (nodes) => textIncludes(nodes, 'Warmup: true') || textIncludes(nodes, 'Warmup: false'),
+      'one-native-browser-warmup'
+    )
+    tapFresh(config, 'Browser may launch tap', {
+      id: 'one-native-browser-may-launch',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'browser-may-launch-result',
+      (nodes) => textIncludes(nodes, 'MayLaunchUrl: true') || textIncludes(nodes, 'MayLaunchUrl: false'),
+      'one-native-browser-may-launch'
+    )
+
     // the system picker (or the documents fallback on devices without it)
     // opens outside our tree, so back dismisses it and the canceled result
     // must round-trip through the bridge. the camera leg stays manual: the

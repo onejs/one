@@ -1,30 +1,45 @@
 package com.margelo.nitro.one
 
 import android.app.Activity
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import androidx.browser.auth.AuthTabColorSchemeParams
+import androidx.browser.auth.AuthTabIntent
 import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsClient
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.browser.customtabs.CustomTabsServiceConnection
+import androidx.browser.customtabs.CustomTabsSession
 import com.facebook.react.bridge.ActivityEventListener
 import com.facebook.react.bridge.LifecycleEventListener
 import com.margelo.nitro.NitroModules
 import com.margelo.nitro.core.Promise
 
-// in-app browser matching expo-web-browser's result shapes: pages and auth
-// both open in Custom Tabs; an app redirect back completes the auth session.
-// calls arrive on the js thread and lifecycle callbacks on the ui thread, so
-// the pending session is only read or replaced under the lock.
+// in-app browser matching expo-web-browser's result shapes:
+// plain pages in Custom Tabs, auth in modern androidx.browser AuthTabIntent
+// (with graceful fallback to Custom Tabs on older browsers).
+// supports warmup, mayLaunchUrl, and dark appearance color scheme params.
 class HybridOneBrowser : HybridOneBrowserSpec(), ActivityEventListener, LifecycleEventListener {
     private val lock = Any()
     private var authPromise: Promise<BrowserAuthResult>? = null
     private var authScheme: String? = null
+
+    private var customTabsClient: CustomTabsClient? = null
+    private var customTabsSession: CustomTabsSession? = null
+
+    companion object {
+        private const val AUTH_TAB_REQUEST_CODE = 4281
+    }
 
     init {
         NitroModules.applicationContext?.let {
             it.addActivityEventListener(this)
             it.addLifecycleEventListener(this)
         }
+        ensureClient(null)
     }
 
     override fun dispose() {
@@ -79,10 +94,12 @@ class HybridOneBrowser : HybridOneBrowserSpec(), ActivityEventListener, Lifecycl
             try {
                 authScheme = redirectUrl?.let { Uri.parse(it)?.scheme }
                 authPromise = promise
-                launchCustomTab(activity, url, options)
-                // the promise settles on redirect (onNewIntent), on
-                // programmatic dismiss, or when the user returns without one
-                // (onHostResume).
+                launchAuthTab(activity, url, redirectUrl, options)
+                // the promise settles on:
+                // 1. onActivityResult when AuthTab completes with direct result
+                // 2. onNewIntent when fallback CustomTab redirects back
+                // 3. onHostResume when user closes tab without redirect
+                // 4. dismissAuthSession
             } catch (e: Exception) {
                 authPromise = null
                 authScheme = null
@@ -93,9 +110,42 @@ class HybridOneBrowser : HybridOneBrowserSpec(), ActivityEventListener, Lifecycl
     }
 
     override fun dismissAuthSession() {
-        // the tab itself stays open, like dismiss; the pending session
-        // settles as dismiss on both platforms.
         takeAuth()?.resolve(result(BrowserAuthResultType.DISMISS))
+    }
+
+    override fun warmup(browserPackage: String?): Promise<Boolean> {
+        val promise = Promise<Boolean>()
+        val context = NitroModules.applicationContext
+        if (context == null) {
+            return Promise.resolved(false)
+        }
+        val targetPackage = browserPackage ?: CustomTabsClient.getPackageName(context, null)
+        if (targetPackage == null) {
+            return Promise.resolved(false)
+        }
+        ensureClient(targetPackage) { client ->
+            val ok = client.warmup(0L)
+            promise.resolve(ok)
+        }
+        return promise
+    }
+
+    override fun mayLaunchUrl(url: String, browserPackage: String?): Promise<Boolean> {
+        val promise = Promise<Boolean>()
+        val uri = try { Uri.parse(url) } catch (_: Exception) { null }
+        if (uri == null) return Promise.resolved(false)
+        val session = customTabsSession
+        if (session != null) {
+            val ok = session.mayLaunchUrl(uri, null, null)
+            return Promise.resolved(ok)
+        }
+        ensureClient(browserPackage) { client ->
+            val s = customTabsSession ?: client.newSession(null)
+            customTabsSession = s
+            val ok = s?.mayLaunchUrl(uri, null, null) ?: false
+            promise.resolve(ok)
+        }
+        return promise
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -117,11 +167,29 @@ class HybridOneBrowser : HybridOneBrowserSpec(), ActivityEventListener, Lifecycl
         resultCode: Int,
         data: Intent?
     ) {
+        if (requestCode == AUTH_TAB_REQUEST_CODE) {
+            val pending = synchronized(lock) {
+                val p = authPromise ?: return
+                authPromise = null
+                authScheme = null
+                p
+            }
+            if (resultCode == Activity.RESULT_OK) {
+                val resultUri = data?.data?.toString()
+                if (resultUri != null) {
+                    pending.resolve(result(BrowserAuthResultType.SUCCESS, resultUri))
+                } else {
+                    pending.resolve(result(BrowserAuthResultType.CANCEL))
+                }
+            } else {
+                pending.resolve(result(BrowserAuthResultType.CANCEL))
+            }
+        }
     }
 
     override fun onHostResume() {
-        // onNewIntent runs before onHostResume for a redirect, so a pending
-        // promise here means the user closed the tab without redirecting.
+        // onActivityResult and onNewIntent run before onHostResume,
+        // so a pending promise here means the user closed the tab without redirecting.
         takeAuth()?.resolve(result(BrowserAuthResultType.CANCEL))
     }
 
@@ -139,21 +207,112 @@ class HybridOneBrowser : HybridOneBrowserSpec(), ActivityEventListener, Lifecycl
         pending
     }
 
+    private fun ensureClient(browserPackage: String?, onReady: ((CustomTabsClient) -> Unit)? = null) {
+        val client = customTabsClient
+        if (client != null) {
+            onReady?.invoke(client)
+            return
+        }
+        val context = NitroModules.applicationContext ?: return
+        val targetPackage = browserPackage ?: CustomTabsClient.getPackageName(context, null) ?: return
+        val connection = object : CustomTabsServiceConnection() {
+            override fun onCustomTabsServiceConnected(name: ComponentName, connectedClient: CustomTabsClient) {
+                customTabsClient = connectedClient
+                connectedClient.warmup(0L)
+                customTabsSession = connectedClient.newSession(null)
+                onReady?.invoke(connectedClient)
+            }
+            override fun onServiceDisconnected(name: ComponentName) {
+                customTabsClient = null
+                customTabsSession = null
+            }
+        }
+        try {
+            CustomTabsClient.bindCustomTabsService(context, targetPackage, connection)
+        } catch (_: Exception) {}
+    }
+
     private fun launchCustomTab(activity: Activity, url: String, options: BrowserNativeOptions) {
-        val builder = CustomTabsIntent.Builder()
+        val session = customTabsSession
+        val builder = if (session != null) CustomTabsIntent.Builder(session) else CustomTabsIntent.Builder()
         if (options.showTitle == true) {
             builder.setShowTitle(true)
         }
-        options.toolbarColor?.let { raw ->
-            colorForHex(raw)?.let { toolbar ->
-                builder.setDefaultColorSchemeParams(
-                    CustomTabColorSchemeParams.Builder().setToolbarColor(toolbar).build()
-                )
-            }
-        }
+        applyColorScheme(builder, options)
         val customTabs = builder.build()
         options.browserPackage?.let { customTabs.intent.setPackage(it) }
         customTabs.launchUrl(activity, Uri.parse(url))
+    }
+
+    private fun launchAuthTab(
+        activity: Activity,
+        url: String,
+        redirectUrl: String?,
+        options: BrowserNativeOptions
+    ) {
+        val authBuilder = AuthTabIntent.Builder()
+        if (options.preferEphemeralSession == true) {
+            authBuilder.setEphemeralBrowsingEnabled(true)
+        }
+        when (options.colorScheme) {
+            BrowserColorScheme.DARK -> authBuilder.setColorScheme(CustomTabsIntent.COLOR_SCHEME_DARK)
+            BrowserColorScheme.LIGHT -> authBuilder.setColorScheme(CustomTabsIntent.COLOR_SCHEME_LIGHT)
+            BrowserColorScheme.SYSTEM, null -> authBuilder.setColorScheme(CustomTabsIntent.COLOR_SCHEME_SYSTEM)
+        }
+        val defaultParams = AuthTabColorSchemeParams.Builder()
+        options.toolbarColor?.let { raw ->
+            colorForHex(raw)?.let { defaultParams.setToolbarColor(it) }
+        }
+        authBuilder.setDefaultColorSchemeParams(defaultParams.build())
+
+        val authTabIntent = authBuilder.build()
+        val intent = authTabIntent.intent
+        intent.data = Uri.parse(url)
+        options.browserPackage?.let { intent.setPackage(it) }
+
+        if (redirectUrl != null) {
+            val redirectUri = Uri.parse(redirectUrl)
+            val scheme = redirectUri.scheme?.lowercase()
+            if (scheme == "https" || scheme == "http") {
+                val host = redirectUri.host
+                val path = redirectUri.path ?: "/"
+                if (host != null) {
+                    intent.putExtra(AuthTabIntent.EXTRA_HTTPS_REDIRECT_HOST, host)
+                    intent.putExtra(AuthTabIntent.EXTRA_HTTPS_REDIRECT_PATH, path)
+                }
+            } else if (scheme != null && scheme.isNotEmpty()) {
+                intent.putExtra(AuthTabIntent.EXTRA_REDIRECT_SCHEME, scheme)
+            }
+        }
+
+        activity.startActivityForResult(intent, AUTH_TAB_REQUEST_CODE)
+    }
+
+    private fun applyColorScheme(builder: CustomTabsIntent.Builder, options: BrowserNativeOptions) {
+        when (options.colorScheme) {
+            BrowserColorScheme.DARK -> builder.setColorScheme(CustomTabsIntent.COLOR_SCHEME_DARK)
+            BrowserColorScheme.LIGHT -> builder.setColorScheme(CustomTabsIntent.COLOR_SCHEME_LIGHT)
+            BrowserColorScheme.SYSTEM, null -> builder.setColorScheme(CustomTabsIntent.COLOR_SCHEME_SYSTEM)
+        }
+        val defaultParams = CustomTabColorSchemeParams.Builder()
+        options.toolbarColor?.let { raw ->
+            colorForHex(raw)?.let { defaultParams.setToolbarColor(it) }
+        }
+        options.secondaryToolbarColor?.let { raw ->
+            colorForHex(raw)?.let { defaultParams.setSecondaryToolbarColor(it) }
+        }
+        builder.setDefaultColorSchemeParams(defaultParams.build())
+
+        if (options.colorScheme == BrowserColorScheme.DARK || options.colorScheme == BrowserColorScheme.SYSTEM) {
+            val darkParams = CustomTabColorSchemeParams.Builder()
+            options.toolbarColor?.let { raw ->
+                colorForHex(raw)?.let { darkParams.setToolbarColor(it) }
+            }
+            options.secondaryToolbarColor?.let { raw ->
+                colorForHex(raw)?.let { darkParams.setSecondaryToolbarColor(it) }
+            }
+            builder.setColorSchemeParams(CustomTabsIntent.COLOR_SCHEME_DARK, darkParams.build())
+        }
     }
 
     private fun colorForHex(value: String): Int? {

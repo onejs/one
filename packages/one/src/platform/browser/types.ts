@@ -23,18 +23,23 @@ export type BrowserPresentationStyle =
   | 'overFullScreen'
   | 'pageSheet'
 
+export type BrowserColorScheme = 'system' | 'light' | 'dark'
+
 export interface BrowserOpenOptions {
   // ios only: the modal presentation of the safari sheet.
   presentationStyle?: BrowserPresentationStyle
   // android only: the browser package backing custom tabs.
   browserPackage?: string
   toolbarColor?: string
+  secondaryToolbarColor?: string
   controlsColor?: string
   // android only: custom tabs shows the page title.
   showTitle?: boolean
+  colorScheme?: BrowserColorScheme
 }
 
 export interface BrowserAuthSessionOptions extends BrowserOpenOptions {
   // ios only: request a private authentication session.
   preferEphemeralSession?: boolean
 }
+

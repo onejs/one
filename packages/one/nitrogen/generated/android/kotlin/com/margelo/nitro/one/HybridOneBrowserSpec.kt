@@ -45,6 +45,14 @@ abstract class HybridOneBrowserSpec: HybridObject() {
   @DoNotStrip
   @Keep
   abstract fun dismissAuthSession(): Unit
+  
+  @DoNotStrip
+  @Keep
+  abstract fun warmup(browserPackage: String?): Promise<Boolean>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun mayLaunchUrl(url: String, browserPackage: String?): Promise<Boolean>
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

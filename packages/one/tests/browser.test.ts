@@ -82,8 +82,10 @@ describe('browser web', () => {
     expect(Object.keys(Browser).sort()).toEqual([
       'dismiss',
       'dismissAuthSession',
+      'mayLaunchUrl',
       'open',
       'openAuthSession',
+      'warmup',
     ])
     expect(Object.isFrozen(Browser)).toBe(true)
   })
@@ -99,6 +101,8 @@ describe('browser native entry', () => {
         url: 'a://b',
       })),
       dismissAuthSession: vi.fn(),
+      warmup: vi.fn(async () => true),
+      mayLaunchUrl: vi.fn(async () => true),
     }
     const { Browser: native } = await loadNativeEntry(nativeModule)
     expect(await native.open('https://example.com')).toEqual({ type: 'opened' })
@@ -122,6 +126,10 @@ describe('browser native entry', () => {
     )
     native.dismissAuthSession()
     expect(nativeModule.dismissAuthSession).toHaveBeenCalledTimes(1)
+    expect(await native.warmup()).toBe(true)
+    expect(nativeModule.warmup).toHaveBeenCalled()
+    expect(await native.mayLaunchUrl('https://example.com')).toBe(true)
+    expect(nativeModule.mayLaunchUrl).toHaveBeenCalledWith('https://example.com', undefined)
   })
 
   it('rejects promised results without a native module', async () => {

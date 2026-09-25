@@ -62,4 +62,19 @@ function openAuthSession(
 
 function dismissAuthSession(): void {}
 
-export const Browser = Object.freeze({ open, dismiss, openAuthSession, dismissAuthSession })
+function warmup(_browserPackage?: string): Promise<boolean> {
+  return Promise.resolve(false)
+}
+
+function mayLaunchUrl(_url: string, _browserPackage?: string): Promise<boolean> {
+  return Promise.resolve(false)
+}
+
+export const Browser = Object.freeze({
+  open,
+  dismiss,
+  openAuthSession,
+  dismissAuthSession,
+  warmup,
+  mayLaunchUrl,
+})
