@@ -39,7 +39,7 @@ export function normalizeBehavior(input: unknown): NotificationBehavior {
 export class ForegroundHandler {
   private handler: NotificationHandlerInput | null = null
   private nulled = false
-  private pending = new Map<string, { settled: boolean }>()
+  private pending = new Set<string>()
 
   constructor(
     private present: (requestId: string, behavior: NotificationBehavior) => void
@@ -60,7 +60,7 @@ export class ForegroundHandler {
       return true
     }
     const handler = this.handler
-    this.pending.set(requestId, { settled: false })
+    this.pending.add(requestId)
     Promise.resolve()
       .then(() => handler.handleNotification(notification))
       .then(
@@ -71,10 +71,7 @@ export class ForegroundHandler {
   }
 
   private settle(requestId: string, behavior: NotificationBehavior) {
-    const record = this.pending.get(requestId)
-    if (!record || record.settled) return
-    record.settled = true
-    this.pending.delete(requestId)
+    if (!this.pending.delete(requestId)) return
     this.present(requestId, { ...behavior })
   }
 }

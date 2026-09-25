@@ -46,9 +46,18 @@ class HybridOneSecureStore : HybridOneSecureStoreSpec() {
         return generator.generateKey()
     }
 
+    // bumped on every rekey, so a write that failed under an older key knows
+    // another write already replaced it.
+    private var keyGeneration = 0
+
+    // two writes can both fail under the dropped key. only the first rekeys;
+    // the second seals under that fresh key instead of orphaning the value
+    // the first one just wrote.
     @Synchronized
-    private fun rekey(): SecretKey {
+    private fun rekey(failedGeneration: Int): SecretKey {
+        if (failedGeneration != keyGeneration) return currentKey().second
         deleteKey()
+        keyGeneration += 1
         return generateKey()
     }
 
@@ -59,10 +68,15 @@ class HybridOneSecureStore : HybridOneSecureStoreSpec() {
 
     // promises run on a thread pool: without the lock, two first writes can
     // each mint the key, and the value sealed under the replaced one is lost.
+    // minting a missing key is a rekey too: it advances the generation, so a
+    // write still holding the dropped key cannot rekey over the new one.
     @Synchronized
-    private fun secretKey(): SecretKey =
-        (keyStore().getEntry(KEY_ALIAS, null) as? KeyStore.SecretKeyEntry)?.secretKey
-            ?: generateKey()
+    private fun currentKey(): Pair<Int, SecretKey> {
+        val existing = (keyStore().getEntry(KEY_ALIAS, null) as? KeyStore.SecretKeyEntry)?.secretKey
+        if (existing != null) return keyGeneration to existing
+        keyGeneration += 1
+        return keyGeneration to generateKey()
+    }
 
     private fun encryptWith(key: SecretKey, value: String): String {
         val cipher = Cipher.getInstance("AES/GCM/NoPadding")
@@ -73,12 +87,13 @@ class HybridOneSecureStore : HybridOneSecureStoreSpec() {
     }
 
     private fun encrypt(value: String): String {
+        val (generation, key) = currentKey()
         try {
-            return encryptWith(secretKey(), value)
+            return encryptWith(key, value)
         } catch (e: InvalidKeyException) {
             // the keystore dropped the key (a restore can do this): mint a
             // fresh key and write once more under it.
-            return encryptWith(rekey(), value)
+            return encryptWith(rekey(generation), value)
         }
     }
 
@@ -96,7 +111,7 @@ class HybridOneSecureStore : HybridOneSecureStoreSpec() {
         try {
             cipher.init(
                 Cipher.DECRYPT_MODE,
-                secretKey(),
+                currentKey().second,
                 GCMParameterSpec(GCM_BITS, bytes, 0, IV_BYTES)
             )
             return String(cipher.doFinal(bytes, IV_BYTES, bytes.size - IV_BYTES), Charsets.UTF_8)

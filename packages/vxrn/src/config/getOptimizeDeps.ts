@@ -81,6 +81,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@react-navigation/bottom-tabs',
     '@react-navigation/native-stack',
     'one',
+    // one's own copy, by alias: prebundled with one so both share one context
+    'react-native-safe-area-context',
     'styleq',
     'fbjs',
     '@vxrn/universal-color-scheme',

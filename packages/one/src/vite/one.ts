@@ -301,14 +301,14 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     },
   }
 
-  // packages one absorbs resolve to one's copy; an app alias still wins.
+  // packages one absorbs resolve to one's copy, unless the app declares its own
   const withAbsorbedAliases = (
     alias: One.PluginOptions['alias']
   ): NonNullable<One.PluginOptions['alias']> => {
     const root = process.cwd()
+    // web takes them through resolve.alias in the one:alias config hook
     return {
       ...alias,
-      web: { ...absorbedPackageAliases(root, 'web'), ...alias?.web },
       native: { ...absorbedPackageAliases(root, 'native'), ...alias?.native },
     }
   }
@@ -356,6 +356,17 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     return {
       name: 'one:alias',
       enforce: 'pre',
+      // vite's dep optimizer resolves its include list without plugins, so the
+      // absorbed packages also go in resolve.alias, which only web resolves with
+      config: nativePlatform
+        ? undefined
+        : () => ({
+            resolve: {
+              alias: Object.entries(absorbedPackageAliases(process.cwd(), 'web')).map(
+                ([name, replacement]) => ({ find: new RegExp(`^${name}$`), replacement })
+              ),
+            },
+          }),
       resolveId: {
         filter: { id: aliasFilter },
         handler(source) {
