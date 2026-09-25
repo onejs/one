@@ -1,5 +1,6 @@
 import module from 'node:module'
 import path from 'node:path'
+import { absorbedPackageAliases } from '../utils/absorbedPackages'
 
 export type BuildOneMetroResolverOverridesOptions = {
   projectRoot: string
@@ -30,6 +31,7 @@ export function buildOneMetroResolverOverrides({
     paths: [projectRoot],
   })
   const projectPackagePath = path.join(projectRoot, 'package.json')
+  const absorbed = absorbedPackageAliases(projectRoot, 'native')
 
   return <T extends MetroConfigLike>(defaultConfig: T): T => {
     const resolver: Record<string, any> = {
@@ -53,6 +55,11 @@ export function buildOneMetroResolverOverrides({
             moduleName,
             platform
           )
+        }
+
+        // packages one absorbs resolve to one's copy
+        if (moduleName in absorbed) {
+          return { type: 'sourceFile', filePath: absorbed[moduleName] }
         }
 
         if (moduleName.endsWith('.css')) {

@@ -143,13 +143,7 @@
       "require": "./dist/cjs/headless-server.cjs"
     },
     "./devtools/*": "./devtools/*",
-    "./schema.json": "./schema.json",
-    "./safe-area-context": {
-      "react-native": "./dist/esm/safe-area-context/index.native.js",
-      "types": "./types/safe-area-context/index.d.ts",
-      "import": "./dist/esm/safe-area-context/index.mjs",
-      "require": "./dist/cjs/safe-area-context/index.cjs"
-    }
+    "./schema.json": "./schema.json"
   },
   "main": "dist/cjs",
   "module": "dist/esm",

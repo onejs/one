@@ -112,10 +112,6 @@ export async function getBaseViteConfig(
           find: 'react-native',
           replacement: resolvePath('react-native-web', root),
         },
-        {
-          find: 'react-native-safe-area-context',
-          replacement: resolvePath('one/safe-area-context', root),
-        },
         // bundle size optimizations
         {
           find: 'query-string',
