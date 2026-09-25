@@ -19,6 +19,7 @@
 #include "JHybridOneBrowserSpec.hpp"
 #include "JHybridOneClipboardSpec.hpp"
 #include "JHybridOneCryptoSpec.hpp"
+#include "JHybridOneDocumentPickerSpec.hpp"
 #include "JHybridOneFontsSpec.hpp"
 #include "JHybridOneHapticsSpec.hpp"
 #include "JHybridOneImagePickerSpec.hpp"
@@ -96,6 +97,14 @@ struct JHybridOneImagePickerSpecImpl: public jni::JavaClass<JHybridOneImagePicke
     return javaPart->getJHybridOneImagePickerSpec();
   }
 };
+struct JHybridOneDocumentPickerSpecImpl: public jni::JavaClass<JHybridOneDocumentPickerSpecImpl, JHybridOneDocumentPickerSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneDocumentPicker;";
+  static std::shared_ptr<JHybridOneDocumentPickerSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneDocumentPickerSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneDocumentPickerSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneDocumentPickerSpec();
+  }
+};
 struct JHybridOneFontsSpecImpl: public jni::JavaClass<JHybridOneFontsSpecImpl, JHybridOneFontsSpec::JavaPart> {
   static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneFonts;";
   static std::shared_ptr<JHybridOneFontsSpec> create() {
@@ -130,6 +139,7 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneBrowserSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneClipboardSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneCryptoSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneDocumentPickerSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneFontsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneHapticsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneImagePickerSpec::CxxPart::registerNatives();
@@ -183,6 +193,12 @@ void registerAllNatives() {
     "OneImagePicker",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneImagePickerSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneDocumentPicker",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneDocumentPickerSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

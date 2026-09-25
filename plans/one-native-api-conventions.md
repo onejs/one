@@ -184,6 +184,7 @@ type PermissionResponse = Readonly<{
 | `One.Network`, `One.useNetworkState` | `getState()`, `addStateListener(fn)` | expo-network |
 | `One.Browser` | `open(url, options?)`, `dismiss()`, `openAuthSession(url, redirectUrl?, options?)`, `dismissAuthSession()` | expo-web-browser |
 | `One.ImagePicker` | `launchLibrary(options?)`, `launchCamera(options?)`, `getCameraPermissions()`, `requestCameraPermissions()` | expo-image-picker |
+| `One.DocumentPicker` | `getDocument(options?)` | expo-document-picker |
 | `One.Notifications` | `getPermissions`, `requestPermissions`, `schedule`, `cancelScheduled`, `cancelAllScheduled`, `getAllScheduled`, `getPresented`, `dismiss`, `dismissAll`, `getDevicePushToken`, `addPushTokenListener`, `addReceivedListener`, `addResponseReceivedListener`, `getLastResponse`, `clearLastResponse`, `setHandler`, `getBadgeCount`, `setBadgeCount`, `setChannel`, `getChannel`, `getChannels`, `deleteChannel` | expo-notifications |
 | `One.UI.Map` | component; props and events keep expo-maps names | expo-maps |
 
