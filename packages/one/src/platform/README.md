@@ -540,8 +540,12 @@ function Leaves() {
 `Text` renders its `text` verbatim, so it never looks up a localized string. `Label`
 pairs a `label` with a required `systemImage` SF Symbol and localizes the label the way
 SwiftUI does. `Image` renders an SF Symbol with `systemName`, optional `symbolRenderingMode`,
-`symbolVariant`, `imageScale`, and `variableValue`. All three are display only: they have no events
-and no controlled value, and they are most useful as rows inside a container.
+`symbolVariant`, `imageScale`, and `variableValue`, or a remote image with `uri` (exactly one of
+the two). A `uri` image loads into `Image(uiImage:)`, fills the frame `swiftStyle` gives it, and
+keeps its own colors, so as a `Button`'s label in a toolbar it becomes the bar item's image: the
+iPhone Duo's edge dock takes it into the item's pill, where `AsyncImage` would stay page content.
+All three are display only: they have no events and no controlled value, and they are most useful
+as rows inside a container.
 
 `Button` needs a `label`, a `systemImage`, or children. With only a `systemImage` it
 renders the bare symbol with no title spacing reserved, centered in the button
@@ -1615,3 +1619,41 @@ domain and code.
 | :--- | :--- | :--- | :--- | :--- |
 | `expo-web-browser` | iOS `SFSafariViewController` + `ASWebAuthenticationSession`; Android `CustomTabsIntent` | auth session with redirect interception; `warmUpAsync` and `mayInitWithUrlAsync` on Android | a bridge module; Android auth runs in a plain custom tab and reads the redirect through Linking | Nitro hybrid object; Android auth uses `AuthTabIntent` (`androidx.browser` 1.9) where the browser supports it; `warmup()` and `mayLaunchUrl()` resolve whether Custom Tabs accepted them, and false on iOS, which has no counterpart |
 | `react-native-inappbrowser-reborn` | iOS `SFSafariViewController`; Android `CustomTabsIntent` | Basic options like toolbar color | Does not use `ASWebAuthenticationSession` or `AuthTabIntent` for authentication (relies on deep link roundtrips); bridge module | Uses native OS authentication session primitives on both platforms with direct callbacks, and ephemeral session options |
+
+## One.Speech
+
+Dictation with the platform recognizer, the engine behind keyboard dictation:
+`SFSpeechRecognizer` on iOS with the `dictation` task hint and automatic
+punctuation, fed by `AVAudioEngine`, and the system `SpeechRecognizer` on
+Android.
+
+```ts
+const { granted } = await One.Speech.requestPermissions()
+const session = One.Speech.start({ lang: 'en-US' }, (event) => {
+  // event.transcript is always everything heard so far
+  if (event.type === 'end') send(event.transcript)
+  if (event.type === 'error') show(event.error, event.message)
+})
+session.stop() // finish; the final transcript arrives in `end`
+session.abort() // tear down with no further events
+```
+
+A session emits `start` when the microphone is live, `transcript` as the
+text changes, then exactly one `end` or `error`. Stopping with nothing said
+ends with an empty transcript, not an error. Starting again replaces the
+running session, whose callback never fires again. The audio session is
+play-and-record, so other audio pauses while listening and resumes after, and
+an interruption or route change ends the session with `interrupted`. On
+Android a session is one utterance: the recognizer ends it after trailing
+silence, as a stop would.
+
+Permissions take the shared response shape plus expo's `restricted`; iOS
+needs both the microphone and speech recognition grants. Declare the prompts
+with `native.app` `speech: { recognition, microphone }`, which also stamps
+Android's `RECORD_AUDIO` and the recognition service query.
+
+| Library | What it gets right | What it misses | What One does |
+| :--- | :--- | :--- | :--- |
+| `expo-speech-recognition` | Web Speech API shape, many options, file transcription | Global event listeners, so overlapping sessions need app-side generation guards; on iOS 18 a continuous session restarts the transcript after each pause and the library prefixes the next segment with a space for apps to stitch; no-speech is an error | One session object per start; native keeps the committed segments and always sends the whole transcript; no-speech is an ordinary `end` |
+| `@react-native-voice/voice` | Small, long-lived | Legacy bridge, event emitter globals, no punctuation or task hint, unmaintained against recent iOS audio session rules | Nitro hybrid object, dictation task hint and punctuation, audio session deactivates with `notifyOthersOnDeactivation` |
+| `SpeechAnalyzer` (iOS 26) | Apple's newer on-device long-form engine | iOS 26 and later only, while One's floor is 17 | `SFSpeechRecognizer` today; `SpeechAnalyzer` is the follow-up once the floor allows one path |

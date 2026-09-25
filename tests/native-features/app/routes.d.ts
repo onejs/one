@@ -55,6 +55,7 @@ declare module 'one' {
         | `/one-native-popover`
         | `/one-native-safe-area`
         | `/one-native-sheet`
+        | `/one-native-speech`
         | `/one-native-state`
         | `/one-native-system`
         | `/one-native-tab-oracle`

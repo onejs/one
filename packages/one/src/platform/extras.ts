@@ -54,4 +54,15 @@ export type {
   AppleFullName,
   AppleRealUserStatus,
   AppleSignInOptions,
+  AppleSignInResult,
 } from './auth'
+export { Speech } from './speech'
+export type {
+  SpeechErrorCode,
+  SpeechEvent,
+  SpeechEventType,
+  SpeechPermissionResponse,
+  SpeechPermissionStatus,
+  SpeechSession,
+  SpeechStartOptions,
+} from './speech'

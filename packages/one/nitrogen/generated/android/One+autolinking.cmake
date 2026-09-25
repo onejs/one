@@ -46,6 +46,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneNetworkSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNotificationsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneSecureStoreSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneSpeechSpec.cpp
   # Android-specific Nitrogen C++ sources
   ../nitrogen/generated/android/c++/JHybridOneAdaptiveSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneAppInfoSpec.cpp
@@ -60,6 +61,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneNetworkSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNotificationsSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSecureStoreSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneSpeechSpec.cpp
 )
 
 # From node_modules/react-native/ReactAndroid/cmake-utils/folly-flags.cmake

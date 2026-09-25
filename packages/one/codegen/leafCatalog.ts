@@ -171,6 +171,8 @@ export const leafControls: Control[] = [
     decorativeWhenUnlabeled: true,
     fields: {
       systemName: { type: 'string', default: '' },
+      // a remote image drawn with Image(uiImage:), see OneNativeRemoteImage.swift
+      uri: { type: 'string', default: '' },
       symbolRenderingMode: {
         type: 'string',
         default: '',
@@ -214,7 +216,9 @@ export const leafControls: Control[] = [
       },
     ],
     swift: `Group {
-        if model.hasVariableValue {
+        if !model.uri.isEmpty {
+          OneNativeRemoteImage(uri: model.uri)
+        } else if model.hasVariableValue {
           Image(systemName: model.systemName, variableValue: model.variableValue)
         } else {
           Image(systemName: model.systemName)
@@ -224,7 +228,7 @@ export const leafControls: Control[] = [
       .oneNativeSymbolVariant(model.symbolVariant)
       .oneNativeImageScale(model.imageScale)
       .oneNativeColorRole(model.colorRole)`,
-    validate: `  if (typeof systemName !== 'string' || !systemName) throw new Error('Image systemName must be a non-empty SF Symbol name')
+    validate: `  if (!systemName === !uri) throw new Error('Image takes exactly one of systemName (an SF Symbol name) or uri (a remote image)')
   if (variableValue !== undefined && !Number.isFinite(variableValue)) throw new Error('Image variableValue must be a finite number or undefined')
   if (variableValue !== undefined && (variableValue < 0 || variableValue > 1)) throw new Error('Image variableValue must be between 0 and 1')
   if (colorRole && !iconColorRoles.includes(colorRole)) throw new Error('Image colorRole must be a One.UI icon color role')`,

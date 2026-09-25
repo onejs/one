@@ -15,6 +15,10 @@ export interface NativeAppManifest {
     imagePicker?: {
         camera?: string;
     };
+    speech?: {
+        recognition: string;
+        microphone: string;
+    };
     notifications?: {
         push?: boolean;
     };

@@ -43,6 +43,10 @@ export default defineConfig({
           imagePicker: {
             camera: 'NativeFeatureTests verifies photo capture.',
           },
+          speech: {
+            recognition: 'NativeFeatureTests verifies dictation.',
+            microphone: 'NativeFeatureTests verifies dictation.',
+          },
           ios: {
             bundleId: 'dev.vxrn.native.tests',
             buildNumber: '4242',
