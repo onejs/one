@@ -310,7 +310,8 @@
     "rolldown": "^1.2.8",
     "sharp": "^0.35.4",
     "typescript": "7.0.2",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.0",
+    "yoga-layout": "^3.2.1"
   },
   "publishConfig": {
     "access": "public"

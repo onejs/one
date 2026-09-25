@@ -13,7 +13,8 @@ vi.mock('react-native', () => ({
 vi.mock('react-native-nitro-modules', () => ({
   NitroModules: {
     hasHybridObject: (name: string) => name === 'OneNotifications' && mockGet() != null,
-    createHybridObject: (name: string) => (name === 'OneNotifications' ? mockGet() : null),
+    createHybridObject: (name: string) =>
+      name === 'OneNotifications' ? mockGet() : null,
   },
 }))
 
@@ -219,7 +220,14 @@ describe('Notifications boundary mapping', () => {
     expect(await Notifications.getAllScheduled()).toStrictEqual([
       {
         identifier: 's1',
-        content: { title: null, subtitle: null, body: null, data: {}, sound: true, badge: 2 },
+        content: {
+          title: null,
+          subtitle: null,
+          body: null,
+          data: {},
+          sound: true,
+          badge: 2,
+        },
         trigger: { type: 'date', date: 1790000000000 },
       },
     ])
@@ -233,7 +241,9 @@ describe('Notifications boundary mapping', () => {
     const module = fakeModule()
     const Notifications = await loadNamespace(() => module)
     await Notifications.schedule({
-      content: { data: { keep: [1, undefined], nested: { a: 'b', gone: undefined }, fn: () => {} } },
+      content: {
+        data: { keep: [1, undefined], nested: { a: 'b', gone: undefined }, fn: () => {} },
+      },
       trigger: null,
     })
     expect(module.scheduleNotification.mock.calls[0][0].content.data).toStrictEqual({
@@ -247,7 +257,9 @@ describe('Notifications boundary mapping', () => {
     const Notifications = await loadNamespace(() =>
       fakeModule({
         scheduleNotification: vi.fn(async () => {
-          throw new Error('E_NOTIFICATIONS_TRIGGER: timeInterval seconds must be positive')
+          throw new Error(
+            'E_NOTIFICATIONS_TRIGGER: timeInterval seconds must be positive'
+          )
         }),
       })
     )
@@ -260,6 +272,51 @@ describe('Notifications boundary mapping', () => {
       code: 'E_NOTIFICATIONS_TRIGGER',
       message: 'timeInterval seconds must be positive',
     })
+  })
+
+  it('splits the code off every async native rejection', async () => {
+    const reject = vi.fn(async () => {
+      throw new Error('E_NOTIFICATIONS_NATIVE: the platform failed')
+    })
+    const sync = new Set([
+      'presentNotification',
+      'setListeners',
+      'getLastNotificationResponse',
+      'clearLastNotificationResponse',
+    ])
+    const failing = Object.fromEntries(
+      Object.entries(fakeModule()).map(([name, fn]) => [
+        name,
+        sync.has(name) ? fn : reject,
+      ])
+    )
+    const Notifications = await loadNamespace(() => failing, 'android')
+    const calls = {
+      getPermissions: () => Notifications.getPermissions(),
+      requestPermissions: () => Notifications.requestPermissions(),
+      getBadgeCount: () => Notifications.getBadgeCount(),
+      setBadgeCount: () => Notifications.setBadgeCount(1),
+      setChannel: () =>
+        Notifications.setChannel('c', { name: 'c', importance: 'default' }),
+      getChannel: () => Notifications.getChannel('c'),
+      getChannels: () => Notifications.getChannels(),
+      deleteChannel: () => Notifications.deleteChannel('c'),
+      schedule: () => Notifications.schedule({ content: {}, trigger: null }),
+      cancelScheduled: () => Notifications.cancelScheduled('id'),
+      cancelAllScheduled: () => Notifications.cancelAllScheduled(),
+      getAllScheduled: () => Notifications.getAllScheduled(),
+      getPresented: () => Notifications.getPresented(),
+      dismiss: () => Notifications.dismiss('id'),
+      dismissAll: () => Notifications.dismissAll(),
+      getDevicePushTokenAsync: () => Notifications.getDevicePushTokenAsync(),
+    }
+    for (const [name, call] of Object.entries(calls)) {
+      const error = await call().catch((caught: unknown) => caught)
+      expect(error, name).toMatchObject({
+        code: 'E_NOTIFICATIONS_NATIVE',
+        message: 'the platform failed',
+      })
+    }
   })
 
   it('fans native arrivals out and answers the presentation round trip', async () => {
@@ -343,7 +400,8 @@ describe('Notifications boundary mapping', () => {
 
 describe('Notifications boundary mappers', () => {
   it('maps every authorization status', async () => {
-    const { fromNativeAuthorizationStatus } = await import('../src/platform/notifications/types')
+    const { fromNativeAuthorizationStatus } =
+      await import('../src/platform/notifications/types')
     expect([
       fromNativeAuthorizationStatus(0),
       fromNativeAuthorizationStatus(1),

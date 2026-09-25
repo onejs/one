@@ -66,7 +66,7 @@ describe('buildOneMetroResolverOverrides', () => {
     )
     const config = buildOneMetroResolverOverrides({ projectRoot })({
       resolver: {
-        resolveRequest: (_context: unknown, moduleName: string) => ({
+        resolveRequest: (_context: unknown, moduleName: string, _platform: string) => ({
           type: 'sourceFile',
           filePath: `app:${moduleName}`,
         }),

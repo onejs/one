@@ -59,9 +59,8 @@ export function NativeSafeAreaProvider({
     }
   }, [onInsetsChange])
 
-  // use display: contents to avoid breaking sticky positioning
-  // the old constraining styles (height: 100%, max-height: 100%) created a
-  // containing block that broke position: sticky
+  // a styled provider renders its div; constraining styles here (height:
+  // 100%) create a containing block that breaks position: sticky
   if (style) {
     const styleValue: unknown = style
     const styleValues: unknown[] = Array.isArray(styleValue)
@@ -77,7 +76,8 @@ export function NativeSafeAreaProvider({
     return <div style={flattenedStyle}>{children}</div>
   }
 
-  return <div style={{ display: 'contents' }}>{children}</div>
+  // no element when unstyled: one mounts this provider above the document root
+  return children
 }
 
 let _supportedTransitionEvent: string | null | undefined = null

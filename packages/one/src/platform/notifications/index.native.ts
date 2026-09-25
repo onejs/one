@@ -76,7 +76,7 @@ function mapPermissionResponse(
 async function getPermissions(): Promise<NotificationPermissionResponse> {
   const module = native()
   if (!module) return { ...denied }
-  return mapPermissionResponse(await module.getPermissions())
+  return mapPermissionResponse(await module.getPermissions().catch(rethrowNativeError))
 }
 
 // prompt for notification authorization. on android below 13 there is no
@@ -93,7 +93,7 @@ async function requestPermissions(
 
 // the app icon badge count. always 0 on android.
 async function getBadgeCount(): Promise<number> {
-  return (await native()?.getBadgeCount()) ?? 0
+  return (await native()?.getBadgeCount().catch(rethrowNativeError)) ?? 0
 }
 
 // set the app icon badge count. resolves false on android: the launcher
@@ -123,28 +123,29 @@ async function setChannel(
 ): Promise<NotificationChannel | null> {
   const importance = toNativeImportance(channel.importance)
   if (Platform.OS !== 'android') return null
-  const created = await native()?.setNotificationChannel(channelId, {
-    ...channel,
-    importance,
-  })
+  const created = await native()
+    ?.setNotificationChannel(channelId, { ...channel, importance })
+    .catch(rethrowNativeError)
   return created ? mapChannel(created) : null
 }
 
 async function getChannel(channelId: string): Promise<NotificationChannel | null> {
   if (Platform.OS !== 'android') return null
-  const found = await native()?.getNotificationChannel(channelId)
+  const found = await native()
+    ?.getNotificationChannel(channelId)
+    .catch(rethrowNativeError)
   return found ? mapChannel(found) : null
 }
 
 async function getChannels(): Promise<NotificationChannel[]> {
   if (Platform.OS !== 'android') return []
-  const channels = await native()?.getNotificationChannels()
+  const channels = await native()?.getNotificationChannels().catch(rethrowNativeError)
   return channels ? channels.map(mapChannel) : []
 }
 
 async function deleteChannel(channelId: string): Promise<void> {
   if (Platform.OS !== 'android') return
-  await native()?.deleteNotificationChannel(channelId)
+  await native()?.deleteNotificationChannel(channelId).catch(rethrowNativeError)
 }
 
 // native flattens nulls to absent fields and trigger variants to one
@@ -338,14 +339,18 @@ async function schedule(request: NotificationScheduleInput): Promise<string> {
   return module
     .scheduleNotification({
       identifier: request.identifier,
-      content: { ...content, data: content.data ? toAnyMap(Object.entries(content.data)) : undefined },
+      content: {
+        ...content,
+        data: content.data ? toAnyMap(Object.entries(content.data)) : undefined,
+      },
       trigger:
         trigger == null
           ? undefined
           : trigger.type === 'date'
             ? {
                 ...trigger,
-                date: trigger.date instanceof Date ? trigger.date.getTime() : trigger.date,
+                date:
+                  trigger.date instanceof Date ? trigger.date.getTime() : trigger.date,
               }
             : trigger,
     })
@@ -353,29 +358,31 @@ async function schedule(request: NotificationScheduleInput): Promise<string> {
 }
 
 async function cancelScheduled(identifier: string): Promise<void> {
-  await native()?.cancelScheduledNotification(identifier)
+  await native()?.cancelScheduledNotification(identifier).catch(rethrowNativeError)
 }
 
 async function cancelAllScheduled(): Promise<void> {
-  await native()?.cancelAllScheduledNotifications()
+  await native()?.cancelAllScheduledNotifications().catch(rethrowNativeError)
 }
 
 async function getAllScheduled(): Promise<ScheduledNotification[]> {
-  const scheduled = await native()?.getAllScheduledNotifications()
+  const scheduled = await native()
+    ?.getAllScheduledNotifications()
+    .catch(rethrowNativeError)
   return scheduled ? scheduled.map(mapRequest) : []
 }
 
 async function getPresented(): Promise<Notification[]> {
-  const presented = await native()?.getPresentedNotifications()
+  const presented = await native()?.getPresentedNotifications().catch(rethrowNativeError)
   return presented ? presented.map(mapNotification) : []
 }
 
 async function dismiss(identifier: string): Promise<void> {
-  await native()?.dismissNotification(identifier)
+  await native()?.dismissNotification(identifier).catch(rethrowNativeError)
 }
 
 async function dismissAll(): Promise<void> {
-  await native()?.dismissAllNotifications()
+  await native()?.dismissAllNotifications().catch(rethrowNativeError)
 }
 
 export const Notifications = Object.freeze({
