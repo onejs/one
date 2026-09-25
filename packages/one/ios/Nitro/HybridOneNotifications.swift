@@ -203,7 +203,7 @@ final class HybridOneNotifications: HybridOneNotificationsSpec {
   }
 
   // remote push token: a cached registration answers at once, otherwise the
-  // getter waits for the os callback the app delegate forwards. an app built
+  // getter waits for the os callback OneNotificationsLaunch.mm hooks. an app built
   // without native.app.notifications.push rejects, as on android.
   func getDevicePushToken() throws -> Promise<NativePushToken> {
     guard (Bundle.main.object(forInfoDictionaryKey: "OneNativeNotificationsPush") as? Bool) == true
@@ -303,21 +303,17 @@ public final class OneNotificationsCenter: NSObject, UNUserNotificationCenterDel
 
   private override init() {
     super.init()
-    // forwarded by the prebuild app delegate (which owns the
-    // UIApplicationDelegate callbacks) when the os answers a remote
-    // registration. without a register call they never fire.
-    let notifications = NotificationCenter.default
-    notifications.addObserver(
-      forName: Notification.Name("OneNativePushTokenDidRegister"), object: nil, queue: .main
-    ) { [weak self] note in
-      guard let token = note.userInfo?["deviceToken"] as? Data else { return }
-      self?.pushTokenRegistered(token)
-    }
-    notifications.addObserver(
-      forName: Notification.Name("OneNativePushTokenDidFail"), object: nil, queue: .main
-    ) { [weak self] note in
-      self?.pushTokenFailed(note.userInfo?["error"] as? String)
-    }
+  }
+
+  // OneNotificationsLaunch.mm hooks the app delegate's remote registration
+  // callbacks and calls these on main, whatever host built the app. without
+  // a register call they never fire.
+  @objc public static func didRegisterForRemoteNotifications(deviceToken: Data) {
+    shared.pushTokenRegistered(deviceToken)
+  }
+
+  @objc public static func didFailToRegisterForRemoteNotifications(error: Error) {
+    shared.pushTokenFailed(error.localizedDescription)
   }
 
   var lastResponse: NativeNotificationResponse? {
