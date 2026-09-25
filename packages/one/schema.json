@@ -1321,6 +1321,9 @@
         "systemName": {
           "type": "string"
         },
+        "uri": {
+          "type": "string"
+        },
         "symbolRenderingMode": {
           "type": "string",
           "enum": "SymbolRenderingMode"

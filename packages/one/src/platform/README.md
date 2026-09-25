@@ -540,8 +540,12 @@ function Leaves() {
 `Text` renders its `text` verbatim, so it never looks up a localized string. `Label`
 pairs a `label` with a required `systemImage` SF Symbol and localizes the label the way
 SwiftUI does. `Image` renders an SF Symbol with `systemName`, optional `symbolRenderingMode`,
-`symbolVariant`, `imageScale`, and `variableValue`. All three are display only: they have no events
-and no controlled value, and they are most useful as rows inside a container.
+`symbolVariant`, `imageScale`, and `variableValue`, or a remote image with `uri` (exactly one of
+the two). A `uri` image loads into `Image(uiImage:)`, fills the frame `swiftStyle` gives it, and
+keeps its own colors, so as a `Button`'s label in a toolbar it becomes the bar item's image: the
+iPhone Duo's edge dock takes it into the item's pill, where `AsyncImage` would stay page content.
+All three are display only: they have no events and no controlled value, and they are most useful
+as rows inside a container.
 
 `Button` needs a `label`, a `systemImage`, or children. With only a `systemImage` it
 renders the bare symbol with no title spacing reserved, centered in the button

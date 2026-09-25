@@ -465,6 +465,7 @@ export function Gauge({
 import NativeImage from '../specs/OneNativeImageNativeComponent'
 export function Image({
   systemName = '',
+  uri = '',
   symbolRenderingMode = '',
   symbolVariant = '',
   imageScale = '',
@@ -474,8 +475,10 @@ export function Image({
   style,
   ...props
 }: Types.ImageProps) {
-  if (typeof systemName !== 'string' || !systemName)
-    throw new Error('Image systemName must be a non-empty SF Symbol name')
+  if (!systemName === !uri)
+    throw new Error(
+      'Image takes exactly one of systemName (an SF Symbol name) or uri (a remote image)'
+    )
   if (variableValue !== undefined && !Number.isFinite(variableValue))
     throw new Error('Image variableValue must be a finite number or undefined')
   if (variableValue !== undefined && (variableValue < 0 || variableValue > 1))
@@ -512,6 +515,7 @@ export function Image({
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
       systemName={systemName}
+      uri={uri}
       symbolRenderingMode={symbolRenderingMode}
       symbolVariant={symbolVariant}
       imageScale={imageScale}

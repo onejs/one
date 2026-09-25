@@ -9,7 +9,7 @@ export declare function Text({ text, swiftStyle, style, ...props }: Types.TextPr
 export declare function Label({ label, disabled, systemImage, swiftStyle, style, ...props }: Types.LabelProps): import("react/jsx-runtime").JSX.Element;
 export declare function ProgressView({ label, disabled, value, total, progressViewStyle, swiftStyle, style, ...props }: Types.ProgressViewProps): import("react/jsx-runtime").JSX.Element;
 export declare function Gauge({ label, disabled, value, minimumValue, maximumValue, currentValueLabel, minimumValueLabel, maximumValueLabel, gaugeStyle, swiftStyle, style, ...props }: Types.GaugeProps): import("react/jsx-runtime").JSX.Element;
-export declare function Image({ systemName, symbolRenderingMode, symbolVariant, imageScale, variableValue, colorRole, swiftStyle, style, ...props }: Types.ImageProps): import("react/jsx-runtime").JSX.Element;
+export declare function Image({ systemName, uri, symbolRenderingMode, symbolVariant, imageScale, variableValue, colorRole, swiftStyle, style, ...props }: Types.ImageProps): import("react/jsx-runtime").JSX.Element;
 export declare function ShareLink({ label, disabled, systemImage, item, itemType, subject, message, swiftStyle, style, ...props }: Types.ShareLinkProps): import("react/jsx-runtime").JSX.Element;
 export declare function ContentUnavailableView({ onAction, title, systemImage, description, actions, swiftStyle, style, ...props }: Types.ContentUnavailableViewProps): import("react/jsx-runtime").JSX.Element;
 export declare function Circle({ fill, swiftStyle, style, ...props }: Types.CircleProps): import("react/jsx-runtime").JSX.Element;
