@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View, useColorScheme } from 'react-native'
+import { One } from 'one'
 
 export default function OneNativeGroups() {
   const [refuse, setRefuse] = useState(false)
@@ -38,89 +38,89 @@ export default function OneNativeGroups() {
         </Pressable>
       </View>
 
-      <Swift.DisclosureGroup
+      <One.iOS.DisclosureGroup
         label="Details"
         isExpanded={expanded}
         onIsExpandedChange={(value) => {
           if (!refuse) setExpanded(value)
         }}
       >
-        <Swift.Text text="Hidden detail" />
-      </Swift.DisclosureGroup>
+        <One.iOS.Text text="Hidden detail" />
+      </One.iOS.DisclosureGroup>
 
-      <Swift.ControlGroup>
-        <Swift.Button
+      <One.iOS.ControlGroup>
+        <One.iOS.Button
           label="Add"
           systemImage="plus"
           onPress={() => setGroupTaps((count) => count + 1)}
         />
-        <Swift.Button
+        <One.iOS.Button
           label="Star"
           systemImage="star"
           onPress={() => setGroupTaps((count) => count + 1)}
         />
-      </Swift.ControlGroup>
+      </One.iOS.ControlGroup>
 
-      <Swift.VStack>
-        <Swift.Text text="Above" />
-        <Swift.Divider />
-        <Swift.Text text="Below" />
-        <Swift.Link destination="https://example.com" label="Visit example" />
-        <Swift.Group>
-          <Swift.Text text="Grouped" />
-        </Swift.Group>
-        <Swift.Overlay alignment="topTrailing">
-          <Swift.Image systemName="bell.fill" />
-          <Swift.Overlay.Content>
-            <Swift.Text text="3" />
-          </Swift.Overlay.Content>
-        </Swift.Overlay>
-        <Swift.Button
+      <One.iOS.VStack>
+        <One.iOS.Text text="Above" />
+        <One.iOS.Divider />
+        <One.iOS.Text text="Below" />
+        <One.iOS.Link destination="https://example.com" label="Visit example" />
+        <One.iOS.Group>
+          <One.iOS.Text text="Grouped" />
+        </One.iOS.Group>
+        <One.iOS.Overlay alignment="topTrailing">
+          <One.iOS.Image systemName="bell.fill" />
+          <One.iOS.Overlay.Content>
+            <One.iOS.Text text="3" />
+          </One.iOS.Overlay.Content>
+        </One.iOS.Overlay>
+        <One.iOS.Button
           systemImage="star.fill"
           onPress={() => setIconTaps((count) => count + 1)}
         />
-      </Swift.VStack>
+      </One.iOS.VStack>
 
-      <Swift.Pager selection={page} onSelectionChange={setPage} style={styles.pager}>
-        <Swift.Page id="a">
+      <One.iOS.Pager selection={page} onSelectionChange={setPage} style={styles.pager}>
+        <One.iOS.Page id="a">
           <Text testID="one-native-pager-a" style={{ color: textColor }}>
             Page A
           </Text>
-        </Swift.Page>
-        <Swift.Page id="b">
+        </One.iOS.Page>
+        <One.iOS.Page id="b">
           <Text testID="one-native-pager-b" style={{ color: textColor }}>
             Page B
           </Text>
-        </Swift.Page>
-        <Swift.Page id="c">
+        </One.iOS.Page>
+        <One.iOS.Page id="c">
           <Text testID="one-native-pager-c" style={{ color: textColor }}>
             Page C
           </Text>
-        </Swift.Page>
-      </Swift.Pager>
+        </One.iOS.Page>
+      </One.iOS.Pager>
 
-      <Swift.List style={styles.list}>
-        <Swift.Section>
-          <Swift.SwipeActions>
-            <Swift.Text text="Swipe me" />
-            <Swift.SwipeActions.Actions edge="leading" allowsFullSwipe={false}>
-              <Swift.Button
+      <One.iOS.List style={styles.list}>
+        <One.iOS.Section>
+          <One.iOS.SwipeActions>
+            <One.iOS.Text text="Swipe me" />
+            <One.iOS.SwipeActions.Actions edge="leading" allowsFullSwipe={false}>
+              <One.iOS.Button
                 label="Pin"
                 systemImage="pin"
                 onPress={() => setPinTaps((count) => count + 1)}
               />
-            </Swift.SwipeActions.Actions>
-            <Swift.SwipeActions.Actions edge="trailing">
-              <Swift.Button
+            </One.iOS.SwipeActions.Actions>
+            <One.iOS.SwipeActions.Actions edge="trailing">
+              <One.iOS.Button
                 label="Delete"
                 systemImage="trash"
                 buttonRole="destructive"
                 onPress={() => setDeleteTaps((count) => count + 1)}
               />
-            </Swift.SwipeActions.Actions>
-          </Swift.SwipeActions>
-        </Swift.Section>
-      </Swift.List>
+            </One.iOS.SwipeActions.Actions>
+          </One.iOS.SwipeActions>
+        </One.iOS.Section>
+      </One.iOS.List>
 
       <View style={styles.row}>
         <Text

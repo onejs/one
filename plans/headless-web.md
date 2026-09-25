@@ -57,7 +57,7 @@ No takeover needed anywhere:
 Build layer:
 
 - `packages/vxrn/src/config/getBaseViteConfigOnly.ts:96-113` hard-codes
-  `react-native` → `react-native-web` (plus safe-area → `@vxrn/safe-area`,
+  `react-native` → `react-native-web` (plus safe-area → `one/safe-area-context`,
   deep RN paths → empty). Same alias re-applied for SSR in
   `packages/one/src/cli/build.ts:~1583-1608`.
 - `packages/vxrn/src/config/getOptimizeDeps.ts` prebundles RNW,
@@ -86,8 +86,8 @@ The deep couplings, hardest first:
    `layouts/Tabs.tsx`, `layouts/Drawer.tsx`, `stack-utils/*`,
    `useScreens.tsx`'s RouteErrorBoundary fallback. `Platform.OS` is a
    runtime read so none of it tree-shakes.
-6. `@vxrn/safe-area` logic is DOM-based but renders RNW View
-   (`packages/safe-area/src/SafeAreaView.tsx:2`). `@vxrn/color-scheme`
+6. `one/safe-area-context` logic is DOM-based but renders RNW View
+   (`packages/one/src/safe-area-context/SafeAreaView.tsx:2`). `@vxrn/color-scheme`
    `userScheme.ts:3` imports `Appearance` unconditionally.
 
 Existing headless precedents in-repo: `views/ErrorBoundary.web.tsx` (pure
@@ -113,7 +113,7 @@ Copy the `ErrorBoundary.web.tsx` pattern. Add pure-DOM `.web.tsx` siblings
 - Replace runtime `Platform.OS` checks in router logic files
   (`router/router.ts`, `useBlocker.ts`, `useLinkTo.tsx`) with the existing
   `process.env.TAMAGUI_TARGET === 'web'` build-time constant so branches DCE.
-- `@vxrn/safe-area`: render plain divs; on web insets are
+- `one/safe-area-context`: render plain divs; on web insets are
   `env(safe-area-inset-*)` CSS, no measurement tree needed for the common
   case. `@vxrn/color-scheme`: web split using matchMedia, drop `Appearance`
   from the web graph.
@@ -170,7 +170,7 @@ layer up (framework-owned markup and a props-unification problem).
   `fork/localeDirection`, react-navigation's `DefaultTheme`/`DarkTheme` are
   copied in `fork/theme` because the package's `theming/fonts` imports
   `Platform`, `StyleSheet.flatten` became `utils/style#flattenStyle`, and
-  `screensFeatureFlags` is native-only. In `@vxrn/native`, split-view is
+  `screensFeatureFlags` is native-only. In `one`, split-view is
   native-only and the web color proxies dropped their `Platform` check.
 - The `react-native` → RNW alias STAYS on by default, contrary to the
   original plan. It costs nothing once nothing in One's graph imports

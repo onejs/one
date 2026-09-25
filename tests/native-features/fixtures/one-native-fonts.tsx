@@ -1,6 +1,6 @@
-import { Fonts, useFonts } from '@vxrn/native'
 import { useState } from 'react'
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 // exercises runtime font loading: the TestFont's A is a solid block no
 // system font has, so the sample below proves by pixels that the PostScript
@@ -23,7 +23,7 @@ const fontMap = { [FONT_NAME]: fontAsset }
 const hookFontMap = { [HOOK_FONT_NAME]: hookFontAsset }
 
 function HookSample() {
-  const [loaded, error] = useFonts(hookFontMap)
+  const [loaded, error] = One.UI.useFonts(hookFontMap)
   return (
     <View>
       <Text>{`Hook: ${error ? 'error' : loaded ? 'loaded' : 'loading'}`}</Text>
@@ -37,13 +37,13 @@ export default function OneNativeFonts() {
   const [error, setError] = useState('')
   const [negative, setNegative] = useState('idle')
   const [negativeError, setNegativeError] = useState('')
-  const loaded = Fonts.isLoaded(FONT_NAME)
+  const loaded = One.UI.Fonts.isLoaded(FONT_NAME)
 
   async function onLoad() {
     setStatus('loading')
     setError('')
     try {
-      await Fonts.load(fontMap)
+      await One.UI.Fonts.load(fontMap)
       setStatus('loaded')
     } catch (unknown) {
       setStatus('error')
@@ -55,7 +55,7 @@ export default function OneNativeFonts() {
     setNegative('loading')
     setNegativeError('')
     try {
-      await Fonts.load({ [WRONG_KEY]: fontAsset })
+      await One.UI.Fonts.load({ [WRONG_KEY]: fontAsset })
       setNegative('resolved')
     } catch (unknown) {
       setNegative('rejected')
@@ -75,7 +75,7 @@ export default function OneNativeFonts() {
       </Pressable>
       <HookSample />
       <Text>{`Negative: ${negative}`}</Text>
-      <Text>{`NegativeLoaded: ${Fonts.isLoaded(WRONG_KEY)}`}</Text>
+      <Text>{`NegativeLoaded: ${One.UI.Fonts.isLoaded(WRONG_KEY)}`}</Text>
       {negativeError ? <Text>{`NegativeError: ${negativeError}`}</Text> : null}
       <Pressable
         testID="one-native-fonts-negative"

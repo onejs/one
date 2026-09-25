@@ -115,7 +115,7 @@ describe('publishPackagesWithAuthProbe', () => {
     }
 
     const result = await publishPackagesWithAuthProbe({
-      packages: [{ name: '@vxrn/native', cwd: '/packages/native' }],
+      packages: [{ name: '@vxrn/utils', cwd: '/packages/utils' }],
       isPublished: async () => false,
       verifyPublished: (pkg, attempt) =>
         isExactVersionPublishedOnNpm({
@@ -134,10 +134,10 @@ describe('publishPackagesWithAuthProbe', () => {
     const cacheBusts = urls.map((url) => url.searchParams.get('cache-bust'))
 
     expect(urls.map((url) => url.pathname)).toEqual([
-      '/%40vxrn%2Fnative/2.0.0-beta.51.1',
-      '/%40vxrn%2Fnative/2.0.0-beta.51.1',
-      '/%40vxrn%2Fnative/2.0.0-beta.51.1',
-      '/%40vxrn%2Fnative/2.0.0-beta.51.1',
+      '/%40vxrn%2Futils/2.0.0-beta.51.1',
+      '/%40vxrn%2Futils/2.0.0-beta.51.1',
+      '/%40vxrn%2Futils/2.0.0-beta.51.1',
+      '/%40vxrn%2Futils/2.0.0-beta.51.1',
     ])
     expect(new Set(cacheBusts).size).toBe(4)
     expect(cacheBusts.map((value) => value?.split('-').at(-1))).toEqual([
@@ -151,7 +151,7 @@ describe('publishPackagesWithAuthProbe', () => {
     ).toEqual(['no-cache', 'no-cache', 'no-cache', 'no-cache'])
     expect(result).toEqual({
       skipped: [],
-      published: ['@vxrn/native'],
+      published: ['@vxrn/utils'],
       failed: [],
     })
   })

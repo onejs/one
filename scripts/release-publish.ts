@@ -96,7 +96,7 @@ type PublishPackagesOptions<T extends PublishPackage> = {
 // took over five minutes, well after the publish step had already exited, so a
 // single check straight after publishing would fail a release that worked. poll
 // instead, with enough headroom that only a real miss reaches the deadline.
-// @vxrn/native (12 MB unpacked) has taken 17 minutes to appear.
+// one, which carries the native sources, has taken 17 minutes to appear.
 const VERIFY_TIMEOUT_MS = 30 * 60_000
 const VERIFY_INTERVAL_MS = 15_000
 

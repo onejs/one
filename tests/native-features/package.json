@@ -17,8 +17,6 @@
     "@callstack/liquid-glass": "^0.8.1",
     "@react-navigation/native": "8.0.0-alpha.44",
     "@react-three/fiber": "^9.7.0",
-    "@vxrn/native": "workspace:*",
-    "@vxrn/safe-area": "workspace:*",
     "one": "workspace:*",
     "react": "19.2.3",
     "react-native": "0.87.1",

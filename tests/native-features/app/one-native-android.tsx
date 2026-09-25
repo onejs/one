@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Compose } from '@vxrn/native'
+import { One } from 'one'
 
 const rootStyle = { flex: 1 } as const
 const rowStyle = { fillMaxWidth: true } as const
@@ -22,25 +22,25 @@ export default function OneNativeAndroid() {
   const order = reordered ? ['beta', 'alpha'] : ['alpha', 'beta']
 
   return (
-    <Compose.Column
+    <One.Android.Column
       accessibilityLabel="One Native Android proof"
       testID="one-native-android-screen"
       style={rootStyle}
       spacing={4}
       composeStyle={{ padding: 8, fillMaxWidth: true, fillMaxHeight: true }}
     >
-      <Compose.Text
+      <One.Android.Text
         accessibilityRole="header"
         accessibilityLabel="Android proof mounted"
         testID="one-native-android-mounted"
         text="Android proof mounted"
       />
 
-      <Compose.Text
+      <One.Android.Text
         testID="one-native-android-prop-status"
         text={`Prop: ${propExpanded ? 'expanded' : 'compact'}`}
       />
-      <Compose.Box
+      <One.Android.Box
         accessibilityLabel="Fresh bounds box"
         testID="one-native-android-bounds-box"
         composeStyle={{
@@ -53,9 +53,9 @@ export default function OneNativeAndroid() {
           padding: 6,
         }}
       >
-        <Compose.Text testID="one-native-android-prop-value" text={propText} />
-      </Compose.Box>
-      <Compose.Button
+        <One.Android.Text testID="one-native-android-prop-value" text={propText} />
+      </One.Android.Box>
+      <One.Android.Button
         accessibilityRole="button"
         accessibilityState={{ disabled: false }}
         label="Mutate text prop"
@@ -64,16 +64,16 @@ export default function OneNativeAndroid() {
         disabled={false}
       />
 
-      <Compose.Text
+      <One.Android.Text
         testID="one-native-android-button-status"
         text={`Button taps: ${buttonTaps}`}
       />
-      <Compose.Row
+      <One.Android.Row
         testID="one-native-android-button-row"
         composeStyle={rowStyle}
         spacing={8}
       >
-        <Compose.Button
+        <One.Android.Button
           accessibilityRole="button"
           accessibilityState={{ disabled: false }}
           label="Tap button"
@@ -82,7 +82,7 @@ export default function OneNativeAndroid() {
           testID="one-native-android-real-button"
           disabled={false}
         />
-        <Compose.Button
+        <One.Android.Button
           accessibilityRole="button"
           accessibilityState={{ disabled: false }}
           label={reordered ? 'Restore order' : 'Reorder'}
@@ -90,28 +90,28 @@ export default function OneNativeAndroid() {
           testID="one-native-android-reorder"
           disabled={false}
         />
-      </Compose.Row>
+      </One.Android.Row>
 
-      <Compose.Row
+      <One.Android.Row
         accessibilityLabel="Material Symbols row"
         testID="one-native-android-icon-row"
         composeStyle={rowStyle}
         spacing={8}
       >
-        <Compose.Icon
+        <One.Android.Icon
           accessibilityLabel="Star outline"
           testID="one-native-android-icon"
           name="star"
           size={24}
         />
-        <Compose.Icon
+        <One.Android.Icon
           accessibilityLabel="Star filled"
           testID="one-native-android-icon-filled"
           name="star"
           filled
           size={24}
         />
-        <Compose.Button
+        <One.Android.Button
           accessibilityRole="button"
           accessibilityLabel={iconTaps > 0 ? 'Icon tapped' : 'Add icon'}
           accessibilityState={{ disabled: false }}
@@ -121,22 +121,22 @@ export default function OneNativeAndroid() {
           testID="one-native-android-icon-button"
           disabled={false}
         />
-      </Compose.Row>
+      </One.Android.Row>
 
-      <Compose.Text
+      <One.Android.Text
         testID="one-native-android-switch-status"
         text={`Switch: ${switchValue ? 'on' : 'off'} · Request: ${switchRequest ? 'on' : 'off'} · Revision: ${switchRevision}`}
       />
-      <Compose.Text
+      <One.Android.Text
         testID="one-native-android-switch-policy-status"
         text={`Policy: ${rejectSwitch ? 'reject' : 'accept'}`}
       />
-      <Compose.Row
+      <One.Android.Row
         testID="one-native-android-switch-row"
         composeStyle={rowStyle}
         spacing={8}
       >
-        <Compose.Switch
+        <One.Android.Switch
           accessibilityLabel="Controlled switch"
           accessibilityRole="switch"
           accessibilityState={{ checked: switchValue, disabled: false }}
@@ -149,7 +149,7 @@ export default function OneNativeAndroid() {
           revision={switchRevision}
           testID="one-native-android-switch"
         />
-        <Compose.Button
+        <One.Android.Button
           accessibilityRole="button"
           accessibilityLabel={rejectSwitch ? 'Accept' : 'Reject'}
           accessibilityState={{ disabled: false }}
@@ -158,7 +158,7 @@ export default function OneNativeAndroid() {
           testID="one-native-android-switch-policy"
           disabled={false}
         />
-        <Compose.Button
+        <One.Android.Button
           accessibilityRole="button"
           accessibilityState={{ disabled: false }}
           label="Reset"
@@ -171,13 +171,13 @@ export default function OneNativeAndroid() {
           testID="one-native-android-switch-reset"
           disabled={false}
         />
-      </Compose.Row>
+      </One.Android.Row>
 
-      <Compose.Text
+      <One.Android.Text
         testID="one-native-android-lifecycle-status"
         text={`Optional: ${showOptional ? 'mounted' : 'unmounted'}`}
       />
-      <Compose.Button
+      <One.Android.Button
         accessibilityRole="button"
         accessibilityState={{ disabled: false }}
         label={showOptional ? 'Unmount optional' : 'Remount optional'}
@@ -186,29 +186,29 @@ export default function OneNativeAndroid() {
         disabled={false}
       />
       {showOptional ? (
-        <Compose.Box
+        <One.Android.Box
           key="optional"
           testID="one-native-android-optional"
           composeStyle={boxStyle}
         >
-          <Compose.Text
+          <One.Android.Text
             accessibilityLabel="Optional child mounted"
             testID="one-native-android-optional-text"
             text="Optional child mounted"
           />
-        </Compose.Box>
+        </One.Android.Box>
       ) : null}
 
-      <Compose.Text
+      <One.Android.Text
         testID="one-native-android-disabled-status"
         text={`Disabled button taps: ${disabledButtonTaps} · Disabled switch taps: ${disabledSwitchTaps}`}
       />
-      <Compose.Row
+      <One.Android.Row
         testID="one-native-android-disabled-row"
         composeStyle={rowStyle}
         spacing={8}
       >
-        <Compose.Button
+        <One.Android.Button
           accessibilityRole="button"
           accessibilityState={{ disabled: true }}
           disabled
@@ -216,7 +216,7 @@ export default function OneNativeAndroid() {
           onPress={() => setDisabledButtonTaps((count) => count + 1)}
           testID="one-native-android-disabled-button"
         />
-        <Compose.Switch
+        <One.Android.Switch
           accessibilityLabel="Disabled switch"
           accessibilityRole="switch"
           accessibilityState={{ checked: false, disabled: true }}
@@ -226,35 +226,35 @@ export default function OneNativeAndroid() {
           onIsOnChange={() => setDisabledSwitchTaps((count) => count + 1)}
           testID="one-native-android-disabled-switch"
         />
-      </Compose.Row>
+      </One.Android.Row>
 
-      <Compose.Text testID="one-native-android-order-status" text="Keyed order" />
-      <Compose.Row
+      <One.Android.Text testID="one-native-android-order-status" text="Keyed order" />
+      <One.Android.Row
         accessibilityLabel="Keyed rows"
         testID="one-native-android-order-row"
         composeStyle={rowStyle}
         spacing={8}
       >
         {order.map((item) => (
-          <Compose.Text
+          <One.Android.Text
             key={item}
             testID={`one-native-android-order-${item}`}
             text={`Item ${item}`}
           />
         ))}
-      </Compose.Row>
+      </One.Android.Row>
 
-      <Compose.Box
+      <One.Android.Box
         accessibilityLabel="Tap real button"
         testID="one-native-android-decoy"
         composeStyle={{ ...boxStyle, width: 180 }}
       >
-        <Compose.Text
+        <One.Android.Text
           accessibilityRole="text"
           testID="one-native-android-decoy-label"
           text="Tap real button"
         />
-      </Compose.Box>
-    </Compose.Column>
+      </One.Android.Box>
+    </One.Android.Column>
   )
 }

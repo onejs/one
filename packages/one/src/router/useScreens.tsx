@@ -7,7 +7,7 @@ import type {
   ScreenListeners,
 } from '@react-navigation/native'
 import React, { memo, Suspense, useContext, useEffect, useState } from 'react'
-import { SafeAreaProvider } from '@vxrn/safe-area'
+import { SafeAreaProvider } from '../safe-area-context'
 import { ServerContextScript } from '../server/ServerContextScript'
 import { checkSkewAndReload } from '../skewProtection'
 import { getClientMatchesSnapshot } from '../useMatches'

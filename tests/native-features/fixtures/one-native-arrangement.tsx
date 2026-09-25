@@ -1,25 +1,22 @@
+import type { ComponentProps } from 'react'
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Platform } from 'react-native'
-import {
-  Swift,
-  useSizeClass,
-  useHinge,
-  ReservedRegions,
-  type ArrangementViewStyle,
-} from '@vxrn/native'
+import { One } from 'one'
+
+type ArrangementViewStyle = NonNullable<ComponentProps<typeof One.iOS.ArrangementView>['arrangementViewStyle']>
 
 export default function OneNativeArrangementFixture() {
   return (
-    <ReservedRegions.Provider style={styles.container}>
+    <One.UI.ReservedRegions.Provider style={styles.container}>
       <Arrangement />
-    </ReservedRegions.Provider>
+    </One.UI.ReservedRegions.Provider>
   )
 }
 
 function Arrangement() {
-  const sizeClass = useSizeClass()
-  const hinge = useHinge()
-  const reservedRegions = ReservedRegions.useRegions({ includeInactive: true })
+  const sizeClass = One.UI.useSizeClass()
+  const hinge = One.UI.useHinge()
+  const reservedRegions = One.UI.ReservedRegions.useRegions({ includeInactive: true })
   const [style, setStyle] = useState<ArrangementViewStyle>('automatic')
 
   return (
@@ -75,13 +72,13 @@ function Arrangement() {
       </View>
 
       {/* Adaptive 2-pane ArrangementView */}
-      <Swift.ArrangementView
+      <One.iOS.ArrangementView
         arrangementViewStyle={style}
         splitArrangementLayoutRatio={0.5}
         style={styles.arrangement}
         testID="swift-arrangement-view"
       >
-        <Swift.ArrangementView.Primary testID="arrangement-primary-pane">
+        <One.iOS.ArrangementView.Primary testID="arrangement-primary-pane">
           <View style={[styles.pane, styles.primaryPane]}>
             <Text style={styles.paneTitle}>Leading / Primary</Text>
             <Text style={styles.paneDesc}>
@@ -97,9 +94,9 @@ function Arrangement() {
               </Text>
             </View>
           </View>
-        </Swift.ArrangementView.Primary>
+        </One.iOS.ArrangementView.Primary>
 
-        <Swift.ArrangementView.Secondary testID="arrangement-secondary-pane">
+        <One.iOS.ArrangementView.Secondary testID="arrangement-secondary-pane">
           <View style={[styles.pane, styles.secondaryPane]}>
             <Text style={styles.paneTitle}>Detail / Secondary</Text>
             <Text style={styles.paneDesc}>
@@ -128,8 +125,8 @@ function Arrangement() {
               </View>
             </ScrollView>
           </View>
-        </Swift.ArrangementView.Secondary>
-      </Swift.ArrangementView>
+        </One.iOS.ArrangementView.Secondary>
+      </One.iOS.ArrangementView>
     </View>
   )
 }

@@ -1,6 +1,6 @@
 # One Native superset: android worker status
 
-Worker `native-android`. Owns `packages/native/android/`, `src/compose*`,
+Worker `native-android`. Owns `packages/one/android/`, `src/compose*`,
 Compose docs/tests. Never touches `ios/`, `codegen/`, Swift `src/`.
 
 Expo Compose target (docs.expo.dev/versions/latest/sdk/ui, ~48 entries):
@@ -97,7 +97,7 @@ TextField, ToggleButton, Tooltip, useNativeState.
     (density 420, rotation free, app force-stopped).
   - ANDROIDFIX6 `521140f80`: back-pop home expects (`inputs-navigate-home`
     and conditional `inputs-renavigate-home`) no longer require the
-    `@vxrn/native Test Suite` title text, which expo-router replaces with
+    `one Test Suite` title text, which expo-router replaces with
     `index` after a pop; marker plus any visible `nav-` row suffices. New
     `diagnose()` helper names each conjunct and `waitFor` appends the
     last-failed set to timeout errors, so the next multi-conjunct failure

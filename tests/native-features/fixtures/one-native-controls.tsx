@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { Button, Pressable, StyleSheet, Switch, Text, View } from 'react-native'
+import { One } from 'one'
 
 const categories = [
   'Picker',
@@ -181,7 +181,7 @@ export default function OneNativeControls() {
       )}
       <View style={styles.nativeArea}>
         {category === 'Picker' ? (
-          <Swift.Picker
+          <One.iOS.Picker
             disabled={false}
             label="Favorite Greek letter"
             onSelectionChange={(value) => recordChange('Picker', value)}
@@ -194,7 +194,7 @@ export default function OneNativeControls() {
           />
         ) : null}
         {category === 'Date' ? (
-          <Swift.DatePicker
+          <One.iOS.DatePicker
             datePickerStyle={datePickerStyle}
             disabled={false}
             displayedComponents="date"
@@ -219,7 +219,7 @@ export default function OneNativeControls() {
                 value={supportsOpacity}
               />
             </View>
-            <Swift.ColorPicker
+            <One.iOS.ColorPicker
               disabled={false}
               label="Accent color"
               onSelectionChange={(value) => recordChange('Color', value)}
@@ -232,7 +232,7 @@ export default function OneNativeControls() {
           </>
         ) : null}
         {category === 'Toggle' ? (
-          <Swift.Toggle
+          <One.iOS.Toggle
             disabled={false}
             isOn={controls.Toggle.value as boolean}
             label="Enable notifications"
@@ -245,7 +245,7 @@ export default function OneNativeControls() {
           />
         ) : null}
         {category === 'Slider' ? (
-          <Swift.Slider
+          <One.iOS.Slider
             disabled={false}
             label="Volume"
             maximumValue={100}
@@ -259,7 +259,7 @@ export default function OneNativeControls() {
           />
         ) : null}
         {category === 'Stepper' ? (
-          <Swift.Stepper
+          <One.iOS.Stepper
             disabled={false}
             label="Guests"
             maximumValue={10}
@@ -274,7 +274,7 @@ export default function OneNativeControls() {
         ) : null}
         {category === 'Focus' ? (
           <View style={styles.focusGroup}>
-            <Swift.TextField
+            <One.iOS.TextField
               focused={field1Focused}
               label="Field 1"
               onFocusChange={setField1Focused}
@@ -291,7 +291,7 @@ export default function OneNativeControls() {
               text={field1Text}
               textFieldStyle="roundedBorder"
             />
-            <Swift.TextField
+            <One.iOS.TextField
               focused={field2Focused}
               label="Field 2"
               onFocusChange={setField2Focused}
@@ -307,7 +307,7 @@ export default function OneNativeControls() {
               text={field2Text}
               textFieldStyle="roundedBorder"
             />
-            <Swift.TextField
+            <One.iOS.TextField
               focused={numericFocused}
               keyboardType="numberPad"
               label="Numeric"

@@ -21,8 +21,6 @@ import { loadUserOneOptions } from '../vite/loadConfig'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const oneDir = resolve(here, '../..')
-const nativeDir = resolve(here, '../../../native')
-const safeAreaDir = resolve(here, '../../../safe-area')
 const vxrnDir = resolve(here, '../../../vxrn')
 const vitePluginMetroDir = resolve(here, '../../../vite-plugin-metro')
 const utilsDir = resolve(here, '../../../utils')
@@ -99,23 +97,6 @@ describe('packed-artifact closure oracle', () => {
       '@react-native-masked-view/masked-view'
     )
     expect(onePkg.peerDependencies).not.toHaveProperty('react-native-safe-area-context')
-    for (const { packageDir, name } of [
-      { packageDir: nativeDir, name: 'native' },
-      { packageDir: safeAreaDir, name: 'safe-area' },
-    ]) {
-      const manifest = JSON.parse(
-        readFileSync(
-          join(unpack(packToDir(packageDir, tmp), join(tmp, name)), 'package.json'),
-          'utf8'
-        )
-      )
-      expect(auditUnpackedManifest(manifest)).toEqual([])
-      if (name === 'native') {
-        expect(manifest.peerDependencies).not.toHaveProperty(
-          'react-native-safe-area-context'
-        )
-      }
-    }
     const vxrnExtracted = unpack(packToDir(vxrnDir, tmp), join(tmp, 'vxrn'))
     const vxrnPkg = JSON.parse(readFileSync(join(vxrnExtracted, 'package.json'), 'utf8'))
     expect(auditUnpackedManifest(vxrnPkg)).toEqual(KNOWN_VXRN_BLOCKERS)
@@ -140,6 +121,13 @@ describe('packed-artifact closure oracle', () => {
     const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-native-')))
     const extracted = unpack(packToDir(oneDir, tmp), join(tmp, 'one'))
     for (const target of [
+      // one's own native code, autolinked as the `one` dependency
+      'One.podspec',
+      'react-native.config.cjs',
+      'android/build.gradle',
+      'android/CMakeLists.txt',
+      'nitrogen/generated/ios/One+autolinking.rb',
+      'dist/esm/safe-area-context/index.native.js',
       'dist/esm/native/index.mjs',
       'dist/cjs/native/index.cjs',
       'types/native/index.d.ts',
@@ -211,8 +199,6 @@ console.log('one/native ok ' + url);
     const tarballs = join(tmp, 'tarballs')
     mkdirSync(tarballs)
     const oneTarball = packToDir(oneDir, tarballs)
-    const nativeTarball = packToDir(nativeDir, tarballs)
-    const safeAreaTarball = packToDir(safeAreaDir, tarballs)
     const vxrnTarball = packToDir(vxrnDir, tarballs)
     const metroPluginTarball = packToDir(vitePluginMetroDir, tarballs)
     const utilsTarball = packToDir(utilsDir, tarballs)
@@ -228,8 +214,6 @@ console.log('one/native ok ' + url);
           type: 'module',
           dependencies: {
             one: `file:${oneTarball}`,
-            '@vxrn/native': `file:${nativeTarball}`,
-            '@vxrn/safe-area': `file:${safeAreaTarball}`,
             vxrn: `file:${vxrnTarball}`,
             '@vxrn/vite-plugin-metro': `file:${metroPluginTarball}`,
             '@vxrn/utils': `file:${utilsTarball}`,
@@ -242,8 +226,6 @@ console.log('one/native ok ' + url);
           },
           overrides: {
             vxrn: `file:${vxrnTarball}`,
-            '@vxrn/native': `file:${nativeTarball}`,
-            '@vxrn/safe-area': `file:${safeAreaTarball}`,
             '@vxrn/vite-plugin-metro': `file:${metroPluginTarball}`,
             '@vxrn/utils': `file:${utilsTarball}`,
           },
@@ -299,8 +281,6 @@ import { createRequire } from 'node:module'
 const require = createRequire(import.meta.url)
 for (const specifier of [
   'one/package.json',
-  '@vxrn/native/package.json',
-  '@vxrn/safe-area/package.json',
   'vxrn/package.json',
   '@vxrn/vite-plugin-metro/package.json',
   '@react-native/metro-config/package.json',
@@ -312,12 +292,16 @@ for (const specifier of [
   }
 }
 const config = require('one/react-native-config')
-const nativeRoot = config.dependencies['@vxrn/native'].root
-if (nativeRoot.includes(${JSON.stringify(workspaceRoot)})) {
-  throw new Error('react-native config resolved into the workspace: ' + nativeRoot)
+for (const [name, dependency] of Object.entries(config.dependencies)) {
+  if (dependency.root.includes(${JSON.stringify(workspaceRoot)})) {
+    throw new Error('react-native config resolved ' + name + ' into the workspace: ' + dependency.root)
+  }
+  if (require(dependency.root + '/package.json').name !== name) {
+    throw new Error('react-native config resolved ' + name + ' to the wrong package')
+  }
 }
-if (require(nativeRoot + '/package.json').name !== '@vxrn/native') {
-  throw new Error('react-native config did not resolve the packed native package')
+if (!config.dependencies['react-native-nitro-modules']) {
+  throw new Error('react-native config does not link one native dependencies')
 }
 `
     execFileSync(process.execPath, ['--input-type=module', '--eval', resolutionScript], {

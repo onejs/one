@@ -1,7 +1,7 @@
-Build the One Native surface in `@vxrn/native` as a generated SwiftUI component layer on Fabric, with explicit ownership of every layout boundary. Prove React Native → SwiftUI → React Native → SwiftUI composition before expanding the component catalog. The generator can reduce repetitive bindings; it cannot generate the layout, interaction, and state semantics that make this composition work.
+Build the One Native surface in `one` as a generated SwiftUI component layer on Fabric, with explicit ownership of every layout boundary. Prove React Native → SwiftUI → React Native → SwiftUI composition before expanding the component catalog. The generator can reduce repetitive bindings; it cannot generate the layout, interaction, and state semantics that make this composition work.
 
 The first implementation focuses on independent native tabs and Apple menus. It
-lives in `packages/native`; `tests/native-features/app/one-native.tsx` is the
+lives in `packages/one`; `tests/native-features/app/one-native.tsx` is the
 native integration fixture. The broader generated SwiftUI engine below remains a
 proposal. The generated surface coexists with the package's navigation, toolbar,
 zoom, color, and split-view integrations.
@@ -98,12 +98,12 @@ or payload-size claim is made yet.
 
 **1. Package and runtime ownership**
 
-Use `packages/native`, published as `@vxrn/native`, exporting `Swift` beside the existing platform interfaces. The package's navigation-specific UIKit integrations remain distinct from the generated SwiftUI/Fabric layout engine. Its toolbar implementation uses `RCTView` and `insertReactSubview`; the generated surface raises the shared pod's deployment floor to iOS 26. Keep route navigation in One and React Navigation until a separate migration is justified.
+Use `packages/one`, published as `one`, exporting `Swift` beside the existing platform interfaces. The package's navigation-specific UIKit integrations remain distinct from the generated SwiftUI/Fabric layout engine. Its toolbar implementation uses `RCTView` and `insertReactSubview`; the generated surface raises the shared pod's deployment floor to iOS 26. Keep route navigation in One and React Navigation until a separate migration is justified.
 
 Proposed source layout:
 
 ```text
-packages/native/
+packages/one/
   src/
     index.ts                  platform-safe public exports
     index.ios.ts              Swift exports backed by native components
@@ -124,7 +124,7 @@ packages/native/
     policy/                   semantic mappings and exclusions
     schema/                   normalized API contract and SDK manifest
   nitrogen/generated/
-  VxrnNative.podspec
+  One.podspec
   react-native.config.cjs
 tests/one-native/             one integration app and its behavioral fixtures
 ```

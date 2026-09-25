@@ -43,19 +43,19 @@ Scope: a written design against One `origin/v2-next` at `7767a3d31` and Contrast
 
 - **RAN (read):** One's bottom toolbar is container managed. `ToolbarHostView.swift`
   builds `UIBarButtonItem`s, assigns them to the screen's controller and calls
-  `navigationController?.setToolbarHidden` (`packages/native/ios/Toolbar/ToolbarHostView.swift:57,85`).
+  `navigationController?.setToolbarHidden` (`packages/one/ios/Toolbar/ToolbarHostView.swift:57,85`).
 - **RAN (read):** the native item already supports the tinted style:
   `barButtonItemStyle: 'plain' | 'prominent'`, `tintColor`, `sharesBackground`,
   `hidesSharedBackground`, `badgeConfiguration`, `selected`, and
   `type: 'normal' | 'fixedSpacer' | 'fluidSpacer' | 'searchBar'`
-  (`packages/native/src/toolbar/types.ts:23-48`), mapped to `.prominent` behind an
+  (`packages/one/src/platform/toolbar/types.ts:23-48`), mapped to `.prominent` behind an
   iOS 26 availability check (`ToolbarItemView.swift:264-270`).
 - **RAN (grep):** `Stack.Toolbar` exposes none of `prominent`, spacer or badge.
   `stackToolbarDescriptors.ts` and `StackToolbarBottomHost.tsx` have zero matches for
   `prominent`, `barButtonItemStyle`, `variant`, `spacer`, `badge`. Its shape today is
   `Stack.Toolbar` > `Leading | Trailing | Bottom` > `Item | Menu`.
 - **RAN (read):** `One.iOS.Button` already takes `buttonStyle="glassProminent"` and
-  `tint` (`packages/native/schema.json:2624-2631`, iOS 26 cases `glass` and
+  `tint` (`packages/one/schema.json:2624-2631`, iOS 26 cases `glass` and
   `glassProminent`). Tinted glass buttons in screen content work today.
 - **RAN (read):** the double bar already works through One `Tabs`. Contrast's Apple
   Music demo passes `bottomAccessory: ({ placement }) => <MiniPlayer />` and
@@ -228,7 +228,7 @@ outside it, and a `FlatList` does not drive minimize on scroll.
 
 The optional road away from React Navigation already exists as the platform-direct
 `One.iOS.Tabs` (SwiftUI `TabView`, with `role` and `tabBarMinimizeBehavior`,
-`packages/native/src/Tabs.native.tsx:27-114`). It lacks `tabViewBottomAccessory`. Adding
+`packages/one/src/platform/Tabs.native.tsx:27-114`). It lacks `tabViewBottomAccessory`. Adding
 that is a later catalog item and is what would make `One.iOS.Tabs` able to carry the
 double bar without React Navigation; it is not part of today's work.
 

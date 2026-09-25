@@ -1,12 +1,12 @@
-# Consolidate One Native in @vxrn/native
+# Consolidate One Native in one
 
 Ship the generated SwiftUI and Jetpack Compose surfaces from the existing
-`@vxrn/native` package. There is no technical boundary that requires a second npm
+`one` package. There is no technical boundary that requires a second npm
 package. Both implementations already use React Native autolinking, and one pod and
 one Android package can register the existing platform interfaces beside the new
 Fabric components.
 
-The former package split protected two compatibility differences: `@vxrn/native`
+The former package split protected two compatibility differences: `one`
 supported older React Native releases and an iOS 15.1 deployment target, while the
 generated SwiftUI surface requires React Native 0.86.2, New Architecture, and iOS 26.
 Consolidation deliberately makes those requirements apply to the whole package.
@@ -16,11 +16,11 @@ Consolidation deliberately makes those requirements apply to the whole package.
 | Capability | Runtime owner | Public surface |
 | --- | --- | --- |
 | Application route tabs and stacks | One through React Navigation | One router APIs |
-| Explicit SwiftUI controls, containers, tabs, and presentations | Generated Fabric components | `@vxrn/native`'s `Swift` export |
-| Jetpack Compose controls and containers | `OneNativeComposeNodeManager` | `@vxrn/native`'s `Compose` export |
-| UIKit zoom, toolbar, and toolbar menu items | Existing `VxrnNative` managers | `@vxrn/native` direct and subpath exports |
-| Split view | Existing `VxrnNative` implementation | `@vxrn/native/split-view` |
-| Platform colors | Existing iOS and Android modules | `@vxrn/native/color` |
+| Explicit SwiftUI controls, containers, tabs, and presentations | Generated Fabric components | `one`'s `Swift` export |
+| Jetpack Compose controls and containers | `OneNativeComposeNodeManager` | `one`'s `Compose` export |
+| UIKit zoom, toolbar, and toolbar menu items | Existing `One` managers | `one` direct and subpath exports |
+| Split view | Existing `One` implementation | `one/split-view` |
+| Platform colors | Existing iOS and Android modules | `one/color` |
 
 `Swift.Menu` and `MenuAction` remain different controls. `Swift.Menu` renders a
 standalone SwiftUI menu. `MenuAction` describes a child of the navigation
@@ -33,12 +33,12 @@ history, or replace back behavior.
 
 ## Package shape
 
-- `packages/native/package.json` owns the single `OneNativeSpec` codegen config and
+- `packages/one/package.json` owns the single `OneNativeSpec` codegen config and
   exports the platform-safe JavaScript entry points.
-- `VxrnNative.podspec` compiles the existing UIKit sources, generated Fabric
+- `One.podspec` compiles the existing UIKit sources, generated Fabric
   component views, authored SwiftUI runtime, and C++ shadow nodes in one static
   framework. Its deployment target comes from `schema.json`.
-- `VxrnNativePackage` keeps the existing Android module and registers
+- `OnePackage` keeps the existing Android module and registers
   `OneNativeComposeNodeManager` from the same autolinked package.
 - The browser entry preserves the existing web-safe extras and exposes unsupported
   `Swift` and `Compose` implementations that fail when rendered.
@@ -47,7 +47,7 @@ history, or replace back behavior.
 
 ## Consequences
 
-- Consumers install and import only `@vxrn/native`; the `one-native` workspace and
+- Consumers install and import only `one`; the `one-native` workspace and
   npm package no longer exist.
 - The package's iOS deployment floor is 26 and its React Native peer is 0.86.2.
 - Native ABI names such as `OneNativeSpec`, `OneNativeTabs`, and

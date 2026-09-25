@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { UI } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 type PlaceName = 'Ferry' | 'Presidio'
 const placeNames: PlaceName[] = ['Ferry', 'Presidio']
@@ -128,7 +128,7 @@ export default function OneNativeUiMap() {
           >{`${label}: ${value}`}</Text>
         ))}
       </View>
-      <UI.Map
+      <One.UI.Map
         cameraPosition={{ coordinates: current, zoom }}
         markers={pins.slice(0, pinCount)}
         polylines={

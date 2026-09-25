@@ -1,7 +1,7 @@
-import { Browser as NativeBrowser, Widgets, LiveActivities, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, getHinge, getSizeClass, onHingeChange, ReservedRegions, useHinge, useSizeClass, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from '@vxrn/native';
-import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaFrame, useSafeAreaInsets } from '@vxrn/safe-area';
+import { Browser as NativeBrowser, Widgets, LiveActivities, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, getHinge, getSizeClass, onHingeChange, ReservedRegions, useHinge, useSizeClass, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from './platform';
+import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-context';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
-export type OneIOS = Omit<typeof Swift, 'ToolbarItem'> & {
+export type OneIOS = typeof Swift & {
     readonly Widgets: typeof Widgets;
     readonly LiveActivities: typeof LiveActivities;
     readonly WidgetUI: typeof WidgetUI;
@@ -9,7 +9,7 @@ export type OneIOS = Omit<typeof Swift, 'ToolbarItem'> & {
     readonly MenuAction: typeof MenuAction;
     readonly SplitView: typeof SplitView;
     readonly ToolbarHost: typeof ToolbarHost;
-    readonly ToolbarItem: typeof ToolbarItem;
+    readonly BarButtonItem: typeof ToolbarItem;
     readonly ZoomTransitionAlignmentRectDetector: typeof ZoomTransitionAlignmentRectDetector;
     readonly ZoomTransitionEnabler: typeof ZoomTransitionEnabler;
     readonly ZoomTransitionSource: typeof ZoomTransitionSource;

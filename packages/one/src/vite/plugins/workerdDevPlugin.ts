@@ -291,7 +291,7 @@ export function createWorkerdDevPlugins(
   )
   const rnWebPkg = resolvePath('react-native-web/package.json', root)
   const rnWeb = resolvePath('react-native-web', root)
-  const safeArea = resolvePath('@vxrn/safe-area', root)
+  const safeArea = resolvePath('one/safe-area-context', root)
 
   const preparePlugin: Plugin = {
     name: 'one:workerd-dev-prepare',

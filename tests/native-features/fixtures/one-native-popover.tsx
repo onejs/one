@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 export default function OneNativePopover() {
   const [open, setOpen] = useState(false)
@@ -27,7 +27,7 @@ export default function OneNativePopover() {
         </Pressable>
       </View>
 
-      <Swift.Popover
+      <One.iOS.Popover
         isPresented={open}
         onIsPresentedChange={setOpen}
         arrowEdge="top"
@@ -55,13 +55,13 @@ export default function OneNativePopover() {
           </View>
         }
       >
-        <Swift.Button label="Trigger" onPress={() => setOpen(true)} />
-      </Swift.Popover>
+        <One.iOS.Button label="Trigger" onPress={() => setOpen(true)} />
+      </One.iOS.Popover>
 
-      <Swift.Form style={styles.form}>
-        <Swift.Section title="Row">
-          <Swift.Text text="Section row" />
-          <Swift.Popover
+      <One.iOS.Form style={styles.form}>
+        <One.iOS.Section title="Row">
+          <One.iOS.Text text="Section row" />
+          <One.iOS.Popover
             isPresented={sectionOpen}
             onIsPresentedChange={setSectionOpen}
             contentWidth={240}
@@ -72,10 +72,10 @@ export default function OneNativePopover() {
               </View>
             }
           >
-            <Swift.Button label="Section trigger" onPress={() => setSectionOpen(true)} />
-          </Swift.Popover>
-        </Swift.Section>
-      </Swift.Form>
+            <One.iOS.Button label="Section trigger" onPress={() => setSectionOpen(true)} />
+          </One.iOS.Popover>
+        </One.iOS.Section>
+      </One.iOS.Form>
 
       <View style={styles.row}>
         <Text

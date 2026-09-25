@@ -1,12 +1,6 @@
-import {
-  SafeAreaProvider,
-  SafeAreaView,
-  initialWindowMetrics,
-  useSafeAreaFrame,
-  useSafeAreaInsets,
-} from '@vxrn/safe-area'
 import { useState } from 'react'
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { One } from 'one'
 
 // exercises the first-party safe-area takeover: our provider measures
 // insets natively, the hooks read them through our context, and the view
@@ -15,8 +9,8 @@ import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 // provider and the text input exist for the Android nested/IME coverage;
 // the iOS suite only reads the outer labels.
 function Readout({ prefix }: { prefix: string }) {
-  const insets = useSafeAreaInsets()
-  const frame = useSafeAreaFrame()
+  const insets = One.UI.SafeArea.useInsets()
+  const frame = One.UI.SafeArea.useFrame()
   return (
     <View>
       <Text>{`${prefix}Insets: ${insets.top} ${insets.right} ${insets.bottom} ${insets.left}`}</Text>
@@ -29,10 +23,10 @@ export default function OneNativeSafeArea() {
   const [topOnly, setTopOnly] = useState(false)
   const [input, setInput] = useState('')
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.screen} edges={topOnly ? ['top'] : undefined}>
+    <One.UI.SafeArea.Provider>
+      <One.UI.SafeArea.View style={styles.screen} edges={topOnly ? ['top'] : undefined}>
         <Readout prefix="" />
-        <Text>{`Initial: ${initialWindowMetrics ? 'set' : 'null'}`}</Text>
+        <Text>{`Initial: ${One.UI.SafeArea.initialMetrics ? 'set' : 'null'}`}</Text>
         <Text>{`Edges: ${topOnly ? 'top' : 'all'}`}</Text>
         <TextInput
           testID="one-native-safe-area-input"
@@ -41,9 +35,9 @@ export default function OneNativeSafeArea() {
           onChangeText={setInput}
           placeholder="ime probe"
         />
-        <SafeAreaProvider>
+        <One.UI.SafeArea.Provider>
           <Readout prefix="Nested" />
-        </SafeAreaProvider>
+        </One.UI.SafeArea.Provider>
         <Pressable
           testID="one-native-safe-area-edges"
           style={styles.chip}
@@ -51,8 +45,8 @@ export default function OneNativeSafeArea() {
         >
           <Text>Toggle edges</Text>
         </Pressable>
-      </SafeAreaView>
-    </SafeAreaProvider>
+      </One.UI.SafeArea.View>
+    </One.UI.SafeArea.Provider>
   )
 }
 

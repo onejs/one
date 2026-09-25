@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 const categories = ['Button', 'Progress', 'Gauge', 'Text', 'Secure', 'Image', 'Shapes'] as const
 const buttonStyles = [
@@ -154,7 +154,7 @@ export default function OneNativeLeaves() {
       <View style={styles.nativeArea}>
         {category === 'Button' ? (
           <>
-            <Swift.Button
+            <One.iOS.Button
               label="Press leaf"
               disabled={disabled}
               buttonStyle={buttonStyle}
@@ -163,24 +163,24 @@ export default function OneNativeLeaves() {
               style={styles.nativeControl}
               testID="one-native-leaf-button"
             />
-            <Swift.Button
+            <One.iOS.Button
               label="Star leaf"
               systemImage="star.fill"
               onPress={() => setPresses((count) => count + 1)}
               style={styles.nativeControl}
               testID="one-native-leaf-image-button"
             />
-            <Swift.Button
+            <One.iOS.Button
               onPress={() => setPresses((count) => count + 1)}
               style={styles.nativeControl}
               testID="one-native-leaf-custom-button"
             >
-              <Swift.Label label="Custom leaf" systemImage="star.fill" />
-            </Swift.Button>
+              <One.iOS.Label label="Custom leaf" systemImage="star.fill" />
+            </One.iOS.Button>
           </>
         ) : null}
         {category === 'Progress' ? (
-          <Swift.ProgressView
+          <One.iOS.ProgressView
             label="Leaf progress"
             value={progress}
             total={1}
@@ -190,7 +190,7 @@ export default function OneNativeLeaves() {
           />
         ) : null}
         {category === 'Gauge' ? (
-          <Swift.Gauge
+          <One.iOS.Gauge
             label="Leaf gauge"
             value={gauge}
             minimumValue={0}
@@ -204,7 +204,7 @@ export default function OneNativeLeaves() {
           />
         ) : null}
         {category === 'Text' ? (
-          <Swift.TextField
+          <One.iOS.TextField
             {...textProps}
             label="Leaf text"
             axis={vertical ? 'vertical' : 'horizontal'}
@@ -212,14 +212,14 @@ export default function OneNativeLeaves() {
           />
         ) : null}
         {category === 'Secure' ? (
-          <Swift.SecureField
+          <One.iOS.SecureField
             {...textProps}
             label="Leaf secret"
             testID="one-native-leaf-secure"
           />
         ) : null}
         {category === 'Image' ? (
-          <Swift.Image
+          <One.iOS.Image
             systemName={imageSystemName}
             symbolRenderingMode={symbolRenderingMode}
             symbolVariant={symbolVariant}
@@ -232,28 +232,28 @@ export default function OneNativeLeaves() {
         ) : null}
         {category === 'Shapes' ? (
           <View style={styles.shapeRow}>
-            <Swift.Circle
+            <One.iOS.Circle
               fill="#FF3B30"
               style={styles.shape}
               testID="one-native-leaf-circle"
             />
-            <Swift.Capsule
+            <One.iOS.Capsule
               fill="#FF9500"
               style={styles.shapeWide}
               testID="one-native-leaf-capsule"
             />
-            <Swift.Rectangle
+            <One.iOS.Rectangle
               fill="#FFCC00"
               style={styles.shape}
               testID="one-native-leaf-rectangle"
             />
-            <Swift.RoundedRectangle
+            <One.iOS.RoundedRectangle
               fill="#34C759"
               cornerRadius={8}
               style={styles.shape}
               testID="one-native-leaf-rounded-rectangle"
             />
-            <Swift.Ellipse
+            <One.iOS.Ellipse
               fill="#007AFF"
               style={styles.shapeWide}
               testID="one-native-leaf-ellipse"

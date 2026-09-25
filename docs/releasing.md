@@ -90,5 +90,5 @@ package was skipped.
 Inspect a published beta by its content:
 
 ```sh
-npm pack one@2.0.0-beta.<workflow-run>.<attempt> @vxrn/native@2.0.0-beta.<workflow-run>.<attempt>
+npm pack one@2.0.0-beta.<workflow-run>.<attempt>
 ```

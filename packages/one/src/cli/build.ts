@@ -1442,7 +1442,7 @@ export default {
             },
             {
               find: 'react-native-safe-area-context',
-              replacement: resolvePath('@vxrn/safe-area', options.root),
+              replacement: resolvePath('one/safe-area-context', options.root),
             },
           ],
         },
