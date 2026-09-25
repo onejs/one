@@ -4,7 +4,7 @@ import android.os.Build
 import android.view.HapticFeedbackConstants
 import com.margelo.nitro.NitroModules
 
-// Fire-and-forget tactile feedback, the Android half of One.UI.Haptics. Every
+// Fire-and-forget tactile feedback, the Android half of One.Haptics. Every
 // call hops to the UI thread and goes through the activity decor view's
 // performHapticFeedback: off-thread the call is a silent no-op, so the hop is
 // mandatory, and headless/background (no activity) is a silent no-op, never a
