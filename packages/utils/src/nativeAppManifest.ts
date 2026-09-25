@@ -22,6 +22,13 @@ export interface NativeAppManifest {
     // One.ImagePicker.launchCamera.
     camera?: string
   }
+  // usage descriptions for One.Speech dictation, shown at the ios speech
+  // recognition and microphone prompts. setting them also declares the
+  // android RECORD_AUDIO permission.
+  speech?: {
+    recognition: string
+    microphone: string
+  }
   // present when the app uses local notifications. prebuild stamps the
   // android notification permissions and receiver plus the ios delegate gate.
   // push opts into remote push: the fcm source set and the aps-environment
@@ -131,6 +138,15 @@ export function validateNativeApp(
       manifest.imagePicker.camera.trim() === '')
   ) {
     fail('imagePicker.camera must be a non-empty string')
+  }
+  if (
+    manifest.speech !== undefined &&
+    (typeof manifest.speech?.recognition !== 'string' ||
+      manifest.speech.recognition.trim() === '' ||
+      typeof manifest.speech.microphone !== 'string' ||
+      manifest.speech.microphone.trim() === '')
+  ) {
+    fail('speech.recognition and speech.microphone must be non-empty strings')
   }
   if (manifest.notifications !== undefined) {
     if (

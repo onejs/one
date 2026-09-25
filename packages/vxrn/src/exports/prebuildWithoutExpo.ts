@@ -1402,18 +1402,27 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/AndroidManifest.xml' &&
-      app.imagePicker?.camera !== undefined
+      (app.imagePicker?.camera !== undefined || app.speech !== undefined)
     ) {
       const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
       if (!rendered.includes(anchor)) {
         throw new Error(
-          '[vxrn] cannot stamp the camera permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
+          '[vxrn] cannot stamp the camera or microphone permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
         )
       }
-      rendered = rendered.replace(
-        anchor,
-        `${anchor}\n    <uses-permission android:name="android.permission.CAMERA" />`
-      )
+      const stamps: string[] = []
+      if (app.imagePicker?.camera !== undefined) {
+        stamps.push('    <uses-permission android:name="android.permission.CAMERA" />')
+      }
+      if (app.speech !== undefined) {
+        // package visibility (android 11+) hides the recognition service
+        // from SpeechRecognizer.isRecognitionAvailable without the query
+        stamps.push(
+          '    <uses-permission android:name="android.permission.RECORD_AUDIO" />',
+          '    <queries>\n      <intent>\n        <action android:name="android.speech.RecognitionService" />\n      </intent>\n    </queries>'
+        )
+      }
+      rendered = rendered.replace(anchor, `${anchor}\n${stamps.join('\n')}`)
     }
     if (
       platform === 'android' &&
@@ -1579,17 +1588,27 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
     }
     if (platform === 'ios' && relativePath.endsWith('/Info.plist')) {
       // schemes, usesNonExemptEncryption, and fileSharing stamp above in one
-      // anchored block; only the camera description stamps here.
+      // anchored block; only the usage descriptions stamp here.
+      const usage: [string, string][] = []
       if (app.imagePicker?.camera !== undefined) {
+        usage.push(['NSCameraUsageDescription', app.imagePicker.camera])
+      }
+      if (app.speech !== undefined) {
+        usage.push(
+          ['NSSpeechRecognitionUsageDescription', app.speech.recognition],
+          ['NSMicrophoneUsageDescription', app.speech.microphone]
+        )
+      }
+      if (usage.length) {
         const anchor = '\t<key>LSRequiresIPhoneOS</key>'
         if (!rendered.includes(anchor)) {
           throw new Error(
-            '[vxrn] cannot stamp NSCameraUsageDescription: expected LSRequiresIPhoneOS in Info.plist'
+            `[vxrn] cannot stamp ${usage[0][0]}: expected LSRequiresIPhoneOS in Info.plist`
           )
         }
         rendered = rendered.replace(
           anchor,
-          `\t<key>NSCameraUsageDescription</key>\n\t<string>${escapeXml(app.imagePicker.camera)}</string>\n${anchor}`
+          `${usage.map(([key, text]) => `\t<key>${key}</key>\n\t<string>${escapeXml(text)}</string>\n`).join('')}${anchor}`
         )
       }
       rendered = patchIosInfoPlistSceneManifest(rendered)

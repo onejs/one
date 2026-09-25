@@ -17,4 +17,6 @@ export type { NetworkState, NetworkStateSubscription, NetworkStateType, } from '
 export { SecureStore } from './secure-store';
 export { AppleAuth } from './apple-auth';
 export type { AppleAuthenticationButtonProps, AppleAuthenticationButtonStyle, AppleAuthenticationButtonType, AppleAuthenticationCredential, AppleAuthenticationCredentialState, AppleAuthenticationFullName, AppleAuthenticationScope, AppleAuthenticationSignInOptions, AppleAuthenticationUserDetectionStatus, } from './apple-auth';
+export { Speech } from './speech';
+export type { SpeechErrorCode, SpeechEvent, SpeechEventType, SpeechPermissionResponse, SpeechPermissionStatus, SpeechSession, SpeechStartOptions, } from './speech';
 //# sourceMappingURL=extras.d.ts.map

@@ -21,6 +21,7 @@
 #include "HybridOneNetworkSpecSwift.hpp"
 #include "HybridOneNotificationsSpecSwift.hpp"
 #include "HybridOneSecureStoreSpecSwift.hpp"
+#include "HybridOneSpeechSpecSwift.hpp"
 #include "One-Swift-Cxx-Umbrella.hpp"
 #include <NitroModules/NitroDefines.hpp>
 
@@ -415,6 +416,38 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneSecureStoreSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::function<void(const SpeechPermissionResponse& /* result */)>
+  Func_void_SpeechPermissionResponse create_Func_void_SpeechPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_SpeechPermissionResponse::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const SpeechPermissionResponse& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const SpeechEvent& /* event */)>
+  Func_void_SpeechEvent create_Func_void_SpeechEvent(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_SpeechEvent::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const SpeechEvent& event) mutable -> void {
+      swiftClosure.call(event);
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneSpeechSpec>
+  std::shared_ptr<HybridOneSpeechSpec> create_std__shared_ptr_HybridOneSpeechSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneSpeechSpec_cxx swiftPart = One::HybridOneSpeechSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneSpeechSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneSpeechSpec_(std__shared_ptr_HybridOneSpeechSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneSpeechSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneSpeechSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneSpeechSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneSpeechSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

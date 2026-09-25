@@ -35,6 +35,8 @@
 #include "JFunc_void_NativeNotificationResponse.hpp"
 #include "JFunc_void_NativePushToken.hpp"
 #include "JHybridOneSecureStoreSpec.hpp"
+#include "JHybridOneSpeechSpec.hpp"
+#include "JFunc_void_SpeechEvent.hpp"
 #include <NitroModules/DefaultConstructableObject.hpp>
 
 namespace margelo::nitro::one {
@@ -141,6 +143,14 @@ struct JHybridOneAdaptiveSpecImpl: public jni::JavaClass<JHybridOneAdaptiveSpecI
     return javaPart->getJHybridOneAdaptiveSpec();
   }
 };
+struct JHybridOneSpeechSpecImpl: public jni::JavaClass<JHybridOneSpeechSpecImpl, JHybridOneSpeechSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneSpeech;";
+  static std::shared_ptr<JHybridOneSpeechSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneSpeechSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneSpeechSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneSpeechSpec();
+  }
+};
 struct JHybridOneAppleAuthSpecImpl: public jni::JavaClass<JHybridOneAppleAuthSpecImpl, JHybridOneAppleAuthSpec::JavaPart> {
   static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneAppleAuth;";
   static std::shared_ptr<JHybridOneAppleAuthSpec> create() {
@@ -175,6 +185,8 @@ void registerAllNatives() {
   margelo::nitro::one::JFunc_void_NativeNotificationResponse_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_NativePushToken_cxx::registerNatives();
   margelo::nitro::one::JHybridOneSecureStoreSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneSpeechSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_SpeechEvent_cxx::registerNatives();
 
   // Register Nitro Hybrid Objects
   HybridObjectRegistry::registerHybridObjectConstructor(
@@ -247,6 +259,12 @@ void registerAllNatives() {
     "OneAdaptive",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneAdaptiveSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneSpeech",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneSpeechSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

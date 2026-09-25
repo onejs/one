@@ -48,6 +48,7 @@ const suites = [
   'map',
   'apple-file',
   'apple-auth',
+  'speech',
   'clipboard',
   'network',
   'browser',
@@ -316,6 +317,11 @@ const appleAuthLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-apple-auth-check-async')) &&
   has(nodes, 'AvailableSync: ')
+// the microphone and speech prompts cover the fixture during the request
+const speechLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  ((Boolean(id(nodes, 'one-native-speech-start')) && has(nodes, 'Available: ')) ||
+    labels(nodes).includes('Don’t Allow'))
 const clipboardLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-clipboard-set')) &&
@@ -397,6 +403,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   map: mapLoaded,
   'apple-file': appleFileLoaded,
   'apple-auth': appleAuthLoaded,
+  speech: speechLoaded,
   clipboard: clipboardLoaded,
   network: networkLoaded,
   browser: browserLoaded,
@@ -429,6 +436,7 @@ const suiteHome: Record<Suite, string> = {
   map: 'nav-one-native-map',
   'apple-file': 'nav-one-native-apple-file',
   'apple-auth': 'nav-one-native-apple-auth',
+  speech: 'nav-one-native-speech',
   clipboard: 'nav-one-native-clipboard',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
@@ -732,11 +740,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       { stdio: 'ignore', timeout: 30_000 }
     )
   }
-  if (config.suite === 'notifications') {
-    // simctl privacy has no notifications service on this xcode, so a
-    // reinstall stands in for reset: it returns permission to undetermined.
+  if (config.suite === 'notifications' || config.suite === 'speech') {
+    // simctl privacy has no notifications or speech recognition service on
+    // this xcode, so a reinstall stands in for reset: it returns permission
+    // to undetermined.
     if (!config.appPath)
-      throw new Error('The notifications suite requires --app-path for a fresh install.')
+      throw new Error(`The ${config.suite} suite requires --app-path for a fresh install.`)
     execFileSync('xcrun', ['simctl', 'uninstall', config.simulatorId, config.bundleId], {
       stdio: 'ignore',
       timeout: 30_000,
@@ -4137,6 +4146,68 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         labels(n).includes('AvailableSync: true')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'speech') {
+    const log = (nodes: Node[], name: string) =>
+      labels(nodes)
+        .find((label) => label.startsWith(`${name}: `))
+        ?.slice(name.length + 2) ?? null
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-speech')
+    await wait('the fresh install reads undetermined', (n) =>
+      has(n, 'Available: true') && has(n, 'Permission: undetermined')
+    )
+
+    // negative control: without both grants a session never opens the mic
+    tap({ id: 'one-native-speech-start' })
+    await wait('a session before permission fails not-allowed', (n) =>
+      log(n, 'A') === 'error:not-allowed'
+    )
+
+    // the microphone prompt comes first, then speech recognition
+    tap({ id: 'one-native-speech-request' })
+    // each prompt carries the usage string prebuild stamped from native.app speech
+    const prompt = (n: Node[], service: string) =>
+      labels(n).some((label) => label.includes(service)) &&
+      labels(n).some((label) => label.includes('NativeFeatureTests verifies dictation.'))
+    await wait('the microphone prompt presents', (n) => prompt(n, 'microphone'))
+    screenshot('speech-microphone-prompt.png')
+    tap({ label: 'Allow' })
+    await wait('the speech recognition prompt presents', (n) =>
+      prompt(n, 'speech recognition')
+    )
+    screenshot('speech-recognition-prompt.png')
+    tap({ label: 'Allow' })
+    await wait('both grants read back granted', (n) => has(n, 'Permission: granted'))
+
+    // the ios 27 simulator's on-device speech model fails to load
+    // (localspeechrecognition cannot parse its asset, kLSRErrorDomain 300), so
+    // every session there ends in exactly this error; a device ends with
+    // `end`. the session still opened the mic and reached the recognizer.
+    const failed = 'start,error:service-not-allowed'
+    tap({ id: 'one-native-speech-start' })
+    await wait('the session reaches the recognizer and ends once', (n) =>
+      log(n, 'A') === failed
+    )
+
+    // start runs to its start event before the next call on the main queue,
+    // so a second start in the same tick replaces a live session: A never
+    // hears its recognizer's answer, B does
+    tap({ id: 'one-native-speech-replace-now' })
+    await wait('B ends while the replaced A stays silent', (n) =>
+      log(n, 'B') === failed && log(n, 'A') === 'start'
+    )
+
+    // abort ends silently: after B runs a full session, A still has no end
+    tap({ id: 'one-native-speech-abort-now' })
+    tap({ id: 'one-native-speech-replace' })
+    await wait('B ends and the aborted A heard nothing more', (n) =>
+      log(n, 'B') === failed && log(n, 'A') === 'start'
+    )
+    screenshot('speech-sessions.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
