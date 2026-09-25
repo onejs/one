@@ -1324,6 +1324,9 @@
         "uri": {
           "type": "string"
         },
+        "renderingMode": {
+          "type": "string"
+        },
         "symbolRenderingMode": {
           "type": "string",
           "enum": "SymbolRenderingMode"

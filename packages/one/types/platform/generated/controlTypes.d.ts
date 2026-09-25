@@ -2556,6 +2556,7 @@ export interface GaugeProps extends OneNativeViewProps {
 export interface ImageProps extends OneNativeViewProps {
     systemName?: string;
     uri?: string;
+    renderingMode?: 'original' | 'template';
     symbolRenderingMode?: Styles.SymbolRenderingMode | '';
     symbolVariant?: Styles.SymbolVariants | '';
     imageScale?: Styles.ImageScale | '';
