@@ -183,6 +183,21 @@ namespace One { class HybridOneSecureStoreSpec_cxx; }
  */
 namespace margelo::nitro::one::bridge::swift {
 
+  // pragma MARK: std::optional<HingeState>
+  /**
+   * Specialized version of `std::optional<HingeState>`.
+   */
+  using std__optional_HingeState_ = std::optional<HingeState>;
+  inline std::optional<HingeState> create_std__optional_HingeState_(const HingeState& value) noexcept {
+    return std::optional<HingeState>(value);
+  }
+  inline bool has_value_std__optional_HingeState_(const std::optional<HingeState>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline HingeState get_std__optional_HingeState_(const std::optional<HingeState>& optional) noexcept {
+    return optional.value();
+  }
+  
   // pragma MARK: std::shared_ptr<Promise<SizeClass>>
   /**
    * Specialized version of `std::shared_ptr<Promise<SizeClass>>`.
@@ -237,21 +252,6 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* NON_NULL swiftClosureWrapper) noexcept;
   inline Func_void_std__exception_ptr_Wrapper wrap_Func_void_std__exception_ptr(Func_void_std__exception_ptr value) noexcept {
     return Func_void_std__exception_ptr_Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::optional<HingeState>
-  /**
-   * Specialized version of `std::optional<HingeState>`.
-   */
-  using std__optional_HingeState_ = std::optional<HingeState>;
-  inline std::optional<HingeState> create_std__optional_HingeState_(const HingeState& value) noexcept {
-    return std::optional<HingeState>(value);
-  }
-  inline bool has_value_std__optional_HingeState_(const std::optional<HingeState>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline HingeState get_std__optional_HingeState_(const std::optional<HingeState>& optional) noexcept {
-    return optional.value();
   }
   
   // pragma MARK: std::shared_ptr<Promise<std::optional<HingeState>>>
@@ -321,6 +321,24 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneAdaptiveSpec>
   using std__weak_ptr_HybridOneAdaptiveSpec_ = std::weak_ptr<HybridOneAdaptiveSpec>;
   inline std__weak_ptr_HybridOneAdaptiveSpec_ weakify_std__shared_ptr_HybridOneAdaptiveSpec_(const std::shared_ptr<HybridOneAdaptiveSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<SizeClass>
+  using Result_SizeClass_ = Result<SizeClass>;
+  inline Result_SizeClass_ create_Result_SizeClass_(const SizeClass& value) noexcept {
+    return Result<SizeClass>::withValue(value);
+  }
+  inline Result_SizeClass_ create_Result_SizeClass_(const std::exception_ptr& error) noexcept {
+    return Result<SizeClass>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::optional<HingeState>>
+  using Result_std__optional_HingeState__ = Result<std::optional<HingeState>>;
+  inline Result_std__optional_HingeState__ create_Result_std__optional_HingeState__(const std::optional<HingeState>& value) noexcept {
+    return Result<std::optional<HingeState>>::withValue(value);
+  }
+  inline Result_std__optional_HingeState__ create_Result_std__optional_HingeState__(const std::exception_ptr& error) noexcept {
+    return Result<std::optional<HingeState>>::withError(error);
+  }
   
   // pragma MARK: Result<std::shared_ptr<Promise<SizeClass>>>
   using Result_std__shared_ptr_Promise_SizeClass___ = Result<std::shared_ptr<Promise<SizeClass>>>;

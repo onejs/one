@@ -7,21 +7,16 @@ import * as ReservedRegions from './ReservedRegions.native'
 export type * from './types'
 export { ReservedRegions }
 
-// the OneAdaptive nitro hybrid object, created on first use and cached.
-// live updates arrive through its callback listeners, never the bridge.
-// runtimes without the hybrid (older binaries, compat sims) fall back to the
-// defaults below instead of throwing, matching the legacy module contract.
-let hybrid: OneAdaptive | null | undefined
+// the OneAdaptive nitro hybrid object, created once at import and cached.
+// every binary carries the One pod, so a missing hybrid throws instead of
+// falling back. live updates arrive through its callback listeners.
+let hybrid: OneAdaptive | undefined
 
-function native(): OneAdaptive | undefined {
+function native(): OneAdaptive {
   if (hybrid === undefined) {
-    try {
-      hybrid = NitroModules.createHybridObject<OneAdaptive>('OneAdaptive')
-    } catch {
-      hybrid = null
-    }
+    hybrid = NitroModules.createHybridObject<OneAdaptive>('OneAdaptive')
   }
-  return hybrid ?? undefined
+  return hybrid
 }
 
 const DEFAULT_SIZE_CLASS: SizeClass = {
@@ -29,8 +24,18 @@ const DEFAULT_SIZE_CLASS: SizeClass = {
   vertical: 'unspecified',
 }
 
+// synchronous seed at import, mirroring safe-area initialWindowMetrics:
+// the first render already measures real instead of flashing defaults.
 let currentSizeClass: SizeClass = DEFAULT_SIZE_CLASS
 let currentHinge: HingeState | null = null
+
+function seedFromNative(): void {
+  const created = native()
+  currentSizeClass = created.getInitialSizeClass()
+  currentHinge = created.getInitialHinge() ?? null
+}
+
+seedFromNative()
 
 const sizeClassListeners = new Set<() => void>()
 const hingeListeners = new Set<() => void>()
@@ -66,12 +71,12 @@ function setHinge(next: HingeState | null) {
 
 function subscribeSizeClass(onStoreChange: () => void): () => void {
   sizeClassListeners.add(onStoreChange)
-  const hybrid = native()
-  if (sizeClassRemove === undefined && hybrid !== undefined) {
+  if (sizeClassRemove === undefined) {
     // the first subscriber starts the native monitor; the newcomer also
     // gets the current value in case no change lands after subscribing.
-    sizeClassRemove = hybrid.addSizeClassListener(setSizeClass)
-    hybrid.getSizeClass().then(setSizeClass, () => {})
+    const created = native()
+    sizeClassRemove = created.addSizeClassListener(setSizeClass)
+    created.getSizeClass().then(setSizeClass)
   }
   return () => {
     sizeClassListeners.delete(onStoreChange)
@@ -84,10 +89,10 @@ function subscribeSizeClass(onStoreChange: () => void): () => void {
 
 function subscribeHinge(onStoreChange: () => void): () => void {
   hingeListeners.add(onStoreChange)
-  const hybrid = native()
-  if (hingeRemove === undefined && hybrid !== undefined) {
-    hingeRemove = hybrid.addHingeListener((hinge) => setHinge(hinge ?? null))
-    hybrid.getHinge().then((hinge) => setHinge(hinge ?? null), () => {})
+  if (hingeRemove === undefined) {
+    const created = native()
+    hingeRemove = created.addHingeListener((hinge) => setHinge(hinge ?? null))
+    created.getHinge().then((hinge) => setHinge(hinge ?? null))
   }
   return () => {
     hingeListeners.delete(onStoreChange)
@@ -110,7 +115,7 @@ export function useSizeClass(): SizeClass {
 }
 
 export function getSizeClass(): Promise<SizeClass> {
-  return native()?.getSizeClass() ?? Promise.resolve(DEFAULT_SIZE_CLASS)
+  return native().getSizeClass()
 }
 
 /**
@@ -122,13 +127,13 @@ export function useHinge(): HingeState | null {
 }
 
 export async function getHinge(): Promise<HingeState | null> {
-  return (await native()?.getHinge()) ?? null
+  return (await native().getHinge()) ?? null
 }
 
 /**
  * Subscribes to hardware hinge changes.
  */
 export function onHingeChange(callback: (hinge: HingeState | null) => void): () => void {
-  const remove = native()?.addHingeListener((hinge) => callback(hinge ?? null))
-  return () => remove?.()
+  const remove = native().addHingeListener((hinge) => callback(hinge ?? null))
+  return () => remove()
 }

@@ -64,6 +64,21 @@ final class HybridOneAdaptive: HybridOneAdaptiveSpec {
     }
   }
 
+  // synchronous seed for the JS import-time read. nitro invokes sync
+  // methods off the main thread; scene traits are main-only, so hop.
+  func getInitialSizeClass() throws -> SizeClass {
+    if Thread.isMainThread {
+      return MainActor.assumeIsolated { self.readSizeClass() }
+    }
+    return DispatchQueue.main.sync {
+      MainActor.assumeIsolated { self.readSizeClass() }
+    }
+  }
+
+  func getInitialHinge() throws -> HingeState? {
+    return lock.withLock { currentHinge }
+  }
+
   func getHinge() throws -> Promise<HingeState?> {
     let hinge: HingeState? = lock.withLock { currentHinge }
     return Promise.async { hinge }

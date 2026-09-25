@@ -32,6 +32,14 @@ abstract class HybridOneAdaptiveSpec: HybridObject() {
   // Methods
   @DoNotStrip
   @Keep
+  abstract fun getInitialSizeClass(): SizeClass
+  
+  @DoNotStrip
+  @Keep
+  abstract fun getInitialHinge(): HingeState?
+  
+  @DoNotStrip
+  @Keep
   abstract fun getSizeClass(): Promise<SizeClass>
   
   @DoNotStrip

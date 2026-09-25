@@ -19,9 +19,9 @@ namespace margelo::nitro::one { struct SizeClass; }
 namespace margelo::nitro::one { struct HingeState; }
 
 #include "SizeClass.hpp"
-#include <NitroModules/Promise.hpp>
 #include "HingeState.hpp"
 #include <optional>
+#include <NitroModules/Promise.hpp>
 #include <functional>
 
 namespace margelo::nitro::one {
@@ -55,6 +55,8 @@ namespace margelo::nitro::one {
 
     public:
       // Methods
+      virtual SizeClass getInitialSizeClass() = 0;
+      virtual std::optional<HingeState> getInitialHinge() = 0;
       virtual std::shared_ptr<Promise<SizeClass>> getSizeClass() = 0;
       virtual std::shared_ptr<Promise<std::optional<HingeState>>> getHinge() = 0;
       virtual std::function<void()> addSizeClassListener(const std::function<void(const SizeClass& /* sizeClass */)>& listener) = 0;
