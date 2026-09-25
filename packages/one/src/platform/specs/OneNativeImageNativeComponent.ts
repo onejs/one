@@ -42,6 +42,7 @@ type OneNativeStyleNative = Readonly<{
 }>
 interface NativeProps extends ViewProps {
   systemName: string
+  uri: string
   symbolRenderingMode: string
   symbolVariant: string
   imageScale: string
