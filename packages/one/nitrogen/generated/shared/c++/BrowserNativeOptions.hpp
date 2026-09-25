@@ -30,10 +30,13 @@
 
 // Forward declaration of `BrowserPresentationStyle` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserPresentationStyle; }
+// Forward declaration of `BrowserColorScheme` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrowserColorScheme; }
 
 #include "BrowserPresentationStyle.hpp"
 #include <optional>
 #include <string>
+#include "BrowserColorScheme.hpp"
 
 namespace margelo::nitro::one {
 
@@ -45,13 +48,15 @@ namespace margelo::nitro::one {
     std::optional<BrowserPresentationStyle> presentationStyle     SWIFT_PRIVATE;
     std::optional<std::string> browserPackage     SWIFT_PRIVATE;
     std::optional<std::string> toolbarColor     SWIFT_PRIVATE;
+    std::optional<std::string> secondaryToolbarColor     SWIFT_PRIVATE;
     std::optional<std::string> controlsColor     SWIFT_PRIVATE;
     std::optional<bool> showTitle     SWIFT_PRIVATE;
     std::optional<bool> preferEphemeralSession     SWIFT_PRIVATE;
+    std::optional<BrowserColorScheme> colorScheme     SWIFT_PRIVATE;
 
   public:
     BrowserNativeOptions() = default;
-    explicit BrowserNativeOptions(std::optional<BrowserPresentationStyle> presentationStyle, std::optional<std::string> browserPackage, std::optional<std::string> toolbarColor, std::optional<std::string> controlsColor, std::optional<bool> showTitle, std::optional<bool> preferEphemeralSession): presentationStyle(presentationStyle), browserPackage(browserPackage), toolbarColor(toolbarColor), controlsColor(controlsColor), showTitle(showTitle), preferEphemeralSession(preferEphemeralSession) {}
+    explicit BrowserNativeOptions(std::optional<BrowserPresentationStyle> presentationStyle, std::optional<std::string> browserPackage, std::optional<std::string> toolbarColor, std::optional<std::string> secondaryToolbarColor, std::optional<std::string> controlsColor, std::optional<bool> showTitle, std::optional<bool> preferEphemeralSession, std::optional<BrowserColorScheme> colorScheme): presentationStyle(presentationStyle), browserPackage(browserPackage), toolbarColor(toolbarColor), secondaryToolbarColor(secondaryToolbarColor), controlsColor(controlsColor), showTitle(showTitle), preferEphemeralSession(preferEphemeralSession), colorScheme(colorScheme) {}
 
   public:
     friend bool operator==(const BrowserNativeOptions& lhs, const BrowserNativeOptions& rhs) = default;
@@ -70,9 +75,11 @@ namespace margelo::nitro {
         JSIConverter<std::optional<margelo::nitro::one::BrowserPresentationStyle>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "presentationStyle"))),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "browserPackage"))),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "toolbarColor"))),
+        JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "secondaryToolbarColor"))),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "controlsColor"))),
         JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "showTitle"))),
-        JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "preferEphemeralSession")))
+        JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "preferEphemeralSession"))),
+        JSIConverter<std::optional<margelo::nitro::one::BrowserColorScheme>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "colorScheme")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::BrowserNativeOptions& arg) {
@@ -80,9 +87,11 @@ namespace margelo::nitro {
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "presentationStyle"), JSIConverter<std::optional<margelo::nitro::one::BrowserPresentationStyle>>::toJSI(runtime, arg.presentationStyle));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "browserPackage"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.browserPackage));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "toolbarColor"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.toolbarColor));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "secondaryToolbarColor"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.secondaryToolbarColor));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "controlsColor"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.controlsColor));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "showTitle"), JSIConverter<std::optional<bool>>::toJSI(runtime, arg.showTitle));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "preferEphemeralSession"), JSIConverter<std::optional<bool>>::toJSI(runtime, arg.preferEphemeralSession));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "colorScheme"), JSIConverter<std::optional<margelo::nitro::one::BrowserColorScheme>>::toJSI(runtime, arg.colorScheme));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -96,9 +105,11 @@ namespace margelo::nitro {
       if (!JSIConverter<std::optional<margelo::nitro::one::BrowserPresentationStyle>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "presentationStyle")))) return false;
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "browserPackage")))) return false;
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "toolbarColor")))) return false;
+      if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "secondaryToolbarColor")))) return false;
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "controlsColor")))) return false;
       if (!JSIConverter<std::optional<bool>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "showTitle")))) return false;
       if (!JSIConverter<std::optional<bool>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "preferEphemeralSession")))) return false;
+      if (!JSIConverter<std::optional<margelo::nitro::one::BrowserColorScheme>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "colorScheme")))) return false;
       return true;
     }
   };

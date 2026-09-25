@@ -35,6 +35,7 @@ target_sources(
   # Shared Nitrogen C++ sources
   ../nitrogen/generated/shared/c++/HybridOneAdaptiveSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAppInfoSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneAppleAuthSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneBrowserSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneClipboardSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneCryptoSpec.cpp
@@ -48,6 +49,7 @@ target_sources(
   # Android-specific Nitrogen C++ sources
   ../nitrogen/generated/android/c++/JHybridOneAdaptiveSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneAppInfoSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneAppleAuthSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneBrowserSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneClipboardSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneCryptoSpec.cpp

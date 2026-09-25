@@ -10,7 +10,9 @@
 #include <fbjni/fbjni.h>
 #include "BrowserNativeOptions.hpp"
 
+#include "BrowserColorScheme.hpp"
 #include "BrowserPresentationStyle.hpp"
+#include "JBrowserColorScheme.hpp"
 #include "JBrowserPresentationStyle.hpp"
 #include <optional>
 #include <string>
@@ -40,19 +42,25 @@ namespace margelo::nitro::one {
       jni::local_ref<jni::JString> browserPackage = this->getFieldValue(fieldBrowserPackage);
       static const auto fieldToolbarColor = clazz->getField<jni::JString>("toolbarColor");
       jni::local_ref<jni::JString> toolbarColor = this->getFieldValue(fieldToolbarColor);
+      static const auto fieldSecondaryToolbarColor = clazz->getField<jni::JString>("secondaryToolbarColor");
+      jni::local_ref<jni::JString> secondaryToolbarColor = this->getFieldValue(fieldSecondaryToolbarColor);
       static const auto fieldControlsColor = clazz->getField<jni::JString>("controlsColor");
       jni::local_ref<jni::JString> controlsColor = this->getFieldValue(fieldControlsColor);
       static const auto fieldShowTitle = clazz->getField<jni::JBoolean>("showTitle");
       jni::local_ref<jni::JBoolean> showTitle = this->getFieldValue(fieldShowTitle);
       static const auto fieldPreferEphemeralSession = clazz->getField<jni::JBoolean>("preferEphemeralSession");
       jni::local_ref<jni::JBoolean> preferEphemeralSession = this->getFieldValue(fieldPreferEphemeralSession);
+      static const auto fieldColorScheme = clazz->getField<JBrowserColorScheme>("colorScheme");
+      jni::local_ref<JBrowserColorScheme> colorScheme = this->getFieldValue(fieldColorScheme);
       return BrowserNativeOptions(
         presentationStyle != nullptr ? std::make_optional(presentationStyle->toCpp()) : std::nullopt,
         browserPackage != nullptr ? std::make_optional(browserPackage->toStdString()) : std::nullopt,
         toolbarColor != nullptr ? std::make_optional(toolbarColor->toStdString()) : std::nullopt,
+        secondaryToolbarColor != nullptr ? std::make_optional(secondaryToolbarColor->toStdString()) : std::nullopt,
         controlsColor != nullptr ? std::make_optional(controlsColor->toStdString()) : std::nullopt,
         showTitle != nullptr ? std::make_optional(static_cast<bool>(showTitle->value())) : std::nullopt,
-        preferEphemeralSession != nullptr ? std::make_optional(static_cast<bool>(preferEphemeralSession->value())) : std::nullopt
+        preferEphemeralSession != nullptr ? std::make_optional(static_cast<bool>(preferEphemeralSession->value())) : std::nullopt,
+        colorScheme != nullptr ? std::make_optional(colorScheme->toCpp()) : std::nullopt
       );
     }
 
@@ -62,7 +70,7 @@ namespace margelo::nitro::one {
      */
     [[maybe_unused]]
     static jni::local_ref<JBrowserNativeOptions::javaobject> fromCpp(const BrowserNativeOptions& value) {
-      using JSignature = JBrowserNativeOptions(jni::alias_ref<JBrowserPresentationStyle>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JBoolean>);
+      using JSignature = JBrowserNativeOptions(jni::alias_ref<JBrowserPresentationStyle>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<jni::JBoolean>, jni::alias_ref<JBrowserColorScheme>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
@@ -70,9 +78,11 @@ namespace margelo::nitro::one {
         value.presentationStyle.has_value() ? JBrowserPresentationStyle::fromCpp(value.presentationStyle.value()) : nullptr,
         value.browserPackage.has_value() ? jni::make_jstring(value.browserPackage.value()) : nullptr,
         value.toolbarColor.has_value() ? jni::make_jstring(value.toolbarColor.value()) : nullptr,
+        value.secondaryToolbarColor.has_value() ? jni::make_jstring(value.secondaryToolbarColor.value()) : nullptr,
         value.controlsColor.has_value() ? jni::make_jstring(value.controlsColor.value()) : nullptr,
         value.showTitle.has_value() ? jni::JBoolean::valueOf(value.showTitle.value()) : nullptr,
-        value.preferEphemeralSession.has_value() ? jni::JBoolean::valueOf(value.preferEphemeralSession.value()) : nullptr
+        value.preferEphemeralSession.has_value() ? jni::JBoolean::valueOf(value.preferEphemeralSession.value()) : nullptr,
+        value.colorScheme.has_value() ? JBrowserColorScheme::fromCpp(value.colorScheme.value()) : nullptr
       );
     }
   };

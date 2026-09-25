@@ -18,7 +18,7 @@ public extension BrowserNativeOptions {
   /**
    * Create a new instance of `BrowserNativeOptions`.
    */
-  init(presentationStyle: BrowserPresentationStyle?, browserPackage: String?, toolbarColor: String?, controlsColor: String?, showTitle: Bool?, preferEphemeralSession: Bool?) {
+  init(presentationStyle: BrowserPresentationStyle?, browserPackage: String?, toolbarColor: String?, secondaryToolbarColor: String?, controlsColor: String?, showTitle: Bool?, preferEphemeralSession: Bool?, colorScheme: BrowserColorScheme?) {
     self.init({ () -> bridge.std__optional_BrowserPresentationStyle_ in
       if let __unwrappedValue = presentationStyle {
         return bridge.create_std__optional_BrowserPresentationStyle_(__unwrappedValue)
@@ -38,6 +38,12 @@ public extension BrowserNativeOptions {
         return .init()
       }
     }(), { () -> bridge.std__optional_std__string_ in
+      if let __unwrappedValue = secondaryToolbarColor {
+        return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_std__string_ in
       if let __unwrappedValue = controlsColor {
         return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
       } else {
@@ -52,6 +58,12 @@ public extension BrowserNativeOptions {
     }(), { () -> bridge.std__optional_bool_ in
       if let __unwrappedValue = preferEphemeralSession {
         return bridge.create_std__optional_bool_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_BrowserColorScheme_ in
+      if let __unwrappedValue = colorScheme {
+        return bridge.create_std__optional_BrowserColorScheme_(__unwrappedValue)
       } else {
         return .init()
       }
@@ -80,6 +92,18 @@ public extension BrowserNativeOptions {
     return { () -> String? in
       if bridge.has_value_std__optional_std__string_(self.__toolbarColor) {
         let __unwrapped = bridge.get_std__optional_std__string_(self.__toolbarColor)
+        return String(__unwrapped)
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var secondaryToolbarColor: String? {
+    return { () -> String? in
+      if bridge.has_value_std__optional_std__string_(self.__secondaryToolbarColor) {
+        let __unwrapped = bridge.get_std__optional_std__string_(self.__secondaryToolbarColor)
         return String(__unwrapped)
       } else {
         return nil
@@ -121,5 +145,10 @@ public extension BrowserNativeOptions {
         return nil
       }
     }()
+  }
+  
+  @inline(__always)
+  var colorScheme: BrowserColorScheme? {
+    return self.__colorScheme.value
   }
 }

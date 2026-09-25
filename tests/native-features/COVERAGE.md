@@ -129,7 +129,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Clipboard` | clipboard | missing | iOS suite only |
 | `One.Haptics` | haptics | haptics |  |
 | `One.Network` | network | missing | iOS suite only |
-| `One.Browser` | browser | missing | iOS suite only |
+| `One.AppleAuth` | apple-auth | apple-auth |  |
+| `One.Browser` | browser | browser |  |
 | `One.ImagePicker` | image-picker | image-picker |  |
 | `One.DocumentPicker` | missing | missing | fixture exists, no suite opens it |
 | `One.SecureStore` | missing | missing | no fixture or suite |

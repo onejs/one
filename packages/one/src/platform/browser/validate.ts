@@ -46,6 +46,8 @@ function assertOptionalBoolean(
   }
 }
 
+const knownColorSchemes: readonly string[] = ['system', 'light', 'dark']
+
 export function assertOpenOptions(
   options: unknown,
   verb: string
@@ -64,8 +66,18 @@ export function assertOpenOptions(
       `${verb}: unknown presentationStyle ${JSON.stringify(fields.presentationStyle)}`
     )
   }
+  if (
+    fields.colorScheme !== undefined &&
+    (typeof fields.colorScheme !== 'string' ||
+      !knownColorSchemes.includes(fields.colorScheme))
+  ) {
+    throw new Error(
+      `${verb}: unknown colorScheme ${JSON.stringify(fields.colorScheme)}`
+    )
+  }
   assertOptionalString(fields, 'browserPackage', verb)
   assertOptionalString(fields, 'toolbarColor', verb)
+  assertOptionalString(fields, 'secondaryToolbarColor', verb)
   assertOptionalString(fields, 'controlsColor', verb)
   assertOptionalBoolean(fields, 'showTitle', verb)
 }

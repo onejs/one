@@ -206,6 +206,11 @@ const testScreens = [
     label: 'One Native Browser',
     testID: 'nav-one-native-browser',
   },
+  {
+    href: '/one-native-apple-auth',
+    label: 'One Native Apple Auth',
+    testID: 'nav-one-native-apple-auth',
+  },
 ] as const
 
 export default function HomeScreen() {

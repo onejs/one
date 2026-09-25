@@ -47,6 +47,7 @@ const suites = [
   'media',
   'map',
   'apple-file',
+  'apple-auth',
   'clipboard',
   'network',
   'browser',
@@ -311,6 +312,10 @@ const appleFileLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   (Boolean(id(nodes, 'one-native-apple-file-category-signin')) ||
     nodes.every((n) => n.type === 'Application'))
+const appleAuthLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-apple-auth-check-async')) &&
+  has(nodes, 'AvailableSync: ')
 const clipboardLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-clipboard-set')) &&
@@ -391,6 +396,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   media: mediaLoaded,
   map: mapLoaded,
   'apple-file': appleFileLoaded,
+  'apple-auth': appleAuthLoaded,
   clipboard: clipboardLoaded,
   network: networkLoaded,
   browser: browserLoaded,
@@ -422,6 +428,7 @@ const suiteHome: Record<Suite, string> = {
   media: 'nav-one-native-media',
   map: 'nav-one-native-map',
   'apple-file': 'nav-one-native-apple-file',
+  'apple-auth': 'nav-one-native-apple-auth',
   clipboard: 'nav-one-native-clipboard',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
@@ -4085,11 +4092,65 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
+  if (config.suite === 'apple-auth') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-apple-auth')
+    await wait('apple auth fixture mounted', (n) =>
+      labels(n).includes('AvailableSync: true')
+    )
+
+    // async availability resolves true
+    await wait('isAvailableAsync resolves true', (n) =>
+      labels(n).includes('AvailableAsync: true')
+    )
+
+    // AppleAuthenticationButton renders
+    await wait('AppleAuthenticationButton renders', (n) =>
+      Boolean(id(n, 'one-native-apple-auth-button')) ||
+      labels(n).includes('Continue with Apple') ||
+      labels(n).includes('Sign in with Apple')
+    )
+    screenshot('apple-auth-mounted.png')
+
+    // tapping AppleAuthenticationButton wrapper fires onPress
+    tap({ id: 'one-native-apple-auth-button' })
+    await wait('tapping button increments tap count', (n) =>
+      labels(n).includes('ButtonTaps: 1')
+    )
+
+    // getCredentialStateAsync resolves with state
+    tap({ id: 'one-native-apple-auth-credential' })
+    await wait('credential state resolves', (n) =>
+      labels(n).some((l) => l.startsWith('CredentialState: state:'))
+    )
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`apple auth recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-apple-auth')
+      await wait(`apple auth recycle ${cycle}: a fresh fixture mounts`, (n) =>
+        labels(n).includes('AvailableSync: true')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
   if (config.suite === 'browser') {
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-browser')
     await wait('browser fixture mounted', (n) => labels(n).includes('Result: none'))
+
+    // warmup and mayLaunchUrl exercise native methods
+    tap({ id: 'one-native-browser-warmup' })
+    await wait('warmup returns boolean result', (n) =>
+      labels(n).includes('Warmup: false') || labels(n).includes('Warmup: true')
+    )
+    tap({ id: 'one-native-browser-may-launch' })
+    await wait('mayLaunchUrl returns boolean result', (n) =>
+      labels(n).includes('MayLaunchUrl: false') || labels(n).includes('MayLaunchUrl: true')
+    )
 
     // a user dismiss resolves cancel. the sheet exposes no accessibility
     // children, so presentation is the collapsed tree and the close tap

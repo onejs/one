@@ -45,3 +45,15 @@ export type {
   NetworkStateType,
 } from './network'
 export { SecureStore } from './secure-store'
+export { AppleAuth } from './apple-auth'
+export type {
+  AppleAuthenticationButtonProps,
+  AppleAuthenticationButtonStyle,
+  AppleAuthenticationButtonType,
+  AppleAuthenticationCredential,
+  AppleAuthenticationCredentialState,
+  AppleAuthenticationFullName,
+  AppleAuthenticationScope,
+  AppleAuthenticationSignInOptions,
+  AppleAuthenticationUserDetectionStatus,
+} from './apple-auth'

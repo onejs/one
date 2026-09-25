@@ -58,6 +58,8 @@ namespace margelo::nitro::one {
     std::shared_ptr<Promise<BrowserResult>> dismiss() override;
     std::shared_ptr<Promise<BrowserAuthResult>> openAuthSession(const std::string& url, const std::optional<std::string>& redirectUrl, const BrowserNativeOptions& options) override;
     void dismissAuthSession() override;
+    std::shared_ptr<Promise<bool>> warmup(const std::optional<std::string>& browserPackage) override;
+    std::shared_ptr<Promise<bool>> mayLaunchUrl(const std::string& url, const std::optional<std::string>& browserPackage) override;
 
   private:
     jni::global_ref<JHybridOneBrowserSpec::JavaPart> _javaPart;

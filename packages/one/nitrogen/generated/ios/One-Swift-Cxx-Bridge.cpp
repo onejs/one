@@ -10,6 +10,7 @@
 // Include C++ implementation defined types
 #include "HybridOneAdaptiveSpecSwift.hpp"
 #include "HybridOneAppInfoSpecSwift.hpp"
+#include "HybridOneAppleAuthSpecSwift.hpp"
 #include "HybridOneBrowserSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
 #include "HybridOneCryptoSpecSwift.hpp"
@@ -89,6 +90,38 @@ namespace margelo::nitro::one::bridge::swift {
     return swiftPart.toUnsafe();
   }
   
+  // pragma MARK: std::function<void(const AppleAuthCredential& /* result */)>
+  Func_void_AppleAuthCredential create_Func_void_AppleAuthCredential(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_AppleAuthCredential::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const AppleAuthCredential& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(double /* result */)>
+  Func_void_double create_Func_void_double(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_double::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](double result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneAppleAuthSpec>
+  std::shared_ptr<HybridOneAppleAuthSpec> create_std__shared_ptr_HybridOneAppleAuthSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneAppleAuthSpec_cxx swiftPart = One::HybridOneAppleAuthSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneAppleAuthSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneAppleAuthSpec_(std__shared_ptr_HybridOneAppleAuthSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneAppleAuthSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneAppleAuthSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneAppleAuthSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneAppleAuthSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
   // pragma MARK: std::function<void(const BrowserResult& /* result */)>
   Func_void_BrowserResult create_Func_void_BrowserResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_BrowserResult::fromUnsafe(swiftClosureWrapper);
@@ -101,6 +134,14 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_BrowserAuthResult create_Func_void_BrowserAuthResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_BrowserAuthResult::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const BrowserAuthResult& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(bool /* result */)>
+  Func_void_bool create_Func_void_bool(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_bool::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](bool result) mutable -> void {
       swiftClosure.call(result);
     };
   }
@@ -125,14 +166,6 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_std__string create_Func_void_std__string(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__string::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const std::string& result) mutable -> void {
-      swiftClosure.call(result);
-    };
-  }
-  
-  // pragma MARK: std::function<void(bool /* result */)>
-  Func_void_bool create_Func_void_bool(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_bool::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](bool result) mutable -> void {
       swiftClosure.call(result);
     };
   }
@@ -285,14 +318,6 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_NativePermissionResponse create_Func_void_NativePermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_NativePermissionResponse::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const NativePermissionResponse& result) mutable -> void {
-      swiftClosure.call(result);
-    };
-  }
-  
-  // pragma MARK: std::function<void(double /* result */)>
-  Func_void_double create_Func_void_double(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_double::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](double result) mutable -> void {
       swiftClosure.call(result);
     };
   }

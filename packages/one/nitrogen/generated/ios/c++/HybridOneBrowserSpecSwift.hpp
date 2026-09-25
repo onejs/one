@@ -20,6 +20,8 @@ namespace margelo::nitro::one { enum class BrowserResultType; }
 namespace margelo::nitro::one { struct BrowserNativeOptions; }
 // Forward declaration of `BrowserPresentationStyle` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserPresentationStyle; }
+// Forward declaration of `BrowserColorScheme` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrowserColorScheme; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
 namespace margelo::nitro::one { struct BrowserAuthResult; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
@@ -32,6 +34,7 @@ namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 #include "BrowserNativeOptions.hpp"
 #include "BrowserPresentationStyle.hpp"
 #include <optional>
+#include "BrowserColorScheme.hpp"
 #include "BrowserAuthResult.hpp"
 #include "BrowserAuthResultType.hpp"
 
@@ -114,6 +117,22 @@ namespace margelo::nitro::one {
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
+    }
+    inline std::shared_ptr<Promise<bool>> warmup(const std::optional<std::string>& browserPackage) override {
+      auto __result = _swiftPart.warmup(browserPackage);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<bool>> mayLaunchUrl(const std::string& url, const std::optional<std::string>& browserPackage) override {
+      auto __result = _swiftPart.mayLaunchUrl(url, browserPackage);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
     }
 
   private:
