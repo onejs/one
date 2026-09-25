@@ -25,6 +25,14 @@ const [active, setActive] = useState(false)
 </One.UI.PictureInPicture>
 ```
 
+A video plays in the window as itself:
+
+```tsx
+<One.UI.PictureInPicture style={{ width: '100%', aspectRatio: 16 / 9 }} autoEnter>
+  <One.iOS.VideoPlayer url={url} autoplay style={{ flex: 1 }} />
+</One.UI.PictureInPicture>
+```
+
 Turn it on in the app manifest; prebuild adds the iOS `audio` background
 mode and the Android `supportsPictureInPicture` activity flag:
 
@@ -32,10 +40,12 @@ mode and the Android `supportsPictureInPicture` activity flag:
 one({ native: { app: { pictureInPicture: true } } })
 ```
 
-iOS renders the children into an `AVSampleBufferDisplayLayer` about 30
-times a second, so content drawn outside Core Animation (video players,
-Metal and WebGPU canvases) shows as its last snapshot. The audio session
-is set to playback, mixing with other audio. iPhone simulators report
+When the children hold a video player (`One.iOS.VideoPlayer`, or any view
+backed by an `AVPlayerLayer`), iOS plays that video live in the window with
+the system playback controls. Other content is rendered into an
+`AVSampleBufferDisplayLayer` about 30 times a second, so content drawn
+outside Core Animation (Metal and WebGPU canvases) shows as its last
+snapshot. The audio session is set to playback, mixing with other audio. iPhone simulators report
 picture in picture as unsupported; use a device or an iPad simulator.
 
 Android shrinks the whole activity into the window, so the component

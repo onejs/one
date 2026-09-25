@@ -8,19 +8,21 @@ final class OneNativePictureInPictureLayerView: UIView {
   override class var layerClass: AnyClass { AVSampleBufferDisplayLayer.self }
 }
 
-// uniform picture in picture (One.UI.PictureInPicture) on ios. the host's react
-// children are rendered into pixel buffers and enqueued on an
-// AVSampleBufferDisplayLayer, the content source apple provides for content
-// that is not an AVPlayer. frames render only while the window is up, plus one
-// before backgrounding so an automatic start opens on current content. the
-// timer keeps firing in the background because an active pip session keeps
-// the process running.
+// uniform picture in picture (One.UI.PictureInPicture) on ios. when the
+// children hold a video (an AVPlayerLayer, as One.iOS.VideoPlayer does), the
+// window plays that player live. otherwise the host's react children are
+// rendered into pixel buffers and enqueued on an AVSampleBufferDisplayLayer,
+// the content source apple provides for content that is not an AVPlayer.
+// frames render only while the window is up, plus one before backgrounding so
+// an automatic start opens on current content. the timer keeps firing in the
+// background because an active pip session keeps the process running.
 @objcMembers public final class OneNativePictureInPicture: NSObject {
   public let layerView: UIView = OneNativePictureInPictureLayerView()
   public var onChange: ((Bool) -> Void)?
 
   private weak var host: UIView?
   private var controller: AVPictureInPictureController?
+  private weak var playerLayer: AVPlayerLayer?
   private var possibleObservation: NSKeyValueObservation?
   private var requested = false
   private var autoEnter = false
@@ -76,6 +78,7 @@ final class OneNativePictureInPictureLayerView: UIView {
     if let controller, controller.isPictureInPictureActive { controller.stopPictureInPicture() }
     possibleObservation = nil
     controller = nil
+    playerLayer = nil
     clearInline()
   }
 
@@ -88,10 +91,9 @@ final class OneNativePictureInPictureLayerView: UIView {
     let session = AVAudioSession.sharedInstance()
     try? session.setCategory(.playback, mode: .moviePlayback, options: [.mixWithOthers])
     try? session.setActive(true)
+    playerLayer = findPlayerLayer()
     render()
-    let source = AVPictureInPictureController.ContentSource(
-      sampleBufferDisplayLayer: displayLayer, playbackDelegate: delegate)
-    let controller = AVPictureInPictureController(contentSource: source)
+    let controller = AVPictureInPictureController(contentSource: contentSource())
     controller.delegate = delegate
     controller.canStartPictureInPictureAutomaticallyFromInline = autoEnter
     // a new controller is not possible yet; a start requested before it is
@@ -112,6 +114,7 @@ final class OneNativePictureInPictureLayerView: UIView {
       return
     }
     if controller.isPictureInPictureActive { return }
+    selectSource()
     render()
     if controller.isPictureInPicturePossible {
       controller.startPictureInPicture()
@@ -126,7 +129,37 @@ final class OneNativePictureInPictureLayerView: UIView {
   }
 
   @objc private func willResignActive() {
-    if autoEnter { render() }
+    guard autoEnter else { return }
+    selectSource()
+    render()
+  }
+
+  // a video mounts after the controller exists (children mount after props,
+  // and the player view builds lazily), so the source is chosen again right
+  // before every start the app or the system makes.
+  private func selectSource() {
+    guard let controller, !controller.isPictureInPictureActive else { return }
+    playerLayer = findPlayerLayer()
+    let current = controller.contentSource
+    let unchanged =
+      playerLayer.map { $0 === current?.playerLayer }
+      ?? (current?.sampleBufferDisplayLayer === displayLayer)
+    if !unchanged { controller.contentSource = contentSource() }
+  }
+
+  private func contentSource() -> AVPictureInPictureController.ContentSource {
+    if let playerLayer { return .init(playerLayer: playerLayer) }
+    return .init(sampleBufferDisplayLayer: displayLayer, playbackDelegate: delegate)
+  }
+
+  private func findPlayerLayer() -> AVPlayerLayer? {
+    var pending = host?.subviews.filter { $0 !== layerView }.map(\.layer) ?? []
+    while !pending.isEmpty {
+      let layer = pending.removeFirst()
+      if let playerLayer = layer as? AVPlayerLayer, playerLayer.player != nil { return playerLayer }
+      pending.append(contentsOf: layer.sublayers ?? [])
+    }
+    return nil
   }
 
   // coming back to the app brings the content back inline, as android does.
@@ -145,7 +178,7 @@ final class OneNativePictureInPictureLayerView: UIView {
   }
 
   private func startTimer() {
-    guard timer == nil else { return }
+    guard timer == nil, playerLayer == nil else { return }
     let timer = Timer(timeInterval: 1.0 / 30.0, repeats: true) { [weak self] _ in self?.render() }
     RunLoop.main.add(timer, forMode: .common)
     self.timer = timer
@@ -157,7 +190,7 @@ final class OneNativePictureInPictureLayerView: UIView {
   }
 
   private func render() {
-    guard let host else { return }
+    guard let host, playerLayer == nil else { return }
     let bounds = host.bounds
     let scale = max(host.traitCollection.displayScale, 1)
     let width = Int((bounds.width * scale).rounded())
