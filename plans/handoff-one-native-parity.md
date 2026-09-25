@@ -25,7 +25,7 @@ bounded catalog, fixture and conformance work. Every worker goes through `tm run
   It rides its own `onNativeTabsAction` event rather than the controlled protocol, because a
   press is not a state change, so nothing moves optimistically and there is no page flash.
 - The package floor is iOS 26. `MINIMUM_IOS` in `codegen/generate.ts` is the only place it is set;
-  `schema.json` carries it forward and `VxrnNative.podspec` reads it from there. Raising it deleted
+  `schema.json` carries it forward and `One.podspec` reads it from there. Raising it deleted
   every `@available` and `if #available` branch from the generated Swift, and it is what makes
   `WebView` an ordinary leaf instead of a design problem.
 - Generated Swift is typechecked against the simulator SDK at an iOS 26 target.
@@ -92,7 +92,7 @@ scheme `OneNativeTests`. A fresh prebuild uses the checked-in app config's
 those names when installing or running automation.
 
 ```sh
-cd /Users/n8/.worktrees/one-native/packages/native
+cd /Users/n8/.worktrees/one-native/packages/one
 bun run generate:check
 bun run typecheck
 bun run test
@@ -349,7 +349,7 @@ answer is the second. A bogus value raises `Unknown SwiftUI TabBarMinimizeBehavi
 `assertSwiftUIValue`, so the value reaches SwiftUI; the device is iOS 26, so nothing is version
 gated; and `OneNativeTabsView.swift:122` applies `.oneNativeTabBarMinimizeBehavior`. What is
 missing is the thing the modifier observes. Each tab hosts `OneNativeSlot(content: page.view)`
-where `page.view` is an opaque UIView, and `@vxrn/native` exposes no SwiftUI scroll container at all:
+where `page.view` is an opaque UIView, and `one` exposes no SwiftUI scroll container at all:
 zero `ScrollView` or `UIScrollView` across its Swift and TSX sources. SwiftUI's minimize
 behaviour reacts to a SwiftUI scroll view's offset, and the thing that actually scrolls here is a
 React Native scroll view SwiftUI never sees. The scroll indicator visible in the sweep frames is
@@ -437,7 +437,7 @@ prebuild. Reconcile the two ids before anyone regenerates the project.
    intercepts by NATIVE VIEW NAME, not npm specifier.
    `registerNativeComponentImplementation(viewName, component)` fills a global map
    that both `requireNativeComponent` and `codegenNativeComponent` consult first
-   (`~/soot/packages/sootsim-engine/src/react-native/index.ts`). `@vxrn/native` is
+   (`~/soot/packages/sootsim-engine/src/react-native/index.ts`). `one` is
    only a boot-time loader key in `~/soot/packages/compat/src/native-seam-loaders.ts`;
    a register module is side-effect-only. So a Soot seam implements
    `OneNativePicker`, `OneNativeAlert` and the rest, and our public adapters in
@@ -451,13 +451,13 @@ prebuild. Reconcile the two ids before anyone regenerates the project.
 3. The V2 integration resolved the runtime boundary by caller behavior. One's
    stack-toolbar adapter and registry were removed. Direct
    ToolbarHost/ToolbarItem/MenuAction, Color, SplitView, and zoom capabilities now
-   ship beside the generated SwiftUI and Compose surfaces in `@vxrn/native`.
+   ship beside the generated SwiftUI and Compose surfaces in `one`.
    `plans/one-native-vxrn-native-boundary.md` records the package consolidation and
    the remaining capability boundaries.
 
 ## Measurement and delivery
 
-`bun packages/native/codegen/measure.ts` reports minified/gzip JS and Bun-side
+`bun packages/one/codegen/measure.ts` reports minified/gzip JS and Bun-side
 menu flattening. `npm pack --dry-run --json --ignore-scripts` reports distribution
 size. Release native size comes from the arm64 archive under
 `tests/native-features/ios/build/Pods.build/Release-iphonesimulator/OneNative.build/Objects-normal/arm64/Binary/libOneNative.a`.

@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import React from 'react'
 
-vi.mock('@vxrn/native', () => ({
+vi.mock('../../../platform', () => ({
   MenuAction: () => null,
   ToolbarHost: () => null,
   ToolbarItem: () => null,

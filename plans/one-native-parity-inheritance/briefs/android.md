@@ -2,7 +2,7 @@ Planning session. Produce a written plan, not code. Do not implement anything, d
 
 ## Context
 
-`~/.worktrees/one-native` (branch `feat/one-native`, do NOT check out or modify it, read only) holds `packages/native`: a package that GENERATES React Native Fabric components whose native implementation is SwiftUI.
+`~/.worktrees/one-native` (branch `feat/one-native`, do NOT check out or modify it, read only) holds `packages/one`: a package that GENERATES React Native Fabric components whose native implementation is SwiftUI.
 
 How it works today:
 - `codegen/Extract.swift` + `codegen/inventory.ts` parse Apple's shipped `.swiftinterface` files out of the iOS SDK (`xcrun --sdk iphonesimulator --show-sdk-path`, then `System/Library/Frameworks/SwiftUI.framework/Modules/SwiftUI.swiftmodule/arm64-apple-ios-simulator.swiftinterface`). That yields ~9,715 public declarations.
@@ -14,9 +14,9 @@ How it works today:
 Read these first, they are the fastest path in:
 - `plans/one-native-layout-design.md`
 - `plans/handoff-one-native-parity.md`
-- `packages/native/codegen/catalog.ts`
-- `packages/native/codegen/generate.ts`
-- `packages/native/ios/OneNativeComposition.swift`
+- `packages/one/codegen/catalog.ts`
+- `packages/one/codegen/generate.ts`
+- `packages/one/ios/OneNativeComposition.swift`
 
 State: 126 mapped symbols, 89 generated files, and nine simulator conformance suites pass (tabs-menu, pickers, forms, sheets, leaves, dialogs, host, containers, popover). Fixtures live in `tests/native-features/`.
 

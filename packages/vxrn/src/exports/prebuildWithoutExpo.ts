@@ -1384,7 +1384,7 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       }
       if (app.notifications !== undefined) {
         // gates the UNUserNotificationCenter delegate install: apps that link
-        // @vxrn/native without notifications keep whatever delegate their own
+        // one without notifications keep whatever delegate their own
         // push library sets.
         stamps.push(`\t<key>OneNativeNotificationsEnabled</key>\n\t<true/>`)
       }
@@ -1503,7 +1503,7 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       relativePath === 'gradle.properties' &&
       app.notifications?.push === true
     ) {
-      // the flag @vxrn/native reads to compile the fcm source set in. it
+      // the flag one reads to compile the fcm source set in. it
       // lives in the root gradle.properties so library builds see it through
       // the root project; without it the file is untouched and firebase
       // messaging stays out of the app.
@@ -1518,7 +1518,7 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       relativePath === 'gradle.properties' &&
       app.android?.googleMapsApiKey !== undefined
     ) {
-      // the flag @vxrn/native reads to compile the maps source set in. it
+      // the flag one reads to compile the maps source set in. it
       // lives in the root gradle.properties so library builds see it through
       // the root project; without the key the file is untouched and maps
       // stays out of the app.
@@ -1777,7 +1777,7 @@ export const generateForPlatform = async (
 }
 
 // every directory under the app root holding a Package.swift becomes one local
-// pod: its sources compile as their own module against VxrnNative (which
+// pod: its sources compile as their own module against One (which
 // supplies RNXPackage and JSON), the @main entry is renamed so it does not
 // clash with the app's main, and an objc +load files the entry with the
 // registry the OneSwiftHost view reads. the bundler resolves an import of any
@@ -1833,9 +1833,9 @@ function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
   s.source = { :path => '.' }
   s.swift_version = '6.0'
   s.source_files = 'Sources/**/*.swift', 'Register.m'
-  s.dependency 'VxrnNative'
+  s.dependency 'One'
   s.pod_target_xcconfig = {
-    'OTHER_SWIFT_FLAGS' => '$(inherited) -cxx-interoperability-mode=default -Xcc -std=c++20 -Xfrontend -import-module -Xfrontend VxrnNative -Xfrontend -entry-point-function-name -Xfrontend ${id}_main',
+    'OTHER_SWIFT_FLAGS' => '$(inherited) -cxx-interoperability-mode=default -Xcc -std=c++20 -Xfrontend -import-module -Xfrontend One -Xfrontend -entry-point-function-name -Xfrontend ${id}_main',
   }
 end
 `

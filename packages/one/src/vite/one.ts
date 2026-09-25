@@ -19,6 +19,7 @@ import '../polyfills-server'
 import { setServerGlobals } from '../server/setServerGlobals'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 import { createRouteIndex } from '../utils/routeIndex'
+import { absorbedPackageAliases } from '../utils/absorbedPackages'
 import { ensureTSConfig } from './ensureTsConfig'
 import { setOneOptions } from './loadConfig'
 import { resolveNativeBundler } from './nativeBundler'
@@ -300,6 +301,18 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     },
   }
 
+  // packages one absorbs resolve to one's copy; an app alias still wins.
+  const withAbsorbedAliases = (
+    alias: One.PluginOptions['alias']
+  ): NonNullable<One.PluginOptions['alias']> => {
+    const root = process.cwd()
+    return {
+      ...alias,
+      web: { ...absorbedPackageAliases(root, 'web'), ...alias?.web },
+      native: { ...absorbedPackageAliases(root, 'native'), ...alias?.native },
+    }
+  }
+
   // resolveId-based aliases that work during vite transforms, rolldown dep
   // pre-bundling (where resolve.alias is not applied), and the standalone
   // native bundler, which has no vite environment and so is told its platform
@@ -577,7 +590,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           })(),
         ]),
 
-    ...(options.alias ? [createAliasPlugin(options.alias)] : []),
+    createAliasPlugin(withAbsorbedAliases(options.alias)),
 
     {
       // rolldown fails on deep react-native/Libraries/* imports during dep pre-bundling.
@@ -886,7 +899,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         : (nativeOptions?.bundlerOptions as any)
 
     globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android') => [
-      ...(options.alias ? [createAliasPlugin(options.alias, platform)] : []),
+      createAliasPlugin(withAbsorbedAliases(options.alias), platform),
       clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),
       ...(viteBundlerOptions?.plugins ?? []),
       // last, so an app plugin that compiles .swift itself (a simulator) wins

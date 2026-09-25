@@ -47,8 +47,8 @@ Vary, and cross where it is meaningful rather than exhaustively:
   - systemImage present vs a title-only tab
   - title length: short, and long enough to truncate
   - `tabBarMinimizeBehavior`: every value the generated enum accepts (read
-    `packages/native/src/generated/` and `assertSwiftUIValue('TabBarMinimizeBehavior', ...)`
-    in `packages/native/src/Tabs.native.tsx`; do not guess the value list)
+    `packages/one/src/platform/generated/` and `assertSwiftUIValue('TabBarMinimizeBehavior', ...)`
+    in `packages/one/src/platform/Tabs.native.tsx`; do not guess the value list)
   - `sidebarAdaptable`: false and true
   - appearance: light and dark
   - selected index: first, middle, last

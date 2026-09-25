@@ -1,5 +1,5 @@
-import { Color } from '@vxrn/native'
 import { View, Text, ScrollView, StyleSheet, Platform } from 'react-native'
+import { One } from 'one'
 
 // ios system colors to test
 const iosSystemColors = [
@@ -74,7 +74,7 @@ export default function ColorTestScreen() {
                 styles.colorBox,
                 {
                   backgroundColor: isIOS
-                    ? (Color.ios[color.key as keyof typeof Color.ios] as any)
+                    ? (One.iOS.Color[color.key as keyof typeof One.iOS.Color] as any)
                     : '#ccc',
                 },
               ]}
@@ -99,7 +99,7 @@ export default function ColorTestScreen() {
                 styles.colorBox,
                 {
                   backgroundColor: isIOS
-                    ? (Color.ios[color.key as keyof typeof Color.ios] as any)
+                    ? (One.iOS.Color[color.key as keyof typeof One.iOS.Color] as any)
                     : '#ccc',
                 },
               ]}
@@ -124,7 +124,7 @@ export default function ColorTestScreen() {
                 styles.colorBox,
                 {
                   backgroundColor: isIOS
-                    ? (Color.ios[color.key as keyof typeof Color.ios] as any)
+                    ? (One.iOS.Color[color.key as keyof typeof One.iOS.Color] as any)
                     : '#ccc',
                 },
               ]}
@@ -150,7 +150,7 @@ export default function ColorTestScreen() {
                 styles.colorBoxBordered,
                 {
                   backgroundColor: isIOS
-                    ? (Color.ios[color.key as keyof typeof Color.ios] as any)
+                    ? (One.iOS.Color[color.key as keyof typeof One.iOS.Color] as any)
                     : '#ccc',
                 },
               ]}

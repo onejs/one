@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { MenuAction, Color } from '@vxrn/native'
 import { View, Text, ScrollView, StyleSheet, Platform } from 'react-native'
+import { One } from 'one'
 
 export default function MenuTestScreen() {
   const [lastAction, setLastAction] = useState<string>('none')
@@ -43,7 +43,7 @@ export default function MenuTestScreen() {
         <View testID="menu-actions-container" style={styles.actionsContainer}>
           {/* basic menu action */}
           <View testID="menu-action-edit-wrapper" style={styles.actionWrapper}>
-            <MenuAction
+            <One.iOS.MenuAction
               identifier="edit-action"
               title="Edit"
               icon="pencil"
@@ -57,12 +57,12 @@ export default function MenuTestScreen() {
 
           {/* destructive menu action */}
           <View testID="menu-action-delete-wrapper" style={styles.actionWrapper}>
-            <MenuAction
+            <One.iOS.MenuAction
               identifier="delete-action"
               title="Delete"
               icon="trash"
               destructive
-              tintColor={isIOS ? Color.ios.systemRed : undefined}
+              tintColor={isIOS ? One.iOS.Color.systemRed : undefined}
               onSelected={() => handleAction('delete')}
             />
             <Text style={styles.actionDescription}>Destructive action</Text>
@@ -70,7 +70,7 @@ export default function MenuTestScreen() {
 
           {/* disabled menu action */}
           <View testID="menu-action-disabled-wrapper" style={styles.actionWrapper}>
-            <MenuAction
+            <One.iOS.MenuAction
               identifier="disabled-action"
               title="Cannot Do This"
               icon="xmark.circle"
@@ -82,7 +82,7 @@ export default function MenuTestScreen() {
 
           {/* action with discoverability label */}
           <View testID="menu-action-share-wrapper" style={styles.actionWrapper}>
-            <MenuAction
+            <One.iOS.MenuAction
               identifier="share-action"
               title="Share"
               icon="square.and.arrow.up"
@@ -97,12 +97,12 @@ export default function MenuTestScreen() {
 
           {/* toggled action */}
           <View testID="menu-action-toggle-wrapper" style={styles.actionWrapper}>
-            <MenuAction
+            <One.iOS.MenuAction
               identifier="toggle-action"
               title="Favorite"
               icon="star.fill"
               isOn={lastAction === 'toggle'}
-              tintColor={isIOS ? Color.ios.systemYellow : undefined}
+              tintColor={isIOS ? One.iOS.Color.systemYellow : undefined}
               onSelected={() => handleAction('toggle')}
             />
             <Text style={styles.actionDescription}>Toggle action (isOn)</Text>
@@ -110,7 +110,7 @@ export default function MenuTestScreen() {
 
           {/* hidden action */}
           <View testID="menu-action-hidden-wrapper" style={styles.actionWrapper}>
-            <MenuAction
+            <One.iOS.MenuAction
               identifier="hidden-action"
               title="Hidden Action"
               icon="eye.slash"

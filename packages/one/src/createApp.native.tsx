@@ -3,6 +3,7 @@ import { useSyncExternalStore } from 'react'
 import type { One } from './vite/types'
 import './polyfills-mobile'
 import { Root } from './Root'
+import { SafeAreaProvider, initialWindowMetrics } from './safe-area-context'
 import './setup'
 import type { CreateAppProps } from './createApp'
 
@@ -32,18 +33,20 @@ export function createApp(options: CreateAppProps): void {
 
   const App = () => {
     useSyncExternalStore(subscribeToRoutes, getRouteVersion, getRouteVersion)
-    const contents = (
-      <Root
-        isClient
-        flags={options.flags}
-        routes={routes}
-        routerRoot={options.routerRoot}
-        linking={options.linking}
-        path="/"
-      />
+    // one owns the safe area provider, as it does on web: apps read it through
+    // One.UI.SafeArea and never mount their own.
+    return (
+      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+        <Root
+          isClient
+          flags={options.flags}
+          routes={routes}
+          routerRoot={options.routerRoot}
+          linking={options.linking}
+          path="/"
+        />
+      </SafeAreaProvider>
     )
-
-    return contents
   }
 
   AppRegistry.registerComponent('main', () => App)

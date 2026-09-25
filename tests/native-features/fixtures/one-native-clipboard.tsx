@@ -1,6 +1,6 @@
-import { Clipboard } from '@vxrn/native'
 import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 // exercises the clipboard api against the real pasteboard: write a known
 // string, read it back, and check presence. results travel as labels
@@ -21,21 +21,21 @@ export default function OneNativeClipboard() {
       <Pressable
         testID="one-native-clipboard-set"
         style={styles.chip}
-        onPress={async () => setWritten(String(await Clipboard.setString(probe)))}
+        onPress={async () => setWritten(String(await One.Clipboard.setString(probe)))}
       >
         <Text>Set probe string</Text>
       </Pressable>
       <Pressable
         testID="one-native-clipboard-get"
         style={styles.chip}
-        onPress={async () => setRead(await Clipboard.getString())}
+        onPress={async () => setRead(await One.Clipboard.getString())}
       >
         <Text>Get string</Text>
       </Pressable>
       <Pressable
         testID="one-native-clipboard-has"
         style={styles.chip}
-        onPress={async () => setHas(String(await Clipboard.hasString()))}
+        onPress={async () => setHas(String(await One.Clipboard.hasString()))}
       >
         <Text>Has string</Text>
       </Pressable>

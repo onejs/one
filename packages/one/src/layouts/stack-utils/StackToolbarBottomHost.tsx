@@ -1,4 +1,4 @@
-import { MenuAction, ToolbarHost, ToolbarItem } from '@vxrn/native'
+import { MenuAction, ToolbarHost, ToolbarItem } from '../../platform'
 import type { ReactNode } from 'react'
 
 import {

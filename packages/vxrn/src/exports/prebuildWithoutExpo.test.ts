@@ -1280,7 +1280,7 @@ describe('ios widgets', () => {
     const readGenerated = (relativePath: string) =>
       readFileSync(join(output, 'ios', relativePath), 'utf8')
     const rendered = readGenerated('OneWidgets/OneWidget.swift')
-    // every node type packages/native/src/widgets/view.ts can emit needs a
+    // every node type packages/one/src/platform/widgets/view.ts can emit needs a
     // Swift decode path, or the extension renders a blank subtree
     for (const type of [
       'text',
@@ -1405,7 +1405,7 @@ describe('swift cxx interop', () => {
     writeFileSync(join(pkgDir, 'Package.swift'), '// swift-tools-version: 5.9\n')
     writeFileSync(
       join(pkgDir, 'Sources', 'Feature.swift'),
-      'import VxrnNative\npublic func probe() { OneNativeRegisteredValue.register("x", for: "x") }\n'
+      'import One\npublic func probe() { OneNativeRegisteredValue.register("x", for: "x") }\n'
     )
     await generateForPlatform(root, 'ios', app)
     const podspec = readFileSync(
@@ -1415,6 +1415,6 @@ describe('swift cxx interop', () => {
     expect(podspec).toContain(
       '$(inherited) -cxx-interoperability-mode=default -Xcc -std=c++20'
     )
-    expect(podspec).toContain('-Xfrontend -import-module -Xfrontend VxrnNative')
+    expect(podspec).toContain('-Xfrontend -import-module -Xfrontend One')
   }, 180000)
 })

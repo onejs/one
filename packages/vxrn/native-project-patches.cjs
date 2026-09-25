@@ -5,8 +5,8 @@ const path = require('node:path')
 function hasNitroWebImage(root) {
   const projectRequire = createRequire(path.join(root, 'package.json'))
   try {
-    const nativeRoot = path.dirname(projectRequire.resolve('@vxrn/native/package.json'))
-    projectRequire.resolve('react-native-nitro-web-image/package.json', { paths: [nativeRoot] })
+    const oneRoot = path.dirname(projectRequire.resolve('one/package.json'))
+    projectRequire.resolve('react-native-nitro-web-image/package.json', { paths: [oneRoot] })
     return true
   } catch {
     return false

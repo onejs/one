@@ -1,10 +1,10 @@
-Implement a standalone SwiftUI `Image` binding in packages/native.
+Implement a standalone SwiftUI `Image` binding in packages/one.
 
 Worktree. From /Users/n8/.worktrees/one-native run
   git worktree add ~/.worktrees/one-native-image -b feat/one-native-image feat/one-native
 Work only in ~/.worktrees/one-native-image.
 
-Read first: packages/native/README.md; codegen/controlTypes.ts (the Control shape, and what the
+Read first: packages/one/README.md; codegen/controlTypes.ts (the Control shape, and what the
 `layout` field means); codegen/leafCatalog.ts, where the `Label` entry is the existing SF Symbol
 precedent; codegen/generate.ts, for how an `enum:` field becomes a `Styles.X` TypeScript union and an
 `OneNativeGenerated.x(_:)` Swift converter whose cases are selected from the parsed SDK inventory. A
@@ -33,7 +33,7 @@ Fixture and test, without the simulator:
 - Do NOT run the simulator, the conformance script, or a dev server. I own the simulator and run the
   accessibility and visual pass at integration.
 
-The bar. From packages/native:
+The bar. From packages/one:
   bun run generate:check && bun run test && bun run typecheck && bun run build
 generate:check compiles the assembled Swift with swiftc, so a Swift mistake fails there. All four
 green or it is not done.

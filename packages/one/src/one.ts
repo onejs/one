@@ -39,18 +39,18 @@ import {
   useFonts,
   useNativeState,
   useNetworkState,
-} from '@vxrn/native'
+} from './platform'
 import {
   SafeAreaProvider,
   SafeAreaView,
   initialWindowMetrics,
   useSafeAreaFrame,
   useSafeAreaInsets,
-} from '@vxrn/safe-area'
+} from './safe-area-context'
 
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx'
 
-export type OneIOS = Omit<typeof Swift, 'ToolbarItem'> & {
+export type OneIOS = typeof Swift & {
   readonly Widgets: typeof Widgets
   readonly LiveActivities: typeof LiveActivities
   readonly WidgetUI: typeof WidgetUI
@@ -58,9 +58,9 @@ export type OneIOS = Omit<typeof Swift, 'ToolbarItem'> & {
   readonly MenuAction: typeof MenuAction
   readonly SplitView: typeof SplitView
   readonly ToolbarHost: typeof ToolbarHost
-  // One.iOS.ToolbarItem is the navigation toolbar item, as it always was. the SwiftUI
-  // toolbar item is Swift.ToolbarItem, which is where the SwiftUI toolbar lives.
-  readonly ToolbarItem: typeof ToolbarItem
+  // the UIBarButtonItem inside a ToolbarHost; One.iOS.ToolbarItem is SwiftUI's,
+  // inside One.iOS.Toolbar.
+  readonly BarButtonItem: typeof ToolbarItem
   readonly ZoomTransitionAlignmentRectDetector: typeof ZoomTransitionAlignmentRectDetector
   readonly ZoomTransitionEnabler: typeof ZoomTransitionEnabler
   readonly ZoomTransitionSource: typeof ZoomTransitionSource
@@ -132,7 +132,7 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   MenuAction,
   SplitView,
   ToolbarHost,
-  ToolbarItem,
+  BarButtonItem: ToolbarItem,
   ZoomTransitionAlignmentRectDetector,
   ZoomTransitionEnabler,
   ZoomTransitionSource,

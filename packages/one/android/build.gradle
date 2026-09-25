@@ -1,0 +1,162 @@
+buildscript {
+    def composeKotlinVersion =
+        rootProject.ext.has("kotlinVersion") ? rootProject.ext.get("kotlinVersion") : "2.1.20"
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin:$composeKotlinVersion"
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'org.jetbrains.kotlin.plugin.compose'
+apply plugin: 'com.facebook.react'
+apply from: '../nitrogen/generated/android/One+autolinking.gradle'
+
+group = 'dev.onejs'
+
+// One.UI.Map on android compiles only when the app sets
+// native.app.android.googleMapsApiKey: prebuild writes oneNativeMaps=true
+// to the root gradle.properties, and without it the nomaps source set (whose
+// manager throws on mount) compiles instead, keeping the maps sdk out of the
+// app entirely. read through the root project first: the flag lives in the
+// app's gradle.properties, not this library's.
+def oneNativeMapsEnabled() {
+    def value = rootProject.findProperty("oneNativeMaps") ?: findProperty("oneNativeMaps")
+    return value != null && value.toString() == "true"
+}
+
+// remote push on android compiles only when the app sets
+// native.app.notifications.push: prebuild writes oneNativePush=true to the
+// root gradle.properties, and without it the nopush source set (whose fetch
+// rejects) compiles instead, keeping firebase messaging out of the app
+// entirely. read through the root project first: the flag lives in the
+// app's gradle.properties, not this library's.
+def oneNativePushEnabled() {
+    def value = rootProject.findProperty("oneNativePush") ?: findProperty("oneNativePush")
+    return value != null && value.toString() == "true"
+}
+
+android {
+    namespace "dev.onejs.one"
+    compileSdkVersion safeExtGet("compileSdkVersion", 35)
+    // the app packages libc++_shared from its own ndk; compiling against a
+    // newer default ndk links symbols that library lacks and fails to load.
+    ndkVersion rootProject.ext.ndkVersion
+
+    defaultConfig {
+        minSdkVersion safeExtGet("minSdkVersion", 23)
+        targetSdkVersion safeExtGet("targetSdkVersion", 35)
+
+        // worklets only builds the ABIs in reactNativeArchitectures. this
+        // library has to match, or a narrower app ABI still configures the
+        // other ABIs and links them against a worklets prefab that has no
+        // library for that ABI.
+        ndk {
+            abiFilters(*reactNativeArchitectures())
+        }
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_STL=c++_shared"
+                // the prefab dependencies (worklets) build only these abis,
+                // so building more would link against nothing.
+                abiFilters(*reactNativeArchitectures())
+            }
+        }
+    }
+
+    buildFeatures {
+        compose true
+        prefab true
+    }
+
+    sourceSets {
+        named("main") {
+            // exactly one of these defines dev.onejs.onenative.OneNativeUiMapManager.
+            java.srcDir(oneNativeMapsEnabled() ? "src/maps/java" : "src/nomaps/java")
+            // exactly one of these defines dev.onejs.onenative.OneNativePush.
+            java.srcDir(oneNativePushEnabled() ? "src/push/java" : "src/nopush/java")
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+
+react {
+    jsRootDir = file("../src")
+    libraryName = "OneNativeSpec"
+    codegenJavaPackageName = "dev.onejs.onenative"
+}
+
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+def reactNativeArchitectures() {
+    def value = findProperty("reactNativeArchitectures")
+    if (!value) {
+        return ["armeabi-v7a", "x86", "x86_64", "arm64-v8a"]
+    }
+    return value.toString().split(",").collect { it.trim() }.findAll { it }
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+def composeUiVersion = "1.11.4"
+def material3Version = "1.4.0"
+def kotlinVersion = safeExtGet("kotlinVersion", "2.1.20")
+
+dependencies {
+    implementation "com.facebook.react:react-android"
+    implementation "androidx.browser:browser:1.8.0"
+    implementation "com.google.android.material:material:1.13.0"
+    implementation "androidx.activity:activity:1.9.3"
+    implementation "androidx.core:core:1.13.1"
+    // folding features for reserved regions (Jetpack WindowManager).
+    implementation "androidx.window:window:1.5.1"
+    implementation "androidx.window:window-java:1.5.1"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    implementation "androidx.compose.ui:ui:$composeUiVersion"
+    implementation "androidx.compose.foundation:foundation:$composeUiVersion"
+    implementation "androidx.compose.material3:material3:$material3Version"
+    // maps sdk only when the app opted in via the manifest key; without the
+    // flag nothing here references it, which is what keeps it out of the apk.
+    // play-services-maps arrives transitively through maps-compose.
+    if (oneNativeMapsEnabled()) {
+        implementation "com.google.maps.android:maps-compose:6.10.0"
+        implementation "androidx.lifecycle:lifecycle-runtime:2.9.3"
+    }
+    implementation project(":react-native-nitro-modules")
+    // firebase messaging only when the app opted into push via the manifest
+    // flag; without it nothing here references it, which is what keeps it
+    // out of the apk.
+    if (oneNativePushEnabled()) {
+        implementation "com.google.firebase:firebase-messaging:25.0.1"
+    }
+    if (rootProject.subprojects.find { it.name == "react-native-worklets" } != null) {
+        implementation project(":react-native-worklets")
+    } else {
+        throw new GradleException("[OneNative] `react-native-worklets` is a required peer: install it so autolinking provides the native project.")
+    }
+}

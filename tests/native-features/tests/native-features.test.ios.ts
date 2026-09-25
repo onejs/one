@@ -37,7 +37,7 @@ async function acceptOpenUrlPrompt(driver: Browser) {
   } catch {}
 }
 
-describe('@vxrn/native integration tests', () => {
+describe('one native integration tests', () => {
   let driver: Browser
 
   beforeAll(
@@ -63,7 +63,7 @@ describe('@vxrn/native integration tests', () => {
   describe('Home Screen', () => {
     test('renders home screen with navigation links', sharedTestOptions, async () => {
       const title = await waitForElement(driver, 'home-title')
-      expect(await title.getText()).toBe('@vxrn/native Test Suite')
+      expect(await title.getText()).toBe('One Native Test Suite')
 
       // verify all nav links exist
       const navLinks = [

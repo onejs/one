@@ -35,7 +35,12 @@ on:
       - 'packages/one/src/metro-config/**'
       - 'packages/vite-plugin-metro/**'
       - 'packages/vxrn/**'
-      - 'packages/native/**'
+      - 'packages/one/ios/**'
+      - 'packages/one/cpp/**'
+      - 'packages/one/nitrogen/**'
+      - 'packages/one/codegen/**'
+      - 'packages/one/src/platform/**'
+      - 'packages/one/One.podspec'
       - 'tests/native-features/**'
       - 'tests/rn-test-container/app.json'
       - 'tests/rn-test-container/e2e/**'
@@ -63,11 +68,11 @@ jobs:
         with:
           install-playwright: 'false'
       - name: Verify SDK generation, Swift compilation, and contracts
-        working-directory: packages/native
+        working-directory: packages/one
         run: |
           bun run generate:check
           bun run build
-          git diff --exit-code -- types/generated
+          git diff --exit-code -- types/platform/generated
           bun run typecheck
           bun run test
       - name: Generate the One Native consumer project

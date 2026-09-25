@@ -131,7 +131,7 @@ one SDK can never red another SDK's check again.
   SDK-caused change is `- "roundedBorder": 13`. v2-beta has
   TextFieldStyle=[automatic, plain, roundedBorder]@13; HEAD has
   [automatic, plain] with ListStyle at 6 cases.
-- RAN grep: zero `roundedBorder` occurrences in packages/native; HEAD is a
+- RAN grep: zero `roundedBorder` occurrences in packages/one; HEAD is a
   consistent SDK 27.1 state, which is exactly why 26.4 (which still ships the
   case) regenerates a different manifest.
 - MAXIMUM_IOS=26 filters by iOS version only (symbols above 26); it cannot see
@@ -371,7 +371,7 @@ or adapter changes in either unit.
   touch generate.ts, README, or regen output until merge confirmed. New
   constraint recorded: never bump MAXIMUM_IOS or commit post-26 symbols
   without a CI Xcode bump. Left uncommitted: 1-line coverage script in
-  packages/native/package.json (file is mixed with ios-views regen lines).
+  packages/one/package.json (file is mixed with ios-views regen lines).
 - M1 floor at 17: audited every 26-only API use; all are gated with fallback.
   - native gates (pre-existing from the v2-beta floor merge, verified not
     re-broken): tabs legacy TabView below 18, tabBarMinimizeBehavior and
@@ -415,7 +415,7 @@ or adapter changes in either unit.
 ## Blocked
 
 - Stale comment in ios-views territory, not edited per ownership:
-  packages/native/codegen/mediaCatalog.ts:185 still says WebView "is the
+  packages/one/codegen/mediaCatalog.ts:185 still says WebView "is the
   package floor, so it needs no availability gate". The code below it does
   gate. Needs a comment fix by native-ios-views.
 - (dropped per coordinator: release-history posts are not touched.)

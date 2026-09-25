@@ -1,6 +1,9 @@
+import type { ComponentProps } from 'react'
 import { useState } from 'react'
-import { Swift, type MenuItem } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
+
+type MenuItem = ComponentProps<typeof One.iOS.Menu>['items'][number]
 
 const categories = ['Share', 'Photos', 'Web', 'Empty', 'Cover', 'Context'] as const
 
@@ -109,7 +112,7 @@ export default function OneNativeSystem() {
           >
             <Text style={styles.actionText}>Toggle share type</Text>
           </Pressable>
-          <Swift.ShareLink
+          <One.iOS.ShareLink
             item={shareAsUrl ? 'https://onestack.dev' : 'shared from one-native'}
             itemType={shareAsUrl ? 'url' : 'text'}
             label="Share"
@@ -134,7 +137,7 @@ export default function OneNativeSystem() {
               {multiSelect ? 'Select up to 3' : 'Select one'}
             </Text>
           </Pressable>
-          <Swift.PhotosPicker
+          <One.iOS.PhotosPicker
             filter="images"
             label="Choose photos"
             maxSelectionCount={multiSelect ? 3 : 1}
@@ -166,7 +169,7 @@ export default function OneNativeSystem() {
               <Text style={styles.actionText}>Swap document</Text>
             </Pressable>
           </View>
-          <Swift.WebView
+          <One.iOS.WebView
             html={documents[documentIndex]}
             style={styles.web}
             testID="one-native-system-web"
@@ -182,7 +185,7 @@ export default function OneNativeSystem() {
       ) : null}
 
       {category === 'Empty' ? (
-        <Swift.ContentUnavailableView
+        <One.iOS.ContentUnavailableView
           actions={emptyActions}
           description="Nothing has been indexed yet, so there is nothing to show."
           style={styles.empty}
@@ -203,7 +206,7 @@ export default function OneNativeSystem() {
           >
             <Text style={styles.actionText}>Open cover</Text>
           </Pressable>
-          <Swift.FullScreenCover
+          <One.iOS.FullScreenCover
             isPresented={coverPresented}
             testID="one-native-system-cover"
             onIsPresentedChange={handleCoverChange}
@@ -219,13 +222,13 @@ export default function OneNativeSystem() {
                 <Text style={styles.actionText}>Close</Text>
               </Pressable>
             </View>
-          </Swift.FullScreenCover>
+          </One.iOS.FullScreenCover>
         </View>
       ) : null}
 
       {category === 'Context' ? (
         <View style={styles.surface}>
-          <Swift.ContextMenu
+          <One.iOS.ContextMenu
             items={contextItems.map((item) =>
               item.type === 'toggle' ? { ...item, values: [pinned] } : item
             )}
@@ -238,7 +241,7 @@ export default function OneNativeSystem() {
             <View style={styles.trigger} testID="one-native-system-context-trigger">
               <Text style={styles.triggerText}>Long press me</Text>
             </View>
-          </Swift.ContextMenu>
+          </One.iOS.ContextMenu>
         </View>
       ) : null}
     </View>

@@ -1,7 +1,7 @@
-import { Haptics } from '@vxrn/native/haptics'
 import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
+import { One } from 'one'
 
 // exercises One.Haptics end to end: the module-present marker proves the
 // OneHaptics nitro hybrid object is registered, and one button per verb
@@ -9,15 +9,15 @@ import { NitroModules } from 'react-native-nitro-modules'
 // because RN Text testIDs vanish from the accessibility snapshot while
 // Pressable IDs survive; feel itself is human-verified on device.
 const verbs = [
-  { id: 'selection', run: () => Haptics.selection() },
-  { id: 'impact-light', run: () => Haptics.impact('light') },
-  { id: 'impact-medium', run: () => Haptics.impact('medium') },
-  { id: 'impact-heavy', run: () => Haptics.impact('heavy') },
-  { id: 'impact-soft', run: () => Haptics.impact('soft') },
-  { id: 'impact-rigid', run: () => Haptics.impact('rigid') },
-  { id: 'notification-success', run: () => Haptics.notification('success') },
-  { id: 'notification-warning', run: () => Haptics.notification('warning') },
-  { id: 'notification-error', run: () => Haptics.notification('error') },
+  { id: 'selection', run: () => One.Haptics.selection() },
+  { id: 'impact-light', run: () => One.Haptics.impact('light') },
+  { id: 'impact-medium', run: () => One.Haptics.impact('medium') },
+  { id: 'impact-heavy', run: () => One.Haptics.impact('heavy') },
+  { id: 'impact-soft', run: () => One.Haptics.impact('soft') },
+  { id: 'impact-rigid', run: () => One.Haptics.impact('rigid') },
+  { id: 'notification-success', run: () => One.Haptics.notification('success') },
+  { id: 'notification-warning', run: () => One.Haptics.notification('warning') },
+  { id: 'notification-error', run: () => One.Haptics.notification('error') },
 ] as const
 
 export default function OneNativeHaptics() {

@@ -19,7 +19,7 @@ export function swiftPackagePlugin(): Plugin {
         }
         const fill = /@main\s+struct\s+\w+\s*:\s*(SwiftUI\.)?App\b/.test(readFileSync(id, 'utf8'))
         return `import { createElement } from 'react'
-import { SwiftPackageView } from '@vxrn/native/swift'
+import { SwiftPackageView } from '../../platform/swift'
 export default function SwiftPackage(props) {
   return createElement(SwiftPackageView, { packageName: ${JSON.stringify(swiftPackageId(packageDir))}, props, fill: ${fill} })
 }

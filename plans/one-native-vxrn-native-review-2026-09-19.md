@@ -190,7 +190,7 @@ SwiftUI and Compose component catalogs where the native platforms differ.
 
 ## Validation
 
-**TESTED:** `bunx vitest run` in `packages/native` passed 11 files and 110
+**TESTED:** `bunx vitest run` in `packages/one` passed 11 files and 110
 tests. The focused derive and Compose run passed 29 tests, including the new
 negative cases.
 
