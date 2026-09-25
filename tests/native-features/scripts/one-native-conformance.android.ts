@@ -2154,6 +2154,52 @@ async function run(config: Config) {
       'one-native-speech-stop'
     )
 
+    // fetch: every behavior the global fetch keeps from react native's
+    // fetch, plus the streamed body it adds. the stream label is the negative
+    // control: a buffered fetch delivers the first chunk only at the end.
+    relaunchApp(config)
+    await expect('fetch-home', (nodes) => exactlyOneId(nodes, 'home-screen'), 'home-screen')
+    await tapNavigation(config, 'nav-one-native-fetch')
+    await expect(
+      'fetch-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle'),
+      'one-native-fetch-run'
+    )
+    tapFresh(config, 'one-native-fetch-run', {
+      id: 'one-native-fetch-run',
+      role: 'button',
+      clickable: true,
+    })
+    const fetched = await expect(
+      'fetch-checks-report',
+      (nodes) => textIncludes(nodes, 'Status: done') || textIncludes(nodes, 'Status: failed'),
+      'one-native-fetch-run'
+    )
+    const fetchLabels = fetched.nodes.flatMap((node) => nodeValues(node))
+    const fetchFailure = fetchLabels.find((label) => label.startsWith('Status: failed'))
+    if (fetchFailure) throw new Error(fetchFailure)
+    const fetchExpected: [string, string][] = [
+      ["Stream", "1|2|3 early=true"],
+      ["Echo", "200 yes POST application/json yes a=1"],
+      ["Bytes", "PUT 000102ff"],
+      ["Blob", "4 application/octet-stream 000102ff"],
+      ["Form", "multipart/form-data true"],
+      ["Redirect", "200 true true"],
+      ["Cookie", "one_fetch=1 null"],
+      ["NoContent", "204 null"],
+      ["Clone", "true true"],
+      ["Abort", "first AbortError"],
+      ["AbortBefore", "AbortError"],
+      ["Refused", "type error"],
+    ]
+    for (const [name, value] of fetchExpected) {
+      if (!fetchLabels.includes(`${name}: ${value}`))
+        throw new Error(
+          `fetch ${name}: expected ${JSON.stringify(value)}, got ${JSON.stringify(fetchLabels.find((label) => label.startsWith(`${name}: `)))}`
+        )
+      console.log(`PASS fetch-${name.toLowerCase()}`)
+    }
+
     // notifications slice n1: clear app data so the permission starts
     // undetermined like a fresh install, then grant and read back.
     clearAppData(config)

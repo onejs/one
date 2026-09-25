@@ -47,6 +47,15 @@ import { promiseWithResolvers } from './utils/promiseWithResolvers'
 
 Promise.withResolvers || (Promise.withResolvers = promiseWithResolvers)
 
+// --------------- fetch -------------------
+// react native's fetch buffers whole responses; install the OneFetch-backed
+// fetch whose response.body streams. needs the web streams and TextDecoder
+// installed above.
+
+import { installFetch } from './platform/fetch'
+
+installFetch()
+
 // --------------- crypto -------------------
 // Hermes ships no WebCrypto. install getRandomValues + randomUUID backed
 // by the OneCrypto nitro hybrid object (SecRandomCopyBytes / SecureRandom), only
