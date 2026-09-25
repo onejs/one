@@ -29,6 +29,7 @@ const app = {
   scheme: ['myapp', 'myapp-dev'],
   notifications: {},
   imagePicker: { camera: 'Capture photos & videos' },
+  speech: { recognition: 'Dictate notes', microphone: 'Record dictation' },
   ios: {
     bundleId: 'dev.one.myapp',
     tablet: true,
@@ -199,6 +200,8 @@ ${APP_DELEGATE_PBXPROJ}`,
     ).toThrow('lost its LSRequiresIPhoneOS anchor')
     expect(infoPlist.content).toContain('<key>NSCameraUsageDescription</key>')
     expect(infoPlist.content).toContain('<string>Capture photos &amp; videos</string>')
+    expect(infoPlist.content).toContain('<key>NSSpeechRecognitionUsageDescription</key>')
+    expect(infoPlist.content).toContain('<key>NSMicrophoneUsageDescription</key>')
 
     const androidManifest = renderPrebuildFile({
       relativePath: 'app/src/main/AndroidManifest.xml',
@@ -209,6 +212,12 @@ ${APP_DELEGATE_PBXPROJ}`,
     })
     expect(androidManifest.content).toContain(
       '<uses-permission android:name="android.permission.CAMERA" />'
+    )
+    expect(androidManifest.content).toContain(
+      '<uses-permission android:name="android.permission.RECORD_AUDIO" />'
+    )
+    expect(androidManifest.content).toContain(
+      '<action android:name="android.speech.RecognitionService" />'
     )
     expect(androidManifest.content).toContain(
       '<action android:name="android.intent.action.VIEW" />'
@@ -309,7 +318,7 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
   })
 
   it('omits camera entries when imagePicker.camera is unset', () => {
-    const bare = { ...app, imagePicker: undefined, notifications: undefined }
+    const bare = { ...app, imagePicker: undefined, speech: undefined, notifications: undefined }
     const infoPlist = renderPrebuildFile({
       relativePath: 'HelloWorld/Info.plist',
       content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
@@ -317,6 +326,7 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
       app: bare,
     })
     expect(infoPlist.content).not.toContain('NSCameraUsageDescription')
+    expect(infoPlist.content).not.toContain('NSMicrophoneUsageDescription')
     const androidManifest = renderPrebuildFile({
       relativePath: 'app/src/main/AndroidManifest.xml',
       content:
@@ -325,6 +335,7 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
       app: bare,
     })
     expect(androidManifest.content).not.toContain('android.permission.CAMERA')
+    expect(androidManifest.content).not.toContain('android.permission.RECORD_AUDIO')
   })
 
   it('stamps the maps key and flag only when googleMapsApiKey is set', () => {
@@ -404,7 +415,7 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
   })
 
   it('fails loudly when a notification anchor is missing', () => {
-    const noCamera = { ...app, imagePicker: undefined }
+    const noCamera = { ...app, imagePicker: undefined, speech: undefined }
     expect(() =>
       renderPrebuildFile({
         relativePath: 'app/src/main/AndroidManifest.xml',
@@ -564,7 +575,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         app,
       })
     ).toThrow(
-      '[vxrn] cannot stamp the camera permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
+      '[vxrn] cannot stamp the camera or microphone permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
     )
   })
 

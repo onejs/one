@@ -72,6 +72,8 @@ namespace margelo::nitro::one { class HybridOneNetworkSpec; }
 namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 // Forward declaration of `HybridOneSecureStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
+// Forward declaration of `HybridOneSpeechSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneSpeechSpec; }
 // Forward declaration of `ImagePickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerAsset; }
 // Forward declaration of `ImagePickerMediaType` to properly resolve imports.
@@ -110,6 +112,16 @@ namespace margelo::nitro::one { struct NetworkState; }
 namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
 // Forward declaration of `SizeClass` to properly resolve imports.
 namespace margelo::nitro::one { struct SizeClass; }
+// Forward declaration of `SpeechErrorCode` to properly resolve imports.
+namespace margelo::nitro::one { enum class SpeechErrorCode; }
+// Forward declaration of `SpeechEventType` to properly resolve imports.
+namespace margelo::nitro::one { enum class SpeechEventType; }
+// Forward declaration of `SpeechEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct SpeechEvent; }
+// Forward declaration of `SpeechPermissionResponse` to properly resolve imports.
+namespace margelo::nitro::one { struct SpeechPermissionResponse; }
+// Forward declaration of `SpeechPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class SpeechPermissionStatus; }
 // Forward declaration of `UserInterfaceSizeClass` to properly resolve imports.
 namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 
@@ -140,6 +152,8 @@ namespace One { class HybridOneNetworkSpec_cxx; }
 namespace One { class HybridOneNotificationsSpec_cxx; }
 // Forward declaration of `HybridOneSecureStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSecureStoreSpec_cxx; }
+// Forward declaration of `HybridOneSpeechSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneSpeechSpec_cxx; }
 
 // Include C++ defined types
 #include "AppleAuthCredential.hpp"
@@ -174,6 +188,7 @@ namespace One { class HybridOneSecureStoreSpec_cxx; }
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
+#include "HybridOneSpeechSpec.hpp"
 #include "ImagePickerAsset.hpp"
 #include "ImagePickerMediaType.hpp"
 #include "ImagePickerNativeResult.hpp"
@@ -193,6 +208,11 @@ namespace One { class HybridOneSecureStoreSpec_cxx; }
 #include "NetworkStateType.hpp"
 #include "NotificationPermissionStatus.hpp"
 #include "SizeClass.hpp"
+#include "SpeechErrorCode.hpp"
+#include "SpeechEvent.hpp"
+#include "SpeechEventType.hpp"
+#include "SpeechPermissionResponse.hpp"
+#include "SpeechPermissionStatus.hpp"
 #include "UserInterfaceSizeClass.hpp"
 #include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
@@ -1767,6 +1787,98 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__optional_std__string____ create_Result_std__shared_ptr_Promise_std__optional_std__string____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::optional<std::string>>>>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<SpeechPermissionResponse>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<SpeechPermissionResponse>>`.
+   */
+  using std__shared_ptr_Promise_SpeechPermissionResponse__ = std::shared_ptr<Promise<SpeechPermissionResponse>>;
+  inline std::shared_ptr<Promise<SpeechPermissionResponse>> create_std__shared_ptr_Promise_SpeechPermissionResponse__() noexcept {
+    return Promise<SpeechPermissionResponse>::create();
+  }
+  inline PromiseHolder<SpeechPermissionResponse> wrap_std__shared_ptr_Promise_SpeechPermissionResponse__(std::shared_ptr<Promise<SpeechPermissionResponse>> promise) noexcept {
+    return PromiseHolder<SpeechPermissionResponse>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const SpeechPermissionResponse& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const SpeechPermissionResponse&)>`.
+   */
+  using Func_void_SpeechPermissionResponse = std::function<void(const SpeechPermissionResponse& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const SpeechPermissionResponse& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_SpeechPermissionResponse_Wrapper final {
+  public:
+    explicit Func_void_SpeechPermissionResponse_Wrapper(std::function<void(const SpeechPermissionResponse& /* result */)>&& func): _function(std::make_unique<std::function<void(const SpeechPermissionResponse& /* result */)>>(std::move(func))) {}
+    inline void call(SpeechPermissionResponse result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const SpeechPermissionResponse& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_SpeechPermissionResponse create_Func_void_SpeechPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_SpeechPermissionResponse_Wrapper wrap_Func_void_SpeechPermissionResponse(Func_void_SpeechPermissionResponse value) noexcept {
+    return Func_void_SpeechPermissionResponse_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::optional<SpeechErrorCode>
+  /**
+   * Specialized version of `std::optional<SpeechErrorCode>`.
+   */
+  using std__optional_SpeechErrorCode_ = std::optional<SpeechErrorCode>;
+  inline std::optional<SpeechErrorCode> create_std__optional_SpeechErrorCode_(const SpeechErrorCode& value) noexcept {
+    return std::optional<SpeechErrorCode>(value);
+  }
+  inline bool has_value_std__optional_SpeechErrorCode_(const std::optional<SpeechErrorCode>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline SpeechErrorCode get_std__optional_SpeechErrorCode_(const std::optional<SpeechErrorCode>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::function<void(const SpeechEvent& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const SpeechEvent&)>`.
+   */
+  using Func_void_SpeechEvent = std::function<void(const SpeechEvent& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const SpeechEvent& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_SpeechEvent_Wrapper final {
+  public:
+    explicit Func_void_SpeechEvent_Wrapper(std::function<void(const SpeechEvent& /* event */)>&& func): _function(std::make_unique<std::function<void(const SpeechEvent& /* event */)>>(std::move(func))) {}
+    inline void call(SpeechEvent event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const SpeechEvent& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_SpeechEvent create_Func_void_SpeechEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_SpeechEvent_Wrapper wrap_Func_void_SpeechEvent(Func_void_SpeechEvent value) noexcept {
+    return Func_void_SpeechEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneSpeechSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneSpeechSpec>`.
+   */
+  using std__shared_ptr_HybridOneSpeechSpec_ = std::shared_ptr<HybridOneSpeechSpec>;
+  std::shared_ptr<HybridOneSpeechSpec> create_std__shared_ptr_HybridOneSpeechSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneSpeechSpec_(std__shared_ptr_HybridOneSpeechSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneSpeechSpec>
+  using std__weak_ptr_HybridOneSpeechSpec_ = std::weak_ptr<HybridOneSpeechSpec>;
+  inline std__weak_ptr_HybridOneSpeechSpec_ weakify_std__shared_ptr_HybridOneSpeechSpec_(const std::shared_ptr<HybridOneSpeechSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<SpeechPermissionResponse>>>
+  using Result_std__shared_ptr_Promise_SpeechPermissionResponse___ = Result<std::shared_ptr<Promise<SpeechPermissionResponse>>>;
+  inline Result_std__shared_ptr_Promise_SpeechPermissionResponse___ create_Result_std__shared_ptr_Promise_SpeechPermissionResponse___(const std::shared_ptr<Promise<SpeechPermissionResponse>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<SpeechPermissionResponse>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_SpeechPermissionResponse___ create_Result_std__shared_ptr_Promise_SpeechPermissionResponse___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<SpeechPermissionResponse>>>::withError(error);
   }
 
 } // namespace margelo::nitro::one::bridge::swift

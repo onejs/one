@@ -211,6 +211,11 @@ const testScreens = [
     label: 'One Native Apple Auth',
     testID: 'nav-one-native-apple-auth',
   },
+  {
+    href: '/one-native-speech',
+    label: 'One Native Speech',
+    testID: 'nav-one-native-speech',
+  },
 ] as const
 
 export default function HomeScreen() {
