@@ -56,6 +56,10 @@
     "OneAdaptive": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneAdaptive" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneAdaptive" }
+    },
+    "OneAppleAuth": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneAppleAuth" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneAppleAuth" }
     }
   },
   "ignorePaths": ["**/node_modules", "dist", "types"]

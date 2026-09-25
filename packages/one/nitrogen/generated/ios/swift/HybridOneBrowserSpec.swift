@@ -17,6 +17,8 @@ public protocol HybridOneBrowserSpec_protocol: HybridObject {
   func dismiss() throws -> Promise<BrowserResult>
   func openAuthSession(url: String, redirectUrl: String?, options: BrowserNativeOptions) throws -> Promise<BrowserAuthResult>
   func dismissAuthSession() throws -> Void
+  func warmup(browserPackage: String?) throws -> Promise<Bool>
+  func mayLaunchUrl(url: String, browserPackage: String?) throws -> Promise<Bool>
 }
 
 public extension HybridOneBrowserSpec_protocol {

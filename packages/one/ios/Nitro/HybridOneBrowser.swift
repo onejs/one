@@ -32,7 +32,16 @@ final class HybridOneBrowser: HybridOneBrowserSpec {
   }
 
   private static func presentingViewController() -> UIViewController? {
-    var root = RCTKeyWindow()?.rootViewController
+    var root: UIViewController?
+    if let keyWindow = UIApplication.shared.connectedScenes
+      .compactMap({ $0 as? UIWindowScene })
+      .flatMap({ $0.windows })
+      .first(where: { $0.isKeyWindow }) {
+      root = keyWindow.rootViewController
+    }
+    if root == nil {
+      root = RCTKeyWindow()?.rootViewController
+    }
     while let presented = root?.presentedViewController {
       root = presented
     }
@@ -106,6 +115,16 @@ final class HybridOneBrowser: HybridOneBrowserSpec {
       if let controlTint = Self.color(hex: options.controlsColor) {
         safari.preferredControlTintColor = controlTint
       }
+      if let colorScheme = options.colorScheme {
+        switch colorScheme {
+        case .dark:
+          safari.overrideUserInterfaceStyle = .dark
+        case .light:
+          safari.overrideUserInterfaceStyle = .light
+        case .system:
+          safari.overrideUserInterfaceStyle = .unspecified
+        }
+      }
       safari.modalPresentationStyle = Self.presentationStyle(options.presentationStyle)
       self.safari = safari
       self.browserPromise = promise
@@ -136,15 +155,13 @@ final class HybridOneBrowser: HybridOneBrowserSpec {
     throws -> Promise<BrowserAuthResult>
   {
     guard let url = Self.url(urlString) else { return Self.rejected("Browser.openAuthSession") }
-    let scheme = redirectUrl.flatMap { $0.isEmpty ? nil : URL(string: $0)?.scheme }
     let promise = Promise<BrowserAuthResult>()
     DispatchQueue.main.async {
       if self.authSession != nil {
         promise.resolve(withResult: Self.authResult(.locked))
         return
       }
-      let session = ASWebAuthenticationSession(url: url, callbackURLScheme: scheme) {
-        [weak self] callbackURL, _ in
+      let completion: (URL?, Error?) -> Void = { [weak self] callbackURL, _ in
         guard let self else { return }
         let authPromise = self.authPromise
         self.authSession = nil
@@ -156,6 +173,28 @@ final class HybridOneBrowser: HybridOneBrowserSpec {
           authPromise.resolve(withResult: Self.authResult(.cancel))
         }
       }
+
+      let session: ASWebAuthenticationSession
+      if #available(iOS 17.4, *) {
+        let callback: ASWebAuthenticationSession.Callback
+        if let redirectUrlString = redirectUrl, let redirectURI = URL(string: redirectUrlString) {
+          if let scheme = redirectURI.scheme?.lowercased(), (scheme == "https" || scheme == "http"), let host = redirectURI.host {
+            let path = redirectURI.path
+            callback = .https(host: host, path: path.isEmpty ? "/" : path)
+          } else if let scheme = redirectURI.scheme, !scheme.isEmpty {
+            callback = .customScheme(scheme)
+          } else {
+            callback = .customScheme("")
+          }
+        } else {
+          callback = .customScheme("")
+        }
+        session = ASWebAuthenticationSession(url: url, callback: callback, completionHandler: completion)
+      } else {
+        let scheme = redirectUrl.flatMap { $0.isEmpty ? nil : URL(string: $0)?.scheme }
+        session = ASWebAuthenticationSession(url: url, callbackURLScheme: scheme, completionHandler: completion)
+      }
+
       if options.preferEphemeralSession == true {
         session.prefersEphemeralWebBrowserSession = true
       }
@@ -187,6 +226,14 @@ final class HybridOneBrowser: HybridOneBrowserSpec {
     }
   }
 
+  func warmup(browserPackage: String?) throws -> Promise<Bool> {
+    return Promise.resolved(withResult: false)
+  }
+
+  func mayLaunchUrl(url: String, browserPackage: String?) throws -> Promise<Bool> {
+    return Promise.resolved(withResult: false)
+  }
+
   private func safariDidFinish(_ controller: SFSafariViewController) {
     guard safari === controller else { return }
     safari = nil
@@ -208,6 +255,12 @@ final class HybridOneBrowserDelegate: NSObject, SFSafariViewControllerDelegate,
   }
 
   func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+    if let window = UIApplication.shared.connectedScenes
+      .compactMap({ $0 as? UIWindowScene })
+      .flatMap({ $0.windows })
+      .first(where: { $0.isKeyWindow }) {
+      return window
+    }
     return RCTKeyWindow() ?? ASPresentationAnchor()
   }
 }

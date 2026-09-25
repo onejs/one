@@ -18,6 +18,8 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("dismiss", &HybridOneBrowserSpec::dismiss);
       prototype.registerHybridMethod("openAuthSession", &HybridOneBrowserSpec::openAuthSession);
       prototype.registerHybridMethod("dismissAuthSession", &HybridOneBrowserSpec::dismissAuthSession);
+      prototype.registerHybridMethod("warmup", &HybridOneBrowserSpec::warmup);
+      prototype.registerHybridMethod("mayLaunchUrl", &HybridOneBrowserSpec::mayLaunchUrl);
     });
   }
 

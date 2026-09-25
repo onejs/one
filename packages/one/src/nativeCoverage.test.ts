@@ -54,7 +54,6 @@ const knownGaps: Record<string, string> = {
   'UI.ReservedRegions': 'fixture exists, no suite opens it',
   Clipboard: 'iOS suite only',
   Network: 'iOS suite only',
-  Browser: 'iOS suite only',
   DocumentPicker: 'fixture exists, no suite opens it',
   SecureStore: 'no fixture or suite',
   useNetworkState: 'no fixture or suite',

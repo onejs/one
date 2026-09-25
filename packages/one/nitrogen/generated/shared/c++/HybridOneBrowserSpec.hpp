@@ -62,6 +62,8 @@ namespace margelo::nitro::one {
       virtual std::shared_ptr<Promise<BrowserResult>> dismiss() = 0;
       virtual std::shared_ptr<Promise<BrowserAuthResult>> openAuthSession(const std::string& url, const std::optional<std::string>& redirectUrl, const BrowserNativeOptions& options) = 0;
       virtual void dismissAuthSession() = 0;
+      virtual std::shared_ptr<Promise<bool>> warmup(const std::optional<std::string>& browserPackage) = 0;
+      virtual std::shared_ptr<Promise<bool>> mayLaunchUrl(const std::string& url, const std::optional<std::string>& browserPackage) = 0;
 
     protected:
       // Hybrid Setup

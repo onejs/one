@@ -19,6 +19,8 @@ namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 namespace margelo::nitro::one { struct BrowserNativeOptions; }
 // Forward declaration of `BrowserPresentationStyle` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserPresentationStyle; }
+// Forward declaration of `BrowserColorScheme` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrowserColorScheme; }
 
 #include "BrowserResult.hpp"
 #include <NitroModules/Promise.hpp>
@@ -36,6 +38,8 @@ namespace margelo::nitro::one { enum class BrowserPresentationStyle; }
 #include "JBrowserNativeOptions.hpp"
 #include "BrowserPresentationStyle.hpp"
 #include "JBrowserPresentationStyle.hpp"
+#include "BrowserColorScheme.hpp"
+#include "JBrowserColorScheme.hpp"
 
 namespace margelo::nitro::one {
 
@@ -121,6 +125,38 @@ namespace margelo::nitro::one {
   void JHybridOneBrowserSpec::dismissAuthSession() {
     static const auto method = _javaPart->javaClassStatic()->getMethod<void()>("dismissAuthSession");
     method(_javaPart);
+  }
+  std::shared_ptr<Promise<bool>> JHybridOneBrowserSpec::warmup(const std::optional<std::string>& browserPackage) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* browserPackage */)>("warmup");
+    auto __result = method(_javaPart, browserPackage.has_value() ? jni::make_jstring(browserPackage.value()) : nullptr);
+    return [&]() {
+      auto __promise = Promise<bool>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
+        auto __result = jni::static_ref_cast<jni::JBoolean>(__boxedResult);
+        __promise->resolve(static_cast<bool>(__result->value()));
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
+  }
+  std::shared_ptr<Promise<bool>> JHybridOneBrowserSpec::mayLaunchUrl(const std::string& url, const std::optional<std::string>& browserPackage) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* url */, jni::alias_ref<jni::JString> /* browserPackage */)>("mayLaunchUrl");
+    auto __result = method(_javaPart, jni::make_jstring(url), browserPackage.has_value() ? jni::make_jstring(browserPackage.value()) : nullptr);
+    return [&]() {
+      auto __promise = Promise<bool>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
+        auto __result = jni::static_ref_cast<jni::JBoolean>(__boxedResult);
+        __promise->resolve(static_cast<bool>(__result->value()));
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
   }
 
 } // namespace margelo::nitro::one

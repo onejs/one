@@ -29,13 +29,19 @@ data class BrowserNativeOptions(
   val toolbarColor: String?,
   @DoNotStrip
   @Keep
+  val secondaryToolbarColor: String?,
+  @DoNotStrip
+  @Keep
   val controlsColor: String?,
   @DoNotStrip
   @Keep
   val showTitle: Boolean?,
   @DoNotStrip
   @Keep
-  val preferEphemeralSession: Boolean?
+  val preferEphemeralSession: Boolean?,
+  @DoNotStrip
+  @Keep
+  val colorScheme: BrowserColorScheme?
 ) {
   /* primary constructor */
 
@@ -45,9 +51,11 @@ data class BrowserNativeOptions(
     return Objects.deepEquals(this.presentationStyle, other.presentationStyle)
       && Objects.deepEquals(this.browserPackage, other.browserPackage)
       && Objects.deepEquals(this.toolbarColor, other.toolbarColor)
+      && Objects.deepEquals(this.secondaryToolbarColor, other.secondaryToolbarColor)
       && Objects.deepEquals(this.controlsColor, other.controlsColor)
       && Objects.deepEquals(this.showTitle, other.showTitle)
       && Objects.deepEquals(this.preferEphemeralSession, other.preferEphemeralSession)
+      && Objects.deepEquals(this.colorScheme, other.colorScheme)
   }
 
   override fun hashCode(): Int {
@@ -55,9 +63,11 @@ data class BrowserNativeOptions(
       presentationStyle,
       browserPackage,
       toolbarColor,
+      secondaryToolbarColor,
       controlsColor,
       showTitle,
-      preferEphemeralSession
+      preferEphemeralSession,
+      colorScheme
     ).contentDeepHashCode()
   }
 
@@ -69,8 +79,8 @@ data class BrowserNativeOptions(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(presentationStyle: BrowserPresentationStyle?, browserPackage: String?, toolbarColor: String?, controlsColor: String?, showTitle: Boolean?, preferEphemeralSession: Boolean?): BrowserNativeOptions {
-      return BrowserNativeOptions(presentationStyle, browserPackage, toolbarColor, controlsColor, showTitle, preferEphemeralSession)
+    private fun fromCpp(presentationStyle: BrowserPresentationStyle?, browserPackage: String?, toolbarColor: String?, secondaryToolbarColor: String?, controlsColor: String?, showTitle: Boolean?, preferEphemeralSession: Boolean?, colorScheme: BrowserColorScheme?): BrowserNativeOptions {
+      return BrowserNativeOptions(presentationStyle, browserPackage, toolbarColor, secondaryToolbarColor, controlsColor, showTitle, preferEphemeralSession, colorScheme)
     }
   }
 }

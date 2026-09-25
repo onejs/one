@@ -1,5 +1,5 @@
 import type { HybridObject } from 'react-native-nitro-modules'
-import type { BrowserPresentationStyle, BrowserResult } from '../browser/types'
+import type { BrowserColorScheme, BrowserPresentationStyle, BrowserResult } from '../browser/types'
 
 // the in-app browser behind One.Browser, matching expo-web-browser. pages
 // settle with the public BrowserResult; an auth session settles with one flat
@@ -17,9 +17,11 @@ export interface BrowserNativeOptions {
   presentationStyle?: BrowserPresentationStyle
   browserPackage?: string
   toolbarColor?: string
+  secondaryToolbarColor?: string
   controlsColor?: string
   showTitle?: boolean
   preferEphemeralSession?: boolean
+  colorScheme?: BrowserColorScheme
 }
 
 export interface OneBrowser extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
@@ -31,4 +33,7 @@ export interface OneBrowser extends HybridObject<{ ios: 'swift'; android: 'kotli
     options: BrowserNativeOptions
   ): Promise<BrowserAuthResult>
   dismissAuthSession(): void
+  warmup(browserPackage?: string): Promise<boolean>
+  mayLaunchUrl(url: string, browserPackage?: string): Promise<boolean>
 }
+
