@@ -1,4 +1,6 @@
 import { readFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { resolvePath } from '@vxrn/resolve'
 import { swiftPackageDirOf, swiftPackageId } from 'vxrn'
 import type { Plugin } from 'vite'
 
@@ -18,8 +20,14 @@ export function swiftPackagePlugin(): Plugin {
           throw new Error(`[one] ${id} is not inside a swift package (no Package.swift above it)`)
         }
         const fill = /@main\s+struct\s+\w+\s*:\s*(SwiftUI\.)?App\b/.test(readFileSync(id, 'utf8'))
+        // the generated module is bundled as if it lived at the .swift file, so
+        // one's own swift host resolves from the importer to an absolute path.
+        const swiftHost = join(
+          dirname(resolvePath('one/package.json', dirname(id))),
+          'dist/esm/platform/swift/index.native.js'
+        )
         return `import { createElement } from 'react'
-import { SwiftPackageView } from '../../platform/swift'
+import { SwiftPackageView } from ${JSON.stringify(swiftHost)}
 export default function SwiftPackage(props) {
   return createElement(SwiftPackageView, { packageName: ${JSON.stringify(swiftPackageId(packageDir))}, props, fill: ${fill} })
 }
