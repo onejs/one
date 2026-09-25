@@ -62,6 +62,14 @@ describe('native.app manifest', () => {
     ).toThrow(/splash/)
   })
 
+  test('requires both speech usage strings', () => {
+    const speech = { recognition: 'Dictate messages.', microphone: 'Dictate messages.' }
+    expect(() => validateNativeApp({ ...app, speech })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, speech: { ...speech, microphone: ' ' } })).toThrow(
+      /speech\.recognition and speech\.microphone/
+    )
+  })
+
   test('accepts a camera permission string and rejects empty ones', () => {
     expect(() => validateNativeApp({ ...app, imagePicker: undefined })).not.toThrow()
     expect(() => validateNativeApp({ ...app, imagePicker: { camera: '' } })).toThrow(

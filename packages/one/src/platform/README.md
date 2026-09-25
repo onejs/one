@@ -1600,3 +1600,41 @@ One.Browser provides high-fidelity in-app browsing and web authentication sessio
 | :--- | :--- | :--- | :--- | :--- |
 | `expo-web-browser` | iOS `SFSafariViewController` + `ASWebAuthenticationSession`; Android `CustomTabsIntent` | Standard auth session pattern with redirect URL interception; presentation styling | No Android Custom Tabs warmup (`warmup`) or URL prefetching (`mayLaunchUrl`); no Android `AuthTabIntent` (uses full custom tab for auth); no iOS 17.4+ `ASWebAuthenticationSession.Callback.https` (uses custom schemes only); fragile presentation anchor on iPad multi-window | Supports iOS 17.4+ `Callback.https` and custom scheme callbacks; anchors to the active `UIWindowScene` key window; on Android uses `AuthTabIntent` (`androidx.browser:browser:1.9.0`) for clean auth tabs with fallback to Custom Tabs; provides `warmup()` and `mayLaunchUrl()`; full dark/light `colorScheme` support |
 | `react-native-inappbrowser-reborn` | iOS `SFSafariViewController`; Android `CustomTabsIntent` | Basic options like toolbar color | Does not use `ASWebAuthenticationSession` or `AuthTabIntent` for authentication (relies on deep link roundtrips); legacy bridge; no Nitro speed | Uses native OS authentication session primitives on both platforms with direct callbacks, ephemeral session options, and Nitro speed |
+
+## One.Speech
+
+Dictation with the platform recognizer, the engine behind keyboard dictation:
+`SFSpeechRecognizer` on iOS with the `dictation` task hint and automatic
+punctuation, fed by `AVAudioEngine`, and the system `SpeechRecognizer` on
+Android.
+
+```ts
+const { granted } = await One.Speech.requestPermissions()
+const session = One.Speech.start({ lang: 'en-US' }, (event) => {
+  // event.transcript is always everything heard so far
+  if (event.type === 'end') send(event.transcript)
+  if (event.type === 'error') show(event.error, event.message)
+})
+session.stop() // finish; the final transcript arrives in `end`
+session.abort() // tear down with no further events
+```
+
+A session emits `start` when the microphone is live, `transcript` as the
+text changes, then exactly one `end` or `error`. Stopping with nothing said
+ends with an empty transcript, not an error. Starting again replaces the
+running session, whose callback never fires again. The audio session is
+play-and-record, so other audio pauses while listening and resumes after, and
+an interruption or route change ends the session with `interrupted`. On
+Android a session is one utterance: the recognizer ends it after trailing
+silence, as a stop would.
+
+Permissions take the shared response shape plus expo's `restricted`; iOS
+needs both the microphone and speech recognition grants. Declare the prompts
+with `native.app` `speech: { recognition, microphone }`, which also stamps
+Android's `RECORD_AUDIO` and the recognition service query.
+
+| Library | What it gets right | What it misses | What One does |
+| :--- | :--- | :--- | :--- |
+| `expo-speech-recognition` | Web Speech API shape, many options, file transcription | Global event listeners, so overlapping sessions need app-side generation guards; on iOS 18 a continuous session restarts the transcript after each pause and the library prefixes the next segment with a space for apps to stitch; no-speech is an error | One session object per start; native keeps the committed segments and always sends the whole transcript; no-speech is an ordinary `end` |
+| `@react-native-voice/voice` | Small, long-lived | Legacy bridge, event emitter globals, no punctuation or task hint, unmaintained against recent iOS audio session rules | Nitro hybrid object, dictation task hint and punctuation, audio session deactivates with `notifyOthersOnDeactivation` |
+| `SpeechAnalyzer` (iOS 26) | Apple's newer on-device long-form engine | iOS 26 and later only, while One's floor is 17 | `SFSpeechRecognizer` today; `SpeechAnalyzer` is the follow-up once the floor allows one path |

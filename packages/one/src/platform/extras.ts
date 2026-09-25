@@ -57,3 +57,13 @@ export type {
   AppleAuthenticationSignInOptions,
   AppleAuthenticationUserDetectionStatus,
 } from './apple-auth'
+export { Speech } from './speech'
+export type {
+  SpeechErrorCode,
+  SpeechEvent,
+  SpeechEventType,
+  SpeechPermissionResponse,
+  SpeechPermissionStatus,
+  SpeechSession,
+  SpeechStartOptions,
+} from './speech'

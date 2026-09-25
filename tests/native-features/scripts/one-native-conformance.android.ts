@@ -766,6 +766,24 @@ function relaunchApp(config: Config) {
   adbText(config, ['shell', 'am', 'start', '-W', '-n', launcherComponent])
 }
 
+// wipe app data so permissions start undetermined like a fresh install.
+// pm clear also revokes ACCESS_LOCAL_NETWORK, which android 17 requires for
+// the debug host connection; its prompt belongs to dev tooling, never the
+// module under test, so grant it back before relaunching.
+function clearAppData(config: Config) {
+  adbText(config, ['shell', 'pm', 'clear', config.packageId])
+  adbText(config, [
+    'shell',
+    'pm',
+    'grant',
+    config.packageId,
+    'android.permission.ACCESS_LOCAL_NETWORK',
+  ])
+  relaunchApp(config)
+  stampDebugHost(config)
+  relaunchApp(config)
+}
+
 // point the debug host at this run's metro: the stock emulator reaches the
 // host loopback as 10.0.2.2, so whoever else owns host:8081 does not
 // matter. call after a launch that guarantees the data dir exists; pm clear
@@ -2038,12 +2056,107 @@ async function run(config: Config) {
       'one-native-image-picker-library'
     )
 
+    // speech: clear app data so the microphone permission starts
+    // undetermined, prove a session without it fails not-allowed, then grant
+    // and run full sessions. the runtime dialog is outside this harness's
+    // contract, so pm grant stands in for it and request reads it back.
+    clearAppData(config)
+    await expect(
+      'speech-home',
+      (nodes) => exactlyOneId(nodes, 'home-screen'),
+      'home-screen'
+    )
+    await tapNavigation(config, 'nav-one-native-speech')
+    const speechLog = (nodes: Node[], name: string) =>
+      nodes
+        .flatMap((node) => [node.text, node.contentDescription])
+        .find((text) => text?.startsWith(`${name}: `))
+        ?.slice(name.length + 2) ?? null
+    const speechEnded = (nodes: Node[], name: string) =>
+      /(^|,)end$/.test(speechLog(nodes, name) ?? '')
+    const tapSpeech = (id: string) =>
+      tapFresh(config, id, { id, role: 'button', clickable: true })
+    await expect(
+      'speech-mounted-undetermined',
+      (nodes) =>
+        diagnose(nodes, [
+          ['recognizer available', (n) => textIncludes(n, 'Available: true')],
+          ['undetermined', (n) => textIncludes(n, 'Permission: undetermined')],
+        ]),
+      'one-native-speech-start'
+    )
+    tapSpeech('one-native-speech-start')
+    await expect(
+      'speech-without-permission-fails',
+      (nodes) => speechLog(nodes, 'A') === 'error:not-allowed',
+      'one-native-speech-start'
+    )
+    adbText(config, [
+      'shell',
+      'pm',
+      'grant',
+      config.packageId,
+      'android.permission.RECORD_AUDIO',
+    ])
+    tapSpeech('one-native-speech-request')
+    await expect(
+      'speech-permission-granted',
+      (nodes) => textIncludes(nodes, 'Permission: granted'),
+      'one-native-speech-request'
+    )
+    tapSpeech('one-native-speech-start')
+    await expect(
+      'speech-session-opens',
+      (nodes) => speechLog(nodes, 'A')?.startsWith('start') === true,
+      'one-native-speech-start'
+    )
+    tapSpeech('one-native-speech-stop')
+    await expect(
+      'speech-stop-ends',
+      (nodes) => speechEnded(nodes, 'A'),
+      'one-native-speech-stop'
+    )
+    tapSpeech('one-native-speech-start')
+    await expect(
+      'speech-session-a-opens',
+      (nodes) => speechLog(nodes, 'A') === 'start',
+      'one-native-speech-start'
+    )
+    tapSpeech('one-native-speech-replace')
+    await expect(
+      'speech-session-b-opens',
+      (nodes) => speechLog(nodes, 'B')?.startsWith('start') === true,
+      'one-native-speech-replace'
+    )
+    tapSpeech('one-native-speech-stop')
+    await expect(
+      'speech-replaced-a-stays-silent',
+      (nodes) => speechEnded(nodes, 'B') && speechLog(nodes, 'A') === 'start',
+      'one-native-speech-stop'
+    )
+    tapSpeech('one-native-speech-start')
+    await expect(
+      'speech-session-a-reopens',
+      (nodes) => speechLog(nodes, 'A') === 'start',
+      'one-native-speech-start'
+    )
+    tapSpeech('one-native-speech-abort')
+    tapSpeech('one-native-speech-replace')
+    await expect(
+      'speech-b-opens-after-abort',
+      (nodes) => speechLog(nodes, 'B')?.startsWith('start') === true,
+      'one-native-speech-replace'
+    )
+    tapSpeech('one-native-speech-stop')
+    await expect(
+      'speech-aborted-a-stays-silent',
+      (nodes) => speechEnded(nodes, 'B') && speechLog(nodes, 'A') === 'start',
+      'one-native-speech-stop'
+    )
+
     // notifications slice n1: clear app data so the permission starts
     // undetermined like a fresh install, then grant and read back.
-    adbText(config, ['shell', 'pm', 'clear', config.packageId])
-    relaunchApp(config)
-    stampDebugHost(config)
-    relaunchApp(config)
+    clearAppData(config)
     await expect(
       'notifications-home',
       (nodes) =>
