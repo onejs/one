@@ -42,12 +42,12 @@ namespace margelo::nitro::one {
     static jni::alias_ref<JNetworkStateType> fromCpp(NetworkStateType value) {
       static const auto clazz = javaClassStatic();
       switch (value) {
-        case NetworkStateType::NONE:
-          static const auto fieldNONE = clazz->getStaticField<JNetworkStateType>("NONE");
-          return clazz->getStaticFieldValue(fieldNONE);
         case NetworkStateType::UNKNOWN:
           static const auto fieldUNKNOWN = clazz->getStaticField<JNetworkStateType>("UNKNOWN");
           return clazz->getStaticFieldValue(fieldUNKNOWN);
+        case NetworkStateType::NONE:
+          static const auto fieldNONE = clazz->getStaticField<JNetworkStateType>("NONE");
+          return clazz->getStaticFieldValue(fieldNONE);
         case NetworkStateType::CELLULAR:
           static const auto fieldCELLULAR = clazz->getStaticField<JNetworkStateType>("CELLULAR");
           return clazz->getStaticFieldValue(fieldCELLULAR);

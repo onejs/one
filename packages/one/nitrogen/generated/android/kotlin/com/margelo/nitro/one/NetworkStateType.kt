@@ -16,8 +16,8 @@ import com.facebook.proguard.annotations.DoNotStrip
 @DoNotStrip
 @Keep
 enum class NetworkStateType(@DoNotStrip @Keep val value: Int) {
-  NONE(0),
-  UNKNOWN(1),
+  UNKNOWN(0),
+  NONE(1),
   CELLULAR(2),
   WIFI(3),
   BLUETOOTH(4),
