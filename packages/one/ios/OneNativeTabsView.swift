@@ -16,6 +16,7 @@ struct OneNativeSectionAction: Decodable, Equatable, Identifiable {
 // validated against the SDK. an absent field leaves SwiftUI's own default in place.
 struct OneNativeTabModifiers: Decodable, Equatable {
   var image: String?
+  var labelStyle: String?
   var section: String?
   var disabled: Bool?
   var hidden: Bool?
@@ -456,9 +457,13 @@ private struct TabsContent: View {
           }
       }
     } label: {
-      if let image = page.modifiers.image { Label(page.title, image: image) }
-      else if page.systemImage.isEmpty { Text(page.title) }
-      else { Label(page.title, systemImage: page.systemImage) }
+      if let image = page.modifiers.image {
+        Label(page.title, image: image).oneNativeTabLabelStyle(page.modifiers.labelStyle)
+      } else if page.systemImage.isEmpty {
+        Text(page.title)
+      } else {
+        Label(page.title, systemImage: page.systemImage).oneNativeTabLabelStyle(page.modifiers.labelStyle)
+      }
     }
     .badge(page.badge.isEmpty ? nil : Text(page.badge))
     .oneNativeTabContent(page.modifiers)
@@ -475,7 +480,7 @@ private struct TabsContent: View {
             if page.systemImage.isEmpty {
               Text(page.title)
             } else {
-              Label(page.title, systemImage: page.systemImage)
+              Label(page.title, systemImage: page.systemImage).oneNativeTabLabelStyle(page.modifiers.labelStyle)
             }
           }
           .badge(page.badge.isEmpty ? nil : Text(page.badge))
@@ -483,6 +488,20 @@ private struct TabsContent: View {
       }
     }
     .id(model.tabViewRevision)
+  }
+}
+
+extension View {
+  // the tab item's .labelStyle; unset keeps the bar's automatic title and icon.
+  @ViewBuilder func oneNativeTabLabelStyle(_ style: String?) -> some View {
+    switch style {
+    case nil: self
+    case "automatic": self.labelStyle(.automatic)
+    case "iconOnly": self.labelStyle(.iconOnly)
+    case "titleAndIcon": self.labelStyle(.titleAndIcon)
+    case "titleOnly": self.labelStyle(.titleOnly)
+    default: preconditionFailure("invalid Swift.Tab labelStyle: \(style ?? "")")
+    }
   }
 }
 

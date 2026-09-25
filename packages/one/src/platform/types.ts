@@ -8,7 +8,7 @@ export type * from './groupTypes'
 export type * from './textTypes'
 import type { ReactNode } from 'react'
 import type { ViewProps } from 'react-native'
-import type { OneNativeStyle } from './generated/controlTypes'
+import type { OneNativeStyle, SDKLabelStyle } from './generated/controlTypes'
 import type {
   AdaptableTabBarPlacement,
   SpringLoadingBehavior,
@@ -48,6 +48,9 @@ export interface TabProps extends TabContentProps {
   // a tab label shows an SF Symbol or an asset catalog image, never both.
   systemImage?: string
   image?: string
+  // the tab item's label style, as .labelStyle on its Label: 'iconOnly' drops the title
+  // from the bar and keeps it for accessibility.
+  labelStyle?: SDKLabelStyle
   badge?: string | number
   role?: TabRole
   tabPlacement?: TabPlacement
