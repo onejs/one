@@ -2,6 +2,13 @@
     <!-- normal install-time permission, merged into the app manifest;
          the api-conventions section 6 exception for install-time permissions -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- android 11 package visibility: Browser finds the Custom Tabs browser
+         through this service action -->
+    <queries>
+        <intent>
+            <action android:name="android.support.customtabs.action.CustomTabsService" />
+        </intent>
+    </queries>
     <!-- camera captures write into the app cache through this provider; the
     manifest merger carries it into the app, with the app's own id. -->
     <application>

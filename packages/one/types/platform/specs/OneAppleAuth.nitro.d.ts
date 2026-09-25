@@ -1,4 +1,7 @@
 import type { HybridObject } from 'react-native-nitro-modules';
+export type AppleAuthScope = 'fullName' | 'email';
+export type AppleCredentialState = 'revoked' | 'authorized' | 'notFound' | 'transferred';
+export type AppleRealUserStatus = 'unsupported' | 'unknown' | 'likelyReal';
 export interface AppleAuthFullName {
     namePrefix?: string;
     givenName?: string;
@@ -14,10 +17,15 @@ export interface AppleAuthCredential {
     authorizationCode?: string;
     email?: string;
     fullName?: AppleAuthFullName;
-    realUserStatus: number;
+    realUserStatus: AppleRealUserStatus;
+}
+export type AppleAuthResultType = 'success' | 'cancel';
+export interface AppleAuthResult {
+    type: AppleAuthResultType;
+    credential?: AppleAuthCredential;
 }
 export interface AppleAuthSignInOptions {
-    requestedScopes?: string[];
+    requestedScopes?: AppleAuthScope[];
     nonce?: string;
     state?: string;
 }
@@ -26,7 +34,7 @@ export interface OneAppleAuth extends HybridObject<{
     android: 'kotlin';
 }> {
     isAvailable(): boolean;
-    signIn(options: AppleAuthSignInOptions): Promise<AppleAuthCredential>;
-    getCredentialState(user: string): Promise<number>;
+    signIn(options: AppleAuthSignInOptions): Promise<AppleAuthResult>;
+    getCredentialState(user: string): Promise<AppleCredentialState>;
 }
 //# sourceMappingURL=OneAppleAuth.nitro.d.ts.map

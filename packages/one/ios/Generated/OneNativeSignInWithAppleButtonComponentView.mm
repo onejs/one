@@ -59,7 +59,7 @@ using namespace facebook::react;
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_nativeView configure:RCTNSStringFromString(next.nonce)
-    ];
+    label:RCTNSStringFromString(next.label)];
 
   [super updateProps:props oldProps:oldProps];
 }

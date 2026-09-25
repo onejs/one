@@ -1,8 +1,12 @@
 import type { HybridObject } from 'react-native-nitro-modules'
 
-// native apple authentication behind One.AppleAuth, replacing expo-apple-authentication.
-// scopes are passed as strings ('fullName', 'email') and maps to ASAuthorization.Scope on iOS.
-// on Android, isAvailable returns false and signIn/getCredentialState reject with explicit absence.
+// native sign in with apple behind One.Auth.Apple, replacing expo-apple-authentication.
+// ios drives ASAuthorizationController; android has no sign in with apple, so it
+// reports isAvailable false and rejects every request the way the web entry does.
+
+export type AppleAuthScope = 'fullName' | 'email'
+export type AppleCredentialState = 'revoked' | 'authorized' | 'notFound' | 'transferred'
+export type AppleRealUserStatus = 'unsupported' | 'unknown' | 'likelyReal'
 
 export interface AppleAuthFullName {
   namePrefix?: string
@@ -20,17 +24,26 @@ export interface AppleAuthCredential {
   authorizationCode?: string
   email?: string
   fullName?: AppleAuthFullName
-  realUserStatus: number
+  realUserStatus: AppleRealUserStatus
+}
+
+// a user who backs out is an outcome, never a rejection
+export type AppleAuthResultType = 'success' | 'cancel'
+
+export interface AppleAuthResult {
+  type: AppleAuthResultType
+  // set exactly when type is success
+  credential?: AppleAuthCredential
 }
 
 export interface AppleAuthSignInOptions {
-  requestedScopes?: string[]
+  requestedScopes?: AppleAuthScope[]
   nonce?: string
   state?: string
 }
 
 export interface OneAppleAuth extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   isAvailable(): boolean
-  signIn(options: AppleAuthSignInOptions): Promise<AppleAuthCredential>
-  getCredentialState(user: string): Promise<number>
+  signIn(options: AppleAuthSignInOptions): Promise<AppleAuthResult>
+  getCredentialState(user: string): Promise<AppleCredentialState>
 }

@@ -8,7 +8,7 @@ export type * from './groupTypes';
 export type * from './textTypes';
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
-import type { OneNativeStyle } from './generated/controlTypes';
+import type { OneNativeStyle, SDKLabelStyle } from './generated/controlTypes';
 import type { AdaptableTabBarPlacement, SpringLoadingBehavior, TabCustomizationBehavior, TabPlacement, TabRole, TabSectionExpansion, TabViewStyle, Visibility } from './generated/swiftui';
 import type { TabViewSlotName } from './generated/viewSlots';
 export interface TabContentProps {
@@ -35,6 +35,7 @@ export interface TabProps extends TabContentProps {
     title: string;
     systemImage?: string;
     image?: string;
+    labelStyle?: SDKLabelStyle;
     badge?: string | number;
     role?: TabRole;
     tabPlacement?: TabPlacement;

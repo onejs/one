@@ -3723,6 +3723,7 @@ export interface SignInWithAppleButtonProps extends OneNativeViewProps {
   onCompletion?: (completion: SignInWithAppleButtonCompletion) => void
   requestedScopes?: readonly ('fullName' | 'email')[]
   nonce?: string
+  label?: 'signIn' | 'continue' | 'signUp'
 }
 export interface MapProps extends OneNativeViewProps {
   onRegionChange?: (latitude: number, longitude: number, distance: number) => void
