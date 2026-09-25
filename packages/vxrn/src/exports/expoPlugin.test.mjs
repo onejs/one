@@ -1,4 +1,11 @@
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import {
+  mkdtempSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from 'node:fs'
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
@@ -92,24 +99,86 @@ class MainActivity : ReactActivity() {
   })
 })
 
+function expoProject() {
+  const projectRoot = mkdtempSync(join(tmpdir(), 'vxrn-expo-plugin-'))
+  temporaryDirectories.push(projectRoot)
+  writeFileSync(join(projectRoot, 'package.json'), '{"private":true}')
+  const configPluginsRoot = createRequire(import.meta.url).resolve(
+    '@expo/config-plugins/package.json'
+  )
+  const scopedDirectory = join(projectRoot, 'node_modules', '@expo')
+  mkdirSync(scopedDirectory, { recursive: true })
+  symlinkSync(
+    configPluginsRoot.slice(0, -'/package.json'.length),
+    join(scopedDirectory, 'config-plugins'),
+    'dir'
+  )
+  return projectRoot
+}
+
 describe('vxrn/expo-plugin', () => {
+  it('stamps the same notification entries as one prebuild', async () => {
+    const projectRoot = expoProject()
+    const config = withVxrn(
+      {
+        name: 'TestApp',
+        slug: 'test-app',
+        _internal: { projectRoot },
+      },
+      { notifications: { push: true } }
+    )
+    const modRequest = { projectRoot, introspect: false, projectName: 'TestApp' }
+    const run = (platform, mod, modResults) =>
+      config.mods[platform][mod]({
+        ...config,
+        modRequest: { ...modRequest, platform, modName: mod },
+        modResults,
+      })
+
+    const infoPlist = (await run('ios', 'infoPlist', {})).modResults
+    expect(infoPlist[patches.ONE_NOTIFICATIONS.enabledInfoPlistKey]).toBe(true)
+    expect(infoPlist[patches.ONE_NOTIFICATIONS.pushInfoPlistKey]).toBe(true)
+    const entitlements = (await run('ios', 'entitlements', {})).modResults
+    expect(entitlements['aps-environment']).toBe('development')
+
+    const manifest = {
+      manifest: {
+        $: {},
+        'uses-permission': [{ $: { 'android:name': 'android.permission.INTERNET' } }],
+        application: [{ $: { 'android:name': '.MainApplication' }, activity: [] }],
+      },
+    }
+    const once = (await run('android', 'manifest', manifest)).modResults
+    const twice = (await run('android', 'manifest', once)).modResults
+    const application = twice.manifest.application[0]
+    expect(twice.manifest['uses-permission'].map((p) => p.$['android:name'])).toEqual([
+      'android.permission.INTERNET',
+      ...patches.ONE_NOTIFICATIONS.androidPermissions,
+    ])
+    expect(application.receiver.map((r) => r.$['android:name'])).toEqual([
+      patches.ONE_NOTIFICATIONS.receiver,
+    ])
+    expect(application.service.map((r) => r.$['android:name'])).toEqual([
+      patches.ONE_NOTIFICATIONS.pushService,
+    ])
+
+    const properties = (
+      await run('android', 'gradleProperties', [
+        { type: 'property', key: 'hermesEnabled', value: 'true' },
+      ])
+    ).modResults
+    expect(properties).toContainEqual({
+      type: 'property',
+      key: patches.ONE_NOTIFICATIONS.pushGradleProperty,
+      value: 'true',
+    })
+  })
+
   it('resolves Expo config plugins from the app and binds the dangerous mod', async () => {
-    const projectRoot = mkdtempSync(join(tmpdir(), 'vxrn-expo-plugin-'))
-    temporaryDirectories.push(projectRoot)
+    const projectRoot = expoProject()
     const iosRoot = join(projectRoot, 'ios')
     mkdirSync(iosRoot, { recursive: true })
     writeFileSync(join(iosRoot, 'Podfile'), podfile)
-    writeFileSync(join(projectRoot, 'package.json'), '{"private":true}')
-    const workspaceRequire = createRequire(import.meta.url)
-    const configPluginsRoot = workspaceRequire.resolve(
-      '@expo/config-plugins/package.json'
-    )
-    const scopedDirectory = join(projectRoot, 'node_modules', '@expo')
-    mkdirSync(scopedDirectory, { recursive: true })
-    const packageDirectory = configPluginsRoot.slice(0, -'/package.json'.length)
-    await import('node:fs/promises').then(({ symlink }) =>
-      symlink(packageDirectory, join(scopedDirectory, 'config-plugins'), 'dir')
-    )
 
     const config = withVxrn({
       name: 'TestApp',
