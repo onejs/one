@@ -1296,16 +1296,19 @@ async function generateSplashScreen(args: {
   FSExtra.writeFileSync(stylesPath, styles)
   const stylesV31 = path.join(mainRes, 'values-v31')
   FSExtra.mkdirSync(stylesV31, { recursive: true })
+  // a values-v31 AppTheme replaces the base one on API 31+, so it is the base
+  // theme (parent included) plus the system splash items, never a bare style.
+  if (!styles.includes('</style>')) {
+    throw new Error('[vxrn] prebuild template styles.xml lost its AppTheme </style> anchor')
+  }
   FSExtra.writeFileSync(
     path.join(stylesV31, 'styles.xml'),
-    `<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="AppTheme">
-        <item name="android:windowSplashScreenBackground">@color/splash_background</item>
+    styles.replace(
+      '</style>',
+      `    <item name="android:windowSplashScreenBackground">@color/splash_background</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash</item>
-    </style>
-</resources>
-`
+    </style>`
+    )
   )
 }
 
