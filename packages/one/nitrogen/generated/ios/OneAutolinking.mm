@@ -23,6 +23,7 @@
 #include "HybridOneSecureStoreSpecSwift.hpp"
 #include "HybridOneAdaptiveSpecSwift.hpp"
 #include "HybridOneSpeechSpecSwift.hpp"
+#include "HybridOneFetchSpecSwift.hpp"
 #include "HybridOneAppleAuthSpecSwift.hpp"
 
 @interface OneAutolinking : NSObject
@@ -122,6 +123,13 @@
     "OneSpeech",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneSpeechSpec> hybridObject = One::OneAutolinking::createOneSpeech();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneFetch",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneFetchSpec> hybridObject = One::OneAutolinking::createOneFetch();
       return hybridObject;
     }
   );

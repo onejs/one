@@ -12,6 +12,8 @@
 namespace margelo::nitro::one { struct AppleAuthCredential; }
 // Forward declaration of `AppleAuthFullName` to properly resolve imports.
 namespace margelo::nitro::one { struct AppleAuthFullName; }
+// Forward declaration of `ArrayBufferHolder` to properly resolve imports.
+namespace NitroModules { class ArrayBufferHolder; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
@@ -32,6 +34,14 @@ namespace margelo::nitro::one { enum class CameraPermissionStatus; }
 namespace margelo::nitro::one { struct DocumentPickerAsset; }
 // Forward declaration of `DocumentPickerNativeResult` to properly resolve imports.
 namespace margelo::nitro::one { struct DocumentPickerNativeResult; }
+// Forward declaration of `FetchBlobRef` to properly resolve imports.
+namespace margelo::nitro::one { struct FetchBlobRef; }
+// Forward declaration of `FetchFormPart` to properly resolve imports.
+namespace margelo::nitro::one { struct FetchFormPart; }
+// Forward declaration of `FetchHeader` to properly resolve imports.
+namespace margelo::nitro::one { struct FetchHeader; }
+// Forward declaration of `FetchNativeResponse` to properly resolve imports.
+namespace margelo::nitro::one { struct FetchNativeResponse; }
 // Forward declaration of `HingeState` to properly resolve imports.
 namespace margelo::nitro::one { struct HingeState; }
 // Forward declaration of `HingeStatus` to properly resolve imports.
@@ -50,6 +60,8 @@ namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 namespace margelo::nitro::one { class HybridOneCryptoSpec; }
 // Forward declaration of `HybridOneDocumentPickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDocumentPickerSpec; }
+// Forward declaration of `HybridOneFetchSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneFetchSpec; }
 // Forward declaration of `HybridOneFontsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneFontsSpec; }
 // Forward declaration of `HybridOneHapticsSpec` to properly resolve imports.
@@ -130,6 +142,8 @@ namespace One { class HybridOneClipboardSpec_cxx; }
 namespace One { class HybridOneCryptoSpec_cxx; }
 // Forward declaration of `HybridOneDocumentPickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDocumentPickerSpec_cxx; }
+// Forward declaration of `HybridOneFetchSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneFetchSpec_cxx; }
 // Forward declaration of `HybridOneFontsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneFontsSpec_cxx; }
 // Forward declaration of `HybridOneHapticsSpec_cxx` to properly resolve imports.
@@ -158,6 +172,10 @@ namespace One { class HybridOneSpeechSpec_cxx; }
 #include "CameraPermissionStatus.hpp"
 #include "DocumentPickerAsset.hpp"
 #include "DocumentPickerNativeResult.hpp"
+#include "FetchBlobRef.hpp"
+#include "FetchFormPart.hpp"
+#include "FetchHeader.hpp"
+#include "FetchNativeResponse.hpp"
 #include "HingeState.hpp"
 #include "HingeStatus.hpp"
 #include "HybridOneAdaptiveSpec.hpp"
@@ -167,6 +185,7 @@ namespace One { class HybridOneSpeechSpec_cxx; }
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
 #include "HybridOneDocumentPickerSpec.hpp"
+#include "HybridOneFetchSpec.hpp"
 #include "HybridOneFontsSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
@@ -201,6 +220,7 @@ namespace One { class HybridOneSpeechSpec_cxx; }
 #include "UserInterfaceSizeClass.hpp"
 #include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
+#include <NitroModules/ArrayBufferHolder.hpp>
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/PromiseHolder.hpp>
 #include <NitroModules/Result.hpp>
@@ -941,6 +961,138 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_DocumentPickerNativeResult___ create_Result_std__shared_ptr_Promise_DocumentPickerNativeResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<DocumentPickerNativeResult>>>::withError(error);
+  }
+  
+  // pragma MARK: std::vector<FetchHeader>
+  /**
+   * Specialized version of `std::vector<FetchHeader>`.
+   */
+  using std__vector_FetchHeader_ = std::vector<FetchHeader>;
+  inline std::vector<FetchHeader> create_std__vector_FetchHeader_(size_t size) noexcept {
+    std::vector<FetchHeader> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::optional<std::shared_ptr<ArrayBuffer>>
+  /**
+   * Specialized version of `std::optional<std::shared_ptr<ArrayBuffer>>`.
+   */
+  using std__optional_std__shared_ptr_ArrayBuffer__ = std::optional<std::shared_ptr<ArrayBuffer>>;
+  inline std::optional<std::shared_ptr<ArrayBuffer>> create_std__optional_std__shared_ptr_ArrayBuffer__(const std::shared_ptr<ArrayBuffer>& value) noexcept {
+    return std::optional<std::shared_ptr<ArrayBuffer>>(value);
+  }
+  inline bool has_value_std__optional_std__shared_ptr_ArrayBuffer__(const std::optional<std::shared_ptr<ArrayBuffer>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::shared_ptr<ArrayBuffer> get_std__optional_std__shared_ptr_ArrayBuffer__(const std::optional<std::shared_ptr<ArrayBuffer>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<FetchBlobRef>
+  /**
+   * Specialized version of `std::optional<FetchBlobRef>`.
+   */
+  using std__optional_FetchBlobRef_ = std::optional<FetchBlobRef>;
+  inline std::optional<FetchBlobRef> create_std__optional_FetchBlobRef_(const FetchBlobRef& value) noexcept {
+    return std::optional<FetchBlobRef>(value);
+  }
+  inline bool has_value_std__optional_FetchBlobRef_(const std::optional<FetchBlobRef>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline FetchBlobRef get_std__optional_FetchBlobRef_(const std::optional<FetchBlobRef>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::vector<FetchFormPart>
+  /**
+   * Specialized version of `std::vector<FetchFormPart>`.
+   */
+  using std__vector_FetchFormPart_ = std::vector<FetchFormPart>;
+  inline std::vector<FetchFormPart> create_std__vector_FetchFormPart_(size_t size) noexcept {
+    std::vector<FetchFormPart> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::optional<std::vector<FetchFormPart>>
+  /**
+   * Specialized version of `std::optional<std::vector<FetchFormPart>>`.
+   */
+  using std__optional_std__vector_FetchFormPart__ = std::optional<std::vector<FetchFormPart>>;
+  inline std::optional<std::vector<FetchFormPart>> create_std__optional_std__vector_FetchFormPart__(const std::vector<FetchFormPart>& value) noexcept {
+    return std::optional<std::vector<FetchFormPart>>(value);
+  }
+  inline bool has_value_std__optional_std__vector_FetchFormPart__(const std::optional<std::vector<FetchFormPart>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::vector<FetchFormPart> get_std__optional_std__vector_FetchFormPart__(const std::optional<std::vector<FetchFormPart>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::function<void(const FetchNativeResponse& /* response */)>
+  /**
+   * Specialized version of `std::function<void(const FetchNativeResponse&)>`.
+   */
+  using Func_void_FetchNativeResponse = std::function<void(const FetchNativeResponse& /* response */)>;
+  /**
+   * Wrapper class for a `std::function<void(const FetchNativeResponse& / * response * /)>`, this can be used from Swift.
+   */
+  class Func_void_FetchNativeResponse_Wrapper final {
+  public:
+    explicit Func_void_FetchNativeResponse_Wrapper(std::function<void(const FetchNativeResponse& /* response */)>&& func): _function(std::make_unique<std::function<void(const FetchNativeResponse& /* response */)>>(std::move(func))) {}
+    inline void call(FetchNativeResponse response) const noexcept {
+      _function->operator()(response);
+    }
+  private:
+    std::unique_ptr<std::function<void(const FetchNativeResponse& /* response */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_FetchNativeResponse create_Func_void_FetchNativeResponse(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_FetchNativeResponse_Wrapper wrap_Func_void_FetchNativeResponse(Func_void_FetchNativeResponse value) noexcept {
+    return Func_void_FetchNativeResponse_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>
+  /**
+   * Specialized version of `std::function<void(const std::shared_ptr<ArrayBuffer>&)>`.
+   */
+  using Func_void_std__shared_ptr_ArrayBuffer_ = std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::shared_ptr<ArrayBuffer>& / * chunk * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__shared_ptr_ArrayBuffer__Wrapper final {
+  public:
+    explicit Func_void_std__shared_ptr_ArrayBuffer__Wrapper(std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>&& func): _function(std::make_unique<std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>>(std::move(func))) {}
+    inline void call(ArrayBufferHolder chunk) const noexcept {
+      _function->operator()(chunk.getArrayBuffer());
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__shared_ptr_ArrayBuffer_ create_Func_void_std__shared_ptr_ArrayBuffer_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__shared_ptr_ArrayBuffer__Wrapper wrap_Func_void_std__shared_ptr_ArrayBuffer_(Func_void_std__shared_ptr_ArrayBuffer_ value) noexcept {
+    return Func_void_std__shared_ptr_ArrayBuffer__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneFetchSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneFetchSpec>`.
+   */
+  using std__shared_ptr_HybridOneFetchSpec_ = std::shared_ptr<HybridOneFetchSpec>;
+  std::shared_ptr<HybridOneFetchSpec> create_std__shared_ptr_HybridOneFetchSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneFetchSpec_(std__shared_ptr_HybridOneFetchSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneFetchSpec>
+  using std__weak_ptr_HybridOneFetchSpec_ = std::weak_ptr<HybridOneFetchSpec>;
+  inline std__weak_ptr_HybridOneFetchSpec_ weakify_std__shared_ptr_HybridOneFetchSpec_(const std::shared_ptr<HybridOneFetchSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::string>
+  using Result_std__string_ = Result<std::string>;
+  inline Result_std__string_ create_Result_std__string_(const std::string& value) noexcept {
+    return Result<std::string>::withValue(value);
+  }
+  inline Result_std__string_ create_Result_std__string_(const std::exception_ptr& error) noexcept {
+    return Result<std::string>::withError(error);
   }
   
   // pragma MARK: std::shared_ptr<Promise<void>>

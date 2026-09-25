@@ -216,6 +216,11 @@ const testScreens = [
     label: 'One Native Speech',
     testID: 'nav-one-native-speech',
   },
+  {
+    href: '/one-native-fetch',
+    label: 'One Native Fetch',
+    testID: 'nav-one-native-fetch',
+  },
 ] as const
 
 export default function HomeScreen() {

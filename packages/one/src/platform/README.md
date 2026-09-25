@@ -1642,3 +1642,39 @@ Android's `RECORD_AUDIO` and the recognition service query.
 | `expo-speech-recognition` | Web Speech API shape, many options, file transcription | Global event listeners, so overlapping sessions need app-side generation guards; on iOS 18 a continuous session restarts the transcript after each pause and the library prefixes the next segment with a space for apps to stitch; no-speech is an error | One session object per start; native keeps the committed segments and always sends the whole transcript; no-speech is an ordinary `end` |
 | `@react-native-voice/voice` | Small, long-lived | Legacy bridge, event emitter globals, no punctuation or task hint, unmaintained against recent iOS audio session rules | Nitro hybrid object, dictation task hint and punctuation, audio session deactivates with `notifyOthersOnDeactivation` |
 | `SpeechAnalyzer` (iOS 26) | Apple's newer on-device long-form engine | iOS 26 and later only, while One's floor is 17 | `SFSpeechRecognizer` today; `SpeechAnalyzer` is the follow-up once the floor allows one path |
+
+## fetch
+
+On iOS and Android, One replaces the global `fetch` with one whose
+`response.body` streams: each chunk reaches `body.getReader()` as the socket
+delivers it. React Native's own fetch runs over `XMLHttpRequest`, buffers the
+whole response, and has no `body`, so ndjson, server-sent events and model
+output arrive all at once and streaming clients (AI SDKs) cannot read them.
+
+```ts
+const response = await fetch(url, { method: 'POST', body: JSON.stringify(input) })
+const reader = response.body.getReader()
+for (;;) {
+  const { done, value } = await reader.read()
+  if (done) break
+  render(new TextDecoder().decode(value, { stream: true }))
+}
+```
+
+Requests run on `URLSession` with React Native's cookie configuration on iOS,
+and on Android on an OkHttp client from `OkHttpClientProvider`, so an app's
+`OkHttpClientFactory` applies and cookies share React Native's `CookieManager`
+store. It keeps what React Native's fetch accepts: string, `URLSearchParams`,
+`ArrayBuffer`, typed array, `Blob` and `FormData` bodies (including
+`{ uri, name, type }` file parts, always sent with a multipart boundary),
+`file:` and `content:` urls, `Request` inputs, `credentials: 'omit'`,
+`AbortSignal` (rejecting with `signal.reason`), `clone()`, `blob()` and
+`formData()`. Network failures reject with a `TypeError`. A binary built
+without OneFetch keeps React Native's fetch. On web the browser's fetch
+already streams and nothing is installed.
+
+| | Streams `response.body` | Request bodies | Notes |
+| --- | --- | --- | --- |
+| React Native fetch | No; resolves after the whole body | string, Blob, FormData with `{ uri }` parts, ArrayBuffer | whatwg-fetch over XMLHttpRequest |
+| `expo/fetch` | Yes | string, ArrayBuffer, Blob, FormData without `{ uri }` parts | Expo module; `blob()` copies through base64 |
+| One | Yes | everything React Native fetch accepts | Nitro object; `blob()` stores bytes natively; iOS holds back the first 512 bytes of `text/plain` and `text/html` for content sniffing, as every URLSession client does |
