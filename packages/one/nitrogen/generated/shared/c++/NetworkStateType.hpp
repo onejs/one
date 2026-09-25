@@ -29,8 +29,8 @@ namespace margelo::nitro::one {
    * An enum which can be represented as a JavaScript union (NetworkStateType).
    */
   enum class NetworkStateType {
-    NONE      SWIFT_NAME(none) = 0,
-    UNKNOWN      SWIFT_NAME(unknown) = 1,
+    UNKNOWN      SWIFT_NAME(unknown) = 0,
+    NONE      SWIFT_NAME(none) = 1,
     CELLULAR      SWIFT_NAME(cellular) = 2,
     WIFI      SWIFT_NAME(wifi) = 3,
     BLUETOOTH      SWIFT_NAME(bluetooth) = 4,
@@ -50,8 +50,8 @@ namespace margelo::nitro {
     static inline margelo::nitro::one::NetworkStateType fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("none"): return margelo::nitro::one::NetworkStateType::NONE;
         case hashString("unknown"): return margelo::nitro::one::NetworkStateType::UNKNOWN;
+        case hashString("none"): return margelo::nitro::one::NetworkStateType::NONE;
         case hashString("cellular"): return margelo::nitro::one::NetworkStateType::CELLULAR;
         case hashString("wifi"): return margelo::nitro::one::NetworkStateType::WIFI;
         case hashString("bluetooth"): return margelo::nitro::one::NetworkStateType::BLUETOOTH;
@@ -65,8 +65,8 @@ namespace margelo::nitro {
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::one::NetworkStateType arg) {
       switch (arg) {
-        case margelo::nitro::one::NetworkStateType::NONE: return JSIConverter<std::string>::toJSI(runtime, "none");
         case margelo::nitro::one::NetworkStateType::UNKNOWN: return JSIConverter<std::string>::toJSI(runtime, "unknown");
+        case margelo::nitro::one::NetworkStateType::NONE: return JSIConverter<std::string>::toJSI(runtime, "none");
         case margelo::nitro::one::NetworkStateType::CELLULAR: return JSIConverter<std::string>::toJSI(runtime, "cellular");
         case margelo::nitro::one::NetworkStateType::WIFI: return JSIConverter<std::string>::toJSI(runtime, "wifi");
         case margelo::nitro::one::NetworkStateType::BLUETOOTH: return JSIConverter<std::string>::toJSI(runtime, "bluetooth");
@@ -85,8 +85,8 @@ namespace margelo::nitro {
       }
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, value);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("none"):
         case hashString("unknown"):
+        case hashString("none"):
         case hashString("cellular"):
         case hashString("wifi"):
         case hashString("bluetooth"):
