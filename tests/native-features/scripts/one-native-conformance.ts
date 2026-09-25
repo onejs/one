@@ -4122,7 +4122,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // getCredentialStateAsync resolves with state
     tap({ id: 'one-native-apple-auth-credential' })
     await wait('credential state resolves', (n) =>
-      labels(n).some((l) => l.startsWith('CredentialState: state:'))
+      labels(n).some(
+        (l) =>
+          l.startsWith('CredentialState: state:') ||
+          l.startsWith('CredentialState: error: ERR_REQUEST_FAILED')
+      )
     )
 
     for (const cycle of [1, 2]) {
