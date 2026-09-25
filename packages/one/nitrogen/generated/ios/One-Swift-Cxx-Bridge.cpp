@@ -8,6 +8,7 @@
 #include "One-Swift-Cxx-Bridge.hpp"
 
 // Include C++ implementation defined types
+#include "HybridOneAdaptiveSpecSwift.hpp"
 #include "HybridOneAppInfoSpecSwift.hpp"
 #include "HybridOneBrowserSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
@@ -24,6 +25,54 @@
 
 namespace margelo::nitro::one::bridge::swift {
 
+  // pragma MARK: std::function<void(const SizeClass& /* result */)>
+  Func_void_SizeClass create_Func_void_SizeClass(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_SizeClass::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const SizeClass& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
+  Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__exception_ptr::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::exception_ptr& error) mutable -> void {
+      swiftClosure.call(error);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const std::optional<HingeState>& /* result */)>
+  Func_void_std__optional_HingeState_ create_Func_void_std__optional_HingeState_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__optional_HingeState_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::optional<HingeState>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void()>
+  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)]() mutable -> void {
+      swiftClosure.call();
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneAdaptiveSpec>
+  std::shared_ptr<HybridOneAdaptiveSpec> create_std__shared_ptr_HybridOneAdaptiveSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneAdaptiveSpec_cxx swiftPart = One::HybridOneAdaptiveSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneAdaptiveSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneAdaptiveSpec_(std__shared_ptr_HybridOneAdaptiveSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneAdaptiveSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneAdaptiveSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneAdaptiveSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneAdaptiveSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
   // pragma MARK: std::shared_ptr<HybridOneAppInfoSpec>
   std::shared_ptr<HybridOneAppInfoSpec> create_std__shared_ptr_HybridOneAppInfoSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneAppInfoSpec_cxx swiftPart = One::HybridOneAppInfoSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -45,14 +94,6 @@ namespace margelo::nitro::one::bridge::swift {
     auto swiftClosure = One::Func_void_BrowserResult::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const BrowserResult& result) mutable -> void {
       swiftClosure.call(result);
-    };
-  }
-  
-  // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
-  Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_std__exception_ptr::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const std::exception_ptr& error) mutable -> void {
-      swiftClosure.call(error);
     };
   }
   
@@ -150,14 +191,6 @@ namespace margelo::nitro::one::bridge::swift {
     #endif
     One::HybridOneDocumentPickerSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
-  }
-  
-  // pragma MARK: std::function<void()>
-  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)]() mutable -> void {
-      swiftClosure.call();
-    };
   }
   
   // pragma MARK: std::shared_ptr<HybridOneFontsSpec>

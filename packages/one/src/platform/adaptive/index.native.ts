@@ -1,106 +1,139 @@
-import { useEffect, useState, useSyncExternalStore } from 'react'
-import { NativeEventEmitter, NativeModules, Platform } from 'react-native'
+import { useSyncExternalStore } from 'react'
+import { NitroModules } from 'react-native-nitro-modules'
+import type { OneAdaptive } from '../specs/OneAdaptive.nitro'
 import type { HingeState, SizeClass } from './types'
 import * as ReservedRegions from './ReservedRegions.native'
 
 export type * from './types'
 export { ReservedRegions }
 
-const NativeAdaptive = NativeModules.OneNativeAdaptive
+// the OneAdaptive nitro hybrid object, created once at import and cached.
+// every binary carries the One pod, so a missing hybrid throws instead of
+// falling back. live updates arrive through its callback listeners.
+let hybrid: OneAdaptive | undefined
+
+function native(): OneAdaptive {
+  if (hybrid === undefined) {
+    hybrid = NitroModules.createHybridObject<OneAdaptive>('OneAdaptive')
+  }
+  return hybrid
+}
 
 const DEFAULT_SIZE_CLASS: SizeClass = {
   horizontal: 'unspecified',
   vertical: 'unspecified',
 }
 
-function getInitialConstants() {
-  if (Platform.OS !== 'ios' || !NativeAdaptive) {
-    return {
-      initialSizeClass: DEFAULT_SIZE_CLASS,
-      initialHinge: null,
-    }
-  }
-  const constants =
-    typeof NativeAdaptive.getConstants === 'function'
-      ? NativeAdaptive.getConstants()
-      : NativeAdaptive
-  return {
-    initialSizeClass: (constants?.initialSizeClass as SizeClass) ?? DEFAULT_SIZE_CLASS,
-    initialHinge: (constants?.initialHinge as HingeState | null) ?? null,
-  }
+// synchronous seed at import, mirroring safe-area initialWindowMetrics:
+// the first render already measures real instead of flashing defaults.
+let currentSizeClass: SizeClass = DEFAULT_SIZE_CLASS
+let currentHinge: HingeState | null = null
+
+function seedFromNative(): void {
+  const created = native()
+  currentSizeClass = created.getInitialSizeClass()
+  currentHinge = created.getInitialHinge() ?? null
 }
 
-const emitter = Platform.OS === 'ios' && NativeAdaptive ? new NativeEventEmitter(NativeAdaptive) : null
-
-let currentSizeClass: SizeClass = getInitialConstants().initialSizeClass
-let currentHinge: HingeState | null = getInitialConstants().initialHinge
+seedFromNative()
 
 const sizeClassListeners = new Set<() => void>()
 const hingeListeners = new Set<() => void>()
 
-if (emitter) {
-  emitter.addListener('oneNativeSizeClassDidChange', (event: SizeClass) => {
-    currentSizeClass = event
-    sizeClassListeners.forEach((listener) => listener())
-  })
-  emitter.addListener('oneNativeHingeDidChange', (event: HingeState | null) => {
-    currentHinge = event
-    hingeListeners.forEach((listener) => listener())
-  })
+let sizeClassRemove: (() => void) | undefined
+let hingeRemove: (() => void) | undefined
+
+function sizesEqual(a: SizeClass, b: SizeClass): boolean {
+  return a.horizontal === b.horizontal && a.vertical === b.vertical
+}
+
+function hingesEqual(a: HingeState | null, b: HingeState | null): boolean {
+  return (
+    a === b ||
+    (a != null &&
+      b != null &&
+      a.status === b.status &&
+      a.angle === b.angle)
+  )
+}
+
+function setSizeClass(next: SizeClass) {
+  if (sizesEqual(currentSizeClass, next)) return
+  currentSizeClass = next
+  sizeClassListeners.forEach((listener) => listener())
+}
+
+function setHinge(next: HingeState | null) {
+  if (hingesEqual(currentHinge, next)) return
+  currentHinge = next
+  hingeListeners.forEach((listener) => listener())
+}
+
+function subscribeSizeClass(onStoreChange: () => void): () => void {
+  sizeClassListeners.add(onStoreChange)
+  if (sizeClassRemove === undefined) {
+    // the first subscriber starts the native monitor; the newcomer also
+    // gets the current value in case no change lands after subscribing.
+    const created = native()
+    sizeClassRemove = created.addSizeClassListener(setSizeClass)
+    created.getSizeClass().then(setSizeClass)
+  }
+  return () => {
+    sizeClassListeners.delete(onStoreChange)
+    if (sizeClassListeners.size === 0) {
+      sizeClassRemove?.()
+      sizeClassRemove = undefined
+    }
+  }
+}
+
+function subscribeHinge(onStoreChange: () => void): () => void {
+  hingeListeners.add(onStoreChange)
+  if (hingeRemove === undefined) {
+    const created = native()
+    hingeRemove = created.addHingeListener((hinge) => setHinge(hinge ?? null))
+    created.getHinge().then((hinge) => setHinge(hinge ?? null))
+  }
+  return () => {
+    hingeListeners.delete(onStoreChange)
+    if (hingeListeners.size === 0) {
+      hingeRemove?.()
+      hingeRemove = undefined
+    }
+  }
 }
 
 /**
- * Returns the window scene's horizontal and vertical UIUserInterfaceSizeClass as live React state.
- * Updated live via native trait change registration on UIWindowScene without polling.
+ * Returns the window's horizontal and vertical size class as live React state.
+ * iOS reads the window scene's UIUserInterfaceSizeClass with live
+ * trait-change updates; Android maps the activity window's WindowMetrics
+ * (compact below 600dp wide / 480dp tall, else regular) and updates on
+ * configuration and window-metrics changes.
  */
 export function useSizeClass(): SizeClass {
-  return useSyncExternalStore(
-    (onStoreChange) => {
-      sizeClassListeners.add(onStoreChange)
-      return () => {
-        sizeClassListeners.delete(onStoreChange)
-      }
-    },
-    () => currentSizeClass,
-    () => DEFAULT_SIZE_CLASS
-  )
+  return useSyncExternalStore(subscribeSizeClass, () => currentSizeClass, () => DEFAULT_SIZE_CLASS)
 }
 
-export async function getSizeClass(): Promise<SizeClass> {
-  if (Platform.OS !== 'ios' || !NativeAdaptive?.getSizeClass) {
-    return DEFAULT_SIZE_CLASS
-  }
-  return await NativeAdaptive.getSizeClass()
+export function getSizeClass(): Promise<SizeClass> {
+  return native().getSizeClass()
 }
 
 /**
- * Returns the current hardware hinge state (angle in radians and status) from UIHinge / DeviceHinge.
+ * Returns the current hardware hinge state (angle in radians and status).
+ * Null when the device has no hinge.
  */
 export function useHinge(): HingeState | null {
-  return useSyncExternalStore(
-    (onStoreChange) => {
-      hingeListeners.add(onStoreChange)
-      return () => {
-        hingeListeners.delete(onStoreChange)
-      }
-    },
-    () => currentHinge,
-    () => null
-  )
+  return useSyncExternalStore(subscribeHinge, () => currentHinge, () => null)
 }
 
 export async function getHinge(): Promise<HingeState | null> {
-  if (Platform.OS !== 'ios' || !NativeAdaptive?.getHinge) {
-    return null
-  }
-  return await NativeAdaptive.getHinge()
+  return (await native().getHinge()) ?? null
 }
 
 /**
  * Subscribes to hardware hinge changes.
  */
 export function onHingeChange(callback: (hinge: HingeState | null) => void): () => void {
-  if (!emitter) return () => {}
-  const sub = emitter.addListener('oneNativeHingeDidChange', callback)
-  return () => sub.remove()
+  const remove = native().addHingeListener((hinge) => callback(hinge ?? null))
+  return () => remove()
 }

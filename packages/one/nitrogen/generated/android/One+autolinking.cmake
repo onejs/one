@@ -33,6 +33,7 @@ target_sources(
   # Autolinking Setup
   ../nitrogen/generated/android/OneOnLoad.cpp
   # Shared Nitrogen C++ sources
+  ../nitrogen/generated/shared/c++/HybridOneAdaptiveSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAppInfoSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneBrowserSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneClipboardSpec.cpp
@@ -45,6 +46,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneNotificationsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneSecureStoreSpec.cpp
   # Android-specific Nitrogen C++ sources
+  ../nitrogen/generated/android/c++/JHybridOneAdaptiveSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneAppInfoSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneBrowserSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneClipboardSpec.cpp

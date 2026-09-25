@@ -52,6 +52,10 @@
     "OneSecureStore": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneSecureStore" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneSecureStore" }
+    },
+    "OneAdaptive": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneAdaptive" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneAdaptive" }
     }
   },
   "ignorePaths": ["**/node_modules", "dist", "types"]
