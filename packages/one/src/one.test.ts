@@ -33,9 +33,9 @@ describe('root One export', () => {
     expect(One.SecureStore.getItem).toBeTypeOf('function')
     expect(One.SecureStore.setItem).toBeTypeOf('function')
     expect(One.SecureStore.deleteItem).toBeTypeOf('function')
-    expect(One.UI.Haptics.selection).toBeTypeOf('function')
-    expect(One.UI.Haptics.impact).toBeTypeOf('function')
-    expect(One.UI.Haptics.notification).toBeTypeOf('function')
+    expect(One.Haptics.selection).toBeTypeOf('function')
+    expect(One.Haptics.impact).toBeTypeOf('function')
+    expect(One.Haptics.notification).toBeTypeOf('function')
     // top-level One.AppInfo, not One.UI: application metadata is data, not UI
     expect(Object.hasOwn(One, 'AppInfo')).toBe(true)
     expect(Object.hasOwn(One.UI, 'AppInfo')).toBe(false)

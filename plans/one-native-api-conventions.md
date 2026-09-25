@@ -24,7 +24,7 @@ target, stated against the Expo signatures in `expo-*` `58.0.0-canary-20260909`.
 Expo's shape means its parameters, option names, payload fields and string values. Those
 are copied exactly, so data that flowed through an Expo module flows through One
 unchanged. Expo's function names are rewritten by a fixed rule, because `One.Clipboard.getStringAsync()`
-and `One.UI.Haptics.impact('light')` cannot sit in the same library:
+and `One.Haptics.impact('light')` cannot sit in the same library:
 
 1. drop the `Async` suffix. The return type says whether a call is asynchronous.
 2. drop the words that repeat the namespace: `getNetworkStateAsync` is
@@ -43,10 +43,10 @@ rename, and each docs section carries the rename table for its module.
 
 ## 2. Where an API attaches
 
-- `One.UI.<Name>`: anything that renders in the app's tree or changes how the tree looks
-  or feels. Components (`Map`, `Icon`, `Blur`), `Haptics`, `Fonts`.
+- `One.UI.<Name>`: anything that renders in the app's tree or changes how the tree looks.
+  Components (`Map`, `Icon`, `Blur`), `Fonts`.
 - `One.<Name>`: device and app services with no view of their own. `AppInfo`,
-  `Clipboard`, `Network`, `Browser`, `ImagePicker`, `Notifications`.
+  `Clipboard`, `Haptics`, `Network`, `Browser`, `ImagePicker`, `Notifications`.
 - A hook sits beside its namespace, never inside it: `One.UI.useFonts`,
   `One.useNetworkState`. `One.Network.useState` would read as React's hook.
 - A web standard global is installed instead of a namespace only when third-party
@@ -176,7 +176,7 @@ type PermissionResponse = Readonly<{
 
 | namespace | members | source of the shape |
 | --- | --- | --- |
-| `One.UI.Haptics` | `selection()`, `impact(style)`, `notification(type)` | expo-haptics; landed |
+| `One.Haptics` | `selection()`, `impact(style)`, `notification(type)` | expo-haptics; landed |
 | global `crypto` | `getRandomValues`, `randomUUID` | web standard; landed |
 | `One.AppInfo` | `version`, `build`, `applicationId` | expo-application's three fields, renamed; landed |
 | `One.UI.Fonts`, `One.UI.useFonts` | `load(map)`, `isLoaded(name)` | expo-font; `plans/one-native-fonts-design.md` |

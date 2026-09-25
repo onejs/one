@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 
-// exercises One.UI.Haptics end to end: the module-present marker proves the
+// exercises One.Haptics end to end: the module-present marker proves the
 // OneHaptics nitro hybrid object is registered, and one button per verb
 // proves each call reaches native without a redbox. taps record into labels
 // because RN Text testIDs vanish from the accessibility snapshot while

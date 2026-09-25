@@ -79,7 +79,7 @@ function NativeCapabilitiesScreen({
           testID="testflight-haptics-selection"
           style={styles.action}
           onPress={() => {
-            One.UI.Haptics.selection()
+            One.Haptics.selection()
             recordAction('haptics-selection')
           }}
         >
@@ -91,7 +91,7 @@ function NativeCapabilitiesScreen({
           testID="testflight-haptics-impact"
           style={styles.action}
           onPress={() => {
-            One.UI.Haptics.impact('medium')
+            One.Haptics.impact('medium')
             recordAction('haptics-impact')
           }}
         >
@@ -103,7 +103,7 @@ function NativeCapabilitiesScreen({
           testID="testflight-haptics-notification"
           style={styles.action}
           onPress={() => {
-            One.UI.Haptics.notification('success')
+            One.Haptics.notification('success')
             recordAction('haptics-notification')
           }}
         >
