@@ -3,8 +3,7 @@ title: ImagePicker
 description: Uniform imperative image picker for library and camera
 ---
 
-Uniform imperative image picker. The `expo-image-picker` module API is the reference shape,
-so migration is mechanical; this is the small subset One supports.
+Uniform imperative image picker for the photo library and the camera.
 
 ```tsx
 import { One } from 'one'
@@ -61,17 +60,3 @@ Picked assets are copied into the app cache and returned as file URIs with `widt
 and, when the platform provides them, `mimeType`, `fileName`, and `fileSize`. On web the
 library opens a file dialog and the camera opens a capture input on mobile browsers, and
 both permission calls read granted.
-
-### Migration from expo-image-picker
-
-Migrating from `expo-image-picker` is an import change plus this rename:
-
-| Expo | One |
-|------|-----|
-| `launchImageLibraryAsync` | `launchLibrary` |
-| `launchCameraAsync` | `launchCamera` |
-| `getCameraPermissionsAsync` | `getCameraPermissions` |
-| `requestCameraPermissionsAsync` | `requestCameraPermissions` |
-
-`allowsEditing`, `quality`, `aspect`, and the other Expo options have no equivalent:
-`mediaTypes` and `selectionLimit` are the whole options surface.

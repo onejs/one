@@ -1,9 +1,9 @@
 ---
 title: Network
-description: Connection state matching expo-network
+description: Connection state and reachability
 ---
 
-Connection state through `One.Network`, matching `expo-network`. Backed by `NWPathMonitor` on iOS, `ConnectivityManager` with a `NetworkCallback` on Android, and `navigator.onLine` with `online`/`offline` events on web.
+Connection state through `One.Network`. Backed by `NWPathMonitor` on iOS, `ConnectivityManager` with a `NetworkCallback` on Android, and `navigator.onLine` with `online`/`offline` events on web.
 
 ```tsx
 import { One } from 'one'
@@ -22,12 +22,3 @@ const live = One.useNetworkState()
 `type` is one of `none`, `unknown`, `cellular`, `wifi`, `bluetooth`, `ethernet`, `wimax`, `vpn`, or `other`. On web a live connection reports `unknown`, since browser connection types are unreliable.
 
 The library manifest declares `ACCESS_NETWORK_STATE` (a normal install-time permission, merged into the app automatically).
-
-### Migration from expo-network
-
-| expo-network | One |
-|---|---|
-| `getNetworkStateAsync()` | `One.Network.getState()` |
-| `addNetworkStateListener(fn)` | `One.Network.addStateListener(fn)` |
-| `useNetworkState()` | `One.useNetworkState()` |
-| `NetworkStateType.WIFI` | `'wifi'` (and likewise for every member) |
