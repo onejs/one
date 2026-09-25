@@ -8,6 +8,17 @@ import sharp from 'sharp'
 import { swiftPackageId } from '../utils/swiftPackageId'
 
 type NativeProjectPatches = {
+  ONE_NOTIFICATIONS: {
+    enabledInfoPlistKey: string
+    pushInfoPlistKey: string
+    apsEnvironment: string
+    androidPermissions: string[]
+    receiver: string
+    receiverAction: string
+    pushService: string
+    pushServiceAction: string
+    pushGradleProperty: string
+  }
   addSetCliPathToBundleReactNativeShellScript(input: string): string
   addPodHermescToBundleReactNativeShellScript(input: string): string
   addDepsPatchToBundleReactNativeShellScript(input: string): string
@@ -25,6 +36,7 @@ type NativeProjectPatches = {
 const nativeProjectPatches = module.createRequire(import.meta.url)(
   '../../native-project-patches.cjs'
 ) as NativeProjectPatches
+const notificationsHost = nativeProjectPatches.ONE_NOTIFICATIONS
 
 /*
 This code block is partially copied from meta owned repos.
@@ -258,30 +270,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     true
   }
-
-  // remote push answers land here; the notifications module observes the
-  // forward. inert unless something calls registerForRemoteNotifications.
-  func application(
-    _ application: UIApplication,
-    didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
-  ) {
-    NotificationCenter.default.post(
-      name: NSNotification.Name("OneNativePushTokenDidRegister"),
-      object: nil,
-      userInfo: ["deviceToken": deviceToken]
-    )
-  }
-
-  func application(
-    _ application: UIApplication,
-    didFailToRegisterForRemoteNotificationsWithError error: Error
-  ) {
-    NotificationCenter.default.post(
-      name: NSNotification.Name("OneNativePushTokenDidFail"),
-      object: nil,
-      userInfo: ["error": error.localizedDescription]
-    )
-  }
 }`
   )
 }
@@ -361,7 +349,7 @@ function renderPushEntitlements(): string {
 <plist version="1.0">
 <dict>
 \t<key>aps-environment</key>
-\t<string>development</string>
+\t<string>${notificationsHost.apsEnvironment}</string>
 </dict>
 </plist>
 `
@@ -553,7 +541,7 @@ function generateIosWidgets(dest: string, app: NativeAppManifest): void {
     widgets.pushNotifications || app.notifications?.push
       ? entitlements.replace(
           '</dict></plist>',
-          '<key>aps-environment</key><string>development</string></dict></plist>'
+          `<key>aps-environment</key><string>${notificationsHost.apsEnvironment}</string></dict></plist>`
         )
       : entitlements
   )
@@ -1386,13 +1374,13 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         // gates the UNUserNotificationCenter delegate install: apps that link
         // one without notifications keep whatever delegate their own
         // push library sets.
-        stamps.push(`\t<key>OneNativeNotificationsEnabled</key>\n\t<true/>`)
+        stamps.push(`\t<key>${notificationsHost.enabledInfoPlistKey}</key>\n\t<true/>`)
       }
       if (app.notifications?.push === true) {
         // without the aps-environment entitlement the simulator never answers
         // registerForRemoteNotifications, so the token getter reads this to
         // reject at once like android's nopush flavor.
-        stamps.push(`\t<key>OneNativeNotificationsPush</key>\n\t<true/>`)
+        stamps.push(`\t<key>${notificationsHost.pushInfoPlistKey}</key>\n\t<true/>`)
       }
       if (app.ios?.widgets) {
         stamps.push('\t<key>NSSupportsLiveActivities</key>\n\t<true/>')
@@ -1440,9 +1428,14 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       }
       rendered = rendered.replace(
         anchor,
-        `${anchor}\n    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />\n    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />`
+        [
+          anchor,
+          ...notificationsHost.androidPermissions.map(
+            (permission) => `    <uses-permission android:name="${permission}" />`
+          ),
+        ].join('\n')
       )
-      if (!rendered.includes('android.permission.POST_NOTIFICATIONS')) {
+      if (!rendered.includes(notificationsHost.androidPermissions[0])) {
         throw new Error(
           '[vxrn] failed to stamp notification permissions into app manifest'
         )
@@ -1452,9 +1445,9 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       // arrive as explicit intents; only boot needs the filter.
       rendered = rendered.replace(
         '      </activity>\n    </application>',
-        '      </activity>\n      <receiver android:name="dev.onejs.onenative.OneNativeNotificationsReceiver" android:exported="false">\n          <intent-filter>\n              <action android:name="android.intent.action.BOOT_COMPLETED" />\n          </intent-filter>\n      </receiver>\n    </application>'
+        `      </activity>\n      <receiver android:name="${notificationsHost.receiver}" android:exported="false">\n          <intent-filter>\n              <action android:name="${notificationsHost.receiverAction}" />\n          </intent-filter>\n      </receiver>\n    </application>`
       )
-      if (!rendered.includes('OneNativeNotificationsReceiver')) {
+      if (!rendered.includes(notificationsHost.receiver)) {
         throw new Error(
           '[vxrn] failed to stamp the notification receiver into app manifest'
         )
@@ -1468,7 +1461,7 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       // the fcm refresh service lives in the app manifest, never the
       // library one, so apps without push never start it. push implies the
       // notifications block above, so the receiver anchor is present.
-      const anchor = 'dev.onejs.onenative.OneNativeNotificationsReceiver'
+      const anchor = notificationsHost.receiver
       if (!rendered.includes(anchor)) {
         throw new Error(
           '[vxrn] cannot stamp the push service: expected the notification receiver in app/src/main/AndroidManifest.xml'
@@ -1476,9 +1469,9 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       }
       rendered = rendered.replace(
         '      </receiver>\n    </application>',
-        '      </receiver>\n      <service android:name="dev.onejs.onenative.OneNativePushService" android:exported="false">\n          <intent-filter>\n              <action android:name="com.google.firebase.MESSAGING_EVENT" />\n          </intent-filter>\n      </service>\n    </application>'
+        `      </receiver>\n      <service android:name="${notificationsHost.pushService}" android:exported="false">\n          <intent-filter>\n              <action android:name="${notificationsHost.pushServiceAction}" />\n          </intent-filter>\n      </service>\n    </application>`
       )
-      if (!rendered.includes('OneNativePushService')) {
+      if (!rendered.includes(notificationsHost.pushService)) {
         throw new Error('[vxrn] failed to stamp the push service into app manifest')
       }
     }
@@ -1507,7 +1500,7 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       // lives in the root gradle.properties so library builds see it through
       // the root project; without it the file is untouched and firebase
       // messaging stays out of the app.
-      const line = 'oneNativePush=true'
+      const line = `${notificationsHost.pushGradleProperty}=true`
       if (!rendered.includes(line)) {
         const trailed = rendered.endsWith('\n') ? rendered : `${rendered}\n`
         rendered = `${trailed}\n# Remote push: set by native.app.notifications.push.\n${line}\n`

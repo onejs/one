@@ -572,7 +572,26 @@ function injectOneSwiftPackagesIntoPodfile(podfile) {
   return podfile.slice(0, insertAt) + '\n' + lines.join('\n') + podfile.slice(insertAt)
 }
 
+// one notifications host entries, written by both one prebuild and
+// vxrn/expo-plugin. the ios keys and android class names are read by one's
+// native code, so they change together with it.
+const ONE_NOTIFICATIONS = {
+  enabledInfoPlistKey: 'OneNativeNotificationsEnabled',
+  pushInfoPlistKey: 'OneNativeNotificationsPush',
+  apsEnvironment: 'development',
+  androidPermissions: [
+    'android.permission.POST_NOTIFICATIONS',
+    'android.permission.RECEIVE_BOOT_COMPLETED',
+  ],
+  receiver: 'dev.onejs.onenative.OneNativeNotificationsReceiver',
+  receiverAction: 'android.intent.action.BOOT_COMPLETED',
+  pushService: 'dev.onejs.onenative.OneNativePushService',
+  pushServiceAction: 'com.google.firebase.MESSAGING_EVENT',
+  pushGradleProperty: 'oneNativePush',
+}
+
 module.exports = {
+  ONE_NOTIFICATIONS,
   hasNitroWebImage,
   injectNitroWebImageModularHeaderIntoPodfile,
   injectOneSwiftPackagesIntoPodfile,
