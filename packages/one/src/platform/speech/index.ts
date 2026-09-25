@@ -13,27 +13,13 @@ const denied: SpeechPermissionResponse = {
   canAskAgain: false,
 }
 
-// dictation needs the platform recognizer, so on web a session fails the
-// way it does on a device whose recognition service is unavailable.
+// dictation needs the platform recognizer. permission reads answer denied,
+// like every web entry's reads; starting a session has no web equivalent.
 export const Speech = Object.freeze({
   isAvailable: (): boolean => false,
   getPermissions: (): Promise<SpeechPermissionResponse> => Promise.resolve(denied),
   requestPermissions: (): Promise<SpeechPermissionResponse> => Promise.resolve(denied),
-  start: (
-    _options: SpeechStartOptions,
-    onEvent: (event: SpeechEvent) => void
-  ): SpeechSession => {
-    if (typeof onEvent !== 'function') {
-      throw new TypeError('Speech.start: onEvent must be a function')
-    }
-    queueMicrotask(() =>
-      onEvent({
-        type: 'error',
-        transcript: '',
-        error: 'service-not-allowed',
-        message: 'Speech.start needs an iOS or Android build',
-      })
-    )
-    return { stop: () => {}, abort: () => {} }
+  start: (_options: SpeechStartOptions, _onEvent: (event: SpeechEvent) => void): SpeechSession => {
+    throw new Error('Speech.start needs an iOS or Android build')
   },
 })
