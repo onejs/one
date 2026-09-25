@@ -92,4 +92,19 @@ describe('Auth.Apple native entry', () => {
       'Auth.Apple.getCredentialState: com.apple.AuthenticationServices.AuthorizationError 1000: failed'
     )
   })
+
+  it('passes an uncoded android rejection through without its trailing newline', async () => {
+    const hybrid = {
+      isAvailable: vi.fn(() => false),
+      signIn: vi.fn(async () => {
+        throw new Error('Auth.Apple.signIn needs an iOS build\n')
+      }),
+      getCredentialState: vi.fn(),
+    }
+    const { Auth: native } = await loadNativeEntry(hybrid)
+
+    const failed = await native.Apple.signIn().catch((error) => error)
+    expect(failed.message).toBe('Auth.Apple.signIn needs an iOS build')
+    expect(failed.code).toBeUndefined()
+  })
 })

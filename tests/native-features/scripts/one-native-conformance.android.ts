@@ -1978,7 +1978,9 @@ async function run(config: Config) {
     })
     await expect(
       'browser-warmup-result',
-      (nodes) => textIncludes(nodes, 'Warmup: true'),
+      // the boolean is chrome's own answer; the check is that the call settles,
+      // which it did not when no custom tabs client bound
+      (nodes) => textIncludes(nodes, 'Warmup: true') || textIncludes(nodes, 'Warmup: false'),
       'one-native-browser-warmup'
     )
     tapFresh(config, 'Browser may launch tap', {
@@ -1988,7 +1990,8 @@ async function run(config: Config) {
     })
     await expect(
       'browser-may-launch-result',
-      (nodes) => textIncludes(nodes, 'MayLaunchUrl: true'),
+      (nodes) =>
+        textIncludes(nodes, 'MayLaunchUrl: true') || textIncludes(nodes, 'MayLaunchUrl: false'),
       'one-native-browser-may-launch'
     )
 

@@ -10,10 +10,10 @@ class HybridOneAppleAuth : HybridOneAppleAuthSpec() {
     }
 
     override fun signIn(options: AppleAuthSignInOptions): Promise<AppleAuthResult> {
-        return Promise.rejected(Exception("Auth.Apple.signIn needs an iOS build"))
+        return Promise.rejected(OneNativeError("Auth.Apple.signIn needs an iOS build"))
     }
 
     override fun getCredentialState(user: String): Promise<AppleCredentialState> {
-        return Promise.rejected(Exception("Auth.Apple.getCredentialState needs an iOS build"))
+        return Promise.rejected(OneNativeError("Auth.Apple.getCredentialState needs an iOS build"))
     }
 }
