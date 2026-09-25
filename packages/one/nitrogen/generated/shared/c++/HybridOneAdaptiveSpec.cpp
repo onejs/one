@@ -14,6 +14,8 @@ namespace margelo::nitro::one {
     HybridObject::loadHybridMethods();
     // load custom methods/properties
     registerHybrids(this, [](Prototype& prototype) {
+      prototype.registerHybridMethod("getInitialSizeClass", &HybridOneAdaptiveSpec::getInitialSizeClass);
+      prototype.registerHybridMethod("getInitialHinge", &HybridOneAdaptiveSpec::getInitialHinge);
       prototype.registerHybridMethod("getSizeClass", &HybridOneAdaptiveSpec::getSizeClass);
       prototype.registerHybridMethod("getHinge", &HybridOneAdaptiveSpec::getHinge);
       prototype.registerHybridMethod("addSizeClassListener", &HybridOneAdaptiveSpec::addSizeClassListener);

@@ -13,6 +13,8 @@ public protocol HybridOneAdaptiveSpec_protocol: HybridObject {
   
 
   // Methods
+  func getInitialSizeClass() throws -> SizeClass
+  func getInitialHinge() throws -> HingeState?
   func getSizeClass() throws -> Promise<SizeClass>
   func getHinge() throws -> Promise<HingeState?>
   func addSizeClassListener(listener: @escaping (_ sizeClass: SizeClass) -> Void) throws -> () -> Void

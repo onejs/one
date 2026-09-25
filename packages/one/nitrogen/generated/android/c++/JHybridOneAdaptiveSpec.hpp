@@ -54,6 +54,8 @@ namespace margelo::nitro::one {
 
   public:
     // Methods
+    SizeClass getInitialSizeClass() override;
+    std::optional<HingeState> getInitialHinge() override;
     std::shared_ptr<Promise<SizeClass>> getSizeClass() override;
     std::shared_ptr<Promise<std::optional<HingeState>>> getHinge() override;
     std::function<void()> addSizeClassListener(const std::function<void(const SizeClass& /* sizeClass */)>& listener) override;

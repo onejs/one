@@ -4,6 +4,8 @@ export interface OneAdaptive extends HybridObject<{
     ios: 'swift';
     android: 'kotlin';
 }> {
+    getInitialSizeClass(): SizeClass;
+    getInitialHinge(): HingeState | undefined;
     getSizeClass(): Promise<SizeClass>;
     getHinge(): Promise<HingeState | undefined>;
     addSizeClassListener(listener: (sizeClass: SizeClass) => void): () => void;

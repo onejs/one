@@ -22,11 +22,11 @@ namespace margelo::nitro::one { struct HingeState; }
 namespace margelo::nitro::one { enum class HingeStatus; }
 
 #include "SizeClass.hpp"
-#include <NitroModules/Promise.hpp>
 #include "UserInterfaceSizeClass.hpp"
 #include "HingeState.hpp"
 #include <optional>
 #include "HingeStatus.hpp"
+#include <NitroModules/Promise.hpp>
 #include <functional>
 
 #include "One-Swift-Cxx-Umbrella.hpp"
@@ -79,6 +79,22 @@ namespace margelo::nitro::one {
 
   public:
     // Methods
+    inline SizeClass getInitialSizeClass() override {
+      auto __result = _swiftPart.getInitialSizeClass();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::optional<HingeState> getInitialHinge() override {
+      auto __result = _swiftPart.getInitialHinge();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
     inline std::shared_ptr<Promise<SizeClass>> getSizeClass() override {
       auto __result = _swiftPart.getSizeClass();
       if (__result.hasError()) [[unlikely]] {

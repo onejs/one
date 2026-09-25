@@ -17,8 +17,6 @@ namespace margelo::nitro::one { struct HingeState; }
 namespace margelo::nitro::one { enum class HingeStatus; }
 
 #include "SizeClass.hpp"
-#include <NitroModules/Promise.hpp>
-#include <NitroModules/JPromise.hpp>
 #include "JSizeClass.hpp"
 #include "UserInterfaceSizeClass.hpp"
 #include "JUserInterfaceSizeClass.hpp"
@@ -27,6 +25,8 @@ namespace margelo::nitro::one { enum class HingeStatus; }
 #include "JHingeState.hpp"
 #include "HingeStatus.hpp"
 #include "JHingeStatus.hpp"
+#include <NitroModules/Promise.hpp>
+#include <NitroModules/JPromise.hpp>
 #include <functional>
 #include "JFunc_void.hpp"
 #include <NitroModules/JNICallable.hpp>
@@ -66,6 +66,16 @@ namespace margelo::nitro::one {
   
 
   // Methods
+  SizeClass JHybridOneAdaptiveSpec::getInitialSizeClass() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JSizeClass>()>("getInitialSizeClass");
+    auto __result = method(_javaPart);
+    return __result->toCpp();
+  }
+  std::optional<HingeState> JHybridOneAdaptiveSpec::getInitialHinge() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JHingeState>()>("getInitialHinge");
+    auto __result = method(_javaPart);
+    return __result != nullptr ? std::make_optional(__result->toCpp()) : std::nullopt;
+  }
   std::shared_ptr<Promise<SizeClass>> JHybridOneAdaptiveSpec::getSizeClass() {
     static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>()>("getSizeClass");
     auto __result = method(_javaPart);
