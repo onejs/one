@@ -315,8 +315,8 @@ const appleFileLoaded = (nodes: Node[]) =>
     nodes.every((n) => n.type === 'Application'))
 const appleAuthLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
-  Boolean(id(nodes, 'one-native-apple-auth-check-async')) &&
-  has(nodes, 'AvailableSync: ')
+  Boolean(id(nodes, 'one-native-apple-auth-credential')) &&
+  has(nodes, 'Available: ')
 // the microphone and speech prompts cover the fixture during the request
 const speechLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
@@ -4105,36 +4105,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-apple-auth')
-    await wait('apple auth fixture mounted', (n) =>
-      labels(n).includes('AvailableSync: true')
+    await wait('Auth.Apple reports available on ios', (n) =>
+      labels(n).includes('Available: true')
     )
 
-    // async availability resolves true
-    await wait('isAvailableAsync resolves true', (n) =>
-      labels(n).includes('AvailableAsync: true')
-    )
-
-    // AppleAuthenticationButton renders
-    await wait('AppleAuthenticationButton renders', (n) =>
-      Boolean(id(n, 'one-native-apple-auth-button')) ||
-      labels(n).includes('Continue with Apple') ||
-      labels(n).includes('Sign in with Apple')
+    // One.iOS.SignInWithAppleButton renders Apple's own control
+    await wait('SignInWithAppleButton renders', (n) =>
+      Boolean(id(n, 'one-native-apple-auth-button'))
     )
     screenshot('apple-auth-mounted.png')
 
-    // tapping AppleAuthenticationButton wrapper fires onPress
-    tap({ id: 'one-native-apple-auth-button' })
-    await wait('tapping button increments tap count', (n) =>
-      labels(n).includes('ButtonTaps: 1')
+    // the fixture app has no sign in with apple entitlement or team, so both
+    // requests reach AuthenticationServices and come back with its
+    // AuthorizationError 1000, domain and code kept in the message
+    const unknownError = (code: string, verb: string) =>
+      `error: ${code}: Auth.Apple.${verb}: com.apple.AuthenticationServices.AuthorizationError 1000: The operation couldn’t be completed. (com.apple.AuthenticationServices.AuthorizationError error 1000.)`
+    tap({ id: 'one-native-apple-auth-signin' })
+    await wait('signIn rejects without the entitlement', (n) =>
+      labels(n).includes(`SignIn: ${unknownError('E_AUTH_SIGN_IN', 'signIn')}`)
     )
-
-    // getCredentialStateAsync resolves with state
     tap({ id: 'one-native-apple-auth-credential' })
-    await wait('credential state resolves', (n) =>
-      labels(n).some(
-        (l) =>
-          l.startsWith('CredentialState: state:') ||
-          l.startsWith('CredentialState: error: ERR_REQUEST_FAILED')
+    await wait('getCredentialState rejects without the entitlement', (n) =>
+      labels(n).includes(
+        `CredentialState: ${unknownError('E_AUTH_CREDENTIAL_STATE', 'getCredentialState')}`
       )
     )
 
@@ -4143,7 +4136,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await wait(`apple auth recycle ${cycle}: home mounted`, () => true, true)
       await tapNav('nav-one-native-apple-auth')
       await wait(`apple auth recycle ${cycle}: a fresh fixture mounts`, (n) =>
-        labels(n).includes('AvailableSync: true')
+        labels(n).includes('Available: true') && labels(n).includes('CredentialState: none')
       )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -4217,15 +4210,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-browser')
     await wait('browser fixture mounted', (n) => labels(n).includes('Result: none'))
 
-    // warmup and mayLaunchUrl exercise native methods
+    // warmup and mayLaunchUrl are custom tab calls; ios has no counterpart and
+    // resolves false for both
     tap({ id: 'one-native-browser-warmup' })
-    await wait('warmup returns boolean result', (n) =>
-      labels(n).includes('Warmup: false') || labels(n).includes('Warmup: true')
-    )
+    await wait('warmup resolves false', (n) => labels(n).includes('Warmup: false'))
     tap({ id: 'one-native-browser-may-launch' })
-    await wait('mayLaunchUrl returns boolean result', (n) =>
-      labels(n).includes('MayLaunchUrl: false') || labels(n).includes('MayLaunchUrl: true')
-    )
+    await wait('mayLaunchUrl resolves false', (n) => labels(n).includes('MayLaunchUrl: false'))
 
     // a user dismiss resolves cancel. the sheet exposes no accessibility
     // children, so presentation is the collapsed tree and the close tap

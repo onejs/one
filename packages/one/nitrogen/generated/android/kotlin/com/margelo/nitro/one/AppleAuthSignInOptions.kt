@@ -20,7 +20,7 @@ import java.util.Objects
 data class AppleAuthSignInOptions(
   @DoNotStrip
   @Keep
-  val requestedScopes: Array<String>?,
+  val requestedScopes: Array<AppleAuthScope>?,
   @DoNotStrip
   @Keep
   val nonce: String?,
@@ -54,7 +54,7 @@ data class AppleAuthSignInOptions(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(requestedScopes: Array<String>?, nonce: String?, state: String?): AppleAuthSignInOptions {
+    private fun fromCpp(requestedScopes: Array<AppleAuthScope>?, nonce: String?, state: String?): AppleAuthSignInOptions {
       return AppleAuthSignInOptions(requestedScopes, nonce, state)
     }
   }

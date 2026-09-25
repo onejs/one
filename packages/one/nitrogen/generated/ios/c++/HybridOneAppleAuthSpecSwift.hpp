@@ -12,20 +12,35 @@
 // Forward declaration of `HybridOneAppleAuthSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppleAuthSpec_cxx; }
 
+// Forward declaration of `AppleAuthResult` to properly resolve imports.
+namespace margelo::nitro::one { struct AppleAuthResult; }
+// Forward declaration of `AppleAuthResultType` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleAuthResultType; }
 // Forward declaration of `AppleAuthCredential` to properly resolve imports.
 namespace margelo::nitro::one { struct AppleAuthCredential; }
 // Forward declaration of `AppleAuthFullName` to properly resolve imports.
 namespace margelo::nitro::one { struct AppleAuthFullName; }
+// Forward declaration of `AppleRealUserStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleRealUserStatus; }
 // Forward declaration of `AppleAuthSignInOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct AppleAuthSignInOptions; }
+// Forward declaration of `AppleAuthScope` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleAuthScope; }
+// Forward declaration of `AppleCredentialState` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleCredentialState; }
 
-#include "AppleAuthCredential.hpp"
+#include "AppleAuthResult.hpp"
 #include <NitroModules/Promise.hpp>
-#include <string>
+#include "AppleAuthResultType.hpp"
+#include "AppleAuthCredential.hpp"
 #include <optional>
+#include <string>
 #include "AppleAuthFullName.hpp"
+#include "AppleRealUserStatus.hpp"
 #include "AppleAuthSignInOptions.hpp"
+#include "AppleAuthScope.hpp"
 #include <vector>
+#include "AppleCredentialState.hpp"
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -85,7 +100,7 @@ namespace margelo::nitro::one {
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::shared_ptr<Promise<AppleAuthCredential>> signIn(const AppleAuthSignInOptions& options) override {
+    inline std::shared_ptr<Promise<AppleAuthResult>> signIn(const AppleAuthSignInOptions& options) override {
       auto __result = _swiftPart.signIn(std::forward<decltype(options)>(options));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
@@ -93,7 +108,7 @@ namespace margelo::nitro::one {
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::shared_ptr<Promise<double>> getCredentialState(const std::string& user) override {
+    inline std::shared_ptr<Promise<AppleCredentialState>> getCredentialState(const std::string& user) override {
       auto __result = _swiftPart.getCredentialState(user);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());

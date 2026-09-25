@@ -1803,6 +1803,9 @@
         },
         "nonce": {
           "type": "string"
+        },
+        "label": {
+          "type": "string"
         }
       },
       "events": {

@@ -14,8 +14,8 @@ public protocol HybridOneAppleAuthSpec_protocol: HybridObject {
 
   // Methods
   func isAvailable() throws -> Bool
-  func signIn(options: AppleAuthSignInOptions) throws -> Promise<AppleAuthCredential>
-  func getCredentialState(user: String) throws -> Promise<Double>
+  func signIn(options: AppleAuthSignInOptions) throws -> Promise<AppleAuthResult>
+  func getCredentialState(user: String) throws -> Promise<AppleCredentialState>
 }
 
 public extension HybridOneAppleAuthSpec_protocol {

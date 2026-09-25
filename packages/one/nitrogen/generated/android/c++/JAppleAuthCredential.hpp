@@ -11,7 +11,9 @@
 #include "AppleAuthCredential.hpp"
 
 #include "AppleAuthFullName.hpp"
+#include "AppleRealUserStatus.hpp"
 #include "JAppleAuthFullName.hpp"
+#include "JAppleRealUserStatus.hpp"
 #include <optional>
 #include <string>
 
@@ -46,8 +48,8 @@ namespace margelo::nitro::one {
       jni::local_ref<jni::JString> email = this->getFieldValue(fieldEmail);
       static const auto fieldFullName = clazz->getField<JAppleAuthFullName>("fullName");
       jni::local_ref<JAppleAuthFullName> fullName = this->getFieldValue(fieldFullName);
-      static const auto fieldRealUserStatus = clazz->getField<double>("realUserStatus");
-      double realUserStatus = this->getFieldValue(fieldRealUserStatus);
+      static const auto fieldRealUserStatus = clazz->getField<JAppleRealUserStatus>("realUserStatus");
+      jni::local_ref<JAppleRealUserStatus> realUserStatus = this->getFieldValue(fieldRealUserStatus);
       return AppleAuthCredential(
         user->toStdString(),
         state != nullptr ? std::make_optional(state->toStdString()) : std::nullopt,
@@ -55,7 +57,7 @@ namespace margelo::nitro::one {
         authorizationCode != nullptr ? std::make_optional(authorizationCode->toStdString()) : std::nullopt,
         email != nullptr ? std::make_optional(email->toStdString()) : std::nullopt,
         fullName != nullptr ? std::make_optional(fullName->toCpp()) : std::nullopt,
-        realUserStatus
+        realUserStatus->toCpp()
       );
     }
 
@@ -65,7 +67,7 @@ namespace margelo::nitro::one {
      */
     [[maybe_unused]]
     static jni::local_ref<JAppleAuthCredential::javaobject> fromCpp(const AppleAuthCredential& value) {
-      using JSignature = JAppleAuthCredential(jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JAppleAuthFullName>, double);
+      using JSignature = JAppleAuthCredential(jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JAppleAuthFullName>, jni::alias_ref<JAppleRealUserStatus>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
@@ -76,7 +78,7 @@ namespace margelo::nitro::one {
         value.authorizationCode.has_value() ? jni::make_jstring(value.authorizationCode.value()) : nullptr,
         value.email.has_value() ? jni::make_jstring(value.email.value()) : nullptr,
         value.fullName.has_value() ? JAppleAuthFullName::fromCpp(value.fullName.value()) : nullptr,
-        value.realUserStatus
+        JAppleRealUserStatus::fromCpp(value.realUserStatus)
       );
     }
   };

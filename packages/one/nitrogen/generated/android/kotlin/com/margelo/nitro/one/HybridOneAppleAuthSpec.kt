@@ -36,11 +36,11 @@ abstract class HybridOneAppleAuthSpec: HybridObject() {
   
   @DoNotStrip
   @Keep
-  abstract fun signIn(options: AppleAuthSignInOptions): Promise<AppleAuthCredential>
+  abstract fun signIn(options: AppleAuthSignInOptions): Promise<AppleAuthResult>
   
   @DoNotStrip
   @Keep
-  abstract fun getCredentialState(user: String): Promise<Double>
+  abstract fun getCredentialState(user: String): Promise<AppleCredentialState>
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {
