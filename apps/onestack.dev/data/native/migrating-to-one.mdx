@@ -77,6 +77,17 @@ From `expo-image-picker`. See [ImagePicker](/native/image-picker).
 `mediaTypes` and `selectionLimit` are the whole options surface;
 `allowsEditing`, `quality`, `aspect`, and the rest have no equivalent.
 
+## Document picker
+
+From `expo-document-picker`. See [DocumentPicker](/native/document-picker).
+
+| expo-document-picker | One |
+|---|---|
+| `getDocumentAsync` | `One.DocumentPicker.getDocument` |
+
+`copyToCacheDirectory` has no equivalent because files are always copied.
+Reads through `expo-file-system` become `fetch(uri)`.
+
 ## Notifications
 
 From `expo-notifications`. See [Notifications](/native/notifications).

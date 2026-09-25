@@ -12,6 +12,7 @@ import {
   Database,
   Compose,
   Fonts,
+  DocumentPicker,
   Haptics,
   ImagePicker,
   MenuAction,
@@ -112,6 +113,7 @@ export type OneAPI = {
   readonly Network: typeof NativeNetwork
   readonly Browser: typeof NativeBrowser
   readonly ImagePicker: typeof ImagePicker
+  readonly DocumentPicker: typeof DocumentPicker
   readonly SecureStore: typeof NativeSecureStore
   readonly useNetworkState: typeof useNetworkState
 }
@@ -183,6 +185,7 @@ export const One: OneAPI = Object.freeze({
   Network: NativeNetwork,
   Browser: NativeBrowser,
   ImagePicker,
+  DocumentPicker,
   SecureStore: NativeSecureStore,
   useNetworkState,
 })

@@ -37,6 +37,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneBrowserSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneClipboardSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneCryptoSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneDocumentPickerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneFontsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneHapticsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneImagePickerSpec.cpp
@@ -48,6 +49,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneBrowserSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneClipboardSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneCryptoSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneDocumentPickerSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneFontsSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneHapticsSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneImagePickerSpec.cpp

@@ -199,7 +199,7 @@ access under the platform's own names where they cannot.
 
 | Pattern | Status |
 | --- | --- |
-| Haptics, Clipboard, Browser, ImagePicker, Fonts, Network, AppInfo, Crypto | shipped, both platforms (Nitro) |
+| Haptics, Clipboard, Browser, ImagePicker, DocumentPicker, Fonts, Network, AppInfo, Crypto | shipped, both platforms (Nitro) |
 | Notifications | shipped, both platforms (Nitro) |
 | Widgets, Live Activities | shipped, iOS only (`One.iOS`); Android Glance widgets not started |
 | Picture in Picture (any view) | shipped, both platforms: `One.UI.PictureInPicture`, `native.app.pictureInPicture` |

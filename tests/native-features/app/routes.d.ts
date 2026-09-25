@@ -34,6 +34,7 @@ declare module 'one' {
         | `/one-native-controls`
         | `/one-native-crypto`
         | `/one-native-dialogs`
+        | `/one-native-document-picker`
         | `/one-native-effects`
         | `/one-native-fonts`
         | `/one-native-gpu`

@@ -17,6 +17,7 @@
 #include "HybridOneAppInfoSpecSwift.hpp"
 #include "HybridOneBrowserSpecSwift.hpp"
 #include "HybridOneImagePickerSpecSwift.hpp"
+#include "HybridOneDocumentPickerSpecSwift.hpp"
 #include "HybridOneFontsSpecSwift.hpp"
 #include "HybridOneNotificationsSpecSwift.hpp"
 #include "HybridOneSecureStoreSpecSwift.hpp"
@@ -76,6 +77,13 @@
     "OneImagePicker",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneImagePickerSpec> hybridObject = One::OneAutolinking::createOneImagePicker();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneDocumentPicker",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneDocumentPickerSpec> hybridObject = One::OneAutolinking::createOneDocumentPicker();
       return hybridObject;
     }
   );
