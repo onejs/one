@@ -19,7 +19,7 @@ export const NOTIFICATION_TYPES: readonly HapticNotification[] = [
 export function assertImpact(style: HapticImpact): void {
   if (!IMPACT_STYLES.includes(style)) {
     throw new TypeError(
-      `One.UI.Haptics.impact: unknown style ${JSON.stringify(style)}. Expected one of: ${IMPACT_STYLES.join(', ')}.`
+      `One.Haptics.impact: unknown style ${JSON.stringify(style)}. Expected one of: ${IMPACT_STYLES.join(', ')}.`
     )
   }
 }
@@ -27,7 +27,7 @@ export function assertImpact(style: HapticImpact): void {
 export function assertNotification(type: HapticNotification): void {
   if (!NOTIFICATION_TYPES.includes(type)) {
     throw new TypeError(
-      `One.UI.Haptics.notification: unknown type ${JSON.stringify(type)}. Expected one of: ${NOTIFICATION_TYPES.join(', ')}.`
+      `One.Haptics.notification: unknown type ${JSON.stringify(type)}. Expected one of: ${NOTIFICATION_TYPES.join(', ')}.`
     )
   }
 }

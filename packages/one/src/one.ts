@@ -83,7 +83,6 @@ export type OneSafeArea = {
 export type OneUI = typeof NativeUI & {
   readonly Fonts: typeof Fonts
   readonly SafeArea: Readonly<OneSafeArea>
-  readonly Haptics: typeof Haptics
   readonly TextInput: typeof TextInput
   readonly useFonts: typeof useFonts
   readonly useNativeState: typeof useNativeState
@@ -109,6 +108,7 @@ export type OneAPI = {
   readonly UI: Readonly<OneUI>
   readonly Notifications: Readonly<OneNotifications>
   readonly Clipboard: typeof NativeClipboard
+  readonly Haptics: typeof Haptics
   readonly Network: typeof NativeNetwork
   readonly Browser: typeof NativeBrowser
   readonly ImagePicker: typeof ImagePicker
@@ -157,7 +157,6 @@ const UI: Readonly<OneUI> = Object.freeze({
   ...NativeUI,
   Fonts,
   SafeArea,
-  Haptics,
   TextInput,
   useFonts,
   useNativeState,
@@ -180,6 +179,7 @@ export const One: OneAPI = Object.freeze({
   UI,
   Notifications,
   Clipboard: NativeClipboard,
+  Haptics,
   Network: NativeNetwork,
   Browser: NativeBrowser,
   ImagePicker,
