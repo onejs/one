@@ -348,7 +348,7 @@ public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
       model.onAction = { [weak self] id in self?.onAction?(id) }
       model.onCustomization = { [weak self] json in self?.onCustomization?(json) }
       model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
-      controller = OneNativeHostingController(rootView: TabsContent(model: model, host: self))
+      controller = OneNativeHostingController(rootView: TabsContent(model: model, host: self), screenInsets: true)
     }
     controller?.attach(to: self)
     model.active = controller?.isAttached == true
