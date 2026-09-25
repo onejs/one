@@ -68,11 +68,15 @@ class HybridOneSecureStore : HybridOneSecureStoreSpec() {
 
     // promises run on a thread pool: without the lock, two first writes can
     // each mint the key, and the value sealed under the replaced one is lost.
+    // minting a missing key is a rekey too: it advances the generation, so a
+    // write still holding the dropped key cannot rekey over the new one.
     @Synchronized
-    private fun currentKey(): Pair<Int, SecretKey> =
-        keyGeneration to
-            ((keyStore().getEntry(KEY_ALIAS, null) as? KeyStore.SecretKeyEntry)?.secretKey
-                ?: generateKey())
+    private fun currentKey(): Pair<Int, SecretKey> {
+        val existing = (keyStore().getEntry(KEY_ALIAS, null) as? KeyStore.SecretKeyEntry)?.secretKey
+        if (existing != null) return keyGeneration to existing
+        keyGeneration += 1
+        return keyGeneration to generateKey()
+    }
 
     private fun encryptWith(key: SecretKey, value: String): String {
         val cipher = Cipher.getInstance("AES/GCM/NoPadding")
