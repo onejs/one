@@ -26,3 +26,8 @@ function Padded() {
   return <Content style={{ paddingTop: insets.top }} />
 }
 ```
+
+Tamagui reads the same insets. One's root provider feeds them to Tamagui's
+native safe area state, so `safe` style values and the `$safe-area-*`
+variables resolve on iOS and Android without importing
+`@tamagui/native/setup-safe-area`, and they follow rotation.
