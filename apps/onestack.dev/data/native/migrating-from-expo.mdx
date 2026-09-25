@@ -14,6 +14,7 @@ module pages; this page indexes them.
 | `expo-network` | [Network](/native/network) | `getNetworkStateAsync` → `getState`; enum members become lowercase strings |
 | `expo-web-browser` | [Browser](/native/browser) | `openBrowserAsync` → `open`; `WebBrowser` prefixes drop; `ERR_WEB_BROWSER_BLOCKED` → `E_BROWSER_BLOCKED` |
 | `expo-image-picker` | [ImagePicker](/native/image-picker) | `launchImageLibraryAsync` → `launchLibrary`; only `mediaTypes` and `selectionLimit` carry over |
+| `expo-document-picker` | [DocumentPicker](/native/document-picker) | `getDocumentAsync` → `getDocument`; files are always copied, so `copyToCacheDirectory` drops; `expo-file-system` reads become `fetch(uri)` |
 | `react-native-maps` | [Map](/native/map) | Region becomes a camera; marker children become the `markers` array; `onRegionChangeComplete` becomes `onCameraMove` |
 | `expo-notifications` | [Notifications](/native/notifications) | Payload shapes match; platform enums are string unions |
 

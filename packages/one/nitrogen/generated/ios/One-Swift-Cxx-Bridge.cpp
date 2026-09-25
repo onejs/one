@@ -12,6 +12,7 @@
 #include "HybridOneBrowserSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
 #include "HybridOneCryptoSpecSwift.hpp"
+#include "HybridOneDocumentPickerSpecSwift.hpp"
 #include "HybridOneFontsSpecSwift.hpp"
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "HybridOneImagePickerSpecSwift.hpp"
@@ -124,6 +125,30 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneCryptoSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::function<void(const DocumentPickerNativeResult& /* result */)>
+  Func_void_DocumentPickerNativeResult create_Func_void_DocumentPickerNativeResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_DocumentPickerNativeResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const DocumentPickerNativeResult& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneDocumentPickerSpec>
+  std::shared_ptr<HybridOneDocumentPickerSpec> create_std__shared_ptr_HybridOneDocumentPickerSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneDocumentPickerSpec_cxx swiftPart = One::HybridOneDocumentPickerSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneDocumentPickerSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneDocumentPickerSpec_(std__shared_ptr_HybridOneDocumentPickerSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneDocumentPickerSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneDocumentPickerSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneDocumentPickerSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneDocumentPickerSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   

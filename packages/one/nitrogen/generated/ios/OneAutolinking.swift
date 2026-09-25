@@ -96,6 +96,18 @@ public final class OneAutolinking {
     return HybridOneImagePicker.self is any RecyclableView.Type
   }
   
+  public static func createOneDocumentPicker() -> bridge.std__shared_ptr_HybridOneDocumentPickerSpec_ {
+    let hybridObject = HybridOneDocumentPicker()
+    return { () -> bridge.std__shared_ptr_HybridOneDocumentPickerSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+  
+  public static func isOneDocumentPickerRecyclable() -> Bool {
+    return HybridOneDocumentPicker.self is any RecyclableView.Type
+  }
+  
   public static func createOneFonts() -> bridge.std__shared_ptr_HybridOneFontsSpec_ {
     let hybridObject = HybridOneFonts()
     return { () -> bridge.std__shared_ptr_HybridOneFontsSpec_ in
