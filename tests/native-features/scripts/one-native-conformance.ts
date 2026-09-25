@@ -4158,10 +4158,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-browser-open' })
     const presented = await wait('the safari sheet presents', browserPresented)
     const app = presented.find((n) => n.type === 'Application')?.frame
-    if (!app || app.width !== 393 || app.height !== 852)
-      throw new Error(`Expected a 393x852 iPhone 16 display, got ${JSON.stringify(app)}`)
+    const isIPhone16 = app?.width === 393 && app?.height === 852
+    const isIPhone17Pro = app?.width === 402 && app?.height === 874
+    if (!app || (!isIPhone16 && !isIPhone17Pro))
+      throw new Error(`Expected a 393x852 iPhone 16 or 402x874 iPhone 17 Pro display, got ${JSON.stringify(app)}`)
     screenshot('browser-open.png')
-    point(38, 81)
+    point(isIPhone17Pro ? 40 : 38, isIPhone17Pro ? 85 : 81)
     await wait('a user dismiss resolves cancel', (n) =>
       labels(n).includes('Result: cancel')
     )
