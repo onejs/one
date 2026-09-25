@@ -91,6 +91,17 @@ runtime behavior. The current package remains usable during migration.
   quality control. Broad parity is an ongoing target, not a percentage inferred
   from the SDK declaration inventory.
 
+Open items:
+
+- native-features under Metro (the default dev bundler) fails to bundle the gpu
+  fixture: `@react-three/fiber` resolves to its native entry, which requires
+  `expo-gl`, because the web-entry alias in `vite.config.ts` is a vite-only
+  resolveId plugin. `ONE_NATIVE_BUNDLER=rolldown` works. Needs the alias for
+  Metro too, owned by whoever owns the r3f path.
+- picture in picture with a VideoPlayer inside (branch `tm/one-lane-quality-2`,
+  480e6e46e) needs a device run showing live playback before it merges; iPhone
+  simulators report `isPictureInPictureSupported` NO.
+
 ## Baseline at 3dcfe61d2
 
 | Measurement | Result | Meaning |
