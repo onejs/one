@@ -13,14 +13,17 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
-// Forward declaration of `AppleAuthCredential` to properly resolve imports.
-namespace margelo::nitro::one { struct AppleAuthCredential; }
+// Forward declaration of `AppleAuthResult` to properly resolve imports.
+namespace margelo::nitro::one { struct AppleAuthResult; }
 // Forward declaration of `AppleAuthSignInOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct AppleAuthSignInOptions; }
+// Forward declaration of `AppleCredentialState` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleCredentialState; }
 
-#include "AppleAuthCredential.hpp"
+#include "AppleAuthResult.hpp"
 #include <NitroModules/Promise.hpp>
 #include "AppleAuthSignInOptions.hpp"
+#include "AppleCredentialState.hpp"
 #include <string>
 
 namespace margelo::nitro::one {
@@ -55,8 +58,8 @@ namespace margelo::nitro::one {
     public:
       // Methods
       virtual bool isAvailable() = 0;
-      virtual std::shared_ptr<Promise<AppleAuthCredential>> signIn(const AppleAuthSignInOptions& options) = 0;
-      virtual std::shared_ptr<Promise<double>> getCredentialState(const std::string& user) = 0;
+      virtual std::shared_ptr<Promise<AppleAuthResult>> signIn(const AppleAuthSignInOptions& options) = 0;
+      virtual std::shared_ptr<Promise<AppleCredentialState>> getCredentialState(const std::string& user) = 0;
 
     protected:
       // Hybrid Setup

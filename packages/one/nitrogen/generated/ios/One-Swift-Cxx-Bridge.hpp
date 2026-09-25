@@ -12,6 +12,16 @@
 namespace margelo::nitro::one { struct AppleAuthCredential; }
 // Forward declaration of `AppleAuthFullName` to properly resolve imports.
 namespace margelo::nitro::one { struct AppleAuthFullName; }
+// Forward declaration of `AppleAuthResultType` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleAuthResultType; }
+// Forward declaration of `AppleAuthResult` to properly resolve imports.
+namespace margelo::nitro::one { struct AppleAuthResult; }
+// Forward declaration of `AppleAuthScope` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleAuthScope; }
+// Forward declaration of `AppleCredentialState` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleCredentialState; }
+// Forward declaration of `AppleRealUserStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleRealUserStatus; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
@@ -134,6 +144,11 @@ namespace One { class HybridOneSecureStoreSpec_cxx; }
 // Include C++ defined types
 #include "AppleAuthCredential.hpp"
 #include "AppleAuthFullName.hpp"
+#include "AppleAuthResult.hpp"
+#include "AppleAuthResultType.hpp"
+#include "AppleAuthScope.hpp"
+#include "AppleCredentialState.hpp"
+#include "AppleRealUserStatus.hpp"
 #include "BrowserAuthResult.hpp"
 #include "BrowserAuthResultType.hpp"
 #include "BrowserColorScheme.hpp"
@@ -423,98 +438,113 @@ namespace margelo::nitro::one::bridge::swift {
     return optional.value();
   }
   
-  // pragma MARK: std::shared_ptr<Promise<AppleAuthCredential>>
+  // pragma MARK: std::optional<AppleAuthCredential>
   /**
-   * Specialized version of `std::shared_ptr<Promise<AppleAuthCredential>>`.
+   * Specialized version of `std::optional<AppleAuthCredential>`.
    */
-  using std__shared_ptr_Promise_AppleAuthCredential__ = std::shared_ptr<Promise<AppleAuthCredential>>;
-  inline std::shared_ptr<Promise<AppleAuthCredential>> create_std__shared_ptr_Promise_AppleAuthCredential__() noexcept {
-    return Promise<AppleAuthCredential>::create();
+  using std__optional_AppleAuthCredential_ = std::optional<AppleAuthCredential>;
+  inline std::optional<AppleAuthCredential> create_std__optional_AppleAuthCredential_(const AppleAuthCredential& value) noexcept {
+    return std::optional<AppleAuthCredential>(value);
   }
-  inline PromiseHolder<AppleAuthCredential> wrap_std__shared_ptr_Promise_AppleAuthCredential__(std::shared_ptr<Promise<AppleAuthCredential>> promise) noexcept {
-    return PromiseHolder<AppleAuthCredential>(std::move(promise));
+  inline bool has_value_std__optional_AppleAuthCredential_(const std::optional<AppleAuthCredential>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline AppleAuthCredential get_std__optional_AppleAuthCredential_(const std::optional<AppleAuthCredential>& optional) noexcept {
+    return optional.value();
   }
   
-  // pragma MARK: std::function<void(const AppleAuthCredential& /* result */)>
+  // pragma MARK: std::shared_ptr<Promise<AppleAuthResult>>
   /**
-   * Specialized version of `std::function<void(const AppleAuthCredential&)>`.
+   * Specialized version of `std::shared_ptr<Promise<AppleAuthResult>>`.
    */
-  using Func_void_AppleAuthCredential = std::function<void(const AppleAuthCredential& /* result */)>;
+  using std__shared_ptr_Promise_AppleAuthResult__ = std::shared_ptr<Promise<AppleAuthResult>>;
+  inline std::shared_ptr<Promise<AppleAuthResult>> create_std__shared_ptr_Promise_AppleAuthResult__() noexcept {
+    return Promise<AppleAuthResult>::create();
+  }
+  inline PromiseHolder<AppleAuthResult> wrap_std__shared_ptr_Promise_AppleAuthResult__(std::shared_ptr<Promise<AppleAuthResult>> promise) noexcept {
+    return PromiseHolder<AppleAuthResult>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const AppleAuthResult& /* result */)>
   /**
-   * Wrapper class for a `std::function<void(const AppleAuthCredential& / * result * /)>`, this can be used from Swift.
+   * Specialized version of `std::function<void(const AppleAuthResult&)>`.
    */
-  class Func_void_AppleAuthCredential_Wrapper final {
+  using Func_void_AppleAuthResult = std::function<void(const AppleAuthResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const AppleAuthResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_AppleAuthResult_Wrapper final {
   public:
-    explicit Func_void_AppleAuthCredential_Wrapper(std::function<void(const AppleAuthCredential& /* result */)>&& func): _function(std::make_unique<std::function<void(const AppleAuthCredential& /* result */)>>(std::move(func))) {}
-    inline void call(AppleAuthCredential result) const noexcept {
+    explicit Func_void_AppleAuthResult_Wrapper(std::function<void(const AppleAuthResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const AppleAuthResult& /* result */)>>(std::move(func))) {}
+    inline void call(AppleAuthResult result) const noexcept {
       _function->operator()(result);
     }
   private:
-    std::unique_ptr<std::function<void(const AppleAuthCredential& /* result */)>> _function;
+    std::unique_ptr<std::function<void(const AppleAuthResult& /* result */)>> _function;
   } SWIFT_NONCOPYABLE;
-  Func_void_AppleAuthCredential create_Func_void_AppleAuthCredential(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_AppleAuthCredential_Wrapper wrap_Func_void_AppleAuthCredential(Func_void_AppleAuthCredential value) noexcept {
-    return Func_void_AppleAuthCredential_Wrapper(std::move(value));
+  Func_void_AppleAuthResult create_Func_void_AppleAuthResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_AppleAuthResult_Wrapper wrap_Func_void_AppleAuthResult(Func_void_AppleAuthResult value) noexcept {
+    return Func_void_AppleAuthResult_Wrapper(std::move(value));
   }
   
-  // pragma MARK: std::vector<std::string>
+  // pragma MARK: std::vector<AppleAuthScope>
   /**
-   * Specialized version of `std::vector<std::string>`.
+   * Specialized version of `std::vector<AppleAuthScope>`.
    */
-  using std__vector_std__string_ = std::vector<std::string>;
-  inline std::vector<std::string> create_std__vector_std__string_(size_t size) noexcept {
-    std::vector<std::string> vector;
+  using std__vector_AppleAuthScope_ = std::vector<AppleAuthScope>;
+  inline std::vector<AppleAuthScope> create_std__vector_AppleAuthScope_(size_t size) noexcept {
+    std::vector<AppleAuthScope> vector;
     vector.reserve(size);
     return vector;
   }
   
-  // pragma MARK: std::optional<std::vector<std::string>>
+  // pragma MARK: std::optional<std::vector<AppleAuthScope>>
   /**
-   * Specialized version of `std::optional<std::vector<std::string>>`.
+   * Specialized version of `std::optional<std::vector<AppleAuthScope>>`.
    */
-  using std__optional_std__vector_std__string__ = std::optional<std::vector<std::string>>;
-  inline std::optional<std::vector<std::string>> create_std__optional_std__vector_std__string__(const std::vector<std::string>& value) noexcept {
-    return std::optional<std::vector<std::string>>(value);
+  using std__optional_std__vector_AppleAuthScope__ = std::optional<std::vector<AppleAuthScope>>;
+  inline std::optional<std::vector<AppleAuthScope>> create_std__optional_std__vector_AppleAuthScope__(const std::vector<AppleAuthScope>& value) noexcept {
+    return std::optional<std::vector<AppleAuthScope>>(value);
   }
-  inline bool has_value_std__optional_std__vector_std__string__(const std::optional<std::vector<std::string>>& optional) noexcept {
+  inline bool has_value_std__optional_std__vector_AppleAuthScope__(const std::optional<std::vector<AppleAuthScope>>& optional) noexcept {
     return optional.has_value();
   }
-  inline std::vector<std::string> get_std__optional_std__vector_std__string__(const std::optional<std::vector<std::string>>& optional) noexcept {
+  inline std::vector<AppleAuthScope> get_std__optional_std__vector_AppleAuthScope__(const std::optional<std::vector<AppleAuthScope>>& optional) noexcept {
     return optional.value();
   }
   
-  // pragma MARK: std::shared_ptr<Promise<double>>
+  // pragma MARK: std::shared_ptr<Promise<AppleCredentialState>>
   /**
-   * Specialized version of `std::shared_ptr<Promise<double>>`.
+   * Specialized version of `std::shared_ptr<Promise<AppleCredentialState>>`.
    */
-  using std__shared_ptr_Promise_double__ = std::shared_ptr<Promise<double>>;
-  inline std::shared_ptr<Promise<double>> create_std__shared_ptr_Promise_double__() noexcept {
-    return Promise<double>::create();
+  using std__shared_ptr_Promise_AppleCredentialState__ = std::shared_ptr<Promise<AppleCredentialState>>;
+  inline std::shared_ptr<Promise<AppleCredentialState>> create_std__shared_ptr_Promise_AppleCredentialState__() noexcept {
+    return Promise<AppleCredentialState>::create();
   }
-  inline PromiseHolder<double> wrap_std__shared_ptr_Promise_double__(std::shared_ptr<Promise<double>> promise) noexcept {
-    return PromiseHolder<double>(std::move(promise));
+  inline PromiseHolder<AppleCredentialState> wrap_std__shared_ptr_Promise_AppleCredentialState__(std::shared_ptr<Promise<AppleCredentialState>> promise) noexcept {
+    return PromiseHolder<AppleCredentialState>(std::move(promise));
   }
   
-  // pragma MARK: std::function<void(double /* result */)>
+  // pragma MARK: std::function<void(AppleCredentialState /* result */)>
   /**
-   * Specialized version of `std::function<void(double)>`.
+   * Specialized version of `std::function<void(AppleCredentialState)>`.
    */
-  using Func_void_double = std::function<void(double /* result */)>;
+  using Func_void_AppleCredentialState = std::function<void(AppleCredentialState /* result */)>;
   /**
-   * Wrapper class for a `std::function<void(double / * result * /)>`, this can be used from Swift.
+   * Wrapper class for a `std::function<void(AppleCredentialState / * result * /)>`, this can be used from Swift.
    */
-  class Func_void_double_Wrapper final {
+  class Func_void_AppleCredentialState_Wrapper final {
   public:
-    explicit Func_void_double_Wrapper(std::function<void(double /* result */)>&& func): _function(std::make_unique<std::function<void(double /* result */)>>(std::move(func))) {}
-    inline void call(double result) const noexcept {
-      _function->operator()(result);
+    explicit Func_void_AppleCredentialState_Wrapper(std::function<void(AppleCredentialState /* result */)>&& func): _function(std::make_unique<std::function<void(AppleCredentialState /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<AppleCredentialState>(result));
     }
   private:
-    std::unique_ptr<std::function<void(double /* result */)>> _function;
+    std::unique_ptr<std::function<void(AppleCredentialState /* result */)>> _function;
   } SWIFT_NONCOPYABLE;
-  Func_void_double create_Func_void_double(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_double_Wrapper wrap_Func_void_double(Func_void_double value) noexcept {
-    return Func_void_double_Wrapper(std::move(value));
+  Func_void_AppleCredentialState create_Func_void_AppleCredentialState(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_AppleCredentialState_Wrapper wrap_Func_void_AppleCredentialState(Func_void_AppleCredentialState value) noexcept {
+    return Func_void_AppleCredentialState_Wrapper(std::move(value));
   }
   
   // pragma MARK: std::shared_ptr<HybridOneAppleAuthSpec>
@@ -538,22 +568,22 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<bool>::withError(error);
   }
   
-  // pragma MARK: Result<std::shared_ptr<Promise<AppleAuthCredential>>>
-  using Result_std__shared_ptr_Promise_AppleAuthCredential___ = Result<std::shared_ptr<Promise<AppleAuthCredential>>>;
-  inline Result_std__shared_ptr_Promise_AppleAuthCredential___ create_Result_std__shared_ptr_Promise_AppleAuthCredential___(const std::shared_ptr<Promise<AppleAuthCredential>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<AppleAuthCredential>>>::withValue(value);
+  // pragma MARK: Result<std::shared_ptr<Promise<AppleAuthResult>>>
+  using Result_std__shared_ptr_Promise_AppleAuthResult___ = Result<std::shared_ptr<Promise<AppleAuthResult>>>;
+  inline Result_std__shared_ptr_Promise_AppleAuthResult___ create_Result_std__shared_ptr_Promise_AppleAuthResult___(const std::shared_ptr<Promise<AppleAuthResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<AppleAuthResult>>>::withValue(value);
   }
-  inline Result_std__shared_ptr_Promise_AppleAuthCredential___ create_Result_std__shared_ptr_Promise_AppleAuthCredential___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<AppleAuthCredential>>>::withError(error);
+  inline Result_std__shared_ptr_Promise_AppleAuthResult___ create_Result_std__shared_ptr_Promise_AppleAuthResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<AppleAuthResult>>>::withError(error);
   }
   
-  // pragma MARK: Result<std::shared_ptr<Promise<double>>>
-  using Result_std__shared_ptr_Promise_double___ = Result<std::shared_ptr<Promise<double>>>;
-  inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::shared_ptr<Promise<double>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<double>>>::withValue(value);
+  // pragma MARK: Result<std::shared_ptr<Promise<AppleCredentialState>>>
+  using Result_std__shared_ptr_Promise_AppleCredentialState___ = Result<std::shared_ptr<Promise<AppleCredentialState>>>;
+  inline Result_std__shared_ptr_Promise_AppleCredentialState___ create_Result_std__shared_ptr_Promise_AppleCredentialState___(const std::shared_ptr<Promise<AppleCredentialState>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<AppleCredentialState>>>::withValue(value);
   }
-  inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<double>>>::withError(error);
+  inline Result_std__shared_ptr_Promise_AppleCredentialState___ create_Result_std__shared_ptr_Promise_AppleCredentialState___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<AppleCredentialState>>>::withError(error);
   }
   
   // pragma MARK: std::shared_ptr<Promise<BrowserResult>>
@@ -902,6 +932,17 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_DocumentPickerNativeResult_Wrapper(std::move(value));
   }
   
+  // pragma MARK: std::vector<std::string>
+  /**
+   * Specialized version of `std::vector<std::string>`.
+   */
+  using std__vector_std__string_ = std::vector<std::string>;
+  inline std::vector<std::string> create_std__vector_std__string_(size_t size) noexcept {
+    std::vector<std::string> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
   // pragma MARK: std::shared_ptr<HybridOneDocumentPickerSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneDocumentPickerSpec>`.
@@ -1220,6 +1261,40 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline NativeIosPermissionRequest get_std__optional_NativeIosPermissionRequest_(const std::optional<NativeIosPermissionRequest>& optional) noexcept {
     return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<double>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<double>>`.
+   */
+  using std__shared_ptr_Promise_double__ = std::shared_ptr<Promise<double>>;
+  inline std::shared_ptr<Promise<double>> create_std__shared_ptr_Promise_double__() noexcept {
+    return Promise<double>::create();
+  }
+  inline PromiseHolder<double> wrap_std__shared_ptr_Promise_double__(std::shared_ptr<Promise<double>> promise) noexcept {
+    return PromiseHolder<double>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(double /* result */)>
+  /**
+   * Specialized version of `std::function<void(double)>`.
+   */
+  using Func_void_double = std::function<void(double /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(double / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_double_Wrapper final {
+  public:
+    explicit Func_void_double_Wrapper(std::function<void(double /* result */)>&& func): _function(std::make_unique<std::function<void(double /* result */)>>(std::move(func))) {}
+    inline void call(double result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(double /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_double create_Func_void_double(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_double_Wrapper wrap_Func_void_double(Func_void_double value) noexcept {
+    return Func_void_double_Wrapper(std::move(value));
   }
   
   // pragma MARK: std::vector<double>
@@ -1574,6 +1649,15 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_NativePermissionResponse___ create_Result_std__shared_ptr_Promise_NativePermissionResponse___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<NativePermissionResponse>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<double>>>
+  using Result_std__shared_ptr_Promise_double___ = Result<std::shared_ptr<Promise<double>>>;
+  inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::shared_ptr<Promise<double>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<double>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<double>>>::withError(error);
   }
   
   // pragma MARK: Result<std::shared_ptr<Promise<std::optional<NativeChannel>>>>

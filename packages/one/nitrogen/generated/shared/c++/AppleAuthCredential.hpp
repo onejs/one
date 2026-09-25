@@ -30,10 +30,13 @@
 
 // Forward declaration of `AppleAuthFullName` to properly resolve imports.
 namespace margelo::nitro::one { struct AppleAuthFullName; }
+// Forward declaration of `AppleRealUserStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleRealUserStatus; }
 
 #include <string>
 #include <optional>
 #include "AppleAuthFullName.hpp"
+#include "AppleRealUserStatus.hpp"
 
 namespace margelo::nitro::one {
 
@@ -48,11 +51,11 @@ namespace margelo::nitro::one {
     std::optional<std::string> authorizationCode     SWIFT_PRIVATE;
     std::optional<std::string> email     SWIFT_PRIVATE;
     std::optional<AppleAuthFullName> fullName     SWIFT_PRIVATE;
-    double realUserStatus     SWIFT_PRIVATE;
+    AppleRealUserStatus realUserStatus     SWIFT_PRIVATE;
 
   public:
     AppleAuthCredential() = default;
-    explicit AppleAuthCredential(std::string user, std::optional<std::string> state, std::optional<std::string> identityToken, std::optional<std::string> authorizationCode, std::optional<std::string> email, std::optional<AppleAuthFullName> fullName, double realUserStatus): user(user), state(state), identityToken(identityToken), authorizationCode(authorizationCode), email(email), fullName(fullName), realUserStatus(realUserStatus) {}
+    explicit AppleAuthCredential(std::string user, std::optional<std::string> state, std::optional<std::string> identityToken, std::optional<std::string> authorizationCode, std::optional<std::string> email, std::optional<AppleAuthFullName> fullName, AppleRealUserStatus realUserStatus): user(user), state(state), identityToken(identityToken), authorizationCode(authorizationCode), email(email), fullName(fullName), realUserStatus(realUserStatus) {}
 
   public:
     friend bool operator==(const AppleAuthCredential& lhs, const AppleAuthCredential& rhs) = default;
@@ -74,7 +77,7 @@ namespace margelo::nitro {
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "authorizationCode"))),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "email"))),
         JSIConverter<std::optional<margelo::nitro::one::AppleAuthFullName>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "fullName"))),
-        JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "realUserStatus")))
+        JSIConverter<margelo::nitro::one::AppleRealUserStatus>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "realUserStatus")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::AppleAuthCredential& arg) {
@@ -85,7 +88,7 @@ namespace margelo::nitro {
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "authorizationCode"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.authorizationCode));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "email"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.email));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "fullName"), JSIConverter<std::optional<margelo::nitro::one::AppleAuthFullName>>::toJSI(runtime, arg.fullName));
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "realUserStatus"), JSIConverter<double>::toJSI(runtime, arg.realUserStatus));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "realUserStatus"), JSIConverter<margelo::nitro::one::AppleRealUserStatus>::toJSI(runtime, arg.realUserStatus));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -102,7 +105,7 @@ namespace margelo::nitro {
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "authorizationCode")))) return false;
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "email")))) return false;
       if (!JSIConverter<std::optional<margelo::nitro::one::AppleAuthFullName>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "fullName")))) return false;
-      if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "realUserStatus")))) return false;
+      if (!JSIConverter<margelo::nitro::one::AppleRealUserStatus>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "realUserStatus")))) return false;
       return true;
     }
   };
