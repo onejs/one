@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { NativeSafeAreaProvider } from './NativeSafeAreaProvider'
 import { getWindowFrame } from './getWindowFrame'
+import { initialWindowMetrics } from './InitialWindow'
+import { feedTamaguiSafeArea } from './tamaguiSafeArea'
 import type { EdgeInsets, InsetChangedEvent, Metrics, Rect } from './SafeArea-types'
 
 const isDev = process.env.NODE_ENV !== 'production'
@@ -34,6 +36,8 @@ export function SafeAreaProvider({
 }: SafeAreaProviderProps) {
   const parentInsets = useParentSafeAreaInsets()
   const parentFrame = useParentSafeAreaFrame()
+  // the outermost provider measures the window, so it alone feeds tamagui.
+  const isRoot = parentInsets === null
   // default to zero insets so useSafeAreaInsets() doesn't throw on the first
   // render. Real insets are populated shortly after mount (on web via
   // NativeSafeAreaProvider's useEffect DOM measurement, on native via the
@@ -51,6 +55,10 @@ export function SafeAreaProvider({
     const {
       nativeEvent: { frame: nextFrame, insets: nextInsets },
     } = event
+
+    if (isRoot && nextFrame) {
+      feedTamaguiSafeArea({ insets: nextInsets, frame: nextFrame }, tamaguiHooks)
+    }
 
     React.startTransition(() => {
       setFrame((curFrame) => {
@@ -80,7 +88,7 @@ export function SafeAreaProvider({
         return curInsets
       })
     })
-  }, [])
+  }, [isRoot])
 
   return (
     <NativeSafeAreaProvider onInsetsChange={onInsetsChange} {...others}>
@@ -135,6 +143,9 @@ export function withSafeAreaInsets<T>(
     return <WrappedComponent {...props} insets={insets} ref={ref} />
   }) as any
 }
+
+const tamaguiHooks = { useSafeAreaInsets, useSafeAreaFrame }
+feedTamaguiSafeArea(initialWindowMetrics, tamaguiHooks)
 
 /**
  * @deprecated
