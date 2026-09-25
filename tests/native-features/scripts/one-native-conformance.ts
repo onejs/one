@@ -564,7 +564,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   // wrong route, so bring it fully on screen before tapping it.
   const tapNav = async (testID: string) => {
     await wait(`home lists ${testID}`, (nodes) => Boolean(id(nodes, testID)), true)
-    for (let attempt = 0; attempt < 6; attempt++) {
+    for (let attempt = 0; attempt < 12; attempt++) {
       const nodes = snapshot(config.simulatorId)
       const app = nodes.find((node) => node.type === 'Application')?.frame
       const row = id(nodes, testID)?.frame
