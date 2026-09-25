@@ -26,6 +26,12 @@ namespace margelo::nitro::one { enum class CameraPermissionStatus; }
 namespace margelo::nitro::one { struct DocumentPickerAsset; }
 // Forward declaration of `DocumentPickerNativeResult` to properly resolve imports.
 namespace margelo::nitro::one { struct DocumentPickerNativeResult; }
+// Forward declaration of `HingeState` to properly resolve imports.
+namespace margelo::nitro::one { struct HingeState; }
+// Forward declaration of `HingeStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class HingeStatus; }
+// Forward declaration of `HybridOneAdaptiveSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
 // Forward declaration of `HybridOneAppInfoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
@@ -84,8 +90,14 @@ namespace margelo::nitro::one { enum class NetworkStateType; }
 namespace margelo::nitro::one { struct NetworkState; }
 // Forward declaration of `NotificationPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
+// Forward declaration of `SizeClass` to properly resolve imports.
+namespace margelo::nitro::one { struct SizeClass; }
+// Forward declaration of `UserInterfaceSizeClass` to properly resolve imports.
+namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 
 // Forward declarations of Swift defined types
+// Forward declaration of `HybridOneAdaptiveSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneAdaptiveSpec_cxx; }
 // Forward declaration of `HybridOneAppInfoSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppInfoSpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
@@ -119,6 +131,9 @@ namespace One { class HybridOneSecureStoreSpec_cxx; }
 #include "CameraPermissionStatus.hpp"
 #include "DocumentPickerAsset.hpp"
 #include "DocumentPickerNativeResult.hpp"
+#include "HingeState.hpp"
+#include "HingeStatus.hpp"
+#include "HybridOneAdaptiveSpec.hpp"
 #include "HybridOneAppInfoSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
@@ -148,6 +163,8 @@ namespace One { class HybridOneSecureStoreSpec_cxx; }
 #include "NetworkState.hpp"
 #include "NetworkStateType.hpp"
 #include "NotificationPermissionStatus.hpp"
+#include "SizeClass.hpp"
+#include "UserInterfaceSizeClass.hpp"
 #include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
 #include <NitroModules/Promise.hpp>
@@ -166,6 +183,172 @@ namespace One { class HybridOneSecureStoreSpec_cxx; }
  */
 namespace margelo::nitro::one::bridge::swift {
 
+  // pragma MARK: std::shared_ptr<Promise<SizeClass>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<SizeClass>>`.
+   */
+  using std__shared_ptr_Promise_SizeClass__ = std::shared_ptr<Promise<SizeClass>>;
+  inline std::shared_ptr<Promise<SizeClass>> create_std__shared_ptr_Promise_SizeClass__() noexcept {
+    return Promise<SizeClass>::create();
+  }
+  inline PromiseHolder<SizeClass> wrap_std__shared_ptr_Promise_SizeClass__(std::shared_ptr<Promise<SizeClass>> promise) noexcept {
+    return PromiseHolder<SizeClass>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const SizeClass& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const SizeClass&)>`.
+   */
+  using Func_void_SizeClass = std::function<void(const SizeClass& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const SizeClass& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_SizeClass_Wrapper final {
+  public:
+    explicit Func_void_SizeClass_Wrapper(std::function<void(const SizeClass& /* result */)>&& func): _function(std::make_unique<std::function<void(const SizeClass& /* result */)>>(std::move(func))) {}
+    inline void call(SizeClass result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const SizeClass& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_SizeClass create_Func_void_SizeClass(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_SizeClass_Wrapper wrap_Func_void_SizeClass(Func_void_SizeClass value) noexcept {
+    return Func_void_SizeClass_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
+  /**
+   * Specialized version of `std::function<void(const std::exception_ptr&)>`.
+   */
+  using Func_void_std__exception_ptr = std::function<void(const std::exception_ptr& /* error */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::exception_ptr& / * error * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__exception_ptr_Wrapper final {
+  public:
+    explicit Func_void_std__exception_ptr_Wrapper(std::function<void(const std::exception_ptr& /* error */)>&& func): _function(std::make_unique<std::function<void(const std::exception_ptr& /* error */)>>(std::move(func))) {}
+    inline void call(std::exception_ptr error) const noexcept {
+      _function->operator()(error);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::exception_ptr& /* error */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__exception_ptr_Wrapper wrap_Func_void_std__exception_ptr(Func_void_std__exception_ptr value) noexcept {
+    return Func_void_std__exception_ptr_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::optional<HingeState>
+  /**
+   * Specialized version of `std::optional<HingeState>`.
+   */
+  using std__optional_HingeState_ = std::optional<HingeState>;
+  inline std::optional<HingeState> create_std__optional_HingeState_(const HingeState& value) noexcept {
+    return std::optional<HingeState>(value);
+  }
+  inline bool has_value_std__optional_HingeState_(const std::optional<HingeState>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline HingeState get_std__optional_HingeState_(const std::optional<HingeState>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::optional<HingeState>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::optional<HingeState>>>`.
+   */
+  using std__shared_ptr_Promise_std__optional_HingeState___ = std::shared_ptr<Promise<std::optional<HingeState>>>;
+  inline std::shared_ptr<Promise<std::optional<HingeState>>> create_std__shared_ptr_Promise_std__optional_HingeState___() noexcept {
+    return Promise<std::optional<HingeState>>::create();
+  }
+  inline PromiseHolder<std::optional<HingeState>> wrap_std__shared_ptr_Promise_std__optional_HingeState___(std::shared_ptr<Promise<std::optional<HingeState>>> promise) noexcept {
+    return PromiseHolder<std::optional<HingeState>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::optional<HingeState>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::optional<HingeState>&)>`.
+   */
+  using Func_void_std__optional_HingeState_ = std::function<void(const std::optional<HingeState>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::optional<HingeState>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__optional_HingeState__Wrapper final {
+  public:
+    explicit Func_void_std__optional_HingeState__Wrapper(std::function<void(const std::optional<HingeState>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::optional<HingeState>& /* result */)>>(std::move(func))) {}
+    inline void call(std::optional<HingeState> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::optional<HingeState>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__optional_HingeState_ create_Func_void_std__optional_HingeState_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__optional_HingeState__Wrapper wrap_Func_void_std__optional_HingeState_(Func_void_std__optional_HingeState_ value) noexcept {
+    return Func_void_std__optional_HingeState__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void()>
+  /**
+   * Specialized version of `std::function<void()>`.
+   */
+  using Func_void = std::function<void()>;
+  /**
+   * Wrapper class for a `std::function<void()>`, this can be used from Swift.
+   */
+  class Func_void_Wrapper final {
+  public:
+    explicit Func_void_Wrapper(std::function<void()>&& func): _function(std::make_unique<std::function<void()>>(std::move(func))) {}
+    inline void call() const noexcept {
+      _function->operator()();
+    }
+  private:
+    std::unique_ptr<std::function<void()>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_Wrapper wrap_Func_void(Func_void value) noexcept {
+    return Func_void_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneAdaptiveSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneAdaptiveSpec>`.
+   */
+  using std__shared_ptr_HybridOneAdaptiveSpec_ = std::shared_ptr<HybridOneAdaptiveSpec>;
+  std::shared_ptr<HybridOneAdaptiveSpec> create_std__shared_ptr_HybridOneAdaptiveSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneAdaptiveSpec_(std__shared_ptr_HybridOneAdaptiveSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneAdaptiveSpec>
+  using std__weak_ptr_HybridOneAdaptiveSpec_ = std::weak_ptr<HybridOneAdaptiveSpec>;
+  inline std__weak_ptr_HybridOneAdaptiveSpec_ weakify_std__shared_ptr_HybridOneAdaptiveSpec_(const std::shared_ptr<HybridOneAdaptiveSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<SizeClass>>>
+  using Result_std__shared_ptr_Promise_SizeClass___ = Result<std::shared_ptr<Promise<SizeClass>>>;
+  inline Result_std__shared_ptr_Promise_SizeClass___ create_Result_std__shared_ptr_Promise_SizeClass___(const std::shared_ptr<Promise<SizeClass>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<SizeClass>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_SizeClass___ create_Result_std__shared_ptr_Promise_SizeClass___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<SizeClass>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::optional<HingeState>>>>
+  using Result_std__shared_ptr_Promise_std__optional_HingeState____ = Result<std::shared_ptr<Promise<std::optional<HingeState>>>>;
+  inline Result_std__shared_ptr_Promise_std__optional_HingeState____ create_Result_std__shared_ptr_Promise_std__optional_HingeState____(const std::shared_ptr<Promise<std::optional<HingeState>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::optional<HingeState>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__optional_HingeState____ create_Result_std__shared_ptr_Promise_std__optional_HingeState____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::optional<HingeState>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::function<void()>>
+  using Result_std__function_void____ = Result<std::function<void()>>;
+  inline Result_std__function_void____ create_Result_std__function_void____(const std::function<void()>& value) noexcept {
+    return Result<std::function<void()>>::withValue(value);
+  }
+  inline Result_std__function_void____ create_Result_std__function_void____(const std::exception_ptr& error) noexcept {
+    return Result<std::function<void()>>::withError(error);
+  }
+  
   // pragma MARK: std::optional<std::string>
   /**
    * Specialized version of `std::optional<std::string>`.
@@ -225,28 +408,6 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_BrowserResult create_Func_void_BrowserResult(void* NON_NULL swiftClosureWrapper) noexcept;
   inline Func_void_BrowserResult_Wrapper wrap_Func_void_BrowserResult(Func_void_BrowserResult value) noexcept {
     return Func_void_BrowserResult_Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
-  /**
-   * Specialized version of `std::function<void(const std::exception_ptr&)>`.
-   */
-  using Func_void_std__exception_ptr = std::function<void(const std::exception_ptr& /* error */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::exception_ptr& / * error * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__exception_ptr_Wrapper final {
-  public:
-    explicit Func_void_std__exception_ptr_Wrapper(std::function<void(const std::exception_ptr& /* error */)>&& func): _function(std::make_unique<std::function<void(const std::exception_ptr& /* error */)>>(std::move(func))) {}
-    inline void call(std::exception_ptr error) const noexcept {
-      _function->operator()(error);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::exception_ptr& /* error */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__exception_ptr_Wrapper wrap_Func_void_std__exception_ptr(Func_void_std__exception_ptr value) noexcept {
-    return Func_void_std__exception_ptr_Wrapper(std::move(value));
   }
   
   // pragma MARK: std::optional<BrowserPresentationStyle>
@@ -590,28 +751,6 @@ namespace margelo::nitro::one::bridge::swift {
     return PromiseHolder<void>(std::move(promise));
   }
   
-  // pragma MARK: std::function<void()>
-  /**
-   * Specialized version of `std::function<void()>`.
-   */
-  using Func_void = std::function<void()>;
-  /**
-   * Wrapper class for a `std::function<void()>`, this can be used from Swift.
-   */
-  class Func_void_Wrapper final {
-  public:
-    explicit Func_void_Wrapper(std::function<void()>&& func): _function(std::make_unique<std::function<void()>>(std::move(func))) {}
-    inline void call() const noexcept {
-      _function->operator()();
-    }
-  private:
-    std::unique_ptr<std::function<void()>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_Wrapper wrap_Func_void(Func_void value) noexcept {
-    return Func_void_Wrapper(std::move(value));
-  }
-  
   // pragma MARK: std::shared_ptr<HybridOneFontsSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneFontsSpec>`.
@@ -842,15 +981,6 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_NetworkState___ create_Result_std__shared_ptr_Promise_NetworkState___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<NetworkState>>>::withError(error);
-  }
-  
-  // pragma MARK: Result<std::function<void()>>
-  using Result_std__function_void____ = Result<std::function<void()>>;
-  inline Result_std__function_void____ create_Result_std__function_void____(const std::function<void()>& value) noexcept {
-    return Result<std::function<void()>>::withValue(value);
-  }
-  inline Result_std__function_void____ create_Result_std__function_void____(const std::exception_ptr& error) noexcept {
-    return Result<std::function<void()>>::withError(error);
   }
   
   // pragma MARK: std::optional<NativeIosPermission>

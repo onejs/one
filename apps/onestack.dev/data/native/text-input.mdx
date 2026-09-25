@@ -47,15 +47,23 @@ web and are accepted but ignored on native.
 
 ### Adaptive layout
 
-`One.UI.useSizeClass()` returns the window scene's horizontal and vertical size
-classes (`compact`, `regular`, or `unspecified`) and re-renders when they change,
-so a layout can branch on the trait iOS uses rather than on the screen's width.
+`One.UI.useSizeClass()` returns the window's horizontal and vertical size
+classes (`compact`, `regular`, or `unspecified`) and re-renders when they change.
+On iOS they are the window scene's `UIUserInterfaceSizeClass` values, so a
+layout can branch on the trait iOS uses rather than on the screen's width.
 On a foldable such as iPhone Duo the outer display is compact and the inner
-display regular in both axes.
+display regular in both axes. On Android they come from the activity window's
+`WindowMetrics`: width below 600dp is compact, otherwise regular; height below
+480dp is compact, otherwise regular. They update on configuration and
+window-metrics changes.
 
 `One.UI.useHinge()` reports the hinge's `status` (`closed`, `partiallyOpen`,
 `fullyOpen`, or `unknown`) and `angle` in radians, and `One.UI.onHingeChange`
 subscribes outside React. The `get*` variants read the current value once.
+On iOS the state comes from `UIHinge`. On Android the status comes from the
+Jetpack `FoldingFeature` (`FLAT` is fullyOpen, `HALF_OPENED` is partiallyOpen)
+and the angle from the hinge sensor; a hinge sensor with no folding feature in
+the current window reads closed, and a device with no hinge reads null.
 
 Safe area insets say how far to pull content in from each edge; they cannot
 describe a fold across the middle of the screen or a camera on the inner

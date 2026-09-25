@@ -143,4 +143,16 @@ public final class OneAutolinking {
   public static func isOneSecureStoreRecyclable() -> Bool {
     return HybridOneSecureStore.self is any RecyclableView.Type
   }
+  
+  public static func createOneAdaptive() -> bridge.std__shared_ptr_HybridOneAdaptiveSpec_ {
+    let hybridObject = HybridOneAdaptive()
+    return { () -> bridge.std__shared_ptr_HybridOneAdaptiveSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+  
+  public static func isOneAdaptiveRecyclable() -> Bool {
+    return HybridOneAdaptive.self is any RecyclableView.Type
+  }
 }
