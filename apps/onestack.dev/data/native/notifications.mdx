@@ -3,8 +3,8 @@ title: Notifications
 description: Local notifications and push tokens on both platforms
 ---
 
-Local notifications through `One.Notifications`. Payload shapes
-follow `expo-notifications`; platform enums are string unions.
+Local notifications and remote push tokens through `One.Notifications`.
+Platform enums are string unions.
 
 ```tsx
 import { One } from 'one'
@@ -40,8 +40,8 @@ await One.Notifications.setChannel('reminders', {
 
 `getChannel`, `getChannels`, and `deleteChannel` round out the set. On iOS
 they resolve `null`, `[]`, and nothing: there are no channels there.
-Importance is `'none' | 'min' | 'low' | 'default' | 'high' | 'max'`; the
-legacy expo numbers 0-5 still map.
+Importance is `'none' | 'min' | 'low' | 'default' | 'high' | 'max'`, and
+the numbers 0 to 5 map to those in order.
 
 `schedule` delivers a local notification; `trigger: null` shows it
 immediately. Every arrival fires `addReceivedListener` while the app runs in
@@ -112,7 +112,6 @@ restart from boot. iOS has two platform rules worth knowing: a repeating
 interval must be at least 60 seconds, and the calendar trigger resolves to
 whole seconds.
 
-Remote push tokens follow `expo-notifications`' shape.
 `getDevicePushTokenAsync` resolves `{ type: 'ios' | 'android', data }`: the
 APNs hex token on iOS (via `registerForRemoteNotifications`, which works on
 the simulator on iOS 16+) and the FCM registration token on Android.

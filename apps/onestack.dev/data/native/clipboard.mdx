@@ -3,7 +3,7 @@ title: Clipboard
 description: String clipboard backed by the native pasteboard
 ---
 
-String clipboard through `One.Clipboard`, matching `expo-clipboard`'s string API. Backed by `UIPasteboard` on iOS, `ClipboardManager` on Android, and `navigator.clipboard` on web.
+String clipboard through `One.Clipboard`. Backed by `UIPasteboard` on iOS, `ClipboardManager` on Android, and `navigator.clipboard` on web.
 
 ```tsx
 import { One } from 'one'
@@ -14,11 +14,3 @@ const has = await One.Clipboard.hasString()
 ```
 
 `setString` resolves `true` once the string is on the pasteboard. On web, reads resolve `''` and writes resolve `false` when the browser denies access.
-
-### Migration from expo-clipboard
-
-| expo-clipboard | One |
-|---|---|
-| `getStringAsync()` | `One.Clipboard.getString()` |
-| `setStringAsync(text)` | `One.Clipboard.setString(text)` |
-| `hasStringAsync()` | `One.Clipboard.hasString()` |

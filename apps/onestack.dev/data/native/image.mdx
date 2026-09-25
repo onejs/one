@@ -12,10 +12,13 @@ On web it renders the platform image with the same props.
 | `source` | `string` URL, `{ uri: string }`, or a bundled image resource number (required) |
 | `resizeMode` | `'cover'`, `'contain'`, `'center'`, or `'stretch'` |
 | `recyclingKey` | `string` that scopes view recycling |
+| `onLoad` | `({ nativeEvent: { source: { uri, width, height } } }) => void` |
+| `onError` | `({ nativeEvent: { error } }) => void` |
 
 All other React Native image props pass through except `resizeMode`, which
 is limited to the four values above. `recyclingKey` keeps recycled views
-from flashing old content in lists.
+from flashing old content in lists. `onLoadStart` and `onLoadEnd` fire around
+every source change, and the view stays empty until the current source loads.
 
 ```tsx
 import { One } from 'one'

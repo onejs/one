@@ -182,6 +182,11 @@ const testScreens = [
     testID: 'nav-one-native-apple-file',
   },
   {
+    href: '/one-native-image',
+    label: 'One Native Image',
+    testID: 'nav-one-native-image',
+  },
+  {
     href: '/one-native-clipboard',
     label: 'One Native Clipboard',
     testID: 'nav-one-native-clipboard',

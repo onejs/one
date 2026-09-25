@@ -1,0 +1,100 @@
+---
+title: Migrating to One Native
+description: Moving an app from Expo and community native packages onto One's native modules
+---
+
+Most of One's native modules keep the API shape of the package they
+replace, so migrating is usually an import change plus the renames below.
+Options that a table does not list have no One equivalent.
+
+```tsx
+// before
+import * as Clipboard from 'expo-clipboard'
+await Clipboard.setStringAsync(text)
+
+// after
+import { One } from 'one'
+await One.Clipboard.setString(text)
+```
+
+## Clipboard
+
+From `expo-clipboard`. See [Clipboard](/native/clipboard).
+
+| expo-clipboard | One |
+|---|---|
+| `getStringAsync()` | `One.Clipboard.getString()` |
+| `setStringAsync(text)` | `One.Clipboard.setString(text)` |
+| `hasStringAsync()` | `One.Clipboard.hasString()` |
+
+## Network
+
+From `expo-network`. See [Network](/native/network).
+
+| expo-network | One |
+|---|---|
+| `getNetworkStateAsync()` | `One.Network.getState()` |
+| `addNetworkStateListener(fn)` | `One.Network.addStateListener(fn)` |
+| `useNetworkState()` | `One.useNetworkState()` |
+| `NetworkStateType.WIFI` | `'wifi'` (and likewise for every member) |
+
+## Browser
+
+From `expo-web-browser`. See [Browser](/native/browser).
+
+| expo-web-browser | One |
+|---|---|
+| `openBrowserAsync(url, options?)` | `One.Browser.open(url, options?)` |
+| `dismissBrowser()` | `One.Browser.dismiss()` |
+| `openAuthSessionAsync(url, redirectUrl?, options?)` | `One.Browser.openAuthSession(url, redirectUrl?, options?)` |
+| `dismissAuthSession()` | `One.Browser.dismissAuthSession()` |
+| `WebBrowserResult` | `BrowserResult` |
+| `WebBrowserResultType` | `BrowserResultType` |
+| `WebBrowserPresentationStyle` | `BrowserPresentationStyle` |
+| `ERR_WEB_BROWSER_BLOCKED` | `E_BROWSER_BLOCKED` |
+
+## Secure store
+
+From `expo-secure-store`. See [SecureStore](/native/secure-store).
+
+| expo-secure-store | One |
+|---|---|
+| `getItemAsync(key)` | `One.SecureStore.getItem(key)` |
+| `setItemAsync(key, value)` | `One.SecureStore.setItem(key, value)` |
+| `deleteItemAsync(key)` | `One.SecureStore.deleteItem(key)` |
+
+## Image picker
+
+From `expo-image-picker`. See [ImagePicker](/native/image-picker).
+
+| expo-image-picker | One |
+|---|---|
+| `launchImageLibraryAsync` | `One.ImagePicker.launchLibrary` |
+| `launchCameraAsync` | `One.ImagePicker.launchCamera` |
+| `getCameraPermissionsAsync` | `One.ImagePicker.getCameraPermissions` |
+| `requestCameraPermissionsAsync` | `One.ImagePicker.requestCameraPermissions` |
+
+`mediaTypes` and `selectionLimit` are the whole options surface;
+`allowsEditing`, `quality`, `aspect`, and the rest have no equivalent.
+
+## Notifications
+
+From `expo-notifications`. See [Notifications](/native/notifications).
+Payload, permission, and push token shapes are the same. Platform enums
+become string unions, and channel importance still accepts the numbers 0 to 5.
+
+## Maps
+
+From `react-native-maps`. See [Map](/native/map).
+
+Convert the region to a camera: `zoom = log2(360 * widthPt / 256 / longitudeDelta)`,
+where `widthPt` is the map view width in points, and center coordinates as-is.
+Marker children become the `markers` array, and `onRegionChangeComplete`
+becomes `onCameraMove`. Designs that need custom pin views, callouts, or
+camera refs have no equivalent yet; keep `react-native-maps` for those screens.
+
+## Build tooling
+
+Expo apps keep Expo prebuild with the `vxrn/expo-plugin` adapter. Apps
+without Expo use `one prebuild` from `native.app`. See
+[Build or Run iOS](/docs/guides-ios-native) and [Ship with EAS](/docs/guides-eas).
