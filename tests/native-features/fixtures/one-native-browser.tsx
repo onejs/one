@@ -18,12 +18,36 @@ export default function OneNativeBrowser() {
   const [opened, setOpened] = useState('none')
   const [dismissed, setDismissed] = useState('none')
   const [auth, setAuth] = useState('none')
+  const [warmupResult, setWarmupResult] = useState('none')
+  const [mayLaunchResult, setMayLaunchResult] = useState('none')
   return (
     <View style={styles.screen}>
       <Text>{`Result: ${result}`}</Text>
       <Text>{`Opened: ${opened}`}</Text>
       <Text>{`Dismissed: ${dismissed}`}</Text>
       <Text>{`Auth: ${auth}`}</Text>
+      <Text>{`Warmup: ${warmupResult}`}</Text>
+      <Text>{`MayLaunchUrl: ${mayLaunchResult}`}</Text>
+      <Pressable
+        testID="one-native-browser-warmup"
+        style={styles.chip}
+        onPress={async () => {
+          const ok = await One.Browser.warmup()
+          setWarmupResult(String(ok))
+        }}
+      >
+        <Text>Warmup</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-browser-may-launch"
+        style={styles.chip}
+        onPress={async () => {
+          const ok = await One.Browser.mayLaunchUrl(page)
+          setMayLaunchResult(String(ok))
+        }}
+      >
+        <Text>May launch url</Text>
+      </Pressable>
       <Pressable
         testID="one-native-browser-open"
         style={styles.chip}

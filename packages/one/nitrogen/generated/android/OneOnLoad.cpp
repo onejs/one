@@ -20,6 +20,7 @@
 #include "JFunc_void_SizeClass.hpp"
 #include "JFunc_void_std__optional_HingeState_.hpp"
 #include "JHybridOneAppInfoSpec.hpp"
+#include "JHybridOneAppleAuthSpec.hpp"
 #include "JHybridOneBrowserSpec.hpp"
 #include "JHybridOneClipboardSpec.hpp"
 #include "JHybridOneCryptoSpec.hpp"
@@ -140,6 +141,14 @@ struct JHybridOneAdaptiveSpecImpl: public jni::JavaClass<JHybridOneAdaptiveSpecI
     return javaPart->getJHybridOneAdaptiveSpec();
   }
 };
+struct JHybridOneAppleAuthSpecImpl: public jni::JavaClass<JHybridOneAppleAuthSpecImpl, JHybridOneAppleAuthSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneAppleAuth;";
+  static std::shared_ptr<JHybridOneAppleAuthSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneAppleAuthSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneAppleAuthSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneAppleAuthSpec();
+  }
+};
 
 void registerAllNatives() {
   using namespace margelo::nitro;
@@ -151,6 +160,7 @@ void registerAllNatives() {
   margelo::nitro::one::JFunc_void_SizeClass_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_std__optional_HingeState__cxx::registerNatives();
   margelo::nitro::one::JHybridOneAppInfoSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneAppleAuthSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneBrowserSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneClipboardSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneCryptoSpec::CxxPart::registerNatives();
@@ -237,6 +247,12 @@ void registerAllNatives() {
     "OneAdaptive",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneAdaptiveSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneAppleAuth",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneAppleAuthSpecImpl::create();
     }
   );
 }

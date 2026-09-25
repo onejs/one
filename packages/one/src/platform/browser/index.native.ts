@@ -85,4 +85,25 @@ function dismissAuthSession(): void {
   native()?.dismissAuthSession()
 }
 
-export const Browser = Object.freeze({ open, dismiss, openAuthSession, dismissAuthSession })
+function warmup(browserPackage?: string): Promise<boolean> {
+  const resolved = native()
+  if (!resolved) return Promise.resolve(false)
+  return resolved.warmup(browserPackage).catch(() => false)
+}
+
+function mayLaunchUrl(url: string, browserPackage?: string): Promise<boolean> {
+  assertBrowserUrl(url, 'Browser.mayLaunchUrl')
+  const resolved = native()
+  if (!resolved) return Promise.resolve(false)
+  return resolved.mayLaunchUrl(url, browserPackage).catch(() => false)
+}
+
+export const Browser = Object.freeze({
+  open,
+  dismiss,
+  openAuthSession,
+  dismissAuthSession,
+  warmup,
+  mayLaunchUrl,
+})
+
