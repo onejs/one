@@ -218,10 +218,11 @@ class StreamingResponse {
 
   clone(): StreamingResponse {
     if (this.bodyUsed) throw new TypeError('Already read')
-    if (!this.body) return new StreamingResponse(this, null)
+    const head = { ...this, headers: new Headers(this.headers) }
+    if (!this.body) return new StreamingResponse(head, null)
     const [mine, theirs] = this.body.tee()
     Reflect.set(this, 'body', mine)
-    return new StreamingResponse(this, theirs)
+    return new StreamingResponse(head, theirs)
   }
 }
 
@@ -237,11 +238,9 @@ async function fetch(input: string | URL | Request, init: RequestInit = {}): Pro
   const method = (init.method ?? request?.method ?? 'GET').toUpperCase()
   const headers = new Headers(init.headers ?? request?.headers)
   const credentials = init.credentials ?? request?.credentials
-  let body: unknown = init.body
-  if (body == null && request && method !== 'GET' && method !== 'HEAD') {
-    const bytes = await request.arrayBuffer()
-    if (bytes.byteLength > 0) body = bytes
-  }
+  // a Request's body is sent as it was given, which is what react native's
+  // fetch sends, so a FormData body keeps its multipart encoding
+  const body: unknown = init.body ?? (request ? Reflect.get(request, '_bodyInit') : undefined)
 
   let nativeBody: NativeBody = {}
   if (body != null) {
@@ -323,10 +322,18 @@ export function installFetch(): void {
   if (!NitroModules.hasHybridObject('OneFetch')) return
   // react native defines Headers, Request and Response lazily through
   // whatwg-fetch, which installs them only while the global fetch is still
-  // its own. read one first so all three exist before fetch is replaced.
-  if (typeof globalThis.Headers !== 'function' || typeof globalThis.Request !== 'function') {
-    throw new Error("fetch: react native's Headers and Request must be installed before One's fetch")
+  // its own. read them first so all three exist before fetch is replaced.
+  if (
+    typeof globalThis.Headers !== 'function' ||
+    typeof globalThis.Request !== 'function' ||
+    typeof globalThis.Response !== 'function'
+  ) {
+    throw new Error(
+      "fetch: react native's Headers, Request and Response must be installed before One's fetch"
+    )
   }
+  // libraries check `instanceof Response`; every member is still our own
+  Object.setPrototypeOf(StreamingResponse.prototype, globalThis.Response.prototype)
   // ios reaches react native's blob store through a bridge module's registry
   if (Platform.OS === 'ios') NativeModules.OneFetchBlobStore.install()
   Object.defineProperty(globalThis, 'fetch', {

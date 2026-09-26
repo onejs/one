@@ -16,9 +16,11 @@ import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.OkHttpClient
 import okhttp3.CookieJar
+import okhttp3.Headers
 import okhttp3.JavaNetCookieJar
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
 import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -114,24 +116,35 @@ class HybridOneFetch : HybridOneFetchSpec() {
             ?: throw IllegalStateException("fetch: react native's BlobModule is not loaded")
 
     // the request body. js-owned bytes are copied now, during the call;
-    // blobs, files and multipart parts are read on the network thread
+    // blobs, files and multipart parts are read on the network thread. every
+    // length is known up front where react native's was, so uploads carry a
+    // content-length rather than going out chunked.
     private fun body(request: FetchNativeRequest, type: MediaType?): RequestBody? {
         request.body?.let { return it.toByteArray().toRequestBody(type) }
-        request.blob?.let { blob ->
-            return lazyBody(type) { sink -> sink.write(resolve(blob)) }
-        }
+        request.blob?.let { return blobBody(it, type) }
         val form = request.form
         val boundary = request.boundary
-        if (form != null && boundary != null) {
-            return lazyBody(type) { sink -> writeMultipart(sink, form, boundary) }
-        }
+        if (form != null && boundary != null) return multipart(form, boundary)
         return if (HttpMethod.requiresRequestBody(request.method)) ByteArray(0).toRequestBody(type)
         else null
     }
 
-    private fun lazyBody(type: MediaType?, write: (BufferedSink) -> Unit) = object : RequestBody() {
+    private fun blobBody(blob: FetchBlobRef, type: MediaType?) = object : RequestBody() {
         override fun contentType() = type
-        override fun writeTo(sink: BufferedSink) = write(sink)
+        override fun contentLength() = blob.size.toLong()
+        override fun writeTo(sink: BufferedSink) {
+            sink.write(resolve(blob))
+        }
+    }
+
+    private fun uriBody(uri: String, type: MediaType?) = object : RequestBody() {
+        override fun contentType() = type
+        override fun contentLength() =
+            context.contentResolver.openAssetFileDescriptor(Uri.parse(uri), "r")?.use { it.length }
+                ?: -1L
+        override fun writeTo(sink: BufferedSink) {
+            open(uri).use { input -> input.copyTo(sink.outputStream()) }
+        }
     }
 
     private fun resolve(blob: FetchBlobRef): ByteArray =
@@ -142,34 +155,31 @@ class HybridOneFetch : HybridOneFetchSpec() {
         context.contentResolver.openInputStream(Uri.parse(uri))
             ?: throw IOException("fetch: could not open $uri")
 
-    // multipart/form-data per RFC 7578, the same layout react native writes
-    private fun writeMultipart(sink: BufferedSink, parts: Array<FetchFormPart>, boundary: String) {
-        fun line(text: String) = sink.writeUtf8(text).writeUtf8("\r\n")
+    // multipart/form-data per RFC 7578 through okhttp's MultipartBody, as
+    // react native builds it, under the boundary js already put in the
+    // content-type header
+    private fun multipart(parts: Array<FetchFormPart>, boundary: String): RequestBody {
+        val builder = MultipartBody.Builder(boundary).setType(MultipartBody.FORM)
         for (part in parts) {
-            line("--$boundary")
-            var disposition = "Content-Disposition: form-data; name=\"${escape(part.name)}\""
+            var disposition = "form-data; name=\"${escape(part.name)}\""
             val value = part.value
             if (value != null) {
-                line(disposition)
-                line("")
-                line(value)
+                builder.addPart(Headers.headersOf("Content-Disposition", disposition), value.toRequestBody())
                 continue
             }
             val filename = part.filename ?: part.uri?.let { Uri.parse(it).lastPathSegment }
             if (filename != null) disposition += "; filename=\"${escape(filename)}\""
-            line(disposition)
-            line("Content-Type: ${part.type ?: "application/octet-stream"}")
-            line("")
+            val type = (part.type ?: "application/octet-stream").toMediaTypeOrNull()
             val uri = part.uri
             val blob = part.blob
-            when {
-                uri != null -> open(uri).use { input -> input.copyTo(sink.outputStream()) }
-                blob != null -> sink.write(resolve(blob))
+            val body = when {
+                uri != null -> uriBody(uri, type)
+                blob != null -> blobBody(blob, type)
                 else -> throw IOException("fetch: FormData part ${part.name} has no value")
             }
-            line("")
+            builder.addPart(Headers.headersOf("Content-Disposition", disposition), body)
         }
-        line("--$boundary--")
+        return builder.build()
     }
 
     private fun escape(value: String) =

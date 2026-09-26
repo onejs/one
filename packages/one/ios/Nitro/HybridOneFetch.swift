@@ -210,8 +210,9 @@ final class HybridOneFetch: HybridOneFetchSpec {
   }
 
   private static func read(uri: String) throws -> Data {
-    guard let url = URL(string: uri), url.isFileURL else {
-      throw RuntimeError.error(withMessage: "fetch: FormData uri \(uri) is not a file: url")
+    // the local schemes react native's own request handlers read
+    guard let url = URL(string: uri), url.isFileURL || url.scheme == "data" else {
+      throw RuntimeError.error(withMessage: "fetch: FormData uri \(uri) is not a file: or data: url")
     }
     return try Data(contentsOf: url)
   }
