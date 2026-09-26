@@ -69,7 +69,7 @@ function Arrangement() {
           )}
         </View>
 
-        <View style={styles.styleSelector}>
+        {Platform.OS === 'ios' && <View style={styles.styleSelector}>
           {(['automatic', 'split', 'overlay'] as const).map((s) => (
             <TouchableOpacity
               key={s}
@@ -82,11 +82,11 @@ function Arrangement() {
               </Text>
             </TouchableOpacity>
           ))}
-        </View>
+        </View>}
       </View>
 
       {/* Adaptive 2-pane ArrangementView */}
-      <One.iOS.ArrangementView
+      {Platform.OS === 'ios' && <One.iOS.ArrangementView
         arrangementViewStyle={style}
         splitArrangementLayoutRatio={0.5}
         style={styles.arrangement}
@@ -140,7 +140,7 @@ function Arrangement() {
             </ScrollView>
           </View>
         </One.iOS.ArrangementView.Secondary>
-      </One.iOS.ArrangementView>
+      </One.iOS.ArrangementView>}
     </View>
   )
 }
