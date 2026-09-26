@@ -5,7 +5,8 @@ description: Jetpack Compose views under One.Android
 
 Jetpack Compose views under `One.Android`. Layout nodes (`Column`, `Row`, `FlowRow`,
 `Box`, `BadgedBox`, `Badge`, `ListItem`, `Card`, `ElevatedCard`, `OutlinedCard`, `AssistChip`, `FilterChip`,
-`InputChip`, `SuggestionChip`) take children;
+`InputChip`, `SuggestionChip`, `IconButton`, `FilledIconButton`, `FilledTonalIconButton`,
+`OutlinedIconButton`) take children;
 `Text`, `Icon`,
 `Button`, `Switch`, `Checkbox`, `RadioButton`, `HorizontalDivider`,
 `VerticalDivider`, `TextField`,
@@ -62,6 +63,11 @@ per-platform elements instead.
 `iconFilled`). `variant` is `'filled'`, `'outlined'`, or `'text'`; `tone`
 is `'default'` or `'danger'`; `disabled` disables it; `onPress` handles
 taps.
+
+`One.Android.IconButton`, `FilledIconButton`, `FilledTonalIconButton`, and
+`OutlinedIconButton` wrap an `Icon` child. Each accepts `enabled`, `onClick`,
+and `colors` with `containerColor`, `contentColor`, `disabledContainerColor`,
+and `disabledContentColor`. Omitted colors use the current Material theme.
 
 ## Switch
 

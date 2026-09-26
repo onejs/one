@@ -51,6 +51,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonColors
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.FilledTonalIconButton
+import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.material3.InputChip
 import androidx.compose.material3.InputChipDefaults
 import androidx.compose.material3.lightColorScheme
@@ -194,6 +200,23 @@ internal data class OneNativeCardColors(
             if (map == null) OneNativeCardColors() else OneNativeCardColors(
                 containerColor = readComposeColor(map, "containerColor", context),
                 contentColor = readComposeColor(map, "contentColor", context),
+            )
+    }
+}
+
+internal data class OneNativeIconButtonColors(
+    val containerColor: Int? = null,
+    val contentColor: Int? = null,
+    val disabledContainerColor: Int? = null,
+    val disabledContentColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeIconButtonColors =
+            if (map == null) OneNativeIconButtonColors() else OneNativeIconButtonColors(
+                containerColor = readComposeColor(map, "containerColor", context),
+                contentColor = readComposeColor(map, "contentColor", context),
+                disabledContainerColor = readComposeColor(map, "disabledContainerColor", context),
+                disabledContentColor = readComposeColor(map, "disabledContentColor", context),
             )
     }
 }
@@ -352,6 +375,7 @@ internal data class OneNativeComposeNodeProps(
     val selected: Boolean = false,
     val radioColors: OneNativeRadioColors = OneNativeRadioColors(),
     val cardColors: OneNativeCardColors = OneNativeCardColors(),
+    val iconButtonColors: OneNativeIconButtonColors = OneNativeIconButtonColors(),
     val badgeColors: OneNativeCardColors = OneNativeCardColors(),
     val listItemColors: OneNativeListItemColors = OneNativeListItemColors(),
     val tonalElevation: Double = -1.0,
@@ -652,6 +676,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageCardColors(value: ReadableMap?) {
         pendingProps = pendingProps.copy(cardColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageIconButtonColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(iconButtonColors = OneNativeIconButtonColors.fromMap(value, context))
     }
 
     internal fun stageBadgeColors(value: ReadableMap?) {
@@ -1163,6 +1191,8 @@ private fun RenderComposeNodeBody(
             )
         }
         "button" -> RenderComposeButton(node, props, modifier)
+        "iconbutton", "fillediconbutton", "filledtonaliconbutton", "outlinediconbutton" ->
+            RenderComposeIconButton(node, props, modifier)
         "switch" -> RenderComposeSwitch(node, props, modifier)
         "checkbox" ->
             Checkbox(
@@ -1485,6 +1515,48 @@ private fun RenderComposeButton(
             ) {
                 ComposeButtonContent(props)
             }
+    }
+}
+
+@Composable
+private fun RenderComposeIconButton(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val enabled = !props.disabled && node.isEnabled
+    val custom = props.iconButtonColors
+    fun colors(defaults: IconButtonColors): IconButtonColors = defaults.copy(
+        containerColor = custom.containerColor?.let(::Color) ?: defaults.containerColor,
+        contentColor = custom.contentColor?.let(::Color) ?: defaults.contentColor,
+        disabledContainerColor = custom.disabledContainerColor?.let(::Color) ?: defaults.disabledContainerColor,
+        disabledContentColor = custom.disabledContentColor?.let(::Color) ?: defaults.disabledContentColor,
+    )
+    when (node.renderedNodeKind) {
+        "fillediconbutton" -> FilledIconButton(
+            onClick = node::handlePress,
+            modifier = modifier,
+            enabled = enabled,
+            colors = colors(IconButtonDefaults.filledIconButtonColors()),
+        ) { RenderComposeChildren(node) }
+        "filledtonaliconbutton" -> FilledTonalIconButton(
+            onClick = node::handlePress,
+            modifier = modifier,
+            enabled = enabled,
+            colors = colors(IconButtonDefaults.filledTonalIconButtonColors()),
+        ) { RenderComposeChildren(node) }
+        "outlinediconbutton" -> OutlinedIconButton(
+            onClick = node::handlePress,
+            modifier = modifier,
+            enabled = enabled,
+            colors = colors(IconButtonDefaults.outlinedIconButtonColors()),
+        ) { RenderComposeChildren(node) }
+        else -> IconButton(
+            onClick = node::handlePress,
+            modifier = modifier,
+            enabled = enabled,
+            colors = colors(IconButtonDefaults.iconButtonColors()),
+        ) { RenderComposeChildren(node) }
     }
 }
 
@@ -1818,7 +1890,7 @@ private fun Modifier.applyReactSemantics(
     val semanticRole =
         composeRole(normalizedRole)
             ?: when (node.renderedNodeKind) {
-                "button" -> Role.Button
+                "button", "iconbutton", "fillediconbutton", "filledtonaliconbutton", "outlinediconbutton" -> Role.Button
                 "switch" -> Role.Switch
                 "checkbox" -> Role.Checkbox
                 "radio" -> Role.RadioButton
@@ -1839,7 +1911,7 @@ private fun Modifier.applyReactSemantics(
     // Fabric; only logical-only children need the compose testTag.
     val needsComposeTag = !testId.isNullOrEmpty() && node.parent == null
     if (needsComposeTag) result = result.testTag(testId)
-    val mergeDescendants = node.renderedNodeKind == "button" || node.renderedNodeKind == "switch" || node.renderedNodeKind == "checkbox" || node.renderedNodeKind == "radio"
+    val mergeDescendants = node.renderedNodeKind == "button" || node.renderedNodeKind.endsWith("iconbutton") || node.renderedNodeKind == "switch" || node.renderedNodeKind == "checkbox" || node.renderedNodeKind == "radio"
     return result.semantics(mergeDescendants = mergeDescendants) {
         if (node.renderedNodeKind == "icon" && label.isNullOrEmpty()) invisibleToUser()
         if (!label.isNullOrEmpty()) contentDescription = label

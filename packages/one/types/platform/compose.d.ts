@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeIconProps, ComposeInputChipProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function FlowRow(_props: ComposeFlowRowProps): never;
@@ -34,6 +34,10 @@ declare const ChipIcon: (_props: {
 declare function Text(_props: ComposeTextProps): never;
 declare function Icon(_props: ComposeIconProps): never;
 declare function Button(_props: ComposeButtonProps): never;
+declare function IconButton(_props: ComposeIconButtonProps): never;
+declare function FilledIconButton(_props: ComposeIconButtonProps): never;
+declare function FilledTonalIconButton(_props: ComposeIconButtonProps): never;
+declare function OutlinedIconButton(_props: ComposeIconButtonProps): never;
 declare function Switch(_props: ComposeSwitchProps): never;
 declare function Checkbox(_props: ComposeCheckboxProps): never;
 declare function RadioButton(_props: ComposeRadioButtonProps): never;
@@ -97,6 +101,10 @@ export declare const Compose: {
     Text: typeof Text;
     Icon: typeof Icon;
     Button: typeof Button;
+    IconButton: typeof IconButton;
+    FilledIconButton: typeof FilledIconButton;
+    FilledTonalIconButton: typeof FilledTonalIconButton;
+    OutlinedIconButton: typeof OutlinedIconButton;
     Switch: typeof Switch;
     Checkbox: typeof Checkbox;
     RadioButton: typeof RadioButton;

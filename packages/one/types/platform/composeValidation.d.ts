@@ -1,4 +1,4 @@
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeIconProps, ComposeInputChipProps, ComposeListItemProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeStyle, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeStyle, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
 export declare const horizontalAlignments: readonly ['start', 'centerHorizontally', 'end'];
 export declare const verticalAlignments: readonly ['top', 'centerVertically', 'bottom'];
 export declare const contentAlignments: readonly ['topStart', 'topCenter', 'topEnd', 'centerStart', 'center', 'centerEnd', 'bottomStart', 'bottomCenter', 'bottomEnd', 'top', 'bottom', 'start', 'end'];
@@ -31,6 +31,7 @@ export declare function validateTextProps(props: ComposeTextProps): void;
 export declare function composeIconGlyph(owner: string, name: string): string;
 export declare function validateIconProps(props: ComposeIconProps): void;
 export declare function validateButtonProps(props: ComposeButtonProps): void;
+export declare function validateIconButtonProps(props: ComposeIconButtonProps): void;
 export declare function validateSwitchProps(props: ComposeSwitchProps): void;
 export declare function validateCheckboxProps(props: ComposeCheckboxProps): void;
 export declare function validateRadioButtonProps(props: ComposeRadioButtonProps): void;
