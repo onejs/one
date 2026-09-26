@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native'
 // @ts-ignore react native ships no types for its dev server lookup
 import getDevServer from 'react-native/Libraries/Core/Devtools/getDevServer'
 
@@ -76,13 +76,25 @@ async function runAll(report: (name: string, value: string) => void) {
     const form = new FormData()
     form.append('field', 'value')
     form.append('file', blob)
-    const echo = await (await fetch(`${base()}echo`, { method: 'POST', body: form })).json()
-    const boundary = /boundary=(\S+)/.exec(echo.contentType)?.[1]
-    const expected =
-      `--${boundary}\r\nContent-Disposition: form-data; name="field"\r\n\r\nvalue\r\n` +
-      `--${boundary}\r\nContent-Disposition: form-data; name="file"; filename="blob"\r\n` +
-      `Content-Type: application/octet-stream\r\n\r\n\u0000\u0001\u0002ÿ\r\n--${boundary}--\r\n`
-    report('Form', `${echo.contentType.split(';')[0]} ${echo.text === expected}`)
+    // each platform writes the layout react native wrote there: okhttp's
+    // multipart on android adds a content-length to every part
+    const length = (size: number) => (Platform.OS === 'android' ? `Content-Length: ${size}\r\n` : '')
+    const multipart = (echo: { contentType: string; text: string; length: string | null }) => {
+      const boundary = /boundary=(\S+)/.exec(echo.contentType)?.[1]
+      const expected =
+        `--${boundary}\r\nContent-Disposition: form-data; name="field"\r\n${length(5)}\r\nvalue\r\n` +
+        `--${boundary}\r\nContent-Disposition: form-data; name="file"; filename="blob"\r\n` +
+        `Content-Type: application/octet-stream\r\n${length(4)}\r\n\u0000\u0001\u0002ÿ\r\n--${boundary}--\r\n`
+      return `${echo.contentType.split(';')[0]} ${echo.text === expected} ${echo.length === String(expected.length)}`
+    }
+    report('Form', multipart(await (await fetch(`${base()}echo`, { method: 'POST', body: form })).json()))
+    // a Request carries its FormData body through to the same encoding
+    const request = new Request(`${base()}echo`, { method: 'POST', body: form })
+    report('RequestForm', multipart(await (await fetch(request)).json()))
+    const echo = await (
+      await fetch(new Request(`${base()}echo`, { method: 'PUT', body: blob }))
+    ).json()
+    report('RequestBlob', `${echo.contentType} ${echo.hex} ${echo.length}`)
   }
   {
     const response = await fetch(`${base()}redirect`)
@@ -103,6 +115,9 @@ async function runAll(report: (name: string, value: string) => void) {
     const copy = response.clone()
     const [a, b] = await Promise.all([response.text(), copy.text()])
     report('Clone', `${a === b && a.length > 0} ${response.bodyUsed}`)
+    // a clone owns its headers, and every response is a Response to libraries
+    copy.headers.append('x-one-clone', '1')
+    report('Identity', `${response instanceof Response} ${response.headers.has('x-one-clone')}`)
   }
   {
     // abort mid-body errors the reader with the abort reason

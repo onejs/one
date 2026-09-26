@@ -1666,10 +1666,12 @@ and on Android on an OkHttp client from `OkHttpClientProvider`, so an app's
 `OkHttpClientFactory` applies and cookies share React Native's `CookieManager`
 store. It keeps what React Native's fetch accepts: string, `URLSearchParams`,
 `ArrayBuffer`, typed array, `Blob` and `FormData` bodies (including
-`{ uri, name, type }` file parts, always sent with a multipart boundary),
-`file:` and `content:` urls, `Request` inputs, `credentials: 'omit'`,
+`{ uri, name, type }` file parts, always sent with a multipart boundary and,
+wherever each length is known, a `Content-Length`), `file:` and `content:`
+urls, `Request` inputs with their body as given, `credentials: 'omit'`,
 `AbortSignal` (rejecting with `signal.reason`), `clone()`, `blob()` and
-`formData()`. Network failures reject with a `TypeError`. A binary built
+`formData()`. Responses pass `instanceof Response`. Network failures reject
+with a `TypeError`. A binary built
 without OneFetch keeps React Native's fetch. On web the browser's fetch
 already streams and nothing is installed.
 

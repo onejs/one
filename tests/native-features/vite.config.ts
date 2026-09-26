@@ -90,6 +90,8 @@ function fetchConformanceEndpoints(): Plugin {
                 contentType: req.headers['content-type'] ?? null,
                 custom: req.headers['x-one-test'] ?? null,
                 cookie: req.headers.cookie ?? null,
+                // a body of known length arrives with content-length, not chunked
+                length: req.headers['content-length'] ?? null,
                 hex: body.toString('hex'),
                 text: body.toString('latin1'),
               })
