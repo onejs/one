@@ -9,14 +9,14 @@ vi.mock('react-native', () => ({
   I18nManager: { isRTL: false },
   View: () => null,
   StyleSheet: {
-    flatten: (function flatten(
+    flatten: function flatten(
       style: unknown,
       into: Record<string, unknown> = {}
     ): Record<string, unknown> {
       if (Array.isArray(style)) style.forEach((entry) => flatten(entry, into))
       else if (style && typeof style === 'object') Object.assign(into, style)
       return into
-    }) as (style: unknown) => Record<string, unknown>,
+    } as (style: unknown) => Record<string, unknown>,
   },
   // minimal processColor: numbers pass through, #rgb/#rrggbb and the names
   // the tests use resolve to signed 0xAARRGGBB like the real one.
@@ -35,7 +35,7 @@ vi.mock('react-native', () => ({
               .map((c) => c + c)
               .join('')
           : hex
-      return (0xff000000 | Number.parseInt(full, 16)) | 0
+      return 0xff000000 | Number.parseInt(full, 16) | 0
     }
     const rgba = color.match(
       /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([\d.]+))?\s*\)/
@@ -43,10 +43,10 @@ vi.mock('react-native', () => ({
     if (rgba) {
       const alpha = rgba[4] !== undefined ? Number(rgba[4]) : 1
       return (
-        ((Math.round(alpha * 255) << 24) |
-          (Number(rgba[1]) << 16) |
-          (Number(rgba[2]) << 8) |
-          Number(rgba[3])) |
+        (Math.round(alpha * 255) << 24) |
+        (Number(rgba[1]) << 16) |
+        (Number(rgba[2]) << 8) |
+        Number(rgba[3]) |
         0
       )
     }
@@ -60,12 +60,14 @@ vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
 let EdgeFade: typeof import('../src/platform/effects/EdgeFade.native').EdgeFade
 let curves: typeof import('../src/platform/effects/curves')
 let normalize: typeof import('../src/platform/effects/normalize')
+let nativeProps: typeof import('../src/platform/effects/nativeProps')
 let RN: typeof import('react-native')
 
 beforeAll(async () => {
   EdgeFade = (await import('../src/platform/effects/EdgeFade.native')).EdgeFade
   curves = await import('../src/platform/effects/curves')
   normalize = await import('../src/platform/effects/normalize')
+  nativeProps = await import('../src/platform/effects/nativeProps')
   RN = await import('react-native')
 })
 
@@ -80,8 +82,18 @@ describe('sampleCurve', () => {
     expect(curves.sampleCurve('smooth')[16]).toBeCloseTo((1 - 16 / 31) ** 3, 3)
     expect(curves.sampleCurve('sharp')[16]).toBeCloseTo((1 - 16 / 31) ** 5, 3)
     expect(curves.sampleCurve('gentle')[16]).toBeCloseTo((1 - 16 / 31) ** 2, 3)
-    expect(curves.sampleCurve('soft')[16]).toBeCloseTo(Math.cos((16 / 31) * (Math.PI / 2)), 3)
-    for (const preset of ['smooth', 'smoother', 'sharp', 'gentle', 'soft', 'linear'] as const) {
+    expect(curves.sampleCurve('soft')[16]).toBeCloseTo(
+      Math.cos((16 / 31) * (Math.PI / 2)),
+      3
+    )
+    for (const preset of [
+      'smooth',
+      'smoother',
+      'sharp',
+      'gentle',
+      'soft',
+      'linear',
+    ] as const) {
       const samples = curves.sampleCurve(preset)
       expect(samples).toHaveLength(32)
       expect(samples[0]).toBe(1)
@@ -96,12 +108,20 @@ describe('sampleCurve', () => {
   })
 
   it('passes stops through clamped to [0, 1]', () => {
-    expect(curves.sampleCurve({ type: 'stops', values: [1, 0.5, 0] })).toEqual([1, 0.5, 0])
+    expect(curves.sampleCurve({ type: 'stops', values: [1, 0.5, 0] })).toEqual([
+      1, 0.5, 0,
+    ])
     expect(curves.sampleCurve({ type: 'stops', values: [1.5, -0.5] })).toEqual([1, 0])
   })
 
   it('samples a symmetric bezier through the middle', () => {
-    const samples = curves.sampleCurve({ type: 'cubicBezier', x1: 0.42, y1: 0, x2: 0.58, y2: 1 })
+    const samples = curves.sampleCurve({
+      type: 'cubicBezier',
+      x1: 0.42,
+      y1: 0,
+      x2: 0.58,
+      y2: 1,
+    })
     expect(samples).toHaveLength(32)
     expect(samples[0]).toBe(1)
     expect(samples[31]).toBe(0)
@@ -113,44 +133,54 @@ describe('serializeCurve', () => {
   it('passes presets through and joins custom curves', () => {
     expect(curves.serializeCurve('gentle')).toBe('gentle')
     expect(curves.serializeCurve({ type: 'stops', values: [1, 0.5, 0] })).toBe('1,0.5,0')
-    const bezier = curves.serializeCurve({ type: 'cubicBezier', x1: 0.25, y1: 0.1, x2: 0.25, y2: 1 })
+    const bezier = curves.serializeCurve({
+      type: 'cubicBezier',
+      x1: 0.25,
+      y1: 0.1,
+      x2: 0.25,
+      y2: 1,
+    })
     expect(bezier.split(',')).toHaveLength(32)
   })
 })
 
 describe('resolveEdges', () => {
   it('resolves boolean, number, and config edge forms', () => {
-    const resolved = normalize.resolveEdges({ bottom: 120, top: true })
+    const resolved = normalize.resolveEdges({ bottom: 120, top: true }, false)
     expect(resolved.bottom).toMatchObject({ size: 120, curve: 'smooth' })
     expect(resolved.top).toMatchObject({ size: 80, curve: 'smooth' })
     expect(resolved.left).toBeNull()
     expect(resolved.right).toBeNull()
-    const config = normalize.resolveEdges({
-      size: 40,
-      left: { size: 64, curve: 'sharp', color: '#fff' },
-    })
+    const config = normalize.resolveEdges(
+      { size: 40, left: { size: 64, curve: 'sharp', color: '#fff' } },
+      false
+    )
     expect(config.left).toMatchObject({ size: 64, curve: 'sharp', color: '#fff' })
   })
 
   it('maps start/end by layout direction with logical winning', () => {
-    expect(normalize.resolveEdges({ start: 60 }).left?.size).toBe(60)
-    expect(normalize.resolveEdges({ start: 60 }).right).toBeNull()
-    expect(normalize.resolveEdges({ end: 60 }).right?.size).toBe(60)
-    RN.I18nManager.isRTL = true
-    expect(normalize.resolveEdges({ start: 60 }).right?.size).toBe(60)
-    expect(normalize.resolveEdges({ start: 60 }).left).toBeNull()
-    RN.I18nManager.isRTL = false
+    expect(normalize.resolveEdges({ start: 60 }, false).left?.size).toBe(60)
+    expect(normalize.resolveEdges({ start: 60 }, false).right).toBeNull()
+    expect(normalize.resolveEdges({ end: 60 }, false).right?.size).toBe(60)
+    expect(normalize.resolveEdges({ start: 60 }, true).right?.size).toBe(60)
+    expect(normalize.resolveEdges({ start: 60 }, true).left).toBeNull()
     // logical overrides physical on the same side.
-    expect(normalize.resolveEdges({ left: 10, start: 70 }).left?.size).toBe(70)
+    expect(normalize.resolveEdges({ left: 10, start: 70 }, false).left?.size).toBe(70)
   })
 
   it('infers overlay from color and warns when mask discards it', () => {
-    expect(normalize.resolveEdges({ bottom: 80 }).mode).toBe('mask')
-    expect(normalize.resolveEdges({ bottom: 80, color: '#000' }).mode).toBe('overlay')
-    expect(normalize.resolveEdges({ bottom: { size: 80, color: '#000' } }).mode).toBe('overlay')
-    expect(normalize.resolveEdges({ bottom: 80, color: '#000', mode: 'mask' }).mode).toBe('mask')
+    expect(normalize.resolveEdges({ bottom: 80 }, false).mode).toBe('mask')
+    expect(normalize.resolveEdges({ bottom: 80, color: '#000' }, false).mode).toBe(
+      'overlay'
+    )
+    expect(
+      normalize.resolveEdges({ bottom: { size: 80, color: '#000' } }, false).mode
+    ).toBe('overlay')
+    expect(
+      normalize.resolveEdges({ bottom: 80, color: '#000', mode: 'mask' }, false).mode
+    ).toBe('mask')
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
-    normalize.resolveEdges({ bottom: 80, color: '#000', mode: 'mask' })
+    normalize.resolveEdges({ bottom: 80, color: '#000', mode: 'mask' }, false)
     expect(warn).toHaveBeenCalledOnce()
     expect(warn.mock.calls[0]?.[0]).toContain('ignored')
   })
@@ -158,22 +188,26 @@ describe('resolveEdges', () => {
 
 describe('resolveEdges blur', () => {
   it('keeps blur explicit with clamped radius and progression', () => {
-    expect(normalize.resolveEdges({ bottom: 80 }).mode).toBe('mask')
-    const blur = normalize.resolveEdges({ bottom: 80, mode: 'blur' })
+    expect(normalize.resolveEdges({ bottom: 80 }, false).mode).toBe('mask')
+    const blur = normalize.resolveEdges({ bottom: 80, mode: 'blur' }, false)
     expect(blur.mode).toBe('blur')
     expect(blur.blurRadius).toBe(28)
     expect(blur.frostProgression).toBe(1)
-    const clamped = normalize.resolveEdges({ bottom: 80, mode: 'blur', blurRadius: -4, frostProgression: 9 })
+    const clamped = normalize.resolveEdges(
+      { bottom: 80, mode: 'blur', blurRadius: -4, frostProgression: 9 },
+      false
+    )
     expect(clamped.blurRadius).toBe(0)
     expect(clamped.frostProgression).toBe(1)
     expect(
-      normalize.resolveEdges({ bottom: 80, mode: 'blur', frostProgression: 0 }).frostProgression
+      normalize.resolveEdges({ bottom: 80, mode: 'blur', frostProgression: 0 }, false)
+        .frostProgression
     ).toBe(0.05)
   })
 
   it('warns when a per-edge color meets the global-only veil', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
-    normalize.resolveEdges({ bottom: { size: 80, color: '#fff' }, mode: 'blur' })
+    normalize.resolveEdges({ bottom: { size: 80, color: '#fff' }, mode: 'blur' }, false)
     expect(warn).toHaveBeenCalledOnce()
     expect(warn.mock.calls[0]?.[0]).toContain('frost veil')
   })
@@ -181,16 +215,19 @@ describe('resolveEdges blur', () => {
 
 describe('resolveVeilColor', () => {
   it('resolves to 0xAARRGGBB with 0 for absent or opaque colors', () => {
-    expect(normalize.resolveVeilColor(undefined)).toBe(0)
-    expect(normalize.resolveVeilColor('#ff0000')).toBe((0xffff0000 as number) | 0)
-    expect(normalize.resolveVeilColor(0x80000000 | 0)).toBe(0x80000000 | 0)
-    expect(normalize.resolveVeilColor('not-a-color')).toBe(0)
+    expect(nativeProps.resolveVeilColor(undefined)).toBe(0)
+    expect(nativeProps.resolveVeilColor('#ff0000')).toBe((0xffff0000 as number) | 0)
+    expect(nativeProps.resolveVeilColor(0x80000000 | 0)).toBe(0x80000000 | 0)
+    expect(nativeProps.resolveVeilColor('not-a-color')).toBe(0)
   })
 })
 
 describe('resolveNativeProps', () => {
   it('flattens edges with smooth/zero defaults', () => {
-    const native = normalize.resolveNativeProps(normalize.resolveEdges({ bottom: 96 }), 12)
+    const native = nativeProps.resolveNativeProps(
+      normalize.resolveEdges({ bottom: 96 }, false),
+      12
+    )
     expect(native).toMatchObject({
       fadeTop: 0,
       fadeBottom: 96,
@@ -204,8 +241,11 @@ describe('resolveNativeProps', () => {
       frostProgression: 1,
       overlayColor: 0,
     })
-    const custom = normalize.resolveNativeProps(
-      normalize.resolveEdges({ top: { size: 40, curve: { type: 'stops', values: [1, 0] } } })
+    const custom = nativeProps.resolveNativeProps(
+      normalize.resolveEdges(
+        { top: { size: 40, curve: { type: 'stops', values: [1, 0] } } },
+        false
+      )
     )
     expect(custom.curveTop).toBe('1,0')
     expect(custom.fadeRadius).toBe(0)
@@ -214,17 +254,20 @@ describe('resolveNativeProps', () => {
 
 describe('resolveRadius', () => {
   it('passes radius through and warns on style.borderRadius', () => {
-    expect(normalize.resolveRadius(8, { flex: 1 })).toBe(8)
-    expect(normalize.resolveRadius(undefined, { flex: 1 })).toBeUndefined()
+    expect(normalize.resolveRadius(8, undefined)).toBe(8)
+    expect(normalize.resolveRadius(undefined, undefined)).toBeUndefined()
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
-    expect(normalize.resolveRadius(undefined, { borderRadius: 8 })).toBeUndefined()
+    expect(normalize.resolveRadius(undefined, 8)).toBeUndefined()
     expect(warn).toHaveBeenCalledOnce()
   })
 })
 
 describe('EdgeFade mask mode', () => {
   it('renders the primitive with flat props and no borderRadius', () => {
-    const element = EdgeFade({ bottom: 80, style: [{ flex: 1 }, { borderRadius: 10 }] } as never)
+    const element = EdgeFade({
+      bottom: 80,
+      style: [{ flex: 1 }, { borderRadius: 10 }],
+    } as never)
     expect(element.type).toEqual({ __component: 'OneNativeEdgeFade' })
     expect(element.props).toMatchObject({
       fadeTop: 0,
@@ -245,7 +288,12 @@ describe('EdgeFade mask mode', () => {
 
 describe('EdgeFade blur mode', () => {
   it('renders the primitive with blur props and no veil by default', () => {
-    const element = EdgeFade({ bottom: 120, mode: 'blur', blurRadius: 24, curve: 'gentle' } as never)
+    const element = EdgeFade({
+      bottom: 120,
+      mode: 'blur',
+      blurRadius: 24,
+      curve: 'gentle',
+    } as never)
     expect(element.type).toEqual({ __component: 'OneNativeEdgeFade' })
     expect(element.props).toMatchObject({
       fadeBottom: 120,
@@ -273,11 +321,19 @@ describe('EdgeFade blur mode', () => {
 
 describe('EdgeFade overlay mode', () => {
   const stripsOf = (element: { props: { children: unknown } }) =>
-    (Array.isArray(element.props.children) ? element.props.children : [element.props.children])
-      .filter((child) => child && typeof child === 'object' && 'type' in (child as object))
+    (Array.isArray(element.props.children)
+      ? element.props.children
+      : [element.props.children]
+    )
+      .filter(
+        (child) => child && typeof child === 'object' && 'type' in (child as object)
+      )
       .filter((child) => typeof (child as { type: unknown }).type === 'function')
       .map((child) => {
-        const strip = child as { type: (props: never) => { props: { style: unknown } }; props: never }
+        const strip = child as {
+          type: (props: never) => { props: { style: unknown } }
+          props: never
+        }
         return strip.type(strip.props).props.style as Array<Record<string, unknown>>
       })
 
@@ -288,7 +344,12 @@ describe('EdgeFade overlay mode', () => {
     expect(strips).toHaveLength(1)
     const [layout, paint] = strips[0] as [
       { height: number; bottom: number },
-      { backgroundImage: Array<{ direction: string; colorStops: Array<{ color: string; positions: string[] }> }> },
+      {
+        backgroundImage: Array<{
+          direction: string
+          colorStops: Array<{ color: string; positions: string[] }>
+        }>
+      },
     ]
     expect(layout.height).toBe(100)
     expect(layout.bottom).toBe(0)
@@ -297,11 +358,15 @@ describe('EdgeFade overlay mode', () => {
     expect(gradient?.direction).toBe('to top')
     expect(gradient?.colorStops).toHaveLength(32)
     // outer edge (0%) opaque black, inner edge (100%) transparent.
-    expect(gradient?.colorStops[0]).toMatchObject({ color: 'rgba(0,0,0,1)', positions: ['0.00%'] })
+    expect(gradient?.colorStops[0]).toMatchObject({
+      color: 'rgba(0,0,0,1)',
+      positions: ['0.00%'],
+    })
     expect(gradient?.colorStops[31]?.color).toBe('rgba(0,0,0,0)')
     expect(gradient?.colorStops[31]?.positions).toEqual(['100.00%'])
     // the ramp is monotone: alpha only falls going inward.
-    const alphaOf = (color: string) => Number(color.match(/rgba\(\d+,\d+,\d+,([\d.]+)\)/)?.[1])
+    const alphaOf = (color: string) =>
+      Number(color.match(/rgba\(\d+,\d+,\d+,([\d.]+)\)/)?.[1])
     const alphas = gradient!.colorStops.map((stop) => alphaOf(stop.color))
     for (let i = 1; i < alphas.length; i++) {
       expect(alphas[i]).toBeLessThanOrEqual(alphas[i - 1]!)
@@ -328,8 +393,9 @@ describe('EdgeFade overlay mode', () => {
     const strips = stripsOf(element)
     expect(strips).toHaveLength(2)
     const rgbOf = (strip: Array<Record<string, unknown>>) => {
-      const stops = (strip[1]?.['backgroundImage'] as Array<{ colorStops: Array<{ color: string }> }>)?.[0]
-        ?.colorStops
+      const stops = (
+        strip[1]?.['backgroundImage'] as Array<{ colorStops: Array<{ color: string }> }>
+      )?.[0]?.colorStops
       return stops?.[0]?.color.match(/rgba\((\d+,\d+,\d+),/)?.[1]
     }
     expect(rgbOf(strips[0]!)).toBe('0,0,0')
@@ -341,7 +407,9 @@ describe('EdgeFade overlay mode', () => {
     expect(element.props.style).toEqual([{}, { borderRadius: 10, overflow: 'hidden' }])
     const strips = stripsOf(element)
     const stops = (
-      strips[0]?.[1]?.['backgroundImage'] as Array<{ colorStops: Array<{ color: string }> }>
+      strips[0]?.[1]?.['backgroundImage'] as Array<{
+        colorStops: Array<{ color: string }>
+      }>
     )?.[0]?.colorStops
     expect(stops?.[0]?.color).toBe('rgba(0,0,0,1)')
   })
