@@ -11,7 +11,7 @@ import { Widgets, LiveActivities, WidgetUI } from './widgets/index.native';
 export * from './extras';
 export type { ToolbarHostProps, ToolbarItemProps } from './extras';
 export { useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, ReservedRegions, } from './adaptive/index.native';
-export type { UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, ReservedRegionOptions, ReservedRegionsProviderProps, } from './adaptive/types';
+export type { UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, WindowSegment, ReservedRegionOptions, ReservedRegionsProviderProps, } from './adaptive/types';
 export type { ArrangementViewProps, ArrangementPaneProps, ArrangementViewStyle, SplitLayoutRatio, SplitLayoutSize, SplitFixedLayoutSize, OverlayArrangementEdge, } from './ArrangementView.native';
 declare const Menu: typeof AndroidMenu;
 declare const ContextMenu: typeof AndroidContextMenu;

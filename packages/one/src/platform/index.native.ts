@@ -63,6 +63,7 @@ export type {
   HingeState,
   ReservedRegionKind,
   ReservedRegion,
+  WindowSegment,
   ReservedRegionOptions,
   ReservedRegionsProviderProps,
 } from './adaptive/types'

@@ -16,7 +16,7 @@ export type ReservedRegionKind = 'division' | 'occlusion';
 export interface ReservedRegion {
     id: string;
     kind: ReservedRegionKind;
-    /** The region's rect, margins included. */
+    /** The reserved rect including margins, in the provider's coordinates. */
     frame: {
         x: number;
         y: number;
@@ -31,6 +31,13 @@ export interface ReservedRegion {
         right: number;
     };
     isActive: boolean;
+}
+/** an unobstructed part of a ReservedRegions.Provider, in its coordinates. This is a window segment when the provider fills the window. */
+export interface WindowSegment {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
 }
 export interface ReservedRegionOptions {
     kind?: ReservedRegionKind;
