@@ -27,6 +27,7 @@ type NativeProjectPatches = {
   pointReleaseBundleURLAtOneUpdates(appDelegate: string): string
   ONE_LAUNCH_SCREEN: { bridgingHeaderImport: string }
   holdLaunchScreenOverRootView(appDelegate: string): string
+  holdLaunchScreenInMainActivity(mainActivity: string): string
   addSetCliPathToBundleReactNativeShellScript(input: string): string
   addPodHermescToBundleReactNativeShellScript(input: string): string
   addDepsPatchToBundleReactNativeShellScript(input: string): string
@@ -1750,22 +1751,40 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       if (app.imagePicker?.camera !== undefined) {
         usage.push(['NSCameraUsageDescription', app.imagePicker.camera])
       }
+      if (app.location !== undefined) {
+        usage.push(['NSLocationWhenInUseUsageDescription', app.location.whenInUse])
+      }
+      if (app.ios?.faceIdUsageDescription !== undefined) {
+        usage.push(['NSFaceIDUsageDescription', app.ios.faceIdUsageDescription])
+      }
       if (app.speech !== undefined) {
         usage.push(
           ['NSSpeechRecognitionUsageDescription', app.speech.recognition],
           ['NSMicrophoneUsageDescription', app.speech.microphone]
         )
       }
-      if (usage.length) {
+      const additions: [string, string][] = []
+      for (const [key, text] of usage) {
+        const existing = new RegExp(`(<key>${key}</key>\\s*<string>)[^<]*(</string>)`)
+        if (existing.test(rendered)) {
+          rendered = rendered.replace(
+            existing,
+            (_match, before: string, after: string) => `${before}${escapeXml(text)}${after}`
+          )
+        } else {
+          additions.push([key, text])
+        }
+      }
+      if (additions.length) {
         const anchor = '\t<key>LSRequiresIPhoneOS</key>'
         if (!rendered.includes(anchor)) {
           throw new Error(
-            `[vxrn] cannot stamp ${usage[0][0]}: expected LSRequiresIPhoneOS in Info.plist`
+            `[vxrn] cannot stamp ${additions[0][0]}: expected LSRequiresIPhoneOS in Info.plist`
           )
         }
         rendered = rendered.replace(
           anchor,
-          `${usage.map(([key, text]) => `\t<key>${key}</key>\n\t<string>${escapeXml(text)}</string>\n`).join('')}${anchor}`
+          `${additions.map(([key, text]) => `\t<key>${key}</key>\n\t<string>${escapeXml(text)}</string>\n`).join('')}${anchor}`
         )
       }
       rendered = patchIosInfoPlistSceneManifest(rendered)
@@ -2058,8 +2077,8 @@ export function applyAndroidDependencyPatches(args: {
     ...app.android.applicationId.split('.'),
     'MainActivity.kt'
   )
-  const rendered = nativeProjectPatches.addReactNativeScreensFix(
-    FSExtra.readFileSync(activityPath, 'utf8')
+  const rendered = nativeProjectPatches.holdLaunchScreenInMainActivity(
+    nativeProjectPatches.addReactNativeScreensFix(FSExtra.readFileSync(activityPath, 'utf8'))
   )
   if (!rendered.includes('RNScreensFragmentFactory')) {
     throw new Error('[vxrn] failed to apply the react-native-screens activity patch')

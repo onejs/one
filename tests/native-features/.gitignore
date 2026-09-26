@@ -2,6 +2,7 @@ ios/
 android/
 node_modules/
 dist/
+build/
 .expo/
 
 # conformance run output. captures default to /tmp, but --artifact-dir takes any path and a run

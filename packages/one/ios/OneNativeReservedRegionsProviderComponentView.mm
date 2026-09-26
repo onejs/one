@@ -19,6 +19,7 @@ using namespace facebook::react;
 // string ids per identifier for as long as it lives.
 @implementation OneNativeReservedRegionsProviderComponentView {
   NSArray<NSDictionary *> *_currentRegions;
+  CGSize _currentSize;
   NSMutableDictionary<id<NSCopying>, NSString *> *_regionIds;
   BOOL _hasDispatchedRegions;
 }
@@ -98,10 +99,12 @@ using namespace facebook::react;
     }
   }
 #endif
-  if (_hasDispatchedRegions && [_currentRegions isEqualToArray:regions]) {
+  CGSize size = self.bounds.size;
+  if (_hasDispatchedRegions && CGSizeEqualToSize(_currentSize, size) && [_currentRegions isEqualToArray:regions]) {
     return;
   }
   _currentRegions = [regions copy];
+  _currentSize = size;
 
   auto payload = folly::dynamic::array();
   for (NSDictionary *region in regions) {
@@ -116,14 +119,15 @@ using namespace facebook::react;
   auto eventEmitter = _eventEmitter;
   if (_hasDispatchedRegions) {
     eventEmitter->dispatchUniqueEvent(
-        "nativeReservedRegionsChange", folly::dynamic::object("regions", std::move(payload)));
+        "nativeReservedRegionsChange", folly::dynamic::object("regions", std::move(payload))(
+            "width", size.width)("height", size.height));
     return;
   }
   _hasDispatchedRegions = YES;
-  eventEmitter->experimental_flushSync([eventEmitter, regions = std::move(payload)]() mutable {
+  eventEmitter->experimental_flushSync([eventEmitter, regions = std::move(payload), size]() mutable {
     eventEmitter->dispatchEvent(
         "nativeReservedRegionsChange",
-        folly::dynamic::object("regions", std::move(regions)),
+        folly::dynamic::object("regions", std::move(regions))("width", size.width)("height", size.height),
         RawEvent::Category::Discrete);
   });
 }
@@ -131,6 +135,7 @@ using namespace facebook::react;
 - (void)prepareForRecycle {
   [super prepareForRecycle];
   _currentRegions = nil;
+  _currentSize = CGSizeZero;
   [_regionIds removeAllObjects];
   _hasDispatchedRegions = NO;
 }

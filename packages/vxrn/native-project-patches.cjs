@@ -694,7 +694,30 @@ function holdLaunchScreenOverRootView(appDelegate) {
   )
 }
 
+// the android half of the launch screen hold: MainActivity hands its content
+// to OneLaunchScreen right after super.onCreate, which every prebuilt
+// activity has once addReactNativeScreensFix ran.
+const SUPER_ON_CREATE = /^([ \t]*)super\.onCreate\(null\)$/m
+
+function holdLaunchScreenInMainActivity(mainActivity) {
+  if (mainActivity.includes('OneLaunchScreen.hold(this)')) {
+    return mainActivity
+  }
+  if (!SUPER_ON_CREATE.test(mainActivity)) {
+    throw new Error(
+      '[vxrn] MainActivity.kt changed shape: cannot hold the launch screen after super.onCreate'
+    )
+  }
+  return mainActivity
+    .replace(/package\s+[\w.]+/, '$&\nimport com.margelo.nitro.one.OneLaunchScreen')
+    .replace(
+      SUPER_ON_CREATE,
+      "$1super.onCreate(null)\n$1// [vxrn/one] the launch screen stays until react native's first content\n$1OneLaunchScreen.hold(this)"
+    )
+}
+
 module.exports = {
+  holdLaunchScreenInMainActivity,
   ONE_NOTIFICATIONS,
   ONE_UPDATES,
   pointReleaseBundleURLAtOneUpdates,

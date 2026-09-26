@@ -570,7 +570,7 @@ function requireKeyboardShown(config: Config) {
     throw new Error('safe-area-ime-excluded: the soft keyboard never raised')
 }
 
-function swipeFresh(config: Config, name: string) {
+function swipeFresh(config: Config, name: string, direction: 'forward' | 'backward' = 'forward') {
   const current = snapshot(config)
   const scrollables = current.nodes.filter((node) => node.scrollable === true)
   if (scrollables.length !== 1)
@@ -580,8 +580,8 @@ function swipeFresh(config: Config, name: string) {
   const bounds = validBounds(scrollables[0], name)
   const x = Math.round((bounds.left + bounds.right) / 2)
   const height = bounds.bottom - bounds.top
-  const y1 = Math.round(bounds.top + height * 0.72)
-  const y2 = Math.round(bounds.top + height * 0.3)
+  const y1 = Math.round(bounds.top + height * (direction === 'forward' ? 0.72 : 0.3))
+  const y2 = Math.round(bounds.top + height * (direction === 'forward' ? 0.3 : 0.72))
   adbText(config, [
     'shell',
     'input',
@@ -595,7 +595,27 @@ function swipeFresh(config: Config, name: string) {
 }
 
 async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
-  for (let attempt = 0; attempt < 8; attempt++) {
+  const initial = snapshot(config)
+  const initialTarget = matching(initial.nodes, { id: navId })[0]
+  if (!initialTarget?.bounds || !visibleIn(initialTarget.bounds, applicationBounds(initial.nodes))) {
+    for (let attempt = 0; attempt < 40; attempt++) {
+      const current = snapshot(config)
+      if (matching(current.nodes, { id: 'nav-color-test' }).length === 1) break
+      const previousPositions = current.nodes
+        .filter((node) => node.resourceId.includes('nav-') && node.bounds)
+        .map((node) => `${node.resourceId}:${node.bounds!.top}:${node.bounds!.bottom}`)
+        .join('|')
+      swipeFresh(config, 'Home navigation scroll view', 'backward')
+      await waitFor(config, 'Home navigation scroll position moves toward the first row', (nodes) => {
+        const nextPositions = nodes
+          .filter((node) => node.resourceId.includes('nav-') && node.bounds)
+          .map((node) => `${node.resourceId}:${node.bounds!.top}:${node.bounds!.bottom}`)
+          .join('|')
+        return nextPositions !== previousPositions
+      }, undefined, 5_000)
+    }
+  }
+  for (let attempt = 0; attempt < 40; attempt++) {
     const current = snapshot(config)
     const rows = matching(current.nodes, {
       id: navId,

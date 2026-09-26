@@ -50,15 +50,17 @@ class OneNativeReservedRegionsProviderView(context: Context) :
   private var foldingFeatures: List<FoldingFeature> = emptyList()
   private var foldingFeaturesReady = false
   private var lastRegions: List<OneNativeReservedRegion>? = null
+  private var lastSize: Pair<Int, Int>? = null
   private var awaitingFirstDelivery = true
   private var regionsChangeHandler:
-      ((List<OneNativeReservedRegion>, synchronous: Boolean) -> Boolean)? = null
+      ((List<OneNativeReservedRegion>, Int, Int, synchronous: Boolean) -> Boolean)? = null
 
   internal fun setOnRegionsChangeHandler(
-      handler: ((List<OneNativeReservedRegion>, Boolean) -> Boolean)?
+      handler: ((List<OneNativeReservedRegion>, Int, Int, Boolean) -> Boolean)?
   ) {
     regionsChangeHandler = handler
     lastRegions = null
+    lastSize = null
   }
 
   override fun willDispatchViewUpdates(uiManager: UIManager) {}
@@ -138,9 +140,11 @@ class OneNativeReservedRegionsProviderView(context: Context) :
       val frame = overlappingFrame(bounds, origin) ?: continue
       regions.add(OneNativeReservedRegion("occlusion-${regions.size + 1}", "occlusion", frame, true))
     }
-    if (regions == lastRegions) return
-    if (!handler(regions, awaitingFirstDelivery)) return
+    val size = width to height
+    if (regions == lastRegions && size == lastSize) return
+    if (!handler(regions, width, height, awaitingFirstDelivery)) return
     lastRegions = regions
+    lastSize = size
     if (awaitingFirstDelivery) {
       awaitingFirstDelivery = false
       stopFirstDeliveryListener()
@@ -164,6 +168,7 @@ class OneNativeReservedRegionsProviderView(context: Context) :
   fun resetForReuse() {
     regionsChangeHandler = null
     lastRegions = null
+    lastSize = null
     awaitingFirstDelivery = true
   }
 }

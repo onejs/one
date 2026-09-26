@@ -15,6 +15,9 @@ export interface NativeAppManifest {
     imagePicker?: {
         camera?: string;
     };
+    location?: {
+        whenInUse: string;
+    };
     speech?: {
         recognition: string;
         microphone: string;
@@ -36,6 +39,7 @@ export interface NativeAppManifest {
         useFrameworks?: 'static' | 'dynamic';
         ccache?: boolean;
         usesNonExemptEncryption?: boolean;
+        faceIdUsageDescription?: string;
         fileSharing?: boolean;
         widgets?: {
             appGroup: string;

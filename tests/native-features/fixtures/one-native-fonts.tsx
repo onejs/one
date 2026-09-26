@@ -23,7 +23,7 @@ const fontMap = { [FONT_NAME]: fontAsset }
 const hookFontMap = { [HOOK_FONT_NAME]: hookFontAsset }
 
 function HookSample() {
-  const [loaded, error] = One.UI.useFonts(hookFontMap)
+  const [loaded, error] = One.useFonts(hookFontMap)
   return (
     <View>
       <Text>{`Hook: ${error ? 'error' : loaded ? 'loaded' : 'loading'}`}</Text>

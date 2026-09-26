@@ -40,6 +40,34 @@ interface NativeProps extends ViewProps {
   iconFilled?: boolean
   colorRole?: string
   value?: boolean
+  nativeClickable?: boolean
+  checkboxColors?: Readonly<{
+    checkedColor?: ColorValue
+    disabledCheckedColor?: ColorValue
+    uncheckedColor?: ColorValue
+    disabledUncheckedColor?: ColorValue
+    checkmarkColor?: ColorValue
+  }>
+  selected?: boolean
+  radioColors?: Readonly<{
+    selectedColor?: ColorValue
+    unselectedColor?: ColorValue
+    disabledSelectedColor?: ColorValue
+    disabledUnselectedColor?: ColorValue
+  }>
+  cardColors?: Readonly<{
+    containerColor?: ColorValue
+    contentColor?: ColorValue
+  }>
+  cardElevation?: WithDefault<Double, -1>
+  cardBorder?: Readonly<{
+    width?: WithDefault<Double, 1>
+    color?: ColorValue
+  }>
+  dividerStyle?: Readonly<{
+    thickness?: WithDefault<Double, -1>
+    color?: ColorValue
+  }>
   acknowledgedEvent?: Int32
   revision?: Int32
   alignment?: string
@@ -71,7 +99,7 @@ interface NativeProps extends ViewProps {
   progressVariant?: string
   composeStyle?: ComposeStyleNative
   onNativeComposeNodeButtonPress?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
-  onNativeComposeNodeSwitchValueChange?: DirectEventHandler<
+  onNativeComposeNodeBooleanValueChange?: DirectEventHandler<
     Readonly<{ value: boolean; eventCount: Int32; revision: Int32 }>
   >
   onNativeComposeNodeTextValueChange?: DirectEventHandler<

@@ -47,8 +47,8 @@ rename, and each docs section carries the rename table for its module.
   Components (`Map`, `Icon`, `Blur`), `Fonts`.
 - `One.<Name>`: device and app services with no view of their own. `AppInfo`,
   `Clipboard`, `Haptics`, `Network`, `Browser`, `ImagePicker`, `Notifications`.
-- A hook sits beside its namespace, never inside it: `One.UI.useFonts`,
-  `One.useNetworkState`. `One.Network.useState` would read as React's hook.
+- Hooks attach directly to `One`: `One.useFonts`, `One.useNetworkState`.
+  `One.Network.useState` would read as React's hook.
 - A web standard global is installed instead of a namespace only when third-party
   libraries look for that global. `crypto.getRandomValues` and `crypto.randomUUID`
   qualify (uuid and nanoid read them). `navigator.clipboard` and `navigator.onLine` do
@@ -179,7 +179,7 @@ type PermissionResponse = Readonly<{
 | `One.Haptics` | `selection()`, `impact(style)`, `notification(type)` | expo-haptics; landed |
 | global `crypto` | `getRandomValues`, `randomUUID` | web standard; landed |
 | `One.AppInfo` | `version`, `build`, `applicationId` | expo-application's three fields, renamed; landed |
-| `One.UI.Fonts`, `One.UI.useFonts` | `load(map)`, `isLoaded(name)` | expo-font; `plans/one-native-fonts-design.md` |
+| `One.UI.Fonts`, `One.useFonts` | `load(map)`, `isLoaded(name)` | expo-font; `plans/one-native-fonts-design.md` |
 | `One.Clipboard` | `getString()`, `setString(text)`, `hasString()` | expo-clipboard |
 | `One.Network`, `One.useNetworkState` | `getState()`, `addStateListener(fn)` | expo-network |
 | `One.Browser` | `open(url, options?)`, `dismiss()`, `openAuthSession(url, redirectUrl?, options?)`, `dismissAuthSession()` | expo-web-browser |

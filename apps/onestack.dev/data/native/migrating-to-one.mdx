@@ -108,10 +108,10 @@ camera refs have no equivalent yet; keep `react-native-maps` for those screens.
 
 ## Splash screen
 
-From `expo-splash-screen`. `one prebuild` keeps the iOS launch screen over the
-app until React Native draws its first content. Expo-prebuilt apps get the same hold by
-dropping `expo-splash-screen` and passing `holdLaunchScreen: true` to
-`vxrn/expo-plugin` (iOS only for now). There is no `preventAutoHideAsync` or
+From `expo-splash-screen`. `one prebuild` keeps the launch screen (the iOS
+storyboard, the Android splash) up until React Native draws its first content.
+Expo-prebuilt apps get the same hold by dropping `expo-splash-screen` and
+passing `holdLaunchScreen: true` to `vxrn/expo-plugin`. There is no `preventAutoHideAsync` or
 `hideAsync`: the launch screen leaves when the first content appears.
 
 ## Build tooling
