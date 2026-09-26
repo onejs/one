@@ -2,7 +2,7 @@
 // contracts of their native frameworks; shared components live under UI.
 
 import {
-  AppleAuth as NativeAppleAuth,
+  Auth,
   Browser as NativeBrowser,
   Widgets,
   LiveActivities,
@@ -113,7 +113,7 @@ export type OneAPI = {
   readonly Clipboard: typeof NativeClipboard
   readonly Haptics: typeof Haptics
   readonly Network: typeof NativeNetwork
-  readonly AppleAuth: typeof NativeAppleAuth
+  readonly Auth: typeof Auth
   readonly Browser: typeof NativeBrowser
   readonly ImagePicker: typeof ImagePicker
   readonly DocumentPicker: typeof DocumentPicker
@@ -187,7 +187,7 @@ export const One: OneAPI = Object.freeze({
   Clipboard: NativeClipboard,
   Haptics,
   Network: NativeNetwork,
-  AppleAuth: NativeAppleAuth,
+  Auth,
   Browser: NativeBrowser,
   ImagePicker,
   DocumentPicker,

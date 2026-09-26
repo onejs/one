@@ -18,13 +18,13 @@ public extension AppleAuthSignInOptions {
   /**
    * Create a new instance of `AppleAuthSignInOptions`.
    */
-  init(requestedScopes: [String]?, nonce: String?, state: String?) {
-    self.init({ () -> bridge.std__optional_std__vector_std__string__ in
+  init(requestedScopes: [AppleAuthScope]?, nonce: String?, state: String?) {
+    self.init({ () -> bridge.std__optional_std__vector_AppleAuthScope__ in
       if let __unwrappedValue = requestedScopes {
-        return bridge.create_std__optional_std__vector_std__string__({ () -> bridge.std__vector_std__string_ in
-          var __vector = bridge.create_std__vector_std__string_(__unwrappedValue.count)
+        return bridge.create_std__optional_std__vector_AppleAuthScope__({ () -> bridge.std__vector_AppleAuthScope_ in
+          var __vector = bridge.create_std__vector_AppleAuthScope_(__unwrappedValue.count)
           for __item in __unwrappedValue {
-            __vector.push_back(std.string(__item))
+            __vector.push_back(__item)
           }
           return __vector
         }())
@@ -47,11 +47,11 @@ public extension AppleAuthSignInOptions {
   }
 
   @inline(__always)
-  var requestedScopes: [String]? {
-    return { () -> [String]? in
-      if bridge.has_value_std__optional_std__vector_std__string__(self.__requestedScopes) {
-        let __unwrapped = bridge.get_std__optional_std__vector_std__string__(self.__requestedScopes)
-        return __unwrapped.map({ __item in String(__item) })
+  var requestedScopes: [AppleAuthScope]? {
+    return { () -> [AppleAuthScope]? in
+      if bridge.has_value_std__optional_std__vector_AppleAuthScope__(self.__requestedScopes) {
+        let __unwrapped = bridge.get_std__optional_std__vector_AppleAuthScope__(self.__requestedScopes)
+        return __unwrapped.map({ __item in __item })
       } else {
         return nil
       }

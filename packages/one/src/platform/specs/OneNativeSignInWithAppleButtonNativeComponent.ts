@@ -44,6 +44,7 @@ type OneNativeStyleNative = Readonly<{
 interface NativeProps extends ViewProps {
   requestedScopes: ReadonlyArray<string>
   nonce: string
+  label: string
   swiftStyle?: OneNativeStyleNative
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
   onNativeSignInWithAppleButtonCompletion?: DirectEventHandler<

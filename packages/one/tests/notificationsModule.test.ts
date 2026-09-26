@@ -1,8 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 const { mockGet } = vi.hoisted(() => ({
-  // stands in for the OneNotifications hybrid object lookup: null means not
-  // linked.
+  // stands in for the OneNotifications hybrid object.
   mockGet: vi.fn(),
 }))
 
@@ -12,7 +11,6 @@ vi.mock('react-native', () => ({
 
 vi.mock('react-native-nitro-modules', () => ({
   NitroModules: {
-    hasHybridObject: (name: string) => name === 'OneNotifications' && mockGet() != null,
     createHybridObject: (name: string) =>
       name === 'OneNotifications' ? mockGet() : null,
   },
@@ -31,60 +29,6 @@ async function loadNamespace(getImpl: () => unknown, os = 'ios') {
 beforeEach(() => {
   vi.resetModules()
   vi.clearAllMocks()
-})
-
-describe('Notifications without the native module', () => {
-  it('degrades reads instead of throwing', async () => {
-    const Notifications = await loadNamespace(() => null)
-    await expect(Notifications.getPermissions()).resolves.toEqual({
-      status: 'denied',
-      granted: false,
-      canAskAgain: false,
-    })
-    await expect(Notifications.requestPermissions()).resolves.toEqual({
-      status: 'denied',
-      granted: false,
-      canAskAgain: false,
-    })
-    await expect(Notifications.getBadgeCount()).resolves.toBe(0)
-    await expect(Notifications.setBadgeCount(3)).resolves.toBe(false)
-    await expect(Notifications.getChannel('x')).resolves.toBeNull()
-    await expect(Notifications.getChannels()).resolves.toEqual([])
-    await expect(Notifications.getAllScheduled()).resolves.toEqual([])
-    await expect(Notifications.getPresented()).resolves.toEqual([])
-    expect(Notifications.getLastResponse()).toBeNull()
-  })
-
-  it('makes writes inert instead of throwing', async () => {
-    const Notifications = await loadNamespace(() => null)
-    expect(() => Notifications.setHandler(null)).not.toThrow()
-    expect(() => Notifications.clearLastResponse()).not.toThrow()
-    const sub = Notifications.addReceivedListener(() => {})
-    expect(() => sub.remove()).not.toThrow()
-    const tap = Notifications.addResponseReceivedListener(() => {})
-    expect(() => tap.remove()).not.toThrow()
-    await expect(Notifications.deleteChannel('x')).resolves.toBeUndefined()
-    await expect(Notifications.cancelScheduled('x')).resolves.toBeUndefined()
-    await expect(Notifications.cancelAllScheduled()).resolves.toBeUndefined()
-    await expect(Notifications.dismiss('x')).resolves.toBeUndefined()
-    await expect(Notifications.dismissAll()).resolves.toBeUndefined()
-  })
-
-  it('rejects schedule like web', async () => {
-    const Notifications = await loadNamespace(() => null)
-    await expect(
-      Notifications.schedule({ content: { title: 'x' }, trigger: null })
-    ).rejects.toThrow('Notifications.schedule needs an iOS or Android build')
-  })
-
-  it('rejects the push token without the native module', async () => {
-    const Notifications = await loadNamespace(() => null)
-    await expect(Notifications.getDevicePushTokenAsync()).rejects.toThrow(
-      'Notifications.getDevicePushTokenAsync needs an iOS or Android build'
-    )
-    const sub = Notifications.addPushTokenListener(() => {})
-    expect(() => sub.remove()).not.toThrow()
-  })
 })
 
 describe('Notifications boundary mapping', () => {
@@ -308,7 +252,7 @@ describe('Notifications boundary mapping', () => {
       getPresented: () => Notifications.getPresented(),
       dismiss: () => Notifications.dismiss('id'),
       dismissAll: () => Notifications.dismissAll(),
-      getDevicePushTokenAsync: () => Notifications.getDevicePushTokenAsync(),
+      getDevicePushToken: () => Notifications.getDevicePushToken(),
     }
     for (const [name, call] of Object.entries(calls)) {
       const error = await call().catch((caught: unknown) => caught)
@@ -354,7 +298,7 @@ describe('Notifications boundary mapping', () => {
 
   it('resolves the push token from the native module', async () => {
     const Notifications = await loadNamespace(() => fakeModule())
-    await expect(Notifications.getDevicePushTokenAsync()).resolves.toEqual({
+    await expect(Notifications.getDevicePushToken()).resolves.toEqual({
       type: 'ios',
       data: 'cafef00d',
     })
@@ -364,15 +308,15 @@ describe('Notifications boundary mapping', () => {
     const Notifications = await loadNamespace(() =>
       fakeModule({ getDevicePushToken: vi.fn(async () => ({ type: 'web', data: '' })) })
     )
-    await expect(Notifications.getDevicePushTokenAsync()).rejects.toThrow(
-      'Notifications.getDevicePushTokenAsync did not return a push token'
+    await expect(Notifications.getDevicePushToken()).rejects.toThrow(
+      'Notifications.getDevicePushToken did not return a push token'
     )
   })
 
-  it('rejects the web push token like native-less', async () => {
+  it('rejects the push token on web', async () => {
     const web = await import('../src/platform/notifications/index')
-    await expect(web.Notifications.getDevicePushTokenAsync()).rejects.toThrow(
-      'Notifications.getDevicePushTokenAsync needs an iOS or Android build'
+    await expect(web.Notifications.getDevicePushToken()).rejects.toThrow(
+      'Notifications.getDevicePushToken needs an iOS or Android build'
     )
     expect(() => web.Notifications.addPushTokenListener(() => {}).remove()).not.toThrow()
   })

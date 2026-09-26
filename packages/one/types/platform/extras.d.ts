@@ -15,8 +15,8 @@ export type { BrowserAuthSessionOptions, BrowserAuthSessionResult, BrowserOpenOp
 export { Network, useNetworkState } from './network';
 export type { NetworkState, NetworkStateSubscription, NetworkStateType, } from './network';
 export { SecureStore } from './secure-store';
-export { AppleAuth } from './apple-auth';
-export type { AppleAuthenticationButtonProps, AppleAuthenticationButtonStyle, AppleAuthenticationButtonType, AppleAuthenticationCredential, AppleAuthenticationCredentialState, AppleAuthenticationFullName, AppleAuthenticationScope, AppleAuthenticationSignInOptions, AppleAuthenticationUserDetectionStatus, } from './apple-auth';
+export { Auth } from './auth';
+export type { AppleAuth, AppleAuthScope, AppleCredential, AppleCredentialState, AppleFullName, AppleRealUserStatus, AppleSignInOptions, AppleSignInResult, } from './auth';
 export { Speech } from './speech';
 export type { SpeechErrorCode, SpeechEvent, SpeechEventType, SpeechPermissionResponse, SpeechPermissionStatus, SpeechSession, SpeechStartOptions, } from './speech';
 //# sourceMappingURL=extras.d.ts.map

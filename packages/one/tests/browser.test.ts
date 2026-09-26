@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { Browser } from '../src/platform/browser/index'
 
 vi.mock('react-native-nitro-modules', () => ({
-  NitroModules: { hasHybridObject: vi.fn(), createHybridObject: vi.fn() },
+  NitroModules: { createHybridObject: vi.fn() },
 }))
 
 afterEach(() => {
@@ -12,7 +12,6 @@ afterEach(() => {
 async function loadNativeEntry(hybrid: unknown) {
   vi.resetModules()
   const { NitroModules } = await import('react-native-nitro-modules')
-  vi.mocked(NitroModules.hasHybridObject).mockReturnValue(hybrid !== null)
   vi.mocked(NitroModules.createHybridObject).mockReturnValue(hybrid as never)
   return import('../src/platform/browser/index.native')
 }
@@ -130,24 +129,6 @@ describe('browser native entry', () => {
     expect(nativeModule.warmup).toHaveBeenCalled()
     expect(await native.mayLaunchUrl('https://example.com')).toBe(true)
     expect(nativeModule.mayLaunchUrl).toHaveBeenCalledWith('https://example.com', undefined)
-  })
-
-  it('rejects promised results without a native module', async () => {
-    const { Browser: native } = await loadNativeEntry(null)
-    await expect(native.open('https://example.com')).rejects.toThrow(
-      'Browser needs a native build'
-    )
-    await expect(native.dismiss()).rejects.toThrow(
-      'Browser needs a native build'
-    )
-    await expect(native.openAuthSession('https://example.com')).rejects.toThrow(
-      'Browser needs a native build'
-    )
-  })
-
-  it('dismissAuthSession does nothing without a native module', async () => {
-    const { Browser: native } = await loadNativeEntry(null)
-    native.dismissAuthSession()
   })
 
   it('throws the same argument checks as the web entry', async () => {

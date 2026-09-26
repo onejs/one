@@ -18,7 +18,7 @@ public extension AppleAuthCredential {
   /**
    * Create a new instance of `AppleAuthCredential`.
    */
-  init(user: String, state: String?, identityToken: String?, authorizationCode: String?, email: String?, fullName: AppleAuthFullName?, realUserStatus: Double) {
+  init(user: String, state: String?, identityToken: String?, authorizationCode: String?, email: String?, fullName: AppleAuthFullName?, realUserStatus: AppleRealUserStatus) {
     self.init(std.string(user), { () -> bridge.std__optional_std__string_ in
       if let __unwrappedValue = state {
         return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
@@ -111,7 +111,7 @@ public extension AppleAuthCredential {
   }
   
   @inline(__always)
-  var realUserStatus: Double {
+  var realUserStatus: AppleRealUserStatus {
     return self.__realUserStatus
   }
 }

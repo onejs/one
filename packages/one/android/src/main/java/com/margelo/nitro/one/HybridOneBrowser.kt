@@ -115,35 +115,16 @@ class HybridOneBrowser : HybridOneBrowserSpec(), ActivityEventListener, Lifecycl
 
     override fun warmup(browserPackage: String?): Promise<Boolean> {
         val promise = Promise<Boolean>()
-        val context = NitroModules.applicationContext
-        if (context == null) {
-            return Promise.resolved(false)
-        }
-        val targetPackage = browserPackage ?: CustomTabsClient.getPackageName(context, null)
-        if (targetPackage == null) {
-            return Promise.resolved(false)
-        }
-        ensureClient(targetPackage) { client ->
-            val ok = client.warmup(0L)
-            promise.resolve(ok)
-        }
+        ensureClient(browserPackage) { client -> promise.resolve(client?.warmup(0L) ?: false) }
         return promise
     }
 
     override fun mayLaunchUrl(url: String, browserPackage: String?): Promise<Boolean> {
         val promise = Promise<Boolean>()
-        val uri = try { Uri.parse(url) } catch (_: Exception) { null }
-        if (uri == null) return Promise.resolved(false)
-        val session = customTabsSession
-        if (session != null) {
-            val ok = session.mayLaunchUrl(uri, null, null)
-            return Promise.resolved(ok)
-        }
         ensureClient(browserPackage) { client ->
-            val s = customTabsSession ?: client.newSession(null)
-            customTabsSession = s
-            val ok = s?.mayLaunchUrl(uri, null, null) ?: false
-            promise.resolve(ok)
+            val session = customTabsSession ?: client?.newSession(null)
+            customTabsSession = session
+            promise.resolve(session?.mayLaunchUrl(Uri.parse(url), null, null) ?: false)
         }
         return promise
     }
@@ -207,29 +188,25 @@ class HybridOneBrowser : HybridOneBrowserSpec(), ActivityEventListener, Lifecycl
         pending
     }
 
-    private fun ensureClient(browserPackage: String?, onReady: ((CustomTabsClient) -> Unit)? = null) {
-        val client = customTabsClient
-        if (client != null) {
-            onReady?.invoke(client)
-            return
-        }
-        val context = NitroModules.applicationContext ?: return
-        val targetPackage = browserPackage ?: CustomTabsClient.getPackageName(context, null) ?: return
+    // calls onReady exactly once: with the bound client, or with null when no
+    // installed browser offers the Custom Tabs service or binding it fails
+    private fun ensureClient(browserPackage: String?, onReady: (CustomTabsClient?) -> Unit = {}) {
+        customTabsClient?.let { return onReady(it) }
+        val context = NitroModules.applicationContext ?: return onReady(null)
+        val targetPackage = browserPackage ?: CustomTabsClient.getPackageName(context, null)
+            ?: return onReady(null)
         val connection = object : CustomTabsServiceConnection() {
             override fun onCustomTabsServiceConnected(name: ComponentName, connectedClient: CustomTabsClient) {
                 customTabsClient = connectedClient
-                connectedClient.warmup(0L)
                 customTabsSession = connectedClient.newSession(null)
-                onReady?.invoke(connectedClient)
+                onReady(connectedClient)
             }
             override fun onServiceDisconnected(name: ComponentName) {
                 customTabsClient = null
                 customTabsSession = null
             }
         }
-        try {
-            CustomTabsClient.bindCustomTabsService(context, targetPackage, connection)
-        } catch (_: Exception) {}
+        if (!CustomTabsClient.bindCustomTabsService(context, targetPackage, connection)) onReady(null)
     }
 
     private fun launchCustomTab(activity: Activity, url: String, options: BrowserNativeOptions) {

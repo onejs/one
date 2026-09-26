@@ -252,7 +252,7 @@ export default function OneNativeNotifications() {
         testID="one-native-notifications-push-token"
         style={styles.chip}
         onPress={() =>
-          One.Notifications.getDevicePushTokenAsync().then(
+          One.Notifications.getDevicePushToken().then(
             (token) => setPush(`Push: ${token.type}/${token.data}`),
             (error) => setPush(`Push: error ${show(error)}`)
           )

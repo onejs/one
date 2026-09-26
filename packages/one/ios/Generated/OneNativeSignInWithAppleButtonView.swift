@@ -7,6 +7,7 @@ import AuthenticationServices
 private final class SignInWithAppleButtonModel: ObservableObject {
   @Published var requestedScopes: [String] = []
   @Published var nonce: String = ""
+  @Published var label: String = "signIn"
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -38,8 +39,9 @@ private final class SignInWithAppleButtonModel: ObservableObject {
     let next = OneNativeStyle(dictionary: style)
     if model.swiftStyle != next { model.swiftStyle = next }
   }
-  public func configure(_ nonce: String) {
+  public func configure(_ nonce: String, label: String) {
     if model.nonce != nonce { model.nonce = nonce }
+    if model.label != label { model.label = label }
   }
   public func setRequestedScopes(_ items: [String]) {
     if let unknown = items.first(where: { $0 != "fullName" && $0 != "email" }) {
@@ -116,10 +118,19 @@ private func oneNativeTokenString(_ data: Data?) -> String {
   return String(data: data, encoding: .utf8) ?? ""
 }
 
+// validate admits only these three, so the default case is unreachable
+private func oneNativeAppleButtonLabel(_ value: String) -> SignInWithAppleButton.Label {
+  switch value {
+  case "continue": return .continue
+  case "signUp": return .signUp
+  default: return .signIn
+  }
+}
+
 private struct SignInWithAppleButtonSurface: View {
   @ObservedObject var model: SignInWithAppleButtonModel
   var body: some View {
-    SignInWithAppleButton(.signIn, onRequest: { request in
+    SignInWithAppleButton(oneNativeAppleButtonLabel(model.label), onRequest: { request in
       request.requestedScopes = oneNativeAppleScopes(model.requestedScopes)
       if !model.nonce.isEmpty { request.nonce = model.nonce }
     }, onCompletion: { result in

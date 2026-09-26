@@ -1324,6 +1324,9 @@
         "uri": {
           "type": "string"
         },
+        "renderingMode": {
+          "type": "string"
+        },
         "symbolRenderingMode": {
           "type": "string",
           "enum": "SymbolRenderingMode"
@@ -1799,6 +1802,9 @@
           "type": "ReadonlyArray<string>"
         },
         "nonce": {
+          "type": "string"
+        },
+        "label": {
           "type": "string"
         }
       },

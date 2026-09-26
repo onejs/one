@@ -32,16 +32,7 @@ final class HybridOneBrowser: HybridOneBrowserSpec {
   }
 
   private static func presentingViewController() -> UIViewController? {
-    var root: UIViewController?
-    if let keyWindow = UIApplication.shared.connectedScenes
-      .compactMap({ $0 as? UIWindowScene })
-      .flatMap({ $0.windows })
-      .first(where: { $0.isKeyWindow }) {
-      root = keyWindow.rootViewController
-    }
-    if root == nil {
-      root = RCTKeyWindow()?.rootViewController
-    }
+    var root = RCTKeyWindow()?.rootViewController
     while let presented = root?.presentedViewController {
       root = presented
     }
@@ -255,12 +246,6 @@ final class HybridOneBrowserDelegate: NSObject, SFSafariViewControllerDelegate,
   }
 
   func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-    if let window = UIApplication.shared.connectedScenes
-      .compactMap({ $0 as? UIWindowScene })
-      .flatMap({ $0.windows })
-      .first(where: { $0.isKeyWindow }) {
-      return window
-    }
     return RCTKeyWindow() ?? ASPresentationAnchor()
   }
 }

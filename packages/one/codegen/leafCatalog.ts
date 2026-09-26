@@ -173,6 +173,13 @@ export const leafControls: Control[] = [
       systemName: { type: 'string', default: '' },
       // a remote image drawn with Image(uiImage:), see OneNativeRemoteImage.swift
       uri: { type: 'string', default: '' },
+      // how a uri image draws: its own colors, or as a template the container
+      // tints (a toolbar button's glyph drawn from an app asset)
+      renderingMode: {
+        type: 'string',
+        default: 'original',
+        publicType: "'original' | 'template'",
+      },
       symbolRenderingMode: {
         type: 'string',
         default: '',
@@ -217,7 +224,7 @@ export const leafControls: Control[] = [
     ],
     swift: `Group {
         if !model.uri.isEmpty {
-          OneNativeRemoteImage(uri: model.uri)
+          OneNativeRemoteImage(uri: model.uri, template: model.renderingMode == "template")
         } else if model.hasVariableValue {
           Image(systemName: model.systemName, variableValue: model.variableValue)
         } else {
@@ -229,6 +236,8 @@ export const leafControls: Control[] = [
       .oneNativeImageScale(model.imageScale)
       .oneNativeColorRole(model.colorRole)`,
     validate: `  if (!systemName === !uri) throw new Error('Image takes exactly one of systemName (an SF Symbol name) or uri (a remote image)')
+  if (renderingMode !== 'original' && renderingMode !== 'template') throw new Error("Image renderingMode must be 'original' or 'template'")
+  if (renderingMode === 'template' && !uri) throw new Error('Image renderingMode applies to a uri image; an SF Symbol is already a template')
   if (variableValue !== undefined && !Number.isFinite(variableValue)) throw new Error('Image variableValue must be a finite number or undefined')
   if (variableValue !== undefined && (variableValue < 0 || variableValue > 1)) throw new Error('Image variableValue must be between 0 and 1')
   if (colorRole && !iconColorRoles.includes(colorRole)) throw new Error('Image colorRole must be a One.UI icon color role')`,
