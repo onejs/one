@@ -208,6 +208,21 @@ ${APP_DELEGATE_PBXPROJ}`,
     expect(infoPlist.content).toContain('<key>NSSpeechRecognitionUsageDescription</key>')
     expect(infoPlist.content).toContain('<key>NSMicrophoneUsageDescription</key>')
 
+    const locationPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content:
+        '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n\t<key>NSLocationWhenInUseUsageDescription</key>\n\t<string></string>\n</dict>',
+      platform: 'ios',
+      app: { ...app, location: { whenInUse: 'Find nearby cafés & parks' } },
+    })
+    if (locationPlist.content === null) throw new Error('location Info.plist was not rendered')
+    expect(
+      locationPlist.content.match(/<key>NSLocationWhenInUseUsageDescription<\/key>/g)
+    ).toHaveLength(1)
+    expect(locationPlist.content).toContain(
+      '<key>NSLocationWhenInUseUsageDescription</key>\n\t<string>Find nearby cafés &amp; parks</string>'
+    )
+
     const androidManifest = renderPrebuildFile({
       relativePath: 'app/src/main/AndroidManifest.xml',
       content:

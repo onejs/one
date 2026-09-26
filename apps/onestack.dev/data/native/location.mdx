@@ -1,0 +1,50 @@
+---
+title: Location
+description: Request foreground location permission and read the current position on iOS
+---
+
+`One.iOS.Location` uses Core Location for a foreground permission request and a
+single current-position fix. Add the prompt text to the native app manifest:
+
+```ts
+native: {
+  app: {
+    location: {
+      whenInUse: 'Show places near you.',
+    },
+  },
+}
+```
+
+For Expo prebuild, pass the same text to the `vxrn/expo-plugin` option
+`location: { whenInUse: 'Show places near you.' }`.
+
+Call the permission request while the app is active, usually after a tap:
+
+```tsx
+import { One } from 'one'
+
+const permission = await One.iOS.Location.requestWhenInUsePermission()
+if (permission === 'whenInUse' || permission === 'always') {
+  const position = await One.iOS.Location.getCurrentPosition()
+  console.log(position.latitude, position.longitude)
+}
+```
+
+`getPermissionStatus()` reads the current authorization synchronously and
+returns `notDetermined`, `restricted`, `denied`, `whenInUse`, or `always`.
+`requestWhenInUsePermission()` resolves with the resulting status. If the user
+already decided, it returns that status without another prompt.
+
+`getCurrentPosition()` requests one location fix and stops the location service
+after it arrives. The result contains latitude, longitude, horizontal accuracy,
+altitude, vertical accuracy, course, speed, and a Unix timestamp in
+milliseconds. Apple uses negative values for unavailable accuracy, course, or
+speed fields.
+
+The permission request rejects with `E_LOCATION_MANIFEST` if the usage text is
+missing and `E_LOCATION_BACKGROUND` if the app is inactive. Reading a position
+without permission rejects with `E_LOCATION_PERMISSION`. A failed location fix
+rejects with `E_LOCATION_UNAVAILABLE`. Error codes are available on `error.code`.
+This API is iOS only and throws on Android or web. Continuous tracking and
+geocoding are not available yet.

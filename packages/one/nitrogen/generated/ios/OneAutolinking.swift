@@ -204,6 +204,18 @@ public final class OneAutolinking {
     return HybridOneLocalAuthentication.self is any RecyclableView.Type
   }
 
+  public static func createOneLocation() -> bridge.std__shared_ptr_HybridOneLocationSpec_ {
+    let hybridObject = HybridOneLocation()
+    return { () -> bridge.std__shared_ptr_HybridOneLocationSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isOneLocationRecyclable() -> Bool {
+    return HybridOneLocation.self is any RecyclableView.Type
+  }
+
   public static func createOneUpdates() -> bridge.std__shared_ptr_HybridOneUpdatesSpec_ {
     let hybridObject = HybridOneUpdates()
     return { () -> bridge.std__shared_ptr_HybridOneUpdatesSpec_ in

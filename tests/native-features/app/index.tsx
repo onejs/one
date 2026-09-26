@@ -227,6 +227,11 @@ const testScreens = [
     testID: 'nav-one-native-local-authentication',
   },
   {
+    href: '/one-native-location',
+    label: 'One Native Location',
+    testID: 'nav-one-native-location',
+  },
+  {
     href: '/one-native-speech',
     label: 'One Native Speech',
     testID: 'nav-one-native-speech',

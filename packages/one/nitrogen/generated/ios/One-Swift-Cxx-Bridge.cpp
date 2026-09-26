@@ -20,6 +20,7 @@
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "HybridOneImagePickerSpecSwift.hpp"
 #include "HybridOneLocalAuthenticationSpecSwift.hpp"
+#include "HybridOneLocationSpecSwift.hpp"
 #include "HybridOneNetworkSpecSwift.hpp"
 #include "HybridOneNotificationsSpecSwift.hpp"
 #include "HybridOneSecureStoreSpecSwift.hpp"
@@ -339,6 +340,38 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneLocalAuthenticationSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(LocationPermissionStatus /* result */)>
+  Func_void_LocationPermissionStatus create_Func_void_LocationPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_LocationPermissionStatus::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](LocationPermissionStatus result) mutable -> void {
+      swiftClosure.call(static_cast<int>(result));
+    };
+  }
+
+  // pragma MARK: std::function<void(const LocationPosition& /* result */)>
+  Func_void_LocationPosition create_Func_void_LocationPosition(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_LocationPosition::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const LocationPosition& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneLocationSpec>
+  std::shared_ptr<HybridOneLocationSpec> create_std__shared_ptr_HybridOneLocationSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneLocationSpec_cxx swiftPart = One::HybridOneLocationSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneLocationSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneLocationSpec_(std__shared_ptr_HybridOneLocationSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneLocationSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneLocationSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneLocationSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneLocationSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

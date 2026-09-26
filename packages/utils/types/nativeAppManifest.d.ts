@@ -15,6 +15,9 @@ export interface NativeAppManifest {
     imagePicker?: {
         camera?: string;
     };
+    location?: {
+        whenInUse: string;
+    };
     speech?: {
         recognition: string;
         microphone: string;

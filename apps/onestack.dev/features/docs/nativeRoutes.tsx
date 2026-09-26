@@ -65,6 +65,7 @@ export const nativeRoutes = [
       { title: 'DocumentPicker', route: '/native/document-picker' },
       { title: 'SecureStore', route: '/native/secure-store' },
       { title: 'Local Authentication', route: '/native/local-authentication' },
+      { title: 'Location', route: '/native/location' },
       { title: 'WebGPU', route: '/native/webgpu' },
     ],
   },

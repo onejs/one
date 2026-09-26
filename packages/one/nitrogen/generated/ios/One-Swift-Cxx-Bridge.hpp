@@ -80,6 +80,8 @@ namespace margelo::nitro::one { class HybridOneHapticsSpec; }
 namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
 // Forward declaration of `HybridOneLocalAuthenticationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLocalAuthenticationSpec; }
+// Forward declaration of `HybridOneLocationSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneLocationSpec; }
 // Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNetworkSpec; }
 // Forward declaration of `HybridOneNotificationsSpec` to properly resolve imports.
@@ -98,6 +100,10 @@ namespace margelo::nitro::one { enum class ImagePickerMediaType; }
 namespace margelo::nitro::one { struct ImagePickerNativeResult; }
 // Forward declaration of `LocalAuthenticationStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
+// Forward declaration of `LocationPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class LocationPermissionStatus; }
+// Forward declaration of `LocationPosition` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationPosition; }
 // Forward declaration of `NativeChannel` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeChannel; }
 // Forward declaration of `NativeContent` to properly resolve imports.
@@ -176,6 +182,8 @@ namespace One { class HybridOneHapticsSpec_cxx; }
 namespace One { class HybridOneImagePickerSpec_cxx; }
 // Forward declaration of `HybridOneLocalAuthenticationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLocalAuthenticationSpec_cxx; }
+// Forward declaration of `HybridOneLocationSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneLocationSpec_cxx; }
 // Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNetworkSpec_cxx; }
 // Forward declaration of `HybridOneNotificationsSpec_cxx` to properly resolve imports.
@@ -223,6 +231,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneHapticsSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
 #include "HybridOneLocalAuthenticationSpec.hpp"
+#include "HybridOneLocationSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
@@ -232,6 +241,8 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "ImagePickerMediaType.hpp"
 #include "ImagePickerNativeResult.hpp"
 #include "LocalAuthenticationStatus.hpp"
+#include "LocationPermissionStatus.hpp"
+#include "LocationPosition.hpp"
 #include "NativeChannel.hpp"
 #include "NativeContent.hpp"
 #include "NativeIosPermission.hpp"
@@ -1360,6 +1371,113 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_LocalAuthenticationStatus_ create_Result_LocalAuthenticationStatus_(const std::exception_ptr& error) noexcept {
     return Result<LocalAuthenticationStatus>::withError(error);
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<LocationPermissionStatus>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<LocationPermissionStatus>>`.
+   */
+  using std__shared_ptr_Promise_LocationPermissionStatus__ = std::shared_ptr<Promise<LocationPermissionStatus>>;
+  inline std::shared_ptr<Promise<LocationPermissionStatus>> create_std__shared_ptr_Promise_LocationPermissionStatus__() noexcept {
+    return Promise<LocationPermissionStatus>::create();
+  }
+  inline PromiseHolder<LocationPermissionStatus> wrap_std__shared_ptr_Promise_LocationPermissionStatus__(std::shared_ptr<Promise<LocationPermissionStatus>> promise) noexcept {
+    return PromiseHolder<LocationPermissionStatus>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(LocationPermissionStatus /* result */)>
+  /**
+   * Specialized version of `std::function<void(LocationPermissionStatus)>`.
+   */
+  using Func_void_LocationPermissionStatus = std::function<void(LocationPermissionStatus /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(LocationPermissionStatus / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_LocationPermissionStatus_Wrapper final {
+  public:
+    explicit Func_void_LocationPermissionStatus_Wrapper(std::function<void(LocationPermissionStatus /* result */)>&& func): _function(std::make_unique<std::function<void(LocationPermissionStatus /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<LocationPermissionStatus>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(LocationPermissionStatus /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_LocationPermissionStatus create_Func_void_LocationPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_LocationPermissionStatus_Wrapper wrap_Func_void_LocationPermissionStatus(Func_void_LocationPermissionStatus value) noexcept {
+    return Func_void_LocationPermissionStatus_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<LocationPosition>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<LocationPosition>>`.
+   */
+  using std__shared_ptr_Promise_LocationPosition__ = std::shared_ptr<Promise<LocationPosition>>;
+  inline std::shared_ptr<Promise<LocationPosition>> create_std__shared_ptr_Promise_LocationPosition__() noexcept {
+    return Promise<LocationPosition>::create();
+  }
+  inline PromiseHolder<LocationPosition> wrap_std__shared_ptr_Promise_LocationPosition__(std::shared_ptr<Promise<LocationPosition>> promise) noexcept {
+    return PromiseHolder<LocationPosition>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const LocationPosition& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const LocationPosition&)>`.
+   */
+  using Func_void_LocationPosition = std::function<void(const LocationPosition& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const LocationPosition& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_LocationPosition_Wrapper final {
+  public:
+    explicit Func_void_LocationPosition_Wrapper(std::function<void(const LocationPosition& /* result */)>&& func): _function(std::make_unique<std::function<void(const LocationPosition& /* result */)>>(std::move(func))) {}
+    inline void call(LocationPosition result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const LocationPosition& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_LocationPosition create_Func_void_LocationPosition(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_LocationPosition_Wrapper wrap_Func_void_LocationPosition(Func_void_LocationPosition value) noexcept {
+    return Func_void_LocationPosition_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneLocationSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneLocationSpec>`.
+   */
+  using std__shared_ptr_HybridOneLocationSpec_ = std::shared_ptr<HybridOneLocationSpec>;
+  std::shared_ptr<HybridOneLocationSpec> create_std__shared_ptr_HybridOneLocationSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneLocationSpec_(std__shared_ptr_HybridOneLocationSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneLocationSpec>
+  using std__weak_ptr_HybridOneLocationSpec_ = std::weak_ptr<HybridOneLocationSpec>;
+  inline std__weak_ptr_HybridOneLocationSpec_ weakify_std__shared_ptr_HybridOneLocationSpec_(const std::shared_ptr<HybridOneLocationSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<LocationPermissionStatus>
+  using Result_LocationPermissionStatus_ = Result<LocationPermissionStatus>;
+  inline Result_LocationPermissionStatus_ create_Result_LocationPermissionStatus_(LocationPermissionStatus value) noexcept {
+    return Result<LocationPermissionStatus>::withValue(std::move(value));
+  }
+  inline Result_LocationPermissionStatus_ create_Result_LocationPermissionStatus_(const std::exception_ptr& error) noexcept {
+    return Result<LocationPermissionStatus>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<LocationPermissionStatus>>>
+  using Result_std__shared_ptr_Promise_LocationPermissionStatus___ = Result<std::shared_ptr<Promise<LocationPermissionStatus>>>;
+  inline Result_std__shared_ptr_Promise_LocationPermissionStatus___ create_Result_std__shared_ptr_Promise_LocationPermissionStatus___(const std::shared_ptr<Promise<LocationPermissionStatus>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<LocationPermissionStatus>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_LocationPermissionStatus___ create_Result_std__shared_ptr_Promise_LocationPermissionStatus___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<LocationPermissionStatus>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<LocationPosition>>>
+  using Result_std__shared_ptr_Promise_LocationPosition___ = Result<std::shared_ptr<Promise<LocationPosition>>>;
+  inline Result_std__shared_ptr_Promise_LocationPosition___ create_Result_std__shared_ptr_Promise_LocationPosition___(const std::shared_ptr<Promise<LocationPosition>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<LocationPosition>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_LocationPosition___ create_Result_std__shared_ptr_Promise_LocationPosition___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<LocationPosition>>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<Promise<NetworkState>>
