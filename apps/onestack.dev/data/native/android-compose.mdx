@@ -4,7 +4,7 @@ description: Jetpack Compose views under One.Android
 ---
 
 Jetpack Compose views under `One.Android`. Layout nodes (`Column`, `Row`,
-`Box`, `BadgedBox`, `Badge`, `Card`, `ElevatedCard`, `OutlinedCard`, `AssistChip`, `FilterChip`,
+`Box`, `BadgedBox`, `Badge`, `ListItem`, `Card`, `ElevatedCard`, `OutlinedCard`, `AssistChip`, `FilterChip`,
 `InputChip`, `SuggestionChip`) take children;
 `Text`, `Icon`,
 `Button`, `Switch`, `Checkbox`, `RadioButton`, `HorizontalDivider`,
@@ -91,6 +91,16 @@ in the corresponding Material 3 surface. Each accepts `colors` with optional
 in dp. `Card` and `OutlinedCard` also accept `border` with optional `width`
 in dp (default 1) and `color`. An omitted border leaves `Card` unbordered and
 uses the Material theme's outline for `OutlinedCard`.
+
+## List items
+
+`One.Android.ListItem` renders a Material 3 row. Put Compose content in its
+`.HeadlineContent`, `.OverlineContent`, `.SupportingContent`, `.LeadingContent`,
+and `.TrailingContent` slots. The headline is the main line; the other slots
+are optional. `colors` accepts `containerColor`, `contentColor`,
+`leadingContentColor`, `trailingContentColor`, `supportingContentColor`, and
+`overlineContentColor`. `tonalElevation` and `shadowElevation` are nonnegative
+dp values; omitted values use the Material defaults.
 
 ## Dividers
 

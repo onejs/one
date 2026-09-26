@@ -27,6 +27,7 @@ Owner: android-lane (r46336). Active on `v2-beta`. Android is lower priority tha
 - **RAN:** `e61788b7e` added Card variants; `9b718245b` added horizontal and vertical dividers. Both have Pixel 8 runtime captures.
 - **RAN:** `4a2a3fffc` added FilterChip and `beef6dca0` added AssistChip, InputChip, and SuggestionChip. The focused Android Compose conformance suite now drives selection, cards, dividers, and chips, with emulator screenshots for each state.
 - **RAN:** Badge and BadgedBox render a dot, circular count, wide count, explicit overlay, and default overlay on a Pixel 8 emulator. The focused `--suite compose-badges` checks text and geometry from a fresh app launch.
+- **RAN:** ListItem renders headline, overline, supporting, leading, and trailing slots with color and elevation overrides. The focused `--suite compose-list-items` passed on the Pixel 8 emulator and captured both a full and a minimal item.
 - **RAN:** The longer `--suite compose` sometimes sends a chip tap to a Home route behind the Compose screen. A React view touch override and a Compose root gesture handler both failed to resolve this reliably, so neither remains in the Badge change. The original suite still reports the failure.
 - **INFERRED:** The Expo UI coverage owner is working through iOS captures and reserves the later Peach Compose proof. This lane continues One Android Compose while that work is active, then takes measured Peach Android gaps without changing their iOS files.
 

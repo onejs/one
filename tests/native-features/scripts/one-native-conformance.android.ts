@@ -33,7 +33,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'updates'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'updates'
   apkPath: string
 }
 
@@ -55,7 +55,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|updates --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|updates --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -84,7 +84,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -2998,11 +2998,37 @@ async function runCompose(config: Config) {
       )
     })
   }
+  const listItems = async () => {
+    await tapNavigation(config, 'nav-one-native-android-list-items')
+    await check('compose-list-item-slots', (nodes) => {
+      const full = matching(nodes, { id: 'one-native-android-list-item-full' })[0]?.bounds
+      const overline = matching(nodes, { id: 'one-native-android-list-item-overline' })[0]?.bounds
+      const headline = matching(nodes, { id: 'one-native-android-list-item-headline' })[0]?.bounds
+      const supporting = matching(nodes, { id: 'one-native-android-list-item-supporting' })[0]?.bounds
+      const trailing = matching(nodes, { id: 'one-native-android-list-item-trailing' })[0]?.bounds
+      const minimal = matching(nodes, { id: 'one-native-android-list-item-minimal' })[0]?.bounds
+      return Boolean(
+        full && overline && headline && supporting && trailing && minimal &&
+        idText(nodes, 'one-native-android-list-item-overline', 'Messages') &&
+        idText(nodes, 'one-native-android-list-item-headline', 'Inbox') &&
+        idText(nodes, 'one-native-android-list-item-supporting', 'Three unread messages') &&
+        idText(nodes, 'one-native-android-list-item-trailing', '3') &&
+        idText(nodes, 'one-native-android-list-item-minimal-headline', 'Archived') &&
+        overline.top < headline.top && headline.top < supporting.top &&
+        trailing.left > headline.right && minimal.top > full.bottom
+      )
+    })
+  }
 
   await home()
   if (config.suite === 'compose-badges') {
     await badges()
     console.log('ALL ONE NATIVE ANDROID BADGE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'compose-list-items') {
+    await listItems()
+    console.log('ALL ONE NATIVE ANDROID LIST ITEM CHECKS PASSED')
     return
   }
   await tapNavigation(config, 'nav-one-native-android-selection')
@@ -3388,7 +3414,7 @@ try {
   const config = parse(process.argv.slice(2))
   await (config.suite === 'updates'
     ? runUpdates(config)
-    : config.suite === 'compose' || config.suite === 'compose-badges'
+    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items'
       ? runCompose(config)
       : run(config))
 } catch (error) {

@@ -4,6 +4,7 @@ import type {
   ComposeAssistChipProps,
   ComposeBadgeProps,
   ComposeBadgedBoxProps,
+  ComposeListItemProps,
   ComposeBoxProps,
   ComposeButtonProps,
   ComposeCardProps,
@@ -54,6 +55,18 @@ function BadgedBoxRoot(_props: ComposeBadgedBoxProps): never {
 
 const BadgedBox = Object.assign(BadgedBoxRoot, {
   Badge: (_props: { children: ReactNode }): never => unsupported('BadgedBox.Badge'),
+})
+
+function ListItemRoot(_props: ComposeListItemProps): never {
+  return unsupported('ListItem')
+}
+
+const ListItem = Object.assign(ListItemRoot, {
+  HeadlineContent: (_props: { children: ReactNode }): never => unsupported('ListItem.HeadlineContent'),
+  OverlineContent: (_props: { children: ReactNode }): never => unsupported('ListItem.OverlineContent'),
+  SupportingContent: (_props: { children: ReactNode }): never => unsupported('ListItem.SupportingContent'),
+  LeadingContent: (_props: { children: ReactNode }): never => unsupported('ListItem.LeadingContent'),
+  TrailingContent: (_props: { children: ReactNode }): never => unsupported('ListItem.TrailingContent'),
 })
 
 function Card(_props: ComposeCardProps): never {
@@ -168,6 +181,7 @@ export const Compose = {
   Box,
   Badge,
   BadgedBox,
+  ListItem,
   Card,
   ElevatedCard,
   OutlinedCard,

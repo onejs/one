@@ -1,10 +1,11 @@
 import { type ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeFilterChipProps, ComposeIconProps, ComposeInputChipProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeFilterChipProps, ComposeIconProps, ComposeInputChipProps, ComposeListItemProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
 declare function Column({ children, horizontalAlignment, verticalArrangement, spacing, ...props }: ComposeColumnProps): import("react/jsx-runtime").JSX.Element;
 declare function Row({ children, verticalAlignment, horizontalArrangement, spacing, ...props }: ComposeRowProps): import("react/jsx-runtime").JSX.Element;
 declare function Box({ children, contentAlignment, ...props }: ComposeBoxProps): import("react/jsx-runtime").JSX.Element;
 declare function Badge({ children, containerColor, contentColor, ...props }: ComposeBadgeProps): import("react/jsx-runtime").JSX.Element;
 declare function BadgedBoxRoot({ children, ...props }: ComposeBadgedBoxProps): import("react/jsx-runtime").JSX.Element;
+declare function ListItemRoot({ children, colors, tonalElevation, shadowElevation, ...props }: ComposeListItemProps): import("react/jsx-runtime").JSX.Element;
 declare function Card(props: ComposeCardProps): import("react/jsx-runtime").JSX.Element;
 declare function ElevatedCard(props: ComposeElevatedCardProps): import("react/jsx-runtime").JSX.Element;
 declare function OutlinedCard(props: ComposeOutlinedCardProps): import("react/jsx-runtime").JSX.Element;
@@ -48,6 +49,23 @@ export declare const Compose: {
     Badge: typeof Badge;
     BadgedBox: typeof BadgedBoxRoot & {
         Badge: ({ children }: {
+            children: ReactNode;
+        }) => import("react/jsx-runtime").JSX.Element;
+    };
+    ListItem: typeof ListItemRoot & {
+        HeadlineContent: ({ children }: {
+            children: ReactNode;
+        }) => import("react/jsx-runtime").JSX.Element;
+        OverlineContent: ({ children }: {
+            children: ReactNode;
+        }) => import("react/jsx-runtime").JSX.Element;
+        SupportingContent: ({ children }: {
+            children: ReactNode;
+        }) => import("react/jsx-runtime").JSX.Element;
+        LeadingContent: ({ children }: {
+            children: ReactNode;
+        }) => import("react/jsx-runtime").JSX.Element;
+        TrailingContent: ({ children }: {
             children: ReactNode;
         }) => import("react/jsx-runtime").JSX.Element;
     };

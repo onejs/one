@@ -178,6 +178,18 @@ class OneNativeComposeNodeManager :
         view.stageBadgeColors(value)
     }
 
+    override fun setListItemColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageListItemColors(value)
+    }
+
+    override fun setTonalElevation(view: OneNativeComposeNodeView, value: Double) {
+        view.stageTonalElevation(value)
+    }
+
+    override fun setShadowElevation(view: OneNativeComposeNodeView, value: Double) {
+        view.stageShadowElevation(value)
+    }
+
     override fun setCardElevation(view: OneNativeComposeNodeView, value: Double) {
         view.stageCardElevation(value)
     }

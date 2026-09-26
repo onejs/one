@@ -63,6 +63,16 @@ interface NativeProps extends ViewProps {
     containerColor?: ColorValue
     contentColor?: ColorValue
   }>
+  listItemColors?: Readonly<{
+    containerColor?: ColorValue
+    contentColor?: ColorValue
+    leadingContentColor?: ColorValue
+    trailingContentColor?: ColorValue
+    supportingContentColor?: ColorValue
+    overlineContentColor?: ColorValue
+  }>
+  tonalElevation?: WithDefault<Double, -1>
+  shadowElevation?: WithDefault<Double, -1>
   cardElevation?: WithDefault<Double, -1>
   cardBorder?: Readonly<{
     width?: WithDefault<Double, 1>

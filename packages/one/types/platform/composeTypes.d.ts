@@ -52,6 +52,19 @@ export interface ComposeBadgeProps extends ComposeNodeProps {
     contentColor?: ColorValue;
 }
 export type ComposeBadgedBoxProps = ComposeNodeProps;
+export type ComposeListItemColors = Readonly<{
+    containerColor?: ColorValue;
+    contentColor?: ColorValue;
+    leadingContentColor?: ColorValue;
+    trailingContentColor?: ColorValue;
+    supportingContentColor?: ColorValue;
+    overlineContentColor?: ColorValue;
+}>;
+export interface ComposeListItemProps extends ComposeNodeProps {
+    colors?: ComposeListItemColors;
+    tonalElevation?: number;
+    shadowElevation?: number;
+}
 type ComposeLeafProps = Omit<ComposeNodeProps, 'children'>;
 export interface ComposeTextProps extends ComposeLeafProps {
     text: string;

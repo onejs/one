@@ -1,10 +1,11 @@
 import type { ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeFilterChipProps, ComposeIconProps, ComposeInputChipProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeFilterChipProps, ComposeIconProps, ComposeInputChipProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function Box(_props: ComposeBoxProps): never;
 declare function Badge(_props: ComposeBadgeProps): never;
 declare function BadgedBoxRoot(_props: ComposeBadgedBoxProps): never;
+declare function ListItemRoot(_props: ComposeListItemProps): never;
 declare function Card(_props: ComposeCardProps): never;
 declare function ElevatedCard(_props: ComposeElevatedCardProps): never;
 declare function OutlinedCard(_props: ComposeOutlinedCardProps): never;
@@ -47,6 +48,23 @@ export declare const Compose: {
     Badge: typeof Badge;
     BadgedBox: typeof BadgedBoxRoot & {
         Badge: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
+    ListItem: typeof ListItemRoot & {
+        HeadlineContent: (_props: {
+            children: ReactNode;
+        }) => never;
+        OverlineContent: (_props: {
+            children: ReactNode;
+        }) => never;
+        SupportingContent: (_props: {
+            children: ReactNode;
+        }) => never;
+        LeadingContent: (_props: {
+            children: ReactNode;
+        }) => never;
+        TrailingContent: (_props: {
             children: ReactNode;
         }) => never;
     };
