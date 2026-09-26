@@ -24,6 +24,7 @@ import type {
   ComposeSliderProps,
   ComposeSuggestionChipProps,
   ComposeStyle,
+  ComposeSurfaceProps,
   ComposeSwitchProps,
   ComposeTextFieldProps,
   ComposeTextProps,
@@ -477,6 +478,25 @@ export function validateCardProps(
   if (kind === 'ElevatedCard' && props.border !== undefined)
     throw new Error('Compose ElevatedCard does not support border')
   assertComposeBorder(props.border, kind)
+}
+
+export function validateSurfaceProps(props: ComposeSurfaceProps) {
+  if (props.color !== undefined) assertComposeColorValue(props.color, 'Surface color')
+  if (props.contentColor !== undefined) assertComposeColorValue(props.contentColor, 'Surface contentColor')
+  if (props.tonalElevation !== undefined) {
+    assertFiniteNumber(props.tonalElevation, 'Surface tonalElevation')
+    if (props.tonalElevation < 0) throw new Error('Compose Surface tonalElevation must be nonnegative')
+  }
+  if (props.shadowElevation !== undefined) {
+    assertFiniteNumber(props.shadowElevation, 'Surface shadowElevation')
+    if (props.shadowElevation < 0) throw new Error('Compose Surface shadowElevation must be nonnegative')
+  }
+  assertComposeBorder(props.border, 'Surface')
+  assertOptionalBoolean(props.enabled, 'Surface enabled')
+  assertOptionalBoolean(props.selected, 'Surface selected')
+  assertOptionalBoolean(props.checked, 'Surface checked')
+  if (props.onClick !== undefined) assertFunction(props.onClick, 'Surface onClick')
+  if (props.onCheckedChange !== undefined) assertFunction(props.onCheckedChange, 'Surface onCheckedChange')
 }
 
 function assertComposeBorder(border: ComposeCardProps['border'], kind: string) {

@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
 declare function Column({ children, horizontalAlignment, verticalArrangement, spacing, ...props }: ComposeColumnProps): import("react/jsx-runtime").JSX.Element;
 declare function Row({ children, verticalAlignment, horizontalArrangement, spacing, ...props }: ComposeRowProps): import("react/jsx-runtime").JSX.Element;
 declare function FlowRow({ children, horizontalArrangement, verticalArrangement, ...props }: ComposeFlowRowProps): import("react/jsx-runtime").JSX.Element;
@@ -10,6 +10,7 @@ declare function ListItemRoot({ children, colors, tonalElevation, shadowElevatio
 declare function Card(props: ComposeCardProps): import("react/jsx-runtime").JSX.Element;
 declare function ElevatedCard(props: ComposeElevatedCardProps): import("react/jsx-runtime").JSX.Element;
 declare function OutlinedCard(props: ComposeOutlinedCardProps): import("react/jsx-runtime").JSX.Element;
+declare function Surface({ children, color, contentColor, tonalElevation, shadowElevation, border, enabled, selected, checked, onClick, onCheckedChange, revision, ...props }: ComposeSurfaceProps): import("react/jsx-runtime").JSX.Element;
 declare function HorizontalDivider({ thickness, color, ...props }: ComposeDividerProps): import("react/jsx-runtime").JSX.Element;
 declare function VerticalDivider({ thickness, color, ...props }: ComposeDividerProps): import("react/jsx-runtime").JSX.Element;
 declare function AssistChipRoot(props: ComposeAssistChipProps): import("react/jsx-runtime").JSX.Element;
@@ -84,6 +85,7 @@ export declare const Compose: {
     Card: typeof Card;
     ElevatedCard: typeof ElevatedCard;
     OutlinedCard: typeof OutlinedCard;
+    Surface: typeof Surface;
     HorizontalDivider: typeof HorizontalDivider;
     VerticalDivider: typeof VerticalDivider;
     FilterChip: typeof FilterChipRoot & {

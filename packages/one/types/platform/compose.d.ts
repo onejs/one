@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function FlowRow(_props: ComposeFlowRowProps): never;
@@ -10,6 +10,7 @@ declare function ListItemRoot(_props: ComposeListItemProps): never;
 declare function Card(_props: ComposeCardProps): never;
 declare function ElevatedCard(_props: ComposeElevatedCardProps): never;
 declare function OutlinedCard(_props: ComposeOutlinedCardProps): never;
+declare function Surface(_props: ComposeSurfaceProps): never;
 declare function HorizontalDivider(_props: ComposeDividerProps): never;
 declare function VerticalDivider(_props: ComposeDividerProps): never;
 declare function FilterChipRoot(_props: ComposeFilterChipProps): never;
@@ -83,6 +84,7 @@ export declare const Compose: {
     Card: typeof Card;
     ElevatedCard: typeof ElevatedCard;
     OutlinedCard: typeof OutlinedCard;
+    Surface: typeof Surface;
     HorizontalDivider: typeof HorizontalDivider;
     VerticalDivider: typeof VerticalDivider;
     FilterChip: typeof FilterChipRoot & {

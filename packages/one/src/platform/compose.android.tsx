@@ -41,6 +41,7 @@ import type {
   ComposeRowProps,
   ComposeSliderProps,
   ComposeSuggestionChipProps,
+  ComposeSurfaceProps,
   ComposeSwitchProps,
   ComposeTextAlign,
   ComposeTextFieldCapitalization,
@@ -76,6 +77,7 @@ import {
   validateRadioButtonProps,
   validateRowProps,
   validateSliderProps,
+  validateSurfaceProps,
   validateSwitchProps,
   validateTextFieldProps,
   validateTextProps,
@@ -112,6 +114,7 @@ type ComposeNodeType =
   | 'floatingactionbutton'
   | 'loadingindicator'
   | 'containedloadingindicator'
+  | 'surface'
   | 'togglebutton'
   | 'icontogglebutton'
   | 'filledicontogglebutton'
@@ -153,6 +156,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   selected?: boolean
   radioColors?: ComposeRadioButtonProps['colors']
   cardColors?: ComposeCardProps['colors']
+  surfaceMode?: 'plain' | 'clickable' | 'selectable' | 'toggleable'
   badgeColors?: Pick<ComposeBadgeProps, 'containerColor' | 'contentColor'>
   listItemColors?: ComposeListItemProps['colors']
   tonalElevation?: number
@@ -412,6 +416,49 @@ function ElevatedCard(props: ComposeElevatedCardProps) {
 
 function OutlinedCard(props: ComposeOutlinedCardProps) {
   return renderCard('outlinedcard', 'OutlinedCard', props)
+}
+
+function Surface({
+  children,
+  color,
+  contentColor,
+  tonalElevation,
+  shadowElevation,
+  border,
+  enabled = true,
+  selected,
+  checked,
+  onClick,
+  onCheckedChange,
+  revision = 0,
+  ...props
+}: ComposeSurfaceProps) {
+  validateSurfaceProps({ color, contentColor, tonalElevation, shadowElevation, border, enabled, selected, checked, onClick, onCheckedChange })
+  const mode = checked !== undefined ? 'toggleable' : selected !== undefined ? 'selectable' : onClick ? 'clickable' : 'plain'
+  const controlled = useControlled<{ value: boolean; eventCount: number; revision: number }>(
+    (event) => onCheckedChange?.(event.value), revision
+  )
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="surface"
+      surfaceMode={mode}
+      cardColors={{ containerColor: color, contentColor }}
+      tonalElevation={tonalElevation}
+      shadowElevation={shadowElevation}
+      cardBorder={border}
+      disabled={!enabled}
+      selected={selected}
+      value={checked}
+      nativeClickable={mode === 'toggleable' ? onCheckedChange !== undefined : onClick !== undefined}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      onNativeComposeNodeButtonPress={onClick ? () => onClick() : undefined}
+      onNativeComposeNodeBooleanValueChange={onCheckedChange ? (event) => controlled.onNativeChange(event.nativeEvent) : undefined}
+    >
+      {children}
+    </ComposeNode>
+  )
 }
 
 function HorizontalDivider({ thickness, color, ...props }: ComposeDividerProps) {
@@ -993,6 +1040,7 @@ export const Compose = {
   Card,
   ElevatedCard,
   OutlinedCard,
+  Surface,
   HorizontalDivider,
   VerticalDivider,
   FilterChip,

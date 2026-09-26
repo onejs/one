@@ -174,6 +174,10 @@ class OneNativeComposeNodeManager :
         view.stageCardColors(value)
     }
 
+    override fun setSurfaceMode(view: OneNativeComposeNodeView, value: String?) {
+        view.stageSurfaceMode(value)
+    }
+
     override fun setIconButtonColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageIconButtonColors(value)
     }

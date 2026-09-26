@@ -1,4 +1,4 @@
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeContainedLoadingIndicatorProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeStyle, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeContainedLoadingIndicatorProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeStyle, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
 export declare const horizontalAlignments: readonly ['start', 'centerHorizontally', 'end'];
 export declare const verticalAlignments: readonly ['top', 'centerVertically', 'bottom'];
 export declare const contentAlignments: readonly ['topStart', 'topCenter', 'topEnd', 'centerStart', 'center', 'centerEnd', 'bottomStart', 'bottomCenter', 'bottomEnd', 'top', 'bottom', 'start', 'end'];
@@ -40,6 +40,7 @@ export declare function validateSwitchProps(props: ComposeSwitchProps): void;
 export declare function validateCheckboxProps(props: ComposeCheckboxProps): void;
 export declare function validateRadioButtonProps(props: ComposeRadioButtonProps): void;
 export declare function validateCardProps(props: ComposeCardProps, kind: 'Card' | 'ElevatedCard' | 'OutlinedCard'): void;
+export declare function validateSurfaceProps(props: ComposeSurfaceProps): void;
 export declare function validateChipProps(props: ComposeAssistChipProps | ComposeFilterChipProps | ComposeInputChipProps | ComposeSuggestionChipProps, kind: 'AssistChip' | 'FilterChip' | 'InputChip' | 'SuggestionChip'): void;
 export declare function validateDividerProps(props: ComposeDividerProps, kind: 'HorizontalDivider' | 'VerticalDivider'): void;
 export declare function validateTextFieldProps(props: ComposeTextFieldProps): void;
