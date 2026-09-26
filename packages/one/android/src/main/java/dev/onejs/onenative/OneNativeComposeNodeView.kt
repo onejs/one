@@ -29,17 +29,28 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -106,6 +117,97 @@ import com.facebook.react.views.view.ReactViewGroup
 import dev.onejs.one.R as OneR
 import kotlin.math.roundToInt
 
+private fun readComposeColor(map: ReadableMap, name: String, context: Context): Int? {
+    if (!map.hasKey(name) || map.isNull(name)) return null
+    return when (map.getType(name)) {
+        ReadableType.Number -> ColorPropConverter.getColor(map.getDouble(name), context)
+        ReadableType.Map -> ColorPropConverter.getColor(map.getMap(name), context)
+        ReadableType.String ->
+            map.getString(name)?.let { value ->
+                ColorPropConverter.resolveResourcePath(context, value)
+                    ?: runCatching { AndroidColor.parseColor(value) }.getOrNull()
+            }
+        else -> null
+    }
+}
+
+internal data class OneNativeCheckboxColors(
+    val checkedColor: Int? = null,
+    val disabledCheckedColor: Int? = null,
+    val uncheckedColor: Int? = null,
+    val disabledUncheckedColor: Int? = null,
+    val checkmarkColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeCheckboxColors =
+            if (map == null) OneNativeCheckboxColors() else OneNativeCheckboxColors(
+                checkedColor = readComposeColor(map, "checkedColor", context),
+                disabledCheckedColor = readComposeColor(map, "disabledCheckedColor", context),
+                uncheckedColor = readComposeColor(map, "uncheckedColor", context),
+                disabledUncheckedColor = readComposeColor(map, "disabledUncheckedColor", context),
+                checkmarkColor = readComposeColor(map, "checkmarkColor", context),
+            )
+    }
+}
+
+internal data class OneNativeRadioColors(
+    val selectedColor: Int? = null,
+    val unselectedColor: Int? = null,
+    val disabledSelectedColor: Int? = null,
+    val disabledUnselectedColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeRadioColors =
+            if (map == null) OneNativeRadioColors() else OneNativeRadioColors(
+                selectedColor = readComposeColor(map, "selectedColor", context),
+                unselectedColor = readComposeColor(map, "unselectedColor", context),
+                disabledSelectedColor = readComposeColor(map, "disabledSelectedColor", context),
+                disabledUnselectedColor = readComposeColor(map, "disabledUnselectedColor", context),
+            )
+    }
+}
+
+internal data class OneNativeCardColors(
+    val containerColor: Int? = null,
+    val contentColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeCardColors =
+            if (map == null) OneNativeCardColors() else OneNativeCardColors(
+                containerColor = readComposeColor(map, "containerColor", context),
+                contentColor = readComposeColor(map, "contentColor", context),
+            )
+    }
+}
+
+internal data class OneNativeCardBorder(
+    val width: Double = 1.0,
+    val color: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeCardBorder? =
+            map?.let {
+                OneNativeCardBorder(
+                    width = if (it.hasKey("width") && !it.isNull("width")) it.getDouble("width") else 1.0,
+                    color = readComposeColor(it, "color", context),
+                )
+            }
+    }
+}
+
+internal data class OneNativeDividerStyle(
+    val thickness: Double = -1.0,
+    val color: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeDividerStyle =
+            if (map == null) OneNativeDividerStyle() else OneNativeDividerStyle(
+                thickness = if (map.hasKey("thickness") && !map.isNull("thickness")) map.getDouble("thickness") else -1.0,
+                color = readComposeColor(map, "color", context),
+            )
+    }
+}
+
 internal data class OneNativeComposeStyle(
     val backgroundColor: Int? = null,
     val foregroundColor: Int? = null,
@@ -137,23 +239,9 @@ internal data class OneNativeComposeStyle(
             fun boolean(name: String): Boolean =
                 map.hasKey(name) && !map.isNull(name) && map.getType(name) == ReadableType.Boolean && map.getBoolean(name)
 
-            fun color(name: String): Int? {
-                if (!map.hasKey(name) || map.isNull(name)) return null
-                return when (map.getType(name)) {
-                    ReadableType.Number -> ColorPropConverter.getColor(map.getDouble(name), context)
-                    ReadableType.Map -> ColorPropConverter.getColor(map.getMap(name), context)
-                    ReadableType.String ->
-                        map.getString(name)?.let { value ->
-                            ColorPropConverter.resolveResourcePath(context, value)
-                                ?: runCatching { AndroidColor.parseColor(value) }.getOrNull()
-                        }
-                    else -> null
-                }
-            }
-
             return OneNativeComposeStyle(
-                backgroundColor = color("backgroundColor"),
-                foregroundColor = color("foregroundColor"),
+                backgroundColor = readComposeColor(map, "backgroundColor", context),
+                foregroundColor = readComposeColor(map, "foregroundColor", context),
                 padding = number("padding"),
                 paddingTop = number("paddingTop"),
                 paddingRight = number("paddingRight"),
@@ -165,7 +253,7 @@ internal data class OneNativeComposeStyle(
                 fillMaxHeight = boolean("fillMaxHeight"),
                 cornerRadius = number("cornerRadius"),
                 opacity = number("opacity"),
-                borderColor = color("borderColor"),
+                borderColor = readComposeColor(map, "borderColor", context),
                 borderWidth = number("borderWidth"),
             )
         }
@@ -187,6 +275,14 @@ internal data class OneNativeComposeNodeProps(
     val iconFilled: Boolean = false,
     val colorRole: String? = null,
     val value: Boolean = false,
+    val nativeClickable: Boolean = true,
+    val checkboxColors: OneNativeCheckboxColors = OneNativeCheckboxColors(),
+    val selected: Boolean = false,
+    val radioColors: OneNativeRadioColors = OneNativeRadioColors(),
+    val cardColors: OneNativeCardColors = OneNativeCardColors(),
+    val cardElevation: Double = -1.0,
+    val cardBorder: OneNativeCardBorder? = null,
+    val dividerStyle: OneNativeDividerStyle = OneNativeDividerStyle(),
     val acknowledgedEvent: Int = 0,
     val revision: Int = 0,
     val alignment: String? = null,
@@ -274,7 +370,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         }
 
     private val logicalChildren = mutableStateListOf<OneNativeComposeNodeView>()
-    private val controlledSwitch = OneNativeControlledValue(false)
+    private val controlledBoolean = OneNativeControlledValue(false)
     private val controlledText = OneNativeControlledValue("")
     private val controlledFocus = OneNativeControlledValue(false)
     private val controlledNumber = OneNativeControlledValue(0.0)
@@ -310,8 +406,8 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     internal val renderedChildren: List<OneNativeComposeNodeView>
         get() = logicalChildren
 
-    internal val renderedSwitchValue: Boolean
-        get() = controlledSwitch.value
+    internal val renderedBooleanValue: Boolean
+        get() = controlledBoolean.value
 
     internal val renderedTextValue: String
         get() = boundSyncText?.value as? String ?: controlledText.value
@@ -361,7 +457,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     internal fun commitPendingProps() {
         val next = pendingProps
         committedProps = next
-        controlledSwitch.applyProps(
+        controlledBoolean.applyProps(
             suppliedValue = next.value,
             acknowledgedEvent = next.acknowledgedEvent,
             suppliedRevision = next.revision,
@@ -454,6 +550,38 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageValue(value: Boolean) {
         pendingProps = pendingProps.copy(value = value)
+    }
+
+    internal fun stageNativeClickable(value: Boolean) {
+        pendingProps = pendingProps.copy(nativeClickable = value)
+    }
+
+    internal fun stageCheckboxColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(checkboxColors = OneNativeCheckboxColors.fromMap(value, context))
+    }
+
+    internal fun stageSelected(value: Boolean) {
+        pendingProps = pendingProps.copy(selected = value)
+    }
+
+    internal fun stageRadioColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(radioColors = OneNativeRadioColors.fromMap(value, context))
+    }
+
+    internal fun stageCardColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(cardColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageCardElevation(value: Double) {
+        pendingProps = pendingProps.copy(cardElevation = value)
+    }
+
+    internal fun stageCardBorder(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(cardBorder = OneNativeCardBorder.fromMap(value, context))
+    }
+
+    internal fun stageDividerStyle(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(dividerStyle = OneNativeDividerStyle.fromMap(value, context))
     }
 
     internal fun stageAcknowledgedEvent(value: Int) {
@@ -588,16 +716,16 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         )
     }
 
-    internal fun handleSwitchChanged(nextValue: Boolean) {
+    internal fun handleBooleanChanged(nextValue: Boolean) {
         if (!compositionActive || committedProps.disabled || !isEnabled) return
-        val eventCount = controlledSwitch.change(nextValue) ?: return
+        val eventCount = controlledBoolean.change(nextValue) ?: return
         UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
-            OneNativeComposeNodeSwitchValueChangeEvent(
+            OneNativeComposeNodeBooleanValueChangeEvent(
                 surfaceId = UIManagerHelper.getSurfaceId(this),
                 viewTag = id,
                 value = nextValue,
                 eventCount = eventCount,
-                revision = controlledSwitch.revision,
+                revision = controlledBoolean.revision,
             )
         )
     }
@@ -755,7 +883,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         if (composeView.hasComposition) composeView.disposeComposition()
         pendingProps = OneNativeComposeNodeProps()
         committedProps = OneNativeComposeNodeProps()
-        controlledSwitch.reset(false)
+        controlledBoolean.reset(false)
         controlledText.reset("")
         controlledFocus.reset(false)
         controlledNumber.reset(0.0)
@@ -841,6 +969,46 @@ private fun RenderComposeNodeBody(
         }
         "button" -> RenderComposeButton(node, props, modifier)
         "switch" -> RenderComposeSwitch(node, props, modifier)
+        "checkbox" ->
+            Checkbox(
+                checked = node.renderedBooleanValue,
+                onCheckedChange = if (props.nativeClickable) node::handleBooleanChanged else null,
+                modifier = modifier,
+                enabled = !props.disabled && node.isEnabled,
+                colors = CheckboxDefaults.colors(
+                    checkedColor = props.checkboxColors.checkedColor?.let(::Color) ?: Color.Unspecified,
+                    disabledCheckedColor = props.checkboxColors.disabledCheckedColor?.let(::Color) ?: Color.Unspecified,
+                    uncheckedColor = props.checkboxColors.uncheckedColor?.let(::Color) ?: Color.Unspecified,
+                    disabledUncheckedColor = props.checkboxColors.disabledUncheckedColor?.let(::Color) ?: Color.Unspecified,
+                    checkmarkColor = props.checkboxColors.checkmarkColor?.let(::Color) ?: Color.Unspecified,
+                ),
+            )
+        "radio" ->
+            RadioButton(
+                selected = props.selected,
+                onClick = if (props.nativeClickable) node::handlePress else null,
+                modifier = modifier,
+                enabled = !props.disabled && node.isEnabled,
+                colors = RadioButtonDefaults.colors(
+                    selectedColor = props.radioColors.selectedColor?.let(::Color) ?: Color.Unspecified,
+                    unselectedColor = props.radioColors.unselectedColor?.let(::Color) ?: Color.Unspecified,
+                    disabledSelectedColor = props.radioColors.disabledSelectedColor?.let(::Color) ?: Color.Unspecified,
+                    disabledUnselectedColor = props.radioColors.disabledUnselectedColor?.let(::Color) ?: Color.Unspecified,
+                ),
+            )
+        "card", "elevatedcard", "outlinedcard" -> RenderComposeCard(node, props, modifier)
+        "horizontaldivider" ->
+            HorizontalDivider(
+                modifier = modifier,
+                thickness = props.dividerStyle.thickness.takeIf { it >= 0.0 }?.toFloat()?.dp ?: DividerDefaults.Thickness,
+                color = props.dividerStyle.color?.let(::Color) ?: DividerDefaults.color,
+            )
+        "verticaldivider" ->
+            VerticalDivider(
+                modifier = modifier,
+                thickness = props.dividerStyle.thickness.takeIf { it >= 0.0 }?.toFloat()?.dp ?: DividerDefaults.Thickness,
+                color = props.dividerStyle.color?.let(::Color) ?: DividerDefaults.color,
+            )
         "textfield" -> RenderComposeTextField(node, props, modifier)
         "slider" -> RenderComposeSlider(node, props, modifier)
         "alertdialog" -> RenderComposeAlertDialog(node, props, modifier)
@@ -857,6 +1025,68 @@ private fun RenderComposeNodeBody(
             Box(modifier = modifier) {
                 RenderComposeChildren(node)
             }
+    }
+}
+
+@Composable
+private fun RenderComposeCard(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val containerColor = props.cardColors.containerColor?.let(::Color)
+    val contentColor = props.cardColors.contentColor?.let(::Color)
+    val customElevation = props.cardElevation.takeIf { it >= 0.0 }?.toFloat()?.dp
+    val customBorder = props.cardBorder?.let { border ->
+        val width = border.width.toFloat().dp
+        border.color?.let { BorderStroke(width, Color(it)) }
+            ?: BorderStroke(width, CardDefaults.outlinedCardBorder().brush)
+    }
+    when (props.nodeType) {
+        "card" -> {
+            val defaults = CardDefaults.cardColors()
+            Card(
+                modifier = modifier,
+                colors = CardDefaults.cardColors(
+                    containerColor = containerColor ?: defaults.containerColor,
+                    contentColor = contentColor ?: defaults.contentColor,
+                ),
+                elevation = customElevation?.let { CardDefaults.cardElevation(defaultElevation = it) }
+                    ?: CardDefaults.cardElevation(),
+                border = customBorder,
+            ) {
+                RenderComposeChildren(node)
+            }
+        }
+        "elevatedcard" -> {
+            val defaults = CardDefaults.elevatedCardColors()
+            ElevatedCard(
+                modifier = modifier,
+                colors = CardDefaults.elevatedCardColors(
+                    containerColor = containerColor ?: defaults.containerColor,
+                    contentColor = contentColor ?: defaults.contentColor,
+                ),
+                elevation = customElevation?.let { CardDefaults.elevatedCardElevation(defaultElevation = it) }
+                    ?: CardDefaults.elevatedCardElevation(),
+            ) {
+                RenderComposeChildren(node)
+            }
+        }
+        "outlinedcard" -> {
+            val defaults = CardDefaults.outlinedCardColors()
+            OutlinedCard(
+                modifier = modifier,
+                colors = CardDefaults.outlinedCardColors(
+                    containerColor = containerColor ?: defaults.containerColor,
+                    contentColor = contentColor ?: defaults.contentColor,
+                ),
+                elevation = customElevation?.let { CardDefaults.outlinedCardElevation(defaultElevation = it) }
+                    ?: CardDefaults.outlinedCardElevation(),
+                border = customBorder ?: CardDefaults.outlinedCardBorder(),
+            ) {
+                RenderComposeChildren(node)
+            }
+        }
     }
 }
 
@@ -986,8 +1216,8 @@ private fun RenderComposeSwitch(
     val enabled = !props.disabled && node.isEnabled
     if (props.label.isNullOrEmpty()) {
         Switch(
-            checked = node.renderedSwitchValue,
-            onCheckedChange = node::handleSwitchChanged,
+            checked = node.renderedBooleanValue,
+            onCheckedChange = node::handleBooleanChanged,
             modifier = modifier,
             enabled = enabled,
         )
@@ -995,17 +1225,17 @@ private fun RenderComposeSwitch(
         Row(
             modifier =
                 modifier.toggleable(
-                    value = node.renderedSwitchValue,
+                    value = node.renderedBooleanValue,
                     enabled = enabled,
                     role = Role.Switch,
-                    onValueChange = node::handleSwitchChanged,
+                    onValueChange = node::handleBooleanChanged,
                 ),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Text(props.label, modifier = Modifier.weight(1f))
             Switch(
-                checked = node.renderedSwitchValue,
+                checked = node.renderedBooleanValue,
                 onCheckedChange = null,
                 enabled = enabled,
             )
@@ -1288,6 +1518,8 @@ private fun Modifier.applyReactSemantics(
             ?: when (node.renderedNodeKind) {
                 "button" -> Role.Button
                 "switch" -> Role.Switch
+                "checkbox" -> Role.Checkbox
+                "radio" -> Role.RadioButton
                 "icon" -> Role.Image
                 else -> null
             }
@@ -1305,7 +1537,7 @@ private fun Modifier.applyReactSemantics(
     // Fabric; only logical-only children need the compose testTag.
     val needsComposeTag = !testId.isNullOrEmpty() && node.parent == null
     if (needsComposeTag) result = result.testTag(testId)
-    val mergeDescendants = node.renderedNodeKind == "button" || node.renderedNodeKind == "switch"
+    val mergeDescendants = node.renderedNodeKind == "button" || node.renderedNodeKind == "switch" || node.renderedNodeKind == "checkbox" || node.renderedNodeKind == "radio"
     return result.semantics(mergeDescendants = mergeDescendants) {
         if (node.renderedNodeKind == "icon" && label.isNullOrEmpty()) invisibleToUser()
         if (!label.isNullOrEmpty()) contentDescription = label
@@ -1329,6 +1561,7 @@ private fun composeRole(value: String?): Role? =
         "button", "link" -> Role.Button
         "switch" -> Role.Switch
         "checkbox" -> Role.Checkbox
+        "radio" -> Role.RadioButton
         else -> null
     }
 

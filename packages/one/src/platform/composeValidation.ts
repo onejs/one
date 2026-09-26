@@ -2,10 +2,14 @@ import type {
   ComposeAlertDialogProps,
   ComposeBoxProps,
   ComposeButtonProps,
+  ComposeCardProps,
+  ComposeCheckboxProps,
   ComposeColumnProps,
   ComposeDialogProps,
+  ComposeDividerProps,
   ComposeIconProps,
   ComposeProgressIndicatorProps,
+  ComposeRadioButtonProps,
   ComposeRowProps,
   ComposeSliderProps,
   ComposeStyle,
@@ -134,6 +138,49 @@ const composeStyleColorKeys = new Set([
   'foregroundColor',
   'borderColor',
 ])
+const checkboxColorKeys = new Set([
+  'checkedColor',
+  'disabledCheckedColor',
+  'uncheckedColor',
+  'disabledUncheckedColor',
+  'checkmarkColor',
+])
+const radioColorKeys = new Set([
+  'selectedColor',
+  'unselectedColor',
+  'disabledSelectedColor',
+  'disabledUnselectedColor',
+])
+const cardColorKeys = new Set(['containerColor', 'contentColor'])
+
+function assertComposeColorValue(value: unknown, name: string) {
+  const resourcePaths =
+    value && typeof value === 'object' && 'resource_paths' in value
+      ? value.resource_paths
+      : undefined
+  if (
+    (typeof value !== 'string' || !value.trim()) &&
+    (typeof value !== 'number' || !Number.isFinite(value)) &&
+    (!Array.isArray(resourcePaths) ||
+      resourcePaths.length === 0 ||
+      resourcePaths.some((path) => typeof path !== 'string' || !path))
+  )
+    throw new Error(`Compose ${name} must be a color value`)
+}
+
+function assertComposeColors(
+  colors: unknown,
+  keys: ReadonlySet<string>,
+  owner: string
+) {
+  if (!colors || typeof colors !== 'object' || Array.isArray(colors))
+    throw new Error(`Compose ${owner} colors must be an object`)
+  for (const [key, value] of Object.entries(colors)) {
+    if (!keys.has(key))
+      throw new Error(`Compose ${owner} colors does not support ${key}`)
+    if (value !== undefined) assertComposeColorValue(value, `${owner} colors ${key}`)
+  }
+}
 
 export function assertComposeStyle(style: ComposeStyle | undefined) {
   if (style === undefined) return
@@ -155,21 +202,7 @@ export function assertComposeStyle(style: ComposeStyle | undefined) {
       continue
     }
     if (composeStyleColorKeys.has(key)) {
-      const colorValue = value as unknown
-      const resourcePaths =
-        colorValue &&
-        typeof colorValue === 'object' &&
-        'resource_paths' in colorValue
-          ? colorValue.resource_paths
-          : undefined
-      if (
-        (typeof value !== 'string' || !value.trim()) &&
-        (typeof value !== 'number' || !Number.isFinite(value)) &&
-        (!Array.isArray(resourcePaths) ||
-          resourcePaths.length === 0 ||
-          resourcePaths.some((path) => typeof path !== 'string' || !path))
-      )
-        throw new Error(`Compose composeStyle ${key} must be a color value`)
+      assertComposeColorValue(value, `composeStyle ${key}`)
       continue
     }
     if (typeof value !== 'boolean')
@@ -292,6 +325,57 @@ export function validateSwitchProps(props: ComposeSwitchProps) {
   assertBoolean(props.disabled ?? false, 'Switch disabled')
   assertString(props.label ?? '', 'Switch label')
   assertFunction(props.onIsOnChange, 'Switch onIsOnChange')
+}
+
+export function validateCheckboxProps(props: ComposeCheckboxProps) {
+  assertBoolean(props.value, 'Checkbox value')
+  assertBoolean(props.disabled ?? false, 'Checkbox disabled')
+  if (props.onCheckedChange !== undefined)
+    assertFunction(props.onCheckedChange, 'Checkbox onCheckedChange')
+  if (props.colors !== undefined) assertComposeColors(props.colors, checkboxColorKeys, 'Checkbox')
+}
+
+export function validateRadioButtonProps(props: ComposeRadioButtonProps) {
+  assertBoolean(props.selected, 'RadioButton selected')
+  assertBoolean(props.disabled ?? false, 'RadioButton disabled')
+  if (props.onClick !== undefined) assertFunction(props.onClick, 'RadioButton onClick')
+  if (props.colors !== undefined) assertComposeColors(props.colors, radioColorKeys, 'RadioButton')
+}
+
+export function validateCardProps(
+  props: ComposeCardProps,
+  kind: 'Card' | 'ElevatedCard' | 'OutlinedCard'
+) {
+  if (props.colors !== undefined) assertComposeColors(props.colors, cardColorKeys, kind)
+  if (props.elevation !== undefined) {
+    assertFiniteNumber(props.elevation, `${kind} elevation`)
+    if (props.elevation < 0) throw new Error(`Compose ${kind} elevation must be nonnegative`)
+  }
+  if (props.border === undefined) return
+  if (kind === 'ElevatedCard') throw new Error('Compose ElevatedCard does not support border')
+  if (!props.border || typeof props.border !== 'object' || Array.isArray(props.border))
+    throw new Error(`Compose ${kind} border must be an object`)
+  for (const key of Object.keys(props.border))
+    if (key !== 'width' && key !== 'color')
+      throw new Error(`Compose ${kind} border does not support ${key}`)
+  if (props.border.width !== undefined) {
+    assertFiniteNumber(props.border.width, `${kind} border width`)
+    if (props.border.width < 0)
+      throw new Error(`Compose ${kind} border width must be nonnegative`)
+  }
+  if (props.border.color !== undefined)
+    assertComposeColorValue(props.border.color, `${kind} border color`)
+}
+
+export function validateDividerProps(
+  props: ComposeDividerProps,
+  kind: 'HorizontalDivider' | 'VerticalDivider'
+) {
+  if (props.thickness !== undefined) {
+    assertFiniteNumber(props.thickness, `${kind} thickness`)
+    if (props.thickness < 0) throw new Error(`Compose ${kind} thickness must be nonnegative`)
+  }
+  if (props.color !== undefined) assertComposeColorValue(props.color, `${kind} color`)
 }
 
 export function validateTextFieldProps(props: ComposeTextFieldProps) {

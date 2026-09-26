@@ -2,10 +2,16 @@ import type {
   ComposeAlertDialogProps,
   ComposeBoxProps,
   ComposeButtonProps,
+  ComposeCardProps,
+  ComposeCheckboxProps,
   ComposeColumnProps,
   ComposeDialogProps,
+  ComposeDividerProps,
+  ComposeElevatedCardProps,
   ComposeIconProps,
+  ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
+  ComposeRadioButtonProps,
   ComposeRowProps,
   ComposeSliderProps,
   ComposeSwitchProps,
@@ -31,6 +37,26 @@ function Box(_props: ComposeBoxProps): never {
   return unsupported('Box')
 }
 
+function Card(_props: ComposeCardProps): never {
+  return unsupported('Card')
+}
+
+function ElevatedCard(_props: ComposeElevatedCardProps): never {
+  return unsupported('ElevatedCard')
+}
+
+function OutlinedCard(_props: ComposeOutlinedCardProps): never {
+  return unsupported('OutlinedCard')
+}
+
+function HorizontalDivider(_props: ComposeDividerProps): never {
+  return unsupported('HorizontalDivider')
+}
+
+function VerticalDivider(_props: ComposeDividerProps): never {
+  return unsupported('VerticalDivider')
+}
+
 function Text(_props: ComposeTextProps): never {
   return unsupported('Text')
 }
@@ -45,6 +71,14 @@ function Button(_props: ComposeButtonProps): never {
 
 function Switch(_props: ComposeSwitchProps): never {
   return unsupported('Switch')
+}
+
+function Checkbox(_props: ComposeCheckboxProps): never {
+  return unsupported('Checkbox')
+}
+
+function RadioButton(_props: ComposeRadioButtonProps): never {
+  return unsupported('RadioButton')
 }
 
 function TextField(_props: ComposeTextFieldProps): never {
@@ -71,10 +105,17 @@ export const Compose = {
   Column,
   Row,
   Box,
+  Card,
+  ElevatedCard,
+  OutlinedCard,
+  HorizontalDivider,
+  VerticalDivider,
   Text,
   Icon,
   Button,
   Switch,
+  Checkbox,
+  RadioButton,
   TextField,
   Slider,
   AlertDialog,

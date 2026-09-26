@@ -587,6 +587,12 @@
       "props": {},
       "events": {
         "onNativeReservedRegionsChange": {
+          "width": {
+            "type": "Double"
+          },
+          "height": {
+            "type": "Double"
+          },
           "regions": {
             "type": "{ id: string; kind: string; x: Double; y: Double; width: Double; height: Double; marginTop: Double; marginLeft: Double; marginBottom: Double; marginRight: Double; isActive: boolean }[]"
           }

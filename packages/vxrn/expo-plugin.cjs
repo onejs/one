@@ -14,8 +14,10 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // which One.Updates cannot re-point, so Android needs one prebuild.
 //
 // options: { holdLaunchScreen: true } keeps the launch storyboard over the
-// react native root until its first content, as one prebuild always does.
-// iOS only for now; leave it off while expo-splash-screen owns the splash.
+// react native root until its first content, and MainActivity's content
+// from drawing until then on Android, as one prebuild always does. leave it
+// off while expo-splash-screen owns the splash.
+// options: { location: { whenInUse: string } } sets the iOS location prompt.
 module.exports = function withVxrn(config, options = {}) {
   const projectRoot = config?._internal?.projectRoot
   if (!projectRoot) {
@@ -38,6 +40,24 @@ module.exports = function withVxrn(config, options = {}) {
   } = projectRequire('@expo/config-plugins')
 
   const notifications = options.notifications
+  const location = options.location
+  if (
+    location &&
+    (typeof location.whenInUse !== 'string' || !location.whenInUse.trim())
+  ) {
+    throw new Error('[vxrn/expo-plugin] location.whenInUse must be a non-empty string')
+  }
+  const locationPlugins = !location
+    ? []
+    : [
+        [
+          withInfoPlist,
+          (nextConfig) => {
+            nextConfig.modResults.NSLocationWhenInUseUsageDescription = location.whenInUse
+            return nextConfig
+          },
+        ],
+      ]
   const host = nativeProjectPatches.ONE_NOTIFICATIONS
   const notificationPlugins = !notifications
     ? []
@@ -188,17 +208,10 @@ module.exports = function withVxrn(config, options = {}) {
           'holdLaunchScreen',
           nativeProjectPatches.ONE_LAUNCH_SCREEN.bridgingHeaderImport
         ),
-        [
-          withMainActivity,
-          () => {
-            throw new Error(
-              '[vxrn/expo-plugin] holdLaunchScreen: the Android launch screen hold is not built yet; it supports iOS only'
-            )
-          },
-        ],
       ]
 
   return withPlugins(config, [
+    ...locationPlugins,
     ...notificationPlugins,
     ...updatesPlugins,
     ...launchScreenPlugins,
@@ -241,9 +254,12 @@ module.exports = function withVxrn(config, options = {}) {
     [
       withMainActivity,
       (nextConfig) => {
-        nextConfig.modResults.contents = nativeProjectPatches.addReactNativeScreensFix(
+        const contents = nativeProjectPatches.addReactNativeScreensFix(
           nextConfig.modResults.contents
         )
+        nextConfig.modResults.contents = options.holdLaunchScreen
+          ? nativeProjectPatches.holdLaunchScreenInMainActivity(contents)
+          : contents
         return nextConfig
       },
     ],

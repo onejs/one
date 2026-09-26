@@ -55,6 +55,10 @@ export {
   getHinge,
   onHingeChange,
   ReservedRegions,
+  useReservedRegions,
+  useReservedRegionsReady,
+  useWindowSegments,
+  useSpanning,
 } from './adaptive/index.native'
 export type {
   UserInterfaceSizeClass,
@@ -63,6 +67,7 @@ export type {
   HingeState,
   ReservedRegionKind,
   ReservedRegion,
+  WindowSegment,
   ReservedRegionOptions,
   ReservedRegionsProviderProps,
 } from './adaptive/types'
@@ -140,6 +145,10 @@ export type {
 export type * from './types'
 export type * from './composeTypes'
 export { Haptics } from './haptics/index.native'
+export { LocalAuthentication } from './local-authentication/index.native'
+export type { LocalAuthenticationStatus } from './local-authentication/index.native'
+export { Location } from './location/index.native'
+export type { LocationPermissionStatus, LocationPosition } from './location/index.native'
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native'
 export { AppInfo } from './app-info/index.native'
 export type { AppInfoApi } from './app-info/index.native'

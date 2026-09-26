@@ -29,10 +29,9 @@ The namespace tells you where an API runs:
   UIKit-backed modules under the names and prop contracts Apple uses.
 - `One.Android.X` is a platform framework in its own shape: Jetpack Compose
   views under the names and prop contracts Android uses.
-- `One.UI.X` is views only: one component that renders through the native
-  primitive on each platform (`One.UI.Image`, `One.UI.Map`, `One.UI.Icon`).
-  A few shared hooks and state helpers live here too
-  (`One.UI.useNativeState`, `One.UI.useSizeClass`).
+- `One.UI.X` contains components that render through native primitives on each
+  platform (`One.UI.Image`, `One.UI.Map`, `One.UI.Icon`). Shared hooks and state
+  helpers sit directly on `One` (`One.useNativeState`, `One.useSizeClass`).
 
 Platform-only components stay strict: SwiftUI components throw outside iOS
 builds and Compose components throw outside Android builds, so keep those

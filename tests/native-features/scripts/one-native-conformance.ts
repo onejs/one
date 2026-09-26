@@ -49,6 +49,8 @@ const suites = [
   'map',
   'apple-file',
   'apple-auth',
+  'local-authentication',
+  'location',
   'speech',
   'fetch',
   'secure-store',
@@ -321,6 +323,16 @@ const appleAuthLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-apple-auth-credential')) &&
   has(nodes, 'Available: ')
+const localAuthenticationLoaded = (nodes: Node[]) =>
+  (Boolean(id(nodes, 'one-native-local-auth-refresh')) && has(nodes, 'Status: ')) ||
+  (nodes.some((node) => node.type === 'Application') &&
+    nodes.some(
+      (node) =>
+        node.type === 'Heading' && node.AXLabel === 'one-native-local-authentication'
+    ))
+const locationLoaded = (nodes: Node[]) =>
+  (Boolean(id(nodes, 'one-native-location-request')) && has(nodes, 'Permission: ')) ||
+  has(nodes, 'Allow While Using App')
 // the microphone and speech prompts cover the fixture during the request
 const fetchLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-fetch-run')) && has(nodes, 'Status: ')
@@ -415,6 +427,8 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   map: mapLoaded,
   'apple-file': appleFileLoaded,
   'apple-auth': appleAuthLoaded,
+  'local-authentication': localAuthenticationLoaded,
+  location: locationLoaded,
   speech: speechLoaded,
   fetch: fetchLoaded,
   'secure-store': secureStoreLoaded,
@@ -451,6 +465,8 @@ const suiteHome: Record<Suite, string> = {
   map: 'nav-one-native-map',
   'apple-file': 'nav-one-native-apple-file',
   'apple-auth': 'nav-one-native-apple-auth',
+  'local-authentication': 'nav-one-native-local-authentication',
+  location: 'nav-one-native-location',
   speech: 'nav-one-native-speech',
   fetch: 'nav-one-native-fetch',
   'secure-store': 'nav-one-native-secure-store',
@@ -775,6 +791,23 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       ['simctl', 'privacy', config.simulatorId, 'reset', 'camera', config.bundleId],
       { stdio: 'ignore', timeout: 30_000 }
     )
+  }
+  if (config.suite === 'local-authentication') {
+    execFileSync(
+      'applesimutils',
+      ['--byId', config.simulatorId, '--biometricEnrollment', 'NO'],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
+  }
+  if (config.suite === 'location') {
+    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'location', config.bundleId], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '37.7749,-122.4194'], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
   }
   if (config.suite === 'notifications' || config.suite === 'speech') {
     // simctl privacy has no notifications or speech recognition service on
@@ -4189,6 +4222,116 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         labels(n).includes('Available: true') && labels(n).includes('CredentialState: none')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'local-authentication') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-local-authentication')
+    await wait('unenrolled biometrics are unavailable', (n) =>
+      labels(n).some((label) => label.startsWith('Status: false:'))
+    )
+    screenshot('local-auth-unenrolled.png')
+    tap({ id: 'one-native-local-auth-evaluate' })
+    await wait('unenrolled evaluation reports its error code', (n) =>
+      labels(n).includes('Result: error: E_LOCAL_AUTH_NOT_ENROLLED')
+    )
+
+    execFileSync(
+      'applesimutils',
+      ['--byId', config.simulatorId, '--biometricEnrollment', 'YES'],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
+    tap({ id: 'one-native-local-auth-refresh' })
+    await wait('enrollment enables the biometric policy', (n) =>
+      labels(n).some((label) => label.startsWith('Status: true:faceID:'))
+    )
+    tap({ id: 'one-native-local-auth-evaluate' })
+    // the simulator's Face ID tile paints but publishes no accessible text;
+    // while it is up, the fixture disappears from the accessibility tree.
+    await wait('native Face ID prompt owns the screen', (n) =>
+      n.some((node) => node.type === 'Application') &&
+      !id(n, 'one-native-local-auth-evaluate') &&
+      n.some((node) => node.type === 'Heading' && node.AXLabel === 'one-native-local-authentication')
+    )
+    screenshot('local-auth-prompt.png')
+    execFileSync('applesimutils', ['--byId', config.simulatorId, '--biometricMatch'], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    await wait('matching biometrics resolves success', (n) =>
+      labels(n).includes('Result: success')
+    )
+    screenshot('local-auth-success.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'location') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-location')
+    await wait('location starts undetermined', (n) =>
+      labels(n).includes('Permission: notDetermined')
+    )
+    tap({ id: 'one-native-location-current' })
+    await wait('position requires authorization', (n) =>
+      labels(n).includes('Position: error: E_LOCATION_PERMISSION')
+    )
+    tap({ id: 'one-native-location-request' })
+    await wait('native location permission prompt appears with usage text', (n) =>
+      has(n, 'Allow While Using App') &&
+      labels(n).some((label) => label.includes('NativeFeatureTests verifies current location.'))
+    )
+    screenshot('location-permission-prompt.png')
+    tap({ label: 'Allow While Using App' })
+    await wait('location permission resolves when in use', (n) =>
+      labels(n).includes('Permission: whenInUse') &&
+      labels(n).includes('Concurrent: whenInUse,whenInUse')
+    )
+    tap({ id: 'one-native-location-current' })
+    await wait('current position matches simulated coordinate', (n) =>
+      labels(n).includes('Position: 37.7749,-122.4194')
+    )
+    tap({ id: 'one-native-location-watch' })
+    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '40.7128,-74.0060'], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    await wait('location watch reports the moved coordinate', (n) =>
+      labels(n).includes('Watch: 40.7128,-74.0060')
+    )
+    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '34.0522,-118.2437'], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    await wait('location watch reports a second move', (n) =>
+      labels(n).includes('Watch: 34.0522,-118.2437')
+    )
+    tap({ id: 'one-native-location-current' })
+    await wait('current position works alongside the watch', (n) =>
+      labels(n).includes('Position: 34.0522,-118.2437')
+    )
+    tap({ id: 'one-native-location-stop-watch' })
+    await wait('location watch stops', (n) => labels(n).includes('Watch: stopped'))
+    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '47.6062,-122.3321'], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    tap({ id: 'one-native-location-current' })
+    await wait('one-shot sees another move after watch stop', (n) =>
+      labels(n).includes('Position: 47.6062,-122.3321') &&
+      labels(n).includes('Watch: stopped')
+    )
+    tap({ id: 'one-native-location-forward' })
+    await wait('forward geocoding returns Cupertino coordinates', (n) =>
+      labels(n).some((label) => /^Forward: [1-9]\d*:37\.3\d,-122\.0\d$/.test(label))
+    )
+    tap({ id: 'one-native-location-reverse' })
+    await wait('reverse geocoding identifies San Francisco', (n) =>
+      labels(n).includes('Reverse: San Francisco')
+    )
+    screenshot('location-current-position.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

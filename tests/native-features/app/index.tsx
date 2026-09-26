@@ -167,6 +167,21 @@ const testScreens = [
     testID: 'nav-one-native-android-inputs',
   },
   {
+    href: '/one-native-android-selection',
+    label: 'One Native Android Selection',
+    testID: 'nav-one-native-android-selection',
+  },
+  {
+    href: '/one-native-android-cards',
+    label: 'One Native Android Cards',
+    testID: 'nav-one-native-android-cards',
+  },
+  {
+    href: '/one-native-android-dividers',
+    label: 'One Native Android Dividers',
+    testID: 'nav-one-native-android-dividers',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',
@@ -215,6 +230,16 @@ const testScreens = [
     href: '/one-native-apple-auth',
     label: 'One Native Apple Auth',
     testID: 'nav-one-native-apple-auth',
+  },
+  {
+    href: '/one-native-local-authentication',
+    label: 'One Native Local Authentication',
+    testID: 'nav-one-native-local-authentication',
+  },
+  {
+    href: '/one-native-location',
+    label: 'One Native Location',
+    testID: 'nav-one-native-location',
   },
   {
     href: '/one-native-speech',

@@ -10,16 +10,22 @@ import type {
   ComposeButtonProps,
   ComposeButtonTone,
   ComposeButtonVariant,
+  ComposeCardProps,
+  ComposeCheckboxProps,
   ComposeColumnProps,
   ComposeContentAlignment,
   ComposeDialogProps,
+  ComposeDividerProps,
+  ComposeElevatedCardProps,
   ComposeFontWeight,
   ComposeHorizontalAlignment,
   ComposeHorizontalArrangement,
   ComposeIconProps,
   ComposeNodeProps,
+  ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
   ComposeProgressVariant,
+  ComposeRadioButtonProps,
   ComposeRowProps,
   ComposeSliderProps,
   ComposeSwitchProps,
@@ -39,10 +45,14 @@ import {
   validateAlertDialogProps,
   validateBoxProps,
   validateButtonProps,
+  validateCardProps,
+  validateCheckboxProps,
   validateColumnProps,
   validateDialogProps,
+  validateDividerProps,
   validateIconProps,
   validateProgressIndicatorProps,
+  validateRadioButtonProps,
   validateRowProps,
   validateSliderProps,
   validateSwitchProps,
@@ -54,10 +64,17 @@ type ComposeNodeType =
   | 'column'
   | 'row'
   | 'box'
+  | 'card'
+  | 'elevatedcard'
+  | 'outlinedcard'
+  | 'horizontaldivider'
+  | 'verticaldivider'
   | 'text'
   | 'icon'
   | 'button'
   | 'switch'
+  | 'checkbox'
+  | 'radio'
   | 'textfield'
   | 'slider'
   | 'alertdialog'
@@ -85,6 +102,14 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   iconFilled?: boolean
   colorRole?: string
   value?: boolean
+  nativeClickable?: boolean
+  checkboxColors?: ComposeCheckboxProps['colors']
+  selected?: boolean
+  radioColors?: ComposeRadioButtonProps['colors']
+  cardColors?: ComposeCardProps['colors']
+  cardElevation?: number
+  cardBorder?: ComposeCardProps['border']
+  dividerStyle?: Pick<ComposeDividerProps, 'thickness' | 'color'>
   acknowledgedEvent?: number
   revision?: number
   textValue?: string
@@ -112,7 +137,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   progress?: number
   progressVariant?: ComposeProgressVariant
   onNativeComposeNodeButtonPress?: (event: unknown) => void
-  onNativeComposeNodeSwitchValueChange?: (event: {
+  onNativeComposeNodeBooleanValueChange?: (event: {
     nativeEvent: { value: boolean; eventCount: number; revision: number }
   }) => void
   onNativeComposeNodeTextValueChange?: (event: {
@@ -136,10 +161,14 @@ const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
   'icon',
   'button',
   'switch',
+  'checkbox',
+  'radio',
   'textfield',
   'slider',
   'alertdialog',
   'progressindicator',
+  'horizontaldivider',
+  'verticaldivider',
 ])
 
 function ComposeNode({
@@ -218,6 +247,47 @@ function Box({ children, contentAlignment = 'topStart', ...props }: ComposeBoxPr
       {children}
     </ComposeNode>
   )
+}
+
+function renderCard(
+  nodeType: 'card' | 'elevatedcard' | 'outlinedcard',
+  kind: 'Card' | 'ElevatedCard' | 'OutlinedCard',
+  { children, colors, elevation, border, ...props }: ComposeCardProps
+) {
+  validateCardProps({ colors, elevation, border }, kind)
+  return (
+    <ComposeNode
+      {...props}
+      nodeType={nodeType}
+      cardColors={colors}
+      cardElevation={elevation}
+      cardBorder={border}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function Card(props: ComposeCardProps) {
+  return renderCard('card', 'Card', props)
+}
+
+function ElevatedCard(props: ComposeElevatedCardProps) {
+  return renderCard('elevatedcard', 'ElevatedCard', props)
+}
+
+function OutlinedCard(props: ComposeOutlinedCardProps) {
+  return renderCard('outlinedcard', 'OutlinedCard', props)
+}
+
+function HorizontalDivider({ thickness, color, ...props }: ComposeDividerProps) {
+  validateDividerProps({ thickness, color }, 'HorizontalDivider')
+  return <ComposeNode {...props} nodeType="horizontaldivider" dividerStyle={{ thickness, color }} />
+}
+
+function VerticalDivider({ thickness, color, ...props }: ComposeDividerProps) {
+  validateDividerProps({ thickness, color }, 'VerticalDivider')
+  return <ComposeNode {...props} nodeType="verticaldivider" dividerStyle={{ thickness, color }} />
 }
 
 function Text({
@@ -314,9 +384,63 @@ function Switch({
       revision={revision}
       label={label}
       disabled={disabled}
-      onNativeComposeNodeSwitchValueChange={(event) =>
+      onNativeComposeNodeBooleanValueChange={(event) =>
         controlled.onNativeChange(event.nativeEvent)
       }
+    />
+  )
+}
+
+function Checkbox({
+  value,
+  disabled = false,
+  onCheckedChange,
+  revision = 0,
+  colors,
+  ...props
+}: ComposeCheckboxProps) {
+  validateCheckboxProps({ value, disabled, onCheckedChange, revision, colors })
+  const controlled = useControlled<{
+    value: boolean
+    eventCount: number
+    revision: number
+  }>((event) => onCheckedChange?.(event.value), revision)
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="checkbox"
+      value={value}
+      nativeClickable={onCheckedChange !== undefined}
+      checkboxColors={colors}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      disabled={disabled}
+      onNativeComposeNodeBooleanValueChange={
+        onCheckedChange
+          ? (event) => controlled.onNativeChange(event.nativeEvent)
+          : undefined
+      }
+    />
+  )
+}
+
+function RadioButton({
+  selected,
+  disabled = false,
+  onClick,
+  colors,
+  ...props
+}: ComposeRadioButtonProps) {
+  validateRadioButtonProps({ selected, disabled, onClick, colors })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="radio"
+      selected={selected}
+      disabled={disabled}
+      nativeClickable={onClick !== undefined}
+      radioColors={colors}
+      onNativeComposeNodeButtonPress={onClick ? () => onClick() : undefined}
     />
   )
 }
@@ -525,10 +649,17 @@ export const Compose = {
   Column,
   Row,
   Box,
+  Card,
+  ElevatedCard,
+  OutlinedCard,
+  HorizontalDivider,
+  VerticalDivider,
   Text,
   Icon,
   Button,
   Switch,
+  Checkbox,
+  RadioButton,
   TextField,
   Slider,
   AlertDialog,
