@@ -64,6 +64,7 @@ declare module 'one' {
         | `/one-native-popover`
         | `/one-native-safe-area`
         | `/one-native-secure-store`
+        | `/one-native-share`
         | `/one-native-sheet`
         | `/one-native-source`
         | `/one-native-speech`

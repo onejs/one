@@ -10,6 +10,7 @@ import {
   Location,
   FileSystem,
   Audio,
+  Share,
   WidgetUI,
   Clipboard as NativeClipboard,
   AppInfo,
@@ -56,6 +57,7 @@ export type OneIOS = typeof Swift & {
   readonly Location: typeof Location
   readonly FileSystem: typeof FileSystem
   readonly Audio: typeof Audio
+  readonly Share: typeof Share
   readonly Color: ColorType['ios']
   readonly MenuAction: typeof MenuAction
   readonly SplitView: typeof SplitView
@@ -125,6 +127,7 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   Location,
   FileSystem,
   Audio,
+  Share,
   Color: Color.ios,
   MenuAction,
   SplitView,

@@ -81,6 +81,9 @@
     "OneAudio": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneAudio" }
     },
+    "OneShare": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneShare" }
+    },
     "OneUpdates": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneUpdates" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneUpdates" }

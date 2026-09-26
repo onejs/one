@@ -122,6 +122,8 @@ namespace margelo::nitro::one { class HybridOneNetworkSpec; }
 namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 // Forward declaration of `HybridOneSecureStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
+// Forward declaration of `HybridOneShareSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneShareSpec; }
 // Forward declaration of `HybridOneSpeechSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
 // Forward declaration of `HybridOneUpdatesSpec` to properly resolve imports.
@@ -194,6 +196,12 @@ namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
 namespace margelo::nitro::one { struct ResolvedDocumentPickerOptions; }
 // Forward declaration of `ResolvedImagePickerOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
+// Forward declaration of `ShareItemType` to properly resolve imports.
+namespace margelo::nitro::one { enum class ShareItemType; }
+// Forward declaration of `ShareItem` to properly resolve imports.
+namespace margelo::nitro::one { struct ShareItem; }
+// Forward declaration of `ShareResult` to properly resolve imports.
+namespace margelo::nitro::one { struct ShareResult; }
 // Forward declaration of `SizeClass` to properly resolve imports.
 namespace margelo::nitro::one { struct SizeClass; }
 // Forward declaration of `SpeechErrorCode` to properly resolve imports.
@@ -269,6 +277,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
+#include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
 #include "HybridOneUpdatesSpec.hpp"
 #include "ImagePickerAsset.hpp"
@@ -305,6 +314,9 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "OneUpdatesFetchType.hpp"
 #include "ResolvedDocumentPickerOptions.hpp"
 #include "ResolvedImagePickerOptions.hpp"
+#include "ShareItem.hpp"
+#include "ShareItemType.hpp"
+#include "ShareResult.hpp"
 #include "SizeClass.hpp"
 #include "SpeechErrorCode.hpp"
 #include "SpeechEvent.hpp"
@@ -372,6 +384,8 @@ namespace One { class HybridOneNetworkSpec_cxx; }
 namespace One { class HybridOneNotificationsSpec_cxx; }
 // Forward declaration of `HybridOneSecureStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSecureStoreSpec_cxx; }
+// Forward declaration of `HybridOneShareSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneShareSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSpeechSpec_cxx; }
 // Forward declaration of `HybridOneUpdatesSpec_cxx` to properly resolve imports.

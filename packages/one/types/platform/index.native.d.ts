@@ -118,6 +118,8 @@ export { FileSystem } from './file-system/index.native';
 export type { FileDirectories, FileEncoding, FileEntry, FileInfo } from './file-system/index.native';
 export { Audio } from './audio/index.native';
 export type { AudioPlaybackState, AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, } from './audio/index.native';
+export { Share } from './share/index.native';
+export type { ShareItem, ShareItemType, ShareResult } from './share/index.native';
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native';
 export { AppInfo } from './app-info/index.native';
 export type { AppInfoApi } from './app-info/index.native';

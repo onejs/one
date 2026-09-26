@@ -240,6 +240,18 @@ public final class OneAutolinking {
     return HybridOneAudio.self is any RecyclableView.Type
   }
 
+  public static func createOneShare() -> bridge.std__shared_ptr_HybridOneShareSpec_ {
+    let hybridObject = HybridOneShare()
+    return { () -> bridge.std__shared_ptr_HybridOneShareSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isOneShareRecyclable() -> Bool {
+    return HybridOneShare.self is any RecyclableView.Type
+  }
+
   public static func createOneUpdates() -> bridge.std__shared_ptr_HybridOneUpdatesSpec_ {
     let hybridObject = HybridOneUpdates()
     return { () -> bridge.std__shared_ptr_HybridOneUpdatesSpec_ in

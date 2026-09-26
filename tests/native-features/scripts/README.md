@@ -111,6 +111,12 @@ file, checks its size through FileSystem, then plays, pauses, seeks, resumes,
 and stops that file. Invalid URI and idle-player calls must reject with their
 documented codes.
 
+`share` covers `One.iOS.Share` on an iOS 27 simulator. It opens the system
+share sheet with text and a URL, then opens it again with a real cache file.
+A second request rejects while the first sheet is open. Copy completes the
+first sheet with an activity type; canceling the file sheet resolves false.
+Invalid items reject with their documented codes.
+
 `network` covers `One.Network`: the one-shot read publishes a live state with a named type and both flags true, the listener fires at least once, and a refresh re-reads. State republishes across two leave/reenter cycles.
 
 `browser` covers `One.Browser`: a user close-tap on the measured button point resolves cancel, a programmatic dismiss resolves dismiss on both the open and dismiss promises, dismissing a pending auth session resolves dismiss on its promise too, and a redirect to the app scheme resolves success with the url. The sheet exposes no accessibility children, so presentation is the collapsed tree. The redirect leg serves a local 302 (127.0.0.1:8123) from the runner in ephemeral mode, which skips the consent alert.

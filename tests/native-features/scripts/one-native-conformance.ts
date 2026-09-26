@@ -53,6 +53,7 @@ const suites = [
   'location',
   'file-system',
   'audio',
+  'share',
   'speech',
   'fetch',
   'secure-store',
@@ -341,6 +342,8 @@ const fileSystemLoaded = (nodes: Node[]) =>
 const audioLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-audio-run')) ||
   labels(nodes).some((label) => label.includes('NativeFeatureTests verifies audio recording.'))
+const shareLoaded = (nodes: Node[]) =>
+  nodes.some((node) => node.type === 'Application')
 // the microphone and speech prompts cover the fixture during the request
 const fetchLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-fetch-run')) && has(nodes, 'Status: ')
@@ -439,6 +442,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   location: locationLoaded,
   'file-system': fileSystemLoaded,
   audio: audioLoaded,
+  share: shareLoaded,
   speech: speechLoaded,
   fetch: fetchLoaded,
   'secure-store': secureStoreLoaded,
@@ -479,6 +483,7 @@ const suiteHome: Record<Suite, string> = {
   location: 'nav-one-native-location',
   'file-system': 'nav-one-native-file-system',
   audio: 'nav-one-native-audio',
+  share: 'nav-one-native-share',
   speech: 'nav-one-native-speech',
   fetch: 'nav-one-native-fetch',
   'secure-store': 'nav-one-native-secure-store',
@@ -4433,6 +4438,47 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('audio-record-and-play.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'share') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-share')
+    await wait('share fixture starts idle', (n) => labels(n).includes('Status: idle'))
+    const frame = snapshot(config.simulatorId).find((node) => node.type === 'Application')?.frame
+    if (!frame) throw new Error('share fixture has no application frame')
+    const center = String(Math.round(frame.width / 2))
+    const activityAt = (x: number, y: number) =>
+      JSON.parse(axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)) as Node
+    const dismissShare = () =>
+      axe(
+        [
+          'swipe', '--start-x', center, '--start-y', String(Math.round(frame.height * 0.5)),
+          '--end-x', center, '--end-y', String(Math.round(frame.height * 0.95)),
+          '--duration', '0.5',
+        ],
+        config.simulatorId
+      )
+    tap({ id: 'one-native-share-run' })
+    await wait('share sheet opens with Copy activity', () =>
+      activityAt(70, 780).AXLabel?.toLowerCase() === 'copy'
+    )
+    screenshot('share-text-and-url.png')
+    point(70, 780)
+    await wait('file share opens with Save to Files activity', () =>
+      activityAt(155, 820).AXLabel === 'Save to Files'
+    )
+    screenshot('share-file.png')
+    dismissShare()
+    await wait('canceled share and input errors settle', (n) =>
+      labels(n).includes('Status: passed') &&
+      labels(n).includes(
+        'Result: text=true; activity=com.apple.UIKit.activity.CopyToPasteboard; file=false; ' +
+          'empty=E_SHARE_ITEMS; missing=E_SHARE_FILE; url=E_SHARE_URL; blank=E_SHARE_ITEMS'
+      )
+    )
+    screenshot('share-completion.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
