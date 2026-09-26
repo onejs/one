@@ -2,10 +2,13 @@ import type {
   ComposeAlertDialogProps,
   ComposeBoxProps,
   ComposeButtonProps,
+  ComposeCardProps,
   ComposeCheckboxProps,
   ComposeColumnProps,
   ComposeDialogProps,
+  ComposeElevatedCardProps,
   ComposeIconProps,
+  ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
   ComposeRadioButtonProps,
   ComposeRowProps,
@@ -31,6 +34,18 @@ function Row(_props: ComposeRowProps): never {
 
 function Box(_props: ComposeBoxProps): never {
   return unsupported('Box')
+}
+
+function Card(_props: ComposeCardProps): never {
+  return unsupported('Card')
+}
+
+function ElevatedCard(_props: ComposeElevatedCardProps): never {
+  return unsupported('ElevatedCard')
+}
+
+function OutlinedCard(_props: ComposeOutlinedCardProps): never {
+  return unsupported('OutlinedCard')
 }
 
 function Text(_props: ComposeTextProps): never {
@@ -81,6 +96,9 @@ export const Compose = {
   Column,
   Row,
   Box,
+  Card,
+  ElevatedCard,
+  OutlinedCard,
   Text,
   Icon,
   Button,

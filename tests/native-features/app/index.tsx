@@ -172,6 +172,11 @@ const testScreens = [
     testID: 'nav-one-native-android-selection',
   },
   {
+    href: '/one-native-android-cards',
+    label: 'One Native Android Cards',
+    testID: 'nav-one-native-android-cards',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',

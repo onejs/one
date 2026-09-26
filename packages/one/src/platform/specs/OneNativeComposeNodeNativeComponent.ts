@@ -55,6 +55,15 @@ interface NativeProps extends ViewProps {
     disabledSelectedColor?: ColorValue
     disabledUnselectedColor?: ColorValue
   }>
+  cardColors?: Readonly<{
+    containerColor?: ColorValue
+    contentColor?: ColorValue
+  }>
+  cardElevation?: WithDefault<Double, -1>
+  cardBorder?: Readonly<{
+    width?: WithDefault<Double, 1>
+    color?: ColorValue
+  }>
   acknowledgedEvent?: Int32
   revision?: Int32
   alignment?: string

@@ -29,18 +29,22 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
@@ -160,6 +164,34 @@ internal data class OneNativeRadioColors(
     }
 }
 
+internal data class OneNativeCardColors(
+    val containerColor: Int? = null,
+    val contentColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeCardColors =
+            if (map == null) OneNativeCardColors() else OneNativeCardColors(
+                containerColor = readComposeColor(map, "containerColor", context),
+                contentColor = readComposeColor(map, "contentColor", context),
+            )
+    }
+}
+
+internal data class OneNativeCardBorder(
+    val width: Double = 1.0,
+    val color: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeCardBorder? =
+            map?.let {
+                OneNativeCardBorder(
+                    width = if (it.hasKey("width") && !it.isNull("width")) it.getDouble("width") else 1.0,
+                    color = readComposeColor(it, "color", context),
+                )
+            }
+    }
+}
+
 internal data class OneNativeComposeStyle(
     val backgroundColor: Int? = null,
     val foregroundColor: Int? = null,
@@ -231,6 +263,9 @@ internal data class OneNativeComposeNodeProps(
     val checkboxColors: OneNativeCheckboxColors = OneNativeCheckboxColors(),
     val selected: Boolean = false,
     val radioColors: OneNativeRadioColors = OneNativeRadioColors(),
+    val cardColors: OneNativeCardColors = OneNativeCardColors(),
+    val cardElevation: Double = -1.0,
+    val cardBorder: OneNativeCardBorder? = null,
     val acknowledgedEvent: Int = 0,
     val revision: Int = 0,
     val alignment: String? = null,
@@ -514,6 +549,18 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageRadioColors(value: ReadableMap?) {
         pendingProps = pendingProps.copy(radioColors = OneNativeRadioColors.fromMap(value, context))
+    }
+
+    internal fun stageCardColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(cardColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageCardElevation(value: Double) {
+        pendingProps = pendingProps.copy(cardElevation = value)
+    }
+
+    internal fun stageCardBorder(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(cardBorder = OneNativeCardBorder.fromMap(value, context))
     }
 
     internal fun stageAcknowledgedEvent(value: Int) {
@@ -928,6 +975,7 @@ private fun RenderComposeNodeBody(
                     disabledUnselectedColor = props.radioColors.disabledUnselectedColor?.let(::Color) ?: Color.Unspecified,
                 ),
             )
+        "card", "elevatedcard", "outlinedcard" -> RenderComposeCard(node, props, modifier)
         "textfield" -> RenderComposeTextField(node, props, modifier)
         "slider" -> RenderComposeSlider(node, props, modifier)
         "alertdialog" -> RenderComposeAlertDialog(node, props, modifier)
@@ -944,6 +992,68 @@ private fun RenderComposeNodeBody(
             Box(modifier = modifier) {
                 RenderComposeChildren(node)
             }
+    }
+}
+
+@Composable
+private fun RenderComposeCard(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val containerColor = props.cardColors.containerColor?.let(::Color)
+    val contentColor = props.cardColors.contentColor?.let(::Color)
+    val customElevation = props.cardElevation.takeIf { it >= 0.0 }?.toFloat()?.dp
+    val customBorder = props.cardBorder?.let { border ->
+        val width = border.width.toFloat().dp
+        border.color?.let { BorderStroke(width, Color(it)) }
+            ?: BorderStroke(width, CardDefaults.outlinedCardBorder().brush)
+    }
+    when (props.nodeType) {
+        "card" -> {
+            val defaults = CardDefaults.cardColors()
+            Card(
+                modifier = modifier,
+                colors = CardDefaults.cardColors(
+                    containerColor = containerColor ?: defaults.containerColor,
+                    contentColor = contentColor ?: defaults.contentColor,
+                ),
+                elevation = customElevation?.let { CardDefaults.cardElevation(defaultElevation = it) }
+                    ?: CardDefaults.cardElevation(),
+                border = customBorder,
+            ) {
+                RenderComposeChildren(node)
+            }
+        }
+        "elevatedcard" -> {
+            val defaults = CardDefaults.elevatedCardColors()
+            ElevatedCard(
+                modifier = modifier,
+                colors = CardDefaults.elevatedCardColors(
+                    containerColor = containerColor ?: defaults.containerColor,
+                    contentColor = contentColor ?: defaults.contentColor,
+                ),
+                elevation = customElevation?.let { CardDefaults.elevatedCardElevation(defaultElevation = it) }
+                    ?: CardDefaults.elevatedCardElevation(),
+            ) {
+                RenderComposeChildren(node)
+            }
+        }
+        "outlinedcard" -> {
+            val defaults = CardDefaults.outlinedCardColors()
+            OutlinedCard(
+                modifier = modifier,
+                colors = CardDefaults.outlinedCardColors(
+                    containerColor = containerColor ?: defaults.containerColor,
+                    contentColor = contentColor ?: defaults.contentColor,
+                ),
+                elevation = customElevation?.let { CardDefaults.outlinedCardElevation(defaultElevation = it) }
+                    ?: CardDefaults.outlinedCardElevation(),
+                border = customBorder ?: CardDefaults.outlinedCardBorder(),
+            ) {
+                RenderComposeChildren(node)
+            }
+        }
     }
 }
 

@@ -2,6 +2,7 @@ import type {
   ComposeAlertDialogProps,
   ComposeBoxProps,
   ComposeButtonProps,
+  ComposeCardProps,
   ComposeCheckboxProps,
   ComposeColumnProps,
   ComposeDialogProps,
@@ -149,6 +150,7 @@ const radioColorKeys = new Set([
   'disabledSelectedColor',
   'disabledUnselectedColor',
 ])
+const cardColorKeys = new Set(['containerColor', 'contentColor'])
 
 function assertComposeColorValue(value: unknown, name: string) {
   const resourcePaths =
@@ -337,6 +339,31 @@ export function validateRadioButtonProps(props: ComposeRadioButtonProps) {
   assertBoolean(props.disabled ?? false, 'RadioButton disabled')
   if (props.onClick !== undefined) assertFunction(props.onClick, 'RadioButton onClick')
   if (props.colors !== undefined) assertComposeColors(props.colors, radioColorKeys, 'RadioButton')
+}
+
+export function validateCardProps(
+  props: ComposeCardProps,
+  kind: 'Card' | 'ElevatedCard' | 'OutlinedCard'
+) {
+  if (props.colors !== undefined) assertComposeColors(props.colors, cardColorKeys, kind)
+  if (props.elevation !== undefined) {
+    assertFiniteNumber(props.elevation, `${kind} elevation`)
+    if (props.elevation < 0) throw new Error(`Compose ${kind} elevation must be nonnegative`)
+  }
+  if (props.border === undefined) return
+  if (kind === 'ElevatedCard') throw new Error('Compose ElevatedCard does not support border')
+  if (!props.border || typeof props.border !== 'object' || Array.isArray(props.border))
+    throw new Error(`Compose ${kind} border must be an object`)
+  for (const key of Object.keys(props.border))
+    if (key !== 'width' && key !== 'color')
+      throw new Error(`Compose ${kind} border does not support ${key}`)
+  if (props.border.width !== undefined) {
+    assertFiniteNumber(props.border.width, `${kind} border width`)
+    if (props.border.width < 0)
+      throw new Error(`Compose ${kind} border width must be nonnegative`)
+  }
+  if (props.border.color !== undefined)
+    assertComposeColorValue(props.border.color, `${kind} border color`)
 }
 
 export function validateTextFieldProps(props: ComposeTextFieldProps) {

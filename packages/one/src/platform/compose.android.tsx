@@ -10,15 +10,18 @@ import type {
   ComposeButtonProps,
   ComposeButtonTone,
   ComposeButtonVariant,
+  ComposeCardProps,
   ComposeCheckboxProps,
   ComposeColumnProps,
   ComposeContentAlignment,
   ComposeDialogProps,
+  ComposeElevatedCardProps,
   ComposeFontWeight,
   ComposeHorizontalAlignment,
   ComposeHorizontalArrangement,
   ComposeIconProps,
   ComposeNodeProps,
+  ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
   ComposeProgressVariant,
   ComposeRadioButtonProps,
@@ -41,6 +44,7 @@ import {
   validateAlertDialogProps,
   validateBoxProps,
   validateButtonProps,
+  validateCardProps,
   validateCheckboxProps,
   validateColumnProps,
   validateDialogProps,
@@ -58,6 +62,9 @@ type ComposeNodeType =
   | 'column'
   | 'row'
   | 'box'
+  | 'card'
+  | 'elevatedcard'
+  | 'outlinedcard'
   | 'text'
   | 'icon'
   | 'button'
@@ -95,6 +102,9 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   checkboxColors?: ComposeCheckboxProps['colors']
   selected?: boolean
   radioColors?: ComposeRadioButtonProps['colors']
+  cardColors?: ComposeCardProps['colors']
+  cardElevation?: number
+  cardBorder?: ComposeCardProps['border']
   acknowledgedEvent?: number
   revision?: number
   textValue?: string
@@ -230,6 +240,37 @@ function Box({ children, contentAlignment = 'topStart', ...props }: ComposeBoxPr
       {children}
     </ComposeNode>
   )
+}
+
+function renderCard(
+  nodeType: 'card' | 'elevatedcard' | 'outlinedcard',
+  kind: 'Card' | 'ElevatedCard' | 'OutlinedCard',
+  { children, colors, elevation, border, ...props }: ComposeCardProps
+) {
+  validateCardProps({ colors, elevation, border }, kind)
+  return (
+    <ComposeNode
+      {...props}
+      nodeType={nodeType}
+      cardColors={colors}
+      cardElevation={elevation}
+      cardBorder={border}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function Card(props: ComposeCardProps) {
+  return renderCard('card', 'Card', props)
+}
+
+function ElevatedCard(props: ComposeElevatedCardProps) {
+  return renderCard('elevatedcard', 'ElevatedCard', props)
+}
+
+function OutlinedCard(props: ComposeOutlinedCardProps) {
+  return renderCard('outlinedcard', 'OutlinedCard', props)
 }
 
 function Text({
@@ -591,6 +632,9 @@ export const Compose = {
   Column,
   Row,
   Box,
+  Card,
+  ElevatedCard,
+  OutlinedCard,
   Text,
   Icon,
   Button,
