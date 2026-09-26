@@ -246,6 +246,19 @@ ${APP_DELEGATE_PBXPROJ}`,
       '<key>NSLocationWhenInUseUsageDescription</key>\n\t<string>Find nearby cafés &amp; parks</string>'
     )
 
+    const photoPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content:
+        '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n\t<key>NSPhotoLibraryAddUsageDescription</key>\n\t<string></string>\n</dict>',
+      platform: 'ios',
+      app: { ...app, photoLibrary: { addOnly: 'Save photos & videos' } },
+    })
+    expect(photoPlist.content?.match(/<key>NSPhotoLibraryAddUsageDescription<\/key>/g))
+      .toHaveLength(1)
+    expect(photoPlist.content).toContain(
+      '<key>NSPhotoLibraryAddUsageDescription</key>\n\t<string>Save photos &amp; videos</string>'
+    )
+
     const androidManifest = renderPrebuildFile({
       relativePath: 'app/src/main/AndroidManifest.xml',
       content:

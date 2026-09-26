@@ -77,6 +77,16 @@ describe('native.app manifest', () => {
     )
   })
 
+  test('requires a Photos add-only purpose string', () => {
+    expect(() => validateNativeApp({ ...app, photoLibrary: { addOnly: 'Save edits.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, photoLibrary: null } as any)).toThrow(
+      /photoLibrary\.addOnly/
+    )
+    expect(() => validateNativeApp({ ...app, photoLibrary: { addOnly: ' ' } })).toThrow(
+      /photoLibrary\.addOnly/
+    )
+  })
+
   test('accepts a camera permission string and rejects empty ones', () => {
     expect(() => validateNativeApp({ ...app, imagePicker: undefined })).not.toThrow()
     expect(() => validateNativeApp({ ...app, imagePicker: { camera: '' } })).toThrow(

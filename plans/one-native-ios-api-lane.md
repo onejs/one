@@ -26,7 +26,7 @@ checklist; One's own exports and docs decide the status.
 | Local and push notifications | covered | `One.Notifications` | notifications fixture | done |
 | Camera capture | covered | `One.ImagePicker.launchCamera` | image-picker fixture | done |
 | Photo selection | covered | `One.ImagePicker.launchLibrary`, `One.iOS.PhotosPicker` | image-picker; PhotosPicker unproven | done |
-| Photo library save/manage | missing | no Photos write or album API | none | P2 |
+| Photo library save/manage | partial | `One.iOS.PhotoLibrary` add-only image/video save; no read, edit, delete, or albums | photo-library: permission, image/video save, errors | P2 |
 | Foreground location and geocoding | covered | `One.iOS.Location` permission, one fix, watch, forward/reverse geocoding | location: prompt, movement, geocoding | done |
 | Background location | missing | no background location mode or monitoring | none | P2 |
 | Maps | partial | `One.UI.Map`, `One.iOS.Map`; no search or directions service | map, ui-map | P2 |
@@ -70,7 +70,9 @@ checklist; One's own exports and docs decide the status.
 3. Audio playback/recording landed with an iOS 27 simulator recording and
    playback proof. Extend background and interruption handling before calling
    it covered. Splash control still needs a launch timing proof.
-4. Continue P1 then P2. Update this matrix and the docs when each slice lands.
+4. Add-only Photos saving landed with an iOS 27 image and video proof. Library management remains
+   separate because it needs read/write permission and different privacy UX.
+5. Continue P1 then P2. Update this matrix and the docs when each slice lands.
 
 Avoid duplicating React Native surfaces only to rename them. Keep simulator
 limitations explicit; hardware-only effects need a device proof before `covered`.

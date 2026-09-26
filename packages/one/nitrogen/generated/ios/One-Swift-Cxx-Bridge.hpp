@@ -110,6 +110,8 @@ namespace margelo::nitro::one { class HybridOneNativeModulesSpec; }
 namespace margelo::nitro::one { class HybridOneNetworkSpec; }
 // Forward declaration of `HybridOneNotificationsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
+// Forward declaration of `HybridOnePhotoLibrarySpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOnePhotoLibrarySpec; }
 // Forward declaration of `HybridOneSecureStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
 // Forward declaration of `HybridOneShareSpec` to properly resolve imports.
@@ -170,6 +172,8 @@ namespace margelo::nitro::one { enum class OneUpdatesCheckType; }
 namespace margelo::nitro::one { struct OneUpdatesFetchResult; }
 // Forward declaration of `OneUpdatesFetchType` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
+// Forward declaration of `PhotoLibraryPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
 // Forward declaration of `ShareItemType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ShareItemType; }
 // Forward declaration of `ShareItem` to properly resolve imports.
@@ -228,6 +232,8 @@ namespace One { class HybridOneNativeModulesSpec_cxx; }
 namespace One { class HybridOneNetworkSpec_cxx; }
 // Forward declaration of `HybridOneNotificationsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNotificationsSpec_cxx; }
+// Forward declaration of `HybridOnePhotoLibrarySpec_cxx` to properly resolve imports.
+namespace One { class HybridOnePhotoLibrarySpec_cxx; }
 // Forward declaration of `HybridOneSecureStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSecureStoreSpec_cxx; }
 // Forward declaration of `HybridOneShareSpec_cxx` to properly resolve imports.
@@ -288,6 +294,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneNativeModulesSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
+#include "HybridOnePhotoLibrarySpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
 #include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
@@ -318,6 +325,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "OneUpdatesCheckType.hpp"
 #include "OneUpdatesFetchResult.hpp"
 #include "OneUpdatesFetchType.hpp"
+#include "PhotoLibraryPermissionStatus.hpp"
 #include "ShareItem.hpp"
 #include "ShareItemType.hpp"
 #include "ShareResult.hpp"
@@ -2497,6 +2505,70 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__optional_NativeNotificationResponse__ create_Result_std__optional_NativeNotificationResponse__(const std::exception_ptr& error) noexcept {
     return Result<std::optional<NativeNotificationResponse>>::withError(error);
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>`.
+   */
+  using std__shared_ptr_Promise_PhotoLibraryPermissionStatus__ = std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>;
+  inline std::shared_ptr<Promise<PhotoLibraryPermissionStatus>> create_std__shared_ptr_Promise_PhotoLibraryPermissionStatus__() noexcept {
+    return Promise<PhotoLibraryPermissionStatus>::create();
+  }
+  inline PromiseHolder<PhotoLibraryPermissionStatus> wrap_std__shared_ptr_Promise_PhotoLibraryPermissionStatus__(std::shared_ptr<Promise<PhotoLibraryPermissionStatus>> promise) noexcept {
+    return PromiseHolder<PhotoLibraryPermissionStatus>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(PhotoLibraryPermissionStatus /* result */)>
+  /**
+   * Specialized version of `std::function<void(PhotoLibraryPermissionStatus)>`.
+   */
+  using Func_void_PhotoLibraryPermissionStatus = std::function<void(PhotoLibraryPermissionStatus /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(PhotoLibraryPermissionStatus / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_PhotoLibraryPermissionStatus_Wrapper final {
+  public:
+    explicit Func_void_PhotoLibraryPermissionStatus_Wrapper(std::function<void(PhotoLibraryPermissionStatus /* result */)>&& func): _function(std::make_unique<std::function<void(PhotoLibraryPermissionStatus /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<PhotoLibraryPermissionStatus>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(PhotoLibraryPermissionStatus /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_PhotoLibraryPermissionStatus create_Func_void_PhotoLibraryPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_PhotoLibraryPermissionStatus_Wrapper wrap_Func_void_PhotoLibraryPermissionStatus(Func_void_PhotoLibraryPermissionStatus value) noexcept {
+    return Func_void_PhotoLibraryPermissionStatus_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOnePhotoLibrarySpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOnePhotoLibrarySpec>`.
+   */
+  using std__shared_ptr_HybridOnePhotoLibrarySpec_ = std::shared_ptr<HybridOnePhotoLibrarySpec>;
+  std::shared_ptr<HybridOnePhotoLibrarySpec> create_std__shared_ptr_HybridOnePhotoLibrarySpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOnePhotoLibrarySpec_(std__shared_ptr_HybridOnePhotoLibrarySpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOnePhotoLibrarySpec>
+  using std__weak_ptr_HybridOnePhotoLibrarySpec_ = std::weak_ptr<HybridOnePhotoLibrarySpec>;
+  inline std__weak_ptr_HybridOnePhotoLibrarySpec_ weakify_std__shared_ptr_HybridOnePhotoLibrarySpec_(const std::shared_ptr<HybridOnePhotoLibrarySpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<PhotoLibraryPermissionStatus>
+  using Result_PhotoLibraryPermissionStatus_ = Result<PhotoLibraryPermissionStatus>;
+  inline Result_PhotoLibraryPermissionStatus_ create_Result_PhotoLibraryPermissionStatus_(PhotoLibraryPermissionStatus value) noexcept {
+    return Result<PhotoLibraryPermissionStatus>::withValue(std::move(value));
+  }
+  inline Result_PhotoLibraryPermissionStatus_ create_Result_PhotoLibraryPermissionStatus_(const std::exception_ptr& error) noexcept {
+    return Result<PhotoLibraryPermissionStatus>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>>
+  using Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ = Result<std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>>;
+  inline Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ create_Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___(const std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ create_Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<Promise<std::optional<std::string>>>

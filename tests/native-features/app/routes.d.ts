@@ -60,6 +60,7 @@ declare module 'one' {
         | `/one-native-navigation`
         | `/one-native-network`
         | `/one-native-notifications`
+        | `/one-native-photo-library`
         | `/one-native-pip`
         | `/one-native-popover`
         | `/one-native-safe-area`
