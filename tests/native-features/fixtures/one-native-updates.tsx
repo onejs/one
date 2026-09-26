@@ -9,6 +9,8 @@ import { updatesBoot } from './updates-boot'
 // testIDs vanish from the accessibility snapshot while Pressable IDs
 // survive. reload never settles on success (its context is replaced), so
 // the button reports sent and the runner asserts the rebooted labels.
+// check and fetch report their pending state on press, so a stuck label
+// tells a tap that never landed (idle) from a call that never settled.
 function codeOf(error: unknown): string {
   if (error instanceof Error) {
     const code = Reflect.get(error, 'code')
@@ -53,6 +55,7 @@ export default function OneNativeUpdates() {
         testID="one-native-updates-check"
         style={styles.chip}
         onPress={() => {
+          setCheck('checking')
           One.Updates.check().then(
             (result) => {
               setCheck(result.type === 'available' ? `available:${result.manifest.id}` : 'none')
@@ -67,6 +70,7 @@ export default function OneNativeUpdates() {
         testID="one-native-updates-fetch"
         style={styles.chip}
         onPress={() => {
+          setFetch('fetching')
           One.Updates.fetch().then(
             (result) => {
               setFetch(result.type === 'fetched' ? `fetched:${result.manifest.id}` : 'none')
