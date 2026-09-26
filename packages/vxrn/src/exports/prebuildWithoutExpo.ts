@@ -27,6 +27,7 @@ type NativeProjectPatches = {
   pointReleaseBundleURLAtOneUpdates(appDelegate: string): string
   ONE_LAUNCH_SCREEN: { bridgingHeaderImport: string }
   holdLaunchScreenOverRootView(appDelegate: string): string
+  holdLaunchScreenInMainActivity(mainActivity: string): string
   addSetCliPathToBundleReactNativeShellScript(input: string): string
   addPodHermescToBundleReactNativeShellScript(input: string): string
   addDepsPatchToBundleReactNativeShellScript(input: string): string
@@ -2076,8 +2077,8 @@ export function applyAndroidDependencyPatches(args: {
     ...app.android.applicationId.split('.'),
     'MainActivity.kt'
   )
-  const rendered = nativeProjectPatches.addReactNativeScreensFix(
-    FSExtra.readFileSync(activityPath, 'utf8')
+  const rendered = nativeProjectPatches.holdLaunchScreenInMainActivity(
+    nativeProjectPatches.addReactNativeScreensFix(FSExtra.readFileSync(activityPath, 'utf8'))
   )
   if (!rendered.includes('RNScreensFragmentFactory')) {
     throw new Error('[vxrn] failed to apply the react-native-screens activity patch')
