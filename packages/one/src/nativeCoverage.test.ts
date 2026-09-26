@@ -51,7 +51,7 @@ const knownGaps: Record<string, string> = {
   'UI.ReservedRegions': 'fixture exists, no suite opens it',
   Clipboard: 'iOS suite only',
   Network: 'iOS suite only',
-  DocumentPicker: 'fixture exists, no suite opens it',
+  DocumentPicker: 'Android fixture exists, no suite opens it',
   useNetworkState: 'no fixture or suite',
   useNativeState: 'iOS suite only',
   useSizeClass: 'fixture exists, no suite opens it',
@@ -103,6 +103,8 @@ function iosSuites() {
   const suites = [...home[1].matchAll(/'?([a-z-]+)'?: 'nav-([a-z-]+)'/g)].map(
     ([, suite, route]) => ({ suite, route })
   )
+  // the apple-file flow also opens the imperative document picker route.
+  suites.push({ suite: 'apple-file', route: 'one-native-document-picker' })
   // the appium e2e tests open routes directly
   const e2e = read('tests/native-features.test.ios.ts')
   for (const [, route] of e2e.matchAll(/navigateTo\(driver, '\/([a-z0-9/-]+)'\)/g)) {
