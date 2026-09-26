@@ -43,6 +43,20 @@ export default function OneNativeAndroidIconButtons() {
           <One.Android.Icon name="more_vert" />
         </One.Android.OutlinedIconButton>
       </One.Android.Row>
+      <One.Android.Row spacing={12}>
+        <One.Android.Button
+          testID="one-native-android-button-tonal"
+          label="Tonal"
+          variant="tonal"
+          onPress={() => setClicks((value) => value + 1)}
+        />
+        <One.Android.Button
+          testID="one-native-android-button-elevated"
+          label="Elevated"
+          variant="elevated"
+          onPress={() => setClicks((value) => value + 1)}
+        />
+      </One.Android.Row>
       <One.Android.FilledIconButton
         testID="one-native-android-icon-button-disabled"
         accessibilityLabel="Disabled icon button"

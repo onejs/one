@@ -3041,15 +3041,25 @@ async function runCompose(config: Config) {
     await check('compose-icon-button-variants', (nodes) =>
       ['standard', 'filled', 'tonal', 'outlined', 'disabled'].every((variant) =>
         exactlyOneId(nodes, `one-native-android-icon-button-${variant}`)
-      ) && idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 0 · Disabled: 0')
+      ) && exactlyOneId(nodes, 'one-native-android-button-tonal') &&
+      exactlyOneId(nodes, 'one-native-android-button-elevated') &&
+      idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 0 · Disabled: 0')
     )
     tapFresh(config, 'filled icon button', { id: 'one-native-android-icon-button-filled' })
     await check('compose-icon-button-click', (nodes) =>
       idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 1 · Disabled: 0')
     )
+    tapFresh(config, 'tonal button', { id: 'one-native-android-button-tonal' })
+    await check('compose-tonal-button-click', (nodes) =>
+      idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 2 · Disabled: 0')
+    )
+    tapFresh(config, 'elevated button', { id: 'one-native-android-button-elevated' })
+    await check('compose-elevated-button-click', (nodes) =>
+      idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 3 · Disabled: 0')
+    )
     tapFresh(config, 'disabled icon button', { id: 'one-native-android-icon-button-disabled' })
     await check('compose-icon-button-disabled', (nodes) =>
-      idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 1 · Disabled: 0')
+      idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 3 · Disabled: 0')
     )
   }
 
