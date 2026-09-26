@@ -516,20 +516,21 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       `${name} timed out after ${config.timeout}ms${detail ? `; ${detail}` : ''}; snapshot: ${snapshotPath}`
     )
   }
-  // the only tap path: a physical touch down/up delivers on headless hosts,
-  // where the simulator tapAt call reports success without delivering
-  // anything. it goes through tap --tap-style physical because the touch
-  // subcommand cannot open simulator input on some devices where this can.
+  // the only tap path: a touch down/up. the simulator tapAt call reports
+  // success on headless hosts without delivering anything, and tap
+  // --tap-style physical silently drops a large share of touches (16 of 40
+  // measured, against none for touch); a device whose input touch cannot
+  // open fails loudly below.
   const touch = (x: number, y: number) => {
     const output = axe(
       [
-        'tap',
+        'touch',
         '-x',
         String(Math.round(x)),
         '-y',
         String(Math.round(y)),
-        '--tap-style',
-        'physical',
+        '--down',
+        '--up',
       ],
       config.simulatorId
     )
