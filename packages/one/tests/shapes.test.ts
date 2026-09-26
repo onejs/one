@@ -73,6 +73,20 @@ describe('shapes', () => {
       fill: 'red',
     })
     expect(render(Controls.Circle, {}).props.fill).toBeUndefined()
+    expect(render(Controls.ConcentricRectangle, { fill: 'blue' }).props.fill).toBe('blue')
+  })
+
+  it('requires iOS 26 for ConcentricRectangle', async () => {
+    const { Platform } = await import('react-native')
+    const originalVersion = Platform.Version
+    try {
+      Object.assign(Platform, { Version: '25.4' })
+      expect(() => render(Controls.ConcentricRectangle, {})).toThrow(
+        'ConcentricRectangle requires iOS 26 or newer'
+      )
+    } finally {
+      Object.assign(Platform, { Version: originalVersion })
+    }
   })
 
   it('rejects a corner radius that is not a non-negative number', () => {
