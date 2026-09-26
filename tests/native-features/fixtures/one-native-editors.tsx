@@ -93,6 +93,13 @@ export default function OneNativeEditors() {
           testID="one-native-editor-shape"
         />
       </View>
+      <View accessible accessibilityLabel="Concentric shape canvas" style={styles.concentricCanvas}>
+        <One.iOS.ConcentricRectangle
+          fill="#007AFF"
+          style={styles.shape}
+          testID="one-native-concentric-shape"
+        />
+      </View>
     </View>
   )
 }
@@ -113,5 +120,6 @@ const styles = StyleSheet.create({
   statusText: { color: '#17233A', fontSize: 11, fontVariant: ['tabular-nums'] },
   editor: { height: 140, alignSelf: 'stretch' },
   canvas: { marginTop: 12, width: 160, height: 120, backgroundColor: '#FFFFFF' },
+  concentricCanvas: { marginTop: 12, width: 160, height: 100, backgroundColor: '#FFFFFF' },
   shape: { flex: 1 },
 })

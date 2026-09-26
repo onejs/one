@@ -2822,6 +2822,23 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await corners('shape-narrow.png', false)
     tap({ id: 'one-native-editor-corners' })
     await corners('shape-wide.png', true)
+    const concentricNodes = await wait('ConcentricRectangle mounted in its box', (nodes) =>
+      nodes.some((node) => node.AXLabel === 'Concentric shape canvas' && node.frame)
+    )
+    const concentricFrame = concentricNodes.find((node) => node.AXLabel === 'Concentric shape canvas')!.frame!
+    if (Math.round(concentricFrame.width) !== 160 || Math.round(concentricFrame.height) !== 100)
+      throw new Error(`ConcentricRectangle canvas frame is ${JSON.stringify(concentricFrame)}`)
+    const concentricScreen = concentricNodes.find((node) => node.type === 'Application')!.frame!
+    await new Promise((resolve) => setTimeout(resolve, 300))
+    const concentricImage = readPng(screenshot('concentric-shape.png', concentricNodes))
+    const concentricScale = concentricImage.width / concentricScreen.width
+    const centerOffset = (
+      Math.round((concentricFrame.y + concentricFrame.height / 2) * concentricScale) * concentricImage.width +
+      Math.round((concentricFrame.x + concentricFrame.width / 2) * concentricScale)
+    ) * 4
+    const centerColor = Array.from(concentricImage.data.slice(centerOffset, centerOffset + 3))
+    if (!(centerColor[0] < 60 && centerColor[1] > 85 && centerColor[1] < 180 && centerColor[2] > 200))
+      throw new Error(`ConcentricRectangle center is not system blue: ${centerColor}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

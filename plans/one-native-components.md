@@ -96,3 +96,13 @@ accounts are unavailable).
   native coverage snapshot passed. Proof screenshot is in the local ignored
   `tests/native-features/build/paste-button-proof` artifact directory. Next:
   `MultiDatePicker`, then the remaining fill leaves and containers.
+- **RAN, 2026-09-26:** `PasteButton` was pushed to `v2-beta` at `4759942ea`.
+  The last regenerated arm64 app still needs its simulator rerun when the native
+  builder slot reopens; the previous app passed the extended paste suite.
+- **INFERRED, 2026-09-26:** `MultiDatePicker` needs a public representation of
+  SwiftUI's selected date set, so that API choice stays on a named branch for
+  Nate. During the paused native builder slot, `GroupBox` is assembled on
+  `one-native-group-box-wip` with JS and codegen checks complete, awaiting iOS 27
+  build and simulator proof. `ConcentricRectangle` is assembled on
+  `one-native-concentric-wip`; it also awaits codegen verification and simulator
+  proof after the slot returns. Neither WIP branch is merged to `v2-beta`.

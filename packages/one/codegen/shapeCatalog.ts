@@ -114,4 +114,19 @@ export const shapeControls: Control[] = [
     validate: `  for (const radius of [topLeadingRadius, bottomLeadingRadius, bottomTrailingRadius, topTrailingRadius])
     if (!Number.isFinite(radius) || radius < 0) throw new Error('UnevenRoundedRectangle radii must be non-negative numbers')`,
   },
+  {
+    // the corner shape comes from SwiftUI's container shape and inset context.
+    name: 'ConcentricRectangle',
+    layout: 'fill',
+    fields: { fill: fillField },
+    constructors: [{ type: 'ConcentricRectangle', parameters: [] }],
+    swift: `Group {
+        if #available(iOS 26.0, *) {
+          ${fillSwift('ConcentricRectangle()')}
+        } else {
+          EmptyView()
+        }
+      }`,
+    validate: `  if (Number.parseFloat(String(Platform.Version)) < 26) throw new Error('ConcentricRectangle requires iOS 26 or newer')`,
+  },
 ]

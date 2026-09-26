@@ -625,7 +625,7 @@ function Notes() {
 
 ## Shapes
 
-`Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, and `Ellipse` are SwiftUI's
+`Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, `ConcentricRectangle`, and `Ellipse` are SwiftUI's
 shapes, one control each, named as SwiftUI names them. A shape has no ideal size
 of its own, so it takes the `width` and `height` React Native gives it, and `fill`
 paints it with a color. An omitted `fill` keeps SwiftUI's own default rendering.
@@ -633,6 +633,8 @@ paints it with a color. An omitted `fill` keeps SwiftUI's own default rendering.
 `UnevenRoundedRectangle` takes one radius per corner, `topLeadingRadius`,
 `bottomLeadingRadius`, `bottomTrailingRadius`, and `topTrailingRadius`, each a
 non-negative number defaulting to 0. Leading and trailing follow the layout direction.
+`ConcentricRectangle` requires iOS 26 or newer and uses SwiftUI's default corner shape from the enclosing
+container context. Without a container shape, its corners can be square.
 The set matches the `shape` values `One.iOS.Glass` accepts, lowercased
 (`circle`, `capsule`, `rectangle`, `roundedRectangle`, `ellipse`).
 
