@@ -123,6 +123,10 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Android.FilledIconButton` | n/a | android-icon-buttons |  |
 | `One.Android.FilledTonalIconButton` | n/a | android-icon-buttons |  |
 | `One.Android.OutlinedIconButton` | n/a | android-icon-buttons |  |
+| `One.Android.FloatingActionButton` | n/a | android-icon-buttons |  |
+| `One.Android.SmallFloatingActionButton` | n/a | android-icon-buttons |  |
+| `One.Android.LargeFloatingActionButton` | n/a | android-icon-buttons |  |
+| `One.Android.ExtendedFloatingActionButton` | n/a | android-icon-buttons |  |
 | `One.Android.Switch` | n/a | android |  |
 | `One.Android.Checkbox` | n/a | android-selection |  |
 | `One.Android.RadioButton` | n/a | android-selection |  |

@@ -13,8 +13,10 @@ import type {
   ComposeDialogProps,
   ComposeDividerProps,
   ComposeElevatedCardProps,
+  ComposeExtendedFloatingActionButtonProps,
   ComposeFilterChipProps,
   ComposeFlowRowProps,
+  ComposeFloatingActionButtonProps,
   ComposeIconProps,
   ComposeIconButtonProps,
   ComposeInputChipProps,
@@ -165,6 +167,20 @@ function OutlinedIconButton(_props: ComposeIconButtonProps): never {
   return unsupported('OutlinedIconButton')
 }
 
+const FloatingActionButton = Object.assign((_props: ComposeFloatingActionButtonProps): never => unsupported('FloatingActionButton'), {
+  Icon: (_props: { children: ReactNode }): never => unsupported('FloatingActionButton.Icon'),
+})
+const SmallFloatingActionButton = Object.assign((_props: ComposeFloatingActionButtonProps): never => unsupported('SmallFloatingActionButton'), {
+  Icon: (_props: { children: ReactNode }): never => unsupported('SmallFloatingActionButton.Icon'),
+})
+const LargeFloatingActionButton = Object.assign((_props: ComposeFloatingActionButtonProps): never => unsupported('LargeFloatingActionButton'), {
+  Icon: (_props: { children: ReactNode }): never => unsupported('LargeFloatingActionButton.Icon'),
+})
+const ExtendedFloatingActionButton = Object.assign((_props: ComposeExtendedFloatingActionButtonProps): never => unsupported('ExtendedFloatingActionButton'), {
+  Icon: (_props: { children: ReactNode }): never => unsupported('ExtendedFloatingActionButton.Icon'),
+  Text: (_props: { children: ReactNode }): never => unsupported('ExtendedFloatingActionButton.Text'),
+})
+
 function Switch(_props: ComposeSwitchProps): never {
   return unsupported('Switch')
 }
@@ -221,6 +237,10 @@ export const Compose = {
   FilledIconButton,
   FilledTonalIconButton,
   OutlinedIconButton,
+  FloatingActionButton,
+  SmallFloatingActionButton,
+  LargeFloatingActionButton,
+  ExtendedFloatingActionButton,
   Switch,
   Checkbox,
   RadioButton,

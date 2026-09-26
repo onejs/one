@@ -178,6 +178,14 @@ class OneNativeComposeNodeManager :
         view.stageIconButtonColors(value)
     }
 
+    override fun setFabColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageFabColors(value)
+    }
+
+    override fun setFabExpanded(view: OneNativeComposeNodeView, value: Boolean) {
+        view.stageFabExpanded(value)
+    }
+
     override fun setBadgeColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageBadgeColors(value)
     }

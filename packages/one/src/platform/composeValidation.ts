@@ -11,6 +11,7 @@ import type {
   ComposeDividerProps,
   ComposeFilterChipProps,
   ComposeFlowRowProps,
+  ComposeFloatingActionButtonProps,
   ComposeIconProps,
   ComposeIconButtonProps,
   ComposeInputChipProps,
@@ -415,6 +416,13 @@ export function validateIconButtonProps(props: ComposeIconButtonProps) {
   assertBoolean(props.enabled ?? true, 'IconButton enabled')
   if (props.onClick !== undefined) assertFunction(props.onClick, 'IconButton onClick')
   if (props.colors !== undefined) assertComposeColors(props.colors, iconButtonColorKeys, 'IconButton')
+}
+
+export function validateFloatingActionButtonProps(props: ComposeFloatingActionButtonProps & { expanded?: boolean }, variant: string) {
+  assertOneOf(variant, 'FloatingActionButton variant', ['small', 'medium', 'large', 'extended'] as const)
+  assertBoolean(props.expanded ?? true, 'FloatingActionButton expanded')
+  if (props.containerColor !== undefined) assertComposeColorValue(props.containerColor, 'FloatingActionButton containerColor')
+  if (props.onClick !== undefined) assertFunction(props.onClick, 'FloatingActionButton onClick')
 }
 
 export function validateSwitchProps(props: ComposeSwitchProps) {
