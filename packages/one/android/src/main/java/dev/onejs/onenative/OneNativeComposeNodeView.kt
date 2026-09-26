@@ -63,6 +63,12 @@ import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.ToggleButton
+import androidx.compose.material3.ToggleButtonDefaults
+import androidx.compose.material3.IconToggleButton
+import androidx.compose.material3.FilledIconToggleButton
+import androidx.compose.material3.OutlinedIconToggleButton
 import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.material3.InputChip
 import androidx.compose.material3.InputChipDefaults
@@ -228,6 +234,27 @@ internal data class OneNativeIconButtonColors(
     }
 }
 
+internal data class OneNativeToggleButtonColors(
+    val containerColor: Int? = null,
+    val contentColor: Int? = null,
+    val checkedContainerColor: Int? = null,
+    val checkedContentColor: Int? = null,
+    val disabledContainerColor: Int? = null,
+    val disabledContentColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeToggleButtonColors =
+            if (map == null) OneNativeToggleButtonColors() else OneNativeToggleButtonColors(
+                containerColor = readComposeColor(map, "containerColor", context),
+                contentColor = readComposeColor(map, "contentColor", context),
+                checkedContainerColor = readComposeColor(map, "checkedContainerColor", context),
+                checkedContentColor = readComposeColor(map, "checkedContentColor", context),
+                disabledContainerColor = readComposeColor(map, "disabledContainerColor", context),
+                disabledContentColor = readComposeColor(map, "disabledContentColor", context),
+            )
+    }
+}
+
 internal data class OneNativeListItemColors(
     val containerColor: Int? = null,
     val contentColor: Int? = null,
@@ -385,6 +412,7 @@ internal data class OneNativeComposeNodeProps(
     val iconButtonColors: OneNativeIconButtonColors = OneNativeIconButtonColors(),
     val fabColors: OneNativeCardColors = OneNativeCardColors(),
     val fabExpanded: Boolean = true,
+    val toggleButtonColors: OneNativeToggleButtonColors = OneNativeToggleButtonColors(),
     val badgeColors: OneNativeCardColors = OneNativeCardColors(),
     val listItemColors: OneNativeListItemColors = OneNativeListItemColors(),
     val tonalElevation: Double = -1.0,
@@ -697,6 +725,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageFabExpanded(value: Boolean) {
         pendingProps = pendingProps.copy(fabExpanded = value)
+    }
+
+    internal fun stageToggleButtonColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(toggleButtonColors = OneNativeToggleButtonColors.fromMap(value, context))
     }
 
     internal fun stageBadgeColors(value: ReadableMap?) {
@@ -1211,6 +1243,8 @@ private fun RenderComposeNodeBody(
         "iconbutton", "fillediconbutton", "filledtonaliconbutton", "outlinediconbutton" ->
             RenderComposeIconButton(node, props, modifier)
         "floatingactionbutton" -> RenderComposeFloatingActionButton(node, props, modifier)
+        "togglebutton", "icontogglebutton", "filledicontogglebutton", "outlinedicontogglebutton" ->
+            RenderComposeToggleButton(node, props, modifier)
         "switch" -> RenderComposeSwitch(node, props, modifier)
         "checkbox" ->
             Checkbox(
@@ -1628,6 +1662,62 @@ private fun RenderComposeFloatingActionButton(
             text = { if (text != null) RenderComposeChildren(text) },
         )
         else -> FloatingActionButton(onClick = node::handlePress, modifier = modifier, containerColor = containerColor, content = iconContent)
+    }
+}
+
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@Composable
+private fun RenderComposeToggleButton(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val colors = props.toggleButtonColors
+    val containerColor = colors.containerColor?.let(::Color) ?: Color.Unspecified
+    val contentColor = colors.contentColor?.let(::Color) ?: Color.Unspecified
+    val checkedContainerColor = colors.checkedContainerColor?.let(::Color) ?: Color.Unspecified
+    val checkedContentColor = colors.checkedContentColor?.let(::Color) ?: Color.Unspecified
+    val disabledContainerColor = colors.disabledContainerColor?.let(::Color) ?: Color.Unspecified
+    val disabledContentColor = colors.disabledContentColor?.let(::Color) ?: Color.Unspecified
+    val onCheckedChange: (Boolean) -> Unit = { if (props.nativeClickable) node.handleBooleanChanged(it) }
+    val enabled = !props.disabled && node.isEnabled
+    when (node.renderedNodeKind) {
+        "icontogglebutton" -> IconToggleButton(
+            checked = node.renderedBooleanValue, onCheckedChange = onCheckedChange,
+            modifier = modifier, enabled = enabled,
+            colors = IconButtonDefaults.iconToggleButtonColors(
+                containerColor = containerColor, contentColor = contentColor,
+                checkedContainerColor = checkedContainerColor, checkedContentColor = checkedContentColor,
+                disabledContainerColor = disabledContainerColor, disabledContentColor = disabledContentColor,
+            ),
+        ) { RenderComposeChildren(node) }
+        "filledicontogglebutton" -> FilledIconToggleButton(
+            checked = node.renderedBooleanValue, onCheckedChange = onCheckedChange,
+            modifier = modifier, enabled = enabled,
+            colors = IconButtonDefaults.filledIconToggleButtonColors(
+                containerColor = containerColor, contentColor = contentColor,
+                checkedContainerColor = checkedContainerColor, checkedContentColor = checkedContentColor,
+                disabledContainerColor = disabledContainerColor, disabledContentColor = disabledContentColor,
+            ),
+        ) { RenderComposeChildren(node) }
+        "outlinedicontogglebutton" -> OutlinedIconToggleButton(
+            checked = node.renderedBooleanValue, onCheckedChange = onCheckedChange,
+            modifier = modifier, enabled = enabled,
+            colors = IconButtonDefaults.outlinedIconToggleButtonColors(
+                containerColor = containerColor, contentColor = contentColor,
+                checkedContainerColor = checkedContainerColor, checkedContentColor = checkedContentColor,
+                disabledContainerColor = disabledContainerColor, disabledContentColor = disabledContentColor,
+            ),
+        ) { RenderComposeChildren(node) }
+        else -> ToggleButton(
+            checked = node.renderedBooleanValue, onCheckedChange = onCheckedChange,
+            modifier = modifier, enabled = enabled,
+            colors = ToggleButtonDefaults.toggleButtonColors(
+                containerColor = containerColor, contentColor = contentColor,
+                checkedContainerColor = checkedContainerColor, checkedContentColor = checkedContentColor,
+                disabledContainerColor = disabledContainerColor, disabledContentColor = disabledContentColor,
+            ),
+        ) { RenderComposeChildren(node) }
     }
 }
 

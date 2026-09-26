@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function FlowRow(_props: ComposeFlowRowProps): never;
@@ -38,6 +38,10 @@ declare function IconButton(_props: ComposeIconButtonProps): never;
 declare function FilledIconButton(_props: ComposeIconButtonProps): never;
 declare function FilledTonalIconButton(_props: ComposeIconButtonProps): never;
 declare function OutlinedIconButton(_props: ComposeIconButtonProps): never;
+declare function ToggleButton(_props: ComposeToggleButtonProps): never;
+declare function IconToggleButton(_props: ComposeToggleButtonProps): never;
+declare function FilledIconToggleButton(_props: ComposeToggleButtonProps): never;
+declare function OutlinedIconToggleButton(_props: ComposeToggleButtonProps): never;
 declare function Switch(_props: ComposeSwitchProps): never;
 declare function Checkbox(_props: ComposeCheckboxProps): never;
 declare function RadioButton(_props: ComposeRadioButtonProps): never;
@@ -128,6 +132,10 @@ export declare const Compose: {
             children: ReactNode;
         }) => never;
     };
+    ToggleButton: typeof ToggleButton;
+    IconToggleButton: typeof IconToggleButton;
+    FilledIconToggleButton: typeof FilledIconToggleButton;
+    OutlinedIconToggleButton: typeof OutlinedIconToggleButton;
     Switch: typeof Switch;
     Checkbox: typeof Checkbox;
     RadioButton: typeof RadioButton;

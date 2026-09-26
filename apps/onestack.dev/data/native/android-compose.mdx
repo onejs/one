@@ -76,6 +76,12 @@ Material 3 floating button sizes. Put an `Icon` in their `.Icon` slot and, for
 the extended variant, `Text` in `.Text`. `containerColor` overrides the theme,
 `onClick` handles taps, and `expanded` controls the extended label.
 
+`One.Android.ToggleButton`, `IconToggleButton`, `FilledIconToggleButton`, and
+`OutlinedIconToggleButton` render the Material 3 toggle variants. Each accepts
+controlled `checked`, optional `onCheckedChange`, `enabled`, and `colors` for
+normal, checked, and disabled container and content colors. The `revision`
+prop applies an external state reset.
+
 ## Switch
 
 `One.Android.Switch` is the Compose toggle: `isOn` with `onIsOnChange`

@@ -3046,6 +3046,10 @@ async function runCompose(config: Config) {
       ['small', 'medium', 'large', 'extended'].every((variant) =>
         exactlyOneId(nodes, `one-native-android-fab-${variant}`)
       ) &&
+      ['standard', 'icon', 'filled', 'outlined', 'disabled'].every((variant) =>
+        exactlyOneId(nodes, `one-native-android-toggle-button-${variant}`)
+      ) &&
+      idText(nodes, 'one-native-android-toggle-status', 'Toggle: off · Policy: reject · Requests: 0 · Disabled: 0') &&
       idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 0 · Disabled: 0')
     )
     tapFresh(config, 'filled icon button', { id: 'one-native-android-icon-button-filled' })
@@ -3075,6 +3079,34 @@ async function runCompose(config: Config) {
     tapFresh(config, 'extended floating action button', { id: 'one-native-android-fab-extended' })
     await check('compose-fab-extended-click', (nodes) =>
       idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 7 · Disabled: 0')
+    )
+    tapFresh(config, 'standard toggle button', { id: 'one-native-android-toggle-button-standard' })
+    await check('compose-toggle-rejected', (nodes) =>
+      idText(nodes, 'one-native-android-toggle-status', 'Toggle: off · Policy: reject · Requests: 1 · Disabled: 0')
+    )
+    tapFresh(config, 'toggle policy', { id: 'one-native-android-toggle-policy' })
+    await check('compose-toggle-policy', (nodes) =>
+      idText(nodes, 'one-native-android-toggle-status', 'Toggle: off · Policy: accept · Requests: 1 · Disabled: 0')
+    )
+    tapFresh(config, 'standard toggle button', { id: 'one-native-android-toggle-button-standard' })
+    await check('compose-toggle-accepted', (nodes) =>
+      idText(nodes, 'one-native-android-toggle-status', 'Toggle: on · Policy: accept · Requests: 2 · Disabled: 0')
+    )
+    tapFresh(config, 'icon toggle button', { id: 'one-native-android-toggle-button-icon' })
+    await check('compose-toggle-icon-click', (nodes) =>
+      idText(nodes, 'one-native-android-toggle-status', 'Toggle: off · Policy: accept · Requests: 3 · Disabled: 0')
+    )
+    tapFresh(config, 'filled icon toggle button', { id: 'one-native-android-toggle-button-filled' })
+    await check('compose-toggle-filled-click', (nodes) =>
+      idText(nodes, 'one-native-android-toggle-status', 'Toggle: on · Policy: accept · Requests: 4 · Disabled: 0')
+    )
+    tapFresh(config, 'outlined icon toggle button', { id: 'one-native-android-toggle-button-outlined' })
+    await check('compose-toggle-outlined-click', (nodes) =>
+      idText(nodes, 'one-native-android-toggle-status', 'Toggle: off · Policy: accept · Requests: 5 · Disabled: 0')
+    )
+    tapFresh(config, 'disabled icon toggle button', { id: 'one-native-android-toggle-button-disabled' })
+    await check('compose-toggle-disabled', (nodes) =>
+      idText(nodes, 'one-native-android-toggle-status', 'Toggle: off · Policy: accept · Requests: 5 · Disabled: 0')
     )
     tapFresh(config, 'disabled icon button', { id: 'one-native-android-icon-button-disabled' })
     await check('compose-icon-button-disabled', (nodes) =>

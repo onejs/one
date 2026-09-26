@@ -47,6 +47,7 @@ import type {
   ComposeTextFieldProps,
   ComposeTextFieldVariant,
   ComposeTextProps,
+  ComposeToggleButtonProps,
   ComposeVerticalAlignment,
   ComposeVerticalArrangement,
 } from './composeTypes'
@@ -75,6 +76,7 @@ import {
   validateSwitchProps,
   validateTextFieldProps,
   validateTextProps,
+  validateToggleButtonProps,
 } from './composeValidation'
 
 type ComposeNodeType =
@@ -105,6 +107,10 @@ type ComposeNodeType =
   | 'filledtonaliconbutton'
   | 'outlinediconbutton'
   | 'floatingactionbutton'
+  | 'togglebutton'
+  | 'icontogglebutton'
+  | 'filledicontogglebutton'
+  | 'outlinedicontogglebutton'
   | 'switch'
   | 'checkbox'
   | 'radio'
@@ -160,6 +166,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   iconButtonColors?: ComposeIconButtonProps['colors']
   fabColors?: Pick<ComposeFloatingActionButtonProps, 'containerColor'>
   fabExpanded?: boolean
+  toggleButtonColors?: ComposeToggleButtonProps['colors']
   acknowledgedEvent?: number
   revision?: number
   textValue?: string
@@ -635,6 +642,44 @@ const ExtendedFloatingActionButton = Object.assign((props: ComposeExtendedFloati
   Text: composeSlot('text'),
 })
 
+function ToggleButtonNode({ children, checked, enabled = true, colors, onCheckedChange, revision = 0, nodeType, ...props }: ComposeToggleButtonProps & { nodeType: 'togglebutton' | 'icontogglebutton' | 'filledicontogglebutton' | 'outlinedicontogglebutton' }) {
+  validateToggleButtonProps({ children, checked, enabled, colors, onCheckedChange, revision })
+  const controlled = useControlled<{ value: boolean; eventCount: number; revision: number }>(
+    (event) => onCheckedChange?.(event.value), revision
+  )
+  return (
+    <ComposeNode
+      {...props}
+      nodeType={nodeType}
+      value={checked}
+      disabled={!enabled}
+      nativeClickable={onCheckedChange !== undefined}
+      toggleButtonColors={colors}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      onNativeComposeNodeBooleanValueChange={onCheckedChange ? (event) => controlled.onNativeChange(event.nativeEvent) : undefined}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function ToggleButton(props: ComposeToggleButtonProps) {
+  return <ToggleButtonNode {...props} nodeType="togglebutton" />
+}
+
+function IconToggleButton(props: ComposeToggleButtonProps) {
+  return <ToggleButtonNode {...props} nodeType="icontogglebutton" />
+}
+
+function FilledIconToggleButton(props: ComposeToggleButtonProps) {
+  return <ToggleButtonNode {...props} nodeType="filledicontogglebutton" />
+}
+
+function OutlinedIconToggleButton(props: ComposeToggleButtonProps) {
+  return <ToggleButtonNode {...props} nodeType="outlinedicontogglebutton" />
+}
+
 function Switch({
   isOn,
   disabled = false,
@@ -947,6 +992,10 @@ export const Compose = {
   SmallFloatingActionButton,
   LargeFloatingActionButton,
   ExtendedFloatingActionButton,
+  ToggleButton,
+  IconToggleButton,
+  FilledIconToggleButton,
+  OutlinedIconToggleButton,
   Switch,
   Checkbox,
   RadioButton,

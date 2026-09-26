@@ -112,6 +112,14 @@ interface NativeProps extends ViewProps {
     containerColor?: ColorValue
   }>
   fabExpanded?: boolean
+  toggleButtonColors?: Readonly<{
+    containerColor?: ColorValue
+    contentColor?: ColorValue
+    checkedContainerColor?: ColorValue
+    checkedContentColor?: ColorValue
+    disabledContainerColor?: ColorValue
+    disabledContentColor?: ColorValue
+  }>
   acknowledgedEvent?: Int32
   revision?: Int32
   alignment?: string
