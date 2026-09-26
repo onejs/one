@@ -4,7 +4,7 @@ import NativeReservedRegionsProvider from '../specs/OneNativeReservedRegionsProv
 import { ReservedRegionsContext, type ReservedRegionsSnapshot } from './reservedRegionsContext'
 import type { ReservedRegion, ReservedRegionsProviderProps } from './types'
 
-export { useReady, useRegions } from './reservedRegionsContext'
+export { useReady, useRegions, useSegments, useSpanning } from './reservedRegionsContext'
 
 type NativeRegion = {
   id: string
@@ -44,10 +44,11 @@ function toRegion(region: NativeRegion): ReservedRegion {
  * the hooks below it.
  */
 export function Provider({ children, ...props }: ReservedRegionsProviderProps) {
-  const [snapshot, setSnapshot] = useState<ReservedRegionsSnapshot>({ regions: [], ready: false })
+  const [snapshot, setSnapshot] = useState<ReservedRegionsSnapshot>({ regions: [], ready: false, bounds: null })
   const onChange = useCallback(
-    (event: NativeSyntheticEvent<{ regions: readonly NativeRegion[] }>) => {
-      setSnapshot({ regions: event.nativeEvent.regions.map(toRegion), ready: true })
+    (event: NativeSyntheticEvent<{ regions: readonly NativeRegion[]; width: number; height: number }>) => {
+      const { regions, width, height } = event.nativeEvent
+      setSnapshot({ regions: regions.map(toRegion), ready: true, bounds: { width, height } })
     },
     []
   )

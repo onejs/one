@@ -11,6 +11,8 @@ import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNati
 interface NativeProps extends ViewProps {
   onNativeReservedRegionsChange?: DirectEventHandler<
     Readonly<{
+      width: Double
+      height: Double
       regions: {
         id: string
         kind: string

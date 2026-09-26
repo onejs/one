@@ -835,6 +835,8 @@ export const components = [
     props: {},
     events: {
       onNativeReservedRegionsChange: {
+        width: 'Double',
+        height: 'Double',
         regions:
           '{ id: string; kind: string; x: Double; y: Double; width: Double; height: Double; marginTop: Double; marginLeft: Double; marginBottom: Double; marginRight: Double; isActive: boolean }[]',
       },

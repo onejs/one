@@ -1,7 +1,11 @@
-import type { ReservedRegion, ReservedRegionOptions } from './types';
+import type { ReservedRegion, ReservedRegionOptions, WindowSegment } from './types';
 export interface ReservedRegionsSnapshot {
     regions: readonly ReservedRegion[];
     ready: boolean;
+    bounds: {
+        width: number;
+        height: number;
+    } | null;
 }
 export declare const ReservedRegionsContext: import("react").Context<ReservedRegionsSnapshot | null>;
 /**
@@ -16,4 +20,17 @@ export declare function useRegions(options?: ReservedRegionOptions): readonly Re
  * included. It stays true for the provider's lifetime.
  */
 export declare function useReady(): boolean;
+/**
+ * parts of the provider separated by an active full-span division. Put the
+ * provider around the full window to read window segments. Until its native
+ * regions and bounds arrive, the result is empty. An unspanned window has one
+ * segment. Occlusions do not divide a window.
+ */
+export declare function useSegments(): readonly WindowSegment[];
+/** whether an active division spans the provider. */
+export declare function useSpanning(): boolean;
+export declare function segmentsFor(bounds: {
+    width: number;
+    height: number;
+}, regions: readonly ReservedRegion[]): WindowSegment[];
 //# sourceMappingURL=reservedRegionsContext.d.ts.map

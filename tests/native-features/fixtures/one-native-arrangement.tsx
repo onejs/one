@@ -17,6 +17,8 @@ function Arrangement() {
   const sizeClass = One.UI.useSizeClass()
   const hinge = One.UI.useHinge()
   const reservedRegions = One.UI.ReservedRegions.useRegions({ includeInactive: true })
+  const segments = One.UI.ReservedRegions.useSegments()
+  const spanning = One.UI.ReservedRegions.useSpanning()
   const [style, setStyle] = useState<ArrangementViewStyle>('automatic')
 
   return (
@@ -43,6 +45,18 @@ function Arrangement() {
             <Text style={styles.badgeLabel}>Hinge:</Text>
             <Text style={styles.badgeValue} testID="hinge-status">
               {hinge?.status ?? 'none'}
+            </Text>
+          </View>
+          <View style={styles.badge}>
+            <Text style={styles.badgeLabel}>Segments:</Text>
+            <Text style={styles.badgeValue} testID="window-segment-count">
+              {segments.length}
+            </Text>
+          </View>
+          <View style={styles.badge}>
+            <Text style={styles.badgeLabel}>Spanning:</Text>
+            <Text style={styles.badgeValue} testID="window-spanning">
+              {spanning ? 'yes' : 'no'}
             </Text>
           </View>
           {hinge && (

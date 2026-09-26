@@ -33,13 +33,13 @@ class OneNativeReservedRegionsProviderManager :
       view: OneNativeReservedRegionsProviderView
   ) {
     super.addEventEmitters(reactContext, view)
-    view.setOnRegionsChangeHandler { regions, synchronous ->
+    view.setOnRegionsChangeHandler { regions, width, height, synchronous ->
       val dispatcher =
           UIManagerHelper.getEventDispatcherForReactTag(reactContext, view.id)
               ?: return@setOnRegionsChangeHandler false
       dispatcher.dispatchEvent(
           OneNativeReservedRegionsChangeEvent(
-              UIManagerHelper.getSurfaceId(view), view.id, regions, synchronous))
+              UIManagerHelper.getSurfaceId(view), view.id, regions, width, height, synchronous))
       true
     }
   }
@@ -75,6 +75,8 @@ internal class OneNativeReservedRegionsChangeEvent(
     surfaceId: Int,
     viewTag: Int,
     private val regions: List<OneNativeReservedRegion>,
+    private val width: Int,
+    private val height: Int,
     private val synchronous: Boolean,
 ) : Event<OneNativeReservedRegionsChangeEvent>(surfaceId, viewTag) {
   override fun getEventName(): String = NAME
@@ -101,7 +103,11 @@ internal class OneNativeReservedRegionsChangeEvent(
             putBoolean("isActive", region.isActive)
           })
     }
-    return Arguments.createMap().apply { putArray("regions", list) }
+    return Arguments.createMap().apply {
+      putArray("regions", list)
+      putDouble("width", PixelUtil.toDIPFromPixel(width.toFloat()).toDouble())
+      putDouble("height", PixelUtil.toDIPFromPixel(height.toFloat()).toDouble())
+    }
   }
 
   companion object {
