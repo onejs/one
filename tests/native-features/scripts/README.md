@@ -93,6 +93,14 @@ alongside the watch, then moves again after unsubscribe and confirms only the
 one-shot result changes. Forward geocoding must return Cupertino coordinates;
 reverse geocoding must identify San Francisco. Geocoding needs Apple's service.
 
+`file-system` covers `One.iOS.FileSystem` on an iOS 27 simulator. The fixture
+creates an app-cache directory, checks UTF-8 byte size and replacement writes,
+writes base64 bytes, reads files via native `fetch(file://)`, checks metadata and
+directory entries, copies and moves a file, creates intermediate directories,
+and deletes a non-empty directory. It verifies existing-destination, invalid
+URI, invalid base64, missing-file, and protected-root errors. The suite checks
+the full result.
+
 `network` covers `One.Network`: the one-shot read publishes a live state with a named type and both flags true, the listener fires at least once, and a refresh re-reads. State republishes across two leave/reenter cycles.
 
 `browser` covers `One.Browser`: a user close-tap on the measured button point resolves cancel, a programmatic dismiss resolves dismiss on both the open and dismiss promises, dismissing a pending auth session resolves dismiss on its promise too, and a redirect to the app scheme resolves success with the url. The sheet exposes no accessibility children, so presentation is the collapsed tree. The redirect leg serves a local 302 (127.0.0.1:8123) from the runner in ephemeral mode, which skips the consent alert.

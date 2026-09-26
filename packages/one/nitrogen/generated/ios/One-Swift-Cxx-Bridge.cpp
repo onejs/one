@@ -16,6 +16,7 @@
 #include "HybridOneCryptoSpecSwift.hpp"
 #include "HybridOneDocumentPickerSpecSwift.hpp"
 #include "HybridOneFetchSpecSwift.hpp"
+#include "HybridOneFileSystemSpecSwift.hpp"
 #include "HybridOneFontsSpecSwift.hpp"
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "HybridOneImagePickerSpecSwift.hpp"
@@ -261,6 +262,38 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneFetchSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(const FileInfo& /* result */)>
+  Func_void_FileInfo create_Func_void_FileInfo(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_FileInfo::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const FileInfo& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::function<void(const std::vector<FileEntry>& /* result */)>
+  Func_void_std__vector_FileEntry_ create_Func_void_std__vector_FileEntry_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__vector_FileEntry_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::vector<FileEntry>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneFileSystemSpec>
+  std::shared_ptr<HybridOneFileSystemSpec> create_std__shared_ptr_HybridOneFileSystemSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneFileSystemSpec_cxx swiftPart = One::HybridOneFileSystemSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneFileSystemSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneFileSystemSpec_(std__shared_ptr_HybridOneFileSystemSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneFileSystemSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneFileSystemSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneFileSystemSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneFileSystemSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

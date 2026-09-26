@@ -60,6 +60,26 @@ interface NativeProps extends ViewProps {
         thickness?: WithDefault<Double, -1>;
         color?: ColorValue;
     }>;
+    slotName?: string;
+    chipColors?: Readonly<{
+        containerColor?: ColorValue;
+        labelColor?: ColorValue;
+        iconColor?: ColorValue;
+        iconContentColor?: ColorValue;
+        leadingIconContentColor?: ColorValue;
+        trailingIconContentColor?: ColorValue;
+        leadingIconColor?: ColorValue;
+        trailingIconColor?: ColorValue;
+        selectedContainerColor?: ColorValue;
+        selectedLabelColor?: ColorValue;
+        selectedLeadingIconColor?: ColorValue;
+        selectedTrailingIconColor?: ColorValue;
+    }>;
+    chipElevation?: WithDefault<Double, -1>;
+    chipBorder?: Readonly<{
+        width?: WithDefault<Double, 1>;
+        color?: ColorValue;
+    }>;
     acknowledgedEvent?: Int32;
     revision?: Int32;
     alignment?: string;

@@ -186,6 +186,22 @@ class OneNativeComposeNodeManager :
         view.stageDividerStyle(value)
     }
 
+    override fun setSlotName(view: OneNativeComposeNodeView, value: String?) {
+        view.stageSlotName(value)
+    }
+
+    override fun setChipColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageChipColors(value)
+    }
+
+    override fun setChipElevation(view: OneNativeComposeNodeView, value: Double) {
+        view.stageChipElevation(value)
+    }
+
+    override fun setChipBorder(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageChipBorder(value)
+    }
+
     override fun setAcknowledgedEvent(view: OneNativeComposeNodeView, value: Int) {
         view.stageAcknowledgedEvent(value)
     }

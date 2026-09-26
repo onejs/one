@@ -182,6 +182,16 @@ const testScreens = [
     testID: 'nav-one-native-android-dividers',
   },
   {
+    href: '/one-native-android-filter-chip',
+    label: 'One Native Android Filter Chip',
+    testID: 'nav-one-native-android-filter-chip',
+  },
+  {
+    href: '/one-native-android-chips',
+    label: 'One Native Android Chips',
+    testID: 'nav-one-native-android-chips',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',
@@ -240,6 +250,11 @@ const testScreens = [
     href: '/one-native-location',
     label: 'One Native Location',
     testID: 'nav-one-native-location',
+  },
+  {
+    href: '/one-native-file-system',
+    label: 'One Native File System',
+    testID: 'nav-one-native-file-system',
   },
   {
     href: '/one-native-speech',

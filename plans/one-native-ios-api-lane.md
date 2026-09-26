@@ -35,7 +35,7 @@ checklist; One's own exports and docs decide the status.
 | Secure storage | partial | `One.SecureStore` key/value; no access-control options | none | P1 |
 | Biometrics | covered | `One.iOS.LocalAuthentication` policy status and biometric evaluation | local-authentication: unenrolled, enrolled, Face ID match | done |
 | Document picking | partial | `One.DocumentPicker`; fixture has no suite | none | P1 |
-| File system | partial | `fetch(file://)` reads, picker cache copies; no general write/move/delete API | media and apple-file cover bounded file paths | P1 |
+| File system | covered | `One.iOS.FileSystem` sandbox write/list/copy/move/delete; `fetch(file://)` reads | file-system lifecycle | done |
 | Background tasks | missing | no BGTaskScheduler path | none | P2 |
 | Deep links | covered | One router and linking integration | router tests; external browser callback | done |
 | App icons | partial | static prebuild icon; no alternate icon switch | prebuild only | P2 |
@@ -65,8 +65,7 @@ checklist; One's own exports and docs decide the status.
 
 1. Biometrics, foreground location, continuous updates, and geocoding landed
    with iOS 27 simulator proofs. Background location remains P2.
-2. Imperative share and a general file API, preserving picker URLs and explicit
-   errors for permission or security-scope failures.
+2. A general sandbox file API landed; imperative share remains P1.
 3. Audio playback/recording and splash control. Verify launch timing and an
    actual audio session, not only successful method calls.
 4. Continue P1 then P2. Update this matrix and the docs when each slice lands.

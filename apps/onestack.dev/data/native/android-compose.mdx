@@ -4,7 +4,9 @@ description: Jetpack Compose views under One.Android
 ---
 
 Jetpack Compose views under `One.Android`. Layout nodes (`Column`, `Row`,
-`Box`, `Card`, `ElevatedCard`, `OutlinedCard`) take children; `Text`, `Icon`,
+`Box`, `Card`, `ElevatedCard`, `OutlinedCard`, `AssistChip`, `FilterChip`,
+`InputChip`, `SuggestionChip`) take children;
+`Text`, `Icon`,
 `Button`, `Switch`, `Checkbox`, `RadioButton`, `HorizontalDivider`,
 `VerticalDivider`, `TextField`,
 `Slider`, `AlertDialog`, and `ProgressIndicator` are leaves. `Dialog`
@@ -96,6 +98,27 @@ uses the Material theme's outline for `OutlinedCard`.
 inside a Compose layout. Both accept optional `thickness` in dp and `color`;
 omitted values use the current Material theme. Give a vertical divider a height
 through its parent layout or `composeStyle`.
+
+## Chips
+
+`One.Android.AssistChip`, `FilterChip`, `InputChip`, and `SuggestionChip`
+use the corresponding Material 3 components. Every chip accepts `enabled`,
+`onClick`, optional `colors`, `elevation` in dp, and `border` with optional
+`width` in dp and `color`.
+
+Each chip takes Compose children in named slots. All four have `.Label`.
+`AssistChip` and `FilterChip` also have `.LeadingIcon` and `.TrailingIcon`;
+`InputChip` has `.Avatar` and `.TrailingIcon`; `SuggestionChip` has `.Icon`.
+
+`FilterChip` requires `selected`; `InputChip` accepts optional `selected`.
+Clicks report through `onClick`, while the caller supplies the next selected
+value. The available color keys match Expo UI's per-variant keys: `AssistChip`
+has `containerColor`, `labelColor`, `leadingIconContentColor`, and
+`trailingIconContentColor`; `FilterChip` has `containerColor`, `labelColor`, `iconColor`,
+`selectedContainerColor`, `selectedLabelColor`, `selectedLeadingIconColor`,
+and `selectedTrailingIconColor`; `InputChip` also has `leadingIconColor` and
+`trailingIconColor` in place of `iconColor`; `SuggestionChip` has
+`containerColor`, `labelColor`, and `iconContentColor`.
 
 ## TextField
 

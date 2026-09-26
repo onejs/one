@@ -27,6 +27,7 @@
 #include "HybridOneAppleAuthSpecSwift.hpp"
 #include "HybridOneLocalAuthenticationSpecSwift.hpp"
 #include "HybridOneLocationSpecSwift.hpp"
+#include "HybridOneFileSystemSpecSwift.hpp"
 #include "HybridOneUpdatesSpecSwift.hpp"
 #include "HybridOneNativeModulesSpecSwift.hpp"
 
@@ -155,6 +156,13 @@
     "OneLocation",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneLocationSpec> hybridObject = One::OneAutolinking::createOneLocation();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneFileSystem",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneFileSystemSpec> hybridObject = One::OneAutolinking::createOneFileSystem();
       return hybridObject;
     }
   );

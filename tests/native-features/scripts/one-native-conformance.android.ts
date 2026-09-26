@@ -33,7 +33,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'updates'
+  suite: 'proof' | 'compose' | 'updates'
   apkPath: string
 }
 
@@ -55,7 +55,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite updates --apk-path <APK>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|updates --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -84,7 +84,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'updates') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -2955,6 +2955,126 @@ async function run(config: Config) {
   }
 }
 
+async function runCompose(config: Config) {
+  mkdirSync(config.artifactDir, { recursive: true })
+  preflight(config)
+  requireMetroReverse(config)
+  relaunchApp(config)
+  stampDebugHost(config)
+  relaunchApp(config)
+
+  let captureNumber = 0
+  const idText = (nodes: Node[], id: string, expected: string) =>
+    matching(nodes, { id }).some((node) => nodeValues(node).some((value) => value.includes(expected)))
+  const check = async (name: string, predicate: (nodes: Node[]) => boolean) => {
+    const { snapshot: current } = await waitFor(config, name, predicate)
+    const stem = `${String(++captureNumber).padStart(2, '0')}-${name.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`
+    const png = adbBytes(config, ['exec-out', 'screencap', '-p'])
+    if (png.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a')
+      throw new Error(`${name} screenshot was not a PNG`)
+    writeFileSync(path.join(config.artifactDir, `${stem}.png`), png)
+    writeFileSync(path.join(config.artifactDir, `${stem}.xml`), current.xml)
+    console.log(`PASS ${name}`)
+  }
+  const home = () => check('compose-home', (nodes) => exactlyOneId(nodes, 'home-screen'))
+
+  await home()
+  await tapNavigation(config, 'nav-one-native-android-selection')
+  await check('compose-selection-mounted', (nodes) =>
+    idText(nodes, 'one-native-android-checkbox-status', 'Value: off · Request: off') &&
+    idText(nodes, 'one-native-android-radio-status', 'Radio: first · Clicks: 0')
+  )
+  tapFresh(config, 'checkbox controlled request', { id: 'one-native-android-checkbox-control' })
+  await check('compose-checkbox-rejected', (nodes) =>
+    idText(nodes, 'one-native-android-checkbox-status', 'Value: off · Request: on · Policy: reject')
+  )
+  tapFresh(config, 'radio second', { id: 'one-native-android-radio-second' })
+  await check('compose-radio-selected', (nodes) =>
+    idText(nodes, 'one-native-android-radio-status', 'Radio: second · Clicks: 1 · Disabled clicks: 0')
+  )
+
+  pressBack(config)
+  await home()
+  await tapNavigation(config, 'nav-one-native-android-cards')
+  await check('compose-card-variants', (nodes) =>
+    exactlyOneId(nodes, 'one-native-android-card-filled') &&
+    exactlyOneId(nodes, 'one-native-android-card-elevated') &&
+    exactlyOneId(nodes, 'one-native-android-card-outlined') &&
+    idText(nodes, 'one-native-android-card-filled-text', 'Filled card') &&
+    idText(nodes, 'one-native-android-card-elevated-text', 'Elevated card') &&
+    idText(nodes, 'one-native-android-card-outlined-text', 'Outlined card')
+  )
+
+  pressBack(config)
+  await home()
+  await tapNavigation(config, 'nav-one-native-android-dividers')
+  await check('compose-divider-orientations', (nodes) => {
+    const horizontal = matching(nodes, { id: 'one-native-android-divider-horizontal' })[0]?.bounds
+    const vertical = matching(nodes, { id: 'one-native-android-divider-vertical' })[0]?.bounds
+    return Boolean(horizontal && vertical &&
+      horizontal.right - horizontal.left > 10 * (horizontal.bottom - horizontal.top) &&
+      vertical.bottom - vertical.top > 5 * (vertical.right - vertical.left))
+  })
+
+  pressBack(config)
+  await home()
+  await tapNavigation(config, 'nav-one-native-android-filter-chip')
+  await check('compose-filter-chip-slots', (nodes) =>
+    idText(nodes, 'one-native-android-filter-chip-status', 'Selected: no · Requests: 0 · Policy: reject') &&
+    exactlyOneId(nodes, 'one-native-android-filter-chip-label') &&
+    exactlyOneId(nodes, 'one-native-android-filter-chip-leading') &&
+    exactlyOneId(nodes, 'one-native-android-filter-chip-trailing')
+  )
+  tapFresh(config, 'filter chip rejected click', { id: 'one-native-android-filter-chip-control' })
+  await check('compose-filter-chip-rejected', (nodes) =>
+    idText(nodes, 'one-native-android-filter-chip-status', 'Selected: no · Requests: 1 · Policy: reject')
+  )
+  tapFresh(config, 'filter chip policy', { id: 'one-native-android-filter-chip-policy' })
+  await check('compose-filter-chip-policy', (nodes) =>
+    idText(nodes, 'one-native-android-filter-chip-status', 'Policy: accept')
+  )
+  tapFresh(config, 'filter chip accepted click', { id: 'one-native-android-filter-chip-control' })
+  await check('compose-filter-chip-selected', (nodes) =>
+    idText(nodes, 'one-native-android-filter-chip-status', 'Selected: yes · Requests: 2 · Policy: accept')
+  )
+  tapFresh(config, 'disabled filter chip', { id: 'one-native-android-filter-chip-disabled' })
+  await check('compose-filter-chip-disabled', (nodes) =>
+    idText(nodes, 'one-native-android-filter-chip-disabled-status', 'Disabled requests: 0')
+  )
+
+  pressBack(config)
+  await home()
+  await tapNavigation(config, 'nav-one-native-android-chips')
+  await check('compose-chip-variants-mounted', (nodes) =>
+    exactlyOneId(nodes, 'one-native-android-assist-chip-label') &&
+    exactlyOneId(nodes, 'one-native-android-assist-chip-leading') &&
+    exactlyOneId(nodes, 'one-native-android-assist-chip-trailing') &&
+    exactlyOneId(nodes, 'one-native-android-input-chip-label') &&
+    exactlyOneId(nodes, 'one-native-android-input-chip-avatar') &&
+    exactlyOneId(nodes, 'one-native-android-input-chip-trailing') &&
+    exactlyOneId(nodes, 'one-native-android-suggestion-chip-label') &&
+    exactlyOneId(nodes, 'one-native-android-suggestion-chip-icon') &&
+    idText(nodes, 'one-native-android-chips-status', 'Assist: 0 · Input: off · Suggestion: 0 · Disabled: 0')
+  )
+  tapFresh(config, 'assist chip', { id: 'one-native-android-assist-chip' })
+  await check('compose-assist-chip-click', (nodes) =>
+    idText(nodes, 'one-native-android-chips-status', 'Assist: 1 · Input: off · Suggestion: 0 · Disabled: 0')
+  )
+  tapFresh(config, 'input chip', { id: 'one-native-android-input-chip' })
+  await check('compose-input-chip-selected', (nodes) =>
+    idText(nodes, 'one-native-android-chips-status', 'Assist: 1 · Input: selected · Suggestion: 0 · Disabled: 0')
+  )
+  tapFresh(config, 'suggestion chip', { id: 'one-native-android-suggestion-chip' })
+  await check('compose-suggestion-chip-click', (nodes) =>
+    idText(nodes, 'one-native-android-chips-status', 'Assist: 1 · Input: selected · Suggestion: 1 · Disabled: 0')
+  )
+  tapFresh(config, 'disabled suggestion chip', { id: 'one-native-android-suggestion-chip-disabled' })
+  await check('compose-suggestion-chip-disabled', (nodes) =>
+    idText(nodes, 'one-native-android-chips-status', 'Assist: 1 · Input: selected · Suggestion: 1 · Disabled: 0')
+  )
+  console.log('ALL ONE NATIVE ANDROID COMPOSE CHECKS PASSED')
+}
+
 // the updates suite: the release apk baked the static server in at prebuild
 // time (10.0.2.2 reaches the host loopback). it starts from a fresh install
 // and walks eight publishes: cold launch, stage and launch, tamper, fatal
@@ -3236,7 +3356,11 @@ async function runUpdates(config: Config) {
 
 try {
   const config = parse(process.argv.slice(2))
-  await (config.suite === 'updates' ? runUpdates(config) : run(config))
+  await (config.suite === 'updates'
+    ? runUpdates(config)
+    : config.suite === 'compose'
+      ? runCompose(config)
+      : run(config))
 } catch (error) {
   const message = error instanceof Error ? error.message : String(error)
   console.error(`FAIL one-native-android: ${message}`)
