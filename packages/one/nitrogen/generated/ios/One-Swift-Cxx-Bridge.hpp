@@ -102,6 +102,8 @@ namespace margelo::nitro::one { struct ImagePickerNativeResult; }
 namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
 // Forward declaration of `LocationPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class LocationPermissionStatus; }
+// Forward declaration of `LocationPlace` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationPlace; }
 // Forward declaration of `LocationPosition` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPosition; }
 // Forward declaration of `NativeChannel` to properly resolve imports.
@@ -242,6 +244,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "ImagePickerNativeResult.hpp"
 #include "LocalAuthenticationStatus.hpp"
 #include "LocationPermissionStatus.hpp"
+#include "LocationPlace.hpp"
 #include "LocationPosition.hpp"
 #include "NativeChannel.hpp"
 #include "NativeContent.hpp"
@@ -1441,6 +1444,73 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_LocationPosition_Wrapper(std::move(value));
   }
 
+  // pragma MARK: std::function<void(const std::string& /* code */, const std::string& /* message */)>
+  /**
+   * Specialized version of `std::function<void(const std::string&, const std::string&)>`.
+   */
+  using Func_void_std__string_std__string = std::function<void(const std::string& /* code */, const std::string& /* message */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::string& / * code * /, const std::string& / * message * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__string_std__string_Wrapper final {
+  public:
+    explicit Func_void_std__string_std__string_Wrapper(std::function<void(const std::string& /* code */, const std::string& /* message */)>&& func): _function(std::make_unique<std::function<void(const std::string& /* code */, const std::string& /* message */)>>(std::move(func))) {}
+    inline void call(std::string code, std::string message) const noexcept {
+      _function->operator()(code, message);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::string& /* code */, const std::string& /* message */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__string_std__string create_Func_void_std__string_std__string(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__string_std__string_Wrapper wrap_Func_void_std__string_std__string(Func_void_std__string_std__string value) noexcept {
+    return Func_void_std__string_std__string_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::vector<LocationPlace>
+  /**
+   * Specialized version of `std::vector<LocationPlace>`.
+   */
+  using std__vector_LocationPlace_ = std::vector<LocationPlace>;
+  inline std::vector<LocationPlace> create_std__vector_LocationPlace_(size_t size) noexcept {
+    std::vector<LocationPlace> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<std::vector<LocationPlace>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<LocationPlace>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_LocationPlace___ = std::shared_ptr<Promise<std::vector<LocationPlace>>>;
+  inline std::shared_ptr<Promise<std::vector<LocationPlace>>> create_std__shared_ptr_Promise_std__vector_LocationPlace___() noexcept {
+    return Promise<std::vector<LocationPlace>>::create();
+  }
+  inline PromiseHolder<std::vector<LocationPlace>> wrap_std__shared_ptr_Promise_std__vector_LocationPlace___(std::shared_ptr<Promise<std::vector<LocationPlace>>> promise) noexcept {
+    return PromiseHolder<std::vector<LocationPlace>>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const std::vector<LocationPlace>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<LocationPlace>&)>`.
+   */
+  using Func_void_std__vector_LocationPlace_ = std::function<void(const std::vector<LocationPlace>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<LocationPlace>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_LocationPlace__Wrapper final {
+  public:
+    explicit Func_void_std__vector_LocationPlace__Wrapper(std::function<void(const std::vector<LocationPlace>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<LocationPlace>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<LocationPlace> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<LocationPlace>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_LocationPlace_ create_Func_void_std__vector_LocationPlace_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_LocationPlace__Wrapper wrap_Func_void_std__vector_LocationPlace_(Func_void_std__vector_LocationPlace_ value) noexcept {
+    return Func_void_std__vector_LocationPlace__Wrapper(std::move(value));
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneLocationSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneLocationSpec>`.
@@ -1478,6 +1548,15 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_LocationPosition___ create_Result_std__shared_ptr_Promise_LocationPosition___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<LocationPosition>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>
+  using Result_std__shared_ptr_Promise_std__vector_LocationPlace____ = Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_LocationPlace____ create_Result_std__shared_ptr_Promise_std__vector_LocationPlace____(const std::shared_ptr<Promise<std::vector<LocationPlace>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_LocationPlace____ create_Result_std__shared_ptr_Promise_std__vector_LocationPlace____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<Promise<NetworkState>>

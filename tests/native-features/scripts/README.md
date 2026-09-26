@@ -88,6 +88,10 @@ also used by the suite to change enrollment and send the match.
 location permission, sets a fixed San Francisco coordinate, proves a position
 request without permission rejects, accepts the system's foreground permission
 prompt, and requires `getCurrentPosition()` to return the simulated coordinate.
+It moves the simulator twice while a watch is active, checks a one-shot read
+alongside the watch, then moves again after unsubscribe and confirms only the
+one-shot result changes. Forward geocoding must return Cupertino coordinates;
+reverse geocoding must identify San Francisco. Geocoding needs Apple's service.
 
 `network` covers `One.Network`: the one-shot read publishes a live state with a named type and both flags true, the listener fires at least once, and a refresh re-reads. State republishes across two leave/reenter cycles.
 

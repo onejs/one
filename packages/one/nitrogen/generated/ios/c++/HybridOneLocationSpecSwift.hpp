@@ -16,10 +16,17 @@ namespace One { class HybridOneLocationSpec_cxx; }
 namespace margelo::nitro::one { enum class LocationPermissionStatus; }
 // Forward declaration of `LocationPosition` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPosition; }
+// Forward declaration of `LocationPlace` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationPlace; }
 
 #include "LocationPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
 #include "LocationPosition.hpp"
+#include <functional>
+#include <string>
+#include "LocationPlace.hpp"
+#include <vector>
+#include <optional>
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -89,6 +96,30 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<LocationPosition>> getCurrentPosition() override {
       auto __result = _swiftPart.getCurrentPosition();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::function<void()> addPositionListener(const std::function<void(const LocationPosition& /* position */)>& onPosition, const std::function<void(const std::string& /* code */, const std::string& /* message */)>& onError) override {
+      auto __result = _swiftPart.addPositionListener(onPosition, onError);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::vector<LocationPlace>>> geocodeAddress(const std::string& address) override {
+      auto __result = _swiftPart.geocodeAddress(address);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::vector<LocationPlace>>> reverseGeocode(double latitude, double longitude) override {
+      auto __result = _swiftPart.reverseGeocode(std::forward<decltype(latitude)>(latitude), std::forward<decltype(longitude)>(longitude));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

@@ -4288,6 +4288,44 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('current position matches simulated coordinate', (n) =>
       labels(n).includes('Position: 37.7749,-122.4194')
     )
+    tap({ id: 'one-native-location-watch' })
+    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '40.7128,-74.0060'], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    await wait('location watch reports the moved coordinate', (n) =>
+      labels(n).includes('Watch: 40.7128,-74.0060')
+    )
+    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '34.0522,-118.2437'], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    await wait('location watch reports a second move', (n) =>
+      labels(n).includes('Watch: 34.0522,-118.2437')
+    )
+    tap({ id: 'one-native-location-current' })
+    await wait('current position works alongside the watch', (n) =>
+      labels(n).includes('Position: 34.0522,-118.2437')
+    )
+    tap({ id: 'one-native-location-stop-watch' })
+    await wait('location watch stops', (n) => labels(n).includes('Watch: stopped'))
+    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '47.6062,-122.3321'], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    tap({ id: 'one-native-location-current' })
+    await wait('one-shot sees another move after watch stop', (n) =>
+      labels(n).includes('Position: 47.6062,-122.3321') &&
+      labels(n).includes('Watch: stopped')
+    )
+    tap({ id: 'one-native-location-forward' })
+    await wait('forward geocoding returns Cupertino coordinates', (n) =>
+      labels(n).some((label) => /^Forward: [1-9]\d*:37\.3\d,-122\.0\d$/.test(label))
+    )
+    tap({ id: 'one-native-location-reverse' })
+    await wait('reverse geocoding identifies San Francisco', (n) =>
+      labels(n).includes('Reverse: San Francisco')
+    )
     screenshot('location-current-position.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
