@@ -247,6 +247,11 @@ const testScreens = [
     testID: 'nav-one-native-android-icon-buttons',
   },
   {
+    href: '/one-native-android-loading',
+    label: 'One Native Android Loading',
+    testID: 'nav-one-native-android-loading',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',

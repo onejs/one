@@ -10,6 +10,7 @@ import type {
   ComposeCardProps,
   ComposeCheckboxProps,
   ComposeColumnProps,
+  ComposeContainedLoadingIndicatorProps,
   ComposeDialogProps,
   ComposeDividerProps,
   ComposeElevatedCardProps,
@@ -20,6 +21,7 @@ import type {
   ComposeIconProps,
   ComposeIconButtonProps,
   ComposeInputChipProps,
+  ComposeLoadingIndicatorProps,
   ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
   ComposeRadioButtonProps,
@@ -230,6 +232,14 @@ function ProgressIndicator(_props: ComposeProgressIndicatorProps): never {
   return unsupported('ProgressIndicator')
 }
 
+function LoadingIndicator(_props: ComposeLoadingIndicatorProps): never {
+  return unsupported('LoadingIndicator')
+}
+
+function ContainedLoadingIndicator(_props: ComposeContainedLoadingIndicatorProps): never {
+  return unsupported('ContainedLoadingIndicator')
+}
+
 export const Compose = {
   Column,
   Row,
@@ -270,4 +280,6 @@ export const Compose = {
   AlertDialog,
   Dialog,
   ProgressIndicator,
+  LoadingIndicator,
+  ContainedLoadingIndicator,
 }

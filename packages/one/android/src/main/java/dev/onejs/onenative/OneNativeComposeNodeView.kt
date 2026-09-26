@@ -76,6 +76,9 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.LoadingIndicator
+import androidx.compose.material3.ContainedLoadingIndicator
+import androidx.compose.material3.LoadingIndicatorDefaults
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -255,6 +258,19 @@ internal data class OneNativeToggleButtonColors(
     }
 }
 
+internal data class OneNativeLoadingColors(
+    val color: Int? = null,
+    val containerColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeLoadingColors =
+            if (map == null) OneNativeLoadingColors() else OneNativeLoadingColors(
+                color = readComposeColor(map, "color", context),
+                containerColor = readComposeColor(map, "containerColor", context),
+            )
+    }
+}
+
 internal data class OneNativeListItemColors(
     val containerColor: Int? = null,
     val contentColor: Int? = null,
@@ -413,6 +429,7 @@ internal data class OneNativeComposeNodeProps(
     val fabColors: OneNativeCardColors = OneNativeCardColors(),
     val fabExpanded: Boolean = true,
     val toggleButtonColors: OneNativeToggleButtonColors = OneNativeToggleButtonColors(),
+    val loadingColors: OneNativeLoadingColors = OneNativeLoadingColors(),
     val badgeColors: OneNativeCardColors = OneNativeCardColors(),
     val listItemColors: OneNativeListItemColors = OneNativeListItemColors(),
     val tonalElevation: Double = -1.0,
@@ -729,6 +746,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageToggleButtonColors(value: ReadableMap?) {
         pendingProps = pendingProps.copy(toggleButtonColors = OneNativeToggleButtonColors.fromMap(value, context))
+    }
+
+    internal fun stageLoadingColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(loadingColors = OneNativeLoadingColors.fromMap(value, context))
     }
 
     internal fun stageBadgeColors(value: ReadableMap?) {
@@ -1245,6 +1266,7 @@ private fun RenderComposeNodeBody(
         "floatingactionbutton" -> RenderComposeFloatingActionButton(node, props, modifier)
         "togglebutton", "icontogglebutton", "filledicontogglebutton", "outlinedicontogglebutton" ->
             RenderComposeToggleButton(node, props, modifier)
+        "loadingindicator", "containedloadingindicator" -> RenderComposeLoadingIndicator(node, props, modifier)
         "switch" -> RenderComposeSwitch(node, props, modifier)
         "checkbox" ->
             Checkbox(
@@ -1718,6 +1740,33 @@ private fun RenderComposeToggleButton(
                 disabledContainerColor = disabledContainerColor, disabledContentColor = disabledContentColor,
             ),
         ) { RenderComposeChildren(node) }
+    }
+}
+
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@Composable
+private fun RenderComposeLoadingIndicator(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val progress = props.progress.takeIf { it >= 0.0 }?.coerceIn(0.0, 1.0)?.toFloat()
+    val colors = props.loadingColors
+    if (node.renderedNodeKind == "containedloadingindicator") {
+        val color = colors.color?.let(::Color) ?: LoadingIndicatorDefaults.containedIndicatorColor
+        val containerColor = colors.containerColor?.let(::Color) ?: LoadingIndicatorDefaults.containedContainerColor
+        if (progress == null) {
+            ContainedLoadingIndicator(modifier = modifier, indicatorColor = color, containerColor = containerColor)
+        } else {
+            ContainedLoadingIndicator(progress = { progress }, modifier = modifier, indicatorColor = color, containerColor = containerColor)
+        }
+    } else {
+        val color = colors.color?.let(::Color) ?: LoadingIndicatorDefaults.indicatorColor
+        if (progress == null) {
+            LoadingIndicator(modifier = modifier, color = color)
+        } else {
+            LoadingIndicator(progress = { progress }, modifier = modifier, color = color)
+        }
     }
 }
 

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function FlowRow(_props: ComposeFlowRowProps): never;
@@ -50,6 +50,8 @@ declare function Slider(_props: ComposeSliderProps): never;
 declare function AlertDialog(_props: ComposeAlertDialogProps): never;
 declare function Dialog(_props: ComposeDialogProps): never;
 declare function ProgressIndicator(_props: ComposeProgressIndicatorProps): never;
+declare function LoadingIndicator(_props: ComposeLoadingIndicatorProps): never;
+declare function ContainedLoadingIndicator(_props: ComposeContainedLoadingIndicatorProps): never;
 export declare const Compose: {
     Column: typeof Column;
     Row: typeof Row;
@@ -144,6 +146,8 @@ export declare const Compose: {
     AlertDialog: typeof AlertDialog;
     Dialog: typeof Dialog;
     ProgressIndicator: typeof ProgressIndicator;
+    LoadingIndicator: typeof LoadingIndicator;
+    ContainedLoadingIndicator: typeof ContainedLoadingIndicator;
 };
 export {};
 //# sourceMappingURL=compose.d.ts.map

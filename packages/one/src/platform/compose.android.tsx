@@ -16,6 +16,7 @@ import type {
   ComposeCardProps,
   ComposeCheckboxProps,
   ComposeColumnProps,
+  ComposeContainedLoadingIndicatorProps,
   ComposeContentAlignment,
   ComposeDialogProps,
   ComposeDividerProps,
@@ -31,6 +32,7 @@ import type {
   ComposeIconButtonProps,
   ComposeInputChipProps,
   ComposeListItemProps,
+  ComposeLoadingIndicatorProps,
   ComposeNodeProps,
   ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
@@ -69,6 +71,7 @@ import {
   validateIconProps,
   validateIconButtonProps,
   validateListItemProps,
+  validateLoadingIndicatorProps,
   validateProgressIndicatorProps,
   validateRadioButtonProps,
   validateRowProps,
@@ -107,6 +110,8 @@ type ComposeNodeType =
   | 'filledtonaliconbutton'
   | 'outlinediconbutton'
   | 'floatingactionbutton'
+  | 'loadingindicator'
+  | 'containedloadingindicator'
   | 'togglebutton'
   | 'icontogglebutton'
   | 'filledicontogglebutton'
@@ -167,6 +172,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   fabColors?: Pick<ComposeFloatingActionButtonProps, 'containerColor'>
   fabExpanded?: boolean
   toggleButtonColors?: ComposeToggleButtonProps['colors']
+  loadingColors?: Readonly<{ color?: ComposeLoadingIndicatorProps['color']; containerColor?: ComposeContainedLoadingIndicatorProps['containerColor'] }>
   acknowledgedEvent?: number
   revision?: number
   textValue?: string
@@ -224,6 +230,8 @@ const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
   'slider',
   'alertdialog',
   'progressindicator',
+  'loadingindicator',
+  'containedloadingindicator',
   'horizontaldivider',
   'verticaldivider',
 ])
@@ -964,6 +972,16 @@ function ProgressIndicator({
   )
 }
 
+function LoadingIndicator({ progress, color, ...props }: ComposeLoadingIndicatorProps) {
+  validateLoadingIndicatorProps({ progress, color })
+  return <ComposeNode {...props} nodeType="loadingindicator" progress={progress === undefined ? undefined : progress ?? 0} loadingColors={{ color }} />
+}
+
+function ContainedLoadingIndicator({ progress, color, containerColor, ...props }: ComposeContainedLoadingIndicatorProps) {
+  validateLoadingIndicatorProps({ progress, color, containerColor })
+  return <ComposeNode {...props} nodeType="containedloadingindicator" progress={progress === undefined ? undefined : progress ?? 0} loadingColors={{ color, containerColor }} />
+}
+
 export const Compose = {
   Column,
   Row,
@@ -1004,4 +1022,6 @@ export const Compose = {
   AlertDialog,
   Dialog,
   ProgressIndicator,
+  LoadingIndicator,
+  ContainedLoadingIndicator,
 }
