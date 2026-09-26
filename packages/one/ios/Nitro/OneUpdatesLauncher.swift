@@ -213,7 +213,20 @@ struct OneUpdatesStateFile: Codable {
       return nil
     }
     guard dateOf(createdAt: manifest.createdAt) != nil else { return nil }
+    guard isPlainName(manifest.id), manifest.assets.allSatisfy({ isRelativePath($0.path) })
+    else { return nil }
     return manifest
+  }
+
+  // an id names a directory and each asset path a file under it, so a
+  // manifest may only name plain relative paths inside the updates directory.
+  static func isPlainName(_ name: String) -> Bool {
+    !name.isEmpty && !name.hasPrefix(".") && !name.contains("/")
+  }
+
+  static func isRelativePath(_ path: String) -> Bool {
+    path.split(separator: "/", omittingEmptySubsequences: false)
+      .allSatisfy { !$0.isEmpty && $0 != "." && $0 != ".." }
   }
 
   static func parseManifest(data: Data) -> (OneUpdatesManifest, String)? {
