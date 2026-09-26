@@ -1545,7 +1545,9 @@ buildSettings = {
       'SWIFT_OBJC_BRIDGING_HEADER = "MyApp/OneUpdates-Bridging-Header.h";'
     )
     expect(
-      rendered.content.split('SWIFT_OBJC_BRIDGING_HEADER = "MyApp/OneUpdates-Bridging-Header.h";')
+      (rendered.content ?? '').split(
+        'SWIFT_OBJC_BRIDGING_HEADER = "MyApp/OneUpdates-Bridging-Header.h";'
+      )
         .length - 1
     ).toBe(2)
 

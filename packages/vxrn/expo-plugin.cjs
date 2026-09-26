@@ -6,6 +6,12 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // options: { notifications: { push?: boolean, mode?: 'development' | 'production' } }
 // turns on One.Notifications the way native.app.notifications does for one
 // prebuild. mode is the aps-environment, as expo-notifications takes it.
+//
+// options: { updates: { url?: string, runtimeVersion: string } } turns on
+// One.Updates on iOS the way native.app.updates does for one prebuild: the
+// release bundleURL asks the launcher, and the bundle phase writes the
+// embedded manifest. Expo's Android host builds its own ReactHost delegate,
+// which One.Updates cannot re-point, so Android needs one prebuild.
 module.exports = function withVxrn(config, options = {}) {
   const projectRoot = config?._internal?.projectRoot
   if (!projectRoot) {
@@ -17,6 +23,7 @@ module.exports = function withVxrn(config, options = {}) {
     AndroidConfig,
     withAndroidManifest,
     withAppBuildGradle,
+    withAppDelegate,
     withDangerousMod,
     withEntitlementsPlist,
     withGradleProperties,
@@ -91,8 +98,77 @@ module.exports = function withVxrn(config, options = {}) {
         ],
       ]
 
+  const updates = options.updates
+  if (updates && (typeof updates.runtimeVersion !== 'string' || !updates.runtimeVersion)) {
+    throw new Error('[vxrn/expo-plugin] updates.runtimeVersion must be a non-empty string')
+  }
+  const updatesHost = nativeProjectPatches.ONE_UPDATES
+  const updatesPlugins = !updates
+    ? []
+    : [
+        [
+          withInfoPlist,
+          (nextConfig) => {
+            // without the url the embedded bundle launches with updates
+            // disabled, as in one prebuild.
+            if (updates.url !== undefined) {
+              nextConfig.modResults[updatesHost.urlInfoPlistKey] = updates.url
+            }
+            nextConfig.modResults[updatesHost.runtimeVersionInfoPlistKey] =
+              updates.runtimeVersion
+            return nextConfig
+          },
+        ],
+        [
+          withAppDelegate,
+          (nextConfig) => {
+            nextConfig.modResults.contents =
+              nativeProjectPatches.pointReleaseBundleURLAtOneUpdates(
+                nextConfig.modResults.contents
+              )
+            return nextConfig
+          },
+        ],
+        [
+          withDangerousMod,
+          [
+            'ios',
+            (nextConfig) => {
+              const { platformProjectRoot, projectName } = nextConfig.modRequest
+              const header = path.join(
+                platformProjectRoot,
+                projectName,
+                `${projectName}-Bridging-Header.h`
+              )
+              if (!fs.existsSync(header)) {
+                throw new Error(
+                  `[vxrn/expo-plugin] updates: expected the app's bridging header at ${header}`
+                )
+              }
+              const contents = fs.readFileSync(header, 'utf8')
+              if (!contents.includes(updatesHost.bridgingHeaderImport)) {
+                fs.writeFileSync(
+                  header,
+                  `${contents.trimEnd()}\n${updatesHost.bridgingHeaderImport}\n`
+                )
+              }
+              return nextConfig
+            },
+          ],
+        ],
+        [
+          withMainActivity,
+          () => {
+            throw new Error(
+              '[vxrn/expo-plugin] updates: One.Updates on Android needs one prebuild; Expo prebuild supports it on iOS only'
+            )
+          },
+        ],
+      ]
+
   return withPlugins(config, [
     ...notificationPlugins,
+    ...updatesPlugins,
     [
       withXcodeProject,
       (nextConfig) => {
@@ -108,6 +184,12 @@ module.exports = function withVxrn(config, options = {}) {
         script = nativeProjectPatches.addSetCliPathToBundleReactNativeShellScript(script)
         script = nativeProjectPatches.addPodHermescToBundleReactNativeShellScript(script)
         script = nativeProjectPatches.addDepsPatchToBundleReactNativeShellScript(script)
+        if (updates) {
+          script = nativeProjectPatches.addEmbeddedUpdatesManifestToBundleReactNativeShellScript(
+            script,
+            updates.runtimeVersion
+          )
+        }
         phase.shellScript = JSON.stringify(script)
         return nextConfig
       },
