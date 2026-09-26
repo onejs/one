@@ -339,8 +339,11 @@ object OneUpdatesLauncher {
             val assets = mutableListOf<ManifestAsset>()
             val raw: JSONArray = root.getJSONArray("assets")
             for (index in 0 until raw.length()) assets.add(asset(raw.getJSONObject(index)))
+            val id = root.getString("id")
+            root.getJSONObject("metadata")
+            if (!isPlainName(id) || !assets.all { isRelativePath(it.path) }) return null
             Manifest(
-                id = root.getString("id"),
+                id = id,
                 createdAt = createdAt,
                 createdAtMillis = millis,
                 runtimeVersion = root.getString("runtimeVersion"),
@@ -351,6 +354,14 @@ object OneUpdatesLauncher {
             null
         }
     }
+
+    // an id names a directory and each asset path a file under it, so a
+    // manifest may only name plain relative paths inside the updates directory.
+    private fun isPlainName(name: String) =
+        name.isNotEmpty() && !name.startsWith(".") && !name.contains('/')
+
+    private fun isRelativePath(path: String) =
+        path.split('/').all { it.isNotEmpty() && it != "." && it != ".." }
 
     // the bundle re-hashes and every asset exists, like selection checks.
     private fun updateIsComplete(id: String, manifest: Manifest): Boolean {
