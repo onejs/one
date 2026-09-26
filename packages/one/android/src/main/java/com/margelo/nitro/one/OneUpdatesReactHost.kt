@@ -20,6 +20,7 @@ import com.facebook.react.runtime.hermes.HermesInstance
 // stores one fixed JSBundleLoader, so a reload would rerun the old bundle;
 // this delegate's jsBundleLoader asks the launcher on every access instead,
 // the way expo's host factory re-resolves its bundle file per access.
+@OptIn(UnstableReactNativeAPI::class)
 class OneUpdatesReactHostDelegate(
     private val context: Context,
     override val jsMainModulePath: String = "index",
