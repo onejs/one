@@ -16,11 +16,11 @@ import com.facebook.proguard.annotations.DoNotStrip
 @DoNotStrip
 @Keep
 enum class BrowserAuthResultType(@DoNotStrip @Keep val value: Int) {
-  CANCEL(0),
-  DISMISS(1),
-  OPENED(2),
-  LOCKED(3),
-  SUCCESS(4);
+  SUCCESS(0),
+  CANCEL(1),
+  DISMISS(2),
+  OPENED(3),
+  LOCKED(4);
 
   companion object
 }

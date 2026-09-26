@@ -10,7 +10,7 @@ declare function getChannels(): Promise<NotificationChannel[]>;
 declare function deleteChannel(channelId: string): Promise<void>;
 declare function addReceivedListener(listener: (notification: Notification) => void): NotificationSubscription;
 declare function addResponseReceivedListener(listener: (response: NotificationResponse) => void): NotificationSubscription;
-declare function getDevicePushTokenAsync(): Promise<DevicePushToken>;
+declare function getDevicePushToken(): Promise<DevicePushToken>;
 declare function addPushTokenListener(listener: (token: DevicePushToken) => void): NotificationSubscription;
 declare function setHandler(handler: NotificationHandlerInput | null): void;
 declare function getLastResponse(): NotificationResponse | null;
@@ -33,7 +33,7 @@ export declare const Notifications: Readonly<{
     deleteChannel: typeof deleteChannel;
     addReceivedListener: typeof addReceivedListener;
     addResponseReceivedListener: typeof addResponseReceivedListener;
-    getDevicePushTokenAsync: typeof getDevicePushTokenAsync;
+    getDevicePushToken: typeof getDevicePushToken;
     addPushTokenListener: typeof addPushTokenListener;
     setHandler: typeof setHandler;
     getLastResponse: typeof getLastResponse;

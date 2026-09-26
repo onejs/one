@@ -2556,6 +2556,7 @@ export interface GaugeProps extends OneNativeViewProps {
 export interface ImageProps extends OneNativeViewProps {
     systemName?: string;
     uri?: string;
+    renderingMode?: 'original' | 'template';
     symbolRenderingMode?: Styles.SymbolRenderingMode | '';
     symbolVariant?: Styles.SymbolVariants | '';
     imageScale?: Styles.ImageScale | '';
@@ -2640,6 +2641,7 @@ export interface SignInWithAppleButtonProps extends OneNativeViewProps {
     onCompletion?: (completion: SignInWithAppleButtonCompletion) => void;
     requestedScopes?: readonly ('fullName' | 'email')[];
     nonce?: string;
+    label?: 'signIn' | 'continue' | 'signUp';
 }
 export interface MapProps extends OneNativeViewProps {
     onRegionChange?: (latitude: number, longitude: number, distance: number) => void;

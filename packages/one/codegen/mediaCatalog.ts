@@ -322,6 +322,7 @@ private struct PhotosPickerSurface: View {
         publicType: "readonly ('fullName' | 'email')[]",
       },
       nonce: { type: 'string', default: '' },
+      label: { type: 'string', default: 'signIn', publicType: "'signIn' | 'continue' | 'signUp'" },
     },
     setBody: {
       requestedScopes: `if let unknown = items.first(where: { $0 != "fullName" && $0 != "email" }) {
@@ -373,10 +374,19 @@ private func oneNativeTokenString(_ data: Data?) -> String {
   return String(data: data, encoding: .utf8) ?? ""
 }
 
+// validate admits only these three, so the default case is unreachable
+private func oneNativeAppleButtonLabel(_ value: String) -> SignInWithAppleButton.Label {
+  switch value {
+  case "continue": return .continue
+  case "signUp": return .signUp
+  default: return .signIn
+  }
+}
+
 private struct SignInWithAppleButtonSurface: View {
   @ObservedObject var model: SignInWithAppleButtonModel
   var body: some View {
-    SignInWithAppleButton(.signIn, onRequest: { request in
+    SignInWithAppleButton(oneNativeAppleButtonLabel(model.label), onRequest: { request in
       request.requestedScopes = oneNativeAppleScopes(model.requestedScopes)
       if !model.nonce.isEmpty { request.nonce = model.nonce }
     }, onCompletion: { result in
@@ -413,6 +423,7 @@ private struct SignInWithAppleButtonSurface: View {
   for (const scope of requestedScopes) {
     if (scope !== 'fullName' && scope !== 'email') throw new Error("SignInWithAppleButton scope must be 'fullName' or 'email'")
   }
-  if (typeof nonce !== 'string') throw new Error('SignInWithAppleButton nonce must be a string')`,
+  if (typeof nonce !== 'string') throw new Error('SignInWithAppleButton nonce must be a string')
+  if (label !== 'signIn' && label !== 'continue' && label !== 'signUp') throw new Error("SignInWithAppleButton label must be 'signIn', 'continue' or 'signUp'")`,
   },
 ]

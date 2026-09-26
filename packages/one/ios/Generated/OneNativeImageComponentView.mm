@@ -42,7 +42,7 @@ using namespace facebook::react;
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_nativeView configure:RCTNSStringFromString(next.systemName)
-    uri:RCTNSStringFromString(next.uri) symbolRenderingMode:RCTNSStringFromString(next.symbolRenderingMode) symbolVariant:RCTNSStringFromString(next.symbolVariant) imageScale:RCTNSStringFromString(next.imageScale) variableValue:next.variableValue hasVariableValue:next.hasVariableValue colorRole:RCTNSStringFromString(next.colorRole)];
+    uri:RCTNSStringFromString(next.uri) renderingMode:RCTNSStringFromString(next.renderingMode) symbolRenderingMode:RCTNSStringFromString(next.symbolRenderingMode) symbolVariant:RCTNSStringFromString(next.symbolVariant) imageScale:RCTNSStringFromString(next.imageScale) variableValue:next.variableValue hasVariableValue:next.hasVariableValue colorRole:RCTNSStringFromString(next.colorRole)];
 
   [super updateProps:props oldProps:oldProps];
 }

@@ -42,6 +42,9 @@ namespace margelo::nitro::one {
     static jni::alias_ref<JBrowserAuthResultType> fromCpp(BrowserAuthResultType value) {
       static const auto clazz = javaClassStatic();
       switch (value) {
+        case BrowserAuthResultType::SUCCESS:
+          static const auto fieldSUCCESS = clazz->getStaticField<JBrowserAuthResultType>("SUCCESS");
+          return clazz->getStaticFieldValue(fieldSUCCESS);
         case BrowserAuthResultType::CANCEL:
           static const auto fieldCANCEL = clazz->getStaticField<JBrowserAuthResultType>("CANCEL");
           return clazz->getStaticFieldValue(fieldCANCEL);
@@ -54,9 +57,6 @@ namespace margelo::nitro::one {
         case BrowserAuthResultType::LOCKED:
           static const auto fieldLOCKED = clazz->getStaticField<JBrowserAuthResultType>("LOCKED");
           return clazz->getStaticFieldValue(fieldLOCKED);
-        case BrowserAuthResultType::SUCCESS:
-          static const auto fieldSUCCESS = clazz->getStaticField<JBrowserAuthResultType>("SUCCESS");
-          return clazz->getStaticFieldValue(fieldSUCCESS);
         default:
           std::string stringValue = std::to_string(static_cast<int>(value));
           throw std::invalid_argument("Invalid enum value (" + stringValue + "!");

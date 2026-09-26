@@ -29,11 +29,11 @@ namespace margelo::nitro::one {
    * An enum which can be represented as a JavaScript union (BrowserAuthResultType).
    */
   enum class BrowserAuthResultType {
-    CANCEL      SWIFT_NAME(cancel) = 0,
-    DISMISS      SWIFT_NAME(dismiss) = 1,
-    OPENED      SWIFT_NAME(opened) = 2,
-    LOCKED      SWIFT_NAME(locked) = 3,
-    SUCCESS      SWIFT_NAME(success) = 4,
+    SUCCESS      SWIFT_NAME(success) = 0,
+    CANCEL      SWIFT_NAME(cancel) = 1,
+    DISMISS      SWIFT_NAME(dismiss) = 2,
+    OPENED      SWIFT_NAME(opened) = 3,
+    LOCKED      SWIFT_NAME(locked) = 4,
   } CLOSED_ENUM;
 
 } // namespace margelo::nitro::one
@@ -46,22 +46,22 @@ namespace margelo::nitro {
     static inline margelo::nitro::one::BrowserAuthResultType fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
+        case hashString("success"): return margelo::nitro::one::BrowserAuthResultType::SUCCESS;
         case hashString("cancel"): return margelo::nitro::one::BrowserAuthResultType::CANCEL;
         case hashString("dismiss"): return margelo::nitro::one::BrowserAuthResultType::DISMISS;
         case hashString("opened"): return margelo::nitro::one::BrowserAuthResultType::OPENED;
         case hashString("locked"): return margelo::nitro::one::BrowserAuthResultType::LOCKED;
-        case hashString("success"): return margelo::nitro::one::BrowserAuthResultType::SUCCESS;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum BrowserAuthResultType - invalid value!");
       }
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::one::BrowserAuthResultType arg) {
       switch (arg) {
+        case margelo::nitro::one::BrowserAuthResultType::SUCCESS: return JSIConverter<std::string>::toJSI(runtime, "success");
         case margelo::nitro::one::BrowserAuthResultType::CANCEL: return JSIConverter<std::string>::toJSI(runtime, "cancel");
         case margelo::nitro::one::BrowserAuthResultType::DISMISS: return JSIConverter<std::string>::toJSI(runtime, "dismiss");
         case margelo::nitro::one::BrowserAuthResultType::OPENED: return JSIConverter<std::string>::toJSI(runtime, "opened");
         case margelo::nitro::one::BrowserAuthResultType::LOCKED: return JSIConverter<std::string>::toJSI(runtime, "locked");
-        case margelo::nitro::one::BrowserAuthResultType::SUCCESS: return JSIConverter<std::string>::toJSI(runtime, "success");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert BrowserAuthResultType to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");
@@ -73,11 +73,11 @@ namespace margelo::nitro {
       }
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, value);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
+        case hashString("success"):
         case hashString("cancel"):
         case hashString("dismiss"):
         case hashString("opened"):
         case hashString("locked"):
-        case hashString("success"):
           return true;
         default:
           return false;

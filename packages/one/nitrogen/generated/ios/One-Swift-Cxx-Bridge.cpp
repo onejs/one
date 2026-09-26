@@ -92,19 +92,19 @@ namespace margelo::nitro::one::bridge::swift {
     return swiftPart.toUnsafe();
   }
   
-  // pragma MARK: std::function<void(const AppleAuthCredential& /* result */)>
-  Func_void_AppleAuthCredential create_Func_void_AppleAuthCredential(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_AppleAuthCredential::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const AppleAuthCredential& result) mutable -> void {
+  // pragma MARK: std::function<void(const AppleAuthResult& /* result */)>
+  Func_void_AppleAuthResult create_Func_void_AppleAuthResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_AppleAuthResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const AppleAuthResult& result) mutable -> void {
       swiftClosure.call(result);
     };
   }
   
-  // pragma MARK: std::function<void(double /* result */)>
-  Func_void_double create_Func_void_double(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_double::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](double result) mutable -> void {
-      swiftClosure.call(result);
+  // pragma MARK: std::function<void(AppleCredentialState /* result */)>
+  Func_void_AppleCredentialState create_Func_void_AppleCredentialState(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_AppleCredentialState::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](AppleCredentialState result) mutable -> void {
+      swiftClosure.call(static_cast<int>(result));
     };
   }
   
@@ -352,6 +352,14 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_NativePermissionResponse create_Func_void_NativePermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_NativePermissionResponse::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const NativePermissionResponse& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(double /* result */)>
+  Func_void_double create_Func_void_double(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_double::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](double result) mutable -> void {
       swiftClosure.call(result);
     };
   }

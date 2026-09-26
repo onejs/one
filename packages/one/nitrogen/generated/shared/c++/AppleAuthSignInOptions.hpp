@@ -28,11 +28,13 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
+// Forward declaration of `AppleAuthScope` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppleAuthScope; }
 
-
-#include <string>
+#include "AppleAuthScope.hpp"
 #include <vector>
 #include <optional>
+#include <string>
 
 namespace margelo::nitro::one {
 
@@ -41,13 +43,13 @@ namespace margelo::nitro::one {
    */
   struct AppleAuthSignInOptions final {
   public:
-    std::optional<std::vector<std::string>> requestedScopes     SWIFT_PRIVATE;
+    std::optional<std::vector<AppleAuthScope>> requestedScopes     SWIFT_PRIVATE;
     std::optional<std::string> nonce     SWIFT_PRIVATE;
     std::optional<std::string> state     SWIFT_PRIVATE;
 
   public:
     AppleAuthSignInOptions() = default;
-    explicit AppleAuthSignInOptions(std::optional<std::vector<std::string>> requestedScopes, std::optional<std::string> nonce, std::optional<std::string> state): requestedScopes(requestedScopes), nonce(nonce), state(state) {}
+    explicit AppleAuthSignInOptions(std::optional<std::vector<AppleAuthScope>> requestedScopes, std::optional<std::string> nonce, std::optional<std::string> state): requestedScopes(requestedScopes), nonce(nonce), state(state) {}
 
   public:
     friend bool operator==(const AppleAuthSignInOptions& lhs, const AppleAuthSignInOptions& rhs) = default;
@@ -63,14 +65,14 @@ namespace margelo::nitro {
     static inline margelo::nitro::one::AppleAuthSignInOptions fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return margelo::nitro::one::AppleAuthSignInOptions(
-        JSIConverter<std::optional<std::vector<std::string>>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "requestedScopes"))),
+        JSIConverter<std::optional<std::vector<margelo::nitro::one::AppleAuthScope>>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "requestedScopes"))),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "nonce"))),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "state")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::AppleAuthSignInOptions& arg) {
       jsi::Object obj(runtime);
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "requestedScopes"), JSIConverter<std::optional<std::vector<std::string>>>::toJSI(runtime, arg.requestedScopes));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "requestedScopes"), JSIConverter<std::optional<std::vector<margelo::nitro::one::AppleAuthScope>>>::toJSI(runtime, arg.requestedScopes));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "nonce"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.nonce));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "state"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.state));
       return obj;
@@ -83,7 +85,7 @@ namespace margelo::nitro {
       if (!nitro::isPlainObject(runtime, obj)) {
         return false;
       }
-      if (!JSIConverter<std::optional<std::vector<std::string>>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "requestedScopes")))) return false;
+      if (!JSIConverter<std::optional<std::vector<margelo::nitro::one::AppleAuthScope>>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "requestedScopes")))) return false;
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "nonce")))) return false;
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "state")))) return false;
       return true;

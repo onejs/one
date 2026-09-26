@@ -466,6 +466,7 @@ import NativeImage from '../specs/OneNativeImageNativeComponent'
 export function Image({
   systemName = '',
   uri = '',
+  renderingMode = 'original',
   symbolRenderingMode = '',
   symbolVariant = '',
   imageScale = '',
@@ -478,6 +479,12 @@ export function Image({
   if (!systemName === !uri)
     throw new Error(
       'Image takes exactly one of systemName (an SF Symbol name) or uri (a remote image)'
+    )
+  if (renderingMode !== 'original' && renderingMode !== 'template')
+    throw new Error("Image renderingMode must be 'original' or 'template'")
+  if (renderingMode === 'template' && !uri)
+    throw new Error(
+      'Image renderingMode applies to a uri image; an SF Symbol is already a template'
     )
   if (variableValue !== undefined && !Number.isFinite(variableValue))
     throw new Error('Image variableValue must be a finite number or undefined')
@@ -516,6 +523,7 @@ export function Image({
       }
       systemName={systemName}
       uri={uri}
+      renderingMode={renderingMode}
       symbolRenderingMode={symbolRenderingMode}
       symbolVariant={symbolVariant}
       imageScale={imageScale}
@@ -888,6 +896,7 @@ export function SignInWithAppleButton({
   onCompletion,
   requestedScopes = [],
   nonce = '',
+  label = 'signIn',
   swiftStyle,
   style,
   ...props
@@ -900,6 +909,10 @@ export function SignInWithAppleButton({
   }
   if (typeof nonce !== 'string')
     throw new Error('SignInWithAppleButton nonce must be a string')
+  if (label !== 'signIn' && label !== 'continue' && label !== 'signUp')
+    throw new Error(
+      "SignInWithAppleButton label must be 'signIn', 'continue' or 'signUp'"
+    )
 
   return (
     <NativeSignInWithAppleButton
@@ -911,6 +924,7 @@ export function SignInWithAppleButton({
       }
       requestedScopes={requestedScopes}
       nonce={nonce}
+      label={label}
       onNativeSignInWithAppleButtonCompletion={({ nativeEvent }) =>
         onCompletion?.(
           nativeEvent.type === 'success'

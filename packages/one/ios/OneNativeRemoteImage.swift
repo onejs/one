@@ -34,16 +34,22 @@ final class OneNativeRemoteImageLoader: ObservableObject {
   }
 }
 
-// fills the frame it is given, like a React Native Image's default cover resize mode, and
-// keeps the photo's own colors where a bar would template it.
+// fills the frame it is given, like a React Native Image's default cover resize mode. it
+// keeps the image's own colors where a bar would template it, unless it is drawn as a
+// template for the bar to tint.
 struct OneNativeRemoteImage: View {
   @ObservedObject private var loader: OneNativeRemoteImageLoader
+  private let template: Bool
 
-  init(uri: String) { loader = .loader(uri) }
+  init(uri: String, template: Bool) {
+    loader = .loader(uri)
+    self.template = template
+  }
 
   var body: some View {
     if let image = loader.image {
-      Image(uiImage: image).renderingMode(.original).resizable().scaledToFill()
+      Image(uiImage: image).renderingMode(template ? .template : .original).resizable()
+        .scaledToFill()
     } else {
       Color.clear
     }

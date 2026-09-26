@@ -69,7 +69,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.VideoPlayer` | media | n/a |  |
 | `One.iOS.PhotosPicker` | missing | n/a | fixture exists, no suite opens it |
 | `One.iOS.WebView` | missing | n/a | fixture exists, no suite opens it |
-| `One.iOS.SignInWithAppleButton` | apple-file | n/a |  |
+| `One.iOS.SignInWithAppleButton` | apple-file, apple-auth | n/a |  |
 | `One.iOS.Map` | map | n/a |  |
 | `One.iOS.TextField` | pickers, forms, leaves, state | n/a |  |
 | `One.iOS.SecureField` | leaves | n/a |  |
@@ -129,7 +129,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Clipboard` | clipboard | missing | iOS suite only |
 | `One.Haptics` | haptics | haptics |  |
 | `One.Network` | network | missing | iOS suite only |
-| `One.AppleAuth` | apple-auth | apple-auth |  |
+| `One.Auth` | apple-auth | apple-auth |  |
 | `One.Browser` | browser | browser |  |
 | `One.ImagePicker` | image-picker | image-picker |  |
 | `One.DocumentPicker` | missing | missing | fixture exists, no suite opens it |

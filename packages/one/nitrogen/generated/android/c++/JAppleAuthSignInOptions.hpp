@@ -10,6 +10,8 @@
 #include <fbjni/fbjni.h>
 #include "AppleAuthSignInOptions.hpp"
 
+#include "AppleAuthScope.hpp"
+#include "JAppleAuthScope.hpp"
 #include <optional>
 #include <string>
 #include <vector>
@@ -33,8 +35,8 @@ namespace margelo::nitro::one {
     [[nodiscard]]
     AppleAuthSignInOptions toCpp() const {
       static const auto clazz = javaClassStatic();
-      static const auto fieldRequestedScopes = clazz->getField<jni::JArrayClass<jni::JString>>("requestedScopes");
-      jni::local_ref<jni::JArrayClass<jni::JString>> requestedScopes = this->getFieldValue(fieldRequestedScopes);
+      static const auto fieldRequestedScopes = clazz->getField<jni::JArrayClass<JAppleAuthScope>>("requestedScopes");
+      jni::local_ref<jni::JArrayClass<JAppleAuthScope>> requestedScopes = this->getFieldValue(fieldRequestedScopes);
       static const auto fieldNonce = clazz->getField<jni::JString>("nonce");
       jni::local_ref<jni::JString> nonce = this->getFieldValue(fieldNonce);
       static const auto fieldState = clazz->getField<jni::JString>("state");
@@ -42,11 +44,11 @@ namespace margelo::nitro::one {
       return AppleAuthSignInOptions(
         requestedScopes != nullptr ? std::make_optional([&](auto&& __input) {
           size_t __size = __input->size();
-          std::vector<std::string> __vector;
+          std::vector<AppleAuthScope> __vector;
           __vector.reserve(__size);
           for (size_t __i = 0; __i < __size; __i++) {
             auto __element = __input->getElement(__i);
-            __vector.push_back(__element->toStdString());
+            __vector.push_back(__element->toCpp());
           }
           return __vector;
         }(requestedScopes)) : std::nullopt,
@@ -61,17 +63,17 @@ namespace margelo::nitro::one {
      */
     [[maybe_unused]]
     static jni::local_ref<JAppleAuthSignInOptions::javaobject> fromCpp(const AppleAuthSignInOptions& value) {
-      using JSignature = JAppleAuthSignInOptions(jni::alias_ref<jni::JArrayClass<jni::JString>>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>);
+      using JSignature = JAppleAuthSignInOptions(jni::alias_ref<jni::JArrayClass<JAppleAuthScope>>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
         clazz,
         value.requestedScopes.has_value() ? [&](auto&& __input) {
           size_t __size = __input.size();
-          jni::local_ref<jni::JArrayClass<jni::JString>> __array = jni::JArrayClass<jni::JString>::newArray(__size);
+          jni::local_ref<jni::JArrayClass<JAppleAuthScope>> __array = jni::JArrayClass<JAppleAuthScope>::newArray(__size);
           for (size_t __i = 0; __i < __size; __i++) {
             const auto& __element = __input[__i];
-            auto __elementJni = jni::make_jstring(__element);
+            auto __elementJni = JAppleAuthScope::fromCpp(__element);
             __array->setElement(__i, *__elementJni);
           }
           return __array;
