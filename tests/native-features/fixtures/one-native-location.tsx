@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
@@ -6,12 +6,21 @@ export default function OneNativeLocation() {
   const [permission, setPermission] = useState(() => One.iOS.Location.getPermissionStatus())
   const [position, setPosition] = useState('none')
   const [concurrent, setConcurrent] = useState('none')
+  const [watch, setWatch] = useState('none')
+  const [forward, setForward] = useState('none')
+  const [reverse, setReverse] = useState('none')
+  const stopWatch = useRef<(() => void) | null>(null)
+
+  useEffect(() => () => stopWatch.current?.(), [])
 
   return (
     <View style={styles.screen}>
       <Text testID="one-native-location-permission">Permission: {permission}</Text>
       <Text testID="one-native-location-position">Position: {position}</Text>
       <Text testID="one-native-location-concurrent">Concurrent: {concurrent}</Text>
+      <Text testID="one-native-location-watch-value">Watch: {watch}</Text>
+      <Text testID="one-native-location-forward-value">Forward: {forward}</Text>
+      <Text testID="one-native-location-reverse-value">Reverse: {reverse}</Text>
       <Pressable
         testID="one-native-location-refresh"
         style={styles.chip}
@@ -48,6 +57,58 @@ export default function OneNativeLocation() {
         }
       >
         <Text>Get current position</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-location-watch"
+        style={styles.chip}
+        onPress={() => {
+          stopWatch.current?.()
+          setWatch('starting')
+          stopWatch.current = One.iOS.Location.watchPosition(
+            (next) => setWatch(`${next.latitude.toFixed(4)},${next.longitude.toFixed(4)}`),
+            (error) => setWatch(`error: ${error.code} ${error.message}`)
+          )
+        }}
+      >
+        <Text>Watch position</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-location-stop-watch"
+        style={styles.chip}
+        onPress={() => {
+          stopWatch.current?.()
+          stopWatch.current = null
+          setWatch('stopped')
+        }}
+      >
+        <Text>Stop watching</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-location-forward"
+        style={styles.chip}
+        onPress={() =>
+          One.iOS.Location.geocodeAddress('Cupertino, California').then(
+            (places) =>
+              setForward(
+                `${places.length}:${places[0]?.latitude.toFixed(2)},${places[0]?.longitude.toFixed(2)}`
+              ),
+            (error) => setForward(`error: ${error.code ?? 'unknown'}`)
+          )
+        }
+      >
+        <Text>Geocode Cupertino</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-location-reverse"
+        style={styles.chip}
+        onPress={() =>
+          One.iOS.Location.reverseGeocode(37.7749, -122.4194).then(
+            (places) => setReverse(places[0]?.city ?? `count: ${places.length}`),
+            (error) => setReverse(`error: ${error.code ?? 'unknown'}`)
+          )
+        }
+      >
+        <Text>Reverse geocode San Francisco</Text>
       </Pressable>
     </View>
   )

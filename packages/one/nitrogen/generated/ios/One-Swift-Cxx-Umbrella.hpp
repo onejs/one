@@ -112,6 +112,8 @@ namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
 namespace margelo::nitro::one { enum class LocalBiometryType; }
 // Forward declaration of `LocationPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class LocationPermissionStatus; }
+// Forward declaration of `LocationPlace` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationPlace; }
 // Forward declaration of `LocationPosition` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPosition; }
 // Forward declaration of `NativeChannelInput` to properly resolve imports.
@@ -236,6 +238,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "LocalAuthenticationStatus.hpp"
 #include "LocalBiometryType.hpp"
 #include "LocationPermissionStatus.hpp"
+#include "LocationPlace.hpp"
 #include "LocationPosition.hpp"
 #include "NativeChannel.hpp"
 #include "NativeChannelInput.hpp"

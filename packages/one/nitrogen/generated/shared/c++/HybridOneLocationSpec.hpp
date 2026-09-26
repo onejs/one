@@ -17,10 +17,16 @@
 namespace margelo::nitro::one { enum class LocationPermissionStatus; }
 // Forward declaration of `LocationPosition` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPosition; }
+// Forward declaration of `LocationPlace` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationPlace; }
 
 #include "LocationPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
 #include "LocationPosition.hpp"
+#include <functional>
+#include <string>
+#include "LocationPlace.hpp"
+#include <vector>
 
 namespace margelo::nitro::one {
 
@@ -56,6 +62,9 @@ namespace margelo::nitro::one {
       virtual LocationPermissionStatus getPermissionStatus() = 0;
       virtual std::shared_ptr<Promise<LocationPermissionStatus>> requestWhenInUsePermission() = 0;
       virtual std::shared_ptr<Promise<LocationPosition>> getCurrentPosition() = 0;
+      virtual std::function<void()> addPositionListener(const std::function<void(const LocationPosition& /* position */)>& onPosition, const std::function<void(const std::string& /* code */, const std::string& /* message */)>& onError) = 0;
+      virtual std::shared_ptr<Promise<std::vector<LocationPlace>>> geocodeAddress(const std::string& address) = 0;
+      virtual std::shared_ptr<Promise<std::vector<LocationPlace>>> reverseGeocode(double latitude, double longitude) = 0;
 
     protected:
       // Hybrid Setup
