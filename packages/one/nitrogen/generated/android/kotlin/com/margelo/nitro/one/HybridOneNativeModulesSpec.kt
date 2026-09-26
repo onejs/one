@@ -32,7 +32,7 @@ abstract class HybridOneNativeModulesSpec: HybridObject() {
   // Methods
   @DoNotStrip
   @Keep
-  abstract fun call(module: String, method: String, argsJson: String, contractHash: String): Promise<String>
+  abstract fun call(module: String, methodName: String, argsJson: String, contractHash: String): Promise<String>
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

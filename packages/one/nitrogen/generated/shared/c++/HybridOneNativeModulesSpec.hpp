@@ -49,7 +49,7 @@ namespace margelo::nitro::one {
 
     public:
       // Methods
-      virtual std::shared_ptr<Promise<std::string>> call(const std::string& module, const std::string& method, const std::string& argsJson, const std::string& contractHash) = 0;
+      virtual std::shared_ptr<Promise<std::string>> call(const std::string& module, const std::string& methodName, const std::string& argsJson, const std::string& contractHash) = 0;
 
     protected:
       // Hybrid Setup

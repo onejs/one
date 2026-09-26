@@ -54,7 +54,7 @@ namespace margelo::nitro::one {
 
   public:
     // Methods
-    std::shared_ptr<Promise<std::string>> call(const std::string& module, const std::string& method, const std::string& argsJson, const std::string& contractHash) override;
+    std::shared_ptr<Promise<std::string>> call(const std::string& module, const std::string& methodName, const std::string& argsJson, const std::string& contractHash) override;
 
   private:
     jni::global_ref<JHybridOneNativeModulesSpec::JavaPart> _javaPart;

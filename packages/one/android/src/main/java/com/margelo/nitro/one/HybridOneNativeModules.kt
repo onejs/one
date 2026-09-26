@@ -11,7 +11,7 @@ class HybridOneNativeModules : HybridOneNativeModulesSpec() {
     private val main = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private val instances = mutableMapOf<String, OneNativeSourceDispatch>()
 
-    override fun call(module: String, method: String, argsJson: String, contractHash: String): Promise<String> {
+    override fun call(module: String, methodName: String, argsJson: String, contractHash: String): Promise<String> {
         val promise = Promise<String>()
         main.launch {
             try {
@@ -27,11 +27,11 @@ class HybridOneNativeModules : HybridOneNativeModulesSpec() {
                 if (dispatcher.contractHash != contractHash) {
                     throw OneNativeError("E_NATIVE_SOURCE_REBUILD", "native module $module changed; rebuild the app")
                 }
-                promise.resolve(dispatcher.call(module, method, argsJson))
+                promise.resolve(dispatcher.call(module, methodName, argsJson))
             } catch (error: Exception) {
                 promise.reject(
                     if (error is OneNativeError) error
-                    else OneNativeError("E_NATIVE_SOURCE", "$module.$method: ${error.message}")
+                    else OneNativeError("E_NATIVE_SOURCE", "$module.$methodName: ${error.message}")
                 )
             }
         }
