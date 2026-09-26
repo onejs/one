@@ -128,11 +128,15 @@ describe('native.app prebuild validation', () => {
   })
 })
 
-// the template's AppDelegate entries, which the scene delegate patch anchors on
+// the template's AppDelegate entries, which the scene delegate patch anchors
+// on, and its two app-target plist settings, beside which the bridging header
+// setting lands
 const APP_DELEGATE_PBXPROJ = `\t\t761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 \t\t761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = HelloWorld/AppDelegate.swift; sourceTree = "<group>"; };
 \t\t\t\t761780EC2CA45674006654EE /* AppDelegate.swift */,
-\t\t\t\t761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,`
+\t\t\t\t761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,
+\t\t\t\tINFOPLIST_FILE = HelloWorld/Info.plist;
+\t\t\t\tINFOPLIST_FILE = HelloWorld/Info.plist;`
 
 describe('template rendering', () => {
   it('applies names, ids, and platform versions', () => {
@@ -500,6 +504,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     return true
   }
+}
+class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
 }`,
       platform: 'ios',
       app: push,
@@ -738,6 +744,8 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     expect(rendered.content).not.toContain('UIWindow(frame:')
     expect(rendered.content).not.toContain('var window')
     expect(rendered.content).not.toContain('var reactNativeFactory')
+    expect(rendered.content).toContain('override func customize(_ rootView: RCTRootView)')
+    expect(rendered.content).toContain('OneHoldLaunchScreen(rootView)')
   })
 
   it('throws instead of shipping a non-scene AppDelegate', () => {
@@ -1544,7 +1552,7 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     expect(plain.content).toContain('Bundle.main.url(forResource: "main"')
   })
 
-  it('points the app target at the updates bridging header', () => {
+  it('points every app target at the One bridging header', () => {
     const configs = `buildSettings = {
 \t\t\t\tINFOPLIST_FILE = MyApp/Info.plist;
 \t\t\t};
@@ -1554,29 +1562,17 @@ buildSettings = {
 \t\t\t};
 \t\t\tname = Release;`
     const project = `shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\""$WITH_ENVIRONMENT\\"" \\""$REACT_NATIVE_XCODE\\"""\n')};\n${'/* AppDelegate.swift in Sources */ = {isa = PBXBuildFile;'}\n${'/* AppDelegate.swift */ = {isa = PBXFileReference;'}\n${'/* AppDelegate.swift */,'}\n${'/* AppDelegate.swift in Sources */,'}\n${configs}`
-    const rendered = renderPrebuildFile({
-      relativePath: 'MyApp.xcodeproj/project.pbxproj',
-      content: project,
-      platform: 'ios',
-      app: updatesApp,
-    })
-    expect(rendered.content).toContain(
-      'SWIFT_OBJC_BRIDGING_HEADER = "MyApp/OneUpdates-Bridging-Header.h";'
-    )
-    expect(
-      (rendered.content ?? '').split(
-        'SWIFT_OBJC_BRIDGING_HEADER = "MyApp/OneUpdates-Bridging-Header.h";'
-      )
-        .length - 1
-    ).toBe(2)
-
-    const plain = renderPrebuildFile({
-      relativePath: 'MyApp.xcodeproj/project.pbxproj',
-      content: project,
-      platform: 'ios',
-      app,
-    })
-    expect(plain.content).not.toContain('SWIFT_OBJC_BRIDGING_HEADER')
+    const setting = 'SWIFT_OBJC_BRIDGING_HEADER = "MyApp/One-Bridging-Header.h";'
+    // the launch screen hold needs the header with or without updates.
+    for (const target of [app, updatesApp]) {
+      const rendered = renderPrebuildFile({
+        relativePath: 'MyApp.xcodeproj/project.pbxproj',
+        content: project,
+        platform: 'ios',
+        app: target,
+      })
+      expect((rendered.content ?? '').split(setting).length - 1).toBe(2)
+    }
 
     const missing = project.replaceAll('INFOPLIST_FILE = MyApp/Info.plist;', 'INFOPLIST = x;')
     expect(() =>

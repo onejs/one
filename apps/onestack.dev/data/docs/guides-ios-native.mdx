@@ -194,7 +194,9 @@ writes it to `NSCameraUsageDescription` and declares the Android camera permissi
 both required for `One.ImagePicker.launchCamera`. The icon must be a square image at least 1024 pixels wide. Splash
 artwork is centered at `width` points on iOS and density-independent pixels on
 Android. One removes a solid outer border matching `backgroundColor` before sizing
-the artwork, then generates density-specific Android assets inside a 288 dp square.
+the artwork, then generates density-specific Android assets inside a 288 dp square. On iOS the launch
+screen stays over the app until React Native draws its first content, so it never gives way
+to an empty root.
 
 `ios.fileSharing` sets `UIFileSharingEnabled` plus
 `LSSupportsOpeningDocumentsInPlace` in the generated Info.plist. The user sees
