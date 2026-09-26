@@ -352,7 +352,8 @@ provider has measured its bounds and native regions, the hook returns an empty
 array. `useRegions()` gives the underlying division and occlusion rectangles,
 including inactive ones when requested. Layout should use the live window
 size class and independent safe-area edges; hinge status and angle serve
-pose-specific interactions.
+pose-specific interactions. Hinge is null until UIKit reports its first
+reading, after observation stops, or when the hierarchy has no hinge.
 
 `One.iOS.Pager` is a tab bar without the bar: keyed React Native pages under the
 same controlled `selection`, swiped rather than tapped, with the page dots

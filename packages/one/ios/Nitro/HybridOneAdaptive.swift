@@ -2,7 +2,7 @@ import NitroModules
 import UIKit
 
 // window size class and hinge state, the ios half of OneAdaptive. size
-// classes come from the key window scene's trait collection with live
+// classes come from the app window scene's trait collection with live
 // trait-change registration; hinge state comes from UIHingeInteraction on
 // ios 27.1+. the first listener starts the monitors and the last removal
 // stops them, so the first event can never race the subscription.
@@ -13,27 +13,31 @@ final class HybridOneAdaptive: HybridOneAdaptiveSpec {
   private var nextListenerId = 0
   private var traitRegistration: (any UITraitChangeRegistration)?
   private var hingeInteraction: AnyObject?
+  private weak var observedScene: UIWindowScene?
+  private weak var observedWindow: UIWindow?
+  private var notificationsRegistered = false
   private var currentHinge: HingeState?
   private var isObserving = false
 
   @MainActor
   private func currentWindow() -> UIWindow? {
-    if let window = UIApplication.shared.connectedScenes
-      .compactMap({ $0 as? UIWindowScene })
-      .flatMap({ $0.windows })
-      .first(where: { $0.isKeyWindow }) {
-      return window
-    }
-    return UIApplication.shared.connectedScenes
-      .compactMap({ $0 as? UIWindowScene })
-      .flatMap({ $0.windows })
-      .first
+    let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+    let activeScene = scenes.first(where: { $0.activationState == .foregroundActive })
+    let pinnedScene = observedScene?.activationState == .unattached ? nil : observedScene
+    let scene = activeScene ?? pinnedScene ?? scenes.first
+    let windows = scene?.windows ?? []
+    // keep the app window when an alert-level overlay temporarily becomes key.
+    return windows.first(where: { $0.isKeyWindow && $0.windowLevel == .normal && $0.rootViewController != nil }) ??
+      windows.first(where: { $0 === observedWindow && !$0.isHidden }) ??
+      windows.first(where: { !$0.isHidden && $0.windowLevel == .normal && $0.rootViewController != nil }) ??
+      windows.first(where: { $0.isKeyWindow }) ?? windows.first
   }
 
   @MainActor
   private func currentScene() -> UIWindowScene? {
+    let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
     return currentWindow()?.windowScene ??
-      UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).first
+      scenes.first(where: { $0.activationState == .foregroundActive }) ?? scenes.first
   }
 
   private func sizeClassValue(_ sc: UIUserInterfaceSizeClass) -> UserInterfaceSizeClass {
@@ -94,6 +98,8 @@ final class HybridOneAdaptive: HybridOneAdaptiveSpec {
     lock.unlock()
     if shouldStart {
       DispatchQueue.main.async { [weak self] in self?.startObservingIfNeeded() }
+    } else {
+      DispatchQueue.main.async { [weak self] in self?.deliverCurrentSizeClass(to: id) }
     }
     return { [weak self] in self?.removeSizeClassListener(id) }
   }
@@ -107,7 +113,12 @@ final class HybridOneAdaptive: HybridOneAdaptiveSpec {
     if shouldStart { isObserving = true }
     lock.unlock()
     if shouldStart {
-      DispatchQueue.main.async { [weak self] in self?.startObservingIfNeeded() }
+      DispatchQueue.main.async { [weak self] in
+        self?.deliverCurrentHinge(to: id)
+        self?.startObservingIfNeeded()
+      }
+    } else {
+      DispatchQueue.main.async { [weak self] in self?.deliverCurrentHinge(to: id) }
     }
     return { [weak self] in self?.removeHingeListener(id) }
   }
@@ -152,9 +163,50 @@ final class HybridOneAdaptive: HybridOneAdaptiveSpec {
     }
   }
 
+  private func updateHinge(_ value: HingeState?) {
+    lock.lock()
+    let previous = currentHinge
+    let unchanged: Bool
+    if let previous, let value {
+      unchanged = previous.status == value.status && previous.angle == value.angle
+    } else {
+      unchanged = previous == nil && value == nil
+    }
+    if unchanged {
+      lock.unlock()
+      return
+    }
+    currentHinge = value
+    lock.unlock()
+    emitHinge(value)
+  }
+
+  @MainActor
+  private func deliverCurrentSizeClass(to id: Int) {
+    lock.lock()
+    let listener = sizeClassListeners[id]
+    lock.unlock()
+    listener?(readSizeClass())
+  }
+
+  @MainActor
+  private func deliverCurrentHinge(to id: Int) {
+    lock.lock()
+    let listener = hingeListeners[id]
+    let value = currentHinge
+    lock.unlock()
+    listener?(value)
+  }
+
   @MainActor
   private func startObservingIfNeeded() {
+    lock.lock()
+    let observing = isObserving
+    lock.unlock()
+    guard observing else { return }
     attachListenersIfNeeded()
+    guard !notificationsRegistered else { return }
+    notificationsRegistered = true
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(handleWindowSceneChange),
@@ -165,6 +217,18 @@ final class HybridOneAdaptive: HybridOneAdaptiveSpec {
       self,
       selector: #selector(handleWindowSceneChange),
       name: UIScene.didActivateNotification,
+      object: nil
+    )
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(handleWindowSceneChange),
+      name: UIWindow.didBecomeVisibleNotification,
+      object: nil
+    )
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(handleWindowSceneChange),
+      name: UIWindow.didBecomeHiddenNotification,
       object: nil
     )
   }
@@ -180,57 +244,85 @@ final class HybridOneAdaptive: HybridOneAdaptiveSpec {
 
   @MainActor
   private func attachListenersIfNeeded() {
-    if traitRegistration == nil, let scene = currentScene() {
-      traitRegistration = scene.registerForTraitChanges([UITraitHorizontalSizeClass.self, UITraitVerticalSizeClass.self]) { [weak self] (s: UIWindowScene, _) in
-        guard let self = self else { return }
-        let value = SizeClass(
-          horizontal: self.sizeClassValue(s.traitCollection.horizontalSizeClass),
-          vertical: self.sizeClassValue(s.traitCollection.verticalSizeClass)
-        )
-        self.emitSizeClass(value)
+    let scene = currentScene()
+    if observedScene !== scene {
+      if let registration = traitRegistration, let oldScene = observedScene {
+        oldScene.unregisterForTraitChanges(registration)
       }
-    }
-    #if ONE_IOS_27_1_SDK
-    if #available(iOS 27.1, *), hingeInteraction == nil, let window = currentWindow() {
-      let interaction = UIHingeInteraction { [weak self] (_, update) in
-        guard let self = self else { return }
-        if let hinge = update.hinge {
-          let status: HingeStatus
-          switch hinge.status {
-          case .closed: status = .closed
-          case .partiallyOpen: status = .partiallyopen
-          case .fullyOpen: status = .fullyopen
-          default: status = .unknown
-          }
-          let state = HingeState(status: status, angle: Double(hinge.angle))
-          self.lock.lock()
-          self.currentHinge = state
-          self.lock.unlock()
-          self.emitHinge(state)
-        } else {
-          self.lock.lock()
-          self.currentHinge = nil
-          self.lock.unlock()
-          self.emitHinge(nil)
+      traitRegistration = nil
+      observedScene = scene
+      if let scene {
+        traitRegistration = scene.registerForTraitChanges([UITraitHorizontalSizeClass.self, UITraitVerticalSizeClass.self]) { [weak self] (s: UIWindowScene, _) in
+          guard let self = self else { return }
+          let value = SizeClass(
+            horizontal: self.sizeClassValue(s.traitCollection.horizontalSizeClass),
+            vertical: self.sizeClassValue(s.traitCollection.verticalSizeClass)
+          )
+          self.emitSizeClass(value)
         }
       }
-      window.addInteraction(interaction)
-      hingeInteraction = interaction
+      emitSizeClass(readSizeClass())
+    }
+    #if ONE_IOS_27_1_SDK
+    if #available(iOS 27.1, *) {
+      let window = currentWindow()
+      if observedWindow !== window {
+        let oldInteraction = hingeInteraction as? UIInteraction
+        hingeInteraction = nil
+        if let oldWindow = observedWindow, let interaction = oldInteraction {
+          oldWindow.removeInteraction(interaction)
+        }
+        observedWindow = window
+        if let window {
+          let interaction = UIHingeInteraction { [weak self] (source, update) in
+            guard let self = self, self.hingeInteraction === source else { return }
+            if let hinge = update.hinge {
+              let status: HingeStatus
+              switch hinge.status {
+              case .closed: status = .closed
+              case .partiallyOpen: status = .partiallyopen
+              case .fullyOpen: status = .fullyopen
+              default: status = .unknown
+              }
+              let state = HingeState(status: status, angle: Double(hinge.angle))
+              self.updateHinge(state)
+            } else {
+              self.updateHinge(nil)
+            }
+          }
+          hingeInteraction = interaction
+          window.addInteraction(interaction)
+        } else {
+          updateHinge(nil)
+        }
+      }
     }
     #endif
   }
 
   @MainActor
   private func stopObservingIfNeeded() {
-    NotificationCenter.default.removeObserver(self)
-    if let reg = traitRegistration, let scene = currentScene() {
+    lock.lock()
+    let observing = isObserving
+    lock.unlock()
+    guard !observing else { return }
+    if notificationsRegistered {
+      NotificationCenter.default.removeObserver(self)
+      notificationsRegistered = false
+    }
+    if let reg = traitRegistration, let scene = observedScene {
       scene.unregisterForTraitChanges(reg)
-      traitRegistration = nil
     }
-    if #available(iOS 27.1, *), let window = currentWindow(), let interaction = hingeInteraction as? UIInteraction {
+    traitRegistration = nil
+    observedScene = nil
+    if #available(iOS 27.1, *), let window = observedWindow, let interaction = hingeInteraction as? UIInteraction {
       window.removeInteraction(interaction)
-      hingeInteraction = nil
     }
+    hingeInteraction = nil
+    observedWindow = nil
+    lock.lock()
+    currentHinge = nil
+    lock.unlock()
   }
 }
 
