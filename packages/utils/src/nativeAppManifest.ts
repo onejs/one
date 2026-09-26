@@ -56,6 +56,8 @@ export interface NativeAppManifest {
     useFrameworks?: 'static' | 'dynamic'
     ccache?: boolean
     usesNonExemptEncryption?: boolean
+    // system prompt text for Face ID through One.iOS.LocalAuthentication.
+    faceIdUsageDescription?: string
     // exposes the app's Documents in the Files app and document pickers.
     fileSharing?: boolean
     widgets?: {
@@ -146,6 +148,13 @@ export function validateNativeApp(
       manifest.imagePicker.camera.trim() === '')
   ) {
     fail('imagePicker.camera must be a non-empty string')
+  }
+  if (
+    manifest.ios?.faceIdUsageDescription !== undefined &&
+    (typeof manifest.ios.faceIdUsageDescription !== 'string' ||
+      manifest.ios.faceIdUsageDescription.trim() === '')
+  ) {
+    fail('ios.faceIdUsageDescription must be a non-empty string')
   }
   if (
     manifest.speech !== undefined &&

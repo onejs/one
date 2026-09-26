@@ -1,10 +1,11 @@
-import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, getHinge, getSizeClass, onHingeChange, ReservedRegions, useHinge, useSizeClass, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from './platform';
+import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, LocalAuthentication, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, getHinge, getSizeClass, onHingeChange, ReservedRegions, useHinge, useSizeClass, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from './platform';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-context';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
 export type OneIOS = typeof Swift & {
     readonly Widgets: typeof Widgets;
     readonly LiveActivities: typeof LiveActivities;
     readonly WidgetUI: typeof WidgetUI;
+    readonly LocalAuthentication: typeof LocalAuthentication;
     readonly Color: ColorType['ios'];
     readonly MenuAction: typeof MenuAction;
     readonly SplitView: typeof SplitView;

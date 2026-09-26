@@ -36,6 +36,7 @@ export interface NativeAppManifest {
         useFrameworks?: 'static' | 'dynamic';
         ccache?: boolean;
         usesNonExemptEncryption?: boolean;
+        faceIdUsageDescription?: string;
         fileSharing?: boolean;
         widgets?: {
             appGroup: string;

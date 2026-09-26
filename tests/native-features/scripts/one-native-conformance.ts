@@ -49,6 +49,7 @@ const suites = [
   'map',
   'apple-file',
   'apple-auth',
+  'local-authentication',
   'speech',
   'fetch',
   'clipboard',
@@ -320,6 +321,13 @@ const appleAuthLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-apple-auth-credential')) &&
   has(nodes, 'Available: ')
+const localAuthenticationLoaded = (nodes: Node[]) =>
+  (Boolean(id(nodes, 'one-native-local-auth-refresh')) && has(nodes, 'Status: ')) ||
+  (nodes.some((node) => node.type === 'Application') &&
+    nodes.some(
+      (node) =>
+        node.type === 'Heading' && node.AXLabel === 'one-native-local-authentication'
+    ))
 // the microphone and speech prompts cover the fixture during the request
 const fetchLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-fetch-run')) && has(nodes, 'Status: ')
@@ -412,6 +420,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   map: mapLoaded,
   'apple-file': appleFileLoaded,
   'apple-auth': appleAuthLoaded,
+  'local-authentication': localAuthenticationLoaded,
   speech: speechLoaded,
   fetch: fetchLoaded,
   clipboard: clipboardLoaded,
@@ -447,6 +456,7 @@ const suiteHome: Record<Suite, string> = {
   map: 'nav-one-native-map',
   'apple-file': 'nav-one-native-apple-file',
   'apple-auth': 'nav-one-native-apple-auth',
+  'local-authentication': 'nav-one-native-local-authentication',
   speech: 'nav-one-native-speech',
   fetch: 'nav-one-native-fetch',
   clipboard: 'nav-one-native-clipboard',
@@ -768,6 +778,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     execFileSync(
       'xcrun',
       ['simctl', 'privacy', config.simulatorId, 'reset', 'camera', config.bundleId],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
+  }
+  if (config.suite === 'local-authentication') {
+    execFileSync(
+      'applesimutils',
+      ['--byId', config.simulatorId, '--biometricEnrollment', 'NO'],
       { stdio: 'ignore', timeout: 30_000 }
     )
   }
@@ -4184,6 +4201,48 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         labels(n).includes('Available: true') && labels(n).includes('CredentialState: none')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'local-authentication') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-local-authentication')
+    await wait('unenrolled biometrics are unavailable', (n) =>
+      labels(n).some((label) => label.startsWith('Status: false:'))
+    )
+    screenshot('local-auth-unenrolled.png')
+    tap({ id: 'one-native-local-auth-evaluate' })
+    await wait('unenrolled evaluation reports its error code', (n) =>
+      labels(n).includes('Result: error: E_LOCAL_AUTH_NOT_ENROLLED')
+    )
+
+    execFileSync(
+      'applesimutils',
+      ['--byId', config.simulatorId, '--biometricEnrollment', 'YES'],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
+    tap({ id: 'one-native-local-auth-refresh' })
+    await wait('enrollment enables the biometric policy', (n) =>
+      labels(n).some((label) => label.startsWith('Status: true:faceID:'))
+    )
+    tap({ id: 'one-native-local-auth-evaluate' })
+    // the simulator's Face ID tile paints but publishes no accessible text;
+    // while it is up, the fixture disappears from the accessibility tree.
+    await wait('native Face ID prompt owns the screen', (n) =>
+      n.some((node) => node.type === 'Application') &&
+      !id(n, 'one-native-local-auth-evaluate') &&
+      n.some((node) => node.type === 'Heading' && node.AXLabel === 'one-native-local-authentication')
+    )
+    screenshot('local-auth-prompt.png')
+    execFileSync('applesimutils', ['--byId', config.simulatorId, '--biometricMatch'], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    await wait('matching biometrics resolves success', (n) =>
+      labels(n).includes('Result: success')
+    )
+    screenshot('local-auth-success.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
