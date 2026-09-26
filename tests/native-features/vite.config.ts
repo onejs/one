@@ -108,6 +108,12 @@ function fetchConformanceEndpoints(): Plugin {
 export default defineConfig({
   plugins: [
     one({
+      // the updates suite's entry-chunk boot hook. a no-op under the
+      // committed boot file, which never throws or delays; the suite's
+      // publishes swap the boot file per variant.
+      setupFile: {
+        native: './fixtures/updates-setup.ts',
+      },
       native: {
         app: {
           name: 'NativeFeatureTests',
@@ -119,6 +125,14 @@ export default defineConfig({
           version: '9.9.9',
           imagePicker: {
             camera: 'NativeFeatureTests verifies photo capture.',
+          },
+          // updates builds point at the suite's static server, set at
+          // prebuild time (127.0.0.1 for the ios simulator, 10.0.2.2 for
+          // the android emulator). unset builds launch embedded with
+          // updates disabled, which is every other suite.
+          updates: {
+            url: process.env.ONE_UPDATES_TEST_URL,
+            runtimeVersion: 'updates-suite',
           },
           speech: {
             recognition: 'NativeFeatureTests verifies dictation.',

@@ -191,4 +191,16 @@ public final class OneAutolinking {
   public static func isOneAppleAuthRecyclable() -> Bool {
     return HybridOneAppleAuth.self is any RecyclableView.Type
   }
+  
+  public static func createOneUpdates() -> bridge.std__shared_ptr_HybridOneUpdatesSpec_ {
+    let hybridObject = HybridOneUpdates()
+    return { () -> bridge.std__shared_ptr_HybridOneUpdatesSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+  
+  public static func isOneUpdatesRecyclable() -> Bool {
+    return HybridOneUpdates.self is any RecyclableView.Type
+  }
 }

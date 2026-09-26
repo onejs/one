@@ -23,6 +23,10 @@ export interface NativeAppManifest {
         push?: boolean;
     };
     pictureInPicture?: boolean;
+    updates?: {
+        url?: string;
+        runtimeVersion: string;
+    };
     ios?: {
         bundleId: string;
         buildNumber?: string;
