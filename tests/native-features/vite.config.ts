@@ -152,7 +152,6 @@ export default defineConfig({
             deploymentTarget: '17.0',
             faceIdUsageDescription: 'NativeFeatureTests verifies biometric authentication.',
             fileSharing: true,
-            faceIdUsageDescription: 'NativeFeatureTests verifies biometric authentication.',
           },
           android: {
             applicationId: 'dev.vxrn.nativefeatures.tests',
