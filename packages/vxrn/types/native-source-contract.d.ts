@@ -1,0 +1,2 @@
+export { nativeSourceContract, writeNativeSourceDeclaration, writeNativeSourceDeclarations, type NativeSourceContract, type NativeSourceMethod, type NativeSourceModule, } from './utils/nativeSourceContract';
+//# sourceMappingURL=native-source-contract.d.ts.map
