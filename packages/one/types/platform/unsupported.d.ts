@@ -1,4 +1,4 @@
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GroupProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LinkProps, ListProps, MenuProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarSpacerProps, ZStackProps } from './types';
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GroupProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarSpacerProps, ZStackProps } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function TabSection(_props: TabSectionProps): never;
@@ -24,6 +24,10 @@ declare function List(_props: ListProps): never;
 declare function ScrollView(_props: ScrollViewProps): never;
 declare function LazyVStack(_props: LazyVStackProps): never;
 declare function LazyHStack(_props: LazyHStackProps): never;
+declare function LazyVGrid(_props: LazyVGridProps): never;
+declare function LazyHGrid(_props: LazyHGridProps): never;
+declare function Grid(_props: GridProps): never;
+declare function GridRow(_props: GridRowProps): never;
 declare function ControlGroup(_props: ControlGroupProps): never;
 declare function DisclosureGroup(_props: DisclosureGroupProps): never;
 declare function Divider(_props: DividerProps): never;
@@ -106,6 +110,10 @@ export declare const Swift: {
     ScrollView: typeof ScrollView;
     LazyVStack: typeof LazyVStack;
     LazyHStack: typeof LazyHStack;
+    LazyVGrid: typeof LazyVGrid;
+    LazyHGrid: typeof LazyHGrid;
+    Grid: typeof Grid;
+    GridRow: typeof GridRow;
     ControlGroup: typeof ControlGroup;
     DisclosureGroup: typeof DisclosureGroup;
     Divider: typeof Divider;

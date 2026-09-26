@@ -45,6 +45,7 @@ const suites = [
   'device',
   'contacts',
   'editors',
+  'grids',
   'popover',
   'navigation',
   'accessibility',
@@ -314,6 +315,10 @@ const editorsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-editor-reject')) &&
   has(nodes, 'Lines: ')
+const gridsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-grid-reverse')) &&
+  has(nodes, 'Order: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -452,6 +457,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   device: deviceLoaded,
   contacts: contactsLoaded,
   editors: editorsLoaded,
+  grids: gridsLoaded,
   popover: popoverLoaded,
   navigation: navigationLoaded,
   accessibility: accessibilityLoaded,
@@ -498,6 +504,7 @@ const suiteHome: Record<Suite, string> = {
   device: 'nav-one-native-device',
   contacts: 'nav-one-native-contacts',
   editors: 'nav-one-native-editors',
+  grids: 'nav-one-native-grids',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -2546,6 +2553,67 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('contacts-round-trip.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'grids') {
+    const frame = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.AXLabel === label && node.type === 'StaticText')?.frame
+    const near = (a: number, b: number) => Math.abs(a - b) <= 3
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-grids')
+    const mounted = await wait('all four grids mount native cells', (nodes) =>
+      ['V0', 'V1', 'V2', 'V3', 'H0', 'H1', 'H2', 'H3', 'G1', 'G2', 'G3', 'Grid footer']
+        .every((label) => Boolean(frame(nodes, label))) &&
+      labels(nodes).includes('Tap grid')
+    )
+    const v0 = frame(mounted, 'V0')!
+    const v1 = frame(mounted, 'V1')!
+    const v2 = frame(mounted, 'V2')!
+    const initialRowDistance = v2.y - v0.y
+    const h0 = frame(mounted, 'H0')!
+    const h1 = frame(mounted, 'H1')!
+    const h2 = frame(mounted, 'H2')!
+    const g1 = frame(mounted, 'G1')!
+    const g2 = frame(mounted, 'G2')!
+    const g3 = frame(mounted, 'G3')!
+    const footer = frame(mounted, 'Grid footer')!
+    const g2Center = g2.x + g2.width / 2
+    const g3Center = g3.x + g3.width / 2
+    const footerCenter = footer.x + footer.width / 2
+    if (!near(v0.y, v1.y) || v1.x <= v0.x + 80 || v2.y <= v0.y + 12)
+      throw new Error(`LazyVGrid lost its fixed/flexible columns or spacing: ${JSON.stringify({v0,v1,v2})}`)
+    if (!near(h0.x, h1.x) || h1.y <= h0.y + 24 || h2.x <= h0.x)
+      throw new Error(`LazyHGrid lost its fixed rows or spacing: ${JSON.stringify({h0,h1,h2})}`)
+    if (g3.x <= g2.x || g2.y <= g1.y || footer.y <= g2.y ||
+      footerCenter <= g2Center + (g3Center - g2Center) / 4 ||
+      footerCenter >= g3Center - (g3Center - g2Center) / 4)
+      throw new Error(`GridRow or spanning child did not lay out as SwiftUI Grid: ${JSON.stringify({g1,g2,g3,footer})}`)
+    screenshot('grids-initial.png', mounted)
+    tap({ label: 'Tap grid' })
+    await wait('nested GridRow button sends its native action', (nodes) => labels(nodes).includes('Taps: 1'))
+    const beforeReverse = await wait('grid settles before reordering', (nodes) =>
+      labels(nodes).includes('Taps: 1') && Boolean(frame(nodes, 'V0')))
+    const originalCell = frame(beforeReverse, 'V0')!
+    tap({ id: 'one-native-grid-reverse' })
+    const reversed = await wait('React reorders LazyVGrid cells', (nodes) => {
+      const moved = frame(nodes, 'V3')
+      return labels(nodes).includes('Order: reverse') &&
+        Boolean(moved && near(moved.x, originalCell.x) && near(moved.y, originalCell.y))
+    })
+    const v3 = frame(reversed, 'V3')!
+    if (!near(v3.x, originalCell.x) || !near(v3.y, originalCell.y))
+      throw new Error(`LazyVGrid did not place V3 in V0's former cell: ${JSON.stringify({originalCell,v3})}`)
+    screenshot('grids-reordered.png', reversed)
+    tap({ id: 'one-native-grid-spacing' })
+    await wait('signed SwiftUI spacing reduces LazyVGrid row gap', (nodes) => {
+      const top = frame(nodes, 'V3')
+      const bottom = frame(nodes, 'V1')
+      return labels(nodes).includes('Spacing: overlap') && Boolean(top && bottom &&
+        bottom.y - top.y < initialRowDistance - 8)
+    })
+    screenshot('grids-negative-spacing.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

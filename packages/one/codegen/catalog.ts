@@ -585,6 +585,91 @@ export const components = [
     interfaceOnly: false,
   },
   {
+    // columns travel as one JSON string of GridItem values: an array of structs with
+    // an associated-value size has no Fabric prop shape.
+    name: 'OneNativeLazyVGrid',
+    publicName: 'LazyVGrid',
+    props: {
+      columns: 'string',
+      alignment: 'string',
+      spacing: 'string',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeLazyHGrid',
+    publicName: 'LazyHGrid',
+    props: {
+      rows: 'string',
+      alignment: 'string',
+      spacing: 'string',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeGrid',
+    publicName: 'Grid',
+    props: {
+      alignment: 'string',
+      horizontalSpacing: 'string',
+      verticalSpacing: 'string',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
+    // a row of cells inside a Grid; a Grid child that is not a row spans every column.
+    name: 'OneNativeGridRow',
+    publicName: 'GridRow',
+    props: {
+      alignment: 'string',
+    },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'content',
+        content: 'one-native',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
     name: 'OneNativeControlGroup',
     publicName: 'ControlGroup',
     props: {

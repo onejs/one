@@ -106,6 +106,11 @@ const testScreens = [
     testID: 'nav-one-native-editors',
   },
   {
+    href: '/one-native-grids',
+    label: 'One Native Grids',
+    testID: 'nav-one-native-grids',
+  },
+  {
     href: '/one-native-device',
     label: 'One Native Device',
     testID: 'nav-one-native-device',

@@ -1242,6 +1242,20 @@ default; spacing is the SwiftUI platform default. They belong inside a scroll
 view: outside one there is nothing to be lazy about, and a standalone lazy
 stack takes the box it is given instead of measuring.
 
+`One.iOS.LazyVGrid` and `One.iOS.LazyHGrid` use SwiftUI `GridItem` values as
+`columns` and `rows`. Each item has a `size` of `fixed` (`value` required),
+`flexible` (`minimum` and `maximum` optional), or `adaptive` (`minimum`
+required, `maximum` optional), plus optional `spacing` and `alignment`.
+The grid-level `alignment` is horizontal for `LazyVGrid` and vertical for
+`LazyHGrid`; `spacing` follows SwiftUI when omitted. Put these in a scroll
+view along the corresponding axis. Signed spacing passes through to SwiftUI;
+iOS 27 may clamp a negative row gap to zero.
+
+`One.iOS.Grid` composes `One.iOS.GridRow` children into a non-lazy grid. A
+child directly in the grid spans its columns, as in SwiftUI. `Grid` takes
+`alignment`, `horizontalSpacing`, and `verticalSpacing`; each `GridRow` can
+override the vertical alignment. Grid rows must be direct children of a grid.
+
 ### Groups, links, and swipe actions
 
 `One.iOS.ControlGroup` gathers controls into one labeled cluster with the

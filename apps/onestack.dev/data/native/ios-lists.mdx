@@ -1,6 +1,6 @@
 ---
 title: iOS Lists and Forms
-description: Form, Section, List, ScrollView, LazyVStack, and LazyHStack under One.iOS
+description: Form, Section, List, ScrollView, lazy stacks, and grids under One.iOS
 ---
 
 Lists and forms under `One.iOS`. These are greedy containers: they take the
@@ -49,5 +49,44 @@ indicators; `swiftStyle` applies native modifiers.
 one axis. Both take `spacing`. `LazyVStack` aligns with `'leading'`,
 `'center'`, or `'trailing'`; `LazyHStack` aligns with `'top'`,
 `'center'`, `'bottom'`, `'firstTextBaseline'`, or `'lastTextBaseline'`.
+
+## Grids
+
+`One.iOS.LazyVGrid` lays out cells in columns, and `One.iOS.LazyHGrid` lays
+them out in rows. Put a lazy grid inside a scroll view along its lazy axis.
+`columns` or `rows` is an array of `GridItem` values. Each item has a SwiftUI
+size: `fixed` needs `value`, `flexible` accepts `minimum` and `maximum`, and
+`adaptive` needs `minimum` and accepts `maximum`. Items can also set `spacing`
+and a two-axis `alignment`. Omitted bounds and spacing use SwiftUI defaults;
+signed spacing passes through to SwiftUI; iOS 27 may clamp a negative row gap to zero.
+
+```tsx
+<One.iOS.ScrollView style={{ height: 200 }}>
+  <One.iOS.LazyVGrid
+    columns={[{ size: 'fixed', value: 80 }, { size: 'flexible', minimum: 80 }]}
+    spacing={12}
+  >
+    {items.map((item) => <One.iOS.Text key={item.id} text={item.title} />)}
+  </One.iOS.LazyVGrid>
+</One.iOS.ScrollView>
+```
+
+`One.iOS.Grid` builds a non-lazy two-dimensional layout. Put cells in
+`One.iOS.GridRow`; a child directly under `Grid` spans every column, following
+SwiftUI. `Grid` accepts `alignment`, `horizontalSpacing`, and
+`verticalSpacing`. `GridRow` accepts a vertical `alignment`.
+
+```tsx
+<One.iOS.Grid horizontalSpacing={16} verticalSpacing={8}>
+  <One.iOS.GridRow>
+    <One.iOS.Text text="Name" />
+    <One.iOS.Text text="Value" />
+  </One.iOS.GridRow>
+  <One.iOS.GridRow>
+    <One.iOS.Text text="Width" />
+    <One.iOS.Text text="80" />
+  </One.iOS.GridRow>
+</One.iOS.Grid>
+```
 
 On web and Android these views throw. Keep them behind a platform check.

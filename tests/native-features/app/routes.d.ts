@@ -54,6 +54,7 @@ declare module 'one' {
         | `/one-native-file-system`
         | `/one-native-fonts`
         | `/one-native-gpu`
+        | `/one-native-grids`
         | `/one-native-groups`
         | `/one-native-haptics`
         | `/one-native-host`
