@@ -35,10 +35,10 @@ import NitroModules
 }
 
 final class HybridOneNativeModules: HybridOneNativeModulesSpec {
-  func call(module: String, method: String, argsJson: String, contractHash: String) throws -> Promise<String> {
+  func call(module: String, methodName: String, argsJson: String, contractHash: String) throws -> Promise<String> {
     return Promise.async { @MainActor in
       try await OneNativeSources.call(
-        module: module, method: method, argsJson: argsJson, contractHash: contractHash)
+        module: module, method: methodName, argsJson: argsJson, contractHash: contractHash)
     }
   }
 }

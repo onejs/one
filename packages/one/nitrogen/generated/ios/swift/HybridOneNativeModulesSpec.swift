@@ -13,7 +13,7 @@ public protocol HybridOneNativeModulesSpec_protocol: HybridObject {
 
 
   // Methods
-  func call(module: String, method: String, argsJson: String, contractHash: String) throws -> Promise<String>
+  func call(module: String, methodName: String, argsJson: String, contractHash: String) throws -> Promise<String>
 }
 
 public extension HybridOneNativeModulesSpec_protocol {

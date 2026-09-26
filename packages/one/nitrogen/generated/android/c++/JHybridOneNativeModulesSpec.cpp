@@ -46,9 +46,9 @@ namespace margelo::nitro::one {
 
 
   // Methods
-  std::shared_ptr<Promise<std::string>> JHybridOneNativeModulesSpec::call(const std::string& module, const std::string& method, const std::string& argsJson, const std::string& contractHash) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* module */, jni::alias_ref<jni::JString> /* method */, jni::alias_ref<jni::JString> /* argsJson */, jni::alias_ref<jni::JString> /* contractHash */)>("call");
-    auto __result = method(_javaPart, jni::make_jstring(module), jni::make_jstring(method), jni::make_jstring(argsJson), jni::make_jstring(contractHash));
+  std::shared_ptr<Promise<std::string>> JHybridOneNativeModulesSpec::call(const std::string& module, const std::string& methodName, const std::string& argsJson, const std::string& contractHash) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* module */, jni::alias_ref<jni::JString> /* methodName */, jni::alias_ref<jni::JString> /* argsJson */, jni::alias_ref<jni::JString> /* contractHash */)>("call");
+    auto __result = method(_javaPart, jni::make_jstring(module), jni::make_jstring(methodName), jni::make_jstring(argsJson), jni::make_jstring(contractHash));
     return [&]() {
       auto __promise = Promise<std::string>::create();
       __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {

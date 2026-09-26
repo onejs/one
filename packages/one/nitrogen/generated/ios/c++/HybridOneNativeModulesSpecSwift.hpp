@@ -67,8 +67,8 @@ namespace margelo::nitro::one {
 
   public:
     // Methods
-    inline std::shared_ptr<Promise<std::string>> call(const std::string& module, const std::string& method, const std::string& argsJson, const std::string& contractHash) override {
-      auto __result = _swiftPart.call(module, method, argsJson, contractHash);
+    inline std::shared_ptr<Promise<std::string>> call(const std::string& module, const std::string& methodName, const std::string& argsJson, const std::string& contractHash) override {
+      auto __result = _swiftPart.call(module, methodName, argsJson, contractHash);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
