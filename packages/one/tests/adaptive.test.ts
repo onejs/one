@@ -1,4 +1,9 @@
+import { createElement } from 'react'
+import { act, create } from 'react-test-renderer'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import type { HingeState } from '../src/platform/adaptive/types'
+
+Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true })
 
 const { getMock } = vi.hoisted(() => ({ getMock: vi.fn() }))
 
@@ -59,5 +64,40 @@ describe('adaptive import-time seed', () => {
     await expect(getHinge()).resolves.toBeNull()
     expect(hybrid.getSizeClass).toHaveBeenCalledTimes(1)
     expect(hybrid.getHinge).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('live hinge subscription', () => {
+  it('keeps the native event ahead of a stale read and clears the last observer', async () => {
+    let resolveRead!: (value: HingeState) => void
+    const read = new Promise<HingeState>((resolve) => { resolveRead = resolve })
+    let nativeListener: ((value: HingeState | undefined) => void) | undefined
+    const hybrid = {
+      ...mockHybrid(),
+      getHinge: vi.fn().mockReturnValueOnce(read).mockReturnValueOnce(new Promise(() => {})),
+      addHingeListener: vi.fn((listener: (value: HingeState | undefined) => void) => {
+        nativeListener = listener
+        return () => { nativeListener = undefined }
+      }),
+    }
+    getMock.mockReturnValue(hybrid)
+    const { useHinge } = await loadNative()
+    const values: (HingeState | null)[] = []
+    function Reader() {
+      values.push(useHinge())
+      return null
+    }
+    let root!: ReturnType<typeof create>
+    await act(async () => { root = create(createElement(Reader)) })
+    const live: HingeState = { status: 'partiallyOpen', angle: 1.1 }
+    await act(async () => { nativeListener?.(live) })
+    resolveRead({ status: 'closed', angle: 0 })
+    await act(async () => { await read })
+    expect(values.at(-1)).toEqual(live)
+    act(() => { root.unmount() })
+    await act(async () => { root = create(createElement(Reader)) })
+    expect(values.at(-1)).toBeNull()
+    act(() => { root.unmount() })
+    expect(hybrid.addHingeListener).toHaveBeenCalledTimes(2)
   })
 })

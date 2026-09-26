@@ -42,6 +42,7 @@ const hingeListeners = new Set<() => void>()
 
 let sizeClassRemove: (() => void) | undefined
 let hingeRemove: (() => void) | undefined
+let hingeGeneration = 0
 
 function sizesEqual(a: SizeClass, b: SizeClass): boolean {
   return a.horizontal === b.horizontal && a.vertical === b.vertical
@@ -91,14 +92,23 @@ function subscribeHinge(onStoreChange: () => void): () => void {
   hingeListeners.add(onStoreChange)
   if (hingeRemove === undefined) {
     const created = native()
-    hingeRemove = created.addHingeListener((hinge) => setHinge(hinge ?? null))
-    created.getHinge().then((hinge) => setHinge(hinge ?? null))
+    const generation = ++hingeGeneration
+    let sawEvent = false
+    hingeRemove = created.addHingeListener((hinge) => {
+      sawEvent = true
+      setHinge(hinge ?? null)
+    })
+    created.getHinge().then((hinge) => {
+      if (generation === hingeGeneration && !sawEvent) setHinge(hinge ?? null)
+    })
   }
   return () => {
     hingeListeners.delete(onStoreChange)
     if (hingeListeners.size === 0) {
+      hingeGeneration++
       hingeRemove?.()
       hingeRemove = undefined
+      setHinge(null)
     }
   }
 }
@@ -120,7 +130,9 @@ export function getSizeClass(): Promise<SizeClass> {
 
 /**
  * Returns the current hardware hinge state (angle in radians and status).
- * Null when the device has no hinge.
+ * null before the first interaction update, after observation stops, or when
+ * the current view hierarchy has no hinge. Use size class and reserved
+ * regions to choose layout.
  */
 export function useHinge(): HingeState | null {
   return useSyncExternalStore(subscribeHinge, () => currentHinge, () => null)
