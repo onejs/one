@@ -58,3 +58,30 @@ describe('bare main module entry', () => {
     expect(seen).toEqual(['one/metro-entry', 'react-native'])
   })
 })
+
+describe('watch exclusions', () => {
+  it("block the app's build output but not a dependency's dist/server", async () => {
+    const workspaceRoot = path.resolve(__dirname, '../../../../')
+    const fixtureRoot = fs.mkdtempSync(path.join(workspaceRoot, '.tmp-metro-block-'))
+    tmpDirs.push(fixtureRoot)
+    fs.writeFileSync(
+      path.join(fixtureRoot, 'package.json'),
+      JSON.stringify({ name: 'tmp-metro-block', private: true })
+    )
+
+    const { defaultConfig } = await buildMetroConfigInputFromViteConfig(
+      { root: fixtureRoot } as any,
+      { watchman: false } as any
+    )
+    const blockList: RegExp[] = (defaultConfig as any).resolver.blockList
+    const blocked = (file: string) => blockList.some((pattern) => pattern.test(file))
+
+    expect(blocked(path.join(fixtureRoot, 'dist', 'server', 'entry.js'))).toBe(true)
+    expect(blocked(path.join(fixtureRoot, 'dist', 'static', 'index.html'))).toBe(true)
+    expect(
+      blocked(
+        path.join(fixtureRoot, 'node_modules', '@o', 'helpers', 'dist', 'server', 'ensureEnv.js')
+      )
+    ).toBe(false)
+  })
+})
