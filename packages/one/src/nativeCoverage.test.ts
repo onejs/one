@@ -52,7 +52,6 @@ const knownGaps: Record<string, string> = {
   Clipboard: 'iOS suite only',
   Network: 'iOS suite only',
   DocumentPicker: 'fixture exists, no suite opens it',
-  SecureStore: 'no fixture or suite',
   useNetworkState: 'no fixture or suite',
   useNativeState: 'iOS suite only',
   useSizeClass: 'fixture exists, no suite opens it',
