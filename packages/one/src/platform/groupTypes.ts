@@ -37,6 +37,11 @@ export interface GroupProps extends ViewProps {
   children: ReactNode
 }
 
+export interface GroupBoxProps extends ViewProps {
+  label?: string
+  children?: ReactNode
+}
+
 export interface OverlayProps extends ViewProps {
   alignment?: ZStackAlignment
   children: ReactNode

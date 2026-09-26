@@ -94,5 +94,12 @@ accounts are unavailable).
   The extended suite covers quotes, newline and emoji, the `disabled` prop,
   and repeat delivery. The arm64 build, `generate:check`, and
   native coverage snapshot passed. Proof screenshot is in the local ignored
-  `tests/native-features/build/paste-button-proof` artifact directory. Next:
-  `MultiDatePicker`, then the remaining fill leaves and containers.
+  `tests/native-features/build/paste-button-proof` artifact directory. The
+  exact final binary includes an encode-failure guard added after the passing
+  simulator run and still needs a rerun when the studio-64 slot opens.
+- **INFERRED, 2026-09-26:** `GroupBox` is the next objective container slice
+  while native builds and simulators on studio-64 are paused for another lane.
+  Its labeled and unlabeled SwiftUI initializers, measured Fabric host,
+  documentation, fixture and suite are assembled but await an arm64 build and
+  iOS 27 run. `MultiDatePicker` needs a public representation for SwiftUI's
+  `Set<DateComponents>`; that API choice belongs on a named branch for Nate.

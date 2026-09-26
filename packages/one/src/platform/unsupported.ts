@@ -9,6 +9,7 @@ import type {
   FullScreenCoverProps,
   GlassProps,
   GroupProps,
+  GroupBoxProps,
   HostProps,
   LabeledContentProps,
   LazyHStackProps,
@@ -106,6 +107,9 @@ function LabeledContent(_props: LabeledContentProps): never {
   throw new Error(
     'Swift.LabeledContent requires an iOS native build'
   )
+}
+function GroupBox(_props: GroupBoxProps): never {
+  throw new Error('Swift.GroupBox requires an iOS native build')
 }
 function Button(_props: ButtonProps): never {
   throw new Error('Swift.Button requires an iOS native build')
@@ -255,6 +259,7 @@ export const Swift = {
   Divider,
   Link,
   Group,
+  GroupBox,
   Overlay,
   ViewSlot,
   SwipeActions,

@@ -49,6 +49,7 @@ const suites = [
   'editors',
   'grids',
   'paste-button',
+  'group-box',
   'popover',
   'navigation',
   'accessibility',
@@ -329,6 +330,10 @@ const pasteButtonLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-paste-seed')) &&
   has(nodes, 'Paste count: ')
+const groupBoxLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-group-box-rename')) &&
+  has(nodes, 'Box taps: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -473,6 +478,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   editors: editorsLoaded,
   grids: gridsLoaded,
   'paste-button': pasteButtonLoaded,
+  'group-box': groupBoxLoaded,
   popover: popoverLoaded,
   navigation: navigationLoaded,
   accessibility: accessibilityLoaded,
@@ -523,6 +529,7 @@ const suiteHome: Record<Suite, string> = {
   editors: 'nav-one-native-editors',
   grids: 'nav-one-native-grids',
   'paste-button': 'nav-one-native-paste-button',
+  'group-box': 'nav-one-native-group-box',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -2663,6 +2670,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('repeat paste delivers one more array callback', (nodes) =>
       labels(nodes).includes('Paste count: 2'))
     screenshot('paste-button-result.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'group-box') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-group-box')
+    const mounted = await wait('labeled and unlabeled SwiftUI GroupBox mount', (nodes) =>
+      ['Account', 'Inner value', 'Run inner', 'No title content']
+        .every((label) => labels(nodes).includes(label)) &&
+      Boolean(id(nodes, 'one-native-group-box-labeled')) &&
+      Boolean(id(nodes, 'one-native-group-box-unlabeled')))
+    const box = id(mounted, 'one-native-group-box-labeled')?.frame
+    const child = mounted.find((node) => node.AXLabel === 'Inner value' && node.type === 'StaticText')?.frame
+    if (!box || !child || child.y <= box.y || child.y + child.height >= box.y + box.height)
+      throw new Error(`GroupBox did not measure around its SwiftUI child: ${JSON.stringify({ box, child })}`)
+    screenshot('group-box-initial.png', mounted)
+    tap({ label: 'Run inner' })
+    await wait('GroupBox child action reaches React', (nodes) => labels(nodes).includes('Box taps: 1'))
+    tap({ id: 'one-native-group-box-rename' })
+    await wait('React updates the GroupBox native label', (nodes) =>
+      labels(nodes).includes('Updated account') && !labels(nodes).includes('Account'))
+    screenshot('group-box-renamed.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
