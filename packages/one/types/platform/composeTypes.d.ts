@@ -121,24 +121,45 @@ export interface ComposeDividerProps extends ComposeLeafProps {
     thickness?: number;
     color?: ColorValue;
 }
-export type ComposeFilterChipColors = Readonly<{
+type ComposeChipColors = Readonly<{
     containerColor?: ColorValue;
     labelColor?: ColorValue;
     iconColor?: ColorValue;
+    iconContentColor?: ColorValue;
+    leadingIconContentColor?: ColorValue;
+    trailingIconContentColor?: ColorValue;
+    leadingIconColor?: ColorValue;
+    trailingIconColor?: ColorValue;
     selectedContainerColor?: ColorValue;
     selectedLabelColor?: ColorValue;
     selectedLeadingIconColor?: ColorValue;
     selectedTrailingIconColor?: ColorValue;
 }>;
 export type ComposeChipBorder = ComposeCardBorder;
-export interface ComposeFilterChipProps extends ComposeNodeProps {
+interface ComposeChipProps extends ComposeNodeProps {
     children: ReactNode;
-    selected: boolean;
     enabled?: boolean;
-    colors?: ComposeFilterChipColors;
     elevation?: number;
     border?: ComposeChipBorder;
     onClick?: () => void;
+}
+export type ComposeAssistChipColors = Pick<ComposeChipColors, 'containerColor' | 'labelColor' | 'leadingIconContentColor' | 'trailingIconContentColor'>;
+export interface ComposeAssistChipProps extends ComposeChipProps {
+    colors?: ComposeAssistChipColors;
+}
+export type ComposeFilterChipColors = Pick<ComposeChipColors, 'containerColor' | 'labelColor' | 'iconColor' | 'selectedContainerColor' | 'selectedLabelColor' | 'selectedLeadingIconColor' | 'selectedTrailingIconColor'>;
+export interface ComposeFilterChipProps extends ComposeChipProps {
+    selected: boolean;
+    colors?: ComposeFilterChipColors;
+}
+export type ComposeInputChipColors = Pick<ComposeChipColors, 'containerColor' | 'labelColor' | 'leadingIconColor' | 'trailingIconColor' | 'selectedContainerColor' | 'selectedLabelColor' | 'selectedLeadingIconColor' | 'selectedTrailingIconColor'>;
+export interface ComposeInputChipProps extends ComposeChipProps {
+    selected?: boolean;
+    colors?: ComposeInputChipColors;
+}
+export type ComposeSuggestionChipColors = Pick<ComposeChipColors, 'containerColor' | 'labelColor' | 'iconContentColor'>;
+export interface ComposeSuggestionChipProps extends ComposeChipProps {
+    colors?: ComposeSuggestionChipColors;
 }
 export type ComposeTextFieldVariant = 'filled' | 'outlined';
 export type ComposeTextFieldKeyboardType = 'default' | 'number' | 'decimal' | 'email' | 'password' | 'phone' | 'url';

@@ -1,5 +1,6 @@
 import type {
   ComposeAlertDialogProps,
+  ComposeAssistChipProps,
   ComposeBoxProps,
   ComposeButtonProps,
   ComposeCardProps,
@@ -9,10 +10,12 @@ import type {
   ComposeDividerProps,
   ComposeFilterChipProps,
   ComposeIconProps,
+  ComposeInputChipProps,
   ComposeProgressIndicatorProps,
   ComposeRadioButtonProps,
   ComposeRowProps,
   ComposeSliderProps,
+  ComposeSuggestionChipProps,
   ComposeStyle,
   ComposeSwitchProps,
   ComposeTextFieldProps,
@@ -153,6 +156,12 @@ const radioColorKeys = new Set([
   'disabledUnselectedColor',
 ])
 const cardColorKeys = new Set(['containerColor', 'contentColor'])
+const assistChipColorKeys = new Set([
+  'containerColor',
+  'labelColor',
+  'leadingIconContentColor',
+  'trailingIconContentColor',
+])
 const filterChipColorKeys = new Set([
   'containerColor',
   'labelColor',
@@ -161,6 +170,21 @@ const filterChipColorKeys = new Set([
   'selectedLabelColor',
   'selectedLeadingIconColor',
   'selectedTrailingIconColor',
+])
+const inputChipColorKeys = new Set([
+  'containerColor',
+  'labelColor',
+  'leadingIconColor',
+  'trailingIconColor',
+  'selectedContainerColor',
+  'selectedLabelColor',
+  'selectedLeadingIconColor',
+  'selectedTrailingIconColor',
+])
+const suggestionChipColorKeys = new Set([
+  'containerColor',
+  'labelColor',
+  'iconContentColor',
 ])
 
 function assertComposeColorValue(value: unknown, name: string) {
@@ -381,17 +405,36 @@ function assertComposeBorder(border: ComposeCardProps['border'], kind: string) {
   if (border.color !== undefined) assertComposeColorValue(border.color, `${kind} border color`)
 }
 
-export function validateFilterChipProps(props: ComposeFilterChipProps) {
-  assertBoolean(props.selected, 'FilterChip selected')
-  assertBoolean(props.enabled ?? true, 'FilterChip enabled')
-  if (props.onClick !== undefined) assertFunction(props.onClick, 'FilterChip onClick')
-  if (props.colors !== undefined)
-    assertComposeColors(props.colors, filterChipColorKeys, 'FilterChip')
-  if (props.elevation !== undefined) {
-    assertFiniteNumber(props.elevation, 'FilterChip elevation')
-    if (props.elevation < 0) throw new Error('Compose FilterChip elevation must be nonnegative')
+export function validateChipProps(
+  props:
+    | ComposeAssistChipProps
+    | ComposeFilterChipProps
+    | ComposeInputChipProps
+    | ComposeSuggestionChipProps,
+  kind: 'AssistChip' | 'FilterChip' | 'InputChip' | 'SuggestionChip'
+) {
+  const selected = 'selected' in props ? props.selected : undefined
+  if (kind === 'FilterChip') assertBoolean(selected, `${kind} selected`)
+  else if (kind === 'InputChip' && selected !== undefined)
+    assertBoolean(selected, `${kind} selected`)
+  assertBoolean(props.enabled ?? true, `${kind} enabled`)
+  if (props.onClick !== undefined) assertFunction(props.onClick, `${kind} onClick`)
+  if (props.colors !== undefined) {
+    const keys =
+      kind === 'AssistChip'
+        ? assistChipColorKeys
+        : kind === 'FilterChip'
+          ? filterChipColorKeys
+          : kind === 'InputChip'
+            ? inputChipColorKeys
+            : suggestionChipColorKeys
+    assertComposeColors(props.colors, keys, kind)
   }
-  assertComposeBorder(props.border, 'FilterChip')
+  if (props.elevation !== undefined) {
+    assertFiniteNumber(props.elevation, `${kind} elevation`)
+    if (props.elevation < 0) throw new Error(`Compose ${kind} elevation must be nonnegative`)
+  }
+  assertComposeBorder(props.border, kind)
 }
 
 export function validateDividerProps(
