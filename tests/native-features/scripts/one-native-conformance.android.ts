@@ -765,7 +765,11 @@ function freeRotation(config: Config) {
 
 function relaunchApp(config: Config) {
   adbText(config, ['shell', 'am', 'force-stop', config.packageId])
-  const launcherComponent = adbText(config, [
+  adbText(config, ['shell', 'am', 'start', '-W', '-n', launcherComponent(config)])
+}
+
+function launcherComponent(config: Config) {
+  const component = adbText(config, [
     'shell',
     'cmd',
     'package',
@@ -778,9 +782,8 @@ function relaunchApp(config: Config) {
     .trim()
     .split(/\r?\n/)
     .findLast((line) => line.includes('/'))
-  if (!launcherComponent)
-    throw new Error(`No launcher activity resolved for ${config.packageId}.`)
-  adbText(config, ['shell', 'am', 'start', '-W', '-n', launcherComponent])
+  if (!component) throw new Error(`No launcher activity resolved for ${config.packageId}.`)
+  return component
 }
 
 // wipe app data so permissions start undetermined like a fresh install.
@@ -2815,7 +2818,7 @@ async function run(config: Config) {
 // rollback, splash kill, in-session reloads, deleted bundle, the reaper, and
 // a foreign runtime version. the launcher's files are read through run-as,
 // so the apk is a release build made debuggable by
-// scripts/updates-release-debuggable.gradle (./gradlew assembleRelease
+// scripts/updates-suite-release.gradle (./gradlew assembleRelease
 // --init-script <it>).
 async function runUpdates(config: Config) {
   mkdirSync(config.artifactDir, { recursive: true })
@@ -2982,7 +2985,7 @@ async function runUpdates(config: Config) {
     stopApp()
     // am start -W returns once the first frame draws, which the slow bundle
     // holds back, so the launch goes out without waiting for it.
-    adbText(config, ['shell', 'monkey', '-p', config.packageId, '-c', 'android.intent.category.LAUNCHER', '1'])
+    adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config)])
     await Bun.sleep(2500)
     stopApp()
     const killed = readState()
