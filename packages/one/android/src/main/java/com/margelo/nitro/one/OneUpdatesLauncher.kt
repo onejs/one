@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Base64
+import android.util.Log
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactHost
 import com.facebook.react.bridge.ReactMarker
@@ -495,6 +496,10 @@ object OneUpdatesLauncher {
                 val state = loadState()
                 val launching = state.launching
                 if (contentAppeared || launching == null) return false
+                Log.e(
+                    "OneUpdates",
+                    "update $launching failed before first render, rolling back: ${error.message}"
+                )
                 val entry = state.updates[launching]
                 if (entry != null) state.updates[launching] = entry.copy(failed = true)
                 state.launching = null

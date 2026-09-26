@@ -417,23 +417,7 @@ struct OneUpdatesStateFile: Codable {
       }
       return
     }
-    var state = loadState()
-    state.updates[launching]?.failed = true
-    state.launching = nil
-    saveState(state)
-    skipOnce = launching
-    contentAppeared = false
-    let pending = pendingReload
-    pendingReload = nil
-    // the rollback starts a new js context; its listeners register fresh.
-    stagedListeners = [:]
-    lock.unlock()
-    pending?.reject(
-      withError: oneNativeError(
-        "E_UPDATES_RELOAD", "Updates.reload: the reloaded update failed before first render."))
-    DispatchQueue.main.async {
-      RCTTriggerReloadCommandListeners("One.Updates.rollback")
-    }
+    rollBack(launching: launching, reason: error.localizedDescription)
   }
 
   static func handleFatalException(exception: NSException) {
@@ -450,6 +434,13 @@ struct OneUpdatesStateFile: Codable {
       }
       return
     }
+    rollBack(launching: launching, reason: exception.reason ?? exception.name.rawValue)
+  }
+
+  // takes the held lock and releases it: marks the booted update failed and
+  // reloads onto the previous one, skipping the failed update once.
+  private static func rollBack(launching: String, reason: String) {
+    NSLog("[OneUpdates] update %@ failed before first render, rolling back: %@", launching, reason)
     var state = loadState()
     state.updates[launching]?.failed = true
     state.launching = nil
