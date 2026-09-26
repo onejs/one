@@ -94,6 +94,8 @@ namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
 // Forward declaration of `HybridOneSpeechSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
+// Forward declaration of `HybridOneUpdatesSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneUpdatesSpec; }
 // Forward declaration of `ImagePickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerAsset; }
 // Forward declaration of `ImagePickerMediaType` to properly resolve imports.
@@ -140,6 +142,14 @@ namespace margelo::nitro::one { struct NetworkState; }
 namespace margelo::nitro::one { struct NotificationBehavior; }
 // Forward declaration of `NotificationPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
+// Forward declaration of `OneUpdatesCheckResult` to properly resolve imports.
+namespace margelo::nitro::one { struct OneUpdatesCheckResult; }
+// Forward declaration of `OneUpdatesCheckType` to properly resolve imports.
+namespace margelo::nitro::one { enum class OneUpdatesCheckType; }
+// Forward declaration of `OneUpdatesFetchResult` to properly resolve imports.
+namespace margelo::nitro::one { struct OneUpdatesFetchResult; }
+// Forward declaration of `OneUpdatesFetchType` to properly resolve imports.
+namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
 // Forward declaration of `ResolvedDocumentPickerOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct ResolvedDocumentPickerOptions; }
 // Forward declaration of `ResolvedImagePickerOptions` to properly resolve imports.
@@ -205,6 +215,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
+#include "HybridOneUpdatesSpec.hpp"
 #include "ImagePickerAsset.hpp"
 #include "ImagePickerMediaType.hpp"
 #include "ImagePickerNativeResult.hpp"
@@ -228,6 +239,10 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "NetworkStateType.hpp"
 #include "NotificationBehavior.hpp"
 #include "NotificationPermissionStatus.hpp"
+#include "OneUpdatesCheckResult.hpp"
+#include "OneUpdatesCheckType.hpp"
+#include "OneUpdatesFetchResult.hpp"
+#include "OneUpdatesFetchType.hpp"
 #include "ResolvedDocumentPickerOptions.hpp"
 #include "ResolvedImagePickerOptions.hpp"
 #include "SizeClass.hpp"
@@ -289,6 +304,8 @@ namespace One { class HybridOneNotificationsSpec_cxx; }
 namespace One { class HybridOneSecureStoreSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSpeechSpec_cxx; }
+// Forward declaration of `HybridOneUpdatesSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneUpdatesSpec_cxx; }
 
 // Include Swift defined types
 #if __has_include("One-Swift.h")

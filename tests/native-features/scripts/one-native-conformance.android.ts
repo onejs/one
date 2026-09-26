@@ -2,6 +2,7 @@
 import { execFileSync } from 'node:child_process'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
+import { parseUpdatesState, startUpdatesServer, updateIdsIn } from './updates-suite-server'
 
 type Bounds = { left: number; top: number; right: number; bottom: number }
 
@@ -30,6 +31,10 @@ type Config = {
   artifactDir: string
   timeout: number
   metroPort: number
+  // 'updates' drives a release apk against the static update server instead
+  // of the debug proof screen against metro.
+  suite: 'proof' | 'updates'
+  apkPath: string
 }
 
 type Selector = {
@@ -50,7 +55,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite updates --apk-path <APK>]'
   )
 
 function parse(args: string[]): Config {
@@ -59,6 +64,8 @@ function parse(args: string[]): Config {
   let artifactDir = '/tmp/one-native-android-proof'
   let timeout = 15_000
   let metroPort = 8081
+  let suite: Config['suite'] = 'proof'
+  let apkPath = ''
   if (process.env.RCT_METRO_PORT !== undefined && process.env.RCT_METRO_PORT !== '')
     metroPort = Number(process.env.RCT_METRO_PORT)
 
@@ -75,6 +82,11 @@ function parse(args: string[]): Config {
     else if (arg === '--artifact-dir') artifactDir = args[++index] || ''
     else if (arg === '--timeout') timeout = Number(args[++index])
     else if (arg === '--metro-port') metroPort = Number(args[++index])
+    else if (arg === '--suite') {
+      const value = args[++index]
+      if (value !== 'updates') throw new Error(`Unknown suite: ${value}`)
+      suite = value
+    } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
   }
 
@@ -94,7 +106,9 @@ function parse(args: string[]): Config {
       'A valid Metro port is required: --metro-port <PORT> or RCT_METRO_PORT.'
     )
   }
-  return { deviceId, packageId, artifactDir, timeout, metroPort }
+  if (suite === 'updates' && !apkPath)
+    throw new Error('The updates suite requires --apk-path for a fresh install.')
+  return { deviceId, packageId, artifactDir, timeout, metroPort, suite, apkPath }
 }
 
 function adbRaw(args: string[]): string {
@@ -133,6 +147,9 @@ function preflight(config: Config) {
     throw new Error(
       `Android preflight: device '${config.deviceId}' is '${state}', not ready. Reconnect it (offline), accept the RSA prompt (unauthorized), or cold-boot the emulator, then retry.`
     )
+}
+
+function requireMetroReverse(config: Config) {
   const wantDevice = 'tcp:8081'
   const wantHost = `tcp:${config.metroPort}`
   let reverses = ''
@@ -748,7 +765,11 @@ function freeRotation(config: Config) {
 
 function relaunchApp(config: Config) {
   adbText(config, ['shell', 'am', 'force-stop', config.packageId])
-  const launcherComponent = adbText(config, [
+  adbText(config, ['shell', 'am', 'start', '-W', '-n', launcherComponent(config)])
+}
+
+function launcherComponent(config: Config) {
+  const component = adbText(config, [
     'shell',
     'cmd',
     'package',
@@ -761,9 +782,8 @@ function relaunchApp(config: Config) {
     .trim()
     .split(/\r?\n/)
     .findLast((line) => line.includes('/'))
-  if (!launcherComponent)
-    throw new Error(`No launcher activity resolved for ${config.packageId}.`)
-  adbText(config, ['shell', 'am', 'start', '-W', '-n', launcherComponent])
+  if (!component) throw new Error(`No launcher activity resolved for ${config.packageId}.`)
+  return component
 }
 
 // wipe app data so permissions start undetermined like a fresh install.
@@ -863,6 +883,7 @@ async function run(config: Config) {
 
   try {
     preflight(config)
+    requireMetroReverse(config)
     relaunchApp(config)
     stampDebugHost(config)
     relaunchApp(config)
@@ -2840,9 +2861,288 @@ async function run(config: Config) {
   }
 }
 
+// the updates suite: the release apk baked the static server in at prebuild
+// time (10.0.2.2 reaches the host loopback). it starts from a fresh install
+// and walks eight publishes: cold launch, stage and launch, tamper, fatal
+// rollback, splash kill, in-session reloads, deleted bundle, the reaper, and
+// a foreign runtime version. the launcher's files are read through run-as,
+// so the apk is a release build made debuggable by
+// scripts/updates-suite-release.gradle (./gradlew assembleRelease
+// --init-script <it>).
+async function runUpdates(config: Config) {
+  mkdirSync(config.artifactDir, { recursive: true })
+  preflight(config)
+  execFileSync('adb', ['-s', config.deviceId, 'uninstall', config.packageId], { stdio: 'ignore' })
+  adbText(config, ['install', config.apkPath])
+
+  const updatesDir = 'files/one-updates'
+  const inApp = (...args: string[]) => adbText(config, ['shell', 'run-as', config.packageId, ...args])
+  const updateIdsOnDisk = () =>
+    updateIdsIn(inApp('ls', '-a', updatesDir).split(/\s+/).filter((name) => name && name !== '.' && name !== '..'))
+  const readState = () => parseUpdatesState(inApp('cat', `${updatesDir}/state.json`))
+  const stopApp = () => adbText(config, ['shell', 'am', 'force-stop', config.packageId])
+  const launchApp = () => relaunchApp(config)
+  const coldLaunch = () => {
+    stopApp()
+    launchApp()
+  }
+  const wait = async (name: string, predicate: (nodes: Node[]) => boolean) => {
+    const result = await waitFor(config, name, predicate)
+    console.log(`PASS ${name}`)
+    return result.snapshot.nodes
+  }
+  const pass = (name: string) => console.log(`PASS ${name}`)
+  const labelValue = (nodes: Node[], prefix: string) => {
+    const text = nodes.find((node) => node.text.startsWith(`${prefix}: `))?.text
+    return text === undefined ? undefined : text.slice(prefix.length + 2)
+  }
+  const home = (marker: string) => (nodes: Node[]) =>
+    exactlyOneId(nodes, 'home-screen') && textIncludes(nodes, `Marker: ${marker}`)
+  const tap = (testID: string) => tapFresh(config, testID, { id: testID })
+  const openFixture = async () => {
+    await wait('updates home mounted', (nodes) => exactlyOneId(nodes, 'home-screen'))
+    await tapNavigation(config, 'nav-one-native-updates')
+    // the button exists while the push is still sliding it in, and a tap at
+    // that frame lands beside it: wait until two snapshots agree.
+    let previous: Bounds | undefined
+    await wait('updates fixture mounted', (nodes) => {
+      const bounds = matching(nodes, { id: 'one-native-updates-check' })[0]?.bounds
+      const settled = Boolean(
+        bounds && previous && bounds.left === previous.left && bounds.top === previous.top
+      )
+      previous = bounds
+      return settled
+    })
+  }
+
+  const updates = startUpdatesServer(config.artifactDir, 'android')
+  const { publish } = updates
+  try {
+    launchApp()
+
+    // 1. a fresh install launches embedded, and an empty server checks none.
+    await openFixture()
+    const embedded = await wait('embedded launch reads the binary', (n) =>
+      Boolean(
+        labelValue(n, 'Marker') === 'embedded' &&
+          labelValue(n, 'Enabled') === 'true' &&
+          labelValue(n, 'Embedded') === 'true' &&
+          labelValue(n, 'Runtime') === 'updates-suite' &&
+          labelValue(n, 'UpdateId') !== undefined &&
+          labelValue(n, 'UpdateId') !== 'none' &&
+          labelValue(n, 'Created') !== undefined &&
+          labelValue(n, 'Created') !== 'none' &&
+          labelValue(n, 'Meta') === 'none' &&
+          labelValue(n, 'Staged') === 'none' &&
+          labelValue(n, 'Image') === 'none'
+      )
+    )
+    const embeddedId = labelValue(embedded, 'UpdateId')
+    if (!embeddedId || embeddedId === 'none') throw new Error('embedded launch has no update id')
+    tap('one-native-updates-check')
+    await wait('empty server checks none', (n) => labelValue(n, 'Check') === 'none')
+    tap('one-native-updates-fetch')
+    await wait('empty server fetches none', (n) => labelValue(n, 'Fetch') === 'none')
+
+    // 2. a published update stages, then runs after a cold relaunch with the
+    // image only its own bundle carries.
+    const first = publish('v2')
+    tap('one-native-updates-check')
+    await wait('served update checks available', (n) => labelValue(n, 'Check') === `available:${first.id}`)
+    tap('one-native-updates-fetch')
+    await wait('served update fetches', (n) =>
+      Boolean(
+        labelValue(n, 'Fetch') === `fetched:${first.id}` &&
+          labelValue(n, 'Staged') === first.id &&
+          labelValue(n, 'StagedEvents') === `1:${first.id}`
+      )
+    )
+    coldLaunch()
+    await wait('relaunched update boots', home('v2'))
+    await openFixture()
+    await wait('relaunched update runs staged bundle and image', (n) =>
+      Boolean(
+        labelValue(n, 'Marker') === 'v2' &&
+          labelValue(n, 'Embedded') === 'false' &&
+          labelValue(n, 'UpdateId') === first.id &&
+          labelValue(n, 'Staged') === 'none' &&
+          labelValue(n, 'Image') === '48x32'
+      )
+    )
+
+    // 3. a tampered asset rejects fetch and stages nothing.
+    const tampered = publish('v2')
+    updates.tamperLaunchAsset()
+    tap('one-native-updates-check')
+    await wait('tampered update checks available', (n) => labelValue(n, 'Check') === `available:${tampered.id}`)
+    tap('one-native-updates-fetch')
+    await wait('tampered update rejects fetch', (n) => labelValue(n, 'Fetch') === 'error:E_UPDATES_FETCH')
+    tap('one-native-updates-refresh')
+    await wait('tampered update stages nothing', (n) =>
+      // the step 2 relaunch remounted the fixture, so the counter reset; the
+      // failed fetch must fire no event on top of that.
+      Boolean(labelValue(n, 'Staged') === 'none' && labelValue(n, 'StagedEvents') === '0')
+    )
+
+    // 4. a bundle that throws before first render rolls back in-session onto
+    // the previous update, and is never selected again.
+    const fatal = publish('throws')
+    if (fatal.id === first.id) throw new Error('republish reused the update id')
+    tap('one-native-updates-check')
+    await wait('fatal update checks available', (n) => labelValue(n, 'Check') === `available:${fatal.id}`)
+    tap('one-native-updates-fetch')
+    await wait('fatal update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${fatal.id}`)
+    adbText(config, ['logcat', '-c'])
+    tap('one-native-updates-reload')
+    // the old tree shows the same marker until the reboot replaces it, so the
+    // home screen (absent on the fixture) is the completion signal.
+    await wait('fatal update rolls back in-session', (n) => exactlyOneId(n, 'home-screen'))
+    // the launcher logs the error it rolled back from: the bundle's own throw
+    // proves it executed, which a reload that skipped the update never produces.
+    const rollbackLine = adbText(config, ['logcat', '-d', '-s', 'OneUpdates'])
+      .split('\n')
+      .find((line) => line.includes(`update ${fatal.id} failed before first render`))
+    if (!rollbackLine?.includes('updates-suite-boom'))
+      throw new Error('the fatal update was skipped without booting')
+    pass('fatal update booted before rolling back')
+    await openFixture()
+    await wait('rollback runs the previous update', (n) =>
+      Boolean(labelValue(n, 'UpdateId') === first.id && labelValue(n, 'Marker') === 'v2')
+    )
+    // the fatal path marks the booted update failed and the reaper deletes it
+    // right after the rollback lands.
+    if (updateIdsOnDisk().includes(fatal.id) || readState().updates[fatal.id])
+      throw new Error('the fatal update survived the rollback')
+    pass('fatal update is reaped after the rollback')
+    tap('one-native-updates-refresh')
+    await wait('rollback leaves nothing staged', (n) => labelValue(n, 'Staged') === 'none')
+    coldLaunch()
+    await openFixture()
+    await wait('failed update is never selected again', (n) => labelValue(n, 'UpdateId') === first.id)
+
+    // 5. a proven update survives a kill during its splash: the kill lands
+    // while launching is still recorded, and the relaunch selects it again.
+    const slow = publish('slow')
+    tap('one-native-updates-check')
+    await wait('slow update checks available', (n) => labelValue(n, 'Check') === `available:${slow.id}`)
+    tap('one-native-updates-fetch')
+    await wait('slow update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${slow.id}`)
+    tap('one-native-updates-reload')
+    await wait('slow update proves itself', home('slow'))
+    await openFixture()
+    await wait('slow update runs after reload', (n) => labelValue(n, 'UpdateId') === slow.id)
+    stopApp()
+    // am start -W returns once the first frame draws, which the slow bundle
+    // holds back, so the launch goes out without waiting for it.
+    adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config)])
+    await Bun.sleep(2500)
+    stopApp()
+    const killed = readState()
+    const slowEntry = killed.updates[slow.id]
+    if (killed.launching !== slow.id || !slowEntry || slowEntry.successes < 1)
+      throw new Error(
+        `the splash kill missed its window: launching=${killed.launching} successes=${slowEntry?.successes}`
+      )
+    pass('splash kill lands while launching is recorded')
+    launchApp()
+    await wait('killed proven update is selected again', home('slow'))
+    await openFixture()
+    await wait('reselected update runs', (n) => labelValue(n, 'UpdateId') === slow.id)
+
+    // 6. reload runs the staged bundle in-session, then twenty reloads in a
+    // row run without a crash.
+    const staged = publish('p5', ['updateSeverity=critical'])
+    tap('one-native-updates-check')
+    await wait('staged update checks available', (n) => labelValue(n, 'Check') === `available:${staged.id}`)
+    tap('one-native-updates-fetch')
+    await wait('staged update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${staged.id}`)
+    tap('one-native-updates-reload')
+    await wait('reload runs the staged bundle', home('p5'))
+    await openFixture()
+    await wait('reloaded update reports staged metadata', (n) =>
+      Boolean(labelValue(n, 'UpdateId') === staged.id && labelValue(n, 'Meta') === 'critical')
+    )
+    for (let cycle = 1; cycle <= 20; cycle++) {
+      tap('one-native-updates-reload')
+      await wait(`reload ${cycle} boots clean`, home('p5'))
+      await openFixture()
+      await wait(`reload ${cycle} keeps the update`, (n) => labelValue(n, 'UpdateId') === staged.id)
+    }
+
+    // 7. a deleted bundle file falls through to the previous update in the
+    // same launch.
+    const doomed = `${updatesDir}/${staged.id}/main.jsbundle`
+    inApp('ls', doomed)
+    inApp('rm', doomed)
+    coldLaunch()
+    await wait('deleted bundle falls through', home('slow'))
+    await openFixture()
+    await wait('fall-through runs the spare', (n) =>
+      Boolean(labelValue(n, 'UpdateId') === slow.id && labelValue(n, 'Marker') === 'slow')
+    )
+
+    // 8. after three publishes only the running update and its spare remain,
+    // plus the staged one.
+    const reloadInto = async (variant: string) => {
+      const update = publish(variant)
+      tap('one-native-updates-check')
+      await wait(`${variant} update checks available`, (n) => labelValue(n, 'Check') === `available:${update.id}`)
+      tap('one-native-updates-fetch')
+      await wait(`${variant} update fetches`, (n) => labelValue(n, 'Fetch') === `fetched:${update.id}`)
+      return update
+    }
+    const sixth = await reloadInto('p6')
+    tap('one-native-updates-reload')
+    await wait('sixth update reloads', home('p6'))
+    await openFixture()
+    await wait('sixth update runs', (n) => labelValue(n, 'UpdateId') === sixth.id)
+    const seventh = await reloadInto('p7')
+    tap('one-native-updates-reload')
+    await wait('seventh update reloads', home('p7'))
+    await openFixture()
+    await wait('seventh update runs', (n) => labelValue(n, 'UpdateId') === seventh.id)
+    const eighth = await reloadInto('p8')
+    const remaining = updateIdsOnDisk()
+    const expected = [sixth.id, seventh.id, eighth.id].sort()
+    if (JSON.stringify(remaining) !== JSON.stringify(expected))
+      throw new Error(`reaper kept ${remaining.join(', ')}, expected ${expected.join(', ')}`)
+    pass('reaper keeps running, spare, and staged')
+
+    // 9. a different runtime version on the server is never fetched.
+    updates.serveForeignRuntime()
+    tap('one-native-updates-check')
+    await wait('foreign runtime checks none', (n) => labelValue(n, 'Check') === 'none')
+    tap('one-native-updates-fetch')
+    await wait('foreign runtime fetches none', (n) => labelValue(n, 'Fetch') === 'none')
+    tap('one-native-updates-refresh')
+    await wait('foreign runtime leaves staged alone', (n) => labelValue(n, 'Staged') === eighth.id)
+
+    // 10. a manifest naming paths outside the updates directory is unusable.
+    updates.serveEscapingPaths()
+    tap('one-native-updates-check')
+    await wait('escaping paths check rejects', (n) => labelValue(n, 'Check') === 'error:E_UPDATES_CHECK')
+    tap('one-native-updates-fetch')
+    await wait('escaping paths fetch rejects', (n) => labelValue(n, 'Fetch') === 'error:E_UPDATES_FETCH')
+    tap('one-native-updates-refresh')
+    await wait('escaping paths leave staged alone', (n) => labelValue(n, 'Staged') === eighth.id)
+  } catch (error) {
+    const stem = path.join(config.artifactDir, 'updates-failure')
+    try {
+      writeFileSync(`${stem}.xml`, dumpNodes(config).xml)
+      writeFileSync(`${stem}.png`, adbBytes(config, ['exec-out', 'screencap', '-p']))
+    } catch (captureError) {
+      console.error(`updates failure capture: ${captureError instanceof Error ? captureError.message : String(captureError)}`)
+    }
+    throw error
+  } finally {
+    updates.stop()
+  }
+  console.log('ALL ONE NATIVE ANDROID UPDATES CHECKS PASSED')
+}
+
 try {
   const config = parse(process.argv.slice(2))
-  await run(config)
+  await (config.suite === 'updates' ? runUpdates(config) : run(config))
 } catch (error) {
   const message = error instanceof Error ? error.message : String(error)
   console.error(`FAIL one-native-android: ${message}`)

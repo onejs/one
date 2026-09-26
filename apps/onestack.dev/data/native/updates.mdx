@@ -1,0 +1,93 @@
+---
+title: Updates
+description: Over-the-air updates with rollback
+---
+
+Over-the-air updates through `One.Updates`, One's own OTA client. The native
+launcher selects the bundle before React Native starts: the newest downloaded
+update for the binary's runtime version, or the embedded bundle. A bad update
+never bricks the app: a fatal error before first render marks the update
+failed and the host reboots onto the next candidate in the same session.
+
+```tsx
+import { One } from 'one'
+
+// values fixed for the process, read once at import
+One.Updates.isEnabled // boolean
+One.Updates.runtimeVersion // string | null
+One.Updates.updateId // string | null
+One.Updates.isEmbeddedLaunch // boolean
+One.Updates.createdAt // Date | null
+One.Updates.manifest // UpdateManifest | null
+
+const check = await One.Updates.check()
+// { type: 'available', manifest } | { type: 'none' }
+
+const fetched = await One.Updates.fetch()
+// { type: 'fetched', manifest } | { type: 'none' }
+
+One.Updates.getStaged() // UpdateManifest | null
+
+const subscription = One.Updates.addStagedListener((staged) => {
+  console.log(staged?.id ?? 'none')
+})
+subscription.remove()
+
+await One.Updates.reload()
+```
+
+`updateId` is the embedded id on an embedded launch; `manifest` is `null`
+there. `createdAt` is a `Date`; the manifest's own `createdAt` stays the
+ISO string it arrived as, and publisher metadata rides in
+`manifest.metadata` as JSON scalars. `check` reports `available` only when
+the served update is newer than the running one and not already staged.
+`fetch` downloads the bundle and every asset, verifies every sha256, and
+stages the update atomically; `reload` restarts the host onto the newest
+ready update.
+
+```ts
+one({
+  native: {
+    app: {
+      // ...
+      updates: {
+        url: 'https://updates.example.com',
+        runtimeVersion: '1.0',
+      },
+    },
+  },
+})
+```
+
+Prebuild points the release bundle at the launcher and stamps the url and
+runtime version into the binary. A build without `updates.url` launches its
+embedded bundle with `isEnabled` false, and `check`, `fetch`, and `reload`
+reject `E_UPDATES_DISABLED`. In debug builds the launcher is off and the
+bundle keeps coming from the dev server. Network failures reject
+`E_UPDATES_CHECK`; a file that arrives but fails its hash check rejects
+`E_UPDATES_FETCH` and stages nothing.
+
+Publish from the app's source with the same bundler and options as the
+embedded build:
+
+```sh
+one updates publish --platform ios --out ./ota-out
+one updates publish --platform android --out ./ota-out-android
+```
+
+Each run writes a fresh directory: `manifest.json` plus content-named files
+under `assets/`. Serve it at `<url>/<platform>/<runtimeVersion>/`, so the
+manifest lands at `<url>/ios/1.0/manifest.json` for the config above. Asset
+urls may be relative to the manifest. `--metadata key=value` (repeatable)
+adds publisher metadata; values parse as JSON scalars when they look like
+one.
+
+After a launch succeeds the launcher keeps the running update, the newest
+older update as the rollback spare, and a staged update newer than the
+running one, and deletes every other download. Downloads for another
+runtime version, or older than the embedded update, are deleted at launch
+and never fetched.
+
+On web the reads are the empty values, `check` and `fetch` reject because
+there is no native side, `getStaged` returns `null`, the listener never
+fires, and `reload` reloads the page.

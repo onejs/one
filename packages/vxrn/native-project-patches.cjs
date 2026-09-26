@@ -292,6 +292,50 @@ function insertBeforeBundlePhaseRunner(input, codeToAdd) {
   return input
 }
 
+function insertAfterBundlePhaseRunner(input, codeToAdd) {
+  for (const anchor of BUNDLE_PHASE_RUNNER_ANCHORS) {
+    const match = anchor.exec(input)
+    if (!match) continue
+    const lineEnd = input.indexOf('\n', match.index + match[0].length)
+    const insertAt = lineEnd === -1 ? input.length : lineEnd + 1
+    return input.slice(0, insertAt) + codeToAdd + '\n' + input.slice(insertAt)
+  }
+
+  if (!warnedMissingBundlePhaseRunnerAnchor) {
+    warnedMissingBundlePhaseRunnerAnchor = true
+    console.warn(
+      '[vxrn] could not find the `"$NODE_BINARY" .../scripts/react-native-xcode.sh` line in the iOS bundle phase; the One.Updates embedded manifest was not applied. The React Native template may have changed shape.'
+    )
+  }
+  return input
+}
+
+/**
+ * Write the One.Updates embedded manifest beside the release bundle after
+ * React Native's bundling runs. The id and timestamp are generated at build
+ * time; the runtime version is baked in by prebuild.
+ */
+const EMBEDDED_UPDATES_MANIFEST_MARKER =
+  '# [vxrn/one] the embedded update manifest lands beside the release bundle'
+
+function addEmbeddedUpdatesManifestToBundleReactNativeShellScript(input, runtimeVersion) {
+  if (input.includes(EMBEDDED_UPDATES_MANIFEST_MARKER)) {
+    return input
+  }
+
+  const runtime = String(runtimeVersion).replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+  const codeToAdd = [
+    '',
+    EMBEDDED_UPDATES_MANIFEST_MARKER,
+    'ONE_UPDATES_RESOURCES="$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH"',
+    'if [ -f "$ONE_UPDATES_RESOURCES/main.jsbundle" ]; then',
+    `  "\${NODE_BINARY:-node}" -e 'const fs = require("fs"); const manifest = { id: require("crypto").randomUUID(), createdAt: new Date().toISOString(), runtimeVersion: "${runtime}" }; fs.writeFileSync(process.argv[1], JSON.stringify(manifest));' "$ONE_UPDATES_RESOURCES/one-updates-embedded.json"`,
+    'fi',
+  ].join('\n')
+
+  return insertAfterBundlePhaseRunner(input, codeToAdd)
+}
+
 /**
  * React Native v0.76 defaults the CLI_PATH to an internal scripts/bundle.js for iOS (see: https://github.com/facebook/react-native/blob/v0.76.0/packages/react-native/scripts/react-native-xcode.sh#L93), which loads the bundle command directly from `@react-native/community-cli-plugin`, and will ignore the override of the bundle command in `react-native.config.cjs`.
  * We need to set it back to the main CLI endpoint so the override of the bundle command in `react-native.config.cjs` can take effect.
@@ -598,6 +642,7 @@ module.exports = {
   addSetCliPathToBundleReactNativeShellScript,
   addPodHermescToBundleReactNativeShellScript,
   addDepsPatchToBundleReactNativeShellScript,
+  addEmbeddedUpdatesManifestToBundleReactNativeShellScript,
   injectFmtCxx17FixIntoPodfile,
   injectHermesMinificationPatchIntoPodfile,
   injectReactNativeScreensGammaIntoPodfile,

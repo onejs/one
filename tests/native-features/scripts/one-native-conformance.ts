@@ -10,6 +10,7 @@ import {
   extractCrop,
   readPng,
 } from './visual-pixel-gate'
+import { parseUpdatesState, startUpdatesServer, updateIdsIn } from './updates-suite-server'
 
 type Node = {
   AXLabel?: string
@@ -57,6 +58,7 @@ const suites = [
   'image-picker',
   'ui-map',
   'gpu',
+  'updates',
 ] as const
 type Suite = (typeof suites)[number]
 type Config = {
@@ -374,6 +376,10 @@ const popoverLoaded = (nodes: Node[]) =>
     labels(nodes).includes('Section body'))
 // the sheet's navigation bar carries the title as its identifier, so the bar is what
 // says the stack presented, and the fixture's own rows say the React side is alive.
+const updatesLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-updates-check')) &&
+  labels(nodes).some((line) => line.startsWith('UpdateId: '))
 const navigationLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   (Boolean(id(nodes, 'one-native-navigation-open')) ||
@@ -415,6 +421,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'image-picker': imagePickerLoaded,
   'ui-map': uiMapLoaded,
   gpu: gpuLoaded,
+  updates: updatesLoaded,
 }
 const suiteHome: Record<Suite, string> = {
   'tabs-menu': 'nav-one-native',
@@ -450,6 +457,7 @@ const suiteHome: Record<Suite, string> = {
   'ui-map': 'nav-one-native-ui-map',
   gpu: 'nav-one-native-gpu',
   navigation: 'nav-one-native-navigation',
+  updates: 'nav-one-native-updates',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
 const firstState = (nodes: Node[]) =>
@@ -513,20 +521,21 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       `${name} timed out after ${config.timeout}ms${detail ? `; ${detail}` : ''}; snapshot: ${snapshotPath}`
     )
   }
-  // the only tap path: a physical touch down/up delivers on headless hosts,
-  // where the simulator tapAt call reports success without delivering
-  // anything. it goes through tap --tap-style physical because the touch
-  // subcommand cannot open simulator input on some devices where this can.
+  // the only tap path: a touch down/up. the simulator tapAt call reports
+  // success on headless hosts without delivering anything, and tap
+  // --tap-style physical silently drops a large share of touches (16 of 40
+  // measured, against none for touch); a device whose input touch cannot
+  // open fails loudly below.
   const touch = (x: number, y: number) => {
     const output = axe(
       [
-        'tap',
+        'touch',
         '-x',
         String(Math.round(x)),
         '-y',
         String(Math.round(y)),
-        '--tap-style',
-        'physical',
+        '--down',
+        '--up',
       ],
       config.simulatorId
     )
@@ -580,9 +589,26 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     for (let attempt = 0; attempt < 12; attempt++) {
       const nodes = snapshot(config.simulatorId)
       const app = nodes.find((node) => node.type === 'Application')?.frame
+      if (!app) throw new Error(`Home row ${testID} disappeared while scrolling`)
       const row = id(nodes, testID)?.frame
-      if (!app || !row) throw new Error(`Home row ${testID} disappeared while scrolling`)
-      if (row.y >= 0 && row.y + row.height <= app.height) return tap({ id: testID })
+      if (!row) {
+        // the home list re-renders under the snapshot (fonts, layout) and a
+        // row drops out of one tree; it is back in the next.
+        await new Promise((resolve) => setTimeout(resolve, 400))
+        continue
+      }
+      if (row.y >= 0 && row.y + row.height <= app.height) {
+        // a tap on a list still coasting from the last swipe only stops it,
+        // so the row has to hold still across two snapshots first.
+        let previous = row
+        await wait(`${testID} settles`, (settledNodes) => {
+          const frame = id(settledNodes, testID)?.frame
+          const settled = Boolean(frame && frame.x === previous.x && frame.y === previous.y)
+          if (frame) previous = frame
+          return settled
+        }, true)
+        return tap({ id: testID })
+      }
       // a row below the viewport needs the list pushed up, and one the swipe already
       // carried past the top needs it pulled back down: scrolling one direction only
       // walks past an overshot row and never comes back to it.
@@ -751,6 +777,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // to undetermined.
     if (!config.appPath)
       throw new Error(`The ${config.suite} suite requires --app-path for a fresh install.`)
+    execFileSync('xcrun', ['simctl', 'uninstall', config.simulatorId, config.bundleId], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    execFileSync('xcrun', ['simctl', 'install', config.simulatorId, config.appPath], {
+      stdio: 'ignore',
+      timeout: 60_000,
+    })
+  }
+  if (config.suite === 'updates') {
+    // the proof walks one install from its embedded launch through eight
+    // publishes, so it starts from a release build with no state on disk.
+    if (!config.appPath)
+      throw new Error('The updates suite requires --app-path for a fresh install.')
     execFileSync('xcrun', ['simctl', 'uninstall', config.simulatorId, config.bundleId], {
       stdio: 'ignore',
       timeout: 30_000,
@@ -4702,6 +4742,294 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await wait('denied camera resolves canceled', (n) =>
         status(n, 'Result', 'canceled')
       )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'updates') {
+    // the release build under test baked this server in at prebuild time.
+    // the block starts from its fresh install and walks it through eight
+    // publishes: cold launch, stage and launch, tamper, fatal rollback,
+    // splash kill, in-session reloads, deleted bundle, the reaper, and a
+    // foreign runtime version.
+    const updates = startUpdatesServer(config.artifactDir, 'ios')
+    const { publish } = updates
+    const container = () =>
+      execFileSync(
+        'xcrun',
+        ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data'],
+        { encoding: 'utf8' }
+      ).trim()
+    const updatesDir = () =>
+      path.join(container(), 'Library', 'Application Support', 'one-updates')
+    const updateIdsOnDisk = () => updateIdsIn(fs.readdirSync(updatesDir()))
+    const readState = () =>
+      parseUpdatesState(fs.readFileSync(path.join(updatesDir(), 'state.json'), 'utf8'))
+    const labelValue = (nodes: Node[], prefix: string) => {
+      const label = labels(nodes).find((line) => line.startsWith(`${prefix}: `))
+      return label === undefined ? undefined : label.slice(prefix.length + 2)
+    }
+    const openFixture = async () => {
+      await wait('updates home mounted', () => true, true)
+      await tapNav('nav-one-native-updates')
+      // the button exists while the push is still sliding it in, and a tap
+      // at that frame lands beside it: wait until two snapshots agree.
+      let previous: Node['frame'] | undefined
+      await wait('updates fixture mounted', (n) => {
+        const frame = id(n, 'one-native-updates-check')?.frame
+        const settled = Boolean(
+          frame && previous && frame.x === previous.x && frame.y === previous.y
+        )
+        previous = frame
+        return settled
+      })
+    }
+    const coldLaunch = () => {
+      stopApp()
+      launchApp()
+    }
+    try {
+      // 1. a fresh install launches embedded, and an empty server checks none.
+      await openFixture()
+      const embedded = await wait('embedded launch reads the binary', (n) =>
+        Boolean(
+          labelValue(n, 'Marker') === 'embedded' &&
+            labelValue(n, 'Enabled') === 'true' &&
+            labelValue(n, 'Embedded') === 'true' &&
+            labelValue(n, 'Runtime') === 'updates-suite' &&
+            labelValue(n, 'UpdateId') !== undefined &&
+            labelValue(n, 'UpdateId') !== 'none' &&
+            labelValue(n, 'Created') !== undefined &&
+            labelValue(n, 'Created') !== 'none' &&
+            labelValue(n, 'Meta') === 'none' &&
+            labelValue(n, 'Staged') === 'none' &&
+            labelValue(n, 'Image') === 'none'
+        )
+      )
+      const embeddedId = labelValue(embedded, 'UpdateId')
+      if (!embeddedId || embeddedId === 'none') throw new Error('embedded launch has no update id')
+      tap({ id: 'one-native-updates-check' })
+      await wait('empty server checks none', (n) => labelValue(n, 'Check') === 'none')
+      tap({ id: 'one-native-updates-fetch' })
+      await wait('empty server fetches none', (n) => labelValue(n, 'Fetch') === 'none')
+
+      // 2. a published update stages, then runs after a cold relaunch with
+      // the image only its own bundle carries.
+      const first = publish('v2')
+      tap({ id: 'one-native-updates-check' })
+      await wait('served update checks available', (n) => labelValue(n, 'Check') === `available:${first.id}`)
+      tap({ id: 'one-native-updates-fetch' })
+      await wait('served update fetches', (n) =>
+        Boolean(
+          labelValue(n, 'Fetch') === `fetched:${first.id}` &&
+            labelValue(n, 'Staged') === first.id &&
+            labelValue(n, 'StagedEvents') === `1:${first.id}`
+        )
+      )
+      coldLaunch()
+      await wait('relaunched update boots', (n) => has(n, 'Marker: v2'), true)
+      await openFixture()
+      await wait('relaunched update runs staged bundle and image', (n) =>
+        Boolean(
+          labelValue(n, 'Marker') === 'v2' &&
+            labelValue(n, 'Embedded') === 'false' &&
+            labelValue(n, 'UpdateId') === first.id &&
+            labelValue(n, 'Staged') === 'none' &&
+            labelValue(n, 'Image') === '48x32'
+        )
+      )
+
+      // 3. a tampered asset rejects fetch and stages nothing.
+      const tampered = publish('v2')
+      updates.tamperLaunchAsset()
+      tap({ id: 'one-native-updates-check' })
+      await wait('tampered update checks available', (n) => labelValue(n, 'Check') === `available:${tampered.id}`)
+      tap({ id: 'one-native-updates-fetch' })
+      await wait('tampered update rejects fetch', (n) => labelValue(n, 'Fetch') === 'error:E_UPDATES_FETCH')
+      tap({ id: 'one-native-updates-refresh' })
+      await wait('tampered update stages nothing', (n) =>
+        Boolean(
+          labelValue(n, 'Staged') === 'none' &&
+            // the step 2 relaunch remounted the fixture, so the counter
+            // reset; the failed fetch must fire no event on top of that.
+            labelValue(n, 'StagedEvents') === '0'
+        )
+      )
+
+      // 4. a bundle that throws before first render rolls back in-session
+      // onto the previous update, and is never selected again.
+      const fatal = publish('throws')
+      if (fatal.id === first.id) throw new Error('republish reused the update id')
+      tap({ id: 'one-native-updates-check' })
+      await wait('fatal update checks available', (n) => labelValue(n, 'Check') === `available:${fatal.id}`)
+      tap({ id: 'one-native-updates-fetch' })
+      await wait('fatal update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${fatal.id}`)
+      const reloadedAt = new Date()
+      tap({ id: 'one-native-updates-reload' })
+      // the old tree shows the same marker until the reboot replaces it, so
+      // the home nav row (absent on the fixture) is the completion signal.
+      await wait(
+        'fatal update rolls back in-session',
+        (n) => Boolean(id(n, 'nav-one-native-updates')),
+        true
+      )
+      // the launcher logs the error it rolled back from: the bundle's own
+      // throw proves it executed, which a reload that skipped the update
+      // never produces.
+      const rollbackLog = execFileSync(
+        'xcrun',
+        [
+          'simctl',
+          'spawn',
+          config.simulatorId,
+          'log',
+          'show',
+          '--start',
+          // log show reads a local time
+          new Date(reloadedAt.getTime() - reloadedAt.getTimezoneOffset() * 60_000)
+            .toISOString()
+            .replace('T', ' ')
+            .slice(0, 19),
+          '--predicate',
+          'eventMessage CONTAINS "[OneUpdates]"',
+          '--style',
+          'compact',
+        ],
+        { encoding: 'utf8' }
+      )
+      const rollbackLine = rollbackLog
+        .split('\n')
+        .find((line) => line.includes(`update ${fatal.id} failed before first render`))
+      if (!rollbackLine?.includes('updates-suite-boom'))
+        throw new Error('the fatal update was skipped without booting')
+      checks.push({ name: 'fatal update booted before rolling back', durationMs: 0 })
+      console.log('PASS fatal update booted before rolling back')
+      await openFixture()
+      await wait('rollback runs the previous update', (n) =>
+        Boolean(labelValue(n, 'UpdateId') === first.id && labelValue(n, 'Marker') === 'v2')
+      )
+      // the fatal path marks the booted update failed and the reaper deletes
+      // it right after the rollback lands.
+      if (updateIdsOnDisk().includes(fatal.id) || readState().updates[fatal.id])
+        throw new Error('the fatal update survived the rollback')
+      checks.push({ name: 'fatal update is reaped after the rollback', durationMs: 0 })
+      console.log('PASS fatal update is reaped after the rollback')
+      tap({ id: 'one-native-updates-refresh' })
+      await wait('rollback leaves nothing staged', (n) => labelValue(n, 'Staged') === 'none')
+      coldLaunch()
+      await openFixture()
+      await wait('failed update is never selected again', (n) => labelValue(n, 'UpdateId') === first.id)
+
+      // 5. a proven update survives a kill during its splash: the kill lands
+      // while launching is still recorded, and the relaunch selects it again.
+      const slow = publish('slow')
+      tap({ id: 'one-native-updates-check' })
+      await wait('slow update checks available', (n) => labelValue(n, 'Check') === `available:${slow.id}`)
+      tap({ id: 'one-native-updates-fetch' })
+      await wait('slow update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${slow.id}`)
+      tap({ id: 'one-native-updates-reload' })
+      await wait('slow update proves itself', (n) => has(n, 'Marker: slow'), true)
+      await openFixture()
+      await wait('slow update runs after reload', (n) => labelValue(n, 'UpdateId') === slow.id)
+      coldLaunch()
+      await Bun.sleep(2500)
+      stopApp()
+      const killed = readState()
+      const slowEntry = killed.updates[slow.id]
+      if (killed.launching !== slow.id || !slowEntry || slowEntry.successes < 1)
+        throw new Error(
+          `the splash kill missed its window: launching=${killed.launching} successes=${slowEntry?.successes}`
+        )
+      checks.push({ name: 'splash kill lands while launching is recorded', durationMs: 0 })
+      console.log('PASS splash kill lands while launching is recorded')
+      launchApp()
+      await wait('killed proven update is selected again', (n) => has(n, 'Marker: slow'), true)
+      await openFixture()
+      await wait('reselected update runs', (n) => labelValue(n, 'UpdateId') === slow.id)
+
+      // 6. reload runs the staged bundle in-session, then twenty reloads in
+      // a row run without a crash.
+      const staged = publish('p5', ['updateSeverity=critical'])
+      tap({ id: 'one-native-updates-check' })
+      await wait('staged update checks available', (n) => labelValue(n, 'Check') === `available:${staged.id}`)
+      tap({ id: 'one-native-updates-fetch' })
+      await wait('staged update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${staged.id}`)
+      tap({ id: 'one-native-updates-reload' })
+      await wait('reload runs the staged bundle', (n) => has(n, 'Marker: p5'), true)
+      await openFixture()
+      await wait('reloaded update reports staged metadata', (n) =>
+        Boolean(labelValue(n, 'UpdateId') === staged.id && labelValue(n, 'Meta') === 'critical')
+      )
+      for (let cycle = 1; cycle <= 20; cycle++) {
+        tap({ id: 'one-native-updates-reload' })
+        await wait(`reload ${cycle} boots clean`, (n) => has(n, 'Marker: p5'), true)
+        await openFixture()
+        await wait(`reload ${cycle} keeps the update`, (n) => labelValue(n, 'UpdateId') === staged.id)
+      }
+
+      // 7. a deleted bundle file falls through to the previous update in the
+      // same launch.
+      const doomed = path.join(updatesDir(), staged.id, 'main.jsbundle')
+      if (!fs.existsSync(doomed)) throw new Error('running update has no bundle file to delete')
+      fs.rmSync(doomed)
+      coldLaunch()
+      await wait('deleted bundle falls through', (n) => has(n, 'Marker: slow'), true)
+      await openFixture()
+      await wait('fall-through runs the spare', (n) =>
+        Boolean(labelValue(n, 'UpdateId') === slow.id && labelValue(n, 'Marker') === 'slow')
+      )
+
+      // 8. after three publishes only the running update and its spare
+      // remain, plus the staged one.
+      const sixth = publish('p6')
+      tap({ id: 'one-native-updates-check' })
+      await wait('sixth update checks available', (n) => labelValue(n, 'Check') === `available:${sixth.id}`)
+      tap({ id: 'one-native-updates-fetch' })
+      await wait('sixth update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${sixth.id}`)
+      tap({ id: 'one-native-updates-reload' })
+      await wait('sixth update reloads', (n) => has(n, 'Marker: p6'), true)
+      await openFixture()
+      await wait('sixth update runs', (n) => labelValue(n, 'UpdateId') === sixth.id)
+      const seventh = publish('p7')
+      tap({ id: 'one-native-updates-check' })
+      await wait('seventh update checks available', (n) => labelValue(n, 'Check') === `available:${seventh.id}`)
+      tap({ id: 'one-native-updates-fetch' })
+      await wait('seventh update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${seventh.id}`)
+      tap({ id: 'one-native-updates-reload' })
+      await wait('seventh update reloads', (n) => has(n, 'Marker: p7'), true)
+      await openFixture()
+      await wait('seventh update runs', (n) => labelValue(n, 'UpdateId') === seventh.id)
+      const eighth = publish('p8')
+      tap({ id: 'one-native-updates-check' })
+      await wait('eighth update checks available', (n) => labelValue(n, 'Check') === `available:${eighth.id}`)
+      tap({ id: 'one-native-updates-fetch' })
+      await wait('eighth update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${eighth.id}`)
+      const remaining = updateIdsOnDisk()
+      const expected = [sixth.id, seventh.id, eighth.id].sort()
+      if (JSON.stringify(remaining) !== JSON.stringify(expected))
+        throw new Error(`reaper kept ${remaining.join(', ')}, expected ${expected.join(', ')}`)
+      checks.push({ name: 'reaper keeps running, spare, and staged', durationMs: 0 })
+      console.log('PASS reaper keeps running, spare, and staged')
+
+      // 9. a different runtime version on the server is never fetched.
+      updates.serveForeignRuntime()
+      tap({ id: 'one-native-updates-check' })
+      await wait('foreign runtime checks none', (n) => labelValue(n, 'Check') === 'none')
+      tap({ id: 'one-native-updates-fetch' })
+      await wait('foreign runtime fetches none', (n) => labelValue(n, 'Fetch') === 'none')
+      tap({ id: 'one-native-updates-refresh' })
+      await wait('foreign runtime leaves staged alone', (n) => labelValue(n, 'Staged') === eighth.id)
+
+      // 10. a manifest naming paths outside the updates directory is unusable.
+      updates.serveEscapingPaths()
+      tap({ id: 'one-native-updates-check' })
+      await wait('escaping paths check rejects', (n) => labelValue(n, 'Check') === 'error:E_UPDATES_CHECK')
+      tap({ id: 'one-native-updates-fetch' })
+      await wait('escaping paths fetch rejects', (n) => labelValue(n, 'Fetch') === 'error:E_UPDATES_FETCH')
+      tap({ id: 'one-native-updates-refresh' })
+      await wait('escaping paths leave staged alone', (n) => labelValue(n, 'Staged') === eighth.id)
+    } finally {
+      updates.stop()
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return

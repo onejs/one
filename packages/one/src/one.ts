@@ -23,6 +23,7 @@ import {
   Network as NativeNetwork,
   SecureStore as NativeSecureStore,
   Speech as NativeSpeech,
+  Updates as NativeUpdates,
   SplitView,
   Swift,
   TextInput,
@@ -119,6 +120,7 @@ export type OneAPI = {
   readonly DocumentPicker: typeof DocumentPicker
   readonly SecureStore: typeof NativeSecureStore
   readonly Speech: typeof NativeSpeech
+  readonly Updates: typeof NativeUpdates
   readonly useNetworkState: typeof useNetworkState
 }
 
@@ -193,5 +195,6 @@ export const One: OneAPI = Object.freeze({
   DocumentPicker,
   SecureStore: NativeSecureStore,
   Speech: NativeSpeech,
+  Updates: NativeUpdates,
   useNetworkState,
 })
