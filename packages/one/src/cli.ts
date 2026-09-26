@@ -34,6 +34,7 @@ const docsLinks = {
   'generate-routes': `${DOCS_BASE}/routing-typed-routes`,
   typegen: `${DOCS_BASE}/routing-typed-routes`,
   'metro-eject': `${DOCS_BASE}/guides-ota-updates`,
+  'updates-publish': 'https://onestack.dev/native/updates',
 } as const
 
 function withDocsLink(description: string, command: keyof typeof docsLinks): string {
@@ -430,6 +431,46 @@ const daemonCommand = defineCommand({
   },
 })
 
+const updatesPublish = defineCommand({
+  meta: {
+    name: 'updates publish',
+    version: version,
+    description: withDocsLink(
+      'Bundle and publish an over-the-air update',
+      'updates-publish'
+    ),
+  },
+  args: {
+    platform: {
+      type: 'string',
+      description: 'ios or android',
+    },
+    out: {
+      type: 'string',
+      description: 'Directory to write manifest.json and assets into',
+    },
+    metadata: {
+      type: 'string',
+      description: 'Manifest metadata as key=value (repeatable)',
+    },
+  },
+  async run({ args }) {
+    const { runUpdatesPublish } = await import('./cli/updatesPublish')
+    await runUpdatesPublish(args)
+  },
+})
+
+const updates = defineCommand({
+  meta: {
+    name: 'updates',
+    version: version,
+    description: 'Over-the-air updates',
+  },
+  subCommands: {
+    publish: updatesPublish,
+  },
+})
+
 const subCommands = {
   dev,
   clean,
@@ -443,6 +484,7 @@ const subCommands = {
   typegen,
   daemon: daemonCommand,
   'metro-eject': metroEject,
+  updates,
 }
 
 // workaround for having sub-commands but also positional arg for naming in the create flow

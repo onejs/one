@@ -33,6 +33,9 @@ Pod::Spec.new do |s|
 
   s.exclude_files = 'ios/Tests/**/*'
   s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}', 'cpp/**/*.{h,cpp}'
+  # the updates launcher entry the app's bridging header imports. nitrogen
+  # appends its own public headers after this.
+  s.public_header_files = 'ios/Nitro/OneUpdatesLauncherBridge.h'
 
   # nitro hybrid objects: nitrogen generates the specs and bridges from
   # src/specs/*.nitro.ts into nitrogen/generated (see README).

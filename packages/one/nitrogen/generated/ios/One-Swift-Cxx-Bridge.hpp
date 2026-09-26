@@ -74,6 +74,8 @@ namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
 // Forward declaration of `HybridOneSpeechSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
+// Forward declaration of `HybridOneUpdatesSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneUpdatesSpec; }
 // Forward declaration of `ImagePickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerAsset; }
 // Forward declaration of `ImagePickerMediaType` to properly resolve imports.
@@ -110,6 +112,14 @@ namespace margelo::nitro::one { enum class NetworkStateType; }
 namespace margelo::nitro::one { struct NetworkState; }
 // Forward declaration of `NotificationPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
+// Forward declaration of `OneUpdatesCheckResult` to properly resolve imports.
+namespace margelo::nitro::one { struct OneUpdatesCheckResult; }
+// Forward declaration of `OneUpdatesCheckType` to properly resolve imports.
+namespace margelo::nitro::one { enum class OneUpdatesCheckType; }
+// Forward declaration of `OneUpdatesFetchResult` to properly resolve imports.
+namespace margelo::nitro::one { struct OneUpdatesFetchResult; }
+// Forward declaration of `OneUpdatesFetchType` to properly resolve imports.
+namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
 // Forward declaration of `SizeClass` to properly resolve imports.
 namespace margelo::nitro::one { struct SizeClass; }
 // Forward declaration of `SpeechErrorCode` to properly resolve imports.
@@ -154,6 +164,8 @@ namespace One { class HybridOneNotificationsSpec_cxx; }
 namespace One { class HybridOneSecureStoreSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSpeechSpec_cxx; }
+// Forward declaration of `HybridOneUpdatesSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneUpdatesSpec_cxx; }
 
 // Include C++ defined types
 #include "AppleAuthCredential.hpp"
@@ -189,6 +201,7 @@ namespace One { class HybridOneSpeechSpec_cxx; }
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
+#include "HybridOneUpdatesSpec.hpp"
 #include "ImagePickerAsset.hpp"
 #include "ImagePickerMediaType.hpp"
 #include "ImagePickerNativeResult.hpp"
@@ -207,6 +220,10 @@ namespace One { class HybridOneSpeechSpec_cxx; }
 #include "NetworkState.hpp"
 #include "NetworkStateType.hpp"
 #include "NotificationPermissionStatus.hpp"
+#include "OneUpdatesCheckResult.hpp"
+#include "OneUpdatesCheckType.hpp"
+#include "OneUpdatesFetchResult.hpp"
+#include "OneUpdatesFetchType.hpp"
 #include "SizeClass.hpp"
 #include "SpeechErrorCode.hpp"
 #include "SpeechEvent.hpp"
@@ -1879,6 +1896,113 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_SpeechPermissionResponse___ create_Result_std__shared_ptr_Promise_SpeechPermissionResponse___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<SpeechPermissionResponse>>>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<OneUpdatesCheckResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<OneUpdatesCheckResult>>`.
+   */
+  using std__shared_ptr_Promise_OneUpdatesCheckResult__ = std::shared_ptr<Promise<OneUpdatesCheckResult>>;
+  inline std::shared_ptr<Promise<OneUpdatesCheckResult>> create_std__shared_ptr_Promise_OneUpdatesCheckResult__() noexcept {
+    return Promise<OneUpdatesCheckResult>::create();
+  }
+  inline PromiseHolder<OneUpdatesCheckResult> wrap_std__shared_ptr_Promise_OneUpdatesCheckResult__(std::shared_ptr<Promise<OneUpdatesCheckResult>> promise) noexcept {
+    return PromiseHolder<OneUpdatesCheckResult>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const OneUpdatesCheckResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const OneUpdatesCheckResult&)>`.
+   */
+  using Func_void_OneUpdatesCheckResult = std::function<void(const OneUpdatesCheckResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const OneUpdatesCheckResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_OneUpdatesCheckResult_Wrapper final {
+  public:
+    explicit Func_void_OneUpdatesCheckResult_Wrapper(std::function<void(const OneUpdatesCheckResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const OneUpdatesCheckResult& /* result */)>>(std::move(func))) {}
+    inline void call(OneUpdatesCheckResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const OneUpdatesCheckResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_OneUpdatesCheckResult create_Func_void_OneUpdatesCheckResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_OneUpdatesCheckResult_Wrapper wrap_Func_void_OneUpdatesCheckResult(Func_void_OneUpdatesCheckResult value) noexcept {
+    return Func_void_OneUpdatesCheckResult_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<OneUpdatesFetchResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<OneUpdatesFetchResult>>`.
+   */
+  using std__shared_ptr_Promise_OneUpdatesFetchResult__ = std::shared_ptr<Promise<OneUpdatesFetchResult>>;
+  inline std::shared_ptr<Promise<OneUpdatesFetchResult>> create_std__shared_ptr_Promise_OneUpdatesFetchResult__() noexcept {
+    return Promise<OneUpdatesFetchResult>::create();
+  }
+  inline PromiseHolder<OneUpdatesFetchResult> wrap_std__shared_ptr_Promise_OneUpdatesFetchResult__(std::shared_ptr<Promise<OneUpdatesFetchResult>> promise) noexcept {
+    return PromiseHolder<OneUpdatesFetchResult>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const OneUpdatesFetchResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const OneUpdatesFetchResult&)>`.
+   */
+  using Func_void_OneUpdatesFetchResult = std::function<void(const OneUpdatesFetchResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const OneUpdatesFetchResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_OneUpdatesFetchResult_Wrapper final {
+  public:
+    explicit Func_void_OneUpdatesFetchResult_Wrapper(std::function<void(const OneUpdatesFetchResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const OneUpdatesFetchResult& /* result */)>>(std::move(func))) {}
+    inline void call(OneUpdatesFetchResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const OneUpdatesFetchResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_OneUpdatesFetchResult create_Func_void_OneUpdatesFetchResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_OneUpdatesFetchResult_Wrapper wrap_Func_void_OneUpdatesFetchResult(Func_void_OneUpdatesFetchResult value) noexcept {
+    return Func_void_OneUpdatesFetchResult_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneUpdatesSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneUpdatesSpec>`.
+   */
+  using std__shared_ptr_HybridOneUpdatesSpec_ = std::shared_ptr<HybridOneUpdatesSpec>;
+  std::shared_ptr<HybridOneUpdatesSpec> create_std__shared_ptr_HybridOneUpdatesSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneUpdatesSpec_(std__shared_ptr_HybridOneUpdatesSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneUpdatesSpec>
+  using std__weak_ptr_HybridOneUpdatesSpec_ = std::weak_ptr<HybridOneUpdatesSpec>;
+  inline std__weak_ptr_HybridOneUpdatesSpec_ weakify_std__shared_ptr_HybridOneUpdatesSpec_(const std::shared_ptr<HybridOneUpdatesSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<OneUpdatesCheckResult>>>
+  using Result_std__shared_ptr_Promise_OneUpdatesCheckResult___ = Result<std::shared_ptr<Promise<OneUpdatesCheckResult>>>;
+  inline Result_std__shared_ptr_Promise_OneUpdatesCheckResult___ create_Result_std__shared_ptr_Promise_OneUpdatesCheckResult___(const std::shared_ptr<Promise<OneUpdatesCheckResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<OneUpdatesCheckResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_OneUpdatesCheckResult___ create_Result_std__shared_ptr_Promise_OneUpdatesCheckResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<OneUpdatesCheckResult>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<OneUpdatesFetchResult>>>
+  using Result_std__shared_ptr_Promise_OneUpdatesFetchResult___ = Result<std::shared_ptr<Promise<OneUpdatesFetchResult>>>;
+  inline Result_std__shared_ptr_Promise_OneUpdatesFetchResult___ create_Result_std__shared_ptr_Promise_OneUpdatesFetchResult___(const std::shared_ptr<Promise<OneUpdatesFetchResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<OneUpdatesFetchResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_OneUpdatesFetchResult___ create_Result_std__shared_ptr_Promise_OneUpdatesFetchResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<OneUpdatesFetchResult>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::optional<std::string>>
+  using Result_std__optional_std__string__ = Result<std::optional<std::string>>;
+  inline Result_std__optional_std__string__ create_Result_std__optional_std__string__(const std::optional<std::string>& value) noexcept {
+    return Result<std::optional<std::string>>::withValue(value);
+  }
+  inline Result_std__optional_std__string__ create_Result_std__optional_std__string__(const std::exception_ptr& error) noexcept {
+    return Result<std::optional<std::string>>::withError(error);
   }
 
 } // namespace margelo::nitro::one::bridge::swift

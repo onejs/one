@@ -8,23 +8,23 @@
 import NitroModules
 
 /**
- * Wraps a Swift `(_ value: String?) -> Void` as a class.
+ * Wraps a Swift `(_ stagedJson: String?) -> Void` as a class.
  * This class can be used from C++, e.g. to wrap the Swift closure as a `std::function`.
  */
 public final class Func_void_std__optional_std__string_ {
   public typealias bridge = margelo.nitro.one.bridge.swift
 
-  private let closure: (_ value: String?) -> Void
+  private let closure: (_ stagedJson: String?) -> Void
 
-  public init(_ closure: @escaping (_ value: String?) -> Void) {
+  public init(_ closure: @escaping (_ stagedJson: String?) -> Void) {
     self.closure = closure
   }
 
   @inline(__always)
-  public func call(value: bridge.std__optional_std__string_) -> Void {
+  public func call(stagedJson: bridge.std__optional_std__string_) -> Void {
     self.closure({ () -> String? in
-      if bridge.has_value_std__optional_std__string_(value) {
-        let __unwrapped = bridge.get_std__optional_std__string_(value)
+      if bridge.has_value_std__optional_std__string_(stagedJson) {
+        let __unwrapped = bridge.get_std__optional_std__string_(stagedJson)
         return String(__unwrapped)
       } else {
         return nil

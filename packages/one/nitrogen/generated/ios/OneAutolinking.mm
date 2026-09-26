@@ -24,6 +24,7 @@
 #include "HybridOneAdaptiveSpecSwift.hpp"
 #include "HybridOneSpeechSpecSwift.hpp"
 #include "HybridOneAppleAuthSpecSwift.hpp"
+#include "HybridOneUpdatesSpecSwift.hpp"
 
 @interface OneAutolinking : NSObject
 @end
@@ -129,6 +130,13 @@
     "OneAppleAuth",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneAppleAuthSpec> hybridObject = One::OneAutolinking::createOneAppleAuth();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneUpdates",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneUpdatesSpec> hybridObject = One::OneAutolinking::createOneUpdates();
       return hybridObject;
     }
   );

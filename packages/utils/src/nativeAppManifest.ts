@@ -39,6 +39,14 @@ export interface NativeAppManifest {
   // One.UI.PictureInPicture: stamps the ios audio background mode (pip opens
   // only for a playback session) and android's supportsPictureInPicture.
   pictureInPicture?: boolean
+  // One.Updates over-the-air updates. prebuild points the release bundle at
+  // the launcher, stamps the url and runtime version into the binary, and
+  // writes the embedded manifest beside the release bundle. without url the
+  // build launches its embedded bundle with updates disabled.
+  updates?: {
+    url?: string
+    runtimeVersion: string
+  }
   ios?: {
     bundleId: string
     buildNumber?: string
@@ -162,6 +170,20 @@ export function validateNativeApp(
     typeof manifest.pictureInPicture !== 'boolean'
   ) {
     fail('pictureInPicture must be a boolean')
+  }
+  if (manifest.updates !== undefined) {
+    if (
+      typeof manifest.updates.runtimeVersion !== 'string' ||
+      manifest.updates.runtimeVersion.trim() === ''
+    ) {
+      fail('updates.runtimeVersion must be a non-empty string')
+    }
+    if (
+      manifest.updates.url !== undefined &&
+      (typeof manifest.updates.url !== 'string' || manifest.updates.url.trim() === '')
+    ) {
+      fail('updates.url must be a non-empty string')
+    }
   }
   if (!platform || platform === 'ios') {
     if (!manifest.ios?.bundleId || !REVERSE_DNS.test(manifest.ios.bundleId)) {
