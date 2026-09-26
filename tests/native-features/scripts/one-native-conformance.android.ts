@@ -33,7 +33,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'updates'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'updates'
   apkPath: string
 }
 
@@ -55,7 +55,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|updates --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|updates --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -84,7 +84,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -2977,6 +2977,46 @@ async function runCompose(config: Config) {
     console.log(`PASS ${name}`)
   }
   const home = () => check('compose-home', (nodes) => exactlyOneId(nodes, 'home-screen'))
+  const surface = async () => {
+    await tapNavigation(config, 'nav-one-native-android-surface')
+    await check('compose-surface-mounted', (nodes) =>
+      ['plain', 'clickable', 'selectable', 'toggleable', 'disabled'].every((variant) =>
+        exactlyOneId(nodes, `one-native-android-surface-${variant}`)
+      ) &&
+      matching(nodes, { id: 'one-native-android-surface-selectable' }).some((node) => node.checked === false) &&
+      matching(nodes, { id: 'one-native-android-surface-toggleable' }).some((node) => node.checked === false) &&
+      matching(nodes, { id: 'one-native-android-surface-disabled' }).some((node) => node.enabled === false) &&
+      idText(nodes, 'one-native-android-surface-status', 'Clicks: 0 · Selected: no · Checked: no · Policy: reject · Requests: 0 · Disabled: 0')
+    )
+    tapFresh(config, 'clickable surface', { id: 'one-native-android-surface-clickable' })
+    await check('compose-surface-click', (nodes) =>
+      idText(nodes, 'one-native-android-surface-status', 'Clicks: 1 · Selected: no')
+    )
+    tapFresh(config, 'selectable surface', { id: 'one-native-android-surface-selectable' })
+    await check('compose-surface-selected', (nodes) =>
+      idText(nodes, 'one-native-android-surface-status', 'Selected: yes · Checked: no') &&
+      matching(nodes, { id: 'one-native-android-surface-selectable' }).some((node) => node.checked === true)
+    )
+    tapFresh(config, 'toggleable surface', { id: 'one-native-android-surface-toggleable' })
+    await check('compose-surface-rejected', (nodes) =>
+      idText(nodes, 'one-native-android-surface-status', 'Checked: no · Policy: reject · Requests: 1') &&
+      matching(nodes, { id: 'one-native-android-surface-toggleable' }).some((node) => node.checked === false)
+    )
+    tapFresh(config, 'surface policy', { id: 'one-native-android-surface-policy' })
+    await check('compose-surface-policy', (nodes) =>
+      idText(nodes, 'one-native-android-surface-status', 'Checked: no · Policy: accept · Requests: 1')
+    )
+    tapFresh(config, 'toggleable surface', { id: 'one-native-android-surface-toggleable' })
+    await check('compose-surface-accepted', (nodes) =>
+      idText(nodes, 'one-native-android-surface-status', 'Checked: yes · Policy: accept · Requests: 2') &&
+      matching(nodes, { id: 'one-native-android-surface-toggleable' }).some((node) => node.checked === true)
+    )
+    tapFresh(config, 'disabled surface', { id: 'one-native-android-surface-disabled' })
+    await check('compose-surface-disabled', (nodes) =>
+      idText(nodes, 'one-native-android-surface-status', 'Requests: 2 · Disabled: 0') &&
+      matching(nodes, { id: 'one-native-android-surface-disabled' }).some((node) => node.enabled === false)
+    )
+  }
   const loading = async () => {
     await tapNavigation(config, 'nav-one-native-android-loading')
     await check('compose-loading-mounted', (nodes) =>
@@ -3152,6 +3192,11 @@ async function runCompose(config: Config) {
   if (config.suite === 'compose-loading') {
     await loading()
     console.log('ALL ONE NATIVE ANDROID LOADING CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'compose-surface') {
+    await surface()
+    console.log('ALL ONE NATIVE ANDROID SURFACE CHECKS PASSED')
     return
   }
   await tapNavigation(config, 'nav-one-native-android-selection')
@@ -3537,7 +3582,7 @@ try {
   const config = parse(process.argv.slice(2))
   await (config.suite === 'updates'
     ? runUpdates(config)
-    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading'
+    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface'
       ? runCompose(config)
       : run(config))
 } catch (error) {

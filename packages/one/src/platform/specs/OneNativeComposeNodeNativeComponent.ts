@@ -59,6 +59,7 @@ interface NativeProps extends ViewProps {
     containerColor?: ColorValue
     contentColor?: ColorValue
   }>
+  surfaceMode?: string
   badgeColors?: Readonly<{
     containerColor?: ColorValue
     contentColor?: ColorValue

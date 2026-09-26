@@ -87,6 +87,13 @@ Material 3 expressive loading shapes. Omit `progress` for indeterminate
 animation, or pass a value from `0` to `1` for determinate progress. Both accept
 `color`; the contained variant also accepts `containerColor`.
 
+`One.Android.Surface` renders a Material 3 surface. It accepts `color`,
+`contentColor`, `tonalElevation`, `shadowElevation`, and `border`; use
+`composeStyle.cornerRadius` for rounded corners. `onClick` makes it clickable,
+`selected` with `onClick` makes it selectable, and controlled `checked` with
+`onCheckedChange` makes it toggleable. `enabled` and `revision` control
+interaction and external state resets.
+
 ## Switch
 
 `One.Android.Switch` is the Compose toggle: `isOn` with `onIsOnChange`

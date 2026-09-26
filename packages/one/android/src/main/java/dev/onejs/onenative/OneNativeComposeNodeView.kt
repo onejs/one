@@ -92,6 +92,7 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.SuggestionChipDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -425,6 +426,7 @@ internal data class OneNativeComposeNodeProps(
     val selected: Boolean = false,
     val radioColors: OneNativeRadioColors = OneNativeRadioColors(),
     val cardColors: OneNativeCardColors = OneNativeCardColors(),
+    val surfaceMode: String? = null,
     val iconButtonColors: OneNativeIconButtonColors = OneNativeIconButtonColors(),
     val fabColors: OneNativeCardColors = OneNativeCardColors(),
     val fabExpanded: Boolean = true,
@@ -730,6 +732,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageCardColors(value: ReadableMap?) {
         pendingProps = pendingProps.copy(cardColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageSurfaceMode(value: String?) {
+        pendingProps = pendingProps.copy(surfaceMode = value)
     }
 
     internal fun stageIconButtonColors(value: ReadableMap?) {
@@ -1296,6 +1302,7 @@ private fun RenderComposeNodeBody(
                 ),
             )
         "card", "elevatedcard", "outlinedcard" -> RenderComposeCard(node, props, modifier)
+        "surface" -> RenderComposeSurface(node, props, modifier)
         "horizontaldivider" ->
             HorizontalDivider(
                 modifier = modifier,
@@ -1387,6 +1394,52 @@ private fun RenderComposeCard(
                 RenderComposeChildren(node)
             }
         }
+    }
+}
+
+@Composable
+private fun RenderComposeSurface(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val color = props.cardColors.containerColor?.let(::Color) ?: MaterialTheme.colorScheme.surface
+    val contentColor = props.cardColors.contentColor?.let(::Color) ?: contentColorFor(color)
+    val shape = props.composeStyle.cornerRadius.takeIf { it >= 0.0 }
+        ?.let { RoundedCornerShape(it.nonNegativeDp()) } ?: RectangleShape
+    val border = props.cardBorder?.let {
+        BorderStroke(it.width.nonNegativeDp(), it.color?.let(::Color) ?: MaterialTheme.colorScheme.outline)
+    }
+    val tonalElevation = props.tonalElevation.takeIf { it >= 0.0 }?.toFloat()?.dp ?: 0.dp
+    val shadowElevation = props.shadowElevation.takeIf { it >= 0.0 }?.toFloat()?.dp ?: 0.dp
+    val enabled = !props.disabled && node.isEnabled
+    val content: @Composable () -> Unit = { RenderComposeChildren(node) }
+    when (props.surfaceMode) {
+        "toggleable" -> Surface(
+            checked = node.renderedBooleanValue,
+            onCheckedChange = { if (props.nativeClickable) node.handleBooleanChanged(it) },
+            modifier = modifier, enabled = enabled, shape = shape, color = color,
+            contentColor = contentColor, tonalElevation = tonalElevation,
+            shadowElevation = shadowElevation, border = border, content = content,
+        )
+        "selectable" -> Surface(
+            selected = props.selected,
+            onClick = { if (props.nativeClickable) node.handlePress() },
+            modifier = modifier, enabled = enabled, shape = shape, color = color,
+            contentColor = contentColor, tonalElevation = tonalElevation,
+            shadowElevation = shadowElevation, border = border, content = content,
+        )
+        "clickable" -> Surface(
+            onClick = { if (props.nativeClickable) node.handlePress() },
+            modifier = modifier, enabled = enabled, shape = shape, color = color,
+            contentColor = contentColor, tonalElevation = tonalElevation,
+            shadowElevation = shadowElevation, border = border, content = content,
+        )
+        else -> Surface(
+            modifier = modifier, shape = shape, color = color,
+            contentColor = contentColor, tonalElevation = tonalElevation,
+            shadowElevation = shadowElevation, border = border, content = content,
+        )
     }
 }
 

@@ -34,6 +34,7 @@ declare module 'one' {
         | `/one-native-android-list-items`
         | `/one-native-android-loading`
         | `/one-native-android-selection`
+        | `/one-native-android-surface`
         | `/one-native-app-info`
         | `/one-native-apple-auth`
         | `/one-native-apple-file`

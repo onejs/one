@@ -28,6 +28,7 @@ import type {
   ComposeRowProps,
   ComposeSliderProps,
   ComposeSuggestionChipProps,
+  ComposeSurfaceProps,
   ComposeSwitchProps,
   ComposeTextFieldProps,
   ComposeTextProps,
@@ -90,6 +91,10 @@ function ElevatedCard(_props: ComposeElevatedCardProps): never {
 
 function OutlinedCard(_props: ComposeOutlinedCardProps): never {
   return unsupported('OutlinedCard')
+}
+
+function Surface(_props: ComposeSurfaceProps): never {
+  return unsupported('Surface')
 }
 
 function HorizontalDivider(_props: ComposeDividerProps): never {
@@ -251,6 +256,7 @@ export const Compose = {
   Card,
   ElevatedCard,
   OutlinedCard,
+  Surface,
   HorizontalDivider,
   VerticalDivider,
   FilterChip,

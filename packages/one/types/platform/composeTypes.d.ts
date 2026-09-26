@@ -73,6 +73,19 @@ export interface ComposeListItemProps extends ComposeNodeProps {
     tonalElevation?: number;
     shadowElevation?: number;
 }
+export interface ComposeSurfaceProps extends ComposeNodeProps {
+    color?: ColorValue;
+    contentColor?: ColorValue;
+    tonalElevation?: number;
+    shadowElevation?: number;
+    border?: ComposeCardBorder;
+    enabled?: boolean;
+    selected?: boolean;
+    checked?: boolean;
+    onClick?: () => void;
+    onCheckedChange?: (checked: boolean) => void;
+    revision?: number;
+}
 type ComposeLeafProps = Omit<ComposeNodeProps, 'children'>;
 export interface ComposeTextProps extends ComposeLeafProps {
     text: string;
