@@ -139,6 +139,10 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Android.LoadingIndicator` | n/a | android-loading |  |
 | `One.Android.ContainedLoadingIndicator` | n/a | android-loading |  |
 | `One.Android.Surface` | n/a | android-surface |  |
+| `One.Android.LinearProgressIndicator` | n/a | android-progress |  |
+| `One.Android.CircularProgressIndicator` | n/a | android-progress |  |
+| `One.Android.LinearWavyProgressIndicator` | n/a | android-progress |  |
+| `One.Android.CircularWavyProgressIndicator` | n/a | android-progress |  |
 | `One.Android.Switch` | n/a | android |  |
 | `One.Android.Checkbox` | n/a | android-selection |  |
 | `One.Android.RadioButton` | n/a | android-selection |  |

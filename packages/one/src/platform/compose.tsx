@@ -237,6 +237,24 @@ function ProgressIndicator(_props: ComposeProgressIndicatorProps): never {
   return unsupported('ProgressIndicator')
 }
 
+type ProgressVariantProps = Omit<ComposeProgressIndicatorProps, 'variant'>
+
+function LinearProgressIndicator(_props: ProgressVariantProps): never {
+  return unsupported('LinearProgressIndicator')
+}
+
+function CircularProgressIndicator(_props: ProgressVariantProps): never {
+  return unsupported('CircularProgressIndicator')
+}
+
+function LinearWavyProgressIndicator(_props: ProgressVariantProps): never {
+  return unsupported('LinearWavyProgressIndicator')
+}
+
+function CircularWavyProgressIndicator(_props: ProgressVariantProps): never {
+  return unsupported('CircularWavyProgressIndicator')
+}
+
 function LoadingIndicator(_props: ComposeLoadingIndicatorProps): never {
   return unsupported('LoadingIndicator')
 }
@@ -286,6 +304,10 @@ export const Compose = {
   AlertDialog,
   Dialog,
   ProgressIndicator,
+  LinearProgressIndicator,
+  CircularProgressIndicator,
+  LinearWavyProgressIndicator,
+  CircularWavyProgressIndicator,
   LoadingIndicator,
   ContainedLoadingIndicator,
 }

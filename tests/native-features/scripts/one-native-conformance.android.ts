@@ -33,7 +33,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'updates'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'updates'
   apkPath: string
 }
 
@@ -55,7 +55,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|updates --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|updates --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -84,7 +84,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -2977,6 +2977,20 @@ async function runCompose(config: Config) {
     console.log(`PASS ${name}`)
   }
   const home = () => check('compose-home', (nodes) => exactlyOneId(nodes, 'home-screen'))
+  const progress = async () => {
+    await tapNavigation(config, 'nav-one-native-android-progress')
+    await check('compose-progress-mounted', (nodes) =>
+      ['linear', 'linear-wavy', 'circular', 'circular-wavy', 'linear-indeterminate', 'circular-indeterminate'].every((variant) =>
+        exactlyOneId(nodes, `one-native-android-progress-${variant}`)
+      ) && idText(nodes, 'one-native-android-progress-status', 'Progress: 0.25')
+    )
+    tapFresh(config, 'advance progress', { id: 'one-native-android-progress-advance' })
+    await check('compose-progress-advanced', (nodes) =>
+      idText(nodes, 'one-native-android-progress-status', 'Progress: 0.75') &&
+      exactlyOneId(nodes, 'one-native-android-progress-linear-wavy') &&
+      exactlyOneId(nodes, 'one-native-android-progress-circular-wavy')
+    )
+  }
   const surface = async () => {
     await tapNavigation(config, 'nav-one-native-android-surface')
     await check('compose-surface-mounted', (nodes) =>
@@ -3197,6 +3211,11 @@ async function runCompose(config: Config) {
   if (config.suite === 'compose-surface') {
     await surface()
     console.log('ALL ONE NATIVE ANDROID SURFACE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'compose-progress') {
+    await progress()
+    console.log('ALL ONE NATIVE ANDROID PROGRESS CHECKS PASSED')
     return
   }
   await tapNavigation(config, 'nav-one-native-android-selection')
@@ -3582,7 +3601,7 @@ try {
   const config = parse(process.argv.slice(2))
   await (config.suite === 'updates'
     ? runUpdates(config)
-    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface'
+    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress'
       ? runCompose(config)
       : run(config))
 } catch (error) {

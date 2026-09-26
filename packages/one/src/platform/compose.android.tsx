@@ -203,6 +203,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   dismissLabel?: string
   progress?: number
   progressVariant?: ComposeProgressVariant
+  progressColors?: Pick<ComposeProgressIndicatorProps, 'color' | 'trackColor'>
   onNativeComposeNodeButtonPress?: (event: unknown) => void
   onNativeComposeNodeBooleanValueChange?: (event: {
     nativeEvent: { value: boolean; eventCount: number; revision: number }
@@ -1006,17 +1007,38 @@ function Dialog({ children, visible, onDismiss, ...props }: ComposeDialogProps) 
 function ProgressIndicator({
   variant = 'circular',
   progress,
+  color,
+  trackColor,
   ...props
 }: ComposeProgressIndicatorProps) {
-  validateProgressIndicatorProps({ variant, progress })
+  validateProgressIndicatorProps({ variant, progress, color, trackColor })
   return (
     <ComposeNode
       {...props}
       nodeType="progressindicator"
       progressVariant={variant}
-      progress={progress}
+      progress={progress ?? undefined}
+      progressColors={{ color, trackColor }}
     />
   )
+}
+
+type ProgressVariantProps = Omit<ComposeProgressIndicatorProps, 'variant'>
+
+function LinearProgressIndicator(props: ProgressVariantProps) {
+  return <ProgressIndicator {...props} variant="linear" />
+}
+
+function CircularProgressIndicator(props: ProgressVariantProps) {
+  return <ProgressIndicator {...props} variant="circular" />
+}
+
+function LinearWavyProgressIndicator(props: ProgressVariantProps) {
+  return <ProgressIndicator {...props} variant="linearWavy" />
+}
+
+function CircularWavyProgressIndicator(props: ProgressVariantProps) {
+  return <ProgressIndicator {...props} variant="circularWavy" />
 }
 
 function LoadingIndicator({ progress, color, ...props }: ComposeLoadingIndicatorProps) {
@@ -1070,6 +1092,10 @@ export const Compose = {
   AlertDialog,
   Dialog,
   ProgressIndicator,
+  LinearProgressIndicator,
+  CircularProgressIndicator,
+  LinearWavyProgressIndicator,
+  CircularWavyProgressIndicator,
   LoadingIndicator,
   ContainedLoadingIndicator,
 }

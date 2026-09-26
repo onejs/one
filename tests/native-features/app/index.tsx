@@ -262,6 +262,11 @@ const testScreens = [
     testID: 'nav-one-native-android-surface',
   },
   {
+    href: '/one-native-android-progress',
+    label: 'One Native Android Progress',
+    testID: 'nav-one-native-android-progress',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',

@@ -51,7 +51,12 @@ declare function TextField({ text, onTextChange, revision, label, placeholder, d
 declare function Slider({ value, onValueChange, revision, minimumValue, maximumValue, step, disabled, ...props }: ComposeSliderProps): import("react/jsx-runtime").JSX.Element;
 declare function AlertDialog({ visible, title, message, confirmLabel, dismissLabel, onConfirm, onDismiss, ...props }: ComposeAlertDialogProps): import("react/jsx-runtime").JSX.Element;
 declare function Dialog({ children, visible, onDismiss, ...props }: ComposeDialogProps): import("react/jsx-runtime").JSX.Element;
-declare function ProgressIndicator({ variant, progress, ...props }: ComposeProgressIndicatorProps): import("react/jsx-runtime").JSX.Element;
+declare function ProgressIndicator({ variant, progress, color, trackColor, ...props }: ComposeProgressIndicatorProps): import("react/jsx-runtime").JSX.Element;
+type ProgressVariantProps = Omit<ComposeProgressIndicatorProps, 'variant'>;
+declare function LinearProgressIndicator(props: ProgressVariantProps): import("react/jsx-runtime").JSX.Element;
+declare function CircularProgressIndicator(props: ProgressVariantProps): import("react/jsx-runtime").JSX.Element;
+declare function LinearWavyProgressIndicator(props: ProgressVariantProps): import("react/jsx-runtime").JSX.Element;
+declare function CircularWavyProgressIndicator(props: ProgressVariantProps): import("react/jsx-runtime").JSX.Element;
 declare function LoadingIndicator({ progress, color, ...props }: ComposeLoadingIndicatorProps): import("react/jsx-runtime").JSX.Element;
 declare function ContainedLoadingIndicator({ progress, color, containerColor, ...props }: ComposeContainedLoadingIndicatorProps): import("react/jsx-runtime").JSX.Element;
 export declare const Compose: {
@@ -149,6 +154,10 @@ export declare const Compose: {
     AlertDialog: typeof AlertDialog;
     Dialog: typeof Dialog;
     ProgressIndicator: typeof ProgressIndicator;
+    LinearProgressIndicator: typeof LinearProgressIndicator;
+    CircularProgressIndicator: typeof CircularProgressIndicator;
+    LinearWavyProgressIndicator: typeof LinearWavyProgressIndicator;
+    CircularWavyProgressIndicator: typeof CircularWavyProgressIndicator;
     LoadingIndicator: typeof LoadingIndicator;
     ContainedLoadingIndicator: typeof ContainedLoadingIndicator;
 };

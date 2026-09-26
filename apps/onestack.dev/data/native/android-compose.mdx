@@ -94,6 +94,12 @@ animation, or pass a value from `0` to `1` for determinate progress. Both accept
 `onCheckedChange` makes it toggleable. `enabled` and `revision` control
 interaction and external state resets.
 
+`One.Android.LinearProgressIndicator`, `CircularProgressIndicator`,
+`LinearWavyProgressIndicator`, and `CircularWavyProgressIndicator` render the
+Material 3 progress variants. Pass `progress` from `0` to `1`, or omit it for
+indeterminate animation. `color` and `trackColor` override the theme. The
+existing `ProgressIndicator` accepts the same options and a `variant` value.
+
 ## Switch
 
 `One.Android.Switch` is the Compose toggle: `isOn` with `onIsOnChange`

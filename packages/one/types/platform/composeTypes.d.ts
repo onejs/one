@@ -283,10 +283,12 @@ export interface ComposeDialogProps extends ComposeNodeProps {
     visible: boolean;
     onDismiss: () => void;
 }
-export type ComposeProgressVariant = 'linear' | 'circular';
+export type ComposeProgressVariant = 'linear' | 'circular' | 'linearWavy' | 'circularWavy';
 export interface ComposeProgressIndicatorProps extends ComposeLeafProps {
     variant?: ComposeProgressVariant;
-    progress?: number;
+    progress?: number | null;
+    color?: ColorValue;
+    trackColor?: ColorValue;
 }
 export interface ComposeLoadingIndicatorProps extends ComposeLeafProps {
     progress?: number | null;

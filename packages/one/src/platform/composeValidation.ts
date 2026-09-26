@@ -114,7 +114,7 @@ export const textFieldCapitalizations = [
   'words',
   'sentences',
 ] as const
-export const progressVariants = ['linear', 'circular'] as const
+export const progressVariants = ['linear', 'circular', 'linearWavy', 'circularWavy'] as const
 
 const composeStyleKeys = new Set([
   'backgroundColor',
@@ -641,13 +641,15 @@ export function validateProgressIndicatorProps(props: ComposeProgressIndicatorPr
   if (props.variant !== undefined)
     assertOneOf(props.variant, 'ProgressIndicator variant', progressVariants)
   if (
-    props.progress !== undefined &&
+    props.progress != null &&
     (typeof props.progress !== 'number' ||
       !Number.isFinite(props.progress) ||
       props.progress < 0 ||
       props.progress > 1)
   )
     throw new Error('Compose ProgressIndicator progress must be a number from 0 to 1')
+  if (props.color !== undefined) assertComposeColorValue(props.color, 'ProgressIndicator color')
+  if (props.trackColor !== undefined) assertComposeColorValue(props.trackColor, 'ProgressIndicator trackColor')
 }
 
 export function validateLoadingIndicatorProps(props: ComposeLoadingIndicatorProps | ComposeContainedLoadingIndicatorProps) {

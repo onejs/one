@@ -156,6 +156,10 @@ interface NativeProps extends ViewProps {
   dismissLabel?: string
   progress?: WithDefault<Double, -1>
   progressVariant?: string
+  progressColors?: Readonly<{
+    color?: ColorValue
+    trackColor?: ColorValue
+  }>
   composeStyle?: ComposeStyleNative
   onNativeComposeNodeButtonPress?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
   onNativeComposeNodeBooleanValueChange?: DirectEventHandler<

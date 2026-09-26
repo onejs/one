@@ -42,6 +42,7 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.contentColorFor
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.CircularWavyProgressIndicator
 import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -74,6 +75,9 @@ import androidx.compose.material3.InputChip
 import androidx.compose.material3.InputChipDefaults
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.LinearWavyProgressIndicator
+import androidx.compose.material3.ProgressIndicatorDefaults
+import androidx.compose.material3.WavyProgressIndicatorDefaults
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.LoadingIndicator
@@ -268,6 +272,19 @@ internal data class OneNativeLoadingColors(
             if (map == null) OneNativeLoadingColors() else OneNativeLoadingColors(
                 color = readComposeColor(map, "color", context),
                 containerColor = readComposeColor(map, "containerColor", context),
+            )
+    }
+}
+
+internal data class OneNativeProgressColors(
+    val color: Int? = null,
+    val trackColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeProgressColors =
+            if (map == null) OneNativeProgressColors() else OneNativeProgressColors(
+                color = readComposeColor(map, "color", context),
+                trackColor = readComposeColor(map, "trackColor", context),
             )
     }
 }
@@ -474,6 +491,7 @@ internal data class OneNativeComposeNodeProps(
     val dismissLabel: String? = null,
     val progress: Double = -1.0,
     val progressVariant: String? = null,
+    val progressColors: OneNativeProgressColors = OneNativeProgressColors(),
     val composeStyle: OneNativeComposeStyle = OneNativeComposeStyle(),
 )
 
@@ -924,6 +942,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageProgressVariant(value: String?) {
         pendingProps = pendingProps.copy(progressVariant = value)
+    }
+
+    internal fun stageProgressColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(progressColors = OneNativeProgressColors.fromMap(value, context))
     }
 
     internal fun stageComposeStyle(value: ReadableMap?) {
@@ -2052,6 +2074,7 @@ private fun RenderComposeAlertDialog(
     )
 }
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 private fun RenderComposeProgressIndicator(
     props: OneNativeComposeNodeProps,
@@ -2059,17 +2082,32 @@ private fun RenderComposeProgressIndicator(
 ) {
     val determinate = props.progress.isFinite() && props.progress >= 0
     val coerced = props.progress.coerceIn(0.0, 1.0).toFloat()
-    if (props.progressVariant.equals("linear", ignoreCase = true)) {
-        if (determinate) {
-            LinearProgressIndicator(progress = { coerced }, modifier = modifier)
-        } else {
-            LinearProgressIndicator(modifier = modifier)
+    val color = props.progressColors.color?.let(::Color)
+    val trackColor = props.progressColors.trackColor?.let(::Color)
+    when (props.progressVariant?.trim()?.lowercase()) {
+        "linear" -> {
+            val indicator = color ?: ProgressIndicatorDefaults.linearColor
+            val track = trackColor ?: ProgressIndicatorDefaults.linearTrackColor
+            if (determinate) LinearProgressIndicator(progress = { coerced }, modifier = modifier, color = indicator, trackColor = track)
+            else LinearProgressIndicator(modifier = modifier, color = indicator, trackColor = track)
         }
-    } else {
-        if (determinate) {
-            CircularProgressIndicator(progress = { coerced }, modifier = modifier)
-        } else {
-            CircularProgressIndicator(modifier = modifier)
+        "linearwavy" -> {
+            val indicator = color ?: WavyProgressIndicatorDefaults.indicatorColor
+            val track = trackColor ?: WavyProgressIndicatorDefaults.trackColor
+            if (determinate) LinearWavyProgressIndicator(progress = { coerced }, modifier = modifier, color = indicator, trackColor = track)
+            else LinearWavyProgressIndicator(modifier = modifier, color = indicator, trackColor = track)
+        }
+        "circularwavy" -> {
+            val indicator = color ?: ProgressIndicatorDefaults.circularColor
+            val track = trackColor ?: if (determinate) ProgressIndicatorDefaults.circularDeterminateTrackColor else ProgressIndicatorDefaults.circularIndeterminateTrackColor
+            if (determinate) CircularWavyProgressIndicator(progress = { coerced }, modifier = modifier, color = indicator, trackColor = track)
+            else CircularWavyProgressIndicator(modifier = modifier, color = indicator, trackColor = track)
+        }
+        else -> {
+            val indicator = color ?: ProgressIndicatorDefaults.circularColor
+            val track = trackColor ?: if (determinate) ProgressIndicatorDefaults.circularDeterminateTrackColor else ProgressIndicatorDefaults.circularIndeterminateTrackColor
+            if (determinate) CircularProgressIndicator(progress = { coerced }, modifier = modifier, color = indicator, trackColor = track)
+            else CircularProgressIndicator(modifier = modifier, color = indicator, trackColor = track)
         }
     }
 }
