@@ -27,7 +27,7 @@ checklist; One's own exports and docs decide the status.
 | Camera capture | covered | `One.ImagePicker.launchCamera` | image-picker fixture | done |
 | Photo selection | covered | `One.ImagePicker.launchLibrary`, `One.iOS.PhotosPicker` | image-picker; PhotosPicker unproven | done |
 | Photo library save/manage | missing | no Photos write or album API | none | P2 |
-| Location and geocoding | missing | no CoreLocation service | none | P0 |
+| Location and geocoding | partial | `One.iOS.Location` foreground permission and one current fix; no watch or geocoding | location: permission prompt and fixed coordinate | P0 |
 | Maps | partial | `One.UI.Map`, `One.iOS.Map`; no search or directions service | map, ui-map | P2 |
 | Share | partial | `One.iOS.ShareLink`; no imperative share sheet | ShareLink unproven | P1 |
 | Clipboard | covered | `One.Clipboard` text | clipboard | done |
@@ -62,9 +62,8 @@ checklist; One's own exports and docs decide the status.
 
 ## First batches
 
-1. Biometrics landed with a deterministic Face ID simulator proof. Location
-   permission and current position are next; the simulator can supply a fixed
-   coordinate.
+1. Biometrics and foreground location/current position landed with iOS 27
+   simulator proofs. Continuous location updates and geocoding remain in P0.
 2. Imperative share and a general file API, preserving picker URLs and explicit
    errors for permission or security-scope failures.
 3. Audio playback/recording and splash control. Verify launch timing and an

@@ -84,6 +84,11 @@ captures the Face ID tile, sends a matching Face ID response, and requires
 `evaluatePolicy` to resolve true. `applesimutils` is
 also used by the suite to change enrollment and send the match.
 
+`location` covers `One.iOS.Location` on an iOS 27 simulator. It resets the app's
+location permission, sets a fixed San Francisco coordinate, proves a position
+request without permission rejects, accepts the system's foreground permission
+prompt, and requires `getCurrentPosition()` to return the simulated coordinate.
+
 `network` covers `One.Network`: the one-shot read publishes a live state with a named type and both flags true, the listener fires at least once, and a refresh re-reads. State republishes across two leave/reenter cycles.
 
 `browser` covers `One.Browser`: a user close-tap on the measured button point resolves cancel, a programmatic dismiss resolves dismiss on both the open and dismiss promises, dismissing a pending auth session resolves dismiss on its promise too, and a redirect to the app scheme resolves success with the url. The sheet exposes no accessibility children, so presentation is the collapsed tree. The redirect leg serves a local 302 (127.0.0.1:8123) from the runner in ephemeral mode, which skips the consent alert.

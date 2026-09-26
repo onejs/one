@@ -50,6 +50,7 @@ const suites = [
   'apple-file',
   'apple-auth',
   'local-authentication',
+  'location',
   'speech',
   'fetch',
   'clipboard',
@@ -328,6 +329,9 @@ const localAuthenticationLoaded = (nodes: Node[]) =>
       (node) =>
         node.type === 'Heading' && node.AXLabel === 'one-native-local-authentication'
     ))
+const locationLoaded = (nodes: Node[]) =>
+  (Boolean(id(nodes, 'one-native-location-request')) && has(nodes, 'Permission: ')) ||
+  has(nodes, 'Allow While Using App')
 // the microphone and speech prompts cover the fixture during the request
 const fetchLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-fetch-run')) && has(nodes, 'Status: ')
@@ -421,6 +425,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'apple-file': appleFileLoaded,
   'apple-auth': appleAuthLoaded,
   'local-authentication': localAuthenticationLoaded,
+  location: locationLoaded,
   speech: speechLoaded,
   fetch: fetchLoaded,
   clipboard: clipboardLoaded,
@@ -457,6 +462,7 @@ const suiteHome: Record<Suite, string> = {
   'apple-file': 'nav-one-native-apple-file',
   'apple-auth': 'nav-one-native-apple-auth',
   'local-authentication': 'nav-one-native-local-authentication',
+  location: 'nav-one-native-location',
   speech: 'nav-one-native-speech',
   fetch: 'nav-one-native-fetch',
   clipboard: 'nav-one-native-clipboard',
@@ -787,6 +793,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       ['--byId', config.simulatorId, '--biometricEnrollment', 'NO'],
       { stdio: 'ignore', timeout: 30_000 }
     )
+  }
+  if (config.suite === 'location') {
+    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'location', config.bundleId], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '37.7749,-122.4194'], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
   }
   if (config.suite === 'notifications' || config.suite === 'speech') {
     // simctl privacy has no notifications or speech recognition service on
@@ -4243,6 +4259,36 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Result: success')
     )
     screenshot('local-auth-success.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'location') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-location')
+    await wait('location starts undetermined', (n) =>
+      labels(n).includes('Permission: notDetermined')
+    )
+    tap({ id: 'one-native-location-current' })
+    await wait('position requires authorization', (n) =>
+      labels(n).includes('Position: error: E_LOCATION_PERMISSION')
+    )
+    tap({ id: 'one-native-location-request' })
+    await wait('native location permission prompt appears with usage text', (n) =>
+      has(n, 'Allow While Using App') &&
+      labels(n).some((label) => label.includes('NativeFeatureTests verifies current location.'))
+    )
+    screenshot('location-permission-prompt.png')
+    tap({ label: 'Allow While Using App' })
+    await wait('location permission resolves when in use', (n) =>
+      labels(n).includes('Permission: whenInUse') &&
+      labels(n).includes('Concurrent: whenInUse,whenInUse')
+    )
+    tap({ id: 'one-native-location-current' })
+    await wait('current position matches simulated coordinate', (n) =>
+      labels(n).includes('Position: 37.7749,-122.4194')
+    )
+    screenshot('location-current-position.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

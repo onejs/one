@@ -1750,6 +1750,9 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       if (app.imagePicker?.camera !== undefined) {
         usage.push(['NSCameraUsageDescription', app.imagePicker.camera])
       }
+      if (app.location !== undefined) {
+        usage.push(['NSLocationWhenInUseUsageDescription', app.location.whenInUse])
+      }
       if (app.ios?.faceIdUsageDescription !== undefined) {
         usage.push(['NSFaceIDUsageDescription', app.ios.faceIdUsageDescription])
       }
@@ -1759,16 +1762,28 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
           ['NSMicrophoneUsageDescription', app.speech.microphone]
         )
       }
-      if (usage.length) {
+      const additions: [string, string][] = []
+      for (const [key, text] of usage) {
+        const existing = new RegExp(`(<key>${key}</key>\\s*<string>)[^<]*(</string>)`)
+        if (existing.test(rendered)) {
+          rendered = rendered.replace(
+            existing,
+            (_match, before: string, after: string) => `${before}${escapeXml(text)}${after}`
+          )
+        } else {
+          additions.push([key, text])
+        }
+      }
+      if (additions.length) {
         const anchor = '\t<key>LSRequiresIPhoneOS</key>'
         if (!rendered.includes(anchor)) {
           throw new Error(
-            `[vxrn] cannot stamp ${usage[0][0]}: expected LSRequiresIPhoneOS in Info.plist`
+            `[vxrn] cannot stamp ${additions[0][0]}: expected LSRequiresIPhoneOS in Info.plist`
           )
         }
         rendered = rendered.replace(
           anchor,
-          `${usage.map(([key, text]) => `\t<key>${key}</key>\n\t<string>${escapeXml(text)}</string>\n`).join('')}${anchor}`
+          `${additions.map(([key, text]) => `\t<key>${key}</key>\n\t<string>${escapeXml(text)}</string>\n`).join('')}${anchor}`
         )
       }
       rendered = patchIosInfoPlistSceneManifest(rendered)

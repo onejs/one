@@ -22,6 +22,10 @@ export interface NativeAppManifest {
     // One.ImagePicker.launchCamera.
     camera?: string
   }
+  // foreground Core Location permission prompt for One.iOS.Location.
+  location?: {
+    whenInUse: string
+  }
   // usage descriptions for One.Speech dictation, shown at the ios speech
   // recognition and microphone prompts. setting them also declares the
   // android RECORD_AUDIO permission.
@@ -148,6 +152,14 @@ export function validateNativeApp(
       manifest.imagePicker.camera.trim() === '')
   ) {
     fail('imagePicker.camera must be a non-empty string')
+  }
+  if (
+    manifest.location !== undefined &&
+    (!manifest.location ||
+      typeof manifest.location.whenInUse !== 'string' ||
+      manifest.location.whenInUse.trim() === '')
+  ) {
+    fail('location.whenInUse must be a non-empty string')
   }
   if (
     manifest.ios?.faceIdUsageDescription !== undefined &&
