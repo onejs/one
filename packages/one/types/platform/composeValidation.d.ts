@@ -1,4 +1,4 @@
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeFilterChipProps, ComposeIconProps, ComposeInputChipProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeStyle, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeFilterChipProps, ComposeIconProps, ComposeInputChipProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeStyle, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
 export declare const horizontalAlignments: readonly ['start', 'centerHorizontally', 'end'];
 export declare const verticalAlignments: readonly ['top', 'centerVertically', 'bottom'];
 export declare const contentAlignments: readonly ['topStart', 'topCenter', 'topEnd', 'centerStart', 'center', 'centerEnd', 'bottomStart', 'bottomCenter', 'bottomEnd', 'top', 'bottom', 'start', 'end'];
@@ -13,6 +13,7 @@ export declare const textFieldKeyboardTypes: readonly ['default', 'number', 'dec
 export declare const textFieldImeActions: readonly ['default', 'none', 'go', 'search', 'send', 'previous', 'next', 'done'];
 export declare const textFieldCapitalizations: readonly ['none', 'characters', 'words', 'sentences'];
 export declare const progressVariants: readonly ['linear', 'circular'];
+export declare function validateBadgeProps(props: Pick<ComposeBadgeProps, 'containerColor' | 'contentColor'>): void;
 export declare function assertComposeStyle(style: ComposeStyle | undefined): void;
 export declare function assertString(value: unknown, name: string, nonEmpty?: boolean): asserts value is string;
 export declare function assertOptionalString(value: unknown, name: string): void;

@@ -2,6 +2,8 @@ import type { ReactNode } from 'react'
 import type {
   ComposeAlertDialogProps,
   ComposeAssistChipProps,
+  ComposeBadgeProps,
+  ComposeBadgedBoxProps,
   ComposeBoxProps,
   ComposeButtonProps,
   ComposeCardProps,
@@ -41,6 +43,18 @@ function Row(_props: ComposeRowProps): never {
 function Box(_props: ComposeBoxProps): never {
   return unsupported('Box')
 }
+
+function Badge(_props: ComposeBadgeProps): never {
+  return unsupported('Badge')
+}
+
+function BadgedBoxRoot(_props: ComposeBadgedBoxProps): never {
+  return unsupported('BadgedBox')
+}
+
+const BadgedBox = Object.assign(BadgedBoxRoot, {
+  Badge: (_props: { children: ReactNode }): never => unsupported('BadgedBox.Badge'),
+})
 
 function Card(_props: ComposeCardProps): never {
   return unsupported('Card')
@@ -152,6 +166,8 @@ export const Compose = {
   Column,
   Row,
   Box,
+  Badge,
+  BadgedBox,
   Card,
   ElevatedCard,
   OutlinedCard,

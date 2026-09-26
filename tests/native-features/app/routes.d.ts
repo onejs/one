@@ -27,6 +27,7 @@ declare module 'one' {
         | `/one-native-android-dividers`
         | `/one-native-android-filter-chip`
         | `/one-native-android-chips`
+        | `/one-native-android-badges`
         | `/one-native-android-inputs`
         | `/one-native-android-selection`
         | `/one-native-app-info`

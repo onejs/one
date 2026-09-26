@@ -136,6 +136,8 @@ describe('compose surface', () => {
       'Column',
       'Row',
       'Box',
+      'Badge',
+      'BadgedBox',
       'Card',
       'ElevatedCard',
       'OutlinedCard',

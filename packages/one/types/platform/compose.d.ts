@@ -1,8 +1,10 @@
 import type { ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeFilterChipProps, ComposeIconProps, ComposeInputChipProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeFilterChipProps, ComposeIconProps, ComposeInputChipProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function Box(_props: ComposeBoxProps): never;
+declare function Badge(_props: ComposeBadgeProps): never;
+declare function BadgedBoxRoot(_props: ComposeBadgedBoxProps): never;
 declare function Card(_props: ComposeCardProps): never;
 declare function ElevatedCard(_props: ComposeElevatedCardProps): never;
 declare function OutlinedCard(_props: ComposeOutlinedCardProps): never;
@@ -42,6 +44,12 @@ export declare const Compose: {
     Column: typeof Column;
     Row: typeof Row;
     Box: typeof Box;
+    Badge: typeof Badge;
+    BadgedBox: typeof BadgedBoxRoot & {
+        Badge: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
     Card: typeof Card;
     ElevatedCard: typeof ElevatedCard;
     OutlinedCard: typeof OutlinedCard;

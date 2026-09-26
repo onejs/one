@@ -29,12 +29,16 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgeDefaults
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.contentColorFor
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.darkColorScheme
@@ -83,6 +87,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalConfiguration
@@ -322,6 +327,7 @@ internal data class OneNativeComposeNodeProps(
     val selected: Boolean = false,
     val radioColors: OneNativeRadioColors = OneNativeRadioColors(),
     val cardColors: OneNativeCardColors = OneNativeCardColors(),
+    val badgeColors: OneNativeCardColors = OneNativeCardColors(),
     val cardElevation: Double = -1.0,
     val cardBorder: OneNativeComposeBorder? = null,
     val dividerStyle: OneNativeDividerStyle = OneNativeDividerStyle(),
@@ -616,6 +622,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageCardColors(value: ReadableMap?) {
         pendingProps = pendingProps.copy(cardColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageBadgeColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(badgeColors = OneNativeCardColors.fromMap(value, context))
     }
 
     internal fun stageCardElevation(value: Double) {
@@ -1011,6 +1021,42 @@ private fun RenderComposeNodeBody(
             ) {
                 RenderComposeChildren(node)
             }
+        "badge" -> {
+            val containerColor = props.badgeColors.containerColor?.let(::Color) ?: BadgeDefaults.containerColor
+            if (node.renderedChildren.isEmpty()) {
+                Badge(modifier = modifier, containerColor = containerColor)
+            } else {
+                Badge(
+                    modifier = modifier,
+                    containerColor = containerColor,
+                    contentColor = props.badgeColors.contentColor?.let(::Color) ?: contentColorFor(containerColor),
+                ) {
+                    Box(
+                        modifier = Modifier.layout { measurable, constraints ->
+                            val placeable = measurable.measure(constraints)
+                            val width = maxOf(placeable.width, placeable.height - 8.dp.roundToPx())
+                            layout(width, placeable.height) {
+                                placeable.placeRelative((width - placeable.width) / 2, 0)
+                            }
+                        },
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        RenderComposeChildren(node)
+                    }
+                }
+            }
+        }
+        "badgedbox" -> {
+            val badgeSlot = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "badge" }
+            BadgedBox(
+                badge = { if (badgeSlot == null) Badge() else RenderComposeChildren(badgeSlot) },
+                modifier = modifier,
+            ) {
+                node.renderedChildren.forEach { child ->
+                    if (child !== badgeSlot) key(child) { RenderComposeNode(child) }
+                }
+            }
+        }
         "text" ->
             Text(
                 text = props.text.orEmpty(),
