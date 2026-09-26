@@ -141,6 +141,7 @@ describe('compose surface', () => {
       'OutlinedCard',
       'HorizontalDivider',
       'VerticalDivider',
+      'FilterChip',
       'Text',
       'Icon',
       'Button',

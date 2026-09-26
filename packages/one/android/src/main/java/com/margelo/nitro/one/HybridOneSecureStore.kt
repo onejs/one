@@ -120,35 +120,48 @@ class HybridOneSecureStore : HybridOneSecureStoreSpec() {
         }
     }
 
-    // any platform failure rejects with the stable code for its verb.
-    private fun <T> guarded(code: String, verb: String, body: () -> T): Promise<T> =
-        Promise.async {
-            try {
-                body()
-            } catch (e: Exception) {
-                throw OneNativeError(code, "SecureStore.$verb: ${e.message}")
-            }
+    // any platform failure throws or rejects with the stable code for its verb.
+    private fun <T> guarded(code: String, verb: String, body: () -> T): T =
+        try {
+            body()
+        } catch (e: Exception) {
+            throw OneNativeError(code, "SecureStore.$verb: ${e.message}")
         }
+
+    private fun read(key: String): String? {
+        val blob = prefs().getString(key, null) ?: return null
+        return decrypt(blob)
+    }
+
+    private fun write(key: String, value: String) {
+        if (!prefs().edit().putString(key, encrypt(value)).commit()) {
+            throw SecureStoreException("the write could not be committed to disk")
+        }
+    }
+
+    private fun remove(key: String) {
+        if (!prefs().edit().remove(key).commit()) {
+            throw SecureStoreException("the delete could not be committed to disk")
+        }
+    }
 
     override fun getItem(key: String): Promise<String?> =
-        guarded("E_SECURE_STORE_GET", "getItem") {
-            val blob = prefs().getString(key, null) ?: return@guarded null
-            decrypt(blob)
-        }
+        Promise.async { guarded("E_SECURE_STORE_GET", "getItem") { read(key) } }
 
     override fun setItem(key: String, value: String): Promise<Unit> =
-        guarded("E_SECURE_STORE_SET", "setItem") {
-            if (!prefs().edit().putString(key, encrypt(value)).commit()) {
-                throw SecureStoreException("the write could not be committed to disk")
-            }
-        }
+        Promise.async { guarded("E_SECURE_STORE_SET", "setItem") { write(key, value) } }
 
     override fun deleteItem(key: String): Promise<Unit> =
-        guarded("E_SECURE_STORE_DELETE", "deleteItem") {
-            if (!prefs().edit().remove(key).commit()) {
-                throw SecureStoreException("the delete could not be committed to disk")
-            }
-        }
+        Promise.async { guarded("E_SECURE_STORE_DELETE", "deleteItem") { remove(key) } }
+
+    override fun getItemSync(key: String): String? =
+        guarded("E_SECURE_STORE_GET", "getItemSync") { read(key) }
+
+    override fun setItemSync(key: String, value: String) =
+        guarded("E_SECURE_STORE_SET", "setItemSync") { write(key, value) }
+
+    override fun deleteItemSync(key: String) =
+        guarded("E_SECURE_STORE_DELETE", "deleteItemSync") { remove(key) }
 
     private class SecureStoreException(message: String) : Exception(message)
 

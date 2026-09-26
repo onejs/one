@@ -53,6 +53,9 @@ namespace margelo::nitro::one {
       virtual std::shared_ptr<Promise<std::optional<std::string>>> getItem(const std::string& key) = 0;
       virtual std::shared_ptr<Promise<void>> setItem(const std::string& key, const std::string& value) = 0;
       virtual std::shared_ptr<Promise<void>> deleteItem(const std::string& key) = 0;
+      virtual std::optional<std::string> getItemSync(const std::string& key) = 0;
+      virtual void setItemSync(const std::string& key, const std::string& value) = 0;
+      virtual void deleteItemSync(const std::string& key) = 0;
 
     protected:
       // Hybrid Setup

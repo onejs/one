@@ -50,6 +50,11 @@ function fetchConformanceEndpoints(): Plugin {
           send(0)
           return
         }
+        if (route === 'part') {
+          res.writeHead(200, { 'content-type': 'text/plain' })
+          res.end('part text')
+          return
+        }
         if (route === 'bytes') {
           res.writeHead(200, { 'content-type': 'application/octet-stream' })
           res.end(Buffer.from([0, 1, 2, 255]))

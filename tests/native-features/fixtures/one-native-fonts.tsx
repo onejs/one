@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
-import { One } from 'one'
+import { One, useFonts } from 'one'
 
 // exercises runtime font loading: the TestFont's A is a solid block no
 // system font has, so the sample below proves by pixels that the PostScript
@@ -23,7 +23,7 @@ const fontMap = { [FONT_NAME]: fontAsset }
 const hookFontMap = { [HOOK_FONT_NAME]: hookFontAsset }
 
 function HookSample() {
-  const [loaded, error] = One.useFonts(hookFontMap)
+  const [loaded, error] = useFonts(hookFontMap)
   return (
     <View>
       <Text>{`Hook: ${error ? 'error' : loaded ? 'loaded' : 'loading'}`}</Text>

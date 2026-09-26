@@ -1,6 +1,7 @@
 package com.margelo.nitro.one
 
 import android.net.Uri
+import android.util.Base64
 import android.webkit.MimeTypeMap
 import com.facebook.react.modules.blob.BlobModule
 import com.facebook.react.modules.network.CookieJarContainer
@@ -8,8 +9,14 @@ import com.facebook.react.modules.network.ForwardingCookieHandler
 import com.facebook.react.modules.network.OkHttpClientProvider
 import com.margelo.nitro.NitroModules
 import com.margelo.nitro.core.ArrayBuffer
+import java.io.ByteArrayInputStream
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
+import java.net.URL
+import java.nio.channels.Channels
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
 import okhttp3.Call
@@ -27,6 +34,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import okhttp3.internal.http.HttpMethod
 import okio.BufferedSink
+import okio.source
 
 // the global fetch on native, over an OkHttp client built the way react
 // native's NetworkingModule builds its own: from OkHttpClientProvider, so an
@@ -67,6 +75,26 @@ class HybridOneFetch : HybridOneFetchSpec() {
             readLocal(id, request.url, onResponse, onChunk, onComplete, onError)
             return
         }
+        if (request.form?.any { it.uri != null } == true) {
+            // react native opens every { uri } part before it sends, downloading
+            // an http one, so that runs off the js thread; a cancel meanwhile
+            // leaves no entry for send to replace
+            active[id] = {}
+            local.execute { send(id, request, true, onResponse, onChunk, onComplete, onError) }
+            return
+        }
+        send(id, request, false, onResponse, onChunk, onComplete, onError)
+    }
+
+    private fun send(
+        id: Double,
+        request: FetchNativeRequest,
+        pending: Boolean,
+        onResponse: (response: FetchNativeResponse) -> Unit,
+        onChunk: (chunk: ArrayBuffer) -> Unit,
+        onComplete: () -> Unit,
+        onError: (message: String) -> Unit
+    ) {
         val built = try {
             val builder = Request.Builder().url(request.url)
             for (header in request.headers) builder.addHeader(header.name, header.value)
@@ -75,12 +103,17 @@ class HybridOneFetch : HybridOneFetchSpec() {
                 ?.value?.toMediaTypeOrNull()
             builder.method(request.method, body(request, type))
             builder.build()
-        } catch (error: IllegalArgumentException) {
-            onError(error.message ?: "invalid request")
+        } catch (error: Exception) {
+            if (!pending || active.remove(id) != null) onError(error.message ?: "invalid request")
             return
         }
         val call = (if (request.omitCredentials) clientWithoutCookies else client).newCall(built)
-        active[id] = { call.cancel() }
+        val cancel = { call.cancel() }
+        if (pending) {
+            if (active.replace(id, cancel) == null) return
+        } else {
+            active[id] = cancel
+        }
         call.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 if (active.remove(id) != null) onError(e.message ?: e.javaClass.simpleName)
@@ -115,10 +148,11 @@ class HybridOneFetch : HybridOneFetchSpec() {
         context.getNativeModule(BlobModule::class.java)
             ?: throw IllegalStateException("fetch: react native's BlobModule is not loaded")
 
-    // the request body. js-owned bytes are copied now, during the call;
-    // blobs, files and multipart parts are read on the network thread. every
-    // length is known up front where react native's was, so uploads carry a
-    // content-length rather than going out chunked.
+    // the request body. js-owned bytes are copied now, during the call; blobs
+    // are read on the network thread, and { uri } parts open before sending,
+    // as react native opens them. every length is known up front where react
+    // native's was, so uploads carry a content-length rather than going out
+    // chunked.
     private fun body(request: FetchNativeRequest, type: MediaType?): RequestBody? {
         request.body?.let { return it.toByteArray().toRequestBody(type) }
         request.blob?.let { return blobBody(it, type) }
@@ -137,13 +171,43 @@ class HybridOneFetch : HybridOneFetchSpec() {
         }
     }
 
-    private fun uriBody(uri: String, type: MediaType?) = object : RequestBody() {
+    // react native's RequestBodyUtil.getFileInputStream, which is internal to
+    // react native: an http(s) uri downloads to a cache file first, a data: uri
+    // decodes its base64, anything else opens through the content resolver
+    private fun partStream(uri: String): InputStream {
+        val parsed = Uri.parse(uri)
+        if (parsed.scheme?.startsWith("http") == true) {
+            val file = File.createTempFile("RequestBodyUtil", "temp", context.applicationContext.cacheDir)
+            file.deleteOnExit()
+            FileOutputStream(file).use { output ->
+                URL(uri).openStream().use { input ->
+                    Channels.newChannel(input).use { channel ->
+                        output.channel.transferFrom(channel, 0, Long.MAX_VALUE)
+                    }
+                }
+            }
+            return FileInputStream(file)
+        }
+        if (uri.startsWith("data:")) {
+            return ByteArrayInputStream(Base64.decode(uri.split(",")[1], Base64.DEFAULT))
+        }
+        return context.contentResolver.openInputStream(parsed)
+            ?: throw IOException("Could not retrieve file for uri $uri")
+    }
+
+    // react native's RequestBodyUtil.create: the stream's available bytes are
+    // the part's length
+    private fun streamBody(type: MediaType, input: InputStream) = object : RequestBody() {
         override fun contentType() = type
         override fun contentLength() =
-            context.contentResolver.openAssetFileDescriptor(Uri.parse(uri), "r")?.use { it.length }
-                ?: -1L
+            try {
+                input.available().toLong()
+            } catch (e: IOException) {
+                0L
+            }
+        override fun isOneShot() = true
         override fun writeTo(sink: BufferedSink) {
-            open(uri).use { input -> input.copyTo(sink.outputStream()) }
+            input.use { sink.writeAll(it.source()) }
         }
     }
 
@@ -167,14 +231,21 @@ class HybridOneFetch : HybridOneFetchSpec() {
                 builder.addPart(Headers.headersOf("Content-Disposition", disposition), value.toRequestBody())
                 continue
             }
-            val filename = part.filename ?: part.uri?.let { Uri.parse(it).lastPathSegment }
+            val filename = part.filename
             if (filename != null) disposition += "; filename=\"${escape(filename)}\""
-            val type = (part.type ?: "application/octet-stream").toMediaTypeOrNull()
             val uri = part.uri
             val blob = part.blob
             val body = when {
-                uri != null -> uriBody(uri, type)
-                blob != null -> blobBody(blob, type)
+                uri != null -> streamBody(
+                    part.type?.toMediaTypeOrNull()
+                        ?: throw IOException("Binary FormData part needs a content-type header."),
+                    try {
+                        partStream(uri)
+                    } catch (error: Exception) {
+                        throw IOException("Could not retrieve file for uri $uri", error)
+                    }
+                )
+                blob != null -> blobBody(blob, (part.type ?: "application/octet-stream").toMediaTypeOrNull())
                 else -> throw IOException("fetch: FormData part ${part.name} has no value")
             }
             builder.addPart(Headers.headersOf("Content-Disposition", disposition), body)

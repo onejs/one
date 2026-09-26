@@ -2316,6 +2316,15 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::shared_ptr<Promise<std::optional<std::string>>>>::withError(error);
   }
 
+  // pragma MARK: Result<std::optional<std::string>>
+  using Result_std__optional_std__string__ = Result<std::optional<std::string>>;
+  inline Result_std__optional_std__string__ create_Result_std__optional_std__string__(const std::optional<std::string>& value) noexcept {
+    return Result<std::optional<std::string>>::withValue(value);
+  }
+  inline Result_std__optional_std__string__ create_Result_std__optional_std__string__(const std::exception_ptr& error) noexcept {
+    return Result<std::optional<std::string>>::withError(error);
+  }
+
   // pragma MARK: std::shared_ptr<Promise<SpeechPermissionResponse>>
   /**
    * Specialized version of `std::shared_ptr<Promise<SpeechPermissionResponse>>`.
@@ -2504,15 +2513,6 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_OneUpdatesFetchResult___ create_Result_std__shared_ptr_Promise_OneUpdatesFetchResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<OneUpdatesFetchResult>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::optional<std::string>>
-  using Result_std__optional_std__string__ = Result<std::optional<std::string>>;
-  inline Result_std__optional_std__string__ create_Result_std__optional_std__string__(const std::optional<std::string>& value) noexcept {
-    return Result<std::optional<std::string>>::withValue(value);
-  }
-  inline Result_std__optional_std__string__ create_Result_std__optional_std__string__(const std::exception_ptr& error) noexcept {
-    return Result<std::optional<std::string>>::withError(error);
   }
 
 } // namespace margelo::nitro::one::bridge::swift

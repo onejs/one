@@ -182,6 +182,11 @@ const testScreens = [
     testID: 'nav-one-native-android-dividers',
   },
   {
+    href: '/one-native-android-filter-chip',
+    label: 'One Native Android Filter Chip',
+    testID: 'nav-one-native-android-filter-chip',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',
@@ -260,6 +265,11 @@ const testScreens = [
     href: '/one-native-fetch',
     label: 'One Native Fetch',
     testID: 'nav-one-native-fetch',
+  },
+  {
+    href: '/one-native-secure-store',
+    label: 'One Native Secure Store',
+    testID: 'nav-one-native-secure-store',
   },
 ] as const
 

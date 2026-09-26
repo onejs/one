@@ -186,4 +186,44 @@ open class HybridOneSecureStoreSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
+  
+  @inline(__always)
+  public final func getItemSync(key: std.string) -> bridge.Result_std__optional_std__string__ {
+    do {
+      let __result = try self.__implementation.getItemSync(key: String(key))
+      let __resultCpp = { () -> bridge.std__optional_std__string_ in
+        if let __unwrappedValue = __result {
+          return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
+        } else {
+          return .init()
+        }
+      }()
+      return bridge.create_Result_std__optional_std__string__(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__optional_std__string__(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func setItemSync(key: std.string, value: std.string) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.setItemSync(key: String(key), value: String(value))
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func deleteItemSync(key: std.string) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.deleteItemSync(key: String(key))
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
 }

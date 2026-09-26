@@ -94,5 +94,18 @@ namespace margelo::nitro::one {
       return __promise;
     }();
   }
+  std::optional<std::string> JHybridOneSecureStoreSpec::getItemSync(const std::string& key) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<jni::JString>(jni::alias_ref<jni::JString> /* key */)>("getItemSync");
+    auto __result = method(_javaPart, jni::make_jstring(key));
+    return __result != nullptr ? std::make_optional(__result->toStdString()) : std::nullopt;
+  }
+  void JHybridOneSecureStoreSpec::setItemSync(const std::string& key, const std::string& value) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* key */, jni::alias_ref<jni::JString> /* value */)>("setItemSync");
+    method(_javaPart, jni::make_jstring(key), jni::make_jstring(value));
+  }
+  void JHybridOneSecureStoreSpec::deleteItemSync(const std::string& key) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* key */)>("deleteItemSync");
+    method(_javaPart, jni::make_jstring(key));
+  }
 
 } // namespace margelo::nitro::one

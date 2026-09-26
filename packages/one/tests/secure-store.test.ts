@@ -23,6 +23,15 @@ describe('secure-store web', () => {
     await expect(SecureStore.deleteItem('token')).rejects.toThrow(
       'SecureStore.deleteItem needs an iOS or Android build'
     )
+    expect(() => SecureStore.getItemSync('token')).toThrow(
+      'SecureStore.getItemSync needs an iOS or Android build'
+    )
+    expect(() => SecureStore.setItemSync('token', 'abc')).toThrow(
+      'SecureStore.setItemSync needs an iOS or Android build'
+    )
+    expect(() => SecureStore.deleteItemSync('token')).toThrow(
+      'SecureStore.deleteItemSync needs an iOS or Android build'
+    )
   })
 
   it('throws synchronously for a bad key or value', () => {
@@ -43,8 +52,11 @@ describe('secure-store web', () => {
   it('exposes the namespace object', () => {
     expect(Object.keys(SecureStore).sort()).toEqual([
       'deleteItem',
+      'deleteItemSync',
       'getItem',
+      'getItemSync',
       'setItem',
+      'setItemSync',
     ])
     expect(Object.isFrozen(SecureStore)).toBe(true)
   })
@@ -56,6 +68,9 @@ describe('secure-store native entry', () => {
       getItem: vi.fn(async () => 'abc'),
       setItem: vi.fn(async () => {}),
       deleteItem: vi.fn(async () => {}),
+      getItemSync: vi.fn(() => 'def'),
+      setItemSync: vi.fn(() => {}),
+      deleteItemSync: vi.fn(() => {}),
     }
     const { SecureStore: native } = await loadNativeEntry(nativeModule)
     expect(await native.getItem('token')).toBe('abc')
@@ -64,6 +79,12 @@ describe('secure-store native entry', () => {
     expect(nativeModule.setItem).toHaveBeenCalledWith('token', 'abc')
     await native.deleteItem('token')
     expect(nativeModule.deleteItem).toHaveBeenCalledWith('token')
+    expect(native.getItemSync('token')).toBe('def')
+    expect(nativeModule.getItemSync).toHaveBeenCalledWith('token')
+    native.setItemSync('token', 'def')
+    expect(nativeModule.setItemSync).toHaveBeenCalledWith('token', 'def')
+    native.deleteItemSync('token')
+    expect(nativeModule.deleteItemSync).toHaveBeenCalledWith('token')
   })
 
   it('reads a missing key as null', async () => {
@@ -71,8 +92,10 @@ describe('secure-store native entry', () => {
       getItem: vi.fn(async () => undefined),
       setItem: vi.fn(async () => {}),
       deleteItem: vi.fn(async () => {}),
+      getItemSync: vi.fn(() => undefined),
     })
     expect(await native.getItem('missing')).toBeNull()
+    expect(native.getItemSync('missing')).toBeNull()
   })
 
   it('throws the same key and value checks as the web entry', async () => {

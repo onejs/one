@@ -5,7 +5,10 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { expect, test } from 'vitest'
+import * as PublicApi from './index'
 import { One } from './one'
+import * as PlatformApi from './platform'
+import * as SafeAreaApi from './safe-area-context'
 
 const fixtureRoot = join(import.meta.dirname, '../../../tests/native-features')
 
@@ -49,7 +52,6 @@ const knownGaps: Record<string, string> = {
   Clipboard: 'iOS suite only',
   Network: 'iOS suite only',
   DocumentPicker: 'fixture exists, no suite opens it',
-  SecureStore: 'no fixture or suite',
   useNetworkState: 'no fixture or suite',
   useNativeState: 'iOS suite only',
   useSizeClass: 'fixture exists, no suite opens it',
@@ -58,7 +60,7 @@ const knownGaps: Record<string, string> = {
   getHinge: 'no fixture or suite',
   onHingeChange: 'no fixture or suite',
   useReservedRegions: 'fixture exists, no suite opens it',
-  useReservedRegionsReady: 'fixture exists, no suite opens it',
+  useReservedRegionsReady: 'no fixture or suite',
   useWindowSegments: 'fixture exists, no suite opens it',
   useSpanning: 'fixture exists, no suite opens it',
 }
@@ -129,11 +131,17 @@ function exportsUsed(source: string) {
   for (const [, name] of source.matchAll(/One\.([A-Za-z]+)/g)) {
     if (name !== 'iOS' && name !== 'Android' && name !== 'UI') used.add(name)
   }
+  for (const [, imports] of source.matchAll(/import\s*\{([^}]+)\}\s*from\s*['"]one['"]/g)) {
+    for (const specifier of imports.split(',')) {
+      const [imported, local] = specifier.trim().split(/\s+as\s+/)
+      if (new RegExp(`\\b${local ?? imported}\\s*\\(`).test(source)) used.add(imported)
+    }
+  }
   return used
 }
 
 function publicExports() {
-  const names: { name: string; platforms: Platform[] }[] = []
+  const names: { name: string; label: string; platforms: Platform[] }[] = []
   for (const key of Object.keys(One)) {
     if (key === 'platform') continue
     const value = Reflect.get(One, key)
@@ -141,15 +149,23 @@ function publicExports() {
       const platforms: Platform[] =
         key === 'iOS' ? ['ios'] : key === 'Android' ? ['android'] : ['ios', 'android']
       for (const name of Object.keys(value))
-        names.push({ name: `${key}.${name}`, platforms })
+        names.push({ name: `${key}.${name}`, label: `One.${key}.${name}`, platforms })
     } else {
-      names.push({ name: key, platforms: ['ios', 'android'] })
+      names.push({ name: key, label: `One.${key}`, platforms: ['ios', 'android'] })
+    }
+  }
+  for (const name of new Set([...Object.keys(PlatformApi), ...Object.keys(SafeAreaApi)])) {
+    if (
+      (name.startsWith('use') || name === 'getSizeClass' || name === 'getHinge' || name === 'onHingeChange') &&
+      Object.hasOwn(PublicApi, name)
+    ) {
+      names.push({ name, label: name, platforms: ['ios', 'android'] })
     }
   }
   return names
 }
 
-test('every One export is exercised by a native conformance suite', async () => {
+test('every One namespace member is exercised by a native conformance suite', async () => {
   const proof: Record<Platform, Map<string, string[]>> = {
     ios: new Map(),
     android: new Map(),
@@ -167,7 +183,7 @@ test('every One export is exercised by a native conformance suite', async () => 
 
   const rows: string[] = []
   const uncovered: string[] = []
-  for (const { name, platforms } of publicExports()) {
+  for (const { name, label, platforms } of publicExports()) {
     const cell = (platform: Platform) =>
       platforms.includes(platform)
         ? [...new Set(proof[platform].get(name) ?? [])].join(', ') || 'missing'
@@ -175,7 +191,7 @@ test('every One export is exercised by a native conformance suite', async () => 
     const ios = cell('ios')
     const android = cell('android')
     if (ios === 'missing' || android === 'missing') uncovered.push(name)
-    rows.push(`| \`One.${name}\` | ${ios} | ${android} | ${knownGaps[name] ?? ''} |`)
+    rows.push(`| \`${label}\` | ${ios} | ${android} | ${knownGaps[name] ?? ''} |`)
   }
 
   await expect(
