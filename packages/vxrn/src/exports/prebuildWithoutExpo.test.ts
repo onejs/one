@@ -1237,6 +1237,8 @@ describe('generateForPlatform determinism', () => {
       'utf8'
     )
     expect(mainActivity).toContain('RNScreensFragmentFactory')
+    expect(mainActivity).toContain('import com.margelo.nitro.one.OneLaunchScreen')
+    expect(mainActivity).toMatch(/super\.onCreate\(null\)\n.*\n\s*OneLaunchScreen\.hold\(this\)/)
   }, 180000)
 })
 
