@@ -10,6 +10,7 @@ import {
   extractCrop,
   readPng,
 } from './visual-pixel-gate'
+import { parseUpdatesState, startUpdatesServer, updateIdsIn } from './updates-suite-server'
 
 type Node = {
   AXLabel?: string
@@ -590,7 +591,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         await new Promise((resolve) => setTimeout(resolve, 400))
         continue
       }
-      if (row.y >= 0 && row.y + row.height <= app.height) return tap({ id: testID })
+      if (row.y >= 0 && row.y + row.height <= app.height) {
+        // a tap on a list still coasting from the last swipe only stops it,
+        // so the row has to hold still across two snapshots first.
+        let previous = row
+        await wait(`${testID} settles`, (settledNodes) => {
+          const frame = id(settledNodes, testID)?.frame
+          const settled = Boolean(frame && frame.x === previous.x && frame.y === previous.y)
+          if (frame) previous = frame
+          return settled
+        }, true)
+        return tap({ id: testID })
+      }
       // a row below the viewport needs the list pushed up, and one the swipe already
       // carried past the top needs it pulled back down: scrolling one direction only
       // walks past an overshot row and never comes back to it.
@@ -4692,124 +4704,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // publishes: cold launch, stage and launch, tamper, fatal rollback,
     // splash kill, in-session reloads, deleted bundle, the reaper, and a
     // foreign runtime version.
-    const serverPort = 8471
-    const servePrefix = '/ios/updates-suite/'
-    const serverRoot = path.join(config.artifactDir, 'updates-server')
-    fs.rmSync(serverRoot, { recursive: true, force: true })
-    const serveDir = path.join(serverRoot, 'ios', 'updates-suite')
-    fs.mkdirSync(path.join(serveDir, 'assets'), { recursive: true })
-    const server = Bun.serve({
-      port: serverPort,
-      fetch(request) {
-        const pathname = new URL(request.url).pathname
-        if (!pathname.startsWith(servePrefix))
-          return new Response('not found', { status: 404 })
-        const file = path.join(serverRoot, pathname)
-        if (!file.startsWith(serverRoot)) return new Response('not found', { status: 404 })
-        try {
-          if (!fs.statSync(file).isFile()) return new Response('not found', { status: 404 })
-        } catch {
-          return new Response('not found', { status: 404 })
-        }
-        return new Response(Bun.file(file))
-      },
-    })
-    const scriptDir = path.dirname(fileURLToPath(import.meta.url))
-    const appRoot = path.resolve(scriptDir, '..')
-    const oneCli = path.resolve(appRoot, '../../packages/one/run.mjs')
-    const bootFile = path.join(appRoot, 'fixtures', 'updates-boot.ts')
-    const fixtureFile = path.join(appRoot, 'fixtures', 'one-native-updates.tsx')
-    const variantsDir = path.join(appRoot, 'fixtures', 'updates-variants')
-    const baseBoot = fs.readFileSync(bootFile, 'utf8')
-    const baseFixture = fs.readFileSync(fixtureFile, 'utf8')
-    const restoreSources = () => {
-      fs.writeFileSync(bootFile, baseBoot)
-      fs.writeFileSync(fixtureFile, baseFixture)
-    }
-    type ServedManifest = {
-      id: string
-      createdAt: string
-      runtimeVersion: string
-      launchAsset: { hash: string; url: string; path: string }
-      assets: { hash: string; url: string; path: string }[]
-    }
-    const readServedManifest = (): ServedManifest => {
-      const raw: unknown = JSON.parse(
-        fs.readFileSync(path.join(serveDir, 'manifest.json'), 'utf8')
-      )
-      const field = (value: unknown, key: string): unknown =>
-        typeof value === 'object' && value !== null ? Reflect.get(value, key) : undefined
-      const asset = (value: unknown) => {
-        const hash = field(value, 'hash')
-        const url = field(value, 'url')
-        const assetPath = field(value, 'path')
-        if (typeof hash !== 'string' || typeof url !== 'string' || typeof assetPath !== 'string')
-          throw new Error('served manifest has a malformed asset')
-        return { hash, url, path: assetPath }
-      }
-      const id = field(raw, 'id')
-      const createdAt = field(raw, 'createdAt')
-      const runtimeVersion = field(raw, 'runtimeVersion')
-      const launchAsset = field(raw, 'launchAsset')
-      const assets = field(raw, 'assets')
-      if (
-        typeof id !== 'string' ||
-        typeof createdAt !== 'string' ||
-        typeof runtimeVersion !== 'string' ||
-        !Array.isArray(assets)
-      )
-        throw new Error('served manifest has an unexpected shape')
-      return { id, createdAt, runtimeVersion, launchAsset: asset(launchAsset), assets: assets.map(asset) }
-    }
-    // every publish bundles the current sources with the same command the
-    // embedded builders run, into a fresh dir; the manifest overwrites the
-    // served one and the content-named assets accumulate like a cdn.
-    let publishCount = 0
-    const publish = (variant: string, metadata: string[] = []): ServedManifest => {
-      fs.writeFileSync(
-        bootFile,
-        fs.readFileSync(path.join(variantsDir, `boot.${variant}.ts`), 'utf8')
-      )
-      const fixtureVariant = path.join(variantsDir, `fixture.${variant}.tsx`)
-      if (fs.existsSync(fixtureVariant))
-        fs.writeFileSync(fixtureFile, fs.readFileSync(fixtureVariant, 'utf8'))
-      try {
-        const out = path.join(config.artifactDir, `updates-publish-${publishCount}-${variant}`)
-        publishCount += 1
-        fs.rmSync(out, { recursive: true, force: true })
-        const env = { ...process.env }
-        // the release build under test bundles with rolldown, so publish
-        // pins the same bundler rather than inheriting the caller's.
-        env.ONE_NATIVE_BUNDLER = 'rolldown'
-        execFileSync(
-          'node',
-          [
-            oneCli,
-            'updates',
-            'publish',
-            '--platform',
-            'ios',
-            '--out',
-            out,
-            ...metadata.flatMap((entry) => ['--metadata', entry]),
-          ],
-          { cwd: appRoot, env, stdio: 'inherit', timeout: 600_000 }
-        )
-        fs.writeFileSync(
-          path.join(serveDir, 'manifest.json'),
-          fs.readFileSync(path.join(out, 'manifest.json'))
-        )
-        for (const file of fs.readdirSync(path.join(out, 'assets'))) {
-          fs.writeFileSync(
-            path.join(serveDir, 'assets', file),
-            fs.readFileSync(path.join(out, 'assets', file))
-          )
-        }
-        return readServedManifest()
-      } finally {
-        restoreSources()
-      }
-    }
+    const updates = startUpdatesServer(config.artifactDir, 'ios')
+    const { publish } = updates
     const container = () =>
       execFileSync(
         'xcrun',
@@ -4818,39 +4714,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       ).trim()
     const updatesDir = () =>
       path.join(container(), 'Library', 'Application Support', 'one-updates')
-    const updateIdsOnDisk = () => {
-      const entries = fs.readdirSync(updatesDir())
-      const temps = entries.filter((name) => name.startsWith('.tmp-') || name.endsWith('.tmp'))
-      if (temps.length > 0)
-        throw new Error(`stale temp entries on disk: ${temps.join(', ')}`)
-      return entries.filter((name) => name !== 'state.json').sort()
-    }
-    const readState = (): { launching: string | null; updates: Record<string, { successes: number; failed: boolean }> } => {
-      const raw: unknown = JSON.parse(
-        fs.readFileSync(path.join(updatesDir(), 'state.json'), 'utf8')
-      )
-      const field = (value: unknown, key: string): unknown =>
-        typeof value === 'object' && value !== null ? Reflect.get(value, key) : undefined
-      const launching = field(raw, 'launching')
-      const updates = field(raw, 'updates')
-      if (
-        launching !== null &&
-        launching !== undefined &&
-        typeof launching !== 'string'
-      )
-        throw new Error('state.json has an unexpected shape')
-      if (typeof updates !== 'object' || updates === null)
-        throw new Error('state.json has an unexpected shape')
-      const entries: Record<string, { successes: number; failed: boolean }> = {}
-      for (const [id, entry] of Object.entries(updates)) {
-        const successes = field(entry, 'successes')
-        const failed = field(entry, 'failed')
-        if (typeof successes !== 'number' || typeof failed !== 'boolean')
-          throw new Error('state.json has an unexpected shape')
-        entries[id] = { successes, failed }
-      }
-      return { launching: typeof launching === 'string' ? launching : null, updates: entries }
-    }
+    const updateIdsOnDisk = () => updateIdsIn(fs.readdirSync(updatesDir()))
+    const readState = () =>
+      parseUpdatesState(fs.readFileSync(path.join(updatesDir(), 'state.json'), 'utf8'))
     const labelValue = (nodes: Node[], prefix: string) => {
       const label = labels(nodes).find((line) => line.startsWith(`${prefix}: `))
       return label === undefined ? undefined : label.slice(prefix.length + 2)
@@ -4858,9 +4724,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const openFixture = async () => {
       await wait('updates home mounted', () => true, true)
       await tapNav('nav-one-native-updates')
-      await wait('updates fixture mounted', (n) =>
-        Boolean(id(n, 'one-native-updates-check'))
-      )
+      // the button exists while the push is still sliding it in, and a tap
+      // at that frame lands beside it: wait until two snapshots agree.
+      let previous: Node['frame'] | undefined
+      await wait('updates fixture mounted', (n) => {
+        const frame = id(n, 'one-native-updates-check')?.frame
+        const settled = Boolean(
+          frame && previous && frame.x === previous.x && frame.y === previous.y
+        )
+        previous = frame
+        return settled
+      })
     }
     const coldLaunch = () => {
       stopApp()
@@ -4917,16 +4791,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         )
       )
 
-      // 3. a tampered asset rejects fetch and stages nothing. the tamper
-      // lands on the launch asset: every publish emits fresh bundle bytes,
-      // so the client always downloads it, while a republished image would
-      // hard-link from disk and never touch the tampered bytes.
+      // 3. a tampered asset rejects fetch and stages nothing.
       const tampered = publish('v2')
-      const served = readServedManifest()
-      const bundleFile = path.join(serveDir, 'assets', served.launchAsset.hash)
-      const bundleBytes = fs.readFileSync(bundleFile)
-      bundleBytes[Math.floor(bundleBytes.length / 2)] ^= 0xff
-      fs.writeFileSync(bundleFile, bundleBytes)
+      updates.tamperLaunchAsset()
       tap({ id: 'one-native-updates-check' })
       await wait('tampered update checks available', (n) => labelValue(n, 'Check') === `available:${tampered.id}`)
       tap({ id: 'one-native-updates-fetch' })
@@ -5097,15 +4964,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       console.log('PASS reaper keeps running, spare, and staged')
 
       // 9. a different runtime version on the server is never fetched.
-      const foreign = readServedManifest()
-      fs.writeFileSync(
-        path.join(serveDir, 'manifest.json'),
-        JSON.stringify(
-          { ...foreign, id: `foreign-${Date.now()}`, createdAt: new Date().toISOString(), runtimeVersion: 'other-runtime' },
-          null,
-          2
-        )
-      )
+      updates.serveForeignRuntime()
       tap({ id: 'one-native-updates-check' })
       await wait('foreign runtime checks none', (n) => labelValue(n, 'Check') === 'none')
       tap({ id: 'one-native-updates-fetch' })
@@ -5113,8 +4972,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       tap({ id: 'one-native-updates-refresh' })
       await wait('foreign runtime leaves staged alone', (n) => labelValue(n, 'Staged') === eighth.id)
     } finally {
-      restoreSources()
-      server.stop()
+      updates.stop()
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return

@@ -30,5 +30,5 @@
     "types": ["bun", "node", "react"],
     "lib": ["dom", "esnext"]
   },
-  "exclude": ["node_modules", ".expo", "**/dist", "**/types"]
+  "exclude": ["node_modules", ".expo", "**/dist", "**/types", "fixtures/updates-variants"]
 }

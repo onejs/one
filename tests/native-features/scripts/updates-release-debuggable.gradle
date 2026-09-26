@@ -1,0 +1,9 @@
+// the android updates suite reads the launcher's files through run-as, which
+// only a debuggable package allows, and the stock emulator images refuse adb
+// root. debuggable changes no bundle selection: react native's dev support
+// follows BuildConfig.DEBUG, which stays false in release.
+allprojects {
+  afterEvaluate { project ->
+    if (project.name == 'app') project.android.buildTypes.release.debuggable = true
+  }
+}
