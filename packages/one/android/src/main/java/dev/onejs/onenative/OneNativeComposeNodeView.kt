@@ -53,6 +53,8 @@ import androidx.compose.material3.InputChip
 import androidx.compose.material3.InputChipDefaults
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -194,6 +196,27 @@ internal data class OneNativeCardColors(
     }
 }
 
+internal data class OneNativeListItemColors(
+    val containerColor: Int? = null,
+    val contentColor: Int? = null,
+    val leadingContentColor: Int? = null,
+    val trailingContentColor: Int? = null,
+    val supportingContentColor: Int? = null,
+    val overlineContentColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeListItemColors =
+            if (map == null) OneNativeListItemColors() else OneNativeListItemColors(
+                containerColor = readComposeColor(map, "containerColor", context),
+                contentColor = readComposeColor(map, "contentColor", context),
+                leadingContentColor = readComposeColor(map, "leadingContentColor", context),
+                trailingContentColor = readComposeColor(map, "trailingContentColor", context),
+                supportingContentColor = readComposeColor(map, "supportingContentColor", context),
+                overlineContentColor = readComposeColor(map, "overlineContentColor", context),
+            )
+    }
+}
+
 internal data class OneNativeComposeBorder(
     val width: Double = 1.0,
     val color: Int? = null,
@@ -328,6 +351,9 @@ internal data class OneNativeComposeNodeProps(
     val radioColors: OneNativeRadioColors = OneNativeRadioColors(),
     val cardColors: OneNativeCardColors = OneNativeCardColors(),
     val badgeColors: OneNativeCardColors = OneNativeCardColors(),
+    val listItemColors: OneNativeListItemColors = OneNativeListItemColors(),
+    val tonalElevation: Double = -1.0,
+    val shadowElevation: Double = -1.0,
     val cardElevation: Double = -1.0,
     val cardBorder: OneNativeComposeBorder? = null,
     val dividerStyle: OneNativeDividerStyle = OneNativeDividerStyle(),
@@ -626,6 +652,18 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageBadgeColors(value: ReadableMap?) {
         pendingProps = pendingProps.copy(badgeColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageListItemColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(listItemColors = OneNativeListItemColors.fromMap(value, context))
+    }
+
+    internal fun stageTonalElevation(value: Double) {
+        pendingProps = pendingProps.copy(tonalElevation = value)
+    }
+
+    internal fun stageShadowElevation(value: Double) {
+        pendingProps = pendingProps.copy(shadowElevation = value)
     }
 
     internal fun stageCardElevation(value: Double) {
@@ -1056,6 +1094,34 @@ private fun RenderComposeNodeBody(
                     if (child !== badgeSlot) key(child) { RenderComposeNode(child) }
                 }
             }
+        }
+        "listitem" -> {
+            fun slot(name: String) = node.renderedChildren.firstOrNull { it.renderedProps.slotName == name }
+            val headline = slot("headlineContent")
+            val overline = slot("overlineContent")
+            val supporting = slot("supportingContent")
+            val leading = slot("leadingContent")
+            val trailing = slot("trailingContent")
+            val defaults = ListItemDefaults.colors()
+            val colors = props.listItemColors
+            ListItem(
+                headlineContent = { if (headline != null) RenderComposeChildren(headline) },
+                modifier = modifier,
+                overlineContent = if (overline == null) null else { { RenderComposeChildren(overline) } },
+                supportingContent = if (supporting == null) null else { { RenderComposeChildren(supporting) } },
+                leadingContent = if (leading == null) null else { { RenderComposeChildren(leading) } },
+                trailingContent = if (trailing == null) null else { { RenderComposeChildren(trailing) } },
+                colors = ListItemDefaults.colors(
+                    containerColor = colors.containerColor?.let(::Color) ?: defaults.containerColor,
+                    headlineColor = colors.contentColor?.let(::Color) ?: defaults.headlineColor,
+                    leadingIconColor = colors.leadingContentColor?.let(::Color) ?: defaults.leadingIconColor,
+                    trailingIconColor = colors.trailingContentColor?.let(::Color) ?: defaults.trailingIconColor,
+                    supportingColor = colors.supportingContentColor?.let(::Color) ?: defaults.supportingTextColor,
+                    overlineColor = colors.overlineContentColor?.let(::Color) ?: defaults.overlineColor,
+                ),
+                tonalElevation = props.tonalElevation.takeIf { it >= 0 }?.dp ?: ListItemDefaults.Elevation,
+                shadowElevation = props.shadowElevation.takeIf { it >= 0 }?.dp ?: ListItemDefaults.Elevation,
+            )
         }
         "text" ->
             Text(

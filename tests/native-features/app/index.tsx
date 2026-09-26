@@ -202,6 +202,11 @@ const testScreens = [
     testID: 'nav-one-native-android-badges',
   },
   {
+    href: '/one-native-android-list-items',
+    label: 'One Native Android List Items',
+    testID: 'nav-one-native-android-list-items',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',

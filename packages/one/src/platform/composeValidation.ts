@@ -12,6 +12,7 @@ import type {
   ComposeFilterChipProps,
   ComposeIconProps,
   ComposeInputChipProps,
+  ComposeListItemProps,
   ComposeProgressIndicatorProps,
   ComposeRadioButtonProps,
   ComposeRowProps,
@@ -157,6 +158,28 @@ const radioColorKeys = new Set([
   'disabledUnselectedColor',
 ])
 const cardColorKeys = new Set(['containerColor', 'contentColor'])
+const listItemColorKeys = new Set([
+  'containerColor',
+  'contentColor',
+  'leadingContentColor',
+  'trailingContentColor',
+  'supportingContentColor',
+  'overlineContentColor',
+])
+
+export function validateListItemProps(props: ComposeListItemProps) {
+  if (props.colors !== undefined) assertComposeColors(props.colors, listItemColorKeys, 'ListItem')
+  if (props.tonalElevation !== undefined) {
+    assertFiniteNumber(props.tonalElevation, 'ListItem tonalElevation')
+    if (props.tonalElevation < 0)
+      throw new Error('Compose ListItem tonalElevation must be nonnegative')
+  }
+  if (props.shadowElevation !== undefined) {
+    assertFiniteNumber(props.shadowElevation, 'ListItem shadowElevation')
+    if (props.shadowElevation < 0)
+      throw new Error('Compose ListItem shadowElevation must be nonnegative')
+  }
+}
 
 export function validateBadgeProps(
   props: Pick<ComposeBadgeProps, 'containerColor' | 'contentColor'>

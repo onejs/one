@@ -26,6 +26,7 @@ import type {
   ComposeHorizontalArrangement,
   ComposeIconProps,
   ComposeInputChipProps,
+  ComposeListItemProps,
   ComposeNodeProps,
   ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
@@ -59,6 +60,7 @@ import {
   validateDividerProps,
   validateChipProps,
   validateIconProps,
+  validateListItemProps,
   validateProgressIndicatorProps,
   validateRadioButtonProps,
   validateRowProps,
@@ -75,6 +77,8 @@ type ComposeNodeType =
   | 'badge'
   | 'badgedbox'
   | 'badgeslot'
+  | 'listitem'
+  | 'listitemslot'
   | 'card'
   | 'elevatedcard'
   | 'outlinedcard'
@@ -124,6 +128,9 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   radioColors?: ComposeRadioButtonProps['colors']
   cardColors?: ComposeCardProps['colors']
   badgeColors?: Pick<ComposeBadgeProps, 'containerColor' | 'contentColor'>
+  listItemColors?: ComposeListItemProps['colors']
+  tonalElevation?: number
+  shadowElevation?: number
   cardElevation?: number
   cardBorder?: ComposeCardProps['border']
   dividerStyle?: Pick<ComposeDividerProps, 'thickness' | 'color'>
@@ -291,6 +298,35 @@ const BadgedBox = Object.assign(BadgedBoxRoot, {
   Badge: ({ children }: { children: ReactNode }) => (
     <ComposeNode nodeType="badgeslot" slotName="badge">{children}</ComposeNode>
   ),
+})
+
+function ListItemRoot({ children, colors, tonalElevation, shadowElevation, ...props }: ComposeListItemProps) {
+  validateListItemProps({ colors, tonalElevation, shadowElevation })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="listitem"
+      listItemColors={colors}
+      tonalElevation={tonalElevation}
+      shadowElevation={shadowElevation}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function listItemSlot(slotName: string) {
+  return ({ children }: { children: ReactNode }) => (
+    <ComposeNode nodeType="listitemslot" slotName={slotName}>{children}</ComposeNode>
+  )
+}
+
+const ListItem = Object.assign(ListItemRoot, {
+  HeadlineContent: listItemSlot('headlineContent'),
+  OverlineContent: listItemSlot('overlineContent'),
+  SupportingContent: listItemSlot('supportingContent'),
+  LeadingContent: listItemSlot('leadingContent'),
+  TrailingContent: listItemSlot('trailingContent'),
 })
 
 function renderCard(
@@ -786,6 +822,7 @@ export const Compose = {
   Box,
   Badge,
   BadgedBox,
+  ListItem,
   Card,
   ElevatedCard,
   OutlinedCard,
