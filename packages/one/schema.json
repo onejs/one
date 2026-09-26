@@ -1776,6 +1776,31 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeConcentricRectangle",
+      "publicName": "ConcentricRectangle",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeVideoPlayer",
       "publicName": "VideoPlayer",
       "props": {
