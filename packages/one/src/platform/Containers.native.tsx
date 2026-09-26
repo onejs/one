@@ -19,6 +19,10 @@ import NativeHost from './specs/OneNativeHostNativeComponent'
 import NativeLabeledContent from './specs/OneNativeLabeledContentNativeComponent'
 import NativeLazyHStack from './specs/OneNativeLazyHStackNativeComponent'
 import NativeLazyVStack from './specs/OneNativeLazyVStackNativeComponent'
+import NativeLazyVGrid from './specs/OneNativeLazyVGridNativeComponent'
+import NativeLazyHGrid from './specs/OneNativeLazyHGridNativeComponent'
+import NativeGrid from './specs/OneNativeGridNativeComponent'
+import NativeGridRow from './specs/OneNativeGridRowNativeComponent'
 import NativeLink from './specs/OneNativeLinkNativeComponent'
 import NativeList from './specs/OneNativeListNativeComponent'
 import NativeOverlay from './specs/OneNativeOverlayNativeComponent'
@@ -77,13 +81,24 @@ import {
 import { glassEffects, glassEffectShapes, materials } from './generated/controlTypes'
 import { InsideContainer, assertOneNativeChildren } from './containerChildren'
 import { NavigationStack } from './NavigationStack.native'
+import {
+  gridAlignments,
+  gridHorizontalAlignments,
+  gridVerticalAlignments,
+  gridItems,
+  gridSpacing,
+  type GridProps,
+  type GridRowProps,
+  type LazyHGridProps,
+  type LazyVGridProps,
+} from './gridTypes'
 
 // the shared container child rules live in one module so the navigation stack can use
 // them without importing this file back.
 export { InsideContainer, assertOneNativeChildren }
 
 const containers =
-  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.List, Swift.ScrollView, Swift.LazyVStack, Swift.LazyHStack, Swift.ControlGroup, Swift.DisclosureGroup, Swift.Link, Swift.Group, Swift.Overlay, Swift.SwipeActions, Swift.NavigationStack, Swift.Toolbar, or Swift.ToolbarItem'
+  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.List, Swift.ScrollView, Swift.LazyVStack, Swift.LazyHStack, Swift.LazyVGrid, Swift.LazyHGrid, Swift.Grid, Swift.GridRow, Swift.ControlGroup, Swift.DisclosureGroup, Swift.Link, Swift.Group, Swift.Overlay, Swift.SwipeActions, Swift.NavigationStack, Swift.Toolbar, or Swift.ToolbarItem'
 
 function nativeEnvironmentProps({
   colorScheme,
@@ -365,6 +380,64 @@ export function LazyHStack({
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeLazyHStack>
+  )
+}
+
+export function LazyVGrid({
+  columns, alignment = 'center', spacing, children, style, ...props
+}: LazyVGridProps) {
+  if (!gridHorizontalAlignments.includes(alignment))
+    throw new Error('Swift.LazyVGrid alignment must be leading, center, or trailing')
+  assertOneNativeChildren(children, 'Swift.LazyVGrid')
+  return (
+    <NativeLazyVGrid {...props} style={[{ alignSelf: 'stretch' }, style]}
+      columns={gridItems(columns, 'Swift.LazyVGrid')} alignment={alignment}
+      spacing={gridSpacing(spacing, 'Swift.LazyVGrid')}>
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeLazyVGrid>
+  )
+}
+
+export function LazyHGrid({
+  rows, alignment = 'center', spacing, children, style, ...props
+}: LazyHGridProps) {
+  if (!gridVerticalAlignments.includes(alignment))
+    throw new Error('Swift.LazyHGrid alignment must be a SwiftUI VerticalAlignment')
+  assertOneNativeChildren(children, 'Swift.LazyHGrid')
+  return (
+    <NativeLazyHGrid {...props} style={[{ alignSelf: 'stretch' }, style]}
+      rows={gridItems(rows, 'Swift.LazyHGrid')} alignment={alignment}
+      spacing={gridSpacing(spacing, 'Swift.LazyHGrid')}>
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeLazyHGrid>
+  )
+}
+
+export function Grid({
+  alignment = 'center', horizontalSpacing, verticalSpacing, children, style, ...props
+}: GridProps) {
+  if (!gridAlignments.includes(alignment))
+    throw new Error('Swift.Grid alignment must be a SwiftUI Alignment')
+  assertOneNativeChildren(children, 'Swift.Grid')
+  return (
+    <NativeGrid {...props} style={[{ alignSelf: 'stretch' }, style]}
+      alignment={alignment}
+      horizontalSpacing={gridSpacing(horizontalSpacing, 'Swift.Grid horizontal')}
+      verticalSpacing={gridSpacing(verticalSpacing, 'Swift.Grid vertical')}>
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeGrid>
+  )
+}
+
+export function GridRow({ alignment, children, style, ...props }: GridRowProps) {
+  if (alignment !== undefined && !gridVerticalAlignments.includes(alignment))
+    throw new Error('Swift.GridRow alignment must be a SwiftUI VerticalAlignment')
+  assertOneNativeChildren(children, 'Swift.GridRow')
+  return (
+    <NativeGridRow {...props} style={[{ alignSelf: 'stretch' }, style]}
+      alignment={alignment ?? ''}>
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeGridRow>
   )
 }
 

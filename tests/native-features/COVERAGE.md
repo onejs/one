@@ -26,13 +26,17 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Section` | containers, lists, groups, popover, accessibility | n/a |  |
 | `One.iOS.Glass` | missing | n/a | no fixture or suite |
 | `One.iOS.LabeledContent` | missing | n/a | no fixture or suite |
-| `One.iOS.Button` | leaves, host, containers, lists, groups, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Spacer` | missing | n/a | no fixture or suite |
 | `One.iOS.Slot` | containers | n/a |  |
 | `One.iOS.List` | lists, groups | n/a |  |
-| `One.iOS.ScrollView` | lists | n/a |  |
+| `One.iOS.ScrollView` | lists, grids | n/a |  |
 | `One.iOS.LazyVStack` | lists | n/a |  |
 | `One.iOS.LazyHStack` | lists | n/a |  |
+| `One.iOS.LazyVGrid` | grids | n/a |  |
+| `One.iOS.LazyHGrid` | grids | n/a |  |
+| `One.iOS.Grid` | grids | n/a |  |
+| `One.iOS.GridRow` | grids | n/a |  |
 | `One.iOS.ControlGroup` | groups | n/a |  |
 | `One.iOS.DisclosureGroup` | groups | n/a |  |
 | `One.iOS.Divider` | groups | n/a |  |
@@ -54,7 +58,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Toggle` | pickers, forms, host, containers, lists, state, accessibility | n/a |  |
 | `One.iOS.Slider` | pickers, forms | n/a |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a |  |
-| `One.iOS.Text` | containers, lists, groups, state, popover, accessibility | n/a |  |
+| `One.iOS.Text` | containers, lists, groups, state, grids, popover, accessibility | n/a |  |
 | `One.iOS.Label` | leaves, containers | n/a |  |
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |

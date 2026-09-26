@@ -1,4 +1,4 @@
-import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, Group, HStack, Host, LabeledContent, LazyHStack, LazyVStack, Link, List, ScrollView, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
+import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, Group, HStack, Host, LabeledContent, LazyHStack, LazyVStack, LazyHGrid, LazyVGrid, Grid, GridRow, Link, List, ScrollView, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
 import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './AndroidMenu';
 import { Page, Pager } from './Pager.native';
 import { Popover } from './Popover.native';
@@ -78,6 +78,10 @@ export declare const Swift: {
     ScrollView: typeof ScrollView;
     LazyVStack: typeof LazyVStack;
     LazyHStack: typeof LazyHStack;
+    LazyVGrid: typeof LazyVGrid;
+    LazyHGrid: typeof LazyHGrid;
+    Grid: typeof Grid;
+    GridRow: typeof GridRow;
     ControlGroup: typeof ControlGroup;
     DisclosureGroup: typeof DisclosureGroup;
     Divider: typeof Divider;

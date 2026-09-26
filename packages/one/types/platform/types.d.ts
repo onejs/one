@@ -4,6 +4,7 @@ export type * from './generated/sheetTypes';
 export type * from './generated/popoverTypes';
 export type * from './generated/containerTypes';
 export type * from './listTypes';
+export type * from './gridTypes';
 export type * from './groupTypes';
 export type * from './textTypes';
 import type { ReactNode } from 'react';

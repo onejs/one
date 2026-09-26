@@ -253,6 +253,116 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeLazyVGrid",
+      "publicName": "LazyVGrid",
+      "props": {
+        "columns": {
+          "type": "string"
+        },
+        "alignment": {
+          "type": "string"
+        },
+        "spacing": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeLazyHGrid",
+      "publicName": "LazyHGrid",
+      "props": {
+        "rows": {
+          "type": "string"
+        },
+        "alignment": {
+          "type": "string"
+        },
+        "spacing": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeGrid",
+      "publicName": "Grid",
+      "props": {
+        "alignment": {
+          "type": "string"
+        },
+        "horizontalSpacing": {
+          "type": "string"
+        },
+        "verticalSpacing": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeGridRow",
+      "publicName": "GridRow",
+      "props": {
+        "alignment": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeControlGroup",
       "publicName": "ControlGroup",
       "props": {

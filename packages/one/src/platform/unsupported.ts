@@ -13,6 +13,10 @@ import type {
   LabeledContentProps,
   LazyHStackProps,
   LazyVStackProps,
+  LazyVGridProps,
+  LazyHGridProps,
+  GridProps,
+  GridRowProps,
   LinkProps,
   ListProps,
   MenuProps,
@@ -130,6 +134,18 @@ function LazyHStack(_props: LazyHStackProps): never {
     'Swift.LazyHStack requires an iOS native build'
   )
 }
+function LazyVGrid(_props: LazyVGridProps): never {
+  throw new Error('Swift.LazyVGrid requires an iOS native build')
+}
+function LazyHGrid(_props: LazyHGridProps): never {
+  throw new Error('Swift.LazyHGrid requires an iOS native build')
+}
+function Grid(_props: GridProps): never {
+  throw new Error('Swift.Grid requires an iOS native build')
+}
+function GridRow(_props: GridRowProps): never {
+  throw new Error('Swift.GridRow requires an iOS native build')
+}
 function ControlGroup(_props: ControlGroupProps): never {
   throw new Error(
     'Swift.ControlGroup requires an iOS native build'
@@ -230,6 +246,10 @@ export const Swift = {
   ScrollView,
   LazyVStack,
   LazyHStack,
+  LazyVGrid,
+  LazyHGrid,
+  Grid,
+  GridRow,
   ControlGroup,
   DisclosureGroup,
   Divider,
