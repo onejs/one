@@ -137,6 +137,25 @@ export function startUpdatesServer(artifactDir: string, platform: 'ios' | 'andro
       )
     )
 
+  // a manifest whose id and asset path climb out of the updates directory:
+  // the launcher refuses it as unusable before any file is written.
+  const serveEscapingPaths = () => {
+    const served = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+    fs.writeFileSync(
+      manifestPath,
+      JSON.stringify(
+        {
+          ...served,
+          id: '..',
+          createdAt: new Date().toISOString(),
+          assets: [...served.assets, { ...served.launchAsset, path: '../../escaped' }],
+        },
+        null,
+        2
+      )
+    )
+  }
+
   // the tamper lands on the launch asset: every publish emits fresh bundle
   // bytes, so the client always downloads it, while a republished image
   // would hard-link from disk and never touch the tampered bytes.
@@ -152,7 +171,7 @@ export function startUpdatesServer(artifactDir: string, platform: 'ios' | 'andro
     server.stop()
   }
 
-  return { publish, serveForeignRuntime, tamperLaunchAsset, stop }
+  return { publish, serveForeignRuntime, serveEscapingPaths, tamperLaunchAsset, stop }
 }
 
 // the launcher's state file, parsed strictly: the suite asserts on it.
