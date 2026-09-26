@@ -30,6 +30,10 @@
     "./vite-plugin": {
       "types": "./types/vxrn-vite-plugin.d.ts",
       "default": "./dist/vxrn-vite-plugin.mjs"
+    },
+    "./native-source-contract": {
+      "types": "./types/native-source-contract.d.ts",
+      "default": "./dist/native-source-contract.mjs"
     }
   },
   "module": "dist",

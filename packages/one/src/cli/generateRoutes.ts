@@ -1,5 +1,6 @@
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
+import { writeNativeSourceDeclarations } from 'vxrn/native-source-contract'
 import { generateRouteTypes } from '../typed-routes/generateRouteTypes'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 import { loadUserOneOptions } from '../vite/loadConfig'
@@ -68,6 +69,7 @@ export async function run(args: { appDir?: string; typed?: string } = {}) {
   }
 
   await generateRouteTypes(outFile, routerRoot, ignoredRouteFiles, typedRoutesMode)
+  writeNativeSourceDeclarations(cwd)
   if (typedRoutesMode) {
   }
 }
