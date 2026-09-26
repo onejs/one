@@ -44,6 +44,7 @@ declare module 'one' {
         | `/one-native-crypto`
         | `/one-native-dialogs`
         | `/one-native-document-picker`
+        | `/one-native-device`
         | `/one-native-effects`
         | `/one-native-fetch`
         | `/one-native-fonts`

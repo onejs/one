@@ -122,6 +122,8 @@ export { Share } from './share/index.native';
 export type { ShareItem, ShareItemType, ShareResult } from './share/index.native';
 export { PhotoLibrary } from './photo-library/index.native';
 export type { PhotoLibraryPermissionStatus } from './photo-library/index.native';
+export { Device } from './device/index.native';
+export type { DeviceInfo } from './device/index.native';
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native';
 export { AppInfo } from './app-info/index.native';
 export type { AppInfoApi } from './app-info/index.native';

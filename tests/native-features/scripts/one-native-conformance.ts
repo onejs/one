@@ -42,6 +42,7 @@ const suites = [
   'haptics',
   'crypto',
   'app-info',
+  'device',
   'popover',
   'navigation',
   'accessibility',
@@ -300,6 +301,10 @@ const appInfoLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-app-info-refresh')) &&
   has(nodes, 'Version: ')
+const deviceLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-device-read')) &&
+  has(nodes, 'Model: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -435,6 +440,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   haptics: hapticsLoaded,
   crypto: cryptoLoaded,
   'app-info': appInfoLoaded,
+  device: deviceLoaded,
   popover: popoverLoaded,
   navigation: navigationLoaded,
   accessibility: accessibilityLoaded,
@@ -478,6 +484,7 @@ const suiteHome: Record<Suite, string> = {
   haptics: 'nav-one-native-haptics',
   crypto: 'nav-one-native-crypto',
   'app-info': 'nav-one-native-app-info',
+  device: 'nav-one-native-device',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -2448,6 +2455,33 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           labels(n).includes('ApplicationId: dev.vxrn.native.tests')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'device') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-device')
+    await wait('device fixture starts without a result', (n) =>
+      labels(n).includes('Model: pending') && labels(n).includes('Error: none')
+    )
+    tap({ id: 'one-native-device-read' })
+    await wait('device snapshot matches the iOS 27 simulator', (n) => {
+      const values = labels(n)
+      return (
+        values.includes('Model: iPhone') &&
+        values.some((value) => /^System: iOS 27(?:\.|$)/.test(value)) &&
+        values.includes('Idiom: phone') &&
+        values.includes('Simulator: true') &&
+        values.some((value) =>
+          /^Vendor: [0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}$/.test(
+            value
+          )
+        ) &&
+        values.includes('Error: none')
+      )
+    })
+    screenshot('device-info.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

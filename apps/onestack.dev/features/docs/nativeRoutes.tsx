@@ -61,6 +61,7 @@ export const nativeRoutes = [
       { title: 'Haptics', route: '/native/haptics' },
       { title: 'Crypto', route: '/native/crypto' },
       { title: 'App Info', route: '/native/app-info' },
+      { title: 'Device', route: '/native/device' },
       { title: 'ImagePicker', route: '/native/image-picker' },
       { title: 'DocumentPicker', route: '/native/document-picker' },
       { title: 'SecureStore', route: '/native/secure-store' },

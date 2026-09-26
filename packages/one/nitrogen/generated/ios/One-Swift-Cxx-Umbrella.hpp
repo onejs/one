@@ -54,6 +54,8 @@ namespace margelo::nitro::one { struct BrowserResult; }
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class CameraPermissionStatus; }
+// Forward declaration of `DeviceInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct DeviceInfo; }
 // Forward declaration of `DocumentPickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct DocumentPickerAsset; }
 // Forward declaration of `DocumentPickerNativeResult` to properly resolve imports.
@@ -98,6 +100,8 @@ namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 // Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneCryptoSpec; }
+// Forward declaration of `HybridOneDeviceSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneDeviceSpec; }
 // Forward declaration of `HybridOneDocumentPickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDocumentPickerSpec; }
 // Forward declaration of `HybridOneFetchSpec` to properly resolve imports.
@@ -247,6 +251,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "BrowserResultType.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
+#include "DeviceInfo.hpp"
 #include "DocumentPickerAsset.hpp"
 #include "DocumentPickerNativeResult.hpp"
 #include "FetchBlobRef.hpp"
@@ -269,6 +274,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
+#include "HybridOneDeviceSpec.hpp"
 #include "HybridOneDocumentPickerSpec.hpp"
 #include "HybridOneFetchSpec.hpp"
 #include "HybridOneFileSystemSpec.hpp"
@@ -366,6 +372,8 @@ namespace One { class HybridOneBrowserSpec_cxx; }
 namespace One { class HybridOneClipboardSpec_cxx; }
 // Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneCryptoSpec_cxx; }
+// Forward declaration of `HybridOneDeviceSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneDeviceSpec_cxx; }
 // Forward declaration of `HybridOneDocumentPickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDocumentPickerSpec_cxx; }
 // Forward declaration of `HybridOneFetchSpec_cxx` to properly resolve imports.

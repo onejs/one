@@ -51,7 +51,7 @@ checklist; One's own exports and docs decide the status.
 | Splash | partial | launch storyboard and first-content hold; no imperative hide API | prebuild only | P2 |
 | Status bar | partial | React Native StatusBar, no One facade | none | P3 |
 | Safe area | covered | `One.UI.SafeArea` | safe-area | done |
-| Device identity | partial | `One.AppInfo` binary ID; no model/system snapshot | app-info fixture | P1 |
+| Device identity | covered | `One.AppInfo` binary ID; `One.iOS.Device` model, OS, idiom, simulator, vendor ID | app-info, device | done |
 | Network state/fetch | covered | `One.Network`, `One` fetch | network and fetch fixtures | done |
 | Speech recognition | covered | `One.Speech` | speech fixture | done |
 | Fonts | covered | `One.UI.Fonts` | fonts | done |
@@ -72,7 +72,10 @@ checklist; One's own exports and docs decide the status.
    it covered. Splash control still needs a launch timing proof.
 4. Add-only Photos saving landed with an iOS 27 image and video proof. Library management remains
    separate because it needs read/write permission and different privacy UX.
-5. Continue P1 then P2. Update this matrix and the docs when each slice lands.
+5. Device snapshot exposes the model family, system version, interface idiom,
+   simulator status, and optional vendor ID on iOS 27. Peach has device profile
+   data, but its OneDevice Nitro adapter belongs to the Contrast migration lane.
+6. Continue P1 then P2. Update this matrix and the docs when each slice lands.
 
 Avoid duplicating React Native surfaces only to rename them. Keep simulator
 limitations explicit; hardware-only effects need a device proof before `covered`.
