@@ -52,7 +52,12 @@ import { getRouteArtifactPaths } from './getRouteArtifactPath'
 import { getRoutes } from './getRoutes'
 import { setLastAction } from './lastAction'
 import { getResolvedLinking, resetLinking, setupLinking } from './linkingConfig'
-import { getSafeWindowPathname, normalizeRoutePathname, stripTrailingSlash } from './path'
+import {
+  getSafeWindowPath,
+  getSafeWindowPathname,
+  normalizeRoutePathname,
+  stripTrailingSlash,
+} from './path'
 import type { RouteNode } from './Route'
 import { sortRoutes } from './sortRoutes'
 import { getQualifiedRouteComponent } from './useScreens'
@@ -715,7 +720,15 @@ function useRootStateSnapshot<T>(snapshot: () => T): T {
     rerender()
     return unsubscribe
   }, [])
-  return state
+  // an optimistic navigation can publish route info before its transition
+  // commits. read a render-time root sync only when the browser has reached it.
+  // linkTo writes browser history after the navigator commits, so an urgent
+  // render during its transition still sees the old browser href.
+  const browserPath = getSafeWindowPath()
+  return browserPath !== undefined &&
+    routeInfo?.unstable_globalHref === browserPath + window.location.hash
+    ? snapshot()
+    : state
 }
 
 export function useStoreRootState() {
