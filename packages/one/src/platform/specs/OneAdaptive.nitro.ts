@@ -1,7 +1,7 @@
 import type { HybridObject } from 'react-native-nitro-modules'
 import type { HingeState, SizeClass } from '../adaptive/types'
 
-// window size class and hinge state behind One.UI.useSizeClass/useHinge.
+// window size class and hinge state behind One.useSizeClass/useHinge.
 // getInitial* are synchronous seed reads, evaluated once at JS import so the
 // first render already measures real (mirrors safe-area initialWindowMetrics).
 // a one-shot read plus change listeners: the first listener starts the

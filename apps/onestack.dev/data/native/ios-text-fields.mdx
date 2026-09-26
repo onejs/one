@@ -5,7 +5,7 @@ description: Text, Label, TextField, and SecureField under One.iOS
 
 Text display and text entry under `One.iOS`. `TextField` and `SecureField`
 take a plain string or a `NativeState` handle from
-`One.UI.useNativeState`, so keystrokes stay correct without a React render.
+`One.useNativeState`, so keystrokes stay correct without a React render.
 Both follow the controlled pattern with `revision`, focus props
 (`focused`, `onFocusChange`, `focusRevision`), and `onSubmit`.
 
@@ -51,7 +51,7 @@ placeholder, `textFieldStyle` selects the SwiftUI text field style, and
 ```tsx
 import { One } from 'one'
 
-const name = One.UI.useNativeState('')
+const name = One.useNativeState('')
 
 <One.iOS.TextField
   label="Name"

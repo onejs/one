@@ -22,7 +22,7 @@ web, with no separate safe area package in your app.
 import { One } from 'one'
 
 function Padded() {
-  const insets = One.UI.SafeArea.useInsets()
+  const insets = One.useSafeAreaInsets()
   return <Content style={{ paddingTop: insets.top }} />
 }
 ```

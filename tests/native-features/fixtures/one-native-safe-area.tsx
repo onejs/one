@@ -9,8 +9,8 @@ import { One } from 'one'
 // provider and the text input exist for the Android nested/IME coverage;
 // the iOS suite only reads the outer labels.
 function Readout({ prefix }: { prefix: string }) {
-  const insets = One.UI.SafeArea.useInsets()
-  const frame = One.UI.SafeArea.useFrame()
+  const insets = One.useSafeAreaInsets()
+  const frame = One.useSafeAreaFrame()
   return (
     <View>
       <Text>{`${prefix}Insets: ${insets.top} ${insets.right} ${insets.bottom} ${insets.left}`}</Text>

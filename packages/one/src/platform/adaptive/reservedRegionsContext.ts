@@ -14,7 +14,7 @@ export const ReservedRegionsContext = createContext<ReservedRegionsSnapshot | nu
 function useSnapshot(hook: string): ReservedRegionsSnapshot {
   const snapshot = useContext(ReservedRegionsContext)
   if (!snapshot) {
-    throw new Error(`One.UI.ReservedRegions.${hook} must be used inside One.UI.ReservedRegions.Provider`)
+    throw new Error(`One.${hook} must be used inside One.UI.ReservedRegions.Provider`)
   }
   return snapshot
 }
@@ -26,7 +26,7 @@ function useSnapshot(hook: string): ReservedRegionsSnapshot {
  * only unless `includeInactive` is set.
  */
 export function useRegions(options?: ReservedRegionOptions): readonly ReservedRegion[] {
-  const { regions } = useSnapshot('useRegions')
+  const { regions } = useSnapshot('useReservedRegions')
   const kind = options?.kind
   const includeInactive = options?.includeInactive === true
   return useMemo(
@@ -43,7 +43,7 @@ export function useRegions(options?: ReservedRegionOptions): readonly ReservedRe
  * included. It stays true for the provider's lifetime.
  */
 export function useReady(): boolean {
-  return useSnapshot('useReady').ready
+  return useSnapshot('useReservedRegionsReady').ready
 }
 
 /**
@@ -53,7 +53,7 @@ export function useReady(): boolean {
  * segment. Occlusions do not divide a window.
  */
 export function useSegments(): readonly WindowSegment[] {
-  const { bounds, ready, regions } = useSnapshot('useSegments')
+  const { bounds, ready, regions } = useSnapshot('useWindowSegments')
   return useMemo(() => {
     if (!ready || !bounds || bounds.width <= 0 || bounds.height <= 0) return []
     return segmentsFor(bounds, regions)

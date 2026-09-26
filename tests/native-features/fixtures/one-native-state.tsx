@@ -2,8 +2,8 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 export default function OneNativeState() {
-  const name = One.UI.useNativeState('')
-  const flag = One.UI.useNativeState(false)
+  const name = One.useNativeState('')
+  const flag = One.useNativeState(false)
 
   return (
     <View style={styles.screen} testID="one-native-state-screen">

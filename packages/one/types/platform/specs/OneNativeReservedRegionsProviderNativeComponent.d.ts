@@ -2,6 +2,8 @@ import type { ViewProps } from 'react-native';
 import type { DirectEventHandler, Double } from 'react-native/Libraries/Types/CodegenTypes';
 interface NativeProps extends ViewProps {
     onNativeReservedRegionsChange?: DirectEventHandler<Readonly<{
+        width: Double;
+        height: Double;
         regions: {
             id: string;
             kind: string;

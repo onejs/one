@@ -82,6 +82,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Widgets` | missing | n/a | needs a widget extension target in the fixture app |
 | `One.iOS.LiveActivities` | missing | n/a | needs a widget extension target in the fixture app |
 | `One.iOS.WidgetUI` | missing | n/a | needs a widget extension target in the fixture app |
+| `One.iOS.LocalAuthentication` | local-authentication | n/a |  |
 | `One.iOS.Color` | e2e:color-test, e2e:toolbar-test, e2e:menu-test | n/a |  |
 | `One.iOS.MenuAction` | e2e:menu-test | n/a |  |
 | `One.iOS.SplitView` | e2e:split-view-test | n/a |  |
@@ -97,6 +98,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Android.Icon` | n/a | android |  |
 | `One.Android.Button` | n/a | android, android-inputs |  |
 | `One.Android.Switch` | n/a | android |  |
+| `One.Android.Checkbox` | n/a | missing |  |
+| `One.Android.RadioButton` | n/a | missing |  |
 | `One.Android.TextField` | n/a | android-inputs |  |
 | `One.Android.Slider` | n/a | android-inputs |  |
 | `One.Android.AlertDialog` | n/a | android-inputs |  |
@@ -117,13 +120,6 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.UI.Fonts` | fonts | fonts |  |
 | `One.UI.SafeArea` | safe-area | safe-area |  |
 | `One.UI.TextInput` | missing | missing | no fixture or suite |
-| `One.UI.useFonts` | fonts | fonts |  |
-| `One.UI.useNativeState` | state | missing | iOS suite only |
-| `One.UI.useSizeClass` | missing | missing | fixture exists, no suite opens it |
-| `One.UI.getSizeClass` | missing | missing | no fixture or suite |
-| `One.UI.useHinge` | missing | missing | fixture exists, no suite opens it |
-| `One.UI.getHinge` | missing | missing | no fixture or suite |
-| `One.UI.onHingeChange` | missing | missing | no fixture or suite |
 | `One.UI.ReservedRegions` | missing | missing | fixture exists, no suite opens it |
 | `One.Notifications` | notifications | notifications |  |
 | `One.Clipboard` | clipboard | missing | iOS suite only |
@@ -136,4 +132,17 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.SecureStore` | missing | missing | no fixture or suite |
 | `One.Speech` | speech | speech |  |
 | `One.Updates` | updates | updates |  |
+| `One.useFonts` | fonts | fonts |  |
+| `One.useNativeState` | state | missing | iOS suite only |
 | `One.useNetworkState` | missing | missing | no fixture or suite |
+| `One.useSafeAreaFrame` | safe-area | safe-area |  |
+| `One.useSafeAreaInsets` | safe-area | safe-area |  |
+| `One.useSizeClass` | missing | missing | fixture exists, no suite opens it |
+| `One.getSizeClass` | missing | missing | no fixture or suite |
+| `One.useHinge` | missing | missing | fixture exists, no suite opens it |
+| `One.getHinge` | missing | missing | no fixture or suite |
+| `One.onHingeChange` | missing | missing | no fixture or suite |
+| `One.useReservedRegions` | missing | missing | fixture exists, no suite opens it |
+| `One.useReservedRegionsReady` | missing | missing | fixture exists, no suite opens it |
+| `One.useWindowSegments` | missing | missing | fixture exists, no suite opens it |
+| `One.useSpanning` | missing | missing | fixture exists, no suite opens it |

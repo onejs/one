@@ -2,6 +2,7 @@ import type { HingeState, SizeClass } from './types';
 import * as ReservedRegions from './ReservedRegions.native';
 export type * from './types';
 export { ReservedRegions };
+export { useRegions as useReservedRegions, useReady as useReservedRegionsReady, useSegments as useWindowSegments, useSpanning, } from './reservedRegionsContext';
 /**
  * Returns the window's horizontal and vertical size class as live React state.
  * iOS reads the window scene's UIUserInterfaceSizeClass with live

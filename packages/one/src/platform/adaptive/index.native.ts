@@ -6,6 +6,12 @@ import * as ReservedRegions from './ReservedRegions.native'
 
 export type * from './types'
 export { ReservedRegions }
+export {
+  useRegions as useReservedRegions,
+  useReady as useReservedRegionsReady,
+  useSegments as useWindowSegments,
+  useSpanning,
+} from './reservedRegionsContext'
 
 // the OneAdaptive nitro hybrid object, created once at import and cached.
 // every binary carries the One pod, so a missing hybrid throws instead of
