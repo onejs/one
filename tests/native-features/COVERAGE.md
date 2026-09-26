@@ -133,7 +133,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Browser` | browser | browser |  |
 | `One.ImagePicker` | image-picker | image-picker |  |
 | `One.DocumentPicker` | missing | missing | fixture exists, no suite opens it |
-| `One.SecureStore` | missing | missing | no fixture or suite |
+| `One.SecureStore` | secure-store | secure-store |  |
 | `One.Speech` | speech | speech |  |
 | `One.Updates` | updates | updates |  |
 | `One.useNetworkState` | missing | missing | no fixture or suite |

@@ -2243,6 +2243,8 @@ async function run(config: Config) {
       ["NoContent", "204 null"],
       ["Clone", "true true"],
       ["Identity", "true false"],
+      ["UriForm", "multipart/form-data true true"],
+      ["UriMissing", "type error"],
       ["Abort", "first AbortError"],
       ["AbortBefore", "AbortError"],
       ["Refused", "type error"],
@@ -2254,6 +2256,78 @@ async function run(config: Config) {
         )
       console.log(`PASS fetch-${name.toLowerCase()}`)
     }
+
+    // secure store: async and sync verbs read each other's writes, a missing
+    // key reads null, and a value written before a cold relaunch reads back on
+    // mount. the clear before the run makes the relaunch read the negative
+    // control: it can only say kept if the store survived the process.
+    relaunchApp(config)
+    await expect('secure-store-home', (nodes) => exactlyOneId(nodes, 'home-screen'), 'home-screen')
+    await tapNavigation(config, 'nav-one-native-secure-store')
+    await expect(
+      'secure-store-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle'),
+      'one-native-secure-store-run'
+    )
+    tapFresh(config, 'one-native-secure-store-clear', {
+      id: 'one-native-secure-store-clear',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'secure-store-cleared',
+      (nodes) => textIncludes(nodes, 'Status: cleared'),
+      'one-native-secure-store-run'
+    )
+    tapFresh(config, 'one-native-secure-store-run', {
+      id: 'one-native-secure-store-run',
+      role: 'button',
+      clickable: true,
+    })
+    const stored = await expect(
+      'secure-store-checks-report',
+      (nodes) => textIncludes(nodes, 'Status: done') || textIncludes(nodes, 'Status: failed'),
+      'one-native-secure-store-run'
+    )
+    const storeLabels = stored.nodes.flatMap((node) => nodeValues(node))
+    const storeFailure = storeLabels.find((label) => label.startsWith('Status: failed'))
+    if (storeFailure) throw new Error(storeFailure)
+    const storeExpected: [string, string][] = [
+      ['AsyncMissing', 'null'],
+      ['Async', 'a2'],
+      ['AsyncDeleted', 'null'],
+      ['SyncMissing', 'null'],
+      ['Sync', 's2'],
+      ['SyncToAsync', 's2'],
+      ['AsyncToSync', 'from async'],
+      ['SyncDeleted', 'null'],
+      ['EmptyKey', 'Error'],
+    ]
+    for (const [name, value] of storeExpected) {
+      if (!storeLabels.includes(`${name}: ${value}`))
+        throw new Error(
+          `secure-store ${name}: expected ${JSON.stringify(value)}, got ${JSON.stringify(storeLabels.find((label) => label.startsWith(`${name}: `)))}`
+        )
+      console.log(`PASS secure-store-${name.toLowerCase()}`)
+    }
+    relaunchApp(config)
+    await expect('secure-store-relaunch-home', (nodes) => exactlyOneId(nodes, 'home-screen'), 'home-screen')
+    await tapNavigation(config, 'nav-one-native-secure-store')
+    await expect(
+      'secure-store-persisted',
+      (nodes) => textIncludes(nodes, 'Persisted: kept'),
+      'one-native-secure-store-run'
+    )
+    tapFresh(config, 'one-native-secure-store-clear', {
+      id: 'one-native-secure-store-clear',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'secure-store-cleared-after-relaunch',
+      (nodes) => textIncludes(nodes, 'Status: cleared'),
+      'one-native-secure-store-run'
+    )
 
     // notifications slice n1: clear app data so the permission starts
     // undetermined like a fresh install, then grant and read back.

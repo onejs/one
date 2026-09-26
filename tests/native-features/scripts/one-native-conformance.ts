@@ -51,6 +51,7 @@ const suites = [
   'apple-auth',
   'speech',
   'fetch',
+  'secure-store',
   'clipboard',
   'network',
   'browser',
@@ -323,6 +324,8 @@ const appleAuthLoaded = (nodes: Node[]) =>
 // the microphone and speech prompts cover the fixture during the request
 const fetchLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-fetch-run')) && has(nodes, 'Status: ')
+const secureStoreLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-secure-store-run')) && has(nodes, 'Persisted: ')
 const speechLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-speech-start')) && has(nodes, 'Available: ')) ||
@@ -414,6 +417,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'apple-auth': appleAuthLoaded,
   speech: speechLoaded,
   fetch: fetchLoaded,
+  'secure-store': secureStoreLoaded,
   clipboard: clipboardLoaded,
   network: networkLoaded,
   browser: browserLoaded,
@@ -449,6 +453,7 @@ const suiteHome: Record<Suite, string> = {
   'apple-auth': 'nav-one-native-apple-auth',
   speech: 'nav-one-native-speech',
   fetch: 'nav-one-native-fetch',
+  'secure-store': 'nav-one-native-secure-store',
   clipboard: 'nav-one-native-clipboard',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
@@ -4249,6 +4254,54 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
+  if (config.suite === 'secure-store') {
+    // async and sync verbs read each other's writes, a missing key reads
+    // null, and a value written before a cold relaunch reads back on mount.
+    // the first mount clears the persist key, so the relaunch read is the
+    // negative control: it can only say kept if the store survived the process.
+    const expected: [string, string][] = [
+      ['AsyncMissing', 'null'],
+      ['Async', 'a2'],
+      ['AsyncDeleted', 'null'],
+      ['SyncMissing', 'null'],
+      ['Sync', 's2'],
+      ['SyncToAsync', 's2'],
+      ['AsyncToSync', 'from async'],
+      ['SyncDeleted', 'null'],
+      ['EmptyKey', 'Error'],
+    ]
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-secure-store')
+    await wait('secure store fixture mounted', (n) => has(n, 'Status: idle'))
+    tap({ id: 'one-native-secure-store-clear' })
+    await wait('persist key cleared', (n) => has(n, 'Status: cleared'))
+    tap({ id: 'one-native-secure-store-run' })
+    const final = await wait(
+      'every secure store check reports',
+      (n) => has(n, 'Status: done') || has(n, 'Status: failed')
+    )
+    screenshot('secure-store-checks.png')
+    const got = labels(final)
+    const failed = got.find((l) => l.startsWith('Status: failed'))
+    if (failed) throw new Error(failed)
+    for (const [name, value] of expected) {
+      if (!got.includes(`${name}: ${value}`))
+        throw new Error(`secure-store ${name}: expected ${JSON.stringify(value)}, got ${JSON.stringify(got.find((l) => l.startsWith(`${name}: `)))}`)
+      console.log(`PASS secure-store-${name.toLowerCase()}`)
+    }
+    stopApp()
+    launchApp()
+    await wait('relaunched home mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-secure-store')
+    await wait('value written before relaunch reads back', (n) => has(n, 'Persisted: kept'))
+    console.log('PASS secure-store-persist')
+    tap({ id: 'one-native-secure-store-clear' })
+    await wait('persist key cleared after relaunch', (n) => has(n, 'Status: cleared'))
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
   if (config.suite === 'fetch') {
     // every behavior the global fetch keeps from react native's fetch, plus
     // the streamed body it adds. the stream check is the negative control: a
@@ -4266,6 +4319,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       ["NoContent", "204 null"],
       ["Clone", "true true"],
       ["Identity", "true false"],
+      ["UriForm", "multipart/form-data true true"],
+      ["UriMissing", "type error"],
       ["Abort", "first AbortError"],
       ["AbortBefore", "AbortError"],
       ["Refused", "type error"],
