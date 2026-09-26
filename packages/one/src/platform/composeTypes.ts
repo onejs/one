@@ -168,6 +168,20 @@ export interface ComposeButtonProps extends ComposeLeafProps {
   onPress?: () => void
 }
 
+export type ComposeIconButtonColors = Readonly<{
+  containerColor?: ColorValue
+  contentColor?: ColorValue
+  disabledContainerColor?: ColorValue
+  disabledContentColor?: ColorValue
+}>
+
+export interface ComposeIconButtonProps extends ComposeNodeProps {
+  children: ReactNode
+  enabled?: boolean
+  colors?: ComposeIconButtonColors
+  onClick?: () => void
+}
+
 export interface ComposeSwitchProps extends ComposeLeafProps {
   isOn: boolean
   disabled?: boolean

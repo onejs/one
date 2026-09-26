@@ -12,6 +12,7 @@ import type {
   ComposeFilterChipProps,
   ComposeFlowRowProps,
   ComposeIconProps,
+  ComposeIconButtonProps,
   ComposeInputChipProps,
   ComposeListItemProps,
   ComposeProgressIndicatorProps,
@@ -221,6 +222,12 @@ const suggestionChipColorKeys = new Set([
   'labelColor',
   'iconContentColor',
 ])
+const iconButtonColorKeys = new Set([
+  'containerColor',
+  'contentColor',
+  'disabledContainerColor',
+  'disabledContentColor',
+])
 
 function assertComposeColorValue(value: unknown, name: string) {
   const resourcePaths =
@@ -402,6 +409,12 @@ export function validateButtonProps(props: ComposeButtonProps) {
   assertBoolean(props.iconFilled ?? false, 'Button iconFilled')
   if (props.icon !== undefined) composeIconGlyph('Button icon', props.icon)
   if (props.onPress !== undefined) assertFunction(props.onPress, 'Button onPress')
+}
+
+export function validateIconButtonProps(props: ComposeIconButtonProps) {
+  assertBoolean(props.enabled ?? true, 'IconButton enabled')
+  if (props.onClick !== undefined) assertFunction(props.onClick, 'IconButton onClick')
+  if (props.colors !== undefined) assertComposeColors(props.colors, iconButtonColorKeys, 'IconButton')
 }
 
 export function validateSwitchProps(props: ComposeSwitchProps) {

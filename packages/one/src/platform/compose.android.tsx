@@ -26,6 +26,7 @@ import type {
   ComposeHorizontalAlignment,
   ComposeHorizontalArrangement,
   ComposeIconProps,
+  ComposeIconButtonProps,
   ComposeInputChipProps,
   ComposeListItemProps,
   ComposeNodeProps,
@@ -62,6 +63,7 @@ import {
   validateFlowRowProps,
   validateChipProps,
   validateIconProps,
+  validateIconButtonProps,
   validateListItemProps,
   validateProgressIndicatorProps,
   validateRadioButtonProps,
@@ -95,6 +97,10 @@ type ComposeNodeType =
   | 'text'
   | 'icon'
   | 'button'
+  | 'iconbutton'
+  | 'fillediconbutton'
+  | 'filledtonaliconbutton'
+  | 'outlinediconbutton'
   | 'switch'
   | 'checkbox'
   | 'radio'
@@ -147,6 +153,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
     | ComposeSuggestionChipProps['colors']
   chipElevation?: number
   chipBorder?: ComposeFilterChipProps['border']
+  iconButtonColors?: ComposeIconButtonProps['colors']
   acknowledgedEvent?: number
   revision?: number
   textValue?: string
@@ -558,6 +565,40 @@ function Button({
   )
 }
 
+function renderIconButton(
+  nodeType: 'iconbutton' | 'fillediconbutton' | 'filledtonaliconbutton' | 'outlinediconbutton',
+  { children, enabled = true, colors, onClick, ...props }: ComposeIconButtonProps
+) {
+  validateIconButtonProps({ children, enabled, colors, onClick })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType={nodeType}
+      disabled={!enabled}
+      iconButtonColors={colors}
+      onNativeComposeNodeButtonPress={onClick ? () => onClick() : undefined}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function IconButton(props: ComposeIconButtonProps) {
+  return renderIconButton('iconbutton', props)
+}
+
+function FilledIconButton(props: ComposeIconButtonProps) {
+  return renderIconButton('fillediconbutton', props)
+}
+
+function FilledTonalIconButton(props: ComposeIconButtonProps) {
+  return renderIconButton('filledtonaliconbutton', props)
+}
+
+function OutlinedIconButton(props: ComposeIconButtonProps) {
+  return renderIconButton('outlinediconbutton', props)
+}
+
 function Switch({
   isOn,
   disabled = false,
@@ -862,6 +903,10 @@ export const Compose = {
   Text,
   Icon,
   Button,
+  IconButton,
+  FilledIconButton,
+  FilledTonalIconButton,
+  OutlinedIconButton,
   Switch,
   Checkbox,
   RadioButton,

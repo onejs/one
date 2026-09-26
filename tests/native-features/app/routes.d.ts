@@ -30,6 +30,7 @@ declare module 'one' {
         | `/one-native-android-badges`
         | `/one-native-android-list-items`
         | `/one-native-android-flow-row`
+        | `/one-native-android-icon-buttons`
         | `/one-native-android-inputs`
         | `/one-native-android-selection`
         | `/one-native-app-info`

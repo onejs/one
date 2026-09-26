@@ -97,9 +97,13 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ZoomTransitionAlignmentRectDetector` | missing | n/a | no fixture or suite |
 | `One.iOS.ZoomTransitionEnabler` | missing | n/a | on zoom-detail, which the zoom e2e reaches only by tap |
 | `One.iOS.ZoomTransitionSource` | e2e:zoom-test | n/a |  |
-| `One.Android.Column` | n/a | android, android-inputs, android-badges, android-list-items, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
-| `One.Android.Row` | n/a | android, android-inputs, android-badges, android-selection, android-dividers |  |
+| `One.Android.Column` | n/a | android, android-inputs, android-badges, android-list-items, android-selection, android-cards, android-dividers, android-filter-chip, android-chips, android-icon-buttons |  |
+| `One.Android.Row` | n/a | android, android-inputs, android-badges, android-selection, android-dividers, android-icon-buttons |  |
 | `One.Android.FlowRow` | n/a | android-flow-row |  |
+| `One.Android.IconButton` | n/a | android-icon-buttons |  |
+| `One.Android.FilledIconButton` | n/a | android-icon-buttons |  |
+| `One.Android.FilledTonalIconButton` | n/a | android-icon-buttons |  |
+| `One.Android.OutlinedIconButton` | n/a | android-icon-buttons |  |
 | `One.Android.Box` | n/a | android, android-inputs, android-flow-row |  |
 | `One.Android.Badge` | n/a | android-badges |  |
 | `One.Android.BadgedBox` | n/a | android-badges |  |
@@ -113,8 +117,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Android.AssistChip` | n/a | android-chips |  |
 | `One.Android.InputChip` | n/a | android-chips |  |
 | `One.Android.SuggestionChip` | n/a | android-chips |  |
-| `One.Android.Text` | n/a | android, android-inputs, android-badges, android-list-items, android-selection, android-cards, android-dividers, android-filter-chip, android-chips, android-flow-row |  |
-| `One.Android.Icon` | n/a | android, android-badges, android-list-items, android-filter-chip, android-chips |  |
+| `One.Android.Text` | n/a | android, android-inputs, android-badges, android-list-items, android-selection, android-cards, android-dividers, android-filter-chip, android-chips, android-flow-row, android-icon-buttons |  |
+| `One.Android.Icon` | n/a | android, android-badges, android-list-items, android-filter-chip, android-chips, android-icon-buttons |  |
 | `One.Android.Button` | n/a | android, android-inputs, android-selection, android-filter-chip |  |
 | `One.Android.Switch` | n/a | android |  |
 | `One.Android.Checkbox` | n/a | android-selection |  |

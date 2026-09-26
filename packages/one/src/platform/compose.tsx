@@ -16,6 +16,7 @@ import type {
   ComposeFilterChipProps,
   ComposeFlowRowProps,
   ComposeIconProps,
+  ComposeIconButtonProps,
   ComposeInputChipProps,
   ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
@@ -148,6 +149,22 @@ function Button(_props: ComposeButtonProps): never {
   return unsupported('Button')
 }
 
+function IconButton(_props: ComposeIconButtonProps): never {
+  return unsupported('IconButton')
+}
+
+function FilledIconButton(_props: ComposeIconButtonProps): never {
+  return unsupported('FilledIconButton')
+}
+
+function FilledTonalIconButton(_props: ComposeIconButtonProps): never {
+  return unsupported('FilledTonalIconButton')
+}
+
+function OutlinedIconButton(_props: ComposeIconButtonProps): never {
+  return unsupported('OutlinedIconButton')
+}
+
 function Switch(_props: ComposeSwitchProps): never {
   return unsupported('Switch')
 }
@@ -200,6 +217,10 @@ export const Compose = {
   Text,
   Icon,
   Button,
+  IconButton,
+  FilledIconButton,
+  FilledTonalIconButton,
+  OutlinedIconButton,
   Switch,
   Checkbox,
   RadioButton,

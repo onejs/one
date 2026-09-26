@@ -94,6 +94,12 @@ interface NativeProps extends ViewProps {
         width?: WithDefault<Double, 1>;
         color?: ColorValue;
     }>;
+    iconButtonColors?: Readonly<{
+        containerColor?: ColorValue;
+        contentColor?: ColorValue;
+        disabledContainerColor?: ColorValue;
+        disabledContentColor?: ColorValue;
+    }>;
     acknowledgedEvent?: Int32;
     revision?: Int32;
     alignment?: string;

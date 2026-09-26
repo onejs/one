@@ -174,6 +174,10 @@ class OneNativeComposeNodeManager :
         view.stageCardColors(value)
     }
 
+    override fun setIconButtonColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageIconButtonColors(value)
+    }
+
     override fun setBadgeColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageBadgeColors(value)
     }
