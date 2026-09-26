@@ -75,6 +75,9 @@
     "OneLocation": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneLocation" }
     },
+    "OneFileSystem": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneFileSystem" }
+    },
     "OneUpdates": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneUpdates" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneUpdates" }

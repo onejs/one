@@ -52,6 +52,12 @@ namespace margelo::nitro::one { struct FetchFormPart; }
 namespace margelo::nitro::one { struct FetchHeader; }
 // Forward declaration of `FetchNativeResponse` to properly resolve imports.
 namespace margelo::nitro::one { struct FetchNativeResponse; }
+// Forward declaration of `FileDirectories` to properly resolve imports.
+namespace margelo::nitro::one { struct FileDirectories; }
+// Forward declaration of `FileEntry` to properly resolve imports.
+namespace margelo::nitro::one { struct FileEntry; }
+// Forward declaration of `FileInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct FileInfo; }
 // Forward declaration of `HingeState` to properly resolve imports.
 namespace margelo::nitro::one { struct HingeState; }
 // Forward declaration of `HingeStatus` to properly resolve imports.
@@ -72,6 +78,8 @@ namespace margelo::nitro::one { class HybridOneCryptoSpec; }
 namespace margelo::nitro::one { class HybridOneDocumentPickerSpec; }
 // Forward declaration of `HybridOneFetchSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneFetchSpec; }
+// Forward declaration of `HybridOneFileSystemSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneFileSystemSpec; }
 // Forward declaration of `HybridOneFontsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneFontsSpec; }
 // Forward declaration of `HybridOneHapticsSpec` to properly resolve imports.
@@ -176,6 +184,8 @@ namespace One { class HybridOneCryptoSpec_cxx; }
 namespace One { class HybridOneDocumentPickerSpec_cxx; }
 // Forward declaration of `HybridOneFetchSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneFetchSpec_cxx; }
+// Forward declaration of `HybridOneFileSystemSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneFileSystemSpec_cxx; }
 // Forward declaration of `HybridOneFontsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneFontsSpec_cxx; }
 // Forward declaration of `HybridOneHapticsSpec_cxx` to properly resolve imports.
@@ -219,6 +229,9 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "FetchFormPart.hpp"
 #include "FetchHeader.hpp"
 #include "FetchNativeResponse.hpp"
+#include "FileDirectories.hpp"
+#include "FileEntry.hpp"
+#include "FileInfo.hpp"
 #include "HingeState.hpp"
 #include "HingeStatus.hpp"
 #include "HybridOneAdaptiveSpec.hpp"
@@ -229,6 +242,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneCryptoSpec.hpp"
 #include "HybridOneDocumentPickerSpec.hpp"
 #include "HybridOneFetchSpec.hpp"
+#include "HybridOneFileSystemSpec.hpp"
 #include "HybridOneFontsSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
@@ -1175,6 +1189,85 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::string>::withError(error);
   }
 
+  // pragma MARK: std::shared_ptr<Promise<FileInfo>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<FileInfo>>`.
+   */
+  using std__shared_ptr_Promise_FileInfo__ = std::shared_ptr<Promise<FileInfo>>;
+  inline std::shared_ptr<Promise<FileInfo>> create_std__shared_ptr_Promise_FileInfo__() noexcept {
+    return Promise<FileInfo>::create();
+  }
+  inline PromiseHolder<FileInfo> wrap_std__shared_ptr_Promise_FileInfo__(std::shared_ptr<Promise<FileInfo>> promise) noexcept {
+    return PromiseHolder<FileInfo>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const FileInfo& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const FileInfo&)>`.
+   */
+  using Func_void_FileInfo = std::function<void(const FileInfo& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const FileInfo& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_FileInfo_Wrapper final {
+  public:
+    explicit Func_void_FileInfo_Wrapper(std::function<void(const FileInfo& /* result */)>&& func): _function(std::make_unique<std::function<void(const FileInfo& /* result */)>>(std::move(func))) {}
+    inline void call(FileInfo result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const FileInfo& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_FileInfo create_Func_void_FileInfo(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_FileInfo_Wrapper wrap_Func_void_FileInfo(Func_void_FileInfo value) noexcept {
+    return Func_void_FileInfo_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::vector<FileEntry>
+  /**
+   * Specialized version of `std::vector<FileEntry>`.
+   */
+  using std__vector_FileEntry_ = std::vector<FileEntry>;
+  inline std::vector<FileEntry> create_std__vector_FileEntry_(size_t size) noexcept {
+    std::vector<FileEntry> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<std::vector<FileEntry>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<FileEntry>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_FileEntry___ = std::shared_ptr<Promise<std::vector<FileEntry>>>;
+  inline std::shared_ptr<Promise<std::vector<FileEntry>>> create_std__shared_ptr_Promise_std__vector_FileEntry___() noexcept {
+    return Promise<std::vector<FileEntry>>::create();
+  }
+  inline PromiseHolder<std::vector<FileEntry>> wrap_std__shared_ptr_Promise_std__vector_FileEntry___(std::shared_ptr<Promise<std::vector<FileEntry>>> promise) noexcept {
+    return PromiseHolder<std::vector<FileEntry>>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const std::vector<FileEntry>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<FileEntry>&)>`.
+   */
+  using Func_void_std__vector_FileEntry_ = std::function<void(const std::vector<FileEntry>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<FileEntry>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_FileEntry__Wrapper final {
+  public:
+    explicit Func_void_std__vector_FileEntry__Wrapper(std::function<void(const std::vector<FileEntry>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<FileEntry>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<FileEntry> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<FileEntry>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_FileEntry_ create_Func_void_std__vector_FileEntry_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_FileEntry__Wrapper wrap_Func_void_std__vector_FileEntry_(Func_void_std__vector_FileEntry_ value) noexcept {
+    return Func_void_std__vector_FileEntry__Wrapper(std::move(value));
+  }
+
   // pragma MARK: std::shared_ptr<Promise<void>>
   /**
    * Specialized version of `std::shared_ptr<Promise<void>>`.
@@ -1185,6 +1278,54 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline PromiseHolder<void> wrap_std__shared_ptr_Promise_void__(std::shared_ptr<Promise<void>> promise) noexcept {
     return PromiseHolder<void>(std::move(promise));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneFileSystemSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneFileSystemSpec>`.
+   */
+  using std__shared_ptr_HybridOneFileSystemSpec_ = std::shared_ptr<HybridOneFileSystemSpec>;
+  std::shared_ptr<HybridOneFileSystemSpec> create_std__shared_ptr_HybridOneFileSystemSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneFileSystemSpec_(std__shared_ptr_HybridOneFileSystemSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneFileSystemSpec>
+  using std__weak_ptr_HybridOneFileSystemSpec_ = std::weak_ptr<HybridOneFileSystemSpec>;
+  inline std__weak_ptr_HybridOneFileSystemSpec_ weakify_std__shared_ptr_HybridOneFileSystemSpec_(const std::shared_ptr<HybridOneFileSystemSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<FileDirectories>
+  using Result_FileDirectories_ = Result<FileDirectories>;
+  inline Result_FileDirectories_ create_Result_FileDirectories_(const FileDirectories& value) noexcept {
+    return Result<FileDirectories>::withValue(value);
+  }
+  inline Result_FileDirectories_ create_Result_FileDirectories_(const std::exception_ptr& error) noexcept {
+    return Result<FileDirectories>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<FileInfo>>>
+  using Result_std__shared_ptr_Promise_FileInfo___ = Result<std::shared_ptr<Promise<FileInfo>>>;
+  inline Result_std__shared_ptr_Promise_FileInfo___ create_Result_std__shared_ptr_Promise_FileInfo___(const std::shared_ptr<Promise<FileInfo>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<FileInfo>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_FileInfo___ create_Result_std__shared_ptr_Promise_FileInfo___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<FileInfo>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>
+  using Result_std__shared_ptr_Promise_std__vector_FileEntry____ = Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_FileEntry____ create_Result_std__shared_ptr_Promise_std__vector_FileEntry____(const std::shared_ptr<Promise<std::vector<FileEntry>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_FileEntry____ create_Result_std__shared_ptr_Promise_std__vector_FileEntry____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<void>>>
+  using Result_std__shared_ptr_Promise_void___ = Result<std::shared_ptr<Promise<void>>>;
+  inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::shared_ptr<Promise<void>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<void>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<void>>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<HybridOneFontsSpec>
@@ -1198,15 +1339,6 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneFontsSpec>
   using std__weak_ptr_HybridOneFontsSpec_ = std::weak_ptr<HybridOneFontsSpec>;
   inline std__weak_ptr_HybridOneFontsSpec_ weakify_std__shared_ptr_HybridOneFontsSpec_(const std::shared_ptr<HybridOneFontsSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<void>>>
-  using Result_std__shared_ptr_Promise_void___ = Result<std::shared_ptr<Promise<void>>>;
-  inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::shared_ptr<Promise<void>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<void>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<void>>>::withError(error);
-  }
 
   // pragma MARK: std::shared_ptr<HybridOneHapticsSpec>
   /**

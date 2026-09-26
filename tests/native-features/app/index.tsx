@@ -242,6 +242,11 @@ const testScreens = [
     testID: 'nav-one-native-location',
   },
   {
+    href: '/one-native-file-system',
+    label: 'One Native File System',
+    testID: 'nav-one-native-file-system',
+  },
+  {
     href: '/one-native-speech',
     label: 'One Native Speech',
     testID: 'nav-one-native-speech',
