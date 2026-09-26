@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
-import { One } from 'one'
+import { One, useSafeAreaFrame, useSafeAreaInsets } from 'one'
 
 // exercises the first-party safe-area takeover: our provider measures
 // insets natively, the hooks read them through our context, and the view
@@ -9,8 +9,8 @@ import { One } from 'one'
 // provider and the text input exist for the Android nested/IME coverage;
 // the iOS suite only reads the outer labels.
 function Readout({ prefix }: { prefix: string }) {
-  const insets = One.useSafeAreaInsets()
-  const frame = One.useSafeAreaFrame()
+  const insets = useSafeAreaInsets()
+  const frame = useSafeAreaFrame()
   return (
     <View>
       <Text>{`${prefix}Insets: ${insets.top} ${insets.right} ${insets.bottom} ${insets.left}`}</Text>

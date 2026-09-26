@@ -345,11 +345,12 @@ and the app has nothing to decide:
 - A page's React Native content already sits inside the vertical bar's inset.
 
 For custom foldable layouts, put `One.UI.ReservedRegions.Provider` around the
-window and read `One.useWindowSegments()` and `One.useSpanning()` from it. Segments use the
+window and import `useWindowSegments()` and `useSpanning()` directly from `one`.
+Segments use the
 provider's coordinates and split only at an active division that crosses its
 entire width or height. A nonspanning window has one segment; before the
 provider has measured its bounds and native regions, the hook returns an empty
-array. `One.useReservedRegions()` gives the underlying division and occlusion rectangles,
+array. `useReservedRegions()` gives the underlying division and occlusion rectangles,
 including inactive ones when requested. Layout should use the live window
 size class and independent safe-area edges; hinge status and angle serve
 pose-specific interactions. Hinge is null until UIKit reports its first

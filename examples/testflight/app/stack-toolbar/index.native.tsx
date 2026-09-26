@@ -1,4 +1,4 @@
-import { One, Stack, useRouter } from 'one'
+import { Stack, useRouter, useSafeAreaInsets } from 'one'
 import { useState } from 'react'
 import {
   DynamicColorIOS,
@@ -13,7 +13,7 @@ const dynamicTint = DynamicColorIOS({ light: '#1465c0', dark: '#7fb3ff' })
 
 export default function StackToolbarOracleScreen() {
   const router = useRouter()
-  const insets = One.useSafeAreaInsets()
+  const insets = useSafeAreaInsets()
   const [lastAction, setLastAction] = useState('none')
   const [actionCount, setActionCount] = useState(0)
   const [toolbarHidden, setToolbarHidden] = useState(false)

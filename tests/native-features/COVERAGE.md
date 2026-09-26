@@ -83,6 +83,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.LiveActivities` | missing | n/a | needs a widget extension target in the fixture app |
 | `One.iOS.WidgetUI` | missing | n/a | needs a widget extension target in the fixture app |
 | `One.iOS.LocalAuthentication` | local-authentication | n/a |  |
+| `One.iOS.Location` | location | n/a |  |
 | `One.iOS.Color` | e2e:color-test, e2e:toolbar-test, e2e:menu-test | n/a |  |
 | `One.iOS.MenuAction` | e2e:menu-test | n/a |  |
 | `One.iOS.SplitView` | e2e:split-view-test | n/a |  |
@@ -94,6 +95,11 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Android.Column` | n/a | android, android-inputs |  |
 | `One.Android.Row` | n/a | android, android-inputs |  |
 | `One.Android.Box` | n/a | android, android-inputs |  |
+| `One.Android.Card` | n/a | missing |  |
+| `One.Android.ElevatedCard` | n/a | missing |  |
+| `One.Android.OutlinedCard` | n/a | missing |  |
+| `One.Android.HorizontalDivider` | n/a | missing |  |
+| `One.Android.VerticalDivider` | n/a | missing |  |
 | `One.Android.Text` | n/a | android, android-inputs |  |
 | `One.Android.Icon` | n/a | android |  |
 | `One.Android.Button` | n/a | android, android-inputs |  |
@@ -129,20 +135,20 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Browser` | browser | browser |  |
 | `One.ImagePicker` | image-picker | image-picker |  |
 | `One.DocumentPicker` | missing | missing | fixture exists, no suite opens it |
-| `One.SecureStore` | secure-store | secure-store |  |
+| `One.SecureStore` | secure-store | secure-store | no fixture or suite |
 | `One.Speech` | speech | speech |  |
 | `One.Updates` | updates | updates |  |
-| `One.useFonts` | fonts | fonts |  |
-| `One.useNativeState` | state | missing | iOS suite only |
-| `One.useNetworkState` | missing | missing | no fixture or suite |
-| `One.useSafeAreaFrame` | safe-area | safe-area |  |
-| `One.useSafeAreaInsets` | safe-area | safe-area |  |
-| `One.useSizeClass` | missing | missing | fixture exists, no suite opens it |
-| `One.getSizeClass` | missing | missing | no fixture or suite |
-| `One.useHinge` | missing | missing | fixture exists, no suite opens it |
-| `One.getHinge` | missing | missing | no fixture or suite |
-| `One.onHingeChange` | missing | missing | no fixture or suite |
-| `One.useReservedRegions` | missing | missing | fixture exists, no suite opens it |
-| `One.useReservedRegionsReady` | missing | missing | fixture exists, no suite opens it |
-| `One.useWindowSegments` | missing | missing | fixture exists, no suite opens it |
-| `One.useSpanning` | missing | missing | fixture exists, no suite opens it |
+| `useSizeClass` | missing | missing | fixture exists, no suite opens it |
+| `getSizeClass` | missing | missing | no fixture or suite |
+| `useHinge` | missing | missing | fixture exists, no suite opens it |
+| `getHinge` | missing | missing | no fixture or suite |
+| `onHingeChange` | missing | missing | no fixture or suite |
+| `useReservedRegions` | missing | missing | fixture exists, no suite opens it |
+| `useReservedRegionsReady` | missing | missing | no fixture or suite |
+| `useWindowSegments` | missing | missing | fixture exists, no suite opens it |
+| `useSpanning` | missing | missing | fixture exists, no suite opens it |
+| `useNativeState` | state | missing | iOS suite only |
+| `useFonts` | fonts | fonts |  |
+| `useNetworkState` | missing | missing | no fixture or suite |
+| `useSafeAreaInsets` | safe-area | safe-area |  |
+| `useSafeAreaFrame` | safe-area | safe-area |  |
