@@ -51,6 +51,7 @@ const suites = [
   'apple-auth',
   'local-authentication',
   'location',
+  'file-system',
   'speech',
   'fetch',
   'clipboard',
@@ -332,6 +333,8 @@ const localAuthenticationLoaded = (nodes: Node[]) =>
 const locationLoaded = (nodes: Node[]) =>
   (Boolean(id(nodes, 'one-native-location-request')) && has(nodes, 'Permission: ')) ||
   has(nodes, 'Allow While Using App')
+const fileSystemLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-file-system-run')) && has(nodes, 'Status: ')
 // the microphone and speech prompts cover the fixture during the request
 const fetchLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-fetch-run')) && has(nodes, 'Status: ')
@@ -426,6 +429,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'apple-auth': appleAuthLoaded,
   'local-authentication': localAuthenticationLoaded,
   location: locationLoaded,
+  'file-system': fileSystemLoaded,
   speech: speechLoaded,
   fetch: fetchLoaded,
   clipboard: clipboardLoaded,
@@ -463,6 +467,7 @@ const suiteHome: Record<Suite, string> = {
   'apple-auth': 'nav-one-native-apple-auth',
   'local-authentication': 'nav-one-native-local-authentication',
   location: 'nav-one-native-location',
+  'file-system': 'nav-one-native-file-system',
   speech: 'nav-one-native-speech',
   fetch: 'nav-one-native-fetch',
   clipboard: 'nav-one-native-clipboard',
@@ -4327,6 +4332,26 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Reverse: San Francisco')
     )
     screenshot('location-current-position.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'file-system') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-file-system')
+    await wait('file system fixture starts idle', (n) =>
+      labels(n).includes('Status: idle')
+    )
+    tap({ id: 'one-native-file-system-run' })
+    await wait('sandbox file lifecycle completes', (n) =>
+      labels(n).includes('Status: passed') &&
+      labels(n).includes(
+        'Result: text=Hello One; bytes=0,1,2,3; entries=binary.dat,moved.txt,note.txt; ' +
+          'moved=true; recursive=true; missing=false; ' +
+          'errors=E_FILE_URI,E_FILE_NOT_FOUND,E_FILE_EXISTS,E_FILE_ENCODING,E_FILE_PERMISSION'
+      )
+    )
+    screenshot('file-system-lifecycle.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

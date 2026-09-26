@@ -1,0 +1,41 @@
+---
+title: FileSystem
+description: Create and manage files in an iOS app's sandbox
+---
+
+`One.iOS.FileSystem` manages files in the iOS app sandbox. It accepts absolute
+`file://` URIs. Use `getDirectories()` for the Documents, Caches, Application
+Support, and temporary directories. The returned directory URIs end in `/`.
+
+```tsx
+import { One } from 'one'
+
+const fs = One.iOS.FileSystem
+const drafts = new URL('drafts/', fs.getDirectories().documents).href
+const note = new URL('note.txt', drafts).href
+
+await fs.makeDirectory(drafts)
+await fs.writeFile(note, 'Hello One')
+const text = await (await fetch(note)).text()
+const info = await fs.getInfo(note)
+console.log(text, info.size)
+```
+
+Use `fetch(uri)` to read text or bytes, including files returned by
+`One.DocumentPicker` and `One.ImagePicker`. `writeFile(uri, contents)` writes
+UTF-8 text and replaces an existing file. Pass `'base64'` as the third argument
+to write binary data. Parent directories must already exist.
+
+`getInfo(uri)` returns `exists`, `isDirectory`, byte `size`, and `modifiedAt`
+in Unix milliseconds. A missing path returns `exists: false`. `readDirectory`
+returns names, URIs, and directory flags. `makeDirectory` creates intermediate
+directories by default. `copy` and `move` fail if the destination exists.
+`delete` removes a file or directory recursively and fails if it is missing.
+The app's home, Documents, Library, Caches, Application Support, and temporary
+root directories cannot be moved or deleted.
+
+Operations run on a serial utility queue. Calls awaited in sequence observe the
+previous operation's result. A failed operation rejects with `error.code`:
+`E_FILE_URI`, `E_FILE_ENCODING`, `E_FILE_NOT_FOUND`, `E_FILE_EXISTS`,
+`E_FILE_PERMISSION`, or `E_FILE_FAILED`. The API is iOS only.
+Base64 input must use standard padded base64 without line breaks.

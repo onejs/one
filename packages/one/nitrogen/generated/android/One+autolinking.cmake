@@ -41,6 +41,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneCryptoSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneDocumentPickerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneFetchSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneFileSystemSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneFontsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneHapticsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneImagePickerSpec.cpp
