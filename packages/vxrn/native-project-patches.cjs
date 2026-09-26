@@ -634,8 +634,35 @@ const ONE_NOTIFICATIONS = {
   pushGradleProperty: 'oneNativePush',
 }
 
+// One.Updates: the Info.plist keys the launcher reads, and the release
+// bundleURL both prebuilds point at it. the app target reaches the launcher's
+// c entry point through its bridging header: it cannot import One, whose c++
+// umbrella does not rebuild under the app's flags.
+const ONE_UPDATES = {
+  urlInfoPlistKey: 'OneUpdatesURL',
+  runtimeVersionInfoPlistKey: 'OneUpdatesRuntimeVersion',
+  bridgingHeaderImport: '#import "OneUpdatesLauncherBridge.h"',
+}
+
+const RELEASE_BUNDLE_URL =
+  /(#else\n\s*)(return )?Bundle\.main\.url\(forResource: "main", withExtension: "jsbundle"\)(\n#endif)/
+
+function pointReleaseBundleURLAtOneUpdates(appDelegate) {
+  if (appDelegate.includes('OneUpdatesBundleURL()')) {
+    return appDelegate
+  }
+  if (!RELEASE_BUNDLE_URL.test(appDelegate)) {
+    throw new Error(
+      '[vxrn] AppDelegate.swift changed shape: cannot point the release bundleURL at One.Updates'
+    )
+  }
+  return appDelegate.replace(RELEASE_BUNDLE_URL, '$1$2OneUpdatesBundleURL()$3')
+}
+
 module.exports = {
   ONE_NOTIFICATIONS,
+  ONE_UPDATES,
+  pointReleaseBundleURLAtOneUpdates,
   hasNitroWebImage,
   injectNitroWebImageModularHeaderIntoPodfile,
   injectOneSwiftPackagesIntoPodfile,

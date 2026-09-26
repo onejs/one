@@ -67,6 +67,21 @@ bundle keeps coming from the dev server. Network failures reject
 `E_UPDATES_CHECK`; a file that arrives but fails its hash check rejects
 `E_UPDATES_FETCH` and stages nothing.
 
+Expo-prebuilt apps pass the same `updates` object to `vxrn/expo-plugin` and
+leave expo-updates out. It covers iOS only: Expo's Android host builds its
+own ReactHost delegate, which the launcher cannot re-point, so Android apps
+use `one prebuild`.
+
+```json
+{
+  "expo": {
+    "plugins": [
+      ["vxrn/expo-plugin", { "updates": { "url": "https://updates.example.com", "runtimeVersion": "1.0" } }]
+    ]
+  }
+}
+```
+
 Publish from the app's source with the same bundler and options as the
 embedded build:
 
