@@ -94,9 +94,11 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ZoomTransitionAlignmentRectDetector` | missing | n/a | no fixture or suite |
 | `One.iOS.ZoomTransitionEnabler` | missing | n/a | on zoom-detail, which the zoom e2e reaches only by tap |
 | `One.iOS.ZoomTransitionSource` | e2e:zoom-test | n/a |  |
-| `One.Android.Column` | n/a | android, android-inputs, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
-| `One.Android.Row` | n/a | android, android-inputs, android-selection, android-dividers |  |
+| `One.Android.Column` | n/a | android, android-inputs, android-selection, android-cards, android-dividers, android-filter-chip, android-chips, android-badges |  |
+| `One.Android.Row` | n/a | android, android-inputs, android-selection, android-dividers, android-badges |  |
 | `One.Android.Box` | n/a | android, android-inputs |  |
+| `One.Android.Badge` | n/a | android-badges |  |
+| `One.Android.BadgedBox` | n/a | android-badges |  |
 | `One.Android.Card` | n/a | android-cards |  |
 | `One.Android.ElevatedCard` | n/a | android-cards |  |
 | `One.Android.OutlinedCard` | n/a | android-cards |  |
@@ -106,8 +108,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Android.AssistChip` | n/a | android-chips |  |
 | `One.Android.InputChip` | n/a | android-chips |  |
 | `One.Android.SuggestionChip` | n/a | android-chips |  |
-| `One.Android.Text` | n/a | android, android-inputs, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
-| `One.Android.Icon` | n/a | android, android-filter-chip, android-chips |  |
+| `One.Android.Text` | n/a | android, android-inputs, android-selection, android-cards, android-dividers, android-filter-chip, android-chips, android-badges |  |
+| `One.Android.Icon` | n/a | android, android-filter-chip, android-chips, android-badges |  |
 | `One.Android.Button` | n/a | android, android-inputs, android-selection, android-filter-chip |  |
 | `One.Android.Switch` | n/a | android |  |
 | `One.Android.Checkbox` | n/a | android-selection |  |

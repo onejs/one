@@ -47,6 +47,11 @@ export interface ComposeRowProps extends ComposeNodeProps {
 export interface ComposeBoxProps extends ComposeNodeProps {
     contentAlignment?: ComposeContentAlignment;
 }
+export interface ComposeBadgeProps extends ComposeNodeProps {
+    containerColor?: ColorValue;
+    contentColor?: ColorValue;
+}
+export type ComposeBadgedBoxProps = ComposeNodeProps;
 type ComposeLeafProps = Omit<ComposeNodeProps, 'children'>;
 export interface ComposeTextProps extends ComposeLeafProps {
     text: string;

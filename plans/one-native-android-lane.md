@@ -21,6 +21,15 @@ Owner: android-lane (r46336). Active on `v2-beta`. Android is lower priority tha
 
 **RAN:** Peach's Android native view registry supplies nearly all of those groups, including Checkbox and RadioButton. `DatePickerDialogView`, `TimePickerDialogView`, and `DateTimePickerView` explicitly throw unsupported because their Material 3 calendars, clock dial, and range interaction are missing. Those are measured Peach targets after the One controls, with the Expo UI coverage owner retaining the iOS side.
 
+## Landed slices
+
+- **RAN:** `eee326c7d` added Checkbox and RadioButton with Android emulator selection proof; `e4b5aa1df` repaired home navigation in the conformance runner.
+- **RAN:** `e61788b7e` added Card variants; `9b718245b` added horizontal and vertical dividers. Both have Pixel 8 runtime captures.
+- **RAN:** `4a2a3fffc` added FilterChip and `beef6dca0` added AssistChip, InputChip, and SuggestionChip. The focused Android Compose conformance suite now drives selection, cards, dividers, and chips, with emulator screenshots for each state.
+- **RAN:** Badge and BadgedBox render a dot, circular count, wide count, explicit overlay, and default overlay on a Pixel 8 emulator. The focused `--suite compose-badges` checks text and geometry from a fresh app launch.
+- **RAN:** The longer `--suite compose` sometimes sends a chip tap to a Home route behind the Compose screen. A React view touch override and a Compose root gesture handler both failed to resolve this reliably, so neither remains in the Badge change. The original suite still reports the failure.
+- **INFERRED:** The Expo UI coverage owner is working through iOS captures and reserves the later Peach Compose proof. This lane continues One Android Compose while that work is active, then takes measured Peach Android gaps without changing their iOS files.
+
 ## Acceptance for each objective slice
 
 - The exact Android source and public JS boundary agree; senders and receivers are updated together.

@@ -7,6 +7,8 @@ import { syncHandleOf, useSyncValue } from './syncNativeState'
 import type {
   ComposeAlertDialogProps,
   ComposeAssistChipProps,
+  ComposeBadgeProps,
+  ComposeBadgedBoxProps,
   ComposeBoxProps,
   ComposeButtonProps,
   ComposeButtonTone,
@@ -47,6 +49,7 @@ import {
   assertComposeStyle,
   composeIconGlyph,
   validateAlertDialogProps,
+  validateBadgeProps,
   validateBoxProps,
   validateButtonProps,
   validateCardProps,
@@ -69,6 +72,9 @@ type ComposeNodeType =
   | 'column'
   | 'row'
   | 'box'
+  | 'badge'
+  | 'badgedbox'
+  | 'badgeslot'
   | 'card'
   | 'elevatedcard'
   | 'outlinedcard'
@@ -117,6 +123,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   selected?: boolean
   radioColors?: ComposeRadioButtonProps['colors']
   cardColors?: ComposeCardProps['colors']
+  badgeColors?: Pick<ComposeBadgeProps, 'containerColor' | 'contentColor'>
   cardElevation?: number
   cardBorder?: ComposeCardProps['border']
   dividerStyle?: Pick<ComposeDividerProps, 'thickness' | 'color'>
@@ -266,6 +273,25 @@ function Box({ children, contentAlignment = 'topStart', ...props }: ComposeBoxPr
     </ComposeNode>
   )
 }
+
+function Badge({ children, containerColor, contentColor, ...props }: ComposeBadgeProps) {
+  validateBadgeProps({ containerColor, contentColor })
+  return (
+    <ComposeNode {...props} nodeType="badge" badgeColors={{ containerColor, contentColor }}>
+      {children}
+    </ComposeNode>
+  )
+}
+
+function BadgedBoxRoot({ children, ...props }: ComposeBadgedBoxProps) {
+  return <ComposeNode {...props} nodeType="badgedbox">{children}</ComposeNode>
+}
+
+const BadgedBox = Object.assign(BadgedBoxRoot, {
+  Badge: ({ children }: { children: ReactNode }) => (
+    <ComposeNode nodeType="badgeslot" slotName="badge">{children}</ComposeNode>
+  ),
+})
 
 function renderCard(
   nodeType: 'card' | 'elevatedcard' | 'outlinedcard',
@@ -758,6 +784,8 @@ export const Compose = {
   Column,
   Row,
   Box,
+  Badge,
+  BadgedBox,
   Card,
   ElevatedCard,
   OutlinedCard,

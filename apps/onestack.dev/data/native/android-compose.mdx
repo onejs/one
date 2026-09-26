@@ -4,7 +4,7 @@ description: Jetpack Compose views under One.Android
 ---
 
 Jetpack Compose views under `One.Android`. Layout nodes (`Column`, `Row`,
-`Box`, `Card`, `ElevatedCard`, `OutlinedCard`, `AssistChip`, `FilterChip`,
+`Box`, `BadgedBox`, `Badge`, `Card`, `ElevatedCard`, `OutlinedCard`, `AssistChip`, `FilterChip`,
 `InputChip`, `SuggestionChip`) take children;
 `Text`, `Icon`,
 `Button`, `Switch`, `Checkbox`, `RadioButton`, `HorizontalDivider`,
@@ -98,6 +98,14 @@ uses the Material theme's outline for `OutlinedCard`.
 inside a Compose layout. Both accept optional `thickness` in dp and `color`;
 omitted values use the current Material theme. Give a vertical divider a height
 through its parent layout or `composeStyle`.
+
+## Badges
+
+`One.Android.Badge` renders a Material 3 indicator dot with no children, or a
+count pill when given Compose content. `containerColor` and `contentColor`
+override the Material defaults. `One.Android.BadgedBox` places a badge at the
+top end of its content. Put a `Badge` inside its `BadgedBox.Badge` slot; without
+the slot it renders the default indicator dot.
 
 ## Chips
 

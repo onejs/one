@@ -1,6 +1,7 @@
 import type {
   ComposeAlertDialogProps,
   ComposeAssistChipProps,
+  ComposeBadgeProps,
   ComposeBoxProps,
   ComposeButtonProps,
   ComposeCardProps,
@@ -156,6 +157,16 @@ const radioColorKeys = new Set([
   'disabledUnselectedColor',
 ])
 const cardColorKeys = new Set(['containerColor', 'contentColor'])
+
+export function validateBadgeProps(
+  props: Pick<ComposeBadgeProps, 'containerColor' | 'contentColor'>
+) {
+  if (props.containerColor !== undefined)
+    assertComposeColorValue(props.containerColor, 'Badge containerColor')
+  if (props.contentColor !== undefined)
+    assertComposeColorValue(props.contentColor, 'Badge contentColor')
+}
+
 const assistChipColorKeys = new Set([
   'containerColor',
   'labelColor',

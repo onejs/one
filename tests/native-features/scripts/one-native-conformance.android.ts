@@ -33,7 +33,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'updates'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'updates'
   apkPath: string
 }
 
@@ -55,7 +55,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|updates --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|updates --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -84,7 +84,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -2977,8 +2977,34 @@ async function runCompose(config: Config) {
     console.log(`PASS ${name}`)
   }
   const home = () => check('compose-home', (nodes) => exactlyOneId(nodes, 'home-screen'))
+  const badges = async () => {
+    await tapNavigation(config, 'nav-one-native-android-badges')
+    await check('compose-badge-variants', (nodes) => {
+      const dot = matching(nodes, { id: 'one-native-android-badge-dot' })[0]?.bounds
+      const count = matching(nodes, { id: 'one-native-android-badge-count' })[0]?.bounds
+      const wide = matching(nodes, { id: 'one-native-android-badge-wide' })[0]?.bounds
+      const overlaid = matching(nodes, { id: 'one-native-android-badged-box-count' })[0]?.bounds
+      const overlaidCount = matching(nodes, { id: 'one-native-android-badged-box-count-text' })[0]?.bounds
+      return Boolean(
+        dot && count && wide && overlaid && overlaidCount &&
+        exactlyOneId(nodes, 'one-native-android-badged-box-default') &&
+        idText(nodes, 'one-native-android-badge-count-text', '7') &&
+        idText(nodes, 'one-native-android-badge-wide-text', '999+') &&
+        idText(nodes, 'one-native-android-badged-box-count-text', '3') &&
+        dot.right - dot.left < count.right - count.left &&
+        wide.right - wide.left > 2 * (count.right - count.left) &&
+        overlaidCount.left > (overlaid.left + overlaid.right) / 2 &&
+        overlaidCount.top < (overlaid.top + overlaid.bottom) / 2
+      )
+    })
+  }
 
   await home()
+  if (config.suite === 'compose-badges') {
+    await badges()
+    console.log('ALL ONE NATIVE ANDROID BADGE CHECKS PASSED')
+    return
+  }
   await tapNavigation(config, 'nav-one-native-android-selection')
   await check('compose-selection-mounted', (nodes) =>
     idText(nodes, 'one-native-android-checkbox-status', 'Value: off · Request: off') &&
@@ -3072,6 +3098,10 @@ async function runCompose(config: Config) {
   await check('compose-suggestion-chip-disabled', (nodes) =>
     idText(nodes, 'one-native-android-chips-status', 'Assist: 1 · Input: selected · Suggestion: 1 · Disabled: 0')
   )
+
+  pressBack(config)
+  await home()
+  await badges()
   console.log('ALL ONE NATIVE ANDROID COMPOSE CHECKS PASSED')
 }
 
@@ -3358,7 +3388,7 @@ try {
   const config = parse(process.argv.slice(2))
   await (config.suite === 'updates'
     ? runUpdates(config)
-    : config.suite === 'compose'
+    : config.suite === 'compose' || config.suite === 'compose-badges'
       ? runCompose(config)
       : run(config))
 } catch (error) {

@@ -197,6 +197,11 @@ const testScreens = [
     testID: 'nav-one-native-android-chips',
   },
   {
+    href: '/one-native-android-badges',
+    label: 'One Native Android Badges',
+    testID: 'nav-one-native-android-badges',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',

@@ -51,6 +51,10 @@ interface NativeProps extends ViewProps {
         containerColor?: ColorValue;
         contentColor?: ColorValue;
     }>;
+    badgeColors?: Readonly<{
+        containerColor?: ColorValue;
+        contentColor?: ColorValue;
+    }>;
     cardElevation?: WithDefault<Double, -1>;
     cardBorder?: Readonly<{
         width?: WithDefault<Double, 1>;
