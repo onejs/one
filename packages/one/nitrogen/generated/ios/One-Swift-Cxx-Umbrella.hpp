@@ -24,6 +24,18 @@ namespace margelo::nitro::one { struct AppleAuthSignInOptions; }
 namespace margelo::nitro::one { enum class AppleCredentialState; }
 // Forward declaration of `AppleRealUserStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class AppleRealUserStatus; }
+// Forward declaration of `AudioPlaybackState` to properly resolve imports.
+namespace margelo::nitro::one { enum class AudioPlaybackState; }
+// Forward declaration of `AudioPlaybackStatus` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioPlaybackStatus; }
+// Forward declaration of `AudioRecordingPermission` to properly resolve imports.
+namespace margelo::nitro::one { enum class AudioRecordingPermission; }
+// Forward declaration of `AudioRecordingResult` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioRecordingResult; }
+// Forward declaration of `AudioRecordingState` to properly resolve imports.
+namespace margelo::nitro::one { enum class AudioRecordingState; }
+// Forward declaration of `AudioRecordingStatus` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioRecordingStatus; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
@@ -78,6 +90,8 @@ namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
 namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
 // Forward declaration of `HybridOneAppleAuthSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppleAuthSpec; }
+// Forward declaration of `HybridOneAudioSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneAudioSpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 // Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
@@ -206,6 +220,12 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "AppleAuthSignInOptions.hpp"
 #include "AppleCredentialState.hpp"
 #include "AppleRealUserStatus.hpp"
+#include "AudioPlaybackState.hpp"
+#include "AudioPlaybackStatus.hpp"
+#include "AudioRecordingPermission.hpp"
+#include "AudioRecordingResult.hpp"
+#include "AudioRecordingState.hpp"
+#include "AudioRecordingStatus.hpp"
 #include "BrowserAuthResult.hpp"
 #include "BrowserAuthResultType.hpp"
 #include "BrowserColorScheme.hpp"
@@ -233,6 +253,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneAdaptiveSpec.hpp"
 #include "HybridOneAppInfoSpec.hpp"
 #include "HybridOneAppleAuthSpec.hpp"
+#include "HybridOneAudioSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
@@ -319,6 +340,8 @@ namespace One { class HybridOneAdaptiveSpec_cxx; }
 namespace One { class HybridOneAppInfoSpec_cxx; }
 // Forward declaration of `HybridOneAppleAuthSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppleAuthSpec_cxx; }
+// Forward declaration of `HybridOneAudioSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneAudioSpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBrowserSpec_cxx; }
 // Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.

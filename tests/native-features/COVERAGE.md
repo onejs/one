@@ -84,7 +84,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.WidgetUI` | missing | n/a | needs a widget extension target in the fixture app |
 | `One.iOS.LocalAuthentication` | local-authentication | n/a |  |
 | `One.iOS.Location` | location | n/a |  |
-| `One.iOS.FileSystem` | file-system | n/a |  |
+| `One.iOS.FileSystem` | file-system, audio | n/a |  |
+| `One.iOS.Audio` | audio | n/a |  |
 | `One.iOS.Color` | e2e:color-test, e2e:toolbar-test, e2e:menu-test | n/a |  |
 | `One.iOS.MenuAction` | e2e:menu-test | n/a |  |
 | `One.iOS.SplitView` | e2e:split-view-test | n/a |  |

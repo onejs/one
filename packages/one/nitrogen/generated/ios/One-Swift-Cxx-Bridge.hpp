@@ -24,6 +24,18 @@ namespace margelo::nitro::one { enum class AppleCredentialState; }
 namespace margelo::nitro::one { enum class AppleRealUserStatus; }
 // Forward declaration of `ArrayBufferHolder` to properly resolve imports.
 namespace NitroModules { class ArrayBufferHolder; }
+// Forward declaration of `AudioPlaybackState` to properly resolve imports.
+namespace margelo::nitro::one { enum class AudioPlaybackState; }
+// Forward declaration of `AudioPlaybackStatus` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioPlaybackStatus; }
+// Forward declaration of `AudioRecordingPermission` to properly resolve imports.
+namespace margelo::nitro::one { enum class AudioRecordingPermission; }
+// Forward declaration of `AudioRecordingResult` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioRecordingResult; }
+// Forward declaration of `AudioRecordingState` to properly resolve imports.
+namespace margelo::nitro::one { enum class AudioRecordingState; }
+// Forward declaration of `AudioRecordingStatus` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioRecordingStatus; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
@@ -68,6 +80,8 @@ namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
 namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
 // Forward declaration of `HybridOneAppleAuthSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppleAuthSpec; }
+// Forward declaration of `HybridOneAudioSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneAudioSpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 // Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
@@ -176,6 +190,8 @@ namespace One { class HybridOneAdaptiveSpec_cxx; }
 namespace One { class HybridOneAppInfoSpec_cxx; }
 // Forward declaration of `HybridOneAppleAuthSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppleAuthSpec_cxx; }
+// Forward declaration of `HybridOneAudioSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneAudioSpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBrowserSpec_cxx; }
 // Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
@@ -219,6 +235,12 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "AppleAuthScope.hpp"
 #include "AppleCredentialState.hpp"
 #include "AppleRealUserStatus.hpp"
+#include "AudioPlaybackState.hpp"
+#include "AudioPlaybackStatus.hpp"
+#include "AudioRecordingPermission.hpp"
+#include "AudioRecordingResult.hpp"
+#include "AudioRecordingState.hpp"
+#include "AudioRecordingStatus.hpp"
 #include "BrowserAuthResult.hpp"
 #include "BrowserAuthResultType.hpp"
 #include "BrowserColorScheme.hpp"
@@ -241,6 +263,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneAdaptiveSpec.hpp"
 #include "HybridOneAppInfoSpec.hpp"
 #include "HybridOneAppleAuthSpec.hpp"
+#include "HybridOneAudioSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
@@ -684,6 +707,226 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::shared_ptr<Promise<AppleCredentialState>>>::withError(error);
   }
 
+  // pragma MARK: std::shared_ptr<Promise<AudioRecordingPermission>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<AudioRecordingPermission>>`.
+   */
+  using std__shared_ptr_Promise_AudioRecordingPermission__ = std::shared_ptr<Promise<AudioRecordingPermission>>;
+  inline std::shared_ptr<Promise<AudioRecordingPermission>> create_std__shared_ptr_Promise_AudioRecordingPermission__() noexcept {
+    return Promise<AudioRecordingPermission>::create();
+  }
+  inline PromiseHolder<AudioRecordingPermission> wrap_std__shared_ptr_Promise_AudioRecordingPermission__(std::shared_ptr<Promise<AudioRecordingPermission>> promise) noexcept {
+    return PromiseHolder<AudioRecordingPermission>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(AudioRecordingPermission /* result */)>
+  /**
+   * Specialized version of `std::function<void(AudioRecordingPermission)>`.
+   */
+  using Func_void_AudioRecordingPermission = std::function<void(AudioRecordingPermission /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(AudioRecordingPermission / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_AudioRecordingPermission_Wrapper final {
+  public:
+    explicit Func_void_AudioRecordingPermission_Wrapper(std::function<void(AudioRecordingPermission /* result */)>&& func): _function(std::make_unique<std::function<void(AudioRecordingPermission /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<AudioRecordingPermission>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(AudioRecordingPermission /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_AudioRecordingPermission create_Func_void_AudioRecordingPermission(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_AudioRecordingPermission_Wrapper wrap_Func_void_AudioRecordingPermission(Func_void_AudioRecordingPermission value) noexcept {
+    return Func_void_AudioRecordingPermission_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::optional<double>
+  /**
+   * Specialized version of `std::optional<double>`.
+   */
+  using std__optional_double_ = std::optional<double>;
+  inline std::optional<double> create_std__optional_double_(const double& value) noexcept {
+    return std::optional<double>(value);
+  }
+  inline bool has_value_std__optional_double_(const std::optional<double>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline double get_std__optional_double_(const std::optional<double>& optional) noexcept {
+    return optional.value();
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<AudioPlaybackStatus>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<AudioPlaybackStatus>>`.
+   */
+  using std__shared_ptr_Promise_AudioPlaybackStatus__ = std::shared_ptr<Promise<AudioPlaybackStatus>>;
+  inline std::shared_ptr<Promise<AudioPlaybackStatus>> create_std__shared_ptr_Promise_AudioPlaybackStatus__() noexcept {
+    return Promise<AudioPlaybackStatus>::create();
+  }
+  inline PromiseHolder<AudioPlaybackStatus> wrap_std__shared_ptr_Promise_AudioPlaybackStatus__(std::shared_ptr<Promise<AudioPlaybackStatus>> promise) noexcept {
+    return PromiseHolder<AudioPlaybackStatus>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const AudioPlaybackStatus& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const AudioPlaybackStatus&)>`.
+   */
+  using Func_void_AudioPlaybackStatus = std::function<void(const AudioPlaybackStatus& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const AudioPlaybackStatus& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_AudioPlaybackStatus_Wrapper final {
+  public:
+    explicit Func_void_AudioPlaybackStatus_Wrapper(std::function<void(const AudioPlaybackStatus& /* result */)>&& func): _function(std::make_unique<std::function<void(const AudioPlaybackStatus& /* result */)>>(std::move(func))) {}
+    inline void call(AudioPlaybackStatus result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const AudioPlaybackStatus& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_AudioPlaybackStatus create_Func_void_AudioPlaybackStatus(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_AudioPlaybackStatus_Wrapper wrap_Func_void_AudioPlaybackStatus(Func_void_AudioPlaybackStatus value) noexcept {
+    return Func_void_AudioPlaybackStatus_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<void>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<void>>`.
+   */
+  using std__shared_ptr_Promise_void__ = std::shared_ptr<Promise<void>>;
+  inline std::shared_ptr<Promise<void>> create_std__shared_ptr_Promise_void__() noexcept {
+    return Promise<void>::create();
+  }
+  inline PromiseHolder<void> wrap_std__shared_ptr_Promise_void__(std::shared_ptr<Promise<void>> promise) noexcept {
+    return PromiseHolder<void>(std::move(promise));
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<AudioRecordingStatus>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<AudioRecordingStatus>>`.
+   */
+  using std__shared_ptr_Promise_AudioRecordingStatus__ = std::shared_ptr<Promise<AudioRecordingStatus>>;
+  inline std::shared_ptr<Promise<AudioRecordingStatus>> create_std__shared_ptr_Promise_AudioRecordingStatus__() noexcept {
+    return Promise<AudioRecordingStatus>::create();
+  }
+  inline PromiseHolder<AudioRecordingStatus> wrap_std__shared_ptr_Promise_AudioRecordingStatus__(std::shared_ptr<Promise<AudioRecordingStatus>> promise) noexcept {
+    return PromiseHolder<AudioRecordingStatus>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const AudioRecordingStatus& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const AudioRecordingStatus&)>`.
+   */
+  using Func_void_AudioRecordingStatus = std::function<void(const AudioRecordingStatus& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const AudioRecordingStatus& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_AudioRecordingStatus_Wrapper final {
+  public:
+    explicit Func_void_AudioRecordingStatus_Wrapper(std::function<void(const AudioRecordingStatus& /* result */)>&& func): _function(std::make_unique<std::function<void(const AudioRecordingStatus& /* result */)>>(std::move(func))) {}
+    inline void call(AudioRecordingStatus result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const AudioRecordingStatus& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_AudioRecordingStatus create_Func_void_AudioRecordingStatus(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_AudioRecordingStatus_Wrapper wrap_Func_void_AudioRecordingStatus(Func_void_AudioRecordingStatus value) noexcept {
+    return Func_void_AudioRecordingStatus_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<AudioRecordingResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<AudioRecordingResult>>`.
+   */
+  using std__shared_ptr_Promise_AudioRecordingResult__ = std::shared_ptr<Promise<AudioRecordingResult>>;
+  inline std::shared_ptr<Promise<AudioRecordingResult>> create_std__shared_ptr_Promise_AudioRecordingResult__() noexcept {
+    return Promise<AudioRecordingResult>::create();
+  }
+  inline PromiseHolder<AudioRecordingResult> wrap_std__shared_ptr_Promise_AudioRecordingResult__(std::shared_ptr<Promise<AudioRecordingResult>> promise) noexcept {
+    return PromiseHolder<AudioRecordingResult>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const AudioRecordingResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const AudioRecordingResult&)>`.
+   */
+  using Func_void_AudioRecordingResult = std::function<void(const AudioRecordingResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const AudioRecordingResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_AudioRecordingResult_Wrapper final {
+  public:
+    explicit Func_void_AudioRecordingResult_Wrapper(std::function<void(const AudioRecordingResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const AudioRecordingResult& /* result */)>>(std::move(func))) {}
+    inline void call(AudioRecordingResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const AudioRecordingResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_AudioRecordingResult create_Func_void_AudioRecordingResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_AudioRecordingResult_Wrapper wrap_Func_void_AudioRecordingResult(Func_void_AudioRecordingResult value) noexcept {
+    return Func_void_AudioRecordingResult_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneAudioSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneAudioSpec>`.
+   */
+  using std__shared_ptr_HybridOneAudioSpec_ = std::shared_ptr<HybridOneAudioSpec>;
+  std::shared_ptr<HybridOneAudioSpec> create_std__shared_ptr_HybridOneAudioSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneAudioSpec_(std__shared_ptr_HybridOneAudioSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneAudioSpec>
+  using std__weak_ptr_HybridOneAudioSpec_ = std::weak_ptr<HybridOneAudioSpec>;
+  inline std__weak_ptr_HybridOneAudioSpec_ weakify_std__shared_ptr_HybridOneAudioSpec_(const std::shared_ptr<HybridOneAudioSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<AudioRecordingPermission>>>
+  using Result_std__shared_ptr_Promise_AudioRecordingPermission___ = Result<std::shared_ptr<Promise<AudioRecordingPermission>>>;
+  inline Result_std__shared_ptr_Promise_AudioRecordingPermission___ create_Result_std__shared_ptr_Promise_AudioRecordingPermission___(const std::shared_ptr<Promise<AudioRecordingPermission>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<AudioRecordingPermission>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_AudioRecordingPermission___ create_Result_std__shared_ptr_Promise_AudioRecordingPermission___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<AudioRecordingPermission>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<AudioPlaybackStatus>>>
+  using Result_std__shared_ptr_Promise_AudioPlaybackStatus___ = Result<std::shared_ptr<Promise<AudioPlaybackStatus>>>;
+  inline Result_std__shared_ptr_Promise_AudioPlaybackStatus___ create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(const std::shared_ptr<Promise<AudioPlaybackStatus>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<AudioPlaybackStatus>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_AudioPlaybackStatus___ create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<AudioPlaybackStatus>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<void>>>
+  using Result_std__shared_ptr_Promise_void___ = Result<std::shared_ptr<Promise<void>>>;
+  inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::shared_ptr<Promise<void>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<void>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<void>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<AudioRecordingStatus>>>
+  using Result_std__shared_ptr_Promise_AudioRecordingStatus___ = Result<std::shared_ptr<Promise<AudioRecordingStatus>>>;
+  inline Result_std__shared_ptr_Promise_AudioRecordingStatus___ create_Result_std__shared_ptr_Promise_AudioRecordingStatus___(const std::shared_ptr<Promise<AudioRecordingStatus>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<AudioRecordingStatus>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_AudioRecordingStatus___ create_Result_std__shared_ptr_Promise_AudioRecordingStatus___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<AudioRecordingStatus>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<AudioRecordingResult>>>
+  using Result_std__shared_ptr_Promise_AudioRecordingResult___ = Result<std::shared_ptr<Promise<AudioRecordingResult>>>;
+  inline Result_std__shared_ptr_Promise_AudioRecordingResult___ create_Result_std__shared_ptr_Promise_AudioRecordingResult___(const std::shared_ptr<Promise<AudioRecordingResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<AudioRecordingResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_AudioRecordingResult___ create_Result_std__shared_ptr_Promise_AudioRecordingResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<AudioRecordingResult>>>::withError(error);
+  }
+
   // pragma MARK: std::shared_ptr<Promise<BrowserResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<BrowserResult>>`.
@@ -953,21 +1196,6 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_ArrayBuffer__ create_Result_std__shared_ptr_ArrayBuffer__(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<ArrayBuffer>>::withError(error);
-  }
-
-  // pragma MARK: std::optional<double>
-  /**
-   * Specialized version of `std::optional<double>`.
-   */
-  using std__optional_double_ = std::optional<double>;
-  inline std::optional<double> create_std__optional_double_(const double& value) noexcept {
-    return std::optional<double>(value);
-  }
-  inline bool has_value_std__optional_double_(const std::optional<double>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline double get_std__optional_double_(const std::optional<double>& optional) noexcept {
-    return optional.value();
   }
 
   // pragma MARK: std::vector<DocumentPickerAsset>
@@ -1273,18 +1501,6 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_std__vector_FileEntry__Wrapper(std::move(value));
   }
 
-  // pragma MARK: std::shared_ptr<Promise<void>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<void>>`.
-   */
-  using std__shared_ptr_Promise_void__ = std::shared_ptr<Promise<void>>;
-  inline std::shared_ptr<Promise<void>> create_std__shared_ptr_Promise_void__() noexcept {
-    return Promise<void>::create();
-  }
-  inline PromiseHolder<void> wrap_std__shared_ptr_Promise_void__(std::shared_ptr<Promise<void>> promise) noexcept {
-    return PromiseHolder<void>(std::move(promise));
-  }
-
   // pragma MARK: std::shared_ptr<HybridOneFileSystemSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneFileSystemSpec>`.
@@ -1322,15 +1538,6 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__vector_FileEntry____ create_Result_std__shared_ptr_Promise_std__vector_FileEntry____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<void>>>
-  using Result_std__shared_ptr_Promise_void___ = Result<std::shared_ptr<Promise<void>>>;
-  inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::shared_ptr<Promise<void>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<void>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<void>>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<HybridOneFontsSpec>

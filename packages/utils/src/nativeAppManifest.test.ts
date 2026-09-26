@@ -70,6 +70,13 @@ describe('native.app manifest', () => {
     )
   })
 
+  test('requires an audio recording prompt', () => {
+    expect(() => validateNativeApp({ ...app, audio: { microphone: 'Record notes.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, audio: { microphone: ' ' } })).toThrow(
+      /audio\.microphone/
+    )
+  })
+
   test('accepts a camera permission string and rejects empty ones', () => {
     expect(() => validateNativeApp({ ...app, imagePicker: undefined })).not.toThrow()
     expect(() => validateNativeApp({ ...app, imagePicker: { camera: '' } })).toThrow(

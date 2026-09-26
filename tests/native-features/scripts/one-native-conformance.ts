@@ -52,6 +52,7 @@ const suites = [
   'local-authentication',
   'location',
   'file-system',
+  'audio',
   'speech',
   'fetch',
   'secure-store',
@@ -337,6 +338,9 @@ const locationLoaded = (nodes: Node[]) =>
   has(nodes, 'Allow While Using App')
 const fileSystemLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-file-system-run')) && has(nodes, 'Status: ')
+const audioLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-audio-run')) ||
+  labels(nodes).some((label) => label.includes('NativeFeatureTests verifies audio recording.'))
 // the microphone and speech prompts cover the fixture during the request
 const fetchLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-fetch-run')) && has(nodes, 'Status: ')
@@ -434,6 +438,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'local-authentication': localAuthenticationLoaded,
   location: locationLoaded,
   'file-system': fileSystemLoaded,
+  audio: audioLoaded,
   speech: speechLoaded,
   fetch: fetchLoaded,
   'secure-store': secureStoreLoaded,
@@ -473,6 +478,7 @@ const suiteHome: Record<Suite, string> = {
   'local-authentication': 'nav-one-native-local-authentication',
   location: 'nav-one-native-location',
   'file-system': 'nav-one-native-file-system',
+  audio: 'nav-one-native-audio',
   speech: 'nav-one-native-speech',
   fetch: 'nav-one-native-fetch',
   'secure-store': 'nav-one-native-secure-store',
@@ -811,6 +817,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       timeout: 30_000,
     })
     execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '37.7749,-122.4194'], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+  }
+  if (config.suite === 'audio') {
+    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'microphone', config.bundleId], {
       stdio: 'ignore',
       timeout: 30_000,
     })
@@ -4398,6 +4410,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('file-system-lifecycle.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'audio') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-audio')
+    await wait('audio fixture starts idle', (n) => labels(n).includes('Status: idle'))
+    tap({ id: 'one-native-audio-run' })
+    await wait('microphone prompt uses the audio purpose', (n) =>
+      labels(n).some((label) => label.includes('NativeFeatureTests verifies audio recording.'))
+    )
+    screenshot('audio-microphone-prompt.png')
+    tap({ label: 'Allow' })
+    await wait('recorded audio plays through its lifecycle', (n) =>
+      labels(n).includes('Status: passed') &&
+      labels(n).includes(
+        'Result: permission=granted; recording=true; playback=true; ' +
+          'paused=true; seeked=true; resumed=true; stopped=true; ' +
+          'errors=E_AUDIO_URI,E_AUDIO_STATE,E_AUDIO_STATE'
+      )
+    )
+    screenshot('audio-record-and-play.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

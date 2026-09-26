@@ -23,6 +23,8 @@ export { Location } from './location/index';
 export type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationWatchError } from './location/index';
 export { FileSystem } from './file-system/index';
 export type { FileDirectories, FileEncoding, FileEntry, FileInfo } from './file-system/index';
+export { Audio } from './audio/index';
+export type { AudioPlaybackState, AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, } from './audio/index';
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index';
 export { AppInfo } from './app-info/index';
 export type { AppInfoApi } from './app-info/index';

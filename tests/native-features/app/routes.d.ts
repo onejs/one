@@ -32,6 +32,7 @@ declare module 'one' {
         | `/one-native-app-info`
         | `/one-native-apple-auth`
         | `/one-native-apple-file`
+        | `/one-native-audio`
         | `/one-native-arrangement`
         | `/one-native-autogen`
         | `/one-native-browser`

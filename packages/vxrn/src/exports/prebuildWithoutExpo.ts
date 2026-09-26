@@ -1754,21 +1754,22 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
     if (platform === 'ios' && relativePath.endsWith('/Info.plist')) {
       // schemes, usesNonExemptEncryption, and fileSharing stamp above in one
       // anchored block; only the usage descriptions stamp here.
-      const usage: [string, string][] = []
+      const usage = new Map<string, string>()
       if (app.imagePicker?.camera !== undefined) {
-        usage.push(['NSCameraUsageDescription', app.imagePicker.camera])
+        usage.set('NSCameraUsageDescription', app.imagePicker.camera)
       }
       if (app.location !== undefined) {
-        usage.push(['NSLocationWhenInUseUsageDescription', app.location.whenInUse])
+        usage.set('NSLocationWhenInUseUsageDescription', app.location.whenInUse)
       }
       if (app.ios?.faceIdUsageDescription !== undefined) {
-        usage.push(['NSFaceIDUsageDescription', app.ios.faceIdUsageDescription])
+        usage.set('NSFaceIDUsageDescription', app.ios.faceIdUsageDescription)
       }
       if (app.speech !== undefined) {
-        usage.push(
-          ['NSSpeechRecognitionUsageDescription', app.speech.recognition],
-          ['NSMicrophoneUsageDescription', app.speech.microphone]
-        )
+        usage.set('NSSpeechRecognitionUsageDescription', app.speech.recognition)
+        usage.set('NSMicrophoneUsageDescription', app.speech.microphone)
+      }
+      if (app.audio !== undefined) {
+        usage.set('NSMicrophoneUsageDescription', app.audio.microphone)
       }
       const additions: [string, string][] = []
       for (const [key, text] of usage) {
