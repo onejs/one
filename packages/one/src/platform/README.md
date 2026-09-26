@@ -1696,4 +1696,4 @@ already streams and nothing is installed.
 | --- | --- | --- | --- |
 | React Native fetch | No; resolves after the whole body | string, Blob, FormData with `{ uri }` parts, ArrayBuffer | whatwg-fetch over XMLHttpRequest |
 | `expo/fetch` | Yes | string, ArrayBuffer, Blob, FormData without `{ uri }` parts | Expo module; `blob()` copies through base64 |
-| One | Yes | everything React Native fetch accepts | Nitro object; `blob()` stores bytes natively; iOS holds back the first 512 bytes of `text/plain` and `text/html` for content sniffing, as every URLSession client does |
+| One | Yes | everything React Native fetch accepts, except that iOS reads `{ uri }` parts only from `file:` and `data:` URIs, where React Native also loads them through any registered request handler (`http:`, or `ph:` with a photo library loader) | Nitro object; `blob()` stores bytes natively; iOS holds back the first 512 bytes of `text/plain` and `text/html` for content sniffing, as every URLSession client does |
