@@ -28,10 +28,11 @@ const schema = JSON.parse(readFileSync(new URL('../schema.json', import.meta.url
 const component = (publicName: string) =>
   schema.components.find((entry: { publicName: string }) => entry.publicName === publicName)
 
-const shapeNames = ['Circle', 'Capsule', 'Rectangle', 'RoundedRectangle', 'Ellipse']
+const glassShapeNames = ['Circle', 'Capsule', 'Rectangle', 'RoundedRectangle', 'Ellipse']
+const shapeNames = [...glassShapeNames, 'UnevenRoundedRectangle']
 
 describe('shapes', () => {
-  it('declares all five shapes with an optional color fill', () => {
+  it('declares all shapes with an optional color fill', () => {
     for (const name of shapeNames)
       expect(component(name), name).toMatchObject({
         props: { fill: { type: 'ColorValue' } },
@@ -50,9 +51,9 @@ describe('shapes', () => {
 
   it('matches the glass shape names, Circle first', () => {
     expect(shapeControls.map((control) => control.name)).toEqual(shapeNames)
-    for (const control of shapeControls) {
-      const shape = control.name[0].toLowerCase() + control.name.slice(1)
-      expect(glassEffectShapes, control.name).toContain(shape)
+    for (const name of glassShapeNames) {
+      const shape = name[0].toLowerCase() + name.slice(1)
+      expect(glassEffectShapes, name).toContain(shape)
     }
   })
 
@@ -78,5 +79,31 @@ describe('shapes', () => {
     expect(
       render(Controls.RoundedRectangle, { cornerRadius: 8 }).props
     ).toMatchObject({ cornerRadius: 8 })
+  })
+
+  it('rejects an uneven corner radius that is not a non-negative number', () => {
+    for (const radius of cornerRadii)
+      expect(() => render(Controls.UnevenRoundedRectangle, { [radius]: -1 }), radius).toThrow(
+        'UnevenRoundedRectangle radii must be non-negative numbers'
+      )
+    expect(
+      render(Controls.UnevenRoundedRectangle, { topLeadingRadius: 12 }).props
+    ).toMatchObject({ topLeadingRadius: 12, bottomTrailingRadius: 0 })
+  })
+
+  it('passes four independent corner radii to UnevenRoundedRectangle', () => {
+    expect(component('UnevenRoundedRectangle').props).toMatchObject({
+      topLeadingRadius: { type: 'Double' },
+      bottomLeadingRadius: { type: 'Double' },
+      bottomTrailingRadius: { type: 'Double' },
+      topTrailingRadius: { type: 'Double' },
+    })
+    expect(render(Controls.UnevenRoundedRectangle, {
+      topLeadingRadius: 12,
+      bottomTrailingRadius: 4,
+    }).props).toMatchObject({ topLeadingRadius: 12, bottomTrailingRadius: 4 })
+    expect(() => render(Controls.UnevenRoundedRectangle, { topLeadingRadius: -1 })).toThrow(
+      'UnevenRoundedRectangle radii must be non-negative numbers'
+    )
   })
 })

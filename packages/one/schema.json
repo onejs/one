@@ -1591,6 +1591,43 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeUnevenRoundedRectangle",
+      "publicName": "UnevenRoundedRectangle",
+      "props": {
+        "fill": {
+          "type": "ColorValue"
+        },
+        "topLeadingRadius": {
+          "type": "Double"
+        },
+        "bottomLeadingRadius": {
+          "type": "Double"
+        },
+        "bottomTrailingRadius": {
+          "type": "Double"
+        },
+        "topTrailingRadius": {
+          "type": "Double"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeVideoPlayer",
       "publicName": "VideoPlayer",
       "props": {
@@ -2141,6 +2178,92 @@
       },
       "slots": [],
       "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeTextEditor",
+      "publicName": "TextEditor",
+      "props": {
+        "value": {
+          "type": "string"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "syncStateId": {
+          "type": "Int32"
+        },
+        "focused": {
+          "type": "boolean"
+        },
+        "acknowledgedFocusEvent": {
+          "type": "Int32"
+        },
+        "focusRevision": {
+          "type": "Int32"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "textInputAutocapitalization": {
+          "type": "string",
+          "enum": "TextInputAutocapitalization"
+        },
+        "autocorrectionDisabled": {
+          "type": "boolean"
+        },
+        "keyboardType": {
+          "type": "string"
+        },
+        "textContentType": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "onNativeTextEditorValueChange": {
+          "value": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeTextEditorFocusChange": {
+          "value": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeTextEditorValueChange",
+        "sync": true
+      },
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
     },
     {
       "name": "OneNativeAlert",

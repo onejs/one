@@ -43,6 +43,7 @@ const suites = [
   'crypto',
   'app-info',
   'device',
+  'editors',
   'popover',
   'navigation',
   'accessibility',
@@ -305,6 +306,10 @@ const deviceLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-device-read')) &&
   has(nodes, 'Model: ')
+const editorsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-editor-reject')) &&
+  has(nodes, 'Lines: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -441,6 +446,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   crypto: cryptoLoaded,
   'app-info': appInfoLoaded,
   device: deviceLoaded,
+  editors: editorsLoaded,
   popover: popoverLoaded,
   navigation: navigationLoaded,
   accessibility: accessibilityLoaded,
@@ -485,6 +491,7 @@ const suiteHome: Record<Suite, string> = {
   crypto: 'nav-one-native-crypto',
   'app-info': 'nav-one-native-app-info',
   device: 'nav-one-native-device',
+  editors: 'nav-one-native-editors',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -2482,6 +2489,104 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     })
     screenshot('device-info.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'editors') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    // the React Native host carries the label too, as a Group; the editor itself is the
+    // TextArea a UITextView reports, which a single-line TextField never is.
+    const editor = (nodes: Node[]) =>
+      nodes.find((node) => node.AXLabel === 'Notes editor' && node.type === 'TextArea')
+    const editorValue = (nodes: Node[]) => String(editor(nodes)?.AXValue ?? '')
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-editors')
+    const mounted = await wait(
+      'empty TextEditor mounted',
+      (n) => Boolean(editor(n)?.frame) && status(n, 'Value', '') && status(n, 'Lines', 0)
+    )
+    // a fill control takes the React Native box: 140 tall, stretched across the
+    // 10-point gutters of the screen.
+    const app = mounted.find((node) => node.type === 'Application')!.frame!
+    const box = editor(mounted)!.frame!
+    if (Math.round(box.height) !== 140 || Math.round(box.width) !== Math.round(app.width - 20))
+      throw new Error(
+        `TextEditor frame ${box.width}x${box.height} is not the 140-point React Native box ${app.width - 20} wide`
+      )
+    point(box.x + box.width / 2, box.y + 20)
+    await typeInto('TextEditor', 'alpha', editorValue)
+    await wait('typed text reaches React and the native editor', (n) =>
+      status(n, 'Value', 'alpha') && editorValue(n) === 'alpha'
+    )
+    // return is a newline in a TextEditor; a TextField would submit instead.
+    axe(['key', '40'], config.simulatorId)
+    await wait('return inserts a newline', (n) => status(n, 'Value', 'alpha⏎'))
+    axe(['type', 'beta'], config.simulatorId)
+    await wait('second line reaches React and the native editor', (n) =>
+      status(n, 'Value', 'alpha⏎beta') &&
+      status(n, 'Lines', 2) &&
+      editorValue(n) === 'alpha\nbeta'
+    )
+    screenshot('editor-two-lines.png')
+    tap({ id: 'one-native-editor-reject' })
+    await wait('rejecting edits', (n) => status(n, 'Reject', 'on'))
+    // a tap right of the second line's text puts the caret at the end of the text.
+    point(box.x + box.width - 20, box.y + 40)
+    axe(['type', 'x'], config.simulatorId)
+    await wait('a rejected edit is requested and rolled back natively', (n) =>
+      status(n, 'Request', 'alpha⏎betax') &&
+      status(n, 'Value', 'alpha⏎beta') &&
+      editorValue(n) === 'alpha\nbeta'
+    )
+    tap({ id: 'one-native-editor-reject' })
+    await wait('accepting edits', (n) => status(n, 'Reject', 'off'))
+    tap({ id: 'one-native-editor-external' })
+    await wait('an external value reaches the native editor', (n) =>
+      status(n, 'Lines', 3) && editorValue(n) === 'first\nsecond\nthird'
+    )
+    tap({ id: 'one-native-editor-reset' })
+    await wait('a revision reset clears the native editor', (n) =>
+      status(n, 'Revision', 1) && status(n, 'Value', '') && editorValue(n) === ''
+    )
+    screenshot('editor-reset.png')
+
+    // the shape fills its box, so the corner with no radius is painted right into the
+    // corner and the rounded one leaves the box's white background showing there.
+    const corners = async (name: string, wide: boolean) => {
+      const nodes = await wait(`corners ${wide ? 'wide' : 'narrow'}`, (n) =>
+        status(n, 'Corners', wide ? 'wide' : 'narrow') &&
+        n.some((node) => node.AXLabel === 'Shape canvas' && node.frame)
+      )
+      const frame = nodes.find((node) => node.AXLabel === 'Shape canvas')!.frame!
+      const screen = nodes.find((node) => node.type === 'Application')!.frame!
+      // the shape repaints after React commits; give it a frame before reading pixels.
+      await new Promise((resolve) => setTimeout(resolve, 300))
+      const image = readPng(screenshot(name, nodes))
+      const scale = image.width / screen.width
+      const pixel = (x: number, y: number) => {
+        const offset = (Math.round(y * scale) * image.width + Math.round(x * scale)) * 4
+        return [image.data[offset], image.data[offset + 1], image.data[offset + 2]]
+      }
+      const red = ([r, g, b]: number[]) => r > 200 && g < 110 && b < 110
+      const white = ([r, g, b]: number[]) => r > 230 && g > 230 && b > 230
+      const inset = 3
+      const topLeading = pixel(frame.x + inset, frame.y + inset)
+      const bottomTrailing = pixel(frame.x + frame.width - inset, frame.y + frame.height - inset)
+      const bottomLeading = pixel(frame.x + inset, frame.y + frame.height - inset)
+      const center = pixel(frame.x + frame.width / 2, frame.y + frame.height / 2)
+      const ok = wide
+        ? white(topLeading) && red(bottomTrailing)
+        : red(topLeading) && white(bottomTrailing)
+      if (!ok || !red(bottomLeading) || !red(center))
+        throw new Error(
+          `UnevenRoundedRectangle ${wide ? 'wide' : 'narrow'} corners read topLeading ${topLeading}, bottomTrailing ${bottomTrailing}, bottomLeading ${bottomLeading}, center ${center}`
+        )
+    }
+    await corners('shape-narrow.png', false)
+    tap({ id: 'one-native-editor-corners' })
+    await corners('shape-wide.png', true)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

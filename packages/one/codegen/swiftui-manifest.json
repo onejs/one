@@ -17754,6 +17754,7 @@
         "Slider",
         "Stepper",
         "Tab",
+        "TextEditor",
         "TextField",
         "Toggle"
       ],
@@ -17765,7 +17766,8 @@
         "Image",
         "Rectangle",
         "RoundedRectangle",
-        "Text"
+        "Text",
+        "UnevenRoundedRectangle"
       ],
       "_AVKit_SwiftUI": [
         "VideoPlayer"
@@ -19518,6 +19520,43 @@
       "ios": 13
     },
     {
+      "module": "SwiftUICore",
+      "type": "UnevenRoundedRectangle",
+      "parameters": [
+        {
+          "defaultValue": "0",
+          "label": "topLeadingRadius",
+          "name": "topLeadingRadius",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "defaultValue": "0",
+          "label": "bottomLeadingRadius",
+          "name": "bottomLeadingRadius",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "defaultValue": "0",
+          "label": "bottomTrailingRadius",
+          "name": "bottomTrailingRadius",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "defaultValue": "0",
+          "label": "topTrailingRadius",
+          "name": "topTrailingRadius",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "defaultValue": ".continuous",
+          "label": "style",
+          "name": "style",
+          "type": "SwiftUICore.RoundedCornerStyle"
+        }
+      ],
+      "ios": 16
+    },
+    {
       "module": "_AVKit_SwiftUI",
       "type": "VideoPlayer",
       "parameters": [
@@ -19707,6 +19746,18 @@
         }
       ],
       "ios": 15
+    },
+    {
+      "module": "SwiftUI",
+      "type": "TextEditor",
+      "parameters": [
+        {
+          "label": "text",
+          "name": "text",
+          "type": "SwiftUICore.Binding<Swift.String>"
+        }
+      ],
+      "ios": 14
     },
     {
       "module": "SwiftUI",
