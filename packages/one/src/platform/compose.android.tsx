@@ -1,4 +1,4 @@
-import { Children, createContext, useContext } from 'react'
+import { Children, createContext, useContext, type ReactNode } from 'react'
 import NativeComposeNode from './specs/OneNativeComposeNodeNativeComponent'
 import { iconColorRoles } from './ui/iconRoles'
 import { useControlled } from './controlled'
@@ -17,6 +17,7 @@ import type {
   ComposeDialogProps,
   ComposeDividerProps,
   ComposeElevatedCardProps,
+  ComposeFilterChipProps,
   ComposeFontWeight,
   ComposeHorizontalAlignment,
   ComposeHorizontalArrangement,
@@ -50,6 +51,7 @@ import {
   validateColumnProps,
   validateDialogProps,
   validateDividerProps,
+  validateFilterChipProps,
   validateIconProps,
   validateProgressIndicatorProps,
   validateRadioButtonProps,
@@ -69,6 +71,8 @@ type ComposeNodeType =
   | 'outlinedcard'
   | 'horizontaldivider'
   | 'verticaldivider'
+  | 'filterchip'
+  | 'chipslot'
   | 'text'
   | 'icon'
   | 'button'
@@ -110,6 +114,10 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   cardElevation?: number
   cardBorder?: ComposeCardProps['border']
   dividerStyle?: Pick<ComposeDividerProps, 'thickness' | 'color'>
+  slotName?: string
+  chipColors?: ComposeFilterChipProps['colors']
+  chipElevation?: number
+  chipBorder?: ComposeFilterChipProps['border']
   acknowledgedEvent?: number
   revision?: number
   textValue?: string
@@ -289,6 +297,53 @@ function VerticalDivider({ thickness, color, ...props }: ComposeDividerProps) {
   validateDividerProps({ thickness, color }, 'VerticalDivider')
   return <ComposeNode {...props} nodeType="verticaldivider" dividerStyle={{ thickness, color }} />
 }
+
+function FilterChipRoot({
+  children,
+  selected,
+  enabled = true,
+  colors,
+  elevation,
+  border,
+  onClick,
+  ...props
+}: ComposeFilterChipProps) {
+  validateFilterChipProps({ children, selected, enabled, colors, elevation, border, onClick })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="filterchip"
+      selected={selected}
+      disabled={!enabled}
+      chipColors={colors}
+      chipElevation={elevation}
+      chipBorder={border}
+      onNativeComposeNodeButtonPress={onClick ? () => onClick() : undefined}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function FilterChipSlot({ children, name }: { children: ReactNode; name: string }) {
+  return (
+    <ComposeNode nodeType="chipslot" slotName={name}>
+      {children}
+    </ComposeNode>
+  )
+}
+
+const FilterChip = Object.assign(FilterChipRoot, {
+  Label: ({ children }: { children: ReactNode }) => (
+    <FilterChipSlot name="label">{children}</FilterChipSlot>
+  ),
+  LeadingIcon: ({ children }: { children: ReactNode }) => (
+    <FilterChipSlot name="leadingIcon">{children}</FilterChipSlot>
+  ),
+  TrailingIcon: ({ children }: { children: ReactNode }) => (
+    <FilterChipSlot name="trailingIcon">{children}</FilterChipSlot>
+  ),
+})
 
 function Text({
   text,
@@ -654,6 +709,7 @@ export const Compose = {
   OutlinedCard,
   HorizontalDivider,
   VerticalDivider,
+  FilterChip,
   Text,
   Icon,
   Button,

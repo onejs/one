@@ -200,6 +200,28 @@ export interface ComposeDividerProps extends ComposeLeafProps {
   color?: ColorValue
 }
 
+export type ComposeFilterChipColors = Readonly<{
+  containerColor?: ColorValue
+  labelColor?: ColorValue
+  iconColor?: ColorValue
+  selectedContainerColor?: ColorValue
+  selectedLabelColor?: ColorValue
+  selectedLeadingIconColor?: ColorValue
+  selectedTrailingIconColor?: ColorValue
+}>
+
+export type ComposeChipBorder = ComposeCardBorder
+
+export interface ComposeFilterChipProps extends ComposeNodeProps {
+  children: ReactNode
+  selected: boolean
+  enabled?: boolean
+  colors?: ComposeFilterChipColors
+  elevation?: number
+  border?: ComposeChipBorder
+  onClick?: () => void
+}
+
 export type ComposeTextFieldVariant = 'filled' | 'outlined'
 export type ComposeTextFieldKeyboardType =
   | 'default'

@@ -182,6 +182,11 @@ const testScreens = [
     testID: 'nav-one-native-android-dividers',
   },
   {
+    href: '/one-native-android-filter-chip',
+    label: 'One Native Android Filter Chip',
+    testID: 'nav-one-native-android-filter-chip',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',

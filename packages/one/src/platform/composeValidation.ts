@@ -7,6 +7,7 @@ import type {
   ComposeColumnProps,
   ComposeDialogProps,
   ComposeDividerProps,
+  ComposeFilterChipProps,
   ComposeIconProps,
   ComposeProgressIndicatorProps,
   ComposeRadioButtonProps,
@@ -152,6 +153,15 @@ const radioColorKeys = new Set([
   'disabledUnselectedColor',
 ])
 const cardColorKeys = new Set(['containerColor', 'contentColor'])
+const filterChipColorKeys = new Set([
+  'containerColor',
+  'labelColor',
+  'iconColor',
+  'selectedContainerColor',
+  'selectedLabelColor',
+  'selectedLeadingIconColor',
+  'selectedTrailingIconColor',
+])
 
 function assertComposeColorValue(value: unknown, name: string) {
   const resourcePaths =
@@ -351,20 +361,37 @@ export function validateCardProps(
     assertFiniteNumber(props.elevation, `${kind} elevation`)
     if (props.elevation < 0) throw new Error(`Compose ${kind} elevation must be nonnegative`)
   }
-  if (props.border === undefined) return
-  if (kind === 'ElevatedCard') throw new Error('Compose ElevatedCard does not support border')
-  if (!props.border || typeof props.border !== 'object' || Array.isArray(props.border))
+  if (kind === 'ElevatedCard' && props.border !== undefined)
+    throw new Error('Compose ElevatedCard does not support border')
+  assertComposeBorder(props.border, kind)
+}
+
+function assertComposeBorder(border: ComposeCardProps['border'], kind: string) {
+  if (border === undefined) return
+  if (!border || typeof border !== 'object' || Array.isArray(border))
     throw new Error(`Compose ${kind} border must be an object`)
-  for (const key of Object.keys(props.border))
+  for (const key of Object.keys(border))
     if (key !== 'width' && key !== 'color')
       throw new Error(`Compose ${kind} border does not support ${key}`)
-  if (props.border.width !== undefined) {
-    assertFiniteNumber(props.border.width, `${kind} border width`)
-    if (props.border.width < 0)
+  if (border.width !== undefined) {
+    assertFiniteNumber(border.width, `${kind} border width`)
+    if (border.width < 0)
       throw new Error(`Compose ${kind} border width must be nonnegative`)
   }
-  if (props.border.color !== undefined)
-    assertComposeColorValue(props.border.color, `${kind} border color`)
+  if (border.color !== undefined) assertComposeColorValue(border.color, `${kind} border color`)
+}
+
+export function validateFilterChipProps(props: ComposeFilterChipProps) {
+  assertBoolean(props.selected, 'FilterChip selected')
+  assertBoolean(props.enabled ?? true, 'FilterChip enabled')
+  if (props.onClick !== undefined) assertFunction(props.onClick, 'FilterChip onClick')
+  if (props.colors !== undefined)
+    assertComposeColors(props.colors, filterChipColorKeys, 'FilterChip')
+  if (props.elevation !== undefined) {
+    assertFiniteNumber(props.elevation, 'FilterChip elevation')
+    if (props.elevation < 0) throw new Error('Compose FilterChip elevation must be nonnegative')
+  }
+  assertComposeBorder(props.border, 'FilterChip')
 }
 
 export function validateDividerProps(
