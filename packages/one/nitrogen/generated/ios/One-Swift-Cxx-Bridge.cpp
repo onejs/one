@@ -15,6 +15,7 @@
 #include "HybridOneClipboardSpecSwift.hpp"
 #include "HybridOneCryptoSpecSwift.hpp"
 #include "HybridOneDocumentPickerSpecSwift.hpp"
+#include "HybridOneFetchSpecSwift.hpp"
 #include "HybridOneFontsSpecSwift.hpp"
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "HybridOneImagePickerSpecSwift.hpp"
@@ -225,6 +226,38 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneDocumentPickerSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::function<void(const FetchNativeResponse& /* response */)>
+  Func_void_FetchNativeResponse create_Func_void_FetchNativeResponse(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_FetchNativeResponse::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const FetchNativeResponse& response) mutable -> void {
+      swiftClosure.call(response);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>
+  Func_void_std__shared_ptr_ArrayBuffer_ create_Func_void_std__shared_ptr_ArrayBuffer_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__shared_ptr_ArrayBuffer_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::shared_ptr<ArrayBuffer>& chunk) mutable -> void {
+      swiftClosure.call(ArrayBufferHolder(chunk));
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneFetchSpec>
+  std::shared_ptr<HybridOneFetchSpec> create_std__shared_ptr_HybridOneFetchSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneFetchSpec_cxx swiftPart = One::HybridOneFetchSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneFetchSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneFetchSpec_(std__shared_ptr_HybridOneFetchSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneFetchSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneFetchSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneFetchSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneFetchSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   

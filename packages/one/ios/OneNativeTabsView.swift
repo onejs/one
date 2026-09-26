@@ -505,11 +505,18 @@ extension View {
   }
 }
 
+// every TabContent modifier the SDK declares, applied only where the React side set it. each
+// conditional modifier carries its content in both branches, so the chain's concrete type doubles
+// per modifier. inline, that type spelled out the whole tab (and each section around its tabs) 2^n
+// times, and the swift runtime spent most of a minute demangling it before the first frame. inside
+// this struct the chain names its content once, as a generic parameter.
 @available(iOS 18.0, *)
-extension TabContent where TabValue == String {
-  // every TabContent modifier the SDK declares, applied only where the React side set it.
-  func oneNativeTabContent(_ m: OneNativeTabModifiers) -> some TabContent<String> {
-    self
+struct OneNativeTabModified<Content: TabContent>: TabContent where Content.TabValue == String {
+  let content: Content
+  let m: OneNativeTabModifiers
+
+  var body: some TabContent<String> {
+    content
       .hidden(m.hidden ?? false)
       .accessibilityLabel(Text(m.accessibilityLabel ?? ""), isEnabled: m.accessibilityLabel != nil)
       .accessibilityHint(Text(m.accessibilityHint ?? ""), isEnabled: m.accessibilityHint != nil)
@@ -523,6 +530,13 @@ extension TabContent where TabValue == String {
       .oneNativeTabPlacement(m.tabPlacement)
       .oneNativeDefaultSectionExpansion(m.defaultSectionExpansion)
       .oneNativeHelp(m.help)
+  }
+}
+
+@available(iOS 18.0, *)
+extension TabContent where TabValue == String {
+  func oneNativeTabContent(_ m: OneNativeTabModifiers) -> OneNativeTabModified<Self> {
+    OneNativeTabModified(content: self, m: m)
   }
 
   @TabContentBuilder<String>

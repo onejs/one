@@ -226,6 +226,11 @@ const testScreens = [
     label: 'One Native Updates',
     testID: 'nav-one-native-updates',
   },
+  {
+    href: '/one-native-fetch',
+    label: 'One Native Fetch',
+    testID: 'nav-one-native-fetch',
+  },
 ] as const
 
 export default function HomeScreen() {

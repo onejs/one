@@ -168,6 +168,18 @@ public final class OneAutolinking {
     return HybridOneSpeech.self is any RecyclableView.Type
   }
   
+  public static func createOneFetch() -> bridge.std__shared_ptr_HybridOneFetchSpec_ {
+    let hybridObject = HybridOneFetch()
+    return { () -> bridge.std__shared_ptr_HybridOneFetchSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+  
+  public static func isOneFetchRecyclable() -> Bool {
+    return HybridOneFetch.self is any RecyclableView.Type
+  }
+  
   public static func createOneAppleAuth() -> bridge.std__shared_ptr_HybridOneAppleAuthSpec_ {
     let hybridObject = HybridOneAppleAuth()
     return { () -> bridge.std__shared_ptr_HybridOneAppleAuthSpec_ in

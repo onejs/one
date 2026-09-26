@@ -50,6 +50,7 @@ const suites = [
   'apple-file',
   'apple-auth',
   'speech',
+  'fetch',
   'clipboard',
   'network',
   'browser',
@@ -320,6 +321,8 @@ const appleAuthLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-apple-auth-credential')) &&
   has(nodes, 'Available: ')
 // the microphone and speech prompts cover the fixture during the request
+const fetchLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-fetch-run')) && has(nodes, 'Status: ')
 const speechLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-speech-start')) && has(nodes, 'Available: ')) ||
@@ -410,6 +413,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'apple-file': appleFileLoaded,
   'apple-auth': appleAuthLoaded,
   speech: speechLoaded,
+  fetch: fetchLoaded,
   clipboard: clipboardLoaded,
   network: networkLoaded,
   browser: browserLoaded,
@@ -444,6 +448,7 @@ const suiteHome: Record<Suite, string> = {
   'apple-file': 'nav-one-native-apple-file',
   'apple-auth': 'nav-one-native-apple-auth',
   speech: 'nav-one-native-speech',
+  fetch: 'nav-one-native-fetch',
   clipboard: 'nav-one-native-clipboard',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
@@ -4241,6 +4246,48 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       log(n, 'B') === failed && log(n, 'A') === 'start'
     )
     screenshot('speech-sessions.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'fetch') {
+    // every behavior the global fetch keeps from react native's fetch, plus
+    // the streamed body it adds. the stream check is the negative control: a
+    // buffered fetch delivers the first chunk only once the body is done.
+    const expected: [string, string][] = [
+      ["Stream", "1|2|3 early=true"],
+      ["Echo", "200 yes POST application/json yes a=1"],
+      ["Bytes", "PUT 000102ff"],
+      ["Blob", "4 application/octet-stream 000102ff"],
+      ["Form", "multipart/form-data true true"],
+      ["RequestForm", "multipart/form-data true true"],
+      ["RequestBlob", "application/octet-stream 000102ff 4"],
+      ["Redirect", "200 true true"],
+      ["Cookie", "one_fetch=1 null"],
+      ["NoContent", "204 null"],
+      ["Clone", "true true"],
+      ["Identity", "true false"],
+      ["Abort", "first AbortError"],
+      ["AbortBefore", "AbortError"],
+      ["Refused", "type error"],
+    ]
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-fetch')
+    await wait('fetch fixture mounted', (n) => has(n, 'Status: idle'))
+    tap({ id: 'one-native-fetch-run' })
+    const final = await wait(
+      'every fetch check reports',
+      (n) => has(n, 'Status: done') || has(n, 'Status: failed')
+    )
+    screenshot('fetch-checks.png')
+    const got = labels(final)
+    const failed = got.find((l) => l.startsWith('Status: failed'))
+    if (failed) throw new Error(failed)
+    for (const [name, value] of expected) {
+      if (!got.includes(`${name}: ${value}`))
+        throw new Error(`fetch ${name}: expected ${JSON.stringify(value)}, got ${JSON.stringify(got.find((l) => l.startsWith(`${name}: `)))}`)
+      console.log(`PASS fetch-${name.toLowerCase()}`)
+    }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -37,6 +37,7 @@ declare module 'one' {
         | `/one-native-dialogs`
         | `/one-native-document-picker`
         | `/one-native-effects`
+        | `/one-native-fetch`
         | `/one-native-fonts`
         | `/one-native-gpu`
         | `/one-native-groups`
