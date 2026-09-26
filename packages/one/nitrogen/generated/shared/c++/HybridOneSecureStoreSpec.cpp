@@ -17,6 +17,9 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("getItem", &HybridOneSecureStoreSpec::getItem);
       prototype.registerHybridMethod("setItem", &HybridOneSecureStoreSpec::setItem);
       prototype.registerHybridMethod("deleteItem", &HybridOneSecureStoreSpec::deleteItem);
+      prototype.registerHybridMethod("getItemSync", &HybridOneSecureStoreSpec::getItemSync);
+      prototype.registerHybridMethod("setItemSync", &HybridOneSecureStoreSpec::setItemSync);
+      prototype.registerHybridMethod("deleteItemSync", &HybridOneSecureStoreSpec::deleteItemSync);
     });
   }
 

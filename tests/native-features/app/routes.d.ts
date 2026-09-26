@@ -55,6 +55,7 @@ declare module 'one' {
         | `/one-native-pip`
         | `/one-native-popover`
         | `/one-native-safe-area`
+        | `/one-native-secure-store`
         | `/one-native-sheet`
         | `/one-native-speech`
         | `/one-native-state`
@@ -62,6 +63,7 @@ declare module 'one' {
         | `/one-native-tab-oracle`
         | `/one-native-tabview`
         | `/one-native-ui-map`
+        | `/one-native-updates`
         | `/split-view-test`
         | `/toolbar-test`
         | `/zoom-detail`

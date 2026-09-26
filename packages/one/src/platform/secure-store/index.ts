@@ -20,4 +20,27 @@ function deleteItem(key: string): Promise<void> {
   return Promise.reject(new Error('SecureStore.deleteItem needs an iOS or Android build'))
 }
 
-export const SecureStore = Object.freeze({ getItem, setItem, deleteItem })
+function getItemSync(key: string): string | null {
+  assertSecureStoreKey(key, 'SecureStore.getItemSync')
+  throw new Error('SecureStore.getItemSync needs an iOS or Android build')
+}
+
+function setItemSync(key: string, value: string): void {
+  assertSecureStoreKey(key, 'SecureStore.setItemSync')
+  assertSecureStoreValue(value, 'SecureStore.setItemSync')
+  throw new Error('SecureStore.setItemSync needs an iOS or Android build')
+}
+
+function deleteItemSync(key: string): void {
+  assertSecureStoreKey(key, 'SecureStore.deleteItemSync')
+  throw new Error('SecureStore.deleteItemSync needs an iOS or Android build')
+}
+
+export const SecureStore = Object.freeze({
+  getItem,
+  setItem,
+  deleteItem,
+  getItemSync,
+  setItemSync,
+  deleteItemSync,
+})

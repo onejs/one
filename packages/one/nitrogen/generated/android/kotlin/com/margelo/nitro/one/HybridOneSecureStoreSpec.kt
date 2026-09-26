@@ -41,6 +41,18 @@ abstract class HybridOneSecureStoreSpec: HybridObject() {
   @DoNotStrip
   @Keep
   abstract fun deleteItem(key: String): Promise<Unit>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun getItemSync(key: String): String?
+  
+  @DoNotStrip
+  @Keep
+  abstract fun setItemSync(key: String, value: String): Unit
+  
+  @DoNotStrip
+  @Keep
+  abstract fun deleteItemSync(key: String): Unit
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

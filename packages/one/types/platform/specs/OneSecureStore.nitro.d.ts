@@ -6,5 +6,8 @@ export interface OneSecureStore extends HybridObject<{
     getItem(key: string): Promise<string | undefined>;
     setItem(key: string, value: string): Promise<void>;
     deleteItem(key: string): Promise<void>;
+    getItemSync(key: string): string | undefined;
+    setItemSync(key: string, value: string): void;
+    deleteItemSync(key: string): void;
 }
 //# sourceMappingURL=OneSecureStore.nitro.d.ts.map

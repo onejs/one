@@ -16,6 +16,9 @@ public protocol HybridOneSecureStoreSpec_protocol: HybridObject {
   func getItem(key: String) throws -> Promise<String?>
   func setItem(key: String, value: String) throws -> Promise<Void>
   func deleteItem(key: String) throws -> Promise<Void>
+  func getItemSync(key: String) throws -> String?
+  func setItemSync(key: String, value: String) throws -> Void
+  func deleteItemSync(key: String) throws -> Void
 }
 
 public extension HybridOneSecureStoreSpec_protocol {

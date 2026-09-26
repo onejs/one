@@ -31,4 +31,41 @@ function deleteItem(key: string): Promise<void> {
   return native().deleteItem(key).catch(rethrowNativeError)
 }
 
-export const SecureStore = Object.freeze({ getItem, setItem, deleteItem })
+// the synchronous verbs block the js thread on the keychain or keystore, as
+// expo-secure-store's getItem and setItem do: for values a first render needs
+function getItemSync(key: string): string | null {
+  assertSecureStoreKey(key, 'SecureStore.getItemSync')
+  try {
+    return native().getItemSync(key) ?? null
+  } catch (error) {
+    rethrowNativeError(error)
+  }
+}
+
+function setItemSync(key: string, value: string): void {
+  assertSecureStoreKey(key, 'SecureStore.setItemSync')
+  assertSecureStoreValue(value, 'SecureStore.setItemSync')
+  try {
+    native().setItemSync(key, value)
+  } catch (error) {
+    rethrowNativeError(error)
+  }
+}
+
+function deleteItemSync(key: string): void {
+  assertSecureStoreKey(key, 'SecureStore.deleteItemSync')
+  try {
+    native().deleteItemSync(key)
+  } catch (error) {
+    rethrowNativeError(error)
+  }
+}
+
+export const SecureStore = Object.freeze({
+  getItem,
+  setItem,
+  deleteItem,
+  getItemSync,
+  setItemSync,
+  deleteItemSync,
+})
