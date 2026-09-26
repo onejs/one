@@ -421,13 +421,7 @@ export function renderSwiftSourceGlue(
   const hasMain = contracts.some((contract) => contract.defaultView)
   const bodyName = `OneNativeSourceBody_${packageId}`
   const className = `OneNativeSource_${packageId}`
-  const renderCase = (method: NativeSourceMethod, module: NativeSourceModule, synchronous: boolean): string[] => {
-    if (synchronous && method.async) {
-      return [
-        `      case ${JSON.stringify(method.name)}:`,
-        `        throw NSError(domain: "OneNativeSource", code: 3, userInfo: [NSLocalizedDescriptionKey: "${packageId}.${module.name}.${method.name} is async and cannot run in Peach yet"])`,
-      ]
-    }
+  const renderCase = (method: NativeSourceMethod, module: NativeSourceModule): string[] => {
     const lines = [
       `      case ${JSON.stringify(method.name)}:`,
       `        guard values.count == ${method.parameters.length} else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "${packageId}.${module.name}.${method.name} expects ${method.parameters.length} arguments"]) }`,
@@ -451,8 +445,8 @@ export function renderSwiftSourceGlue(
     }
     return lines
   }
-  const renderCall = (synchronous: boolean): string[] => [
-    `  static func ${synchronous ? 'callSync' : 'call'}(_ module: String, _ method: String, _ argsJson: String)${synchronous ? '' : ' async'} throws -> String {`,
+  const renderCall = (): string[] => [
+    '  static func call(_ module: String, _ method: String, _ argsJson: String) async throws -> String {',
     '    guard let values = try JSONSerialization.jsonObject(with: Data(argsJson.utf8)) as? [Any] else {',
     '      throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "arguments must be a JSON array"])',
     '    }',
@@ -460,7 +454,7 @@ export function renderSwiftSourceGlue(
     ...modules.flatMap((module) => [
       `    case ${JSON.stringify(`${packageId}.${module.name}`)}:`,
       '      switch method {',
-      ...module.methods.flatMap((method) => renderCase(method, module, synchronous)),
+      ...module.methods.flatMap((method) => renderCase(method, module)),
       '      default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native method \\(module).\\(method) is not linked; rebuild the app"])',
       '      }',
     ]),
@@ -478,19 +472,34 @@ export function renderSwiftSourceGlue(
     `  public static let hash = ${JSON.stringify(hash)}`,
     '#if os(WASI)',
     '  private struct Request: Decodable { let module: String; let method: String; let argsJson: String; let contractHash: String }',
-    '  private struct Reply: Encodable { let ok: Bool; let value: String?; let error: String? }',
+    '  private struct Reply: Encodable { let ok: Bool; let value: String?; let error: String?; let pending: Int32? }',
     '  private static var output: [UInt8] = []',
+    '  private static var finished: [Int32: Reply] = [:]',
+    '  private static var nextCall: Int32 = 0',
+    '  // peach runs tasks inline, so a call finishes before its task launch returns',
+    '  // unless it waits on the clock; then it answers pending and the host polls',
+    '  // it after running the timers.',
     '  static func callWasm(_ payload: UnsafePointer<UInt8>?, _ length: Int32) -> UnsafeMutablePointer<UInt8>? {',
-    '    let reply: Reply',
+    '    let id = nextCall',
+    '    nextCall &+= 1',
     '    do {',
     '      guard let payload, length >= 0 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "missing call payload"]) }',
     '      let request = try JSONDecoder().decode(Request.self, from: Data(bytes: payload, count: Int(length)))',
     '      guard request.contractHash == hash else { throw NSError(domain: "OneNativeSource", code: 4, userInfo: [NSLocalizedDescriptionKey: "native module changed; rebuild the app"]) }',
-    '      let value = try callSync(request.module, request.method, request.argsJson)',
-    '      reply = Reply(ok: true, value: value, error: nil)',
+    '      Task {',
+    '        do {',
+    '          finished[id] = Reply(ok: true, value: try await call(request.module, request.method, request.argsJson), error: nil, pending: nil)',
+    '        } catch {',
+    '          finished[id] = Reply(ok: false, value: nil, error: error.localizedDescription, pending: nil)',
+    '        }',
+    '      }',
     '    } catch {',
-    '      reply = Reply(ok: false, value: nil, error: error.localizedDescription)',
+    '      finished[id] = Reply(ok: false, value: nil, error: error.localizedDescription, pending: nil)',
     '    }',
+    '    return pollWasm(id)',
+    '  }',
+    '  static func pollWasm(_ id: Int32) -> UnsafeMutablePointer<UInt8>? {',
+    '    let reply = finished.removeValue(forKey: id) ?? Reply(ok: true, value: nil, error: nil, pending: id)',
     '    let bytes = (try? JSONEncoder().encode(reply)) ?? Data("{\\"ok\\":false,\\"error\\":\\"encoding failed\\"}".utf8)',
     '    let count = UInt32(bytes.count)',
     '    output = [UInt8(count & 0xff), UInt8((count >> 8) & 0xff), UInt8((count >> 16) & 0xff), UInt8(count >> 24)] + Array(bytes)',
@@ -502,14 +511,16 @@ export function renderSwiftSourceGlue(
     '    let data = try JSONSerialization.data(withJSONObject: value, options: [.fragmentsAllowed])',
     '    return try JSONDecoder().decode(T.self, from: data)',
     '  }',
-    ...renderCall(false),
-    ...renderCall(true),
+    ...renderCall(),
     '}',
     '',
     '#if os(WASI)',
     '@_expose(wasm, "rnx_call")',
     '@_cdecl("rnx_call")',
     `@MainActor public func rnx_call(_ payload: UnsafePointer<UInt8>?, _ length: Int32) -> UnsafeMutablePointer<UInt8>? { ${bodyName}.callWasm(payload, length) }`,
+    '@_expose(wasm, "rnx_call_poll")',
+    '@_cdecl("rnx_call_poll")',
+    `@MainActor public func rnx_call_poll(_ id: Int32) -> UnsafeMutablePointer<UInt8>? { ${bodyName}.pollWasm(id) }`,
     ...(!hasMain ? [
       `@main struct OneNativeSourceMain_${packageId}: App {`,
       '  var body: some Scene { WindowGroup { EmptyView() } }',
