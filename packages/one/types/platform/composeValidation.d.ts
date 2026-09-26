@@ -1,4 +1,4 @@
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeStyle, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeContainedLoadingIndicatorProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeStyle, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
 export declare const horizontalAlignments: readonly ['start', 'centerHorizontally', 'end'];
 export declare const verticalAlignments: readonly ['top', 'centerVertically', 'bottom'];
 export declare const contentAlignments: readonly ['topStart', 'topCenter', 'topEnd', 'centerStart', 'center', 'centerEnd', 'bottomStart', 'bottomCenter', 'bottomEnd', 'top', 'bottom', 'start', 'end'];
@@ -47,4 +47,5 @@ export declare function validateSliderProps(props: ComposeSliderProps): void;
 export declare function validateAlertDialogProps(props: ComposeAlertDialogProps): void;
 export declare function validateDialogProps(props: ComposeDialogProps): void;
 export declare function validateProgressIndicatorProps(props: ComposeProgressIndicatorProps): void;
+export declare function validateLoadingIndicatorProps(props: ComposeLoadingIndicatorProps | ComposeContainedLoadingIndicatorProps): void;
 //# sourceMappingURL=composeValidation.d.ts.map

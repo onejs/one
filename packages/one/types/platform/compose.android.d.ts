@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
 declare function Column({ children, horizontalAlignment, verticalArrangement, spacing, ...props }: ComposeColumnProps): import("react/jsx-runtime").JSX.Element;
 declare function Row({ children, verticalAlignment, horizontalArrangement, spacing, ...props }: ComposeRowProps): import("react/jsx-runtime").JSX.Element;
 declare function FlowRow({ children, horizontalArrangement, verticalArrangement, ...props }: ComposeFlowRowProps): import("react/jsx-runtime").JSX.Element;
@@ -51,6 +51,8 @@ declare function Slider({ value, onValueChange, revision, minimumValue, maximumV
 declare function AlertDialog({ visible, title, message, confirmLabel, dismissLabel, onConfirm, onDismiss, ...props }: ComposeAlertDialogProps): import("react/jsx-runtime").JSX.Element;
 declare function Dialog({ children, visible, onDismiss, ...props }: ComposeDialogProps): import("react/jsx-runtime").JSX.Element;
 declare function ProgressIndicator({ variant, progress, ...props }: ComposeProgressIndicatorProps): import("react/jsx-runtime").JSX.Element;
+declare function LoadingIndicator({ progress, color, ...props }: ComposeLoadingIndicatorProps): import("react/jsx-runtime").JSX.Element;
+declare function ContainedLoadingIndicator({ progress, color, containerColor, ...props }: ComposeContainedLoadingIndicatorProps): import("react/jsx-runtime").JSX.Element;
 export declare const Compose: {
     Column: typeof Column;
     Row: typeof Row;
@@ -145,6 +147,8 @@ export declare const Compose: {
     AlertDialog: typeof AlertDialog;
     Dialog: typeof Dialog;
     ProgressIndicator: typeof ProgressIndicator;
+    LoadingIndicator: typeof LoadingIndicator;
+    ContainedLoadingIndicator: typeof ContainedLoadingIndicator;
 };
 export {};
 //# sourceMappingURL=compose.android.d.ts.map

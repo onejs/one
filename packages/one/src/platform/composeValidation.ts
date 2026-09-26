@@ -16,6 +16,8 @@ import type {
   ComposeIconButtonProps,
   ComposeInputChipProps,
   ComposeListItemProps,
+  ComposeLoadingIndicatorProps,
+  ComposeContainedLoadingIndicatorProps,
   ComposeProgressIndicatorProps,
   ComposeRadioButtonProps,
   ComposeRowProps,
@@ -626,4 +628,12 @@ export function validateProgressIndicatorProps(props: ComposeProgressIndicatorPr
       props.progress > 1)
   )
     throw new Error('Compose ProgressIndicator progress must be a number from 0 to 1')
+}
+
+export function validateLoadingIndicatorProps(props: ComposeLoadingIndicatorProps | ComposeContainedLoadingIndicatorProps) {
+  if (props.progress != null && (typeof props.progress !== 'number' || !Number.isFinite(props.progress) || props.progress < 0 || props.progress > 1))
+    throw new Error('Compose LoadingIndicator progress must be a number from 0 to 1')
+  if (props.color !== undefined) assertComposeColorValue(props.color, 'LoadingIndicator color')
+  if ('containerColor' in props && props.containerColor !== undefined)
+    assertComposeColorValue(props.containerColor, 'ContainedLoadingIndicator containerColor')
 }

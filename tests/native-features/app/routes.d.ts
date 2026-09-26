@@ -32,6 +32,7 @@ declare module 'one' {
         | `/one-native-android-icon-buttons`
         | `/one-native-android-inputs`
         | `/one-native-android-list-items`
+        | `/one-native-android-loading`
         | `/one-native-android-selection`
         | `/one-native-app-info`
         | `/one-native-apple-auth`

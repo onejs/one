@@ -190,6 +190,10 @@ class OneNativeComposeNodeManager :
         view.stageToggleButtonColors(value)
     }
 
+    override fun setLoadingColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageLoadingColors(value)
+    }
+
     override fun setBadgeColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageBadgeColors(value)
     }

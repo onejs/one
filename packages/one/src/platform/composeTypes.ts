@@ -424,3 +424,12 @@ export interface ComposeProgressIndicatorProps extends ComposeLeafProps {
   variant?: ComposeProgressVariant
   progress?: number
 }
+
+export interface ComposeLoadingIndicatorProps extends ComposeLeafProps {
+  progress?: number | null
+  color?: ColorValue
+}
+
+export interface ComposeContainedLoadingIndicatorProps extends ComposeLoadingIndicatorProps {
+  containerColor?: ColorValue
+}
