@@ -27,7 +27,7 @@ type or a list, exact (`'application/pdf'`) or a wildcard (`'image/*'`), default
 Picked files are copied into the app cache and returned as file URIs with `name` and,
 when the platform provides them, `mimeType` and `size` in bytes. Read one with
 `fetch(uri)`: `.arrayBuffer()`, `.blob()`, or `.text()` all work on both platforms, so no
-file system module is needed.
+FileSystem call is needed to read a picked file.
 
 Backing out resolves `{ canceled: true, assets: null }`. One pick is in flight at a time;
 a second call while the picker is up rejects. Runtime failures reject with

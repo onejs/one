@@ -56,6 +56,14 @@ namespace margelo::nitro::one { struct FetchHeader; }
 namespace margelo::nitro::one { struct FetchNativeRequest; }
 // Forward declaration of `FetchNativeResponse` to properly resolve imports.
 namespace margelo::nitro::one { struct FetchNativeResponse; }
+// Forward declaration of `FileDirectories` to properly resolve imports.
+namespace margelo::nitro::one { struct FileDirectories; }
+// Forward declaration of `FileEncoding` to properly resolve imports.
+namespace margelo::nitro::one { enum class FileEncoding; }
+// Forward declaration of `FileEntry` to properly resolve imports.
+namespace margelo::nitro::one { struct FileEntry; }
+// Forward declaration of `FileInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct FileInfo; }
 // Forward declaration of `HapticImpact` to properly resolve imports.
 namespace margelo::nitro::one { enum class HapticImpact; }
 // Forward declaration of `HapticNotification` to properly resolve imports.
@@ -80,6 +88,8 @@ namespace margelo::nitro::one { class HybridOneCryptoSpec; }
 namespace margelo::nitro::one { class HybridOneDocumentPickerSpec; }
 // Forward declaration of `HybridOneFetchSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneFetchSpec; }
+// Forward declaration of `HybridOneFileSystemSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneFileSystemSpec; }
 // Forward declaration of `HybridOneFontsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneFontsSpec; }
 // Forward declaration of `HybridOneHapticsSpec` to properly resolve imports.
@@ -212,6 +222,10 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "FetchHeader.hpp"
 #include "FetchNativeRequest.hpp"
 #include "FetchNativeResponse.hpp"
+#include "FileDirectories.hpp"
+#include "FileEncoding.hpp"
+#include "FileEntry.hpp"
+#include "FileInfo.hpp"
 #include "HapticImpact.hpp"
 #include "HapticNotification.hpp"
 #include "HingeState.hpp"
@@ -224,6 +238,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneCryptoSpec.hpp"
 #include "HybridOneDocumentPickerSpec.hpp"
 #include "HybridOneFetchSpec.hpp"
+#include "HybridOneFileSystemSpec.hpp"
 #include "HybridOneFontsSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
@@ -314,6 +329,8 @@ namespace One { class HybridOneCryptoSpec_cxx; }
 namespace One { class HybridOneDocumentPickerSpec_cxx; }
 // Forward declaration of `HybridOneFetchSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneFetchSpec_cxx; }
+// Forward declaration of `HybridOneFileSystemSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneFileSystemSpec_cxx; }
 // Forward declaration of `HybridOneFontsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneFontsSpec_cxx; }
 // Forward declaration of `HybridOneHapticsSpec_cxx` to properly resolve imports.

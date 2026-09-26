@@ -1,4 +1,5 @@
-import type { ComposeAlertDialogProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeIconProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import { type ReactNode } from 'react';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeFilterChipProps, ComposeIconProps, ComposeInputChipProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
 declare function Column({ children, horizontalAlignment, verticalArrangement, spacing, ...props }: ComposeColumnProps): import("react/jsx-runtime").JSX.Element;
 declare function Row({ children, verticalAlignment, horizontalArrangement, spacing, ...props }: ComposeRowProps): import("react/jsx-runtime").JSX.Element;
 declare function Box({ children, contentAlignment, ...props }: ComposeBoxProps): import("react/jsx-runtime").JSX.Element;
@@ -7,6 +8,25 @@ declare function ElevatedCard(props: ComposeElevatedCardProps): import("react/js
 declare function OutlinedCard(props: ComposeOutlinedCardProps): import("react/jsx-runtime").JSX.Element;
 declare function HorizontalDivider({ thickness, color, ...props }: ComposeDividerProps): import("react/jsx-runtime").JSX.Element;
 declare function VerticalDivider({ thickness, color, ...props }: ComposeDividerProps): import("react/jsx-runtime").JSX.Element;
+declare function AssistChipRoot(props: ComposeAssistChipProps): import("react/jsx-runtime").JSX.Element;
+declare function FilterChipRoot(props: ComposeFilterChipProps): import("react/jsx-runtime").JSX.Element;
+declare function InputChipRoot(props: ComposeInputChipProps): import("react/jsx-runtime").JSX.Element;
+declare function SuggestionChipRoot(props: ComposeSuggestionChipProps): import("react/jsx-runtime").JSX.Element;
+declare const ChipLabel: ({ children }: {
+    children: ReactNode;
+}) => import("react/jsx-runtime").JSX.Element;
+declare const ChipLeadingIcon: ({ children }: {
+    children: ReactNode;
+}) => import("react/jsx-runtime").JSX.Element;
+declare const ChipTrailingIcon: ({ children }: {
+    children: ReactNode;
+}) => import("react/jsx-runtime").JSX.Element;
+declare const ChipAvatar: ({ children }: {
+    children: ReactNode;
+}) => import("react/jsx-runtime").JSX.Element;
+declare const ChipIcon: ({ children }: {
+    children: ReactNode;
+}) => import("react/jsx-runtime").JSX.Element;
 declare function Text({ text, fontSize, fontWeight, textAlign, maxLines, ...props }: ComposeTextProps): import("react/jsx-runtime").JSX.Element;
 export declare function renderIcon({ name, size, filled, ...props }: ComposeIconProps, colorRole?: string): import("react/jsx-runtime").JSX.Element;
 declare function Icon(props: ComposeIconProps): import("react/jsx-runtime").JSX.Element;
@@ -28,6 +48,25 @@ export declare const Compose: {
     OutlinedCard: typeof OutlinedCard;
     HorizontalDivider: typeof HorizontalDivider;
     VerticalDivider: typeof VerticalDivider;
+    FilterChip: typeof FilterChipRoot & {
+        Label: typeof ChipLabel;
+        LeadingIcon: typeof ChipLeadingIcon;
+        TrailingIcon: typeof ChipTrailingIcon;
+    };
+    AssistChip: typeof AssistChipRoot & {
+        Label: typeof ChipLabel;
+        LeadingIcon: typeof ChipLeadingIcon;
+        TrailingIcon: typeof ChipTrailingIcon;
+    };
+    InputChip: typeof InputChipRoot & {
+        Label: typeof ChipLabel;
+        Avatar: typeof ChipAvatar;
+        TrailingIcon: typeof ChipTrailingIcon;
+    };
+    SuggestionChip: typeof SuggestionChipRoot & {
+        Label: typeof ChipLabel;
+        Icon: typeof ChipIcon;
+    };
     Text: typeof Text;
     Icon: typeof Icon;
     Button: typeof Button;

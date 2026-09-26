@@ -1,5 +1,7 @@
+import type { ReactNode } from 'react'
 import type {
   ComposeAlertDialogProps,
+  ComposeAssistChipProps,
   ComposeBoxProps,
   ComposeButtonProps,
   ComposeCardProps,
@@ -8,12 +10,15 @@ import type {
   ComposeDialogProps,
   ComposeDividerProps,
   ComposeElevatedCardProps,
+  ComposeFilterChipProps,
   ComposeIconProps,
+  ComposeInputChipProps,
   ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
   ComposeRadioButtonProps,
   ComposeRowProps,
   ComposeSliderProps,
+  ComposeSuggestionChipProps,
   ComposeSwitchProps,
   ComposeTextFieldProps,
   ComposeTextProps,
@@ -56,6 +61,48 @@ function HorizontalDivider(_props: ComposeDividerProps): never {
 function VerticalDivider(_props: ComposeDividerProps): never {
   return unsupported('VerticalDivider')
 }
+
+function FilterChipRoot(_props: ComposeFilterChipProps): never {
+  return unsupported('FilterChip')
+}
+
+function AssistChipRoot(_props: ComposeAssistChipProps): never {
+  return unsupported('AssistChip')
+}
+
+function InputChipRoot(_props: ComposeInputChipProps): never {
+  return unsupported('InputChip')
+}
+
+function SuggestionChipRoot(_props: ComposeSuggestionChipProps): never {
+  return unsupported('SuggestionChip')
+}
+
+const ChipLabel = (_props: { children: ReactNode }): never => unsupported('Chip.Label')
+const ChipLeadingIcon = (_props: { children: ReactNode }): never => unsupported('Chip.LeadingIcon')
+const ChipTrailingIcon = (_props: { children: ReactNode }): never => unsupported('Chip.TrailingIcon')
+const ChipAvatar = (_props: { children: ReactNode }): never => unsupported('Chip.Avatar')
+const ChipIcon = (_props: { children: ReactNode }): never => unsupported('Chip.Icon')
+
+const AssistChip = Object.assign(AssistChipRoot, {
+  Label: ChipLabel,
+  LeadingIcon: ChipLeadingIcon,
+  TrailingIcon: ChipTrailingIcon,
+})
+const FilterChip = Object.assign(FilterChipRoot, {
+  Label: ChipLabel,
+  LeadingIcon: ChipLeadingIcon,
+  TrailingIcon: ChipTrailingIcon,
+})
+const InputChip = Object.assign(InputChipRoot, {
+  Label: ChipLabel,
+  Avatar: ChipAvatar,
+  TrailingIcon: ChipTrailingIcon,
+})
+const SuggestionChip = Object.assign(SuggestionChipRoot, {
+  Label: ChipLabel,
+  Icon: ChipIcon,
+})
 
 function Text(_props: ComposeTextProps): never {
   return unsupported('Text')
@@ -110,6 +157,10 @@ export const Compose = {
   OutlinedCard,
   HorizontalDivider,
   VerticalDivider,
+  FilterChip,
+  AssistChip,
+  InputChip,
+  SuggestionChip,
   Text,
   Icon,
   Button,
