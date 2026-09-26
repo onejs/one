@@ -217,6 +217,11 @@ const testScreens = [
     testID: 'nav-one-native-apple-auth',
   },
   {
+    href: '/one-native-local-authentication',
+    label: 'One Native Local Authentication',
+    testID: 'nav-one-native-local-authentication',
+  },
+  {
     href: '/one-native-speech',
     label: 'One Native Speech',
     testID: 'nav-one-native-speech',

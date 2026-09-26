@@ -1,0 +1,48 @@
+---
+title: Local Authentication
+description: Check and request Face ID or Touch ID on iOS
+---
+
+`One.iOS.LocalAuthentication` evaluates Apple's biometric policy. Call it from a
+user action and give the system a clear reason to display.
+
+```tsx
+import { One } from 'one'
+
+const status = One.iOS.LocalAuthentication.canEvaluatePolicy()
+if (status.available) {
+  const authenticated = await One.iOS.LocalAuthentication.evaluatePolicy(
+    'Unlock your saved account'
+  )
+  if (authenticated) {
+    // continue to the protected action
+  }
+}
+```
+
+Set the Face ID usage text in the app manifest before prebuilding:
+
+```ts
+native: {
+  app: {
+    ios: {
+      bundleId: 'com.example.app',
+      faceIdUsageDescription: 'Unlock your saved account with Face ID.',
+    },
+  },
+}
+```
+
+`canEvaluatePolicy()` returns `{ available, biometryType, errorCode? }`.
+`biometryType` is `none`, `touchID`, `faceID`, or `opticID`. Availability is
+false when biometrics are not enrolled or are unavailable. `errorCode` is the
+Apple `LAError` numeric code when the policy cannot be evaluated.
+
+`evaluatePolicy(reason)` resolves `true` after authentication and `false` when
+the user or system cancels. An empty reason rejects with `E_LOCAL_AUTH_REASON`;
+a binary without the Face ID usage text rejects with `E_LOCAL_AUTH_MANIFEST`.
+Unavailable biometrics reject with `E_LOCAL_AUTH_NOT_ENROLLED`,
+`E_LOCAL_AUTH_LOCKOUT`, or `E_LOCAL_AUTH_PASSCODE_NOT_SET` when applicable.
+Other failures reject with `E_LOCAL_AUTH_FAILED`. The error's `code` property
+holds that value. This API uses biometrics only and hides the passcode fallback
+button. It is iOS only and throws on Android or web.

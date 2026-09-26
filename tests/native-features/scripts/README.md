@@ -73,6 +73,17 @@ That fixture must be on an iPhone 16 size simulator. Native tabs expose no acces
 
 `clipboard` covers `One.Clipboard`: set reports true, get reads the write back, has sees the string, and the pasteboard outlives a fixture recycle.
 
+`local-authentication` covers `One.iOS.LocalAuthentication` on an iPhone 17 Pro
+with iOS 27. Grant the fixture Face ID permission once before the run with
+`applesimutils --byId <SIMULATOR_UUID> --bundle dev.vxrn.native.tests
+--setPermissions faceid=YES`; that command restarts SpringBoard, so launch the
+suite only after the simulator shows its home screen. The suite disables
+biometric enrollment, proves the policy unavailable and evaluation rejects with
+`E_LOCAL_AUTH_NOT_ENROLLED`, enables enrollment, proves the policy available,
+captures the Face ID tile, sends a matching Face ID response, and requires
+`evaluatePolicy` to resolve true. `applesimutils` is
+also used by the suite to change enrollment and send the match.
+
 `network` covers `One.Network`: the one-shot read publishes a live state with a named type and both flags true, the listener fires at least once, and a refresh re-reads. State republishes across two leave/reenter cycles.
 
 `browser` covers `One.Browser`: a user close-tap on the measured button point resolves cancel, a programmatic dismiss resolves dismiss on both the open and dismiss promises, dismissing a pending auth session resolves dismiss on its promise too, and a redirect to the app scheme resolves success with the url. The sheet exposes no accessibility children, so presentation is the collapsed tree. The redirect leg serves a local 302 (127.0.0.1:8123) from the runner in ephemeral mode, which skips the consent alert.

@@ -1750,6 +1750,9 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       if (app.imagePicker?.camera !== undefined) {
         usage.push(['NSCameraUsageDescription', app.imagePicker.camera])
       }
+      if (app.ios?.faceIdUsageDescription !== undefined) {
+        usage.push(['NSFaceIDUsageDescription', app.ios.faceIdUsageDescription])
+      }
       if (app.speech !== undefined) {
         usage.push(
           ['NSSpeechRecognitionUsageDescription', app.speech.recognition],

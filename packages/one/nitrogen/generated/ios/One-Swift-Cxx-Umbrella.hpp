@@ -86,6 +86,8 @@ namespace margelo::nitro::one { class HybridOneFontsSpec; }
 namespace margelo::nitro::one { class HybridOneHapticsSpec; }
 // Forward declaration of `HybridOneImagePickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
+// Forward declaration of `HybridOneLocalAuthenticationSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneLocalAuthenticationSpec; }
 // Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNetworkSpec; }
 // Forward declaration of `HybridOneNotificationsSpec` to properly resolve imports.
@@ -102,6 +104,10 @@ namespace margelo::nitro::one { struct ImagePickerAsset; }
 namespace margelo::nitro::one { enum class ImagePickerMediaType; }
 // Forward declaration of `ImagePickerNativeResult` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerNativeResult; }
+// Forward declaration of `LocalAuthenticationStatus` to properly resolve imports.
+namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
+// Forward declaration of `LocalBiometryType` to properly resolve imports.
+namespace margelo::nitro::one { enum class LocalBiometryType; }
 // Forward declaration of `NativeChannelInput` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeChannelInput; }
 // Forward declaration of `NativeChannel` to properly resolve imports.
@@ -211,6 +217,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneFontsSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
+#include "HybridOneLocalAuthenticationSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
@@ -219,6 +226,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ImagePickerAsset.hpp"
 #include "ImagePickerMediaType.hpp"
 #include "ImagePickerNativeResult.hpp"
+#include "LocalAuthenticationStatus.hpp"
+#include "LocalBiometryType.hpp"
 #include "NativeChannel.hpp"
 #include "NativeChannelInput.hpp"
 #include "NativeContent.hpp"
@@ -296,6 +305,8 @@ namespace One { class HybridOneFontsSpec_cxx; }
 namespace One { class HybridOneHapticsSpec_cxx; }
 // Forward declaration of `HybridOneImagePickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneImagePickerSpec_cxx; }
+// Forward declaration of `HybridOneLocalAuthenticationSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneLocalAuthenticationSpec_cxx; }
 // Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNetworkSpec_cxx; }
 // Forward declaration of `HybridOneNotificationsSpec_cxx` to properly resolve imports.

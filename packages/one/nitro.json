@@ -69,6 +69,9 @@
       "ios": { "language": "swift", "implementationClassName": "HybridOneAppleAuth" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneAppleAuth" }
     },
+    "OneLocalAuthentication": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneLocalAuthentication" }
+    },
     "OneUpdates": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneUpdates" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneUpdates" }

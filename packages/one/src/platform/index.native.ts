@@ -141,6 +141,8 @@ export type {
 export type * from './types'
 export type * from './composeTypes'
 export { Haptics } from './haptics/index.native'
+export { LocalAuthentication } from './local-authentication/index.native'
+export type { LocalAuthenticationStatus } from './local-authentication/index.native'
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native'
 export { AppInfo } from './app-info/index.native'
 export type { AppInfoApi } from './app-info/index.native'
