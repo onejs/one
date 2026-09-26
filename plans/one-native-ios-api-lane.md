@@ -34,7 +34,7 @@ checklist; One's own exports and docs decide the status.
 | Clipboard | covered | `One.Clipboard` text | clipboard | done |
 | Secure storage | partial | `One.SecureStore` key/value; no access-control options | none | P1 |
 | Biometrics | covered | `One.iOS.LocalAuthentication` policy status and biometric evaluation | local-authentication: unenrolled, enrolled, Face ID match | done |
-| Document picking | partial | `One.DocumentPicker`; fixture has no suite | none | P1 |
+| Document picking | covered | `One.DocumentPicker` single and multiple selection, cached file URIs | apple-file: cancel and exact copied file bytes | done |
 | File system | covered | `One.iOS.FileSystem` sandbox write/list/copy/move/delete; `fetch(file://)` reads | file-system lifecycle | done |
 | Background tasks | missing | no BGTaskScheduler path | none | P2 |
 | Deep links | covered | One router and linking integration | router tests; external browser callback | done |
