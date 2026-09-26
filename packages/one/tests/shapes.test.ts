@@ -30,6 +30,9 @@ const component = (publicName: string) =>
 
 const glassShapeNames = ['Circle', 'Capsule', 'Rectangle', 'RoundedRectangle', 'Ellipse']
 const shapeNames = [...glassShapeNames, 'UnevenRoundedRectangle']
+const cornerRadii = [
+  'topLeadingRadius', 'bottomLeadingRadius', 'bottomTrailingRadius', 'topTrailingRadius',
+] as const
 
 describe('shapes', () => {
   it('declares all shapes with an optional color fill', () => {
