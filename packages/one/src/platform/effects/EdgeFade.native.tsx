@@ -1,7 +1,8 @@
-import { StyleSheet, View, processColor, type ColorValue } from 'react-native'
+import { I18nManager, View, processColor, type ColorValue } from 'react-native'
 import NativeEdgeFade from '../specs/OneNativeEdgeFadeNativeComponent'
 import { sampleCurve } from './curves'
-import { resolveEdges, resolveNativeProps, resolveRadius, type ResolvedEdge } from './normalize'
+import { resolveNativeProps } from './nativeProps'
+import { flattenStyle, resolveEdges, resolveRadius, type ResolvedEdge } from './normalize'
 import type { EdgeFadeProps } from './types'
 
 // overlay fades paint through RN core backgroundImage gradients (no native
@@ -11,7 +12,10 @@ const BACKGROUND_IMAGE_KEY = 'backgroundImage' as const
 
 type EdgeName = 'top' | 'bottom' | 'left' | 'right'
 
-const STRIP_DIRECTIONS: Record<EdgeName, 'to bottom' | 'to top' | 'to right' | 'to left'> = {
+const STRIP_DIRECTIONS: Record<
+  EdgeName,
+  'to bottom' | 'to top' | 'to right' | 'to left'
+> = {
   top: 'to bottom',
   bottom: 'to top',
   left: 'to right',
@@ -24,11 +28,23 @@ function stripLayout(edge: EdgeName, size: number) {
     case 'top':
       return { position: 'absolute' as const, top: 0, left: 0, right: 0, height: clamped }
     case 'bottom':
-      return { position: 'absolute' as const, bottom: 0, left: 0, right: 0, height: clamped }
+      return {
+        position: 'absolute' as const,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: clamped,
+      }
     case 'left':
       return { position: 'absolute' as const, top: 0, bottom: 0, left: 0, width: clamped }
     case 'right':
-      return { position: 'absolute' as const, top: 0, bottom: 0, right: 0, width: clamped }
+      return {
+        position: 'absolute' as const,
+        top: 0,
+        bottom: 0,
+        right: 0,
+        width: clamped,
+      }
   }
 }
 
@@ -74,13 +90,16 @@ function OverlayStrip({
   return (
     <View
       pointerEvents="none"
-      style={[stripLayout(edge, resolved.size), { [BACKGROUND_IMAGE_KEY]: [stripGradient(edge, resolved, fallback)] }]}
+      style={[
+        stripLayout(edge, resolved.size),
+        { [BACKGROUND_IMAGE_KEY]: [stripGradient(edge, resolved, fallback)] },
+      ]}
     />
   )
 }
 
 export function EdgeFade(props: EdgeFadeProps) {
-  const resolved = resolveEdges(props)
+  const resolved = resolveEdges(props, I18nManager.isRTL)
   const {
     top: _top,
     bottom: _bottom,
@@ -101,24 +120,29 @@ export function EdgeFade(props: EdgeFadeProps) {
   } = props
   // borderRadius never reaches a host view: the mask path needs it as a
   // fade-integrated fadeRadius, the core path as a clipped container.
-  const flat = (StyleSheet.flatten(style) ?? {}) as Record<string, unknown>
-  const { borderRadius: _ignored, ...cleanStyle } = flat
-  const resolvedRadius = resolveRadius(radius, style)
+  const { borderRadius: styleRadius, ...cleanStyle } = flattenStyle(style)
+  const resolvedRadius = resolveRadius(radius, styleRadius)
 
   if (resolved.mode === 'overlay') {
     const radiusStyle =
-      resolvedRadius != null ? { borderRadius: resolvedRadius, overflow: 'hidden' as const } : null
+      resolvedRadius != null
+        ? { borderRadius: resolvedRadius, overflow: 'hidden' as const }
+        : null
     // explicit overlay without a color falls back to black, matching
     // upstream edge-fade's per-edge default (edge color, global, black).
     const fallback = resolved.color ?? 'black'
     return (
       <View style={[cleanStyle, radiusStyle]} {...viewProps}>
         {children}
-        {resolved.top && <OverlayStrip edge="top" resolved={resolved.top} fallback={fallback} />}
+        {resolved.top && (
+          <OverlayStrip edge="top" resolved={resolved.top} fallback={fallback} />
+        )}
         {resolved.bottom && (
           <OverlayStrip edge="bottom" resolved={resolved.bottom} fallback={fallback} />
         )}
-        {resolved.left && <OverlayStrip edge="left" resolved={resolved.left} fallback={fallback} />}
+        {resolved.left && (
+          <OverlayStrip edge="left" resolved={resolved.left} fallback={fallback} />
+        )}
         {resolved.right && (
           <OverlayStrip edge="right" resolved={resolved.right} fallback={fallback} />
         )}

@@ -1,13 +1,15 @@
-import { StyleSheet, View, type ColorValue, type ViewStyle } from 'react-native'
+import type { CSSProperties } from 'react'
+import type { ColorValue } from 'react-native'
 import { sampleCurve } from './curves'
-import { resolveEdges, resolveRadius, type ResolvedEdge } from './normalize'
+import { flattenStyle, resolveEdges, resolveRadius, type ResolvedEdge } from './normalize'
 import type { EdgeFadeProps } from './types'
 
 // the web draws every mode with css gradients sampled from the same curves
 // the native tables use, so a curve reads the same on every platform. mask
 // mode intersects one mask-image gradient per edge, overlay mode paints a
 // color strip per edge, and blur mode puts a backdrop-filter strip per edge
-// whose own mask ramps the blur along the curve.
+// whose own mask ramps the blur along the curve. it renders plain divs and
+// never touches react-native, so no web bundle pulls react-native-web in.
 
 type EdgeName = 'top' | 'bottom' | 'left' | 'right'
 
@@ -36,8 +38,19 @@ function edgeMask(name: EdgeName, edge: ResolvedEdge) {
   return `linear-gradient(${DIRECTIONS[name]}, ${stops.join(', ')}, black ${edge.size}px)`
 }
 
-// strips never take touches; react-native-web reads pointerEvents from style.
-function stripLayout(name: EdgeName, size: number) {
+// the box a react native View lays out as, so style props mean the same thing.
+const VIEW_BASE: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  flexShrink: 0,
+  position: 'relative',
+  boxSizing: 'border-box',
+  minWidth: 0,
+  minHeight: 0,
+}
+
+// strips never take touches.
+function stripLayout(name: EdgeName, size: number): CSSProperties {
   const depth = Math.max(0, size)
   const base = { position: 'absolute' as const, pointerEvents: 'none' as const }
   switch (name) {
@@ -53,7 +66,11 @@ function stripLayout(name: EdgeName, size: number) {
 }
 
 // a strip's gradient runs across its own box, so stops are percentages of it.
-function stripGradient(name: EdgeName, edge: ResolvedEdge, paint: (visible: number) => string) {
+function stripGradient(
+  name: EdgeName,
+  edge: ResolvedEdge,
+  paint: (visible: number) => string
+) {
   const alphas = sampleCurve(edge.curve)
   const last = alphas.length - 1
   const stops = alphas.map((_, index) => {
@@ -70,15 +87,13 @@ function colorPaint(color: ColorValue) {
     `color-mix(in srgb, ${String(color)} ${((1 - visible) * 100).toFixed(2)}%, transparent)`
 }
 
-// react-native-web hands css it does not know (masks, backdrop filters,
-// gradient strings) straight to the dom. react native's style types do not
-// list those keys, so the merged style is typed here once.
-function webStyle(...parts: (Record<string, unknown> | null)[]): ViewStyle {
-  return Object.assign({}, ...parts) as ViewStyle
+// the page's direction decides start and end; server renders are ltr.
+function documentIsRTL() {
+  return typeof document !== 'undefined' && document.documentElement.dir === 'rtl'
 }
 
 export function EdgeFade(props: EdgeFadeProps) {
-  const resolved = resolveEdges(props)
+  const resolved = resolveEdges(props, documentIsRTL())
   const {
     top: _top,
     bottom: _bottom,
@@ -95,15 +110,18 @@ export function EdgeFade(props: EdgeFadeProps) {
     radius,
     style,
     children,
-    ...viewProps
+    testID,
+    nativeID,
   } = props
-  const { borderRadius: _ignored, ...cleanStyle } = (StyleSheet.flatten(style) ?? {}) as Record<
-    string,
-    unknown
-  >
-  const resolvedRadius = resolveRadius(radius, style)
-  const radiusStyle =
-    resolvedRadius != null ? { borderRadius: resolvedRadius, overflow: 'hidden' as const } : null
+  // a View style is layout css; react-dom adds px to its bare numbers.
+  const { borderRadius: styleRadius, ...cleanStyle } = flattenStyle(style)
+  const resolvedRadius = resolveRadius(radius, styleRadius)
+  const box: CSSProperties = {
+    ...VIEW_BASE,
+    ...cleanStyle,
+    ...(resolvedRadius != null && { borderRadius: resolvedRadius, overflow: 'hidden' }),
+  }
+  const hostProps = { 'data-testid': testID, id: nativeID }
   const edges = EDGES.flatMap((name) => {
     const edge = resolved[name]
     return edge ? [{ name, edge }] : []
@@ -111,13 +129,13 @@ export function EdgeFade(props: EdgeFadeProps) {
 
   if (resolved.mode === 'mask') {
     const maskImage = edges.map(({ name, edge }) => edgeMask(name, edge)).join(', ')
-    const maskStyle = edges.length
+    const maskStyle: CSSProperties = edges.length
       ? { maskImage, maskComposite: 'intersect', maskRepeat: 'no-repeat' }
-      : null
+      : {}
     return (
-      <View {...viewProps} style={webStyle(cleanStyle, radiusStyle, maskStyle)}>
+      <div {...hostProps} style={{ ...box, ...maskStyle }}>
         {children}
-      </View>
+      </div>
     )
   }
 
@@ -125,17 +143,22 @@ export function EdgeFade(props: EdgeFadeProps) {
     // explicit overlay without a color falls back to black, as on native.
     const fallback = resolved.color ?? 'black'
     return (
-      <View {...viewProps} style={webStyle(cleanStyle, radiusStyle)}>
+      <div {...hostProps} style={box}>
         {children}
         {edges.map(({ name, edge }) => (
-          <View
+          <div
             key={name}
-            style={webStyle(stripLayout(name, edge.size), {
-              backgroundImage: stripGradient(name, edge, colorPaint(edge.color ?? fallback)),
-            })}
+            style={{
+              ...stripLayout(name, edge.size),
+              backgroundImage: stripGradient(
+                name,
+                edge,
+                colorPaint(edge.color ?? fallback)
+              ),
+            }}
           />
         ))}
-      </View>
+      </div>
     )
   }
 
@@ -144,7 +167,7 @@ export function EdgeFade(props: EdgeFadeProps) {
   // full strength frostProgression of the way out.
   const veil = resolved.color
   return (
-    <View {...viewProps} style={webStyle(cleanStyle, radiusStyle)}>
+    <div {...hostProps} style={box}>
       {children}
       {edges.map(({ name, edge }) => {
         const reach = resolved.frostProgression
@@ -153,16 +176,19 @@ export function EdgeFade(props: EdgeFadeProps) {
           return `rgba(0,0,0,${strength.toFixed(4)})`
         })
         return (
-          <View
+          <div
             key={name}
-            style={webStyle(stripLayout(name, edge.size), {
+            style={{
+              ...stripLayout(name, edge.size),
               backdropFilter: `blur(${resolved.blurRadius}px)`,
               maskImage: blurMask,
-              backgroundImage: veil ? stripGradient(name, edge, colorPaint(veil)) : undefined,
-            })}
+              backgroundImage: veil
+                ? stripGradient(name, edge, colorPaint(veil))
+                : undefined,
+            }}
           />
         )
       })}
-    </View>
+    </div>
   )
 }
