@@ -46,11 +46,17 @@ struct OneNativeSlot: UIViewRepresentable {
 
     // swiftUI can update a slot it is about to tear down after its replacement
     // has mounted, as when fabric recycles a host whose old graph is still alive.
-    // an off-screen slot therefore takes content only when no on-screen slot
-    // holds it, or the teardown would leave the content with no superview.
+    // hosts hand content to slots and never mount it themselves, so a slot takes
+    // content only from nobody or from another slot: content under any other
+    // parent is a recycled react view fabric has since mounted elsewhere, often
+    // in a subtree still off screen. an off-screen slot takes it from another
+    // slot only when that slot is off screen too, or the teardown would leave
+    // the content with no superview.
     func claimContent() {
       guard content.superview !== self else { return }
-      guard window != nil || content.window == nil else { return }
+      if let holder = content.superview {
+        guard let slot = holder as? Container, window != nil || slot.window == nil else { return }
+      }
       addSubview(content)
     }
 
