@@ -30,9 +30,11 @@ const rootIndexBundleRequestPattern = /^(https?:\/\/[^/]+)?\/index\.bundle(?=$|[
 const expoVirtualEntryBundleRequestPattern =
   /^(https?:\/\/[^/]+)?\/\.expo\/\.virtual-metro-entry\.bundle(?=$|[?#])/
 // keep app build output and volatile caches out of Metro's fallback watcher.
-// package dist directories remain visible because Metro resolves modules from them.
+// package dist directories remain visible because Metro resolves modules from
+// them, including a dependency's own dist/server, so the app build output
+// pattern never matches inside node_modules.
 const metroWatchExclusions = [
-  /[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/,
+  /^(?!.*[/\\]node_modules[/\\]).*[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/,
   /[/\\]tests[/\\][^/\\]+[/\\]dist(?:[/\\]|$)/,
   /[/\\]\.docker(?:[/\\]|$)/,
   /[/\\]\.vite(?:[/\\]|$)/,
