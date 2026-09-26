@@ -1393,17 +1393,18 @@ export async function linkTo(
   // and the navigators under them render together. published urgently, a layout
   // whose screens follow the pathname would change its navigator's route names
   // against the old state, and the navigator's rebuild would overwrite this
-  // navigation
+  // navigation. the action is built first, so a target it cannot reach
+  // publishes nothing.
+  const action =
+    event === 'REPLACE' ? null : getNavigateAction(state, freshRootState, event)
   startTransition(() => {
     updateState(optimisticState)
     pendingNavigationPathname = targetPathname
     notifyRootStateSubscribers(optimisticState)
 
-    if (event === 'REPLACE') {
+    if (!action) {
       navigationRef.resetRoot(state)
     } else {
-      const action = getNavigateAction(state, freshRootState, event)
-
       // when navigating across route groups (e.g. (public) -> (authed)/beta/signup),
       // the NAVIGATE action can fail to initialize the target group's child navigator
       // with the nested screen. use reset to directly apply the full target state instead.
