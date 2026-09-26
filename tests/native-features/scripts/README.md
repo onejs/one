@@ -120,6 +120,9 @@ Invalid items reject with their documented codes.
 `photo-library` requests add-only Photos permission, saves real HEIC and MP4
 fixture assets, and checks the returned asset identifiers and validation errors.
 
+`device` reads the iOS device snapshot and asserts the iPhone simulator model,
+iOS 27 version, phone idiom, simulator flag, and a UUID vendor identifier.
+
 `network` covers `One.Network`: the one-shot read publishes a live state with a named type and both flags true, the listener fires at least once, and a refresh re-reads. State republishes across two leave/reenter cycles.
 
 `browser` covers `One.Browser`: a user close-tap on the measured button point resolves cancel, a programmatic dismiss resolves dismiss on both the open and dismiss promises, dismissing a pending auth session resolves dismiss on its promise too, and a redirect to the app scheme resolves success with the url. The sheet exposes no accessibility children, so presentation is the collapsed tree. The redirect leg serves a local 302 (127.0.0.1:8123) from the runner in ephemeral mode, which skips the consent alert.

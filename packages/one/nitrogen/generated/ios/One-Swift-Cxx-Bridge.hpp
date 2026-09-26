@@ -52,6 +52,8 @@ namespace margelo::nitro::one { struct BrowserResult; }
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class CameraPermissionStatus; }
+// Forward declaration of `DeviceInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct DeviceInfo; }
 // Forward declaration of `DocumentPickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct DocumentPickerAsset; }
 // Forward declaration of `DocumentPickerNativeResult` to properly resolve imports.
@@ -88,6 +90,8 @@ namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 // Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneCryptoSpec; }
+// Forward declaration of `HybridOneDeviceSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneDeviceSpec; }
 // Forward declaration of `HybridOneDocumentPickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDocumentPickerSpec; }
 // Forward declaration of `HybridOneFetchSpec` to properly resolve imports.
@@ -210,6 +214,8 @@ namespace One { class HybridOneBrowserSpec_cxx; }
 namespace One { class HybridOneClipboardSpec_cxx; }
 // Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneCryptoSpec_cxx; }
+// Forward declaration of `HybridOneDeviceSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneDeviceSpec_cxx; }
 // Forward declaration of `HybridOneDocumentPickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDocumentPickerSpec_cxx; }
 // Forward declaration of `HybridOneFetchSpec_cxx` to properly resolve imports.
@@ -265,6 +271,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "BrowserResultType.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
+#include "DeviceInfo.hpp"
 #include "DocumentPickerAsset.hpp"
 #include "DocumentPickerNativeResult.hpp"
 #include "FetchBlobRef.hpp"
@@ -283,6 +290,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
+#include "HybridOneDeviceSpec.hpp"
 #include "HybridOneDocumentPickerSpec.hpp"
 #include "HybridOneFetchSpec.hpp"
 #include "HybridOneFileSystemSpec.hpp"
@@ -1218,6 +1226,61 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_ArrayBuffer__ create_Result_std__shared_ptr_ArrayBuffer__(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<ArrayBuffer>>::withError(error);
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<DeviceInfo>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<DeviceInfo>>`.
+   */
+  using std__shared_ptr_Promise_DeviceInfo__ = std::shared_ptr<Promise<DeviceInfo>>;
+  inline std::shared_ptr<Promise<DeviceInfo>> create_std__shared_ptr_Promise_DeviceInfo__() noexcept {
+    return Promise<DeviceInfo>::create();
+  }
+  inline PromiseHolder<DeviceInfo> wrap_std__shared_ptr_Promise_DeviceInfo__(std::shared_ptr<Promise<DeviceInfo>> promise) noexcept {
+    return PromiseHolder<DeviceInfo>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const DeviceInfo& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const DeviceInfo&)>`.
+   */
+  using Func_void_DeviceInfo = std::function<void(const DeviceInfo& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const DeviceInfo& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_DeviceInfo_Wrapper final {
+  public:
+    explicit Func_void_DeviceInfo_Wrapper(std::function<void(const DeviceInfo& /* result */)>&& func): _function(std::make_unique<std::function<void(const DeviceInfo& /* result */)>>(std::move(func))) {}
+    inline void call(DeviceInfo result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const DeviceInfo& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_DeviceInfo create_Func_void_DeviceInfo(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_DeviceInfo_Wrapper wrap_Func_void_DeviceInfo(Func_void_DeviceInfo value) noexcept {
+    return Func_void_DeviceInfo_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneDeviceSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneDeviceSpec>`.
+   */
+  using std__shared_ptr_HybridOneDeviceSpec_ = std::shared_ptr<HybridOneDeviceSpec>;
+  std::shared_ptr<HybridOneDeviceSpec> create_std__shared_ptr_HybridOneDeviceSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneDeviceSpec_(std__shared_ptr_HybridOneDeviceSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneDeviceSpec>
+  using std__weak_ptr_HybridOneDeviceSpec_ = std::weak_ptr<HybridOneDeviceSpec>;
+  inline std__weak_ptr_HybridOneDeviceSpec_ weakify_std__shared_ptr_HybridOneDeviceSpec_(const std::shared_ptr<HybridOneDeviceSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<DeviceInfo>>>
+  using Result_std__shared_ptr_Promise_DeviceInfo___ = Result<std::shared_ptr<Promise<DeviceInfo>>>;
+  inline Result_std__shared_ptr_Promise_DeviceInfo___ create_Result_std__shared_ptr_Promise_DeviceInfo___(const std::shared_ptr<Promise<DeviceInfo>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<DeviceInfo>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_DeviceInfo___ create_Result_std__shared_ptr_Promise_DeviceInfo___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<DeviceInfo>>>::withError(error);
   }
 
   // pragma MARK: std::vector<DocumentPickerAsset>

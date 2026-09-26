@@ -40,6 +40,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneBrowserSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneClipboardSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneCryptoSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneDeviceSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneDocumentPickerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneFetchSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneFileSystemSpec.cpp
