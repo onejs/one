@@ -1,5 +1,10 @@
 import { useRouter } from 'one'
 import { Text, TouchableOpacity, ScrollView, StyleSheet, Alert } from 'react-native'
+import { updatesBoot } from '../fixtures/updates-boot'
+
+// the updates suite swaps updates-boot.ts per publish variant, and the home
+// screen renders the running bundle's marker (see the setup file for the
+// entry-chunk throw and delay, which must run before anything mounts).
 
 const testScreens = [
   { href: '/color-test', label: 'Color API', testID: 'nav-color-test' },
@@ -216,6 +221,11 @@ const testScreens = [
     label: 'One Native Speech',
     testID: 'nav-one-native-speech',
   },
+  {
+    href: '/one-native-updates',
+    label: 'One Native Updates',
+    testID: 'nav-one-native-updates',
+  },
 ] as const
 
 export default function HomeScreen() {
@@ -244,6 +254,10 @@ export default function HomeScreen() {
       <Text testID="home-subtitle" style={styles.subtitle}>
         Tap a test to navigate
       </Text>
+
+      {updatesBoot.marker === 'embedded' ? null : (
+        <Text style={styles.subtitle}>Marker: {updatesBoot.marker}</Text>
+      )}
 
       {testScreens.map((screen) => (
         <TouchableOpacity

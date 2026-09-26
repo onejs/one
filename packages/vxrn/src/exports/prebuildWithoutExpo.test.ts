@@ -1424,3 +1424,294 @@ describe('swift cxx interop', () => {
     expect(podspec).toContain('-Xfrontend -import-module -Xfrontend One')
   }, 180000)
 })
+
+describe('one updates prebuild', () => {
+  const updatesApp = {
+    ...app,
+    updates: { url: 'https://updates.example.com', runtimeVersion: 'test-1' },
+  } satisfies PrebuildAppConfig
+
+  const templateAppDelegate = `import UIKit
+import React
+import React_RCTAppDelegate
+import ReactAppDependencyProvider
+
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+  var window: UIWindow?
+
+  var reactNativeDelegate: ReactNativeDelegate?
+  var reactNativeFactory: RCTReactNativeFactory?
+
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+  ) -> Bool {
+    let delegate = ReactNativeDelegate()
+    let factory = RCTReactNativeFactory(delegate: delegate)
+    delegate.dependencyProvider = RCTAppDependencyProvider()
+
+    reactNativeDelegate = delegate
+    reactNativeFactory = factory
+
+    window = UIWindow(frame: UIScreen.main.bounds)
+
+    factory.startReactNative(
+      withModuleName: "HelloWorld",
+      in: window,
+      launchOptions: launchOptions
+    )
+
+    return true
+  }
+}
+
+class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
+  override func sourceURL(for bridge: RCTBridge) -> URL? {
+    self.bundleURL()
+  }
+
+  override func bundleURL() -> URL? {
+#if DEBUG
+    RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+#else
+    Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+#endif
+  }
+}
+`
+
+  it('validates the updates config', () => {
+    expect(() => validatePrebuildApp(updatesApp)).not.toThrow()
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        updates: { runtimeVersion: 'test-1' },
+      })
+    ).not.toThrow()
+    expect(() =>
+      validatePrebuildApp({ ...app, updates: {} } as any)
+    ).toThrow(/updates\.runtimeVersion/)
+    expect(() =>
+      validatePrebuildApp({ ...app, updates: { runtimeVersion: '' } })
+    ).toThrow(/updates\.runtimeVersion/)
+    expect(() =>
+      validatePrebuildApp({
+        ...app,
+        updates: { url: '', runtimeVersion: 'test-1' },
+      })
+    ).toThrow(/updates\.url/)
+  })
+
+  it('points the release bundleURL at the launcher', () => {
+    const rendered = renderPrebuildFile({
+      relativePath: 'HelloWorld/AppDelegate.swift',
+      content: templateAppDelegate,
+      platform: 'ios',
+      app: updatesApp,
+    })
+    expect(rendered.content).toContain('OneUpdatesBundleURL()')
+    expect(rendered.content).not.toContain('import One')
+    expect(rendered.content).not.toContain('Bundle.main.url(forResource: "main"')
+    expect(rendered.content).toContain('#if DEBUG')
+
+    const plain = renderPrebuildFile({
+      relativePath: 'HelloWorld/AppDelegate.swift',
+      content: templateAppDelegate,
+      platform: 'ios',
+      app,
+    })
+    expect(plain.content).not.toContain('OneUpdatesBundleURL')
+    expect(plain.content).toContain('Bundle.main.url(forResource: "main"')
+  })
+
+  it('points the app target at the updates bridging header', () => {
+    const configs = `buildSettings = {
+\t\t\t\tINFOPLIST_FILE = MyApp/Info.plist;
+\t\t\t};
+\t\t\tname = Debug;
+buildSettings = {
+\t\t\t\tINFOPLIST_FILE = MyApp/Info.plist;
+\t\t\t};
+\t\t\tname = Release;`
+    const project = `shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\""$WITH_ENVIRONMENT\\"" \\""$REACT_NATIVE_XCODE\\"""\n')};\n${'/* AppDelegate.swift in Sources */ = {isa = PBXBuildFile;'}\n${'/* AppDelegate.swift */ = {isa = PBXFileReference;'}\n${'/* AppDelegate.swift */,'}\n${'/* AppDelegate.swift in Sources */,'}\n${configs}`
+    const rendered = renderPrebuildFile({
+      relativePath: 'MyApp.xcodeproj/project.pbxproj',
+      content: project,
+      platform: 'ios',
+      app: updatesApp,
+    })
+    expect(rendered.content).toContain(
+      'SWIFT_OBJC_BRIDGING_HEADER = "MyApp/OneUpdates-Bridging-Header.h";'
+    )
+    expect(
+      rendered.content.split('SWIFT_OBJC_BRIDGING_HEADER = "MyApp/OneUpdates-Bridging-Header.h";')
+        .length - 1
+    ).toBe(2)
+
+    const plain = renderPrebuildFile({
+      relativePath: 'MyApp.xcodeproj/project.pbxproj',
+      content: project,
+      platform: 'ios',
+      app,
+    })
+    expect(plain.content).not.toContain('SWIFT_OBJC_BRIDGING_HEADER')
+
+    const missing = project.replaceAll('INFOPLIST_FILE = MyApp/Info.plist;', 'INFOPLIST = x;')
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'MyApp.xcodeproj/project.pbxproj',
+        content: missing,
+        platform: 'ios',
+        app: updatesApp,
+      })
+    ).toThrow('bridging header')
+  })
+
+  it('throws instead of shipping a stock bundleURL with updates configured', () => {
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld/AppDelegate.swift',
+        content: templateAppDelegate.replace('Bundle.main.url', 'Bundle.main.path'),
+        platform: 'ios',
+        app: updatesApp,
+      })
+    ).toThrow('One.Updates')
+  })
+
+  it('stamps the updates url and runtime version into Info.plist', () => {
+    const plist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: updatesApp,
+    })
+    expect(plist.content).toContain('<key>OneUpdatesURL</key>')
+    expect(plist.content).toContain('<string>https://updates.example.com</string>')
+    expect(plist.content).toContain('<key>OneUpdatesRuntimeVersion</key>')
+    expect(plist.content).toContain('<string>test-1</string>')
+
+    const noUrl = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: { ...app, updates: { runtimeVersion: 'test-1' } },
+    })
+    expect(noUrl.content).not.toContain('<key>OneUpdatesURL</key>')
+    expect(noUrl.content).toContain('<key>OneUpdatesRuntimeVersion</key>')
+
+    const plain = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app,
+    })
+    expect(plain.content).not.toContain('OneUpdates')
+  })
+
+  it('writes the embedded manifest from the ios bundle phase', () => {
+    const phase = `shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\""$WITH_ENVIRONMENT\\"" \\""$REACT_NATIVE_XCODE\\"""\n')};\n${'/* AppDelegate.swift in Sources */ = {isa = PBXBuildFile;'}\n${'/* AppDelegate.swift */ = {isa = PBXFileReference;'}\n${'/* AppDelegate.swift */,'}\n${'/* AppDelegate.swift in Sources */,'}\nINFOPLIST_FILE = MyApp/Info.plist;\nINFOPLIST_FILE = MyApp/Info.plist;`
+    const rendered = renderPrebuildFile({
+      relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
+      content: phase,
+      platform: 'ios',
+      app: updatesApp,
+    })
+    expect(rendered.content).toContain(
+      '[vxrn/one] the embedded update manifest lands beside the release bundle'
+    )
+    expect(rendered.content).toContain('one-updates-embedded.json')
+    expect(rendered.content).toContain('runtimeVersion: \\"test-1\\"')
+
+    const plain = renderPrebuildFile({
+      relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
+      content: phase,
+      platform: 'ios',
+      app,
+    })
+    expect(plain.content).not.toContain('one-updates-embedded.json')
+  })
+
+  it('points MainApplication at the One host factory', () => {
+    const templateMainApplication = `package com.helloworld
+
+import android.app.Application
+import com.facebook.react.PackageList
+import com.facebook.react.ReactApplication
+import com.facebook.react.ReactHost
+import com.facebook.react.ReactNativeApplicationEntryPoint.loadReactNative
+import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
+`
+    const rendered = renderPrebuildFile({
+      relativePath: 'app/src/main/java/com/helloworld/MainApplication.kt',
+      content: templateMainApplication,
+      platform: 'android',
+      app: updatesApp,
+    })
+    expect(rendered.content).toContain(
+      'import com.margelo.nitro.one.OneUpdatesReactHost.getDefaultReactHost'
+    )
+    expect(rendered.content).not.toContain('DefaultReactHost.getDefaultReactHost')
+
+    const plain = renderPrebuildFile({
+      relativePath: 'app/src/main/java/com/helloworld/MainApplication.kt',
+      content: templateMainApplication,
+      platform: 'android',
+      app,
+    })
+    expect(plain.content).toContain('DefaultReactHost.getDefaultReactHost')
+
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'app/src/main/java/com/helloworld/MainApplication.kt',
+        content: 'package com.helloworld\n',
+        platform: 'android',
+        app: updatesApp,
+      })
+    ).toThrow('One.Updates')
+  })
+
+  it('stamps the updates config into the android manifest', () => {
+    const manifest = `<manifest>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application>
+      <activity android:name=".MainActivity">
+      </activity>
+    </application>
+</manifest>`
+    const rendered = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content: manifest,
+      platform: 'android',
+      app: updatesApp,
+    })
+    expect(rendered.content).toContain(
+      '<meta-data android:name="dev.onejs.updates.url" android:value="https://updates.example.com" />'
+    )
+    expect(rendered.content).toContain(
+      '<meta-data android:name="dev.onejs.updates.runtimeVersion" android:value="test-1" />'
+    )
+  })
+
+  it('writes the embedded manifest from the android bundle task', () => {
+    const rendered = renderPrebuildFile({
+      relativePath: 'app/build.gradle',
+      content: 'react {\n    entryFile = file("x")\n}\n',
+      platform: 'android',
+      app: updatesApp,
+    })
+    expect(rendered.content).toContain(
+      '[vxrn/one] the embedded update manifest lands beside the release bundle'
+    )
+    expect(rendered.content).toContain('one-updates-embedded.json')
+    expect(rendered.content).toContain('runtimeVersion: "test-1"')
+
+    const plain = renderPrebuildFile({
+      relativePath: 'app/build.gradle',
+      content: 'react {\n    entryFile = file("x")\n}\n',
+      platform: 'android',
+      app,
+    })
+    expect(plain.content).not.toContain('one-updates-embedded.json')
+  })
+})

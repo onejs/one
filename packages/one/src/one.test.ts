@@ -36,6 +36,12 @@ describe('root One export', () => {
     expect(One.Haptics.selection).toBeTypeOf('function')
     expect(One.Haptics.impact).toBeTypeOf('function')
     expect(One.Haptics.notification).toBeTypeOf('function')
+    expect(One.Updates.isEnabled).toBe(false)
+    expect(One.Updates.check).toBeTypeOf('function')
+    expect(One.Updates.fetch).toBeTypeOf('function')
+    expect(One.Updates.getStaged).toBeTypeOf('function')
+    expect(One.Updates.addStagedListener).toBeTypeOf('function')
+    expect(One.Updates.reload).toBeTypeOf('function')
     // top-level One.AppInfo, not One.UI: application metadata is data, not UI
     expect(Object.hasOwn(One, 'AppInfo')).toBe(true)
     expect(Object.hasOwn(One.UI, 'AppInfo')).toBe(false)

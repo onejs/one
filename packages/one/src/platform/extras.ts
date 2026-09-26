@@ -38,6 +38,15 @@ export type {
   BrowserResult,
   BrowserResultType,
 } from './browser'
+export { Updates } from './updates'
+export type {
+  UpdateAsset,
+  UpdateManifest,
+  UpdateMetadataValue,
+  UpdatesCheckResult,
+  UpdatesFetchResult,
+  UpdatesStagedSubscription,
+} from './updates'
 export { Network, useNetworkState } from './network'
 export type {
   NetworkState,

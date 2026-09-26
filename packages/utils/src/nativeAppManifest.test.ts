@@ -201,6 +201,28 @@ describe('native.app manifest', () => {
     ).toThrow(/googleMapsApiKey/)
   })
 
+  test('accepts updates with a runtime version and an optional url', () => {
+    expect(() => validateNativeApp({ ...app, updates: undefined })).not.toThrow()
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        updates: { url: 'https://updates.example.com', runtimeVersion: 'test-1' },
+      })
+    ).not.toThrow()
+    expect(() =>
+      validateNativeApp({ ...app, updates: { runtimeVersion: 'test-1' } })
+    ).not.toThrow()
+    expect(() => validateNativeApp({ ...app, updates: {} } as any)).toThrow(
+      /updates\.runtimeVersion/
+    )
+    expect(() =>
+      validateNativeApp({ ...app, updates: { runtimeVersion: '  ' } })
+    ).toThrow(/updates\.runtimeVersion/)
+    expect(() =>
+      validateNativeApp({ ...app, updates: { url: '', runtimeVersion: 'test-1' } })
+    ).toThrow(/updates\.url/)
+  })
+
   test('platform scope skips the other platform requirement', () => {
     expect(() =>
       validateNativeApp({ name: 'MyApp', android: app.android } as any, 'android')

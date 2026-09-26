@@ -22,6 +22,7 @@
 #include "HybridOneNotificationsSpecSwift.hpp"
 #include "HybridOneSecureStoreSpecSwift.hpp"
 #include "HybridOneSpeechSpecSwift.hpp"
+#include "HybridOneUpdatesSpecSwift.hpp"
 #include "One-Swift-Cxx-Umbrella.hpp"
 #include <NitroModules/NitroDefines.hpp>
 
@@ -456,6 +457,38 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneSpeechSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::function<void(const OneUpdatesCheckResult& /* result */)>
+  Func_void_OneUpdatesCheckResult create_Func_void_OneUpdatesCheckResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_OneUpdatesCheckResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const OneUpdatesCheckResult& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const OneUpdatesFetchResult& /* result */)>
+  Func_void_OneUpdatesFetchResult create_Func_void_OneUpdatesFetchResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_OneUpdatesFetchResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const OneUpdatesFetchResult& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneUpdatesSpec>
+  std::shared_ptr<HybridOneUpdatesSpec> create_std__shared_ptr_HybridOneUpdatesSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneUpdatesSpec_cxx swiftPart = One::HybridOneUpdatesSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneUpdatesSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneUpdatesSpec_(std__shared_ptr_HybridOneUpdatesSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneUpdatesSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneUpdatesSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneUpdatesSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneUpdatesSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 
