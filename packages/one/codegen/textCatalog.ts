@@ -77,7 +77,8 @@ export const textControls: Control[] = [
         Text(model.label)
       }
 ${textModifiers}`,
-    validate: `  if (typeof text !== 'string' && !isSyncState(text)) throw new Error('TextField text must be a string or NativeState handle')`,
+    validate: `  if (typeof text !== 'string' && !isSyncState(text)) throw new Error('TextField text must be a string or NativeState handle')
+  assertTextInputOptions('TextField', keyboardType, textContentType)`,
   },
   {
     name: 'SecureField',
@@ -103,7 +104,8 @@ ${textModifiers}`,
         Text(model.label)
       }
 ${textModifiers}`,
-    validate: `  if (typeof text !== 'string' && !isSyncState(text)) throw new Error('SecureField text must be a string or NativeState handle')`,
+    validate: `  if (typeof text !== 'string' && !isSyncState(text)) throw new Error('SecureField text must be a string or NativeState handle')
+  assertTextInputOptions('SecureField', keyboardType, textContentType)`,
   },
   {
     // multi-line input. it has no label, prompt, style or submit: return inserts a
@@ -134,6 +136,7 @@ ${textModifiers}`,
       .autocorrectionDisabled(model.autocorrectionDisabled)
       .oneNativeKeyboardType(model.keyboardType)
       .oneNativeTextContentType(model.textContentType)`,
-    validate: `  if (typeof text !== 'string' && !isSyncState(text)) throw new Error('TextEditor text must be a string or NativeState handle')`,
+    validate: `  if (typeof text !== 'string' && !isSyncState(text)) throw new Error('TextEditor text must be a string or NativeState handle')
+  assertTextInputOptions('TextEditor', keyboardType, textContentType)`,
   },
 ]
