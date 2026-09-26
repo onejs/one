@@ -30,7 +30,7 @@ checklist; One's own exports and docs decide the status.
 | Foreground location and geocoding | covered | `One.iOS.Location` permission, one fix, watch, forward/reverse geocoding | location: prompt, movement, geocoding | done |
 | Background location | missing | no background location mode or monitoring | none | P2 |
 | Maps | partial | `One.UI.Map`, `One.iOS.Map`; no search or directions service | map, ui-map | P2 |
-| Share | partial | `One.iOS.ShareLink`; no imperative share sheet | ShareLink unproven | P1 |
+| Share | covered | `One.iOS.Share` text, URL, and file sheet; `One.iOS.ShareLink` button | share: text/link, file preview, cancel and errors; ShareLink unproven | done |
 | Clipboard | covered | `One.Clipboard` text | clipboard | done |
 | Secure storage | partial | `One.SecureStore` key/value; no access-control options | none | P1 |
 | Biometrics | covered | `One.iOS.LocalAuthentication` policy status and biometric evaluation | local-authentication: unenrolled, enrolled, Face ID match | done |
@@ -65,7 +65,8 @@ checklist; One's own exports and docs decide the status.
 
 1. Biometrics, foreground location, continuous updates, and geocoding landed
    with iOS 27 simulator proofs. Background location remains P2.
-2. A general sandbox file API landed; imperative share remains P1.
+2. A general sandbox file API and imperative share sheet landed with iOS 27
+   simulator proofs.
 3. Audio playback/recording landed with an iOS 27 simulator recording and
    playback proof. Extend background and interruption handling before calling
    it covered. Splash control still needs a launch timing proof.

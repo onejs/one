@@ -68,6 +68,7 @@ export const nativeRoutes = [
       { title: 'Location', route: '/native/location' },
       { title: 'FileSystem', route: '/native/file-system' },
       { title: 'Audio', route: '/native/audio' },
+      { title: 'Share', route: '/native/share' },
       { title: 'WebGPU', route: '/native/webgpu' },
     ],
   },

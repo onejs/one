@@ -91,6 +91,11 @@ const testScreens = [
     testID: 'nav-one-native-audio',
   },
   {
+    href: '/one-native-share',
+    label: 'One Native Share',
+    testID: 'nav-one-native-share',
+  },
+  {
     href: '/one-native-map',
     label: 'One Native Map',
     testID: 'nav-one-native-map',

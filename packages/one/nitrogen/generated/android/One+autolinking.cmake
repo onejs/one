@@ -52,6 +52,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneNetworkSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNotificationsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneSecureStoreSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneShareSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneSpeechSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneUpdatesSpec.cpp
   # Android-specific Nitrogen C++ sources

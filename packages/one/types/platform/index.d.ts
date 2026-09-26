@@ -25,6 +25,8 @@ export { FileSystem } from './file-system/index';
 export type { FileDirectories, FileEncoding, FileEntry, FileInfo } from './file-system/index';
 export { Audio } from './audio/index';
 export type { AudioPlaybackState, AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, } from './audio/index';
+export { Share } from './share/index';
+export type { ShareItem, ShareItemType, ShareResult } from './share/index';
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index';
 export { AppInfo } from './app-info/index';
 export type { AppInfoApi } from './app-info/index';
