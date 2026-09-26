@@ -73,6 +73,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.RoundedRectangle` | leaves | n/a |  |
 | `One.iOS.Ellipse` | leaves | n/a |  |
 | `One.iOS.UnevenRoundedRectangle` | editors | n/a |  |
+| `One.iOS.ConcentricRectangle` | editors | n/a |  |
 | `One.iOS.VideoPlayer` | media | n/a |  |
 | `One.iOS.PhotosPicker` | missing | n/a | fixture exists, no suite opens it |
 | `One.iOS.WebView` | missing | n/a | fixture exists, no suite opens it |
