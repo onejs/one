@@ -4698,17 +4698,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     fs.rmSync(serverRoot, { recursive: true, force: true })
     const serveDir = path.join(serverRoot, 'ios', 'updates-suite')
     fs.mkdirSync(path.join(serveDir, 'assets'), { recursive: true })
-    // the crashing variant pings this before it throws; the server lives
-    // only for this run, so any hit is this run's proof it executed.
-    const throwsBooted: string[] = []
     const server = Bun.serve({
       port: serverPort,
       fetch(request) {
         const pathname = new URL(request.url).pathname
-        if (pathname === '/throws-booted') {
-          throwsBooted.push(new Date().toISOString())
-          return new Response('ok')
-        }
         if (!pathname.startsWith(servePrefix))
           return new Response('not found', { status: 404 })
         const file = path.join(serverRoot, pathname)
@@ -4956,6 +4949,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await wait('fatal update checks available', (n) => labelValue(n, 'Check') === `available:${fatal.id}`)
       tap({ id: 'one-native-updates-fetch' })
       await wait('fatal update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${fatal.id}`)
+      const reloadedAt = new Date()
       tap({ id: 'one-native-updates-reload' })
       // the old tree shows the same marker until the reboot replaces it, so
       // the home nav row (absent on the fixture) is the completion signal.
@@ -4964,10 +4958,34 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         (n) => Boolean(id(n, 'nav-one-native-updates')),
         true
       )
-      // the crashing bundle pings the server before it throws, while the
-      // entry is still suspended: a hit proves it executed, which a reload
-      // that skipped the update never produces.
-      if (throwsBooted.length === 0)
+      // the launcher logs the error it rolled back from: the bundle's own
+      // throw proves it executed, which a reload that skipped the update
+      // never produces.
+      const rollbackLog = execFileSync(
+        'xcrun',
+        [
+          'simctl',
+          'spawn',
+          config.simulatorId,
+          'log',
+          'show',
+          '--start',
+          // log show reads a local time
+          new Date(reloadedAt.getTime() - reloadedAt.getTimezoneOffset() * 60_000)
+            .toISOString()
+            .replace('T', ' ')
+            .slice(0, 19),
+          '--predicate',
+          'eventMessage CONTAINS "[OneUpdates]"',
+          '--style',
+          'compact',
+        ],
+        { encoding: 'utf8' }
+      )
+      const rollbackLine = rollbackLog
+        .split('\n')
+        .find((line) => line.includes(`update ${fatal.id} failed before first render`))
+      if (!rollbackLine?.includes('updates-suite-boom'))
         throw new Error('the fatal update was skipped without booting')
       checks.push({ name: 'fatal update booted before rolling back', durationMs: 0 })
       console.log('PASS fatal update booted before rolling back')
