@@ -26,6 +26,7 @@
 #include "HybridOneNativeModulesSpecSwift.hpp"
 #include "HybridOneNetworkSpecSwift.hpp"
 #include "HybridOneNotificationsSpecSwift.hpp"
+#include "HybridOnePhotoLibrarySpecSwift.hpp"
 #include "HybridOneSecureStoreSpecSwift.hpp"
 #include "HybridOneShareSpecSwift.hpp"
 #include "HybridOneSpeechSpecSwift.hpp"
@@ -600,6 +601,30 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneNotificationsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(PhotoLibraryPermissionStatus /* result */)>
+  Func_void_PhotoLibraryPermissionStatus create_Func_void_PhotoLibraryPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_PhotoLibraryPermissionStatus::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](PhotoLibraryPermissionStatus result) mutable -> void {
+      swiftClosure.call(static_cast<int>(result));
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOnePhotoLibrarySpec>
+  std::shared_ptr<HybridOnePhotoLibrarySpec> create_std__shared_ptr_HybridOnePhotoLibrarySpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOnePhotoLibrarySpec_cxx swiftPart = One::HybridOnePhotoLibrarySpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOnePhotoLibrarySpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOnePhotoLibrarySpec_(std__shared_ptr_HybridOnePhotoLibrarySpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOnePhotoLibrarySpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOnePhotoLibrarySpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOnePhotoLibrarySpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOnePhotoLibrarySpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

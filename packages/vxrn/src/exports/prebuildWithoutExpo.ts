@@ -1758,6 +1758,9 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       if (app.imagePicker?.camera !== undefined) {
         usage.set('NSCameraUsageDescription', app.imagePicker.camera)
       }
+      if (app.photoLibrary !== undefined) {
+        usage.set('NSPhotoLibraryAddUsageDescription', app.photoLibrary.addOnly)
+      }
       if (app.location !== undefined) {
         usage.set('NSLocationWhenInUseUsageDescription', app.location.whenInUse)
       }

@@ -131,6 +131,9 @@ export default defineConfig({
           imagePicker: {
             camera: 'NativeFeatureTests verifies photo capture.',
           },
+          photoLibrary: {
+            addOnly: 'NativeFeatureTests verifies saving photos and videos.',
+          },
           location: {
             whenInUse: 'NativeFeatureTests verifies current location.',
           },

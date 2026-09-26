@@ -1,0 +1,40 @@
+---
+title: Photo Library
+description: Save images and videos to the iOS Photos library
+---
+
+`One.iOS.PhotoLibrary` saves an existing `file://` image or video to Photos. It
+uses add-only access, so saving does not grant the app permission to browse the
+user's library. Configure the permission message in `native.app` before prebuild:
+
+```ts
+photoLibrary: {
+  addOnly: 'Save edited photos and videos to your library.',
+}
+```
+
+For an Expo-prebuilt app, pass the same `photoLibrary` option to the VXRN Expo
+plugin. Both paths set `NSPhotoLibraryAddUsageDescription`.
+
+```tsx
+import { One } from 'one'
+
+const permission = await One.iOS.PhotoLibrary.requestAddPermission()
+if (permission === 'authorized') {
+  const assetId = await One.iOS.PhotoLibrary.saveImage(imageFileUri)
+  console.log('Saved Photos asset', assetId)
+}
+```
+
+`getAddPermissionStatus()` reads the current status without a prompt.
+`saveVideo(fileUri)` saves a video the same way. Both save methods resolve with
+the new Photos asset identifier after Photos commits the change. They accept
+local files produced by `One.iOS.FileSystem`, `One.ImagePicker`, or
+`One.DocumentPicker`; they do not download network URLs.
+
+The methods reject with `error.code` `E_PHOTO_LIBRARY_MANIFEST` when the usage
+message is missing, `E_PHOTO_LIBRARY_PERMISSION` when add permission is not
+granted, `E_PHOTO_LIBRARY_URI` for a non-file URI, `E_PHOTO_LIBRARY_FILE` for a
+missing file, or `E_PHOTO_LIBRARY_SAVE` if Photos rejects the asset. This API
+is iOS only and throws on Android or web. It does not read, edit, delete, or
+organize existing Photos assets.

@@ -84,6 +84,9 @@
     "OneShare": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneShare" }
     },
+    "OnePhotoLibrary": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOnePhotoLibrary" }
+    },
     "OneUpdates": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneUpdates" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneUpdates" }

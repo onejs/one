@@ -54,6 +54,7 @@ const suites = [
   'file-system',
   'audio',
   'share',
+  'photo-library',
   'speech',
   'fetch',
   'secure-store',
@@ -344,6 +345,9 @@ const audioLoaded = (nodes: Node[]) =>
   labels(nodes).some((label) => label.includes('NativeFeatureTests verifies audio recording.'))
 const shareLoaded = (nodes: Node[]) =>
   nodes.some((node) => node.type === 'Application')
+const photoLibraryLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-photo-library-run')) ||
+  labels(nodes).some((label) => label.includes('saving photos and videos'))
 // the microphone and speech prompts cover the fixture during the request
 const fetchLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-fetch-run')) && has(nodes, 'Status: ')
@@ -443,6 +447,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'file-system': fileSystemLoaded,
   audio: audioLoaded,
   share: shareLoaded,
+  'photo-library': photoLibraryLoaded,
   speech: speechLoaded,
   fetch: fetchLoaded,
   'secure-store': secureStoreLoaded,
@@ -484,6 +489,7 @@ const suiteHome: Record<Suite, string> = {
   'file-system': 'nav-one-native-file-system',
   audio: 'nav-one-native-audio',
   share: 'nav-one-native-share',
+  'photo-library': 'nav-one-native-photo-library',
   speech: 'nav-one-native-speech',
   fetch: 'nav-one-native-fetch',
   'secure-store': 'nav-one-native-secure-store',
@@ -828,6 +834,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'audio') {
     execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'microphone', config.bundleId], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+  }
+  if (config.suite === 'photo-library') {
+    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'photos-add', config.bundleId], {
       stdio: 'ignore',
       timeout: 30_000,
     })
@@ -4479,6 +4491,31 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('share-completion.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'photo-library') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-photo-library')
+    await wait('Photos add permission starts undetermined', (n) =>
+      labels(n).includes('Permission: notDetermined') && labels(n).includes('Status: idle')
+    )
+    tap({ id: 'one-native-photo-library-run' })
+    await wait('Photos add-only permission prompt opens', (n) =>
+      labels(n).some((label) => label.includes('NativeFeatureTests verifies saving photos and videos.'))
+    )
+    screenshot('photo-library-add-prompt.png')
+    tap({ label: 'Allow' })
+    await wait('Photos commits image and video assets', (n) =>
+      labels(n).includes('Status: passed') &&
+      labels(n).includes('Permission: authorized') &&
+      labels(n).includes(
+        'Result: before=E_PHOTO_LIBRARY_PERMISSION; permission=authorized; image=true; ' +
+          'video=true; distinct=true; uri=E_PHOTO_LIBRARY_URI; file=E_PHOTO_LIBRARY_FILE'
+      )
+    )
+    screenshot('photo-library-assets-saved.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

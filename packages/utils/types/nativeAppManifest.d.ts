@@ -15,6 +15,9 @@ export interface NativeAppManifest {
     imagePicker?: {
         camera?: string;
     };
+    photoLibrary?: {
+        addOnly: string;
+    };
     location?: {
         whenInUse: string;
     };

@@ -22,6 +22,10 @@ export interface NativeAppManifest {
     // One.ImagePicker.launchCamera.
     camera?: string
   }
+  // add-only photos permission for one.ios.photolibrary saving.
+  photoLibrary?: {
+    addOnly: string
+  }
   // foreground Core Location permission prompt for One.iOS.Location.
   location?: {
     whenInUse: string
@@ -156,6 +160,14 @@ export function validateNativeApp(
       manifest.imagePicker.camera.trim() === '')
   ) {
     fail('imagePicker.camera must be a non-empty string')
+  }
+  if (
+    manifest.photoLibrary !== undefined &&
+    (!manifest.photoLibrary ||
+      typeof manifest.photoLibrary.addOnly !== 'string' ||
+      manifest.photoLibrary.addOnly.trim() === '')
+  ) {
+    fail('photoLibrary.addOnly must be a non-empty string')
   }
   if (
     manifest.location !== undefined &&

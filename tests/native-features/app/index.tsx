@@ -96,6 +96,11 @@ const testScreens = [
     testID: 'nav-one-native-share',
   },
   {
+    href: '/one-native-photo-library',
+    label: 'One Native Photo Library',
+    testID: 'nav-one-native-photo-library',
+  },
+  {
     href: '/one-native-map',
     label: 'One Native Map',
     testID: 'nav-one-native-map',
