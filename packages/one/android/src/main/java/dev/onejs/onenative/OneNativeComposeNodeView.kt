@@ -47,6 +47,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
@@ -56,6 +57,7 @@ import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.FilledTonalIconButton
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.material3.InputChip
 import androidx.compose.material3.InputChipDefaults
@@ -1470,6 +1472,34 @@ private fun RenderComposeButton(
     val enabled = !props.disabled && node.isEnabled
     val danger = props.tone.equals("danger", ignoreCase = true)
     when (props.variant?.trim()?.lowercase()) {
+        "tonal" ->
+            FilledTonalButton(
+                onClick = { node.handlePress() },
+                modifier = modifier,
+                enabled = enabled,
+                colors =
+                    if (danger) {
+                        ButtonDefaults.filledTonalButtonColors(containerColor = DangerColor, contentColor = Color.White)
+                    } else {
+                        ButtonDefaults.filledTonalButtonColors()
+                    },
+            ) {
+                ComposeButtonContent(props)
+            }
+        "elevated" ->
+            ElevatedButton(
+                onClick = { node.handlePress() },
+                modifier = modifier,
+                enabled = enabled,
+                colors =
+                    if (danger) {
+                        ButtonDefaults.elevatedButtonColors(containerColor = DangerColor, contentColor = Color.White)
+                    } else {
+                        ButtonDefaults.elevatedButtonColors()
+                    },
+            ) {
+                ComposeButtonContent(props)
+            }
         "outlined" ->
             OutlinedButton(
                 onClick = { node.handlePress() },
