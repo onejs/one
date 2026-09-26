@@ -135,4 +135,5 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.DocumentPicker` | missing | missing | fixture exists, no suite opens it |
 | `One.SecureStore` | missing | missing | no fixture or suite |
 | `One.Speech` | speech | speech |  |
+| `One.Updates` | updates | updates |  |
 | `One.useNetworkState` | missing | missing | no fixture or suite |
