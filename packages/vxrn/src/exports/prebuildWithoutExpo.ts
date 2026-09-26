@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url'
 import { validateNativeApp, type NativeAppManifest } from '@vxrn/utils/nativeAppManifest'
 import FSExtra from 'fs-extra'
 import sharp from 'sharp'
-import { swiftPackageId } from '../utils/swiftPackageId'
+import { swiftPackageDirectories } from '../utils/swiftPackageId'
 
 type NativeProjectPatches = {
   ONE_NOTIFICATIONS: {
@@ -1962,23 +1962,7 @@ export const generateForPlatform = async (
 // .swift file in the package to a host view naming the same package id.
 function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
   const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build'])
-  const packageDirs: string[] = []
-  const walk = (dir: string) => {
-    const entries = FSExtra.readdirSync(dir, { withFileTypes: true })
-    if (entries.some((entry) => entry.isFile() && entry.name === 'Package.swift')) {
-      packageDirs.push(dir)
-      return
-    }
-    for (const entry of entries) {
-      if (!entry.isDirectory() || entry.name.startsWith('.') || skip.has(entry.name))
-        continue
-      walk(path.join(dir, entry.name))
-    }
-  }
-  walk(root)
-
-  for (const packageDir of packageDirs) {
-    const id = swiftPackageId(packageDir)
+  for (const [id, packageDir] of swiftPackageDirectories(root)) {
     const podDir = path.join(dest, 'OneSwiftPackages', id)
     const sources: string[] = []
     const collect = (dir: string) => {

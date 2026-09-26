@@ -13,6 +13,7 @@ import { join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import sharp from 'sharp'
+import { swiftPackageDirectories } from '../utils/swiftPackageId'
 import {
   applyAndroidDependencyPatches,
   generateForPlatform,
@@ -1393,6 +1394,24 @@ describe('ios widgets', () => {
 })
 
 describe('swift cxx interop', () => {
+  it('maps the same package names as prebuild and rejects collisions', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-swift-package-map-'))
+    const first = join(root, 'features', 'my-badge')
+    const second = join(root, 'other', 'counter')
+    mkdirSync(first, { recursive: true })
+    mkdirSync(second, { recursive: true })
+    writeFileSync(join(first, 'Package.swift'), '')
+    writeFileSync(join(second, 'Package.swift'), '')
+    const packages = swiftPackageDirectories(root)
+    expect(packages.size).toBe(2)
+    expect(packages.get('my_badge')).toBe(first)
+    expect(packages.get('counter')).toBe(second)
+    const duplicate = join(root, 'other', 'my_badge')
+    mkdirSync(duplicate)
+    writeFileSync(join(duplicate, 'Package.swift'), '')
+    expect(() => swiftPackageDirectories(root)).toThrow(/both have name my_badge/)
+  })
+
   it('emits cxx flags for swift packages', async () => {
     const root = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-swift-cxx-'))
     const workspaceModules = fileURLToPath(
