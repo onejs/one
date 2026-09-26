@@ -1,4 +1,4 @@
-import type { ComposeAlertDialogProps, ComposeBoxProps, ComposeButtonProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeIconProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeStyle, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeIconProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeStyle, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
 export declare const horizontalAlignments: readonly ['start', 'centerHorizontally', 'end'];
 export declare const verticalAlignments: readonly ['top', 'centerVertically', 'bottom'];
 export declare const contentAlignments: readonly ['topStart', 'topCenter', 'topEnd', 'centerStart', 'center', 'centerEnd', 'bottomStart', 'bottomCenter', 'bottomEnd', 'top', 'bottom', 'start', 'end'];
@@ -31,6 +31,7 @@ export declare function validateButtonProps(props: ComposeButtonProps): void;
 export declare function validateSwitchProps(props: ComposeSwitchProps): void;
 export declare function validateCheckboxProps(props: ComposeCheckboxProps): void;
 export declare function validateRadioButtonProps(props: ComposeRadioButtonProps): void;
+export declare function validateCardProps(props: ComposeCardProps, kind: 'Card' | 'ElevatedCard' | 'OutlinedCard'): void;
 export declare function validateTextFieldProps(props: ComposeTextFieldProps): void;
 export declare function validateSliderProps(props: ComposeSliderProps): void;
 export declare function validateAlertDialogProps(props: ComposeAlertDialogProps): void;

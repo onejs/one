@@ -1,7 +1,10 @@
-import type { ComposeAlertDialogProps, ComposeBoxProps, ComposeButtonProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeIconProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeElevatedCardProps, ComposeIconProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function Box(_props: ComposeBoxProps): never;
+declare function Card(_props: ComposeCardProps): never;
+declare function ElevatedCard(_props: ComposeElevatedCardProps): never;
+declare function OutlinedCard(_props: ComposeOutlinedCardProps): never;
 declare function Text(_props: ComposeTextProps): never;
 declare function Icon(_props: ComposeIconProps): never;
 declare function Button(_props: ComposeButtonProps): never;
@@ -17,6 +20,9 @@ export declare const Compose: {
     Column: typeof Column;
     Row: typeof Row;
     Box: typeof Box;
+    Card: typeof Card;
+    ElevatedCard: typeof ElevatedCard;
+    OutlinedCard: typeof OutlinedCard;
     Text: typeof Text;
     Icon: typeof Icon;
     Button: typeof Button;

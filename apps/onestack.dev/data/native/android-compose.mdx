@@ -4,7 +4,8 @@ description: Jetpack Compose views under One.Android
 ---
 
 Jetpack Compose views under `One.Android`. Layout nodes (`Column`, `Row`,
-`Box`) take children; `Text`, `Icon`, `Button`, `Switch`, `Checkbox`, `RadioButton`, `TextField`,
+`Box`, `Card`, `ElevatedCard`, `OutlinedCard`) take children; `Text`, `Icon`,
+`Button`, `Switch`, `Checkbox`, `RadioButton`, `TextField`,
 `Slider`, `AlertDialog`, and `ProgressIndicator` are leaves. `Dialog`
 takes children and shows them in a dialog window. Every node takes the
 shared props (`accessibilityLabel`, `accessibilityState`,
@@ -78,6 +79,15 @@ current Material theme.
 The `colors` prop accepts `selectedColor`, `unselectedColor`,
 `disabledSelectedColor`, and `disabledUnselectedColor`; omitted colors use
 the current Material theme.
+
+## Cards
+
+`One.Android.Card`, `ElevatedCard`, and `OutlinedCard` wrap Compose children
+in the corresponding Material 3 surface. Each accepts `colors` with optional
+`containerColor` and `contentColor`, plus an optional nonnegative `elevation`
+in dp. `Card` and `OutlinedCard` also accept `border` with optional `width`
+in dp (default 1) and `color`. An omitted border leaves `Card` unbordered and
+uses the Material theme's outline for `OutlinedCard`.
 
 ## TextField
 

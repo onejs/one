@@ -23,6 +23,7 @@ declare module 'one' {
         | `/one-native`
         | `/one-native-accessibility`
         | `/one-native-android`
+        | `/one-native-android-cards`
         | `/one-native-android-inputs`
         | `/one-native-android-selection`
         | `/one-native-app-info`

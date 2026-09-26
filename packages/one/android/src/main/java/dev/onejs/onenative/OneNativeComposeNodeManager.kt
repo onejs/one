@@ -170,6 +170,18 @@ class OneNativeComposeNodeManager :
         view.stageRadioColors(value)
     }
 
+    override fun setCardColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageCardColors(value)
+    }
+
+    override fun setCardElevation(view: OneNativeComposeNodeView, value: Double) {
+        view.stageCardElevation(value)
+    }
+
+    override fun setCardBorder(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageCardBorder(value)
+    }
+
     override fun setAcknowledgedEvent(view: OneNativeComposeNodeView, value: Int) {
         view.stageAcknowledgedEvent(value)
     }

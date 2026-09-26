@@ -102,6 +102,21 @@ export interface ComposeRadioButtonProps extends ComposeLeafProps {
         disabledUnselectedColor?: ColorValue;
     }>;
 }
+export type ComposeCardColors = Readonly<{
+    containerColor?: ColorValue;
+    contentColor?: ColorValue;
+}>;
+export type ComposeCardBorder = Readonly<{
+    width?: number;
+    color?: ColorValue;
+}>;
+export interface ComposeCardProps extends ComposeNodeProps {
+    colors?: ComposeCardColors;
+    elevation?: number;
+    border?: ComposeCardBorder;
+}
+export type ComposeElevatedCardProps = Omit<ComposeCardProps, 'border'>;
+export type ComposeOutlinedCardProps = ComposeCardProps;
 export type ComposeTextFieldVariant = 'filled' | 'outlined';
 export type ComposeTextFieldKeyboardType = 'default' | 'number' | 'decimal' | 'email' | 'password' | 'phone' | 'url';
 export type ComposeTextFieldImeAction = 'default' | 'none' | 'go' | 'search' | 'send' | 'previous' | 'next' | 'done';
