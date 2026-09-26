@@ -21,6 +21,7 @@
 #include "HybridOneImagePickerSpecSwift.hpp"
 #include "HybridOneLocalAuthenticationSpecSwift.hpp"
 #include "HybridOneLocationSpecSwift.hpp"
+#include "HybridOneNativeModulesSpecSwift.hpp"
 #include "HybridOneNetworkSpecSwift.hpp"
 #include "HybridOneNotificationsSpecSwift.hpp"
 #include "HybridOneSecureStoreSpecSwift.hpp"
@@ -388,6 +389,22 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneLocationSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneNativeModulesSpec>
+  std::shared_ptr<HybridOneNativeModulesSpec> create_std__shared_ptr_HybridOneNativeModulesSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneNativeModulesSpec_cxx swiftPart = One::HybridOneNativeModulesSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneNativeModulesSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneNativeModulesSpec_(std__shared_ptr_HybridOneNativeModulesSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneNativeModulesSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneNativeModulesSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneNativeModulesSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneNativeModulesSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

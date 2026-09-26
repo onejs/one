@@ -46,6 +46,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneImagePickerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneLocalAuthenticationSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneLocationSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneNativeModulesSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNetworkSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNotificationsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneSecureStoreSpec.cpp
@@ -63,6 +64,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneFontsSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneHapticsSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneImagePickerSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneNativeModulesSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNetworkSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNotificationsSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSecureStoreSpec.cpp

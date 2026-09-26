@@ -32,6 +32,7 @@
 #include "JHybridOneFontsSpec.hpp"
 #include "JHybridOneHapticsSpec.hpp"
 #include "JHybridOneImagePickerSpec.hpp"
+#include "JHybridOneNativeModulesSpec.hpp"
 #include "JHybridOneNetworkSpec.hpp"
 #include "JFunc_void_NetworkState.hpp"
 #include "JHybridOneNotificationsSpec.hpp"
@@ -181,6 +182,14 @@ struct JHybridOneUpdatesSpecImpl: public jni::JavaClass<JHybridOneUpdatesSpecImp
     return javaPart->getJHybridOneUpdatesSpec();
   }
 };
+struct JHybridOneNativeModulesSpecImpl: public jni::JavaClass<JHybridOneNativeModulesSpecImpl, JHybridOneNativeModulesSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneNativeModules;";
+  static std::shared_ptr<JHybridOneNativeModulesSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneNativeModulesSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneNativeModulesSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneNativeModulesSpec();
+  }
+};
 
 void registerAllNatives() {
   using namespace margelo::nitro;
@@ -204,6 +213,7 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneFontsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneHapticsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneImagePickerSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneNativeModulesSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneNetworkSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_NetworkState_cxx::registerNatives();
   margelo::nitro::one::JHybridOneNotificationsSpec::CxxPart::registerNatives();
@@ -311,6 +321,12 @@ void registerAllNatives() {
     "OneUpdates",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneUpdatesSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneNativeModules",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneNativeModulesSpecImpl::create();
     }
   );
 }

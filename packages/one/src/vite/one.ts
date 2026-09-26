@@ -34,6 +34,7 @@ import { imageDataPlugin } from './plugins/imageDataPlugin'
 import { createRouteModuleHmrPlugin } from './plugins/routeModuleHmrPlugin'
 import { sourceInspectorPlugin } from './plugins/sourceInspectorPlugin'
 import { swiftPackagePlugin } from './plugins/swiftPackagePlugin'
+import { kotlinSourcePlugin } from './plugins/kotlinSourcePlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
@@ -914,7 +915,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),
       ...(viteBundlerOptions?.plugins ?? []),
       // last, so an app plugin that compiles .swift itself (a simulator) wins
-      swiftPackagePlugin(),
+      swiftPackagePlugin(platform, root),
+      kotlinSourcePlugin(platform, root),
     ]
     ;(globalThis as any).__vxrnNativeUserDefine = {
       ...viteBundlerOptions?.define,

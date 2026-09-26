@@ -1,0 +1,17 @@
+{
+  "generatedBy": "one typegen",
+  "packageId": "native_source",
+  "hash": "7b458180a55c0d7229eb0240f4143a3147da6e0bbe4c08c0e4a72d46422cc87d",
+  "files": {
+    "Audio.swift": [
+      "AudioMath"
+    ]
+  },
+  "modules": {
+    "AudioMath": [
+      "rms",
+      "label"
+    ]
+  },
+  "defaultViewFiles": []
+}
