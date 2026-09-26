@@ -51,6 +51,11 @@ declare function Slider(_props: ComposeSliderProps): never;
 declare function AlertDialog(_props: ComposeAlertDialogProps): never;
 declare function Dialog(_props: ComposeDialogProps): never;
 declare function ProgressIndicator(_props: ComposeProgressIndicatorProps): never;
+type ProgressVariantProps = Omit<ComposeProgressIndicatorProps, 'variant'>;
+declare function LinearProgressIndicator(_props: ProgressVariantProps): never;
+declare function CircularProgressIndicator(_props: ProgressVariantProps): never;
+declare function LinearWavyProgressIndicator(_props: ProgressVariantProps): never;
+declare function CircularWavyProgressIndicator(_props: ProgressVariantProps): never;
 declare function LoadingIndicator(_props: ComposeLoadingIndicatorProps): never;
 declare function ContainedLoadingIndicator(_props: ComposeContainedLoadingIndicatorProps): never;
 export declare const Compose: {
@@ -148,6 +153,10 @@ export declare const Compose: {
     AlertDialog: typeof AlertDialog;
     Dialog: typeof Dialog;
     ProgressIndicator: typeof ProgressIndicator;
+    LinearProgressIndicator: typeof LinearProgressIndicator;
+    CircularProgressIndicator: typeof CircularProgressIndicator;
+    LinearWavyProgressIndicator: typeof LinearWavyProgressIndicator;
+    CircularWavyProgressIndicator: typeof CircularWavyProgressIndicator;
     LoadingIndicator: typeof LoadingIndicator;
     ContainedLoadingIndicator: typeof ContainedLoadingIndicator;
 };

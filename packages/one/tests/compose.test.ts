@@ -403,11 +403,14 @@ describe('compose progress validation', () => {
     expect(() =>
       validateProgressIndicatorProps({ variant: 'linear', progress: 0.4 })
     ).not.toThrow()
+    expect(() =>
+      validateProgressIndicatorProps({ variant: 'circularWavy', progress: null, color: '#2154a1' })
+    ).not.toThrow()
   })
 
   it('rejects unknown variants and out-of-range progress', () => {
     expect(() => validateProgressIndicatorProps({ variant: 'ring' as never })).toThrow(
-      'Compose ProgressIndicator variant must be one of linear, circular'
+      'Compose ProgressIndicator variant must be one of linear, circular, linearWavy, circularWavy'
     )
     expect(() => validateProgressIndicatorProps({ progress: 1.2 })).toThrow(
       'Compose ProgressIndicator progress must be a number from 0 to 1'
