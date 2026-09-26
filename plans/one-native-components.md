@@ -86,3 +86,13 @@ accounts are unavailable).
   `tests/native-features/build/grids-proof` artifact directory. The review
   also led to runtime validation of TextField, SecureField and TextEditor
   keyboard options before they cross the native bridge.
+- **RAN, 2026-09-26:** slice 3 begins with `PasteButton` for String payloads.
+  The iPhone 17 Pro iOS 27 simulator mounted SwiftUI's system button, wrote
+  text through `One.Clipboard`, tapped the button, and received the string in
+  one React `onPaste` array callback. On an erased simulator the empty
+  pasteboard still left the system button enabled but emitted no String paste.
+  The extended suite covers quotes, newline and emoji, the `disabled` prop,
+  and repeat delivery. The arm64 build, `generate:check`, and
+  native coverage snapshot passed. Proof screenshot is in the local ignored
+  `tests/native-features/build/paste-button-proof` artifact directory. Next:
+  `MultiDatePicker`, then the remaining fill leaves and containers.

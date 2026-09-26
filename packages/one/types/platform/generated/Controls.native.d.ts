@@ -5,6 +5,7 @@ export declare function ColorPicker({ selection, onSelectionChange, revision, la
 export declare function Toggle({ isOn, onIsOnChange, revision, label, disabled, systemImage, toggleStyle, swiftStyle, style, ...props }: Types.ToggleProps): import("react/jsx-runtime").JSX.Element;
 export declare function Slider({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, minimumValueLabel, maximumValueLabel, minimumValueImage, maximumValueImage, swiftStyle, style, ...props }: Types.SliderProps): import("react/jsx-runtime").JSX.Element;
 export declare function Stepper({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, swiftStyle, style, ...props }: Types.StepperProps): import("react/jsx-runtime").JSX.Element;
+export declare function PasteButton({ onPaste, disabled, swiftStyle, style, ...props }: Types.PasteButtonProps): import("react/jsx-runtime").JSX.Element;
 export declare function Text({ text, swiftStyle, style, ...props }: Types.TextProps): import("react/jsx-runtime").JSX.Element;
 export declare function Label({ label, disabled, systemImage, swiftStyle, style, ...props }: Types.LabelProps): import("react/jsx-runtime").JSX.Element;
 export declare function ProgressView({ label, disabled, value, total, progressViewStyle, swiftStyle, style, ...props }: Types.ProgressViewProps): import("react/jsx-runtime").JSX.Element;

@@ -19,6 +19,9 @@ function Slider(_props: Types.SliderProps): never {
 function Stepper(_props: Types.StepperProps): never {
   throw new Error('Swift.Stepper requires an iOS native build')
 }
+function PasteButton(_props: Types.PasteButtonProps): never {
+  throw new Error('Swift.PasteButton requires an iOS native build')
+}
 function Text(_props: Types.TextProps): never {
   throw new Error('Swift.Text requires an iOS native build')
 }
@@ -107,6 +110,7 @@ export const unsupportedControls = {
   Toggle,
   Slider,
   Stepper,
+  PasteButton,
   Text,
   Label,
   ProgressView,

@@ -5,15 +5,16 @@ import type {
   ControlField,
   ControlValue,
   ScalarType,
+  ActionPayloadType,
 } from './controlTypes'
 import { deriveLeafSwift } from './derive'
 import type { DerivedModifier, EventValueSchema } from './deriveSDK'
 import type { Declaration } from './inventory'
 
-const swiftScalar = (type: ScalarType) =>
-  ({ string: 'String', boolean: 'Bool', Double: 'Double' })[type]
-const tsScalar = (type: ScalarType) =>
-  ({ string: 'string', boolean: 'boolean', Double: 'number' })[type]
+const swiftScalar = (type: ActionPayloadType) =>
+  ({ string: 'String', boolean: 'Bool', Double: 'Double', jsonStrings: 'String' })[type]
+const tsScalar = (type: ActionPayloadType) =>
+  ({ string: 'string', boolean: 'boolean', Double: 'number', jsonStrings: 'readonly string[]' })[type]
 const payloadOf = (field: ControlField) => {
   if (!field.payload) throw new Error('an objects field needs a payload shape')
   return field.payload
@@ -455,7 +456,8 @@ ${
       ...Object.fromEntries(
         actions.map((action) => [
           `onNative${name}${action.event}`,
-          { ...action.payload, eventCount: 'Int32' },
+          { ...Object.fromEntries(Object.entries(action.payload ?? {}).map(([key, type]) =>
+            [key, type === 'jsonStrings' ? 'string' : type])), eventCount: 'Int32' },
         ])
       ),
     }
@@ -603,13 +605,13 @@ ${value ? `    onNative${name}ValueChange={({ nativeEvent }) => controlled.onNat
           return `    onNative${name}${action.event}={({ nativeEvent }) => ${action.prop}?.(${Object.keys(
             action.payload ?? {}
           )
-            .map((key) => `nativeEvent.${key}`)
+            .map((key) => action.payload?.[key] === 'jsonStrings' ? `JSON.parse(nativeEvent.${key}) as string[]` : `nativeEvent.${key}`)
             .join(', ')})}\n`
         // the last variant is the default when the native type matches none.
         const variants = objectVariants(action)
         const literal = (variant: { type: string; fields: readonly string[] }) =>
           `{ type: '${variant.type}'${variant.fields
-            .map((field) => `, ${field}: nativeEvent.${field}`)
+            .map((field) => `, ${field}: ${action.payload?.[field] === 'jsonStrings' ? `JSON.parse(nativeEvent.${field}) as string[]` : `nativeEvent.${field}`}`)
             .join('')} }`
         let mapped = literal(variants[variants.length - 1])
         for (let index = variants.length - 2; index >= 0; index--)
@@ -867,13 +869,14 @@ extern const char ${nativeName}ComponentName[] = "${nativeName}";
 #endif
 `
     )
-    const objcScalar = (type: ScalarType) =>
-      ({ string: 'NSString *', boolean: 'BOOL ', Double: 'double ' })[type]
-    const cppScalar = (type: ScalarType, name: string) =>
+    const objcScalar = (type: ActionPayloadType) =>
+      ({ string: 'NSString *', boolean: 'BOOL ', Double: 'double ', jsonStrings: 'NSString *' })[type]
+    const cppScalar = (type: ActionPayloadType, name: string) =>
       ({
         string: `std::string(${name}.UTF8String)`,
         boolean: `(bool)${name}`,
         Double: `(double)${name}`,
+        jsonStrings: `std::string(${name}.UTF8String)`,
       })[type]
     const convert = (key: string, type: string) =>
       type === 'string'

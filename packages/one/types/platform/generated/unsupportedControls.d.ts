@@ -5,6 +5,7 @@ declare function ColorPicker(_props: Types.ColorPickerProps): never;
 declare function Toggle(_props: Types.ToggleProps): never;
 declare function Slider(_props: Types.SliderProps): never;
 declare function Stepper(_props: Types.StepperProps): never;
+declare function PasteButton(_props: Types.PasteButtonProps): never;
 declare function Text(_props: Types.TextProps): never;
 declare function Label(_props: Types.LabelProps): never;
 declare function ProgressView(_props: Types.ProgressViewProps): never;
@@ -39,6 +40,7 @@ export declare const unsupportedControls: {
     Toggle: typeof Toggle;
     Slider: typeof Slider;
     Stepper: typeof Stepper;
+    PasteButton: typeof PasteButton;
     Text: typeof Text;
     Label: typeof Label;
     ProgressView: typeof ProgressView;

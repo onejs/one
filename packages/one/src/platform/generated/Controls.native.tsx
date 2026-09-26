@@ -334,6 +334,29 @@ export function Stepper({
     />
   )
 }
+import NativePasteButton from '../specs/OneNativePasteButtonNativeComponent'
+export function PasteButton({
+  onPaste,
+  disabled = false,
+  swiftStyle,
+  style,
+  ...props
+}: Types.PasteButtonProps) {
+  return (
+    <NativePasteButton
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      disabled={disabled}
+      onNativePasteButtonPaste={({ nativeEvent }) =>
+        onPaste?.(JSON.parse(nativeEvent.values) as string[])
+      }
+    />
+  )
+}
 import NativeText from '../specs/OneNativeTextNativeComponent'
 export function Text({ text = '', swiftStyle, style, ...props }: Types.TextProps) {
   if (typeof text !== 'string') throw new Error('Text text must be a string')

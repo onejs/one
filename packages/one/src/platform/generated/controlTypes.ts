@@ -3601,6 +3601,10 @@ export interface StepperProps extends OneNativeViewProps {
   maximumValue?: number
   step?: number
 }
+export interface PasteButtonProps extends OneNativeViewProps {
+  onPaste?: (values: readonly string[]) => void
+  disabled?: boolean
+}
 export interface TextProps extends OneNativeViewProps {
   text?: string
 }

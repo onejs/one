@@ -1,5 +1,8 @@
 // semantic recipes for bounded SwiftUI controls; the SDK supplies signatures and style cases.
 export type ScalarType = 'string' | 'boolean' | 'Double'
+// React Native codegen cannot put arrays in event payloads. jsonStrings is a
+// string on the native wire and a string array in the public callback.
+export type ActionPayloadType = ScalarType | 'jsonStrings'
 export type ControlField = {
   // `strings` is an array of plain strings, for open or SDK-external sets like
   // ASAuthorization.Scope and UTType identifiers. `objects` stays for payloads.
@@ -46,7 +49,7 @@ export type ControlAction = {
   // native event suffix, for example Press for onNative<Control>Press
   event: string
   // extra event fields, passed to the public callback in declaration order.
-  payload?: Record<string, ScalarType>
+  payload?: Record<string, ActionPayloadType>
   // when present, the public callback takes one object instead of the payload
   // fields as separate arguments. the native event stays flat; the adapter
   // maps it onto this discriminated union by the payload's `type` field. the

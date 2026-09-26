@@ -383,6 +383,7 @@
         "OneNativeToggle": "OneNativeToggleComponentView",
         "OneNativeSlider": "OneNativeSliderComponentView",
         "OneNativeStepper": "OneNativeStepperComponentView",
+        "OneNativePasteButton": "OneNativePasteButtonComponentView",
         "OneNativeText": "OneNativeTextComponentView",
         "OneNativeLabel": "OneNativeLabelComponentView",
         "OneNativeProgressView": "OneNativeProgressViewComponentView",

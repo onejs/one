@@ -71,6 +71,7 @@ declare module 'one' {
         | `/one-native-navigation`
         | `/one-native-network`
         | `/one-native-notifications`
+        | `/one-native-paste-button`
         | `/one-native-photo-library`
         | `/one-native-pip`
         | `/one-native-popover`

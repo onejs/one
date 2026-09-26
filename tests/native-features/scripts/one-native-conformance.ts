@@ -46,6 +46,7 @@ const suites = [
   'contacts',
   'editors',
   'grids',
+  'paste-button',
   'popover',
   'navigation',
   'accessibility',
@@ -319,6 +320,10 @@ const gridsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-grid-reverse')) &&
   has(nodes, 'Order: ')
+const pasteButtonLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-paste-seed')) &&
+  has(nodes, 'Paste count: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -458,6 +463,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   contacts: contactsLoaded,
   editors: editorsLoaded,
   grids: gridsLoaded,
+  'paste-button': pasteButtonLoaded,
   popover: popoverLoaded,
   navigation: navigationLoaded,
   accessibility: accessibilityLoaded,
@@ -505,6 +511,7 @@ const suiteHome: Record<Suite, string> = {
   contacts: 'nav-one-native-contacts',
   editors: 'nav-one-native-editors',
   grids: 'nav-one-native-grids',
+  'paste-button': 'nav-one-native-paste-button',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -2553,6 +2560,45 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('contacts-round-trip.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'paste-button') {
+    const pasteButton = (nodes: Node[]) =>
+      nodes.find((node) => node.AXUniqueId === 'one-native-paste-action' && node.type === 'Button')
+    const tapPaste = () => {
+      const frame = pasteButton(snapshot(config.simulatorId))?.frame
+      if (!frame) throw new Error('SwiftUI PasteButton has no tappable accessibility frame')
+      point(frame.x + frame.width / 2, frame.y + frame.height / 2)
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-paste-button')
+    await wait('native PasteButton mounts', (nodes) =>
+      Boolean(pasteButton(nodes)) && labels(nodes).includes('Paste count: 0'))
+    tap({ id: 'one-native-paste-seed' })
+    await wait('pasteboard receives the probe text', (nodes) => labels(nodes).includes('Clipboard: true'))
+    await wait('system PasteButton is ready for String', (nodes) =>
+      pasteButton(nodes)?.enabled === true)
+    tapPaste()
+    await wait('SwiftUI PasteButton delivers its String payload', (nodes) =>
+      labels(nodes).includes('Paste count: 1') &&
+      labels(nodes).some((label) => label.includes('One "native"') && label.includes('PasteButton 🎉')))
+    tap({ id: 'one-native-paste-toggle-disabled' })
+    await wait('disabled prop disables SwiftUI PasteButton', (nodes) =>
+      labels(nodes).includes('Disabled: true') && pasteButton(nodes)?.enabled === false)
+    tapPaste()
+    await new Promise((resolve) => setTimeout(resolve, 350))
+    if (!labels(snapshot(config.simulatorId)).includes('Paste count: 1'))
+      throw new Error('Disabled PasteButton emitted an onPaste event')
+    console.log('PASS disabled PasteButton emits no callback')
+    tap({ id: 'one-native-paste-toggle-disabled' })
+    await wait('SwiftUI PasteButton re-enables', (nodes) =>
+      labels(nodes).includes('Disabled: false') && pasteButton(nodes)?.enabled === true)
+    tapPaste()
+    await wait('repeat paste delivers one more array callback', (nodes) =>
+      labels(nodes).includes('Paste count: 2'))
+    screenshot('paste-button-result.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
