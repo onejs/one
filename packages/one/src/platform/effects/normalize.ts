@@ -1,16 +1,8 @@
-import {
-  I18nManager,
-  StyleSheet,
-  processColor,
-  type ColorValue,
-  type StyleProp,
-  type ViewStyle,
-} from 'react-native'
-import { serializeCurve } from './curves'
+import type { ColorValue, StyleProp, ViewStyle } from 'react-native'
 import type { EdgeConfig, EdgeFadeCurve, EdgeFadeMode, EdgeFadeProps } from './types'
 
 const DEFAULT_SIZE = 80
-const DEFAULT_CURVE: EdgeFadeCurve = 'smooth'
+export const DEFAULT_CURVE: EdgeFadeCurve = 'smooth'
 const DEFAULT_BLUR_RADIUS = 28
 
 export interface ResolvedEdge {
@@ -52,12 +44,11 @@ export interface ResolvedEdgeFade {
   frostProgression: number
 }
 
-export function resolveEdges(props: EdgeFadeProps): ResolvedEdgeFade {
+export function resolveEdges(props: EdgeFadeProps, isRTL: boolean): ResolvedEdgeFade {
   const size = props.size ?? DEFAULT_SIZE
   const curve = props.curve ?? DEFAULT_CURVE
   // logical start/end map to physical left/right by layout direction and
   // override the physical prop on the matching side.
-  const isRTL = I18nManager.isRTL
   const leftLogical = isRTL ? props.end : props.start
   const rightLogical = isRTL ? props.start : props.end
   const top = resolveEdge(props.top, size, curve)
@@ -79,7 +70,10 @@ export function resolveEdges(props: EdgeFadeProps): ResolvedEdgeFade {
   }
   if (
     props.mode === 'blur' &&
-    (top?.color != null || bottom?.color != null || left?.color != null || right?.color != null)
+    (top?.color != null ||
+      bottom?.color != null ||
+      left?.color != null ||
+      right?.color != null)
   ) {
     console.warn(
       '[EdgeFade] per-edge `color` is ignored in blur mode: the frost veil ' +
@@ -98,50 +92,6 @@ export function resolveEdges(props: EdgeFadeProps): ResolvedEdgeFade {
   }
 }
 
-export interface NativeEdgeFadeProps {
-  fadeTop: number
-  fadeBottom: number
-  fadeLeft: number
-  fadeRight: number
-  curveTop: string
-  curveBottom: string
-  curveLeft: string
-  curveRight: string
-  fadeRadius: number
-  mode: string
-  blurRadius: number
-  frostProgression: number
-  overlayColor: number
-}
-
-// the frost-veil color as 0xAARRGGBB for the primitive (0 = no veil).
-// opaque platform colors have no readable channels, so they resolve to 0.
-export function resolveVeilColor(color?: ColorValue): number {
-  if (color == null) return 0
-  const processed = processColor(color)
-  return typeof processed === 'number' ? processed : 0
-}
-
-// flat props for the OneNativeEdgeFade primitive. mask and blur modes reach
-// it; overlay never does (RN core gradients paint it).
-export function resolveNativeProps(resolved: ResolvedEdgeFade, radius?: number): NativeEdgeFadeProps {
-  return {
-    fadeTop: resolved.top?.size ?? 0,
-    fadeBottom: resolved.bottom?.size ?? 0,
-    fadeLeft: resolved.left?.size ?? 0,
-    fadeRight: resolved.right?.size ?? 0,
-    curveTop: serializeCurve(resolved.top?.curve ?? DEFAULT_CURVE),
-    curveBottom: serializeCurve(resolved.bottom?.curve ?? DEFAULT_CURVE),
-    curveLeft: serializeCurve(resolved.left?.curve ?? DEFAULT_CURVE),
-    curveRight: serializeCurve(resolved.right?.curve ?? DEFAULT_CURVE),
-    fadeRadius: radius ?? 0,
-    mode: resolved.mode,
-    blurRadius: resolved.blurRadius,
-    frostProgression: resolved.frostProgression,
-    overlayColor: resolved.mode === 'blur' ? resolveVeilColor(resolved.color) : 0,
-  }
-}
-
 /**
  * the `radius` prop is the only corner source: it feeds the native mask on
  * the mask path and a clipped container on the core overlay path, so both
@@ -150,14 +100,26 @@ export function resolveNativeProps(resolved: ResolvedEdgeFade, radius?: number):
  */
 export function resolveRadius(
   radius: number | undefined,
-  style: StyleProp<ViewStyle>
+  styleRadius: unknown
 ): number | undefined {
-  const flat = StyleSheet.flatten(style) as { borderRadius?: number } | undefined
-  if (flat?.borderRadius != null) {
+  if (styleRadius != null) {
     console.warn(
       '[EdgeFade] `style.borderRadius` is ignored — use the `radius` prop ' +
         'instead so the corner clip integrates with the fade.'
     )
   }
   return radius
+}
+
+// style arrays merge left to right with falsy entries skipped, as StyleSheet
+// does, without importing react-native so the web path stays dom only.
+export function flattenStyle(style: StyleProp<ViewStyle>): Record<string, unknown> {
+  const into: Record<string, unknown> = {}
+  mergeStyle(style, into)
+  return into
+}
+
+function mergeStyle(entry: unknown, into: Record<string, unknown>) {
+  if (Array.isArray(entry)) for (const inner of entry) mergeStyle(inner, into)
+  else if (entry && typeof entry === 'object') Object.assign(into, entry)
 }
