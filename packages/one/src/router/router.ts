@@ -1378,13 +1378,20 @@ export async function linkTo(
   // compute target at dispatch time to avoid stale state during first render/effects
   const freshRootState = navigationRef.getRootState() as NavigationState
   const currentRouteBeforeDispatch = navigationRef.getCurrentRoute()
-  const targetPathname = pendingNavigationPathname
-  const optimisticState = nextOptions ? { ...state, linkOptions: nextOptions } : state
-  updateState(optimisticState)
-  pendingNavigationPathname = targetPathname
-  notifyRootStateSubscribers(optimisticState)
 
+  // only a replace publishes its target before the navigators reach it. a
+  // push or navigate waits for the container's state change: route info
+  // subscribers re-render synchronously, ahead of react-navigation's own state
+  // update, so a layout whose declared screens follow the pathname (a tab shown
+  // only on some routes) changes its navigator's route names while that
+  // navigator still holds the old state. the navigator then rebuilds from the
+  // old state and its scheduled update overwrites the dispatched navigation.
   if (event === 'REPLACE') {
+    const targetPathname = pendingNavigationPathname
+    const optimisticState = nextOptions ? { ...state, linkOptions: nextOptions } : state
+    updateState(optimisticState)
+    pendingNavigationPathname = targetPathname
+    notifyRootStateSubscribers(optimisticState)
     navigationRef.resetRoot(state)
   } else {
     const action = getNavigateAction(state, freshRootState, event)
