@@ -63,10 +63,10 @@ import { One } from 'one'
 Get the current safe area insets for custom layouts:
 
 ```tsx
-import { One } from 'one'
+import { useSafeAreaInsets } from 'one'
 
 function MyComponent() {
-  const insets = One.useSafeAreaInsets()
+  const insets = useSafeAreaInsets()
 
   return (
     <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>

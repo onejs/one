@@ -32,30 +32,16 @@ import {
   ToolbarHost,
   ToolbarItem,
   UI as NativeUI,
-  getHinge,
-  getSizeClass,
-  onHingeChange,
   ReservedRegions,
-  useHinge,
-  useReservedRegions,
-  useReservedRegionsReady,
-  useSizeClass,
-  useSpanning,
-  useWindowSegments,
   ZoomTransitionAlignmentRectDetector,
   ZoomTransitionEnabler,
   ZoomTransitionSource,
   type ColorType,
-  useFonts,
-  useNativeState,
-  useNetworkState,
 } from './platform'
 import {
   SafeAreaProvider,
   SafeAreaView,
   initialWindowMetrics,
-  useSafeAreaFrame,
-  useSafeAreaInsets,
 } from './safe-area-context'
 
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx'
@@ -117,20 +103,6 @@ export type OneAPI = {
   readonly SecureStore: typeof NativeSecureStore
   readonly Speech: typeof NativeSpeech
   readonly Updates: typeof NativeUpdates
-  readonly useFonts: typeof useFonts
-  readonly useNativeState: typeof useNativeState
-  readonly useNetworkState: typeof useNetworkState
-  readonly useSafeAreaFrame: typeof useSafeAreaFrame
-  readonly useSafeAreaInsets: typeof useSafeAreaInsets
-  readonly useSizeClass: typeof useSizeClass
-  readonly getSizeClass: typeof getSizeClass
-  readonly useHinge: typeof useHinge
-  readonly getHinge: typeof getHinge
-  readonly onHingeChange: typeof onHingeChange
-  readonly useReservedRegions: typeof useReservedRegions
-  readonly useReservedRegionsReady: typeof useReservedRegionsReady
-  readonly useWindowSegments: typeof useWindowSegments
-  readonly useSpanning: typeof useSpanning
 }
 
 function currentPlatform(): OnePlatform {
@@ -198,18 +170,4 @@ export const One: OneAPI = Object.freeze({
   SecureStore: NativeSecureStore,
   Speech: NativeSpeech,
   Updates: NativeUpdates,
-  useFonts,
-  useNativeState,
-  useNetworkState,
-  useSafeAreaFrame,
-  useSafeAreaInsets,
-  useSizeClass,
-  getSizeClass,
-  useHinge,
-  getHinge,
-  onHingeChange,
-  useReservedRegions,
-  useReservedRegionsReady,
-  useWindowSegments,
-  useSpanning,
 })

@@ -1,7 +1,7 @@
 import type { ComponentProps } from 'react'
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Platform } from 'react-native'
-import { One } from 'one'
+import { One, useHinge, useReservedRegions, useSizeClass, useSpanning, useWindowSegments } from 'one'
 
 type ArrangementViewStyle = NonNullable<ComponentProps<typeof One.iOS.ArrangementView>['arrangementViewStyle']>
 
@@ -14,11 +14,11 @@ export default function OneNativeArrangementFixture() {
 }
 
 function Arrangement() {
-  const sizeClass = One.useSizeClass()
-  const hinge = One.useHinge()
-  const reservedRegions = One.useReservedRegions({ includeInactive: true })
-  const segments = One.useWindowSegments()
-  const spanning = One.useSpanning()
+  const sizeClass = useSizeClass()
+  const hinge = useHinge()
+  const reservedRegions = useReservedRegions({ includeInactive: true })
+  const segments = useWindowSegments()
+  const spanning = useSpanning()
   const [style, setStyle] = useState<ArrangementViewStyle>('automatic')
 
   return (

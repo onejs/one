@@ -1,6 +1,37 @@
 export { createApp } from './createApp'
 
 export { One } from './one'
+// native hooks and adaptive reads are named exports for react-hooks lint.
+export {
+  useFonts,
+  useNativeState,
+  useNetworkState,
+  useSizeClass,
+  getSizeClass,
+  useHinge,
+  getHinge,
+  onHingeChange,
+  useReservedRegions,
+  useReservedRegionsReady,
+  useWindowSegments,
+  useSpanning,
+} from './platform'
+export type {
+  FontMap,
+  FontSource,
+  UseFontsResult,
+  NativeState,
+  NetworkState,
+  NetworkStateType,
+  UserInterfaceSizeClass,
+  SizeClass,
+  HingeStatus,
+  HingeState,
+  ReservedRegionKind,
+  ReservedRegion,
+  WindowSegment,
+  ReservedRegionOptions,
+} from './platform'
 export type { OneRouter } from './interfaces/router'
 
 /**
@@ -48,7 +79,7 @@ export * from '@vxrn/color-scheme'
 // TODO breaking due to react-native-gesture-handler
 // export { Drawer } from './layouts/Drawer'
 // export { Unmatched } from './fallbackViews/Unmatched'
-export { SafeAreaView, useSafeAreaInsets } from './safe-area-context'
+export { SafeAreaView, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-context'
 export { onClientLoaderResolve } from './clientLoaderResolver'
 
 // middleware
