@@ -60,6 +60,7 @@ declare module 'one' {
         | `/one-native-safe-area`
         | `/one-native-secure-store`
         | `/one-native-sheet`
+        | `/one-native-source`
         | `/one-native-speech`
         | `/one-native-state`
         | `/one-native-system`

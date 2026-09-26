@@ -82,6 +82,8 @@ namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
 namespace margelo::nitro::one { class HybridOneLocalAuthenticationSpec; }
 // Forward declaration of `HybridOneLocationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLocationSpec; }
+// Forward declaration of `HybridOneNativeModulesSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneNativeModulesSpec; }
 // Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNetworkSpec; }
 // Forward declaration of `HybridOneNotificationsSpec` to properly resolve imports.
@@ -186,6 +188,8 @@ namespace One { class HybridOneImagePickerSpec_cxx; }
 namespace One { class HybridOneLocalAuthenticationSpec_cxx; }
 // Forward declaration of `HybridOneLocationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLocationSpec_cxx; }
+// Forward declaration of `HybridOneNativeModulesSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneNativeModulesSpec_cxx; }
 // Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNetworkSpec_cxx; }
 // Forward declaration of `HybridOneNotificationsSpec_cxx` to properly resolve imports.
@@ -234,6 +238,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneImagePickerSpec.hpp"
 #include "HybridOneLocalAuthenticationSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
+#include "HybridOneNativeModulesSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
@@ -1558,6 +1563,18 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_LocationPlace____ create_Result_std__shared_ptr_Promise_std__vector_LocationPlace____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>::withError(error);
   }
+
+  // pragma MARK: std::shared_ptr<HybridOneNativeModulesSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneNativeModulesSpec>`.
+   */
+  using std__shared_ptr_HybridOneNativeModulesSpec_ = std::shared_ptr<HybridOneNativeModulesSpec>;
+  std::shared_ptr<HybridOneNativeModulesSpec> create_std__shared_ptr_HybridOneNativeModulesSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneNativeModulesSpec_(std__shared_ptr_HybridOneNativeModulesSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneNativeModulesSpec>
+  using std__weak_ptr_HybridOneNativeModulesSpec_ = std::weak_ptr<HybridOneNativeModulesSpec>;
+  inline std__weak_ptr_HybridOneNativeModulesSpec_ weakify_std__shared_ptr_HybridOneNativeModulesSpec_(const std::shared_ptr<HybridOneNativeModulesSpec>& strong) noexcept { return strong; }
 
   // pragma MARK: std::shared_ptr<Promise<NetworkState>>
   /**

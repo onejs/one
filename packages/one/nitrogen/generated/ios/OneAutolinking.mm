@@ -28,6 +28,7 @@
 #include "HybridOneLocalAuthenticationSpecSwift.hpp"
 #include "HybridOneLocationSpecSwift.hpp"
 #include "HybridOneUpdatesSpecSwift.hpp"
+#include "HybridOneNativeModulesSpecSwift.hpp"
 
 @interface OneAutolinking : NSObject
 @end
@@ -161,6 +162,13 @@
     "OneUpdates",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneUpdatesSpec> hybridObject = One::OneAutolinking::createOneUpdates();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneNativeModules",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneNativeModulesSpec> hybridObject = One::OneAutolinking::createOneNativeModules();
       return hybridObject;
     }
   );

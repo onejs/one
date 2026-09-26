@@ -1,0 +1,95 @@
+import Foundation
+#if os(WASI)
+import SwiftUI
+#endif
+
+@MainActor public enum OneNativeSourceBody_native_source {
+  public static let hash = "7b458180a55c0d7229eb0240f4143a3147da6e0bbe4c08c0e4a72d46422cc87d"
+#if os(WASI)
+  private struct Request: Decodable { let module: String; let method: String; let argsJson: String; let contractHash: String }
+  private struct Reply: Encodable { let ok: Bool; let value: String?; let error: String? }
+  private static var output: [UInt8] = []
+  static func callWasm(_ payload: UnsafePointer<UInt8>?, _ length: Int32) -> UnsafeMutablePointer<UInt8>? {
+    let reply: Reply
+    do {
+      guard let payload, length >= 0 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "missing call payload"]) }
+      let request = try JSONDecoder().decode(Request.self, from: Data(bytes: payload, count: Int(length)))
+      guard request.contractHash == hash else { throw NSError(domain: "OneNativeSource", code: 4, userInfo: [NSLocalizedDescriptionKey: "native module changed; rebuild the app"]) }
+      let value = try callSync(request.module, request.method, request.argsJson)
+      reply = Reply(ok: true, value: value, error: nil)
+    } catch {
+      reply = Reply(ok: false, value: nil, error: error.localizedDescription)
+    }
+    let bytes = (try? JSONEncoder().encode(reply)) ?? Data("{\"ok\":false,\"error\":\"encoding failed\"}".utf8)
+    let count = UInt32(bytes.count)
+    output = [UInt8(count & 0xff), UInt8((count >> 8) & 0xff), UInt8((count >> 16) & 0xff), UInt8(count >> 24)] + Array(bytes)
+    return output.withUnsafeMutableBufferPointer { $0.baseAddress }
+  }
+#endif
+  private static let AudioMathInstance = AudioMath()
+  private static func decode<T: Decodable>(_ value: Any, as type: T.Type) throws -> T {
+    let data = try JSONSerialization.data(withJSONObject: value, options: [.fragmentsAllowed])
+    return try JSONDecoder().decode(T.self, from: data)
+  }
+  static func call(_ module: String, _ method: String, _ argsJson: String) async throws -> String {
+    guard let values = try JSONSerialization.jsonObject(with: Data(argsJson.utf8)) as? [Any] else {
+      throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "arguments must be a JSON array"])
+    }
+    switch module {
+    case "native_source.AudioMath":
+      switch method {
+      case "rms":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.AudioMath.rms expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: [Double].self)
+        let result = AudioMathInstance.rms(arg0)
+        return String(decoding: try JSONEncoder().encode(result), as: UTF8.self)
+      case "label":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.AudioMath.label expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: String.self)
+        let result = try AudioMathInstance.label(name: arg0)
+        return String(decoding: try JSONEncoder().encode(result), as: UTF8.self)
+      default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native method \(module).\(method) is not linked; rebuild the app"])
+      }
+    default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native module \(module) is not linked; rebuild the app"])
+    }
+  }
+  static func callSync(_ module: String, _ method: String, _ argsJson: String) throws -> String {
+    guard let values = try JSONSerialization.jsonObject(with: Data(argsJson.utf8)) as? [Any] else {
+      throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "arguments must be a JSON array"])
+    }
+    switch module {
+    case "native_source.AudioMath":
+      switch method {
+      case "rms":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.AudioMath.rms expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: [Double].self)
+        let result = AudioMathInstance.rms(arg0)
+        return String(decoding: try JSONEncoder().encode(result), as: UTF8.self)
+      case "label":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.AudioMath.label expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: String.self)
+        let result = try AudioMathInstance.label(name: arg0)
+        return String(decoding: try JSONEncoder().encode(result), as: UTF8.self)
+      default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native method \(module).\(method) is not linked; rebuild the app"])
+      }
+    default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native module \(module) is not linked; rebuild the app"])
+    }
+  }
+}
+
+#if os(WASI)
+@_expose(wasm, "rnx_call")
+@_cdecl("rnx_call")
+@MainActor public func rnx_call(_ payload: UnsafePointer<UInt8>?, _ length: Int32) -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_native_source.callWasm(payload, length) }
+@main struct OneNativeSourceMain_native_source: App {
+  var body: some Scene { WindowGroup { EmptyView() } }
+}
+#endif
+
+#if canImport(ObjectiveC)
+@objc(OneNativeSource_native_source) @MainActor public final class OneNativeSource_native_source: NSObject, OneNativeSourceDispatch {
+  public required override init() {}
+  public var contractHash: String { OneNativeSourceBody_native_source.hash }
+  public func call(_ module: String, _ method: String, _ argsJson: String) async throws -> String { try await OneNativeSourceBody_native_source.call(module, method, argsJson) }
+}
+#endif

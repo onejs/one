@@ -67,6 +67,16 @@ public protocol RNXPackage {
   func view(props: JSON) -> Content
 }
 
+@MainActor public protocol RNXModule {
+  init()
+}
+
+@MainActor public protocol OneNativeSourceDispatch: AnyObject {
+  init()
+  var contractHash: String { get }
+  func call(_ module: String, _ method: String, _ argsJson: String) async throws -> String
+}
+
 extension RNXPackage {
   @MainActor public static func main() {
     OneSwiftPackages.pending = { AnyView(Self().view(props: $0)) }
@@ -134,4 +144,3 @@ enum OneSwiftPackages {
 public func oneSwiftRegisterPackage(_ name: UnsafePointer<CChar>, _ entry: OneSwiftPackageEntry) {
   OneSwiftPackages.entries[String(cString: name)] = entry
 }
-

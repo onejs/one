@@ -227,4 +227,16 @@ public final class OneAutolinking {
   public static func isOneUpdatesRecyclable() -> Bool {
     return HybridOneUpdates.self is any RecyclableView.Type
   }
+
+  public static func createOneNativeModules() -> bridge.std__shared_ptr_HybridOneNativeModulesSpec_ {
+    let hybridObject = HybridOneNativeModules()
+    return { () -> bridge.std__shared_ptr_HybridOneNativeModulesSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isOneNativeModulesRecyclable() -> Bool {
+    return HybridOneNativeModules.self is any RecyclableView.Type
+  }
 }
