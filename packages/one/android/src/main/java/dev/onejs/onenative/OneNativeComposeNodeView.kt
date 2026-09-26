@@ -34,10 +34,12 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LocalContentColor
@@ -48,6 +50,7 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -192,6 +195,19 @@ internal data class OneNativeCardBorder(
     }
 }
 
+internal data class OneNativeDividerStyle(
+    val thickness: Double = -1.0,
+    val color: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeDividerStyle =
+            if (map == null) OneNativeDividerStyle() else OneNativeDividerStyle(
+                thickness = if (map.hasKey("thickness") && !map.isNull("thickness")) map.getDouble("thickness") else -1.0,
+                color = readComposeColor(map, "color", context),
+            )
+    }
+}
+
 internal data class OneNativeComposeStyle(
     val backgroundColor: Int? = null,
     val foregroundColor: Int? = null,
@@ -266,6 +282,7 @@ internal data class OneNativeComposeNodeProps(
     val cardColors: OneNativeCardColors = OneNativeCardColors(),
     val cardElevation: Double = -1.0,
     val cardBorder: OneNativeCardBorder? = null,
+    val dividerStyle: OneNativeDividerStyle = OneNativeDividerStyle(),
     val acknowledgedEvent: Int = 0,
     val revision: Int = 0,
     val alignment: String? = null,
@@ -561,6 +578,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageCardBorder(value: ReadableMap?) {
         pendingProps = pendingProps.copy(cardBorder = OneNativeCardBorder.fromMap(value, context))
+    }
+
+    internal fun stageDividerStyle(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(dividerStyle = OneNativeDividerStyle.fromMap(value, context))
     }
 
     internal fun stageAcknowledgedEvent(value: Int) {
@@ -976,6 +997,18 @@ private fun RenderComposeNodeBody(
                 ),
             )
         "card", "elevatedcard", "outlinedcard" -> RenderComposeCard(node, props, modifier)
+        "horizontaldivider" ->
+            HorizontalDivider(
+                modifier = modifier,
+                thickness = props.dividerStyle.thickness.takeIf { it >= 0.0 }?.toFloat()?.dp ?: DividerDefaults.Thickness,
+                color = props.dividerStyle.color?.let(::Color) ?: DividerDefaults.color,
+            )
+        "verticaldivider" ->
+            VerticalDivider(
+                modifier = modifier,
+                thickness = props.dividerStyle.thickness.takeIf { it >= 0.0 }?.toFloat()?.dp ?: DividerDefaults.Thickness,
+                color = props.dividerStyle.color?.let(::Color) ?: DividerDefaults.color,
+            )
         "textfield" -> RenderComposeTextField(node, props, modifier)
         "slider" -> RenderComposeSlider(node, props, modifier)
         "alertdialog" -> RenderComposeAlertDialog(node, props, modifier)

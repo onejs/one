@@ -64,6 +64,10 @@ interface NativeProps extends ViewProps {
     width?: WithDefault<Double, 1>
     color?: ColorValue
   }>
+  dividerStyle?: Readonly<{
+    thickness?: WithDefault<Double, -1>
+    color?: ColorValue
+  }>
   acknowledgedEvent?: Int32
   revision?: Int32
   alignment?: string

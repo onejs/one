@@ -6,6 +6,7 @@ import type {
   ComposeCheckboxProps,
   ComposeColumnProps,
   ComposeDialogProps,
+  ComposeDividerProps,
   ComposeIconProps,
   ComposeProgressIndicatorProps,
   ComposeRadioButtonProps,
@@ -364,6 +365,17 @@ export function validateCardProps(
   }
   if (props.border.color !== undefined)
     assertComposeColorValue(props.border.color, `${kind} border color`)
+}
+
+export function validateDividerProps(
+  props: ComposeDividerProps,
+  kind: 'HorizontalDivider' | 'VerticalDivider'
+) {
+  if (props.thickness !== undefined) {
+    assertFiniteNumber(props.thickness, `${kind} thickness`)
+    if (props.thickness < 0) throw new Error(`Compose ${kind} thickness must be nonnegative`)
+  }
+  if (props.color !== undefined) assertComposeColorValue(props.color, `${kind} color`)
 }
 
 export function validateTextFieldProps(props: ComposeTextFieldProps) {

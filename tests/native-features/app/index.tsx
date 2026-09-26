@@ -177,6 +177,11 @@ const testScreens = [
     testID: 'nav-one-native-android-cards',
   },
   {
+    href: '/one-native-android-dividers',
+    label: 'One Native Android Dividers',
+    testID: 'nav-one-native-android-dividers',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',
