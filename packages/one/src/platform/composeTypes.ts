@@ -192,6 +192,24 @@ export interface ComposeExtendedFloatingActionButtonProps extends ComposeFloatin
   expanded?: boolean
 }
 
+export type ComposeToggleButtonColors = Readonly<{
+  containerColor?: ColorValue
+  contentColor?: ColorValue
+  checkedContainerColor?: ColorValue
+  checkedContentColor?: ColorValue
+  disabledContainerColor?: ColorValue
+  disabledContentColor?: ColorValue
+}>
+
+export interface ComposeToggleButtonProps extends ComposeNodeProps {
+  children: ReactNode
+  checked: boolean
+  enabled?: boolean
+  colors?: ComposeToggleButtonColors
+  onCheckedChange?: (checked: boolean) => void
+  revision?: number
+}
+
 export interface ComposeSwitchProps extends ComposeLeafProps {
   isOn: boolean
   disabled?: boolean

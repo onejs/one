@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
 declare function Column({ children, horizontalAlignment, verticalArrangement, spacing, ...props }: ComposeColumnProps): import("react/jsx-runtime").JSX.Element;
 declare function Row({ children, verticalAlignment, horizontalArrangement, spacing, ...props }: ComposeRowProps): import("react/jsx-runtime").JSX.Element;
 declare function FlowRow({ children, horizontalArrangement, verticalArrangement, ...props }: ComposeFlowRowProps): import("react/jsx-runtime").JSX.Element;
@@ -39,6 +39,10 @@ declare function IconButton(props: ComposeIconButtonProps): import("react/jsx-ru
 declare function FilledIconButton(props: ComposeIconButtonProps): import("react/jsx-runtime").JSX.Element;
 declare function FilledTonalIconButton(props: ComposeIconButtonProps): import("react/jsx-runtime").JSX.Element;
 declare function OutlinedIconButton(props: ComposeIconButtonProps): import("react/jsx-runtime").JSX.Element;
+declare function ToggleButton(props: ComposeToggleButtonProps): import("react/jsx-runtime").JSX.Element;
+declare function IconToggleButton(props: ComposeToggleButtonProps): import("react/jsx-runtime").JSX.Element;
+declare function FilledIconToggleButton(props: ComposeToggleButtonProps): import("react/jsx-runtime").JSX.Element;
+declare function OutlinedIconToggleButton(props: ComposeToggleButtonProps): import("react/jsx-runtime").JSX.Element;
 declare function Switch({ isOn, disabled, label, onIsOnChange, revision, ...props }: ComposeSwitchProps): import("react/jsx-runtime").JSX.Element;
 declare function Checkbox({ value, disabled, onCheckedChange, revision, colors, ...props }: ComposeCheckboxProps): import("react/jsx-runtime").JSX.Element;
 declare function RadioButton({ selected, disabled, onClick, colors, ...props }: ComposeRadioButtonProps): import("react/jsx-runtime").JSX.Element;
@@ -129,6 +133,10 @@ export declare const Compose: {
             children: ReactNode;
         }) => import("react/jsx-runtime").JSX.Element;
     };
+    ToggleButton: typeof ToggleButton;
+    IconToggleButton: typeof IconToggleButton;
+    FilledIconToggleButton: typeof FilledIconToggleButton;
+    OutlinedIconToggleButton: typeof OutlinedIconToggleButton;
     Switch: typeof Switch;
     Checkbox: typeof Checkbox;
     RadioButton: typeof RadioButton;

@@ -29,6 +29,7 @@ import type {
   ComposeSwitchProps,
   ComposeTextFieldProps,
   ComposeTextProps,
+  ComposeToggleButtonProps,
 } from './composeTypes'
 
 function unsupported(name: string): never {
@@ -181,6 +182,22 @@ const ExtendedFloatingActionButton = Object.assign((_props: ComposeExtendedFloat
   Text: (_props: { children: ReactNode }): never => unsupported('ExtendedFloatingActionButton.Text'),
 })
 
+function ToggleButton(_props: ComposeToggleButtonProps): never {
+  return unsupported('ToggleButton')
+}
+
+function IconToggleButton(_props: ComposeToggleButtonProps): never {
+  return unsupported('IconToggleButton')
+}
+
+function FilledIconToggleButton(_props: ComposeToggleButtonProps): never {
+  return unsupported('FilledIconToggleButton')
+}
+
+function OutlinedIconToggleButton(_props: ComposeToggleButtonProps): never {
+  return unsupported('OutlinedIconToggleButton')
+}
+
 function Switch(_props: ComposeSwitchProps): never {
   return unsupported('Switch')
 }
@@ -241,6 +258,10 @@ export const Compose = {
   SmallFloatingActionButton,
   LargeFloatingActionButton,
   ExtendedFloatingActionButton,
+  ToggleButton,
+  IconToggleButton,
+  FilledIconToggleButton,
+  OutlinedIconToggleButton,
   Switch,
   Checkbox,
   RadioButton,

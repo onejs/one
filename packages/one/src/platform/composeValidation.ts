@@ -25,6 +25,7 @@ import type {
   ComposeSwitchProps,
   ComposeTextFieldProps,
   ComposeTextProps,
+  ComposeToggleButtonProps,
 } from './composeTypes'
 import { composeIconCodepoints, type ComposeIconName } from './generated/composeIcons'
 import { isSyncState } from './syncStore'
@@ -229,6 +230,14 @@ const iconButtonColorKeys = new Set([
   'disabledContainerColor',
   'disabledContentColor',
 ])
+const toggleButtonColorKeys = new Set([
+  'containerColor',
+  'contentColor',
+  'checkedContainerColor',
+  'checkedContentColor',
+  'disabledContainerColor',
+  'disabledContentColor',
+])
 
 function assertComposeColorValue(value: unknown, name: string) {
   const resourcePaths =
@@ -423,6 +432,13 @@ export function validateFloatingActionButtonProps(props: ComposeFloatingActionBu
   assertBoolean(props.expanded ?? true, 'FloatingActionButton expanded')
   if (props.containerColor !== undefined) assertComposeColorValue(props.containerColor, 'FloatingActionButton containerColor')
   if (props.onClick !== undefined) assertFunction(props.onClick, 'FloatingActionButton onClick')
+}
+
+export function validateToggleButtonProps(props: ComposeToggleButtonProps) {
+  assertBoolean(props.checked, 'ToggleButton checked')
+  assertBoolean(props.enabled ?? true, 'ToggleButton enabled')
+  if (props.onCheckedChange !== undefined) assertFunction(props.onCheckedChange, 'ToggleButton onCheckedChange')
+  if (props.colors !== undefined) assertComposeColors(props.colors, toggleButtonColorKeys, 'ToggleButton')
 }
 
 export function validateSwitchProps(props: ComposeSwitchProps) {
