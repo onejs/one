@@ -2595,6 +2595,13 @@ export interface RoundedRectangleProps extends OneNativeViewProps {
 export interface EllipseProps extends OneNativeViewProps {
     fill?: ColorValue;
 }
+export interface UnevenRoundedRectangleProps extends OneNativeViewProps {
+    fill?: ColorValue;
+    topLeadingRadius?: number;
+    bottomLeadingRadius?: number;
+    bottomTrailingRadius?: number;
+    topTrailingRadius?: number;
+}
 export interface VideoPlayerProps extends OneNativeViewProps {
     url?: string;
     autoplay?: boolean;
@@ -2682,6 +2689,19 @@ export interface SecureFieldProps extends OneNativeViewProps {
     prompt?: string;
     textFieldStyle?: Styles.TextFieldStyle;
     submitLabel?: Styles.SubmitLabel | '';
+    textInputAutocapitalization?: Styles.TextInputAutocapitalization | '';
+    autocorrectionDisabled?: boolean;
+    keyboardType?: KeyboardType | '';
+    textContentType?: TextContentType | '';
+}
+export interface TextEditorProps extends OneNativeViewProps {
+    text: string | NativeState<string>;
+    onTextChange: (value: string) => void;
+    revision?: number;
+    focused?: boolean;
+    onFocusChange?: (focused: boolean) => void;
+    focusRevision?: number;
+    disabled?: boolean;
     textInputAutocapitalization?: Styles.TextInputAutocapitalization | '';
     autocorrectionDisabled?: boolean;
     keyboardType?: KeyboardType | '';

@@ -1,6 +1,6 @@
 ---
 title: iOS Text and Fields
-description: Text, Label, TextField, and SecureField under One.iOS
+description: Text, Label, TextField, SecureField, and TextEditor under One.iOS
 ---
 
 Text display and text entry under `One.iOS`. `TextField` and `SecureField`
@@ -69,6 +69,34 @@ function NameField() {
 
 `One.iOS.SecureField` has the same props as `TextField` and obscures its
 input for passwords.
+
+## TextEditor
+
+`One.iOS.TextEditor` is SwiftUI's multi-line editor. Return inserts a newline,
+and the editor scrolls its text inside the box React Native gives it, so give
+it a height. It takes the controlled `text`, `onTextChange`, `revision`, the
+focus props, `textInputAutocapitalization`, `autocorrectionDisabled`,
+`keyboardType`, and `textContentType`. SwiftUI's `TextEditor` has no label,
+placeholder, style, or submit, so neither does this one; name it with
+`accessibilityLabel`.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function Notes() {
+  const [notes, setNotes] = useState('')
+
+  return (
+    <One.iOS.TextEditor
+      text={notes}
+      onTextChange={setNotes}
+      accessibilityLabel="Notes"
+      style={{ height: 160 }}
+    />
+  )
+}
+```
 
 For a cross-platform field that also runs on Android and web, use
 [One.UI.TextInput](/native/text-input) instead. The iOS fields here throw

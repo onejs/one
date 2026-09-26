@@ -60,6 +60,7 @@ export declare const Swift: {
     Rectangle: (_props: import("./types").RectangleProps) => never;
     RoundedRectangle: (_props: import("./types").RoundedRectangleProps) => never;
     Ellipse: (_props: import("./types").EllipseProps) => never;
+    UnevenRoundedRectangle: (_props: import("./types").UnevenRoundedRectangleProps) => never;
     VideoPlayer: (_props: import("./types").VideoPlayerProps) => never;
     PhotosPicker: (_props: import("./types").PhotosPickerProps) => never;
     WebView: (_props: import("./types").WebViewProps) => never;
@@ -67,6 +68,7 @@ export declare const Swift: {
     Map: (_props: import("./types").MapProps) => never;
     TextField: (_props: import("./types").TextFieldProps) => never;
     SecureField: (_props: import("./types").SecureFieldProps) => never;
+    TextEditor: (_props: import("./types").TextEditorProps) => never;
     Alert: (_props: import("./types").AlertProps) => never;
     ConfirmationDialog: (_props: import("./types").ConfirmationDialogProps) => never;
     QuickLook: (_props: import("./types").QuickLookProps) => never;

@@ -66,6 +66,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Rectangle` | leaves | n/a |  |
 | `One.iOS.RoundedRectangle` | leaves | n/a |  |
 | `One.iOS.Ellipse` | leaves | n/a |  |
+| `One.iOS.UnevenRoundedRectangle` | editors | n/a |  |
 | `One.iOS.VideoPlayer` | media | n/a |  |
 | `One.iOS.PhotosPicker` | missing | n/a | fixture exists, no suite opens it |
 | `One.iOS.WebView` | missing | n/a | fixture exists, no suite opens it |
@@ -73,6 +74,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Map` | map | n/a |  |
 | `One.iOS.TextField` | pickers, forms, leaves, state | n/a |  |
 | `One.iOS.SecureField` | leaves | n/a |  |
+| `One.iOS.TextEditor` | editors | n/a |  |
 | `One.iOS.Alert` | dialogs, dialogs-lifecycle | n/a |  |
 | `One.iOS.ConfirmationDialog` | dialogs, dialogs-lifecycle | n/a |  |
 | `One.iOS.QuickLook` | media | n/a |  |

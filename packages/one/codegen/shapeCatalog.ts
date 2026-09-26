@@ -85,4 +85,33 @@ export const shapeControls: Control[] = [
     swift: fillSwift('Ellipse()'),
     validate: ``,
   },
+  {
+    // one radius per corner, named and ordered as the SDK's per-corner initializer.
+    name: 'UnevenRoundedRectangle',
+    layout: 'fill',
+    fields: {
+      fill: fillField,
+      topLeadingRadius: { type: 'Double', default: 0 },
+      bottomLeadingRadius: { type: 'Double', default: 0 },
+      bottomTrailingRadius: { type: 'Double', default: 0 },
+      topTrailingRadius: { type: 'Double', default: 0 },
+    },
+    constructors: [
+      {
+        type: 'UnevenRoundedRectangle',
+        parameters: [
+          { label: 'topLeadingRadius', type: 'CoreFoundation.CGFloat' },
+          { label: 'bottomLeadingRadius', type: 'CoreFoundation.CGFloat' },
+          { label: 'bottomTrailingRadius', type: 'CoreFoundation.CGFloat' },
+          { label: 'topTrailingRadius', type: 'CoreFoundation.CGFloat' },
+          { label: 'style', type: 'SwiftUICore.RoundedCornerStyle' },
+        ],
+      },
+    ],
+    swift: fillSwift(
+      'UnevenRoundedRectangle(topLeadingRadius: model.topLeadingRadius, bottomLeadingRadius: model.bottomLeadingRadius, bottomTrailingRadius: model.bottomTrailingRadius, topTrailingRadius: model.topTrailingRadius)'
+    ),
+    validate: `  for (const radius of [topLeadingRadius, bottomLeadingRadius, bottomTrailingRadius, topTrailingRadius])
+    if (!Number.isFinite(radius) || radius < 0) throw new Error('UnevenRoundedRectangle radii must be non-negative numbers')`,
+  },
 ]

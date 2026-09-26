@@ -55,6 +55,9 @@ function RoundedRectangle(_props: Types.RoundedRectangleProps): never {
 function Ellipse(_props: Types.EllipseProps): never {
   throw new Error('Swift.Ellipse requires an iOS native build')
 }
+function UnevenRoundedRectangle(_props: Types.UnevenRoundedRectangleProps): never {
+  throw new Error('Swift.UnevenRoundedRectangle requires an iOS native build')
+}
 function VideoPlayer(_props: Types.VideoPlayerProps): never {
   throw new Error('Swift.VideoPlayer requires an iOS native build')
 }
@@ -75,6 +78,9 @@ function TextField(_props: Types.TextFieldProps): never {
 }
 function SecureField(_props: Types.SecureFieldProps): never {
   throw new Error('Swift.SecureField requires an iOS native build')
+}
+function TextEditor(_props: Types.TextEditorProps): never {
+  throw new Error('Swift.TextEditor requires an iOS native build')
 }
 function Alert(_props: Types.AlertProps): never {
   throw new Error('Swift.Alert requires an iOS native build')
@@ -113,6 +119,7 @@ export const unsupportedControls = {
   Rectangle,
   RoundedRectangle,
   Ellipse,
+  UnevenRoundedRectangle,
   VideoPlayer,
   PhotosPicker,
   WebView,
@@ -120,6 +127,7 @@ export const unsupportedControls = {
   Map,
   TextField,
   SecureField,
+  TextEditor,
   Alert,
   ConfirmationDialog,
   QuickLook,

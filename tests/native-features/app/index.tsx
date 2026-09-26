@@ -101,6 +101,11 @@ const testScreens = [
     testID: 'nav-one-native-photo-library',
   },
   {
+    href: '/one-native-editors',
+    label: 'One Native Editors',
+    testID: 'nav-one-native-editors',
+  },
+  {
     href: '/one-native-device',
     label: 'One Native Device',
     testID: 'nav-one-native-device',

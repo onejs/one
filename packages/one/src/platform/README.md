@@ -602,6 +602,27 @@ controlled protocol, mapped to SwiftUI's `@FocusState`. `keyboardType` sets UIKi
 `UIKeyboardType` (`default`, `numberPad`, `decimalPad`, `emailAddress`, etc.) and `textContentType`
 configures semantic text content.
 
+`TextEditor` is SwiftUI's multi-line editor. It takes the same controlled `text`,
+`onTextChange`, `revision`, `focused`, `textInputAutocapitalization`,
+`autocorrectionDisabled`, `keyboardType`, and `textContentType` as `TextField`, and
+nothing else: SwiftUI gives it no label, placeholder, style, or submit, and return
+inserts a newline. It has no ideal size, so it fills the box React Native gives it
+and scrolls its text inside that box. Name it with `accessibilityLabel`.
+
+```tsx
+function Notes() {
+  const [notes, setNotes] = useState('')
+  return (
+    <One.iOS.TextEditor
+      text={notes}
+      onTextChange={setNotes}
+      accessibilityLabel="Notes"
+      style={{ height: 160 }}
+    />
+  )
+}
+```
+
 ## Shapes
 
 `Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, and `Ellipse` are SwiftUI's
@@ -609,6 +630,9 @@ shapes, one control each, named as SwiftUI names them. A shape has no ideal size
 of its own, so it takes the `width` and `height` React Native gives it, and `fill`
 paints it with a color. An omitted `fill` keeps SwiftUI's own default rendering.
 `RoundedRectangle` also takes `cornerRadius`, which must be a non-negative number.
+`UnevenRoundedRectangle` takes one radius per corner, `topLeadingRadius`,
+`bottomLeadingRadius`, `bottomTrailingRadius`, and `topTrailingRadius`, each a
+non-negative number defaulting to 0. Leading and trailing follow the layout direction.
 The set matches the `shape` values `One.iOS.Glass` accepts, lowercased
 (`circle`, `capsule`, `rectangle`, `roundedRectangle`, `ellipse`).
 

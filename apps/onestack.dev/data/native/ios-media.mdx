@@ -25,15 +25,18 @@ For bundled, remote, and cross-platform images, use
 
 ## Shapes
 
-`Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, and `Ellipse` fill a
-SwiftUI shape with `fill`, a color value. `RoundedRectangle` also takes
-`cornerRadius`, a number.
+`Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, `UnevenRoundedRectangle`,
+and `Ellipse` fill a SwiftUI shape with `fill`, a color value. A shape fills the
+box React Native gives it. `RoundedRectangle` also takes `cornerRadius`, a number.
+`UnevenRoundedRectangle` takes `topLeadingRadius`, `bottomLeadingRadius`,
+`bottomTrailingRadius`, and `topTrailingRadius`, each defaulting to 0.
 
 ```tsx
 import { One } from 'one'
 
 <One.iOS.Circle fill="red" />
 <One.iOS.RoundedRectangle fill="blue" cornerRadius={12} />
+<One.iOS.UnevenRoundedRectangle fill="green" topLeadingRadius={16} bottomTrailingRadius={16} />
 ```
 
 ## VideoPlayer

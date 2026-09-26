@@ -717,6 +717,42 @@ export function Ellipse({
     />
   )
 }
+import NativeUnevenRoundedRectangle from '../specs/OneNativeUnevenRoundedRectangleNativeComponent'
+export function UnevenRoundedRectangle({
+  fill = undefined,
+  topLeadingRadius = 0,
+  bottomLeadingRadius = 0,
+  bottomTrailingRadius = 0,
+  topTrailingRadius = 0,
+  swiftStyle,
+  style,
+  ...props
+}: Types.UnevenRoundedRectangleProps) {
+  for (const radius of [
+    topLeadingRadius,
+    bottomLeadingRadius,
+    bottomTrailingRadius,
+    topTrailingRadius,
+  ])
+    if (!Number.isFinite(radius) || radius < 0)
+      throw new Error('UnevenRoundedRectangle radii must be non-negative numbers')
+
+  return (
+    <NativeUnevenRoundedRectangle
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      fill={fill}
+      topLeadingRadius={topLeadingRadius}
+      bottomLeadingRadius={bottomLeadingRadius}
+      bottomTrailingRadius={bottomTrailingRadius}
+      topTrailingRadius={topTrailingRadius}
+    />
+  )
+}
 import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
 export function VideoPlayer({
   url = '',
@@ -1206,6 +1242,88 @@ export function SecureField({
         controlledFocus.onNativeChange(nativeEvent)
       }
       onNativeSecureFieldSubmit={({ nativeEvent }) => onSubmit?.()}
+    />
+  )
+}
+import NativeTextEditor from '../specs/OneNativeTextEditorNativeComponent'
+export function TextEditor({
+  text,
+  onTextChange,
+  revision = 0,
+  focused,
+  onFocusChange,
+  focusRevision = 0,
+  disabled = false,
+  textInputAutocapitalization = '',
+  autocorrectionDisabled = false,
+  keyboardType = '',
+  textContentType = '',
+  swiftStyle,
+  style,
+  ...props
+}: Types.TextEditorProps) {
+  if (typeof text !== 'string' && !isSyncState(text))
+    throw new Error('TextEditor text must be a string or NativeState handle')
+  if (textInputAutocapitalization)
+    assertSwiftUIValue(
+      'TextInputAutocapitalization',
+      textInputAutocapitalization,
+      Number.parseFloat(String(Platform.Version))
+    )
+  const syncHandle = syncHandleOf<string>(text)
+  const syncedText = useSyncValue<string>(text)
+  const controlled = useControlled<{
+    value: string
+    eventCount: number
+    revision: number
+  }>((event) => {
+    syncHandle?.set(event.value)
+    onTextChange(event.value)
+  }, revision)
+  if (focused !== undefined && swiftStyle?.focused !== undefined)
+    throw new Error(
+      'TextEditor focus is controlled by both focused and swiftStyle.focused'
+    )
+  const sdkFocused = swiftStyle?.focused
+  const nativeSwiftStyle = sdkFocused ? { ...swiftStyle, focused: undefined } : swiftStyle
+  const controlledFocus = useControlled<{
+    value: boolean
+    eventCount: number
+    revision: number
+  }>((event) => {
+    onFocusChange?.(event.value)
+    sdkFocused?.onChange(event.value)
+  }, focusRevision)
+  return (
+    <NativeTextEditor
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(nativeSwiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      value={syncedText}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
+      focused={focused ?? sdkFocused?.value ?? false}
+      acknowledgedFocusEvent={
+        focused !== undefined || sdkFocused !== undefined
+          ? controlledFocus.acknowledgedEvent
+          : 0
+      }
+      focusRevision={focusRevision}
+      disabled={disabled}
+      textInputAutocapitalization={textInputAutocapitalization}
+      autocorrectionDisabled={autocorrectionDisabled}
+      keyboardType={keyboardType}
+      textContentType={textContentType}
+      onNativeTextEditorValueChange={({ nativeEvent }) =>
+        controlled.onNativeChange(nativeEvent)
+      }
+      onNativeTextEditorFocusChange={({ nativeEvent }) =>
+        controlledFocus.onNativeChange(nativeEvent)
+      }
     />
   )
 }

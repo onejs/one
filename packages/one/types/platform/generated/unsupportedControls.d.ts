@@ -17,6 +17,7 @@ declare function Capsule(_props: Types.CapsuleProps): never;
 declare function Rectangle(_props: Types.RectangleProps): never;
 declare function RoundedRectangle(_props: Types.RoundedRectangleProps): never;
 declare function Ellipse(_props: Types.EllipseProps): never;
+declare function UnevenRoundedRectangle(_props: Types.UnevenRoundedRectangleProps): never;
 declare function VideoPlayer(_props: Types.VideoPlayerProps): never;
 declare function PhotosPicker(_props: Types.PhotosPickerProps): never;
 declare function WebView(_props: Types.WebViewProps): never;
@@ -24,6 +25,7 @@ declare function SignInWithAppleButton(_props: Types.SignInWithAppleButtonProps)
 declare function Map(_props: Types.MapProps): never;
 declare function TextField(_props: Types.TextFieldProps): never;
 declare function SecureField(_props: Types.SecureFieldProps): never;
+declare function TextEditor(_props: Types.TextEditorProps): never;
 declare function Alert(_props: Types.AlertProps): never;
 declare function ConfirmationDialog(_props: Types.ConfirmationDialogProps): never;
 declare function QuickLook(_props: Types.QuickLookProps): never;
@@ -49,6 +51,7 @@ export declare const unsupportedControls: {
     Rectangle: typeof Rectangle;
     RoundedRectangle: typeof RoundedRectangle;
     Ellipse: typeof Ellipse;
+    UnevenRoundedRectangle: typeof UnevenRoundedRectangle;
     VideoPlayer: typeof VideoPlayer;
     PhotosPicker: typeof PhotosPicker;
     WebView: typeof WebView;
@@ -56,6 +59,7 @@ export declare const unsupportedControls: {
     Map: typeof Map;
     TextField: typeof TextField;
     SecureField: typeof SecureField;
+    TextEditor: typeof TextEditor;
     Alert: typeof Alert;
     ConfirmationDialog: typeof ConfirmationDialog;
     QuickLook: typeof QuickLook;
