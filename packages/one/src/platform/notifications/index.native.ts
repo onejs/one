@@ -38,30 +38,17 @@ import {
 
 export type * from './types'
 
-// the OneNotifications nitro hybrid object is created once and lazily. null
-// outside a native build; every method below degrades to its web
-// behavior then, instead of throwing.
-let cached: OneNotifications | null | undefined
+// the OneNotifications nitro hybrid object is created on first use and cached.
+let hybrid: OneNotifications | undefined
 
-function native(): OneNotifications | null {
-  if (cached === undefined) {
-    cached = NitroModules.hasHybridObject('OneNotifications')
-      ? NitroModules.createHybridObject<OneNotifications>('OneNotifications')
-      : null
-  }
-  return cached
-}
-
-const denied: NotificationPermissionResponse = {
-  status: 'denied',
-  granted: false,
-  canAskAgain: false,
+function native(): OneNotifications {
+  hybrid ??= NitroModules.createHybridObject<OneNotifications>('OneNotifications')
+  return hybrid
 }
 
 function mapPermissionResponse(
-  response: NativePermissionResponse | null | undefined
+  response: NativePermissionResponse
 ): NotificationPermissionResponse {
-  if (!response) return { ...denied }
   return {
     status: response.status,
     granted: response.granted,
@@ -74,9 +61,7 @@ function mapPermissionResponse(
 
 // the current notification authorization, without prompting.
 async function getPermissions(): Promise<NotificationPermissionResponse> {
-  const module = native()
-  if (!module) return { ...denied }
-  return mapPermissionResponse(await module.getPermissions().catch(rethrowNativeError))
+  return mapPermissionResponse(await native().getPermissions().catch(rethrowNativeError))
 }
 
 // prompt for notification authorization. on android below 13 there is no
@@ -84,22 +69,20 @@ async function getPermissions(): Promise<NotificationPermissionResponse> {
 async function requestPermissions(
   options: NotificationPermissionRequest = {}
 ): Promise<NotificationPermissionResponse> {
-  const module = native()
-  if (!module) return { ...denied }
   return mapPermissionResponse(
-    await module.requestPermissions(options).catch(rethrowNativeError)
+    await native().requestPermissions(options).catch(rethrowNativeError)
   )
 }
 
 // the app icon badge count. always 0 on android.
 async function getBadgeCount(): Promise<number> {
-  return (await native()?.getBadgeCount().catch(rethrowNativeError)) ?? 0
+  return native().getBadgeCount().catch(rethrowNativeError)
 }
 
 // set the app icon badge count. resolves false on android: the launcher
 // owns badges there.
 async function setBadgeCount(count: number): Promise<boolean> {
-  return (await native()?.setBadgeCount(count).catch(rethrowNativeError)) ?? false
+  return native().setBadgeCount(count).catch(rethrowNativeError)
 }
 
 function mapChannel(channel: NativeChannel): NotificationChannel {
@@ -124,7 +107,7 @@ async function setChannel(
   const importance = toNativeImportance(channel.importance)
   if (Platform.OS !== 'android') return null
   const created = await native()
-    ?.setNotificationChannel(channelId, { ...channel, importance })
+    .setNotificationChannel(channelId, { ...channel, importance })
     .catch(rethrowNativeError)
   return created ? mapChannel(created) : null
 }
@@ -132,20 +115,20 @@ async function setChannel(
 async function getChannel(channelId: string): Promise<NotificationChannel | null> {
   if (Platform.OS !== 'android') return null
   const found = await native()
-    ?.getNotificationChannel(channelId)
+    .getNotificationChannel(channelId)
     .catch(rethrowNativeError)
   return found ? mapChannel(found) : null
 }
 
 async function getChannels(): Promise<NotificationChannel[]> {
   if (Platform.OS !== 'android') return []
-  const channels = await native()?.getNotificationChannels().catch(rethrowNativeError)
-  return channels ? channels.map(mapChannel) : []
+  const channels = await native().getNotificationChannels().catch(rethrowNativeError)
+  return channels.map(mapChannel)
 }
 
 async function deleteChannel(channelId: string): Promise<void> {
   if (Platform.OS !== 'android') return
-  await native()?.deleteNotificationChannel(channelId).catch(rethrowNativeError)
+  await native().deleteNotificationChannel(channelId).catch(rethrowNativeError)
 }
 
 // native flattens nulls to absent fields and trigger variants to one
@@ -260,9 +243,7 @@ function subscribe<T>(
   listeners: Set<(value: T) => void>,
   listener: (value: T) => void
 ): NotificationSubscription {
-  const module = native()
-  if (!module) return { remove: () => {} }
-  events(module)
+  events(native())
   listeners.add(listener)
   return {
     remove: () => {
@@ -287,23 +268,20 @@ function addResponseReceivedListener(
 }
 
 // the remote push token: the apns hex token on ios, the fcm registration
-// token on android. rejects without an ios or android build, when push is
-// not enabled, and when the platform returns no token.
-async function getDevicePushTokenAsync(): Promise<DevicePushToken> {
-  const module = native()
-  if (!module)
-    throw new Error('Notifications.getDevicePushTokenAsync needs an iOS or Android build')
-  const token = await module.getDevicePushToken().catch(rethrowNativeError)
+// token on android. rejects when push is not enabled and when the platform
+// returns no token.
+async function getDevicePushToken(): Promise<DevicePushToken> {
+  const token = await native().getDevicePushToken().catch(rethrowNativeError)
   const type =
     token && (token.type === 'ios' || token.type === 'android') ? token.type : null
   if (!token || type === null || typeof token.data !== 'string' || !token.data.length) {
-    throw new Error('Notifications.getDevicePushTokenAsync did not return a push token')
+    throw new Error('Notifications.getDevicePushToken did not return a push token')
   }
   return { type, data: token.data }
 }
 
 // fire when the push token refreshes. registering does not fire: read the
-// current token with getDevicePushTokenAsync.
+// current token with getDevicePushToken.
 function addPushTokenListener(
   listener: (token: DevicePushToken) => void
 ): NotificationSubscription {
@@ -314,29 +292,25 @@ function addPushTokenListener(
 // sets a handler the notification shows fully, like expo. setting null
 // leaves native undecided, which hides it on both platforms.
 function setHandler(handler: NotificationHandlerInput | null): void {
-  const module = native()
-  if (!module) return
-  events(module).setHandler(handler)
+  events(native()).setHandler(handler)
 }
 
 // the response that last tapped the app awake, if any. synchronous, like expo.
 function getLastResponse(): NotificationResponse | null {
-  const response = native()?.getLastNotificationResponse()
+  const response = native().getLastNotificationResponse()
   return response ? mapResponse(response) : null
 }
 
 function clearLastResponse(): void {
-  native()?.clearLastNotificationResponse()
+  native().clearLastNotificationResponse()
 }
 
 // schedule a local notification. trigger null delivers immediately,
 // a timeInterval waits seconds, a date fires at the timestamp. a past date
 // delivers immediately on both platforms.
 async function schedule(request: NotificationScheduleInput): Promise<string> {
-  const module = native()
-  if (!module) throw new Error('Notifications.schedule needs an iOS or Android build')
   const { content, trigger } = request
-  return module
+  return native()
     .scheduleNotification({
       identifier: request.identifier,
       content: {
@@ -358,31 +332,31 @@ async function schedule(request: NotificationScheduleInput): Promise<string> {
 }
 
 async function cancelScheduled(identifier: string): Promise<void> {
-  await native()?.cancelScheduledNotification(identifier).catch(rethrowNativeError)
+  await native().cancelScheduledNotification(identifier).catch(rethrowNativeError)
 }
 
 async function cancelAllScheduled(): Promise<void> {
-  await native()?.cancelAllScheduledNotifications().catch(rethrowNativeError)
+  await native().cancelAllScheduledNotifications().catch(rethrowNativeError)
 }
 
 async function getAllScheduled(): Promise<ScheduledNotification[]> {
   const scheduled = await native()
-    ?.getAllScheduledNotifications()
+    .getAllScheduledNotifications()
     .catch(rethrowNativeError)
-  return scheduled ? scheduled.map(mapRequest) : []
+  return scheduled.map(mapRequest)
 }
 
 async function getPresented(): Promise<Notification[]> {
-  const presented = await native()?.getPresentedNotifications().catch(rethrowNativeError)
-  return presented ? presented.map(mapNotification) : []
+  const presented = await native().getPresentedNotifications().catch(rethrowNativeError)
+  return presented.map(mapNotification)
 }
 
 async function dismiss(identifier: string): Promise<void> {
-  await native()?.dismissNotification(identifier).catch(rethrowNativeError)
+  await native().dismissNotification(identifier).catch(rethrowNativeError)
 }
 
 async function dismissAll(): Promise<void> {
-  await native()?.dismissAllNotifications().catch(rethrowNativeError)
+  await native().dismissAllNotifications().catch(rethrowNativeError)
 }
 
 export const Notifications = Object.freeze({
@@ -396,7 +370,7 @@ export const Notifications = Object.freeze({
   deleteChannel,
   addReceivedListener,
   addResponseReceivedListener,
-  getDevicePushTokenAsync,
+  getDevicePushToken,
   addPushTokenListener,
   setHandler,
   getLastResponse,

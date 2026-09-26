@@ -73,8 +73,8 @@ function addResponseReceivedListener(
   return inert
 }
 
-async function getDevicePushTokenAsync(): Promise<DevicePushToken> {
-  throw new Error('Notifications.getDevicePushTokenAsync needs an iOS or Android build')
+async function getDevicePushToken(): Promise<DevicePushToken> {
+  throw new Error('Notifications.getDevicePushToken needs an iOS or Android build')
 }
 
 function addPushTokenListener(
@@ -122,7 +122,7 @@ export const Notifications = Object.freeze({
   deleteChannel,
   addReceivedListener,
   addResponseReceivedListener,
-  getDevicePushTokenAsync,
+  getDevicePushToken,
   addPushTokenListener,
   setHandler,
   getLastResponse,
