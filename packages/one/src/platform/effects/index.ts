@@ -1,12 +1,12 @@
 import type { ReactElement } from 'react'
-import type { BlurProps, EdgeFadeProps, MaskProps } from './types'
+import type { BlurProps, MaskProps } from './types'
 
-// web entry. only the pure curve math and types live here; the components
-// and the native-bound normalization stay in index.native.ts so no bundler
-// ever resolves the Fabric spec or react-native runtime imports from the
-// web graph. signatures stay identical to the native entry because the
-// published declarations are built from this file and serve both platforms.
+// web entry. EdgeFade draws with css here; the Fabric specs stay in
+// index.native.ts so no web bundle resolves them. signatures stay identical
+// to the native entry because the published declarations are built from this
+// file and serve both platforms.
 export { sampleCurve, serializeCurve } from './curves'
+export { EdgeFade } from './EdgeFade'
 export type * from './types'
 export { Icon } from '../ui/Icon'
 export { Image } from '../ui/Image'
@@ -24,12 +24,6 @@ export type {
   MapPolyline,
   MapProps,
 } from '../ui/Map'
-
-// renders nothing on web: rendering throws, but the declarations return an
-// element so native consumers typecheck against the component shape.
-export function EdgeFade(_props: EdgeFadeProps): ReactElement {
-  throw new Error('EdgeFade requires a native build')
-}
 
 export function Blur(_props: BlurProps): ReactElement {
   throw new Error('Blur requires a native build')
