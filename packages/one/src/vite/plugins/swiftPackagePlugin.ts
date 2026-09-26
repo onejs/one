@@ -32,7 +32,11 @@ export function swiftPackagePlugin(platform: 'ios' | 'android', root: string): P
         }
         const contract = writeNativeSourceDeclaration(id)
         const packageName = swiftPackageId(packageDir)
-        const hash = writeSwiftPackageArtifacts(packageDir).hash
+        const artifacts = writeSwiftPackageArtifacts(packageDir)
+        const hash = artifacts.hash
+        // the load hook reads the source itself, so the bundler's watcher never
+        // sees it; every file in the package feeds the contract hash.
+        for (const file of Object.keys(artifacts.files)) this.addWatchFile(join(packageDir, file))
         const fill = /@main\s+struct\s+\w+\s*:\s*(SwiftUI\.)?App\b/.test(readFileSync(id, 'utf8'))
         // the generated module is bundled as if it lived at the .swift file, so
         // one's own swift host resolves from the importer to an absolute path.
