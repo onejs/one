@@ -146,6 +146,9 @@ export default defineConfig({
             recognition: 'NativeFeatureTests verifies dictation.',
             microphone: 'NativeFeatureTests verifies dictation.',
           },
+          audio: {
+            microphone: 'NativeFeatureTests verifies audio recording.',
+          },
           ios: {
             bundleId: 'dev.vxrn.native.tests',
             buildNumber: '4242',

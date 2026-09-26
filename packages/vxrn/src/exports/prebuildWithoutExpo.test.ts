@@ -208,6 +208,29 @@ ${APP_DELEGATE_PBXPROJ}`,
     expect(infoPlist.content).toContain('<key>NSSpeechRecognitionUsageDescription</key>')
     expect(infoPlist.content).toContain('<key>NSMicrophoneUsageDescription</key>')
 
+    const audioPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: { ...app, speech: undefined, audio: { microphone: 'Record notes & ideas' } },
+    })
+    expect(audioPlist.content).toContain(
+      '<key>NSMicrophoneUsageDescription</key>\n\t<string>Record notes &amp; ideas</string>'
+    )
+    expect(audioPlist.content).not.toContain('NSSpeechRecognitionUsageDescription')
+
+    const speechAndAudioPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: { ...app, audio: { microphone: 'Record notes & ideas' } },
+    })
+    expect(speechAndAudioPlist.content?.match(/<key>NSMicrophoneUsageDescription<\/key>/g))
+      .toHaveLength(1)
+    expect(speechAndAudioPlist.content).toContain(
+      '<key>NSMicrophoneUsageDescription</key>\n\t<string>Record notes &amp; ideas</string>'
+    )
+
     const locationPlist = renderPrebuildFile({
       relativePath: 'HelloWorld/Info.plist',
       content:

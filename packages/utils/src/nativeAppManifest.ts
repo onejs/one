@@ -26,6 +26,10 @@ export interface NativeAppManifest {
   location?: {
     whenInUse: string
   }
+  // microphone prompt for One.iOS.Audio recording. playback needs no prompt.
+  audio?: {
+    microphone: string
+  }
   // usage descriptions for One.Speech dictation, shown at the ios speech
   // recognition and microphone prompts. setting them also declares the
   // android RECORD_AUDIO permission.
@@ -160,6 +164,14 @@ export function validateNativeApp(
       manifest.location.whenInUse.trim() === '')
   ) {
     fail('location.whenInUse must be a non-empty string')
+  }
+  if (
+    manifest.audio !== undefined &&
+    (!manifest.audio ||
+      typeof manifest.audio.microphone !== 'string' ||
+      manifest.audio.microphone.trim() === '')
+  ) {
+    fail('audio.microphone must be a non-empty string')
   }
   if (
     manifest.ios?.faceIdUsageDescription !== undefined &&

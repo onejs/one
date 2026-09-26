@@ -18,6 +18,9 @@ export interface NativeAppManifest {
     location?: {
         whenInUse: string;
     };
+    audio?: {
+        microphone: string;
+    };
     speech?: {
         recognition: string;
         microphone: string;

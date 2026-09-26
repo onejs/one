@@ -78,6 +78,9 @@
     "OneFileSystem": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneFileSystem" }
     },
+    "OneAudio": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneAudio" }
+    },
     "OneUpdates": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneUpdates" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneUpdates" }

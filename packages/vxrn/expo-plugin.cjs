@@ -18,6 +18,7 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // from drawing until then on Android, as one prebuild always does. leave it
 // off while expo-splash-screen owns the splash.
 // options: { location: { whenInUse: string } } sets the iOS location prompt.
+// options: { audio: { microphone: string } } sets the iOS recording prompt.
 module.exports = function withVxrn(config, options = {}) {
   const projectRoot = config?._internal?.projectRoot
   if (!projectRoot) {
@@ -41,11 +42,18 @@ module.exports = function withVxrn(config, options = {}) {
 
   const notifications = options.notifications
   const location = options.location
+  const audio = options.audio
   if (
     location &&
     (typeof location.whenInUse !== 'string' || !location.whenInUse.trim())
   ) {
     throw new Error('[vxrn/expo-plugin] location.whenInUse must be a non-empty string')
+  }
+  if (
+    audio &&
+    (typeof audio.microphone !== 'string' || !audio.microphone.trim())
+  ) {
+    throw new Error('[vxrn/expo-plugin] audio.microphone must be a non-empty string')
   }
   const locationPlugins = !location
     ? []
@@ -54,6 +62,17 @@ module.exports = function withVxrn(config, options = {}) {
           withInfoPlist,
           (nextConfig) => {
             nextConfig.modResults.NSLocationWhenInUseUsageDescription = location.whenInUse
+            return nextConfig
+          },
+        ],
+      ]
+  const audioPlugins = !audio
+    ? []
+    : [
+        [
+          withInfoPlist,
+          (nextConfig) => {
+            nextConfig.modResults.NSMicrophoneUsageDescription = audio.microphone
             return nextConfig
           },
         ],
@@ -212,6 +231,7 @@ module.exports = function withVxrn(config, options = {}) {
 
   return withPlugins(config, [
     ...locationPlugins,
+    ...audioPlugins,
     ...notificationPlugins,
     ...updatesPlugins,
     ...launchScreenPlugins,

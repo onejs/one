@@ -1,0 +1,64 @@
+---
+title: Audio
+description: Play audio and record microphone files on iOS
+---
+
+`One.iOS.Audio` plays a local `file://` URI or an `https://` audio URL through
+AVPlayer. It handles one playback or recording operation at a time. Starting
+playback replaces the previous player; stop a paused player before recording.
+An ended or failed player is cleared when recording starts. Calls reject with
+a coded error when the requested operation cannot run.
+
+```tsx
+import { One } from 'one'
+
+await One.iOS.Audio.play('https://example.com/episode.m4a')
+const status = await One.iOS.Audio.getPlaybackStatus()
+if (status.state === 'playing') {
+  await One.iOS.Audio.pause()
+  await One.iOS.Audio.seek(30_000)
+  await One.iOS.Audio.resume()
+}
+await One.iOS.Audio.stop()
+```
+
+`getPlaybackStatus()` returns `state`, `positionMs`, and a `durationMs` when the
+media has a finite duration. States are `idle`, `loading`, `playing`, `paused`,
+`ended`, and `failed`. A remote source may initially be `loading`; read its
+status again when your app needs current progress. A failed source reports its
+error in the status. `seek()` needs a ready item and rejects with
+`E_AUDIO_STATE` while a source is loading or failed. `resume()` restarts an
+ended item from the beginning.
+
+Recording writes AAC in an `.m4a` file under the app cache. Set
+`native.app.audio.microphone` to the purpose shown in the iOS microphone
+prompt and rerun prebuild. For Expo-prebuilt apps, pass the same
+`audio: { microphone: '...' }` option to the `vxrn` config plugin. Playback
+alone needs no microphone permission or purpose string.
+
+```tsx
+const permission = await One.iOS.Audio.requestRecordingPermission()
+if (permission === 'granted') {
+  const started = await One.iOS.Audio.startRecording()
+  await One.iOS.Audio.pauseRecording()
+  await One.iOS.Audio.resumeRecording()
+  const recorded = await One.iOS.Audio.stopRecording()
+  console.log(started.uri, recorded.uri, recorded.durationMs, recorded.size)
+  await One.iOS.Audio.play(recorded.uri)
+}
+```
+
+`getRecordingPermissionStatus()` reads `undetermined`, `granted`, or `denied`
+without prompting. `getRecordingStatus()` reports `idle`, `recording`, or
+`paused`, its file URI, and elapsed time. An interrupted recorder reports
+`paused`; call `resumeRecording()` after the interruption ends. Keep a file you want to
+retain by moving it from cache with `One.iOS.FileSystem.move`.
+
+Errors expose `error.code`: `E_AUDIO_URI`, `E_AUDIO_FILE`,
+`E_AUDIO_MANIFEST`, `E_AUDIO_PERMISSION`, `E_AUDIO_BUSY`, `E_AUDIO_STATE`,
+`E_AUDIO_POSITION`, or `E_AUDIO_FAILED`. This API is iOS only. Playback and
+recording use the app's shared audio session. Playback switches its category
+to playback and can replace another feature's audio session configuration,
+including picture in picture. Stop this audio before starting speech recognition
+or another audio feature. Background playback and recording modes, interruption
+events, and remote media controls are not configured by this API.

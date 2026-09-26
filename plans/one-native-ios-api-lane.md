@@ -40,7 +40,7 @@ checklist; One's own exports and docs decide the status.
 | Deep links | covered | One router and linking integration | router tests; external browser callback | done |
 | App icons | partial | static prebuild icon; no alternate icon switch | prebuild only | P2 |
 | In-app purchases | missing | no StoreKit API or purchase hooks | none | P2 |
-| Audio playback/recording | missing | no AVAudioSession/player/recorder API | none | P1 |
+| Audio playback/recording | partial | `One.iOS.Audio` permission, local/remote playback controls, AAC recording; no background mode, interruption events, or remote controls | audio: microphone prompt, recording file, playback lifecycle and errors | P1 |
 | Video playback | partial | `One.iOS.VideoPlayer`; no media controls/session API | media | P2 |
 | Picture in picture | partial | `One.UI.PictureInPicture`; video path needs device proof | simulator cannot enter PiP | P2 |
 | Sensors and motion | missing | no CoreMotion service | none | P2 |
@@ -66,8 +66,9 @@ checklist; One's own exports and docs decide the status.
 1. Biometrics, foreground location, continuous updates, and geocoding landed
    with iOS 27 simulator proofs. Background location remains P2.
 2. A general sandbox file API landed; imperative share remains P1.
-3. Audio playback/recording and splash control. Verify launch timing and an
-   actual audio session, not only successful method calls.
+3. Audio playback/recording landed with an iOS 27 simulator recording and
+   playback proof. Extend background and interruption handling before calling
+   it covered. Splash control still needs a launch timing proof.
 4. Continue P1 then P2. Update this matrix and the docs when each slice lands.
 
 Avoid duplicating React Native surfaces only to rename them. Keep simulator

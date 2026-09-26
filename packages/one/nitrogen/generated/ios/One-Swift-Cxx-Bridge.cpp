@@ -11,6 +11,7 @@
 #include "HybridOneAdaptiveSpecSwift.hpp"
 #include "HybridOneAppInfoSpecSwift.hpp"
 #include "HybridOneAppleAuthSpecSwift.hpp"
+#include "HybridOneAudioSpecSwift.hpp"
 #include "HybridOneBrowserSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
 #include "HybridOneCryptoSpecSwift.hpp"
@@ -126,6 +127,54 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneAppleAuthSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(AudioRecordingPermission /* result */)>
+  Func_void_AudioRecordingPermission create_Func_void_AudioRecordingPermission(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_AudioRecordingPermission::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](AudioRecordingPermission result) mutable -> void {
+      swiftClosure.call(static_cast<int>(result));
+    };
+  }
+
+  // pragma MARK: std::function<void(const AudioPlaybackStatus& /* result */)>
+  Func_void_AudioPlaybackStatus create_Func_void_AudioPlaybackStatus(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_AudioPlaybackStatus::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const AudioPlaybackStatus& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::function<void(const AudioRecordingStatus& /* result */)>
+  Func_void_AudioRecordingStatus create_Func_void_AudioRecordingStatus(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_AudioRecordingStatus::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const AudioRecordingStatus& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::function<void(const AudioRecordingResult& /* result */)>
+  Func_void_AudioRecordingResult create_Func_void_AudioRecordingResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_AudioRecordingResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const AudioRecordingResult& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneAudioSpec>
+  std::shared_ptr<HybridOneAudioSpec> create_std__shared_ptr_HybridOneAudioSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneAudioSpec_cxx swiftPart = One::HybridOneAudioSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneAudioSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneAudioSpec_(std__shared_ptr_HybridOneAudioSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneAudioSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneAudioSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneAudioSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneAudioSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

@@ -67,6 +67,7 @@ export const nativeRoutes = [
       { title: 'Local Authentication', route: '/native/local-authentication' },
       { title: 'Location', route: '/native/location' },
       { title: 'FileSystem', route: '/native/file-system' },
+      { title: 'Audio', route: '/native/audio' },
       { title: 'WebGPU', route: '/native/webgpu' },
     ],
   },
