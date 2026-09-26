@@ -25,6 +25,10 @@
 #include "JHybridOneClipboardSpec.hpp"
 #include "JHybridOneCryptoSpec.hpp"
 #include "JHybridOneDocumentPickerSpec.hpp"
+#include "JHybridOneFetchSpec.hpp"
+#include "JFunc_void_FetchNativeResponse.hpp"
+#include "JFunc_void_std__shared_ptr_ArrayBuffer_.hpp"
+#include "JFunc_void_std__string.hpp"
 #include "JHybridOneFontsSpec.hpp"
 #include "JHybridOneHapticsSpec.hpp"
 #include "JHybridOneImagePickerSpec.hpp"
@@ -153,6 +157,14 @@ struct JHybridOneSpeechSpecImpl: public jni::JavaClass<JHybridOneSpeechSpecImpl,
     return javaPart->getJHybridOneSpeechSpec();
   }
 };
+struct JHybridOneFetchSpecImpl: public jni::JavaClass<JHybridOneFetchSpecImpl, JHybridOneFetchSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneFetch;";
+  static std::shared_ptr<JHybridOneFetchSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneFetchSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneFetchSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneFetchSpec();
+  }
+};
 struct JHybridOneAppleAuthSpecImpl: public jni::JavaClass<JHybridOneAppleAuthSpecImpl, JHybridOneAppleAuthSpec::JavaPart> {
   static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneAppleAuth;";
   static std::shared_ptr<JHybridOneAppleAuthSpec> create() {
@@ -185,6 +197,10 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneClipboardSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneCryptoSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneDocumentPickerSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneFetchSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_FetchNativeResponse_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_std__shared_ptr_ArrayBuffer__cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_std__string_cxx::registerNatives();
   margelo::nitro::one::JHybridOneFontsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneHapticsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneImagePickerSpec::CxxPart::registerNatives();
@@ -277,6 +293,12 @@ void registerAllNatives() {
     "OneSpeech",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneSpeechSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneFetch",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneFetchSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

@@ -46,6 +46,16 @@ namespace margelo::nitro::one { enum class CameraPermissionStatus; }
 namespace margelo::nitro::one { struct DocumentPickerAsset; }
 // Forward declaration of `DocumentPickerNativeResult` to properly resolve imports.
 namespace margelo::nitro::one { struct DocumentPickerNativeResult; }
+// Forward declaration of `FetchBlobRef` to properly resolve imports.
+namespace margelo::nitro::one { struct FetchBlobRef; }
+// Forward declaration of `FetchFormPart` to properly resolve imports.
+namespace margelo::nitro::one { struct FetchFormPart; }
+// Forward declaration of `FetchHeader` to properly resolve imports.
+namespace margelo::nitro::one { struct FetchHeader; }
+// Forward declaration of `FetchNativeRequest` to properly resolve imports.
+namespace margelo::nitro::one { struct FetchNativeRequest; }
+// Forward declaration of `FetchNativeResponse` to properly resolve imports.
+namespace margelo::nitro::one { struct FetchNativeResponse; }
 // Forward declaration of `HapticImpact` to properly resolve imports.
 namespace margelo::nitro::one { enum class HapticImpact; }
 // Forward declaration of `HapticNotification` to properly resolve imports.
@@ -68,6 +78,8 @@ namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 namespace margelo::nitro::one { class HybridOneCryptoSpec; }
 // Forward declaration of `HybridOneDocumentPickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDocumentPickerSpec; }
+// Forward declaration of `HybridOneFetchSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneFetchSpec; }
 // Forward declaration of `HybridOneFontsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneFontsSpec; }
 // Forward declaration of `HybridOneHapticsSpec` to properly resolve imports.
@@ -179,6 +191,11 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "CameraPermissionStatus.hpp"
 #include "DocumentPickerAsset.hpp"
 #include "DocumentPickerNativeResult.hpp"
+#include "FetchBlobRef.hpp"
+#include "FetchFormPart.hpp"
+#include "FetchHeader.hpp"
+#include "FetchNativeRequest.hpp"
+#include "FetchNativeResponse.hpp"
 #include "HapticImpact.hpp"
 #include "HapticNotification.hpp"
 #include "HingeState.hpp"
@@ -190,6 +207,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
 #include "HybridOneDocumentPickerSpec.hpp"
+#include "HybridOneFetchSpec.hpp"
 #include "HybridOneFontsSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
@@ -270,6 +288,8 @@ namespace One { class HybridOneClipboardSpec_cxx; }
 namespace One { class HybridOneCryptoSpec_cxx; }
 // Forward declaration of `HybridOneDocumentPickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDocumentPickerSpec_cxx; }
+// Forward declaration of `HybridOneFetchSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneFetchSpec_cxx; }
 // Forward declaration of `HybridOneFontsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneFontsSpec_cxx; }
 // Forward declaration of `HybridOneHapticsSpec_cxx` to properly resolve imports.
