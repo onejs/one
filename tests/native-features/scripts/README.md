@@ -101,6 +101,10 @@ and deletes a non-empty directory. It verifies existing-destination, invalid
 URI, invalid base64, missing-file, and protected-root errors. The suite checks
 the full result.
 
+`apple-file` also covers `One.DocumentPicker`: it cancels one presentation,
+then selects a seeded text file from the Files app and checks its name, type,
+size, `fetch(file://)` byte count, cache URI, and exact copied bytes.
+
 `network` covers `One.Network`: the one-shot read publishes a live state with a named type and both flags true, the listener fires at least once, and a refresh re-reads. State republishes across two leave/reenter cycles.
 
 `browser` covers `One.Browser`: a user close-tap on the measured button point resolves cancel, a programmatic dismiss resolves dismiss on both the open and dismiss promises, dismissing a pending auth session resolves dismiss on its promise too, and a redirect to the app scheme resolves success with the url. The sheet exposes no accessibility children, so presentation is the collapsed tree. The redirect leg serves a local 302 (127.0.0.1:8123) from the runner in ephemeral mode, which skips the consent alert.
