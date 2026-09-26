@@ -6,7 +6,8 @@ description: Connection state and reachability
 Connection state through `One.Network`. Backed by `NWPathMonitor` on iOS, `ConnectivityManager` with a `NetworkCallback` on Android, and `navigator.onLine` with `online`/`offline` events on web.
 
 ```tsx
-import { One } from 'one'
+import { One, useNetworkState } from 'one'
+import { Text } from 'react-native'
 
 const state = await One.Network.getState()
 // { type: 'wifi', isConnected: true, isInternetReachable: true }
@@ -16,7 +17,10 @@ const subscription = One.Network.addStateListener((next) => {
 })
 subscription.remove()
 
-const live = One.useNetworkState()
+function NetworkStatus() {
+  const live = useNetworkState()
+  return <Text>{live.type}</Text>
+}
 ```
 
 `type` is one of `none`, `unknown`, `cellular`, `wifi`, `bluetooth`, `ethernet`, `wimax`, `vpn`, or `other`. On web a live connection reports `unknown`, since browser connection types are unreliable.

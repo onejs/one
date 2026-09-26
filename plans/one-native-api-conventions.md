@@ -47,8 +47,9 @@ rename, and each docs section carries the rename table for its module.
   Components (`Map`, `Icon`, `Blur`), `Fonts`.
 - `One.<Name>`: device and app services with no view of their own. `AppInfo`,
   `Clipboard`, `Haptics`, `Network`, `Browser`, `ImagePicker`, `Notifications`.
-- Hooks attach directly to `One`: `One.useFonts`, `One.useNetworkState`.
-  `One.Network.useState` would read as React's hook.
+- Hooks are named imports from `one`: `useFonts`, `useNetworkState`.
+  Callers can use the standard React Hooks lint rules on those imports.
+  Do not attach hooks to `One` or to a nested namespace.
 - A web standard global is installed instead of a namespace only when third-party
   libraries look for that global. `crypto.getRandomValues` and `crypto.randomUUID`
   qualify (uuid and nanoid read them). `navigator.clipboard` and `navigator.onLine` do
@@ -179,9 +180,9 @@ type PermissionResponse = Readonly<{
 | `One.Haptics` | `selection()`, `impact(style)`, `notification(type)` | expo-haptics; landed |
 | global `crypto` | `getRandomValues`, `randomUUID` | web standard; landed |
 | `One.AppInfo` | `version`, `build`, `applicationId` | expo-application's three fields, renamed; landed |
-| `One.UI.Fonts`, `One.useFonts` | `load(map)`, `isLoaded(name)` | expo-font; `plans/one-native-fonts-design.md` |
+| `One.UI.Fonts`, `useFonts` | `load(map)`, `isLoaded(name)` | expo-font; `plans/one-native-fonts-design.md` |
 | `One.Clipboard` | `getString()`, `setString(text)`, `hasString()` | expo-clipboard |
-| `One.Network`, `One.useNetworkState` | `getState()`, `addStateListener(fn)` | expo-network |
+| `One.Network`, `useNetworkState` | `getState()`, `addStateListener(fn)` | expo-network |
 | `One.Browser` | `open(url, options?)`, `dismiss()`, `openAuthSession(url, redirectUrl?, options?)`, `dismissAuthSession()` | expo-web-browser |
 | `One.ImagePicker` | `launchLibrary(options?)`, `launchCamera(options?)`, `getCameraPermissions()`, `requestCameraPermissions()` | expo-image-picker |
 | `One.DocumentPicker` | `getDocument(options?)` | expo-document-picker |

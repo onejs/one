@@ -1,5 +1,7 @@
 export { createApp } from './createApp';
 export { One } from './one';
+export { useFonts, useNativeState, useNetworkState, useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, useReservedRegions, useReservedRegionsReady, useWindowSegments, useSpanning, } from './platform';
+export type { FontMap, FontSource, UseFontsResult, NativeState, NetworkState, NetworkStateType, UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, WindowSegment, ReservedRegionOptions, } from './platform';
 export type { OneRouter } from './interfaces/router';
 /**
  * Image data returned by ?imagedata imports.
@@ -35,7 +37,7 @@ export type LinkProps<T extends string | object = string> = OneRouter.LinkProps<
 export type RouteType<Path extends string = string> = OneRouter.RouteType<Path>;
 export { useIsFocused } from '@react-navigation/core';
 export * from '@vxrn/color-scheme';
-export { SafeAreaView, useSafeAreaInsets } from './safe-area-context';
+export { SafeAreaView, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-context';
 export { onClientLoaderResolve } from './clientLoaderResolver';
 export { createMiddleware, type Middleware } from './createMiddleware';
 export { createAPIRoute, type APIRouteContext, type APIRouteHandler, type WorkerContext, type WorkerEnv, type WorkerExecutionContext, } from './createAPIRoute';

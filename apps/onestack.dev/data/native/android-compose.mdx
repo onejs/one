@@ -4,7 +4,8 @@ description: Jetpack Compose views under One.Android
 ---
 
 Jetpack Compose views under `One.Android`. Layout nodes (`Column`, `Row`,
-`Box`, `Card`, `ElevatedCard`, `OutlinedCard`) take children; `Text`, `Icon`,
+`Box`, `Card`, `ElevatedCard`, `OutlinedCard`, `FilterChip`) take children;
+`Text`, `Icon`,
 `Button`, `Switch`, `Checkbox`, `RadioButton`, `HorizontalDivider`,
 `VerticalDivider`, `TextField`,
 `Slider`, `AlertDialog`, and `ProgressIndicator` are leaves. `Dialog`
@@ -97,10 +98,21 @@ inside a Compose layout. Both accept optional `thickness` in dp and `color`;
 omitted values use the current Material theme. Give a vertical divider a height
 through its parent layout or `composeStyle`.
 
+## FilterChip
+
+`One.Android.FilterChip` exposes Material 3's controlled selection chip. Pass
+`selected`, optional `enabled`, and `onClick`; a click requests a change, while
+the caller supplies the next `selected` value. Put Compose content in
+`FilterChip.Label`, `LeadingIcon`, and `TrailingIcon` slots. Optional `colors`
+can set `containerColor`, `labelColor`, `iconColor`,
+`selectedContainerColor`, `selectedLabelColor`, `selectedLeadingIconColor`,
+and `selectedTrailingIconColor`. `elevation` is in dp; `border` accepts
+optional `width` in dp and `color`.
+
 ## TextField
 
 `One.Android.TextField` edits `text` (a string or a native state handle
-from `One.useNativeState`) and reports `onTextChange` (required).
+from `useNativeState`) and reports `onTextChange` (required).
 `revision` resets externally.
 
 | Prop | Type |

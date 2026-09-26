@@ -29,13 +29,13 @@ From `expo-clipboard`. See [Clipboard](/native/clipboard).
 
 ## Network
 
-From `expo-network`. See [Network](/native/network).
+From `expo-network`. Import `useNetworkState` directly from `one`. See [Network](/native/network).
 
 | expo-network | One |
 |---|---|
 | `getNetworkStateAsync()` | `One.Network.getState()` |
 | `addNetworkStateListener(fn)` | `One.Network.addStateListener(fn)` |
-| `useNetworkState()` | `One.useNetworkState()` |
+| `useNetworkState()` | `useNetworkState()` |
 | `NetworkStateType.WIFI` | `'wifi'` (and likewise for every member) |
 
 ## Browser
@@ -62,6 +62,8 @@ From `expo-secure-store`. See [SecureStore](/native/secure-store).
 | `getItemAsync(key)` | `One.SecureStore.getItem(key)` |
 | `setItemAsync(key, value)` | `One.SecureStore.setItem(key, value)` |
 | `deleteItemAsync(key)` | `One.SecureStore.deleteItem(key)` |
+| `getItem(key)` | `One.SecureStore.getItemSync(key)` |
+| `setItem(key, value)` | `One.SecureStore.setItemSync(key, value)` |
 
 ## Image picker
 

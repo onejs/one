@@ -92,6 +92,26 @@ namespace margelo::nitro::one {
       auto __value = std::move(__result.value());
       return __value;
     }
+    inline std::optional<std::string> getItemSync(const std::string& key) override {
+      auto __result = _swiftPart.getItemSync(key);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void setItemSync(const std::string& key, const std::string& value) override {
+      auto __result = _swiftPart.setItemSync(key, value);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline void deleteItemSync(const std::string& key) override {
+      auto __result = _swiftPart.deleteItemSync(key);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
 
   private:
     One::HybridOneSecureStoreSpec_cxx _swiftPart;

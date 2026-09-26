@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import type {
   ComposeAlertDialogProps,
   ComposeBoxProps,
@@ -8,6 +9,7 @@ import type {
   ComposeDialogProps,
   ComposeDividerProps,
   ComposeElevatedCardProps,
+  ComposeFilterChipProps,
   ComposeIconProps,
   ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
@@ -56,6 +58,16 @@ function HorizontalDivider(_props: ComposeDividerProps): never {
 function VerticalDivider(_props: ComposeDividerProps): never {
   return unsupported('VerticalDivider')
 }
+
+function FilterChipRoot(_props: ComposeFilterChipProps): never {
+  return unsupported('FilterChip')
+}
+
+const FilterChip = Object.assign(FilterChipRoot, {
+  Label: (_props: { children: ReactNode }): never => unsupported('FilterChip.Label'),
+  LeadingIcon: (_props: { children: ReactNode }): never => unsupported('FilterChip.LeadingIcon'),
+  TrailingIcon: (_props: { children: ReactNode }): never => unsupported('FilterChip.TrailingIcon'),
+})
 
 function Text(_props: ComposeTextProps): never {
   return unsupported('Text')
@@ -110,6 +122,7 @@ export const Compose = {
   OutlinedCard,
   HorizontalDivider,
   VerticalDivider,
+  FilterChip,
   Text,
   Icon,
   Button,

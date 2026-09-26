@@ -345,11 +345,12 @@ and the app has nothing to decide:
 - A page's React Native content already sits inside the vertical bar's inset.
 
 For custom foldable layouts, put `One.UI.ReservedRegions.Provider` around the
-window and read `One.useWindowSegments()` and `One.useSpanning()` from it. Segments use the
+window and import `useWindowSegments()` and `useSpanning()` directly from `one`.
+Segments use the
 provider's coordinates and split only at an active division that crosses its
 entire width or height. A nonspanning window has one segment; before the
 provider has measured its bounds and native regions, the hook returns an empty
-array. `One.useReservedRegions()` gives the underlying division and occlusion rectangles,
+array. `useReservedRegions()` gives the underlying division and occlusion rectangles,
 including inactive ones when requested. Layout should use the live window
 size class and independent safe-area edges; hinge status and angle serve
 pose-specific interactions. Hinge is null until UIKit reports its first
@@ -1707,4 +1708,4 @@ already streams and nothing is installed.
 | --- | --- | --- | --- |
 | React Native fetch | No; resolves after the whole body | string, Blob, FormData with `{ uri }` parts, ArrayBuffer | whatwg-fetch over XMLHttpRequest |
 | `expo/fetch` | Yes | string, ArrayBuffer, Blob, FormData without `{ uri }` parts | Expo module; `blob()` copies through base64 |
-| One | Yes | everything React Native fetch accepts, except that iOS reads `{ uri }` parts only from `file:` and `data:` URIs, where React Native also loads them through any registered request handler (`http:`, or `ph:` with a photo library loader) | Nitro object; `blob()` stores bytes natively; iOS holds back the first 512 bytes of `text/plain` and `text/html` for content sniffing, as every URLSession client does |
+| One | Yes | everything React Native fetch accepts; `{ uri }` parts load as React Native loads them, through its registered request handlers on iOS and its `RequestBodyUtil` rules on Android | Nitro object; `blob()` stores bytes natively; iOS holds back the first 512 bytes of `text/plain` and `text/html` for content sniffing, as every URLSession client does |

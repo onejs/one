@@ -19,10 +19,10 @@ It uses One's native host on iOS and Android and CSS environment insets on
 web, with no separate safe area package in your app.
 
 ```tsx
-import { One } from 'one'
+import { useSafeAreaInsets } from 'one'
 
 function Padded() {
-  const insets = One.useSafeAreaInsets()
+  const insets = useSafeAreaInsets()
   return <Content style={{ paddingTop: insets.top }} />
 }
 ```

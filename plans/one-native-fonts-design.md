@@ -86,7 +86,7 @@ silently fall back on the other:
 ## API (exact surface)
 
 ```ts
-// one/fonts, surfaced as One.UI.Fonts and One.useFonts
+// one/fonts, surfaced as One.UI.Fonts and useFonts
 type FontSource = number | string // an imported font asset, or a file:// or https:// uri
 type FontMap = Readonly<Record<string, FontSource>>
 
@@ -210,7 +210,7 @@ is the order of the approved haptics and crypto branches (`one-native-haptics`,
 ## Slices
 
 1. **F1 runtime loader.** Spec, both native modules, web entry, `One.UI.Fonts` and
-   `One.useFonts`, the `./fonts` subpath, fixture
+   `useFonts`, the `./fonts` subpath, fixture
    `tests/native-features/fixtures/one-native-fonts.tsx`, a `fonts` entry in `suites`
    (`tests/native-features/scripts/one-native-conformance.ts`), and the Android flow
    step. The fixture ships one test font with a glyph shape no system font has (a solid

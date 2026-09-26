@@ -97,6 +97,33 @@ async function runAll(report: (name: string, value: string) => void) {
     report('RequestBlob', `${echo.contentType} ${echo.hex} ${echo.length}`)
   }
   {
+    // { uri } parts load the way react native loads them there: ios through
+    // its request handlers, whose mime type replaces the part's own, android
+    // through RequestBodyUtil, which keeps the part's type
+    const form = new FormData()
+    form.append('remote', { uri: `${base()}part`, name: 'part.txt', type: 'application/octet-stream' } as never)
+    form.append('inline', { uri: 'data:application/json;base64,eyJhIjoxfQ==', name: 'a.json', type: 'text/plain' } as never)
+    const ios = Platform.OS === 'ios'
+    const length = (size: number) => (ios ? '' : `Content-Length: ${size}\r\n`)
+    const echo = await (await fetch(`${base()}echo`, { method: 'POST', body: form })).json()
+    const boundary = /boundary=(\S+)/.exec(echo.contentType)?.[1]
+    const expected =
+      `--${boundary}\r\nContent-Disposition: form-data; name="remote"; filename="part.txt"\r\n` +
+      `Content-Type: ${ios ? 'text/plain' : 'application/octet-stream'}\r\n${length(9)}\r\npart text\r\n` +
+      `--${boundary}\r\nContent-Disposition: form-data; name="inline"; filename="a.json"\r\n` +
+      `Content-Type: ${ios ? 'application/json' : 'text/plain'}\r\n${length(7)}\r\n{"a":1}\r\n--${boundary}--\r\n`
+    report('UriForm', `${echo.contentType.split(';')[0]} ${echo.text === expected} ${echo.length === String(expected.length)}`)
+    const missing = new FormData()
+    missing.append('file', { uri: 'one-missing://part', name: 'x', type: 'text/plain' } as never)
+    report(
+      'UriMissing',
+      await fetch(`${base()}echo`, { method: 'POST', body: missing }).then(
+        () => 'resolved',
+        (error: unknown) => (error instanceof TypeError ? 'type error' : errorName(error))
+      )
+    )
+  }
+  {
     const response = await fetch(`${base()}redirect`)
     report('Redirect', `${response.status} ${response.redirected} ${response.url.endsWith('/echo')}`)
   }

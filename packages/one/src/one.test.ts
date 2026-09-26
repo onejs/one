@@ -1,4 +1,20 @@
 import { afterEach, describe, expect, test } from 'vitest'
+import {
+  getHinge,
+  getSizeClass,
+  onHingeChange,
+  useFonts,
+  useHinge,
+  useNativeState,
+  useNetworkState,
+  useReservedRegions,
+  useReservedRegionsReady,
+  useSafeAreaFrame,
+  useSafeAreaInsets,
+  useSizeClass,
+  useSpanning,
+  useWindowSegments,
+} from './index'
 import { One } from './one'
 
 afterEach(() => {
@@ -19,14 +35,21 @@ describe('root One export', () => {
     expect(One.UI.TextInput).toBeTypeOf('function')
     expect(One.UI.SafeArea.Provider).toBeTypeOf('function')
     expect(One.UI.SafeArea.View).toBeTypeOf('object')
-    expect(One.useSafeAreaInsets).toBeTypeOf('function')
-    expect(One.useSafeAreaFrame).toBeTypeOf('function')
-    expect(One.useSizeClass).toBeTypeOf('function')
-    expect(One.useHinge).toBeTypeOf('function')
-    expect(One.useReservedRegions).toBeTypeOf('function')
-    expect(One.useReservedRegionsReady).toBeTypeOf('function')
-    expect(One.useWindowSegments).toBeTypeOf('function')
-    expect(One.useSpanning).toBeTypeOf('function')
+    expect(useFonts).toBeTypeOf('function')
+    expect(useNativeState).toBeTypeOf('function')
+    expect(useNetworkState).toBeTypeOf('function')
+    expect(useSafeAreaInsets).toBeTypeOf('function')
+    expect(useSafeAreaFrame).toBeTypeOf('function')
+    expect(useSizeClass).toBeTypeOf('function')
+    expect(getSizeClass).toBeTypeOf('function')
+    expect(useHinge).toBeTypeOf('function')
+    expect(getHinge).toBeTypeOf('function')
+    expect(onHingeChange).toBeTypeOf('function')
+    expect(useReservedRegions).toBeTypeOf('function')
+    expect(useReservedRegionsReady).toBeTypeOf('function')
+    expect(useWindowSegments).toBeTypeOf('function')
+    expect(useSpanning).toBeTypeOf('function')
+    expect(Object.keys(One).some((name) => name.startsWith('use'))).toBe(false)
     expect(Object.keys(One.UI).some((name) => name.startsWith('use'))).toBe(false)
     expect(Object.keys(One.UI.SafeArea).some((name) => name.startsWith('use'))).toBe(false)
     expect(Object.keys(One.UI.ReservedRegions)).toEqual(['Provider'])
@@ -35,7 +58,6 @@ describe('root One export', () => {
     expect(One.Clipboard.hasString).toBeTypeOf('function')
     expect(One.Network.getState).toBeTypeOf('function')
     expect(One.Network.addStateListener).toBeTypeOf('function')
-    expect(One.useNetworkState).toBeTypeOf('function')
     expect(One.Browser.open).toBeTypeOf('function')
     expect(One.Browser.dismiss).toBeTypeOf('function')
     expect(One.Browser.openAuthSession).toBeTypeOf('function')

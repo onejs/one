@@ -7,15 +7,20 @@ One ships native iOS and Android APIs alongside the framework. They cover
 platform views (SwiftUI, Compose), shared views that work on both platforms,
 and platform modules (notifications, clipboard, camera, and more).
 
-All of them are reachable through the `One` namespace from the `one` package:
+Components and services use the `One` namespace; hooks are named imports from `one`:
 
 ```tsx
-import { One } from 'one'
+import { One, useSizeClass } from 'one'
 
 One.UI.Image // shared by both platforms
 One.iOS.Toggle // iOS only
 One.Android.Switch // Android only
 One.Notifications.schedule(...) // shared module
+
+function Layout() {
+  const sizeClass = useSizeClass()
+  return sizeClass.horizontal === 'regular' ? <Wide /> : <Narrow />
+}
 ```
 
 ## Naming rule
@@ -31,7 +36,7 @@ The namespace tells you where an API runs:
   views under the names and prop contracts Android uses.
 - `One.UI.X` contains components that render through native primitives on each
   platform (`One.UI.Image`, `One.UI.Map`, `One.UI.Icon`). Shared hooks and state
-  helpers sit directly on `One` (`One.useNativeState`, `One.useSizeClass`).
+  helpers are named imports (`useNativeState`, `useSizeClass`).
 
 Platform-only components stay strict: SwiftUI components throw outside iOS
 builds and Compose components throw outside Android builds, so keep those

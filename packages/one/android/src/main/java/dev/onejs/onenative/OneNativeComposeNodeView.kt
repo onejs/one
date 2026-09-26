@@ -39,6 +39,8 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.LinearProgressIndicator
@@ -180,18 +182,41 @@ internal data class OneNativeCardColors(
     }
 }
 
-internal data class OneNativeCardBorder(
+internal data class OneNativeComposeBorder(
     val width: Double = 1.0,
     val color: Int? = null,
 ) {
     companion object {
-        fun fromMap(map: ReadableMap?, context: Context): OneNativeCardBorder? =
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeComposeBorder? =
             map?.let {
-                OneNativeCardBorder(
+                OneNativeComposeBorder(
                     width = if (it.hasKey("width") && !it.isNull("width")) it.getDouble("width") else 1.0,
                     color = readComposeColor(it, "color", context),
                 )
             }
+    }
+}
+
+internal data class OneNativeFilterChipColors(
+    val containerColor: Int? = null,
+    val labelColor: Int? = null,
+    val iconColor: Int? = null,
+    val selectedContainerColor: Int? = null,
+    val selectedLabelColor: Int? = null,
+    val selectedLeadingIconColor: Int? = null,
+    val selectedTrailingIconColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeFilterChipColors =
+            if (map == null) OneNativeFilterChipColors() else OneNativeFilterChipColors(
+                containerColor = readComposeColor(map, "containerColor", context),
+                labelColor = readComposeColor(map, "labelColor", context),
+                iconColor = readComposeColor(map, "iconColor", context),
+                selectedContainerColor = readComposeColor(map, "selectedContainerColor", context),
+                selectedLabelColor = readComposeColor(map, "selectedLabelColor", context),
+                selectedLeadingIconColor = readComposeColor(map, "selectedLeadingIconColor", context),
+                selectedTrailingIconColor = readComposeColor(map, "selectedTrailingIconColor", context),
+            )
     }
 }
 
@@ -281,8 +306,12 @@ internal data class OneNativeComposeNodeProps(
     val radioColors: OneNativeRadioColors = OneNativeRadioColors(),
     val cardColors: OneNativeCardColors = OneNativeCardColors(),
     val cardElevation: Double = -1.0,
-    val cardBorder: OneNativeCardBorder? = null,
+    val cardBorder: OneNativeComposeBorder? = null,
     val dividerStyle: OneNativeDividerStyle = OneNativeDividerStyle(),
+    val slotName: String? = null,
+    val chipColors: OneNativeFilterChipColors = OneNativeFilterChipColors(),
+    val chipElevation: Double = -1.0,
+    val chipBorder: OneNativeComposeBorder? = null,
     val acknowledgedEvent: Int = 0,
     val revision: Int = 0,
     val alignment: String? = null,
@@ -577,11 +606,27 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     }
 
     internal fun stageCardBorder(value: ReadableMap?) {
-        pendingProps = pendingProps.copy(cardBorder = OneNativeCardBorder.fromMap(value, context))
+        pendingProps = pendingProps.copy(cardBorder = OneNativeComposeBorder.fromMap(value, context))
     }
 
     internal fun stageDividerStyle(value: ReadableMap?) {
         pendingProps = pendingProps.copy(dividerStyle = OneNativeDividerStyle.fromMap(value, context))
+    }
+
+    internal fun stageSlotName(value: String?) {
+        pendingProps = pendingProps.copy(slotName = value)
+    }
+
+    internal fun stageChipColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(chipColors = OneNativeFilterChipColors.fromMap(value, context))
+    }
+
+    internal fun stageChipElevation(value: Double) {
+        pendingProps = pendingProps.copy(chipElevation = value)
+    }
+
+    internal fun stageChipBorder(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(chipBorder = OneNativeComposeBorder.fromMap(value, context))
     }
 
     internal fun stageAcknowledgedEvent(value: Int) {
@@ -1009,6 +1054,7 @@ private fun RenderComposeNodeBody(
                 thickness = props.dividerStyle.thickness.takeIf { it >= 0.0 }?.toFloat()?.dp ?: DividerDefaults.Thickness,
                 color = props.dividerStyle.color?.let(::Color) ?: DividerDefaults.color,
             )
+        "filterchip" -> RenderComposeFilterChip(node, props, modifier)
         "textfield" -> RenderComposeTextField(node, props, modifier)
         "slider" -> RenderComposeSlider(node, props, modifier)
         "alertdialog" -> RenderComposeAlertDialog(node, props, modifier)
@@ -1088,6 +1134,46 @@ private fun RenderComposeCard(
             }
         }
     }
+}
+
+@Composable
+private fun RenderComposeFilterChip(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val enabled = !props.disabled && node.isEnabled
+    val colors = props.chipColors
+    val label = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "label" }
+    val leadingIcon = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "leadingIcon" }
+    val trailingIcon = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "trailingIcon" }
+    val border = props.chipBorder?.let { chipBorder ->
+        val width = chipBorder.width.toFloat().dp
+        chipBorder.color?.let { BorderStroke(width, Color(it)) }
+            ?: FilterChipDefaults.filterChipBorder(enabled = enabled, selected = props.selected, borderWidth = width)
+    } ?: FilterChipDefaults.filterChipBorder(enabled = enabled, selected = props.selected)
+    FilterChip(
+        selected = props.selected,
+        onClick = { node.handlePress() },
+        label = { if (label != null) RenderComposeChildren(label) },
+        leadingIcon = leadingIcon?.let { slot -> { RenderComposeChildren(slot) } },
+        trailingIcon = trailingIcon?.let { slot -> { RenderComposeChildren(slot) } },
+        enabled = enabled,
+        modifier = modifier,
+        colors = FilterChipDefaults.filterChipColors(
+            containerColor = colors.containerColor?.let(::Color) ?: Color.Unspecified,
+            labelColor = colors.labelColor?.let(::Color) ?: Color.Unspecified,
+            iconColor = colors.iconColor?.let(::Color) ?: Color.Unspecified,
+            selectedContainerColor = colors.selectedContainerColor?.let(::Color) ?: Color.Unspecified,
+            selectedLabelColor = colors.selectedLabelColor?.let(::Color) ?: Color.Unspecified,
+            selectedLeadingIconColor = colors.selectedLeadingIconColor?.let(::Color) ?: Color.Unspecified,
+            selectedTrailingIconColor = colors.selectedTrailingIconColor?.let(::Color) ?: Color.Unspecified,
+        ),
+        elevation = props.chipElevation.takeIf { it >= 0.0 }?.let {
+            FilterChipDefaults.filterChipElevation(elevation = it.toFloat().dp)
+        } ?: FilterChipDefaults.filterChipElevation(),
+        border = border,
+    )
 }
 
 @Composable

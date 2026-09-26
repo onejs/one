@@ -38,6 +38,9 @@ final class HybridOneFetch: HybridOneFetchSpec {
     }()
     var requests: [Int: Request] = [:]
     var tasks: [Double: URLSessionTask] = [:]
+    // requests still loading their FormData { uri } parts; a cancel removes
+    // the id, and the load then drops the request instead of sending it
+    var loading = Set<Double>()
 
     func urlSession(
       _ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse,
@@ -151,14 +154,15 @@ final class HybridOneFetch: HybridOneFetchSpec {
     let boundary = request.boundary
     let pending = Request(
       onResponse: onResponse, onChunk: onChunk, onComplete: onComplete, onError: onError)
-    delegate.queue.addOperation { [delegate, session] in
+    // runs on the delegate queue once every { uri } part has loaded
+    let send = { [delegate, session] (loaded: [Int: LoadedPart]) in
       do {
         if let body {
           urlRequest.httpBody = body
         } else if let blob {
           urlRequest.httpBody = try Self.resolve(blob)
         } else if let form, let boundary {
-          urlRequest.httpBody = try Self.multipart(form, boundary: boundary)
+          urlRequest.httpBody = try Self.multipart(form, loaded: loaded, boundary: boundary)
         }
       } catch {
         onError(error.localizedDescription)
@@ -169,10 +173,30 @@ final class HybridOneFetch: HybridOneFetchSpec {
       delegate.tasks[id] = task
       task.resume()
     }
+    let uris = (form ?? []).enumerated().compactMap { index, part in
+      part.uri.map { (index, $0) }
+    }
+    delegate.queue.addOperation { [delegate] in
+      if uris.isEmpty {
+        send([:])
+        return
+      }
+      delegate.loading.insert(id)
+      Self.load(uris) { result in
+        delegate.queue.addOperation {
+          guard delegate.loading.remove(id) != nil else { return }
+          switch result {
+          case .success(let loaded): send(loaded)
+          case .failure(let message): onError(message)
+          }
+        }
+      }
+    }
   }
 
   func cancel(id: Double) throws {
     delegate.queue.addOperation { [delegate] in
+      if delegate.loading.remove(id) != nil { return }
       guard let task = delegate.tasks.removeValue(forKey: id) else { return }
       delegate.requests[task.taskIdentifier] = nil
       task.cancel()
@@ -209,24 +233,60 @@ final class HybridOneFetch: HybridOneFetchSpec {
     return data
   }
 
-  private static func read(uri: String) throws -> Data {
-    // the local schemes react native's own request handlers read
-    guard let url = URL(string: uri), url.isFileURL || url.scheme == "data" else {
-      throw RuntimeError.error(withMessage: "fetch: FormData uri \(uri) is not a file: or data: url")
+  private struct LoadedPart {
+    let data: Data
+    let mimeType: String?
+  }
+
+  private enum LoadResult {
+    case success([Int: LoadedPart])
+    case failure(String)
+  }
+
+  // every { uri } part loads through react native's own request handlers, as
+  // RCTHTTPFormDataHelper loads them: file:, data:, http(s): and whatever an
+  // app registers (ph: with a photo library loader)
+  private static func load(_ uris: [(Int, String)], done: @escaping (LoadResult) -> Void) {
+    guard let loadURI = OneFetchBlobStore.loadURI else {
+      done(.failure("fetch: react native's Networking module is not loaded"))
+      return
     }
-    return try Data(contentsOf: url)
+    let group = DispatchGroup()
+    let lock = NSLock()
+    var loaded: [Int: LoadedPart] = [:]
+    var failure: String?
+    for (index, uri) in uris {
+      group.enter()
+      loadURI(uri) { data, mimeType, error in
+        lock.lock()
+        if let data {
+          loaded[index] = LoadedPart(data: data, mimeType: mimeType)
+        } else if failure == nil {
+          failure = error ?? "fetch: could not read FormData uri \(uri)"
+        }
+        lock.unlock()
+        group.leave()
+      }
+    }
+    group.notify(queue: .global()) {
+      if let failure {
+        done(.failure(failure))
+      } else {
+        done(.success(loaded))
+      }
+    }
   }
 
   // multipart/form-data per RFC 7578, the same layout react native writes
-  private static func multipart(_ parts: [FetchFormPart], boundary: String) throws -> Data {
+  private static func multipart(
+    _ parts: [FetchFormPart], loaded: [Int: LoadedPart], boundary: String
+  ) throws -> Data {
     var body = Data()
     func line(_ text: String) { body.append(Data((text + "\r\n").utf8)) }
-    for part in parts {
+    for (index, part) in parts.enumerated() {
       line("--\(boundary)")
       var disposition = "Content-Disposition: form-data; name=\"\(escape(part.name))\""
-      if let filename = part.filename ?? part.uri.flatMap({ URL(string: $0)?.lastPathComponent }),
-        part.value == nil
-      {
+      if let filename = part.filename, part.value == nil {
         disposition += "; filename=\"\(escape(filename))\""
       }
       line(disposition)
@@ -236,14 +296,21 @@ final class HybridOneFetch: HybridOneFetchSpec {
         continue
       }
       let data: Data
-      if let uri = part.uri {
-        data = try read(uri: uri)
+      let type: String?
+      if let uri = loaded[index] {
+        // react native's helper lets the loaded response's mime type replace
+        // the part's own type, and writes none when neither exists
+        data = uri.data
+        type = uri.mimeType ?? part.type
       } else if let blob = part.blob {
         data = try resolve(blob)
+        type = part.type ?? "application/octet-stream"
       } else {
         throw RuntimeError.error(withMessage: "fetch: FormData part \(part.name) has no value")
       }
-      line("Content-Type: \(part.type ?? "application/octet-stream")")
+      if let type {
+        line("Content-Type: \(type)")
+      }
       line("")
       body.append(data)
       line("")
@@ -261,4 +328,7 @@ final class HybridOneFetch: HybridOneFetchSpec {
 // set by OneFetchBlobStoreModule from react native's module registry
 @objcMembers public final class OneFetchBlobStore: NSObject {
   public static weak var manager: NSObject?
+  // loads one FormData { uri } part through react native's networking,
+  // answering its bytes and mime type, or an error message
+  public static var loadURI: ((String, @escaping (Data?, String?, String?) -> Void) -> Void)?
 }
