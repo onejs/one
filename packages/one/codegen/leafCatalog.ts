@@ -9,6 +9,29 @@ import {
 // leaves with no two-way value: Button signals, Text/Label/ProgressView/Gauge display.
 export const leafControls: Control[] = [
   {
+    // SwiftUI decides when a String payload is available and performs the paste
+    // without the ordinary pasteboard read prompt. One callback receives every
+    // String that SwiftUI supplies for the user's paste action.
+    name: 'PasteButton',
+    actions: [{ prop: 'onPaste', event: 'Paste', payload: { values: 'jsonStrings' } }],
+    fields: { disabled: commonFields.disabled },
+    constructors: [
+      {
+        type: 'PasteButton',
+        parameters: [
+          { label: 'payloadType', type: 'T.Type' },
+          { label: 'onPaste', type: '@escaping ([T]) -> Swift.Void' },
+        ],
+      },
+    ],
+    swift: `PasteButton(payloadType: String.self) { values in
+      guard let data = try? JSONEncoder().encode(values),
+        let encoded = String(data: data, encoding: .utf8) else { return }
+      model.paste(encoded)
+    }`,
+    validate: '',
+  },
+  {
     name: 'Text',
     fields: { text: { type: 'string', default: '' } },
     constructors: [

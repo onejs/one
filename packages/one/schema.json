@@ -1284,6 +1284,44 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativePasteButton",
+      "publicName": "PasteButton",
+      "props": {
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "onNativePasteButtonPaste": {
+          "values": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onPaste",
+          "event": "onNativePasteButtonPaste"
+        }
+      ],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativeText",
       "publicName": "Text",
       "props": {

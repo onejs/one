@@ -26,6 +26,11 @@ const testScreens = [
     testID: 'nav-one-native-controls',
   },
   {
+    href: '/one-native-paste-button',
+    label: 'One Native Paste Button',
+    testID: 'nav-one-native-paste-button',
+  },
+  {
     href: '/one-native-sheet',
     label: 'One Native Sheets',
     testID: 'nav-one-native-sheet',

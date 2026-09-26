@@ -17746,6 +17746,7 @@
         "Gauge",
         "Label",
         "Menu",
+        "PasteButton",
         "Picker",
         "ProgressView",
         "Section",
@@ -19256,6 +19257,23 @@
         }
       ],
       "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "PasteButton",
+      "parameters": [
+        {
+          "label": "payloadType",
+          "name": "payloadType",
+          "type": "T.Type"
+        },
+        {
+          "label": "onPaste",
+          "name": "onPaste",
+          "type": "@escaping ([T]) -> Swift.Void"
+        }
+      ],
+      "ios": 16
     },
     {
       "module": "SwiftUICore",

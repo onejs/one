@@ -58,6 +58,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Toggle` | pickers, forms, host, containers, lists, state, accessibility | n/a |  |
 | `One.iOS.Slider` | pickers, forms | n/a |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a |  |
+| `One.iOS.PasteButton` | paste-button | n/a |  |
 | `One.iOS.Text` | containers, lists, groups, state, grids, popover, accessibility | n/a |  |
 | `One.iOS.Label` | leaves, containers | n/a |  |
 | `One.iOS.ProgressView` | leaves | n/a |  |
@@ -163,7 +164,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.UI.TextInput` | missing | missing | no fixture or suite |
 | `One.UI.ReservedRegions` | missing | missing | fixture exists, no suite opens it |
 | `One.Notifications` | notifications | notifications |  |
-| `One.Clipboard` | clipboard | missing | iOS suite only |
+| `One.Clipboard` | paste-button, clipboard | missing | iOS suite only |
 | `One.Haptics` | haptics | haptics |  |
 | `One.Network` | network | missing | iOS suite only |
 | `One.Auth` | apple-auth | apple-auth |  |

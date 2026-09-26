@@ -749,6 +749,16 @@ either.
 
 ## Sharing and the photo library
 
+`One.iOS.PasteButton` uses SwiftUI's native `PasteButton(payloadType: String.self)`.
+Its `onPaste` callback receives all strings from one paste action as
+`readonly string[]`; SwiftUI supplies the system label.
+It accepts `disabled` and shared view props, with no custom label. Use it for
+string paste without the ordinary pasteboard read prompt.
+
+```tsx
+<One.iOS.PasteButton onPaste={(values) => setText(values.join('\n'))} />
+```
+
 `One.iOS.ShareLink` is the system share sheet, which is `UIActivityViewController` and has
 no React Native equivalent that looks right. It renders as a button you label yourself.
 

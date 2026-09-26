@@ -52,6 +52,7 @@ export declare const Swift: {
     Toggle: (_props: import("./types").ToggleProps) => never;
     Slider: (_props: import("./types").SliderProps) => never;
     Stepper: (_props: import("./types").StepperProps) => never;
+    PasteButton: (_props: import("./types").PasteButtonProps) => never;
     Text: (_props: import("./types").TextProps) => never;
     Label: (_props: import("./types").LabelProps) => never;
     ProgressView: (_props: import("./types").ProgressViewProps) => never;

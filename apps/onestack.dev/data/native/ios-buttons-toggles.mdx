@@ -1,14 +1,15 @@
 ---
 title: iOS Buttons and Toggles
-description: Button, Toggle, Slider, Stepper, ShareLink, SignInWithAppleButton, and EditButton under One.iOS
+description: Button, PasteButton, Toggle, Slider, Stepper, ShareLink, SignInWithAppleButton, and EditButton under One.iOS
 ---
 
 Pressable and value controls under `One.iOS`. `Toggle`, `Slider`, and
 `Stepper` follow the controlled pattern: a value, an `onXChange` callback,
 and a `revision` number for external resets. Every control on this page
-accepts `disabled`, `label`, `systemImage` where noted, and the shared view
+accepts the shared view
 props (`accessibilityLabel`, `accessibilityHint`, `accessibilityValue`,
 `testID`, `style`, `onLayout`, `swiftStyle`).
+Most accept `disabled`; `EditButton` and `SignInWithAppleButton` do not.
 
 ## Button
 
@@ -34,6 +35,20 @@ import { One } from 'one'
 ```
 
 On web and Android this control throws. Keep it behind a platform check.
+
+## PasteButton
+
+`One.iOS.PasteButton` renders SwiftUI's system Paste button for String payloads.
+SwiftUI performs the paste without the ordinary pasteboard read prompt.
+`onPaste` receives every string
+from that single paste action as `readonly string[]`. It has the system label;
+`label` and `systemImage` are not props.
+
+```tsx
+<One.iOS.PasteButton onPaste={(values) => setText(values.join('\n'))} />
+```
+
+It accepts `disabled` and the shared view props. On web and Android it throws.
 
 ## Toggle
 

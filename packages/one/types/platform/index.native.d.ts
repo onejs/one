@@ -22,6 +22,7 @@ export declare const Swift: {
     Toggle({ isOn, onIsOnChange, revision, label, disabled, systemImage, toggleStyle, swiftStyle, style, ...props }: import("./types").ToggleProps): import("react/jsx-runtime").JSX.Element;
     Slider({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, minimumValueLabel, maximumValueLabel, minimumValueImage, maximumValueImage, swiftStyle, style, ...props }: import("./types").SliderProps): import("react/jsx-runtime").JSX.Element;
     Stepper({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, swiftStyle, style, ...props }: import("./types").StepperProps): import("react/jsx-runtime").JSX.Element;
+    PasteButton({ onPaste, disabled, swiftStyle, style, ...props }: import("./types").PasteButtonProps): import("react/jsx-runtime").JSX.Element;
     Text({ text, swiftStyle, style, ...props }: import("./types").TextProps): import("react/jsx-runtime").JSX.Element;
     Label({ label, disabled, systemImage, swiftStyle, style, ...props }: import("./types").LabelProps): import("react/jsx-runtime").JSX.Element;
     ProgressView({ label, disabled, value, total, progressViewStyle, swiftStyle, style, ...props }: import("./types").ProgressViewProps): import("react/jsx-runtime").JSX.Element;
