@@ -140,6 +140,8 @@ describe('compose surface', () => {
       'Icon',
       'Button',
       'Switch',
+      'Checkbox',
+      'RadioButton',
       'TextField',
       'Slider',
       'AlertDialog',

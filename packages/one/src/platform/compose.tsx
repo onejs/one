@@ -2,10 +2,12 @@ import type {
   ComposeAlertDialogProps,
   ComposeBoxProps,
   ComposeButtonProps,
+  ComposeCheckboxProps,
   ComposeColumnProps,
   ComposeDialogProps,
   ComposeIconProps,
   ComposeProgressIndicatorProps,
+  ComposeRadioButtonProps,
   ComposeRowProps,
   ComposeSliderProps,
   ComposeSwitchProps,
@@ -47,6 +49,14 @@ function Switch(_props: ComposeSwitchProps): never {
   return unsupported('Switch')
 }
 
+function Checkbox(_props: ComposeCheckboxProps): never {
+  return unsupported('Checkbox')
+}
+
+function RadioButton(_props: ComposeRadioButtonProps): never {
+  return unsupported('RadioButton')
+}
+
 function TextField(_props: ComposeTextFieldProps): never {
   return unsupported('TextField')
 }
@@ -75,6 +85,8 @@ export const Compose = {
   Icon,
   Button,
   Switch,
+  Checkbox,
+  RadioButton,
   TextField,
   Slider,
   AlertDialog,

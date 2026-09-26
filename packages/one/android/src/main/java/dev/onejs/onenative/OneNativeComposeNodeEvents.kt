@@ -121,14 +121,14 @@ internal class OneNativeComposeNodeDialogDismissEvent(
         }
 }
 
-internal class OneNativeComposeNodeSwitchValueChangeEvent(
+internal class OneNativeComposeNodeBooleanValueChangeEvent(
     surfaceId: Int,
     viewTag: Int,
     private val value: Boolean,
     private val eventCount: Int,
     private val revision: Int,
-) : Event<OneNativeComposeNodeSwitchValueChangeEvent>(surfaceId, viewTag) {
-    override fun getEventName(): String = "topNativeComposeNodeSwitchValueChange"
+) : Event<OneNativeComposeNodeBooleanValueChangeEvent>(surfaceId, viewTag) {
+    override fun getEventName(): String = "topNativeComposeNodeBooleanValueChange"
 
     override fun canCoalesce(): Boolean = false
 

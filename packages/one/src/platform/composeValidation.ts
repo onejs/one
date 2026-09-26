@@ -2,10 +2,12 @@ import type {
   ComposeAlertDialogProps,
   ComposeBoxProps,
   ComposeButtonProps,
+  ComposeCheckboxProps,
   ComposeColumnProps,
   ComposeDialogProps,
   ComposeIconProps,
   ComposeProgressIndicatorProps,
+  ComposeRadioButtonProps,
   ComposeRowProps,
   ComposeSliderProps,
   ComposeStyle,
@@ -134,6 +136,48 @@ const composeStyleColorKeys = new Set([
   'foregroundColor',
   'borderColor',
 ])
+const checkboxColorKeys = new Set([
+  'checkedColor',
+  'disabledCheckedColor',
+  'uncheckedColor',
+  'disabledUncheckedColor',
+  'checkmarkColor',
+])
+const radioColorKeys = new Set([
+  'selectedColor',
+  'unselectedColor',
+  'disabledSelectedColor',
+  'disabledUnselectedColor',
+])
+
+function assertComposeColorValue(value: unknown, name: string) {
+  const resourcePaths =
+    value && typeof value === 'object' && 'resource_paths' in value
+      ? value.resource_paths
+      : undefined
+  if (
+    (typeof value !== 'string' || !value.trim()) &&
+    (typeof value !== 'number' || !Number.isFinite(value)) &&
+    (!Array.isArray(resourcePaths) ||
+      resourcePaths.length === 0 ||
+      resourcePaths.some((path) => typeof path !== 'string' || !path))
+  )
+    throw new Error(`Compose ${name} must be a color value`)
+}
+
+function assertComposeColors(
+  colors: unknown,
+  keys: ReadonlySet<string>,
+  owner: string
+) {
+  if (!colors || typeof colors !== 'object' || Array.isArray(colors))
+    throw new Error(`Compose ${owner} colors must be an object`)
+  for (const [key, value] of Object.entries(colors)) {
+    if (!keys.has(key))
+      throw new Error(`Compose ${owner} colors does not support ${key}`)
+    if (value !== undefined) assertComposeColorValue(value, `${owner} colors ${key}`)
+  }
+}
 
 export function assertComposeStyle(style: ComposeStyle | undefined) {
   if (style === undefined) return
@@ -155,21 +199,7 @@ export function assertComposeStyle(style: ComposeStyle | undefined) {
       continue
     }
     if (composeStyleColorKeys.has(key)) {
-      const colorValue = value as unknown
-      const resourcePaths =
-        colorValue &&
-        typeof colorValue === 'object' &&
-        'resource_paths' in colorValue
-          ? colorValue.resource_paths
-          : undefined
-      if (
-        (typeof value !== 'string' || !value.trim()) &&
-        (typeof value !== 'number' || !Number.isFinite(value)) &&
-        (!Array.isArray(resourcePaths) ||
-          resourcePaths.length === 0 ||
-          resourcePaths.some((path) => typeof path !== 'string' || !path))
-      )
-        throw new Error(`Compose composeStyle ${key} must be a color value`)
+      assertComposeColorValue(value, `composeStyle ${key}`)
       continue
     }
     if (typeof value !== 'boolean')
@@ -292,6 +322,21 @@ export function validateSwitchProps(props: ComposeSwitchProps) {
   assertBoolean(props.disabled ?? false, 'Switch disabled')
   assertString(props.label ?? '', 'Switch label')
   assertFunction(props.onIsOnChange, 'Switch onIsOnChange')
+}
+
+export function validateCheckboxProps(props: ComposeCheckboxProps) {
+  assertBoolean(props.value, 'Checkbox value')
+  assertBoolean(props.disabled ?? false, 'Checkbox disabled')
+  if (props.onCheckedChange !== undefined)
+    assertFunction(props.onCheckedChange, 'Checkbox onCheckedChange')
+  if (props.colors !== undefined) assertComposeColors(props.colors, checkboxColorKeys, 'Checkbox')
+}
+
+export function validateRadioButtonProps(props: ComposeRadioButtonProps) {
+  assertBoolean(props.selected, 'RadioButton selected')
+  assertBoolean(props.disabled ?? false, 'RadioButton disabled')
+  if (props.onClick !== undefined) assertFunction(props.onClick, 'RadioButton onClick')
+  if (props.colors !== undefined) assertComposeColors(props.colors, radioColorKeys, 'RadioButton')
 }
 
 export function validateTextFieldProps(props: ComposeTextFieldProps) {
