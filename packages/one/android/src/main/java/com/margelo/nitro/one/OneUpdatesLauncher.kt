@@ -524,8 +524,23 @@ object OneUpdatesLauncher {
             } catch (_: Exception) {
             }
         }
-        restartHost("One.Updates.rollback")
+        rollBackAfterDestroy()
         return true
+    }
+
+    // react native destroys the host right after the delegate handles the
+    // exception, which stops and forgets every surface, so a reload here
+    // would come back with nothing to draw into. the rollback starts that
+    // destroy itself (react native's own call then joins the same task) and,
+    // once it finishes, recreates the activity: its fresh surface starts a
+    // new instance, and select() skips the failed update.
+    private fun rollBackAfterDestroy() {
+        val host: ReactHost =
+            (context().applicationContext as? ReactApplication)?.reactHost ?: return
+        host.destroy("One.Updates.rollback", null) {
+            val activity = synchronized(lock) { currentActivity?.get() }
+            Handler(Looper.getMainLooper()).post { activity?.recreate() }
+        }
     }
 
     // MARK: - reaper
