@@ -6,6 +6,7 @@ import { getSyncStateId } from './syncStore'
 import { syncHandleOf, useSyncValue } from './syncNativeState'
 import type {
   ComposeAlertDialogProps,
+  ComposeAssistChipProps,
   ComposeBoxProps,
   ComposeButtonProps,
   ComposeButtonTone,
@@ -22,6 +23,7 @@ import type {
   ComposeHorizontalAlignment,
   ComposeHorizontalArrangement,
   ComposeIconProps,
+  ComposeInputChipProps,
   ComposeNodeProps,
   ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
@@ -29,6 +31,7 @@ import type {
   ComposeRadioButtonProps,
   ComposeRowProps,
   ComposeSliderProps,
+  ComposeSuggestionChipProps,
   ComposeSwitchProps,
   ComposeTextAlign,
   ComposeTextFieldCapitalization,
@@ -51,7 +54,7 @@ import {
   validateColumnProps,
   validateDialogProps,
   validateDividerProps,
-  validateFilterChipProps,
+  validateChipProps,
   validateIconProps,
   validateProgressIndicatorProps,
   validateRadioButtonProps,
@@ -72,6 +75,9 @@ type ComposeNodeType =
   | 'horizontaldivider'
   | 'verticaldivider'
   | 'filterchip'
+  | 'assistchip'
+  | 'inputchip'
+  | 'suggestionchip'
   | 'chipslot'
   | 'text'
   | 'icon'
@@ -115,7 +121,11 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   cardBorder?: ComposeCardProps['border']
   dividerStyle?: Pick<ComposeDividerProps, 'thickness' | 'color'>
   slotName?: string
-  chipColors?: ComposeFilterChipProps['colors']
+  chipColors?:
+    | ComposeAssistChipProps['colors']
+    | ComposeFilterChipProps['colors']
+    | ComposeInputChipProps['colors']
+    | ComposeSuggestionChipProps['colors']
   chipElevation?: number
   chipBorder?: ComposeFilterChipProps['border']
   acknowledgedEvent?: number
@@ -298,21 +308,25 @@ function VerticalDivider({ thickness, color, ...props }: ComposeDividerProps) {
   return <ComposeNode {...props} nodeType="verticaldivider" dividerStyle={{ thickness, color }} />
 }
 
-function FilterChipRoot({
-  children,
-  selected,
-  enabled = true,
-  colors,
-  elevation,
-  border,
-  onClick,
-  ...props
-}: ComposeFilterChipProps) {
-  validateFilterChipProps({ children, selected, enabled, colors, elevation, border, onClick })
+type ChipKind = 'AssistChip' | 'FilterChip' | 'InputChip' | 'SuggestionChip'
+type ChipProps =
+  | ComposeAssistChipProps
+  | ComposeFilterChipProps
+  | ComposeInputChipProps
+  | ComposeSuggestionChipProps
+
+function renderChip(
+  nodeType: 'assistchip' | 'filterchip' | 'inputchip' | 'suggestionchip',
+  kind: ChipKind,
+  chipProps: ChipProps
+) {
+  validateChipProps(chipProps, kind)
+  const { children, enabled = true, colors, elevation, border, onClick, ...props } = chipProps
+  const selected = 'selected' in props ? props.selected ?? false : false
   return (
     <ComposeNode
       {...props}
-      nodeType="filterchip"
+      nodeType={nodeType}
       selected={selected}
       disabled={!enabled}
       chipColors={colors}
@@ -325,7 +339,23 @@ function FilterChipRoot({
   )
 }
 
-function FilterChipSlot({ children, name }: { children: ReactNode; name: string }) {
+function AssistChipRoot(props: ComposeAssistChipProps) {
+  return renderChip('assistchip', 'AssistChip', props)
+}
+
+function FilterChipRoot(props: ComposeFilterChipProps) {
+  return renderChip('filterchip', 'FilterChip', props)
+}
+
+function InputChipRoot(props: ComposeInputChipProps) {
+  return renderChip('inputchip', 'InputChip', props)
+}
+
+function SuggestionChipRoot(props: ComposeSuggestionChipProps) {
+  return renderChip('suggestionchip', 'SuggestionChip', props)
+}
+
+function ChipSlot({ children, name }: { children: ReactNode; name: string }) {
   return (
     <ComposeNode nodeType="chipslot" slotName={name}>
       {children}
@@ -333,16 +363,40 @@ function FilterChipSlot({ children, name }: { children: ReactNode; name: string 
   )
 }
 
+const ChipLabel = ({ children }: { children: ReactNode }) => (
+  <ChipSlot name="label">{children}</ChipSlot>
+)
+const ChipLeadingIcon = ({ children }: { children: ReactNode }) => (
+  <ChipSlot name="leadingIcon">{children}</ChipSlot>
+)
+const ChipTrailingIcon = ({ children }: { children: ReactNode }) => (
+  <ChipSlot name="trailingIcon">{children}</ChipSlot>
+)
+const ChipAvatar = ({ children }: { children: ReactNode }) => (
+  <ChipSlot name="avatar">{children}</ChipSlot>
+)
+const ChipIcon = ({ children }: { children: ReactNode }) => (
+  <ChipSlot name="icon">{children}</ChipSlot>
+)
+
+const AssistChip = Object.assign(AssistChipRoot, {
+  Label: ChipLabel,
+  LeadingIcon: ChipLeadingIcon,
+  TrailingIcon: ChipTrailingIcon,
+})
 const FilterChip = Object.assign(FilterChipRoot, {
-  Label: ({ children }: { children: ReactNode }) => (
-    <FilterChipSlot name="label">{children}</FilterChipSlot>
-  ),
-  LeadingIcon: ({ children }: { children: ReactNode }) => (
-    <FilterChipSlot name="leadingIcon">{children}</FilterChipSlot>
-  ),
-  TrailingIcon: ({ children }: { children: ReactNode }) => (
-    <FilterChipSlot name="trailingIcon">{children}</FilterChipSlot>
-  ),
+  Label: ChipLabel,
+  LeadingIcon: ChipLeadingIcon,
+  TrailingIcon: ChipTrailingIcon,
+})
+const InputChip = Object.assign(InputChipRoot, {
+  Label: ChipLabel,
+  Avatar: ChipAvatar,
+  TrailingIcon: ChipTrailingIcon,
+})
+const SuggestionChip = Object.assign(SuggestionChipRoot, {
+  Label: ChipLabel,
+  Icon: ChipIcon,
 })
 
 function Text({
@@ -710,6 +764,9 @@ export const Compose = {
   HorizontalDivider,
   VerticalDivider,
   FilterChip,
+  AssistChip,
+  InputChip,
+  SuggestionChip,
   Text,
   Icon,
   Button,

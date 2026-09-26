@@ -73,6 +73,11 @@ interface NativeProps extends ViewProps {
     containerColor?: ColorValue
     labelColor?: ColorValue
     iconColor?: ColorValue
+    iconContentColor?: ColorValue
+    leadingIconContentColor?: ColorValue
+    trailingIconContentColor?: ColorValue
+    leadingIconColor?: ColorValue
+    trailingIconColor?: ColorValue
     selectedContainerColor?: ColorValue
     selectedLabelColor?: ColorValue
     selectedLeadingIconColor?: ColorValue
