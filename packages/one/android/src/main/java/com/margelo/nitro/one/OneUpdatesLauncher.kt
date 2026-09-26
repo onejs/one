@@ -9,6 +9,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Base64
 import android.util.Log
+import com.facebook.react.ReactActivity
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactHost
 import com.facebook.react.bridge.ReactMarker
@@ -266,7 +267,10 @@ object OneUpdatesLauncher {
                         manifestJson = entry.getString("manifestJson")
                     )
             }
-            val launching = json.optString("launching", "").takeIf { it.isNotEmpty() }
+            // optString reads a stored json null as the string "null".
+            val launching =
+                if (json.isNull("launching")) null
+                else json.optString("launching", "").takeIf { it.isNotEmpty() }
             LauncherState(state, launching)
         } catch (_: Exception) {
             LauncherState(mutableMapOf(), null)
@@ -443,6 +447,7 @@ object OneUpdatesLauncher {
             }
 
             contentAppeared = false
+            rearmContentAppeared()
             if (winner != null) {
                 runningId = winner
                 runningEmbedded = false
@@ -454,6 +459,19 @@ object OneUpdatesLauncher {
             }
             if (dirty) saveState(state)
             return winner?.let { File(updateDirectory(it), BUNDLE_FILE_NAME) }
+        }
+    }
+
+    // a root view logs CONTENT_APPEARED once, for its first child, and a
+    // reload keeps the same surface view, so a reloaded update would never
+    // record its first render. selection runs after the old surface stopped
+    // and before the new bundle loads, so the re-armed marker can only come
+    // from the selected update's content. a cold start's fresh view is
+    // already armed.
+    private fun rearmContentAppeared() {
+        val activity = currentActivity?.get() as? ReactActivity ?: return
+        Handler(Looper.getMainLooper()).post {
+            activity.reactDelegate?.reactRootView?.setShouldLogContentAppeared(true)
         }
     }
 
