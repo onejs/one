@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
 declare function Column({ children, horizontalAlignment, verticalArrangement, spacing, ...props }: ComposeColumnProps): import("react/jsx-runtime").JSX.Element;
 declare function Row({ children, verticalAlignment, horizontalArrangement, spacing, ...props }: ComposeRowProps): import("react/jsx-runtime").JSX.Element;
 declare function FlowRow({ children, horizontalArrangement, verticalArrangement, ...props }: ComposeFlowRowProps): import("react/jsx-runtime").JSX.Element;
@@ -106,6 +106,29 @@ export declare const Compose: {
     FilledIconButton: typeof FilledIconButton;
     FilledTonalIconButton: typeof FilledTonalIconButton;
     OutlinedIconButton: typeof OutlinedIconButton;
+    FloatingActionButton: ((props: ComposeFloatingActionButtonProps) => import("react/jsx-runtime").JSX.Element) & {
+        Icon: ({ children }: {
+            children: ReactNode;
+        }) => import("react/jsx-runtime").JSX.Element;
+    };
+    SmallFloatingActionButton: ((props: ComposeFloatingActionButtonProps) => import("react/jsx-runtime").JSX.Element) & {
+        Icon: ({ children }: {
+            children: ReactNode;
+        }) => import("react/jsx-runtime").JSX.Element;
+    };
+    LargeFloatingActionButton: ((props: ComposeFloatingActionButtonProps) => import("react/jsx-runtime").JSX.Element) & {
+        Icon: ({ children }: {
+            children: ReactNode;
+        }) => import("react/jsx-runtime").JSX.Element;
+    };
+    ExtendedFloatingActionButton: ((props: ComposeExtendedFloatingActionButtonProps) => import("react/jsx-runtime").JSX.Element) & {
+        Icon: ({ children }: {
+            children: ReactNode;
+        }) => import("react/jsx-runtime").JSX.Element;
+        Text: ({ children }: {
+            children: ReactNode;
+        }) => import("react/jsx-runtime").JSX.Element;
+    };
     Switch: typeof Switch;
     Checkbox: typeof Checkbox;
     RadioButton: typeof RadioButton;

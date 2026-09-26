@@ -109,6 +109,14 @@ export interface ComposeIconButtonProps extends ComposeNodeProps {
     colors?: ComposeIconButtonColors;
     onClick?: () => void;
 }
+export interface ComposeFloatingActionButtonProps extends ComposeNodeProps {
+    children: ReactNode;
+    containerColor?: ColorValue;
+    onClick?: () => void;
+}
+export interface ComposeExtendedFloatingActionButtonProps extends ComposeFloatingActionButtonProps {
+    expanded?: boolean;
+}
 export interface ComposeSwitchProps extends ComposeLeafProps {
     isOn: boolean;
     disabled?: boolean;

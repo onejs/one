@@ -70,6 +70,12 @@ taps.
 and `colors` with `containerColor`, `contentColor`, `disabledContainerColor`,
 and `disabledContentColor`. Omitted colors use the current Material theme.
 
+`One.Android.FloatingActionButton`, `SmallFloatingActionButton`,
+`LargeFloatingActionButton`, and `ExtendedFloatingActionButton` render the
+Material 3 floating button sizes. Put an `Icon` in their `.Icon` slot and, for
+the extended variant, `Text` in `.Text`. `containerColor` overrides the theme,
+`onClick` handles taps, and `expanded` controls the extended label.
+
 ## Switch
 
 `One.Android.Switch` is the Compose toggle: `isOn` with `onIsOnChange`

@@ -57,6 +57,35 @@ export default function OneNativeAndroidIconButtons() {
           onPress={() => setClicks((value) => value + 1)}
         />
       </One.Android.Row>
+      <One.Android.Row spacing={12}>
+        <One.Android.SmallFloatingActionButton
+          testID="one-native-android-fab-small"
+          onClick={() => setClicks((value) => value + 1)}
+        >
+          <One.Android.SmallFloatingActionButton.Icon><One.Android.Icon name="add" /></One.Android.SmallFloatingActionButton.Icon>
+        </One.Android.SmallFloatingActionButton>
+        <One.Android.FloatingActionButton
+          testID="one-native-android-fab-medium"
+          containerColor="#c6ebc9"
+          onClick={() => setClicks((value) => value + 1)}
+        >
+          <One.Android.FloatingActionButton.Icon><One.Android.Icon name="edit" /></One.Android.FloatingActionButton.Icon>
+        </One.Android.FloatingActionButton>
+        <One.Android.LargeFloatingActionButton
+          testID="one-native-android-fab-large"
+          onClick={() => setClicks((value) => value + 1)}
+        >
+          <One.Android.LargeFloatingActionButton.Icon><One.Android.Icon name="favorite" /></One.Android.LargeFloatingActionButton.Icon>
+        </One.Android.LargeFloatingActionButton>
+      </One.Android.Row>
+      <One.Android.ExtendedFloatingActionButton
+        testID="one-native-android-fab-extended"
+        expanded={clicks < 5}
+        onClick={() => setClicks((value) => value + 1)}
+      >
+        <One.Android.ExtendedFloatingActionButton.Icon><One.Android.Icon name="add" /></One.Android.ExtendedFloatingActionButton.Icon>
+        <One.Android.ExtendedFloatingActionButton.Text><One.Android.Text text="Create" /></One.Android.ExtendedFloatingActionButton.Text>
+      </One.Android.ExtendedFloatingActionButton>
       <One.Android.FilledIconButton
         testID="one-native-android-icon-button-disabled"
         accessibilityLabel="Disabled icon button"

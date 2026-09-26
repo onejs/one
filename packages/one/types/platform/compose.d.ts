@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function FlowRow(_props: ComposeFlowRowProps): never;
@@ -105,6 +105,29 @@ export declare const Compose: {
     FilledIconButton: typeof FilledIconButton;
     FilledTonalIconButton: typeof FilledTonalIconButton;
     OutlinedIconButton: typeof OutlinedIconButton;
+    FloatingActionButton: ((_props: ComposeFloatingActionButtonProps) => never) & {
+        Icon: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
+    SmallFloatingActionButton: ((_props: ComposeFloatingActionButtonProps) => never) & {
+        Icon: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
+    LargeFloatingActionButton: ((_props: ComposeFloatingActionButtonProps) => never) & {
+        Icon: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
+    ExtendedFloatingActionButton: ((_props: ComposeExtendedFloatingActionButtonProps) => never) & {
+        Icon: (_props: {
+            children: ReactNode;
+        }) => never;
+        Text: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
     Switch: typeof Switch;
     Checkbox: typeof Checkbox;
     RadioButton: typeof RadioButton;

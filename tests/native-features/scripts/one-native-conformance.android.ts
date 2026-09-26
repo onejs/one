@@ -3043,6 +3043,9 @@ async function runCompose(config: Config) {
         exactlyOneId(nodes, `one-native-android-icon-button-${variant}`)
       ) && exactlyOneId(nodes, 'one-native-android-button-tonal') &&
       exactlyOneId(nodes, 'one-native-android-button-elevated') &&
+      ['small', 'medium', 'large', 'extended'].every((variant) =>
+        exactlyOneId(nodes, `one-native-android-fab-${variant}`)
+      ) &&
       idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 0 · Disabled: 0')
     )
     tapFresh(config, 'filled icon button', { id: 'one-native-android-icon-button-filled' })
@@ -3057,9 +3060,25 @@ async function runCompose(config: Config) {
     await check('compose-elevated-button-click', (nodes) =>
       idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 3 · Disabled: 0')
     )
+    tapFresh(config, 'small floating action button', { id: 'one-native-android-fab-small' })
+    await check('compose-fab-small-click', (nodes) =>
+      idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 4 · Disabled: 0')
+    )
+    tapFresh(config, 'medium floating action button', { id: 'one-native-android-fab-medium' })
+    await check('compose-fab-medium-click', (nodes) =>
+      idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 5 · Disabled: 0')
+    )
+    tapFresh(config, 'large floating action button', { id: 'one-native-android-fab-large' })
+    await check('compose-fab-large-click', (nodes) =>
+      idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 6 · Disabled: 0')
+    )
+    tapFresh(config, 'extended floating action button', { id: 'one-native-android-fab-extended' })
+    await check('compose-fab-extended-click', (nodes) =>
+      idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 7 · Disabled: 0')
+    )
     tapFresh(config, 'disabled icon button', { id: 'one-native-android-icon-button-disabled' })
     await check('compose-icon-button-disabled', (nodes) =>
-      idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 3 · Disabled: 0')
+      idText(nodes, 'one-native-android-icon-buttons-status', 'Clicks: 7 · Disabled: 0')
     )
   }
 

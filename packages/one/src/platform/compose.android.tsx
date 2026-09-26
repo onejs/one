@@ -20,8 +20,10 @@ import type {
   ComposeDialogProps,
   ComposeDividerProps,
   ComposeElevatedCardProps,
+  ComposeExtendedFloatingActionButtonProps,
   ComposeFilterChipProps,
   ComposeFlowRowProps,
+  ComposeFloatingActionButtonProps,
   ComposeFontWeight,
   ComposeHorizontalAlignment,
   ComposeHorizontalArrangement,
@@ -61,6 +63,7 @@ import {
   validateDialogProps,
   validateDividerProps,
   validateFlowRowProps,
+  validateFloatingActionButtonProps,
   validateChipProps,
   validateIconProps,
   validateIconButtonProps,
@@ -101,6 +104,7 @@ type ComposeNodeType =
   | 'fillediconbutton'
   | 'filledtonaliconbutton'
   | 'outlinediconbutton'
+  | 'floatingactionbutton'
   | 'switch'
   | 'checkbox'
   | 'radio'
@@ -127,7 +131,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   maxLines?: number
   label?: string
   disabled?: boolean
-  variant?: ComposeButtonVariant | ComposeTextFieldVariant
+  variant?: ComposeButtonVariant | ComposeTextFieldVariant | 'small' | 'medium' | 'large' | 'extended'
   tone?: ComposeButtonTone
   icon?: string
   iconFilled?: boolean
@@ -154,6 +158,8 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   chipElevation?: number
   chipBorder?: ComposeFilterChipProps['border']
   iconButtonColors?: ComposeIconButtonProps['colors']
+  fabColors?: Pick<ComposeFloatingActionButtonProps, 'containerColor'>
+  fabExpanded?: boolean
   acknowledgedEvent?: number
   revision?: number
   textValue?: string
@@ -348,18 +354,18 @@ function ListItemRoot({ children, colors, tonalElevation, shadowElevation, ...pr
   )
 }
 
-function listItemSlot(slotName: string) {
+function composeSlot(slotName: string) {
   return ({ children }: { children: ReactNode }) => (
     <ComposeNode nodeType="listitemslot" slotName={slotName}>{children}</ComposeNode>
   )
 }
 
 const ListItem = Object.assign(ListItemRoot, {
-  HeadlineContent: listItemSlot('headlineContent'),
-  OverlineContent: listItemSlot('overlineContent'),
-  SupportingContent: listItemSlot('supportingContent'),
-  LeadingContent: listItemSlot('leadingContent'),
-  TrailingContent: listItemSlot('trailingContent'),
+  HeadlineContent: composeSlot('headlineContent'),
+  OverlineContent: composeSlot('overlineContent'),
+  SupportingContent: composeSlot('supportingContent'),
+  LeadingContent: composeSlot('leadingContent'),
+  TrailingContent: composeSlot('trailingContent'),
 })
 
 function renderCard(
@@ -598,6 +604,36 @@ function FilledTonalIconButton(props: ComposeIconButtonProps) {
 function OutlinedIconButton(props: ComposeIconButtonProps) {
   return renderIconButton('outlinediconbutton', props)
 }
+
+function FloatingActionButtonRoot({ children, containerColor, expanded = true, onClick, variant = 'medium', ...props }: ComposeFloatingActionButtonProps & { expanded?: boolean; variant?: 'small' | 'medium' | 'large' | 'extended' }) {
+  validateFloatingActionButtonProps({ children, containerColor, expanded, onClick }, variant)
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="floatingactionbutton"
+      variant={variant}
+      fabColors={{ containerColor }}
+      fabExpanded={expanded}
+      onNativeComposeNodeButtonPress={onClick ? () => onClick() : undefined}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+const FloatingActionButton = Object.assign((props: ComposeFloatingActionButtonProps) => <FloatingActionButtonRoot {...props} variant="medium" />, {
+  Icon: composeSlot('icon'),
+})
+const SmallFloatingActionButton = Object.assign((props: ComposeFloatingActionButtonProps) => <FloatingActionButtonRoot {...props} variant="small" />, {
+  Icon: composeSlot('icon'),
+})
+const LargeFloatingActionButton = Object.assign((props: ComposeFloatingActionButtonProps) => <FloatingActionButtonRoot {...props} variant="large" />, {
+  Icon: composeSlot('icon'),
+})
+const ExtendedFloatingActionButton = Object.assign((props: ComposeExtendedFloatingActionButtonProps) => <FloatingActionButtonRoot {...props} variant="extended" />, {
+  Icon: composeSlot('icon'),
+  Text: composeSlot('text'),
+})
 
 function Switch({
   isOn,
@@ -907,6 +943,10 @@ export const Compose = {
   FilledIconButton,
   FilledTonalIconButton,
   OutlinedIconButton,
+  FloatingActionButton,
+  SmallFloatingActionButton,
+  LargeFloatingActionButton,
+  ExtendedFloatingActionButton,
   Switch,
   Checkbox,
   RadioButton,

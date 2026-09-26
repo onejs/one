@@ -58,6 +58,11 @@ import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.SmallFloatingActionButton
+import androidx.compose.material3.LargeFloatingActionButton
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.material3.InputChip
 import androidx.compose.material3.InputChipDefaults
@@ -378,6 +383,8 @@ internal data class OneNativeComposeNodeProps(
     val radioColors: OneNativeRadioColors = OneNativeRadioColors(),
     val cardColors: OneNativeCardColors = OneNativeCardColors(),
     val iconButtonColors: OneNativeIconButtonColors = OneNativeIconButtonColors(),
+    val fabColors: OneNativeCardColors = OneNativeCardColors(),
+    val fabExpanded: Boolean = true,
     val badgeColors: OneNativeCardColors = OneNativeCardColors(),
     val listItemColors: OneNativeListItemColors = OneNativeListItemColors(),
     val tonalElevation: Double = -1.0,
@@ -682,6 +689,14 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageIconButtonColors(value: ReadableMap?) {
         pendingProps = pendingProps.copy(iconButtonColors = OneNativeIconButtonColors.fromMap(value, context))
+    }
+
+    internal fun stageFabColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(fabColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageFabExpanded(value: Boolean) {
+        pendingProps = pendingProps.copy(fabExpanded = value)
     }
 
     internal fun stageBadgeColors(value: ReadableMap?) {
@@ -1195,6 +1210,7 @@ private fun RenderComposeNodeBody(
         "button" -> RenderComposeButton(node, props, modifier)
         "iconbutton", "fillediconbutton", "filledtonaliconbutton", "outlinediconbutton" ->
             RenderComposeIconButton(node, props, modifier)
+        "floatingactionbutton" -> RenderComposeFloatingActionButton(node, props, modifier)
         "switch" -> RenderComposeSwitch(node, props, modifier)
         "checkbox" ->
             Checkbox(
@@ -1591,6 +1607,31 @@ private fun RenderComposeIconButton(
 }
 
 @Composable
+private fun RenderComposeFloatingActionButton(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val icon = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "icon" }
+    val text = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "text" }
+    val iconContent: @Composable () -> Unit = { if (icon != null) RenderComposeChildren(icon) }
+    val containerColor = props.fabColors.containerColor?.let(::Color) ?: FloatingActionButtonDefaults.containerColor
+    when (props.variant) {
+        "small" -> SmallFloatingActionButton(onClick = node::handlePress, modifier = modifier, containerColor = containerColor, content = iconContent)
+        "large" -> LargeFloatingActionButton(onClick = node::handlePress, modifier = modifier, containerColor = containerColor, content = iconContent)
+        "extended" -> ExtendedFloatingActionButton(
+            onClick = node::handlePress,
+            modifier = modifier,
+            expanded = props.fabExpanded,
+            containerColor = containerColor,
+            icon = iconContent,
+            text = { if (text != null) RenderComposeChildren(text) },
+        )
+        else -> FloatingActionButton(onClick = node::handlePress, modifier = modifier, containerColor = containerColor, content = iconContent)
+    }
+}
+
+@Composable
 private fun RowScope.ComposeButtonContent(props: OneNativeComposeNodeProps) {
     val icon = props.icon
     if (!icon.isNullOrEmpty()) {
@@ -1920,7 +1961,7 @@ private fun Modifier.applyReactSemantics(
     val semanticRole =
         composeRole(normalizedRole)
             ?: when (node.renderedNodeKind) {
-                "button", "iconbutton", "fillediconbutton", "filledtonaliconbutton", "outlinediconbutton" -> Role.Button
+                "button", "iconbutton", "fillediconbutton", "filledtonaliconbutton", "outlinediconbutton", "floatingactionbutton" -> Role.Button
                 "switch" -> Role.Switch
                 "checkbox" -> Role.Checkbox
                 "radio" -> Role.RadioButton
