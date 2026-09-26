@@ -29,7 +29,7 @@ const component = (publicName: string) =>
   schema.components.find((entry: { publicName: string }) => entry.publicName === publicName)
 
 const glassShapeNames = ['Circle', 'Capsule', 'Rectangle', 'RoundedRectangle', 'Ellipse']
-const shapeNames = [...glassShapeNames, 'UnevenRoundedRectangle']
+const shapeNames = [...glassShapeNames, 'UnevenRoundedRectangle', 'ConcentricRectangle']
 const cornerRadii = [
   'topLeadingRadius', 'bottomLeadingRadius', 'bottomTrailingRadius', 'topTrailingRadius',
 ] as const
