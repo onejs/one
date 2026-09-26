@@ -4,7 +4,7 @@ description: Jetpack Compose views under One.Android
 ---
 
 Jetpack Compose views under `One.Android`. Layout nodes (`Column`, `Row`,
-`Box`) take children; `Text`, `Icon`, `Button`, `Switch`, `TextField`,
+`Box`) take children; `Text`, `Icon`, `Button`, `Switch`, `Checkbox`, `RadioButton`, `TextField`,
 `Slider`, `AlertDialog`, and `ProgressIndicator` are leaves. `Dialog`
 takes children and shows them in a dialog window. Every node takes the
 shared props (`accessibilityLabel`, `accessibilityState`,
@@ -62,6 +62,23 @@ taps.
 (required), an optional `label`, `disabled`, and `revision` for external
 resets.
 
+## Checkbox
+
+`One.Android.Checkbox` uses a controlled `value` and optional
+`onCheckedChange`. With no callback it is read only. `disabled` prevents
+interaction, and `revision` applies an external reset. `colors` accepts
+`checkedColor`, `disabledCheckedColor`, `uncheckedColor`,
+`disabledUncheckedColor`, and `checkmarkColor`; omitted colors use the
+current Material theme.
+
+## RadioButton
+
+`One.Android.RadioButton` takes a controlled `selected` value and optional
+`onClick`. Without a callback it is read only. `disabled` prevents clicks.
+The `colors` prop accepts `selectedColor`, `unselectedColor`,
+`disabledSelectedColor`, and `disabledUnselectedColor`; omitted colors use
+the current Material theme.
+
 ## TextField
 
 `One.Android.TextField` edits `text` (a string or a native state handle
@@ -105,7 +122,7 @@ window while `visible` is true and reports dismissal through `onDismiss`.
 ## ProgressIndicator
 
 `One.Android.ProgressIndicator` shows progress as `'linear'` or
-`'circular'` (default linear). Leave `progress` undefined for an
+`'circular'` (default circular). Leave `progress` undefined for an
 indeterminate indicator.
 
 `One.Android` components throw when rendered outside an Android build, so

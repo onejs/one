@@ -1,4 +1,4 @@
-import type { ComposeAlertDialogProps, ComposeBoxProps, ComposeButtonProps, ComposeColumnProps, ComposeDialogProps, ComposeIconProps, ComposeProgressIndicatorProps, ComposeRowProps, ComposeSliderProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeBoxProps, ComposeButtonProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeIconProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function Box(_props: ComposeBoxProps): never;
@@ -6,6 +6,8 @@ declare function Text(_props: ComposeTextProps): never;
 declare function Icon(_props: ComposeIconProps): never;
 declare function Button(_props: ComposeButtonProps): never;
 declare function Switch(_props: ComposeSwitchProps): never;
+declare function Checkbox(_props: ComposeCheckboxProps): never;
+declare function RadioButton(_props: ComposeRadioButtonProps): never;
 declare function TextField(_props: ComposeTextFieldProps): never;
 declare function Slider(_props: ComposeSliderProps): never;
 declare function AlertDialog(_props: ComposeAlertDialogProps): never;
@@ -19,6 +21,8 @@ export declare const Compose: {
     Icon: typeof Icon;
     Button: typeof Button;
     Switch: typeof Switch;
+    Checkbox: typeof Checkbox;
+    RadioButton: typeof RadioButton;
     TextField: typeof TextField;
     Slider: typeof Slider;
     AlertDialog: typeof AlertDialog;

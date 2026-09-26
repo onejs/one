@@ -10,6 +10,7 @@ import type {
   ComposeButtonProps,
   ComposeButtonTone,
   ComposeButtonVariant,
+  ComposeCheckboxProps,
   ComposeColumnProps,
   ComposeContentAlignment,
   ComposeDialogProps,
@@ -20,6 +21,7 @@ import type {
   ComposeNodeProps,
   ComposeProgressIndicatorProps,
   ComposeProgressVariant,
+  ComposeRadioButtonProps,
   ComposeRowProps,
   ComposeSliderProps,
   ComposeSwitchProps,
@@ -39,10 +41,12 @@ import {
   validateAlertDialogProps,
   validateBoxProps,
   validateButtonProps,
+  validateCheckboxProps,
   validateColumnProps,
   validateDialogProps,
   validateIconProps,
   validateProgressIndicatorProps,
+  validateRadioButtonProps,
   validateRowProps,
   validateSliderProps,
   validateSwitchProps,
@@ -58,6 +62,8 @@ type ComposeNodeType =
   | 'icon'
   | 'button'
   | 'switch'
+  | 'checkbox'
+  | 'radio'
   | 'textfield'
   | 'slider'
   | 'alertdialog'
@@ -85,6 +91,10 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   iconFilled?: boolean
   colorRole?: string
   value?: boolean
+  nativeClickable?: boolean
+  checkboxColors?: ComposeCheckboxProps['colors']
+  selected?: boolean
+  radioColors?: ComposeRadioButtonProps['colors']
   acknowledgedEvent?: number
   revision?: number
   textValue?: string
@@ -112,7 +122,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   progress?: number
   progressVariant?: ComposeProgressVariant
   onNativeComposeNodeButtonPress?: (event: unknown) => void
-  onNativeComposeNodeSwitchValueChange?: (event: {
+  onNativeComposeNodeBooleanValueChange?: (event: {
     nativeEvent: { value: boolean; eventCount: number; revision: number }
   }) => void
   onNativeComposeNodeTextValueChange?: (event: {
@@ -136,6 +146,8 @@ const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
   'icon',
   'button',
   'switch',
+  'checkbox',
+  'radio',
   'textfield',
   'slider',
   'alertdialog',
@@ -314,9 +326,63 @@ function Switch({
       revision={revision}
       label={label}
       disabled={disabled}
-      onNativeComposeNodeSwitchValueChange={(event) =>
+      onNativeComposeNodeBooleanValueChange={(event) =>
         controlled.onNativeChange(event.nativeEvent)
       }
+    />
+  )
+}
+
+function Checkbox({
+  value,
+  disabled = false,
+  onCheckedChange,
+  revision = 0,
+  colors,
+  ...props
+}: ComposeCheckboxProps) {
+  validateCheckboxProps({ value, disabled, onCheckedChange, revision, colors })
+  const controlled = useControlled<{
+    value: boolean
+    eventCount: number
+    revision: number
+  }>((event) => onCheckedChange?.(event.value), revision)
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="checkbox"
+      value={value}
+      nativeClickable={onCheckedChange !== undefined}
+      checkboxColors={colors}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      disabled={disabled}
+      onNativeComposeNodeBooleanValueChange={
+        onCheckedChange
+          ? (event) => controlled.onNativeChange(event.nativeEvent)
+          : undefined
+      }
+    />
+  )
+}
+
+function RadioButton({
+  selected,
+  disabled = false,
+  onClick,
+  colors,
+  ...props
+}: ComposeRadioButtonProps) {
+  validateRadioButtonProps({ selected, disabled, onClick, colors })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="radio"
+      selected={selected}
+      disabled={disabled}
+      nativeClickable={onClick !== undefined}
+      radioColors={colors}
+      onNativeComposeNodeButtonPress={onClick ? () => onClick() : undefined}
     />
   )
 }
@@ -529,6 +595,8 @@ export const Compose = {
   Icon,
   Button,
   Switch,
+  Checkbox,
+  RadioButton,
   TextField,
   Slider,
   AlertDialog,

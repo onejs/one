@@ -81,8 +81,8 @@ class OneNativeComposeNodeManager :
             super.getExportedCustomDirectEventTypeConstants()?.toMutableMap() ?: mutableMapOf()
         events["topNativeComposeNodeButtonPress"] =
             mapOf("registrationName" to "onNativeComposeNodeButtonPress")
-        events["topNativeComposeNodeSwitchValueChange"] =
-            mapOf("registrationName" to "onNativeComposeNodeSwitchValueChange")
+        events["topNativeComposeNodeBooleanValueChange"] =
+            mapOf("registrationName" to "onNativeComposeNodeBooleanValueChange")
         events["topNativeComposeNodeTextValueChange"] =
             mapOf("registrationName" to "onNativeComposeNodeTextValueChange")
         events["topNativeComposeNodeTextFieldFocusChange"] =
@@ -152,6 +152,22 @@ class OneNativeComposeNodeManager :
 
     override fun setValue(view: OneNativeComposeNodeView, value: Boolean) {
         view.stageValue(value)
+    }
+
+    override fun setNativeClickable(view: OneNativeComposeNodeView, value: Boolean) {
+        view.stageNativeClickable(value)
+    }
+
+    override fun setCheckboxColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageCheckboxColors(value)
+    }
+
+    override fun setSelected(view: OneNativeComposeNodeView, value: Boolean) {
+        view.stageSelected(value)
+    }
+
+    override fun setRadioColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageRadioColors(value)
     }
 
     override fun setAcknowledgedEvent(view: OneNativeComposeNodeView, value: Int) {

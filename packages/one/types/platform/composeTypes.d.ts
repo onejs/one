@@ -27,7 +27,7 @@ export type ComposeVerticalArrangement = 'top' | 'center' | 'bottom' | 'spaceBet
 export type ComposeHorizontalArrangement = 'start' | 'center' | 'end' | 'spaceBetween' | 'spaceAround' | 'spaceEvenly';
 export type ComposeTextAlign = 'unspecified' | 'left' | 'right' | 'center' | 'justify' | 'start' | 'end';
 export type ComposeFontWeight = 'thin' | 'extraLight' | 'light' | 'normal' | 'medium' | 'semiBold' | 'bold' | 'extraBold' | 'black';
-export type ComposeAccessibilityRole = 'button' | 'switch' | 'header' | 'text' | 'adjustable' | 'alert' | 'progressbar';
+export type ComposeAccessibilityRole = 'button' | 'switch' | 'checkbox' | 'radio' | 'header' | 'text' | 'adjustable' | 'alert' | 'progressbar';
 export interface ComposeNodeProps extends Pick<ViewProps, 'accessibilityLabel' | 'accessibilityState' | 'accessibilityValue' | 'testID'> {
     children?: ReactNode;
     accessibilityRole?: ComposeAccessibilityRole;
@@ -77,6 +77,30 @@ export interface ComposeSwitchProps extends ComposeLeafProps {
     label?: string;
     onIsOnChange: (value: boolean) => void;
     revision?: number;
+}
+export interface ComposeCheckboxProps extends ComposeLeafProps {
+    value: boolean;
+    disabled?: boolean;
+    onCheckedChange?: (value: boolean) => void;
+    revision?: number;
+    colors?: Readonly<{
+        checkedColor?: ColorValue;
+        disabledCheckedColor?: ColorValue;
+        uncheckedColor?: ColorValue;
+        disabledUncheckedColor?: ColorValue;
+        checkmarkColor?: ColorValue;
+    }>;
+}
+export interface ComposeRadioButtonProps extends ComposeLeafProps {
+    selected: boolean;
+    disabled?: boolean;
+    onClick?: () => void;
+    colors?: Readonly<{
+        selectedColor?: ColorValue;
+        unselectedColor?: ColorValue;
+        disabledSelectedColor?: ColorValue;
+        disabledUnselectedColor?: ColorValue;
+    }>;
 }
 export type ComposeTextFieldVariant = 'filled' | 'outlined';
 export type ComposeTextFieldKeyboardType = 'default' | 'number' | 'decimal' | 'email' | 'password' | 'phone' | 'url';
