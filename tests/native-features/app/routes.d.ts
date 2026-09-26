@@ -58,6 +58,7 @@ declare module 'one' {
         | `/one-native-fonts`
         | `/one-native-gpu`
         | `/one-native-grids`
+        | `/one-native-group-box`
         | `/one-native-groups`
         | `/one-native-haptics`
         | `/one-native-host`

@@ -105,6 +105,16 @@ export const containerComponents = [
     interfaceOnly: true,
   },
   {
+    name: 'OneNativeGroupBox',
+    publicName: 'GroupBox',
+    props: { label: 'string' },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'measured' },
+    slots: [composedContent],
+    interfaceOnly: true,
+  },
+  {
     name: 'OneNativeButton',
     publicName: 'Button',
     // a button is a measured container: with children they are the label view, without
