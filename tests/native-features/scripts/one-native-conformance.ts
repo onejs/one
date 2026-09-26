@@ -5019,6 +5019,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await wait('foreign runtime fetches none', (n) => labelValue(n, 'Fetch') === 'none')
       tap({ id: 'one-native-updates-refresh' })
       await wait('foreign runtime leaves staged alone', (n) => labelValue(n, 'Staged') === eighth.id)
+
+      // 10. a manifest naming paths outside the updates directory is unusable.
+      updates.serveEscapingPaths()
+      tap({ id: 'one-native-updates-check' })
+      await wait('escaping paths check rejects', (n) => labelValue(n, 'Check') === 'error:E_UPDATES_CHECK')
+      tap({ id: 'one-native-updates-fetch' })
+      await wait('escaping paths fetch rejects', (n) => labelValue(n, 'Fetch') === 'error:E_UPDATES_FETCH')
+      tap({ id: 'one-native-updates-refresh' })
+      await wait('escaping paths leave staged alone', (n) => labelValue(n, 'Staged') === eighth.id)
     } finally {
       updates.stop()
     }
