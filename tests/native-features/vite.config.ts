@@ -134,6 +134,9 @@ export default defineConfig({
           photoLibrary: {
             addOnly: 'NativeFeatureTests verifies saving photos and videos.',
           },
+          contacts: {
+            usage: 'NativeFeatureTests verifies contact access.',
+          },
           location: {
             whenInUse: 'NativeFeatureTests verifies current location.',
           },

@@ -43,6 +43,7 @@ const suites = [
   'crypto',
   'app-info',
   'device',
+  'contacts',
   'editors',
   'popover',
   'navigation',
@@ -306,6 +307,9 @@ const deviceLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-device-read')) &&
   has(nodes, 'Model: ')
+const contactsLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-contacts-run')) ||
+  labels(nodes).some((label) => label.includes('NativeFeatureTests verifies contact access.'))
 const editorsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-editor-reject')) &&
@@ -446,6 +450,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   crypto: cryptoLoaded,
   'app-info': appInfoLoaded,
   device: deviceLoaded,
+  contacts: contactsLoaded,
   editors: editorsLoaded,
   popover: popoverLoaded,
   navigation: navigationLoaded,
@@ -491,6 +496,7 @@ const suiteHome: Record<Suite, string> = {
   crypto: 'nav-one-native-crypto',
   'app-info': 'nav-one-native-app-info',
   device: 'nav-one-native-device',
+  contacts: 'nav-one-native-contacts',
   editors: 'nav-one-native-editors',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
@@ -854,6 +860,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'photo-library') {
     execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'photos-add', config.bundleId], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+  }
+  if (config.suite === 'contacts') {
+    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'contacts-limited', config.bundleId], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'contacts', config.bundleId], {
       stdio: 'ignore',
       timeout: 30_000,
     })
@@ -2489,6 +2505,47 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     })
     screenshot('device-info.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'contacts') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-contacts')
+    await wait('Contacts permission starts undetermined', (n) =>
+      labels(n).includes('Permission: notDetermined') && labels(n).includes('Status: idle')
+    )
+    tap({ id: 'one-native-contacts-run' })
+    const prompt = await wait('Contacts purpose prompt opens', (n) =>
+      labels(n).some((label) => label.includes('NativeFeatureTests verifies contact access.'))
+    )
+    screenshot('contacts-permission.png')
+    tap({ label: 'Continue' })
+    // the full-access choice is owned by a system process, so probe its button directly.
+    const screen = prompt.find((node) => node.type === 'Application')?.frame
+    if (!screen) throw new Error('Contacts prompt has no application frame')
+    const choicePoint = `${Math.round(screen.width / 2)},${Math.round(screen.height - 74)}`
+    let shareAll: Node | undefined
+    const choiceDeadline = Date.now() + config.timeout
+    do {
+      const choice = JSON.parse(
+        axe(['describe-ui', '--point', choicePoint], config.simulatorId)
+      ) as Node
+      if (/^Share All \d+ Contacts$/.test(choice.AXLabel ?? '')) shareAll = choice
+      else await new Promise((resolve) => setTimeout(resolve, 250))
+    } while (!shareAll && Date.now() < choiceDeadline)
+    if (!shareAll?.frame) throw new Error('Contacts full-access choice did not appear')
+    console.log('PASS Contacts full-access choice opens')
+    screenshot('contacts-access-choice.png', [shareAll])
+    point(shareAll.frame.x + shareAll.frame.width / 2, shareAll.frame.y + shareAll.frame.height / 2)
+    await wait('Contacts create search and delete pass', (n) =>
+      labels(n).includes('Status: passed') &&
+      labels(n).includes('Permission: authorized') &&
+      labels(n).includes(
+        'Result: before=E_CONTACTS_PERMISSION; matched=true; removed=true; invalid=E_CONTACTS_INPUT'
+      )
+    )
+    screenshot('contacts-round-trip.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -26,6 +26,10 @@ export interface NativeAppManifest {
   photoLibrary?: {
     addOnly: string
   }
+  // ios Contacts permission prompt for One.iOS.Contacts.
+  contacts?: {
+    usage: string
+  }
   // foreground Core Location permission prompt for One.iOS.Location.
   location?: {
     whenInUse: string
@@ -168,6 +172,14 @@ export function validateNativeApp(
       manifest.photoLibrary.addOnly.trim() === '')
   ) {
     fail('photoLibrary.addOnly must be a non-empty string')
+  }
+  if (
+    manifest.contacts !== undefined &&
+    (!manifest.contacts ||
+      typeof manifest.contacts.usage !== 'string' ||
+      manifest.contacts.usage.trim() === '')
+  ) {
+    fail('contacts.usage must be a non-empty string')
   }
   if (
     manifest.location !== undefined &&

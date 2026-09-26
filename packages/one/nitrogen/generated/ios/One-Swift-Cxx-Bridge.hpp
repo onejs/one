@@ -52,6 +52,10 @@ namespace margelo::nitro::one { struct BrowserResult; }
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class CameraPermissionStatus; }
+// Forward declaration of `ContactInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactInfo; }
+// Forward declaration of `ContactsPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
 // Forward declaration of `DeviceInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct DeviceInfo; }
 // Forward declaration of `DocumentPickerAsset` to properly resolve imports.
@@ -88,6 +92,8 @@ namespace margelo::nitro::one { class HybridOneAudioSpec; }
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 // Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
+// Forward declaration of `HybridOneContactsSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneContactsSpec; }
 // Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneCryptoSpec; }
 // Forward declaration of `HybridOneDeviceSpec` to properly resolve imports.
@@ -212,6 +218,8 @@ namespace One { class HybridOneAudioSpec_cxx; }
 namespace One { class HybridOneBrowserSpec_cxx; }
 // Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneClipboardSpec_cxx; }
+// Forward declaration of `HybridOneContactsSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneContactsSpec_cxx; }
 // Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneCryptoSpec_cxx; }
 // Forward declaration of `HybridOneDeviceSpec_cxx` to properly resolve imports.
@@ -271,6 +279,8 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "BrowserResultType.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
+#include "ContactInfo.hpp"
+#include "ContactsPermissionStatus.hpp"
 #include "DeviceInfo.hpp"
 #include "DocumentPickerAsset.hpp"
 #include "DocumentPickerNativeResult.hpp"
@@ -289,6 +299,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneAudioSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
+#include "HybridOneContactsSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
 #include "HybridOneDeviceSpec.hpp"
 #include "HybridOneDocumentPickerSpec.hpp"
@@ -1207,6 +1218,135 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::shared_ptr<Promise<std::string>>>::withError(error);
   }
 
+  // pragma MARK: std::shared_ptr<Promise<ContactsPermissionStatus>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<ContactsPermissionStatus>>`.
+   */
+  using std__shared_ptr_Promise_ContactsPermissionStatus__ = std::shared_ptr<Promise<ContactsPermissionStatus>>;
+  inline std::shared_ptr<Promise<ContactsPermissionStatus>> create_std__shared_ptr_Promise_ContactsPermissionStatus__() noexcept {
+    return Promise<ContactsPermissionStatus>::create();
+  }
+  inline PromiseHolder<ContactsPermissionStatus> wrap_std__shared_ptr_Promise_ContactsPermissionStatus__(std::shared_ptr<Promise<ContactsPermissionStatus>> promise) noexcept {
+    return PromiseHolder<ContactsPermissionStatus>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(ContactsPermissionStatus /* result */)>
+  /**
+   * Specialized version of `std::function<void(ContactsPermissionStatus)>`.
+   */
+  using Func_void_ContactsPermissionStatus = std::function<void(ContactsPermissionStatus /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(ContactsPermissionStatus / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_ContactsPermissionStatus_Wrapper final {
+  public:
+    explicit Func_void_ContactsPermissionStatus_Wrapper(std::function<void(ContactsPermissionStatus /* result */)>&& func): _function(std::make_unique<std::function<void(ContactsPermissionStatus /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<ContactsPermissionStatus>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(ContactsPermissionStatus /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_ContactsPermissionStatus create_Func_void_ContactsPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_ContactsPermissionStatus_Wrapper wrap_Func_void_ContactsPermissionStatus(Func_void_ContactsPermissionStatus value) noexcept {
+    return Func_void_ContactsPermissionStatus_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::vector<std::string>
+  /**
+   * Specialized version of `std::vector<std::string>`.
+   */
+  using std__vector_std__string_ = std::vector<std::string>;
+  inline std::vector<std::string> create_std__vector_std__string_(size_t size) noexcept {
+    std::vector<std::string> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::vector<ContactInfo>
+  /**
+   * Specialized version of `std::vector<ContactInfo>`.
+   */
+  using std__vector_ContactInfo_ = std::vector<ContactInfo>;
+  inline std::vector<ContactInfo> create_std__vector_ContactInfo_(size_t size) noexcept {
+    std::vector<ContactInfo> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<std::vector<ContactInfo>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<ContactInfo>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_ContactInfo___ = std::shared_ptr<Promise<std::vector<ContactInfo>>>;
+  inline std::shared_ptr<Promise<std::vector<ContactInfo>>> create_std__shared_ptr_Promise_std__vector_ContactInfo___() noexcept {
+    return Promise<std::vector<ContactInfo>>::create();
+  }
+  inline PromiseHolder<std::vector<ContactInfo>> wrap_std__shared_ptr_Promise_std__vector_ContactInfo___(std::shared_ptr<Promise<std::vector<ContactInfo>>> promise) noexcept {
+    return PromiseHolder<std::vector<ContactInfo>>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const std::vector<ContactInfo>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<ContactInfo>&)>`.
+   */
+  using Func_void_std__vector_ContactInfo_ = std::function<void(const std::vector<ContactInfo>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<ContactInfo>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_ContactInfo__Wrapper final {
+  public:
+    explicit Func_void_std__vector_ContactInfo__Wrapper(std::function<void(const std::vector<ContactInfo>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<ContactInfo>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<ContactInfo> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<ContactInfo>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_ContactInfo_ create_Func_void_std__vector_ContactInfo_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_ContactInfo__Wrapper wrap_Func_void_std__vector_ContactInfo_(Func_void_std__vector_ContactInfo_ value) noexcept {
+    return Func_void_std__vector_ContactInfo__Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneContactsSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneContactsSpec>`.
+   */
+  using std__shared_ptr_HybridOneContactsSpec_ = std::shared_ptr<HybridOneContactsSpec>;
+  std::shared_ptr<HybridOneContactsSpec> create_std__shared_ptr_HybridOneContactsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneContactsSpec_(std__shared_ptr_HybridOneContactsSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneContactsSpec>
+  using std__weak_ptr_HybridOneContactsSpec_ = std::weak_ptr<HybridOneContactsSpec>;
+  inline std__weak_ptr_HybridOneContactsSpec_ weakify_std__shared_ptr_HybridOneContactsSpec_(const std::shared_ptr<HybridOneContactsSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<ContactsPermissionStatus>
+  using Result_ContactsPermissionStatus_ = Result<ContactsPermissionStatus>;
+  inline Result_ContactsPermissionStatus_ create_Result_ContactsPermissionStatus_(ContactsPermissionStatus value) noexcept {
+    return Result<ContactsPermissionStatus>::withValue(std::move(value));
+  }
+  inline Result_ContactsPermissionStatus_ create_Result_ContactsPermissionStatus_(const std::exception_ptr& error) noexcept {
+    return Result<ContactsPermissionStatus>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>
+  using Result_std__shared_ptr_Promise_ContactsPermissionStatus___ = Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>;
+  inline Result_std__shared_ptr_Promise_ContactsPermissionStatus___ create_Result_std__shared_ptr_Promise_ContactsPermissionStatus___(const std::shared_ptr<Promise<ContactsPermissionStatus>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_ContactsPermissionStatus___ create_Result_std__shared_ptr_Promise_ContactsPermissionStatus___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>
+  using Result_std__shared_ptr_Promise_std__vector_ContactInfo____ = Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_ContactInfo____ create_Result_std__shared_ptr_Promise_std__vector_ContactInfo____(const std::shared_ptr<Promise<std::vector<ContactInfo>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_ContactInfo____ create_Result_std__shared_ptr_Promise_std__vector_ContactInfo____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>::withError(error);
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneCryptoSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneCryptoSpec>`.
@@ -1341,17 +1481,6 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_DocumentPickerNativeResult create_Func_void_DocumentPickerNativeResult(void* NON_NULL swiftClosureWrapper) noexcept;
   inline Func_void_DocumentPickerNativeResult_Wrapper wrap_Func_void_DocumentPickerNativeResult(Func_void_DocumentPickerNativeResult value) noexcept {
     return Func_void_DocumentPickerNativeResult_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::vector<std::string>
-  /**
-   * Specialized version of `std::vector<std::string>`.
-   */
-  using std__vector_std__string_ = std::vector<std::string>;
-  inline std::vector<std::string> create_std__vector_std__string_(size_t size) noexcept {
-    std::vector<std::string> vector;
-    vector.reserve(size);
-    return vector;
   }
 
   // pragma MARK: std::shared_ptr<HybridOneDocumentPickerSpec>

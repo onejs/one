@@ -1761,6 +1761,9 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       if (app.photoLibrary !== undefined) {
         usage.set('NSPhotoLibraryAddUsageDescription', app.photoLibrary.addOnly)
       }
+      if (app.contacts !== undefined) {
+        usage.set('NSContactsUsageDescription', app.contacts.usage)
+      }
       if (app.location !== undefined) {
         usage.set('NSLocationWhenInUseUsageDescription', app.location.whenInUse)
       }

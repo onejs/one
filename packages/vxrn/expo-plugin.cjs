@@ -20,6 +20,7 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // options: { location: { whenInUse: string } } sets the iOS location prompt.
 // options: { audio: { microphone: string } } sets the iOS recording prompt.
 // options: { photoLibrary: { addOnly: string } } sets the ios photos add prompt.
+// options: { contacts: { usage: string } } sets the ios contacts prompt.
 module.exports = function withVxrn(config, options = {}) {
   const projectRoot = config?._internal?.projectRoot
   if (!projectRoot) {
@@ -45,6 +46,7 @@ module.exports = function withVxrn(config, options = {}) {
   const location = options.location
   const audio = options.audio
   const photoLibrary = options.photoLibrary
+  const contacts = options.contacts
   if (
     location &&
     (typeof location.whenInUse !== 'string' || !location.whenInUse.trim())
@@ -62,6 +64,12 @@ module.exports = function withVxrn(config, options = {}) {
     (!photoLibrary || typeof photoLibrary.addOnly !== 'string' || !photoLibrary.addOnly.trim())
   ) {
     throw new Error('[vxrn/expo-plugin] photoLibrary.addOnly must be a non-empty string')
+  }
+  if (
+    contacts !== undefined &&
+    (!contacts || typeof contacts.usage !== 'string' || !contacts.usage.trim())
+  ) {
+    throw new Error('[vxrn/expo-plugin] contacts.usage must be a non-empty string')
   }
   const locationPlugins = !location
     ? []
@@ -92,6 +100,17 @@ module.exports = function withVxrn(config, options = {}) {
           withInfoPlist,
           (nextConfig) => {
             nextConfig.modResults.NSPhotoLibraryAddUsageDescription = photoLibrary.addOnly
+            return nextConfig
+          },
+        ],
+      ]
+  const contactsPlugins = !contacts
+    ? []
+    : [
+        [
+          withInfoPlist,
+          (nextConfig) => {
+            nextConfig.modResults.NSContactsUsageDescription = contacts.usage
             return nextConfig
           },
         ],
@@ -252,6 +271,7 @@ module.exports = function withVxrn(config, options = {}) {
     ...locationPlugins,
     ...audioPlugins,
     ...photoLibraryPlugins,
+    ...contactsPlugins,
     ...notificationPlugins,
     ...updatesPlugins,
     ...launchScreenPlugins,

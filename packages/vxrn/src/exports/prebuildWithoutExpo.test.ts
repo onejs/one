@@ -259,6 +259,16 @@ ${APP_DELEGATE_PBXPROJ}`,
       '<key>NSPhotoLibraryAddUsageDescription</key>\n\t<string>Save photos &amp; videos</string>'
     )
 
+    const contactsPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: { ...app, contacts: { usage: 'Find people & friends' } },
+    })
+    expect(contactsPlist.content).toContain(
+      '<key>NSContactsUsageDescription</key>\n\t<string>Find people &amp; friends</string>'
+    )
+
     const androidManifest = renderPrebuildFile({
       relativePath: 'app/src/main/AndroidManifest.xml',
       content:

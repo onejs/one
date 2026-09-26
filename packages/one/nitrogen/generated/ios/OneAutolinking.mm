@@ -32,6 +32,7 @@
 #include "HybridOneShareSpecSwift.hpp"
 #include "HybridOnePhotoLibrarySpecSwift.hpp"
 #include "HybridOneDeviceSpecSwift.hpp"
+#include "HybridOneContactsSpecSwift.hpp"
 #include "HybridOneUpdatesSpecSwift.hpp"
 #include "HybridOneNativeModulesSpecSwift.hpp"
 
@@ -195,6 +196,13 @@
     "OneDevice",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneDeviceSpec> hybridObject = One::OneAutolinking::createOneDevice();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneContacts",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneContactsSpec> hybridObject = One::OneAutolinking::createOneContacts();
       return hybridObject;
     }
   );

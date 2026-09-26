@@ -87,6 +87,14 @@ describe('native.app manifest', () => {
     )
   })
 
+  test('requires a Contacts purpose string', () => {
+    expect(() => validateNativeApp({ ...app, contacts: { usage: 'Find people.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, contacts: null } as any)).toThrow(/contacts\.usage/)
+    expect(() => validateNativeApp({ ...app, contacts: { usage: ' ' } })).toThrow(
+      /contacts\.usage/
+    )
+  })
+
   test('accepts a camera permission string and rejects empty ones', () => {
     expect(() => validateNativeApp({ ...app, imagePicker: undefined })).not.toThrow()
     expect(() => validateNativeApp({ ...app, imagePicker: { camera: '' } })).toThrow(
