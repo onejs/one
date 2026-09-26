@@ -25,15 +25,23 @@ checklist; One's own exports and docs decide the status.
 | Haptics | covered | `One.Haptics` | haptics fixture | done |
 | Local and push notifications | covered | `One.Notifications` | notifications fixture | done |
 | Camera capture | covered | `One.ImagePicker.launchCamera` | image-picker fixture | done |
+| Live camera preview and code scanning | missing | no camera preview or barcode/QR scanner | none | P1 |
 | Photo selection | covered | `One.ImagePicker.launchLibrary`, `One.iOS.PhotosPicker` | image-picker; PhotosPicker unproven | done |
+| Image transformation | missing | no crop, resize, rotate, or compress API | none | P2 |
+| Live Photos | missing | no Live Photo capture or playback API | none | P3 |
 | Photo library save/manage | partial | `One.iOS.PhotoLibrary` add-only image/video save; no read, edit, delete, or albums | photo-library: permission, image/video save, errors | P2 |
 | Foreground location and geocoding | covered | `One.iOS.Location` permission, one fix, watch, forward/reverse geocoding | location: prompt, movement, geocoding | done |
 | Background location | missing | no background location mode or monitoring | none | P2 |
 | Maps | partial | `One.UI.Map`, `One.iOS.Map`; no search or directions service | map, ui-map | P2 |
 | Share | covered | `One.iOS.Share` text, URL, and file sheet; `One.iOS.ShareLink` button | share: text/link, file preview, cancel and errors; ShareLink unproven | done |
 | Clipboard | covered | `One.Clipboard` text | clipboard | done |
-| Secure storage | partial | `One.SecureStore` key/value; no access-control options | none | P1 |
+| Secure storage | partial | `One.SecureStore` key/value; no access-control options | iOS 27 manual: 10 async/sync assertions and read after reboot | P1 |
+| Plain local database | partial | `One.Database` opens OP SQLite; iOS fixture proof is absent | none | P1 |
+| Plain key/value preferences | partial | SQLite can store them; no AsyncStorage-style One API | none | P3 |
 | Biometrics | covered | `One.iOS.LocalAuthentication` policy status and biometric evaluation | local-authentication: unenrolled, enrolled, Face ID match | done |
+| Apple sign-in | covered | `One.Auth.Apple` | apple-auth fixture | done |
+| OAuth browser session | covered | `One.Browser.openAuthSession` | browser fixture | done |
+| Cryptography and identifiers | covered | native global `crypto.getRandomValues`/`randomUUID`, `One.AppInfo` | crypto, app-info | done |
 | Document picking | covered | `One.DocumentPicker` single and multiple selection, cached file URIs | apple-file: cancel and exact copied file bytes | done |
 | File system | covered | `One.iOS.FileSystem` sandbox write/list/copy/move/delete; `fetch(file://)` reads | file-system lifecycle | done |
 | Background tasks | missing | no BGTaskScheduler path | none | P2 |
@@ -44,10 +52,23 @@ checklist; One's own exports and docs decide the status.
 | Video playback | partial | `One.iOS.VideoPlayer`; no media controls/session API | media | P2 |
 | Picture in picture | partial | `One.UI.PictureInPicture`; video path needs device proof | simulator cannot enter PiP | P2 |
 | Sensors and motion | missing | no CoreMotion service | none | P2 |
+| Battery and power state | missing | no battery level, charging state, or low-power state API | none | P3 |
+| Cellular/SIM details | missing | `One.Network` reports connection type, not carrier or SIM data | none | P3 |
 | Contacts | partial | `One.iOS.Contacts` permission, name search, create, delete; no edit or picker | contacts: prompt, create/search/delete | P2 |
 | Calendar and reminders | missing | no EventKit service | none | P2 |
+| Localization and locale | missing | no One device locale, calendar, or timezone service | none | P2 |
+| Screen orientation | missing | no orientation events or lock API | none | P2 |
+| Screen capture control | missing | no screenshot detection, capture prevention, or app screenshot API | none | P2 |
+| Print | missing | no AirPrint presentation API | none | P3 |
+| Mail and SMS composer | partial | share sheet can hand off content; no configured message composer | share sheet only | P3 |
+| App tracking permission | missing | no App Tracking Transparency request/status API | none | P2 |
+| Device attestation | missing | no App Attest or DeviceCheck service | none | P2 |
+| Bluetooth and NFC | missing | no CoreBluetooth or CoreNFC service | none | P3 |
 | Web browser/auth session | covered | `One.Browser` | browser | done |
 | Web view | partial | `One.iOS.WebView`; fixture not opened by suite | none | P2 |
+| Native date/picker/slider/pager controls | covered | `One.iOS.DatePicker`, `Picker`, `Slider`, `Pager` | pickers, tabs-menu | done |
+| Gesture and animation packages | partial | gesture-handler and Reanimated are package peers; no One-specific conformance | none | P2 |
+| Vector drawing and view snapshots | missing | no One SVG/Skia drawing or view-shot capture API | none | P3 |
 | Splash | partial | launch storyboard and first-content hold; no imperative hide API | prebuild only | P2 |
 | Status bar | partial | React Native StatusBar, no One facade | none | P3 |
 | Safe area | covered | `One.UI.SafeArea` | safe-area | done |
