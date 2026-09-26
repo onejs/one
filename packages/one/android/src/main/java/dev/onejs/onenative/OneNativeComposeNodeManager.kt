@@ -182,6 +182,10 @@ class OneNativeComposeNodeManager :
         view.stageCardBorder(value)
     }
 
+    override fun setDividerStyle(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageDividerStyle(value)
+    }
+
     override fun setAcknowledgedEvent(view: OneNativeComposeNodeView, value: Int) {
         view.stageAcknowledgedEvent(value)
     }

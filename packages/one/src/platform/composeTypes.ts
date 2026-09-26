@@ -195,6 +195,11 @@ export type ComposeElevatedCardProps = Omit<ComposeCardProps, 'border'>
 
 export type ComposeOutlinedCardProps = ComposeCardProps
 
+export interface ComposeDividerProps extends ComposeLeafProps {
+  thickness?: number
+  color?: ColorValue
+}
+
 export type ComposeTextFieldVariant = 'filled' | 'outlined'
 export type ComposeTextFieldKeyboardType =
   | 'default'

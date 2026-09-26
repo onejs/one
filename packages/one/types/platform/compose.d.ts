@@ -1,10 +1,12 @@
-import type { ComposeAlertDialogProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeElevatedCardProps, ComposeIconProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeIconProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function Box(_props: ComposeBoxProps): never;
 declare function Card(_props: ComposeCardProps): never;
 declare function ElevatedCard(_props: ComposeElevatedCardProps): never;
 declare function OutlinedCard(_props: ComposeOutlinedCardProps): never;
+declare function HorizontalDivider(_props: ComposeDividerProps): never;
+declare function VerticalDivider(_props: ComposeDividerProps): never;
 declare function Text(_props: ComposeTextProps): never;
 declare function Icon(_props: ComposeIconProps): never;
 declare function Button(_props: ComposeButtonProps): never;
@@ -23,6 +25,8 @@ export declare const Compose: {
     Card: typeof Card;
     ElevatedCard: typeof ElevatedCard;
     OutlinedCard: typeof OutlinedCard;
+    HorizontalDivider: typeof HorizontalDivider;
+    VerticalDivider: typeof VerticalDivider;
     Text: typeof Text;
     Icon: typeof Icon;
     Button: typeof Button;

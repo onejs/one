@@ -5,7 +5,8 @@ description: Jetpack Compose views under One.Android
 
 Jetpack Compose views under `One.Android`. Layout nodes (`Column`, `Row`,
 `Box`, `Card`, `ElevatedCard`, `OutlinedCard`) take children; `Text`, `Icon`,
-`Button`, `Switch`, `Checkbox`, `RadioButton`, `TextField`,
+`Button`, `Switch`, `Checkbox`, `RadioButton`, `HorizontalDivider`,
+`VerticalDivider`, `TextField`,
 `Slider`, `AlertDialog`, and `ProgressIndicator` are leaves. `Dialog`
 takes children and shows them in a dialog window. Every node takes the
 shared props (`accessibilityLabel`, `accessibilityState`,
@@ -88,6 +89,13 @@ in the corresponding Material 3 surface. Each accepts `colors` with optional
 in dp. `Card` and `OutlinedCard` also accept `border` with optional `width`
 in dp (default 1) and `color`. An omitted border leaves `Card` unbordered and
 uses the Material theme's outline for `OutlinedCard`.
+
+## Dividers
+
+`One.Android.HorizontalDivider` and `VerticalDivider` draw Material 3 lines
+inside a Compose layout. Both accept optional `thickness` in dp and `color`;
+omitted values use the current Material theme. Give a vertical divider a height
+through its parent layout or `composeStyle`.
 
 ## TextField
 

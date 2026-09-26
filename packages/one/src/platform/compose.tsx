@@ -6,6 +6,7 @@ import type {
   ComposeCheckboxProps,
   ComposeColumnProps,
   ComposeDialogProps,
+  ComposeDividerProps,
   ComposeElevatedCardProps,
   ComposeIconProps,
   ComposeOutlinedCardProps,
@@ -46,6 +47,14 @@ function ElevatedCard(_props: ComposeElevatedCardProps): never {
 
 function OutlinedCard(_props: ComposeOutlinedCardProps): never {
   return unsupported('OutlinedCard')
+}
+
+function HorizontalDivider(_props: ComposeDividerProps): never {
+  return unsupported('HorizontalDivider')
+}
+
+function VerticalDivider(_props: ComposeDividerProps): never {
+  return unsupported('VerticalDivider')
 }
 
 function Text(_props: ComposeTextProps): never {
@@ -99,6 +108,8 @@ export const Compose = {
   Card,
   ElevatedCard,
   OutlinedCard,
+  HorizontalDivider,
+  VerticalDivider,
   Text,
   Icon,
   Button,

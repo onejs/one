@@ -139,6 +139,8 @@ describe('compose surface', () => {
       'Card',
       'ElevatedCard',
       'OutlinedCard',
+      'HorizontalDivider',
+      'VerticalDivider',
       'Text',
       'Icon',
       'Button',

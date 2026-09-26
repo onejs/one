@@ -15,6 +15,7 @@ import type {
   ComposeColumnProps,
   ComposeContentAlignment,
   ComposeDialogProps,
+  ComposeDividerProps,
   ComposeElevatedCardProps,
   ComposeFontWeight,
   ComposeHorizontalAlignment,
@@ -48,6 +49,7 @@ import {
   validateCheckboxProps,
   validateColumnProps,
   validateDialogProps,
+  validateDividerProps,
   validateIconProps,
   validateProgressIndicatorProps,
   validateRadioButtonProps,
@@ -65,6 +67,8 @@ type ComposeNodeType =
   | 'card'
   | 'elevatedcard'
   | 'outlinedcard'
+  | 'horizontaldivider'
+  | 'verticaldivider'
   | 'text'
   | 'icon'
   | 'button'
@@ -105,6 +109,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   cardColors?: ComposeCardProps['colors']
   cardElevation?: number
   cardBorder?: ComposeCardProps['border']
+  dividerStyle?: Pick<ComposeDividerProps, 'thickness' | 'color'>
   acknowledgedEvent?: number
   revision?: number
   textValue?: string
@@ -162,6 +167,8 @@ const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
   'slider',
   'alertdialog',
   'progressindicator',
+  'horizontaldivider',
+  'verticaldivider',
 ])
 
 function ComposeNode({
@@ -271,6 +278,16 @@ function ElevatedCard(props: ComposeElevatedCardProps) {
 
 function OutlinedCard(props: ComposeOutlinedCardProps) {
   return renderCard('outlinedcard', 'OutlinedCard', props)
+}
+
+function HorizontalDivider({ thickness, color, ...props }: ComposeDividerProps) {
+  validateDividerProps({ thickness, color }, 'HorizontalDivider')
+  return <ComposeNode {...props} nodeType="horizontaldivider" dividerStyle={{ thickness, color }} />
+}
+
+function VerticalDivider({ thickness, color, ...props }: ComposeDividerProps) {
+  validateDividerProps({ thickness, color }, 'VerticalDivider')
+  return <ComposeNode {...props} nodeType="verticaldivider" dividerStyle={{ thickness, color }} />
 }
 
 function Text({
@@ -635,6 +652,8 @@ export const Compose = {
   Card,
   ElevatedCard,
   OutlinedCard,
+  HorizontalDivider,
+  VerticalDivider,
   Text,
   Icon,
   Button,

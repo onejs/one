@@ -117,6 +117,10 @@ export interface ComposeCardProps extends ComposeNodeProps {
 }
 export type ComposeElevatedCardProps = Omit<ComposeCardProps, 'border'>;
 export type ComposeOutlinedCardProps = ComposeCardProps;
+export interface ComposeDividerProps extends ComposeLeafProps {
+    thickness?: number;
+    color?: ColorValue;
+}
 export type ComposeTextFieldVariant = 'filled' | 'outlined';
 export type ComposeTextFieldKeyboardType = 'default' | 'number' | 'decimal' | 'email' | 'password' | 'phone' | 'url';
 export type ComposeTextFieldImeAction = 'default' | 'none' | 'go' | 'search' | 'send' | 'previous' | 'next' | 'done';
