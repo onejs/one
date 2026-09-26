@@ -15,6 +15,8 @@ import {
   Fragment,
   startTransition,
   useDeferredValue,
+  useEffect,
+  useReducer,
   useSyncExternalStore,
 } from 'react'
 import { devtoolsRegistry } from '../devtools/registry'
@@ -700,27 +702,33 @@ function syncStoreRootState() {
   }
 }
 
+// route info re-renders its subscribers with a reducer update, as
+// react-navigation's container re-renders its navigators, so a publish inside a
+// transition renders in that transition. useSyncExternalStore always renders in
+// the sync lane, ahead of the navigators, so a layout reading the pathname and
+// the navigators under it would commit apart
+function useRootStateSnapshot<T>(snapshot: () => T): T {
+  const [state, rerender] = useReducer(snapshot, undefined, snapshot)
+  useEffect(() => {
+    const unsubscribe = subscribeToRootState(rerender)
+    // a publish between this render and the subscription
+    rerender()
+    return unsubscribe
+  }, [])
+  return state
+}
+
 export function useStoreRootState() {
   syncStoreRootState()
-  const state = useSyncExternalStore(
-    subscribeToRootState,
-    rootStateSnapshot,
-    rootStateSnapshot
-  )
-  return useDeferredValue(state)
+  return useDeferredValue(useRootStateSnapshot(rootStateSnapshot))
 }
 
 export function useStoreRouteInfo() {
   syncStoreRootState()
-  const state = useSyncExternalStore(
-    subscribeToRootState,
-    routeInfoSnapshot,
-    routeInfoSnapshot
-  )
   // note: we intentionally don't use useDeferredValue here because it can cause
   // layout flash when conditional rendering depends on pathname. the deferred value
   // delays the parent layout's update while nested layouts have already unmounted.
-  return state
+  return useRootStateSnapshot(routeInfoSnapshot)
 }
 
 // Cleanup function
@@ -1378,79 +1386,81 @@ export async function linkTo(
   // compute target at dispatch time to avoid stale state during first render/effects
   const freshRootState = navigationRef.getRootState() as NavigationState
   const currentRouteBeforeDispatch = navigationRef.getCurrentRoute()
-
-  // only a replace publishes its target before the navigators reach it. a
-  // push or navigate waits for the container's state change: route info
-  // subscribers re-render synchronously, ahead of react-navigation's own state
-  // update, so a layout whose declared screens follow the pathname (a tab shown
-  // only on some routes) changes its navigator's route names while that
-  // navigator still holds the old state. the navigator then rebuilds from the
-  // old state and its scheduled update overwrites the dispatched navigation.
-  if (event === 'REPLACE') {
-    const targetPathname = pendingNavigationPathname
-    const optimisticState = nextOptions ? { ...state, linkOptions: nextOptions } : state
+  const targetPathname = pendingNavigationPathname
+  const optimisticState = nextOptions ? { ...state, linkOptions: nextOptions } : state
+  // react-navigation's container dispatches navigation in a transition, so the
+  // route info publishes in that same transition: layouts reading the pathname
+  // and the navigators under them render together. published urgently, a layout
+  // whose screens follow the pathname would change its navigator's route names
+  // against the old state, and the navigator's rebuild would overwrite this
+  // navigation
+  startTransition(() => {
     updateState(optimisticState)
     pendingNavigationPathname = targetPathname
     notifyRootStateSubscribers(optimisticState)
-    navigationRef.resetRoot(state)
-  } else {
-    const action = getNavigateAction(state, freshRootState, event)
 
-    // when navigating across route groups (e.g. (public) -> (authed)/beta/signup),
-    // the NAVIGATE action can fail to initialize the target group's child navigator
-    // with the nested screen. use reset to directly apply the full target state instead.
-    const targetName = action.payload?.name
-    const isGroupTarget =
-      typeof targetName === 'string' &&
-      targetName.startsWith('(') &&
-      targetName.endsWith(')')
-    const hasFreshRootState = freshRootState.type === 'stack'
-    const isRootTarget = action.target === freshRootState.key
-    const currentFocusedRoute = freshRootState.routes[freshRootState.index]
-    const currentFocusedName = currentFocusedRoute?.name
-
-    if (isRootTarget && isGroupTarget && hasFreshRootState) {
-      const targetRoute = state.routes[state.index ?? state.routes.length - 1]
-      const targetRootName = targetRoute.name
-
-      if (currentFocusedName === targetRootName) {
-        // root-level NAVIGATE to the already focused group can append a
-        // duplicate group route when only the group's nested state changes.
-        const routes = [...freshRootState.routes]
-        routes[freshRootState.index] = {
-          ...targetRoute,
-          key: currentFocusedRoute?.key ?? targetRoute.key,
-        }
-        navigationRef.resetRoot({
-          ...freshRootState,
-          routes,
-        })
-      } else {
-        // merge the target state onto the existing root state so we preserve
-        // other groups' state (back navigation etc.)
-        const existingTargetRoute = freshRootState.routes.find(
-          (route) => route.name === targetRootName
-        )
-        const existingRoutes = freshRootState.routes.filter(
-          (route) => route.name !== targetRootName
-        )
-        const nextRootState: NavigationState = {
-          ...freshRootState,
-          routes: [
-            ...existingRoutes,
-            {
-              ...targetRoute,
-              key: existingTargetRoute?.key ?? `${targetRootName}-${freshRootState.key}`,
-            },
-          ],
-          index: existingRoutes.length,
-        }
-        navigationRef.resetRoot(nextRootState)
-      }
+    if (event === 'REPLACE') {
+      navigationRef.resetRoot(state)
     } else {
-      navigationRef.dispatch(action)
+      const action = getNavigateAction(state, freshRootState, event)
+
+      // when navigating across route groups (e.g. (public) -> (authed)/beta/signup),
+      // the NAVIGATE action can fail to initialize the target group's child navigator
+      // with the nested screen. use reset to directly apply the full target state instead.
+      const targetName = action.payload?.name
+      const isGroupTarget =
+        typeof targetName === 'string' &&
+        targetName.startsWith('(') &&
+        targetName.endsWith(')')
+      const hasFreshRootState = freshRootState.type === 'stack'
+      const isRootTarget = action.target === freshRootState.key
+      const currentFocusedRoute = freshRootState.routes[freshRootState.index]
+      const currentFocusedName = currentFocusedRoute?.name
+
+      if (isRootTarget && isGroupTarget && hasFreshRootState) {
+        const targetRoute = state.routes[state.index ?? state.routes.length - 1]
+        const targetRootName = targetRoute.name
+
+        if (currentFocusedName === targetRootName) {
+          // root-level NAVIGATE to the already focused group can append a
+          // duplicate group route when only the group's nested state changes.
+          const routes = [...freshRootState.routes]
+          routes[freshRootState.index] = {
+            ...targetRoute,
+            key: currentFocusedRoute?.key ?? targetRoute.key,
+          }
+          navigationRef.resetRoot({
+            ...freshRootState,
+            routes,
+          })
+        } else {
+          // merge the target state onto the existing root state so we preserve
+          // other groups' state (back navigation etc.)
+          const existingTargetRoute = freshRootState.routes.find(
+            (route) => route.name === targetRootName
+          )
+          const existingRoutes = freshRootState.routes.filter(
+            (route) => route.name !== targetRootName
+          )
+          const nextRootState: NavigationState = {
+            ...freshRootState,
+            routes: [
+              ...existingRoutes,
+              {
+                ...targetRoute,
+                key: existingTargetRoute?.key ?? `${targetRootName}-${freshRootState.key}`,
+              },
+            ],
+            index: existingRoutes.length,
+          }
+          navigationRef.resetRoot(nextRootState)
+        }
+      } else {
+        navigationRef.dispatch(action)
+      }
     }
-  }
+
+  })
 
   let warningTm
   const interval = setInterval(() => {
