@@ -1,0 +1,44 @@
+---
+title: Contacts
+description: Request access, find contacts, and create or delete them on iOS
+---
+
+`One.iOS.Contacts` uses the iOS Contacts store. Set a purpose string before
+prebuild so the system can show the permission prompt:
+
+```ts
+contacts: { usage: 'Find people to invite.' }
+```
+
+Expo-prebuilt apps pass the same `contacts` option to the VXRN Expo plugin.
+Both paths set `NSContactsUsageDescription`.
+
+```tsx
+import { One } from 'one'
+
+const permission = await One.iOS.Contacts.requestPermission()
+if (permission === 'authorized' || permission === 'limited') {
+  const matches = await One.iOS.Contacts.search('Ada', 20)
+  console.log(matches.map(({ givenName, familyName }) => `${givenName} ${familyName}`))
+}
+```
+
+`getPermissionStatus()` reads without prompting. The status can be
+`notDetermined`, `restricted`, `denied`, `authorized`, or `limited`. Limited
+access returns only contacts the person has shared with the app.
+
+`search(name, limit = 100)` returns at most 100 matching contacts with an
+identifier, given and family names, phone number strings, and email address
+strings. It requires a nonempty name and a whole-number limit from 1 to 100.
+`create({ givenName, familyName, phoneNumbers, emailAddresses })` saves a
+contact and returns its identifier. `delete(identifier)` removes a contact the
+app is allowed to change. Search and writes run away from the UI thread.
+
+Missing usage text rejects with `E_CONTACTS_MANIFEST`; missing access with
+`E_CONTACTS_PERMISSION`; invalid input with `E_CONTACTS_INPUT`. Store failures
+use `E_CONTACTS_FETCH`, `E_CONTACTS_SAVE`, or `E_CONTACTS_DELETE`. The API is
+iOS only and throws on Android or web. It does not yet edit existing contacts,
+read addresses or notes, or present the system contact picker.
+
+See [Apple's Contacts access guide](https://developer.apple.com/documentation/contacts/accessing-the-contact-store)
+for how full and limited access differ.

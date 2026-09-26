@@ -18,6 +18,9 @@ export interface NativeAppManifest {
     photoLibrary?: {
         addOnly: string;
     };
+    contacts?: {
+        usage: string;
+    };
     location?: {
         whenInUse: string;
     };

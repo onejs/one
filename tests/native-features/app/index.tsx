@@ -111,6 +111,11 @@ const testScreens = [
     testID: 'nav-one-native-device',
   },
   {
+    href: '/one-native-contacts',
+    label: 'One Native Contacts',
+    testID: 'nav-one-native-contacts',
+  },
+  {
     href: '/one-native-map',
     label: 'One Native Map',
     testID: 'nav-one-native-map',

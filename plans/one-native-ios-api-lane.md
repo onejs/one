@@ -44,7 +44,7 @@ checklist; One's own exports and docs decide the status.
 | Video playback | partial | `One.iOS.VideoPlayer`; no media controls/session API | media | P2 |
 | Picture in picture | partial | `One.UI.PictureInPicture`; video path needs device proof | simulator cannot enter PiP | P2 |
 | Sensors and motion | missing | no CoreMotion service | none | P2 |
-| Contacts | missing | no Contacts service | none | P2 |
+| Contacts | partial | `One.iOS.Contacts` permission, name search, create, delete; no edit or picker | contacts: prompt, create/search/delete | P2 |
 | Calendar and reminders | missing | no EventKit service | none | P2 |
 | Web browser/auth session | covered | `One.Browser` | browser | done |
 | Web view | partial | `One.iOS.WebView`; fixture not opened by suite | none | P2 |

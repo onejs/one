@@ -31,6 +31,8 @@ export { PhotoLibrary } from './photo-library/index';
 export type { PhotoLibraryPermissionStatus } from './photo-library/index';
 export { Device } from './device/index';
 export type { DeviceInfo } from './device/index';
+export { Contacts } from './contacts/index';
+export type { ContactInfo, ContactInput, ContactsPermissionStatus } from './contacts/index';
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index';
 export { AppInfo } from './app-info/index';
 export type { AppInfoApi } from './app-info/index';

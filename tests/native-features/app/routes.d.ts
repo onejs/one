@@ -41,6 +41,7 @@ declare module 'one' {
         | `/one-native-autogen`
         | `/one-native-browser`
         | `/one-native-clipboard`
+        | `/one-native-contacts`
         | `/one-native-containers`
         | `/one-native-controls`
         | `/one-native-crypto`

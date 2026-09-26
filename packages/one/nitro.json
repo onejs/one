@@ -90,6 +90,9 @@
     "OneDevice": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneDevice" }
     },
+    "OneContacts": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneContacts" }
+    },
     "OneUpdates": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneUpdates" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneUpdates" }
