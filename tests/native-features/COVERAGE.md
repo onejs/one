@@ -127,11 +127,11 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Android.ContextMenu` | n/a | missing | no fixture or suite |
 | `One.UI.sampleCurve` | missing | missing | effects helper; no suite asserts it |
 | `One.UI.serializeCurve` | missing | missing | effects helper; no suite asserts it |
+| `One.UI.EdgeFade` | missing | missing | effects fixture has a capture proof script, not a suite |
 | `One.UI.Icon` | missing | missing | no fixture or suite |
 | `One.UI.Image` | missing | missing | fixture exists, no suite opens it |
 | `One.UI.Map` | ui-map | ui-map |  |
 | `One.UI.PictureInPicture` | missing | missing | fixture exists; simulators report no PiP, needs a device run |
-| `One.UI.EdgeFade` | missing | missing | effects fixture has a capture proof script, not a suite |
 | `One.UI.Blur` | missing | missing | effects fixture has a capture proof script, not a suite |
 | `One.UI.Mask` | missing | missing | effects fixture has a capture proof script, not a suite |
 | `One.UI.Fonts` | fonts | fonts |  |
