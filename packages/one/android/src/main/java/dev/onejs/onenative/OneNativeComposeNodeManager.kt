@@ -234,8 +234,16 @@ class OneNativeComposeNodeManager :
         view.stageArrangement(value)
     }
 
+    override fun setVerticalArrangement(view: OneNativeComposeNodeView, value: String?) {
+        view.stageVerticalArrangement(value)
+    }
+
     override fun setSpacing(view: OneNativeComposeNodeView, value: Double) {
         view.stageSpacing(value)
+    }
+
+    override fun setVerticalSpacing(view: OneNativeComposeNodeView, value: Double) {
+        view.stageVerticalSpacing(value)
     }
 
     override fun setTextValue(view: OneNativeComposeNodeView, value: String?) {

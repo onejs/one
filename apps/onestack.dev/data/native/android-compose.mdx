@@ -3,7 +3,7 @@ title: Android Compose
 description: Jetpack Compose views under One.Android
 ---
 
-Jetpack Compose views under `One.Android`. Layout nodes (`Column`, `Row`,
+Jetpack Compose views under `One.Android`. Layout nodes (`Column`, `Row`, `FlowRow`,
 `Box`, `BadgedBox`, `Badge`, `ListItem`, `Card`, `ElevatedCard`, `OutlinedCard`, `AssistChip`, `FilterChip`,
 `InputChip`, `SuggestionChip`) take children;
 `Text`, `Icon`,
@@ -30,6 +30,9 @@ mirror with `verticalAlignment` (`'top'`, `'centerVertically'`,
 `contentAlignment` (`'topStart'`, `'topCenter'`, `'topEnd'`,
 `'centerStart'`, `'center'`, `'centerEnd'`, `'bottomStart'`,
 `'bottomCenter'`, `'bottomEnd'`, `'top'`, `'bottom'`, `'start'`, `'end'`).
+`One.Android.FlowRow` wraps children across rows. Its horizontal and vertical
+arrangements accept the same distribution names as `Row` and `Column`, or
+`{ spacedBy: number }` for spacing in dp on that axis.
 
 ```tsx
 import { One } from 'one'

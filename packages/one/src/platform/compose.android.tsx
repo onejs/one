@@ -21,6 +21,7 @@ import type {
   ComposeDividerProps,
   ComposeElevatedCardProps,
   ComposeFilterChipProps,
+  ComposeFlowRowProps,
   ComposeFontWeight,
   ComposeHorizontalAlignment,
   ComposeHorizontalArrangement,
@@ -58,6 +59,7 @@ import {
   validateColumnProps,
   validateDialogProps,
   validateDividerProps,
+  validateFlowRowProps,
   validateChipProps,
   validateIconProps,
   validateListItemProps,
@@ -73,6 +75,7 @@ import {
 type ComposeNodeType =
   | 'column'
   | 'row'
+  | 'flowrow'
   | 'box'
   | 'badge'
   | 'badgedbox'
@@ -108,7 +111,9 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
     | ComposeVerticalAlignment
     | ComposeContentAlignment
   arrangement?: ComposeHorizontalArrangement | ComposeVerticalArrangement
+  verticalArrangement?: ComposeVerticalArrangement
   spacing?: number
+  verticalSpacing?: number
   text?: string
   fontSize?: number
   fontWeight?: ComposeFontWeight
@@ -266,6 +271,27 @@ function Row({
       alignment={verticalAlignment}
       arrangement={horizontalArrangement}
       spacing={spacing}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function FlowRow({
+  children,
+  horizontalArrangement = 'start',
+  verticalArrangement = 'top',
+  ...props
+}: ComposeFlowRowProps) {
+  validateFlowRowProps({ horizontalArrangement, verticalArrangement })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="flowrow"
+      arrangement={typeof horizontalArrangement === 'string' ? horizontalArrangement : 'start'}
+      verticalArrangement={typeof verticalArrangement === 'string' ? verticalArrangement : 'top'}
+      spacing={typeof horizontalArrangement === 'string' ? undefined : horizontalArrangement.spacedBy}
+      verticalSpacing={typeof verticalArrangement === 'string' ? undefined : verticalArrangement.spacedBy}
     >
       {children}
     </ComposeNode>
@@ -819,6 +845,7 @@ function ProgressIndicator({
 export const Compose = {
   Column,
   Row,
+  FlowRow,
   Box,
   Badge,
   BadgedBox,

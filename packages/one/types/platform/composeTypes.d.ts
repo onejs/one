@@ -47,6 +47,14 @@ export interface ComposeRowProps extends ComposeNodeProps {
 export interface ComposeBoxProps extends ComposeNodeProps {
     contentAlignment?: ComposeContentAlignment;
 }
+export interface ComposeFlowRowProps extends ComposeNodeProps {
+    horizontalArrangement?: ComposeHorizontalArrangement | Readonly<{
+        spacedBy: number;
+    }>;
+    verticalArrangement?: ComposeVerticalArrangement | Readonly<{
+        spacedBy: number;
+    }>;
+}
 export interface ComposeBadgeProps extends ComposeNodeProps {
     containerColor?: ColorValue;
     contentColor?: ColorValue;

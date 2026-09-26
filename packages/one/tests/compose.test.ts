@@ -135,6 +135,7 @@ describe('compose surface', () => {
     for (const name of [
       'Column',
       'Row',
+      'FlowRow',
       'Box',
       'Badge',
       'BadgedBox',

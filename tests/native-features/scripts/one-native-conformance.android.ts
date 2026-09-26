@@ -33,7 +33,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'updates'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'updates'
   apkPath: string
 }
 
@@ -55,7 +55,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|updates --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|updates --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -84,7 +84,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -3019,6 +3019,23 @@ async function runCompose(config: Config) {
       )
     })
   }
+  const flowRow = async () => {
+    await tapNavigation(config, 'nav-one-native-android-flow-row')
+    await check('compose-flow-row-wraps', (nodes) => {
+      const cells = [0, 1, 2, 3, 4].map((index) =>
+        matching(nodes, { id: `one-native-android-flow-cell-${index}` })[0]?.bounds
+      )
+      const [first, second, third, fourth, fifth] = cells
+      return Boolean(
+        exactlyOneId(nodes, 'one-native-android-flow-row') &&
+        first && second && third && fourth && fifth &&
+        first.top === second.top && third.top === fourth.top &&
+        third.top > first.bottom && fifth.top > third.bottom &&
+        second.left > first.right && fourth.left > third.right &&
+        third.left === first.left && fifth.left === first.left
+      )
+    })
+  }
 
   await home()
   if (config.suite === 'compose-badges') {
@@ -3029,6 +3046,11 @@ async function runCompose(config: Config) {
   if (config.suite === 'compose-list-items') {
     await listItems()
     console.log('ALL ONE NATIVE ANDROID LIST ITEM CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'compose-flow-row') {
+    await flowRow()
+    console.log('ALL ONE NATIVE ANDROID FLOW ROW CHECKS PASSED')
     return
   }
   await tapNavigation(config, 'nav-one-native-android-selection')
@@ -3414,7 +3436,7 @@ try {
   const config = parse(process.argv.slice(2))
   await (config.suite === 'updates'
     ? runUpdates(config)
-    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items'
+    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row'
       ? runCompose(config)
       : run(config))
 } catch (error) {
