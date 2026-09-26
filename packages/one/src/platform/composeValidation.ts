@@ -10,6 +10,7 @@ import type {
   ComposeDialogProps,
   ComposeDividerProps,
   ComposeFilterChipProps,
+  ComposeFlowRowProps,
   ComposeIconProps,
   ComposeInputChipProps,
   ComposeListItemProps,
@@ -341,6 +342,21 @@ export function validateRowProps(props: ComposeRowProps) {
     throw new Error(
       'Compose Row spacing cannot be combined with a space-distribution arrangement'
     )
+}
+
+export function validateFlowRowProps(props: ComposeFlowRowProps) {
+  function arrangement(value: unknown, name: string, names: readonly string[]) {
+    if (typeof value === 'string') {
+      if (!names.includes(value)) throw new Error(`Compose FlowRow ${name} is unsupported`)
+      return
+    }
+    if (!value || typeof value !== 'object' || Array.isArray(value) ||
+        Object.keys(value).length !== 1 || !('spacedBy' in value) ||
+        typeof value.spacedBy !== 'number' || !Number.isFinite(value.spacedBy) || value.spacedBy < 0)
+      throw new Error(`Compose FlowRow ${name} spacedBy must be a nonnegative finite number`)
+  }
+  arrangement(props.horizontalArrangement ?? 'start', 'horizontalArrangement', horizontalArrangements)
+  arrangement(props.verticalArrangement ?? 'top', 'verticalArrangement', verticalArrangements)
 }
 
 export function validateBoxProps(props: ComposeBoxProps) {

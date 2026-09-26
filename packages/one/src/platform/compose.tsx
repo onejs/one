@@ -14,6 +14,7 @@ import type {
   ComposeDividerProps,
   ComposeElevatedCardProps,
   ComposeFilterChipProps,
+  ComposeFlowRowProps,
   ComposeIconProps,
   ComposeInputChipProps,
   ComposeOutlinedCardProps,
@@ -39,6 +40,10 @@ function Column(_props: ComposeColumnProps): never {
 
 function Row(_props: ComposeRowProps): never {
   return unsupported('Row')
+}
+
+function FlowRow(_props: ComposeFlowRowProps): never {
+  return unsupported('FlowRow')
 }
 
 function Box(_props: ComposeBoxProps): never {
@@ -178,6 +183,7 @@ function ProgressIndicator(_props: ComposeProgressIndicatorProps): never {
 export const Compose = {
   Column,
   Row,
+  FlowRow,
   Box,
   Badge,
   BadgedBox,

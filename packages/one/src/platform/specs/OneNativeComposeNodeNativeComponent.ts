@@ -106,7 +106,9 @@ interface NativeProps extends ViewProps {
   revision?: Int32
   alignment?: string
   arrangement?: string
+  verticalArrangement?: string
   spacing?: WithDefault<Double, -1>
+  verticalSpacing?: WithDefault<Double, -1>
   textValue?: string
   syncStateId?: Int32
   placeholder?: string

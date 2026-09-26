@@ -1,4 +1,4 @@
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeFilterChipProps, ComposeIconProps, ComposeInputChipProps, ComposeListItemProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeStyle, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeIconProps, ComposeInputChipProps, ComposeListItemProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeStyle, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps } from './composeTypes';
 export declare const horizontalAlignments: readonly ['start', 'centerHorizontally', 'end'];
 export declare const verticalAlignments: readonly ['top', 'centerVertically', 'bottom'];
 export declare const contentAlignments: readonly ['topStart', 'topCenter', 'topEnd', 'centerStart', 'center', 'centerEnd', 'bottomStart', 'bottomCenter', 'bottomEnd', 'top', 'bottom', 'start', 'end'];
@@ -25,6 +25,7 @@ export declare function assertFiniteNumber(value: unknown, name: string): void;
 export declare function assertFunction(value: unknown, name: string): void;
 export declare function validateColumnProps(props: ComposeColumnProps): void;
 export declare function validateRowProps(props: ComposeRowProps): void;
+export declare function validateFlowRowProps(props: ComposeFlowRowProps): void;
 export declare function validateBoxProps(props: ComposeBoxProps): void;
 export declare function validateTextProps(props: ComposeTextProps): void;
 export declare function composeIconGlyph(owner: string, name: string): string;

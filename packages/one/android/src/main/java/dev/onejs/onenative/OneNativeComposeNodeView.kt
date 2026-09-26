@@ -11,6 +11,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -365,7 +367,9 @@ internal data class OneNativeComposeNodeProps(
     val revision: Int = 0,
     val alignment: String? = null,
     val arrangement: String? = null,
+    val verticalArrangement: String? = null,
     val spacing: Double = -1.0,
+    val verticalSpacing: Double = -1.0,
     val textValue: String? = null,
     val syncStateId: Int = 0,
     val placeholder: String? = null,
@@ -710,8 +714,16 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         pendingProps = pendingProps.copy(arrangement = value)
     }
 
+    internal fun stageVerticalArrangement(value: String?) {
+        pendingProps = pendingProps.copy(verticalArrangement = value)
+    }
+
     internal fun stageSpacing(value: Double) {
         pendingProps = pendingProps.copy(spacing = value)
+    }
+
+    internal fun stageVerticalSpacing(value: Double) {
+        pendingProps = pendingProps.copy(verticalSpacing = value)
     }
 
     internal fun stageTextValue(value: String?) {
@@ -1029,6 +1041,7 @@ private fun RenderComposeNode(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun RenderComposeNodeBody(
     node: OneNativeComposeNodeView,
@@ -1049,6 +1062,14 @@ private fun RenderComposeNodeBody(
                 modifier = modifier,
                 horizontalArrangement = rowArrangement(props.arrangement, props.spacing),
                 verticalAlignment = rowAlignment(props.alignment),
+            ) {
+                RenderComposeChildren(node)
+            }
+        "flowrow" ->
+            FlowRow(
+                modifier = modifier,
+                horizontalArrangement = rowArrangement(props.arrangement, props.spacing),
+                verticalArrangement = columnArrangement(props.verticalArrangement, props.verticalSpacing),
             ) {
                 RenderComposeChildren(node)
             }

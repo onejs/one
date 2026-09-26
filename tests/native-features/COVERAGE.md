@@ -99,7 +99,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ZoomTransitionSource` | e2e:zoom-test | n/a |  |
 | `One.Android.Column` | n/a | android, android-inputs, android-badges, android-list-items, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
 | `One.Android.Row` | n/a | android, android-inputs, android-badges, android-selection, android-dividers |  |
-| `One.Android.Box` | n/a | android, android-inputs |  |
+| `One.Android.FlowRow` | n/a | android-flow-row |  |
+| `One.Android.Box` | n/a | android, android-inputs, android-flow-row |  |
 | `One.Android.Badge` | n/a | android-badges |  |
 | `One.Android.BadgedBox` | n/a | android-badges |  |
 | `One.Android.ListItem` | n/a | android-list-items |  |
@@ -112,7 +113,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Android.AssistChip` | n/a | android-chips |  |
 | `One.Android.InputChip` | n/a | android-chips |  |
 | `One.Android.SuggestionChip` | n/a | android-chips |  |
-| `One.Android.Text` | n/a | android, android-inputs, android-badges, android-list-items, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
+| `One.Android.Text` | n/a | android, android-inputs, android-badges, android-list-items, android-selection, android-cards, android-dividers, android-filter-chip, android-chips, android-flow-row |  |
 | `One.Android.Icon` | n/a | android, android-badges, android-list-items, android-filter-chip, android-chips |  |
 | `One.Android.Button` | n/a | android, android-inputs, android-selection, android-filter-chip |  |
 | `One.Android.Switch` | n/a | android |  |
