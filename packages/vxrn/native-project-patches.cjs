@@ -659,10 +659,47 @@ function pointReleaseBundleURLAtOneUpdates(appDelegate) {
   return appDelegate.replace(RELEASE_BUNDLE_URL, '$1$2OneUpdatesBundleURL()$3')
 }
 
+// the launch screen hold: the app's react native delegate keeps the launch
+// storyboard over the root view until react native's first content, through
+// the OneHoldLaunchScreen c entry point in the bridging header.
+const ONE_LAUNCH_SCREEN = {
+  bridgingHeaderImport: '#import "OneLaunchScreen.h"',
+}
+
+const REACT_NATIVE_DELEGATE_CLASS =
+  /^class ReactNativeDelegate: (ExpoReactNativeFactoryDelegate|RCTDefaultReactNativeFactoryDelegate) \{\n/m
+
+function holdLaunchScreenOverRootView(appDelegate) {
+  if (appDelegate.includes('OneHoldLaunchScreen(')) {
+    return appDelegate
+  }
+  const match = appDelegate.match(REACT_NATIVE_DELEGATE_CLASS)
+  if (!match) {
+    throw new Error(
+      '[vxrn] AppDelegate.swift changed shape: cannot hold the launch screen over the react native root'
+    )
+  }
+  // expo's delegate re-declares the hook over UIView; react native's takes
+  // its RCTRootView.
+  const rootViewType = match[1] === 'ExpoReactNativeFactoryDelegate' ? 'UIView' : 'RCTRootView'
+  return appDelegate.replace(
+    match[0],
+    `${match[0]}  // [vxrn/one] the launch screen stays over the root until react native's first content
+  override func customize(_ rootView: ${rootViewType}) {
+    super.customize(rootView)
+    OneHoldLaunchScreen(rootView)
+  }
+
+`
+  )
+}
+
 module.exports = {
   ONE_NOTIFICATIONS,
   ONE_UPDATES,
   pointReleaseBundleURLAtOneUpdates,
+  ONE_LAUNCH_SCREEN,
+  holdLaunchScreenOverRootView,
   hasNitroWebImage,
   injectNitroWebImageModularHeaderIntoPodfile,
   injectOneSwiftPackagesIntoPodfile,

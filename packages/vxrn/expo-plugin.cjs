@@ -12,6 +12,10 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // release bundleURL asks the launcher, and the bundle phase writes the
 // embedded manifest. Expo's Android host builds its own ReactHost delegate,
 // which One.Updates cannot re-point, so Android needs one prebuild.
+//
+// options: { holdLaunchScreen: true } keeps the launch storyboard over the
+// react native root until its first content, as one prebuild always does.
+// iOS only for now; leave it off while expo-splash-screen owns the splash.
 module.exports = function withVxrn(config, options = {}) {
   const projectRoot = config?._internal?.projectRoot
   if (!projectRoot) {
@@ -98,6 +102,33 @@ module.exports = function withVxrn(config, options = {}) {
         ],
       ]
 
+  // appends one import to the app's bridging header, which is how the app
+  // target reaches One's c entry points: it cannot import the One module.
+  const importIntoBridgingHeader = (option, importLine) => [
+    withDangerousMod,
+    [
+      'ios',
+      (nextConfig) => {
+        const { platformProjectRoot, projectName } = nextConfig.modRequest
+        const header = path.join(
+          platformProjectRoot,
+          projectName,
+          `${projectName}-Bridging-Header.h`
+        )
+        if (!fs.existsSync(header)) {
+          throw new Error(
+            `[vxrn/expo-plugin] ${option}: expected the app's bridging header at ${header}`
+          )
+        }
+        const contents = fs.readFileSync(header, 'utf8')
+        if (!contents.includes(importLine)) {
+          fs.writeFileSync(header, `${contents.trimEnd()}\n${importLine}\n`)
+        }
+        return nextConfig
+      },
+    ],
+  ]
+
   const updates = options.updates
   if (updates && (typeof updates.runtimeVersion !== 'string' || !updates.runtimeVersion)) {
     throw new Error('[vxrn/expo-plugin] updates.runtimeVersion must be a non-empty string')
@@ -129,33 +160,7 @@ module.exports = function withVxrn(config, options = {}) {
             return nextConfig
           },
         ],
-        [
-          withDangerousMod,
-          [
-            'ios',
-            (nextConfig) => {
-              const { platformProjectRoot, projectName } = nextConfig.modRequest
-              const header = path.join(
-                platformProjectRoot,
-                projectName,
-                `${projectName}-Bridging-Header.h`
-              )
-              if (!fs.existsSync(header)) {
-                throw new Error(
-                  `[vxrn/expo-plugin] updates: expected the app's bridging header at ${header}`
-                )
-              }
-              const contents = fs.readFileSync(header, 'utf8')
-              if (!contents.includes(updatesHost.bridgingHeaderImport)) {
-                fs.writeFileSync(
-                  header,
-                  `${contents.trimEnd()}\n${updatesHost.bridgingHeaderImport}\n`
-                )
-              }
-              return nextConfig
-            },
-          ],
-        ],
+        importIntoBridgingHeader('updates', updatesHost.bridgingHeaderImport),
         [
           withMainActivity,
           () => {
@@ -166,9 +171,37 @@ module.exports = function withVxrn(config, options = {}) {
         ],
       ]
 
+  const launchScreenPlugins = !options.holdLaunchScreen
+    ? []
+    : [
+        [
+          withAppDelegate,
+          (nextConfig) => {
+            nextConfig.modResults.contents =
+              nativeProjectPatches.holdLaunchScreenOverRootView(
+                nextConfig.modResults.contents
+              )
+            return nextConfig
+          },
+        ],
+        importIntoBridgingHeader(
+          'holdLaunchScreen',
+          nativeProjectPatches.ONE_LAUNCH_SCREEN.bridgingHeaderImport
+        ),
+        [
+          withMainActivity,
+          () => {
+            throw new Error(
+              '[vxrn/expo-plugin] holdLaunchScreen: the Android launch screen hold is not built yet; it supports iOS only'
+            )
+          },
+        ],
+      ]
+
   return withPlugins(config, [
     ...notificationPlugins,
     ...updatesPlugins,
+    ...launchScreenPlugins,
     [
       withXcodeProject,
       (nextConfig) => {
