@@ -55,6 +55,10 @@ export {
   getHinge,
   onHingeChange,
   ReservedRegions,
+  useReservedRegions,
+  useReservedRegionsReady,
+  useWindowSegments,
+  useSpanning,
 } from './adaptive/index.native'
 export type {
   UserInterfaceSizeClass,

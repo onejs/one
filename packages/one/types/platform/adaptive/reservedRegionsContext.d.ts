@@ -23,7 +23,7 @@ export declare function useReady(): boolean;
 /**
  * parts of the provider separated by an active full-span division. Put the
  * provider around the full window to read window segments. Until its native
- * regions and bounds arrive, the result is empty. An unspanned window has one
+ * reading arrives, the result is empty. An unspanned window has one
  * segment. Occlusions do not divide a window.
  */
 export declare function useSegments(): readonly WindowSegment[];

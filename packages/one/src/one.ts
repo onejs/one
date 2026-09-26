@@ -37,7 +37,11 @@ import {
   onHingeChange,
   ReservedRegions,
   useHinge,
+  useReservedRegions,
+  useReservedRegionsReady,
   useSizeClass,
+  useSpanning,
+  useWindowSegments,
   ZoomTransitionAlignmentRectDetector,
   ZoomTransitionEnabler,
   ZoomTransitionSource,
@@ -84,24 +88,12 @@ export type OneSafeArea = {
   readonly Provider: typeof SafeAreaProvider
   readonly View: typeof SafeAreaView
   readonly initialMetrics: typeof initialWindowMetrics
-  readonly useFrame: typeof useSafeAreaFrame
-  readonly useInsets: typeof useSafeAreaInsets
 }
 
 export type OneUI = typeof NativeUI & {
   readonly Fonts: typeof Fonts
   readonly SafeArea: Readonly<OneSafeArea>
   readonly TextInput: typeof TextInput
-  readonly useFonts: typeof useFonts
-  readonly useNativeState: typeof useNativeState
-  // the window scene's size classes and the hinge, plus the regions reserved
-  // inside a provider view (a foldable's fold, a camera occlusion): what
-  // adaptive layout reads.
-  readonly useSizeClass: typeof useSizeClass
-  readonly getSizeClass: typeof getSizeClass
-  readonly useHinge: typeof useHinge
-  readonly getHinge: typeof getHinge
-  readonly onHingeChange: typeof onHingeChange
   readonly ReservedRegions: typeof ReservedRegions
 }
 
@@ -125,7 +117,20 @@ export type OneAPI = {
   readonly SecureStore: typeof NativeSecureStore
   readonly Speech: typeof NativeSpeech
   readonly Updates: typeof NativeUpdates
+  readonly useFonts: typeof useFonts
+  readonly useNativeState: typeof useNativeState
   readonly useNetworkState: typeof useNetworkState
+  readonly useSafeAreaFrame: typeof useSafeAreaFrame
+  readonly useSafeAreaInsets: typeof useSafeAreaInsets
+  readonly useSizeClass: typeof useSizeClass
+  readonly getSizeClass: typeof getSizeClass
+  readonly useHinge: typeof useHinge
+  readonly getHinge: typeof getHinge
+  readonly onHingeChange: typeof onHingeChange
+  readonly useReservedRegions: typeof useReservedRegions
+  readonly useReservedRegionsReady: typeof useReservedRegionsReady
+  readonly useWindowSegments: typeof useWindowSegments
+  readonly useSpanning: typeof useSpanning
 }
 
 function currentPlatform(): OnePlatform {
@@ -163,8 +168,6 @@ const SafeArea: Readonly<OneSafeArea> = Object.freeze({
   Provider: SafeAreaProvider,
   View: SafeAreaView,
   initialMetrics: initialWindowMetrics,
-  useFrame: useSafeAreaFrame,
-  useInsets: useSafeAreaInsets,
 })
 
 const UI: Readonly<OneUI> = Object.freeze({
@@ -172,13 +175,6 @@ const UI: Readonly<OneUI> = Object.freeze({
   Fonts,
   SafeArea,
   TextInput,
-  useFonts,
-  useNativeState,
-  useSizeClass,
-  getSizeClass,
-  useHinge,
-  getHinge,
-  onHingeChange,
   ReservedRegions,
 })
 
@@ -202,5 +198,18 @@ export const One: OneAPI = Object.freeze({
   SecureStore: NativeSecureStore,
   Speech: NativeSpeech,
   Updates: NativeUpdates,
+  useFonts,
+  useNativeState,
   useNetworkState,
+  useSafeAreaFrame,
+  useSafeAreaInsets,
+  useSizeClass,
+  getSizeClass,
+  useHinge,
+  getHinge,
+  onHingeChange,
+  useReservedRegions,
+  useReservedRegionsReady,
+  useWindowSegments,
+  useSpanning,
 })

@@ -3,7 +3,7 @@ import { Widgets, LiveActivities, WidgetUI } from './widgets/index';
 export * from './extras';
 export type { ToolbarHostProps, ToolbarItemProps } from './extras';
 export * from './unsupported';
-export { useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, ReservedRegions, } from './adaptive/index';
+export { useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, ReservedRegions, useReservedRegions, useReservedRegionsReady, useWindowSegments, useSpanning, } from './adaptive/index';
 export type { UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, WindowSegment, ReservedRegionOptions, ReservedRegionsProviderProps, } from './adaptive/types';
 export type { ArrangementViewProps, ArrangementPaneProps, ArrangementViewStyle, SplitLayoutRatio, SplitLayoutSize, SplitFixedLayoutSize, OverlayArrangementEdge, } from './ArrangementView.native';
 export declare const Menu: (_props: import("./types").MenuProps) => never;
