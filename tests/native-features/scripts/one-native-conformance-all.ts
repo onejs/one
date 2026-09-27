@@ -16,6 +16,7 @@ const suites = [
   'dialogs',
   'host',
   'containers',
+  'glass-container',
   'popover',
   'accessibility',
   'media',

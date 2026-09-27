@@ -3,20 +3,22 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 export default function OneNativeGlassContainer() {
-  const [spacing, setSpacing] = useState(0)
+  const [spacing, setSpacing] = useState<number | undefined>(undefined)
   const [taps, setTaps] = useState(0)
   const [height, setHeight] = useState(0)
 
   return (
     <View style={styles.screen} testID="one-native-glass-container-screen">
-      <Text style={styles.status}>{`Spacing: ${spacing}`}</Text>
+      <Text style={styles.status}>{`Spacing: ${spacing ?? 'default'}`}</Text>
       <Text style={styles.status}>{`Glass taps: ${taps}`}</Text>
       <Text style={styles.status}>{`Measured: ${height}`}</Text>
       <Pressable
         accessibilityRole="button"
         style={styles.action}
         testID="one-native-glass-container-spacing"
-        onPress={() => setSpacing((value) => (value === 0 ? 60 : 0))}
+        onPress={() => setSpacing((value) =>
+          value === undefined ? 0 : value === 0 ? 60 : value === 60 ? -8 : undefined
+        )}
       >
         <Text style={styles.actionText}>Change merge spacing</Text>
       </Pressable>
