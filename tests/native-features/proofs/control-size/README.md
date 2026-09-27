@@ -1,7 +1,7 @@
 # iOS 27 SwiftUI controlSize proof
 
-`outcome.json` records nine passing checks (four control-size checks) at suite revision
-`d539b2dec56c7afb2b90c06395a11b43c2386f43`. Three PNGs and matching
+`outcome.json` records ten passing checks (five control-size checks) at suite revision
+`6535b36e6b6e23697684ee95a0c43d8171993007`. Three PNGs and matching
 compressed accessibility trees show `mini`, `extraLarge`, and restored `mini`
 states. `measurements.json` records the native Button frames: both the Button
 inside `Host controlSize` and the standalone Button with

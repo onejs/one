@@ -1182,7 +1182,7 @@ SwiftUI container.
 RAN on iOS 27: a bordered prominent Button inside `Host controlSize` and a
 standalone Button using `swiftStyle.controlSize` both grew from 28 to 50.33
 points when changed from `mini` to `extraLarge`, and returned to 28 points
-when restored. The nine-check proof (four control-size checks) is in
+when restored. The ten-check proof (five control-size checks) is in
 `tests/native-features/proofs/control-size`; other controls and sizes remain
 unproven by that run.
 This set covers the environment values React Native can express as stable scalar or

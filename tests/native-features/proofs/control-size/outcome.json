@@ -3,42 +3,46 @@
   "checks": [
     {
       "name": "simulator automation session ready",
-      "durationMs": 1132
+      "durationMs": 8054
     },
     {
       "name": "home screen mounted",
-      "durationMs": 15104
+      "durationMs": 6947
     },
     {
       "name": "no warning overlay intercepts interaction",
-      "durationMs": 2479
+      "durationMs": 1521
     },
     {
       "name": "home lists nav-one-native-control-size",
-      "durationMs": 2528
+      "durationMs": 1327
     },
     {
       "name": "nav-one-native-control-size settles",
-      "durationMs": 5287
+      "durationMs": 3042
     },
     {
       "name": "mini native Buttons mount",
-      "durationMs": 2191
+      "durationMs": 2833
+    },
+    {
+      "name": "mini native Buttons match iOS 27 height baseline",
+      "durationMs": 0
     },
     {
       "name": "extraLarge grows inherited and direct native Buttons",
-      "durationMs": 2136
+      "durationMs": 1077
     },
     {
       "name": "resized native Buttons dispatch to React",
-      "durationMs": 2193
+      "durationMs": 1122
     },
     {
       "name": "mini restores both native Button heights",
-      "durationMs": 2132
+      "durationMs": 1037
     }
   ],
-  "durationMs": 77411,
+  "durationMs": 52944,
   "simulatorId": "41E95D83-2AEC-4124-9655-5462F2A770DE",
   "bundleId": "dev.vxrn.native.tests",
   "suite": "control-size"

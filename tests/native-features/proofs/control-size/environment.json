@@ -1,6 +1,6 @@
 {
-  "sourceRevision": "d539b2dec56c7afb2b90c06395a11b43c2386f43",
-  "suiteRevision": "d539b2dec56c7afb2b90c06395a11b43c2386f43",
+  "sourceRevision": "6535b36e6b6e23697684ee95a0c43d8171993007",
+  "suiteRevision": "6535b36e6b6e23697684ee95a0c43d8171993007",
   "nativeBuildSourceRevision": "c593ca7e2ebf8ee245e02066773ac19ce2d8616f",
   "nativeSourceTree": "96f68d9974116519ab93458ee5479312d03ba7c3",
   "nativeSourceTreeAtBuildRevision": "96f68d9974116519ab93458ee5479312d03ba7c3",
@@ -17,5 +17,5 @@
   "appearance": "light",
   "appearanceSource": "same simulator; set light with simctl ui before this run and captured at native build proof",
   "builderHostname": "MacBookPros-MacBook-Pro.local",
-  "artifactDir": "tests/native-features/build/control-size-proof"
+  "artifactDir": "tests/native-features/build/control-size-final-proof"
 }
