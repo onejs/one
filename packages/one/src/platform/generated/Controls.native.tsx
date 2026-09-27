@@ -810,14 +810,13 @@ export function LinearGradient({
 }: Types.LinearGradientProps) {
   if (
     !Array.isArray(colors) ||
-    colors.length < 2 ||
     !colors.every(
       (color) =>
         typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)
     )
   )
     throw new Error(
-      'LinearGradient colors must contain at least two #RRGGBB or #RRGGBBAA colors'
+      'LinearGradient colors must be an array of #RRGGBB or #RRGGBBAA colors'
     )
   for (const point of [startPoint, endPoint])
     if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y))

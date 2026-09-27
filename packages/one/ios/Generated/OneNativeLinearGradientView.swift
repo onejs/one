@@ -34,8 +34,7 @@ private final class LinearGradientModel: ObservableObject {
     if model.endPoint != endPoint { model.endPoint = endPoint }
   }
   public func setColors(_ items: [String]) {
-    guard items.count >= 2,
-      items.allSatisfy({ oneNativeLinearGradientColor($0) != nil }) else {
+    guard items.allSatisfy({ oneNativeLinearGradientColor($0) != nil }) else {
       NSLog("OneNative LinearGradient received invalid colors")
       return
     }

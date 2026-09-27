@@ -3045,6 +3045,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('Reverse native: yes'))
     await Bun.sleep(300)
     const reversedPath = screenshot('linear-gradient-reversed.png', reversed)
+    tap({ id: 'one-native-linear-gradient-single' })
+    const single = await wait('React supplies one native gradient color', (nodes) =>
+      labels(nodes).includes('Single native: yes'))
+    await Bun.sleep(300)
+    const singlePath = screenshot('linear-gradient-single.png', single)
     const app = initial.find((node) => node.type === 'Application')?.frame
     if (!app?.width) throw new Error('LinearGradient proof has no application frame')
     const sample = (file: string, box: NonNullable<Node['frame']>, fraction: number) => {
@@ -3064,17 +3069,21 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       nativeBottom: sample(initialPath, native, 0.9),
       reversedTop: sample(reversedPath, native, 0.1),
       reversedBottom: sample(reversedPath, native, 0.9),
+      singleTop: sample(singlePath, native, 0.1),
+      singleBottom: sample(singlePath, native, 0.9),
     }
     const red = (value: number[]) => value[0]! > 170 && value[2]! < 100
     const blue = (value: number[]) => value[2]! > 145 && value[0]! < 110
+    const green = (value: number[]) => value[1]! > 130 && value[0]! < 80 && value[2]! < 130
     if (!red(colors.baselineTop) || !blue(colors.baselineBottom) ||
         !red(colors.nativeTop) || !blue(colors.nativeBottom) ||
-        !blue(colors.reversedTop) || !red(colors.reversedBottom))
-      throw new Error(`Native LinearGradient did not paint or reverse its sRGB colors: ${JSON.stringify(colors)}`)
+        !blue(colors.reversedTop) || !red(colors.reversedBottom) ||
+        !green(colors.singleTop) || !green(colors.singleBottom))
+      throw new Error(`Native LinearGradient did not paint, reverse, or render one sRGB color: ${JSON.stringify(colors)}`)
     fs.writeFileSync(path.join(config.artifactDir, 'linear-gradient-pixels.json'),
       JSON.stringify({ colors, baselineFrame: baseline, nativeFrame: native }, null, 2))
-    checks.push({ name: 'native linear gradient paints and reverses both color stops', durationMs: 0 })
-    console.log(`PASS native linear gradient paints and reverses both color stops: ${JSON.stringify(colors)}`)
+    checks.push({ name: 'native linear gradient paints, reverses, and renders one color', durationMs: 0 })
+    console.log(`PASS native linear gradient paints, reverses, and renders one color: ${JSON.stringify(colors)}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -69,16 +69,15 @@ private func oneNativeLinearGradientColor(_ value: String) -> Color? {
     blue: Double(blue) / 255, opacity: Double(alpha) / 255)
 }`,
     setBody: {
-      colors: `guard items.count >= 2,
-      items.allSatisfy({ oneNativeLinearGradientColor($0) != nil }) else {
+      colors: `guard items.allSatisfy({ oneNativeLinearGradientColor($0) != nil }) else {
       NSLog("OneNative LinearGradient received invalid colors")
       return
     }
     if model.colors != items { model.colors = items }`,
     },
-    validate: `  if (!Array.isArray(colors) || colors.length < 2 ||
+    validate: `  if (!Array.isArray(colors) ||
       !colors.every((color) => typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)))
-    throw new Error('LinearGradient colors must contain at least two #RRGGBB or #RRGGBBAA colors')
+    throw new Error('LinearGradient colors must be an array of #RRGGBB or #RRGGBBAA colors')
   for (const point of [startPoint, endPoint])
     if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y))
       throw new Error('LinearGradient points must have finite x and y coordinates')`,
