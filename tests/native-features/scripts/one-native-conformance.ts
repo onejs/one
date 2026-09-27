@@ -60,6 +60,7 @@ const suites = [
   'building-blocks',
   'view-slot',
   'safe-area-bar',
+  'linear-gradient',
   'horizontal-inset',
   'horizontal-bar',
   'swipe-actions',
@@ -394,6 +395,9 @@ const viewSlotLoaded = (nodes: Node[]) =>
 const safeAreaBarLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-safe-area-bar-screen'))
+const linearGradientLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-linear-gradient-screen'))
 const horizontalInsetLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-horizontal-inset-screen'))
@@ -600,6 +604,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'building-blocks': buildingBlocksLoaded,
   'view-slot': viewSlotLoaded,
   'safe-area-bar': safeAreaBarLoaded,
+  'linear-gradient': linearGradientLoaded,
   'horizontal-inset': horizontalInsetLoaded,
   'horizontal-bar': horizontalBarLoaded,
   'swipe-actions': swipeActionsLoaded,
@@ -677,6 +682,7 @@ const suiteHome: Record<Suite, string> = {
   'building-blocks': 'nav-one-native-building-blocks',
   'view-slot': 'nav-one-native-view-slot',
   'safe-area-bar': 'nav-one-native-safe-area-bar',
+  'linear-gradient': 'nav-one-native-linear-gradient',
   'horizontal-inset': 'nav-one-native-horizontal-inset',
   'horizontal-bar': 'nav-one-native-horizontal-bar',
   'swipe-actions': 'nav-one-native-swipe-actions',
@@ -3399,6 +3405,110 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const identityContrast = colorDistance(sample(identity, leftPoint, midY), sample(identity, rightPoint, midY))
     if (identityContrast < 100 || regularContrast >= identityContrast * 0.8)
       throw new Error(`Glass did not soften the two-color backdrop before identity removed it: ${JSON.stringify({ regularContrast, identityContrast })}`)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'linear-gradient') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-linear-gradient')
+    const initial = await wait('native and React Native linear gradients mount', (nodes) =>
+      labels(nodes).includes('SwiftUI LinearGradient') &&
+      labels(nodes).includes('Mode: initial') &&
+      labels(nodes).includes('Native gradient preview') &&
+      Boolean(id(nodes, 'one-native-linear-gradient-react-native')?.frame) &&
+      Boolean(id(nodes, 'one-native-linear-gradient-native')?.frame))
+    if (id(initial, 'one-native-linear-gradient-decorative'))
+      throw new Error('Unlabeled decorative native gradient is exposed to accessibility')
+    checks.push({ name: 'labeled gradient accessible; unlabeled gradient decorative', durationMs: 0 })
+    const baseline = id(initial, 'one-native-linear-gradient-react-native')!.frame!
+    const native = id(initial, 'one-native-linear-gradient-native')!.frame!
+    if (Math.abs(baseline.width - 280) > 2 || Math.abs(native.width - 280) > 2 ||
+        Math.abs(baseline.height - 150) > 2 || Math.abs(native.height - 150) > 2 ||
+        native.y <= baseline.y + baseline.height)
+      throw new Error(`Linear gradient fixtures lost distinct bounded native and React Native frames: ${JSON.stringify({ baseline, native })}`)
+    await Bun.sleep(300)
+    const initialPath = screenshot('linear-gradient-initial.png', initial)
+    tap({ id: 'one-native-linear-gradient-reverse' })
+    const reversed = await wait('React reverses native gradient colors', (nodes) =>
+      labels(nodes).includes('Mode: reversed'))
+    await Bun.sleep(300)
+    const reversedPath = screenshot('linear-gradient-reversed.png', reversed)
+    tap({ id: 'one-native-linear-gradient-single' })
+    const single = await wait('React supplies one native gradient color', (nodes) =>
+      labels(nodes).includes('Mode: single'))
+    await Bun.sleep(300)
+    const singlePath = screenshot('linear-gradient-single.png', single)
+    tap({ id: 'one-native-linear-gradient-horizontal' })
+    const horizontal = await wait('React supplies horizontal native gradient points', (nodes) =>
+      labels(nodes).includes('Mode: horizontal'))
+    await Bun.sleep(300)
+    const horizontalPath = screenshot('linear-gradient-horizontal.png', horizontal)
+    tap({ id: 'one-native-linear-gradient-alpha' })
+    const alpha = await wait('React supplies alpha in a native gradient color', (nodes) =>
+      labels(nodes).includes('Mode: alpha'))
+    await Bun.sleep(300)
+    const alphaPath = screenshot('linear-gradient-alpha.png', alpha)
+    tap({ id: 'one-native-linear-gradient-three' })
+    const three = await wait('React supplies three native gradient colors', (nodes) =>
+      labels(nodes).includes('Mode: three'))
+    await Bun.sleep(300)
+    const threePath = screenshot('linear-gradient-three.png', three)
+    tap({ id: 'one-native-linear-gradient-empty' })
+    const empty = await wait('React supplies an empty native gradient color array', (nodes) =>
+      labels(nodes).includes('Mode: empty'))
+    await Bun.sleep(300)
+    const emptyPath = screenshot('linear-gradient-empty.png', empty)
+    const app = initial.find((node) => node.type === 'Application')?.frame
+    if (!app?.width) throw new Error('LinearGradient proof has no application frame')
+    const sample = (file: string, box: NonNullable<Node['frame']>, xFraction: number, yFraction: number) => {
+      const png = readPng(file)
+      const scale = png.width / app.width
+      const x = Math.round((box.x + box.width * xFraction) * scale)
+      const y = Math.round((box.y + box.height * yFraction) * scale)
+      if (x < 0 || y < 0 || x >= png.width || y >= png.height)
+        throw new Error(`LinearGradient sample lies outside screenshot: ${JSON.stringify({ x, y })}`)
+      const at = (y * png.width + x) * 4
+      return [...png.data.subarray(at, at + 3)]
+    }
+    const colors = {
+      baselineTop: sample(initialPath, baseline, 0.5, 0.1),
+      baselineBottom: sample(initialPath, baseline, 0.5, 0.9),
+      nativeTop: sample(initialPath, native, 0.5, 0.1),
+      nativeBottom: sample(initialPath, native, 0.5, 0.9),
+      reversedTop: sample(reversedPath, native, 0.5, 0.1),
+      reversedBottom: sample(reversedPath, native, 0.5, 0.9),
+      singleTop: sample(singlePath, native, 0.5, 0.1),
+      singleBottom: sample(singlePath, native, 0.5, 0.9),
+      horizontalLeft: sample(horizontalPath, native, 0.1, 0.5),
+      horizontalRight: sample(horizontalPath, native, 0.9, 0.5),
+      alphaTop: sample(alphaPath, native, 0.5, 0.1),
+      alphaBottom: sample(alphaPath, native, 0.5, 0.9),
+      threeMiddle: sample(threePath, native, 0.5, 0.5),
+      emptyMiddle: sample(emptyPath, native, 0.5, 0.5),
+    }
+    const red = (value: number[]) => value[0]! > 170 && value[2]! < 100
+    const blue = (value: number[]) => value[2]! > 145 && value[0]! < 110
+    const green = (value: number[]) => value[1]! > 130 && value[0]! < 80 && value[2]! < 130
+    if (!red(colors.baselineTop) || !blue(colors.baselineBottom) ||
+        !red(colors.nativeTop) || !blue(colors.nativeBottom) ||
+        !blue(colors.reversedTop) || !red(colors.reversedBottom) ||
+        !green(colors.singleTop) || !green(colors.singleBottom))
+      throw new Error(`Native LinearGradient did not paint, reverse, or render one sRGB color: ${JSON.stringify(colors)}`)
+    if (!red(colors.horizontalLeft) || !blue(colors.horizontalRight))
+      throw new Error(`Native LinearGradient did not honor horizontal UnitPoints: ${JSON.stringify(colors)}`)
+    if (!(colors.alphaTop[0]! > 180 && colors.alphaTop[1]! > 150 && colors.alphaTop[2]! < 110) ||
+        !blue(colors.alphaBottom))
+      throw new Error(`Native LinearGradient did not composite sRGB alpha over yellow: ${JSON.stringify(colors)}`)
+    if (!green(colors.threeMiddle))
+      throw new Error(`Native LinearGradient did not render the middle of three colors: ${JSON.stringify(colors)}`)
+    if (!(colors.emptyMiddle[0]! > 220 && colors.emptyMiddle[1]! > 200 && colors.emptyMiddle[2]! < 80))
+      throw new Error(`Empty native LinearGradient did not reveal its yellow underlay: ${JSON.stringify(colors)}`)
+    fs.writeFileSync(path.join(config.artifactDir, 'linear-gradient-pixels.json'),
+      JSON.stringify({ colors, baselineFrame: baseline, nativeFrame: native }, null, 2))
+    checks.push({ name: 'native linear gradient paints, reverses, and renders one color', durationMs: 0 })
+    checks.push({ name: 'native linear gradient honors horizontal points, alpha, three colors, and empty colors', durationMs: 0 })
+    console.log(`PASS native linear gradient paints, reverses, and renders one color: ${JSON.stringify(colors)}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -12,6 +12,9 @@ export type ControlField = {
   default: string | boolean | number | readonly string[]
   enum?: string
   publicType?: string
+  // Public props such as a gradient's color list can be mandatory even when
+  // the Fabric spec needs a safe initial value before React first configures it.
+  required?: true
   jsDefault?: string
   nativeValue?: string
   // native-only prop computed from the public props; not part of the public interface.

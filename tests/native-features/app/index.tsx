@@ -106,6 +106,11 @@ const testScreens = [
     testID: 'nav-one-native-safe-area-bar',
   },
   {
+    href: '/one-native-linear-gradient',
+    label: 'One Native Linear Gradient',
+    testID: 'nav-one-native-linear-gradient',
+  },
+  {
     href: '/one-native-horizontal-inset',
     label: 'One Native Horizontal Inset',
     testID: 'nav-one-native-horizontal-inset',

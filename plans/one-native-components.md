@@ -81,6 +81,19 @@ accounts are unavailable).
   pairs, measurements, outcome, a WebP, and source/runtime/binary receipt.
   Generated ViewSlot and Overlay host Swift blobs match the earlier native
   build. Other host sizes and scroll content remain unproven.
+- **RAN, 2026-09-27:** `One.iOS.LinearGradient` invokes SwiftUI's
+  `LinearGradient(colors:startPoint:endPoint:)` and passed a focused 14-check
+  iPhone 17 Pro / iOS 27.0 suite at source `42c02938b` with Xcode 27.1.
+  Native colors painted, reversed, accepted one and three stops, used custom
+  horizontal points and alpha, and left the box transparent for an empty
+  array. The unlabeled gradient was decorative in AX; a labeled gradient
+  remained accessible. The tracked
+  `tests/native-features/proofs/linear-gradient` bundle preserves seven
+  AX/PNG pairs, sampled RGB values, outcome, runtime metadata, generation
+  check, and RN-versus-SwiftUI WebP. The public bridge accepts sRGB hex colors
+  and normalized `{ x, y }` points; arbitrary SwiftUI `Color` values and
+  explicit stops remain unbound. This is native conformance for the supported
+  initializer, with the gap disclosed in docs and coverage.
 
 - **RAN, 2026-09-27:** the `horizontal-inset` suite passed nine checks on
   ci-64's iPhone 17 Pro / iOS 27.0 simulator with Xcode 27.1. The generated

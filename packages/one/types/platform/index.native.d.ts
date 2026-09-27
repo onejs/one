@@ -37,6 +37,7 @@ export declare const Swift: {
     Ellipse({ fill, swiftStyle, style, ...props }: import("./types").EllipseProps): import("react/jsx-runtime").JSX.Element;
     UnevenRoundedRectangle({ fill, topLeadingRadius, bottomLeadingRadius, bottomTrailingRadius, topTrailingRadius, swiftStyle, style, ...props }: import("./types").UnevenRoundedRectangleProps): import("react/jsx-runtime").JSX.Element;
     ConcentricRectangle({ fill, swiftStyle, style, ...props }: import("./types").ConcentricRectangleProps): import("react/jsx-runtime").JSX.Element;
+    LinearGradient({ colors, startPoint, endPoint, swiftStyle, style, ...props }: import("./types").LinearGradientProps): import("react/jsx-runtime").JSX.Element;
     VideoPlayer({ url, autoplay, swiftStyle, style, ...props }: import("./types").VideoPlayerProps): import("react/jsx-runtime").JSX.Element;
     PhotosPicker({ onPick, onPickItemIdentifier, onPickError, label, disabled, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: import("./types").PhotosPickerProps): import("react/jsx-runtime").JSX.Element;
     WebView({ onNavigate, onTitleChange, onLoadingChange, url, html, backForwardNavigationGestures, magnificationGestures, linkPreviews, elementFullscreen, contentBackground, swiftStyle, style, ...props }: import("./types").WebViewProps): import("react/jsx-runtime").JSX.Element;

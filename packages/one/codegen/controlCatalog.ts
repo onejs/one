@@ -4,6 +4,7 @@ import { leafControls } from './leafCatalog'
 import { mapControls } from './mapCatalog'
 import { mediaControls } from './mediaCatalog'
 import { shapeControls } from './shapeCatalog'
+import { gradientControls } from './gradientCatalog'
 import { textControls } from './textCatalog'
 import { presentationControls } from './presentationCatalog'
 import type { Control } from './controlTypes'
@@ -12,6 +13,7 @@ export const controls: Control[] = [
   ...formControls,
   ...leafControls,
   ...shapeControls,
+  ...gradientControls,
   ...mediaControls,
   ...mapControls,
   ...textControls,

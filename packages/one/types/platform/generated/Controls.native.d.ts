@@ -20,6 +20,7 @@ export declare function RoundedRectangle({ fill, cornerRadius, swiftStyle, style
 export declare function Ellipse({ fill, swiftStyle, style, ...props }: Types.EllipseProps): import("react/jsx-runtime").JSX.Element;
 export declare function UnevenRoundedRectangle({ fill, topLeadingRadius, bottomLeadingRadius, bottomTrailingRadius, topTrailingRadius, swiftStyle, style, ...props }: Types.UnevenRoundedRectangleProps): import("react/jsx-runtime").JSX.Element;
 export declare function ConcentricRectangle({ fill, swiftStyle, style, ...props }: Types.ConcentricRectangleProps): import("react/jsx-runtime").JSX.Element;
+export declare function LinearGradient({ colors, startPoint, endPoint, swiftStyle, style, ...props }: Types.LinearGradientProps): import("react/jsx-runtime").JSX.Element;
 export declare function VideoPlayer({ url, autoplay, swiftStyle, style, ...props }: Types.VideoPlayerProps): import("react/jsx-runtime").JSX.Element;
 export declare function PhotosPicker({ onPick, onPickItemIdentifier, onPickError, label, disabled, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: Types.PhotosPickerProps): import("react/jsx-runtime").JSX.Element;
 export declare function WebView({ onNavigate, onTitleChange, onLoadingChange, url, html, backForwardNavigationGestures, magnificationGestures, linkPreviews, elementFullscreen, contentBackground, swiftStyle, style, ...props }: Types.WebViewProps): import("react/jsx-runtime").JSX.Element;

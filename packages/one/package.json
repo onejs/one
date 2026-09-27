@@ -400,6 +400,7 @@
         "OneNativeEllipse": "OneNativeEllipseComponentView",
         "OneNativeUnevenRoundedRectangle": "OneNativeUnevenRoundedRectangleComponentView",
         "OneNativeConcentricRectangle": "OneNativeConcentricRectangleComponentView",
+        "OneNativeLinearGradient": "OneNativeLinearGradientComponentView",
         "OneNativeVideoPlayer": "OneNativeVideoPlayerComponentView",
         "OneNativePhotosPicker": "OneNativePhotosPickerComponentView",
         "OneNativeWebView": "OneNativeWebViewComponentView",
