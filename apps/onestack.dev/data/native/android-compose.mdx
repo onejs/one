@@ -8,14 +8,14 @@ Jetpack Compose views under `One.Android`. Layout nodes (`Column`, `Row`, `FlowR
 `InputChip`, `SuggestionChip`, `IconButton`, `FilledIconButton`, `FilledTonalIconButton`,
 `OutlinedIconButton`) take children;
 `Text`, `Icon`,
-`Button`, `Switch`, `Checkbox`, `RadioButton`, `HorizontalDivider`,
+`Button`, `Switch`, `Checkbox`, `RadioButton`, `Spacer`, `HorizontalDivider`,
 `VerticalDivider`, `TextField`,
 `Slider`, `AlertDialog`, and `ProgressIndicator` are leaves. `Dialog`
 takes children and shows them in a dialog window. Every node takes the
 shared props (`accessibilityLabel`, `accessibilityState`,
 `accessibilityValue`, `accessibilityRole`, `testID`, `style`) plus
 `composeStyle`: background and foreground colors, padding, width, height,
-`fillMaxWidth`, `fillMaxHeight`, `cornerRadius`, `opacity`, border color
+`fillMaxWidth`, `fillMaxHeight`, `weight`, `cornerRadius`, `opacity`, border color
 and width. A node nested in a Compose tree styles through `composeStyle`;
 `style` applies only at the root of the tree.
 
@@ -34,6 +34,10 @@ mirror with `verticalAlignment` (`'top'`, `'centerVertically'`,
 `One.Android.FlowRow` wraps children across rows. Its horizontal and vertical
 arrangements accept the same distribution names as `Row` and `Column`, or
 `{ spacedBy: number }` for spacing in dp on that axis.
+`One.Android.Spacer` occupies available space when it is a direct child of a
+`Row` or `Column` with `composeStyle={{ weight: 1 }}`. The same positive
+`weight` works on other direct children. Pass `width` or `height` for a fixed
+spacer.
 
 ```tsx
 import { One } from 'one'

@@ -26,6 +26,7 @@ import type {
   ComposeProgressIndicatorProps,
   ComposeRadioButtonProps,
   ComposeRowProps,
+  ComposeSpacerProps,
   ComposeSegmentedButtonProps,
   ComposeSegmentedButtonRowProps,
   ComposeSliderProps,
@@ -49,6 +50,10 @@ function Column(_props: ComposeColumnProps): never {
 
 function Row(_props: ComposeRowProps): never {
   return unsupported('Row')
+}
+
+function Spacer(_props: ComposeSpacerProps): never {
+  return unsupported('Spacer')
 }
 
 function FlowRow(_props: ComposeFlowRowProps): never {
@@ -280,6 +285,7 @@ function ContainedLoadingIndicator(_props: ComposeContainedLoadingIndicatorProps
 export const Compose = {
   Column,
   Row,
+  Spacer,
   FlowRow,
   Box,
   Badge,

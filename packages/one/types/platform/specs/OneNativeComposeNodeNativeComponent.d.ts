@@ -12,6 +12,7 @@ type ComposeStyleNative = Readonly<{
     height?: WithDefault<Double, -1>;
     fillMaxWidth?: boolean;
     fillMaxHeight?: boolean;
+    weight?: WithDefault<Double, -1>;
     cornerRadius?: WithDefault<Double, -1>;
     opacity?: WithDefault<Double, -1>;
     borderColor?: ColorValue;
