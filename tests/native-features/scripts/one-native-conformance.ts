@@ -54,6 +54,7 @@ const suites = [
   'building-blocks',
   'share-empty',
   'web-photos',
+  'tab-slot',
   'view-that-fits',
   'cover-context',
   'popover',
@@ -358,6 +359,9 @@ const webPhotosLoaded = (nodes: Node[]) =>
   (Boolean(id(nodes, 'one-native-web-photos-screen')) ||
     // PhotosUI runs in another process and collapses the app accessibility snapshot.
     nodes.every((n) => n.type === 'Application'))
+const tabSlotLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-tab-slot-screen'))
 const viewThatFitsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-view-that-fits-width')) &&
@@ -519,6 +523,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'building-blocks': buildingBlocksLoaded,
   'share-empty': shareEmptyLoaded,
   'web-photos': webPhotosLoaded,
+  'tab-slot': tabSlotLoaded,
   'view-that-fits': viewThatFitsLoaded,
   'cover-context': coverContextLoaded,
   popover: popoverLoaded,
@@ -578,6 +583,7 @@ const suiteHome: Record<Suite, string> = {
   'building-blocks': 'nav-one-native-building-blocks',
   'share-empty': 'nav-one-native-share-empty',
   'web-photos': 'nav-one-native-web-photos',
+  'tab-slot': 'nav-one-native-tab-slot',
   'view-that-fits': 'nav-one-native-view-that-fits',
   'cover-context': 'nav-one-native-cover-context',
   popover: 'nav-one-native-popover',
@@ -3134,6 +3140,66 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (!/pixelWidth: 120\b/.test(dimensions) || !/pixelHeight: 80\b/.test(dimensions))
       throw new Error(`PhotosPicker copied a photo other than the seeded 120×80 image: ${dimensions}`)
     screenshot('photos-picker-picked.png', selected)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'tab-slot') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-tab-slot')
+    const mounted = await wait('TabViewSlot and EmptyView mount with Home tab', (nodes) =>
+      labels(nodes).includes('Selected tab: home') &&
+      labels(nodes).includes('Home page') &&
+      labels(nodes).includes('Before empty') &&
+      labels(nodes).includes('After empty') &&
+      labels(nodes).includes('Native A') &&
+      labels(nodes).includes('Native B') &&
+      labels(nodes).includes('Control A') &&
+      labels(nodes).includes('Control B') &&
+      labels(nodes).includes('Slot action') &&
+      Boolean(id(nodes, 'one-native-tab-slot-tabs')?.frame) &&
+      Boolean(id(nodes, 'one-native-tab-slot-action')?.frame))
+    const before = mounted.find((node) => node.AXLabel === 'Before empty')?.frame
+    const after = mounted.find((node) => node.AXLabel === 'After empty')?.frame
+    const slot = id(mounted, 'one-native-tab-slot-action')?.frame
+    const homeTab = mounted.find((node) => node.AXLabel === 'Home' && node.type === 'RadioButton')?.frame
+    const nativeA = id(mounted, 'one-native-tab-slot-native-a')?.frame
+    const nativeB = id(mounted, 'one-native-tab-slot-native-b')?.frame
+    const controlA = id(mounted, 'one-native-tab-slot-control-a')?.frame
+    const controlB = id(mounted, 'one-native-tab-slot-control-b')?.frame
+    if (!before || !after || !slot || !homeTab ||
+        id(mounted, 'one-native-tab-slot-empty') ||
+        id(mounted, 'one-native-tab-slot-composed-empty') ||
+        Math.abs(after.y - (before.y + before.height) - 16) > 1 ||
+        Math.abs(slot.height - 50) > 1 ||
+        slot.y + slot.height > homeTab.y)
+      throw new Error(`EmptyView or native tab accessory layout differs: ${JSON.stringify({ before, after, slot, homeTab })}`)
+    if (!nativeA || !nativeB || !controlA || !controlB ||
+        Math.abs(nativeB.x - nativeA.x - nativeA.width - 12) > 1 ||
+        Math.abs(controlB.x - controlA.x - controlA.width - 12) > 1 ||
+        Math.abs((nativeB.x - nativeA.x - nativeA.width) -
+          (controlB.x - controlA.x - controlA.width)) > 1)
+      throw new Error(`Composed EmptyView changed SwiftUI HStack spacing: ${JSON.stringify({ nativeA, nativeB, controlA, controlB })}`)
+    screenshot('tab-slot-home.png', mounted)
+    tap({ id: 'one-native-tab-slot-action' })
+    await wait('TabViewSlot child action reaches React', (nodes) =>
+      labels(nodes).includes('Slot taps: 1'))
+    tap({ label: 'Other' })
+    const switched = await wait('tab selection changes while TabViewSlot remains mounted', (nodes) =>
+      labels(nodes).includes('Selected tab: other') &&
+      labels(nodes).includes('Other page') &&
+      labels(nodes).includes('Slot action'))
+    const otherSlot = id(switched, 'one-native-tab-slot-action')?.frame
+    const otherTab = switched.find((node) => node.AXLabel === 'Other' && node.type === 'RadioButton')?.frame
+    if (!otherSlot || !otherTab || !slot ||
+        Math.abs(otherSlot.y - slot.y) > 1 ||
+        Math.abs(otherSlot.height - slot.height) > 1 ||
+        otherSlot.y + otherSlot.height > otherTab.y)
+      throw new Error(`TabViewSlot frame did not remain above the native tab bar: ${JSON.stringify({ slot, otherSlot, otherTab })}`)
+    tap({ id: 'one-native-tab-slot-action' })
+    await wait('TabViewSlot action remains active across tab selection', (nodes) =>
+      labels(nodes).includes('Slot taps: 2'))
+    screenshot('tab-slot-other.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

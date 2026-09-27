@@ -94,6 +94,7 @@ declare module 'one' {
         | `/one-native-speech`
         | `/one-native-state`
         | `/one-native-system`
+        | `/one-native-tab-slot`
         | `/one-native-web-photos`
         | `/one-native-tab-oracle`
         | `/one-native-tabview`

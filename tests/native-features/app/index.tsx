@@ -41,6 +41,11 @@ const testScreens = [
     testID: 'nav-one-native-web-photos',
   },
   {
+    href: '/one-native-tab-slot',
+    label: 'One Native Tab Slot',
+    testID: 'nav-one-native-tab-slot',
+  },
+  {
     href: '/one-native-paste-button',
     label: 'One Native Paste Button',
     testID: 'nav-one-native-paste-button',

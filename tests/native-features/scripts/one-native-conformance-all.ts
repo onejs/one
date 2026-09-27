@@ -20,6 +20,7 @@ const suites = [
   'building-blocks',
   'share-empty',
   'web-photos',
+  'tab-slot',
   'view-that-fits',
   'popover',
   'accessibility',

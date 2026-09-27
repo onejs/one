@@ -11,18 +11,18 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.AppInfo` | app-info | app-info |  |
 | `One.Database` | database | missing | Android suite missing |
 | `One.iOS.ArrangementView` | missing | n/a | fixture exists, no suite opens it |
-| `One.iOS.Tabs` | tabs-menu, e2e:one-native-tabview | n/a |  |
-| `One.iOS.Tab` | tabs-menu, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Tabs` | tabs-menu, tab-slot, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Tab` | tabs-menu, tab-slot, e2e:one-native-tabview | n/a |  |
 | `One.iOS.TabSection` | e2e:one-native-tabview | n/a |  |
 | `One.iOS.TabViewBottomAccessory` | e2e:one-native-tabview | n/a |  |
-| `One.iOS.TabViewSlot` | missing | n/a | no fixture or suite |
+| `One.iOS.TabViewSlot` | tab-slot | n/a | bottom accessory proven on iPhone; sidebar slots need iPad sidebar proof |
 | `One.iOS.Menu` | tabs-menu | n/a |  |
 | `One.iOS.ContextMenu` | cover-context | n/a |  |
 | `One.iOS.Sheet` | sheets, navigation | n/a |  |
 | `One.iOS.FullScreenCover` | cover-context | n/a |  |
 | `One.iOS.Popover` | popover | n/a |  |
 | `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, view-that-fits, accessibility | n/a |  |
-| `One.iOS.HStack` | glass-container, building-blocks, e2e:one-native-tabview | n/a |  |
+| `One.iOS.HStack` | glass-container, building-blocks, tab-slot, e2e:one-native-tabview | n/a |  |
 | `One.iOS.VStack` | groups | n/a |  |
 | `One.iOS.ZStack` | building-blocks | n/a |  |
 | `One.iOS.Form` | containers, popover, accessibility | n/a |  |
@@ -65,7 +65,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Slider` | pickers, forms | n/a |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a |  |
 | `One.iOS.PasteButton` | paste-button | n/a |  |
-| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, building-blocks, view-that-fits, popover, accessibility | n/a |  |
+| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, building-blocks, tab-slot, view-that-fits, popover, accessibility | n/a |  |
 | `One.iOS.Label` | leaves, containers | n/a |  |
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |
@@ -92,7 +92,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.QuickLook` | media | n/a |  |
 | `One.iOS.FileImporter` | apple-file | n/a |  |
 | `One.iOS.EditButton` | missing | n/a | no fixture or suite |
-| `One.iOS.EmptyView` | missing | n/a | no fixture or suite |
+| `One.iOS.EmptyView` | tab-slot | n/a |  |
 | `One.iOS.Widgets` | missing | n/a | needs a widget extension target in the fixture app |
 | `One.iOS.LiveActivities` | missing | n/a | needs a widget extension target in the fixture app |
 | `One.iOS.WidgetUI` | missing | n/a | needs a widget extension target in the fixture app |

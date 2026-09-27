@@ -266,7 +266,6 @@ export type ViewSlotConfiguration =
   | { name: 'toolbarTitleMenu'; options?: never }
 export const tabViewSlotAvailability = {
   tabViewBottomAccessory: 26,
-  tabViewBottomAccessoryWithBool: 26.1,
   tabViewSidebarBottomBar: 18,
   tabViewSidebarFooter: 18,
   tabViewSidebarHeader: 18,
