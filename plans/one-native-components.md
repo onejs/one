@@ -71,6 +71,19 @@ accounts are unavailable).
 
 ## Status
 
+- **RAN, 2026-09-27:** the `scroll-search-refresh` suite passed 13 checks on
+  ci-64's iPhone 17 Pro / iOS 27.0 simulator at source `a6c29f54f`, Xcode
+  27.1, with the unchanged native iOS tree
+  `c9fde9de93d0a91d333f8a29923582cfbc720db7`. The tracked
+  `tests/native-features/proofs/scroll-search-refresh` bundle contains four
+  compressed AX/PNG pairs, outcome, runtime and matching built/installed
+  code-bearing dylib hashes, and a side-by-side WebP. Pulling a vertical
+  `ScrollView` invoked `refreshable` twice, with the second pull after the
+  first JS promise resolved. A surrounding `NavigationStack` presented the
+  native search field; external React state and native typing both updated
+  the filtered scroll content. Indicator duration, standalone search hosting,
+  and horizontal/both-axis scrolls remain unproven.
+
 - **RAN, 2026-09-27:** a focused `list-search-refresh` suite passed on ci-64's
   iPhone 17 Pro / iOS 27.0 simulator, Xcode 27.1, suite source `a11f9e9fd`
   and the unchanged native iOS tree `c9fde9de93d0a91d333f8a29923582cfbc720db7`
