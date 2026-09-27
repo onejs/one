@@ -106,6 +106,11 @@ const testScreens = [
     testID: 'nav-one-native-safe-area-bar',
   },
   {
+    href: '/one-native-horizontal-inset',
+    label: 'One Native Horizontal Inset',
+    testID: 'nav-one-native-horizontal-inset',
+  },
+  {
     href: '/one-native-swipe-actions',
     label: 'One Native Swipe Actions',
     testID: 'nav-one-native-swipe-actions',
