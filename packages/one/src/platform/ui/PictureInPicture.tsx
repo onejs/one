@@ -1,4 +1,4 @@
-import { View } from 'react-native'
+import { DomView } from '../web/DomView'
 import type { PictureInPictureProps } from './PictureInPicture.native'
 
 // web renders the children inline and never enters pip. document picture in
@@ -10,5 +10,5 @@ export function PictureInPicture({
   onActiveChange: _onActiveChange,
   ...props
 }: PictureInPictureProps) {
-  return <View {...props} />
+  return <DomView {...props} />
 }

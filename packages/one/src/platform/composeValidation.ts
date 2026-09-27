@@ -130,6 +130,7 @@ const composeStyleKeys = new Set([
   'height',
   'fillMaxWidth',
   'fillMaxHeight',
+  'weight',
   'cornerRadius',
   'opacity',
   'borderColor',
@@ -257,6 +258,24 @@ const segmentedButtonColorKeys = new Set([
   'disabledActiveContainerColor',
   'disabledInactiveContainerColor',
 ])
+const switchColorKeys = new Set([
+  'checkedThumbColor',
+  'checkedTrackColor',
+  'checkedBorderColor',
+  'checkedIconColor',
+  'uncheckedThumbColor',
+  'uncheckedTrackColor',
+  'uncheckedBorderColor',
+  'uncheckedIconColor',
+  'disabledCheckedThumbColor',
+  'disabledCheckedTrackColor',
+  'disabledCheckedBorderColor',
+  'disabledCheckedIconColor',
+  'disabledUncheckedThumbColor',
+  'disabledUncheckedTrackColor',
+  'disabledUncheckedBorderColor',
+  'disabledUncheckedIconColor',
+])
 
 function assertComposeColorValue(value: unknown, name: string) {
   const resourcePaths =
@@ -304,6 +323,11 @@ export function assertComposeStyle(style: ComposeStyle | undefined) {
     if (key === 'opacity') {
       if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 1)
         throw new Error('Compose composeStyle opacity must be a number from 0 to 1')
+      continue
+    }
+    if (key === 'weight') {
+      if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0)
+        throw new Error('Compose composeStyle weight must be a positive finite number')
       continue
     }
     if (composeStyleColorKeys.has(key)) {
@@ -474,6 +498,7 @@ export function validateSwitchProps(props: ComposeSwitchProps) {
   assertBoolean(props.disabled ?? false, 'Switch disabled')
   assertString(props.label ?? '', 'Switch label')
   assertFunction(props.onIsOnChange, 'Switch onIsOnChange')
+  if (props.colors !== undefined) assertComposeColors(props.colors, switchColorKeys, 'Switch')
 }
 
 export function validateCheckboxProps(props: ComposeCheckboxProps) {
