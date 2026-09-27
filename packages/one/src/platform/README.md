@@ -626,7 +626,7 @@ function Notes() {
 ## Shapes
 
 `One.iOS.LinearGradient` paints a SwiftUI linear gradient within its assigned
-width and height. Pass at least two `#RRGGBB` or `#RRGGBBAA` sRGB colors;
+width and height. Pass `#RRGGBB` or `#RRGGBBAA` sRGB colors;
 `startPoint` and `endPoint` use normalized `{ x, y }` coordinates and default
 to top center and bottom center. React updates to `colors` repaint the native
 gradient.

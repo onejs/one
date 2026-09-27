@@ -4,7 +4,10 @@ import { One } from 'one'
 
 export default function OneNativeLinearGradientFixture() {
   const [reversed, setReversed] = useState(false)
-  const colors = reversed ? (['#1144DD', '#FF3311'] as const) : (['#FF3311', '#1144DD'] as const)
+  const [singleStop, setSingleStop] = useState(false)
+  const colors = singleStop
+    ? (['#22BB55'] as const)
+    : reversed ? (['#1144DD', '#FF3311'] as const) : (['#FF3311', '#1144DD'] as const)
 
   return (
     <View style={styles.screen} testID="one-native-linear-gradient-screen">
@@ -32,6 +35,9 @@ export default function OneNativeLinearGradientFixture() {
       />
       <Pressable onPress={() => setReversed((value) => !value)} testID="one-native-linear-gradient-reverse">
         <Text>{`Reverse native: ${reversed ? 'yes' : 'no'}`}</Text>
+      </Pressable>
+      <Pressable onPress={() => setSingleStop(true)} testID="one-native-linear-gradient-single">
+        <Text>{`Single native: ${singleStop ? 'yes' : 'no'}`}</Text>
       </Pressable>
     </View>
   )
