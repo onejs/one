@@ -80,7 +80,10 @@ accounts are unavailable).
   AX snapshots, PNGs, and `list-row-background-pixels.json` are in the local
   ignored `tests/native-features/build/list-row-background-proof` directory.
   The existing `lists` regression suite also passed on the rebuilt app,
-  including two native List recycling cycles. High review remains before merge.
+  including two native List recycling cycles. A read-only high review found no
+  blocking issue. The saved environment metadata records the build revision and
+  simulator runtime by hand; the Xcode log corroborates the simulator ID and
+  arm64 build but does not independently capture those two fields.
 
 - **RAN, 2026-09-26:** slice 1 `TextEditor` and `UnevenRoundedRectangle` passed
   `generate:check`, all seven shape tests, and the `editors` conformance suite
