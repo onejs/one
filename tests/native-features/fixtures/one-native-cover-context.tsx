@@ -16,8 +16,10 @@ export default function OneNativeCoverContext() {
   const [category, setCategory] = useState<'Cover' | 'Context'>('Cover')
   const [coverPresented, setCoverPresented] = useState(false)
   const [coverChanges, setCoverChanges] = useState(0)
+  const [coverDismisses, setCoverDismisses] = useState(0)
   const [contextAction, setContextAction] = useState('')
   const [pinned, setPinned] = useState(false)
+  const [pinSourceIndex, setPinSourceIndex] = useState(-1)
   const handleCoverChange = (value: boolean) => {
     setCoverChanges((count) => count + 1)
     setCoverPresented(value)
@@ -32,7 +34,7 @@ export default function OneNativeCoverContext() {
             accessibilityRole="button"
             accessibilityState={{ selected: category === item }}
             style={styles.action}
-            testID={`one-native-system-category-${item.toLowerCase()}`}
+            testID={`one-native-cover-context-category-${item.toLowerCase()}`}
             onPress={() => setCategory(item)}
           >
             <Text style={styles.actionText}>{item}</Text>
@@ -43,8 +45,10 @@ export default function OneNativeCoverContext() {
         <Text style={styles.statusText}>{`Category: ${category}`}</Text>
         <Text style={styles.statusText}>{`Cover presented: ${coverPresented}`}</Text>
         <Text style={styles.statusText}>{`Cover changes: ${coverChanges}`}</Text>
+        <Text style={styles.statusText}>{`Cover dismisses: ${coverDismisses}`}</Text>
         <Text style={styles.statusText}>{`Context action: ${contextAction}`}</Text>
         <Text style={styles.statusText}>{`Pinned: ${pinned}`}</Text>
+        <Text style={styles.statusText}>{`Pin source index: ${pinSourceIndex}`}</Text>
       </View>
 
       {category === 'Cover' ? (
@@ -52,22 +56,23 @@ export default function OneNativeCoverContext() {
           <Pressable
             accessibilityRole="button"
             style={styles.action}
-            testID="one-native-system-cover-open"
+            testID="one-native-cover-context-cover-open"
             onPress={() => handleCoverChange(true)}
           >
             <Text style={styles.actionText}>Open cover</Text>
           </Pressable>
           <One.iOS.FullScreenCover
             isPresented={coverPresented}
-            testID="one-native-system-cover"
+            testID="one-native-cover-context-cover"
             onIsPresentedChange={handleCoverChange}
+            onDismiss={() => setCoverDismisses((count) => count + 1)}
           >
-            <View style={styles.coverContent} testID="one-native-system-cover-content">
+            <View style={styles.coverContent} testID="one-native-cover-context-cover-content">
               <Text style={styles.coverHeading}>Full Screen Cover</Text>
               <Pressable
                 accessibilityRole="button"
                 style={styles.action}
-                testID="one-native-system-cover-close"
+                testID="one-native-cover-context-cover-close"
                 onPress={() => handleCoverChange(false)}
               >
                 <Text style={styles.actionText}>Close</Text>
@@ -80,13 +85,16 @@ export default function OneNativeCoverContext() {
           items={contextItems.map((item) =>
             item.type === 'toggle' ? { ...item, values: [pinned] } : item
           )}
-          testID="one-native-system-context"
+          testID="one-native-cover-context-context"
           onAction={setContextAction}
-          onValueChange={(id, value) => {
-            if (id === 'pin') setPinned(value)
+          onValueChange={(id, value, sourceIndex) => {
+            if (id === 'pin') {
+              setPinned(value)
+              setPinSourceIndex(sourceIndex)
+            }
           }}
         >
-          <View style={styles.trigger} testID="one-native-system-context-trigger">
+          <View style={styles.trigger} testID="one-native-cover-context-context-trigger">
             <Text style={styles.actionText}>Long press me</Text>
           </View>
         </One.iOS.ContextMenu>
