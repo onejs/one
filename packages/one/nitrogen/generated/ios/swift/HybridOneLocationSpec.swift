@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneLocationSpec``
 public protocol HybridOneLocationSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func getPermissionStatus() throws -> LocationPermissionStatus

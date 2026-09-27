@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneDeviceSpec``
 public protocol HybridOneDeviceSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func getInfo() throws -> Promise<DeviceInfo>

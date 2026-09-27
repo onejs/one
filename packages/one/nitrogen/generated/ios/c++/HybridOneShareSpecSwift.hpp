@@ -73,7 +73,7 @@ namespace margelo::nitro::one {
 
   public:
     // Properties
-
+    
 
   public:
     // Methods

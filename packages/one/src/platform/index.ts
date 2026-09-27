@@ -54,6 +54,7 @@ export type {
 export type * from './composeTypes'
 export type * from './types'
 export { Haptics } from './haptics/index'
+export { LaunchScreen } from './launchScreen/index'
 export { LocalAuthentication } from './local-authentication/index'
 export type { LocalAuthenticationStatus } from './local-authentication/index'
 export { ProtectedStore } from './protected-store/index'
@@ -93,6 +94,7 @@ export type {
   ReminderInput,
 } from './calendar/index'
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index'
+export type { LaunchScreenApi, LaunchScreenHideOptions } from './launchScreen/index'
 export { AppInfo } from './app-info/index'
 export type { AppInfoApi } from './app-info/index'
 export { ImagePicker } from './image-picker/index'

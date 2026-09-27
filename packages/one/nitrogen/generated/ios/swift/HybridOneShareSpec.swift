@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneShareSpec``
 public protocol HybridOneShareSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func share(items: [ShareItem]) throws -> Promise<ShareResult>

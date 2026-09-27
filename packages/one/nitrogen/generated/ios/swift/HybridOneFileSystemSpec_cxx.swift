@@ -84,7 +84,7 @@ open class HybridOneFileSystemSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneFileSystemSpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)
@@ -135,7 +135,7 @@ open class HybridOneFileSystemSpec_cxx {
       return bridge.create_Result_FileDirectories_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func getInfo(uri: std.string) -> bridge.Result_std__shared_ptr_Promise_FileInfo___ {
     do {
@@ -154,7 +154,7 @@ open class HybridOneFileSystemSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_FileInfo___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func readDirectory(uri: std.string) -> bridge.Result_std__shared_ptr_Promise_std__vector_FileEntry____ {
     do {
@@ -179,7 +179,7 @@ open class HybridOneFileSystemSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_FileEntry____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func makeDirectory(uri: std.string, intermediates: Bool) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -198,7 +198,7 @@ open class HybridOneFileSystemSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func writeFile(uri: std.string, contents: std.string, encoding: Int32) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -217,7 +217,7 @@ open class HybridOneFileSystemSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func copy(fromUri: std.string, toUri: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -236,7 +236,7 @@ open class HybridOneFileSystemSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func move(fromUri: std.string, toUri: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -255,7 +255,7 @@ open class HybridOneFileSystemSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func remove(uri: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {

@@ -63,7 +63,7 @@ public extension CalendarEventChanges {
       }
     }()
   }
-
+  
   @inline(__always)
   var startMs: Double? {
     return { () -> Double? in
@@ -75,7 +75,7 @@ public extension CalendarEventChanges {
       }
     }()
   }
-
+  
   @inline(__always)
   var endMs: Double? {
     return { () -> Double? in
@@ -87,7 +87,7 @@ public extension CalendarEventChanges {
       }
     }()
   }
-
+  
   @inline(__always)
   var allDay: Bool? {
     return { () -> Bool? in
@@ -99,7 +99,7 @@ public extension CalendarEventChanges {
       }
     }()
   }
-
+  
   @inline(__always)
   var location: String? {
     return { () -> String? in

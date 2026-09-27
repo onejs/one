@@ -122,6 +122,7 @@ export type { TextInputProps, TextInputRef, TextInputSelection, } from './univer
 export type * from './types';
 export type * from './composeTypes';
 export { Haptics } from './haptics/index.native';
+export { LaunchScreen } from './launchScreen/index.native';
 export { LocalAuthentication } from './local-authentication/index.native';
 export type { LocalAuthenticationStatus } from './local-authentication/index.native';
 export { ProtectedStore } from './protected-store/index.native';
@@ -133,6 +134,8 @@ export type { FileDirectories, FileEncoding, FileEntry, FileInfo } from './file-
 export { Audio } from './audio/index.native';
 export type { AudioPlaybackState, AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, } from './audio/index.native';
 export { Share } from './share/index.native';
+export { Open } from './open/index.native';
+export type { OpenShareContent } from './open/index.native';
 export type { ShareItem, ShareItemType, ShareResult } from './share/index.native';
 export { PhotoLibrary } from './photo-library/index.native';
 export type { PhotoLibraryPermissionStatus } from './photo-library/index.native';
@@ -145,6 +148,7 @@ export type { ContactChanges, ContactInfo, ContactInput, ContactsPermissionStatu
 export { Calendar } from './calendar/index.native';
 export type { CalendarEvent, CalendarEventChanges, CalendarEventInput, CalendarPermissionStatus, ReminderInfo, ReminderInput, } from './calendar/index.native';
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native';
+export type { LaunchScreenApi, LaunchScreenHideOptions } from './launchScreen/index.native';
 export { AppInfo } from './app-info/index.native';
 export type { AppInfoApi } from './app-info/index.native';
 export { ImagePicker } from './image-picker/index.native';

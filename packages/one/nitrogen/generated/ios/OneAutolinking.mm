@@ -11,6 +11,7 @@
 #import <type_traits>
 
 #include "HybridOneHapticsSpecSwift.hpp"
+#include "HybridOneLaunchScreenSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
 #include "HybridOneCryptoSpecSwift.hpp"
 #include "HybridOneNetworkSpecSwift.hpp"
@@ -52,6 +53,13 @@
     "OneHaptics",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneHapticsSpec> hybridObject = One::OneAutolinking::createOneHaptics();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneLaunchScreen",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneLaunchScreenSpec> hybridObject = One::OneAutolinking::createOneLaunchScreen();
       return hybridObject;
     }
   );

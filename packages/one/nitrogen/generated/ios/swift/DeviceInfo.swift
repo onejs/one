@@ -32,27 +32,27 @@ public extension DeviceInfo {
   var model: String {
     return String(self.__model)
   }
-
+  
   @inline(__always)
   var systemName: String {
     return String(self.__systemName)
   }
-
+  
   @inline(__always)
   var systemVersion: String {
     return String(self.__systemVersion)
   }
-
+  
   @inline(__always)
   var interfaceIdiom: String {
     return String(self.__interfaceIdiom)
   }
-
+  
   @inline(__always)
   var isSimulator: Bool {
     return self.__isSimulator
   }
-
+  
   @inline(__always)
   var vendorIdentifier: String? {
     return { () -> String? in

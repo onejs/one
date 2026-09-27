@@ -45,7 +45,7 @@ public extension ImageResize {
       }
     }()
   }
-
+  
   @inline(__always)
   var height: Double? {
     return { () -> Double? in

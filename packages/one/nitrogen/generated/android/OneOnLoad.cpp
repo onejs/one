@@ -32,6 +32,7 @@
 #include "JHybridOneFontsSpec.hpp"
 #include "JHybridOneHapticsSpec.hpp"
 #include "JHybridOneImagePickerSpec.hpp"
+#include "JHybridOneLaunchScreenSpec.hpp"
 #include "JHybridOneNativeModulesSpec.hpp"
 #include "JHybridOneNetworkSpec.hpp"
 #include "JFunc_void_NetworkState.hpp"
@@ -60,6 +61,14 @@ struct JHybridOneHapticsSpecImpl: public jni::JavaClass<JHybridOneHapticsSpecImp
     static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneHapticsSpecImpl::javaobject()>();
     jni::local_ref<JHybridOneHapticsSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
     return javaPart->getJHybridOneHapticsSpec();
+  }
+};
+struct JHybridOneLaunchScreenSpecImpl: public jni::JavaClass<JHybridOneLaunchScreenSpecImpl, JHybridOneLaunchScreenSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneLaunchScreen;";
+  static std::shared_ptr<JHybridOneLaunchScreenSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneLaunchScreenSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneLaunchScreenSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneLaunchScreenSpec();
   }
 };
 struct JHybridOneClipboardSpecImpl: public jni::JavaClass<JHybridOneClipboardSpecImpl, JHybridOneClipboardSpec::JavaPart> {
@@ -213,6 +222,7 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneFontsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneHapticsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneImagePickerSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneLaunchScreenSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneNativeModulesSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneNetworkSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_NetworkState_cxx::registerNatives();
@@ -231,6 +241,12 @@ void registerAllNatives() {
     "OneHaptics",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneHapticsSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneLaunchScreen",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneLaunchScreenSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

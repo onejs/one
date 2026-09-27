@@ -50,12 +50,12 @@ public extension ImageTransformOptions {
   var crop: ImageCrop? {
     return self.__crop.value
   }
-
+  
   @inline(__always)
   var resize: ImageResize? {
     return self.__resize.value
   }
-
+  
   @inline(__always)
   var rotate: Double? {
     return { () -> Double? in
@@ -67,12 +67,12 @@ public extension ImageTransformOptions {
       }
     }()
   }
-
+  
   @inline(__always)
   var format: ImageFormat {
     return self.__format
   }
-
+  
   @inline(__always)
   var quality: Double? {
     return { () -> Double? in

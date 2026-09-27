@@ -539,7 +539,8 @@ function renderPlistEntries(entries: Record<string, PlistValue>, indent: string)
 function appEntitlements(app: NativeAppManifest): Record<string, PlistValue> {
   const modeled: Record<string, PlistValue> = {}
   if (app.notifications?.push === true || app.ios?.widgets?.pushNotifications) {
-    modeled['aps-environment'] = notificationsHost.apsEnvironment
+    modeled['aps-environment'] =
+      app.notifications?.apsEnvironment ?? notificationsHost.apsEnvironment
   }
   if (app.ios?.widgets) {
     modeled['com.apple.security.application-groups'] = [app.ios.widgets.appGroup]
@@ -1460,6 +1461,58 @@ ${adaptiveIcon.monochrome ? '    <monochrome android:drawable="@mipmap/ic_launch
   }
 }
 
+const IOS_DARK_APPEARANCE = [{ appearance: 'luminosity', value: 'dark' }]
+
+function srgb(hex: string) {
+  return {
+    red: Number.parseInt(hex.slice(1, 3), 16) / 255,
+    green: Number.parseInt(hex.slice(3, 5), 16) / 255,
+    blue: Number.parseInt(hex.slice(5, 7), 16) / 255,
+  }
+}
+
+// an asset catalog color entry, with its dark appearance when one is given.
+function xcodeColorSet(light: string, dark: string | undefined): string {
+  const entry = (hex: string) => {
+    const { red, green, blue } = srgb(hex)
+    return {
+      color: {
+        'color-space': 'srgb',
+        components: {
+          red: red.toFixed(3),
+          green: green.toFixed(3),
+          blue: blue.toFixed(3),
+          alpha: '1.000',
+        },
+      },
+      idiom: 'universal',
+    }
+  }
+  return `${JSON.stringify(
+    {
+      colors: [
+        entry(light),
+        ...(dark ? [{ appearances: IOS_DARK_APPEARANCE, ...entry(dark) }] : []),
+      ],
+      info: { author: 'xcode', version: 1 },
+    },
+    null,
+    2
+  )}\n`
+}
+
+// the AccentColor asset the Info.plist names as the app's tint.
+function generateAccentColor(args: { dest: string; app: NativeAppManifest }): void {
+  const accent = args.app.ios?.accentColor
+  if (!accent) return
+  const colorDir = path.join(args.dest, args.app.name, 'Images.xcassets', 'AccentColor.colorset')
+  FSExtra.mkdirSync(colorDir, { recursive: true })
+  FSExtra.writeFileSync(
+    path.join(colorDir, 'Contents.json'),
+    xcodeColorSet(accent.light, accent.dark)
+  )
+}
+
 async function generateSplashScreen(args: {
   root: string
   dest: string
@@ -1476,7 +1529,14 @@ async function generateSplashScreen(args: {
     if (!FSExtra.existsSync(source)) {
       throw new Error(`[vxrn] native.app.splash source does not exist: ${source}`)
     }
-    const image = sharp(source).rotate()
+    // a vector source rasterizes at the density its largest use needs: the
+    // @3x launch artwork, or the android xxxhdpi splash.
+    const { width: sourceWidth, format } = await sharp(source).metadata()
+    const density =
+      format === 'svg' && sourceWidth && !cover
+        ? Math.min(2400, Math.ceil((72 * 4 * (app.splash?.width ?? 200)) / sourceWidth))
+        : undefined
+    const image = sharp(source, density ? { density } : {}).rotate()
     const prepared = await (cover ? image : image.trim({ background: backgroundColor }))
       .png()
       .toBuffer({ resolveWithObject: true })
@@ -1500,72 +1560,70 @@ async function generateSplashScreen(args: {
 
   if (platform === 'ios') {
     const appDir = path.join(dest, app.name)
-    const splashDir = path.join(appDir, 'Images.xcassets', 'Splash.imageset')
-    FSExtra.mkdirSync(splashDir, { recursive: true })
-    const darkAppearance = [{ appearance: 'luminosity', value: 'dark' }]
-    await sharp(artwork).toFile(path.join(splashDir, 'splash.png'))
-    if (darkArtwork) await sharp(darkArtwork).toFile(path.join(splashDir, 'splash-dark.png'))
-    FSExtra.writeFileSync(
-      path.join(splashDir, 'Contents.json'),
-      `${JSON.stringify(
-        {
-          images: [
-            { filename: 'splash.png', idiom: 'universal', scale: '1x' },
-            ...(darkArtwork
-              ? [
-                  {
-                    appearances: darkAppearance,
-                    filename: 'splash-dark.png',
-                    idiom: 'universal',
-                    scale: '1x',
-                  },
-                ]
-              : []),
-          ],
-          info: { author: 'xcode', version: 1 },
-        },
-        null,
-        2
-      )}\n`
-    )
-    // the launch background is a named color so a dark launch gets its own.
-    const srgb = (hex: string) => ({
-      red: Number.parseInt(hex.slice(1, 3), 16) / 255,
-      green: Number.parseInt(hex.slice(3, 5), 16) / 255,
-      blue: Number.parseInt(hex.slice(5, 7), 16) / 255,
-    })
-    const colorEntry = (hex: string) => {
-      const { red, green, blue } = srgb(hex)
-      return {
-        color: {
-          'color-space': 'srgb',
-          components: {
-            red: red.toFixed(3),
-            green: green.toFixed(3),
-            blue: blue.toFixed(3),
-            alpha: '1.000',
-          },
-        },
-        idiom: 'universal',
+    const assets = path.join(appDir, 'Images.xcassets')
+    // one imageset per image, each with an optional dark appearance. contain
+    // artwork is drawn at 1x, 2x and 3x of its launch width; a full-bleed
+    // image keeps its own resolution.
+    const writeImageSet = async (
+      name: string,
+      light: Buffer,
+      dark: Buffer | undefined,
+      pointWidth: number | undefined
+    ) => {
+      const dir = path.join(assets, `${name}.imageset`)
+      FSExtra.mkdirSync(dir, { recursive: true })
+      const scales = pointWidth === undefined ? [1] : [1, 2, 3]
+      const images: Array<Record<string, unknown>> = []
+      for (const [variant, suffix, appearances] of [
+        [light, '', undefined],
+        [dark, '-dark', IOS_DARK_APPEARANCE],
+      ] as const) {
+        if (!variant) continue
+        for (const scale of scales) {
+          const filename = `${name.toLowerCase()}${suffix}${scale === 1 ? '' : `@${scale}x`}.png`
+          const output = sharp(variant)
+          await (pointWidth === undefined
+            ? output
+            : output.resize({ width: Math.round(pointWidth * scale) })
+          )
+            .png()
+            .toFile(path.join(dir, filename))
+          images.push({
+            ...(appearances ? { appearances } : {}),
+            filename,
+            idiom: 'universal',
+            scale: `${scale}x`,
+          })
+        }
       }
+      FSExtra.writeFileSync(
+        path.join(dir, 'Contents.json'),
+        `${JSON.stringify({ images, info: { author: 'xcode', version: 1 } }, null, 2)}\n`
+      )
     }
-    const colorDir = path.join(appDir, 'Images.xcassets', 'SplashBackground.colorset')
+    await writeImageSet('Splash', artwork, darkArtwork, cover ? undefined : artworkWidth)
+    const readBackground = (sourcePath: string) => {
+      const source = path.resolve(root, sourcePath)
+      if (!FSExtra.existsSync(source)) {
+        throw new Error(`[vxrn] native.app.splash backgroundImage does not exist: ${source}`)
+      }
+      return sharp(source).rotate().png().toBuffer({ resolveWithObject: true })
+    }
+    const background = app.splash.backgroundImage
+      ? await readBackground(app.splash.backgroundImage)
+      : undefined
+    const darkBackground = dark?.backgroundImage
+      ? (await readBackground(dark.backgroundImage)).data
+      : undefined
+    if (background) {
+      await writeImageSet('SplashBackgroundImage', background.data, darkBackground, undefined)
+    }
+    // the launch background is a named color so a dark launch gets its own.
+    const colorDir = path.join(assets, 'SplashBackground.colorset')
     FSExtra.mkdirSync(colorDir, { recursive: true })
     FSExtra.writeFileSync(
       path.join(colorDir, 'Contents.json'),
-      `${JSON.stringify(
-        {
-          colors: [
-            colorEntry(app.splash.backgroundColor),
-            ...(dark
-              ? [{ appearances: darkAppearance, ...colorEntry(dark.backgroundColor) }]
-              : []),
-          ],
-          info: { author: 'xcode', version: 1 },
-        },
-        null,
-        2
-      )}\n`
+      xcodeColorSet(app.splash.backgroundColor, dark?.backgroundColor)
     )
     const { red, green, blue } = srgb(app.splash.backgroundColor)
     FSExtra.writeFileSync(
@@ -1584,11 +1642,24 @@ async function generateSplashScreen(args: {
         <viewController id="launch-controller" sceneMemberID="viewController">
           <view key="view" contentMode="scaleToFill" id="launch-view">
             <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-            <subviews>
+            <subviews>${
+              background
+                ? `
+              <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="SplashBackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="splash-background"/>`
+                : ''
+            }
               <imageView userInteractionEnabled="NO" contentMode="${cover ? 'scaleAspectFill' : 'scaleAspectFit'}" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="splash-image"/>
             </subviews>
             <color key="backgroundColor" name="SplashBackground"/>
-            <constraints>
+            <constraints>${
+              background
+                ? `
+              <constraint firstItem="splash-background" firstAttribute="leading" secondItem="launch-view" secondAttribute="leading" id="splash-background-leading"/>
+              <constraint firstItem="splash-background" firstAttribute="trailing" secondItem="launch-view" secondAttribute="trailing" id="splash-background-trailing"/>
+              <constraint firstItem="splash-background" firstAttribute="top" secondItem="launch-view" secondAttribute="top" id="splash-background-top"/>
+              <constraint firstItem="splash-background" firstAttribute="bottom" secondItem="launch-view" secondAttribute="bottom" id="splash-background-bottom"/>`
+                : ''
+            }
 ${
   cover
     ? `              <constraint firstItem="splash-image" firstAttribute="leading" secondItem="launch-view" secondAttribute="leading" id="splash-leading"/>
@@ -1608,7 +1679,12 @@ ${
     </scene>
   </scenes>
   <resources>
-    <image name="Splash" width="${metadata.width}" height="${metadata.height}"/>
+    <image name="Splash" width="${cover ? metadata.width : artworkWidth}" height="${cover ? metadata.height : artworkHeight}"/>${
+      background
+        ? `
+    <image name="SplashBackgroundImage" width="${background.info.width}" height="${background.info.height}"/>`
+        : ''
+    }
     <namedColor name="SplashBackground">
       <color red="${red}" green="${green}" blue="${blue}" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     </namedColor>
@@ -1773,6 +1849,9 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         stamps.push(
           `\t<key>ITSAppUsesNonExemptEncryption</key>\n\t<${app.ios.usesNonExemptEncryption ? 'true' : 'false'}/>`
         )
+      }
+      if (app.ios?.accentColor) {
+        stamps.push('\t<key>NSAccentColorName</key>\n\t<string>AccentColor</string>')
       }
       if (app.ios?.fileSharing) {
         stamps.push(
@@ -2456,6 +2535,7 @@ export const generateForPlatform = async (
   await generateAppIcons({ root, dest, platform, app })
   if (platform === 'android') await generateAdaptiveIcon({ root, dest, app })
   await generateSplashScreen({ root, dest, platform, app })
+  if (platform === 'ios') generateAccentColor({ dest, app })
   copyAppResources({ root, dest, platform, app })
   generateSceneDelegate({ dest, platform, app })
   if (platform === 'ios') generateOneBridgingHeader(dest, app)

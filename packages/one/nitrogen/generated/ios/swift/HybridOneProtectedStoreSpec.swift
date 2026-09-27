@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneProtectedStoreSpec``
 public protocol HybridOneProtectedStoreSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func createItem(key: String, value: String, policy: ProtectedStorePolicy) throws -> Promise<Void>

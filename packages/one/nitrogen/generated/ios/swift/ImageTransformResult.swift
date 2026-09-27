@@ -26,17 +26,17 @@ public extension ImageTransformResult {
   var uri: String {
     return String(self.__uri)
   }
-
+  
   @inline(__always)
   var width: Double {
     return self.__width
   }
-
+  
   @inline(__always)
   var height: Double {
     return self.__height
   }
-
+  
   @inline(__always)
   var size: Double {
     return self.__size

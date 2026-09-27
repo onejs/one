@@ -26,17 +26,17 @@ public extension ImageCrop {
   var x: Double {
     return self.__x
   }
-
+  
   @inline(__always)
   var y: Double {
     return self.__y
   }
-
+  
   @inline(__always)
   var width: Double {
     return self.__width
   }
-
+  
   @inline(__always)
   var height: Double {
     return self.__height

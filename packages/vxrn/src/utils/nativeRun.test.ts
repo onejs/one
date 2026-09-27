@@ -1,4 +1,4 @@
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { createServer } from 'node:http'
 import { dirname, join } from 'node:path'
@@ -141,14 +141,17 @@ describe('expo-free run commands', () => {
     }
   })
 
-  it('resolves the ios bundle id from app.json', () => {
+  it('resolves the ios bundle id from the prebuilt ios project', () => {
     const dir = mkdtempSync(join(tmpdir(), 'nativerun-'))
     try {
       expect(resolveIosBundleId(dir)).toBeNull()
-      writeFileSync(join(dir, 'app.json'), JSON.stringify({ expo: { ios: { bundleIdentifier: 'dev.example.app' } } }))
-      expect(resolveIosBundleId(dir)).toBe('dev.example.app')
-      writeFileSync(join(dir, 'app.json'), 'not json')
+      mkdirSync(join(dir, 'ios', 'Example.xcodeproj'), { recursive: true })
       expect(resolveIosBundleId(dir)).toBeNull()
+      writeFileSync(
+        join(dir, 'ios', 'Example.xcodeproj', 'project.pbxproj'),
+        'buildSettings = {\n\t\t\t\tPRODUCT_BUNDLE_IDENTIFIER = dev.example.app;\n\t\t\t};'
+      )
+      expect(resolveIosBundleId(dir)).toBe('dev.example.app')
     } finally {
       rmSync(dir, { recursive: true, force: true })
     }

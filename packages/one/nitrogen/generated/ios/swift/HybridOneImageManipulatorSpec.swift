@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneImageManipulatorSpec``
 public protocol HybridOneImageManipulatorSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func transform(uri: String, options: ImageTransformOptions) throws -> Promise<ImageTransformResult>

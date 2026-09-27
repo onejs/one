@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneAudioSpec``
 public protocol HybridOneAudioSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func getRecordingPermissionStatus() throws -> Promise<AudioRecordingPermission>

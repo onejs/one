@@ -26,7 +26,7 @@ public extension ShareItem {
   var type: ShareItemType {
     return self.__type
   }
-
+  
   @inline(__always)
   var value: String {
     return String(self.__value)
