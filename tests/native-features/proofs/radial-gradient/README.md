@@ -15,10 +15,15 @@ build revision `c593ca7e2ebf8ee245e02066773ac19ce2d8616f`, its
 `packages/one/ios` tree hash, and matching hashes for the
 built and installed app debug dylib. `xcodebuild.log.gz`, `js-build.log.gz`,
 and `generate-check.log.gz` preserve the three build and generation gates.
+The `nativeJSComponentSHA256` field hashes
+`packages/one/dist/esm/platform/specs/OneNativeRadialGradientNativeComponent.native.js`
+from the full JS build (`shasum -a 256` on ci-64).
 The full JavaScript build used the workspace's `create-vxrn` declarations;
 the quick `--skip-types` build did not transform native view configs and was
 discarded before this passing run.
 
-The proof covers the listed colors, center, radii, alpha, empty input, and
-accessibility on this runtime. Explicit color stops, arbitrary SwiftUI
-`Color` values, and other iOS versions remain unproven.
+The proof covers the listed colors, horizontal center movement, radii, alpha,
+empty input, and accessibility on this runtime. Pixel samples follow the
+horizontal center line; off-axis geometry remains untested. Explicit color
+stops, arbitrary SwiftUI `Color` values, and other iOS versions remain
+unproven.

@@ -1,7 +1,7 @@
 import type { Control } from './controlTypes'
 
-// SwiftUI's colors:startPoint:endPoint: initializer, carried as sRGB hex colors
-// and normalized UnitPoint coordinates over the One Native Fabric boundary.
+// SwiftUI gradient initializers, carried as sRGB hex colors and normalized
+// UnitPoint coordinates over the One Native Fabric boundary.
 export const gradientControls: Control[] = [
   {
     name: 'LinearGradient',
