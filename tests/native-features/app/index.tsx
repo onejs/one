@@ -81,6 +81,11 @@ const testScreens = [
     testID: 'nav-one-native-safe-area-bar',
   },
   {
+    href: '/one-native-linear-gradient',
+    label: 'One Native Linear Gradient',
+    testID: 'nav-one-native-linear-gradient',
+  },
+  {
     href: '/one-native-swipe-actions',
     label: 'One Native Swipe Actions',
     testID: 'nav-one-native-swipe-actions',

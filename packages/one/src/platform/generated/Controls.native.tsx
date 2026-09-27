@@ -799,6 +799,44 @@ export function ConcentricRectangle({
     />
   )
 }
+import NativeLinearGradient from '../specs/OneNativeLinearGradientNativeComponent'
+export function LinearGradient({
+  colors,
+  startPoint = { x: 0.5, y: 0 },
+  endPoint = { x: 0.5, y: 1 },
+  swiftStyle,
+  style,
+  ...props
+}: Types.LinearGradientProps) {
+  if (
+    !Array.isArray(colors) ||
+    colors.length < 2 ||
+    !colors.every(
+      (color) =>
+        typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)
+    )
+  )
+    throw new Error(
+      'LinearGradient colors must contain at least two #RRGGBB or #RRGGBBAA colors'
+    )
+  for (const point of [startPoint, endPoint])
+    if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y))
+      throw new Error('LinearGradient points must have finite x and y coordinates')
+
+  return (
+    <NativeLinearGradient
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      colors={colors}
+      startPoint={JSON.stringify(startPoint)}
+      endPoint={JSON.stringify(endPoint)}
+    />
+  )
+}
 import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
 export function VideoPlayer({
   url = '',

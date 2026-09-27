@@ -17766,6 +17766,7 @@
         "Ellipse",
         "EmptyView",
         "Image",
+        "LinearGradient",
         "Rectangle",
         "RoundedRectangle",
         "Text",
@@ -19580,6 +19581,28 @@
       "type": "ConcentricRectangle",
       "parameters": [],
       "ios": 26
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "LinearGradient",
+      "parameters": [
+        {
+          "label": "colors",
+          "name": "colors",
+          "type": "[SwiftUICore.Color]"
+        },
+        {
+          "label": "startPoint",
+          "name": "startPoint",
+          "type": "SwiftUICore.UnitPoint"
+        },
+        {
+          "label": "endPoint",
+          "name": "endPoint",
+          "type": "SwiftUICore.UnitPoint"
+        }
+      ],
+      "ios": 13
     },
     {
       "module": "_AVKit_SwiftUI",
