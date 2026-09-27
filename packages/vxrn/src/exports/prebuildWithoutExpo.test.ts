@@ -1119,7 +1119,16 @@ describe('generateForPlatform determinism', () => {
       ...app,
       version: '9.9.9',
       ios: { ...app.ios, buildNumber: '4242' },
-      android: { ...app.android, versionCode: 4242 },
+      android: {
+        ...app.android,
+        versionCode: 4242,
+        adaptiveIcon: {
+          foreground: fileURLToPath(
+            new URL('../../../../examples/one-basic/public/app-icon.png', import.meta.url)
+          ),
+          backgroundColor: '#123456',
+        },
+      },
       icon: {
         source: fileURLToPath(
           new URL('../../../../examples/one-basic/public/app-icon.png', import.meta.url)
@@ -1244,6 +1253,21 @@ describe('generateForPlatform determinism', () => {
     expect(readFileSync(join(androidRes, 'values', 'styles.xml'), 'utf8')).toContain(
       '@drawable/launch_screen'
     )
+    // the adaptive launcher icon: 108dp layers per density, a color background
+    // in its own resource, and both launcher xmls wired to them
+    expect(
+      await sharp(join(androidRes, 'mipmap-xxxhdpi', 'ic_launcher_foreground.png')).metadata()
+    ).toMatchObject({ width: 432, height: 432 })
+    expect(() => statSync(join(androidRes, 'mipmap-mdpi', 'ic_launcher_background.png'))).toThrow()
+    expect(readFileSync(join(androidRes, 'values', 'ic_launcher_background.xml'), 'utf8')).toContain(
+      '<color name="ic_launcher_background">#123456</color>'
+    )
+    for (const filename of ['ic_launcher.xml', 'ic_launcher_round.xml']) {
+      const adaptive = readFileSync(join(androidRes, 'mipmap-anydpi-v26', filename), 'utf8')
+      expect(adaptive).toContain('<background android:drawable="@color/ic_launcher_background"/>')
+      expect(adaptive).toContain('<foreground android:drawable="@mipmap/ic_launcher_foreground"/>')
+      expect(adaptive).not.toContain('monochrome')
+    }
     // android 12+ uses the configured splash image, never the launcher icon
     const stylesV31 = readFileSync(join(androidRes, 'values-v31', 'styles.xml'), 'utf8')
     expect(stylesV31).toContain('@color/splash_background')
@@ -1733,6 +1757,34 @@ buildSettings = {
         app: updatesApp,
       })
     ).toThrow('One.Updates')
+  })
+
+  it('locks userInterfaceStyle on both platforms, and follows the system when unset', () => {
+    const plist = (userInterfaceStyle?: 'light' | 'dark' | 'automatic') =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld/Info.plist',
+        content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+        platform: 'ios',
+        app: { ...app, userInterfaceStyle },
+      }).content
+    expect(plist('light')).toContain('<key>UIUserInterfaceStyle</key>\n\t<string>Light</string>')
+    expect(plist('dark')).toContain('<string>Dark</string>')
+    expect(plist('automatic')).toContain('<string>Automatic</string>')
+    expect(plist()).not.toContain('UIUserInterfaceStyle')
+
+    const styles =
+      '<resources>\n    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">\n    </style>\n</resources>'
+    const theme = (userInterfaceStyle?: 'light' | 'dark' | 'automatic') =>
+      renderPrebuildFile({
+        relativePath: 'app/src/main/res/values/styles.xml',
+        content: styles,
+        platform: 'android',
+        app: { ...app, userInterfaceStyle },
+      }).content
+    expect(theme('light')).toContain('parent="Theme.AppCompat.Light.NoActionBar"')
+    expect(theme('dark')).toContain('parent="Theme.AppCompat.NoActionBar"')
+    expect(theme('automatic')).toContain('parent="Theme.AppCompat.DayNight.NoActionBar"')
+    expect(theme()).toContain('parent="Theme.AppCompat.DayNight.NoActionBar"')
   })
 
   it('stamps orientation as expo does, and nothing when unset', () => {

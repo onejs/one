@@ -1263,6 +1263,63 @@ async function generateAppIcons(args: {
   }
 }
 
+// the android 8+ launcher icon: foreground, background and monochrome
+// layers at 108dp per density, wired by mipmap-anydpi-v26. a background color
+// lives in its own resource file, as android studio's image asset tool writes
+// it, so the splash's colors.xml never collides with it.
+async function generateAdaptiveIcon(args: {
+  root: string
+  dest: string
+  app: NativeAppManifest
+}): Promise<void> {
+  const { root, dest, app } = args
+  const adaptiveIcon = app.android?.adaptiveIcon
+  if (!adaptiveIcon) return
+
+  const res = path.join(dest, 'app', 'src', 'main', 'res')
+  const layers = {
+    foreground: adaptiveIcon.foreground,
+    background: adaptiveIcon.background,
+    monochrome: adaptiveIcon.monochrome,
+  }
+  for (const [layer, file] of Object.entries(layers)) {
+    if (!file) continue
+    const source = path.resolve(root, file)
+    if (!FSExtra.existsSync(source)) {
+      throw new Error(`[vxrn] native.app.android.adaptiveIcon.${layer} does not exist: ${source}`)
+    }
+    for (const [density, multiplier] of Object.entries(ANDROID_DENSITIES)) {
+      const pixels = 108 * multiplier
+      await sharp(source)
+        .rotate()
+        .resize(pixels, pixels, { fit: 'cover' })
+        .png()
+        .toFile(path.join(res, `mipmap-${density}`, `ic_launcher_${layer}.png`))
+    }
+  }
+  if (!adaptiveIcon.background) {
+    FSExtra.writeFileSync(
+      path.join(res, 'values', 'ic_launcher_background.xml'),
+      `<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">${adaptiveIcon.backgroundColor ?? '#FFFFFF'}</color>
+</resources>
+`
+    )
+  }
+  const adaptiveXml = `<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="${adaptiveIcon.background ? '@mipmap/ic_launcher_background' : '@color/ic_launcher_background'}"/>
+    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+${adaptiveIcon.monochrome ? '    <monochrome android:drawable="@mipmap/ic_launcher_monochrome"/>\n' : ''}</adaptive-icon>
+`
+  const anydpi = path.join(res, 'mipmap-anydpi-v26')
+  FSExtra.mkdirSync(anydpi, { recursive: true })
+  for (const filename of ['ic_launcher.xml', 'ic_launcher_round.xml']) {
+    FSExtra.writeFileSync(path.join(anydpi, filename), adaptiveXml)
+  }
+}
+
 async function generateSplashScreen(args: {
   root: string
   dest: string
@@ -1536,6 +1593,11 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
           `\t<key>${updatesHost.runtimeVersionInfoPlistKey}</key>\n\t<string>${escapeXml(app.updates.runtimeVersion)}</string>`
         )
       }
+      if (app.userInterfaceStyle !== undefined) {
+        stamps.push(
+          `\t<key>UIUserInterfaceStyle</key>\n\t<string>${app.userInterfaceStyle === 'light' ? 'Light' : app.userInterfaceStyle === 'dark' ? 'Dark' : 'Automatic'}</string>`
+        )
+      }
       if (app.orientation !== undefined) {
         // expo's orientation mapping: it sets the phone list only.
         const phoneOrientations =
@@ -1726,6 +1788,26 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         const trailed = rendered.endsWith('\n') ? rendered : `${rendered}\n`
         rendered = `${trailed}\n# One.UI.Map: set by native.app.android.googleMapsApiKey.\n${line}\n`
       }
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/res/values/styles.xml' &&
+      (app.userInterfaceStyle === 'light' || app.userInterfaceStyle === 'dark')
+    ) {
+      // the template's DayNight theme follows the system; a locked style
+      // takes the matching fixed appcompat theme.
+      const dayNight = 'parent="Theme.AppCompat.DayNight.NoActionBar"'
+      if (!rendered.includes(dayNight)) {
+        throw new Error(
+          `[vxrn] cannot lock userInterfaceStyle: expected ${dayNight} in app/src/main/res/values/styles.xml`
+        )
+      }
+      rendered = rendered.replace(
+        dayNight,
+        app.userInterfaceStyle === 'light'
+          ? 'parent="Theme.AppCompat.Light.NoActionBar"'
+          : 'parent="Theme.AppCompat.NoActionBar"'
+      )
     }
     if (
       platform === 'android' &&
@@ -2039,6 +2121,7 @@ export const generateForPlatform = async (
   }
 
   await generateAppIcons({ root, dest, platform, app })
+  if (platform === 'android') await generateAdaptiveIcon({ root, dest, app })
   await generateSplashScreen({ root, dest, platform, app })
   generateSceneDelegate({ dest, platform, app })
   if (platform === 'ios') generateOneBridgingHeader(dest, app)
