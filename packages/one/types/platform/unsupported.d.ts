@@ -1,4 +1,4 @@
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GroupProps, GroupBoxProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarSpacerProps, ZStackProps } from './types';
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GroupProps, GroupBoxProps, GlassEffectContainerProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarSpacerProps, ZStackProps } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function TabSection(_props: TabSectionProps): never;
@@ -20,6 +20,7 @@ declare function LabeledContent(_props: LabeledContentProps): never;
 declare function GroupBox(_props: GroupBoxProps): never;
 declare function Button(_props: ButtonProps): never;
 declare function Glass(_props: GlassProps): never;
+declare function GlassEffectContainer(_props: GlassEffectContainerProps): never;
 declare function Slot(_props: SlotProps): never;
 declare function List(_props: ListProps): never;
 declare function ScrollView(_props: ScrollViewProps): never;
@@ -105,6 +106,7 @@ export declare const Swift: {
     Form: typeof Form;
     Section: typeof Section;
     Glass: typeof Glass;
+    GlassEffectContainer: typeof GlassEffectContainer;
     LabeledContent: typeof LabeledContent;
     Button: typeof Button;
     Spacer: typeof Spacer;

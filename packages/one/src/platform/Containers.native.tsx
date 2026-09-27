@@ -14,6 +14,7 @@ import NativeDisclosureGroup from './specs/OneNativeDisclosureGroupNativeCompone
 import NativeDivider from './specs/OneNativeDividerNativeComponent'
 import NativeForm from './specs/OneNativeFormNativeComponent'
 import NativeGlass from './specs/OneNativeGlassNativeComponent'
+import NativeGlassEffectContainer from './specs/OneNativeGlassEffectContainerNativeComponent'
 import NativeGroup from './specs/OneNativeGroupNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
 import NativeLabeledContent from './specs/OneNativeLabeledContentNativeComponent'
@@ -56,6 +57,7 @@ import {
   type DividerProps,
   type GroupProps,
   type GroupBoxProps,
+  type GlassEffectContainerProps,
   type LinkProps,
   type OverlayContentProps,
   type OverlayProps,
@@ -100,7 +102,7 @@ import {
 export { InsideContainer, assertOneNativeChildren }
 
 const containers =
-  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.GroupBox, Swift.List, Swift.ScrollView, Swift.LazyVStack, Swift.LazyHStack, Swift.LazyVGrid, Swift.LazyHGrid, Swift.Grid, Swift.GridRow, Swift.ControlGroup, Swift.DisclosureGroup, Swift.Link, Swift.Group, Swift.Overlay, Swift.SwipeActions, Swift.NavigationStack, Swift.Toolbar, or Swift.ToolbarItem'
+  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.GroupBox, Swift.GlassEffectContainer, Swift.List, Swift.ScrollView, Swift.LazyVStack, Swift.LazyHStack, Swift.LazyVGrid, Swift.LazyHGrid, Swift.Grid, Swift.GridRow, Swift.ControlGroup, Swift.DisclosureGroup, Swift.Link, Swift.Group, Swift.Overlay, Swift.SwipeActions, Swift.NavigationStack, Swift.Toolbar, or Swift.ToolbarItem'
 
 function nativeEnvironmentProps({
   colorScheme,
@@ -576,6 +578,24 @@ export function Glass({
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeGlass>
+  )
+}
+
+export function GlassEffectContainer({ spacing, children, style, ...props }: GlassEffectContainerProps) {
+  if (Number.parseFloat(String(Platform.Version)) < 26)
+    throw new Error('Swift.GlassEffectContainer requires iOS 26 or newer')
+  if (spacing !== undefined && !Number.isFinite(spacing))
+    throw new Error('Swift.GlassEffectContainer spacing must be finite')
+  assertOneNativeChildren(children, 'Swift.GlassEffectContainer')
+  return (
+    <NativeGlassEffectContainer
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      spacing={spacing ?? 0}
+      hasSpacing={spacing !== undefined}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeGlassEffectContainer>
   )
 }
 
