@@ -12,6 +12,11 @@ export default function OneNativeCalendar() {
   const [permission, setPermission] = useState(One.iOS.Calendar.getPermissionStatus())
   const [status, setStatus] = useState('idle')
   const [result, setResult] = useState('pending')
+  const [reminderPermission, setReminderPermission] = useState(
+    One.iOS.Calendar.getRemindersPermissionStatus()
+  )
+  const [reminderStatus, setReminderStatus] = useState('idle')
+  const [reminderResult, setReminderResult] = useState('pending')
 
   const run = async () => {
     setStatus('running')
@@ -59,6 +64,68 @@ export default function OneNativeCalendar() {
     }
   }
 
+  const runReminders = async () => {
+    setReminderStatus('running')
+    try {
+      let before = 'none'
+      try {
+        await One.iOS.Calendar.listReminders()
+      } catch (error) {
+        before = code(error)
+      }
+      const granted = await One.iOS.Calendar.requestRemindersPermission()
+      setReminderPermission(granted)
+      if (granted !== 'fullAccess') {
+        setReminderStatus('denied')
+        setReminderResult(`before=${before}`)
+        return
+      }
+      const dueMs = Date.now() + 7 * 86_400_000
+      const title = `One reminder proof ${dueMs}`
+      const identifier = await One.iOS.Calendar.createReminder({ title, dueMs })
+      const listed = await One.iOS.Calendar.listReminders()
+      const matched = listed.some(
+        (item) => item.identifier === identifier && item.title === title &&
+          !item.completed && Math.abs((item.dueMs ?? 0) - dueMs) < 1_000
+      )
+      await One.iOS.Calendar.setReminderCompleted(identifier, true)
+      const completedHidden = !(await One.iOS.Calendar.listReminders()).some(
+        (item) => item.identifier === identifier
+      )
+      const updated = (await One.iOS.Calendar.listReminders(100, true)).some(
+        (item) => item.identifier === identifier && item.completed
+      )
+      await One.iOS.Calendar.deleteReminder(identifier)
+      const removed = !(await One.iOS.Calendar.listReminders(100, true)).some(
+        (item) => item.identifier === identifier
+      )
+      let notFound = 'none'
+      try {
+        await One.iOS.Calendar.setReminderCompleted(identifier, false)
+      } catch (error) {
+        notFound = code(error)
+      }
+      let invalid = 'none'
+      try {
+        await One.iOS.Calendar.createReminder({ title: ' ' })
+      } catch (error) {
+        invalid = code(error)
+      }
+      let invalidLimit = 'none'
+      try {
+        await One.iOS.Calendar.listReminders(0)
+      } catch (error) {
+        invalidLimit = code(error)
+      }
+      setReminderResult(
+        `before=${before}; matched=${matched}; completedHidden=${completedHidden}; updated=${updated}; removed=${removed}; notFound=${notFound}; invalid=${invalid}; invalidLimit=${invalidLimit}`
+      )
+      setReminderStatus('done')
+    } catch (error) {
+      setReminderStatus(`failed ${code(error)}`)
+    }
+  }
+
   return (
     <View style={styles.screen}>
       <Text>{`Permission: ${permission}`}</Text>
@@ -66,6 +133,12 @@ export default function OneNativeCalendar() {
       <Text>{`Result: ${result}`}</Text>
       <Pressable testID="one-native-calendar-run" style={styles.button} onPress={run}>
         <Text>Run calendar checks</Text>
+      </Pressable>
+      <Text>{`Reminders permission: ${reminderPermission}`}</Text>
+      <Text>{`Reminders status: ${reminderStatus}`}</Text>
+      <Text>{`Reminders result: ${reminderResult}`}</Text>
+      <Pressable testID="one-native-reminders-run" style={styles.button} onPress={runReminders}>
+        <Text>Run reminder checks</Text>
       </Pressable>
     </View>
   )

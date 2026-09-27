@@ -55,7 +55,7 @@ checklist; One's own exports and docs decide the status.
 | Battery and power state | missing | no battery level, charging state, or low-power state API | none | P3 |
 | Cellular/SIM details | missing | `One.Network` reports connection type, not carrier or SIM data | none | P3 |
 | Contacts | partial | `One.iOS.Contacts` permission, name search, create, delete; no edit or picker | contacts: prompt, create/search/delete | P2 |
-| Calendar and reminders | partial | `One.iOS.Calendar` event permission, list, create, delete; reminders missing | RAN iOS 27 full-access prompt, create/list/delete, and input/error conformance | P2 |
+| Calendar and reminders | partial | `One.iOS.Calendar` event CRUD except edit, plus reminders permission, list, create, completion, delete | RAN iOS 27 both prompts, event and reminder round trips, and input/error conformance | P2 |
 | Localization and locale | covered | `One.iOS.Device.getLocalizationInfo` returns locale, languages, calendar, time zone, UTC offset, and currency | RAN device suite on iOS 27: en-US, gregorian, Honolulu, UTC offset, USD | done |
 | Screen orientation | missing | no orientation events or lock API | none | P2 |
 | Screen capture control | missing | no screenshot detection, capture prevention, or app screenshot API | none | P2 |
@@ -97,6 +97,9 @@ checklist; One's own exports and docs decide the status.
    simulator status, and optional vendor ID on iOS 27. Peach has device profile
    data, but its OneDevice Nitro adapter belongs to the Contrast migration lane.
 6. Continue P1 then P2. Update this matrix and the docs when each slice lands.
+7. Reminders now have an iOS 27 EventKit proof. Peach's Expo Calendar stub has
+   an in-memory reminder store; a targeted search found no `OneCalendar` adapter.
+   The Contrast migration lane owns that bridge.
 
 Avoid duplicating React Native surfaces only to rename them. Keep simulator
 limitations explicit; hardware-only effects need a device proof before `covered`.

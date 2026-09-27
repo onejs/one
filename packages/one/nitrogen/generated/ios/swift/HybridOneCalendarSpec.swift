@@ -18,6 +18,12 @@ public protocol HybridOneCalendarSpec_protocol: HybridObject {
   func list(startMs: Double, endMs: Double, limit: Double) throws -> Promise<[CalendarEvent]>
   func create(input: CalendarEventInput) throws -> Promise<String>
   func remove(identifier: String, startMs: Double) throws -> Promise<Void>
+  func getRemindersPermissionStatus() throws -> CalendarPermissionStatus
+  func requestRemindersPermission() throws -> Promise<CalendarPermissionStatus>
+  func listReminders(limit: Double, includeCompleted: Bool) throws -> Promise<[ReminderInfo]>
+  func createReminder(input: ReminderInput) throws -> Promise<String>
+  func setReminderCompleted(identifier: String, completed: Bool) throws -> Promise<Void>
+  func removeReminder(identifier: String) throws -> Promise<Void>
 }
 
 public extension HybridOneCalendarSpec_protocol {

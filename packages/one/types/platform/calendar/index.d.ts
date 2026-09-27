@@ -1,5 +1,5 @@
-import type { CalendarEvent, CalendarEventInput as NativeCalendarEventInput, CalendarPermissionStatus } from '../specs/OneCalendar.nitro';
-export type { CalendarEvent, CalendarPermissionStatus };
+import type { CalendarEvent, CalendarEventInput as NativeCalendarEventInput, CalendarPermissionStatus, ReminderInfo, ReminderInput } from '../specs/OneCalendar.nitro';
+export type { CalendarEvent, CalendarPermissionStatus, ReminderInfo, ReminderInput };
 export type CalendarEventInput = Omit<NativeCalendarEventInput, 'allDay'> & {
     allDay?: boolean;
 };
@@ -9,5 +9,11 @@ export declare const Calendar: Readonly<{
     list: (_startMs: number, _endMs: number, _limit?: number) => Promise<CalendarEvent[]>;
     create: (_input: CalendarEventInput) => Promise<string>;
     delete: (_identifier: string, _startMs: number) => Promise<void>;
+    getRemindersPermissionStatus: () => CalendarPermissionStatus;
+    requestRemindersPermission: () => Promise<CalendarPermissionStatus>;
+    listReminders: (_limit?: number, _includeCompleted?: boolean) => Promise<ReminderInfo[]>;
+    createReminder: (_input: ReminderInput) => Promise<string>;
+    setReminderCompleted: (_identifier: string, _completed: boolean) => Promise<void>;
+    deleteReminder: (_identifier: string) => Promise<void>;
 }>;
 //# sourceMappingURL=index.d.ts.map

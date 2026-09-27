@@ -2,9 +2,11 @@ import type {
   CalendarEvent,
   CalendarEventInput as NativeCalendarEventInput,
   CalendarPermissionStatus,
+  ReminderInfo,
+  ReminderInput,
 } from '../specs/OneCalendar.nitro'
 
-export type { CalendarEvent, CalendarPermissionStatus }
+export type { CalendarEvent, CalendarPermissionStatus, ReminderInfo, ReminderInput }
 export type CalendarEventInput = Omit<NativeCalendarEventInput, 'allDay'> & {
   allDay?: boolean
 }
@@ -19,4 +21,10 @@ export const Calendar = Object.freeze({
   list: (_startMs: number, _endMs: number, _limit = 100): Promise<CalendarEvent[]> => unsupported(),
   create: (_input: CalendarEventInput): Promise<string> => unsupported(),
   delete: (_identifier: string, _startMs: number): Promise<void> => unsupported(),
+  getRemindersPermissionStatus: (): CalendarPermissionStatus => unsupported(),
+  requestRemindersPermission: (): Promise<CalendarPermissionStatus> => unsupported(),
+  listReminders: (_limit = 100, _includeCompleted = false): Promise<ReminderInfo[]> => unsupported(),
+  createReminder: (_input: ReminderInput): Promise<string> => unsupported(),
+  setReminderCompleted: (_identifier: string, _completed: boolean): Promise<void> => unsupported(),
+  deleteReminder: (_identifier: string): Promise<void> => unsupported(),
 })

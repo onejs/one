@@ -1,17 +1,22 @@
 ---
 title: Calendar
-description: Request full access and read, create, or delete iOS calendar events
+description: Read and write iOS calendar events and reminders
 ---
 
 `One.iOS.Calendar` reads and writes events through EventKit. Give the app a
 purpose string before prebuild:
 
 ```ts
-calendar: { usage: 'Show and manage your events.' }
+calendar: {
+  usage: 'Show and manage your events.',
+  remindersUsage: 'Show and manage your reminders.',
+}
 ```
 
 Expo-prebuilt apps pass the same `calendar` option to the VXRN Expo plugin.
-Both paths set `NSCalendarsFullAccessUsageDescription`.
+The event and reminders purpose strings are independent. Configure only the
+one an app uses. Prebuild sets `NSCalendarsFullAccessUsageDescription` and
+`NSRemindersFullAccessUsageDescription` for the strings supplied.
 
 ```tsx
 import { One } from 'one'
@@ -45,12 +50,45 @@ removes the occurrence at that exact start time. Pass the `startMs` returned
 by `list` for a recurring event, since its occurrences share an identifier.
 Ask the person before creating or deleting an event.
 
+## Reminders
+
+`getRemindersPermissionStatus()` reads reminders access without a prompt.
+`requestRemindersPermission()` requests full reminders access and resolves to
+the resulting status, including denial. It requires `calendar.remindersUsage`.
+
+```tsx
+if (await One.iOS.Calendar.requestRemindersPermission() === 'fullAccess') {
+  const identifier = await One.iOS.Calendar.createReminder({
+    title: 'Send the report',
+    dueMs: Date.now() + 86_400_000,
+  })
+  const reminders = await One.iOS.Calendar.listReminders()
+  await One.iOS.Calendar.setReminderCompleted(identifier, true)
+  const history = await One.iOS.Calendar.listReminders(100, true)
+  await One.iOS.Calendar.deleteReminder(identifier)
+}
+```
+
+`listReminders(limit = 100, includeCompleted = false)` reads incomplete reminders
+from visible lists. Pass `true` to include completed reminders. Results are
+ordered by due date with undated reminders last. The limit is a whole number
+from 1 to 500. Each item has an identifier, title, completion flag, and
+optional due time in Unix milliseconds. `createReminder` saves to
+the default writable reminders list. Ask the person before changing or
+deleting reminders.
+
+Missing reminders purpose text rejects with `E_REMINDERS_MANIFEST`; missing
+full access with `E_REMINDERS_PERMISSION`; invalid input with
+`E_REMINDERS_INPUT`. A missing default list gives `E_REMINDERS_UNAVAILABLE`.
+Writes use `E_REMINDERS_SAVE` or `E_REMINDERS_DELETE`, and an unknown identifier
+uses `E_REMINDERS_NOT_FOUND`.
+
 Missing purpose text rejects with `E_CALENDAR_MANIFEST`; missing full access
 with `E_CALENDAR_PERMISSION`; invalid input with `E_CALENDAR_INPUT`.
 An absent writable calendar gives `E_CALENDAR_UNAVAILABLE`. Store failures
 use `E_CALENDAR_SAVE` or `E_CALENDAR_DELETE`; deleting an unknown occurrence
-gives `E_CALENDAR_NOT_FOUND`. This API is iOS only. Reminders and event
-editing are separate inventory gaps.
+gives `E_CALENDAR_NOT_FOUND`. This API is iOS only. Event editing remains a
+separate inventory gap.
 
 See [Apple's EventKit access guide](https://developer.apple.com/documentation/eventkit/accessing-the-event-store)
 for the full and write-only permission modes.

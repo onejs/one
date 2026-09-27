@@ -218,6 +218,10 @@ namespace margelo::nitro::one { struct OneUpdatesFetchResult; }
 namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
 // Forward declaration of `PhotoLibraryPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
+// Forward declaration of `ReminderInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct ReminderInfo; }
+// Forward declaration of `ReminderInput` to properly resolve imports.
+namespace margelo::nitro::one { struct ReminderInput; }
 // Forward declaration of `ResolvedDocumentPickerOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct ResolvedDocumentPickerOptions; }
 // Forward declaration of `ResolvedImagePickerOptions` to properly resolve imports.
@@ -351,6 +355,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "OneUpdatesFetchResult.hpp"
 #include "OneUpdatesFetchType.hpp"
 #include "PhotoLibraryPermissionStatus.hpp"
+#include "ReminderInfo.hpp"
+#include "ReminderInput.hpp"
 #include "ResolvedDocumentPickerOptions.hpp"
 #include "ResolvedImagePickerOptions.hpp"
 #include "ShareItem.hpp"

@@ -217,4 +217,117 @@ open class HybridOneCalendarSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
+
+  @inline(__always)
+  public final func getRemindersPermissionStatus() -> bridge.Result_CalendarPermissionStatus_ {
+    do {
+      let __result = try self.__implementation.getRemindersPermissionStatus()
+      let __resultCpp = __result
+      return bridge.create_Result_CalendarPermissionStatus_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_CalendarPermissionStatus_(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func requestRemindersPermission() -> bridge.Result_std__shared_ptr_Promise_CalendarPermissionStatus___ {
+    do {
+      let __result = try self.__implementation.requestRemindersPermission()
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_CalendarPermissionStatus__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_CalendarPermissionStatus__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_CalendarPermissionStatus__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_CalendarPermissionStatus___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_CalendarPermissionStatus___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func listReminders(limit: Double, includeCompleted: Bool) -> bridge.Result_std__shared_ptr_Promise_std__vector_ReminderInfo____ {
+    do {
+      let __result = try self.__implementation.listReminders(limit: limit, includeCompleted: includeCompleted)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__vector_ReminderInfo___ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__vector_ReminderInfo___()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__vector_ReminderInfo___(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve({ () -> bridge.std__vector_ReminderInfo_ in
+              var __vector = bridge.create_std__vector_ReminderInfo_(__result.count)
+              for __item in __result {
+                __vector.push_back(__item)
+              }
+              return __vector
+            }()) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_std__vector_ReminderInfo____(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_std__vector_ReminderInfo____(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func createReminder(input: ReminderInput) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
+    do {
+      let __result = try self.__implementation.createReminder(input: input)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__string__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__string__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__string__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(std.string(__result)) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_std__string___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func setReminderCompleted(identifier: std.string, completed: Bool) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.setReminderCompleted(identifier: String(identifier), completed: completed)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func removeReminder(identifier: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.removeReminder(identifier: String(identifier))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
 }

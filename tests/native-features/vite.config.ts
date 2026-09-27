@@ -139,6 +139,7 @@ export default defineConfig({
           },
           calendar: {
             usage: 'NativeFeatureTests verifies calendar events.',
+            remindersUsage: 'NativeFeatureTests verifies reminders.',
           },
           location: {
             whenInUse: 'NativeFeatureTests verifies current location.',

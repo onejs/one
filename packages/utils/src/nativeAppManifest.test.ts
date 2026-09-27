@@ -97,8 +97,13 @@ describe('native.app manifest', () => {
 
   test('requires a Calendar purpose string', () => {
     expect(() => validateNativeApp({ ...app, calendar: { usage: 'Show events.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, calendar: { remindersUsage: 'Manage tasks.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, calendar: {} })).toThrow(/calendar\.usage/)
     expect(() => validateNativeApp({ ...app, calendar: null } as any)).toThrow(/calendar\.usage/)
     expect(() => validateNativeApp({ ...app, calendar: { usage: ' ' } })).toThrow(/calendar\.usage/)
+    expect(() => validateNativeApp({ ...app, calendar: { remindersUsage: ' ' } })).toThrow(
+      /calendar\.remindersUsage/
+    )
   })
 
   test('accepts a camera permission string and rejects empty ones', () => {

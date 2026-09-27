@@ -247,6 +247,14 @@ namespace margelo::nitro::one::bridge::swift {
     };
   }
 
+  // pragma MARK: std::function<void(const std::vector<ReminderInfo>& /* result */)>
+  Func_void_std__vector_ReminderInfo_ create_Func_void_std__vector_ReminderInfo_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__vector_ReminderInfo_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::vector<ReminderInfo>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneCalendarSpec>
   std::shared_ptr<HybridOneCalendarSpec> create_std__shared_ptr_HybridOneCalendarSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneCalendarSpec_cxx swiftPart = One::HybridOneCalendarSpec_cxx::fromUnsafe(swiftUnsafePointer);

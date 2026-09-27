@@ -18,6 +18,10 @@ namespace margelo::nitro::one { enum class CalendarPermissionStatus; }
 namespace margelo::nitro::one { struct CalendarEvent; }
 // Forward declaration of `CalendarEventInput` to properly resolve imports.
 namespace margelo::nitro::one { struct CalendarEventInput; }
+// Forward declaration of `ReminderInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct ReminderInfo; }
+// Forward declaration of `ReminderInput` to properly resolve imports.
+namespace margelo::nitro::one { struct ReminderInput; }
 
 #include "CalendarPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
@@ -25,6 +29,9 @@ namespace margelo::nitro::one { struct CalendarEventInput; }
 #include <vector>
 #include <string>
 #include "CalendarEventInput.hpp"
+#include "ReminderInfo.hpp"
+#include <optional>
+#include "ReminderInput.hpp"
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -110,6 +117,54 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<void>> remove(const std::string& identifier, double startMs) override {
       auto __result = _swiftPart.remove(identifier, std::forward<decltype(startMs)>(startMs));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline CalendarPermissionStatus getRemindersPermissionStatus() override {
+      auto __result = _swiftPart.getRemindersPermissionStatus();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<CalendarPermissionStatus>> requestRemindersPermission() override {
+      auto __result = _swiftPart.requestRemindersPermission();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::vector<ReminderInfo>>> listReminders(double limit, bool includeCompleted) override {
+      auto __result = _swiftPart.listReminders(std::forward<decltype(limit)>(limit), std::forward<decltype(includeCompleted)>(includeCompleted));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::string>> createReminder(const ReminderInput& input) override {
+      auto __result = _swiftPart.createReminder(std::forward<decltype(input)>(input));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> setReminderCompleted(const std::string& identifier, bool completed) override {
+      auto __result = _swiftPart.setReminderCompleted(identifier, std::forward<decltype(completed)>(completed));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> removeReminder(const std::string& identifier) override {
+      auto __result = _swiftPart.removeReminder(identifier);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

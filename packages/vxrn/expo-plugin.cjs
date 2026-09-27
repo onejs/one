@@ -21,7 +21,7 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // options: { audio: { microphone: string } } sets the iOS recording prompt.
 // options: { photoLibrary: { addOnly: string } } sets the ios photos add prompt.
 // options: { contacts: { usage: string } } sets the ios contacts prompt.
-// options: { calendar: { usage: string } } sets the ios full calendar prompt.
+// options: { calendar: { usage?: string, remindersUsage?: string } } sets EventKit prompts.
 module.exports = function withVxrn(config, options = {}) {
   const projectRoot = config?._internal?.projectRoot
   if (!projectRoot) {
@@ -73,11 +73,18 @@ module.exports = function withVxrn(config, options = {}) {
   ) {
     throw new Error('[vxrn/expo-plugin] contacts.usage must be a non-empty string')
   }
-  if (
-    calendar !== undefined &&
-    (!calendar || typeof calendar.usage !== 'string' || !calendar.usage.trim())
-  ) {
-    throw new Error('[vxrn/expo-plugin] calendar.usage must be a non-empty string')
+  if (calendar !== undefined) {
+    if (!calendar || (calendar.usage === undefined && calendar.remindersUsage === undefined)) {
+      throw new Error('[vxrn/expo-plugin] calendar.usage or calendar.remindersUsage is required')
+    }
+    if (calendar.usage !== undefined &&
+      (typeof calendar.usage !== 'string' || !calendar.usage.trim())) {
+      throw new Error('[vxrn/expo-plugin] calendar.usage must be a non-empty string')
+    }
+    if (calendar.remindersUsage !== undefined &&
+      (typeof calendar.remindersUsage !== 'string' || !calendar.remindersUsage.trim())) {
+      throw new Error('[vxrn/expo-plugin] calendar.remindersUsage must be a non-empty string')
+    }
   }
   const locationPlugins = !location
     ? []
@@ -129,7 +136,12 @@ module.exports = function withVxrn(config, options = {}) {
         [
           withInfoPlist,
           (nextConfig) => {
-            nextConfig.modResults.NSCalendarsFullAccessUsageDescription = calendar.usage
+            if (calendar.usage) {
+              nextConfig.modResults.NSCalendarsFullAccessUsageDescription = calendar.usage
+            }
+            if (calendar.remindersUsage) {
+              nextConfig.modResults.NSRemindersFullAccessUsageDescription = calendar.remindersUsage
+            }
             return nextConfig
           },
         ],
