@@ -1245,6 +1245,11 @@ Wrap one row in `One.iOS.ViewSlot name="listRowBackground"` and put a native
 background view in `One.iOS.ViewSlot.Content` to use SwiftUI's row background.
 The background child can change with React state.
 
+`One.iOS.ViewSlot name="safeAreaBarWithVerticalEdge"` takes
+`options={{ edge: 'top' }}` or `options={{ edge: 'bottom' }}` on iOS 26 or newer. The native
+view in `ViewSlot.Content` becomes a safe-area bar. Both edges and bar button
+actions have an iOS 27 simulator proof.
+
 `One.iOS.ScrollView` scrolls One Native content vertically by default,
 horizontally with `axes="horizontal"`, or both ways with `axes="both"`.
 `showsIndicators` hides the scroll bars when false. It is greedy the same way
