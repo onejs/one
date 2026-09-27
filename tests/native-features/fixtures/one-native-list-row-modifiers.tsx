@@ -13,9 +13,9 @@ export default function OneNativeListRowModifiers() {
       <One.iOS.List listStyle="plain" style={styles.list}>
         <One.iOS.Section title="Modifiers">
           <One.iOS.Text
-            key={custom ? 'custom' : 'default'}
             text="Inset row"
             swiftStyle={{
+              opacity: custom ? 0.3 : 1,
               listRowInsets: { edges: 'leading', length: custom ? 96 : 16 },
               listRowSeparator: { visibility: custom ? 'hidden' : 'visible', edges: 'bottom' },
               listRowSeparatorTint: { color: 'red', edges: 'bottom' },
