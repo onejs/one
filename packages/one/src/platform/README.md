@@ -1249,6 +1249,9 @@ For a generated One Native control used as a List row, `swiftStyle` can set
 modifiers from React refreshes the affected native row. The iOS 27 plain List
 proof covers a `Text` row changing its inset and separator in both directions;
 other row control types and List styles still need runtime proof.
+`swiftStyle` applies SDK modifiers in object order; put
+`listRowSeparatorTint` before `listRowSeparator` when both are present and
+visibility should take precedence.
 
 `One.iOS.ViewSlot name="safeAreaBarWithVerticalEdge"` takes
 `options={{ edge: 'top' }}` or `options={{ edge: 'bottom' }}` on iOS 26 or newer. The native

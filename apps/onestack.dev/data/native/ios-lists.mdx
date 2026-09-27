@@ -57,6 +57,9 @@ Use a row's `swiftStyle` for SwiftUI row modifiers. For example,
 `listRowInsets` changes the leading inset (iOS 26 or later), while
 `listRowSeparator` and `listRowSeparatorTint` control the separator. React
 updates to these modifiers refresh that row in the native List.
+`swiftStyle` applies SDK modifiers in object order. When setting both a tint
+and visibility, put `listRowSeparatorTint` before `listRowSeparator` so the
+visibility modifier takes precedence.
 
 ```tsx
 <One.iOS.List listStyle="plain" style={{ height: 240 }}>
