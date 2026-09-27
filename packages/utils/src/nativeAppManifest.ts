@@ -35,6 +35,10 @@ export interface NativeAppManifest {
     // splash shows the centered artwork either way.
     resizeMode?: 'contain' | 'cover'
   }
+  // project-relative .ttf or .otf files bundled into the binary, as the
+  // expo-font plugin's `fonts`: ios lists them in UIAppFonts, android loads
+  // them from assets/fonts. the family name is the file's own.
+  fonts?: string[]
   imagePicker?: {
     // ios camera usage description shown at the system prompt. setting it
     // also declares the android camera permission; both are required for
@@ -155,6 +159,7 @@ const BUILD_NUMBER = /^[A-Za-z0-9.]+$/
 const REVERSE_DNS = /^[A-Za-z][A-Za-z0-9-]*(\.[A-Za-z][A-Za-z0-9-]*)+$/
 const DEPLOYMENT_TARGET = /^\d+\.\d+$/
 const HEX_COLOR = /^#[\da-f]{6}$/i
+const FONT_FILE = /\.(ttf|otf)$/i
 const ORIENTATIONS = ['portrait', 'landscape', 'default'] as const
 const USER_INTERFACE_STYLES = ['light', 'dark', 'automatic'] as const
 
@@ -200,6 +205,17 @@ export function validateNativeApp(
     fail(
       `userInterfaceStyle "${manifest.userInterfaceStyle}" must be ${USER_INTERFACE_STYLES.join(', ')}`
     )
+  }
+  if (manifest.fonts !== undefined) {
+    const names = new Set<string>()
+    for (const font of manifest.fonts) {
+      if (typeof font !== 'string' || !FONT_FILE.test(font)) {
+        fail(`fonts entry "${font}" must be a .ttf or .otf file path`)
+      }
+      const name = font.split('/').pop() ?? font
+      if (names.has(name)) fail(`fonts lists ${name} twice`)
+      names.add(name)
+    }
   }
   if (manifest.version !== undefined && !VERSION.test(manifest.version)) {
     fail(`version "${manifest.version}" must start with major.minor.patch`)
@@ -465,6 +481,7 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
       imageWidth: app.splash.width,
       resizeMode: app.splash.resizeMode,
     },
+    plugins: app.fonts?.length ? [['expo-font', { fonts: app.fonts }]] : undefined,
     ios: app.ios && {
       bundleIdentifier: app.ios.bundleId,
       buildNumber: app.ios.buildNumber,
