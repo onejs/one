@@ -477,6 +477,13 @@ that range, and `minimumDate` must not be after `maximumDate`.
 `displayedComponents` is `date`, `hourAndMinute`, or `dateAndTime` (default).
 `datePickerStyle` is `automatic`, `compact`, `graphical`, or `wheel`.
 
+`MultiDatePicker` selects multiple calendar days. Its `selection` is an array of
+unique `YYYY-MM-DD` strings; `onSelectionChange` reports them in sorted order.
+The bridge keeps SwiftUI's `Set<DateComponents>` behind the native boundary,
+so a selected day is never represented as a timestamp. The first binding uses
+the unbounded native constructor. This date-only React representation is a
+proposed API on `one-native-multi-date-picker` pending Nate's approval.
+
 `ColorPicker` `selection` is `#RRGGBB` or `#RRGGBBAA`. `supportsOpacity` defaults
 to true.
 

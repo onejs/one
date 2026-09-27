@@ -3,7 +3,11 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 export default function OneNativeMultiDatePickerFixture() {
-  const [selection, setSelection] = useState<string[]>(['2026-09-28'])
+  const [monthPrefix] = useState(() => {
+    const today = new Date()
+    return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-`
+  })
+  const [selection, setSelection] = useState<string[]>([`${monthPrefix}10`])
   const [requested, setRequested] = useState('none')
   const [reject, setReject] = useState(false)
   const [disabled, setDisabled] = useState(false)
@@ -16,7 +20,7 @@ export default function OneNativeMultiDatePickerFixture() {
       <Text>{`Reject: ${reject}`}</Text>
       <Text>{`Disabled: ${disabled}`}</Text>
       <Text>{`Revision: ${revision}`}</Text>
-      <Pressable testID="one-native-multi-date-external" onPress={() => setSelection(['2026-09-30'])}>
+      <Pressable testID="one-native-multi-date-external" onPress={() => setSelection([`${monthPrefix}12`])}>
         <Text>External day</Text>
       </Pressable>
       <Pressable testID="one-native-multi-date-reject" onPress={() => setReject((value) => !value)}>

@@ -71,6 +71,19 @@ accounts are unavailable).
 
 ## Status
 
+- **RAN, 2026-09-27:** `MultiDatePicker` is implemented on named branch
+  `one-native-multi-date-picker` pending Nate's approval of the public
+  `readonly string[]` `YYYY-MM-DD` calendar-day API. Apple binds a
+  `Set<DateComponents>`; One converts sorted date-only strings at the native
+  boundary. On an iPhone 17 Pro iOS 27 simulator, the focused suite passed
+  21 checks for measured SwiftUI calendar layout, native day selection
+  pixels, adding and removing a day, React rejection, external selection,
+  disabled tap, and revision reset. The fixture chooses days 10–12 of the
+  current calendar month so future runs remain on the visible month. The
+  simulator capture and outcome are in local ignored
+  `tests/native-features/build/multi-date-full-proof-3`. Native build used
+  Xcode 27.1 on ci-64. High review and Nate approval remain before merge.
+
 - **RAN, 2026-09-26:** slice 1 `TextEditor` and `UnevenRoundedRectangle` passed
   `generate:check`, all seven shape tests, and the `editors` conformance suite
   on the iPhone 17 Pro iOS 27.0 simulator. The suite checked native multiline

@@ -18,6 +18,7 @@ declare const ContextMenu: typeof AndroidContextMenu;
 export declare const Swift: {
     Picker({ selection, onSelectionChange, revision, label, disabled, options, pickerStyle, swiftStyle, style, ...props }: import("./types").PickerProps): import("react/jsx-runtime").JSX.Element;
     DatePicker({ selection, onSelectionChange, revision, label, disabled, minimumDate, maximumDate, displayedComponents, datePickerStyle, swiftStyle, style, ...props }: import("./types").DatePickerProps): import("react/jsx-runtime").JSX.Element;
+    MultiDatePicker({ selection, onSelectionChange, revision, label, disabled, swiftStyle, style, ...props }: import("./types").MultiDatePickerProps): import("react/jsx-runtime").JSX.Element;
     ColorPicker({ selection, onSelectionChange, revision, label, disabled, supportsOpacity, swiftStyle, style, ...props }: import("./types").ColorPickerProps): import("react/jsx-runtime").JSX.Element;
     Toggle({ isOn, onIsOnChange, revision, label, disabled, systemImage, toggleStyle, swiftStyle, style, ...props }: import("./types").ToggleProps): import("react/jsx-runtime").JSX.Element;
     Slider({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, minimumValueLabel, maximumValueLabel, minimumValueImage, maximumValueImage, swiftStyle, style, ...props }: import("./types").SliderProps): import("react/jsx-runtime").JSX.Element;

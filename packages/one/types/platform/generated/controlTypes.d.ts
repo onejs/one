@@ -2486,6 +2486,13 @@ export interface DatePickerProps extends OneNativeViewProps {
     displayedComponents?: 'date' | 'hourAndMinute' | 'dateAndTime';
     datePickerStyle?: Styles.DatePickerStyle;
 }
+export interface MultiDatePickerProps extends OneNativeViewProps {
+    selection: readonly string[];
+    onSelectionChange: (value: readonly string[]) => void;
+    revision?: number;
+    label?: string;
+    disabled?: boolean;
+}
 export interface ColorPickerProps extends OneNativeViewProps {
     selection: string;
     onSelectionChange: (value: string) => void;

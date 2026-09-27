@@ -51,6 +51,7 @@ declare function ToolbarSpacer(_props: ToolbarSpacerProps): never;
 export declare const Swift: {
     Picker: (_props: import("./types").PickerProps) => never;
     DatePicker: (_props: import("./types").DatePickerProps) => never;
+    MultiDatePicker: (_props: import("./types").MultiDatePickerProps) => never;
     ColorPicker: (_props: import("./types").ColorPickerProps) => never;
     Toggle: (_props: import("./types").ToggleProps) => never;
     Slider: (_props: import("./types").SliderProps) => never;

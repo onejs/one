@@ -3258,10 +3258,84 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-multi-date-picker')
-    const mounted = await wait('native MultiDatePicker calendar mounts', (nodes) =>
-      labels(nodes).includes('Selected days: 2026-09-28') &&
-      Boolean(id(nodes, 'one-native-multi-date-control')?.frame))
-    screenshot('multi-date-initial.png', mounted)
+    const days = [10, 11, 12] as const
+    const initial = await wait('native MultiDatePicker mounts a measured month calendar', (nodes) => {
+      const control = id(nodes, 'one-native-multi-date-control')?.frame
+      return labels(nodes).some((label) => /^Selected days: [0-9]{4}-[0-9]{2}-10$/.test(label)) &&
+        nodes.some((node) => node.AXLabel === 'Month' && typeof node.AXValue === 'string') &&
+        Boolean(control && control.height > 300)
+    })
+    const selectedLabel = labels(initial).find((label) => /^Selected days: [0-9]{4}-[0-9]{2}-10$/.test(label))!
+    const prefix = selectedLabel.slice('Selected days: '.length, -2)
+    const date = (day: number) => `${prefix}${day}`
+    const dayLabel = (day: number) => new Intl.DateTimeFormat('en-US', {
+      weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC',
+    }).format(new Date(`${date(day)}T12:00:00Z`))
+    const dayFrame = (nodes: Node[], day: number) =>
+      nodes.find((node) => node.type === 'Button' && node.AXLabel === dayLabel(day))?.frame
+    const mounted = await wait('native MultiDatePicker exposes three current-month days', (nodes) =>
+      days.every((day) => dayFrame(nodes, day)))
+    const selectedPixels = (name: string, nodes: Node[], expected: readonly number[]) => {
+      const capture = screenshot(name, nodes)
+      const pixels = readPng(capture)
+      const appWidth = nodes.find((node) => node.type === 'Application')?.frame?.width
+      if (!appWidth) throw new Error('MultiDatePicker screenshot has no application width')
+      const scale = pixels.width / appWidth
+      const samples = days.map((day) => {
+        const frame = dayFrame(nodes, day)
+        if (!frame) throw new Error(`MultiDatePicker day ${day} is absent`)
+        // Inside the circular selection fill, left of the number glyph.
+        const x = Math.round((frame.x + 12) * scale)
+        const y = Math.round((frame.y + frame.height / 2) * scale)
+        const offset = (y * pixels.width + x) * 4
+        return [...pixels.data.subarray(offset, offset + 3)]
+      })
+      for (let index = 0; index < days.length; index++) {
+        const selected = samples[index]!.every((channel) => channel < 50)
+        const unselected = samples[index]!.every((channel) => channel > 230)
+        if (expected.includes(days[index]!) ? !selected : !unselected)
+          throw new Error(`MultiDatePicker selection pixels mismatch: ${JSON.stringify({ name, days, expected, samples })}`)
+      }
+      checks.push({ name: `${name} matches native selected-day pixels`, durationMs: 0 })
+      console.log(`PASS ${name} matches native selected-day pixels`)
+    }
+    selectedPixels('multi-date-initial.png', mounted, [10])
+    tap({ label: dayLabel(11) })
+    const added = await wait('native tap adds a second controlled day', (nodes) =>
+      labels(nodes).includes(`Selected days: ${date(10)},${date(11)}`) &&
+      labels(nodes).includes(`Requested days: ${date(10)},${date(11)}`))
+    selectedPixels('multi-date-added.png', added, [10, 11])
+    tap({ label: dayLabel(10) })
+    const removed = await wait('native tap removes only the chosen day', (nodes) =>
+      labels(nodes).includes(`Selected days: ${date(11)}`) &&
+      labels(nodes).includes(`Requested days: ${date(11)}`))
+    selectedPixels('multi-date-removed.png', removed, [11])
+    tap({ id: 'one-native-multi-date-reject' })
+    await wait('selection rejection is enabled', (nodes) => labels(nodes).includes('Reject: true'))
+    tap({ label: dayLabel(12) })
+    const rejected = await wait('native request is reported while React rejects it', (nodes) =>
+      labels(nodes).includes(`Requested days: ${date(11)},${date(12)}`) &&
+      labels(nodes).includes(`Selected days: ${date(11)}`))
+    selectedPixels('multi-date-rejected.png', rejected, [11])
+    tap({ id: 'one-native-multi-date-external' })
+    const external = await wait('external controlled value replaces the selected day', (nodes) =>
+      labels(nodes).includes(`Selected days: ${date(12)}`))
+    selectedPixels('multi-date-external.png', external, [12])
+    tap({ id: 'one-native-multi-date-disabled' })
+    const disabled = await wait('disabled prop reaches MultiDatePicker', (nodes) =>
+      labels(nodes).includes('Disabled: true'))
+    selectedPixels('multi-date-disabled.png', disabled, [12])
+    tap({ label: dayLabel(11) })
+    await Bun.sleep(700)
+    const afterDisabledTap = snapshot(config.simulatorId)
+    if (!labels(afterDisabledTap).includes(`Requested days: ${date(11)},${date(12)}`))
+      throw new Error('Disabled MultiDatePicker emitted a native selection event')
+    checks.push({ name: 'disabled native tap emits no selection event', durationMs: 0 })
+    console.log('PASS disabled native tap emits no selection event')
+    tap({ id: 'one-native-multi-date-reset' })
+    const reset = await wait('revision resets MultiDatePicker to an empty selection', (nodes) =>
+      labels(nodes).includes('Revision: 1') && labels(nodes).includes('Selected days: none'))
+    selectedPixels('multi-date-reset.png', reset, [])
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -1,6 +1,7 @@
 import type * as Types from './controlTypes';
 declare function Picker(_props: Types.PickerProps): never;
 declare function DatePicker(_props: Types.DatePickerProps): never;
+declare function MultiDatePicker(_props: Types.MultiDatePickerProps): never;
 declare function ColorPicker(_props: Types.ColorPickerProps): never;
 declare function Toggle(_props: Types.ToggleProps): never;
 declare function Slider(_props: Types.SliderProps): never;
@@ -37,6 +38,7 @@ declare function EmptyView(_props: Types.EmptyViewProps): never;
 export declare const unsupportedControls: {
     Picker: typeof Picker;
     DatePicker: typeof DatePicker;
+    MultiDatePicker: typeof MultiDatePicker;
     ColorPicker: typeof ColorPicker;
     Toggle: typeof Toggle;
     Slider: typeof Slider;
