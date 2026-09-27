@@ -61,6 +61,7 @@ const suites = [
   'view-slot',
   'safe-area-bar',
   'horizontal-inset',
+  'horizontal-bar',
   'swipe-actions',
   'disclosure-group',
   'control-group',
@@ -396,6 +397,9 @@ const safeAreaBarLoaded = (nodes: Node[]) =>
 const horizontalInsetLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-horizontal-inset-screen'))
+const horizontalBarLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-horizontal-bar-screen'))
 const swipeActionsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-swipe-actions-screen'))
@@ -597,6 +601,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'view-slot': viewSlotLoaded,
   'safe-area-bar': safeAreaBarLoaded,
   'horizontal-inset': horizontalInsetLoaded,
+  'horizontal-bar': horizontalBarLoaded,
   'swipe-actions': swipeActionsLoaded,
   'disclosure-group': disclosureGroupLoaded,
   'control-group': controlGroupLoaded,
@@ -673,6 +678,7 @@ const suiteHome: Record<Suite, string> = {
   'view-slot': 'nav-one-native-view-slot',
   'safe-area-bar': 'nav-one-native-safe-area-bar',
   'horizontal-inset': 'nav-one-native-horizontal-inset',
+  'horizontal-bar': 'nav-one-native-horizontal-bar',
   'swipe-actions': 'nav-one-native-swipe-actions',
   'disclosure-group': 'nav-one-native-disclosure-group',
   'control-group': 'nav-one-native-control-group',
@@ -3469,6 +3475,44 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ label: 'Trailing inset action' })
     const tapped = await wait('trailing safe-area inset action reaches React', (nodes) => labels(nodes).includes('Trailing taps: 1'))
     screenshot('horizontal-insets-tapped.png', tapped)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'horizontal-bar') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-horizontal-bar')
+    const mounted = await wait('native leading and trailing safe-area bars mount', (nodes) =>
+      labels(nodes).includes('Leading bar base') &&
+      labels(nodes).includes('Trailing bar base') &&
+      labels(nodes).includes('Leading bar action') &&
+      labels(nodes).includes('Trailing bar action') &&
+      Boolean(id(nodes, 'one-native-horizontal-bar-leading')?.frame) &&
+      Boolean(id(nodes, 'one-native-horizontal-bar-trailing')?.frame))
+    const leadingHost = id(mounted, 'one-native-horizontal-bar-leading')!.frame!
+    const trailingHost = id(mounted, 'one-native-horizontal-bar-trailing')!.frame!
+    const leadingAction = mounted.find((node) => node.AXLabel === 'Leading bar action')?.frame
+    const trailingAction = mounted.find((node) => node.AXLabel === 'Trailing bar action')?.frame
+    const leadingBase = mounted.find((node) => node.AXLabel === 'Leading bar base')?.frame
+    const trailingBase = mounted.find((node) => node.AXLabel === 'Trailing bar base')?.frame
+    const inside = (child: NonNullable<Node['frame']>, host: NonNullable<Node['frame']>) =>
+      child.x >= host.x - 1 && child.y >= host.y - 1 &&
+      child.x + child.width <= host.x + host.width + 1 &&
+      child.y + child.height <= host.y + host.height + 1
+    if (!leadingAction || !trailingAction || !leadingBase || !trailingBase ||
+        leadingAction.x + leadingAction.width > leadingBase.x + 2 ||
+        trailingAction.x < trailingBase.x + trailingBase.width - 2 ||
+        !inside(leadingAction, leadingHost) || !inside(leadingBase, leadingHost) ||
+        !inside(trailingAction, trailingHost) || !inside(trailingBase, trailingHost))
+      throw new Error(`Native horizontal safe-area bars did not flank their base views: ${JSON.stringify({ leadingHost, trailingHost, leadingBase, trailingBase, leadingAction, trailingAction })}`)
+    checks.push({ name: 'native horizontal bars flank their base views inside each host', durationMs: 0 })
+    console.log('PASS native horizontal bars flank their base views inside each host')
+    screenshot('horizontal-bars-initial.png', mounted)
+    tap({ label: 'Leading bar action' })
+    await wait('leading safe-area bar action reaches React', (nodes) => labels(nodes).includes('Leading bar taps: 1'))
+    tap({ label: 'Trailing bar action' })
+    const tapped = await wait('trailing safe-area bar action reaches React', (nodes) => labels(nodes).includes('Trailing bar taps: 1'))
+    screenshot('horizontal-bars-tapped.png', tapped)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

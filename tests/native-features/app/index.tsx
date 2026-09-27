@@ -111,6 +111,11 @@ const testScreens = [
     testID: 'nav-one-native-horizontal-inset',
   },
   {
+    href: '/one-native-horizontal-bar',
+    label: 'One Native Horizontal Bar',
+    testID: 'nav-one-native-horizontal-bar',
+  },
+  {
     href: '/one-native-swipe-actions',
     label: 'One Native Swipe Actions',
     testID: 'nav-one-native-swipe-actions',
