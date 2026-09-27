@@ -391,14 +391,26 @@ function pbxprojId(seed: string): string {
   return createHash('sha1').update(seed).digest('hex').slice(0, 24).toUpperCase()
 }
 
-// each native.app font becomes an app-group file in the Resources phase, the
-// way expo-font's plugin adds it, so UIAppFonts can name it.
-function patchIosPbxprojFonts(rendered: string, appName: string, fonts: string[]): string {
+const GOOGLE_SERVICES_PLIST = 'GoogleService-Info.plist'
+const GOOGLE_SERVICES_VERSION = '4.4.4'
+
+// the files prebuild bundles next to the ios app sources: native.app fonts and
+// the firebase plist.
+function iosResourceFiles(app: NativeAppManifest): string[] {
+  return [
+    ...(app.fonts ?? []).map(fontFileName),
+    ...(app.ios?.googleServicesFile ? [GOOGLE_SERVICES_PLIST] : []),
+  ]
+}
+
+// each bundled file becomes an app-group file in the Resources phase, the way
+// expo's font and google services plugins add theirs.
+function patchIosPbxprojResources(rendered: string, appName: string, names: string[]): string {
   let patched = rendered
-  for (const font of fonts) {
-    const name = fontFileName(font)
-    const fileRef = pbxprojId(`one-font-file:${name}`)
-    const buildFile = pbxprojId(`one-font-build:${name}`)
+  for (const name of names) {
+    const fileRef = pbxprojId(`one-resource-file:${name}`)
+    const buildFile = pbxprojId(`one-resource-build:${name}`)
+    const fileType = name.endsWith('.plist') ? 'text.plist.xml' : 'file'
     const edits: Array<[string, string]> = [
       [
         '/* Images.xcassets in Resources */ = {isa = PBXBuildFile;',
@@ -406,7 +418,7 @@ function patchIosPbxprojFonts(rendered: string, appName: string, fonts: string[]
       ],
       [
         '/* Images.xcassets */ = {isa = PBXFileReference;',
-        `\t\t${fileRef} /* ${name} */ = {isa = PBXFileReference; lastKnownFileType = file; name = ${name}; path = ${appName}/${name}; sourceTree = "<group>"; };`,
+        `\t\t${fileRef} /* ${name} */ = {isa = PBXFileReference; lastKnownFileType = ${fileType}; name = ${name}; path = ${appName}/${name}; sourceTree = "<group>"; };`,
       ],
       ['/* Images.xcassets */,', `\t\t\t\t${fileRef} /* ${name} */,`],
       ['/* Images.xcassets in Resources */,', `\t\t\t\t${buildFile} /* ${name} in Resources */,`],
@@ -424,9 +436,10 @@ function patchIosPbxprojFonts(rendered: string, appName: string, fonts: string[]
   return patched
 }
 
-// ios copies each font next to the app sources; android loads fonts from
-// assets/fonts by file name.
-function copyAppFonts({
+// ios copies fonts and the firebase plist next to the app sources; android
+// loads fonts from assets/fonts and the gradle plugin reads
+// app/google-services.json.
+function copyAppResources({
   root,
   dest,
   platform,
@@ -437,15 +450,27 @@ function copyAppFonts({
   platform: 'ios' | 'android'
   app: NativeAppManifest
 }): void {
-  for (const font of app.fonts ?? []) {
-    const source = path.resolve(root, font)
-    if (!FSExtra.existsSync(source)) {
-      throw new Error(`[vxrn] native.app.fonts names ${font}, which does not exist`)
-    }
-    const target =
+  const copies: Array<[string, string]> = (app.fonts ?? []).map((font) => [
+    font,
+    platform === 'ios'
+      ? path.join(dest, app.name, fontFileName(font))
+      : path.join(dest, 'app', 'src', 'main', 'assets', 'fonts', fontFileName(font)),
+  ])
+  const googleServices =
+    platform === 'ios' ? app.ios?.googleServicesFile : app.android?.googleServicesFile
+  if (googleServices) {
+    copies.push([
+      googleServices,
       platform === 'ios'
-        ? path.join(dest, app.name, fontFileName(font))
-        : path.join(dest, 'app', 'src', 'main', 'assets', 'fonts', fontFileName(font))
+        ? path.join(dest, app.name, GOOGLE_SERVICES_PLIST)
+        : path.join(dest, 'app', 'google-services.json'),
+    ])
+  }
+  for (const [file, target] of copies) {
+    const source = path.resolve(root, file)
+    if (!FSExtra.existsSync(source)) {
+      throw new Error(`[vxrn] native.app names ${file}, which does not exist`)
+    }
     FSExtra.mkdirSync(path.dirname(target), { recursive: true })
     FSExtra.copyFileSync(source, target)
   }
@@ -2240,7 +2265,9 @@ end`
         rendered = patchIosPbxprojAppEntitlements(rendered, appName)
       }
       if (app.ios?.widgets) rendered = patchIosPbxprojWidgets(rendered, app)
-      if (app.fonts?.length) rendered = patchIosPbxprojFonts(rendered, appName, app.fonts)
+      if (iosResourceFiles(app).length) {
+        rendered = patchIosPbxprojResources(rendered, appName, iosResourceFiles(app))
+      }
     }
     if (platform === 'ios' && relativePath === 'Podfile') {
       if (app.ios?.ccache) rendered = `ENV['USE_CCACHE'] ||= '1'\n${rendered}`
@@ -2317,6 +2344,28 @@ end`
           minifyEnabled,
           `${minifyEnabled}\n            shrinkResources true`
         )
+      }
+    }
+    if (platform === 'android' && app.android?.googleServicesFile) {
+      const edits: Array<[string, string, string]> = [
+        [
+          'build.gradle',
+          'classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")',
+          `        classpath("com.google.gms:google-services:${GOOGLE_SERVICES_VERSION}")`,
+        ],
+        [
+          'app/build.gradle',
+          'apply plugin: "com.facebook.react"',
+          'apply plugin: "com.google.gms.google-services"',
+        ],
+      ]
+      for (const [file, anchor, insertion] of edits) {
+        if (relativePath !== file) continue
+        const next = insertAfterLine(rendered, anchor, insertion)
+        if (next === rendered) {
+          throw new Error(`[vxrn] prebuild template ${file} lost its ${anchor} anchor`)
+        }
+        rendered = next
       }
     }
     if (
@@ -2407,7 +2456,7 @@ export const generateForPlatform = async (
   await generateAppIcons({ root, dest, platform, app })
   if (platform === 'android') await generateAdaptiveIcon({ root, dest, app })
   await generateSplashScreen({ root, dest, platform, app })
-  copyAppFonts({ root, dest, platform, app })
+  copyAppResources({ root, dest, platform, app })
   generateSceneDelegate({ dest, platform, app })
   if (platform === 'ios') generateOneBridgingHeader(dest, app)
   if (platform === 'ios') generateIosWidgets(dest, app)

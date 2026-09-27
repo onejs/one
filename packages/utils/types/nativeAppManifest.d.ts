@@ -68,6 +68,7 @@ export interface NativeAppManifest {
         fileSharing?: boolean;
         associatedDomains?: string[];
         usesAppleSignIn?: boolean;
+        googleServicesFile?: string;
         infoPlist?: Record<string, PlistValue>;
         entitlements?: Record<string, PlistValue>;
         widgets?: {
@@ -95,6 +96,7 @@ export interface NativeAppManifest {
         proguardRules?: string;
         permissions?: string[];
         blockedPermissions?: string[];
+        googleServicesFile?: string;
         appLinks?: Array<{
             host: string;
             pathPrefix?: string;
@@ -130,6 +132,7 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
         supportsTablet: boolean | undefined;
         associatedDomains: string[] | undefined;
         usesAppleSignIn: boolean | undefined;
+        googleServicesFile: string | undefined;
         infoPlist: Record<string, PlistValue> | undefined;
         entitlements: Record<string, PlistValue> | undefined;
     } | undefined;
@@ -138,6 +141,7 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
         versionCode: number | undefined;
         permissions: string[] | undefined;
         blockedPermissions: string[] | undefined;
+        googleServicesFile: string | undefined;
         adaptiveIcon: {
             foregroundImage: string;
             backgroundImage: string | undefined;

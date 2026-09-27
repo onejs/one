@@ -116,6 +116,9 @@ export interface NativeAppManifest {
     associatedDomains?: string[]
     // the sign in with apple entitlement, for One.iOS.AppleAuthentication.
     usesAppleSignIn?: boolean
+    // a firebase GoogleService-Info.plist, bundled into the app as expo's
+    // ios.googleServicesFile does.
+    googleServicesFile?: string
     // Info.plist and entitlement keys native.app does not model (a tracking
     // prompt, an sdk's key). a key native.app or the template already writes
     // is rejected: set it through its field instead.
@@ -155,6 +158,9 @@ export interface NativeAppManifest {
     // blocked ones are removed even when a library's manifest merges them in.
     permissions?: string[]
     blockedPermissions?: string[]
+    // a firebase google-services.json; prebuild applies the google-services
+    // gradle plugin, as expo's android.googleServicesFile does.
+    googleServicesFile?: string
     // verified https app links routed to the app (android:autoVerify).
     appLinks?: Array<{ host: string; pathPrefix?: string }>
     // google maps api key for One.UI.Map. setting it compiles the maps sdk
@@ -513,6 +519,7 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
       supportsTablet: app.ios.tablet,
       associatedDomains: app.ios.associatedDomains,
       usesAppleSignIn: app.ios.usesAppleSignIn,
+      googleServicesFile: app.ios.googleServicesFile,
       infoPlist: app.ios.infoPlist,
       entitlements: app.ios.entitlements,
     },
@@ -521,6 +528,7 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
       versionCode: app.android.versionCode,
       permissions: app.android.permissions,
       blockedPermissions: app.android.blockedPermissions,
+      googleServicesFile: app.android.googleServicesFile,
       adaptiveIcon: app.android.adaptiveIcon && {
         foregroundImage: app.android.adaptiveIcon.foreground,
         backgroundImage: app.android.adaptiveIcon.background,
