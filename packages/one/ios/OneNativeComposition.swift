@@ -186,6 +186,10 @@ final class OneNativeSchemeBridge: ObservableObject {
       id: identity.id, sourceID: ObjectIdentifier(child), content: composable.compositionContent())
   }
 
+  public func refreshComposedIdentity() {
+    compositionParent?.refreshRow(for: self)
+  }
+
   public func removeChild(_ child: UIView) {
     guard let index = childViews.firstIndex(where: { $0 === child }) else { return }
     childViews.remove(at: index)

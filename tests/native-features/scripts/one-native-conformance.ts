@@ -37,6 +37,7 @@ const suites = [
   'lists',
   'list-row-background',
   'list-row-modifiers',
+  'list-section-modifiers',
   'groups',
   'state',
   'safe-area',
@@ -303,6 +304,10 @@ const listRowModifiersLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-list-row-modifiers-screen')) &&
   has(nodes, 'Row modifiers: ')
+const listSectionModifiersLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-list-section-modifiers-screen')) &&
+  has(nodes, 'Section modifiers: ')
 const groupsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-groups-refuse')) &&
@@ -544,6 +549,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   lists: listsLoaded,
   'list-row-background': listsLoaded,
   'list-row-modifiers': listRowModifiersLoaded,
+  'list-section-modifiers': listSectionModifiersLoaded,
   groups: groupsLoaded,
   state: stateLoaded,
   'safe-area': safeAreaLoaded,
@@ -614,6 +620,7 @@ const suiteHome: Record<Suite, string> = {
   lists: 'nav-one-native-lists',
   'list-row-background': 'nav-one-native-lists',
   'list-row-modifiers': 'nav-one-native-list-row-modifiers',
+  'list-section-modifiers': 'nav-one-native-list-section-modifiers',
   groups: 'nav-one-native-groups',
   state: 'nav-one-native-state',
   'safe-area': 'nav-one-native-safe-area',
@@ -2063,6 +2070,33 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'IsOn', 'true')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'list-section-modifiers') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-list-section-modifiers')
+    await wait('native List sections mount', (nodes) =>
+      labels(nodes).includes('Section modifiers: compact') &&
+      labels(nodes).includes('First section') &&
+      labels(nodes).includes('Second section') &&
+      labels(nodes).includes('Apple row') && labels(nodes).includes('Banana row'))
+    screenshot('list-section-modifiers-compact.png')
+    tap({ id: 'one-native-list-section-modifiers-toggle' })
+    await wait('React expands native List sections', (nodes) =>
+      labels(nodes).includes('Section modifiers: expanded') &&
+      labels(nodes).includes('First section') &&
+      labels(nodes).includes('Second section') &&
+      labels(nodes).includes('Apple row') && labels(nodes).includes('Banana row'))
+    await Bun.sleep(300)
+    screenshot('list-section-modifiers-expanded.png')
+    tap({ id: 'one-native-list-section-modifiers-toggle' })
+    await wait('React restores native List sections', (nodes) =>
+      labels(nodes).includes('Section modifiers: compact') &&
+      labels(nodes).includes('Apple row') && labels(nodes).includes('Banana row'))
+    await Bun.sleep(300)
+    screenshot('list-section-modifiers-restored.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
