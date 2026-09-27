@@ -11,6 +11,7 @@ import {
   FileSystem,
   Audio,
   Share,
+  Open,
   PhotoLibrary,
   ImageManipulator,
   Device,
@@ -103,6 +104,11 @@ export type OneNotifications = typeof Notifications
 
 export type OneAPI = {
   readonly platform: OnePlatform
+  // a url goes to the os (a new tab on web), content to the system share
+  // sheet, and the app's settings page opens on native.
+  readonly openURL: typeof Open.openURL
+  readonly openShare: typeof Open.openShare
+  readonly openSettings: typeof Open.openSettings
   readonly AppInfo: typeof AppInfo
   readonly Database: typeof Database
   readonly iOS: Readonly<OneIOS>
@@ -178,6 +184,9 @@ export const One: OneAPI = Object.freeze({
   get platform(): OnePlatform {
     return currentPlatform()
   },
+  openURL: Open.openURL,
+  openShare: Open.openShare,
+  openSettings: Open.openSettings,
   AppInfo,
   Database,
   iOS,

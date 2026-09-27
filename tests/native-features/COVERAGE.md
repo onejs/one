@@ -5,6 +5,9 @@ A cell names the conformance suites whose fixture uses the export.
 
 | export | iOS suites | Android suites | gap |
 | --- | --- | --- | --- |
+| `One.openURL` | missing | missing | react native Linking underneath; proven in the Contrast app, no suite yet |
+| `One.openShare` | missing | missing | react native Share underneath; proven in the Contrast app, no suite yet |
+| `One.openSettings` | missing | missing | react native Linking underneath; no suite yet |
 | `One.AppInfo` | app-info | app-info |  |
 | `One.Database` | database | missing | Android suite missing |
 | `One.iOS.ArrangementView` | missing | n/a | fixture exists, no suite opens it |
