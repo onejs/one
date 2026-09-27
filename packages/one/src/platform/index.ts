@@ -70,6 +70,8 @@ export type {
   AudioRecordingStatus,
 } from './audio/index'
 export { Share } from './share/index'
+export { Open } from './open/index'
+export type { OpenShareContent } from './open/index'
 export type { ShareItem, ShareItemType, ShareResult } from './share/index'
 export { PhotoLibrary } from './photo-library/index'
 export type { PhotoLibraryPermissionStatus } from './photo-library/index'
