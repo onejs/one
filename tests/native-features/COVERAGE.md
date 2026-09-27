@@ -21,7 +21,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Sheet` | sheets, navigation | n/a |  |
 | `One.iOS.FullScreenCover` | cover-context | n/a |  |
 | `One.iOS.Popover` | popover | n/a |  |
-| `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, disclosure-group, control-group, view-that-fits, accessibility | n/a |  |
+| `One.iOS.Host` | dialogs, dialogs-lifecycle, host, control-size, containers, disclosure-group, control-group, view-that-fits, accessibility | n/a |  |
 | `One.iOS.HStack` | glass-container, building-blocks, tab-slot, e2e:one-native-tabview | n/a |  |
 | `One.iOS.VStack` | groups | n/a |  |
 | `One.iOS.ZStack` | building-blocks, disclosure-group | n/a |  |
@@ -30,7 +30,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Glass` | building-blocks | n/a |  |
 | `One.iOS.GlassEffectContainer` | glass-container | n/a |  |
 | `One.iOS.LabeledContent` | building-blocks | n/a |  |
-| `One.iOS.Button` | leaves, host, containers, lists, list-row-background, groups, grids, glass-container, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, control-group, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Button` | leaves, host, control-size, containers, lists, list-row-background, groups, grids, glass-container, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, control-group, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Spacer` | building-blocks | n/a |  |
 | `One.iOS.Slot` | containers | n/a |  |
 | `One.iOS.List` | lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, groups, swipe-actions, edit-button | n/a | Text row modifiers proven in plain List; section spacing, margins, and header prominence proven in insetGrouped List; refreshable callback and rearm proven in plain List with a NavigationStack-hosted search field on iPhone; indicator duration and other modifiers/styles unproven |
@@ -80,6 +80,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.UnevenRoundedRectangle` | editors | n/a |  |
 | `One.iOS.ConcentricRectangle` | editors | n/a |  |
 | `One.iOS.LinearGradient` | linear-gradient | n/a | sRGB hex colors and normalized points proven on iOS 27; arbitrary SwiftUI Color values and explicit stops unbound |
+| `One.iOS.RadialGradient` | radial-gradient | n/a | opaque and alpha sRGB hex colors, empty/one/two/three colors, normalized center, and point radii proven on iOS 27; arbitrary SwiftUI Color values and explicit stops unbound |
 | `One.iOS.VideoPlayer` | media | n/a |  |
 | `One.iOS.PhotosPicker` | web-photos | n/a |  |
 | `One.iOS.WebView` | web-photos | n/a |  |
