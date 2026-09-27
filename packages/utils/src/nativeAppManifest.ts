@@ -34,6 +34,12 @@ export interface NativeAppManifest {
     // launch screen with it, as expo's resizeMode does. android's system
     // splash shows the centered artwork either way.
     resizeMode?: 'contain' | 'cover'
+    // what a dark-appearance launch shows, as expo's splash.dark: its own
+    // background, and optionally its own artwork.
+    dark?: {
+      source?: string
+      backgroundColor: string
+    }
   }
   // project-relative .ttf or .otf files bundled into the binary, as the
   // expo-font plugin's `fonts`: ios lists them in UIAppFonts, android loads
@@ -238,6 +244,12 @@ export function validateNativeApp(
     fail(
       'splash requires source, a six-digit hex backgroundColor, and width from 1 to 288'
     )
+  }
+  if (
+    manifest.splash?.dark !== undefined &&
+    !HEX_COLOR.test(manifest.splash.dark.backgroundColor)
+  ) {
+    fail('splash.dark requires a six-digit hex backgroundColor')
   }
   if (
     manifest.splash?.resizeMode !== undefined &&
@@ -480,6 +492,10 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
       backgroundColor: app.splash.backgroundColor,
       imageWidth: app.splash.width,
       resizeMode: app.splash.resizeMode,
+      dark: app.splash.dark && {
+        image: app.splash.dark.source,
+        backgroundColor: app.splash.dark.backgroundColor,
+      },
     },
     plugins: app.fonts?.length ? [['expo-font', { fonts: app.fonts }]] : undefined,
     ios: app.ios && {

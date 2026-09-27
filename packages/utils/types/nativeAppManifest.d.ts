@@ -17,6 +17,10 @@ export interface NativeAppManifest {
         backgroundColor: string;
         width?: number;
         resizeMode?: 'contain' | 'cover';
+        dark?: {
+            source?: string;
+            backgroundColor: string;
+        };
     };
     fonts?: string[];
     imagePicker?: {
@@ -109,6 +113,10 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
         backgroundColor: string;
         imageWidth: number | undefined;
         resizeMode: "contain" | "cover" | undefined;
+        dark: {
+            image: string | undefined;
+            backgroundColor: string;
+        } | undefined;
     } | undefined;
     plugins: (string | {
         fonts: string[];
