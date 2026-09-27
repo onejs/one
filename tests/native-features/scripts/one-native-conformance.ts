@@ -3275,6 +3275,31 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       nodes.find((node) => node.type === 'Button' && node.AXLabel === dayLabel(day))?.frame
     const mounted = await wait('native MultiDatePicker exposes three current-month days', (nodes) =>
       days.every((day) => dayFrame(nodes, day)))
+    const simulatorList = JSON.parse(execFileSync('xcrun', ['simctl', 'list', '-j', 'devices'], {
+      encoding: 'utf8', timeout: 30_000,
+    })) as { devices: Record<string, { udid: string; name: string; state: string }[]> }
+    const runtime = Object.entries(simulatorList.devices).find(([, devices]) =>
+      devices.some((device) => device.udid === config.simulatorId))
+    const preference = (key: string) => {
+      try {
+        return execFileSync('xcrun', ['simctl', 'spawn', config.simulatorId, 'defaults', 'read', '-g', key], {
+          encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], timeout: 30_000,
+        }).trim()
+      } catch { return 'unset' }
+    }
+    fs.writeFileSync(path.join(config.artifactDir, 'environment.json'), JSON.stringify({
+      capturedAt: new Date().toISOString(),
+      sourceRevision: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
+      xcode: execFileSync('xcodebuild', ['-version'], { encoding: 'utf8' }).trim(),
+      runtime: runtime?.[0] ?? 'unknown',
+      device: runtime?.[1].find((device) => device.udid === config.simulatorId) ?? null,
+      locale: preference('AppleLocale'),
+      calendar: preference('AppleCalendar'),
+      appearance: execFileSync('xcrun', ['simctl', 'ui', config.simulatorId, 'appearance'], {
+        encoding: 'utf8', timeout: 30_000,
+      }).trim(),
+      observedMonth: mounted.find((node) => node.AXLabel === 'Month')?.AXValue,
+    }, null, 2))
     const selectedPixels = (name: string, nodes: Node[], expected: readonly number[]) => {
       const capture = screenshot(name, nodes)
       const pixels = readPng(capture)
@@ -3332,6 +3357,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       throw new Error('Disabled MultiDatePicker emitted a native selection event')
     checks.push({ name: 'disabled native tap emits no selection event', durationMs: 0 })
     console.log('PASS disabled native tap emits no selection event')
+    selectedPixels('multi-date-disabled-after-tap.png', afterDisabledTap, [12])
     tap({ id: 'one-native-multi-date-reset' })
     const reset = await wait('revision resets MultiDatePicker to an empty selection', (nodes) =>
       labels(nodes).includes('Revision: 1') && labels(nodes).includes('Selected days: none'))

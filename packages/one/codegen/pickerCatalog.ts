@@ -139,26 +139,88 @@ export const pickerControls: Control[] = [
         { label: 'label', type: '() -> Label' },
       ],
     }],
-    swift: `MultiDatePicker(selection: Binding(
-        get: { oneNativeMultiDateDecode(model.controlled.value) },
-        set: { value in model.change(oneNativeMultiDateEncode(value)) }
-      )) {
-        Text(model.label)
-      }`,
-    extraSwift: `private func oneNativeMultiDateDecode(_ value: String) -> Set<DateComponents> {
-  let days = try! JSONDecoder().decode([String].self, from: Data(value.utf8))
-  return Set(days.map { day in
-    let parts = day.split(separator: "-").map { Int($0)! }
-    return DateComponents(year: parts[0], month: parts[1], day: parts[2])
+    swift: `MultiDatePickerSurface(model: model)`,
+    extraSwift: `private struct MultiDatePickerSurface: View {
+  @ObservedObject var model: MultiDatePickerModel
+  @Environment(\\.calendar) private var calendar
+  @Environment(\\.timeZone) private var timeZone
+
+  var body: some View {
+    MultiDatePicker(selection: Binding(
+      get: { oneNativeMultiDateDecode(model.controlled.value, calendar: calendar, timeZone: timeZone) },
+      set: { value in model.change(oneNativeMultiDateEncode(value, calendar: calendar, timeZone: timeZone)) }
+    )) {
+      Text(model.label)
+    }
+  }
+}
+
+// The JS value names a Gregorian calendar day, while SwiftUI presents that
+// same day with its environment calendar. Noon avoids midnight DST gaps.
+private func oneNativeMultiDateDecode(_ value: String, calendar: Calendar, timeZone: TimeZone) -> Set<DateComponents> {
+  guard let days = try? JSONDecoder().decode([String].self, from: Data(value.utf8)) else {
+    NSLog("OneNativeMultiDatePicker: invalid selection JSON")
+    return []
+  }
+  var gregorian = Calendar(identifier: .gregorian)
+  gregorian.timeZone = timeZone
+  var native = calendar
+  native.timeZone = timeZone
+  return Set(days.compactMap { day -> DateComponents? in
+    let parts = day.split(separator: "-", omittingEmptySubsequences: false)
+    guard parts.count == 3,
+      let year = Int(parts[0]), let month = Int(parts[1]), let dayOfMonth = Int(parts[2]),
+      let date = gregorian.date(from: DateComponents(year: year, month: month, day: dayOfMonth, hour: 12))
+    else {
+      NSLog("OneNativeMultiDatePicker: invalid calendar day")
+      return nil
+    }
+    let checked = gregorian.dateComponents([.year, .month, .day], from: date)
+    guard checked.year == year && checked.month == month && checked.day == dayOfMonth else {
+      NSLog("OneNativeMultiDatePicker: normalized invalid calendar day")
+      return nil
+    }
+    let mapped = native.dateComponents([.era, .year, .month, .day, .isLeapMonth], from: date)
+    guard let nativeYear = mapped.year, let nativeMonth = mapped.month, let nativeDay = mapped.day else {
+      NSLog("OneNativeMultiDatePicker: current calendar has no complete day")
+      return nil
+    }
+    var result = DateComponents(year: nativeYear, month: nativeMonth, day: nativeDay)
+    if native.identifier == .japanese { result.era = mapped.era }
+    if mapped.isLeapMonth == true { result.isLeapMonth = true }
+    return result
   })
 }
 
-private func oneNativeMultiDateEncode(_ selection: Set<DateComponents>) -> String {
-  let days = selection.map { day in
-    String(format: "%04d-%02d-%02d", day.year!, day.month!, day.day!)
+private func oneNativeMultiDateEncode(_ selection: Set<DateComponents>, calendar: Calendar, timeZone: TimeZone) -> String {
+  var gregorian = Calendar(identifier: .gregorian)
+  gregorian.timeZone = timeZone
+  var native = calendar
+  native.timeZone = timeZone
+  let days = selection.compactMap { day -> String? in
+    guard let year = day.year, let month = day.month, let dayOfMonth = day.day else {
+      NSLog("OneNativeMultiDatePicker: SwiftUI returned an incomplete day")
+      return nil
+    }
+    var components = DateComponents(era: day.era, year: year, month: month, day: dayOfMonth, hour: 12)
+    components.isLeapMonth = day.isLeapMonth
+    guard let date = native.date(from: components) else {
+      NSLog("OneNativeMultiDatePicker: SwiftUI returned an invalid calendar day")
+      return nil
+    }
+    let mapped = gregorian.dateComponents([.year, .month, .day], from: date)
+    guard let isoYear = mapped.year, let isoMonth = mapped.month, let isoDay = mapped.day,
+      (1...9999).contains(isoYear) else {
+      NSLog("OneNativeMultiDatePicker: selected day is outside the supported ISO range")
+      return nil
+    }
+    return String(format: "%04d-%02d-%02d", isoYear, isoMonth, isoDay)
   }.sorted()
-  let data = try! JSONEncoder().encode(days)
-  return String(data: data, encoding: .utf8)!
+  guard let data = try? JSONEncoder().encode(days), let json = String(data: data, encoding: .utf8) else {
+    NSLog("OneNativeMultiDatePicker: could not encode selected days")
+    return "[]"
+  }
+  return json
 }`,
     validate: `  if (!Array.isArray(selection) || selection.some(day =>
     typeof day !== 'string' || !/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(day) ||

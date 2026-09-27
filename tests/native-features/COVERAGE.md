@@ -60,7 +60,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ToolbarSpacer` | navigation | n/a |  |
 | `One.iOS.Picker` | pickers, forms, navigation | n/a |  |
 | `One.iOS.DatePicker` | pickers, forms | n/a |  |
-| `One.iOS.MultiDatePicker` | multi-date-picker | n/a |  |
+| `One.iOS.MultiDatePicker` | multi-date-picker | n/a | Gregorian month/selection interactions proven; non-Gregorian calendar, composition, accessibility props, and swiftStyle unproven |
 | `One.iOS.ColorPicker` | pickers, forms | n/a |  |
 | `One.iOS.Toggle` | pickers, forms, host, containers, lists, state, accessibility | n/a |  |
 | `One.iOS.Slider` | pickers, forms | n/a |  |

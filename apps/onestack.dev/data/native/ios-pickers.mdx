@@ -64,14 +64,16 @@ import { One } from 'one'
 `onSelectionChange` reports the selected days in sorted order. The first
 binding uses SwiftUI's unbounded picker. `revision` applies an external reset;
 `disabled` prevents native selection changes. Dates are calendar days, not
-timestamps. This date-only React representation is proposed on
+timestamps. The bridge maps those Gregorian day strings to SwiftUI's current
+calendar for display and maps native selections back to Gregorian days. This
+date-only React representation is proposed on
 `one-native-multi-date-picker` and awaits Nate's approval.
 
 ```tsx
 <One.iOS.MultiDatePicker
   label="Available days"
   selection={days}
-  onSelectionChange={setDays}
+  onSelectionChange={(next) => setDays([...next])}
 />
 ```
 
