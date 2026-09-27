@@ -1276,9 +1276,12 @@ async function generateSplashScreen(args: {
   if (!FSExtra.existsSync(source)) {
     throw new Error(`[vxrn] native.app.splash source does not exist: ${source}`)
   }
-  const { data: artwork, info: metadata } = await sharp(source)
-    .rotate()
-    .trim({ background: app.splash.backgroundColor })
+  // a cover splash fills the launch screen, so its artwork keeps its margins.
+  const cover = app.splash.resizeMode === 'cover'
+  const image = sharp(source).rotate()
+  const { data: artwork, info: metadata } = await (
+    cover ? image : image.trim({ background: app.splash.backgroundColor })
+  )
     .png()
     .toBuffer({ resolveWithObject: true })
   if (!metadata.width || !metadata.height) {
@@ -1325,14 +1328,21 @@ async function generateSplashScreen(args: {
           <view key="view" contentMode="scaleToFill" id="launch-view">
             <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <subviews>
-              <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="splash-image"/>
+              <imageView userInteractionEnabled="NO" contentMode="${cover ? 'scaleAspectFill' : 'scaleAspectFit'}" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="splash-image"/>
             </subviews>
             <color key="backgroundColor" red="${red}" green="${green}" blue="${blue}" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-              <constraint firstItem="splash-image" firstAttribute="centerX" secondItem="launch-view" secondAttribute="centerX" id="splash-center-x"/>
+${
+  cover
+    ? `              <constraint firstItem="splash-image" firstAttribute="leading" secondItem="launch-view" secondAttribute="leading" id="splash-leading"/>
+              <constraint firstItem="splash-image" firstAttribute="trailing" secondItem="launch-view" secondAttribute="trailing" id="splash-trailing"/>
+              <constraint firstItem="splash-image" firstAttribute="top" secondItem="launch-view" secondAttribute="top" id="splash-top"/>
+              <constraint firstItem="splash-image" firstAttribute="bottom" secondItem="launch-view" secondAttribute="bottom" id="splash-bottom"/>`
+    : `              <constraint firstItem="splash-image" firstAttribute="centerX" secondItem="launch-view" secondAttribute="centerX" id="splash-center-x"/>
               <constraint firstItem="splash-image" firstAttribute="centerY" secondItem="launch-view" secondAttribute="centerY" id="splash-center-y"/>
               <constraint firstItem="splash-image" firstAttribute="width" constant="${artworkWidth}" id="splash-width"/>
-              <constraint firstItem="splash-image" firstAttribute="height" constant="${artworkHeight}" id="splash-height"/>
+              <constraint firstItem="splash-image" firstAttribute="height" constant="${artworkHeight}" id="splash-height"/>`
+}
             </constraints>
           </view>
         </viewController>

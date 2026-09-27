@@ -19,6 +19,10 @@ export interface NativeAppManifest {
     source: string
     backgroundColor: string
     width?: number
+    // contain (default) centers the artwork at width; cover fills the ios
+    // launch screen with it, as expo's resizeMode does. android's system
+    // splash shows the centered artwork either way.
+    resizeMode?: 'contain' | 'cover'
   }
   imagePicker?: {
     // ios camera usage description shown at the system prompt. setting it
@@ -174,6 +178,13 @@ export function validateNativeApp(
     fail(
       'splash requires source, a six-digit hex backgroundColor, and width from 1 to 288'
     )
+  }
+  if (
+    manifest.splash?.resizeMode !== undefined &&
+    manifest.splash.resizeMode !== 'contain' &&
+    manifest.splash.resizeMode !== 'cover'
+  ) {
+    fail(`splash.resizeMode "${manifest.splash.resizeMode}" must be contain or cover`)
   }
   if (
     manifest.imagePicker?.camera !== undefined &&
@@ -382,6 +393,7 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
       image: app.splash.source,
       backgroundColor: app.splash.backgroundColor,
       imageWidth: app.splash.width,
+      resizeMode: app.splash.resizeMode,
     },
     ios: app.ios && {
       bundleIdentifier: app.ios.bundleId,
