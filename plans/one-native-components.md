@@ -79,8 +79,11 @@ accounts are unavailable).
   point moved 1,369 arrow-band pixels, and returning to bounds restored the
   original arrow band with zero changed pixels. Ignored proof artifacts and the
   successful build log are under `tests/native-features/build/popover-anchor-ipad-final/`
-  and `tests/native-features/build/popover-anchor-final-build.log`. Nate's
-  approval of the new public React representation is required before merge.
+  and `tests/native-features/build/popover-anchor-final-build.log`; the ignored
+  `proof-receipt.json` records the 1,369/2,380 changed and 0/2,380 restored
+  pixel counts and the remote build's source revision. High read-only review
+  s492 found no blocking issue. Nate's approval of the new public React
+  representation is required before merge.
 
 - **RAN, 2026-09-26:** slice 1 `TextEditor` and `UnevenRoundedRectangle` passed
   `generate:check`, all seven shape tests, and the `editors` conformance suite

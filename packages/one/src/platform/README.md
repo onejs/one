@@ -1528,6 +1528,7 @@ popover there.
 `attachmentAnchor` maps SwiftUI's `.rect(.bounds)` default as `{ rect: 'bounds' }`
 and `.point(UnitPoint(x:y:))` as `{ point: { x, y } }`. The unit point is relative
 to the trigger: `{ point: { x: 1, y: 1 } }` attaches at its bottom right corner.
+Both coordinates must be finite numbers.
 
 The trigger reports the height SwiftUI measured back to Yoga, exactly as `One.iOS.Host`
 does, so never give a popover a height. A popover is a container, so it composes into a
