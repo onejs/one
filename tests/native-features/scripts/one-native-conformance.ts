@@ -3287,19 +3287,23 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         }).trim()
       } catch { return 'unset' }
     }
+    const locale = preference('AppleLocale')
+    const appearance = execFileSync('xcrun', ['simctl', 'ui', config.simulatorId, 'appearance'], {
+      encoding: 'utf8', timeout: 30_000,
+    }).trim()
     fs.writeFileSync(path.join(config.artifactDir, 'environment.json'), JSON.stringify({
       capturedAt: new Date().toISOString(),
       sourceRevision: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
       xcode: execFileSync('xcodebuild', ['-version'], { encoding: 'utf8' }).trim(),
       runtime: runtime?.[0] ?? 'unknown',
       device: runtime?.[1].find((device) => device.udid === config.simulatorId) ?? null,
-      locale: preference('AppleLocale'),
+      locale,
       calendar: preference('AppleCalendar'),
-      appearance: execFileSync('xcrun', ['simctl', 'ui', config.simulatorId, 'appearance'], {
-        encoding: 'utf8', timeout: 30_000,
-      }).trim(),
+      appearance,
       observedMonth: mounted.find((node) => node.AXLabel === 'Month')?.AXValue,
     }, null, 2))
+    if (!locale.startsWith('en_US') || appearance !== 'light')
+      throw new Error(`MultiDatePicker proof requires en_US and light appearance: ${JSON.stringify({ locale, appearance })}`)
     const selectedPixels = (name: string, nodes: Node[], expected: readonly number[]) => {
       const capture = screenshot(name, nodes)
       const pixels = readPng(capture)

@@ -186,7 +186,14 @@ private func oneNativeMultiDateDecode(_ value: String, calendar: Calendar, timeZ
       return nil
     }
     var result = DateComponents(year: nativeYear, month: nativeMonth, day: nativeDay)
-    if native.identifier == .japanese { result.era = mapped.era }
+    // These calendars reuse year numbers across eras or cycles. Keep the era
+    // so a selected Gregorian day cannot resolve to a different native year.
+    switch native.identifier {
+    case .chinese, .dangi, .japanese, .republicOfChina:
+      result.era = mapped.era
+    default:
+      break
+    }
     if mapped.isLeapMonth == true { result.isLeapMonth = true }
     return result
   })
