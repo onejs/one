@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneCalendarSpec``
 public protocol HybridOneCalendarSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func getPermissionStatus() throws -> CalendarPermissionStatus

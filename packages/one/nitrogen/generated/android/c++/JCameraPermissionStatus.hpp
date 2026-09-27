@@ -42,15 +42,15 @@ namespace margelo::nitro::one {
     static jni::alias_ref<JCameraPermissionStatus> fromCpp(CameraPermissionStatus value) {
       static const auto clazz = javaClassStatic();
       switch (value) {
+        case CameraPermissionStatus::UNDETERMINED:
+          static const auto fieldUNDETERMINED = clazz->getStaticField<JCameraPermissionStatus>("UNDETERMINED");
+          return clazz->getStaticFieldValue(fieldUNDETERMINED);
         case CameraPermissionStatus::GRANTED:
           static const auto fieldGRANTED = clazz->getStaticField<JCameraPermissionStatus>("GRANTED");
           return clazz->getStaticFieldValue(fieldGRANTED);
         case CameraPermissionStatus::DENIED:
           static const auto fieldDENIED = clazz->getStaticField<JCameraPermissionStatus>("DENIED");
           return clazz->getStaticFieldValue(fieldDENIED);
-        case CameraPermissionStatus::UNDETERMINED:
-          static const auto fieldUNDETERMINED = clazz->getStaticField<JCameraPermissionStatus>("UNDETERMINED");
-          return clazz->getStaticFieldValue(fieldUNDETERMINED);
         default:
           std::string stringValue = std::to_string(static_cast<int>(value));
           throw std::invalid_argument("Invalid enum value (" + stringValue + "!");

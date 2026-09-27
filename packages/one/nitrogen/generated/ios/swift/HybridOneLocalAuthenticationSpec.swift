@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneLocalAuthenticationSpec``
 public protocol HybridOneLocalAuthenticationSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func canEvaluatePolicy() throws -> LocalAuthenticationStatus

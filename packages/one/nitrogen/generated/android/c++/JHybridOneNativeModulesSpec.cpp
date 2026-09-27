@@ -43,7 +43,7 @@ namespace margelo::nitro::one {
   }
 
   // Properties
-
+  
 
   // Methods
   std::shared_ptr<Promise<std::string>> JHybridOneNativeModulesSpec::call(const std::string& module, const std::string& methodName, const std::string& argsJson, const std::string& contractHash) {

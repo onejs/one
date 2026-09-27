@@ -17,6 +17,7 @@ export type { TextInputProps, TextInputRef, TextInputSelection, } from './univer
 export type * from './composeTypes';
 export type * from './types';
 export { Haptics } from './haptics/index';
+export { LaunchScreen } from './launchScreen/index';
 export { LocalAuthentication } from './local-authentication/index';
 export type { LocalAuthenticationStatus } from './local-authentication/index';
 export { ProtectedStore } from './protected-store/index';
@@ -28,6 +29,8 @@ export type { FileDirectories, FileEncoding, FileEntry, FileInfo } from './file-
 export { Audio } from './audio/index';
 export type { AudioPlaybackState, AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, } from './audio/index';
 export { Share } from './share/index';
+export { Open } from './open/index';
+export type { OpenShareContent } from './open/index';
 export type { ShareItem, ShareItemType, ShareResult } from './share/index';
 export { PhotoLibrary } from './photo-library/index';
 export type { PhotoLibraryPermissionStatus } from './photo-library/index';
@@ -40,6 +43,7 @@ export type { ContactChanges, ContactInfo, ContactInput, ContactsPermissionStatu
 export { Calendar } from './calendar/index';
 export type { CalendarEvent, CalendarEventChanges, CalendarEventInput, CalendarPermissionStatus, ReminderInfo, ReminderInput, } from './calendar/index';
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index';
+export type { LaunchScreenApi, LaunchScreenHideOptions } from './launchScreen/index';
 export { AppInfo } from './app-info/index';
 export type { AppInfoApi } from './app-info/index';
 export { ImagePicker } from './image-picker/index';

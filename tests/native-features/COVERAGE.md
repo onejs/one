@@ -186,6 +186,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Notifications` | notifications | notifications |  |
 | `One.Clipboard` | paste-button, clipboard | missing | iOS suite only |
 | `One.Haptics` | haptics | haptics |  |
+| `One.LaunchScreen` | missing | missing | holds from app start, which a fixture route cannot reach; proven in the Contrast app |
 | `One.Network` | network | missing | iOS suite only |
 | `One.Auth` | apple-auth | apple-auth |  |
 | `One.Browser` | browser | browser |  |

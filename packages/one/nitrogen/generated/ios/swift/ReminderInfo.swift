@@ -32,17 +32,17 @@ public extension ReminderInfo {
   var identifier: String {
     return String(self.__identifier)
   }
-
+  
   @inline(__always)
   var title: String {
     return String(self.__title)
   }
-
+  
   @inline(__always)
   var completed: Bool {
     return self.__completed
   }
-
+  
   @inline(__always)
   var dueMs: Double? {
     return { () -> Double? in

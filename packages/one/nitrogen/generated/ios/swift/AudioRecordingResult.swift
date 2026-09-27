@@ -26,12 +26,12 @@ public extension AudioRecordingResult {
   var uri: String {
     return String(self.__uri)
   }
-
+  
   @inline(__always)
   var durationMs: Double {
     return self.__durationMs
   }
-
+  
   @inline(__always)
   var size: Double {
     return self.__size

@@ -32,7 +32,7 @@ public extension ReminderInput {
   var title: String {
     return String(self.__title)
   }
-
+  
   @inline(__always)
   var dueMs: Double? {
     return { () -> Double? in

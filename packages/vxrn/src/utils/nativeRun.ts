@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process'
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import module from 'node:module'
 import path from 'node:path'
 
@@ -116,23 +116,18 @@ export async function nativeRun({
 // localhost at its baked-in port (8081 with prebuilt pods) and gives up
 // with "no script url" when the dev server lives on one's port. writing
 // the provider's jsLocation default aims it at the real server.
+// the bundle id the built app carries, read from the ios project either
+// prebuild generated, so an app configured by native.app or app.json both
+// resolve.
 export function resolveIosBundleId(root: string): string | null {
-  try {
-    const appJson = joinAppJson(root)
-    if (!appJson) return null
-    const parsed = JSON.parse(readFileSync(appJson, 'utf8')) as {
-      expo?: { ios?: { bundleIdentifier?: unknown } }
-    }
-    const id = parsed?.expo?.ios?.bundleIdentifier
-    return typeof id === 'string' && id ? id : null
-  } catch {
-    return null
-  }
-}
-
-function joinAppJson(root: string): string | null {
-  const file = path.join(root, 'app.json')
-  return existsSync(file) ? file : null
+  const iosDir = path.join(root, 'ios')
+  if (!existsSync(iosDir)) return null
+  const project = readdirSync(iosDir).find((entry) => entry.endsWith('.xcodeproj'))
+  if (!project) return null
+  const pbxproj = path.join(iosDir, project, 'project.pbxproj')
+  if (!existsSync(pbxproj)) return null
+  const match = readFileSync(pbxproj, 'utf8').match(/PRODUCT_BUNDLE_IDENTIFIER = "?([A-Za-z0-9.-]+)"?;/)
+  return match ? match[1] : null
 }
 
 function bootedSimulatorUdid(): string | null {

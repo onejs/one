@@ -38,17 +38,17 @@ public extension FileInfo {
   var uri: String {
     return String(self.__uri)
   }
-
+  
   @inline(__always)
   var exists: Bool {
     return self.__exists
   }
-
+  
   @inline(__always)
   var isDirectory: Bool {
     return self.__isDirectory
   }
-
+  
   @inline(__always)
   var size: Double? {
     return { () -> Double? in
@@ -60,7 +60,7 @@ public extension FileInfo {
       }
     }()
   }
-
+  
   @inline(__always)
   var modifiedAt: Double? {
     return { () -> Double? in

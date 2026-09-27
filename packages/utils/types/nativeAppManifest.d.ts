@@ -17,9 +17,11 @@ export interface NativeAppManifest {
         backgroundColor: string;
         width?: number;
         resizeMode?: 'contain' | 'cover';
+        backgroundImage?: string;
         dark?: {
             source?: string;
             backgroundColor: string;
+            backgroundImage?: string;
         };
     };
     fonts?: string[];
@@ -49,6 +51,7 @@ export interface NativeAppManifest {
     };
     notifications?: {
         push?: boolean;
+        apsEnvironment?: 'development' | 'production';
     };
     pictureInPicture?: boolean;
     updates?: {
@@ -64,6 +67,10 @@ export interface NativeAppManifest {
         useFrameworks?: 'static' | 'dynamic';
         ccache?: boolean;
         usesNonExemptEncryption?: boolean;
+        accentColor?: {
+            light: string;
+            dark?: string;
+        };
         faceIdUsageDescription?: string;
         fileSharing?: boolean;
         associatedDomains?: string[];

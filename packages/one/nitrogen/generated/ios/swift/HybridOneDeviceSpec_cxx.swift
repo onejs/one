@@ -84,7 +84,7 @@ open class HybridOneDeviceSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneDeviceSpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)
@@ -142,7 +142,7 @@ open class HybridOneDeviceSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_DeviceInfo___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func getLocalizationInfo() -> bridge.Result_std__shared_ptr_Promise_LocalizationInfo___ {
     do {

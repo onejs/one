@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneFileSystemSpec``
 public protocol HybridOneFileSystemSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func getDirectories() throws -> FileDirectories

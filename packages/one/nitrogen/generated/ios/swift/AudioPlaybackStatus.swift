@@ -44,7 +44,7 @@ public extension AudioPlaybackStatus {
   var state: AudioPlaybackState {
     return self.__state
   }
-
+  
   @inline(__always)
   var uri: String? {
     return { () -> String? in
@@ -56,12 +56,12 @@ public extension AudioPlaybackStatus {
       }
     }()
   }
-
+  
   @inline(__always)
   var positionMs: Double {
     return self.__positionMs
   }
-
+  
   @inline(__always)
   var durationMs: Double? {
     return { () -> Double? in
@@ -73,7 +73,7 @@ public extension AudioPlaybackStatus {
       }
     }()
   }
-
+  
   @inline(__always)
   var error: String? {
     return { () -> String? in

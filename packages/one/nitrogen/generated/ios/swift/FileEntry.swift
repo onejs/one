@@ -26,12 +26,12 @@ public extension FileEntry {
   var name: String {
     return String(self.__name)
   }
-
+  
   @inline(__always)
   var uri: String {
     return String(self.__uri)
   }
-
+  
   @inline(__always)
   var isDirectory: Bool {
     return self.__isDirectory

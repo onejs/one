@@ -84,7 +84,7 @@ open class HybridOneCalendarSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneCalendarSpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)
@@ -135,7 +135,7 @@ open class HybridOneCalendarSpec_cxx {
       return bridge.create_Result_CalendarPermissionStatus_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func requestPermission() -> bridge.Result_std__shared_ptr_Promise_CalendarPermissionStatus___ {
     do {
@@ -154,7 +154,7 @@ open class HybridOneCalendarSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_CalendarPermissionStatus___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func list(startMs: Double, endMs: Double, limit: Double) -> bridge.Result_std__shared_ptr_Promise_std__vector_CalendarEvent____ {
     do {
@@ -179,7 +179,7 @@ open class HybridOneCalendarSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_CalendarEvent____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func create(input: CalendarEventInput) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
@@ -198,7 +198,7 @@ open class HybridOneCalendarSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func update(identifier: std.string, originalStartMs: Double, changes: CalendarEventChanges) -> bridge.Result_std__shared_ptr_Promise_CalendarEvent___ {
     do {
@@ -217,7 +217,7 @@ open class HybridOneCalendarSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_CalendarEvent___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func remove(identifier: std.string, startMs: Double) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -236,7 +236,7 @@ open class HybridOneCalendarSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func getRemindersPermissionStatus() -> bridge.Result_CalendarPermissionStatus_ {
     do {
@@ -248,7 +248,7 @@ open class HybridOneCalendarSpec_cxx {
       return bridge.create_Result_CalendarPermissionStatus_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func requestRemindersPermission() -> bridge.Result_std__shared_ptr_Promise_CalendarPermissionStatus___ {
     do {
@@ -267,7 +267,7 @@ open class HybridOneCalendarSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_CalendarPermissionStatus___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func listReminders(limit: Double, includeCompleted: Bool) -> bridge.Result_std__shared_ptr_Promise_std__vector_ReminderInfo____ {
     do {
@@ -292,7 +292,7 @@ open class HybridOneCalendarSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_ReminderInfo____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func createReminder(input: ReminderInput) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
@@ -311,7 +311,7 @@ open class HybridOneCalendarSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func setReminderCompleted(identifier: std.string, completed: Bool) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -330,7 +330,7 @@ open class HybridOneCalendarSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func removeReminder(identifier: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {

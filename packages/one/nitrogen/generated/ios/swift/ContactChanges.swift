@@ -69,7 +69,7 @@ public extension ContactChanges {
       }
     }()
   }
-
+  
   @inline(__always)
   var familyName: String? {
     return { () -> String? in
@@ -81,7 +81,7 @@ public extension ContactChanges {
       }
     }()
   }
-
+  
   @inline(__always)
   var phoneNumbers: [String]? {
     return { () -> [String]? in
@@ -93,7 +93,7 @@ public extension ContactChanges {
       }
     }()
   }
-
+  
   @inline(__always)
   var emailAddresses: [String]? {
     return { () -> [String]? in
