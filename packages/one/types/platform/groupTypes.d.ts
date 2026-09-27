@@ -27,6 +27,10 @@ export interface LinkProps extends ViewProps {
 export interface GroupProps extends ViewProps {
     children: ReactNode;
 }
+export interface GlassEffectContainerProps extends ViewProps {
+    spacing?: number;
+    children: ReactNode;
+}
 export interface OverlayProps extends ViewProps {
     alignment?: ZStackAlignment;
     children: ReactNode;
