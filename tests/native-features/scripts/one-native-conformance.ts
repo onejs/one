@@ -52,6 +52,8 @@ const suites = [
   'paste-button',
   'group-box',
   'building-blocks',
+  'share-empty',
+  'web-photos',
   'view-that-fits',
   'cover-context',
   'popover',
@@ -348,6 +350,14 @@ const buildingBlocksLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-building-blocks-account')) &&
   has(nodes, 'Badge taps: ')
+const shareEmptyLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-share-empty-screen'))
+const webPhotosLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  (Boolean(id(nodes, 'one-native-web-photos-screen')) ||
+    // PhotosUI runs in another process and collapses the app accessibility snapshot.
+    nodes.every((n) => n.type === 'Application'))
 const viewThatFitsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-view-that-fits-width')) &&
@@ -507,6 +517,8 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'paste-button': pasteButtonLoaded,
   'group-box': groupBoxLoaded,
   'building-blocks': buildingBlocksLoaded,
+  'share-empty': shareEmptyLoaded,
+  'web-photos': webPhotosLoaded,
   'view-that-fits': viewThatFitsLoaded,
   'cover-context': coverContextLoaded,
   popover: popoverLoaded,
@@ -564,6 +576,8 @@ const suiteHome: Record<Suite, string> = {
   'paste-button': 'nav-one-native-paste-button',
   'group-box': 'nav-one-native-group-box',
   'building-blocks': 'nav-one-native-building-blocks',
+  'share-empty': 'nav-one-native-share-empty',
+  'web-photos': 'nav-one-native-web-photos',
   'view-that-fits': 'nav-one-native-view-that-fits',
   'cover-context': 'nav-one-native-cover-context',
   popover: 'nav-one-native-popover',
@@ -2921,6 +2935,205 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const identityContrast = colorDistance(sample(identity, leftPoint, midY), sample(identity, rightPoint, midY))
     if (identityContrast < 100 || regularContrast >= identityContrast * 0.8)
       throw new Error(`Glass did not soften the two-color backdrop before identity removed it: ${JSON.stringify({ regularContrast, identityContrast })}`)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'share-empty') {
+    const activityAt = (x: number, y: number): Node | undefined => {
+      try {
+        return JSON.parse(axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)) as Node
+      } catch (error) {
+        if (String(error).includes('fullscreen dialog')) return undefined
+        throw error
+      }
+    }
+    const clipboard = () =>
+      execFileSync('xcrun', ['simctl', 'pbpaste', config.simulatorId], { encoding: 'utf8' }).trim()
+    const seedClipboard = (value: string) =>
+      execFileSync('xcrun', ['simctl', 'pbcopy', config.simulatorId], { input: value })
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-share-empty')
+    const mounted = await wait('native ShareLink mounts with text item', (nodes) =>
+      Boolean(id(nodes, 'one-native-share-empty-share')?.frame) &&
+      labels(nodes).includes('Share type: text') &&
+      labels(nodes).includes('Share'))
+    const shareFrame = id(mounted, 'one-native-share-empty-share')!.frame!
+    if (Math.abs(shareFrame.width - 160) > 3)
+      throw new Error(`ShareLink did not take its assigned width: ${JSON.stringify(shareFrame)}`)
+    seedClipboard('share-empty text sentinel')
+    tap({ label: 'Share' })
+    const textSheet = await wait('ShareLink opens system activity sheet', () =>
+      activityAt(70, 780)?.AXLabel?.toLowerCase() === 'copy')
+    screenshot('share-link-text-sheet.png', textSheet)
+    point(70, 780)
+    await wait('text ShareLink copies its item', (nodes) =>
+      Boolean(id(nodes, 'one-native-share-empty-share')) &&
+      clipboard() === 'shared from one-native\nsent by the one-native fixture')
+    tap({ id: 'one-native-share-empty-type' })
+    await wait('React changes ShareLink to URL text negative control', (nodes) =>
+      labels(nodes).includes('Share type: text-url'))
+    seedClipboard('share-empty text-url sentinel')
+    tap({ label: 'Share' })
+    const textUrlSheet = await wait('URL text opens the native activity sheet', () =>
+      activityAt(70, 780)?.AXLabel?.toLowerCase() === 'copy')
+    screenshot('share-link-url-as-text-sheet.png', textUrlSheet)
+    point(70, 780)
+    await wait('URL text Copy keeps the URL in the text payload', (nodes) =>
+      Boolean(id(nodes, 'one-native-share-empty-share')) &&
+      clipboard() === 'https://onestack.dev\nsent by the one-native fixture')
+    tap({ id: 'one-native-share-empty-type' })
+    await wait('React changes ShareLink item to URL type', (nodes) =>
+      labels(nodes).includes('Share type: url'))
+    seedClipboard('share-empty url sentinel')
+    tap({ label: 'Share' })
+    const urlSheet = await wait('URL ShareLink opens sheet with link preview', () =>
+      activityAt(70, 780)?.AXLabel?.toLowerCase() === 'copy' &&
+      JSON.stringify(activityAt(180, 525)).includes('onestack.dev'))
+    screenshot('share-link-url-sheet.png', urlSheet)
+    point(70, 780)
+    await wait('URL ShareLink Copy uses the native URL path', (nodes) =>
+      Boolean(id(nodes, 'one-native-share-empty-share')) &&
+      labels(nodes).includes('Share type: url') &&
+      clipboard() === 'sent by the one-native fixture')
+    tap({ id: 'one-native-share-empty-disabled' })
+    await wait('disabled prop disables native ShareLink', (nodes) =>
+      labels(nodes).includes('Share disabled: true') &&
+      nodes.some((node) => node.type === 'Button' && node.AXLabel === 'Share' &&
+        node.AXUniqueId === 'one-native-share-empty-share' && node.enabled === false))
+    tap({ label: 'Share' })
+    await new Promise((resolve) => setTimeout(resolve, 350))
+    if (activityAt(70, 780)?.AXLabel?.toLowerCase() === 'copy')
+      throw new Error('Disabled ShareLink opened the system activity sheet')
+    console.log('PASS disabled ShareLink does not open the activity sheet')
+
+    const empty = await wait('ContentUnavailableView mounts native title, description, and actions', (nodes) =>
+      labels(nodes).includes('No Results') &&
+      labels(nodes).includes('Nothing has been indexed yet, so there is nothing to show.') &&
+      labels(nodes).includes('Retry') && labels(nodes).includes('Dismiss') &&
+      Boolean(id(nodes, 'one-native-share-empty-empty')?.frame))
+    const frame = id(empty, 'one-native-share-empty-empty')!.frame!
+    const app = empty.find((node) => node.type === 'Application')?.frame
+    const retry = empty.find((node) => node.type === 'Button' && node.AXLabel === 'Retry')?.frame
+    const dismiss = empty.find((node) => node.type === 'Button' && node.AXLabel === 'Dismiss')?.frame
+    const image = empty.find((node) => node.type === 'Image' && node.AXLabel === 'Inbox')?.frame
+    const inside = (child?: Node['frame']) => Boolean(child &&
+      child.x >= frame.x && child.y >= frame.y &&
+      child.x + child.width <= frame.x + frame.width &&
+      child.y + child.height <= frame.y + frame.height)
+    if (!app || Math.abs(frame.height - 260) > 3 ||
+      Math.abs(frame.x - 16) > 3 || Math.abs(frame.width - (app.width - 32)) > 3 ||
+      !inside(retry) || !inside(dismiss) || !inside(image))
+      throw new Error(`ContentUnavailableView did not fill its React Native box: ${JSON.stringify(frame)}`)
+    screenshot('content-unavailable-initial.png', empty)
+    tap({ label: 'Retry' })
+    await wait('ContentUnavailableView Retry updates its native text through React', (nodes) =>
+      labels(nodes).includes('Empty action: retry') &&
+      labels(nodes).includes('Retry requested') &&
+      labels(nodes).includes('A new search is ready.') &&
+      !labels(nodes).includes('No Results'))
+    tap({ label: 'Dismiss' })
+    await wait('ContentUnavailableView Dismiss restores its native text through React', (nodes) =>
+      labels(nodes).includes('Empty action: dismiss') &&
+      labels(nodes).includes('No Results') &&
+      labels(nodes).includes('Nothing has been indexed yet, so there is nothing to show.'))
+    screenshot('content-unavailable-dismiss.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'web-photos') {
+    const webEventCount = (nodes: Node[]) =>
+      Number(labels(nodes).find((label) => label.startsWith('Web loading events: '))?.slice('Web loading events: '.length))
+    const activityAt = (x: number, y: number): Node | undefined => {
+      try {
+        return JSON.parse(axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)) as Node
+      } catch (error) {
+        if (String(error).includes('fullscreen dialog')) return undefined
+        throw error
+      }
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-web-photos')
+    const first = await wait('WebView loads local document A and reports its title', (nodes) =>
+      Boolean(id(nodes, 'one-native-web-photos-webview')?.frame) &&
+      labels(nodes).includes('Web title: Local A') &&
+      labels(nodes).includes('Web loading: false') &&
+      labels(nodes).includes('Web progress: 100') &&
+      labels(nodes).includes('Web URL: about:blank') &&
+      labels(nodes).includes('Document index: 0'))
+    const webFrame = id(first, 'one-native-web-photos-webview')!.frame!
+    if (Math.abs(webFrame.height - 260) > 3)
+      throw new Error(`WebView did not fill its assigned height: ${JSON.stringify(webFrame)}`)
+    const initialEvents = webEventCount(first)
+    if (!Number.isFinite(initialEvents) || initialEvents < 1)
+      throw new Error(`WebView did not report its initial loading events: ${initialEvents}`)
+    const firstImage = screenshot('web-document-a.png', first)
+    tap({ id: 'one-native-web-photos-swap' })
+    const second = await wait('React swaps the native WebView to document B', (nodes) =>
+      labels(nodes).includes('Document index: 1') &&
+      labels(nodes).includes('Web title: Local B') &&
+      labels(nodes).includes('Web loading: false') &&
+      labels(nodes).includes('Web progress: 100') &&
+      webEventCount(nodes) > initialEvents)
+    const secondImage = screenshot('web-document-b.png', second)
+    const appWidth = second.find((node) => node.type === 'Application')?.frame?.width
+    if (!appWidth) throw new Error('WebView visual proof has no application width')
+    const scale = readPng(firstImage).width / appWidth
+    const webPixels = countChangedPixels(firstImage, secondImage, {
+      x: webFrame.x * scale,
+      y: webFrame.y * scale,
+      width: webFrame.width * scale,
+      height: webFrame.height * scale,
+      isPixel: true,
+    }, 20)
+    if (webPixels.ratio < 0.5)
+      throw new Error(`WebView did not repaint its local HTML: ${JSON.stringify(webPixels)}`)
+    const sample = (file: string) => {
+      const image = readPng(file)
+      const x = Math.round((webFrame.x + webFrame.width * 0.8) * scale)
+      const y = Math.round((webFrame.y + webFrame.height * 0.8) * scale)
+      const at = (y * image.width + x) * 4
+      return [image.data[at], image.data[at + 1], image.data[at + 2]]
+    }
+    const near = (actual: number[], expected: number[]) =>
+      actual.every((value, index) => Math.abs(value - expected[index]) <= 18)
+    const firstColor = sample(firstImage)
+    const secondColor = sample(secondImage)
+    if (!near(firstColor, [217, 240, 209]) || !near(secondColor, [215, 230, 255]))
+      throw new Error(`WebView captures lack their expected HTML backgrounds: ${JSON.stringify({ firstColor, secondColor })}`)
+    execFileSync('xcrun', [
+      'simctl', 'addmedia', config.simulatorId,
+      fileURLToPath(new URL('../assets/one-native-picker-portrait.heic', import.meta.url)),
+    ])
+    tap({ id: 'one-native-web-photos-photos-tab' })
+    const photos = await wait('native PhotosPicker mounts', (nodes) =>
+      labels(nodes).includes('Category: Photos') &&
+      Boolean(id(nodes, 'one-native-web-photos-picker')?.frame) &&
+      labels(nodes).includes('Choose photo'))
+    screenshot('photos-picker-closed.png', photos)
+    tap({ label: 'Choose photo' })
+    const picker = await wait("PhotosPicker opens Apple's photo selection UI", (nodes) => {
+      const cell = activityAt(70, 370)
+      const appPid = nodes.find((node) => node.type === 'Application')?.pid
+      return cell?.type === 'Image' && cell.AXLabel?.startsWith('Photo,') === true &&
+        cell.pid !== appPid
+    })
+    screenshot('photos-picker-open.png', picker)
+    point(70, 370)
+    const selected = await wait('PhotosPicker delivers one copied image to React', (nodes) =>
+      labels(nodes).includes('Picked count: 1') &&
+      labels(nodes).includes('Picked index: 0') &&
+      labels(nodes).includes('Pick error: ') &&
+      labels(nodes).some((label) => label.startsWith('Picked URL: file://')))
+    const url = labels(selected).find((label) => label.startsWith('Picked URL: file://'))!.slice('Picked URL: '.length)
+    const copied = fileURLToPath(url)
+    if (!fs.existsSync(copied) || fs.statSync(copied).size === 0)
+      throw new Error(`PhotosPicker did not copy the chosen image to a readable file: ${url}`)
+    const dimensions = execFileSync('sips', ['-g', 'pixelWidth', '-g', 'pixelHeight', copied], { encoding: 'utf8' })
+    if (!/pixelWidth: 120\b/.test(dimensions) || !/pixelHeight: 80\b/.test(dimensions))
+      throw new Error(`PhotosPicker copied a photo other than the seeded 120×80 image: ${dimensions}`)
+    screenshot('photos-picker-picked.png', selected)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
