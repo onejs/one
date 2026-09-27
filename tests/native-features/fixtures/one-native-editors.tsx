@@ -102,6 +102,7 @@ export default function OneNativeEditors() {
           >
             <One.iOS.ConcentricRectangle
               fill="#007AFF"
+              swiftStyle={{ frameWithWidthAndHeightAndAlignment: { width: 160, height: 100, alignment: 'center' } }}
               style={styles.concentricCanvas}
               testID="one-native-concentric-shape"
             />
@@ -113,7 +114,11 @@ export default function OneNativeEditors() {
             swiftStyle={{ containerShape: 'capsule' }}
             style={styles.concentricCanvas}
           >
-            <One.iOS.Rectangle fill="#007AFF" style={styles.concentricCanvas} />
+            <One.iOS.Rectangle
+              fill="#007AFF"
+              swiftStyle={{ frameWithWidthAndHeightAndAlignment: { width: 160, height: 100, alignment: 'center' } }}
+              style={styles.concentricCanvas}
+            />
           </One.iOS.ScrollView>
         </View>
       </View>

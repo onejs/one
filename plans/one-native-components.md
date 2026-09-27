@@ -104,7 +104,11 @@ accounts are unavailable).
   `group-box` checks on an iPhone 17 Pro iOS 27 simulator. The suite covers
   labeled and unlabeled boxes, measured child bounds, a native child button,
   and a React-driven label update.
+- **RAN, 2026-09-26:** `ConcentricRectangle` passed `generate:check`, nine
+  shape tests, an arm64 iOS 27 simulator build, and the full `editors` suite.
+  In a SwiftUI capsule container, its blue center and white rounded corner
+  differ from the blue square corner of a `Rectangle` control. The screenshot
+  is in the local ignored `tests/native-features/build/concentric-proof` directory.
 - **INFERRED, 2026-09-26:** `MultiDatePicker` needs a public representation of
   SwiftUI's selected date set, so that API choice stays on a named branch for
-  Nate. `ConcentricRectangle` is assembled on a named WIP branch; its native
-  simulator proof is the next gate before merging to `v2-beta`.
+  Nate.
