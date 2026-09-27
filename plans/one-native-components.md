@@ -90,6 +90,15 @@ accounts are unavailable).
   type-incorrect docs example, and incomplete disabled/metadata/coverage
   evidence; the follow-up branch commit corrected each and records device,
   OS, Xcode, locale, calendar, appearance, source SHA, and observed month.
+  A follow-up review s469 found omitted era data for calendars with repeating
+  year numbers. Commit `80c3b4621` preserves the native era for Chinese,
+  Dangi, Japanese, and Republic of China calendars. **RAN, 2026-09-27:** the
+  Xcode 27.1 iOS 27 simulator build succeeded and both Buddhist and Republic
+  of China 22-check suites passed on that exact source revision. The Republic
+  of China month read “September 115 Minguo” while React still held
+  `2026-09-DD`. A Foundation round-trip probe passed 1911/1912, 1966, and
+  2026 dates for Chinese, Dangi, Japanese, and Republic of China calendars.
+  The boundary dates have no SwiftUI UI proof; other calendars remain partial.
   Nate's approval of the public date-only API remains before merge.
 
 - **RAN, 2026-09-26:** slice 1 `TextEditor` and `UnevenRoundedRectangle` passed
@@ -202,8 +211,9 @@ accounts are unavailable).
   React `selection` array and sorted callback. This avoids treating a calendar
   day as a timestamp. The first native constructor is unbounded; a range can
   follow once the base control is proven. This is a new public API choice and
-  must stay on the named branch for Nate's approval. iOS 27 runtime proof and
-  non-Gregorian calendar handling remain open.
+  must stay on the named branch for Nate's approval. Gregorian, Buddhist, and
+  Republic of China iOS 27 runtime interactions passed; historical era
+  boundaries and other calendar families remain unproven in SwiftUI.
 - **RAN, 2026-09-26:** the `tab-slot` suite passed on iPhone 17 Pro iOS 27.
   `TabViewSlot` mounted a 50-point interactive bottom accessory above the
   system tab bar; its action reached React before and after switching tabs.

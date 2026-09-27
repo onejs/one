@@ -57,7 +57,7 @@ const knownGaps: Record<string, string> = {
 const partialGaps: Record<string, string> = {
   'iOS.ArrangementView': 'closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved',
   'iOS.EditButton': 'Edit/Done label cycle proven; List edit state unobserved and row actions unavailable',
-  'iOS.MultiDatePicker': 'Gregorian and Buddhist month/selection interactions proven; other calendars, composition, accessibility props, and swiftStyle unproven',
+  'iOS.MultiDatePicker': 'Gregorian, Buddhist, and Republic of China month/selection interactions proven; historical era boundaries, other calendars, composition, accessibility props, and swiftStyle unproven',
   'iOS.ViewSlot': 'background, mask, and bottom safe-area inset proven; other named slots unproven',
 }
 
