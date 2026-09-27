@@ -2064,19 +2064,19 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const defaultRows = await wait('native list row modifiers mount', (nodes) =>
       labels(nodes).includes('Row modifiers: default') &&
       labels(nodes).includes('Inset row') && labels(nodes).includes('Control row'))
-    const defaultPath = screenshot('list-row-modifiers-default.png', defaultRows)
+    const defaultPath = screenshot('list-row-modifiers-default.png')
     tap({ id: 'one-native-list-row-modifiers-toggle' })
     const customRows = await wait('React updates native list row modifiers', (nodes) =>
       labels(nodes).includes('Row modifiers: custom') &&
       labels(nodes).includes('Inset row') && labels(nodes).includes('Control row'))
     await Bun.sleep(300)
-    const customPath = screenshot('list-row-modifiers-custom.png', customRows)
+    const customPath = screenshot('list-row-modifiers-custom.png')
     tap({ id: 'one-native-list-row-modifiers-toggle' })
     const restoredRows = await wait('React restores native list row modifiers', (nodes) =>
       labels(nodes).includes('Row modifiers: default') &&
       labels(nodes).includes('Inset row') && labels(nodes).includes('Control row'))
     await Bun.sleep(300)
-    const restoredPath = screenshot('list-row-modifiers-restored.png', restoredRows)
+    const restoredPath = screenshot('list-row-modifiers-restored.png')
     const frame = (nodes: Node[], label: string) =>
       nodes.find((node) => node.AXLabel === label && node.frame)?.frame
     const inset = frame(defaultRows, 'Inset row')

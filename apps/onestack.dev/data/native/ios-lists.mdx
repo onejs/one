@@ -64,11 +64,11 @@ updates to these modifiers refresh that row in the native List.
     text="Inbox"
     swiftStyle={{
       listRowInsets: { edges: 'leading', length: expanded ? 96 : 16 },
+      listRowSeparatorTint: { color: 'red', edges: 'bottom' },
       listRowSeparator: {
         visibility: expanded ? 'hidden' : 'visible',
         edges: 'bottom',
       },
-      ...(expanded ? {} : { listRowSeparatorTint: { color: 'red', edges: 'bottom' } }),
     }}
   />
 </One.iOS.List>

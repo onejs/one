@@ -17,8 +17,8 @@ export default function OneNativeListRowModifiers() {
             swiftStyle={{
               opacity: custom ? 0.3 : 1,
               listRowInsets: { edges: 'leading', length: custom ? 96 : 16 },
+              listRowSeparatorTint: { color: 'red', edges: 'bottom' },
               listRowSeparator: { visibility: custom ? 'hidden' : 'visible', edges: 'bottom' },
-              ...(custom ? {} : { listRowSeparatorTint: { color: 'red', edges: 'bottom' } }),
             }}
           />
           <One.iOS.Text text="Control row" />

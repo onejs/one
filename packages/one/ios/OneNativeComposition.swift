@@ -86,9 +86,15 @@ extension View {
 // Fabric gives insertion order, not keys, so identity is the child view itself: a
 // reorder keeps it and a remount replaces it, which is what SwiftUI wants.
 struct OneNativeComposedChild: Identifiable {
-  let id: UUID
+  let id: String
   let sourceID: ObjectIdentifier
   let content: AnyView
+}
+
+private final class OneNativeRowIdentity: NSObject {
+  let token = UUID()
+  var revision = 0
+  var id: String { "\(token.uuidString):\(revision)" }
 }
 
 // a container publishes its children into its own SwiftUI tree, so the tree observes
@@ -118,6 +124,8 @@ final class OneNativeSchemeBridge: ObservableObject {
   private let wrap: (OneNativeChildren, Bool) -> AnyView
   private let published = OneNativeChildren()
   private var childViews: [UIView] = []
+  // Weak keys keep a moved UIView's row identity without retaining removed views.
+  private let rowIdentities = NSMapTable<UIView, OneNativeRowIdentity>.weakToStrongObjects()
   private var controller: OneNativeHostingController<AnyView>?
   private weak var compositionParent: OneNativeCompositionParent?
   private var active = false
@@ -155,17 +163,27 @@ final class OneNativeSchemeBridge: ObservableObject {
     let at = min(index, childViews.count)
     childViews.insert(child, at: at)
     composable.composeInto(self)
+    let identity = rowIdentity(for: child)
     published.items.insert(
       OneNativeComposedChild(
-        id: UUID(), sourceID: ObjectIdentifier(child), content: composable.compositionContent()),
+        id: identity.id, sourceID: ObjectIdentifier(child), content: composable.compositionContent()),
       at: at)
+  }
+
+  private func rowIdentity(for child: UIView) -> OneNativeRowIdentity {
+    if let existing = rowIdentities.object(forKey: child) { return existing }
+    let identity = OneNativeRowIdentity()
+    rowIdentities.setObject(identity, forKey: child)
+    return identity
   }
 
   public func refreshRow(for child: UIView) {
     guard let index = childViews.firstIndex(where: { $0 === child }),
       let composable = child as? OneNativeComposable else { return }
+    let identity = rowIdentity(for: child)
+    identity.revision += 1
     published.items[index] = OneNativeComposedChild(
-      id: UUID(), sourceID: ObjectIdentifier(child), content: composable.compositionContent())
+      id: identity.id, sourceID: ObjectIdentifier(child), content: composable.compositionContent())
   }
 
   public func removeChild(_ child: UIView) {
