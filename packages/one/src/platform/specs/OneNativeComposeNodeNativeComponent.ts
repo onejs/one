@@ -181,6 +181,17 @@ interface NativeProps extends ViewProps {
   numberValue?: WithDefault<Double, 0>
   minimumValue?: WithDefault<Double, 0>
   maximumValue?: WithDefault<Double, 1>
+  sliderOptions?: Readonly<{
+    lowerLimit?: Double
+    upperLimit?: Double
+    colors?: Readonly<{
+      thumbColor?: ColorValue
+      activeTrackColor?: ColorValue
+      inactiveTrackColor?: ColorValue
+      activeTickColor?: ColorValue
+      inactiveTickColor?: ColorValue
+    }>
+  }>
   step?: WithDefault<Double, 0>
   visible?: boolean
   title?: string

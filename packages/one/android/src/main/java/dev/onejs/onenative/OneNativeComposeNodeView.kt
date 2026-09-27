@@ -98,6 +98,7 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.SuggestionChip
@@ -357,6 +358,36 @@ internal data class OneNativeLoadingColors(
     }
 }
 
+internal data class OneNativeSliderOptions(
+    val lowerLimit: Float? = null,
+    val upperLimit: Float? = null,
+    val thumbColor: Int? = null,
+    val activeTrackColor: Int? = null,
+    val inactiveTrackColor: Int? = null,
+    val activeTickColor: Int? = null,
+    val inactiveTickColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSliderOptions {
+            if (map == null) return OneNativeSliderOptions()
+            val colors = if (map.hasKey("colors") && !map.isNull("colors")) map.getMap("colors") else null
+            fun number(name: String): Float? =
+                if (map.hasKey(name) && !map.isNull(name) && map.getType(name) == ReadableType.Number)
+                    map.getDouble(name).takeIf { it.isFinite() }?.toFloat()
+                else null
+            return OneNativeSliderOptions(
+                lowerLimit = number("lowerLimit"),
+                upperLimit = number("upperLimit"),
+                thumbColor = colors?.let { readComposeColor(it, "thumbColor", context) },
+                activeTrackColor = colors?.let { readComposeColor(it, "activeTrackColor", context) },
+                inactiveTrackColor = colors?.let { readComposeColor(it, "inactiveTrackColor", context) },
+                activeTickColor = colors?.let { readComposeColor(it, "activeTickColor", context) },
+                inactiveTickColor = colors?.let { readComposeColor(it, "inactiveTickColor", context) },
+            )
+        }
+    }
+}
+
 internal data class OneNativeProgressOptions(
     val color: Int? = null,
     val trackColor: Int? = null,
@@ -605,6 +636,7 @@ internal data class OneNativeComposeNodeProps(
     val minimumValue: Double = 0.0,
     val maximumValue: Double = 1.0,
     val step: Double = 0.0,
+    val sliderOptions: OneNativeSliderOptions = OneNativeSliderOptions(),
     val visible: Boolean = false,
     val title: String? = null,
     val message: String? = null,
@@ -1043,6 +1075,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageStep(value: Double) {
         pendingProps = pendingProps.copy(step = value)
+    }
+
+    internal fun stageSliderOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(sliderOptions = OneNativeSliderOptions.fromMap(value, context))
     }
 
     internal fun stageVisible(value: Boolean) {
@@ -2223,7 +2259,10 @@ private fun RenderComposeSlider(
     val maximum =
         suppliedMaximum.toFloat()
     val range = if (minimum < maximum) minimum..maximum else 0f..1f
-    val coerced = node.renderedNumberValue.toFloat().coerceIn(range)
+    val options = props.sliderOptions
+    val lower = maxOf(range.start, options.lowerLimit ?: range.start)
+    val upper = minOf(range.endInclusive, options.upperLimit ?: range.endInclusive)
+    val coerced = node.renderedNumberValue.toFloat().coerceIn(lower, upper)
     val step = props.step.takeIf { it.isFinite() } ?: 0.0
     val intervalCount =
         if (step > 0) {
@@ -2240,9 +2279,9 @@ private fun RenderComposeSlider(
                 if (step > 0) {
                     val offset = value.toDouble() - suppliedMinimum
                     (suppliedMinimum + (offset / step).roundToInt() * step)
-                        .coerceIn(suppliedMinimum, suppliedMaximum)
+                        .coerceIn(lower.toDouble(), upper.toDouble())
                 } else {
-                    value.toDouble()
+                    value.toDouble().coerceIn(lower.toDouble(), upper.toDouble())
                 }
             node.handleNumberChanged(next)
         },
@@ -2250,6 +2289,13 @@ private fun RenderComposeSlider(
         enabled = enabled,
         valueRange = range,
         steps = steps,
+        colors = SliderDefaults.colors(
+            thumbColor = options.thumbColor?.let(::Color) ?: Color.Unspecified,
+            activeTrackColor = options.activeTrackColor?.let(::Color) ?: Color.Unspecified,
+            inactiveTrackColor = options.inactiveTrackColor?.let(::Color) ?: Color.Unspecified,
+            activeTickColor = options.activeTickColor?.let(::Color) ?: Color.Unspecified,
+            inactiveTickColor = options.inactiveTickColor?.let(::Color) ?: Color.Unspecified,
+        ),
     )
 }
 

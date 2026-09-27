@@ -466,8 +466,17 @@ export interface ComposeSliderProps extends ComposeLeafProps {
   revision?: number
   minimumValue?: number
   maximumValue?: number
+  lowerLimit?: number
+  upperLimit?: number
   step?: number
   disabled?: boolean
+  colors?: Readonly<{
+    thumbColor?: ColorValue
+    activeTrackColor?: ColorValue
+    inactiveTrackColor?: ColorValue
+    activeTickColor?: ColorValue
+    inactiveTickColor?: ColorValue
+  }>
 }
 
 export interface ComposeAlertDialogProps extends ComposeLeafProps {

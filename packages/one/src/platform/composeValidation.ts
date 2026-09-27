@@ -276,6 +276,13 @@ const switchColorKeys = new Set([
   'disabledUncheckedBorderColor',
   'disabledUncheckedIconColor',
 ])
+const sliderColorKeys = new Set([
+  'thumbColor',
+  'activeTrackColor',
+  'inactiveTrackColor',
+  'activeTickColor',
+  'inactiveTickColor',
+])
 
 function assertComposeColorValue(value: unknown, name: string) {
   const resourcePaths =
@@ -646,6 +653,13 @@ export function validateSliderProps(props: ComposeSliderProps) {
   assertFiniteNumber(minimumValue, 'Slider minimumValue')
   assertFiniteNumber(maximumValue, 'Slider maximumValue')
   assertFiniteNumber(step, 'Slider step')
+  if (props.lowerLimit !== undefined) assertFiniteNumber(props.lowerLimit, 'Slider lowerLimit')
+  if (props.upperLimit !== undefined) assertFiniteNumber(props.upperLimit, 'Slider upperLimit')
+  if (
+    (props.lowerLimit !== undefined && !Number.isFinite(Math.fround(props.lowerLimit))) ||
+    (props.upperLimit !== undefined && !Number.isFinite(Math.fround(props.upperLimit)))
+  )
+    throw new Error('Compose Slider limits must be representable by Android Float values')
   if (minimumValue >= maximumValue)
     throw new Error('Compose Slider minimumValue must be less than maximumValue')
   if (
@@ -668,8 +682,14 @@ export function validateSliderProps(props: ComposeSliderProps) {
   }
   if (props.value < minimumValue || props.value > maximumValue)
     throw new Error('Compose Slider value must be between minimumValue and maximumValue')
+  if (
+    Math.max(Math.fround(minimumValue), Math.fround(props.lowerLimit ?? minimumValue)) >
+    Math.min(Math.fround(maximumValue), Math.fround(props.upperLimit ?? maximumValue))
+  )
+    throw new Error('Compose Slider limits must overlap the value range')
   assertFunction(props.onValueChange, 'Slider onValueChange')
   assertOptionalBoolean(props.disabled, 'Slider disabled')
+  if (props.colors !== undefined) assertComposeColors(props.colors, sliderColorKeys, 'Slider')
 }
 
 export function validateAlertDialogProps(props: ComposeAlertDialogProps) {
