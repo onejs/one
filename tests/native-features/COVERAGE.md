@@ -18,7 +18,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Sheet` | sheets, navigation | n/a |  |
 | `One.iOS.FullScreenCover` | cover-context | n/a |  |
 | `One.iOS.Popover` | popover | n/a |  |
-| `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, accessibility | n/a |  |
+| `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, view-that-fits, accessibility | n/a |  |
 | `One.iOS.HStack` | glass-container, e2e:one-native-tabview | n/a |  |
 | `One.iOS.VStack` | groups | n/a |  |
 | `One.iOS.ZStack` | missing | n/a | no fixture or suite |
@@ -27,7 +27,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Glass` | missing | n/a | no fixture or suite |
 | `One.iOS.GlassEffectContainer` | glass-container | n/a |  |
 | `One.iOS.LabeledContent` | missing | n/a | no fixture or suite |
-| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, glass-container, group-box, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, glass-container, group-box, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Spacer` | missing | n/a | no fixture or suite |
 | `One.iOS.Slot` | containers | n/a |  |
 | `One.iOS.List` | lists, groups | n/a |  |
@@ -44,6 +44,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Link` | groups | n/a |  |
 | `One.iOS.Group` | groups | n/a |  |
 | `One.iOS.GroupBox` | group-box | n/a |  |
+| `One.iOS.ViewThatFits` | view-that-fits | n/a |  |
 | `One.iOS.Overlay` | groups | n/a |  |
 | `One.iOS.ViewSlot` | missing | n/a | only the autogen fixture, which no suite opens |
 | `One.iOS.SwipeActions` | groups | n/a |  |
@@ -61,7 +62,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Slider` | pickers, forms | n/a |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a |  |
 | `One.iOS.PasteButton` | paste-button | n/a |  |
-| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, popover, accessibility | n/a |  |
+| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, view-that-fits, popover, accessibility | n/a |  |
 | `One.iOS.Label` | leaves, containers | n/a |  |
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |

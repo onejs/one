@@ -123,6 +123,17 @@ accounts are unavailable).
   shows iOS's Pin checkmark; iOS 27 does not expose it as an accessibility
   value. Screenshots and trace are in the local ignored
   `tests/native-features/build/cover-context-proof` directory.
+- **RAN, 2026-09-26:** `ViewThatFits` passed SDK 27.1 `generate:check`, 26
+  focused JS checks including native coverage regeneration, an arm64 iOS 27
+  simulator build, and the iPhone 17 Pro `view-that-fits` suite. At 180 points
+  it selected the compact child; at 340 it selected the first wide child; at
+  80 it showed the last child when neither fit. The suite also checked an
+  explicit 70-point height proposal, vertical and both-axis choices, omitted
+  axes, composition inside a native Host, and child actions into React. The
+  high review found and we fixed a measured-height override of explicit
+  height, plus missing fallback and nested cases. Screenshots and trace are in
+  the local ignored `tests/native-features/build/view-that-fits-v2-proof`
+  directory.
 - **INFERRED, 2026-09-26:** `MultiDatePicker` needs a public representation of
   SwiftUI's selected date set, so that API choice stays on a named branch for
   Nate.

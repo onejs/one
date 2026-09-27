@@ -11,6 +11,7 @@ import type {
   GlassEffectContainerProps,
   GroupProps,
   GroupBoxProps,
+  ViewThatFitsProps,
   HostProps,
   LabeledContentProps,
   LazyHStackProps,
@@ -111,6 +112,9 @@ function LabeledContent(_props: LabeledContentProps): never {
 }
 function GroupBox(_props: GroupBoxProps): never {
   throw new Error('Swift.GroupBox requires an iOS native build')
+}
+function ViewThatFits(_props: ViewThatFitsProps): never {
+  throw new Error('Swift.ViewThatFits requires an iOS native build')
 }
 function Button(_props: ButtonProps): never {
   throw new Error('Swift.Button requires an iOS native build')
@@ -265,6 +269,7 @@ export const Swift = {
   Link,
   Group,
   GroupBox,
+  ViewThatFits,
   Overlay,
   ViewSlot,
   SwipeActions,

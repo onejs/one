@@ -115,6 +115,16 @@ export const containerComponents = [
     interfaceOnly: true,
   },
   {
+    name: 'OneNativeViewThatFits',
+    publicName: 'ViewThatFits',
+    props: { axes: 'string' },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'measured' },
+    slots: [composedContent],
+    interfaceOnly: true,
+  },
+  {
     name: 'OneNativeGlassEffectContainer',
     publicName: 'GlassEffectContainer',
     props: { spacing: 'Double', hasSpacing: 'boolean' },

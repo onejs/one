@@ -31,6 +31,12 @@ export interface GroupBoxProps extends ViewProps {
     label?: string;
     children?: ReactNode;
 }
+export interface ViewThatFitsProps extends ViewProps {
+    axes?: ViewThatFitsAxes;
+    children: ReactNode;
+}
+export declare const viewThatFitsAxes: readonly ['horizontal', 'vertical', 'both'];
+export type ViewThatFitsAxes = (typeof viewThatFitsAxes)[number];
 export interface GlassEffectContainerProps extends ViewProps {
     spacing?: number;
     children: ReactNode;
