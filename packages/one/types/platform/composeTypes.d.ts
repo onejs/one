@@ -311,11 +311,25 @@ export interface ComposeDialogProps extends ComposeNodeProps {
     onDismiss: () => void;
 }
 export type ComposeProgressVariant = 'linear' | 'circular' | 'linearWavy' | 'circularWavy';
+export type ComposeProgressStrokeCap = 'round' | 'butt' | 'square';
+export type ComposeProgressStopIndicator = Readonly<{
+    color?: ColorValue;
+    strokeCap?: ComposeProgressStrokeCap;
+    stopSize?: number;
+}>;
 export interface ComposeProgressIndicatorProps extends ComposeLeafProps {
     variant?: ComposeProgressVariant;
     progress?: number | null;
     color?: ColorValue;
     trackColor?: ColorValue;
+    strokeCap?: ComposeProgressStrokeCap;
+    gapSize?: number;
+    strokeWidth?: number;
+    drawStopIndicator?: ComposeProgressStopIndicator;
+    stopSize?: number;
+    amplitude?: number;
+    wavelength?: number;
+    waveSpeed?: number;
 }
 export interface ComposeLoadingIndicatorProps extends ComposeLeafProps {
     progress?: number | null;

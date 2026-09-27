@@ -106,7 +106,12 @@ interaction and external state resets.
 `LinearWavyProgressIndicator`, and `CircularWavyProgressIndicator` render the
 Material 3 progress variants. Pass `progress` from `0` to `1`, or omit it for
 indeterminate animation. `color` and `trackColor` override the theme. The
-existing `ProgressIndicator` accepts the same options and a `variant` value.
+regular linear indicator accepts `strokeCap`, `gapSize`, and a determinate
+`drawStopIndicator` with color, cap, and size. The regular circular indicator
+accepts `strokeWidth`, `strokeCap`, and determinate `gapSize`. Wavy indicators
+accept `amplitude`, `wavelength`, and `waveSpeed`; linear wavy also accepts
+`stopSize`. The existing `ProgressIndicator` accepts these options and a
+`variant` value.
 
 ## Switch
 
@@ -228,9 +233,9 @@ window while `visible` is true and reports dismissal through `onDismiss`.
 
 ## ProgressIndicator
 
-`One.Android.ProgressIndicator` shows progress as `'linear'` or
-`'circular'` (default circular). Leave `progress` undefined for an
-indeterminate indicator.
+`One.Android.ProgressIndicator` defaults to circular; select `'linear'`,
+`'linearWavy'`, or `'circularWavy'` with `variant`. Leave `progress` undefined
+for an indeterminate indicator.
 
 `One.Android` components throw when rendered outside an Android build, so
 keep those branches behind platform checks.

@@ -370,8 +370,8 @@ class OneNativeComposeNodeManager :
         view.stageProgressVariant(value)
     }
 
-    override fun setProgressColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
-        view.stageProgressColors(value)
+    override fun setProgressOptions(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageProgressOptions(value)
     }
 
     override fun setComposeStyle(view: OneNativeComposeNodeView, value: ReadableMap?) {

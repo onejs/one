@@ -123,6 +123,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.ComposeView
@@ -314,17 +315,53 @@ internal data class OneNativeLoadingColors(
     }
 }
 
-internal data class OneNativeProgressColors(
+internal data class OneNativeProgressOptions(
     val color: Int? = null,
     val trackColor: Int? = null,
+    val strokeCap: StrokeCap? = null,
+    val gapSize: Float? = null,
+    val strokeWidth: Float? = null,
+    val drawStopIndicator: Boolean = false,
+    val drawStopColor: Int? = null,
+    val drawStopStrokeCap: StrokeCap? = null,
+    val drawStopSize: Float? = null,
+    val stopSize: Float? = null,
+    val amplitude: Float? = null,
+    val wavelength: Float? = null,
+    val waveSpeed: Float? = null,
 ) {
     companion object {
-        fun fromMap(map: ReadableMap?, context: Context): OneNativeProgressColors =
-            if (map == null) OneNativeProgressColors() else OneNativeProgressColors(
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeProgressOptions {
+            if (map == null) return OneNativeProgressOptions()
+            fun number(source: ReadableMap, name: String): Float? =
+                if (source.hasKey(name) && !source.isNull(name) && source.getType(name) == ReadableType.Number)
+                    source.getDouble(name).takeIf { it.isFinite() }?.toFloat()
+                else null
+            val stop = if (map.hasKey("drawStopIndicator") && !map.isNull("drawStopIndicator")) map.getMap("drawStopIndicator") else null
+            return OneNativeProgressOptions(
                 color = readComposeColor(map, "color", context),
                 trackColor = readComposeColor(map, "trackColor", context),
+                strokeCap = composeStrokeCap(if (map.hasKey("strokeCap") && !map.isNull("strokeCap")) map.getString("strokeCap") else null),
+                gapSize = number(map, "gapSize"),
+                strokeWidth = number(map, "strokeWidth"),
+                drawStopIndicator = stop != null,
+                drawStopColor = stop?.let { readComposeColor(it, "color", context) },
+                drawStopStrokeCap = stop?.let { composeStrokeCap(if (it.hasKey("strokeCap") && !it.isNull("strokeCap")) it.getString("strokeCap") else null) },
+                drawStopSize = stop?.let { number(it, "stopSize") },
+                stopSize = number(map, "stopSize"),
+                amplitude = number(map, "amplitude"),
+                wavelength = number(map, "wavelength"),
+                waveSpeed = number(map, "waveSpeed"),
             )
+        }
     }
+}
+
+private fun composeStrokeCap(value: String?): StrokeCap? = when (value) {
+    "round" -> StrokeCap.Round
+    "butt" -> StrokeCap.Butt
+    "square" -> StrokeCap.Square
+    else -> null
 }
 
 internal data class OneNativeListItemColors(
@@ -530,7 +567,7 @@ internal data class OneNativeComposeNodeProps(
     val dismissLabel: String? = null,
     val progress: Double = -1.0,
     val progressVariant: String? = null,
-    val progressColors: OneNativeProgressColors = OneNativeProgressColors(),
+    val progressOptions: OneNativeProgressOptions = OneNativeProgressOptions(),
     val composeStyle: OneNativeComposeStyle = OneNativeComposeStyle(),
 )
 
@@ -987,8 +1024,8 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         pendingProps = pendingProps.copy(progressVariant = value)
     }
 
-    internal fun stageProgressColors(value: ReadableMap?) {
-        pendingProps = pendingProps.copy(progressColors = OneNativeProgressColors.fromMap(value, context))
+    internal fun stageProgressOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(progressOptions = OneNativeProgressOptions.fromMap(value, context))
     }
 
     internal fun stageComposeStyle(value: ReadableMap?) {
@@ -2173,7 +2210,7 @@ private fun RenderComposeAlertDialog(
     )
 }
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@OptIn(ExperimentalMaterial3ExpressiveApi::class, ExperimentalMaterial3Api::class)
 @Composable
 private fun RenderComposeProgressIndicator(
     props: OneNativeComposeNodeProps,
@@ -2181,32 +2218,76 @@ private fun RenderComposeProgressIndicator(
 ) {
     val determinate = props.progress.isFinite() && props.progress >= 0
     val coerced = props.progress.coerceIn(0.0, 1.0).toFloat()
-    val color = props.progressColors.color?.let(::Color)
-    val trackColor = props.progressColors.trackColor?.let(::Color)
+    val options = props.progressOptions
+    val color = options.color?.let(::Color)
+    val trackColor = options.trackColor?.let(::Color)
     when (props.progressVariant?.trim()?.lowercase()) {
         "linear" -> {
             val indicator = color ?: ProgressIndicatorDefaults.linearColor
             val track = trackColor ?: ProgressIndicatorDefaults.linearTrackColor
-            if (determinate) LinearProgressIndicator(progress = { coerced }, modifier = modifier, color = indicator, trackColor = track)
-            else LinearProgressIndicator(modifier = modifier, color = indicator, trackColor = track)
+            val strokeCap = options.strokeCap ?: ProgressIndicatorDefaults.LinearStrokeCap
+            val gapSize = options.gapSize?.dp ?: ProgressIndicatorDefaults.LinearIndicatorTrackGapSize
+            if (determinate && options.drawStopIndicator) {
+                LinearProgressIndicator(
+                    progress = { coerced }, modifier = modifier, color = indicator, trackColor = track,
+                    strokeCap = strokeCap, gapSize = gapSize,
+                    drawStopIndicator = {
+                        ProgressIndicatorDefaults.drawStopIndicator(
+                            drawScope = this,
+                            stopSize = options.drawStopSize?.dp ?: ProgressIndicatorDefaults.LinearTrackStopIndicatorSize,
+                            color = options.drawStopColor?.let(::Color) ?: indicator,
+                            strokeCap = options.drawStopStrokeCap ?: strokeCap,
+                        )
+                    },
+                )
+            } else if (determinate) {
+                LinearProgressIndicator(progress = { coerced }, modifier = modifier, color = indicator, trackColor = track, strokeCap = strokeCap, gapSize = gapSize)
+            } else {
+                LinearProgressIndicator(modifier = modifier, color = indicator, trackColor = track, strokeCap = strokeCap, gapSize = gapSize)
+            }
         }
         "linearwavy" -> {
             val indicator = color ?: WavyProgressIndicatorDefaults.indicatorColor
             val track = trackColor ?: WavyProgressIndicatorDefaults.trackColor
-            if (determinate) LinearWavyProgressIndicator(progress = { coerced }, modifier = modifier, color = indicator, trackColor = track)
-            else LinearWavyProgressIndicator(modifier = modifier, color = indicator, trackColor = track)
+            val wavelength = options.wavelength?.dp ?: if (determinate) WavyProgressIndicatorDefaults.LinearDeterminateWavelength else WavyProgressIndicatorDefaults.LinearIndeterminateWavelength
+            val waveSpeed = options.waveSpeed?.dp ?: wavelength
+            val stopSize = options.stopSize?.dp ?: WavyProgressIndicatorDefaults.LinearTrackStopIndicatorSize
+            val amplitude: (Float) -> Float = options.amplitude?.let { fixed -> { _: Float -> fixed } } ?: WavyProgressIndicatorDefaults.indicatorAmplitude
+            if (determinate) LinearWavyProgressIndicator(
+                progress = { coerced }, modifier = modifier, color = indicator, trackColor = track,
+                stopSize = stopSize, amplitude = amplitude, wavelength = wavelength, waveSpeed = waveSpeed,
+            ) else LinearWavyProgressIndicator(
+                modifier = modifier, color = indicator, trackColor = track,
+                amplitude = options.amplitude ?: 1f, wavelength = wavelength, waveSpeed = waveSpeed,
+            )
         }
         "circularwavy" -> {
             val indicator = color ?: ProgressIndicatorDefaults.circularColor
             val track = trackColor ?: if (determinate) ProgressIndicatorDefaults.circularDeterminateTrackColor else ProgressIndicatorDefaults.circularIndeterminateTrackColor
-            if (determinate) CircularWavyProgressIndicator(progress = { coerced }, modifier = modifier, color = indicator, trackColor = track)
-            else CircularWavyProgressIndicator(modifier = modifier, color = indicator, trackColor = track)
+            val wavelength = options.wavelength?.dp ?: WavyProgressIndicatorDefaults.CircularWavelength
+            val waveSpeed = options.waveSpeed?.dp ?: wavelength
+            val amplitude: (Float) -> Float = options.amplitude?.let { fixed -> { _: Float -> fixed } } ?: WavyProgressIndicatorDefaults.indicatorAmplitude
+            if (determinate) CircularWavyProgressIndicator(
+                progress = { coerced }, modifier = modifier, color = indicator, trackColor = track,
+                amplitude = amplitude, wavelength = wavelength, waveSpeed = waveSpeed,
+            ) else CircularWavyProgressIndicator(
+                modifier = modifier, color = indicator, trackColor = track,
+                amplitude = options.amplitude ?: 1f, wavelength = wavelength, waveSpeed = waveSpeed,
+            )
         }
         else -> {
             val indicator = color ?: ProgressIndicatorDefaults.circularColor
             val track = trackColor ?: if (determinate) ProgressIndicatorDefaults.circularDeterminateTrackColor else ProgressIndicatorDefaults.circularIndeterminateTrackColor
-            if (determinate) CircularProgressIndicator(progress = { coerced }, modifier = modifier, color = indicator, trackColor = track)
-            else CircularProgressIndicator(modifier = modifier, color = indicator, trackColor = track)
+            val strokeWidth = options.strokeWidth?.dp ?: ProgressIndicatorDefaults.CircularStrokeWidth
+            val strokeCap = options.strokeCap ?: if (determinate) ProgressIndicatorDefaults.CircularDeterminateStrokeCap else ProgressIndicatorDefaults.CircularIndeterminateStrokeCap
+            if (determinate) CircularProgressIndicator(
+                progress = { coerced }, modifier = modifier, color = indicator, trackColor = track,
+                strokeWidth = strokeWidth, strokeCap = strokeCap,
+                gapSize = options.gapSize?.dp ?: ProgressIndicatorDefaults.CircularIndicatorTrackGapSize,
+            ) else CircularProgressIndicator(
+                modifier = modifier, color = indicator, trackColor = track,
+                strokeWidth = strokeWidth, strokeCap = strokeCap,
+            )
         }
     }
 }

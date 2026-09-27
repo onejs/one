@@ -18,6 +18,9 @@ export default function OneNativeAndroidProgress() {
         progress={progress}
         color="#2154a1"
         trackColor="#c7d9ec"
+        strokeCap="butt"
+        gapSize={10}
+        drawStopIndicator={{ color: '#d22b3a', strokeCap: 'square', stopSize: 12 }}
       />
       <One.Android.LinearWavyProgressIndicator
         testID="one-native-android-progress-linear-wavy"
@@ -25,13 +28,17 @@ export default function OneNativeAndroidProgress() {
         progress={progress}
         color="#2154a1"
         trackColor="#c7d9ec"
+        stopSize={12}
+        amplitude={0.5}
+        wavelength={28}
+        waveSpeed={0}
       />
       <One.Android.Row spacing={36}>
-        <One.Android.CircularProgressIndicator testID="one-native-android-progress-circular" progress={progress} />
-        <One.Android.CircularWavyProgressIndicator testID="one-native-android-progress-circular-wavy" progress={progress} />
+        <One.Android.CircularProgressIndicator testID="one-native-android-progress-circular" progress={progress} strokeWidth={9} strokeCap="square" gapSize={8} />
+        <One.Android.CircularWavyProgressIndicator testID="one-native-android-progress-circular-wavy" progress={progress} amplitude={0.2} wavelength={28} waveSpeed={0} />
       </One.Android.Row>
-      <One.Android.LinearWavyProgressIndicator testID="one-native-android-progress-linear-indeterminate" composeStyle={{ fillMaxWidth: true }} />
-      <One.Android.CircularWavyProgressIndicator testID="one-native-android-progress-circular-indeterminate" />
+      <One.Android.LinearWavyProgressIndicator testID="one-native-android-progress-linear-indeterminate" composeStyle={{ fillMaxWidth: true }} amplitude={0.5} wavelength={28} waveSpeed={0} />
+      <One.Android.CircularWavyProgressIndicator testID="one-native-android-progress-circular-indeterminate" amplitude={0.2} wavelength={28} waveSpeed={0} />
       <One.Android.Button testID="one-native-android-progress-advance" label="Advance" onPress={() => setProgress(0.75)} />
       <One.Android.Text testID="one-native-android-progress-status" text={`Progress: ${progress}`} />
     </One.Android.Column>

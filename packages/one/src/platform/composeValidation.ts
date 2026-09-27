@@ -116,6 +116,7 @@ export const textFieldCapitalizations = [
   'sentences',
 ] as const
 export const progressVariants = ['linear', 'circular', 'linearWavy', 'circularWavy'] as const
+export const progressStrokeCaps = ['round', 'butt', 'square'] as const
 
 const composeStyleKeys = new Set([
   'backgroundColor',
@@ -674,6 +675,34 @@ export function validateProgressIndicatorProps(props: ComposeProgressIndicatorPr
     throw new Error('Compose ProgressIndicator progress must be a number from 0 to 1')
   if (props.color !== undefined) assertComposeColorValue(props.color, 'ProgressIndicator color')
   if (props.trackColor !== undefined) assertComposeColorValue(props.trackColor, 'ProgressIndicator trackColor')
+  const variant = props.variant ?? 'circular'
+  if (props.strokeCap !== undefined) {
+    assertOneOf(props.strokeCap, 'ProgressIndicator strokeCap', progressStrokeCaps)
+    if (variant !== 'linear' && variant !== 'circular') throw new Error('Compose ProgressIndicator strokeCap requires a regular indicator')
+  }
+  for (const key of ['gapSize', 'strokeWidth', 'stopSize', 'amplitude', 'wavelength', 'waveSpeed'] as const) {
+    const value = props[key]
+    if (value === undefined) continue
+    assertFiniteNumber(value, `ProgressIndicator ${key}`)
+    if (value < 0 || (key === 'amplitude' && value > 1)) throw new Error(`Compose ProgressIndicator ${key} is out of range`)
+  }
+  if (props.gapSize !== undefined && variant !== 'linear' && variant !== 'circular') throw new Error('Compose ProgressIndicator gapSize requires a regular indicator')
+  if (props.strokeWidth !== undefined && variant !== 'circular') throw new Error('Compose ProgressIndicator strokeWidth requires a circular indicator')
+  if (props.stopSize !== undefined && variant !== 'linearWavy') throw new Error('Compose ProgressIndicator stopSize requires a linear wavy indicator')
+  if ((props.amplitude !== undefined || props.wavelength !== undefined || props.waveSpeed !== undefined) && variant !== 'linearWavy' && variant !== 'circularWavy')
+    throw new Error('Compose ProgressIndicator wave settings require a wavy indicator')
+  if (props.drawStopIndicator !== undefined) {
+    if (variant !== 'linear' || props.progress == null) throw new Error('Compose ProgressIndicator drawStopIndicator requires determinate linear progress')
+    const stop = props.drawStopIndicator
+    if (typeof stop !== 'object' || stop === null || Array.isArray(stop)) throw new Error('Compose ProgressIndicator drawStopIndicator must be an object')
+    for (const key of Object.keys(stop)) if (key !== 'color' && key !== 'strokeCap' && key !== 'stopSize') throw new Error(`Compose ProgressIndicator drawStopIndicator has unknown key ${key}`)
+    if (stop.color !== undefined) assertComposeColorValue(stop.color, 'ProgressIndicator drawStopIndicator color')
+    if (stop.strokeCap !== undefined) assertOneOf(stop.strokeCap, 'ProgressIndicator drawStopIndicator strokeCap', progressStrokeCaps)
+    if (stop.stopSize !== undefined) {
+      assertFiniteNumber(stop.stopSize, 'ProgressIndicator drawStopIndicator stopSize')
+      if (stop.stopSize < 0) throw new Error('Compose ProgressIndicator drawStopIndicator stopSize must be nonnegative')
+    }
+  }
 }
 
 export function validateLoadingIndicatorProps(props: ComposeLoadingIndicatorProps | ComposeContainedLoadingIndicatorProps) {
