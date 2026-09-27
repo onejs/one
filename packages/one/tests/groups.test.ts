@@ -121,6 +121,38 @@ describe('group', () => {
   })
 })
 
+describe('view that fits', () => {
+  it('uses SwiftUI both-axes default and accepts each Axis.Set option', () => {
+    expect(render(Containers.ViewThatFits, { children: null }).props.axes).toBe('both')
+    for (const axes of ['horizontal', 'vertical', 'both'])
+      expect(render(Containers.ViewThatFits, { children: null, axes }).props.axes).toBe(axes)
+    expect(component('ViewThatFits')).toMatchObject({
+      layout: { kind: 'measured' }, props: { axes: { type: 'string' } },
+    })
+    expect(metadata.codegenConfig.ios.componentProvider.OneNativeViewThatFits)
+      .toBe('OneNativeViewThatFitsComponentView')
+  })
+
+  it('rejects invalid axes, unsupported iOS, and greedy children', async () => {
+    expect(() => render(Containers.ViewThatFits, { children: null, axes: 'diagonal' }))
+      .toThrow('Swift.ViewThatFits axes must be one of horizontal, vertical, both')
+    expect(() => render(Containers.ViewThatFits, {
+      children: createElement(Containers.Form, { children: null }),
+    })).toThrow('Swift.Form cannot be a child of Swift.ViewThatFits')
+    const { Platform } = await import('react-native')
+    const originalVersion = Platform.Version
+    try {
+      Object.assign(Platform, { Version: '15.7' })
+      expect(() => render(Containers.ViewThatFits, { children: null }))
+        .toThrow('Swift.ViewThatFits requires iOS 16 or newer')
+    } finally {
+      Object.assign(Platform, { Version: originalVersion })
+    }
+    expect(() => render(UnsupportedSwift.ViewThatFits, {}))
+      .toThrow('Swift.ViewThatFits requires an iOS native build')
+  })
+})
+
 describe('glass effect container', () => {
   it('preserves omitted spacing separately from signed spacing', () => {
     expect(render(Containers.GlassEffectContainer, { children: null }).props).toMatchObject({

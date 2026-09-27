@@ -13,12 +13,13 @@ struct OneNativeMeasuredState {
   bool measured = false;
 };
 
-template <const char *Name, typename Props, typename EventEmitter>
+template <const char *Name, typename Props, typename EventEmitter, bool RespectProposedHeight = false>
 class OneNativeMeasuredShadowNode final
     : public ConcreteViewShadowNode<Name, Props, EventEmitter, OneNativeMeasuredState> {
  public:
   using Base = ConcreteViewShadowNode<Name, Props, EventEmitter, OneNativeMeasuredState>;
   using Base::Base;
+  static constexpr bool respectProposedHeight = RespectProposedHeight;
 
   // unlike setSize this pins only the measured axis, so a container still stretches or
   // shrinks to whatever width its parent gives it.
@@ -38,7 +39,10 @@ class OneNativeMeasuredComponentDescriptor final : public ConcreteComponentDescr
   void adopt(ShadowNode &node) const override {
     auto &measured = static_cast<Node &>(node);
     const auto &data = measured.getStateData();
-    if (data.measured) measured.setMeasuredHeight(data.height);
+    const auto proposedHeight = measured.getConcreteProps().yogaStyle.dimension(yoga::Dimension::Height);
+    const bool explicitHeight = !proposedHeight.isUndefined() && !proposedHeight.isAuto();
+    if (data.measured && (!Node::respectProposedHeight || !explicitHeight))
+      measured.setMeasuredHeight(data.height);
     ConcreteComponentDescriptor<Node>::adopt(node);
   }
 };

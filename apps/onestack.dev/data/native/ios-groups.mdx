@@ -29,6 +29,9 @@ It requires iOS 16 or newer. Children stay in preference order. `axes` is
 `'horizontal'`, `'vertical'`, or `'both'` (the SwiftUI default); it controls
 which dimensions SwiftUI tests for fit. If none fits, SwiftUI shows the last
 child.
+Give the view a `style.height` when vertical fit should use a finite height
+proposal. Without it, the container measures its chosen child and the vertical
+proposal is unbounded.
 
 ```tsx
 <One.iOS.ViewThatFits axes="horizontal">

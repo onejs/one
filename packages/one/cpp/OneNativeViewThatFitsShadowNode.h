@@ -5,7 +5,7 @@
 #include "OneNativeMeasuredShadowNode.h"
 namespace facebook::react {
 extern const char OneNativeViewThatFitsComponentName[];
-using OneNativeViewThatFitsShadowNode = OneNativeMeasuredShadowNode<OneNativeViewThatFitsComponentName, OneNativeViewThatFitsProps, OneNativeViewThatFitsEventEmitter>;
+using OneNativeViewThatFitsShadowNode = OneNativeMeasuredShadowNode<OneNativeViewThatFitsComponentName, OneNativeViewThatFitsProps, OneNativeViewThatFitsEventEmitter, true>;
 using OneNativeViewThatFitsComponentDescriptor = OneNativeMeasuredComponentDescriptor<OneNativeViewThatFitsShadowNode>;
 }
 #endif

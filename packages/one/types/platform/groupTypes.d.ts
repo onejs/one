@@ -3,7 +3,6 @@ import type { ViewProps } from 'react-native';
 import type { ZStackAlignment } from './generated/containerTypes';
 import type { ControlGroupStyle } from './generated/swiftui';
 import type { ViewSlotConfiguration } from './generated/viewSlots';
-import type { ScrollViewAxes } from './listTypes';
 export declare const swipeActionsEdges: readonly ['leading', 'trailing'];
 export type SwipeActionsEdge = (typeof swipeActionsEdges)[number];
 export interface ControlGroupProps extends ViewProps {
@@ -33,9 +32,11 @@ export interface GroupBoxProps extends ViewProps {
     children?: ReactNode;
 }
 export interface ViewThatFitsProps extends ViewProps {
-    axes?: ScrollViewAxes;
+    axes?: ViewThatFitsAxes;
     children: ReactNode;
 }
+export declare const viewThatFitsAxes: readonly ['horizontal', 'vertical', 'both'];
+export type ViewThatFitsAxes = (typeof viewThatFitsAxes)[number];
 export interface GlassEffectContainerProps extends ViewProps {
     spacing?: number;
     children: ReactNode;

@@ -18,7 +18,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Sheet` | sheets, navigation | n/a |  |
 | `One.iOS.FullScreenCover` | cover-context | n/a |  |
 | `One.iOS.Popover` | popover | n/a |  |
-| `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, accessibility | n/a |  |
+| `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, view-that-fits, accessibility | n/a |  |
 | `One.iOS.HStack` | glass-container, e2e:one-native-tabview | n/a |  |
 | `One.iOS.VStack` | groups | n/a |  |
 | `One.iOS.ZStack` | missing | n/a | no fixture or suite |
@@ -62,7 +62,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Slider` | pickers, forms | n/a |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a |  |
 | `One.iOS.PasteButton` | paste-button | n/a |  |
-| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, popover, accessibility | n/a |  |
+| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, view-that-fits, popover, accessibility | n/a |  |
 | `One.iOS.Label` | leaves, containers | n/a |  |
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |
