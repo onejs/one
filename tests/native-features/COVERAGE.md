@@ -30,7 +30,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Glass` | building-blocks | n/a |  |
 | `One.iOS.GlassEffectContainer` | glass-container | n/a |  |
 | `One.iOS.LabeledContent` | building-blocks | n/a |  |
-| `One.iOS.Button` | leaves, host, containers, lists, list-row-background, groups, grids, glass-container, group-box, building-blocks, view-slot, swipe-actions, control-group, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Button` | leaves, host, containers, lists, list-row-background, groups, grids, glass-container, group-box, building-blocks, view-slot, safe-area-bar, swipe-actions, control-group, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Spacer` | building-blocks | n/a |  |
 | `One.iOS.Slot` | containers | n/a |  |
 | `One.iOS.List` | lists, list-row-background, groups, swipe-actions, edit-button | n/a |  |
@@ -49,7 +49,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.GroupBox` | group-box | n/a |  |
 | `One.iOS.ViewThatFits` | disclosure-group, view-that-fits | n/a |  |
 | `One.iOS.Overlay` | groups, view-slot | n/a |  |
-| `One.iOS.ViewSlot` | lists, list-row-background, view-slot | n/a | background, mask, list row background, and bottom safe-area inset proven; other named slots unproven |
+| `One.iOS.ViewSlot` | lists, list-row-background, view-slot, safe-area-bar | n/a | background, mask, list row background, and bottom safe-area inset proven; other named slots unproven |
 | `One.iOS.SwipeActions` | groups, swipe-actions | n/a |  |
 | `One.iOS.Pager` | groups | n/a |  |
 | `One.iOS.Page` | groups | n/a |  |
@@ -65,7 +65,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Slider` | pickers, forms | n/a |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a |  |
 | `One.iOS.PasteButton` | paste-button | n/a |  |
-| `One.iOS.Text` | containers, lists, list-row-background, groups, state, grids, group-box, building-blocks, view-slot, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility | n/a |  |
+| `One.iOS.Text` | containers, lists, list-row-background, groups, state, grids, group-box, building-blocks, view-slot, safe-area-bar, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility | n/a |  |
 | `One.iOS.Label` | leaves, containers | n/a |  |
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |

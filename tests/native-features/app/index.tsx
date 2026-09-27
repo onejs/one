@@ -76,6 +76,11 @@ const testScreens = [
     testID: 'nav-one-native-view-slot',
   },
   {
+    href: '/one-native-safe-area-bar',
+    label: 'One Native Safe Area Bar',
+    testID: 'nav-one-native-safe-area-bar',
+  },
+  {
     href: '/one-native-swipe-actions',
     label: 'One Native Swipe Actions',
     testID: 'nav-one-native-swipe-actions',
