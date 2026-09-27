@@ -2073,16 +2073,56 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const customPath = screenshot('list-row-modifiers-custom.png', customRows)
     const frame = (nodes: Node[], label: string) =>
       nodes.find((node) => node.AXLabel === label && node.frame)?.frame
-    const before = frame(defaultRows, 'Inset row')
-    const after = frame(customRows, 'Inset row')
-    const controlBefore = frame(defaultRows, 'Control row')
-    const controlAfter = frame(customRows, 'Control row')
-    if (!before || !after || !controlBefore || !controlAfter ||
-        after.x - before.x < 50 || Math.abs(controlAfter.x - controlBefore.x) > 2)
-      throw new Error(`List row leading inset did not move only its target row: ${JSON.stringify({ before, after, controlBefore, controlAfter })}`)
-    fs.writeFileSync(path.join(config.artifactDir, 'list-row-modifiers-frames.json'),
-      JSON.stringify({ before, after, controlBefore, controlAfter, defaultPath, customPath }, null, 2))
-    checks.push({ name: 'SwiftUI listRowInsets changes only the target row', durationMs: 0 })
+    const inset = frame(defaultRows, 'Inset row')
+    const control = frame(defaultRows, 'Control row')
+    const fixed = frame(defaultRows, 'Fixed inset')
+    const app = defaultRows.find((node) => node.type === 'Application')?.frame
+    if (!inset || !control || !fixed || !app)
+      throw new Error('List row modifier proof lost native row or application frames')
+    const scale = readPng(defaultPath).width / app.width
+    const sample = (file: string, row: NonNullable<Node['frame']>) => {
+      const png = readPng(file)
+      const left = Math.round((row.x + 4) * scale)
+      const right = Math.round((row.x + row.width - 4) * scale)
+      const textTop = Math.round((row.y + 13) * scale)
+      const textBottom = Math.round((row.y + 38) * scale)
+      let inkLeft = Number.POSITIVE_INFINITY
+      for (let y = textTop; y < textBottom; y++) {
+        for (let x = left; x < right; x++) {
+          const at = (y * png.width + x) * 4
+          if (png.data[at]! < 220 && png.data[at + 1]! < 220 && png.data[at + 2]! < 220)
+            inkLeft = Math.min(inkLeft, x)
+        }
+      }
+      const separatorTop = Math.round((row.y + row.height - 2) * scale)
+      const separatorBottom = Math.round((row.y + row.height + 2) * scale)
+      let redSeparatorPixels = 0
+      for (let y = separatorTop; y < separatorBottom; y++) {
+        for (let x = left; x < right; x++) {
+          const at = (y * png.width + x) * 4
+          if (png.data[at]! > 240 && png.data[at + 1]! < 100 && png.data[at + 2]! < 100)
+            redSeparatorPixels++
+        }
+      }
+      return { inkLeft: inkLeft / scale, redSeparatorPixels }
+    }
+    const pixels = {
+      insetBefore: sample(defaultPath, inset),
+      insetAfter: sample(customPath, inset),
+      controlBefore: sample(defaultPath, control),
+      controlAfter: sample(customPath, control),
+      fixedBefore: sample(defaultPath, fixed),
+      fixedAfter: sample(customPath, fixed),
+    }
+    fs.writeFileSync(path.join(config.artifactDir, 'list-row-modifiers-pixels.json'),
+      JSON.stringify({ pixels, frames: { inset, control, fixed }, scale }, null, 2))
+    if (pixels.insetAfter.inkLeft - pixels.insetBefore.inkLeft < 50 ||
+        Math.abs(pixels.controlAfter.inkLeft - pixels.controlBefore.inkLeft) > 2 ||
+        Math.abs(pixels.fixedAfter.inkLeft - pixels.fixedBefore.inkLeft) > 2 ||
+        pixels.insetBefore.redSeparatorPixels < 500 ||
+        pixels.insetAfter.redSeparatorPixels > 20)
+      throw new Error(`SwiftUI List row inset/separator did not update only the target row: ${JSON.stringify(pixels)}`)
+    checks.push({ name: 'SwiftUI List row inset and separator update only the target row', durationMs: 0 })
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

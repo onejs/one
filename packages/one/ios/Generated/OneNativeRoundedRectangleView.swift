@@ -26,7 +26,12 @@ private final class RoundedRectangleModel: ObservableObject {
   }
   public func configureStyle(_ style: [String: Any]) {
     let next = OneNativeStyle(dictionary: style)
-    if model.swiftStyle != next { model.swiftStyle = next }
+    if model.swiftStyle != next {
+      let previousRows = model.swiftStyle.sdkModifiers.filter { $0.first?.hasPrefix("listRow") == true }
+      let nextRows = next.sdkModifiers.filter { $0.first?.hasPrefix("listRow") == true }
+      model.swiftStyle = next
+      if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
+    }
   }
   public func configure(_ fill: UIColor?, cornerRadius: Double) {
     if model.fill != fill { model.fill = fill }
