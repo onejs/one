@@ -786,6 +786,7 @@ export function ConcentricRectangle({
 }: Types.ConcentricRectangleProps) {
   if (Number.parseFloat(String(Platform.Version)) < 26)
     throw new Error('ConcentricRectangle requires iOS 26 or newer')
+
   return (
     <NativeConcentricRectangle
       {...props}
