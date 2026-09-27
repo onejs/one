@@ -279,4 +279,12 @@ accounts are unavailable).
   asserts its native accessible frame and React action, since iOS 27 exposes
   no separate nested image frame for geometric centering. Screenshots, AX
   trees, and outcomes are in local ignored `tests/native-features/build/`
-  directories `control-group-proof-2` and `groups-after-control-3`.
+  directories `control-group-proof-2` and `groups-after-control-3`. High review
+  s428 found that the focused mount wait could race SwiftUI's asynchronous
+  height callback; the reviewed wait now requires all three group heights and
+  following-row gaps before asserting them. The rerun passed all nine checks
+  in `control-group-reviewed-proof-4`. **RAN:** toggling a subtitle and then a
+  two-line custom label under the automatic ControlGroup style left its native
+  height at 31 points. Dynamic native-height changes remain unproven for this
+  style. The broad suite checks the icon-only button's frame and action, while
+  its screenshot remains the evidence for visual centering.
