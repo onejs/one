@@ -1,4 +1,5 @@
 import { execFileSync } from 'node:child_process'
+import { createHash } from 'node:crypto'
 import module from 'node:module'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -380,6 +381,74 @@ function patchIosPbxprojSceneDelegate(rendered: string, appName: string): string
     patched = next
   }
   return patched
+}
+
+function fontFileName(font: string): string {
+  return path.basename(font)
+}
+
+function pbxprojId(seed: string): string {
+  return createHash('sha1').update(seed).digest('hex').slice(0, 24).toUpperCase()
+}
+
+// each native.app font becomes an app-group file in the Resources phase, the
+// way expo-font's plugin adds it, so UIAppFonts can name it.
+function patchIosPbxprojFonts(rendered: string, appName: string, fonts: string[]): string {
+  let patched = rendered
+  for (const font of fonts) {
+    const name = fontFileName(font)
+    const fileRef = pbxprojId(`one-font-file:${name}`)
+    const buildFile = pbxprojId(`one-font-build:${name}`)
+    const edits: Array<[string, string]> = [
+      [
+        '/* Images.xcassets in Resources */ = {isa = PBXBuildFile;',
+        `\t\t${buildFile} /* ${name} in Resources */ = {isa = PBXBuildFile; fileRef = ${fileRef} /* ${name} */; };`,
+      ],
+      [
+        '/* Images.xcassets */ = {isa = PBXFileReference;',
+        `\t\t${fileRef} /* ${name} */ = {isa = PBXFileReference; lastKnownFileType = file; name = ${name}; path = ${appName}/${name}; sourceTree = "<group>"; };`,
+      ],
+      ['/* Images.xcassets */,', `\t\t\t\t${fileRef} /* ${name} */,`],
+      ['/* Images.xcassets in Resources */,', `\t\t\t\t${buildFile} /* ${name} in Resources */,`],
+    ]
+    for (const [anchor, insertion] of edits) {
+      const next = insertAfterLine(patched, anchor, insertion)
+      if (next === patched) {
+        throw new Error(
+          `[vxrn] prebuild template project.pbxproj lost its Images.xcassets anchor (${anchor})`
+        )
+      }
+      patched = next
+    }
+  }
+  return patched
+}
+
+// ios copies each font next to the app sources; android loads fonts from
+// assets/fonts by file name.
+function copyAppFonts({
+  root,
+  dest,
+  platform,
+  app,
+}: {
+  root: string
+  dest: string
+  platform: 'ios' | 'android'
+  app: NativeAppManifest
+}): void {
+  for (const font of app.fonts ?? []) {
+    const source = path.resolve(root, font)
+    if (!FSExtra.existsSync(source)) {
+      throw new Error(`[vxrn] native.app.fonts names ${font}, which does not exist`)
+    }
+    const target =
+      platform === 'ios'
+        ? path.join(dest, app.name, fontFileName(font))
+        : path.join(dest, 'app', 'src', 'main', 'assets', 'fonts', fontFileName(font))
+    FSExtra.mkdirSync(path.dirname(target), { recursive: true })
+    FSExtra.copyFileSync(source, target)
+  }
 }
 
 function patchIosPbxprojAppEntitlements(rendered: string, appName: string): string {
@@ -1639,6 +1708,11 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
           `\t<key>${updatesHost.runtimeVersionInfoPlistKey}</key>\n\t<string>${escapeXml(app.updates.runtimeVersion)}</string>`
         )
       }
+      if (app.fonts?.length) {
+        stamps.push(
+          `\t<key>UIAppFonts</key>\n\t<array>\n${app.fonts.map((font) => `\t\t<string>${escapeXml(fontFileName(font))}</string>`).join('\n')}\n\t</array>`
+        )
+      }
       if (app.userInterfaceStyle !== undefined) {
         stamps.push(
           `\t<key>UIUserInterfaceStyle</key>\n\t<string>${app.userInterfaceStyle === 'light' ? 'Light' : app.userInterfaceStyle === 'dark' ? 'Dark' : 'Automatic'}</string>`
@@ -2088,6 +2162,7 @@ end`
         rendered = patchIosPbxprojAppEntitlements(rendered, appName)
       }
       if (app.ios?.widgets) rendered = patchIosPbxprojWidgets(rendered, app)
+      if (app.fonts?.length) rendered = patchIosPbxprojFonts(rendered, appName, app.fonts)
     }
     if (platform === 'ios' && relativePath === 'Podfile') {
       if (app.ios?.ccache) rendered = `ENV['USE_CCACHE'] ||= '1'\n${rendered}`
@@ -2233,6 +2308,7 @@ export const generateForPlatform = async (
   await generateAppIcons({ root, dest, platform, app })
   if (platform === 'android') await generateAdaptiveIcon({ root, dest, app })
   await generateSplashScreen({ root, dest, platform, app })
+  copyAppFonts({ root, dest, platform, app })
   generateSceneDelegate({ dest, platform, app })
   if (platform === 'ios') generateOneBridgingHeader(dest, app)
   if (platform === 'ios') generateIosWidgets(dest, app)

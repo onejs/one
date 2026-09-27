@@ -18,6 +18,7 @@ export interface NativeAppManifest {
         width?: number;
         resizeMode?: 'contain' | 'cover';
     };
+    fonts?: string[];
     imagePicker?: {
         camera?: string;
     };
@@ -109,6 +110,9 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
         imageWidth: number | undefined;
         resizeMode: "contain" | "cover" | undefined;
     } | undefined;
+    plugins: (string | {
+        fonts: string[];
+    })[][] | undefined;
     ios: {
         bundleIdentifier: string;
         buildNumber: string | undefined;

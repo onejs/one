@@ -214,6 +214,9 @@ things:
   like unset, follows the system.
 - `splash.resizeMode`: `cover` fills the iOS launch screen with untrimmed
   artwork; `contain` (the default) centers it at `width`.
+- `fonts`: project-relative `.ttf` or `.otf` files bundled into the app. iOS
+  lists them in `UIAppFonts`; Android loads them from `assets/fonts`. Use the
+  font's own family name in styles, as with Expo's `expo-font` plugin.
 - `android.adaptiveIcon`: `foreground`, then `background` (an image) or
   `backgroundColor`, and an optional `monochrome` layer for Android 13 themed
   icons. The foreground is a 108 dp square with the artwork inside the central

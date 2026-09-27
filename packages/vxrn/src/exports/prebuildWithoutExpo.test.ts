@@ -3,6 +3,7 @@ import {
   mkdtempSync,
   mkdirSync,
   readdirSync,
+  existsSync,
   readFileSync,
   realpathSync,
   statSync,
@@ -891,6 +892,33 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
         app,
       })
     ).toThrow('AppDelegate.swift anchor')
+  })
+
+  it('bundles native.app fonts into both platforms from the real template', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-fonts-'))
+    const fonts = ['tests/native-features/assets/OneNativeTestFont-BlockB.ttf']
+    await generateForPlatform(workspaceRoot, 'ios', { ...app, fonts }, join(output, 'ios'))
+    await generateForPlatform(workspaceRoot, 'android', { ...app, fonts }, join(output, 'android'))
+
+    expect(existsSync(join(output, 'ios', 'MyApp', 'OneNativeTestFont-BlockB.ttf'))).toBe(true)
+    const infoPlist = readFileSync(join(output, 'ios', 'MyApp', 'Info.plist'), 'utf8')
+    expect(infoPlist).toContain(
+      '<key>UIAppFonts</key>\n\t<array>\n\t\t<string>OneNativeTestFont-BlockB.ttf</string>'
+    )
+    const pbxproj = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    // file reference, group child, build file and resources phase entry.
+    expect(pbxproj.split('/* OneNativeTestFont-BlockB.ttf */').length - 1).toBe(3)
+    expect(pbxproj.split('/* OneNativeTestFont-BlockB.ttf in Resources */').length - 1).toBe(2)
+    expect(pbxproj).toContain('path = MyApp/OneNativeTestFont-BlockB.ttf;')
+    expect(
+      existsSync(
+        join(output, 'android', 'app', 'src', 'main', 'assets', 'fonts', 'OneNativeTestFont-BlockB.ttf')
+      )
+    ).toBe(true)
   })
 
   it('generates a scene project from the real template', async () => {
