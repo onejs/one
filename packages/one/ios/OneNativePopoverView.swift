@@ -69,7 +69,10 @@ public final class OneNativePopoverView: OneNativeContainerView {
     if model.contentWidth != contentWidth { model.contentWidth = contentWidth }
     if model.contentHeight != contentHeight { model.contentHeight = contentHeight }
     if model.arrowEdge != arrowEdge { model.arrowEdge = arrowEdge }
-    if model.attachmentAnchorKind != attachmentAnchorKind { model.attachmentAnchorKind = attachmentAnchorKind }
+    if model.attachmentAnchorKind != attachmentAnchorKind {
+      NSLog("OneNativePopover anchor kind=%@ x=%f y=%f", attachmentAnchorKind, attachmentAnchorX, attachmentAnchorY)
+      model.attachmentAnchorKind = attachmentAnchorKind
+    }
     if model.attachmentAnchorX != attachmentAnchorX { model.attachmentAnchorX = attachmentAnchorX }
     if model.attachmentAnchorY != attachmentAnchorY { model.attachmentAnchorY = attachmentAnchorY }
     if model.presentationCompactAdaptation != presentationCompactAdaptation {
