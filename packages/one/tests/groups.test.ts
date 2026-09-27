@@ -293,7 +293,7 @@ describe('button icon', () => {
 })
 
 describe('greedy containers', () => {
-  it('composes a disclosure group inside measured stacks', () => {
+  it('composes a disclosure group inside measured containers', () => {
     const child = createElement(Containers.DisclosureGroup, {
       children: null,
       label: 'More',
@@ -303,6 +303,7 @@ describe('greedy containers', () => {
     const host = render(Containers.HStack, { children: child })
     expect(() => host.type(host.props)).not.toThrow()
     expect(() => render(Containers.ZStack, { children: child })).not.toThrow()
+    expect(() => render(Containers.ViewThatFits, { children: child })).not.toThrow()
   })
 
   it('rejects tab bars and pagers inside a measured stack', () => {

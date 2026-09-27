@@ -4,6 +4,7 @@ import UIKit
 private final class DisclosureGroupModel: ObservableObject {
   @Published var controlled = OneNativeControlled<Bool>(false)
   @Published var label = ""
+  @Published var boundedHeight = false
   var onHeight: ((CGFloat) -> Void)?
   var active = false
   var onChange: ((Bool, Int, Int) -> Void)?
@@ -31,7 +32,7 @@ private struct DisclosureGroupContent: View {
       Text(model.label)
     }
     .frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)
-    .oneNativeMeasured(standalone, model.onHeight)
+    .oneNativeMeasured(standalone && !model.boundedHeight, model.onHeight)
     .oneNativeScheme(standalone, bridge.scheme)
   }
 }
@@ -70,12 +71,14 @@ public final class OneNativeDisclosureGroupView: OneNativeContainerView {
   }
 
   public func configure(
-    label: String, isExpanded: Bool, acknowledgedEvent: Int, revision: Int
+    label: String, isExpanded: Bool, acknowledgedEvent: Int, revision: Int,
+    boundedHeight: Bool
   ) {
     if let next = model.controlled.applying(
       isExpanded, acknowledged: acknowledgedEvent, revision: revision
     ) { model.controlled = next }
     if model.label != label { model.label = label }
+    if model.boundedHeight != boundedHeight { model.boundedHeight = boundedHeight }
   }
 
   public override func setActive(_ active: Bool) { model.active = active }
@@ -84,6 +87,7 @@ public final class OneNativeDisclosureGroupView: OneNativeContainerView {
     model.active = false
     model.controlled = OneNativeControlled<Bool>(false)
     model.label = ""
+    model.boundedHeight = false
     super.reset()
   }
 }

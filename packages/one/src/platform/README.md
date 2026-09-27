@@ -1331,7 +1331,9 @@ acknowledgement and `revision` reset as the other controlled values, so
 keeping the old value in the callback refuses the toggle and rolls the
 native state back. Standalone it reports its collapsed or expanded native
 height to React Native; inside a `One.iOS.Host` or `One.iOS.ZStack`, the parent
-measures it as composed SwiftUI content.
+measures it as composed SwiftUI content. It also composes inside
+`One.iOS.ViewThatFits`. An explicit `style.height` keeps that React Native
+height while SwiftUI expands within the box.
 
 `One.iOS.Divider` draws the hairline between rows and holds nothing, so it
 must live inside a container and takes no children. `One.iOS.Group` is the

@@ -53,7 +53,9 @@ optional `label` and `systemImage`. `controlGroupStyle` is `'palette'`,
 resets) controls the expansion. A standalone group reports its intrinsic
 SwiftUI height to React Native as its content opens and closes, so following
 React Native siblings move with it. It also composes inside `One.iOS.Host` or
-`One.iOS.ZStack`, where the parent measures the expanded content.
+`One.iOS.ZStack` or `One.iOS.ViewThatFits`, where the parent measures the
+expanded content. An explicit `style.height` keeps that React Native height
+while the native content expands within its box.
 
 ```tsx
 import { One } from 'one'
@@ -68,8 +70,8 @@ import { One } from 'one'
 ```
 
 The iOS 27 conformance fixture verifies native taps, external React resets,
-and the collapsed and expanded frames of both a standalone group and one
-inside `One.iOS.Host`.
+explicit height, and the collapsed and expanded frames of standalone and
+composed groups.
 
 ## Divider
 
