@@ -163,6 +163,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   checkboxColors?: ComposeCheckboxProps['colors']
   selected?: boolean
   radioColors?: ComposeRadioButtonProps['colors']
+  switchColors?: ComposeSwitchProps['colors']
   cardColors?: ComposeCardProps['colors']
   surfaceMode?: 'plain' | 'clickable' | 'selectable' | 'toggleable'
   badgeColors?: Pick<ComposeBadgeProps, 'containerColor' | 'contentColor'>
@@ -786,11 +787,12 @@ function Switch({
   isOn,
   disabled = false,
   label = '',
+  colors,
   onIsOnChange,
   revision = 0,
   ...props
 }: ComposeSwitchProps) {
-  validateSwitchProps({ isOn, disabled, label, onIsOnChange, revision })
+  validateSwitchProps({ isOn, disabled, label, colors, onIsOnChange, revision })
   const controlled = useControlled<{
     value: boolean
     eventCount: number
@@ -804,6 +806,7 @@ function Switch({
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
       label={label}
+      switchColors={colors}
       disabled={disabled}
       onNativeComposeNodeBooleanValueChange={(event) =>
         controlled.onNativeChange(event.nativeEvent)

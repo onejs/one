@@ -257,10 +257,30 @@ export interface ComposeSegmentedButtonProps extends ComposeNodeProps {
   revision?: number
 }
 
+export type ComposeSwitchColors = Readonly<{
+  checkedThumbColor?: ColorValue
+  checkedTrackColor?: ColorValue
+  checkedBorderColor?: ColorValue
+  checkedIconColor?: ColorValue
+  uncheckedThumbColor?: ColorValue
+  uncheckedTrackColor?: ColorValue
+  uncheckedBorderColor?: ColorValue
+  uncheckedIconColor?: ColorValue
+  disabledCheckedThumbColor?: ColorValue
+  disabledCheckedTrackColor?: ColorValue
+  disabledCheckedBorderColor?: ColorValue
+  disabledCheckedIconColor?: ColorValue
+  disabledUncheckedThumbColor?: ColorValue
+  disabledUncheckedTrackColor?: ColorValue
+  disabledUncheckedBorderColor?: ColorValue
+  disabledUncheckedIconColor?: ColorValue
+}>
+
 export interface ComposeSwitchProps extends ComposeLeafProps {
   isOn: boolean
   disabled?: boolean
   label?: string
+  colors?: ComposeSwitchColors
   onIsOnChange: (value: boolean) => void
   revision?: number
 }
