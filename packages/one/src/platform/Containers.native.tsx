@@ -19,6 +19,7 @@ import NativeGroup from './specs/OneNativeGroupNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
 import NativeLabeledContent from './specs/OneNativeLabeledContentNativeComponent'
 import NativeGroupBox from './specs/OneNativeGroupBoxNativeComponent'
+import NativeViewThatFits from './specs/OneNativeViewThatFitsNativeComponent'
 import NativeLazyHStack from './specs/OneNativeLazyHStackNativeComponent'
 import NativeLazyVStack from './specs/OneNativeLazyVStackNativeComponent'
 import NativeLazyVGrid from './specs/OneNativeLazyVGridNativeComponent'
@@ -57,6 +58,8 @@ import {
   type DividerProps,
   type GroupProps,
   type GroupBoxProps,
+  type ViewThatFitsProps,
+  viewThatFitsAxes,
   type GlassEffectContainerProps,
   type LinkProps,
   type OverlayContentProps,
@@ -102,7 +105,7 @@ import {
 export { InsideContainer, assertOneNativeChildren }
 
 const containers =
-  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.GroupBox, Swift.GlassEffectContainer, Swift.List, Swift.ScrollView, Swift.LazyVStack, Swift.LazyHStack, Swift.LazyVGrid, Swift.LazyHGrid, Swift.Grid, Swift.GridRow, Swift.ControlGroup, Swift.DisclosureGroup, Swift.Link, Swift.Group, Swift.Overlay, Swift.SwipeActions, Swift.NavigationStack, Swift.Toolbar, or Swift.ToolbarItem'
+  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.GroupBox, Swift.ViewThatFits, Swift.GlassEffectContainer, Swift.List, Swift.ScrollView, Swift.LazyVStack, Swift.LazyHStack, Swift.LazyVGrid, Swift.LazyHGrid, Swift.Grid, Swift.GridRow, Swift.ControlGroup, Swift.DisclosureGroup, Swift.Link, Swift.Group, Swift.Overlay, Swift.SwipeActions, Swift.NavigationStack, Swift.Toolbar, or Swift.ToolbarItem'
 
 function nativeEnvironmentProps({
   colorScheme,
@@ -481,6 +484,20 @@ export function GroupBox({ label, children, style, ...props }: GroupBoxProps) {
     <NativeGroupBox {...props} label={label ?? ''} style={[{ alignSelf: 'stretch' }, style]}>
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeGroupBox>
+  )
+}
+
+export function ViewThatFits({ axes = 'both', children, style, ...props }: ViewThatFitsProps) {
+  if (Number.parseFloat(String(Platform.Version)) < 16)
+    throw new Error('Swift.ViewThatFits requires iOS 16 or newer')
+  if (!viewThatFitsAxes.includes(axes))
+    throw new Error(`Swift.ViewThatFits axes must be one of ${viewThatFitsAxes.join(', ')}`)
+  assertOneNativeChildren(children, 'Swift.ViewThatFits')
+  assertNoGreedyContainer(children, 'Swift.ViewThatFits')
+  return (
+    <NativeViewThatFits {...props} axes={axes} style={[{ alignSelf: 'stretch' }, style]}>
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeViewThatFits>
   )
 }
 

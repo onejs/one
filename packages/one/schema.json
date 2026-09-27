@@ -3100,6 +3100,29 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeViewThatFits",
+      "publicName": "ViewThatFits",
+      "props": {
+        "axes": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativeGlassEffectContainer",
       "publicName": "GlassEffectContainer",
       "props": {

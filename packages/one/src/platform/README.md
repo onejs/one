@@ -1280,6 +1280,20 @@ initializer. It measures its content and fills the proposed row width.
 </One.iOS.GroupBox>
 ```
 
+`One.iOS.ViewThatFits` (iOS 16+) shows the first native child that fits the
+proposed size, or the last child if none fits. Order children from preferred to
+fallback. `axes` is `'horizontal'`, `'vertical'`, or `'both'` (default), matching
+SwiftUI's `Axis.Set` fit test.
+Give `style.height` for a finite vertical proposal; otherwise the container
+measures its chosen child and vertical fit is unbounded.
+
+```tsx
+<One.iOS.ViewThatFits axes="horizontal">
+  <One.iOS.Button label="Detailed action" onPress={run} />
+  <One.iOS.Button label="Action" onPress={run} />
+</One.iOS.ViewThatFits>
+```
+
 `One.iOS.ControlGroup` gathers controls into one labeled cluster with the
 SDK-derived `controlGroupStyle` (`automatic`, `palette`, `navigation`,
 `menu`, or `compactMenu`). The `label` and `systemImage` are plain strings;
