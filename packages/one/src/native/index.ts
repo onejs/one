@@ -1,6 +1,10 @@
 // platform-agnostic native build contracts. the executable UI namespaces live
 // on the root One export and are implemented in src/platform.
-export { validateNativeApp, type NativeAppManifest } from './appManifest'
+export {
+  expoClientFromNativeApp,
+  validateNativeApp,
+  type NativeAppManifest,
+} from './appManifest'
 export {
   ONE_PLATFORM_ENV,
   ONE_PUBLIC_PREFIX,

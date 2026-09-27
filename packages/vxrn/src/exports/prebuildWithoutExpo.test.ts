@@ -1253,6 +1253,31 @@ describe('generateForPlatform determinism', () => {
     expect(stylesV31).not.toContain('ic_launcher')
   }, 180000)
 
+  it('fills the ios launch screen with an untrimmed cover splash', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-cover-'))
+    const source = fileURLToPath(
+      new URL('../../../../examples/one-basic/public/splash.png', import.meta.url)
+    )
+    await generateForPlatform(
+      workspaceRoot,
+      'ios',
+      { ...app, splash: { source, backgroundColor: '#000000', resizeMode: 'cover' } },
+      join(output, 'ios')
+    )
+    const iosApp = join(output, 'ios', 'MyApp')
+    const { width, height } = await sharp(source).metadata()
+    expect(
+      await sharp(join(iosApp, 'Images.xcassets', 'Splash.imageset', 'splash.png')).metadata()
+    ).toMatchObject({ width, height })
+    const launchStoryboard = readFileSync(join(iosApp, 'LaunchScreen.storyboard'), 'utf8')
+    expect(launchStoryboard).toContain('contentMode="scaleAspectFill" image="Splash"')
+    for (const edge of ['leading', 'trailing', 'top', 'bottom']) {
+      expect(launchStoryboard).toContain(`firstAttribute="${edge}" secondItem="launch-view"`)
+    }
+    expect(launchStoryboard).not.toContain('firstAttribute="width" constant')
+  }, 180000)
+
   it('regenerates byte-identical projects from the same manifest', async () => {
     // root stays the workspace so the installed community template resolves;
     // output goes to isolated temp dirs, never the repo.
