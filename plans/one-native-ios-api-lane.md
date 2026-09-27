@@ -77,7 +77,7 @@ checklist; One's own exports and docs decide the status.
 | Speech recognition | covered | `One.Speech` | speech fixture | done |
 | Fonts | covered | `One.UI.Fonts` | fonts | done |
 | Widgets/live activities | partial | iOS API exists; fixture lacks extension target | none | P2 |
-| App updates | partial | `One.Updates` landed; iOS device proof pending | updates fixture | P1 |
+| App updates | covered | `One.Updates` checks, downloads, stages, reloads, rolls back, and prunes OTA bundles | RAN iOS 27 release suite: 208 checks across eight publishes, rollback, 20 reloads, fallback, and rejection cases | done |
 | Keep awake/brightness | missing | no UIApplication/UIScreen service | none | P3 |
 | Store review prompt | missing | no StoreKit review request | none | P3 |
 | App shortcuts/intents | missing | no App Intents path | none | P3 |
@@ -110,6 +110,14 @@ checklist; One's own exports and docs decide the status.
    cannot prove the mode changes OS policy there. Apple documents the mode as
    required; device proof remains open. Peach has an Expo Audio HTML5 stub but
    no OneAudio adapter, and browser tab visibility is not iOS background policy.
+10. Updates passed the iOS 27 release simulator suite with 208 checks: embedded
+    launch, eight real publishes, bundle and image download, hash rejection,
+    fatal rollback, splash-kill recovery, twenty reloads, missing-bundle
+    fallback, cache pruning, and invalid manifest rejection. The isolated proof
+    app kept only the Updates route and supplied a no-op entry for the unrelated
+    native-source fixture package, which has no `@main`; the shipped code was
+    unchanged by those proof accommodations. Peach simulates disabled Expo OTA
+    state but has no `OneUpdates` adapter or OTA launcher simulation.
 
 Avoid duplicating React Native surfaces only to rename them. Keep simulator
 limitations explicit; hardware-only effects need a device proof before `covered`.
