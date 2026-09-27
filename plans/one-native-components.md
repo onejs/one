@@ -48,7 +48,7 @@ The remaining partial surfaces are:
 | family | partial or missing behavior | priority |
 | --- | --- | --- |
 | menus and context menus | data-driven items work; primary actions, context previews, and a Picker embedded in menu content are not represented | after core views |
-| pickers | standalone `palette` falls back to segmented on iPhone; Picker inside Menu and `navigationLink` context remain unavailable | after core views |
+| pickers | standalone `palette` presented as segmented on iOS 27 iPhone; earlier iOS, Picker inside Menu, and `navigationLink` context remain unproven | after core views |
 | popovers | trigger and React Native presentation body work; `attachmentAnchor` is not bound | after core views |
 | navigation | `NavigationStack` and toolbars exist; `NavigationSplitView` and `NavigationLink` are outside this lane because One owns routed navigation | coordinate before admission |
 | list editing | `EditButton` label toggles Edit/Done; `List` edit state has no independent observer and delete/move row actions are unavailable | after core views |
