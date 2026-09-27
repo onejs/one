@@ -112,6 +112,72 @@ final class HybridOneCalendar: HybridOneCalendarSpec {
     return promise
   }
 
+  func update(
+    identifier: String, originalStartMs: Double, changes: CalendarEventChanges
+  ) throws -> Promise<CalendarEvent> {
+    let promise = Promise<CalendarEvent>()
+    Self.queue.async {
+      guard Self.hasUsageDescription else {
+        promise.reject(withError: Self.error(
+          "E_CALENDAR_MANIFEST", "Calendar.update: set native.app.calendar.usage"))
+        return
+      }
+      guard Self.canRead else {
+        promise.reject(withError: Self.error(
+          "E_CALENDAR_PERMISSION", "Calendar.update: full calendar access is required"))
+        return
+      }
+      guard !identifier.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+        originalStartMs.isFinite, abs(originalStartMs) <= 8_640_000_000_000_000,
+        changes.title != nil || changes.startMs != nil || changes.endMs != nil ||
+          changes.allDay != nil || changes.location != nil else {
+        promise.reject(withError: Self.error(
+          "E_CALENDAR_INPUT", "Calendar.update: an event and at least one change are required"))
+        return
+      }
+      guard let event = Self.eventOccurrence(identifier: identifier, startMs: originalStartMs) else {
+        promise.reject(withError: Self.error(
+          "E_CALENDAR_NOT_FOUND", "Calendar.update: event occurrence was not found"))
+        return
+      }
+      let startMs = changes.startMs ?? event.startDate.timeIntervalSince1970 * 1_000
+      let endMs = changes.endMs ?? event.endDate.timeIntervalSince1970 * 1_000
+      guard startMs.isFinite, endMs.isFinite,
+        abs(startMs) <= 8_640_000_000_000_000, abs(endMs) <= 8_640_000_000_000_000,
+        endMs > startMs else {
+        promise.reject(withError: Self.error(
+          "E_CALENDAR_INPUT", "Calendar.update: increasing finite times are required"))
+        return
+      }
+      if let title = changes.title {
+        let trimmed = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else {
+          promise.reject(withError: Self.error(
+            "E_CALENDAR_INPUT", "Calendar.update: title cannot be empty"))
+          return
+        }
+        event.title = trimmed
+      }
+      event.startDate = Date(timeIntervalSince1970: startMs / 1_000)
+      event.endDate = Date(timeIntervalSince1970: endMs / 1_000)
+      event.isAllDay = changes.allDay ?? event.isAllDay
+      if let location = changes.location { event.location = location }
+      do {
+        try Self.store.save(event, span: .thisEvent, commit: true)
+        guard let result = Self.info(event) else {
+          promise.reject(withError: Self.error(
+            "E_CALENDAR_SAVE", "Calendar.update: saved event has no identifier"))
+          return
+        }
+        promise.resolve(withResult: result)
+      } catch {
+        promise.reject(withError: Self.error(
+          "E_CALENDAR_SAVE", "Calendar.update: \(error.localizedDescription)"))
+      }
+    }
+    return promise
+  }
+
   func remove(identifier: String, startMs: Double) throws -> Promise<Void> {
     let promise = Promise<Void>()
     Self.queue.async {
@@ -131,14 +197,7 @@ final class HybridOneCalendar: HybridOneCalendarSpec {
           "E_CALENDAR_INPUT", "Calendar.delete: identifier and finite start time are required"))
         return
       }
-      let predicate = Self.store.predicateForEvents(
-        withStart: Date(timeIntervalSince1970: (startMs - 1_000) / 1_000),
-        end: Date(timeIntervalSince1970: (startMs + 1_000) / 1_000),
-        calendars: nil)
-      guard let event = Self.store.events(matching: predicate).first(where: {
-        $0.eventIdentifier == identifier &&
-          abs($0.startDate.timeIntervalSince1970 * 1_000 - startMs) < 1_000
-      }) else {
+      guard let event = Self.eventOccurrence(identifier: identifier, startMs: startMs) else {
         promise.reject(withError: Self.error(
           "E_CALENDAR_NOT_FOUND", "Calendar.delete: event occurrence was not found"))
         return
@@ -334,6 +393,17 @@ final class HybridOneCalendar: HybridOneCalendarSpec {
   private static var canRead: Bool {
     let value = EKEventStore.authorizationStatus(for: .event)
     return value == .fullAccess || value == .authorized
+  }
+
+  private static func eventOccurrence(identifier: String, startMs: Double) -> EKEvent? {
+    let predicate = store.predicateForEvents(
+      withStart: Date(timeIntervalSince1970: (startMs - 1_000) / 1_000),
+      end: Date(timeIntervalSince1970: (startMs + 1_000) / 1_000),
+      calendars: nil)
+    return store.events(matching: predicate).first {
+      $0.eventIdentifier == identifier &&
+        abs($0.startDate.timeIntervalSince1970 * 1_000 - startMs) < 1_000
+    }
   }
 
   private static var hasUsageDescription: Bool {

@@ -17,6 +17,7 @@ public protocol HybridOneCalendarSpec_protocol: HybridObject {
   func requestPermission() throws -> Promise<CalendarPermissionStatus>
   func list(startMs: Double, endMs: Double, limit: Double) throws -> Promise<[CalendarEvent]>
   func create(input: CalendarEventInput) throws -> Promise<String>
+  func update(identifier: String, originalStartMs: Double, changes: CalendarEventChanges) throws -> Promise<CalendarEvent>
   func remove(identifier: String, startMs: Double) throws -> Promise<Void>
   func getRemindersPermissionStatus() throws -> CalendarPermissionStatus
   func requestRemindersPermission() throws -> Promise<CalendarPermissionStatus>

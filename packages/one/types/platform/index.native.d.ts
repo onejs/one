@@ -140,7 +140,7 @@ export type { DeviceInfo, LocalizationInfo } from './device/index.native';
 export { Contacts } from './contacts/index.native';
 export type { ContactInfo, ContactInput, ContactsPermissionStatus } from './contacts/index.native';
 export { Calendar } from './calendar/index.native';
-export type { CalendarEvent, CalendarEventInput, CalendarPermissionStatus, ReminderInfo, ReminderInput, } from './calendar/index.native';
+export type { CalendarEvent, CalendarEventChanges, CalendarEventInput, CalendarPermissionStatus, ReminderInfo, ReminderInput, } from './calendar/index.native';
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native';
 export { AppInfo } from './app-info/index.native';
 export type { AppInfoApi } from './app-info/index.native';

@@ -50,6 +50,8 @@ namespace margelo::nitro::one { enum class BrowserPresentationStyle; }
 namespace margelo::nitro::one { enum class BrowserResultType; }
 // Forward declaration of `BrowserResult` to properly resolve imports.
 namespace margelo::nitro::one { struct BrowserResult; }
+// Forward declaration of `CalendarEventChanges` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarEventChanges; }
 // Forward declaration of `CalendarEventInput` to properly resolve imports.
 namespace margelo::nitro::one { struct CalendarEventInput; }
 // Forward declaration of `CalendarEvent` to properly resolve imports.
@@ -284,6 +286,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "BrowserResult.hpp"
 #include "BrowserResultType.hpp"
 #include "CalendarEvent.hpp"
+#include "CalendarEventChanges.hpp"
 #include "CalendarEventInput.hpp"
 #include "CalendarPermissionStatus.hpp"
 #include "CameraPermissionResponse.hpp"

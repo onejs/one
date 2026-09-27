@@ -1307,6 +1307,40 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_std__string_Wrapper(std::move(value));
   }
 
+  // pragma MARK: std::shared_ptr<Promise<CalendarEvent>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<CalendarEvent>>`.
+   */
+  using std__shared_ptr_Promise_CalendarEvent__ = std::shared_ptr<Promise<CalendarEvent>>;
+  inline std::shared_ptr<Promise<CalendarEvent>> create_std__shared_ptr_Promise_CalendarEvent__() noexcept {
+    return Promise<CalendarEvent>::create();
+  }
+  inline PromiseHolder<CalendarEvent> wrap_std__shared_ptr_Promise_CalendarEvent__(std::shared_ptr<Promise<CalendarEvent>> promise) noexcept {
+    return PromiseHolder<CalendarEvent>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const CalendarEvent& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const CalendarEvent&)>`.
+   */
+  using Func_void_CalendarEvent = std::function<void(const CalendarEvent& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const CalendarEvent& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_CalendarEvent_Wrapper final {
+  public:
+    explicit Func_void_CalendarEvent_Wrapper(std::function<void(const CalendarEvent& /* result */)>&& func): _function(std::make_unique<std::function<void(const CalendarEvent& /* result */)>>(std::move(func))) {}
+    inline void call(CalendarEvent result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const CalendarEvent& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_CalendarEvent create_Func_void_CalendarEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_CalendarEvent_Wrapper wrap_Func_void_CalendarEvent(Func_void_CalendarEvent value) noexcept {
+    return Func_void_CalendarEvent_Wrapper(std::move(value));
+  }
+
   // pragma MARK: std::vector<ReminderInfo>
   /**
    * Specialized version of `std::vector<ReminderInfo>`.
@@ -1398,6 +1432,15 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__string___ create_Result_std__shared_ptr_Promise_std__string___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::string>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<CalendarEvent>>>
+  using Result_std__shared_ptr_Promise_CalendarEvent___ = Result<std::shared_ptr<Promise<CalendarEvent>>>;
+  inline Result_std__shared_ptr_Promise_CalendarEvent___ create_Result_std__shared_ptr_Promise_CalendarEvent___(const std::shared_ptr<Promise<CalendarEvent>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<CalendarEvent>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_CalendarEvent___ create_Result_std__shared_ptr_Promise_CalendarEvent___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<CalendarEvent>>>::withError(error);
   }
 
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>

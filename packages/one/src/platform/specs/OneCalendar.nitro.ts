@@ -23,6 +23,14 @@ export interface CalendarEvent {
   location: string
 }
 
+export interface CalendarEventChanges {
+  title?: string
+  startMs?: number
+  endMs?: number
+  allDay?: boolean
+  location?: string
+}
+
 export interface ReminderInput {
   title: string
   dueMs?: number
@@ -40,6 +48,7 @@ export interface OneCalendar extends HybridObject<{ ios: 'swift' }> {
   requestPermission(): Promise<CalendarPermissionStatus>
   list(startMs: number, endMs: number, limit: number): Promise<CalendarEvent[]>
   create(input: CalendarEventInput): Promise<string>
+  update(identifier: string, originalStartMs: number, changes: CalendarEventChanges): Promise<CalendarEvent>
   remove(identifier: string, startMs: number): Promise<void>
   getRemindersPermissionStatus(): CalendarPermissionStatus
   requestRemindersPermission(): Promise<CalendarPermissionStatus>

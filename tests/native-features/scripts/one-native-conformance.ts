@@ -2709,12 +2709,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('PASS Calendar purpose text and full-access action')
     screenshot('calendar-permission.png', [purpose, allow])
     point(allow.frame.x + allow.frame.width / 2, allow.frame.y + allow.frame.height / 2)
-    await wait('Calendar create list and delete pass', (n) =>
+    await wait('Calendar create update list and delete pass', (n) =>
       has(n, 'Permission: fullAccess') &&
       has(n, 'Status: done') &&
       has(
         n,
-        'Result: before=E_CALENDAR_PERMISSION; matched=true; removed=true; invalid=E_CALENDAR_INPUT'
+        'Result: before=E_CALENDAR_PERMISSION; matched=true; updated=true; removed=true; notFound=E_CALENDAR_NOT_FOUND; invalidUpdate=E_CALENDAR_INPUT; invalid=E_CALENDAR_INPUT'
       )
     )
     screenshot('calendar-round-trip.png')
