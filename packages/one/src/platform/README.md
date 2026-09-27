@@ -1268,7 +1268,8 @@ the query and filters the List rows. An iOS 27 simulator proof covers two
 successive callback invocations, native search typing, and an external query
 update. The proof does not measure native refresh indicator duration. A
 standalone List host did not present the search field in that run; ScrollView
-refresh and search are still unproven.
+refresh and search have a separate vertical-scroll proof below. Native
+indicator duration remains unmeasured for both containers.
 
 `One.iOS.ViewSlot name="safeAreaBarWithVerticalEdge"` takes
 `options={{ edge: 'top' }}` or `options={{ edge: 'bottom' }}` on iOS 26 or newer. The native
