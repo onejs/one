@@ -18,6 +18,8 @@ namespace margelo::nitro::one { enum class CalendarPermissionStatus; }
 namespace margelo::nitro::one { struct CalendarEvent; }
 // Forward declaration of `CalendarEventInput` to properly resolve imports.
 namespace margelo::nitro::one { struct CalendarEventInput; }
+// Forward declaration of `CalendarEventChanges` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarEventChanges; }
 // Forward declaration of `ReminderInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ReminderInfo; }
 // Forward declaration of `ReminderInput` to properly resolve imports.
@@ -29,8 +31,9 @@ namespace margelo::nitro::one { struct ReminderInput; }
 #include <vector>
 #include <string>
 #include "CalendarEventInput.hpp"
-#include "ReminderInfo.hpp"
+#include "CalendarEventChanges.hpp"
 #include <optional>
+#include "ReminderInfo.hpp"
 #include "ReminderInput.hpp"
 
 #include "One-Swift-Cxx-Umbrella.hpp"
@@ -109,6 +112,14 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<std::string>> create(const CalendarEventInput& input) override {
       auto __result = _swiftPart.create(std::forward<decltype(input)>(input));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<CalendarEvent>> update(const std::string& identifier, double originalStartMs, const CalendarEventChanges& changes) override {
+      auto __result = _swiftPart.update(identifier, std::forward<decltype(originalStartMs)>(originalStartMs), std::forward<decltype(changes)>(changes));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

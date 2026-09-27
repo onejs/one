@@ -30,7 +30,16 @@ if (status === 'fullAccess') {
     endMs: startMs + 3_600_000,
   })
   const events = await One.iOS.Calendar.list(startMs - 1, startMs + 3_600_001)
-  console.log(events.find((event) => event.identifier === identifier))
+  const event = events.find((item) => item.identifier === identifier)
+  if (event) {
+    const updated = await One.iOS.Calendar.update(event.identifier, event.startMs, {
+      title: 'Team review moved',
+      startMs: event.startMs + 3_600_000,
+      endMs: event.endMs + 3_600_000,
+      location: 'Room 4',
+    })
+    await One.iOS.Calendar.delete(updated.identifier, updated.startMs)
+  }
 }
 ```
 
@@ -48,7 +57,11 @@ location. `create({ title, startMs, endMs, allDay? })` saves to the default
 writable calendar and returns the identifier. `delete(identifier, startMs)`
 removes the occurrence at that exact start time. Pass the `startMs` returned
 by `list` for a recurring event, since its occurrences share an identifier.
-Ask the person before creating or deleting an event.
+`update(identifier, originalStartMs, changes)` edits that occurrence and returns
+its new fields, including the identifier and start time to use for later edits
+or deletion. Pass one or more of `title`, `startMs`, `endMs`, `allDay`, or
+`location`; omitted fields keep their current values. Pass an empty location to
+clear it. Ask the person before creating, editing, or deleting an event.
 
 ## Reminders
 
@@ -86,9 +99,8 @@ uses `E_REMINDERS_NOT_FOUND`.
 Missing purpose text rejects with `E_CALENDAR_MANIFEST`; missing full access
 with `E_CALENDAR_PERMISSION`; invalid input with `E_CALENDAR_INPUT`.
 An absent writable calendar gives `E_CALENDAR_UNAVAILABLE`. Store failures
-use `E_CALENDAR_SAVE` or `E_CALENDAR_DELETE`; deleting an unknown occurrence
-gives `E_CALENDAR_NOT_FOUND`. This API is iOS only. Event editing remains a
-separate inventory gap.
+use `E_CALENDAR_SAVE` or `E_CALENDAR_DELETE`; editing or deleting an unknown
+occurrence gives `E_CALENDAR_NOT_FOUND`. This API is iOS only.
 
 See [Apple's EventKit access guide](https://developer.apple.com/documentation/eventkit/accessing-the-event-store)
 for the full and write-only permission modes.

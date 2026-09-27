@@ -3,6 +3,7 @@ import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
   CalendarEvent,
+  CalendarEventChanges,
   CalendarEventInput as NativeCalendarEventInput,
   CalendarPermissionStatus,
   OneCalendar,
@@ -10,7 +11,7 @@ import type {
   ReminderInput,
 } from '../specs/OneCalendar.nitro'
 
-export type { CalendarEvent, CalendarPermissionStatus, ReminderInfo, ReminderInput }
+export type { CalendarEvent, CalendarEventChanges, CalendarPermissionStatus, ReminderInfo, ReminderInput }
 export type CalendarEventInput = Omit<NativeCalendarEventInput, 'allDay'> & {
   allDay?: boolean
 }
@@ -41,6 +42,14 @@ function list(startMs: number, endMs: number, limit = 100): Promise<CalendarEven
 
 function create(input: CalendarEventInput): Promise<string> {
   return native().create({ ...input, allDay: input.allDay ?? false }).catch(rethrowNativeError)
+}
+
+function update(
+  identifier: string,
+  originalStartMs: number,
+  changes: CalendarEventChanges
+): Promise<CalendarEvent> {
+  return native().update(identifier, originalStartMs, changes).catch(rethrowNativeError)
 }
 
 function deleteEvent(identifier: string, startMs: number): Promise<void> {
@@ -80,6 +89,7 @@ export const Calendar = Object.freeze({
   requestPermission,
   list,
   create,
+  update,
   delete: deleteEvent,
   getRemindersPermissionStatus,
   requestRemindersPermission,

@@ -47,17 +47,55 @@ export default function OneNativeCalendar() {
           Math.abs(event.endMs - endMs) < 1000 &&
           !event.allDay
       )
-      await One.iOS.Calendar.delete(identifier, startMs)
-      const removed = !(await One.iOS.Calendar.list(startMs - 1, endMs + 1)).some(
-        (event) => event.identifier === identifier
+      const changedStartMs = startMs + 7_200_000
+      const changedEndMs = changedStartMs + 1_800_000
+      const changedTitle = `${title} edited`
+      const changed = await One.iOS.Calendar.update(identifier, startMs, {
+        title: changedTitle, startMs: changedStartMs, endMs: changedEndMs,
+        location: 'One native room',
+      })
+      const cleared = await One.iOS.Calendar.update(changed.identifier, changed.startMs, {
+        location: '',
+      })
+      const afterEdit = await One.iOS.Calendar.list(startMs - 1, changedEndMs + 1)
+      const updated = changed.title === changedTitle &&
+        Math.abs(changed.startMs - changedStartMs) < 1000 &&
+        Math.abs(changed.endMs - changedEndMs) < 1000 &&
+        changed.location === 'One native room' &&
+        cleared.identifier === changed.identifier && cleared.title === changed.title &&
+        Math.abs(cleared.startMs - changed.startMs) < 1000 &&
+        Math.abs(cleared.endMs - changed.endMs) < 1000 && cleared.location === '' &&
+        afterEdit.some((event) =>
+          event.identifier === cleared.identifier &&
+          event.title === changedTitle && event.location === '' &&
+          Math.abs(event.startMs - changedStartMs) < 1000
+        ) &&
+        !afterEdit.some((event) => event.identifier === identifier &&
+          Math.abs(event.startMs - startMs) < 1000)
+      await One.iOS.Calendar.delete(cleared.identifier, cleared.startMs)
+      const removed = !(await One.iOS.Calendar.list(startMs - 1, changedEndMs + 1)).some(
+        (event) => event.identifier === cleared.identifier &&
+          Math.abs(event.startMs - cleared.startMs) < 1000
       )
+      let notFound = 'none'
+      try {
+        await One.iOS.Calendar.update(cleared.identifier, cleared.startMs, { title: 'gone' })
+      } catch (error) {
+        notFound = code(error)
+      }
+      let invalidUpdate = 'none'
+      try {
+        await One.iOS.Calendar.update(identifier, startMs, {})
+      } catch (error) {
+        invalidUpdate = code(error)
+      }
       let invalid = 'none'
       try {
         await One.iOS.Calendar.list(endMs, startMs)
       } catch (error) {
         invalid = code(error)
       }
-      setResult(`before=${before}; matched=${matched}; removed=${removed}; invalid=${invalid}`)
+      setResult(`before=${before}; matched=${matched}; updated=${updated}; removed=${removed}; notFound=${notFound}; invalidUpdate=${invalidUpdate}; invalid=${invalid}`)
       setStatus('done')
     } catch (error) {
       setStatus(`failed ${code(error)}`)

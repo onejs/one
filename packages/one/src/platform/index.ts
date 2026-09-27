@@ -84,6 +84,7 @@ export type { ContactInfo, ContactInput, ContactsPermissionStatus } from './cont
 export { Calendar } from './calendar/index'
 export type {
   CalendarEvent,
+  CalendarEventChanges,
   CalendarEventInput,
   CalendarPermissionStatus,
   ReminderInfo,
