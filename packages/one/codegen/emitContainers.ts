@@ -115,6 +115,16 @@ export const containerComponents = [
     interfaceOnly: true,
   },
   {
+    name: 'OneNativeGlassEffectContainer',
+    publicName: 'GlassEffectContainer',
+    props: { spacing: 'Double', hasSpacing: 'boolean' },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'measured' },
+    slots: [composedContent],
+    interfaceOnly: true,
+  },
+  {
     name: 'OneNativeButton',
     publicName: 'Button',
     // a button is a measured container: with children they are the label view, without
