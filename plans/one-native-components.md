@@ -76,8 +76,9 @@ accounts are unavailable).
   built arm64 One Native binary. The top action appeared immediately above its
   base view and the bottom action immediately below its base view, both within
   their 280-by-220-point host frames; both native button actions reached React.
-  AX snapshots, PNGs, and the eight-check outcome are in local ignored
-  `tests/native-features/build/safe-area-bar-proof`. The fixture checks
+  AX snapshots, PNGs, a machine-produced environment receipt, and the
+  eight-check outcome are in local ignored
+  `tests/native-features/build/safe-area-bar-final-proof`. The fixture checks
   content order and actions in these bounded hosts; it does not prove a
   full-screen bar or scroll interaction.
 
