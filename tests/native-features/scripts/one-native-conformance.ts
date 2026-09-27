@@ -2978,6 +2978,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     checks.push({ name: 'background base stays inside host and inset content follows base', durationMs: 0 })
     console.log('PASS background base stays inside host and inset content follows base')
+    await Bun.sleep(400)
     const initialPath = screenshot('view-slot-initial.png', mounted)
     const pixels = readPng(initialPath)
     const appWidth = mounted.find((node) => node.type === 'Application')?.frame?.width
@@ -2986,7 +2987,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const backgroundColorAt = (x: number, y: number) => {
       const sampleX = Math.round(x * scale)
       const sampleY = Math.round(y * scale)
+      if (!Number.isFinite(sampleX) || !Number.isFinite(sampleY) ||
+          sampleX < 0 || sampleY < 0 || sampleX >= pixels.width || sampleY >= pixels.height)
+        throw new Error(`ViewSlot pixel sample is outside screenshot: ${JSON.stringify({ x, y, sampleX, sampleY, width: pixels.width, height: pixels.height })}`)
       const offset = (sampleY * pixels.width + sampleX) * 4
+      if (offset + 3 > pixels.data.length)
+        throw new Error(`ViewSlot pixel sample exceeds PNG data: ${JSON.stringify({ offset, length: pixels.data.length })}`)
       return [...pixels.data.subarray(offset, offset + 3)]
     }
     const actual = [
@@ -3002,19 +3008,24 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('PASS native background paints requested fill')
     if (mask.width < 119 || mask.height < 119)
       throw new Error(`ViewSlot mask has no full-size frame: ${JSON.stringify(mask)}`)
-    const maskCenter = backgroundColorAt(mask.x + 60, mask.y + 60)
-    const maskCorners = [
-      backgroundColorAt(mask.x + 5, mask.y + 5),
-      backgroundColorAt(mask.x + 115, mask.y + 5),
-      backgroundColorAt(mask.x + 5, mask.y + 115),
-      backgroundColorAt(mask.x + 115, mask.y + 115),
-    ]
-    const near = (actual: number[], expected: number[]) => actual.every((channel, index) =>
-      Math.abs(channel - expected[index]!) <= 12)
-    if (!near(maskCenter, [213, 43, 54]) || maskCorners.some((corner) => !near(corner, [255, 255, 255])))
-      throw new Error(`ViewSlot native mask pixels differ: ${JSON.stringify({ maskCenter, maskCorners })}`)
-    checks.push({ name: 'native mask keeps center and clips four corners', durationMs: 0 })
-    console.log('PASS native mask keeps center and clips four corners')
+    const cx = mask.x + mask.width / 2
+    const cy = mask.y + mask.height / 2
+    const rx = mask.width / 2
+    const ry = mask.height / 2
+    const diagonals = [[-1, -1], [1, -1], [-1, 1], [1, 1]]
+    const maskCenter = backgroundColorAt(cx, cy)
+    const maskInside = diagonals.map(([dx, dy]) => backgroundColorAt(cx + dx! * rx * 0.62, cy + dy! * ry * 0.62))
+    const maskOutside = diagonals.map(([dx, dy]) => backgroundColorAt(cx + dx! * rx * 0.78, cy + dy! * ry * 0.78))
+    const maskCorners = diagonals.map(([dx, dy]) => backgroundColorAt(cx + dx! * (rx - 5), cy + dy! * (ry - 5)))
+    const near = (sample: number[], expected: number[]) => sample.length === 3 &&
+      sample.every((channel, index) => Math.abs(channel - expected[index]!) <= 12)
+    if (!near(maskCenter, [213, 43, 54]) ||
+        maskInside.some((sample) => !near(sample, [213, 43, 54])) ||
+        maskOutside.some((sample) => !near(sample, [255, 255, 255])) ||
+        maskCorners.some((sample) => !near(sample, [255, 255, 255])))
+      throw new Error(`ViewSlot native mask pixels differ: ${JSON.stringify({ mask, maskCenter, maskInside, maskOutside, maskCorners, expectedInside: '#D52B36', expectedOutside: '#FFFFFF' })}`)
+    checks.push({ name: 'native Circle mask keeps center and inner diagonal, clips outer diagonal and corners', durationMs: 0 })
+    console.log('PASS native Circle mask keeps center and inner diagonal, clips outer diagonal and corners')
     tap({ label: 'Background action' })
     await wait('background slot action reaches React', (nodes) =>
       labels(nodes).includes('Background taps: 1'))

@@ -242,8 +242,13 @@ accounts are unavailable).
   screen behind it within 12 color levels. The existing background, overlay
   action, and safe-area inset action checks still passed. The fixture and
   screenshot/AX trace are in local ignored
-  `tests/native-features/build/view-slot-mask-proof-2`; the remaining named
-  ViewSlot modifiers are still unproven.
+  `tests/native-features/build/view-slot-mask-reviewed-proof-2`. High review
+  s436 found that corner samples alone could pass for a noncircular mask and
+  that out-of-bounds samples could pass vacuously. The reviewed 11-check rerun
+  samples inside and outside each diagonal of the Circle, rejects every
+  offscreen sample, derives positions from the measured frame, and allows the
+  view to settle before capture. The coverage table now names `mask`; the
+  remaining named ViewSlot modifiers are still unproven.
 - **RAN, 2026-09-26:** a dedicated `swipe-actions` suite passed 20 checks on
   iPhone 17 Pro iOS 27 after an arm64 simulator build. Before the fix, a
   trailing action appeared after a left swipe but tapping it left the React
