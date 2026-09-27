@@ -30,7 +30,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Spacer` | missing | n/a | no fixture or suite |
 | `One.iOS.Slot` | containers | n/a |  |
 | `One.iOS.List` | lists, groups | n/a |  |
-| `One.iOS.ScrollView` | lists, grids | n/a |  |
+| `One.iOS.ScrollView` | lists, editors, grids | n/a |  |
 | `One.iOS.LazyVStack` | lists | n/a |  |
 | `One.iOS.LazyHStack` | lists | n/a |  |
 | `One.iOS.LazyVGrid` | grids | n/a |  |
@@ -69,7 +69,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ContentUnavailableView` | missing | n/a | fixture exists, no suite opens it |
 | `One.iOS.Circle` | leaves | n/a |  |
 | `One.iOS.Capsule` | leaves | n/a |  |
-| `One.iOS.Rectangle` | leaves | n/a |  |
+| `One.iOS.Rectangle` | leaves, editors | n/a |  |
 | `One.iOS.RoundedRectangle` | leaves | n/a |  |
 | `One.iOS.Ellipse` | leaves | n/a |  |
 | `One.iOS.UnevenRoundedRectangle` | editors | n/a |  |
