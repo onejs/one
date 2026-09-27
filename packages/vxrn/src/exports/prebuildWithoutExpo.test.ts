@@ -921,6 +921,43 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     ).toBe(true)
   })
 
+  it('bundles firebase config files and applies the google-services plugin', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-firebase-'))
+    const plist = join(output, 'firebase-ios.plist')
+    const json = join(output, 'firebase-android.json')
+    writeFileSync(plist, '<plist><dict/></plist>\n')
+    writeFileSync(json, '{}\n')
+    const firebase = {
+      ...app,
+      ios: { ...app.ios, googleServicesFile: plist },
+      android: { ...app.android, googleServicesFile: json },
+    }
+    await generateForPlatform(workspaceRoot, 'ios', firebase, join(output, 'ios'))
+    await generateForPlatform(workspaceRoot, 'android', firebase, join(output, 'android'))
+
+    expect(readFileSync(join(output, 'ios', 'MyApp', 'GoogleService-Info.plist'), 'utf8')).toBe(
+      '<plist><dict/></plist>\n'
+    )
+    const pbxproj = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    expect(pbxproj).toContain(
+      'lastKnownFileType = text.plist.xml; name = GoogleService-Info.plist; path = MyApp/GoogleService-Info.plist;'
+    )
+    expect(pbxproj.split('/* GoogleService-Info.plist in Resources */').length - 1).toBe(2)
+    expect(readFileSync(join(output, 'android', 'app', 'google-services.json'), 'utf8')).toBe(
+      '{}\n'
+    )
+    expect(readFileSync(join(output, 'android', 'build.gradle'), 'utf8')).toContain(
+      'classpath("com.google.gms:google-services:4.4.4")'
+    )
+    expect(readFileSync(join(output, 'android', 'app', 'build.gradle'), 'utf8')).toContain(
+      'apply plugin: "com.facebook.react"\napply plugin: "com.google.gms.google-services"'
+    )
+  })
+
   it('generates a scene project from the real template', async () => {
     const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
     const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-scene-'))

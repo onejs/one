@@ -231,6 +231,10 @@ things:
   `android.permission.<name>`); `android.blockedPermissions` removes ones a
   library merges in.
 - `android.targetSdk` and `android.compileSdk` set the Gradle SDK levels.
+- `ios.googleServicesFile` and `android.googleServicesFile` bundle a Firebase
+  `GoogleService-Info.plist` and `google-services.json`; Android also gets the
+  `google-services` Gradle plugin. For Google Sign-In, add the plist's
+  `REVERSED_CLIENT_ID` to `scheme`.
 - `android.minify` runs R8 on release builds, `android.shrinkResources` (which
   needs `minify`) drops unused resources, and `android.proguardRules` appends
   keep rules to `proguard-rules.pro`.
