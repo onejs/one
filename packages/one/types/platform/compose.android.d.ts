@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
 declare function Column({ children, horizontalAlignment, verticalArrangement, spacing, ...props }: ComposeColumnProps): import("react/jsx-runtime").JSX.Element;
 declare function Row({ children, verticalAlignment, horizontalArrangement, spacing, ...props }: ComposeRowProps): import("react/jsx-runtime").JSX.Element;
 declare function FlowRow({ children, horizontalArrangement, verticalArrangement, ...props }: ComposeFlowRowProps): import("react/jsx-runtime").JSX.Element;
@@ -44,6 +44,9 @@ declare function ToggleButton(props: ComposeToggleButtonProps): import("react/js
 declare function IconToggleButton(props: ComposeToggleButtonProps): import("react/jsx-runtime").JSX.Element;
 declare function FilledIconToggleButton(props: ComposeToggleButtonProps): import("react/jsx-runtime").JSX.Element;
 declare function OutlinedIconToggleButton(props: ComposeToggleButtonProps): import("react/jsx-runtime").JSX.Element;
+declare function SingleChoiceSegmentedButtonRow({ children, ...props }: ComposeSegmentedButtonRowProps): import("react/jsx-runtime").JSX.Element;
+declare function MultiChoiceSegmentedButtonRow({ children, ...props }: ComposeSegmentedButtonRowProps): import("react/jsx-runtime").JSX.Element;
+declare function SegmentedButton({ children, selected, checked, enabled, onClick, onCheckedChange, revision, ...props }: ComposeSegmentedButtonProps): import("react/jsx-runtime").JSX.Element;
 declare function Switch({ isOn, disabled, label, onIsOnChange, revision, ...props }: ComposeSwitchProps): import("react/jsx-runtime").JSX.Element;
 declare function Checkbox({ value, disabled, onCheckedChange, revision, colors, ...props }: ComposeCheckboxProps): import("react/jsx-runtime").JSX.Element;
 declare function RadioButton({ selected, disabled, onClick, colors, ...props }: ComposeRadioButtonProps): import("react/jsx-runtime").JSX.Element;
@@ -146,6 +149,9 @@ export declare const Compose: {
     IconToggleButton: typeof IconToggleButton;
     FilledIconToggleButton: typeof FilledIconToggleButton;
     OutlinedIconToggleButton: typeof OutlinedIconToggleButton;
+    SingleChoiceSegmentedButtonRow: typeof SingleChoiceSegmentedButtonRow;
+    MultiChoiceSegmentedButtonRow: typeof MultiChoiceSegmentedButtonRow;
+    SegmentedButton: typeof SegmentedButton;
     Switch: typeof Switch;
     Checkbox: typeof Checkbox;
     RadioButton: typeof RadioButton;

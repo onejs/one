@@ -39,6 +39,8 @@ import type {
   ComposeProgressVariant,
   ComposeRadioButtonProps,
   ComposeRowProps,
+  ComposeSegmentedButtonProps,
+  ComposeSegmentedButtonRowProps,
   ComposeSliderProps,
   ComposeSuggestionChipProps,
   ComposeSurfaceProps,
@@ -119,6 +121,9 @@ type ComposeNodeType =
   | 'icontogglebutton'
   | 'filledicontogglebutton'
   | 'outlinedicontogglebutton'
+  | 'singlechoicesegmentedbuttonrow'
+  | 'multichoicesegmentedbuttonrow'
+  | 'segmentedbutton'
   | 'switch'
   | 'checkbox'
   | 'radio'
@@ -736,6 +741,36 @@ function OutlinedIconToggleButton(props: ComposeToggleButtonProps) {
   return <ToggleButtonNode {...props} nodeType="outlinedicontogglebutton" />
 }
 
+function SingleChoiceSegmentedButtonRow({ children, ...props }: ComposeSegmentedButtonRowProps) {
+  return <ComposeNode {...props} nodeType="singlechoicesegmentedbuttonrow">{children}</ComposeNode>
+}
+
+function MultiChoiceSegmentedButtonRow({ children, ...props }: ComposeSegmentedButtonRowProps) {
+  return <ComposeNode {...props} nodeType="multichoicesegmentedbuttonrow">{children}</ComposeNode>
+}
+
+function SegmentedButton({ children, selected, checked, enabled = true, onClick, onCheckedChange, revision = 0, ...props }: ComposeSegmentedButtonProps) {
+  const controlled = useControlled<{ value: boolean; eventCount: number; revision: number }>(
+    (event) => onCheckedChange?.(event.value), revision
+  )
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="segmentedbutton"
+      selected={selected}
+      value={checked ?? false}
+      disabled={!enabled}
+      nativeClickable={onClick !== undefined || onCheckedChange !== undefined}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      onNativeComposeNodeButtonPress={onClick ? () => onClick() : undefined}
+      onNativeComposeNodeBooleanValueChange={onCheckedChange ? (event) => controlled.onNativeChange(event.nativeEvent) : undefined}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
 function Switch({
   isOn,
   disabled = false,
@@ -1084,6 +1119,9 @@ export const Compose = {
   IconToggleButton,
   FilledIconToggleButton,
   OutlinedIconToggleButton,
+  SingleChoiceSegmentedButtonRow,
+  MultiChoiceSegmentedButtonRow,
+  SegmentedButton,
   Switch,
   Checkbox,
   RadioButton,

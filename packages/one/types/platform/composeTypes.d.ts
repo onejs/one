@@ -146,6 +146,18 @@ export interface ComposeToggleButtonProps extends ComposeNodeProps {
     onCheckedChange?: (checked: boolean) => void;
     revision?: number;
 }
+export interface ComposeSegmentedButtonRowProps extends ComposeNodeProps {
+    children: ReactNode;
+}
+export interface ComposeSegmentedButtonProps extends ComposeNodeProps {
+    children: ReactNode;
+    selected?: boolean;
+    checked?: boolean;
+    enabled?: boolean;
+    onClick?: () => void;
+    onCheckedChange?: (checked: boolean) => void;
+    revision?: number;
+}
 export interface ComposeSwitchProps extends ComposeLeafProps {
     isOn: boolean;
     disabled?: boolean;
