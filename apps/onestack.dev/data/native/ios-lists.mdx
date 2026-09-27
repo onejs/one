@@ -28,12 +28,43 @@ import { One } from 'one'
 ## Section
 
 `One.iOS.Section` groups rows with a `title` header and a `footer` string.
+Its `swiftStyle` accepts SwiftUI section modifiers such as `headerProminence`
+and `listSectionMargins`. React updates to these modifiers refresh that section.
 
 ## List
 
 `One.iOS.List` is a SwiftUI list. `listStyle` is `'automatic'`,
-`'sidebar'`, `'inset'`, `'grouped'`, `'insetGrouped'`, or `'plain'`. Rows
-support swipe actions through
+`'sidebar'`, `'inset'`, `'grouped'`, `'insetGrouped'`, or `'plain'`. You
+can use `swiftStyle` on the List for modifiers such as `listSectionSpacingWithCGFloat`.
+For example, a larger spacing value separates adjacent sections. Sections
+can set their own `swiftStyle` for header prominence and margins:
+
+```tsx
+<One.iOS.List
+  listStyle="insetGrouped"
+  style={{ height: 520 }}
+  swiftStyle={{ listSectionSpacingWithCGFloat: expanded ? 100 : 10 }}
+>
+  <One.iOS.Section
+    title="First section"
+    swiftStyle={{
+      headerProminence: expanded ? 'increased' : 'standard',
+      listSectionMargins: { edges: 'leading', length: expanded ? 80 : 16 },
+    }}
+  >
+    <One.iOS.Text text="Apple" />
+  </One.iOS.Section>
+  <One.iOS.Section title="Second section">
+    <One.iOS.Text text="Banana" />
+  </One.iOS.Section>
+</One.iOS.List>
+```
+
+On iOS 27, changing these values moved the first section's leading edge by
+64 points, enlarged its header, and moved the second section down by about
+94 points. Returning to the original values restored all three positions.
+
+Rows support swipe actions through
 [Swift.SwipeActions](/native/ios-groups). An `EditButton` composed inside the
 list changes its native label between Edit and Done. Row deletion and move
 actions are not yet exposed.

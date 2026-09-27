@@ -10,6 +10,7 @@ export declare const lazyHStackAlignments: readonly ['top', 'center', 'bottom', 
 export type LazyHStackAlignment = (typeof lazyHStackAlignments)[number];
 export interface ListProps extends ViewProps {
     listStyle?: ListStyle;
+    swiftStyle?: OneNativeStyle;
     children: ReactNode;
 }
 export interface ScrollViewProps extends ViewProps {
