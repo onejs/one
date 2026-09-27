@@ -624,6 +624,43 @@ describe('transformWorklets', () => {
     expect(uiRes).toBe(7)
   })
 
+  it('captures the outer binding a property worklet shares its key with', async () => {
+    // react-native-gesture-handler's NativeProxy: the property worklet calls the
+    // module-level host function of the same name. naming the worklet after its
+    // key made it capture itself, so serializing its closure never ended.
+    const code = `
+      const updateConfig = (tag) => tag * 2
+      export const proxy = {
+        updateConfig: (tag) => {
+          'worklet'
+          return updateConfig(tag)
+        },
+        flush: function (tag) {
+          'worklet'
+          return updateConfig(tag) + 1
+        },
+      }
+    `
+    const result = await transformWorklets('/app/proxy.ts', code, false)
+
+    const sandbox = { global: globalThis, exports: {} as any }
+    const runner = new Function(
+      'exports',
+      'global',
+      result.code.replace('export const proxy', 'exports.proxy')
+    )
+    runner(sandbox.exports, sandbox.global)
+    const { proxy } = sandbox.exports
+
+    for (const worklet of [proxy.updateConfig, proxy.flush]) {
+      expect(worklet.__closure.updateConfig).not.toBe(worklet)
+      const reconstructed = eval(`(${worklet.__initData.code})`)
+      expect(reconstructed.call({ __closure: worklet.__closure }, 3)).toBe(worklet(3))
+    }
+    expect(proxy.updateConfig(3)).toBe(6)
+    expect(proxy.flush(3)).toBe(7)
+  })
+
   it('transforms nested worklets with bottom-up composition', async () => {
     const code = `
       export function outer() {
