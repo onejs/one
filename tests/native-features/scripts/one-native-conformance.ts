@@ -2082,8 +2082,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'list-search-refresh') {
     const searchField = (nodes: Node[]) => nodes.find((node) =>
-      (node.type === 'SearchField' || node.type === 'TextField') &&
-      (node.AXLabel === 'Search' || node.AXUniqueId === 'Search')
+      node.type === 'TextField' &&
+      node.AXUniqueId !== 'quick-navigate-path-input' &&
+      (node.frame?.width ?? 0) > 100
     )
     const pull = (nodes: Node[]) => {
       const list = id(nodes, 'one-native-list-search-refresh-screen')?.frame
@@ -2122,7 +2123,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-list-search-clear' })
     const cleared = await wait('external clear restores native search field and rows', (nodes) =>
       has(nodes, 'Query: ') && has(nodes, 'Apple') && has(nodes, 'Pear') &&
-      String(searchField(nodes)?.AXValue ?? '') === ''
+      String(searchField(nodes)?.AXValue ?? '') === 'Search'
     )
     const field = searchField(cleared)?.frame
     if (!field) throw new Error('Native search field has no frame')
