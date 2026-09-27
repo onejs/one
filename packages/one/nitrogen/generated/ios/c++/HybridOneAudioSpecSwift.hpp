@@ -24,6 +24,10 @@ namespace margelo::nitro::one { struct AudioRecordingStatus; }
 namespace margelo::nitro::one { enum class AudioRecordingState; }
 // Forward declaration of `AudioRecordingResult` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioRecordingResult; }
+// Forward declaration of `AudioInterruptionEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioInterruptionEvent; }
+// Forward declaration of `AudioInterruptionType` to properly resolve imports.
+namespace margelo::nitro::one { enum class AudioInterruptionType; }
 
 #include "AudioRecordingPermission.hpp"
 #include <NitroModules/Promise.hpp>
@@ -34,6 +38,9 @@ namespace margelo::nitro::one { struct AudioRecordingResult; }
 #include "AudioRecordingStatus.hpp"
 #include "AudioRecordingState.hpp"
 #include "AudioRecordingResult.hpp"
+#include <functional>
+#include "AudioInterruptionEvent.hpp"
+#include "AudioInterruptionType.hpp"
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -183,6 +190,14 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<AudioRecordingResult>> stopRecording() override {
       auto __result = _swiftPart.stopRecording();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::function<void()> addInterruptionListener(const std::function<void(const AudioInterruptionEvent& /* event */)>& onEvent) override {
+      auto __result = _swiftPart.addInterruptionListener(onEvent);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

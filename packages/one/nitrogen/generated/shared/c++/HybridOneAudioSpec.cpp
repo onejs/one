@@ -27,6 +27,7 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("pauseRecording", &HybridOneAudioSpec::pauseRecording);
       prototype.registerHybridMethod("resumeRecording", &HybridOneAudioSpec::resumeRecording);
       prototype.registerHybridMethod("stopRecording", &HybridOneAudioSpec::stopRecording);
+      prototype.registerHybridMethod("addInterruptionListener", &HybridOneAudioSpec::addInterruptionListener);
     });
   }
 

@@ -26,6 +26,7 @@ public protocol HybridOneAudioSpec_protocol: HybridObject {
   func pauseRecording() throws -> Promise<AudioRecordingStatus>
   func resumeRecording() throws -> Promise<AudioRecordingStatus>
   func stopRecording() throws -> Promise<AudioRecordingResult>
+  func addInterruptionListener(onEvent: @escaping (_ event: AudioInterruptionEvent) -> Void) throws -> () -> Void
 }
 
 public extension HybridOneAudioSpec_protocol {

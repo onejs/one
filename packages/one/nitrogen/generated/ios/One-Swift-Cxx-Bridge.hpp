@@ -26,6 +26,10 @@ namespace margelo::nitro::one { enum class AppleCredentialState; }
 namespace margelo::nitro::one { enum class AppleRealUserStatus; }
 // Forward declaration of `ArrayBufferHolder` to properly resolve imports.
 namespace NitroModules { class ArrayBufferHolder; }
+// Forward declaration of `AudioInterruptionEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioInterruptionEvent; }
+// Forward declaration of `AudioInterruptionType` to properly resolve imports.
+namespace margelo::nitro::one { enum class AudioInterruptionType; }
 // Forward declaration of `AudioPlaybackState` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioPlaybackState; }
 // Forward declaration of `AudioPlaybackStatus` to properly resolve imports.
@@ -302,6 +306,8 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "AppleAuthScope.hpp"
 #include "AppleCredentialState.hpp"
 #include "AppleRealUserStatus.hpp"
+#include "AudioInterruptionEvent.hpp"
+#include "AudioInterruptionType.hpp"
 #include "AudioPlaybackState.hpp"
 #include "AudioPlaybackStatus.hpp"
 #include "AudioRecordingPermission.hpp"
@@ -1024,6 +1030,28 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_AudioRecordingResult_Wrapper(std::move(value));
   }
   
+  // pragma MARK: std::function<void(const AudioInterruptionEvent& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const AudioInterruptionEvent&)>`.
+   */
+  using Func_void_AudioInterruptionEvent = std::function<void(const AudioInterruptionEvent& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const AudioInterruptionEvent& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_AudioInterruptionEvent_Wrapper final {
+  public:
+    explicit Func_void_AudioInterruptionEvent_Wrapper(std::function<void(const AudioInterruptionEvent& /* event */)>&& func): _function(std::make_unique<std::function<void(const AudioInterruptionEvent& /* event */)>>(std::move(func))) {}
+    inline void call(AudioInterruptionEvent event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const AudioInterruptionEvent& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_AudioInterruptionEvent create_Func_void_AudioInterruptionEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_AudioInterruptionEvent_Wrapper wrap_Func_void_AudioInterruptionEvent(Func_void_AudioInterruptionEvent value) noexcept {
+    return Func_void_AudioInterruptionEvent_Wrapper(std::move(value));
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneAudioSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneAudioSpec>`.

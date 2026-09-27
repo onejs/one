@@ -1,5 +1,5 @@
-import type { AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingStatus } from '../specs/OneAudio.nitro';
-export type { AudioPlaybackState, AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, } from '../specs/OneAudio.nitro';
+import type { AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingStatus, AudioInterruptionEvent } from '../specs/OneAudio.nitro';
+export type { AudioPlaybackState, AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, AudioInterruptionEvent, AudioInterruptionType, } from '../specs/OneAudio.nitro';
 export declare const Audio: Readonly<{
     getRecordingPermissionStatus: () => Promise<AudioRecordingPermission>;
     requestRecordingPermission: () => Promise<AudioRecordingPermission>;
@@ -14,5 +14,6 @@ export declare const Audio: Readonly<{
     pauseRecording: () => Promise<AudioRecordingStatus>;
     resumeRecording: () => Promise<AudioRecordingStatus>;
     stopRecording: () => Promise<AudioRecordingResult>;
+    watchInterruptions: (_onEvent: (event: AudioInterruptionEvent) => void) => (() => void);
 }>;
 //# sourceMappingURL=index.d.ts.map

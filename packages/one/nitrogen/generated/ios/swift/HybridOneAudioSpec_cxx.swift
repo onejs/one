@@ -370,4 +370,24 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioRecordingResult___(__exceptionPtr)
     }
   }
+
+  @inline(__always)
+  public final func addInterruptionListener(onEvent: bridge.Func_void_AudioInterruptionEvent) -> bridge.Result_std__function_void____ {
+    do {
+      let __result = try self.__implementation.addInterruptionListener(onEvent: { () -> (AudioInterruptionEvent) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_AudioInterruptionEvent(onEvent)
+        return { (__event: AudioInterruptionEvent) -> Void in
+          __wrappedFunction.call(__event)
+        }
+      }())
+      let __resultCpp = { () -> bridge.Func_void in
+        let __closureWrapper = Func_void(__result)
+        return bridge.create_Func_void(__closureWrapper.toUnsafe())
+      }()
+      return bridge.create_Result_std__function_void____(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__function_void____(__exceptionPtr)
+    }
+  }
 }
