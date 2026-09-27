@@ -17762,6 +17762,7 @@
       "SwiftUICore": [
         "Capsule",
         "Circle",
+        "ConcentricRectangle",
         "Ellipse",
         "EmptyView",
         "Image",
@@ -19573,6 +19574,12 @@
         }
       ],
       "ios": 16
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "ConcentricRectangle",
+      "parameters": [],
+      "ios": 26
     },
     {
       "module": "_AVKit_SwiftUI",

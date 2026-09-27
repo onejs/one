@@ -777,6 +777,28 @@ export function UnevenRoundedRectangle({
     />
   )
 }
+import NativeConcentricRectangle from '../specs/OneNativeConcentricRectangleNativeComponent'
+export function ConcentricRectangle({
+  fill = undefined,
+  swiftStyle,
+  style,
+  ...props
+}: Types.ConcentricRectangleProps) {
+  if (Number.parseFloat(String(Platform.Version)) < 26)
+    throw new Error('ConcentricRectangle requires iOS 26 or newer')
+
+  return (
+    <NativeConcentricRectangle
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      fill={fill}
+    />
+  )
+}
 import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
 export function VideoPlayer({
   url = '',
