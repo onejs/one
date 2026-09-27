@@ -10,6 +10,7 @@ import { URL } from 'node:url'
 import { createRequire } from 'node:module'
 import { join } from 'node:path'
 import { randomUUID } from 'node:crypto'
+import { existsSync, readFileSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { createDevMiddleware } from '@react-native/dev-middleware'
 import { createNativeDevEngine } from '../utils/createNativeDevEngine'
@@ -101,11 +102,20 @@ export function createReactNativeDevServerPlugin(
       // an expo project's clients (dev launcher, expo-updates, peach) ask `/`,
       // `/manifest` or `/index.exp` for the evaluated app config with an
       // `expo-platform` header or `?platform=`. answer with the expo updates
-      // manifest expo cli's ExpoGoManifestHandlerMiddleware serves. a project
-      // without @expo/config gets none, like a bare react native metro.
+      // manifest expo cli's ExpoGoManifestHandlerMiddleware serves. only apps
+      // that declare expo use expo prebuild; a hoisted @expo/config alone does
+      // not make a one native app an expo app.
       const projectRequire = createRequire(join(root, 'package.json'))
+      const packageJsonPath = join(root, 'package.json')
+      const packageJson = existsSync(packageJsonPath)
+        ? JSON.parse(readFileSync(packageJsonPath, 'utf8'))
+        : {}
+      const hasExpo =
+        Object.hasOwn(packageJson.dependencies ?? {}, 'expo') ||
+        Object.hasOwn(packageJson.devDependencies ?? {}, 'expo')
       const anonymousScopeId = randomUUID()
       server.middlewares.use(async (req, res, next) => {
+        if (!hasExpo) return next()
         if (req.method !== 'GET' && req.method !== 'HEAD') return next()
         const url = new URL(req.url || '/', `http://${req.headers.host || 'localhost'}`)
         if (url.pathname !== '/' && url.pathname !== '/manifest' && url.pathname !== '/index.exp') {
