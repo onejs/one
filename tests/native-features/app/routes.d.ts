@@ -88,11 +88,13 @@ declare module 'one' {
         | `/one-native-safe-area`
         | `/one-native-secure-store`
         | `/one-native-share`
+        | `/one-native-share-empty`
         | `/one-native-sheet`
         | `/one-native-source`
         | `/one-native-speech`
         | `/one-native-state`
         | `/one-native-system`
+        | `/one-native-web-photos`
         | `/one-native-tab-oracle`
         | `/one-native-tabview`
         | `/one-native-ui-map`

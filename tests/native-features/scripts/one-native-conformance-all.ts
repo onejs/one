@@ -18,6 +18,8 @@ const suites = [
   'containers',
   'glass-container',
   'building-blocks',
+  'share-empty',
+  'web-photos',
   'view-that-fits',
   'popover',
   'accessibility',

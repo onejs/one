@@ -70,8 +70,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |
 | `One.iOS.Image` | leaves, groups | n/a |  |
-| `One.iOS.ShareLink` | missing | n/a | fixture exists, no suite opens it |
-| `One.iOS.ContentUnavailableView` | missing | n/a | fixture exists, no suite opens it |
+| `One.iOS.ShareLink` | share-empty | n/a |  |
+| `One.iOS.ContentUnavailableView` | share-empty | n/a |  |
 | `One.iOS.Circle` | leaves | n/a |  |
 | `One.iOS.Capsule` | leaves | n/a |  |
 | `One.iOS.Rectangle` | leaves, editors, building-blocks | n/a |  |
@@ -80,8 +80,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.UnevenRoundedRectangle` | editors | n/a |  |
 | `One.iOS.ConcentricRectangle` | editors | n/a |  |
 | `One.iOS.VideoPlayer` | media | n/a |  |
-| `One.iOS.PhotosPicker` | missing | n/a | fixture exists, no suite opens it |
-| `One.iOS.WebView` | missing | n/a | fixture exists, no suite opens it |
+| `One.iOS.PhotosPicker` | web-photos | n/a |  |
+| `One.iOS.WebView` | web-photos | n/a |  |
 | `One.iOS.SignInWithAppleButton` | apple-file, apple-auth | n/a |  |
 | `One.iOS.Map` | map | n/a |  |
 | `One.iOS.TextField` | pickers, forms, leaves, state | n/a |  |
