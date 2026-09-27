@@ -71,6 +71,31 @@ accounts are unavailable).
 
 ## Status
 
+- **RAN, 2026-09-27:** generated One Native controls now refresh their composed
+  SwiftUI row when a `listRow*` SDK modifier changes. The container keeps a weak
+  per-view identity so moving the same Fabric child retains its SwiftUI identity;
+  only a row modifier change advances that row's revision. On ci-64's iPhone
+  17 Pro / iOS 27.0 simulator, Xcode 27.1 built native source `e78706b05`
+  (native tree `90d8632b3507dc6ff3be06d90324d4e811cc8a16`). The eight-check
+  `list-row-modifiers` suite passed: a `Text` row moved from 37.33 to 117.67
+  points and back, its red separator changed from 2,772 ink pixels to zero
+  and back with tint still present, and two neighboring rows stayed fixed.
+  `lists` (28 checks), `containers` (32), and `grids` (9, including child
+  reordering) also passed on that binary. The suite's iPhone 17 Pro rerun
+  exposed two old 393-point assumptions in the Form and visual crop gates;
+  commits `2b827b85c` and `342dd95f3` make those gates use the captured
+  viewport without changing native source. The local ignored
+  `tests/native-features/build/list-row-modifiers-final-proof` bundle has
+  three AX/PNG pairs, pixel counts, outcome, Xcode log, generator check,
+  side-by-side WebP, and machine-produced simulator/build receipt. Sibling
+  `list-row-modifiers-lists-regression`,
+  `list-row-modifiers-containers-regression-viewport`, and
+  `list-row-modifiers-grids-regression` directories hold the focused regression
+  outcomes. High review s530 found
+  the move-identity and hidden-with-tint gaps in the first draft; both are
+  addressed and proven above. Other row control types and List styles remain
+  unproven.
+
 - **RAN, 2026-09-27:** `One.iOS.ViewSlot name="safeAreaBarWithVerticalEdge"`
   passed a focused iPhone 17 Pro iOS 27.0 suite on ci-64 with the previously
   built arm64 One Native binary. The top action appeared immediately above its
