@@ -3,6 +3,7 @@ import {
   mkdtempSync,
   mkdirSync,
   readdirSync,
+  existsSync,
   readFileSync,
   realpathSync,
   statSync,
@@ -893,6 +894,70 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     ).toThrow('AppDelegate.swift anchor')
   })
 
+  it('bundles native.app fonts into both platforms from the real template', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-fonts-'))
+    const fonts = ['tests/native-features/assets/OneNativeTestFont-BlockB.ttf']
+    await generateForPlatform(workspaceRoot, 'ios', { ...app, fonts }, join(output, 'ios'))
+    await generateForPlatform(workspaceRoot, 'android', { ...app, fonts }, join(output, 'android'))
+
+    expect(existsSync(join(output, 'ios', 'MyApp', 'OneNativeTestFont-BlockB.ttf'))).toBe(true)
+    const infoPlist = readFileSync(join(output, 'ios', 'MyApp', 'Info.plist'), 'utf8')
+    expect(infoPlist).toContain(
+      '<key>UIAppFonts</key>\n\t<array>\n\t\t<string>OneNativeTestFont-BlockB.ttf</string>'
+    )
+    const pbxproj = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    // file reference, group child, build file and resources phase entry.
+    expect(pbxproj.split('/* OneNativeTestFont-BlockB.ttf */').length - 1).toBe(3)
+    expect(pbxproj.split('/* OneNativeTestFont-BlockB.ttf in Resources */').length - 1).toBe(2)
+    expect(pbxproj).toContain('path = MyApp/OneNativeTestFont-BlockB.ttf;')
+    expect(
+      existsSync(
+        join(output, 'android', 'app', 'src', 'main', 'assets', 'fonts', 'OneNativeTestFont-BlockB.ttf')
+      )
+    ).toBe(true)
+  })
+
+  it('bundles firebase config files and applies the google-services plugin', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-firebase-'))
+    const plist = join(output, 'firebase-ios.plist')
+    const json = join(output, 'firebase-android.json')
+    writeFileSync(plist, '<plist><dict/></plist>\n')
+    writeFileSync(json, '{}\n')
+    const firebase = {
+      ...app,
+      ios: { ...app.ios, googleServicesFile: plist },
+      android: { ...app.android, googleServicesFile: json },
+    }
+    await generateForPlatform(workspaceRoot, 'ios', firebase, join(output, 'ios'))
+    await generateForPlatform(workspaceRoot, 'android', firebase, join(output, 'android'))
+
+    expect(readFileSync(join(output, 'ios', 'MyApp', 'GoogleService-Info.plist'), 'utf8')).toBe(
+      '<plist><dict/></plist>\n'
+    )
+    const pbxproj = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    expect(pbxproj).toContain(
+      'lastKnownFileType = text.plist.xml; name = GoogleService-Info.plist; path = MyApp/GoogleService-Info.plist;'
+    )
+    expect(pbxproj.split('/* GoogleService-Info.plist in Resources */').length - 1).toBe(2)
+    expect(readFileSync(join(output, 'android', 'app', 'google-services.json'), 'utf8')).toBe(
+      '{}\n'
+    )
+    expect(readFileSync(join(output, 'android', 'build.gradle'), 'utf8')).toContain(
+      'classpath("com.google.gms:google-services:4.4.4")'
+    )
+    expect(readFileSync(join(output, 'android', 'app', 'build.gradle'), 'utf8')).toContain(
+      'apply plugin: "com.facebook.react"\napply plugin: "com.google.gms.google-services"'
+    )
+  })
+
   it('generates a scene project from the real template', async () => {
     const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
     const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-scene-'))
@@ -1300,6 +1365,53 @@ describe('generateForPlatform determinism', () => {
       expect(launchStoryboard).toContain(`firstAttribute="${edge}" secondItem="launch-view"`)
     }
     expect(launchStoryboard).not.toContain('firstAttribute="width" constant')
+  }, 180000)
+
+  it('gives a dark launch its own background and artwork on both platforms', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-dark-'))
+    const source = fileURLToPath(
+      new URL('../../../../examples/one-basic/public/splash.png', import.meta.url)
+    )
+    const splash = {
+      source,
+      backgroundColor: '#ffffff',
+      dark: { source, backgroundColor: '#000000' },
+    }
+    await generateForPlatform(workspaceRoot, 'ios', { ...app, splash }, join(output, 'ios'))
+    await generateForPlatform(workspaceRoot, 'android', { ...app, splash }, join(output, 'android'))
+
+    const assets = join(output, 'ios', 'MyApp', 'Images.xcassets')
+    const imageset = JSON.parse(
+      readFileSync(join(assets, 'Splash.imageset', 'Contents.json'), 'utf8')
+    )
+    expect(imageset.images[1]).toMatchObject({
+      appearances: [{ appearance: 'luminosity', value: 'dark' }],
+      filename: 'splash-dark.png',
+    })
+    expect(existsSync(join(assets, 'Splash.imageset', 'splash-dark.png'))).toBe(true)
+    const colorset = JSON.parse(
+      readFileSync(join(assets, 'SplashBackground.colorset', 'Contents.json'), 'utf8')
+    )
+    expect(colorset.colors[0].color.components).toMatchObject({ red: '1.000' })
+    expect(colorset.colors[1]).toMatchObject({
+      appearances: [{ appearance: 'luminosity', value: 'dark' }],
+      color: { components: { red: '0.000', green: '0.000', blue: '0.000' } },
+    })
+    const storyboard = readFileSync(
+      join(output, 'ios', 'MyApp', 'LaunchScreen.storyboard'),
+      'utf8'
+    )
+    expect(storyboard).toContain('<color key="backgroundColor" name="SplashBackground"/>')
+    expect(storyboard).toContain('<namedColor name="SplashBackground">')
+
+    const res = join(output, 'android', 'app', 'src', 'main', 'res')
+    expect(readFileSync(join(res, 'values-night', 'colors.xml'), 'utf8')).toContain(
+      '<color name="splash_background">#000000</color>'
+    )
+    expect(
+      await sharp(join(res, 'drawable-night-xxxhdpi', 'splash.png')).metadata()
+    ).toMatchObject({ width: 1152, height: 1152 })
   }, 180000)
 
   it('regenerates byte-identical projects from the same manifest', async () => {
@@ -1891,6 +2003,43 @@ buildSettings = {
       app: { ...app, android: { ...app.android, targetSdk: 35, compileSdk: 36 } },
     }).content
     expect(gradle).toBe('minSdkVersion = 28\ncompileSdkVersion = 36\ntargetSdkVersion = 35')
+  })
+
+  it('turns on release minify, resource shrinking and extra proguard rules', () => {
+    const android = {
+      ...app.android,
+      minify: true,
+      shrinkResources: true,
+      proguardRules: '-keep class com.example.** { *; }',
+    }
+    const gradle = renderPrebuildFile({
+      relativePath: 'app/build.gradle',
+      content:
+        'react {\n    autolinkLibrariesWithApp()\n}\ndef enableProguardInReleaseBuilds = false\n        release {\n            minifyEnabled enableProguardInReleaseBuilds\n        }',
+      platform: 'android',
+      app: { ...app, android },
+    }).content
+    expect(gradle).toContain('def enableProguardInReleaseBuilds = true')
+    expect(gradle).toContain(
+      'minifyEnabled enableProguardInReleaseBuilds\n            shrinkResources true'
+    )
+    const rules = renderPrebuildFile({
+      relativePath: 'app/proguard-rules.pro',
+      content: '# Add project specific ProGuard rules here.\n',
+      platform: 'android',
+      app: { ...app, android },
+    }).content
+    expect(rules).toBe(
+      '# Add project specific ProGuard rules here.\n\n-keep class com.example.** { *; }\n'
+    )
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'app/build.gradle',
+        content: 'react {\n    autolinkLibrariesWithApp()\n}\nno switch',
+        platform: 'android',
+        app: { ...app, android },
+      })
+    ).toThrow('proguard switch')
   })
 
   it('stamps orientation as expo does, and nothing when unset', () => {

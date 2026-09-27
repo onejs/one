@@ -214,6 +214,11 @@ things:
   like unset, follows the system.
 - `splash.resizeMode`: `cover` fills the iOS launch screen with untrimmed
   artwork; `contain` (the default) centers it at `width`.
+- `splash.dark`: `backgroundColor`, and optionally `source`, for a launch in
+  dark appearance.
+- `fonts`: project-relative `.ttf` or `.otf` files bundled into the app. iOS
+  lists them in `UIAppFonts`; Android loads them from `assets/fonts`. Use the
+  font's own family name in styles, as with Expo's `expo-font` plugin.
 - `android.adaptiveIcon`: `foreground`, then `background` (an image) or
   `backgroundColor`, and an optional `monochrome` layer for Android 13 themed
   icons. The foreground is a 108 dp square with the artwork inside the central
@@ -226,6 +231,13 @@ things:
   `android.permission.<name>`); `android.blockedPermissions` removes ones a
   library merges in.
 - `android.targetSdk` and `android.compileSdk` set the Gradle SDK levels.
+- `ios.googleServicesFile` and `android.googleServicesFile` bundle a Firebase
+  `GoogleService-Info.plist` and `google-services.json`; Android also gets the
+  `google-services` Gradle plugin. For Google Sign-In, add the plist's
+  `REVERSED_CLIENT_ID` to `scheme`.
+- `android.minify` runs R8 on release builds, `android.shrinkResources` (which
+  needs `minify`) drops unused resources, and `android.proguardRules` appends
+  keep rules to `proguard-rules.pro`.
 - `ios.infoPlist` and `ios.entitlements` add keys `native.app` does not model,
   such as `NSUserTrackingUsageDescription`. A key the template or another field
   already writes fails prebuild; set it through that field.

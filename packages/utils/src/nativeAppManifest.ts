@@ -34,7 +34,17 @@ export interface NativeAppManifest {
     // launch screen with it, as expo's resizeMode does. android's system
     // splash shows the centered artwork either way.
     resizeMode?: 'contain' | 'cover'
+    // what a dark-appearance launch shows, as expo's splash.dark: its own
+    // background, and optionally its own artwork.
+    dark?: {
+      source?: string
+      backgroundColor: string
+    }
   }
+  // project-relative .ttf or .otf files bundled into the binary, as the
+  // expo-font plugin's `fonts`: ios lists them in UIAppFonts, android loads
+  // them from assets/fonts. the family name is the file's own.
+  fonts?: string[]
   imagePicker?: {
     // ios camera usage description shown at the system prompt. setting it
     // also declares the android camera permission; both are required for
@@ -106,6 +116,9 @@ export interface NativeAppManifest {
     associatedDomains?: string[]
     // the sign in with apple entitlement, for One.iOS.AppleAuthentication.
     usesAppleSignIn?: boolean
+    // a firebase GoogleService-Info.plist, bundled into the app as expo's
+    // ios.googleServicesFile does.
+    googleServicesFile?: string
     // Info.plist and entitlement keys native.app does not model (a tracking
     // prompt, an sdk's key). a key native.app or the template already writes
     // is rejected: set it through its field instead.
@@ -135,10 +148,19 @@ export interface NativeAppManifest {
     }
     targetSdk?: number
     compileSdk?: number
+    // release builds run R8, as expo-build-properties' minify; shrinkResources
+    // also drops unused resources and needs minify. proguardRules are appended
+    // to the app's proguard-rules.pro.
+    minify?: boolean
+    shrinkResources?: boolean
+    proguardRules?: string
     // extra manifest permissions: a bare name means android.permission.<name>.
     // blocked ones are removed even when a library's manifest merges them in.
     permissions?: string[]
     blockedPermissions?: string[]
+    // a firebase google-services.json; prebuild applies the google-services
+    // gradle plugin, as expo's android.googleServicesFile does.
+    googleServicesFile?: string
     // verified https app links routed to the app (android:autoVerify).
     appLinks?: Array<{ host: string; pathPrefix?: string }>
     // google maps api key for One.UI.Map. setting it compiles the maps sdk
@@ -155,6 +177,7 @@ const BUILD_NUMBER = /^[A-Za-z0-9.]+$/
 const REVERSE_DNS = /^[A-Za-z][A-Za-z0-9-]*(\.[A-Za-z][A-Za-z0-9-]*)+$/
 const DEPLOYMENT_TARGET = /^\d+\.\d+$/
 const HEX_COLOR = /^#[\da-f]{6}$/i
+const FONT_FILE = /\.(ttf|otf)$/i
 const ORIENTATIONS = ['portrait', 'landscape', 'default'] as const
 const USER_INTERFACE_STYLES = ['light', 'dark', 'automatic'] as const
 
@@ -201,6 +224,17 @@ export function validateNativeApp(
       `userInterfaceStyle "${manifest.userInterfaceStyle}" must be ${USER_INTERFACE_STYLES.join(', ')}`
     )
   }
+  if (manifest.fonts !== undefined) {
+    const names = new Set<string>()
+    for (const font of manifest.fonts) {
+      if (typeof font !== 'string' || !FONT_FILE.test(font)) {
+        fail(`fonts entry "${font}" must be a .ttf or .otf file path`)
+      }
+      const name = font.split('/').pop() ?? font
+      if (names.has(name)) fail(`fonts lists ${name} twice`)
+      names.add(name)
+    }
+  }
   if (manifest.version !== undefined && !VERSION.test(manifest.version)) {
     fail(`version "${manifest.version}" must start with major.minor.patch`)
   }
@@ -222,6 +256,12 @@ export function validateNativeApp(
     fail(
       'splash requires source, a six-digit hex backgroundColor, and width from 1 to 288'
     )
+  }
+  if (
+    manifest.splash?.dark !== undefined &&
+    !HEX_COLOR.test(manifest.splash.dark.backgroundColor)
+  ) {
+    fail('splash.dark requires a six-digit hex backgroundColor')
   }
   if (
     manifest.splash?.resizeMode !== undefined &&
@@ -417,6 +457,9 @@ export function validateNativeApp(
         fail(`android.${key} "${value}" must be an api level integer`)
       }
     }
+    if (manifest.android.shrinkResources && !manifest.android.minify) {
+      fail('android.shrinkResources needs android.minify')
+    }
     for (const link of manifest.android.appLinks ?? []) {
       if (!link.host || !REVERSE_DNS.test(link.host)) {
         fail(`android.appLinks host "${link.host}" must be a domain`)
@@ -464,13 +507,19 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
       backgroundColor: app.splash.backgroundColor,
       imageWidth: app.splash.width,
       resizeMode: app.splash.resizeMode,
+      dark: app.splash.dark && {
+        image: app.splash.dark.source,
+        backgroundColor: app.splash.dark.backgroundColor,
+      },
     },
+    plugins: app.fonts?.length ? [['expo-font', { fonts: app.fonts }]] : undefined,
     ios: app.ios && {
       bundleIdentifier: app.ios.bundleId,
       buildNumber: app.ios.buildNumber,
       supportsTablet: app.ios.tablet,
       associatedDomains: app.ios.associatedDomains,
       usesAppleSignIn: app.ios.usesAppleSignIn,
+      googleServicesFile: app.ios.googleServicesFile,
       infoPlist: app.ios.infoPlist,
       entitlements: app.ios.entitlements,
     },
@@ -479,6 +528,7 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
       versionCode: app.android.versionCode,
       permissions: app.android.permissions,
       blockedPermissions: app.android.blockedPermissions,
+      googleServicesFile: app.android.googleServicesFile,
       adaptiveIcon: app.android.adaptiveIcon && {
         foregroundImage: app.android.adaptiveIcon.foreground,
         backgroundImage: app.android.adaptiveIcon.background,
