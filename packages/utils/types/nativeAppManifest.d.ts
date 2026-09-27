@@ -12,6 +12,7 @@ export interface NativeAppManifest {
         source: string;
         backgroundColor: string;
         width?: number;
+        resizeMode?: 'contain' | 'cover';
     };
     imagePicker?: {
         camera?: string;
@@ -87,6 +88,7 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
         image: string;
         backgroundColor: string;
         imageWidth: number | undefined;
+        resizeMode: "contain" | "cover" | undefined;
     } | undefined;
     ios: {
         bundleIdentifier: string;
