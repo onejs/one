@@ -35,7 +35,7 @@ checklist; One's own exports and docs decide the status.
 | Maps | partial | `One.UI.Map`, `One.iOS.Map`; no search or directions service | map, ui-map | P2 |
 | Share | covered | `One.iOS.Share` text, URL, and file sheet; `One.iOS.ShareLink` button | share: text/link, file preview, cancel and errors; ShareLink unproven | done |
 | Clipboard | covered | `One.Clipboard` text | clipboard | done |
-| Secure storage | partial | `One.SecureStore` key/value; no access-control options | iOS 27 manual: 10 async/sync assertions and read after reboot | P1 |
+| Secure storage | partial | `One.SecureStore` key/value plus iOS `One.iOS.ProtectedStore` user-presence and current-biometry Keychain items; no access groups | iOS 27 SecureStore: 10 async/sync assertions and read after reboot; ProtectedStore: Face ID before every read/update/delete, both policies, round trip, input/duplicate/missing/auth errors; invalidation requires device proof | P2 |
 | Plain local database | covered | `One.Database` opens OP SQLite synchronously and asynchronously | database: parameterized query, delete, persisted row after relaunch | done |
 | Plain key/value preferences | partial | SQLite can store them; no AsyncStorage-style One API | none | P3 |
 | Biometrics | covered | `One.iOS.LocalAuthentication` policy status and biometric evaluation | local-authentication: unenrolled, enrolled, Face ID match | done |
@@ -118,6 +118,14 @@ checklist; One's own exports and docs decide the status.
     native-source fixture package, which has no `@main`; the shipped code was
     unchanged by those proof accommodations. Peach simulates disabled Expo OTA
     state but has no `OneUpdates` adapter or OTA launcher simulation.
+11. ProtectedStore passed its iOS 27 iPhone 16 simulator suite with a visible
+    system authentication prompt before each protected read, update, and deletion.
+    Three simulated Face ID nonmatches produced `E_PROTECTED_STORE_AUTH`. Toggling
+    simulated enrollment off and on left an existing current-biometry item readable,
+    so invalidation after a real enrollment change needs device proof. Peach has a `OneSecureStore`
+    adapter and an Expo SecureStore simulation, but no `OneProtectedStore`
+    adapter or enrolled-biometry Keychain simulation. That bridge belongs to the
+    Contrast migration lane.
 
 Avoid duplicating React Native surfaces only to rename them. Keep simulator
 limitations explicit; hardware-only effects need a device proof before `covered`.

@@ -68,6 +68,7 @@ export const nativeRoutes = [
       { title: 'Image Manipulator', route: '/native/image-manipulator' },
       { title: 'DocumentPicker', route: '/native/document-picker' },
       { title: 'SecureStore', route: '/native/secure-store' },
+      { title: 'Protected Store', route: '/native/protected-store' },
       { title: 'Local Authentication', route: '/native/local-authentication' },
       { title: 'Location', route: '/native/location' },
       { title: 'FileSystem', route: '/native/file-system' },
