@@ -8,6 +8,7 @@ import type {
   FormProps,
   FullScreenCoverProps,
   GlassProps,
+  GlassEffectContainerProps,
   GroupProps,
   GroupBoxProps,
   HostProps,
@@ -116,6 +117,9 @@ function Button(_props: ButtonProps): never {
 }
 function Glass(_props: GlassProps): never {
   throw new Error('Swift.Glass requires an iOS native build')
+}
+function GlassEffectContainer(_props: GlassEffectContainerProps): never {
+  throw new Error('Swift.GlassEffectContainer requires an iOS native build')
 }
 function Slot(_props: SlotProps): never {
   throw new Error('Swift.Slot requires an iOS native build')
@@ -242,6 +246,7 @@ export const Swift = {
   Form,
   Section,
   Glass,
+  GlassEffectContainer,
   LabeledContent,
   Button,
   Spacer,

@@ -48,8 +48,10 @@ const suites = [
   'calendar',
   'editors',
   'grids',
+  'glass-container',
   'paste-button',
   'group-box',
+  'cover-context',
   'popover',
   'navigation',
   'accessibility',
@@ -327,6 +329,10 @@ const gridsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-grid-reverse')) &&
   has(nodes, 'Order: ')
+const glassContainerLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-glass-container-spacing')) &&
+  has(nodes, 'Measured: ')
 const pasteButtonLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-paste-seed')) &&
@@ -335,6 +341,12 @@ const groupBoxLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-group-box-rename')) &&
   has(nodes, 'Box taps: ')
+const coverContextLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  ((Boolean(id(nodes, 'one-native-cover-context-category-cover')) && has(nodes, 'Category: ')) ||
+    Boolean(id(nodes, 'one-native-cover-context-cover-close')) ||
+    labels(nodes).includes('Full Screen Cover') ||
+    labels(nodes).includes('Preview'))
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -480,8 +492,10 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   calendar: calendarLoaded,
   editors: editorsLoaded,
   grids: gridsLoaded,
+  'glass-container': glassContainerLoaded,
   'paste-button': pasteButtonLoaded,
   'group-box': groupBoxLoaded,
+  'cover-context': coverContextLoaded,
   popover: popoverLoaded,
   navigation: navigationLoaded,
   accessibility: accessibilityLoaded,
@@ -532,8 +546,10 @@ const suiteHome: Record<Suite, string> = {
   calendar: 'nav-one-native-calendar',
   editors: 'nav-one-native-editors',
   grids: 'nav-one-native-grids',
+  'glass-container': 'nav-one-native-glass-container',
   'paste-button': 'nav-one-native-paste-button',
   'group-box': 'nav-one-native-group-box',
+  'cover-context': 'nav-one-native-cover-context',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -2785,6 +2801,67 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
+  if (config.suite === 'glass-container') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const glassButtons = (nodes: Node[]) =>
+      ['First glass', 'Second glass'].map((label) =>
+        nodes.find((node) => node.AXLabel === label && node.type === 'Button')?.frame
+      )
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-glass-container')
+    const mounted = await wait('GlassEffectContainer measures two native glass buttons', (nodes) => {
+      const measured = labels(nodes).find((label) => label.startsWith('Measured: '))
+      return status(nodes, 'Spacing', 'default') &&
+        Number(measured?.slice('Measured: '.length)) > 20 &&
+        glassButtons(nodes).every(Boolean)
+    })
+    tap({ label: 'First glass' })
+    await wait('composed glass button action reaches React', (nodes) =>
+      status(nodes, 'Glass taps', 1)
+    )
+    tap({ id: 'one-native-glass-container-spacing' })
+    await wait('GlassEffectContainer accepts explicit zero spacing', (nodes) =>
+      status(nodes, 'Spacing', 0) && glassButtons(nodes).every(Boolean)
+    )
+    const [first, second] = glassButtons(mounted)
+    if (!first || !second) throw new Error('Glass buttons lost their native frames')
+    const left = Math.min(first.x, second.x)
+    const top = Math.min(first.y, second.y)
+    const right = Math.max(first.x + first.width, second.x + second.width)
+    const bottom = Math.max(first.y + first.height, second.y + second.height)
+    const region = { x: left - 16, y: top - 16, width: right - left + 32, height: bottom - top + 32 }
+    await new Promise((resolve) => setTimeout(resolve, 800))
+    const baselineA = screenshot('glass-spacing-0a.png')
+    await new Promise((resolve) => setTimeout(resolve, 800))
+    const baselineB = screenshot('glass-spacing-0b.png')
+    const unchanged = countChangedPixels(baselineA, baselineB, region, 8)
+    tap({ id: 'one-native-glass-container-spacing' })
+    await wait('GlassEffectContainer accepts a new spacing value', (nodes) =>
+      status(nodes, 'Spacing', 60) && glassButtons(nodes).every(Boolean)
+    )
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    const merged = screenshot('glass-spacing-60.png')
+    const changed = countChangedPixels(baselineB, merged, region, 8)
+    if (changed.changed < Math.max(250, unchanged.changed * 4))
+      throw new Error(`GlassEffectContainer spacing did not change the native glass region: ${JSON.stringify({ unchanged, changed })}`)
+    tap({ id: 'one-native-glass-container-spacing' })
+    await wait('GlassEffectContainer accepts signed spacing', (nodes) =>
+      status(nodes, 'Spacing', -8) && glassButtons(nodes).every(Boolean)
+    )
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    const compact = screenshot('glass-spacing-negative.png')
+    const signedChange = countChangedPixels(merged, compact, region, 8)
+    if (signedChange.changed < Math.max(250, unchanged.changed * 4))
+      throw new Error(`GlassEffectContainer signed spacing did not change native glass: ${JSON.stringify({ unchanged, signedChange })}`)
+    tap({ id: 'one-native-glass-container-spacing' })
+    await wait('GlassEffectContainer returns to nil spacing', (nodes) =>
+      status(nodes, 'Spacing', 'default') && glassButtons(nodes).every(Boolean)
+    )
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
   if (config.suite === 'grids') {
     const frame = (nodes: Node[], label: string) =>
       nodes.find((node) => node.AXLabel === label && node.type === 'StaticText')?.frame
@@ -3022,6 +3099,113 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         return valid && labels(n).includes('Error: none')
       })
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'cover-context') {
+    const status = (nodes: Node[], label: string, expected: string) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    // iOS 27 exposes the live context menu as a Preview group with native
+    // actions; it does not publish the older "Dismiss context menu" element.
+    const menuOpen = (nodes: Node[]) =>
+      labels(nodes).includes('Preview') &&
+      ['Copy', 'Pin', 'Delete'].every((label) => labels(nodes).includes(label))
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-cover-context')
+    await wait('cover and context fixture mounted', (nodes) =>
+      Boolean(id(nodes, 'one-native-cover-context-screen')) &&
+      Boolean(id(nodes, 'one-native-cover-context-category-cover')) &&
+      status(nodes, 'Category', 'Cover')
+    )
+    await wait('cover starts dismissed', (nodes) =>
+      status(nodes, 'Category', 'Cover') &&
+      status(nodes, 'Cover presented', 'false') &&
+      status(nodes, 'Cover dismisses', '0') &&
+      !labels(nodes).includes('Full Screen Cover') &&
+      !id(nodes, 'one-native-cover-context-cover-close') &&
+      Boolean(id(nodes, 'one-native-cover-context-cover-open'))
+    )
+    tap({ id: 'one-native-cover-context-cover-open' })
+    const presentedCover = await wait('FullScreenCover presents React content', (nodes) =>
+      labels(nodes).includes('Full Screen Cover') &&
+      Boolean(id(nodes, 'one-native-cover-context-cover-close')) &&
+      Boolean(id(nodes, 'one-native-cover-context-cover-content')?.frame)
+    )
+    const appFrame = presentedCover.find((node) => node.type === 'Application')!.frame!
+    const coverFrame = id(presentedCover, 'one-native-cover-context-cover-content')!.frame!
+    if (coverFrame.width < appFrame.width - 4 || coverFrame.height < appFrame.height * 0.7)
+      throw new Error(`FullScreenCover did not fill the screen: ${JSON.stringify({ appFrame, coverFrame })}`)
+    screenshot('system-cover-open.png')
+    tap({ id: 'one-native-cover-context-cover-close' })
+    await wait('FullScreenCover dismisses and updates React state', (nodes) => {
+      return status(nodes, 'Cover presented', 'false') &&
+        status(nodes, 'Cover dismisses', '1') &&
+        Boolean(id(nodes, 'one-native-cover-context-cover-open')) &&
+        !labels(nodes).includes('Full Screen Cover') &&
+        !id(nodes, 'one-native-cover-context-cover-close')
+    })
+    screenshot('system-cover-closed.png')
+
+    tap({ id: 'one-native-cover-context-category-context' })
+    await wait('context trigger mounted', (nodes) =>
+      status(nodes, 'Category', 'Context') &&
+      Boolean(id(nodes, 'one-native-cover-context-context-trigger')) &&
+      !menuOpen(nodes) &&
+      !['Copy', 'Pin', 'Delete'].some((label) => labels(nodes).includes(label))
+    )
+    tap({ id: 'one-native-cover-context-context-trigger' })
+    await wait('tap does not open ContextMenu', (nodes) =>
+      status(nodes, 'Category', 'Context') &&
+      !menuOpen(nodes) &&
+      !['Copy', 'Pin', 'Delete'].some((label) => labels(nodes).includes(label))
+    )
+    const longPress = () => {
+      const trigger = id(snapshot(config.simulatorId), 'one-native-cover-context-context-trigger')?.frame
+      if (!trigger) throw new Error('ContextMenu trigger has no accessibility frame')
+      const output = axe([
+        'touch', '-x', String(Math.round(trigger.x + trigger.width / 2)),
+        '-y', String(Math.round(trigger.y + trigger.height / 2)),
+        '--down', '--up', '--delay', '0.9',
+      ], config.simulatorId)
+      if (output.includes('could not establish simulator input'))
+        throw new Error('ContextMenu long press lost simulator input')
+    }
+    longPress()
+    await wait('ContextMenu shows native actions and toggle', (nodes) =>
+      menuOpen(nodes)
+    )
+    screenshot('system-context-open.png')
+    tap({ label: 'Copy' })
+    await wait('ContextMenu action reaches React', (nodes) =>
+      status(nodes, 'Context action', 'copy') &&
+      status(nodes, 'Category', 'Context') &&
+      !menuOpen(nodes)
+    )
+    longPress()
+    await wait('ContextMenu can reopen', (nodes) =>
+      menuOpen(nodes)
+    )
+    tap({ label: 'Pin' })
+    await wait('ContextMenu toggle reaches React', (nodes) =>
+      status(nodes, 'Pinned', 'true') &&
+      status(nodes, 'Pin source index', '0') &&
+      status(nodes, 'Context action', 'copy') &&
+      !menuOpen(nodes)
+    )
+    screenshot('system-context-toggled.png')
+    longPress()
+    await wait('ContextMenu reopens with React toggle state', (nodes) =>
+      menuOpen(nodes) &&
+      status(nodes, 'Pinned', 'true')
+    )
+    // iOS 27 draws the native checkmark but does not expose it as AXValue.
+    screenshot('system-context-reopened-pinned.png')
+    point(20, 700)
+    await wait('ContextMenu dismisses without changing React state', (nodes) =>
+      status(nodes, 'Pinned', 'true') &&
+      !menuOpen(nodes)
+    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

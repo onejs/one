@@ -1436,6 +1436,12 @@ control alone:
 On a control, `swiftStyle.glassEffectTint` maps to `Glass.tint(_:)`, while
 `swiftStyle.tint` remains SwiftUI's separate `View.tint(_:)` environment modifier.
 
+`One.iOS.GlassEffectContainer` is SwiftUI's iOS 26 container for several glass
+effects. It composes native children into one SwiftUI tree so nearby effects can
+merge. `spacing` is an optional finite number in points, including signed values;
+omitting it passes `nil` to SwiftUI and keeps the system's default. Like a host,
+the container reports its measured height to React Native.
+
 ### Popovers
 
 `One.iOS.Popover` is both halves at once. Its children are the trigger, which composes

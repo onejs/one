@@ -1428,23 +1428,24 @@ export default {
               // react native 0.87 removed @react-native/assets-registry, but libraries
               // like react-native-svg still import its registry
               find: /^(react-native\/asset-registry|@react-native\/assets-registry\/registry)$/,
-              replacement: resolvePath(
-                'react-native-web/dist/modules/AssetRegistry',
-                options.root
-              ),
+              replacement: 'react-native-web/dist/modules/AssetRegistry',
             },
             {
               find: 'react-native/package.json',
-              replacement: resolvePath('react-native-web/package.json', options.root),
+              replacement: 'react-native-web/package.json',
             },
             {
               find: 'react-native',
-              replacement: resolvePath('react-native-web', options.root),
+              replacement: 'react-native-web',
             },
             ...Object.entries(absorbedPackageAliases(options.root, 'web')).map(
               ([find, replacement]) => ({ find, replacement })
             ),
           ],
+          // the aliases name react-native-web by package, so it resolves from
+          // the app root only once something imports react-native: an app
+          // with no react-native imports needs no react-native-web.
+          dedupe: ['react-native-web'],
         },
         build: {
           outDir,

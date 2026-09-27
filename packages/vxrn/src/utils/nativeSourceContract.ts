@@ -175,6 +175,33 @@ function parameters(file: string, list: Token[], language: 'swift' | 'kotlin'): 
   })
 }
 
+const DECLARATION_MODIFIERS = new Set([
+  'private', 'fileprivate', 'public', 'internal', 'open', 'override', 'static', 'class', 'final',
+  'suspend', 'inline', 'operator', 'infix', 'tailrec', 'external', 'nonisolated', 'isolated',
+  'mutating', 'nonmutating', 'dynamic', 'required', 'convenience', 'optional',
+])
+
+// a method's modifiers are the words and attributes directly before its keyword:
+// a property declared above it (`private var hits = 0`) is not part of it
+function declarationStart(list: Token[], floor: number, keyword: number): number {
+  let first = keyword
+  while (first > floor) {
+    const text = list[first - 1].text
+    if (DECLARATION_MODIFIERS.has(text)) { first--; continue }
+    if (list[first - 2]?.text === '@') { first -= 2; continue }
+    if (text === ')') {
+      let open = first - 1
+      for (let depth = 0; open > floor; open--) {
+        if (list[open].text === ')') depth++
+        if (list[open].text === '(' && --depth === 0) break
+      }
+      if (list[open - 2]?.text === '@') { first = open - 2; continue }
+    }
+    break
+  }
+  return first
+}
+
 function methods(file: string, list: Token[], start: number, end: number, language: 'swift' | 'kotlin'): NativeSourceMethod[] {
   const result: NativeSourceMethod[] = []
   let i = start + 1
@@ -183,7 +210,7 @@ function methods(file: string, list: Token[], start: number, end: number, langua
   while (i < end) {
     if (list[i].text === '{') { i = close(file, list, i, '{', '}') + 1; previous = i; continue }
     if (list[i].text !== keyword) { i++; continue }
-    const modifiers = list.slice(previous, i).map((token) => token.text)
+    const modifiers = list.slice(declarationStart(list, previous, i), i).map((token) => token.text)
     const hidden = modifiers.includes('private') || modifiers.includes('fileprivate')
     if (!hidden && (modifiers.includes('static') || modifiers.includes('class'))) {
       fail(file, list[i], 'static native exports are unsupported')

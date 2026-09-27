@@ -49,6 +49,7 @@ declare module 'one' {
         | `/one-native-contacts`
         | `/one-native-containers`
         | `/one-native-controls`
+        | `/one-native-cover-context`
         | `/one-native-crypto`
         | `/one-native-database`
         | `/one-native-device`
@@ -59,6 +60,7 @@ declare module 'one' {
         | `/one-native-fetch`
         | `/one-native-file-system`
         | `/one-native-fonts`
+        | `/one-native-glass-container`
         | `/one-native-gpu`
         | `/one-native-grids`
         | `/one-native-group-box`

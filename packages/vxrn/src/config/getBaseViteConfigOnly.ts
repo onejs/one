@@ -102,15 +102,18 @@ export async function getBaseViteConfig(
           // react native 0.87 removed @react-native/assets-registry, but libraries
           // like react-native-svg still import its registry
           find: /^(react-native\/asset-registry|@react-native\/assets-registry\/registry)$/,
-          replacement: resolvePath('react-native-web/dist/modules/AssetRegistry', root),
+          replacement: 'react-native-web/dist/modules/AssetRegistry',
         },
         {
           find: 'react-native/package.json',
-          replacement: resolvePath('react-native-web/package.json', root),
+          replacement: 'react-native-web/package.json',
         },
+        // named by package so it resolves (from the root, through dedupe) only
+        // once something imports react-native: an app with no react-native
+        // imports needs no react-native-web.
         {
           find: 'react-native',
-          replacement: resolvePath('react-native-web', root),
+          replacement: 'react-native-web',
         },
         // bundle size optimizations
         {

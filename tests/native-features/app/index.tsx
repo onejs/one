@@ -121,6 +121,11 @@ const testScreens = [
     testID: 'nav-one-native-editors',
   },
   {
+    href: '/one-native-glass-container',
+    label: 'One Native Glass Container',
+    testID: 'nav-one-native-glass-container',
+  },
+  {
     href: '/one-native-grids',
     label: 'One Native Grids',
     testID: 'nav-one-native-grids',
@@ -300,6 +305,11 @@ const testScreens = [
     href: '/one-native-tab-oracle',
     label: 'One Native Tab Bar Oracle',
     testID: 'nav-one-native-tab-oracle',
+  },
+  {
+    href: '/one-native-cover-context',
+    label: 'One Native Cover and Context',
+    testID: 'nav-one-native-cover-context',
   },
   {
     href: '/one-native-system',
