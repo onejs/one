@@ -6,6 +6,7 @@ import type {
   GlassEffect,
   GlassEffectShape,
   Material,
+  OneNativeStyle,
   OneNativeViewProps,
 } from './controlTypes'
 import type * as Styles from './swiftui'
@@ -58,6 +59,7 @@ export interface FormProps extends ViewProps, EnvironmentProps {
 export interface SectionProps extends ViewProps {
   title?: string
   footer?: string
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface LabeledContentProps extends ViewProps {

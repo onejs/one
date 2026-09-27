@@ -27,6 +27,7 @@ type Node = {
 const suites = [
   'tabs-menu',
   'pickers',
+  'picker-palette',
   'forms',
   'sheets',
   'leaves',
@@ -36,6 +37,10 @@ const suites = [
   'containers',
   'lists',
   'list-row-background',
+  'list-row-modifiers',
+  'list-section-modifiers',
+  'list-search-refresh',
+  'scroll-search-refresh',
   'groups',
   'state',
   'safe-area',
@@ -56,6 +61,7 @@ const suites = [
   'view-slot',
   'safe-area-bar',
   'linear-gradient',
+  'horizontal-inset',
   'swipe-actions',
   'disclosure-group',
   'control-group',
@@ -75,6 +81,7 @@ const suites = [
   'apple-file',
   'apple-auth',
   'local-authentication',
+  'protected-store',
   'location',
   'file-system',
   'audio',
@@ -259,6 +266,10 @@ const pickersLoaded = (nodes: Node[]) => {
     Boolean(id(nodes, 'one-native-control-category-color'))
   )
 }
+const pickerPaletteLoaded = (nodes: Node[]) =>
+  nodes.some((node) => node.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-picker-palette-screen')) &&
+  has(nodes, 'Palette: ')
 // the controls fixture swaps its body per category, so the status panel differs: the value
 // categories publish Value:/Request: and the focus category publishes its own focus state. the
 // category row is what stays mounted in every category, so the guard leans on that and accepts
@@ -299,6 +310,22 @@ const listsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-list-style')) &&
   has(nodes, 'List style: ')
+const listRowModifiersLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-list-row-modifiers-screen')) &&
+  has(nodes, 'Row modifiers: ')
+const listSectionModifiersLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-list-section-modifiers-screen')) &&
+  has(nodes, 'Section modifiers: ')
+const listSearchRefreshLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-list-search-refresh-screen')) &&
+  has(nodes, 'Refresh: ')
+const scrollSearchRefreshLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-scroll-search-refresh-screen')) &&
+  has(nodes, 'Refresh: ')
 const groupsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-groups-refuse')) &&
@@ -370,6 +397,9 @@ const safeAreaBarLoaded = (nodes: Node[]) =>
 const linearGradientLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-linear-gradient-screen'))
+const horizontalInsetLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-horizontal-inset-screen'))
 const swipeActionsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-swipe-actions-screen'))
@@ -444,6 +474,10 @@ const localAuthenticationLoaded = (nodes: Node[]) =>
       (node) =>
         node.type === 'Heading' && node.AXLabel === 'one-native-local-authentication'
     ))
+const protectedStoreLoaded = (nodes: Node[]) =>
+  (Boolean(id(nodes, 'protected-store-prepare')) && has(nodes, 'Status: ')) ||
+  (nodes.some((node) => node.type === 'Application') &&
+    nodes.some((node) => node.type === 'Heading' && node.AXLabel === 'one-native-protected-store'))
 const locationLoaded = (nodes: Node[]) =>
   (Boolean(id(nodes, 'one-native-location-request')) && has(nodes, 'Permission: ')) ||
   has(nodes, 'Allow While Using App')
@@ -533,6 +567,7 @@ const navigationLoaded = (nodes: Node[]) =>
 const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'tabs-menu': fixtureLoaded,
   pickers: pickersLoaded,
+  'picker-palette': pickerPaletteLoaded,
   forms: formsLoaded,
   sheets: sheetsLoaded,
   leaves: leavesLoaded,
@@ -542,6 +577,10 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   containers: containersLoaded,
   lists: listsLoaded,
   'list-row-background': listsLoaded,
+  'list-row-modifiers': listRowModifiersLoaded,
+  'list-section-modifiers': listSectionModifiersLoaded,
+  'list-search-refresh': listSearchRefreshLoaded,
+  'scroll-search-refresh': scrollSearchRefreshLoaded,
   groups: groupsLoaded,
   state: stateLoaded,
   'safe-area': safeAreaLoaded,
@@ -562,6 +601,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'view-slot': viewSlotLoaded,
   'safe-area-bar': safeAreaBarLoaded,
   'linear-gradient': linearGradientLoaded,
+  'horizontal-inset': horizontalInsetLoaded,
   'swipe-actions': swipeActionsLoaded,
   'disclosure-group': disclosureGroupLoaded,
   'control-group': controlGroupLoaded,
@@ -581,6 +621,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'apple-file': appleFileLoaded,
   'apple-auth': appleAuthLoaded,
   'local-authentication': localAuthenticationLoaded,
+  'protected-store': protectedStoreLoaded,
   location: locationLoaded,
   'file-system': fileSystemLoaded,
   audio: audioLoaded,
@@ -603,6 +644,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
 const suiteHome: Record<Suite, string> = {
   'tabs-menu': 'nav-one-native',
   pickers: 'nav-one-native-controls',
+  'picker-palette': 'nav-one-native-picker-palette',
   forms: 'nav-one-native-controls',
   sheets: 'nav-one-native-sheet',
   leaves: 'nav-one-native-leaves',
@@ -612,6 +654,10 @@ const suiteHome: Record<Suite, string> = {
   containers: 'nav-one-native-containers',
   lists: 'nav-one-native-lists',
   'list-row-background': 'nav-one-native-lists',
+  'list-row-modifiers': 'nav-one-native-list-row-modifiers',
+  'list-section-modifiers': 'nav-one-native-list-section-modifiers',
+  'list-search-refresh': 'nav-one-native-list-search-refresh',
+  'scroll-search-refresh': 'nav-one-native-scroll-search-refresh',
   groups: 'nav-one-native-groups',
   state: 'nav-one-native-state',
   'safe-area': 'nav-one-native-safe-area',
@@ -632,6 +678,7 @@ const suiteHome: Record<Suite, string> = {
   'view-slot': 'nav-one-native-view-slot',
   'safe-area-bar': 'nav-one-native-safe-area-bar',
   'linear-gradient': 'nav-one-native-linear-gradient',
+  'horizontal-inset': 'nav-one-native-horizontal-inset',
   'swipe-actions': 'nav-one-native-swipe-actions',
   'disclosure-group': 'nav-one-native-disclosure-group',
   'control-group': 'nav-one-native-control-group',
@@ -650,6 +697,7 @@ const suiteHome: Record<Suite, string> = {
   'apple-file': 'nav-one-native-apple-file',
   'apple-auth': 'nav-one-native-apple-auth',
   'local-authentication': 'nav-one-native-local-authentication',
+  'protected-store': 'nav-one-native-protected-store',
   location: 'nav-one-native-location',
   'file-system': 'nav-one-native-file-system',
   audio: 'nav-one-native-audio',
@@ -797,7 +845,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   // wrong route, so bring it fully on screen before tapping it.
   const tapNav = async (testID: string) => {
     await wait(`home lists ${testID}`, (nodes) => Boolean(id(nodes, testID)), true)
-    for (let attempt = 0; attempt < 12; attempt++) {
+    for (let attempt = 0; attempt <= 12; attempt++) {
       const nodes = snapshot(config.simulatorId)
       const app = nodes.find((node) => node.type === 'Application')?.frame
       if (!app) throw new Error(`Home row ${testID} disappeared while scrolling`)
@@ -820,6 +868,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         }, true)
         return tap({ id: testID })
       }
+      // observe the position after the final swipe before declaring it unreachable.
+      if (attempt === 12) break
       // a row below the viewport needs the list pushed up, and one the swipe already
       // carried past the top needs it pulled back down: scrolling one direction only
       // walks past an overshot row and never comes back to it.
@@ -989,6 +1039,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       { stdio: 'ignore', timeout: 30_000 }
     )
   }
+  if (config.suite === 'protected-store') {
+    execFileSync(
+      'applesimutils',
+      ['--byId', config.simulatorId, '--biometricEnrollment', 'YES'],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
+  }
   if (config.suite === 'location') {
     execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'location', config.bundleId], {
       stdio: 'ignore',
@@ -1081,6 +1138,24 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       { stdio: 'ignore', timeout: 30_000 }
     )
   launchApp()
+  // a freshly booted simulator can accept launch before its automation session is ready.
+  const automationStarted = Date.now()
+  while (true) {
+    try {
+      const [root] = JSON.parse(axe(['describe-ui'], config.simulatorId)) as Node[]
+      if (root?.type === 'Application' && root.frame) {
+        checks.push({ name: 'simulator automation session ready', durationMs: Date.now() - automationStarted })
+        console.log('PASS simulator automation session ready')
+        break
+      }
+    } catch (error) {
+      if (!String(error).includes('Timed out creating the simulator remote automation session'))
+        throw error
+    }
+    if (Date.now() - automationStarted >= config.timeout)
+      throw new Error('Simulator automation session did not become ready after launch')
+    await Bun.sleep(250)
+  }
   if (config.suite === 'sheets') {
     let expectedCount = 1
     const retained = (nodes: Node[]) =>
@@ -1946,13 +2021,22 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const label = box(n, 'Standalone label')?.height ?? 0
       return text > 0 && label > text && label < text * 3
     })
-    // a Form is height-greedy and reports nothing, so it has to fill its Yoga box.
+    // a Form is height-greedy and reports nothing. Its measured Yoga width and
+    // native row widths must agree on either supported iPhone viewport.
     await wait(
-      'a Form fills the exact box React Native gave it',
-      (n) =>
-        status(n, 'Form', '361 x 508') &&
-        box(n, 'Details')?.width === 329 &&
-        id(n, 'one-native-container-slot')?.frame?.width === 297
+      'a Form fills the measured React Native width',
+      (n) => {
+        const app = n.find((node) => node.type === 'Application')?.frame
+        const size = labels(n).find((label) => /^Form: \d+ x \d+$/.test(label))
+          ?.match(/^Form: (\d+) x (\d+)$/)
+        const width = Number(size?.[1])
+        const height = Number(size?.[2])
+        return Boolean(app && size &&
+          Math.abs(width - (app.width - 32)) <= 1 &&
+          height > app.height / 2 && height < app.height - 200 &&
+          Math.abs((box(n, 'Details')?.width ?? 0) - (width - 32)) <= 1 &&
+          Math.abs((id(n, 'one-native-container-slot')?.frame?.width ?? 0) - (width - 64)) <= 1)
+      }
     )
     await wait(
       'a Section renders its rows inside the Form',
@@ -2053,6 +2137,301 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'IsOn', 'true')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'scroll-search-refresh') {
+    const searchField = (nodes: Node[]) => nodes.find((node) =>
+      node.type === 'TextField' &&
+      node.AXUniqueId !== 'quick-navigate-path-input' &&
+      (node.frame?.width ?? 0) > 100
+    )
+    const pull = (nodes: Node[]) => {
+      const screen = id(nodes, 'one-native-scroll-search-refresh-screen')?.frame
+      if (!screen) throw new Error('Search and refresh screen has no frame')
+      axe([
+        'swipe', '--start-x', String(Math.round(screen.x + screen.width / 2)),
+        '--start-y', String(Math.round(screen.y + screen.height * 0.45)),
+        '--end-x', String(Math.round(screen.x + screen.width / 2)),
+        '--end-y', String(Math.round(screen.y + screen.height * 0.8)),
+        '--duration', '0.8',
+      ], config.simulatorId)
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-scroll-search-refresh')
+    const mounted = await wait('searchable ScrollView and rows mount', (nodes) =>
+      has(nodes, 'Apple') && Boolean(searchField(nodes)?.frame)
+    )
+    screenshot('scroll-search-refresh-initial.png', mounted)
+    pull(mounted)
+    const refreshing = await wait('pull starts native ScrollView refresh action', (nodes) =>
+      has(nodes, 'Refresh: 1 started, 0 completed')
+    )
+    screenshot('scroll-search-refresh-pending.png', refreshing)
+    tap({ id: 'one-native-scroll-refresh-release' })
+    const completed = await wait('ScrollView refresh callback completes after promise resolves', (nodes) =>
+      has(nodes, 'Refresh: 1 started, 1 completed')
+    )
+    pull(completed)
+    await wait('native ScrollView accepts a second pull after completion', (nodes) =>
+      has(nodes, 'Refresh: 2 started, 1 completed')
+    )
+    tap({ id: 'one-native-scroll-refresh-release' })
+    await wait('second ScrollView refresh callback completes', (nodes) =>
+      has(nodes, 'Refresh: 2 started, 2 completed')
+    )
+    tap({ id: 'one-native-scroll-search-external' })
+    const external = await wait('controlled ScrollView search receives external text', (nodes) =>
+      has(nodes, 'Query: pear') && has(nodes, 'Pear') && !has(nodes, 'Apple') &&
+      String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pear'
+    )
+    screenshot('scroll-search-refresh-external.png', external)
+    tap({ id: 'one-native-scroll-search-clear' })
+    const cleared = await wait('external clear restores native search field and scroll rows', (nodes) =>
+      has(nodes, 'Query: ') && has(nodes, 'Apple') &&
+      String(searchField(nodes)?.AXValue ?? '') === 'Search'
+    )
+    const field = searchField(cleared)?.frame
+    if (!field) throw new Error('Native search field has no frame')
+    point(field.x + field.width / 2, field.y + field.height / 2)
+    await typeInto('native ScrollView search field', 'pea', (nodes) => searchField(nodes)?.AXValue)
+    const typed = await wait('native search edit changes React binding and scroll rows', (nodes) =>
+      labels(nodes).some((label) => label.toLowerCase() === 'query: pea') &&
+      has(nodes, 'Pear') && has(nodes, 'Peach') &&
+      !has(nodes, 'Apple') && String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pea'
+    )
+    screenshot('scroll-search-refresh-typed.png', typed)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'list-search-refresh') {
+    const searchField = (nodes: Node[]) => nodes.find((node) =>
+      node.type === 'TextField' &&
+      node.AXUniqueId !== 'quick-navigate-path-input' &&
+      (node.frame?.width ?? 0) > 100
+    )
+    const pull = (nodes: Node[]) => {
+      const list = id(nodes, 'one-native-list-search-refresh-screen')?.frame
+      if (!list) throw new Error('Search and refresh screen has no frame')
+      axe([
+        'swipe', '--start-x', String(Math.round(list.x + list.width / 2)),
+        '--start-y', String(Math.round(list.y + list.height * 0.45)),
+        '--end-x', String(Math.round(list.x + list.width / 2)),
+        '--end-y', String(Math.round(list.y + list.height * 0.8)),
+        '--duration', '0.8',
+      ], config.simulatorId)
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-list-search-refresh')
+    const mounted = await wait('searchable List and rows mount', (nodes) =>
+      has(nodes, 'Apple') && Boolean(searchField(nodes)?.frame)
+    )
+    screenshot('list-search-refresh-initial.png', mounted)
+    pull(mounted)
+    const refreshing = await wait('pull starts native refresh action', (nodes) =>
+      has(nodes, 'Refresh: 1 started, 0 completed')
+    )
+    screenshot('list-search-refresh-pending.png', refreshing)
+    tap({ id: 'one-native-list-refresh-release' })
+    const completed = await wait('native refresh action completes after promise resolves', (nodes) =>
+      has(nodes, 'Refresh: 1 started, 1 completed')
+    )
+    pull(completed)
+    await wait('native List accepts a second pull after completion', (nodes) =>
+      has(nodes, 'Refresh: 2 started, 1 completed')
+    )
+    tap({ id: 'one-native-list-refresh-release' })
+    await wait('second refresh action completes', (nodes) =>
+      has(nodes, 'Refresh: 2 started, 2 completed')
+    )
+    tap({ id: 'one-native-list-search-external' })
+    const external = await wait('controlled search receives external text', (nodes) =>
+      has(nodes, 'Query: pear') && has(nodes, 'Pear') && !has(nodes, 'Apple') &&
+      String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pear'
+    )
+    screenshot('list-search-refresh-external.png', external)
+    tap({ id: 'one-native-list-search-clear' })
+    const cleared = await wait('external clear restores native search field and rows', (nodes) =>
+      has(nodes, 'Query: ') && has(nodes, 'Apple') &&
+      String(searchField(nodes)?.AXValue ?? '') === 'Search'
+    )
+    const field = searchField(cleared)?.frame
+    if (!field) throw new Error('Native search field has no frame')
+    point(field.x + field.width / 2, field.y + field.height / 2)
+    await typeInto('native searchable field', 'pea', (nodes) => searchField(nodes)?.AXValue)
+    const typed = await wait('native search edit changes React binding and filters rows', (nodes) =>
+      labels(nodes).some((label) => label.toLowerCase() === 'query: pea') &&
+      has(nodes, 'Pear') && has(nodes, 'Peach') &&
+      !has(nodes, 'Apple') && String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pea'
+    )
+    screenshot('list-search-refresh-typed.png', typed)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'list-section-modifiers') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-list-section-modifiers')
+    const compact = await wait('native List sections mount', (nodes) =>
+      labels(nodes).includes('Section modifiers: compact') &&
+      labels(nodes).includes('First section') &&
+      labels(nodes).includes('Second section') &&
+      labels(nodes).includes('Apple row') && labels(nodes).includes('Banana row'))
+    const compactPath = screenshot('list-section-modifiers-compact.png', compact)
+    tap({ id: 'one-native-list-section-modifiers-toggle' })
+    await wait('React expands native List sections', (nodes) =>
+      labels(nodes).includes('Section modifiers: expanded') &&
+      labels(nodes).includes('First section') &&
+      labels(nodes).includes('Second section') &&
+      labels(nodes).includes('Apple row') && labels(nodes).includes('Banana row'))
+    await Bun.sleep(300)
+    const expanded = snapshot(config.simulatorId)
+    const expandedPath = screenshot('list-section-modifiers-expanded.png', expanded)
+    tap({ id: 'one-native-list-section-modifiers-toggle' })
+    await wait('React restores native List sections', (nodes) =>
+      labels(nodes).includes('Section modifiers: compact') &&
+      labels(nodes).includes('Apple row') && labels(nodes).includes('Banana row'))
+    await Bun.sleep(300)
+    const restored = snapshot(config.simulatorId)
+    const restoredPath = screenshot('list-section-modifiers-restored.png', restored)
+    const frame = (nodes: Node[], label: string, type: string) =>
+      nodes.find((node) => node.AXLabel === label && node.type === type && node.frame)?.frame
+    const firstCompact = frame(compact, 'First section', 'Heading')
+    const firstExpanded = frame(expanded, 'First section', 'Heading')
+    const firstRestored = frame(restored, 'First section', 'Heading')
+    const secondCompact = frame(compact, 'Second section', 'Heading')
+    const secondExpanded = frame(expanded, 'Second section', 'Heading')
+    const secondRestored = frame(restored, 'Second section', 'Heading')
+    const appleCompact = frame(compact, 'Apple row', 'StaticText')
+    const appleExpanded = frame(expanded, 'Apple row', 'StaticText')
+    const appleRestored = frame(restored, 'Apple row', 'StaticText')
+    const bananaCompact = frame(compact, 'Banana row', 'StaticText')
+    const bananaExpanded = frame(expanded, 'Banana row', 'StaticText')
+    const bananaRestored = frame(restored, 'Banana row', 'StaticText')
+    if (!firstCompact || !firstExpanded || !firstRestored || !secondCompact ||
+        !secondExpanded || !secondRestored || !appleCompact || !appleExpanded || !appleRestored ||
+        !bananaCompact || !bananaExpanded || !bananaRestored)
+      throw new Error('Native List section proof lost a header or row frame')
+    const geometry = {
+      firstCompact, firstExpanded, firstRestored,
+      secondCompact, secondExpanded, secondRestored,
+      appleCompact, appleExpanded, appleRestored,
+      bananaCompact, bananaExpanded, bananaRestored,
+    }
+    if (firstExpanded.x - firstCompact.x < 50 ||
+        appleExpanded.x - appleCompact.x < 50 ||
+        firstExpanded.height - firstCompact.height < 2 ||
+        secondExpanded.y - secondCompact.y < 80 ||
+        Math.abs(secondExpanded.x - secondCompact.x) > 1 ||
+        Math.abs(secondExpanded.height - secondCompact.height) > 1 ||
+        Math.abs(bananaExpanded.x - bananaCompact.x) > 1 ||
+        Math.abs(firstRestored.x - firstCompact.x) > 1 ||
+        Math.abs(appleRestored.x - appleCompact.x) > 1 ||
+        Math.abs(secondRestored.y - secondCompact.y) > 1 ||
+        Math.abs(bananaRestored.x - bananaCompact.x) > 1)
+      throw new Error(`SwiftUI List section modifiers did not update and restore: ${JSON.stringify(geometry)}`)
+    checks.push({ name: 'SwiftUI section margins, header prominence, and spacing update and restore', durationMs: 0 })
+    const app = compact.find((node) => node.type === 'Application')?.frame
+    if (!app) throw new Error('Native List section proof lost the app viewport')
+    const region = { x: 20, y: 210, width: 340, height: 280, viewportWidth: app.width }
+    const pixels = {
+      changed: countChangedPixels(compactPath, expandedPath, region, 8),
+      restored: countChangedPixels(compactPath, restoredPath, region, 8),
+    }
+    fs.writeFileSync(path.join(config.artifactDir, 'list-section-modifiers-measurements.json'),
+      JSON.stringify({ geometry, pixels }, null, 2))
+    if (pixels.changed.changed < 10_000 || pixels.restored.changed > 100)
+      throw new Error(`SwiftUI List section screenshots did not update and restore: ${JSON.stringify(pixels)}`)
+    checks.push({ name: 'SwiftUI section screenshots change and restore inside the List', durationMs: 0 })
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'list-row-modifiers') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-list-row-modifiers')
+    const defaultRows = await wait('native list row modifiers mount', (nodes) =>
+      labels(nodes).includes('Row modifiers: default') &&
+      labels(nodes).includes('Inset row') && labels(nodes).includes('Control row'))
+    const defaultPath = screenshot('list-row-modifiers-default.png')
+    tap({ id: 'one-native-list-row-modifiers-toggle' })
+    const customRows = await wait('React updates native list row modifiers', (nodes) =>
+      labels(nodes).includes('Row modifiers: custom') &&
+      labels(nodes).includes('Inset row') && labels(nodes).includes('Control row'))
+    await Bun.sleep(300)
+    const customPath = screenshot('list-row-modifiers-custom.png')
+    tap({ id: 'one-native-list-row-modifiers-toggle' })
+    const restoredRows = await wait('React restores native list row modifiers', (nodes) =>
+      labels(nodes).includes('Row modifiers: default') &&
+      labels(nodes).includes('Inset row') && labels(nodes).includes('Control row'))
+    await Bun.sleep(300)
+    const restoredPath = screenshot('list-row-modifiers-restored.png')
+    const frame = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.AXLabel === label && node.frame)?.frame
+    const inset = frame(defaultRows, 'Inset row')
+    const control = frame(defaultRows, 'Control row')
+    const fixed = frame(defaultRows, 'Fixed inset')
+    const app = defaultRows.find((node) => node.type === 'Application')?.frame
+    if (!inset || !control || !fixed || !app)
+      throw new Error('List row modifier proof lost native row or application frames')
+    const scale = readPng(defaultPath).width / app.width
+    const sample = (file: string, row: NonNullable<Node['frame']>) => {
+      const png = readPng(file)
+      const left = Math.round((row.x + 4) * scale)
+      const right = Math.round((row.x + row.width - 4) * scale)
+      const textTop = Math.round((row.y + 13) * scale)
+      const textBottom = Math.round((row.y + 38) * scale)
+      let inkLeft = Number.POSITIVE_INFINITY
+      for (let y = textTop; y < textBottom; y++) {
+        for (let x = left; x < right; x++) {
+          const at = (y * png.width + x) * 4
+          if (png.data[at]! < 220 && png.data[at + 1]! < 220 && png.data[at + 2]! < 220)
+            inkLeft = Math.min(inkLeft, x)
+        }
+      }
+      const separatorTop = Math.round((row.y + row.height - 2) * scale)
+      const separatorBottom = Math.round((row.y + row.height + 2) * scale)
+      let redSeparatorPixels = 0
+      let separatorInkPixels = 0
+      for (let y = separatorTop; y < separatorBottom; y++) {
+        for (let x = left; x < right; x++) {
+          const at = (y * png.width + x) * 4
+          if (png.data[at]! > 240 && png.data[at + 1]! < 100 && png.data[at + 2]! < 100)
+            redSeparatorPixels++
+          if (png.data[at]! < 235 || png.data[at + 1]! < 235 || png.data[at + 2]! < 235)
+            separatorInkPixels++
+        }
+      }
+      return { inkLeft: inkLeft / scale, redSeparatorPixels, separatorInkPixels }
+    }
+    const pixels = {
+      insetBefore: sample(defaultPath, inset),
+      insetAfter: sample(customPath, inset),
+      insetRestored: sample(restoredPath, inset),
+      controlBefore: sample(defaultPath, control),
+      controlAfter: sample(customPath, control),
+      controlRestored: sample(restoredPath, control),
+      fixedBefore: sample(defaultPath, fixed),
+      fixedAfter: sample(customPath, fixed),
+      fixedRestored: sample(restoredPath, fixed),
+    }
+    fs.writeFileSync(path.join(config.artifactDir, 'list-row-modifiers-pixels.json'),
+      JSON.stringify({ pixels, frames: { inset, control, fixed }, scale }, null, 2))
+    if (pixels.insetAfter.inkLeft - pixels.insetBefore.inkLeft < 50 ||
+        Math.abs(pixels.insetRestored.inkLeft - pixels.insetBefore.inkLeft) > 2 ||
+        Math.abs(pixels.controlAfter.inkLeft - pixels.controlBefore.inkLeft) > 2 ||
+        Math.abs(pixels.controlRestored.inkLeft - pixels.controlBefore.inkLeft) > 2 ||
+        Math.abs(pixels.fixedAfter.inkLeft - pixels.fixedBefore.inkLeft) > 2 ||
+        Math.abs(pixels.fixedRestored.inkLeft - pixels.fixedBefore.inkLeft) > 2 ||
+        pixels.insetBefore.redSeparatorPixels < 500 ||
+        pixels.insetAfter.separatorInkPixels > 20 ||
+        pixels.insetRestored.redSeparatorPixels < 500)
+      throw new Error(`SwiftUI List row inset/separator did not update only the target row: ${JSON.stringify(pixels)}`)
+    checks.push({ name: 'SwiftUI List row inset and separator update only the target row', durationMs: 0 })
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -3162,6 +3541,44 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ label: 'Bottom bar action' })
     const tapped = await wait('bottom safe-area bar action reaches React', (nodes) => labels(nodes).includes('Bottom taps: 1'))
     screenshot('safe-area-bars-tapped.png', tapped)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'horizontal-inset') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-horizontal-inset')
+    const mounted = await wait('native leading and trailing safe-area insets mount', (nodes) =>
+      labels(nodes).includes('Leading base') &&
+      labels(nodes).includes('Trailing base') &&
+      labels(nodes).includes('Leading inset action') &&
+      labels(nodes).includes('Trailing inset action') &&
+      Boolean(id(nodes, 'one-native-horizontal-inset-leading')?.frame) &&
+      Boolean(id(nodes, 'one-native-horizontal-inset-trailing')?.frame))
+    const leadingHost = id(mounted, 'one-native-horizontal-inset-leading')!.frame!
+    const trailingHost = id(mounted, 'one-native-horizontal-inset-trailing')!.frame!
+    const leadingAction = mounted.find((node) => node.AXLabel === 'Leading inset action')?.frame
+    const trailingAction = mounted.find((node) => node.AXLabel === 'Trailing inset action')?.frame
+    const leadingBase = mounted.find((node) => node.AXLabel === 'Leading base')?.frame
+    const trailingBase = mounted.find((node) => node.AXLabel === 'Trailing base')?.frame
+    const inside = (child: NonNullable<Node['frame']>, host: NonNullable<Node['frame']>) =>
+      child.x >= host.x - 1 && child.y >= host.y - 1 &&
+      child.x + child.width <= host.x + host.width + 1 &&
+      child.y + child.height <= host.y + host.height + 1
+    if (!leadingAction || !trailingAction || !leadingBase || !trailingBase ||
+        leadingAction.x + leadingAction.width > leadingBase.x + 2 ||
+        trailingAction.x < trailingBase.x + trailingBase.width - 2 ||
+        !inside(leadingAction, leadingHost) || !inside(leadingBase, leadingHost) ||
+        !inside(trailingAction, trailingHost) || !inside(trailingBase, trailingHost))
+      throw new Error(`Native horizontal safe-area insets did not flank their base views: ${JSON.stringify({ leadingHost, trailingHost, leadingBase, trailingBase, leadingAction, trailingAction })}`)
+    checks.push({ name: 'native safe-area insets flank their base views inside each host', durationMs: 0 })
+    console.log('PASS native safe-area insets flank their base views inside each host')
+    screenshot('horizontal-insets-initial.png', mounted)
+    tap({ label: 'Leading inset action' })
+    await wait('leading safe-area inset action reaches React', (nodes) => labels(nodes).includes('Leading taps: 1'))
+    tap({ label: 'Trailing inset action' })
+    const tapped = await wait('trailing safe-area inset action reaches React', (nodes) => labels(nodes).includes('Trailing taps: 1'))
+    screenshot('horizontal-insets-tapped.png', tapped)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -5559,6 +5976,63 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
+  if (config.suite === 'picker-palette') {
+    const group = (nodes: Node[], testID: string) =>
+      nodes.find((node) => node.type === 'TabGroup' && node.AXUniqueId === testID && node.frame)?.frame
+    const option = (nodes: Node[], testID: string, label: string) => {
+      const frame = group(nodes, testID)
+      if (!frame) return undefined
+      return nodes.find((node) =>
+        node.type === 'RadioButton' && node.AXLabel === label && node.frame &&
+        Math.abs(node.frame.y - frame.y) <= 1 &&
+        node.frame.x >= frame.x - 1 &&
+        node.frame.x + node.frame.width <= frame.x + frame.width + 1
+      )
+    }
+    const tapOption = (testID: string, label: string) => {
+      const frame = option(snapshot(config.simulatorId), testID, label)?.frame
+      if (!frame) throw new Error(`${testID} has no ${label} radio option`)
+      point(frame.x + frame.width / 2, frame.y + frame.height / 2)
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-picker-palette')
+    const initial = await wait('palette renders the native segmented fallback', (nodes) => {
+      const palette = group(nodes, 'one-native-picker-palette')
+      const segmented = group(nodes, 'one-native-picker-segmented')
+      return Boolean(
+        has(nodes, 'Palette: alpha') && has(nodes, 'Segmented: alpha') &&
+        palette && segmented &&
+        Math.abs(palette.width - segmented.width) <= 1 &&
+        Math.abs(palette.height - segmented.height) <= 1 &&
+        ['Alpha', 'Beta', 'Gamma'].every((label) =>
+          option(nodes, 'one-native-picker-palette', label) &&
+          option(nodes, 'one-native-picker-segmented', label)
+        ) &&
+        String(option(nodes, 'one-native-picker-palette', 'Alpha')?.AXValue) === '1'
+      )
+    })
+    screenshot('picker-palette-initial.png', initial)
+    tapOption('one-native-picker-palette', 'Beta')
+    const beta = await wait('palette radio tap updates controlled selection', (nodes) =>
+      has(nodes, 'Palette: beta') && has(nodes, 'Segmented: alpha') &&
+      String(option(nodes, 'one-native-picker-palette', 'Beta')?.AXValue) === '1'
+    )
+    screenshot('picker-palette-beta.png', beta)
+    tap({ id: 'one-native-picker-palette-external' })
+    await wait('external palette selection reaches native radio', (nodes) =>
+      has(nodes, 'Palette: gamma') &&
+      String(option(nodes, 'one-native-picker-palette', 'Gamma')?.AXValue) === '1'
+    )
+    tapOption('one-native-picker-segmented', 'Beta')
+    const independent = await wait('segmented reference remains independently controlled', (nodes) =>
+      has(nodes, 'Palette: gamma') && has(nodes, 'Segmented: beta') &&
+      String(option(nodes, 'one-native-picker-segmented', 'Beta')?.AXValue) === '1'
+    )
+    screenshot('picker-palette-final.png', independent)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
   if (config.suite === 'pickers') {
     // match the segmented control by its native component identity and exact xcode 26.4 bounds,
     // so the tap cannot silently address a different tab group.
@@ -6231,6 +6705,51 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Result: success')
     )
     screenshot('local-auth-success.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'protected-store') {
+    const prompt = (nodes: Node[]) =>
+      nodes.some((node) => node.type === 'Application') &&
+      !id(nodes, 'protected-store-prepare') &&
+      nodes.some((node) =>
+        node.type === 'Heading' && node.AXLabel === 'one-native-protected-store')
+    const match = () => execFileSync(
+      'applesimutils', ['--byId', config.simulatorId, '--biometricMatch'],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
+    const finish = async (button: string, stage: string, name: string) => {
+      tap({ id: button })
+      await wait(`${name} presents system authentication`, prompt)
+      match()
+      await wait(`${name} completes`, (nodes) => labels(nodes).includes(`Status: ${stage}`))
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-protected-store')
+    await wait('protected store starts idle', (nodes) =>
+      labels(nodes).includes('Status: idle') && Boolean(id(nodes, 'protected-store-prepare')))
+    tap({ id: 'protected-store-prepare' })
+    await wait('both access policies create and input errors are reported', (nodes) =>
+      labels(nodes).includes('Status: prepared') &&
+      labels(nodes).includes('Result: missing=null; invalid=E_PROTECTED_STORE_INPUT; duplicate=E_PROTECTED_STORE_EXISTS'))
+    tap({ id: 'protected-store-read-biometry' })
+    await wait('current-biometry Keychain read presents system Face ID', prompt)
+    screenshot('protected-store-biometry-prompt.png')
+    match()
+    await wait('current-biometry item reads after Face ID match', (nodes) =>
+      labels(nodes).includes('Status: biometry-read') &&
+      labels(nodes).some((label) => label.includes('biometric=v1')))
+    await finish('protected-store-read-presence', 'presence-read', 'user-presence read')
+    await finish('protected-store-update', 'updated', 'protected value update')
+    await finish('protected-store-read-updated', 'updated-read', 'updated value read')
+    await finish('protected-store-delete-biometry', 'biometry-deleted', 'biometric item deletion')
+    await finish('protected-store-cleanup', 'passed', 'user-presence item deletion')
+    await wait('protected items round trip and are removed', (nodes) =>
+      labels(nodes).includes(
+        'Result: missing=null; invalid=E_PROTECTED_STORE_INPUT; duplicate=E_PROTECTED_STORE_EXISTS; biometric=v1; presence=vp; updated=v2; absent=null; missingUpdate=E_PROTECTED_STORE_NOT_FOUND'
+      ))
+    screenshot('protected-store-round-trip.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

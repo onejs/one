@@ -48,7 +48,7 @@ The remaining partial surfaces are:
 | family | partial or missing behavior | priority |
 | --- | --- | --- |
 | menus and context menus | data-driven items work; primary actions, context previews, and a Picker embedded in menu content are not represented | after core views |
-| pickers | standalone controls work; `navigationLink` and `palette` Picker styles are rejected without their native container context | after core views |
+| pickers | standalone `palette` presented as segmented on iOS 27 iPhone; earlier iOS, Picker inside Menu, and `navigationLink` context remain unproven | after core views |
 | popovers | trigger and React Native presentation body work; `attachmentAnchor` is not bound | after core views |
 | navigation | `NavigationStack` and toolbars exist; `NavigationSplitView` and `NavigationLink` are outside this lane because One owns routed navigation | coordinate before admission |
 | list editing | `EditButton` label toggles Edit/Done; `List` edit state has no independent observer and delete/move row actions are unavailable | after core views |
@@ -71,22 +71,123 @@ accounts are unavailable).
 
 ## Status
 
-- **RAN, 2026-09-27:** SwiftUI `LinearGradient(colors:startPoint:endPoint:)`
-  is implemented on named branch `one-native-linear-gradient`. On ci-64, an
-  iPhone 17 Pro simulator running iOS 27.0 passed the focused 14-check suite
-  at source revision `42c02938b`: the React Native `backgroundImage` baseline
-  and native gradient painted red above blue; React updates reversed the native
-  colors, rendered one and three colors, switched to horizontal points, applied
-  alpha over a yellow underlay, and made an empty gradient transparent. An
-  unlabeled native gradient was absent from AX while a labeled one appeared.
-  Saved AX snapshots, PNGs,
-  sampled RGB values, outcome, and build environment are in ignored
-  `tests/native-features/build/linear-gradient-final-14-proof`. The side-by-side
-  `react-native-vs-swiftui.webp` shows their differing interpolation. Native build
-  passed with Xcode 27.1. The proposed public representation is an array of
-  sRGB hex colors plus normalized `{ x, y }` points; arbitrary SwiftUI `Color`
-  values and explicit stops remain unbound. **Nate's API approval is required
-  before this branch merges.**
+- **RAN, 2026-09-27:** `One.iOS.LinearGradient` invokes SwiftUI's
+  `LinearGradient(colors:startPoint:endPoint:)` and passed a focused 14-check
+  iPhone 17 Pro / iOS 27.0 suite at source `42c02938b` with Xcode 27.1.
+  Native colors painted, reversed, accepted one and three stops, used custom
+  horizontal points and alpha, and left the box transparent for an empty
+  array. The unlabeled gradient was decorative in AX; a labeled gradient
+  remained accessible. The tracked
+  `tests/native-features/proofs/linear-gradient` bundle preserves seven
+  AX/PNG pairs, sampled RGB values, outcome, runtime metadata, generation
+  check, and RN-versus-SwiftUI WebP. The public bridge accepts sRGB hex colors
+  and normalized `{ x, y }` points; arbitrary SwiftUI `Color` values and
+  explicit stops remain unbound. This is native conformance for the supported
+  initializer, with the gap disclosed in docs and coverage.
+
+- **RAN, 2026-09-27:** the `horizontal-inset` suite passed nine checks on
+  ci-64's iPhone 17 Pro / iOS 27.0 simulator with Xcode 27.1. The generated
+  SwiftUI `safeAreaInsetWithHorizontalEdge` slot placed its action eight points
+  left of the base for `leading` and eight points right for `trailing`, within
+  separate 280 × 180 point hosts; both native buttons reached React. The
+  tracked `tests/native-features/proofs/horizontal-inset` bundle contains two
+  AX/PNG pairs, measurements, outcome, a WebP, and source/runtime/binary
+  receipt. Its generated ViewSlot and Overlay host Swift blobs match the
+  earlier native build. Scroll content and other container sizes are unproven.
+
+- **RAN, 2026-09-27:** the focused `picker-palette` suite passed nine checks on
+  ci-64's iPhone 17 Pro / iOS 27.0 simulator with Xcode 27.1. The standalone
+  palette and explicit segmented Picker exposed matching 362 × 31 point native
+  TabGroup frames without a fixture width style, plus Alpha/Beta/Gamma radio
+  options. A native Beta tap changed only
+  the palette selection, an external React update selected Gamma, and a tap
+  on the segmented reference changed only that control. The tracked
+  `tests/native-features/proofs/picker-palette` bundle contains three AX/PNG
+  pairs, outcome, side-by-side WebP, and a receipt for suite source
+  `972728c59`, regenerated JavaScript, and matching built/installed native
+  debug dylib hashes. Picker Swift source blobs are identical to the earlier
+  binary build. Earlier iOS, Picker inside Menu, and `navigationLink` remain
+  unproven.
+
+- **RAN, 2026-09-27:** the `scroll-search-refresh` suite passed 13 checks
+  (nine feature checks and four navigation/harness checks) on
+  ci-64's iPhone 17 Pro / iOS 27.0 simulator at source `a6c29f54f`, Xcode
+  27.1, with native iOS tree
+  `c9fde9de93d0a91d333f8a29923582cfbc720db7`. The later protected-store
+  merge added a separate Nitro file; the ScrollView, NavigationStack, style,
+  and async bridge source files match the proof build. The tracked
+  `tests/native-features/proofs/scroll-search-refresh` bundle contains four
+  compressed AX/PNG pairs, outcome, runtime and matching built/installed
+  code-bearing dylib hashes, and a side-by-side WebP. Pulling a vertical
+  `ScrollView` invoked `refreshable` twice, with the second pull after the
+  first JS promise resolved. A surrounding `NavigationStack` presented the
+  native search field; external React state and native typing both updated
+  the filtered scroll content. Indicator duration, standalone search hosting,
+  and horizontal/both-axis scrolls remain unproven.
+
+- **RAN, 2026-09-27:** a focused `list-search-refresh` suite passed on ci-64's
+  iPhone 17 Pro / iOS 27.0 simulator, Xcode 27.1, suite source `a11f9e9fd`
+  and native iOS tree `c9fde9de93d0a91d333f8a29923582cfbc720db7`
+  built at `db32abfd6`. The
+  `tests/native-features/proofs/list-search-refresh` directory tracks the
+  13-check outcome, four compressed AX/PNG pairs, source/runtime receipt,
+  matching built/installed code-bearing debug dylib hashes, the reused native
+  build log, and a side-by-side WebP. Pulling the plain List invoked
+  `refreshable` twice; the fixture kept its JS callback pending until release,
+  then a second pull invoked it again. Native indicator duration is unmeasured. The
+  native search field appeared when `searchable` was on the surrounding
+  `NavigationStack`: external React text changed the field and filtered rows,
+  then typing into the field changed React text and filtered rows. A standalone
+  List host did not present a search field in this iOS 27 run, so docs use the
+  NavigationStack host. ScrollView has a separate vertical proof above;
+  cancellation and other search placements remain unproven.
+
+- **RAN, 2026-09-27:** `One.iOS.List` and `One.iOS.Section` now accept the
+  existing `swiftStyle` modifier channel. The iPhone 17 Pro / iOS 27.0
+  simulator ran native source `db32abfd6` built with Xcode 27.1 and suite
+  source `17232ac50` (native iOS tree
+  `c9fde9de93d0a91d333f8a29923582cfbc720db7`). The nine-check
+  `list-section-modifiers` suite passed:
+  `listSectionMargins` moved the first section and its Apple row from x=36
+  to x=100 and back, `headerProminence` grew the first header from 40.33 to
+  44 points and back, and `listSectionSpacingWithCGFloat` moved the second
+  section from y=321.33 to y=415 and back. The List crop changed 302,756
+  pixels on expansion and zero on restoration. The ignored ci-64 proof at
+  `tests/native-features/build/list-section-modifiers-reviewed-proof-2` contains
+  three AX/PNG pairs, geometry/pixel measurements, outcome, Xcode log,
+  generator check, environment/binary receipt, and side-by-side WebP.
+  The existing `lists` (28 checks) and `containers` (32 checks, including
+  two Form recycling cycles) suites passed on that installed binary.
+  Read-only high review s540 found no code blockers. Its requested control
+  now checks that the unstyled second header and Banana row keep x=36 while
+  the first section moves, and the docs state the remaining proof limits.
+  Other section modifiers, these modifiers inside Form, and other List styles
+  remain unproven.
+
+- **RAN, 2026-09-27:** generated One Native controls now refresh their composed
+  SwiftUI row when a `listRow*` SDK modifier changes. The container keeps a weak
+  per-view identity so moving the same Fabric child retains its SwiftUI identity;
+  only a row modifier change advances that row's revision. On ci-64's iPhone
+  17 Pro / iOS 27.0 simulator, Xcode 27.1 built native source `e78706b05`
+  (native tree `90d8632b3507dc6ff3be06d90324d4e811cc8a16`). The eight-check
+  `list-row-modifiers` suite passed: a `Text` row moved from 37.33 to 117.67
+  points and back, its red separator changed from 2,772 ink pixels to zero
+  and back with tint still present, and two neighboring rows stayed fixed.
+  `lists` (28 checks), `containers` (32), and `grids` (9, including child
+  reordering) also passed on that binary. The suite's iPhone 17 Pro rerun
+  exposed two old 393-point assumptions in the Form and visual crop gates;
+  commits `2b827b85c` and `342dd95f3` make those gates use the captured
+  viewport without changing native source. The local ignored
+  `tests/native-features/build/list-row-modifiers-final-proof` bundle has
+  three AX/PNG pairs, pixel counts, outcome, Xcode log, generator check,
+  side-by-side WebP, and machine-produced simulator/build receipt. Sibling
+  `list-row-modifiers-lists-regression`,
+  `list-row-modifiers-containers-regression-viewport`, and
+  `list-row-modifiers-grids-regression` directories hold the focused regression
+  outcomes. High review s530 found
+  the move-identity and hidden-with-tint gaps in the first draft; both are
+  addressed and proven above. Other row control types and List styles remain
+  unproven.
 
 - **RAN, 2026-09-27:** `One.iOS.ViewSlot name="safeAreaBarWithVerticalEdge"`
   passed a focused iPhone 17 Pro iOS 27.0 suite on ci-64 with the previously

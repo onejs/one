@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "simulator automation session ready",
+      "durationMs": 7995
+    },
+    {
+      "name": "home screen mounted",
+      "durationMs": 10461
+    },
+    {
+      "name": "no warning overlay intercepts interaction",
+      "durationMs": 1455
+    },
+    {
+      "name": "home lists nav-one-native-horizontal-inset",
+      "durationMs": 1508
+    },
+    {
+      "name": "nav-one-native-horizontal-inset settles",
+      "durationMs": 2897
+    },
+    {
+      "name": "native leading and trailing safe-area insets mount",
+      "durationMs": 2905
+    },
+    {
+      "name": "native safe-area insets flank their base views inside each host",
+      "durationMs": 0
+    },
+    {
+      "name": "leading safe-area inset action reaches React",
+      "durationMs": 1006
+    },
+    {
+      "name": "trailing safe-area inset action reaches React",
+      "durationMs": 1116
+    }
+  ],
+  "durationMs": 51987,
+  "simulatorId": "41E95D83-2AEC-4124-9655-5462F2A770DE",
+  "bundleId": "dev.vxrn.native.tests",
+  "suite": "horizontal-inset"
+}

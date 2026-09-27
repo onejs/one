@@ -282,6 +282,7 @@ export function Section({
   title = '',
   footer = '',
   children,
+  swiftStyle,
   style,
   ...props
 }: SectionProps) {
@@ -289,13 +290,20 @@ export function Section({
     throw new Error('Swift.Section title and footer must be strings')
   assertOneNativeChildren(children, 'Swift.Section')
   return (
-    <NativeSection {...props} style={[{ flex: 1 }, style]} title={title} footer={footer}>
+    <NativeSection
+      {...props}
+      style={[{ flex: 1 }, style]}
+      title={title}
+      footer={footer}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}
+    >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeSection>
   )
 }
 
-export function List({ listStyle = 'automatic', children, style, ...props }: ListProps) {
+export function List({ listStyle = 'automatic', children, swiftStyle, style, ...props }: ListProps) {
   assertSwiftUIValue(
     'ListStyle',
     listStyle,
@@ -303,7 +311,13 @@ export function List({ listStyle = 'automatic', children, style, ...props }: Lis
   )
   assertOneNativeChildren(children, 'Swift.List')
   return (
-    <NativeList {...props} style={viewportStyle(style)} listStyle={listStyle}>
+    <NativeList
+      {...props}
+      style={viewportStyle(style)}
+      listStyle={listStyle}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}
+    >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeList>
   )

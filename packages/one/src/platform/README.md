@@ -466,9 +466,13 @@ function Controls() {
 
 `Picker` options are `{ value, label }` strings. The list must not be empty,
 values must be unique, and `selection` must match one of them. Supported
-`pickerStyle` values are `automatic`, `menu`, `segmented`, `wheel`, and `inline`.
-`navigationLink` and `palette` throw: those styles need a native container context
-that One Native does not provide. Outside a native Form, iOS renders the inline
+`pickerStyle` values are `automatic`, `menu`, `segmented`, `wheel`, `inline`,
+`tabs`, and `palette`.
+`palette` is accepted outside Menu; on an iOS 27 iPhone it presented as a
+segmented Picker. Earlier iOS presentations are unproven. A Picker embedded
+in Menu content is not available through the current
+data-driven Menu API. `navigationLink` throws because it requires a native
+navigation context. Outside a native Form, iOS renders the inline
 picker as a wheel; the standalone host reserves the same height.
 
 `DatePicker` `selection`, `minimumDate`, and `maximumDate` are `Date` values.
@@ -1237,6 +1241,13 @@ An empty `title` or `footer` omits that header or footer.
 groups, takes the box React Native gives it, and styles itself with the
 SDK-derived `listStyle`: `automatic` (the default), `plain`, `grouped`,
 `inset`, `insetGrouped`, or `sidebar`.
+The List's `swiftStyle` applies SwiftUI modifiers such as
+`listSectionSpacingWithCGFloat`. A Section's `swiftStyle` applies modifiers
+such as `headerProminence` and `listSectionMargins`; changing them from React
+refreshes that section in the native List.
+An iOS 27 insetGrouped List proof covers these three modifiers updating and
+restoring together. Other section modifiers and Form combinations need runtime
+proof.
 
 ```tsx
 <One.iOS.List listStyle="insetGrouped" style={{ flex: 1 }}>
@@ -1255,16 +1266,47 @@ height, so it cannot be a child of a `One.iOS.Host` or `One.iOS.ZStack` either.
 Wrap one row in `One.iOS.ViewSlot name="listRowBackground"` and put a native
 background view in `One.iOS.ViewSlot.Content` to use SwiftUI's row background.
 The background child can change with React state.
+For a generated One Native control used as a List row, `swiftStyle` can set
+`listRowInsets`, `listRowSeparator`, and `listRowSeparatorTint`. Changing those
+modifiers from React refreshes the affected native row. The iOS 27 plain List
+proof covers a `Text` row changing its inset and separator in both directions;
+other row control types and List styles still need runtime proof.
+`swiftStyle` applies SDK modifiers in object order; put
+`listRowSeparatorTint` before `listRowSeparator` when both are present and
+visibility should take precedence.
+
+`swiftStyle.refreshable` on a List invokes an async callback for the native
+pull gesture; the bridge waits for its promise. For a native search field, place the
+List inside `One.iOS.NavigationStack` and set the stack's
+`swiftStyle.searchable` to `{ value: query, onChange: setQuery }`. React owns
+the query and filters the List rows. An iOS 27 simulator proof covers two
+successive callback invocations, native search typing, and an external query
+update. The proof does not measure native refresh indicator duration. A
+standalone List host did not present the search field in that run; ScrollView
+refresh and search have a separate vertical-scroll proof below. Native
+indicator duration remains unmeasured for both containers.
 
 `One.iOS.ViewSlot name="safeAreaBarWithVerticalEdge"` takes
 `options={{ edge: 'top' }}` or `options={{ edge: 'bottom' }}` on iOS 26 or newer. The native
 view in `ViewSlot.Content` becomes a safe-area bar. Both edges and bar button
 actions have an iOS 27 simulator proof.
 
+`One.iOS.ViewSlot name="safeAreaInsetWithHorizontalEdge"` accepts
+`options={{ edge: 'leading' }}` or `options={{ edge: 'trailing' }}`. The iOS 27
+iPhone fixture places the native inset action on the selected side of its base
+inside a bounded host, and both actions reach React. Scroll content and other
+container sizes remain unproven.
+
 `One.iOS.ScrollView` scrolls One Native content vertically by default,
 horizontally with `axes="horizontal"`, or both ways with `axes="both"`.
 `showsIndicators` hides the scroll bars when false. It is greedy the same way
 a list is, so it also needs its own box.
+For a vertical ScrollView, `swiftStyle.refreshable` invokes an async callback
+on a pull. A surrounding `NavigationStack` with `swiftStyle.searchable`
+provides the native search field and controlled text binding. An iOS 27
+simulator proof covers two callback invocations and both directions of the
+search binding; refresh indicator duration and horizontal/both-axis cases
+remain unmeasured.
 
 ```tsx
 <One.iOS.ScrollView style={{ height: 200 }}>

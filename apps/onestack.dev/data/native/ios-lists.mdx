@@ -28,12 +28,76 @@ import { One } from 'one'
 ## Section
 
 `One.iOS.Section` groups rows with a `title` header and a `footer` string.
+Its `swiftStyle` accepts SwiftUI section modifiers such as `headerProminence`
+and `listSectionMargins`. React updates to these modifiers refresh that section.
 
 ## List
 
 `One.iOS.List` is a SwiftUI list. `listStyle` is `'automatic'`,
-`'sidebar'`, `'inset'`, `'grouped'`, `'insetGrouped'`, or `'plain'`. Rows
-support swipe actions through
+`'sidebar'`, `'inset'`, `'grouped'`, `'insetGrouped'`, or `'plain'`. You
+can use `swiftStyle` on the List for modifiers such as `listSectionSpacingWithCGFloat`.
+For example, a larger spacing value separates adjacent sections. Sections
+can set their own `swiftStyle` for header prominence and margins:
+
+```tsx
+<One.iOS.List
+  listStyle="insetGrouped"
+  style={{ height: 520 }}
+  swiftStyle={{ listSectionSpacingWithCGFloat: expanded ? 100 : 10 }}
+>
+  <One.iOS.Section
+    title="First section"
+    swiftStyle={{
+      headerProminence: expanded ? 'increased' : 'standard',
+      listSectionMargins: { edges: 'leading', length: expanded ? 80 : 16 },
+    }}
+  >
+    <One.iOS.Text text="Apple" />
+  </One.iOS.Section>
+  <One.iOS.Section title="Second section">
+    <One.iOS.Text text="Banana" />
+  </One.iOS.Section>
+</One.iOS.List>
+```
+
+On iOS 27, changing these values moved the first section's leading edge by
+64 points, enlarged its header, and moved the second section down by about
+94 points. Returning to the original values restored all three positions.
+Other section modifiers, these modifiers inside `Form`, and other List styles
+still need runtime proof.
+
+Use `swiftStyle.refreshable` for a native pull to refresh action. The bridge
+waits for the returned promise. Put `swiftStyle.searchable` on a
+`One.iOS.NavigationStack` around the List so iOS presents its native search
+field; keep the text in React state and filter the rows yourself:
+
+```tsx
+<One.iOS.NavigationStack
+  style={{ flex: 1 }}
+  swiftStyle={{ searchable: { value: query, onChange: setQuery } }}
+>
+  <One.iOS.List
+    listStyle="plain"
+    style={{ flex: 1 }}
+    swiftStyle={{ refreshable: async () => { await reloadItems() } }}
+  >
+    {items.filter((item) => item.includes(query)).map((item) => (
+      <One.iOS.Text key={item} text={item} />
+    ))}
+  </One.iOS.List>
+</One.iOS.NavigationStack>
+```
+
+An iOS 27 simulator proof pulled twice, observed the async callback, and
+started the second pull after the first callback's promise resolved. It also
+checked native search edits and external React updates. The proof does not
+measure how long the native refresh indicator remains visible.
+The search field appeared in the NavigationStack's toolbar. A standalone List
+host did not present a search field in that run. ScrollView refresh and search
+have a separate vertical-scroll proof below. Native indicator duration remains
+unmeasured for both containers.
+
+Rows support swipe actions through
 [Swift.SwipeActions](/native/ios-groups). An `EditButton` composed inside the
 list changes its native label between Edit and Done. Row deletion and move
 actions are not yet exposed.
@@ -53,11 +117,47 @@ background. Changing the background child from React updates the native row.
 </One.iOS.List>
 ```
 
+Use a row's `swiftStyle` for SwiftUI row modifiers. For example,
+`listRowInsets` changes the leading inset (iOS 26 or later), while
+`listRowSeparator` and `listRowSeparatorTint` control the separator. React
+updates to these modifiers refresh that row in the native List.
+`swiftStyle` applies SDK modifiers in object order. When setting both a tint
+and visibility, put `listRowSeparatorTint` before `listRowSeparator` so the
+visibility modifier takes precedence.
+
+```tsx
+<One.iOS.List listStyle="plain" style={{ height: 240 }}>
+  <One.iOS.Text
+    text="Inbox"
+    swiftStyle={{
+      listRowInsets: { edges: 'leading', length: expanded ? 96 : 16 },
+      listRowSeparatorTint: { color: 'red', edges: 'bottom' },
+      listRowSeparator: {
+        visibility: expanded ? 'hidden' : 'visible',
+        edges: 'bottom',
+      },
+    }}
+  />
+</One.iOS.List>
+```
+
+On iOS 27, the `Text` row moved by 80 points and its separator disappeared
+when these values changed; adjacent rows kept their positions. Returning to
+the original values restored the inset and red separator.
+
 ## ScrollView
 
 `One.iOS.ScrollView` scrolls its children. `axes` is `'vertical'`,
 `'horizontal'`, or `'both'`; `showsIndicators` toggles the scroll
 indicators; `swiftStyle` applies native modifiers.
+
+For a vertical ScrollView, `swiftStyle.refreshable` invokes a callback when
+the user pulls down. Place the ScrollView inside `NavigationStack` and put
+`swiftStyle.searchable` on the stack to show the native search field. The
+search text is controlled by React state, as in the List example above.
+An iOS 27 simulator proof covered two successive callback invocations,
+external query changes, and typing in the native field. It did not measure
+the refresh indicator's duration or exercise horizontal and both-axis scrolls.
 
 ## LazyVStack, LazyHStack
 
