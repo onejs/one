@@ -47,7 +47,7 @@ export const pickerControls: Control[] = [
   if (!options.length) throw new Error('Picker options must not be empty')
   if (new Set(options.map(option => option.value)).size !== options.length) throw new Error('Picker option values must be unique')
   if (!options.some(option => option.value === selection)) throw new Error('Picker selection must match an option value')
-  if (pickerStyle === 'navigationLink' || pickerStyle === 'palette') throw new Error('PickerStyle.' + pickerStyle + ' requires a native container context that One Native does not provide yet')`,
+  if (pickerStyle === 'navigationLink') throw new Error('PickerStyle.navigationLink requires a native navigation context that One Native does not provide yet')`,
   },
   {
     name: 'DatePicker',

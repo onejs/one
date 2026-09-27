@@ -34,11 +34,9 @@ export function Picker({
     throw new Error('Picker option values must be unique')
   if (!options.some((option) => option.value === selection))
     throw new Error('Picker selection must match an option value')
-  if (pickerStyle === 'navigationLink' || pickerStyle === 'palette')
+  if (pickerStyle === 'navigationLink')
     throw new Error(
-      'PickerStyle.' +
-        pickerStyle +
-        ' requires a native container context that One Native does not provide yet'
+      'PickerStyle.navigationLink requires a native navigation context that One Native does not provide yet'
     )
   assertSwiftUIValue(
     'PickerStyle',
