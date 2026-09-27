@@ -31,6 +31,11 @@ const testScreens = [
     testID: 'nav-one-native-building-blocks',
   },
   {
+    href: '/one-native-share-empty',
+    label: 'One Native Share and Empty',
+    testID: 'nav-one-native-share-empty',
+  },
+  {
     href: '/one-native-paste-button',
     label: 'One Native Paste Button',
     testID: 'nav-one-native-paste-button',

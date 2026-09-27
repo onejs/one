@@ -77,6 +77,8 @@ For a cross-platform map with polylines, polygons, and circles, use
 `One.iOS.ContentUnavailableView` renders an empty state with action
 buttons. `actions` is a list of `{ id, label, role }` and `onAction`
 receives the tapped action id.
+Give it a height or `flex: 1`; it fills the area React Native assigns. A
+React state update after an action can change the view or replace it.
 
 ```tsx
 import { One } from 'one'
