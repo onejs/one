@@ -92,7 +92,8 @@ export function resolveVisualRegion(
     throw new Error(
       `${declaration.name}: resolved an invalid visual region ${JSON.stringify(region)}`
     )
-  return region
+  const viewportWidth = nodes.find((node) => node.type === 'Application')?.frame?.width
+  return viewportWidth && viewportWidth > 0 ? { ...region, viewportWidth } : region
 }
 
 export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
