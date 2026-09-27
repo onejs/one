@@ -458,6 +458,7 @@ internal data class OneNativeComposeStyle(
     val height: Double = -1.0,
     val fillMaxWidth: Boolean = false,
     val fillMaxHeight: Boolean = false,
+    val weight: Double = -1.0,
     val cornerRadius: Double = -1.0,
     val opacity: Double = -1.0,
     val borderColor: Int? = null,
@@ -489,6 +490,7 @@ internal data class OneNativeComposeStyle(
                 height = number("height"),
                 fillMaxWidth = boolean("fillMaxWidth"),
                 fillMaxHeight = boolean("fillMaxHeight"),
+                weight = number("weight"),
                 cornerRadius = number("cornerRadius"),
                 opacity = number("opacity"),
                 borderColor = readComposeColor(map, "borderColor", context),
@@ -1261,7 +1263,12 @@ private fun RenderComposeNodeBody(
                 verticalArrangement = columnArrangement(props.arrangement, props.spacing),
                 horizontalAlignment = columnAlignment(props.alignment),
             ) {
-                RenderComposeChildren(node)
+                node.renderedChildren.forEach { child ->
+                    key(child) {
+                        val weight = child.renderedProps.composeStyle.weight
+                        RenderComposeNode(child, if (weight > 0) Modifier.weight(weight.toFloat()) else Modifier)
+                    }
+                }
             }
         "row" ->
             Row(
@@ -1269,8 +1276,14 @@ private fun RenderComposeNodeBody(
                 horizontalArrangement = rowArrangement(props.arrangement, props.spacing),
                 verticalAlignment = rowAlignment(props.alignment),
             ) {
-                RenderComposeChildren(node)
+                node.renderedChildren.forEach { child ->
+                    key(child) {
+                        val weight = child.renderedProps.composeStyle.weight
+                        RenderComposeNode(child, if (weight > 0) Modifier.weight(weight.toFloat()) else Modifier)
+                    }
+                }
             }
+        "spacer" -> Spacer(modifier = modifier)
         "singlechoicesegmentedbuttonrow" ->
             SingleChoiceSegmentedButtonRow(modifier = modifier) {
                 node.renderedChildren.forEachIndexed { index, child ->

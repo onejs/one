@@ -130,6 +130,7 @@ const composeStyleKeys = new Set([
   'height',
   'fillMaxWidth',
   'fillMaxHeight',
+  'weight',
   'cornerRadius',
   'opacity',
   'borderColor',
@@ -304,6 +305,11 @@ export function assertComposeStyle(style: ComposeStyle | undefined) {
     if (key === 'opacity') {
       if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 1)
         throw new Error('Compose composeStyle opacity must be a number from 0 to 1')
+      continue
+    }
+    if (key === 'weight') {
+      if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0)
+        throw new Error('Compose composeStyle weight must be a positive finite number')
       continue
     }
     if (composeStyleColorKeys.has(key)) {

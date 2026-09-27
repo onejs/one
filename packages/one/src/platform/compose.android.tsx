@@ -39,6 +39,7 @@ import type {
   ComposeProgressVariant,
   ComposeRadioButtonProps,
   ComposeRowProps,
+  ComposeSpacerProps,
   ComposeSegmentedButtonProps,
   ComposeSegmentedButtonRowProps,
   ComposeSliderProps,
@@ -90,6 +91,7 @@ import {
 type ComposeNodeType =
   | 'column'
   | 'row'
+  | 'spacer'
   | 'flowrow'
   | 'box'
   | 'badge'
@@ -233,6 +235,7 @@ const ComposeContext = createContext(false)
 
 const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
   'text',
+  'spacer',
   'icon',
   'button',
   'switch',
@@ -315,6 +318,10 @@ function Row({
       {children}
     </ComposeNode>
   )
+}
+
+function Spacer(props: ComposeSpacerProps) {
+  return <ComposeNode {...props} nodeType="spacer" />
 }
 
 function FlowRow({
@@ -1101,6 +1108,7 @@ function ContainedLoadingIndicator({ progress, color, containerColor, ...props }
 export const Compose = {
   Column,
   Row,
+  Spacer,
   FlowRow,
   Box,
   Badge,
