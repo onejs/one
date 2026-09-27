@@ -123,6 +123,8 @@ export type * from './composeTypes';
 export { Haptics } from './haptics/index.native';
 export { LocalAuthentication } from './local-authentication/index.native';
 export type { LocalAuthenticationStatus } from './local-authentication/index.native';
+export { ProtectedStore } from './protected-store/index.native';
+export type { ProtectedStorePolicy } from './protected-store/index.native';
 export { Location } from './location/index.native';
 export type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationWatchError } from './location/index.native';
 export { FileSystem } from './file-system/index.native';
