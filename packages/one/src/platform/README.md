@@ -1244,6 +1244,11 @@ height, so it cannot be a child of a `One.iOS.Host` or `One.iOS.ZStack` either.
 Wrap one row in `One.iOS.ViewSlot name="listRowBackground"` and put a native
 background view in `One.iOS.ViewSlot.Content` to use SwiftUI's row background.
 The background child can change with React state.
+For a generated One Native control used as a List row, `swiftStyle` can set
+`listRowInsets`, `listRowSeparator`, and `listRowSeparatorTint`. Changing those
+modifiers from React refreshes the affected native row. The iOS 27 plain List
+proof covers a `Text` row changing its inset and separator in both directions;
+other row control types and List styles still need runtime proof.
 
 `One.iOS.ViewSlot name="safeAreaBarWithVerticalEdge"` takes
 `options={{ edge: 'top' }}` or `options={{ edge: 'bottom' }}` on iOS 26 or newer. The native
