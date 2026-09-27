@@ -1947,13 +1947,22 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const label = box(n, 'Standalone label')?.height ?? 0
       return text > 0 && label > text && label < text * 3
     })
-    // a Form is height-greedy and reports nothing, so it has to fill its Yoga box.
+    // a Form is height-greedy and reports nothing. Its measured Yoga width and
+    // native row widths must agree on either supported iPhone viewport.
     await wait(
-      'a Form fills the exact box React Native gave it',
-      (n) =>
-        status(n, 'Form', '361 x 508') &&
-        box(n, 'Details')?.width === 329 &&
-        id(n, 'one-native-container-slot')?.frame?.width === 297
+      'a Form fills the measured React Native width',
+      (n) => {
+        const app = n.find((node) => node.type === 'Application')?.frame
+        const size = labels(n).find((label) => /^Form: \d+ x \d+$/.test(label))
+          ?.match(/^Form: (\d+) x (\d+)$/)
+        const width = Number(size?.[1])
+        const height = Number(size?.[2])
+        return Boolean(app && size &&
+          Math.abs(width - (app.width - 32)) <= 1 &&
+          height > app.height / 2 && height < app.height - 200 &&
+          Math.abs((box(n, 'Details')?.width ?? 0) - (width - 32)) <= 1 &&
+          Math.abs((id(n, 'one-native-container-slot')?.frame?.width ?? 0) - (width - 64)) <= 1)
+      }
     )
     await wait(
       'a Section renders its rows inside the Form',
