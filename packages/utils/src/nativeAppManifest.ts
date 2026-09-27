@@ -145,6 +145,12 @@ export interface NativeAppManifest {
     }
     targetSdk?: number
     compileSdk?: number
+    // release builds run R8, as expo-build-properties' minify; shrinkResources
+    // also drops unused resources and needs minify. proguardRules are appended
+    // to the app's proguard-rules.pro.
+    minify?: boolean
+    shrinkResources?: boolean
+    proguardRules?: string
     // extra manifest permissions: a bare name means android.permission.<name>.
     // blocked ones are removed even when a library's manifest merges them in.
     permissions?: string[]
@@ -444,6 +450,9 @@ export function validateNativeApp(
       if (value !== undefined && (!Number.isInteger(value) || value < 21)) {
         fail(`android.${key} "${value}" must be an api level integer`)
       }
+    }
+    if (manifest.android.shrinkResources && !manifest.android.minify) {
+      fail('android.shrinkResources needs android.minify')
     }
     for (const link of manifest.android.appLinks ?? []) {
       if (!link.host || !REVERSE_DNS.test(link.host)) {

@@ -2305,6 +2305,27 @@ end`
         `includeBuild(new File(["node", "--print", "require('module').createRequire(require.resolve('react-native/package.json')).resolve('@react-native/gradle-plugin/package.json')"].execute(null, settingsDir).text.trim()).parentFile.canonicalPath)`
       )
     }
+    if (platform === 'android' && relativePath === 'app/build.gradle' && app.android?.minify) {
+      const minify = 'def enableProguardInReleaseBuilds = false'
+      const minifyEnabled = 'minifyEnabled enableProguardInReleaseBuilds'
+      if (!rendered.includes(minify) || !rendered.includes(minifyEnabled)) {
+        throw new Error('[vxrn] prebuild template app/build.gradle lost its proguard switch')
+      }
+      rendered = rendered.replace(minify, 'def enableProguardInReleaseBuilds = true')
+      if (app.android.shrinkResources) {
+        rendered = rendered.replace(
+          minifyEnabled,
+          `${minifyEnabled}\n            shrinkResources true`
+        )
+      }
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/proguard-rules.pro' &&
+      app.android?.proguardRules
+    ) {
+      rendered = `${rendered.trimEnd()}\n\n${app.android.proguardRules.trim()}\n`
+    }
     for (const [field, setting] of [
       ['minSdk', 'minSdkVersion'],
       ['targetSdk', 'targetSdkVersion'],

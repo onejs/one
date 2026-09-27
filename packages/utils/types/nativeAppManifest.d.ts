@@ -90,6 +90,9 @@ export interface NativeAppManifest {
         };
         targetSdk?: number;
         compileSdk?: number;
+        minify?: boolean;
+        shrinkResources?: boolean;
+        proguardRules?: string;
         permissions?: string[];
         blockedPermissions?: string[];
         appLinks?: Array<{
