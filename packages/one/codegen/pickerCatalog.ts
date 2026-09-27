@@ -186,14 +186,9 @@ private func oneNativeMultiDateDecode(_ value: String, calendar: Calendar, timeZ
       return nil
     }
     var result = DateComponents(year: nativeYear, month: nativeMonth, day: nativeDay)
-    // These calendars reuse year numbers across eras or cycles. Keep the era
-    // so a selected Gregorian day cannot resolve to a different native year.
-    switch native.identifier {
-    case .chinese, .dangi, .japanese, .republicOfChina:
-      result.era = mapped.era
-    default:
-      break
-    }
+    // Preserve the calendar's era even when its year numbers repeat across
+    // cycles or an era boundary. Calendar.date(from:) uses it on the way back.
+    result.era = mapped.era
     if mapped.isLeapMonth == true { result.isLeapMonth = true }
     return result
   })

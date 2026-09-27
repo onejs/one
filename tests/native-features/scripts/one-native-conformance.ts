@@ -3304,6 +3304,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }, null, 2))
     if (!locale.startsWith('en_US') || appearance !== 'light')
       throw new Error(`MultiDatePicker proof requires en_US and light appearance: ${JSON.stringify({ locale, appearance })}`)
+    const expectedCalendar = process.env.ONE_NATIVE_EXPECT_CALENDAR
+    if (expectedCalendar && preference('AppleCalendar') !== expectedCalendar)
+      throw new Error(`MultiDatePicker proof expected calendar ${expectedCalendar}, got ${preference('AppleCalendar')}`)
     const selectedPixels = (name: string, nodes: Node[], expected: readonly number[]) => {
       const capture = screenshot(name, nodes)
       const pixels = readPng(capture)
