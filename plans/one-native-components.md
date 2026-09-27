@@ -71,7 +71,7 @@ accounts are unavailable).
 
 ## Status
 
-- **RAN, 2026-09-27:** SwiftUI `controlSize` now has a nine-check (four feature
+- **RAN, 2026-09-27:** SwiftUI `controlSize` now has a ten-check (five feature
   checks) iPhone 17 Pro / iOS 27.0 conformance suite. Bordered prominent
   Buttons inherited through `Host controlSize` and modified directly through
   `swiftStyle.controlSize`
