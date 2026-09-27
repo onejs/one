@@ -56,6 +56,24 @@ interface NativeProps extends ViewProps {
     disabledSelectedColor?: ColorValue
     disabledUnselectedColor?: ColorValue
   }>
+  switchColors?: Readonly<{
+    checkedThumbColor?: ColorValue
+    checkedTrackColor?: ColorValue
+    checkedBorderColor?: ColorValue
+    checkedIconColor?: ColorValue
+    uncheckedThumbColor?: ColorValue
+    uncheckedTrackColor?: ColorValue
+    uncheckedBorderColor?: ColorValue
+    uncheckedIconColor?: ColorValue
+    disabledCheckedThumbColor?: ColorValue
+    disabledCheckedTrackColor?: ColorValue
+    disabledCheckedBorderColor?: ColorValue
+    disabledCheckedIconColor?: ColorValue
+    disabledUncheckedThumbColor?: ColorValue
+    disabledUncheckedTrackColor?: ColorValue
+    disabledUncheckedBorderColor?: ColorValue
+    disabledUncheckedIconColor?: ColorValue
+  }>
   cardColors?: Readonly<{
     containerColor?: ColorValue
     contentColor?: ColorValue

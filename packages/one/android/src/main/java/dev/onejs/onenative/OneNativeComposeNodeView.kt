@@ -99,6 +99,7 @@ import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Surface
@@ -214,6 +215,47 @@ internal data class OneNativeRadioColors(
                 unselectedColor = readComposeColor(map, "unselectedColor", context),
                 disabledSelectedColor = readComposeColor(map, "disabledSelectedColor", context),
                 disabledUnselectedColor = readComposeColor(map, "disabledUnselectedColor", context),
+            )
+    }
+}
+
+internal data class OneNativeSwitchColors(
+    val checkedThumbColor: Int? = null,
+    val checkedTrackColor: Int? = null,
+    val checkedBorderColor: Int? = null,
+    val checkedIconColor: Int? = null,
+    val uncheckedThumbColor: Int? = null,
+    val uncheckedTrackColor: Int? = null,
+    val uncheckedBorderColor: Int? = null,
+    val uncheckedIconColor: Int? = null,
+    val disabledCheckedThumbColor: Int? = null,
+    val disabledCheckedTrackColor: Int? = null,
+    val disabledCheckedBorderColor: Int? = null,
+    val disabledCheckedIconColor: Int? = null,
+    val disabledUncheckedThumbColor: Int? = null,
+    val disabledUncheckedTrackColor: Int? = null,
+    val disabledUncheckedBorderColor: Int? = null,
+    val disabledUncheckedIconColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSwitchColors =
+            if (map == null) OneNativeSwitchColors() else OneNativeSwitchColors(
+                checkedThumbColor = readComposeColor(map, "checkedThumbColor", context),
+                checkedTrackColor = readComposeColor(map, "checkedTrackColor", context),
+                checkedBorderColor = readComposeColor(map, "checkedBorderColor", context),
+                checkedIconColor = readComposeColor(map, "checkedIconColor", context),
+                uncheckedThumbColor = readComposeColor(map, "uncheckedThumbColor", context),
+                uncheckedTrackColor = readComposeColor(map, "uncheckedTrackColor", context),
+                uncheckedBorderColor = readComposeColor(map, "uncheckedBorderColor", context),
+                uncheckedIconColor = readComposeColor(map, "uncheckedIconColor", context),
+                disabledCheckedThumbColor = readComposeColor(map, "disabledCheckedThumbColor", context),
+                disabledCheckedTrackColor = readComposeColor(map, "disabledCheckedTrackColor", context),
+                disabledCheckedBorderColor = readComposeColor(map, "disabledCheckedBorderColor", context),
+                disabledCheckedIconColor = readComposeColor(map, "disabledCheckedIconColor", context),
+                disabledUncheckedThumbColor = readComposeColor(map, "disabledUncheckedThumbColor", context),
+                disabledUncheckedTrackColor = readComposeColor(map, "disabledUncheckedTrackColor", context),
+                disabledUncheckedBorderColor = readComposeColor(map, "disabledUncheckedBorderColor", context),
+                disabledUncheckedIconColor = readComposeColor(map, "disabledUncheckedIconColor", context),
             )
     }
 }
@@ -519,6 +561,7 @@ internal data class OneNativeComposeNodeProps(
     val checkboxColors: OneNativeCheckboxColors = OneNativeCheckboxColors(),
     val selected: Boolean = false,
     val radioColors: OneNativeRadioColors = OneNativeRadioColors(),
+    val switchColors: OneNativeSwitchColors = OneNativeSwitchColors(),
     val cardColors: OneNativeCardColors = OneNativeCardColors(),
     val surfaceMode: String? = null,
     val iconButtonColors: OneNativeIconButtonColors = OneNativeIconButtonColors(),
@@ -824,6 +867,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageRadioColors(value: ReadableMap?) {
         pendingProps = pendingProps.copy(radioColors = OneNativeRadioColors.fromMap(value, context))
+    }
+
+    internal fun stageSwitchColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(switchColors = OneNativeSwitchColors.fromMap(value, context))
     }
 
     internal fun stageCardColors(value: ReadableMap?) {
@@ -2022,12 +2069,32 @@ private fun RenderComposeSwitch(
     modifier: Modifier,
 ) {
     val enabled = !props.disabled && node.isEnabled
+    val overrides = props.switchColors
+    val colors = SwitchDefaults.colors(
+        checkedThumbColor = overrides.checkedThumbColor?.let(::Color) ?: Color.Unspecified,
+        checkedTrackColor = overrides.checkedTrackColor?.let(::Color) ?: Color.Unspecified,
+        checkedBorderColor = overrides.checkedBorderColor?.let(::Color) ?: Color.Unspecified,
+        checkedIconColor = overrides.checkedIconColor?.let(::Color) ?: Color.Unspecified,
+        uncheckedThumbColor = overrides.uncheckedThumbColor?.let(::Color) ?: Color.Unspecified,
+        uncheckedTrackColor = overrides.uncheckedTrackColor?.let(::Color) ?: Color.Unspecified,
+        uncheckedBorderColor = overrides.uncheckedBorderColor?.let(::Color) ?: Color.Unspecified,
+        uncheckedIconColor = overrides.uncheckedIconColor?.let(::Color) ?: Color.Unspecified,
+        disabledCheckedThumbColor = overrides.disabledCheckedThumbColor?.let(::Color) ?: Color.Unspecified,
+        disabledCheckedTrackColor = overrides.disabledCheckedTrackColor?.let(::Color) ?: Color.Unspecified,
+        disabledCheckedBorderColor = overrides.disabledCheckedBorderColor?.let(::Color) ?: Color.Unspecified,
+        disabledCheckedIconColor = overrides.disabledCheckedIconColor?.let(::Color) ?: Color.Unspecified,
+        disabledUncheckedThumbColor = overrides.disabledUncheckedThumbColor?.let(::Color) ?: Color.Unspecified,
+        disabledUncheckedTrackColor = overrides.disabledUncheckedTrackColor?.let(::Color) ?: Color.Unspecified,
+        disabledUncheckedBorderColor = overrides.disabledUncheckedBorderColor?.let(::Color) ?: Color.Unspecified,
+        disabledUncheckedIconColor = overrides.disabledUncheckedIconColor?.let(::Color) ?: Color.Unspecified,
+    )
     if (props.label.isNullOrEmpty()) {
         Switch(
             checked = node.renderedBooleanValue,
             onCheckedChange = node::handleBooleanChanged,
             modifier = modifier,
             enabled = enabled,
+            colors = colors,
         )
     } else {
         Row(
@@ -2046,6 +2113,7 @@ private fun RenderComposeSwitch(
                 checked = node.renderedBooleanValue,
                 onCheckedChange = null,
                 enabled = enabled,
+                colors = colors,
             )
         }
     }

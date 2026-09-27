@@ -170,6 +170,10 @@ class OneNativeComposeNodeManager :
         view.stageRadioColors(value)
     }
 
+    override fun setSwitchColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageSwitchColors(value)
+    }
+
     override fun setCardColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageCardColors(value)
     }
