@@ -160,6 +160,12 @@ the slot subtree. The slot content can contain interactive native controls:
 </One.iOS.ViewSlot>
 ```
 
+For a side inset, use `name="safeAreaInsetWithHorizontalEdge"` with
+`options={{ edge: 'leading' }}` or `options={{ edge: 'trailing' }}`. On an iOS 27
+iPhone, the inset content appeared on the requested side of the base view and
+native button taps reached React. The fixture used bounded 280 × 180 point
+hosts; scroll content and other container sizes remain unproven.
+
 On iOS 26 or newer, `safeAreaBarWithVerticalEdge` accepts
 `options={{ edge: 'top' }}` or `options={{ edge: 'bottom' }}`. Put the bar's native controls in
 `ViewSlot.Content`. In the iOS 27 fixture, the top bar action appears above its
@@ -169,7 +175,8 @@ reach React.
 The iOS 27 conformance fixtures also exercise `background` paint, a `mask`
 that clips a colored rectangle to a circle, `listRowBackground` behind a
 `List` row, and an interactive `safeAreaInsetWithVerticalEdge` with
-`edge: 'bottom'`. Other slot names have not yet been checked on a simulator.
+`edge: 'bottom'`, plus leading and trailing horizontal safe-area insets in
+bounded hosts. Other slot names have not yet been checked on a simulator.
 
 ## SwipeActions, SwipeActions.Actions
 

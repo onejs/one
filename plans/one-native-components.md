@@ -71,6 +71,16 @@ accounts are unavailable).
 
 ## Status
 
+- **RAN, 2026-09-27:** the `horizontal-inset` suite passed nine checks on
+  ci-64's iPhone 17 Pro / iOS 27.0 simulator with Xcode 27.1. The generated
+  SwiftUI `safeAreaInsetWithHorizontalEdge` slot placed its action eight points
+  left of the base for `leading` and eight points right for `trailing`, within
+  separate 280 × 180 point hosts; both native buttons reached React. The
+  tracked `tests/native-features/proofs/horizontal-inset` bundle contains two
+  AX/PNG pairs, measurements, outcome, a WebP, and source/runtime/binary
+  receipt. Its generated ViewSlot and Overlay host Swift blobs match the
+  earlier native build. Scroll content and other container sizes are unproven.
+
 - **RAN, 2026-09-27:** the focused `picker-palette` suite passed nine checks on
   ci-64's iPhone 17 Pro / iOS 27.0 simulator with Xcode 27.1. The standalone
   palette and explicit segmented Picker exposed matching 362 × 31 point native
