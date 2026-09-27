@@ -826,6 +826,9 @@ export function LinearGradient({
     <NativeLinearGradient
       {...props}
       style={style}
+      accessible={Boolean(props.accessibilityLabel)}
+      accessibilityElementsHidden={!props.accessibilityLabel}
+      accessibilityRole="image"
       swiftStyle={swiftStyleNative(swiftStyle)}
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)

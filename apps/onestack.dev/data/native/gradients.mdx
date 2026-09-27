@@ -44,3 +44,9 @@ and bottom center. Like a native shape, it fills its React Native layout box:
   style={{ width: 280, height: 150 }}
 />
 ```
+
+An empty `colors` array leaves the layout box transparent. A single color fills
+the box uniformly. This is a SwiftUI gradient; its interpolation can look
+different from React Native's `backgroundImage` even with the same endpoint
+colors. Without an `accessibilityLabel`, the gradient is decorative and omitted
+from the accessibility tree. Supply a label when the colors convey meaning.
