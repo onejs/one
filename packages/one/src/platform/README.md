@@ -640,6 +640,14 @@ An unlabeled gradient is decorative in accessibility. Give it an
 `accessibilityLabel` if its colors convey meaning. SwiftUI and React Native
 `backgroundImage` may interpolate the same endpoint colors differently.
 
+`One.iOS.RadialGradient` uses SwiftUI's
+`RadialGradient(colors:center:startRadius:endRadius:)`. It fills the assigned
+box; `center` is a normalized `{ x, y }` point defaulting to its middle,
+`startRadius` defaults to 0 points, and required `endRadius` is also measured
+in points. It accepts the same sRGB hex colors as `LinearGradient`. An empty
+array is transparent and an unlabeled view is decorative for accessibility.
+Explicit color stops and arbitrary SwiftUI `Color` values are unbound.
+
 `Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, `ConcentricRectangle`, and `Ellipse` are SwiftUI's
 shapes, one control each, named as SwiftUI names them. A shape has no ideal size
 of its own, so it takes the `width` and `height` React Native gives it, and `fill`

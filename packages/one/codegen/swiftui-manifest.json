@@ -17767,6 +17767,7 @@
         "EmptyView",
         "Image",
         "LinearGradient",
+        "RadialGradient",
         "Rectangle",
         "RoundedRectangle",
         "Text",
@@ -19600,6 +19601,33 @@
           "label": "endPoint",
           "name": "endPoint",
           "type": "SwiftUICore.UnitPoint"
+        }
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "RadialGradient",
+      "parameters": [
+        {
+          "label": "colors",
+          "name": "colors",
+          "type": "[SwiftUICore.Color]"
+        },
+        {
+          "label": "center",
+          "name": "center",
+          "type": "SwiftUICore.UnitPoint"
+        },
+        {
+          "label": "startRadius",
+          "name": "startRadius",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "label": "endRadius",
+          "name": "endRadius",
+          "type": "CoreFoundation.CGFloat"
         }
       ],
       "ios": 13

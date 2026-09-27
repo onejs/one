@@ -1,6 +1,6 @@
 ---
 title: Gradients
-description: React Native backgroundImage and native SwiftUI LinearGradient
+description: React Native backgroundImage and native SwiftUI gradients
 ---
 
 React Native views use the React Native 0.87 `backgroundImage` style prop for
@@ -50,3 +50,24 @@ the box uniformly. This is a SwiftUI gradient; its interpolation can look
 different from React Native's `backgroundImage` even with the same endpoint
 colors. Without an `accessibilityLabel`, the gradient is decorative and omitted
 from the accessibility tree. Supply a label when the colors convey meaning.
+
+`One.iOS.RadialGradient` calls SwiftUI's
+[`RadialGradient(colors:center:startRadius:endRadius:)`](https://developer.apple.com/documentation/swiftui/radialgradient).
+Its center is a normalized `{ x, y }` point (default `{ x: 0.5, y: 0.5 }`),
+while radii are points in the view's layout box. `endRadius` is required;
+`startRadius` defaults to 0. The same sRGB hex color and accessibility rules
+apply:
+
+```tsx
+<One.iOS.RadialGradient
+  colors={['#FF3311', '#1144DD']}
+  center={{ x: 0.5, y: 0.5 }}
+  startRadius={0}
+  endRadius={80}
+  style={{ width: 280, height: 150 }}
+/>
+```
+
+The iOS 27 proof exercises center movement, both radii, reversed colors, and
+empty colors. Explicit color stops and arbitrary SwiftUI `Color` values are not
+bound by these views.

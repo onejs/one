@@ -1841,6 +1841,40 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeRadialGradient",
+      "publicName": "RadialGradient",
+      "props": {
+        "colors": {
+          "type": "ReadonlyArray<string>"
+        },
+        "center": {
+          "type": "string"
+        },
+        "startRadius": {
+          "type": "Double"
+        },
+        "endRadius": {
+          "type": "Double"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeVideoPlayer",
       "publicName": "VideoPlayer",
       "props": {
