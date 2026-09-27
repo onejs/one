@@ -39,6 +39,8 @@ import type {
   ComposeProgressVariant,
   ComposeRadioButtonProps,
   ComposeRowProps,
+  ComposeSegmentedButtonProps,
+  ComposeSegmentedButtonRowProps,
   ComposeSliderProps,
   ComposeSuggestionChipProps,
   ComposeSurfaceProps,
@@ -82,6 +84,7 @@ import {
   validateTextFieldProps,
   validateTextProps,
   validateToggleButtonProps,
+  validateSegmentedButtonProps,
 } from './composeValidation'
 
 type ComposeNodeType =
@@ -119,6 +122,9 @@ type ComposeNodeType =
   | 'icontogglebutton'
   | 'filledicontogglebutton'
   | 'outlinedicontogglebutton'
+  | 'singlechoicesegmentedbuttonrow'
+  | 'multichoicesegmentedbuttonrow'
+  | 'segmentedbutton'
   | 'switch'
   | 'checkbox'
   | 'radio'
@@ -176,6 +182,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   fabColors?: Pick<ComposeFloatingActionButtonProps, 'containerColor'>
   fabExpanded?: boolean
   toggleButtonColors?: ComposeToggleButtonProps['colors']
+  segmentedButtonColors?: ComposeSegmentedButtonProps['colors']
   loadingColors?: Readonly<{ color?: ComposeLoadingIndicatorProps['color']; containerColor?: ComposeContainedLoadingIndicatorProps['containerColor'] }>
   acknowledgedEvent?: number
   revision?: number
@@ -203,7 +210,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   dismissLabel?: string
   progress?: number
   progressVariant?: ComposeProgressVariant
-  progressColors?: Pick<ComposeProgressIndicatorProps, 'color' | 'trackColor'>
+  progressOptions?: Pick<ComposeProgressIndicatorProps, 'color' | 'trackColor' | 'strokeCap' | 'gapSize' | 'strokeWidth' | 'drawStopIndicator' | 'stopSize' | 'amplitude' | 'wavelength' | 'waveSpeed'>
   onNativeComposeNodeButtonPress?: (event: unknown) => void
   onNativeComposeNodeBooleanValueChange?: (event: {
     nativeEvent: { value: boolean; eventCount: number; revision: number }
@@ -736,6 +743,38 @@ function OutlinedIconToggleButton(props: ComposeToggleButtonProps) {
   return <ToggleButtonNode {...props} nodeType="outlinedicontogglebutton" />
 }
 
+function SingleChoiceSegmentedButtonRow({ children, ...props }: ComposeSegmentedButtonRowProps) {
+  return <ComposeNode {...props} nodeType="singlechoicesegmentedbuttonrow">{children}</ComposeNode>
+}
+
+function MultiChoiceSegmentedButtonRow({ children, ...props }: ComposeSegmentedButtonRowProps) {
+  return <ComposeNode {...props} nodeType="multichoicesegmentedbuttonrow">{children}</ComposeNode>
+}
+
+function SegmentedButton({ children, selected, checked, enabled = true, colors, onClick, onCheckedChange, revision = 0, ...props }: ComposeSegmentedButtonProps) {
+  validateSegmentedButtonProps({ children, selected, checked, enabled, colors, onClick, onCheckedChange, revision })
+  const controlled = useControlled<{ value: boolean; eventCount: number; revision: number }>(
+    (event) => onCheckedChange?.(event.value), revision
+  )
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="segmentedbutton"
+      selected={selected}
+      value={checked ?? false}
+      disabled={!enabled}
+      nativeClickable={onClick !== undefined || onCheckedChange !== undefined}
+      segmentedButtonColors={colors}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      onNativeComposeNodeButtonPress={onClick ? () => onClick() : undefined}
+      onNativeComposeNodeBooleanValueChange={onCheckedChange ? (event) => controlled.onNativeChange(event.nativeEvent) : undefined}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
 function Switch({
   isOn,
   disabled = false,
@@ -1009,16 +1048,24 @@ function ProgressIndicator({
   progress,
   color,
   trackColor,
+  strokeCap,
+  gapSize,
+  strokeWidth,
+  drawStopIndicator,
+  stopSize,
+  amplitude,
+  wavelength,
+  waveSpeed,
   ...props
 }: ComposeProgressIndicatorProps) {
-  validateProgressIndicatorProps({ variant, progress, color, trackColor })
+  validateProgressIndicatorProps({ variant, progress, color, trackColor, strokeCap, gapSize, strokeWidth, drawStopIndicator, stopSize, amplitude, wavelength, waveSpeed })
   return (
     <ComposeNode
       {...props}
       nodeType="progressindicator"
       progressVariant={variant}
       progress={progress ?? undefined}
-      progressColors={{ color, trackColor }}
+      progressOptions={{ color, trackColor, strokeCap, gapSize, strokeWidth, drawStopIndicator, stopSize, amplitude, wavelength, waveSpeed }}
     />
   )
 }
@@ -1084,6 +1131,9 @@ export const Compose = {
   IconToggleButton,
   FilledIconToggleButton,
   OutlinedIconToggleButton,
+  SingleChoiceSegmentedButtonRow,
+  MultiChoiceSegmentedButtonRow,
+  SegmentedButton,
   Switch,
   Checkbox,
   RadioButton,

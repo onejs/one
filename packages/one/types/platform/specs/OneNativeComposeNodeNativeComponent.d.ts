@@ -113,6 +113,20 @@ interface NativeProps extends ViewProps {
         disabledContainerColor?: ColorValue;
         disabledContentColor?: ColorValue;
     }>;
+    segmentedButtonColors?: Readonly<{
+        activeBorderColor?: ColorValue;
+        activeContentColor?: ColorValue;
+        inactiveBorderColor?: ColorValue;
+        inactiveContentColor?: ColorValue;
+        disabledActiveBorderColor?: ColorValue;
+        disabledActiveContentColor?: ColorValue;
+        disabledInactiveBorderColor?: ColorValue;
+        disabledInactiveContentColor?: ColorValue;
+        activeContainerColor?: ColorValue;
+        inactiveContainerColor?: ColorValue;
+        disabledActiveContainerColor?: ColorValue;
+        disabledInactiveContainerColor?: ColorValue;
+    }>;
     loadingColors?: Readonly<{
         color?: ColorValue;
         containerColor?: ColorValue;
@@ -148,9 +162,21 @@ interface NativeProps extends ViewProps {
     dismissLabel?: string;
     progress?: WithDefault<Double, -1>;
     progressVariant?: string;
-    progressColors?: Readonly<{
+    progressOptions?: Readonly<{
         color?: ColorValue;
         trackColor?: ColorValue;
+        strokeCap?: string;
+        gapSize?: Double;
+        strokeWidth?: Double;
+        drawStopIndicator?: Readonly<{
+            color?: ColorValue;
+            strokeCap?: string;
+            stopSize?: Double;
+        }>;
+        stopSize?: Double;
+        amplitude?: Double;
+        wavelength?: Double;
+        waveSpeed?: Double;
     }>;
     composeStyle?: ComposeStyleNative;
     onNativeComposeNodeButtonPress?: DirectEventHandler<Readonly<{

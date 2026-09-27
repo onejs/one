@@ -194,6 +194,10 @@ class OneNativeComposeNodeManager :
         view.stageToggleButtonColors(value)
     }
 
+    override fun setSegmentedButtonColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageSegmentedButtonColors(value)
+    }
+
     override fun setLoadingColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageLoadingColors(value)
     }
@@ -366,8 +370,8 @@ class OneNativeComposeNodeManager :
         view.stageProgressVariant(value)
     }
 
-    override fun setProgressColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
-        view.stageProgressColors(value)
+    override fun setProgressOptions(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageProgressOptions(value)
     }
 
     override fun setComposeStyle(view: OneNativeComposeNodeView, value: ReadableMap?) {
