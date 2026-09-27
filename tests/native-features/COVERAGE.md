@@ -70,8 +70,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |
 | `One.iOS.Image` | leaves, groups | n/a |  |
-| `One.iOS.ShareLink` | missing | n/a | fixture exists, no suite opens it |
-| `One.iOS.ContentUnavailableView` | missing | n/a | fixture exists, no suite opens it |
+| `One.iOS.ShareLink` | share-empty | n/a |  |
+| `One.iOS.ContentUnavailableView` | share-empty | n/a |  |
 | `One.iOS.Circle` | leaves | n/a |  |
 | `One.iOS.Capsule` | leaves | n/a |  |
 | `One.iOS.Rectangle` | leaves, editors, building-blocks | n/a |  |

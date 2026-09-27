@@ -106,13 +106,21 @@ import { One } from 'one'
 ## ShareLink
 
 `One.iOS.ShareLink` opens the system share sheet for one item.
+For a text item, the system Copy activity copies the item and message as text.
+For a URL item, the system share sheet shows a link preview and offers Copy;
+the URL is handed to iOS as a URL. Updating `item` and `itemType` from React
+changes what the next share sheet receives. `ShareLink`
+does not report a completion callback.
 
 | Prop | Type |
 |------|------|
+| `label` | `string` |
 | `item` | `string` |
 | `itemType` | `'text'` or `'url'` |
+| `systemImage` | SF Symbol name string |
 | `subject` | `string` |
 | `message` | `string` |
+| `disabled` | `boolean` |
 
 ```tsx
 import { One } from 'one'
