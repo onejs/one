@@ -93,6 +93,9 @@
     "OneContacts": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneContacts" }
     },
+    "OneCalendar": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneCalendar" }
+    },
     "OneUpdates": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneUpdates" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneUpdates" }

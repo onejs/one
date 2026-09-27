@@ -55,7 +55,7 @@ checklist; One's own exports and docs decide the status.
 | Battery and power state | missing | no battery level, charging state, or low-power state API | none | P3 |
 | Cellular/SIM details | missing | `One.Network` reports connection type, not carrier or SIM data | none | P3 |
 | Contacts | partial | `One.iOS.Contacts` permission, name search, create, delete; no edit or picker | contacts: prompt, create/search/delete | P2 |
-| Calendar and reminders | missing | no EventKit service | none | P2 |
+| Calendar and reminders | partial | `One.iOS.Calendar` event permission, list, create, delete; reminders missing | RAN iOS 27 full-access prompt, create/list/delete, and input/error conformance | P2 |
 | Localization and locale | missing | no One device locale, calendar, or timezone service | none | P2 |
 | Screen orientation | missing | no orientation events or lock API | none | P2 |
 | Screen capture control | missing | no screenshot detection, capture prevention, or app screenshot API | none | P2 |

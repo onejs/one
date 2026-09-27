@@ -43,6 +43,7 @@ declare module 'one' {
         | `/one-native-audio`
         | `/one-native-autogen`
         | `/one-native-browser`
+        | `/one-native-calendar`
         | `/one-native-clipboard`
         | `/one-native-contacts`
         | `/one-native-containers`

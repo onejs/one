@@ -21,6 +21,7 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // options: { audio: { microphone: string } } sets the iOS recording prompt.
 // options: { photoLibrary: { addOnly: string } } sets the ios photos add prompt.
 // options: { contacts: { usage: string } } sets the ios contacts prompt.
+// options: { calendar: { usage: string } } sets the ios full calendar prompt.
 module.exports = function withVxrn(config, options = {}) {
   const projectRoot = config?._internal?.projectRoot
   if (!projectRoot) {
@@ -47,6 +48,7 @@ module.exports = function withVxrn(config, options = {}) {
   const audio = options.audio
   const photoLibrary = options.photoLibrary
   const contacts = options.contacts
+  const calendar = options.calendar
   if (
     location &&
     (typeof location.whenInUse !== 'string' || !location.whenInUse.trim())
@@ -70,6 +72,12 @@ module.exports = function withVxrn(config, options = {}) {
     (!contacts || typeof contacts.usage !== 'string' || !contacts.usage.trim())
   ) {
     throw new Error('[vxrn/expo-plugin] contacts.usage must be a non-empty string')
+  }
+  if (
+    calendar !== undefined &&
+    (!calendar || typeof calendar.usage !== 'string' || !calendar.usage.trim())
+  ) {
+    throw new Error('[vxrn/expo-plugin] calendar.usage must be a non-empty string')
   }
   const locationPlugins = !location
     ? []
@@ -111,6 +119,17 @@ module.exports = function withVxrn(config, options = {}) {
           withInfoPlist,
           (nextConfig) => {
             nextConfig.modResults.NSContactsUsageDescription = contacts.usage
+            return nextConfig
+          },
+        ],
+      ]
+  const calendarPlugins = !calendar
+    ? []
+    : [
+        [
+          withInfoPlist,
+          (nextConfig) => {
+            nextConfig.modResults.NSCalendarsFullAccessUsageDescription = calendar.usage
             return nextConfig
           },
         ],
@@ -272,6 +291,7 @@ module.exports = function withVxrn(config, options = {}) {
     ...audioPlugins,
     ...photoLibraryPlugins,
     ...contactsPlugins,
+    ...calendarPlugins,
     ...notificationPlugins,
     ...updatesPlugins,
     ...launchScreenPlugins,

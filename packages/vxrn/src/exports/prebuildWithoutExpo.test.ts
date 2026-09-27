@@ -269,6 +269,16 @@ ${APP_DELEGATE_PBXPROJ}`,
       '<key>NSContactsUsageDescription</key>\n\t<string>Find people &amp; friends</string>'
     )
 
+    const calendarPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: { ...app, calendar: { usage: 'Show events & meetings' } },
+    })
+    expect(calendarPlist.content).toContain(
+      '<key>NSCalendarsFullAccessUsageDescription</key>\n\t<string>Show events &amp; meetings</string>'
+    )
+
     const androidManifest = renderPrebuildFile({
       relativePath: 'app/src/main/AndroidManifest.xml',
       content:

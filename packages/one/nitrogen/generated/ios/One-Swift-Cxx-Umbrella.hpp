@@ -50,6 +50,12 @@ namespace margelo::nitro::one { enum class BrowserPresentationStyle; }
 namespace margelo::nitro::one { enum class BrowserResultType; }
 // Forward declaration of `BrowserResult` to properly resolve imports.
 namespace margelo::nitro::one { struct BrowserResult; }
+// Forward declaration of `CalendarEventInput` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarEventInput; }
+// Forward declaration of `CalendarEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarEvent; }
+// Forward declaration of `CalendarPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class CalendarPermissionStatus; }
 // Forward declaration of `CameraPermissionResponse` to properly resolve imports.
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
@@ -102,6 +108,8 @@ namespace margelo::nitro::one { class HybridOneAppleAuthSpec; }
 namespace margelo::nitro::one { class HybridOneAudioSpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
+// Forward declaration of `HybridOneCalendarSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneCalendarSpec; }
 // Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 // Forward declaration of `HybridOneContactsSpec` to properly resolve imports.
@@ -257,6 +265,9 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "BrowserPresentationStyle.hpp"
 #include "BrowserResult.hpp"
 #include "BrowserResultType.hpp"
+#include "CalendarEvent.hpp"
+#include "CalendarEventInput.hpp"
+#include "CalendarPermissionStatus.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
 #include "ContactInfo.hpp"
@@ -283,6 +294,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneAppleAuthSpec.hpp"
 #include "HybridOneAudioSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
+#include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneContactsSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
@@ -380,6 +392,8 @@ namespace One { class HybridOneAppleAuthSpec_cxx; }
 namespace One { class HybridOneAudioSpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBrowserSpec_cxx; }
+// Forward declaration of `HybridOneCalendarSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneCalendarSpec_cxx; }
 // Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneClipboardSpec_cxx; }
 // Forward declaration of `HybridOneContactsSpec_cxx` to properly resolve imports.

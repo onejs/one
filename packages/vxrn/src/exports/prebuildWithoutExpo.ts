@@ -1764,6 +1764,9 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       if (app.contacts !== undefined) {
         usage.set('NSContactsUsageDescription', app.contacts.usage)
       }
+      if (app.calendar !== undefined) {
+        usage.set('NSCalendarsFullAccessUsageDescription', app.calendar.usage)
+      }
       if (app.location !== undefined) {
         usage.set('NSLocationWhenInUseUsageDescription', app.location.whenInUse)
       }
