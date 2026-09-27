@@ -71,12 +71,19 @@ accounts are unavailable).
 
 ## Status
 
-- **INFERRED, 2026-09-27:** the next proposed native view is SwiftUI
-  `LinearGradient(colors:startPoint:endPoint:)`, on named branch
-  `one-native-linear-gradient`. Its public representation uses an array of
-  sRGB hex colors and normalized `{ x, y }` points. That representation needs
-  Nate's approval before the branch merges; the fixture compares the existing
-  React Native gradient with the native view and reverses the native stops.
+- **RAN, 2026-09-27:** SwiftUI `LinearGradient(colors:startPoint:endPoint:)`
+  is implemented on named branch `one-native-linear-gradient`. On ci-64, an
+  iPhone 17 Pro simulator running iOS 27.0 passed the focused eight-check suite
+  at source revision `cae71faf9`: the React Native `backgroundImage` baseline
+  and native gradient painted red above blue; a React update reversed the native
+  colors; a single native color filled the box. Saved AX snapshots, PNGs,
+  sampled RGB values, outcome, and build environment are in ignored
+  `tests/native-features/build/linear-gradient-final-proof`. The side-by-side
+  `react-native-vs-swiftui.webp` shows the native interpolation. Native build
+  passed with Xcode 27.1. The proposed public representation is an array of
+  sRGB hex colors plus normalized `{ x, y }` points; arbitrary SwiftUI `Color`
+  values and explicit stops remain unbound. **Nate's API approval is required
+  before this branch merges.**
 
 - **RAN, 2026-09-27:** `One.iOS.ViewSlot name="safeAreaBarWithVerticalEdge"`
   passed a focused iPhone 17 Pro iOS 27.0 suite on ci-64 with the previously
