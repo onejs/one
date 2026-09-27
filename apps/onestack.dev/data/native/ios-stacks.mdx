@@ -9,6 +9,12 @@ control composed inside one is sized by the parent. `Host`, `HStack`,
 subtree: `colorScheme`, `dynamicTypeSize`, `controlSize`, `locale` (a
 non-empty identifier), `tint`, and `isEnabled`.
 
+`controlSize` accepts `'mini'`, `'small'`, `'regular'`, `'large'`, and
+`'extraLarge'`. In an iOS 27 proof, a bordered prominent Button inside
+`Host controlSize` grew when the value changed from `mini` to `extraLarge`
+and returned to its original height when restored. Other controls and sizes
+have not been checked in that proof.
+
 Greedy containers take the box they are given instead of reporting an
 ideal height, so they cannot be children of a stack: `Form`, `List`,
 `ScrollView`, `Tabs`, `Pager`, and `NavigationStack`

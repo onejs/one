@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "simulator automation session ready",
+      "durationMs": 1132
+    },
+    {
+      "name": "home screen mounted",
+      "durationMs": 15104
+    },
+    {
+      "name": "no warning overlay intercepts interaction",
+      "durationMs": 2479
+    },
+    {
+      "name": "home lists nav-one-native-control-size",
+      "durationMs": 2528
+    },
+    {
+      "name": "nav-one-native-control-size settles",
+      "durationMs": 5287
+    },
+    {
+      "name": "mini native Buttons mount",
+      "durationMs": 2191
+    },
+    {
+      "name": "extraLarge grows inherited and direct native Buttons",
+      "durationMs": 2136
+    },
+    {
+      "name": "resized native Buttons dispatch to React",
+      "durationMs": 2193
+    },
+    {
+      "name": "mini restores both native Button heights",
+      "durationMs": 2132
+    }
+  ],
+  "durationMs": 77411,
+  "simulatorId": "41E95D83-2AEC-4124-9655-5462F2A770DE",
+  "bundleId": "dev.vxrn.native.tests",
+  "suite": "control-size"
+}

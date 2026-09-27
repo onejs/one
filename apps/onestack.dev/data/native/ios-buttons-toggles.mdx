@@ -34,6 +34,13 @@ import { One } from 'one'
 <One.iOS.Button label="Save" systemImage="tray.and.arrow.down" onPress={save} />
 ```
 
+Use `swiftStyle={{ controlSize: 'extraLarge' }}` to apply SwiftUI's
+`.controlSize(_:)` to a standalone Button. An iOS 27 proof showed a bordered
+prominent Button grow from 28 to 50.33 points when changed from `mini` to
+`extraLarge`, then return to 28 points. The measured heights are observations
+on that simulator; other styles, controls, sizes, and iOS versions remain
+unproven.
+
 On web and Android this control throws. Keep it behind a platform check.
 
 ## PasteButton

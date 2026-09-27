@@ -71,6 +71,16 @@ accounts are unavailable).
 
 ## Status
 
+- **RAN, 2026-09-27:** SwiftUI `controlSize` now has a nine-check (four feature
+  checks) iPhone 17 Pro / iOS 27.0 conformance suite. Bordered prominent
+  Buttons inherited through `Host controlSize` and modified directly through
+  `swiftStyle.controlSize`
+  both grew from 28 to 50.33 points (`mini` → `extraLarge`), restored to 28,
+  and dispatched taps to React. The tracked
+  `tests/native-features/proofs/control-size` bundle holds AX/PNG states,
+  measured frames, side-by-side WebP, and source/binary receipt. The native
+  source tree matches the reused iOS build at `c593ca7e2`; other controls,
+  sizes, and iOS versions remain unproven.
 - **RAN, 2026-09-27:** `One.iOS.RadialGradient` now calls SwiftUI's
   `RadialGradient(colors:center:startRadius:endRadius:)`. The 17-check
   iPhone 17 Pro / iOS 27.0 suite passed at merged source `c593ca7e2`, using
