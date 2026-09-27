@@ -93,6 +93,7 @@ declare module 'one' {
         | `/one-native-pip`
         | `/one-native-popover`
         | `/one-native-safe-area`
+        | `/one-native-scroll-search-refresh`
         | `/one-native-secure-store`
         | `/one-native-share`
         | `/one-native-share-empty`
