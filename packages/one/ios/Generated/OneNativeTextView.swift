@@ -74,5 +74,6 @@ private struct TextContent: View {
     Text(verbatim: model.text)
       .oneNativeAccessibility(model.accessibility)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
+      .id(model.swiftStyle.sdkModifiers)
   }
 }
