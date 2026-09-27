@@ -1,6 +1,6 @@
 ---
 title: iOS Groups
-description: Group, ControlGroup, DisclosureGroup, Divider, Link, LabeledContent, Glass, Overlay, ViewSlot, and SwipeActions under One.iOS
+description: Group, GroupBox, ControlGroup, DisclosureGroup, Divider, Link, LabeledContent, Glass, Overlay, ViewSlot, and SwipeActions under One.iOS
 ---
 
 Grouping views under `One.iOS`.
@@ -9,6 +9,18 @@ Grouping views under `One.iOS`.
 
 `One.iOS.Group` groups children with no visual effect. Use it to apply
 modifiers or structure to several views at once.
+
+## GroupBox
+
+`One.iOS.GroupBox` draws SwiftUI's standard group box around its native
+children. `label` is optional; omit it for the unlabeled SwiftUI initializer.
+The box measures its content and stretches to its parent's width.
+
+```tsx
+<One.iOS.GroupBox label="Account">
+  <One.iOS.Text text="Signed in" />
+</One.iOS.GroupBox>
+```
 
 ## ControlGroup
 
