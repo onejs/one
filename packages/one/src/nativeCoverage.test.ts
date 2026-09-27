@@ -57,7 +57,8 @@ const knownGaps: Record<string, string> = {
 const partialGaps: Record<string, string> = {
   'iOS.ArrangementView': 'closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved',
   'iOS.EditButton': 'Edit/Done label cycle proven; List edit state unobserved and row actions unavailable',
-  'iOS.List': 'Text row inset/separator updates proven in plain List on iPhone; other row controls and list styles unproven',
+  'iOS.List': 'Text row modifiers proven in plain List; section spacing, margins, and header prominence proven in insetGrouped List on iPhone; other rows, modifiers, and styles unproven',
+  'iOS.Section': 'spacing, margins, and header prominence proven in insetGrouped List on iPhone; other section modifiers and Form behavior unproven',
   'iOS.ViewSlot': 'background, mask, list row background, top/bottom safe-area bar, and bottom safe-area inset proven; other named slots unproven',
 }
 

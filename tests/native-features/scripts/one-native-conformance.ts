@@ -2077,12 +2077,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-list-section-modifiers')
-    await wait('native List sections mount', (nodes) =>
+    const compact = await wait('native List sections mount', (nodes) =>
       labels(nodes).includes('Section modifiers: compact') &&
       labels(nodes).includes('First section') &&
       labels(nodes).includes('Second section') &&
       labels(nodes).includes('Apple row') && labels(nodes).includes('Banana row'))
-    screenshot('list-section-modifiers-compact.png')
+    const compactPath = screenshot('list-section-modifiers-compact.png', compact)
     tap({ id: 'one-native-list-section-modifiers-toggle' })
     await wait('React expands native List sections', (nodes) =>
       labels(nodes).includes('Section modifiers: expanded') &&
@@ -2090,13 +2090,55 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('Second section') &&
       labels(nodes).includes('Apple row') && labels(nodes).includes('Banana row'))
     await Bun.sleep(300)
-    screenshot('list-section-modifiers-expanded.png')
+    const expanded = snapshot(config.simulatorId)
+    const expandedPath = screenshot('list-section-modifiers-expanded.png', expanded)
     tap({ id: 'one-native-list-section-modifiers-toggle' })
     await wait('React restores native List sections', (nodes) =>
       labels(nodes).includes('Section modifiers: compact') &&
       labels(nodes).includes('Apple row') && labels(nodes).includes('Banana row'))
     await Bun.sleep(300)
-    screenshot('list-section-modifiers-restored.png')
+    const restored = snapshot(config.simulatorId)
+    const restoredPath = screenshot('list-section-modifiers-restored.png', restored)
+    const frame = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.AXLabel === label && node.frame)?.frame
+    const firstCompact = frame(compact, 'First section')
+    const firstExpanded = frame(expanded, 'First section')
+    const firstRestored = frame(restored, 'First section')
+    const secondCompact = frame(compact, 'Second section')
+    const secondExpanded = frame(expanded, 'Second section')
+    const secondRestored = frame(restored, 'Second section')
+    const appleCompact = frame(compact, 'Apple row')
+    const appleExpanded = frame(expanded, 'Apple row')
+    const appleRestored = frame(restored, 'Apple row')
+    if (!firstCompact || !firstExpanded || !firstRestored || !secondCompact ||
+        !secondExpanded || !secondRestored || !appleCompact || !appleExpanded || !appleRestored)
+      throw new Error('Native List section proof lost a header or row frame')
+    const geometry = {
+      firstCompact, firstExpanded, firstRestored,
+      secondCompact, secondExpanded, secondRestored,
+      appleCompact, appleExpanded, appleRestored,
+    }
+    if (firstExpanded.x - firstCompact.x < 50 ||
+        appleExpanded.x - appleCompact.x < 50 ||
+        firstExpanded.height - firstCompact.height < 2 ||
+        secondExpanded.y - secondCompact.y < 80 ||
+        Math.abs(firstRestored.x - firstCompact.x) > 1 ||
+        Math.abs(appleRestored.x - appleCompact.x) > 1 ||
+        Math.abs(secondRestored.y - secondCompact.y) > 1)
+      throw new Error(`SwiftUI List section modifiers did not update and restore: ${JSON.stringify(geometry)}`)
+    checks.push({ name: 'SwiftUI section margins, header prominence, and spacing update and restore', durationMs: 0 })
+    const app = compact.find((node) => node.type === 'Application')?.frame
+    if (!app) throw new Error('Native List section proof lost the app viewport')
+    const region = { x: 20, y: 210, width: 340, height: 280, viewportWidth: app.width }
+    const pixels = {
+      changed: countChangedPixels(compactPath, expandedPath, region, 8),
+      restored: countChangedPixels(compactPath, restoredPath, region, 8),
+    }
+    fs.writeFileSync(path.join(config.artifactDir, 'list-section-modifiers-measurements.json'),
+      JSON.stringify({ geometry, pixels }, null, 2))
+    if (pixels.changed.changed < 10_000 || pixels.restored.changed > 100)
+      throw new Error(`SwiftUI List section screenshots did not update and restore: ${JSON.stringify(pixels)}`)
+    checks.push({ name: 'SwiftUI section screenshots change and restore inside the List', durationMs: 0 })
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
