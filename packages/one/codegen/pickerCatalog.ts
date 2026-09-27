@@ -121,6 +121,53 @@ export const pickerControls: Control[] = [
   if (!['date', 'hourAndMinute', 'dateAndTime'].includes(displayedComponents)) throw new Error('DatePicker displayedComponents must be date, hourAndMinute, or dateAndTime')`,
   },
   {
+    name: 'MultiDatePicker',
+    value: {
+      type: 'string',
+      prop: 'selection',
+      event: 'onSelectionChange',
+      initial: '[]',
+      publicType: 'readonly string[]',
+      nativeValue: 'JSON.stringify([...selection].sort())',
+      eventValue: 'JSON.parse(event.value) as string[]',
+    },
+    fields: { ...commonFields },
+    constructors: [{
+      type: 'MultiDatePicker',
+      parameters: [
+        { label: 'selection', type: 'SwiftUICore.Binding<Swift.Set<Foundation.DateComponents>>' },
+        { label: 'label', type: '() -> Label' },
+      ],
+    }],
+    swift: `MultiDatePicker(selection: Binding(
+        get: { oneNativeMultiDateDecode(model.controlled.value) },
+        set: { value in model.change(oneNativeMultiDateEncode(value)) }
+      )) {
+        Text(model.label)
+      }`,
+    extraSwift: `private func oneNativeMultiDateDecode(_ value: String) -> Set<DateComponents> {
+  let days = try! JSONDecoder().decode([String].self, from: Data(value.utf8))
+  return Set(days.map { day in
+    let parts = day.split(separator: "-").map { Int($0)! }
+    return DateComponents(year: parts[0], month: parts[1], day: parts[2])
+  })
+}
+
+private func oneNativeMultiDateEncode(_ selection: Set<DateComponents>) -> String {
+  let days = selection.map { day in
+    String(format: "%04d-%02d-%02d", day.year!, day.month!, day.day!)
+  }.sorted()
+  let data = try! JSONEncoder().encode(days)
+  return String(data: data, encoding: .utf8)!
+}`,
+    validate: `  if (!Array.isArray(selection) || selection.some(day =>
+    typeof day !== 'string' || !/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(day) ||
+    Number(day.slice(0, 4)) < 1 || Number.isNaN(Date.parse(day + 'T00:00:00Z')) ||
+    new Date(day + 'T00:00:00Z').toISOString().slice(0, 10) !== day
+  )) throw new Error('MultiDatePicker selection must contain valid YYYY-MM-DD calendar days')
+  if (new Set(selection).size !== selection.length) throw new Error('MultiDatePicker selection days must be unique')`,
+  },
+  {
     name: 'ColorPicker',
     value: {
       type: 'string',

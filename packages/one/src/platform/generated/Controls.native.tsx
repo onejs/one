@@ -134,6 +134,58 @@ export function DatePicker({
     />
   )
 }
+import NativeMultiDatePicker from '../specs/OneNativeMultiDatePickerNativeComponent'
+export function MultiDatePicker({
+  selection,
+  onSelectionChange,
+  revision = 0,
+  label = '',
+  disabled = false,
+  swiftStyle,
+  style,
+  ...props
+}: Types.MultiDatePickerProps) {
+  if (
+    !Array.isArray(selection) ||
+    selection.some(
+      (day) =>
+        typeof day !== 'string' ||
+        !/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(day) ||
+        Number(day.slice(0, 4)) < 1 ||
+        Number.isNaN(Date.parse(day + 'T00:00:00Z')) ||
+        new Date(day + 'T00:00:00Z').toISOString().slice(0, 10) !== day
+    )
+  )
+    throw new Error(
+      'MultiDatePicker selection must contain valid YYYY-MM-DD calendar days'
+    )
+  if (new Set(selection).size !== selection.length)
+    throw new Error('MultiDatePicker selection days must be unique')
+
+  const controlled = useControlled<{
+    value: string
+    eventCount: number
+    revision: number
+  }>((event) => onSelectionChange(JSON.parse(event.value) as string[]), revision)
+  return (
+    <NativeMultiDatePicker
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      value={JSON.stringify([...selection].sort())}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      label={label}
+      disabled={disabled}
+      onNativeMultiDatePickerValueChange={({ nativeEvent }) =>
+        controlled.onNativeChange(nativeEvent)
+      }
+    />
+  )
+}
 import NativeColorPicker from '../specs/OneNativeColorPickerNativeComponent'
 export function ColorPicker({
   selection,

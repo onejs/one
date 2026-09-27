@@ -176,6 +176,13 @@ accounts are unavailable).
 - **INFERRED, 2026-09-26:** `MultiDatePicker` needs a public representation of
   SwiftUI's selected date set, so that API choice stays on a named branch for
   Nate.
+- **INFERRED, 2026-09-27, proposed on `one-native-multi-date-picker`:** represent
+  the `Set<DateComponents>` as unique `YYYY-MM-DD` civil-day strings in the
+  React `selection` array and sorted callback. This avoids treating a calendar
+  day as a timestamp. The first native constructor is unbounded; a range can
+  follow once the base control is proven. This is a new public API choice and
+  must stay on the named branch for Nate's approval. iOS 27 runtime proof and
+  non-Gregorian calendar handling remain open.
 - **RAN, 2026-09-26:** the `tab-slot` suite passed on iPhone 17 Pro iOS 27.
   `TabViewSlot` mounted a 50-point interactive bottom accessory above the
   system tab bar; its action reached React before and after switching tabs.

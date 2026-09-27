@@ -23,6 +23,7 @@ const iphoneSuites = [
   'swipe-actions',
   'disclosure-group',
   'control-group',
+  'multi-date-picker',
   'share-empty',
   'web-photos',
   'tab-slot',

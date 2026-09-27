@@ -7,6 +7,9 @@ function Picker(_props: Types.PickerProps): never {
 function DatePicker(_props: Types.DatePickerProps): never {
   throw new Error('Swift.DatePicker requires an iOS native build')
 }
+function MultiDatePicker(_props: Types.MultiDatePickerProps): never {
+  throw new Error('Swift.MultiDatePicker requires an iOS native build')
+}
 function ColorPicker(_props: Types.ColorPickerProps): never {
   throw new Error('Swift.ColorPicker requires an iOS native build')
 }
@@ -109,6 +112,7 @@ function EmptyView(_props: Types.EmptyViewProps): never {
 export const unsupportedControls = {
   Picker,
   DatePicker,
+  MultiDatePicker,
   ColorPicker,
   Toggle,
   Slider,

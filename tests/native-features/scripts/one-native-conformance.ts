@@ -56,6 +56,7 @@ const suites = [
   'swipe-actions',
   'disclosure-group',
   'control-group',
+  'multi-date-picker',
   'share-empty',
   'web-photos',
   'tab-slot',
@@ -370,6 +371,9 @@ const disclosureGroupLoaded = (nodes: Node[]) =>
 const controlGroupLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-control-screen'))
+const multiDatePickerLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-multi-date-screen'))
 const shareEmptyLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-share-empty-screen'))
@@ -553,6 +557,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'swipe-actions': swipeActionsLoaded,
   'disclosure-group': disclosureGroupLoaded,
   'control-group': controlGroupLoaded,
+  'multi-date-picker': multiDatePickerLoaded,
   'share-empty': shareEmptyLoaded,
   'web-photos': webPhotosLoaded,
   'tab-slot': tabSlotLoaded,
@@ -620,6 +625,7 @@ const suiteHome: Record<Suite, string> = {
   'swipe-actions': 'nav-one-native-swipe-actions',
   'disclosure-group': 'nav-one-native-disclosure-group',
   'control-group': 'nav-one-native-control-group',
+  'multi-date-picker': 'nav-one-native-multi-date-picker',
   'share-empty': 'nav-one-native-share-empty',
   'web-photos': 'nav-one-native-web-photos',
   'tab-slot': 'nav-one-native-tab-slot',
@@ -3245,6 +3251,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('Fitting expanded: true') && labels(nodes).includes('Fitting detail'))
     checkContainer(fitsExpanded, 'one-native-disclosure-fits', 'one-native-disclosure-after-fits', fitsBefore.container.height + 15)
     screenshot('disclosure-view-that-fits-expanded.png', fitsExpanded)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'multi-date-picker') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-multi-date-picker')
+    const mounted = await wait('native MultiDatePicker calendar mounts', (nodes) =>
+      labels(nodes).includes('Selected days: 2026-09-28') &&
+      Boolean(id(nodes, 'one-native-multi-date-control')?.frame))
+    screenshot('multi-date-initial.png', mounted)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

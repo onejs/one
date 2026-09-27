@@ -72,6 +72,7 @@ declare module 'one' {
         | `/one-native-swipe-actions`
         | `/one-native-disclosure-group`
         | `/one-native-control-group`
+        | `/one-native-multi-date-picker`
         | `/one-native-groups`
         | `/one-native-haptics`
         | `/one-native-host`

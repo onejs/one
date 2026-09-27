@@ -17746,6 +17746,7 @@
         "Gauge",
         "Label",
         "Menu",
+        "MultiDatePicker",
         "PasteButton",
         "Picker",
         "ProgressView",
@@ -19084,6 +19085,23 @@
         }
       ],
       "ios": 13
+    },
+    {
+      "module": "SwiftUI",
+      "type": "MultiDatePicker",
+      "parameters": [
+        {
+          "label": "selection",
+          "name": "selection",
+          "type": "SwiftUICore.Binding<Swift.Set<Foundation.DateComponents>>"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "ios": 16
     },
     {
       "module": "SwiftUI",

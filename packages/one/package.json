@@ -381,6 +381,7 @@
         "OneNativePictureInPicture": "OneNativePictureInPictureComponentView",
         "OneNativePicker": "OneNativePickerComponentView",
         "OneNativeDatePicker": "OneNativeDatePickerComponentView",
+        "OneNativeMultiDatePicker": "OneNativeMultiDatePickerComponentView",
         "OneNativeColorPicker": "OneNativeColorPickerComponentView",
         "OneNativeToggle": "OneNativeToggleComponentView",
         "OneNativeSlider": "OneNativeSliderComponentView",

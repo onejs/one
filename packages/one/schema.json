@@ -1036,6 +1036,58 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeMultiDatePicker",
+      "publicName": "MultiDatePicker",
+      "props": {
+        "value": {
+          "type": "string"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "onNativeMultiDatePickerValueChange": {
+          "value": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeMultiDatePickerValueChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativeColorPicker",
       "publicName": "ColorPicker",
       "props": {

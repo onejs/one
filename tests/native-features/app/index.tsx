@@ -91,6 +91,11 @@ const testScreens = [
     testID: 'nav-one-native-control-group',
   },
   {
+    href: '/one-native-multi-date-picker',
+    label: 'One Native Multi Date Picker',
+    testID: 'nav-one-native-multi-date-picker',
+  },
+  {
     href: '/one-native-sheet',
     label: 'One Native Sheets',
     testID: 'nav-one-native-sheet',
