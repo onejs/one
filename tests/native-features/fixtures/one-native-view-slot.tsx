@@ -24,6 +24,12 @@ export default function OneNativeViewSlotFixture() {
           <One.iOS.Button label="Overlay action" onPress={() => setOverlayTaps((value) => value + 1)} />
         </One.iOS.Overlay.Content>
       </One.iOS.Overlay>
+      <One.iOS.ViewSlot name="mask" style={styles.maskSlot} testID="one-native-view-slot-mask">
+        <One.iOS.Rectangle fill="#D52B36" style={styles.maskShape} />
+        <One.iOS.ViewSlot.Content>
+          <One.iOS.Circle fill="#FFFFFF" style={styles.maskShape} />
+        </One.iOS.ViewSlot.Content>
+      </One.iOS.ViewSlot>
       <One.iOS.ViewSlot
         name="safeAreaInsetWithVerticalEdge"
         options={{ edge: 'bottom' }}
@@ -43,5 +49,7 @@ const styles = StyleSheet.create({
   screen: { flex: 1, paddingTop: 90, paddingHorizontal: 20, gap: 12, backgroundColor: '#FFFFFF' },
   backgroundSlot: { width: 260, height: 100 },
   overlaySlot: { width: 260, height: 100 },
+  maskSlot: { width: 120, height: 120 },
+  maskShape: { width: 120, height: 120 },
   insetSlot: { width: 260, height: 260 },
 })
