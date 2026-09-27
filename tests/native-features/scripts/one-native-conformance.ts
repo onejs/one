@@ -35,6 +35,7 @@ const suites = [
   'host',
   'containers',
   'lists',
+  'list-row-background',
   'groups',
   'state',
   'safe-area',
@@ -532,6 +533,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   host: hostLoaded,
   containers: containersLoaded,
   lists: listsLoaded,
+  'list-row-background': listsLoaded,
   groups: groupsLoaded,
   state: stateLoaded,
   'safe-area': safeAreaLoaded,
@@ -599,6 +601,7 @@ const suiteHome: Record<Suite, string> = {
   host: 'nav-one-native-host',
   containers: 'nav-one-native-containers',
   lists: 'nav-one-native-lists',
+  'list-row-background': 'nav-one-native-lists',
   groups: 'nav-one-native-groups',
   state: 'nav-one-native-state',
   'safe-area': 'nav-one-native-safe-area',
@@ -2038,6 +2041,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'IsOn', 'true')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'list-row-background') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-lists')
+    const blue = await wait('native list row background mounts', (nodes) =>
+      labels(nodes).includes('Apple') && labels(nodes).includes('Row background: blue'))
+    screenshot('list-row-background-blue.png', blue)
+    tap({ id: 'one-native-list-row-background' })
+    const warm = await wait('React changes the native list row background', (nodes) =>
+      labels(nodes).includes('Apple') && labels(nodes).includes('Row background: warm'))
+    screenshot('list-row-background-warm.png', warm)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
