@@ -1280,6 +1280,12 @@ indicator duration remains unmeasured for both containers.
 view in `ViewSlot.Content` becomes a safe-area bar. Both edges and bar button
 actions have an iOS 27 simulator proof.
 
+`One.iOS.ViewSlot name="safeAreaInsetWithHorizontalEdge"` accepts
+`options={{ edge: 'leading' }}` or `options={{ edge: 'trailing' }}`. The iOS 27
+iPhone fixture places the native inset action on the selected side of its base
+inside a bounded host, and both actions reach React. Scroll content and other
+container sizes remain unproven.
+
 `One.iOS.ScrollView` scrolls One Native content vertically by default,
 horizontally with `axes="horizontal"`, or both ways with `axes="both"`.
 `showsIndicators` hides the scroll bars when false. It is greedy the same way

@@ -32,3 +32,6 @@ fail-snapshot.json
 !proofs/picker-palette/*.png
 !proofs/picker-palette/*.webp
 !proofs/picker-palette/outcome.json
+!proofs/horizontal-inset/*.png
+!proofs/horizontal-inset/*.webp
+!proofs/horizontal-inset/outcome.json
