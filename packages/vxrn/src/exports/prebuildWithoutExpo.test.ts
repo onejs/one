@@ -1330,6 +1330,53 @@ describe('generateForPlatform determinism', () => {
     expect(launchStoryboard).not.toContain('firstAttribute="width" constant')
   }, 180000)
 
+  it('gives a dark launch its own background and artwork on both platforms', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-dark-'))
+    const source = fileURLToPath(
+      new URL('../../../../examples/one-basic/public/splash.png', import.meta.url)
+    )
+    const splash = {
+      source,
+      backgroundColor: '#ffffff',
+      dark: { source, backgroundColor: '#000000' },
+    }
+    await generateForPlatform(workspaceRoot, 'ios', { ...app, splash }, join(output, 'ios'))
+    await generateForPlatform(workspaceRoot, 'android', { ...app, splash }, join(output, 'android'))
+
+    const assets = join(output, 'ios', 'MyApp', 'Images.xcassets')
+    const imageset = JSON.parse(
+      readFileSync(join(assets, 'Splash.imageset', 'Contents.json'), 'utf8')
+    )
+    expect(imageset.images[1]).toMatchObject({
+      appearances: [{ appearance: 'luminosity', value: 'dark' }],
+      filename: 'splash-dark.png',
+    })
+    expect(existsSync(join(assets, 'Splash.imageset', 'splash-dark.png'))).toBe(true)
+    const colorset = JSON.parse(
+      readFileSync(join(assets, 'SplashBackground.colorset', 'Contents.json'), 'utf8')
+    )
+    expect(colorset.colors[0].color.components).toMatchObject({ red: '1.000' })
+    expect(colorset.colors[1]).toMatchObject({
+      appearances: [{ appearance: 'luminosity', value: 'dark' }],
+      color: { components: { red: '0.000', green: '0.000', blue: '0.000' } },
+    })
+    const storyboard = readFileSync(
+      join(output, 'ios', 'MyApp', 'LaunchScreen.storyboard'),
+      'utf8'
+    )
+    expect(storyboard).toContain('<color key="backgroundColor" name="SplashBackground"/>')
+    expect(storyboard).toContain('<namedColor name="SplashBackground">')
+
+    const res = join(output, 'android', 'app', 'src', 'main', 'res')
+    expect(readFileSync(join(res, 'values-night', 'colors.xml'), 'utf8')).toContain(
+      '<color name="splash_background">#000000</color>'
+    )
+    expect(
+      await sharp(join(res, 'drawable-night-xxxhdpi', 'splash.png')).metadata()
+    ).toMatchObject({ width: 1152, height: 1152 })
+  }, 180000)
+
   it('regenerates byte-identical projects from the same manifest', async () => {
     // root stays the workspace so the installed community template resolves;
     // output goes to isolated temp dirs, never the repo.
