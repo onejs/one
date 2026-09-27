@@ -36,6 +36,11 @@ const testScreens = [
     testID: 'nav-one-native-group-box',
   },
   {
+    href: '/one-native-view-that-fits',
+    label: 'One Native View That Fits',
+    testID: 'nav-one-native-view-that-fits',
+  },
+  {
     href: '/one-native-sheet',
     label: 'One Native Sheets',
     testID: 'nav-one-native-sheet',

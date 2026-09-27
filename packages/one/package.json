@@ -421,6 +421,7 @@
         "OneNativeSection": "OneNativeSectionComponentView",
         "OneNativeLabeledContent": "OneNativeLabeledContentComponentView",
         "OneNativeGroupBox": "OneNativeGroupBoxComponentView",
+        "OneNativeViewThatFits": "OneNativeViewThatFitsComponentView",
         "OneNativeGlassEffectContainer": "OneNativeGlassEffectContainerComponentView",
         "OneNativeButton": "OneNativeButtonComponentView",
         "OneNativeGlass": "OneNativeGlassComponentView",

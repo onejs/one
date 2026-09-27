@@ -1,5 +1,5 @@
 import { type LazyHStackProps, type LazyVStackProps, type ListProps, type ScrollViewProps } from './listTypes';
-import { type ControlGroupProps, type DisclosureGroupProps, type DividerProps, type GroupProps, type GroupBoxProps, type GlassEffectContainerProps, type LinkProps, type OverlayContentProps, type OverlayProps, type ViewSlotProps, type SwipeActionsActionsProps, type SwipeActionsProps } from './groupTypes';
+import { type ControlGroupProps, type DisclosureGroupProps, type DividerProps, type GroupProps, type GroupBoxProps, type ViewThatFitsProps, type GlassEffectContainerProps, type LinkProps, type OverlayContentProps, type OverlayProps, type ViewSlotProps, type SwipeActionsActionsProps, type SwipeActionsProps } from './groupTypes';
 import { type ButtonProps, type FormProps, type GlassProps, type HostProps, type LabeledContentProps, type SectionProps, type SlotProps, type SpacerProps, type StackProps, type ZStackProps } from './generated/containerTypes';
 import { InsideContainer, assertOneNativeChildren } from './containerChildren';
 import { type GridProps, type GridRowProps, type LazyHGridProps, type LazyVGridProps } from './gridTypes';
@@ -21,6 +21,7 @@ export declare function Grid({ alignment, horizontalSpacing, verticalSpacing, ch
 export declare function GridRow({ alignment, children, style, ...props }: GridRowProps): import("react/jsx-runtime").JSX.Element;
 export declare function LabeledContent({ label, value, systemImage, children, style, ...props }: LabeledContentProps): import("react/jsx-runtime").JSX.Element;
 export declare function GroupBox({ label, children, style, ...props }: GroupBoxProps): import("react/jsx-runtime").JSX.Element;
+export declare function ViewThatFits({ axes, children, style, ...props }: ViewThatFitsProps): import("react/jsx-runtime").JSX.Element;
 export declare function Button({ onPress, label, disabled, subtitle, systemImage, buttonRole, buttonStyle, disclosureIndicator, children, swiftStyle, style, ...props }: ButtonProps): import("react/jsx-runtime").JSX.Element;
 export declare function Glass({ material, glassEffect, interactive, shape, cornerRadius, tint, colorScheme, children, style, ...props }: GlassProps): import("react/jsx-runtime").JSX.Element;
 export declare function GlassEffectContainer({ spacing, children, style, ...props }: GlassEffectContainerProps): import("react/jsx-runtime").JSX.Element;

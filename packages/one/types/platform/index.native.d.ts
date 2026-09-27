@@ -1,4 +1,4 @@
-import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, Group, GroupBox, GlassEffectContainer, HStack, Host, LabeledContent, LazyHStack, LazyVStack, LazyHGrid, LazyVGrid, Grid, GridRow, Link, List, ScrollView, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
+import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, GlassEffectContainer, Group, GroupBox, ViewThatFits, HStack, Host, LabeledContent, LazyHStack, LazyVStack, LazyHGrid, LazyVGrid, Grid, GridRow, Link, List, ScrollView, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
 import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './AndroidMenu';
 import { Page, Pager } from './Pager.native';
 import { Popover } from './Popover.native';
@@ -91,6 +91,7 @@ export declare const Swift: {
     Link: typeof Link;
     Group: typeof Group;
     GroupBox: typeof GroupBox;
+    ViewThatFits: typeof ViewThatFits;
     Overlay: (({ alignment, children, style, ...props }: import("./groupTypes").OverlayProps) => import("react/jsx-runtime").JSX.Element) & {
         Content: typeof import("./Containers.native").OverlayContent;
     };
