@@ -10,7 +10,8 @@ edge and base's left edge differ by 0.17 point; the trailing base's right edge
 and action's left edge differ by 0.17 point. The action is edge-adjacent on the
 requested side; all elements stay inside their hosts. Both native buttons
 reach their React handlers. This is the observed SwiftUI bar layout, with no
-extra spacing supplied by One.
+extra spacing supplied by One. The suite rejects either edge gap above 2
+points, distinguishing the bar from the adjacent horizontal inset behavior.
 
 `environment.txt` records the suite source, iPhone 17 Pro / iOS 27.0 runtime,
 Xcode 27.1, matching source blobs for the generated ViewSlot and native Overlay

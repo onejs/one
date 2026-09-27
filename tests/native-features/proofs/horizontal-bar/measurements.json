@@ -1,41 +1,41 @@
 {
-  "suiteSourceRevision": "2e39f264a9771d5a1f92bb5a3ccb7c4065540932",
+  "suiteSourceRevision": "f9212fa0bf21e40017cb9adde5dd9dbf815d84b8",
   "frames": {
     "one-native-horizontal-bar-leading": {
-      "width": 280,
-      "x": 20,
-      "height": 180,
-      "y": 215
+      "x": 20.0,
+      "y": 215.0,
+      "width": 280.0,
+      "height": 180.0
     },
     "Leading bar action": {
-      "width": 141,
       "x": 24.333333333333332,
-      "height": 20.333333333333314,
-      "y": 295
+      "y": 295.0,
+      "width": 141.0,
+      "height": 20.333333333333314
     },
     "Leading bar base": {
-      "width": 130.66666666666666,
       "x": 165.16666666666666,
-      "height": 20.333333333333314,
-      "y": 294.8333333333333
+      "y": 294.8333333333333,
+      "width": 130.66666666666666,
+      "height": 20.333333333333314
     },
     "one-native-horizontal-bar-trailing": {
-      "width": 280,
-      "x": 20,
-      "height": 180,
-      "y": 436
+      "x": 20.0,
+      "y": 436.0,
+      "width": 280.0,
+      "height": 180.0
     },
     "Trailing bar base": {
-      "width": 125.33333333333331,
       "x": 29.5,
-      "height": 20.333333333333258,
-      "y": 515.8333333333334
+      "y": 515.8333333333334,
+      "width": 125.33333333333331,
+      "height": 20.333333333333258
     },
     "Trailing bar action": {
+      "x": 155.0,
+      "y": 516.0,
       "width": 135.66666666666663,
-      "x": 155,
-      "height": 20.33333333333337,
-      "y": 516
+      "height": 20.33333333333337
     }
   },
   "leadingGapPoints": -0.16666666666668561,
