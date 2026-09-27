@@ -65,6 +65,24 @@ in the section header. Children are `Tab` elements.
 `One.iOS.TabViewSlot` fills a named tab view slot with a fixed `height`.
 Slot names are `tabViewBottomAccessory` (iOS 26), `tabViewSidebarBottomBar`,
 `tabViewSidebarFooter`, and `tabViewSidebarHeader` (iOS 18).
+The three sidebar slots display only when the tab view presents a sidebar;
+they are absent from the compact iPhone tab bar.
+Place it directly inside `Tabs`, alongside the `Tab` children. The bottom
+accessory remains above the system tab bar as selection changes; its React
+Native children keep their event handlers.
+
+```tsx
+import { One } from 'one'
+import { Pressable, Text } from 'react-native'
+
+<One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
+  <One.iOS.Tab id="home" title="Home" systemImage="house">...</One.iOS.Tab>
+  <One.iOS.Tab id="other" title="Other" systemImage="star">...</One.iOS.Tab>
+  <One.iOS.TabViewSlot name="tabViewBottomAccessory" height={50}>
+    <Pressable onPress={openPlayer}><Text>Open player</Text></Pressable>
+  </One.iOS.TabViewSlot>
+</One.iOS.Tabs>
+```
 
 ## TabViewBottomAccessory
 

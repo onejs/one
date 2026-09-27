@@ -32,7 +32,7 @@ Out of scope unless an app needs it: `Table` (iPad), `NavigationSplitView` and
 `TimelineView`/`Canvas` (closures over native state), document and scene types.
 
 Bound but never exercised by a suite (`tests/native-features/COVERAGE.md`):
-`EditButton`, `EmptyView`, `TabViewSlot`.
+`EditButton`.
 `ZStack`, `Spacer`, `LabeledContent`, and `Glass` now have an iOS 27 family
 suite, as do `ShareLink`, `ContentUnavailableView`, `PhotosPicker`, and
 `WebView`. A suite per remaining family closes these.
@@ -51,7 +51,7 @@ The remaining partial surfaces are:
 | pickers | standalone controls work; `navigationLink` and `palette` Picker styles are rejected without their native container context | after core views |
 | popovers | trigger and React Native presentation body work; `attachmentAnchor` is not bound | after core views |
 | navigation | `NavigationStack` and toolbars exist; `NavigationSplitView` and `NavigationLink` are outside this lane because One owns routed navigation | coordinate before admission |
-| bound views without a suite | `EditButton`, `EmptyView`, and `TabViewSlot` | family suites after new views |
+| bound views without a suite | `EditButton` | family suite after new views |
 
 ## Order
 
@@ -176,3 +176,16 @@ accounts are unavailable).
 - **INFERRED, 2026-09-26:** `MultiDatePicker` needs a public representation of
   SwiftUI's selected date set, so that API choice stays on a named branch for
   Nate.
+- **RAN, 2026-09-26:** the `tab-slot` suite passed on iPhone 17 Pro iOS 27.
+  `TabViewSlot` mounted a 50-point interactive bottom accessory above the
+  system tab bar; its action reached React before and after switching tabs.
+  `EmptyView` produced no accessibility element or visible content and kept a
+  zero-height position between two 8-point React Native gaps. The fixture
+  verifies the resulting 16-point separation; a composed SwiftUI `HStack`
+  measured the same 12-point gap as a control row without `EmptyView`.
+  It also verifies the accessory frame after a tab switch. The generated
+  `TabViewSlotName` now excludes the boolean overload
+  that requires an argument the component cannot supply. The coverage snapshot
+  was refreshed with `vitest -u`; screenshots and trace are in the local
+  ignored `tests/native-features/build/tab-slot-final-proof` directory.
+  The three sidebar slot names remain partial until an iPad sidebar run.

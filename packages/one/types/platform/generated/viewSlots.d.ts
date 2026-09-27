@@ -430,7 +430,6 @@ export type ViewSlotConfiguration = {
 };
 export declare const tabViewSlotAvailability: {
     readonly tabViewBottomAccessory: 26;
-    readonly tabViewBottomAccessoryWithBool: 26.1;
     readonly tabViewSidebarBottomBar: 18;
     readonly tabViewSidebarFooter: 18;
     readonly tabViewSidebarHeader: 18;

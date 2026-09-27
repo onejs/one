@@ -122,5 +122,8 @@ import { One } from 'one'
 
 `One.iOS.EmptyView` renders nothing. It is a placeholder where SwiftUI
 expects a view, with no props beyond the shared view props.
+Inside a SwiftUI `HStack`, it adds no visible element or extra spacing.
+It has zero visible height. In a React Native container with `gap`, the gaps
+on either side still apply to its position in the child list.
 
 On web and Android these views throw. Keep them behind a platform check.

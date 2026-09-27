@@ -17,10 +17,8 @@ const fixtureRoot = join(import.meta.dirname, '../../../tests/native-features')
 const knownGaps: Record<string, string> = {
   Database: 'Android suite missing',
   'iOS.ArrangementView': 'fixture exists, no suite opens it',
-  'iOS.TabViewSlot': 'no fixture or suite',
   'iOS.ViewSlot': 'only the autogen fixture, which no suite opens',
   'iOS.EditButton': 'no fixture or suite',
-  'iOS.EmptyView': 'no fixture or suite',
   'iOS.Widgets': 'needs a widget extension target in the fixture app',
   'iOS.LiveActivities': 'needs a widget extension target in the fixture app',
   'iOS.WidgetUI': 'needs a widget extension target in the fixture app',
@@ -56,6 +54,11 @@ const knownGaps: Record<string, string> = {
   useReservedRegionsReady: 'no fixture or suite',
   useWindowSegments: 'fixture exists, no suite opens it',
   useSpanning: 'fixture exists, no suite opens it',
+}
+// A suite may exercise an export while a presentation-specific variant still
+// lacks runtime proof. Keep those limits visible in the generated table.
+const partialGaps: Record<string, string> = {
+  'iOS.TabViewSlot': 'bottom accessory proven on iPhone; sidebar slots need iPad sidebar proof',
 }
 
 type Platform = 'ios' | 'android'
@@ -186,7 +189,7 @@ test('every One namespace member is exercised by a native conformance suite', as
     const ios = cell('ios')
     const android = cell('android')
     if (ios === 'missing' || android === 'missing') uncovered.push(name)
-    rows.push(`| \`${label}\` | ${ios} | ${android} | ${knownGaps[name] ?? ''} |`)
+    rows.push(`| \`${label}\` | ${ios} | ${android} | ${knownGaps[name] ?? partialGaps[name] ?? ''} |`)
   }
 
   await expect(
