@@ -1323,7 +1323,9 @@ measures its chosen child and vertical fit is unbounded.
 `One.iOS.ControlGroup` gathers controls into one labeled cluster with the
 SDK-derived `controlGroupStyle` (`automatic`, `palette`, `navigation`,
 `menu`, or `compactMenu`). The `label` and `systemImage` are plain strings;
-an empty label renders no title.
+an empty label renders no title. Standalone it reports its native height to
+React Native; inside a `One.iOS.Host`, the parent measures its SwiftUI content.
+An explicit `style.height` keeps the requested React Native height.
 
 `One.iOS.DisclosureGroup` is the controlled expandable section: `label` names
 it, `isExpanded` with `onIsExpandedChange` owns its state under the same

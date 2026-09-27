@@ -9,4 +9,6 @@ interface NativeProps extends ViewProps {
   systemImage: string
   controlGroupStyle: string
 }
-export default codegenNativeComponent<NativeProps>('OneNativeControlGroup')
+export default codegenNativeComponent<NativeProps>('OneNativeControlGroup', {
+  interfaceOnly: true,
+})

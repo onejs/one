@@ -265,3 +265,18 @@ accounts are unavailable).
   updated React state. The suite checks native accessibility and frames;
   screenshots and trace are in local ignored
   `tests/native-features/build/disclosure-reviewed-proof-2`.
+- **RAN, 2026-09-27:** after DisclosureGroup measurement unblocked the broad
+  `groups` suite, its ControlGroup displayed Add and Star outside a zero-height
+  React Native box. Their accessibility elements were missing and the native
+  segment overlapped the next row. ControlGroup now measures its standalone
+  SwiftUI height while honoring an explicit React Native height. The dedicated
+  iPhone 17 Pro iOS 27 suite passed nine checks: a 31-point standalone frame
+  with the next row 12 points below, both native buttons reaching React, a
+  measured Host composition, and a fixed 80-point group whose following row
+  did not move after a tap. The broad `groups` suite then passed 34 checks.
+  It records the observed removal of a row after its destructive swipe action
+  and remounts before checking the leading action; the icon-only Button check
+  asserts its native accessible frame and React action, since iOS 27 exposes
+  no separate nested image frame for geometric centering. Screenshots, AX
+  trees, and outcomes are in local ignored `tests/native-features/build/`
+  directories `control-group-proof-2` and `groups-after-control-3`.
