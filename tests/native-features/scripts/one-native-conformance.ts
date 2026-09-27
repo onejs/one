@@ -36,6 +36,7 @@ const suites = [
   'containers',
   'lists',
   'list-row-background',
+  'list-row-modifiers',
   'groups',
   'state',
   'safe-area',
@@ -298,6 +299,10 @@ const listsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-list-style')) &&
   has(nodes, 'List style: ')
+const listRowModifiersLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-list-row-modifiers-screen')) &&
+  has(nodes, 'Row modifiers: ')
 const groupsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-groups-refuse')) &&
@@ -538,6 +543,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   containers: containersLoaded,
   lists: listsLoaded,
   'list-row-background': listsLoaded,
+  'list-row-modifiers': listRowModifiersLoaded,
   groups: groupsLoaded,
   state: stateLoaded,
   'safe-area': safeAreaLoaded,
@@ -607,6 +613,7 @@ const suiteHome: Record<Suite, string> = {
   containers: 'nav-one-native-containers',
   lists: 'nav-one-native-lists',
   'list-row-background': 'nav-one-native-lists',
+  'list-row-modifiers': 'nav-one-native-list-row-modifiers',
   groups: 'nav-one-native-groups',
   state: 'nav-one-native-state',
   'safe-area': 'nav-one-native-safe-area',
@@ -2047,6 +2054,35 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'IsOn', 'true')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'list-row-modifiers') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-list-row-modifiers')
+    const defaultRows = await wait('native list row modifiers mount', (nodes) =>
+      labels(nodes).includes('Row modifiers: default') &&
+      labels(nodes).includes('Inset row') && labels(nodes).includes('Control row'))
+    const defaultPath = screenshot('list-row-modifiers-default.png', defaultRows)
+    tap({ id: 'one-native-list-row-modifiers-toggle' })
+    const customRows = await wait('React updates native list row modifiers', (nodes) =>
+      labels(nodes).includes('Row modifiers: custom') &&
+      labels(nodes).includes('Inset row') && labels(nodes).includes('Control row'))
+    await Bun.sleep(300)
+    const customPath = screenshot('list-row-modifiers-custom.png', customRows)
+    const frame = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.AXLabel === label && node.frame)?.frame
+    const before = frame(defaultRows, 'Inset row')
+    const after = frame(customRows, 'Inset row')
+    const controlBefore = frame(defaultRows, 'Control row')
+    const controlAfter = frame(customRows, 'Control row')
+    if (!before || !after || !controlBefore || !controlAfter ||
+        after.x - before.x < 50 || Math.abs(controlAfter.x - controlBefore.x) > 2)
+      throw new Error(`List row leading inset did not move only its target row: ${JSON.stringify({ before, after, controlBefore, controlAfter })}`)
+    fs.writeFileSync(path.join(config.artifactDir, 'list-row-modifiers-frames.json'),
+      JSON.stringify({ before, after, controlBefore, controlAfter, defaultPath, customPath }, null, 2))
+    checks.push({ name: 'SwiftUI listRowInsets changes only the target row', durationMs: 0 })
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

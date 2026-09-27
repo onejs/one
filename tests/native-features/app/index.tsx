@@ -31,6 +31,11 @@ const testScreens = [
     testID: 'nav-one-native-edit-button',
   },
   {
+    href: '/one-native-list-row-modifiers',
+    label: 'One Native List Row Modifiers',
+    testID: 'nav-one-native-list-row-modifiers',
+  },
+  {
     href: '/one-native-building-blocks',
     label: 'One Native Building Blocks',
     testID: 'nav-one-native-building-blocks',
