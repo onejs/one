@@ -58,7 +58,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ToolbarItem` | navigation | n/a |  |
 | `One.iOS.ToolbarItemGroup` | navigation | n/a |  |
 | `One.iOS.ToolbarSpacer` | navigation | n/a |  |
-| `One.iOS.Picker` | pickers, forms, navigation | n/a |  |
+| `One.iOS.Picker` | pickers, picker-palette, forms, navigation | n/a |  |
 | `One.iOS.DatePicker` | pickers, forms | n/a |  |
 | `One.iOS.ColorPicker` | pickers, forms | n/a |  |
 | `One.iOS.Toggle` | pickers, forms, host, containers, lists, list-row-background, state, accessibility | n/a |  |
