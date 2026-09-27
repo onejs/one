@@ -108,8 +108,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ZoomTransitionSource` | e2e:zoom-test | n/a |  |
 | `One.Android.Column` | n/a | android, android-inputs, android-progress, android-segmented, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
 | `One.Android.Row` | n/a | android, android-inputs, android-progress, android-loading, android-badges, android-flow-row, android-icon-buttons, android-selection, android-dividers |  |
-| `One.Android.FlowRow` | n/a | android-flow-row |  |
 | `One.Android.Spacer` | n/a | android-flow-row |  |
+| `One.Android.FlowRow` | n/a | android-flow-row |  |
 | `One.Android.Box` | n/a | android, android-inputs, android-flow-row |  |
 | `One.Android.Badge` | n/a | android-badges |  |
 | `One.Android.BadgedBox` | n/a | android-badges |  |
