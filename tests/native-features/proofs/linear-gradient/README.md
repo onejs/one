@@ -17,3 +17,10 @@ recorded source revision from the original ignored
 The suite proves the listed colors, points, alpha, transparent empty input,
 and accessibility behavior on that runtime. It does not prove every gradient
 direction or color interpolation against React Native's renderer.
+
+**INFERRED after the `v2-beta` sync:** the current generated Swift source adds
+only the shared `listRow` style refresh in `configureStyle` compared with the
+proof revision. The gradient constructor, color/point conversion, rendering,
+and accessibility code are unchanged. SDK 27 generation and TypeScript checks
+passed on the merged tree; the runtime captures remain attributed to their
+recorded source revision.
