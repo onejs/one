@@ -78,9 +78,11 @@ accounts are unavailable).
   their 280-by-220-point host frames; both native button actions reached React.
   AX snapshots, PNGs, a machine-produced environment receipt, and the
   eight-check outcome are in local ignored
-  `tests/native-features/build/safe-area-bar-final-proof`. The fixture checks
+  `tests/native-features/build/safe-area-bar-reviewed-proof`. The final rerun
+  at suite revision `b1a6842d5` passed after the high review suggested checking
+  that both base and action frames stay inside their hosts. The fixture checks
   content order and actions in these bounded hosts; it does not prove a
-  full-screen bar or scroll interaction.
+  full-screen bar or scroll interaction. High review s509 found no blocker.
 
 - **RAN, 2026-09-27:** `One.iOS.ViewSlot name="listRowBackground"` passed a
   focused iPhone 17 Pro iOS 27.0 suite on ci-64 after an arm64 Xcode 27.1
