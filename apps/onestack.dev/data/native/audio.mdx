@@ -65,11 +65,30 @@ without prompting. `getRecordingStatus()` reports `idle`, `recording`, or
 `paused`; call `resumeRecording()` after the interruption ends. Keep a file you want to
 retain by moving it from cache with `One.iOS.FileSystem.move`.
 
+Use `watchInterruptions()` to react when another audio session interrupts playback
+or recording. The callback receives `type` (`began` or `ended`) and `shouldResume`.
+On `began`, One pauses its current player or recorder. Resume
+only after `ended`, according to your app's playback policy; `shouldResume` is
+the system's recommendation, not an automatic action. Call the returned function
+when the listener is no longer needed.
+If iOS suspends the app, it may deliver a delayed `began` after the app returns
+without a matching `ended`. Use app foreground state when deciding whether to
+offer playback again in that case.
+
+```tsx
+const stopWatching = One.iOS.Audio.watchInterruptions((event) => {
+  if (event.type === 'ended' && event.shouldResume) {
+    void One.iOS.Audio.resume()
+  }
+})
+// call stopWatching() when this screen unmounts
+```
+
 Errors expose `error.code`: `E_AUDIO_URI`, `E_AUDIO_FILE`,
 `E_AUDIO_MANIFEST`, `E_AUDIO_PERMISSION`, `E_AUDIO_BUSY`, `E_AUDIO_STATE`,
 `E_AUDIO_POSITION`, or `E_AUDIO_FAILED`. This API is iOS only. Playback and
 recording use the app's shared audio session. Playback switches its category
 to playback and can replace another feature's audio session configuration,
 including picture in picture. Stop this audio before starting speech recognition
-or another audio feature. Background recording, interruption events, and remote
-media controls are not configured by this API.
+or another audio feature. Background recording and remote media controls are not
+configured by this API.

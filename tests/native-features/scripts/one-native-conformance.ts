@@ -89,6 +89,7 @@ const suites = [
   'location',
   'file-system',
   'audio',
+  'audio-interruption',
   'audio-background',
   'share',
   'photo-library',
@@ -645,6 +646,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   location: locationLoaded,
   'file-system': fileSystemLoaded,
   audio: audioLoaded,
+  'audio-interruption': audioLoaded,
   'audio-background': audioLoaded,
   share: shareLoaded,
   'photo-library': photoLibraryLoaded,
@@ -725,6 +727,7 @@ const suiteHome: Record<Suite, string> = {
   location: 'nav-one-native-location',
   'file-system': 'nav-one-native-file-system',
   audio: 'nav-one-native-audio',
+  'audio-interruption': 'nav-one-native-audio',
   'audio-background': 'nav-one-native-audio',
   share: 'nav-one-native-share',
   'photo-library': 'nav-one-native-photo-library',
@@ -7153,6 +7156,58 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).some((label) => /^Background: passed: playing,\d+,\d+,\d+$/.test(label))
     )
     screenshot('audio-background-after.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'audio-interruption') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-audio')
+    await wait('audio interruption fixture starts idle', (n) =>
+      labels(n).includes('Interruption: idle'))
+    tap({ id: 'one-native-audio-interruption-start' })
+    await wait('long local wav is playing for interruption', (n) =>
+      labels(n).includes('Interruption: ready'))
+    execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, 'com.apple.Preferences'], {
+      stdio: 'pipe', timeout: 30_000,
+    })
+    const controlDeadline = Date.now() + config.timeout
+    while (Date.now() < controlDeadline &&
+      !labels(snapshot(config.simulatorId)).includes('Settings')) {
+      await new Promise((resolve) => setTimeout(resolve, 250))
+    }
+    if (!labels(snapshot(config.simulatorId)).includes('Settings')) {
+      throw new Error('non-audio control app did not foreground')
+    }
+    launchApp()
+    await wait('non-audio app did not send an interruption', (n) =>
+      labels(n).includes('Interruption: ready'))
+    tap({ id: 'one-native-audio-interruption-check' })
+    await wait('playback continues after non-audio app', (n) =>
+      labels(n).includes('Interruption: ready') &&
+      labels(n).includes('Interruption playback: playing'))
+    screenshot('audio-interruption-control.png')
+
+    // simulator does not arbitrate audio sessions across processes; the fixture
+    // scene delegate posts the native AVAudioSession notification into this app.
+    const signal = (type: 'began' | 'ended') => {
+      execFileSync('xcrun', [
+        'simctl', 'openurl', config.simulatorId,
+        `nativefeatures://audio-interruption/${type}`,
+      ], { stdio: 'pipe', timeout: 30_000 })
+      const nodes = snapshot(config.simulatorId)
+      if (labels(nodes).includes('Open in “NativeFeatureTests”?')) tap({ label: 'Open' })
+    }
+    signal('began')
+    await wait('native interruption began notification reaches One', (n) =>
+      labels(n).includes('Interruption: began:false'))
+    tap({ id: 'one-native-audio-interruption-check' })
+    await wait('interrupted playback is paused', (n) =>
+      labels(n).includes('Interruption playback: paused'))
+    signal('ended')
+    await wait('native interruption ended notification reaches One', (n) =>
+      labels(n).includes('Interruption: began:false,ended:true'))
+    screenshot('audio-interruption.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

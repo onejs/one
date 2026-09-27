@@ -33,9 +33,21 @@ final class HybridOneAudio: HybridOneAudioSpec {
   private var playbackEnded = false
   private var endObserver: NSObjectProtocol?
   private var recorder: AVAudioRecorder?
+  private var interruptionListeners: [UUID: (AudioInterruptionEvent) -> Void] = [:]
+  private var interruptionObserver: NSObjectProtocol?
+
+  override init() {
+    super.init()
+    interruptionObserver = NotificationCenter.default.addObserver(
+      forName: AVAudioSession.interruptionNotification, object: nil, queue: .main
+    ) { [weak self] note in
+      self?.handleInterruption(note)
+    }
+  }
 
   deinit {
     if let endObserver { NotificationCenter.default.removeObserver(endObserver) }
+    if let interruptionObserver { NotificationCenter.default.removeObserver(interruptionObserver) }
   }
 
   func getRecordingPermissionStatus() throws -> Promise<AudioRecordingPermission> {
@@ -216,6 +228,38 @@ final class HybridOneAudio: HybridOneAudioSpec {
       }
       return AudioRecordingResult(uri: uri, durationMs: durationMs, size: size)
     }
+  }
+
+  func addInterruptionListener(
+    onEvent: @escaping (AudioInterruptionEvent) -> Void
+  ) throws -> () -> Void {
+    let id = UUID()
+    DispatchQueue.main.async {
+      self.interruptionListeners[id] = onEvent
+    }
+    return { [weak self] in
+      DispatchQueue.main.async {
+        guard let self else { return }
+        self.interruptionListeners.removeValue(forKey: id)
+      }
+    }
+  }
+
+  private func handleInterruption(_ note: Notification) {
+    guard let raw = note.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt,
+      let kind = AVAudioSession.InterruptionType(rawValue: raw)
+    else { return }
+    if kind == .began {
+      player?.pause()
+      if player != nil { playbackPaused = true }
+      recorder?.pause()
+    }
+    let options = AVAudioSession.InterruptionOptions(
+      rawValue: note.userInfo?[AVAudioSessionInterruptionOptionKey] as? UInt ?? 0)
+    let event = AudioInterruptionEvent(
+      type: kind == .began ? .began : .ended,
+      shouldResume: kind == .ended && options.contains(.shouldResume))
+    for listener in Array(interruptionListeners.values) { listener(event) }
   }
 
   private func playbackStatus() -> AudioPlaybackStatus {

@@ -8,12 +8,30 @@ export default function OneNativeAudio() {
   const [status, setStatus] = useState('idle')
   const [result, setResult] = useState('none')
   const [background, setBackground] = useState('idle')
+  const [interruption, setInterruption] = useState('idle')
+  const [interruptionPlayback, setInterruptionPlayback] = useState('none')
   const backgroundResult = useRef<{
     state: string; start: number; advanced: number; elapsed: number
   } | null>(null)
   const backgroundSubscription = useRef<ReturnType<typeof AppState.addEventListener> | null>(null)
+  const interruptionSubscription = useRef<(() => void) | null>(null)
+  const interruptionEvents = useRef<string[]>([])
 
-  useEffect(() => () => backgroundSubscription.current?.remove(), [])
+  useEffect(() => () => {
+    backgroundSubscription.current?.remove()
+    interruptionSubscription.current?.()
+  }, [])
+
+  async function writeBackgroundClip() {
+    const fs = One.iOS.FileSystem
+    const uri = new URL('one-native-background-audio.wav', fs.getDirectories().cache).href
+    // a 60 second, 8 khz mono pcm wav: 44 header bytes and zero samples.
+    const wav = 'UklGRiSmDgBXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQCmDgAA' +
+      'A'.repeat(1_279_996) + 'AAA='
+    await fs.writeFile(uri, wav, 'base64')
+    if ((await fs.getInfo(uri)).size !== 960_044) throw new Error('wav bytes did not match')
+    return uri
+  }
 
   async function prepareBackgroundPlayback() {
     backgroundSubscription.current?.remove()
@@ -21,13 +39,7 @@ export default function OneNativeAudio() {
     setBackground('preparing')
     try {
       const audio = One.iOS.Audio
-      const fs = One.iOS.FileSystem
-      const uri = new URL('one-native-background-audio.wav', fs.getDirectories().cache).href
-      // a 60 second, 8 khz mono pcm wav: 44 header bytes and zero samples.
-      const wav = 'UklGRiSmDgBXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQCmDgAA' +
-        'A'.repeat(1_279_996) + 'AAA='
-      await fs.writeFile(uri, wav, 'base64')
-      if ((await fs.getInfo(uri)).size !== 960_044) throw new Error('wav bytes did not match')
+      const uri = await writeBackgroundClip()
       await audio.play(uri)
       let playback = await audio.getPlaybackStatus()
       const deadline = Date.now() + 5000
@@ -71,6 +83,41 @@ export default function OneNativeAudio() {
       setBackground(`ready: ${Math.round(playback.positionMs)}`)
     } catch (error) {
       setBackground(`error: ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
+
+  async function prepareInterruptionPlayback() {
+    interruptionSubscription.current?.()
+    interruptionSubscription.current = null
+    interruptionEvents.current = []
+    setInterruption('preparing')
+    setInterruptionPlayback('none')
+    try {
+      const audio = One.iOS.Audio
+      interruptionSubscription.current = audio.watchInterruptions((event) => {
+        interruptionEvents.current.push(`${event.type}:${event.shouldResume}`)
+        setInterruption(interruptionEvents.current.join(','))
+      })
+      await audio.play(await writeBackgroundClip())
+      let playback = await audio.getPlaybackStatus()
+      const deadline = Date.now() + 5000
+      while (Date.now() < deadline && playback.state !== 'playing') {
+        await pause(100)
+        playback = await audio.getPlaybackStatus()
+      }
+      if (playback.state !== 'playing') throw new Error(`clip did not start: ${playback.state}`)
+      setInterruption('ready')
+    } catch (error) {
+      setInterruption(`error: ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
+
+  async function checkInterruptionPlayback() {
+    try {
+      const playback = await One.iOS.Audio.getPlaybackStatus()
+      setInterruptionPlayback(playback.state)
+    } catch (error) {
+      setInterruptionPlayback(`error: ${error instanceof Error ? error.message : String(error)}`)
     }
   }
 
@@ -208,6 +255,14 @@ export default function OneNativeAudio() {
       </Pressable>
       <Pressable testID="one-native-audio-background-check" style={styles.chip} onPress={checkBackgroundPlayback}>
         <Text>Check background playback</Text>
+      </Pressable>
+      <Text testID="one-native-audio-interruption">Interruption: {interruption}</Text>
+      <Pressable testID="one-native-audio-interruption-start" style={styles.chip} onPress={prepareInterruptionPlayback}>
+        <Text>Start interruption playback</Text>
+      </Pressable>
+      <Text testID="one-native-audio-interruption-playback">Interruption playback: {interruptionPlayback}</Text>
+      <Pressable testID="one-native-audio-interruption-check" style={styles.chip} onPress={checkInterruptionPlayback}>
+        <Text>Check interruption playback</Text>
       </Pressable>
     </View>
   )

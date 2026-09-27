@@ -24,6 +24,13 @@ export interface AudioRecordingResult {
   size: number
 }
 
+export type AudioInterruptionType = 'began' | 'ended'
+
+export interface AudioInterruptionEvent {
+  type: AudioInterruptionType
+  shouldResume: boolean
+}
+
 export interface OneAudio extends HybridObject<{ ios: 'swift' }> {
   getRecordingPermissionStatus(): Promise<AudioRecordingPermission>
   requestRecordingPermission(): Promise<AudioRecordingPermission>
@@ -38,4 +45,5 @@ export interface OneAudio extends HybridObject<{ ios: 'swift' }> {
   pauseRecording(): Promise<AudioRecordingStatus>
   resumeRecording(): Promise<AudioRecordingStatus>
   stopRecording(): Promise<AudioRecordingResult>
+  addInterruptionListener(onEvent: (event: AudioInterruptionEvent) => void): () => void
 }

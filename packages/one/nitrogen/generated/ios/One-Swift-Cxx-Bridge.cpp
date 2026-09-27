@@ -195,6 +195,14 @@ namespace margelo::nitro::one::bridge::swift {
     };
   }
   
+  // pragma MARK: std::function<void(const AudioInterruptionEvent& /* event */)>
+  Func_void_AudioInterruptionEvent create_Func_void_AudioInterruptionEvent(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_AudioInterruptionEvent::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const AudioInterruptionEvent& event) mutable -> void {
+      swiftClosure.call(event);
+    };
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneAudioSpec>
   std::shared_ptr<HybridOneAudioSpec> create_std__shared_ptr_HybridOneAudioSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneAudioSpec_cxx swiftPart = One::HybridOneAudioSpec_cxx::fromUnsafe(swiftUnsafePointer);

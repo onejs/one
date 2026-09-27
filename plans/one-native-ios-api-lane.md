@@ -25,7 +25,7 @@ checklist; One's own exports and docs decide the status.
 | Haptics | covered | `One.Haptics` | haptics fixture | done |
 | Local and push notifications | covered | `One.Notifications` | notifications fixture | done |
 | Camera capture | covered | `One.ImagePicker.launchCamera` | image-picker fixture | done |
-| Live camera preview and code scanning | missing | no camera preview or barcode/QR scanner | none | P1 |
+| Live camera preview and code scanning | missing | no camera preview or barcode/QR scanner | none; [Apple's AVCam guide](https://developer.apple.com/documentation/avfoundation/avcam-building-a-camera-app) says Simulator has no device camera, so successful preview/scan needs device proof | P1 |
 | Photo selection | covered | `One.ImagePicker.launchLibrary`, `One.iOS.PhotosPicker` | image-picker; PhotosPicker unproven | done |
 | Image transformation | covered | `One.iOS.ImageManipulator` local crop, resize, rotate, JPEG/PNG encode | RAN iOS 27: orientation, decoded sizes, bytes, red crop/rotation pixels, input errors | done |
 | Live Photos | missing | no Live Photo capture or playback API | none | P3 |
@@ -48,7 +48,7 @@ checklist; One's own exports and docs decide the status.
 | Deep links | covered | One router and linking integration | router tests; external browser callback | done |
 | App icons | partial | static prebuild icon; no alternate icon switch | prebuild only | P2 |
 | In-app purchases | missing | no StoreKit API or purchase hooks | none | P2 |
-| Audio playback/recording | partial | `One.iOS.Audio` permission, local/remote playback controls, AAC recording; opt-in `audio` background mode; no device proof, interruption events, or remote controls | audio: prompt, record/play lifecycle; RAN iOS 27 39.4s background playback, but no-mode control also played 39.4s, so mode enforcement needs device proof | P1 |
+| Audio playback/recording | partial | `One.iOS.Audio` permission, local/remote playback controls, AAC recording, interruption events; opt-in `audio` background mode; no device background-policy proof or remote controls | audio: prompt, record/play lifecycle; RAN iOS 27 39.4s background playback, but no-mode control also played 39.4s, so mode enforcement needs device proof; RAN iOS 27 native interruption notification began/ended, shouldResume, and paused playback with non-audio control; cross-app arbitration needs device proof because Simulator does not simulate most interactions between audio sessions in separate processes | P1 |
 | Video playback | partial | `One.iOS.VideoPlayer`; no media controls/session API | media | P2 |
 | Picture in picture | partial | `One.UI.PictureInPicture`; video path needs device proof | simulator cannot enter PiP | P2 |
 | Sensors and motion | missing | no CoreMotion service | none | P2 |

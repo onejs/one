@@ -6,6 +6,7 @@ import type {
   AudioRecordingPermission,
   AudioRecordingResult,
   AudioRecordingStatus,
+  AudioInterruptionEvent,
   OneAudio,
 } from '../specs/OneAudio.nitro'
 
@@ -16,6 +17,8 @@ export type {
   AudioRecordingResult,
   AudioRecordingState,
   AudioRecordingStatus,
+  AudioInterruptionEvent,
+  AudioInterruptionType,
 } from '../specs/OneAudio.nitro'
 
 let hybrid: OneAudio | undefined
@@ -50,4 +53,10 @@ export const Audio = Object.freeze({
     native().resumeRecording().catch(rethrowNativeError),
   stopRecording: (): Promise<AudioRecordingResult> =>
     native().stopRecording().catch(rethrowNativeError),
+  watchInterruptions: (onEvent: (event: AudioInterruptionEvent) => void): (() => void) => {
+    if (typeof onEvent !== 'function') {
+      throw new TypeError('Audio.watchInterruptions: onEvent must be a function')
+    }
+    return native().addInterruptionListener(onEvent)
+  },
 })

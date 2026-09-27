@@ -111,6 +111,15 @@ file, checks its size through FileSystem, then plays, pauses, seeks, resumes,
 and stops that file. Invalid URI and idle-player calls must reject with their
 documented codes.
 
+`audio-interruption` plays a local 60-second WAV. A non-audio Settings foreground
+pass first confirms playback continues without an interruption event. The iOS
+fixture scene delegate, prepared by `bun run prebuild:native`, then posts
+`AVAudioSession.interruptionNotification`
+objects into its process to prove One receives `began` and `ended`, reports
+`shouldResume`, and pauses its player. [Apple documents](https://developer.apple.com/library/archive/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/OptimizingForDeviceHardware/OptimizingForDeviceHardware.html)
+that Simulator does not simulate most audio-session interactions across processes. Cross-app arbitration,
+physical accessory route changes, and background policy need device proof.
+
 `share` covers `One.iOS.Share` on an iOS 27 simulator. It opens the system
 share sheet with text and a URL, then opens it again with a real cache file.
 A second request rejects while the first sheet is open. Copy completes the

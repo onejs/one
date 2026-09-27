@@ -26,6 +26,10 @@ namespace margelo::nitro::one { struct AppleAuthSignInOptions; }
 namespace margelo::nitro::one { enum class AppleCredentialState; }
 // Forward declaration of `AppleRealUserStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class AppleRealUserStatus; }
+// Forward declaration of `AudioInterruptionEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioInterruptionEvent; }
+// Forward declaration of `AudioInterruptionType` to properly resolve imports.
+namespace margelo::nitro::one { enum class AudioInterruptionType; }
 // Forward declaration of `AudioPlaybackState` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioPlaybackState; }
 // Forward declaration of `AudioPlaybackStatus` to properly resolve imports.
@@ -285,6 +289,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "AppleAuthSignInOptions.hpp"
 #include "AppleCredentialState.hpp"
 #include "AppleRealUserStatus.hpp"
+#include "AudioInterruptionEvent.hpp"
+#include "AudioInterruptionType.hpp"
 #include "AudioPlaybackState.hpp"
 #include "AudioPlaybackStatus.hpp"
 #include "AudioRecordingPermission.hpp"

@@ -21,6 +21,8 @@ namespace margelo::nitro::one { struct AudioPlaybackStatus; }
 namespace margelo::nitro::one { struct AudioRecordingStatus; }
 // Forward declaration of `AudioRecordingResult` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioRecordingResult; }
+// Forward declaration of `AudioInterruptionEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioInterruptionEvent; }
 
 #include "AudioRecordingPermission.hpp"
 #include <NitroModules/Promise.hpp>
@@ -28,6 +30,8 @@ namespace margelo::nitro::one { struct AudioRecordingResult; }
 #include <string>
 #include "AudioRecordingStatus.hpp"
 #include "AudioRecordingResult.hpp"
+#include <functional>
+#include "AudioInterruptionEvent.hpp"
 
 namespace margelo::nitro::one {
 
@@ -73,6 +77,7 @@ namespace margelo::nitro::one {
       virtual std::shared_ptr<Promise<AudioRecordingStatus>> pauseRecording() = 0;
       virtual std::shared_ptr<Promise<AudioRecordingStatus>> resumeRecording() = 0;
       virtual std::shared_ptr<Promise<AudioRecordingResult>> stopRecording() = 0;
+      virtual std::function<void()> addInterruptionListener(const std::function<void(const AudioInterruptionEvent& /* event */)>& onEvent) = 0;
 
     protected:
       // Hybrid Setup

@@ -3,6 +3,7 @@ import type {
   AudioRecordingPermission,
   AudioRecordingResult,
   AudioRecordingStatus,
+  AudioInterruptionEvent,
 } from '../specs/OneAudio.nitro'
 
 export type {
@@ -12,6 +13,8 @@ export type {
   AudioRecordingResult,
   AudioRecordingState,
   AudioRecordingStatus,
+  AudioInterruptionEvent,
+  AudioInterruptionType,
 } from '../specs/OneAudio.nitro'
 
 function unavailable(): never {
@@ -32,4 +35,5 @@ export const Audio = Object.freeze({
   pauseRecording: (): Promise<AudioRecordingStatus> => unavailable(),
   resumeRecording: (): Promise<AudioRecordingStatus> => unavailable(),
   stopRecording: (): Promise<AudioRecordingResult> => unavailable(),
+  watchInterruptions: (_onEvent: (event: AudioInterruptionEvent) => void): (() => void) => unavailable(),
 })
