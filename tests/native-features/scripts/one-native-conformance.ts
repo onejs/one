@@ -43,6 +43,7 @@ const suites = [
   'crypto',
   'app-info',
   'device',
+  'database',
   'contacts',
   'editors',
   'grids',
@@ -377,6 +378,8 @@ const fetchLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-fetch-run')) && has(nodes, 'Status: ')
 const secureStoreLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-secure-store-run')) && has(nodes, 'Persisted: ')
+const databaseLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-database-run')) && has(nodes, 'Persisted: ')
 const speechLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-speech-start')) && has(nodes, 'Available: ')) ||
@@ -460,6 +463,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   crypto: cryptoLoaded,
   'app-info': appInfoLoaded,
   device: deviceLoaded,
+  database: databaseLoaded,
   contacts: contactsLoaded,
   editors: editorsLoaded,
   grids: gridsLoaded,
@@ -508,6 +512,7 @@ const suiteHome: Record<Suite, string> = {
   crypto: 'nav-one-native-crypto',
   'app-info': 'nav-one-native-app-info',
   device: 'nav-one-native-device',
+  database: 'nav-one-native-database',
   contacts: 'nav-one-native-contacts',
   editors: 'nav-one-native-editors',
   grids: 'nav-one-native-grids',
@@ -4888,6 +4893,39 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       log(n, 'B') === failed && log(n, 'A') === 'start'
     )
     screenshot('speech-sessions.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'database') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-database')
+    await wait('database fixture mounted', (n) => has(n, 'Status: idle'))
+    tap({ id: 'one-native-database-clear' })
+    await wait('database cleared', (n) => has(n, 'Status: cleared'))
+    tap({ id: 'one-native-database-read' })
+    await wait('database negative control', (n) => has(n, 'Persisted: missing'))
+    tap({ id: 'one-native-database-run' })
+    const completed = await wait(
+      'database checks complete',
+      (n) => has(n, 'Status: done') || has(n, 'Status: failed')
+    )
+    const found = labels(completed)
+    const expected = ["Sync: quote's ?", "Async: quote's ?", 'Deleted: 0']
+    for (const label of expected) {
+      if (!found.includes(label)) throw new Error(`database: missing ${label}`)
+      console.log(`PASS database-${label}`)
+    }
+    screenshot('database-round-trip.png')
+    stopApp()
+    launchApp()
+    await wait('relaunched home mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-database')
+    await wait('database fixture remounted', (n) => has(n, 'Status: idle'))
+    tap({ id: 'one-native-database-read' })
+    await wait('database row survived relaunch', (n) => has(n, 'Persisted: kept'))
+    screenshot('database-persisted.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

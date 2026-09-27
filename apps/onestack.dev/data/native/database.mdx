@@ -14,6 +14,8 @@ const db = One.Database.open({ name: 'app.sqlite' })
 const rows = db.executeSync('SELECT * FROM notes').rows
 
 const asyncDb = await One.Database.openAsync({ name: 'app.sqlite' })
+const result = await asyncDb.execute('SELECT * FROM notes WHERE id = ?', [1])
+asyncDb.close()
 ```
 
 `open` returns the database synchronously; `openAsync` resolves it. Both
@@ -22,3 +24,7 @@ belongs to the caller's web storage provider.
 
 `@op-engineering/op-sqlite` ships with `one`, so no extra install
 is needed.
+
+Use placeholders for values in SQL statements. Close each connection when you
+finish with it. The iOS conformance fixture checks synchronous and asynchronous
+queries against the same file, then reads a saved row after relaunch.

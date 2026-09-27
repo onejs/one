@@ -6,7 +6,7 @@ A cell names the conformance suites whose fixture uses the export.
 | export | iOS suites | Android suites | gap |
 | --- | --- | --- | --- |
 | `One.AppInfo` | app-info | app-info |  |
-| `One.Database` | missing | missing | no fixture or suite |
+| `One.Database` | database | missing | Android suite missing |
 | `One.iOS.ArrangementView` | missing | n/a | fixture exists, no suite opens it |
 | `One.iOS.Tabs` | tabs-menu, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Tab` | tabs-menu, e2e:one-native-tabview | n/a |  |
@@ -105,8 +105,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ZoomTransitionAlignmentRectDetector` | missing | n/a | no fixture or suite |
 | `One.iOS.ZoomTransitionEnabler` | missing | n/a | on zoom-detail, which the zoom e2e reaches only by tap |
 | `One.iOS.ZoomTransitionSource` | e2e:zoom-test | n/a |  |
-| `One.Android.Column` | n/a | android, android-inputs, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
-| `One.Android.Row` | n/a | android, android-inputs, android-badges, android-icon-buttons, android-selection, android-dividers |  |
+| `One.Android.Column` | n/a | android, android-inputs, android-progress, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
+| `One.Android.Row` | n/a | android, android-inputs, android-progress, android-loading, android-badges, android-icon-buttons, android-selection, android-dividers |  |
 | `One.Android.FlowRow` | n/a | android-flow-row |  |
 | `One.Android.Box` | n/a | android, android-inputs, android-flow-row |  |
 | `One.Android.Badge` | n/a | android-badges |  |
@@ -115,15 +115,16 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Android.Card` | n/a | android-cards |  |
 | `One.Android.ElevatedCard` | n/a | android-cards |  |
 | `One.Android.OutlinedCard` | n/a | android-cards |  |
+| `One.Android.Surface` | n/a | android-surface |  |
 | `One.Android.HorizontalDivider` | n/a | android-dividers |  |
 | `One.Android.VerticalDivider` | n/a | android-dividers |  |
 | `One.Android.FilterChip` | n/a | android-filter-chip |  |
 | `One.Android.AssistChip` | n/a | android-chips |  |
 | `One.Android.InputChip` | n/a | android-chips |  |
 | `One.Android.SuggestionChip` | n/a | android-chips |  |
-| `One.Android.Text` | n/a | android, android-inputs, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
+| `One.Android.Text` | n/a | android, android-inputs, android-progress, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
 | `One.Android.Icon` | n/a | android, android-badges, android-list-items, android-icon-buttons, android-filter-chip, android-chips |  |
-| `One.Android.Button` | n/a | android, android-inputs, android-icon-buttons, android-selection, android-filter-chip |  |
+| `One.Android.Button` | n/a | android, android-inputs, android-progress, android-surface, android-loading, android-icon-buttons, android-selection, android-filter-chip |  |
 | `One.Android.IconButton` | n/a | android-icon-buttons |  |
 | `One.Android.FilledIconButton` | n/a | android-icon-buttons |  |
 | `One.Android.FilledTonalIconButton` | n/a | android-icon-buttons |  |
@@ -136,13 +137,6 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Android.IconToggleButton` | n/a | android-icon-buttons |  |
 | `One.Android.FilledIconToggleButton` | n/a | android-icon-buttons |  |
 | `One.Android.OutlinedIconToggleButton` | n/a | android-icon-buttons |  |
-| `One.Android.LoadingIndicator` | n/a | android-loading |  |
-| `One.Android.ContainedLoadingIndicator` | n/a | android-loading |  |
-| `One.Android.Surface` | n/a | android-surface |  |
-| `One.Android.LinearProgressIndicator` | n/a | android-progress |  |
-| `One.Android.CircularProgressIndicator` | n/a | android-progress |  |
-| `One.Android.LinearWavyProgressIndicator` | n/a | android-progress |  |
-| `One.Android.CircularWavyProgressIndicator` | n/a | android-progress |  |
 | `One.Android.Switch` | n/a | android |  |
 | `One.Android.Checkbox` | n/a | android-selection |  |
 | `One.Android.RadioButton` | n/a | android-selection |  |
@@ -151,6 +145,12 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Android.AlertDialog` | n/a | android-inputs |  |
 | `One.Android.Dialog` | n/a | android-inputs |  |
 | `One.Android.ProgressIndicator` | n/a | android-inputs |  |
+| `One.Android.LinearProgressIndicator` | n/a | android-progress |  |
+| `One.Android.CircularProgressIndicator` | n/a | android-progress |  |
+| `One.Android.LinearWavyProgressIndicator` | n/a | android-progress |  |
+| `One.Android.CircularWavyProgressIndicator` | n/a | android-progress |  |
+| `One.Android.LoadingIndicator` | n/a | android-loading |  |
+| `One.Android.ContainedLoadingIndicator` | n/a | android-loading |  |
 | `One.Android.Color` | n/a | missing | no fixture or suite |
 | `One.Android.Menu` | n/a | missing | no fixture or suite |
 | `One.Android.ContextMenu` | n/a | missing | no fixture or suite |
