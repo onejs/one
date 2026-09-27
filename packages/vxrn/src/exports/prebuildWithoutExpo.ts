@@ -1500,7 +1500,7 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       if (app.ios?.widgets) {
         stamps.push('\t<key>NSSupportsLiveActivities</key>\n\t<true/>')
       }
-      if (app.pictureInPicture) {
+      if (app.pictureInPicture || app.audio?.background) {
         stamps.push(
           '\t<key>UIBackgroundModes</key>\n\t<array>\n\t\t<string>audio</string>\n\t</array>'
         )
@@ -1775,7 +1775,7 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         usage.set('NSSpeechRecognitionUsageDescription', app.speech.recognition)
         usage.set('NSMicrophoneUsageDescription', app.speech.microphone)
       }
-      if (app.audio !== undefined) {
+      if (app.audio?.microphone !== undefined) {
         usage.set('NSMicrophoneUsageDescription', app.audio.microphone)
       }
       const additions: [string, string][] = []

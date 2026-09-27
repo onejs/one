@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { useEffect, useRef, useState } from 'react'
+import { AppState, Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 const pause = (durationMs: number) => new Promise((resolve) => setTimeout(resolve, durationMs))
@@ -7,6 +7,90 @@ const pause = (durationMs: number) => new Promise((resolve) => setTimeout(resolv
 export default function OneNativeAudio() {
   const [status, setStatus] = useState('idle')
   const [result, setResult] = useState('none')
+  const [background, setBackground] = useState('idle')
+  const backgroundResult = useRef<{
+    state: string; start: number; advanced: number; elapsed: number
+  } | null>(null)
+  const backgroundSubscription = useRef<ReturnType<typeof AppState.addEventListener> | null>(null)
+
+  useEffect(() => () => backgroundSubscription.current?.remove(), [])
+
+  async function prepareBackgroundPlayback() {
+    backgroundSubscription.current?.remove()
+    backgroundSubscription.current = null
+    setBackground('preparing')
+    try {
+      const audio = One.iOS.Audio
+      const fs = One.iOS.FileSystem
+      const uri = new URL('one-native-background-audio.wav', fs.getDirectories().cache).href
+      // a 60 second, 8 khz mono pcm wav: 44 header bytes and zero samples.
+      const wav = 'UklGRiSmDgBXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQCmDgAA' +
+        'A'.repeat(1_279_996) + 'AAA='
+      await fs.writeFile(uri, wav, 'base64')
+      if ((await fs.getInfo(uri)).size !== 960_044) throw new Error('wav bytes did not match')
+      await audio.play(uri)
+      let playback = await audio.getPlaybackStatus()
+      const deadline = Date.now() + 5000
+      while (Date.now() < deadline && playback.state !== 'playing') {
+        await pause(100)
+        playback = await audio.getPlaybackStatus()
+      }
+      if (playback.state !== 'playing' || !playback.durationMs ||
+        Math.abs(playback.durationMs - 60_000) > 500) {
+        throw new Error(`clip did not start: ${playback.state}, ${playback.durationMs}`)
+      }
+      backgroundResult.current = null
+      let backgroundAt = 0
+      let backgroundStatus: ReturnType<typeof audio.getPlaybackStatus> | null = null
+      const subscription = AppState.addEventListener('change', async (state) => {
+        if (state === 'background') {
+          backgroundAt = Date.now()
+          backgroundStatus = audio.getPlaybackStatus()
+          return
+        }
+        if (state !== 'active') return
+        subscription.remove()
+        backgroundSubscription.current = null
+        try {
+          if (!backgroundAt || !backgroundStatus) {
+            throw new Error('background transition did not capture playback position')
+          }
+          const positionWhenBackgrounded = (await backgroundStatus).positionMs
+          const resumed = await audio.getPlaybackStatus()
+          const advanced = resumed.positionMs - positionWhenBackgrounded
+          const elapsed = Date.now() - backgroundAt
+          backgroundResult.current = {
+            state: resumed.state, start: positionWhenBackgrounded, advanced, elapsed,
+          }
+          setBackground(`returned: ${resumed.state},${Math.round(positionWhenBackgrounded)},${Math.round(advanced)},${elapsed}`)
+        } catch (error) {
+          setBackground(`error: ${error instanceof Error ? error.message : String(error)}`)
+        }
+      })
+      backgroundSubscription.current = subscription
+      setBackground(`ready: ${Math.round(playback.positionMs)}`)
+    } catch (error) {
+      setBackground(`error: ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
+
+  async function checkBackgroundPlayback() {
+    try {
+      const audio = One.iOS.Audio
+      const result = backgroundResult.current
+      try {
+        if (!result || result.state !== 'playing' || result.elapsed < 30_000 ||
+          result.advanced < result.elapsed - 1000) {
+          throw new Error(`playback stopped in background: ${JSON.stringify(result)}`)
+        }
+        setBackground(`passed: ${result.state},${Math.round(result.start)},${Math.round(result.advanced)},${result.elapsed}`)
+      } finally {
+        await audio.stop()
+      }
+    } catch (error) {
+      setBackground(`error: ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
 
   async function run() {
     setStatus('running')
@@ -117,6 +201,13 @@ export default function OneNativeAudio() {
       <Text testID="one-native-audio-result">Result: {result}</Text>
       <Pressable testID="one-native-audio-run" style={styles.chip} onPress={run}>
         <Text>Record and play</Text>
+      </Pressable>
+      <Text testID="one-native-audio-background">Background: {background}</Text>
+      <Pressable testID="one-native-audio-background-start" style={styles.chip} onPress={prepareBackgroundPlayback}>
+        <Text>Start background playback</Text>
+      </Pressable>
+      <Pressable testID="one-native-audio-background-check" style={styles.chip} onPress={checkBackgroundPlayback}>
+        <Text>Check background playback</Text>
       </Pressable>
     </View>
   )

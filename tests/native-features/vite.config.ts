@@ -158,6 +158,7 @@ export default defineConfig({
           },
           audio: {
             microphone: 'NativeFeatureTests verifies audio recording.',
+            background: true,
           },
           ios: {
             bundleId: 'dev.vxrn.native.tests',

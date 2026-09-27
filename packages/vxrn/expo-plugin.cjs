@@ -18,7 +18,8 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // from drawing until then on Android, as one prebuild always does. leave it
 // off while expo-splash-screen owns the splash.
 // options: { location: { whenInUse: string } } sets the iOS location prompt.
-// options: { audio: { microphone: string } } sets the iOS recording prompt.
+// options: { audio: { microphone?: string, background?: boolean } } sets the
+// ios recording prompt and background audio mode.
 // options: { photoLibrary: { addOnly: string } } sets the ios photos add prompt.
 // options: { contacts: { usage: string } } sets the ios contacts prompt.
 // options: { calendar: { usage?: string, remindersUsage?: string } } sets EventKit prompts.
@@ -55,11 +56,20 @@ module.exports = function withVxrn(config, options = {}) {
   ) {
     throw new Error('[vxrn/expo-plugin] location.whenInUse must be a non-empty string')
   }
-  if (
-    audio &&
-    (typeof audio.microphone !== 'string' || !audio.microphone.trim())
-  ) {
-    throw new Error('[vxrn/expo-plugin] audio.microphone must be a non-empty string')
+  if (audio !== undefined) {
+    if (!audio || typeof audio !== 'object') {
+      throw new Error('[vxrn/expo-plugin] audio must configure microphone or background playback')
+    }
+    if (audio.microphone !== undefined &&
+      (typeof audio.microphone !== 'string' || !audio.microphone.trim())) {
+      throw new Error('[vxrn/expo-plugin] audio.microphone must be a non-empty string')
+    }
+    if (audio.background !== undefined && typeof audio.background !== 'boolean') {
+      throw new Error('[vxrn/expo-plugin] audio.background must be a boolean')
+    }
+    if (audio.microphone === undefined && audio.background !== true) {
+      throw new Error('[vxrn/expo-plugin] audio must configure microphone or background playback')
+    }
   }
   if (
     photoLibrary !== undefined &&
@@ -103,7 +113,13 @@ module.exports = function withVxrn(config, options = {}) {
         [
           withInfoPlist,
           (nextConfig) => {
-            nextConfig.modResults.NSMicrophoneUsageDescription = audio.microphone
+            if (audio.microphone !== undefined) {
+              nextConfig.modResults.NSMicrophoneUsageDescription = audio.microphone
+            }
+            if (audio.background === true) {
+              const modes = nextConfig.modResults.UIBackgroundModes || []
+              nextConfig.modResults.UIBackgroundModes = [...new Set([...modes, 'audio'])]
+            }
             return nextConfig
           },
         ],

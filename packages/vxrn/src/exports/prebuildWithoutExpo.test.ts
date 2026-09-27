@@ -219,6 +219,24 @@ ${APP_DELEGATE_PBXPROJ}`,
     )
     expect(audioPlist.content).not.toContain('NSSpeechRecognitionUsageDescription')
 
+    const backgroundAudioPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: { ...app, speech: undefined, audio: { background: true } },
+    })
+    expect(backgroundAudioPlist.content?.match(/<key>UIBackgroundModes<\/key>/g)).toHaveLength(1)
+    expect(backgroundAudioPlist.content?.match(/<string>audio<\/string>/g)).toHaveLength(1)
+    expect(backgroundAudioPlist.content).not.toContain('NSMicrophoneUsageDescription')
+
+    const pipAndAudioPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: { ...app, pictureInPicture: true, audio: { background: true } },
+    })
+    expect(pipAndAudioPlist.content?.match(/<key>UIBackgroundModes<\/key>/g)).toHaveLength(1)
+
     const speechAndAudioPlist = renderPrebuildFile({
       relativePath: 'HelloWorld/Info.plist',
       content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',

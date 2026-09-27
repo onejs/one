@@ -36,6 +36,17 @@ prompt and rerun prebuild. For Expo-prebuilt apps, pass the same
 `audio: { microphone: '...' }` option to the `vxrn` config plugin. Playback
 alone needs no microphone permission or purpose string.
 
+For playback while another app is in front, set `native.app.audio.background: true`
+and rerun prebuild. Expo-prebuilt apps use the same `audio: { background: true }`
+option in the `vxrn` config plugin. This adds `audio` to `UIBackgroundModes`; the
+Expo plugin preserves other background modes. `Audio.play()` activates the iOS
+playback category before your app enters the background. Apple
+[requires that category and background mode](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/playback)
+for continued playback. Picture in Picture also declares the same mode. Request
+microphone access separately if you record. The iOS 27 simulator continued
+playing without the mode in our control run, so confirm background behavior on a
+device before relying on it in production.
+
 ```tsx
 const permission = await One.iOS.Audio.requestRecordingPermission()
 if (permission === 'granted') {
@@ -60,5 +71,5 @@ Errors expose `error.code`: `E_AUDIO_URI`, `E_AUDIO_FILE`,
 recording use the app's shared audio session. Playback switches its category
 to playback and can replace another feature's audio session configuration,
 including picture in picture. Stop this audio before starting speech recognition
-or another audio feature. Background playback and recording modes, interruption
-events, and remote media controls are not configured by this API.
+or another audio feature. Background recording, interruption events, and remote
+media controls are not configured by this API.

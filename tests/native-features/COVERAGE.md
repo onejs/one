@@ -95,8 +95,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.WidgetUI` | missing | n/a | needs a widget extension target in the fixture app |
 | `One.iOS.LocalAuthentication` | local-authentication | n/a |  |
 | `One.iOS.Location` | location | n/a |  |
-| `One.iOS.FileSystem` | file-system, audio, share, photo-library, image-manipulator | n/a |  |
-| `One.iOS.Audio` | audio | n/a |  |
+| `One.iOS.FileSystem` | file-system, audio, audio-background, share, photo-library, image-manipulator | n/a |  |
+| `One.iOS.Audio` | audio, audio-background | n/a |  |
 | `One.iOS.Share` | share | n/a |  |
 | `One.iOS.PhotoLibrary` | photo-library | n/a |  |
 | `One.iOS.ImageManipulator` | image-manipulator | n/a |  |

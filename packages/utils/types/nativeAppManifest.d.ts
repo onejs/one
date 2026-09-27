@@ -21,11 +21,16 @@ export interface NativeAppManifest {
     contacts?: {
         usage: string;
     };
+    calendar?: {
+        usage?: string;
+        remindersUsage?: string;
+    };
     location?: {
         whenInUse: string;
     };
     audio?: {
-        microphone: string;
+        microphone?: string;
+        background?: boolean;
     };
     speech?: {
         recognition: string;

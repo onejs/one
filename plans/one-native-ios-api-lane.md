@@ -48,7 +48,7 @@ checklist; One's own exports and docs decide the status.
 | Deep links | covered | One router and linking integration | router tests; external browser callback | done |
 | App icons | partial | static prebuild icon; no alternate icon switch | prebuild only | P2 |
 | In-app purchases | missing | no StoreKit API or purchase hooks | none | P2 |
-| Audio playback/recording | partial | `One.iOS.Audio` permission, local/remote playback controls, AAC recording; no background mode, interruption events, or remote controls | audio: microphone prompt, recording file, playback lifecycle and errors | P1 |
+| Audio playback/recording | partial | `One.iOS.Audio` permission, local/remote playback controls, AAC recording; opt-in `audio` background mode; no device proof, interruption events, or remote controls | audio: prompt, record/play lifecycle; RAN iOS 27 39.4s background playback, but no-mode control also played 39.4s, so mode enforcement needs device proof | P1 |
 | Video playback | partial | `One.iOS.VideoPlayer`; no media controls/session API | media | P2 |
 | Picture in picture | partial | `One.UI.PictureInPicture`; video path needs device proof | simulator cannot enter PiP | P2 |
 | Sensors and motion | missing | no CoreMotion service | none | P2 |
@@ -103,6 +103,13 @@ checklist; One's own exports and docs decide the status.
 8. Image transformation has an iOS 27 Core Image proof. Peach's Expo Image
    Manipulator stub performs real pixel work, but no `OneImageManipulator`
    adapter exists; that bridge belongs to the Contrast migration lane.
+9. Background audio configuration stamps the `audio` plist mode for One prebuild
+   and the Expo plugin. The iOS 27 simulator played a 60 second local WAV for
+   about 39.4 seconds in the background with and without the mode. That proves
+   the API playback clock runs across app switching on the simulator, but it
+   cannot prove the mode changes OS policy there. Apple documents the mode as
+   required; device proof remains open. Peach has an Expo Audio HTML5 stub but
+   no OneAudio adapter, and browser tab visibility is not iOS background policy.
 
 Avoid duplicating React Native surfaces only to rename them. Keep simulator
 limitations explicit; hardware-only effects need a device proof before `covered`.
