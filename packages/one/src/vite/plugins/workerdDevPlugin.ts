@@ -286,12 +286,6 @@ export function createWorkerdDevPlugins(
     : ['/@vite/client', virtalEntryIdClient]
 
   const empty = resolvePath('@vxrn/vite-plugin-metro/empty', root)
-  const rnWebAssetRegistry = resolvePath(
-    'react-native-web/dist/modules/AssetRegistry',
-    root
-  )
-  const rnWebPkg = resolvePath('react-native-web/package.json', root)
-  const rnWeb = resolvePath('react-native-web', root)
   const absorbed = absorbedPackageAliases(root, 'web')
 
   const preparePlugin: Plugin = {
@@ -344,9 +338,10 @@ export function createWorkerdDevPlugins(
           source === 'react-native/asset-registry' ||
           source === '@react-native/assets-registry/registry'
         )
-          return rnWebAssetRegistry
-        if (source === 'react-native/package.json') return rnWebPkg
-        if (source === 'react-native') return rnWeb
+          return resolvePath('react-native-web/dist/modules/AssetRegistry', root)
+        if (source === 'react-native/package.json')
+          return resolvePath('react-native-web/package.json', root)
+        if (source === 'react-native') return resolvePath('react-native-web', root)
         if (source in absorbed) return absorbed[source]
       },
     },
