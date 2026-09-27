@@ -4,6 +4,7 @@ export interface NativeAppManifest {
     scheme?: string | string[];
     version?: string;
     orientation?: 'portrait' | 'landscape' | 'default';
+    userInterfaceStyle?: 'light' | 'dark' | 'automatic';
     icon?: {
         source: string;
         backgroundColor: string;
@@ -70,8 +71,10 @@ export interface NativeAppManifest {
         versionCode?: number;
         minSdk?: number;
         adaptiveIcon?: {
-            foreground?: string;
+            foreground: string;
             background?: string;
+            backgroundColor?: string;
+            monochrome?: string;
         };
         googleMapsApiKey?: string;
     };
@@ -83,6 +86,7 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
     scheme: string | string[] | undefined;
     version: string | undefined;
     orientation: "default" | "landscape" | "portrait" | undefined;
+    userInterfaceStyle: "automatic" | "dark" | "light" | undefined;
     icon: string | undefined;
     splash: {
         image: string;
@@ -98,6 +102,12 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
     android: {
         package: string;
         versionCode: number | undefined;
+        adaptiveIcon: {
+            foregroundImage: string;
+            backgroundImage: string | undefined;
+            backgroundColor: string | undefined;
+            monochromeImage: string | undefined;
+        } | undefined;
     } | undefined;
 };
 //# sourceMappingURL=nativeAppManifest.d.ts.map
