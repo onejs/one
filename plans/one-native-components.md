@@ -48,7 +48,7 @@ The remaining partial surfaces are:
 | family | partial or missing behavior | priority |
 | --- | --- | --- |
 | menus and context menus | data-driven items work; primary actions, context previews, and a Picker embedded in menu content are not represented | after core views |
-| pickers | standalone controls work; `navigationLink` and `palette` Picker styles are rejected without their native container context | after core views |
+| pickers | standalone `palette` falls back to segmented on iPhone; Picker inside Menu and `navigationLink` context remain unavailable | after core views |
 | popovers | trigger and React Native presentation body work; `attachmentAnchor` is not bound | after core views |
 | navigation | `NavigationStack` and toolbars exist; `NavigationSplitView` and `NavigationLink` are outside this lane because One owns routed navigation | coordinate before admission |
 | list editing | `EditButton` label toggles Edit/Done; `List` edit state has no independent observer and delete/move row actions are unavailable | after core views |
@@ -70,6 +70,18 @@ One high review per assembled batch (`tm run --group lg` while the Claude
 accounts are unavailable).
 
 ## Status
+
+- **RAN, 2026-09-27:** the focused `picker-palette` suite passed nine checks on
+  ci-64's iPhone 17 Pro / iOS 27.0 simulator with Xcode 27.1. The standalone
+  palette and explicit segmented Picker exposed matching native TabGroup
+  geometry and Alpha/Beta/Gamma radio options. A native Beta tap changed only
+  the palette selection, an external React update selected Gamma, and a tap
+  on the segmented reference changed only that control. The tracked
+  `tests/native-features/proofs/picker-palette` bundle contains three AX/PNG
+  pairs, outcome, side-by-side WebP, and a receipt for suite source
+  `0b8a442f0`, regenerated JavaScript, and matching built/installed native
+  debug dylib hashes. Picker Swift source blobs are identical to the earlier
+  binary build. Picker inside Menu and `navigationLink` remain unavailable.
 
 - **RAN, 2026-09-27:** the `scroll-search-refresh` suite passed 13 checks
   (nine feature checks and four navigation/harness checks) on
