@@ -38,22 +38,22 @@ public extension ContactInfo {
   var identifier: String {
     return String(self.__identifier)
   }
-
+  
   @inline(__always)
   var givenName: String {
     return String(self.__givenName)
   }
-
+  
   @inline(__always)
   var familyName: String {
     return String(self.__familyName)
   }
-
+  
   @inline(__always)
   var phoneNumbers: [String] {
     return self.__phoneNumbers.map({ __item in String(__item) })
   }
-
+  
   @inline(__always)
   var emailAddresses: [String] {
     return self.__emailAddresses.map({ __item in String(__item) })

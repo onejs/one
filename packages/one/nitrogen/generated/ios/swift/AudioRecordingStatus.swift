@@ -32,7 +32,7 @@ public extension AudioRecordingStatus {
   var state: AudioRecordingState {
     return self.__state
   }
-
+  
   @inline(__always)
   var uri: String? {
     return { () -> String? in
@@ -44,7 +44,7 @@ public extension AudioRecordingStatus {
       }
     }()
   }
-
+  
   @inline(__always)
   var durationMs: Double {
     return self.__durationMs

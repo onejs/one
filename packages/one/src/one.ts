@@ -28,6 +28,7 @@ import {
   DocumentPicker,
   Haptics,
   ImagePicker,
+  LaunchScreen,
   MenuAction,
   Menu as NativeMenu,
   ContextMenu as NativeContextMenu,
@@ -119,6 +120,7 @@ export type OneAPI = {
   readonly Notifications: Readonly<OneNotifications>
   readonly Clipboard: typeof NativeClipboard
   readonly Haptics: typeof Haptics
+  readonly LaunchScreen: typeof LaunchScreen
   readonly Network: typeof NativeNetwork
   readonly Auth: typeof Auth
   readonly Browser: typeof NativeBrowser
@@ -198,6 +200,7 @@ export const One: OneAPI = Object.freeze({
   Notifications,
   Clipboard: NativeClipboard,
   Haptics,
+  LaunchScreen,
   Network: NativeNetwork,
   Auth,
   Browser: NativeBrowser,

@@ -8,4 +8,9 @@ NS_ASSUME_NONNULL_BEGIN
 // launch screen never gives way to an empty root.
 FOUNDATION_EXPORT void OneHoldLaunchScreen(UIView *rootView);
 
+// One.LaunchScreen: keep the held launch screen past the first content, and
+// release it, optionally fading it out.
+FOUNDATION_EXPORT void OneLaunchScreenPreventAutoHide(void);
+FOUNDATION_EXPORT void OneLaunchScreenHide(BOOL fade);
+
 NS_ASSUME_NONNULL_END

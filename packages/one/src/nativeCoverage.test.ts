@@ -35,6 +35,7 @@ const knownGaps: Record<string, string> = {
   'UI.TextInput': 'no fixture or suite',
   'UI.ReservedRegions': 'fixture exists, no suite opens it',
   openURL: 'react native Linking underneath; proven in the Contrast app, no suite yet',
+  LaunchScreen: 'holds from app start, which a fixture route cannot reach; proven in the Contrast app',
   openShare: 'react native Share underneath; proven in the Contrast app, no suite yet',
   openSettings: 'react native Linking underneath; no suite yet',
   Clipboard: 'iOS suite only',

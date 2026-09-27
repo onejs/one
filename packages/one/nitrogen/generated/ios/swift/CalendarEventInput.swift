@@ -26,17 +26,17 @@ public extension CalendarEventInput {
   var title: String {
     return String(self.__title)
   }
-
+  
   @inline(__always)
   var startMs: Double {
     return self.__startMs
   }
-
+  
   @inline(__always)
   var endMs: Double {
     return self.__endMs
   }
-
+  
   @inline(__always)
   var allDay: Bool {
     return self.__allDay

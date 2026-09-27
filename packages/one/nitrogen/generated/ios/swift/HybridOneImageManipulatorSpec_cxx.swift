@@ -84,7 +84,7 @@ open class HybridOneImageManipulatorSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneImageManipulatorSpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)

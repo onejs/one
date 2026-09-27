@@ -34,11 +34,15 @@ export interface NativeAppManifest {
     // launch screen with it, as expo's resizeMode does. android's system
     // splash shows the centered artwork either way.
     resizeMode?: 'contain' | 'cover'
+    // a full-bleed image (a gradient, a texture) under the artwork on the ios
+    // launch screen. android's system splash has only a color.
+    backgroundImage?: string
     // what a dark-appearance launch shows, as expo's splash.dark: its own
-    // background, and optionally its own artwork.
+    // background, and optionally its own artwork and background image.
     dark?: {
       source?: string
       backgroundColor: string
+      backgroundImage?: string
     }
   }
   // project-relative .ttf or .otf files bundled into the binary, as the
@@ -86,6 +90,9 @@ export interface NativeAppManifest {
   // entitlement. without it firebase stays out of the app entirely.
   notifications?: {
     push?: boolean
+    // the push entitlement's apns environment, development by default. a
+    // build signed for testflight or the app store sends through production.
+    apsEnvironment?: 'development' | 'production'
   }
   // One.UI.PictureInPicture: stamps the ios audio background mode (pip opens
   // only for a playback session) and android's supportsPictureInPicture.
@@ -107,6 +114,12 @@ export interface NativeAppManifest {
     useFrameworks?: 'static' | 'dynamic'
     ccache?: boolean
     usesNonExemptEncryption?: boolean
+    // the tint the system gives the app's controls, tab selection and text
+    // cursor, as xcode's AccentColor asset; js reads PlatformColor('AccentColor').
+    accentColor?: {
+      light: string
+      dark?: string
+    }
     // system prompt text for Face ID through One.iOS.LocalAuthentication.
     faceIdUsageDescription?: string
     // exposes the app's Documents in the Files app and document pickers.
@@ -264,6 +277,12 @@ export function validateNativeApp(
     fail('splash.dark requires a six-digit hex backgroundColor')
   }
   if (
+    manifest.splash?.dark?.backgroundImage !== undefined &&
+    manifest.splash.backgroundImage === undefined
+  ) {
+    fail('splash.dark.backgroundImage needs splash.backgroundImage for the light launch')
+  }
+  if (
     manifest.splash?.resizeMode !== undefined &&
     manifest.splash.resizeMode !== 'contain' &&
     manifest.splash.resizeMode !== 'cover'
@@ -360,6 +379,21 @@ export function validateNativeApp(
     ) {
       fail('notifications.push must be a boolean')
     }
+    const aps = manifest.notifications.apsEnvironment
+    if (aps !== undefined && aps !== 'development' && aps !== 'production') {
+      fail(`notifications.apsEnvironment "${aps}" must be development or production`)
+    }
+    if (aps !== undefined && !manifest.notifications.push) {
+      fail('notifications.apsEnvironment needs notifications.push')
+    }
+  }
+  const accent = manifest.ios?.accentColor
+  if (
+    accent !== undefined &&
+    (!HEX_COLOR.test(accent.light) ||
+      (accent.dark !== undefined && !HEX_COLOR.test(accent.dark)))
+  ) {
+    fail('ios.accentColor light and dark must be six-digit hex colors')
   }
   if (
     manifest.pictureInPicture !== undefined &&

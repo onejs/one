@@ -26,37 +26,37 @@ public extension LocationPosition {
   var latitude: Double {
     return self.__latitude
   }
-
+  
   @inline(__always)
   var longitude: Double {
     return self.__longitude
   }
-
+  
   @inline(__always)
   var accuracy: Double {
     return self.__accuracy
   }
-
+  
   @inline(__always)
   var altitude: Double {
     return self.__altitude
   }
-
+  
   @inline(__always)
   var altitudeAccuracy: Double {
     return self.__altitudeAccuracy
   }
-
+  
   @inline(__always)
   var course: Double {
     return self.__course
   }
-
+  
   @inline(__always)
   var speed: Double {
     return self.__speed
   }
-
+  
   @inline(__always)
   var timestamp: Double {
     return self.__timestamp

@@ -32,12 +32,12 @@ public extension LocalAuthenticationStatus {
   var available: Bool {
     return self.__available
   }
-
+  
   @inline(__always)
   var biometryType: LocalBiometryType {
     return self.__biometryType
   }
-
+  
   @inline(__always)
   var errorCode: Double? {
     return { () -> Double? in

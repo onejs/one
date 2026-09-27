@@ -29,9 +29,9 @@ namespace margelo::nitro::one {
    * An enum which can be represented as a JavaScript union (NotificationPermissionStatus).
    */
   enum class NotificationPermissionStatus {
-    GRANTED      SWIFT_NAME(granted) = 0,
-    DENIED      SWIFT_NAME(denied) = 1,
-    UNDETERMINED      SWIFT_NAME(undetermined) = 2,
+    UNDETERMINED      SWIFT_NAME(undetermined) = 0,
+    GRANTED      SWIFT_NAME(granted) = 1,
+    DENIED      SWIFT_NAME(denied) = 2,
   } CLOSED_ENUM;
 
 } // namespace margelo::nitro::one
@@ -44,18 +44,18 @@ namespace margelo::nitro {
     static inline margelo::nitro::one::NotificationPermissionStatus fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
+        case hashString("undetermined"): return margelo::nitro::one::NotificationPermissionStatus::UNDETERMINED;
         case hashString("granted"): return margelo::nitro::one::NotificationPermissionStatus::GRANTED;
         case hashString("denied"): return margelo::nitro::one::NotificationPermissionStatus::DENIED;
-        case hashString("undetermined"): return margelo::nitro::one::NotificationPermissionStatus::UNDETERMINED;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum NotificationPermissionStatus - invalid value!");
       }
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::one::NotificationPermissionStatus arg) {
       switch (arg) {
+        case margelo::nitro::one::NotificationPermissionStatus::UNDETERMINED: return JSIConverter<std::string>::toJSI(runtime, "undetermined");
         case margelo::nitro::one::NotificationPermissionStatus::GRANTED: return JSIConverter<std::string>::toJSI(runtime, "granted");
         case margelo::nitro::one::NotificationPermissionStatus::DENIED: return JSIConverter<std::string>::toJSI(runtime, "denied");
-        case margelo::nitro::one::NotificationPermissionStatus::UNDETERMINED: return JSIConverter<std::string>::toJSI(runtime, "undetermined");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert NotificationPermissionStatus to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");
@@ -67,9 +67,9 @@ namespace margelo::nitro {
       }
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, value);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
+        case hashString("undetermined"):
         case hashString("granted"):
         case hashString("denied"):
-        case hashString("undetermined"):
           return true;
         default:
           return false;

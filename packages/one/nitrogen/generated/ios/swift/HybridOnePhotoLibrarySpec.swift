@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOnePhotoLibrarySpec``
 public protocol HybridOnePhotoLibrarySpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func getAddPermissionStatus() throws -> PhotoLibraryPermissionStatus

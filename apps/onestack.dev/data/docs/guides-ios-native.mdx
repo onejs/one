@@ -214,8 +214,20 @@ things:
   like unset, follows the system.
 - `splash.resizeMode`: `cover` fills the iOS launch screen with untrimmed
   artwork; `contain` (the default) centers it at `width`.
-- `splash.dark`: `backgroundColor`, and optionally `source`, for a launch in
-  dark appearance.
+- `splash.dark`: `backgroundColor`, and optionally `source` and
+  `backgroundImage`, for a launch in dark appearance.
+- `splash.backgroundImage`: a full-bleed image, such as a gradient, under the
+  artwork on the iOS launch screen. Android's system splash shows only the
+  color.
+- The launch screen stays up until the first screen draws. To reveal the app
+  later (after a cache loads), call `One.LaunchScreen.preventAutoHide()` while
+  modules evaluate and `One.LaunchScreen.hide({ fade: true })` when ready, as
+  with Expo's `preventAutoHideAsync` and `hideAsync`.
+- `notifications.apsEnvironment`: `production` for a build signed for
+  TestFlight or the App Store; push uses `development` otherwise.
+- `ios.accentColor`: `{ light, dark }` hex colors for the app's tint (tab
+  selection, text cursor, system controls), read in JS as
+  `PlatformColor('AccentColor')`.
 - `fonts`: project-relative `.ttf` or `.otf` files bundled into the app. iOS
   lists them in `UIAppFonts`; Android loads them from `assets/fonts`. Use the
   font's own family name in styles, as with Expo's `expo-font` plugin.
