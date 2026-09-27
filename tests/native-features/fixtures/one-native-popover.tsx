@@ -7,6 +7,7 @@ export default function OneNativePopover() {
   const [sectionOpen, setSectionOpen] = useState(false)
   const [taps, setTaps] = useState(0)
   const [height, setHeight] = useState(0)
+  const [pointAnchor, setPointAnchor] = useState(false)
 
   return (
     <View style={styles.screen} testID="one-native-popover-screen">
@@ -25,12 +26,20 @@ export default function OneNativePopover() {
         >
           <Text>Open in section</Text>
         </Pressable>
+        <Pressable
+          testID="one-native-popover-anchor-toggle"
+          style={styles.chip}
+          onPress={() => setPointAnchor((value) => !value)}
+        >
+          <Text>Toggle anchor</Text>
+        </Pressable>
       </View>
 
       <One.iOS.Popover
         isPresented={open}
         onIsPresentedChange={setOpen}
         arrowEdge="top"
+        attachmentAnchor={pointAnchor ? { point: { x: 1, y: 1 } } : { rect: 'bounds' }}
         presentationCompactAdaptation="popover"
         contentWidth={260}
         contentHeight={160}
@@ -78,6 +87,7 @@ export default function OneNativePopover() {
       </One.iOS.Form>
 
       <View style={styles.row}>
+        <Text style={styles.line}>{`Anchor: ${pointAnchor ? 'point' : 'bounds'}`}</Text>
         <Text
           testID="one-native-popover-state"
           style={styles.line}

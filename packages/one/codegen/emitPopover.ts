@@ -21,6 +21,9 @@ export const popoverComponents = [
       acknowledgedEvent: 'Int32',
       revision: 'Int32',
       arrowEdge: 'string',
+      attachmentAnchorKind: 'string',
+      attachmentAnchorX: 'Double',
+      attachmentAnchorY: 'Double',
       presentationCompactAdaptation: 'string',
       contentWidth: 'Double',
       contentHeight: 'Double',
@@ -101,11 +104,13 @@ export default codegenNativeComponent<NativeProps>('${component.name}'${componen
       `import type { ReactNode } from 'react'
 import type { ViewProps } from 'react-native'
 import type { Edge, PresentationAdaptation } from './swiftui'
+export type PopoverAttachmentAnchor = Readonly<{ rect: 'bounds' }> | Readonly<{ point: Readonly<{ x: number; y: number }> }>
 export interface PopoverProps extends ViewProps {
   isPresented: boolean
   onIsPresentedChange: (value: boolean) => void
   revision?: number
   arrowEdge?: Edge
+  attachmentAnchor?: PopoverAttachmentAnchor
   presentationCompactAdaptation?: PresentationAdaptation
   contentWidth: number
   contentHeight: number
@@ -125,6 +130,11 @@ struct OneNativePopoverRoot: View {
   // composed, the parent lays the trigger out and measures it; only a standalone
   // popover answers to Yoga.
   let standalone: Bool
+  private var attachmentAnchor: PopoverAttachmentAnchor {
+    model.attachmentAnchorKind == "point"
+      ? .point(UnitPoint(x: model.attachmentAnchorX, y: model.attachmentAnchorY))
+      : .rect(.bounds)
+  }
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
       ForEach(children.items) { child in child.content }
@@ -134,6 +144,7 @@ struct OneNativePopoverRoot: View {
         get: { model.controlled.value && model.content != nil },
         set: { value in model.change(value) }
       ),
+      attachmentAnchor: attachmentAnchor,
       arrowEdge: OneNativeGenerated.edge(model.arrowEdge)
     ) {
       if let content = model.content {

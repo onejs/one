@@ -3542,6 +3542,15 @@
           "type": "string",
           "enum": "Edge"
         },
+        "attachmentAnchorKind": {
+          "type": "string"
+        },
+        "attachmentAnchorX": {
+          "type": "Double"
+        },
+        "attachmentAnchorY": {
+          "type": "Double"
+        },
         "presentationCompactAdaptation": {
           "type": "string",
           "enum": "PresentationAdaptation"

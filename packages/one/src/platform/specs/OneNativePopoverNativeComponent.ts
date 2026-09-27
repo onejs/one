@@ -12,6 +12,9 @@ interface NativeProps extends ViewProps {
   acknowledgedEvent: Int32
   revision: Int32
   arrowEdge: string
+  attachmentAnchorKind: string
+  attachmentAnchorX: Double
+  attachmentAnchorY: Double
   presentationCompactAdaptation: string
   contentWidth: Double
   contentHeight: Double

@@ -13,6 +13,7 @@ export function Popover({
   onIsPresentedChange,
   revision = 0,
   arrowEdge,
+  attachmentAnchor,
   presentationCompactAdaptation = 'automatic',
   contentWidth,
   contentHeight,
@@ -31,6 +32,28 @@ export function Popover({
     throw new Error('Swift.Popover contentHeight must be a positive number')
   const iosVersion = Number.parseFloat(String(Platform.Version))
   if (arrowEdge !== undefined) assertSwiftUIValue('Edge', arrowEdge, iosVersion)
+  let attachmentAnchorKind = 'rect'
+  let attachmentAnchorX = 0.5
+  let attachmentAnchorY = 0.5
+  if (attachmentAnchor !== undefined) {
+    if (attachmentAnchor && typeof attachmentAnchor === 'object' &&
+        'rect' in attachmentAnchor && attachmentAnchor.rect === 'bounds' &&
+        Object.keys(attachmentAnchor).length === 1) {
+      // SwiftUI's default attachment anchor is rect(.bounds).
+    } else if (attachmentAnchor && typeof attachmentAnchor === 'object' &&
+        'point' in attachmentAnchor && attachmentAnchor.point &&
+        typeof attachmentAnchor.point === 'object' &&
+        Object.keys(attachmentAnchor).length === 1 &&
+        Object.keys(attachmentAnchor.point).length === 2 &&
+        Number.isFinite(attachmentAnchor.point.x) &&
+        Number.isFinite(attachmentAnchor.point.y)) {
+      attachmentAnchorKind = 'point'
+      attachmentAnchorX = attachmentAnchor.point.x
+      attachmentAnchorY = attachmentAnchor.point.y
+    } else {
+      throw new Error('Swift.Popover attachmentAnchor must be { rect: "bounds" } or { point: { x, y } }')
+    }
+  }
   assertSwiftUIValue('PresentationAdaptation', presentationCompactAdaptation, iosVersion)
   // the trigger composes into SwiftUI; the presented content stays React Native.
   assertOneNativeChildren(children, 'Swift.Popover')
@@ -48,6 +71,9 @@ export function Popover({
       revision={revision}
       acknowledgedEvent={controlled.acknowledgedEvent}
       arrowEdge={arrowEdge ?? ''}
+      attachmentAnchorKind={attachmentAnchorKind}
+      attachmentAnchorX={attachmentAnchorX}
+      attachmentAnchorY={attachmentAnchorY}
       presentationCompactAdaptation={presentationCompactAdaptation}
       contentWidth={contentWidth}
       contentHeight={contentHeight}

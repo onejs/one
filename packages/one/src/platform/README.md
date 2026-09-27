@@ -1525,6 +1525,9 @@ content and a React Native subtree has no ideal size, so `contentWidth` and
 own placement. `presentationCompactAdaptation` is a `PresentationAdaptation`, and its
 default of `automatic` shows the body as a sheet on an iPhone; pass `popover` for a
 popover there.
+`attachmentAnchor` maps SwiftUI's `.rect(.bounds)` default as `{ rect: 'bounds' }`
+and `.point(UnitPoint(x:y:))` as `{ point: { x, y } }`. The unit point is relative
+to the trigger: `{ point: { x: 1, y: 1 } }` attaches at its bottom right corner.
 
 The trigger reports the height SwiftUI measured back to Yoga, exactly as `One.iOS.Host`
 does, so never give a popover a height. A popover is a container, so it composes into a

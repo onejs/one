@@ -59,7 +59,10 @@ import { Button, View } from 'react-native'
 `One.iOS.Popover` anchors a popover to its children. `content` is the
 popover body with an explicit `contentWidth` and `contentHeight`;
 `arrowEdge` picks the arrow edge and `presentationCompactAdaptation` picks
-the compact adaptation.
+the compact adaptation. `attachmentAnchor` defaults to `{ rect: 'bounds' }`,
+SwiftUI's trigger bounds. Use `{ point: { x, y } }` to attach at a `UnitPoint`
+in the trigger, such as `{ point: { x: 1, y: 1 } }` for its bottom right corner.
+Coordinates must be finite; SwiftUI accepts points outside the trigger too.
 
 ## Alert
 

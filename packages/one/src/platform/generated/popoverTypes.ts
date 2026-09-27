@@ -3,11 +3,15 @@
 import type { ReactNode } from 'react'
 import type { ViewProps } from 'react-native'
 import type { Edge, PresentationAdaptation } from './swiftui'
+export type PopoverAttachmentAnchor =
+  | Readonly<{ rect: 'bounds' }>
+  | Readonly<{ point: Readonly<{ x: number; y: number }> }>
 export interface PopoverProps extends ViewProps {
   isPresented: boolean
   onIsPresentedChange: (value: boolean) => void
   revision?: number
   arrowEdge?: Edge
+  attachmentAnchor?: PopoverAttachmentAnchor
   presentationCompactAdaptation?: PresentationAdaptation
   contentWidth: number
   contentHeight: number

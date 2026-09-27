@@ -4235,6 +4235,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'Trigger', triggerHeight) &&
         Math.round(frame?.height ?? 0) === triggerHeight &&
         status(n, 'Open', 'false') &&
+        status(n, 'Anchor', 'bounds') &&
         !labels(n).includes('Popover body')
       )
     })
@@ -4255,6 +4256,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'and React dismisses the popover from inside it',
       (n) => status(n, 'Open', 'false') && !labels(n).includes('Popover body')
     )
+
+    tap({ id: 'one-native-popover-anchor-toggle' })
+    await wait('point attachment anchor reaches React', (n) => status(n, 'Anchor', 'point'))
+    tap({ id: 'one-native-popover-open' })
+    const pointPopover = await wait('point attachment anchor presents', (n) =>
+      labels(n).includes('Popover body'))
+    screenshot('popover-point-anchor.png', pointPopover)
+    tap({ id: 'one-native-popover-close' })
+    await wait('point attachment anchor dismisses', (n) =>
+      status(n, 'Open', 'false') && !labels(n).includes('Popover body'))
 
     tap({ label: 'Trigger' })
     await wait('the composed trigger presents it', (n) =>

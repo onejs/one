@@ -58,6 +58,7 @@ export function Picker({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -119,6 +120,7 @@ export function DatePicker({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={selection.getTime()}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -165,6 +167,7 @@ export function ColorPicker({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -211,6 +214,7 @@ export function Toggle({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={isOn}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -265,6 +269,7 @@ export function Slider({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={value}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -320,6 +325,7 @@ export function Stepper({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={value}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -350,6 +356,7 @@ export function PasteButton({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       disabled={disabled}
       onNativePasteButtonPaste={({ nativeEvent }) =>
         onPaste?.(JSON.parse(nativeEvent.values) as string[])
@@ -369,6 +376,7 @@ export function Text({ text = '', swiftStyle, style, ...props }: Types.TextProps
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       text={text}
     />
   )
@@ -395,6 +403,7 @@ export function Label({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -431,6 +440,7 @@ export function ProgressView({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       label={label}
       disabled={disabled}
       value={value ?? 0}
@@ -474,6 +484,7 @@ export function Gauge({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       label={label}
       disabled={disabled}
       value={value}
@@ -545,6 +556,7 @@ export function Image({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       systemName={systemName}
       uri={uri}
       renderingMode={renderingMode}
@@ -585,6 +597,7 @@ export function ShareLink({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -631,6 +644,7 @@ export function ContentUnavailableView({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       title={title}
       systemImage={systemImage}
       description={description}
@@ -656,6 +670,7 @@ export function Circle({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       fill={fill}
     />
   )
@@ -675,6 +690,7 @@ export function Capsule({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       fill={fill}
     />
   )
@@ -694,6 +710,7 @@ export function Rectangle({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       fill={fill}
     />
   )
@@ -717,6 +734,7 @@ export function RoundedRectangle({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       fill={fill}
       cornerRadius={cornerRadius}
     />
@@ -737,6 +755,7 @@ export function Ellipse({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       fill={fill}
     />
   )
@@ -769,6 +788,7 @@ export function UnevenRoundedRectangle({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       fill={fill}
       topLeadingRadius={topLeadingRadius}
       bottomLeadingRadius={bottomLeadingRadius}
@@ -795,6 +815,7 @@ export function ConcentricRectangle({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       fill={fill}
     />
   )
@@ -818,6 +839,7 @@ export function VideoPlayer({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       url={url}
       autoplay={autoplay}
     />
@@ -880,6 +902,7 @@ export function PhotosPicker({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -958,6 +981,7 @@ export function WebView({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       url={url}
       html={html}
       backForwardNavigationGestures={backForwardNavigationGestures}
@@ -1004,6 +1028,7 @@ export function SignInWithAppleButton({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       requestedScopes={requestedScopes}
       nonce={nonce}
       label={label}
@@ -1068,6 +1093,7 @@ export function Map({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       latitude={latitude}
       longitude={longitude}
       distance={distance}
@@ -1158,6 +1184,7 @@ export function TextField({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={syncedText}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1263,6 +1290,7 @@ export function SecureField({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={syncedText}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1351,6 +1379,7 @@ export function TextEditor({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={syncedText}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1419,6 +1448,7 @@ export function Alert({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1486,6 +1516,7 @@ export function ConfirmationDialog({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1536,6 +1567,7 @@ export function QuickLook({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1582,6 +1614,7 @@ export function FileImporter({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}

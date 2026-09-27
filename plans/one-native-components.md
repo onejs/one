@@ -71,6 +71,13 @@ accounts are unavailable).
 
 ## Status
 
+- **INFERRED, 2026-09-27:** `Popover` attachment anchors are being added on
+  named branch `one-native-popover-anchor`. The proposed React representation
+  mirrors SwiftUI's `.rect(.bounds)` and `.point(UnitPoint(x:y:))` as
+  `{ rect: 'bounds' }` and `{ point: { x, y } }`. An iOS 27 geometry comparison,
+  high review, and Nate approval of the public representation remain before
+  merge.
+
 - **RAN, 2026-09-26:** slice 1 `TextEditor` and `UnevenRoundedRectangle` passed
   `generate:check`, all seven shape tests, and the `editors` conformance suite
   on the iPhone 17 Pro iOS 27.0 simulator. The suite checked native multiline

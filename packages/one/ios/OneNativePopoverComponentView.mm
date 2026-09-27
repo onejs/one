@@ -64,6 +64,9 @@ using namespace facebook::react;
             contentWidth:next.contentWidth
            contentHeight:next.contentHeight
                arrowEdge:RCTNSStringFromString(next.arrowEdge)
+    attachmentAnchorKind:RCTNSStringFromString(next.attachmentAnchorKind)
+       attachmentAnchorX:next.attachmentAnchorX
+       attachmentAnchorY:next.attachmentAnchorY
     presentationCompactAdaptation:RCTNSStringFromString(next.presentationCompactAdaptation)];
   [super updateProps:props oldProps:oldProps];
 }

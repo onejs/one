@@ -9,6 +9,9 @@ final class OneNativePopoverModel: ObservableObject {
   @Published var contentWidth: Double = 0
   @Published var contentHeight: Double = 0
   @Published var arrowEdge = ""
+  @Published var attachmentAnchorKind = "rect"
+  @Published var attachmentAnchorX: Double = 0.5
+  @Published var attachmentAnchorY: Double = 0.5
   @Published var presentationCompactAdaptation = ""
   var active = false
   var onChange: ((Bool, Int, Int) -> Void)?
@@ -54,7 +57,9 @@ public final class OneNativePopoverView: OneNativeContainerView {
 
   public func configure(
     _ isPresented: Bool, acknowledgedEvent: Int, revision: Int, contentWidth: Double,
-    contentHeight: Double, arrowEdge: String, presentationCompactAdaptation: String
+    contentHeight: Double, arrowEdge: String, attachmentAnchorKind: String,
+    attachmentAnchorX: Double, attachmentAnchorY: Double,
+    presentationCompactAdaptation: String
   ) {
     if let next = model.controlled.applying(
       isPresented, acknowledged: acknowledgedEvent, revision: revision)
@@ -64,6 +69,9 @@ public final class OneNativePopoverView: OneNativeContainerView {
     if model.contentWidth != contentWidth { model.contentWidth = contentWidth }
     if model.contentHeight != contentHeight { model.contentHeight = contentHeight }
     if model.arrowEdge != arrowEdge { model.arrowEdge = arrowEdge }
+    if model.attachmentAnchorKind != attachmentAnchorKind { model.attachmentAnchorKind = attachmentAnchorKind }
+    if model.attachmentAnchorX != attachmentAnchorX { model.attachmentAnchorX = attachmentAnchorX }
+    if model.attachmentAnchorY != attachmentAnchorY { model.attachmentAnchorY = attachmentAnchorY }
     if model.presentationCompactAdaptation != presentationCompactAdaptation {
       model.presentationCompactAdaptation = presentationCompactAdaptation
     }
