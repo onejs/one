@@ -161,4 +161,96 @@ private func oneNativeRadialGradientColor(_ value: String) -> Color? {
   if (!Number.isFinite(startRadius) || !Number.isFinite(endRadius))
     throw new Error('RadialGradient radii must be finite numbers')`,
   },
+  {
+    name: 'AngularGradient',
+    layout: 'fill',
+    decorativeWhenUnlabeled: true,
+    fields: {
+      colors: { type: 'strings', default: [], publicType: 'readonly string[]', required: true },
+      center: {
+        type: 'string',
+        default: '{"x":0.5,"y":0.5}',
+        publicType: 'Readonly<{ x: number; y: number }>',
+        jsDefault: '{ x: 0.5, y: 0.5 }',
+        nativeValue: 'JSON.stringify(center)',
+      },
+      angle: {
+        type: 'string',
+        default: '{"radians":0}',
+        publicType: 'Readonly<{ radians: number }>',
+        jsDefault: '{ radians: 0 }',
+        nativeValue: 'JSON.stringify(angle)',
+      },
+    },
+    constructors: [
+      {
+        type: 'AngularGradient',
+        parameters: [
+          { label: 'colors', type: '[SwiftUICore.Color]' },
+          { label: 'center', type: 'SwiftUICore.UnitPoint' },
+          { label: 'angle', type: 'SwiftUICore.Angle' },
+        ],
+      },
+    ],
+    swift: `AngularGradient(
+      colors: model.colors.compactMap(oneNativeAngularGradientColor),
+      center: oneNativeAngularGradientPoint(model.center),
+      angle: oneNativeAngularGradientAngle(model.angle)
+    )`,
+    extraSwift: `private struct OneNativeAngularGradientPoint: Decodable {
+  let x: Double
+  let y: Double
+}
+
+private struct OneNativeAngularGradientRadians: Decodable {
+  let radians: Double
+}
+
+private func oneNativeAngularGradientPoint(_ raw: String) -> UnitPoint {
+  guard let data = raw.data(using: .utf8),
+    let point = try? JSONDecoder().decode(OneNativeAngularGradientPoint.self, from: data),
+    point.x.isFinite, point.y.isFinite else { return .center }
+  return UnitPoint(x: CGFloat(point.x), y: CGFloat(point.y))
+}
+
+private func oneNativeAngularGradientAngle(_ raw: String) -> Angle {
+  guard let data = raw.data(using: .utf8),
+    let value = try? JSONDecoder().decode(OneNativeAngularGradientRadians.self, from: data),
+    value.radians.isFinite else { return .zero }
+  return Angle(radians: value.radians)
+}
+
+private func oneNativeAngularGradientColor(_ value: String) -> Color? {
+  guard value.first == "#", value.count == 7 || value.count == 9,
+    let hex = UInt64(value.dropFirst(), radix: 16) else { return nil }
+  let red, green, blue, alpha: UInt64
+  if value.count == 7 {
+    red = (hex >> 16) & 0xff
+    green = (hex >> 8) & 0xff
+    blue = hex & 0xff
+    alpha = 0xff
+  } else {
+    red = (hex >> 24) & 0xff
+    green = (hex >> 16) & 0xff
+    blue = (hex >> 8) & 0xff
+    alpha = hex & 0xff
+  }
+  return Color(.sRGB, red: Double(red) / 255, green: Double(green) / 255,
+    blue: Double(blue) / 255, opacity: Double(alpha) / 255)
+}`,
+    setBody: {
+      colors: `guard items.allSatisfy({ oneNativeAngularGradientColor($0) != nil }) else {
+      NSLog("OneNative AngularGradient received invalid colors")
+      return
+    }
+    if model.colors != items { model.colors = items }`,
+    },
+    validate: `  if (!Array.isArray(colors) ||
+      !colors.every((color) => typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)))
+    throw new Error('AngularGradient colors must be an array of #RRGGBB or #RRGGBBAA colors')
+  if (!center || !Number.isFinite(center.x) || !Number.isFinite(center.y))
+    throw new Error('AngularGradient center must have finite x and y coordinates')
+  if (!angle || !Number.isFinite(angle.radians))
+    throw new Error('AngularGradient angle must have finite radians')`,
+  },
 ]

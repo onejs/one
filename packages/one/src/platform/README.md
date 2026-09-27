@@ -648,6 +648,14 @@ in points. It accepts the same sRGB hex colors as `LinearGradient`. An empty
 array is transparent and an unlabeled view is decorative for accessibility.
 Explicit color stops and arbitrary SwiftUI `Color` values are unbound.
 
+`One.iOS.AngularGradient` uses SwiftUI's
+`AngularGradient(colors:center:angle:)`. Its `center` is a normalized
+`{ x, y }` point defaulting to the middle of the box, and `angle` is
+`{ radians }` defaulting to zero. It fills its layout box and accepts the
+same sRGB hex colors. An empty array is transparent, and an unlabeled view
+is decorative for accessibility. The partial-arc initializer, explicit
+color stops, and arbitrary SwiftUI `Color` values are unbound.
+
 `Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, `ConcentricRectangle`, and `Ellipse` are SwiftUI's
 shapes, one control each, named as SwiftUI names them. A shape has no ideal size
 of its own, so it takes the `width` and `height` React Native gives it, and `fill`

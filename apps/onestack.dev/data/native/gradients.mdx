@@ -71,3 +71,22 @@ apply:
 The iOS 27 proof exercises center movement, both radii, reversed colors,
 single and three-color arrays, alpha, and empty colors. Explicit color stops
 and arbitrary SwiftUI `Color` values are not bound by these views.
+
+`One.iOS.AngularGradient` calls SwiftUI's
+[`AngularGradient(colors:center:angle:)`](https://developer.apple.com/documentation/swiftui/angulargradient).
+`center` uses the same normalized `{ x, y }` point as `RadialGradient`.
+`angle` uses the existing SwiftUI angle shape `{ radians }` and defaults to
+zero. The initializer sweeps colors around a full circle:
+
+```tsx
+<One.iOS.AngularGradient
+  colors={['#FF3311', '#1144DD']}
+  center={{ x: 0.5, y: 0.5 }}
+  angle={{ radians: Math.PI / 2 }}
+  style={{ width: 280, height: 150 }}
+/>
+```
+
+The partial-arc `startAngle`/`endAngle` initializer and explicit color stops
+are not bound. The same sRGB hex and decorative-unless-labeled accessibility
+rules apply.

@@ -116,6 +116,11 @@ const testScreens = [
     testID: 'nav-one-native-radial-gradient',
   },
   {
+    href: '/one-native-angular-gradient',
+    label: 'One Native Angular Gradient',
+    testID: 'nav-one-native-angular-gradient',
+  },
+  {
     href: '/one-native-horizontal-inset',
     label: 'One Native Horizontal Inset',
     testID: 'nav-one-native-horizontal-inset',

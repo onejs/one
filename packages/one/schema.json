@@ -1875,6 +1875,37 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeAngularGradient",
+      "publicName": "AngularGradient",
+      "props": {
+        "colors": {
+          "type": "ReadonlyArray<string>"
+        },
+        "center": {
+          "type": "string"
+        },
+        "angle": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeVideoPlayer",
       "publicName": "VideoPlayer",
       "props": {
