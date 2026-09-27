@@ -38,27 +38,27 @@ public extension LocalizationInfo {
   var localeIdentifier: String {
     return String(self.__localeIdentifier)
   }
-
+  
   @inline(__always)
   var preferredLanguages: [String] {
     return self.__preferredLanguages.map({ __item in String(__item) })
   }
-
+  
   @inline(__always)
   var calendarIdentifier: String {
     return String(self.__calendarIdentifier)
   }
-
+  
   @inline(__always)
   var timeZoneIdentifier: String {
     return String(self.__timeZoneIdentifier)
   }
-
+  
   @inline(__always)
   var timeZoneOffsetSeconds: Double {
     return self.__timeZoneOffsetSeconds
   }
-
+  
   @inline(__always)
   var currencyCode: String? {
     return { () -> String? in

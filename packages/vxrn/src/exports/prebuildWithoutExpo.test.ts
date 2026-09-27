@@ -1281,11 +1281,16 @@ describe('generateForPlatform determinism', () => {
     ).metadata()
     expect(androidIcon).toMatchObject({ width: 192, height: 192 })
     const iosApp = join(output, 'ios', 'MyApp')
-    expect(
-      await sharp(
-        join(iosApp, 'Images.xcassets', 'Splash.imageset', 'splash.png')
-      ).metadata()
-    ).toMatchObject({ width: 710, height: 209 })
+    // contained artwork is drawn at its launch width in points, at 1x to 3x
+    for (const [filename, width] of [
+      ['splash.png', 200],
+      ['splash@2x.png', 400],
+      ['splash@3x.png', 600],
+    ] as const) {
+      expect(
+        await sharp(join(iosApp, 'Images.xcassets', 'Splash.imageset', filename)).metadata()
+      ).toMatchObject({ width })
+    }
     const launchStoryboard = readFileSync(join(iosApp, 'LaunchScreen.storyboard'), 'utf8')
     expect(launchStoryboard).toContain('image="Splash"')
     expect(launchStoryboard).toContain('firstAttribute="centerX"')
@@ -1385,9 +1390,11 @@ describe('generateForPlatform determinism', () => {
     const imageset = JSON.parse(
       readFileSync(join(assets, 'Splash.imageset', 'Contents.json'), 'utf8')
     )
-    expect(imageset.images[1]).toMatchObject({
+    expect(imageset.images).toContainEqual({
       appearances: [{ appearance: 'luminosity', value: 'dark' }],
-      filename: 'splash-dark.png',
+      filename: 'splash-dark@3x.png',
+      idiom: 'universal',
+      scale: '3x',
     })
     expect(existsSync(join(assets, 'Splash.imageset', 'splash-dark.png'))).toBe(true)
     const colorset = JSON.parse(
@@ -1412,6 +1419,68 @@ describe('generateForPlatform determinism', () => {
     expect(
       await sharp(join(res, 'drawable-night-xxxhdpi', 'splash.png')).metadata()
     ).toMatchObject({ width: 1152, height: 1152 })
+  }, 180000)
+
+  it('lays a full-bleed background image under the ios launch artwork', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-splash-bg-'))
+    const source = fileURLToPath(
+      new URL('../../../../examples/one-basic/public/splash.png', import.meta.url)
+    )
+    const backgroundImage = join(output, 'ground.png')
+    await sharp({
+      create: { width: 30, height: 60, channels: 3, background: '#ececec' },
+    })
+      .png()
+      .toFile(backgroundImage)
+    const splash = {
+      source,
+      backgroundColor: '#ececec',
+      width: 60,
+      backgroundImage,
+      dark: { backgroundColor: '#111111', backgroundImage },
+    }
+    await generateForPlatform(workspaceRoot, 'ios', { ...app, splash }, join(output, 'ios'))
+    const assets = join(output, 'ios', 'MyApp', 'Images.xcassets')
+    const background = JSON.parse(
+      readFileSync(join(assets, 'SplashBackgroundImage.imageset', 'Contents.json'), 'utf8')
+    )
+    expect(background.images.map((image: { filename: string }) => image.filename)).toEqual([
+      'splashbackgroundimage.png',
+      'splashbackgroundimage-dark.png',
+    ])
+    const storyboard = readFileSync(
+      join(output, 'ios', 'MyApp', 'LaunchScreen.storyboard'),
+      'utf8'
+    )
+    // the background paints first, so the artwork sits above it
+    expect(storyboard.indexOf('image="SplashBackgroundImage"')).toBeGreaterThan(-1)
+    expect(storyboard.indexOf('image="SplashBackgroundImage"')).toBeLessThan(
+      storyboard.indexOf('image="Splash"')
+    )
+    expect(storyboard).toContain('firstAttribute="top" secondItem="launch-view" secondAttribute="top" id="splash-background-top"')
+    expect(storyboard).toContain('<image name="SplashBackgroundImage" width="30" height="60"/>')
+    expect(storyboard).toContain('firstAttribute="width" constant="60"')
+  }, 180000)
+
+  it('writes the accent color asset and names it in the Info.plist', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-accent-'))
+    const accented = {
+      ...app,
+      ios: { ...app.ios, accentColor: { light: '#867286', dark: '#c8bfc8' } },
+    }
+    await generateForPlatform(workspaceRoot, 'ios', accented, join(output, 'ios'))
+    const colorset = JSON.parse(
+      readFileSync(
+        join(output, 'ios', 'MyApp', 'Images.xcassets', 'AccentColor.colorset', 'Contents.json'),
+        'utf8'
+      )
+    )
+    expect(colorset.colors).toHaveLength(2)
+    expect(colorset.colors[1].appearances).toEqual([{ appearance: 'luminosity', value: 'dark' }])
+    const plist = readFileSync(join(output, 'ios', 'MyApp', 'Info.plist'), 'utf8')
+    expect(plist).toContain('<key>NSAccentColorName</key>\n\t<string>AccentColor</string>')
   }, 180000)
 
   it('regenerates byte-identical projects from the same manifest', async () => {
@@ -1653,7 +1722,7 @@ describe('ios widgets', () => {
     await generateForPlatform(
       workspaceRoot,
       'ios',
-      { ...widgetsApp, notifications: { push: true } },
+      { ...widgetsApp, notifications: { push: true, apsEnvironment: 'production' } },
       join(output, 'ios')
     )
 
@@ -1671,7 +1740,7 @@ describe('ios widgets', () => {
       join(output, 'ios', 'MyApp', 'OneAppWidgets.entitlements'),
       'utf8'
     )
-    expect(appEntitlements).toContain('<key>aps-environment</key>')
+    expect(appEntitlements).toContain('<key>aps-environment</key>\n\t<string>production</string>')
     expect(appEntitlements).toContain('group.dev.one.myapp')
   }, 180000)
 })

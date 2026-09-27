@@ -74,12 +74,12 @@ public extension LocationPlace {
   var latitude: Double {
     return self.__latitude
   }
-
+  
   @inline(__always)
   var longitude: Double {
     return self.__longitude
   }
-
+  
   @inline(__always)
   var name: String? {
     return { () -> String? in
@@ -91,7 +91,7 @@ public extension LocationPlace {
       }
     }()
   }
-
+  
   @inline(__always)
   var street: String? {
     return { () -> String? in
@@ -103,7 +103,7 @@ public extension LocationPlace {
       }
     }()
   }
-
+  
   @inline(__always)
   var houseNumber: String? {
     return { () -> String? in
@@ -115,7 +115,7 @@ public extension LocationPlace {
       }
     }()
   }
-
+  
   @inline(__always)
   var city: String? {
     return { () -> String? in
@@ -127,7 +127,7 @@ public extension LocationPlace {
       }
     }()
   }
-
+  
   @inline(__always)
   var region: String? {
     return { () -> String? in
@@ -139,7 +139,7 @@ public extension LocationPlace {
       }
     }()
   }
-
+  
   @inline(__always)
   var postalCode: String? {
     return { () -> String? in
@@ -151,7 +151,7 @@ public extension LocationPlace {
       }
     }()
   }
-
+  
   @inline(__always)
   var country: String? {
     return { () -> String? in
@@ -163,7 +163,7 @@ public extension LocationPlace {
       }
     }()
   }
-
+  
   @inline(__always)
   var isoCountryCode: String? {
     return { () -> String? in

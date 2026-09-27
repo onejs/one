@@ -32,7 +32,7 @@ public extension ShareResult {
   var completed: Bool {
     return self.__completed
   }
-
+  
   @inline(__always)
   var activityType: String? {
     return { () -> String? in

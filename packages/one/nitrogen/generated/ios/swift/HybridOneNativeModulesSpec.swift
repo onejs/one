@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneNativeModulesSpec``
 public protocol HybridOneNativeModulesSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func call(module: String, methodName: String, argsJson: String, contractHash: String) throws -> Promise<String>

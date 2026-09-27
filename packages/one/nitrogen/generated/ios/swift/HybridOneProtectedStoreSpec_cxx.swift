@@ -84,7 +84,7 @@ open class HybridOneProtectedStoreSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneProtectedStoreSpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)
@@ -142,7 +142,7 @@ open class HybridOneProtectedStoreSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func getItem(key: std.string, reason: std.string, policy: Int32) -> bridge.Result_std__shared_ptr_Promise_std__optional_std__string____ {
     do {
@@ -167,7 +167,7 @@ open class HybridOneProtectedStoreSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__optional_std__string____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func updateItem(key: std.string, value: std.string, reason: std.string, policy: Int32) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -186,7 +186,7 @@ open class HybridOneProtectedStoreSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func deleteItem(key: std.string, reason: std.string, policy: Int32) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {

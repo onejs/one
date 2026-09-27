@@ -26,17 +26,17 @@ public extension FileDirectories {
   var documents: String {
     return String(self.__documents)
   }
-
+  
   @inline(__always)
   var cache: String {
     return String(self.__cache)
   }
-
+  
   @inline(__always)
   var applicationSupport: String {
     return String(self.__applicationSupport)
   }
-
+  
   @inline(__always)
   var temporary: String {
     return String(self.__temporary)

@@ -84,7 +84,7 @@ open class HybridOneLocationSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneLocationSpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)
@@ -135,7 +135,7 @@ open class HybridOneLocationSpec_cxx {
       return bridge.create_Result_LocationPermissionStatus_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func requestWhenInUsePermission() -> bridge.Result_std__shared_ptr_Promise_LocationPermissionStatus___ {
     do {
@@ -154,7 +154,7 @@ open class HybridOneLocationSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_LocationPermissionStatus___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func getCurrentPosition() -> bridge.Result_std__shared_ptr_Promise_LocationPosition___ {
     do {
@@ -173,7 +173,7 @@ open class HybridOneLocationSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_LocationPosition___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func addPositionListener(onPosition: bridge.Func_void_LocationPosition, onError: bridge.Func_void_std__string_std__string) -> bridge.Result_std__function_void____ {
     do {
@@ -198,7 +198,7 @@ open class HybridOneLocationSpec_cxx {
       return bridge.create_Result_std__function_void____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func geocodeAddress(address: std.string) -> bridge.Result_std__shared_ptr_Promise_std__vector_LocationPlace____ {
     do {
@@ -223,7 +223,7 @@ open class HybridOneLocationSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_LocationPlace____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func reverseGeocode(latitude: Double, longitude: Double) -> bridge.Result_std__shared_ptr_Promise_std__vector_LocationPlace____ {
     do {

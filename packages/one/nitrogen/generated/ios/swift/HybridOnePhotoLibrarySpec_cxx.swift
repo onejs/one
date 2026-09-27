@@ -84,7 +84,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)
@@ -135,7 +135,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_PhotoLibraryPermissionStatus_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func requestAddPermission() -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ {
     do {
@@ -154,7 +154,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func saveImage(uri: std.string) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
@@ -173,7 +173,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func saveVideo(uri: std.string) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {

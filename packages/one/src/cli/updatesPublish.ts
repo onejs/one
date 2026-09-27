@@ -146,7 +146,7 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
       '[one] native.app is required: configure one({ native: { app } }) with name, ios.bundleId, and android.applicationId'
     )
   }
-  validateNativeApp(app)
+  validateNativeApp(app, platform)
   const runtimeVersion = app.updates?.runtimeVersion
   if (!runtimeVersion) {
     throw new Error(

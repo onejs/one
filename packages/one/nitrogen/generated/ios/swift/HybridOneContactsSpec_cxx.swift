@@ -84,7 +84,7 @@ open class HybridOneContactsSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneContactsSpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)
@@ -135,7 +135,7 @@ open class HybridOneContactsSpec_cxx {
       return bridge.create_Result_ContactsPermissionStatus_(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func requestPermission() -> bridge.Result_std__shared_ptr_Promise_ContactsPermissionStatus___ {
     do {
@@ -154,7 +154,7 @@ open class HybridOneContactsSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_ContactsPermissionStatus___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func search(name: std.string, limit: Double) -> bridge.Result_std__shared_ptr_Promise_std__vector_ContactInfo____ {
     do {
@@ -179,7 +179,7 @@ open class HybridOneContactsSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_ContactInfo____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func create(input: ContactInput) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
@@ -198,7 +198,7 @@ open class HybridOneContactsSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func update(identifier: std.string, changes: ContactChanges) -> bridge.Result_std__shared_ptr_Promise_ContactInfo___ {
     do {
@@ -217,7 +217,7 @@ open class HybridOneContactsSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_ContactInfo___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func remove(identifier: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
