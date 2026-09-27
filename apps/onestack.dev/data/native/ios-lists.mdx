@@ -66,6 +66,34 @@ On iOS 27, changing these values moved the first section's leading edge by
 Other section modifiers, these modifiers inside `Form`, and other List styles
 still need runtime proof.
 
+Use `swiftStyle.refreshable` for a native pull to refresh action. It awaits the
+returned promise before ending the refresh. Put `swiftStyle.searchable` on a
+`One.iOS.NavigationStack` around the List so iOS presents its native search
+field; keep the text in React state and filter the rows yourself:
+
+```tsx
+<One.iOS.NavigationStack
+  style={{ flex: 1 }}
+  swiftStyle={{ searchable: { value: query, onChange: setQuery } }}
+>
+  <One.iOS.List
+    listStyle="plain"
+    style={{ flex: 1 }}
+    swiftStyle={{ refreshable: async () => { await reloadItems() } }}
+  >
+    {items.filter((item) => item.includes(query)).map((item) => (
+      <One.iOS.Text key={item} text={item} />
+    ))}
+  </One.iOS.List>
+</One.iOS.NavigationStack>
+```
+
+An iOS 27 simulator proof pulled twice, held each refresh until its promise
+resolved, and checked both native search edits and external React updates.
+The search field appeared in the NavigationStack's toolbar. A standalone List
+host did not present a search field in that run. ScrollView refresh and search
+remain unproven.
+
 Rows support swipe actions through
 [Swift.SwipeActions](/native/ios-groups). An `EditButton` composed inside the
 list changes its native label between Edit and Done. Row deletion and move
