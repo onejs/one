@@ -32,7 +32,7 @@ Out of scope unless an app needs it: `Table` (iPad), `NavigationSplitView` and
 `TimelineView`/`Canvas` (closures over native state), document and scene types.
 
 The previously bound but unexercised `EditButton` and `EmptyView` now have
-focused suites. The sidebar-only `TabViewSlot` variants still need iPad proof.
+focused suites. All four `TabViewSlot` names now have iPhone or iPad proof.
 `ZStack`, `Spacer`, `LabeledContent`, and `Glass` now have an iOS 27 family
 suite, as do `ShareLink`, `ContentUnavailableView`, `PhotosPicker`, and
 `WebView`. A suite per remaining family closes these.
@@ -188,7 +188,21 @@ accounts are unavailable).
   that requires an argument the component cannot supply. The coverage snapshot
   was refreshed with `vitest -u`; screenshots and trace are in the local
   ignored `tests/native-features/build/tab-slot-final-proof` directory.
-  The three sidebar slot names remain partial until an iPad sidebar run.
+- **RAN, 2026-09-26:** the `tab-sidebar` suite passed 14 checks on the generated
+  iPhone-and-iPad test app built from the `tablet: true` fixture config,
+  without patching its installed bundle. It ran on iPad Pro 13-inch (M5)
+  iOS 27. The native sidebar mounted its
+  header (44 points), footer (48 points), and bottom bar (52 points) in the
+  expected order and sidebar area. Each slot's `Pressable` reached React. A
+  tab selection closed the native sidebar; reopening it restored all three
+  slots with their declared heights and working actions. The iPad aggregate runner
+  runs this suite separately from the iPhone suites. The same suite passed six
+  compact iPhone checks: the native tab bar switched tabs while all three
+  sidebar slots remained absent. The existing eight-check `tab-slot` suite
+  also passed on the generated universal app on iPhone 17 Pro. Screenshots
+  and traces live in the local ignored `tests/native-features/build/`
+  directories `tab-sidebar-reviewed-proof`, `tab-sidebar-compact-proof`, and
+  `tab-slot-universal-smoke`.
 - **RAN, 2026-09-26:** the `edit-button` suite passed on iPhone 17 Pro iOS 27.
   A SwiftUI `EditButton` composed as a native `List` row changed its own
   accessibility label from Edit to Done and back across two taps while the
