@@ -121,6 +121,20 @@ interface NativeProps extends ViewProps {
     disabledContainerColor?: ColorValue
     disabledContentColor?: ColorValue
   }>
+  segmentedButtonColors?: Readonly<{
+    activeBorderColor?: ColorValue
+    activeContentColor?: ColorValue
+    inactiveBorderColor?: ColorValue
+    inactiveContentColor?: ColorValue
+    disabledActiveBorderColor?: ColorValue
+    disabledActiveContentColor?: ColorValue
+    disabledInactiveBorderColor?: ColorValue
+    disabledInactiveContentColor?: ColorValue
+    activeContainerColor?: ColorValue
+    inactiveContainerColor?: ColorValue
+    disabledActiveContainerColor?: ColorValue
+    disabledInactiveContainerColor?: ColorValue
+  }>
   loadingColors?: Readonly<{
     color?: ColorValue
     containerColor?: ColorValue

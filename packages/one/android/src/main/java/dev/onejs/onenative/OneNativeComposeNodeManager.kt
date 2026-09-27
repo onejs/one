@@ -194,6 +194,10 @@ class OneNativeComposeNodeManager :
         view.stageToggleButtonColors(value)
     }
 
+    override fun setSegmentedButtonColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageSegmentedButtonColors(value)
+    }
+
     override fun setLoadingColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageLoadingColors(value)
     }
