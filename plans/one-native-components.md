@@ -109,6 +109,12 @@ accounts are unavailable).
   In a SwiftUI capsule container, its blue center and white rounded corner
   differ from the blue square corner of a `Rectangle` control. The screenshot
   is in the local ignored `tests/native-features/build/concentric-proof` directory.
+- **RAN, 2026-09-26:** `GlassEffectContainer` passed `generate:check`, 41
+  focused JS tests, an arm64 iOS 27 build, and the `glass-container` suite.
+  Native screenshots show separate capsules at zero spacing and merged glass
+  at 60; the suite also exercised omitted and signed spacing, a composed
+  button action, and measured height. Screenshots are in the local ignored
+  `tests/native-features/build/glass-container-proof` directory.
 - **INFERRED, 2026-09-26:** `MultiDatePicker` needs a public representation of
   SwiftUI's selected date set, so that API choice stays on a named branch for
   Nate.

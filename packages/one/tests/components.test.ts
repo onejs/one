@@ -238,6 +238,7 @@ describe('one-native children', () => {
       ['Swift.LazyHStack', Containers.LazyHStack, {}],
       ['Swift.LabeledContent', Containers.LabeledContent, { label: 'L' }],
       ['Swift.Glass', Containers.Glass, {}],
+      ['Swift.GlassEffectContainer', Containers.GlassEffectContainer, {}],
       ['Swift.ControlGroup', Containers.ControlGroup, {}],
       [
         'Swift.DisclosureGroup',
