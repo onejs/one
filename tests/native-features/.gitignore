@@ -21,3 +21,8 @@ fail-snapshot.json
 # the two captures the measurement controls run against: one bar painted lighter than its
 # background and one painted darker. they are fixtures, so they are committed.
 !oracle/controls/*.png
+
+# reviewed iOS 27 List search/refresh evidence is kept with the suite.
+!proofs/list-search-refresh/*.png
+!proofs/list-search-refresh/*.webp
+!proofs/list-search-refresh/outcome.json
