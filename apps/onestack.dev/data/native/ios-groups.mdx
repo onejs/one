@@ -45,6 +45,11 @@ proposal is unbounded.
 `One.iOS.ControlGroup` groups controls into one segmented unit with an
 optional `label` and `systemImage`. `controlGroupStyle` is `'palette'`,
 `'automatic'`, `'navigation'`, `'menu'`, or `'compactMenu'`.
+Standalone, it reports the native control height to React Native so following
+rows sit below it. Inside a `One.iOS.Host`, the parent measures it as SwiftUI
+content. An explicit `style.height` keeps the requested React Native height.
+The iOS 27 conformance fixture verifies both native buttons, Host composition,
+and a fixed-height group.
 
 ## DisclosureGroup
 

@@ -21,7 +21,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Sheet` | sheets, navigation | n/a |  |
 | `One.iOS.FullScreenCover` | cover-context | n/a |  |
 | `One.iOS.Popover` | popover | n/a |  |
-| `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, disclosure-group, view-that-fits, accessibility | n/a |  |
+| `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, disclosure-group, control-group, view-that-fits, accessibility | n/a |  |
 | `One.iOS.HStack` | glass-container, building-blocks, tab-slot, e2e:one-native-tabview | n/a |  |
 | `One.iOS.VStack` | groups | n/a |  |
 | `One.iOS.ZStack` | building-blocks, disclosure-group | n/a |  |
@@ -30,7 +30,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Glass` | building-blocks | n/a |  |
 | `One.iOS.GlassEffectContainer` | glass-container | n/a |  |
 | `One.iOS.LabeledContent` | building-blocks | n/a |  |
-| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, glass-container, group-box, building-blocks, view-slot, swipe-actions, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, glass-container, group-box, building-blocks, view-slot, swipe-actions, control-group, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Spacer` | building-blocks | n/a |  |
 | `One.iOS.Slot` | containers | n/a |  |
 | `One.iOS.List` | lists, groups, swipe-actions, edit-button | n/a |  |
@@ -41,7 +41,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.LazyHGrid` | grids | n/a |  |
 | `One.iOS.Grid` | grids | n/a |  |
 | `One.iOS.GridRow` | grids | n/a |  |
-| `One.iOS.ControlGroup` | groups | n/a |  |
+| `One.iOS.ControlGroup` | groups, control-group | n/a |  |
 | `One.iOS.DisclosureGroup` | groups, disclosure-group | n/a |  |
 | `One.iOS.Divider` | groups | n/a |  |
 | `One.iOS.Link` | groups | n/a |  |

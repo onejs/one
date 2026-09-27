@@ -679,7 +679,7 @@ export const components = [
     },
     events: {},
     enumProps: { controlGroupStyle: 'ControlGroupStyle' },
-    layout: { kind: 'container' },
+    layout: { kind: 'measured' },
     slots: [
       {
         name: 'content',
@@ -688,7 +688,7 @@ export const components = [
         layout: 'composed',
       },
     ],
-    interfaceOnly: false,
+    interfaceOnly: true,
   },
   {
     name: 'OneNativeDisclosureGroup',

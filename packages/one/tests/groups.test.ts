@@ -389,7 +389,6 @@ describe('group schema', () => {
       { name: 'pages', content: 'OneNativeTab', key: 'tabId' },
     ])
     for (const name of [
-      'ControlGroup',
       'Divider',
       'Link',
       'Group',
@@ -402,6 +401,8 @@ describe('group schema', () => {
     }
     expect(component('DisclosureGroup').layout).toMatchObject({ kind: 'measured' })
     expect(component('DisclosureGroup').interfaceOnly).toBe(true)
+    expect(component('ControlGroup').layout).toMatchObject({ kind: 'measured' })
+    expect(component('ControlGroup').interfaceOnly).toBe(true)
   })
 
   it('registers a component view for every new container', () => {

@@ -5,6 +5,8 @@ private final class ControlGroupModel: ObservableObject {
   @Published var label = ""
   @Published var systemImage = ""
   @Published var controlGroupStyle = "automatic"
+  @Published var boundedHeight = false
+  var onHeight: ((CGFloat) -> Void)?
 }
 
 private struct ControlGroupContent: View {
@@ -26,12 +28,15 @@ private struct ControlGroupContent: View {
       }
     }
     .oneNativeControlGroupStyle(model.controlGroupStyle)
+    .frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)
+    .oneNativeMeasured(standalone && !model.boundedHeight, model.onHeight)
     .oneNativeScheme(standalone, bridge.scheme)
   }
 }
 
 @objcMembers
 public final class OneNativeControlGroupView: OneNativeContainerView {
+  public var onMeasure: ((CGFloat) -> Void)?
   private let model: ControlGroupModel
   private let bridge: OneNativeSchemeBridge
   private var traitRegistration: NSObjectProtocol?
@@ -44,6 +49,7 @@ public final class OneNativeControlGroupView: OneNativeContainerView {
     super.init(wrap: { children, standalone in
       AnyView(ControlGroupContent(model: model, children: children, standalone: standalone, bridge: bridge))
     })
+    model.onHeight = { [weak self] height in self?.onMeasure?(height) }
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
       [weak bridge] (view: OneNativeControlGroupView, _: UITraitCollection) in
       bridge?.sync(view.traitCollection)
@@ -57,11 +63,12 @@ public final class OneNativeControlGroupView: OneNativeContainerView {
     super.didMoveToWindow()
   }
 
-  public func configure(label: String, systemImage: String, controlGroupStyle: String) {
+  public func configure(label: String, systemImage: String, controlGroupStyle: String, boundedHeight: Bool) {
     if model.label != label { model.label = label }
     if model.systemImage != systemImage { model.systemImage = systemImage }
     if model.controlGroupStyle != controlGroupStyle {
       model.controlGroupStyle = controlGroupStyle
     }
+    if model.boundedHeight != boundedHeight { model.boundedHeight = boundedHeight }
   }
 }

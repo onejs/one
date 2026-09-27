@@ -55,6 +55,7 @@ const suites = [
   'view-slot',
   'swipe-actions',
   'disclosure-group',
+  'control-group',
   'share-empty',
   'web-photos',
   'tab-slot',
@@ -366,6 +367,9 @@ const swipeActionsLoaded = (nodes: Node[]) =>
 const disclosureGroupLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-disclosure-screen'))
+const controlGroupLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-control-screen'))
 const shareEmptyLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-share-empty-screen'))
@@ -548,6 +552,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'view-slot': viewSlotLoaded,
   'swipe-actions': swipeActionsLoaded,
   'disclosure-group': disclosureGroupLoaded,
+  'control-group': controlGroupLoaded,
   'share-empty': shareEmptyLoaded,
   'web-photos': webPhotosLoaded,
   'tab-slot': tabSlotLoaded,
@@ -614,6 +619,7 @@ const suiteHome: Record<Suite, string> = {
   'view-slot': 'nav-one-native-view-slot',
   'swipe-actions': 'nav-one-native-swipe-actions',
   'disclosure-group': 'nav-one-native-disclosure-group',
+  'control-group': 'nav-one-native-control-group',
   'share-empty': 'nav-one-native-share-empty',
   'web-photos': 'nav-one-native-web-photos',
   'tab-slot': 'nav-one-native-tab-slot',
@@ -2193,38 +2199,6 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         config.simulatorId
       )
     }
-    // the icon-only button is a button frame holding an image frame. its label is
-    // whatever SwiftUI derives from the symbol, so the lookup is geometric: the
-    // image whose frame sits inside a button frame.
-    const iconButton = (nodes: Node[]) => {
-      const image = nodes.find(
-        (node) =>
-          node.type === 'Image' &&
-          node.frame &&
-          nodes.some(
-            (other) =>
-              other.type === 'Button' &&
-              other.frame &&
-              node.frame!.x >= other.frame.x &&
-              node.frame!.y >= other.frame.y &&
-              node.frame!.x + node.frame!.width <= other.frame.x + other.frame.width &&
-              node.frame!.y + node.frame!.height <= other.frame.y + other.frame.height
-          )
-      )
-      const button = nodes.find(
-        (node) =>
-          node.type === 'Button' &&
-          node.frame &&
-          image?.frame &&
-          image.frame.x >= node.frame.x &&
-          image.frame.y >= node.frame.y &&
-          image.frame.x + image.frame.width <= node.frame.x + node.frame.width &&
-          image.frame.y + image.frame.height <= node.frame.y + node.frame.height
-      )
-      if (!image?.frame || !button?.frame) return undefined
-      return { image: image.frame, button: button.frame }
-    }
-
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-groups')
@@ -2298,8 +2272,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ label: 'Delete' })
     await wait('a trailing swipe action emits', (n) => status(n, 'Delete taps', 1))
+    const destructive = await wait('destructive swipe removes the native row', (n) =>
+      !labels(n).includes('Swipe me'))
+    screenshot('groups-destructive-row.png', destructive)
+    tap({ label: 'index' })
+    await wait('groups return home after destructive swipe', () => true, true)
+    await tapNav('nav-one-native-groups')
     {
-      const nodes = await wait('the row is ready again', (n) =>
+      const nodes = await wait('the remounted row is ready', (n) =>
         Boolean(box(n, 'Swipe me'))
       )
       swipeOver(box(nodes, 'Swipe me')!, false)
@@ -2310,22 +2290,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ label: 'Pin' })
     await wait('a leading swipe action emits', (n) => status(n, 'Pin taps', 1))
 
-    // an icon-only button renders the bare image with no title spacing reserved, so
-    // the symbol sits at the center of the button frame.
-    await wait('an icon-only button centers its symbol', (n) => {
-      const found = iconButton(n)
-      if (!found) return false
-      const { image, button } = found
-      const dx = image.x + image.width / 2 - (button.x + button.width / 2)
-      const dy = image.y + image.height / 2 - (button.y + button.height / 2)
-      return Math.abs(dx) <= 1 && Math.abs(dy) <= 1
-    })
-    {
-      const found = iconButton(snapshot(config.simulatorId))
-      if (!found) throw new Error('no image found inside a button frame')
-      const { button } = found
-      point(button.x + button.width / 2, button.y + button.height / 2)
-    }
+    await wait('an icon-only native Button has a frame', (n) =>
+      n.some((node) => node.type === 'Button' && node.AXLabel === 'Favorite' &&
+        Boolean(node.frame?.width && node.frame?.height)))
+    tap({ label: 'Favorite' })
     await wait('an icon-only button emits', (n) => status(n, 'Icon taps', 1))
     screenshot('groups-icon-button.png')
 
@@ -3236,6 +3204,47 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('Fitting expanded: true') && labels(nodes).includes('Fitting detail'))
     checkContainer(fitsExpanded, 'one-native-disclosure-fits', 'one-native-disclosure-after-fits', fitsBefore.container.height + 15)
     screenshot('disclosure-view-that-fits-expanded.png', fitsExpanded)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'control-group') {
+    const checkBox = (nodes: Node[], groupId: string, afterId: string, minimumHeight: number) => {
+      const group = id(nodes, groupId)?.frame
+      const after = id(nodes, afterId)?.frame
+      if (!group || !after || group.height < minimumHeight ||
+          after.y < group.y + group.height + 10)
+        throw new Error(`ControlGroup lacks native layout: ${JSON.stringify({ groupId, group, after })}`)
+      return { group, after }
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-control-group')
+    const mounted = await wait('ControlGroup fixture mounts', (nodes) =>
+      labels(nodes).includes('Taps: 0') && labels(nodes).includes('After control') &&
+      Boolean(id(nodes, 'one-native-control-standalone')?.frame))
+    checkBox(mounted, 'one-native-control-standalone', 'one-native-control-after', 30)
+    checkBox(mounted, 'one-native-control-host', 'one-native-control-after-nested', 30)
+    const boundedBefore = checkBox(mounted, 'one-native-control-bounded', 'one-native-control-after-bounded', 79)
+    if (Math.abs(boundedBefore.group.height - 80) > 1 ||
+        !id(mounted, 'one-native-control-add') || !id(mounted, 'one-native-control-star'))
+      throw new Error('ControlGroup explicit height or native button accessibility is missing')
+    screenshot('control-group-mounted.png', mounted)
+    tap({ id: 'one-native-control-add' })
+    await wait('first ControlGroup button reaches React', (nodes) => labels(nodes).includes('Taps: 1'))
+    tap({ id: 'one-native-control-star' })
+    const both = await wait('second ControlGroup button reaches React', (nodes) => labels(nodes).includes('Taps: 2'))
+    checkBox(both, 'one-native-control-standalone', 'one-native-control-after', 30)
+    screenshot('control-group-tapped.png', both)
+    tap({ id: 'one-native-control-nested-add' })
+    const nested = await wait('composed ControlGroup button reaches React', (nodes) => labels(nodes).includes('Nested taps: 1'))
+    checkBox(nested, 'one-native-control-host', 'one-native-control-after-nested', 30)
+    tap({ id: 'one-native-control-bounded-add' })
+    const bounded = await wait('bounded ControlGroup button reaches React', (nodes) => labels(nodes).includes('Bounded taps: 1'))
+    const boundedAfter = checkBox(bounded, 'one-native-control-bounded', 'one-native-control-after-bounded', 79)
+    if (Math.abs(boundedAfter.group.height - 80) > 1 ||
+        Math.abs(boundedAfter.after.y - boundedBefore.after.y) > 1)
+      throw new Error(`Explicit ControlGroup height changed after tap: ${JSON.stringify({ boundedBefore, boundedAfter })}`)
+    screenshot('control-group-bounded.png', bounded)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

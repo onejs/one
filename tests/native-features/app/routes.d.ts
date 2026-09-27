@@ -71,6 +71,7 @@ declare module 'one' {
         | `/one-native-view-slot`
         | `/one-native-swipe-actions`
         | `/one-native-disclosure-group`
+        | `/one-native-control-group`
         | `/one-native-groups`
         | `/one-native-haptics`
         | `/one-native-host`
