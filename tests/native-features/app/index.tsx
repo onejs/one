@@ -302,6 +302,11 @@ const testScreens = [
     testID: 'nav-one-native-tab-oracle',
   },
   {
+    href: '/one-native-cover-context',
+    label: 'One Native Cover and Context',
+    testID: 'nav-one-native-cover-context',
+  },
+  {
     href: '/one-native-system',
     label: 'One Native System',
     testID: 'nav-one-native-system',

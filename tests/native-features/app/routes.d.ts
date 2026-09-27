@@ -49,6 +49,7 @@ declare module 'one' {
         | `/one-native-contacts`
         | `/one-native-containers`
         | `/one-native-controls`
+        | `/one-native-cover-context`
         | `/one-native-crypto`
         | `/one-native-database`
         | `/one-native-device`

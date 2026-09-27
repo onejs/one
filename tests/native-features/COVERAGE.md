@@ -14,9 +14,9 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.TabViewBottomAccessory` | e2e:one-native-tabview | n/a |  |
 | `One.iOS.TabViewSlot` | missing | n/a | no fixture or suite |
 | `One.iOS.Menu` | tabs-menu | n/a |  |
-| `One.iOS.ContextMenu` | missing | n/a | fixture exists, no suite opens it |
+| `One.iOS.ContextMenu` | cover-context | n/a |  |
 | `One.iOS.Sheet` | sheets, navigation | n/a |  |
-| `One.iOS.FullScreenCover` | missing | n/a | fixture exists, no suite opens it |
+| `One.iOS.FullScreenCover` | cover-context | n/a |  |
 | `One.iOS.Popover` | popover | n/a |  |
 | `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, accessibility | n/a |  |
 | `One.iOS.HStack` | glass-container, e2e:one-native-tabview | n/a |  |
