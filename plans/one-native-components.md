@@ -73,13 +73,16 @@ accounts are unavailable).
 
 - **RAN, 2026-09-27:** SwiftUI `LinearGradient(colors:startPoint:endPoint:)`
   is implemented on named branch `one-native-linear-gradient`. On ci-64, an
-  iPhone 17 Pro simulator running iOS 27.0 passed the focused eight-check suite
-  at source revision `cae71faf9`: the React Native `backgroundImage` baseline
-  and native gradient painted red above blue; a React update reversed the native
-  colors; a single native color filled the box. Saved AX snapshots, PNGs,
+  iPhone 17 Pro simulator running iOS 27.0 passed the focused 14-check suite
+  at source revision `42c02938b`: the React Native `backgroundImage` baseline
+  and native gradient painted red above blue; React updates reversed the native
+  colors, rendered one and three colors, switched to horizontal points, applied
+  alpha over a yellow underlay, and made an empty gradient transparent. An
+  unlabeled native gradient was absent from AX while a labeled one appeared.
+  Saved AX snapshots, PNGs,
   sampled RGB values, outcome, and build environment are in ignored
-  `tests/native-features/build/linear-gradient-final-proof`. The side-by-side
-  `react-native-vs-swiftui.webp` shows the native interpolation. Native build
+  `tests/native-features/build/linear-gradient-final-14-proof`. The side-by-side
+  `react-native-vs-swiftui.webp` shows their differing interpolation. Native build
   passed with Xcode 27.1. The proposed public representation is an array of
   sRGB hex colors plus normalized `{ x, y }` points; arbitrary SwiftUI `Color`
   values and explicit stops remain unbound. **Nate's API approval is required
