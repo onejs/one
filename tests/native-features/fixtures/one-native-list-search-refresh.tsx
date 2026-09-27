@@ -33,16 +33,17 @@ export default function OneNativeListSearchRefresh() {
           <Text>Clear search</Text>
         </Pressable>
       </View>
-      <One.iOS.List
-        listStyle="plain"
+      <One.iOS.NavigationStack
         style={styles.list}
         swiftStyle={{
+          navigationTitleWithText: 'Fruit search',
           searchable: { value: query, onChange: setQuery },
-          refreshable: refresh,
         }}
       >
-        {visible.map((item) => <One.iOS.Text key={item} text={item} />)}
-      </One.iOS.List>
+        <One.iOS.List listStyle="plain" style={styles.list} swiftStyle={{ refreshable: refresh }}>
+          {visible.map((item) => <One.iOS.Text key={item} text={item} />)}
+        </One.iOS.List>
+      </One.iOS.NavigationStack>
     </View>
   )
 }
