@@ -51,6 +51,7 @@ const suites = [
   'glass-container',
   'paste-button',
   'group-box',
+  'building-blocks',
   'view-that-fits',
   'cover-context',
   'popover',
@@ -342,6 +343,10 @@ const groupBoxLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-group-box-rename')) &&
   has(nodes, 'Box taps: ')
+const buildingBlocksLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-building-blocks-account')) &&
+  has(nodes, 'Badge taps: ')
 const viewThatFitsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-view-that-fits-width')) &&
@@ -500,6 +505,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'glass-container': glassContainerLoaded,
   'paste-button': pasteButtonLoaded,
   'group-box': groupBoxLoaded,
+  'building-blocks': buildingBlocksLoaded,
   'view-that-fits': viewThatFitsLoaded,
   'cover-context': coverContextLoaded,
   popover: popoverLoaded,
@@ -555,6 +561,7 @@ const suiteHome: Record<Suite, string> = {
   'glass-container': 'nav-one-native-glass-container',
   'paste-button': 'nav-one-native-paste-button',
   'group-box': 'nav-one-native-group-box',
+  'building-blocks': 'nav-one-native-building-blocks',
   'view-that-fits': 'nav-one-native-view-that-fits',
   'cover-context': 'nav-one-native-cover-context',
   popover: 'nav-one-native-popover',
@@ -2805,6 +2812,112 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('React updates the GroupBox native label', (nodes) =>
       labels(nodes).includes('Updated account') && !labels(nodes).includes('Account'))
     screenshot('group-box-renamed.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'building-blocks') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const frame = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.AXLabel === label && node.frame)?.frame
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-building-blocks')
+    const mounted = await wait('ZStack, Spacer, LabeledContent, and Glass mount', (nodes) =>
+      Boolean(id(nodes, 'one-native-building-blocks-zstack')?.frame) &&
+      Boolean(id(nodes, 'one-native-building-blocks-hstack')?.frame) &&
+      Boolean(id(nodes, 'one-native-building-blocks-labeled')?.frame) &&
+      Boolean(id(nodes, 'one-native-building-blocks-glass')?.frame) &&
+      ['Badge action', 'Left edge', 'Right edge', 'Glass action'].every((label) => labels(nodes).includes(label)) &&
+      status(nodes, 'Account state', 'Ready') && status(nodes, 'Glass effect', 'regular') &&
+      status(nodes, 'Row width', 300))
+    const stack = id(mounted, 'one-native-building-blocks-zstack')!.frame!
+    const badge = frame(mounted, 'Badge action')
+    if (!badge || Math.abs(stack.width - 220) > 3 || Math.abs(stack.height - 80) > 3 ||
+        badge.x < stack.x - 2 || badge.y < stack.y - 2 ||
+        badge.x + badge.width > stack.x + stack.width + 2 ||
+        badge.y + badge.height > stack.y + stack.height + 2 ||
+        stack.x + stack.width - (badge.x + badge.width) > 8 ||
+        stack.y + stack.height - (badge.y + badge.height) > 8)
+      throw new Error(`ZStack did not align the badge bottom-trailing: ${JSON.stringify({ stack, badge })}`)
+    const hstack = id(mounted, 'one-native-building-blocks-hstack')!.frame!
+    const left = frame(mounted, 'Left edge')
+    const right = frame(mounted, 'Right edge')
+    const gap = left && right ? right.x - (left.x + left.width) : -1
+    if (!left || !right || Math.abs(hstack.width - 300) > 3 || gap < 30 ||
+        Math.abs(left.x - hstack.x) > 3 ||
+        Math.abs(right.x + right.width - hstack.x - hstack.width) > 3)
+      throw new Error(`Spacer did not expand across HStack: ${JSON.stringify({ hstack, left, right, gap })}`)
+    screenshot('building-blocks-initial.png', mounted)
+    tap({ label: 'Badge action' })
+    await wait('ZStack child action reaches React', (nodes) => status(nodes, 'Badge taps', 1))
+    tap({ id: 'one-native-building-blocks-account' })
+    const updated = await wait('React updates native LabeledContent value', (nodes) =>
+      status(nodes, 'Account state', 'Updated') &&
+      Boolean(id(nodes, 'one-native-building-blocks-labeled')?.frame) &&
+      labels(nodes).includes('Updated'))
+    const row = id(updated, 'one-native-building-blocks-labeled')!.frame!
+    const rowLabel = frame(updated, 'Account')
+    const rowValue = frame(updated, 'Updated')
+    if (!rowLabel || !rowValue || rowLabel.x < row.x - 2 ||
+        rowLabel.y < row.y - 2 || rowLabel.y + rowLabel.height > row.y + row.height + 2 ||
+        rowValue.x <= rowLabel.x + rowLabel.width ||
+        rowValue.x + rowValue.width > row.x + row.width + 2 ||
+        Math.abs(rowValue.y - rowLabel.y) > 3)
+      throw new Error(`LabeledContent did not render a native label/value row: ${JSON.stringify({ row, rowLabel, rowValue })}`)
+    tap({ id: 'one-native-building-blocks-row-width' })
+    const narrower = await wait('Spacer expands to the new HStack width', (nodes) =>
+      status(nodes, 'Row width', 240) &&
+      Math.abs((id(nodes, 'one-native-building-blocks-hstack')?.frame?.width ?? 0) - 240) <= 3)
+    const narrowStack = id(narrower, 'one-native-building-blocks-hstack')!.frame!
+    const narrowLeft = frame(narrower, 'Left edge')
+    const narrowRight = frame(narrower, 'Right edge')
+    const narrowGap = narrowLeft && narrowRight ? narrowRight.x - (narrowLeft.x + narrowLeft.width) : -1
+    if (!narrowLeft || !narrowRight || narrowGap < 30 ||
+        Math.abs(narrowRight.x + narrowRight.width - narrowStack.x - narrowStack.width) > 3 ||
+        Math.abs((gap - narrowGap) - 60) > 4)
+      throw new Error(`Spacer did not absorb the 60-point proposal change: ${JSON.stringify({ gap, narrowGap, narrowStack })}`)
+    // The glass box is published as the button's accessibility frame, while
+    // SwiftUI keeps the visible text label's hit region at the leading edge.
+    const glassBeforeTap = id(snapshot(config.simulatorId), 'one-native-building-blocks-glass')?.frame
+    if (!glassBeforeTap) throw new Error('Glass has no accessibility frame before tap')
+    point(glassBeforeTap.x + 40, glassBeforeTap.y + 10)
+    const tapped = await wait('Glass child action reaches React', (nodes) =>
+      status(nodes, 'Glass taps', 1) && status(nodes, 'Glass effect', 'regular'))
+    const glass = id(tapped, 'one-native-building-blocks-glass')?.frame
+    if (!glass || glass.width < 100 || glass.height < 40)
+      throw new Error(`Glass did not retain its native box: ${JSON.stringify(glass)}`)
+    const region = { x: glass.x + 4, y: glass.y + 4, width: glass.width - 8, height: glass.height - 8 }
+    await new Promise((resolve) => setTimeout(resolve, 800))
+    const baselineA = screenshot('building-blocks-glass-regular-a.png')
+    await new Promise((resolve) => setTimeout(resolve, 800))
+    const baselineB = screenshot('building-blocks-glass-regular-b.png')
+    const unchanged = countChangedPixels(baselineA, baselineB, region, 8)
+    tap({ id: 'one-native-building-blocks-glass-toggle' })
+    await wait('React changes native Glass to identity', (nodes) =>
+      status(nodes, 'Glass effect', 'identity') && status(nodes, 'Glass taps', 1))
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    const identity = screenshot('building-blocks-glass-identity.png')
+    const changed = countChangedPixels(baselineB, identity, region, 8)
+    if (changed.changed < Math.max(200, unchanged.changed * 4))
+      throw new Error(`Glass effect did not change native pixels: ${JSON.stringify({ unchanged, changed })}`)
+    const appWidth = tapped.find((node) => node.type === 'Application')?.frame?.width
+    if (!appWidth) throw new Error('Glass pixel proof has no app width')
+    const sample = (file: string, x: number, y: number): number[] => {
+      const image = readPng(file)
+      const scale = image.width / appWidth
+      const at = (Math.round(y * scale) * image.width + Math.round(x * scale)) * 4
+      return [image.data[at], image.data[at + 1], image.data[at + 2]]
+    }
+    const colorDistance = (a: number[], b: number[]) =>
+      a.reduce((sum, channel, index) => sum + Math.abs(channel - b[index]), 0)
+    const leftPoint = glass.x + glass.width / 4
+    const rightPoint = glass.x + glass.width * 3 / 4
+    const midY = glass.y + glass.height * 0.65
+    const regularContrast = colorDistance(sample(baselineB, leftPoint, midY), sample(baselineB, rightPoint, midY))
+    const identityContrast = colorDistance(sample(identity, leftPoint, midY), sample(identity, rightPoint, midY))
+    if (identityContrast < 100 || regularContrast >= identityContrast * 0.8)
+      throw new Error(`Glass did not soften the two-color backdrop before identity removed it: ${JSON.stringify({ regularContrast, identityContrast })}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
