@@ -19,14 +19,15 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.FullScreenCover` | missing | n/a | fixture exists, no suite opens it |
 | `One.iOS.Popover` | popover | n/a |  |
 | `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, accessibility | n/a |  |
-| `One.iOS.HStack` | e2e:one-native-tabview | n/a |  |
+| `One.iOS.HStack` | glass-container, e2e:one-native-tabview | n/a |  |
 | `One.iOS.VStack` | groups | n/a |  |
 | `One.iOS.ZStack` | missing | n/a | no fixture or suite |
 | `One.iOS.Form` | containers, popover, accessibility | n/a |  |
 | `One.iOS.Section` | containers, lists, groups, popover, accessibility | n/a |  |
 | `One.iOS.Glass` | missing | n/a | no fixture or suite |
+| `One.iOS.GlassEffectContainer` | glass-container | n/a |  |
 | `One.iOS.LabeledContent` | missing | n/a | no fixture or suite |
-| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, glass-container, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Spacer` | missing | n/a | no fixture or suite |
 | `One.iOS.Slot` | containers | n/a |  |
 | `One.iOS.List` | lists, groups | n/a |  |
@@ -108,8 +109,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ZoomTransitionSource` | e2e:zoom-test | n/a |  |
 | `One.Android.Column` | n/a | android, android-inputs, android-progress, android-segmented, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
 | `One.Android.Row` | n/a | android, android-inputs, android-progress, android-loading, android-badges, android-flow-row, android-icon-buttons, android-selection, android-dividers |  |
-| `One.Android.FlowRow` | n/a | android-flow-row |  |
 | `One.Android.Spacer` | n/a | android-flow-row |  |
+| `One.Android.FlowRow` | n/a | android-flow-row |  |
 | `One.Android.Box` | n/a | android, android-inputs, android-flow-row |  |
 | `One.Android.Badge` | n/a | android-badges |  |
 | `One.Android.BadgedBox` | n/a | android-badges |  |
