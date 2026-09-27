@@ -76,6 +76,11 @@ const testScreens = [
     testID: 'nav-one-native-view-slot',
   },
   {
+    href: '/one-native-swipe-actions',
+    label: 'One Native Swipe Actions',
+    testID: 'nav-one-native-swipe-actions',
+  },
+  {
     href: '/one-native-sheet',
     label: 'One Native Sheets',
     testID: 'nav-one-native-sheet',

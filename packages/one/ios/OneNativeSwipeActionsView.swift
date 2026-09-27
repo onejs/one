@@ -88,6 +88,12 @@ public final class OneNativeSwipeActionsView: OneNativeContainerView {
     super.didMoveToWindow()
   }
 
+  public override func propagateActive(_ active: Bool) {
+    super.propagateActive(active)
+    // Action groups are captured outside childViews so SwiftUI can attach them to each edge.
+    for marker in markers { marker.propagateActive(active) }
+  }
+
   // an actions marker carries one edge's buttons, so it is captured into that edge's
   // slot rather than published with the row content. anything else is row content.
   public override func insertChild(_ child: UIView, at index: Int) {

@@ -236,3 +236,15 @@ accounts are unavailable).
   same rebuilt host, covering the shared Overlay marker path.
   Screenshots and trace are in the local ignored
   `tests/native-features/build/view-slot-reviewed-proof` directory.
+- **RAN, 2026-09-26:** a dedicated `swipe-actions` suite passed 20 checks on
+  iPhone 17 Pro iOS 27 after an arm64 simulator build. Before the fix, a
+  trailing action appeared after a left swipe but tapping it left the React
+  count at zero. Captured `SwipeActions.Actions` groups were outside the
+  container's normal active-state traversal; the native host now propagates
+  activation through both groups. The rebuilt app delivered trailing Archive
+  and leading Pin taps to React, invoked Archive on the default full trailing
+  swipe, and kept Pin uninvoked but tappable when the leading group set
+  `allowsFullSwipe={false}`. The reviewed suite asserts that Pin closed before
+  the full swipe, captures both full-swipe states, then remounts the row and
+  confirms Archive still works. Screenshots and trace are in the local ignored
+  `tests/native-features/build/swipe-actions-reviewed-proof` directory.

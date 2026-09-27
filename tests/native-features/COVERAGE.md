@@ -26,14 +26,14 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.VStack` | groups | n/a |  |
 | `One.iOS.ZStack` | building-blocks | n/a |  |
 | `One.iOS.Form` | containers, popover, accessibility | n/a |  |
-| `One.iOS.Section` | containers, lists, groups, edit-button, popover, accessibility | n/a |  |
+| `One.iOS.Section` | containers, lists, groups, swipe-actions, edit-button, popover, accessibility | n/a |  |
 | `One.iOS.Glass` | building-blocks | n/a |  |
 | `One.iOS.GlassEffectContainer` | glass-container | n/a |  |
 | `One.iOS.LabeledContent` | building-blocks | n/a |  |
-| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, glass-container, group-box, building-blocks, view-slot, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, glass-container, group-box, building-blocks, view-slot, swipe-actions, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Spacer` | building-blocks | n/a |  |
 | `One.iOS.Slot` | containers | n/a |  |
-| `One.iOS.List` | lists, groups, edit-button | n/a |  |
+| `One.iOS.List` | lists, groups, swipe-actions, edit-button | n/a |  |
 | `One.iOS.ScrollView` | lists, editors, grids | n/a |  |
 | `One.iOS.LazyVStack` | lists | n/a |  |
 | `One.iOS.LazyHStack` | lists | n/a |  |
@@ -50,7 +50,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ViewThatFits` | view-that-fits | n/a |  |
 | `One.iOS.Overlay` | groups, view-slot | n/a |  |
 | `One.iOS.ViewSlot` | view-slot | n/a | background and bottom safe-area inset proven; other named slots unproven |
-| `One.iOS.SwipeActions` | groups | n/a |  |
+| `One.iOS.SwipeActions` | groups, swipe-actions | n/a |  |
 | `One.iOS.Pager` | groups | n/a |  |
 | `One.iOS.Page` | groups | n/a |  |
 | `One.iOS.NavigationStack` | navigation | n/a |  |
@@ -65,7 +65,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Slider` | pickers, forms | n/a |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a |  |
 | `One.iOS.PasteButton` | paste-button | n/a |  |
-| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, building-blocks, view-slot, tab-slot, edit-button, view-that-fits, popover, accessibility | n/a |  |
+| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, building-blocks, view-slot, swipe-actions, tab-slot, edit-button, view-that-fits, popover, accessibility | n/a |  |
 | `One.iOS.Label` | leaves, containers | n/a |  |
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |
