@@ -51,16 +51,18 @@ export function SafeAreaProvider({
       // backwards compat so we render anyway if we don't have frame.
       getWindowFrame()
   )
-  const onInsetsChange = React.useCallback((event: InsetChangedEvent) => {
-    const {
-      nativeEvent: { frame: nextFrame, insets: nextInsets },
-    } = event
+  const onInsetsChange = React.useCallback(
+    (event: InsetChangedEvent) => {
+      const {
+        nativeEvent: { frame: nextFrame, insets: nextInsets },
+      } = event
 
-    if (isRoot && nextFrame) {
-      feedTamaguiSafeArea({ insets: nextInsets, frame: nextFrame }, tamaguiHooks)
-    }
+      if (isRoot && nextFrame) {
+        feedTamaguiSafeArea({ insets: nextInsets, frame: nextFrame }, tamaguiHooks)
+      }
 
-    React.startTransition(() => {
+      // urgent, as upstream: a transition here stalls behind the urgent renders a
+      // rotation or fold keeps making, so the new window renders with the old insets.
       setFrame((curFrame) => {
         if (
           // Backwards compat with old native code that won't send frame.
@@ -87,8 +89,9 @@ export function SafeAreaProvider({
         }
         return curInsets
       })
-    })
-  }, [isRoot])
+    },
+    [isRoot]
+  )
 
   return (
     <NativeSafeAreaProvider onInsetsChange={onInsetsChange} {...others}>
