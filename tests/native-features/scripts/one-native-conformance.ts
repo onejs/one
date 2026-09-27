@@ -4193,7 +4193,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-popover-open' })
     const bounds = await wait('bounds anchor presents', (nodes) =>
       labels(nodes).includes('Popover body'))
-    screenshot('popover-anchor-bounds.png', bounds)
+    const boundsPath = screenshot('popover-anchor-bounds.png', bounds)
     tap({ id: 'one-native-popover-close' })
     await wait('bounds anchor dismisses', (nodes) =>
       labels(nodes).includes('Open: false') && !labels(nodes).includes('Popover body'))
@@ -4203,7 +4203,40 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-popover-open' })
     const pointAnchored = await wait('point anchor presents', (nodes) =>
       labels(nodes).includes('Popover body'))
-    screenshot('popover-anchor-point.png', pointAnchored)
+    const pointPath = screenshot('popover-anchor-point.png', pointAnchored)
+    const trigger = bounds.find((node) => node.type === 'Button' && node.AXLabel === 'Trigger')?.frame
+    const app = bounds.find((node) => node.type === 'Application')?.frame
+    if (!trigger || !app) throw new Error('Popover anchor proof lost the trigger or application frame')
+    const scale = readPng(boundsPath).width / app.width
+    const arrowBand = {
+      x: Math.floor(trigger.x * scale),
+      y: Math.floor((trigger.y + trigger.height) * scale),
+      width: Math.ceil((trigger.width + 5) * scale),
+      height: Math.ceil(10 * scale),
+      isPixel: true,
+    }
+    const moved = countChangedPixels(boundsPath, pointPath, arrowBand, 8)
+    if (moved.ratio < 0.15) {
+      throw new Error(`Popover point anchor did not move the native arrow: ${JSON.stringify(moved)}`)
+    }
+    checks.push({ name: 'point attachment moves the native popover arrow', durationMs: 0 })
+    console.log(`PASS point attachment moves the native popover arrow (${moved.changed} pixels)`)
+    tap({ id: 'one-native-popover-close' })
+    await wait('point anchor dismisses', (nodes) =>
+      labels(nodes).includes('Open: false') && !labels(nodes).includes('Popover body'))
+    tap({ id: 'one-native-popover-anchor-toggle' })
+    await wait('bounds attachment anchor restores', (nodes) =>
+      labels(nodes).includes('Anchor: bounds'))
+    tap({ id: 'one-native-popover-open' })
+    const restored = await wait('restored bounds anchor presents', (nodes) =>
+      labels(nodes).includes('Popover body'))
+    const restoredPath = screenshot('popover-anchor-bounds-restored.png', restored)
+    const unchanged = countChangedPixels(boundsPath, restoredPath, arrowBand, 8)
+    if (unchanged.ratio > 0.1 || moved.changed < unchanged.changed * 3) {
+      throw new Error(`Popover bounds anchor did not restore the native arrow: moved=${JSON.stringify(moved)} restored=${JSON.stringify(unchanged)}`)
+    }
+    checks.push({ name: 'bounds attachment restores the native popover arrow', durationMs: 0 })
+    console.log(`PASS bounds attachment restores the native popover arrow (${unchanged.changed} pixels drift)`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
