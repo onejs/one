@@ -3032,14 +3032,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const bottomHost = id(mounted, 'one-native-safe-area-bar-bottom')!.frame!
     const topAction = mounted.find((node) => node.AXLabel === 'Top bar action')?.frame
     const bottomAction = mounted.find((node) => node.AXLabel === 'Bottom bar action')?.frame
-    if (!topAction || !bottomAction ||
-        topAction.y + topAction.height / 2 >= topHost.y + topHost.height / 2 ||
-        bottomAction.y + bottomAction.height / 2 <= bottomHost.y + bottomHost.height / 2 ||
+    const topBase = mounted.find((node) => node.AXLabel === 'Top base')?.frame
+    const bottomBase = mounted.find((node) => node.AXLabel === 'Bottom base')?.frame
+    if (!topAction || !bottomAction || !topBase || !bottomBase ||
+        topAction.y + topAction.height > topBase.y + 2 ||
+        bottomAction.y < bottomBase.y + bottomBase.height - 2 ||
         topAction.x < topHost.x || topAction.x + topAction.width > topHost.x + topHost.width ||
         bottomAction.x < bottomHost.x || bottomAction.x + bottomAction.width > bottomHost.x + bottomHost.width)
-      throw new Error(`Native safe-area bars did not occupy opposite host edges: ${JSON.stringify({ topHost, bottomHost, topAction, bottomAction })}`)
-    checks.push({ name: 'native safe-area bars occupy top and bottom host edges', durationMs: 0 })
-    console.log('PASS native safe-area bars occupy top and bottom host edges')
+      throw new Error(`Native safe-area bars did not appear on opposite sides of the base: ${JSON.stringify({ topHost, bottomHost, topBase, bottomBase, topAction, bottomAction })}`)
+    checks.push({ name: 'native safe-area bars appear above and below their base views', durationMs: 0 })
+    console.log('PASS native safe-area bars appear above and below their base views')
     screenshot('safe-area-bars-initial.png', mounted)
     tap({ label: 'Top bar action' })
     await wait('top safe-area bar action reaches React', (nodes) => labels(nodes).includes('Top taps: 1'))

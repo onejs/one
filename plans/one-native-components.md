@@ -71,6 +71,16 @@ accounts are unavailable).
 
 ## Status
 
+- **RAN, 2026-09-27:** `One.iOS.ViewSlot name="safeAreaBarWithVerticalEdge"`
+  passed a focused iPhone 17 Pro iOS 27.0 suite on ci-64 with the previously
+  built arm64 One Native binary. The top action appeared immediately above its
+  base view and the bottom action immediately below its base view, both within
+  their 280-by-220-point host frames; both native button actions reached React.
+  AX snapshots, PNGs, and the eight-check outcome are in local ignored
+  `tests/native-features/build/safe-area-bar-proof`. The fixture checks
+  content order and actions in these bounded hosts; it does not prove a
+  full-screen bar or scroll interaction.
+
 - **RAN, 2026-09-27:** `One.iOS.ViewSlot name="listRowBackground"` passed a
   focused iPhone 17 Pro iOS 27.0 suite on ci-64 after an arm64 Xcode 27.1
   build. React changed the Apple row's native fill from `#B1DAFD` to
