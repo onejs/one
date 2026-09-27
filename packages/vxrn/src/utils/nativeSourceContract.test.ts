@@ -107,6 +107,24 @@ AudioMath.rms('wrong')
     expect(contract.modules[0].methods.map((method) => method.name)).toEqual(['label'])
   })
 
+  it('reads modifiers from the method alone, not from a property declared above it', () => {
+    const swift = nativeSourceContract('/app/native/Audio.swift', `final class AudioMath: RNXModule {
+  private var hits = 0
+  static let shared = AudioMath()
+  @available(iOS 17, *) func rms(_ samples: [Double]) -> Double { 0 }
+}`)
+    expect(swift.modules[0].methods.map((method) => method.name)).toEqual(['rms'])
+    const kotlin = nativeSourceContract('/app/native/Audio.kt', `package app.audio
+import dev.onejs.one.source.OneModule
+object AudioMath : OneModule {
+    private var hits = 0
+    fun rms(samples: List<Double>): Double = samples.sum()
+    private val scale = 2
+    suspend fun later(ms: Int): String = "slept"
+}`)
+    expect(kotlin.modules[0].methods.map((method) => [method.name, method.async])).toEqual([['rms', false], ['later', true]])
+  })
+
   it('generates adjacent declarations and removes only obsolete generated ones', () => {
     const root = mkdtempSync(join(tmpdir(), 'one-native-source-project-'))
     const source = join(root, 'Audio.swift')
