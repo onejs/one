@@ -1,5 +1,5 @@
 import { Children, isValidElement, type ReactNode } from 'react'
-import { View, type StyleProp, type ViewStyle } from 'react-native'
+import { DomView } from './web/DomView'
 import type {
   ArrangementPaneProps,
   ArrangementViewProps,
@@ -35,10 +35,10 @@ export function ArrangementViewComponent({
   })
 
   return (
-    <View testID={testID} style={[{ flex: 1, flexDirection: 'row' }, style]}>
-      <View style={{ flex: 1 }}>{primaryNode}</View>
-      <View style={{ flex: 1 }}>{secondaryNode}</View>
-    </View>
+    <DomView testID={testID} baseStyle={{ flex: 1, flexDirection: 'row' }} style={style}>
+      <DomView baseStyle={{ flex: 1 }}>{primaryNode}</DomView>
+      <DomView baseStyle={{ flex: 1 }}>{secondaryNode}</DomView>
+    </DomView>
   )
 }
 
