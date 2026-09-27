@@ -38,6 +38,7 @@ const suites = [
   'list-row-background',
   'list-row-modifiers',
   'list-section-modifiers',
+  'list-search-refresh',
   'groups',
   'state',
   'safe-area',
@@ -308,6 +309,10 @@ const listSectionModifiersLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-list-section-modifiers-screen')) &&
   has(nodes, 'Section modifiers: ')
+const listSearchRefreshLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-list-search-refresh-screen')) &&
+  has(nodes, 'Refresh: ')
 const groupsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-groups-refuse')) &&
@@ -550,6 +555,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'list-row-background': listsLoaded,
   'list-row-modifiers': listRowModifiersLoaded,
   'list-section-modifiers': listSectionModifiersLoaded,
+  'list-search-refresh': listSearchRefreshLoaded,
   groups: groupsLoaded,
   state: stateLoaded,
   'safe-area': safeAreaLoaded,
@@ -621,6 +627,7 @@ const suiteHome: Record<Suite, string> = {
   'list-row-background': 'nav-one-native-lists',
   'list-row-modifiers': 'nav-one-native-list-row-modifiers',
   'list-section-modifiers': 'nav-one-native-list-section-modifiers',
+  'list-search-refresh': 'nav-one-native-list-search-refresh',
   groups: 'nav-one-native-groups',
   state: 'nav-one-native-state',
   'safe-area': 'nav-one-native-safe-area',
@@ -2070,6 +2077,62 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'IsOn', 'true')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'list-search-refresh') {
+    const searchField = (nodes: Node[]) => nodes.find((node) =>
+      (node.type === 'SearchField' || node.type === 'TextField') &&
+      (node.AXLabel === 'Search' || node.AXUniqueId === 'Search')
+    )
+    const pull = (nodes: Node[]) => {
+      const list = id(nodes, 'one-native-list-search-refresh-screen')?.frame
+      if (!list) throw new Error('Search and refresh screen has no frame')
+      axe([
+        'swipe', '--start-x', String(Math.round(list.x + list.width / 2)),
+        '--start-y', String(Math.round(list.y + list.height * 0.45)),
+        '--end-x', String(Math.round(list.x + list.width / 2)),
+        '--end-y', String(Math.round(list.y + list.height * 0.8)),
+        '--duration', '0.8',
+      ], config.simulatorId)
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-list-search-refresh')
+    const mounted = await wait('searchable List and rows mount', (nodes) =>
+      has(nodes, 'Apple') && has(nodes, 'Pear') && Boolean(searchField(nodes)?.frame)
+    )
+    screenshot('list-search-refresh-initial.png', mounted)
+    pull(mounted)
+    const refreshing = await wait('pull starts native refresh action', (nodes) =>
+      has(nodes, 'Refresh: 1 started, 0 completed')
+    )
+    screenshot('list-search-refresh-pending.png', refreshing)
+    tap({ id: 'one-native-list-refresh-release' })
+    await wait('native refresh action completes after promise resolves', (nodes) =>
+      has(nodes, 'Refresh: 1 started, 1 completed')
+    )
+    tap({ id: 'one-native-list-search-external' })
+    const external = await wait('controlled search receives external text', (nodes) =>
+      has(nodes, 'Query: pear') && has(nodes, 'Pear') && !has(nodes, 'Apple') &&
+      String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pear'
+    )
+    screenshot('list-search-refresh-external.png', external)
+    tap({ id: 'one-native-list-search-clear' })
+    const cleared = await wait('external clear restores native search field and rows', (nodes) =>
+      has(nodes, 'Query: ') && has(nodes, 'Apple') && has(nodes, 'Pear') &&
+      String(searchField(nodes)?.AXValue ?? '') === ''
+    )
+    const field = searchField(cleared)?.frame
+    if (!field) throw new Error('Native search field has no frame')
+    point(field.x + field.width / 2, field.y + field.height / 2)
+    await typeInto('native searchable field', 'pea', (nodes) => searchField(nodes)?.AXValue)
+    const typed = await wait('native search edit changes React binding and filters rows', (nodes) =>
+      has(nodes, 'Query: pea') && has(nodes, 'Pear') && has(nodes, 'Peach') &&
+      !has(nodes, 'Apple') && String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pea'
+    )
+    screenshot('list-search-refresh-typed.png', typed)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
