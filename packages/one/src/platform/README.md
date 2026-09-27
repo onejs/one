@@ -1279,6 +1279,21 @@ child directly in the grid spans its columns, as in SwiftUI. `Grid` takes
 `alignment`, `horizontalSpacing`, and `verticalSpacing`; each `GridRow` can
 override the vertical alignment. Grid rows must be direct children of a grid.
 
+`One.iOS.ArrangementView` (iOS 27.1+) hosts a primary and secondary pane with
+SwiftUI's `automatic`, `split`, or `overlay` arrangement. Use direct
+`ArrangementView.Primary` and `ArrangementView.Secondary` children, or pass
+`primary` and `secondary` nodes. With `splitArrangementLayoutRatio={0.5}` on a
+closed iPhone Duo, `automatic` and `split` stack equal panes; `overlay` gives
+each pane the full arrangement frame.
+The open and folded Duo postures still need runtime proof.
+
+```tsx
+<One.iOS.ArrangementView arrangementViewStyle="split" splitArrangementLayoutRatio={0.5} style={{ flex: 1 }}>
+  <One.iOS.ArrangementView.Primary><Inbox /></One.iOS.ArrangementView.Primary>
+  <One.iOS.ArrangementView.Secondary><Message /></One.iOS.ArrangementView.Secondary>
+</One.iOS.ArrangementView>
+```
+
 ### Groups, links, and swipe actions
 
 `One.iOS.GroupBox` renders SwiftUI's standard group box around native children.

@@ -65,7 +65,7 @@ The remaining partial surfaces are:
 
 Each slice: catalog or container entry, `bun run generate`, README section in
 `src/platform/README.md`, a fixture and suite in `tests/native-features`, a run
-on the iPhone 17 Pro iOS 27 simulator with the output quoted in the commit.
+on a compatible iOS 27 simulator with the output quoted in the commit.
 One high review per assembled batch (`tm run --group lg` while the Claude
 accounts are unavailable).
 
@@ -203,6 +203,18 @@ accounts are unavailable).
   and traces live in the local ignored `tests/native-features/build/`
   directories `tab-sidebar-reviewed-proof`, `tab-sidebar-compact-proof`, and
   `tab-slot-universal-smoke`.
+- **RAN, 2026-09-26:** the existing `ArrangementView` fixture passed eight
+  checks on a closed iPhone Duo running iOS 27.1. With the fixture's 0.5 split
+  ratio, `automatic` and `split` yielded two stacked, equal-height panes;
+  `overlay` gave both pane hosts the
+  full arrangement frame, and switching back restored the stack. The proof
+  checks the React style state as well as native accessibility frames. The
+  27.1 runtime here supports only iPhone Duo, and Device Hub posture controls
+  were unavailable to the headless driver, so open and folded posture behavior
+  remains partial. The reviewed rerun asserts top alignment and half-height
+  panes. Screenshots, trace, and a device/runtime/posture evidence manifest are
+  in the ignored `tests/native-features/build/arrangement-reviewed-proof`
+  directory.
 - **RAN, 2026-09-26:** the `edit-button` suite passed on iPhone 17 Pro iOS 27.
   A SwiftUI `EditButton` composed as a native `List` row changed its own
   accessibility label from Edit to Done and back across two taps while the
