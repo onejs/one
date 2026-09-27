@@ -26,14 +26,14 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.VStack` | groups | n/a |  |
 | `One.iOS.ZStack` | building-blocks | n/a |  |
 | `One.iOS.Form` | containers, popover, accessibility | n/a |  |
-| `One.iOS.Section` | containers, lists, groups, popover, accessibility | n/a |  |
+| `One.iOS.Section` | containers, lists, groups, edit-button, popover, accessibility | n/a |  |
 | `One.iOS.Glass` | building-blocks | n/a |  |
 | `One.iOS.GlassEffectContainer` | glass-container | n/a |  |
 | `One.iOS.LabeledContent` | building-blocks | n/a |  |
 | `One.iOS.Button` | leaves, host, containers, lists, groups, grids, glass-container, group-box, building-blocks, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Spacer` | building-blocks | n/a |  |
 | `One.iOS.Slot` | containers | n/a |  |
-| `One.iOS.List` | lists, groups | n/a |  |
+| `One.iOS.List` | lists, groups, edit-button | n/a |  |
 | `One.iOS.ScrollView` | lists, editors, grids | n/a |  |
 | `One.iOS.LazyVStack` | lists | n/a |  |
 | `One.iOS.LazyHStack` | lists | n/a |  |
@@ -65,7 +65,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Slider` | pickers, forms | n/a |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a |  |
 | `One.iOS.PasteButton` | paste-button | n/a |  |
-| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, building-blocks, tab-slot, view-that-fits, popover, accessibility | n/a |  |
+| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, building-blocks, tab-slot, edit-button, view-that-fits, popover, accessibility | n/a |  |
 | `One.iOS.Label` | leaves, containers | n/a |  |
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |
@@ -91,7 +91,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ConfirmationDialog` | dialogs, dialogs-lifecycle | n/a |  |
 | `One.iOS.QuickLook` | media | n/a |  |
 | `One.iOS.FileImporter` | apple-file | n/a |  |
-| `One.iOS.EditButton` | missing | n/a | no fixture or suite |
+| `One.iOS.EditButton` | edit-button | n/a | Edit/Done label cycle proven; List edit state unobserved and row actions unavailable |
 | `One.iOS.EmptyView` | tab-slot | n/a |  |
 | `One.iOS.Widgets` | missing | n/a | needs a widget extension target in the fixture app |
 | `One.iOS.LiveActivities` | missing | n/a | needs a widget extension target in the fixture app |

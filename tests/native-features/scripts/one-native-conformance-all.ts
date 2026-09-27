@@ -21,6 +21,7 @@ const suites = [
   'share-empty',
   'web-photos',
   'tab-slot',
+  'edit-button',
   'view-that-fits',
   'popover',
   'accessibility',

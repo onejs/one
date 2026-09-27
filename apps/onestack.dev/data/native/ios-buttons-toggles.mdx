@@ -139,4 +139,18 @@ or `{ type: 'cancelled' }`. `requestedScopes` picks from `'fullName'` and
 ## EditButton
 
 `One.iOS.EditButton` is the SwiftUI edit button with no props beyond the
-shared view props. It toggles edit mode for the enclosing `List` or `Form`.
+shared view props. Compose it inside a native `One.iOS.List`. Its native
+label changes from **Edit** to **Done** and back when tapped.
+
+```tsx
+<One.iOS.List>
+  <One.iOS.Section title="Items">
+    <One.iOS.EditButton />
+    <One.iOS.Text text="Alpha" />
+    <One.iOS.Text text="Beta" />
+  </One.iOS.Section>
+</One.iOS.List>
+```
+
+The current `List` API does not expose SwiftUI row deletion or move actions.
+The Edit/Done label cycle is verified; row edit behavior is not yet available.

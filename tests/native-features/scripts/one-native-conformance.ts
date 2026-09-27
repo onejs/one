@@ -55,6 +55,7 @@ const suites = [
   'share-empty',
   'web-photos',
   'tab-slot',
+  'edit-button',
   'view-that-fits',
   'cover-context',
   'popover',
@@ -362,6 +363,9 @@ const webPhotosLoaded = (nodes: Node[]) =>
 const tabSlotLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-tab-slot-screen'))
+const editButtonLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-edit-button-screen'))
 const viewThatFitsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-view-that-fits-width')) &&
@@ -524,6 +528,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'share-empty': shareEmptyLoaded,
   'web-photos': webPhotosLoaded,
   'tab-slot': tabSlotLoaded,
+  'edit-button': editButtonLoaded,
   'view-that-fits': viewThatFitsLoaded,
   'cover-context': coverContextLoaded,
   popover: popoverLoaded,
@@ -584,6 +589,7 @@ const suiteHome: Record<Suite, string> = {
   'share-empty': 'nav-one-native-share-empty',
   'web-photos': 'nav-one-native-web-photos',
   'tab-slot': 'nav-one-native-tab-slot',
+  'edit-button': 'nav-one-native-edit-button',
   'view-that-fits': 'nav-one-native-view-that-fits',
   'cover-context': 'nav-one-native-cover-context',
   popover: 'nav-one-native-popover',
@@ -3200,6 +3206,30 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('TabViewSlot action remains active across tab selection', (nodes) =>
       labels(nodes).includes('Slot taps: 2'))
     screenshot('tab-slot-other.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'edit-button') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-edit-button')
+    const mounted = await wait('EditButton mounts in a native List', (nodes) =>
+      labels(nodes).includes('Native list edit mode') &&
+      labels(nodes).includes('Alpha') &&
+      labels(nodes).includes('Beta') &&
+      id(nodes, 'one-native-edit-button-control')?.AXLabel === 'Edit' &&
+      Boolean(id(nodes, 'one-native-edit-button-control')?.frame))
+    screenshot('edit-button-initial.png', mounted)
+    tap({ id: 'one-native-edit-button-control' })
+    const editing = await wait('EditButton changes its native label to Done', (nodes) =>
+      id(nodes, 'one-native-edit-button-control')?.AXLabel === 'Done' &&
+      labels(nodes).includes('Alpha') && labels(nodes).includes('Beta'))
+    screenshot('edit-button-editing.png', editing)
+    tap({ id: 'one-native-edit-button-control' })
+    const restored = await wait('EditButton restores its native Edit label', (nodes) =>
+      id(nodes, 'one-native-edit-button-control')?.AXLabel === 'Edit' &&
+      labels(nodes).includes('Alpha') && labels(nodes).includes('Beta'))
+    screenshot('edit-button-restored.png', restored)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
