@@ -751,6 +751,17 @@ either.
 
 ## Sharing and the photo library
 
+`One.openURL`, `One.openShare` and `One.openSettings` work on every platform
+from one call site. Native hands the url to the OS and presents the system share
+sheet through React Native's Linking and Share; web opens a new tab without an
+opener and uses the browser's share sheet, rejecting where the browser has none.
+`openSettings` opens the app's settings page on native and rejects on web.
+
+```tsx
+await One.openURL('https://onestack.dev')
+await One.openShare({ message: 'Try this', url: 'https://onestack.dev' })
+```
+
 `One.iOS.PasteButton` uses SwiftUI's native `PasteButton(payloadType: String.self)`.
 Its `onPaste` callback receives all strings from one paste action as
 `readonly string[]`; SwiftUI supplies the system label.

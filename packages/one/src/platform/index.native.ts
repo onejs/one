@@ -175,6 +175,8 @@ export type {
   AudioRecordingStatus,
 } from './audio/index.native'
 export { Share } from './share/index.native'
+export { Open } from './open/index.native'
+export type { OpenShareContent } from './open/index.native'
 export type { ShareItem, ShareItemType, ShareResult } from './share/index.native'
 export { PhotoLibrary } from './photo-library/index.native'
 export type { PhotoLibraryPermissionStatus } from './photo-library/index.native'

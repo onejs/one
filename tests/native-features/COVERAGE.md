@@ -5,6 +5,9 @@ A cell names the conformance suites whose fixture uses the export.
 
 | export | iOS suites | Android suites | gap |
 | --- | --- | --- | --- |
+| `One.openURL` | missing | missing | react native Linking underneath; proven in the Contrast app, no suite yet |
+| `One.openShare` | missing | missing | react native Share underneath; proven in the Contrast app, no suite yet |
+| `One.openSettings` | missing | missing | react native Linking underneath; no suite yet |
 | `One.AppInfo` | app-info | app-info |  |
 | `One.Database` | database | missing | Android suite missing |
 | `One.iOS.ArrangementView` | missing | n/a | fixture exists, no suite opens it |
@@ -19,16 +22,16 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.FullScreenCover` | cover-context | n/a |  |
 | `One.iOS.Popover` | popover | n/a |  |
 | `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, view-that-fits, accessibility | n/a |  |
-| `One.iOS.HStack` | glass-container, e2e:one-native-tabview | n/a |  |
+| `One.iOS.HStack` | glass-container, building-blocks, e2e:one-native-tabview | n/a |  |
 | `One.iOS.VStack` | groups | n/a |  |
-| `One.iOS.ZStack` | missing | n/a | no fixture or suite |
+| `One.iOS.ZStack` | building-blocks | n/a |  |
 | `One.iOS.Form` | containers, popover, accessibility | n/a |  |
 | `One.iOS.Section` | containers, lists, groups, popover, accessibility | n/a |  |
-| `One.iOS.Glass` | missing | n/a | no fixture or suite |
+| `One.iOS.Glass` | building-blocks | n/a |  |
 | `One.iOS.GlassEffectContainer` | glass-container | n/a |  |
-| `One.iOS.LabeledContent` | missing | n/a | no fixture or suite |
-| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, glass-container, group-box, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
-| `One.iOS.Spacer` | missing | n/a | no fixture or suite |
+| `One.iOS.LabeledContent` | building-blocks | n/a |  |
+| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, glass-container, group-box, building-blocks, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Spacer` | building-blocks | n/a |  |
 | `One.iOS.Slot` | containers | n/a |  |
 | `One.iOS.List` | lists, groups | n/a |  |
 | `One.iOS.ScrollView` | lists, editors, grids | n/a |  |
@@ -62,7 +65,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Slider` | pickers, forms | n/a |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a |  |
 | `One.iOS.PasteButton` | paste-button | n/a |  |
-| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, view-that-fits, popover, accessibility | n/a |  |
+| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, building-blocks, view-that-fits, popover, accessibility | n/a |  |
 | `One.iOS.Label` | leaves, containers | n/a |  |
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |
@@ -71,7 +74,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ContentUnavailableView` | missing | n/a | fixture exists, no suite opens it |
 | `One.iOS.Circle` | leaves | n/a |  |
 | `One.iOS.Capsule` | leaves | n/a |  |
-| `One.iOS.Rectangle` | leaves, editors | n/a |  |
+| `One.iOS.Rectangle` | leaves, editors, building-blocks | n/a |  |
 | `One.iOS.RoundedRectangle` | leaves | n/a |  |
 | `One.iOS.Ellipse` | leaves | n/a |  |
 | `One.iOS.UnevenRoundedRectangle` | editors | n/a |  |
