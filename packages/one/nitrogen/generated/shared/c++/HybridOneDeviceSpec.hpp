@@ -15,9 +15,12 @@
 
 // Forward declaration of `DeviceInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct DeviceInfo; }
+// Forward declaration of `LocalizationInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct LocalizationInfo; }
 
 #include "DeviceInfo.hpp"
 #include <NitroModules/Promise.hpp>
+#include "LocalizationInfo.hpp"
 
 namespace margelo::nitro::one {
 
@@ -51,6 +54,7 @@ namespace margelo::nitro::one {
     public:
       // Methods
       virtual std::shared_ptr<Promise<DeviceInfo>> getInfo() = 0;
+      virtual std::shared_ptr<Promise<LocalizationInfo>> getLocalizationInfo() = 0;
 
     protected:
       // Hybrid Setup

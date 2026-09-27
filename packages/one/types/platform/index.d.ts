@@ -30,7 +30,7 @@ export type { ShareItem, ShareItemType, ShareResult } from './share/index';
 export { PhotoLibrary } from './photo-library/index';
 export type { PhotoLibraryPermissionStatus } from './photo-library/index';
 export { Device } from './device/index';
-export type { DeviceInfo } from './device/index';
+export type { DeviceInfo, LocalizationInfo } from './device/index';
 export { Contacts } from './contacts/index';
 export type { ContactInfo, ContactInput, ContactsPermissionStatus } from './contacts/index';
 export { Calendar } from './calendar/index';

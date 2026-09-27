@@ -2517,7 +2517,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await dismissWarning(true)
     await tapNav('nav-one-native-device')
     await wait('device fixture starts without a result', (n) =>
-      labels(n).includes('Model: pending') && labels(n).includes('Error: none')
+      labels(n).includes('Model: pending') &&
+      labels(n).includes('Locale: pending') &&
+      labels(n).includes('Error: none')
     )
     tap({ id: 'one-native-device-read' })
     await wait('device snapshot matches the iOS 27 simulator', (n) => {
@@ -2527,6 +2529,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         values.some((value) => /^System: iOS 27(?:\.|$)/.test(value)) &&
         values.includes('Idiom: phone') &&
         values.includes('Simulator: true') &&
+        values.includes('Locale: en-US') &&
+        values.includes('Language: en-US') &&
+        values.some((value) => /^LanguageCount: [1-9]\d*$/.test(value)) &&
+        values.includes('Calendar: gregorian') &&
+        values.some((value) => /^TimeZone: [A-Za-z0-9_+./-]+$/.test(value)) &&
+        values.some((value) => /^OffsetSeconds: -?\d+$/.test(value)) &&
+        values.includes('Currency: USD') &&
         values.some((value) =>
           /^Vendor: [0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}$/.test(
             value

@@ -9,6 +9,16 @@ export interface DeviceInfo {
   vendorIdentifier?: string
 }
 
+export interface LocalizationInfo {
+  localeIdentifier: string
+  preferredLanguages: string[]
+  calendarIdentifier: string
+  timeZoneIdentifier: string
+  timeZoneOffsetSeconds: number
+  currencyCode?: string
+}
+
 export interface OneDevice extends HybridObject<{ ios: 'swift' }> {
   getInfo(): Promise<DeviceInfo>
+  getLocalizationInfo(): Promise<LocalizationInfo>
 }

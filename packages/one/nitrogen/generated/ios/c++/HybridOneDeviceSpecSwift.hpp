@@ -14,11 +14,15 @@ namespace One { class HybridOneDeviceSpec_cxx; }
 
 // Forward declaration of `DeviceInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct DeviceInfo; }
+// Forward declaration of `LocalizationInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct LocalizationInfo; }
 
 #include "DeviceInfo.hpp"
 #include <NitroModules/Promise.hpp>
 #include <string>
 #include <optional>
+#include "LocalizationInfo.hpp"
+#include <vector>
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -72,6 +76,14 @@ namespace margelo::nitro::one {
     // Methods
     inline std::shared_ptr<Promise<DeviceInfo>> getInfo() override {
       auto __result = _swiftPart.getInfo();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<LocalizationInfo>> getLocalizationInfo() override {
+      auto __result = _swiftPart.getLocalizationInfo();
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

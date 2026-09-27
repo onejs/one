@@ -144,6 +144,8 @@ namespace margelo::nitro::one { enum class ImagePickerMediaType; }
 namespace margelo::nitro::one { struct ImagePickerNativeResult; }
 // Forward declaration of `LocalAuthenticationStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
+// Forward declaration of `LocalizationInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct LocalizationInfo; }
 // Forward declaration of `LocationPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class LocationPermissionStatus; }
 // Forward declaration of `LocationPlace` to properly resolve imports.
@@ -333,6 +335,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "ImagePickerMediaType.hpp"
 #include "ImagePickerNativeResult.hpp"
 #include "LocalAuthenticationStatus.hpp"
+#include "LocalizationInfo.hpp"
 #include "LocationPermissionStatus.hpp"
 #include "LocationPlace.hpp"
 #include "LocationPosition.hpp"
@@ -1531,6 +1534,40 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_DeviceInfo_Wrapper(std::move(value));
   }
 
+  // pragma MARK: std::shared_ptr<Promise<LocalizationInfo>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<LocalizationInfo>>`.
+   */
+  using std__shared_ptr_Promise_LocalizationInfo__ = std::shared_ptr<Promise<LocalizationInfo>>;
+  inline std::shared_ptr<Promise<LocalizationInfo>> create_std__shared_ptr_Promise_LocalizationInfo__() noexcept {
+    return Promise<LocalizationInfo>::create();
+  }
+  inline PromiseHolder<LocalizationInfo> wrap_std__shared_ptr_Promise_LocalizationInfo__(std::shared_ptr<Promise<LocalizationInfo>> promise) noexcept {
+    return PromiseHolder<LocalizationInfo>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const LocalizationInfo& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const LocalizationInfo&)>`.
+   */
+  using Func_void_LocalizationInfo = std::function<void(const LocalizationInfo& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const LocalizationInfo& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_LocalizationInfo_Wrapper final {
+  public:
+    explicit Func_void_LocalizationInfo_Wrapper(std::function<void(const LocalizationInfo& /* result */)>&& func): _function(std::make_unique<std::function<void(const LocalizationInfo& /* result */)>>(std::move(func))) {}
+    inline void call(LocalizationInfo result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const LocalizationInfo& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_LocalizationInfo create_Func_void_LocalizationInfo(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_LocalizationInfo_Wrapper wrap_Func_void_LocalizationInfo(Func_void_LocalizationInfo value) noexcept {
+    return Func_void_LocalizationInfo_Wrapper(std::move(value));
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneDeviceSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneDeviceSpec>`.
@@ -1550,6 +1587,15 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_DeviceInfo___ create_Result_std__shared_ptr_Promise_DeviceInfo___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<DeviceInfo>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<LocalizationInfo>>>
+  using Result_std__shared_ptr_Promise_LocalizationInfo___ = Result<std::shared_ptr<Promise<LocalizationInfo>>>;
+  inline Result_std__shared_ptr_Promise_LocalizationInfo___ create_Result_std__shared_ptr_Promise_LocalizationInfo___(const std::shared_ptr<Promise<LocalizationInfo>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<LocalizationInfo>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_LocalizationInfo___ create_Result_std__shared_ptr_Promise_LocalizationInfo___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<LocalizationInfo>>>::withError(error);
   }
 
   // pragma MARK: std::vector<DocumentPickerAsset>
