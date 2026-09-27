@@ -26,6 +26,11 @@ const testScreens = [
     testID: 'nav-one-native-controls',
   },
   {
+    href: '/one-native-building-blocks',
+    label: 'One Native Building Blocks',
+    testID: 'nav-one-native-building-blocks',
+  },
+  {
     href: '/one-native-paste-button',
     label: 'One Native Paste Button',
     testID: 'nav-one-native-paste-button',
