@@ -223,3 +223,16 @@ accounts are unavailable).
   List row deletion and movement remain unavailable in the public API.
   Screenshots and trace are in the local ignored
   `tests/native-features/build/edit-button-final-proof` directory.
+- **RAN, 2026-09-26:** the `view-slot` suite passed on iPhone 17 Pro iOS 27.
+  `background` painted the requested fill and its base button reached React;
+  `safeAreaInsetWithVerticalEdge` accepted `edge: 'bottom'`, placed the slot
+  action below the base, and delivered its tap to React. The fixture does not
+  establish that the action hugs the host's bottom edge. **INFERRED from
+  source:** captured slot markers were outside the host's normal child
+  activation traversal; the native host now propagates activation through
+  them. The exploratory pre-fix run failed on a different base-button layout,
+  so it is not a controlled before/after proof of that cause. Other ViewSlot names
+  remain unproven. A native `Overlay.Content` button also reached React on the
+  same rebuilt host, covering the shared Overlay marker path.
+  Screenshots and trace are in the local ignored
+  `tests/native-features/build/view-slot-reviewed-proof` directory.

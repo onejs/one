@@ -123,14 +123,29 @@ finite number in points; omit it to keep SwiftUI's own default spacing.
 
 `One.iOS.Overlay` layers its children over the views behind it with an
 `alignment` from the ZStack alignments. `One.iOS.Overlay.Content` marks the
-overlay subtree.
+overlay subtree. Native controls in that subtree can call their React
+handlers; the iOS conformance fixture exercises an overlay button tap.
 
 ## ViewSlot, ViewSlot.Content
 
 `One.iOS.ViewSlot` hosts a native view modifier slot: `name` picks the
 SwiftUI slot (background, alert, accessibility actions, and the rest) and
 `options` carries that slot's parameters. `One.iOS.ViewSlot.Content` marks
-the slot subtree.
+the slot subtree. The slot content can contain interactive native controls:
+
+```tsx
+<One.iOS.ViewSlot name="safeAreaInsetWithVerticalEdge" options={{ edge: 'bottom' }}>
+  <One.iOS.Text text="Content" />
+  <One.iOS.ViewSlot.Content>
+    <One.iOS.Button label="Continue" onPress={continueFlow} />
+  </One.iOS.ViewSlot.Content>
+</One.iOS.ViewSlot>
+```
+
+The iOS conformance fixture exercises `background` paint and an interactive
+`safeAreaInsetWithVerticalEdge` with `edge: 'bottom'`. Its action appears
+after the base content. Other slot names have not yet been checked on a
+simulator.
 
 ## SwipeActions, SwipeActions.Actions
 

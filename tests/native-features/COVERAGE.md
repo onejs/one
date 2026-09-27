@@ -30,7 +30,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Glass` | building-blocks | n/a |  |
 | `One.iOS.GlassEffectContainer` | glass-container | n/a |  |
 | `One.iOS.LabeledContent` | building-blocks | n/a |  |
-| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, glass-container, group-box, building-blocks, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, glass-container, group-box, building-blocks, view-slot, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Spacer` | building-blocks | n/a |  |
 | `One.iOS.Slot` | containers | n/a |  |
 | `One.iOS.List` | lists, groups, edit-button | n/a |  |
@@ -48,8 +48,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Group` | groups | n/a |  |
 | `One.iOS.GroupBox` | group-box | n/a |  |
 | `One.iOS.ViewThatFits` | view-that-fits | n/a |  |
-| `One.iOS.Overlay` | groups | n/a |  |
-| `One.iOS.ViewSlot` | missing | n/a | only the autogen fixture, which no suite opens |
+| `One.iOS.Overlay` | groups, view-slot | n/a |  |
+| `One.iOS.ViewSlot` | view-slot | n/a | background and bottom safe-area inset proven; other named slots unproven |
 | `One.iOS.SwipeActions` | groups | n/a |  |
 | `One.iOS.Pager` | groups | n/a |  |
 | `One.iOS.Page` | groups | n/a |  |
@@ -65,7 +65,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Slider` | pickers, forms | n/a |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a |  |
 | `One.iOS.PasteButton` | paste-button | n/a |  |
-| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, building-blocks, tab-slot, edit-button, view-that-fits, popover, accessibility | n/a |  |
+| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, building-blocks, view-slot, tab-slot, edit-button, view-that-fits, popover, accessibility | n/a |  |
 | `One.iOS.Label` | leaves, containers | n/a |  |
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |
@@ -74,7 +74,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ContentUnavailableView` | share-empty | n/a |  |
 | `One.iOS.Circle` | leaves | n/a |  |
 | `One.iOS.Capsule` | leaves | n/a |  |
-| `One.iOS.Rectangle` | leaves, editors, building-blocks | n/a |  |
+| `One.iOS.Rectangle` | leaves, editors, building-blocks, view-slot | n/a |  |
 | `One.iOS.RoundedRectangle` | leaves | n/a |  |
 | `One.iOS.Ellipse` | leaves | n/a |  |
 | `One.iOS.UnevenRoundedRectangle` | editors | n/a |  |

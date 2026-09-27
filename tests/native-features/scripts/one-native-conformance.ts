@@ -52,6 +52,7 @@ const suites = [
   'paste-button',
   'group-box',
   'building-blocks',
+  'view-slot',
   'share-empty',
   'web-photos',
   'tab-slot',
@@ -354,6 +355,9 @@ const buildingBlocksLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-building-blocks-account')) &&
   has(nodes, 'Badge taps: ')
+const viewSlotLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-view-slot-screen'))
 const shareEmptyLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-share-empty-screen'))
@@ -533,6 +537,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'paste-button': pasteButtonLoaded,
   'group-box': groupBoxLoaded,
   'building-blocks': buildingBlocksLoaded,
+  'view-slot': viewSlotLoaded,
   'share-empty': shareEmptyLoaded,
   'web-photos': webPhotosLoaded,
   'tab-slot': tabSlotLoaded,
@@ -596,6 +601,7 @@ const suiteHome: Record<Suite, string> = {
   'paste-button': 'nav-one-native-paste-button',
   'group-box': 'nav-one-native-group-box',
   'building-blocks': 'nav-one-native-building-blocks',
+  'view-slot': 'nav-one-native-view-slot',
   'share-empty': 'nav-one-native-share-empty',
   'web-photos': 'nav-one-native-web-photos',
   'tab-slot': 'nav-one-native-tab-slot',
@@ -2959,6 +2965,69 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const identityContrast = colorDistance(sample(identity, leftPoint, midY), sample(identity, rightPoint, midY))
     if (identityContrast < 100 || regularContrast >= identityContrast * 0.8)
       throw new Error(`Glass did not soften the two-color backdrop before identity removed it: ${JSON.stringify({ regularContrast, identityContrast })}`)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'view-slot') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-view-slot')
+    const mounted = await wait('background, Overlay, and bottom inset mount native content', (nodes) =>
+      labels(nodes).includes('Background action') &&
+      labels(nodes).includes('Overlay base') &&
+      labels(nodes).includes('Overlay action') &&
+      labels(nodes).includes('Inset base') &&
+      labels(nodes).includes('Inset action') &&
+      Boolean(id(nodes, 'one-native-view-slot-background')?.frame) &&
+      Boolean(id(nodes, 'one-native-view-slot-overlay')?.frame) &&
+      Boolean(id(nodes, 'one-native-view-slot-inset')?.frame))
+    const background = id(mounted, 'one-native-view-slot-background')?.frame
+    const backgroundAction = mounted.find((node) => node.AXLabel === 'Background action')?.frame
+    const inset = id(mounted, 'one-native-view-slot-inset')?.frame
+    const insetBase = mounted.find((node) => node.AXLabel === 'Inset base')?.frame
+    const insetAction = mounted.find((node) => node.AXLabel === 'Inset action')?.frame
+    if (!background || !backgroundAction || !inset || !insetBase || !insetAction ||
+        backgroundAction.x < background.x || backgroundAction.y < background.y ||
+        backgroundAction.x + backgroundAction.width > background.x + background.width ||
+        backgroundAction.y + backgroundAction.height > background.y + background.height ||
+        insetAction.y < insetBase.y + insetBase.height - 2 ||
+        insetAction.y + insetAction.height > inset.y + inset.height) {
+      throw new Error('ViewSlot base action or inset content escaped its host')
+    }
+    checks.push({ name: 'background base stays inside host and inset content follows base', durationMs: 0 })
+    console.log('PASS background base stays inside host and inset content follows base')
+    const initialPath = screenshot('view-slot-initial.png', mounted)
+    const pixels = readPng(initialPath)
+    const appWidth = mounted.find((node) => node.type === 'Application')?.frame?.width
+    if (!appWidth) throw new Error('ViewSlot screenshot has no application width')
+    const scale = pixels.width / appWidth
+    const backgroundColorAt = (x: number, y: number) => {
+      const sampleX = Math.round(x * scale)
+      const sampleY = Math.round(y * scale)
+      const offset = (sampleY * pixels.width + sampleX) * 4
+      return [...pixels.data.subarray(offset, offset + 3)]
+    }
+    const actual = [
+      backgroundColorAt(backgroundAction.x + 2, backgroundAction.y + 2),
+      backgroundColorAt(backgroundAction.x + backgroundAction.width - 2,
+        backgroundAction.y + backgroundAction.height - 2),
+    ]
+    if (actual.some((sample) => sample.some((channel, index) =>
+      Math.abs(channel - [177, 218, 253][index]!) > 8))) {
+      throw new Error(`ViewSlot background pixels were ${JSON.stringify(actual)}, expected #B1DAFD`)
+    }
+    checks.push({ name: 'native background paints requested fill', durationMs: 0 })
+    console.log('PASS native background paints requested fill')
+    tap({ label: 'Background action' })
+    await wait('background slot action reaches React', (nodes) =>
+      labels(nodes).includes('Background taps: 1'))
+    tap({ label: 'Overlay action' })
+    await wait('shared Overlay marker action reaches React', (nodes) =>
+      labels(nodes).includes('Overlay taps: 1'))
+    tap({ label: 'Inset action' })
+    const tapped = await wait('safe-area inset slot action reaches React', (nodes) =>
+      labels(nodes).includes('Inset taps: 1'))
+    screenshot('view-slot-tapped.png', tapped)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
