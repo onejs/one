@@ -120,6 +120,11 @@ Invalid items reject with their documented codes.
 `photo-library` requests add-only Photos permission, saves real HEIC and MP4
 fixture assets, and checks the returned asset identifiers and validation errors.
 
+`image-manipulator` transforms an oriented HEIC on iOS 27 into JPEG and PNG
+files. It checks decoded dimensions, file sizes and signatures, then samples
+the rendered preview to prove the crop and clockwise rotation place the red
+source corner at the bottom right. Invalid inputs must return native codes.
+
 `device` reads the iOS device snapshot and asserts the iPhone simulator model,
 iOS 27 version, phone idiom, simulator flag, and a UUID vendor identifier.
 

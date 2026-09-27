@@ -31,6 +31,7 @@
 #include "HybridOneAudioSpecSwift.hpp"
 #include "HybridOneShareSpecSwift.hpp"
 #include "HybridOnePhotoLibrarySpecSwift.hpp"
+#include "HybridOneImageManipulatorSpecSwift.hpp"
 #include "HybridOneDeviceSpecSwift.hpp"
 #include "HybridOneContactsSpecSwift.hpp"
 #include "HybridOneCalendarSpecSwift.hpp"
@@ -190,6 +191,13 @@
     "OnePhotoLibrary",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOnePhotoLibrarySpec> hybridObject = One::OneAutolinking::createOnePhotoLibrary();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneImageManipulator",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneImageManipulatorSpec> hybridObject = One::OneAutolinking::createOneImageManipulator();
       return hybridObject;
     }
   );

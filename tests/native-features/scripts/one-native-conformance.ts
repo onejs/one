@@ -63,6 +63,7 @@ const suites = [
   'audio',
   'share',
   'photo-library',
+  'image-manipulator',
   'speech',
   'fetch',
   'secure-store',
@@ -382,6 +383,8 @@ const shareLoaded = (nodes: Node[]) =>
 const photoLibraryLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-photo-library-run')) ||
   labels(nodes).some((label) => label.includes('saving photos and videos'))
+const imageManipulatorLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-image-manipulator-run')) && has(nodes, 'Status: ')
 // the microphone and speech prompts cover the fixture during the request
 const fetchLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-fetch-run')) && has(nodes, 'Status: ')
@@ -492,6 +495,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   audio: audioLoaded,
   share: shareLoaded,
   'photo-library': photoLibraryLoaded,
+  'image-manipulator': imageManipulatorLoaded,
   speech: speechLoaded,
   fetch: fetchLoaded,
   'secure-store': secureStoreLoaded,
@@ -542,6 +546,7 @@ const suiteHome: Record<Suite, string> = {
   audio: 'nav-one-native-audio',
   share: 'nav-one-native-share',
   'photo-library': 'nav-one-native-photo-library',
+  'image-manipulator': 'nav-one-native-image-manipulator',
   speech: 'nav-one-native-speech',
   fetch: 'nav-one-native-fetch',
   'secure-store': 'nav-one-native-secure-store',
@@ -1126,6 +1131,42 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('recycled sheet closes after restoring the exact medium frame', (n) =>
       closed(n, 1)
     )
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'image-manipulator') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-image-manipulator')
+    await wait('image fixture starts idle', (n) =>
+      has(n, 'Status: idle') && has(n, 'Result: none') &&
+      Boolean(id(n, 'one-native-image-manipulator-run'))
+    )
+    tap({ id: 'one-native-image-manipulator-run' })
+    await wait('image crop resize rotation and encoding pass', (n) =>
+      has(n, 'Status: passed') &&
+      has(n,
+        'Result: decoded=true; upright=80x120; jpeg=15x20; png=20x10; uri=E_IMAGE_URI; ' +
+        'crop=E_IMAGE_INPUT; quality=E_IMAGE_INPUT; decode=E_IMAGE_DECODE'
+      )
+    )
+    let colors: { blue: number[]; red: number[] } | undefined
+    await wait('image crop and clockwise rotation place the red corner bottom right', (nodes) => {
+      const preview = id(nodes, 'one-native-image-manipulator-preview')?.frame
+      const screen = nodes.find((node) => node.type === 'Application')?.frame
+      if (!preview || !screen) return false
+      const capture = readPng(screenshot('image-manipulator-output.png', nodes))
+      const scale = capture.width / screen.width
+      const pixel = (x: number, y: number) => {
+        const offset = (Math.round(y * scale) * capture.width + Math.round(x * scale)) * 4
+        return Array.from(capture.data.slice(offset, offset + 3))
+      }
+      const blue = pixel(preview.x + preview.width * 0.2, preview.y + preview.height * 0.2)
+      const red = pixel(preview.x + preview.width * 0.8, preview.y + preview.height * 0.8)
+      colors = { blue, red }
+      return blue[2] > 150 && blue[2] > blue[0] * 2 &&
+        red[0] > 170 && red[0] > red[1] * 2 && red[0] > red[2] * 2
+    }, false, () => `sampled preview colors: ${JSON.stringify(colors)}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

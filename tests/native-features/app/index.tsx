@@ -111,6 +111,11 @@ const testScreens = [
     testID: 'nav-one-native-photo-library',
   },
   {
+    href: '/one-native-image-manipulator',
+    label: 'One Native Image Manipulator',
+    testID: 'nav-one-native-image-manipulator',
+  },
+  {
     href: '/one-native-editors',
     label: 'One Native Editors',
     testID: 'nav-one-native-editors',

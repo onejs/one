@@ -65,6 +65,7 @@ export const nativeRoutes = [
       { title: 'Contacts', route: '/native/contacts' },
       { title: 'Calendar', route: '/native/calendar' },
       { title: 'ImagePicker', route: '/native/image-picker' },
+      { title: 'Image Manipulator', route: '/native/image-manipulator' },
       { title: 'DocumentPicker', route: '/native/document-picker' },
       { title: 'SecureStore', route: '/native/secure-store' },
       { title: 'Local Authentication', route: '/native/local-authentication' },

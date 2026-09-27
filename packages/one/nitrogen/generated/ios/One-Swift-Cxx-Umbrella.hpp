@@ -128,6 +128,8 @@ namespace margelo::nitro::one { class HybridOneFileSystemSpec; }
 namespace margelo::nitro::one { class HybridOneFontsSpec; }
 // Forward declaration of `HybridOneHapticsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneHapticsSpec; }
+// Forward declaration of `HybridOneImageManipulatorSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneImageManipulatorSpec; }
 // Forward declaration of `HybridOneImagePickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
 // Forward declaration of `HybridOneLocalAuthenticationSpec` to properly resolve imports.
@@ -150,12 +152,22 @@ namespace margelo::nitro::one { class HybridOneShareSpec; }
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
 // Forward declaration of `HybridOneUpdatesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneUpdatesSpec; }
+// Forward declaration of `ImageCrop` to properly resolve imports.
+namespace margelo::nitro::one { struct ImageCrop; }
+// Forward declaration of `ImageFormat` to properly resolve imports.
+namespace margelo::nitro::one { enum class ImageFormat; }
 // Forward declaration of `ImagePickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerAsset; }
 // Forward declaration of `ImagePickerMediaType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ImagePickerMediaType; }
 // Forward declaration of `ImagePickerNativeResult` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerNativeResult; }
+// Forward declaration of `ImageResize` to properly resolve imports.
+namespace margelo::nitro::one { struct ImageResize; }
+// Forward declaration of `ImageTransformOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct ImageTransformOptions; }
+// Forward declaration of `ImageTransformResult` to properly resolve imports.
+namespace margelo::nitro::one { struct ImageTransformResult; }
 // Forward declaration of `LocalAuthenticationStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
 // Forward declaration of `LocalBiometryType` to properly resolve imports.
@@ -310,6 +322,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneFileSystemSpec.hpp"
 #include "HybridOneFontsSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
+#include "HybridOneImageManipulatorSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
 #include "HybridOneLocalAuthenticationSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
@@ -321,9 +334,14 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
 #include "HybridOneUpdatesSpec.hpp"
+#include "ImageCrop.hpp"
+#include "ImageFormat.hpp"
 #include "ImagePickerAsset.hpp"
 #include "ImagePickerMediaType.hpp"
 #include "ImagePickerNativeResult.hpp"
+#include "ImageResize.hpp"
+#include "ImageTransformOptions.hpp"
+#include "ImageTransformResult.hpp"
 #include "LocalAuthenticationStatus.hpp"
 #include "LocalBiometryType.hpp"
 #include "LocalizationInfo.hpp"
@@ -421,6 +439,8 @@ namespace One { class HybridOneFileSystemSpec_cxx; }
 namespace One { class HybridOneFontsSpec_cxx; }
 // Forward declaration of `HybridOneHapticsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneHapticsSpec_cxx; }
+// Forward declaration of `HybridOneImageManipulatorSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneImageManipulatorSpec_cxx; }
 // Forward declaration of `HybridOneImagePickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneImagePickerSpec_cxx; }
 // Forward declaration of `HybridOneLocalAuthenticationSpec_cxx` to properly resolve imports.
