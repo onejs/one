@@ -43,6 +43,12 @@ import { One } from 'one'
 `onIsPresentedChange`, `onDismiss`, and `revision`. It has no detents: the
 content dismisses from React or from a control it supplies.
 
+```tsx
+<One.iOS.FullScreenCover isPresented={open} onIsPresentedChange={setOpen}>
+  <One.iOS.Button label="Close" onPress={() => setOpen(false)} />
+</One.iOS.FullScreenCover>
+```
+
 ## Popover
 
 `One.iOS.Popover` anchors a popover to its children. `content` is the
@@ -109,6 +115,9 @@ import { One } from 'one'
 `One.iOS.ContextMenu` takes the same props as `Menu` (with an optional
 `accessibilityLabel`) and opens on long press instead of tap. The trigger
 keeps its own touches.
+An action calls `onAction` with its `id`; a toggle calls `onValueChange` with
+its `id` and new Boolean value, so React can update the corresponding `values`
+entry before the menu opens again.
 
 On web and Android these views throw, except where noted. Keep them behind
 a platform check.

@@ -51,6 +51,7 @@ const suites = [
   'glass-container',
   'paste-button',
   'group-box',
+  'system',
   'popover',
   'navigation',
   'accessibility',
@@ -339,6 +340,12 @@ const groupBoxLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-group-box-rename')) &&
   has(nodes, 'Box taps: ')
+const systemLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  ((Boolean(id(nodes, 'one-native-system-category-cover')) && has(nodes, 'Category: ')) ||
+    Boolean(id(nodes, 'one-native-system-cover-close')) ||
+    labels(nodes).includes('Full Screen Cover') ||
+    labels(nodes).includes('Dismiss context menu'))
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -485,6 +492,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'glass-container': glassContainerLoaded,
   'paste-button': pasteButtonLoaded,
   'group-box': groupBoxLoaded,
+  system: systemLoaded,
   popover: popoverLoaded,
   navigation: navigationLoaded,
   accessibility: accessibilityLoaded,
@@ -537,6 +545,7 @@ const suiteHome: Record<Suite, string> = {
   'glass-container': 'nav-one-native-glass-container',
   'paste-button': 'nav-one-native-paste-button',
   'group-box': 'nav-one-native-group-box',
+  system: 'nav-one-native-cover-context',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -3049,6 +3058,76 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         return valid && labels(n).includes('Error: none')
       })
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'system') {
+    const status = (nodes: Node[], label: string, expected: string) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-cover-context')
+    await wait('system fixture mounted', (nodes) =>
+      Boolean(id(nodes, 'one-native-system-category-cover')) &&
+      status(nodes, 'Category', 'Cover')
+    )
+    await wait('cover starts dismissed', (nodes) =>
+      status(nodes, 'Category', 'Cover') &&
+      status(nodes, 'Cover presented', 'false') &&
+      Boolean(id(nodes, 'one-native-system-cover-open'))
+    )
+    tap({ id: 'one-native-system-cover-open' })
+    await wait('FullScreenCover presents React content', (nodes) =>
+      labels(nodes).includes('Full Screen Cover') &&
+      Boolean(id(nodes, 'one-native-system-cover-close'))
+    )
+    screenshot('system-cover-open.png')
+    tap({ id: 'one-native-system-cover-close' })
+    await wait('FullScreenCover dismisses and updates React state', (nodes) => {
+      const changes = labels(nodes).find((label) => label.startsWith('Cover changes: '))
+      return status(nodes, 'Cover presented', 'false') &&
+        Boolean(id(nodes, 'one-native-system-cover-open')) &&
+        Number(changes?.slice('Cover changes: '.length)) >= 2
+    })
+    screenshot('system-cover-closed.png')
+
+    tap({ id: 'one-native-system-category-context' })
+    await wait('context trigger mounted', (nodes) =>
+      status(nodes, 'Category', 'Context') &&
+      Boolean(id(nodes, 'one-native-system-context-trigger'))
+    )
+    const longPress = () => {
+      const trigger = id(snapshot(config.simulatorId), 'one-native-system-context-trigger')?.frame
+      if (!trigger) throw new Error('ContextMenu trigger has no accessibility frame')
+      const output = axe([
+        'touch', '-x', String(Math.round(trigger.x + trigger.width / 2)),
+        '-y', String(Math.round(trigger.y + trigger.height / 2)),
+        '--down', '--up', '--delay', '0.9',
+      ], config.simulatorId)
+      if (output.includes('could not establish simulator input'))
+        throw new Error('ContextMenu long press lost simulator input')
+    }
+    longPress()
+    await wait('ContextMenu shows native actions and toggle', (nodes) =>
+      labels(nodes).includes('Dismiss context menu') &&
+      ['Copy', 'Pin', 'Delete'].every((label) => labels(nodes).includes(label))
+    )
+    screenshot('system-context-open.png')
+    tap({ label: 'Copy' })
+    await wait('ContextMenu action reaches React', (nodes) =>
+      status(nodes, 'Context action', 'copy') &&
+      status(nodes, 'Category', 'Context')
+    )
+    longPress()
+    await wait('ContextMenu can reopen', (nodes) =>
+      labels(nodes).includes('Dismiss context menu') && labels(nodes).includes('Pin')
+    )
+    tap({ label: 'Pin' })
+    await wait('ContextMenu toggle reaches React', (nodes) =>
+      status(nodes, 'Pinned', 'true') &&
+      status(nodes, 'Context action', 'copy')
+    )
+    screenshot('system-context-toggled.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
