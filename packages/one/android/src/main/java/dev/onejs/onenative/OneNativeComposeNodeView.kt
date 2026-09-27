@@ -74,6 +74,7 @@ import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.material3.MultiChoiceSegmentedButtonRow
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonColors
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.InputChip
 import androidx.compose.material3.InputChipDefaults
@@ -267,6 +268,39 @@ internal data class OneNativeToggleButtonColors(
     }
 }
 
+internal data class OneNativeSegmentedButtonColors(
+    val activeBorderColor: Int? = null,
+    val activeContentColor: Int? = null,
+    val inactiveBorderColor: Int? = null,
+    val inactiveContentColor: Int? = null,
+    val disabledActiveBorderColor: Int? = null,
+    val disabledActiveContentColor: Int? = null,
+    val disabledInactiveBorderColor: Int? = null,
+    val disabledInactiveContentColor: Int? = null,
+    val activeContainerColor: Int? = null,
+    val inactiveContainerColor: Int? = null,
+    val disabledActiveContainerColor: Int? = null,
+    val disabledInactiveContainerColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSegmentedButtonColors =
+            if (map == null) OneNativeSegmentedButtonColors() else OneNativeSegmentedButtonColors(
+                activeBorderColor = readComposeColor(map, "activeBorderColor", context),
+                activeContentColor = readComposeColor(map, "activeContentColor", context),
+                inactiveBorderColor = readComposeColor(map, "inactiveBorderColor", context),
+                inactiveContentColor = readComposeColor(map, "inactiveContentColor", context),
+                disabledActiveBorderColor = readComposeColor(map, "disabledActiveBorderColor", context),
+                disabledActiveContentColor = readComposeColor(map, "disabledActiveContentColor", context),
+                disabledInactiveBorderColor = readComposeColor(map, "disabledInactiveBorderColor", context),
+                disabledInactiveContentColor = readComposeColor(map, "disabledInactiveContentColor", context),
+                activeContainerColor = readComposeColor(map, "activeContainerColor", context),
+                inactiveContainerColor = readComposeColor(map, "inactiveContainerColor", context),
+                disabledActiveContainerColor = readComposeColor(map, "disabledActiveContainerColor", context),
+                disabledInactiveContainerColor = readComposeColor(map, "disabledInactiveContainerColor", context),
+            )
+    }
+}
+
 internal data class OneNativeLoadingColors(
     val color: Int? = null,
     val containerColor: Int? = null,
@@ -452,6 +486,7 @@ internal data class OneNativeComposeNodeProps(
     val fabColors: OneNativeCardColors = OneNativeCardColors(),
     val fabExpanded: Boolean = true,
     val toggleButtonColors: OneNativeToggleButtonColors = OneNativeToggleButtonColors(),
+    val segmentedButtonColors: OneNativeSegmentedButtonColors = OneNativeSegmentedButtonColors(),
     val loadingColors: OneNativeLoadingColors = OneNativeLoadingColors(),
     val badgeColors: OneNativeCardColors = OneNativeCardColors(),
     val listItemColors: OneNativeListItemColors = OneNativeListItemColors(),
@@ -774,6 +809,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageToggleButtonColors(value: ReadableMap?) {
         pendingProps = pendingProps.copy(toggleButtonColors = OneNativeToggleButtonColors.fromMap(value, context))
+    }
+
+    internal fun stageSegmentedButtonColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(segmentedButtonColors = OneNativeSegmentedButtonColors.fromMap(value, context))
     }
 
     internal fun stageLoadingColors(value: ReadableMap?) {
@@ -1206,6 +1245,7 @@ private fun RenderComposeNodeBody(
                                 onClick = { if (item.nativeClickable) child.handlePress() },
                                 shape = SegmentedButtonDefaults.itemShape(index, node.renderedChildren.size),
                                 enabled = !item.disabled && child.isEnabled,
+                                colors = composeSegmentedButtonColors(item.segmentedButtonColors),
                                 modifier = Modifier.applyComposeStyle(item.composeStyle).applyReactSemantics(child, item),
                                 label = { RenderComposeChildren(child) },
                             )
@@ -1224,6 +1264,7 @@ private fun RenderComposeNodeBody(
                                 onCheckedChange = { if (item.nativeClickable) child.handleBooleanChanged(it) },
                                 shape = SegmentedButtonDefaults.itemShape(index, node.renderedChildren.size),
                                 enabled = !item.disabled && child.isEnabled,
+                                colors = composeSegmentedButtonColors(item.segmentedButtonColors),
                                 modifier = Modifier.applyComposeStyle(item.composeStyle).applyReactSemantics(child, item),
                                 label = { RenderComposeChildren(child) },
                             )
@@ -1650,6 +1691,23 @@ private fun RenderComposeChildren(node: OneNativeComposeNodeView) {
         }
     }
 }
+
+@Composable
+private fun composeSegmentedButtonColors(colors: OneNativeSegmentedButtonColors): SegmentedButtonColors =
+    SegmentedButtonDefaults.colors(
+        activeBorderColor = colors.activeBorderColor?.let(::Color) ?: Color.Unspecified,
+        activeContentColor = colors.activeContentColor?.let(::Color) ?: Color.Unspecified,
+        inactiveBorderColor = colors.inactiveBorderColor?.let(::Color) ?: Color.Unspecified,
+        inactiveContentColor = colors.inactiveContentColor?.let(::Color) ?: Color.Unspecified,
+        disabledActiveBorderColor = colors.disabledActiveBorderColor?.let(::Color) ?: Color.Unspecified,
+        disabledActiveContentColor = colors.disabledActiveContentColor?.let(::Color) ?: Color.Unspecified,
+        disabledInactiveBorderColor = colors.disabledInactiveBorderColor?.let(::Color) ?: Color.Unspecified,
+        disabledInactiveContentColor = colors.disabledInactiveContentColor?.let(::Color) ?: Color.Unspecified,
+        activeContainerColor = colors.activeContainerColor?.let(::Color) ?: Color.Unspecified,
+        inactiveContainerColor = colors.inactiveContainerColor?.let(::Color) ?: Color.Unspecified,
+        disabledActiveContainerColor = colors.disabledActiveContainerColor?.let(::Color) ?: Color.Unspecified,
+        disabledInactiveContainerColor = colors.disabledInactiveContainerColor?.let(::Color) ?: Color.Unspecified,
+    )
 
 @Composable
 private fun RenderComposeButton(

@@ -84,6 +84,7 @@ import {
   validateTextFieldProps,
   validateTextProps,
   validateToggleButtonProps,
+  validateSegmentedButtonProps,
 } from './composeValidation'
 
 type ComposeNodeType =
@@ -181,6 +182,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   fabColors?: Pick<ComposeFloatingActionButtonProps, 'containerColor'>
   fabExpanded?: boolean
   toggleButtonColors?: ComposeToggleButtonProps['colors']
+  segmentedButtonColors?: ComposeSegmentedButtonProps['colors']
   loadingColors?: Readonly<{ color?: ComposeLoadingIndicatorProps['color']; containerColor?: ComposeContainedLoadingIndicatorProps['containerColor'] }>
   acknowledgedEvent?: number
   revision?: number
@@ -749,7 +751,8 @@ function MultiChoiceSegmentedButtonRow({ children, ...props }: ComposeSegmentedB
   return <ComposeNode {...props} nodeType="multichoicesegmentedbuttonrow">{children}</ComposeNode>
 }
 
-function SegmentedButton({ children, selected, checked, enabled = true, onClick, onCheckedChange, revision = 0, ...props }: ComposeSegmentedButtonProps) {
+function SegmentedButton({ children, selected, checked, enabled = true, colors, onClick, onCheckedChange, revision = 0, ...props }: ComposeSegmentedButtonProps) {
+  validateSegmentedButtonProps({ children, selected, checked, enabled, colors, onClick, onCheckedChange, revision })
   const controlled = useControlled<{ value: boolean; eventCount: number; revision: number }>(
     (event) => onCheckedChange?.(event.value), revision
   )
@@ -761,6 +764,7 @@ function SegmentedButton({ children, selected, checked, enabled = true, onClick,
       value={checked ?? false}
       disabled={!enabled}
       nativeClickable={onClick !== undefined || onCheckedChange !== undefined}
+      segmentedButtonColors={colors}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
       onNativeComposeNodeButtonPress={onClick ? () => onClick() : undefined}

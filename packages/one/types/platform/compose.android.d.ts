@@ -46,7 +46,7 @@ declare function FilledIconToggleButton(props: ComposeToggleButtonProps): import
 declare function OutlinedIconToggleButton(props: ComposeToggleButtonProps): import("react/jsx-runtime").JSX.Element;
 declare function SingleChoiceSegmentedButtonRow({ children, ...props }: ComposeSegmentedButtonRowProps): import("react/jsx-runtime").JSX.Element;
 declare function MultiChoiceSegmentedButtonRow({ children, ...props }: ComposeSegmentedButtonRowProps): import("react/jsx-runtime").JSX.Element;
-declare function SegmentedButton({ children, selected, checked, enabled, onClick, onCheckedChange, revision, ...props }: ComposeSegmentedButtonProps): import("react/jsx-runtime").JSX.Element;
+declare function SegmentedButton({ children, selected, checked, enabled, colors, onClick, onCheckedChange, revision, ...props }: ComposeSegmentedButtonProps): import("react/jsx-runtime").JSX.Element;
 declare function Switch({ isOn, disabled, label, onIsOnChange, revision, ...props }: ComposeSwitchProps): import("react/jsx-runtime").JSX.Element;
 declare function Checkbox({ value, disabled, onCheckedChange, revision, colors, ...props }: ComposeCheckboxProps): import("react/jsx-runtime").JSX.Element;
 declare function RadioButton({ selected, disabled, onClick, colors, ...props }: ComposeRadioButtonProps): import("react/jsx-runtime").JSX.Element;

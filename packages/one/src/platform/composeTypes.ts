@@ -228,11 +228,27 @@ export interface ComposeSegmentedButtonRowProps extends ComposeNodeProps {
   children: ReactNode
 }
 
+export type ComposeSegmentedButtonColors = Readonly<{
+  activeBorderColor?: ColorValue
+  activeContentColor?: ColorValue
+  inactiveBorderColor?: ColorValue
+  inactiveContentColor?: ColorValue
+  disabledActiveBorderColor?: ColorValue
+  disabledActiveContentColor?: ColorValue
+  disabledInactiveBorderColor?: ColorValue
+  disabledInactiveContentColor?: ColorValue
+  activeContainerColor?: ColorValue
+  inactiveContainerColor?: ColorValue
+  disabledActiveContainerColor?: ColorValue
+  disabledInactiveContainerColor?: ColorValue
+}>
+
 export interface ComposeSegmentedButtonProps extends ComposeNodeProps {
   children: ReactNode
   selected?: boolean
   checked?: boolean
   enabled?: boolean
+  colors?: ComposeSegmentedButtonColors
   onClick?: () => void
   onCheckedChange?: (checked: boolean) => void
   revision?: number

@@ -29,6 +29,7 @@ import type {
   ComposeTextFieldProps,
   ComposeTextProps,
   ComposeToggleButtonProps,
+  ComposeSegmentedButtonProps,
 } from './composeTypes'
 import { composeIconCodepoints, type ComposeIconName } from './generated/composeIcons'
 import { isSyncState } from './syncStore'
@@ -241,6 +242,20 @@ const toggleButtonColorKeys = new Set([
   'disabledContainerColor',
   'disabledContentColor',
 ])
+const segmentedButtonColorKeys = new Set([
+  'activeBorderColor',
+  'activeContentColor',
+  'inactiveBorderColor',
+  'inactiveContentColor',
+  'disabledActiveBorderColor',
+  'disabledActiveContentColor',
+  'disabledInactiveBorderColor',
+  'disabledInactiveContentColor',
+  'activeContainerColor',
+  'inactiveContainerColor',
+  'disabledActiveContainerColor',
+  'disabledInactiveContainerColor',
+])
 
 function assertComposeColorValue(value: unknown, name: string) {
   const resourcePaths =
@@ -442,6 +457,15 @@ export function validateToggleButtonProps(props: ComposeToggleButtonProps) {
   assertBoolean(props.enabled ?? true, 'ToggleButton enabled')
   if (props.onCheckedChange !== undefined) assertFunction(props.onCheckedChange, 'ToggleButton onCheckedChange')
   if (props.colors !== undefined) assertComposeColors(props.colors, toggleButtonColorKeys, 'ToggleButton')
+}
+
+export function validateSegmentedButtonProps(props: ComposeSegmentedButtonProps) {
+  if (props.selected !== undefined) assertBoolean(props.selected, 'SegmentedButton selected')
+  if (props.checked !== undefined) assertBoolean(props.checked, 'SegmentedButton checked')
+  assertBoolean(props.enabled ?? true, 'SegmentedButton enabled')
+  if (props.onClick !== undefined) assertFunction(props.onClick, 'SegmentedButton onClick')
+  if (props.onCheckedChange !== undefined) assertFunction(props.onCheckedChange, 'SegmentedButton onCheckedChange')
+  if (props.colors !== undefined) assertComposeColors(props.colors, segmentedButtonColorKeys, 'SegmentedButton')
 }
 
 export function validateSwitchProps(props: ComposeSwitchProps) {
