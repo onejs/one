@@ -74,7 +74,7 @@ accounts are unavailable).
 - **RAN, 2026-09-27:** `One.iOS.List` and `One.iOS.Section` now accept the
   existing `swiftStyle` modifier channel. The iPhone 17 Pro / iOS 27.0
   simulator ran native source `db32abfd6` built with Xcode 27.1 and suite
-  source `118a7d37a` (native iOS tree
+  source `17232ac50` (native iOS tree
   `c9fde9de93d0a91d333f8a29923582cfbc720db7`). The nine-check
   `list-section-modifiers` suite passed:
   `listSectionMargins` moved the first section and its Apple row from x=36
@@ -82,11 +82,14 @@ accounts are unavailable).
   44 points and back, and `listSectionSpacingWithCGFloat` moved the second
   section from y=321.33 to y=415 and back. The List crop changed 302,756
   pixels on expansion and zero on restoration. The ignored ci-64 proof at
-  `tests/native-features/build/list-section-modifiers-final-proof` contains
+  `tests/native-features/build/list-section-modifiers-reviewed-proof-2` contains
   three AX/PNG pairs, geometry/pixel measurements, outcome, Xcode log,
   generator check, environment/binary receipt, and side-by-side WebP.
   The existing `lists` (28 checks) and `containers` (32 checks, including
   two Form recycling cycles) suites passed on that installed binary.
+  Read-only high review s540 found no code blockers. Its requested control
+  now checks that the unstyled second header and Banana row keep x=36 while
+  the first section moves, and the docs state the remaining proof limits.
   Other section modifiers, these modifiers inside Form, and other List styles
   remain unproven.
 
