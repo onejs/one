@@ -32,7 +32,7 @@ Out of scope unless an app needs it: `Table` (iPad), `NavigationSplitView` and
 `TimelineView`/`Canvas` (closures over native state), document and scene types.
 
 Bound but never exercised by a suite (`tests/native-features/COVERAGE.md`):
-`ContextMenu`, `FullScreenCover`, `ShareLink`, `ContentUnavailableView`,
+`ShareLink`, `ContentUnavailableView`,
 `PhotosPicker`, `WebView`, `ZStack`, `Spacer`, `LabeledContent`, `Glass`,
 `EditButton`, `EmptyView`, `TabViewSlot`. A suite per family closes these.
 
@@ -50,7 +50,7 @@ The remaining partial surfaces are:
 | pickers | standalone controls work; `navigationLink` and `palette` Picker styles are rejected without their native container context | after core views |
 | popovers | trigger and React Native presentation body work; `attachmentAnchor` is not bound | after core views |
 | navigation | `NavigationStack` and toolbars exist; `NavigationSplitView` and `NavigationLink` are outside this lane because One owns routed navigation | coordinate before admission |
-| bound views without a suite | `ContextMenu`, `FullScreenCover`, `ShareLink`, `ContentUnavailableView`, `PhotosPicker`, `WebView`, `ZStack`, `Spacer`, `LabeledContent`, `Glass`, `EditButton`, `EmptyView`, and `TabViewSlot` | family suites after new views |
+| bound views without a suite | `ShareLink`, `ContentUnavailableView`, `PhotosPicker`, `WebView`, `ZStack`, `Spacer`, `LabeledContent`, `Glass`, `EditButton`, `EmptyView`, and `TabViewSlot` | family suites after new views |
 
 ## Order
 
@@ -109,6 +109,20 @@ accounts are unavailable).
   In a SwiftUI capsule container, its blue center and white rounded corner
   differ from the blue square corner of a `Rectangle` control. The screenshot
   is in the local ignored `tests/native-features/build/concentric-proof` directory.
+- **RAN, 2026-09-26:** `GlassEffectContainer` passed `generate:check`, 41
+  focused JS tests, an arm64 iOS 27 build, and the `glass-container` suite.
+  Native screenshots show separate capsules at zero spacing and merged glass
+  at 60; the suite also exercised omitted and signed spacing, a composed
+  button action, and measured height. Screenshots are in the local ignored
+  `tests/native-features/build/glass-container-proof` directory.
+- **RAN, 2026-09-26:** `FullScreenCover` and `ContextMenu` passed the
+  `cover-context` suite on the iPhone 17 Pro iOS 27 simulator. The suite
+  checked full-screen React content geometry, dismissal callbacks, the
+  closed-state controls, long press versus tap, native Copy and Pin delivery,
+  menu reopening, and outside-tap dismissal. The reopened menu screenshot
+  shows iOS's Pin checkmark; iOS 27 does not expose it as an accessibility
+  value. Screenshots and trace are in the local ignored
+  `tests/native-features/build/cover-context-proof` directory.
 - **INFERRED, 2026-09-26:** `MultiDatePicker` needs a public representation of
   SwiftUI's selected date set, so that API choice stays on a named branch for
   Nate.

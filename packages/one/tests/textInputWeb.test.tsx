@@ -1,35 +1,19 @@
-import { createElement, forwardRef, useImperativeHandle } from 'react'
 import { act, create } from 'react-test-renderer'
 import { describe, expect, it, vi } from 'vitest'
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true
 
-// stub the RN TextInput: react-native-web needs a DOM, and these tests pin
-// our wiring (value mapping, handle writes, ref shape), not RN-web itself.
-vi.mock('react-native', () => ({
-  StyleSheet: { create: (styles: unknown) => styles },
-  TextInput: forwardRef((props: Record<string, unknown>, ref) => {
-    useImperativeHandle(ref, () => ({
-      focus: () => {},
-      blur: () => {},
-      isFocused: () => false,
-      setSelection: () => {},
-    }))
-    return createElement('one-text-input', props)
-  }),
-}))
-
 import { useNativeState } from '../src/platform/syncNativeState'
 import { TextInput } from '../src/platform/universal/TextInput/index'
 import type { TextInputRef } from '../src/platform/universal/TextInput/textInputTypes'
 
-type StubProps = {
+type InputProps = {
   value: string
-  onChangeText: (text: string) => void
+  onChange: (event: { currentTarget: { value: string } }) => void
 }
 
-function stubProps(tree: ReturnType<typeof create>): StubProps {
-  return tree.root.findByType('one-text-input' as never).props as StubProps
+function inputProps(tree: ReturnType<typeof create>): InputProps {
+  return tree.root.findByType('input' as never).props as InputProps
 }
 
 // consumer-perspective tests for the web input: uncontrolled default,
@@ -40,7 +24,7 @@ describe('universal TextInput on web', () => {
     act(() => {
       tree = create(<TextInput defaultValue="hello" />)
     })
-    expect(stubProps(tree).value).toBe('hello')
+    expect(inputProps(tree).value).toBe('hello')
   })
 
   it('converges a controlled handle written outside React', () => {
@@ -54,11 +38,11 @@ describe('universal TextInput on web', () => {
     act(() => {
       tree = create(<Reader />)
     })
-    expect(stubProps(tree).value).toBe('one')
+    expect(inputProps(tree).value).toBe('one')
     act(() => {
       handle.set('two')
     })
-    expect(stubProps(tree).value).toBe('two')
+    expect(inputProps(tree).value).toBe('two')
   })
 
   it('writes keystrokes into the handle and notifies', () => {
@@ -67,12 +51,12 @@ describe('universal TextInput on web', () => {
     act(() => {
       tree = create(<TextInput defaultValue="a" onChangeText={onChangeText} />)
     })
-    expect(stubProps(tree).value).toBe('a')
+    expect(inputProps(tree).value).toBe('a')
     act(() => {
-      stubProps(tree).onChangeText('ab')
+      inputProps(tree).onChange({ currentTarget: { value: 'ab' } })
     })
     expect(onChangeText).toHaveBeenCalledWith('ab')
-    expect(stubProps(tree).value).toBe('ab')
+    expect(inputProps(tree).value).toBe('ab')
   })
 
   it('exposes the imperative ref', async () => {
@@ -100,7 +84,7 @@ describe('universal TextInput on web', () => {
     act(() => {
       ref!.clear()
     })
-    expect(stubProps(tree).value).toBe('')
+    expect(inputProps(tree).value).toBe('')
     await expect(ref!.setSelection(0, 1)).resolves.toBeUndefined()
   })
 })
