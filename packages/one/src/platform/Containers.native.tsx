@@ -17,6 +17,7 @@ import NativeGlass from './specs/OneNativeGlassNativeComponent'
 import NativeGroup from './specs/OneNativeGroupNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
 import NativeLabeledContent from './specs/OneNativeLabeledContentNativeComponent'
+import NativeGroupBox from './specs/OneNativeGroupBoxNativeComponent'
 import NativeLazyHStack from './specs/OneNativeLazyHStackNativeComponent'
 import NativeLazyVStack from './specs/OneNativeLazyVStackNativeComponent'
 import NativeLazyVGrid from './specs/OneNativeLazyVGridNativeComponent'
@@ -54,6 +55,7 @@ import {
   type DisclosureGroupProps,
   type DividerProps,
   type GroupProps,
+  type GroupBoxProps,
   type LinkProps,
   type OverlayContentProps,
   type OverlayProps,
@@ -98,7 +100,7 @@ import {
 export { InsideContainer, assertOneNativeChildren }
 
 const containers =
-  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.List, Swift.ScrollView, Swift.LazyVStack, Swift.LazyHStack, Swift.LazyVGrid, Swift.LazyHGrid, Swift.Grid, Swift.GridRow, Swift.ControlGroup, Swift.DisclosureGroup, Swift.Link, Swift.Group, Swift.Overlay, Swift.SwipeActions, Swift.NavigationStack, Swift.Toolbar, or Swift.ToolbarItem'
+  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.GroupBox, Swift.List, Swift.ScrollView, Swift.LazyVStack, Swift.LazyHStack, Swift.LazyVGrid, Swift.LazyHGrid, Swift.Grid, Swift.GridRow, Swift.ControlGroup, Swift.DisclosureGroup, Swift.Link, Swift.Group, Swift.Overlay, Swift.SwipeActions, Swift.NavigationStack, Swift.Toolbar, or Swift.ToolbarItem'
 
 function nativeEnvironmentProps({
   colorScheme,
@@ -466,6 +468,17 @@ export function LabeledContent({
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeLabeledContent>
+  )
+}
+
+export function GroupBox({ label, children, style, ...props }: GroupBoxProps) {
+  if (label !== undefined && typeof label !== 'string')
+    throw new Error('GroupBox label must be a string when provided')
+  assertOneNativeChildren(children, 'Swift.GroupBox')
+  return (
+    <NativeGroupBox {...props} label={label ?? ''} style={[{ alignSelf: 'stretch' }, style]}>
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeGroupBox>
   )
 }
 

@@ -164,6 +164,7 @@ describe('compose surface', () => {
       'AlertDialog',
       'Dialog',
       'ProgressIndicator',
+      'Spacer',
     ])
       expect(
         () => (Unsupported as Record<string, (props: object) => unknown>)[name]({}),

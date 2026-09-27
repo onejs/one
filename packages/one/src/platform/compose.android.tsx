@@ -39,6 +39,7 @@ import type {
   ComposeProgressVariant,
   ComposeRadioButtonProps,
   ComposeRowProps,
+  ComposeSpacerProps,
   ComposeSegmentedButtonProps,
   ComposeSegmentedButtonRowProps,
   ComposeSliderProps,
@@ -90,6 +91,7 @@ import {
 type ComposeNodeType =
   | 'column'
   | 'row'
+  | 'spacer'
   | 'flowrow'
   | 'box'
   | 'badge'
@@ -161,6 +163,12 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   checkboxColors?: ComposeCheckboxProps['colors']
   selected?: boolean
   radioColors?: ComposeRadioButtonProps['colors']
+  switchColors?: ComposeSwitchProps['colors']
+  sliderOptions?: Readonly<{
+    lowerLimit?: number
+    upperLimit?: number
+    colors?: ComposeSliderProps['colors']
+  }>
   cardColors?: ComposeCardProps['colors']
   surfaceMode?: 'plain' | 'clickable' | 'selectable' | 'toggleable'
   badgeColors?: Pick<ComposeBadgeProps, 'containerColor' | 'contentColor'>
@@ -233,6 +241,7 @@ const ComposeContext = createContext(false)
 
 const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
   'text',
+  'spacer',
   'icon',
   'button',
   'switch',
@@ -315,6 +324,10 @@ function Row({
       {children}
     </ComposeNode>
   )
+}
+
+function Spacer(props: ComposeSpacerProps) {
+  return <ComposeNode {...props} nodeType="spacer" />
 }
 
 function FlowRow({
@@ -779,11 +792,12 @@ function Switch({
   isOn,
   disabled = false,
   label = '',
+  colors,
   onIsOnChange,
   revision = 0,
   ...props
 }: ComposeSwitchProps) {
-  validateSwitchProps({ isOn, disabled, label, onIsOnChange, revision })
+  validateSwitchProps({ isOn, disabled, label, colors, onIsOnChange, revision })
   const controlled = useControlled<{
     value: boolean
     eventCount: number
@@ -797,6 +811,7 @@ function Switch({
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
       label={label}
+      switchColors={colors}
       disabled={disabled}
       onNativeComposeNodeBooleanValueChange={(event) =>
         controlled.onNativeChange(event.nativeEvent)
@@ -959,8 +974,11 @@ function Slider({
   revision = 0,
   minimumValue = 0,
   maximumValue = 1,
+  lowerLimit,
+  upperLimit,
   step = 0,
   disabled = false,
+  colors,
   ...props
 }: ComposeSliderProps) {
   validateSliderProps({
@@ -969,8 +987,11 @@ function Slider({
     revision,
     minimumValue,
     maximumValue,
+    lowerLimit,
+    upperLimit,
     step,
     disabled,
+    colors,
   })
   const controlled = useControlled<{
     value: number
@@ -984,6 +1005,7 @@ function Slider({
       numberValue={value}
       minimumValue={minimumValue}
       maximumValue={maximumValue}
+      sliderOptions={{ lowerLimit, upperLimit, colors }}
       step={step}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1101,6 +1123,7 @@ function ContainedLoadingIndicator({ progress, color, containerColor, ...props }
 export const Compose = {
   Column,
   Row,
+  Spacer,
   FlowRow,
   Box,
   Badge,

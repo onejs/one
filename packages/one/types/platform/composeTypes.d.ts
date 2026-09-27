@@ -15,6 +15,7 @@ export type ComposeStyle = Readonly<{
     height?: number;
     fillMaxWidth?: boolean;
     fillMaxHeight?: boolean;
+    weight?: number;
     cornerRadius?: number;
     opacity?: number;
     borderColor?: ColorValue;
@@ -47,6 +48,7 @@ export interface ComposeRowProps extends ComposeNodeProps {
 export interface ComposeBoxProps extends ComposeNodeProps {
     contentAlignment?: ComposeContentAlignment;
 }
+export type ComposeSpacerProps = ComposeLeafProps;
 export interface ComposeFlowRowProps extends ComposeNodeProps {
     horizontalArrangement?: ComposeHorizontalArrangement | Readonly<{
         spacedBy: number;
@@ -173,10 +175,29 @@ export interface ComposeSegmentedButtonProps extends ComposeNodeProps {
     onCheckedChange?: (checked: boolean) => void;
     revision?: number;
 }
+export type ComposeSwitchColors = Readonly<{
+    checkedThumbColor?: ColorValue;
+    checkedTrackColor?: ColorValue;
+    checkedBorderColor?: ColorValue;
+    checkedIconColor?: ColorValue;
+    uncheckedThumbColor?: ColorValue;
+    uncheckedTrackColor?: ColorValue;
+    uncheckedBorderColor?: ColorValue;
+    uncheckedIconColor?: ColorValue;
+    disabledCheckedThumbColor?: ColorValue;
+    disabledCheckedTrackColor?: ColorValue;
+    disabledCheckedBorderColor?: ColorValue;
+    disabledCheckedIconColor?: ColorValue;
+    disabledUncheckedThumbColor?: ColorValue;
+    disabledUncheckedTrackColor?: ColorValue;
+    disabledUncheckedBorderColor?: ColorValue;
+    disabledUncheckedIconColor?: ColorValue;
+}>;
 export interface ComposeSwitchProps extends ComposeLeafProps {
     isOn: boolean;
     disabled?: boolean;
     label?: string;
+    colors?: ComposeSwitchColors;
     onIsOnChange: (value: boolean) => void;
     revision?: number;
 }
@@ -294,8 +315,17 @@ export interface ComposeSliderProps extends ComposeLeafProps {
     revision?: number;
     minimumValue?: number;
     maximumValue?: number;
+    lowerLimit?: number;
+    upperLimit?: number;
     step?: number;
     disabled?: boolean;
+    colors?: Readonly<{
+        thumbColor?: ColorValue;
+        activeTrackColor?: ColorValue;
+        inactiveTrackColor?: ColorValue;
+        activeTickColor?: ColorValue;
+        inactiveTickColor?: ColorValue;
+    }>;
 }
 export interface ComposeAlertDialogProps extends ComposeLeafProps {
     visible: boolean;

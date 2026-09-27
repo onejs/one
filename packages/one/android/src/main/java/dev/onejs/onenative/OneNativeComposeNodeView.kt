@@ -98,7 +98,9 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Surface
@@ -218,6 +220,47 @@ internal data class OneNativeRadioColors(
     }
 }
 
+internal data class OneNativeSwitchColors(
+    val checkedThumbColor: Int? = null,
+    val checkedTrackColor: Int? = null,
+    val checkedBorderColor: Int? = null,
+    val checkedIconColor: Int? = null,
+    val uncheckedThumbColor: Int? = null,
+    val uncheckedTrackColor: Int? = null,
+    val uncheckedBorderColor: Int? = null,
+    val uncheckedIconColor: Int? = null,
+    val disabledCheckedThumbColor: Int? = null,
+    val disabledCheckedTrackColor: Int? = null,
+    val disabledCheckedBorderColor: Int? = null,
+    val disabledCheckedIconColor: Int? = null,
+    val disabledUncheckedThumbColor: Int? = null,
+    val disabledUncheckedTrackColor: Int? = null,
+    val disabledUncheckedBorderColor: Int? = null,
+    val disabledUncheckedIconColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSwitchColors =
+            if (map == null) OneNativeSwitchColors() else OneNativeSwitchColors(
+                checkedThumbColor = readComposeColor(map, "checkedThumbColor", context),
+                checkedTrackColor = readComposeColor(map, "checkedTrackColor", context),
+                checkedBorderColor = readComposeColor(map, "checkedBorderColor", context),
+                checkedIconColor = readComposeColor(map, "checkedIconColor", context),
+                uncheckedThumbColor = readComposeColor(map, "uncheckedThumbColor", context),
+                uncheckedTrackColor = readComposeColor(map, "uncheckedTrackColor", context),
+                uncheckedBorderColor = readComposeColor(map, "uncheckedBorderColor", context),
+                uncheckedIconColor = readComposeColor(map, "uncheckedIconColor", context),
+                disabledCheckedThumbColor = readComposeColor(map, "disabledCheckedThumbColor", context),
+                disabledCheckedTrackColor = readComposeColor(map, "disabledCheckedTrackColor", context),
+                disabledCheckedBorderColor = readComposeColor(map, "disabledCheckedBorderColor", context),
+                disabledCheckedIconColor = readComposeColor(map, "disabledCheckedIconColor", context),
+                disabledUncheckedThumbColor = readComposeColor(map, "disabledUncheckedThumbColor", context),
+                disabledUncheckedTrackColor = readComposeColor(map, "disabledUncheckedTrackColor", context),
+                disabledUncheckedBorderColor = readComposeColor(map, "disabledUncheckedBorderColor", context),
+                disabledUncheckedIconColor = readComposeColor(map, "disabledUncheckedIconColor", context),
+            )
+    }
+}
+
 internal data class OneNativeCardColors(
     val containerColor: Int? = null,
     val contentColor: Int? = null,
@@ -312,6 +355,36 @@ internal data class OneNativeLoadingColors(
                 color = readComposeColor(map, "color", context),
                 containerColor = readComposeColor(map, "containerColor", context),
             )
+    }
+}
+
+internal data class OneNativeSliderOptions(
+    val lowerLimit: Float? = null,
+    val upperLimit: Float? = null,
+    val thumbColor: Int? = null,
+    val activeTrackColor: Int? = null,
+    val inactiveTrackColor: Int? = null,
+    val activeTickColor: Int? = null,
+    val inactiveTickColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSliderOptions {
+            if (map == null) return OneNativeSliderOptions()
+            val colors = if (map.hasKey("colors") && !map.isNull("colors")) map.getMap("colors") else null
+            fun number(name: String): Float? =
+                if (map.hasKey(name) && !map.isNull(name) && map.getType(name) == ReadableType.Number)
+                    map.getDouble(name).takeIf { it.isFinite() }?.toFloat()
+                else null
+            return OneNativeSliderOptions(
+                lowerLimit = number("lowerLimit"),
+                upperLimit = number("upperLimit"),
+                thumbColor = colors?.let { readComposeColor(it, "thumbColor", context) },
+                activeTrackColor = colors?.let { readComposeColor(it, "activeTrackColor", context) },
+                inactiveTrackColor = colors?.let { readComposeColor(it, "inactiveTrackColor", context) },
+                activeTickColor = colors?.let { readComposeColor(it, "activeTickColor", context) },
+                inactiveTickColor = colors?.let { readComposeColor(it, "inactiveTickColor", context) },
+            )
+        }
     }
 }
 
@@ -458,6 +531,7 @@ internal data class OneNativeComposeStyle(
     val height: Double = -1.0,
     val fillMaxWidth: Boolean = false,
     val fillMaxHeight: Boolean = false,
+    val weight: Double = -1.0,
     val cornerRadius: Double = -1.0,
     val opacity: Double = -1.0,
     val borderColor: Int? = null,
@@ -489,6 +563,7 @@ internal data class OneNativeComposeStyle(
                 height = number("height"),
                 fillMaxWidth = boolean("fillMaxWidth"),
                 fillMaxHeight = boolean("fillMaxHeight"),
+                weight = number("weight"),
                 cornerRadius = number("cornerRadius"),
                 opacity = number("opacity"),
                 borderColor = readComposeColor(map, "borderColor", context),
@@ -517,6 +592,7 @@ internal data class OneNativeComposeNodeProps(
     val checkboxColors: OneNativeCheckboxColors = OneNativeCheckboxColors(),
     val selected: Boolean = false,
     val radioColors: OneNativeRadioColors = OneNativeRadioColors(),
+    val switchColors: OneNativeSwitchColors = OneNativeSwitchColors(),
     val cardColors: OneNativeCardColors = OneNativeCardColors(),
     val surfaceMode: String? = null,
     val iconButtonColors: OneNativeIconButtonColors = OneNativeIconButtonColors(),
@@ -560,6 +636,7 @@ internal data class OneNativeComposeNodeProps(
     val minimumValue: Double = 0.0,
     val maximumValue: Double = 1.0,
     val step: Double = 0.0,
+    val sliderOptions: OneNativeSliderOptions = OneNativeSliderOptions(),
     val visible: Boolean = false,
     val title: String? = null,
     val message: String? = null,
@@ -824,6 +901,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         pendingProps = pendingProps.copy(radioColors = OneNativeRadioColors.fromMap(value, context))
     }
 
+    internal fun stageSwitchColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(switchColors = OneNativeSwitchColors.fromMap(value, context))
+    }
+
     internal fun stageCardColors(value: ReadableMap?) {
         pendingProps = pendingProps.copy(cardColors = OneNativeCardColors.fromMap(value, context))
     }
@@ -994,6 +1075,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageStep(value: Double) {
         pendingProps = pendingProps.copy(step = value)
+    }
+
+    internal fun stageSliderOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(sliderOptions = OneNativeSliderOptions.fromMap(value, context))
     }
 
     internal fun stageVisible(value: Boolean) {
@@ -1261,7 +1346,12 @@ private fun RenderComposeNodeBody(
                 verticalArrangement = columnArrangement(props.arrangement, props.spacing),
                 horizontalAlignment = columnAlignment(props.alignment),
             ) {
-                RenderComposeChildren(node)
+                node.renderedChildren.forEach { child ->
+                    key(child) {
+                        val weight = child.renderedProps.composeStyle.weight
+                        RenderComposeNode(child, if (weight > 0) Modifier.weight(weight.toFloat()) else Modifier)
+                    }
+                }
             }
         "row" ->
             Row(
@@ -1269,8 +1359,14 @@ private fun RenderComposeNodeBody(
                 horizontalArrangement = rowArrangement(props.arrangement, props.spacing),
                 verticalAlignment = rowAlignment(props.alignment),
             ) {
-                RenderComposeChildren(node)
+                node.renderedChildren.forEach { child ->
+                    key(child) {
+                        val weight = child.renderedProps.composeStyle.weight
+                        RenderComposeNode(child, if (weight > 0) Modifier.weight(weight.toFloat()) else Modifier)
+                    }
+                }
             }
+        "spacer" -> Spacer(modifier = modifier)
         "singlechoicesegmentedbuttonrow" ->
             SingleChoiceSegmentedButtonRow(modifier = modifier) {
                 node.renderedChildren.forEachIndexed { index, child ->
@@ -2009,12 +2105,32 @@ private fun RenderComposeSwitch(
     modifier: Modifier,
 ) {
     val enabled = !props.disabled && node.isEnabled
+    val overrides = props.switchColors
+    val colors = SwitchDefaults.colors(
+        checkedThumbColor = overrides.checkedThumbColor?.let(::Color) ?: Color.Unspecified,
+        checkedTrackColor = overrides.checkedTrackColor?.let(::Color) ?: Color.Unspecified,
+        checkedBorderColor = overrides.checkedBorderColor?.let(::Color) ?: Color.Unspecified,
+        checkedIconColor = overrides.checkedIconColor?.let(::Color) ?: Color.Unspecified,
+        uncheckedThumbColor = overrides.uncheckedThumbColor?.let(::Color) ?: Color.Unspecified,
+        uncheckedTrackColor = overrides.uncheckedTrackColor?.let(::Color) ?: Color.Unspecified,
+        uncheckedBorderColor = overrides.uncheckedBorderColor?.let(::Color) ?: Color.Unspecified,
+        uncheckedIconColor = overrides.uncheckedIconColor?.let(::Color) ?: Color.Unspecified,
+        disabledCheckedThumbColor = overrides.disabledCheckedThumbColor?.let(::Color) ?: Color.Unspecified,
+        disabledCheckedTrackColor = overrides.disabledCheckedTrackColor?.let(::Color) ?: Color.Unspecified,
+        disabledCheckedBorderColor = overrides.disabledCheckedBorderColor?.let(::Color) ?: Color.Unspecified,
+        disabledCheckedIconColor = overrides.disabledCheckedIconColor?.let(::Color) ?: Color.Unspecified,
+        disabledUncheckedThumbColor = overrides.disabledUncheckedThumbColor?.let(::Color) ?: Color.Unspecified,
+        disabledUncheckedTrackColor = overrides.disabledUncheckedTrackColor?.let(::Color) ?: Color.Unspecified,
+        disabledUncheckedBorderColor = overrides.disabledUncheckedBorderColor?.let(::Color) ?: Color.Unspecified,
+        disabledUncheckedIconColor = overrides.disabledUncheckedIconColor?.let(::Color) ?: Color.Unspecified,
+    )
     if (props.label.isNullOrEmpty()) {
         Switch(
             checked = node.renderedBooleanValue,
             onCheckedChange = node::handleBooleanChanged,
             modifier = modifier,
             enabled = enabled,
+            colors = colors,
         )
     } else {
         Row(
@@ -2033,6 +2149,7 @@ private fun RenderComposeSwitch(
                 checked = node.renderedBooleanValue,
                 onCheckedChange = null,
                 enabled = enabled,
+                colors = colors,
             )
         }
     }
@@ -2142,7 +2259,10 @@ private fun RenderComposeSlider(
     val maximum =
         suppliedMaximum.toFloat()
     val range = if (minimum < maximum) minimum..maximum else 0f..1f
-    val coerced = node.renderedNumberValue.toFloat().coerceIn(range)
+    val options = props.sliderOptions
+    val lower = maxOf(range.start, options.lowerLimit ?: range.start)
+    val upper = minOf(range.endInclusive, options.upperLimit ?: range.endInclusive)
+    val coerced = node.renderedNumberValue.toFloat().coerceIn(lower, upper)
     val step = props.step.takeIf { it.isFinite() } ?: 0.0
     val intervalCount =
         if (step > 0) {
@@ -2159,9 +2279,9 @@ private fun RenderComposeSlider(
                 if (step > 0) {
                     val offset = value.toDouble() - suppliedMinimum
                     (suppliedMinimum + (offset / step).roundToInt() * step)
-                        .coerceIn(suppliedMinimum, suppliedMaximum)
+                        .coerceIn(lower.toDouble(), upper.toDouble())
                 } else {
-                    value.toDouble()
+                    value.toDouble().coerceIn(lower.toDouble(), upper.toDouble())
                 }
             node.handleNumberChanged(next)
         },
@@ -2169,6 +2289,13 @@ private fun RenderComposeSlider(
         enabled = enabled,
         valueRange = range,
         steps = steps,
+        colors = SliderDefaults.colors(
+            thumbColor = options.thumbColor?.let(::Color) ?: Color.Unspecified,
+            activeTrackColor = options.activeTrackColor?.let(::Color) ?: Color.Unspecified,
+            inactiveTrackColor = options.inactiveTrackColor?.let(::Color) ?: Color.Unspecified,
+            activeTickColor = options.activeTickColor?.let(::Color) ?: Color.Unspecified,
+            inactiveTickColor = options.inactiveTickColor?.let(::Color) ?: Color.Unspecified,
+        ),
     )
 }
 

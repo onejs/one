@@ -170,6 +170,10 @@ class OneNativeComposeNodeManager :
         view.stageRadioColors(value)
     }
 
+    override fun setSwitchColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageSwitchColors(value)
+    }
+
     override fun setCardColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageCardColors(value)
     }
@@ -340,6 +344,10 @@ class OneNativeComposeNodeManager :
 
     override fun setStep(view: OneNativeComposeNodeView, value: Double) {
         view.stageStep(value)
+    }
+
+    override fun setSliderOptions(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageSliderOptions(value)
     }
 
     override fun setVisible(view: OneNativeComposeNodeView, value: Boolean) {

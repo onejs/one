@@ -3052,6 +3052,29 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeGroupBox",
+      "publicName": "GroupBox",
+      "props": {
+        "label": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativeButton",
       "publicName": "Button",
       "props": {

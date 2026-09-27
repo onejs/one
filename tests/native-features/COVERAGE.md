@@ -26,7 +26,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Section` | containers, lists, groups, popover, accessibility | n/a |  |
 | `One.iOS.Glass` | missing | n/a | no fixture or suite |
 | `One.iOS.LabeledContent` | missing | n/a | no fixture or suite |
-| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, group-box, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Spacer` | missing | n/a | no fixture or suite |
 | `One.iOS.Slot` | containers | n/a |  |
 | `One.iOS.List` | lists, groups | n/a |  |
@@ -42,6 +42,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Divider` | groups | n/a |  |
 | `One.iOS.Link` | groups | n/a |  |
 | `One.iOS.Group` | groups | n/a |  |
+| `One.iOS.GroupBox` | group-box | n/a |  |
 | `One.iOS.Overlay` | groups | n/a |  |
 | `One.iOS.ViewSlot` | missing | n/a | only the autogen fixture, which no suite opens |
 | `One.iOS.SwipeActions` | groups | n/a |  |
@@ -59,7 +60,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Slider` | pickers, forms | n/a |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a |  |
 | `One.iOS.PasteButton` | paste-button | n/a |  |
-| `One.iOS.Text` | containers, lists, groups, state, grids, popover, accessibility | n/a |  |
+| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, popover, accessibility | n/a |  |
 | `One.iOS.Label` | leaves, containers | n/a |  |
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |
@@ -107,7 +108,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ZoomTransitionEnabler` | missing | n/a | on zoom-detail, which the zoom e2e reaches only by tap |
 | `One.iOS.ZoomTransitionSource` | e2e:zoom-test | n/a |  |
 | `One.Android.Column` | n/a | android, android-inputs, android-progress, android-segmented, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
-| `One.Android.Row` | n/a | android, android-inputs, android-progress, android-loading, android-badges, android-icon-buttons, android-selection, android-dividers |  |
+| `One.Android.Row` | n/a | android, android-inputs, android-progress, android-loading, android-badges, android-flow-row, android-icon-buttons, android-selection, android-dividers |  |
+| `One.Android.Spacer` | n/a | android-flow-row |  |
 | `One.Android.FlowRow` | n/a | android-flow-row |  |
 | `One.Android.Box` | n/a | android, android-inputs, android-flow-row |  |
 | `One.Android.Badge` | n/a | android-badges |  |

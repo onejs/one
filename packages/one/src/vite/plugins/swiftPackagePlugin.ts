@@ -2,17 +2,14 @@ import { existsSync, readFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
 import { swiftPackageDirOf, swiftPackageId } from 'vxrn/swift-package-id'
-import {
-  writeNativeSourceDeclaration,
-  writeSwiftPackageArtifacts,
-} from 'vxrn/native-source-contract'
 import type { Plugin } from 'vite'
 
 // on device a .swift import is the swift package compiled into the app by
 // prebuild (see vxrn generateSwiftPackages): the module is a host view naming
 // the package, with the importer's props passed through as json. an imported
 // file whose @main type is an App is a whole swift app, so its root fills the
-// screen instead of sizing to its content.
+// screen instead of sizing to its content. the contract parser loads on the
+// first .swift import, so an app without one never evaluates it.
 export function swiftPackagePlugin(platform: 'ios' | 'android', root: string): Plugin {
   const appManifest = join(root, 'package.json')
   const app = existsSync(appManifest) ? JSON.parse(readFileSync(appManifest, 'utf8')) : {}
@@ -21,7 +18,7 @@ export function swiftPackagePlugin(platform: 'ios' | 'android', root: string): P
     name: 'one:swift-package',
     load: {
       filter: { id: /\.swift$/ },
-      handler(id) {
+      async handler(id) {
         if (platform !== 'ios') {
           throw new Error(`[one] ${id} is Swift source and cannot be imported into an Android build; use an .android.ts entry`)
         }
@@ -30,6 +27,9 @@ export function swiftPackagePlugin(platform: 'ios' | 'android', root: string): P
         if (!packageDir) {
           throw new Error(`[one] ${id} is not inside a swift package (no Package.swift above it)`)
         }
+        const { writeNativeSourceDeclaration, writeSwiftPackageArtifacts } = await import(
+          'vxrn/native-source-contract'
+        )
         const contract = writeNativeSourceDeclaration(id)
         const packageName = swiftPackageId(packageDir)
         const artifacts = writeSwiftPackageArtifacts(packageDir)
