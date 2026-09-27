@@ -76,6 +76,8 @@ accounts are unavailable).
   SwiftUI `safeAreaBarWithHorizontalEdge` slot placed its action beside the
   base for `leading` and `trailing`; the measured boundaries differ by under
   0.2 point and all four elements stay inside their 280 × 180 point hosts.
+  After high review, the runtime gate also rejects either edge gap above 2
+  points, and the exact suite revision passed again on iOS 27.
   Both native button actions reached React. The tracked
   `tests/native-features/proofs/horizontal-bar` bundle contains two AX/PNG
   pairs, measurements, outcome, a WebP, and source/runtime/binary receipt.
