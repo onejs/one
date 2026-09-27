@@ -94,7 +94,8 @@ checked native search edits and external React updates. The proof does not
 measure how long the native refresh indicator remains visible.
 The search field appeared in the NavigationStack's toolbar. A standalone List
 host did not present a search field in that run. ScrollView refresh and search
-remain unproven.
+have a separate vertical-scroll proof below. Native indicator duration remains
+unmeasured for both containers.
 
 Rows support swipe actions through
 [Swift.SwipeActions](/native/ios-groups). An `EditButton` composed inside the
@@ -149,6 +150,14 @@ the original values restored the inset and red separator.
 `One.iOS.ScrollView` scrolls its children. `axes` is `'vertical'`,
 `'horizontal'`, or `'both'`; `showsIndicators` toggles the scroll
 indicators; `swiftStyle` applies native modifiers.
+
+For a vertical ScrollView, `swiftStyle.refreshable` invokes a callback when
+the user pulls down. Place the ScrollView inside `NavigationStack` and put
+`swiftStyle.searchable` on the stack to show the native search field. The
+search text is controlled by React state, as in the List example above.
+An iOS 27 simulator proof covered two successive callback invocations,
+external query changes, and typing in the native field. It did not measure
+the refresh indicator's duration or exercise horizontal and both-axis scrolls.
 
 ## LazyVStack, LazyHStack
 

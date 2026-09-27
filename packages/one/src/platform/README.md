@@ -1268,7 +1268,8 @@ the query and filters the List rows. An iOS 27 simulator proof covers two
 successive callback invocations, native search typing, and an external query
 update. The proof does not measure native refresh indicator duration. A
 standalone List host did not present the search field in that run; ScrollView
-refresh and search are still unproven.
+refresh and search have a separate vertical-scroll proof below. Native
+indicator duration remains unmeasured for both containers.
 
 `One.iOS.ViewSlot name="safeAreaBarWithVerticalEdge"` takes
 `options={{ edge: 'top' }}` or `options={{ edge: 'bottom' }}` on iOS 26 or newer. The native
@@ -1279,6 +1280,12 @@ actions have an iOS 27 simulator proof.
 horizontally with `axes="horizontal"`, or both ways with `axes="both"`.
 `showsIndicators` hides the scroll bars when false. It is greedy the same way
 a list is, so it also needs its own box.
+For a vertical ScrollView, `swiftStyle.refreshable` invokes an async callback
+on a pull. A surrounding `NavigationStack` with `swiftStyle.searchable`
+provides the native search field and controlled text binding. An iOS 27
+simulator proof covers two callback invocations and both directions of the
+search binding; refresh indicator duration and horizontal/both-axis cases
+remain unmeasured.
 
 ```tsx
 <One.iOS.ScrollView style={{ height: 200 }}>
