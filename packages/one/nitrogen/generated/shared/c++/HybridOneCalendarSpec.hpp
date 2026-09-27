@@ -19,6 +19,10 @@ namespace margelo::nitro::one { enum class CalendarPermissionStatus; }
 namespace margelo::nitro::one { struct CalendarEvent; }
 // Forward declaration of `CalendarEventInput` to properly resolve imports.
 namespace margelo::nitro::one { struct CalendarEventInput; }
+// Forward declaration of `ReminderInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct ReminderInfo; }
+// Forward declaration of `ReminderInput` to properly resolve imports.
+namespace margelo::nitro::one { struct ReminderInput; }
 
 #include "CalendarPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
@@ -26,6 +30,8 @@ namespace margelo::nitro::one { struct CalendarEventInput; }
 #include <vector>
 #include <string>
 #include "CalendarEventInput.hpp"
+#include "ReminderInfo.hpp"
+#include "ReminderInput.hpp"
 
 namespace margelo::nitro::one {
 
@@ -63,6 +69,12 @@ namespace margelo::nitro::one {
       virtual std::shared_ptr<Promise<std::vector<CalendarEvent>>> list(double startMs, double endMs, double limit) = 0;
       virtual std::shared_ptr<Promise<std::string>> create(const CalendarEventInput& input) = 0;
       virtual std::shared_ptr<Promise<void>> remove(const std::string& identifier, double startMs) = 0;
+      virtual CalendarPermissionStatus getRemindersPermissionStatus() = 0;
+      virtual std::shared_ptr<Promise<CalendarPermissionStatus>> requestRemindersPermission() = 0;
+      virtual std::shared_ptr<Promise<std::vector<ReminderInfo>>> listReminders(double limit, bool includeCompleted) = 0;
+      virtual std::shared_ptr<Promise<std::string>> createReminder(const ReminderInput& input) = 0;
+      virtual std::shared_ptr<Promise<void>> setReminderCompleted(const std::string& identifier, bool completed) = 0;
+      virtual std::shared_ptr<Promise<void>> removeReminder(const std::string& identifier) = 0;
 
     protected:
       // Hybrid Setup

@@ -82,6 +82,8 @@ export type {
   CalendarEvent,
   CalendarEventInput,
   CalendarPermissionStatus,
+  ReminderInfo,
+  ReminderInput,
 } from './calendar/index'
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index'
 export { AppInfo } from './app-info/index'

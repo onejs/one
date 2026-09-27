@@ -273,10 +273,13 @@ ${APP_DELEGATE_PBXPROJ}`,
       relativePath: 'HelloWorld/Info.plist',
       content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
       platform: 'ios',
-      app: { ...app, calendar: { usage: 'Show events & meetings' } },
+      app: { ...app, calendar: { usage: 'Show events & meetings', remindersUsage: 'Manage tasks & plans' } },
     })
     expect(calendarPlist.content).toContain(
       '<key>NSCalendarsFullAccessUsageDescription</key>\n\t<string>Show events &amp; meetings</string>'
+    )
+    expect(calendarPlist.content).toContain(
+      '<key>NSRemindersFullAccessUsageDescription</key>\n\t<string>Manage tasks &amp; plans</string>'
     )
 
     const androidManifest = renderPrebuildFile({

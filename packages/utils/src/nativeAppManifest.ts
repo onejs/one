@@ -30,9 +30,10 @@ export interface NativeAppManifest {
   contacts?: {
     usage: string
   }
-  // full calendar access for One.iOS.Calendar event reads and writes.
+  // full EventKit access for calendar events and reminders.
   calendar?: {
-    usage: string
+    usage?: string
+    remindersUsage?: string
   }
   // foreground Core Location permission prompt for One.iOS.Location.
   location?: {
@@ -185,13 +186,20 @@ export function validateNativeApp(
   ) {
     fail('contacts.usage must be a non-empty string')
   }
-  if (
-    manifest.calendar !== undefined &&
-    (!manifest.calendar ||
-      typeof manifest.calendar.usage !== 'string' ||
-      manifest.calendar.usage.trim() === '')
-  ) {
-    fail('calendar.usage must be a non-empty string')
+  if (manifest.calendar !== undefined) {
+    if (!manifest.calendar ||
+      (manifest.calendar.usage === undefined && manifest.calendar.remindersUsage === undefined)) {
+      fail('calendar.usage or calendar.remindersUsage must be a non-empty string')
+    }
+    if (manifest.calendar.usage !== undefined &&
+      (typeof manifest.calendar.usage !== 'string' || manifest.calendar.usage.trim() === '')) {
+      fail('calendar.usage must be a non-empty string')
+    }
+    if (manifest.calendar.remindersUsage !== undefined &&
+      (typeof manifest.calendar.remindersUsage !== 'string' ||
+        manifest.calendar.remindersUsage.trim() === '')) {
+      fail('calendar.remindersUsage must be a non-empty string')
+    }
   }
   if (
     manifest.location !== undefined &&

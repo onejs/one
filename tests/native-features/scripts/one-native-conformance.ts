@@ -911,6 +911,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       stdio: 'ignore',
       timeout: 30_000,
     })
+    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'reminders', config.bundleId], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
   }
   if (config.suite === 'notifications' || config.suite === 'speech') {
     // simctl privacy has no notifications or speech recognition service on
@@ -2608,16 +2612,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // app-only tree. point probes see its purpose text and action directly.
     const screen = snapshot(config.simulatorId).find((node) => node.type === 'Application')?.frame
     if (!screen) throw new Error('Calendar prompt has no application frame')
-    const probe = (y: number) => JSON.parse(
-      axe(['describe-ui', '--point', `${Math.round(screen.width / 2)},${Math.round(y)}`],
+    const probe = (x: number, y: number) => JSON.parse(
+      axe(['describe-ui', '--point', `${Math.round(x)},${Math.round(y)}`],
         config.simulatorId)
     ) as Node
     let purpose: Node | undefined
     let allow: Node | undefined
     const deadline = Date.now() + config.timeout
     do {
-      purpose = probe(screen.height * 0.4)
-      allow = probe(screen.height * 0.72)
+      purpose = probe(screen.width / 2, screen.height * 0.4)
+      allow = probe(screen.width / 2, screen.height * 0.72)
       if (
         purpose.AXLabel === 'NativeFeatureTests verifies calendar events.' &&
         allow.AXLabel === 'Allow Full Access'
@@ -2640,6 +2644,41 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('calendar-round-trip.png')
+    await wait('Reminders permission starts undetermined', (n) =>
+      has(n, 'Reminders permission: notDetermined') && has(n, 'Reminders status: idle')
+    )
+    tap({ id: 'one-native-reminders-run' })
+    let reminderPurpose: Node | undefined
+    let reminderAllow: Node | undefined
+    const reminderDeadline = Date.now() + config.timeout
+    do {
+      reminderPurpose = probe(screen.width / 2, screen.height * 0.55)
+      reminderAllow = probe(screen.width * 0.68, screen.height * 0.64)
+      if (
+        reminderPurpose.AXLabel === 'NativeFeatureTests verifies reminders.' &&
+        reminderAllow.AXLabel === 'Allow'
+      ) break
+      await new Promise((resolve) => setTimeout(resolve, 250))
+    } while (Date.now() < reminderDeadline)
+    if (
+      reminderPurpose?.AXLabel !== 'NativeFeatureTests verifies reminders.' ||
+      reminderAllow?.AXLabel !== 'Allow' || !reminderAllow.frame
+    ) throw new Error('Reminders purpose text and full-access action did not appear')
+    console.log('PASS Reminders purpose text and full-access action')
+    screenshot('reminders-permission.png', [reminderPurpose, reminderAllow])
+    point(
+      reminderAllow.frame.x + reminderAllow.frame.width / 2,
+      reminderAllow.frame.y + reminderAllow.frame.height / 2
+    )
+    await wait('Reminders create list update and delete pass', (n) =>
+      has(n, 'Reminders permission: fullAccess') &&
+      has(n, 'Reminders status: done') &&
+      has(
+        n,
+        'Reminders result: before=E_REMINDERS_PERMISSION; matched=true; completedHidden=true; updated=true; removed=true; notFound=E_REMINDERS_NOT_FOUND; invalid=E_REMINDERS_INPUT; invalidLimit=E_REMINDERS_INPUT'
+      )
+    )
+    screenshot('reminders-round-trip.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -192,6 +192,8 @@ namespace margelo::nitro::one { struct OneUpdatesFetchResult; }
 namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
 // Forward declaration of `PhotoLibraryPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
+// Forward declaration of `ReminderInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct ReminderInfo; }
 // Forward declaration of `ShareItemType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ShareItemType; }
 // Forward declaration of `ShareItem` to properly resolve imports.
@@ -359,6 +361,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "OneUpdatesFetchResult.hpp"
 #include "OneUpdatesFetchType.hpp"
 #include "PhotoLibraryPermissionStatus.hpp"
+#include "ReminderInfo.hpp"
 #include "ShareItem.hpp"
 #include "ShareItemType.hpp"
 #include "ShareResult.hpp"
@@ -1290,6 +1293,51 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_std__string_Wrapper(std::move(value));
   }
 
+  // pragma MARK: std::vector<ReminderInfo>
+  /**
+   * Specialized version of `std::vector<ReminderInfo>`.
+   */
+  using std__vector_ReminderInfo_ = std::vector<ReminderInfo>;
+  inline std::vector<ReminderInfo> create_std__vector_ReminderInfo_(size_t size) noexcept {
+    std::vector<ReminderInfo> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<std::vector<ReminderInfo>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<ReminderInfo>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_ReminderInfo___ = std::shared_ptr<Promise<std::vector<ReminderInfo>>>;
+  inline std::shared_ptr<Promise<std::vector<ReminderInfo>>> create_std__shared_ptr_Promise_std__vector_ReminderInfo___() noexcept {
+    return Promise<std::vector<ReminderInfo>>::create();
+  }
+  inline PromiseHolder<std::vector<ReminderInfo>> wrap_std__shared_ptr_Promise_std__vector_ReminderInfo___(std::shared_ptr<Promise<std::vector<ReminderInfo>>> promise) noexcept {
+    return PromiseHolder<std::vector<ReminderInfo>>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const std::vector<ReminderInfo>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<ReminderInfo>&)>`.
+   */
+  using Func_void_std__vector_ReminderInfo_ = std::function<void(const std::vector<ReminderInfo>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<ReminderInfo>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_ReminderInfo__Wrapper final {
+  public:
+    explicit Func_void_std__vector_ReminderInfo__Wrapper(std::function<void(const std::vector<ReminderInfo>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<ReminderInfo>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<ReminderInfo> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<ReminderInfo>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_ReminderInfo_ create_Func_void_std__vector_ReminderInfo_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_ReminderInfo__Wrapper wrap_Func_void_std__vector_ReminderInfo_(Func_void_std__vector_ReminderInfo_ value) noexcept {
+    return Func_void_std__vector_ReminderInfo__Wrapper(std::move(value));
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneCalendarSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneCalendarSpec>`.
@@ -1336,6 +1384,15 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__string___ create_Result_std__shared_ptr_Promise_std__string___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::string>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>
+  using Result_std__shared_ptr_Promise_std__vector_ReminderInfo____ = Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_ReminderInfo____ create_Result_std__shared_ptr_Promise_std__vector_ReminderInfo____(const std::shared_ptr<Promise<std::vector<ReminderInfo>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_ReminderInfo____ create_Result_std__shared_ptr_Promise_std__vector_ReminderInfo____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<HybridOneClipboardSpec>

@@ -6,9 +6,11 @@ import type {
   CalendarEventInput as NativeCalendarEventInput,
   CalendarPermissionStatus,
   OneCalendar,
+  ReminderInfo,
+  ReminderInput,
 } from '../specs/OneCalendar.nitro'
 
-export type { CalendarEvent, CalendarPermissionStatus }
+export type { CalendarEvent, CalendarPermissionStatus, ReminderInfo, ReminderInput }
 export type CalendarEventInput = Omit<NativeCalendarEventInput, 'allDay'> & {
   allDay?: boolean
 }
@@ -45,10 +47,44 @@ function deleteEvent(identifier: string, startMs: number): Promise<void> {
   return native().remove(identifier, startMs).catch(rethrowNativeError)
 }
 
+function getRemindersPermissionStatus(): CalendarPermissionStatus {
+  try {
+    return native().getRemindersPermissionStatus()
+  } catch (error) {
+    return rethrowNativeError(error)
+  }
+}
+
+function requestRemindersPermission(): Promise<CalendarPermissionStatus> {
+  return native().requestRemindersPermission().catch(rethrowNativeError)
+}
+
+function listReminders(limit = 100, includeCompleted = false): Promise<ReminderInfo[]> {
+  return native().listReminders(limit, includeCompleted).catch(rethrowNativeError)
+}
+
+function createReminder(input: ReminderInput): Promise<string> {
+  return native().createReminder(input).catch(rethrowNativeError)
+}
+
+function setReminderCompleted(identifier: string, completed: boolean): Promise<void> {
+  return native().setReminderCompleted(identifier, completed).catch(rethrowNativeError)
+}
+
+function deleteReminder(identifier: string): Promise<void> {
+  return native().removeReminder(identifier).catch(rethrowNativeError)
+}
+
 export const Calendar = Object.freeze({
   getPermissionStatus,
   requestPermission,
   list,
   create,
   delete: deleteEvent,
+  getRemindersPermissionStatus,
+  requestRemindersPermission,
+  listReminders,
+  createReminder,
+  setReminderCompleted,
+  deleteReminder,
 })

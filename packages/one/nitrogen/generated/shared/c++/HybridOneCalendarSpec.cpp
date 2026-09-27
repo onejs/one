@@ -19,6 +19,12 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("list", &HybridOneCalendarSpec::list);
       prototype.registerHybridMethod("create", &HybridOneCalendarSpec::create);
       prototype.registerHybridMethod("remove", &HybridOneCalendarSpec::remove);
+      prototype.registerHybridMethod("getRemindersPermissionStatus", &HybridOneCalendarSpec::getRemindersPermissionStatus);
+      prototype.registerHybridMethod("requestRemindersPermission", &HybridOneCalendarSpec::requestRemindersPermission);
+      prototype.registerHybridMethod("listReminders", &HybridOneCalendarSpec::listReminders);
+      prototype.registerHybridMethod("createReminder", &HybridOneCalendarSpec::createReminder);
+      prototype.registerHybridMethod("setReminderCompleted", &HybridOneCalendarSpec::setReminderCompleted);
+      prototype.registerHybridMethod("removeReminder", &HybridOneCalendarSpec::removeReminder);
     });
   }
 

@@ -1758,7 +1758,12 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         usage.set('NSContactsUsageDescription', app.contacts.usage)
       }
       if (app.calendar !== undefined) {
-        usage.set('NSCalendarsFullAccessUsageDescription', app.calendar.usage)
+        if (app.calendar.usage !== undefined) {
+          usage.set('NSCalendarsFullAccessUsageDescription', app.calendar.usage)
+        }
+        if (app.calendar.remindersUsage !== undefined) {
+          usage.set('NSRemindersFullAccessUsageDescription', app.calendar.remindersUsage)
+        }
       }
       if (app.location !== undefined) {
         usage.set('NSLocationWhenInUseUsageDescription', app.location.whenInUse)

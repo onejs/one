@@ -183,6 +183,8 @@ export type {
   CalendarEvent,
   CalendarEventInput,
   CalendarPermissionStatus,
+  ReminderInfo,
+  ReminderInput,
 } from './calendar/index.native'
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native'
 export { AppInfo } from './app-info/index.native'
