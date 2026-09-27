@@ -3,27 +3,27 @@
   "checks": [
     {
       "name": "simulator automation session ready",
-      "durationMs": 1516
+      "durationMs": 5736
     },
     {
       "name": "home screen mounted",
-      "durationMs": 10016
+      "durationMs": 2458
     },
     {
       "name": "no warning overlay intercepts interaction",
-      "durationMs": 2440
+      "durationMs": 2452
     },
     {
       "name": "home lists nav-one-native-radial-gradient",
-      "durationMs": 2735
+      "durationMs": 3087
     },
     {
       "name": "nav-one-native-radial-gradient settles",
-      "durationMs": 5979
+      "durationMs": 5223
     },
     {
       "name": "native radial gradient mounts",
-      "durationMs": 5022
+      "durationMs": 2165
     },
     {
       "name": "labeled radial gradient accessible; unlabeled gradient decorative",
@@ -31,35 +31,35 @@
     },
     {
       "name": "React supplies radial gradient reversed state",
-      "durationMs": 2272
+      "durationMs": 2109
     },
     {
       "name": "React supplies radial gradient moved state",
-      "durationMs": 2208
+      "durationMs": 2021
     },
     {
       "name": "React supplies radial gradient wide state",
-      "durationMs": 2290
+      "durationMs": 2104
     },
     {
       "name": "React supplies radial gradient inner state",
-      "durationMs": 2319
+      "durationMs": 2134
     },
     {
       "name": "React supplies radial gradient single state",
-      "durationMs": 2116
+      "durationMs": 2206
     },
     {
       "name": "React supplies radial gradient alpha state",
-      "durationMs": 2339
+      "durationMs": 2129
     },
     {
       "name": "React supplies radial gradient three state",
-      "durationMs": 2353
+      "durationMs": 2112
     },
     {
       "name": "React supplies radial gradient empty state",
-      "durationMs": 2390
+      "durationMs": 2055
     },
     {
       "name": "native radial gradient paints, reverses, and moves its center",
@@ -70,7 +70,7 @@
       "durationMs": 0
     }
   ],
-  "durationMs": 104473,
+  "durationMs": 96331,
   "simulatorId": "41E95D83-2AEC-4124-9655-5462F2A770DE",
   "bundleId": "dev.vxrn.native.tests",
   "suite": "radial-gradient"
