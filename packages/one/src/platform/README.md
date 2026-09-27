@@ -480,6 +480,7 @@ that range, and `minimumDate` must not be after `maximumDate`.
 `MultiDatePicker` selects multiple calendar days. Its `selection` is an array of
 unique `YYYY-MM-DD` strings; `onSelectionChange` reports them in sorted order.
 The bridge keeps SwiftUI's `Set<DateComponents>` behind the native boundary,
+mapping Gregorian day strings through the SwiftUI environment calendar and back,
 so a selected day is never represented as a timestamp. The first binding uses
 the unbounded native constructor. This date-only React representation is a
 proposed API on `one-native-multi-date-picker` pending Nate's approval.

@@ -76,13 +76,21 @@ accounts are unavailable).
   `readonly string[]` `YYYY-MM-DD` calendar-day API. Apple binds a
   `Set<DateComponents>`; One converts sorted date-only strings at the native
   boundary. On an iPhone 17 Pro iOS 27 simulator, the focused suite passed
-  21 checks for measured SwiftUI calendar layout, native day selection
+  22 checks for measured SwiftUI calendar layout, native day selection
   pixels, adding and removing a day, React rejection, external selection,
-  disabled tap, and revision reset. The fixture chooses days 10–12 of the
-  current calendar month so future runs remain on the visible month. The
+  disabled tap with a post-tap pixel capture, and revision reset. The fixture
+  chooses days 10–12 of the current calendar month so future runs remain on
+  the visible month. The
   simulator capture and outcome are in local ignored
-  `tests/native-features/build/multi-date-full-proof-3`. Native build used
-  Xcode 27.1 on ci-64. High review and Nate approval remain before merge.
+  `tests/native-features/build/multi-date-calendar-gregorian-proof-3` and
+  `multi-date-buddhist-locale-proof`. The Buddhist simulator presented
+  “September 2569 BE” while the React value stayed `2026-09-DD`; both
+  22-check suites passed. Native build used Xcode 27.1 on ci-64. High review
+  s465 found a non-Gregorian conversion bug, force unwrap crash paths, a
+  type-incorrect docs example, and incomplete disabled/metadata/coverage
+  evidence; the follow-up branch commit corrected each and records device,
+  OS, Xcode, locale, calendar, appearance, source SHA, and observed month.
+  Nate's approval of the public date-only API remains before merge.
 
 - **RAN, 2026-09-26:** slice 1 `TextEditor` and `UnevenRoundedRectangle` passed
   `generate:check`, all seven shape tests, and the `editors` conformance suite
