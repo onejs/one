@@ -87,6 +87,7 @@ declare module 'one' {
         | `/one-native-speech`
         | `/one-native-state`
         | `/one-native-system`
+        | `/one-native-cover-context`
         | `/one-native-tab-oracle`
         | `/one-native-tabview`
         | `/one-native-ui-map`
