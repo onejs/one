@@ -73,15 +73,17 @@ accounts are unavailable).
 
 - **RAN, 2026-09-27:** the focused `picker-palette` suite passed nine checks on
   ci-64's iPhone 17 Pro / iOS 27.0 simulator with Xcode 27.1. The standalone
-  palette and explicit segmented Picker exposed matching native TabGroup
-  geometry and Alpha/Beta/Gamma radio options. A native Beta tap changed only
+  palette and explicit segmented Picker exposed matching 362 × 31 point native
+  TabGroup frames without a fixture width style, plus Alpha/Beta/Gamma radio
+  options. A native Beta tap changed only
   the palette selection, an external React update selected Gamma, and a tap
   on the segmented reference changed only that control. The tracked
   `tests/native-features/proofs/picker-palette` bundle contains three AX/PNG
   pairs, outcome, side-by-side WebP, and a receipt for suite source
-  `0b8a442f0`, regenerated JavaScript, and matching built/installed native
+  `972728c59`, regenerated JavaScript, and matching built/installed native
   debug dylib hashes. Picker Swift source blobs are identical to the earlier
-  binary build. Picker inside Menu and `navigationLink` remain unavailable.
+  binary build. Earlier iOS, Picker inside Menu, and `navigationLink` remain
+  unproven.
 
 - **RAN, 2026-09-27:** the `scroll-search-refresh` suite passed 13 checks
   (nine feature checks and four navigation/harness checks) on

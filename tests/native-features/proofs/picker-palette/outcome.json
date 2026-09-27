@@ -3,42 +3,42 @@
   "checks": [
     {
       "name": "simulator automation session ready",
-      "durationMs": 1292
+      "durationMs": 6176
     },
     {
       "name": "home screen mounted",
-      "durationMs": 10313
+      "durationMs": 2051
     },
     {
       "name": "no warning overlay intercepts interaction",
-      "durationMs": 2501
+      "durationMs": 2336
     },
     {
       "name": "home lists nav-one-native-picker-palette",
-      "durationMs": 2481
+      "durationMs": 2305
     },
     {
       "name": "nav-one-native-picker-palette settles",
-      "durationMs": 5448
+      "durationMs": 10083
     },
     {
       "name": "palette renders the native segmented fallback",
-      "durationMs": 2328
+      "durationMs": 3207
     },
     {
       "name": "palette radio tap updates controlled selection",
-      "durationMs": 2219
+      "durationMs": 2172
     },
     {
       "name": "external palette selection reaches native radio",
-      "durationMs": 2274
+      "durationMs": 2048
     },
     {
       "name": "segmented reference remains independently controlled",
-      "durationMs": 2309
+      "durationMs": 2100
     }
   ],
-  "durationMs": 55147,
+  "durationMs": 60131,
   "simulatorId": "41E95D83-2AEC-4124-9655-5462F2A770DE",
   "bundleId": "dev.vxrn.native.tests",
   "suite": "picker-palette"
