@@ -164,6 +164,11 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   selected?: boolean
   radioColors?: ComposeRadioButtonProps['colors']
   switchColors?: ComposeSwitchProps['colors']
+  sliderOptions?: Readonly<{
+    lowerLimit?: number
+    upperLimit?: number
+    colors?: ComposeSliderProps['colors']
+  }>
   cardColors?: ComposeCardProps['colors']
   surfaceMode?: 'plain' | 'clickable' | 'selectable' | 'toggleable'
   badgeColors?: Pick<ComposeBadgeProps, 'containerColor' | 'contentColor'>
@@ -969,8 +974,11 @@ function Slider({
   revision = 0,
   minimumValue = 0,
   maximumValue = 1,
+  lowerLimit,
+  upperLimit,
   step = 0,
   disabled = false,
+  colors,
   ...props
 }: ComposeSliderProps) {
   validateSliderProps({
@@ -979,8 +987,11 @@ function Slider({
     revision,
     minimumValue,
     maximumValue,
+    lowerLimit,
+    upperLimit,
     step,
     disabled,
+    colors,
   })
   const controlled = useControlled<{
     value: number
@@ -994,6 +1005,7 @@ function Slider({
       numberValue={value}
       minimumValue={minimumValue}
       maximumValue={maximumValue}
+      sliderOptions={{ lowerLimit, upperLimit, colors }}
       step={step}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}

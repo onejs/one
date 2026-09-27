@@ -346,6 +346,10 @@ class OneNativeComposeNodeManager :
         view.stageStep(value)
     }
 
+    override fun setSliderOptions(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageSliderOptions(value)
+    }
+
     override fun setVisible(view: OneNativeComposeNodeView, value: Boolean) {
         view.stageVisible(value)
     }

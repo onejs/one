@@ -87,7 +87,16 @@ export default function OneNativeAndroidInputs() {
         }}
         minimumValue={0}
         maximumValue={100}
+        lowerLimit={20}
+        upperLimit={80}
         step={5}
+        colors={{
+          thumbColor: '#a52844',
+          activeTrackColor: '#a52844',
+          inactiveTrackColor: '#f6c9ce',
+          activeTickColor: '#fff3f5',
+          inactiveTickColor: '#7c4f58',
+        }}
         testID="one-native-android-inputs-slider"
         composeStyle={fieldStyle}
       />
@@ -99,13 +108,13 @@ export default function OneNativeAndroidInputs() {
         <One.Android.Button
           accessibilityRole="button"
           label="Volume -5"
-          onPress={() => setVolume((value) => Math.max(0, value - 5))}
+          onPress={() => setVolume((value) => Math.max(20, value - 5))}
           testID="one-native-android-inputs-slider-down"
         />
         <One.Android.Button
           accessibilityRole="button"
           label="Volume +5"
-          onPress={() => setVolume((value) => Math.min(100, value + 5))}
+          onPress={() => setVolume((value) => Math.min(80, value + 5))}
           testID="one-native-android-inputs-slider-up"
         />
       </One.Android.Row>
