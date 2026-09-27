@@ -71,6 +71,23 @@ accounts are unavailable).
 
 ## Status
 
+- **RAN, 2026-09-27:** a focused `list-search-refresh` suite passed on ci-64's
+  iPhone 17 Pro / iOS 27.0 simulator, Xcode 27.1, suite source `a11f9e9fd`
+  and the unchanged native iOS tree `c9fde9de93d0a91d333f8a29923582cfbc720db7`
+  built at `db32abfd6`. The ignored
+  `tests/native-features/proofs/list-search-refresh` directory tracks the
+  13-check outcome, four compressed AX/PNG pairs, source/runtime receipt,
+  matching built/installed code-bearing debug dylib hashes, the reused native
+  build log, and a side-by-side WebP. Pulling the plain List invoked
+  `refreshable` twice; the fixture kept its JS callback pending until release,
+  then a second pull invoked it again. Native indicator duration is unmeasured. The
+  native search field appeared when `searchable` was on the surrounding
+  `NavigationStack`: external React text changed the field and filtered rows,
+  then typing into the field changed React text and filtered rows. A standalone
+  List host did not present a search field in this iOS 27 run, so docs use the
+  NavigationStack host. ScrollView refresh/search, cancellation, and other
+  search placements remain unproven.
+
 - **RAN, 2026-09-27:** `One.iOS.List` and `One.iOS.Section` now accept the
   existing `swiftStyle` modifier channel. The iPhone 17 Pro / iOS 27.0
   simulator ran native source `db32abfd6` built with Xcode 27.1 and suite
