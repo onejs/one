@@ -1179,6 +1179,12 @@ composed subtree with `colorScheme`, `dynamicTypeSize`, `controlSize`, `locale`,
 `extraLarge`, and sizes the controls in the subtree the way SwiftUI's
 `.controlSize(_:)` does. Omitted props preserve values inherited from an outer
 SwiftUI container.
+RAN on iOS 27: a bordered prominent Button inside `Host controlSize` and a
+standalone Button using `swiftStyle.controlSize` both grew from 28 to 50.33
+points when changed from `mini` to `extraLarge`, and returned to 28 points
+when restored. The nine-check proof (four control-size checks) is in
+`tests/native-features/proofs/control-size`; other controls and sizes remain
+unproven by that run.
 This set covers the environment values React Native can express as stable scalar or
 color props and that directly affect appearance, text layout, localization, and
 interaction. Arbitrary environment keys are intentionally excluded because their

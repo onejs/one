@@ -46,3 +46,6 @@ fail-snapshot.json
 !proofs/radial-gradient/*.png
 !proofs/radial-gradient/*.webp
 !proofs/radial-gradient/outcome.json
+!proofs/control-size/*.png
+!proofs/control-size/*.webp
+!proofs/control-size/outcome.json
