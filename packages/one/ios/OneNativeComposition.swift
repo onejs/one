@@ -10,6 +10,7 @@ public protocol OneNativeCompositionParent: AnyObject {
   // is, so a subtree mounted before root attachment stays silent until the root
   // attaches, and detach/reinsertion walks the whole subtree exactly once.
   var compositionActive: Bool { get }
+  func refreshRow(for child: UIView)
 }
 
 public protocol OneNativeComposable: UIView {
@@ -81,7 +82,8 @@ extension View {
 // Fabric gives insertion order, not keys, so identity is the child view itself: a
 // reorder keeps it and a remount replaces it, which is what SwiftUI wants.
 struct OneNativeComposedChild: Identifiable {
-  let id: ObjectIdentifier
+  let id: UUID
+  let sourceID: ObjectIdentifier
   let content: AnyView
 }
 
@@ -151,8 +153,15 @@ final class OneNativeSchemeBridge: ObservableObject {
     composable.composeInto(self)
     published.items.insert(
       OneNativeComposedChild(
-        id: ObjectIdentifier(child), content: composable.compositionContent()),
+        id: UUID(), sourceID: ObjectIdentifier(child), content: composable.compositionContent()),
       at: at)
+  }
+
+  public func refreshRow(for child: UIView) {
+    guard let index = childViews.firstIndex(where: { $0 === child }),
+      let composable = child as? OneNativeComposable else { return }
+    published.items[index] = OneNativeComposedChild(
+      id: UUID(), sourceID: ObjectIdentifier(child), content: composable.compositionContent())
   }
 
   public func removeChild(_ child: UIView) {
@@ -163,7 +172,7 @@ final class OneNativeSchemeBridge: ObservableObject {
     }
     composable.decompose()
     let id = ObjectIdentifier(child)
-    published.items.removeAll { $0.id == id }
+    published.items.removeAll { $0.sourceID == id }
   }
 
   public func compositionContent() -> AnyView { wrap(published, false) }
