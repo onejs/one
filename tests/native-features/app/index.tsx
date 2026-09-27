@@ -31,6 +31,11 @@ const testScreens = [
     testID: 'nav-one-native-paste-button',
   },
   {
+    href: '/one-native-group-box',
+    label: 'One Native Group Box',
+    testID: 'nav-one-native-group-box',
+  },
+  {
     href: '/one-native-sheet',
     label: 'One Native Sheets',
     testID: 'nav-one-native-sheet',

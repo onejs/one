@@ -1,6 +1,18 @@
 import { useState } from 'react'
 import { One } from 'one'
 
+const switchColors = {
+  checkedThumbColor: '#ffffff',
+  checkedTrackColor: '#347b6a',
+  checkedBorderColor: '#246b5a',
+  uncheckedThumbColor: '#fff3f5',
+  uncheckedTrackColor: '#f6c9ce',
+  uncheckedBorderColor: '#a52844',
+  disabledUncheckedThumbColor: '#8c5e1b',
+  disabledUncheckedTrackColor: '#ffdda6',
+  disabledUncheckedBorderColor: '#9b6b1c',
+}
+
 const rootStyle = { flex: 1 } as const
 const rowStyle = { fillMaxWidth: true } as const
 const boxStyle = { height: 36 } as const
@@ -141,6 +153,7 @@ export default function OneNativeAndroid() {
           accessibilityRole="switch"
           accessibilityState={{ checked: switchValue, disabled: false }}
           isOn={switchValue}
+          colors={switchColors}
           disabled={false}
           onIsOnChange={(value) => {
             setSwitchRequest(value)
@@ -221,6 +234,7 @@ export default function OneNativeAndroid() {
           accessibilityRole="switch"
           accessibilityState={{ checked: false, disabled: true }}
           isOn={false}
+          colors={switchColors}
           disabled
           label="Disabled switch"
           onIsOnChange={() => setDisabledSwitchTaps((count) => count + 1)}

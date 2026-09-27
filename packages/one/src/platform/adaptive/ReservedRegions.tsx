@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
-import { View, type LayoutChangeEvent } from 'react-native'
+import type { LayoutChangeEvent } from 'react-native'
+import { DomView } from '../web/DomView'
 import { ReservedRegionsContext, type ReservedRegionsSnapshot } from './reservedRegionsContext'
 import type { ReservedRegionsProviderProps } from './types'
 
@@ -18,7 +19,7 @@ export function Provider({ children, onLayout, ...props }: ReservedRegionsProvid
   }, [onLayout])
   return (
     <ReservedRegionsContext.Provider value={snapshot}>
-      <View {...props} onLayout={onProviderLayout}>{children}</View>
+      <DomView {...props} onLayout={onProviderLayout}>{children}</DomView>
     </ReservedRegionsContext.Provider>
   )
 }

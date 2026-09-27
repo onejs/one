@@ -113,7 +113,7 @@ export function resolveRadius(
 
 // style arrays merge left to right with falsy entries skipped, as StyleSheet
 // does, without importing react-native so the web path stays dom only.
-export function flattenStyle(style: StyleProp<ViewStyle>): Record<string, unknown> {
+export function flattenStyle(style: unknown): Record<string, unknown> {
   const into: Record<string, unknown> = {}
   mergeStyle(style, into)
   return into
