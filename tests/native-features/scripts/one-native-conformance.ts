@@ -2829,25 +2829,59 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       Boolean(id(nodes, 'one-native-building-blocks-labeled')?.frame) &&
       Boolean(id(nodes, 'one-native-building-blocks-glass')?.frame) &&
       ['Badge action', 'Left edge', 'Right edge', 'Glass action'].every((label) => labels(nodes).includes(label)) &&
-      status(nodes, 'Account state', 'Ready') && status(nodes, 'Glass effect', 'regular'))
+      status(nodes, 'Account state', 'Ready') && status(nodes, 'Glass effect', 'regular') &&
+      status(nodes, 'Row width', 300))
     const stack = id(mounted, 'one-native-building-blocks-zstack')!.frame!
     const badge = frame(mounted, 'Badge action')
-    if (!badge || badge.x + badge.width < stack.x + stack.width - 8 ||
-        badge.y + badge.height < stack.y + stack.height - 8)
+    if (!badge || Math.abs(stack.width - 220) > 3 || Math.abs(stack.height - 80) > 3 ||
+        badge.x < stack.x - 2 || badge.y < stack.y - 2 ||
+        badge.x + badge.width > stack.x + stack.width + 2 ||
+        badge.y + badge.height > stack.y + stack.height + 2 ||
+        stack.x + stack.width - (badge.x + badge.width) > 8 ||
+        stack.y + stack.height - (badge.y + badge.height) > 8)
       throw new Error(`ZStack did not align the badge bottom-trailing: ${JSON.stringify({ stack, badge })}`)
+    const hstack = id(mounted, 'one-native-building-blocks-hstack')!.frame!
     const left = frame(mounted, 'Left edge')
     const right = frame(mounted, 'Right edge')
-    if (!left || !right || right.x - (left.x + left.width) < 30)
-      throw new Error(`Spacer did not separate HStack children by its minLength: ${JSON.stringify({ left, right })}`)
+    const gap = left && right ? right.x - (left.x + left.width) : -1
+    if (!left || !right || Math.abs(hstack.width - 300) > 3 || gap < 30 ||
+        Math.abs(left.x - hstack.x) > 3 ||
+        Math.abs(right.x + right.width - hstack.x - hstack.width) > 3)
+      throw new Error(`Spacer did not expand across HStack: ${JSON.stringify({ hstack, left, right, gap })}`)
     screenshot('building-blocks-initial.png', mounted)
     tap({ label: 'Badge action' })
     await wait('ZStack child action reaches React', (nodes) => status(nodes, 'Badge taps', 1))
     tap({ id: 'one-native-building-blocks-account' })
-    await wait('React updates native LabeledContent value', (nodes) =>
+    const updated = await wait('React updates native LabeledContent value', (nodes) =>
       status(nodes, 'Account state', 'Updated') &&
       Boolean(id(nodes, 'one-native-building-blocks-labeled')?.frame) &&
       labels(nodes).includes('Updated'))
-    tap({ label: 'Glass action' })
+    const row = id(updated, 'one-native-building-blocks-labeled')!.frame!
+    const rowLabel = frame(updated, 'Account')
+    const rowValue = frame(updated, 'Updated')
+    if (!rowLabel || !rowValue || rowLabel.x < row.x - 2 ||
+        rowLabel.y < row.y - 2 || rowLabel.y + rowLabel.height > row.y + row.height + 2 ||
+        rowValue.x <= rowLabel.x + rowLabel.width ||
+        rowValue.x + rowValue.width > row.x + row.width + 2 ||
+        Math.abs(rowValue.y - rowLabel.y) > 3)
+      throw new Error(`LabeledContent did not render a native label/value row: ${JSON.stringify({ row, rowLabel, rowValue })}`)
+    tap({ id: 'one-native-building-blocks-row-width' })
+    const narrower = await wait('Spacer expands to the new HStack width', (nodes) =>
+      status(nodes, 'Row width', 240) &&
+      Math.abs((id(nodes, 'one-native-building-blocks-hstack')?.frame?.width ?? 0) - 240) <= 3)
+    const narrowStack = id(narrower, 'one-native-building-blocks-hstack')!.frame!
+    const narrowLeft = frame(narrower, 'Left edge')
+    const narrowRight = frame(narrower, 'Right edge')
+    const narrowGap = narrowLeft && narrowRight ? narrowRight.x - (narrowLeft.x + narrowLeft.width) : -1
+    if (!narrowLeft || !narrowRight || narrowGap < 30 ||
+        Math.abs(narrowRight.x + narrowRight.width - narrowStack.x - narrowStack.width) > 3 ||
+        Math.abs((gap - narrowGap) - 60) > 4)
+      throw new Error(`Spacer did not absorb the 60-point proposal change: ${JSON.stringify({ gap, narrowGap, narrowStack })}`)
+    // The glass box is published as the button's accessibility frame, while
+    // SwiftUI keeps the visible text label's hit region at the leading edge.
+    const glassBeforeTap = id(snapshot(config.simulatorId), 'one-native-building-blocks-glass')?.frame
+    if (!glassBeforeTap) throw new Error('Glass has no accessibility frame before tap')
+    point(glassBeforeTap.x + 40, glassBeforeTap.y + 10)
     const tapped = await wait('Glass child action reaches React', (nodes) =>
       status(nodes, 'Glass taps', 1) && status(nodes, 'Glass effect', 'regular'))
     const glass = id(tapped, 'one-native-building-blocks-glass')?.frame
@@ -2867,6 +2901,23 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const changed = countChangedPixels(baselineB, identity, region, 8)
     if (changed.changed < Math.max(200, unchanged.changed * 4))
       throw new Error(`Glass effect did not change native pixels: ${JSON.stringify({ unchanged, changed })}`)
+    const appWidth = tapped.find((node) => node.type === 'Application')?.frame?.width
+    if (!appWidth) throw new Error('Glass pixel proof has no app width')
+    const sample = (file: string, x: number, y: number): number[] => {
+      const image = readPng(file)
+      const scale = image.width / appWidth
+      const at = (Math.round(y * scale) * image.width + Math.round(x * scale)) * 4
+      return [image.data[at], image.data[at + 1], image.data[at + 2]]
+    }
+    const colorDistance = (a: number[], b: number[]) =>
+      a.reduce((sum, channel, index) => sum + Math.abs(channel - b[index]), 0)
+    const leftPoint = glass.x + glass.width / 4
+    const rightPoint = glass.x + glass.width * 3 / 4
+    const midY = glass.y + glass.height * 0.65
+    const regularContrast = colorDistance(sample(baselineB, leftPoint, midY), sample(baselineB, rightPoint, midY))
+    const identityContrast = colorDistance(sample(identity, leftPoint, midY), sample(identity, rightPoint, midY))
+    if (identityContrast < 100 || regularContrast >= identityContrast * 0.8)
+      throw new Error(`Glass did not soften the two-color backdrop before identity removed it: ${JSON.stringify({ regularContrast, identityContrast })}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
