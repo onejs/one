@@ -72,6 +72,11 @@ describe('native.app manifest', () => {
 
   test('requires an audio recording prompt', () => {
     expect(() => validateNativeApp({ ...app, audio: { microphone: 'Record notes.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, audio: { background: true } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, audio: {} })).toThrow(/audio must configure/)
+    expect(() => validateNativeApp({ ...app, audio: { background: 'yes' } as any })).toThrow(
+      /audio\.background/
+    )
     expect(() => validateNativeApp({ ...app, audio: { microphone: ' ' } })).toThrow(
       /audio\.microphone/
     )

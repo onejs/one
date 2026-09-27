@@ -39,9 +39,10 @@ export interface NativeAppManifest {
   location?: {
     whenInUse: string
   }
-  // microphone prompt for One.iOS.Audio recording. playback needs no prompt.
+  // microphone prompt and background playback for One.iOS.Audio.
   audio?: {
-    microphone: string
+    microphone?: string
+    background?: boolean
   }
   // usage descriptions for One.Speech dictation, shown at the ios speech
   // recognition and microphone prompts. setting them also declares the
@@ -209,13 +210,25 @@ export function validateNativeApp(
   ) {
     fail('location.whenInUse must be a non-empty string')
   }
-  if (
-    manifest.audio !== undefined &&
-    (!manifest.audio ||
-      typeof manifest.audio.microphone !== 'string' ||
-      manifest.audio.microphone.trim() === '')
-  ) {
-    fail('audio.microphone must be a non-empty string')
+  if (manifest.audio !== undefined) {
+    if (!manifest.audio || typeof manifest.audio !== 'object') {
+      fail('audio must configure microphone or background playback')
+    }
+    if (
+      manifest.audio.microphone !== undefined &&
+      (typeof manifest.audio.microphone !== 'string' || manifest.audio.microphone.trim() === '')
+    ) {
+      fail('audio.microphone must be a non-empty string')
+    }
+    if (
+      manifest.audio.background !== undefined &&
+      typeof manifest.audio.background !== 'boolean'
+    ) {
+      fail('audio.background must be a boolean')
+    }
+    if (manifest.audio.microphone === undefined && manifest.audio.background !== true) {
+      fail('audio must configure microphone or background playback')
+    }
   }
   if (
     manifest.ios?.faceIdUsageDescription !== undefined &&

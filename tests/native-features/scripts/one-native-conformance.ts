@@ -64,6 +64,7 @@ const suites = [
   'location',
   'file-system',
   'audio',
+  'audio-background',
   'share',
   'photo-library',
   'image-manipulator',
@@ -513,6 +514,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   location: locationLoaded,
   'file-system': fileSystemLoaded,
   audio: audioLoaded,
+  'audio-background': audioLoaded,
   share: shareLoaded,
   'photo-library': photoLibraryLoaded,
   'image-manipulator': imageManipulatorLoaded,
@@ -567,6 +569,7 @@ const suiteHome: Record<Suite, string> = {
   location: 'nav-one-native-location',
   'file-system': 'nav-one-native-file-system',
   audio: 'nav-one-native-audio',
+  'audio-background': 'nav-one-native-audio',
   share: 'nav-one-native-share',
   'photo-library': 'nav-one-native-photo-library',
   'image-manipulator': 'nav-one-native-image-manipulator',
@@ -1182,7 +1185,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const scale = capture.width / screen.width
       const pixel = (x: number, y: number) => {
         const offset = (Math.round(y * scale) * capture.width + Math.round(x * scale)) * 4
-        return Array.from(capture.data.slice(offset, offset + 3))
+        return Array.from(capture.data.slice(offset, offset + 3), Number)
       }
       const blue = pixel(preview.x + preview.width * 0.2, preview.y + preview.height * 0.2)
       const red = pixel(preview.x + preview.width * 0.8, preview.y + preview.height * 0.8)
@@ -3089,7 +3092,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Math.round(y * concentricScale) * concentricImage.width +
         Math.round(x * concentricScale)
       ) * 4
-      return Array.from(concentricImage.data.slice(offset, offset + 3))
+      return Array.from(concentricImage.data.slice(offset, offset + 3), Number)
     }
     const blue = ([r, g, b]: number[]) => r < 60 && g > 85 && g < 180 && b > 200
     const white = ([r, g, b]: number[]) => r > 230 && g > 230 && b > 230
@@ -5207,6 +5210,56 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('audio-record-and-play.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'audio-background') {
+    const appContainer = execFileSync(
+      'xcrun', ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'app'],
+      { encoding: 'utf8', timeout: 30_000 }
+    ).trim()
+    const modes = JSON.parse(execFileSync(
+      'plutil', ['-extract', 'UIBackgroundModes', 'json', '-o', '-', path.join(appContainer, 'Info.plist')],
+      { encoding: 'utf8', timeout: 30_000 }
+    )) as string[]
+    if (!modes.includes('audio')) throw new Error('Installed app does not declare the audio background mode')
+    checks.push({ name: 'installed app declares audio background mode', durationMs: 0 })
+    console.log('PASS installed app declares audio background mode')
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-audio')
+    await wait('background audio fixture starts idle', (n) =>
+      labels(n).includes('Background: idle')
+    )
+    tap({ id: 'one-native-audio-background-start' })
+    await wait('long local wav is playing', (n) =>
+      labels(n).some((label) => /^Background: ready: \d+$/.test(label))
+    )
+    execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, 'com.apple.Preferences'], {
+      stdio: 'ignore', timeout: 30_000,
+    })
+    const foregroundDeadline = Date.now() + config.timeout
+    while (Date.now() < foregroundDeadline &&
+      !labels(snapshot(config.simulatorId)).some((label) => label === 'Settings')) {
+      await new Promise((resolve) => setTimeout(resolve, 250))
+    }
+    if (!labels(snapshot(config.simulatorId)).some((label) => label === 'Settings')) {
+      throw new Error('Settings did not foreground over the playing app')
+    }
+    await new Promise((resolve) => setTimeout(resolve, 35_000))
+    launchApp()
+    await wait('native playback advances before foreground UI interaction', (n) =>
+      labels(n).some((label) => {
+        const match = /^Background: returned: playing,(\d+),(\d+),(\d+)$/.exec(label)
+        return Boolean(match && Number(match[1]) > 0 && Number(match[3]) >= 30_000 &&
+          Number(match[2]) >= Number(match[3]) - 1000)
+      })
+    )
+    tap({ id: 'one-native-audio-background-check' })
+    await wait('native playback advanced in background', (n) =>
+      labels(n).some((label) => /^Background: passed: playing,\d+,\d+,\d+$/.test(label))
+    )
+    screenshot('audio-background-after.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
