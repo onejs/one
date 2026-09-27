@@ -59,6 +59,7 @@ import {
   type GroupProps,
   type GroupBoxProps,
   type ViewThatFitsProps,
+  viewThatFitsAxes,
   type GlassEffectContainerProps,
   type LinkProps,
   type OverlayContentProps,
@@ -489,9 +490,10 @@ export function GroupBox({ label, children, style, ...props }: GroupBoxProps) {
 export function ViewThatFits({ axes = 'both', children, style, ...props }: ViewThatFitsProps) {
   if (Number.parseFloat(String(Platform.Version)) < 16)
     throw new Error('Swift.ViewThatFits requires iOS 16 or newer')
-  if (!scrollViewAxes.includes(axes))
-    throw new Error(`Swift.ViewThatFits axes must be one of ${scrollViewAxes.join(', ')}`)
+  if (!viewThatFitsAxes.includes(axes))
+    throw new Error(`Swift.ViewThatFits axes must be one of ${viewThatFitsAxes.join(', ')}`)
   assertOneNativeChildren(children, 'Swift.ViewThatFits')
+  assertNoGreedyContainer(children, 'Swift.ViewThatFits')
   return (
     <NativeViewThatFits {...props} axes={axes} style={[{ alignSelf: 'stretch' }, style]}>
       <InsideContainer value={true}>{children}</InsideContainer>

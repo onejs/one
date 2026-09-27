@@ -3,7 +3,6 @@ import type { ViewProps } from 'react-native'
 import type { ZStackAlignment } from './generated/containerTypes'
 import type { ControlGroupStyle } from './generated/swiftui'
 import type { ViewSlotConfiguration } from './generated/viewSlots'
-import type { ScrollViewAxes } from './listTypes'
 
 // hand-written round-2 container types, pending the container emitter (see
 // listTypes.ts for round 1). they merge into src/generated/containerTypes.ts
@@ -44,9 +43,12 @@ export interface GroupBoxProps extends ViewProps {
 }
 
 export interface ViewThatFitsProps extends ViewProps {
-  axes?: ScrollViewAxes
+  axes?: ViewThatFitsAxes
   children: ReactNode
 }
+
+export const viewThatFitsAxes = ['horizontal', 'vertical', 'both'] as const
+export type ViewThatFitsAxes = (typeof viewThatFitsAxes)[number]
 
 export interface GlassEffectContainerProps extends ViewProps {
   spacing?: number

@@ -30,7 +30,9 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeViewThatFitsProps>(props);
-  [_viewThatFits configureWithAxes:RCTNSStringFromString(next.axes)];
+  const auto height = next.yogaStyle.dimension(yoga::Dimension::Height);
+  const bool boundedHeight = !height.isUndefined() && !height.isAuto();
+  [_viewThatFits configureWithAxes:RCTNSStringFromString(next.axes) boundedHeight:boundedHeight];
   [super updateProps:props oldProps:oldProps];
 }
 

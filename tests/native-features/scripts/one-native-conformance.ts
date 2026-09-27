@@ -2782,6 +2782,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const container = id(narrow, 'one-native-view-that-fits-container')?.frame
     if (!container || Math.abs(container.width - 180) > 3 || Math.abs(container.height - 70) > 3)
       throw new Error(`ViewThatFits did not receive the proposed frame: ${JSON.stringify(container)}`)
+    if (!labels(narrow).includes('Default compact') || labels(narrow).includes('Default wide'))
+      throw new Error('ViewThatFits omitted axes did not use SwiftUI both-axes default')
+    if (!labels(narrow).includes('Nested compact') || labels(narrow).includes('Nested wide'))
+      throw new Error('Composed ViewThatFits did not select its fitting child')
     screenshot('view-that-fits-narrow.png', narrow)
     tap({ label: 'Compact option' })
     await wait('selected compact child action reaches React', (nodes) =>
@@ -2793,6 +2797,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ label: 'Wide option' })
     await wait('selected wide child action reaches React', (nodes) =>
       labels(nodes).includes('Pressed: wide'))
+    tap({ id: 'one-native-view-that-fits-width' })
+    const fallback = await wait('ViewThatFits shows last child when none fits', (nodes) =>
+      labels(nodes).includes('Proposal width: 80') && selected(nodes, 'Compact option'))
+    screenshot('view-that-fits-fallback.png', fallback)
     tap({ id: 'one-native-view-that-fits-width' })
     tap({ id: 'one-native-view-that-fits-axes' })
     await wait('vertical axis ignores narrow horizontal proposal', (nodes) =>

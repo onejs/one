@@ -3,6 +3,7 @@ import UIKit
 
 private final class ViewThatFitsModel: ObservableObject {
   @Published var axes = "both"
+  @Published var boundedHeight = false
   var onHeight: ((CGFloat) -> Void)?
 }
 
@@ -23,7 +24,7 @@ private struct ViewThatFitsContent: View {
       }
     }
     .frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)
-    .oneNativeMeasured(standalone, model.onHeight)
+    .oneNativeMeasured(standalone && !model.boundedHeight, model.onHeight)
     .oneNativeScheme(standalone, bridge.scheme)
   }
 
@@ -66,7 +67,8 @@ public final class OneNativeViewThatFitsView: OneNativeContainerView {
     super.didMoveToWindow()
   }
 
-  public func configure(axes: String) {
+  public func configure(axes: String, boundedHeight: Bool) {
     if model.axes != axes { model.axes = axes }
+    if model.boundedHeight != boundedHeight { model.boundedHeight = boundedHeight }
   }
 }
