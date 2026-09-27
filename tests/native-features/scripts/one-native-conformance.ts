@@ -65,6 +65,7 @@ const suites = [
   'view-that-fits',
   'cover-context',
   'popover',
+  'popover-anchor',
   'navigation',
   'accessibility',
   'media',
@@ -562,6 +563,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'view-that-fits': viewThatFitsLoaded,
   'cover-context': coverContextLoaded,
   popover: popoverLoaded,
+  'popover-anchor': popoverLoaded,
   navigation: navigationLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
@@ -629,6 +631,7 @@ const suiteHome: Record<Suite, string> = {
   'view-that-fits': 'nav-one-native-view-that-fits',
   'cover-context': 'nav-one-native-cover-context',
   popover: 'nav-one-native-popover',
+  'popover-anchor': 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
   map: 'nav-one-native-map',
@@ -4178,6 +4181,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       status(nodes, 'Pinned', 'true') &&
       !menuOpen(nodes)
     )
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'popover-anchor') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-popover')
+    await wait('bounds attachment anchor mounted', (nodes) =>
+      labels(nodes).includes('Anchor: bounds') && labels(nodes).includes('Open: false'))
+    tap({ id: 'one-native-popover-open' })
+    const bounds = await wait('bounds anchor presents', (nodes) =>
+      labels(nodes).includes('Popover body'))
+    screenshot('popover-anchor-bounds.png', bounds)
+    tap({ id: 'one-native-popover-close' })
+    await wait('bounds anchor dismisses', (nodes) =>
+      labels(nodes).includes('Open: false') && !labels(nodes).includes('Popover body'))
+    tap({ id: 'one-native-popover-anchor-toggle' })
+    await wait('point attachment anchor mounted', (nodes) =>
+      labels(nodes).includes('Anchor: point'))
+    tap({ id: 'one-native-popover-open' })
+    const pointAnchored = await wait('point anchor presents', (nodes) =>
+      labels(nodes).includes('Popover body'))
+    screenshot('popover-anchor-point.png', pointAnchored)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
