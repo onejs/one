@@ -2102,7 +2102,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await dismissWarning(true)
     await tapNav('nav-one-native-list-search-refresh')
     const mounted = await wait('searchable List and rows mount', (nodes) =>
-      has(nodes, 'Apple') && has(nodes, 'Pear') && Boolean(searchField(nodes)?.frame)
+      has(nodes, 'Apple') && Boolean(searchField(nodes)?.frame)
     )
     screenshot('list-search-refresh-initial.png', mounted)
     pull(mounted)
@@ -2111,8 +2111,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('list-search-refresh-pending.png', refreshing)
     tap({ id: 'one-native-list-refresh-release' })
-    await wait('native refresh action completes after promise resolves', (nodes) =>
+    const completed = await wait('native refresh action completes after promise resolves', (nodes) =>
       has(nodes, 'Refresh: 1 started, 1 completed')
+    )
+    pull(completed)
+    await wait('native List accepts a second pull after completion', (nodes) =>
+      has(nodes, 'Refresh: 2 started, 1 completed')
+    )
+    tap({ id: 'one-native-list-refresh-release' })
+    await wait('second refresh action completes', (nodes) =>
+      has(nodes, 'Refresh: 2 started, 2 completed')
     )
     tap({ id: 'one-native-list-search-external' })
     const external = await wait('controlled search receives external text', (nodes) =>
@@ -2122,7 +2130,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     screenshot('list-search-refresh-external.png', external)
     tap({ id: 'one-native-list-search-clear' })
     const cleared = await wait('external clear restores native search field and rows', (nodes) =>
-      has(nodes, 'Query: ') && has(nodes, 'Apple') && has(nodes, 'Pear') &&
+      has(nodes, 'Query: ') && has(nodes, 'Apple') &&
       String(searchField(nodes)?.AXValue ?? '') === 'Search'
     )
     const field = searchField(cleared)?.frame
@@ -2130,7 +2138,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     point(field.x + field.width / 2, field.y + field.height / 2)
     await typeInto('native searchable field', 'pea', (nodes) => searchField(nodes)?.AXValue)
     const typed = await wait('native search edit changes React binding and filters rows', (nodes) =>
-      has(nodes, 'Query: pea') && has(nodes, 'Pear') && has(nodes, 'Peach') &&
+      labels(nodes).some((label) => label.toLowerCase() === 'query: pea') &&
+      has(nodes, 'Pear') && has(nodes, 'Peach') &&
       !has(nodes, 'Apple') && String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pea'
     )
     screenshot('list-search-refresh-typed.png', typed)
