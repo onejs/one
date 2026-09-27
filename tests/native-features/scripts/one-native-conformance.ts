@@ -3034,11 +3034,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const bottomAction = mounted.find((node) => node.AXLabel === 'Bottom bar action')?.frame
     const topBase = mounted.find((node) => node.AXLabel === 'Top base')?.frame
     const bottomBase = mounted.find((node) => node.AXLabel === 'Bottom base')?.frame
+    const inside = (child: NonNullable<Node['frame']>, host: NonNullable<Node['frame']>) =>
+      child.x >= host.x - 1 && child.y >= host.y - 1 &&
+      child.x + child.width <= host.x + host.width + 1 &&
+      child.y + child.height <= host.y + host.height + 1
     if (!topAction || !bottomAction || !topBase || !bottomBase ||
         topAction.y + topAction.height > topBase.y + 2 ||
         bottomAction.y < bottomBase.y + bottomBase.height - 2 ||
-        topAction.x < topHost.x || topAction.x + topAction.width > topHost.x + topHost.width ||
-        bottomAction.x < bottomHost.x || bottomAction.x + bottomAction.width > bottomHost.x + bottomHost.width)
+        !inside(topAction, topHost) || !inside(topBase, topHost) ||
+        !inside(bottomAction, bottomHost) || !inside(bottomBase, bottomHost))
       throw new Error(`Native safe-area bars did not appear on opposite sides of the base: ${JSON.stringify({ topHost, bottomHost, topBase, bottomBase, topAction, bottomAction })}`)
     checks.push({ name: 'native safe-area bars appear above and below their base views', durationMs: 0 })
     console.log('PASS native safe-area bars appear above and below their base views')
