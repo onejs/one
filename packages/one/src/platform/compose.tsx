@@ -26,6 +26,8 @@ import type {
   ComposeProgressIndicatorProps,
   ComposeRadioButtonProps,
   ComposeRowProps,
+  ComposeSegmentedButtonProps,
+  ComposeSegmentedButtonRowProps,
   ComposeSliderProps,
   ComposeSuggestionChipProps,
   ComposeSurfaceProps,
@@ -205,6 +207,18 @@ function OutlinedIconToggleButton(_props: ComposeToggleButtonProps): never {
   return unsupported('OutlinedIconToggleButton')
 }
 
+function SingleChoiceSegmentedButtonRow(_props: ComposeSegmentedButtonRowProps): never {
+  return unsupported('SingleChoiceSegmentedButtonRow')
+}
+
+function MultiChoiceSegmentedButtonRow(_props: ComposeSegmentedButtonRowProps): never {
+  return unsupported('MultiChoiceSegmentedButtonRow')
+}
+
+function SegmentedButton(_props: ComposeSegmentedButtonProps): never {
+  return unsupported('SegmentedButton')
+}
+
 function Switch(_props: ComposeSwitchProps): never {
   return unsupported('Switch')
 }
@@ -296,6 +310,9 @@ export const Compose = {
   IconToggleButton,
   FilledIconToggleButton,
   OutlinedIconToggleButton,
+  SingleChoiceSegmentedButtonRow,
+  MultiChoiceSegmentedButtonRow,
+  SegmentedButton,
   Switch,
   Checkbox,
   RadioButton,

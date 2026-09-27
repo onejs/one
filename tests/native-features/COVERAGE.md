@@ -137,6 +137,9 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Android.IconToggleButton` | n/a | android-icon-buttons |  |
 | `One.Android.FilledIconToggleButton` | n/a | android-icon-buttons |  |
 | `One.Android.OutlinedIconToggleButton` | n/a | android-icon-buttons |  |
+| `One.Android.SingleChoiceSegmentedButtonRow` | n/a | android-segmented |  |
+| `One.Android.MultiChoiceSegmentedButtonRow` | n/a | android-segmented |  |
+| `One.Android.SegmentedButton` | n/a | android-segmented |  |
 | `One.Android.Switch` | n/a | android |  |
 | `One.Android.Checkbox` | n/a | android-selection |  |
 | `One.Android.RadioButton` | n/a | android-selection |  |

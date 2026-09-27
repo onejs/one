@@ -71,6 +71,10 @@ import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.FilledIconToggleButton
 import androidx.compose.material3.OutlinedIconToggleButton
 import androidx.compose.material3.OutlinedIconButton
+import androidx.compose.material3.MultiChoiceSegmentedButtonRow
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.InputChip
 import androidx.compose.material3.InputChipDefaults
 import androidx.compose.material3.lightColorScheme
@@ -1191,6 +1195,43 @@ private fun RenderComposeNodeBody(
             ) {
                 RenderComposeChildren(node)
             }
+        "singlechoicesegmentedbuttonrow" ->
+            SingleChoiceSegmentedButtonRow(modifier = modifier) {
+                node.renderedChildren.forEachIndexed { index, child ->
+                    if (child.renderedNodeKind == "segmentedbutton") {
+                        val item = child.renderedProps
+                        key(child) {
+                            SegmentedButton(
+                                selected = item.selected,
+                                onClick = { if (item.nativeClickable) child.handlePress() },
+                                shape = SegmentedButtonDefaults.itemShape(index, node.renderedChildren.size),
+                                enabled = !item.disabled && child.isEnabled,
+                                modifier = Modifier.applyComposeStyle(item.composeStyle).applyReactSemantics(child, item),
+                                label = { RenderComposeChildren(child) },
+                            )
+                        }
+                    }
+                }
+            }
+        "multichoicesegmentedbuttonrow" ->
+            MultiChoiceSegmentedButtonRow(modifier = modifier) {
+                node.renderedChildren.forEachIndexed { index, child ->
+                    if (child.renderedNodeKind == "segmentedbutton") {
+                        val item = child.renderedProps
+                        key(child) {
+                            SegmentedButton(
+                                checked = child.renderedBooleanValue,
+                                onCheckedChange = { if (item.nativeClickable) child.handleBooleanChanged(it) },
+                                shape = SegmentedButtonDefaults.itemShape(index, node.renderedChildren.size),
+                                enabled = !item.disabled && child.isEnabled,
+                                modifier = Modifier.applyComposeStyle(item.composeStyle).applyReactSemantics(child, item),
+                                label = { RenderComposeChildren(child) },
+                            )
+                        }
+                    }
+                }
+            }
+        "segmentedbutton" -> Unit
         "flowrow" ->
             FlowRow(
                 modifier = modifier,

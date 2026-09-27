@@ -272,6 +272,11 @@ const testScreens = [
     testID: 'nav-one-native-android-progress',
   },
   {
+    href: '/one-native-android-segmented',
+    label: 'One Native Android Segmented',
+    testID: 'nav-one-native-android-segmented',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',

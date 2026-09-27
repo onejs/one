@@ -82,6 +82,13 @@ controlled `checked`, optional `onCheckedChange`, `enabled`, and `colors` for
 normal, checked, and disabled container and content colors. The `revision`
 prop applies an external state reset.
 
+`One.Android.SingleChoiceSegmentedButtonRow` and
+`MultiChoiceSegmentedButtonRow` arrange `SegmentedButton` children. Pass
+`selected` with `onClick` to a button in the single-choice row, or controlled
+`checked` with `onCheckedChange` in the multi-choice row. `enabled={false}`
+disables a segment; `revision` resets a controlled checked value after an
+external state change.
+
 `One.Android.LoadingIndicator` and `ContainedLoadingIndicator` render the
 Material 3 expressive loading shapes. Omit `progress` for indeterminate
 animation, or pass a value from `0` to `1` for determinate progress. Both accept
