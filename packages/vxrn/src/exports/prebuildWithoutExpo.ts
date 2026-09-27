@@ -5,13 +5,6 @@ import { pathToFileURL } from 'node:url'
 import { validateNativeApp, type NativeAppManifest } from '@vxrn/utils/nativeAppManifest'
 import FSExtra from 'fs-extra'
 import sharp from 'sharp'
-import {
-  kotlinSourceId,
-  renderKotlinSourceGlue,
-  swiftPodManifest,
-  writeNativeSourceDeclaration,
-  writeSwiftPackageArtifacts,
-} from '../utils/nativeSourceContract'
 import { swiftPackageDirectories } from '../utils/swiftPackageId'
 
 type NativeProjectPatches = {
@@ -1990,33 +1983,41 @@ export const generateForPlatform = async (
   generateSceneDelegate({ dest, platform, app })
   if (platform === 'ios') generateOneBridgingHeader(dest, app)
   if (platform === 'ios') generateIosWidgets(dest, app)
-  if (platform === 'ios') generateSwiftPackages({ root, dest })
-  if (platform === 'android') generateKotlinSources({ root, dest })
+  if (platform === 'ios') await generateSwiftPackages({ root, dest })
+  if (platform === 'android') await generateKotlinSources({ root, dest })
 }
 
-function generateKotlinSources({ root, dest }: { root: string; dest: string }) {
+// the native source contract loads only for an app that has kotlin or swift
+// sources to generate glue for.
+async function generateKotlinSources({ root, dest }: { root: string; dest: string }) {
   const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build', 'tests', '__tests__', 'scripts'])
+  const sources: string[] = []
   const collect = (dir: string) => {
     for (const entry of FSExtra.readdirSync(dir, { withFileTypes: true })) {
       if (entry.name.startsWith('.') || skip.has(entry.name)) continue
       const source = path.join(dir, entry.name)
       if (entry.isDirectory()) collect(source)
-      else if (entry.isFile() && entry.name.endsWith('.kt')) {
-        const id = kotlinSourceId(root, source)
-        const target = path.join(dest, 'app/src/main/java/one/source', id)
-        FSExtra.mkdirSync(target, { recursive: true })
-        FSExtra.copyFileSync(source, path.join(target, entry.name))
-        const contract = writeNativeSourceDeclaration(source)
-        if (contract.modules.length > 0) {
-          FSExtra.writeFileSync(
-            path.join(target, `OneNativeSource_${id}.kt`),
-            renderKotlinSourceGlue(id, contract).source
-          )
-        }
-      }
+      else if (entry.isFile() && entry.name.endsWith('.kt')) sources.push(source)
     }
   }
   collect(root)
+  if (sources.length === 0) return
+  const { kotlinSourceId, renderKotlinSourceGlue, writeNativeSourceDeclaration } = await import(
+    '../utils/nativeSourceContract'
+  )
+  for (const source of sources) {
+    const id = kotlinSourceId(root, source)
+    const target = path.join(dest, 'app/src/main/java/one/source', id)
+    FSExtra.mkdirSync(target, { recursive: true })
+    FSExtra.copyFileSync(source, path.join(target, path.basename(source)))
+    const contract = writeNativeSourceDeclaration(source)
+    if (contract.modules.length > 0) {
+      FSExtra.writeFileSync(
+        path.join(target, `OneNativeSource_${id}.kt`),
+        renderKotlinSourceGlue(id, contract).source
+      )
+    }
+  }
 }
 
 // every directory under the app root holding a Package.swift becomes one local
@@ -2025,9 +2026,12 @@ function generateKotlinSources({ root, dest }: { root: string; dest: string }) {
 // clash with the app's main, and an objc +load files the entry with the
 // registry the OneSwiftHost view reads. the bundler resolves an import of any
 // .swift file in the package to a host view naming the same package id.
-function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
+async function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
   const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build'])
-  for (const [id, packageDir] of swiftPackageDirectories(root)) {
+  const packages = swiftPackageDirectories(root)
+  if (packages.size === 0) return
+  const { swiftPodManifest, writeSwiftPackageArtifacts } = await import('../utils/nativeSourceContract')
+  for (const [id, packageDir] of packages) {
     const podDir = path.join(dest, 'OneSwiftPackages', id)
     const manifest = swiftPodManifest(
       path.join(packageDir, 'Package.swift'),
