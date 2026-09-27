@@ -27,6 +27,7 @@ type Node = {
 const suites = [
   'tabs-menu',
   'pickers',
+  'picker-palette',
   'forms',
   'sheets',
   'leaves',
@@ -263,6 +264,10 @@ const pickersLoaded = (nodes: Node[]) => {
     Boolean(id(nodes, 'one-native-control-category-color'))
   )
 }
+const pickerPaletteLoaded = (nodes: Node[]) =>
+  nodes.some((node) => node.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-picker-palette-screen')) &&
+  has(nodes, 'Palette: ')
 // the controls fixture swaps its body per category, so the status panel differs: the value
 // categories publish Value:/Request: and the focus category publishes its own focus state. the
 // category row is what stays mounted in every category, so the guard leans on that and accepts
@@ -554,6 +559,7 @@ const navigationLoaded = (nodes: Node[]) =>
 const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'tabs-menu': fixtureLoaded,
   pickers: pickersLoaded,
+  'picker-palette': pickerPaletteLoaded,
   forms: formsLoaded,
   sheets: sheetsLoaded,
   leaves: leavesLoaded,
@@ -628,6 +634,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
 const suiteHome: Record<Suite, string> = {
   'tabs-menu': 'nav-one-native',
   pickers: 'nav-one-native-controls',
+  'picker-palette': 'nav-one-native-picker-palette',
   forms: 'nav-one-native-controls',
   sheets: 'nav-one-native-sheet',
   leaves: 'nav-one-native-leaves',
@@ -5815,6 +5822,63 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
+  if (config.suite === 'picker-palette') {
+    const group = (nodes: Node[], testID: string) =>
+      nodes.find((node) => node.type === 'TabGroup' && node.AXUniqueId === testID && node.frame)?.frame
+    const option = (nodes: Node[], testID: string, label: string) => {
+      const frame = group(nodes, testID)
+      if (!frame) return undefined
+      return nodes.find((node) =>
+        node.type === 'RadioButton' && node.AXLabel === label && node.frame &&
+        Math.abs(node.frame.y - frame.y) <= 1 &&
+        node.frame.x >= frame.x - 1 &&
+        node.frame.x + node.frame.width <= frame.x + frame.width + 1
+      )
+    }
+    const tapOption = (testID: string, label: string) => {
+      const frame = option(snapshot(config.simulatorId), testID, label)?.frame
+      if (!frame) throw new Error(`${testID} has no ${label} radio option`)
+      point(frame.x + frame.width / 2, frame.y + frame.height / 2)
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-picker-palette')
+    const initial = await wait('palette renders the native segmented fallback', (nodes) => {
+      const palette = group(nodes, 'one-native-picker-palette')
+      const segmented = group(nodes, 'one-native-picker-segmented')
+      return Boolean(
+        has(nodes, 'Palette: alpha') && has(nodes, 'Segmented: alpha') &&
+        palette && segmented &&
+        Math.abs(palette.width - segmented.width) <= 1 &&
+        Math.abs(palette.height - segmented.height) <= 1 &&
+        ['Alpha', 'Beta', 'Gamma'].every((label) =>
+          option(nodes, 'one-native-picker-palette', label) &&
+          option(nodes, 'one-native-picker-segmented', label)
+        ) &&
+        String(option(nodes, 'one-native-picker-palette', 'Alpha')?.AXValue) === '1'
+      )
+    })
+    screenshot('picker-palette-initial.png', initial)
+    tapOption('one-native-picker-palette', 'Beta')
+    const beta = await wait('palette radio tap updates controlled selection', (nodes) =>
+      has(nodes, 'Palette: beta') && has(nodes, 'Segmented: alpha') &&
+      String(option(nodes, 'one-native-picker-palette', 'Beta')?.AXValue) === '1'
+    )
+    screenshot('picker-palette-beta.png', beta)
+    tap({ id: 'one-native-picker-palette-external' })
+    await wait('external palette selection reaches native radio', (nodes) =>
+      has(nodes, 'Palette: gamma') &&
+      String(option(nodes, 'one-native-picker-palette', 'Gamma')?.AXValue) === '1'
+    )
+    tapOption('one-native-picker-segmented', 'Beta')
+    const independent = await wait('segmented reference remains independently controlled', (nodes) =>
+      has(nodes, 'Palette: gamma') && has(nodes, 'Segmented: beta') &&
+      String(option(nodes, 'one-native-picker-segmented', 'Beta')?.AXValue) === '1'
+    )
+    screenshot('picker-palette-final.png', independent)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
   if (config.suite === 'pickers') {
     // match the segmented control by its native component identity and exact xcode 26.4 bounds,
     // so the tap cannot silently address a different tab group.
@@ -5915,18 +5979,6 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         )
     )
     screenshot('picker-inline.png')
-    tap({ id: 'one-native-control-style' })
-    const palette = await wait('palette outside Menu renders as segmented picker', (nodes) =>
-      labels(nodes).includes('Style: palette · Reject: off') &&
-      nodes.some((node) => node.AXUniqueId === 'one-native-control' && node.type === 'TabGroup' && node.frame)
-    )
-    screenshot('picker-palette.png', palette)
-    const paletteFrame = palette.find((node) => node.AXUniqueId === 'one-native-control' && node.type === 'TabGroup')?.frame
-    if (!paletteFrame) throw new Error('Palette fallback has no segmented control frame')
-    point(paletteFrame.x + paletteFrame.width * 5 / 6, paletteFrame.y + paletteFrame.height / 2)
-    await wait('palette fallback updates controlled picker selection', (nodes) =>
-      value(nodes, 'gamma') && request(nodes, 'gamma')
-    )
     tap({ id: 'one-native-control-category-date' })
     await wait(
       'compact date mounted',

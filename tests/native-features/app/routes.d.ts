@@ -89,6 +89,7 @@ declare module 'one' {
         | `/one-native-network`
         | `/one-native-notifications`
         | `/one-native-paste-button`
+        | `/one-native-picker-palette`
         | `/one-native-photo-library`
         | `/one-native-pip`
         | `/one-native-popover`
