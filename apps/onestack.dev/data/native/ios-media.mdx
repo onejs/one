@@ -1,6 +1,6 @@
 ---
 title: iOS Media and Empty States
-description: Image, shapes, VideoPlayer, WebView, Map, ContentUnavailableView, and EmptyView under One.iOS
+description: Image, shapes, VideoPlayer, WebView, PhotosPicker, Map, ContentUnavailableView, and EmptyView under One.iOS
 ---
 
 Media, shapes, and empty states under `One.iOS`. Every view here accepts
@@ -61,6 +61,32 @@ page title, and `onLoadingChange` reports `(loading, progress)`.
 `backForwardNavigationGestures`, `magnificationGestures`, `linkPreviews`,
 `elementFullscreen`, and `contentBackground` mirror the WebKit behaviors and
 take `''` for unset.
+Use `html` for markup already in the app. Updating that string loads the new
+document and reports its title through `onTitleChange`; give the view an
+explicit height because WebView fills its React Native box.
+
+## PhotosPicker
+
+`One.iOS.PhotosPicker` opens Apple's photo selection UI without requesting
+access to the full photo library. `filter="images"` restricts it to images,
+and `maxSelectionCount={1}` picks one. `onPick` reports a temporary `file://`
+URL, its zero-based selection index, and the selected item count. The app can
+read the copied file at that URL.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.PhotosPicker
+  label="Choose photo"
+  filter="images"
+  maxSelectionCount={1}
+  onPick={(url, index, count) => addPhoto(url)}
+/>
+```
+
+For multiple selection, collect callbacks by `index`: each item loads
+asynchronously and callbacks may arrive out of order. `onPickError` reports
+items that fail to load.
 
 ## Map
 
