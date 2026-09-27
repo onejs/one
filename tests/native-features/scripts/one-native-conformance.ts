@@ -36,6 +36,7 @@ const suites = [
   'containers',
   'lists',
   'list-row-background',
+  'list-row-modifiers',
   'groups',
   'state',
   'safe-area',
@@ -298,6 +299,10 @@ const listsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-list-style')) &&
   has(nodes, 'List style: ')
+const listRowModifiersLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-list-row-modifiers-screen')) &&
+  has(nodes, 'Row modifiers: ')
 const groupsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-groups-refuse')) &&
@@ -538,6 +543,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   containers: containersLoaded,
   lists: listsLoaded,
   'list-row-background': listsLoaded,
+  'list-row-modifiers': listRowModifiersLoaded,
   groups: groupsLoaded,
   state: stateLoaded,
   'safe-area': safeAreaLoaded,
@@ -607,6 +613,7 @@ const suiteHome: Record<Suite, string> = {
   containers: 'nav-one-native-containers',
   lists: 'nav-one-native-lists',
   'list-row-background': 'nav-one-native-lists',
+  'list-row-modifiers': 'nav-one-native-list-row-modifiers',
   groups: 'nav-one-native-groups',
   state: 'nav-one-native-state',
   'safe-area': 'nav-one-native-safe-area',
@@ -2047,6 +2054,91 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'IsOn', 'true')
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'list-row-modifiers') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-list-row-modifiers')
+    const defaultRows = await wait('native list row modifiers mount', (nodes) =>
+      labels(nodes).includes('Row modifiers: default') &&
+      labels(nodes).includes('Inset row') && labels(nodes).includes('Control row'))
+    const defaultPath = screenshot('list-row-modifiers-default.png')
+    tap({ id: 'one-native-list-row-modifiers-toggle' })
+    const customRows = await wait('React updates native list row modifiers', (nodes) =>
+      labels(nodes).includes('Row modifiers: custom') &&
+      labels(nodes).includes('Inset row') && labels(nodes).includes('Control row'))
+    await Bun.sleep(300)
+    const customPath = screenshot('list-row-modifiers-custom.png')
+    tap({ id: 'one-native-list-row-modifiers-toggle' })
+    const restoredRows = await wait('React restores native list row modifiers', (nodes) =>
+      labels(nodes).includes('Row modifiers: default') &&
+      labels(nodes).includes('Inset row') && labels(nodes).includes('Control row'))
+    await Bun.sleep(300)
+    const restoredPath = screenshot('list-row-modifiers-restored.png')
+    const frame = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.AXLabel === label && node.frame)?.frame
+    const inset = frame(defaultRows, 'Inset row')
+    const control = frame(defaultRows, 'Control row')
+    const fixed = frame(defaultRows, 'Fixed inset')
+    const app = defaultRows.find((node) => node.type === 'Application')?.frame
+    if (!inset || !control || !fixed || !app)
+      throw new Error('List row modifier proof lost native row or application frames')
+    const scale = readPng(defaultPath).width / app.width
+    const sample = (file: string, row: NonNullable<Node['frame']>) => {
+      const png = readPng(file)
+      const left = Math.round((row.x + 4) * scale)
+      const right = Math.round((row.x + row.width - 4) * scale)
+      const textTop = Math.round((row.y + 13) * scale)
+      const textBottom = Math.round((row.y + 38) * scale)
+      let inkLeft = Number.POSITIVE_INFINITY
+      for (let y = textTop; y < textBottom; y++) {
+        for (let x = left; x < right; x++) {
+          const at = (y * png.width + x) * 4
+          if (png.data[at]! < 220 && png.data[at + 1]! < 220 && png.data[at + 2]! < 220)
+            inkLeft = Math.min(inkLeft, x)
+        }
+      }
+      const separatorTop = Math.round((row.y + row.height - 2) * scale)
+      const separatorBottom = Math.round((row.y + row.height + 2) * scale)
+      let redSeparatorPixels = 0
+      let separatorInkPixels = 0
+      for (let y = separatorTop; y < separatorBottom; y++) {
+        for (let x = left; x < right; x++) {
+          const at = (y * png.width + x) * 4
+          if (png.data[at]! > 240 && png.data[at + 1]! < 100 && png.data[at + 2]! < 100)
+            redSeparatorPixels++
+          if (png.data[at]! < 235 || png.data[at + 1]! < 235 || png.data[at + 2]! < 235)
+            separatorInkPixels++
+        }
+      }
+      return { inkLeft: inkLeft / scale, redSeparatorPixels, separatorInkPixels }
+    }
+    const pixels = {
+      insetBefore: sample(defaultPath, inset),
+      insetAfter: sample(customPath, inset),
+      insetRestored: sample(restoredPath, inset),
+      controlBefore: sample(defaultPath, control),
+      controlAfter: sample(customPath, control),
+      controlRestored: sample(restoredPath, control),
+      fixedBefore: sample(defaultPath, fixed),
+      fixedAfter: sample(customPath, fixed),
+      fixedRestored: sample(restoredPath, fixed),
+    }
+    fs.writeFileSync(path.join(config.artifactDir, 'list-row-modifiers-pixels.json'),
+      JSON.stringify({ pixels, frames: { inset, control, fixed }, scale }, null, 2))
+    if (pixels.insetAfter.inkLeft - pixels.insetBefore.inkLeft < 50 ||
+        Math.abs(pixels.insetRestored.inkLeft - pixels.insetBefore.inkLeft) > 2 ||
+        Math.abs(pixels.controlAfter.inkLeft - pixels.controlBefore.inkLeft) > 2 ||
+        Math.abs(pixels.controlRestored.inkLeft - pixels.controlBefore.inkLeft) > 2 ||
+        Math.abs(pixels.fixedAfter.inkLeft - pixels.fixedBefore.inkLeft) > 2 ||
+        Math.abs(pixels.fixedRestored.inkLeft - pixels.fixedBefore.inkLeft) > 2 ||
+        pixels.insetBefore.redSeparatorPixels < 500 ||
+        pixels.insetAfter.separatorInkPixels > 20 ||
+        pixels.insetRestored.redSeparatorPixels < 500)
+      throw new Error(`SwiftUI List row inset/separator did not update only the target row: ${JSON.stringify(pixels)}`)
+    checks.push({ name: 'SwiftUI List row inset and separator update only the target row', durationMs: 0 })
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
