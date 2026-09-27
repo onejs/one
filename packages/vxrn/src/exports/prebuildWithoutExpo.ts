@@ -1,4 +1,5 @@
 import { execFileSync } from 'node:child_process'
+import { createHash } from 'node:crypto'
 import module from 'node:module'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -380,6 +381,99 @@ function patchIosPbxprojSceneDelegate(rendered: string, appName: string): string
     patched = next
   }
   return patched
+}
+
+function fontFileName(font: string): string {
+  return path.basename(font)
+}
+
+function pbxprojId(seed: string): string {
+  return createHash('sha1').update(seed).digest('hex').slice(0, 24).toUpperCase()
+}
+
+const GOOGLE_SERVICES_PLIST = 'GoogleService-Info.plist'
+const GOOGLE_SERVICES_VERSION = '4.4.4'
+
+// the files prebuild bundles next to the ios app sources: native.app fonts and
+// the firebase plist.
+function iosResourceFiles(app: NativeAppManifest): string[] {
+  return [
+    ...(app.fonts ?? []).map(fontFileName),
+    ...(app.ios?.googleServicesFile ? [GOOGLE_SERVICES_PLIST] : []),
+  ]
+}
+
+// each bundled file becomes an app-group file in the Resources phase, the way
+// expo's font and google services plugins add theirs.
+function patchIosPbxprojResources(rendered: string, appName: string, names: string[]): string {
+  let patched = rendered
+  for (const name of names) {
+    const fileRef = pbxprojId(`one-resource-file:${name}`)
+    const buildFile = pbxprojId(`one-resource-build:${name}`)
+    const fileType = name.endsWith('.plist') ? 'text.plist.xml' : 'file'
+    const edits: Array<[string, string]> = [
+      [
+        '/* Images.xcassets in Resources */ = {isa = PBXBuildFile;',
+        `\t\t${buildFile} /* ${name} in Resources */ = {isa = PBXBuildFile; fileRef = ${fileRef} /* ${name} */; };`,
+      ],
+      [
+        '/* Images.xcassets */ = {isa = PBXFileReference;',
+        `\t\t${fileRef} /* ${name} */ = {isa = PBXFileReference; lastKnownFileType = ${fileType}; name = ${name}; path = ${appName}/${name}; sourceTree = "<group>"; };`,
+      ],
+      ['/* Images.xcassets */,', `\t\t\t\t${fileRef} /* ${name} */,`],
+      ['/* Images.xcassets in Resources */,', `\t\t\t\t${buildFile} /* ${name} in Resources */,`],
+    ]
+    for (const [anchor, insertion] of edits) {
+      const next = insertAfterLine(patched, anchor, insertion)
+      if (next === patched) {
+        throw new Error(
+          `[vxrn] prebuild template project.pbxproj lost its Images.xcassets anchor (${anchor})`
+        )
+      }
+      patched = next
+    }
+  }
+  return patched
+}
+
+// ios copies fonts and the firebase plist next to the app sources; android
+// loads fonts from assets/fonts and the gradle plugin reads
+// app/google-services.json.
+function copyAppResources({
+  root,
+  dest,
+  platform,
+  app,
+}: {
+  root: string
+  dest: string
+  platform: 'ios' | 'android'
+  app: NativeAppManifest
+}): void {
+  const copies: Array<[string, string]> = (app.fonts ?? []).map((font) => [
+    font,
+    platform === 'ios'
+      ? path.join(dest, app.name, fontFileName(font))
+      : path.join(dest, 'app', 'src', 'main', 'assets', 'fonts', fontFileName(font)),
+  ])
+  const googleServices =
+    platform === 'ios' ? app.ios?.googleServicesFile : app.android?.googleServicesFile
+  if (googleServices) {
+    copies.push([
+      googleServices,
+      platform === 'ios'
+        ? path.join(dest, app.name, GOOGLE_SERVICES_PLIST)
+        : path.join(dest, 'app', 'google-services.json'),
+    ])
+  }
+  for (const [file, target] of copies) {
+    const source = path.resolve(root, file)
+    if (!FSExtra.existsSync(source)) {
+      throw new Error(`[vxrn] native.app names ${file}, which does not exist`)
+    }
+    FSExtra.mkdirSync(path.dirname(target), { recursive: true })
+    FSExtra.copyFileSync(source, target)
+  }
 }
 
 function patchIosPbxprojAppEntitlements(rendered: string, appName: string): string {
@@ -1375,21 +1469,30 @@ async function generateSplashScreen(args: {
   const { root, dest, platform, app } = args
   if (!app.splash) return
 
-  const source = path.resolve(root, app.splash.source)
-  if (!FSExtra.existsSync(source)) {
-    throw new Error(`[vxrn] native.app.splash source does not exist: ${source}`)
-  }
   // a cover splash fills the launch screen, so its artwork keeps its margins.
   const cover = app.splash.resizeMode === 'cover'
-  const image = sharp(source).rotate()
-  const { data: artwork, info: metadata } = await (
-    cover ? image : image.trim({ background: app.splash.backgroundColor })
-  )
-    .png()
-    .toBuffer({ resolveWithObject: true })
-  if (!metadata.width || !metadata.height) {
-    throw new Error('[vxrn] native.app.splash source must be an image')
+  const prepareArtwork = async (sourcePath: string, backgroundColor: string) => {
+    const source = path.resolve(root, sourcePath)
+    if (!FSExtra.existsSync(source)) {
+      throw new Error(`[vxrn] native.app.splash source does not exist: ${source}`)
+    }
+    const image = sharp(source).rotate()
+    const prepared = await (cover ? image : image.trim({ background: backgroundColor }))
+      .png()
+      .toBuffer({ resolveWithObject: true })
+    if (!prepared.info.width || !prepared.info.height) {
+      throw new Error('[vxrn] native.app.splash source must be an image')
+    }
+    return prepared
   }
+  const { data: artwork, info: metadata } = await prepareArtwork(
+    app.splash.source,
+    app.splash.backgroundColor
+  )
+  const dark = app.splash.dark
+  const darkArtwork = dark?.source
+    ? (await prepareArtwork(dark.source, dark.backgroundColor)).data
+    : undefined
   const artworkWidth = app.splash.width ?? 200
   const artworkHeight = Number(
     (artworkWidth * (metadata.height / metadata.width)).toFixed(3)
@@ -1399,21 +1502,72 @@ async function generateSplashScreen(args: {
     const appDir = path.join(dest, app.name)
     const splashDir = path.join(appDir, 'Images.xcassets', 'Splash.imageset')
     FSExtra.mkdirSync(splashDir, { recursive: true })
+    const darkAppearance = [{ appearance: 'luminosity', value: 'dark' }]
     await sharp(artwork).toFile(path.join(splashDir, 'splash.png'))
+    if (darkArtwork) await sharp(darkArtwork).toFile(path.join(splashDir, 'splash-dark.png'))
     FSExtra.writeFileSync(
       path.join(splashDir, 'Contents.json'),
       `${JSON.stringify(
         {
-          images: [{ filename: 'splash.png', idiom: 'universal', scale: '1x' }],
+          images: [
+            { filename: 'splash.png', idiom: 'universal', scale: '1x' },
+            ...(darkArtwork
+              ? [
+                  {
+                    appearances: darkAppearance,
+                    filename: 'splash-dark.png',
+                    idiom: 'universal',
+                    scale: '1x',
+                  },
+                ]
+              : []),
+          ],
           info: { author: 'xcode', version: 1 },
         },
         null,
         2
       )}\n`
     )
-    const red = Number.parseInt(app.splash.backgroundColor.slice(1, 3), 16) / 255
-    const green = Number.parseInt(app.splash.backgroundColor.slice(3, 5), 16) / 255
-    const blue = Number.parseInt(app.splash.backgroundColor.slice(5, 7), 16) / 255
+    // the launch background is a named color so a dark launch gets its own.
+    const srgb = (hex: string) => ({
+      red: Number.parseInt(hex.slice(1, 3), 16) / 255,
+      green: Number.parseInt(hex.slice(3, 5), 16) / 255,
+      blue: Number.parseInt(hex.slice(5, 7), 16) / 255,
+    })
+    const colorEntry = (hex: string) => {
+      const { red, green, blue } = srgb(hex)
+      return {
+        color: {
+          'color-space': 'srgb',
+          components: {
+            red: red.toFixed(3),
+            green: green.toFixed(3),
+            blue: blue.toFixed(3),
+            alpha: '1.000',
+          },
+        },
+        idiom: 'universal',
+      }
+    }
+    const colorDir = path.join(appDir, 'Images.xcassets', 'SplashBackground.colorset')
+    FSExtra.mkdirSync(colorDir, { recursive: true })
+    FSExtra.writeFileSync(
+      path.join(colorDir, 'Contents.json'),
+      `${JSON.stringify(
+        {
+          colors: [
+            colorEntry(app.splash.backgroundColor),
+            ...(dark
+              ? [{ appearances: darkAppearance, ...colorEntry(dark.backgroundColor) }]
+              : []),
+          ],
+          info: { author: 'xcode', version: 1 },
+        },
+        null,
+        2
+      )}\n`
+    )
+    const { red, green, blue } = srgb(app.splash.backgroundColor)
     FSExtra.writeFileSync(
       path.join(appDir, 'LaunchScreen.storyboard'),
       `<?xml version="1.0" encoding="UTF-8"?>
@@ -1433,7 +1587,7 @@ async function generateSplashScreen(args: {
             <subviews>
               <imageView userInteractionEnabled="NO" contentMode="${cover ? 'scaleAspectFill' : 'scaleAspectFit'}" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="splash-image"/>
             </subviews>
-            <color key="backgroundColor" red="${red}" green="${green}" blue="${blue}" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="SplashBackground"/>
             <constraints>
 ${
   cover
@@ -1455,6 +1609,9 @@ ${
   </scenes>
   <resources>
     <image name="Splash" width="${metadata.width}" height="${metadata.height}"/>
+    <namedColor name="SplashBackground">
+      <color red="${red}" green="${green}" blue="${blue}" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    </namedColor>
   </resources>
 </document>
 `
@@ -1464,35 +1621,39 @@ ${
 
   const mainRes = path.join(dest, 'app', 'src', 'main', 'res')
   const drawable = path.join(mainRes, 'drawable')
-  for (const [density, multiplier] of Object.entries(ANDROID_DENSITIES)) {
-    const canvasSize = 288 * multiplier
-    const imageSize = Math.round(artworkWidth * multiplier)
-    const contained = await sharp(artwork)
-      .resize(imageSize, imageSize, {
-        fit: 'contain',
-        background: { r: 0, g: 0, b: 0, alpha: 0 },
-      })
-      .png()
-      .toBuffer()
-    const drawableDensity = path.join(mainRes, `drawable-${density}`)
-    FSExtra.mkdirSync(drawableDensity, { recursive: true })
-    await sharp({
-      create: {
-        width: canvasSize,
-        height: canvasSize,
-        channels: 4,
-        background: { r: 0, g: 0, b: 0, alpha: 0 },
-      },
-    })
-      .composite([
-        {
-          input: contained,
-          left: Math.round((canvasSize - imageSize) / 2),
-          top: Math.round((canvasSize - imageSize) / 2),
+  const variants: Array<[Buffer, string]> = [[artwork, 'drawable']]
+  if (darkArtwork) variants.push([darkArtwork, 'drawable-night'])
+  for (const [variantArtwork, drawablePrefix] of variants) {
+    for (const [density, multiplier] of Object.entries(ANDROID_DENSITIES)) {
+      const canvasSize = 288 * multiplier
+      const imageSize = Math.round(artworkWidth * multiplier)
+      const contained = await sharp(variantArtwork)
+        .resize(imageSize, imageSize, {
+          fit: 'contain',
+          background: { r: 0, g: 0, b: 0, alpha: 0 },
+        })
+        .png()
+        .toBuffer()
+      const drawableDensity = path.join(mainRes, `${drawablePrefix}-${density}`)
+      FSExtra.mkdirSync(drawableDensity, { recursive: true })
+      await sharp({
+        create: {
+          width: canvasSize,
+          height: canvasSize,
+          channels: 4,
+          background: { r: 0, g: 0, b: 0, alpha: 0 },
         },
-      ])
-      .png()
-      .toFile(path.join(drawableDensity, 'splash.png'))
+      })
+        .composite([
+          {
+            input: contained,
+            left: Math.round((canvasSize - imageSize) / 2),
+            top: Math.round((canvasSize - imageSize) / 2),
+          },
+        ])
+        .png()
+        .toFile(path.join(drawableDensity, 'splash.png'))
+    }
   }
   FSExtra.writeFileSync(
     path.join(drawable, 'launch_screen.xml'),
@@ -1513,6 +1674,17 @@ ${
 </resources>
 `
   )
+  if (dark) {
+    FSExtra.mkdirSync(path.join(mainRes, 'values-night'), { recursive: true })
+    FSExtra.writeFileSync(
+      path.join(mainRes, 'values-night', 'colors.xml'),
+      `<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="splash_background">${dark.backgroundColor}</color>
+</resources>
+`
+    )
+  }
   const stylesPath = path.join(mainRes, 'values', 'styles.xml')
   const styles = FSExtra.readFileSync(stylesPath, 'utf8').replace(
     '        <!-- Customize your theme here. -->',
@@ -1637,6 +1809,11 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         }
         stamps.push(
           `\t<key>${updatesHost.runtimeVersionInfoPlistKey}</key>\n\t<string>${escapeXml(app.updates.runtimeVersion)}</string>`
+        )
+      }
+      if (app.fonts?.length) {
+        stamps.push(
+          `\t<key>UIAppFonts</key>\n\t<array>\n${app.fonts.map((font) => `\t\t<string>${escapeXml(fontFileName(font))}</string>`).join('\n')}\n\t</array>`
         )
       }
       if (app.userInterfaceStyle !== undefined) {
@@ -2088,6 +2265,9 @@ end`
         rendered = patchIosPbxprojAppEntitlements(rendered, appName)
       }
       if (app.ios?.widgets) rendered = patchIosPbxprojWidgets(rendered, app)
+      if (iosResourceFiles(app).length) {
+        rendered = patchIosPbxprojResources(rendered, appName, iosResourceFiles(app))
+      }
     }
     if (platform === 'ios' && relativePath === 'Podfile') {
       if (app.ios?.ccache) rendered = `ENV['USE_CCACHE'] ||= '1'\n${rendered}`
@@ -2151,6 +2331,49 @@ end`
         hardcodedGradlePlugin,
         `includeBuild(new File(["node", "--print", "require('module').createRequire(require.resolve('react-native/package.json')).resolve('@react-native/gradle-plugin/package.json')"].execute(null, settingsDir).text.trim()).parentFile.canonicalPath)`
       )
+    }
+    if (platform === 'android' && relativePath === 'app/build.gradle' && app.android?.minify) {
+      const minify = 'def enableProguardInReleaseBuilds = false'
+      const minifyEnabled = 'minifyEnabled enableProguardInReleaseBuilds'
+      if (!rendered.includes(minify) || !rendered.includes(minifyEnabled)) {
+        throw new Error('[vxrn] prebuild template app/build.gradle lost its proguard switch')
+      }
+      rendered = rendered.replace(minify, 'def enableProguardInReleaseBuilds = true')
+      if (app.android.shrinkResources) {
+        rendered = rendered.replace(
+          minifyEnabled,
+          `${minifyEnabled}\n            shrinkResources true`
+        )
+      }
+    }
+    if (platform === 'android' && app.android?.googleServicesFile) {
+      const edits: Array<[string, string, string]> = [
+        [
+          'build.gradle',
+          'classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")',
+          `        classpath("com.google.gms:google-services:${GOOGLE_SERVICES_VERSION}")`,
+        ],
+        [
+          'app/build.gradle',
+          'apply plugin: "com.facebook.react"',
+          'apply plugin: "com.google.gms.google-services"',
+        ],
+      ]
+      for (const [file, anchor, insertion] of edits) {
+        if (relativePath !== file) continue
+        const next = insertAfterLine(rendered, anchor, insertion)
+        if (next === rendered) {
+          throw new Error(`[vxrn] prebuild template ${file} lost its ${anchor} anchor`)
+        }
+        rendered = next
+      }
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/proguard-rules.pro' &&
+      app.android?.proguardRules
+    ) {
+      rendered = `${rendered.trimEnd()}\n\n${app.android.proguardRules.trim()}\n`
     }
     for (const [field, setting] of [
       ['minSdk', 'minSdkVersion'],
@@ -2233,6 +2456,7 @@ export const generateForPlatform = async (
   await generateAppIcons({ root, dest, platform, app })
   if (platform === 'android') await generateAdaptiveIcon({ root, dest, app })
   await generateSplashScreen({ root, dest, platform, app })
+  copyAppResources({ root, dest, platform, app })
   generateSceneDelegate({ dest, platform, app })
   if (platform === 'ios') generateOneBridgingHeader(dest, app)
   if (platform === 'ios') generateIosWidgets(dest, app)

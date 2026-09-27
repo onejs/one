@@ -17,7 +17,12 @@ export interface NativeAppManifest {
         backgroundColor: string;
         width?: number;
         resizeMode?: 'contain' | 'cover';
+        dark?: {
+            source?: string;
+            backgroundColor: string;
+        };
     };
+    fonts?: string[];
     imagePicker?: {
         camera?: string;
     };
@@ -63,6 +68,7 @@ export interface NativeAppManifest {
         fileSharing?: boolean;
         associatedDomains?: string[];
         usesAppleSignIn?: boolean;
+        googleServicesFile?: string;
         infoPlist?: Record<string, PlistValue>;
         entitlements?: Record<string, PlistValue>;
         widgets?: {
@@ -85,8 +91,12 @@ export interface NativeAppManifest {
         };
         targetSdk?: number;
         compileSdk?: number;
+        minify?: boolean;
+        shrinkResources?: boolean;
+        proguardRules?: string;
         permissions?: string[];
         blockedPermissions?: string[];
+        googleServicesFile?: string;
         appLinks?: Array<{
             host: string;
             pathPrefix?: string;
@@ -108,13 +118,21 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
         backgroundColor: string;
         imageWidth: number | undefined;
         resizeMode: "contain" | "cover" | undefined;
+        dark: {
+            image: string | undefined;
+            backgroundColor: string;
+        } | undefined;
     } | undefined;
+    plugins: (string | {
+        fonts: string[];
+    })[][] | undefined;
     ios: {
         bundleIdentifier: string;
         buildNumber: string | undefined;
         supportsTablet: boolean | undefined;
         associatedDomains: string[] | undefined;
         usesAppleSignIn: boolean | undefined;
+        googleServicesFile: string | undefined;
         infoPlist: Record<string, PlistValue> | undefined;
         entitlements: Record<string, PlistValue> | undefined;
     } | undefined;
@@ -123,6 +141,7 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
         versionCode: number | undefined;
         permissions: string[] | undefined;
         blockedPermissions: string[] | undefined;
+        googleServicesFile: string | undefined;
         adaptiveIcon: {
             foregroundImage: string;
             backgroundImage: string | undefined;
