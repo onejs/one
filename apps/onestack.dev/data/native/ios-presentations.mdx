@@ -44,8 +44,13 @@ import { One } from 'one'
 content dismisses from React or from a control it supplies.
 
 ```tsx
+import { One } from 'one'
+import { Button, View } from 'react-native'
+
 <One.iOS.FullScreenCover isPresented={open} onIsPresentedChange={setOpen}>
-  <One.iOS.Button label="Close" onPress={() => setOpen(false)} />
+  <View style={{ flex: 1 }}>
+    <Button title="Close" onPress={() => setOpen(false)} />
+  </View>
 </One.iOS.FullScreenCover>
 ```
 
@@ -116,8 +121,8 @@ import { One } from 'one'
 `accessibilityLabel`) and opens on long press instead of tap. The trigger
 keeps its own touches.
 An action calls `onAction` with its `id`; a toggle calls `onValueChange` with
-its `id` and new Boolean value, so React can update the corresponding `values`
-entry before the menu opens again.
+its `id`, new boolean value, and source index. React can update the
+corresponding `values` entry for the next opening.
 
 On web and Android these views throw, except where noted. Keep them behind
 a platform check.

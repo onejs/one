@@ -49,6 +49,7 @@ declare module 'one' {
         | `/one-native-contacts`
         | `/one-native-containers`
         | `/one-native-controls`
+        | `/one-native-cover-context`
         | `/one-native-crypto`
         | `/one-native-database`
         | `/one-native-device`
@@ -89,7 +90,6 @@ declare module 'one' {
         | `/one-native-speech`
         | `/one-native-state`
         | `/one-native-system`
-        | `/one-native-cover-context`
         | `/one-native-tab-oracle`
         | `/one-native-tabview`
         | `/one-native-ui-map`
