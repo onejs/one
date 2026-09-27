@@ -17,6 +17,7 @@ public protocol HybridOneContactsSpec_protocol: HybridObject {
   func requestPermission() throws -> Promise<ContactsPermissionStatus>
   func search(name: String, limit: Double) throws -> Promise<[ContactInfo]>
   func create(input: ContactInput) throws -> Promise<String>
+  func update(identifier: String, changes: ContactChanges) throws -> Promise<ContactInfo>
   func remove(identifier: String) throws -> Promise<Void>
 }
 

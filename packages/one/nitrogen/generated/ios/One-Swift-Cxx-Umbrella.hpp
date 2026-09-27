@@ -62,6 +62,8 @@ namespace margelo::nitro::one { enum class CalendarPermissionStatus; }
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class CameraPermissionStatus; }
+// Forward declaration of `ContactChanges` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactChanges; }
 // Forward declaration of `ContactInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactInfo; }
 // Forward declaration of `ContactInput` to properly resolve imports.
@@ -291,6 +293,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "CalendarPermissionStatus.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
+#include "ContactChanges.hpp"
 #include "ContactInfo.hpp"
 #include "ContactInput.hpp"
 #include "ContactsPermissionStatus.hpp"

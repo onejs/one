@@ -19,6 +19,8 @@ namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
 namespace margelo::nitro::one { struct ContactInfo; }
 // Forward declaration of `ContactInput` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactInput; }
+// Forward declaration of `ContactChanges` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactChanges; }
 
 #include "ContactsPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
@@ -26,6 +28,7 @@ namespace margelo::nitro::one { struct ContactInput; }
 #include <vector>
 #include <string>
 #include "ContactInput.hpp"
+#include "ContactChanges.hpp"
 
 namespace margelo::nitro::one {
 
@@ -62,6 +65,7 @@ namespace margelo::nitro::one {
       virtual std::shared_ptr<Promise<ContactsPermissionStatus>> requestPermission() = 0;
       virtual std::shared_ptr<Promise<std::vector<ContactInfo>>> search(const std::string& name, double limit) = 0;
       virtual std::shared_ptr<Promise<std::string>> create(const ContactInput& input) = 0;
+      virtual std::shared_ptr<Promise<ContactInfo>> update(const std::string& identifier, const ContactChanges& changes) = 0;
       virtual std::shared_ptr<Promise<void>> remove(const std::string& identifier) = 0;
 
     protected:

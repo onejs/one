@@ -2,13 +2,14 @@ import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
+  ContactChanges,
   ContactInfo,
   ContactInput,
   ContactsPermissionStatus,
   OneContacts,
 } from '../specs/OneContacts.nitro'
 
-export type { ContactInfo, ContactInput, ContactsPermissionStatus }
+export type { ContactChanges, ContactInfo, ContactInput, ContactsPermissionStatus }
 
 let hybrid: OneContacts | undefined
 
@@ -38,6 +39,10 @@ function create(input: ContactInput): Promise<string> {
   return native().create(input).catch(rethrowNativeError)
 }
 
+function update(identifier: string, changes: ContactChanges): Promise<ContactInfo> {
+  return native().update(identifier, changes).catch(rethrowNativeError)
+}
+
 function deleteContact(identifier: string): Promise<void> {
   return native().remove(identifier).catch(rethrowNativeError)
 }
@@ -47,5 +52,6 @@ export const Contacts = Object.freeze({
   requestPermission,
   search,
   create,
+  update,
   delete: deleteContact,
 })

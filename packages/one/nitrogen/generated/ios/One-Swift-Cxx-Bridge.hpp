@@ -1554,6 +1554,55 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_std__vector_ContactInfo__Wrapper(std::move(value));
   }
 
+  // pragma MARK: std::shared_ptr<Promise<ContactInfo>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<ContactInfo>>`.
+   */
+  using std__shared_ptr_Promise_ContactInfo__ = std::shared_ptr<Promise<ContactInfo>>;
+  inline std::shared_ptr<Promise<ContactInfo>> create_std__shared_ptr_Promise_ContactInfo__() noexcept {
+    return Promise<ContactInfo>::create();
+  }
+  inline PromiseHolder<ContactInfo> wrap_std__shared_ptr_Promise_ContactInfo__(std::shared_ptr<Promise<ContactInfo>> promise) noexcept {
+    return PromiseHolder<ContactInfo>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const ContactInfo& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const ContactInfo&)>`.
+   */
+  using Func_void_ContactInfo = std::function<void(const ContactInfo& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const ContactInfo& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_ContactInfo_Wrapper final {
+  public:
+    explicit Func_void_ContactInfo_Wrapper(std::function<void(const ContactInfo& /* result */)>&& func): _function(std::make_unique<std::function<void(const ContactInfo& /* result */)>>(std::move(func))) {}
+    inline void call(ContactInfo result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const ContactInfo& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_ContactInfo create_Func_void_ContactInfo(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_ContactInfo_Wrapper wrap_Func_void_ContactInfo(Func_void_ContactInfo value) noexcept {
+    return Func_void_ContactInfo_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::optional<std::vector<std::string>>
+  /**
+   * Specialized version of `std::optional<std::vector<std::string>>`.
+   */
+  using std__optional_std__vector_std__string__ = std::optional<std::vector<std::string>>;
+  inline std::optional<std::vector<std::string>> create_std__optional_std__vector_std__string__(const std::vector<std::string>& value) noexcept {
+    return std::optional<std::vector<std::string>>(value);
+  }
+  inline bool has_value_std__optional_std__vector_std__string__(const std::optional<std::vector<std::string>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::vector<std::string> get_std__optional_std__vector_std__string__(const std::optional<std::vector<std::string>>& optional) noexcept {
+    return optional.value();
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneContactsSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneContactsSpec>`.
@@ -1591,6 +1640,15 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__vector_ContactInfo____ create_Result_std__shared_ptr_Promise_std__vector_ContactInfo____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<ContactInfo>>>
+  using Result_std__shared_ptr_Promise_ContactInfo___ = Result<std::shared_ptr<Promise<ContactInfo>>>;
+  inline Result_std__shared_ptr_Promise_ContactInfo___ create_Result_std__shared_ptr_Promise_ContactInfo___(const std::shared_ptr<Promise<ContactInfo>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<ContactInfo>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_ContactInfo___ create_Result_std__shared_ptr_Promise_ContactInfo___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<ContactInfo>>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<HybridOneCryptoSpec>

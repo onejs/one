@@ -18,6 +18,7 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("requestPermission", &HybridOneContactsSpec::requestPermission);
       prototype.registerHybridMethod("search", &HybridOneContactsSpec::search);
       prototype.registerHybridMethod("create", &HybridOneContactsSpec::create);
+      prototype.registerHybridMethod("update", &HybridOneContactsSpec::update);
       prototype.registerHybridMethod("remove", &HybridOneContactsSpec::remove);
     });
   }

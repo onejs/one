@@ -13,6 +13,12 @@ export interface ContactInput {
     phoneNumbers: string[];
     emailAddresses: string[];
 }
+export interface ContactChanges {
+    givenName?: string;
+    familyName?: string;
+    phoneNumbers?: string[];
+    emailAddresses?: string[];
+}
 export interface OneContacts extends HybridObject<{
     ios: 'swift';
 }> {
@@ -20,6 +26,7 @@ export interface OneContacts extends HybridObject<{
     requestPermission(): Promise<ContactsPermissionStatus>;
     search(name: string, limit: number): Promise<ContactInfo[]>;
     create(input: ContactInput): Promise<string>;
+    update(identifier: string, changes: ContactChanges): Promise<ContactInfo>;
     remove(identifier: string): Promise<void>;
 }
 //# sourceMappingURL=OneContacts.nitro.d.ts.map

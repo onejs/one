@@ -312,6 +312,14 @@ namespace margelo::nitro::one::bridge::swift {
     };
   }
 
+  // pragma MARK: std::function<void(const ContactInfo& /* result */)>
+  Func_void_ContactInfo create_Func_void_ContactInfo(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_ContactInfo::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const ContactInfo& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneContactsSpec>
   std::shared_ptr<HybridOneContactsSpec> create_std__shared_ptr_HybridOneContactsSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneContactsSpec_cxx swiftPart = One::HybridOneContactsSpec_cxx::fromUnsafe(swiftUnsafePointer);

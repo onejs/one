@@ -54,7 +54,7 @@ checklist; One's own exports and docs decide the status.
 | Sensors and motion | missing | no CoreMotion service | none | P2 |
 | Battery and power state | missing | no battery level, charging state, or low-power state API | none | P3 |
 | Cellular/SIM details | missing | `One.Network` reports connection type, not carrier or SIM data | none | P3 |
-| Contacts | partial | `One.iOS.Contacts` permission, name search, create, delete; no edit or picker | contacts: prompt, create/search/delete | P2 |
+| Contacts | partial | `One.iOS.Contacts` permission, name search, create, update, delete; no picker or addresses | RAN iOS 27 prompt, create, full and partial edit, search, delete, and input errors | P2 |
 | Calendar and reminders | partial | `One.iOS.Calendar` event create, list, update, delete plus reminders permission, list, create, completion, delete; recurrence creation is absent | RAN iOS 27 both prompts, Calendar edit and delete with negative cases, and Reminders round trip | P2 |
 | Localization and locale | covered | `One.iOS.Device.getLocalizationInfo` returns locale, languages, calendar, time zone, UTC offset, and currency | RAN device suite on iOS 27: en-US, gregorian, Honolulu, UTC offset, USD | done |
 | Screen orientation | missing | no orientation events or lock API | none | P2 |

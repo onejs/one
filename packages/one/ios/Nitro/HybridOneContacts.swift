@@ -54,13 +54,7 @@ final class HybridOneContacts: HybridOneContactsSpec {
       var contacts: [ContactInfo] = []
       do {
         try CNContactStore().enumerateContacts(with: request) { contact, stop in
-          contacts.append(ContactInfo(
-            identifier: contact.identifier,
-            givenName: contact.givenName,
-            familyName: contact.familyName,
-            phoneNumbers: contact.phoneNumbers.map { $0.value.stringValue },
-            emailAddresses: contact.emailAddresses.map { String($0.value) }
-          ))
+          contacts.append(Self.info(contact))
           if contacts.count >= Int(limit) { stop.pointee = true }
         }
         promise.resolve(withResult: contacts)
@@ -92,15 +86,16 @@ final class HybridOneContacts: HybridOneContactsSpec {
           "E_CONTACTS_INPUT", "Contacts.create: provide a given or family name"))
         return
       }
+      guard !Self.hasBlank(input.phoneNumbers), !Self.hasBlank(input.emailAddresses) else {
+        promise.reject(withError: Self.error(
+          "E_CONTACTS_INPUT", "Contacts.create: phone numbers and email addresses cannot be blank"))
+        return
+      }
       let contact = CNMutableContact()
       contact.givenName = given
       contact.familyName = family
-      contact.phoneNumbers = input.phoneNumbers.map {
-        CNLabeledValue(label: CNLabelPhoneNumberMain, value: CNPhoneNumber(stringValue: $0))
-      }
-      contact.emailAddresses = input.emailAddresses.map {
-        CNLabeledValue(label: CNLabelHome, value: $0 as NSString)
-      }
+      contact.phoneNumbers = Self.phones(input.phoneNumbers)
+      contact.emailAddresses = Self.emails(input.emailAddresses)
       let request = CNSaveRequest()
       request.add(contact, toContainerWithIdentifier: nil)
       do {
@@ -109,6 +104,82 @@ final class HybridOneContacts: HybridOneContactsSpec {
       } catch {
         promise.reject(withError: Self.error(
           "E_CONTACTS_SAVE", "Contacts.create: \(error.localizedDescription)"))
+      }
+    }
+    return promise
+  }
+
+  func update(identifier: String, changes: ContactChanges) throws -> Promise<ContactInfo> {
+    let promise = Promise<ContactInfo>()
+    DispatchQueue.global(qos: .userInitiated).async {
+      guard Self.hasUsageDescription else {
+        promise.reject(withError: Self.error(
+          "E_CONTACTS_MANIFEST", "Contacts.update: set native.app.contacts.usage"))
+        return
+      }
+      guard Self.canAccess else {
+        promise.reject(withError: Self.error(
+          "E_CONTACTS_PERMISSION", "Contacts.update: Contacts permission is required"))
+        return
+      }
+      guard !identifier.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+        changes.givenName != nil || changes.familyName != nil ||
+          changes.phoneNumbers != nil || changes.emailAddresses != nil else {
+        promise.reject(withError: Self.error(
+          "E_CONTACTS_INPUT", "Contacts.update: an identifier and at least one change are required"))
+        return
+      }
+      if let values = changes.phoneNumbers, Self.hasBlank(values) {
+        promise.reject(withError: Self.error(
+          "E_CONTACTS_INPUT", "Contacts.update: phone numbers cannot be blank"))
+        return
+      }
+      if let values = changes.emailAddresses, Self.hasBlank(values) {
+        promise.reject(withError: Self.error(
+          "E_CONTACTS_INPUT", "Contacts.update: email addresses cannot be blank"))
+        return
+      }
+      do {
+        let store = CNContactStore()
+        let stored = try store.unifiedContact(withIdentifier: identifier, keysToFetch: Self.keys)
+        guard let contact = stored.mutableCopy() as? CNMutableContact else {
+          promise.reject(withError: Self.error(
+            "E_CONTACTS_SAVE", "Contacts.update: could not edit the contact"))
+          return
+        }
+        if changes.givenName != nil || changes.familyName != nil {
+          let given = (changes.givenName ?? contact.givenName)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+          let family = (changes.familyName ?? contact.familyName)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+          guard !given.isEmpty || !family.isEmpty else {
+            promise.reject(withError: Self.error(
+              "E_CONTACTS_INPUT", "Contacts.update: provide a given or family name"))
+            return
+          }
+        }
+        if let given = changes.givenName {
+          contact.givenName = given.trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        if let family = changes.familyName {
+          contact.familyName = family.trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        if let phones = changes.phoneNumbers {
+          contact.phoneNumbers = Self.phones(phones, preserving: contact.phoneNumbers)
+        }
+        if let emails = changes.emailAddresses {
+          contact.emailAddresses = Self.emails(emails, preserving: contact.emailAddresses)
+        }
+        let request = CNSaveRequest()
+        request.update(contact)
+        try store.execute(request)
+        promise.resolve(withResult: Self.info(contact))
+      } catch {
+        let native = error as NSError
+        let code = native.domain == CNErrorDomain &&
+          native.code == CNError.Code.recordDoesNotExist.rawValue
+          ? "E_CONTACTS_NOT_FOUND" : "E_CONTACTS_SAVE"
+        promise.reject(withError: Self.error(code, "Contacts.update: \(error.localizedDescription)"))
       }
     }
     return promise
@@ -141,8 +212,12 @@ final class HybridOneContacts: HybridOneContactsSpec {
         try store.execute(request)
         promise.resolve()
       } catch {
+        let native = error as NSError
+        let code = native.domain == CNErrorDomain &&
+          native.code == CNError.Code.recordDoesNotExist.rawValue
+          ? "E_CONTACTS_NOT_FOUND" : "E_CONTACTS_DELETE"
         promise.reject(withError: Self.error(
-          "E_CONTACTS_DELETE", "Contacts.delete: \(error.localizedDescription)"))
+          code, "Contacts.delete: \(error.localizedDescription)"))
       }
     }
     return promise
@@ -155,6 +230,44 @@ final class HybridOneContacts: HybridOneContactsSpec {
     CNContactPhoneNumbersKey as CNKeyDescriptor,
     CNContactEmailAddressesKey as CNKeyDescriptor,
   ]
+
+  private static func info(_ contact: CNContact) -> ContactInfo {
+    ContactInfo(
+      identifier: contact.identifier,
+      givenName: contact.givenName,
+      familyName: contact.familyName,
+      phoneNumbers: contact.phoneNumbers.map { $0.value.stringValue },
+      emailAddresses: contact.emailAddresses.map { String($0.value) }
+    )
+  }
+
+  private static func hasBlank(_ values: [String]) -> Bool {
+    values.contains { $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+  }
+
+  private static func phones(
+    _ values: [String], preserving existing: [CNLabeledValue<CNPhoneNumber>] = []
+  ) -> [CNLabeledValue<CNPhoneNumber>] {
+    var remaining = existing
+    return values.map { value in
+      if let index = remaining.firstIndex(where: { $0.value.stringValue == value }) {
+        return remaining.remove(at: index)
+      }
+      return CNLabeledValue(label: CNLabelPhoneNumberMain, value: CNPhoneNumber(stringValue: value))
+    }
+  }
+
+  private static func emails(
+    _ values: [String], preserving existing: [CNLabeledValue<NSString>] = []
+  ) -> [CNLabeledValue<NSString>] {
+    var remaining = existing
+    return values.map { value in
+      if let index = remaining.firstIndex(where: { String($0.value) == value }) {
+        return remaining.remove(at: index)
+      }
+      return CNLabeledValue(label: CNLabelHome, value: value as NSString)
+    }
+  }
 
   private static var canAccess: Bool {
     let status = CNContactStore.authorizationStatus(for: .contacts)
