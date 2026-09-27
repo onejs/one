@@ -83,7 +83,10 @@ accounts are unavailable).
   `tests/native-features/build/list-section-modifiers-final-proof` contains
   three AX/PNG pairs, geometry/pixel measurements, outcome, Xcode log,
   generator check, environment/binary receipt, and side-by-side WebP.
-  Other section modifiers, Form contexts, and List styles remain unproven.
+  The existing `lists` (28 checks) and `containers` (32 checks, including
+  two Form recycling cycles) suites passed on that installed binary.
+  Other section modifiers, these modifiers inside Form, and other List styles
+  remain unproven.
 
 - **RAN, 2026-09-27:** generated One Native controls now refresh their composed
   SwiftUI row when a `listRow*` SDK modifier changes. The container keeps a weak
