@@ -111,6 +111,11 @@ const testScreens = [
     testID: 'nav-one-native-linear-gradient',
   },
   {
+    href: '/one-native-radial-gradient',
+    label: 'One Native Radial Gradient',
+    testID: 'nav-one-native-radial-gradient',
+  },
+  {
     href: '/one-native-horizontal-inset',
     label: 'One Native Horizontal Inset',
     testID: 'nav-one-native-horizontal-inset',
@@ -159,6 +164,11 @@ const testScreens = [
     href: '/one-native-host',
     label: 'One Native Host',
     testID: 'nav-one-native-host',
+  },
+  {
+    href: '/one-native-control-size',
+    label: 'One Native Control Size',
+    testID: 'nav-one-native-control-size',
   },
   {
     href: '/one-native-containers',

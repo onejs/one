@@ -67,6 +67,9 @@ function ConcentricRectangle(_props: Types.ConcentricRectangleProps): never {
 function LinearGradient(_props: Types.LinearGradientProps): never {
   throw new Error('Swift.LinearGradient requires an iOS native build')
 }
+function RadialGradient(_props: Types.RadialGradientProps): never {
+  throw new Error('Swift.RadialGradient requires an iOS native build')
+}
 function VideoPlayer(_props: Types.VideoPlayerProps): never {
   throw new Error('Swift.VideoPlayer requires an iOS native build')
 }
@@ -132,6 +135,7 @@ export const unsupportedControls = {
   UnevenRoundedRectangle,
   ConcentricRectangle,
   LinearGradient,
+  RadialGradient,
   VideoPlayer,
   PhotosPicker,
   WebView,

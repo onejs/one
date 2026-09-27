@@ -640,6 +640,14 @@ An unlabeled gradient is decorative in accessibility. Give it an
 `accessibilityLabel` if its colors convey meaning. SwiftUI and React Native
 `backgroundImage` may interpolate the same endpoint colors differently.
 
+`One.iOS.RadialGradient` uses SwiftUI's
+`RadialGradient(colors:center:startRadius:endRadius:)`. It fills the assigned
+box; `center` is a normalized `{ x, y }` point defaulting to its middle,
+`startRadius` defaults to 0 points, and required `endRadius` is also measured
+in points. It accepts the same sRGB hex colors as `LinearGradient`. An empty
+array is transparent and an unlabeled view is decorative for accessibility.
+Explicit color stops and arbitrary SwiftUI `Color` values are unbound.
+
 `Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, `ConcentricRectangle`, and `Ellipse` are SwiftUI's
 shapes, one control each, named as SwiftUI names them. A shape has no ideal size
 of its own, so it takes the `width` and `height` React Native gives it, and `fill`
@@ -1171,6 +1179,12 @@ composed subtree with `colorScheme`, `dynamicTypeSize`, `controlSize`, `locale`,
 `extraLarge`, and sizes the controls in the subtree the way SwiftUI's
 `.controlSize(_:)` does. Omitted props preserve values inherited from an outer
 SwiftUI container.
+RAN on iOS 27: a bordered prominent Button inside `Host controlSize` and a
+standalone Button using `swiftStyle.controlSize` both grew from 28 to 50.33
+points when changed from `mini` to `extraLarge`, and returned to 28 points
+when restored. The ten-check proof (five control-size checks) is in
+`tests/native-features/proofs/control-size`; other controls and sizes remain
+unproven by that run.
 This set covers the environment values React Native can express as stable scalar or
 color props and that directly affect appearance, text layout, localization, and
 interaction. Arbitrary environment keys are intentionally excluded because their

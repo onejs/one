@@ -837,6 +837,49 @@ export function LinearGradient({
     />
   )
 }
+import NativeRadialGradient from '../specs/OneNativeRadialGradientNativeComponent'
+export function RadialGradient({
+  colors,
+  center = { x: 0.5, y: 0.5 },
+  startRadius = 0,
+  endRadius,
+  swiftStyle,
+  style,
+  ...props
+}: Types.RadialGradientProps) {
+  if (
+    !Array.isArray(colors) ||
+    !colors.every(
+      (color) =>
+        typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)
+    )
+  )
+    throw new Error(
+      'RadialGradient colors must be an array of #RRGGBB or #RRGGBBAA colors'
+    )
+  if (!center || !Number.isFinite(center.x) || !Number.isFinite(center.y))
+    throw new Error('RadialGradient center must have finite x and y coordinates')
+  if (!Number.isFinite(startRadius) || !Number.isFinite(endRadius))
+    throw new Error('RadialGradient radii must be finite numbers')
+
+  return (
+    <NativeRadialGradient
+      {...props}
+      style={style}
+      accessible={Boolean(props.accessibilityLabel)}
+      accessibilityElementsHidden={!props.accessibilityLabel}
+      accessibilityRole="image"
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      colors={colors}
+      center={JSON.stringify(center)}
+      startRadius={startRadius}
+      endRadius={endRadius}
+    />
+  )
+}
 import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
 export function VideoPlayer({
   url = '',
