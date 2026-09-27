@@ -41,6 +41,7 @@ declare module 'one' {
         | `/one-native-apple-auth`
         | `/one-native-apple-file`
         | `/one-native-arrangement`
+        | `/one-native-arrangement-view`
         | `/one-native-audio`
         | `/one-native-autogen`
         | `/one-native-building-blocks`

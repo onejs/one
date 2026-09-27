@@ -257,6 +257,11 @@ const testScreens = [
     testID: 'nav-one-native-arrangement',
   },
   {
+    href: '/one-native-arrangement-view',
+    label: 'One Native ArrangementView Conformance',
+    testID: 'nav-one-native-arrangement-view',
+  },
+  {
     href: '/one-native-android',
     label: 'One Native Android Proof',
     testID: 'nav-one-native-android',

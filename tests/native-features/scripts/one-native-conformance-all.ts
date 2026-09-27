@@ -1,5 +1,6 @@
 #!/usr/bin/env bun
-// runs the iPhone suites by default, or the iPad-only sidebar suite. the iPhone
+// runs the iPhone suites by default, the iPad sidebar suite, or the iOS 27.1
+// Duo ArrangementView suite. the iPhone
 // visual pass runs last and against the artifact root because several checks
 // take their negative capture from a different suite's directory.
 import { execFileSync } from 'node:child_process'
@@ -44,11 +45,12 @@ const artifactDir = value('--artifact-dir', '/tmp/one-native-conformance')
 const timeout = value('--timeout', '15000')
 const device = value('--device', 'iphone')
 const jsLocation = value('--js-location')
-if (device !== 'iphone' && device !== 'ipad') throw new Error('--device must be iphone or ipad')
-const suites = device === 'ipad' ? ['tab-sidebar'] : iphoneSuites
+if (device !== 'iphone' && device !== 'ipad' && device !== 'duo')
+  throw new Error('--device must be iphone, ipad, or duo')
+const suites = device === 'ipad' ? ['tab-sidebar'] : device === 'duo' ? ['arrangement'] : iphoneSuites
 if (!simulatorId || !bundleId) {
   console.log(
-    'Usage: bun one-native-conformance-all.ts --simulator-id <UUID> --bundle-id <ID> [--device iphone|ipad] [--js-location HOST:PORT] [--artifact-dir <PATH>] [--timeout <MS>]'
+    'Usage: bun one-native-conformance-all.ts --simulator-id <UUID> --bundle-id <ID> [--device iphone|ipad|duo] [--js-location HOST:PORT] [--artifact-dir <PATH>] [--timeout <MS>]'
   )
   process.exit(1)
 }
@@ -87,8 +89,8 @@ for (const suite of suites) {
   }
 }
 
-if (device === 'ipad') {
-  console.log(`TOTAL ${total} iPad accessibility checks`)
+if (device !== 'iphone') {
+  console.log(`TOTAL ${total} ${device} accessibility checks`)
   process.exit(0)
 }
 

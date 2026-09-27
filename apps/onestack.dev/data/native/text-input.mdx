@@ -107,8 +107,12 @@ function Canvas() {
 </One.UI.ReservedRegions.Provider>
 ```
 
-`One.iOS.ArrangementView` is SwiftUI's `ArrangementView`, which places a primary
-and a secondary pane side by side or stacked and keeps them clear of a fold:
+`One.iOS.ArrangementView` uses SwiftUI's `ArrangementView` on iOS 27.1 or later.
+It accepts primary and secondary panes, with `automatic`, `split`, and `overlay`
+styles. With `splitArrangementLayoutRatio={0.5}` on a closed iPhone Duo, the
+first two styles stack equal panes;
+`overlay` gives both panes the full arrangement frame. Open and folded Duo
+postures have not yet been verified in One's simulator fixture.
 
 ```tsx
 import { One, useSizeClass } from 'one'
@@ -120,6 +124,7 @@ function Workspace() {
     <One.iOS.ArrangementView
       style={{ flex: 1 }}
       arrangementViewStyle="split"
+      splitArrangementLayoutRatio={0.5}
       primary={<Chat />}
       secondary={<Preview />}
     />

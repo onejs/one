@@ -56,6 +56,7 @@ const suites = [
   'web-photos',
   'tab-slot',
   'tab-sidebar',
+  'arrangement',
   'edit-button',
   'view-that-fits',
   'cover-context',
@@ -367,6 +368,9 @@ const tabSlotLoaded = (nodes: Node[]) =>
 const tabSidebarLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-tab-sidebar-screen'))
+const arrangementLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'arrangement-container'))
 const editButtonLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-edit-button-screen'))
@@ -533,6 +537,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'web-photos': webPhotosLoaded,
   'tab-slot': tabSlotLoaded,
   'tab-sidebar': tabSidebarLoaded,
+  arrangement: arrangementLoaded,
   'edit-button': editButtonLoaded,
   'view-that-fits': viewThatFitsLoaded,
   'cover-context': coverContextLoaded,
@@ -595,6 +600,7 @@ const suiteHome: Record<Suite, string> = {
   'web-photos': 'nav-one-native-web-photos',
   'tab-slot': 'nav-one-native-tab-slot',
   'tab-sidebar': 'nav-one-native-tab-sidebar',
+  arrangement: 'nav-one-native-arrangement-view',
   'edit-button': 'nav-one-native-edit-button',
   'view-that-fits': 'nav-one-native-view-that-fits',
   'cover-context': 'nav-one-native-cover-context',
@@ -3327,6 +3333,61 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await wait(`sidebar ${name} action still reaches React after tab switch`, (nodes) =>
         labels(nodes).includes(`Sidebar taps: ${expected}`))
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'arrangement') {
+    const frames = (nodes: Node[]) => {
+      const arrangement = id(nodes, 'swift-arrangement-view')?.frame
+      const primary = id(nodes, 'arrangement-primary-pane')?.frame
+      const secondary = id(nodes, 'arrangement-secondary-pane')?.frame
+      return arrangement && primary && secondary ? { arrangement, primary, secondary } : undefined
+    }
+    const stacked = (nodes: Node[]) => {
+      const layout = frames(nodes)
+      if (!layout) return false
+      const { arrangement, primary, secondary } = layout
+      return Math.abs(primary.x - arrangement.x) < 2 &&
+        Math.abs(secondary.x - arrangement.x) < 2 &&
+        Math.abs(primary.y - arrangement.y) < 2 &&
+        Math.abs(primary.width - arrangement.width) < 2 &&
+        Math.abs(secondary.width - arrangement.width) < 2 &&
+        Math.abs(primary.height - arrangement.height / 2) < 3 &&
+        Math.abs(secondary.height - arrangement.height / 2) < 3 &&
+        Math.abs(primary.height - secondary.height) < 3 &&
+        Math.abs(primary.y + primary.height - secondary.y) < 3 &&
+        Math.abs(secondary.y + secondary.height - arrangement.y - arrangement.height) < 3
+    }
+    const overlaid = (nodes: Node[]) => {
+      const layout = frames(nodes)
+      if (!layout) return false
+      const { arrangement, primary, secondary } = layout
+      return [primary, secondary].every((pane) =>
+        Math.abs(pane.x - arrangement.x) < 2 &&
+        Math.abs(pane.y - arrangement.y) < 2 &&
+        Math.abs(pane.width - arrangement.width) < 2 &&
+        Math.abs(pane.height - arrangement.height) < 2)
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-arrangement-view')
+    const mounted = await wait('automatic ArrangementView stacks two panes on closed Duo', (nodes) =>
+      labels(nodes).includes('Leading / Primary') &&
+      labels(nodes).includes('Detail / Secondary') &&
+      labels(nodes).includes('Arrangement style: automatic') && stacked(nodes))
+    screenshot('arrangement-automatic.png', mounted)
+    tap({ id: 'style-btn-split' })
+    const split = await wait('split ArrangementView keeps half-height stacked panes on closed Duo', (nodes) =>
+      labels(nodes).includes('Arrangement style: split') && stacked(nodes))
+    screenshot('arrangement-split.png', split)
+    tap({ id: 'style-btn-overlay' })
+    const overlay = await wait('overlay ArrangementView fills both panes on closed Duo', (nodes) =>
+      labels(nodes).includes('Arrangement style: overlay') && overlaid(nodes))
+    screenshot('arrangement-overlay.png', overlay)
+    tap({ id: 'style-btn-automatic' })
+    const restored = await wait('automatic ArrangementView restores stacked panes', (nodes) =>
+      labels(nodes).includes('Arrangement style: automatic') && stacked(nodes))
+    screenshot('arrangement-restored.png', restored)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

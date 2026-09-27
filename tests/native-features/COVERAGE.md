@@ -10,7 +10,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.openSettings` | missing | missing | react native Linking underneath; no suite yet |
 | `One.AppInfo` | app-info | app-info |  |
 | `One.Database` | database | missing | Android suite missing |
-| `One.iOS.ArrangementView` | missing | n/a | fixture exists, no suite opens it |
+| `One.iOS.ArrangementView` | arrangement | n/a | closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved |
 | `One.iOS.Tabs` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Tab` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a |  |
 | `One.iOS.TabSection` | e2e:one-native-tabview | n/a |  |
