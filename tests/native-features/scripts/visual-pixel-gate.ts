@@ -8,9 +8,12 @@ export interface Rect {
   height: number
   /**
    * If true, coordinates are already in device pixels.
-   * If false or undefined, coordinates are in logical points (scaled by image.width / 393).
+   * If false or undefined, coordinates are in logical points (scaled by the
+   * captured viewport width, or 393 for older receipts without that width).
    */
   isPixel?: boolean
+  /** Logical display width from the capture's accessibility snapshot. */
+  viewportWidth?: number
 }
 
 export interface PixelBounds {
@@ -45,7 +48,7 @@ export function readPng(imagePath: string): PNG {
 }
 
 export function toPixelBounds(image: PNG, region: Rect): PixelBounds {
-  const scale = region.isPixel ? 1 : image.width / 393
+  const scale = region.isPixel ? 1 : image.width / (region.viewportWidth ?? 393)
   const left = Math.max(0, Math.floor(region.x * scale))
   const top = Math.max(0, Math.floor(region.y * scale))
   const right = Math.min(image.width, Math.ceil((region.x + region.width) * scale))

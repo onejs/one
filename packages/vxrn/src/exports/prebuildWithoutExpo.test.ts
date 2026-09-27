@@ -3,6 +3,7 @@ import {
   mkdtempSync,
   mkdirSync,
   readdirSync,
+  existsSync,
   readFileSync,
   realpathSync,
   statSync,
@@ -893,10 +894,79 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     ).toThrow('AppDelegate.swift anchor')
   })
 
+  it('bundles native.app fonts into both platforms from the real template', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-fonts-'))
+    const fonts = ['tests/native-features/assets/OneNativeTestFont-BlockB.ttf']
+    await generateForPlatform(workspaceRoot, 'ios', { ...app, fonts }, join(output, 'ios'))
+    await generateForPlatform(workspaceRoot, 'android', { ...app, fonts }, join(output, 'android'))
+
+    expect(existsSync(join(output, 'ios', 'MyApp', 'OneNativeTestFont-BlockB.ttf'))).toBe(true)
+    const infoPlist = readFileSync(join(output, 'ios', 'MyApp', 'Info.plist'), 'utf8')
+    expect(infoPlist).toContain(
+      '<key>UIAppFonts</key>\n\t<array>\n\t\t<string>OneNativeTestFont-BlockB.ttf</string>'
+    )
+    const pbxproj = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    // file reference, group child, build file and resources phase entry.
+    expect(pbxproj.split('/* OneNativeTestFont-BlockB.ttf */').length - 1).toBe(3)
+    expect(pbxproj.split('/* OneNativeTestFont-BlockB.ttf in Resources */').length - 1).toBe(2)
+    expect(pbxproj).toContain('path = MyApp/OneNativeTestFont-BlockB.ttf;')
+    expect(
+      existsSync(
+        join(output, 'android', 'app', 'src', 'main', 'assets', 'fonts', 'OneNativeTestFont-BlockB.ttf')
+      )
+    ).toBe(true)
+  })
+
+  it('bundles firebase config files and applies the google-services plugin', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-firebase-'))
+    const plist = join(output, 'firebase-ios.plist')
+    const json = join(output, 'firebase-android.json')
+    writeFileSync(plist, '<plist><dict/></plist>\n')
+    writeFileSync(json, '{}\n')
+    const firebase = {
+      ...app,
+      ios: { ...app.ios, googleServicesFile: plist },
+      android: { ...app.android, googleServicesFile: json },
+    }
+    await generateForPlatform(workspaceRoot, 'ios', firebase, join(output, 'ios'))
+    await generateForPlatform(workspaceRoot, 'android', firebase, join(output, 'android'))
+
+    expect(readFileSync(join(output, 'ios', 'MyApp', 'GoogleService-Info.plist'), 'utf8')).toBe(
+      '<plist><dict/></plist>\n'
+    )
+    const pbxproj = readFileSync(
+      join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
+      'utf8'
+    )
+    expect(pbxproj).toContain(
+      'lastKnownFileType = text.plist.xml; name = GoogleService-Info.plist; path = MyApp/GoogleService-Info.plist;'
+    )
+    expect(pbxproj.split('/* GoogleService-Info.plist in Resources */').length - 1).toBe(2)
+    expect(readFileSync(join(output, 'android', 'app', 'google-services.json'), 'utf8')).toBe(
+      '{}\n'
+    )
+    expect(readFileSync(join(output, 'android', 'build.gradle'), 'utf8')).toContain(
+      'classpath("com.google.gms:google-services:4.4.4")'
+    )
+    expect(readFileSync(join(output, 'android', 'app', 'build.gradle'), 'utf8')).toContain(
+      'apply plugin: "com.facebook.react"\napply plugin: "com.google.gms.google-services"'
+    )
+  })
+
   it('generates a scene project from the real template', async () => {
     const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
     const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-scene-'))
-    await generateForPlatform(workspaceRoot, 'ios', app, join(output, 'ios'))
+    await generateForPlatform(
+      workspaceRoot,
+      'ios',
+      { ...app, orientation: 'default' },
+      join(output, 'ios')
+    )
 
     const sceneDelegate = readFileSync(
       join(output, 'ios', 'MyApp', 'SceneDelegate.swift'),
@@ -915,6 +985,21 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     const infoPlist = readFileSync(join(output, 'ios', 'MyApp', 'Info.plist'), 'utf8')
     expect(infoPlist).toContain('<key>UIApplicationSceneManifest</key>')
     expect(infoPlist).toContain('<key>OneNativeNotificationsEnabled</key>')
+    // orientation default opens the phone list to all four; ipad keeps its own.
+    const phoneOrientations = infoPlist
+      .split('<key>UISupportedInterfaceOrientations</key>')[1]
+      .split('</array>')[0]
+    for (const orientation of [
+      'Portrait',
+      'PortraitUpsideDown',
+      'LandscapeLeft',
+      'LandscapeRight',
+    ]) {
+      expect(phoneOrientations).toContain(
+        `<string>UIInterfaceOrientation${orientation}</string>`
+      )
+    }
+    expect(infoPlist).toContain('<key>UISupportedInterfaceOrientations~ipad</key>')
 
     const project = readFileSync(
       join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
@@ -1099,7 +1184,16 @@ describe('generateForPlatform determinism', () => {
       ...app,
       version: '9.9.9',
       ios: { ...app.ios, buildNumber: '4242' },
-      android: { ...app.android, versionCode: 4242 },
+      android: {
+        ...app.android,
+        versionCode: 4242,
+        adaptiveIcon: {
+          foreground: fileURLToPath(
+            new URL('../../../../examples/one-basic/public/app-icon.png', import.meta.url)
+          ),
+          backgroundColor: '#123456',
+        },
+      },
       icon: {
         source: fileURLToPath(
           new URL('../../../../examples/one-basic/public/app-icon.png', import.meta.url)
@@ -1224,6 +1318,21 @@ describe('generateForPlatform determinism', () => {
     expect(readFileSync(join(androidRes, 'values', 'styles.xml'), 'utf8')).toContain(
       '@drawable/launch_screen'
     )
+    // the adaptive launcher icon: 108dp layers per density, a color background
+    // in its own resource, and both launcher xmls wired to them
+    expect(
+      await sharp(join(androidRes, 'mipmap-xxxhdpi', 'ic_launcher_foreground.png')).metadata()
+    ).toMatchObject({ width: 432, height: 432 })
+    expect(() => statSync(join(androidRes, 'mipmap-mdpi', 'ic_launcher_background.png'))).toThrow()
+    expect(readFileSync(join(androidRes, 'values', 'ic_launcher_background.xml'), 'utf8')).toContain(
+      '<color name="ic_launcher_background">#123456</color>'
+    )
+    for (const filename of ['ic_launcher.xml', 'ic_launcher_round.xml']) {
+      const adaptive = readFileSync(join(androidRes, 'mipmap-anydpi-v26', filename), 'utf8')
+      expect(adaptive).toContain('<background android:drawable="@color/ic_launcher_background"/>')
+      expect(adaptive).toContain('<foreground android:drawable="@mipmap/ic_launcher_foreground"/>')
+      expect(adaptive).not.toContain('monochrome')
+    }
     // android 12+ uses the configured splash image, never the launcher icon
     const stylesV31 = readFileSync(join(androidRes, 'values-v31', 'styles.xml'), 'utf8')
     expect(stylesV31).toContain('@color/splash_background')
@@ -1231,6 +1340,78 @@ describe('generateForPlatform determinism', () => {
       'android:windowSplashScreenAnimatedIcon">@drawable/splash'
     )
     expect(stylesV31).not.toContain('ic_launcher')
+  }, 180000)
+
+  it('fills the ios launch screen with an untrimmed cover splash', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-cover-'))
+    const source = fileURLToPath(
+      new URL('../../../../examples/one-basic/public/splash.png', import.meta.url)
+    )
+    await generateForPlatform(
+      workspaceRoot,
+      'ios',
+      { ...app, splash: { source, backgroundColor: '#000000', resizeMode: 'cover' } },
+      join(output, 'ios')
+    )
+    const iosApp = join(output, 'ios', 'MyApp')
+    const { width, height } = await sharp(source).metadata()
+    expect(
+      await sharp(join(iosApp, 'Images.xcassets', 'Splash.imageset', 'splash.png')).metadata()
+    ).toMatchObject({ width, height })
+    const launchStoryboard = readFileSync(join(iosApp, 'LaunchScreen.storyboard'), 'utf8')
+    expect(launchStoryboard).toContain('contentMode="scaleAspectFill" image="Splash"')
+    for (const edge of ['leading', 'trailing', 'top', 'bottom']) {
+      expect(launchStoryboard).toContain(`firstAttribute="${edge}" secondItem="launch-view"`)
+    }
+    expect(launchStoryboard).not.toContain('firstAttribute="width" constant')
+  }, 180000)
+
+  it('gives a dark launch its own background and artwork on both platforms', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-dark-'))
+    const source = fileURLToPath(
+      new URL('../../../../examples/one-basic/public/splash.png', import.meta.url)
+    )
+    const splash = {
+      source,
+      backgroundColor: '#ffffff',
+      dark: { source, backgroundColor: '#000000' },
+    }
+    await generateForPlatform(workspaceRoot, 'ios', { ...app, splash }, join(output, 'ios'))
+    await generateForPlatform(workspaceRoot, 'android', { ...app, splash }, join(output, 'android'))
+
+    const assets = join(output, 'ios', 'MyApp', 'Images.xcassets')
+    const imageset = JSON.parse(
+      readFileSync(join(assets, 'Splash.imageset', 'Contents.json'), 'utf8')
+    )
+    expect(imageset.images[1]).toMatchObject({
+      appearances: [{ appearance: 'luminosity', value: 'dark' }],
+      filename: 'splash-dark.png',
+    })
+    expect(existsSync(join(assets, 'Splash.imageset', 'splash-dark.png'))).toBe(true)
+    const colorset = JSON.parse(
+      readFileSync(join(assets, 'SplashBackground.colorset', 'Contents.json'), 'utf8')
+    )
+    expect(colorset.colors[0].color.components).toMatchObject({ red: '1.000' })
+    expect(colorset.colors[1]).toMatchObject({
+      appearances: [{ appearance: 'luminosity', value: 'dark' }],
+      color: { components: { red: '0.000', green: '0.000', blue: '0.000' } },
+    })
+    const storyboard = readFileSync(
+      join(output, 'ios', 'MyApp', 'LaunchScreen.storyboard'),
+      'utf8'
+    )
+    expect(storyboard).toContain('<color key="backgroundColor" name="SplashBackground"/>')
+    expect(storyboard).toContain('<namedColor name="SplashBackground">')
+
+    const res = join(output, 'android', 'app', 'src', 'main', 'res')
+    expect(readFileSync(join(res, 'values-night', 'colors.xml'), 'utf8')).toContain(
+      '<color name="splash_background">#000000</color>'
+    )
+    expect(
+      await sharp(join(res, 'drawable-night-xxxhdpi', 'splash.png')).metadata()
+    ).toMatchObject({ width: 1152, height: 1152 })
   }, 180000)
 
   it('regenerates byte-identical projects from the same manifest', async () => {
@@ -1688,6 +1869,225 @@ buildSettings = {
         app: updatesApp,
       })
     ).toThrow('One.Updates')
+  })
+
+  it('locks userInterfaceStyle on both platforms, and follows the system when unset', () => {
+    const plist = (userInterfaceStyle?: 'light' | 'dark' | 'automatic') =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld/Info.plist',
+        content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+        platform: 'ios',
+        app: { ...app, userInterfaceStyle },
+      }).content
+    expect(plist('light')).toContain('<key>UIUserInterfaceStyle</key>\n\t<string>Light</string>')
+    expect(plist('dark')).toContain('<string>Dark</string>')
+    expect(plist('automatic')).toContain('<string>Automatic</string>')
+    expect(plist()).not.toContain('UIUserInterfaceStyle')
+
+    const styles =
+      '<resources>\n    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">\n    </style>\n</resources>'
+    const theme = (userInterfaceStyle?: 'light' | 'dark' | 'automatic') =>
+      renderPrebuildFile({
+        relativePath: 'app/src/main/res/values/styles.xml',
+        content: styles,
+        platform: 'android',
+        app: { ...app, userInterfaceStyle },
+      }).content
+    expect(theme('light')).toContain('parent="Theme.AppCompat.Light.NoActionBar"')
+    expect(theme('dark')).toContain('parent="Theme.AppCompat.NoActionBar"')
+    expect(theme('automatic')).toContain('parent="Theme.AppCompat.DayNight.NoActionBar"')
+    expect(theme()).toContain('parent="Theme.AppCompat.DayNight.NoActionBar"')
+  })
+
+  it('writes the app entitlements file for links, apple sign in and custom keys', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-entitlements-'))
+    const linked = {
+      ...app,
+      notifications: undefined,
+      ios: {
+        ...app.ios,
+        associatedDomains: ['applinks:example.com'],
+        usesAppleSignIn: true,
+        entitlements: { 'com.apple.developer.icloud-container-identifiers': ['iCloud.dev.one'] },
+      },
+    }
+    await generateForPlatform(workspaceRoot, 'ios', linked, join(output, 'ios'))
+    const entitlements = readFileSync(join(output, 'ios', 'MyApp', 'MyApp.entitlements'), 'utf8')
+    expect(entitlements).toContain(
+      '<key>com.apple.developer.associated-domains</key>\n\t<array>\n\t\t<string>applinks:example.com</string>'
+    )
+    expect(entitlements).toContain('<key>com.apple.developer.applesignin</key>')
+    expect(entitlements).toContain('<string>iCloud.dev.one</string>')
+    expect(entitlements).not.toContain('aps-environment')
+    const project = readFileSync(join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'), 'utf8')
+    expect(project).toContain('CODE_SIGN_ENTITLEMENTS = MyApp/MyApp.entitlements;')
+
+    await expect(
+      generateForPlatform(
+        workspaceRoot,
+        'ios',
+        { ...linked, ios: { ...linked.ios, entitlements: { 'com.apple.developer.applesignin': [] } } },
+        join(output, 'ios-dup')
+      )
+    ).rejects.toThrow('native.app already writes')
+  }, 180000)
+
+  it('stamps extra Info.plist keys and rejects ones already written', () => {
+    const plist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: {
+        ...app,
+        ios: {
+          ...app.ios,
+          infoPlist: {
+            NSUserTrackingUsageDescription: 'Measure ads & installs',
+            GADIsAdManagerApp: true,
+            SKAdNetworkItems: [{ SKAdNetworkIdentifier: 'abc.skadnetwork' }],
+          },
+        },
+      },
+    }).content
+    expect(plist).toContain(
+      '<key>NSUserTrackingUsageDescription</key>\n\t<string>Measure ads &amp; installs</string>'
+    )
+    expect(plist).toContain('<key>GADIsAdManagerApp</key>\n\t<true/>')
+    expect(plist).toContain(
+      '<key>SKAdNetworkItems</key>\n\t<array>\n\t\t<dict>\n\t\t\t<key>SKAdNetworkIdentifier</key>'
+    )
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld/Info.plist',
+        content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+        platform: 'ios',
+        app: { ...app, ios: { ...app.ios, infoPlist: { CFBundleURLTypes: [] } } },
+      })
+    ).toThrow('already writes')
+  })
+
+  it('stamps android permissions, blocked permissions, app links and sdk levels', () => {
+    const manifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest xmlns:android="http://schemas.android.com/apk/res/android">\n    <uses-permission android:name="android.permission.INTERNET" />\n  <application>\n      <activity\n        android:name=".MainActivity">\n      </activity>\n    </application>\n</manifest>',
+      platform: 'android',
+      app: {
+        ...app,
+        notifications: undefined,
+        imagePicker: undefined,
+        speech: undefined,
+        scheme: undefined,
+        android: {
+          ...app.android,
+          permissions: ['VIBRATE', 'com.example.permission.CUSTOM'],
+          blockedPermissions: ['RECORD_AUDIO'],
+          appLinks: [{ host: 'example.com', pathPrefix: '/invite' }],
+        },
+      },
+    }).content
+    expect(manifest).toContain('<uses-permission android:name="android.permission.VIBRATE" />')
+    expect(manifest).toContain('<uses-permission android:name="com.example.permission.CUSTOM" />')
+    expect(manifest).toContain(
+      '<uses-permission android:name="android.permission.RECORD_AUDIO" tools:node="remove" />'
+    )
+    expect(manifest).toContain('xmlns:tools="http://schemas.android.com/tools"')
+    expect(manifest).toContain('<intent-filter android:autoVerify="true">')
+    expect(manifest).toContain('<data android:host="example.com" android:pathPrefix="/invite" />')
+
+    const gradle = renderPrebuildFile({
+      relativePath: 'build.gradle',
+      content: 'minSdkVersion = 24\ncompileSdkVersion = 37\ntargetSdkVersion = 36',
+      platform: 'android',
+      app: { ...app, android: { ...app.android, targetSdk: 35, compileSdk: 36 } },
+    }).content
+    expect(gradle).toBe('minSdkVersion = 28\ncompileSdkVersion = 36\ntargetSdkVersion = 35')
+  })
+
+  it('turns on release minify, resource shrinking and extra proguard rules', () => {
+    const android = {
+      ...app.android,
+      minify: true,
+      shrinkResources: true,
+      proguardRules: '-keep class com.example.** { *; }',
+    }
+    const gradle = renderPrebuildFile({
+      relativePath: 'app/build.gradle',
+      content:
+        'react {\n    autolinkLibrariesWithApp()\n}\ndef enableProguardInReleaseBuilds = false\n        release {\n            minifyEnabled enableProguardInReleaseBuilds\n        }',
+      platform: 'android',
+      app: { ...app, android },
+    }).content
+    expect(gradle).toContain('def enableProguardInReleaseBuilds = true')
+    expect(gradle).toContain(
+      'minifyEnabled enableProguardInReleaseBuilds\n            shrinkResources true'
+    )
+    const rules = renderPrebuildFile({
+      relativePath: 'app/proguard-rules.pro',
+      content: '# Add project specific ProGuard rules here.\n',
+      platform: 'android',
+      app: { ...app, android },
+    }).content
+    expect(rules).toBe(
+      '# Add project specific ProGuard rules here.\n\n-keep class com.example.** { *; }\n'
+    )
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'app/build.gradle',
+        content: 'react {\n    autolinkLibrariesWithApp()\n}\nno switch',
+        platform: 'android',
+        app: { ...app, android },
+      })
+    ).toThrow('proguard switch')
+  })
+
+  it('stamps orientation as expo does, and nothing when unset', () => {
+    const plistTemplate =
+      '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n\t<key>UISupportedInterfaceOrientations</key>\n\t<array>\n\t\t<string>UIInterfaceOrientationPortrait</string>\n\t</array>\n</dict>'
+    const landscape = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: plistTemplate,
+      platform: 'ios',
+      app: { ...app, orientation: 'landscape' },
+    })
+    expect(landscape.content).toContain(
+      '<array>\n\t\t<string>UIInterfaceOrientationLandscapeLeft</string>\n\t\t<string>UIInterfaceOrientationLandscapeRight</string>\n\t</array>'
+    )
+    expect(landscape.content).not.toContain('UIInterfaceOrientationPortrait<')
+    const unset = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: plistTemplate,
+      platform: 'ios',
+      app,
+    })
+    expect(unset.content).toContain('<string>UIInterfaceOrientationPortrait</string>')
+    expect(unset.content).not.toContain('PortraitUpsideDown')
+
+    const manifestTemplate =
+      '<manifest>\n  <uses-permission android:name="android.permission.INTERNET" />\n  <application>\n      <activity\n        android:name=".MainActivity"\n        android:exported="true">\n      </activity>\n    </application>\n</manifest>'
+    for (const [orientation, attribute] of [
+      ['portrait', 'portrait'],
+      ['landscape', 'landscape'],
+      ['default', 'unspecified'],
+    ] as const) {
+      const rendered = renderPrebuildFile({
+        relativePath: 'app/src/main/AndroidManifest.xml',
+        content: manifestTemplate,
+        platform: 'android',
+        app: {
+          ...app,
+          notifications: undefined,
+          imagePicker: undefined,
+          speech: undefined,
+          orientation,
+        },
+      })
+      expect(rendered.content).toContain(`android:screenOrientation="${attribute}"`)
+    }
+    expect(() =>
+      validatePrebuildApp({ ...app, orientation: 'sideways' as 'default' })
+    ).toThrow('orientation "sideways"')
   })
 
   it('stamps the updates url and runtime version into Info.plist', () => {

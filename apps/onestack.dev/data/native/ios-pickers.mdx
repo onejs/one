@@ -14,6 +14,11 @@ callback, and a `revision` number for external resets. Every picker accepts
 
 `One.iOS.Picker` picks one string from `options`, each `{ value, label }`.
 `pickerStyle` selects the SwiftUI picker style.
+On iOS 27 iPhone, `palette` outside a native Menu presented as a segmented Picker.
+The picker remains controlled when a segment is tapped or `selection` changes
+in React. A Picker embedded in Menu content is not available through the
+current data-driven Menu API. `navigationLink` still requires a native
+navigation context and throws. Earlier iOS presentations are unproven.
 
 | Prop | Type |
 |------|------|

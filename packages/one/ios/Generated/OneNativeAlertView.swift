@@ -45,7 +45,12 @@ private final class AlertModel: ObservableObject {
   }
   public func configureStyle(_ style: [String: Any]) {
     let next = OneNativeStyle(dictionary: style)
-    if model.swiftStyle != next { model.swiftStyle = next }
+    if model.swiftStyle != next {
+      let previousRows = model.swiftStyle.sdkModifiers.filter { $0.first?.hasPrefix("listRow") == true }
+      let nextRows = next.sdkModifiers.filter { $0.first?.hasPrefix("listRow") == true }
+      model.swiftStyle = next
+      if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
+    }
   }
   public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, title: String, message: String, presenting: String, hasPresenting: Bool) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }

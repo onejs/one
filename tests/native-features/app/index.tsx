@@ -26,9 +26,34 @@ const testScreens = [
     testID: 'nav-one-native-controls',
   },
   {
+    href: '/one-native-picker-palette',
+    label: 'One Native Picker Palette',
+    testID: 'nav-one-native-picker-palette',
+  },
+  {
     href: '/one-native-edit-button',
     label: 'One Native Edit Button',
     testID: 'nav-one-native-edit-button',
+  },
+  {
+    href: '/one-native-list-row-modifiers',
+    label: 'One Native List Row Modifiers',
+    testID: 'nav-one-native-list-row-modifiers',
+  },
+  {
+    href: '/one-native-list-section-modifiers',
+    label: 'One Native List Section Modifiers',
+    testID: 'nav-one-native-list-section-modifiers',
+  },
+  {
+    href: '/one-native-list-search-refresh',
+    label: 'One Native List Search and Refresh',
+    testID: 'nav-one-native-list-search-refresh',
+  },
+  {
+    href: '/one-native-scroll-search-refresh',
+    label: 'One Native Scroll Search and Refresh',
+    testID: 'nav-one-native-scroll-search-refresh',
   },
   {
     href: '/one-native-building-blocks',
@@ -84,6 +109,11 @@ const testScreens = [
     href: '/one-native-linear-gradient',
     label: 'One Native Linear Gradient',
     testID: 'nav-one-native-linear-gradient',
+  },
+  {
+    href: '/one-native-horizontal-inset',
+    label: 'One Native Horizontal Inset',
+    testID: 'nav-one-native-horizontal-inset',
   },
   {
     href: '/one-native-swipe-actions',
@@ -425,6 +455,11 @@ const testScreens = [
     href: '/one-native-local-authentication',
     label: 'One Native Local Authentication',
     testID: 'nav-one-native-local-authentication',
+  },
+  {
+    href: '/one-native-protected-store',
+    label: 'One Native Protected Store',
+    testID: 'nav-one-native-protected-store',
   },
   {
     href: '/one-native-location',

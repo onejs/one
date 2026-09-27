@@ -69,6 +69,7 @@ declare module 'one' {
         | `/one-native-group-box`
         | `/one-native-view-that-fits`
         | `/one-native-view-slot`
+        | `/one-native-horizontal-inset`
         | `/one-native-swipe-actions`
         | `/one-native-disclosure-group`
         | `/one-native-control-group`
@@ -79,6 +80,7 @@ declare module 'one' {
         | `/one-native-image-picker`
         | `/one-native-image-manipulator`
         | `/one-native-leaves`
+        | `/one-native-list-search-refresh`
         | `/one-native-lists`
         | `/one-native-local-authentication`
         | `/one-native-location`
@@ -88,10 +90,13 @@ declare module 'one' {
         | `/one-native-network`
         | `/one-native-notifications`
         | `/one-native-paste-button`
+        | `/one-native-picker-palette`
         | `/one-native-photo-library`
         | `/one-native-pip`
         | `/one-native-popover`
+        | `/one-native-protected-store`
         | `/one-native-safe-area`
+        | `/one-native-scroll-search-refresh`
         | `/one-native-secure-store`
         | `/one-native-share`
         | `/one-native-share-empty`

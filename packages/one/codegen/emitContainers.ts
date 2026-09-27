@@ -86,7 +86,8 @@ export const containerComponents = [
     name: 'OneNativeSection',
     publicName: 'Section',
     props: { title: 'string', footer: 'string' },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [composedContent],
@@ -411,7 +412,7 @@ export default codegenNativeComponent<NativeProps>('${component.name}'${componen
     header +
       `import type { ReactNode } from 'react'
 import type { ColorValue, ViewProps } from 'react-native'
-import type { GlassEffect, GlassEffectShape, Material, OneNativeViewProps } from './controlTypes'
+import type { GlassEffect, GlassEffectShape, Material, OneNativeStyle, OneNativeViewProps } from './controlTypes'
 import type * as Styles from './swiftui'
 import type { ColorScheme, ControlSize, DynamicTypeSize, SpacerSizing, ToolbarItemPlacement } from './swiftui'
 export type HostAxis = ${hostAxes.map((axis) => JSON.stringify(axis)).join(' | ')}
@@ -447,6 +448,7 @@ export interface FormProps extends ViewProps, EnvironmentProps {
 export interface SectionProps extends ViewProps {
   title?: string
   footer?: string
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface LabeledContentProps extends ViewProps {
