@@ -54,6 +54,7 @@ const suites = [
   'group-box',
   'building-blocks',
   'view-slot',
+  'safe-area-bar',
   'swipe-actions',
   'disclosure-group',
   'control-group',
@@ -362,6 +363,9 @@ const buildingBlocksLoaded = (nodes: Node[]) =>
 const viewSlotLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-view-slot-screen'))
+const safeAreaBarLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-safe-area-bar-screen'))
 const swipeActionsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-swipe-actions-screen'))
@@ -552,6 +556,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'group-box': groupBoxLoaded,
   'building-blocks': buildingBlocksLoaded,
   'view-slot': viewSlotLoaded,
+  'safe-area-bar': safeAreaBarLoaded,
   'swipe-actions': swipeActionsLoaded,
   'disclosure-group': disclosureGroupLoaded,
   'control-group': controlGroupLoaded,
@@ -620,6 +625,7 @@ const suiteHome: Record<Suite, string> = {
   'group-box': 'nav-one-native-group-box',
   'building-blocks': 'nav-one-native-building-blocks',
   'view-slot': 'nav-one-native-view-slot',
+  'safe-area-bar': 'nav-one-native-safe-area-bar',
   'swipe-actions': 'nav-one-native-swipe-actions',
   'disclosure-group': 'nav-one-native-disclosure-group',
   'control-group': 'nav-one-native-control-group',
@@ -3008,6 +3014,44 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const identityContrast = colorDistance(sample(identity, leftPoint, midY), sample(identity, rightPoint, midY))
     if (identityContrast < 100 || regularContrast >= identityContrast * 0.8)
       throw new Error(`Glass did not soften the two-color backdrop before identity removed it: ${JSON.stringify({ regularContrast, identityContrast })}`)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'safe-area-bar') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-safe-area-bar')
+    const mounted = await wait('native top and bottom safe-area bars mount', (nodes) =>
+      labels(nodes).includes('Top base') &&
+      labels(nodes).includes('Bottom base') &&
+      labels(nodes).includes('Top bar action') &&
+      labels(nodes).includes('Bottom bar action') &&
+      Boolean(id(nodes, 'one-native-safe-area-bar-top')?.frame) &&
+      Boolean(id(nodes, 'one-native-safe-area-bar-bottom')?.frame))
+    const topHost = id(mounted, 'one-native-safe-area-bar-top')!.frame!
+    const bottomHost = id(mounted, 'one-native-safe-area-bar-bottom')!.frame!
+    const topAction = mounted.find((node) => node.AXLabel === 'Top bar action')?.frame
+    const bottomAction = mounted.find((node) => node.AXLabel === 'Bottom bar action')?.frame
+    const topBase = mounted.find((node) => node.AXLabel === 'Top base')?.frame
+    const bottomBase = mounted.find((node) => node.AXLabel === 'Bottom base')?.frame
+    const inside = (child: NonNullable<Node['frame']>, host: NonNullable<Node['frame']>) =>
+      child.x >= host.x - 1 && child.y >= host.y - 1 &&
+      child.x + child.width <= host.x + host.width + 1 &&
+      child.y + child.height <= host.y + host.height + 1
+    if (!topAction || !bottomAction || !topBase || !bottomBase ||
+        topAction.y + topAction.height > topBase.y + 2 ||
+        bottomAction.y < bottomBase.y + bottomBase.height - 2 ||
+        !inside(topAction, topHost) || !inside(topBase, topHost) ||
+        !inside(bottomAction, bottomHost) || !inside(bottomBase, bottomHost))
+      throw new Error(`Native safe-area bars did not appear on opposite sides of the base: ${JSON.stringify({ topHost, bottomHost, topBase, bottomBase, topAction, bottomAction })}`)
+    checks.push({ name: 'native safe-area bars appear above and below their base views', durationMs: 0 })
+    console.log('PASS native safe-area bars appear above and below their base views')
+    screenshot('safe-area-bars-initial.png', mounted)
+    tap({ label: 'Top bar action' })
+    await wait('top safe-area bar action reaches React', (nodes) => labels(nodes).includes('Top taps: 1'))
+    tap({ label: 'Bottom bar action' })
+    const tapped = await wait('bottom safe-area bar action reaches React', (nodes) => labels(nodes).includes('Bottom taps: 1'))
+    screenshot('safe-area-bars-tapped.png', tapped)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

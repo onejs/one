@@ -160,12 +160,16 @@ the slot subtree. The slot content can contain interactive native controls:
 </One.iOS.ViewSlot>
 ```
 
-The iOS 27 conformance fixtures exercise `background` paint, a `mask` that
-clips a colored rectangle to a circle, `listRowBackground` behind a `List` row,
-and an interactive
-`safeAreaInsetWithVerticalEdge` with `edge: 'bottom'`. Its action appears
-after the base content. Other slot names have not yet been checked on a
-simulator.
+On iOS 26 or newer, `safeAreaBarWithVerticalEdge` accepts
+`options={{ edge: 'top' }}` or `options={{ edge: 'bottom' }}`. Put the bar's native controls in
+`ViewSlot.Content`. In the iOS 27 fixture, the top bar action appears above its
+base view and the bottom bar action appears below its base view; both actions
+reach React.
+
+The iOS 27 conformance fixtures also exercise `background` paint, a `mask`
+that clips a colored rectangle to a circle, `listRowBackground` behind a
+`List` row, and an interactive `safeAreaInsetWithVerticalEdge` with
+`edge: 'bottom'`. Other slot names have not yet been checked on a simulator.
 
 ## SwipeActions, SwipeActions.Actions
 
