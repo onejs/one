@@ -10,7 +10,8 @@ tree, Xcode and simulator version, and hashes of the code-bearing built and
 installed `NativeFeatureTests.debug.dylib`. The hashes match. It also records
 the built `libOne.a` hash. The native binary was reused from the earlier
 List/Section run because `packages/one/ios` has the same Git tree at both
-revisions. `native-build-reused-xcodebuild.log` is that build's Xcode log.
+revisions. `native-build-reused-xcodebuild.log.gz` is that build's compressed
+Xcode log.
 
 The suite proves native pull gestures invoke the JS callback, a second pull
 invokes it after the first callback's promise is resolved, and both directions
