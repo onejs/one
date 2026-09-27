@@ -224,6 +224,36 @@ export interface ComposeToggleButtonProps extends ComposeNodeProps {
   revision?: number
 }
 
+export interface ComposeSegmentedButtonRowProps extends ComposeNodeProps {
+  children: ReactNode
+}
+
+export type ComposeSegmentedButtonColors = Readonly<{
+  activeBorderColor?: ColorValue
+  activeContentColor?: ColorValue
+  inactiveBorderColor?: ColorValue
+  inactiveContentColor?: ColorValue
+  disabledActiveBorderColor?: ColorValue
+  disabledActiveContentColor?: ColorValue
+  disabledInactiveBorderColor?: ColorValue
+  disabledInactiveContentColor?: ColorValue
+  activeContainerColor?: ColorValue
+  inactiveContainerColor?: ColorValue
+  disabledActiveContainerColor?: ColorValue
+  disabledInactiveContainerColor?: ColorValue
+}>
+
+export interface ComposeSegmentedButtonProps extends ComposeNodeProps {
+  children: ReactNode
+  selected?: boolean
+  checked?: boolean
+  enabled?: boolean
+  colors?: ComposeSegmentedButtonColors
+  onClick?: () => void
+  onCheckedChange?: (checked: boolean) => void
+  revision?: number
+}
+
 export interface ComposeSwitchProps extends ComposeLeafProps {
   isOn: boolean
   disabled?: boolean
@@ -433,12 +463,27 @@ export interface ComposeDialogProps extends ComposeNodeProps {
 }
 
 export type ComposeProgressVariant = 'linear' | 'circular' | 'linearWavy' | 'circularWavy'
+export type ComposeProgressStrokeCap = 'round' | 'butt' | 'square'
+
+export type ComposeProgressStopIndicator = Readonly<{
+  color?: ColorValue
+  strokeCap?: ComposeProgressStrokeCap
+  stopSize?: number
+}>
 
 export interface ComposeProgressIndicatorProps extends ComposeLeafProps {
   variant?: ComposeProgressVariant
   progress?: number | null
   color?: ColorValue
   trackColor?: ColorValue
+  strokeCap?: ComposeProgressStrokeCap
+  gapSize?: number
+  strokeWidth?: number
+  drawStopIndicator?: ComposeProgressStopIndicator
+  stopSize?: number
+  amplitude?: number
+  wavelength?: number
+  waveSpeed?: number
 }
 
 export interface ComposeLoadingIndicatorProps extends ComposeLeafProps {

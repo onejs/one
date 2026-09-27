@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function FlowRow(_props: ComposeFlowRowProps): never;
@@ -43,6 +43,9 @@ declare function ToggleButton(_props: ComposeToggleButtonProps): never;
 declare function IconToggleButton(_props: ComposeToggleButtonProps): never;
 declare function FilledIconToggleButton(_props: ComposeToggleButtonProps): never;
 declare function OutlinedIconToggleButton(_props: ComposeToggleButtonProps): never;
+declare function SingleChoiceSegmentedButtonRow(_props: ComposeSegmentedButtonRowProps): never;
+declare function MultiChoiceSegmentedButtonRow(_props: ComposeSegmentedButtonRowProps): never;
+declare function SegmentedButton(_props: ComposeSegmentedButtonProps): never;
 declare function Switch(_props: ComposeSwitchProps): never;
 declare function Checkbox(_props: ComposeCheckboxProps): never;
 declare function RadioButton(_props: ComposeRadioButtonProps): never;
@@ -145,6 +148,9 @@ export declare const Compose: {
     IconToggleButton: typeof IconToggleButton;
     FilledIconToggleButton: typeof FilledIconToggleButton;
     OutlinedIconToggleButton: typeof OutlinedIconToggleButton;
+    SingleChoiceSegmentedButtonRow: typeof SingleChoiceSegmentedButtonRow;
+    MultiChoiceSegmentedButtonRow: typeof MultiChoiceSegmentedButtonRow;
+    SegmentedButton: typeof SegmentedButton;
     Switch: typeof Switch;
     Checkbox: typeof Checkbox;
     RadioButton: typeof RadioButton;

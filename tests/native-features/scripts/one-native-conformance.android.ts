@@ -33,7 +33,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'updates'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'updates'
   apkPath: string
 }
 
@@ -55,7 +55,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|updates --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|updates --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -84,7 +84,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -2991,6 +2991,43 @@ async function runCompose(config: Config) {
       exactlyOneId(nodes, 'one-native-android-progress-circular-wavy')
     )
   }
+  const segmented = async () => {
+    await tapNavigation(config, 'nav-one-native-android-segmented')
+    await check('compose-segmented-mounted', (nodes) =>
+      ['first', 'second', 'single-disabled', 'multi-fixed', 'multi-control', 'multi-disabled'].every((name) =>
+        exactlyOneId(nodes, `one-native-android-segmented-${name}`)
+      ) &&
+      matching(nodes, { id: 'one-native-android-segmented-single-disabled' }).some((node) => node.enabled === false) &&
+      matching(nodes, { id: 'one-native-android-segmented-multi-disabled' }).some((node) => node.enabled === false) &&
+      matching(nodes, { id: 'one-native-android-segmented-first' }).some((node) => node.checked === true) &&
+      matching(nodes, { id: 'one-native-android-segmented-second' }).some((node) => node.checked === false) &&
+      matching(nodes, { id: 'one-native-android-segmented-multi-control' }).some((node) => node.checked === false) &&
+      idText(nodes, 'one-native-android-segmented-status', 'Single: First · Checked: no · Policy: reject · Requests: 0 · Disabled: 0')
+    )
+    tapFresh(config, 'single choice second', { id: 'one-native-android-segmented-second' })
+    await check('compose-segmented-single-selected', (nodes) =>
+      idText(nodes, 'one-native-android-segmented-status', 'Single: Second · Checked: no')
+    )
+    tapFresh(config, 'multi choice rejected', { id: 'one-native-android-segmented-multi-control' })
+    await check('compose-segmented-rejected', (nodes) =>
+      idText(nodes, 'one-native-android-segmented-status', 'Checked: no · Policy: reject · Requests: 1')
+    )
+    tapFresh(config, 'accept multi choice requests', { id: 'one-native-android-segmented-policy' })
+    await check('compose-segmented-policy', (nodes) =>
+      idText(nodes, 'one-native-android-segmented-status', 'Checked: no · Policy: accept · Requests: 1')
+    )
+    tapFresh(config, 'multi choice accepted', { id: 'one-native-android-segmented-multi-control' })
+    await check('compose-segmented-accepted', (nodes) =>
+      idText(nodes, 'one-native-android-segmented-status', 'Checked: yes · Policy: accept · Requests: 2') &&
+      matching(nodes, { id: 'one-native-android-segmented-second' }).some((node) => node.checked === true) &&
+      matching(nodes, { id: 'one-native-android-segmented-multi-control' }).some((node) => node.checked === true)
+    )
+    tapFresh(config, 'disabled single choice', { id: 'one-native-android-segmented-single-disabled' })
+    tapFresh(config, 'disabled multi choice', { id: 'one-native-android-segmented-multi-disabled' })
+    await check('compose-segmented-disabled', (nodes) =>
+      idText(nodes, 'one-native-android-segmented-status', 'Single: Second · Checked: yes · Policy: accept · Requests: 2 · Disabled: 0')
+    )
+  }
   const surface = async () => {
     await tapNavigation(config, 'nav-one-native-android-surface')
     await check('compose-surface-mounted', (nodes) =>
@@ -3216,6 +3253,11 @@ async function runCompose(config: Config) {
   if (config.suite === 'compose-progress') {
     await progress()
     console.log('ALL ONE NATIVE ANDROID PROGRESS CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'compose-segmented') {
+    await segmented()
+    console.log('ALL ONE NATIVE ANDROID SEGMENTED CHECKS PASSED')
     return
   }
   await tapNavigation(config, 'nav-one-native-android-selection')
@@ -3601,7 +3643,7 @@ try {
   const config = parse(process.argv.slice(2))
   await (config.suite === 'updates'
     ? runUpdates(config)
-    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress'
+    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented'
       ? runCompose(config)
       : run(config))
 } catch (error) {
