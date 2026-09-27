@@ -23,6 +23,7 @@
 #include "HybridOneFileSystemSpecSwift.hpp"
 #include "HybridOneFontsSpecSwift.hpp"
 #include "HybridOneHapticsSpecSwift.hpp"
+#include "HybridOneImageManipulatorSpecSwift.hpp"
 #include "HybridOneImagePickerSpecSwift.hpp"
 #include "HybridOneLocalAuthenticationSpecSwift.hpp"
 #include "HybridOneLocationSpecSwift.hpp"
@@ -484,6 +485,30 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneHapticsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(const ImageTransformResult& /* result */)>
+  Func_void_ImageTransformResult create_Func_void_ImageTransformResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_ImageTransformResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const ImageTransformResult& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneImageManipulatorSpec>
+  std::shared_ptr<HybridOneImageManipulatorSpec> create_std__shared_ptr_HybridOneImageManipulatorSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneImageManipulatorSpec_cxx swiftPart = One::HybridOneImageManipulatorSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneImageManipulatorSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneImageManipulatorSpec_(std__shared_ptr_HybridOneImageManipulatorSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneImageManipulatorSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneImageManipulatorSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneImageManipulatorSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneImageManipulatorSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

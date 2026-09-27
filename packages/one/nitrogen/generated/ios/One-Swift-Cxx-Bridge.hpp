@@ -114,6 +114,8 @@ namespace margelo::nitro::one { class HybridOneFileSystemSpec; }
 namespace margelo::nitro::one { class HybridOneFontsSpec; }
 // Forward declaration of `HybridOneHapticsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneHapticsSpec; }
+// Forward declaration of `HybridOneImageManipulatorSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneImageManipulatorSpec; }
 // Forward declaration of `HybridOneImagePickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
 // Forward declaration of `HybridOneLocalAuthenticationSpec` to properly resolve imports.
@@ -136,12 +138,18 @@ namespace margelo::nitro::one { class HybridOneShareSpec; }
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
 // Forward declaration of `HybridOneUpdatesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneUpdatesSpec; }
+// Forward declaration of `ImageCrop` to properly resolve imports.
+namespace margelo::nitro::one { struct ImageCrop; }
 // Forward declaration of `ImagePickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerAsset; }
 // Forward declaration of `ImagePickerMediaType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ImagePickerMediaType; }
 // Forward declaration of `ImagePickerNativeResult` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerNativeResult; }
+// Forward declaration of `ImageResize` to properly resolve imports.
+namespace margelo::nitro::one { struct ImageResize; }
+// Forward declaration of `ImageTransformResult` to properly resolve imports.
+namespace margelo::nitro::one { struct ImageTransformResult; }
 // Forward declaration of `LocalAuthenticationStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
 // Forward declaration of `LocalizationInfo` to properly resolve imports.
@@ -246,6 +254,8 @@ namespace One { class HybridOneFileSystemSpec_cxx; }
 namespace One { class HybridOneFontsSpec_cxx; }
 // Forward declaration of `HybridOneHapticsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneHapticsSpec_cxx; }
+// Forward declaration of `HybridOneImageManipulatorSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneImageManipulatorSpec_cxx; }
 // Forward declaration of `HybridOneImagePickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneImagePickerSpec_cxx; }
 // Forward declaration of `HybridOneLocalAuthenticationSpec_cxx` to properly resolve imports.
@@ -322,6 +332,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneFileSystemSpec.hpp"
 #include "HybridOneFontsSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
+#include "HybridOneImageManipulatorSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
 #include "HybridOneLocalAuthenticationSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
@@ -333,9 +344,12 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
 #include "HybridOneUpdatesSpec.hpp"
+#include "ImageCrop.hpp"
 #include "ImagePickerAsset.hpp"
 #include "ImagePickerMediaType.hpp"
 #include "ImagePickerNativeResult.hpp"
+#include "ImageResize.hpp"
+#include "ImageTransformResult.hpp"
 #include "LocalAuthenticationStatus.hpp"
 #include "LocalizationInfo.hpp"
 #include "LocationPermissionStatus.hpp"
@@ -2009,6 +2023,91 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneHapticsSpec>
   using std__weak_ptr_HybridOneHapticsSpec_ = std::weak_ptr<HybridOneHapticsSpec>;
   inline std__weak_ptr_HybridOneHapticsSpec_ weakify_std__shared_ptr_HybridOneHapticsSpec_(const std::shared_ptr<HybridOneHapticsSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: std::shared_ptr<Promise<ImageTransformResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<ImageTransformResult>>`.
+   */
+  using std__shared_ptr_Promise_ImageTransformResult__ = std::shared_ptr<Promise<ImageTransformResult>>;
+  inline std::shared_ptr<Promise<ImageTransformResult>> create_std__shared_ptr_Promise_ImageTransformResult__() noexcept {
+    return Promise<ImageTransformResult>::create();
+  }
+  inline PromiseHolder<ImageTransformResult> wrap_std__shared_ptr_Promise_ImageTransformResult__(std::shared_ptr<Promise<ImageTransformResult>> promise) noexcept {
+    return PromiseHolder<ImageTransformResult>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const ImageTransformResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const ImageTransformResult&)>`.
+   */
+  using Func_void_ImageTransformResult = std::function<void(const ImageTransformResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const ImageTransformResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_ImageTransformResult_Wrapper final {
+  public:
+    explicit Func_void_ImageTransformResult_Wrapper(std::function<void(const ImageTransformResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const ImageTransformResult& /* result */)>>(std::move(func))) {}
+    inline void call(ImageTransformResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const ImageTransformResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_ImageTransformResult create_Func_void_ImageTransformResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_ImageTransformResult_Wrapper wrap_Func_void_ImageTransformResult(Func_void_ImageTransformResult value) noexcept {
+    return Func_void_ImageTransformResult_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::optional<ImageCrop>
+  /**
+   * Specialized version of `std::optional<ImageCrop>`.
+   */
+  using std__optional_ImageCrop_ = std::optional<ImageCrop>;
+  inline std::optional<ImageCrop> create_std__optional_ImageCrop_(const ImageCrop& value) noexcept {
+    return std::optional<ImageCrop>(value);
+  }
+  inline bool has_value_std__optional_ImageCrop_(const std::optional<ImageCrop>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline ImageCrop get_std__optional_ImageCrop_(const std::optional<ImageCrop>& optional) noexcept {
+    return optional.value();
+  }
+
+  // pragma MARK: std::optional<ImageResize>
+  /**
+   * Specialized version of `std::optional<ImageResize>`.
+   */
+  using std__optional_ImageResize_ = std::optional<ImageResize>;
+  inline std::optional<ImageResize> create_std__optional_ImageResize_(const ImageResize& value) noexcept {
+    return std::optional<ImageResize>(value);
+  }
+  inline bool has_value_std__optional_ImageResize_(const std::optional<ImageResize>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline ImageResize get_std__optional_ImageResize_(const std::optional<ImageResize>& optional) noexcept {
+    return optional.value();
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneImageManipulatorSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneImageManipulatorSpec>`.
+   */
+  using std__shared_ptr_HybridOneImageManipulatorSpec_ = std::shared_ptr<HybridOneImageManipulatorSpec>;
+  std::shared_ptr<HybridOneImageManipulatorSpec> create_std__shared_ptr_HybridOneImageManipulatorSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneImageManipulatorSpec_(std__shared_ptr_HybridOneImageManipulatorSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneImageManipulatorSpec>
+  using std__weak_ptr_HybridOneImageManipulatorSpec_ = std::weak_ptr<HybridOneImageManipulatorSpec>;
+  inline std__weak_ptr_HybridOneImageManipulatorSpec_ weakify_std__shared_ptr_HybridOneImageManipulatorSpec_(const std::shared_ptr<HybridOneImageManipulatorSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<ImageTransformResult>>>
+  using Result_std__shared_ptr_Promise_ImageTransformResult___ = Result<std::shared_ptr<Promise<ImageTransformResult>>>;
+  inline Result_std__shared_ptr_Promise_ImageTransformResult___ create_Result_std__shared_ptr_Promise_ImageTransformResult___(const std::shared_ptr<Promise<ImageTransformResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<ImageTransformResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_ImageTransformResult___ create_Result_std__shared_ptr_Promise_ImageTransformResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<ImageTransformResult>>>::withError(error);
+  }
 
   // pragma MARK: std::vector<ImagePickerAsset>
   /**

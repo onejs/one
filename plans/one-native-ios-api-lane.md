@@ -27,7 +27,7 @@ checklist; One's own exports and docs decide the status.
 | Camera capture | covered | `One.ImagePicker.launchCamera` | image-picker fixture | done |
 | Live camera preview and code scanning | missing | no camera preview or barcode/QR scanner | none | P1 |
 | Photo selection | covered | `One.ImagePicker.launchLibrary`, `One.iOS.PhotosPicker` | image-picker; PhotosPicker unproven | done |
-| Image transformation | missing | no crop, resize, rotate, or compress API | none | P2 |
+| Image transformation | covered | `One.iOS.ImageManipulator` local crop, resize, rotate, JPEG/PNG encode | RAN iOS 27: orientation, decoded sizes, bytes, red crop/rotation pixels, input errors | done |
 | Live Photos | missing | no Live Photo capture or playback API | none | P3 |
 | Photo library save/manage | partial | `One.iOS.PhotoLibrary` add-only image/video save; no read, edit, delete, or albums | photo-library: permission, image/video save, errors | P2 |
 | Foreground location and geocoding | covered | `One.iOS.Location` permission, one fix, watch, forward/reverse geocoding | location: prompt, movement, geocoding | done |
@@ -100,6 +100,9 @@ checklist; One's own exports and docs decide the status.
 7. Reminders now have an iOS 27 EventKit proof. Peach's Expo Calendar stub has
    an in-memory reminder store; a targeted search found no `OneCalendar` adapter.
    The Contrast migration lane owns that bridge.
+8. Image transformation has an iOS 27 Core Image proof. Peach's Expo Image
+   Manipulator stub performs real pixel work, but no `OneImageManipulator`
+   adapter exists; that bridge belongs to the Contrast migration lane.
 
 Avoid duplicating React Native surfaces only to rename them. Keep simulator
 limitations explicit; hardware-only effects need a device proof before `covered`.

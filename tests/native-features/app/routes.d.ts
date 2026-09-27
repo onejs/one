@@ -67,6 +67,7 @@ declare module 'one' {
         | `/one-native-host`
         | `/one-native-image`
         | `/one-native-image-picker`
+        | `/one-native-image-manipulator`
         | `/one-native-leaves`
         | `/one-native-lists`
         | `/one-native-local-authentication`

@@ -87,6 +87,9 @@
     "OnePhotoLibrary": {
       "ios": { "language": "swift", "implementationClassName": "HybridOnePhotoLibrary" }
     },
+    "OneImageManipulator": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneImageManipulator" }
+    },
     "OneDevice": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneDevice" }
     },
