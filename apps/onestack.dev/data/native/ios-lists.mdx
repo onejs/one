@@ -38,6 +38,21 @@ support swipe actions through
 list changes its native label between Edit and Done. Row deletion and move
 actions are not yet exposed.
 
+Use `One.iOS.ViewSlot` with `name="listRowBackground"` to supply a SwiftUI
+view behind one row. Its base child is the row; `ViewSlot.Content` is the
+background. Changing the background child from React updates the native row.
+
+```tsx
+<One.iOS.List style={{ flex: 1 }}>
+  <One.iOS.ViewSlot name="listRowBackground">
+    <One.iOS.Text text="Apple" />
+    <One.iOS.ViewSlot.Content>
+      <One.iOS.Rectangle fill="#B1DAFD" />
+    </One.iOS.ViewSlot.Content>
+  </One.iOS.ViewSlot>
+</One.iOS.List>
+```
+
 ## ScrollView
 
 `One.iOS.ScrollView` scrolls its children. `axes` is `'vertical'`,
