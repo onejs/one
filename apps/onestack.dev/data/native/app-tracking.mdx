@@ -1,0 +1,38 @@
+---
+title: App Tracking Permission
+description: Request and inspect iOS App Tracking Transparency permission
+---
+
+`One.iOS.AppTracking` exposes the system's App Tracking Transparency status and
+one-time permission request. Use it when your app needs permission for tracking
+across other companies' apps or websites.
+
+```tsx
+import { One } from 'one'
+
+const before = One.iOS.AppTracking.getPermissionStatus()
+if (before === 'notDetermined') {
+  const after = await One.iOS.AppTracking.requestPermission()
+  if (after === 'authorized') {
+    // start the tracking-dependent feature
+  }
+}
+```
+
+The status is `notDetermined`, `restricted`, `denied`, or `authorized`.
+`requestPermission()` returns the current status when the system has already
+decided. Concurrent calls share the same request. The system prompts only while
+the app is active and no other permission prompt is pending. If the app is
+inactive before a new request, the call rejects with `E_APP_TRACKING_INACTIVE`.
+If iOS dismisses the prompt without a choice, the request returns
+`notDetermined`; request again after the app becomes active and other
+permission prompts close.
+
+Add a non-empty `NSUserTrackingUsageDescription` to the iOS Info.plist before
+building. With One prebuild, set
+`native.app.ios.infoPlist.NSUserTrackingUsageDescription`. With Expo prebuild,
+set `expo.ios.infoPlist.NSUserTrackingUsageDescription`. Without it,
+`requestPermission()` rejects with `E_APP_TRACKING_MANIFEST`.
+
+This API is iOS only. Android and web throw when called. See
+[Apple's App Tracking Transparency guide](https://developer.apple.com/documentation/apptrackingtransparency).

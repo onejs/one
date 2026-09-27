@@ -39,6 +39,7 @@ declare module 'one' {
         | `/one-native-android-surface`
         | `/one-native-app-info`
         | `/one-native-apple-auth`
+        | `/one-native-app-tracking`
         | `/one-native-apple-file`
         | `/one-native-arrangement`
         | `/one-native-arrangement-view`

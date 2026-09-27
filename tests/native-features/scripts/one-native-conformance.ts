@@ -83,6 +83,7 @@ const suites = [
   'apple-auth',
   'local-authentication',
   'protected-store',
+  'app-tracking',
   'location',
   'file-system',
   'audio',
@@ -482,6 +483,8 @@ const protectedStoreLoaded = (nodes: Node[]) =>
   (Boolean(id(nodes, 'protected-store-prepare')) && has(nodes, 'Status: ')) ||
   (nodes.some((node) => node.type === 'Application') &&
     nodes.some((node) => node.type === 'Heading' && node.AXLabel === 'one-native-protected-store'))
+const appTrackingLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-app-tracking-request')) && has(nodes, 'Before: ')
 const locationLoaded = (nodes: Node[]) =>
   (Boolean(id(nodes, 'one-native-location-request')) && has(nodes, 'Permission: ')) ||
   has(nodes, 'Allow While Using App')
@@ -627,6 +630,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'apple-auth': appleAuthLoaded,
   'local-authentication': localAuthenticationLoaded,
   'protected-store': protectedStoreLoaded,
+  'app-tracking': appTrackingLoaded,
   location: locationLoaded,
   'file-system': fileSystemLoaded,
   audio: audioLoaded,
@@ -704,6 +708,7 @@ const suiteHome: Record<Suite, string> = {
   'apple-auth': 'nav-one-native-apple-auth',
   'local-authentication': 'nav-one-native-local-authentication',
   'protected-store': 'nav-one-native-protected-store',
+  'app-tracking': 'nav-one-native-app-tracking',
   location: 'nav-one-native-location',
   'file-system': 'nav-one-native-file-system',
   audio: 'nav-one-native-audio',
@@ -1094,8 +1099,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       timeout: 30_000,
     })
   }
-  if (config.suite === 'notifications' || config.suite === 'speech') {
-    // simctl privacy has no notifications or speech recognition service on
+  if (config.suite === 'notifications' || config.suite === 'speech' ||
+      config.suite === 'app-tracking') {
+    // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
     // to undetermined.
     if (!config.appPath)
@@ -6794,6 +6800,49 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         'Result: missing=null; invalid=E_PROTECTED_STORE_INPUT; duplicate=E_PROTECTED_STORE_EXISTS; biometric=v1; presence=vp; updated=v2; absent=null; missingUpdate=E_PROTECTED_STORE_NOT_FOUND'
       ))
     screenshot('protected-store-round-trip.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'app-tracking') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-app-tracking')
+    await wait('tracking permission starts undetermined', (nodes) =>
+      labels(nodes).includes('Before: notDetermined') &&
+      labels(nodes).includes('After: pending') &&
+      labels(nodes).includes('Result: none'))
+    tap({ id: 'one-native-app-tracking-request' })
+    // the tracking sheet belongs to springboard and is absent from the app tree.
+    const screen = snapshot(config.simulatorId).find((node) => node.type === 'Application')?.frame
+    if (!screen) throw new Error('Tracking prompt has no application frame')
+    const probe = (x: number, y: number) => JSON.parse(
+      axe(['describe-ui', '--point', `${Math.round(x)},${Math.round(y)}`],
+        config.simulatorId)
+    ) as Node
+    let purpose: Node | undefined
+    let deny: Node | undefined
+    const deadline = Date.now() + config.timeout
+    do {
+      purpose = probe(screen.width / 2, screen.height * 0.55)
+      deny = probe(screen.width / 2, screen.height * 0.61)
+      if (
+        purpose.AXLabel === 'NativeFeatureTests verifies the tracking permission prompt.' &&
+        deny.AXLabel === 'Ask App Not to Track'
+      ) break
+      await new Promise((resolve) => setTimeout(resolve, 250))
+    } while (Date.now() < deadline)
+    if (
+      purpose?.AXLabel !== 'NativeFeatureTests verifies the tracking permission prompt.' ||
+      deny?.AXLabel !== 'Ask App Not to Track' || !deny.frame
+    ) throw new Error('Tracking purpose text and denial action did not appear')
+    console.log('PASS tracking prompt displays configured purpose text')
+    screenshot('app-tracking-prompt.png', [purpose, deny])
+    point(deny.frame.x + deny.frame.width / 2, deny.frame.y + deny.frame.height / 2)
+    await wait('two concurrent requests resolve denied and status persists', (nodes) =>
+      labels(nodes).includes('Before: notDetermined') &&
+      labels(nodes).includes('After: denied') &&
+      labels(nodes).includes('Result: denied:denied'))
+    screenshot('app-tracking-denied.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

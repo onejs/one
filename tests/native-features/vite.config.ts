@@ -166,6 +166,10 @@ export default defineConfig({
             deploymentTarget: '17.0',
             tablet: true,
             faceIdUsageDescription: 'NativeFeatureTests verifies biometric authentication.',
+            infoPlist: {
+              NSUserTrackingUsageDescription:
+                'NativeFeatureTests verifies the tracking permission prompt.',
+            },
             fileSharing: true,
           },
           android: {

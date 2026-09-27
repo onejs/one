@@ -61,7 +61,7 @@ checklist; One's own exports and docs decide the status.
 | Screen capture control | missing | no screenshot detection, capture prevention, or app screenshot API | none | P2 |
 | Print | missing | no AirPrint presentation API | none | P3 |
 | Mail and SMS composer | partial | share sheet can hand off content; no configured message composer | share sheet only | P3 |
-| App tracking permission | missing | no App Tracking Transparency request/status API | none | P2 |
+| App tracking permission | covered | `One.iOS.AppTracking` synchronous status and one-time App Tracking Transparency request | RAN iOS 27: configured system prompt, denial, concurrent requests, persisted status | done |
 | Device attestation | missing | no App Attest or DeviceCheck service | none | P2 |
 | Bluetooth and NFC | missing | no CoreBluetooth or CoreNFC service | none | P3 |
 | Web browser/auth session | covered | `One.Browser` | browser | done |

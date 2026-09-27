@@ -10,6 +10,7 @@
 // Include C++ implementation defined types
 #include "HybridOneAdaptiveSpecSwift.hpp"
 #include "HybridOneAppInfoSpecSwift.hpp"
+#include "HybridOneAppTrackingSpecSwift.hpp"
 #include "HybridOneAppleAuthSpecSwift.hpp"
 #include "HybridOneAudioSpecSwift.hpp"
 #include "HybridOneBrowserSpecSwift.hpp"
@@ -138,6 +139,30 @@ namespace margelo::nitro::one::bridge::swift {
     return swiftPart.toUnsafe();
   }
   
+  // pragma MARK: std::function<void(AppTrackingPermissionStatus /* result */)>
+  Func_void_AppTrackingPermissionStatus create_Func_void_AppTrackingPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_AppTrackingPermissionStatus::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](AppTrackingPermissionStatus result) mutable -> void {
+      swiftClosure.call(static_cast<int>(result));
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneAppTrackingSpec>
+  std::shared_ptr<HybridOneAppTrackingSpec> create_std__shared_ptr_HybridOneAppTrackingSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneAppTrackingSpec_cxx swiftPart = One::HybridOneAppTrackingSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneAppTrackingSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneAppTrackingSpec_(std__shared_ptr_HybridOneAppTrackingSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneAppTrackingSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneAppTrackingSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneAppTrackingSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneAppTrackingSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
   // pragma MARK: std::function<void(AudioRecordingPermission /* result */)>
   Func_void_AudioRecordingPermission create_Func_void_AudioRecordingPermission(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_AudioRecordingPermission::fromUnsafe(swiftClosureWrapper);
