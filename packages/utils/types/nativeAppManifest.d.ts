@@ -3,6 +3,7 @@ export interface NativeAppManifest {
     displayName?: string;
     scheme?: string | string[];
     version?: string;
+    orientation?: 'portrait' | 'landscape' | 'default';
     icon?: {
         source: string;
         backgroundColor: string;
@@ -75,4 +76,26 @@ export interface NativeAppManifest {
     };
 }
 export declare function validateNativeApp(manifest: NativeAppManifest, platform?: 'ios' | 'android' | string): NativeAppManifest;
+export declare function expoClientFromNativeApp(app: NativeAppManifest): {
+    name: string;
+    slug: string;
+    scheme: string | string[] | undefined;
+    version: string | undefined;
+    orientation: "default" | "landscape" | "portrait" | undefined;
+    icon: string | undefined;
+    splash: {
+        image: string;
+        backgroundColor: string;
+        imageWidth: number | undefined;
+    } | undefined;
+    ios: {
+        bundleIdentifier: string;
+        buildNumber: string | undefined;
+        supportsTablet: boolean | undefined;
+    } | undefined;
+    android: {
+        package: string;
+        versionCode: number | undefined;
+    } | undefined;
+};
 //# sourceMappingURL=nativeAppManifest.d.ts.map

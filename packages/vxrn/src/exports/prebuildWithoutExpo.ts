@@ -57,6 +57,15 @@ This code block is partially copied from meta owned repos.
 Copyright (c) Facebook, Inc. and its affiliates.
 */
 
+const PORTRAIT_ORIENTATIONS = [
+  'UIInterfaceOrientationPortrait',
+  'UIInterfaceOrientationPortraitUpsideDown',
+]
+const LANDSCAPE_ORIENTATIONS = [
+  'UIInterfaceOrientationLandscapeLeft',
+  'UIInterfaceOrientationLandscapeRight',
+]
+
 // the manifest is one({ native: { app } }), defined once in @vxrn/utils. the
 // one cli validates the full manifest before passing it here; vxrn
 // re-validates through the same definition so direct callers fail before
@@ -1517,6 +1526,26 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
           `\t<key>${updatesHost.runtimeVersionInfoPlistKey}</key>\n\t<string>${escapeXml(app.updates.runtimeVersion)}</string>`
         )
       }
+      if (app.orientation !== undefined) {
+        // expo's orientation mapping: it sets the phone list only.
+        const phoneOrientations =
+          app.orientation === 'portrait'
+            ? PORTRAIT_ORIENTATIONS
+            : app.orientation === 'landscape'
+              ? LANDSCAPE_ORIENTATIONS
+              : [...PORTRAIT_ORIENTATIONS, ...LANDSCAPE_ORIENTATIONS]
+        const phoneList =
+          /\t<key>UISupportedInterfaceOrientations<\/key>\n\t<array>\n[\s\S]*?\t<\/array>/
+        if (!phoneList.test(rendered)) {
+          throw new Error(
+            `[vxrn] prebuild template ${relativePath} lost its UISupportedInterfaceOrientations list`
+          )
+        }
+        rendered = rendered.replace(
+          phoneList,
+          `\t<key>UISupportedInterfaceOrientations</key>\n\t<array>\n${phoneOrientations.map((orientation) => `\t\t<string>${orientation}</string>`).join('\n')}\n\t</array>`
+        )
+      }
       if (stamps.length) {
         const anchor = '\t<key>LSRequiresIPhoneOS</key>'
         if (!rendered.includes(anchor))
@@ -1687,6 +1716,22 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         const trailed = rendered.endsWith('\n') ? rendered : `${rendered}\n`
         rendered = `${trailed}\n# One.UI.Map: set by native.app.android.googleMapsApiKey.\n${line}\n`
       }
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.orientation !== undefined
+    ) {
+      const anchor = 'android:name=".MainActivity"'
+      if (!rendered.includes(anchor)) {
+        throw new Error(
+          '[vxrn] cannot stamp the orientation: expected .MainActivity in app/src/main/AndroidManifest.xml'
+        )
+      }
+      rendered = rendered.replace(
+        anchor,
+        `${anchor}\n        android:screenOrientation="${app.orientation === 'default' ? 'unspecified' : app.orientation}"`
+      )
     }
     if (
       platform === 'android' &&

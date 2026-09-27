@@ -896,7 +896,12 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
   it('generates a scene project from the real template', async () => {
     const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
     const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-scene-'))
-    await generateForPlatform(workspaceRoot, 'ios', app, join(output, 'ios'))
+    await generateForPlatform(
+      workspaceRoot,
+      'ios',
+      { ...app, orientation: 'default' },
+      join(output, 'ios')
+    )
 
     const sceneDelegate = readFileSync(
       join(output, 'ios', 'MyApp', 'SceneDelegate.swift'),
@@ -915,6 +920,21 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     const infoPlist = readFileSync(join(output, 'ios', 'MyApp', 'Info.plist'), 'utf8')
     expect(infoPlist).toContain('<key>UIApplicationSceneManifest</key>')
     expect(infoPlist).toContain('<key>OneNativeNotificationsEnabled</key>')
+    // orientation default opens the phone list to all four; ipad keeps its own.
+    const phoneOrientations = infoPlist
+      .split('<key>UISupportedInterfaceOrientations</key>')[1]
+      .split('</array>')[0]
+    for (const orientation of [
+      'Portrait',
+      'PortraitUpsideDown',
+      'LandscapeLeft',
+      'LandscapeRight',
+    ]) {
+      expect(phoneOrientations).toContain(
+        `<string>UIInterfaceOrientation${orientation}</string>`
+      )
+    }
+    expect(infoPlist).toContain('<key>UISupportedInterfaceOrientations~ipad</key>')
 
     const project = readFileSync(
       join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'),
@@ -1688,6 +1708,54 @@ buildSettings = {
         app: updatesApp,
       })
     ).toThrow('One.Updates')
+  })
+
+  it('stamps orientation as expo does, and nothing when unset', () => {
+    const plistTemplate =
+      '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n\t<key>UISupportedInterfaceOrientations</key>\n\t<array>\n\t\t<string>UIInterfaceOrientationPortrait</string>\n\t</array>\n</dict>'
+    const landscape = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: plistTemplate,
+      platform: 'ios',
+      app: { ...app, orientation: 'landscape' },
+    })
+    expect(landscape.content).toContain(
+      '<array>\n\t\t<string>UIInterfaceOrientationLandscapeLeft</string>\n\t\t<string>UIInterfaceOrientationLandscapeRight</string>\n\t</array>'
+    )
+    expect(landscape.content).not.toContain('UIInterfaceOrientationPortrait<')
+    const unset = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: plistTemplate,
+      platform: 'ios',
+      app,
+    })
+    expect(unset.content).toContain('<string>UIInterfaceOrientationPortrait</string>')
+    expect(unset.content).not.toContain('PortraitUpsideDown')
+
+    const manifestTemplate =
+      '<manifest>\n  <uses-permission android:name="android.permission.INTERNET" />\n  <application>\n      <activity\n        android:name=".MainActivity"\n        android:exported="true">\n      </activity>\n    </application>\n</manifest>'
+    for (const [orientation, attribute] of [
+      ['portrait', 'portrait'],
+      ['landscape', 'landscape'],
+      ['default', 'unspecified'],
+    ] as const) {
+      const rendered = renderPrebuildFile({
+        relativePath: 'app/src/main/AndroidManifest.xml',
+        content: manifestTemplate,
+        platform: 'android',
+        app: {
+          ...app,
+          notifications: undefined,
+          imagePicker: undefined,
+          speech: undefined,
+          orientation,
+        },
+      })
+      expect(rendered.content).toContain(`android:screenOrientation="${attribute}"`)
+    }
+    expect(() =>
+      validatePrebuildApp({ ...app, orientation: 'sideways' as 'default' })
+    ).toThrow('orientation "sideways"')
   })
 
   it('stamps the updates url and runtime version into Info.plist', () => {
