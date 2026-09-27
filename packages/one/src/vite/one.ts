@@ -935,6 +935,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   })
 
   // pass config to the rolldown native entry (createNativeDevEngine reads this)
+  // and the app manifest to the native dev server's manifest endpoint
   if (!nativeDisabled) {
     globalThis.__vxrnNativeEntryConfig = {
       routerRoot: routerRoot,
@@ -942,6 +943,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       linking: options.router?.linking,
       setupFile: options.setupFile,
       flags,
+      app: nativeApp,
     }
   }
 

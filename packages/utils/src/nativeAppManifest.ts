@@ -7,6 +7,10 @@ export interface NativeAppManifest {
   displayName?: string
   scheme?: string | string[]
   version?: string
+  // the phone orientations the app supports, as expo's `orientation`:
+  // portrait or landscape pairs, or all four for default. unset keeps the
+  // template's portrait-only phone. the ipad list is never narrowed.
+  orientation?: 'portrait' | 'landscape' | 'default'
   icon?: {
     source: string
     backgroundColor: string
@@ -112,6 +116,7 @@ const BUILD_NUMBER = /^[A-Za-z0-9.]+$/
 const REVERSE_DNS = /^[A-Za-z][A-Za-z0-9-]*(\.[A-Za-z][A-Za-z0-9-]*)+$/
 const DEPLOYMENT_TARGET = /^\d+\.\d+$/
 const HEX_COLOR = /^#[\da-f]{6}$/i
+const ORIENTATIONS = ['portrait', 'landscape', 'default'] as const
 
 function fail(message: string): never {
   throw new Error(`[one] invalid native.app: ${message}`)
@@ -141,6 +146,12 @@ export function validateNativeApp(
     if (typeof scheme !== 'string' || !SCHEME.test(scheme)) {
       fail(`scheme "${scheme}" must be a valid uri scheme`)
     }
+  }
+  if (
+    manifest.orientation !== undefined &&
+    !ORIENTATIONS.includes(manifest.orientation)
+  ) {
+    fail(`orientation "${manifest.orientation}" must be ${ORIENTATIONS.join(', ')}`)
   }
   if (manifest.version !== undefined && !VERSION.test(manifest.version)) {
     fail(`version "${manifest.version}" must start with major.minor.patch`)
@@ -354,4 +365,32 @@ export function validateNativeApp(
     }
   }
   return manifest
+}
+
+// the expo config shape the dev server's manifest carries (`extra.expoClient`)
+// for an app that declares native.app and no expo: clients that read an app's
+// name, scheme or splash from the manifest read a one app the same way.
+export function expoClientFromNativeApp(app: NativeAppManifest) {
+  return {
+    name: app.displayName ?? app.name,
+    slug: app.name,
+    scheme: app.scheme,
+    version: app.version,
+    orientation: app.orientation,
+    icon: app.icon?.source,
+    splash: app.splash && {
+      image: app.splash.source,
+      backgroundColor: app.splash.backgroundColor,
+      imageWidth: app.splash.width,
+    },
+    ios: app.ios && {
+      bundleIdentifier: app.ios.bundleId,
+      buildNumber: app.ios.buildNumber,
+      supportsTablet: app.ios.tablet,
+    },
+    android: app.android && {
+      package: app.android.applicationId,
+      versionCode: app.android.versionCode,
+    },
+  }
 }
