@@ -8,6 +8,8 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `AppTrackingPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppTrackingPermissionStatus; }
 // Forward declaration of `AppleAuthCredential` to properly resolve imports.
 namespace margelo::nitro::one { struct AppleAuthCredential; }
 // Forward declaration of `AppleAuthFullName` to properly resolve imports.
@@ -106,6 +108,8 @@ namespace margelo::nitro::one { enum class HingeStatus; }
 namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
 // Forward declaration of `HybridOneAppInfoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
+// Forward declaration of `HybridOneAppTrackingSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneAppTrackingSpec; }
 // Forward declaration of `HybridOneAppleAuthSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppleAuthSpec; }
 // Forward declaration of `HybridOneAudioSpec` to properly resolve imports.
@@ -272,6 +276,7 @@ namespace margelo::nitro::one { struct SpeechStartOptions; }
 namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 
 // Include C++ defined types
+#include "AppTrackingPermissionStatus.hpp"
 #include "AppleAuthCredential.hpp"
 #include "AppleAuthFullName.hpp"
 #include "AppleAuthResult.hpp"
@@ -321,6 +326,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HingeStatus.hpp"
 #include "HybridOneAdaptiveSpec.hpp"
 #include "HybridOneAppInfoSpec.hpp"
+#include "HybridOneAppTrackingSpec.hpp"
 #include "HybridOneAppleAuthSpec.hpp"
 #include "HybridOneAudioSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
@@ -428,6 +434,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 namespace One { class HybridOneAdaptiveSpec_cxx; }
 // Forward declaration of `HybridOneAppInfoSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppInfoSpec_cxx; }
+// Forward declaration of `HybridOneAppTrackingSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneAppTrackingSpec_cxx; }
 // Forward declaration of `HybridOneAppleAuthSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppleAuthSpec_cxx; }
 // Forward declaration of `HybridOneAudioSpec_cxx` to properly resolve imports.

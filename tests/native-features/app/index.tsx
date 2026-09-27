@@ -467,6 +467,11 @@ const testScreens = [
     testID: 'nav-one-native-protected-store',
   },
   {
+    href: '/one-native-app-tracking',
+    label: 'One Native App Tracking',
+    testID: 'nav-one-native-app-tracking',
+  },
+  {
     href: '/one-native-location',
     label: 'One Native Location',
     testID: 'nav-one-native-location',

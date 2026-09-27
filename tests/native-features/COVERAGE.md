@@ -104,6 +104,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Audio` | audio, audio-background | n/a |  |
 | `One.iOS.Share` | share | n/a |  |
 | `One.iOS.PhotoLibrary` | photo-library | n/a |  |
+| `One.iOS.AppTracking` | app-tracking | n/a |  |
 | `One.iOS.ImageManipulator` | image-manipulator | n/a |  |
 | `One.iOS.Device` | device | n/a |  |
 | `One.iOS.Contacts` | contacts | n/a |  |

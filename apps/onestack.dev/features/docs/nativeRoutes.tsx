@@ -69,6 +69,7 @@ export const nativeRoutes = [
       { title: 'DocumentPicker', route: '/native/document-picker' },
       { title: 'SecureStore', route: '/native/secure-store' },
       { title: 'Protected Store', route: '/native/protected-store' },
+      { title: 'App Tracking Permission', route: '/native/app-tracking' },
       { title: 'Local Authentication', route: '/native/local-authentication' },
       { title: 'Location', route: '/native/location' },
       { title: 'FileSystem', route: '/native/file-system' },
