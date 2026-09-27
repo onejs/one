@@ -141,15 +141,13 @@ function assertNoGreedyContainer(children: ReactNode, owner: string) {
           ? 'Swift.List'
           : child.type === ScrollView
             ? 'Swift.ScrollView'
-            : child.type === DisclosureGroup
-              ? 'Swift.DisclosureGroup'
-              : child.type === Tabs
-                ? 'Swift.Tabs'
-                : child.type === Pager
-                  ? 'Swift.Pager'
-                  : child.type === NavigationStack
-                    ? 'Swift.NavigationStack'
-                    : null
+            : child.type === Tabs
+              ? 'Swift.Tabs'
+              : child.type === Pager
+                ? 'Swift.Pager'
+                : child.type === NavigationStack
+                  ? 'Swift.NavigationStack'
+                  : null
     // these all take the box they are given instead of reporting an ideal height,
     // so a measured parent reads zero for one and renders nothing at all.
     if (name)

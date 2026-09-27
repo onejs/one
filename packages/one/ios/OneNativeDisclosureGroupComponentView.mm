@@ -1,7 +1,7 @@
 #import "OneNativeDisclosureGroupComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
-#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+#import "OneNativeDisclosureGroupShadowNode.h"
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 
@@ -27,6 +27,9 @@ using namespace facebook::react;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const OneNativeDisclosureGroupEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeDisclosureGroupIsExpandedChange({.value = (bool)value, .eventCount = (int)eventCount, .revision = (int)revision});
+    };
+    _groupView.onMeasure = ^(CGFloat height) {
+      [weakSelf updateMeasuredHeight:height];
     };
   }
   return self;

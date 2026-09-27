@@ -81,6 +81,11 @@ const testScreens = [
     testID: 'nav-one-native-swipe-actions',
   },
   {
+    href: '/one-native-disclosure-group',
+    label: 'One Native Disclosure Group',
+    testID: 'nav-one-native-disclosure-group',
+  },
+  {
     href: '/one-native-sheet',
     label: 'One Native Sheets',
     testID: 'nav-one-native-sheet',

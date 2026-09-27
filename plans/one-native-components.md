@@ -248,3 +248,14 @@ accounts are unavailable).
   the full swipe, captures both full-swipe states, then remounts the row and
   confirms Archive still works. Screenshots and trace are in the local ignored
   `tests/native-features/build/swipe-actions-reviewed-proof` directory.
+- **RAN, 2026-09-26:** the `disclosure-group` suite passed ten checks on
+  iPhone 17 Pro iOS 27 after an arm64 simulator build. Before the change, a
+  standalone SwiftUI `DisclosureGroup` occupied zero React Native height;
+  its visually rendered label was absent from accessibility and its expanded
+  child overlapped the next row. After adding intrinsic measurement, a native
+  tap grew the standalone frame from 28.3 to 48.7 points and shifted the next
+  row by 20.3 points. A second tap collapsed it, and two external React
+  revision changes expanded and collapsed it. Inside `One.iOS.Host`, the group
+  grew its parent from 28.3 to 48.7 points with the following row below it.
+  The suite checks native accessibility and frames; screenshots and trace are
+  in local ignored `tests/native-features/build/disclosure-fixed-proof-4`.

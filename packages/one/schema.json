@@ -428,7 +428,7 @@
       },
       "actions": [],
       "layout": {
-        "kind": "container"
+        "kind": "measured"
       },
       "slots": [
         {
@@ -438,7 +438,7 @@
           "layout": "composed"
         }
       ],
-      "interfaceOnly": false
+      "interfaceOnly": true
     },
     {
       "name": "OneNativeDivider",
