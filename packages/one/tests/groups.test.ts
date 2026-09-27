@@ -121,6 +121,37 @@ describe('group', () => {
   })
 })
 
+describe('glass effect container', () => {
+  it('preserves omitted spacing separately from signed spacing', () => {
+    expect(render(Containers.GlassEffectContainer, { children: null }).props).toMatchObject({
+      spacing: 0,
+      hasSpacing: false,
+    })
+    expect(render(Containers.GlassEffectContainer, { children: null, spacing: -8 }).props)
+      .toMatchObject({ spacing: -8, hasSpacing: true })
+    expect(component('GlassEffectContainer')).toMatchObject({
+      layout: { kind: 'measured' },
+      props: { spacing: { type: 'Double' }, hasSpacing: { type: 'boolean' } },
+    })
+  })
+
+  it('rejects nonfinite spacing and unsupported iOS versions', async () => {
+    expect(() => render(Containers.GlassEffectContainer, { children: null, spacing: Infinity }))
+      .toThrow('Swift.GlassEffectContainer spacing must be finite')
+    const { Platform } = await import('react-native')
+    const originalVersion = Platform.Version
+    try {
+      Object.assign(Platform, { Version: '25.4' })
+      expect(() => render(Containers.GlassEffectContainer, { children: null }))
+        .toThrow('Swift.GlassEffectContainer requires iOS 26 or newer')
+    } finally {
+      Object.assign(Platform, { Version: originalVersion })
+    }
+    expect(() => render(UnsupportedSwift.GlassEffectContainer, {}))
+      .toThrow('Swift.GlassEffectContainer requires an iOS native build')
+  })
+})
+
 describe('overlay', () => {
   it('centers by default and takes the alignment it is given', () => {
     expect(render(Containers.Overlay, { children: null })).toMatchObject({

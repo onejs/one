@@ -419,6 +419,7 @@
         "OneNativeForm": "OneNativeFormComponentView",
         "OneNativeSection": "OneNativeSectionComponentView",
         "OneNativeLabeledContent": "OneNativeLabeledContentComponentView",
+        "OneNativeGlassEffectContainer": "OneNativeGlassEffectContainerComponentView",
         "OneNativeButton": "OneNativeButtonComponentView",
         "OneNativeGlass": "OneNativeGlassComponentView",
         "OneNativeTabs": "OneNativeTabsComponentView",

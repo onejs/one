@@ -47,6 +47,7 @@ const suites = [
   'contacts',
   'editors',
   'grids',
+  'glass-container',
   'paste-button',
   'popover',
   'navigation',
@@ -321,6 +322,10 @@ const gridsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-grid-reverse')) &&
   has(nodes, 'Order: ')
+const glassContainerLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-glass-container-spacing')) &&
+  has(nodes, 'Measured: ')
 const pasteButtonLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-paste-seed')) &&
@@ -467,6 +472,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   contacts: contactsLoaded,
   editors: editorsLoaded,
   grids: gridsLoaded,
+  'glass-container': glassContainerLoaded,
   'paste-button': pasteButtonLoaded,
   popover: popoverLoaded,
   navigation: navigationLoaded,
@@ -516,6 +522,7 @@ const suiteHome: Record<Suite, string> = {
   contacts: 'nav-one-native-contacts',
   editors: 'nav-one-native-editors',
   grids: 'nav-one-native-grids',
+  'glass-container': 'nav-one-native-glass-container',
   'paste-button': 'nav-one-native-paste-button',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
@@ -2604,6 +2611,50 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('repeat paste delivers one more array callback', (nodes) =>
       labels(nodes).includes('Paste count: 2'))
     screenshot('paste-button-result.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'glass-container') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const glassButtons = (nodes: Node[]) =>
+      ['First glass', 'Second glass'].map((label) =>
+        nodes.find((node) => node.AXLabel === label && node.type === 'Button')?.frame
+      )
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-glass-container')
+    const mounted = await wait('GlassEffectContainer measures two native glass buttons', (nodes) => {
+      const measured = labels(nodes).find((label) => label.startsWith('Measured: '))
+      return status(nodes, 'Spacing', 0) &&
+        Number(measured?.slice('Measured: '.length)) > 20 &&
+        glassButtons(nodes).every(Boolean)
+    })
+    tap({ label: 'First glass' })
+    await wait('composed glass button action reaches React', (nodes) =>
+      status(nodes, 'Glass taps', 1)
+    )
+    const [first, second] = glassButtons(mounted)
+    if (!first || !second) throw new Error('Glass buttons lost their native frames')
+    const left = Math.min(first.x, second.x)
+    const top = Math.min(first.y, second.y)
+    const right = Math.max(first.x + first.width, second.x + second.width)
+    const bottom = Math.max(first.y + first.height, second.y + second.height)
+    const region = { x: left - 16, y: top - 16, width: right - left + 32, height: bottom - top + 32 }
+    await new Promise((resolve) => setTimeout(resolve, 800))
+    const baselineA = screenshot('glass-spacing-0a.png')
+    await new Promise((resolve) => setTimeout(resolve, 800))
+    const baselineB = screenshot('glass-spacing-0b.png')
+    const unchanged = countChangedPixels(baselineA, baselineB, region, 8)
+    tap({ id: 'one-native-glass-container-spacing' })
+    await wait('GlassEffectContainer accepts a new spacing value', (nodes) =>
+      status(nodes, 'Spacing', 60) && glassButtons(nodes).every(Boolean)
+    )
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    const merged = screenshot('glass-spacing-60.png')
+    const changed = countChangedPixels(baselineB, merged, region, 8)
+    if (changed.changed < Math.max(250, unchanged.changed * 4))
+      throw new Error(`GlassEffectContainer spacing did not change the native glass region: ${JSON.stringify({ unchanged, changed })}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

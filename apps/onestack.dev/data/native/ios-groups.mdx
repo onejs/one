@@ -56,6 +56,21 @@ the SwiftUI material; `shape` picks the glass shape; `cornerRadius`
 explicitly rounds; `interactive` opts into interactive glass; `tint` and
 `colorScheme` tint and scope the effect.
 
+## GlassEffectContainer
+
+`One.iOS.GlassEffectContainer` requires iOS 26 or newer. It groups nearby
+SwiftUI glass effects so the system can merge them. `spacing` is an optional,
+finite number in points; omit it to keep SwiftUI's own default spacing.
+
+```tsx
+<One.iOS.GlassEffectContainer spacing={12}>
+  <One.iOS.HStack spacing={8}>
+    <One.iOS.Button label="Add" onPress={add} swiftStyle={{ glassEffect: 'regular' }} />
+    <One.iOS.Button label="Filter" onPress={filter} swiftStyle={{ glassEffect: 'regular' }} />
+  </One.iOS.HStack>
+</One.iOS.GlassEffectContainer>
+```
+
 ## Overlay, Overlay.Content
 
 `One.iOS.Overlay` layers its children over the views behind it with an

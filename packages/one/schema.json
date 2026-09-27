@@ -3052,6 +3052,32 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeGlassEffectContainer",
+      "publicName": "GlassEffectContainer",
+      "props": {
+        "spacing": {
+          "type": "Double"
+        },
+        "hasSpacing": {
+          "type": "boolean"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativeButton",
       "publicName": "Button",
       "props": {
