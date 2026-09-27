@@ -2952,7 +2952,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-view-slot')
-    const mounted = await wait('background, Overlay, and bottom inset mount native content', (nodes) =>
+    const mounted = await wait('background, Overlay, mask, and bottom inset mount native content', (nodes) =>
       labels(nodes).includes('Background action') &&
       labels(nodes).includes('Overlay base') &&
       labels(nodes).includes('Overlay action') &&
@@ -2960,13 +2960,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('Inset action') &&
       Boolean(id(nodes, 'one-native-view-slot-background')?.frame) &&
       Boolean(id(nodes, 'one-native-view-slot-overlay')?.frame) &&
+      Boolean(id(nodes, 'one-native-view-slot-mask')?.frame) &&
       Boolean(id(nodes, 'one-native-view-slot-inset')?.frame))
     const background = id(mounted, 'one-native-view-slot-background')?.frame
     const backgroundAction = mounted.find((node) => node.AXLabel === 'Background action')?.frame
+    const mask = id(mounted, 'one-native-view-slot-mask')?.frame
     const inset = id(mounted, 'one-native-view-slot-inset')?.frame
     const insetBase = mounted.find((node) => node.AXLabel === 'Inset base')?.frame
     const insetAction = mounted.find((node) => node.AXLabel === 'Inset action')?.frame
-    if (!background || !backgroundAction || !inset || !insetBase || !insetAction ||
+    if (!background || !backgroundAction || !mask || !inset || !insetBase || !insetAction ||
         backgroundAction.x < background.x || backgroundAction.y < background.y ||
         backgroundAction.x + backgroundAction.width > background.x + background.width ||
         backgroundAction.y + backgroundAction.height > background.y + background.height ||
@@ -2998,6 +3000,21 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     checks.push({ name: 'native background paints requested fill', durationMs: 0 })
     console.log('PASS native background paints requested fill')
+    if (mask.width < 119 || mask.height < 119)
+      throw new Error(`ViewSlot mask has no full-size frame: ${JSON.stringify(mask)}`)
+    const maskCenter = backgroundColorAt(mask.x + 60, mask.y + 60)
+    const maskCorners = [
+      backgroundColorAt(mask.x + 5, mask.y + 5),
+      backgroundColorAt(mask.x + 115, mask.y + 5),
+      backgroundColorAt(mask.x + 5, mask.y + 115),
+      backgroundColorAt(mask.x + 115, mask.y + 115),
+    ]
+    const near = (actual: number[], expected: number[]) => actual.every((channel, index) =>
+      Math.abs(channel - expected[index]!) <= 12)
+    if (!near(maskCenter, [213, 43, 54]) || maskCorners.some((corner) => !near(corner, [255, 255, 255])))
+      throw new Error(`ViewSlot native mask pixels differ: ${JSON.stringify({ maskCenter, maskCorners })}`)
+    checks.push({ name: 'native mask keeps center and clips four corners', durationMs: 0 })
+    console.log('PASS native mask keeps center and clips four corners')
     tap({ label: 'Background action' })
     await wait('background slot action reaches React', (nodes) =>
       labels(nodes).includes('Background taps: 1'))

@@ -236,6 +236,14 @@ accounts are unavailable).
   same rebuilt host, covering the shared Overlay marker path.
   Screenshots and trace are in the local ignored
   `tests/native-features/build/view-slot-reviewed-proof` directory.
+- **RAN, 2026-09-27:** the same `view-slot` suite passed on iPhone 17 Pro
+  iOS 27 with `mask` added. A native red Rectangle stayed visible at the
+  center of a 120-point Circle mask, while all four corners matched the white
+  screen behind it within 12 color levels. The existing background, overlay
+  action, and safe-area inset action checks still passed. The fixture and
+  screenshot/AX trace are in local ignored
+  `tests/native-features/build/view-slot-mask-proof-2`; the remaining named
+  ViewSlot modifiers are still unproven.
 - **RAN, 2026-09-26:** a dedicated `swipe-actions` suite passed 20 checks on
   iPhone 17 Pro iOS 27 after an arm64 simulator build. Before the fix, a
   trailing action appeared after a left swipe but tapping it left the React
