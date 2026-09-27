@@ -57,7 +57,7 @@ const knownGaps: Record<string, string> = {
 const partialGaps: Record<string, string> = {
   'iOS.ArrangementView': 'closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved',
   'iOS.EditButton': 'Edit/Done label cycle proven; List edit state unobserved and row actions unavailable',
-  'iOS.ViewSlot': 'background, mask, and bottom safe-area inset proven; other named slots unproven',
+  'iOS.ViewSlot': 'background, mask, list row background, and bottom safe-area inset proven; other named slots unproven',
 }
 
 type Platform = 'ios' | 'android'

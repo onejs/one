@@ -1241,6 +1241,9 @@ SDK-derived `listStyle`: `automatic` (the default), `plain`, `grouped`,
 
 Like a form, a list is greedy: it fills its box rather than reporting an ideal
 height, so it cannot be a child of a `One.iOS.Host` or `One.iOS.ZStack` either.
+Wrap one row in `One.iOS.ViewSlot name="listRowBackground"` and put a native
+background view in `One.iOS.ViewSlot.Content` to use SwiftUI's row background.
+The background child can change with React state.
 
 `One.iOS.ScrollView` scrolls One Native content vertically by default,
 horizontally with `axes="horizontal"`, or both ways with `axes="both"`.

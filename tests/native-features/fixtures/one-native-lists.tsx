@@ -8,6 +8,7 @@ export default function OneNativeLists() {
   const [styleIndex, setStyleIndex] = useState(0)
   const [isOn, setIsOn] = useState(false)
   const [listTaps, setListTaps] = useState(0)
+  const [warmRow, setWarmRow] = useState(false)
   const listStyle = listStyles[styleIndex]
   // swiftui content adapts to the scheme, so the react chrome around it must too:
   // a hardcoded white screen leaves dark-mode rows as white text on white.
@@ -29,11 +30,23 @@ export default function OneNativeLists() {
         >
           <Text style={{ color: textColor }}>{`Style: ${listStyle}`}</Text>
         </Pressable>
+        <Pressable
+          testID="one-native-list-row-background"
+          style={[styles.chip, { backgroundColor: chipColor }]}
+          onPress={() => setWarmRow((value) => !value)}
+        >
+          <Text style={{ color: textColor }}>{`Row background: ${warmRow ? 'warm' : 'blue'}`}</Text>
+        </Pressable>
       </View>
 
       <One.iOS.List listStyle={listStyle} style={styles.list}>
         <One.iOS.Section title="Fruits">
-          <One.iOS.Text text="Apple" />
+          <One.iOS.ViewSlot name="listRowBackground" testID="one-native-apple-background">
+            <One.iOS.Text text="Apple" />
+            <One.iOS.ViewSlot.Content>
+              <One.iOS.Rectangle fill={warmRow ? '#FED7A5' : '#B1DAFD'} />
+            </One.iOS.ViewSlot.Content>
+          </One.iOS.ViewSlot>
           <One.iOS.Text text="Banana" />
           <One.iOS.Text text="Orange" />
           <One.iOS.Button
