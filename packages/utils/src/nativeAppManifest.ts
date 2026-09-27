@@ -11,6 +11,9 @@ export interface NativeAppManifest {
   // portrait or landscape pairs, or all four for default. unset keeps the
   // template's portrait-only phone. the ipad list is never narrowed.
   orientation?: 'portrait' | 'landscape' | 'default'
+  // light or dark locks the app's appearance; automatic, like unset, follows
+  // the system. expo treats unset as light.
+  userInterfaceStyle?: 'light' | 'dark' | 'automatic'
   icon?: {
     source: string
     backgroundColor: string
@@ -102,9 +105,15 @@ export interface NativeAppManifest {
     applicationId: string
     versionCode?: number
     minSdk?: number
+    // the android 8+ launcher icon. foreground is a 108dp square image whose
+    // artwork sits inside the central 66dp the launcher mask keeps; the
+    // background is an image or a color (white when neither is set, as expo);
+    // monochrome is the android 13 themed icon.
     adaptiveIcon?: {
-      foreground?: string
+      foreground: string
       background?: string
+      backgroundColor?: string
+      monochrome?: string
     }
     // google maps api key for One.UI.Map. setting it compiles the maps sdk
     // into the app and stamps the key meta-data; without it the maps source
@@ -121,6 +130,7 @@ const REVERSE_DNS = /^[A-Za-z][A-Za-z0-9-]*(\.[A-Za-z][A-Za-z0-9-]*)+$/
 const DEPLOYMENT_TARGET = /^\d+\.\d+$/
 const HEX_COLOR = /^#[\da-f]{6}$/i
 const ORIENTATIONS = ['portrait', 'landscape', 'default'] as const
+const USER_INTERFACE_STYLES = ['light', 'dark', 'automatic'] as const
 
 function fail(message: string): never {
   throw new Error(`[one] invalid native.app: ${message}`)
@@ -156,6 +166,14 @@ export function validateNativeApp(
     !ORIENTATIONS.includes(manifest.orientation)
   ) {
     fail(`orientation "${manifest.orientation}" must be ${ORIENTATIONS.join(', ')}`)
+  }
+  if (
+    manifest.userInterfaceStyle !== undefined &&
+    !USER_INTERFACE_STYLES.includes(manifest.userInterfaceStyle)
+  ) {
+    fail(
+      `userInterfaceStyle "${manifest.userInterfaceStyle}" must be ${USER_INTERFACE_STYLES.join(', ')}`
+    )
   }
   if (manifest.version !== undefined && !VERSION.test(manifest.version)) {
     fail(`version "${manifest.version}" must start with major.minor.patch`)
@@ -367,6 +385,17 @@ export function validateNativeApp(
         `android.versionCode "${manifest.android.versionCode}" must be a positive integer`
       )
     }
+    const adaptiveIcon = manifest.android.adaptiveIcon
+    if (
+      adaptiveIcon !== undefined &&
+      (!adaptiveIcon.foreground ||
+        (adaptiveIcon.backgroundColor !== undefined &&
+          !HEX_COLOR.test(adaptiveIcon.backgroundColor)))
+    ) {
+      fail(
+        'android.adaptiveIcon requires foreground, and backgroundColor must be six-digit hex'
+      )
+    }
     if (
       manifest.android.googleMapsApiKey !== undefined &&
       (typeof manifest.android.googleMapsApiKey !== 'string' ||
@@ -388,6 +417,7 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
     scheme: app.scheme,
     version: app.version,
     orientation: app.orientation,
+    userInterfaceStyle: app.userInterfaceStyle,
     icon: app.icon?.source,
     splash: app.splash && {
       image: app.splash.source,
@@ -403,6 +433,12 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
     android: app.android && {
       package: app.android.applicationId,
       versionCode: app.android.versionCode,
+      adaptiveIcon: app.android.adaptiveIcon && {
+        foregroundImage: app.android.adaptiveIcon.foreground,
+        backgroundImage: app.android.adaptiveIcon.background,
+        backgroundColor: app.android.adaptiveIcon.backgroundColor,
+        monochromeImage: app.android.adaptiveIcon.monochrome,
+      },
     },
   }
 }
