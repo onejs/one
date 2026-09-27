@@ -19,14 +19,15 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.FullScreenCover` | missing | n/a | fixture exists, no suite opens it |
 | `One.iOS.Popover` | popover | n/a |  |
 | `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, accessibility | n/a |  |
-| `One.iOS.HStack` | e2e:one-native-tabview | n/a |  |
+| `One.iOS.HStack` | glass-container, e2e:one-native-tabview | n/a |  |
 | `One.iOS.VStack` | groups | n/a |  |
 | `One.iOS.ZStack` | missing | n/a | no fixture or suite |
 | `One.iOS.Form` | containers, popover, accessibility | n/a |  |
 | `One.iOS.Section` | containers, lists, groups, popover, accessibility | n/a |  |
 | `One.iOS.Glass` | missing | n/a | no fixture or suite |
+| `One.iOS.GlassEffectContainer` | glass-container | n/a |  |
 | `One.iOS.LabeledContent` | missing | n/a | no fixture or suite |
-| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, group-box, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Button` | leaves, host, containers, lists, groups, grids, glass-container, group-box, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Spacer` | missing | n/a | no fixture or suite |
 | `One.iOS.Slot` | containers | n/a |  |
 | `One.iOS.List` | lists, groups | n/a |  |
