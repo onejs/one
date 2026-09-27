@@ -17,6 +17,7 @@ const suites = [
   'host',
   'containers',
   'glass-container',
+  'view-that-fits',
   'popover',
   'accessibility',
   'media',

@@ -51,6 +51,7 @@ const suites = [
   'glass-container',
   'paste-button',
   'group-box',
+  'view-that-fits',
   'cover-context',
   'popover',
   'navigation',
@@ -340,6 +341,10 @@ const groupBoxLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-group-box-rename')) &&
   has(nodes, 'Box taps: ')
+const viewThatFitsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-view-that-fits-width')) &&
+  has(nodes, 'Proposal width: ')
 const coverContextLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-cover-context-category-cover')) && has(nodes, 'Category: ')) ||
@@ -492,6 +497,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'glass-container': glassContainerLoaded,
   'paste-button': pasteButtonLoaded,
   'group-box': groupBoxLoaded,
+  'view-that-fits': viewThatFitsLoaded,
   'cover-context': coverContextLoaded,
   popover: popoverLoaded,
   navigation: navigationLoaded,
@@ -545,6 +551,7 @@ const suiteHome: Record<Suite, string> = {
   'glass-container': 'nav-one-native-glass-container',
   'paste-button': 'nav-one-native-paste-button',
   'group-box': 'nav-one-native-group-box',
+  'view-that-fits': 'nav-one-native-view-that-fits',
   'cover-context': 'nav-one-native-cover-context',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
@@ -2757,6 +2764,45 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('React updates the GroupBox native label', (nodes) =>
       labels(nodes).includes('Updated account') && !labels(nodes).includes('Account'))
     screenshot('group-box-renamed.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'view-that-fits') {
+    const selected = (nodes: Node[], expected: 'Wide option' | 'Compact option') =>
+      labels(nodes).includes(expected) &&
+      !labels(nodes).includes(expected === 'Wide option' ? 'Compact option' : 'Wide option')
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-view-that-fits')
+    const narrow = await wait('horizontal ViewThatFits selects compact child at 180 points', (nodes) =>
+      labels(nodes).includes('Proposal width: 180') &&
+      labels(nodes).includes('Axes: horizontal') &&
+      Boolean(id(nodes, 'one-native-view-that-fits-container')) &&
+      selected(nodes, 'Compact option'))
+    const container = id(narrow, 'one-native-view-that-fits-container')?.frame
+    if (!container || Math.abs(container.width - 180) > 3 || Math.abs(container.height - 70) > 3)
+      throw new Error(`ViewThatFits did not receive the proposed frame: ${JSON.stringify(container)}`)
+    screenshot('view-that-fits-narrow.png', narrow)
+    tap({ label: 'Compact option' })
+    await wait('selected compact child action reaches React', (nodes) =>
+      labels(nodes).includes('Pressed: compact'))
+    tap({ id: 'one-native-view-that-fits-width' })
+    const wide = await wait('horizontal ViewThatFits selects first child at 340 points', (nodes) =>
+      labels(nodes).includes('Proposal width: 340') && selected(nodes, 'Wide option'))
+    screenshot('view-that-fits-wide.png', wide)
+    tap({ label: 'Wide option' })
+    await wait('selected wide child action reaches React', (nodes) =>
+      labels(nodes).includes('Pressed: wide'))
+    tap({ id: 'one-native-view-that-fits-width' })
+    tap({ id: 'one-native-view-that-fits-axes' })
+    await wait('vertical axis ignores narrow horizontal proposal', (nodes) =>
+      labels(nodes).includes('Proposal width: 180') &&
+      labels(nodes).includes('Axes: vertical') &&
+      selected(nodes, 'Wide option'))
+    tap({ id: 'one-native-view-that-fits-axes' })
+    await wait('both axes restore compact horizontal fit', (nodes) =>
+      labels(nodes).includes('Axes: both') && selected(nodes, 'Compact option'))
+    screenshot('view-that-fits-both.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
