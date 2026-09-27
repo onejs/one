@@ -18,6 +18,8 @@ namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
 namespace margelo::nitro::one { struct ContactInfo; }
 // Forward declaration of `ContactInput` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactInput; }
+// Forward declaration of `ContactChanges` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactChanges; }
 
 #include "ContactsPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
@@ -25,6 +27,8 @@ namespace margelo::nitro::one { struct ContactInput; }
 #include <vector>
 #include <string>
 #include "ContactInput.hpp"
+#include "ContactChanges.hpp"
+#include <optional>
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -102,6 +106,14 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<std::string>> create(const ContactInput& input) override {
       auto __result = _swiftPart.create(std::forward<decltype(input)>(input));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<ContactInfo>> update(const std::string& identifier, const ContactChanges& changes) override {
+      auto __result = _swiftPart.update(identifier, std::forward<decltype(changes)>(changes));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

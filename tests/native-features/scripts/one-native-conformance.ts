@@ -2701,11 +2701,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('PASS Contacts full-access choice opens')
     screenshot('contacts-access-choice.png', [shareAll])
     point(shareAll.frame.x + shareAll.frame.width / 2, shareAll.frame.y + shareAll.frame.height / 2)
-    await wait('Contacts create search and delete pass', (n) =>
+    await wait('Contacts create edit search and delete pass', (n) =>
       labels(n).includes('Status: passed') &&
       labels(n).includes('Permission: authorized') &&
       labels(n).includes(
-        'Result: before=E_CONTACTS_PERMISSION; matched=true; removed=true; invalid=E_CONTACTS_INPUT'
+        'Result: before=E_CONTACTS_PERMISSION; blankCreate=E_CONTACTS_INPUT; matched=true; edited=true; partial=true; removed=true; missingDelete=E_CONTACTS_NOT_FOUND; notFound=E_CONTACTS_NOT_FOUND; invalidUpdate=E_CONTACTS_INPUT; invalid=E_CONTACTS_INPUT'
       )
     )
     screenshot('contacts-round-trip.png')
