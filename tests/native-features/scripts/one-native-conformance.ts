@@ -342,10 +342,10 @@ const groupBoxLoaded = (nodes: Node[]) =>
   has(nodes, 'Box taps: ')
 const coverContextLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
-  ((Boolean(id(nodes, 'one-native-system-category-cover')) && has(nodes, 'Category: ')) ||
-    Boolean(id(nodes, 'one-native-system-cover-close')) ||
+  ((Boolean(id(nodes, 'one-native-cover-context-category-cover')) && has(nodes, 'Category: ')) ||
+    Boolean(id(nodes, 'one-native-cover-context-cover-close')) ||
     labels(nodes).includes('Full Screen Cover') ||
-    labels(nodes).includes('Dismiss context menu'))
+    labels(nodes).includes('Preview'))
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -3064,6 +3064,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'cover-context') {
     const status = (nodes: Node[], label: string, expected: string) =>
       labels(nodes).includes(`${label}: ${expected}`)
+    // iOS 27 exposes the live context menu as a Preview group with native
+    // actions; it does not publish the older "Dismiss context menu" element.
+    const menuOpen = (nodes: Node[]) =>
+      labels(nodes).includes('Preview') &&
+      ['Copy', 'Pin', 'Delete'].every((label) => labels(nodes).includes(label))
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-cover-context')
@@ -3105,13 +3110,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('context trigger mounted', (nodes) =>
       status(nodes, 'Category', 'Context') &&
       Boolean(id(nodes, 'one-native-cover-context-context-trigger')) &&
-      !labels(nodes).includes('Dismiss context menu') &&
+      !menuOpen(nodes) &&
       !['Copy', 'Pin', 'Delete'].some((label) => labels(nodes).includes(label))
     )
     tap({ id: 'one-native-cover-context-context-trigger' })
     await wait('tap does not open ContextMenu', (nodes) =>
       status(nodes, 'Category', 'Context') &&
-      !labels(nodes).includes('Dismiss context menu') &&
+      !menuOpen(nodes) &&
       !['Copy', 'Pin', 'Delete'].some((label) => labels(nodes).includes(label))
     )
     const longPress = () => {
@@ -3127,37 +3132,38 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     longPress()
     await wait('ContextMenu shows native actions and toggle', (nodes) =>
-      labels(nodes).includes('Dismiss context menu') &&
-      ['Copy', 'Pin', 'Delete'].every((label) => labels(nodes).includes(label))
+      menuOpen(nodes)
     )
     screenshot('system-context-open.png')
     tap({ label: 'Copy' })
     await wait('ContextMenu action reaches React', (nodes) =>
       status(nodes, 'Context action', 'copy') &&
       status(nodes, 'Category', 'Context') &&
-      !labels(nodes).includes('Dismiss context menu')
+      !menuOpen(nodes)
     )
     longPress()
     await wait('ContextMenu can reopen', (nodes) =>
-      labels(nodes).includes('Dismiss context menu') && labels(nodes).includes('Pin')
+      menuOpen(nodes)
     )
     tap({ label: 'Pin' })
     await wait('ContextMenu toggle reaches React', (nodes) =>
       status(nodes, 'Pinned', 'true') &&
       status(nodes, 'Pin source index', '0') &&
       status(nodes, 'Context action', 'copy') &&
-      !labels(nodes).includes('Dismiss context menu')
+      !menuOpen(nodes)
     )
     screenshot('system-context-toggled.png')
     longPress()
     await wait('ContextMenu reopens with React toggle state', (nodes) =>
-      labels(nodes).includes('Dismiss context menu') &&
-      nodes.some((node) => node.AXLabel === 'Pin' && String(node.AXValue) === '1')
+      menuOpen(nodes) &&
+      status(nodes, 'Pinned', 'true')
     )
-    tap({ label: 'Dismiss context menu' })
+    // iOS 27 draws the native checkmark but does not expose it as AXValue.
+    screenshot('system-context-reopened-pinned.png')
+    point(20, 700)
     await wait('ContextMenu dismisses without changing React state', (nodes) =>
       status(nodes, 'Pinned', 'true') &&
-      !labels(nodes).includes('Dismiss context menu')
+      !menuOpen(nodes)
     )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
