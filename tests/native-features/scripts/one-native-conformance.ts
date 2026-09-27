@@ -2626,13 +2626,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-glass-container')
     const mounted = await wait('GlassEffectContainer measures two native glass buttons', (nodes) => {
       const measured = labels(nodes).find((label) => label.startsWith('Measured: '))
-      return status(nodes, 'Spacing', 0) &&
+      return status(nodes, 'Spacing', 'default') &&
         Number(measured?.slice('Measured: '.length)) > 20 &&
         glassButtons(nodes).every(Boolean)
     })
     tap({ label: 'First glass' })
     await wait('composed glass button action reaches React', (nodes) =>
       status(nodes, 'Glass taps', 1)
+    )
+    tap({ id: 'one-native-glass-container-spacing' })
+    await wait('GlassEffectContainer accepts explicit zero spacing', (nodes) =>
+      status(nodes, 'Spacing', 0) && glassButtons(nodes).every(Boolean)
     )
     const [first, second] = glassButtons(mounted)
     if (!first || !second) throw new Error('Glass buttons lost their native frames')
@@ -2655,6 +2659,19 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const changed = countChangedPixels(baselineB, merged, region, 8)
     if (changed.changed < Math.max(250, unchanged.changed * 4))
       throw new Error(`GlassEffectContainer spacing did not change the native glass region: ${JSON.stringify({ unchanged, changed })}`)
+    tap({ id: 'one-native-glass-container-spacing' })
+    await wait('GlassEffectContainer accepts signed spacing', (nodes) =>
+      status(nodes, 'Spacing', -8) && glassButtons(nodes).every(Boolean)
+    )
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    const compact = screenshot('glass-spacing-negative.png')
+    const signedChange = countChangedPixels(merged, compact, region, 8)
+    if (signedChange.changed < Math.max(250, unchanged.changed * 4))
+      throw new Error(`GlassEffectContainer signed spacing did not change native glass: ${JSON.stringify({ unchanged, signedChange })}`)
+    tap({ id: 'one-native-glass-container-spacing' })
+    await wait('GlassEffectContainer returns to nil spacing', (nodes) =>
+      status(nodes, 'Spacing', 'default') && glassButtons(nodes).every(Boolean)
+    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
