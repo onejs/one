@@ -95,11 +95,20 @@ accounts are unavailable).
   and repeat delivery. The arm64 build, `generate:check`, and
   native coverage snapshot passed. Proof screenshot is in the local ignored
   `tests/native-features/build/paste-button-proof` artifact directory. The
-  exact final binary includes an encode-failure guard added after the passing
-  simulator run and still needs a rerun when the studio-64 slot opens.
-- **INFERRED, 2026-09-26:** `GroupBox` is the next objective container slice
-  while native builds and simulators on studio-64 are paused for another lane.
-  Its labeled and unlabeled SwiftUI initializers, measured Fabric host,
-  documentation, fixture and suite are assembled but await an arm64 build and
-  iOS 27 run. `MultiDatePicker` needs a public representation for SwiftUI's
-  `Set<DateComponents>`; that API choice belongs on a named branch for Nate.
+  exact final binary includes an encode-failure guard added after the first
+  passing simulator run. **RAN, 2026-09-26:** the final binary also passed the
+  full `paste-button` suite on an iPhone 17 Pro iOS 27 simulator on ci-64,
+  including disabled suppression and repeat delivery.
+- **RAN, 2026-09-26:** `GroupBox` landed on `v2-beta` at `3870f568d` after
+  `generate:check`, 39 JS tests, a successful arm64 build, and all seven
+  `group-box` checks on an iPhone 17 Pro iOS 27 simulator. The suite covers
+  labeled and unlabeled boxes, measured child bounds, a native child button,
+  and a React-driven label update.
+- **RAN, 2026-09-26:** `ConcentricRectangle` passed `generate:check`, nine
+  shape tests, an arm64 iOS 27 simulator build, and the full `editors` suite.
+  In a SwiftUI capsule container, its blue center and white rounded corner
+  differ from the blue square corner of a `Rectangle` control. The screenshot
+  is in the local ignored `tests/native-features/build/concentric-proof` directory.
+- **INFERRED, 2026-09-26:** `MultiDatePicker` needs a public representation of
+  SwiftUI's selected date set, so that API choice stays on a named branch for
+  Nate.
