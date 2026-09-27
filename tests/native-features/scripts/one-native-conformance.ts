@@ -3219,9 +3219,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-control-group')
-    const mounted = await wait('ControlGroup fixture mounts', (nodes) =>
+    const readyBox = (nodes: Node[], groupId: string, afterId: string, minimumHeight: number) => {
+      const group = id(nodes, groupId)?.frame
+      const after = id(nodes, afterId)?.frame
+      return Boolean(group && after && group.height >= minimumHeight &&
+        after.y >= group.y + group.height + 10)
+    }
+    const mounted = await wait('ControlGroup fixture mounts with measured heights', (nodes) =>
       labels(nodes).includes('Taps: 0') && labels(nodes).includes('After control') &&
-      Boolean(id(nodes, 'one-native-control-standalone')?.frame))
+      readyBox(nodes, 'one-native-control-standalone', 'one-native-control-after', 30) &&
+      readyBox(nodes, 'one-native-control-host', 'one-native-control-after-nested', 30) &&
+      readyBox(nodes, 'one-native-control-bounded', 'one-native-control-after-bounded', 79))
     checkBox(mounted, 'one-native-control-standalone', 'one-native-control-after', 30)
     checkBox(mounted, 'one-native-control-host', 'one-native-control-after-nested', 30)
     const boundedBefore = checkBox(mounted, 'one-native-control-bounded', 'one-native-control-after-bounded', 79)
