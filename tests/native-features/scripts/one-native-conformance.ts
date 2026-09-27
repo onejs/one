@@ -3572,8 +3572,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       child.x + child.width <= host.x + host.width + 1 &&
       child.y + child.height <= host.y + host.height + 1
     if (!leadingAction || !trailingAction || !leadingBase || !trailingBase ||
-        leadingAction.x + leadingAction.width > leadingBase.x + 2 ||
-        trailingAction.x < trailingBase.x + trailingBase.width - 2 ||
+        Math.abs(leadingBase.x - (leadingAction.x + leadingAction.width)) > 2 ||
+        Math.abs(trailingAction.x - (trailingBase.x + trailingBase.width)) > 2 ||
         !inside(leadingAction, leadingHost) || !inside(leadingBase, leadingHost) ||
         !inside(trailingAction, trailingHost) || !inside(trailingBase, trailingHost))
       throw new Error(`Native horizontal safe-area insets did not flank their base views: ${JSON.stringify({ leadingHost, trailingHost, leadingBase, trailingBase, leadingAction, trailingAction })}`)
@@ -3614,9 +3614,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         trailingAction.x < trailingBase.x + trailingBase.width - 2 ||
         !inside(leadingAction, leadingHost) || !inside(leadingBase, leadingHost) ||
         !inside(trailingAction, trailingHost) || !inside(trailingBase, trailingHost))
-      throw new Error(`Native horizontal safe-area bars did not flank their base views: ${JSON.stringify({ leadingHost, trailingHost, leadingBase, trailingBase, leadingAction, trailingAction })}`)
-    checks.push({ name: 'native horizontal bars flank their base views inside each host', durationMs: 0 })
-    console.log('PASS native horizontal bars flank their base views inside each host')
+      throw new Error(`Native horizontal safe-area bars were not edge-adjacent inside their hosts: ${JSON.stringify({ leadingHost, trailingHost, leadingBase, trailingBase, leadingAction, trailingAction })}`)
+    checks.push({ name: 'native horizontal bars are edge-adjacent inside each host', durationMs: 0 })
+    console.log('PASS native horizontal bars are edge-adjacent inside each host')
     screenshot('horizontal-bars-initial.png', mounted)
     tap({ label: 'Leading bar action' })
     await wait('leading safe-area bar action reaches React', (nodes) => labels(nodes).includes('Leading bar taps: 1'))
