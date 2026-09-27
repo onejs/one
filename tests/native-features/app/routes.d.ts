@@ -94,6 +94,7 @@ declare module 'one' {
         | `/one-native-popover`
         | `/one-native-protected-store`
         | `/one-native-safe-area`
+        | `/one-native-scroll-search-refresh`
         | `/one-native-secure-store`
         | `/one-native-share`
         | `/one-native-share-empty`
