@@ -1280,6 +1280,12 @@ indicator duration remains unmeasured for both containers.
 view in `ViewSlot.Content` becomes a safe-area bar. Both edges and bar button
 actions have an iOS 27 simulator proof.
 
+`One.iOS.ViewSlot name="safeAreaBarWithHorizontalEdge"` takes
+`options={{ edge: 'leading' }}` or `options={{ edge: 'trailing' }}` on iOS 26 or
+newer. The iOS 27 fixture shows the action edge-adjacent to the base on the
+selected side in a bounded host, and both native actions reach React. Other
+host sizes and scroll content remain unproven.
+
 `One.iOS.ViewSlot name="safeAreaInsetWithHorizontalEdge"` accepts
 `options={{ edge: 'leading' }}` or `options={{ edge: 'trailing' }}`. The iOS 27
 iPhone fixture places the native inset action on the selected side of its base

@@ -172,6 +172,12 @@ On iOS 26 or newer, `safeAreaBarWithVerticalEdge` accepts
 base view and the bottom bar action appears below its base view; both actions
 reach React.
 
+`safeAreaBarWithHorizontalEdge` accepts `options={{ edge: 'leading' }}` or
+`options={{ edge: 'trailing' }}` on iOS 26 or newer. In the bounded iOS 27
+fixture, the native bar action is edge-adjacent to its base view on the chosen
+side; both actions reach React. Other host sizes and scroll content are
+unproven.
+
 The iOS 27 conformance fixtures also exercise `background` paint, a `mask`
 that clips a colored rectangle to a circle, `listRowBackground` behind a
 `List` row, and an interactive `safeAreaInsetWithVerticalEdge` with
