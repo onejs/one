@@ -61,6 +61,7 @@ const suites = [
   'view-slot',
   'safe-area-bar',
   'linear-gradient',
+  'radial-gradient',
   'horizontal-inset',
   'horizontal-bar',
   'swipe-actions',
@@ -398,6 +399,9 @@ const safeAreaBarLoaded = (nodes: Node[]) =>
 const linearGradientLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-linear-gradient-screen'))
+const radialGradientLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-radial-gradient-screen'))
 const horizontalInsetLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-horizontal-inset-screen'))
@@ -605,6 +609,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'view-slot': viewSlotLoaded,
   'safe-area-bar': safeAreaBarLoaded,
   'linear-gradient': linearGradientLoaded,
+  'radial-gradient': radialGradientLoaded,
   'horizontal-inset': horizontalInsetLoaded,
   'horizontal-bar': horizontalBarLoaded,
   'swipe-actions': swipeActionsLoaded,
@@ -683,6 +688,7 @@ const suiteHome: Record<Suite, string> = {
   'view-slot': 'nav-one-native-view-slot',
   'safe-area-bar': 'nav-one-native-safe-area-bar',
   'linear-gradient': 'nav-one-native-linear-gradient',
+  'radial-gradient': 'nav-one-native-radial-gradient',
   'horizontal-inset': 'nav-one-native-horizontal-inset',
   'horizontal-bar': 'nav-one-native-horizontal-bar',
   'swipe-actions': 'nav-one-native-swipe-actions',
@@ -3509,6 +3515,77 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     checks.push({ name: 'native linear gradient paints, reverses, and renders one color', durationMs: 0 })
     checks.push({ name: 'native linear gradient honors horizontal points, alpha, three colors, and empty colors', durationMs: 0 })
     console.log(`PASS native linear gradient paints, reverses, and renders one color: ${JSON.stringify(colors)}`)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'radial-gradient') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-radial-gradient')
+    const initial = await wait('native radial gradient mounts', (nodes) =>
+      labels(nodes).includes('SwiftUI RadialGradient') &&
+      labels(nodes).includes('Mode: initial') &&
+      labels(nodes).includes('Native radial gradient preview') &&
+      Boolean(id(nodes, 'one-native-radial-gradient-native')?.frame))
+    if (id(initial, 'one-native-radial-gradient-decorative'))
+      throw new Error('Unlabeled decorative radial gradient is exposed to accessibility')
+    checks.push({ name: 'labeled radial gradient accessible; unlabeled gradient decorative', durationMs: 0 })
+    const native = id(initial, 'one-native-radial-gradient-native')!.frame!
+    if (Math.abs(native.width - 280) > 2 || Math.abs(native.height - 150) > 2)
+      throw new Error(`RadialGradient did not fill its assigned 280x150 box: ${JSON.stringify(native)}`)
+    const captures: Record<string, string> = {}
+    const capture = async (mode: string, nodes: Node[]) => {
+      await Bun.sleep(300)
+      captures[mode] = screenshot(`radial-gradient-${mode}.png`, nodes)
+    }
+    await capture('initial', initial)
+    for (const mode of ['reversed', 'moved', 'wide', 'inner', 'empty']) {
+      tap({ id: `one-native-radial-gradient-${mode}` })
+      const nodes = await wait(`React supplies radial gradient ${mode} state`, (next) =>
+        labels(next).includes(`Mode: ${mode}`))
+      await capture(mode, nodes)
+    }
+    const app = initial.find((node) => node.type === 'Application')?.frame
+    if (!app?.width) throw new Error('RadialGradient proof has no application frame')
+    const sample = (mode: string, xFraction: number, yFraction = 0.5) => {
+      const png = readPng(captures[mode]!)
+      const scale = png.width / app.width
+      const x = Math.round((native.x + native.width * xFraction) * scale)
+      const y = Math.round((native.y + native.height * yFraction) * scale)
+      if (x < 0 || y < 0 || x >= png.width || y >= png.height)
+        throw new Error(`RadialGradient sample lies outside screenshot: ${JSON.stringify({ mode, x, y })}`)
+      const at = (y * png.width + x) * 4
+      return [...png.data.subarray(at, at + 3)]
+    }
+    const pixels = {
+      initialCenter: sample('initial', 0.5),
+      initialEdge: sample('initial', 0.95),
+      initialInner: sample('initial', 0.6),
+      reversedCenter: sample('reversed', 0.5),
+      reversedEdge: sample('reversed', 0.95),
+      movedCenter: sample('moved', 0.25),
+      movedRight: sample('moved', 0.75),
+      wideEdge: sample('wide', 0.95),
+      innerNearCenter: sample('inner', 0.6),
+      emptyCenter: sample('empty', 0.5),
+    }
+    const red = (value: number[]) => value[0]! > 170 && value[2]! < 100
+    const blue = (value: number[]) => value[2]! > 145 && value[0]! < 110
+    if (!red(pixels.initialCenter) || !blue(pixels.initialEdge) ||
+        !blue(pixels.reversedCenter) || !red(pixels.reversedEdge))
+      throw new Error(`Native RadialGradient did not paint or reverse radial colors: ${JSON.stringify(pixels)}`)
+    if (!red(pixels.movedCenter) || !blue(pixels.movedRight))
+      throw new Error(`Native RadialGradient did not honor its moved UnitPoint center: ${JSON.stringify(pixels)}`)
+    if (pixels.wideEdge[0]! < pixels.initialEdge[0]! + 25 ||
+        pixels.innerNearCenter[0]! < pixels.initialInner[0]! + 20)
+      throw new Error(`Native RadialGradient did not honor both radii: ${JSON.stringify(pixels)}`)
+    if (!(pixels.emptyCenter[0]! > 220 && pixels.emptyCenter[1]! > 200 && pixels.emptyCenter[2]! < 80))
+      throw new Error(`Empty native RadialGradient did not reveal its yellow underlay: ${JSON.stringify(pixels)}`)
+    fs.writeFileSync(path.join(config.artifactDir, 'radial-gradient-pixels.json'),
+      JSON.stringify({ pixels, nativeFrame: native }, null, 2))
+    checks.push({ name: 'native radial gradient paints, reverses, and moves its center', durationMs: 0 })
+    checks.push({ name: 'native radial gradient honors both radii and empty colors', durationMs: 0 })
+    console.log(`PASS native radial gradient pixels: ${JSON.stringify(pixels)}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

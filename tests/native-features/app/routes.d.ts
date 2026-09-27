@@ -71,6 +71,8 @@ declare module 'one' {
         | `/one-native-view-slot`
         | `/one-native-horizontal-inset`
         | `/one-native-horizontal-bar`
+        | `/one-native-linear-gradient`
+        | `/one-native-radial-gradient`
         | `/one-native-safe-area-bar`
         | `/one-native-swipe-actions`
         | `/one-native-disclosure-group`
