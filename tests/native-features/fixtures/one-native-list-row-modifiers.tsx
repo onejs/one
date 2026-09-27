@@ -22,6 +22,7 @@ export default function OneNativeListRowModifiers() {
             }}
           />
           <One.iOS.Text text="Control row" />
+          <One.iOS.Text text="Fixed inset" swiftStyle={{ listRowInsets: { edges: 'leading', length: 96 }, listRowSeparator: { visibility: 'hidden', edges: 'bottom' } }} />
         </One.iOS.Section>
       </One.iOS.List>
     </View>
