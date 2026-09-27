@@ -71,6 +71,13 @@ Place it directly inside `Tabs`, alongside the `Tab` children. The bottom
 accessory remains above the system tab bar as selection changes; its React
 Native children keep their event handlers.
 
+On iPad, use `tabViewStyle="sidebarAdaptable"` to present the native sidebar.
+`tabViewSidebarHeader` and `tabViewSidebarFooter` sit above the sidebar bottom
+bar; `tabViewSidebarBottomBar` spans the bottom of the sidebar. Each slot keeps
+its declared height and React Native actions when the sidebar is open. Selecting
+a tab closes the sidebar on iPad; reopening it shows the slots for the selected
+tab.
+
 ```tsx
 import { One } from 'one'
 import { Pressable, Text } from 'react-native'
@@ -80,6 +87,22 @@ import { Pressable, Text } from 'react-native'
   <One.iOS.Tab id="other" title="Other" systemImage="star">...</One.iOS.Tab>
   <One.iOS.TabViewSlot name="tabViewBottomAccessory" height={50}>
     <Pressable onPress={openPlayer}><Text>Open player</Text></Pressable>
+  </One.iOS.TabViewSlot>
+</One.iOS.Tabs>
+```
+
+```tsx
+<One.iOS.Tabs tabViewStyle="sidebarAdaptable" selection={tab} onSelectionChange={setTab}>
+  <One.iOS.Tab id="home" title="Home" systemImage="house">...</One.iOS.Tab>
+  <One.iOS.Tab id="other" title="Other" systemImage="star">...</One.iOS.Tab>
+  <One.iOS.TabViewSlot name="tabViewSidebarHeader" height={44}>
+    <Pressable onPress={openSearch}><Text>Search</Text></Pressable>
+  </One.iOS.TabViewSlot>
+  <One.iOS.TabViewSlot name="tabViewSidebarFooter" height={48}>
+    <Pressable onPress={openSettings}><Text>Settings</Text></Pressable>
+  </One.iOS.TabViewSlot>
+  <One.iOS.TabViewSlot name="tabViewSidebarBottomBar" height={52}>
+    <Pressable onPress={openProfile}><Text>Profile</Text></Pressable>
   </One.iOS.TabViewSlot>
 </One.iOS.Tabs>
 ```

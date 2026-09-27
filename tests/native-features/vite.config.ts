@@ -164,6 +164,7 @@ export default defineConfig({
             bundleId: 'dev.vxrn.native.tests',
             buildNumber: '4242',
             deploymentTarget: '17.0',
+            tablet: true,
             faceIdUsageDescription: 'NativeFeatureTests verifies biometric authentication.',
             fileSharing: true,
           },

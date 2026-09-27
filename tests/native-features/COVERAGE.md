@@ -11,11 +11,11 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.AppInfo` | app-info | app-info |  |
 | `One.Database` | database | missing | Android suite missing |
 | `One.iOS.ArrangementView` | missing | n/a | fixture exists, no suite opens it |
-| `One.iOS.Tabs` | tabs-menu, tab-slot, e2e:one-native-tabview | n/a |  |
-| `One.iOS.Tab` | tabs-menu, tab-slot, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Tabs` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Tab` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a |  |
 | `One.iOS.TabSection` | e2e:one-native-tabview | n/a |  |
 | `One.iOS.TabViewBottomAccessory` | e2e:one-native-tabview | n/a |  |
-| `One.iOS.TabViewSlot` | tab-slot | n/a | bottom accessory proven on iPhone; sidebar slots need iPad sidebar proof |
+| `One.iOS.TabViewSlot` | tab-slot, tab-sidebar | n/a |  |
 | `One.iOS.Menu` | tabs-menu | n/a |  |
 | `One.iOS.ContextMenu` | cover-context | n/a |  |
 | `One.iOS.Sheet` | sheets, navigation | n/a |  |

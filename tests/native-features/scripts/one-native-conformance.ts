@@ -55,6 +55,7 @@ const suites = [
   'share-empty',
   'web-photos',
   'tab-slot',
+  'tab-sidebar',
   'edit-button',
   'view-that-fits',
   'cover-context',
@@ -363,6 +364,9 @@ const webPhotosLoaded = (nodes: Node[]) =>
 const tabSlotLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-tab-slot-screen'))
+const tabSidebarLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-tab-sidebar-screen'))
 const editButtonLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-edit-button-screen'))
@@ -528,6 +532,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'share-empty': shareEmptyLoaded,
   'web-photos': webPhotosLoaded,
   'tab-slot': tabSlotLoaded,
+  'tab-sidebar': tabSidebarLoaded,
   'edit-button': editButtonLoaded,
   'view-that-fits': viewThatFitsLoaded,
   'cover-context': coverContextLoaded,
@@ -589,6 +594,7 @@ const suiteHome: Record<Suite, string> = {
   'share-empty': 'nav-one-native-share-empty',
   'web-photos': 'nav-one-native-web-photos',
   'tab-slot': 'nav-one-native-tab-slot',
+  'tab-sidebar': 'nav-one-native-tab-sidebar',
   'edit-button': 'nav-one-native-edit-button',
   'view-that-fits': 'nav-one-native-view-that-fits',
   'cover-context': 'nav-one-native-cover-context',
@@ -3230,6 +3236,97 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       id(nodes, 'one-native-edit-button-control')?.AXLabel === 'Edit' &&
       labels(nodes).includes('Alpha') && labels(nodes).includes('Beta'))
     screenshot('edit-button-restored.png', restored)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'tab-sidebar') {
+    const assertSidebarGeometry = (nodes: Node[], stage: string) => {
+      const header = id(nodes, 'one-native-tab-slot-sidebar-header')?.frame
+      const footer = id(nodes, 'one-native-tab-slot-sidebar-footer')?.frame
+      const bottom = id(nodes, 'one-native-tab-slot-sidebar-bottom-bar')?.frame
+      const app = nodes.find((node) => node.type === 'Application')?.frame
+      if (!header || !footer || !bottom || !app || app.width < 700 ||
+          Math.abs(header.height - 44) > 1 ||
+          Math.abs(footer.height - 48) > 1 ||
+          Math.abs(bottom.height - 52) > 1 ||
+          header.y + header.height >= footer.y ||
+          footer.y + footer.height >= bottom.y ||
+          bottom.x > 2 || bottom.width < 200 || bottom.width > app.width / 2 ||
+          bottom.y < app.height * 0.8 || app.height - bottom.y - bottom.height > 40 ||
+          header.x < bottom.x || footer.x < bottom.x ||
+          header.x + header.width > bottom.x + bottom.width ||
+          footer.x + footer.width > bottom.x + bottom.width)
+        throw new Error(`TabViewSlot ${stage} sidebar geometry differs: ${JSON.stringify({ header, footer, bottom, app })}`)
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-tab-sidebar')
+    const appWidth = snapshot(config.simulatorId).find((node) => node.type === 'Application')?.frame?.width
+    if (appWidth && appWidth < 700) {
+      const compact = await wait('compact iPhone tab bar omits sidebar slots', (nodes) =>
+        labels(nodes).includes('Selected tab: home') &&
+        labels(nodes).includes('Home page') &&
+        Boolean(id(nodes, 'star')?.frame) &&
+        !labels(nodes).includes('Sidebar header') &&
+        !labels(nodes).includes('Sidebar footer') &&
+        !labels(nodes).includes('Sidebar bottom bar'))
+      screenshot('tab-sidebar-compact-home.png', compact)
+      tap({ id: 'star' })
+      const other = await wait('compact iPhone tab switch still omits sidebar slots', (nodes) =>
+        labels(nodes).includes('Selected tab: other') &&
+        labels(nodes).includes('Other page') &&
+        !labels(nodes).includes('Sidebar header') &&
+        !labels(nodes).includes('Sidebar footer') &&
+        !labels(nodes).includes('Sidebar bottom bar'))
+      screenshot('tab-sidebar-compact-other.png', other)
+      console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+      return
+    }
+    const offered = await wait('sidebar-adaptable tab view offers its sidebar', (nodes) =>
+      labels(nodes).includes('Toggle sidebar') &&
+      labels(nodes).includes('Selected tab: home'))
+    if (!labels(offered).includes('Sidebar header')) tap({ id: 'ToggleSideBar' })
+    const mounted = await wait('three TabViewSlot sidebar regions mount on iPad', (nodes) =>
+      labels(nodes).includes('Sidebar header') &&
+      labels(nodes).includes('Sidebar footer') &&
+      labels(nodes).includes('Sidebar bottom bar') &&
+      Boolean(id(nodes, 'one-native-tab-slot-sidebar-header')?.frame) &&
+      Boolean(id(nodes, 'one-native-tab-slot-sidebar-footer')?.frame) &&
+      Boolean(id(nodes, 'one-native-tab-slot-sidebar-bottom-bar')?.frame))
+    assertSidebarGeometry(mounted, 'initial')
+    screenshot('tab-sidebar-initial.png', mounted)
+    for (const [name, expected] of [
+      ['header', 'header'],
+      ['footer', 'footer'],
+      ['bottom-bar', 'bottom bar'],
+    ] as const) {
+      tap({ id: `one-native-tab-slot-sidebar-${name}` })
+      await wait(`sidebar ${name} action reaches React`, (nodes) =>
+        labels(nodes).includes(`Sidebar taps: ${expected}`))
+    }
+    tap({ id: 'star' })
+    await wait('native sidebar closes after selecting another tab', (nodes) =>
+      labels(nodes).includes('Selected tab: other') &&
+      labels(nodes).includes('Other page') &&
+      !labels(nodes).includes('Sidebar header'))
+    tap({ id: 'ToggleSideBar' })
+    const switched = await wait('sidebar slots remount when reopened after tab selection', (nodes) =>
+      labels(nodes).includes('Selected tab: other') &&
+      labels(nodes).includes('Other page') &&
+      Boolean(id(nodes, 'one-native-tab-slot-sidebar-header')?.frame) &&
+      Boolean(id(nodes, 'one-native-tab-slot-sidebar-footer')?.frame) &&
+      Boolean(id(nodes, 'one-native-tab-slot-sidebar-bottom-bar')?.frame))
+    assertSidebarGeometry(switched, 'after tab switch')
+    screenshot('tab-sidebar-other.png', switched)
+    for (const [name, expected] of [
+      ['header', 'header'],
+      ['footer', 'footer'],
+      ['bottom-bar', 'bottom bar'],
+    ] as const) {
+      tap({ id: `one-native-tab-slot-sidebar-${name}` })
+      await wait(`sidebar ${name} action still reaches React after tab switch`, (nodes) =>
+        labels(nodes).includes(`Sidebar taps: ${expected}`))
+    }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

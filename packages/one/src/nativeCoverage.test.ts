@@ -57,7 +57,6 @@ const knownGaps: Record<string, string> = {
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
-  'iOS.TabViewSlot': 'bottom accessory proven on iPhone; sidebar slots need iPad sidebar proof',
   'iOS.EditButton': 'Edit/Done label cycle proven; List edit state unobserved and row actions unavailable',
 }
 
