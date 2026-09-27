@@ -60,7 +60,8 @@ import { One } from 'one'
 ## MultiDatePicker
 
 `One.iOS.MultiDatePicker` uses SwiftUI's multiple-day calendar. Its controlled
-`selection` is an array of unique `YYYY-MM-DD` calendar-day strings, and
+`selection` is an array of unique `YYYY-MM-DD` calendar-day strings in
+Gregorian years 0001–9999, and
 `onSelectionChange` reports the selected days in sorted order. The first
 binding uses SwiftUI's unbounded picker. `revision` applies an external reset;
 `disabled` prevents native selection changes. Dates are calendar days, not

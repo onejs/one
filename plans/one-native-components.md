@@ -79,26 +79,32 @@ accounts are unavailable).
   22 checks for measured SwiftUI calendar layout, native day selection
   pixels, adding and removing a day, React rejection, external selection,
   disabled tap with a post-tap pixel capture, and revision reset. The fixture
-  chooses days 10–12 of the current calendar month so future runs remain on
-  the visible month. The
-  simulator capture and outcome are in local ignored
-  `tests/native-features/build/multi-date-calendar-gregorian-proof-3` and
-  `multi-date-buddhist-locale-proof`. The Buddhist simulator presented
-  “September 2569 BE” while the React value stayed `2026-09-DD`; both
-  22-check suites passed. Native build used Xcode 27.1 on ci-64. High review
+  chooses days 10–12 of the current Gregorian month so future runs remain on
+  the visible month. **RAN, 2026-09-27:** the exact native revision
+  `d1d683d22` built with Xcode 27.1 on ci-64 and passed all 22 checks under
+  Gregorian, Buddhist, and Republic of China calendars on iPhone 17 Pro
+  iOS 27. The local ignored artifact directories are
+  `tests/native-features/build/multi-date-all-era-gregorian-proof`,
+  `multi-date-all-era-buddhist-proof`, and `multi-date-all-era-roc-proof`;
+  each has `outcome.json`, `environment.json`, AX snapshots, and selected-day
+  screenshots, with no failed-attempt files. The Buddhist simulator presented
+  “September 2569 BE” and the Republic of China simulator presented
+  “September 115 Minguo” while React held Gregorian `2026-09-DD` values.
+  High review
   s465 found a non-Gregorian conversion bug, force unwrap crash paths, a
   type-incorrect docs example, and incomplete disabled/metadata/coverage
   evidence; the follow-up branch commit corrected each and records device,
   OS, Xcode, locale, calendar, appearance, source SHA, and observed month.
-  A follow-up review s469 found omitted era data for calendars with repeating
-  year numbers. Commit `80c3b4621` preserves the native era for Chinese,
-  Dangi, Japanese, and Republic of China calendars. **RAN, 2026-09-27:** the
-  Xcode 27.1 iOS 27 simulator build succeeded and both Buddhist and Republic
-  of China 22-check suites passed on that exact source revision. The Republic
-  of China month read “September 115 Minguo” while React still held
-  `2026-09-DD`. A Foundation round-trip probe passed 1911/1912, 1966, and
-  2026 dates for Chinese, Dangi, Japanese, and Republic of China calendars.
-  The boundary dates have no SwiftUI UI proof; other calendars remain partial.
+  Review s469 found omitted era data for calendars with repeating year
+  numbers; review s473 found the four-calendar allowlist incomplete.
+  `d1d683d22` now preserves the environment calendar's era unconditionally.
+  **RAN:** `swift tests/native-features/scripts/multi-date-calendar-era.swift`
+  passed 32 Foundation round trips across 1911/1912, 1966, and 2026 for
+  Gregorian, Buddhist, Chinese, Dangi, Japanese, Republic of China, Coptic,
+  and Ethiopian calendars; its committed output is adjacent to the script.
+  Historical boundary dates have no SwiftUI UI proof; other calendar
+  interactions remain partial. `generate:check` and the regenerated native
+  coverage snapshot passed on `d1d683d22`.
   Nate's approval of the public date-only API remains before merge.
 
 - **RAN, 2026-09-26:** slice 1 `TextEditor` and `UnevenRoundedRectangle` passed

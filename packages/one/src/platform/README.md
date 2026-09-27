@@ -478,7 +478,8 @@ that range, and `minimumDate` must not be after `maximumDate`.
 `datePickerStyle` is `automatic`, `compact`, `graphical`, or `wheel`.
 
 `MultiDatePicker` selects multiple calendar days. Its `selection` is an array of
-unique `YYYY-MM-DD` strings; `onSelectionChange` reports them in sorted order.
+unique `YYYY-MM-DD` strings in Gregorian years 0001–9999;
+`onSelectionChange` reports them in sorted order.
 The bridge keeps SwiftUI's `Set<DateComponents>` behind the native boundary,
 mapping Gregorian day strings through the SwiftUI environment calendar and back,
 so a selected day is never represented as a timestamp. The first binding uses
