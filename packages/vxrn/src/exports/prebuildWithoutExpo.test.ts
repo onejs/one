@@ -1968,6 +1968,43 @@ buildSettings = {
     expect(gradle).toBe('minSdkVersion = 28\ncompileSdkVersion = 36\ntargetSdkVersion = 35')
   })
 
+  it('turns on release minify, resource shrinking and extra proguard rules', () => {
+    const android = {
+      ...app.android,
+      minify: true,
+      shrinkResources: true,
+      proguardRules: '-keep class com.example.** { *; }',
+    }
+    const gradle = renderPrebuildFile({
+      relativePath: 'app/build.gradle',
+      content:
+        'react {\n    autolinkLibrariesWithApp()\n}\ndef enableProguardInReleaseBuilds = false\n        release {\n            minifyEnabled enableProguardInReleaseBuilds\n        }',
+      platform: 'android',
+      app: { ...app, android },
+    }).content
+    expect(gradle).toContain('def enableProguardInReleaseBuilds = true')
+    expect(gradle).toContain(
+      'minifyEnabled enableProguardInReleaseBuilds\n            shrinkResources true'
+    )
+    const rules = renderPrebuildFile({
+      relativePath: 'app/proguard-rules.pro',
+      content: '# Add project specific ProGuard rules here.\n',
+      platform: 'android',
+      app: { ...app, android },
+    }).content
+    expect(rules).toBe(
+      '# Add project specific ProGuard rules here.\n\n-keep class com.example.** { *; }\n'
+    )
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'app/build.gradle',
+        content: 'react {\n    autolinkLibrariesWithApp()\n}\nno switch',
+        platform: 'android',
+        app: { ...app, android },
+      })
+    ).toThrow('proguard switch')
+  })
+
   it('stamps orientation as expo does, and nothing when unset', () => {
     const plistTemplate =
       '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n\t<key>UISupportedInterfaceOrientations</key>\n\t<array>\n\t\t<string>UIInterfaceOrientationPortrait</string>\n\t</array>\n</dict>'
