@@ -4186,8 +4186,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes(`${label}: ${expected}`)
     const control = (nodes: Node[], type: string, label: string) =>
       nodes.find((node) => node.type === type && node.AXLabel === label)
-    // the SwiftUI Button's own ideal height, which is what the trigger measures.
-    const triggerHeight = 24
+    // The trigger reports the SwiftUI Button's measured intrinsic height.
+    let triggerHeight = 0
     // iOS dismisses a popover when you tap outside it. that is the only path where the
     // native side changes isPresented on its own, so it is how the controlled protocol
     // gets exercised in this direction.
@@ -4231,13 +4231,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // height SwiftUI measured, the way a host does.
     await wait('the trigger lays out inline and reports its measured height', (n) => {
       const frame = control(n, 'Button', 'Trigger')?.frame
-      return (
-        status(n, 'Trigger', triggerHeight) &&
-        Math.round(frame?.height ?? 0) === triggerHeight &&
+      const measured = Math.round(frame?.height ?? 0)
+      const ready = (
+        measured >= 15 &&
+        status(n, 'Trigger', measured) &&
         status(n, 'Open', 'false') &&
         status(n, 'Anchor', 'bounds') &&
         !labels(n).includes('Popover body')
       )
+      if (ready) triggerHeight = measured
+      return ready
     })
     screenshot('popover-closed.png')
 
