@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "simulator automation session ready",
+      "durationMs": 1516
+    },
+    {
+      "name": "home screen mounted",
+      "durationMs": 10016
+    },
+    {
+      "name": "no warning overlay intercepts interaction",
+      "durationMs": 2440
+    },
+    {
+      "name": "home lists nav-one-native-radial-gradient",
+      "durationMs": 2735
+    },
+    {
+      "name": "nav-one-native-radial-gradient settles",
+      "durationMs": 5979
+    },
+    {
+      "name": "native radial gradient mounts",
+      "durationMs": 5022
+    },
+    {
+      "name": "labeled radial gradient accessible; unlabeled gradient decorative",
+      "durationMs": 0
+    },
+    {
+      "name": "React supplies radial gradient reversed state",
+      "durationMs": 2272
+    },
+    {
+      "name": "React supplies radial gradient moved state",
+      "durationMs": 2208
+    },
+    {
+      "name": "React supplies radial gradient wide state",
+      "durationMs": 2290
+    },
+    {
+      "name": "React supplies radial gradient inner state",
+      "durationMs": 2319
+    },
+    {
+      "name": "React supplies radial gradient single state",
+      "durationMs": 2116
+    },
+    {
+      "name": "React supplies radial gradient alpha state",
+      "durationMs": 2339
+    },
+    {
+      "name": "React supplies radial gradient three state",
+      "durationMs": 2353
+    },
+    {
+      "name": "React supplies radial gradient empty state",
+      "durationMs": 2390
+    },
+    {
+      "name": "native radial gradient paints, reverses, and moves its center",
+      "durationMs": 0
+    },
+    {
+      "name": "native radial gradient honors both radii, one and three colors, alpha, and empty colors",
+      "durationMs": 0
+    }
+  ],
+  "durationMs": 104473,
+  "simulatorId": "41E95D83-2AEC-4124-9655-5462F2A770DE",
+  "bundleId": "dev.vxrn.native.tests",
+  "suite": "radial-gradient"
+}

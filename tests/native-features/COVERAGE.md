@@ -80,7 +80,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.UnevenRoundedRectangle` | editors | n/a |  |
 | `One.iOS.ConcentricRectangle` | editors | n/a |  |
 | `One.iOS.LinearGradient` | linear-gradient | n/a | sRGB hex colors and normalized points proven on iOS 27; arbitrary SwiftUI Color values and explicit stops unbound |
-| `One.iOS.RadialGradient` | radial-gradient | n/a | sRGB hex colors, normalized center, and point radii proven on iOS 27; arbitrary SwiftUI Color values and explicit stops unbound |
+| `One.iOS.RadialGradient` | radial-gradient | n/a | opaque and alpha sRGB hex colors, empty/one/two/three colors, normalized center, and point radii proven on iOS 27; arbitrary SwiftUI Color values and explicit stops unbound |
 | `One.iOS.VideoPlayer` | media | n/a |  |
 | `One.iOS.PhotosPicker` | web-photos | n/a |  |
 | `One.iOS.WebView` | web-photos | n/a |  |

@@ -71,6 +71,16 @@ accounts are unavailable).
 
 ## Status
 
+- **RAN, 2026-09-27:** `One.iOS.RadialGradient` now calls SwiftUI's
+  `RadialGradient(colors:center:startRadius:endRadius:)`. The 17-check
+  iPhone 17 Pro / iOS 27.0 suite passed at `d7b01830d`, using the native
+  binary built at `8d65d0d22`; both revisions have the same `packages/one/ios`
+  tree. Pixel gates proved center movement, both radii, reversed colors,
+  single and three-color arrays, alpha over a yellow underlay, and transparent
+  empty input. The tracked `tests/native-features/proofs/radial-gradient`
+  bundle contains AX/PNG states, sampled pixels, side-by-side WebP, logs,
+  and source/binary/runtime receipt. Explicit stops and arbitrary SwiftUI
+  colors are unbound.
 - **RAN, 2026-09-27:** the `horizontal-bar` suite passed nine checks on
   ci-64's iPhone 17 Pro / iOS 27.0 simulator with Xcode 27.1. The generated
   SwiftUI `safeAreaBarWithHorizontalEdge` slot placed its action beside the

@@ -43,3 +43,6 @@ fail-snapshot.json
 !proofs/horizontal-bar/*.png
 !proofs/horizontal-bar/*.webp
 !proofs/horizontal-bar/outcome.json
+!proofs/radial-gradient/*.png
+!proofs/radial-gradient/*.webp
+!proofs/radial-gradient/outcome.json
