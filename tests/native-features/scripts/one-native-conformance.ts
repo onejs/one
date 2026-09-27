@@ -5436,6 +5436,45 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         (n) => status(n, 'IsOn', 'true') && status(n, 'Changes', 1)
       )
     }
+    const probeFrames = (nodes: Node[]) => ({
+      inherited: id(nodes, 'one-native-host-size-inherited')?.frame,
+      direct: id(nodes, 'one-native-host-size-direct')?.frame,
+    })
+    const mini = await wait('mini control size mounts in Host and direct Button', (n) => {
+      const frames = probeFrames(n)
+      return labels(n).includes('Probe size: mini') && Boolean(frames.inherited && frames.direct)
+    })
+    const miniFrames = probeFrames(mini)
+    screenshot('host-control-size-mini.png', mini)
+    tap({ id: 'one-native-host-size-probe-toggle' })
+    const extraLarge = await wait('extraLarge control size grows both native Buttons', (n) => {
+      const frames = probeFrames(n)
+      return Boolean(
+        labels(n).includes('Probe size: extraLarge') &&
+        frames.inherited && frames.direct &&
+        miniFrames.inherited && miniFrames.direct &&
+        frames.inherited.height >= miniFrames.inherited.height + 4 &&
+        frames.direct.height >= miniFrames.direct.height + 4
+      )
+    })
+    screenshot('host-control-size-extra-large.png', extraLarge)
+    tap({ id: 'one-native-host-size-inherited' })
+    tap({ id: 'one-native-host-size-direct' })
+    await wait('resized native Buttons still dispatch to React', (n) =>
+      labels(n).includes('Probe taps: 2')
+    )
+    tap({ id: 'one-native-host-size-probe-toggle' })
+    const restored = await wait('mini control size restores both native Button heights', (n) => {
+      const frames = probeFrames(n)
+      return Boolean(
+        labels(n).includes('Probe size: mini') &&
+        frames.inherited && frames.direct &&
+        miniFrames.inherited && miniFrames.direct &&
+        Math.abs(frames.inherited.height - miniFrames.inherited.height) <= 2 &&
+        Math.abs(frames.direct.height - miniFrames.direct.height) <= 2
+      )
+    })
+    screenshot('host-control-size-restored.png', restored)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
