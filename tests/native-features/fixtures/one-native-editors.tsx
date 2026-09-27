@@ -93,6 +93,35 @@ export default function OneNativeEditors() {
           testID="one-native-editor-shape"
         />
       </View>
+      <View style={styles.compareRow}>
+        <View accessible accessibilityLabel="Concentric shape canvas" style={styles.concentricCanvas}>
+          <One.iOS.ScrollView
+            showsIndicators={false}
+            swiftStyle={{ containerShape: 'capsule' }}
+            style={styles.concentricCanvas}
+          >
+            <One.iOS.ConcentricRectangle
+              fill="#007AFF"
+              swiftStyle={{ frameWithWidthAndHeightAndAlignment: { width: 160, height: 100, alignment: 'center' } }}
+              style={styles.concentricCanvas}
+              testID="one-native-concentric-shape"
+            />
+          </One.iOS.ScrollView>
+        </View>
+        <View accessible accessibilityLabel="Rectangle control canvas" style={styles.concentricCanvas}>
+          <One.iOS.ScrollView
+            showsIndicators={false}
+            swiftStyle={{ containerShape: 'capsule' }}
+            style={styles.concentricCanvas}
+          >
+            <One.iOS.Rectangle
+              fill="#007AFF"
+              swiftStyle={{ frameWithWidthAndHeightAndAlignment: { width: 160, height: 100, alignment: 'center' } }}
+              style={styles.concentricCanvas}
+            />
+          </One.iOS.ScrollView>
+        </View>
+      </View>
     </View>
   )
 }
@@ -113,5 +142,7 @@ const styles = StyleSheet.create({
   statusText: { color: '#17233A', fontSize: 11, fontVariant: ['tabular-nums'] },
   editor: { height: 140, alignSelf: 'stretch' },
   canvas: { marginTop: 12, width: 160, height: 120, backgroundColor: '#FFFFFF' },
+  compareRow: { marginTop: 12, flexDirection: 'row', gap: 12 },
+  concentricCanvas: { width: 160, height: 100, backgroundColor: '#FFFFFF' },
   shape: { flex: 1 },
 })

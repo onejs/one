@@ -61,6 +61,9 @@ function Ellipse(_props: Types.EllipseProps): never {
 function UnevenRoundedRectangle(_props: Types.UnevenRoundedRectangleProps): never {
   throw new Error('Swift.UnevenRoundedRectangle requires an iOS native build')
 }
+function ConcentricRectangle(_props: Types.ConcentricRectangleProps): never {
+  throw new Error('Swift.ConcentricRectangle requires an iOS native build')
+}
 function VideoPlayer(_props: Types.VideoPlayerProps): never {
   throw new Error('Swift.VideoPlayer requires an iOS native build')
 }
@@ -124,6 +127,7 @@ export const unsupportedControls = {
   RoundedRectangle,
   Ellipse,
   UnevenRoundedRectangle,
+  ConcentricRectangle,
   VideoPlayer,
   PhotosPicker,
   WebView,
