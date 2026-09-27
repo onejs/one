@@ -2099,32 +2099,41 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await Bun.sleep(300)
     const restored = snapshot(config.simulatorId)
     const restoredPath = screenshot('list-section-modifiers-restored.png', restored)
-    const frame = (nodes: Node[], label: string) =>
-      nodes.find((node) => node.AXLabel === label && node.frame)?.frame
-    const firstCompact = frame(compact, 'First section')
-    const firstExpanded = frame(expanded, 'First section')
-    const firstRestored = frame(restored, 'First section')
-    const secondCompact = frame(compact, 'Second section')
-    const secondExpanded = frame(expanded, 'Second section')
-    const secondRestored = frame(restored, 'Second section')
-    const appleCompact = frame(compact, 'Apple row')
-    const appleExpanded = frame(expanded, 'Apple row')
-    const appleRestored = frame(restored, 'Apple row')
+    const frame = (nodes: Node[], label: string, type: string) =>
+      nodes.find((node) => node.AXLabel === label && node.type === type && node.frame)?.frame
+    const firstCompact = frame(compact, 'First section', 'Heading')
+    const firstExpanded = frame(expanded, 'First section', 'Heading')
+    const firstRestored = frame(restored, 'First section', 'Heading')
+    const secondCompact = frame(compact, 'Second section', 'Heading')
+    const secondExpanded = frame(expanded, 'Second section', 'Heading')
+    const secondRestored = frame(restored, 'Second section', 'Heading')
+    const appleCompact = frame(compact, 'Apple row', 'StaticText')
+    const appleExpanded = frame(expanded, 'Apple row', 'StaticText')
+    const appleRestored = frame(restored, 'Apple row', 'StaticText')
+    const bananaCompact = frame(compact, 'Banana row', 'StaticText')
+    const bananaExpanded = frame(expanded, 'Banana row', 'StaticText')
+    const bananaRestored = frame(restored, 'Banana row', 'StaticText')
     if (!firstCompact || !firstExpanded || !firstRestored || !secondCompact ||
-        !secondExpanded || !secondRestored || !appleCompact || !appleExpanded || !appleRestored)
+        !secondExpanded || !secondRestored || !appleCompact || !appleExpanded || !appleRestored ||
+        !bananaCompact || !bananaExpanded || !bananaRestored)
       throw new Error('Native List section proof lost a header or row frame')
     const geometry = {
       firstCompact, firstExpanded, firstRestored,
       secondCompact, secondExpanded, secondRestored,
       appleCompact, appleExpanded, appleRestored,
+      bananaCompact, bananaExpanded, bananaRestored,
     }
     if (firstExpanded.x - firstCompact.x < 50 ||
         appleExpanded.x - appleCompact.x < 50 ||
         firstExpanded.height - firstCompact.height < 2 ||
         secondExpanded.y - secondCompact.y < 80 ||
+        Math.abs(secondExpanded.x - secondCompact.x) > 1 ||
+        Math.abs(secondExpanded.height - secondCompact.height) > 1 ||
+        Math.abs(bananaExpanded.x - bananaCompact.x) > 1 ||
         Math.abs(firstRestored.x - firstCompact.x) > 1 ||
         Math.abs(appleRestored.x - appleCompact.x) > 1 ||
-        Math.abs(secondRestored.y - secondCompact.y) > 1)
+        Math.abs(secondRestored.y - secondCompact.y) > 1 ||
+        Math.abs(bananaRestored.x - bananaCompact.x) > 1)
       throw new Error(`SwiftUI List section modifiers did not update and restore: ${JSON.stringify(geometry)}`)
     checks.push({ name: 'SwiftUI section margins, header prominence, and spacing update and restore', durationMs: 0 })
     const app = compact.find((node) => node.type === 'Application')?.frame

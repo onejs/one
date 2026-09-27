@@ -74,7 +74,9 @@ accounts are unavailable).
 - **RAN, 2026-09-27:** `One.iOS.List` and `One.iOS.Section` now accept the
   existing `swiftStyle` modifier channel. The iPhone 17 Pro / iOS 27.0
   simulator ran native source `db32abfd6` built with Xcode 27.1 and suite
-  source `118a7d37a`. The nine-check `list-section-modifiers` suite passed:
+  source `118a7d37a` (native iOS tree
+  `c9fde9de93d0a91d333f8a29923582cfbc720db7`). The nine-check
+  `list-section-modifiers` suite passed:
   `listSectionMargins` moved the first section and its Apple row from x=36
   to x=100 and back, `headerProminence` grew the first header from 40.33 to
   44 points and back, and `listSectionSpacingWithCGFloat` moved the second
