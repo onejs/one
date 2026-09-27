@@ -26,3 +26,6 @@ fail-snapshot.json
 !proofs/list-search-refresh/*.png
 !proofs/list-search-refresh/*.webp
 !proofs/list-search-refresh/outcome.json
+!proofs/scroll-search-refresh/*.png
+!proofs/scroll-search-refresh/*.webp
+!proofs/scroll-search-refresh/outcome.json

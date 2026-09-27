@@ -1279,6 +1279,12 @@ actions have an iOS 27 simulator proof.
 horizontally with `axes="horizontal"`, or both ways with `axes="both"`.
 `showsIndicators` hides the scroll bars when false. It is greedy the same way
 a list is, so it also needs its own box.
+For a vertical ScrollView, `swiftStyle.refreshable` invokes an async callback
+on a pull. A surrounding `NavigationStack` with `swiftStyle.searchable`
+provides the native search field and controlled text binding. An iOS 27
+simulator proof covers two callback invocations and both directions of the
+search binding; refresh indicator duration and horizontal/both-axis cases
+remain unmeasured.
 
 ```tsx
 <One.iOS.ScrollView style={{ height: 200 }}>

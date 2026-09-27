@@ -33,8 +33,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Button` | leaves, host, containers, lists, list-row-background, groups, grids, glass-container, group-box, building-blocks, view-slot, safe-area-bar, swipe-actions, control-group, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Spacer` | building-blocks | n/a |  |
 | `One.iOS.Slot` | containers | n/a |  |
-| `One.iOS.List` | lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, groups, swipe-actions, edit-button | n/a | Text row modifiers proven in plain List; section spacing, margins, and header prominence proven in insetGrouped List; refreshable callback and rearm proven in plain List with a NavigationStack-hosted search field on iPhone; indicator duration, ScrollView, and other modifiers/styles unproven |
-| `One.iOS.ScrollView` | lists, list-row-background, scroll-search-refresh, editors, grids | n/a |  |
+| `One.iOS.List` | lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, groups, swipe-actions, edit-button | n/a | Text row modifiers proven in plain List; section spacing, margins, and header prominence proven in insetGrouped List; refreshable callback and rearm proven in plain List with a NavigationStack-hosted search field on iPhone; indicator duration and other modifiers/styles unproven |
+| `One.iOS.ScrollView` | lists, list-row-background, scroll-search-refresh, editors, grids | n/a | vertical refreshable callback and rearm proven with a NavigationStack-hosted search field on iPhone; indicator duration, horizontal/both axes, and other modifiers unproven |
 | `One.iOS.LazyVStack` | lists, list-row-background, scroll-search-refresh | n/a |  |
 | `One.iOS.LazyHStack` | lists, list-row-background | n/a |  |
 | `One.iOS.LazyVGrid` | grids | n/a |  |

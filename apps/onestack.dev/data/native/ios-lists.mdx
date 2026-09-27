@@ -150,6 +150,14 @@ the original values restored the inset and red separator.
 `'horizontal'`, or `'both'`; `showsIndicators` toggles the scroll
 indicators; `swiftStyle` applies native modifiers.
 
+For a vertical ScrollView, `swiftStyle.refreshable` invokes a callback when
+the user pulls down. Place the ScrollView inside `NavigationStack` and put
+`swiftStyle.searchable` on the stack to show the native search field. The
+search text is controlled by React state, as in the List example above.
+An iOS 27 simulator proof covered two successive callback invocations,
+external query changes, and typing in the native field. It did not measure
+the refresh indicator's duration or exercise horizontal and both-axis scrolls.
+
 ## LazyVStack, LazyHStack
 
 `One.iOS.LazyVStack` and `One.iOS.LazyHStack` lay children out lazily along
