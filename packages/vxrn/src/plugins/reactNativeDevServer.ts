@@ -12,9 +12,9 @@ import {
 import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { URL } from 'node:url'
 import { createRequire } from 'node:module'
-import { join } from 'node:path'
+import { extname, join, resolve, sep } from 'node:path'
 import { randomUUID } from 'node:crypto'
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readFileSync, statSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { createDevMiddleware } from '@react-native/dev-middleware'
 import { createNativeDevEngine } from '../utils/createNativeDevEngine'
@@ -35,6 +35,20 @@ type ClientMessage = {
 type NativeHmrSocket = WebSocket & {
   vxrnClientId: string
   vxrnPlatform: 'ios' | 'android'
+}
+
+// metro's asset server answers `/assets/<path>` for any asset file inside the
+// project root, registered by the bundle or not.
+function getProjectAssetFile(
+  root: string,
+  pathname: string
+): { filePath: string; type: string } | undefined {
+  const filePath = resolve(root, pathname.slice('/assets/'.length))
+  if (!filePath.startsWith(resolve(root) + sep)) return
+  const type = extname(filePath).slice(1)
+  if (getNativeAssetContentType(type) === 'application/octet-stream') return
+  if (!existsSync(filePath) || !statSync(filePath).isFile()) return
+  return { filePath, type }
 }
 
 export function getNativeAssetContentType(type: string): string {
@@ -235,8 +249,11 @@ export function createReactNativeDevServerPlugin(
       })
 
       // Native AssetSourceResolver requests the URL registered in the Rolldown
-      // bundle. Install this before React Native's generic middleware, which
-      // otherwise terminates unknown /assets requests with an HTML 404.
+      // bundle. Like Metro, any other project file is served at
+      // `/assets/<project-relative path>`: a splash image or font that only the
+      // app config names is never in the bundle. Install this before React
+      // Native's generic middleware, which otherwise terminates unknown
+      // /assets requests with an HTML 404.
       server.middlewares.use(async (req, res, next) => {
         if (req.method !== 'GET' && req.method !== 'HEAD') return next()
 
@@ -248,7 +265,6 @@ export function createReactNativeDevServerPlugin(
 
         const platform = validPlatforms[url.searchParams.get('platform') || '']
         const engine = platform ? devEngines[platform] : undefined
-        if (!engine) return next()
 
         let pathname: string
         try {
@@ -259,8 +275,11 @@ export function createReactNativeDevServerPlugin(
           return
         }
 
-        const asset = engine.getAsset(pathname, url.searchParams.get('hash') || undefined)
+        const asset =
+          engine?.getAsset(pathname, url.searchParams.get('hash') || undefined) ??
+          getProjectAssetFile(root, pathname)
         if (!asset) {
+          if (!engine) return next()
           res.writeHead(404, { 'Content-Type': 'text/plain' })
           res.end('Native asset not found')
           return
