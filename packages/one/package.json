@@ -402,6 +402,7 @@
         "OneNativeConcentricRectangle": "OneNativeConcentricRectangleComponentView",
         "OneNativeLinearGradient": "OneNativeLinearGradientComponentView",
         "OneNativeRadialGradient": "OneNativeRadialGradientComponentView",
+        "OneNativeAngularGradient": "OneNativeAngularGradientComponentView",
         "OneNativeVideoPlayer": "OneNativeVideoPlayerComponentView",
         "OneNativePhotosPicker": "OneNativePhotosPickerComponentView",
         "OneNativeWebView": "OneNativeWebViewComponentView",

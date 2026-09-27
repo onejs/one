@@ -17760,6 +17760,7 @@
         "Toggle"
       ],
       "SwiftUICore": [
+        "AngularGradient",
         "Capsule",
         "Circle",
         "ConcentricRectangle",
@@ -19628,6 +19629,29 @@
           "label": "endRadius",
           "name": "endRadius",
           "type": "CoreFoundation.CGFloat"
+        }
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "AngularGradient",
+      "parameters": [
+        {
+          "label": "colors",
+          "name": "colors",
+          "type": "[SwiftUICore.Color]"
+        },
+        {
+          "label": "center",
+          "name": "center",
+          "type": "SwiftUICore.UnitPoint"
+        },
+        {
+          "defaultValue": ".zero",
+          "label": "angle",
+          "name": "angle",
+          "type": "SwiftUICore.Angle"
         }
       ],
       "ios": 13

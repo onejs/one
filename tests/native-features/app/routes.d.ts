@@ -73,6 +73,7 @@ declare module 'one' {
         | `/one-native-horizontal-bar`
         | `/one-native-linear-gradient`
         | `/one-native-radial-gradient`
+        | `/one-native-angular-gradient`
         | `/one-native-safe-area-bar`
         | `/one-native-swipe-actions`
         | `/one-native-disclosure-group`

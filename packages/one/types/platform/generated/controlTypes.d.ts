@@ -2629,6 +2629,16 @@ export interface RadialGradientProps extends OneNativeViewProps {
     startRadius?: number;
     endRadius: number;
 }
+export interface AngularGradientProps extends OneNativeViewProps {
+    colors: readonly string[];
+    center?: Readonly<{
+        x: number;
+        y: number;
+    }>;
+    angle?: Readonly<{
+        radians: number;
+    }>;
+}
 export interface VideoPlayerProps extends OneNativeViewProps {
     url?: string;
     autoplay?: boolean;
