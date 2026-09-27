@@ -29,3 +29,6 @@ fail-snapshot.json
 !proofs/scroll-search-refresh/*.png
 !proofs/scroll-search-refresh/*.webp
 !proofs/scroll-search-refresh/outcome.json
+!proofs/picker-palette/*.png
+!proofs/picker-palette/*.webp
+!proofs/picker-palette/outcome.json

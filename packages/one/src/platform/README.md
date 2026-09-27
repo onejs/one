@@ -466,9 +466,12 @@ function Controls() {
 
 `Picker` options are `{ value, label }` strings. The list must not be empty,
 values must be unique, and `selection` must match one of them. Supported
-`pickerStyle` values are `automatic`, `menu`, `segmented`, `wheel`, and `inline`.
-`navigationLink` and `palette` throw: those styles need a native container context
-that One Native does not provide. Outside a native Form, iOS renders the inline
+`pickerStyle` values are `automatic`, `menu`, `segmented`, `wheel`, `inline`,
+`tabs`, and `palette`.
+`palette` is supported outside Menu, where SwiftUI renders it as a segmented
+picker. A Picker embedded in Menu content is not available through the current
+data-driven Menu API. `navigationLink` throws because it requires a native
+navigation context. Outside a native Form, iOS renders the inline
 picker as a wheel; the standalone host reserves the same height.
 
 `DatePicker` `selection`, `minimumDate`, and `maximumDate` are `Date` values.
