@@ -95,8 +95,10 @@ accounts are unavailable).
   and repeat delivery. The arm64 build, `generate:check`, and
   native coverage snapshot passed. Proof screenshot is in the local ignored
   `tests/native-features/build/paste-button-proof` artifact directory. The
-  exact final binary includes an encode-failure guard added after the passing
-  simulator run and still needs a simulator rerun.
+  exact final binary includes an encode-failure guard added after the first
+  passing simulator run. **RAN, 2026-09-26:** the final binary also passed the
+  full `paste-button` suite on an iPhone 17 Pro iOS 27 simulator on ci-64,
+  including disabled suppression and repeat delivery.
 - **RAN, 2026-09-26:** `GroupBox` landed on `v2-beta` at `3870f568d` after
   `generate:check`, 39 JS tests, a successful arm64 build, and all seven
   `group-box` checks on an iPhone 17 Pro iOS 27 simulator. The suite covers
