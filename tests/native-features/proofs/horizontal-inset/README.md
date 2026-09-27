@@ -15,5 +15,6 @@ Xcode 27.1, matching source blobs for the generated ViewSlot and native Overlay
 host at the earlier binary build revision, and matching built/installed hashes
 of the code-bearing debug dylib. This proof covers bounded hosts; behavior
 inside scroll content or at other container sizes is unproven.
+
 The reused native build log is preserved at
 `../list-search-refresh/native-build-reused-xcodebuild.log.gz`.
