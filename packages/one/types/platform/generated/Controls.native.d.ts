@@ -22,6 +22,7 @@ export declare function UnevenRoundedRectangle({ fill, topLeadingRadius, bottomL
 export declare function ConcentricRectangle({ fill, swiftStyle, style, ...props }: Types.ConcentricRectangleProps): import("react/jsx-runtime").JSX.Element;
 export declare function LinearGradient({ colors, startPoint, endPoint, swiftStyle, style, ...props }: Types.LinearGradientProps): import("react/jsx-runtime").JSX.Element;
 export declare function RadialGradient({ colors, center, startRadius, endRadius, swiftStyle, style, ...props }: Types.RadialGradientProps): import("react/jsx-runtime").JSX.Element;
+export declare function AngularGradient({ colors, center, angle, swiftStyle, style, ...props }: Types.AngularGradientProps): import("react/jsx-runtime").JSX.Element;
 export declare function VideoPlayer({ url, autoplay, swiftStyle, style, ...props }: Types.VideoPlayerProps): import("react/jsx-runtime").JSX.Element;
 export declare function PhotosPicker({ onPick, onPickItemIdentifier, onPickError, label, disabled, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: Types.PhotosPickerProps): import("react/jsx-runtime").JSX.Element;
 export declare function WebView({ onNavigate, onTitleChange, onLoadingChange, url, html, backForwardNavigationGestures, magnificationGestures, linkPreviews, elementFullscreen, contentBackground, swiftStyle, style, ...props }: Types.WebViewProps): import("react/jsx-runtime").JSX.Element;

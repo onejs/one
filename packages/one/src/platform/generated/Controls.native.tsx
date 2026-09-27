@@ -880,6 +880,47 @@ export function RadialGradient({
     />
   )
 }
+import NativeAngularGradient from '../specs/OneNativeAngularGradientNativeComponent'
+export function AngularGradient({
+  colors,
+  center = { x: 0.5, y: 0.5 },
+  angle = { radians: 0 },
+  swiftStyle,
+  style,
+  ...props
+}: Types.AngularGradientProps) {
+  if (
+    !Array.isArray(colors) ||
+    !colors.every(
+      (color) =>
+        typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)
+    )
+  )
+    throw new Error(
+      'AngularGradient colors must be an array of #RRGGBB or #RRGGBBAA colors'
+    )
+  if (!center || !Number.isFinite(center.x) || !Number.isFinite(center.y))
+    throw new Error('AngularGradient center must have finite x and y coordinates')
+  if (!angle || !Number.isFinite(angle.radians))
+    throw new Error('AngularGradient angle must have finite radians')
+
+  return (
+    <NativeAngularGradient
+      {...props}
+      style={style}
+      accessible={Boolean(props.accessibilityLabel)}
+      accessibilityElementsHidden={!props.accessibilityLabel}
+      accessibilityRole="image"
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      colors={colors}
+      center={JSON.stringify(center)}
+      angle={JSON.stringify(angle)}
+    />
+  )
+}
 import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
 export function VideoPlayer({
   url = '',

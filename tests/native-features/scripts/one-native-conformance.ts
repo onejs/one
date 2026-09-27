@@ -63,6 +63,7 @@ const suites = [
   'safe-area-bar',
   'linear-gradient',
   'radial-gradient',
+  'angular-gradient',
   'horizontal-inset',
   'horizontal-bar',
   'swipe-actions',
@@ -409,6 +410,9 @@ const linearGradientLoaded = (nodes: Node[]) =>
 const radialGradientLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-radial-gradient-screen'))
+const angularGradientLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-angular-gradient-screen'))
 const horizontalInsetLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-horizontal-inset-screen'))
@@ -620,6 +624,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'safe-area-bar': safeAreaBarLoaded,
   'linear-gradient': linearGradientLoaded,
   'radial-gradient': radialGradientLoaded,
+  'angular-gradient': angularGradientLoaded,
   'horizontal-inset': horizontalInsetLoaded,
   'horizontal-bar': horizontalBarLoaded,
   'swipe-actions': swipeActionsLoaded,
@@ -702,6 +707,7 @@ const suiteHome: Record<Suite, string> = {
   'safe-area-bar': 'nav-one-native-safe-area-bar',
   'linear-gradient': 'nav-one-native-linear-gradient',
   'radial-gradient': 'nav-one-native-radial-gradient',
+  'angular-gradient': 'nav-one-native-angular-gradient',
   'horizontal-inset': 'nav-one-native-horizontal-inset',
   'horizontal-bar': 'nav-one-native-horizontal-bar',
   'swipe-actions': 'nav-one-native-swipe-actions',
@@ -3613,6 +3619,73 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     checks.push({ name: 'native radial gradient paints, reverses, and moves its center', durationMs: 0 })
     checks.push({ name: 'native radial gradient honors both radii, one and three colors, alpha, and empty colors', durationMs: 0 })
     console.log(`PASS native radial gradient pixels: ${JSON.stringify(pixels)}`)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'angular-gradient') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-angular-gradient')
+    const initial = await wait('native angular gradient mounts', (nodes) =>
+      labels(nodes).includes('SwiftUI AngularGradient') &&
+      labels(nodes).includes('Mode: initial') &&
+      labels(nodes).includes('Native angular gradient preview') &&
+      Boolean(id(nodes, 'one-native-angular-gradient-native')?.frame))
+    if (id(initial, 'one-native-angular-gradient-decorative'))
+      throw new Error('Unlabeled decorative angular gradient is exposed to accessibility')
+    checks.push({ name: 'labeled angular gradient accessible; unlabeled gradient decorative', durationMs: 0 })
+    const native = id(initial, 'one-native-angular-gradient-native')!.frame!
+    if (Math.abs(native.width - 280) > 2 || Math.abs(native.height - 150) > 2)
+      throw new Error(`AngularGradient did not fill its assigned 280x150 box: ${JSON.stringify(native)}`)
+    const captures: Record<string, string> = {}
+    const capture = async (mode: string, nodes: Node[]) => {
+      await Bun.sleep(300)
+      captures[mode] = screenshot(`angular-gradient-${mode}.png`, nodes)
+    }
+    await capture('initial', initial)
+    for (const mode of ['rotated', 'moved', 'reversed', 'three', 'single', 'alpha', 'empty']) {
+      tap({ id: `one-native-angular-gradient-${mode}` })
+      const nodes = await wait(`React supplies angular gradient ${mode} state`, (next) =>
+        labels(next).includes(`Mode: ${mode}`))
+      await capture(mode, nodes)
+    }
+    const app = initial.find((node) => node.type === 'Application')?.frame
+    if (!app?.width) throw new Error('AngularGradient proof has no application frame')
+    const sample = (mode: string, xFraction: number, yFraction: number) => {
+      const png = readPng(captures[mode]!)
+      const scale = png.width / app.width
+      const x = Math.round((native.x + native.width * xFraction) * scale)
+      const y = Math.round((native.y + native.height * yFraction) * scale)
+      if (x < 0 || y < 0 || x >= png.width || y >= png.height)
+        throw new Error(`AngularGradient sample lies outside screenshot: ${JSON.stringify({ mode, x, y })}`)
+      const at = (y * png.width + x) * 4
+      return [...png.data.subarray(at, at + 3)]
+    }
+    const ring = [[0.15, 0.25], [0.5, 0.15], [0.85, 0.25],
+      [0.85, 0.75], [0.5, 0.85], [0.15, 0.75]] as const
+    const palettes = Object.fromEntries(
+      ['initial', 'rotated', 'moved', 'reversed', 'three', 'single', 'alpha', 'empty']
+        .map((mode) => [mode, ring.map(([x, y]) => sample(mode, x, y))])
+    ) as Record<string, number[][]>
+    const difference = (a: string, b: string) => palettes[a]!.reduce((total, color, index) =>
+      total + color.reduce((sum, channel, i) => sum + Math.abs(channel - palettes[b]![index]![i]!), 0), 0)
+    if (difference('initial', 'rotated') < 300 ||
+      difference('initial', 'moved') < 150 ||
+      difference('initial', 'reversed') < 300)
+      throw new Error(`Native AngularGradient ignored angle, center, or color order: ${JSON.stringify(palettes)}`)
+    const green = (color: number[]) => color[1]! > 130 && color[0]! < 100 && color[2]! < 130
+    if (!palettes.single!.every(green) || !palettes.three!.some(green))
+      throw new Error(`Native AngularGradient did not render one and three sRGB colors: ${JSON.stringify(palettes)}`)
+    if (difference('initial', 'alpha') < 100 ||
+      !palettes.alpha!.some((color) => color[0]! > 150 && color[1]! > 130 && color[2]! < 130))
+      throw new Error(`Native AngularGradient did not composite alpha over yellow: ${JSON.stringify(palettes)}`)
+    if (!palettes.empty!.every((color) => color[0]! > 220 && color[1]! > 200 && color[2]! < 80))
+      throw new Error(`Empty native AngularGradient did not reveal its yellow underlay: ${JSON.stringify(palettes)}`)
+    fs.writeFileSync(path.join(config.artifactDir, 'angular-gradient-pixels.json'),
+      JSON.stringify({ ring, palettes, nativeFrame: native }, null, 2))
+    checks.push({ name: 'native angular gradient rotates, moves its center, and reverses colors', durationMs: 0 })
+    checks.push({ name: 'native angular gradient renders one and three colors, alpha, and empty colors', durationMs: 0 })
+    console.log(`PASS native angular gradient pixels: ${JSON.stringify(palettes)}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
