@@ -71,12 +71,16 @@ accounts are unavailable).
 
 ## Status
 
-- **INFERRED, 2026-09-27:** `Popover` attachment anchors are being added on
-  named branch `one-native-popover-anchor`. The proposed React representation
-  mirrors SwiftUI's `.rect(.bounds)` and `.point(UnitPoint(x:y:))` as
-  `{ rect: 'bounds' }` and `{ point: { x, y } }`. An iOS 27 geometry comparison,
-  high review, and Nate approval of the public representation remain before
-  merge.
+- **RAN, 2026-09-27:** `Popover` attachment anchors on named branch
+  `one-native-popover-anchor` map SwiftUI's `.rect(.bounds)` and
+  `.point(UnitPoint(x:y:))` to `{ rect: 'bounds' }` and `{ point: { x, y } }`.
+  At `77f764df4`, the iPad Pro 13-inch (M5) iOS 27.0 simulator with Xcode 27.1
+  passed all 14 `popover-anchor` checks: changing from bounds to bottom-right
+  point moved 1,369 arrow-band pixels, and returning to bounds restored the
+  original arrow band with zero changed pixels. Ignored proof artifacts and the
+  successful build log are under `tests/native-features/build/popover-anchor-ipad-final/`
+  and `tests/native-features/build/popover-anchor-final-build.log`. Nate's
+  approval of the new public React representation is required before merge.
 
 - **RAN, 2026-09-26:** slice 1 `TextEditor` and `UnevenRoundedRectangle` passed
   `generate:check`, all seven shape tests, and the `editors` conformance suite
