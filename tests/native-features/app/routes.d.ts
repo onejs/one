@@ -79,6 +79,7 @@ declare module 'one' {
         | `/one-native-image-picker`
         | `/one-native-image-manipulator`
         | `/one-native-leaves`
+        | `/one-native-list-search-refresh`
         | `/one-native-lists`
         | `/one-native-local-authentication`
         | `/one-native-location`
