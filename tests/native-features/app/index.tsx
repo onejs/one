@@ -46,6 +46,11 @@ const testScreens = [
     testID: 'nav-one-native-list-search-refresh',
   },
   {
+    href: '/one-native-scroll-search-refresh',
+    label: 'One Native Scroll Search and Refresh',
+    testID: 'nav-one-native-scroll-search-refresh',
+  },
+  {
     href: '/one-native-building-blocks',
     label: 'One Native Building Blocks',
     testID: 'nav-one-native-building-blocks',
