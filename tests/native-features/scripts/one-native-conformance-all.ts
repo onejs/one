@@ -21,6 +21,7 @@ const iphoneSuites = [
   'building-blocks',
   'view-slot',
   'swipe-actions',
+  'disclosure-group',
   'share-empty',
   'web-photos',
   'tab-slot',

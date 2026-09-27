@@ -711,7 +711,7 @@ export const components = [
       value: 'isExpanded',
       event: 'onNativeDisclosureGroupIsExpandedChange',
     },
-    layout: { kind: 'container' },
+    layout: { kind: 'measured' },
     slots: [
       {
         name: 'content',
@@ -720,7 +720,7 @@ export const components = [
         layout: 'composed',
       },
     ],
-    interfaceOnly: false,
+    interfaceOnly: true,
   },
   {
     name: 'OneNativeDivider',

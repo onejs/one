@@ -21,7 +21,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Sheet` | sheets, navigation | n/a |  |
 | `One.iOS.FullScreenCover` | cover-context | n/a |  |
 | `One.iOS.Popover` | popover | n/a |  |
-| `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, view-that-fits, accessibility | n/a |  |
+| `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, disclosure-group, view-that-fits, accessibility | n/a |  |
 | `One.iOS.HStack` | glass-container, building-blocks, tab-slot, e2e:one-native-tabview | n/a |  |
 | `One.iOS.VStack` | groups | n/a |  |
 | `One.iOS.ZStack` | building-blocks | n/a |  |
@@ -42,7 +42,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Grid` | grids | n/a |  |
 | `One.iOS.GridRow` | grids | n/a |  |
 | `One.iOS.ControlGroup` | groups | n/a |  |
-| `One.iOS.DisclosureGroup` | groups | n/a |  |
+| `One.iOS.DisclosureGroup` | groups, disclosure-group | n/a |  |
 | `One.iOS.Divider` | groups | n/a |  |
 | `One.iOS.Link` | groups | n/a |  |
 | `One.iOS.Group` | groups | n/a |  |
@@ -65,7 +65,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Slider` | pickers, forms | n/a |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a |  |
 | `One.iOS.PasteButton` | paste-button | n/a |  |
-| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, building-blocks, view-slot, swipe-actions, tab-slot, edit-button, view-that-fits, popover, accessibility | n/a |  |
+| `One.iOS.Text` | containers, lists, groups, state, grids, group-box, building-blocks, view-slot, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility | n/a |  |
 | `One.iOS.Label` | leaves, containers | n/a |  |
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |

@@ -54,6 +54,7 @@ const suites = [
   'building-blocks',
   'view-slot',
   'swipe-actions',
+  'disclosure-group',
   'share-empty',
   'web-photos',
   'tab-slot',
@@ -362,6 +363,9 @@ const viewSlotLoaded = (nodes: Node[]) =>
 const swipeActionsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-swipe-actions-screen'))
+const disclosureGroupLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-disclosure-screen'))
 const shareEmptyLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-share-empty-screen'))
@@ -543,6 +547,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'building-blocks': buildingBlocksLoaded,
   'view-slot': viewSlotLoaded,
   'swipe-actions': swipeActionsLoaded,
+  'disclosure-group': disclosureGroupLoaded,
   'share-empty': shareEmptyLoaded,
   'web-photos': webPhotosLoaded,
   'tab-slot': tabSlotLoaded,
@@ -608,6 +613,7 @@ const suiteHome: Record<Suite, string> = {
   'building-blocks': 'nav-one-native-building-blocks',
   'view-slot': 'nav-one-native-view-slot',
   'swipe-actions': 'nav-one-native-swipe-actions',
+  'disclosure-group': 'nav-one-native-disclosure-group',
   'share-empty': 'nav-one-native-share-empty',
   'web-photos': 'nav-one-native-web-photos',
   'tab-slot': 'nav-one-native-tab-slot',
@@ -3125,6 +3131,67 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const reused = await wait('trailing action remains active after remount', (nodes) =>
       labels(nodes).includes('Archive taps: 1'))
     screenshot('swipe-actions-remounted.png', reused)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'disclosure-group') {
+    const frames = (nodes: Node[]) => ({
+      group: id(nodes, 'one-native-disclosure-native')?.frame,
+      after: id(nodes, 'one-native-disclosure-after')?.frame,
+      host: id(nodes, 'one-native-disclosure-host')?.frame,
+      afterNested: id(nodes, 'one-native-disclosure-after-nested')?.frame,
+    })
+    const checkLayout = (nodes: Node[], minimumHeight: number) => {
+      const { group, after } = frames(nodes)
+      if (!group || !after || group.height < minimumHeight ||
+          after.y < group.y + group.height + 10)
+        throw new Error(`DisclosureGroup did not reserve its native height: ${JSON.stringify({ group, after })}`)
+      return group
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-disclosure-group')
+    const collapsed = await wait('DisclosureGroup mounts with collapsed content', (nodes) =>
+      labels(nodes).includes('Expanded: false') &&
+      labels(nodes).includes('After disclosure') &&
+      Boolean(frames(nodes).group) && Boolean(frames(nodes).after))
+    screenshot('disclosure-collapsed.png', collapsed)
+    if (!labels(collapsed).includes('Details'))
+      throw new Error('Native DisclosureGroup label is missing from accessibility')
+    const collapsedFrame = checkLayout(collapsed, 24)
+    tap({ label: 'Details' })
+    const expanded = await wait('native DisclosureGroup expands through React', (nodes) =>
+      labels(nodes).includes('Expanded: true') && labels(nodes).includes('Hidden detail'))
+    checkLayout(expanded, collapsedFrame.height + 15)
+    screenshot('disclosure-expanded.png', expanded)
+    tap({ label: 'Details' })
+    const closed = await wait('native DisclosureGroup collapses through React', (nodes) =>
+      labels(nodes).includes('Expanded: false') && !labels(nodes).includes('Hidden detail'))
+    checkLayout(closed, 24)
+    tap({ id: 'one-native-disclosure-external' })
+    const external = await wait('external React revision expands native DisclosureGroup', (nodes) =>
+      labels(nodes).includes('Expanded: true') && labels(nodes).includes('Hidden detail'))
+    checkLayout(external, collapsedFrame.height + 15)
+    screenshot('disclosure-external.png', external)
+    tap({ id: 'one-native-disclosure-external' })
+    const reset = await wait('external React revision collapses native DisclosureGroup', (nodes) =>
+      labels(nodes).includes('Expanded: false') && !labels(nodes).includes('Hidden detail'))
+    checkLayout(reset, 24)
+    screenshot('disclosure-reset.png', reset)
+    const nestedCollapsed = frames(reset)
+    if (!nestedCollapsed.host || !nestedCollapsed.afterNested ||
+        nestedCollapsed.host.height < 24 ||
+        nestedCollapsed.afterNested.y < nestedCollapsed.host.y + nestedCollapsed.host.height + 10)
+      throw new Error(`Nested DisclosureGroup lacks composed height: ${JSON.stringify(nestedCollapsed)}`)
+    tap({ label: 'Nested details' })
+    const nestedExpanded = await wait('composed DisclosureGroup expands through React', (nodes) =>
+      labels(nodes).includes('Nested expanded: true') && labels(nodes).includes('Nested detail'))
+    const expandedHost = frames(nestedExpanded)
+    if (!expandedHost.host || !expandedHost.afterNested ||
+        expandedHost.host.height < nestedCollapsed.host.height + 15 ||
+        expandedHost.afterNested.y < expandedHost.host.y + expandedHost.host.height + 10)
+      throw new Error(`Composed DisclosureGroup failed to grow its Host: ${JSON.stringify(expandedHost)}`)
+    screenshot('disclosure-composed-expanded.png', nestedExpanded)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -4,6 +4,7 @@ import UIKit
 private final class DisclosureGroupModel: ObservableObject {
   @Published var controlled = OneNativeControlled<Bool>(false)
   @Published var label = ""
+  var onHeight: ((CGFloat) -> Void)?
   var active = false
   var onChange: ((Bool, Int, Int) -> Void)?
 
@@ -29,6 +30,8 @@ private struct DisclosureGroupContent: View {
     } label: {
       Text(model.label)
     }
+    .frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)
+    .oneNativeMeasured(standalone, model.onHeight)
     .oneNativeScheme(standalone, bridge.scheme)
   }
 }
@@ -36,6 +39,7 @@ private struct DisclosureGroupContent: View {
 @objcMembers
 public final class OneNativeDisclosureGroupView: OneNativeContainerView {
   public var onChange: ((Bool, Int, Int) -> Void)?
+  public var onMeasure: ((CGFloat) -> Void)?
   private let model: DisclosureGroupModel
   private let bridge: OneNativeSchemeBridge
   private var traitRegistration: NSObjectProtocol?
@@ -51,6 +55,7 @@ public final class OneNativeDisclosureGroupView: OneNativeContainerView {
     model.onChange = { [weak self] value, count, revision in
       self?.onChange?(value, count, revision)
     }
+    model.onHeight = { [weak self] height in self?.onMeasure?(height) }
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
       [weak bridge] (view: OneNativeDisclosureGroupView, _: UITraitCollection) in
       bridge?.sync(view.traitCollection)

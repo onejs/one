@@ -13,4 +13,6 @@ interface NativeProps extends ViewProps {
     Readonly<{ value: boolean; eventCount: Int32; revision: Int32 }>
   >
 }
-export default codegenNativeComponent<NativeProps>('OneNativeDisclosureGroup')
+export default codegenNativeComponent<NativeProps>('OneNativeDisclosureGroup', {
+  interfaceOnly: true,
+})

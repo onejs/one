@@ -293,7 +293,19 @@ describe('button icon', () => {
 })
 
 describe('greedy containers', () => {
-  it('rejects disclosure groups, tab bars, and pagers inside a measured stack', () => {
+  it('composes a disclosure group inside measured stacks', () => {
+    const child = createElement(Containers.DisclosureGroup, {
+      children: null,
+      label: 'More',
+      isExpanded: false,
+      onIsExpandedChange: () => {},
+    })
+    const host = render(Containers.HStack, { children: child })
+    expect(() => host.type(host.props)).not.toThrow()
+    expect(() => render(Containers.ZStack, { children: child })).not.toThrow()
+  })
+
+  it('rejects tab bars and pagers inside a measured stack', () => {
     const host = (child: React.ReactNode) => {
       const element = render(Containers.HStack, { children: child })
       return () => element.type(element.props)
@@ -301,15 +313,6 @@ describe('greedy containers', () => {
     // createElement never invokes the component, so hook-reading wrappers are safe
     // to nest here; only the outer stack executes.
     const nested: [ReactNode, string][] = [
-      [
-        createElement(Containers.DisclosureGroup, {
-          children: null,
-          label: 'More',
-          isExpanded: false,
-          onIsExpandedChange: () => {},
-        }),
-        'Swift.DisclosureGroup',
-      ],
       [
         createElement(TabsModule.Tabs, {
           children: null,
@@ -386,7 +389,6 @@ describe('group schema', () => {
     ])
     for (const name of [
       'ControlGroup',
-      'DisclosureGroup',
       'Divider',
       'Link',
       'Group',
@@ -397,6 +399,8 @@ describe('group schema', () => {
       expect(component(name).layout, name).toMatchObject({ kind: 'container' })
       expect(component(name).interfaceOnly, name).toBe(false)
     }
+    expect(component('DisclosureGroup').layout).toMatchObject({ kind: 'measured' })
+    expect(component('DisclosureGroup').interfaceOnly).toBe(true)
   })
 
   it('registers a component view for every new container', () => {

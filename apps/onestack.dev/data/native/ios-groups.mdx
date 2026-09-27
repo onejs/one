@@ -50,7 +50,10 @@ optional `label` and `systemImage`. `controlGroupStyle` is `'palette'`,
 
 `One.iOS.DisclosureGroup` is an expanding section. `label` is required;
 `isExpanded` with `onIsExpandedChange` (and `revision` for external
-resets) controls the expansion.
+resets) controls the expansion. A standalone group reports its intrinsic
+SwiftUI height to React Native as its content opens and closes, so following
+React Native siblings move with it. It also composes inside `One.iOS.Host` or
+`One.iOS.ZStack`, where the parent measures the expanded content.
 
 ```tsx
 import { One } from 'one'
@@ -63,6 +66,10 @@ import { One } from 'one'
   <One.iOS.Toggle label="Debug" isOn={debug} onIsOnChange={setDebug} />
 </One.iOS.DisclosureGroup>
 ```
+
+The iOS 27 conformance fixture verifies native taps, external React resets,
+and the collapsed and expanded frames of both a standalone group and one
+inside `One.iOS.Host`.
 
 ## Divider
 
