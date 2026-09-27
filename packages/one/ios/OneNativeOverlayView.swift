@@ -109,6 +109,12 @@ public final class OneNativeOverlayView: OneNativeContainerView {
     if model.slotValues != slotValues { model.slotValues = slotValues }
   }
 
+  public override func propagateActive(_ active: Bool) {
+    super.propagateActive(active)
+    // Slot markers stay out of childViews so SwiftUI can position their content.
+    for marker in markers { (marker as? OneNativeComposable)?.propagateActive(active) }
+  }
+
   // an overlay-content marker carries the overlay subtree, so it is captured rather
   // than published with the base content. anything else is base content.
   public override func insertChild(_ child: UIView, at index: Int) {

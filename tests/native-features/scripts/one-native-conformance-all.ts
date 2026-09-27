@@ -19,6 +19,7 @@ const iphoneSuites = [
   'containers',
   'glass-container',
   'building-blocks',
+  'view-slot',
   'share-empty',
   'web-photos',
   'tab-slot',
