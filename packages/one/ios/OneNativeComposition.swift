@@ -13,6 +13,10 @@ public protocol OneNativeCompositionParent: AnyObject {
   func refreshRow(for child: UIView)
 }
 
+extension OneNativeCompositionParent {
+  public func refreshRow(for child: UIView) {}
+}
+
 public protocol OneNativeComposable: UIView {
   func compositionContent() -> AnyView
   func composeInto(_ parent: OneNativeCompositionParent)
