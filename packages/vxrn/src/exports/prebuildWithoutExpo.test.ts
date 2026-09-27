@@ -1787,6 +1787,112 @@ buildSettings = {
     expect(theme()).toContain('parent="Theme.AppCompat.DayNight.NoActionBar"')
   })
 
+  it('writes the app entitlements file for links, apple sign in and custom keys', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-entitlements-'))
+    const linked = {
+      ...app,
+      notifications: undefined,
+      ios: {
+        ...app.ios,
+        associatedDomains: ['applinks:example.com'],
+        usesAppleSignIn: true,
+        entitlements: { 'com.apple.developer.icloud-container-identifiers': ['iCloud.dev.one'] },
+      },
+    }
+    await generateForPlatform(workspaceRoot, 'ios', linked, join(output, 'ios'))
+    const entitlements = readFileSync(join(output, 'ios', 'MyApp', 'MyApp.entitlements'), 'utf8')
+    expect(entitlements).toContain(
+      '<key>com.apple.developer.associated-domains</key>\n\t<array>\n\t\t<string>applinks:example.com</string>'
+    )
+    expect(entitlements).toContain('<key>com.apple.developer.applesignin</key>')
+    expect(entitlements).toContain('<string>iCloud.dev.one</string>')
+    expect(entitlements).not.toContain('aps-environment')
+    const project = readFileSync(join(output, 'ios', 'MyApp.xcodeproj', 'project.pbxproj'), 'utf8')
+    expect(project).toContain('CODE_SIGN_ENTITLEMENTS = MyApp/MyApp.entitlements;')
+
+    await expect(
+      generateForPlatform(
+        workspaceRoot,
+        'ios',
+        { ...linked, ios: { ...linked.ios, entitlements: { 'com.apple.developer.applesignin': [] } } },
+        join(output, 'ios-dup')
+      )
+    ).rejects.toThrow('native.app already writes')
+  }, 180000)
+
+  it('stamps extra Info.plist keys and rejects ones already written', () => {
+    const plist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: {
+        ...app,
+        ios: {
+          ...app.ios,
+          infoPlist: {
+            NSUserTrackingUsageDescription: 'Measure ads & installs',
+            GADIsAdManagerApp: true,
+            SKAdNetworkItems: [{ SKAdNetworkIdentifier: 'abc.skadnetwork' }],
+          },
+        },
+      },
+    }).content
+    expect(plist).toContain(
+      '<key>NSUserTrackingUsageDescription</key>\n\t<string>Measure ads &amp; installs</string>'
+    )
+    expect(plist).toContain('<key>GADIsAdManagerApp</key>\n\t<true/>')
+    expect(plist).toContain(
+      '<key>SKAdNetworkItems</key>\n\t<array>\n\t\t<dict>\n\t\t\t<key>SKAdNetworkIdentifier</key>'
+    )
+    expect(() =>
+      renderPrebuildFile({
+        relativePath: 'HelloWorld/Info.plist',
+        content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+        platform: 'ios',
+        app: { ...app, ios: { ...app.ios, infoPlist: { CFBundleURLTypes: [] } } },
+      })
+    ).toThrow('already writes')
+  })
+
+  it('stamps android permissions, blocked permissions, app links and sdk levels', () => {
+    const manifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest xmlns:android="http://schemas.android.com/apk/res/android">\n    <uses-permission android:name="android.permission.INTERNET" />\n  <application>\n      <activity\n        android:name=".MainActivity">\n      </activity>\n    </application>\n</manifest>',
+      platform: 'android',
+      app: {
+        ...app,
+        notifications: undefined,
+        imagePicker: undefined,
+        speech: undefined,
+        scheme: undefined,
+        android: {
+          ...app.android,
+          permissions: ['VIBRATE', 'com.example.permission.CUSTOM'],
+          blockedPermissions: ['RECORD_AUDIO'],
+          appLinks: [{ host: 'example.com', pathPrefix: '/invite' }],
+        },
+      },
+    }).content
+    expect(manifest).toContain('<uses-permission android:name="android.permission.VIBRATE" />')
+    expect(manifest).toContain('<uses-permission android:name="com.example.permission.CUSTOM" />')
+    expect(manifest).toContain(
+      '<uses-permission android:name="android.permission.RECORD_AUDIO" tools:node="remove" />'
+    )
+    expect(manifest).toContain('xmlns:tools="http://schemas.android.com/tools"')
+    expect(manifest).toContain('<intent-filter android:autoVerify="true">')
+    expect(manifest).toContain('<data android:host="example.com" android:pathPrefix="/invite" />')
+
+    const gradle = renderPrebuildFile({
+      relativePath: 'build.gradle',
+      content: 'minSdkVersion = 24\ncompileSdkVersion = 37\ntargetSdkVersion = 36',
+      platform: 'android',
+      app: { ...app, android: { ...app.android, targetSdk: 35, compileSdk: 36 } },
+    }).content
+    expect(gradle).toBe('minSdkVersion = 28\ncompileSdkVersion = 36\ntargetSdkVersion = 35')
+  })
+
   it('stamps orientation as expo does, and nothing when unset', () => {
     const plistTemplate =
       '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n\t<key>UISupportedInterfaceOrientations</key>\n\t<array>\n\t\t<string>UIInterfaceOrientationPortrait</string>\n\t</array>\n</dict>'

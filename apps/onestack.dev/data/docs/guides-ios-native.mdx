@@ -203,6 +203,33 @@ empty root.
 the app's Documents as a folder in the Files app and in document pickers under
 On My iPhone, and files the app saves there can be opened in place.
 
+### App appearance, links and store settings
+
+The rest of `native.app` covers what an Expo app config sets for the same
+things:
+
+- `orientation`: `portrait`, `landscape` or `default` (all four). Unset keeps a
+  portrait-only phone.
+- `userInterfaceStyle`: `light` or `dark` locks the appearance; `automatic`,
+  like unset, follows the system.
+- `splash.resizeMode`: `cover` fills the iOS launch screen with untrimmed
+  artwork; `contain` (the default) centers it at `width`.
+- `android.adaptiveIcon`: `foreground`, then `background` (an image) or
+  `backgroundColor`, and an optional `monochrome` layer for Android 13 themed
+  icons. The foreground is a 108 dp square with the artwork inside the central
+  66 dp.
+- `ios.associatedDomains` (such as `applinks:example.com`) and
+  `android.appLinks` (`{ host, pathPrefix }`, verified with `autoVerify`) route
+  https links into the app.
+- `ios.usesAppleSignIn` adds the Sign in with Apple entitlement.
+- `android.permissions` adds manifest permissions (a bare name means
+  `android.permission.<name>`); `android.blockedPermissions` removes ones a
+  library merges in.
+- `android.targetSdk` and `android.compileSdk` set the Gradle SDK levels.
+- `ios.infoPlist` and `ios.entitlements` add keys `native.app` does not model,
+  such as `NSUserTrackingUsageDescription`. A key the template or another field
+  already writes fails prebuild; set it through that field.
+
 ### iOS widgets and Live Activities
 
 Set `ios.widgets` to have `one prebuild --platform ios` generate a WidgetKit extension,

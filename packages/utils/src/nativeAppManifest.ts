@@ -2,6 +2,14 @@
 // name is the native target and appregistry key. one canonical definition:
 // one/native re-exports it for apps and vxrn prebuild consumes it, so a new
 // field is added once, here.
+// a property list value, for the ios keys native.app does not model.
+export type PlistValue =
+  | string
+  | number
+  | boolean
+  | PlistValue[]
+  | { [key: string]: PlistValue }
+
 export interface NativeAppManifest {
   name: string
   displayName?: string
@@ -93,6 +101,16 @@ export interface NativeAppManifest {
     faceIdUsageDescription?: string
     // exposes the app's Documents in the Files app and document pickers.
     fileSharing?: boolean
+    // universal links and shared web credentials, as entitlement entries
+    // such as `applinks:example.com`.
+    associatedDomains?: string[]
+    // the sign in with apple entitlement, for One.iOS.AppleAuthentication.
+    usesAppleSignIn?: boolean
+    // Info.plist and entitlement keys native.app does not model (a tracking
+    // prompt, an sdk's key). a key native.app or the template already writes
+    // is rejected: set it through its field instead.
+    infoPlist?: Record<string, PlistValue>
+    entitlements?: Record<string, PlistValue>
     widgets?: {
       appGroup: string
       kind: string
@@ -115,6 +133,14 @@ export interface NativeAppManifest {
       backgroundColor?: string
       monochrome?: string
     }
+    targetSdk?: number
+    compileSdk?: number
+    // extra manifest permissions: a bare name means android.permission.<name>.
+    // blocked ones are removed even when a library's manifest merges them in.
+    permissions?: string[]
+    blockedPermissions?: string[]
+    // verified https app links routed to the app (android:autoVerify).
+    appLinks?: Array<{ host: string; pathPrefix?: string }>
     // google maps api key for One.UI.Map. setting it compiles the maps sdk
     // into the app and stamps the key meta-data; without it the maps source
     // set stays out and mounting One.UI.Map throws.
@@ -385,6 +411,20 @@ export function validateNativeApp(
         `android.versionCode "${manifest.android.versionCode}" must be a positive integer`
       )
     }
+    for (const key of ['targetSdk', 'compileSdk'] as const) {
+      const value = manifest.android[key]
+      if (value !== undefined && (!Number.isInteger(value) || value < 21)) {
+        fail(`android.${key} "${value}" must be an api level integer`)
+      }
+    }
+    for (const link of manifest.android.appLinks ?? []) {
+      if (!link.host || !REVERSE_DNS.test(link.host)) {
+        fail(`android.appLinks host "${link.host}" must be a domain`)
+      }
+      if (link.pathPrefix !== undefined && !link.pathPrefix.startsWith('/')) {
+        fail(`android.appLinks pathPrefix "${link.pathPrefix}" must start with /`)
+      }
+    }
     const adaptiveIcon = manifest.android.adaptiveIcon
     if (
       adaptiveIcon !== undefined &&
@@ -429,10 +469,16 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
       bundleIdentifier: app.ios.bundleId,
       buildNumber: app.ios.buildNumber,
       supportsTablet: app.ios.tablet,
+      associatedDomains: app.ios.associatedDomains,
+      usesAppleSignIn: app.ios.usesAppleSignIn,
+      infoPlist: app.ios.infoPlist,
+      entitlements: app.ios.entitlements,
     },
     android: app.android && {
       package: app.android.applicationId,
       versionCode: app.android.versionCode,
+      permissions: app.android.permissions,
+      blockedPermissions: app.android.blockedPermissions,
       adaptiveIcon: app.android.adaptiveIcon && {
         foregroundImage: app.android.adaptiveIcon.foreground,
         backgroundImage: app.android.adaptiveIcon.background,

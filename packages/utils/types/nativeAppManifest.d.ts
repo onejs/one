@@ -1,3 +1,6 @@
+export type PlistValue = string | number | boolean | PlistValue[] | {
+    [key: string]: PlistValue;
+};
 export interface NativeAppManifest {
     name: string;
     displayName?: string;
@@ -58,6 +61,10 @@ export interface NativeAppManifest {
         usesNonExemptEncryption?: boolean;
         faceIdUsageDescription?: string;
         fileSharing?: boolean;
+        associatedDomains?: string[];
+        usesAppleSignIn?: boolean;
+        infoPlist?: Record<string, PlistValue>;
+        entitlements?: Record<string, PlistValue>;
         widgets?: {
             appGroup: string;
             kind: string;
@@ -76,6 +83,14 @@ export interface NativeAppManifest {
             backgroundColor?: string;
             monochrome?: string;
         };
+        targetSdk?: number;
+        compileSdk?: number;
+        permissions?: string[];
+        blockedPermissions?: string[];
+        appLinks?: Array<{
+            host: string;
+            pathPrefix?: string;
+        }>;
         googleMapsApiKey?: string;
     };
 }
@@ -98,10 +113,16 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
         bundleIdentifier: string;
         buildNumber: string | undefined;
         supportsTablet: boolean | undefined;
+        associatedDomains: string[] | undefined;
+        usesAppleSignIn: boolean | undefined;
+        infoPlist: Record<string, PlistValue> | undefined;
+        entitlements: Record<string, PlistValue> | undefined;
     } | undefined;
     android: {
         package: string;
         versionCode: number | undefined;
+        permissions: string[] | undefined;
+        blockedPermissions: string[] | undefined;
         adaptiveIcon: {
             foregroundImage: string;
             backgroundImage: string | undefined;

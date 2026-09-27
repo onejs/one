@@ -2,7 +2,11 @@ import { execFileSync } from 'node:child_process'
 import module from 'node:module'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
-import { validateNativeApp, type NativeAppManifest } from '@vxrn/utils/nativeAppManifest'
+import {
+  validateNativeApp,
+  type NativeAppManifest,
+  type PlistValue,
+} from '@vxrn/utils/nativeAppManifest'
 import FSExtra from 'fs-extra'
 import sharp from 'sharp'
 import { swiftPackageDirectories } from '../utils/swiftPackageId'
@@ -378,8 +382,8 @@ function patchIosPbxprojSceneDelegate(rendered: string, appName: string): string
   return patched
 }
 
-function patchIosPbxprojPushEntitlements(rendered: string, appName: string): string {
-  // the aps-environment entitlement only when the app opts into push. the
+function patchIosPbxprojAppEntitlements(rendered: string, appName: string): string {
+  // the app entitlement file only when the app has an entitlement. the
   // community template ships no entitlements file, so this adds the file
   // reference plus the CODE_SIGN_ENTITLEMENTS setting on the app target.
   const edits: Array<[string, string]> = [
@@ -415,13 +419,59 @@ function patchIosPbxprojPushEntitlements(rendered: string, appName: string): str
     )
 }
 
-function renderPushEntitlements(): string {
+function renderPlistValue(value: PlistValue, indent: string): string {
+  if (typeof value === 'string') return `${indent}<string>${escapeXml(value)}</string>`
+  if (typeof value === 'boolean') return `${indent}<${value}/>`
+  if (typeof value === 'number') {
+    return Number.isInteger(value)
+      ? `${indent}<integer>${value}</integer>`
+      : `${indent}<real>${value}</real>`
+  }
+  if (Array.isArray(value)) {
+    return `${indent}<array>\n${value.map((item) => renderPlistValue(item, `${indent}\t`)).join('\n')}\n${indent}</array>`
+  }
+  return `${indent}<dict>\n${renderPlistEntries(value, `${indent}\t`)}\n${indent}</dict>`
+}
+
+function renderPlistEntries(entries: Record<string, PlistValue>, indent: string): string {
+  return Object.entries(entries)
+    .map(([key, value]) => `${indent}<key>${escapeXml(key)}</key>\n${renderPlistValue(value, indent)}`)
+    .join('\n')
+}
+
+// every app-target entitlement in one file: push, the widget app group,
+// associated domains, sign in with apple, then the app's own keys. a key the
+// manifest already models cannot be set twice through ios.entitlements.
+function appEntitlements(app: NativeAppManifest): Record<string, PlistValue> {
+  const modeled: Record<string, PlistValue> = {}
+  if (app.notifications?.push === true || app.ios?.widgets?.pushNotifications) {
+    modeled['aps-environment'] = notificationsHost.apsEnvironment
+  }
+  if (app.ios?.widgets) {
+    modeled['com.apple.security.application-groups'] = [app.ios.widgets.appGroup]
+  }
+  if (app.ios?.associatedDomains?.length) {
+    modeled['com.apple.developer.associated-domains'] = app.ios.associatedDomains
+  }
+  if (app.ios?.usesAppleSignIn) {
+    modeled['com.apple.developer.applesignin'] = ['Default']
+  }
+  for (const key of Object.keys(app.ios?.entitlements ?? {})) {
+    if (key in modeled) {
+      throw new Error(
+        `[vxrn] native.app.ios.entitlements sets ${key}, which native.app already writes: use its field`
+      )
+    }
+  }
+  return { ...modeled, ...app.ios?.entitlements }
+}
+
+function renderEntitlements(entries: Record<string, PlistValue>): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-\t<key>aps-environment</key>
-\t<string>${notificationsHost.apsEnvironment}</string>
+${renderPlistEntries(entries, '\t')}
 </dict>
 </plist>
 `
@@ -640,12 +690,13 @@ function generateSceneDelegate(args: {
     path.join(dest, app.name, 'SceneDelegate.swift'),
     renderSceneDelegateSwift(app.name)
   )
-  // widgets use the same app entitlement file for the app group and apns.
-  // without widgets, push gets its own entitlement file.
-  if (app.notifications?.push === true && !app.ios?.widgets) {
+  // widgets write the app entitlements into their shared file; without
+  // widgets the app gets its own file when it has any entitlement.
+  const entitlements = appEntitlements(app)
+  if (Object.keys(entitlements).length && !app.ios?.widgets) {
     FSExtra.writeFileSync(
       path.join(dest, app.name, `${app.name}.entitlements`),
-      renderPushEntitlements()
+      renderEntitlements(entitlements)
     )
   }
 }
@@ -662,12 +713,7 @@ function generateIosWidgets(dest: string, app: NativeAppManifest): void {
 `
   FSExtra.writeFileSync(
     path.join(appDir, 'OneAppWidgets.entitlements'),
-    widgets.pushNotifications || app.notifications?.push
-      ? entitlements.replace(
-          '</dict></plist>',
-          `<key>aps-environment</key><string>${notificationsHost.apsEnvironment}</string></dict></plist>`
-        )
-      : entitlements
+    renderEntitlements(appEntitlements(app))
   )
   FSExtra.writeFileSync(path.join(extensionDir, 'OneWidgets.entitlements'), entitlements)
   FSExtra.writeFileSync(
@@ -1618,6 +1664,14 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
           `\t<key>UISupportedInterfaceOrientations</key>\n\t<array>\n${phoneOrientations.map((orientation) => `\t\t<string>${orientation}</string>`).join('\n')}\n\t</array>`
         )
       }
+      for (const [key, value] of Object.entries(app.ios?.infoPlist ?? {})) {
+        if (rendered.includes(`<key>${key}</key>`) || stamps.some((stamp) => stamp.includes(`<key>${key}</key>`))) {
+          throw new Error(
+            `[vxrn] native.app.ios.infoPlist sets ${key}, which the template or native.app already writes: use its field`
+          )
+        }
+        stamps.push(renderPlistEntries({ [key]: value }, '\t'))
+      }
       if (stamps.length) {
         const anchor = '\t<key>LSRequiresIPhoneOS</key>'
         if (!rendered.includes(anchor))
@@ -1812,6 +1866,59 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/AndroidManifest.xml' &&
+      (app.android?.permissions?.length || app.android?.blockedPermissions?.length)
+    ) {
+      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
+      if (!rendered.includes(anchor)) {
+        throw new Error(
+          '[vxrn] cannot stamp permissions: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
+        )
+      }
+      // a bare name is an android.permission, as expo reads it.
+      const permissionName = (name: string) =>
+        name.includes('.') ? name : `android.permission.${name}`
+      const lines = [
+        ...(app.android?.permissions ?? []).map(
+          (name) => `    <uses-permission android:name="${permissionName(name)}" />`
+        ),
+        ...(app.android?.blockedPermissions ?? []).map(
+          (name) =>
+            `    <uses-permission android:name="${permissionName(name)}" tools:node="remove" />`
+        ),
+      ]
+      rendered = rendered.replace(anchor, `${anchor}\n${lines.join('\n')}`)
+      if (app.android?.blockedPermissions?.length && !rendered.includes('xmlns:tools=')) {
+        rendered = rendered.replace(
+          'xmlns:android="http://schemas.android.com/apk/res/android"',
+          'xmlns:android="http://schemas.android.com/apk/res/android"\n    xmlns:tools="http://schemas.android.com/tools"'
+        )
+      }
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.android?.appLinks?.length
+    ) {
+      rendered = rendered.replace(
+        '      </activity>',
+        `        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+${app.android.appLinks
+  .map(
+    (link) =>
+      `            <data android:host="${link.host}"${link.pathPrefix ? ` android:pathPrefix="${link.pathPrefix}"` : ''} />`
+  )
+  .join('\n')}
+        </intent-filter>
+      </activity>`
+      )
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
       app.orientation !== undefined
     ) {
       const anchor = 'android:name=".MainActivity"'
@@ -1977,8 +2084,8 @@ end`
       rendered = patchIosBundlePhase(rendered, app.updates?.runtimeVersion)
       rendered = patchIosPbxprojSceneDelegate(rendered, appName)
       rendered = patchIosPbxprojOneBridgingHeader(rendered, appName)
-      if (app.notifications?.push === true && !app.ios?.widgets) {
-        rendered = patchIosPbxprojPushEntitlements(rendered, appName)
+      if (Object.keys(appEntitlements(app)).length && !app.ios?.widgets) {
+        rendered = patchIosPbxprojAppEntitlements(rendered, appName)
       }
       if (app.ios?.widgets) rendered = patchIosPbxprojWidgets(rendered, app)
     }
@@ -2045,11 +2152,14 @@ end`
         `includeBuild(new File(["node", "--print", "require('module').createRequire(require.resolve('react-native/package.json')).resolve('@react-native/gradle-plugin/package.json')"].execute(null, settingsDir).text.trim()).parentFile.canonicalPath)`
       )
     }
-    if (platform === 'android' && app.android?.minSdk !== undefined) {
-      rendered = rendered.replace(
-        /minSdkVersion = \d+/g,
-        `minSdkVersion = ${app.android.minSdk}`
-      )
+    for (const [field, setting] of [
+      ['minSdk', 'minSdkVersion'],
+      ['targetSdk', 'targetSdkVersion'],
+      ['compileSdk', 'compileSdkVersion'],
+    ] as const) {
+      const value = platform === 'android' ? app.android?.[field] : undefined
+      if (value === undefined) continue
+      rendered = rendered.replace(new RegExp(`${setting} = \\d+`, 'g'), `${setting} = ${value}`)
     }
   }
 
