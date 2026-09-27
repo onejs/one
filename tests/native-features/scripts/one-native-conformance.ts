@@ -5298,8 +5298,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'control-size') {
     const frames = (nodes: Node[]) => ({
-      inherited: id(nodes, 'one-native-control-size-inherited')?.frame,
-      direct: id(nodes, 'one-native-control-size-direct')?.frame,
+      inherited: nodes.find((node) =>
+        node.type === 'Button' && node.AXUniqueId === 'one-native-control-size-inherited')?.frame,
+      direct: nodes.find((node) =>
+        node.type === 'Button' && node.AXUniqueId === 'one-native-control-size-direct')?.frame,
     })
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
@@ -5309,6 +5311,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       return labels(nodes).includes('Control size: mini') && Boolean(value.inherited && value.direct)
     })
     const miniFrames = frames(mini)
+    if (!miniFrames.inherited || !miniFrames.direct ||
+      Math.abs(miniFrames.inherited.height - 28) > 2 ||
+      Math.abs(miniFrames.direct.height - 28) > 2)
+      throw new Error(`Native mini Buttons differ from iOS 27 baseline: ${JSON.stringify(miniFrames)}`)
+    checks.push({ name: 'mini native Buttons match iOS 27 height baseline', durationMs: 0 })
     screenshot('control-size-mini.png', mini)
     tap({ id: 'one-native-control-size-toggle' })
     const large = await wait('extraLarge grows inherited and direct native Buttons', (nodes) => {
@@ -5321,8 +5328,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     })
     screenshot('control-size-extra-large.png', large)
-    tap({ id: 'one-native-control-size-inherited' })
-    tap({ id: 'one-native-control-size-direct' })
+    const largeFrames = frames(large)
+    touch(largeFrames.inherited!.x + largeFrames.inherited!.width / 2,
+      largeFrames.inherited!.y + largeFrames.inherited!.height / 2)
+    touch(largeFrames.direct!.x + largeFrames.direct!.width / 2,
+      largeFrames.direct!.y + largeFrames.direct!.height / 2)
     await wait('resized native Buttons dispatch to React', (nodes) =>
       labels(nodes).includes('Control taps: 2')
     )
