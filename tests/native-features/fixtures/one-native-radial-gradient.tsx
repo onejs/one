@@ -2,12 +2,16 @@ import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
-type Mode = 'initial' | 'reversed' | 'moved' | 'wide' | 'inner' | 'empty'
+type Mode = 'initial' | 'reversed' | 'moved' | 'wide' | 'inner' | 'single' | 'alpha' | 'three' | 'empty'
 
 export default function OneNativeRadialGradientFixture() {
   const [mode, setMode] = useState<Mode>('initial')
-  const colors = mode === 'empty' ? [] : mode === 'reversed'
-    ? ['#1144DD', '#FF3311'] : ['#FF3311', '#1144DD']
+  const colors = mode === 'empty' ? []
+    : mode === 'single' ? ['#22BB55']
+    : mode === 'alpha' ? ['#FF331100', '#1144DDFF']
+    : mode === 'three' ? ['#FF3311', '#22BB55', '#1144DD']
+    : mode === 'reversed' ? ['#1144DD', '#FF3311']
+    : ['#FF3311', '#1144DD']
 
   return (
     <View style={styles.screen} testID="one-native-radial-gradient-screen">
@@ -28,6 +32,9 @@ export default function OneNativeRadialGradientFixture() {
       <Pressable testID="one-native-radial-gradient-moved" onPress={() => setMode('moved')}><Text>Move center</Text></Pressable>
       <Pressable testID="one-native-radial-gradient-wide" onPress={() => setMode('wide')}><Text>Widen end radius</Text></Pressable>
       <Pressable testID="one-native-radial-gradient-inner" onPress={() => setMode('inner')}><Text>Widen start radius</Text></Pressable>
+      <Pressable testID="one-native-radial-gradient-single" onPress={() => setMode('single')}><Text>Single color</Text></Pressable>
+      <Pressable testID="one-native-radial-gradient-alpha" onPress={() => setMode('alpha')}><Text>Transparent center</Text></Pressable>
+      <Pressable testID="one-native-radial-gradient-three" onPress={() => setMode('three')}><Text>Three colors</Text></Pressable>
       <Pressable testID="one-native-radial-gradient-empty" onPress={() => setMode('empty')}><Text>Empty colors</Text></Pressable>
       <One.iOS.RadialGradient colors={['#FF3311', '#1144DD']} endRadius={80} style={styles.decorative} testID="one-native-radial-gradient-decorative" />
     </View>

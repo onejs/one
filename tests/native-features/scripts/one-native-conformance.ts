@@ -3539,7 +3539,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       captures[mode] = screenshot(`radial-gradient-${mode}.png`, nodes)
     }
     await capture('initial', initial)
-    for (const mode of ['reversed', 'moved', 'wide', 'inner', 'empty']) {
+    for (const mode of ['reversed', 'moved', 'wide', 'inner', 'single', 'alpha', 'three', 'empty']) {
       tap({ id: `one-native-radial-gradient-${mode}` })
       const nodes = await wait(`React supplies radial gradient ${mode} state`, (next) =>
         labels(next).includes(`Mode: ${mode}`))
@@ -3567,6 +3567,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       movedRight: sample('moved', 0.75),
       wideEdge: sample('wide', 0.95),
       innerNearCenter: sample('inner', 0.6),
+      singleCenter: sample('single', 0.5),
+      singleEdge: sample('single', 0.95),
+      alphaCenter: sample('alpha', 0.5),
+      alphaEdge: sample('alpha', 0.95),
+      threeMiddle: sample('three', 0.5 + 40 / 280),
       emptyCenter: sample('empty', 0.5),
     }
     const red = (value: number[]) => value[0]! > 170 && value[2]! < 100
@@ -3579,12 +3584,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (pixels.wideEdge[0]! < pixels.initialEdge[0]! + 25 ||
         pixels.innerNearCenter[0]! < pixels.initialInner[0]! + 20)
       throw new Error(`Native RadialGradient did not honor both radii: ${JSON.stringify(pixels)}`)
+    const green = (value: number[]) => value[1]! > 130 && value[0]! < 80 && value[2]! < 130
+    if (!green(pixels.singleCenter) || !green(pixels.singleEdge) || !green(pixels.threeMiddle))
+      throw new Error(`Native RadialGradient did not render one and three sRGB colors: ${JSON.stringify(pixels)}`)
+    if (!(pixels.alphaCenter[0]! > 220 && pixels.alphaCenter[1]! > 200 && pixels.alphaCenter[2]! < 80) ||
+        !blue(pixels.alphaEdge))
+      throw new Error(`Native RadialGradient did not composite sRGB alpha over yellow: ${JSON.stringify(pixels)}`)
     if (!(pixels.emptyCenter[0]! > 220 && pixels.emptyCenter[1]! > 200 && pixels.emptyCenter[2]! < 80))
       throw new Error(`Empty native RadialGradient did not reveal its yellow underlay: ${JSON.stringify(pixels)}`)
     fs.writeFileSync(path.join(config.artifactDir, 'radial-gradient-pixels.json'),
       JSON.stringify({ pixels, nativeFrame: native }, null, 2))
     checks.push({ name: 'native radial gradient paints, reverses, and moves its center', durationMs: 0 })
-    checks.push({ name: 'native radial gradient honors both radii and empty colors', durationMs: 0 })
+    checks.push({ name: 'native radial gradient honors both radii, one and three colors, alpha, and empty colors', durationMs: 0 })
     console.log(`PASS native radial gradient pixels: ${JSON.stringify(pixels)}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
