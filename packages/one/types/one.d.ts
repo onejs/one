@@ -1,4 +1,4 @@
-import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, LocalAuthentication, Location, FileSystem, Audio, Share, PhotoLibrary, Device, Contacts, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ReservedRegions, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType } from './platform';
+import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, LocalAuthentication, Location, FileSystem, Audio, Share, PhotoLibrary, Device, Contacts, Calendar, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ReservedRegions, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType } from './platform';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
 export type OneIOS = typeof Swift & {
@@ -13,6 +13,7 @@ export type OneIOS = typeof Swift & {
     readonly PhotoLibrary: typeof PhotoLibrary;
     readonly Device: typeof Device;
     readonly Contacts: typeof Contacts;
+    readonly Calendar: typeof Calendar;
     readonly Color: ColorType['ios'];
     readonly MenuAction: typeof MenuAction;
     readonly SplitView: typeof SplitView;

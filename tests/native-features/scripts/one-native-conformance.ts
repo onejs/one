@@ -45,6 +45,7 @@ const suites = [
   'device',
   'database',
   'contacts',
+  'calendar',
   'editors',
   'grids',
   'paste-button',
@@ -313,6 +314,9 @@ const deviceLoaded = (nodes: Node[]) =>
 const contactsLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-contacts-run')) ||
   labels(nodes).some((label) => label.includes('NativeFeatureTests verifies contact access.'))
+const calendarLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-calendar-run')) ||
+  labels(nodes).some((label) => label.includes('NativeFeatureTests verifies calendar events.'))
 const editorsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-editor-reject')) &&
@@ -465,6 +469,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   device: deviceLoaded,
   database: databaseLoaded,
   contacts: contactsLoaded,
+  calendar: calendarLoaded,
   editors: editorsLoaded,
   grids: gridsLoaded,
   'paste-button': pasteButtonLoaded,
@@ -514,6 +519,7 @@ const suiteHome: Record<Suite, string> = {
   device: 'nav-one-native-device',
   database: 'nav-one-native-database',
   contacts: 'nav-one-native-contacts',
+  calendar: 'nav-one-native-calendar',
   editors: 'nav-one-native-editors',
   grids: 'nav-one-native-grids',
   'paste-button': 'nav-one-native-paste-button',
@@ -889,6 +895,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       timeout: 30_000,
     })
     execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'contacts', config.bundleId], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+  }
+  if (config.suite === 'calendar') {
+    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'calendar', config.bundleId], {
       stdio: 'ignore',
       timeout: 30_000,
     })
@@ -2565,6 +2577,53 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('contacts-round-trip.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'calendar') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-calendar')
+    await wait('Calendar permission starts undetermined', (n) =>
+      has(n, 'Permission: notDetermined') && has(n, 'Status: idle')
+    )
+    tap({ id: 'one-native-calendar-run' })
+    // the TCC sheet belongs to another process and disappears from the
+    // app-only tree. point probes see its purpose text and action directly.
+    const screen = snapshot(config.simulatorId).find((node) => node.type === 'Application')?.frame
+    if (!screen) throw new Error('Calendar prompt has no application frame')
+    const probe = (y: number) => JSON.parse(
+      axe(['describe-ui', '--point', `${Math.round(screen.width / 2)},${Math.round(y)}`],
+        config.simulatorId)
+    ) as Node
+    let purpose: Node | undefined
+    let allow: Node | undefined
+    const deadline = Date.now() + config.timeout
+    do {
+      purpose = probe(screen.height * 0.4)
+      allow = probe(screen.height * 0.72)
+      if (
+        purpose.AXLabel === 'NativeFeatureTests verifies calendar events.' &&
+        allow.AXLabel === 'Allow Full Access'
+      ) break
+      await new Promise((resolve) => setTimeout(resolve, 250))
+    } while (Date.now() < deadline)
+    if (
+      purpose?.AXLabel !== 'NativeFeatureTests verifies calendar events.' ||
+      allow?.AXLabel !== 'Allow Full Access' || !allow.frame
+    ) throw new Error('Calendar purpose text and full-access action did not appear')
+    console.log('PASS Calendar purpose text and full-access action')
+    screenshot('calendar-permission.png', [purpose, allow])
+    point(allow.frame.x + allow.frame.width / 2, allow.frame.y + allow.frame.height / 2)
+    await wait('Calendar create list and delete pass', (n) =>
+      has(n, 'Permission: fullAccess') &&
+      has(n, 'Status: done') &&
+      has(
+        n,
+        'Result: before=E_CALENDAR_PERMISSION; matched=true; removed=true; invalid=E_CALENDAR_INPUT'
+      )
+    )
+    screenshot('calendar-round-trip.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

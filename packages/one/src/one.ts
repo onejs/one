@@ -14,6 +14,7 @@ import {
   PhotoLibrary,
   Device,
   Contacts,
+  Calendar,
   WidgetUI,
   Clipboard as NativeClipboard,
   AppInfo,
@@ -64,6 +65,7 @@ export type OneIOS = typeof Swift & {
   readonly PhotoLibrary: typeof PhotoLibrary
   readonly Device: typeof Device
   readonly Contacts: typeof Contacts
+  readonly Calendar: typeof Calendar
   readonly Color: ColorType['ios']
   readonly MenuAction: typeof MenuAction
   readonly SplitView: typeof SplitView
@@ -137,6 +139,7 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   PhotoLibrary,
   Device,
   Contacts,
+  Calendar,
   Color: Color.ios,
   MenuAction,
   SplitView,

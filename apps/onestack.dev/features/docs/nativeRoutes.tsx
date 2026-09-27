@@ -63,6 +63,7 @@ export const nativeRoutes = [
       { title: 'App Info', route: '/native/app-info' },
       { title: 'Device', route: '/native/device' },
       { title: 'Contacts', route: '/native/contacts' },
+      { title: 'Calendar', route: '/native/calendar' },
       { title: 'ImagePicker', route: '/native/image-picker' },
       { title: 'DocumentPicker', route: '/native/document-picker' },
       { title: 'SecureStore', route: '/native/secure-store' },

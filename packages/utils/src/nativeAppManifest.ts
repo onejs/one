@@ -30,6 +30,10 @@ export interface NativeAppManifest {
   contacts?: {
     usage: string
   }
+  // full calendar access for One.iOS.Calendar event reads and writes.
+  calendar?: {
+    usage: string
+  }
   // foreground Core Location permission prompt for One.iOS.Location.
   location?: {
     whenInUse: string
@@ -180,6 +184,14 @@ export function validateNativeApp(
       manifest.contacts.usage.trim() === '')
   ) {
     fail('contacts.usage must be a non-empty string')
+  }
+  if (
+    manifest.calendar !== undefined &&
+    (!manifest.calendar ||
+      typeof manifest.calendar.usage !== 'string' ||
+      manifest.calendar.usage.trim() === '')
+  ) {
+    fail('calendar.usage must be a non-empty string')
   }
   if (
     manifest.location !== undefined &&

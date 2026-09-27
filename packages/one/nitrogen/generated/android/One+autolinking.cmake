@@ -38,6 +38,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneAppleAuthSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAudioSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneBrowserSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneCalendarSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneClipboardSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneContactsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneCryptoSpec.cpp

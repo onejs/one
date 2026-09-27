@@ -97,6 +97,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.PhotoLibrary` | photo-library | n/a |  |
 | `One.iOS.Device` | device | n/a |  |
 | `One.iOS.Contacts` | contacts | n/a |  |
+| `One.iOS.Calendar` | calendar | n/a |  |
 | `One.iOS.Color` | e2e:color-test, e2e:toolbar-test, e2e:menu-test | n/a |  |
 | `One.iOS.MenuAction` | e2e:menu-test | n/a |  |
 | `One.iOS.SplitView` | e2e:split-view-test | n/a |  |

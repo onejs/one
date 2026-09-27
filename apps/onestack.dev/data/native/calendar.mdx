@@ -1,0 +1,56 @@
+---
+title: Calendar
+description: Request full access and read, create, or delete iOS calendar events
+---
+
+`One.iOS.Calendar` reads and writes events through EventKit. Give the app a
+purpose string before prebuild:
+
+```ts
+calendar: { usage: 'Show and manage your events.' }
+```
+
+Expo-prebuilt apps pass the same `calendar` option to the VXRN Expo plugin.
+Both paths set `NSCalendarsFullAccessUsageDescription`.
+
+```tsx
+import { One } from 'one'
+
+const status = await One.iOS.Calendar.requestPermission()
+if (status === 'fullAccess') {
+  const startMs = Date.now() + 86_400_000
+  const identifier = await One.iOS.Calendar.create({
+    title: 'Team review',
+    startMs,
+    endMs: startMs + 3_600_000,
+  })
+  const events = await One.iOS.Calendar.list(startMs - 1, startMs + 3_600_001)
+  console.log(events.find((event) => event.identifier === identifier))
+}
+```
+
+`getPermissionStatus()` reads the status without prompting. It returns
+`notDetermined`, `restricted`, `denied`, `writeOnly`, or `fullAccess`.
+`requestPermission()` requests full access and resolves to the resulting
+status, including when the person denies it. Reading events requires full
+access; write-only access does not permit reading even events the app created.
+
+`list(startMs, endMs, limit = 100)` searches all visible calendars. Times are
+Unix milliseconds. The range must increase and span at most 366 days; the
+limit must be a whole number from 1 to 500. Events are sorted by start time
+and include their identifier, title, start and end times, all-day flag, and
+location. `create({ title, startMs, endMs, allDay? })` saves to the default
+writable calendar and returns the identifier. `delete(identifier, startMs)`
+removes the occurrence at that exact start time. Pass the `startMs` returned
+by `list` for a recurring event, since its occurrences share an identifier.
+Ask the person before creating or deleting an event.
+
+Missing purpose text rejects with `E_CALENDAR_MANIFEST`; missing full access
+with `E_CALENDAR_PERMISSION`; invalid input with `E_CALENDAR_INPUT`.
+An absent writable calendar gives `E_CALENDAR_UNAVAILABLE`. Store failures
+use `E_CALENDAR_SAVE` or `E_CALENDAR_DELETE`; deleting an unknown occurrence
+gives `E_CALENDAR_NOT_FOUND`. This API is iOS only. Reminders and event
+editing are separate inventory gaps.
+
+See [Apple's EventKit access guide](https://developer.apple.com/documentation/eventkit/accessing-the-event-store)
+for the full and write-only permission modes.

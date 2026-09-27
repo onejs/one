@@ -95,6 +95,12 @@ describe('native.app manifest', () => {
     )
   })
 
+  test('requires a Calendar purpose string', () => {
+    expect(() => validateNativeApp({ ...app, calendar: { usage: 'Show events.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, calendar: null } as any)).toThrow(/calendar\.usage/)
+    expect(() => validateNativeApp({ ...app, calendar: { usage: ' ' } })).toThrow(/calendar\.usage/)
+  })
+
   test('accepts a camera permission string and rejects empty ones', () => {
     expect(() => validateNativeApp({ ...app, imagePicker: undefined })).not.toThrow()
     expect(() => validateNativeApp({ ...app, imagePicker: { camera: '' } })).toThrow(

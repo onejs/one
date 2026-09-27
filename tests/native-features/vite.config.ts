@@ -137,6 +137,9 @@ export default defineConfig({
           contacts: {
             usage: 'NativeFeatureTests verifies contact access.',
           },
+          calendar: {
+            usage: 'NativeFeatureTests verifies calendar events.',
+          },
           location: {
             whenInUse: 'NativeFeatureTests verifies current location.',
           },
