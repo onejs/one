@@ -49,7 +49,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.GroupBox` | group-box | n/a |  |
 | `One.iOS.ViewThatFits` | disclosure-group, view-that-fits | n/a |  |
 | `One.iOS.Overlay` | groups, view-slot | n/a |  |
-| `One.iOS.ViewSlot` | view-slot | n/a | background and bottom safe-area inset proven; other named slots unproven |
+| `One.iOS.ViewSlot` | view-slot | n/a | background, mask, and bottom safe-area inset proven; other named slots unproven |
 | `One.iOS.SwipeActions` | groups, swipe-actions | n/a |  |
 | `One.iOS.Pager` | groups | n/a |  |
 | `One.iOS.Page` | groups | n/a |  |
