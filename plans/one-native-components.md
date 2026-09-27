@@ -71,6 +71,17 @@ accounts are unavailable).
 
 ## Status
 
+- **RAN, 2026-09-27:** `One.iOS.ViewSlot name="listRowBackground"` passed a
+  focused iPhone 17 Pro iOS 27.0 suite on ci-64 after an arm64 Xcode 27.1
+  build. React changed the Apple row's native fill from `#B1DAFD` to
+  `#FED7A5`; all 48,672 sampled Apple row pixels changed, while zero of
+  48,672 Banana row pixels changed. Four exact color samples matched the
+  requested fills and unchanged white neighbor. The seven-check outcome,
+  AX snapshots, PNGs, and `list-row-background-pixels.json` are in the local
+  ignored `tests/native-features/build/list-row-background-proof` directory.
+  The existing `lists` regression suite also passed on the rebuilt app,
+  including two native List recycling cycles. High review remains before merge.
+
 - **RAN, 2026-09-26:** slice 1 `TextEditor` and `UnevenRoundedRectangle` passed
   `generate:check`, all seven shape tests, and the `editors` conformance suite
   on the iPhone 17 Pro iOS 27.0 simulator. The suite checked native multiline
