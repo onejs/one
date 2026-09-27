@@ -45,5 +45,5 @@ export default function OneNativePickerPalette() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, paddingTop: 70, paddingHorizontal: 20, gap: 12, backgroundColor: '#FFFFFF' },
-  picker: { width: '100%', height: 50 },
+  picker: { height: 50 },
 })
