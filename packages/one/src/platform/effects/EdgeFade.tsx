@@ -1,7 +1,8 @@
 import type { CSSProperties } from 'react'
 import type { ColorValue } from 'react-native'
 import { sampleCurve } from './curves'
-import { flattenStyle, resolveEdges, resolveRadius, type ResolvedEdge } from './normalize'
+import { VIEW_BASE, domStyle } from '../web/DomView'
+import { resolveEdges, resolveRadius, type ResolvedEdge } from './normalize'
 import type { EdgeFadeProps } from './types'
 
 // the web draws every mode with css gradients sampled from the same curves
@@ -36,17 +37,6 @@ function curveStops(edge: ResolvedEdge, paint: (visible: number) => string) {
 function edgeMask(name: EdgeName, edge: ResolvedEdge) {
   const stops = curveStops(edge, (visible) => `rgba(0,0,0,${visible})`)
   return `linear-gradient(${DIRECTIONS[name]}, ${stops.join(', ')}, black ${edge.size}px)`
-}
-
-// the box a react native View lays out as, so style props mean the same thing.
-const VIEW_BASE: CSSProperties = {
-  display: 'flex',
-  flexDirection: 'column',
-  flexShrink: 0,
-  position: 'relative',
-  boxSizing: 'border-box',
-  minWidth: 0,
-  minHeight: 0,
 }
 
 // strips never take touches.
@@ -113,8 +103,7 @@ export function EdgeFade(props: EdgeFadeProps) {
     testID,
     nativeID,
   } = props
-  // a View style is layout css; react-dom adds px to its bare numbers.
-  const { borderRadius: styleRadius, ...cleanStyle } = flattenStyle(style)
+  const { borderRadius: styleRadius, ...cleanStyle } = domStyle(style)
   const resolvedRadius = resolveRadius(radius, styleRadius)
   const box: CSSProperties = {
     ...VIEW_BASE,

@@ -12,6 +12,7 @@ type ComposeStyleNative = Readonly<{
     height?: WithDefault<Double, -1>;
     fillMaxWidth?: boolean;
     fillMaxHeight?: boolean;
+    weight?: WithDefault<Double, -1>;
     cornerRadius?: WithDefault<Double, -1>;
     opacity?: WithDefault<Double, -1>;
     borderColor?: ColorValue;
@@ -46,6 +47,24 @@ interface NativeProps extends ViewProps {
         unselectedColor?: ColorValue;
         disabledSelectedColor?: ColorValue;
         disabledUnselectedColor?: ColorValue;
+    }>;
+    switchColors?: Readonly<{
+        checkedThumbColor?: ColorValue;
+        checkedTrackColor?: ColorValue;
+        checkedBorderColor?: ColorValue;
+        checkedIconColor?: ColorValue;
+        uncheckedThumbColor?: ColorValue;
+        uncheckedTrackColor?: ColorValue;
+        uncheckedBorderColor?: ColorValue;
+        uncheckedIconColor?: ColorValue;
+        disabledCheckedThumbColor?: ColorValue;
+        disabledCheckedTrackColor?: ColorValue;
+        disabledCheckedBorderColor?: ColorValue;
+        disabledCheckedIconColor?: ColorValue;
+        disabledUncheckedThumbColor?: ColorValue;
+        disabledUncheckedTrackColor?: ColorValue;
+        disabledUncheckedBorderColor?: ColorValue;
+        disabledUncheckedIconColor?: ColorValue;
     }>;
     cardColors?: Readonly<{
         containerColor?: ColorValue;

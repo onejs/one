@@ -3140,6 +3140,25 @@ async function runCompose(config: Config) {
         third.left === first.left && fifth.left === first.left
       )
     })
+    await check('compose-spacer-weights', (nodes) => {
+      const row = matching(nodes, { id: 'one-native-android-spacer-row' })[0]?.bounds
+      const left = matching(nodes, { id: 'one-native-android-spacer-left' })[0]?.bounds
+      const right = matching(nodes, { id: 'one-native-android-spacer-right' })[0]?.bounds
+      const column = matching(nodes, { id: 'one-native-android-spacer-column' })[0]?.bounds
+      const top = matching(nodes, { id: 'one-native-android-spacer-top' })[0]?.bounds
+      const bottom = matching(nodes, { id: 'one-native-android-spacer-bottom' })[0]?.bounds
+      return Boolean(
+        row && left && right && column && top && bottom &&
+        idText(nodes, 'one-native-android-spacer-left', 'Left') &&
+        idText(nodes, 'one-native-android-spacer-right', 'Right') &&
+        idText(nodes, 'one-native-android-spacer-top', 'Top') &&
+        idText(nodes, 'one-native-android-spacer-bottom', 'Bottom') &&
+        left.left === row.left && right.right === row.right &&
+        right.left - left.right > (row.right - row.left) / 2 &&
+        top.top === column.top && bottom.bottom === column.bottom &&
+        bottom.top - top.bottom > (column.bottom - column.top) / 2
+      )
+    })
   }
   const iconButtons = async () => {
     await tapNavigation(config, 'nav-one-native-android-icon-buttons')

@@ -39,6 +39,7 @@ import type {
   ComposeProgressVariant,
   ComposeRadioButtonProps,
   ComposeRowProps,
+  ComposeSpacerProps,
   ComposeSegmentedButtonProps,
   ComposeSegmentedButtonRowProps,
   ComposeSliderProps,
@@ -90,6 +91,7 @@ import {
 type ComposeNodeType =
   | 'column'
   | 'row'
+  | 'spacer'
   | 'flowrow'
   | 'box'
   | 'badge'
@@ -161,6 +163,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   checkboxColors?: ComposeCheckboxProps['colors']
   selected?: boolean
   radioColors?: ComposeRadioButtonProps['colors']
+  switchColors?: ComposeSwitchProps['colors']
   cardColors?: ComposeCardProps['colors']
   surfaceMode?: 'plain' | 'clickable' | 'selectable' | 'toggleable'
   badgeColors?: Pick<ComposeBadgeProps, 'containerColor' | 'contentColor'>
@@ -233,6 +236,7 @@ const ComposeContext = createContext(false)
 
 const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
   'text',
+  'spacer',
   'icon',
   'button',
   'switch',
@@ -315,6 +319,10 @@ function Row({
       {children}
     </ComposeNode>
   )
+}
+
+function Spacer(props: ComposeSpacerProps) {
+  return <ComposeNode {...props} nodeType="spacer" />
 }
 
 function FlowRow({
@@ -779,11 +787,12 @@ function Switch({
   isOn,
   disabled = false,
   label = '',
+  colors,
   onIsOnChange,
   revision = 0,
   ...props
 }: ComposeSwitchProps) {
-  validateSwitchProps({ isOn, disabled, label, onIsOnChange, revision })
+  validateSwitchProps({ isOn, disabled, label, colors, onIsOnChange, revision })
   const controlled = useControlled<{
     value: boolean
     eventCount: number
@@ -797,6 +806,7 @@ function Switch({
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
       label={label}
+      switchColors={colors}
       disabled={disabled}
       onNativeComposeNodeBooleanValueChange={(event) =>
         controlled.onNativeChange(event.nativeEvent)
@@ -1101,6 +1111,7 @@ function ContainedLoadingIndicator({ progress, color, containerColor, ...props }
 export const Compose = {
   Column,
   Row,
+  Spacer,
   FlowRow,
   Box,
   Badge,
