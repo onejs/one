@@ -11,3 +11,6 @@ appearance=light
 locale=en_US
 Xcode 27.1
 Build version 27A9269
+builderHostname=MacBookPros-MacBook-Pro.local
+builtAppExecutableSHA256=39acc416289b777a66c21314e1c670e8159bdcd5ecb8c1b64a67525857b6faf3
+installedAppExecutableSHA256=39acc416289b777a66c21314e1c670e8159bdcd5ecb8c1b64a67525857b6faf3

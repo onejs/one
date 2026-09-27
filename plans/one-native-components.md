@@ -71,10 +71,13 @@ accounts are unavailable).
 
 ## Status
 
-- **RAN, 2026-09-27:** the `scroll-search-refresh` suite passed 13 checks on
+- **RAN, 2026-09-27:** the `scroll-search-refresh` suite passed 13 checks
+  (nine feature checks and four navigation/harness checks) on
   ci-64's iPhone 17 Pro / iOS 27.0 simulator at source `a6c29f54f`, Xcode
-  27.1, with the unchanged native iOS tree
-  `c9fde9de93d0a91d333f8a29923582cfbc720db7`. The tracked
+  27.1, with native iOS tree
+  `c9fde9de93d0a91d333f8a29923582cfbc720db7`. The later protected-store
+  merge added a separate Nitro file; the ScrollView, NavigationStack, style,
+  and async bridge source files match the proof build. The tracked
   `tests/native-features/proofs/scroll-search-refresh` bundle contains four
   compressed AX/PNG pairs, outcome, runtime and matching built/installed
   code-bearing dylib hashes, and a side-by-side WebP. Pulling a vertical
@@ -86,8 +89,8 @@ accounts are unavailable).
 
 - **RAN, 2026-09-27:** a focused `list-search-refresh` suite passed on ci-64's
   iPhone 17 Pro / iOS 27.0 simulator, Xcode 27.1, suite source `a11f9e9fd`
-  and the unchanged native iOS tree `c9fde9de93d0a91d333f8a29923582cfbc720db7`
-  built at `db32abfd6`. The ignored
+  and native iOS tree `c9fde9de93d0a91d333f8a29923582cfbc720db7`
+  built at `db32abfd6`. The
   `tests/native-features/proofs/list-search-refresh` directory tracks the
   13-check outcome, four compressed AX/PNG pairs, source/runtime receipt,
   matching built/installed code-bearing debug dylib hashes, the reused native
@@ -98,8 +101,8 @@ accounts are unavailable).
   `NavigationStack`: external React text changed the field and filtered rows,
   then typing into the field changed React text and filtered rows. A standalone
   List host did not present a search field in this iOS 27 run, so docs use the
-  NavigationStack host. ScrollView refresh/search, cancellation, and other
-  search placements remain unproven.
+  NavigationStack host. ScrollView has a separate vertical proof above;
+  cancellation and other search placements remain unproven.
 
 - **RAN, 2026-09-27:** `One.iOS.List` and `One.iOS.Section` now accept the
   existing `swiftStyle` modifier channel. The iPhone 17 Pro / iOS 27.0
