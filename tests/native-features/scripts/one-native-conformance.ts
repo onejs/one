@@ -5915,6 +5915,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         )
     )
     screenshot('picker-inline.png')
+    tap({ id: 'one-native-control-style' })
+    const palette = await wait('palette outside Menu renders as segmented picker', (nodes) =>
+      labels(nodes).includes('Style: palette · Reject: off') &&
+      nodes.some((node) => node.AXUniqueId === 'one-native-control' && node.type === 'TabGroup' && node.frame)
+    )
+    screenshot('picker-palette.png', palette)
+    const paletteFrame = palette.find((node) => node.AXUniqueId === 'one-native-control' && node.type === 'TabGroup')?.frame
+    if (!paletteFrame) throw new Error('Palette fallback has no segmented control frame')
+    point(paletteFrame.x + paletteFrame.width * 5 / 6, paletteFrame.y + paletteFrame.height / 2)
+    await wait('palette fallback updates controlled picker selection', (nodes) =>
+      value(nodes, 'gamma') && request(nodes, 'gamma')
+    )
     tap({ id: 'one-native-control-category-date' })
     await wait(
       'compact date mounted',

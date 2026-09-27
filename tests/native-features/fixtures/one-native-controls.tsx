@@ -51,7 +51,7 @@ const initialStates: ControlStates = {
   Focus: { value: 'ready', observed: 'ready', revision: 0, externalUpdates: 0 },
 }
 
-const pickerStyles = ['segmented', 'menu', 'wheel', 'inline'] as const
+const pickerStyles = ['segmented', 'menu', 'wheel', 'inline', 'palette'] as const
 const datePickerStyles = ['compact', 'graphical', 'wheel'] as const
 const pickerOptions = [
   { label: 'Alpha', value: 'alpha' },
