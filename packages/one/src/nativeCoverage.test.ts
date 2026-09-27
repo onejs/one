@@ -18,8 +18,6 @@ const knownGaps: Record<string, string> = {
   Database: 'Android suite missing',
   'iOS.ArrangementView': 'fixture exists, no suite opens it',
   'iOS.TabViewSlot': 'no fixture or suite',
-  'iOS.ContextMenu': 'fixture exists, no suite opens it',
-  'iOS.FullScreenCover': 'fixture exists, no suite opens it',
   'iOS.ZStack': 'no fixture or suite',
   'iOS.Glass': 'no fixture or suite',
   'iOS.LabeledContent': 'no fixture or suite',
