@@ -1268,6 +1268,16 @@ override the vertical alignment. Grid rows must be direct children of a grid.
 
 ### Groups, links, and swipe actions
 
+`One.iOS.GroupBox` renders SwiftUI's standard group box around native children.
+An optional `label` renders the SwiftUI title; omitting it uses the unlabeled
+initializer. It measures its content and fills the proposed row width.
+
+```tsx
+<One.iOS.GroupBox label="Account">
+  <One.iOS.Text text="Signed in" />
+</One.iOS.GroupBox>
+```
+
 `One.iOS.ControlGroup` gathers controls into one labeled cluster with the
 SDK-derived `controlGroupStyle` (`automatic`, `palette`, `navigation`,
 `menu`, or `compactMenu`). The `label` and `systemImage` are plain strings;
