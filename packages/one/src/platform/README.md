@@ -1261,11 +1261,12 @@ other row control types and List styles still need runtime proof.
 visibility should take precedence.
 
 `swiftStyle.refreshable` on a List invokes an async callback for the native
-pull gesture and waits for its promise. For a native search field, place the
+pull gesture; the bridge waits for its promise. For a native search field, place the
 List inside `One.iOS.NavigationStack` and set the stack's
 `swiftStyle.searchable` to `{ value: query, onChange: setQuery }`. React owns
 the query and filters the List rows. An iOS 27 simulator proof covers two
-successive pulls, native search typing, and an external query update. A
+successive callback invocations, native search typing, and an external query
+update. The proof does not measure native refresh indicator duration. A
 standalone List host did not present the search field in that run; ScrollView
 refresh and search are still unproven.
 
