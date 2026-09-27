@@ -1,6 +1,6 @@
 ---
 title: iOS Groups
-description: Group, GroupBox, ViewThatFits, ControlGroup, DisclosureGroup, Divider, Link, LabeledContent, Glass, Overlay, ViewSlot, and SwipeActions under One.iOS
+description: Group, GroupBox, ViewThatFits, ZStack, Spacer, ControlGroup, DisclosureGroup, Divider, Link, LabeledContent, Glass, Overlay, ViewSlot, and SwipeActions under One.iOS
 ---
 
 Grouping views under `One.iOS`.
@@ -76,7 +76,23 @@ or children.
 ## LabeledContent
 
 `One.iOS.LabeledContent` shows a `label` with a `value` string, an optional
-`systemImage`, and optional children for a custom value view.
+`systemImage`, and optional children for a custom value view. Pass either
+`value` or children. Updating `value` from React updates the SwiftUI row.
+
+## ZStack and Spacer
+
+`One.iOS.ZStack` overlays native children and measures the largest child. Its
+`alignment` places smaller children within that measured box. `One.iOS.Spacer`
+expands within a native stack; `minLength` keeps at least that much space
+between neighboring views.
+
+```tsx
+<One.iOS.HStack>
+  <One.iOS.Text text="Leading" />
+  <One.iOS.Spacer minLength={24} />
+  <One.iOS.Text text="Trailing" />
+</One.iOS.HStack>
+```
 
 ## Glass
 
@@ -84,7 +100,9 @@ or children.
 `glassEffect` is `'regular'`, `'clear'`, or `'identity'`; `material` picks
 the SwiftUI material; `shape` picks the glass shape; `cornerRadius`
 explicitly rounds; `interactive` opts into interactive glass; `tint` and
-`colorScheme` tint and scope the effect.
+`colorScheme` tint and scope the effect. Give a standalone `Glass` a height or
+a flex parent: the surface fills the box it receives. Glass effects require
+iOS 26 or newer; `identity` removes the glass while keeping the children.
 
 ## GlassEffectContainer
 

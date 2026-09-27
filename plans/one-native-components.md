@@ -33,8 +33,9 @@ Out of scope unless an app needs it: `Table` (iPad), `NavigationSplitView` and
 
 Bound but never exercised by a suite (`tests/native-features/COVERAGE.md`):
 `ShareLink`, `ContentUnavailableView`,
-`PhotosPicker`, `WebView`, `ZStack`, `Spacer`, `LabeledContent`, `Glass`,
-`EditButton`, `EmptyView`, `TabViewSlot`. A suite per family closes these.
+`PhotosPicker`, `WebView`, `EditButton`, `EmptyView`, `TabViewSlot`.
+`ZStack`, `Spacer`, `LabeledContent`, and `Glass` now have an iOS 27 family
+suite. A suite per remaining family closes these.
 
 ## Partial screen-building behavior
 
@@ -50,7 +51,7 @@ The remaining partial surfaces are:
 | pickers | standalone controls work; `navigationLink` and `palette` Picker styles are rejected without their native container context | after core views |
 | popovers | trigger and React Native presentation body work; `attachmentAnchor` is not bound | after core views |
 | navigation | `NavigationStack` and toolbars exist; `NavigationSplitView` and `NavigationLink` are outside this lane because One owns routed navigation | coordinate before admission |
-| bound views without a suite | `ShareLink`, `ContentUnavailableView`, `PhotosPicker`, `WebView`, `ZStack`, `Spacer`, `LabeledContent`, `Glass`, `EditButton`, `EmptyView`, and `TabViewSlot` | family suites after new views |
+| bound views without a suite | `ShareLink`, `ContentUnavailableView`, `PhotosPicker`, `WebView`, `EditButton`, `EmptyView`, and `TabViewSlot` | family suites after new views |
 
 ## Order
 
@@ -134,6 +135,17 @@ accounts are unavailable).
   height, plus missing fallback and nested cases. Screenshots and trace are in
   the local ignored `tests/native-features/build/view-that-fits-v2-proof`
   directory.
+- **RAN, 2026-09-26:** the `building-blocks` suite passed on iPhone 17 Pro
+  iOS 27. It measured `ZStack` at 220×80 with the overlaid button inside
+  its bottom-trailing edge; a 60-point HStack width reduction was absorbed by
+  `Spacer`; React updated the value within a native `LabeledContent` row;
+  and tapping the `Glass` child reached React. A two-color backdrop proved
+  that regular glass softened the contrast and `identity` restored it. The
+  high review identified weak geometry and direction assertions; all four
+  were strengthened before the final passing simulator run. The coverage
+  snapshot was regenerated with `vitest run src/nativeCoverage.test.ts -u`.
+  Screenshots and trace live in the local ignored
+  `tests/native-features/build/building-blocks-proof` directory.
 - **INFERRED, 2026-09-26:** `MultiDatePicker` needs a public representation of
   SwiftUI's selected date set, so that API choice stays on a named branch for
   Nate.
