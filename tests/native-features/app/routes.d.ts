@@ -48,6 +48,7 @@ declare module 'one' {
         | `/one-native-containers`
         | `/one-native-controls`
         | `/one-native-crypto`
+        | `/one-native-database`
         | `/one-native-device`
         | `/one-native-dialogs`
         | `/one-native-document-picker`

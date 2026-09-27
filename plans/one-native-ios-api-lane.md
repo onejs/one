@@ -36,7 +36,7 @@ checklist; One's own exports and docs decide the status.
 | Share | covered | `One.iOS.Share` text, URL, and file sheet; `One.iOS.ShareLink` button | share: text/link, file preview, cancel and errors; ShareLink unproven | done |
 | Clipboard | covered | `One.Clipboard` text | clipboard | done |
 | Secure storage | partial | `One.SecureStore` key/value; no access-control options | iOS 27 manual: 10 async/sync assertions and read after reboot | P1 |
-| Plain local database | partial | `One.Database` opens OP SQLite; iOS fixture proof is absent | none | P1 |
+| Plain local database | covered | `One.Database` opens OP SQLite synchronously and asynchronously | database: parameterized query, delete, persisted row after relaunch | done |
 | Plain key/value preferences | partial | SQLite can store them; no AsyncStorage-style One API | none | P3 |
 | Biometrics | covered | `One.iOS.LocalAuthentication` policy status and biometric evaluation | local-authentication: unenrolled, enrolled, Face ID match | done |
 | Apple sign-in | covered | `One.Auth.Apple` | apple-auth fixture | done |
