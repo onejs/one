@@ -70,6 +70,7 @@ export declare const Swift: {
     Ellipse: (_props: import("./types").EllipseProps) => never;
     UnevenRoundedRectangle: (_props: import("./types").UnevenRoundedRectangleProps) => never;
     ConcentricRectangle: (_props: import("./types").ConcentricRectangleProps) => never;
+    LinearGradient: (_props: import("./types").LinearGradientProps) => never;
     VideoPlayer: (_props: import("./types").VideoPlayerProps) => never;
     PhotosPicker: (_props: import("./types").PhotosPickerProps) => never;
     WebView: (_props: import("./types").WebViewProps) => never;

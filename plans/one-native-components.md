@@ -71,6 +71,13 @@ accounts are unavailable).
 
 ## Status
 
+- **INFERRED, 2026-09-27:** the next proposed native view is SwiftUI
+  `LinearGradient(colors:startPoint:endPoint:)`, on named branch
+  `one-native-linear-gradient`. Its public representation uses an array of
+  sRGB hex colors and normalized `{ x, y }` points. That representation needs
+  Nate's approval before the branch merges; the fixture compares the existing
+  React Native gradient with the native view and reverses the native stops.
+
 - **RAN, 2026-09-27:** `One.iOS.ViewSlot name="safeAreaBarWithVerticalEdge"`
   passed a focused iPhone 17 Pro iOS 27.0 suite on ci-64 with the previously
   built arm64 One Native binary. The top action appeared immediately above its
