@@ -2050,11 +2050,57 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-lists')
     const blue = await wait('native list row background mounts', (nodes) =>
       labels(nodes).includes('Apple') && labels(nodes).includes('Row background: blue'))
-    screenshot('list-row-background-blue.png', blue)
+    const bluePath = screenshot('list-row-background-blue.png', blue)
     tap({ id: 'one-native-list-row-background' })
     const warm = await wait('React changes the native list row background', (nodes) =>
       labels(nodes).includes('Apple') && labels(nodes).includes('Row background: warm'))
-    screenshot('list-row-background-warm.png', warm)
+    const warmPath = screenshot('list-row-background-warm.png', warm)
+    const frame = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.AXLabel === label && node.frame)?.frame
+    const apple = frame(blue, 'Apple')
+    const banana = frame(blue, 'Banana')
+    const warmApple = frame(warm, 'Apple')
+    const app = blue.find((node) => node.type === 'Application')?.frame
+    if (!apple || !banana || !warmApple || !app ||
+        Math.abs(warmApple.x - apple.x) > 1 || Math.abs(warmApple.y - apple.y) > 1 ||
+        Math.abs(warmApple.width - apple.width) > 1 || Math.abs(warmApple.height - apple.height) > 1)
+      throw new Error('List row background proof lost stable Apple and Banana frames')
+    const scale = readPng(bluePath).width / app.width
+    const band = (row: NonNullable<Node['frame']>) => ({
+      x: Math.round((row.x + row.width * 0.4) * scale),
+      y: Math.round((row.y + 10) * scale),
+      width: Math.round(row.width * 0.5 * scale),
+      height: Math.round((row.height - 20) * scale),
+      isPixel: true,
+    })
+    const applePixels = countChangedPixels(bluePath, warmPath, band(apple), 8)
+    const bananaPixels = countChangedPixels(bluePath, warmPath, band(banana), 8)
+    if (applePixels.ratio < 0.9 || bananaPixels.changed > 100)
+      throw new Error(`Native list row background pixels did not stay scoped to Apple: ${JSON.stringify({ applePixels, bananaPixels })}`)
+    const sample = (file: string, row: NonNullable<Node['frame']>) => {
+      const png = readPng(file)
+      const x = Math.round((row.x + row.width * 0.75) * scale)
+      const y = Math.round((row.y + row.height / 2) * scale)
+      const at = (y * png.width + x) * 4
+      return [...png.data.subarray(at, at + 3)]
+    }
+    const near = (actual: number[], expected: number[]) =>
+      actual.every((channel, index) => Math.abs(channel - expected[index]!) <= 8)
+    const colors = {
+      blueApple: sample(bluePath, apple),
+      warmApple: sample(warmPath, warmApple),
+      blueBanana: sample(bluePath, banana),
+      warmBanana: sample(warmPath, banana),
+    }
+    if (!near(colors.blueApple, [177, 218, 253]) ||
+        !near(colors.warmApple, [254, 215, 165]) ||
+        !near(colors.blueBanana, [255, 255, 255]) ||
+        !near(colors.warmBanana, [255, 255, 255]))
+      throw new Error(`Native list row background colors differ from the requested fills: ${JSON.stringify(colors)}`)
+    fs.writeFileSync(path.join(config.artifactDir, 'list-row-background-pixels.json'),
+      JSON.stringify({ applePixels, bananaPixels, colors, appleFrame: apple, bananaFrame: banana }, null, 2))
+    checks.push({ name: 'native List paints and updates only the Apple row background', durationMs: 0 })
+    console.log(`PASS native List paints and updates only the Apple row background (${applePixels.changed} changed Apple pixels; ${bananaPixels.changed} changed Banana pixels)`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
