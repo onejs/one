@@ -3680,6 +3680,9 @@ export interface UnevenRoundedRectangleProps extends OneNativeViewProps {
   bottomTrailingRadius?: number
   topTrailingRadius?: number
 }
+export interface ConcentricRectangleProps extends OneNativeViewProps {
+  fill?: ColorValue
+}
 export interface VideoPlayerProps extends OneNativeViewProps {
   url?: string
   autoplay?: boolean
