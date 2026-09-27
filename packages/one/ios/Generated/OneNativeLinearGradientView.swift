@@ -84,7 +84,7 @@ private struct LinearGradientContent: View {
       startPoint: oneNativeLinearGradientPoint(model.startPoint, fallback: .top),
       endPoint: oneNativeLinearGradientPoint(model.endPoint, fallback: .bottom)
     )
-      .oneNativeAccessibility(model.accessibility)
+      .oneNativeAccessibility(model.accessibility, decorativeWhenUnlabeled: true)
       .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
   }
 }

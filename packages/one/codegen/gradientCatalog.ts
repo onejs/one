@@ -6,6 +6,7 @@ export const gradientControls: Control[] = [
   {
     name: 'LinearGradient',
     layout: 'fill',
+    decorativeWhenUnlabeled: true,
     fields: {
       colors: { type: 'strings', default: [], publicType: 'readonly string[]', required: true },
       startPoint: {
