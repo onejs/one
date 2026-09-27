@@ -13,6 +13,7 @@ export declare const textFieldKeyboardTypes: readonly ['default', 'number', 'dec
 export declare const textFieldImeActions: readonly ['default', 'none', 'go', 'search', 'send', 'previous', 'next', 'done'];
 export declare const textFieldCapitalizations: readonly ['none', 'characters', 'words', 'sentences'];
 export declare const progressVariants: readonly ['linear', 'circular', 'linearWavy', 'circularWavy'];
+export declare const progressStrokeCaps: readonly ['round', 'butt', 'square'];
 export declare function validateListItemProps(props: ComposeListItemProps): void;
 export declare function validateBadgeProps(props: Pick<ComposeBadgeProps, 'containerColor' | 'contentColor'>): void;
 export declare function assertComposeStyle(style: ComposeStyle | undefined): void;

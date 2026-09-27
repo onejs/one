@@ -210,7 +210,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   dismissLabel?: string
   progress?: number
   progressVariant?: ComposeProgressVariant
-  progressColors?: Pick<ComposeProgressIndicatorProps, 'color' | 'trackColor'>
+  progressOptions?: Pick<ComposeProgressIndicatorProps, 'color' | 'trackColor' | 'strokeCap' | 'gapSize' | 'strokeWidth' | 'drawStopIndicator' | 'stopSize' | 'amplitude' | 'wavelength' | 'waveSpeed'>
   onNativeComposeNodeButtonPress?: (event: unknown) => void
   onNativeComposeNodeBooleanValueChange?: (event: {
     nativeEvent: { value: boolean; eventCount: number; revision: number }
@@ -1048,16 +1048,24 @@ function ProgressIndicator({
   progress,
   color,
   trackColor,
+  strokeCap,
+  gapSize,
+  strokeWidth,
+  drawStopIndicator,
+  stopSize,
+  amplitude,
+  wavelength,
+  waveSpeed,
   ...props
 }: ComposeProgressIndicatorProps) {
-  validateProgressIndicatorProps({ variant, progress, color, trackColor })
+  validateProgressIndicatorProps({ variant, progress, color, trackColor, strokeCap, gapSize, strokeWidth, drawStopIndicator, stopSize, amplitude, wavelength, waveSpeed })
   return (
     <ComposeNode
       {...props}
       nodeType="progressindicator"
       progressVariant={variant}
       progress={progress ?? undefined}
-      progressColors={{ color, trackColor }}
+      progressOptions={{ color, trackColor, strokeCap, gapSize, strokeWidth, drawStopIndicator, stopSize, amplitude, wavelength, waveSpeed }}
     />
   )
 }

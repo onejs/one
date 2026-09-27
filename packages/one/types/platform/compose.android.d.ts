@@ -54,7 +54,7 @@ declare function TextField({ text, onTextChange, revision, label, placeholder, d
 declare function Slider({ value, onValueChange, revision, minimumValue, maximumValue, step, disabled, ...props }: ComposeSliderProps): import("react/jsx-runtime").JSX.Element;
 declare function AlertDialog({ visible, title, message, confirmLabel, dismissLabel, onConfirm, onDismiss, ...props }: ComposeAlertDialogProps): import("react/jsx-runtime").JSX.Element;
 declare function Dialog({ children, visible, onDismiss, ...props }: ComposeDialogProps): import("react/jsx-runtime").JSX.Element;
-declare function ProgressIndicator({ variant, progress, color, trackColor, ...props }: ComposeProgressIndicatorProps): import("react/jsx-runtime").JSX.Element;
+declare function ProgressIndicator({ variant, progress, color, trackColor, strokeCap, gapSize, strokeWidth, drawStopIndicator, stopSize, amplitude, wavelength, waveSpeed, ...props }: ComposeProgressIndicatorProps): import("react/jsx-runtime").JSX.Element;
 type ProgressVariantProps = Omit<ComposeProgressIndicatorProps, 'variant'>;
 declare function LinearProgressIndicator(props: ProgressVariantProps): import("react/jsx-runtime").JSX.Element;
 declare function CircularProgressIndicator(props: ProgressVariantProps): import("react/jsx-runtime").JSX.Element;
