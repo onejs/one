@@ -71,6 +71,17 @@ accounts are unavailable).
 
 ## Status
 
+- **RAN, 2026-09-27:** the `horizontal-bar` suite passed nine checks on
+  ci-64's iPhone 17 Pro / iOS 27.0 simulator with Xcode 27.1. The generated
+  SwiftUI `safeAreaBarWithHorizontalEdge` slot placed its action beside the
+  base for `leading` and `trailing`; the measured boundaries differ by under
+  0.2 point and all four elements stay inside their 280 × 180 point hosts.
+  Both native button actions reached React. The tracked
+  `tests/native-features/proofs/horizontal-bar` bundle contains two AX/PNG
+  pairs, measurements, outcome, a WebP, and source/runtime/binary receipt.
+  Generated ViewSlot and Overlay host Swift blobs match the earlier native
+  build. Other host sizes and scroll content remain unproven.
+
 - **RAN, 2026-09-27:** the `horizontal-inset` suite passed nine checks on
   ci-64's iPhone 17 Pro / iOS 27.0 simulator with Xcode 27.1. The generated
   SwiftUI `safeAreaInsetWithHorizontalEdge` slot placed its action eight points

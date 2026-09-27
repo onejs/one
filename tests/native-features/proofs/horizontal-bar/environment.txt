@@ -1,0 +1,16 @@
+suiteSourceRevision=2e39f264a9771d5a1f92bb5a3ccb7c4065540932
+nativeBuildSourceRevision=db32abfd69481fc09d1ba827056aece795f019b8
+viewSlotsSwiftSourceBlob=921f79a037e73f04379c95eaf66b83d8f57bc0f6
+overlayHostSwiftSourceBlob=4a6b4f5c1cf5adb40fdfe3f3c98f27f5a1b9f6d1
+swiftBlobsMatchNativeBuild=true
+builtOneStaticArchiveSHA256=8b573abe43f8a77acf835e9343333b8ae709b7b2d0d3509b075eef2c6fcbb339
+builtAppDebugDylibSHA256=661ed74fbaacfae807d5f48b7ab92edfe56a37b427cb3213caa35c48038c88cf
+installedAppDebugDylibSHA256=661ed74fbaacfae807d5f48b7ab92edfe56a37b427cb3213caa35c48038c88cf
+appBundle=dev.vxrn.native.tests
+device=iPhone 17 Pro (41E95D83-2AEC-4124-9655-5462F2A770DE)
+runtime=iOS 27.0 / com.apple.CoreSimulator.SimRuntime.iOS-27-0
+appearance=light
+locale=en_US
+Xcode 27.1
+Build version 27A9269
+builderHostname=MacBookPros-MacBook-Pro.local

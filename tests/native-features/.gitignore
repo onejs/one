@@ -35,3 +35,6 @@ fail-snapshot.json
 !proofs/horizontal-inset/*.png
 !proofs/horizontal-inset/*.webp
 !proofs/horizontal-inset/outcome.json
+!proofs/horizontal-bar/*.png
+!proofs/horizontal-bar/*.webp
+!proofs/horizontal-bar/outcome.json

@@ -61,7 +61,7 @@ const partialGaps: Record<string, string> = {
   'iOS.Picker': 'palette outside Menu renders segmented on iOS 27 iPhone with native tap and external selection; earlier iOS, palette inside Menu, and navigationLink context unproven',
   'iOS.ScrollView': 'vertical refreshable callback and rearm proven with a NavigationStack-hosted search field on iPhone; indicator duration, standalone search hosting, horizontal/both axes, and other modifiers unproven',
   'iOS.Section': 'spacing, margins, and header prominence proven in insetGrouped List on iPhone; other section modifiers and Form behavior unproven',
-  'iOS.ViewSlot': 'background, mask, list row background, top/bottom safe-area bar, bottom vertical inset, and leading/trailing horizontal insets in bounded hosts proven; scroll content and other named slots unproven',
+  'iOS.ViewSlot': 'background, mask, list row background, top/bottom and leading/trailing safe-area bars, bottom vertical inset, and leading/trailing horizontal insets in bounded hosts proven; scroll content and other named slots unproven',
 }
 
 type Platform = 'ios' | 'android'
