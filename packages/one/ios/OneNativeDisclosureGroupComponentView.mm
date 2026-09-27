@@ -37,10 +37,13 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeDisclosureGroupProps>(props);
+  const auto height = next.yogaStyle.dimension(facebook::yoga::Dimension::Height);
+  const bool boundedHeight = !height.isUndefined() && !height.isAuto();
   [_groupView configureWithLabel:RCTNSStringFromString(next.label)
                       isExpanded:next.isExpanded
                acknowledgedEvent:next.acknowledgedEvent
-                        revision:next.revision];
+                        revision:next.revision
+                   boundedHeight:boundedHeight];
   [super updateProps:props oldProps:oldProps];
 }
 

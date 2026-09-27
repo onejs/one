@@ -3141,6 +3141,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       host: id(nodes, 'one-native-disclosure-host')?.frame,
       afterNested: id(nodes, 'one-native-disclosure-after-nested')?.frame,
     })
+    const checkContainer = (nodes: Node[], containerId: string, afterId: string, minimumHeight: number) => {
+      const container = id(nodes, containerId)?.frame
+      const after = id(nodes, afterId)?.frame
+      if (!container || !after || container.height < minimumHeight ||
+          after.y < container.y + container.height + 10)
+        throw new Error(`Composed DisclosureGroup lacks native height: ${JSON.stringify({ containerId, container, after })}`)
+      return { container, after }
+    }
     const checkLayout = (nodes: Node[], minimumHeight: number) => {
       const { group, after } = frames(nodes)
       if (!group || !after || group.height < minimumHeight ||
@@ -3192,6 +3200,42 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         expandedHost.afterNested.y < expandedHost.host.y + expandedHost.host.height + 10)
       throw new Error(`Composed DisclosureGroup failed to grow its Host: ${JSON.stringify(expandedHost)}`)
     screenshot('disclosure-composed-expanded.png', nestedExpanded)
+    tap({ label: 'Nested details' })
+    const nestedClosed = await wait('composed DisclosureGroup collapses its Host', (nodes) =>
+      labels(nodes).includes('Nested expanded: false') && !labels(nodes).includes('Nested detail'))
+    const closedHost = checkContainer(nestedClosed, 'one-native-disclosure-host', 'one-native-disclosure-after-nested', 24)
+    if (closedHost.container.height > nestedCollapsed.host.height + 1)
+      throw new Error(`Composed DisclosureGroup did not shrink: ${JSON.stringify(closedHost)}`)
+    screenshot('disclosure-composed-collapsed.png', nestedClosed)
+    const boundedBefore = checkContainer(nestedClosed, 'one-native-disclosure-bounded', 'one-native-disclosure-after-bounded', 79)
+    if (Math.abs(boundedBefore.container.height - 80) > 1)
+      throw new Error(`Explicit DisclosureGroup height was ignored: ${JSON.stringify(boundedBefore)}`)
+    tap({ label: 'Bounded details' })
+    const boundedExpanded = await wait('explicit-height DisclosureGroup expands within its box', (nodes) =>
+      labels(nodes).includes('Bounded expanded: true') && labels(nodes).includes('Bounded detail'))
+    const boundedAfter = checkContainer(boundedExpanded, 'one-native-disclosure-bounded', 'one-native-disclosure-after-bounded', 79)
+    if (Math.abs(boundedAfter.container.height - 80) > 1 ||
+        Math.abs(boundedAfter.after.y - boundedBefore.after.y) > 1)
+      throw new Error(`Explicit DisclosureGroup height changed on expansion: ${JSON.stringify({ boundedBefore, boundedAfter })}`)
+    screenshot('disclosure-bounded-expanded.png', boundedExpanded)
+    const stackBefore = checkContainer(boundedExpanded, 'one-native-disclosure-zstack', 'one-native-disclosure-after-zstack', 24)
+    tap({ label: 'Stack details' })
+    const stackExpanded = await wait('ZStack DisclosureGroup expands through React', (nodes) =>
+      labels(nodes).includes('Stack expanded: true') && labels(nodes).includes('Stack detail'))
+    checkContainer(stackExpanded, 'one-native-disclosure-zstack', 'one-native-disclosure-after-zstack', stackBefore.container.height + 15)
+    screenshot('disclosure-zstack-expanded.png', stackExpanded)
+    tap({ label: 'Stack details' })
+    const stackClosed = await wait('ZStack DisclosureGroup collapses', (nodes) =>
+      labels(nodes).includes('Stack expanded: false') && !labels(nodes).includes('Stack detail'))
+    checkContainer(stackClosed, 'one-native-disclosure-zstack', 'one-native-disclosure-after-zstack', 24)
+    const fitsBefore = checkContainer(stackClosed, 'one-native-disclosure-fits', 'one-native-disclosure-after-fits', 24)
+    if (!labels(stackClosed).includes('Fitting details') || labels(stackClosed).includes('Fits fallback'))
+      throw new Error('ViewThatFits did not select the DisclosureGroup child')
+    tap({ label: 'Fitting details' })
+    const fitsExpanded = await wait('ViewThatFits DisclosureGroup expands through React', (nodes) =>
+      labels(nodes).includes('Fitting expanded: true') && labels(nodes).includes('Fitting detail'))
+    checkContainer(fitsExpanded, 'one-native-disclosure-fits', 'one-native-disclosure-after-fits', fitsBefore.container.height + 15)
+    screenshot('disclosure-view-that-fits-expanded.png', fitsExpanded)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

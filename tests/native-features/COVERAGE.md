@@ -24,7 +24,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Host` | dialogs, dialogs-lifecycle, host, containers, disclosure-group, view-that-fits, accessibility | n/a |  |
 | `One.iOS.HStack` | glass-container, building-blocks, tab-slot, e2e:one-native-tabview | n/a |  |
 | `One.iOS.VStack` | groups | n/a |  |
-| `One.iOS.ZStack` | building-blocks | n/a |  |
+| `One.iOS.ZStack` | building-blocks, disclosure-group | n/a |  |
 | `One.iOS.Form` | containers, popover, accessibility | n/a |  |
 | `One.iOS.Section` | containers, lists, groups, swipe-actions, edit-button, popover, accessibility | n/a |  |
 | `One.iOS.Glass` | building-blocks | n/a |  |
@@ -47,7 +47,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Link` | groups | n/a |  |
 | `One.iOS.Group` | groups | n/a |  |
 | `One.iOS.GroupBox` | group-box | n/a |  |
-| `One.iOS.ViewThatFits` | view-that-fits | n/a |  |
+| `One.iOS.ViewThatFits` | disclosure-group, view-that-fits | n/a |  |
 | `One.iOS.Overlay` | groups, view-slot | n/a |  |
 | `One.iOS.ViewSlot` | view-slot | n/a | background and bottom safe-area inset proven; other named slots unproven |
 | `One.iOS.SwipeActions` | groups, swipe-actions | n/a |  |
