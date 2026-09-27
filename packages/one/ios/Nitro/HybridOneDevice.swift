@@ -23,6 +23,23 @@ final class HybridOneDevice: HybridOneDeviceSpec {
     return promise
   }
 
+  func getLocalizationInfo() throws -> Promise<LocalizationInfo> {
+    let promise = Promise<LocalizationInfo>()
+    DispatchQueue.main.async {
+      let locale = Locale.current
+      let timeZone = TimeZone.current
+      promise.resolve(withResult: LocalizationInfo(
+        localeIdentifier: locale.identifier(.bcp47),
+        preferredLanguages: Locale.preferredLanguages,
+        calendarIdentifier: String(describing: Calendar.current.identifier),
+        timeZoneIdentifier: timeZone.identifier,
+        timeZoneOffsetSeconds: Double(timeZone.secondsFromGMT()),
+        currencyCode: locale.currency?.identifier
+      ))
+    }
+    return promise
+  }
+
   private static func idiom(_ value: UIUserInterfaceIdiom) -> String {
     switch value {
     case .phone: return "phone"

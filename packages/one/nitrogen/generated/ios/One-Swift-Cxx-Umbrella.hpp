@@ -160,6 +160,8 @@ namespace margelo::nitro::one { struct ImagePickerNativeResult; }
 namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
 // Forward declaration of `LocalBiometryType` to properly resolve imports.
 namespace margelo::nitro::one { enum class LocalBiometryType; }
+// Forward declaration of `LocalizationInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct LocalizationInfo; }
 // Forward declaration of `LocationPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class LocationPermissionStatus; }
 // Forward declaration of `LocationPlace` to properly resolve imports.
@@ -320,6 +322,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ImagePickerNativeResult.hpp"
 #include "LocalAuthenticationStatus.hpp"
 #include "LocalBiometryType.hpp"
+#include "LocalizationInfo.hpp"
 #include "LocationPermissionStatus.hpp"
 #include "LocationPlace.hpp"
 #include "LocationPosition.hpp"

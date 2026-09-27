@@ -3,14 +3,17 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 type DeviceInfo = Awaited<ReturnType<typeof One.iOS.Device.getInfo>>
+type LocalizationInfo = Awaited<ReturnType<typeof One.iOS.Device.getLocalizationInfo>>
 
 export default function OneNativeDevice() {
   const [info, setInfo] = useState<DeviceInfo | null>(null)
+  const [localization, setLocalization] = useState<LocalizationInfo | null>(null)
   const [error, setError] = useState('none')
 
   const read = async () => {
     try {
       setInfo(await One.iOS.Device.getInfo())
+      setLocalization(await One.iOS.Device.getLocalizationInfo())
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : String(cause))
     }
@@ -23,6 +26,13 @@ export default function OneNativeDevice() {
       <Text>{`Idiom: ${info?.interfaceIdiom ?? 'pending'}`}</Text>
       <Text>{`Simulator: ${info ? String(info.isSimulator) : 'pending'}`}</Text>
       <Text>{`Vendor: ${info?.vendorIdentifier ?? 'none'}`}</Text>
+      <Text>{`Locale: ${localization?.localeIdentifier ?? 'pending'}`}</Text>
+      <Text>{`Language: ${localization?.preferredLanguages[0] ?? 'pending'}`}</Text>
+      <Text>{`LanguageCount: ${localization?.preferredLanguages.length ?? 'pending'}`}</Text>
+      <Text>{`Calendar: ${localization?.calendarIdentifier ?? 'pending'}`}</Text>
+      <Text>{`TimeZone: ${localization?.timeZoneIdentifier ?? 'pending'}`}</Text>
+      <Text>{`OffsetSeconds: ${localization?.timeZoneOffsetSeconds ?? 'pending'}`}</Text>
+      <Text>{`Currency: ${localization?.currencyCode ?? 'none'}`}</Text>
       <Text>{`Error: ${error}`}</Text>
       <Pressable testID="one-native-device-read" style={styles.button} onPress={read}>
         <Text>Read device</Text>

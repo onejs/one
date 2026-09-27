@@ -15,6 +15,7 @@ namespace margelo::nitro::one {
     // load custom methods/properties
     registerHybrids(this, [](Prototype& prototype) {
       prototype.registerHybridMethod("getInfo", &HybridOneDeviceSpec::getInfo);
+      prototype.registerHybridMethod("getLocalizationInfo", &HybridOneDeviceSpec::getLocalizationInfo);
     });
   }
 

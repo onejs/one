@@ -335,6 +335,14 @@ namespace margelo::nitro::one::bridge::swift {
     };
   }
 
+  // pragma MARK: std::function<void(const LocalizationInfo& /* result */)>
+  Func_void_LocalizationInfo create_Func_void_LocalizationInfo(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_LocalizationInfo::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const LocalizationInfo& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneDeviceSpec>
   std::shared_ptr<HybridOneDeviceSpec> create_std__shared_ptr_HybridOneDeviceSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneDeviceSpec_cxx swiftPart = One::HybridOneDeviceSpec_cxx::fromUnsafe(swiftUnsafePointer);
