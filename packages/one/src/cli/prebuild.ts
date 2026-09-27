@@ -36,7 +36,7 @@ export async function run(args: { platform?: string; 'no-install'?: boolean }) {
       '[one] native.app is required: configure one({ native: { app } }) with name, ios.bundleId, and android.applicationId'
     )
   }
-  validateNativeApp(app)
+  validateNativeApp(app, args.platform)
   // an app-owned react-native config wins; only generate ours when the app
   // has none. a present config that drops One's bundle override would
   // silently Release-build with the stock bundler, so fail and say the fix.
