@@ -71,6 +71,23 @@ accounts are unavailable).
 
 ## Status
 
+- **RAN, 2026-09-27:** `One.iOS.List` and `One.iOS.Section` now accept the
+  existing `swiftStyle` modifier channel. The iPhone 17 Pro / iOS 27.0
+  simulator ran native source `db32abfd6` built with Xcode 27.1 and suite
+  source `118a7d37a`. The nine-check `list-section-modifiers` suite passed:
+  `listSectionMargins` moved the first section and its Apple row from x=36
+  to x=100 and back, `headerProminence` grew the first header from 40.33 to
+  44 points and back, and `listSectionSpacingWithCGFloat` moved the second
+  section from y=321.33 to y=415 and back. The List crop changed 302,756
+  pixels on expansion and zero on restoration. The ignored ci-64 proof at
+  `tests/native-features/build/list-section-modifiers-final-proof` contains
+  three AX/PNG pairs, geometry/pixel measurements, outcome, Xcode log,
+  generator check, environment/binary receipt, and side-by-side WebP.
+  The existing `lists` (28 checks) and `containers` (32 checks, including
+  two Form recycling cycles) suites passed on that installed binary.
+  Other section modifiers, these modifiers inside Form, and other List styles
+  remain unproven.
+
 - **RAN, 2026-09-27:** generated One Native controls now refresh their composed
   SwiftUI row when a `listRow*` SDK modifier changes. The container keeps a weak
   per-view identity so moving the same Fabric child retains its SwiftUI identity;

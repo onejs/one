@@ -510,7 +510,8 @@ export const components = [
     props: {
       listStyle: 'string',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: { listStyle: 'ListStyle' },
     layout: { kind: 'container' },
     slots: [

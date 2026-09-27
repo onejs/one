@@ -1226,6 +1226,13 @@ An empty `title` or `footer` omits that header or footer.
 groups, takes the box React Native gives it, and styles itself with the
 SDK-derived `listStyle`: `automatic` (the default), `plain`, `grouped`,
 `inset`, `insetGrouped`, or `sidebar`.
+The List's `swiftStyle` applies SwiftUI modifiers such as
+`listSectionSpacingWithCGFloat`. A Section's `swiftStyle` applies modifiers
+such as `headerProminence` and `listSectionMargins`; changing them from React
+refreshes that section in the native List.
+An iOS 27 insetGrouped List proof covers these three modifiers updating and
+restoring together. Other section modifiers and Form combinations need runtime
+proof.
 
 ```tsx
 <One.iOS.List listStyle="insetGrouped" style={{ flex: 1 }}>
