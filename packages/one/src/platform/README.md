@@ -629,6 +629,17 @@ function Notes() {
 
 ## Shapes
 
+`One.iOS.LinearGradient` paints a SwiftUI linear gradient within its assigned
+width and height. Pass `#RRGGBB` or `#RRGGBBAA` sRGB colors;
+`startPoint` and `endPoint` use normalized `{ x, y }` coordinates and default
+to top center and bottom center. React updates to `colors` repaint the native
+gradient.
+
+An empty color array leaves the box transparent; one color fills it uniformly.
+An unlabeled gradient is decorative in accessibility. Give it an
+`accessibilityLabel` if its colors convey meaning. SwiftUI and React Native
+`backgroundImage` may interpolate the same endpoint colors differently.
+
 `Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, `ConcentricRectangle`, and `Ellipse` are SwiftUI's
 shapes, one control each, named as SwiftUI names them. A shape has no ideal size
 of its own, so it takes the `width` and `height` React Native gives it, and `fill`

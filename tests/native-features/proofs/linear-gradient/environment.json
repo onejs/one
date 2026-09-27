@@ -1,0 +1,14 @@
+{
+  "sourceRevision": "42c02938b6986aa10627bc6b5e1044982928a8f0",
+  "suiteRevision": "42c02938b6986aa10627bc6b5e1044982928a8f0",
+  "device": "iPhone 17 Pro",
+  "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+  "deviceTypeIdentifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro",
+  "xcode": "Xcode 27.1\nBuild version 27A9269",
+  "appDebugDylibSHA256": "edbb196640798711933ba3585104fac3df4e0710e0e7709c22d1e71595ff5965",
+  "simulatorId": "41E95D83-2AEC-4124-9655-5462F2A770DE",
+  "bundleId": "dev.vxrn.native.tests",
+  "suite": "linear-gradient",
+  "appearance": "light",
+  "artifactDir": "tests/native-features/build/linear-gradient-final-14-proof"
+}

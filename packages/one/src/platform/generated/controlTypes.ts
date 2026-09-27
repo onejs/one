@@ -3683,6 +3683,11 @@ export interface UnevenRoundedRectangleProps extends OneNativeViewProps {
 export interface ConcentricRectangleProps extends OneNativeViewProps {
   fill?: ColorValue
 }
+export interface LinearGradientProps extends OneNativeViewProps {
+  colors: readonly string[]
+  startPoint?: Readonly<{ x: number; y: number }>
+  endPoint?: Readonly<{ x: number; y: number }>
+}
 export interface VideoPlayerProps extends OneNativeViewProps {
   url?: string
   autoplay?: boolean

@@ -1810,6 +1810,37 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeLinearGradient",
+      "publicName": "LinearGradient",
+      "props": {
+        "colors": {
+          "type": "ReadonlyArray<string>"
+        },
+        "startPoint": {
+          "type": "string"
+        },
+        "endPoint": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeVideoPlayer",
       "publicName": "VideoPlayer",
       "props": {

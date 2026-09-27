@@ -20,6 +20,7 @@ declare function RoundedRectangle(_props: Types.RoundedRectangleProps): never;
 declare function Ellipse(_props: Types.EllipseProps): never;
 declare function UnevenRoundedRectangle(_props: Types.UnevenRoundedRectangleProps): never;
 declare function ConcentricRectangle(_props: Types.ConcentricRectangleProps): never;
+declare function LinearGradient(_props: Types.LinearGradientProps): never;
 declare function VideoPlayer(_props: Types.VideoPlayerProps): never;
 declare function PhotosPicker(_props: Types.PhotosPickerProps): never;
 declare function WebView(_props: Types.WebViewProps): never;
@@ -56,6 +57,7 @@ export declare const unsupportedControls: {
     Ellipse: typeof Ellipse;
     UnevenRoundedRectangle: typeof UnevenRoundedRectangle;
     ConcentricRectangle: typeof ConcentricRectangle;
+    LinearGradient: typeof LinearGradient;
     VideoPlayer: typeof VideoPlayer;
     PhotosPicker: typeof PhotosPicker;
     WebView: typeof WebView;
