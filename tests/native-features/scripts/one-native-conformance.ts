@@ -2964,6 +2964,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       Boolean(id(nodes, 'one-native-view-slot-inset')?.frame))
     const background = id(mounted, 'one-native-view-slot-background')?.frame
     const backgroundAction = mounted.find((node) => node.AXLabel === 'Background action')?.frame
+    const overlay = id(mounted, 'one-native-view-slot-overlay')?.frame
+    const overlayBase = mounted.find((node) => node.AXLabel === 'Overlay base')?.frame
+    const overlayAction = mounted.find((node) => node.AXLabel === 'Overlay action')?.frame
     const mask = id(mounted, 'one-native-view-slot-mask')?.frame
     const inset = id(mounted, 'one-native-view-slot-inset')?.frame
     const insetBase = mounted.find((node) => node.AXLabel === 'Inset base')?.frame
@@ -2978,6 +2981,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     checks.push({ name: 'background base stays inside host and inset content follows base', durationMs: 0 })
     console.log('PASS background base stays inside host and inset content follows base')
+    if (!overlay || !overlayBase || !overlayAction ||
+        overlay.width < 250 || overlay.height < 95 ||
+        Math.abs(overlayBase.x + overlayBase.width / 2 - (overlay.x + overlay.width / 2)) > 5 ||
+        Math.abs(overlayBase.y + overlayBase.height / 2 - (overlay.y + overlay.height / 2)) > 5 ||
+        Math.abs(overlayAction.x + overlayAction.width - (overlay.x + overlay.width)) > 5 ||
+        Math.abs(overlayAction.y + overlayAction.height - (overlay.y + overlay.height)) > 5 ||
+        overlayAction.y < overlayBase.y + overlayBase.height + 10)
+      throw new Error(`Overlay.Content did not align bottomTrailing within its native base frame: ${JSON.stringify({ overlay, overlayBase, overlayAction })}`)
+    checks.push({ name: 'Overlay.Content aligns bottomTrailing while base text stays centered', durationMs: 0 })
+    console.log('PASS Overlay.Content aligns bottomTrailing while base text stays centered')
     await Bun.sleep(400)
     const initialPath = screenshot('view-slot-initial.png', mounted)
     const pixels = readPng(initialPath)

@@ -19,7 +19,10 @@ export default function OneNativeViewSlotFixture() {
         </One.iOS.ViewSlot.Content>
       </One.iOS.ViewSlot>
       <One.iOS.Overlay alignment="bottomTrailing" style={styles.overlaySlot} testID="one-native-view-slot-overlay">
-        <One.iOS.Text text="Overlay base" />
+        <One.iOS.Text
+          text="Overlay base"
+          swiftStyle={{ frameWithWidthAndHeightAndAlignment: { width: 260, height: 100, alignment: 'center' } }}
+        />
         <One.iOS.Overlay.Content>
           <One.iOS.Button label="Overlay action" onPress={() => setOverlayTaps((value) => value + 1)} />
         </One.iOS.Overlay.Content>

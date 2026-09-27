@@ -249,6 +249,17 @@ accounts are unavailable).
   offscreen sample, derives positions from the measured frame, and allows the
   view to settle before capture. The coverage table now names `mask`; the
   remaining named ViewSlot modifiers are still unproven.
+- **RAN, 2026-09-27:** the `view-slot` iPhone 17 Pro iOS 27 suite passed
+  12 checks with an explicit SwiftUI frame on its Overlay base. With only an
+  intrinsic `Text` base, `bottomTrailing` aligned the action at the glyphs,
+  visually overlapping them despite the 260×100-point React Native host.
+  Adding `swiftStyle.frameWithWidthAndHeightAndAlignment` to the base gave
+  the native overlay a 260×100-point frame: the base text stayed centered,
+  the action reached the bottom-right host edge, and the action tap still
+  reached React. Screenshot and AX trace are in local ignored
+  `tests/native-features/build/overlay-alignment-proof-4`. No native code
+  change was needed; the conformance fixture and docs now state which frame
+  SwiftUI aligns against.
 - **RAN, 2026-09-26:** a dedicated `swipe-actions` suite passed 20 checks on
   iPhone 17 Pro iOS 27 after an arm64 simulator build. Before the fix, a
   trailing action appeared after a left swipe but tapping it left the React
