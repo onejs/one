@@ -92,6 +92,7 @@ declare module 'one' {
         | `/one-native-photo-library`
         | `/one-native-pip`
         | `/one-native-popover`
+        | `/one-native-protected-store`
         | `/one-native-safe-area`
         | `/one-native-scroll-search-refresh`
         | `/one-native-secure-store`

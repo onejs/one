@@ -78,6 +78,7 @@ const suites = [
   'apple-file',
   'apple-auth',
   'local-authentication',
+  'protected-store',
   'location',
   'file-system',
   'audio',
@@ -460,6 +461,10 @@ const localAuthenticationLoaded = (nodes: Node[]) =>
       (node) =>
         node.type === 'Heading' && node.AXLabel === 'one-native-local-authentication'
     ))
+const protectedStoreLoaded = (nodes: Node[]) =>
+  (Boolean(id(nodes, 'protected-store-prepare')) && has(nodes, 'Status: ')) ||
+  (nodes.some((node) => node.type === 'Application') &&
+    nodes.some((node) => node.type === 'Heading' && node.AXLabel === 'one-native-protected-store'))
 const locationLoaded = (nodes: Node[]) =>
   (Boolean(id(nodes, 'one-native-location-request')) && has(nodes, 'Permission: ')) ||
   has(nodes, 'Allow While Using App')
@@ -600,6 +605,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'apple-file': appleFileLoaded,
   'apple-auth': appleAuthLoaded,
   'local-authentication': localAuthenticationLoaded,
+  'protected-store': protectedStoreLoaded,
   location: locationLoaded,
   'file-system': fileSystemLoaded,
   audio: audioLoaded,
@@ -672,6 +678,7 @@ const suiteHome: Record<Suite, string> = {
   'apple-file': 'nav-one-native-apple-file',
   'apple-auth': 'nav-one-native-apple-auth',
   'local-authentication': 'nav-one-native-local-authentication',
+  'protected-store': 'nav-one-native-protected-store',
   location: 'nav-one-native-location',
   'file-system': 'nav-one-native-file-system',
   audio: 'nav-one-native-audio',
@@ -819,7 +826,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   // wrong route, so bring it fully on screen before tapping it.
   const tapNav = async (testID: string) => {
     await wait(`home lists ${testID}`, (nodes) => Boolean(id(nodes, testID)), true)
-    for (let attempt = 0; attempt < 12; attempt++) {
+    for (let attempt = 0; attempt <= 12; attempt++) {
       const nodes = snapshot(config.simulatorId)
       const app = nodes.find((node) => node.type === 'Application')?.frame
       if (!app) throw new Error(`Home row ${testID} disappeared while scrolling`)
@@ -842,6 +849,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         }, true)
         return tap({ id: testID })
       }
+      // observe the position after the final swipe before declaring it unreachable.
+      if (attempt === 12) break
       // a row below the viewport needs the list pushed up, and one the swipe already
       // carried past the top needs it pulled back down: scrolling one direction only
       // walks past an overshot row and never comes back to it.
@@ -1011,6 +1020,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       { stdio: 'ignore', timeout: 30_000 }
     )
   }
+  if (config.suite === 'protected-store') {
+    execFileSync(
+      'applesimutils',
+      ['--byId', config.simulatorId, '--biometricEnrollment', 'YES'],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
+  }
   if (config.suite === 'location') {
     execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'location', config.bundleId], {
       stdio: 'ignore',
@@ -1103,6 +1119,24 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       { stdio: 'ignore', timeout: 30_000 }
     )
   launchApp()
+  // a freshly booted simulator can accept launch before its automation session is ready.
+  const automationStarted = Date.now()
+  while (true) {
+    try {
+      const [root] = JSON.parse(axe(['describe-ui'], config.simulatorId)) as Node[]
+      if (root?.type === 'Application' && root.frame) {
+        checks.push({ name: 'simulator automation session ready', durationMs: Date.now() - automationStarted })
+        console.log('PASS simulator automation session ready')
+        break
+      }
+    } catch (error) {
+      if (!String(error).includes('Timed out creating the simulator remote automation session'))
+        throw error
+    }
+    if (Date.now() - automationStarted >= config.timeout)
+      throw new Error('Simulator automation session did not become ready after launch')
+    await Bun.sleep(250)
+  }
   if (config.suite === 'sheets') {
     let expectedCount = 1
     const retained = (nodes: Node[]) =>
@@ -6453,6 +6487,51 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Result: success')
     )
     screenshot('local-auth-success.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'protected-store') {
+    const prompt = (nodes: Node[]) =>
+      nodes.some((node) => node.type === 'Application') &&
+      !id(nodes, 'protected-store-prepare') &&
+      nodes.some((node) =>
+        node.type === 'Heading' && node.AXLabel === 'one-native-protected-store')
+    const match = () => execFileSync(
+      'applesimutils', ['--byId', config.simulatorId, '--biometricMatch'],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
+    const finish = async (button: string, stage: string, name: string) => {
+      tap({ id: button })
+      await wait(`${name} presents system authentication`, prompt)
+      match()
+      await wait(`${name} completes`, (nodes) => labels(nodes).includes(`Status: ${stage}`))
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-protected-store')
+    await wait('protected store starts idle', (nodes) =>
+      labels(nodes).includes('Status: idle') && Boolean(id(nodes, 'protected-store-prepare')))
+    tap({ id: 'protected-store-prepare' })
+    await wait('both access policies create and input errors are reported', (nodes) =>
+      labels(nodes).includes('Status: prepared') &&
+      labels(nodes).includes('Result: missing=null; invalid=E_PROTECTED_STORE_INPUT; duplicate=E_PROTECTED_STORE_EXISTS'))
+    tap({ id: 'protected-store-read-biometry' })
+    await wait('current-biometry Keychain read presents system Face ID', prompt)
+    screenshot('protected-store-biometry-prompt.png')
+    match()
+    await wait('current-biometry item reads after Face ID match', (nodes) =>
+      labels(nodes).includes('Status: biometry-read') &&
+      labels(nodes).some((label) => label.includes('biometric=v1')))
+    await finish('protected-store-read-presence', 'presence-read', 'user-presence read')
+    await finish('protected-store-update', 'updated', 'protected value update')
+    await finish('protected-store-read-updated', 'updated-read', 'updated value read')
+    await finish('protected-store-delete-biometry', 'biometry-deleted', 'biometric item deletion')
+    await finish('protected-store-cleanup', 'passed', 'user-presence item deletion')
+    await wait('protected items round trip and are removed', (nodes) =>
+      labels(nodes).includes(
+        'Result: missing=null; invalid=E_PROTECTED_STORE_INPUT; duplicate=E_PROTECTED_STORE_EXISTS; biometric=v1; presence=vp; updated=v2; absent=null; missingUpdate=E_PROTECTED_STORE_NOT_FOUND'
+      ))
+    screenshot('protected-store-round-trip.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

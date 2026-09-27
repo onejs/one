@@ -442,6 +442,11 @@ const testScreens = [
     testID: 'nav-one-native-local-authentication',
   },
   {
+    href: '/one-native-protected-store',
+    label: 'One Native Protected Store',
+    testID: 'nav-one-native-protected-store',
+  },
+  {
     href: '/one-native-location',
     label: 'One Native Location',
     testID: 'nav-one-native-location',

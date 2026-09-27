@@ -130,6 +130,8 @@ namespace margelo::nitro::one { class HybridOneNetworkSpec; }
 namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 // Forward declaration of `HybridOnePhotoLibrarySpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOnePhotoLibrarySpec; }
+// Forward declaration of `HybridOneProtectedStoreSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneProtectedStoreSpec; }
 // Forward declaration of `HybridOneSecureStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
 // Forward declaration of `HybridOneShareSpec` to properly resolve imports.
@@ -270,6 +272,8 @@ namespace One { class HybridOneNetworkSpec_cxx; }
 namespace One { class HybridOneNotificationsSpec_cxx; }
 // Forward declaration of `HybridOnePhotoLibrarySpec_cxx` to properly resolve imports.
 namespace One { class HybridOnePhotoLibrarySpec_cxx; }
+// Forward declaration of `HybridOneProtectedStoreSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneProtectedStoreSpec_cxx; }
 // Forward declaration of `HybridOneSecureStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSecureStoreSpec_cxx; }
 // Forward declaration of `HybridOneShareSpec_cxx` to properly resolve imports.
@@ -340,6 +344,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOnePhotoLibrarySpec.hpp"
+#include "HybridOneProtectedStoreSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
 #include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
@@ -3229,6 +3234,27 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_std__optional_std__string__Wrapper(std::move(value));
   }
 
+  // pragma MARK: std::shared_ptr<HybridOneProtectedStoreSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneProtectedStoreSpec>`.
+   */
+  using std__shared_ptr_HybridOneProtectedStoreSpec_ = std::shared_ptr<HybridOneProtectedStoreSpec>;
+  std::shared_ptr<HybridOneProtectedStoreSpec> create_std__shared_ptr_HybridOneProtectedStoreSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneProtectedStoreSpec_(std__shared_ptr_HybridOneProtectedStoreSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneProtectedStoreSpec>
+  using std__weak_ptr_HybridOneProtectedStoreSpec_ = std::weak_ptr<HybridOneProtectedStoreSpec>;
+  inline std__weak_ptr_HybridOneProtectedStoreSpec_ weakify_std__shared_ptr_HybridOneProtectedStoreSpec_(const std::shared_ptr<HybridOneProtectedStoreSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::optional<std::string>>>>
+  using Result_std__shared_ptr_Promise_std__optional_std__string____ = Result<std::shared_ptr<Promise<std::optional<std::string>>>>;
+  inline Result_std__shared_ptr_Promise_std__optional_std__string____ create_Result_std__shared_ptr_Promise_std__optional_std__string____(const std::shared_ptr<Promise<std::optional<std::string>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::optional<std::string>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__optional_std__string____ create_Result_std__shared_ptr_Promise_std__optional_std__string____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::optional<std::string>>>>::withError(error);
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneSecureStoreSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneSecureStoreSpec>`.
@@ -3240,15 +3266,6 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneSecureStoreSpec>
   using std__weak_ptr_HybridOneSecureStoreSpec_ = std::weak_ptr<HybridOneSecureStoreSpec>;
   inline std__weak_ptr_HybridOneSecureStoreSpec_ weakify_std__shared_ptr_HybridOneSecureStoreSpec_(const std::shared_ptr<HybridOneSecureStoreSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<std::optional<std::string>>>>
-  using Result_std__shared_ptr_Promise_std__optional_std__string____ = Result<std::shared_ptr<Promise<std::optional<std::string>>>>;
-  inline Result_std__shared_ptr_Promise_std__optional_std__string____ create_Result_std__shared_ptr_Promise_std__optional_std__string____(const std::shared_ptr<Promise<std::optional<std::string>>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::optional<std::string>>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__optional_std__string____ create_Result_std__shared_ptr_Promise_std__optional_std__string____(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::optional<std::string>>>>::withError(error);
-  }
 
   // pragma MARK: Result<std::optional<std::string>>
   using Result_std__optional_std__string__ = Result<std::optional<std::string>>;

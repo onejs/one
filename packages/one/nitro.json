@@ -72,6 +72,9 @@
     "OneLocalAuthentication": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneLocalAuthentication" }
     },
+    "OneProtectedStore": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneProtectedStore" }
+    },
     "OneLocation": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneLocation" }
     },
