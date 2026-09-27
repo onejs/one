@@ -19,8 +19,6 @@ const knownGaps: Record<string, string> = {
   'iOS.ArrangementView': 'fixture exists, no suite opens it',
   'iOS.TabViewSlot': 'no fixture or suite',
   'iOS.ViewSlot': 'only the autogen fixture, which no suite opens',
-  'iOS.PhotosPicker': 'fixture exists, no suite opens it',
-  'iOS.WebView': 'fixture exists, no suite opens it',
   'iOS.EditButton': 'no fixture or suite',
   'iOS.EmptyView': 'no fixture or suite',
   'iOS.Widgets': 'needs a widget extension target in the fixture app',

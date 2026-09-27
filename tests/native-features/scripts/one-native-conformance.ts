@@ -53,6 +53,7 @@ const suites = [
   'group-box',
   'building-blocks',
   'share-empty',
+  'web-photos',
   'view-that-fits',
   'cover-context',
   'popover',
@@ -352,6 +353,11 @@ const buildingBlocksLoaded = (nodes: Node[]) =>
 const shareEmptyLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-share-empty-screen'))
+const webPhotosLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  (Boolean(id(nodes, 'one-native-web-photos-screen')) ||
+    // PhotosUI runs in another process and collapses the app accessibility snapshot.
+    nodes.every((n) => n.type === 'Application'))
 const viewThatFitsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-view-that-fits-width')) &&
@@ -512,6 +518,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'group-box': groupBoxLoaded,
   'building-blocks': buildingBlocksLoaded,
   'share-empty': shareEmptyLoaded,
+  'web-photos': webPhotosLoaded,
   'view-that-fits': viewThatFitsLoaded,
   'cover-context': coverContextLoaded,
   popover: popoverLoaded,
@@ -570,6 +577,7 @@ const suiteHome: Record<Suite, string> = {
   'group-box': 'nav-one-native-group-box',
   'building-blocks': 'nav-one-native-building-blocks',
   'share-empty': 'nav-one-native-share-empty',
+  'web-photos': 'nav-one-native-web-photos',
   'view-that-fits': 'nav-one-native-view-that-fits',
   'cover-context': 'nav-one-native-cover-context',
   popover: 'nav-one-native-popover',
@@ -3030,6 +3038,102 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('No Results') &&
       labels(nodes).includes('Nothing has been indexed yet, so there is nothing to show.'))
     screenshot('content-unavailable-dismiss.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'web-photos') {
+    const webEventCount = (nodes: Node[]) =>
+      Number(labels(nodes).find((label) => label.startsWith('Web loading events: '))?.slice('Web loading events: '.length))
+    const activityAt = (x: number, y: number): Node | undefined => {
+      try {
+        return JSON.parse(axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)) as Node
+      } catch (error) {
+        if (String(error).includes('fullscreen dialog')) return undefined
+        throw error
+      }
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-web-photos')
+    const first = await wait('WebView loads local document A and reports its title', (nodes) =>
+      Boolean(id(nodes, 'one-native-web-photos-webview')?.frame) &&
+      labels(nodes).includes('Web title: Local A') &&
+      labels(nodes).includes('Web loading: false') &&
+      labels(nodes).includes('Web progress: 100') &&
+      labels(nodes).includes('Web URL: about:blank') &&
+      labels(nodes).includes('Document index: 0'))
+    const webFrame = id(first, 'one-native-web-photos-webview')!.frame!
+    if (Math.abs(webFrame.height - 260) > 3)
+      throw new Error(`WebView did not fill its assigned height: ${JSON.stringify(webFrame)}`)
+    const initialEvents = webEventCount(first)
+    if (!Number.isFinite(initialEvents) || initialEvents < 1)
+      throw new Error(`WebView did not report its initial loading events: ${initialEvents}`)
+    const firstImage = screenshot('web-document-a.png', first)
+    tap({ id: 'one-native-web-photos-swap' })
+    const second = await wait('React swaps the native WebView to document B', (nodes) =>
+      labels(nodes).includes('Document index: 1') &&
+      labels(nodes).includes('Web title: Local B') &&
+      labels(nodes).includes('Web loading: false') &&
+      labels(nodes).includes('Web progress: 100') &&
+      webEventCount(nodes) > initialEvents)
+    const secondImage = screenshot('web-document-b.png', second)
+    const appWidth = second.find((node) => node.type === 'Application')?.frame?.width
+    if (!appWidth) throw new Error('WebView visual proof has no application width')
+    const scale = readPng(firstImage).width / appWidth
+    const webPixels = countChangedPixels(firstImage, secondImage, {
+      x: webFrame.x * scale,
+      y: webFrame.y * scale,
+      width: webFrame.width * scale,
+      height: webFrame.height * scale,
+      isPixel: true,
+    }, 20)
+    if (webPixels.ratio < 0.5)
+      throw new Error(`WebView did not repaint its local HTML: ${JSON.stringify(webPixels)}`)
+    const sample = (file: string) => {
+      const image = readPng(file)
+      const x = Math.round((webFrame.x + webFrame.width * 0.8) * scale)
+      const y = Math.round((webFrame.y + webFrame.height * 0.8) * scale)
+      const at = (y * image.width + x) * 4
+      return [image.data[at], image.data[at + 1], image.data[at + 2]]
+    }
+    const near = (actual: number[], expected: number[]) =>
+      actual.every((value, index) => Math.abs(value - expected[index]) <= 18)
+    const firstColor = sample(firstImage)
+    const secondColor = sample(secondImage)
+    if (!near(firstColor, [217, 240, 209]) || !near(secondColor, [215, 230, 255]))
+      throw new Error(`WebView captures lack their expected HTML backgrounds: ${JSON.stringify({ firstColor, secondColor })}`)
+    execFileSync('xcrun', [
+      'simctl', 'addmedia', config.simulatorId,
+      fileURLToPath(new URL('../assets/one-native-picker-portrait.heic', import.meta.url)),
+    ])
+    tap({ id: 'one-native-web-photos-photos-tab' })
+    const photos = await wait('native PhotosPicker mounts', (nodes) =>
+      labels(nodes).includes('Category: Photos') &&
+      Boolean(id(nodes, 'one-native-web-photos-picker')?.frame) &&
+      labels(nodes).includes('Choose photo'))
+    screenshot('photos-picker-closed.png', photos)
+    tap({ label: 'Choose photo' })
+    const picker = await wait("PhotosPicker opens Apple's photo selection UI", (nodes) => {
+      const cell = activityAt(70, 370)
+      const appPid = nodes.find((node) => node.type === 'Application')?.pid
+      return cell?.type === 'Image' && cell.AXLabel?.startsWith('Photo,') === true &&
+        cell.pid !== appPid
+    })
+    screenshot('photos-picker-open.png', picker)
+    point(70, 370)
+    const selected = await wait('PhotosPicker delivers one copied image to React', (nodes) =>
+      labels(nodes).includes('Picked count: 1') &&
+      labels(nodes).includes('Picked index: 0') &&
+      labels(nodes).includes('Pick error: ') &&
+      labels(nodes).some((label) => label.startsWith('Picked URL: file://')))
+    const url = labels(selected).find((label) => label.startsWith('Picked URL: file://'))!.slice('Picked URL: '.length)
+    const copied = fileURLToPath(url)
+    if (!fs.existsSync(copied) || fs.statSync(copied).size === 0)
+      throw new Error(`PhotosPicker did not copy the chosen image to a readable file: ${url}`)
+    const dimensions = execFileSync('sips', ['-g', 'pixelWidth', '-g', 'pixelHeight', copied], { encoding: 'utf8' })
+    if (!/pixelWidth: 120\b/.test(dimensions) || !/pixelHeight: 80\b/.test(dimensions))
+      throw new Error(`PhotosPicker copied a photo other than the seeded 120×80 image: ${dimensions}`)
+    screenshot('photos-picker-picked.png', selected)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

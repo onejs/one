@@ -32,10 +32,10 @@ Out of scope unless an app needs it: `Table` (iPad), `NavigationSplitView` and
 `TimelineView`/`Canvas` (closures over native state), document and scene types.
 
 Bound but never exercised by a suite (`tests/native-features/COVERAGE.md`):
-`PhotosPicker`, `WebView`, `EditButton`, `EmptyView`, `TabViewSlot`.
+`EditButton`, `EmptyView`, `TabViewSlot`.
 `ZStack`, `Spacer`, `LabeledContent`, and `Glass` now have an iOS 27 family
-suite, as do `ShareLink` and `ContentUnavailableView`. A suite per remaining
-family closes these.
+suite, as do `ShareLink`, `ContentUnavailableView`, `PhotosPicker`, and
+`WebView`. A suite per remaining family closes these.
 
 ## Partial screen-building behavior
 
@@ -51,7 +51,7 @@ The remaining partial surfaces are:
 | pickers | standalone controls work; `navigationLink` and `palette` Picker styles are rejected without their native container context | after core views |
 | popovers | trigger and React Native presentation body work; `attachmentAnchor` is not bound | after core views |
 | navigation | `NavigationStack` and toolbars exist; `NavigationSplitView` and `NavigationLink` are outside this lane because One owns routed navigation | coordinate before admission |
-| bound views without a suite | `PhotosPicker`, `WebView`, `EditButton`, `EmptyView`, and `TabViewSlot` | family suites after new views |
+| bound views without a suite | `EditButton`, `EmptyView`, and `TabViewSlot` | family suites after new views |
 
 ## Order
 
@@ -160,6 +160,19 @@ accounts are unavailable).
   fixture prevents the coverage snapshot from claiming nearby PhotosPicker
   and WebView. The final screenshot and trace are in the local ignored
   `tests/native-features/build/share-empty-final-proof` directory.
+- **RAN, 2026-09-26:** the `web-photos` suite passed on iPhone 17 Pro iOS 27.
+  It loaded two local HTML documents into SwiftUI `WebView`, received each
+  title, `about:blank` navigation, settled progress, and a new loading event
+  on the React-driven swap. The proof matched each document's distinct HTML
+  background color as well as a change in more than half the WebView pixels.
+  The suite seeds a known HEIC image in the simulator photo library, opens
+  Apple's out-of-process `PhotosPicker`, selects one photo, and verifies the
+  React callback's index and count plus a nonempty copied temporary file with
+  the seed's 120×80 dimensions. The high review identified the need to identify
+  both rendered documents and the selected seed; these checks passed on the
+  final simulator run. The generated coverage snapshot was refreshed with
+  `vitest -u`. Screenshots and trace live in the local ignored
+  `tests/native-features/build/web-photos-reviewed-proof` directory.
 - **INFERRED, 2026-09-26:** `MultiDatePicker` needs a public representation of
   SwiftUI's selected date set, so that API choice stays on a named branch for
   Nate.
