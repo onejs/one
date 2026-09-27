@@ -53,6 +53,7 @@ const suites = [
   'group-box',
   'building-blocks',
   'view-slot',
+  'swipe-actions',
   'share-empty',
   'web-photos',
   'tab-slot',
@@ -358,6 +359,9 @@ const buildingBlocksLoaded = (nodes: Node[]) =>
 const viewSlotLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-view-slot-screen'))
+const swipeActionsLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-swipe-actions-screen'))
 const shareEmptyLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-share-empty-screen'))
@@ -538,6 +542,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'group-box': groupBoxLoaded,
   'building-blocks': buildingBlocksLoaded,
   'view-slot': viewSlotLoaded,
+  'swipe-actions': swipeActionsLoaded,
   'share-empty': shareEmptyLoaded,
   'web-photos': webPhotosLoaded,
   'tab-slot': tabSlotLoaded,
@@ -602,6 +607,7 @@ const suiteHome: Record<Suite, string> = {
   'group-box': 'nav-one-native-group-box',
   'building-blocks': 'nav-one-native-building-blocks',
   'view-slot': 'nav-one-native-view-slot',
+  'swipe-actions': 'nav-one-native-swipe-actions',
   'share-empty': 'nav-one-native-share-empty',
   'web-photos': 'nav-one-native-web-photos',
   'tab-slot': 'nav-one-native-tab-slot',
@@ -3028,6 +3034,97 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const tapped = await wait('safe-area inset slot action reaches React', (nodes) =>
       labels(nodes).includes('Inset taps: 1'))
     screenshot('view-slot-tapped.png', tapped)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'swipe-actions') {
+    const rowFrame = (nodes: Node[]) => {
+      const frame = nodes.find((node) => node.AXLabel === 'Swipe target')?.frame
+      if (!frame) throw new Error('SwipeActions row has no native frame')
+      return frame
+    }
+    const swipeRow = (nodes: Node[], left: boolean) => {
+      const frame = rowFrame(nodes)
+      const x = Math.round(frame.x + frame.width / 2)
+      const y = Math.round(frame.y + frame.height / 2)
+      axe([
+        'swipe',
+        '--start-x', String(left ? x + 40 : x - 40),
+        '--start-y', String(y),
+        '--end-x', String(left ? x - 40 : x + 40),
+        '--end-y', String(y),
+        '--duration', '0.3',
+      ], config.simulatorId)
+    }
+    const fullSwipeRow = (nodes: Node[], left: boolean) => {
+      const frame = rowFrame(nodes)
+      const y = Math.round(frame.y + frame.height / 2)
+      axe([
+        'swipe',
+        '--start-x', String(Math.round(left ? frame.x + frame.width - 8 : frame.x + 8)),
+        '--start-y', String(y),
+        '--end-x', String(Math.round(left ? frame.x + 8 : frame.x + frame.width - 8)),
+        '--end-y', String(y),
+        '--duration', '0.25',
+      ], config.simulatorId)
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-swipe-actions')
+    const mounted = await wait('native List row mounts both SwipeActions groups', (nodes) =>
+      labels(nodes).includes('Swipe target') &&
+      labels(nodes).includes('Pin taps: 0') &&
+      labels(nodes).includes('Archive taps: 0') &&
+      Boolean(id(nodes, 'one-native-swipe-actions-list')?.frame) &&
+      Boolean(nodes.find((node) => node.AXLabel === 'Swipe target')?.frame))
+    screenshot('swipe-actions-initial.png', mounted)
+    swipeRow(mounted, true)
+    const trailing = await wait('left swipe reveals trailing Archive action', (nodes) =>
+      labels(nodes).includes('Archive'))
+    screenshot('swipe-actions-trailing.png', trailing)
+    tap({ label: 'Archive' })
+    const archived = await wait('trailing Archive action reaches React', (nodes) =>
+      labels(nodes).includes('Archive taps: 1'))
+    swipeRow(archived, false)
+    const leading = await wait('right swipe reveals leading Pin action', (nodes) =>
+      labels(nodes).includes('Pin'))
+    screenshot('swipe-actions-leading.png', leading)
+    tap({ label: 'Pin' })
+    await wait('leading Pin action reaches React', (nodes) =>
+      labels(nodes).includes('Pin taps: 1'))
+    const closed = await wait('leading action closes after its tap', (nodes) =>
+      labels(nodes).includes('Pin taps: 1') && !labels(nodes).includes('Pin'))
+    fullSwipeRow(closed, true)
+    const fullArchived = await wait('trailing default full swipe invokes Archive', (nodes) =>
+      labels(nodes).includes('Archive taps: 2'))
+    screenshot('swipe-actions-full-trailing.png', fullArchived)
+    const beforeFullLeading = await wait('row closes before disabled full swipe', (nodes) =>
+      labels(nodes).includes('Archive taps: 2') && !labels(nodes).includes('Pin'))
+    screenshot('swipe-actions-before-full-leading.png', beforeFullLeading)
+    fullSwipeRow(beforeFullLeading, false)
+    const fullLeading = await wait('leading full swipe reveals Pin without invoking it', (nodes) =>
+      labels(nodes).includes('Pin') && labels(nodes).includes('Pin taps: 1'))
+    screenshot('swipe-actions-full-leading.png', fullLeading)
+    await new Promise((resolve) => setTimeout(resolve, 500))
+    if (!labels(snapshot(config.simulatorId)).includes('Pin taps: 1'))
+      throw new Error('allowsFullSwipe=false invoked the leading Pin action')
+    tap({ label: 'Pin' })
+    const final = await wait('leading action remains tappable after disabled full swipe', (nodes) =>
+      labels(nodes).includes('Pin taps: 2'))
+    screenshot('swipe-actions-tapped.png', final)
+    tap({ label: 'index' })
+    await wait('SwipeActions remount returns to home', () => true, true)
+    await tapNav('nav-one-native-swipe-actions')
+    const remounted = await wait('fresh SwipeActions row resets React counters', (nodes) =>
+      labels(nodes).includes('Swipe target') &&
+      labels(nodes).includes('Pin taps: 0') && labels(nodes).includes('Archive taps: 0'))
+    swipeRow(remounted, true)
+    await wait('trailing action reappears after remount', (nodes) =>
+      labels(nodes).includes('Archive'))
+    tap({ label: 'Archive' })
+    const reused = await wait('trailing action remains active after remount', (nodes) =>
+      labels(nodes).includes('Archive taps: 1'))
+    screenshot('swipe-actions-remounted.png', reused)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

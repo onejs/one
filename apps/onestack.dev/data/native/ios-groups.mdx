@@ -153,4 +153,22 @@ simulator.
 `One.iOS.SwipeActions.Actions` groups the action buttons with `edge`
 (`'leading'` or `'trailing'`) and `allowsFullSwipe`.
 
+```tsx
+<One.iOS.List>
+  <One.iOS.SwipeActions>
+    <One.iOS.Text text="Message" />
+    <One.iOS.SwipeActions.Actions edge="leading" allowsFullSwipe={false}>
+      <One.iOS.Button label="Pin" onPress={pinMessage} />
+    </One.iOS.SwipeActions.Actions>
+    <One.iOS.SwipeActions.Actions edge="trailing">
+      <One.iOS.Button label="Archive" onPress={archiveMessage} />
+    </One.iOS.SwipeActions.Actions>
+  </One.iOS.SwipeActions>
+</One.iOS.List>
+```
+
+On iOS 27, the conformance fixture shows that a full trailing swipe invokes
+Archive by default. With `allowsFullSwipe={false}`, a full leading swipe
+reveals Pin without invoking it; the revealed button remains tappable.
+
 On web and Android these views throw. Keep them behind a platform check.

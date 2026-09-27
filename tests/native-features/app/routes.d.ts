@@ -69,6 +69,7 @@ declare module 'one' {
         | `/one-native-group-box`
         | `/one-native-view-that-fits`
         | `/one-native-view-slot`
+        | `/one-native-swipe-actions`
         | `/one-native-groups`
         | `/one-native-haptics`
         | `/one-native-host`
