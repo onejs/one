@@ -56,6 +56,7 @@ declare module 'one' {
         | `/one-native-device`
         | `/one-native-dialogs`
         | `/one-native-document-picker`
+        | `/one-native-edit-button`
         | `/one-native-editors`
         | `/one-native-effects`
         | `/one-native-fetch`

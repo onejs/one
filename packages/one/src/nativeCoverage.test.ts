@@ -18,7 +18,6 @@ const knownGaps: Record<string, string> = {
   Database: 'Android suite missing',
   'iOS.ArrangementView': 'fixture exists, no suite opens it',
   'iOS.ViewSlot': 'only the autogen fixture, which no suite opens',
-  'iOS.EditButton': 'no fixture or suite',
   'iOS.Widgets': 'needs a widget extension target in the fixture app',
   'iOS.LiveActivities': 'needs a widget extension target in the fixture app',
   'iOS.WidgetUI': 'needs a widget extension target in the fixture app',
@@ -59,6 +58,7 @@ const knownGaps: Record<string, string> = {
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
   'iOS.TabViewSlot': 'bottom accessory proven on iPhone; sidebar slots need iPad sidebar proof',
+  'iOS.EditButton': 'Edit/Done label cycle proven; List edit state unobserved and row actions unavailable',
 }
 
 type Platform = 'ios' | 'android'

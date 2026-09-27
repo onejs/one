@@ -31,8 +31,8 @@ Out of scope unless an app needs it: `Table` (iPad), `NavigationSplitView` and
 `NavigationLink` (navigation is One's, see `one-native-coverage.md`),
 `TimelineView`/`Canvas` (closures over native state), document and scene types.
 
-Bound but never exercised by a suite (`tests/native-features/COVERAGE.md`):
-`EditButton`.
+The previously bound but unexercised `EditButton` and `EmptyView` now have
+focused suites. The sidebar-only `TabViewSlot` variants still need iPad proof.
 `ZStack`, `Spacer`, `LabeledContent`, and `Glass` now have an iOS 27 family
 suite, as do `ShareLink`, `ContentUnavailableView`, `PhotosPicker`, and
 `WebView`. A suite per remaining family closes these.
@@ -51,7 +51,7 @@ The remaining partial surfaces are:
 | pickers | standalone controls work; `navigationLink` and `palette` Picker styles are rejected without their native container context | after core views |
 | popovers | trigger and React Native presentation body work; `attachmentAnchor` is not bound | after core views |
 | navigation | `NavigationStack` and toolbars exist; `NavigationSplitView` and `NavigationLink` are outside this lane because One owns routed navigation | coordinate before admission |
-| bound views without a suite | `EditButton` | family suite after new views |
+| list editing | `EditButton` label toggles Edit/Done; `List` edit state has no independent observer and delete/move row actions are unavailable | after core views |
 
 ## Order
 
@@ -189,3 +189,11 @@ accounts are unavailable).
   was refreshed with `vitest -u`; screenshots and trace are in the local
   ignored `tests/native-features/build/tab-slot-final-proof` directory.
   The three sidebar slot names remain partial until an iPad sidebar run.
+- **RAN, 2026-09-26:** the `edit-button` suite passed on iPhone 17 Pro iOS 27.
+  A SwiftUI `EditButton` composed as a native `List` row changed its own
+  accessibility label from Edit to Done and back across two taps while the
+  List rows remained mounted. This proves the native control label cycle;
+  the List's edit state has no independent observable effect in this fixture.
+  List row deletion and movement remain unavailable in the public API.
+  Screenshots and trace are in the local ignored
+  `tests/native-features/build/edit-button-final-proof` directory.
