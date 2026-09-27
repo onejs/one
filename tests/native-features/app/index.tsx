@@ -166,6 +166,11 @@ const testScreens = [
     testID: 'nav-one-native-host',
   },
   {
+    href: '/one-native-control-size',
+    label: 'One Native Control Size',
+    testID: 'nav-one-native-control-size',
+  },
+  {
     href: '/one-native-containers',
     label: 'One Native Containers',
     testID: 'nav-one-native-containers',

@@ -20,8 +20,6 @@ export default function OneNativeHost() {
   const [label, setLabel] = useState('Toggle')
   const [height, setHeight] = useState(0)
   const [width, setWidth] = useState(0)
-  const [probeSize, setProbeSize] = useState<'mini' | 'extraLarge'>('mini')
-  const [probeTaps, setProbeTaps] = useState(0)
 
   return (
     <View style={styles.screen} testID="one-native-host-screen">
@@ -131,32 +129,6 @@ export default function OneNativeHost() {
       <Text testID="one-native-host-control-size" style={styles.line}>
         {`ControlSize: ${controlSize ?? 'inherited'}`}
       </Text>
-      <Pressable
-        testID="one-native-host-size-probe-toggle"
-        style={styles.chip}
-        onPress={() => setProbeSize((value) => value === 'mini' ? 'extraLarge' : 'mini')}
-      >
-        <Text>{`Probe size: ${probeSize}`}</Text>
-      </Pressable>
-      <One.iOS.Host controlSize={probeSize} style={styles.probeHost}>
-        <One.iOS.Button
-          label="Inherited size"
-          buttonStyle="borderedProminent"
-          testID="one-native-host-size-inherited"
-          onPress={() => setProbeTaps((value) => value + 1)}
-        />
-      </One.iOS.Host>
-      <One.iOS.Button
-        label="Direct size"
-        buttonStyle="borderedProminent"
-        swiftStyle={{ controlSize: probeSize }}
-        style={styles.probeButton}
-        testID="one-native-host-size-direct"
-        onPress={() => setProbeTaps((value) => value + 1)}
-      />
-      <Text testID="one-native-host-size-probe-taps" style={styles.line}>
-        {`Probe taps: ${probeTaps}`}
-      </Text>
     </View>
   )
 }
@@ -172,7 +144,5 @@ const styles = StyleSheet.create({
   },
   chipOn: { backgroundColor: '#cfe2ff' },
   host: { backgroundColor: '#f2f5ff' },
-  probeHost: { width: 200 },
-  probeButton: { width: 200 },
   line: { fontSize: 14 },
 })

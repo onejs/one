@@ -34,6 +34,7 @@ const suites = [
   'dialogs',
   'dialogs-lifecycle',
   'host',
+  'control-size',
   'containers',
   'lists',
   'list-row-background',
@@ -304,6 +305,10 @@ const hostLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-host-expand')) &&
   has(nodes, 'Host: ')
+const controlSizeLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-control-size-screen')) &&
+  Boolean(id(nodes, 'one-native-control-size-toggle'))
 const containersLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-container-extra')) &&
@@ -582,6 +587,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   dialogs: dialogsLoaded,
   'dialogs-lifecycle': dialogsLifecycleLoaded,
   host: hostLoaded,
+  'control-size': controlSizeLoaded,
   containers: containersLoaded,
   lists: listsLoaded,
   'list-row-background': listsLoaded,
@@ -661,6 +667,7 @@ const suiteHome: Record<Suite, string> = {
   dialogs: 'nav-one-native-dialogs',
   'dialogs-lifecycle': 'nav-one-native-dialogs',
   host: 'nav-one-native-host',
+  'control-size': 'nav-one-native-control-size',
   containers: 'nav-one-native-containers',
   lists: 'nav-one-native-lists',
   'list-row-background': 'nav-one-native-lists',
@@ -5289,15 +5296,56 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
+  if (config.suite === 'control-size') {
+    const frames = (nodes: Node[]) => ({
+      inherited: id(nodes, 'one-native-control-size-inherited')?.frame,
+      direct: id(nodes, 'one-native-control-size-direct')?.frame,
+    })
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-control-size')
+    const mini = await wait('mini native Buttons mount', (nodes) => {
+      const value = frames(nodes)
+      return labels(nodes).includes('Control size: mini') && Boolean(value.inherited && value.direct)
+    })
+    const miniFrames = frames(mini)
+    screenshot('control-size-mini.png', mini)
+    tap({ id: 'one-native-control-size-toggle' })
+    const large = await wait('extraLarge grows inherited and direct native Buttons', (nodes) => {
+      const value = frames(nodes)
+      return Boolean(
+        labels(nodes).includes('Control size: extraLarge') &&
+        value.inherited && value.direct && miniFrames.inherited && miniFrames.direct &&
+        value.inherited.height >= miniFrames.inherited.height + 4 &&
+        value.direct.height >= miniFrames.direct.height + 4
+      )
+    })
+    screenshot('control-size-extra-large.png', large)
+    tap({ id: 'one-native-control-size-inherited' })
+    tap({ id: 'one-native-control-size-direct' })
+    await wait('resized native Buttons dispatch to React', (nodes) =>
+      labels(nodes).includes('Control taps: 2')
+    )
+    tap({ id: 'one-native-control-size-toggle' })
+    const restored = await wait('mini restores both native Button heights', (nodes) => {
+      const value = frames(nodes)
+      return Boolean(
+        labels(nodes).includes('Control size: mini') &&
+        value.inherited && value.direct && miniFrames.inherited && miniFrames.direct &&
+        Math.abs(value.inherited.height - miniFrames.inherited.height) <= 2 &&
+        Math.abs(value.direct.height - miniFrames.direct.height) <= 2
+      )
+    })
+    screenshot('control-size-restored.png', restored)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
   if (config.suite === 'host') {
     const status = (nodes: Node[], label: string, expected: string | number) =>
       labels(nodes).includes(`${label}: ${expected}`)
-    const hostWidth = (nodes: Node[]) =>
-      Math.round((id(nodes, 'one-native-host-screen')?.frame?.width ?? 0) - 32)
     // SwiftUI does not publish Host itself as an accessibility element. Require its native
     // onLayout receipt and independently calculate the exact frame union of its rendered children.
-    const size = (nodes: Node[], height: number) => {
-      const width = hostWidth(nodes)
+    const size = (nodes: Node[], width: number, height: number) => {
       const frames = nodes
         .filter(
           (node) =>
@@ -5333,7 +5381,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'one composed child measures its own height',
       (n) =>
-        size(n, 28) &&
+        size(n, 361, 28) &&
         Boolean(control(n, 'CheckBox', 'Toggle')) &&
         status(n, 'IsOn', 'false') &&
         status(n, 'Changes', 0)
@@ -5355,7 +5403,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'children mounted later grow the host',
       (n) =>
-        size(n, 84) &&
+        size(n, 361, 84) &&
         Boolean(control(n, 'Button', 'Composed button')) &&
         Boolean(control(n, 'Button', 'Composed stepper, Increment'))
     )
@@ -5378,7 +5426,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'a wrapping label on a composed child regrows the host',
       (n) =>
-        size(n, 107) &&
+        size(n, 361, 107) &&
         Boolean(
           control(
             n,
@@ -5388,16 +5436,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         )
     )
     tap({ id: 'one-native-host-relabel' })
-    await wait('the shorter label shrinks it back', (n) => size(n, 84))
+    await wait('the shorter label shrinks it back', (n) => size(n, 361, 84))
 
     tap({ id: 'one-native-host-spacing-20' })
-    await wait('spacing adds exactly two gaps', (n) => size(n, 124))
+    await wait('spacing adds exactly two gaps', (n) => size(n, 361, 124))
     tap({ id: 'one-native-host-spacing-0' })
-    await wait('removing spacing restores the packed height', (n) => size(n, 84))
+    await wait('removing spacing restores the packed height', (n) => size(n, 361, 84))
 
     tap({ id: 'one-native-host-axis-horizontal' })
     tap({ id: 'one-native-host-expand' })
-    await wait('a single horizontal child measures the same', (n) => size(n, 28))
+    await wait('a single horizontal child measures the same', (n) => size(n, 361, 28))
     tap({ id: 'one-native-host-expand' })
     await wait('horizontal children lay out across the row', (n) => {
       const toggle = control(n, 'CheckBox', 'Toggle')?.frame
@@ -5410,7 +5458,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         button &&
         decrement &&
         increment &&
-        status(n, 'Host', `${hostWidth(n)} x 128`) &&
+        status(n, 'Host', '361 x 128') &&
         pixels(toggle.x + toggle.width) <= pixels(button.x) &&
         pixels(button.x + button.width) <= pixels(decrement.x) &&
         pixels(decrement.x + decrement.width) === pixels(increment.x) &&
@@ -5422,7 +5470,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-host-axis-vertical' })
     tap({ id: 'one-native-host-expand' })
     await wait('returning to one vertical child restores the height', (n) =>
-      size(n, 28)
+      size(n, 361, 28)
     )
 
     for (const cycle of [1, 2]) {
@@ -5431,7 +5479,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await tapNav('nav-one-native-host')
       await wait(
         `host recycle ${cycle}: fresh host measures again`,
-        (n) => size(n, 28) && status(n, 'IsOn', 'false') && status(n, 'Changes', 0)
+        (n) => size(n, 361, 28) && status(n, 'IsOn', 'false') && status(n, 'Changes', 0)
       )
       await pressSwitch()
       await wait(
@@ -5439,45 +5487,6 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         (n) => status(n, 'IsOn', 'true') && status(n, 'Changes', 1)
       )
     }
-    const probeFrames = (nodes: Node[]) => ({
-      inherited: id(nodes, 'one-native-host-size-inherited')?.frame,
-      direct: id(nodes, 'one-native-host-size-direct')?.frame,
-    })
-    const mini = await wait('mini control size mounts in Host and direct Button', (n) => {
-      const frames = probeFrames(n)
-      return labels(n).includes('Probe size: mini') && Boolean(frames.inherited && frames.direct)
-    })
-    const miniFrames = probeFrames(mini)
-    screenshot('host-control-size-mini.png', mini)
-    tap({ id: 'one-native-host-size-probe-toggle' })
-    const extraLarge = await wait('extraLarge control size grows both native Buttons', (n) => {
-      const frames = probeFrames(n)
-      return Boolean(
-        labels(n).includes('Probe size: extraLarge') &&
-        frames.inherited && frames.direct &&
-        miniFrames.inherited && miniFrames.direct &&
-        frames.inherited.height >= miniFrames.inherited.height + 4 &&
-        frames.direct.height >= miniFrames.direct.height + 4
-      )
-    })
-    screenshot('host-control-size-extra-large.png', extraLarge)
-    tap({ id: 'one-native-host-size-inherited' })
-    tap({ id: 'one-native-host-size-direct' })
-    await wait('resized native Buttons still dispatch to React', (n) =>
-      labels(n).includes('Probe taps: 2')
-    )
-    tap({ id: 'one-native-host-size-probe-toggle' })
-    const restored = await wait('mini control size restores both native Button heights', (n) => {
-      const frames = probeFrames(n)
-      return Boolean(
-        labels(n).includes('Probe size: mini') &&
-        frames.inherited && frames.direct &&
-        miniFrames.inherited && miniFrames.direct &&
-        Math.abs(frames.inherited.height - miniFrames.inherited.height) <= 2 &&
-        Math.abs(frames.direct.height - miniFrames.direct.height) <= 2
-      )
-    })
-    screenshot('host-control-size-restored.png', restored)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
