@@ -5217,6 +5217,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       state(nodes, 2, 'alternate', false) && !labels(nodes).includes('Alternate action')
     )
     screenshot('menu-primary-reenabled.png')
+    tap({ id: 'one-native-menu-plain-menu' })
+    const plainOpen = await wait('plain Menu still opens on short tap', (nodes) =>
+      labels(nodes).includes('Plain action') && !has(nodes, 'Primary presses: 3')
+    )
+    screenshot('menu-plain-open.png', plainOpen)
+    tap({ label: 'Plain action' })
+    const plainSelected = await wait('plain Menu item keeps primary callback separate', (nodes) =>
+      state(nodes, 2, 'alternate', false) &&
+      has(nodes, 'Plain item: plain') &&
+      !labels(nodes).includes('Plain action')
+    )
+    screenshot('menu-plain-selected.png', plainSelected)
     return
   }
   if (config.suite === 'cover-context') {

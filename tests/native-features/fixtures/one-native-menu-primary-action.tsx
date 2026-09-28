@@ -5,12 +5,14 @@ import { One } from 'one'
 export default function OneNativeMenuPrimaryAction() {
   const [presses, setPresses] = useState(0)
   const [itemAction, setItemAction] = useState('none')
+  const [plainItem, setPlainItem] = useState('none')
   const [disabled, setDisabled] = useState(false)
 
   return (
     <View style={styles.screen} testID="one-native-menu-primary-screen">
       <Text>{`Primary presses: ${presses}`}</Text>
       <Text>{`Item action: ${itemAction}`}</Text>
+      <Text>{`Plain item: ${plainItem}`}</Text>
       <Text>{`Disabled: ${disabled ? 'on' : 'off'}`}</Text>
       <Pressable
         accessibilityRole="button"
@@ -29,6 +31,16 @@ export default function OneNativeMenuPrimaryAction() {
       >
         <View style={styles.trigger} testID="one-native-menu-primary-trigger">
           <Text>Open document</Text>
+        </View>
+      </One.iOS.Menu>
+      <One.iOS.Menu
+        accessibilityLabel="Plain menu"
+        testID="one-native-menu-plain-menu"
+        items={[{ type: 'action', id: 'plain', title: 'Plain action' }]}
+        onAction={setPlainItem}
+      >
+        <View style={styles.trigger}>
+          <Text>Open plain menu</Text>
         </View>
       </One.iOS.Menu>
     </View>
