@@ -26,7 +26,7 @@ public extension DeviceAttestationAvailability {
   var appAttest: Bool {
     return self.__appAttest
   }
-  
+
   @inline(__always)
   var deviceCheck: Bool {
     return self.__deviceCheck
