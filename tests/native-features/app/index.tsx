@@ -272,6 +272,11 @@ const testScreens = [
     testID: 'nav-one-native-motion',
   },
   {
+    href: '/one-native-background-tasks',
+    label: 'One Native Background Tasks',
+    testID: 'nav-one-native-background-tasks',
+  },
+  {
     href: '/one-native-device-attestation',
     label: 'One Native Device Attestation',
     testID: 'nav-one-native-device-attestation',

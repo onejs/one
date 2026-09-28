@@ -91,6 +91,10 @@ export interface NativeAppManifest {
             description: string;
             pushNotifications?: boolean;
         };
+        backgroundTasks?: {
+            refresh?: string[];
+            processing?: string[];
+        };
     };
     android?: {
         applicationId: string;
