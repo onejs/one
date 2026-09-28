@@ -26,7 +26,7 @@ checklist; One's own exports and docs decide the status.
 | Local and push notifications | covered | `One.Notifications` | notifications fixture | done |
 | Camera capture | covered | `One.ImagePicker.launchCamera` | image-picker fixture | done |
 | Live camera preview and code scanning | partial | `One.iOS.CameraView` native preview, front/back selection, QR/barcode callbacks and permission gate; physical-device scan proof open | camera-preview: iOS 27 simulator permission, active/inactive, no-camera states; [Apple's AVCam guide](https://developer.apple.com/documentation/avfoundation/avcam-building-a-camera-app) says Simulator has no device camera, so preview/scan needs device proof | P1 |
-| Photo selection | covered | `One.ImagePicker.launchLibrary`, `One.iOS.PhotosPicker` | image-picker; PhotosPicker unproven | done |
+| Photo selection | covered | `One.ImagePicker.launchLibrary`, `One.iOS.PhotosPicker` | image-picker; RAN iOS 27 web-photos: system Photos picker, selected 120×80 image copied to a readable local file | done |
 | Image transformation | covered | `One.iOS.ImageManipulator` local crop, resize, rotate, JPEG/PNG encode | RAN iOS 27: orientation, decoded sizes, bytes, red crop/rotation pixels, input errors | done |
 | Live Photos | missing | no Live Photo capture or playback API | none | P3 |
 | Photo library save/manage | partial | `One.iOS.PhotoLibrary` image/video save, read permission, bounded metadata list/get and original-file export; no iCloud transfer progress/cancel, edited-media export, limited-selection picker, edit, delete, or albums | photo-library: both permission prompts, image/video save, list/get, original bytes, errors | P2 |
@@ -65,7 +65,7 @@ checklist; One's own exports and docs decide the status.
 | Device attestation | missing | no App Attest or DeviceCheck service | none | P2 |
 | Bluetooth and NFC | missing | no CoreBluetooth or CoreNFC service | none | P3 |
 | Web browser/auth session | covered | `One.Browser` | browser | done |
-| Web view | partial | `One.iOS.WebView`; fixture not opened by suite | none | P2 |
+| Web view | covered | `One.iOS.WebView` local HTML and URL loading, navigation/title/loading events | RAN iOS 27 web-photos: document A to B title/loading/progress and pixel repaint | done |
 | Native date/picker/slider/pager controls | covered | `One.iOS.DatePicker`, `Picker`, `Slider`, `Pager` | pickers, tabs-menu | done |
 | Gesture and animation packages | partial | gesture-handler and Reanimated are package peers; no One-specific conformance | none | P2 |
 | Vector drawing and view snapshots | missing | no One SVG/Skia drawing or view-shot capture API | none | P3 |
