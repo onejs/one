@@ -56,6 +56,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneLocalAuthenticationSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneLocationSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneMapServicesSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneMotionSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNativeModulesSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNetworkSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNotificationsSpec.cpp

@@ -106,6 +106,9 @@
     "OneDevice": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneDevice" }
     },
+    "OneMotion": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneMotion" }
+    },
     "OneScreenOrientation": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneScreenOrientation" }
     },

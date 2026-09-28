@@ -61,6 +61,7 @@ declare module 'one' {
         | `/one-native-crypto`
         | `/one-native-database`
         | `/one-native-device`
+        | `/one-native-motion`
         | `/one-native-dialogs`
         | `/one-native-disclosure-group`
         | `/one-native-document-picker`

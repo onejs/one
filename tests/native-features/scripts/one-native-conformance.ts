@@ -50,6 +50,7 @@ const suites = [
   'crypto',
   'app-info',
   'device',
+  'motion',
   'screen-orientation',
   'screen-capture',
   'purchases',
@@ -654,6 +655,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   crypto: cryptoLoaded,
   'app-info': appInfoLoaded,
   device: deviceLoaded,
+  motion: (nodes: Node[]) => Boolean(id(nodes, 'one-native-motion-read')) && has(nodes, 'Availability: '),
   'screen-orientation': screenOrientationLoaded,
   'screen-capture': (nodes: Node[]) => labels(nodes).some((label) => label.startsWith('Capture state: ')),
   purchases: (nodes: Node[]) => Boolean(id(nodes, 'one-native-purchases-buy')),
@@ -749,6 +751,7 @@ const suiteHome: Record<Suite, string> = {
   crypto: 'nav-one-native-crypto',
   'app-info': 'nav-one-native-app-info',
   device: 'nav-one-native-device',
+  motion: 'nav-one-native-motion',
   'screen-orientation': 'nav-one-native-screen-orientation',
   'screen-capture': 'nav-one-native-screen-capture',
   purchases: 'nav-one-native-purchases',
@@ -1200,7 +1203,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'notifications' || config.suite === 'speech' ||
       config.suite === 'app-tracking' || config.suite === 'map-services' ||
       config.suite === 'contacts' || config.suite === 'screen-orientation' ||
-      config.suite === 'screen-capture' ||
+      config.suite === 'screen-capture' || config.suite === 'motion' ||
       config.suite === 'launch-screen' ||
       config.suite === 'app-icon' || config.suite === 'photo-library' ||
       config.suite === 'photo-library-limited') {
@@ -3247,6 +3250,34 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     })
     screenshot('device-info.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'motion') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-motion')
+    await wait('motion fixture starts without readings', (n) =>
+      labels(n).includes('Availability: pending') &&
+      labels(n).includes('Readings: none') &&
+      labels(n).includes('Errors: none')
+    )
+    tap({ id: 'one-native-motion-read' })
+    await wait('Core Motion reports simulator hardware availability', (n) =>
+      labels(n).includes('Availability: A=false G=false M=false D=false')
+    )
+    tap({ id: 'one-native-motion-start' })
+    await wait('all unavailable streams return their sensor error', (n) =>
+      labels(n).includes(
+        'Errors: accelerometer:E_MOTION_UNAVAILABLE,gyroscope:E_MOTION_UNAVAILABLE,magnetometer:E_MOTION_UNAVAILABLE,deviceMotion:E_MOTION_UNAVAILABLE'
+      ) && labels(n).includes('Readings: none')
+    )
+    tap({ id: 'one-native-motion-invalid' })
+    await wait('invalid interval fails before native registration', (n) =>
+      labels(n).includes('Invalid interval: RangeError')
+    )
+    tap({ id: 'one-native-motion-stop' })
+    screenshot('motion-availability.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -168,6 +168,8 @@ namespace margelo::nitro::one { class HybridOneLocalAuthenticationSpec; }
 namespace margelo::nitro::one { class HybridOneLocationSpec; }
 // Forward declaration of `HybridOneMapServicesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneMapServicesSpec; }
+// Forward declaration of `HybridOneMotionSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneMotionSpec; }
 // Forward declaration of `HybridOneNativeModulesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNativeModulesSpec; }
 // Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
@@ -230,6 +232,14 @@ namespace margelo::nitro::one { struct MapRoute; }
 namespace margelo::nitro::one { struct MapSuggestion; }
 // Forward declaration of `MapTransport` to properly resolve imports.
 namespace margelo::nitro::one { enum class MapTransport; }
+// Forward declaration of `MotionAvailability` to properly resolve imports.
+namespace margelo::nitro::one { struct MotionAvailability; }
+// Forward declaration of `MotionReading` to properly resolve imports.
+namespace margelo::nitro::one { struct MotionReading; }
+// Forward declaration of `MotionSensor` to properly resolve imports.
+namespace margelo::nitro::one { enum class MotionSensor; }
+// Forward declaration of `MotionVector` to properly resolve imports.
+namespace margelo::nitro::one { struct MotionVector; }
 // Forward declaration of `NativeChannelInput` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeChannelInput; }
 // Forward declaration of `NativeChannel` to properly resolve imports.
@@ -426,6 +436,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneLocalAuthenticationSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
 #include "HybridOneMapServicesSpec.hpp"
+#include "HybridOneMotionSpec.hpp"
 #include "HybridOneNativeModulesSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
@@ -457,6 +468,10 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "MapRouteStep.hpp"
 #include "MapSuggestion.hpp"
 #include "MapTransport.hpp"
+#include "MotionAvailability.hpp"
+#include "MotionReading.hpp"
+#include "MotionSensor.hpp"
+#include "MotionVector.hpp"
 #include "NativeChannel.hpp"
 #include "NativeChannelInput.hpp"
 #include "NativeContent.hpp"
@@ -581,6 +596,8 @@ namespace One { class HybridOneLocalAuthenticationSpec_cxx; }
 namespace One { class HybridOneLocationSpec_cxx; }
 // Forward declaration of `HybridOneMapServicesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneMapServicesSpec_cxx; }
+// Forward declaration of `HybridOneMotionSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneMotionSpec_cxx; }
 // Forward declaration of `HybridOneNativeModulesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNativeModulesSpec_cxx; }
 // Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.

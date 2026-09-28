@@ -160,6 +160,8 @@ export { ImageManipulator } from './image-manipulator/index.native';
 export type { ImageCrop, ImageFormat, ImageResize, ImageManipulatorOptions, ImageTransformResult } from './image-manipulator/index.native';
 export { Device } from './device/index.native';
 export type { DeviceInfo, LocalizationInfo } from './device/index.native';
+export { Motion } from './motion/index.native';
+export type { MotionAvailability, MotionReading, MotionSensor, MotionVector } from './motion/index.native';
 export { Contacts } from './contacts/index.native';
 export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus } from './contacts/index.native';
 export { Calendar } from './calendar/index.native';

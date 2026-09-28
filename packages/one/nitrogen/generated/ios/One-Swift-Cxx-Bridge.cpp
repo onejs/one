@@ -31,6 +31,7 @@
 #include "HybridOneLocalAuthenticationSpecSwift.hpp"
 #include "HybridOneLocationSpecSwift.hpp"
 #include "HybridOneMapServicesSpecSwift.hpp"
+#include "HybridOneMotionSpecSwift.hpp"
 #include "HybridOneNativeModulesSpecSwift.hpp"
 #include "HybridOneNetworkSpecSwift.hpp"
 #include "HybridOneNotificationsSpecSwift.hpp"
@@ -765,6 +766,30 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneMapServicesSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(const MotionReading& /* reading */)>
+  Func_void_MotionReading create_Func_void_MotionReading(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_MotionReading::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const MotionReading& reading) mutable -> void {
+      swiftClosure.call(reading);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneMotionSpec>
+  std::shared_ptr<HybridOneMotionSpec> create_std__shared_ptr_HybridOneMotionSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneMotionSpec_cxx swiftPart = One::HybridOneMotionSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneMotionSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneMotionSpec_(std__shared_ptr_HybridOneMotionSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneMotionSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneMotionSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneMotionSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneMotionSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

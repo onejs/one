@@ -148,6 +148,8 @@ namespace margelo::nitro::one { class HybridOneLocalAuthenticationSpec; }
 namespace margelo::nitro::one { class HybridOneLocationSpec; }
 // Forward declaration of `HybridOneMapServicesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneMapServicesSpec; }
+// Forward declaration of `HybridOneMotionSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneMotionSpec; }
 // Forward declaration of `HybridOneNativeModulesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNativeModulesSpec; }
 // Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
@@ -204,6 +206,14 @@ namespace margelo::nitro::one { struct MapRouteStep; }
 namespace margelo::nitro::one { struct MapRoute; }
 // Forward declaration of `MapSuggestion` to properly resolve imports.
 namespace margelo::nitro::one { struct MapSuggestion; }
+// Forward declaration of `MotionAvailability` to properly resolve imports.
+namespace margelo::nitro::one { struct MotionAvailability; }
+// Forward declaration of `MotionReading` to properly resolve imports.
+namespace margelo::nitro::one { struct MotionReading; }
+// Forward declaration of `MotionSensor` to properly resolve imports.
+namespace margelo::nitro::one { enum class MotionSensor; }
+// Forward declaration of `MotionVector` to properly resolve imports.
+namespace margelo::nitro::one { struct MotionVector; }
 // Forward declaration of `NativeChannel` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeChannel; }
 // Forward declaration of `NativeContent` to properly resolve imports.
@@ -342,6 +352,8 @@ namespace One { class HybridOneLocalAuthenticationSpec_cxx; }
 namespace One { class HybridOneLocationSpec_cxx; }
 // Forward declaration of `HybridOneMapServicesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneMapServicesSpec_cxx; }
+// Forward declaration of `HybridOneMotionSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneMotionSpec_cxx; }
 // Forward declaration of `HybridOneNativeModulesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNativeModulesSpec_cxx; }
 // Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.
@@ -437,6 +449,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneLocalAuthenticationSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
 #include "HybridOneMapServicesSpec.hpp"
+#include "HybridOneMotionSpec.hpp"
 #include "HybridOneNativeModulesSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
@@ -465,6 +478,10 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "MapRoute.hpp"
 #include "MapRouteStep.hpp"
 #include "MapSuggestion.hpp"
+#include "MotionAvailability.hpp"
+#include "MotionReading.hpp"
+#include "MotionSensor.hpp"
+#include "MotionVector.hpp"
 #include "NativeChannel.hpp"
 #include "NativeContent.hpp"
 #include "NativeIosPermission.hpp"
@@ -3184,6 +3201,64 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_MapRoute___ create_Result_std__shared_ptr_Promise_MapRoute___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<MapRoute>>>::withError(error);
+  }
+
+  // pragma MARK: std::optional<MotionVector>
+  /**
+   * Specialized version of `std::optional<MotionVector>`.
+   */
+  using std__optional_MotionVector_ = std::optional<MotionVector>;
+  inline std::optional<MotionVector> create_std__optional_MotionVector_(const MotionVector& value) noexcept {
+    return std::optional<MotionVector>(value);
+  }
+  inline bool has_value_std__optional_MotionVector_(const std::optional<MotionVector>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline MotionVector get_std__optional_MotionVector_(const std::optional<MotionVector>& optional) noexcept {
+    return optional.value();
+  }
+
+  // pragma MARK: std::function<void(const MotionReading& /* reading */)>
+  /**
+   * Specialized version of `std::function<void(const MotionReading&)>`.
+   */
+  using Func_void_MotionReading = std::function<void(const MotionReading& /* reading */)>;
+  /**
+   * Wrapper class for a `std::function<void(const MotionReading& / * reading * /)>`, this can be used from Swift.
+   */
+  class Func_void_MotionReading_Wrapper final {
+  public:
+    explicit Func_void_MotionReading_Wrapper(std::function<void(const MotionReading& /* reading */)>&& func): _function(std::make_unique<std::function<void(const MotionReading& /* reading */)>>(std::move(func))) {}
+    inline void call(MotionReading reading) const noexcept {
+      _function->operator()(reading);
+    }
+  private:
+    std::unique_ptr<std::function<void(const MotionReading& /* reading */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_MotionReading create_Func_void_MotionReading(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_MotionReading_Wrapper wrap_Func_void_MotionReading(Func_void_MotionReading value) noexcept {
+    return Func_void_MotionReading_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneMotionSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneMotionSpec>`.
+   */
+  using std__shared_ptr_HybridOneMotionSpec_ = std::shared_ptr<HybridOneMotionSpec>;
+  std::shared_ptr<HybridOneMotionSpec> create_std__shared_ptr_HybridOneMotionSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneMotionSpec_(std__shared_ptr_HybridOneMotionSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneMotionSpec>
+  using std__weak_ptr_HybridOneMotionSpec_ = std::weak_ptr<HybridOneMotionSpec>;
+  inline std__weak_ptr_HybridOneMotionSpec_ weakify_std__shared_ptr_HybridOneMotionSpec_(const std::shared_ptr<HybridOneMotionSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<MotionAvailability>
+  using Result_MotionAvailability_ = Result<MotionAvailability>;
+  inline Result_MotionAvailability_ create_Result_MotionAvailability_(const MotionAvailability& value) noexcept {
+    return Result<MotionAvailability>::withValue(value);
+  }
+  inline Result_MotionAvailability_ create_Result_MotionAvailability_(const std::exception_ptr& error) noexcept {
+    return Result<MotionAvailability>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<HybridOneNativeModulesSpec>
