@@ -175,7 +175,7 @@ open class HybridOneLocationSpec_cxx {
   }
   
   @inline(__always)
-  public final func addPositionListener(onPosition: bridge.Func_void_LocationPosition, onError: bridge.Func_void_std__string_std__string) -> bridge.Result_std__function_void____ {
+  public final func addPositionListener(onPosition: bridge.Func_void_LocationPosition, onError: bridge.Func_void_std__string_std__string, background: Bool) -> bridge.Result_std__function_void____ {
     do {
       let __result = try self.__implementation.addPositionListener(onPosition: { () -> (LocationPosition) -> Void in
         let __wrappedFunction = bridge.wrap_Func_void_LocationPosition(onPosition)
@@ -187,7 +187,7 @@ open class HybridOneLocationSpec_cxx {
         return { (__code: String, __message: String) -> Void in
           __wrappedFunction.call(std.string(__code), std.string(__message))
         }
-      }())
+      }(), background: background)
       let __resultCpp = { () -> bridge.Func_void in
         let __closureWrapper = Func_void(__result)
         return bridge.create_Func_void(__closureWrapper.toUnsafe())

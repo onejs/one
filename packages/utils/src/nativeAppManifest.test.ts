@@ -134,6 +134,8 @@ describe('native.app manifest', () => {
 
   test('requires a non-empty foreground location usage string', () => {
     expect(() => validateNativeApp({ ...app, location: { whenInUse: 'Find me.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, location: { whenInUse: 'Find me.', background: true } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, location: { whenInUse: 'Find me.', background: 'yes' } } as any)).toThrow(/location\.background/)
     expect(() => validateNativeApp({ ...app, location: null } as any)).toThrow(/location\.whenInUse/)
     expect(() => validateNativeApp({ ...app, location: { whenInUse: ' ' } })).toThrow(
       /location\.whenInUse/

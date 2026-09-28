@@ -274,6 +274,17 @@ ${APP_DELEGATE_PBXPROJ}`,
     })
     expect(noLocationPlist.content).not.toContain('NSLocationWhenInUseUsageDescription')
 
+    const backgroundLocationPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: { ...app, location: { whenInUse: 'Track a hike.', background: true },
+        audio: { background: true } },
+    })
+    expect(backgroundLocationPlist.content?.match(/<key>UIBackgroundModes<\/key>/g)).toHaveLength(1)
+    expect(backgroundLocationPlist.content).toContain('<string>audio</string>')
+    expect(backgroundLocationPlist.content).toContain('<string>location</string>')
+
     const photoPlist = renderPrebuildFile({
       relativePath: 'HelloWorld/Info.plist',
       content:

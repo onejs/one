@@ -117,6 +117,21 @@ function expoProject() {
 }
 
 describe('vxrn/expo-plugin', () => {
+  it('combines background location and audio modes', async () => {
+    const projectRoot = expoProject()
+    const config = withVxrn(
+      { name: 'TestApp', slug: 'test-app', _internal: { projectRoot } },
+      { location: { whenInUse: 'Track a hike.', background: true }, audio: { background: true } }
+    )
+    const result = await config.mods.ios.infoPlist({
+      ...config,
+      modRequest: { projectRoot, platform: 'ios', modName: 'infoPlist', projectName: 'TestApp', introspect: false },
+      modResults: {},
+    })
+    expect(result.modResults.NSLocationWhenInUseUsageDescription).toBe('Track a hike.')
+    expect(result.modResults.UIBackgroundModes).toEqual(['audio', 'location'])
+  })
+
   it('stamps separate Photos save and read usage descriptions', async () => {
     const projectRoot = expoProject()
     const config = withVxrn(

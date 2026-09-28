@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { AppState, Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 export default function OneNativeLocation() {
@@ -7,11 +7,16 @@ export default function OneNativeLocation() {
   const [position, setPosition] = useState('none')
   const [concurrent, setConcurrent] = useState('none')
   const [watch, setWatch] = useState('none')
+  const [backgroundWatch, setBackgroundWatch] = useState('none')
   const [forward, setForward] = useState('none')
   const [reverse, setReverse] = useState('none')
   const stopWatch = useRef<(() => void) | null>(null)
+  const stopBackgroundWatch = useRef<(() => void) | null>(null)
 
-  useEffect(() => () => stopWatch.current?.(), [])
+  useEffect(() => () => {
+    stopWatch.current?.()
+    stopBackgroundWatch.current?.()
+  }, [])
 
   return (
     <View style={styles.screen}>
@@ -19,6 +24,7 @@ export default function OneNativeLocation() {
       <Text testID="one-native-location-position">Position: {position}</Text>
       <Text testID="one-native-location-concurrent">Concurrent: {concurrent}</Text>
       <Text testID="one-native-location-watch-value">Watch: {watch}</Text>
+      <Text testID="one-native-location-background-value">Background watch: {backgroundWatch}</Text>
       <Text testID="one-native-location-forward-value">Forward: {forward}</Text>
       <Text testID="one-native-location-reverse-value">Reverse: {reverse}</Text>
       <Pressable
@@ -82,6 +88,43 @@ export default function OneNativeLocation() {
         }}
       >
         <Text>Stop watching</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-location-background-watch"
+        style={styles.chip}
+        onPress={async () => {
+          stopBackgroundWatch.current?.()
+          setBackgroundWatch('starting')
+          const proofFile = One.iOS.FileSystem.getDirectories().documents +
+            'one-native-location-background-proof.txt'
+          await One.iOS.FileSystem.writeFile(proofFile, 'starting')
+          stopBackgroundWatch.current = One.iOS.Location.watchPosition(
+            (next) => {
+              const value = `${AppState.currentState}:${next.latitude.toFixed(4)},${next.longitude.toFixed(4)}`
+              if (AppState.currentState === 'background') {
+                void One.iOS.FileSystem.writeFile(proofFile, value)
+              }
+              setBackgroundWatch((previous) =>
+                AppState.currentState === 'background' ? value :
+                  previous.startsWith('background:') ? previous : value)
+            },
+            (error) => setBackgroundWatch(`error: ${error.code}`),
+            { background: true }
+          )
+        }}
+      >
+        <Text>Watch in background</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-location-stop-background-watch"
+        style={styles.chip}
+        onPress={() => {
+          stopBackgroundWatch.current?.()
+          stopBackgroundWatch.current = null
+          setBackgroundWatch('stopped')
+        }}
+      >
+        <Text>Stop background watch</Text>
       </Pressable>
       <Pressable
         testID="one-native-location-forward"

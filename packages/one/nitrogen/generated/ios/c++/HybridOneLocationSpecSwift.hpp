@@ -102,8 +102,8 @@ namespace margelo::nitro::one {
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::function<void()> addPositionListener(const std::function<void(const LocationPosition& /* position */)>& onPosition, const std::function<void(const std::string& /* code */, const std::string& /* message */)>& onError) override {
-      auto __result = _swiftPart.addPositionListener(onPosition, onError);
+    inline std::function<void()> addPositionListener(const std::function<void(const LocationPosition& /* position */)>& onPosition, const std::function<void(const std::string& /* code */, const std::string& /* message */)>& onError, bool background) override {
+      auto __result = _swiftPart.addPositionListener(onPosition, onError, std::forward<decltype(background)>(background));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
