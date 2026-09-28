@@ -79,7 +79,8 @@ checklist; One's own exports and docs decide the status.
 | Fonts | covered | `One.UI.Fonts` | fonts | done |
 | Widgets/live activities | partial | iOS API exists; fixture lacks extension target | none | P2 |
 | App updates | covered | `One.Updates` checks, downloads, stages, reloads, rolls back, and prunes OTA bundles | RAN iOS 27 release suite: 208 checks across eight publishes, rollback, 20 reloads, fallback, and rejection cases | done |
-| Keep awake/brightness | missing | no UIApplication/UIScreen service | none | P3 |
+| Keep awake | covered | `One.iOS.KeepAwake` app-wide idle-timer flag with native readback; physical auto-lock policy remains device proof | RAN iOS 27.1 keep-awake: JS to Nitro to UIKit true/false readbacks, invalid boolean, initial value restored; old native binary failed exactly at missing registration | P3 |
+| Brightness | missing | no screen-brightness API | RAN iOS 27.1 standalone UIKit probe: active scene screen began at 0.500; writes of 0.2 and 0.8 both read back 0.500 immediately and after 250 ms; restored 0.500. INFERRED simulator setter is inert; physical-screen proof needed | P3 |
 | Store review prompt | missing | no StoreKit review request | none | P3 |
 | App shortcuts/intents | missing | no App Intents path | none | P3 |
 

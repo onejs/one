@@ -23,6 +23,7 @@ export type { LocalAuthenticationStatus } from './local-authentication/index';
 export { ProtectedStore } from './protected-store/index';
 export type { ProtectedStorePolicy } from './protected-store/index';
 export { Preferences } from './preferences/index';
+export { KeepAwake } from './keep-awake/index';
 export { Location } from './location/index';
 export type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationWatchError } from './location/index';
 export { FileSystem } from './file-system/index';

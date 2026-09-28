@@ -29,6 +29,7 @@
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "HybridOneImageManipulatorSpecSwift.hpp"
 #include "HybridOneImagePickerSpecSwift.hpp"
+#include "HybridOneKeepAwakeSpecSwift.hpp"
 #include "HybridOneLaunchScreenSpecSwift.hpp"
 #include "HybridOneLocalAuthenticationSpecSwift.hpp"
 #include "HybridOneLocationSpecSwift.hpp"
@@ -689,6 +690,22 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneImagePickerSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneKeepAwakeSpec>
+  std::shared_ptr<HybridOneKeepAwakeSpec> create_std__shared_ptr_HybridOneKeepAwakeSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneKeepAwakeSpec_cxx swiftPart = One::HybridOneKeepAwakeSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneKeepAwakeSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneKeepAwakeSpec_(std__shared_ptr_HybridOneKeepAwakeSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneKeepAwakeSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneKeepAwakeSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneKeepAwakeSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneKeepAwakeSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

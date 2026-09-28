@@ -114,6 +114,7 @@ const suites = [
   'fetch',
   'secure-store',
   'preferences',
+  'keep-awake',
   'clipboard',
   'network',
   'browser',
@@ -563,6 +564,8 @@ const secureStoreLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-secure-store-run')) && has(nodes, 'Persisted: ')
 const preferencesLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-preferences-run')) && has(nodes, 'Persisted: ')
+const keepAwakeLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-keep-awake-run')) && has(nodes, 'Status: ')
 const databaseLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-database-run')) && has(nodes, 'Persisted: ')
 const speechLoaded = (nodes: Node[]) =>
@@ -725,6 +728,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   fetch: fetchLoaded,
   'secure-store': secureStoreLoaded,
   preferences: preferencesLoaded,
+  'keep-awake': keepAwakeLoaded,
   clipboard: clipboardLoaded,
   network: networkLoaded,
   browser: browserLoaded,
@@ -824,6 +828,7 @@ const suiteHome: Record<Suite, string> = {
   fetch: 'nav-one-native-fetch',
   'secure-store': 'nav-one-native-secure-store',
   preferences: 'nav-one-native-preferences',
+  'keep-awake': 'nav-one-native-keep-awake',
   clipboard: 'nav-one-native-clipboard',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
@@ -1230,7 +1235,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       config.suite === 'launch-screen' ||
       config.suite === 'app-icon' || config.suite === 'photo-library' ||
       config.suite === 'photo-library-limited' ||
-      config.suite === 'preferences') {
+      config.suite === 'preferences' || config.suite === 'keep-awake') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
     // to undetermined; native contract suites need the freshly built app rather than a stale install.
@@ -8690,6 +8695,33 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('deleted preference remains missing', (n) => has(n, 'Persisted: null'))
     screenshot('preferences-deleted.png')
     console.log('PASS preferences-deleted-persist')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'keep-awake') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-keep-awake')
+    await wait('keep-awake fixture mounted', (n) => has(n, 'Status: idle'))
+    tap({ id: 'one-native-keep-awake-run' })
+    const state = await wait('keep-awake operations complete', (n) =>
+      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const got = labels(state)
+    const failure = got.find((label) => label.startsWith('Status: failed'))
+    if (failure) throw new Error(failure)
+    const initial = got.find((label) => label.startsWith('Initial: '))?.slice('Initial: '.length)
+    if (initial !== 'true' && initial !== 'false')
+      throw new Error(`keep-awake initial readback missing: ${initial}`)
+    for (const expected of [
+      'Enabled: true',
+      'Disabled: false',
+      'Invalid: KeepAwake.setEnabled: enabled must be a boolean',
+      `Restored: ${initial}`,
+    ]) {
+      if (!got.includes(expected)) throw new Error(`keep-awake expected ${expected}`)
+      console.log(`PASS keep-awake-${expected.split(':')[0].toLowerCase()}`)
+    }
+    screenshot('keep-awake-readback.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

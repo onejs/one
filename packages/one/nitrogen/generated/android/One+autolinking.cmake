@@ -54,6 +54,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneHapticsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneImageManipulatorSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneImagePickerSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneKeepAwakeSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneLaunchScreenSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneLocalAuthenticationSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneLocationSpec.cpp

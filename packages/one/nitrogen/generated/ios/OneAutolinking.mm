@@ -29,6 +29,7 @@
 #include "HybridOneLocalAuthenticationSpecSwift.hpp"
 #include "HybridOneProtectedStoreSpecSwift.hpp"
 #include "HybridOnePreferencesSpecSwift.hpp"
+#include "HybridOneKeepAwakeSpecSwift.hpp"
 #include "HybridOneLocationSpecSwift.hpp"
 #include "HybridOneFileSystemSpecSwift.hpp"
 #include "HybridOneAudioSpecSwift.hpp"
@@ -189,6 +190,13 @@
     "OnePreferences",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOnePreferencesSpec> hybridObject = One::OneAutolinking::createOnePreferences();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneKeepAwake",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneKeepAwakeSpec> hybridObject = One::OneAutolinking::createOneKeepAwake();
       return hybridObject;
     }
   );
