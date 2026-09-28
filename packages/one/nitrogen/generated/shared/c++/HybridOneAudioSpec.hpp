@@ -23,6 +23,10 @@ namespace margelo::nitro::one { struct AudioRecordingStatus; }
 namespace margelo::nitro::one { struct AudioRecordingResult; }
 // Forward declaration of `AudioInterruptionEvent` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioInterruptionEvent; }
+// Forward declaration of `AudioNowPlayingInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioNowPlayingInfo; }
+// Forward declaration of `AudioRemoteCommandEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioRemoteCommandEvent; }
 
 #include "AudioRecordingPermission.hpp"
 #include <NitroModules/Promise.hpp>
@@ -32,6 +36,8 @@ namespace margelo::nitro::one { struct AudioInterruptionEvent; }
 #include "AudioRecordingResult.hpp"
 #include <functional>
 #include "AudioInterruptionEvent.hpp"
+#include "AudioNowPlayingInfo.hpp"
+#include "AudioRemoteCommandEvent.hpp"
 
 namespace margelo::nitro::one {
 
@@ -60,7 +66,7 @@ namespace margelo::nitro::one {
 
     public:
       // Properties
-      
+
 
     public:
       // Methods
@@ -78,6 +84,9 @@ namespace margelo::nitro::one {
       virtual std::shared_ptr<Promise<AudioRecordingStatus>> resumeRecording() = 0;
       virtual std::shared_ptr<Promise<AudioRecordingResult>> stopRecording() = 0;
       virtual std::function<void()> addInterruptionListener(const std::function<void(const AudioInterruptionEvent& /* event */)>& onEvent) = 0;
+      virtual std::shared_ptr<Promise<void>> setNowPlayingInfo(const AudioNowPlayingInfo& info) = 0;
+      virtual std::shared_ptr<Promise<void>> clearNowPlayingInfo() = 0;
+      virtual std::function<void()> addRemoteCommandListener(const std::function<void(const AudioRemoteCommandEvent& /* event */)>& onEvent) = 0;
 
     protected:
       // Hybrid Setup

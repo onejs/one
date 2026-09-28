@@ -48,7 +48,7 @@ checklist; One's own exports and docs decide the status.
 | Deep links | covered | One router and linking integration | router tests; external browser callback | done |
 | App icons | partial | static prebuild icon; no alternate icon switch | prebuild only | P2 |
 | In-app purchases | missing | no StoreKit API or purchase hooks | none | P2 |
-| Audio playback/recording | partial | `One.iOS.Audio` permission, local/remote playback controls, AAC recording, interruption events; opt-in `audio` background mode; no device background-policy proof or remote controls | audio: prompt, record/play lifecycle; RAN iOS 27 39.4s background playback, but no-mode control also played 39.4s, so mode enforcement needs device proof; RAN iOS 27 native interruption notification began/ended, shouldResume, and paused playback with non-audio control; cross-app arbitration needs device proof because Simulator does not simulate most interactions between audio sessions in separate processes | P1 |
+| Audio playback/recording | partial | `One.iOS.Audio` permission, local/remote playback controls, AAC recording, interruption events, Now Playing metadata and remote command handlers; opt-in `audio` background mode | audio: prompt, record/play lifecycle; RAN iOS 27 39.4s background playback, but no-mode control also played 39.4s; RAN native interruption began/ended and paused playback; RAN audio-remote Nitro setup/update/clear calls, errors, and continued playback, but no system metadata readback; device proof remains for background policy, cross-app arbitration, visible media controls, tile removal, and remote command callbacks | P1 |
 | Video playback | partial | `One.iOS.VideoPlayer`; no media controls/session API | media | P2 |
 | Picture in picture | partial | `One.UI.PictureInPicture`; video path needs device proof | simulator cannot enter PiP | P2 |
 | Sensors and motion | missing | no CoreMotion service | none | P2 |
@@ -126,6 +126,13 @@ checklist; One's own exports and docs decide the status.
     adapter and an Expo SecureStore simulation, but no `OneProtectedStore`
     adapter or enrolled-biometry Keychain simulation. That bridge belongs to the
     Contrast migration lane.
+12. Audio remote media controls use an opt-in `MPNowPlayingSession` for the
+    current player. The iOS 27 simulator proved Nitro metadata setup, update,
+    and clear calls, native validation errors, and playback continuing through
+    cleanup; it did not read back system metadata. A disposable diagnostic build
+    reported session activation, but Control Center had no media tile and the
+    Lock Screen did not show the track. The cause is unconfirmed. Visible system
+    controls, tile removal, and command callback delivery need device proof.
 
 Avoid duplicating React Native surfaces only to rename them. Keep simulator
 limitations explicit; hardware-only effects need a device proof before `covered`.

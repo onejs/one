@@ -31,6 +31,20 @@ export interface AudioInterruptionEvent {
   shouldResume: boolean
 }
 
+export interface AudioNowPlayingInfo {
+  title: string
+  artist?: string
+  albumTitle?: string
+  artworkUri?: string
+}
+
+export type AudioRemoteCommandType = 'play' | 'pause' | 'seek'
+
+export interface AudioRemoteCommandEvent {
+  type: AudioRemoteCommandType
+  positionMs?: number
+}
+
 export interface OneAudio extends HybridObject<{ ios: 'swift' }> {
   getRecordingPermissionStatus(): Promise<AudioRecordingPermission>
   requestRecordingPermission(): Promise<AudioRecordingPermission>
@@ -46,4 +60,7 @@ export interface OneAudio extends HybridObject<{ ios: 'swift' }> {
   resumeRecording(): Promise<AudioRecordingStatus>
   stopRecording(): Promise<AudioRecordingResult>
   addInterruptionListener(onEvent: (event: AudioInterruptionEvent) => void): () => void
+  setNowPlayingInfo(info: AudioNowPlayingInfo): Promise<void>
+  clearNowPlayingInfo(): Promise<void>
+  addRemoteCommandListener(onEvent: (event: AudioRemoteCommandEvent) => void): () => void
 }

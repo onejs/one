@@ -84,7 +84,7 @@ open class HybridOneAudioSpec_cxx {
     }
   }
 
-  
+
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneAudioSpec_cxx {
   }
 
   // Properties
-  
+
 
   // Methods
   @inline(__always)
@@ -142,7 +142,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioRecordingPermission___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func requestRecordingPermission() -> bridge.Result_std__shared_ptr_Promise_AudioRecordingPermission___ {
     do {
@@ -161,7 +161,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioRecordingPermission___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func play(uri: std.string) -> bridge.Result_std__shared_ptr_Promise_AudioPlaybackStatus___ {
     do {
@@ -180,7 +180,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func getPlaybackStatus() -> bridge.Result_std__shared_ptr_Promise_AudioPlaybackStatus___ {
     do {
@@ -199,7 +199,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func pause() -> bridge.Result_std__shared_ptr_Promise_AudioPlaybackStatus___ {
     do {
@@ -218,7 +218,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func resume() -> bridge.Result_std__shared_ptr_Promise_AudioPlaybackStatus___ {
     do {
@@ -237,7 +237,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func seek(positionMs: Double) -> bridge.Result_std__shared_ptr_Promise_AudioPlaybackStatus___ {
     do {
@@ -256,7 +256,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func stop() -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
@@ -275,7 +275,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func startRecording() -> bridge.Result_std__shared_ptr_Promise_AudioRecordingStatus___ {
     do {
@@ -294,7 +294,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioRecordingStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func getRecordingStatus() -> bridge.Result_std__shared_ptr_Promise_AudioRecordingStatus___ {
     do {
@@ -313,7 +313,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioRecordingStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func pauseRecording() -> bridge.Result_std__shared_ptr_Promise_AudioRecordingStatus___ {
     do {
@@ -332,7 +332,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioRecordingStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func resumeRecording() -> bridge.Result_std__shared_ptr_Promise_AudioRecordingStatus___ {
     do {
@@ -351,7 +351,7 @@ open class HybridOneAudioSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_AudioRecordingStatus___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func stopRecording() -> bridge.Result_std__shared_ptr_Promise_AudioRecordingResult___ {
     do {
@@ -377,6 +377,64 @@ open class HybridOneAudioSpec_cxx {
       let __result = try self.__implementation.addInterruptionListener(onEvent: { () -> (AudioInterruptionEvent) -> Void in
         let __wrappedFunction = bridge.wrap_Func_void_AudioInterruptionEvent(onEvent)
         return { (__event: AudioInterruptionEvent) -> Void in
+          __wrappedFunction.call(__event)
+        }
+      }())
+      let __resultCpp = { () -> bridge.Func_void in
+        let __closureWrapper = Func_void(__result)
+        return bridge.create_Func_void(__closureWrapper.toUnsafe())
+      }()
+      return bridge.create_Result_std__function_void____(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__function_void____(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func setNowPlayingInfo(info: AudioNowPlayingInfo) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.setNowPlayingInfo(info: info)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func clearNowPlayingInfo() -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.clearNowPlayingInfo()
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func addRemoteCommandListener(onEvent: bridge.Func_void_AudioRemoteCommandEvent) -> bridge.Result_std__function_void____ {
+    do {
+      let __result = try self.__implementation.addRemoteCommandListener(onEvent: { () -> (AudioRemoteCommandEvent) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_AudioRemoteCommandEvent(onEvent)
+        return { (__event: AudioRemoteCommandEvent) -> Void in
           __wrappedFunction.call(__event)
         }
       }())
