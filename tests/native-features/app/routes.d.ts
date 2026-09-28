@@ -95,6 +95,7 @@ declare module 'one' {
         | `/one-native-local-authentication`
         | `/one-native-location`
         | `/one-native-map`
+        | `/one-native-map-services`
         | `/one-native-media`
         | `/one-native-navigation`
         | `/one-native-network`

@@ -18,7 +18,7 @@ public extension ContactInput {
   /**
    * Create a new instance of `ContactInput`.
    */
-  init(givenName: String, familyName: String, phoneNumbers: [String], emailAddresses: [String]) {
+  init(givenName: String, familyName: String, phoneNumbers: [String], emailAddresses: [String], postalAddresses: [ContactPostalAddressInput]?) {
     self.init(std.string(givenName), std.string(familyName), { () -> bridge.std__vector_std__string_ in
       var __vector = bridge.create_std__vector_std__string_(phoneNumbers.count)
       for __item in phoneNumbers {
@@ -31,6 +31,18 @@ public extension ContactInput {
         __vector.push_back(std.string(__item))
       }
       return __vector
+    }(), { () -> bridge.std__optional_std__vector_ContactPostalAddressInput__ in
+      if let __unwrappedValue = postalAddresses {
+        return bridge.create_std__optional_std__vector_ContactPostalAddressInput__({ () -> bridge.std__vector_ContactPostalAddressInput_ in
+          var __vector = bridge.create_std__vector_ContactPostalAddressInput_(__unwrappedValue.count)
+          for __item in __unwrappedValue {
+            __vector.push_back(__item)
+          }
+          return __vector
+        }())
+      } else {
+        return .init()
+      }
     }())
   }
 
@@ -52,5 +64,17 @@ public extension ContactInput {
   @inline(__always)
   var emailAddresses: [String] {
     return self.__emailAddresses.map({ __item in String(__item) })
+  }
+
+  @inline(__always)
+  var postalAddresses: [ContactPostalAddressInput]? {
+    return { () -> [ContactPostalAddressInput]? in
+      if bridge.has_value_std__optional_std__vector_ContactPostalAddressInput__(self.__postalAddresses) {
+        let __unwrapped = bridge.get_std__optional_std__vector_ContactPostalAddressInput__(self.__postalAddresses)
+        return __unwrapped.map({ __item in __item })
+      } else {
+        return nil
+      }
+    }()
   }
 }

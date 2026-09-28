@@ -28,10 +28,12 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
-
+// Forward declaration of `ContactPostalAddress` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactPostalAddress; }
 
 #include <string>
 #include <vector>
+#include "ContactPostalAddress.hpp"
 
 namespace margelo::nitro::one {
 
@@ -45,10 +47,11 @@ namespace margelo::nitro::one {
     std::string familyName     SWIFT_PRIVATE;
     std::vector<std::string> phoneNumbers     SWIFT_PRIVATE;
     std::vector<std::string> emailAddresses     SWIFT_PRIVATE;
+    std::vector<ContactPostalAddress> postalAddresses     SWIFT_PRIVATE;
 
   public:
     ContactInfo() = default;
-    explicit ContactInfo(std::string identifier, std::string givenName, std::string familyName, std::vector<std::string> phoneNumbers, std::vector<std::string> emailAddresses): identifier(identifier), givenName(givenName), familyName(familyName), phoneNumbers(phoneNumbers), emailAddresses(emailAddresses) {}
+    explicit ContactInfo(std::string identifier, std::string givenName, std::string familyName, std::vector<std::string> phoneNumbers, std::vector<std::string> emailAddresses, std::vector<ContactPostalAddress> postalAddresses): identifier(identifier), givenName(givenName), familyName(familyName), phoneNumbers(phoneNumbers), emailAddresses(emailAddresses), postalAddresses(postalAddresses) {}
 
   public:
     friend bool operator==(const ContactInfo& lhs, const ContactInfo& rhs) = default;
@@ -68,7 +71,8 @@ namespace margelo::nitro {
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "givenName"))),
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "familyName"))),
         JSIConverter<std::vector<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "phoneNumbers"))),
-        JSIConverter<std::vector<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "emailAddresses")))
+        JSIConverter<std::vector<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "emailAddresses"))),
+        JSIConverter<std::vector<margelo::nitro::one::ContactPostalAddress>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "postalAddresses")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::ContactInfo& arg) {
@@ -78,6 +82,7 @@ namespace margelo::nitro {
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "familyName"), JSIConverter<std::string>::toJSI(runtime, arg.familyName));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "phoneNumbers"), JSIConverter<std::vector<std::string>>::toJSI(runtime, arg.phoneNumbers));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "emailAddresses"), JSIConverter<std::vector<std::string>>::toJSI(runtime, arg.emailAddresses));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "postalAddresses"), JSIConverter<std::vector<margelo::nitro::one::ContactPostalAddress>>::toJSI(runtime, arg.postalAddresses));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -93,6 +98,7 @@ namespace margelo::nitro {
       if (!JSIConverter<std::string>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "familyName")))) return false;
       if (!JSIConverter<std::vector<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "phoneNumbers")))) return false;
       if (!JSIConverter<std::vector<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "emailAddresses")))) return false;
+      if (!JSIConverter<std::vector<margelo::nitro::one::ContactPostalAddress>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "postalAddresses")))) return false;
       return true;
     }
   };

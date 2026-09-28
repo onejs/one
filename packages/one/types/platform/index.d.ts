@@ -35,6 +35,8 @@ export { Open } from './open/index';
 export type { OpenShareContent } from './open/index';
 export type { ShareItem, ShareItemType, ShareResult } from './share/index';
 export { PhotoLibrary } from './photo-library/index';
+export { MapServices } from './map-services/index';
+export type { MapCoordinate, MapPlace, MapRoute, MapRouteStep, MapTransport } from './map-services/index';
 export type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus, } from './photo-library/index';
 export { AppTracking } from './app-tracking/index';
 export type { AppTrackingPermissionStatus } from './app-tracking/index';
@@ -43,7 +45,7 @@ export type { ImageCrop, ImageFormat, ImageResize, ImageManipulatorOptions, Imag
 export { Device } from './device/index';
 export type { DeviceInfo, LocalizationInfo } from './device/index';
 export { Contacts } from './contacts/index';
-export type { ContactChanges, ContactInfo, ContactInput, ContactsPermissionStatus } from './contacts/index';
+export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus } from './contacts/index';
 export { Calendar } from './calendar/index';
 export type { CalendarEvent, CalendarEventChanges, CalendarEventInput, CalendarPermissionStatus, ReminderInfo, ReminderInput, } from './calendar/index';
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index';

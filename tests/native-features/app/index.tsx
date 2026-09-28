@@ -286,6 +286,11 @@ const testScreens = [
     testID: 'nav-one-native-map',
   },
   {
+    href: '/one-native-map-services',
+    label: 'One Native Map Services',
+    testID: 'nav-one-native-map-services',
+  },
+  {
     href: '/one-native-ui-map',
     label: 'One Native UI Map',
     testID: 'nav-one-native-ui-map',

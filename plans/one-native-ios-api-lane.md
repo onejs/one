@@ -26,13 +26,13 @@ checklist; One's own exports and docs decide the status.
 | Local and push notifications | covered | `One.Notifications` | notifications fixture | done |
 | Camera capture | covered | `One.ImagePicker.launchCamera` | image-picker fixture | done |
 | Live camera preview and code scanning | partial | `One.iOS.CameraView` native preview, front/back selection, QR/barcode callbacks and permission gate; physical-device scan proof open | camera-preview: iOS 27 simulator permission, active/inactive, no-camera states; [Apple's AVCam guide](https://developer.apple.com/documentation/avfoundation/avcam-building-a-camera-app) says Simulator has no device camera, so preview/scan needs device proof | P1 |
-| Photo selection | covered | `One.ImagePicker.launchLibrary`, `One.iOS.PhotosPicker` | image-picker; PhotosPicker unproven | done |
+| Photo selection | covered | `One.ImagePicker.launchLibrary`, `One.iOS.PhotosPicker` | image-picker; RAN iOS 27 web-photos: system Photos picker, selected 120×80 image copied to a readable local file | done |
 | Image transformation | covered | `One.iOS.ImageManipulator` local crop, resize, rotate, JPEG/PNG encode | RAN iOS 27: orientation, decoded sizes, bytes, red crop/rotation pixels, input errors | done |
 | Live Photos | missing | no Live Photo capture or playback API | none | P3 |
 | Photo library save/manage | partial | `One.iOS.PhotoLibrary` image/video save, read permission, bounded metadata list/get and original-file export; no iCloud transfer progress/cancel, edited-media export, limited-selection picker, edit, delete, or albums | photo-library: both permission prompts, image/video save, list/get, original bytes, errors | P2 |
 | Foreground location and geocoding | covered | `One.iOS.Location` permission, one fix, watch, forward/reverse geocoding | location: prompt, movement, geocoding | done |
 | Background location | partial | opt-in `One.iOS.Location.watchPosition(..., { background: true })` with `location` background mode; no region/significant-change monitoring or relaunch | RAN iOS 27: callback wrote a moved coordinate while Settings was foreground; prolonged OS suspension policy needs device proof | P2 |
-| Maps | partial | `One.UI.Map`, `One.iOS.Map`; no search or directions service | map, ui-map | P2 |
+| Maps | partial | `One.UI.Map`, `One.iOS.Map`, `One.iOS.MapServices` place search and walking/driving directions; no autocomplete or look-around | map, ui-map; RAN map-services on iOS 27: nearby Ferry Building, 2082 m walking route, empty query result and native input error | P2 |
 | Share | covered | `One.iOS.Share` text, URL, and file sheet; `One.iOS.ShareLink` button | share: text/link, file preview, cancel and errors; ShareLink unproven | done |
 | Clipboard | covered | `One.Clipboard` text | clipboard | done |
 | Secure storage | partial | `One.SecureStore` key/value plus iOS `One.iOS.ProtectedStore` user-presence and current-biometry Keychain items; no access groups | iOS 27 SecureStore: 10 async/sync assertions and read after reboot; ProtectedStore: Face ID before every read/update/delete, both policies, round trip, input/duplicate/missing/auth errors; invalidation requires device proof | P2 |
@@ -54,7 +54,7 @@ checklist; One's own exports and docs decide the status.
 | Sensors and motion | missing | no CoreMotion service | none | P2 |
 | Battery and power state | missing | no battery level, charging state, or low-power state API | none | P3 |
 | Cellular/SIM details | missing | `One.Network` reports connection type, not carrier or SIM data | none | P3 |
-| Contacts | partial | `One.iOS.Contacts` permission, name search, create, update, delete; no picker or addresses | RAN iOS 27 prompt, create, full and partial edit, search, delete, and input errors | P2 |
+| Contacts | partial | `One.iOS.Contacts` permission, name search, create, update, delete, structured postal addresses; no system picker or notes | RAN iOS 27 prompt, create, full and partial edit, search, delete, and input errors, including postal address create, edit, preserve, clear, and invalid input | P2 |
 | Calendar and reminders | partial | `One.iOS.Calendar` event create, list, update, delete plus reminders permission, list, create, completion, delete; recurrence creation is absent | RAN iOS 27 both prompts, Calendar edit and delete with negative cases, and Reminders round trip | P2 |
 | Localization and locale | covered | `One.iOS.Device.getLocalizationInfo` returns locale, languages, calendar, time zone, UTC offset, and currency | RAN device suite on iOS 27: en-US, gregorian, Honolulu, UTC offset, USD | done |
 | Screen orientation | missing | no orientation events or lock API | none | P2 |
@@ -65,7 +65,7 @@ checklist; One's own exports and docs decide the status.
 | Device attestation | missing | no App Attest or DeviceCheck service | none | P2 |
 | Bluetooth and NFC | missing | no CoreBluetooth or CoreNFC service | none | P3 |
 | Web browser/auth session | covered | `One.Browser` | browser | done |
-| Web view | partial | `One.iOS.WebView`; fixture not opened by suite | none | P2 |
+| Web view | covered | `One.iOS.WebView` local HTML and URL loading, navigation/title/loading events | RAN iOS 27 web-photos: document A to B title/loading/progress and pixel repaint | done |
 | Native date/picker/slider/pager controls | covered | `One.iOS.DatePicker`, `Picker`, `Slider`, `Pager` | pickers, tabs-menu | done |
 | Gesture and animation packages | partial | gesture-handler and Reanimated are package peers; no One-specific conformance | none | P2 |
 | Vector drawing and view snapshots | missing | no One SVG/Skia drawing or view-shot capture API | none | P3 |

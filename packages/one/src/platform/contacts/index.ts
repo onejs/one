@@ -2,10 +2,12 @@ import type {
   ContactChanges,
   ContactInfo,
   ContactInput,
+  ContactPostalAddress,
+  ContactPostalAddressInput,
   ContactsPermissionStatus,
 } from '../specs/OneContacts.nitro'
 
-export type { ContactChanges, ContactInfo, ContactInput, ContactsPermissionStatus }
+export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus }
 
 const unsupported = (): never => {
   throw new Error('Contacts requires an iOS native build')

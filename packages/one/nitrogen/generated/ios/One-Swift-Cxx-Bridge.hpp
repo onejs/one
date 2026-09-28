@@ -68,6 +68,10 @@ namespace margelo::nitro::one { struct CameraPermissionResponse; }
 namespace margelo::nitro::one { enum class CameraPermissionStatus; }
 // Forward declaration of `ContactInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactInfo; }
+// Forward declaration of `ContactPostalAddressInput` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactPostalAddressInput; }
+// Forward declaration of `ContactPostalAddress` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactPostalAddress; }
 // Forward declaration of `ContactsPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
 // Forward declaration of `DeviceInfo` to properly resolve imports.
@@ -136,6 +140,8 @@ namespace margelo::nitro::one { class HybridOneLaunchScreenSpec; }
 namespace margelo::nitro::one { class HybridOneLocalAuthenticationSpec; }
 // Forward declaration of `HybridOneLocationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLocationSpec; }
+// Forward declaration of `HybridOneMapServicesSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneMapServicesSpec; }
 // Forward declaration of `HybridOneNativeModulesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNativeModulesSpec; }
 // Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
@@ -176,6 +182,14 @@ namespace margelo::nitro::one { enum class LocationPermissionStatus; }
 namespace margelo::nitro::one { struct LocationPlace; }
 // Forward declaration of `LocationPosition` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPosition; }
+// Forward declaration of `MapCoordinate` to properly resolve imports.
+namespace margelo::nitro::one { struct MapCoordinate; }
+// Forward declaration of `MapPlace` to properly resolve imports.
+namespace margelo::nitro::one { struct MapPlace; }
+// Forward declaration of `MapRouteStep` to properly resolve imports.
+namespace margelo::nitro::one { struct MapRouteStep; }
+// Forward declaration of `MapRoute` to properly resolve imports.
+namespace margelo::nitro::one { struct MapRoute; }
 // Forward declaration of `NativeChannel` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeChannel; }
 // Forward declaration of `NativeContent` to properly resolve imports.
@@ -288,6 +302,8 @@ namespace One { class HybridOneLaunchScreenSpec_cxx; }
 namespace One { class HybridOneLocalAuthenticationSpec_cxx; }
 // Forward declaration of `HybridOneLocationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLocationSpec_cxx; }
+// Forward declaration of `HybridOneMapServicesSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneMapServicesSpec_cxx; }
 // Forward declaration of `HybridOneNativeModulesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNativeModulesSpec_cxx; }
 // Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.
@@ -337,6 +353,8 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
 #include "ContactInfo.hpp"
+#include "ContactPostalAddress.hpp"
+#include "ContactPostalAddressInput.hpp"
 #include "ContactsPermissionStatus.hpp"
 #include "DeviceInfo.hpp"
 #include "DocumentPickerAsset.hpp"
@@ -371,6 +389,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneLaunchScreenSpec.hpp"
 #include "HybridOneLocalAuthenticationSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
+#include "HybridOneMapServicesSpec.hpp"
 #include "HybridOneNativeModulesSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
@@ -391,6 +410,10 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "LocationPermissionStatus.hpp"
 #include "LocationPlace.hpp"
 #include "LocationPosition.hpp"
+#include "MapCoordinate.hpp"
+#include "MapPlace.hpp"
+#include "MapRoute.hpp"
+#include "MapRouteStep.hpp"
 #include "NativeChannel.hpp"
 #include "NativeContent.hpp"
 #include "NativeIosPermission.hpp"
@@ -1656,6 +1679,17 @@ namespace margelo::nitro::one::bridge::swift {
     return vector;
   }
 
+  // pragma MARK: std::vector<ContactPostalAddress>
+  /**
+   * Specialized version of `std::vector<ContactPostalAddress>`.
+   */
+  using std__vector_ContactPostalAddress_ = std::vector<ContactPostalAddress>;
+  inline std::vector<ContactPostalAddress> create_std__vector_ContactPostalAddress_(size_t size) noexcept {
+    std::vector<ContactPostalAddress> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
   // pragma MARK: std::vector<ContactInfo>
   /**
    * Specialized version of `std::vector<ContactInfo>`.
@@ -1699,6 +1733,32 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_std__vector_ContactInfo_ create_Func_void_std__vector_ContactInfo_(void* NON_NULL swiftClosureWrapper) noexcept;
   inline Func_void_std__vector_ContactInfo__Wrapper wrap_Func_void_std__vector_ContactInfo_(Func_void_std__vector_ContactInfo_ value) noexcept {
     return Func_void_std__vector_ContactInfo__Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::vector<ContactPostalAddressInput>
+  /**
+   * Specialized version of `std::vector<ContactPostalAddressInput>`.
+   */
+  using std__vector_ContactPostalAddressInput_ = std::vector<ContactPostalAddressInput>;
+  inline std::vector<ContactPostalAddressInput> create_std__vector_ContactPostalAddressInput_(size_t size) noexcept {
+    std::vector<ContactPostalAddressInput> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::optional<std::vector<ContactPostalAddressInput>>
+  /**
+   * Specialized version of `std::optional<std::vector<ContactPostalAddressInput>>`.
+   */
+  using std__optional_std__vector_ContactPostalAddressInput__ = std::optional<std::vector<ContactPostalAddressInput>>;
+  inline std::optional<std::vector<ContactPostalAddressInput>> create_std__optional_std__vector_ContactPostalAddressInput__(const std::vector<ContactPostalAddressInput>& value) noexcept {
+    return std::optional<std::vector<ContactPostalAddressInput>>(value);
+  }
+  inline bool has_value_std__optional_std__vector_ContactPostalAddressInput__(const std::optional<std::vector<ContactPostalAddressInput>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::vector<ContactPostalAddressInput> get_std__optional_std__vector_ContactPostalAddressInput__(const std::optional<std::vector<ContactPostalAddressInput>>& optional) noexcept {
+    return optional.value();
   }
 
   // pragma MARK: std::shared_ptr<Promise<ContactInfo>>
@@ -2706,6 +2766,137 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__vector_LocationPlace____ create_Result_std__shared_ptr_Promise_std__vector_LocationPlace____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>::withError(error);
+  }
+
+  // pragma MARK: std::vector<MapPlace>
+  /**
+   * Specialized version of `std::vector<MapPlace>`.
+   */
+  using std__vector_MapPlace_ = std::vector<MapPlace>;
+  inline std::vector<MapPlace> create_std__vector_MapPlace_(size_t size) noexcept {
+    std::vector<MapPlace> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<std::vector<MapPlace>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<MapPlace>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_MapPlace___ = std::shared_ptr<Promise<std::vector<MapPlace>>>;
+  inline std::shared_ptr<Promise<std::vector<MapPlace>>> create_std__shared_ptr_Promise_std__vector_MapPlace___() noexcept {
+    return Promise<std::vector<MapPlace>>::create();
+  }
+  inline PromiseHolder<std::vector<MapPlace>> wrap_std__shared_ptr_Promise_std__vector_MapPlace___(std::shared_ptr<Promise<std::vector<MapPlace>>> promise) noexcept {
+    return PromiseHolder<std::vector<MapPlace>>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const std::vector<MapPlace>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<MapPlace>&)>`.
+   */
+  using Func_void_std__vector_MapPlace_ = std::function<void(const std::vector<MapPlace>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<MapPlace>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_MapPlace__Wrapper final {
+  public:
+    explicit Func_void_std__vector_MapPlace__Wrapper(std::function<void(const std::vector<MapPlace>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<MapPlace>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<MapPlace> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<MapPlace>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_MapPlace_ create_Func_void_std__vector_MapPlace_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_MapPlace__Wrapper wrap_Func_void_std__vector_MapPlace_(Func_void_std__vector_MapPlace_ value) noexcept {
+    return Func_void_std__vector_MapPlace__Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::vector<MapCoordinate>
+  /**
+   * Specialized version of `std::vector<MapCoordinate>`.
+   */
+  using std__vector_MapCoordinate_ = std::vector<MapCoordinate>;
+  inline std::vector<MapCoordinate> create_std__vector_MapCoordinate_(size_t size) noexcept {
+    std::vector<MapCoordinate> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::vector<MapRouteStep>
+  /**
+   * Specialized version of `std::vector<MapRouteStep>`.
+   */
+  using std__vector_MapRouteStep_ = std::vector<MapRouteStep>;
+  inline std::vector<MapRouteStep> create_std__vector_MapRouteStep_(size_t size) noexcept {
+    std::vector<MapRouteStep> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<MapRoute>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<MapRoute>>`.
+   */
+  using std__shared_ptr_Promise_MapRoute__ = std::shared_ptr<Promise<MapRoute>>;
+  inline std::shared_ptr<Promise<MapRoute>> create_std__shared_ptr_Promise_MapRoute__() noexcept {
+    return Promise<MapRoute>::create();
+  }
+  inline PromiseHolder<MapRoute> wrap_std__shared_ptr_Promise_MapRoute__(std::shared_ptr<Promise<MapRoute>> promise) noexcept {
+    return PromiseHolder<MapRoute>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const MapRoute& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const MapRoute&)>`.
+   */
+  using Func_void_MapRoute = std::function<void(const MapRoute& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const MapRoute& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_MapRoute_Wrapper final {
+  public:
+    explicit Func_void_MapRoute_Wrapper(std::function<void(const MapRoute& /* result */)>&& func): _function(std::make_unique<std::function<void(const MapRoute& /* result */)>>(std::move(func))) {}
+    inline void call(MapRoute result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const MapRoute& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_MapRoute create_Func_void_MapRoute(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_MapRoute_Wrapper wrap_Func_void_MapRoute(Func_void_MapRoute value) noexcept {
+    return Func_void_MapRoute_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneMapServicesSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneMapServicesSpec>`.
+   */
+  using std__shared_ptr_HybridOneMapServicesSpec_ = std::shared_ptr<HybridOneMapServicesSpec>;
+  std::shared_ptr<HybridOneMapServicesSpec> create_std__shared_ptr_HybridOneMapServicesSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneMapServicesSpec_(std__shared_ptr_HybridOneMapServicesSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneMapServicesSpec>
+  using std__weak_ptr_HybridOneMapServicesSpec_ = std::weak_ptr<HybridOneMapServicesSpec>;
+  inline std__weak_ptr_HybridOneMapServicesSpec_ weakify_std__shared_ptr_HybridOneMapServicesSpec_(const std::shared_ptr<HybridOneMapServicesSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>
+  using Result_std__shared_ptr_Promise_std__vector_MapPlace____ = Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_MapPlace____ create_Result_std__shared_ptr_Promise_std__vector_MapPlace____(const std::shared_ptr<Promise<std::vector<MapPlace>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_MapPlace____ create_Result_std__shared_ptr_Promise_std__vector_MapPlace____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<MapRoute>>>
+  using Result_std__shared_ptr_Promise_MapRoute___ = Result<std::shared_ptr<Promise<MapRoute>>>;
+  inline Result_std__shared_ptr_Promise_MapRoute___ create_Result_std__shared_ptr_Promise_MapRoute___(const std::shared_ptr<Promise<MapRoute>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<MapRoute>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_MapRoute___ create_Result_std__shared_ptr_Promise_MapRoute___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<MapRoute>>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<HybridOneNativeModulesSpec>

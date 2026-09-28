@@ -28,16 +28,24 @@ if (permission === 'authorized' || permission === 'limited') {
 access returns only contacts the person has shared with the app.
 
 `search(name, limit = 100)` returns at most 100 matching contacts with an
-identifier, given and family names, phone number strings, and email address
-strings. It requires a nonempty name and a whole-number limit from 1 to 100.
-`create({ givenName, familyName, phoneNumbers, emailAddresses })` saves a
+identifier, given and family names, phone number strings, email address
+strings, and structured postal addresses. It requires a nonempty name and a whole-number limit from 1 to 100.
+`create({ givenName, familyName, phoneNumbers, emailAddresses, postalAddresses })` saves a
 contact and returns its identifier. `update(identifier, changes)` edits any
-combination of those four fields and returns the updated contact. Omitted fields
+combination of these fields and returns the updated contact. Omitted fields
 keep their values. Supplied phone and email arrays replace their whole field;
 entries with the same value keep their existing iOS labels, while new entries
 use the default label. An empty array clears that field. Blank phone and email
 entries are rejected by both create and update. A contact
 must keep at least one given or family name if either name is changed.
+`postalAddresses` is optional at create time and replaces the whole address
+field when supplied to update. Each address accepts `label`, `street`,
+`subLocality`, `city`, `subAdministrativeArea`, `state`, `postalCode`, `country`,
+and `isoCountryCode`; at least one address part must be nonblank. Search and
+update return all these parts and the raw iOS label. An omitted label uses
+the iOS home label for a new address. On update, an unchanged value with an
+omitted or unchanged label keeps its native label and identifier. An empty
+array clears addresses.
 `delete(identifier)` removes a contact the app is allowed to change. Ask the
 person before changing their contacts. Search and writes run away from the UI
 thread.
@@ -46,8 +54,8 @@ Missing usage text rejects with `E_CONTACTS_MANIFEST`; missing access with
 `E_CONTACTS_PERMISSION`; invalid input with `E_CONTACTS_INPUT`. Editing an
 unknown identifier on update or delete rejects with `E_CONTACTS_NOT_FOUND`. Store failures use
 `E_CONTACTS_FETCH`, `E_CONTACTS_SAVE`, or `E_CONTACTS_DELETE`. The API is iOS
-only and throws on Android or web. It does not yet read addresses or notes, or
-present the system contact picker.
+only and throws on Android or web. It does not yet read notes or present the
+system contact picker.
 
 See [Apple's Contacts access guide](https://developer.apple.com/documentation/contacts/accessing-the-contact-store)
 for how full and limited access differ.
