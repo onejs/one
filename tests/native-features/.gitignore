@@ -64,3 +64,8 @@ fail-snapshot.json
 !proofs/mesh-gradient/*.png
 !proofs/mesh-gradient/*.webp
 !proofs/mesh-gradient/outcome.json
+
+# Reviewed iOS 27 SwiftUI Menu primary-action runtime evidence.
+!proofs/menu-primary-action/*.png
+!proofs/menu-primary-action/*.webp
+!proofs/menu-primary-action/outcome.json

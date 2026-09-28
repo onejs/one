@@ -1,0 +1,31 @@
+{
+  "capturedAtUTC": "2026-09-28T05:24:13.435228+00:00",
+  "host": "MacBook-Pro-9.local",
+  "suiteSourceRevision": "72abae0c650ad0dab6ef15f72278a52b408fd5d0",
+  "nativeBuildSourceRevision": "60ab9a064282440000b118a369d758148fcd5e53",
+  "nativeSourceTree": "3794b6df15a39be9b557c7261992967def52af85",
+  "nativeBuildSourceTree": "3794b6df15a39be9b557c7261992967def52af85",
+  "device": "iPhone 16",
+  "simulatorId": "20A4D15A-8E8F-4D08-A8CC-1EBE7417552D",
+  "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+  "simulatorState": "Booted",
+  "xcode": [
+    "Xcode 27.1",
+    "Build version 27A9269"
+  ],
+  "locale": "en_US",
+  "appearance": "light",
+  "bundleId": "dev.vxrn.native.tests",
+  "binaries": {
+    "NativeFeatureTests.debug.dylib": {
+      "builtSHA256": "55ad3bccd9ac5ce0e1186bdb40f32d89638bdb7577dfbe008d18a8e4473ee5e9",
+      "installedSHA256": "55ad3bccd9ac5ce0e1186bdb40f32d89638bdb7577dfbe008d18a8e4473ee5e9"
+    },
+    "NativeFeatureTests": {
+      "builtSHA256": "327ecba0081551545f93b47f15854006e0f2be79a3b334864adb3fbbe51a538b",
+      "installedSHA256": "327ecba0081551545f93b47f15854006e0f2be79a3b334864adb3fbbe51a538b"
+    }
+  },
+  "outcomeSHA256": "d9c8a62361d0324f6594f0336ba53c59cfab862b0f46037f54e9f9a89f1f458a",
+  "buildLogSHA256": "677cc4d8d0988f10b30368cf35dc1f07a3c2ffa4f2adbef9bb69739768d76e27"
+}

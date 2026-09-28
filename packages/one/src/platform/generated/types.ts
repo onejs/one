@@ -157,6 +157,7 @@ export type MenuItem =
 export interface MenuProps extends ViewProps {
   items: readonly MenuItem[]
   onAction: (id: string) => void
+  primaryAction?: () => void
   onValueChange?: (id: string, value: boolean, sourceIndex: number) => void
   accessibilityLabel: string
   revision?: number
@@ -167,6 +168,6 @@ export interface MenuProps extends ViewProps {
 }
 // a context menu leaves its trigger interactive and visible to accessibility, so React
 // Native's own label on that subtree stands and the menu takes none of its own.
-export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel'> & {
+export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel' | 'primaryAction'> & {
   accessibilityLabel?: string
 }

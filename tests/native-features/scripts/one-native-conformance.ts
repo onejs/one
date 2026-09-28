@@ -79,6 +79,7 @@ const suites = [
   'edit-button',
   'view-that-fits',
   'cover-context',
+  'menu-primary-action',
   'popover',
   'navigation',
   'accessibility',
@@ -470,6 +471,10 @@ const coverContextLoaded = (nodes: Node[]) =>
     Boolean(id(nodes, 'one-native-cover-context-cover-close')) ||
     labels(nodes).includes('Full Screen Cover') ||
     labels(nodes).includes('Preview'))
+const menuPrimaryActionLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-menu-primary-screen')) &&
+  has(nodes, 'Primary presses: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -660,6 +665,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'edit-button': editButtonLoaded,
   'view-that-fits': viewThatFitsLoaded,
   'cover-context': coverContextLoaded,
+  'menu-primary-action': menuPrimaryActionLoaded,
   popover: popoverLoaded,
   navigation: navigationLoaded,
   accessibility: accessibilityLoaded,
@@ -748,6 +754,7 @@ const suiteHome: Record<Suite, string> = {
   'edit-button': 'nav-one-native-edit-button',
   'view-that-fits': 'nav-one-native-view-that-fits',
   'cover-context': 'nav-one-native-cover-context',
+  'menu-primary-action': 'nav-one-native-menu-primary-action',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -5198,6 +5205,86 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       })
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'menu-primary-action') {
+    const state = (nodes: Node[], presses: number, action: string, disabled: boolean) =>
+      has(nodes, `Primary presses: ${presses}`) &&
+      has(nodes, `Item action: ${action}`) &&
+      has(nodes, `Disabled: ${disabled ? 'on' : 'off'}`)
+    const longPress = () => {
+      const nodes = snapshot(config.simulatorId)
+      const frame = id(nodes, 'one-native-menu-primary-menu')?.frame ??
+        id(nodes, 'one-native-menu-primary-trigger')?.frame
+      if (!frame) throw new Error('Menu primary-action trigger has no frame')
+      const output = axe([
+        'touch', '-x', String(Math.round(frame.x + frame.width / 2)),
+        '-y', String(Math.round(frame.y + frame.height / 2)),
+        '--down', '--up', '--delay', '0.9',
+      ], config.simulatorId)
+      if (output.includes('could not establish simulator input'))
+        throw new Error('Menu primary-action long press lost simulator input')
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-menu-primary-action')
+    const initial = await wait('Menu primary action fixture mounted', (nodes) =>
+      Boolean(id(nodes, 'one-native-menu-primary-menu')?.frame) &&
+      state(nodes, 0, 'none', false) &&
+      !labels(nodes).includes('Alternate action')
+    )
+    screenshot('menu-primary-initial.png', initial)
+    tap({ id: 'one-native-menu-primary-menu' })
+    const tapped = await wait('short tap runs primary action without opening menu', (nodes) =>
+      state(nodes, 1, 'none', false) &&
+      !labels(nodes).includes('Alternate action')
+    )
+    screenshot('menu-primary-tapped.png', tapped)
+    longPress()
+    const opened = await wait('long press opens native menu without primary action', (nodes) =>
+      labels(nodes).includes('Alternate action') &&
+      // The menu may replace the presenting app's accessibility tree.
+      !has(nodes, 'Primary presses: 2')
+    )
+    screenshot('menu-primary-open.png', opened)
+    tap({ label: 'Alternate action' })
+    await wait('native menu item reaches its separate callback', (nodes) =>
+      state(nodes, 1, 'alternate', false) &&
+      !labels(nodes).includes('Alternate action')
+    )
+    tap({ id: 'one-native-menu-primary-toggle' })
+    const disabled = await wait('native menu becomes disabled', (nodes) =>
+      state(nodes, 1, 'alternate', true)
+    )
+    screenshot('menu-primary-disabled.png', disabled)
+    tap({ id: 'one-native-menu-primary-menu' })
+    longPress()
+    await Bun.sleep(700)
+    const blocked = snapshot(config.simulatorId)
+    if (!state(blocked, 1, 'alternate', true) || labels(blocked).includes('Alternate action'))
+      throw new Error('Disabled Menu accepted a tap or opened on long press')
+    checks.push({ name: 'disabled Menu rejects short and long press', durationMs: 700 })
+    console.log('PASS disabled Menu rejects short and long press')
+    screenshot('menu-primary-disabled-after-touches.png', blocked)
+    tap({ id: 'one-native-menu-primary-toggle' })
+    await wait('Menu re-enabled', (nodes) => state(nodes, 1, 'alternate', false))
+    tap({ id: 'one-native-menu-primary-menu' })
+    await wait('primary action works again after enabling', (nodes) =>
+      state(nodes, 2, 'alternate', false) && !labels(nodes).includes('Alternate action')
+    )
+    screenshot('menu-primary-reenabled.png')
+    tap({ id: 'one-native-menu-plain-menu' })
+    const plainOpen = await wait('plain Menu still opens on short tap', (nodes) =>
+      labels(nodes).includes('Plain action') && !has(nodes, 'Primary presses: 3')
+    )
+    screenshot('menu-plain-open.png', plainOpen)
+    tap({ label: 'Plain action' })
+    const plainSelected = await wait('plain Menu item keeps primary callback separate', (nodes) =>
+      state(nodes, 2, 'alternate', false) &&
+      has(nodes, 'Plain item: plain') &&
+      !labels(nodes).includes('Plain action')
+    )
+    screenshot('menu-plain-selected.png', plainSelected)
     return
   }
   if (config.suite === 'cover-context') {

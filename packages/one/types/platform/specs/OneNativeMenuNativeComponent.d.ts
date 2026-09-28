@@ -19,6 +19,7 @@ interface NativeProps extends ViewProps {
     items: ReadonlyArray<NativeMenuItem>;
     triggerLabel: string;
     disabled: boolean;
+    hasPrimaryAction: boolean;
     menuOrder: string;
     menuActionDismissBehavior: string;
     presentation: string;
@@ -26,6 +27,9 @@ interface NativeProps extends ViewProps {
     revision: Int32;
     onNativeMenuAction?: DirectEventHandler<Readonly<{
         id: string;
+    }>>;
+    onNativeMenuPrimaryAction?: DirectEventHandler<Readonly<{
+        kind: string;
     }>>;
     onNativeMenuValueChange?: DirectEventHandler<Readonly<{
         id: string;
