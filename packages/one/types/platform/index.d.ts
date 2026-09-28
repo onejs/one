@@ -35,6 +35,8 @@ export { Open } from './open/index';
 export type { OpenShareContent } from './open/index';
 export type { ShareItem, ShareItemType, ShareResult } from './share/index';
 export { PhotoLibrary } from './photo-library/index';
+export { MapServices } from './map-services/index';
+export type { MapCoordinate, MapPlace, MapRoute, MapRouteStep, MapTransport } from './map-services/index';
 export type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus, } from './photo-library/index';
 export { AppTracking } from './app-tracking/index';
 export type { AppTrackingPermissionStatus } from './app-tracking/index';

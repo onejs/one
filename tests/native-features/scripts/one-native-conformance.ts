@@ -83,6 +83,7 @@ const suites = [
   'accessibility',
   'media',
   'map',
+  'map-services',
   'apple-file',
   'apple-auth',
   'local-authentication',
@@ -658,6 +659,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
   map: mapLoaded,
+  'map-services': (nodes) => Boolean(id(nodes, 'one-native-map-services-run')),
   'apple-file': appleFileLoaded,
   'apple-auth': appleAuthLoaded,
   'local-authentication': localAuthenticationLoaded,
@@ -743,6 +745,7 @@ const suiteHome: Record<Suite, string> = {
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
   map: 'nav-one-native-map',
+  'map-services': 'nav-one-native-map-services',
   'apple-file': 'nav-one-native-apple-file',
   'apple-auth': 'nav-one-native-apple-auth',
   'local-authentication': 'nav-one-native-local-authentication',
@@ -1146,10 +1149,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     })
   }
   if (config.suite === 'notifications' || config.suite === 'speech' ||
-      config.suite === 'app-tracking') {
+      config.suite === 'app-tracking' || config.suite === 'map-services') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
-    // to undetermined.
+    // to undetermined; map-services needs the freshly built Nitro registration.
     if (!config.appPath)
       throw new Error(`The ${config.suite} suite requires --app-path for a fresh install.`)
     execFileSync('xcrun', ['simctl', 'uninstall', config.simulatorId, config.bundleId], {
@@ -5696,6 +5699,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         (n) => status(n, 'IsOn', 'true') && status(n, 'Changes', 1)
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'map-services') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-map-services')
+    await wait('map services fixture mounted', (n) => id(n, 'one-native-map-services-run') !== undefined)
+    tap({ id: 'one-native-map-services-run' })
+    await wait('MapKit search and walking route completed', (n) =>
+      labels(n).some((label) => /^Map services: passed: .*Ferry.*; [1-9][0-9]+m; \d+ points; \d+ steps; empty=true; input=E_MAP_INPUT$/i.test(label)))
+    screenshot('map-services.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

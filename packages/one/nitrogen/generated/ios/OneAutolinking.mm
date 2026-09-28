@@ -38,6 +38,7 @@
 #include "HybridOneDeviceSpecSwift.hpp"
 #include "HybridOneContactsSpecSwift.hpp"
 #include "HybridOneCalendarSpecSwift.hpp"
+#include "HybridOneMapServicesSpecSwift.hpp"
 #include "HybridOneUpdatesSpecSwift.hpp"
 #include "HybridOneNativeModulesSpecSwift.hpp"
 
@@ -243,6 +244,13 @@
     "OneCalendar",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneCalendarSpec> hybridObject = One::OneAutolinking::createOneCalendar();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneMapServices",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneMapServicesSpec> hybridObject = One::OneAutolinking::createOneMapServices();
       return hybridObject;
     }
   );

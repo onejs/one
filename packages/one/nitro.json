@@ -109,6 +109,9 @@
     "OneCalendar": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneCalendar" }
     },
+    "OneMapServices": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneMapServices" }
+    },
     "OneUpdates": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneUpdates" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneUpdates" }

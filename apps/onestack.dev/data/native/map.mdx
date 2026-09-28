@@ -64,3 +64,29 @@ one({
 The Maps SDK compiles into Android builds only when the key is set;
 without it the dependency stays out of the APK entirely. iOS needs no
 key.
+
+## iOS search and directions
+
+`One.iOS.MapServices` uses MapKit's local search and route service. It needs a
+network connection, but no location permission when you provide coordinates.
+The map view's marker and polyline props accept coordinates from these results.
+
+```ts
+const center = { latitude: 37.7955, longitude: -122.3937 }
+const places = await One.iOS.MapServices.search('Ferry Building', center, 3000)
+const route = await One.iOS.MapServices.directions(
+  center,
+  { latitude: 37.7786, longitude: -122.3893 },
+  'walking'
+)
+// route.polyline can be passed to One.UI.Map's polylines coordinates.
+```
+
+`search(query, center, radiusMeters = 5000)` returns names, addresses, and
+coordinates. Radius must be 100 to 50,000 metres and hints the search region;
+MapKit may return results outside that region. `directions(origin, destination,
+transport = 'driving')` returns the first route's distance in metres, expected
+travel time in seconds, polyline coordinates, and instruction steps. The
+transport is `driving` or `walking`. Search can return an empty array. Invalid
+input rejects with `E_MAP_INPUT`; service and routing failures reject with
+`E_MAP_SEARCH` and `E_MAP_DIRECTIONS`.
