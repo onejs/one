@@ -153,7 +153,7 @@ export type WrapModuleOptions = {
 
 // bump whenever this worker's output changes, or metro serves cached modules
 // transformed by the previous version.
-const WORKER_CACHE_KEY_VERSION = '5'
+const WORKER_CACHE_KEY_VERSION = '6'
 
 /**
  * react-native ships jsx inside plain .js files, and oxc disables jsx for .js
@@ -1844,7 +1844,13 @@ let workletsConfigured = false
  * Turns on @vxrn/compiler's reanimated transform inside this metro worker
  * process when the project actually depends on reanimated.
  */
-type OneNativeTransforms = typeof import('one/native-transforms')
+type OneNativeTransforms = typeof import('one/native-transforms') & {
+  renderSwiftPackageModule: (
+    id: string,
+    platform: string,
+    root: string
+  ) => { code: string; watchFiles: string[] }
+}
 
 let oneNativeTransforms: OneNativeTransforms | null | undefined
 
@@ -1897,6 +1903,16 @@ export async function transform(
   assertNoUnportedBabelPlugins(options)
 
   let sourceCode = typeof data === 'string' ? data : data.toString('utf8')
+  if (filename.endsWith('.swift')) {
+    const oneTransforms = loadOneNativeTransforms(projectRoot)
+    if (!oneTransforms)
+      throw new Error(`[vxrn/metro] ${filename} requires One native transforms`)
+    sourceCode = oneTransforms.renderSwiftPackageModule(
+      path.isAbsolute(filename) ? filename : path.resolve(projectRoot, filename),
+      options.platform ?? '',
+      projectRoot
+    ).code
+  }
 
   // narrow optional Expo compatibility, shared with the babel
   // transformer: only expo/virtual/env.js and .env files are special, and

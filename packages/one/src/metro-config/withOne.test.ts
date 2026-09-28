@@ -97,9 +97,26 @@ describe('withOne', () => {
     const exts: string[] = config.resolver.sourceExts
     expect(exts).toContain('mjs')
     expect(exts).toContain('js')
+    expect(exts).toContain('swift')
     // .js must appear before .mjs so platform-aware lookup finds
     // `.native.js` before `.mjs` for one's dist
     expect(exts.indexOf('js')).toBeLessThan(exts.indexOf('mjs'))
+  })
+
+  it('uses exact WebGPU aliases for the native-features Metro fixture', async () => {
+    const nativeFeatures = path.resolve(__dirname, '../../../../tests/native-features')
+    const config = (await withOne(nativeFeatures)) as any
+    const context = {
+      resolveRequest(_context: unknown, name: string) {
+        return { type: 'sourceFile', filePath: name }
+      },
+    }
+    const resolved = (name: string) =>
+      config.resolver.resolveRequest(context, name, 'ios').filePath
+    expect(resolved('three')).toBe('three/webgpu')
+    expect(resolved('@react-three/fiber')).toBe('@react-three/fiber/dist/react-three-fiber.esm.js')
+    expect(resolved('three/webgpu')).toBe('three/webgpu')
+    expect(resolved('@react-three/fiber/native')).toBe('@react-three/fiber/native')
   })
 
   it('accepts a project root as the first arg', async () => {
