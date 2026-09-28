@@ -103,6 +103,7 @@ const suites = [
   'browser',
   'notifications',
   'image-picker',
+  'camera-preview',
   'ui-map',
   'gpu',
   'updates',
@@ -555,6 +556,12 @@ const imagePickerLoaded = (nodes: Node[]) =>
     labels(nodes).includes('Cancel') ||
     labels(nodes).includes('Don’t Allow') ||
     nodes.every((n) => n.type === 'Application'))
+const cameraLoaded = (nodes: Node[]) =>
+  (nodes.some((n) => n.type === 'Application') &&
+    Boolean(id(nodes, 'one-native-camera-toggle')) &&
+    has(nodes, 'Camera state: ')) ||
+  (has(nodes, 'NativeFeatureTests verifies photo capture.') &&
+    (labels(nodes).includes('Allow') || labels(nodes).includes('OK')))
 const uiMapLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-ui-map-place-ferry')) &&
@@ -661,6 +668,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   browser: browserLoaded,
   notifications: notificationsLoaded,
   'image-picker': imagePickerLoaded,
+  'camera-preview': cameraLoaded,
   'ui-map': uiMapLoaded,
   gpu: gpuLoaded,
   updates: updatesLoaded,
@@ -743,6 +751,7 @@ const suiteHome: Record<Suite, string> = {
   browser: 'nav-one-native-browser',
   notifications: 'nav-one-native-notifications',
   'image-picker': 'nav-one-native-image-picker',
+  'camera-preview': 'nav-one-native-camera',
   'ui-map': 'nav-one-native-ui-map',
   gpu: 'nav-one-native-gpu',
   navigation: 'nav-one-native-navigation',
@@ -1054,7 +1063,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (!/not running|nothing to terminate/i.test(message)) throw error
     console.log('App was not running.')
   }
-  if (config.suite === 'image-picker') {
+  if (config.suite === 'image-picker' || config.suite === 'camera-preview') {
     // reset first so reruns start undetermined like a fresh install.
     execFileSync(
       'xcrun',
@@ -7848,6 +7857,58 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).some((label) => label.startsWith('Last: ') && label.includes('N4 cold'))
     )
 
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'camera-preview') {
+    const status = (nodes: Node[], label: string, expected: string) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-camera')
+    await wait('camera fixture mounted', (n) =>
+      Boolean(id(n, 'one-native-camera-toggle') && id(n, 'one-native-camera-preview')) &&
+      status(n, 'Camera state', 'inactive')
+    )
+    tap({ id: 'one-native-camera-read-permission' })
+    await wait('camera permission undecided', (n) =>
+      status(n, 'Camera permission', 'undetermined')
+    )
+    tap({ id: 'one-native-camera-toggle' })
+    await wait('camera requests permission before opening', (n) =>
+      status(n, 'Camera state', 'permission-required')
+    )
+    screenshot('camera-permission-required.png')
+
+    tap({ id: 'one-native-camera-request-permission' })
+    const prompt = await wait('camera system permission prompt appears', (n) =>
+      has(n, 'NativeFeatureTests verifies photo capture.') &&
+      (labels(n).includes('Allow') || labels(n).includes('OK'))
+    )
+    screenshot('camera-permission-prompt.png', prompt)
+    tap({ label: labels(prompt).includes('Allow') ? 'Allow' : 'OK' })
+    await wait('camera permission request resolves granted', (n) =>
+      status(n, 'Camera permission', 'granted')
+    )
+    await wait('active view reports missing device camera after grant', (n) =>
+      status(n, 'Camera state', 'unavailable')
+    )
+    screenshot('camera-unavailable.png')
+    tap({ id: 'one-native-camera-facing' })
+    await wait('front facing prop reaches fixture', (n) =>
+      status(n, 'Camera facing', 'front') && status(n, 'Camera state', 'unavailable')
+    )
+    tap({ id: 'one-native-camera-toggle' })
+    await wait('inactive camera releases capture', (n) =>
+      status(n, 'Camera active', 'false') && status(n, 'Camera state', 'inactive')
+    )
+    tap({ id: 'one-native-camera-toggle' })
+    await wait('front facing reactivation reports no device camera', (n) =>
+      status(n, 'Camera active', 'true') && status(n, 'Camera facing', 'front') &&
+      status(n, 'Camera state', 'unavailable')
+    )
+    if (!status(snapshot(config.simulatorId), 'Camera code', 'none'))
+      throw new Error('Simulator emitted a scanned code without camera frames')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

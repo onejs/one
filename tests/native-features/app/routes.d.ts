@@ -48,6 +48,7 @@ declare module 'one' {
         | `/one-native-building-blocks`
         | `/one-native-browser`
         | `/one-native-calendar`
+        | `/one-native-camera`
         | `/one-native-clipboard`
         | `/one-native-contacts`
         | `/one-native-containers`

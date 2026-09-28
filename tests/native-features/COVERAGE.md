@@ -103,6 +103,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Location` | location | n/a |  |
 | `One.iOS.FileSystem` | file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, image-manipulator | n/a |  |
 | `One.iOS.Audio` | audio, audio-interruption, audio-remote, audio-background | n/a |  |
+| `One.iOS.CameraView` | camera-preview | n/a |  |
 | `One.iOS.Share` | share | n/a |  |
 | `One.iOS.PhotoLibrary` | photo-library | n/a |  |
 | `One.iOS.AppTracking` | app-tracking | n/a |  |
@@ -191,7 +192,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Network` | network | missing | iOS suite only |
 | `One.Auth` | apple-auth | apple-auth |  |
 | `One.Browser` | browser | browser |  |
-| `One.ImagePicker` | image-picker | image-picker |  |
+| `One.ImagePicker` | image-picker, camera-preview | image-picker |  |
 | `One.DocumentPicker` | apple-file | missing | Android fixture exists, no suite opens it |
 | `One.SecureStore` | secure-store | secure-store |  |
 | `One.Speech` | speech | speech |  |

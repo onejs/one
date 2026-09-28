@@ -25,7 +25,7 @@ checklist; One's own exports and docs decide the status.
 | Haptics | covered | `One.Haptics` | haptics fixture | done |
 | Local and push notifications | covered | `One.Notifications` | notifications fixture | done |
 | Camera capture | covered | `One.ImagePicker.launchCamera` | image-picker fixture | done |
-| Live camera preview and code scanning | missing | no camera preview or barcode/QR scanner | none; [Apple's AVCam guide](https://developer.apple.com/documentation/avfoundation/avcam-building-a-camera-app) says Simulator has no device camera, so successful preview/scan needs device proof | P1 |
+| Live camera preview and code scanning | partial | `One.iOS.CameraView` native preview, front/back selection, QR/barcode callbacks and permission gate; physical-device scan proof open | camera-preview: iOS 27 simulator permission, active/inactive, no-camera states; [Apple's AVCam guide](https://developer.apple.com/documentation/avfoundation/avcam-building-a-camera-app) says Simulator has no device camera, so preview/scan needs device proof | P1 |
 | Photo selection | covered | `One.ImagePicker.launchLibrary`, `One.iOS.PhotosPicker` | image-picker; PhotosPicker unproven | done |
 | Image transformation | covered | `One.iOS.ImageManipulator` local crop, resize, rotate, JPEG/PNG encode | RAN iOS 27: orientation, decoded sizes, bytes, red crop/rotation pixels, input errors | done |
 | Live Photos | missing | no Live Photo capture or playback API | none | P3 |
@@ -133,6 +133,11 @@ checklist; One's own exports and docs decide the status.
     reported session activation, but Control Center had no media tile and the
     Lock Screen did not show the track. The cause is unconfirmed. Visible system
     controls, tile removal, and command callback delivery need device proof.
+13. Camera preview and code scanning have an iOS 27 permission and lifecycle
+    proof. The simulator reports no device camera, so live frames, decoded
+    values, lens choice, and landscape rotation need physical iPhone proof.
+    Peach has an Expo Camera stream and barcode seam, but no `OneNativeCamera`
+    Fabric adapter; the Contrast migration lane owns that integration.
 
 Avoid duplicating React Native surfaces only to rename them. Keep simulator
 limitations explicit; hardware-only effects need a device proof before `covered`.
