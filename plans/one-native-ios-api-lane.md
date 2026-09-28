@@ -57,7 +57,7 @@ checklist; One's own exports and docs decide the status.
 | Contacts | covered | `One.iOS.Contacts` permission, name search, create, update, delete, structured postal addresses, and system picker; notes require an Apple-granted entitlement | RAN iOS 27 prompt, create, full and partial edit, search, delete, postal address round trip, system picker selection and cancellation | done |
 | Calendar and reminders | partial | `One.iOS.Calendar` event create, list, update, delete plus reminders permission, list, create, completion, delete; recurrence creation is absent | RAN iOS 27 both prompts, Calendar edit and delete with negative cases, and Reminders round trip | P2 |
 | Localization and locale | covered | `One.iOS.Device.getLocalizationInfo` returns locale, languages, calendar, time zone, UTC offset, and currency | RAN device suite on iOS 27: en-US, gregorian, Honolulu, UTC offset, USD | done |
-| Screen orientation | missing | no orientation events or lock API | none | P2 |
+| Screen orientation | covered | `One.iOS.ScreenOrientation` reads the active window scene, requests portrait or landscape locks, unlocks, and emits orientation changes | RAN iOS 27 iPhone 17 Pro: portrait read, landscape lock and 874x402 window, change event, portrait lock and 402x874 window, change event, unlock | done |
 | Screen capture control | missing | no screenshot detection, capture prevention, or app screenshot API | none | P2 |
 | Print | missing | no AirPrint presentation API | none | P3 |
 | Mail and SMS composer | partial | share sheet can hand off content; no configured message composer | share sheet only | P3 |

@@ -345,6 +345,11 @@ const testScreens = [
     label: 'One Native App Info',
     testID: 'nav-one-native-app-info',
   },
+  {
+    href: '/one-native-screen-orientation',
+    label: 'One Native Screen Orientation',
+    testID: 'nav-one-native-screen-orientation',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
   {
     href: '/one-native-autogen',

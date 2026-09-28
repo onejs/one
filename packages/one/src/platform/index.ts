@@ -88,6 +88,8 @@ export type {
 } from './photo-library/index'
 export { AppTracking } from './app-tracking/index'
 export type { AppTrackingPermissionStatus } from './app-tracking/index'
+export { ScreenOrientation } from './screen-orientation/index'
+export type { ScreenOrientationLock, ScreenOrientationValue } from './screen-orientation/index'
 export { ImageManipulator } from './image-manipulator/index'
 export type { ImageCrop, ImageFormat, ImageResize, ImageManipulatorOptions, ImageTransformResult } from './image-manipulator/index'
 export { Device } from './device/index'

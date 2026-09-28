@@ -35,6 +35,7 @@
 #include "HybridOneNotificationsSpecSwift.hpp"
 #include "HybridOnePhotoLibrarySpecSwift.hpp"
 #include "HybridOneProtectedStoreSpecSwift.hpp"
+#include "HybridOneScreenOrientationSpecSwift.hpp"
 #include "HybridOneSecureStoreSpecSwift.hpp"
 #include "HybridOneShareSpecSwift.hpp"
 #include "HybridOneSpeechSpecSwift.hpp"
@@ -913,6 +914,30 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneProtectedStoreSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(ScreenOrientationValue /* result */)>
+  Func_void_ScreenOrientationValue create_Func_void_ScreenOrientationValue(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_ScreenOrientationValue::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](ScreenOrientationValue result) mutable -> void {
+      swiftClosure.call(static_cast<int>(result));
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneScreenOrientationSpec>
+  std::shared_ptr<HybridOneScreenOrientationSpec> create_std__shared_ptr_HybridOneScreenOrientationSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneScreenOrientationSpec_cxx swiftPart = One::HybridOneScreenOrientationSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneScreenOrientationSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneScreenOrientationSpec_(std__shared_ptr_HybridOneScreenOrientationSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneScreenOrientationSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneScreenOrientationSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneScreenOrientationSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneScreenOrientationSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 
