@@ -656,6 +656,10 @@ same sRGB hex colors. An empty array is transparent, and an unlabeled view
 is decorative for accessibility. The partial-arc initializer, explicit
 color stops, and arbitrary SwiftUI `Color` values are unbound.
 
+The iOS 27 iPhone 17 Pro proof covers the full-circle angle, center movement,
+reversed colors, one and three colors, alpha, and empty input. Other iOS
+versions remain unproven.
+
 `Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, `ConcentricRectangle`, and `Ellipse` are SwiftUI's
 shapes, one control each, named as SwiftUI names them. A shape has no ideal size
 of its own, so it takes the `width` and `height` React Native gives it, and `fill`

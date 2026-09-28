@@ -71,6 +71,16 @@ accounts are unavailable).
 
 ## Status
 
+- **RAN, 2026-09-27:** `One.iOS.AngularGradient` calls SwiftUI's
+  `AngularGradient(colors:center:angle:)`. The 16-check iPhone 17 Pro /
+  iOS 27.0 suite passed at source `6541bdc97` with Xcode 27.1. Eight
+  AX/PNG states and off-axis pixel gates prove a half-turn angle, moved
+  center, reversed colors, one and three colors, alpha over yellow, and
+  transparent empty input. The tracked
+  `tests/native-features/proofs/angular-gradient` bundle includes the
+  side-by-side WebP, sampled pixels, build log, and matching built/installed
+  debug dylib hashes. The partial-arc initializer, explicit color stops,
+  arbitrary SwiftUI colors, and other iOS versions remain unproven.
 - **RAN, 2026-09-27:** SwiftUI `controlSize` now has a ten-check (five feature
   checks) iPhone 17 Pro / iOS 27.0 conformance suite. Bordered prominent
   Buttons inherited through `Host controlSize` and modified directly through
