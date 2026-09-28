@@ -49,6 +49,7 @@ export interface OneContacts extends HybridObject<{
 }> {
     getPermissionStatus(): ContactsPermissionStatus;
     requestPermission(): Promise<ContactsPermissionStatus>;
+    pickContact(): Promise<ContactInfo | undefined>;
     search(name: string, limit: number): Promise<ContactInfo[]>;
     create(input: ContactInput): Promise<string>;
     update(identifier: string, changes: ContactChanges): Promise<ContactInfo>;

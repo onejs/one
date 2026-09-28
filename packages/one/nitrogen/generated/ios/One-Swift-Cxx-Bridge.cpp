@@ -348,6 +348,14 @@ namespace margelo::nitro::one::bridge::swift {
     };
   }
 
+  // pragma MARK: std::function<void(const std::optional<ContactInfo>& /* result */)>
+  Func_void_std__optional_ContactInfo_ create_Func_void_std__optional_ContactInfo_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__optional_ContactInfo_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::optional<ContactInfo>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
   // pragma MARK: std::function<void(const std::vector<ContactInfo>& /* result */)>
   Func_void_std__vector_ContactInfo_ create_Func_void_std__vector_ContactInfo_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_ContactInfo_::fromUnsafe(swiftClosureWrapper);

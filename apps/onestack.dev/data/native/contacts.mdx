@@ -27,6 +27,12 @@ if (permission === 'authorized' || permission === 'limited') {
 `notDetermined`, `restricted`, `denied`, `authorized`, or `limited`. Limited
 access returns only contacts the person has shared with the app.
 
+`pickContact()` opens Apple's system contact picker and resolves with the
+selected contact in the same shape as `search`, or `undefined` when the person
+cancels. The picker exposes only the chosen contact and does not request
+Contacts permission. Call it from a visible screen; a concurrent picker or
+missing presentation surface rejects with `E_CONTACTS_PICKER`.
+
 `search(name, limit = 100)` returns at most 100 matching contacts with an
 identifier, given and family names, phone number strings, email address
 strings, and structured postal addresses. It requires a nonempty name and a whole-number limit from 1 to 100.
@@ -54,8 +60,8 @@ Missing usage text rejects with `E_CONTACTS_MANIFEST`; missing access with
 `E_CONTACTS_PERMISSION`; invalid input with `E_CONTACTS_INPUT`. Editing an
 unknown identifier on update or delete rejects with `E_CONTACTS_NOT_FOUND`. Store failures use
 `E_CONTACTS_FETCH`, `E_CONTACTS_SAVE`, or `E_CONTACTS_DELETE`. The API is iOS
-only and throws on Android or web. It does not yet read notes or present the
-system contact picker.
+only and throws on Android or web. Contact notes require an Apple-granted
+entitlement and are not exposed.
 
 See [Apple's Contacts access guide](https://developer.apple.com/documentation/contacts/accessing-the-contact-store)
 for how full and limited access differ.

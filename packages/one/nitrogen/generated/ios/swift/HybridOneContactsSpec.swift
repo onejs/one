@@ -10,11 +10,12 @@ import NitroModules
 /// See ``HybridOneContactsSpec``
 public protocol HybridOneContactsSpec_protocol: HybridObject {
   // Properties
-  
+
 
   // Methods
   func getPermissionStatus() throws -> ContactsPermissionStatus
   func requestPermission() throws -> Promise<ContactsPermissionStatus>
+  func pickContact() throws -> Promise<ContactInfo?>
   func search(name: String, limit: Double) throws -> Promise<[ContactInfo]>
   func create(input: ContactInput) throws -> Promise<String>
   func update(identifier: String, changes: ContactChanges) throws -> Promise<ContactInfo>

@@ -1690,6 +1690,55 @@ namespace margelo::nitro::one::bridge::swift {
     return vector;
   }
 
+  // pragma MARK: std::optional<ContactInfo>
+  /**
+   * Specialized version of `std::optional<ContactInfo>`.
+   */
+  using std__optional_ContactInfo_ = std::optional<ContactInfo>;
+  inline std::optional<ContactInfo> create_std__optional_ContactInfo_(const ContactInfo& value) noexcept {
+    return std::optional<ContactInfo>(value);
+  }
+  inline bool has_value_std__optional_ContactInfo_(const std::optional<ContactInfo>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline ContactInfo get_std__optional_ContactInfo_(const std::optional<ContactInfo>& optional) noexcept {
+    return optional.value();
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<std::optional<ContactInfo>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::optional<ContactInfo>>>`.
+   */
+  using std__shared_ptr_Promise_std__optional_ContactInfo___ = std::shared_ptr<Promise<std::optional<ContactInfo>>>;
+  inline std::shared_ptr<Promise<std::optional<ContactInfo>>> create_std__shared_ptr_Promise_std__optional_ContactInfo___() noexcept {
+    return Promise<std::optional<ContactInfo>>::create();
+  }
+  inline PromiseHolder<std::optional<ContactInfo>> wrap_std__shared_ptr_Promise_std__optional_ContactInfo___(std::shared_ptr<Promise<std::optional<ContactInfo>>> promise) noexcept {
+    return PromiseHolder<std::optional<ContactInfo>>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const std::optional<ContactInfo>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::optional<ContactInfo>&)>`.
+   */
+  using Func_void_std__optional_ContactInfo_ = std::function<void(const std::optional<ContactInfo>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::optional<ContactInfo>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__optional_ContactInfo__Wrapper final {
+  public:
+    explicit Func_void_std__optional_ContactInfo__Wrapper(std::function<void(const std::optional<ContactInfo>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::optional<ContactInfo>& /* result */)>>(std::move(func))) {}
+    inline void call(std::optional<ContactInfo> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::optional<ContactInfo>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__optional_ContactInfo_ create_Func_void_std__optional_ContactInfo_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__optional_ContactInfo__Wrapper wrap_Func_void_std__optional_ContactInfo_(Func_void_std__optional_ContactInfo_ value) noexcept {
+    return Func_void_std__optional_ContactInfo__Wrapper(std::move(value));
+  }
+
   // pragma MARK: std::vector<ContactInfo>
   /**
    * Specialized version of `std::vector<ContactInfo>`.
@@ -1838,6 +1887,15 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_ContactsPermissionStatus___ create_Result_std__shared_ptr_Promise_ContactsPermissionStatus___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>
+  using Result_std__shared_ptr_Promise_std__optional_ContactInfo____ = Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>;
+  inline Result_std__shared_ptr_Promise_std__optional_ContactInfo____ create_Result_std__shared_ptr_Promise_std__optional_ContactInfo____(const std::shared_ptr<Promise<std::optional<ContactInfo>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__optional_ContactInfo____ create_Result_std__shared_ptr_Promise_std__optional_ContactInfo____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>::withError(error);
   }
 
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>

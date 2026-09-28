@@ -25,6 +25,7 @@ namespace margelo::nitro::one { struct ContactChanges; }
 #include "ContactsPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
 #include "ContactInfo.hpp"
+#include <optional>
 #include <vector>
 #include <string>
 #include "ContactInput.hpp"
@@ -57,12 +58,13 @@ namespace margelo::nitro::one {
 
     public:
       // Properties
-      
+
 
     public:
       // Methods
       virtual ContactsPermissionStatus getPermissionStatus() = 0;
       virtual std::shared_ptr<Promise<ContactsPermissionStatus>> requestPermission() = 0;
+      virtual std::shared_ptr<Promise<std::optional<ContactInfo>>> pickContact() = 0;
       virtual std::shared_ptr<Promise<std::vector<ContactInfo>>> search(const std::string& name, double limit) = 0;
       virtual std::shared_ptr<Promise<std::string>> create(const ContactInput& input) = 0;
       virtual std::shared_ptr<Promise<ContactInfo>> update(const std::string& identifier, const ContactChanges& changes) = 0;
