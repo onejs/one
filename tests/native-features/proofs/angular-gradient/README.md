@@ -1,7 +1,7 @@
 # AngularGradient iOS 27 proof
 
 RAN on pro-128 with Xcode 27.1, an iPhone 17 Pro simulator running iOS 27.0,
-and source revision `6541bdc9785b4302908b7919947d5c4c37880238`.
+and source revision `a549c31987e078e76b4a42ee651d48c6d2c52930`.
 `outcome.json` records 16 passing checks. Eight matching `angular-gradient-*.png`
 and `angular-gradient-*.ax.json.gz` pairs show the initial state, a half-turn
 rotation, moved center, reversed colors, three colors, one color, alpha, and

@@ -73,7 +73,7 @@ accounts are unavailable).
 
 - **RAN, 2026-09-27:** `One.iOS.AngularGradient` calls SwiftUI's
   `AngularGradient(colors:center:angle:)`. The 16-check iPhone 17 Pro /
-  iOS 27.0 suite passed at source `6541bdc97` with Xcode 27.1. Eight
+  iOS 27.0 suite passed at merged source `a549c3198` with Xcode 27.1. Eight
   AX/PNG states and off-axis pixel gates prove a half-turn angle, moved
   center, reversed colors, one and three colors, alpha over yellow, and
   transparent empty input. The tracked

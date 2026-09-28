@@ -3,27 +3,27 @@
   "checks": [
     {
       "name": "simulator automation session ready",
-      "durationMs": 756
+      "durationMs": 761
     },
     {
       "name": "home screen mounted",
-      "durationMs": 8301
+      "durationMs": 7613
     },
     {
       "name": "no warning overlay intercepts interaction",
-      "durationMs": 3091
+      "durationMs": 2321
     },
     {
       "name": "home lists nav-one-native-angular-gradient",
-      "durationMs": 3406
+      "durationMs": 2313
     },
     {
       "name": "nav-one-native-angular-gradient settles",
-      "durationMs": 3213
+      "durationMs": 6507
     },
     {
       "name": "native angular gradient mounts",
-      "durationMs": 3011
+      "durationMs": 2392
     },
     {
       "name": "labeled angular gradient accessible; unlabeled gradient decorative",
@@ -31,31 +31,31 @@
     },
     {
       "name": "React supplies angular gradient rotated state",
-      "durationMs": 1238
+      "durationMs": 2040
     },
     {
       "name": "React supplies angular gradient moved state",
-      "durationMs": 1273
+      "durationMs": 2017
     },
     {
       "name": "React supplies angular gradient reversed state",
-      "durationMs": 1051
+      "durationMs": 1977
     },
     {
       "name": "React supplies angular gradient three state",
-      "durationMs": 1049
+      "durationMs": 2060
     },
     {
       "name": "React supplies angular gradient single state",
-      "durationMs": 1261
+      "durationMs": 2011
     },
     {
       "name": "React supplies angular gradient alpha state",
-      "durationMs": 1033
+      "durationMs": 2032
     },
     {
       "name": "React supplies angular gradient empty state",
-      "durationMs": 1007
+      "durationMs": 1987
     },
     {
       "name": "native angular gradient rotates, moves its center, and reverses colors",
@@ -66,7 +66,7 @@
       "durationMs": 0
     }
   ],
-  "durationMs": 71674,
+  "durationMs": 86769,
   "simulatorId": "A9BF26C8-2214-4DC6-AA9E-877B19A49FE9",
   "bundleId": "dev.vxrn.native.tests",
   "suite": "angular-gradient"

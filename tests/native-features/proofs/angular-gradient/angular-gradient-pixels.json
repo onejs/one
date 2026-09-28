@@ -284,9 +284,9 @@
     ]
   },
   "nativeFrame": {
-    "x": 20,
-    "height": 150,
     "width": 280,
+    "height": 150,
+    "x": 20,
     "y": 215
   }
 }
