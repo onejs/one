@@ -152,6 +152,8 @@ namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 namespace margelo::nitro::one { class HybridOnePhotoLibrarySpec; }
 // Forward declaration of `HybridOneProtectedStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneProtectedStoreSpec; }
+// Forward declaration of `HybridOneScreenOrientationSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneScreenOrientationSpec; }
 // Forward declaration of `HybridOneSecureStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
 // Forward declaration of `HybridOneShareSpec` to properly resolve imports.
@@ -238,6 +240,8 @@ namespace margelo::nitro::one { enum class PhotoLibraryMediaType; }
 namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
 // Forward declaration of `ReminderInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ReminderInfo; }
+// Forward declaration of `ScreenOrientationValue` to properly resolve imports.
+namespace margelo::nitro::one { enum class ScreenOrientationValue; }
 // Forward declaration of `ShareItemType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ShareItemType; }
 // Forward declaration of `ShareItem` to properly resolve imports.
@@ -314,6 +318,8 @@ namespace One { class HybridOneNotificationsSpec_cxx; }
 namespace One { class HybridOnePhotoLibrarySpec_cxx; }
 // Forward declaration of `HybridOneProtectedStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneProtectedStoreSpec_cxx; }
+// Forward declaration of `HybridOneScreenOrientationSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneScreenOrientationSpec_cxx; }
 // Forward declaration of `HybridOneSecureStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSecureStoreSpec_cxx; }
 // Forward declaration of `HybridOneShareSpec_cxx` to properly resolve imports.
@@ -395,6 +401,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOnePhotoLibrarySpec.hpp"
 #include "HybridOneProtectedStoreSpec.hpp"
+#include "HybridOneScreenOrientationSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
 #include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
@@ -438,6 +445,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "PhotoLibraryMediaType.hpp"
 #include "PhotoLibraryPermissionStatus.hpp"
 #include "ReminderInfo.hpp"
+#include "ScreenOrientationValue.hpp"
 #include "ShareItem.hpp"
 #include "ShareItemType.hpp"
 #include "ShareResult.hpp"
@@ -3753,6 +3761,61 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__optional_std__string____ create_Result_std__shared_ptr_Promise_std__optional_std__string____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::optional<std::string>>>>::withError(error);
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<ScreenOrientationValue>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<ScreenOrientationValue>>`.
+   */
+  using std__shared_ptr_Promise_ScreenOrientationValue__ = std::shared_ptr<Promise<ScreenOrientationValue>>;
+  inline std::shared_ptr<Promise<ScreenOrientationValue>> create_std__shared_ptr_Promise_ScreenOrientationValue__() noexcept {
+    return Promise<ScreenOrientationValue>::create();
+  }
+  inline PromiseHolder<ScreenOrientationValue> wrap_std__shared_ptr_Promise_ScreenOrientationValue__(std::shared_ptr<Promise<ScreenOrientationValue>> promise) noexcept {
+    return PromiseHolder<ScreenOrientationValue>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(ScreenOrientationValue /* result */)>
+  /**
+   * Specialized version of `std::function<void(ScreenOrientationValue)>`.
+   */
+  using Func_void_ScreenOrientationValue = std::function<void(ScreenOrientationValue /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(ScreenOrientationValue / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_ScreenOrientationValue_Wrapper final {
+  public:
+    explicit Func_void_ScreenOrientationValue_Wrapper(std::function<void(ScreenOrientationValue /* result */)>&& func): _function(std::make_unique<std::function<void(ScreenOrientationValue /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<ScreenOrientationValue>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(ScreenOrientationValue /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_ScreenOrientationValue create_Func_void_ScreenOrientationValue(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_ScreenOrientationValue_Wrapper wrap_Func_void_ScreenOrientationValue(Func_void_ScreenOrientationValue value) noexcept {
+    return Func_void_ScreenOrientationValue_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneScreenOrientationSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneScreenOrientationSpec>`.
+   */
+  using std__shared_ptr_HybridOneScreenOrientationSpec_ = std::shared_ptr<HybridOneScreenOrientationSpec>;
+  std::shared_ptr<HybridOneScreenOrientationSpec> create_std__shared_ptr_HybridOneScreenOrientationSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneScreenOrientationSpec_(std__shared_ptr_HybridOneScreenOrientationSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneScreenOrientationSpec>
+  using std__weak_ptr_HybridOneScreenOrientationSpec_ = std::weak_ptr<HybridOneScreenOrientationSpec>;
+  inline std__weak_ptr_HybridOneScreenOrientationSpec_ weakify_std__shared_ptr_HybridOneScreenOrientationSpec_(const std::shared_ptr<HybridOneScreenOrientationSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<ScreenOrientationValue>>>
+  using Result_std__shared_ptr_Promise_ScreenOrientationValue___ = Result<std::shared_ptr<Promise<ScreenOrientationValue>>>;
+  inline Result_std__shared_ptr_Promise_ScreenOrientationValue___ create_Result_std__shared_ptr_Promise_ScreenOrientationValue___(const std::shared_ptr<Promise<ScreenOrientationValue>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<ScreenOrientationValue>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_ScreenOrientationValue___ create_Result_std__shared_ptr_Promise_ScreenOrientationValue___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<ScreenOrientationValue>>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<HybridOneSecureStoreSpec>

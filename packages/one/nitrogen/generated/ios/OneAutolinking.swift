@@ -324,6 +324,18 @@ public final class OneAutolinking {
     return HybridOneDevice.self is any RecyclableView.Type
   }
   
+  public static func createOneScreenOrientation() -> bridge.std__shared_ptr_HybridOneScreenOrientationSpec_ {
+    let hybridObject = HybridOneScreenOrientation()
+    return { () -> bridge.std__shared_ptr_HybridOneScreenOrientationSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isOneScreenOrientationRecyclable() -> Bool {
+    return HybridOneScreenOrientation.self is any RecyclableView.Type
+  }
+
   public static func createOneContacts() -> bridge.std__shared_ptr_HybridOneContactsSpec_ {
     let hybridObject = HybridOneContacts()
     return { () -> bridge.std__shared_ptr_HybridOneContactsSpec_ in

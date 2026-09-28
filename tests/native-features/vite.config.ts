@@ -125,6 +125,7 @@ export default defineConfig({
           scheme: 'nativefeatures',
           notifications: {},
           pictureInPicture: true,
+          orientation: 'default',
           // non-default versions the app-info conformance suites assert
           // exactly, proving prebuild stamping reaches runtime.
           version: '9.9.9',
