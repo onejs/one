@@ -657,7 +657,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'app-info': appInfoLoaded,
   device: deviceLoaded,
   motion: (nodes: Node[]) => Boolean(id(nodes, 'one-native-motion-read')) && has(nodes, 'Availability: '),
-  'device-attestation': (nodes: Node[]) => Boolean(id(nodes, 'one-native-device-attestation-read')) && has(nodes, 'Availability: pending'),
+  'device-attestation': (nodes: Node[]) => Boolean(id(nodes, 'one-native-device-attestation-read')) && has(nodes, 'Availability: '),
   'screen-orientation': screenOrientationLoaded,
   'screen-capture': (nodes: Node[]) => labels(nodes).some((label) => label.startsWith('Capture state: ')),
   purchases: (nodes: Node[]) => Boolean(id(nodes, 'one-native-purchases-buy')),
