@@ -52,6 +52,7 @@ const suites = [
   'device',
   'screen-orientation',
   'screen-capture',
+  'launch-screen',
   'database',
   'contacts',
   'calendar',
@@ -649,6 +650,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   device: deviceLoaded,
   'screen-orientation': screenOrientationLoaded,
   'screen-capture': (nodes: Node[]) => labels(nodes).some((label) => label.startsWith('Capture state: ')),
+  'launch-screen': (nodes: Node[]) => labels(nodes).includes('Launch screen fixture: visible'),
   database: databaseLoaded,
   contacts: contactsLoaded,
   calendar: calendarLoaded,
@@ -742,6 +744,7 @@ const suiteHome: Record<Suite, string> = {
   device: 'nav-one-native-device',
   'screen-orientation': 'nav-one-native-screen-orientation',
   'screen-capture': 'nav-one-native-screen-capture',
+  'launch-screen': 'nav-one-native-launch-screen',
   database: 'nav-one-native-database',
   contacts: 'nav-one-native-contacts',
   calendar: 'nav-one-native-calendar',
@@ -1190,6 +1193,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       config.suite === 'app-tracking' || config.suite === 'map-services' ||
       config.suite === 'contacts' || config.suite === 'screen-orientation' ||
       config.suite === 'screen-capture' ||
+      config.suite === 'launch-screen' ||
       config.suite === 'app-icon' || config.suite === 'photo-library' ||
       config.suite === 'photo-library-limited') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
@@ -1258,6 +1262,30 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (Date.now() - automationStarted >= config.timeout)
       throw new Error('Simulator automation session did not become ready after launch')
     await Bun.sleep(250)
+  }
+  if (config.suite === 'launch-screen') {
+    await wait('launch storyboard remains over rendered content', (nodes) =>
+      labels(nodes).includes('NativeFeatureTests') &&
+      labels(nodes).includes('Powered by React Native') &&
+      !labels(nodes).includes('Launch screen fixture: visible'), true
+    )
+    screenshot('launch-screen-held.png')
+    execFileSync('xcrun', [
+      'simctl', 'openurl', config.simulatorId,
+      'nativefeatures:///one-native-launch-screen?launch-screen-proof=hide',
+    ], { stdio: 'ignore', timeout: 30_000 })
+    await wait('explicit hide reveals the launch fixture', (nodes) =>
+      labels(nodes).includes('Launch screen fixture: visible') &&
+      labels(nodes).includes('Hide again: false') &&
+      !labels(nodes).includes('Powered by React Native')
+    )
+    screenshot('launch-screen-hidden.png')
+    tap({ id: 'one-native-launch-screen-hide-again' })
+    await wait('hide remains safe after release', (nodes) =>
+      labels(nodes).includes('Hide again: true')
+    )
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
   }
   if (config.suite === 'sheets') {
     let expectedCount = 1

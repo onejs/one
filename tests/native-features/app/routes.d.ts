@@ -83,6 +83,7 @@ declare module 'one' {
         | `/one-native-image`
         | `/one-native-image-manipulator`
         | `/one-native-image-picker`
+        | `/one-native-launch-screen`
         | `/one-native-leaves`
         | `/one-native-linear-gradient`
         | `/one-native-list-row-modifiers`

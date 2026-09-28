@@ -142,11 +142,12 @@ const nativeBundler = process.env.ONE_NATIVE_BUNDLER === 'rolldown'
 export default defineConfig({
   plugins: [
     one({
-      // the updates suite's entry-chunk boot hook. a no-op under the
-      // committed boot file, which never throws or delays; the suite's
-      // publishes swap the boot file per variant.
+      // startup proofs run before any route mounts. updates swaps its boot
+      // file per publish; launch-screen selects its hold setup at server start.
       setupFile: {
-        native: './fixtures/updates-setup.ts',
+        native: process.env.ONE_NATIVE_LAUNCH_SCREEN_PROOF === '1'
+          ? './fixtures/launch-screen-setup.ts'
+          : './fixtures/updates-setup.ts',
       },
       native: {
         app: {
