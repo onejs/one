@@ -3862,7 +3862,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       initialWarpReference: sample('initial', 0.88, 0.12),
       backgroundOutside: sample('background', 0.05, 0.05),
       backgroundInside: sample('background', 0.5, 0.5),
-      unsmoothedCenter: sample('unsmoothed', 0.5, 0.5),
+      initialSmoothingReference: sample('initial', 0.2, 0.8),
+      unsmoothedProbe: sample('unsmoothed', 0.2, 0.8),
       perceptualCenter: sample('perceptual', 0.5, 0.5),
       gridCenter: sample('three-by-three', 0.5, 0.5),
       gridTopCenter: sample('three-by-three', 0.5, 0.08),
@@ -3885,7 +3886,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (!(pixels.backgroundOutside[0]! < 80 && pixels.backgroundOutside[1]! > 160 && pixels.backgroundOutside[2]! > 160) ||
       distance(pixels.backgroundInside, pixels.backgroundOutside) < 80)
       throw new Error(`Native MeshGradient did not expose the background outside its vertices: ${JSON.stringify(pixels)}`)
-    if (distance(pixels.unsmoothedCenter, pixels.initialCenter) < 12 ||
+    if (distance(pixels.unsmoothedProbe, pixels.initialSmoothingReference) < 35 ||
       distance(pixels.perceptualCenter, pixels.initialCenter) < 12)
       throw new Error(`Native MeshGradient did not apply smoothing and color-space options: ${JSON.stringify(pixels)}`)
     if (distance(pixels.gridCenter, pixels.initialCenter) < 80 ||
