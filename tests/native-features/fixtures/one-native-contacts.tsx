@@ -109,9 +109,12 @@ export default function OneNativeContacts() {
         picked.givenName === 'OneEdited' &&
         picked.phoneNumbers.includes('+1 415 555 0110') &&
         picked.postalAddresses[0]?.street === '2 Market Street'
-      stage = 'picker cancellation'
-      setPickerStage('canceling')
-      const canceled = await One.iOS.Contacts.pickContact() === undefined
+      stage = 'picker swipe dismissal'
+      setPickerStage('swiping')
+      const swiped = await One.iOS.Contacts.pickContact() === undefined
+      stage = 'picker after swipe'
+      setPickerStage('afterSwipe')
+      const afterSwipe = await One.iOS.Contacts.pickContact() === undefined
       setPickerStage('done')
       const invalid = await One.iOS.Contacts.search('OneProof', 0).then(
         () => 'unexpected',
@@ -146,14 +149,14 @@ export default function OneNativeContacts() {
       )
       identifier = ''
       setAddressResult(`created=${addressCreated}; edited=${addressEdited}; preserved=${addressPreserved}; cleared=${addressCleared}; invalid=${invalidAddress}`)
-      setPickerResult(`selected=${selected}; canceled=${canceled}`)
+      setPickerResult(`selected=${selected}; swiped=${swiped}; afterSwipe=${afterSwipe}`)
       setResult(`before=${before}; blankCreate=${blankCreate}; matched=${matched}; edited=${edited}; partial=${partial}; removed=${removed}; missingDelete=${missingDelete}; notFound=${notFound}; invalidUpdate=${invalidUpdate}; invalid=${invalid}`)
       setStatus(before === 'E_CONTACTS_PERMISSION' && blankCreate === 'E_CONTACTS_INPUT' &&
         matched && edited && partial && removed && missingDelete === 'E_CONTACTS_NOT_FOUND' &&
         notFound === 'E_CONTACTS_NOT_FOUND' && invalidUpdate === 'E_CONTACTS_INPUT' &&
         invalid === 'E_CONTACTS_INPUT' && addressCreated && addressEdited &&
         addressPreserved && addressCleared && invalidAddress === 'E_CONTACTS_INPUT' &&
-        selected && canceled ? 'passed' : 'failed')
+        selected && swiped && afterSwipe ? 'passed' : 'failed')
     } catch (error) {
       setResult(`${stage}: ${code(error)}`)
       setStatus('failed')
