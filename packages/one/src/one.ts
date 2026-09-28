@@ -24,6 +24,7 @@ import {
   ImageManipulator,
   Device,
   Motion,
+  DeviceAttestation,
   Contacts,
   Calendar,
   WidgetUI,
@@ -86,6 +87,7 @@ export type OneIOS = typeof Swift & {
   readonly ImageManipulator: typeof ImageManipulator
   readonly Device: typeof Device
   readonly Motion: typeof Motion
+  readonly DeviceAttestation: typeof DeviceAttestation
   readonly Contacts: typeof Contacts
   readonly Calendar: typeof Calendar
   readonly Color: ColorType['ios']
@@ -176,6 +178,7 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   ImageManipulator,
   Device,
   Motion,
+  DeviceAttestation,
   Contacts,
   Calendar,
   Color: Color.ios,

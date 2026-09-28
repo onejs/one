@@ -78,6 +78,8 @@ namespace margelo::nitro::one { struct ContactPostalAddressInput; }
 namespace margelo::nitro::one { struct ContactPostalAddress; }
 // Forward declaration of `ContactsPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
+// Forward declaration of `DeviceAttestationAvailability` to properly resolve imports.
+namespace margelo::nitro::one { struct DeviceAttestationAvailability; }
 // Forward declaration of `DeviceInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct DeviceInfo; }
 // Forward declaration of `DocumentPickerAsset` to properly resolve imports.
@@ -124,6 +126,8 @@ namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 namespace margelo::nitro::one { class HybridOneContactsSpec; }
 // Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneCryptoSpec; }
+// Forward declaration of `HybridOneDeviceAttestationSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneDeviceAttestationSpec; }
 // Forward declaration of `HybridOneDeviceSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDeviceSpec; }
 // Forward declaration of `HybridOneDocumentPickerSpec` to properly resolve imports.
@@ -328,6 +332,8 @@ namespace One { class HybridOneClipboardSpec_cxx; }
 namespace One { class HybridOneContactsSpec_cxx; }
 // Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneCryptoSpec_cxx; }
+// Forward declaration of `HybridOneDeviceAttestationSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneDeviceAttestationSpec_cxx; }
 // Forward declaration of `HybridOneDeviceSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDeviceSpec_cxx; }
 // Forward declaration of `HybridOneDocumentPickerSpec_cxx` to properly resolve imports.
@@ -414,6 +420,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "ContactPostalAddress.hpp"
 #include "ContactPostalAddressInput.hpp"
 #include "ContactsPermissionStatus.hpp"
+#include "DeviceAttestationAvailability.hpp"
 #include "DeviceInfo.hpp"
 #include "DocumentPickerAsset.hpp"
 #include "DocumentPickerNativeResult.hpp"
@@ -437,6 +444,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneContactsSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
+#include "HybridOneDeviceAttestationSpec.hpp"
 #include "HybridOneDeviceSpec.hpp"
 #include "HybridOneDocumentPickerSpec.hpp"
 #include "HybridOneFetchSpec.hpp"
@@ -2182,6 +2190,27 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_LocalizationInfo___ create_Result_std__shared_ptr_Promise_LocalizationInfo___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<LocalizationInfo>>>::withError(error);
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneDeviceAttestationSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneDeviceAttestationSpec>`.
+   */
+  using std__shared_ptr_HybridOneDeviceAttestationSpec_ = std::shared_ptr<HybridOneDeviceAttestationSpec>;
+  std::shared_ptr<HybridOneDeviceAttestationSpec> create_std__shared_ptr_HybridOneDeviceAttestationSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneDeviceAttestationSpec_(std__shared_ptr_HybridOneDeviceAttestationSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneDeviceAttestationSpec>
+  using std__weak_ptr_HybridOneDeviceAttestationSpec_ = std::weak_ptr<HybridOneDeviceAttestationSpec>;
+  inline std__weak_ptr_HybridOneDeviceAttestationSpec_ weakify_std__shared_ptr_HybridOneDeviceAttestationSpec_(const std::shared_ptr<HybridOneDeviceAttestationSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<DeviceAttestationAvailability>
+  using Result_DeviceAttestationAvailability_ = Result<DeviceAttestationAvailability>;
+  inline Result_DeviceAttestationAvailability_ create_Result_DeviceAttestationAvailability_(const DeviceAttestationAvailability& value) noexcept {
+    return Result<DeviceAttestationAvailability>::withValue(value);
+  }
+  inline Result_DeviceAttestationAvailability_ create_Result_DeviceAttestationAvailability_(const std::exception_ptr& error) noexcept {
+    return Result<DeviceAttestationAvailability>::withError(error);
   }
 
   // pragma MARK: std::vector<DocumentPickerAsset>
