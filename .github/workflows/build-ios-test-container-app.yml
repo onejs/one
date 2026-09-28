@@ -145,8 +145,8 @@ jobs:
           cache-name: ${{ env.app_id }}-pods
         with:
           path: ${{ env.test_container_app_path }}/ios/Pods
-          # hash Podfile + workflow (for env vars like RCT_HERMES_V1_ENABLED that affect pod install)
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles(format('{0}/ios/Podfile', env.test_container_app_path), '.github/workflows/build-ios-test-container-app.yml') }}
+          # cached Pods contain React Native binaries, so dependency changes must invalidate them
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('bun.lock', format('{0}/ios/Podfile', env.test_container_app_path), '.github/workflows/build-ios-test-container-app.yml') }}
 
       - name: Pod Install
         if: ${{ !steps.pre-check-has-build.outputs.cache-hit }}
