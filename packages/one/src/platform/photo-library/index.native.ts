@@ -2,11 +2,11 @@ import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
-  OnePhotoLibrary, PhotoLibraryAsset, PhotoLibraryAssetPage,
+  OnePhotoLibrary, PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryAlbum, PhotoLibraryAlbumPage,
   PhotoLibraryMediaType, PhotoLibraryPermissionStatus,
 } from '../specs/OnePhotoLibrary.nitro'
 
-export type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus }
+export type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryAlbum, PhotoLibraryAlbumPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus }
 
 let hybrid: OnePhotoLibrary | undefined
 
@@ -52,6 +52,38 @@ function getAsset(identifier: string): Promise<PhotoLibraryAsset> {
   return native().getAsset(identifier).catch(rethrowNativeError)
 }
 
+function listAlbums(offset = 0, limit = 50): Promise<PhotoLibraryAlbumPage> {
+  return native().listAlbums(offset, limit).catch(rethrowNativeError)
+}
+
+function getAlbum(identifier: string): Promise<PhotoLibraryAlbum> {
+  return native().getAlbum(identifier).catch(rethrowNativeError)
+}
+
+function createAlbum(title: string): Promise<string> {
+  return native().createAlbum(title).catch(rethrowNativeError)
+}
+
+function renameAlbum(identifier: string, title: string): Promise<void> {
+  return native().renameAlbum(identifier, title).catch(rethrowNativeError)
+}
+
+function listAlbumAssets(identifier: string, offset = 0, limit = 50): Promise<PhotoLibraryAssetPage> {
+  return native().listAlbumAssets(identifier, offset, limit).catch(rethrowNativeError)
+}
+
+function addAssetToAlbum(albumIdentifier: string, assetIdentifier: string): Promise<void> {
+  return native().addAssetToAlbum(albumIdentifier, assetIdentifier).catch(rethrowNativeError)
+}
+
+function removeAssetFromAlbum(albumIdentifier: string, assetIdentifier: string): Promise<void> {
+  return native().removeAssetFromAlbum(albumIdentifier, assetIdentifier).catch(rethrowNativeError)
+}
+
+function deleteAlbum(identifier: string): Promise<void> {
+  return native().deleteAlbum(identifier).catch(rethrowNativeError)
+}
+
 function setFavorite(identifier: string, favorite: boolean): Promise<void> {
   return native().setFavorite(identifier, favorite).catch(rethrowNativeError)
 }
@@ -80,6 +112,14 @@ export const PhotoLibrary = Object.freeze({
   presentLimitedLibraryPicker,
   listAssets,
   getAsset,
+  listAlbums,
+  getAlbum,
+  createAlbum,
+  renameAlbum,
+  listAlbumAssets,
+  addAssetToAlbum,
+  removeAssetFromAlbum,
+  deleteAlbum,
   setFavorite,
   deleteAsset,
   exportOriginalAsset,

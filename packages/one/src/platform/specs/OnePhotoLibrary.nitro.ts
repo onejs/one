@@ -24,6 +24,16 @@ export interface PhotoLibraryAssetPage {
   totalCount: number
 }
 
+export interface PhotoLibraryAlbum {
+  identifier: string
+  title: string
+}
+
+export interface PhotoLibraryAlbumPage {
+  albums: PhotoLibraryAlbum[]
+  totalCount: number
+}
+
 export interface OnePhotoLibrary extends HybridObject<{ ios: 'swift' }> {
   getAddPermissionStatus(): PhotoLibraryPermissionStatus
   requestAddPermission(): Promise<PhotoLibraryPermissionStatus>
@@ -32,6 +42,14 @@ export interface OnePhotoLibrary extends HybridObject<{ ios: 'swift' }> {
   presentLimitedLibraryPicker(): Promise<string[]>
   listAssets(offset: number, limit: number): Promise<PhotoLibraryAssetPage>
   getAsset(identifier: string): Promise<PhotoLibraryAsset>
+  listAlbums(offset: number, limit: number): Promise<PhotoLibraryAlbumPage>
+  getAlbum(identifier: string): Promise<PhotoLibraryAlbum>
+  createAlbum(title: string): Promise<string>
+  renameAlbum(identifier: string, title: string): Promise<void>
+  listAlbumAssets(identifier: string, offset: number, limit: number): Promise<PhotoLibraryAssetPage>
+  addAssetToAlbum(albumIdentifier: string, assetIdentifier: string): Promise<void>
+  removeAssetFromAlbum(albumIdentifier: string, assetIdentifier: string): Promise<void>
+  deleteAlbum(identifier: string): Promise<void>
   setFavorite(identifier: string, favorite: boolean): Promise<void>
   deleteAsset(identifier: string): Promise<void>
   exportOriginalAsset(identifier: string, allowNetwork: boolean): Promise<string>
