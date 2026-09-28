@@ -77,6 +77,7 @@ declare module 'one' {
         | `/one-native-radial-gradient`
         | `/one-native-angular-gradient`
         | `/one-native-elliptical-gradient`
+        | `/one-native-mesh-gradient`
         | `/one-native-safe-area-bar`
         | `/one-native-swipe-actions`
         | `/one-native-disclosure-group`

@@ -964,6 +964,85 @@ export function AngularGradient({
     />
   )
 }
+import NativeMeshGradient from '../specs/OneNativeMeshGradientNativeComponent'
+export function MeshGradient({
+  meshWidth,
+  meshHeight,
+  points,
+  colors,
+  background = '#00000000',
+  smoothsColors = true,
+  colorSpace = 'device',
+  swiftStyle,
+  style,
+  ...props
+}: Types.MeshGradientProps) {
+  if (Number.parseFloat(String(Platform.Version)) < 18)
+    throw new Error('MeshGradient requires iOS 18 or newer')
+  if (
+    !Number.isSafeInteger(meshWidth) ||
+    meshWidth < 2 ||
+    !Number.isSafeInteger(meshHeight) ||
+    meshHeight < 2
+  )
+    throw new Error(
+      'MeshGradient meshWidth and meshHeight must be integers of at least 2'
+    )
+  if (
+    !Array.isArray(points) ||
+    points.length !== meshWidth * meshHeight ||
+    !points.every(
+      (point) =>
+        point &&
+        Number.isFinite(point.x) &&
+        Number.isFinite(point.y) &&
+        Number.isFinite(Math.fround(point.x)) &&
+        Number.isFinite(Math.fround(point.y))
+    )
+  )
+    throw new Error(
+      'MeshGradient points must contain meshWidth × meshHeight finite Float32 coordinates'
+    )
+  if (
+    !Array.isArray(colors) ||
+    colors.length !== meshWidth * meshHeight ||
+    !colors.every(
+      (color) =>
+        typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)
+    )
+  )
+    throw new Error(
+      'MeshGradient colors must contain meshWidth × meshHeight #RRGGBB or #RRGGBBAA colors'
+    )
+  if (
+    typeof background !== 'string' ||
+    !/^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(background)
+  )
+    throw new Error('MeshGradient background must be #RRGGBB or #RRGGBBAA')
+  if (colorSpace !== 'device' && colorSpace !== 'perceptual')
+    throw new Error('MeshGradient colorSpace must be device or perceptual')
+
+  return (
+    <NativeMeshGradient
+      {...props}
+      style={style}
+      accessible={Boolean(props.accessibilityLabel)}
+      accessibilityElementsHidden={!props.accessibilityLabel}
+      accessibilityRole="image"
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      meshWidth={meshWidth}
+      meshHeight={meshHeight}
+      points={JSON.stringify(points)}
+      colors={colors}
+      background={background}
+      smoothsColors={smoothsColors}
+      colorSpace={colorSpace}
+    />
+  )
+}
 import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
 export function VideoPlayer({
   url = '',
