@@ -149,6 +149,8 @@ Invalid items reject with their documented codes.
 fixture assets, then reads original bytes and asset metadata with full access.
 It replaces a still image with a resized JPEG, exports the rendered version,
 checks decoded pixels and original bytes, then reverts to the preserved original.
+It also replaces a video with a shorter upright QuickTime movie, checks the
+current movie duration and preserved original, then reverts the video.
 The suite also checks albums, favorites, deletion, and validation errors.
 
 `image-manipulator` transforms an oriented HEIC on iOS 27 into JPEG and PNG

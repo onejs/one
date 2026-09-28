@@ -230,6 +230,14 @@ namespace margelo::nitro::one {
       auto __value = std::move(__result.value());
       return __value;
     }
+    inline std::shared_ptr<Promise<void>> replaceVideoContent(const std::string& identifier, const std::string& uri) override {
+      auto __result = _swiftPart.replaceVideoContent(identifier, uri);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
     inline std::shared_ptr<Promise<void>> revertAssetContent(const std::string& identifier) override {
       auto __result = _swiftPart.revertAssetContent(identifier);
       if (__result.hasError()) [[unlikely]] {
@@ -248,6 +256,14 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<std::string>> exportCurrentImage(const std::string& identifier, bool allowNetwork) override {
       auto __result = _swiftPart.exportCurrentImage(identifier, std::forward<decltype(allowNetwork)>(allowNetwork));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::string>> exportCurrentVideo(const std::string& identifier, bool allowNetwork) override {
+      auto __result = _swiftPart.exportCurrentVideo(identifier, std::forward<decltype(allowNetwork)>(allowNetwork));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

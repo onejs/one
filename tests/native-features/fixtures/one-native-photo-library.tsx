@@ -1,10 +1,26 @@
 import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
-import { photoBase64, videoBase64 } from './photo-library-proof-media'
+import { editedVideoBase64, photoBase64, rotatedVideoBase64, videoBase64 } from './photo-library-proof-media'
 
 const errorCode = (error: unknown) =>
   error && typeof error === 'object' && 'code' in error ? String(error.code) : 'unknown'
+
+function movieDurationMs(bytes: Uint8Array): number {
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength)
+  for (let index = 4; index + 36 < bytes.length; index++) {
+    if (bytes[index] !== 109 || bytes[index + 1] !== 118 ||
+      bytes[index + 2] !== 104 || bytes[index + 3] !== 100) continue
+    if (view.getUint32(index - 4) < 32) continue
+    const version = bytes[index + 4]
+    const scale = view.getUint32(index + (version === 1 ? 24 : 16))
+    const duration = version === 1
+      ? Number(view.getBigUint64(index + 28))
+      : view.getUint32(index + 20)
+    if (scale > 0) return Math.round(duration * 1000 / scale)
+  }
+  return -1
+}
 
 export default function OneNativePhotoLibrary() {
   const [status, setStatus] = useState('idle')
@@ -14,6 +30,7 @@ export default function OneNativePhotoLibrary() {
   const [readResult, setReadResult] = useState('none')
   const [manageResult, setManageResult] = useState('none')
   const [editResult, setEditResult] = useState('none')
+  const [videoEditResult, setVideoEditResult] = useState('none')
   const [limitedResult, setLimitedResult] = useState('none')
   const [albumResult, setAlbumResult] = useState('none')
   const [savedIds, setSavedIds] = useState<string[]>([])
@@ -299,6 +316,79 @@ export default function OneNativePhotoLibrary() {
     }
   }
 
+  async function editVideo() {
+    setStatus('video-edit-checking')
+    let currentUri = ''
+    let originalUri = ''
+    let restoredUri = ''
+    try {
+      const [imageId, videoId] = savedIds
+      if (!imageId || !videoId) throw new Error('save the proof assets first')
+      const cache = One.iOS.FileSystem.getDirectories().cache
+      const movie = cache + 'one-native-photo-library-edited.mov'
+      const rotatedMovie = cache + 'one-native-photo-library-rotated.mov'
+      await One.iOS.FileSystem.writeFile(movie, editedVideoBase64, 'base64')
+      await One.iOS.FileSystem.writeFile(rotatedMovie, rotatedVideoBase64, 'base64')
+      const before = await One.iOS.PhotoLibrary.getAsset(videoId)
+      let invalid = ''
+      try { await One.iOS.PhotoLibrary.replaceVideoContent(' ', movie) }
+      catch (error) { invalid = errorCode(error) }
+      let image = ''
+      try { await One.iOS.PhotoLibrary.replaceVideoContent(imageId, movie) }
+      catch (error) { image = errorCode(error) }
+      let uri = ''
+      try { await One.iOS.PhotoLibrary.replaceVideoContent(videoId, 'https://onestack.dev/movie.mov') }
+      catch (error) { uri = errorCode(error) }
+      let format = ''
+      try { await One.iOS.PhotoLibrary.replaceVideoContent(videoId, cache + 'one-native-photo-library.mp4') }
+      catch (error) { format = errorCode(error) }
+      let rotated = ''
+      try { await One.iOS.PhotoLibrary.replaceVideoContent(videoId, rotatedMovie) }
+      catch (error) { rotated = errorCode(error) }
+      let currentImage = ''
+      try { await One.iOS.PhotoLibrary.exportCurrentVideo(imageId) }
+      catch (error) { currentImage = errorCode(error) }
+      setStatus('video-edit-applying')
+      await One.iOS.PhotoLibrary.replaceVideoContent(videoId, movie)
+      const edited = await One.iOS.PhotoLibrary.getAsset(videoId)
+      currentUri = await One.iOS.PhotoLibrary.exportCurrentVideo(videoId)
+      originalUri = await One.iOS.PhotoLibrary.exportOriginalAsset(videoId)
+      const currentBytes = new Uint8Array(await (await fetch(currentUri)).arrayBuffer())
+      const originalBytes = new Uint8Array(await (await fetch(originalUri)).arrayBuffer())
+      const sourceBytes = new Uint8Array(await (await fetch(cache + 'one-native-photo-library.mp4')).arrayBuffer())
+      const currentDuration = movieDurationMs(currentBytes)
+      const originalKept = originalBytes.length === sourceBytes.length &&
+        originalBytes.every((byte, index) => byte === sourceBytes[index])
+      await One.iOS.FileSystem.delete(currentUri)
+      currentUri = ''
+      await One.iOS.FileSystem.delete(originalUri)
+      originalUri = ''
+      setStatus('video-edit-reverting')
+      await One.iOS.PhotoLibrary.revertAssetContent(videoId)
+      const restored = await One.iOS.PhotoLibrary.getAsset(videoId)
+      restoredUri = await One.iOS.PhotoLibrary.exportCurrentVideo(videoId)
+      const restoredBytes = new Uint8Array(await (await fetch(restoredUri)).arrayBuffer())
+      const restoredDuration = movieDurationMs(restoredBytes)
+      let missing = ''
+      try { await One.iOS.PhotoLibrary.replaceVideoContent('missing-asset-id', movie) }
+      catch (error) { missing = errorCode(error) }
+      setVideoEditResult(
+        `invalid=${invalid}; image=${image}; uri=${uri}; format=${format}; rotated=${rotated}; ` +
+        `currentImage=${currentImage}; before=${Math.round(before.durationMs)}; ` +
+        `edited=${Math.round(edited.durationMs)}; current=${currentDuration}; ` +
+        `originalKept=${originalKept}; restored=${Math.round(restored.durationMs)}; ` +
+        `restoredCurrent=${restoredDuration}; missing=${missing}`
+      )
+      setStatus('video-edit-passed')
+    } catch (error) {
+      setStatus(`video-edit-error: ${errorCode(error)} ${error instanceof Error ? error.message : String(error)}`)
+    } finally {
+      if (currentUri) await One.iOS.FileSystem.delete(currentUri)
+      if (originalUri) await One.iOS.FileSystem.delete(originalUri)
+      if (restoredUri) await One.iOS.FileSystem.delete(restoredUri)
+    }
+  }
+
   async function requestLimited() {
     setStatus('limited-requesting')
     try {
@@ -404,6 +494,8 @@ export default function OneNativePhotoLibrary() {
       <Text testID="one-native-photo-library-read-permission">Read permission: {readPermission}</Text>
       {albumResult !== 'none' ? (
         <Text testID="one-native-photo-library-album-result">Album result: {albumResult}</Text>
+      ) : videoEditResult !== 'none' ? (
+        <Text testID="one-native-photo-library-video-edit-result">Video edit result: {videoEditResult}</Text>
       ) : editResult !== 'none' ? (
         <Text testID="one-native-photo-library-edit-result">Edit result: {editResult}</Text>
       ) : (
@@ -425,6 +517,11 @@ export default function OneNativePhotoLibrary() {
       {readPermission === 'authorized' && (
         <Pressable testID="one-native-photo-library-edit" style={styles.chip} onPress={editImage}>
           <Text>Replace and revert a Photos image</Text>
+        </Pressable>
+      )}
+      {readPermission === 'authorized' && (
+        <Pressable testID="one-native-photo-library-video-edit" style={styles.chip} onPress={editVideo}>
+          <Text>Replace and revert a Photos video</Text>
         </Pressable>
       )}
       {readPermission === 'authorized' && (

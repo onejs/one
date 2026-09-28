@@ -32,9 +32,11 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("setFavorite", &HybridOnePhotoLibrarySpec::setFavorite);
       prototype.registerHybridMethod("deleteAsset", &HybridOnePhotoLibrarySpec::deleteAsset);
       prototype.registerHybridMethod("replaceImageContent", &HybridOnePhotoLibrarySpec::replaceImageContent);
+      prototype.registerHybridMethod("replaceVideoContent", &HybridOnePhotoLibrarySpec::replaceVideoContent);
       prototype.registerHybridMethod("revertAssetContent", &HybridOnePhotoLibrarySpec::revertAssetContent);
       prototype.registerHybridMethod("exportOriginalAsset", &HybridOnePhotoLibrarySpec::exportOriginalAsset);
       prototype.registerHybridMethod("exportCurrentImage", &HybridOnePhotoLibrarySpec::exportCurrentImage);
+      prototype.registerHybridMethod("exportCurrentVideo", &HybridOnePhotoLibrarySpec::exportCurrentVideo);
       prototype.registerHybridMethod("saveImage", &HybridOnePhotoLibrarySpec::saveImage);
       prototype.registerHybridMethod("saveVideo", &HybridOnePhotoLibrarySpec::saveVideo);
     });
