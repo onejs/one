@@ -246,9 +246,14 @@ export default function OneNativePhotoLibrary() {
       const readable = (await Promise.all(added.map((identifier) =>
         One.iOS.PhotoLibrary.getAsset(identifier)
       ))).every((asset, index) => asset.identifier === added[index])
+      const priorId = before.assets[0]?.identifier
+      const preserved = !!priorId && after.assets.some((asset) => asset.identifier === priorId) &&
+        (await One.iOS.PhotoLibrary.getAsset(priorId)).identifier === priorId
       setLimitedResult(
         `added=${added.length}; expanded=${after.totalCount > before.totalCount}; ` +
-          `readable=${readable}; distinct=${new Set(added).size === added.length}`
+          `unchanged=${after.totalCount === before.totalCount}; readable=${readable}; preserved=${preserved}; ` +
+          `distinct=${new Set(added).size === added.length}; ` +
+          `saved=${added.length > 0 && added.every((identifier) => savedIds.includes(identifier))}`
       )
       setStatus('limited-passed')
     } catch (error) {

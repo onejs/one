@@ -7970,14 +7970,24 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-photo-library-limited-pick' })
     await wait('Photos presents limited-library re-selection', () =>
-      done() && secondVideo()
+      done() && secondVideo() && pickerAt(40, 135).AXLabel === 'Cancel'
     )
     screenshot('photo-library-limited-reselection.png')
+    point(40, 135)
+    await wait('Photos canceled picker settles without changing access', (n) =>
+      labels(n).includes('Status: limited-passed') &&
+      labels(n).includes('Limited result: added=0; expanded=false; unchanged=true; readable=true; preserved=true; distinct=true; saved=false')
+    )
+    screenshot('photo-library-limited-canceled.png')
+    tap({ id: 'one-native-photo-library-limited-pick' })
+    await wait('Photos reopens limited picker after cancellation', () =>
+      done() && secondVideo()
+    )
     point(200, 350)
     point(365, 135)
     await wait('Photos expands the readable limited selection', (n) =>
       labels(n).includes('Status: limited-passed') &&
-      labels(n).includes('Limited result: added=1; expanded=true; readable=true; distinct=true')
+      labels(n).includes('Limited result: added=1; expanded=true; unchanged=false; readable=true; preserved=true; distinct=true; saved=true')
     )
     screenshot('photo-library-limited-passed.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')

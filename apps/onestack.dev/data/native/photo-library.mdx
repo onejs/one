@@ -74,6 +74,9 @@ if (One.iOS.PhotoLibrary.getReadPermissionStatus() === 'limited') {
 }
 ```
 
+The system picker's X button closes it with an empty array and keeps the
+previously selected assets readable. You can open the picker again afterward.
+
 The picker rejects with `E_PHOTO_LIBRARY_PERMISSION` unless the app has limited
 read access, `E_PHOTO_LIBRARY_MANIFEST` without the read/write usage message,
 `E_PHOTO_LIBRARY_UNAVAILABLE` when no active view controller can present it, or
