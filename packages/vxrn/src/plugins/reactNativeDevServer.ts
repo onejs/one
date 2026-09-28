@@ -204,7 +204,7 @@ export function createReactNativeDevServerPlugin(
               url: `http://${hostUri}/${encodeURI(mainModuleName.replace(/^\/+/, ''))}.bundle?platform=${platform}&dev=true&hot=false`,
             },
             assets: [],
-            metadata: {},
+            metadata: nativeApp ? { oneNativeApp: true } : {},
             extra: {
               eas: { projectId: exp.extra?.eas?.projectId ?? undefined },
               expoClient: { ...exp, hostUri },
