@@ -1,5 +1,4 @@
 import NitroModules
-import React
 import UIKit
 import UniformTypeIdentifiers
 
@@ -32,8 +31,7 @@ final class HybridOneDocumentPicker: HybridOneDocumentPickerSpec {
         return
       }
       self.pending = promise
-      guard let presenter = Self.topViewController(), presenter.presentedViewController == nil
-      else {
+      guard let presenter = oneNativePresentingViewController() else {
         self.rejectPending("found no view controller to present from")
         return
       }
@@ -123,14 +121,6 @@ final class HybridOneDocumentPicker: HybridOneDocumentPickerSpec {
     pending = nil
     promise?.reject(
       withError: oneNativeError(Self.failed, "DocumentPicker.getDocument: \(message)"))
-  }
-
-  private static func topViewController() -> UIViewController? {
-    var top = RCTKeyWindow()?.rootViewController
-    while let presented = top?.presentedViewController {
-      top = presented
-    }
-    return top
   }
 }
 

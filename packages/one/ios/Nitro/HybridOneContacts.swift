@@ -1,7 +1,6 @@
 import Contacts
 import ContactsUI
 import NitroModules
-import React
 import UIKit
 
 final class HybridOneContacts: HybridOneContactsSpec {
@@ -48,12 +47,7 @@ final class HybridOneContacts: HybridOneContactsSpec {
           "E_CONTACTS_PICKER", "Contacts.pickContact: a picker is already open"))
         return
       }
-      var presenter = RCTKeyWindow()?.rootViewController
-      while let presented = presenter?.presentedViewController { presenter = presented }
-      guard UIApplication.shared.applicationState == .active,
-        let presenter, presenter.view.window != nil,
-        !presenter.isBeingDismissed, !presenter.isBeingPresented,
-        presenter.transitionCoordinator == nil else {
+      guard let presenter = oneNativePresentingViewController() else {
         promise.reject(withError: Self.error(
           "E_CONTACTS_PICKER", "Contacts.pickContact: no active view controller"))
         return
@@ -61,6 +55,7 @@ final class HybridOneContacts: HybridOneContactsSpec {
       let picker = CNContactPickerViewController()
       picker.predicateForSelectionOfContact = NSPredicate(value: true)
       picker.delegate = self.pickerDelegate
+      picker.presentationController?.delegate = self.pickerDelegate
       self.pendingPicker = promise
       presenter.present(picker, animated: true)
     }
@@ -71,6 +66,10 @@ final class HybridOneContacts: HybridOneContactsSpec {
     picker.dismiss(animated: true) { [weak self] in
       self?.settlePicker(contact)
     }
+  }
+
+  fileprivate func didDismissPicker() {
+    settlePicker(nil)
   }
 
   private func settlePicker(_ contact: CNContact?) {
@@ -406,7 +405,9 @@ final class HybridOneContacts: HybridOneContactsSpec {
   }
 }
 
-final class HybridOneContactsPickerDelegate: NSObject, CNContactPickerDelegate {
+final class HybridOneContactsPickerDelegate: NSObject, CNContactPickerDelegate,
+  UIAdaptivePresentationControllerDelegate
+{
   weak var owner: HybridOneContacts?
 
   func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
@@ -415,5 +416,9 @@ final class HybridOneContactsPickerDelegate: NSObject, CNContactPickerDelegate {
 
   func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
     owner?.didPick(nil, from: picker)
+  }
+
+  func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+    owner?.didDismissPicker()
   }
 }
