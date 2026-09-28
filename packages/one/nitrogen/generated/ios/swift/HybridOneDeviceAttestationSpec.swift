@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneDeviceAttestationSpec``
 public protocol HybridOneDeviceAttestationSpec_protocol: HybridObject {
   // Properties
-  
+
 
   // Methods
   func getAvailability() throws -> DeviceAttestationAvailability

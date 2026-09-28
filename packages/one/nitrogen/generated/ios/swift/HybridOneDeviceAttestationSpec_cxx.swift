@@ -84,7 +84,7 @@ open class HybridOneDeviceAttestationSpec_cxx {
     }
   }
 
-  
+
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneDeviceAttestationSpec_cxx {
   }
 
   // Properties
-  
+
 
   // Methods
   @inline(__always)
@@ -135,7 +135,7 @@ open class HybridOneDeviceAttestationSpec_cxx {
       return bridge.create_Result_DeviceAttestationAvailability_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func generateKey() -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
@@ -154,7 +154,7 @@ open class HybridOneDeviceAttestationSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func attestKey(keyId: std.string, clientDataHashBase64: std.string) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
@@ -173,7 +173,7 @@ open class HybridOneDeviceAttestationSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func generateAssertion(keyId: std.string, clientDataHashBase64: std.string) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
@@ -192,7 +192,7 @@ open class HybridOneDeviceAttestationSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func generateDeviceToken() -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
