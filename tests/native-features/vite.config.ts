@@ -129,6 +129,10 @@ export default defineConfig({
           // non-default versions the app-info conformance suites assert
           // exactly, proving prebuild stamping reaches runtime.
           version: '9.9.9',
+          icon: {
+            source: 'assets/primary-icon.svg',
+            backgroundColor: '#154a9c',
+          },
           imagePicker: {
             camera: 'NativeFeatureTests verifies photo capture.',
           },
@@ -165,6 +169,12 @@ export default defineConfig({
           },
           ios: {
             bundleId: 'dev.vxrn.native.tests',
+            alternateIcons: {
+              TestAlternate: {
+                source: 'assets/alternate-icon.svg',
+                backgroundColor: '#d95918',
+              },
+            },
             buildNumber: '4242',
             deploymentTarget: '17.0',
             tablet: true,

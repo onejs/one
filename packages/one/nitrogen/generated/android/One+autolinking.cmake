@@ -34,6 +34,7 @@ target_sources(
   ../nitrogen/generated/android/OneOnLoad.cpp
   # Shared Nitrogen C++ sources
   ../nitrogen/generated/shared/c++/HybridOneAdaptiveSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneAppIconSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAppInfoSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAppleAuthSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAppTrackingSpec.cpp

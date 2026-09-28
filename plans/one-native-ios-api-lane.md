@@ -47,7 +47,7 @@ checklist; One's own exports and docs decide the status.
 | File system | covered | `One.iOS.FileSystem` sandbox write/list/copy/move/delete; `fetch(file://)` reads | file-system lifecycle | done |
 | Background tasks | missing | no BGTaskScheduler path | none | P2 |
 | Deep links | covered | One router and linking integration | router tests; external browser callback | done |
-| App icons | partial | static prebuild icon; no alternate icon switch | prebuild only | P2 |
+| App icons | covered | `native.app` generates primary and named alternate icon sets; `One.iOS.AppIcon` reads support/current selection and switches or resets the icon | RAN iOS 27 app-icon: alternate and primary system alerts display distinct bundled icons, UIKit selection readback, unknown-name rejection | done |
 | In-app purchases | missing | no StoreKit API or purchase hooks | none | P2 |
 | Audio playback/recording | partial | `One.iOS.Audio` permission, local/remote playback controls, AAC recording, interruption events, Now Playing metadata and remote command handlers; opt-in `audio` background mode | audio: prompt, record/play lifecycle; RAN iOS 27 39.4s background playback, but no-mode control also played 39.4s; RAN native interruption began/ended and paused playback; RAN audio-remote Nitro setup/update/clear calls, errors, and continued playback, but no system metadata readback; device proof remains for background policy, cross-app arbitration, visible media controls, tile removal, and remote command callbacks | P1 |
 | Video playback | partial | `One.iOS.VideoPlayer`; no media controls/session API | media | P2 |
