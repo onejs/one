@@ -1,5 +1,5 @@
 import type { ProcessedColorValue, ViewProps } from 'react-native';
-import type { DirectEventHandler, Double, WithDefault } from 'react-native/Libraries/Types/CodegenTypes';
+import type { DirectEventHandler, Int32, Double, WithDefault } from 'react-native/Libraries/Types/CodegenTypes';
 type OneNativeStyleNative = Readonly<{
     fontSize?: WithDefault<Double, -1>;
     fontWeight?: string;
@@ -35,10 +35,19 @@ type OneNativeStyleNative = Readonly<{
 interface NativeProps extends ViewProps {
     url: string;
     autoplay: boolean;
+    command: string;
+    commandRevision: Double;
+    seekToMs: Double;
     swiftStyle?: OneNativeStyleNative;
     onNativeSDKEvent?: DirectEventHandler<Readonly<{
         name: string;
         value: string;
+    }>>;
+    onNativeVideoPlayerPlaybackStatus?: DirectEventHandler<Readonly<{
+        state: string;
+        positionMs: Double;
+        durationMs: Double;
+        eventCount: Int32;
     }>>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
