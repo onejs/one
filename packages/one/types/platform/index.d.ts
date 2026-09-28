@@ -53,6 +53,8 @@ export { Device } from './device/index';
 export type { DeviceInfo, LocalizationInfo } from './device/index';
 export { Motion } from './motion/index';
 export type { MotionAvailability, MotionReading, MotionSensor, MotionVector } from './motion/index';
+export { DeviceAttestation } from './device-attestation/index';
+export type { DeviceAttestationAvailability } from './device-attestation/index';
 export { Contacts } from './contacts/index';
 export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus } from './contacts/index';
 export { Calendar } from './calendar/index';

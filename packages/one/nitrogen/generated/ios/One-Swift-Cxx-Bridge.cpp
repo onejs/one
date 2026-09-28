@@ -19,6 +19,7 @@
 #include "HybridOneClipboardSpecSwift.hpp"
 #include "HybridOneContactsSpecSwift.hpp"
 #include "HybridOneCryptoSpecSwift.hpp"
+#include "HybridOneDeviceAttestationSpecSwift.hpp"
 #include "HybridOneDeviceSpecSwift.hpp"
 #include "HybridOneDocumentPickerSpecSwift.hpp"
 #include "HybridOneFetchSpecSwift.hpp"
@@ -462,6 +463,22 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneDeviceSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneDeviceAttestationSpec>
+  std::shared_ptr<HybridOneDeviceAttestationSpec> create_std__shared_ptr_HybridOneDeviceAttestationSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneDeviceAttestationSpec_cxx swiftPart = One::HybridOneDeviceAttestationSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneDeviceAttestationSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneDeviceAttestationSpec_(std__shared_ptr_HybridOneDeviceAttestationSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneDeviceAttestationSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneDeviceAttestationSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneDeviceAttestationSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneDeviceAttestationSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 
