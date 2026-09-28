@@ -188,6 +188,8 @@ namespace margelo::nitro::one { class HybridOneNetworkSpec; }
 namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 // Forward declaration of `HybridOnePhotoLibrarySpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOnePhotoLibrarySpec; }
+// Forward declaration of `HybridOnePreferencesSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOnePreferencesSpec; }
 // Forward declaration of `HybridOneProtectedStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneProtectedStoreSpec; }
 // Forward declaration of `HybridOnePurchasesSpec` to properly resolve imports.
@@ -458,6 +460,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOnePhotoLibrarySpec.hpp"
+#include "HybridOnePreferencesSpec.hpp"
 #include "HybridOneProtectedStoreSpec.hpp"
 #include "HybridOnePurchasesSpec.hpp"
 #include "HybridOneScreenCaptureSpec.hpp"
@@ -628,6 +631,8 @@ namespace One { class HybridOneNetworkSpec_cxx; }
 namespace One { class HybridOneNotificationsSpec_cxx; }
 // Forward declaration of `HybridOnePhotoLibrarySpec_cxx` to properly resolve imports.
 namespace One { class HybridOnePhotoLibrarySpec_cxx; }
+// Forward declaration of `HybridOnePreferencesSpec_cxx` to properly resolve imports.
+namespace One { class HybridOnePreferencesSpec_cxx; }
 // Forward declaration of `HybridOneProtectedStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneProtectedStoreSpec_cxx; }
 // Forward declaration of `HybridOnePurchasesSpec_cxx` to properly resolve imports.

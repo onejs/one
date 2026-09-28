@@ -8,6 +8,7 @@ import {
   LiveActivities,
   LocalAuthentication,
   ProtectedStore,
+  Preferences,
   Location,
   FileSystem,
   Audio,
@@ -73,6 +74,7 @@ export type OneIOS = typeof Swift & {
   readonly WidgetUI: typeof WidgetUI
   readonly LocalAuthentication: typeof LocalAuthentication
   readonly ProtectedStore: typeof ProtectedStore
+  readonly Preferences: typeof Preferences
   readonly Location: typeof Location
   readonly FileSystem: typeof FileSystem
   readonly Audio: typeof Audio
@@ -165,6 +167,7 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   WidgetUI,
   LocalAuthentication,
   ProtectedStore,
+  Preferences,
   Location,
   FileSystem,
   Audio,

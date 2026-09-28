@@ -1,0 +1,24 @@
+---
+title: Preferences
+description: Small, non-secret iOS settings stored with UserDefaults
+---
+
+`One.iOS.Preferences` stores string settings in the app's iOS `UserDefaults` domain. It is useful for choices such as a selected theme or a dismissed tip. Use [SecureStore](/native/secure-store) for secrets and [Database](/native/database) for structured or large data.
+
+```tsx
+import { One } from 'one'
+
+await One.iOS.Preferences.setItem('theme', 'dark')
+const theme = await One.iOS.Preferences.getItem('theme') // 'dark', or null
+await One.iOS.Preferences.deleteItem('theme')
+```
+
+`getItemSync`, `setItemSync`, and `deleteItemSync` read and write the same settings before the first render. They block the JavaScript thread while the call runs.
+
+```tsx
+const theme = One.iOS.Preferences.getItemSync('theme')
+```
+
+Keys must be non-empty strings. Values must be strings, including the empty string. Invalid input throws at the JavaScript boundary without coercion. Missing reads return `null`; deleting a missing key succeeds. Values persist across app process relaunches. These settings use keys reserved under `One.Preferences.` in the app's standard defaults domain, so the API does not read or delete unrelated app settings. It does not use an App Group or share values with another app.
+
+This API requires an iOS native build. On web or Android, every method throws `Preferences requires an iOS native build` after validating its arguments.

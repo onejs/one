@@ -79,6 +79,9 @@
     "OneProtectedStore": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneProtectedStore" }
     },
+    "OnePreferences": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOnePreferences" }
+    },
     "OneLocation": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneLocation" }
     },

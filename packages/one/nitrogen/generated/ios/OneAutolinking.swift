@@ -227,6 +227,18 @@ public final class OneAutolinking {
   public static func isOneProtectedStoreRecyclable() -> Bool {
     return HybridOneProtectedStore.self is any RecyclableView.Type
   }
+
+  public static func createOnePreferences() -> bridge.std__shared_ptr_HybridOnePreferencesSpec_ {
+    let hybridObject = HybridOnePreferences()
+    return { () -> bridge.std__shared_ptr_HybridOnePreferencesSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isOnePreferencesRecyclable() -> Bool {
+    return HybridOnePreferences.self is any RecyclableView.Type
+  }
   
   public static func createOneLocation() -> bridge.std__shared_ptr_HybridOneLocationSpec_ {
     let hybridObject = HybridOneLocation()
