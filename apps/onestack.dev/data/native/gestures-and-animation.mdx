@@ -50,7 +50,8 @@ export default function DragRoute() {
 
 Gesture callbacks that update Reanimated shared values run on the UI runtime.
 Use `scheduleOnRN` when a callback needs to update React state. One's native
-Metro transform configures the Worklets Babel plugin for these packages.
+Metro compiler applies the Worklets transform when Reanimated or Worklets is
+installed; no Babel plugin configuration is needed.
 
 The iOS 27 conformance route drags a native gesture detector, checks the
 measured pan callback reaches JS, and checks the animated view finishes at
