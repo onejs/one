@@ -453,6 +453,10 @@ const updatesPublish = defineCommand({
       type: 'string',
       description: 'Manifest metadata as key=value (repeatable)',
     },
+    intermediatesOut: {
+      type: 'string',
+      description: 'Separate directory for local debug bundle and composed source map; never upload it',
+    },
   },
   async run({ args }) {
     const { runUpdatesPublish } = await import('./cli/updatesPublish')

@@ -2,6 +2,7 @@ type PublishArgs = {
     platform?: string | string[];
     out?: string | string[];
     metadata?: string | string[];
+    intermediatesOut?: string | string[];
 };
 export declare function runUpdatesPublish(args: PublishArgs): Promise<void>;
 export {};
