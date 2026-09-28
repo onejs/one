@@ -83,6 +83,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.RadialGradient` | radial-gradient | n/a | opaque and alpha sRGB hex colors, empty/one/two/three colors, normalized center, and point radii proven on iOS 27; arbitrary SwiftUI Color values and explicit stops unbound |
 | `One.iOS.EllipticalGradient` | elliptical-gradient | n/a | sRGB hex colors, normalized center, and both radius fractions on iOS 27; explicit stops, arbitrary SwiftUI Color values, and other iOS versions unproven |
 | `One.iOS.AngularGradient` | angular-gradient | n/a | sRGB hex colors, normalized center, and full-circle angle on iOS 27; partial-arc initializer, explicit stops, arbitrary SwiftUI Color values, and other iOS versions unproven |
+| `One.iOS.MeshGradient` | mesh-gradient | n/a | 2×2 and 3×3 point/color grids, background, smoothing, and device/perceptual color spaces on iOS 27; Bezier-point and resolved-color initializers and other iOS versions unproven |
 | `One.iOS.VideoPlayer` | media | n/a |  |
 | `One.iOS.PhotosPicker` | web-photos | n/a |  |
 | `One.iOS.WebView` | web-photos | n/a |  |

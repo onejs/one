@@ -331,4 +331,121 @@ private func oneNativeAngularGradientColor(_ value: String) -> Color? {
   if (!angle || !Number.isFinite(angle.radians))
     throw new Error('AngularGradient angle must have finite radians')`,
   },
+  {
+    name: 'MeshGradient',
+    layout: 'fill',
+    decorativeWhenUnlabeled: true,
+    fields: {
+      width: { type: 'Double', default: 2, required: true },
+      height: { type: 'Double', default: 2, required: true },
+      points: {
+        type: 'string',
+        default: '[{"x":0,"y":0},{"x":1,"y":0},{"x":0,"y":1},{"x":1,"y":1}]',
+        publicType: 'readonly Readonly<{ x: number; y: number }>[]',
+        required: true,
+        nativeValue: 'JSON.stringify(points)',
+      },
+      colors: {
+        type: 'strings',
+        default: ['#000000', '#000000', '#000000', '#000000'],
+        publicType: 'readonly string[]',
+        required: true,
+      },
+      background: { type: 'string', default: '#00000000' },
+      smoothsColors: { type: 'boolean', default: true },
+      colorSpace: {
+        type: 'string',
+        default: 'device',
+        publicType: "'device' | 'perceptual'",
+      },
+    },
+    constructors: [
+      {
+        type: 'MeshGradient',
+        parameters: [
+          { label: 'width', type: 'Swift.Int' },
+          { label: 'height', type: 'Swift.Int' },
+          { label: 'points', type: '[Swift.SIMD2<Swift.Float>]' },
+          { label: 'colors', type: '[SwiftUICore.Color]' },
+          { label: 'background', type: 'SwiftUICore.Color' },
+          { label: 'smoothsColors', type: 'Swift.Bool' },
+          { label: 'colorSpace', type: 'SwiftUICore.Gradient.ColorSpace' },
+        ],
+      },
+    ],
+    swift: `Group {
+      if #available(iOS 18.0, *),
+        let meshWidth = Int(exactly: model.width), meshWidth >= 2,
+        let meshHeight = Int(exactly: model.height), meshHeight >= 2,
+        let points = oneNativeMeshGradientPoints(model.points),
+        points.count == model.colors.count,
+        meshWidth <= points.count,
+        points.count % meshWidth == 0,
+        points.count / meshWidth == meshHeight,
+        let background = oneNativeMeshGradientColor(model.background) {
+        MeshGradient(
+          width: meshWidth,
+          height: meshHeight,
+          points: points,
+          colors: model.colors.compactMap(oneNativeMeshGradientColor),
+          background: background,
+          smoothsColors: model.smoothsColors,
+          colorSpace: model.colorSpace == "perceptual" ? .perceptual : .device
+        )
+      } else {
+        Color.clear
+      }
+    }`,
+    extraSwift: `private struct OneNativeMeshGradientPoint: Decodable {
+  let x: Float
+  let y: Float
+}
+
+private func oneNativeMeshGradientPoints(_ raw: String) -> [SIMD2<Float>]? {
+  guard let data = raw.data(using: .utf8),
+    let points = try? JSONDecoder().decode([OneNativeMeshGradientPoint].self, from: data),
+    points.allSatisfy({ $0.x.isFinite && $0.y.isFinite }) else { return nil }
+  return points.map { SIMD2<Float>($0.x, $0.y) }
+}
+
+private func oneNativeMeshGradientColor(_ value: String) -> Color? {
+  guard value.first == "#", value.count == 7 || value.count == 9,
+    let hex = UInt64(value.dropFirst(), radix: 16) else { return nil }
+  let red, green, blue, alpha: UInt64
+  if value.count == 7 {
+    red = (hex >> 16) & 0xff
+    green = (hex >> 8) & 0xff
+    blue = hex & 0xff
+    alpha = 0xff
+  } else {
+    red = (hex >> 24) & 0xff
+    green = (hex >> 16) & 0xff
+    blue = (hex >> 8) & 0xff
+    alpha = hex & 0xff
+  }
+  return Color(.sRGB, red: Double(red) / 255, green: Double(green) / 255,
+    blue: Double(blue) / 255, opacity: Double(alpha) / 255)
+}`,
+    setBody: {
+      colors: `guard items.allSatisfy({ oneNativeMeshGradientColor($0) != nil }) else {
+      NSLog("OneNative MeshGradient received invalid colors")
+      return
+    }
+    if model.colors != items { model.colors = items }`,
+    },
+    validate: `  if (!Number.isSafeInteger(width) || width < 2 ||
+    !Number.isSafeInteger(height) || height < 2)
+    throw new Error('MeshGradient width and height must be integers of at least 2')
+  if (!Array.isArray(points) || points.length !== width * height ||
+    !points.every((point) => point && Number.isFinite(point.x) && Number.isFinite(point.y) &&
+      Number.isFinite(Math.fround(point.x)) && Number.isFinite(Math.fround(point.y))))
+    throw new Error('MeshGradient points must contain width × height finite Float32 coordinates')
+  if (!Array.isArray(colors) || colors.length !== width * height ||
+    !colors.every((color) => typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)))
+    throw new Error('MeshGradient colors must contain width × height #RRGGBB or #RRGGBBAA colors')
+  if (typeof background !== 'string' || !/^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(background))
+    throw new Error('MeshGradient background must be #RRGGBB or #RRGGBBAA')
+  if (colorSpace !== 'device' && colorSpace !== 'perceptual')
+    throw new Error('MeshGradient colorSpace must be device or perceptual')`,
+  },
 ]

@@ -675,6 +675,15 @@ colors, alpha over yellow, and transparent empty input. The tracked
 pixel samples, build and generation logs, and source/binary receipt. Other iOS
 versions remain unproven.
 
+`One.iOS.MeshGradient` maps SwiftUI's
+`MeshGradient(width:height:points:colors:background:smoothsColors:colorSpace:)`
+on iOS 18 or newer. `width` and `height` count vertices; `points` and `colors`
+each supply `width × height` values in row order. Points are normalized
+`{ x, y }` values and colors are sRGB hex strings. `background` defaults to
+transparent, `smoothsColors` to `true`, and `colorSpace` to `device` (or
+`perceptual`). A mesh with no accessibility label is decorative. Bezier-point
+and resolved-color initializers are not bound.
+
 `Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, `ConcentricRectangle`, and `Ellipse` are SwiftUI's
 shapes, one control each, named as SwiftUI names them. A shape has no ideal size
 of its own, so it takes the `width` and `height` React Native gives it, and `fill`

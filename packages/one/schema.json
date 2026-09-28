@@ -1940,6 +1940,49 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeMeshGradient",
+      "publicName": "MeshGradient",
+      "props": {
+        "width": {
+          "type": "Double"
+        },
+        "height": {
+          "type": "Double"
+        },
+        "points": {
+          "type": "string"
+        },
+        "colors": {
+          "type": "ReadonlyArray<string>"
+        },
+        "background": {
+          "type": "string"
+        },
+        "smoothsColors": {
+          "type": "boolean"
+        },
+        "colorSpace": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeVideoPlayer",
       "publicName": "VideoPlayer",
       "props": {
