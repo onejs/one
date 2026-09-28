@@ -80,6 +80,7 @@ const suites = [
   'view-that-fits',
   'cover-context',
   'menu-primary-action',
+  'menu-picker',
   'popover',
   'navigation',
   'accessibility',
@@ -474,6 +475,10 @@ const menuPrimaryActionLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-menu-primary-screen')) &&
   has(nodes, 'Primary presses: ')
+const menuPickerLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-menu-picker-screen')) &&
+  has(nodes, 'Selected: ')
 // a presented popover can take the whole accessibility tree, leaving the screen behind
 // it out, so the fixture counts as loaded from either side of the presentation.
 const accessibilityLoaded = (nodes: Node[]) =>
@@ -665,6 +670,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'view-that-fits': viewThatFitsLoaded,
   'cover-context': coverContextLoaded,
   'menu-primary-action': menuPrimaryActionLoaded,
+  'menu-picker': menuPickerLoaded,
   popover: popoverLoaded,
   navigation: navigationLoaded,
   accessibility: accessibilityLoaded,
@@ -754,6 +760,7 @@ const suiteHome: Record<Suite, string> = {
   'view-that-fits': 'nav-one-native-view-that-fits',
   'cover-context': 'nav-one-native-cover-context',
   'menu-primary-action': 'nav-one-native-menu-primary-action',
+  'menu-picker': 'nav-one-native-menu-picker',
   popover: 'nav-one-native-popover',
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
@@ -5149,6 +5156,52 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       })
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'menu-picker') {
+    const shows = (nodes: Node[], selected: string, requested: string, count: number) =>
+      has(nodes, `Selected: ${selected}`) &&
+      has(nodes, `Requested: ${requested}`) &&
+      has(nodes, `Picker events: ${count}`)
+    const options = (nodes: Node[]) =>
+      ['Small', 'Large', 'Automatic'].every((label) => labels(nodes).includes(label))
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-menu-picker')
+    const initial = await wait('Menu Picker fixture mounted', (nodes) =>
+      Boolean(id(nodes, 'one-native-menu-picker-menu')?.frame) &&
+      shows(nodes, 'small', 'none', 0)
+    )
+    screenshot('menu-picker-initial.png', initial)
+    tap({ id: 'one-native-menu-picker-menu' })
+    const outer = await wait('Menu presents native Picker row', (nodes) =>
+      labels(nodes).includes('Size') && labels(nodes).includes('Other action')
+    )
+    screenshot('menu-picker-outer.png', outer)
+    tap({ label: 'Size' })
+    const opened = await wait('Picker opens native options submenu', options)
+    screenshot('menu-picker-options.png', opened)
+    tap({ label: 'Large' })
+    const selected = await wait('Picker selection reaches React', (nodes) =>
+      shows(nodes, 'large', 'large', 1) && has(nodes, 'Other action: none')
+    )
+    screenshot('menu-picker-selected.png', selected)
+    tap({ label: 'Toggle rejection' })
+    await wait('Picker rejection enabled', (nodes) => has(nodes, 'Reject: on'))
+    tap({ id: 'one-native-menu-picker-menu' })
+    await wait('Picker row reopens', (nodes) => labels(nodes).includes('Size'))
+    tap({ label: 'Size' })
+    await wait('Picker options reopen', options)
+    tap({ label: 'Automatic' })
+    const rejected = await wait('rejected Picker selection keeps prop value', (nodes) =>
+      shows(nodes, 'large', 'automatic', 2) && has(nodes, 'Reject: on')
+    )
+    screenshot('menu-picker-rejected.png', rejected)
+    tap({ label: 'Reset picker' })
+    const reset = await wait('Picker revision resets selection', (nodes) =>
+      shows(nodes, 'small', 'none', 2)
+    )
+    screenshot('menu-picker-reset.png', reset)
     return
   }
   if (config.suite === 'menu-primary-action') {
