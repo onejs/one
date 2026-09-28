@@ -258,6 +258,7 @@
     "react-native-gesture-handler": ">=3.0.0",
     "react-native-reanimated": ">=4.0.0",
     "react-native-screens": ">=4.25.0",
+    "react-native-web": "^0.21.2",
     "react-native-worklets": ">=0.12.2",
     "sharp": "^0.35.4"
   },
@@ -275,6 +276,9 @@
       "optional": true
     },
     "react-native-reanimated": {
+      "optional": true
+    },
+    "react-native-web": {
       "optional": true
     },
     "react-native-worklets": {
@@ -352,6 +356,7 @@
         "OneSwiftHost": "OneSwiftHostComponentView",
         "OneNativeArrangementView": "OneNativeArrangementViewComponentView",
         "OneNativeArrangementSlot": "OneNativeArrangementSlotComponentView",
+        "OneNativeCamera": "OneNativeCameraComponentView",
         "OneNativeMenu": "OneNativeMenuComponentView",
         "OneNativeTab": "OneNativeTabComponentView",
         "OneNativeList": "OneNativeListComponentView",

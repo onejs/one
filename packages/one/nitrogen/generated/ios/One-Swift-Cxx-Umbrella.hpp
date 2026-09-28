@@ -30,6 +30,8 @@ namespace margelo::nitro::one { enum class AppleRealUserStatus; }
 namespace margelo::nitro::one { struct AudioInterruptionEvent; }
 // Forward declaration of `AudioInterruptionType` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioInterruptionType; }
+// Forward declaration of `AudioNowPlayingInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioNowPlayingInfo; }
 // Forward declaration of `AudioPlaybackState` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioPlaybackState; }
 // Forward declaration of `AudioPlaybackStatus` to properly resolve imports.
@@ -42,6 +44,10 @@ namespace margelo::nitro::one { struct AudioRecordingResult; }
 namespace margelo::nitro::one { enum class AudioRecordingState; }
 // Forward declaration of `AudioRecordingStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioRecordingStatus; }
+// Forward declaration of `AudioRemoteCommandEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioRemoteCommandEvent; }
+// Forward declaration of `AudioRemoteCommandType` to properly resolve imports.
+namespace margelo::nitro::one { enum class AudioRemoteCommandType; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
@@ -291,12 +297,15 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "AppleRealUserStatus.hpp"
 #include "AudioInterruptionEvent.hpp"
 #include "AudioInterruptionType.hpp"
+#include "AudioNowPlayingInfo.hpp"
 #include "AudioPlaybackState.hpp"
 #include "AudioPlaybackStatus.hpp"
 #include "AudioRecordingPermission.hpp"
 #include "AudioRecordingResult.hpp"
 #include "AudioRecordingState.hpp"
 #include "AudioRecordingStatus.hpp"
+#include "AudioRemoteCommandEvent.hpp"
+#include "AudioRemoteCommandType.hpp"
 #include "BrowserAuthResult.hpp"
 #include "BrowserAuthResultType.hpp"
 #include "BrowserColorScheme.hpp"

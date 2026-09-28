@@ -10,6 +10,7 @@ export const handwrittenComponents = [
   'OneSwiftHost',
   'OneNativeArrangementView',
   'OneNativeArrangementSlot',
+  'OneNativeCamera',
 ] as const
 
 export const modifiers = [

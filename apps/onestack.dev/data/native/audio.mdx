@@ -84,11 +84,42 @@ const stopWatching = One.iOS.Audio.watchInterruptions((event) => {
 // call stopWatching() when this screen unmounts
 ```
 
+After `play()`, call `setNowPlayingInfo()` to register the current player for
+Lock Screen and Control Center media controls. The handlers play, pause, and
+seek the current track, and `watchRemoteCommands()` reports those actions
+so your screen can update its state. Set the info again when the title or artwork
+changes. Artwork must be an existing local `file://` image; download remote
+artwork to cache first. `stop()` or a new `play()` clears the current info and
+remote handlers. `clearNowPlayingInfo()` removes the metadata and handlers while
+the player remains active. Enable the background audio mode described above if
+playback must continue while another app is in front.
+
+```tsx
+await One.iOS.Audio.play(trackUri)
+await One.iOS.Audio.setNowPlayingInfo({
+  title: 'Chapter One',
+  artist: 'Example Author',
+  artworkUri: coverFileUri,
+})
+const stopWatchingRemote = One.iOS.Audio.watchRemoteCommands((event) => {
+  // event.type is play, pause, or seek; seek includes positionMs.
+  void One.iOS.Audio.getPlaybackStatus().then((status) => {
+    console.log(event.type, status.state, status.positionMs)
+  })
+})
+// call stopWatchingRemote() when this screen unmounts
+```
+
+The iOS 27 simulator verified that metadata setup and cleanup completed through
+the native bridge. Control Center and Lock Screen stayed empty; the cause is
+unconfirmed. Confirm the visible controls, tile removal, and remote callbacks
+on a device before relying on them in production.
+
 Errors expose `error.code`: `E_AUDIO_URI`, `E_AUDIO_FILE`,
 `E_AUDIO_MANIFEST`, `E_AUDIO_PERMISSION`, `E_AUDIO_BUSY`, `E_AUDIO_STATE`,
-`E_AUDIO_POSITION`, or `E_AUDIO_FAILED`. This API is iOS only. Playback and
+`E_AUDIO_POSITION`, `E_AUDIO_METADATA`, `E_AUDIO_ARTWORK`, or `E_AUDIO_FAILED`.
+This API is iOS only. Playback and
 recording use the app's shared audio session. Playback switches its category
 to playback and can replace another feature's audio session configuration,
 including picture in picture. Stop this audio before starting speech recognition
-or another audio feature. Background recording and remote media controls are not
-configured by this API.
+or another audio feature. Background recording is not configured by this API.

@@ -91,6 +91,7 @@ const suites = [
   'file-system',
   'audio',
   'audio-interruption',
+  'audio-remote',
   'audio-background',
   'share',
   'photo-library',
@@ -103,6 +104,7 @@ const suites = [
   'browser',
   'notifications',
   'image-picker',
+  'camera-preview',
   'ui-map',
   'gpu',
   'updates',
@@ -558,6 +560,12 @@ const imagePickerLoaded = (nodes: Node[]) =>
     labels(nodes).includes('Cancel') ||
     labels(nodes).includes('Don’t Allow') ||
     nodes.every((n) => n.type === 'Application'))
+const cameraLoaded = (nodes: Node[]) =>
+  (nodes.some((n) => n.type === 'Application') &&
+    Boolean(id(nodes, 'one-native-camera-toggle')) &&
+    has(nodes, 'Camera state: ')) ||
+  (has(nodes, 'NativeFeatureTests verifies photo capture.') &&
+    (labels(nodes).includes('Allow') || labels(nodes).includes('OK')))
 const uiMapLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-ui-map-place-ferry')) &&
@@ -652,6 +660,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'file-system': fileSystemLoaded,
   audio: audioLoaded,
   'audio-interruption': audioLoaded,
+  'audio-remote': audioLoaded,
   'audio-background': audioLoaded,
   share: shareLoaded,
   'photo-library': photoLibraryLoaded,
@@ -664,6 +673,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   browser: browserLoaded,
   notifications: notificationsLoaded,
   'image-picker': imagePickerLoaded,
+  'camera-preview': cameraLoaded,
   'ui-map': uiMapLoaded,
   gpu: gpuLoaded,
   updates: updatesLoaded,
@@ -734,6 +744,7 @@ const suiteHome: Record<Suite, string> = {
   'file-system': 'nav-one-native-file-system',
   audio: 'nav-one-native-audio',
   'audio-interruption': 'nav-one-native-audio',
+  'audio-remote': 'nav-one-native-audio',
   'audio-background': 'nav-one-native-audio',
   share: 'nav-one-native-share',
   'photo-library': 'nav-one-native-photo-library',
@@ -746,6 +757,7 @@ const suiteHome: Record<Suite, string> = {
   browser: 'nav-one-native-browser',
   notifications: 'nav-one-native-notifications',
   'image-picker': 'nav-one-native-image-picker',
+  'camera-preview': 'nav-one-native-camera',
   'ui-map': 'nav-one-native-ui-map',
   gpu: 'nav-one-native-gpu',
   navigation: 'nav-one-native-navigation',
@@ -1057,7 +1069,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (!/not running|nothing to terminate/i.test(message)) throw error
     console.log('App was not running.')
   }
-  if (config.suite === 'image-picker') {
+  if (config.suite === 'image-picker' || config.suite === 'camera-preview') {
     // reset first so reruns start undetermined like a fresh install.
     execFileSync(
       'xcrun',
@@ -7284,6 +7296,39 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
+  if (config.suite === 'audio-remote') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-audio')
+    axe(['swipe', '--start-x', '200', '--start-y', '730', '--end-x', '200',
+      '--end-y', '250', '--duration', '0.5'], config.simulatorId)
+    await wait('audio remote fixture starts idle', (n) =>
+      labels(n).includes('Remote: idle') &&
+      (id(n, 'one-native-audio-remote-start')?.frame?.y ?? 1000) < 800)
+    tap({ id: 'one-native-audio-remote-start' })
+    await wait('now playing metadata and errors are returned by Nitro', (n) =>
+      labels(n).includes('Remote: ready') &&
+      labels(n).includes(
+        'Remote errors: E_AUDIO_STATE,E_AUDIO_METADATA,E_AUDIO_ARTWORK'))
+    axe(['swipe', '--start-x', '200', '--start-y', '730', '--end-x', '200',
+      '--end-y', '230', '--duration', '0.5'], config.simulatorId)
+    await wait('remote playback controls are visible', (n) =>
+      (id(n, 'one-native-audio-remote-check')?.frame?.y ?? 1000) < 700 &&
+      (id(n, 'one-native-audio-remote-clear')?.frame?.y ?? 1000) < 700)
+    tap({ id: 'one-native-audio-remote-check' })
+    await wait('metadata setup did not stop playback', (n) =>
+      labels(n).includes('Remote playback: playing:1'))
+    screenshot('audio-remote-configured.png')
+    tap({ id: 'one-native-audio-remote-clear' })
+    await wait('remote metadata clears without stopping playback', (n) =>
+      labels(n).includes('Remote: cleared'))
+    tap({ id: 'one-native-audio-remote-check' })
+    await wait('playback continues after remote metadata clears', (n) =>
+      labels(n).includes('Remote playback: playing:2'))
+    screenshot('audio-remote-cleared.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
   if (config.suite === 'share') {
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
@@ -7885,6 +7930,58 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).some((label) => label.startsWith('Last: ') && label.includes('N4 cold'))
     )
 
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'camera-preview') {
+    const status = (nodes: Node[], label: string, expected: string) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-camera')
+    await wait('camera fixture mounted', (n) =>
+      Boolean(id(n, 'one-native-camera-toggle') && id(n, 'one-native-camera-preview')) &&
+      status(n, 'Camera state', 'inactive')
+    )
+    tap({ id: 'one-native-camera-read-permission' })
+    await wait('camera permission undecided', (n) =>
+      status(n, 'Camera permission', 'undetermined')
+    )
+    tap({ id: 'one-native-camera-toggle' })
+    await wait('camera requests permission before opening', (n) =>
+      status(n, 'Camera state', 'permission-required')
+    )
+    screenshot('camera-permission-required.png')
+
+    tap({ id: 'one-native-camera-request-permission' })
+    const prompt = await wait('camera system permission prompt appears', (n) =>
+      has(n, 'NativeFeatureTests verifies photo capture.') &&
+      (labels(n).includes('Allow') || labels(n).includes('OK'))
+    )
+    screenshot('camera-permission-prompt.png', prompt)
+    tap({ label: labels(prompt).includes('Allow') ? 'Allow' : 'OK' })
+    await wait('camera permission request resolves granted', (n) =>
+      status(n, 'Camera permission', 'granted')
+    )
+    await wait('active view reports missing device camera after grant', (n) =>
+      status(n, 'Camera state', 'unavailable')
+    )
+    screenshot('camera-unavailable.png')
+    tap({ id: 'one-native-camera-facing' })
+    await wait('front facing prop reaches fixture', (n) =>
+      status(n, 'Camera facing', 'front') && status(n, 'Camera state', 'unavailable')
+    )
+    tap({ id: 'one-native-camera-toggle' })
+    await wait('inactive camera releases capture', (n) =>
+      status(n, 'Camera active', 'false') && status(n, 'Camera state', 'inactive')
+    )
+    tap({ id: 'one-native-camera-toggle' })
+    await wait('front facing reactivation reports no device camera', (n) =>
+      status(n, 'Camera active', 'true') && status(n, 'Camera facing', 'front') &&
+      status(n, 'Camera state', 'unavailable')
+    )
+    if (!status(snapshot(config.simulatorId), 'Camera code', 'none'))
+      throw new Error('Simulator emitted a scanned code without camera frames')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
