@@ -18,6 +18,7 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("requestAddPermission", &HybridOnePhotoLibrarySpec::requestAddPermission);
       prototype.registerHybridMethod("getReadPermissionStatus", &HybridOnePhotoLibrarySpec::getReadPermissionStatus);
       prototype.registerHybridMethod("requestReadPermission", &HybridOnePhotoLibrarySpec::requestReadPermission);
+      prototype.registerHybridMethod("presentLimitedLibraryPicker", &HybridOnePhotoLibrarySpec::presentLimitedLibraryPicker);
       prototype.registerHybridMethod("listAssets", &HybridOnePhotoLibrarySpec::listAssets);
       prototype.registerHybridMethod("getAsset", &HybridOnePhotoLibrarySpec::getAsset);
       prototype.registerHybridMethod("setFavorite", &HybridOnePhotoLibrarySpec::setFavorite);

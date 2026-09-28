@@ -11,6 +11,7 @@ export const PhotoLibrary = Object.freeze({
   requestAddPermission: (): Promise<PhotoLibraryPermissionStatus> => unsupported(),
   getReadPermissionStatus: (): PhotoLibraryPermissionStatus => unsupported(),
   requestReadPermission: (): Promise<PhotoLibraryPermissionStatus> => unsupported(),
+  presentLimitedLibraryPicker: (): Promise<string[]> => unsupported(),
   listAssets: (_offset = 0, _limit = 50): Promise<PhotoLibraryAssetPage> => unsupported(),
   getAsset: (_identifier: string): Promise<PhotoLibraryAsset> => unsupported(),
   setFavorite: (_identifier: string, _favorite: boolean): Promise<void> => unsupported(),

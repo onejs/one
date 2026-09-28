@@ -40,6 +40,10 @@ function requestReadPermission(): Promise<PhotoLibraryPermissionStatus> {
   return native().requestReadPermission().catch(rethrowNativeError)
 }
 
+function presentLimitedLibraryPicker(): Promise<string[]> {
+  return native().presentLimitedLibraryPicker().catch(rethrowNativeError)
+}
+
 function listAssets(offset = 0, limit = 50): Promise<PhotoLibraryAssetPage> {
   return native().listAssets(offset, limit).catch(rethrowNativeError)
 }
@@ -73,6 +77,7 @@ export const PhotoLibrary = Object.freeze({
   requestAddPermission,
   getReadPermissionStatus,
   requestReadPermission,
+  presentLimitedLibraryPicker,
   listAssets,
   getAsset,
   setFavorite,

@@ -1,9 +1,11 @@
 import NitroModules
 import Photos
+import UIKit
 import UniformTypeIdentifiers
 
 final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
   private enum MediaKind { case image, video }
+  private var pendingLimitedPicker: Promise<[String]>?
 
   func getAddPermissionStatus() throws -> PhotoLibraryPermissionStatus {
     Self.status(PHPhotoLibrary.authorizationStatus(for: .addOnly))
@@ -40,6 +42,45 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
       }
       PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
         promise.resolve(withResult: Self.status(status))
+      }
+    }
+    return promise
+  }
+
+  func presentLimitedLibraryPicker() throws -> Promise<[String]> {
+    let promise = Promise<[String]>()
+    DispatchQueue.main.async {
+      guard Self.hasReadUsageDescription else {
+        promise.reject(withError: Self.error(
+          "E_PHOTO_LIBRARY_MANIFEST",
+          "PhotoLibrary.presentLimitedLibraryPicker: set native.app.photoLibrary.readWrite"))
+        return
+      }
+      guard PHPhotoLibrary.authorizationStatus(for: .readWrite) == .limited else {
+        promise.reject(withError: Self.error(
+          "E_PHOTO_LIBRARY_PERMISSION",
+          "PhotoLibrary.presentLimitedLibraryPicker: limited Photos access is required"))
+        return
+      }
+      guard self.pendingLimitedPicker == nil else {
+        promise.reject(withError: Self.error(
+          "E_PHOTO_LIBRARY_BUSY",
+          "PhotoLibrary.presentLimitedLibraryPicker: a picker is already open"))
+        return
+      }
+      guard let presenter = oneNativePresentingViewController() else {
+        promise.reject(withError: Self.error(
+          "E_PHOTO_LIBRARY_UNAVAILABLE",
+          "PhotoLibrary.presentLimitedLibraryPicker: no active view controller"))
+        return
+      }
+      self.pendingLimitedPicker = promise
+      PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: presenter) { [weak self] identifiers in
+        DispatchQueue.main.async {
+          let pending = self?.pendingLimitedPicker
+          self?.pendingLimitedPicker = nil
+          pending?.resolve(withResult: identifiers)
+        }
       }
     }
     return promise
