@@ -668,6 +668,13 @@ coordinate space into the assigned layout box. It accepts sRGB hex colors,
 and an unlabeled view is decorative. Explicit stops and arbitrary SwiftUI
 `Color` values are unbound.
 
+The iOS 27 iPhone 17 Pro proof passed 18 checks covering both radius fractions,
+center movement, off-axis elliptical geometry, reversed colors, one and three
+colors, alpha over yellow, and transparent empty input. The tracked
+`tests/native-features/proofs/elliptical-gradient` bundle has nine AX/PNG pairs,
+pixel samples, build and generation logs, and source/binary receipt. Other iOS
+versions remain unproven.
+
 `Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, `ConcentricRectangle`, and `Ellipse` are SwiftUI's
 shapes, one control each, named as SwiftUI names them. A shape has no ideal size
 of its own, so it takes the `width` and `height` React Native gives it, and `fill`
