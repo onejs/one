@@ -52,6 +52,7 @@ import * as UI from './effects'
 import { Widgets, LiveActivities, WidgetUI } from './widgets/index.native'
 
 export * from './extras'
+export { Preferences } from './preferences/index.native'
 // the package root keeps the navigation toolbar's props under the plain name; the SwiftUI
 // toolbar item's props are the generated ToolbarItemProps, reachable through Swift.ToolbarItem.
 export type { ToolbarHostProps, ToolbarItemProps } from './extras'

@@ -78,6 +78,7 @@ export const nativeRoutes = [
       { title: 'Image Manipulator', route: '/native/image-manipulator' },
       { title: 'DocumentPicker', route: '/native/document-picker' },
       { title: 'SecureStore', route: '/native/secure-store' },
+      { title: 'Preferences', route: '/native/preferences' },
       { title: 'Protected Store', route: '/native/protected-store' },
       { title: 'App Tracking Permission', route: '/native/app-tracking' },
       { title: 'Local Authentication', route: '/native/local-authentication' },

@@ -582,6 +582,11 @@ const testScreens = [
     label: 'One Native Secure Store',
     testID: 'nav-one-native-secure-store',
   },
+  {
+    href: '/one-native-preferences',
+    label: 'One Native Preferences',
+    testID: 'nav-one-native-preferences',
+  },
 ] as const
 
 export default function HomeScreen() {

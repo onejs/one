@@ -113,6 +113,7 @@ const suites = [
   'speech',
   'fetch',
   'secure-store',
+  'preferences',
   'clipboard',
   'network',
   'browser',
@@ -560,6 +561,8 @@ const fetchLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-fetch-run')) && has(nodes, 'Status: ')
 const secureStoreLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-secure-store-run')) && has(nodes, 'Persisted: ')
+const preferencesLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-preferences-run')) && has(nodes, 'Persisted: ')
 const databaseLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-database-run')) && has(nodes, 'Persisted: ')
 const speechLoaded = (nodes: Node[]) =>
@@ -721,6 +724,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   speech: speechLoaded,
   fetch: fetchLoaded,
   'secure-store': secureStoreLoaded,
+  preferences: preferencesLoaded,
   clipboard: clipboardLoaded,
   network: networkLoaded,
   browser: browserLoaded,
@@ -819,6 +823,7 @@ const suiteHome: Record<Suite, string> = {
   speech: 'nav-one-native-speech',
   fetch: 'nav-one-native-fetch',
   'secure-store': 'nav-one-native-secure-store',
+  preferences: 'nav-one-native-preferences',
   clipboard: 'nav-one-native-clipboard',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
@@ -956,8 +961,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   // the home list scrolls; a row below the fold takes a clamped tap that lands on the
   // wrong route, so bring it fully on screen before tapping it.
   const tapNav = async (testID: string) => {
-    await wait(`home lists ${testID}`, (nodes) => Boolean(id(nodes, testID)), true)
-    for (let attempt = 0; attempt <= 12; attempt++) {
+    const home = await wait(`home lists ${testID}`, (nodes) => Boolean(id(nodes, testID)), true)
+    const homeHeight = home.find((node) => node.type === 'Application')?.frame?.height
+    const firstRow = id(home, testID)?.frame
+    if (!homeHeight || !firstRow) throw new Error(`Home row ${testID} has no frame`)
+    // the fixture list grows as suites are added. bound swipes by the observed
+    // row distance instead of a fixed count that strands rows near its end.
+    const maxSwipes = Math.max(12, Math.ceil((firstRow.y + firstRow.height) / (homeHeight * 0.5)) + 2)
+    for (let attempt = 0; attempt <= maxSwipes; attempt++) {
       const nodes = snapshot(config.simulatorId)
       const app = nodes.find((node) => node.type === 'Application')?.frame
       if (!app) throw new Error(`Home row ${testID} disappeared while scrolling`)
@@ -986,7 +997,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         return tap({ id: testID })
       }
       // observe the position after the final swipe before declaring it unreachable.
-      if (attempt === 12) break
+      if (attempt === maxSwipes) break
       // a row below the viewport needs the list pushed up, and one the swipe already
       // carried past the top needs it pulled back down: scrolling one direction only
       // walks past an overshot row and never comes back to it.
@@ -1218,7 +1229,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       config.suite === 'gestures' ||
       config.suite === 'launch-screen' ||
       config.suite === 'app-icon' || config.suite === 'photo-library' ||
-      config.suite === 'photo-library-limited') {
+      config.suite === 'photo-library-limited' ||
+      config.suite === 'preferences') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
     // to undetermined; native contract suites need the freshly built app rather than a stale install.
@@ -8624,6 +8636,60 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('PASS secure-store-persist')
     tap({ id: 'one-native-secure-store-clear' })
     await wait('persist key cleared after relaunch', (n) => has(n, 'Status: cleared'))
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'preferences') {
+    const expected: [string, string][] = [
+      ['Missing', 'null'],
+      ['Overwritten', 'second'],
+      ['SyncRead', 'second'],
+      ['EmptyValue', '""'],
+      ['AfterSyncWrite', 'third'],
+      ['AfterDelete', 'null'],
+      ['DeleteMissing', 'null'],
+      ['EmptyKey', 'Preferences.getItemSync: key must be a non-empty string'],
+      ['NonStringKey', 'Preferences.getItem: key must be a non-empty string'],
+      ['NonStringValue', 'Preferences.setItem: value must be a string'],
+    ]
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-preferences')
+    await wait('preferences fixture mounted', (n) =>
+      has(n, 'Status: idle') && has(n, 'Persisted: '))
+    tap({ id: 'one-native-preferences-clear' })
+    await wait('persist key cleared before run', (n) => has(n, 'Status: cleared'))
+    tap({ id: 'one-native-preferences-run' })
+    const first = await wait('preferences operations complete', (n) =>
+      has(n, 'Status: done') || has(n, 'Status: failed'))
+    screenshot('preferences-checks.png')
+    const got = labels(first)
+    const failed = got.find((label) => label.startsWith('Status: failed'))
+    if (failed) throw new Error(failed)
+    for (const [name, value] of expected) {
+      if (!got.includes(`${name}: ${value}`)) {
+        throw new Error(`preferences ${name}: expected ${JSON.stringify(value)}, got ${JSON.stringify(got.find((label) => label.startsWith(`${name}: `)))}`)
+      }
+      console.log(`PASS preferences-${name.toLowerCase()}`)
+    }
+    stopApp()
+    launchApp()
+    await wait('relaunched home mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-preferences')
+    await wait('preference survives process relaunch', (n) => has(n, 'Persisted: kept'))
+    screenshot('preferences-persisted.png')
+    console.log('PASS preferences-persist')
+    tap({ id: 'one-native-preferences-clear' })
+    await wait('persist key cleared after relaunch', (n) => has(n, 'Status: cleared'))
+    stopApp()
+    launchApp()
+    await wait('home mounted after deletion', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-preferences')
+    await wait('deleted preference remains missing', (n) => has(n, 'Persisted: null'))
+    screenshot('preferences-deleted.png')
+    console.log('PASS preferences-deleted-persist')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
