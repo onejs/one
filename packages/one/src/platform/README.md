@@ -686,6 +686,12 @@ transparent, `smoothsColors` to `true`, and `colorSpace` to `device` (or
 `perceptual`). A mesh with no accessibility label is decorative. Bezier-point
 and resolved-color initializers are not bound.
 
+The iOS 27 iPhone 17 Pro proof passed 15 checks across 2×2 and 3×3 grids,
+vertex colors and movement, background, smoothing, and both color spaces.
+`tests/native-features/proofs/mesh-gradient` preserves seven AX/PNG states,
+sampled pixels, build and generation logs, and a matching native source and
+binary receipt. Other iOS versions remain unproven.
+
 `Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, `ConcentricRectangle`, and `Ellipse` are SwiftUI's
 shapes, one control each, named as SwiftUI names them. A shape has no ideal size
 of its own, so it takes the `width` and `height` React Native gives it, and `fill`

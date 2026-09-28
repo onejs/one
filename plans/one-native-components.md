@@ -71,6 +71,18 @@ accounts are unavailable).
 
 ## Status
 
+- **RAN, 2026-09-27:** `One.iOS.MeshGradient` calls SwiftUI's
+  `MeshGradient(width:height:points:colors:background:smoothsColors:colorSpace:)`
+  through separate `meshWidth`/`meshHeight` vertex props so React Native style
+  controls the view's box. The 15-check iPhone 17 Pro / iOS 27.0 suite passed
+  at source `d09a20d48` and native build `bbb4cc77d` with Xcode 27.1;
+  their `packages/one/ios` tree hashes match. Seven AX/PNG states and pixel
+  gates prove 2×2 and 3×3 grids, vertex colors and movement, background,
+  smoothing, and device/perceptual interpolation. The tracked
+  `tests/native-features/proofs/mesh-gradient` bundle includes sampled pixels,
+  side-by-side WebP, build/generation logs, and matching built/installed debug
+  dylib hashes. Bezier-point and resolved-color initializers and other iOS
+  versions remain unproven.
 - **RAN, 2026-09-27:** `One.iOS.EllipticalGradient` calls SwiftUI's
   `EllipticalGradient(colors:center:startRadiusFraction:endRadiusFraction:)`.
   The 18-check iPhone 17 Pro / iOS 27.0 suite passed at source `1b24f83d8`
