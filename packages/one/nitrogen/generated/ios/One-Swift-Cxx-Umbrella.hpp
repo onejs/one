@@ -194,8 +194,6 @@ namespace margelo::nitro::one { class HybridOneSpeechSpec; }
 namespace margelo::nitro::one { class HybridOneUpdatesSpec; }
 // Forward declaration of `ImageCrop` to properly resolve imports.
 namespace margelo::nitro::one { struct ImageCrop; }
-// Forward declaration of `ImageFormat` to properly resolve imports.
-namespace margelo::nitro::one { enum class ImageFormat; }
 // Forward declaration of `ImagePickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerAsset; }
 // Forward declaration of `ImagePickerMediaType` to properly resolve imports.
@@ -272,6 +270,8 @@ namespace margelo::nitro::one { struct NetworkState; }
 namespace margelo::nitro::one { struct NotificationBehavior; }
 // Forward declaration of `NotificationPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
+// Forward declaration of `OneImageFormat` to properly resolve imports.
+namespace margelo::nitro::one { enum class OneImageFormat; }
 // Forward declaration of `OneUpdatesCheckResult` to properly resolve imports.
 namespace margelo::nitro::one { struct OneUpdatesCheckResult; }
 // Forward declaration of `OneUpdatesCheckType` to properly resolve imports.
@@ -439,7 +439,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneSpeechSpec.hpp"
 #include "HybridOneUpdatesSpec.hpp"
 #include "ImageCrop.hpp"
-#include "ImageFormat.hpp"
 #include "ImagePickerAsset.hpp"
 #include "ImagePickerMediaType.hpp"
 #include "ImagePickerNativeResult.hpp"
@@ -478,6 +477,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "NetworkStateType.hpp"
 #include "NotificationBehavior.hpp"
 #include "NotificationPermissionStatus.hpp"
+#include "OneImageFormat.hpp"
 #include "OneUpdatesCheckResult.hpp"
 #include "OneUpdatesCheckType.hpp"
 #include "OneUpdatesFetchResult.hpp"
