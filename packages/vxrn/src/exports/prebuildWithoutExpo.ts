@@ -2252,7 +2252,12 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         usage.set('NSCameraUsageDescription', app.imagePicker.camera)
       }
       if (app.photoLibrary !== undefined) {
-        usage.set('NSPhotoLibraryAddUsageDescription', app.photoLibrary.addOnly)
+        if (app.photoLibrary.addOnly !== undefined) {
+          usage.set('NSPhotoLibraryAddUsageDescription', app.photoLibrary.addOnly)
+        }
+        if (app.photoLibrary.readWrite !== undefined) {
+          usage.set('NSPhotoLibraryUsageDescription', app.photoLibrary.readWrite)
+        }
       }
       if (app.contacts !== undefined) {
         usage.set('NSContactsUsageDescription', app.contacts.usage)

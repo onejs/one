@@ -29,7 +29,8 @@ export interface NativeAppManifest {
         camera?: string;
     };
     photoLibrary?: {
-        addOnly: string;
+        addOnly?: string;
+        readWrite?: string;
     };
     contacts?: {
         usage: string;

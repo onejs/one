@@ -133,6 +133,7 @@ export default defineConfig({
           },
           photoLibrary: {
             addOnly: 'NativeFeatureTests verifies saving photos and videos.',
+            readWrite: 'NativeFeatureTests verifies browsing photos and videos.',
           },
           contacts: {
             usage: 'NativeFeatureTests verifies contact access.',

@@ -117,6 +117,21 @@ function expoProject() {
 }
 
 describe('vxrn/expo-plugin', () => {
+  it('stamps separate Photos save and read usage descriptions', async () => {
+    const projectRoot = expoProject()
+    const config = withVxrn(
+      { name: 'TestApp', slug: 'test-app', _internal: { projectRoot } },
+      { photoLibrary: { addOnly: 'Save a photo.', readWrite: 'Browse photos.' } }
+    )
+    const result = await config.mods.ios.infoPlist({
+      ...config,
+      modRequest: { projectRoot, platform: 'ios', modName: 'infoPlist', projectName: 'TestApp', introspect: false },
+      modResults: {},
+    })
+    expect(result.modResults.NSPhotoLibraryAddUsageDescription).toBe('Save a photo.')
+    expect(result.modResults.NSPhotoLibraryUsageDescription).toBe('Browse photos.')
+  })
+
   it('stamps the same notification entries as one prebuild', async () => {
     const projectRoot = expoProject()
     const config = withVxrn(

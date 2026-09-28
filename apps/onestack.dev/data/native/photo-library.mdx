@@ -1,20 +1,24 @@
 ---
 title: Photo Library
-description: Save images and videos to the iOS Photos library
+description: Save images and videos, and browse asset metadata in the iOS Photos library
 ---
 
-`One.iOS.PhotoLibrary` saves an existing `file://` image or video to Photos. It
-uses add-only access, so saving does not grant the app permission to browse the
-user's library. Configure the permission message in `native.app` before prebuild:
+`One.iOS.PhotoLibrary` saves an existing `file://` image or video to Photos and
+reads photo and video asset metadata. Saving can use add-only permission;
+browsing needs read/write permission. Configure the permission messages in
+`native.app` before prebuild:
 
 ```ts
 photoLibrary: {
   addOnly: 'Save edited photos and videos to your library.',
+  readWrite: 'Browse photos and videos in your library.',
 }
 ```
 
 For an Expo-prebuilt app, pass the same `photoLibrary` option to the VXRN Expo
-plugin. Both paths set `NSPhotoLibraryAddUsageDescription`.
+plugin. Both paths set `NSPhotoLibraryAddUsageDescription` for `addOnly` and
+`NSPhotoLibraryUsageDescription` for `readWrite`. Configure only the permission
+your app uses, or both when it saves and browses assets.
 
 ```tsx
 import { One } from 'one'
@@ -31,10 +35,38 @@ if (permission === 'authorized') {
 the new Photos asset identifier after Photos commits the change. They accept
 local files produced by `One.iOS.FileSystem`, `One.ImagePicker`, or
 `One.DocumentPicker`; they do not download network URLs.
+An app with read/write access can also save without requesting add-only access.
 
 The methods reject with `error.code` `E_PHOTO_LIBRARY_MANIFEST` when the usage
 message is missing, `E_PHOTO_LIBRARY_PERMISSION` when add permission is not
 granted, `E_PHOTO_LIBRARY_URI` for a non-file URI, `E_PHOTO_LIBRARY_FILE` for a
 missing file, or `E_PHOTO_LIBRARY_SAVE` if Photos rejects the asset. This API
-is iOS only and throws on Android or web. It does not read, edit, delete, or
-organize existing Photos assets.
+is iOS only and throws on Android or web.
+
+To browse metadata, request read access and fetch bounded pages. The list is
+sorted by creation date, newest first. A page contains at most 100 assets;
+`totalCount` counts the assets visible to the app. The asset identifier can be
+passed to `getAsset()` to retrieve its current metadata:
+
+```tsx
+const permission = await One.iOS.PhotoLibrary.requestReadPermission()
+if (permission === 'authorized' || permission === 'limited') {
+  const { assets, totalCount } = await One.iOS.PhotoLibrary.listAssets(0, 50)
+  const first = assets[0] && await One.iOS.PhotoLibrary.getAsset(assets[0].identifier)
+  console.log(totalCount, first?.mediaType, first?.width, first?.height)
+}
+```
+
+`getReadPermissionStatus()` reads the current status without a prompt. Limited
+permission exposes only the user's selected assets. With limited permission,
+iOS may offer to update that selection on the first library access after launch.
+Each asset has an
+`identifier`, `mediaType`, pixel `width` and `height`, `durationMs`, optional
+`creationDateMs`, and `isFavorite`. These methods read metadata; they do not
+return image or video bytes. `listAssets()` accepts integer `offset` from 0 to
+1,000,000 and integer `limit` from 1 to 100. The read methods reject with
+`E_PHOTO_LIBRARY_MANIFEST` or `E_PHOTO_LIBRARY_PERMISSION` when configuration or
+permission is missing, `E_PHOTO_LIBRARY_INPUT` for invalid arguments, and
+`E_PHOTO_LIBRARY_NOT_FOUND` for an unknown identifier. Editing, deleting, and
+organizing assets are not yet supported. Page offsets use the current library
+order, so insertions or deletions between requests can shift later pages.

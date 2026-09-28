@@ -10,11 +10,15 @@ import NitroModules
 /// See ``HybridOnePhotoLibrarySpec``
 public protocol HybridOnePhotoLibrarySpec_protocol: HybridObject {
   // Properties
-  
+
 
   // Methods
   func getAddPermissionStatus() throws -> PhotoLibraryPermissionStatus
   func requestAddPermission() throws -> Promise<PhotoLibraryPermissionStatus>
+  func getReadPermissionStatus() throws -> PhotoLibraryPermissionStatus
+  func requestReadPermission() throws -> Promise<PhotoLibraryPermissionStatus>
+  func listAssets(offset: Double, limit: Double) throws -> Promise<PhotoLibraryAssetPage>
+  func getAsset(identifier: String) throws -> Promise<PhotoLibraryAsset>
   func saveImage(uri: String) throws -> Promise<String>
   func saveVideo(uri: String) throws -> Promise<String>
 }

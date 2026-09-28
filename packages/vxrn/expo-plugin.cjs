@@ -20,7 +20,7 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // options: { location: { whenInUse: string } } sets the iOS location prompt.
 // options: { audio: { microphone?: string, background?: boolean } } sets the
 // ios recording prompt and background audio mode.
-// options: { photoLibrary: { addOnly: string } } sets the ios photos add prompt.
+// options: { photoLibrary: { addOnly?: string, readWrite?: string } } sets ios photos prompts.
 // options: { contacts: { usage: string } } sets the ios contacts prompt.
 // options: { calendar: { usage?: string, remindersUsage?: string } } sets EventKit prompts.
 module.exports = function withVxrn(config, options = {}) {
@@ -73,9 +73,18 @@ module.exports = function withVxrn(config, options = {}) {
   }
   if (
     photoLibrary !== undefined &&
-    (!photoLibrary || typeof photoLibrary.addOnly !== 'string' || !photoLibrary.addOnly.trim())
+    (!photoLibrary ||
+      (photoLibrary.addOnly === undefined && photoLibrary.readWrite === undefined))
   ) {
+    throw new Error('[vxrn/expo-plugin] photoLibrary must configure addOnly or readWrite')
+  }
+  if (photoLibrary?.addOnly !== undefined &&
+    (typeof photoLibrary.addOnly !== 'string' || !photoLibrary.addOnly.trim())) {
     throw new Error('[vxrn/expo-plugin] photoLibrary.addOnly must be a non-empty string')
+  }
+  if (photoLibrary?.readWrite !== undefined &&
+    (typeof photoLibrary.readWrite !== 'string' || !photoLibrary.readWrite.trim())) {
+    throw new Error('[vxrn/expo-plugin] photoLibrary.readWrite must be a non-empty string')
   }
   if (
     contacts !== undefined &&
@@ -130,7 +139,10 @@ module.exports = function withVxrn(config, options = {}) {
         [
           withInfoPlist,
           (nextConfig) => {
-            nextConfig.modResults.NSPhotoLibraryAddUsageDescription = photoLibrary.addOnly
+            if (photoLibrary.addOnly !== undefined)
+              nextConfig.modResults.NSPhotoLibraryAddUsageDescription = photoLibrary.addOnly
+            if (photoLibrary.readWrite !== undefined)
+              nextConfig.modResults.NSPhotoLibraryUsageDescription = photoLibrary.readWrite
             return nextConfig
           },
         ],

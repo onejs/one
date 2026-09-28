@@ -9,7 +9,10 @@ const errorCode = (error: unknown) =>
 export default function OneNativePhotoLibrary() {
   const [status, setStatus] = useState('idle')
   const [permission, setPermission] = useState(() => One.iOS.PhotoLibrary.getAddPermissionStatus())
+  const [readPermission, setReadPermission] = useState(() => One.iOS.PhotoLibrary.getReadPermissionStatus())
   const [result, setResult] = useState('none')
+  const [readResult, setReadResult] = useState('none')
+  const [savedIds, setSavedIds] = useState<string[]>([])
 
   async function run() {
     setStatus('checking')
@@ -34,6 +37,7 @@ export default function OneNativePhotoLibrary() {
       setStatus('saving')
       const imageId = await One.iOS.PhotoLibrary.saveImage(image)
       const videoId = await One.iOS.PhotoLibrary.saveVideo(video)
+      setSavedIds([imageId, videoId])
       let uri = ''
       try {
         await One.iOS.PhotoLibrary.saveImage('https://onestack.dev/photo.heic')
@@ -57,13 +61,85 @@ export default function OneNativePhotoLibrary() {
     }
   }
 
+  async function read() {
+    setStatus('read-checking')
+    try {
+      const [imageId, videoId] = savedIds
+      if (!imageId || !videoId) throw new Error('save the proof assets first')
+      let before = 'alreadyGranted'
+      let getBefore = 'alreadyGranted'
+      if (readPermission === 'notDetermined') {
+        try {
+          await One.iOS.PhotoLibrary.listAssets(0, 1)
+        } catch (error) {
+          before = errorCode(error)
+        }
+        try {
+          await One.iOS.PhotoLibrary.getAsset(imageId)
+        } catch (error) {
+          getBefore = errorCode(error)
+        }
+      }
+      setStatus('read-requesting')
+      const granted = await One.iOS.PhotoLibrary.requestReadPermission()
+      const current = One.iOS.PhotoLibrary.getReadPermissionStatus()
+      setReadPermission(current)
+      if (current !== granted) throw new Error(`read status mismatch: ${current} / ${granted}`)
+      if (granted !== 'authorized' && granted !== 'limited') {
+        throw new Error(`read permission: ${granted}`)
+      }
+      setStatus('reading')
+      const page = await One.iOS.PhotoLibrary.listAssets(0, 100)
+      let listedImage = page.assets.some((asset) => asset.identifier === imageId)
+      let listedVideo = page.assets.some((asset) => asset.identifier === videoId)
+      for (let offset = 100; offset < page.totalCount && (!listedImage || !listedVideo); offset += 100) {
+        const next = await One.iOS.PhotoLibrary.listAssets(offset, 100)
+        listedImage ||= next.assets.some((asset) => asset.identifier === imageId)
+        listedVideo ||= next.assets.some((asset) => asset.identifier === videoId)
+      }
+      const image = await One.iOS.PhotoLibrary.getAsset(imageId)
+      const video = await One.iOS.PhotoLibrary.getAsset(videoId)
+      let invalid = ''
+      try {
+        await One.iOS.PhotoLibrary.listAssets(0, 101)
+      } catch (error) {
+        invalid = errorCode(error)
+      }
+      let missing = ''
+      try {
+        await One.iOS.PhotoLibrary.getAsset('missing-asset-id')
+      } catch (error) {
+        missing = errorCode(error)
+      }
+      setReadResult(
+        `before=${before}; getBefore=${getBefore}; permission=${granted}; count=${page.totalCount}; ` +
+        `listed=${listedImage && listedVideo}; ` +
+        `image=${image.identifier === imageId && image.mediaType === 'image' &&
+          image.width > 0 && image.height > 0 && image.durationMs === 0 &&
+          typeof image.creationDateMs === 'number' && typeof image.isFavorite === 'boolean'}; ` +
+        `video=${video.identifier === videoId && video.mediaType === 'video' &&
+          video.width > 0 && video.height > 0 && video.durationMs > 0 &&
+          typeof video.creationDateMs === 'number' && typeof video.isFavorite === 'boolean'}; ` +
+        `invalid=${invalid}; missing=${missing}`
+      )
+      setStatus('read-passed')
+    } catch (error) {
+      setStatus(`read-error: ${errorCode(error)} ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
+
   return (
     <View style={styles.screen}>
       <Text testID="one-native-photo-library-permission">Permission: {permission}</Text>
       <Text testID="one-native-photo-library-status">Status: {status}</Text>
       <Text testID="one-native-photo-library-result">Result: {result}</Text>
+      <Text testID="one-native-photo-library-read-permission">Read permission: {readPermission}</Text>
+      <Text testID="one-native-photo-library-read-result">Read result: {readResult}</Text>
       <Pressable testID="one-native-photo-library-run" style={styles.chip} onPress={run}>
         <Text>Save image and video to Photos</Text>
+      </Pressable>
+      <Pressable testID="one-native-photo-library-read" style={styles.chip} onPress={read}>
+        <Text>Read saved Photos assets</Text>
       </Pressable>
     </View>
   )

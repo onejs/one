@@ -84,7 +84,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
     }
   }
 
-  
+
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
   }
 
   // Properties
-  
+
 
   // Methods
   @inline(__always)
@@ -135,7 +135,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_PhotoLibraryPermissionStatus_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func requestAddPermission() -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ {
     do {
@@ -154,7 +154,76 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___(__exceptionPtr)
     }
   }
-  
+
+  @inline(__always)
+  public final func getReadPermissionStatus() -> bridge.Result_PhotoLibraryPermissionStatus_ {
+    do {
+      let __result = try self.__implementation.getReadPermissionStatus()
+      let __resultCpp = __result
+      return bridge.create_Result_PhotoLibraryPermissionStatus_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_PhotoLibraryPermissionStatus_(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func requestReadPermission() -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ {
+    do {
+      let __result = try self.__implementation.requestReadPermission()
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_PhotoLibraryPermissionStatus__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_PhotoLibraryPermissionStatus__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_PhotoLibraryPermissionStatus__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func listAssets(offset: Double, limit: Double) -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___ {
+    do {
+      let __result = try self.__implementation.listAssets(offset: offset, limit: limit)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_PhotoLibraryAssetPage__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_PhotoLibraryAssetPage__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_PhotoLibraryAssetPage__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func getAsset(identifier: std.string) -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryAsset___ {
+    do {
+      let __result = try self.__implementation.getAsset(identifier: String(identifier))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_PhotoLibraryAsset__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_PhotoLibraryAsset__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_PhotoLibraryAsset__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAsset___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAsset___(__exceptionPtr)
+    }
+  }
+
   @inline(__always)
   public final func saveImage(uri: std.string) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
@@ -173,7 +242,7 @@ open class HybridOnePhotoLibrarySpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func saveVideo(uri: std.string) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {

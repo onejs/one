@@ -250,6 +250,12 @@ namespace margelo::nitro::one { enum class OneUpdatesCheckType; }
 namespace margelo::nitro::one { struct OneUpdatesFetchResult; }
 // Forward declaration of `OneUpdatesFetchType` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
+// Forward declaration of `PhotoLibraryAssetPage` to properly resolve imports.
+namespace margelo::nitro::one { struct PhotoLibraryAssetPage; }
+// Forward declaration of `PhotoLibraryAsset` to properly resolve imports.
+namespace margelo::nitro::one { struct PhotoLibraryAsset; }
+// Forward declaration of `PhotoLibraryMediaType` to properly resolve imports.
+namespace margelo::nitro::one { enum class PhotoLibraryMediaType; }
 // Forward declaration of `PhotoLibraryPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
 // Forward declaration of `ProtectedStorePolicy` to properly resolve imports.
@@ -407,6 +413,9 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "OneUpdatesCheckType.hpp"
 #include "OneUpdatesFetchResult.hpp"
 #include "OneUpdatesFetchType.hpp"
+#include "PhotoLibraryAsset.hpp"
+#include "PhotoLibraryAssetPage.hpp"
+#include "PhotoLibraryMediaType.hpp"
 #include "PhotoLibraryPermissionStatus.hpp"
 #include "ProtectedStorePolicy.hpp"
 #include "ReminderInfo.hpp"
