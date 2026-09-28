@@ -12,6 +12,7 @@ export default function OneNativePhotoLibrary() {
   const [readPermission, setReadPermission] = useState(() => One.iOS.PhotoLibrary.getReadPermissionStatus())
   const [result, setResult] = useState('none')
   const [readResult, setReadResult] = useState('none')
+  const [manageResult, setManageResult] = useState('none')
   const [savedIds, setSavedIds] = useState<string[]>([])
 
   async function run() {
@@ -172,6 +173,49 @@ export default function OneNativePhotoLibrary() {
     }
   }
 
+  async function manage() {
+    setStatus('manage-checking')
+    try {
+      const [imageId, videoId] = savedIds
+      if (!imageId || !videoId) throw new Error('save the proof assets first')
+      const before = await One.iOS.PhotoLibrary.getAsset(imageId)
+      setStatus('favoriting')
+      await One.iOS.PhotoLibrary.setFavorite(imageId, true)
+      const favorited = await One.iOS.PhotoLibrary.getAsset(imageId)
+      await One.iOS.PhotoLibrary.setFavorite(imageId, false)
+      const restored = await One.iOS.PhotoLibrary.getAsset(imageId)
+      let invalid = ''
+      try {
+        await One.iOS.PhotoLibrary.setFavorite(' ', true)
+      } catch (error) {
+        invalid = errorCode(error)
+      }
+      let missing = ''
+      try {
+        await One.iOS.PhotoLibrary.deleteAsset('missing-asset-id')
+      } catch (error) {
+        missing = errorCode(error)
+      }
+      setStatus('deleting')
+      await One.iOS.PhotoLibrary.deleteAsset(videoId)
+      let deleted = ''
+      try {
+        await One.iOS.PhotoLibrary.getAsset(videoId)
+      } catch (error) {
+        deleted = errorCode(error)
+      }
+      const imageStillExists = (await One.iOS.PhotoLibrary.getAsset(imageId)).identifier === imageId
+      setManageResult(
+        `initial=${before.isFavorite}; favorite=${favorited.isFavorite}; ` +
+          `restored=${restored.isFavorite}; invalid=${invalid}; missing=${missing}; ` +
+          `deleted=${deleted}; preserved=${imageStillExists}`
+      )
+      setStatus('manage-passed')
+    } catch (error) {
+      setStatus(`manage-error: ${errorCode(error)} ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
+
   return (
     <View style={styles.screen}>
       <Text testID="one-native-photo-library-permission">Permission: {permission}</Text>
@@ -179,11 +223,15 @@ export default function OneNativePhotoLibrary() {
       <Text testID="one-native-photo-library-result">Result: {result}</Text>
       <Text testID="one-native-photo-library-read-permission">Read permission: {readPermission}</Text>
       <Text testID="one-native-photo-library-read-result">Read result: {readResult}</Text>
+      <Text testID="one-native-photo-library-manage-result">Manage result: {manageResult}</Text>
       <Pressable testID="one-native-photo-library-run" style={styles.chip} onPress={run}>
         <Text>Save image and video to Photos</Text>
       </Pressable>
       <Pressable testID="one-native-photo-library-read" style={styles.chip} onPress={read}>
         <Text>Read saved Photos assets</Text>
+      </Pressable>
+      <Pressable testID="one-native-photo-library-manage" style={styles.chip} onPress={manage}>
+        <Text>Favorite and delete Photos assets</Text>
       </Pressable>
     </View>
   )

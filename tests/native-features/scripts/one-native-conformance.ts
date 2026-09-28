@@ -535,6 +535,7 @@ const shareLoaded = (nodes: Node[]) =>
   nodes.some((node) => node.type === 'Application')
 const photoLibraryLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-photo-library-run')) ||
+  (nodes.length === 1 && nodes[0]?.type === 'Application') ||
   labels(nodes).some((label) =>
     label.includes('saving photos and videos') || label.includes('browsing photos and videos')
   )
@@ -7965,6 +7966,34 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         result.includes('exportInvalid=E_PHOTO_LIBRARY_INPUT; exportMissing=E_PHOTO_LIBRARY_NOT_FOUND')
     })
     screenshot('photo-library-assets-read.png')
+    tap({ id: 'one-native-photo-library-manage' })
+    let deleteFrame: Node['frame']
+    await wait('Photos presents a delete confirmation for the proof video', () => {
+      const roots = JSON.parse(axe(['describe-ui'], config.simulatorId)) as Node[]
+      const findLabel = (node: Node, expected: string): Node | undefined => {
+        if (node.AXLabel === expected) return node
+        for (const child of (node.children as Node[] | undefined) ?? []) {
+          const found = findLabel(child, expected)
+          if (found) return found
+        }
+      }
+      const title = roots.map((root) =>
+        findLabel(root, 'Allow “NativeFeatureTests” to delete this video?')).find(Boolean)
+      deleteFrame = roots.map((root) => findLabel(root, 'Delete')).find(Boolean)?.frame
+      return Boolean(title && deleteFrame)
+    })
+    screenshot('photo-library-delete-prompt.png')
+    if (!deleteFrame) throw new Error('Photos delete button lost its accessibility frame')
+    point(deleteFrame.x + deleteFrame.width / 2, deleteFrame.y + deleteFrame.height / 2)
+    await wait('Photos favorite and delete changes persist', (n) =>
+      labels(n).includes('Status: manage-passed') &&
+      labels(n).includes(
+        'Manage result: initial=false; favorite=true; restored=false; ' +
+          'invalid=E_PHOTO_LIBRARY_INPUT; missing=E_PHOTO_LIBRARY_NOT_FOUND; ' +
+          'deleted=E_PHOTO_LIBRARY_NOT_FOUND; preserved=true'
+      )
+    )
+    screenshot('photo-library-assets-managed.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

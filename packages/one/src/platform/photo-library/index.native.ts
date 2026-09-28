@@ -48,6 +48,14 @@ function getAsset(identifier: string): Promise<PhotoLibraryAsset> {
   return native().getAsset(identifier).catch(rethrowNativeError)
 }
 
+function setFavorite(identifier: string, favorite: boolean): Promise<void> {
+  return native().setFavorite(identifier, favorite).catch(rethrowNativeError)
+}
+
+function deleteAsset(identifier: string): Promise<void> {
+  return native().deleteAsset(identifier).catch(rethrowNativeError)
+}
+
 function exportOriginalAsset(identifier: string, allowNetwork = false): Promise<string> {
   return native().exportOriginalAsset(identifier, allowNetwork).catch(rethrowNativeError)
 }
@@ -67,6 +75,8 @@ export const PhotoLibrary = Object.freeze({
   requestReadPermission,
   listAssets,
   getAsset,
+  setFavorite,
+  deleteAsset,
   exportOriginalAsset,
   saveImage,
   saveVideo,
