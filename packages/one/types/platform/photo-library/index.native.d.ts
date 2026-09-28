@@ -6,6 +6,7 @@ declare function getReadPermissionStatus(): PhotoLibraryPermissionStatus;
 declare function requestReadPermission(): Promise<PhotoLibraryPermissionStatus>;
 declare function listAssets(offset?: number, limit?: number): Promise<PhotoLibraryAssetPage>;
 declare function getAsset(identifier: string): Promise<PhotoLibraryAsset>;
+declare function exportOriginalAsset(identifier: string, allowNetwork?: boolean): Promise<string>;
 declare function saveImage(uri: string): Promise<string>;
 declare function saveVideo(uri: string): Promise<string>;
 export declare const PhotoLibrary: Readonly<{
@@ -15,6 +16,7 @@ export declare const PhotoLibrary: Readonly<{
     requestReadPermission: typeof requestReadPermission;
     listAssets: typeof listAssets;
     getAsset: typeof getAsset;
+    exportOriginalAsset: typeof exportOriginalAsset;
     saveImage: typeof saveImage;
     saveVideo: typeof saveVideo;
 }>;

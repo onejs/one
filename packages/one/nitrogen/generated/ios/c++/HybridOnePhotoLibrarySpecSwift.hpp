@@ -128,6 +128,14 @@ namespace margelo::nitro::one {
       auto __value = std::move(__result.value());
       return __value;
     }
+    inline std::shared_ptr<Promise<std::string>> exportOriginalAsset(const std::string& identifier, bool allowNetwork) override {
+      auto __result = _swiftPart.exportOriginalAsset(identifier, std::forward<decltype(allowNetwork)>(allowNetwork));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
     inline std::shared_ptr<Promise<std::string>> saveImage(const std::string& uri) override {
       auto __result = _swiftPart.saveImage(uri);
       if (__result.hasError()) [[unlikely]] {

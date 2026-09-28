@@ -13,6 +13,7 @@ export const PhotoLibrary = Object.freeze({
   requestReadPermission: (): Promise<PhotoLibraryPermissionStatus> => unsupported(),
   listAssets: (_offset = 0, _limit = 50): Promise<PhotoLibraryAssetPage> => unsupported(),
   getAsset: (_identifier: string): Promise<PhotoLibraryAsset> => unsupported(),
+  exportOriginalAsset: (_identifier: string, _allowNetwork = false): Promise<string> => unsupported(),
   saveImage: (_uri: string): Promise<string> => unsupported(),
   saveVideo: (_uri: string): Promise<string> => unsupported(),
 })

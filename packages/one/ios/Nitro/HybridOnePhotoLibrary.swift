@@ -1,5 +1,6 @@
 import NitroModules
 import Photos
+import UniformTypeIdentifiers
 
 final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
   private enum MediaKind { case image, video }
@@ -88,31 +89,55 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
   func getAsset(identifier: String) throws -> Promise<PhotoLibraryAsset> {
     let promise = Promise<PhotoLibraryAsset>()
     DispatchQueue.global(qos: .userInitiated).async {
-      guard Self.hasReadUsageDescription else {
-        promise.reject(withError: Self.error(
-          "E_PHOTO_LIBRARY_MANIFEST",
-          "PhotoLibrary.getAsset: set native.app.photoLibrary.readWrite"))
-        return
+      do {
+        promise.resolve(withResult: Self.asset(try Self.readableAsset(identifier, "getAsset")))
+      } catch {
+        promise.reject(withError: error)
       }
-      guard Self.canRead else {
-        promise.reject(withError: Self.error(
-          "E_PHOTO_LIBRARY_PERMISSION",
-          "PhotoLibrary.getAsset: Photos read permission is required"))
-        return
+    }
+    return promise
+  }
+
+  func exportOriginalAsset(identifier: String, allowNetwork: Bool) throws -> Promise<String> {
+    let promise = Promise<String>()
+    DispatchQueue.global(qos: .userInitiated).async {
+      do {
+        let asset = try Self.readableAsset(identifier, "exportOriginalAsset")
+        let resourceType: PHAssetResourceType
+        switch asset.mediaType {
+        case .image: resourceType = .photo
+        case .video: resourceType = .video
+        case .audio: resourceType = .audio
+        case .unknown:
+          throw Self.error("E_PHOTO_LIBRARY_RESOURCE",
+            "PhotoLibrary.exportOriginalAsset: unsupported asset media type")
+        @unknown default:
+          throw Self.error("E_PHOTO_LIBRARY_RESOURCE",
+            "PhotoLibrary.exportOriginalAsset: unsupported asset media type")
+        }
+        guard let resource = PHAssetResource.assetResources(for: asset).first(where: {
+          $0.type == resourceType
+        }), let ext = UTType(resource.uniformTypeIdentifier)?.preferredFilenameExtension else {
+          throw Self.error("E_PHOTO_LIBRARY_RESOURCE",
+            "PhotoLibrary.exportOriginalAsset: original asset resource is unavailable")
+        }
+        let url = FileManager.default.temporaryDirectory
+          .appendingPathComponent("one-photo-\(UUID().uuidString)")
+          .appendingPathExtension(ext)
+        let options = PHAssetResourceRequestOptions()
+        options.isNetworkAccessAllowed = allowNetwork
+        PHAssetResourceManager.default().writeData(for: resource, toFile: url, options: options) { error in
+          if let error {
+            try? FileManager.default.removeItem(at: url)
+            promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EXPORT",
+              "PhotoLibrary.exportOriginalAsset: \(error.localizedDescription)"))
+          } else {
+            promise.resolve(withResult: url.absoluteString)
+          }
+        }
+      } catch {
+        promise.reject(withError: error)
       }
-      guard !identifier.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-        promise.reject(withError: Self.error(
-          "E_PHOTO_LIBRARY_INPUT", "PhotoLibrary.getAsset: identifier is required"))
-        return
-      }
-      guard let asset = PHAsset.fetchAssets(
-        withLocalIdentifiers: [identifier], options: nil
-      ).firstObject else {
-        promise.reject(withError: Self.error(
-          "E_PHOTO_LIBRARY_NOT_FOUND", "PhotoLibrary.getAsset: asset was not found"))
-        return
-      }
-      promise.resolve(withResult: Self.asset(asset))
     }
     return promise
   }
@@ -188,6 +213,25 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
   private static var canRead: Bool {
     let status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
     return status == .authorized || status == .limited
+  }
+
+  private static func readableAsset(_ identifier: String, _ operation: String) throws -> PHAsset {
+    guard hasReadUsageDescription else {
+      throw error("E_PHOTO_LIBRARY_MANIFEST",
+        "PhotoLibrary.\(operation): set native.app.photoLibrary.readWrite")
+    }
+    guard canRead else {
+      throw error("E_PHOTO_LIBRARY_PERMISSION",
+        "PhotoLibrary.\(operation): Photos read permission is required")
+    }
+    guard !identifier.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+      throw error("E_PHOTO_LIBRARY_INPUT", "PhotoLibrary.\(operation): identifier is required")
+    }
+    guard let asset = PHAsset.fetchAssets(withLocalIdentifiers: [identifier], options: nil)
+      .firstObject else {
+      throw error("E_PHOTO_LIBRARY_NOT_FOUND", "PhotoLibrary.\(operation): asset was not found")
+    }
+    return asset
   }
 
   private static func asset(_ value: PHAsset) -> PhotoLibraryAsset {
