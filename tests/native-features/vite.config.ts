@@ -7,17 +7,20 @@ import { one } from 'one/vite'
 // resolve.alias, so this is a resolveId plugin scoped by environment name.
 // exact matches only: a prefix rewrite would also catch 'three/webgpu' and
 // 'three/tsl', which already resolve through three's exports map.
+function nativeWebgpuTarget(source: string): string | undefined {
+  if (source === 'three') return 'three/webgpu'
+  if (source === '@react-three/fiber')
+    return '@react-three/fiber/dist/react-three-fiber.esm.js'
+}
+
 function nativeWebgpuAliases(): Plugin {
   return {
     name: 'native-webgpu-aliases',
     applyToEnvironment: (environment) =>
       environment.name === 'ios' || environment.name === 'android',
     async resolveId(source, _importer, options) {
-      if (source === 'three' || source === '@react-three/fiber') {
-        const target =
-          source === 'three'
-            ? 'three/webgpu'
-            : '@react-three/fiber/dist/react-three-fiber.esm.js'
+      const target = nativeWebgpuTarget(source)
+      if (target) {
         return await this.resolve(target, undefined, {
           ...options,
           skipSelf: true,
@@ -197,6 +200,23 @@ export default defineConfig({
           },
         },
         bundler: process.env.ONE_NATIVE_BUNDLER === 'rolldown' ? 'vite' : 'metro',
+        bundlerOptions: {
+          defaultConfigOverrides: (config) => {
+            const resolveRequest = config.resolver?.resolveRequest
+            return {
+              ...config,
+              resolver: {
+                ...config.resolver,
+                resolveRequest: (context, moduleName, platform) =>
+                  (resolveRequest ?? context.resolveRequest)(
+                    context,
+                    nativeWebgpuTarget(moduleName) ?? moduleName,
+                    platform
+                  ),
+              },
+            }
+          },
+        },
       },
       router: {
         linking: {
