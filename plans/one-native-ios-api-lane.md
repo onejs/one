@@ -77,7 +77,7 @@ checklist; One's own exports and docs decide the status.
 | Network state/fetch | covered | `One.Network`, `One` fetch | network and fetch fixtures | done |
 | Speech recognition | covered | `One.Speech` | speech fixture | done |
 | Fonts | covered | `One.UI.Fonts` | fonts | done |
-| Widgets/live activities | partial | iOS API exists; fixture lacks extension target | none | P2 |
+| Widgets/live activities | partial | Fixture can build the extension and exercise ActivityKit on iOS 27; unsigned simulator builds have no App Group container, so Home Screen widget data sharing and repeat-install Live Activity permission remain open | widgets bridge suite + inspected lock screen activity | P2 |
 | App updates | covered | `One.Updates` checks, downloads, stages, reloads, rolls back, and prunes OTA bundles | RAN iOS 27 release suite: 208 checks across eight publishes, rollback, 20 reloads, fallback, and rejection cases | done |
 | Keep awake/brightness | missing | no UIApplication/UIScreen service | none | P3 |
 | Store review prompt | missing | no StoreKit review request | none | P3 |

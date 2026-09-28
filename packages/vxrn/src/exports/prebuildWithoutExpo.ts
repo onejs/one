@@ -1176,6 +1176,13 @@ import ActivityKit
 class OneWidgetsBridge: RCTEventEmitter {
   private var tokenTasks: [String: Task<Void, Never>] = [:]
 
+  private var sharedDefaults: UserDefaults? {
+    guard FileManager.default.containerURL(
+      forSecurityApplicationGroupIdentifier: OneWidgetContract.appGroup
+    ) != nil else { return nil }
+    return UserDefaults(suiteName: OneWidgetContract.appGroup)
+  }
+
   override func supportedEvents() -> [String]! { ["oneLiveActivityPushToken"] }
 
   override func startObserving() {
@@ -1204,8 +1211,8 @@ class OneWidgetsBridge: RCTEventEmitter {
   @objc(writeWidget:value:subtitle:resolver:rejecter:)
   func writeWidget(_ title: String, value: String, subtitle: String,
                    resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
-    guard let defaults = UserDefaults(suiteName: OneWidgetContract.appGroup) else {
-      reject("app_group", "Cannot open the configured App Group", nil)
+    guard let defaults = sharedDefaults else {
+      reject("app_group", "The configured App Group is unavailable", nil)
       return
     }
     do {
@@ -1221,8 +1228,8 @@ class OneWidgetsBridge: RCTEventEmitter {
   @objc(writeView:resolver:rejecter:)
   func writeView(_ layout: String, resolver resolve: RCTPromiseResolveBlock,
                  rejecter reject: RCTPromiseRejectBlock) {
-    guard let defaults = UserDefaults(suiteName: OneWidgetContract.appGroup) else {
-      reject("app_group", "Cannot open the configured App Group", nil)
+    guard let defaults = sharedDefaults else {
+      reject("app_group", "The configured App Group is unavailable", nil)
       return
     }
     do {

@@ -271,6 +271,11 @@ const testScreens = [
     testID: 'nav-one-native-motion',
   },
   {
+    href: '/one-native-widgets',
+    label: 'One Native Widgets',
+    testID: 'nav-one-native-widgets',
+  },
+  {
     href: '/one-native-database',
     label: 'One Native Database',
     testID: 'nav-one-native-database',

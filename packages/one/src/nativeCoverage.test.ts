@@ -16,9 +16,6 @@ const fixtureRoot = join(import.meta.dirname, '../../../tests/native-features')
 // suite lands; the test fails while a covered export is still listed
 const knownGaps: Record<string, string> = {
   Database: 'Android suite missing',
-  'iOS.Widgets': 'needs a widget extension target in the fixture app',
-  'iOS.LiveActivities': 'needs a widget extension target in the fixture app',
-  'iOS.WidgetUI': 'needs a widget extension target in the fixture app',
   'iOS.ZoomTransitionAlignmentRectDetector': 'no fixture or suite',
   'iOS.ZoomTransitionEnabler': 'on zoom-detail, which the zoom e2e reaches only by tap',
   'Android.Color': 'no fixture or suite',
@@ -56,6 +53,9 @@ const knownGaps: Record<string, string> = {
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
+  'iOS.Widgets': 'unsigned iOS 27 fixture has no App Group container; write and writeView reject with app_group, signed cross-process rendering remains open',
+  'iOS.LiveActivities': 'start, update, and end resolved with a real extension; an initial iOS 27 lock screen rendered the activity, but repeat-install permission and push-token flows remain open',
+  'iOS.WidgetUI': 'tree serialization reaches the widget bridge; unsigned fixture cannot prove extension rendering without an App Group container',
   'iOS.Motion': 'iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run',
   'iOS.Menu': 'primaryAction short tap, long-press menu, item callback, disabled behavior, and plain Menu tap proven on iOS 27; context previews and Picker inside menu content unbound',
   'iOS.ArrangementView': 'closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved',

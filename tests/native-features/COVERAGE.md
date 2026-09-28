@@ -98,9 +98,9 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.FileImporter` | apple-file | n/a |  |
 | `One.iOS.EditButton` | edit-button | n/a | Edit/Done label cycle proven; List edit state unobserved and row actions unavailable |
 | `One.iOS.EmptyView` | tab-slot | n/a |  |
-| `One.iOS.Widgets` | missing | n/a | needs a widget extension target in the fixture app |
-| `One.iOS.LiveActivities` | missing | n/a | needs a widget extension target in the fixture app |
-| `One.iOS.WidgetUI` | missing | n/a | needs a widget extension target in the fixture app |
+| `One.iOS.Widgets` | widgets | n/a | unsigned iOS 27 fixture has no App Group container; write and writeView reject with app_group, signed cross-process rendering remains open |
+| `One.iOS.LiveActivities` | widgets | n/a | start, update, and end resolved with a real extension; an initial iOS 27 lock screen rendered the activity, but repeat-install permission and push-token flows remain open |
+| `One.iOS.WidgetUI` | widgets | n/a | tree serialization reaches the widget bridge; unsigned fixture cannot prove extension rendering without an App Group container |
 | `One.iOS.LocalAuthentication` | local-authentication | n/a |  |
 | `One.iOS.ProtectedStore` | protected-store | n/a |  |
 | `One.iOS.Location` | location | n/a |  |

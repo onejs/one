@@ -51,6 +51,7 @@ const suites = [
   'app-info',
   'device',
   'motion',
+  'widgets',
   'screen-orientation',
   'screen-capture',
   'purchases',
@@ -656,6 +657,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'app-info': appInfoLoaded,
   device: deviceLoaded,
   motion: (nodes: Node[]) => Boolean(id(nodes, 'one-native-motion-read')) && has(nodes, 'Availability: '),
+  widgets: (nodes: Node[]) => Boolean(id(nodes, 'one-native-widgets-write')) && has(nodes, 'Widget: '),
   'screen-orientation': screenOrientationLoaded,
   'screen-capture': (nodes: Node[]) => labels(nodes).some((label) => label.startsWith('Capture state: ')),
   purchases: (nodes: Node[]) => Boolean(id(nodes, 'one-native-purchases-buy')),
@@ -752,6 +754,7 @@ const suiteHome: Record<Suite, string> = {
   'app-info': 'nav-one-native-app-info',
   device: 'nav-one-native-device',
   motion: 'nav-one-native-motion',
+  widgets: 'nav-one-native-widgets',
   'screen-orientation': 'nav-one-native-screen-orientation',
   'screen-capture': 'nav-one-native-screen-capture',
   purchases: 'nav-one-native-purchases',
@@ -1219,6 +1222,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     execFileSync('xcrun', ['simctl', 'install', config.simulatorId, config.appPath], {
       stdio: 'ignore',
       timeout: 60_000,
+    })
+  }
+  if (config.suite === 'widgets') {
+    if (!config.appPath)
+      throw new Error('The widgets suite requires --app-path for the extension build.')
+    // Install over the existing app so reruns preserve the system's Live Activities choice.
+    // simctl install still replaces the binary and its embedded extension.
+    execFileSync('xcrun', ['simctl', 'install', config.simulatorId, config.appPath], {
+      stdio: 'ignore', timeout: 60_000,
     })
   }
   if (config.suite === 'updates') {
@@ -3278,6 +3290,96 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-motion-stop' })
     screenshot('motion-availability.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'widgets') {
+    const lock = async () => {
+      axe(['button', 'lock'], config.simulatorId)
+      const started = Date.now()
+      do {
+        if (axe(['describe-ui'], config.simulatorId).includes('Swipe up to unlock')) return
+        await new Promise((resolve) => setTimeout(resolve, 250))
+      } while (Date.now() - started < config.timeout)
+      throw new Error('The iOS lock screen did not appear')
+    }
+    const unlock = async () => {
+      axe([
+        'swipe', '--start-x', '200', '--start-y', '800',
+        '--end-x', '200', '--end-y', '200', '--duration', '0.7',
+      ], config.simulatorId)
+      await wait('widgets fixture returns after unlock', (n) =>
+        labels(n).includes('Widget: view rejected'))
+    }
+    let panel = { x: 20, y: 570, width: 362, height: 220, viewportWidth: 402 }
+    const waitPixels = async (name: string, baseline: string, predicate: (ratio: number) => boolean) => {
+      const started = Date.now()
+      let ratio = 0
+      let target = ''
+      do {
+        const system = axe(['describe-ui'], config.simulatorId)
+        if (system.includes('Allow Live Activities from NativeFeatureTests?')) {
+          axe(['tap', '--label', 'Allow'], config.simulatorId)
+          await new Promise((resolve) => setTimeout(resolve, 300))
+          continue
+        }
+        target = screenshot(name)
+        ratio = countChangedPixels(baseline, target, panel, 8).ratio
+        if (predicate(ratio)) {
+          checks.push({ name, durationMs: Date.now() - started })
+          console.log(`PASS ${name} (${ratio.toFixed(3)} changed)`)
+          return target
+        }
+        await new Promise((resolve) => setTimeout(resolve, 300))
+      } while (Date.now() - started < config.timeout)
+      throw new Error(`${name} did not reach the expected lock screen pixels: ${ratio}`)
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-widgets')
+    await wait('widgets fixture starts clean', (n) =>
+      labels(n).includes('Widget: pending') &&
+      labels(n).includes('Activity: pending') &&
+      labels(n).includes('Error: none')
+    )
+    tap({ id: 'one-native-widgets-write' })
+    await wait('unsigned widget write rejects unavailable App Group', (n) =>
+      labels(n).includes('Widget: plain rejected') && labels(n).includes('Error: app_group')
+    )
+    tap({ id: 'one-native-widgets-view' })
+    await wait('unsigned WidgetUI tree rejects unavailable App Group', (n) =>
+      labels(n).includes('Widget: view rejected') && labels(n).includes('Error: app_group')
+    )
+    await lock()
+    const lockFrame = (JSON.parse(axe(['describe-ui'], config.simulatorId)) as Node[])[0].frame
+    if (!lockFrame) throw new Error('The lock screen has no viewport frame')
+    panel = {
+      x: 20, y: lockFrame.height - 310,
+      width: lockFrame.width - 40, height: 220,
+      viewportWidth: lockFrame.width,
+    }
+    const baseline = screenshot('widgets-lock-baseline.png')
+    await unlock()
+    tap({ id: 'one-native-activity-start' })
+    await wait('ActivityKit start returned a nonempty id', (n) =>
+      labels(n).includes('Activity: started') && labels(n).includes('Error: none')
+    )
+    await lock()
+    const started = await waitPixels('widgets-activity-started.png', baseline, (ratio) => ratio > 0.15)
+    await unlock()
+    tap({ id: 'one-native-activity-update' })
+    await wait('ActivityKit update resolved', (n) =>
+      labels(n).includes('Activity: updated') && labels(n).includes('Error: none')
+    )
+    await lock()
+    await waitPixels('widgets-activity-updated.png', started, (ratio) => ratio > 0.003)
+    await unlock()
+    tap({ id: 'one-native-activity-end' })
+    await wait('ActivityKit end resolved', (n) =>
+      labels(n).includes('Activity: ended') && labels(n).includes('Error: none')
+    )
+    await lock()
+    await waitPixels('widgets-activity-ended.png', baseline, (ratio) => ratio < 0.03)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -7,6 +7,12 @@ Home Screen widgets and Live Activities under `One.iOS`. These need
 `native.app.ios.widgets` and a new iOS build; without the native bridge
 every call throws. Outside iOS they throw as well.
 
+Register the configured App Group with your Apple Developer team and sign both
+the app and widget extension with profiles that include it. Widget writes reject
+with `app_group` when the shared container is unavailable. A simulator build
+with signing disabled can exercise ActivityKit but cannot verify that the app
+and widget extension share widget data.
+
 ## Widgets
 
 `One.iOS.Widgets` writes the widget's content.

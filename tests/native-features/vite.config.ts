@@ -198,7 +198,15 @@ export default defineConfig({
             background: true,
           },
           ios: {
-            bundleId: 'dev.vxrn.native.tests',
+            bundleId: process.env.ONE_NATIVE_WIDGETS_PROOF === '1'
+              ? 'dev.vxrn.native.widgetsproof'
+              : 'dev.vxrn.native.tests',
+            widgets: process.env.ONE_NATIVE_WIDGETS_PROOF === '1' ? {
+              appGroup: 'group.dev.vxrn.native.widgetsproof',
+              kind: 'NativeFeatureStatus',
+              displayName: 'Native Feature Status',
+              description: 'Widget and Live Activity conformance',
+            } : undefined,
             alternateIcons: {
               TestAlternate: {
                 source: 'assets/alternate-icon.svg',
