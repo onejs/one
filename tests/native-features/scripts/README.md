@@ -146,7 +146,10 @@ first sheet with an activity type; canceling the file sheet resolves false.
 Invalid items reject with their documented codes.
 
 `photo-library` requests add-only Photos permission, saves real HEIC and MP4
-fixture assets, and checks the returned asset identifiers and validation errors.
+fixture assets, then reads original bytes and asset metadata with full access.
+It replaces a still image with a resized JPEG, exports the rendered version,
+checks decoded pixels and original bytes, then reverts to the preserved original.
+The suite also checks albums, favorites, deletion, and validation errors.
 
 `image-manipulator` transforms an oriented HEIC on iOS 27 into JPEG and PNG
 files. It checks decoded dimensions, file sizes and signatures, then samples

@@ -1,4 +1,5 @@
 import NitroModules
+import ImageIO
 import Photos
 import UIKit
 import UniformTypeIdentifiers
@@ -300,6 +301,67 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
     }
   }
 
+  func replaceImageContent(identifier: String, uri: String) throws -> Promise<Void> {
+    let promise = Promise<Void>()
+    DispatchQueue.main.async {
+      do {
+        let asset = try Self.readableAsset(identifier, "replaceImageContent")
+        guard asset.mediaType == .image,
+          !asset.mediaSubtypes.contains(.photoLive), asset.canPerform(.content) else {
+          throw Self.error("E_PHOTO_LIBRARY_UNSUPPORTED",
+            "PhotoLibrary.replaceImageContent: a writable still image is required")
+        }
+        let source = try Self.validFileURL(uri, "replaceImageContent")
+        guard let image = CGImageSourceCreateWithURL(source as CFURL, nil),
+          CGImageSourceGetType(image) as String? == UTType.jpeg.identifier,
+          let properties = CGImageSourceCopyPropertiesAtIndex(image, 0, nil) as? [CFString: Any],
+          (properties[kCGImagePropertyOrientation] as? NSNumber)?.intValue ?? 1 == 1 else {
+          throw Self.error("E_PHOTO_LIBRARY_INPUT",
+            "PhotoLibrary.replaceImageContent: an upright JPEG file is required")
+        }
+        let options = PHContentEditingInputRequestOptions()
+        options.canHandleAdjustmentData = { _ in false }
+        options.isNetworkAccessAllowed = false
+        asset.requestContentEditingInput(with: options) { input, _ in
+          guard let input else {
+            promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EDIT",
+              "PhotoLibrary.replaceImageContent: Photos could not open the editing input"))
+            return
+          }
+          do {
+            let output = PHContentEditingOutput(contentEditingInput: input)
+            try FileManager.default.copyItem(at: source, to: output.renderedContentURL)
+            output.adjustmentData = PHAdjustmentData(
+              formatIdentifier: "dev.onejs.photo-library.replace-image",
+              formatVersion: "1", data: Data("replace-image".utf8))
+            PHPhotoLibrary.shared().performChanges {
+              PHAssetChangeRequest(for: asset).contentEditingOutput = output
+            } completionHandler: { success, error in
+              if success {
+                promise.resolve()
+              } else {
+                promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EDIT",
+                  "PhotoLibrary.replaceImageContent: \(error?.localizedDescription ?? "Photos rejected the edit")"))
+              }
+            }
+          } catch {
+            promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EDIT",
+              "PhotoLibrary.replaceImageContent: \(error.localizedDescription)"))
+          }
+        }
+      } catch {
+        promise.reject(withError: error)
+      }
+    }
+    return promise
+  }
+
+  func revertAssetContent(identifier: String) throws -> Promise<Void> {
+    changeAsset(identifier, operation: "revertAssetContent", failureCode: "E_PHOTO_LIBRARY_EDIT") {
+      PHAssetChangeRequest(for: $0).revertAssetContentToOriginal()
+    }
+  }
+
   private func changeAsset(
     _ identifier: String,
     operation: String,
@@ -371,6 +433,46 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
     return promise
   }
 
+  func exportCurrentImage(identifier: String, allowNetwork: Bool) throws -> Promise<String> {
+    let promise = Promise<String>()
+    DispatchQueue.global(qos: .userInitiated).async {
+      do {
+        let asset = try Self.readableAsset(identifier, "exportCurrentImage")
+        guard asset.mediaType == .image else {
+          throw Self.error("E_PHOTO_LIBRARY_UNSUPPORTED",
+            "PhotoLibrary.exportCurrentImage: an image asset is required")
+        }
+        let options = PHImageRequestOptions()
+        options.version = .current
+        options.deliveryMode = .highQualityFormat
+        options.isNetworkAccessAllowed = allowNetwork
+        PHImageManager.default().requestImageDataAndOrientation(for: asset, options: options) {
+          data, typeIdentifier, _, info in
+          guard let data, !data.isEmpty, let typeIdentifier,
+            let ext = UTType(typeIdentifier)?.preferredFilenameExtension else {
+            let cause = (info?[PHImageErrorKey] as? Error)?.localizedDescription ?? "image data is unavailable"
+            promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EXPORT",
+              "PhotoLibrary.exportCurrentImage: \(cause)"))
+            return
+          }
+          let url = FileManager.default.temporaryDirectory
+            .appendingPathComponent("one-photo-current-\(UUID().uuidString)")
+            .appendingPathExtension(ext)
+          do {
+            try data.write(to: url, options: .atomic)
+            promise.resolve(withResult: url.absoluteString)
+          } catch {
+            promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EXPORT",
+              "PhotoLibrary.exportCurrentImage: \(error.localizedDescription)"))
+          }
+        }
+      } catch {
+        promise.reject(withError: error)
+      }
+    }
+    return promise
+  }
+
   func saveImage(uri: String) throws -> Promise<String> { save(uri, kind: .image) }
   func saveVideo(uri: String) throws -> Promise<String> { save(uri, kind: .video) }
 
@@ -392,20 +494,11 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
           "PhotoLibrary.\(verb): Photos add-only or read/write permission is required"))
         return
       }
-      guard let url = URL(string: uri), url.isFileURL,
-        url.host == nil || url.host == "" || url.host == "localhost",
-        url.query == nil, url.fragment == nil
-      else {
-        promise.reject(withError: Self.error(
-          "E_PHOTO_LIBRARY_URI", "PhotoLibrary.\(verb): an existing file:// URI is required"))
-        return
-      }
-      var directory: ObjCBool = false
-      guard FileManager.default.fileExists(atPath: url.path, isDirectory: &directory),
-        !directory.boolValue
-      else {
-        promise.reject(withError: Self.error(
-          "E_PHOTO_LIBRARY_FILE", "PhotoLibrary.\(verb): file does not exist"))
+      let url: URL
+      do {
+        url = try Self.validFileURL(uri, verb)
+      } catch {
+        promise.reject(withError: error)
         return
       }
       var identifier: String?
@@ -431,6 +524,21 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
     guard let usage = Bundle.main.object(forInfoDictionaryKey: "NSPhotoLibraryAddUsageDescription")
       as? String else { return false }
     return !usage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+  }
+
+  private static func validFileURL(_ uri: String, _ operation: String) throws -> URL {
+    guard let url = URL(string: uri), url.isFileURL,
+      url.host == nil || url.host == "" || url.host == "localhost",
+      url.query == nil, url.fragment == nil else {
+      throw error("E_PHOTO_LIBRARY_URI",
+        "PhotoLibrary.\(operation): an existing file:// URI is required")
+    }
+    var directory: ObjCBool = false
+    guard FileManager.default.fileExists(atPath: url.path, isDirectory: &directory),
+      !directory.boolValue else {
+      throw error("E_PHOTO_LIBRARY_FILE", "PhotoLibrary.\(operation): file does not exist")
+    }
+    return url
   }
 
   private static var hasReadUsageDescription: Bool {

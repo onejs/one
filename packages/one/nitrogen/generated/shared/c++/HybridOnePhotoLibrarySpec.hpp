@@ -81,7 +81,10 @@ namespace margelo::nitro::one {
       virtual std::shared_ptr<Promise<void>> deleteAlbum(const std::string& identifier) = 0;
       virtual std::shared_ptr<Promise<void>> setFavorite(const std::string& identifier, bool favorite) = 0;
       virtual std::shared_ptr<Promise<void>> deleteAsset(const std::string& identifier) = 0;
+      virtual std::shared_ptr<Promise<void>> replaceImageContent(const std::string& identifier, const std::string& uri) = 0;
+      virtual std::shared_ptr<Promise<void>> revertAssetContent(const std::string& identifier) = 0;
       virtual std::shared_ptr<Promise<std::string>> exportOriginalAsset(const std::string& identifier, bool allowNetwork) = 0;
+      virtual std::shared_ptr<Promise<std::string>> exportCurrentImage(const std::string& identifier, bool allowNetwork) = 0;
       virtual std::shared_ptr<Promise<std::string>> saveImage(const std::string& uri) = 0;
       virtual std::shared_ptr<Promise<std::string>> saveVideo(const std::string& uri) = 0;
 

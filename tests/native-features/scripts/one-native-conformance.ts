@@ -8252,6 +8252,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         if (found) return found
       }
     }
+    tap({ id: 'one-native-photo-library-edit' })
+    await wait('Photos image replacement, current export, and revert persist', (n) =>
+      labels(n).includes('Status: edit-passed') &&
+      labels(n).includes(
+        'Edit result: invalid=E_PHOTO_LIBRARY_INPUT; video=E_PHOTO_LIBRARY_UNSUPPORTED; ' +
+          'uri=E_PHOTO_LIBRARY_URI; format=E_PHOTO_LIBRARY_INPUT; ' +
+          'currentVideo=E_PHOTO_LIBRARY_UNSUPPORTED; before=80x120; edited=60x90; ' +
+          'rendered=true; originalKept=true; restored=80x120; restoredBytes=true; ' +
+          'missing=E_PHOTO_LIBRARY_NOT_FOUND'
+      )
+    )
+    screenshot('photo-library-image-edited-and-reverted.png')
     tap({ id: 'one-native-photo-library-albums' })
     let albumDeleteFrame: Node['frame']
     await wait('Photos confirms album deletion without deleting its assets', () => {
