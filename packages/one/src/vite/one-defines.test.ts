@@ -1,4 +1,9 @@
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { runInNewContext } from 'node:vm'
+import { rolldown } from 'rolldown'
 import { describe, expect, test } from 'vitest'
 import type { NativeAppManifest } from '../native/appManifest'
 import { one } from './one'
@@ -7,7 +12,9 @@ import { one } from './one'
 // fixture app. each test file gets its own worker, and cwd is restored.
 async function defineFor(app: NativeAppManifest) {
   const cwd = process.cwd()
-  process.chdir(fileURLToPath(new URL('../../../../tests/native-features', import.meta.url)))
+  process.chdir(
+    fileURLToPath(new URL('../../../../tests/native-features', import.meta.url))
+  )
   try {
     const plugins = (await one({ native: { app } })) as Array<any>
     const definePlugin = plugins
@@ -49,4 +56,62 @@ describe('one-define-environment app info', () => {
     expect(define['process.env.ONE_APP_BUILD']).toBeUndefined()
     expect(define['process.env.ONE_APP_APPLICATION_ID']).toBeUndefined()
   })
+})
+
+test('native.app leaves a hoisted optional Expo package outside the native bundle', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'one-native-expo-external-'))
+  const fixture = fileURLToPath(
+    new URL('../../../../tests/native-features', import.meta.url)
+  )
+  const originalCwd = process.cwd()
+  const originalPlugins = globalThis.__vxrnAddNativePlugins
+  try {
+    const expoRoot = join(root, 'node_modules/expo-clipboard')
+    await mkdir(expoRoot, { recursive: true })
+    await writeFile(
+      join(expoRoot, 'package.json'),
+      '{"name":"expo-clipboard","main":"index.js"}'
+    )
+    await writeFile(
+      join(expoRoot, 'index.js'),
+      'globalThis.expoClipboardWasBundled = true'
+    )
+    await writeFile(
+      join(root, 'entry.js'),
+      `try { require('expo-clipboard') } catch { globalThis.optionalExpoMissing = true }`
+    )
+
+    process.chdir(fixture)
+    await one({ native: { app: { name: 'ProbeApp' } } })
+    process.chdir(originalCwd)
+
+    const bundle = await rolldown({
+      input: join(root, 'entry.js'),
+      cwd: root,
+      platform: 'neutral',
+      plugins: globalThis.__vxrnAddNativePlugins?.('ios'),
+    })
+    const result = await bundle.generate({ format: 'cjs' })
+    const code = result.output[0].code
+    expect(code).not.toContain('expoClipboardWasBundled')
+    const runtime = { optionalExpoMissing: false }
+    runInNewContext(code, runtime)
+    expect(runtime.optionalExpoMissing).toBe(true)
+
+    process.chdir(fixture)
+    await one({ native: {} })
+    process.chdir(originalCwd)
+    const legacyBundle = await rolldown({
+      input: join(root, 'entry.js'),
+      cwd: root,
+      platform: 'neutral',
+      plugins: globalThis.__vxrnAddNativePlugins?.('ios'),
+    })
+    const legacyResult = await legacyBundle.generate({ format: 'cjs' })
+    expect(legacyResult.output[0].code).toContain('expoClipboardWasBundled')
+  } finally {
+    process.chdir(originalCwd)
+    globalThis.__vxrnAddNativePlugins = originalPlugins
+    await rm(root, { recursive: true, force: true })
+  }
 })
