@@ -17,7 +17,9 @@ photoLibrary: {
 
 For an Expo-prebuilt app, pass the same `photoLibrary` option to the VXRN Expo
 plugin. Both paths set `NSPhotoLibraryAddUsageDescription` for `addOnly` and
-`NSPhotoLibraryUsageDescription` for `readWrite`. Configure only the permission
+`NSPhotoLibraryUsageDescription` for `readWrite`. With `readWrite`, both paths
+also set `PHPhotoLibraryPreventAutomaticLimitedAccessAlert` so your app controls
+when the limited-selection picker appears. Configure only the permission
 your app uses, or both when it saves and browses assets.
 
 ```tsx
@@ -58,8 +60,28 @@ if (permission === 'authorized' || permission === 'limited') {
 ```
 
 `getReadPermissionStatus()` reads the current status without a prompt. Limited
-permission exposes only the user's selected assets. With limited permission,
-iOS may offer to update that selection on the first library access after launch.
+permission exposes only the user's selected assets. When the status is `limited`,
+call `presentLimitedLibraryPicker()` from an active screen to let the user add
+more assets. The promise resolves after the system picker closes with only the
+newly selected asset identifiers; it can return an empty array. Read the library
+again to see the current visible set:
+
+```tsx
+if (One.iOS.PhotoLibrary.getReadPermissionStatus() === 'limited') {
+  const newlySelectedIds = await One.iOS.PhotoLibrary.presentLimitedLibraryPicker()
+  const page = await One.iOS.PhotoLibrary.listAssets(0, 50)
+  console.log(newlySelectedIds, page.totalCount)
+}
+```
+
+The system picker's X button closes it with an empty array and keeps the
+previously selected assets readable. You can open the picker again afterward.
+
+The picker rejects with `E_PHOTO_LIBRARY_PERMISSION` unless the app has limited
+read access, `E_PHOTO_LIBRARY_MANIFEST` without the read/write usage message,
+`E_PHOTO_LIBRARY_UNAVAILABLE` when no active view controller can present it, or
+`E_PHOTO_LIBRARY_BUSY` when another limited picker is open.
+
 Each asset has an
 `identifier`, `mediaType`, pixel `width` and `height`, `durationMs`, optional
 `creationDateMs`, and `isFavorite`. These methods read metadata; they do not

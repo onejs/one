@@ -3762,6 +3762,40 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_PhotoLibraryPermissionStatus_Wrapper(std::move(value));
   }
 
+  // pragma MARK: std::shared_ptr<Promise<std::vector<std::string>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<std::string>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_std__string___ = std::shared_ptr<Promise<std::vector<std::string>>>;
+  inline std::shared_ptr<Promise<std::vector<std::string>>> create_std__shared_ptr_Promise_std__vector_std__string___() noexcept {
+    return Promise<std::vector<std::string>>::create();
+  }
+  inline PromiseHolder<std::vector<std::string>> wrap_std__shared_ptr_Promise_std__vector_std__string___(std::shared_ptr<Promise<std::vector<std::string>>> promise) noexcept {
+    return PromiseHolder<std::vector<std::string>>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const std::vector<std::string>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<std::string>&)>`.
+   */
+  using Func_void_std__vector_std__string_ = std::function<void(const std::vector<std::string>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<std::string>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_std__string__Wrapper final {
+  public:
+    explicit Func_void_std__vector_std__string__Wrapper(std::function<void(const std::vector<std::string>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<std::string>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<std::string> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<std::string>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_std__string_ create_Func_void_std__vector_std__string_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_std__string__Wrapper wrap_Func_void_std__vector_std__string_(Func_void_std__vector_std__string_ value) noexcept {
+    return Func_void_std__vector_std__string__Wrapper(std::move(value));
+  }
+
   // pragma MARK: std::vector<PhotoLibraryAsset>
   /**
    * Specialized version of `std::vector<PhotoLibraryAsset>`.
@@ -3869,6 +3903,15 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ create_Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<std::string>>>>
+  using Result_std__shared_ptr_Promise_std__vector_std__string____ = Result<std::shared_ptr<Promise<std::vector<std::string>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_std__string____ create_Result_std__shared_ptr_Promise_std__vector_std__string____(const std::shared_ptr<Promise<std::vector<std::string>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<std::string>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_std__string____ create_Result_std__shared_ptr_Promise_std__vector_std__string____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<std::string>>>>::withError(error);
   }
 
   // pragma MARK: Result<std::shared_ptr<Promise<PhotoLibraryAssetPage>>>
