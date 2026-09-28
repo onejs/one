@@ -67,6 +67,31 @@ key.
 
 ## iOS search and directions
 
+`One.iOS.Map` also supports MapKit Look Around through the generated SwiftUI
+`lookAroundViewer` style. Keep `isPresented` controlled; MapKit asks for a scene
+at the supplied coordinates and calls `onChange(false)` when the viewer closes
+or no scene is available. Look Around needs network access and is available on
+iOS 17 or later.
+
+```tsx
+const [showLookAround, setShowLookAround] = useState(false)
+
+<One.iOS.Map
+  latitude={37.7955}
+  longitude={-122.3937}
+  markers={[]}
+  style={{ height: 240 }}
+  swiftStyle={{
+    lookAroundViewer: {
+      isPresented: { value: showLookAround, onChange: setShowLookAround },
+      latitude: 37.7934,
+      longitude: -122.3950,
+    },
+  }}
+/>
+// Set showLookAround to true from a button to present the viewer.
+```
+
 `One.iOS.MapServices` uses MapKit's local search and route service. It needs a
 network connection, but no location permission when you provide coordinates.
 The map view's marker and polyline props accept coordinates from these results.
