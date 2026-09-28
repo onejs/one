@@ -54,3 +54,8 @@ fail-snapshot.json
 !proofs/angular-gradient/*.png
 !proofs/angular-gradient/*.webp
 !proofs/angular-gradient/outcome.json
+
+# Reviewed iOS 27 SwiftUI EllipticalGradient runtime evidence.
+!proofs/elliptical-gradient/*.png
+!proofs/elliptical-gradient/*.webp
+!proofs/elliptical-gradient/outcome.json

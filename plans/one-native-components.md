@@ -71,6 +71,16 @@ accounts are unavailable).
 
 ## Status
 
+- **RAN, 2026-09-27:** `One.iOS.EllipticalGradient` calls SwiftUI's
+  `EllipticalGradient(colors:center:startRadiusFraction:endRadiusFraction:)`.
+  The 18-check iPhone 17 Pro / iOS 27.0 suite passed at source `1b24f83d8`
+  with Xcode 27.1. Nine AX/PNG states and off-axis pixel gates prove the
+  elliptical contour, both radius fractions, center movement, reversed
+  colors, one and three colors, alpha over yellow, and transparent empty
+  input. The tracked `tests/native-features/proofs/elliptical-gradient`
+  bundle includes sampled pixels, side-by-side WebP, logs, and a matching
+  built/installed debug dylib receipt. Explicit stops, arbitrary SwiftUI
+  colors, and other iOS versions remain unproven.
 - **RAN, 2026-09-27:** `One.iOS.AngularGradient` calls SwiftUI's
   `AngularGradient(colors:center:angle:)`. The 16-check iPhone 17 Pro /
   iOS 27.0 suite passed at merged source `a549c3198` with Xcode 27.1. Eight
