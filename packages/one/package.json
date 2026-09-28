@@ -9,6 +9,7 @@
     "**/polyfills-mobile.*",
     "web-streams-polyfill/polyfill/es5",
     "@azure/core-asynciterator-polyfill",
+    "core-js/internals/inspect-source",
     "core-js/actual/url",
     "core-js/actual/url-search-params"
   ],
