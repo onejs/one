@@ -150,6 +150,8 @@ namespace margelo::nitro::one { class HybridOneHapticsSpec; }
 namespace margelo::nitro::one { class HybridOneImageManipulatorSpec; }
 // Forward declaration of `HybridOneImagePickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
+// Forward declaration of `HybridOneKeepAwakeSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneKeepAwakeSpec; }
 // Forward declaration of `HybridOneLaunchScreenSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLaunchScreenSpec; }
 // Forward declaration of `HybridOneLocalAuthenticationSpec` to properly resolve imports.
@@ -362,6 +364,8 @@ namespace One { class HybridOneHapticsSpec_cxx; }
 namespace One { class HybridOneImageManipulatorSpec_cxx; }
 // Forward declaration of `HybridOneImagePickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneImagePickerSpec_cxx; }
+// Forward declaration of `HybridOneKeepAwakeSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneKeepAwakeSpec_cxx; }
 // Forward declaration of `HybridOneLaunchScreenSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLaunchScreenSpec_cxx; }
 // Forward declaration of `HybridOneLocalAuthenticationSpec_cxx` to properly resolve imports.
@@ -470,6 +474,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneHapticsSpec.hpp"
 #include "HybridOneImageManipulatorSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
+#include "HybridOneKeepAwakeSpec.hpp"
 #include "HybridOneLaunchScreenSpec.hpp"
 #include "HybridOneLocalAuthenticationSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
@@ -2894,6 +2899,18 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_CameraPermissionResponse___ create_Result_std__shared_ptr_Promise_CameraPermissionResponse___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<CameraPermissionResponse>>>::withError(error);
   }
+
+  // pragma MARK: std::shared_ptr<HybridOneKeepAwakeSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneKeepAwakeSpec>`.
+   */
+  using std__shared_ptr_HybridOneKeepAwakeSpec_ = std::shared_ptr<HybridOneKeepAwakeSpec>;
+  std::shared_ptr<HybridOneKeepAwakeSpec> create_std__shared_ptr_HybridOneKeepAwakeSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneKeepAwakeSpec_(std__shared_ptr_HybridOneKeepAwakeSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneKeepAwakeSpec>
+  using std__weak_ptr_HybridOneKeepAwakeSpec_ = std::weak_ptr<HybridOneKeepAwakeSpec>;
+  inline std__weak_ptr_HybridOneKeepAwakeSpec_ weakify_std__shared_ptr_HybridOneKeepAwakeSpec_(const std::shared_ptr<HybridOneKeepAwakeSpec>& strong) noexcept { return strong; }
 
   // pragma MARK: std::shared_ptr<HybridOneLaunchScreenSpec>
   /**

@@ -82,6 +82,9 @@
     "OnePreferences": {
       "ios": { "language": "swift", "implementationClassName": "HybridOnePreferences" }
     },
+    "OneKeepAwake": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneKeepAwake" }
+    },
     "OneLocation": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneLocation" }
     },

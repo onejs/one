@@ -10,6 +10,7 @@ import * as UI from './effects';
 import { Widgets, LiveActivities, WidgetUI } from './widgets/index.native';
 export * from './extras';
 export { Preferences } from './preferences/index.native';
+export { KeepAwake } from './keep-awake/index.native';
 export type { ToolbarHostProps, ToolbarItemProps } from './extras';
 export { useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, ReservedRegions, useReservedRegions, useReservedRegionsReady, useWindowSegments, useSpanning, } from './adaptive/index.native';
 export type { UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, WindowSegment, ReservedRegionOptions, ReservedRegionsProviderProps, } from './adaptive/types';
