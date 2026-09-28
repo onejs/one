@@ -42,7 +42,7 @@ export declare const Swift: {
     EllipticalGradient({ colors, center, startRadiusFraction, endRadiusFraction, swiftStyle, style, ...props }: import("./types").EllipticalGradientProps): import("react/jsx-runtime").JSX.Element;
     AngularGradient({ colors, center, angle, swiftStyle, style, ...props }: import("./types").AngularGradientProps): import("react/jsx-runtime").JSX.Element;
     MeshGradient({ meshWidth, meshHeight, points, colors, background, smoothsColors, colorSpace, swiftStyle, style, ...props }: import("./types").MeshGradientProps): import("react/jsx-runtime").JSX.Element;
-    VideoPlayer({ url, autoplay, swiftStyle, style, ...props }: import("./types").VideoPlayerProps): import("react/jsx-runtime").JSX.Element;
+    VideoPlayer({ onPlaybackStatus, url, autoplay, command, commandRevision, seekToMs, swiftStyle, style, ...props }: import("./types").VideoPlayerProps): import("react/jsx-runtime").JSX.Element;
     PhotosPicker({ onPick, onPickItemIdentifier, onPickError, label, disabled, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: import("./types").PhotosPickerProps): import("react/jsx-runtime").JSX.Element;
     WebView({ onNavigate, onTitleChange, onLoadingChange, url, html, backForwardNavigationGestures, magnificationGestures, linkPreviews, elementFullscreen, contentBackground, swiftStyle, style, ...props }: import("./types").WebViewProps): import("react/jsx-runtime").JSX.Element;
     SignInWithAppleButton({ onCompletion, requestedScopes, nonce, label, swiftStyle, style, ...props }: import("./types").SignInWithAppleButtonProps): import("react/jsx-runtime").JSX.Element;
