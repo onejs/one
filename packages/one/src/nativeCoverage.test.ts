@@ -62,6 +62,7 @@ const partialGaps: Record<string, string> = {
   'iOS.RadialGradient': 'opaque and alpha sRGB hex colors, empty/one/two/three colors, normalized center, and point radii proven on iOS 27; arbitrary SwiftUI Color values and explicit stops unbound',
   'iOS.AngularGradient': 'sRGB hex colors, normalized center, and full-circle angle on iOS 27; partial-arc initializer, explicit stops, arbitrary SwiftUI Color values, and other iOS versions unproven',
   'iOS.EllipticalGradient': 'sRGB hex colors, normalized center, and both radius fractions on iOS 27; explicit stops, arbitrary SwiftUI Color values, and other iOS versions unproven',
+  'iOS.MeshGradient': '2×2 and 3×3 point/color grids, background, smoothing, and device/perceptual color spaces on iOS 27; Bezier-point and resolved-color initializers and other iOS versions unproven',
   'iOS.List': 'Text row modifiers proven in plain List; section spacing, margins, and header prominence proven in insetGrouped List; refreshable callback and rearm proven in plain List with a NavigationStack-hosted search field on iPhone; indicator duration and other modifiers/styles unproven',
   'iOS.Picker': 'palette outside Menu renders segmented on iOS 27 iPhone with native tap and external selection; earlier iOS, palette inside Menu, and navigationLink context unproven',
   'iOS.ScrollView': 'vertical refreshable callback and rearm proven with a NavigationStack-hosted search field on iPhone; indicator duration, standalone search hosting, horizontal/both axes, and other modifiers unproven',

@@ -17769,6 +17769,7 @@
         "EmptyView",
         "Image",
         "LinearGradient",
+        "MeshGradient",
         "RadialGradient",
         "Rectangle",
         "RoundedRectangle",
@@ -19686,6 +19687,51 @@
         }
       ],
       "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "MeshGradient",
+      "parameters": [
+        {
+          "label": "width",
+          "name": "width",
+          "type": "Swift.Int"
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "Swift.Int"
+        },
+        {
+          "label": "points",
+          "name": "points",
+          "type": "[Swift.SIMD2<Swift.Float>]"
+        },
+        {
+          "label": "colors",
+          "name": "colors",
+          "type": "[SwiftUICore.Color]"
+        },
+        {
+          "defaultValue": ".clear",
+          "label": "background",
+          "name": "background",
+          "type": "SwiftUICore.Color"
+        },
+        {
+          "defaultValue": "true",
+          "label": "smoothsColors",
+          "name": "smoothsColors",
+          "type": "Swift.Bool"
+        },
+        {
+          "defaultValue": ".device",
+          "label": "colorSpace",
+          "name": "colorSpace",
+          "type": "SwiftUICore.Gradient.ColorSpace"
+        }
+      ],
+      "ios": 18
     },
     {
       "module": "_AVKit_SwiftUI",

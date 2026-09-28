@@ -65,6 +65,7 @@ const suites = [
   'radial-gradient',
   'angular-gradient',
   'elliptical-gradient',
+  'mesh-gradient',
   'horizontal-inset',
   'horizontal-bar',
   'swipe-actions',
@@ -419,6 +420,9 @@ const angularGradientLoaded = (nodes: Node[]) =>
 const ellipticalGradientLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-elliptical-gradient-screen'))
+const meshGradientLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-mesh-gradient-screen'))
 const horizontalInsetLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-horizontal-inset-screen'))
@@ -640,6 +644,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'radial-gradient': radialGradientLoaded,
   'angular-gradient': angularGradientLoaded,
   'elliptical-gradient': ellipticalGradientLoaded,
+  'mesh-gradient': meshGradientLoaded,
   'horizontal-inset': horizontalInsetLoaded,
   'horizontal-bar': horizontalBarLoaded,
   'swipe-actions': swipeActionsLoaded,
@@ -726,6 +731,7 @@ const suiteHome: Record<Suite, string> = {
   'radial-gradient': 'nav-one-native-radial-gradient',
   'angular-gradient': 'nav-one-native-angular-gradient',
   'elliptical-gradient': 'nav-one-native-elliptical-gradient',
+  'mesh-gradient': 'nav-one-native-mesh-gradient',
   'horizontal-inset': 'nav-one-native-horizontal-inset',
   'horizontal-bar': 'nav-one-native-horizontal-bar',
   'swipe-actions': 'nav-one-native-swipe-actions',
@@ -3803,6 +3809,91 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     checks.push({ name: 'native elliptical gradient stretches normalized radii across both axes', durationMs: 0 })
     checks.push({ name: 'native elliptical gradient honors both radius fractions, one and three colors, alpha, and empty colors', durationMs: 0 })
     console.log(`PASS native elliptical gradient pixels: ${JSON.stringify(pixels)}`)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'mesh-gradient') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-mesh-gradient')
+    const initial = await wait('native mesh gradient mounts', (nodes) =>
+      labels(nodes).includes('SwiftUI MeshGradient') &&
+      labels(nodes).includes('Mode: initial') &&
+      labels(nodes).includes('Native mesh gradient preview') &&
+      Boolean(id(nodes, 'one-native-mesh-gradient-native')?.frame))
+    if (id(initial, 'one-native-mesh-gradient-decorative'))
+      throw new Error('Unlabeled decorative MeshGradient is exposed to accessibility')
+    checks.push({ name: 'labeled mesh gradient accessible; unlabeled mesh decorative', durationMs: 0 })
+    const native = id(initial, 'one-native-mesh-gradient-native')!.frame!
+    if (Math.abs(native.width - 280) > 2 || Math.abs(native.height - 180) > 2)
+      throw new Error(`MeshGradient did not fill its assigned 280x180 box: ${JSON.stringify(native)}`)
+    const captures: Record<string, string> = {}
+    const capture = async (mode: string, nodes: Node[]) => {
+      await Bun.sleep(300)
+      captures[mode] = screenshot(`mesh-gradient-${mode}.png`, nodes)
+    }
+    await capture('initial', initial)
+    for (const mode of ['recolored', 'warped', 'background', 'unsmoothed', 'perceptual', 'three-by-three']) {
+      tap({ id: `one-native-mesh-gradient-${mode}` })
+      const nodes = await wait(`React supplies mesh gradient ${mode} state`, (next) =>
+        labels(next).includes(`Mode: ${mode}`))
+      await capture(mode, nodes)
+    }
+    const app = initial.find((node) => node.type === 'Application')?.frame
+    if (!app?.width) throw new Error('MeshGradient proof has no application frame')
+    const sample = (mode: string, xFraction: number, yFraction: number) => {
+      const png = readPng(captures[mode]!)
+      const scale = png.width / app.width
+      const x = Math.round((native.x + native.width * xFraction) * scale)
+      const y = Math.round((native.y + native.height * yFraction) * scale)
+      if (x < 0 || y < 0 || x >= png.width || y >= png.height)
+        throw new Error(`MeshGradient sample lies outside screenshot: ${JSON.stringify({ mode, x, y })}`)
+      const at = (y * png.width + x) * 4
+      return [...png.data.subarray(at, at + 3)]
+    }
+    const pixels = {
+      initialTopLeft: sample('initial', 0.08, 0.08),
+      initialTopRight: sample('initial', 0.92, 0.08),
+      initialBottomLeft: sample('initial', 0.08, 0.92),
+      initialBottomRight: sample('initial', 0.92, 0.92),
+      initialCenter: sample('initial', 0.5, 0.5),
+      recoloredTopLeft: sample('recolored', 0.08, 0.08),
+      warpedTopRight: sample('warped', 0.88, 0.12),
+      initialWarpReference: sample('initial', 0.88, 0.12),
+      backgroundOutside: sample('background', 0.05, 0.05),
+      backgroundInside: sample('background', 0.5, 0.5),
+      unsmoothedCenter: sample('unsmoothed', 0.5, 0.5),
+      perceptualCenter: sample('perceptual', 0.5, 0.5),
+      gridCenter: sample('three-by-three', 0.5, 0.5),
+      gridTopCenter: sample('three-by-three', 0.5, 0.08),
+    }
+    fs.writeFileSync(path.join(config.artifactDir, 'mesh-gradient-pixels.json'),
+      JSON.stringify({ pixels, nativeFrame: native }, null, 2))
+    const distance = (a: number[], b: number[]) =>
+      a.reduce((sum, channel, index) => sum + Math.abs(channel - b[index]!), 0)
+    const red = (v: number[]) => v[0]! > v[1]! + 70 && v[0]! > v[2]! + 70
+    const green = (v: number[]) => v[1]! > v[0]! + 70 && v[1]! > v[2]! + 70
+    const blue = (v: number[]) => v[2]! > v[0]! + 70 && v[2]! > v[1]! + 70
+    const yellow = (v: number[]) => v[0]! > 170 && v[1]! > 170 && v[2]! < 110
+    if (!red(pixels.initialTopLeft) || !green(pixels.initialTopRight) ||
+      !blue(pixels.initialBottomLeft) || !yellow(pixels.initialBottomRight))
+      throw new Error(`Native MeshGradient did not paint its four vertex colors: ${JSON.stringify(pixels)}`)
+    if (distance(pixels.recoloredTopLeft, pixels.initialTopLeft) < 100)
+      throw new Error(`Native MeshGradient did not update vertex colors: ${JSON.stringify(pixels)}`)
+    if (distance(pixels.warpedTopRight, pixels.initialWarpReference) < 35)
+      throw new Error(`Native MeshGradient did not move a vertex: ${JSON.stringify(pixels)}`)
+    if (!(pixels.backgroundOutside[0]! < 80 && pixels.backgroundOutside[1]! > 160 && pixels.backgroundOutside[2]! > 160) ||
+      distance(pixels.backgroundInside, pixels.backgroundOutside) < 80)
+      throw new Error(`Native MeshGradient did not expose the background outside its vertices: ${JSON.stringify(pixels)}`)
+    if (distance(pixels.unsmoothedCenter, pixels.initialCenter) < 12 ||
+      distance(pixels.perceptualCenter, pixels.initialCenter) < 12)
+      throw new Error(`Native MeshGradient did not apply smoothing and color-space options: ${JSON.stringify(pixels)}`)
+    if (distance(pixels.gridCenter, pixels.initialCenter) < 80 ||
+      distance(pixels.gridTopCenter, pixels.gridCenter) < 80)
+      throw new Error(`Native MeshGradient did not render its three-by-three grid: ${JSON.stringify(pixels)}`)
+    checks.push({ name: 'native mesh paints, recolors, warps, and reveals its background', durationMs: 0 })
+    checks.push({ name: 'native mesh applies color smoothing, color space, and a three-by-three grid', durationMs: 0 })
+    console.log(`PASS native mesh gradient pixels: ${JSON.stringify(pixels)}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

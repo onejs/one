@@ -409,6 +409,7 @@
         "OneNativeRadialGradient": "OneNativeRadialGradientComponentView",
         "OneNativeEllipticalGradient": "OneNativeEllipticalGradientComponentView",
         "OneNativeAngularGradient": "OneNativeAngularGradientComponentView",
+        "OneNativeMeshGradient": "OneNativeMeshGradientComponentView",
         "OneNativeVideoPlayer": "OneNativeVideoPlayerComponentView",
         "OneNativePhotosPicker": "OneNativePhotosPickerComponentView",
         "OneNativeWebView": "OneNativeWebViewComponentView",

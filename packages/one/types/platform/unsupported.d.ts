@@ -74,6 +74,7 @@ export declare const Swift: {
     RadialGradient: (_props: import("./types").RadialGradientProps) => never;
     EllipticalGradient: (_props: import("./types").EllipticalGradientProps) => never;
     AngularGradient: (_props: import("./types").AngularGradientProps) => never;
+    MeshGradient: (_props: import("./types").MeshGradientProps) => never;
     VideoPlayer: (_props: import("./types").VideoPlayerProps) => never;
     PhotosPicker: (_props: import("./types").PhotosPickerProps) => never;
     WebView: (_props: import("./types").WebViewProps) => never;
