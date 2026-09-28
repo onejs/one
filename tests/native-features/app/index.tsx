@@ -452,6 +452,11 @@ const testScreens = [
     testID: 'nav-one-native-cover-context',
   },
   {
+    href: '/one-native-menu-primary-action',
+    label: 'One Native Menu Primary Action',
+    testID: 'nav-one-native-menu-primary-action',
+  },
+  {
     href: '/one-native-system',
     label: 'One Native System',
     testID: 'nav-one-native-system',

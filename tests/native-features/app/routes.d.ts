@@ -54,6 +54,7 @@ declare module 'one' {
         | `/one-native-containers`
         | `/one-native-controls`
         | `/one-native-cover-context`
+        | `/one-native-menu-primary-action`
         | `/one-native-crypto`
         | `/one-native-database`
         | `/one-native-device`

@@ -61,6 +61,7 @@ export type MenuItem = SwiftMenuAction | MenuToggle | MenuSubmenu | MenuSection 
 export interface MenuProps extends ViewProps {
     items: readonly MenuItem[];
     onAction: (id: string) => void;
+    primaryAction?: () => void;
     onValueChange?: (id: string, value: boolean, sourceIndex: number) => void;
     accessibilityLabel: string;
     revision?: number;
@@ -69,7 +70,7 @@ export interface MenuProps extends ViewProps {
     menuActionDismissBehavior?: MenuActionDismissBehavior;
     children: ReactNode;
 }
-export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel'> & {
+export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel' | 'primaryAction'> & {
     accessibilityLabel?: string;
 };
 //# sourceMappingURL=types.d.ts.map

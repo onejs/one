@@ -7,6 +7,7 @@ final class OneNativeMenuModel: ObservableObject {
   @Published var size = CGSize.zero
   @Published var label = ""
   @Published var disabled = false
+  @Published var hasPrimaryAction = false
   @Published var menuOrder = "automatic"
   @Published var menuActionDismissBehavior = "automatic"
   @Published var presentation = "menu"
@@ -15,11 +16,17 @@ final class OneNativeMenuModel: ObservableObject {
   var active = false
   var items: [String: OneNativeMenuNode] = [:]
   var onAction: ((String) -> Void)?
+  var onPrimaryAction: (() -> Void)?
   var onValueChange: ((String, Bool, Int, Int, Int) -> Void)?
 
   func action(_ id: String) {
     guard active, !disabled, let item = items[id], item.type == .action, !item.disabled, !item.hidden else { return }
     onAction?(id)
+  }
+
+  func primaryAction() {
+    guard active, !disabled, hasPrimaryAction else { return }
+    onPrimaryAction?()
   }
 
   func changeValue(_ id: String, index: Int, value: Bool) {
@@ -37,6 +44,7 @@ final class OneNativeMenuModel: ObservableObject {
 @objcMembers
 public final class OneNativeMenuView: UIView {
   public var onAction: ((String) -> Void)?
+  public var onPrimaryAction: (() -> Void)?
   public var onValueChange: ((String, Bool, Int, Int, Int) -> Void)?
   private var model = OneNativeMenuModel()
   private var controller: OneNativeHostingController<OneNativeMenuRoot>?
@@ -61,10 +69,11 @@ public final class OneNativeMenuView: UIView {
     model.children = Dictionary(grouping: nodes, by: \.parentId)
   }
 
-  public func configure(_ triggerLabel: String, disabled: Bool, menuOrder: String, menuActionDismissBehavior: String, presentation: String, acknowledgedEvent: Int, revision: Int) {
+  public func configure(_ triggerLabel: String, disabled: Bool, hasPrimaryAction: Bool, menuOrder: String, menuActionDismissBehavior: String, presentation: String, acknowledgedEvent: Int, revision: Int) {
     if let next = model.controlled.applying(model.propValues, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != triggerLabel { model.label = triggerLabel }
     if model.disabled != disabled { model.disabled = disabled }
+    if model.hasPrimaryAction != hasPrimaryAction { model.hasPrimaryAction = hasPrimaryAction }
     if model.menuOrder != menuOrder { model.menuOrder = menuOrder }
     if model.menuActionDismissBehavior != menuActionDismissBehavior { model.menuActionDismissBehavior = menuActionDismissBehavior }
     if model.presentation != presentation { model.presentation = presentation }
@@ -86,6 +95,7 @@ public final class OneNativeMenuView: UIView {
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       model.onAction = { [weak self] id in self?.onAction?(id) }
+      model.onPrimaryAction = { [weak self] in self?.onPrimaryAction?() }
       model.onValueChange = { [weak self] id, value, index, count, revision in self?.onValueChange?(id, value, index, count, revision) }
       controller = OneNativeHostingController(rootView: OneNativeMenuRoot(model: model))
     }
@@ -96,6 +106,7 @@ public final class OneNativeMenuView: UIView {
   public func reset() {
     model.active = false
     model.onAction = nil
+    model.onPrimaryAction = nil
     model.onValueChange = nil
     model.trigger?.removeFromSuperview()
     controller?.detach()
@@ -126,15 +137,25 @@ private struct OneNativeMenuRoot: View {
           .disabled(model.disabled)
           .oneNativeMenuOrder(model.menuOrder)
           .oneNativeMenuActionDismissBehavior(model.menuActionDismissBehavior)
+      } else if model.hasPrimaryAction {
+        Menu {
+          OneNativeGeneratedMenuContent(model: model, parentId: "")
+        } label: {
+          menuLabel(trigger)
+        } primaryAction: {
+          model.primaryAction()
+        }
+        .menuStyle(.button)
+        .buttonStyle(.plain)
+        .disabled(model.disabled)
+        .accessibilityLabel(model.label)
+        .oneNativeMenuOrder(model.menuOrder)
+        .oneNativeMenuActionDismissBehavior(model.menuActionDismissBehavior)
       } else {
         Menu {
           OneNativeGeneratedMenuContent(model: model, parentId: "")
         } label: {
-          OneNativeSlot(content: trigger, mode: .passive)
-            .frame(width: model.size.width, height: model.size.height)
-            // same as above: yoga owns the trigger frame, not the safe area.
-            .position(x: model.size.width / 2, y: model.size.height / 2)
-            .contentShape(Rectangle())
+          menuLabel(trigger)
         }
         .menuStyle(.button)
         .buttonStyle(.plain)
@@ -144,5 +165,13 @@ private struct OneNativeMenuRoot: View {
         .oneNativeMenuActionDismissBehavior(model.menuActionDismissBehavior)
       }
     }
+  }
+
+  private func menuLabel(_ trigger: UIView) -> some View {
+    OneNativeSlot(content: trigger, mode: .passive)
+      .frame(width: model.size.width, height: model.size.height)
+      // Yoga owns the trigger frame, not the safe area.
+      .position(x: model.size.width / 2, y: model.size.height / 2)
+      .contentShape(Rectangle())
   }
 }
