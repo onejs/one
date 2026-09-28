@@ -149,6 +149,12 @@ export interface NativeAppManifest {
       description: string
       pushNotifications?: boolean
     }
+    // launch handlers for One.iOS.BackgroundTasks. define the matching JS
+    // handlers in the native setupFile so a background-only launch can run.
+    backgroundTasks?: {
+      refresh?: string[]
+      processing?: string[]
+    }
   }
   android?: {
     applicationId: string
@@ -272,6 +278,23 @@ export function validateNativeApp(
       }
       if (!icon?.source || !HEX_COLOR.test(icon.backgroundColor)) {
         fail(`ios.alternateIcons.${name} requires source and a six-digit hex backgroundColor`)
+      }
+    }
+  }
+  if (manifest.ios?.backgroundTasks !== undefined) {
+    const tasks = manifest.ios.backgroundTasks
+    if (!tasks ||
+      (tasks.refresh !== undefined && !Array.isArray(tasks.refresh)) ||
+      (tasks.processing !== undefined && !Array.isArray(tasks.processing))) {
+      fail('ios.backgroundTasks refresh and processing must be arrays of identifiers')
+    }
+    const identifiers = [...(tasks.refresh ?? []), ...(tasks.processing ?? [])]
+    if (!identifiers.length || new Set(identifiers).size !== identifiers.length) {
+      fail('ios.backgroundTasks needs distinct refresh or processing identifiers')
+    }
+    for (const identifier of identifiers) {
+      if (typeof identifier !== 'string' || !REVERSE_DNS.test(identifier)) {
+        fail(`ios.backgroundTasks identifier "${identifier}" must use reverse DNS notation`)
       }
     }
   }

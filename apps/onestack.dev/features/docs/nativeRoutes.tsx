@@ -66,6 +66,7 @@ export const nativeRoutes = [
       { title: 'Screen Orientation', route: '/native/screen-orientation' },
       { title: 'Screen Capture', route: '/native/screen-capture' },
       { title: 'Motion Sensors', route: '/native/motion' },
+      { title: 'Background Tasks', route: '/native/background-tasks' },
       { title: 'Gestures and Animation', route: '/native/gestures-and-animation' },
       { title: 'Device Attestation', route: '/native/device-attestation' },
       { title: 'Purchases', route: '/native/purchases' },

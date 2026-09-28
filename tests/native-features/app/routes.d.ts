@@ -48,6 +48,7 @@ declare module 'one' {
         | `/one-native-audio`
         | `/one-native-autogen`
         | `/one-native-browser`
+        | `/one-native-background-tasks`
         | `/one-native-building-blocks`
         | `/one-native-calendar`
         | `/one-native-camera`

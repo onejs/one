@@ -1,5 +1,5 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { validateNativeApp } from '../native/appManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 
@@ -37,6 +37,21 @@ export async function run(args: { platform?: string; 'no-install'?: boolean }) {
     )
   }
   validateNativeApp(app, args.platform)
+  if (app.ios?.backgroundTasks && args.platform !== 'android') {
+    const configured = oneOptions?.setupFile
+    const setupFile = typeof configured === 'string'
+      ? configured
+      : configured && 'native' in configured
+        ? configured.native
+        : configured && 'ios' in configured
+          ? configured.ios
+          : undefined
+    if (!setupFile || !existsSync(resolve(root, setupFile))) {
+      throw new Error(
+        '[one] native.app.ios.backgroundTasks requires an existing iOS native setupFile that defines every task handler before the app renders'
+      )
+    }
+  }
   // an app-owned react-native config wins; only generate ours when the app
   // has none. a present config that drops One's bundle override would
   // silently Release-build with the stock bundler, so fail and say the fix.

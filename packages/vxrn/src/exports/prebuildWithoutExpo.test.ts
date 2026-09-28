@@ -877,7 +877,7 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     expect(rendered.content).not.toContain('startReactNative')
     expect(rendered.content).not.toContain('UIWindow(frame:')
     expect(rendered.content).not.toContain('var window')
-    expect(rendered.content).not.toContain('var reactNativeFactory')
+    expect(rendered.content).toContain('var reactNativeFactory')
     expect(rendered.content).toContain('override func customize(_ rootView: RCTRootView)')
     expect(rendered.content).toContain('OneHoldLaunchScreen(rootView)')
   })
@@ -914,6 +914,7 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     expect(sceneDelegate).toContain('openURLContexts')
     expect(sceneDelegate).toContain('continue userActivity')
     expect(sceneDelegate).toContain('RCTLinkingManager')
+    expect(sceneDelegate).toContain('appDelegate.reactNativeFactory')
   })
 
   it('throws when the template loses a scene anchor', () => {

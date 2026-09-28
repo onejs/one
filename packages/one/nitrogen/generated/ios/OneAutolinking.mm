@@ -38,6 +38,7 @@
 #include "HybridOneImageManipulatorSpecSwift.hpp"
 #include "HybridOneDeviceSpecSwift.hpp"
 #include "HybridOneMotionSpecSwift.hpp"
+#include "HybridOneBackgroundTasksSpecSwift.hpp"
 #include "HybridOneDeviceAttestationSpecSwift.hpp"
 #include "HybridOneScreenOrientationSpecSwift.hpp"
 #include "HybridOneScreenCaptureSpecSwift.hpp"
@@ -250,6 +251,13 @@
     "OneMotion",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneMotionSpec> hybridObject = One::OneAutolinking::createOneMotion();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneBackgroundTasks",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneBackgroundTasksSpec> hybridObject = One::OneAutolinking::createOneBackgroundTasks();
       return hybridObject;
     }
   );
